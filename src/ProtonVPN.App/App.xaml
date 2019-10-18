@@ -25,6 +25,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:converters="clr-namespace:ProtonVPN.Core.MVVM.Converters"
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    xmlns:markdown="clr-namespace:ProtonVPN.Core.Wpf.Markdown"
     mc:Ignorable="d">
     <Application.Resources>
         <ResourceDictionary>
