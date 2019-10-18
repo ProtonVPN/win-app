@@ -32,8 +32,8 @@ namespace ProtonVPN.Common.Configuration.Source
         public Config Value()
         {
             var location = Assembly.GetEntryAssembly()?.Location;
-            var baseFolder = (location != null ? new FileInfo(location).DirectoryName : null) 
-                ?? AppDomain.CurrentDomain.BaseDirectory;
+            var baseFolder = (location != null ? new FileInfo(location).DirectoryName : null)
+                             ?? AppDomain.CurrentDomain.BaseDirectory;
 
             var localAppDataFolder =
                 Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ProtonVPN");
@@ -121,30 +121,30 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 ServiceCheckInterval = TimeSpan.FromSeconds(30),
 
-                DefaultOpenVpnUdpPorts = new[] { 443, 1194, 4569, 5060, 80 },
+                DefaultOpenVpnUdpPorts = new[] {443, 1194, 4569, 5060, 80},
 
-                DefaultOpenVpnTcpPorts = new[] { 443, 3389, 8080, 8443 },
-                
-                DefaultBlackHoleIps = new List<string> { "62.112.9.168", "104.245.144.186" },
+                DefaultOpenVpnTcpPorts = new[] {443, 3389, 8080, 8443},
+
+                DefaultBlackHoleIps = new List<string> {"62.112.9.168", "104.245.144.186"},
 
                 Urls =
                 {
-                    PasswordResetUrl         = "https://account.protonvpn.com/reset-password",
-                    ForgetUsernameUrl        = "https://account.protonvpn.com/forgot-username",
-                    UpdateUrl                = "https://protonvpn.com/download/win-update.json",
-                    ApiUrl                   = "https://api.protonvpn.ch",
-                    TlsReportUrl             = "https://reports.protonmail.ch/reports/tls",
-                    HelpUrl                  = "https://www.protonvpn.com/support",
-                    AccountUrl               = "https://account.protonvpn.com/dashboard",
-                    AboutSecureCoreUrl       = "https://protonvpn.com/support/secure-core-vpn",
-                    RegisterUrl              = "https://account.protonvpn.com/signup",
-                    TroubleShootingUrl       = "https://protonvpn.com/support/windows-vpn-issues",
-                    P2PStatusUrl             = "http://protonstatus.com/vpn_status",
-                    ProtonMailPricingUrl     = "https://protonmail.com/pricing",
-                    PublicWifiSafetyUrl      = "https://protonvpn.com/blog/public-wifi-safety",
+                    PasswordResetUrl = "https://account.protonvpn.com/reset-password",
+                    ForgetUsernameUrl = "https://account.protonvpn.com/forgot-username",
+                    UpdateUrl = "https://protonvpn.com/download/win-update.json",
+                    ApiUrl = "https://api.protonvpn.ch",
+                    TlsReportUrl = "https://reports.protonmail.ch/reports/tls",
+                    HelpUrl = "https://www.protonvpn.com/support",
+                    AccountUrl = "https://account.protonvpn.com/dashboard",
+                    AboutSecureCoreUrl = "https://protonvpn.com/support/secure-core-vpn",
+                    RegisterUrl = "https://account.protonvpn.com/signup",
+                    TroubleShootingUrl = "https://protonvpn.com/support/windows-vpn-issues",
+                    P2PStatusUrl = "http://protonstatus.com/vpn_status",
+                    ProtonMailPricingUrl = "https://protonmail.com/pricing",
+                    PublicWifiSafetyUrl = "https://protonvpn.com/blog/public-wifi-safety",
                 },
 
-                OpenVpn = 
+                OpenVpn =
                 {
                     ExePath = Path.Combine(baseFolder, "Resources", $"{osBits}-bit", "openvpn.exe"),
 

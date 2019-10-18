@@ -2656,4 +2656,8 @@ Exiting the application will disable the Kill Switch. Do you want to continue?</
     <value>Kill Switch is currently active</value>
     <comment>The text displayed on the login window when user was force logged out while Kill Switch is active</comment>
   </data>
+  <data name="License_ttl" xml:space="preserve">
+    <value>License</value>
+    <comment>The title of License window</comment>
+  </data>
 </root>

@@ -1,4 +1,3 @@
-
 ## Copying
 
 Copyright (c) 2020 Proton Technologies AG

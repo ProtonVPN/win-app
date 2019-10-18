@@ -23,6 +23,10 @@ using ProtonVPN.Modals;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Input;
+using GalaSoft.MvvmLight.CommandWpf;
+using ProtonVPN.Core.Modals;
+using ProtonVPN.Common.Configuration;
 
 namespace ProtonVPN.About
 {
@@ -33,18 +37,24 @@ namespace ProtonVPN.About
         private readonly Common.Configuration.Config _appConfig;
         private readonly UpdateService _appUpdater;
         private readonly IAppSettings _appSettings;
+        private readonly IModals _modals;
 
         public AboutModalViewModel(
             Common.Configuration.Config appConfig,
             UpdateService appUpdater,
             IAppSettings appSettings,
-            UpdateViewModel updateViewModel)
+            UpdateViewModel updateViewModel,
+            IModals modals)
         {
+            _modals = modals;
             _appConfig = appConfig;
             _appUpdater = appUpdater;
             _appSettings = appSettings;
             Update = updateViewModel;
+            LicenseCommand = new RelayCommand(ShowLicense);
         }
+
+        public ICommand LicenseCommand { get; set; }
 
         public bool ShowPrimaryButton => true;
 
@@ -98,6 +108,11 @@ namespace ProtonVPN.About
         {
             if (options?.SkipUpdateCheck != true)
                 _appUpdater.StartCheckingForUpdate();
+        }
+
+        private void ShowLicense()
+        {
+            _modals.Show<LicenseModalViewModel>();
         }
     }
 }

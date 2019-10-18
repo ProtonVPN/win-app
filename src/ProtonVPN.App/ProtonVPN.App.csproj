@@ -176,6 +176,10 @@
       <DependentUpon>AboutModalView.xaml</DependentUpon>
     </Compile>
     <Compile Include="About\AboutModalViewModel.cs" />
+    <Compile Include="About\LicenseModalView.xaml.cs">
+      <DependentUpon>LicenseModalView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="About\LicenseModalViewModel.cs" />
     <Compile Include="About\ReleaseEqualityComparer.cs" />
     <Compile Include="About\UpdateNotification.cs" />
     <Compile Include="About\UpdateViewModel.cs" />
@@ -252,6 +256,8 @@
     <Compile Include="Core\Settings\Migrations\v1_8_0\AppSettingsMigration.cs" />
     <Compile Include="Core\Settings\Migrations\v1_8_0\UserSettingsMigration.cs" />
     <Compile Include="Core\Wpf\CustomListView.cs" />
+    <Compile Include="Core\Wpf\Markdown\Markdown.cs" />
+    <Compile Include="Core\Wpf\Markdown\TextToFlowDocumentConverter.cs" />
     <Compile Include="Lang\Language.cs" />
     <Compile Include="Modals\Dialogs\DialogSettings.cs" />
     <Compile Include="Core\MVVM\BringItemIntoViewEventArgs.cs" />
@@ -730,6 +736,10 @@
     <Compile Include="Windows\TrayIcon.cs" />
     <Compile Include="Windows\TrayIconMouse.cs" />
     <Page Include="About\AboutModalView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="About\LicenseModalView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1254,6 +1264,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.*.resx" />
     <None Include="gosrp.bat" />
+    <None Include="..\..\COPYING.md">
+      <Link>COPYING.md</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

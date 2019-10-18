@@ -71,6 +71,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <RowDefinition/>
                             <RowDefinition/>
                             <RowDefinition/>
+                            <RowDefinition/>
                         </Grid.RowDefinitions>
                         <Label Grid.Row="0" Grid.Column="0" Padding="0,5" FontSize="16" Content="{resources:Loc About_lbl_CurrentVersion}" Foreground="White"/>
                         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
@@ -79,10 +80,27 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </StackPanel>
                         <Label Grid.Row="1" Grid.Column="0" Padding="0,5" FontSize="16" Content="{resources:Loc About_lbl_LastUpdate}" Foreground="White"/>
                         <Label Grid.Row="1" Grid.Column="1" Padding="10,5" FontWeight="Bold" FontSize="16" Content="{Binding LastUpdate}" Foreground="White"/>
-                        <StackPanel Grid.Row="2"
-                                    Grid.Column="0"
-                                    Grid.ColumnSpan="2"
-                                    Orientation="Horizontal"
+
+                        <Label Foreground="White"
+                                   FontSize="16"
+                                   Padding="0,5"
+                                   Grid.Row="2"
+                                   Grid.Column="0"
+                                   Content="Licensing information:"/>
+                        <Button Grid.Row="2"
+                                Grid.Column="1"
+                                Padding="10,0,0,0"
+                                HorizontalAlignment="Left"
+                                Command="{Binding LicenseCommand}"
+                                Style="{StaticResource ClearStyleButton}">
+                            <TextBlock Foreground="White"
+                                       FontSize="16"
+                                       HorizontalAlignment="Left"
+                                       FontWeight="Bold"
+                                       Text="Read here"
+                                       TextDecorations="Underline"/>
+                        </Button>
+                        <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal"
                                     DataContext="{Binding Update}">
                             <fa:ImageAwesome Margin ="0,0,10,0"
                                              VerticalAlignment="Center"
