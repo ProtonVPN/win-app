@@ -56,11 +56,9 @@ namespace ProtonVPN.Core.Api
                 var request = GetAuthorizedRequest(HttpMethod.Post, "auth/refresh");
                 request.Content = GetJsonContent(data);
 
-                using (var response = await _client.SendAsync(request, token))
-                {
-                    var body = await response.Content.ReadAsStringAsync();
-                    return ApiResponseResult<RefreshTokenResponse>(body, response.StatusCode);
-                }
+                using var response = await _client.SendAsync(request, token);
+                var body = await response.Content.ReadAsStringAsync();
+                return ApiResponseResult<RefreshTokenResponse>(body, response.StatusCode);
             }
             catch (Exception e) when (e.IsApiCommunicationException())
             {

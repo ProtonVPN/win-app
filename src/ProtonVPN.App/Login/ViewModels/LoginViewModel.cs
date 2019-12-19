@@ -29,11 +29,14 @@ using System;
 using System.ComponentModel;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Windows.Input;
+using ProtonVPN.Common.Vpn;
+using ProtonVPN.Core.Vpn;
 
 namespace ProtonVPN.Login.ViewModels
 {
-    public class LoginViewModel : ViewModel, ISettingsAware
+    public class LoginViewModel : ViewModel, ISettingsAware, IVpnStateAware
     {
         private string _errorText = "";
 
@@ -50,6 +53,7 @@ namespace ProtonVPN.Login.ViewModels
         private bool _showHelpBalloon;
         private bool _autoAuthFailed;
         private bool _forcedLogout;
+        private bool _networkBlocked;
 
         public LoginViewModel(
             Common.Configuration.Config appConfig,
@@ -152,9 +156,15 @@ namespace ProtonVPN.Login.ViewModels
             set => _appSettings.StartOnStartup = value;
         }
 
+        public bool KillSwitchActive
+        {
+            get => _networkBlocked;
+            set => Set(ref _networkBlocked, value);
+        }
+
         public void OnSessionExpired()
         {
-            LoginErrorViewModel.SetStandardError(StringResources.Get("Login_Error_msg_SessionExpired"));
+            LoginErrorViewModel.SetDetailedError(StringResources.Get("Login_Error_msg_SessionExpired"));
         }
 
         public void OnForcedLogout(string message)
@@ -266,6 +276,15 @@ namespace ProtonVPN.Login.ViewModels
         private void ForgotUsernameAction()
         {
             _urls.ForgetUsernameUrl.Open();
+        }
+
+        public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
+        {
+            KillSwitchActive = e.NetworkBlocked &&
+                                  (e.State.Status == VpnStatus.Disconnecting ||
+                                   e.State.Status == VpnStatus.Disconnected);
+
+            return Task.CompletedTask;
         }
     }
 }

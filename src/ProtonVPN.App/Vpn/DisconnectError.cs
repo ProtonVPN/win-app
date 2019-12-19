@@ -22,6 +22,7 @@ using System.Dynamic;
 using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Vpn;
+using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
@@ -29,12 +30,14 @@ using ProtonVPN.Modals;
 
 namespace ProtonVPN.Vpn
 {
-    public class DisconnectError: IVpnStateAware
+    public class DisconnectError : IVpnStateAware, ILogoutAware, ILoggedInAware
     {
         private readonly IModals _modals;
         private readonly IAppSettings _appSettings;
 
         private bool _connected;
+        private bool _loggedIn;
+
 
         public DisconnectError(IModals modals, IAppSettings appSettings)
         {
@@ -46,8 +49,7 @@ namespace ProtonVPN.Vpn
         {
             var status = e.State.Status;
 
-            if (status == VpnStatus.Reconnecting && e.NetworkBlocked && _connected && _appSettings.KillSwitch ||
-                (status == VpnStatus.Disconnected || status == VpnStatus.Disconnecting) && e.Error != VpnError.None)
+            if (ModalShouldBeShown(e))
             {
                 Post(() => ShowModal(e));
             }
@@ -68,6 +70,19 @@ namespace ProtonVPN.Vpn
             return Task.CompletedTask;
         }
 
+        private bool ModalShouldBeShown(VpnStateChangedEventArgs e)
+        {
+            return _loggedIn && (Reconnecting(e) || e.UnexpectedDisconnect);
+        }
+
+        private bool Reconnecting(VpnStateChangedEventArgs e)
+        {
+            return e.State.Status == VpnStatus.Reconnecting &&
+                   e.NetworkBlocked &&
+                   _connected &&
+                   _appSettings.KillSwitch;
+        }
+
         private void ShowModal(VpnStateChangedEventArgs e)
         {
             dynamic options = new ExpandoObject();
@@ -85,6 +100,16 @@ namespace ProtonVPN.Vpn
         private void Post(Action action)
         {
             SynchronizationContext.Current.Post(_ => action(), null);
+        }
+
+        public void OnUserLoggedOut()
+        {
+            _loggedIn = false;
+        }
+
+        public void OnUserLoggedIn()
+        {
+            _loggedIn = true;
         }
     }
 }

@@ -27,6 +27,7 @@ using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.OS.Processes;
 using ProtonVPN.Common.OS.Services;
 using ProtonVPN.Common.Threading;
+using ProtonVPN.Common.Vpn;
 using ProtonVPN.Config;
 using ProtonVPN.Core.Abstract;
 using ProtonVPN.Core.Api.Handlers;
@@ -132,6 +133,9 @@ namespace ProtonVPN.Core
                 Resolve<IUserStorage>().ClearLogin();
                 appSettings.LoggedInWithSavedCredentials = false;
             }
+
+            Resolve<VpnServiceWrapper>().Stop();
+            Resolve<AppUpdateServiceWrapper>().Stop();
         }
 
         private async Task<bool> SessionExpired()
@@ -246,9 +250,6 @@ namespace ProtonVPN.Core
                 {
                     instance.OnUserLoggedOut();
                 }
-
-                Resolve<VpnServiceWrapper>().Stop();
-                Resolve<AppUpdateServiceWrapper>().Stop();
             };
 
             Resolve<IUserStorage>().UserDataChanged += (sender, e) =>
@@ -388,12 +389,17 @@ namespace ProtonVPN.Core
                 Resolve<ReportBugModalViewModel>().OnAttachmentErrorOccured(e);
             };
 
-            Resolve<UnauthorizedResponseHandler>().SessionExpired += (sender, e) =>
+            Resolve<UnauthorizedResponseHandler>().SessionExpired += async (sender, e) =>
             {
-                Resolve<IScheduler>().Schedule(async () =>
+                await Resolve<IScheduler>().Schedule(async () =>
                 {
-                    await Resolve<UserAuth>().Logout();
+                    if (Resolve<VpnManager>().Status != VpnStatus.Disconnected)
+                    {
+                        await Resolve<IVpnServiceManager>().Disconnect(VpnError.Unknown);
+                    }
+
                     Resolve<LoginViewModel>().OnSessionExpired();
+                    await Resolve<UserAuth>().Logout();
                 });
             };
 

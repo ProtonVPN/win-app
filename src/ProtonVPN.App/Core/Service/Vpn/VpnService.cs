@@ -22,13 +22,15 @@ using System.ServiceModel;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Threading;
-using ProtonVPN.Core.Auth;
 using ProtonVPN.Service.Contract.Settings;
 using ProtonVPN.Service.Contract.Vpn;
+using System;
+using System.ServiceModel;
+using System.Threading.Tasks;
 
 namespace ProtonVPN.Core.Service.Vpn
 {
-    public class VpnService : ILogoutAware
+    public class VpnService
     {
         private readonly ServiceChannelFactory _channelFactory;
         private readonly ILogger _logger;
@@ -65,12 +67,6 @@ namespace ProtonVPN.Core.Service.Vpn
 
         public Task<InOutBytesContract> Total() =>
             Invoke(p => p.Total());
-
-        public void OnUserLoggedOut()
-        {
-            UnRegisterCallback(_channel);
-            CloseChannel();
-        }
 
         private async Task<T> Invoke<T>(Func<IVpnConnectionContract, Task<T>> serviceCall)
         {
@@ -122,17 +118,6 @@ namespace ProtonVPN.Core.Service.Vpn
             {
                 channel.Dispose();
                 throw;
-            }
-        }
-
-        private void UnRegisterCallback(ServiceChannel<IVpnConnectionContract> channel)
-        {
-            try
-            {
-                channel?.Proxy.UnRegisterCallback();
-            }
-            catch (Exception e) when (IsCommunicationException(e))
-            {
             }
         }
 

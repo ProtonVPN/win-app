@@ -49,5 +49,8 @@ namespace ProtonVPN.Core.Vpn
             NetworkBlocked = networkBlocked;
             Protocol = protocol;
         }
+
+        public bool UnexpectedDisconnect => (State.Status == VpnStatus.Disconnected || State.Status == VpnStatus.Disconnecting) &&
+                                            Error != VpnError.None;
     }
 }
