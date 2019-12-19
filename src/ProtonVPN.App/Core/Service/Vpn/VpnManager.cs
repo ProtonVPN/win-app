@@ -130,7 +130,7 @@ namespace ProtonVPN.Core.Service.Vpn
         public void OnUserLoggedOut()
         {
             State = new VpnState(VpnStatus.Disconnected);
-            RaiseVpnStateChanged(new VpnStateChangedEventArgs(State, VpnError.None, false));
+            RaiseVpnStateChanged(new VpnStateChangedEventArgs(State, VpnError.None, _networkBlocked));
         }
 
         public void OnServersUpdated()

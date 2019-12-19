@@ -3500,6 +3500,15 @@ namespace ProtonVPN.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Kill Switch is currently active..
+        /// </summary>
+        public static string Login_NetworkBlocked {
+            get {
+                return ResourceManager.GetString("Login_NetworkBlocked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ProtonVPN.
         /// </summary>
         public static string Login_ttl {
