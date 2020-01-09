@@ -27,7 +27,10 @@ namespace ProtonVPN.Core.Ioc
         protected override void Load(ContainerBuilder builder)
         {
             base.Load(builder);
-            builder.RegisterType<LoginWindow>().SingleInstance();
+            builder.RegisterType<LoginWindow>()
+                .AsImplementedInterfaces()
+                .AsSelf()
+                .SingleInstance();
         }
     }
 }

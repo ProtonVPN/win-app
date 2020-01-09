@@ -2663,12 +2663,17 @@ The app failed to communicate with our server and has timed out. You might want 
     <value>Automatically downloads and installs the latest version of the ProtonVPN app when the app is idle. Keep this activated for best app performance and security.</value>
     <comment>The description of Auto Update setting displayed in the tooltip of ( i ) image next to the label for Auto Update toggle switch in General tab of Settings window</comment>
   </data>
-  <data name="Login_NetworkBlocked" xml:space="preserve">
-    <value>Kill Switch is currently active</value>
-    <comment>The text displayed on the login window when user was force logged out while Kill Switch is active</comment>
-  </data>
   <data name="Dialogs_DisconnectError_msg_TlsError" xml:space="preserve">
     <value>There's a problem validating the VPN server certificate, which might indicate that the network connection is being tampered with or the server you are trying to connect to has a configuration problem. Get help from our customer support by sending a &lt;Hyperlink Foreground="White" Command="{Binding ReportBugCommand}"&gt;&lt;Run Text="Bug Report"/&gt;&lt;/Hyperlink&gt;.</value>
     <comment>The error description displayed in Disconnect modal window if VPN server certificate validation error has occured</comment>
+  </data>
+  <data name="Login_msg_ExitKillSwitchConfirm" xml:space="preserve">
+    <value>Kill Switch is blocking all connections to avoid leaking your data.&lt;LineBreak/&gt;
+Exiting the application will disable the Kill Switch. Do you want to continue?</value>
+    <comment>The text displayed in the login window modal when user tries to close the app wihile Kill Switch is active</comment>
+  </data>
+  <data name="Login_lbl_KillSwitch" xml:space="preserve">
+    <value>Kill Switch is currently active</value>
+    <comment>The text displayed on the login window when user was force logged out while Kill Switch is active</comment>
   </data>
 </root>

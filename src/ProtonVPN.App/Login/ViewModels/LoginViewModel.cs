@@ -164,7 +164,7 @@ namespace ProtonVPN.Login.ViewModels
 
         public void OnSessionExpired()
         {
-            LoginErrorViewModel.SetDetailedError(StringResources.Get("Login_Error_msg_SessionExpired"));
+            LoginErrorViewModel.SetStandardError(StringResources.Get("Login_Error_msg_SessionExpired"));
         }
 
         public void OnForcedLogout(string message)
