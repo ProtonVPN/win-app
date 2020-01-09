@@ -274,7 +274,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        VerticalAlignment="Center"
                        TextAlignment="Center"
                        FontSize="14"
-                       Text="{resources:Loc Login_NetworkBlocked}"/>
+                       Text="{resources:Loc Login_lbl_KillSwitch}"/>
         </DockPanel>
     </Grid>
 </UserControl>

@@ -18,18 +18,36 @@
  */
 
 using System.ComponentModel;
+using System.Threading.Tasks;
 using System.Windows;
+using ProtonVPN.Common.Vpn;
+using ProtonVPN.Core.Modals;
+using ProtonVPN.Core.Vpn;
+using ProtonVPN.Resources;
 
 namespace ProtonVPN.Login.Views
 {
-    public partial class LoginWindow
+    public partial class LoginWindow : IVpnStateAware
     {
-        public LoginWindow()
+        private bool _networkBlocked;
+        private readonly IDialogs _dialogs;
+
+        public LoginWindow(IDialogs dialogs)
         {
+            _dialogs = dialogs;
             InitializeComponent();
 
             CloseButton.Click += CloseButton_Click;
             MinimizeButton.Click += Minimize_Click;
+        }
+
+        public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
+        {
+            _networkBlocked = e.NetworkBlocked &&
+                              (e.State.Status == VpnStatus.Disconnecting ||
+                               e.State.Status == VpnStatus.Disconnected);
+
+            return Task.CompletedTask;
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
@@ -45,6 +63,16 @@ namespace ProtonVPN.Login.Views
         protected override void OnClosing(CancelEventArgs e)
         {
             e.Cancel = true;
+
+            if (_networkBlocked)
+            {
+                var result = _dialogs.ShowQuestion(StringResources.Get("Login_msg_ExitKillSwitchConfirm"));
+                if (!result.HasValue || !result.Value)
+                {
+                    return;
+                }
+            }
+
             base.OnClosing(e);
             Application.Current.Shutdown();
         }

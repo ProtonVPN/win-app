@@ -3419,6 +3419,15 @@ namespace ProtonVPN.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Kill Switch is currently active.
+        /// </summary>
+        public static string Login_lbl_KillSwitch {
+            get {
+                return ResourceManager.GetString("Login_lbl_KillSwitch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password.
         /// </summary>
         public static string Login_lbl_Password {
@@ -3500,11 +3509,12 @@ namespace ProtonVPN.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kill Switch is currently active..
+        ///   Looks up a localized string similar to Kill Switch is blocking all connections to avoid leaking your data.&lt;LineBreak/&gt;
+        ///Exiting the application will disable the Kill Switch. Do you want to continue?.
         /// </summary>
-        public static string Login_NetworkBlocked {
+        public static string Login_msg_ExitKillSwitchConfirm {
             get {
-                return ResourceManager.GetString("Login_NetworkBlocked", resourceCulture);
+                return ResourceManager.GetString("Login_msg_ExitKillSwitchConfirm", resourceCulture);
             }
         }
         
