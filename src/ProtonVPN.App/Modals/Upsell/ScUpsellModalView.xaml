@@ -33,13 +33,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         Height="Auto"
                         Width="500"
                         d:DataContext="{d:DesignInstance upsell:ScUpsellModalViewModel}">
-    
-    <modals:BaseModalWindow.Resources>
-        <Style TargetType="Hyperlink">
-            <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
-        </Style>
-    </modals:BaseModalWindow.Resources>
-
     <Grid>
         <StackPanel>
             <TextBlock TextWrapping="Wrap" FontSize="16" Foreground="White" Padding="15,40,10,0">

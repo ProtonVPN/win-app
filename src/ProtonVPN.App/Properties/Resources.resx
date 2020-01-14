@@ -382,7 +382,7 @@
     <comment>The message displayed in Account window if account pricing data loading has failed</comment>
   </data>
   <data name="Account_lnk_ProtonMailVisionaryIncluded" xml:space="preserve">
-    <value>(ProtonMail Visionary included)</value>
+    <value>ProtonMail included</value>
     <comment>The hyperlink text displayed in Visionary account plan header in Account window</comment>
   </data>
   <data name="Window_lbl_Loading" xml:space="preserve">
@@ -762,14 +762,6 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <value>Connect</value>
     <comment>The text of Connect command in a balloon above Pin in Map (connects to the VPN)</comment>
   </data>
-  <data name="Profiles_lnk_Edit" xml:space="preserve">
-    <value>Edit</value>
-    <comment>The hyperlink text of Edit action in Profiles window (opens Profile window for editing)</comment>
-  </data>
-  <data name="Profiles_lnk_Delete" xml:space="preserve">
-    <value>Delete</value>
-    <comment>The hyperlink text of Delete action in Profiles window (deletes the profile)</comment>
-  </data>
   <data name="Profiles_btn_Create" xml:space="preserve">
     <value>Create Profile</value>
     <comment>The text on create profile button on Profile window (opens new profile window)</comment>
@@ -1094,10 +1086,6 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <value>Account:</value>
     <comment>The label of user logon name in Bug Report window</comment>
   </data>
-  <data name="Profiles_lnk_Connect" xml:space="preserve">
-    <value>Connect</value>
-    <comment>The hyperlink text of Connect action in Profiles window (connects to VPN)</comment>
-  </data>
   <data name="Profiles_ttl" xml:space="preserve">
     <value>Profiles</value>
     <comment>The title of Profiles window</comment>
@@ -1349,14 +1337,6 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
   <data name="Sidebar_Connection_btn_Disconnect" xml:space="preserve">
     <value>Disconnect</value>
     <comment>The text on Disconnect button in Connection section of Sidebar section of main app window (disconnect from VPN)</comment>
-  </data>
-  <data name="Sidebar_Connection_lnk_DeleteProfile" xml:space="preserve">
-    <value>Delete profile</value>
-    <comment>The text of Delete profile hyperlink in Connection section of Sidebar section of main app window (deletes profile with the server used in current connection to VPN)</comment>
-  </data>
-  <data name="Sidebar_Connection_lnk_SetAsProfile" xml:space="preserve">
-    <value>Set as profile</value>
-    <comment>The text of Set as profile hyperlink in Connection section of Sidebar section of main app window (creates new profile with the server used in current connection to VPN)</comment>
   </data>
   <data name="Sidebar_Countries_lbl_Maintenance" xml:space="preserve">
     <value>Maintenance</value>
