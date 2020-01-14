@@ -178,11 +178,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Style.Triggers>
     </Style>
     <Style x:Key="ManageProfilesButton" TargetType="Button" BasedOn="{StaticResource ClearStyleButton}">
-        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Margin" Value="0,10,0,20"/>
-        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="FontSize" Value="14"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Command" Value="{Binding ManageProfilesCommand}"/>
     </Style>

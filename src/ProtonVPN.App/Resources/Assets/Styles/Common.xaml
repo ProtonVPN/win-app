@@ -58,4 +58,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="VerticalAlignment" Value="Top"/>
     </Style>
 
+    <Style TargetType="Hyperlink">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
+    </Style>
+
 </ResourceDictionary>

@@ -250,7 +250,7 @@ namespace ProtonVPN.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to (ProtonMail Visionary included).
+        ///   Looks up a localized string similar to ProtonMail included.
         /// </summary>
         public static string Account_lnk_ProtonMailVisionaryIncluded {
             get {
@@ -3897,33 +3897,6 @@ namespace ProtonVPN.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Connect.
-        /// </summary>
-        public static string Profiles_lnk_Connect {
-            get {
-                return ResourceManager.GetString("Profiles_lnk_Connect", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Delete.
-        /// </summary>
-        public static string Profiles_lnk_Delete {
-            get {
-                return ResourceManager.GetString("Profiles_lnk_Delete", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Edit.
-        /// </summary>
-        public static string Profiles_lnk_Edit {
-            get {
-                return ResourceManager.GetString("Profiles_lnk_Edit", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Servers are currently offline for maintenance..
         /// </summary>
         public static string Profiles_msg_AllServersOffline {
@@ -5045,24 +5018,6 @@ namespace ProtonVPN.Properties {
         public static string Sidebar_Connection_lbl_KillSwitch_Info {
             get {
                 return ResourceManager.GetString("Sidebar_Connection_lbl_KillSwitch_Info", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Delete profile.
-        /// </summary>
-        public static string Sidebar_Connection_lnk_DeleteProfile {
-            get {
-                return ResourceManager.GetString("Sidebar_Connection_lnk_DeleteProfile", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Set as profile.
-        /// </summary>
-        public static string Sidebar_Connection_lnk_SetAsProfile {
-            get {
-                return ResourceManager.GetString("Sidebar_Connection_lnk_SetAsProfile", resourceCulture);
             }
         }
         

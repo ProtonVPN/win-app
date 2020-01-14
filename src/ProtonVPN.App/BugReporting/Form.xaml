@@ -206,8 +206,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         Foreground="{StaticResource PrimaryColor}"
                         Background="Transparent"
                         BorderBrush="Transparent"
-                        FontWeight="Bold"
-                        Content="{resources:Loc BugReport_lnk_AddFile}"/>
+                        FontWeight="Bold">
+                    <Underline>
+                        <Run Text="{resources:Loc BugReport_lnk_AddFile}"/>
+                    </Underline>
+                </Button>
             </DockPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" DockPanel.Dock="Bottom">
                 <Label Content="{resources:Loc BugReport_lbl_MaxFileSize}" Padding="0,5" Foreground="#5b5e6c"/>

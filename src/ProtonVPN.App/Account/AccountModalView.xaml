@@ -187,11 +187,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                             Background="Transparent"
                                             BorderBrush="Transparent"
                                             Command="{Binding DataContext.ProtonMailPricingCommand, RelativeSource={RelativeSource AncestorType=Window, Mode=FindAncestor}}">
-                                            <TextBlock FontStyle="Italic"
-                                                       HorizontalAlignment="Center"
-                                                       Foreground="White"
+                                            <TextBlock HorizontalAlignment="Center"
+                                                       Foreground="{StaticResource PrimaryColor}"
                                                        Margin="0,-10,0,10"
-                                                       FontSize="13"
+                                                       FontSize="14"
                                                        Visibility="{Binding IsVisionary, Converter={StaticResource BoolToVis}}">
                                                 <Underline>
                                                     <Run Text="{resources:Loc Account_lnk_ProtonMailVisionaryIncluded}"/>
