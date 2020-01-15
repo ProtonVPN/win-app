@@ -1,0 +1,293 @@
+﻿<!--
+Copyright (c) 2020 Proton Technologies AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<UserControl x:Class="ProtonVPN.BugReporting.Form"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
+             xmlns:attachments="clr-namespace:ProtonVPN.BugReporting.Attachments"
+             xmlns:bugReporting="clr-namespace:ProtonVPN.BugReporting"
+             xmlns:resources="clr-namespace:ProtonVPN.Resources"
+             mc:Ignorable="d"
+             d:DesignWidth="800" 
+             d:DataContext="{d:DesignInstance bugReporting:FormViewModel}">
+    <UserControl.Resources>
+        <Style x:Key="Scroller" TargetType="ScrollViewer">
+            <Setter Property="Template" Value="{StaticResource DarkScrollViewerControlTemplate}"/>
+        </Style>
+        <Style x:Key="FormBorder" TargetType="Border">
+            <Setter Property="BorderBrush" Value="#3a393f"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Setter Property="Background" Value="#201f25"/>
+        </Style>
+        <Style x:Key="BugReportTextBox" BasedOn="{x:Null}" TargetType="{x:Type TextBox}">
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="AllowDrop" Value="true"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border x:Name="bg" BorderBrush="#3a393f" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
+                            <ScrollViewer x:Name="PART_ContentHost" PanningMode="VerticalOnly" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Background="{StaticResource ModalColor}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.2*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0"
+                   Grid.Column="0"
+                   Margin="30,20,30,10"
+                   Padding="0"
+                   FontSize="14"
+                   Foreground="White"
+                   TextWrapping="Wrap"
+                   TextAlignment="Justify"
+                   Text="{resources:Loc BugReport_msg_Info}"/>
+        <StackPanel Grid.Row="0" Grid.Column="1" Margin="10,20,30,20">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Label Grid.Column="0" Grid.Row="0" Padding="0,0,30,5"
+                       Foreground="White" 
+                       FontSize="14" 
+                       Content="{resources:Loc BugReport_lbl_Account}"/>
+                <TextBlock Grid.Column="1" Grid.Row="0" Padding="0,0,0,5" MaxHeight="60" 
+                           Foreground="White" 
+                           FontSize="14" 
+                           Text="{Binding Account}"
+                           TextWrapping="Wrap" 
+                           TextTrimming="CharacterEllipsis"
+                           ToolTip="{Binding Account}"/>
+
+                <Label Grid.Column="0" Grid.Row="1" Foreground="White" FontSize="14" Padding="0,0,30,5" Content="{resources:Loc BugReport_lbl_Plan}"/>
+                <Label Grid.Column="1" Grid.Row="1" Foreground="{Binding PlanColor}" FontSize="14" Padding="0,0,0,5" Content="{Binding Plan}"/>
+
+                <Label Grid.Column="0" Grid.Row="2" Foreground="White" FontSize="14" Padding="0,0,30,5" Content="{resources:Loc BugReport_lbl_Version}"/>
+                <Label Grid.Column="1" Grid.Row="2" Foreground="White" FontSize="14" Padding="0,0,0,5" Content="{Binding Version}"/>
+            </Grid>
+        </StackPanel>
+        <DockPanel Grid.Row="1" Grid.Column="0" Margin="30,20,10,20">
+            <Grid DockPanel.Dock="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <DockPanel Grid.Row="0" Grid.Column="0" Margin="0,0,10,0">
+                    <Label Padding="0" VerticalAlignment="Center" FontSize="14" Foreground="White" Content="{resources:Loc BugReport_lbl_Email}"/>
+                    <Label Foreground="Red" Padding="5,15,0,0" FontSize="14" Content="*"/>
+                </DockPanel>
+                <Grid Grid.Row="0" Grid.Column="1">
+                    <TextBox Style="{StaticResource BugReportTextBox}"
+                                 x:Name="Email"
+                                 Background="Transparent"
+                                 Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"
+                                 Foreground="White"
+                                 CaretBrush="White"
+                                 FontSize="14"
+                                 BorderThickness="0,0,0,1"
+                                 Padding="7,14"/>
+                    <TextBlock IsHitTestVisible="False" FontSize="14" Text="{resources:Loc BugReport_lbl_Email_Watermark}" HorizontalAlignment="Left" Margin="7,14" Foreground="#4a4c55">
+                        <TextBlock.Style>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Text, ElementName=Email}" Value="">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                </Grid>
+                <Label Grid.Row="1" Grid.Column="0" Margin="0,0,10,0" Padding="0" VerticalAlignment="Center" FontSize="14" Foreground="White" Content="{resources:Loc BugReport_lbl_Country}"/>
+                <Grid Grid.Row="1" Grid.Column="1">
+                    <TextBox Style="{StaticResource BugReportTextBox}"
+                             x:Name="Country"
+                             Background="Transparent"
+                             Text="{Binding Country, UpdateSourceTrigger=PropertyChanged}"
+                             Foreground="White"
+                             CaretBrush="White"
+                             FontSize="14"
+                             BorderThickness="0,0,0,1"
+                             Padding="7,14"/>
+                    <TextBlock IsHitTestVisible="False" FontSize="14" Text="{resources:Loc BugReport_lbl_Country_Watermark}" HorizontalAlignment="Left" Margin="7,14" Foreground="#4a4c55">
+                        <TextBlock.Style>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Text, ElementName=Country}" Value="">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                </Grid>
+                <Label Grid.Row="2" Grid.Column="0" Margin="0,0,10,0" Padding="0" VerticalAlignment="Center" FontSize="14" Foreground="White" Content="{resources:Loc BugReport_lbl_Isp}"/>
+                <Grid Grid.Row="2" Grid.Column="1">
+                    <TextBox Style="{StaticResource BugReportTextBox}"
+                             x:Name="Isp"
+                             Background="Transparent"
+                             BorderThickness="0,0,0,1"
+                             Text="{Binding Isp, UpdateSourceTrigger=PropertyChanged}"
+                             Foreground="White"
+                             CaretBrush="White"
+                             FontSize="14"
+                             Padding="7,14"/>
+                    <TextBlock IsHitTestVisible="False" FontSize="14" Text="{resources:Loc BugReport_lbl_Isp_Watermark}" HorizontalAlignment="Left" Margin="7,14" Foreground="#4a4c55">
+                        <TextBlock.Style>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Text, ElementName=Isp}" Value="">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                </Grid>
+            </Grid>
+            <DockPanel Margin="0,20,0,5" DockPanel.Dock="Top">
+                <fa:FontAwesome Icon="Paperclip"
+                                Foreground="{StaticResource PrimaryColor}"
+                                FontSize="14"
+                                FontWeight="Bold"
+                                Padding="0,0,5,0"
+                                VerticalAlignment="Center"/>
+                <Button Style="{StaticResource ClearStyleButton}"
+                        VerticalAlignment="Center"
+                        FontSize="14"
+                        Command="{Binding AddAttachmentCommand}"
+                        HorizontalAlignment="Left"
+                        Foreground="{StaticResource PrimaryColor}"
+                        Background="Transparent"
+                        BorderBrush="Transparent"
+                        FontWeight="Bold"
+                        Content="{resources:Loc BugReport_lnk_AddFile}"/>
+            </DockPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" DockPanel.Dock="Bottom">
+                <Label Content="{resources:Loc BugReport_lbl_MaxFileSize}" Padding="0,5" Foreground="#5b5e6c"/>
+                <Label Content="{Binding MaxFileSize, Converter={StaticResource BytesToStringConverter}}" Foreground="#5b5e6c"/>
+            </StackPanel>
+            <Border Style="{StaticResource FormBorder}" VerticalAlignment="Stretch">
+                <ScrollViewer VerticalAlignment="Stretch" Style="{StaticResource Scroller}" PanningMode="VerticalOnly" Margin="0,5,0,0">
+                    <ItemsControl ItemsSource="{Binding Attachments}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate DataType="attachments:Attachment">
+                                <DockPanel Margin="10,2,25,0">
+                                    <fa:FontAwesome Icon="FileTextOutline"
+                                                    Foreground="#4a4c55"
+                                                    FontSize="14"
+                                                    Padding="5,0"
+                                                    VerticalAlignment="Center"
+                                                    DockPanel.Dock="Left"/>
+                                    <Button Command="{Binding DataContext.RemoveAttachmentCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                            CommandParameter="{Binding}"
+                                            Style="{StaticResource ClearStyleButton}"
+                                            Background="Transparent"
+                                            BorderBrush="Transparent"
+                                            Padding="5,0"
+                                            VerticalAlignment="Center"
+                                            DockPanel.Dock="Right">
+                                        <fa:FontAwesome Icon="TrashOutline"
+                                                        Foreground="{StaticResource PrimaryColor}"
+                                                        FontSize="14"/>
+                                    </Button>
+                                    <Button Command="{Binding DataContext.OpenAttachmentCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                            CommandParameter="{Binding}"
+                                            Style="{StaticResource ClearStyleButton}"
+                                            Background="Transparent"
+                                            BorderBrush="Transparent"
+                                            DockPanel.Dock="Right"
+                                            Padding="5,0"
+                                            VerticalAlignment="Center">
+                                        <fa:FontAwesome Icon="ExternalLink"
+                                                        Foreground="{StaticResource PrimaryColor}"
+                                                        FontSize="14"/>
+                                    </Button>
+                                    <Label Foreground="White" Content="{Binding Name}" HorizontalAlignment="Stretch"/>
+                                </DockPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Border>
+        </DockPanel>
+        <DockPanel Grid.Row="1" Grid.Column="1" Margin="10,20,30,20">
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                <Label Padding="0,15,5,10" FontSize="14" Foreground="White" Content="{resources:Loc BugReport_lbl_Feedback}"/>
+                <Label Foreground="Red" Padding="0,15,0,0" FontSize="14" Content="*"/>
+            </StackPanel>
+            <Grid DockPanel.Dock="Bottom">
+                <TextBox Style="{StaticResource BugReportTextBox}"
+                        x:Name="Feedback"
+                        Background="#201f25"
+                        BorderThickness="1"
+                        Foreground="White"
+                        CaretBrush="White"
+                        FontSize="14"
+                        Text="{Binding Feedback, UpdateSourceTrigger=PropertyChanged}"
+                        AcceptsReturn="True"
+                        TextWrapping="Wrap"/>
+                <TextBlock Margin="7,7,0,0" FontSize="14" VerticalAlignment="Top" HorizontalAlignment="Stretch" Foreground="#4a4c55" 
+                           Text="{resources:Loc BugReport_lbl_Feedback_Watermark}"
+                           IsHitTestVisible="False">
+                    <TextBlock.Style>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Text, ElementName=Feedback}" Value="">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </Grid>
+        </DockPanel>
+    </Grid>
+</UserControl>

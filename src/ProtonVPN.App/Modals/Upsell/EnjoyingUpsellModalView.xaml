@@ -1,0 +1,77 @@
+﻿<!--
+Copyright (c) 2020 Proton Technologies AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<modals:BaseModalWindow x:Class="ProtonVPN.Modals.Upsell.EnjoyingUpsellModalView"
+                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                        xmlns:modals="clr-namespace:ProtonVPN.Modals"
+                        xmlns:upsell="clr-namespace:ProtonVPN.Modals.Upsell"
+                        xmlns:icons="clr-namespace:ProtonVPN.Views.Icons"
+                        xmlns:behavior="clr-namespace:ProtonVPN.Core.Wpf.Behavior"
+                        xmlns:resources="clr-namespace:ProtonVPN.Resources"
+                        Style="{StaticResource BaseModalStyle}"
+                        Height="550"
+                        Width="800"
+                        Title="{resources:Loc Upsell_Enjoying_ttl}"
+                        mc:Ignorable="d" 
+                        d:DataContext="{d:DesignInstance upsell:EnjoyingUpsellModalViewModel}">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" GradientStops="{StaticResource ModalBackground}"/>
+        </Grid.Background>
+        <icons:Mountains HorizontalAlignment="Right"
+                         VerticalAlignment="Bottom"
+                         Width="600"/>
+        <StackPanel Margin="80">
+            <TextBlock Foreground="White"
+                       FontWeight="Medium"
+                       FontSize="48"
+                       TextWrapping="Wrap"
+                       behavior:TextStyleBehavior.FormattedText="{resources:Loc Upsell_Enjoying_lbl_Heading}"/>
+            <TextBlock Foreground="White"
+                       FontWeight="Medium"
+                       Margin="0,30"
+                       Width="500"
+                       HorizontalAlignment="Left"
+                       TextWrapping="Wrap"
+                       FontSize="20"
+                       Text="{resources:Loc Upsell_Enjoying_lbl_Benefits}"/>
+            <StackPanel HorizontalAlignment="Left">
+                <Button Style="{StaticResource PrimaryVividModalButton}"
+                        Padding="20,0"
+                        HorizontalAlignment="Left"
+                        FontWeight="Medium"
+                        FontSize="22"
+                        Content="{resources:Loc Upsell_Enjoying_btn_Upgrade}"
+                        Command="{Binding ContinueCommand}"/>
+                <DockPanel Margin="0,10,0,0" HorizontalAlignment="Center">
+                    <icons:Info Width="13" Height="13" Color="#00a651"/>
+                    <Label Margin="5,0,0,0"
+                           Foreground="White"
+                           FontWeight="Light"
+                           FontSize="11"
+                           Content="{resources:Loc Upsell_Enjoying_lbl_MoneyBack}"/>
+                </DockPanel>
+            </StackPanel>
+
+        </StackPanel>
+    </Grid>
+</modals:BaseModalWindow>

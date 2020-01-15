@@ -1,0 +1,219 @@
+﻿<!--
+Copyright (c) 2020 Proton Technologies AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<UserControl x:Class="ProtonVPN.SpeedGraph.SpeedGraph"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:oxy="http://oxyplot.org/wpf"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:resources="clr-namespace:ProtonVPN.Resources"
+             xmlns:speedGraph="clr-namespace:ProtonVPN.SpeedGraph"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance speedGraph:SpeedGraphViewModel}">
+
+    <UserControl.Resources>
+        <Style x:Key="DataLabel" TargetType="Label">
+            <Setter Property="Margin" Value="0,2"/>
+            <Setter Property="Padding" Value="5,0,5,0"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Width" Value="55"/>
+            <Setter Property="Height" Value="16"/>
+            <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
+            <Setter Property="HorizontalContentAlignment" Value="Right"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="DownloadLabel" TargetType="Label" BasedOn="{StaticResource DataLabel}">
+            <Setter Property="Foreground" Value="{StaticResource PrimaryColorDimmed}"/>
+        </Style>
+
+        <Style x:Key="UnitColumn" TargetType="Label">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Padding" Value="5,0,0,0"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="SpeedUnitColumn" TargetType="Label" BasedOn="{StaticResource UnitColumn}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Label">
+                        <Border Background="{TemplateBinding Background}" Width="{TemplateBinding Width}" Padding="{TemplateBinding Padding}">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                <ContentPresenter/>
+                                <Label Padding="0" Foreground="{TemplateBinding Foreground}">/s</Label>
+                            </StackPanel>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="UploadSpeedNumber" TargetType="Label" BasedOn="{StaticResource DataLabel}">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Width" Value="36"/>
+            <Setter Property="Background" Value="#56b39c"/>
+        </Style>
+
+        <Style x:Key="DownloadSpeedNumber" TargetType="Label" BasedOn="{StaticResource DataLabel}">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Width" Value="36"/>
+            <Setter Property="Background" Value="#369d5b"/>
+        </Style>
+
+        <Style x:Key="TitleLabel" TargetType="Label">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Row="0" Grid.Column="1" Margin="0,0,0,5" x:Name="TopLabels">
+            <Label Content="{resources:Loc Map_SpeedGraph_lbl_Speed}" Padding="0" FontSize="10" Foreground="#33FFFFFF" VerticalAlignment="Bottom"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Label Foreground="#33FFFFFF" Padding="0,0,5,0" FontSize="10" Content="{Binding MaxBandwidth, Converter={StaticResource BytesToSizeConverter}}"/>
+                <Label Style="{StaticResource SpeedUnitColumn}" FontSize="10" HorizontalAlignment="Right" Foreground="#33FFFFFF" VerticalAlignment="Top" Padding="0" Content="{Binding MaxBandwidth, Converter={StaticResource BytesToUnitsConverter}}"/>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="1" Grid.Column="1" x:Name="BottomLabels">
+            <Label Content="{resources:Loc Map_SpeedGraph_lbl_TimeUnits}" Padding="0" FontSize="10" Margin="0,0,0,-10" Foreground="#33FFFFFF" VerticalAlignment="Bottom"/>
+            <Label Content="0" Padding="0" FontSize="10" Margin="0,0,0,-10" HorizontalAlignment="Right" Foreground="#33FFFFFF" VerticalAlignment="Bottom"/>
+        </Grid>
+
+        <Grid Grid.Row="1" Grid.Column="0" x:Name="SessionStats">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="35"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Label
+                Grid.Column="0"
+                Grid.Row="0"
+                Grid.ColumnSpan="2"
+                Content="{resources:Loc Map_SpeedGraph_lbl_Traffic}"
+                Padding="0,2"
+                FontWeight="Bold"
+                FontSize="12"
+                Foreground="{StaticResource PrimaryColor}"/>
+
+            <Label Content="{resources:Loc Map_SpeedGraph_lbl_Session}" Grid.Column="0" Grid.Row="1" Style="{StaticResource TitleLabel}"/>
+            <Label Content="{resources:Loc Map_SpeedGraph_lbl_DownVolume}" Grid.Column="0" Grid.Row="2" Style="{StaticResource TitleLabel}"/>
+            <Label Content="{resources:Loc Map_SpeedGraph_lbl_UpVolume}" Grid.Column="0" Grid.Row="3" Style="{StaticResource TitleLabel}"/>
+            <Label Content="{resources:Loc Map_SpeedGraph_lbl_DownSpeed}" Grid.Column="0" Grid.Row="4" Style="{StaticResource TitleLabel}"/>
+            <Label Content="{resources:Loc Map_SpeedGraph_lbl_UpSpeed}" Grid.Column="0" Grid.Row="5" Style="{StaticResource TitleLabel}"/>
+
+            <Label
+                Grid.Column="1"
+                Grid.Row="1"
+                Grid.ColumnSpan="2"
+                HorizontalAlignment="Center"
+                Style="{StaticResource DataLabel}"
+                Padding="0"
+                Content="{Binding SecondsPassed, Converter={StaticResource SecondsToTimeConverter}}"/>
+
+            <Label
+                Grid.Column="1"
+                Grid.Row="2"
+                Style="{StaticResource DownloadLabel}"
+                Content="{Binding TotalBytesDownloaded, Converter={StaticResource BytesToSizeConverter}}"/>
+            <Label
+                Grid.Column="2"
+                Grid.Row="2"
+                Style="{StaticResource UnitColumn}"
+                Foreground="{StaticResource PrimaryColorDimmed}"
+                Content="{Binding TotalBytesDownloaded, Converter={StaticResource BytesToUnitsConverter}}"/>
+
+            <Label
+                Grid.Column="1"
+                Grid.Row="3"
+                Style="{StaticResource DataLabel}"
+                Content="{Binding TotalBytesUploaded, Converter={StaticResource BytesToSizeConverter}}"/>
+            <Label
+                Grid.Column="2"
+                Grid.Row="3"
+                Style="{StaticResource UnitColumn}"
+                Foreground="{StaticResource PrimaryColor}"
+                Content="{Binding TotalBytesUploaded, Converter={StaticResource BytesToUnitsConverter}}"/>
+
+            <StackPanel
+                Grid.Column="1"
+                Grid.Row="4">
+                <Label 
+                    HorizontalAlignment="Right"
+                    Style="{StaticResource DownloadSpeedNumber}"
+                    Content="{Binding CurrentDownloadSpeed, Converter={StaticResource BytesToSizeConverter}}">
+                </Label>
+                
+            </StackPanel>
+            <Label
+                Grid.Column="2"
+                Grid.Row="4"
+                Style="{StaticResource SpeedUnitColumn}"
+                Foreground="{StaticResource PrimaryColorDimmed}"
+                Content="{Binding CurrentDownloadSpeed, Converter={StaticResource BytesToUnitsConverter}}"/>
+
+            <StackPanel Grid.Column="1" Grid.Row="5">
+                <Label
+                    HorizontalAlignment="Right"
+                    Style="{StaticResource UploadSpeedNumber}"
+                    Content="{Binding CurrentUploadSpeed, Converter={StaticResource BytesToSizeConverter}}"/>
+            </StackPanel>
+            <Label
+                Grid.Column="2"
+                Grid.Row="5"
+                Style="{StaticResource SpeedUnitColumn}"
+                Foreground="{StaticResource PrimaryColor}"
+                Content="{Binding CurrentUploadSpeed, Converter={StaticResource BytesToUnitsConverter}}"/>
+        </Grid>
+
+        <Grid Grid.Row="1" Grid.Column="1" x:Name="Graph">
+            <Grid x:Name="Grid" VerticalAlignment="Top" Height="120"/>
+            <oxy:PlotView
+                Background="Transparent"
+                Controller="{Binding PlotController}"
+                Model="{Binding PlotModel}"
+                Height="120"
+                VerticalAlignment="Top"/>
+        </Grid>
+    </Grid>
+</UserControl>

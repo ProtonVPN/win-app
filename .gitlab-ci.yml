@@ -1,0 +1,111 @@
+variables:
+  PUBLIC_REPO_URL: git@github.com:ProtonVPN/win-app.git
+
+stages:
+  - build
+  - test
+  - build-installer
+  - mirror
+
+build-release:
+  stage: build
+  tags:
+    - windows
+  script:
+    - echo "Restoring NuGet Packages..."
+    - 'c:\nuget\nuget.exe restore ProtonVpn.sln'
+    - MSBuild.exe /consoleloggerparameters:ErrorsOnly /maxcpucount /nologo /property:Configuration=Release /verbosity:quiet "src\\ProtonVPN.MarkupValidator\\ProtonVPN.MarkupValidator.csproj"
+    - echo "Downloading translations from crowdin..."
+    - python ci\main.py download-translations $env:CROWDIN_KEY $env:LANGUAGES
+    - python ci\main.py add-commit-hash $env:CI_COMMIT_SHORT_SHA
+    - echo "Building release..."
+    - MSBuild.exe /consoleloggerparameters:ErrorsOnly /maxcpucount /nologo /property:Configuration=Release /verbosity:quiet "ProtonVpn.sln"
+  artifacts:
+    expire_in: 1 day
+    paths:
+      - src/bin/
+      - langs
+  only:
+    - master
+    - /^release.*$/
+  variables:
+    GIT_SUBMODULE_STRATEGY: normal
+
+build-debug:
+  stage: build
+  tags:
+    - windows
+  script:
+    - echo "Restoring NuGet Packages..."
+    - 'c:\nuget\nuget.exe restore ProtonVpn.sln'
+    - MSBuild.exe /consoleloggerparameters:ErrorsOnly /maxcpucount /nologo /property:Configuration=Release /verbosity:quiet "src\\ProtonVPN.MarkupValidator\\ProtonVPN.MarkupValidator.csproj"
+    - echo "Downloading translations from crowdin..."
+    - python ci\main.py download-translations $env:CROWDIN_KEY $env:LANGUAGES
+    - python ci\main.py add-commit-hash $env:CI_COMMIT_SHORT_SHA
+    - echo "Building debug..."
+    - MSBuild.exe /consoleloggerparameters:ErrorsOnly /maxcpucount /nologo /property:Configuration=Debug /verbosity:quiet "ProtonVpn.sln"
+  artifacts:
+    expire_in: 1 day
+    paths:
+      - src/bin/
+      - langs
+  except:
+    - master
+    - /^release.*$/
+  variables:
+    GIT_SUBMODULE_STRATEGY: normal
+
+tests:
+  stage: test
+  tags:
+    - windows
+  script:
+    - echo "Running tests..."
+    - python ci\main.py tests src\bin\
+
+build-installer-for-release:
+  stage: build-installer
+  tags:
+    - windows
+  script:
+    - python ci\main.py tap-installer
+    - python ci\main.py app-installer $env:CI_COMMIT_SHORT_SHA
+  artifacts:
+    paths:
+      - Setup/ProtonVPN-SetupFiles/
+    expire_in: 4 weeks
+  only:
+    - master
+    - /^release.*$/
+
+build-installer-for-debug:
+  stage: build-installer
+  tags:
+    - windows
+  script:
+    - python ci\main.py tap-installer
+    - python ci\main.py app-installer $env:CI_COMMIT_SHORT_SHA
+  artifacts:
+    paths:
+      - Setup/ProtonVPN-SetupFiles/
+    expire_in: 4 weeks
+  except:
+    - master
+    - /^release.*$/
+
+mirror:
+  stage: mirror
+  tags:
+    - windows
+  only:
+    refs:
+      - tags
+      - master
+  script:
+    - python ci\main.py prepare-ssh $env:SSH_PRIVATE_KEY
+    - ssh-keyscan -t rsa github.com | Set-Content "$env:userprofile\.ssh\known_hosts"
+    - git clone "$CI_REPOSITORY_URL" --branch master _APP_CLONE;
+    - cd _APP_CLONE
+    - git remote add public $PUBLIC_REPO_URL
+    - git push public master
+    - git push public "$(git describe --abbrev=0)"

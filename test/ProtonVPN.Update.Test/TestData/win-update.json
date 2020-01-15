@@ -1,0 +1,73 @@
+{
+    "Categories": [
+	    {
+		    "Name": "EarlyAccess",
+		    "Releases": [
+			    {
+				    "Version": "1.5.2",
+				    "File": {
+					    "Url": "https://protonvpn.com/download/ProtonVPN_win_v1.5.2.exe",
+					    "Sha1CheckSum": "93c8fc621f9f8721b41ba4093ae7bec78956e7d8",
+					    "Args": "/qb"
+				    },
+				    "ChangeLog": [
+					    "added beta feature",
+					    "fixed previous bug"
+				    ]
+			    }, {
+				    "Version": "2.0.0",
+				    "File": {
+					    "Url": "https://protonvpn.com/download/ProtonVPN_win_v2.0.0.exe",
+					    "SHA1CheckSum": "d37b2e85278579e232a66d727d27b35f8d175b0d",
+   					    "Args": "/qb"
+				    },
+				    "ChangeLog": [
+					    "added beta feature",
+					    "fixed previous bug"
+				    ]
+			    }
+		    ]
+	    },
+        {
+            "Name": "Stable",
+            "Releases": [
+                {
+                    "Version": "1.0.0",
+                    "File": {
+                        "Url": "https://protonvpn.com/download/ProtonVPN_win_v1.0.0.exe",
+                        "Sha1CheckSum": "b1dc9dbd738a5f98b7f5e920ffcc5ba9db42517e",
+                        "Args": "/qb"
+                    },
+                    "ChangeLog": [
+                        "didn\u0027t added feature",
+                        "fixed bug"
+                    ]
+                },
+	            {
+				    "Version": "1.5.0",
+				    "File": {
+					    "Url": "https://protonvpn.com/download/ProtonVPN_win_v1.5.0.exe",
+					    "Sha1CheckSum": "59a9d95cbc1f717778c3baf0a6011315560a4b6d",
+   					    "Args": "/qb"
+				    },
+				    "ChangeLog": [
+					    "added feature",
+					    "fixed bug"
+				    ]
+	            },
+	            {
+		            "Version": "1.5.1",
+		            "File": {
+			            "Url": "https://protonvpn.com/download/ProtonVPN_win_v1.5.1.exe",
+			            "Sha1CheckSum": "ba6b5ca2db65ff7817e3336a386e7525c01dc639",
+   			            "Args": "/qb"
+		            },
+		            "ChangeLog": [
+			            "added feature",
+			            "fixed bug"
+		            ]
+	            }
+            ]
+        }
+    ]
+}

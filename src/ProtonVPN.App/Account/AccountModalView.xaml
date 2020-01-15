@@ -1,0 +1,227 @@
+﻿<!--
+Copyright (c) 2020 Proton Technologies AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<modals:BaseModalWindow x:Class="ProtonVPN.Account.AccountModalView"
+                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                        xmlns:wpf="clr-namespace:ProtonVPN.Core.Wpf"
+                        xmlns:controls="clr-namespace:ProtonVPN.Views.Controls"
+                        xmlns:modals="clr-namespace:ProtonVPN.Modals"
+                        xmlns:account="clr-namespace:ProtonVPN.Account"
+                        xmlns:resources="clr-namespace:ProtonVPN.Resources"
+                        mc:Ignorable="d"
+                        Title="{resources:Loc Account_ttl}"
+                        ResizeMode="NoResize"
+                        Style="{StaticResource BaseModalStyle}"
+                        Height="500"
+                        Width="880"
+                        d:DataContext="{d:DesignInstance account:AccountModalViewModel}">
+    <Window.Resources>
+        <Style x:Key="ColumnTitleText" TargetType="TextBlock">
+            <Setter Property="Padding" Value="0,10"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
+        <Style x:Key="SettingsButton" TargetType="Button" BasedOn="{StaticResource ClearStyleButton}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#4B4B56"/>
+            <Setter Property="Border.CornerRadius" Value="15"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Padding" Value="10,0,10,1"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{StaticResource PrimaryColor}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="PricingLabel" TargetType="Label">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="20,15"/>
+        </Style>
+        <Style x:Key="PricingLabelTextBlock" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="20,15"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="PricingTable" TargetType="ItemsControl">
+            <Setter Property="Visibility" Value="Visible"/>
+            <Setter Property="Background" Value="{StaticResource ModalColor}"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding PricingLoadFailed}" Value="True">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="FailedToLoadLabel" TargetType="Label">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Visibility" Value="Collapsed"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding PricingLoadFailed}" Value="True">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="30,20" Grid.IsSharedSizeScope="True">
+        <Grid Visibility="{Binding Loading, Converter={StaticResource BoolToVis}}"
+              Background="{StaticResource ModalColor}"
+              Panel.ZIndex="1">
+            <controls:LoadingText/>
+        </Grid>
+        <Grid VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0" BorderBrush="#403f4d" BorderThickness="0,0,1,0" Background="#262630">
+                <StackPanel Margin="20,5,10,0" HorizontalAlignment="Stretch">
+                    <Label Style="{StaticResource ColumnTitle}" FontSize="14" Content="{resources:Loc Account_lbl_AccountName}"/>
+                    <TextBlock Style="{StaticResource ColumnTitleText}" Margin="0,-7,0,0" MaxHeight="70"
+                               Text="{Binding Username}" 
+                               TextWrapping="Wrap"
+                               TextTrimming="CharacterEllipsis"
+                               ToolTip="{Binding Username}"/>
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Column="1" BorderBrush="#403f4d" BorderThickness="0,0,1,0" Background="#262630">
+                <StackPanel Margin="20,5,20,10" HorizontalAlignment="Stretch">
+                    <Label Style="{StaticResource ColumnTitle}" FontSize="14" Content="{resources:Loc Account_lbl_AccountType}"/>
+                    <Label Style="{StaticResource ColumnValue}" Content="{Binding AccountType}"/>
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Column="2" BorderBrush="#403f4d" BorderThickness="0,0,1,0" Background="#262630">
+                <StackPanel Margin="20,5,20,10" HorizontalAlignment="Stretch">
+                    <Label Style="{StaticResource ColumnTitle}" FontSize="14" Content="{resources:Loc Account_lbl_AccountPlan}"/>
+                    <Label Style="{StaticResource ColumnValue}" Foreground="{Binding PlanColor}" Content="{Binding PlanName}"/>
+                </StackPanel>
+            </Border>
+
+            <Grid wpf:BorderGrid.Column="3" Background="#262630">
+                <Button HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Command="{Binding ManageAccountCommand}"
+                        Style="{StaticResource SettingsButton}"
+                        Content="{resources:Loc Account_btn_ManageAccount}"/>
+            </Grid>
+        </Grid>
+
+        <Grid Margin="0,120,0,0">
+            <Label Style="{StaticResource FailedToLoadLabel}" Content="{resources:Loc Account_msg_FailedToLoadPricing}"/>
+            <ItemsControl ItemsSource="{Binding Pricing}" Style="{StaticResource PricingTable}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate DataType="{x:Type account:PricingModel}">
+                        <Border HorizontalAlignment="Center">
+                            <wpf:BorderGrid BorderBrush="#403f4d" BorderThickness="1">
+                                <wpf:BorderGrid.RowDefinitions>
+                                    <RowDefinition SharedSizeGroup="PlanTitle"/>
+                                    <RowDefinition SharedSizeGroup="Pricing"/>
+                                    <RowDefinition SharedSizeGroup="Servers"/>
+                                    <RowDefinition SharedSizeGroup="Countries"/>
+                                    <RowDefinition/>
+                                </wpf:BorderGrid.RowDefinitions>
+                                <wpf:BorderGrid.ColumnDefinitions>
+                                    <ColumnDefinition Width="205"/>
+                                </wpf:BorderGrid.ColumnDefinitions>
+                                <Grid Grid.Row="0" Background="#1c1c24">
+                                    <controls:PieChart Percentage="{Binding PlanCompletness}"
+                                            Size="16"
+                                            InnerPieSliceFill="{StaticResource PrimaryColor}"
+                                            OuterPieSliceFill="#1c1c24"
+                                            HorizontalAlignment="Center"
+                                            BorderBrush="#403f4d"
+                                            BorderThickness="1"
+                                            VerticalAlignment="Top"
+                                            Margin="0,-8,0,0"/>
+                                    <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                                        <Label Style="{StaticResource PricingLabel}"
+                                            FontWeight="Bold"
+                                            FontSize="20"
+                                            Foreground="{Binding TitleColor}"
+                                            Content="{Binding Title}"/>
+                                        <Button Style="{StaticResource ClearStyleButton}"
+                                            Background="Transparent"
+                                            BorderBrush="Transparent"
+                                            Command="{Binding DataContext.ProtonMailPricingCommand, RelativeSource={RelativeSource AncestorType=Window, Mode=FindAncestor}}">
+                                            <TextBlock FontStyle="Italic"
+                                                       HorizontalAlignment="Center"
+                                                       Foreground="White"
+                                                       Margin="0,-10,0,10"
+                                                       FontSize="13"
+                                                       Visibility="{Binding IsVisionary, Converter={StaticResource BoolToVis}}">
+                                                <Underline>
+                                                    <Run Text="{resources:Loc Account_lnk_ProtonMailVisionaryIncluded}"/>
+                                                </Underline>
+                                            </TextBlock>
+                                        </Button>
+                                    </StackPanel>
+                                </Grid>
+
+                                <StackPanel Grid.Row="1" Background="#202028">
+                                    <Label Style="{StaticResource PricingLabel}" Padding="15,15,15,0" FontWeight="Bold" Content="{Binding MonthlyPriceText}"/>
+                                    <Label Style="{StaticResource PricingLabel}" Padding="15,0,15,15" Content="{Binding YearlyPriceText}"/>
+                                </StackPanel>
+
+                                <DockPanel Grid.Row="2" Background="#262630">
+                                    <TextBlock Style="{StaticResource PricingLabelTextBlock}" Text="{Binding ServerAccessText}"/>
+                                </DockPanel>
+
+                                <DockPanel Grid.Row="3" Background="#202028">
+                                    <Label Style="{StaticResource PricingLabel}" Content="{Binding CountriesText}"/>
+                                </DockPanel>
+
+                                <DockPanel Grid.Row="4" Background="#262630">
+                                    <Label Style="{StaticResource PricingLabel}" Content="{Binding DevicesText}"/>
+                                </DockPanel>
+                            </wpf:BorderGrid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Grid>
+    </Grid>
+</modals:BaseModalWindow>
