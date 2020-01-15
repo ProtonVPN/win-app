@@ -1,0 +1,79 @@
+﻿<!--
+Copyright (c) 2020 Proton Technologies AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <Style x:Key="CheckboxBorder" TargetType="Border">
+        <Setter Property="Grid.Column" Value="0"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Padding" Value="1"/>
+        <Setter Property="Width" Value="17"/>
+        <Setter Property="Height" Value="17"/>
+    </Style>
+    
+    <Style TargetType="{x:Type CheckBox}" x:Key="Checkbox">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type CheckBox}">
+                    <Grid Cursor="Hand">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Border Name="Border" Style="{StaticResource CheckboxBorder}">
+                            <Path Name="Path" Fill="White" Stretch="Fill"/>
+                        </Border>
+                        <Label
+                            Name="Label"
+                            Grid.Column="1"
+                            Margin="8,0,0,2"
+                            Padding="{TemplateBinding Padding}"
+                            Foreground="{TemplateBinding Foreground}"
+                            Content="{TemplateBinding Content}"/>
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="Border" Property="Border.BorderBrush" Value="{StaticResource PrimaryColor}"/>
+                            <Setter TargetName="Path" Property="Data" Value="
+                                M 12.4227,0.00012207C 12.4867,0.126587 12.5333,0.274536 
+                                12.6787,0.321411C 9.49199,3.24792 6.704,6.57336 
+                                4.69865,10.6827C 4.04399,11.08 3.47066,11.5573 2.83199,
+                                11.9706C 2.09467,10.2198 1.692,8.13196 3.8147e-006,
+                                7.33606C 0.500004,6.79871 1.31733,6.05994 1.93067,6.2428C 
+                                2.85999,6.51868 3.14,7.9054 3.60399,8.81604C 5.80133,
+                                5.5387 8.53734,2.19202 12.4227,0.00012207 Z"/>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="False">
+                            <Setter TargetName="Border" Property="Border.BorderBrush" Value="White"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="Border" Property="Border.BorderBrush" Value="Gray"/>
+                            <Setter TargetName="Label" Property="Foreground" Value="Gray"/>
+                            <Setter TargetName="Path" Property="Fill" Value="Gray"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

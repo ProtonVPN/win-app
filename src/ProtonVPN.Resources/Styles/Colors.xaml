@@ -1,0 +1,40 @@
+﻿<!--
+Copyright (c) 2020 Proton Technologies AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <SolidColorBrush x:Key="PrimaryColor" Color="#59b369"/>
+    <SolidColorBrush x:Key="PrimaryColorLight" Color="#a7c8ad"/>
+    <SolidColorBrush x:Key="PrimaryColorDimmed" Color="#517f59"/>
+    <SolidColorBrush x:Key="SecondaryColor" Color="#484c5e"/>
+    <SolidColorBrush x:Key="SecondaryColorDark" Color="#282931"/>
+    <SolidColorBrush x:Key="DarkBorder" Color="#2c2c31"/>
+    <SolidColorBrush x:Key="SidebarTabBackgroundColor" Color="#34343d"/>
+    <SolidColorBrush x:Key="SidebarBorderColor" Color="#494951"/>
+    <SolidColorBrush x:Key="ModalBarColor" Color="#2b2c34"/>
+    <SolidColorBrush x:Key="ModalContentColor" Color="#222329"/>
+    <SolidColorBrush x:Key="PinFillColor" Color="#26272e"/>
+    <SolidColorBrush x:Key="InactivePinStrokeColor" Color="#8c8c8e"/>
+    <SolidColorBrush x:Key="ModalColor" Color="#222328"/>
+    <SolidColorBrush x:Key="RedColor" Color="#f73737"/>
+    <SolidColorBrush x:Key="WarningColor" Color="#ffcc00"/>
+    <SolidColorBrush x:Key="GrayColor" Color="#80808d"/>
+    <Color x:Key="PrimaryColorPlain">#59b369</Color>
+</ResourceDictionary>

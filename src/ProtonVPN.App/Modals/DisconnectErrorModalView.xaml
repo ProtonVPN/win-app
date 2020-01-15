@@ -1,0 +1,129 @@
+﻿<!--
+Copyright (c) 2020 Proton Technologies AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<modals:BaseModalWindow x:Class="ProtonVPN.Modals.DisconnectErrorModalView"
+                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                        xmlns:modals="clr-namespace:ProtonVPN.Modals"
+                        xmlns:vpn="clr-namespace:ProtonVPN.Common.Vpn;assembly=ProtonVPN.Common"
+                        xmlns:behavior="clr-namespace:ProtonVPN.Core.Wpf.Behavior"
+                        xmlns:resources="clr-namespace:ProtonVPN.Resources"
+                        Style="{StaticResource BaseModalStyle}"
+                        SizeToContent="Height"
+                        Title="{resources:Loc Dialogs_ttl_Warning}"
+                        mc:Ignorable="d"
+                        Height="Auto"
+                        Width="500"
+                        d:DataContext="{d:DesignInstance modals:DisconnectErrorModalViewModel}">
+    <modals:BaseModalWindow.Resources>
+        <Style x:Key="BaseErrorText" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+        </Style>
+        <Style x:Key="ErrorText" TargetType="TextBlock" BasedOn="{StaticResource BaseErrorText}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Error}" Value="{x:Static vpn:VpnError.AuthorizationError}">
+                    <Setter Property="behavior:TextStyleBehavior.FormattedText" Value="{resources:Loc Dialogs_DisconnectError_msg_Identifying}"/>
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Error}" Value="{x:Static vpn:VpnError.TlsError}">
+                    <Setter Property="behavior:TextStyleBehavior.FormattedText" Value="{resources:Loc Dialogs_DisconnectError_msg_TlsError}"/>
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Error}" Value="{x:Static vpn:VpnError.NoTapAdaptersError}">
+                    <Setter Property="behavior:TextStyleBehavior.FormattedText" Value="{resources:Loc Dialogs_DisconnectError_msg_NoTap}"/>
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Error}" Value="{x:Static vpn:VpnError.TapAdapterInUseError}">
+                    <Setter Property="behavior:TextStyleBehavior.FormattedText" Value="{resources:Loc Dialogs_DisconnectError_msg_AllAdaptersInUse}"/>
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Error}" Value="{x:Static vpn:VpnError.TapRequiresUpdateError}">
+                    <Setter Property="behavior:TextStyleBehavior.FormattedText" Value="{resources:Loc Dialogs_DisconnectError_msg_OldVersion}"/>
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Error}" Value="{x:Static vpn:VpnError.Unpaid}">
+                    <Setter Property="behavior:TextStyleBehavior.FormattedText" Value="{resources:Loc Dialogs_DisconnectError_msg_Unpaid}"/>
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Error}" Value="{x:Static vpn:VpnError.SessionLimitReached}">
+                    <Setter Property="behavior:TextStyleBehavior.FormattedText" Value="{resources:Loc Dialogs_DisconnectError_msg_SessionLimit}"/>
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Error}" Value="{x:Static vpn:VpnError.UserTierTooLowError}">
+                    <Setter Property="behavior:TextStyleBehavior.FormattedText" Value="{resources:Loc Dialogs_DisconnectError_msg_TierTooLow}"/>
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Error}" Value="{x:Static vpn:VpnError.NoServers}">
+                    <Setter Property="behavior:TextStyleBehavior.FormattedText" Value="{resources:Loc Dialogs_DisconnectError_msg_NoServers}"/>
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Error}" Value="{x:Static vpn:VpnError.Unknown}">
+                    <Setter Property="behavior:TextStyleBehavior.FormattedText" Value="{resources:Loc Dialogs_DisconnectError_msg_Unknown}"/>
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Error}" Value="{x:Static vpn:VpnError.None}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="TapErrorSuggestion" TargetType="TextBlock" BasedOn="{StaticResource BaseErrorText}">
+            <Setter Property="Visibility" Value="Collapsed"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Error}" Value="{x:Static vpn:VpnError.NoTapAdaptersError}">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Error}" Value="{x:Static vpn:VpnError.TapAdapterInUseError}">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Error}" Value="{x:Static vpn:VpnError.TapRequiresUpdateError}">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </modals:BaseModalWindow.Resources>
+    <Grid>
+        <StackPanel>
+            <StackPanel Margin="30,40">
+                <TextBlock Style="{StaticResource ErrorText}"/>
+                <TextBlock Style="{StaticResource TapErrorSuggestion}"
+                           Margin="0,10,0,0"
+                           behavior:TextStyleBehavior.FormattedText="{resources:Loc Dialogs_DisconnectError_msg_TapErrorHelp}"/>
+                <TextBlock Style="{StaticResource BaseErrorText}"
+                           Margin="0,10,0,0"
+                           Visibility="{Binding NetworkBlocked, Converter={StaticResource BoolToVis}}"
+                           behavior:TextStyleBehavior.FormattedText="{resources:Loc Dialogs_DisconnectError_msg_KillSwitch}"/>
+            </StackPanel>
+            <DockPanel Background="{StaticResource ModalBarColor}" Height="66">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Style="{StaticResource SecondaryModalButton}"
+                            Visibility="{Binding NetworkBlocked, Converter={StaticResource BoolToVis}}"
+                            Command="{Binding DisableKillSwitchCommand}"
+                            Content="{resources:Loc Dialogs_DisconnectError_btn_Disable}"/>
+                    <Button Style="{StaticResource PrimaryModalButton}"
+                            Command="{Binding CloseCommand}"
+                            Content="{resources:Loc Dialogs_btn_Close}"/>
+                </StackPanel>
+            </DockPanel>
+        </StackPanel>
+    </Grid>
+</modals:BaseModalWindow>

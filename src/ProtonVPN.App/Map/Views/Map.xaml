@@ -1,0 +1,297 @@
+﻿<!--
+Copyright (c) 2020 Proton Technologies AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<UserControl
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:controls="clr-namespace:ProtonVPN.Views.Controls"
+    xmlns:sidebarView="clr-namespace:ProtonVPN.Sidebar"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:command="http://www.galasoft.ch/mvvmlight"
+    xmlns:wpf="clr-namespace:ProtonVPN.Core.Wpf"
+    xmlns:fa="http://schemas.fontawesome.io/icons/"
+    xmlns:views="clr-namespace:ProtonVPN.Map.Views"
+    xmlns:mapLine="clr-namespace:ProtonVPN.Map.ViewModels.MapLine"
+    xmlns:pins="clr-namespace:ProtonVPN.Map.ViewModels.Pins"
+    xmlns:speedGraph="clr-namespace:ProtonVPN.SpeedGraph"
+    xmlns:onboarding="clr-namespace:ProtonVPN.Onboarding"
+    x:Class="ProtonVPN.Map.Views.Map"
+    mc:Ignorable="d"
+    d:DesignHeight="800">
+
+    <UserControl.Resources>
+        <Style TargetType="views:Map">
+            <Setter Property="Connected" Value="{Binding Connected, Mode=TwoWay}"/>
+            <Setter Property="SecureCore" Value="{Binding SecureCore, Mode=OneWay}"/>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid x:Name="MainGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="336"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Name="Sidebar" Grid.Column="0" Background="#202128" Panel.ZIndex="2" HorizontalAlignment="Left" Width="336">
+            <sidebarView:Sidebar DataContext="{Binding SidebarViewModel}"/>
+        </Grid>
+
+        <Grid x:Name="ScrollviewerWrapper" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Button Style="{StaticResource MapSidebarModeButton}"/>
+            <Grid Style="{StaticResource ConnectionStatusBoxHolder}" x:Name="ConnectionStatus">
+                <StackPanel Orientation="Horizontal" Height="57">
+                    <Path Data="M 65.005858,0 H 0 c 0,0 15.666998,6.3327028 23.999998,24.845704 8.209037,18.237597 17.780151,31.682176 41.00586,32.080078 v -0.03711 z"
+                          Margin="0,0,-1,0"
+                          Fill="#2b2c34"/>
+                    <DockPanel Background="#2b2c34">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,8,0,0">
+                            <fa:FontAwesome Style="{StaticResource ConnectionLock}"/>
+                            <Label Style="{StaticResource ConnectionHomeLabel}"/>
+                        </StackPanel>
+                    </DockPanel>
+                    <Path Data="M 65.005858,0 H 0 c 0,0 15.666998,6.3327028 23.999998,24.845704 8.209037,18.237597 17.780151,31.682176 41.00586,32.080078 v -0.03711 z"
+                          Fill="#2b2c34"
+                          Margin="-1,0,0,0"
+                          RenderTransformOrigin="0.5,0.5">
+                        <Path.RenderTransform>
+                            <ScaleTransform ScaleX="-1" />
+                        </Path.RenderTransform>
+                    </Path>
+                </StackPanel>
+
+                <Grid Margin="0,0,0,-20" VerticalAlignment="Bottom">
+                    <Ellipse Style="{StaticResource HomeEllipse}"/>
+                    <fa:FontAwesome
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Icon="Home"
+                        x:Name="HomeIcon"
+                        Foreground="White"
+                        FontSize="22"/>
+                </Grid>
+            </Grid>
+
+            <Grid Margin="50,20,0,0" Name="Coordinates" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100" Panel.ZIndex="1" Visibility="Hidden">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Content="X:" Foreground="White"/>
+                <Label Grid.Row="0" Grid.Column="1" Name="XCoordinate" Foreground="White"/>
+                <Label Grid.Row="1" Grid.Column="0" Content="Y:" Foreground="White"/>
+                <Label Grid.Row="1" Grid.Column="1" Name="YCoordinate" Foreground="White"/>
+            </Grid>
+
+            <onboarding:Step Number="5"
+                           VerticalAlignment="Top"
+                           HorizontalAlignment="Left"
+                           Margin="50,50,0,0"
+                           Panel.ZIndex="1"
+                           Visibility="{Binding ShowFifthOnboardingStep, Converter={StaticResource BoolToVis}}"/>
+
+            <controls:LogoWhite Width="120" Height="20" Margin="0,40,47,0" VerticalAlignment="Top" HorizontalAlignment="Right" x:Name="Logo" Panel.ZIndex="1"/>
+
+            <StackPanel Margin="0,70,40,0" VerticalAlignment="Top" HorizontalAlignment="Right" Panel.ZIndex="1" x:Name="VerticalZoomPanel" RenderTransformOrigin="0.5,0.5">
+                <Grid>
+                    <Border BorderThickness="1" VerticalAlignment="Center" BorderBrush="#494955" Width="21" Height="21">
+                        <Button Style="{StaticResource ClearStyleButton}" Background="Transparent" BorderThickness="0" PreviewMouseLeftButtonUp="ZoomIn">
+                            <TextBlock FontSize="20" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1,-4,0,0"><Run Text="+"/></TextBlock>
+                        </Button>
+                    </Border>
+                </Grid>
+
+                <ItemsControl x:Name="VerticalZoomBars">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Vertical"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Margin="0,5">
+                                <Border.Style>
+                                    <Style TargetType="{x:Type Border}">
+                                        <Setter Property="Background" Value="#494955"/>
+                                        <Setter Property="Height" Value="1"/>
+                                        <Setter Property="Width" Value="5"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding}" Value="True">
+                                                <Setter Property="Height" Value="2"/>
+                                                <Setter Property="Width" Value="10"/>
+                                                <Setter Property="Background" Value="White"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Border.Style>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <Grid>
+                    <Border BorderThickness="1" VerticalAlignment="Center" BorderBrush="#494955" Width="21" Height="21">
+                        <Button Style="{StaticResource ClearStyleButton}" Background="Transparent" BorderThickness="0" PreviewMouseLeftButtonUp="ZoomOut" RenderTransformOrigin="0.5,0.5">
+                            <TextBlock FontSize="20" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-4,0,0"><Run Text="-"/></TextBlock>
+                        </Button>
+                    </Border>
+                </Grid>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,70,40,0" VerticalAlignment="Top" HorizontalAlignment="Right" Panel.ZIndex="1" x:Name="HorizontalZoomPanel" RenderTransformOrigin="0.5,0.5">
+                <Grid>
+                    <Border BorderThickness="1" VerticalAlignment="Center" BorderBrush="#494955" Width="21" Height="21">
+                        <Button Style="{StaticResource ClearStyleButton}" Background="Transparent" BorderThickness="0" PreviewMouseLeftButtonUp="ZoomOut" RenderTransformOrigin="0.5,0.5">
+                            <TextBlock FontSize="20" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-4,0,0"><Run Text="-"/></TextBlock>
+                        </Button>
+                    </Border>
+                </Grid>
+
+                <ItemsControl x:Name="HorizontalZoomBars">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Margin="5,0">
+                                <Border.Style>
+                                    <Style TargetType="{x:Type Border}">
+                                        <Setter Property="Background" Value="#494955"/>
+                                        <Setter Property="Width" Value="1"/>
+                                        <Setter Property="Height" Value="5"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding}" Value="True">
+                                                <Setter Property="Width" Value="2"/>
+                                                <Setter Property="Height" Value="10"/>
+                                                <Setter Property="Background" Value="White"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Border.Style>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <Grid>
+                    <Border BorderThickness="1" VerticalAlignment="Center" BorderBrush="#494955" Width="21" Height="21">
+                        <Button Style="{StaticResource ClearStyleButton}" Background="Transparent" BorderThickness="0" PreviewMouseLeftButtonUp="ZoomIn">
+                            <TextBlock FontSize="20" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1,-4,0,0"><Run Text="+"/></TextBlock>
+                        </Button>
+                    </Border>
+                </Grid>
+            </StackPanel>
+
+            <wpf:Scrollviewer HorizontalOffset="{Binding OffsetX, Mode=TwoWay}"
+                              VerticalOffset="{Binding OffsetY, Mode=TwoWay}"
+                              ViewportWidth="{Binding ViewportWidth, Mode=OneWayToSource}"
+                              ViewportHeight="{Binding ViewportHeight, Mode=OneWayToSource}"
+                              x:Name="ScrollViewer"
+                              HorizontalScrollBarVisibility="Hidden"
+                              VerticalScrollBarVisibility="Hidden"
+                              IsManipulationEnabled="True"
+                              Background="#1e1e24">
+                <Viewbox x:Name="MapViewBox" MinWidth="850" MinHeight="400" Margin="0,0,0,350" Width="{Binding Width, Mode=TwoWay}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SizeChanged">
+                            <command:EventToCommand Command="{Binding ResizePins}" PassEventArgsToCommand="True"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Canvas x:Name="MapCanvas" MinWidth="850" MinHeight="400">
+                        <views:MapCanvas x:Name="MapCanvasControl"/>
+                        <Line x:Name="ConnectionLine" Style="{StaticResource ConnectionLine}"/>
+                        <ItemsControl x:Name="Lines" ItemsSource="{Binding Lines, NotifyOnTargetUpdated=True, NotifyOnSourceUpdated=True}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <Canvas/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate DataType="{x:Type mapLine:MapLine}">
+                                    <Line
+                                        X1="{Binding X1}"
+                                        Y1="{Binding Y1}"
+                                        X2="{Binding X2}"
+                                        Y2="{Binding Y2}"
+                                        Stroke="{Binding Color}"
+                                        Visibility="{Binding Visible, Converter={StaticResource BoolToVis}}"
+                                        StrokeThickness="{Binding Path=DataContext.MapLineStroke, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                        <ItemsControl x:Name="Pins" ItemsSource="{Binding PinsList}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <Canvas/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemContainerStyle>
+                                <Style TargetType="{x:Type ContentPresenter}">
+                                    <Setter Property="Canvas.Left" Value="{Binding HorizontalOffset}" />
+                                    <Setter Property="Canvas.Top" Value="{Binding VerticalOffset}" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ShowTooltip}" Value="True">
+                                            <Setter Property="Panel.ZIndex" Value="2"/>
+                                        </DataTrigger>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Panel.ZIndex" Value="2"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ItemsControl.ItemContainerStyle>
+
+                            <ItemsControl.Resources>
+                                <DataTemplate DataType="{x:Type pins:PinViewModel}">
+                                    <views:Pin
+                                        Width="{Binding Width}"
+                                        Height="{Binding Height}"/>
+                                </DataTemplate>
+                                <DataTemplate DataType="{x:Type pins:ExitNodePinViewModel}">
+                                    <views:ExitPin
+                                        Width="{Binding Width}"
+                                        Height="{Binding Height}"/>
+                                </DataTemplate>
+                                <DataTemplate DataType="{x:Type pins:SecureCorePinViewModel}">
+                                    <views:SecureCorePin
+                                        Width="{Binding Width}"
+                                        Height="{Binding Height}"/>
+                                </DataTemplate>
+                            </ItemsControl.Resources>
+                        </ItemsControl>
+                    </Canvas>
+                </Viewbox>
+            </wpf:Scrollviewer>
+            <speedGraph:SpeedGraph x:Name="SpeedGraph"
+                                 DataContext="{Binding SpeedGraphViewModel}"
+                                 VerticalAlignment="Bottom"
+                                 Margin="10,15,10,25"
+                                 Height="145"/>
+        </Grid>
+    </Grid>
+</UserControl>

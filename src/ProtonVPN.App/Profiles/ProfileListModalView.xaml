@@ -1,0 +1,257 @@
+﻿<!--
+Copyright (c) 2020 Proton Technologies AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<modals:BaseModalWindow x:Class="ProtonVPN.Profiles.ProfileListModalView"
+                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                        xmlns:fa="http://schemas.fontawesome.io/icons/"
+                        xmlns:profiles="clr-namespace:ProtonVPN.Profiles"
+                        xmlns:modals="clr-namespace:ProtonVPN.Modals"
+                        xmlns:coreProfiles="clr-namespace:ProtonVPN.Core.Profiles;assembly=ProtonVPN.Core"
+                        xmlns:resources="clr-namespace:ProtonVPN.Resources"
+                        Style="{StaticResource BaseModalStyle}"
+                        Title="{resources:Loc Profiles_ttl}"
+                        Width="1000"
+                        Height="500"
+                        mc:Ignorable="d"
+                        d:DataContext="{d:DesignInstance profiles:ProfileListModalViewModel}">
+    <modals:BaseModalWindow.Resources>
+        <ResourceDictionary>
+            <Style TargetType="{x:Type DataGridColumnHeader}">
+                <Setter Property="SeparatorBrush" Value="Transparent"/>
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="Foreground" Value="#777783"/>
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+            </Style>
+            <Style x:Key="RowButton" TargetType="Button" BasedOn="{StaticResource ClearStyleButton}">
+                <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="Padding" Value="7,0"/>
+                <Setter Property="FontSize" Value="16"/>
+            </Style>
+            <Style x:Key="RowButtonWithSeparator" TargetType="Button" BasedOn="{StaticResource RowButton}">
+                <Setter Property="BorderThickness" Value="0,0,1,0"/>
+                <Setter Property="BorderBrush" Value="#464652"/>
+            </Style>
+            <Style x:Key="FirstRowButton" TargetType="Button" BasedOn="{StaticResource RowButtonWithSeparator}">
+                <Setter Property="Padding" Value="0,0,7,0"/>
+            </Style>
+            <Style x:Key="HeadingLabel" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="Foreground" Value="#777783"/>
+                <Setter Property="FontWeight" Value="ExtraBold"/>
+                <Setter Property="Padding" Value="0,0,15,0"/>
+            </Style>
+            <Style x:Key="Scroller" TargetType="ScrollViewer">
+                <Setter Property="Template" Value="{StaticResource DarkScrollViewerControlTemplate}"/>
+                <Setter Property="VerticalAlignment" Value="Top"/>
+                <Setter Property="Margin" Value="0,70,0,66"/>
+                <Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
+                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            </Style>
+            <Style x:Key="ListHeading" TargetType="Grid">
+                <Setter Property="Margin" Value="30,0"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
+            <Style x:Key="ListHeadingHolder" TargetType="DockPanel">
+                <Setter Property="ZIndex" Value="2"/>
+                <Setter Property="Height" Value="70"/>
+                <Setter Property="Background" Value="{StaticResource ModalContentColor}"/>
+                <Setter Property="VerticalAlignment" Value="Top"/>
+            </Style>
+            <Style x:Key="Protocol" TargetType="Label">
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="Foreground" Value="White"/>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Protocol}" Value="{x:Static coreProfiles:Protocol.Auto}">
+                        <Setter Property="Foreground" Value="#777783"></Setter>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </ResourceDictionary>
+    </modals:BaseModalWindow.Resources>
+
+    <Grid IsSharedSizeScope="True">
+        <DockPanel x:Name="Heading" Style="{StaticResource ListHeadingHolder}">
+            <Grid Style="{StaticResource ListHeading}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto" SharedSizeGroup="Status"/>
+                    <ColumnDefinition Width="Auto" SharedSizeGroup="Connection"/>
+                    <ColumnDefinition Width="Auto" SharedSizeGroup="Protocol"/>
+                    <ColumnDefinition Width="Auto" SharedSizeGroup="Action"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Style="{StaticResource HeadingLabel}" Text="{resources:Loc Profiles_col_Profile}"/>
+                <TextBlock Grid.Column="1" Style="{StaticResource HeadingLabel}" Text="{resources:Loc Profiles_col_Status}"/>
+                <TextBlock Grid.Column="2" Style="{StaticResource HeadingLabel}" Text="{resources:Loc Profiles_col_Connection}"/>
+                <TextBlock Grid.Column="3" Style="{StaticResource HeadingLabel}" Text="{resources:Loc Profiles_col_Protocol}"/>
+                <TextBlock Grid.Column="4" Style="{StaticResource HeadingLabel}" Text="{resources:Loc Profiles_col_Action}"/>
+            </Grid>
+        </DockPanel>
+
+        <ScrollViewer Style="{StaticResource Scroller}" PanningMode="VerticalOnly" Padding="30,0">
+            <ItemsControl ItemsSource="{Binding Profiles}" BorderThickness="0">
+                <ItemsControl.Resources>
+                    <DataTemplate DataType="{x:Type profiles:PredefinedProfileViewModel}">
+                        <Border BorderBrush="#464652" BorderThickness="0,0,0,1" Margin="0,0,0,5" Padding="0,10">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto" SharedSizeGroup="Status"/>
+                                    <ColumnDefinition Width="Auto" SharedSizeGroup="Connection"/>
+                                    <ColumnDefinition Width="Auto" SharedSizeGroup="Protocol"/>
+                                    <ColumnDefinition Width="Auto" SharedSizeGroup="Action"/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Stretch">
+                                    <fa:FontAwesome Icon="{Binding Icon}" Foreground="White" FontWeight="Medium" Width="25" VerticalAlignment="Center"/>
+                                    <Label Padding="10,0,10,0"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Stretch"
+                                           FontSize="16"
+                                           Foreground="White"
+                                           Content="{Binding Text}"/>
+                                </StackPanel>
+                                <Label Grid.Column="2"
+                                       Padding="0,0,10,0"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Stretch"
+                                       FontSize="16"
+                                       Foreground="White"
+                                       Content="{Binding Description}"/>
+                                <Label Grid.Column="3"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                       FontSize="16"
+                                       Padding="0,5,0,5"
+                                       Foreground="#777783"
+                                       Content="{Binding Protocol, Converter={StaticResource EnumToDisplayTextConverter}}"/>
+                                <StackPanel Grid.Column="4" Orientation="Horizontal">
+                                    <Button Style="{StaticResource RowButton}"
+                                            VerticalAlignment="Center"
+                                            Padding="0"
+                                            Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.ConnectCommand}" CommandParameter="{Binding}">
+                                        <fa:FontAwesome Icon="PowerOff"/>
+                                    </Button>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type profiles:ProfileViewModel}">
+                        <Border BorderBrush="#464652" BorderThickness="0,0,0,1" Margin="0,0,0,5" Padding="0,10">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto" SharedSizeGroup="Status"/>
+                                    <ColumnDefinition Width="Auto" SharedSizeGroup="Connection"/>
+                                    <ColumnDefinition Width="Auto" SharedSizeGroup="Protocol"/>
+                                    <ColumnDefinition Width="Auto" SharedSizeGroup="Action"/>
+                                </Grid.ColumnDefinitions>
+                                <DockPanel Grid.Column="0" HorizontalAlignment="Stretch">
+                                    <Border Margin="5,0,5,0" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                            Width="15" Height="15" CornerRadius="7.5"
+                                            Background="{Binding Color}"/>
+                                    <TextBlock Padding="10,5,15,5"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Stretch"
+                                           Foreground="White"
+                                           FontSize="16"
+                                           TextTrimming="CharacterEllipsis"
+                                           Text="{Binding Name}"/>
+                                </DockPanel>
+                                <DockPanel Grid.Column="1" HorizontalAlignment="Stretch">
+                                    <ContentPresenter Margin="0,0,5,0" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                      Content="{Binding SyncStatus}"
+                                                      ContentTemplate="{StaticResource ProfileSyncStatusImage}"/>
+                                    <Label VerticalAlignment="Center"
+                                           HorizontalAlignment="Stretch"
+                                           FontSize="16"
+                                           Padding="15,5"
+                                           Foreground="#777783"
+                                           Content="{Binding SyncStatus, Converter={StaticResource EnumToDisplayTextConverter}}"/>
+                                </DockPanel>
+                                <profiles:ProfileConnectionView Grid.Column="2"
+                                                                Margin="0,0,10,0"
+                                                                VerticalAlignment="Center"
+                                                                HorizontalAlignment="Stretch"
+                                                                DataContext="{Binding ConnectionName}"
+                                                                FontSize="16"/>
+                                <Label Grid.Column="3"
+                                       Padding="0,5,15,5"
+                                       Style="{StaticResource Protocol}"
+
+                                       Content="{Binding Protocol, Converter={StaticResource EnumToDisplayTextConverter}}"/>
+                                <StackPanel Grid.Column="4" Orientation="Horizontal">
+                                    <Button Style="{StaticResource FirstRowButton}"
+                                            Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type modals:BaseModalWindow}}, Path=DataContext.ConnectCommand}" CommandParameter="{Binding}">
+                                        <fa:FontAwesome Icon="PowerOff"/>
+                                    </Button>
+                                    <Button Style="{StaticResource RowButtonWithSeparator}"
+                                            Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type modals:BaseModalWindow}}, Path=DataContext.EditCommand}" CommandParameter="{Binding}">
+                                        <fa:FontAwesome Icon="Pencil"/>
+                                    </Button>
+                                    <Button Style="{StaticResource RowButton}"
+                                            Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type modals:BaseModalWindow}}, Path=DataContext.RemoveCommand}" CommandParameter="{Binding}">
+                                        <fa:FontAwesome Icon="Remove"/>
+                                    </Button>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.Resources>
+            </ItemsControl>
+        </ScrollViewer>
+
+        <DockPanel Height="66" Background="{StaticResource ModalBarColor}" VerticalAlignment="Bottom">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <DockPanel Grid.Row="0" Grid.Column="0" Margin="35,0,20,0" VerticalAlignment="Center">
+                    <ContentPresenter Name="SyncStatus"
+                                      Content="{Binding ProfileSync.SyncStatus}" 
+                                      ContentTemplate="{StaticResource ProfileSyncStatusImage}"/>
+                    <TextBlock Margin="10,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Stretch" MaxHeight="70"
+                               FontSize="16" Foreground="#777783"
+                               Text="{Binding ProfileSync.SyncStatusMessage}"
+                               TextTrimming="CharacterEllipsis"/>
+                </DockPanel>
+                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Style="{StaticResource SecondaryModalButton}"
+                            Command="{Binding ProfileSync.SyncCommand}"
+                            Content="{resources:Loc Profiles_btn_Sync}"/>
+                    <Button x:Name="NewProfileButton"
+                            Style="{StaticResource SecondaryModalButton}"
+                            Command="{Binding CreateProfileCommand}"
+                            Content="{resources:Loc Profiles_btn_Create}"/>
+                    <Button Style="{StaticResource PrimaryModalButton}"
+                            Command="{Binding CloseCommand}"
+                            Content="{resources:Loc Profiles_btn_Close}"/>
+                </StackPanel>
+            </Grid>
+        </DockPanel>
+    </Grid>
+</modals:BaseModalWindow>

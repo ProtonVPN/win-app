@@ -1,0 +1,86 @@
+﻿<!--
+Copyright (c) 2020 Proton Technologies AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<UserControl x:Class="ProtonVPN.Views.Controls.ProtonAnimation"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <Storyboard x:Key="EllipseStoryboard1">
+            <DoubleAnimation
+                Storyboard.TargetName="ScaleTransform1"
+                Storyboard.TargetProperty="ScaleX"
+                From="1"
+                To="0"
+                Duration="0:0:1"
+                AutoReverse="True"
+                RepeatBehavior="Forever"/>
+        </Storyboard>
+        <Storyboard x:Key="EllipseStoryboard2">
+            <DoubleAnimation
+                Storyboard.TargetName="ScaleTransform2"
+                Storyboard.TargetProperty="ScaleX"
+                From="1"
+                To="0"
+                Duration="0:0:1"
+                AutoReverse="True"
+                RepeatBehavior="Forever"/>
+        </Storyboard>
+    </UserControl.Resources>
+    <Grid>
+        <Ellipse x:Name="Ellipse1"
+                 StrokeThickness="3"
+                 Stroke="White"
+                 RenderTransformOrigin="0.5,0.5">
+            <Ellipse.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform x:Name="ScaleTransform1"/>
+                    <RotateTransform Angle="-45"/>
+                </TransformGroup>
+            </Ellipse.RenderTransform>
+            <Ellipse.Triggers>
+                <EventTrigger RoutedEvent="Ellipse.Loaded">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard Storyboard="{StaticResource EllipseStoryboard1}"/>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+            </Ellipse.Triggers>
+        </Ellipse>
+        <Ellipse x:Name="Ellipse2"
+                 StrokeThickness="3"
+                 Stroke="White"
+                 RenderTransformOrigin="0.5,0.5">
+            <Ellipse.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform x:Name="ScaleTransform2"/>
+                    <RotateTransform Angle="45"/>
+                </TransformGroup>
+            </Ellipse.RenderTransform>
+            <Ellipse.Triggers>
+                <EventTrigger RoutedEvent="Ellipse.Loaded">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard Storyboard="{StaticResource EllipseStoryboard2}"/>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+            </Ellipse.Triggers>
+        </Ellipse>
+    </Grid>
+</UserControl>

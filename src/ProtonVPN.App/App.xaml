@@ -1,0 +1,119 @@
+﻿<!--
+Copyright (c) 2020 Proton Technologies AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<Application
+    x:Class="ProtonVPN.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converters="clr-namespace:ProtonVPN.Core.MVVM.Converters"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    mc:Ignorable="d">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary>
+                    <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">10</sys:Double>
+                    <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+                    <converters:CountryToFlagConverter x:Key="CountryToFlagConverter"/>
+                    <converters:MultiValueEqualityConverter x:Key="MultiValueEqualityConverter"/>
+                    <converters:StringNullOrEmptyToVisibilityConverter x:Key="StringNullOrEmptyToVisibilityConverter"/>
+                    <converters:BytesToSizeConverter x:Key="BytesToSizeConverter"/>
+                    <converters:BytesToUnitsConverter x:Key="BytesToUnitsConverter"/>
+                    <converters:BytesToStringConverter x:Key="BytesToStringConverter"/>
+                    <converters:SecondsToTimeConverter x:Key="SecondsToTimeConverter"/>
+                    <converters:CountryCodeToNameConverter x:Key="CountryCodeToNameConverter"/>
+                    <converters:PinStateToBoolConverter x:Key="PinStateToBoolConverter"/>
+                    <converters:ControlToCanvasCenterConverter x:Key="ControlToCanvasCenterConverter"/>
+                    <converters:DataTypeConverter x:Key="DataTypeConverter"/>
+                    <converters:ConnectionStatusFlagConverter x:Key="ConnectionStatusFlagConverter"/>
+                    <converters:LoadToColorConverter x:Key="LoadToColor"/>
+                    <converters:LoadToTextConverter x:Key="LoadToTextConverter"/>
+                    <converters:EmptyStringToBoolConverter x:Key="EmptyStringToBoolConverter"/>
+                    <converters:TabIndexToFirstLastConverter x:Key="TabIndexToFirstLastConverter"/>
+                    <converters:CachingFilePathToImageSourceConverter x:Key="FilePathToImageSourceConverter"/>
+                    <converters:ComparisonConverter x:Key="ComparisonConverter"/>
+                    <converters:EnumToDisplayTextConverter x:Key="EnumToDisplayTextConverter"/>
+                    <converters:StringFormatMultiValueConverter x:Key="StringFormatMultiValueConverter"/>
+                    <converters:StringToUpperConverter x:Key="StringToUpperConverter"/>
+                </ResourceDictionary>
+                <ResourceDictionary Source="/ProtonVPN.Resource;component/Styles/Colors.xaml"/>
+                <ResourceDictionary Source="/ProtonVPN.Resource;component/Styles/Controls.xaml"/>
+                <ResourceDictionary Source="/ProtonVPN.Resource;component/Styles/Window.xaml"/>
+                <ResourceDictionary Source="Views/Icons/Gradients.xaml"/>
+                <ResourceDictionary Source="Resources/Assets/Styles/Common.xaml"/>
+                <ResourceDictionary Source="Resources/AutomationConfig.xaml"/>
+                <ResourceDictionary Source="Resources/Assets/Styles/Window.xaml"/>
+                <ResourceDictionary Source="Resources/Assets/Styles/ProgressBar.xaml"/>
+                <ResourceDictionary Source="Resources/Assets/Styles/Server.xaml"/>
+                <ResourceDictionary Source="Resources/Assets/Styles/Spinner.xaml"/>
+                <ResourceDictionary Source="Resources/Assets/Styles/OxyPlot.xaml"/>
+                <ResourceDictionary Source="Resources/Assets/Styles/Scrollbar.xaml"/>
+                <ResourceDictionary Source="Resources/Assets/Styles/Animations.xaml"/>
+                <ResourceDictionary Source="Resources/Assets/Styles/ClearButton.xaml"/>
+                <ResourceDictionary Source="Resources/Assets/Styles/Pin.xaml"/>
+                <ResourceDictionary Source="Resources/Assets/Styles/CheckBox.xaml"/>
+                <ResourceDictionary Source="Resources/Assets/Styles/ComboBox.xaml"/>
+                <ResourceDictionary Source="Resources/Assets/Styles/ListViewItem.xaml"/>
+                <ResourceDictionary Source="Resources/Assets/Styles/Placeholder.xaml"/>
+                <ResourceDictionary Source="Resources/Assets/Styles/Tooltip.xaml"/>
+                <ResourceDictionary Source="Resources/Assets/Styles/Map.xaml"/>
+                <ResourceDictionary Source="Resources/Assets/Styles/Tabs.xaml"/>
+                <ResourceDictionary Source="Resources/Assets/Styles/PasswordBox.xaml"/>
+                <ResourceDictionary Source="Resources/Assets/Styles/ToggleButton.xaml"/>
+                <ResourceDictionary Source="Resources/Assets/Styles/ToggleSwitch.xaml"/>
+                <ResourceDictionary Source="Resources/Assets/Styles/Modal.xaml"/>
+                <ResourceDictionary Source="Resources/Assets/Styles/Menu.xaml"/>
+                <ResourceDictionary Source="Resources/Assets/Styles/MainWindow.xaml"/>
+                <ResourceDictionary Source="Views/Forms/Style.xaml"/>
+                <ResourceDictionary Source="ConnectionInfo/ConnectionInfo.xaml"/>
+                <ResourceDictionary Source="Login/Styles/Login.xaml"/>
+                <ResourceDictionary Source="Profiles/Style.xaml"/>
+                <ResourceDictionary Source="Resources/Assets/Styles/Sidebar.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="{x:Type Window}">
+                <Setter Property="FontFamily" Value="Segoe UI"/>
+            </Style>
+            <Style TargetType="{x:Type TextBlock}">
+                <Setter Property="FontFamily" Value="Segoe UI"/>
+            </Style>
+            <Style TargetType="{x:Type PasswordBox}">
+                <Setter Property="FontFamily" Value="Segoe UI"/>
+            </Style>
+            <Style TargetType="{x:Type Label}">
+                <Setter Property="FontFamily" Value="Segoe UI"/>
+            </Style>
+            <Style TargetType="ToolTip">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ToolTip">
+                            <TextBlock TextWrapping="Wrap"
+                                       Background="#f2f3f7"
+                                       Padding="10"
+                                       TextAlignment="Left"
+                                       MaxWidth="300"
+                                       Text="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}}"/>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

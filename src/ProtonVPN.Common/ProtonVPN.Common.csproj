@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{03B8E43C-5680-4803-A745-0A104FE6620C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ProtonVPN.Common</RootNamespace>
+    <AssemblyName>ProtonVPN.Common</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NLog.4.6.8\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="Polly, Version=7.0.0.0, Culture=neutral, PublicKeyToken=c8a3ffc3f8f825cc, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Polly.7.2.0\lib\net472\Polly.dll</HintPath>
+    </Reference>
+    <Reference Include="Sentry, Version=1.2.0.0, Culture=neutral, PublicKeyToken=fba2ec45388e2af0, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Sentry.1.2.0\lib\net461\Sentry.dll</HintPath>
+    </Reference>
+    <Reference Include="Sentry.PlatformAbstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=fba2ec45388e2af0, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Sentry.PlatformAbstractions.1.0.0\lib\net471\Sentry.PlatformAbstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Sentry.Protocol, Version=1.0.6.0, Culture=neutral, PublicKeyToken=fba2ec45388e2af0, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Sentry.Protocol.1.0.6\lib\net46\Sentry.Protocol.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Collections.Immutable, Version=1.2.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Collections.Immutable.1.5.0\lib\netstandard2.0\System.Collections.Immutable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\GlobalAssemblyInfo.cs">
+      <Link>Properties\GlobalAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Abstract\GenericResult.cs" />
+    <Compile Include="Cli\CommandLineOption.cs" />
+    <Compile Include="Configuration\Api\Handlers\TlsPinning\TlsPinnedDomain.cs" />
+    <Compile Include="Configuration\Api\Handlers\TlsPinning\TlsPinningConfig.cs" />
+    <Compile Include="Configuration\Config.cs" />
+    <Compile Include="Configuration\ConfigFactory.cs" />
+    <Compile Include="Configuration\Source\ConfigMode.cs" />
+    <Compile Include="Configuration\Source\CustomConfig.cs" />
+    <Compile Include="Configuration\Source\DefaultConfig.cs" />
+    <Compile Include="Configuration\Source\IConfigSource.cs" />
+    <Compile Include="Configuration\Storage\ConfigFile.cs" />
+    <Compile Include="Configuration\Storage\FileConfigStorage.cs" />
+    <Compile Include="Configuration\Storage\IConfigStorage.cs" />
+    <Compile Include="Configuration\Storage\IStorageFile.cs" />
+    <Compile Include="Configuration\Storage\PropertiesContractResolver.cs" />
+    <Compile Include="Configuration\Storage\SafeConfigStorage.cs" />
+    <Compile Include="Configuration\Storage\ValidatedConfigStorage.cs" />
+    <Compile Include="Configuration\OpenVpnConfig.cs" />
+    <Compile Include="Configuration\UrlConfig.cs" />
+    <Compile Include="CrashReporting\CrashReports.cs" />
+    <Compile Include="Extensions\EnumerableExtensions.cs" />
+    <Compile Include="Extensions\ExceptionMessageExtensions.cs" />
+    <Compile Include="Extensions\ExceptionTypeExtensions.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Configuration\GlobalConfig.cs" />
+    <Compile Include="Helpers\ConcatenatedSequence.cs" />
+    <Compile Include="Helpers\Ensure.cs" />
+    <Compile Include="EventArgsTValue.cs" />
+    <Compile Include="Extensions\VersionExtensions.cs" />
+    <Compile Include="Helpers\HashCode.cs" />
+    <Compile Include="Helpers\RandomStrings.cs" />
+    <Compile Include="Helpers\StructConverter.cs" />
+    <Compile Include="Logging\ILogger.cs" />
+    <Compile Include="Logging\ILoggerFactory.cs" />
+    <Compile Include="Logging\LogCleaner.cs" />
+    <Compile Include="Logging\NLogFile.cs" />
+    <Compile Include="Logging\NLogLogger.cs" />
+    <Compile Include="Logging\NLogLoggerFactory.cs" />
+    <Compile Include="Logging\NLogLoggingConfiguration.cs" />
+    <Compile Include="OS\IEnvironment.cs" />
+    <Compile Include="OS\Net\Http\HttpClients.cs" />
+    <Compile Include="OS\Net\Http\HttpStatusCodeExtensions.cs" />
+    <Compile Include="OS\Net\Http\IHttpClient.cs" />
+    <Compile Include="OS\Net\Http\IHttpClients.cs" />
+    <Compile Include="OS\Net\Http\IHttpContent.cs" />
+    <Compile Include="OS\Net\Http\IHttpResponseMessage.cs" />
+    <Compile Include="OS\Net\Http\WrappedHttpClient.cs" />
+    <Compile Include="OS\Net\Http\WrappedHttpContent.cs" />
+    <Compile Include="OS\Net\Http\WrappedHttpResponseMessage.cs" />
+    <Compile Include="OS\Net\NetworkInterface\INetworkInterface.cs" />
+    <Compile Include="OS\Net\NetworkInterface\INetworkInterfaces.cs" />
+    <Compile Include="OS\Net\NetworkInterface\NullNetworkInterface.cs" />
+    <Compile Include="OS\Net\NetworkInterface\SystemNetworkInterface.cs" />
+    <Compile Include="OS\Net\NetworkInterface\SafeSystemNetworkInterfaces.cs" />
+    <Compile Include="OS\Net\NetworkInterface\SystemNetworkInterfaces.cs" />
+    <Compile Include="OS\OsEnvironment.cs" />
+    <Compile Include="OS\Processes\IOsProcess.cs" />
+    <Compile Include="OS\Processes\IOsProcesses.cs" />
+    <Compile Include="OS\Processes\NullOsProcess.cs" />
+    <Compile Include="OS\Processes\OsProcessesExtensions.cs" />
+    <Compile Include="OS\Processes\SystemProcess.cs" />
+    <Compile Include="OS\Processes\SystemProcesses.cs" />
+    <Compile Include="OS\Registry\IStartupRecord.cs" />
+    <Compile Include="OS\Registry\CurrentUserStartupRecord.cs" />
+    <Compile Include="OS\Registry\SafeStartupRecord.cs" />
+    <Compile Include="OS\Services\DriverService.cs" />
+    <Compile Include="OS\Services\ExceptionExtensions.cs" />
+    <Compile Include="OS\Services\IService.cs" />
+    <Compile Include="OS\Services\LoggingService.cs" />
+    <Compile Include="OS\Services\ReliableService.cs" />
+    <Compile Include="OS\Services\SafeService.cs" />
+    <Compile Include="OS\Services\ServiceExtensions.cs" />
+    <Compile Include="OS\Services\ServiceRetryPolicy.cs" />
+    <Compile Include="OS\Services\Service.cs" />
+    <Compile Include="OS\Services\SystemService.cs" />
+    <Compile Include="Abstract\Result.cs" />
+    <Compile Include="ServiceModel\Server\InprocHostFactory.cs" />
+    <Compile Include="ServiceModel\Server\SafeServiceHost.cs" />
+    <Compile Include="Service\ErrorHandler.cs" />
+    <Compile Include="Service\ErrorLoggingBehavior.cs" />
+    <Compile Include="Service\SentryDiagnosticLogger.cs" />
+    <Compile Include="Service\ServiceHostFactory.cs" />
+    <Compile Include="SplitTunnelMode.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Threading\CancellationHandle.cs" />
+    <Compile Include="Threading\CoalescingAction.cs" />
+    <Compile Include="Threading\ISchedulerTimer.cs" />
+    <Compile Include="Threading\ITaskQueue.cs" />
+    <Compile Include="Threading\ITaskQueueExtensions.cs" />
+    <Compile Include="Threading\IScheduler.cs" />
+    <Compile Include="Threading\SerialTaskQueue.cs" />
+    <Compile Include="Threading\SingleAction.cs" />
+    <Compile Include="Threading\SingleFunc.cs" />
+    <Compile Include="Threading\TaskCompletedEventArgs.cs" />
+    <Compile Include="Threading\TaskCompletionSourceExtensions.cs" />
+    <Compile Include="Threading\TaskExtensions.cs" />
+    <Compile Include="Vpn\InOutBytes.cs" />
+    <Compile Include="Vpn\VpnConfig.cs" />
+    <Compile Include="Vpn\VpnCredentials.cs" />
+    <Compile Include="Vpn\VpnError.cs" />
+    <Compile Include="Vpn\VpnHost.cs" />
+    <Compile Include="Vpn\VpnProtocol.cs" />
+    <Compile Include="Vpn\VpnStatus.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>python "$(SolutionDir)\ci\main.py" sentry "$(ProjectDir)Configuration\GlobalConfig.cs" %25SENTRY_DSN%25</PreBuildEvent>
+  </PropertyGroup>
+</Project>

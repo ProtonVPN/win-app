@@ -1,0 +1,3 @@
+[submodule "src/srp"]
+	path = src/srp
+	url = https://github.com/ProtonMail/go-srp

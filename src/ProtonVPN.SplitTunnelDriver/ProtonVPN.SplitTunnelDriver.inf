@@ -1,0 +1,55 @@
+;
+; ProtonVPN.SplitTunnelDriver.inf
+;
+
+[Version]
+Signature   = "$WINDOWS NT$"
+Class       = WFPCALLOUTS
+ClassGuid   = {57465043-616C-6C6F-7574-5F636C617373}
+Provider    = %ManufacturerName%
+CatalogFile = ProtonVPN.SplitTunnelDriver.cat
+DriverVer   = 11/22/2019,1.0.1.0
+
+[SourceDisksNames]
+1 = %DiskName%,,,""
+
+[SourceDisksFiles]
+ProtonVPN.SplitTunnelDriver.sys = 1,,
+
+[DestinationDirs]
+DefaultDestDir                    = 12         ; %WinDir%\System32\Drivers
+ProtonVPN.SplitTunnelDriver.Files = 12         ; %WinDir%\System32\Drivers
+
+[DefaultInstall.NT$ARCH$]
+OptionDesc = %ServiceDescription%
+CopyFiles  = ProtonVPN.SplitTunnelDriver.Files
+
+[DefaultUninstall.NT$ARCH$]
+LegacyUninstall = 1
+DelFiles = ProtonVPN.SplitTunnelDriver.Files
+
+[DefaultInstall.NT$ARCH$.Services]
+AddService = %ServiceName%,,ProtonVPN.SplitTunnelDriver.Service
+
+[DefaultUninstall.NT$ARCH$.Services]
+DelService = %ServiceName%,0x200               ; SPSVCINST_STOPSERVICE
+
+[ProtonVPN.SplitTunnelDriver.Files]
+ProtonVPN.SplitTunnelDriver.sys,,,0x00000040   ; COPYFLG_OVERWRITE_OLDER_ONLY
+
+[ProtonVPN.SplitTunnelDriver.Service]
+DisplayName    = %ServiceDisplayName%
+Description    = %ServiceDescription%
+ServiceType    = 1                             ; SERVICE_KERNEL_DRIVER
+StartType      = 3                             ; SERVICE_DEMAND_START
+ErrorControl   = 1                             ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\ProtonVPN.SplitTunnelDriver.sys
+LoadOrderGroup = NDIS
+Dependencies   = TCPIP                         ; Load after TCPIP.sys
+
+[Strings]
+ManufacturerName   = "Proton Technologies AG"
+DiskName           = "ProtonVPN Split Tunnel Driver Installation Disk"
+ServiceName        = "ProtonVPNSplitTunnel"
+ServiceDisplayName = "ProtonVPN Split Tunnel"
+ServiceDescription = "ProtonVPN Split Tunnel Driver"

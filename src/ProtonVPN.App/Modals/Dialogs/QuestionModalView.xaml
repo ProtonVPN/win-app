@@ -1,0 +1,56 @@
+﻿<!--
+Copyright (c) 2020 Proton Technologies AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<local:BaseModalWindow x:Class="ProtonVPN.Modals.Dialogs.QuestionModalView"
+                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                       xmlns:local="clr-namespace:ProtonVPN.Modals"
+                       xmlns:behavior="clr-namespace:ProtonVPN.Core.Wpf.Behavior"
+                       xmlns:dialogs="clr-namespace:ProtonVPN.Modals.Dialogs"
+                       xmlns:resources="clr-namespace:ProtonVPN.Resources"
+                       Style="{StaticResource BaseModalStyle}"
+                       mc:Ignorable="d"
+                       Title="{resources:Loc Dialogs_ttl_Question}"
+                       ResizeMode="NoResize"
+                       SizeToContent="Height"
+                       Height="Auto"
+                       Width="500"
+                       d:DataContext="{d:DesignInstance dialogs:QuestionModalViewModel}">
+    <Grid>
+        <StackPanel>
+            <TextBlock TextWrapping="Wrap"
+                       behavior:TextStyleBehavior.FormattedText="{Binding Message}"
+                       Padding="20,50"
+                       FontSize="16"
+                       Foreground="White"/>
+            <DockPanel Background="{StaticResource ModalBarColor}" Height="66">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Style="{StaticResource SecondaryModalButton}"
+                            Command="{Binding CloseCommand}"/>
+                    <Button Style="{StaticResource PrimaryModalButton}"
+                            Command="{Binding ContinueCommand}"
+                            AutomationProperties.AutomationId="{StaticResource ContinueButtonId}"
+                            Content="{Binding PrimaryButtonText}"/>
+                </StackPanel>
+            </DockPanel>
+        </StackPanel>
+    </Grid>
+</local:BaseModalWindow>

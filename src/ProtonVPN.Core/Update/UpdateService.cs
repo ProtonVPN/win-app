@@ -1,0 +1,183 @@
+﻿/*
+ * Copyright (c) 2020 Proton Technologies AG
+ *
+ * This file is part of ProtonVPN.
+ *
+ * ProtonVPN is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * ProtonVPN is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+using ProtonVPN.Core.Auth;
+using ProtonVPN.Core.Settings;
+using ProtonVPN.UpdateServiceContract;
+using System;
+using System.ComponentModel;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Threading;
+using ProtonVPN.Common.Configuration;
+using ProtonVPN.Common.Vpn;
+using ProtonVPN.Core.Vpn;
+
+namespace ProtonVPN.Core.Update
+{
+    public class UpdateService : ISettingsAware, ILoggedInAware, ILogoutAware, IVpnStateAware
+    {
+        private readonly IAppSettings _appSettings;
+        private readonly Config _appConfig;
+        private readonly ServiceClient _serviceClient;
+        private readonly TimeSpan _updateInterval;
+
+        private readonly DispatcherTimer _timer;
+
+        private bool _firstCheck;
+        private bool _manualCheck;
+        private bool _requestedManualCheck;
+        private bool _autoUpdateInProgress;
+        private UpdateStatus _status = UpdateStatus.None;
+        private VpnStatus _vpnStatus = VpnStatus.Disconnected;
+
+        public UpdateService(
+            Config appConfig,
+            IAppSettings appSettings,
+            ServiceClient serviceClient)
+        {
+            _updateInterval = appConfig.UpdateCheckInterval;
+            _appConfig = appConfig;
+            _serviceClient = serviceClient;
+            _appSettings = appSettings;
+
+            _timer = new DispatcherTimer();
+            _timer.Tick += TimerTick;
+
+            _serviceClient.UpdateStateChanged += _serviceClient_UpdateStateChanged;
+        }
+
+        public event EventHandler<UpdateStateChangedEventArgs> UpdateStateChanged;
+
+        public void StartCheckingForUpdate() => StartCheckingForUpdate(true);
+
+        public Task Update(bool auto) =>_serviceClient.StartUpdating(auto);
+
+        public void OnAppSettingsChanged(PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName.Equals(nameof(IAppSettings.EarlyAccess)))
+            {
+                StartCheckingForUpdate(true);
+            }
+        }
+
+        public void OnUserLoggedIn()
+        {
+            _firstCheck = true;
+            _timer.Interval = _appConfig.UpdateFirstCheckDelay;
+            _timer.Start();
+        }
+
+        public void OnUserLoggedOut()
+        {
+            _timer.Stop();
+        }
+
+        public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
+        {
+            _vpnStatus = e.State.Status;
+            return Task.CompletedTask;
+        }
+
+        private void StartCheckingForUpdate(bool manualCheck)
+        {
+            _requestedManualCheck |= manualCheck;
+
+            _serviceClient.CheckForUpdate(_appSettings.EarlyAccess);
+        }
+
+        private void _serviceClient_UpdateStateChanged(object sender, UpdateStateContract e)
+        {
+            if (_autoUpdateInProgress)
+            {
+                return;
+            }
+
+            if (AllowAutoUpdate(e.Status))
+            {
+                _serviceClient.StartUpdating(true);
+                _autoUpdateInProgress = true;
+                HandleUpdating(UpdateStatus.Updating);
+                return;
+            }
+
+            var state = Map(e);
+            OnUpdateStateChanged(state, _manualCheck);
+            HandleManualCheck(state.Status);
+            HandleUpdating(state.Status);
+        }
+
+        private bool AllowAutoUpdate(AppUpdateStatusContract status)
+        {
+            return _appSettings.AutoUpdate &&
+                   status == AppUpdateStatusContract.Ready &&
+                   _vpnStatus == VpnStatus.Disconnected;
+        }
+
+        private UpdateState Map(UpdateStateContract e)
+        {
+            var releaseHistory = e.ReleaseHistory
+                .Select(release => new Release(
+                    release.Version,
+                    release.EarlyAccess,
+                    release.New,
+                    release.ChangeLog.ToList()))
+                .ToList();
+
+            return new UpdateState(releaseHistory, e.Available, e.Ready, (UpdateStatus)e.Status);
+        }
+
+        private void HandleManualCheck(UpdateStatus status)
+        {
+            if (status != _status && status == UpdateStatus.Checking)
+            {
+                _manualCheck = _requestedManualCheck;
+                _requestedManualCheck = false;
+            }
+
+            _status = status;
+        }
+
+        private void HandleUpdating(UpdateStatus status)
+        {
+            if (status != UpdateStatus.Updating)
+                return;
+
+            Application.Current.Shutdown();
+        }
+
+        private void OnUpdateStateChanged(UpdateState state, bool manualCheck)
+        {
+            var eventArgs = new UpdateStateChangedEventArgs(state, manualCheck);
+            UpdateStateChanged?.Invoke(this, eventArgs);
+        }
+
+        private void TimerTick(object sender, EventArgs e)
+        {
+            if (_firstCheck)
+            {
+                _firstCheck = false;
+                _timer.Interval = _updateInterval;
+            }
+
+            StartCheckingForUpdate(false);
+        }
+    }
+}

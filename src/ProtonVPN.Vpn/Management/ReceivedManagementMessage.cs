@@ -1,0 +1,98 @@
+﻿/*
+ * Copyright (c) 2020 Proton Technologies AG
+ *
+ * This file is part of ProtonVPN.
+ *
+ * ProtonVPN is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * ProtonVPN is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.Vpn;
+
+namespace ProtonVPN.Vpn.Management
+{
+    /// <summary>
+    /// Message received over OpenVPN management interface.
+    /// </summary>
+    internal class ReceivedManagementMessage
+    {
+        private readonly string _messageText;
+
+        public ReceivedManagementMessage(string messageText)
+        {
+            _messageText = messageText ?? "";
+        }
+
+        public override string ToString() => _messageText;
+
+        public bool IsChannelDisconnected => _messageText.NullOrEmpty();
+
+        public bool IsWaitingHoldRelease => _messageText.StartsWithIgnoringCase(">HOLD");
+
+        public bool IsEchoSet => _messageText.StartsWithIgnoringCase("SUCCESS: real-time echo notification set");
+
+        public bool IsStateSet => _messageText.StartsWithIgnoringCase("SUCCESS: real-time state notification set");
+
+        public bool IsBytecountSet => _messageText.StartsWithIgnoringCase("SUCCESS: bytecount");
+
+        public bool IsLogSet => _messageText.StartsWithIgnoringCase("SUCCESS: real-time log notification set");
+
+        public bool IsUsernameNeeded => _messageText.StartsWithIgnoringCase(">PASSWORD:Need");
+
+        public bool IsPasswordNeeded => _messageText.StartsWithIgnoringCase("SUCCESS: 'Auth' username entered");
+
+        public bool IsBytecount => _messageText.StartsWithIgnoringCase(">BYTECOUNT");
+
+        public bool IsState => _messageText.StartsWithIgnoringCase(">STATE");
+
+        public bool IsError => _messageText.StartsWithIgnoringCase(">FATAL")
+                || _messageText.StartsWithIgnoringCase(">PASSWORD:Verification Failed: 'Auth'")
+                || _messageText.StartsWithIgnoringCase(">STATE:") && _messageText.ContainsIgnoringCase(",RECONNECTING,tls-error,");
+
+        public bool IsDisconnectReceived => _messageText.StartsWithIgnoringCase("SUCCESS: signal SIGTERM thrown");
+
+        public InOutBytes Bandwidth()
+        {
+            string[] byteCountArr = _messageText.Split(':')[1].Split(',');
+            if (byteCountArr.Length <= 1)
+                return InOutBytes.Zero;
+
+            if (!double.TryParse(byteCountArr[0], out double bytesIn))
+                return InOutBytes.Zero;
+            if (!double.TryParse(byteCountArr[1], out double bytesOut))
+                return InOutBytes.Zero;
+
+            return new InOutBytes(bytesIn, bytesOut);
+        }
+
+        public ManagementState State()
+        {
+            string[] messageParts = _messageText.Split(',');
+            if (messageParts.Length <= 1)
+                return ManagementState.Null;
+
+            string stateText = messageParts[1];
+            string statusText = messageParts.Length > 2 ? messageParts[2] : "";
+            string localIpAddress = messageParts.Length > 3 ? messageParts[3] : "";
+            string remoteIpAddress = messageParts.Length > 4 ? messageParts[4] : "";
+
+            return new ManagementState(stateText, statusText, localIpAddress, remoteIpAddress);
+        }
+
+        public ManagementError Error()
+        {
+            return new ManagementError(_messageText);
+        }
+    }
+}

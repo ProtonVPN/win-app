@@ -1,0 +1,271 @@
+﻿<!--
+Copyright (c) 2020 Proton Technologies AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<UserControl x:Class="ProtonVPN.Login.Views.LoginView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:wpf="clr-namespace:ProtonVPN.Core.Wpf"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
+             xmlns:input="clr-namespace:ProtonVPN.Core.Wpf.Input"
+             xmlns:views="clr-namespace:ProtonVPN.Login.Views"
+             xmlns:viewModels="clr-namespace:ProtonVPN.Login.ViewModels"
+             xmlns:resources="clr-namespace:ProtonVPN.Resources"
+             mc:Ignorable="d"
+             d:DesignWidth="440"
+             d:DesignHeight="570"
+             d:DataContext="{d:DesignInstance viewModels:LoginViewModel}">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <Style x:Key="EmailInput" TargetType="wpf:PlaceholderTextBox" BasedOn="{StaticResource placeHolder}">
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="Height" Value="36"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                <Setter Property="BorderBrush" Value="#505158"/>
+                <Setter Property="BorderThickness" Value="0,0,0,2"/>
+                <Setter Property="ActiveBorderThickness" Value="0,0,0,2"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="Margin" Value="0,0,0,40"/>
+            </Style>
+            <Style x:Key="LoginButton" TargetType="Button" BasedOn="{StaticResource ClearStyleButton}">
+                <Setter Property="BorderBrush" Value="#4e505d"/>
+                <Setter Property="Border.CornerRadius" Value="19"/>
+                <Setter Property="Width" Value="128"/>
+                <Setter Property="Height" Value="38"/>
+                <Setter Property="Margin" Value="0,30,0,0"/>
+                <Setter Property="Foreground" Value="#424450"/>
+                <Setter Property="Background" Value="Transparent"/>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding FieldsFilledIn}" Value="True">
+                        <Setter Property="Background" Value="{StaticResource PrimaryColor}"/>
+                        <Setter Property="Foreground" Value="White"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="PasswordInputHidden" TargetType="TextBox">
+                <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                <Setter Property="Height" Value="36"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="Foreground" Value="#999999"/>
+                <Setter Property="VerticalAlignment" Value="Top"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                <Setter Property="Visibility" Value="Hidden"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Control">
+                            <Grid>
+                                <Border x:Name="outerBorder" CornerRadius="1" BorderBrush="#505158" BorderThickness="0,0,0,2"/>
+                                <Label x:Name="placeholder" Content="" FontSize="14" Foreground="White" VerticalAlignment="Center" Visibility="Visible"/>
+                                <ScrollViewer HorizontalAlignment="Left" SnapsToDevicePixels="True" x:Name="PART_ContentHost"/>
+                                <ContentPresenter x:Name="ContentPresenter" Margin="2" HorizontalAlignment="Left" VerticalAlignment="Center" RecognizesAccessKey="True"/>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="PasswordInput" BasedOn="{StaticResource PasswordBoxStyle}" TargetType="PasswordBox">
+                <Setter Property="Height" Value="36"/>
+                <Setter Property="CaretBrush" Value="White"/>
+                <Setter Property="Width" Value="{Binding ElementName=PasswordContainer, Path=ActualWidth}"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="Margin" Value="0"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="BorderBrush" Value="#505158"/>
+                <Setter Property="BorderThickness" Value="0,0,0,2"/>
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                <Setter Property="Foreground" Value="White"/>
+            </Style>
+            <Style x:Key="PasswordEye" TargetType="fa:FontAwesome">
+                <Setter Property="Cursor" Value="Hand"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="HorizontalAlignment" Value="Right"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="0,0,5,0"/>
+                <Setter Property="Visibility" Value="Hidden"/>
+                <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
+                <Setter Property="Icon" Value="Eye"/>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding ElementName=PasswordText, Path=IsVisible}" Value="True">
+                        <Setter Property="Icon" Value="EyeSlash"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="MainStackPanel" TargetType="StackPanel">
+                <Setter Property="Width" Value="330"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="VerticalAlignment" Value="Top"/>
+                <Setter Property="Margin" Value="0,40,0,0"/>
+            </Style>
+            <Style x:Key="LoginForm" TargetType="StackPanel">
+                <Setter Property="Margin" Value="0,60,0,0"/>
+            </Style>
+            <Style x:Key="Footer" TargetType="DockPanel">
+                <Setter Property="Width" Value="330"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="VerticalAlignment" Value="Bottom"/>
+                <Setter Property="Margin" Value="20,0,20,25"/>
+            </Style>
+            <Style x:Key="FooterButton" TargetType="Button" BasedOn="{StaticResource ClearStyleButton}">
+                <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="Padding" Value="0,5"/>
+                <Setter Property="Background" Value="Transparent"/>
+            </Style>
+            <Style x:Key="HelpButton" TargetType="Button" BasedOn="{StaticResource FooterButton}">
+                <Setter Property="Command" Value="{Binding ToggleHelpBalloon}"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+            </Style>
+            <Style x:Key="FormLabel" TargetType="Label">
+                <Setter Property="Padding" Value="2,0,0,0"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="Foreground" Value="#5f6172"/>
+            </Style>
+            <Style x:Key="PopupButton" TargetType="Button" BasedOn="{StaticResource ClearStyleButton}">
+                <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="Margin" Value="10,3"/>
+                <Setter Property="BorderBrush" Value="Transparent"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border
+                                SnapsToDevicePixels="True"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="{TemplateBinding Border.CornerRadius}"
+                                Padding="{TemplateBinding Padding}">
+                                <StackPanel Orientation="Horizontal">
+                                    <fa:FontAwesome
+                                        Margin="0,4,10,0"
+                                        Icon="HandOutlineRight"
+                                        FontSize="14"
+                                        Foreground="#505158"/>
+                                    <ContentPresenter
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                </StackPanel>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid Background="#222329" VerticalAlignment="Stretch">
+        <views:LoginErrorView DataContext="{Binding LoginErrorViewModel}" Panel.ZIndex="2"/>
+
+        <StackPanel Style="{StaticResource MainStackPanel}">
+            <Image Source="../../Resources/Assets/Images/login-logo.png" Margin="0,30,0,0" Width="198" Height="37"/>
+            <StackPanel Style="{StaticResource LoginForm}">
+                <Label
+                    Content="{resources:Loc Login_lbl_Username}"
+                    Style="{StaticResource FormLabel}"
+                    Visibility="{Binding LoginText, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}"/>
+                <wpf:PlaceholderTextBox
+                    x:Name="LoginInput"
+                    KeyDown="UsernameInput_KeyDown"
+                    Text="{Binding LoginText, UpdateSourceTrigger=PropertyChanged}"
+                    Style="{StaticResource EmailInput}"
+                    Tag="{resources:Loc Login_lbl_Username}"
+                    AutomationProperties.AutomationId="{StaticResource LoginUsernameInput}"/>
+                <Label
+                    Style="{StaticResource FormLabel}"
+                    Content="{resources:Loc Login_lbl_Password}"
+                    Visibility="{Binding Password, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}"/>
+                <Grid Name="PasswordContainer" Height="36">
+                    <TextBox Name="PasswordText" Text="{Binding Password}" Style="{StaticResource PasswordInputHidden}"/>
+                    <PasswordBox
+                        Name="PasswordInput"
+                        input:PasswordBoxAssistant.BindPassword="true"
+                        input:PasswordBoxAssistant.BoundPassword="{Binding Path=Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        Style="{StaticResource PasswordInput}"
+                        Tag="{resources:Loc Login_lbl_Password}"
+                        FontFamily="Segoe UI"
+                        PasswordChanged="PasswordInput_PasswordChanged"
+                        KeyDown="PasswordInput_KeyDown"
+                        AutomationProperties.AutomationId="{StaticResource LoginPasswordInput}"/>
+                    <fa:FontAwesome
+                        Name="ImgShowHide"
+                        Style="{StaticResource PasswordEye}"
+                        MouseLeave="ImgShowHide_MouseLeave"
+                        PreviewMouseDown="ImgShowHide_PreviewMouseDown"
+                        PreviewMouseUp="ImgShowHide_PreviewMouseUp"/>
+                </Grid>
+                <DockPanel Margin="0,30,0,0">
+                    <Label Foreground="White" FontSize="14" Padding="0" Content="{resources:Loc Login_lbl_RememberLogin}"/>
+                    <CheckBox IsChecked="{Binding RememberLogin, Mode=TwoWay}"
+                              FocusVisualStyle="{x:Null}"
+                              HorizontalAlignment="Right"
+                              AutomationProperties.AutomationId="{StaticResource RememberLoginCheckbox}"
+                              Style="{StaticResource ToggleSwitch}"/>
+                </DockPanel>
+                <DockPanel Margin="0,20,0,0">
+                    <Label Foreground="White" FontSize="14" Padding="0" Content="{resources:Loc Login_lbl_StartWithWindows}"/>
+                    <CheckBox IsChecked="{Binding StartOnStartup, Mode=TwoWay}" FocusVisualStyle="{x:Null}" HorizontalAlignment="Right" Style="{StaticResource ToggleSwitch}"/>
+                </DockPanel>
+                <Button
+                    Style="{StaticResource LoginButton}"
+                    Command="{Binding LoginCommand}"
+                    CommandParameter="{Binding ElementName=PasswordInput}"
+                    Content="{resources:Loc Login_btn_Login}"
+                    AutomationProperties.AutomationId="{StaticResource LoginButtonId}"/>
+            </StackPanel>
+        </StackPanel>
+        <DockPanel Style="{StaticResource Footer}">
+            <Button Style="{StaticResource FooterButton}" Command="{Binding RegisterCommand}" Content="{resources:Loc Login_lnk_CreateAccount}"/>
+            <Grid HorizontalAlignment="Right">
+                <Popup
+                    Name="HelpPopup"
+                    AllowsTransparency="True"
+                    HorizontalAlignment="Center"
+                    PlacementTarget="{Binding ElementName=HelpButton}"
+                    VerticalOffset="-120"
+                    StaysOpen="False"
+                    IsOpen="{Binding ShowHelpBalloon}">
+                    <StackPanel HorizontalAlignment="Center">
+                        <StackPanel Background="#2b2c34" SnapsToDevicePixels="True">
+                            <StackPanel Margin="5,12">
+                                <Button Style="{StaticResource PopupButton}" Command="{Binding ResetPasswordCommand}"  Content="{resources:Loc Login_lnk_ResetPassword}"/>
+                                <Button Style="{StaticResource PopupButton}" Command="{Binding ForgotUsernameCommand}" Content="{resources:Loc Login_lnk_ForgotUsername}"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <Polygon Fill="#2b2c34" SnapsToDevicePixels="True" VerticalAlignment="Bottom" Width="24" Height="10" Points="0,0 12,10,24,0"/>
+                    </StackPanel>
+                </Popup>
+                <Button Style="{StaticResource HelpButton}" Name="HelpButton" HorizontalAlignment="Right" Content="{resources:Loc Login_lnk_NeedHelp}"/>
+            </Grid>
+        </DockPanel>
+        <Label
+            Content="{Binding AppVersion}"
+            Foreground="#5f6172"
+            VerticalAlignment="Bottom"
+            HorizontalAlignment="Right"
+            Margin="0,0,5,5"/>
+    </Grid>
+</UserControl>
+

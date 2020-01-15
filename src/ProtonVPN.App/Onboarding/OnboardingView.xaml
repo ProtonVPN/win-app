@@ -1,0 +1,178 @@
+﻿<!--
+Copyright (c) 2020 Proton Technologies AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<UserControl x:Class="ProtonVPN.Onboarding.OnboardingView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
+             xmlns:onboarding="clr-namespace:ProtonVPN.Onboarding"
+             xmlns:resources="clr-namespace:ProtonVPN.Resources"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance onboarding:OnboardingViewModel}">
+    <UserControl.Resources>
+        <Style x:Key="NextButton" TargetType="Label">
+            <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
+            <Setter Property="Content" Value="{resources:Loc Onboarding_btn_NextStep}"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsLastStep}" Value="True">
+                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                    <Setter Property="Content" Value="{resources:Loc Onboarding_btn_EndTour}"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="PrevButton" BasedOn="{StaticResource ModalButton}" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="VerticalAlignment" Value="Bottom"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Margin" Value="20,0,20,10"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Visibility" Value="Visible"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsFirstStep}" Value="True">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                </DataTrigger>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="Transparent"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="ArrowIcon" TargetType="fa:FontAwesome">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Icon" Value="ArrowRight"/>
+            <Setter Property="Margin" Value="10,3,0,0"/>
+            <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
+            <Setter Property="Visibility" Value="Visible"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsLastStep}" Value="True">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Border CornerRadius="20,0,0,20"
+                MinWidth="250"
+                Background="{StaticResource PrimaryColor}"/>
+        <Border VerticalAlignment="Top"
+                HorizontalAlignment="Left"
+                Margin="20,20,0,0"
+                Width="40"
+                Height="40"
+                CornerRadius="20"
+                BorderBrush="White"
+                BorderThickness="1">
+            <Label Foreground="White"
+                   HorizontalAlignment="Center"
+                   FontSize="16"
+                   VerticalAlignment="Center"
+                   Content="{Binding Number}"/>
+        </Border>
+        <Label Foreground="White"
+               HorizontalAlignment="Left"
+               FontSize="16"
+               Margin="70,25,0,0"
+               VerticalAlignment="Top">
+            <Label.Style>
+                <Style TargetType="Label">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Number}" Value="1">
+                            <Setter Property="Content" Value="{resources:Loc Onboarding_ttl_Step_1}"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Number}" Value="2">
+                            <Setter Property="Content" Value="{resources:Loc Onboarding_ttl_Step_2}"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Number}" Value="3">
+                            <Setter Property="Content" Value="{resources:Loc Onboarding_ttl_Step_3}"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Number}" Value="4">
+                            <Setter Property="Content" Value="{resources:Loc Onboarding_ttl_Step_4}"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Number}" Value="5">
+                            <Setter Property="Content" Value="{resources:Loc Onboarding_ttl_Step_5}"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
+
+        <TextBlock Foreground="White"
+                   HorizontalAlignment="Left"
+                   FontSize="14"
+                   TextWrapping="Wrap"
+                   Margin="20,80"
+                   MaxWidth="250"
+                   VerticalAlignment="Top">
+            <TextBlock.Style>
+                <Style TargetType="TextBlock">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Number}" Value="1">
+                            <Setter Property="Text" Value="{resources:Loc Onboarding_msg_Step_1}"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Number}" Value="2">
+                            <Setter Property="Text" Value="{resources:Loc Onboarding_msg_Step_2}"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Number}" Value="3">
+                            <Setter Property="Text" Value="{resources:Loc Onboarding_msg_Step_3}"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Number}" Value="4">
+                            <Setter Property="Text" Value="{resources:Loc Onboarding_msg_Step_4}"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Number}" Value="5">
+                            <Setter Property="Text" Value="{resources:Loc Onboarding_msg_Step_5}"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+
+        <DockPanel>
+            <Button Style="{StaticResource PrevButton}" Command="{Binding PrevTipCommand}">
+                <Grid Width="30" Height="30">
+                    <Border BorderBrush="#4f8d59"
+                            Width="30"
+                            Height="30"
+                            CornerRadius="15"
+                            BorderThickness="1"/>
+                    <fa:FontAwesome Icon="ArrowLeft"
+                                    Foreground="#4f8d59"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Center"/>
+                </Grid>
+            </Button>
+            <Button Style="{StaticResource ModalButton}"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    Background="White"
+                    BorderThickness="0"
+                    Foreground="{StaticResource PrimaryColor}"
+                    Padding="20,0"
+                    Command="{Binding NextTipCommand}"
+                    Margin="0,0,10,10">
+                <DockPanel>
+                    <Label Style="{StaticResource NextButton}"/>
+                    <fa:FontAwesome Style="{StaticResource ArrowIcon}"/>
+                </DockPanel>
+            </Button>
+        </DockPanel>
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,58 @@
+﻿<!--
+Copyright (c) 2020 Proton Technologies AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+    <system:String x:Key="LoginUsernameInput">LoginUsernameInput</system:String>
+    <system:String x:Key="LoginPasswordInput">LoginPasswordInput</system:String>
+    <system:String x:Key="LoginButtonId">LoginButton</system:String>
+    <system:String x:Key="MenuHamburgerButton">MenuHamburgerButton</system:String>
+    <system:String x:Key="MenuProfilesButton">MenuProfilesButton</system:String>
+    <system:String x:Key="MenuSettingsButton">MenuSettingsButton</system:String>
+    <system:String x:Key="MenuAccountButton">MenuAccountButton</system:String>
+    <system:String x:Key="MenuHelpButton">MenuHelpButton</system:String>
+    <system:String x:Key="MenuReportBugButton">MenuReportBugButton</system:String>
+    <system:String x:Key="MenuLogoutButton">MenuLogoutButton</system:String>
+    <system:String x:Key="MenuExitButton">MenuExitButton</system:String>
+
+    <system:String x:Key="SidebarQuickConnectButton">SidebarQuickConnectButton</system:String>
+    <system:String x:Key="SidebarCountriesButton">SidebarCountriesButton</system:String>
+    <system:String x:Key="SidebarProfilesButton">SidebarProfilesButton</system:String>
+
+    <system:String x:Key="SecureCoreCheckbox">SecureCoreCheckbox</system:String>
+    <system:String x:Key="RememberLoginCheckbox">RememberLoginCheckbox</system:String>
+    <system:String x:Key="StartWithWindowsCheckbox">StartWithWindowsCheckbox</system:String>
+    <system:String x:Key="StartMinimizedCombobox">StartMinimizedCombobox</system:String>
+    <system:String x:Key="VpnKillswitchCheckbox">VpnKillswitchCheckbox</system:String>
+    <system:String x:Key="Ipv6ProtectionCheckbox">Ipv6ProtectionCheckbox</system:String>
+    <system:String x:Key="ShowNotificationsCheckbox">ShowNotificationsCheckbox</system:String>
+    <system:String x:Key="EarlyAccessCheckbox">EarlyAccessCheckbox</system:String>
+    <system:String x:Key="AutoUpdateCheckbox">AutoUpdateCheckbox</system:String>
+    <system:String x:Key="CancelButtonId">CancelButton</system:String>
+    <system:String x:Key="SaveButton">SaveButton</system:String>
+    <system:String x:Key="CloseButtonId">CloseButton</system:String>
+    <system:String x:Key="TryAgainButtonId">TryAgainButton</system:String>
+    <system:String x:Key="ContinueButtonId">ContinueButton</system:String>
+    <system:String x:Key="SidebarModeButtonId">SidebarModeButton</system:String>
+    <system:String x:Key="MapModeButton">MapModeButton</system:String>
+    <system:String x:Key="ProfileFormNameInput">ProfileFormNameInput</system:String>
+    <system:String x:Key="MinimizeButtonId">MinimizeButtonId</system:String>
+    <system:String x:Key="LanguageCombobox">LanguageCombobox</system:String>
+</ResourceDictionary>

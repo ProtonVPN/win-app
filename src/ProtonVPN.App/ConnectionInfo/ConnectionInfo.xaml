@@ -1,0 +1,132 @@
+﻿<!--
+Copyright (c) 2020 Proton Technologies AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:icons="clr-namespace:ProtonVPN.Views.Icons">
+
+    <Style x:Key="SecureCoreIcon" TargetType="Path" BasedOn="{StaticResource ProtonIcon}">
+        <Setter Property="Fill" Value="#98989d"/>
+        <Setter Property="Width" Value="10"/>
+        <Setter Property="Height" Value="12"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding SecureCore}" Value="True">
+                <Setter Property="Fill" Value="{StaticResource PrimaryColor}"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="P2PFeatureIcon" TargetType="icons:P2P">
+        <Setter Property="Foreground" Value="#98989d"/>
+        <Setter Property="Width" Value="14"/>
+        <Setter Property="Height" Value="11"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding P2PServer}" Value="True">
+                <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="TorFeatureIcon" TargetType="icons:Tor">
+        <Setter Property="Foreground" Value="#98989d"/>
+        <Setter Property="Width" Value="11"/>
+        <Setter Property="Height" Value="16"/>
+        <Setter Property="Margin" Value="2,0,0,0"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding TorServer}" Value="True">
+                <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="PremiumIconBorder" TargetType="Border">
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="BorderBrush" Value="#98989d"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="Width" Value="11"/>
+        <Setter Property="Height" Value="11"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="CornerRadius" Value="1"/>
+    </Style>
+
+    <Style x:Key="PremiumInfoIconBorder" TargetType="Border" BasedOn="{StaticResource PremiumIconBorder}">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding PremiumServer}" Value="True">
+                <Setter Property="BorderBrush" Value="{StaticResource PrimaryColor}"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="InfoFeatureText" TargetType="TextBlock">
+        <Setter Property="TextDecorations" Value="Strikethrough"/>
+        <Setter Property="Foreground" Value="#98989d"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="Padding" Value="7,3,25,0"/>
+    </Style>
+
+    <Style x:Key="SecureCoreFeatureText" TargetType="TextBlock" BasedOn="{StaticResource InfoFeatureText}">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding SecureCore}" Value="True">
+                <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
+                <Setter Property="TextDecorations" Value="None"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="P2PFeatureText" TargetType="TextBlock" BasedOn="{StaticResource InfoFeatureText}">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding P2PServer}" Value="True">
+                <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
+                <Setter Property="TextDecorations" Value="None"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="TorFeatureText" TargetType="TextBlock" BasedOn="{StaticResource InfoFeatureText}">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding TorServer}" Value="True">
+                <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
+                <Setter Property="TextDecorations" Value="None"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="PremiumFeatureText" TargetType="TextBlock" BasedOn="{StaticResource InfoFeatureText}">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding PremiumServer}" Value="True">
+                <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
+                <Setter Property="TextDecorations" Value="None"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="PremiumIconLetter" TargetType="Label">
+        <Setter Property="FontSize" Value="9"/>
+        <Setter Property="Foreground" Value="#98989d"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="PremiumInfoIconLetter" TargetType="Label" BasedOn="{StaticResource PremiumIconLetter}">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding PremiumServer}" Value="True">
+                <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>
