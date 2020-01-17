@@ -17,11 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Windows;
+using System.Windows.Input;
 using Caliburn.Micro;
 using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Core.Modals;
-using System.Windows;
-using System.Windows.Input;
 
 namespace ProtonVPN.Modals
 {

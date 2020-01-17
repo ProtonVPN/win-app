@@ -17,6 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Input;
 using Caliburn.Micro;
 using GalaSoft.MvvmLight.CommandWpf;
 using ProtonVPN.Core.Modals;
@@ -28,10 +32,6 @@ using ProtonVPN.Modals.Dialogs;
 using ProtonVPN.Modals.Upsell;
 using ProtonVPN.Profiles.Servers;
 using ProtonVPN.Resources;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Input;
 using ServerViewModel = ProtonVPN.Profiles.Servers.ServerViewModel;
 
 namespace ProtonVPN.Profiles.Form
@@ -70,11 +70,9 @@ namespace ProtonVPN.Profiles.Form
             ServerManager = serverManager;
 
             SelectColorCommand = new RelayCommand<string>(SelectColorAction);
-            EscapeCommand = new RelayCommand(EscapeAction);
         }
 
         public ICommand SelectColorCommand { get; set; }
-        public ICommand EscapeCommand { get; set; }
 
         private bool _editMode;
         public bool EditMode
@@ -86,7 +84,7 @@ namespace ProtonVPN.Profiles.Form
         public Protocol[] Protocols => new[] {Protocol.Auto, Protocol.OpenVpnUdp, Protocol.OpenVpnTcp};
 
         private string[] _colors;
-        public string[] Colors => _colors ?? (_colors = _colorProvider.GetColors());
+        public string[] Colors => _colors ??= _colorProvider.GetColors();
 
         private IReadOnlyList<IServerViewModel> _servers;
         public IReadOnlyList<IServerViewModel> Servers
@@ -371,14 +369,6 @@ namespace ProtonVPN.Profiles.Form
         private void SelectRandomColor()
         {
             ColorCode = _colorProvider.RandomColor();
-        }
-
-        private void EscapeAction()
-        {
-            if (HasUnsavedChanges())
-            {
-                ShowDiscardModal();
-            }
         }
 
         private bool ShowUpgradeModal(IServerViewModel value)

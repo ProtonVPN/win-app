@@ -17,12 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Collections.Generic;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Profiles.Servers;
-using System.Collections.Generic;
 
 namespace ProtonVPN.Profiles.Form
 {

@@ -79,7 +79,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <wpf:PlaceholderTextBox Tag="{resources:Loc Profiles_Profile_Name_Watermark}"
                                     Style="{StaticResource PlaceholderTextBox}"
                                     AutomationProperties.AutomationId="{StaticResource ProfileFormNameInput}"
-                                    Text="{Binding ProfileName}"/>
+                                    Text="{Binding ProfileName, UpdateSourceTrigger=PropertyChanged}"/>
         </DockPanel>
 
         <Label Grid.Row="1" Grid.Column="0"

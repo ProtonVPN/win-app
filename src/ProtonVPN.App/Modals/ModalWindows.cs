@@ -17,7 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Core.Modals;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;

@@ -122,7 +122,7 @@ csharp_style_conditional_delegate_call = true:error
 csharp_style_expression_bodied_accessors = true:warning
 
 # http://kent-boogaart.com/blog/editorconfig-reference-for-c-developers#csharp_style_expression_bodied_constructors
-csharp_style_expression_bodied_constructors = true:warning
+csharp_style_expression_bodied_constructors = false:warning
 
 # http://kent-boogaart.com/blog/editorconfig-reference-for-c-developers#csharp_style_expression_bodied_indexers
 csharp_style_expression_bodied_indexers = true:error
