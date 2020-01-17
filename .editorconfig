@@ -152,7 +152,7 @@ csharp_style_throw_expression = true:error
 csharp_style_var_elsewhere = true:suggestion
 
 # http://kent-boogaart.com/blog/editorconfig-reference-for-c-developers#csharp_style_var_for_built_in_types
-csharp_style_var_for_built_in_types = false:error
+csharp_style_var_for_built_in_types = true:error
 
 # http://kent-boogaart.com/blog/editorconfig-reference-for-c-developers#csharp_style_var_when_type_is_apparent
 csharp_style_var_when_type_is_apparent = true:error
