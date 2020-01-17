@@ -60,7 +60,6 @@ namespace ProtonVPN.QuickLaunch
 
         public ICommand ShowAppCommand { get; set; }
         public ICommand QuickConnectCommand { get; set; }
-        public ICommand ShowQuickConnectCommand { get; set; }
         public ICommand ProfileConnectCommand { get; set; }
 
         public string Ip
@@ -140,7 +139,6 @@ namespace ProtonVPN.QuickLaunch
             _appWindow = appWindow;
             ShowAppCommand = new RelayCommand(ShowAppAction);
             QuickConnectCommand = new RelayCommand(QuickConnectAction);
-            ShowQuickConnectCommand = new RelayCommand(ShowQuickConnectPopupAction);
             ProfileConnectCommand = new RelayCommand<ProfileViewModel>(ProfileConnectAction);
 
             _profileHelper = profileHelper;
@@ -205,11 +203,6 @@ namespace ProtonVPN.QuickLaunch
             {
                 await _quickConnector.Disconnect();
             }
-        }
-
-        private void ShowQuickConnectPopupAction()
-        {
-            ShowQuickConnectPopup = true;
         }
 
         public async void Load()
