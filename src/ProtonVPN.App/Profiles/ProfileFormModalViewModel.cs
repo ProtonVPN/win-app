@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using GalaSoft.MvvmLight.CommandWpf;
 using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Servers;
@@ -78,7 +79,7 @@ namespace ProtonVPN.Profiles
 
         private IReadOnlyList<ServerTypeViewModel> _serverTypes;
         public IReadOnlyList<ServerTypeViewModel> ServerTypes =>
-            _serverTypes ?? (_serverTypes = ServerTypeViewModel.AllServerTypes().ToList());
+            _serverTypes ??= ServerTypeViewModel.AllServerTypes().ToList();
 
         private ServerTypeViewModel _serverType;
         public ServerTypeViewModel ServerType
@@ -117,6 +118,19 @@ namespace ProtonVPN.Profiles
             SetServerType(profile.Features);
             Form.EnableEditMode();
             Form.LoadProfile(profile);
+        }
+
+        public override void CanClose(Action<bool> callback)
+        {
+            if (Form.HasUnsavedChanges())
+            {
+                var result = Form.Cancel();
+                callback(result != true);
+            }
+            else
+            {
+                callback(true);
+            }
         }
 
         protected override void OnActivate()
