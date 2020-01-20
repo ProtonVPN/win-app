@@ -116,7 +116,7 @@ OpenVPN is installed into "C:\Program Files (x86)\Proton Technologies\ProtonVPN\
 directory by default. The OpenVPN config file is static, it doesn't change for each VPN server.
 
 The OpenVPN is built from official source by applying a patch to support ProtonVPN specific
-TAP adapter.
+TAP adapter. See [win-openvpn](https://github.com/ProtonVPN/win-openvpn) repository.
 
 #### TAP adapter
 
@@ -126,7 +126,7 @@ The TAP adapter is installed into "C:\Program Files (x86)\Proton Technologies\Pr
 directory by default.
 
 The TAP adapter is built from official source by applying a patch to have ProtonVPN specific
-name and identification.
+name and identification. See [win-tap-adapter](https://github.com/ProtonVPN/win-tap-adapter) repository.
 
 #### Split Tunnel driver
 
