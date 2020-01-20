@@ -78,12 +78,12 @@ namespace ProtonVPN.Service.Settings
             if (_settings != null)
                 return;
 
-            _settings = _storage.Load() ?? new SettingsContract();
+            _settings = _storage.Get() ?? new SettingsContract();
         }
 
         private void Save()
         {
-            _storage.Save(_settings);
+            _storage.Set(_settings);
         }
     }
 }

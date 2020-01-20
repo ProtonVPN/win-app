@@ -36,7 +36,7 @@ namespace ProtonVPN.Common.OS.Net.NetworkInterface
         {
             _logger = logger;
 
-            NetworkChange.NetworkAddressChanged += (s, e) => NetworkAddressChanged?.Invoke(s, e);
+            NetworkChange.NetworkAddressChanged += (s, e) => this.NetworkAddressChanged?.Invoke(s, e);
         }
 
         public event EventHandler NetworkAddressChanged;

@@ -59,9 +59,9 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 ServiceExePath = Path.Combine(baseFolder, "ProtonVPNService.exe"),
 
-                ServiceSettingsFilePath = Path.Combine(commonAppDataFolder, "service.dat"),
+                ServiceSettingsFilePath = Path.Combine(commonAppDataFolder, "ServiceSettings.json"),
 
-                ServersJsonCacheFilePath = Path.Combine(localAppDataFolder, "servers.json"),
+                ServersJsonCacheFilePath = Path.Combine(localAppDataFolder, "Servers.json"),
 
                 ServiceLogFolder = Path.Combine(commonAppDataFolder, "Logs"),
 

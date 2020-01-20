@@ -18,6 +18,7 @@
  */
 
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
@@ -83,7 +84,7 @@ namespace ProtonVPN.Core.Servers
         private async Task UpdateServers()
         {
             var servers = await _serversProvider.GetServersAsync();
-            if (servers == null || servers.Count == 0)
+            if (!servers.Any())
             {
                 _logger.Error("Failed to update server list");
                 return;

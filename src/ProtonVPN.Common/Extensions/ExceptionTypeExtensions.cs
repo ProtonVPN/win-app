@@ -25,11 +25,12 @@ namespace ProtonVPN.Common.Extensions
 {
     public static class ExceptionTypeExtensions
     {
-        public static bool IsFileAccessException(this Exception ex)
-        {
-            return ex is IOException ||
-                   ex is UnauthorizedAccessException;
-        }
+        public static bool IsExpectedExceptionOf(this Exception ex, object origin) =>
+            ((IThrowsExpectedExceptions)origin).IsExpectedException(ex);
+
+        public static bool IsFileAccessException(this Exception ex) =>
+            ex is IOException ||
+            ex is UnauthorizedAccessException;
 
         public static bool IsCommunicationException(this Exception ex) =>
             ex is CommunicationException ||

@@ -47,7 +47,7 @@ namespace ProtonVPN.Core.Servers
             _servers = servers;
         }
 
-        public void Load(ICollection<LogicalServerContract> servers)
+        public void Load(IReadOnlyCollection<LogicalServerContract> servers)
         {
             Ensure.NotEmpty(servers, nameof(servers));
             SaveServers(servers);
