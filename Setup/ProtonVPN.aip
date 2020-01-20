@@ -213,6 +213,8 @@
     <ROW File="ProtonVPN.UpdateService.exe" Component_="ProtonVPN.UpdateService.exe" FileName="PROTON~4.EXE|ProtonVPN.UpdateService.exe" Attributes="0" SourcePath="..\src\bin\ProtonVPN.UpdateService.exe" SelfReg="false" DigSign="true"/>
     <ROW File="ProtonVPN.UpdateServiceContract.dll" Component_="ProtonVPN.UpdateServiceContract.dll" FileName="PROTON~9.DLL|ProtonVPN.UpdateServiceContract.dll" Attributes="0" SourcePath="..\src\bin\ProtonVPN.UpdateServiceContract.dll" SelfReg="false"/>
     <ROW File="ProtonVPN.TlsVerify.exe" Component_="ProtonVPN.TlsVerify.exe" FileName="PROTON~5.EXE|ProtonVPN.TlsVerify.exe" Attributes="0" SourcePath="..\src\bin\ProtonVPN.TlsVerify.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="COPYING.md" Component_="ProtonVPN.ErrorMessage.exe.config" FileName="COPYING.md" Attributes="0" SourcePath="..\COPYING.md" SelfReg="false"/>
+    <ROW File="LICENSE" Component_="ProtonVPN.ErrorMessage.exe.config" FileName="LICENSE" Attributes="0" SourcePath="..\LICENSE" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.AiRemoveFileComponent">
     <ROW RemoveFile="_" Condition="(AI_CLEAN_RESOURCES_UNINSTALL = &quot;1&quot;) AND (NOT UPGRADINGPRODUCTCODE)" Options="3"/>
