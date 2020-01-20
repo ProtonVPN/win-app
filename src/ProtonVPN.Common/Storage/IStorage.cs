@@ -17,23 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
-using System.IO;
-using System.ServiceModel;
-
-namespace ProtonVPN.Common.Extensions
+namespace ProtonVPN.Common.Storage
 {
-    public static class ExceptionTypeExtensions
+    public interface IStorage<T>
     {
-        public static bool IsExpectedExceptionOf(this Exception ex, object origin) =>
-            ((IThrowsExpectedExceptions)origin).IsExpectedException(ex);
+        T Get();
 
-        public static bool IsFileAccessException(this Exception ex) =>
-            ex is IOException ||
-            ex is UnauthorizedAccessException;
-
-        public static bool IsCommunicationException(this Exception ex) =>
-            ex is CommunicationException ||
-            ex is ObjectDisposedException odex && odex.ObjectName == "System.ServiceModel.Channels.ServiceChannel";
+        void Set(T value);
     }
 }

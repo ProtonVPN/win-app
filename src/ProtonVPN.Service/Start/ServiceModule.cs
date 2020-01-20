@@ -25,6 +25,7 @@ using ProtonVPN.Common.OS.Net.NetworkInterface;
 using ProtonVPN.Common.OS.Processes;
 using ProtonVPN.Common.OS.Services;
 using ProtonVPN.Common.Service;
+using ProtonVPN.Common.Text.Serialization;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Service.Firewall;
 using ProtonVPN.Service.ServiceHosts;
@@ -52,6 +53,8 @@ namespace ProtonVPN.Service.Start
             builder.Register(c => c.Resolve<ILoggerFactory>().Logger())
                 .As<ILogger>().SingleInstance();
             builder.RegisterType<LogCleaner>().SingleInstance();
+
+            builder.RegisterType<JsonSerializerFactory>().As<ITextSerializerFactory>().SingleInstance();
 
             builder.RegisterType<SettingsHandler>().SingleInstance();
             builder.RegisterType<VpnConnectionHandler>().SingleInstance();

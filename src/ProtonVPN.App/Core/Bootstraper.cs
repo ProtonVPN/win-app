@@ -20,6 +20,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net.Http;
 using System.ServiceModel;
 using System.Threading.Tasks;
@@ -160,8 +161,8 @@ namespace ProtonVPN.Core
 
         private void LoadServersFromCache()
         {
-            var servers = Resolve<ServersFileStorage>().Get();
-            if (servers.Count > 0)
+            var servers = Resolve<ServerCache>().GetAll();
+            if (servers.Any())
                 Resolve<ServerManager>().Load(servers);
         }
 

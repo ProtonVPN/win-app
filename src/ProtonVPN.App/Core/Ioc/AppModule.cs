@@ -18,13 +18,13 @@
  */
 
 using Autofac;
-using Autofac.Core;
 using Caliburn.Micro;
 using ProtonVPN.About;
 using ProtonVPN.Account;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.OS.Services;
+using ProtonVPN.Common.Text.Serialization;
 using ProtonVPN.Config;
 using ProtonVPN.Core.Api;
 using ProtonVPN.Core.Auth;
@@ -68,13 +68,12 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<VpnConnectionSpeed>().AsImplementedInterfaces().AsSelf().SingleInstance();
 
             builder.RegisterType<EventAggregator>().As<IEventAggregator>().SingleInstance();
+            builder.RegisterType<JsonSerializerFactory>().As<ITextSerializerFactory>().SingleInstance();
 
-            builder.RegisterType<ServersFileStorage>().WithParameter(new ResolvedParameter(
-                (pi, ctx) => pi.ParameterType == typeof(string) && pi.Name == "cacheFile",
-                (pi, ctx) => ctx.Resolve<Common.Configuration.Config>().ServersJsonCacheFilePath)).SingleInstance();
-
+            builder.RegisterType<ServerCache>().SingleInstance();
             builder.RegisterType<CachedServersProvider>().SingleInstance();
             builder.RegisterType<ServersUpdater>().AsImplementedInterfaces().AsSelf().SingleInstance();
+
             builder.RegisterType<Bootstrapper>().SingleInstance();
             builder.RegisterType<UserStorage>().As<IUserStorage>().SingleInstance();
             builder.RegisterType<ServerCandidatesFactory>().SingleInstance();

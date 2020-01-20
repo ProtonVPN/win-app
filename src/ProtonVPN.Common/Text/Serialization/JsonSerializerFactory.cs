@@ -17,23 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
-using System.IO;
-using System.ServiceModel;
-
-namespace ProtonVPN.Common.Extensions
+namespace ProtonVPN.Common.Text.Serialization
 {
-    public static class ExceptionTypeExtensions
+    public class JsonSerializerFactory : ITextSerializerFactory
     {
-        public static bool IsExpectedExceptionOf(this Exception ex, object origin) =>
-            ((IThrowsExpectedExceptions)origin).IsExpectedException(ex);
-
-        public static bool IsFileAccessException(this Exception ex) =>
-            ex is IOException ||
-            ex is UnauthorizedAccessException;
-
-        public static bool IsCommunicationException(this Exception ex) =>
-            ex is CommunicationException ||
-            ex is ObjectDisposedException odex && odex.ObjectName == "System.ServiceModel.Channels.ServiceChannel";
+        public ITextSerializer<T> Serializer<T>()
+        {
+            return new JsonSerializer<T>();
+        }
     }
 }

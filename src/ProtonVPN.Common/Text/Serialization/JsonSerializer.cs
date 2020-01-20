@@ -19,21 +19,30 @@
 
 using System;
 using System.IO;
-using System.ServiceModel;
+using Newtonsoft.Json;
+using ProtonVPN.Common.Extensions;
 
-namespace ProtonVPN.Common.Extensions
+namespace ProtonVPN.Common.Text.Serialization
 {
-    public static class ExceptionTypeExtensions
+    public class JsonSerializer<T> : ITextSerializer<T>, IThrowsExpectedExceptions
     {
-        public static bool IsExpectedExceptionOf(this Exception ex, object origin) =>
-            ((IThrowsExpectedExceptions)origin).IsExpectedException(ex);
+        private readonly JsonSerializer _serializer = new JsonSerializer();
 
-        public static bool IsFileAccessException(this Exception ex) =>
-            ex is IOException ||
-            ex is UnauthorizedAccessException;
+        public T Deserialize(TextReader source)
+        {
+            using var jsonReader = new JsonTextReader(source);
+            return _serializer.Deserialize<T>(jsonReader);
+        }
 
-        public static bool IsCommunicationException(this Exception ex) =>
-            ex is CommunicationException ||
-            ex is ObjectDisposedException odex && odex.ObjectName == "System.ServiceModel.Channels.ServiceChannel";
+        public void Serialize(T value, TextWriter writer)
+        {
+            using var jsonWriter = new JsonTextWriter(writer);
+            _serializer.Serialize(jsonWriter, value);
+        }
+
+        public bool IsExpectedException(Exception ex)
+        {
+            return ex is JsonException;
+        }
     }
 }

@@ -225,7 +225,7 @@
     <Compile Include="Servers\RandomServer.cs" />
     <Compile Include="Servers\ServerManager.cs" />
     <Compile Include="Servers\ServerNameComparer.cs" />
-    <Compile Include="Servers\ServersFileStorage.cs" />
+    <Compile Include="Servers\ServerCache.cs" />
     <Compile Include="Servers\ServersUpdater.cs" />
     <Compile Include="Servers\ServerTiers.cs" />
     <Compile Include="Servers\Specs\FreeServer.cs" />

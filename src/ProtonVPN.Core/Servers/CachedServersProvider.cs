@@ -34,13 +34,13 @@ namespace ProtonVPN.Core.Servers
     {
         private readonly IApiClient _apiClient;
         private readonly ILogger _logger;
-        private readonly ServersFileStorage _serversFileStorage;
+        private readonly ServerCache _serversFileStorage;
         private readonly IUserStorage _userStorage;
 
         public CachedServersProvider(
             IApiClient apiClient,
             ILogger logger,
-            ServersFileStorage serversFileStorage,
+            ServerCache serversFileStorage,
             IUserStorage userStorage)
         {
             _userStorage = userStorage;
@@ -49,7 +49,7 @@ namespace ProtonVPN.Core.Servers
             _logger = logger;
         }
 
-        public async Task<ICollection<LogicalServerContract>> GetServersAsync()
+        public async Task<IReadOnlyCollection<LogicalServerContract>> GetServersAsync()
         {
             try
             {
@@ -61,26 +61,22 @@ namespace ProtonVPN.Core.Servers
                     return response.Value.Servers;
                 }
 
-                return _serversFileStorage.Get();
+                return _serversFileStorage.GetAll();
             }
             catch (HttpRequestException ex)
             {
                 _logger.Error("API: Get servers failed: " + ex.CombinedMessage());
-                return _serversFileStorage.Get();
+                return _serversFileStorage.GetAll();
             }
         }
 
-        private async Task SaveServersToCache(ICollection<LogicalServerContract> servers)
+        private async Task SaveServersToCache(IEnumerable<LogicalServerContract> servers)
         {
             try
             {
-                await Task.Run(() => _serversFileStorage.Save(servers));
+                await Task.Run(() => _serversFileStorage.SetAll(servers));
             }
-            catch (IOException e)
-            {
-                _logger.Error("Error saving servers to cache: " + e);
-            }
-            catch (UnauthorizedAccessException e)
+            catch (Exception e) when (e is IOException || e is UnauthorizedAccessException)
             {
                 _logger.Error("Error saving servers to cache: " + e);
             }

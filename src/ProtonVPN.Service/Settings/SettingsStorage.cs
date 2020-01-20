@@ -17,82 +17,36 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
-using System.IO;
-using Newtonsoft.Json;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Storage;
+using ProtonVPN.Common.Text.Serialization;
 using ProtonVPN.Service.Contract.Settings;
 
 namespace ProtonVPN.Service.Settings
 {
     public class SettingsStorage
     {
-        private readonly ILogger _logger;
-        private readonly  Common.Configuration.Config _config;
-        private readonly JsonSerializer _serializer = new JsonSerializer();
+        private readonly IStorage<SettingsContract> _origin;
 
-        public SettingsStorage(ILogger logger,  Common.Configuration.Config config)
+        public SettingsStorage(ILogger logger, ITextSerializerFactory serializers, Common.Configuration.Config config)
         {
-            _logger = logger;
-            _config = config;
+            _origin =
+                new SafeStorage<SettingsContract>(
+                    new LoggingStorage<SettingsContract>(
+                        logger,
+                        new FileStorage<SettingsContract>(
+                            serializers,
+                            config.ServiceSettingsFilePath)));
         }
 
-        public SettingsContract Load()
+        public SettingsContract Get()
         {
-            var filename = _config.ServiceSettingsFilePath;
-            SettingsContract result = null;
-
-            HandleException(() =>
-                {
-                    using var stream = new StreamReader(filename);
-                    using var reader = new JsonTextReader(stream);
-
-                    result = _serializer.Deserialize<SettingsContract>(reader);
-                },
-                "Loading");
-
-            return result;
+            return _origin.Get();
         }
 
-        public void Save(SettingsContract settings)
+        public void Set(SettingsContract value)
         {
-            var filename = _config.ServiceSettingsFilePath;
-
-            HandleException(() =>
-                {
-                    using var stream = new StreamWriter(filename);
-                    using var writer = new JsonTextWriter(stream);
-                    _serializer.Serialize(writer, settings);
-                },
-                "Saving");
-        }
-
-        private void HandleException(Action action, string actionName)
-        {
-            try
-            {
-                action();
-            }
-            catch (Exception ex) when (IsFileAccessException(ex) || IsSerializationException(ex))
-            {
-                LogException(actionName, ex);
-            }
-        }
-
-        private void LogException(string action, Exception ex)
-        {
-            _logger.Error($"{action} settings has failed: {ex.Message}");
-        }
-
-        private static bool IsSerializationException(Exception ex)
-        {
-            return ex is JsonException;
-        }
-
-        private static bool IsFileAccessException(Exception ex)
-        {
-            return ex is IOException ||
-                   ex is UnauthorizedAccessException;
+            _origin.Set(value);
         }
     }
 }
