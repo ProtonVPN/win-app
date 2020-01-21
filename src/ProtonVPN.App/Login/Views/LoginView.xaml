@@ -28,6 +28,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:views="clr-namespace:ProtonVPN.Login.Views"
              xmlns:viewModels="clr-namespace:ProtonVPN.Login.ViewModels"
              xmlns:resources="clr-namespace:ProtonVPN.Resources"
+             xmlns:icons="clr-namespace:ProtonVPN.Views.Icons"
              mc:Ignorable="d"
              d:DesignWidth="440"
              d:DesignHeight="570"
@@ -177,7 +178,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <views:LoginErrorView DataContext="{Binding LoginErrorViewModel}" Panel.ZIndex="2"/>
 
         <StackPanel Style="{StaticResource MainStackPanel}">
-            <Image Source="../../Resources/Assets/Images/login-logo.png" Margin="0,30,0,0" Width="198" Height="37"/>
+            <DockPanel VerticalAlignment="Top" Margin="0,30,0,0" HorizontalAlignment="Center">
+                <icons:ProtonVpnSign HorizontalAlignment="Left" Color="White" Width="34"/>
+                <TextBlock Foreground="White" FontSize="32" Margin="5,0,0,0">
+                    <Run Text="Proton"/><Run Text="VPN" FontWeight="Bold"/>
+                </TextBlock>
+            </DockPanel>
             <StackPanel Style="{StaticResource LoginForm}">
                 <Label Content="{resources:Loc Login_lbl_Username}"
                        Style="{StaticResource FormLabel}"

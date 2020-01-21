@@ -24,6 +24,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:controls="clr-namespace:ProtonVPN.Views.Controls"
              xmlns:resources="clr-namespace:ProtonVPN.Resources"
+             xmlns:icons="clr-namespace:ProtonVPN.Views.Icons"
              mc:Ignorable="d"
              d:DesignWidth="440">
     <UserControl.Resources>
@@ -42,7 +43,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
     <Grid Background="#222329">
         <StackPanel Style="{StaticResource MainStackPanel}">
-            <Image Source="../../Resources/Assets/Images/login-logo.png" Margin="0,30,0,0" Width="198" Height="37"/>
+            <DockPanel VerticalAlignment="Top" Margin="0,30,0,0" HorizontalAlignment="Center">
+                <icons:ProtonVpnSign HorizontalAlignment="Left" Color="White" Width="34"/>
+                <TextBlock Foreground="White" FontSize="32" Margin="5,0,0,0">
+                    <Run Text="Proton"/><Run Text="VPN" FontWeight="Bold"/>
+                </TextBlock>
+            </DockPanel>
             <controls:ProtonAnimation Width="100" Height="100" Margin="0,110,0,0"/>
             <Label FontStyle="Italic" FontWeight="Light" FontSize="18" Foreground="White" HorizontalAlignment="Center" Margin="0,100,0,0" Content="{resources:Loc Login_lbl_SecureInternetAnywhere}"/>
         </StackPanel>
