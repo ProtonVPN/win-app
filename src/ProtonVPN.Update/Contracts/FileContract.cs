@@ -25,7 +25,7 @@ namespace ProtonVPN.Update.Contracts
     {
         public string Url;
 
-        public string Sha1CheckSum;
+        public string Sha512CheckSum;
 
         public string Arguments;
 
@@ -37,7 +37,7 @@ namespace ProtonVPN.Update.Contracts
                 return false;
 
             return string.Equals(Url, other.Url) &&
-                   string.Equals(Sha1CheckSum, other.Sha1CheckSum) &&
+                   string.Equals(Sha512CheckSum, other.Sha512CheckSum) &&
                    string.Equals(Arguments, other.Arguments);
         }
 

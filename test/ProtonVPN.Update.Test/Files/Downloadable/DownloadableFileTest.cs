@@ -90,7 +90,7 @@ namespace ProtonVPN.Update.Test.Files.Downloadable
             await downloadable.Download(fileUri, filename);
 
             var checkSum = await new FileCheckSum(filename).Value();
-            checkSum.Should().Be("ba6b5ca2db65ff7817e3336a386e7525c01dc639");
+            checkSum.Should().Be("c011146ae24f5a49ef86ff6199ec0bd42223b408e1dce3ffef9a2ef4b9c1806b1c823ce427d7473378b7d8c427ba6cb3701320740523ad79fc9ec8cfeb907875");
         }
 
         [TestMethod]
