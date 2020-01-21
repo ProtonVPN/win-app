@@ -162,7 +162,7 @@ and built installer files. Subfolders contain:
 
 ### Folder "src"
 
-This folder contains Visual Studion solution projects.
+This folder contains Visual Studio solution projects.
 
 ### Folder "src\bin"
 
