@@ -1285,7 +1285,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Assets\Images\green-spinner.png" />
-    <Resource Include="Resources\Assets\Images\login-logo.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Assets\Images\Icons\systray-connected.ico" />

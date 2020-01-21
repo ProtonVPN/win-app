@@ -17,6 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Windows;
+using System.Windows.Media;
+
 namespace ProtonVPN.Views.Icons
 {
     public partial class ProtonVpnSign
@@ -25,5 +28,15 @@ namespace ProtonVPN.Views.Icons
         {
             InitializeComponent();
         }
+
+        public static readonly DependencyProperty ColorProperty =
+            DependencyProperty.Register("Color", typeof(Brush), typeof(ProtonVpnSign));
+
+        public Brush Color
+        {
+            get => (Brush)GetValue(ColorProperty);
+            set => SetValue(ColorProperty, value);
+        }
+
     }
 }

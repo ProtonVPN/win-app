@@ -44,7 +44,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         <DataTemplate DataType="{x:Type name:SecureCoreProfileName}">
             <StackPanel Orientation="Horizontal">
-                <icons:ProtonVpnSign Width="13" Height="15" Margin="0,0,10,0"/>
+                <icons:ProtonVpnSign Width="13" Height="15" Margin="0,0,10,0" Color="{StaticResource PrimaryColor}"/>
                 <TextBlock x:Name="EntryAndExitCountry" Style="{StaticResource ServerName}" 
                            FontSize="{Binding FontSize, ElementName=ProfileConnectionControl}">
                     <Run Foreground="White" Text="{Binding EntryCountry, Converter={StaticResource CountryCodeToNameConverter}, Mode=OneWay}"/>
