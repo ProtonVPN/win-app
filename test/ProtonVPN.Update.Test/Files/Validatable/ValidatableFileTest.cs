@@ -35,7 +35,7 @@ namespace ProtonVPN.Update.Test.Files.Validatable
             var filename = Path.Combine("TestData", "ProtonVPN_win_v1.5.2.exe");
             var validatable = new ValidatableFile();
 
-            var result = await validatable.Valid(filename, "93c8fc621f9f8721b41ba4093ae7bec78956e7d8");
+            var result = await validatable.Valid(filename, "6771cf15b98782e59716cefee4af6f5fc4d43e1a2a4fc14eb7cb80176de3210ee8342ce6fe28eb76f5a5765ac4d7efec312c1712581eaf2a1e5e8daae5c94e2a");
 
             result.Should().BeTrue();
         }

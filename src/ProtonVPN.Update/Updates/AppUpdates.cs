@@ -93,7 +93,7 @@ namespace ProtonVPN.Update.Updates
 
         internal async Task<bool> Valid(Release release)
         {
-            return await _validatable.Valid(FilePath(release), release.File.Sha1CheckSum);
+            return await _validatable.Valid(FilePath(release), release.File.Sha512CheckSum);
         }
 
         internal Task StartUpdate(Release release)

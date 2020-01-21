@@ -56,7 +56,7 @@ namespace ProtonVPN.Update.Releases
             return _release.Version == "0.0.0" ||
                    _release.File == null ||
                    string.IsNullOrEmpty(_release.File.Url) || 
-                   string.IsNullOrEmpty(_release.File.Sha1CheckSum);
+                   string.IsNullOrEmpty(_release.File.Sha512CheckSum);
         }
 
         public static Release EmptyRelease()

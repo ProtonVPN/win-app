@@ -29,7 +29,7 @@ namespace ProtonVPN.Update.Test.Contracts
         [TestMethod]
         public void Equals_ShouldBeFalse_WhenOther_IsNull()
         {
-            var file = new FileContract { Url = "https://protonvpn.com/download.exe", Sha1CheckSum = "123456789", Arguments = "/qb" };
+            var file = new FileContract { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "123456789", Arguments = "/qb" };
 
             var result = file.Equals(null);
 
@@ -39,7 +39,7 @@ namespace ProtonVPN.Update.Test.Contracts
         [TestMethod]
         public void Equals_ShouldBeTrue_WhenOther_IsSelf()
         {
-            var file = new FileContract { Url = "https://protonvpn.com/download.exe", Sha1CheckSum = "123456789", Arguments = "/qb"};
+            var file = new FileContract { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "123456789", Arguments = "/qb"};
 
             var result = file.Equals(file);
 
@@ -49,9 +49,9 @@ namespace ProtonVPN.Update.Test.Contracts
         [TestMethod]
         public void Equals_ShouldBeFalse_WhenOther_IsNotFileContract()
         {
-            var file = new FileContract { Url = "https://protonvpn.com/download.exe", Sha1CheckSum = "123456789", Arguments = "/qb" };
+            var file = new FileContract { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "123456789", Arguments = "/qb" };
 
-            var result = file.Equals(new { Url = "https://protonvpn.com/download.exe", Sha1CheckSum = "123456789", Arguments = "/qb" });
+            var result = file.Equals(new { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "123456789", Arguments = "/qb" });
 
             result.Should().BeFalse();
         }
@@ -59,8 +59,8 @@ namespace ProtonVPN.Update.Test.Contracts
         [TestMethod]
         public void Equals_ShouldBeTrue_WhenOther_IsEqual()
         {
-            var file = new FileContract { Url = "https://protonvpn.com/download.exe", Sha1CheckSum = "123456789", Arguments = "/qb" };
-            var other = new FileContract { Url = "https://protonvpn.com/download.exe", Sha1CheckSum = "123456789", Arguments = "/qb" };
+            var file = new FileContract { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "123456789", Arguments = "/qb" };
+            var other = new FileContract { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "123456789", Arguments = "/qb" };
 
             var result = file.Equals(other);
 
@@ -70,8 +70,8 @@ namespace ProtonVPN.Update.Test.Contracts
         [TestMethod]
         public void Equals_ShouldBeFalse_WhenOther_Url_IsDifferent()
         {
-            var file = new FileContract { Url = "https://protonvpn.com/download.exe", Sha1CheckSum = "123456789", Arguments = "/qb" };
-            var other = new FileContract { Url = "http://ubiquito.com/abc.exe", Sha1CheckSum = "123456789", Arguments = "/qb" };
+            var file = new FileContract { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "123456789", Arguments = "/qb" };
+            var other = new FileContract { Url = "http://ubiquito.com/abc.exe", Sha512CheckSum = "123456789", Arguments = "/qb" };
 
             var result = file.Equals(other);
 
@@ -81,8 +81,8 @@ namespace ProtonVPN.Update.Test.Contracts
         [TestMethod]
         public void Equals_ShouldBeFalse_WhenOther_Url_IsNull()
         {
-            var file = new FileContract { Url = "https://protonvpn.com/download.exe", Sha1CheckSum = "123456789", Arguments = "/qb" };
-            var other = new FileContract { Url = null, Sha1CheckSum = "123456789", Arguments = "/qb" };
+            var file = new FileContract { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "123456789", Arguments = "/qb" };
+            var other = new FileContract { Url = null, Sha512CheckSum = "123456789", Arguments = "/qb" };
 
             var result = file.Equals(other);
 
@@ -92,8 +92,8 @@ namespace ProtonVPN.Update.Test.Contracts
         [TestMethod]
         public void Equals_ShouldBeFalse_WhenThis_Url_IsNull()
         {
-            var file = new FileContract { Url = null, Sha1CheckSum = "123456789", Arguments = "/qb" };
-            var other = new FileContract { Url = "https://protonvpn.com/download.exe", Sha1CheckSum = "123456789", Arguments = "/qb" };
+            var file = new FileContract { Url = null, Sha512CheckSum = "123456789", Arguments = "/qb" };
+            var other = new FileContract { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "123456789", Arguments = "/qb" };
 
             var result = file.Equals(other);
 
@@ -103,8 +103,8 @@ namespace ProtonVPN.Update.Test.Contracts
         [TestMethod]
         public void Equals_ShouldBeTrue_WhenBoth_Urls_AreNull()
         {
-            var file = new FileContract { Url = null, Sha1CheckSum = "123456789", Arguments = "/qb" };
-            var other = new FileContract { Url = null, Sha1CheckSum = "123456789", Arguments = "/qb" };
+            var file = new FileContract { Url = null, Sha512CheckSum = "123456789", Arguments = "/qb" };
+            var other = new FileContract { Url = null, Sha512CheckSum = "123456789", Arguments = "/qb" };
 
             var result = file.Equals(other);
 
@@ -112,10 +112,10 @@ namespace ProtonVPN.Update.Test.Contracts
         }
 
         [TestMethod]
-        public void Equals_ShouldBeFalse_WhenOther_Sha1CheckSum_IsDifferent()
+        public void Equals_ShouldBeFalse_WhenOther_Sha512CheckSum_IsDifferent()
         {
-            var file = new FileContract { Url = "https://protonvpn.com/download.exe", Sha1CheckSum = "123456789", Arguments = "/qb" };
-            var other = new FileContract { Url = "https://protonvpn.com/download.exe", Sha1CheckSum = "abcdefghij", Arguments = "/qb" };
+            var file = new FileContract { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "123456789", Arguments = "/qb" };
+            var other = new FileContract { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "abcdefghij", Arguments = "/qb" };
 
             var result = file.Equals(other);
 
@@ -123,10 +123,10 @@ namespace ProtonVPN.Update.Test.Contracts
         }
 
         [TestMethod]
-        public void Equals_ShouldBeFalse_WhenOther_Sha1CheckSum_IsNull()
+        public void Equals_ShouldBeFalse_WhenOther_Sha512CheckSum_IsNull()
         {
-            var file = new FileContract { Url = "https://protonvpn.com/download.exe", Sha1CheckSum = "123456789", Arguments = "/qb" };
-            var other = new FileContract { Url = "https://protonvpn.com/download.exe", Sha1CheckSum = null, Arguments = "/qb" };
+            var file = new FileContract { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "123456789", Arguments = "/qb" };
+            var other = new FileContract { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = null, Arguments = "/qb" };
 
             var result = file.Equals(other);
 
@@ -134,10 +134,10 @@ namespace ProtonVPN.Update.Test.Contracts
         }
 
         [TestMethod]
-        public void Equals_ShouldBeFalse_WhenThis_Sha1CheckSum_IsNull()
+        public void Equals_ShouldBeFalse_WhenThis_Sha512CheckSum_IsNull()
         {
-            var file = new FileContract { Url = "https://protonvpn.com/download.exe", Sha1CheckSum = null, Arguments = "/qb" };
-            var other = new FileContract { Url = "https://protonvpn.com/download.exe", Sha1CheckSum = "123456789", Arguments = "/qb" };
+            var file = new FileContract { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = null, Arguments = "/qb" };
+            var other = new FileContract { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "123456789", Arguments = "/qb" };
 
             var result = file.Equals(other);
 
@@ -145,10 +145,10 @@ namespace ProtonVPN.Update.Test.Contracts
         }
 
         [TestMethod]
-        public void Equals_ShouldBeTrue_WhenBoth_Sha1CheckSum_AreNull()
+        public void Equals_ShouldBeTrue_WhenBoth_Sha512CheckSum_AreNull()
         {
-            var file = new FileContract { Url = null, Sha1CheckSum = null, Arguments = "/qb" };
-            var other = new FileContract { Url = null, Sha1CheckSum = null, Arguments = "/qb" };
+            var file = new FileContract { Url = null, Sha512CheckSum = null, Arguments = "/qb" };
+            var other = new FileContract { Url = null, Sha512CheckSum = null, Arguments = "/qb" };
 
             var result = file.Equals(other);
 
@@ -158,8 +158,8 @@ namespace ProtonVPN.Update.Test.Contracts
         [TestMethod]
         public void Equals_ShouldBeFalse_WhenOther_Arguments_IsDifferent()
         {
-            var file = new FileContract { Url = "https://protonvpn.com/download.exe", Sha1CheckSum = "123456789", Arguments = "/qb" };
-            var other = new FileContract { Url = "https://protonvpn.com/download.exe", Sha1CheckSum = "123456789", Arguments = "" };
+            var file = new FileContract { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "123456789", Arguments = "/qb" };
+            var other = new FileContract { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "123456789", Arguments = "" };
 
             var result = file.Equals(other);
 
@@ -169,8 +169,8 @@ namespace ProtonVPN.Update.Test.Contracts
         [TestMethod]
         public void Equals_ShouldBeFalse_WhenOther_Arguments_IsNull()
         {
-            var file = new FileContract { Url = "https://protonvpn.com/download.exe", Sha1CheckSum = "123456789", Arguments = "/qb" };
-            var other = new FileContract { Url = "https://protonvpn.com/download.exe", Sha1CheckSum = "123456789", Arguments = null };
+            var file = new FileContract { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "123456789", Arguments = "/qb" };
+            var other = new FileContract { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "123456789", Arguments = null };
 
             var result = file.Equals(other);
 
@@ -180,8 +180,8 @@ namespace ProtonVPN.Update.Test.Contracts
         [TestMethod]
         public void Equals_ShouldBeFalse_WhenThis_Arguments_IsNull()
         {
-            var file = new FileContract { Url = "https://protonvpn.com/download.exe", Sha1CheckSum = "123456789", Arguments = null };
-            var other = new FileContract { Url = "https://protonvpn.com/download.exe", Sha1CheckSum = "123456789", Arguments = "/qb" };
+            var file = new FileContract { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "123456789", Arguments = null };
+            var other = new FileContract { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "123456789", Arguments = "/qb" };
 
             var result = file.Equals(other);
 
@@ -191,8 +191,8 @@ namespace ProtonVPN.Update.Test.Contracts
         [TestMethod]
         public void Equals_ShouldBeTrue_WhenBoth_Arguments_AreNull()
         {
-            var file = new FileContract { Url = "https://protonvpn.com/download.exe", Sha1CheckSum = "123456789", Arguments = null };
-            var other = new FileContract { Url = "https://protonvpn.com/download.exe", Sha1CheckSum = "123456789", Arguments = null };
+            var file = new FileContract { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "123456789", Arguments = null };
+            var other = new FileContract { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "123456789", Arguments = null };
 
             var result = file.Equals(other);
 

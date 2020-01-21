@@ -225,7 +225,7 @@ namespace ProtonVPN.Update.Test.Updates
         [TestMethod]
         public async Task Available_ShouldBe_False_WhenLatestRelease_FileHasNoUrl()
         {
-            const string json = "{\"Categories\": [{\"Name\": \"Stable\", \"Releases\": [{\"Version\": \"2.0.0\", \"ChangeLog\": [\"line 1\"], \"File\": {\"Sha1CheckSum\": \"a b c d e f g h\"}} ] }] }";
+            const string json = "{\"Categories\": [{\"Name\": \"Stable\", \"Releases\": [{\"Version\": \"2.0.0\", \"ChangeLog\": [\"line 1\"], \"File\": {\"Sha512CheckSum\": \"a b c d e f g h\"}} ] }] }";
             var update = AppUpdate(new Version(1, 0, 0), HttpResponseFromString(json));
 
             update = await update.Latest(false);
@@ -564,7 +564,7 @@ namespace ProtonVPN.Update.Test.Updates
             await update.Downloaded();
 
             var checkSum = await new FileCheckSum(filename).Value();
-            checkSum.Should().Be("d37b2e85278579e232a66d727d27b35f8d175b0d");
+            checkSum.Should().Be("961103aaf283cd90bfacb73e6cb97e2069bfa5bd9015b8f91ffd0bc1e8c791eb089e07a7df63a7da12dbb461b0777f5106819009f7a16bfaeff45f8ca941dab5");
         }
 
         [TestMethod]

@@ -25,7 +25,7 @@ using System.Threading.Tasks;
 namespace ProtonVPN.Update.Files.Validatable
 {
     /// <summary>
-    /// Calculates SHA1 checksum of file.
+    /// Calculates SHA512 checksum of file.
     /// </summary>
     internal class FileCheckSum
     {
@@ -39,20 +39,19 @@ namespace ProtonVPN.Update.Files.Validatable
 
         public async Task<string> Value()
         {
-            using (var stream = new FileStream(_filename, FileMode.Open, FileAccess.Read, FileShare.Read, FileBufferSize, true))
-            using (var sha1 = new SHA1Managed())
+            using var stream = new FileStream(_filename, FileMode.Open, FileAccess.Read, FileShare.Read, FileBufferSize, true);
+            using var sha512 = new SHA512Managed();
+
+            var buffer = new byte[FileBufferSize];
+            int bytesRead;
+
+            while ((bytesRead = await stream.ReadAsync(buffer, 0, FileBufferSize)) > 0)
             {
-                var buffer = new byte[FileBufferSize];
-                int bytesRead;
-
-                while ((bytesRead = await stream.ReadAsync(buffer, 0, FileBufferSize)) > 0)
-                {
-                    sha1.TransformBlock(buffer, 0, bytesRead, null, 0);
-                }
-                sha1.TransformFinalBlock(buffer, 0, 0);
-
-                return BitConverter.ToString(sha1.Hash).Replace("-", "").ToLowerInvariant();
+                sha512.TransformBlock(buffer, 0, bytesRead, null, 0);
             }
+            sha512.TransformFinalBlock(buffer, 0, 0);
+
+            return BitConverter.ToString(sha512.Hash).Replace("-", "").ToLowerInvariant();
         }
     }
 }

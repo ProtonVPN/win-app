@@ -97,7 +97,7 @@ namespace ProtonVPN.Update.Test.Releases
         [TestMethod]
         public void Empty_ShouldBeTrue_WhenReleaseVersion_IsZero()
         {
-            var file = new FileContract { Url = "https://protonvpn.com/download.exe", Sha1CheckSum = "012345", Arguments = "-install" };
+            var file = new FileContract { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "012345", Arguments = "-install" };
             var contract = new ReleaseContract { Version = "0.0.0", ChangeLog = new[] { "Fixed" }, File = file };
             var release = new Release(contract, false, new Version());
 
@@ -109,7 +109,7 @@ namespace ProtonVPN.Update.Test.Releases
         [TestMethod]
         public void Empty_ShouldBeFalse_WhenReleaseVersion_IsNotZero()
         {
-            var file = new FileContract { Url = "https://protonvpn.com/download.exe", Sha1CheckSum = "012345", Arguments = "-install" };
+            var file = new FileContract { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "012345", Arguments = "-install" };
             var contract = new ReleaseContract { Version = "0.0.1", ChangeLog = new[] { "Fixed" }, File = file };
             var release = new Release(contract, false, new Version());
 
