@@ -63,6 +63,9 @@
   <PropertyGroup>
     <StartupObject>ProtonVPN.App</StartupObject>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Autofac, Version=4.9.4.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Autofac.4.9.4\lib\net45\Autofac.dll</HintPath>
@@ -1252,6 +1255,7 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.*.resx" />
+    <None Include="app.manifest" />
     <None Include="gosrp.bat" />
     <None Include="..\..\COPYING.md">
       <Link>COPYING.md</Link>
