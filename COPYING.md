@@ -17,12 +17,12 @@ along with ProtonVPN. If not, see [https://www.gnu.org/licenses](https://www.gnu
 
 ## Dependencies
 
-ProtonVPN for Windows includes the following libraries:
+ProtonVPN Windows app includes the following libraries:
 
 * [ProtonMail SRP library](https://github.com/ProtonMail/go-srp) by Proton Technologies AG
   | [The MIT License](https://github.com/ProtonMail/go-srp/blob/master/LICENSE.txt).
 
-ProtonVPN for Windows includes the following 3rd party software:
+ProtonVPN Windows app includes the following 3rd party software:
 
 * [OpenVPN client](https://github.com/OpenVPN/openvpn) by OpenVPN Inc.
   | [The GPL v2](https://github.com/OpenVPN/openvpn/blob/master/COPYRIGHT.GPL)
