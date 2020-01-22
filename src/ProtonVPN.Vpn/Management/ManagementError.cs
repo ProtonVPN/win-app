@@ -17,10 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Extensions;
-using ProtonVPN.Common.Vpn;
 using System;
 using System.Collections.Generic;
+using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.Vpn;
 
 namespace ProtonVPN.Vpn.Management
 {
@@ -36,7 +36,8 @@ namespace ProtonVPN.Vpn.Management
             [ProtonVPN.Common.Vpn.VpnError.NoTapAdaptersError] = ContainsNoTapError,
             [ProtonVPN.Common.Vpn.VpnError.TapRequiresUpdateError] = ContainsTapRequiresUpdateError,
             [ProtonVPN.Common.Vpn.VpnError.TimeoutError] = ContainsTimeoutError,
-            [ProtonVPN.Common.Vpn.VpnError.NetshError] = ContainsNetshError
+            [ProtonVPN.Common.Vpn.VpnError.NetshError] = ContainsNetshError,
+            [ProtonVPN.Common.Vpn.VpnError.TlsCertificateError] = ContainsTlsCertificateError,
         };
 
         public string Message { get; }
@@ -47,6 +48,14 @@ namespace ProtonVPN.Vpn.Management
         }
 
         public VpnError VpnError() => GetErrorType();
+
+        public static bool ContainsError(string message)
+        {
+            return message.StartsWithIgnoringCase(">FATAL") || 
+                   message.StartsWithIgnoringCase(">PASSWORD:Verification Failed: 'Auth'") ||
+                   ContainsTlsError(message) ||
+                   ContainsTlsCertificateError(message);
+        }
 
         private VpnError GetErrorType()
         {
@@ -88,6 +97,18 @@ namespace ProtonVPN.Vpn.Management
                        "This version of OpenVPN requires a TAP-Windows driver that is at least version")
                 || message.ContainsIgnoringCase(
                        "This version of OpenVPN requires a TAP-Win32 driver that is at least version");
+        }
+
+        private static bool ContainsTlsError(string message)
+        {
+            return message.StartsWithIgnoringCase(">STATE:") && message.ContainsIgnoringCase(",RECONNECTING,tls-error,");
+        }
+
+        private static bool ContainsTlsCertificateError(string message)
+        {
+            return message.StartsWithIgnoringCase(">LOG:") && (
+                message.ContainsIgnoringCase("VERIFY ERROR:") ||
+                message.ContainsIgnoringCase("VERIFY SCRIPT ERROR:"));
         }
 
         private static bool ContainsTimeoutError(string message)

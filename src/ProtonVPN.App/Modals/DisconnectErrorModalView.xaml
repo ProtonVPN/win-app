@@ -45,8 +45,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <Setter Property="behavior:TextStyleBehavior.FormattedText" Value="{resources:Loc Dialogs_DisconnectError_msg_Identifying}"/>
                     <Setter Property="Visibility" Value="Visible"/>
                 </DataTrigger>
-                <DataTrigger Binding="{Binding Error}" Value="{x:Static vpn:VpnError.TlsError}">
-                    <Setter Property="behavior:TextStyleBehavior.FormattedText" Value="{resources:Loc Dialogs_DisconnectError_msg_TlsError}"/>
+                <DataTrigger Binding="{Binding Error}" Value="{x:Static vpn:VpnError.TlsCertificateError}">
+                    <Setter Property="behavior:TextStyleBehavior.FormattedText" Value="{resources:Loc Dialogs_DisconnectError_msg_TlsCertificateError}"/>
                     <Setter Property="Visibility" Value="Visible"/>
                 </DataTrigger>
                 <DataTrigger Binding="{Binding Error}" Value="{x:Static vpn:VpnError.NoTapAdaptersError}">

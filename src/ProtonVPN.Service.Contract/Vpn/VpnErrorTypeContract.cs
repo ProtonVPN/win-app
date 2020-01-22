@@ -46,6 +46,9 @@ namespace ProtonVPN.Service.Contract.Vpn
         TlsError,
 
         [EnumMember]
+        TlsCertificateError,
+
+        [EnumMember]
         TimeoutError,
 
         [EnumMember]
