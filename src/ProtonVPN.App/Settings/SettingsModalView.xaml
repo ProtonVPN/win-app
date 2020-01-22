@@ -35,8 +35,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         ResizeMode="NoResize"
                         Style="{StaticResource BaseModalStyle}"
                         Title="{resources:Loc Settings_ttl}"
-                        Height="640"
-                        Width="540" 
+                        SizeToContent="WidthAndHeight"
                         d:DataContext="{d:DesignInstance settings:SettingsModalViewModel}">
     <Window.Resources>
         <ResourceDictionary>
@@ -101,7 +100,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </ResourceDictionary>
     </Window.Resources>
 
-    <Grid Background="#1b1b20">
+    <StackPanel Background="#1b1b20" Width="540">
         <TabControl Margin="0,20,0,0" SelectedIndex="{Binding SelectedTabIndex}">
             <TabItem Header="{resources:Loc Settings_General_ttl}">
                 <StackPanel Margin="25,20,25,40">
@@ -417,7 +416,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </DockPanel>
                     </Border>
 
-                    <Border BorderBrush="#464652" BorderThickness="0,0,0,0">
+                    <Border BorderBrush="#464652" BorderThickness="0" MaxHeight="274" Height="Auto">
                         <Border.Style>
                             <Style TargetType="Border">
                                 <Setter Property="Height" Value="{Binding ActualHeight, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=FrameworkElement}}"/>
@@ -428,11 +427,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 </Style.Triggers>
                             </Style>
                         </Border.Style>
-                        <splittunneling:SplitTunnelingView
-                            x:Name="SplitTunneling"
-                            Margin="6,0,0,0"
-                            DataContext="{Binding SplitTunnelingViewModel}"
-                            Visibility="{c:Binding Enabled, FalseToVisibility=Collapsed}"/>
+                        <splittunneling:SplitTunnelingView x:Name="SplitTunneling"
+                                                           Margin="6,0,0,0"
+                                                           DataContext="{Binding SplitTunnelingViewModel}"
+                                                           Visibility="{c:Binding Enabled, FalseToVisibility=Collapsed}"/>
                     </Border>
                 </DockPanel>
             </TabItem>
@@ -467,5 +465,5 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                            TextDecorations="Underline"/>
             </Button>
         </Grid>
-    </Grid>
+    </StackPanel>
 </modals:BaseModalWindow>

@@ -21,12 +21,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:modals="clr-namespace:ProtonVPN.Modals">
     <Style x:Key="BaseModalStyle" TargetType="{x:Type modals:BaseModalWindow}" BasedOn="{StaticResource {x:Type Window}}">
+        <Setter Property="WindowStyle" Value="None"/>
         <Setter Property="WindowChrome.WindowChrome">
             <Setter.Value>
                 <WindowChrome CaptionHeight="36"/>
             </Setter.Value>
         </Setter>
-        <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="WindowState" Value="{Binding WindowState}"/>
         <Setter Property="Template">
             <Setter.Value>
