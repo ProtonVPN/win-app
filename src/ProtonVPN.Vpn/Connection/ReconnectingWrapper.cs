@@ -34,7 +34,8 @@ namespace ProtonVPN.Vpn.Connection
     /// <remarks>
     /// Automatically reconnects if status changes to
     /// <see cref="VpnStatus.Disconnecting"/> or <see cref="VpnStatus.Disconnected"/>" with one of errors
-    /// <see cref="VpnError.NetshError"/>, <see cref="VpnError.TimeoutError"/>, <see cref="VpnError.Unknown"/>.
+    /// <see cref="VpnError.NetshError"/>, <see cref="VpnError.TlsError"/>,
+    /// <see cref="VpnError.TimeoutError"/>, <see cref="VpnError.Unknown"/>.
     ///
     /// During reconnect status values <see cref="VpnStatus.Disconnecting"/> and <see cref="VpnStatus.Disconnected"/>
     /// are suppressed, status value <see cref="VpnStatus.Connecting"/> is replaced with
@@ -151,6 +152,7 @@ namespace ProtonVPN.Vpn.Connection
                    (state.Status == VpnStatus.Disconnecting ||
                     state.Status == VpnStatus.Disconnected) &&
                    (state.Error == VpnError.NetshError ||
+                    state.Error == VpnError.TlsError ||
                     state.Error == VpnError.TimeoutError ||
                     state.Error == VpnError.Unknown);
         }

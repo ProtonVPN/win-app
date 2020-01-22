@@ -44,7 +44,7 @@ namespace ProtonVPN.Vpn.Management
 
         public bool IsStateSet => _messageText.StartsWithIgnoringCase("SUCCESS: real-time state notification set");
 
-        public bool IsBytecountSet => _messageText.StartsWithIgnoringCase("SUCCESS: bytecount");
+        public bool IsByteCountSet => _messageText.StartsWithIgnoringCase("SUCCESS: bytecount");
 
         public bool IsLogSet => _messageText.StartsWithIgnoringCase("SUCCESS: real-time log notification set");
 
@@ -52,13 +52,11 @@ namespace ProtonVPN.Vpn.Management
 
         public bool IsPasswordNeeded => _messageText.StartsWithIgnoringCase("SUCCESS: 'Auth' username entered");
 
-        public bool IsBytecount => _messageText.StartsWithIgnoringCase(">BYTECOUNT");
+        public bool IsByteCount => _messageText.StartsWithIgnoringCase(">BYTECOUNT");
 
         public bool IsState => _messageText.StartsWithIgnoringCase(">STATE");
 
-        public bool IsError => _messageText.StartsWithIgnoringCase(">FATAL")
-                || _messageText.StartsWithIgnoringCase(">PASSWORD:Verification Failed: 'Auth'")
-                || _messageText.StartsWithIgnoringCase(">STATE:") && _messageText.ContainsIgnoringCase(",RECONNECTING,tls-error,");
+        public bool IsError => ManagementError.ContainsError(_messageText);
 
         public bool IsDisconnectReceived => _messageText.StartsWithIgnoringCase("SUCCESS: signal SIGTERM thrown");
 
