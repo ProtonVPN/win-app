@@ -103,7 +103,7 @@ following content or an existing file should be updated to contain the "<system.
 </configuration>
 ```
 
-This forces the ProtonVPN update service to send all Web traffic through local proxy openend
+This forces the ProtonVPN update service to send all Web traffic through local proxy opened
 by the Fiddler.
 
 #### OpenVPN
@@ -141,15 +141,15 @@ when disconnecting by ProtonVPN Service when Split Tunnel is enabled.
 The main repository folder contains the .NET Visual Studio solution of the
 ProtonVPN Windows app named ProtonVPN.
 
-### Forlder "ci" 
+### Folder "ci" 
 
 Contains continuous integration scripts.
 
-### Forlder "packages" 
+### Folder "packages" 
 
 It contains NuGet packages of the ProtonVPN solution.
 
-### Forlder "Setup"
+### Folder "Setup"
 
 This folder contains Advanced Installer setup project files, resources included in the installer,
 and built installer files. Subfolders contain:
@@ -200,7 +200,7 @@ technologies. The Visual Studio solution consists of a series of projects:
 - **ProtonVPN.TapInstaller** - the TAP install action used in the app installer.
 - **ProtonVPN.TlsVerify** - the command line utility which verifies the VPN server certificate.
 - **ProtonVPN.Update** - the application update module used in the update service.
-- **ProtonVPN.UpdateService** - the Windows service which handles the app udates.
+- **ProtonVPN.UpdateService** - the Windows service which handles the app updates.
 - **ProtonVPN.UpdateServiceContract** - contains the update service contract.
 - **ProtonVPN.Vpn** - the OpenVPN management module used in the service.
 
