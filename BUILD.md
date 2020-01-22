@@ -1,6 +1,6 @@
-# ProtonVPN for Windows
+# Building ProtonVPN Windows app
 
-Building guide of the ProtonVPN for Windows. ProtonVPN for Windows is .NET Framework
+Building guide of the ProtonVPN Windows app. ProtonVPN Windows app is .NET Framework
 application created using C# and C++ programming languages.
 
 ## Prerequisites
