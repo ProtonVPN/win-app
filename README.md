@@ -1,14 +1,15 @@
-# ProtonVPN for Windows
+# ProtonVPN Windows app
 
 Copyright (c) 2020 Proton Technologies AG
 
-This repository holds the ProtonVPN Windows application.  
+This repository holds the ProtonVPN Windows app.  
 For a detailed build information see [BUILD](BUILD.md).  
-For licensing information see [COPYING](COPYING.md).
+For licensing information see [COPYING](COPYING.md).  
+For contribution policy see [CONTRIBUTING](CONTRIBUTING.md).
 
 ## Description
 
-The [ProtonVPN](https://protonvpn.com) for Windows is intended for every ProtonVPN service user,
+The [ProtonVPN](https://protonvpn.com) Windows app is intended for every ProtonVPN service user,
 paid or free and supports all functionalities available to authenticated users (user signup instead happens on the web site).
 
 ### The application
@@ -179,7 +180,7 @@ This folder contains test projects of the ProtonVPN solution.
 
 ## Solution
 
-ProtonVPN for Windows is created using C# and C++ programming languages, WPF and MVVM 
+ProtonVPN Windows app is created using C# and C++ programming languages, WPF and MVVM 
 technologies. The Visual Studio solution consists of a series of projects:
 - **ProtonVPN.App** - the main project which builds to ProtonVPN GUI app executable.
   It contains startup logic and GUI (view models and views).
