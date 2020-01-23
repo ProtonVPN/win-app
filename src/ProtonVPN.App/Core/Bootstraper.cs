@@ -17,6 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Net.Http;
+using System.ServiceModel;
+using System.Threading.Tasks;
+using System.Windows;
 using Autofac;
 using Caliburn.Micro;
 using ProtonVPN.Account;
@@ -49,11 +56,11 @@ using ProtonVPN.Core.Startup;
 using ProtonVPN.Core.Update;
 using ProtonVPN.Core.User;
 using ProtonVPN.Core.Vpn;
-using ProtonVPN.FlashNotifications;
 using ProtonVPN.Login.ViewModels;
 using ProtonVPN.Login.Views;
 using ProtonVPN.Map;
 using ProtonVPN.Map.ViewModels;
+using ProtonVPN.Notifications;
 using ProtonVPN.Onboarding;
 using ProtonVPN.P2PDetection;
 using ProtonVPN.QuickLaunch;
@@ -64,13 +71,6 @@ using ProtonVPN.ViewModels;
 using ProtonVPN.Windows;
 using Sentry;
 using Sentry.Protocol;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Net.Http;
-using System.ServiceModel;
-using System.Threading.Tasks;
-using System.Windows;
 
 namespace ProtonVPN.Core
 {
@@ -310,15 +310,6 @@ namespace ProtonVPN.Core
                 }
             };
 
-            Resolve<INetworkClient>().WifiChangeDetected += (sender, e) =>
-            {
-                var instances = Resolve<IEnumerable<IWifiChangeAware>>();
-                foreach (var instance in instances)
-                {
-                    instance.OnWifiChangeDetected(e.Name, e.Secure);
-                }
-            };
-
             Resolve<P2PDetector>().TrafficForwarded += (sender, ip) =>
             {
                 var instances = Resolve<IEnumerable<ITrafficForwardedAware>>();
@@ -425,6 +416,7 @@ namespace ProtonVPN.Core
             };
 
             Resolve<IModals>();
+            Resolve<InsecureNetworkNotification>();
         }
 
         private void OnUserLoggingIn()

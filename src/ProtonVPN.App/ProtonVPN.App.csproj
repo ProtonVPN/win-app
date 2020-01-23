@@ -181,7 +181,11 @@
     </Compile>
     <Compile Include="About\LicenseModalViewModel.cs" />
     <Compile Include="About\ReleaseEqualityComparer.cs" />
-    <Compile Include="About\UpdateNotification.cs" />
+    <Compile Include="Modals\UpdateModalView.xaml.cs">
+      <DependentUpon>UpdateModalView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Notifications\InsecureWifiNotification.cs" />
+    <Compile Include="Notifications\UpdateNotification.cs" />
     <Compile Include="About\UpdateViewModel.cs" />
     <Compile Include="Account\PricingBuilderException.cs" />
     <Compile Include="Account\VpnInfoChecker.cs" />
@@ -297,11 +301,10 @@
     <Compile Include="Core\Startup\SyncedAutoStartup.cs" />
     <Compile Include="Core\Wpf\Behavior\TextBlockAutoToolTipBehavior.cs" />
     <Compile Include="Core\Wpf\DataBindingExtensions.cs" />
-    <Compile Include="FlashNotifications\IInsecureWifiAware.cs" />
-    <Compile Include="FlashNotifications\InsecureWifiNotification.xaml.cs">
-      <DependentUpon>InsecureWifiNotification.xaml</DependentUpon>
+    <Compile Include="Modals\InsecureWifiModalView.xaml.cs">
+      <DependentUpon>InsecureWifiModalView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="FlashNotifications\InsecureWifiNotificationViewModel.cs" />
+    <Compile Include="Modals\InsecureWifiModalViewModel.cs" />
     <Compile Include="Map\CountryLocation.cs" />
     <Compile Include="Map\MapOffset.cs" />
     <Compile Include="Modals\Dialogs\Dialogs.cs" />
@@ -324,7 +327,6 @@
     <Compile Include="Core\Settings\Migrations\v1_7_2\ProfileV1.cs" />
     <Compile Include="Modals\Welcome\NonTrialWelcomeModalViewModel.cs" />
     <Compile Include="Modals\Welcome\TrialWelcomeModalViewModel.cs" />
-    <Compile Include="Notifications\INotification.cs" />
     <Compile Include="Notifications\ISystemNotification.cs" />
     <Compile Include="Notifications\SystemNotification.cs" />
     <Compile Include="P2PDetection\Blocked\BlockedTraffic.cs" />
@@ -477,10 +479,7 @@
     <Compile Include="Core\Wpf\ChangeAwareContentControl.cs" />
     <Compile Include="Core\Wpf\ControlExtensions.cs" />
     <Compile Include="Core\Wpf\Input\PasswordBoxAssistant.cs" />
-    <Compile Include="About\UpdateFlashNotification.xaml.cs">
-      <DependentUpon>UpdateFlashNotification.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="FlashNotifications\UpdateFlashNotificationViewModel.cs" />
+    <Compile Include="Modals\UpdateModalViewModel.cs" />
     <Compile Include="P2PDetection\P2PDetector.cs" />
     <Compile Include="Core\Settings\Migrations\v1_7_2\AppSettingsMigration.cs" />
     <Compile Include="Account\AccountModalView.xaml.cs">
@@ -503,12 +502,6 @@
     <Compile Include="Core\Wpf\ControlExtension.cs" />
     <Compile Include="Core\Wpf\PlaceholderTextBox.cs" />
     <Compile Include="Core\Wpf\Scrollviewer.cs" />
-    <Compile Include="FlashNotifications\FlashNotifications.xaml.cs">
-      <DependentUpon>FlashNotifications.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="FlashNotifications\FlashNotificationViewModel.cs" />
-    <Compile Include="FlashNotifications\HideFlashMessage.cs" />
-    <Compile Include="FlashNotifications\ShowFlashMessage.cs" />
     <Compile Include="Sidebar\Trial\TrialView.xaml.cs">
       <DependentUpon>TrialView.xaml</DependentUpon>
     </Compile>
@@ -757,7 +750,11 @@
     <Compile Include="ViewModels\AppLoadingViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Map\ViewModels\MapViewModel.cs" />
-    <Page Include="FlashNotifications\InsecureWifiNotification.xaml">
+    <Page Include="Modals\UpdateModalView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Modals\InsecureWifiModalView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -959,14 +956,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ConnectionInfo\ConnectionInfo.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="FlashNotifications\FlashNotifications.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="About\UpdateFlashNotification.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

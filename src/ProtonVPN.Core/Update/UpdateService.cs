@@ -17,9 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Core.Auth;
-using ProtonVPN.Core.Settings;
-using ProtonVPN.UpdateServiceContract;
 using System;
 using System.ComponentModel;
 using System.Linq;
@@ -28,7 +25,10 @@ using System.Windows;
 using System.Windows.Threading;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Vpn;
+using ProtonVPN.Core.Auth;
+using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
+using ProtonVPN.UpdateServiceContract;
 
 namespace ProtonVPN.Core.Update
 {
@@ -38,6 +38,7 @@ namespace ProtonVPN.Core.Update
         private readonly Config _appConfig;
         private readonly ServiceClient _serviceClient;
         private readonly TimeSpan _updateInterval;
+        private DateTime _lastCheckTime;
 
         private readonly DispatcherTimer _timer;
 
@@ -61,7 +62,7 @@ namespace ProtonVPN.Core.Update
             _timer = new DispatcherTimer();
             _timer.Tick += TimerTick;
 
-            _serviceClient.UpdateStateChanged += _serviceClient_UpdateStateChanged;
+            _serviceClient.UpdateStateChanged += OnUpdateStateChanged;
         }
 
         public event EventHandler<UpdateStateChangedEventArgs> UpdateStateChanged;
@@ -100,10 +101,19 @@ namespace ProtonVPN.Core.Update
         {
             _requestedManualCheck |= manualCheck;
 
+            if (!manualCheck)
+            {
+                if (DateTime.UtcNow - _lastCheckTime <= _appConfig.UpdateCheckInterval)
+                {
+                    return;
+                }
+            }
+
             _serviceClient.CheckForUpdate(_appSettings.EarlyAccess);
+            _lastCheckTime = DateTime.UtcNow;
         }
 
-        private void _serviceClient_UpdateStateChanged(object sender, UpdateStateContract e)
+        private void OnUpdateStateChanged(object sender, UpdateStateContract e)
         {
             if (_autoUpdateInProgress)
             {
@@ -165,8 +175,7 @@ namespace ProtonVPN.Core.Update
 
         private void OnUpdateStateChanged(UpdateState state, bool manualCheck)
         {
-            var eventArgs = new UpdateStateChangedEventArgs(state, manualCheck);
-            UpdateStateChanged?.Invoke(this, eventArgs);
+            UpdateStateChanged?.Invoke(this, new UpdateStateChangedEventArgs(state, manualCheck));
         }
 
         private void TimerTick(object sender, EventArgs e)

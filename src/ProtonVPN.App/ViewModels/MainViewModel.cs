@@ -17,6 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Threading.Tasks;
+using System.Windows.Input;
 using Caliburn.Micro;
 using GalaSoft.MvvmLight.CommandWpf;
 using ProtonVPN.About;
@@ -32,14 +34,11 @@ using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.MVVM;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Vpn;
-using ProtonVPN.FlashNotifications;
 using ProtonVPN.Map.ViewModels;
 using ProtonVPN.Onboarding;
 using ProtonVPN.Profiles;
 using ProtonVPN.Resources;
 using ProtonVPN.Settings;
-using System.Threading.Tasks;
-using System.Windows.Input;
 
 namespace ProtonVPN.ViewModels
 {
@@ -69,7 +68,6 @@ namespace ProtonVPN.ViewModels
             MapViewModel mapViewModel,
             ConnectingViewModel connectingViewModel,
             OnboardingViewModel onboardingViewModel,
-            FlashNotificationViewModel flashNotificationViewModel,
             TrayNotificationViewModel trayNotificationViewModel)
         {
             _eventAggregator = eventAggregator;
@@ -84,7 +82,6 @@ namespace ProtonVPN.ViewModels
             Connection = connectingViewModel;
             Onboarding = onboardingViewModel;
             TrayNotification = trayNotificationViewModel;
-            FlashNotification = flashNotificationViewModel;
 
             eventAggregator.Subscribe(this);
 
@@ -102,7 +99,6 @@ namespace ProtonVPN.ViewModels
         public ConnectingViewModel Connection { get; }
         public OnboardingViewModel Onboarding { get; }
         public TrayNotificationViewModel TrayNotification { get; }
-        public FlashNotificationViewModel FlashNotification { get; }
 
         public ICommand SettingsCommand { get; }
         public ICommand AccountCommand { get; }

@@ -17,9 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Net.Http;
 using Autofac;
 using Caliburn.Micro;
-using ProtonVPN.About;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.OS;
 using ProtonVPN.Common.OS.Net.Http;
@@ -43,7 +43,6 @@ using ProtonVPN.Core.Threading;
 using ProtonVPN.Core.Update;
 using ProtonVPN.Resources;
 using ProtonVPN.Vpn;
-using System.Net.Http;
 using Module = Autofac.Module;
 
 namespace ProtonVPN.Core.Ioc
@@ -164,8 +163,6 @@ namespace ProtonVPN.Core.Ioc
             builder.Register(c => c.Resolve<ILoggerFactory>().Logger())
                 .As<ILogger>().SingleInstance();
             builder.RegisterType<LogCleaner>().SingleInstance();
-
-            builder.RegisterType<UpdateNotification>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<UpdateService>().AsSelf().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<ServiceClient>().SingleInstance();
             builder.RegisterType<UpdateEvents>().SingleInstance();

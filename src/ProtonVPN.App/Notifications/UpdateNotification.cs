@@ -17,30 +17,31 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Caliburn.Micro;
-using ProtonVPN.Core.Update;
-using ProtonVPN.FlashNotifications;
 using System;
+using ProtonVPN.Core.Modals;
+using ProtonVPN.Core.Update;
+using ProtonVPN.Modals;
+using ProtonVPN.Resources;
 
-namespace ProtonVPN.About
+namespace ProtonVPN.Notifications
 {
     public class UpdateNotification : IUpdateStateAware
     {
-        private readonly IEventAggregator _eventAggregator;
-        private readonly UpdateFlashNotificationViewModel _notificationViewModel;
+        private readonly IModals _modals;
+        private readonly ISystemNotification _systemNotification;
         private readonly TimeSpan _remindInterval;
 
         private DateTime _lastNotified = DateTime.MinValue;
+        
 
         public UpdateNotification(
-            Common.Configuration.Config appConfig,
-            IEventAggregator eventAggregator,
-            UpdateFlashNotificationViewModel notificationViewModel)
+            TimeSpan remindInterval,
+            ISystemNotification systemNotification,
+            IModals modals)
         {
-            _eventAggregator = eventAggregator;
-            _notificationViewModel = notificationViewModel;
-
-            _remindInterval = appConfig.UpdateRemindInterval;
+            _modals = modals;
+            _systemNotification = systemNotification;
+            _remindInterval = remindInterval;
         }
 
         public void OnUpdateStateChanged(UpdateStateChangedEventArgs e)
@@ -67,12 +68,13 @@ namespace ProtonVPN.About
         private void Show()
         {
             _lastNotified = DateTime.Now;
-            _eventAggregator.PublishOnUIThread(new ShowFlashMessage(_notificationViewModel));
+            _systemNotification.Show(StringResources.Get("Dialogs_Update_msg_NewAppVersion"));
+            _modals.Show<UpdateModalViewModel>();
         }
 
         private void Hide()
         {
-            _eventAggregator.PublishOnUIThread(new HideFlashMessage(_notificationViewModel));
+            _modals.Close<UpdateModalViewModel>();
         }
     }
 }

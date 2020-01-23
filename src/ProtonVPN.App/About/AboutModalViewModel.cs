@@ -17,16 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Core.Settings;
-using ProtonVPN.Core.Update;
-using ProtonVPN.Modals;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
 using ProtonVPN.Core.Modals;
-using ProtonVPN.Common.Configuration;
+using ProtonVPN.Core.Settings;
+using ProtonVPN.Core.Update;
+using ProtonVPN.Modals;
 
 namespace ProtonVPN.About
 {
@@ -106,8 +105,7 @@ namespace ProtonVPN.About
 
         public override void BeforeOpenModal(dynamic options)
         {
-            if (options?.SkipUpdateCheck != true)
-                _appUpdater.StartCheckingForUpdate();
+            _appUpdater.StartCheckingForUpdate();
         }
 
         private void ShowLicense()
