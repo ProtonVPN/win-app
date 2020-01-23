@@ -1,0 +1,53 @@
+﻿<!--
+Copyright (c) 2020 Proton Technologies AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<modals:BaseModalWindow x:Class="ProtonVPN.Modals.InsecureWifiModalView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:resources="clr-namespace:ProtonVPN.Resources"
+             xmlns:modals="clr-namespace:ProtonVPN.Modals"
+             xmlns:behavior="clr-namespace:ProtonVPN.Core.Wpf.Behavior"
+             Style="{StaticResource BaseModalStyle}"
+             SizeToContent="Height"
+             Title="{resources:Loc Dialogs_ttl_Warning}"
+             mc:Ignorable="d"
+             Height="Auto"
+             Width="500"
+             d:DataContext="{d:DesignInstance modals:InsecureWifiModalViewModel}">
+    <StackPanel>
+        <TextBlock VerticalAlignment="Center"
+                   Margin="30,20"
+                   TextWrapping="Wrap"
+                   Foreground="White"
+                   FontSize="14"
+                   behavior:TextStyleBehavior.FormattedText="{Binding Message}"/>
+        <DockPanel Background="{StaticResource ModalBarColor}" Height="66">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Style="{StaticResource SecondaryModalButton}"
+                        Command="{Binding CloseCommand}"
+                        Content="{resources:Loc Dialogs_P2PForward_btn_Close}"/>
+                <Button Style="{StaticResource PrimaryModalButton}"
+                        Command="{Binding ConnectCommand}"
+                        Content="{resources:Loc Dialogs_InsecureWifi_btn_Connect}"/>
+            </StackPanel>
+        </DockPanel>
+    </StackPanel>
+</modals:BaseModalWindow>

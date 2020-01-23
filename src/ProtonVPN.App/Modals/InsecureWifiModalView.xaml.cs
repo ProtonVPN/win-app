@@ -17,11 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.FlashNotifications
+namespace ProtonVPN.Modals
 {
-    public partial class InsecureWifiNotification
+    public partial class InsecureWifiModalView
     {
-        public InsecureWifiNotification()
+        public InsecureWifiModalView()
         {
             InitializeComponent();
         }

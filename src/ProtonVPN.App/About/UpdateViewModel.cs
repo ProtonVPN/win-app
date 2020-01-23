@@ -17,42 +17,37 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
+using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.MVVM;
 using ProtonVPN.Core.Update;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Resources;
-using System;
-using System.Dynamic;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Input;
 
 namespace ProtonVPN.About
 {
     public class UpdateViewModel : ViewModel, IUpdateStateAware, IVpnStateAware
     {
         private readonly UpdateService _updateService;
-        private readonly IModals _modals;
         private readonly IDialogs _dialogs;
+        private readonly IScheduler _scheduler;
 
         private VpnStatus _vpnStatus;
 
-        public UpdateViewModel(UpdateService updateService, IModals modals, IDialogs dialogs)
+        public UpdateViewModel(UpdateService updateService, IDialogs dialogs, IScheduler scheduler)
         {
+            _scheduler = scheduler;
             _updateService = updateService;
-            _modals = modals;
             _dialogs = dialogs;
-
-            OpenAboutCommand = new RelayCommand(OpenAbout);
         }
 
         private RelayCommand _updateCommand;
-        public ICommand UpdateCommand => _updateCommand ?? (_updateCommand = new RelayCommand(Update, CanUpdate));
-
-        public ICommand OpenAboutCommand { get; }
+        public ICommand UpdateCommand => _updateCommand ??= new RelayCommand(Update, CanUpdate);
 
         private UpdateStatus _status;
         public UpdateStatus Status
@@ -90,11 +85,19 @@ namespace ProtonVPN.About
             }
         }
 
+        private Release _release;
+        public Release Release
+        {
+            get => _release;
+            set => Set(ref _release, value);
+        }
+
         public void OnUpdateStateChanged(UpdateStateChangedEventArgs e)
         {
             Status = e.Status;
             Available = e.Available;
             Ready = e.Ready;
+            Release = e.ReleaseHistory.FirstOrDefault();
         }
 
         public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
@@ -113,18 +116,11 @@ namespace ProtonVPN.About
             Updating = true;
             _updateService.Update(false).ContinueWith(t =>
             {
-                Application.Current.Dispatcher.BeginInvoke((Action)(() => Updating = false));
+                _scheduler.Schedule(() => Updating = false);
             });
         }
 
         private bool CanUpdate() => !Updating && Ready;
-
-        private void OpenAbout()
-        {
-            dynamic options = new ExpandoObject();
-            options.SkipUpdateCheck = true;
-            _modals.Show<AboutModalViewModel>(options);
-        }
 
         private bool AllowToDisconnect()
         {

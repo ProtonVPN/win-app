@@ -190,6 +190,13 @@ namespace ProtonVPN.Core.Ioc
                 .SingleInstance();
             builder.RegisterType<MonitoredVpnService>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterType<Lang.Language>().AsImplementedInterfaces().SingleInstance();
+            builder.Register(c => new UpdateNotification(
+                    c.Resolve<Common.Configuration.Config>().UpdateRemindInterval,
+                    c.Resolve<ISystemNotification>(),
+                    c.Resolve<IModals>()))
+                .AsImplementedInterfaces()
+                .SingleInstance();
+            builder.RegisterType<InsecureNetworkNotification>().AsImplementedInterfaces().AsSelf().SingleInstance();
         }
     }
 }

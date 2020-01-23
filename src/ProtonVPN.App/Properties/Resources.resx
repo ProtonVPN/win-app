@@ -481,11 +481,11 @@
     <value>Via {0} to {1}</value>
     <comment>The heading of Secure Core server info displayed in Server Load popup. The {0} is a placeholder for entry country, {1} - exit country. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
   </data>
-  <data name="Notifications_InsecureWiFi_msg_Detected" xml:space="preserve">
-    <value>Insecure Wi-Fi connection detected: {0}</value>
-    <comment>The message displayed in the Insecure Wi-Fi notification when connected to insecure Wi-Fi network. The {0} is a placeholder for Wi-Fi network name.</comment>
+  <data name="Dialogs_InsecureWiFi_msg_Detected" xml:space="preserve">
+    <value>Insecure Wi-Fi connection detected: {0}&lt;LineBreak/&gt;&lt;LineBreak/&gt;We detected the WiFi network you connected to is not protected by a password. Public WiFi can be monitored by hackers or the network administrator, potentially exposing your data and browsing activity. Do you want to connect to ProtonVPN?</value>
+    <comment>The message displayed in the Insecure Wi-Fi modal window when connected to insecure Wi-Fi network. The {0} is a placeholder for Wi-Fi network name.</comment>
   </data>
-  <data name="Notifications_Update_msg_NewAppVersion" xml:space="preserve">
+  <data name="Dialogs_Update_msg_NewAppVersion" xml:space="preserve">
     <value>A new app version is now available!</value>
     <comment>The message displayed in the Update notification when new app version is ready to install</comment>
   </data>
@@ -969,10 +969,6 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
   <data name="Servers_lbl_ViaCountry" xml:space="preserve">
     <value>via</value>
     <comment>The label displayed before entry country name in Server list of Countries tab of Sidebar section of main app window when Secure Core mode is enabled</comment>
-  </data>
-  <data name="Notifications_Update_lnk_WhatsNew" xml:space="preserve">
-    <value>What's new</value>
-    <comment>The text of What's new hyperlink in Update flash notification (opens About window)</comment>
   </data>
   <data name="Map_SpeedGraph_lbl_TimeUnits" xml:space="preserve">
     <value>60 Seconds</value>
@@ -2455,7 +2451,7 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <comment>The name of ZZ (unknown or not specified) country</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_KillSwitch" xml:space="preserve">
-    <value>Kill Switch is blocking all connections to avoid leaking your data. To dismiss this window, click CLOSE. If you would like to temporarily disable Kill Switch and reconnect to the Internet WITHOUT VPN protection, click DISABLE. To turn off Kill Switch permanently, go to &lt;Hyperlink Command="{Binding SettingsCommand}"&gt;&lt;Bold&gt;Settings.&lt;/Bold&gt;&lt;/Hyperlink&gt;</value>
+    <value>Kill Switch is blocking all connections to avoid leaking your data. To dismiss this window, click CLOSE. If you would like to temporarily disable Kill Switch and reconnect to the Internet WITHOUT VPN protection, click DISABLE. To turn off Kill Switch permanently, go to &lt;Hyperlink Command="{Binding SettingsCommand}"&gt;Settings.&lt;/Hyperlink&gt;</value>
     <comment>The text displayed in Disconnect modal window ifn disconnect occured with Kill Switch turned on.</comment>
   </data>
   <data name="Dialogs_DisconnectError_btn_Disable" xml:space="preserve">
@@ -2550,9 +2546,9 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <value>Smart protocol selection will automatically use the protocol and port that offer the best connectivity.</value>
     <comment>The description of Default Protocol settings displayed in the tooltip of ( i ) image next to the label for Default Protocol combo box in Connection tab of Settings window</comment>
   </data>
-  <data name="Notifications_InsecureWiFi_LearnMore" xml:space="preserve">
-    <value>Learn More</value>
-    <comment>Button displayed in the Insecure Wi-Fi notification when connected to insecure Wi-Fi network.</comment>
+  <data name="Dialogs_InsecureWifi_btn_Connect" xml:space="preserve">
+    <value>Connect to VPN</value>
+    <comment>Button displayed in the Insecure Wi-Fi modal window when connected to insecure Wi-Fi network.</comment>
   </data>
   <data name="Login_Error_msg_Unauthorized" xml:space="preserve">
     <value>Invalid refresh token, please log in again.</value>
@@ -2659,5 +2655,17 @@ Exiting the application will disable the Kill Switch. Do you want to continue?</
   <data name="License_ttl" xml:space="preserve">
     <value>License</value>
     <comment>The title of License window</comment>
+  </data>
+  <data name="Dialogs_Update_btn_Update" xml:space="preserve">
+    <value>Update</value>
+    <comment>The label for update button in update modal window</comment>
+  </data>
+  <data name="Dialogs_Update_ttl" xml:space="preserve">
+    <value>Update available</value>
+    <comment>The title of Update modal window</comment>
+  </data>
+  <data name="Dialogs_InsecureWifi_btn_Close" xml:space="preserve">
+    <value>Close</value>
+    <comment>Button displayed in the Insecure Wi-Fi modal window when connected to insecure Wi-Fi network.</comment>
   </data>
 </root>

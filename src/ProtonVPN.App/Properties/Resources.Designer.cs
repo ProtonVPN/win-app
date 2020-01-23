@@ -3157,7 +3157,7 @@ namespace ProtonVPN.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kill Switch is blocking all connections to avoid leaking your data. To dismiss this window, click CLOSE. If you would like to temporarily disable Kill Switch and reconnect to the Internet WITHOUT VPN protection, click DISABLE. To turn off Kill Switch permanently, go to &lt;Hyperlink Command=&quot;{Binding SettingsCommand}&quot;&gt;&lt;Bold&gt;Settings.&lt;/Bold&gt;&lt;/Hyperlink&gt;.
+        ///   Looks up a localized string similar to Kill Switch is blocking all connections to avoid leaking your data. To dismiss this window, click CLOSE. If you would like to temporarily disable Kill Switch and reconnect to the Internet WITHOUT VPN protection, click DISABLE. To turn off Kill Switch permanently, go to &lt;Hyperlink Command=&quot;{Binding SettingsCommand}&quot;&gt;Settings.&lt;/Hyperlink&gt;.
         /// </summary>
         public static string Dialogs_DisconnectError_msg_KillSwitch {
             get {
@@ -3247,6 +3247,33 @@ namespace ProtonVPN.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string Dialogs_InsecureWifi_btn_Close {
+            get {
+                return ResourceManager.GetString("Dialogs_InsecureWifi_btn_Close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Connect to VPN.
+        /// </summary>
+        public static string Dialogs_InsecureWifi_btn_Connect {
+            get {
+                return ResourceManager.GetString("Dialogs_InsecureWifi_btn_Connect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insecure Wi-Fi connection detected: {0}&lt;LineBreak/&gt;&lt;LineBreak/&gt;We detected the WiFi network you connected to is not protected by a password. Public WiFi can be monitored by hackers or the network administrator, potentially exposing your data and browsing activity. Do you want to connect to ProtonVPN?.
+        /// </summary>
+        public static string Dialogs_InsecureWiFi_msg_Detected {
+            get {
+                return ResourceManager.GetString("Dialogs_InsecureWiFi_msg_Detected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your connection has been disabled because you are using a server that does not support peer-to-peer (P2P) traffic. P2P is not supported on free servers or servers that are numbered 100 or greater. Please use a different server for P2P..
         /// </summary>
         public static string Dialogs_P2PBlocked_msg_Blocked {
@@ -3324,6 +3351,33 @@ namespace ProtonVPN.Properties {
         public static string Dialogs_ttl_Warning {
             get {
                 return ResourceManager.GetString("Dialogs_ttl_Warning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update.
+        /// </summary>
+        public static string Dialogs_Update_btn_Update {
+            get {
+                return ResourceManager.GetString("Dialogs_Update_btn_Update", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A new app version is now available!.
+        /// </summary>
+        public static string Dialogs_Update_msg_NewAppVersion {
+            get {
+                return ResourceManager.GetString("Dialogs_Update_msg_NewAppVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update available.
+        /// </summary>
+        public static string Dialogs_Update_ttl {
+            get {
+                return ResourceManager.GetString("Dialogs_Update_ttl", resourceCulture);
             }
         }
         
@@ -3668,42 +3722,6 @@ namespace ProtonVPN.Properties {
         public static string NetShieldModal_msg {
             get {
                 return ResourceManager.GetString("NetShieldModal_msg", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Learn More.
-        /// </summary>
-        public static string Notifications_InsecureWiFi_LearnMore {
-            get {
-                return ResourceManager.GetString("Notifications_InsecureWiFi_LearnMore", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Insecure Wi-Fi connection detected: {0}.
-        /// </summary>
-        public static string Notifications_InsecureWiFi_msg_Detected {
-            get {
-                return ResourceManager.GetString("Notifications_InsecureWiFi_msg_Detected", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to What&apos;s new.
-        /// </summary>
-        public static string Notifications_Update_lnk_WhatsNew {
-            get {
-                return ResourceManager.GetString("Notifications_Update_lnk_WhatsNew", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to A new app version is now available!.
-        /// </summary>
-        public static string Notifications_Update_msg_NewAppVersion {
-            get {
-                return ResourceManager.GetString("Notifications_Update_msg_NewAppVersion", resourceCulture);
             }
         }
         
