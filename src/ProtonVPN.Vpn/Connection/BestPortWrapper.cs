@@ -188,26 +188,12 @@ namespace ProtonVPN.Vpn.Connection
 
         private async Task<VpnEndpoint> BestEndpoint(IReadOnlyList<Task<VpnEndpoint>> candidates)
         {
-            var pendingTasks = candidates.ToList();
-            while (pendingTasks.Any())
+            var result = await Task.WhenAll(candidates);
+            var aliveCandidates = result.Where(c => c.Port > 0).ToList();
+            if (aliveCandidates.Count > 0)
             {
-                await Task.WhenAny(pendingTasks);
-
-                pendingTasks.Clear();
-                foreach (var task in candidates)
-                {
-                    if (task.IsCompleted)
-                    {
-                        if (task.Result.Port > 0)
-                        {
-                            return task.Result;
-                        }
-                    }
-                    else
-                    {
-                        pendingTasks.Add(task);
-                    }
-                }
+                var rnd = new Random();
+                return aliveCandidates[rnd.Next(aliveCandidates.Count)];
             }
 
             return VpnEndpoint.EmptyEndpoint;
@@ -217,13 +203,12 @@ namespace ProtonVPN.Vpn.Connection
         {
             _logger.Info($"Pinging VPN server {server.Ip} for {protocol} protocol");
 
-            var rnd = new Random();
             var timeoutTask = Task.Delay(EndpointTimeout);
 
             return (from pair in _config.Ports
                 where protocol == VpnProtocol.Auto || protocol == pair.Key
                 from port in pair.Value
-                select GetPortAlive(new VpnEndpoint(server, pair.Key, port), timeoutTask)).OrderBy(p => rnd.Next()).ToList();
+                select GetPortAlive(new VpnEndpoint(server, pair.Key, port), timeoutTask)).ToList();
         }
 
         private async Task<VpnEndpoint> GetPortAlive(VpnEndpoint endpoint, Task timeoutTask)
