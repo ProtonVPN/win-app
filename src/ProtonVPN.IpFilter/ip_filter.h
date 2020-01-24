@@ -172,3 +172,13 @@ extern "C" EXPORT unsigned int IPFilterCreateNetInterfaceFilter(
     unsigned int weight,
     const char* name,
     GUID* filterKey);
+
+extern "C" EXPORT unsigned int IPFilterCreateLoopbackFilter(
+    IPFilterSessionHandle sessionHandle,
+    GUID* providerKey,
+    GUID* sublayerKey,
+    const IPFilterDisplayData* displayData,
+    unsigned int layer,
+    unsigned int action,
+    unsigned int weight,
+    GUID* filterKey);

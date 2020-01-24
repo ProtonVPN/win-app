@@ -361,6 +361,30 @@ namespace ProtonVPN.NetworkFilter
             return id;
         }
 
+        public static Guid CreateLoopbackFilter(
+            IntPtr sessionHandle,
+            Guid providerId,
+            Guid sublayerId,
+            DisplayData displayData,
+            Layer layer,
+            Action action,
+            uint weight)
+        {
+            var id = Guid.Empty;
+
+            AssertSuccess(() => PInvoke.CreateLoopbackFilter(
+                sessionHandle,
+                ref providerId,
+                ref sublayerId,
+                ref displayData,
+                (uint)layer,
+                (uint)action,
+                weight,
+                ref id));
+
+            return id;
+        }
+
         private static void AssertSuccess(Func<uint> function)
         {
             uint status;
