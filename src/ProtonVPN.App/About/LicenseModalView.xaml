@@ -83,16 +83,16 @@
             <Setter Property="Foreground" Value="White"/>
         </Style>
         <markdown:Markdown x:Key="Markdown"
-                        DocumentStyle="{StaticResource DocumentStyle}"
-                        Heading1Style="{StaticResource H1Style}"
-                        Heading2Style="{StaticResource H2Style}"
-                        Heading3Style="{StaticResource H3Style}"
-                        Heading4Style="{StaticResource H4Style}"
-                        LinkStyle="{StaticResource LinkStyle}"
-                        ImageStyle="{StaticResource ImageStyle}"
-                        TableStyle="{StaticResource TableStyle}"
-                        TableHeaderStyle="{StaticResource TableHeaderStyle}"
-                        AssetPathRoot="{x:Static system:Environment.CurrentDirectory}"/>
+                           DocumentStyle="{StaticResource DocumentStyle}"
+                           Heading1Style="{StaticResource H1Style}"
+                           Heading2Style="{StaticResource H2Style}"
+                           Heading3Style="{StaticResource H3Style}"
+                           Heading4Style="{StaticResource H4Style}"
+                           LinkStyle="{StaticResource LinkStyle}"
+                           ImageStyle="{StaticResource ImageStyle}"
+                           TableStyle="{StaticResource TableStyle}"
+                           TableHeaderStyle="{StaticResource TableHeaderStyle}"
+                           AssetPathRoot="{x:Static system:Environment.CurrentDirectory}"/>
         <markdown:TextToFlowDocumentConverter x:Key="TextToFlowDocumentConverter" Markdown="{StaticResource Markdown}"/>
 
         <Style TargetType="ScrollViewer">
