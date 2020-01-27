@@ -93,7 +93,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 HorizontalAlignment="Left"
                                 Command="{Binding LicenseCommand}"
                                 Style="{StaticResource ClearStyleButton}">
-                            <TextBlock Foreground="White"
+                            <TextBlock Foreground="{StaticResource PrimaryColor}"
                                        FontSize="16"
                                        HorizontalAlignment="Left"
                                        FontWeight="Bold"
