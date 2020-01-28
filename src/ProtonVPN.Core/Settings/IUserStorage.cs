@@ -17,8 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Core.Api.Contracts;
 using System;
+using ProtonVPN.Core.Api.Contracts;
+using UserLocation = ProtonVPN.Core.User.UserLocation;
 
 namespace ProtonVPN.Core.Settings
 {

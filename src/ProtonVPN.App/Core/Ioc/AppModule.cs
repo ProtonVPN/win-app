@@ -39,6 +39,7 @@ using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Settings.Migrations;
 using ProtonVPN.Core.Startup;
 using ProtonVPN.Core.Storage;
+using ProtonVPN.Core.User;
 using ProtonVPN.Map;
 using ProtonVPN.Modals;
 using ProtonVPN.Modals.Dialogs;
@@ -62,20 +63,22 @@ namespace ProtonVPN.Core.Ioc
 
             builder.Register(c => new ConfigFactory().Config());
 
+            builder.RegisterType<Bootstrapper>().SingleInstance();
+            builder.RegisterType<EventAggregator>().As<IEventAggregator>().SingleInstance();
+            builder.RegisterType<JsonSerializerFactory>().As<ITextSerializerFactory>().SingleInstance();
+
             builder.RegisterType<SidebarManager>().SingleInstance();
             builder.RegisterType<PricingBuilder>().SingleInstance();
             builder.RegisterType<UpdateViewModel>().AsSelf().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<VpnConnectionSpeed>().AsImplementedInterfaces().AsSelf().SingleInstance();
 
-            builder.RegisterType<EventAggregator>().As<IEventAggregator>().SingleInstance();
-            builder.RegisterType<JsonSerializerFactory>().As<ITextSerializerFactory>().SingleInstance();
-
             builder.RegisterType<ServerCache>().SingleInstance();
-            builder.RegisterType<CachedServersProvider>().SingleInstance();
-            builder.RegisterType<ServersUpdater>().AsImplementedInterfaces().AsSelf().SingleInstance();
+            builder.RegisterType<ApiServers>().SingleInstance();
+            builder.RegisterType<ServerUpdater>().AsImplementedInterfaces().AsSelf().SingleInstance();
 
-            builder.RegisterType<Bootstrapper>().SingleInstance();
             builder.RegisterType<UserStorage>().As<IUserStorage>().SingleInstance();
+            builder.RegisterType<TruncatedLocation>().SingleInstance();
+
             builder.RegisterType<ServerCandidatesFactory>().SingleInstance();
             builder.RegisterType<PinFactory>()
                 .AsImplementedInterfaces()

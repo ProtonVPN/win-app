@@ -17,14 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
+using System.Globalization;
+using System.Security.Cryptography;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.OS.Crypto;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Storage;
-using System;
-using System.Globalization;
-using System.Security.Cryptography;
+using UserLocation = ProtonVPN.Core.User.UserLocation;
 
 namespace ProtonVPN.Core.Settings
 {

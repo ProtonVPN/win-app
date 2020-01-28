@@ -18,37 +18,40 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
-using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Threading;
+using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.Auth;
-using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.User;
+using UserLocation = ProtonVPN.Core.User.UserLocation;
 
 namespace ProtonVPN.Core.Servers
 {
-    public class ServersUpdater : ILoggedInAware, ILogoutAware, IUserLocationAware
+    public class ServerUpdater : ILoggedInAware, ILogoutAware, IUserLocationAware
     {
-        private readonly ILogger _logger;
         private readonly ISchedulerTimer _timer;
         private readonly ServerManager _serverManager;
-        private readonly CachedServersProvider _serversProvider;
+        private readonly ApiServers _apiServers;
+        private readonly ServerCache _serverCache;
 
         private readonly SingleAction _updateAction;
 
-        public ServersUpdater(
-            ILogger logger,
+        private bool _firstTime = true;
+
+        public ServerUpdater(
             IScheduler scheduler,
             Config appConfig,
             ServerManager serverManager,
-            CachedServersProvider serversProvider)
+            ApiServers apiServers,
+            ServerCache serverCache)
         {
-            _logger = logger;
             _serverManager = serverManager;
-            _serversProvider = serversProvider;
+            _apiServers = apiServers;
+            _serverCache = serverCache;
 
             _timer = scheduler.Timer();
             _timer.Interval = appConfig.ServerUpdateInterval.RandomizedWithDeviation(0.2);
@@ -67,6 +70,7 @@ namespace ProtonVPN.Core.Servers
         public void OnUserLoggedOut()
         {
             _timer.Stop();
+            _firstTime = true;
         }
 
         public async Task Update()
@@ -83,15 +87,40 @@ namespace ProtonVPN.Core.Servers
 
         private async Task UpdateServers()
         {
-            var servers = await _serversProvider.GetServersAsync();
+            var servers = await GetServers();
+
             if (!servers.Any())
-            {
-                _logger.Error("Failed to update server list");
                 return;
-            }
 
             _serverManager.Load(servers);
             InvokeServersUpdated();
+            _serverCache.SetAll(servers);
+        }
+
+        private async Task<IReadOnlyCollection<LogicalServerContract>> GetServers()
+        {
+            if (!_firstTime)
+            {
+                return await _apiServers.GetAsync();
+            }
+
+            _firstTime = false;
+
+            if (_serverManager.Empty())
+            {
+                return await _apiServers.GetAsync();
+            }
+
+            // First time after start or logoff server update is scheduled without waiting for the result
+            ScheduleUpdate();
+
+            return new List<LogicalServerContract>(0);
+        }
+
+        private void ScheduleUpdate()
+        {
+            // Schedule servers update from API without waiting for the result
+            _updateAction.Task.ContinueWith(t => Update());
         }
 
         private void Timer_OnTick(object sender, EventArgs eventArgs)

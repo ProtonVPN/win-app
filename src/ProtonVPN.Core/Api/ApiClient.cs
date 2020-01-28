@@ -17,18 +17,17 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Newtonsoft.Json;
-using ProtonVPN.Common.Logging;
-using ProtonVPN.Core.Abstract;
-using ProtonVPN.Core.Api.Contracts;
-using ProtonVPN.Core.Api.Data;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using ProtonVPN.Core.Settings;
+using Newtonsoft.Json;
+using ProtonVPN.Common.Logging;
+using ProtonVPN.Core.Abstract;
+using ProtonVPN.Core.Api.Contracts;
+using ProtonVPN.Core.Api.Data;
 using UserLocation = ProtonVPN.Core.Api.Contracts.UserLocation;
 
 namespace ProtonVPN.Core.Api
@@ -153,12 +152,11 @@ namespace ProtonVPN.Core.Api
             }
         }
 
-        public async Task<ApiResponseResult<ServerList>> GetServersAsync(TruncatedLocation location)
+        public async Task<ApiResponseResult<ServerList>> GetServersAsync(string ip)
         {
             try
             {
                 var uri = "vpn/logicals";
-                var ip = location.Value();
                 if (!string.IsNullOrEmpty(ip))
                 {
                     // The following route is used to retrieve VPN server information,

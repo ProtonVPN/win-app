@@ -21,7 +21,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.Api.Data;
-using ProtonVPN.Core.Settings;
+using ProtonVPN.Core.User;
 using UserLocation = ProtonVPN.Core.Api.Contracts.UserLocation;
 
 namespace ProtonVPN.Core.Api
@@ -33,7 +33,7 @@ namespace ProtonVPN.Core.Api
         Task<ApiResponseResult<VpnInfoResponse>> GetVpnInfoResponse();
         Task<ApiResponseResult<BaseResponse>> GetLogoutResponse();
         Task<ApiResponseResult<EventResponse>> GetEventResponse(string lastId = default);
-        Task<ApiResponseResult<ServerList>> GetServersAsync(TruncatedLocation location);
+        Task<ApiResponseResult<ServerList>> GetServersAsync(string ip);
         Task<ApiResponseResult<UserLocation>> GetLocationDataAsync();
         Task<ApiResponseResult<BaseResponse>> ReportBugAsync(IEnumerable<KeyValuePair<string, string>> fields, IEnumerable<File> files);
         Task<ApiResponseResult<PricingPlans>> GetPricing(string currency, sbyte cycle);

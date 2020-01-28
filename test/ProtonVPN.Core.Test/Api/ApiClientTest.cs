@@ -17,6 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
+using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
@@ -24,11 +28,6 @@ using ProtonVPN.Common.Logging;
 using ProtonVPN.Core.Abstract;
 using ProtonVPN.Core.Api;
 using RichardSzalay.MockHttp;
-using System;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
-using ProtonVPN.Core.Settings;
 
 namespace ProtonVPN.Core.Test.Api
 {
@@ -71,7 +70,7 @@ namespace ProtonVPN.Core.Test.Api
             });
 
             //act
-            var response = await _apiClient.GetServersAsync(new TruncatedLocation("127.0.0.1"));
+            var response = await _apiClient.GetServersAsync("127.0.0.0");
 
             //assert
             response.Success.Should().BeTrue();

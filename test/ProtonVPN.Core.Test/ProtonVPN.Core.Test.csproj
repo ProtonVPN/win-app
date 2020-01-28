@@ -103,7 +103,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Servers\ServerSpecsTest.cs" />
     <Compile Include="Servers\ServerTest.cs" />
-    <Compile Include="Settings\TruncatedLocationTest.cs" />
+    <Compile Include="User\TruncatedLocationTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
