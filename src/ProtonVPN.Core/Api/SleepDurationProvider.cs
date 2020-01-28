@@ -26,13 +26,11 @@ namespace ProtonVPN.Core.Api
     public class SleepDurationProvider
     {
         private readonly DelegateResult<HttpResponseMessage> _response;
-        private readonly int _retryCount;
         private const int MaxTimeout = 10;
 
-        public SleepDurationProvider(DelegateResult<HttpResponseMessage> response, int retryCount)
+        public SleepDurationProvider(DelegateResult<HttpResponseMessage> response)
         {
             _response = response;
-            _retryCount = retryCount;
         }
 
         public TimeSpan Value()
@@ -43,7 +41,7 @@ namespace ProtonVPN.Core.Api
                 return TimeSpan.FromSeconds(Math.Min(retryAfter.Delta.Value.Seconds, MaxTimeout));
             }
 
-            return TimeSpan.FromSeconds(Math.Pow(2, _retryCount));
+            return TimeSpan.FromSeconds(MaxTimeout);
         }
     }
 }

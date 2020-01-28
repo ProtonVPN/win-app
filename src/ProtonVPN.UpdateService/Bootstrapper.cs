@@ -122,7 +122,7 @@ namespace ProtonVPN.UpdateService
                 new RetryingHandler(
                         c.Resolve<Config>().ApiTimeout,
                         c.Resolve<Config>().ApiRetries,
-                        (retryCount, response, context) => new SleepDurationProvider(response, retryCount).Value())
+                        (retryCount, response, context) => new SleepDurationProvider(response).Value())
                     { InnerHandler = c.Resolve<LoggingHandler>() }).SingleInstance();
 
             builder.Register(c => new DefaultAppUpdateConfig
