@@ -103,6 +103,8 @@ namespace ProtonVPN.Core.Servers
             return servers.FirstOrDefault(s => userTier >= s.Tier) != null;
         }
 
+        public bool Empty() => !_servers.Any();
+
         private void SaveServers(IEnumerable<LogicalServerContract> servers)
         {
             _servers = servers.Where(s => s != null).ToList();

@@ -212,7 +212,7 @@ namespace ProtonVPN.Core
             var appWindow = Resolve<AppWindow>();
             var appSettings = Resolve<IAppSettings>();
 
-            Resolve<ServersUpdater>().ServersUpdated += (sender, e) =>
+            Resolve<ServerUpdater>().ServersUpdated += (sender, e) =>
             {
                 var instances = Resolve<IEnumerable<IServersAware>>();
                 foreach (var instance in instances)
@@ -436,8 +436,7 @@ namespace ProtonVPN.Core
         private async Task SwitchToAppWindow(bool autoLogin)
         {
             var appConfig = Resolve<Common.Configuration.Config>();
-            var serversUpdater = Resolve<ServersUpdater>();
-            await serversUpdater.Update();
+            await Resolve<ServerUpdater>().Update();
 
             if (!Resolve<UserAuth>().LoggedIn)
             {
@@ -484,13 +483,9 @@ namespace ProtonVPN.Core
             {
                 await Resolve<VpnManager>().GetState();
             }
-            catch (CommunicationException e)
+            catch (Exception ex) when (ex is CommunicationException || ex is TimeoutException)
             {
-                Resolve<ILogger>().Error(e);
-            }
-            catch (TimeoutException e)
-            {
-                Resolve<ILogger>().Error(e);
+                Resolve<ILogger>().Error(ex);
             }
         }
 
@@ -500,12 +495,7 @@ namespace ProtonVPN.Core
 
             if (result.Failure)
             {
-                SentrySdk.WithScope(scope =>
-                {
-                    scope.Level = SentryLevel.Error;
-                    scope.SetTag("captured_in", "App_Bootstrapper_StartService");
-                    SentrySdk.CaptureException(result.Exception);
-                });
+                ReportException(result.Exception);
 
                 var config = Resolve<Common.Configuration.Config>();
                 var filename = config.ErrorMessageExePath;
@@ -518,14 +508,19 @@ namespace ProtonVPN.Core
                 {
                     var serviceName = Path.GetFileNameWithoutExtension(filename);
                     Resolve<ILogger>().Error($"Failed to start {serviceName} process: {e.CombinedMessage()}");
-                    SentrySdk.WithScope(scope =>
-                    {
-                        scope.Level = SentryLevel.Error;
-                        scope.SetTag("captured_in", "App_Bootstrapper_StartService");
-                        SentrySdk.CaptureException(e);
-                    });
+                    ReportException(e);
                 }
             }
+        }
+
+        private void ReportException(Exception e)
+        {
+            SentrySdk.WithScope(scope =>
+            {
+                scope.Level = SentryLevel.Error;
+                scope.SetTag("captured_in", "App_Bootstrapper_StartService");
+                SentrySdk.CaptureException(e);
+            });
         }
 
         private string GetServiceErrorMessage(IService service, Exception e)

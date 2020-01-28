@@ -17,69 +17,49 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Core.Api;
 using ProtonVPN.Core.Api.Contracts;
-using ProtonVPN.Core.Settings;
+using ProtonVPN.Core.User;
 
 namespace ProtonVPN.Core.Servers
 {
-    public class CachedServersProvider
+    public class ApiServers
     {
-        private readonly IApiClient _apiClient;
         private readonly ILogger _logger;
-        private readonly ServerCache _serversFileStorage;
-        private readonly IUserStorage _userStorage;
+        private readonly IApiClient _apiClient;
+        private readonly TruncatedLocation _location;
 
-        public CachedServersProvider(
-            IApiClient apiClient,
+        public ApiServers(
             ILogger logger,
-            ServerCache serversFileStorage,
-            IUserStorage userStorage)
+            IApiClient apiClient,
+            TruncatedLocation location)
         {
-            _userStorage = userStorage;
-            _apiClient = apiClient;
-            _serversFileStorage = serversFileStorage;
             _logger = logger;
+            _apiClient = apiClient;
+            _location = location;
         }
 
-        public async Task<IReadOnlyCollection<LogicalServerContract>> GetServersAsync()
+        public async Task<IReadOnlyCollection<LogicalServerContract>> GetAsync()
         {
             try
             {
-                var location = new TruncatedLocation(_userStorage.Location().Ip);
-                var response = await _apiClient.GetServersAsync(location);
+                var response = await _apiClient.GetServersAsync(_location.Ip());
                 if (response.Success)
                 {
-                    await SaveServersToCache(response.Value.Servers);
                     return response.Value.Servers;
                 }
-
-                return _serversFileStorage.GetAll();
             }
             catch (HttpRequestException ex)
             {
                 _logger.Error("API: Get servers failed: " + ex.CombinedMessage());
-                return _serversFileStorage.GetAll();
             }
-        }
 
-        private async Task SaveServersToCache(IEnumerable<LogicalServerContract> servers)
-        {
-            try
-            {
-                await Task.Run(() => _serversFileStorage.SetAll(servers));
-            }
-            catch (Exception e) when (e is IOException || e is UnauthorizedAccessException)
-            {
-                _logger.Error("Error saving servers to cache: " + e);
-            }
+            return new LogicalServerContract[0];
         }
     }
 }

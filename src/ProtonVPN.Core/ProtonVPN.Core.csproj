@@ -208,7 +208,7 @@
     <Compile Include="Profiles\SyncProfile.cs" />
     <Compile Include="Profiles\SyncProfiles.cs" />
     <Compile Include="Servers\BestServer.cs" />
-    <Compile Include="Servers\CachedServersProvider.cs" />
+    <Compile Include="Servers\ApiServers.cs" />
     <Compile Include="Servers\FastestServer.cs" />
     <Compile Include="Servers\IServersAware.cs" />
     <Compile Include="Servers\Models\PhysicalServer.cs" />
@@ -226,7 +226,7 @@
     <Compile Include="Servers\ServerManager.cs" />
     <Compile Include="Servers\ServerNameComparer.cs" />
     <Compile Include="Servers\ServerCache.cs" />
-    <Compile Include="Servers\ServersUpdater.cs" />
+    <Compile Include="Servers\ServerUpdater.cs" />
     <Compile Include="Servers\ServerTiers.cs" />
     <Compile Include="Servers\Specs\FreeServer.cs" />
     <Compile Include="Servers\Specs\MaxTierServer.cs" />
@@ -254,8 +254,8 @@
     <Compile Include="Servers\Specs\TorServer.cs" />
     <Compile Include="Settings\ISettingsAware.cs" />
     <Compile Include="Settings\IUserStorage.cs" />
-    <Compile Include="Settings\TruncatedLocation.cs" />
-    <Compile Include="Settings\UserLocation.cs" />
+    <Compile Include="User\TruncatedLocation.cs" />
+    <Compile Include="User\UserLocation.cs" />
     <Compile Include="Srp\SrpPInvoke.cs" />
     <Compile Include="Storage\EnumerableAsJsonSettings.cs" />
     <Compile Include="Storage\CachedSettings.cs" />

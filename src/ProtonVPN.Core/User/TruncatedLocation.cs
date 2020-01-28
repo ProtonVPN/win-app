@@ -17,29 +17,35 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Core.Settings
+using ProtonVPN.Core.Settings;
+
+namespace ProtonVPN.Core.User
 {
-    public class UserLocation
+    public class TruncatedLocation
     {
-        public static UserLocation Empty { get; } = new UserLocation("", 0, 0, "", "");
+        private readonly IUserStorage _userStorage;
 
-        public string Ip { get; }
-
-        public float Latitude { get; }
-
-        public float Longitude { get; }
-
-        public string Isp { get; }
-
-        public string Country { get; }
-
-        public UserLocation(string ip, float latitude, float longitude, string isp, string country)
+        public TruncatedLocation(IUserStorage userStorage)
         {
-            Ip = ip ?? "";
-            Latitude = latitude;
-            Longitude = longitude;
-            Isp = isp ?? "";
-            Country = country ?? "";
+            _userStorage = userStorage;
+        }
+
+        public string Ip()
+        {
+            var ip = _userStorage.Location().Ip;
+
+            if (string.IsNullOrEmpty(ip))
+            {
+                return string.Empty;
+            }
+
+            var parts = ip.Split('.');
+            if (parts.Length >= 3)
+            {
+                return string.Join(".", parts[0], parts[1], parts[2], 0);
+            }
+
+            return string.Empty;
         }
     }
 }
