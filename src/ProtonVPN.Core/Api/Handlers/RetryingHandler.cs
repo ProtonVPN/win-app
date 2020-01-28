@@ -18,12 +18,14 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Polly;
+using Polly.Contrib.WaitAndRetry;
 using Polly.Timeout;
 
 namespace ProtonVPN.Core.Api.Handlers
@@ -48,17 +50,21 @@ namespace ProtonVPN.Core.Api.Handlers
 
         public RetryingHandler(TimeSpan timeout, int maxRetries, Func<int, DelegateResult<HttpResponseMessage>, Context, TimeSpan> sleepDurationProvider)
         {
+            var retryAfterPolicy = Policy
+                .HandleResult<HttpResponseMessage>(ContainsRetryAfterHeader)
+                .WaitAndRetryAsync(maxRetries, sleepDurationProvider, (outcome, timespan, retryCount, context) => Task.CompletedTask);
+
             var httpRetryPolicy =
                 Policy
                     .Handle<HttpRequestException>()
                     .Or<TaskCanceledException>()
                     .Or<TimeoutRejectedException>()
-                    .OrResult<HttpResponseMessage>(r => HttpStatusCodesWorthRetrying.Contains(r.StatusCode))
-                    .WaitAndRetryAsync(maxRetries, sleepDurationProvider, (outcome, timespan, retryCount, context) => Task.CompletedTask);
+                    .OrResult<HttpResponseMessage>(RetryRequired)
+                    .WaitAndRetryAsync(GetBackOff(maxRetries));
 
             var timeoutPolicy = Policy.TimeoutAsync(timeout);
 
-            _policy = httpRetryPolicy.WrapAsync(timeoutPolicy);
+            _policy = retryAfterPolicy.WrapAsync(httpRetryPolicy).WrapAsync(timeoutPolicy);
         }
 
         protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request,
@@ -67,6 +73,21 @@ namespace ProtonVPN.Core.Api.Handlers
             return _policy.ExecuteAsync(async ct =>
                     await base.SendAsync(request, ct),
                 cancellationToken);
+        }
+
+        private bool RetryRequired(HttpResponseMessage response)
+        {
+            return HttpStatusCodesWorthRetrying.Contains(response.StatusCode) && !ContainsRetryAfterHeader(response);
+        }
+
+        private bool ContainsRetryAfterHeader(HttpResponseMessage response)
+        {
+            return response?.Headers?.RetryAfter != null;
+        }
+
+        private IEnumerable<TimeSpan> GetBackOff(int maxRetries)
+        {
+            return Backoff.DecorrelatedJitterBackoffV2(TimeSpan.FromSeconds(2), maxRetries);
         }
     }
 }

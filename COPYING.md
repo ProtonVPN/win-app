@@ -64,6 +64,8 @@ ProtonVPN for Windows includes the following 3rd party software:
   | [The MIT License](https://raw.githubusercontent.com/AArnott/pinvoke/cf0176c42b/LICENSE).
 * [Polly](https://github.com/App-vNext/Polly) by Michael Wolfenden, App vNext
   | [The 3-Clause BSD License](https://opensource.org/licenses/BSD-3-Clause).
+* [Polly.Contrib.WaitAndRetry](https://github.com/Polly-Contrib/Polly.Contrib.WaitAndRetry) by Grant Dickinson
+  | [The 3-Clause BSD License](https://opensource.org/licenses/BSD-3-Clause).
 * [Sentry](https://sentry.io) by Sentry Team and Contributors
   | [The MIT License](https://raw.githubusercontent.com/getsentry/sentry-dotnet/master/LICENSE).
 * [Sentry.PlatformAbstractions](https://sentry.io) by Sentry Team and Contributors

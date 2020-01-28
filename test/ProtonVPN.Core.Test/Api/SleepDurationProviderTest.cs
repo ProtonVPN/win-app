@@ -37,20 +37,15 @@ namespace ProtonVPN.Core.Test.Api
         [DataRow(100)]
         public void Value_ShouldBeNotHigherThan10(int delta)
         {
-            GetProvider(delta, 3).Value().Seconds.Should().BeLessOrEqualTo(10);
+            GetProvider(delta).Value().Seconds.Should().BeLessOrEqualTo(10);
         }
 
-        public void Value_ShouldBeExponentialWhenHeaderIsZero()
-        {
-            GetProvider(0, 3).Value().Seconds.Should().Be(8);
-        }
-
-        private SleepDurationProvider GetProvider(int seconds, int retryCount)
+        private SleepDurationProvider GetProvider(int seconds)
         {
             var message = new HttpResponseMessage();
             message.Headers.RetryAfter = new RetryConditionHeaderValue(TimeSpan.FromSeconds(seconds));
             var response = new DelegateResult<HttpResponseMessage>(message);
-            return new SleepDurationProvider(response, retryCount);
+            return new SleepDurationProvider(response);
         }
     }
 }
