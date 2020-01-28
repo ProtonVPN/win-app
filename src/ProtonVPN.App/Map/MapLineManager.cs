@@ -226,11 +226,10 @@ namespace ProtonVPN.Map
 
         private void BuildHomeLines()
         {
-            _lines = new List<MapLine>();
-            foreach (var pin in _pins)
-            {
-                _lines.Add(new HomeLine(pin.Value));
-            }
+            _lines = _pins
+                .Select(pin => new HomeLine(pin.Value))
+                .Cast<MapLine>()
+                .ToList();
         }
 
         private void BuildSecureCoreLines()
