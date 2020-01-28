@@ -260,6 +260,26 @@ namespace ProtonVPN.NetworkFilter
             return filterId;
         }
 
+        public Guid CreateLoopbackFilter(
+            DisplayData displayData,
+            Action action,
+            Layer layer,
+            uint weight)
+        {
+            var filterId = IpFilterNative.CreateLoopbackFilter(
+                Session.Handle,
+                ProviderId,
+                Id,
+                displayData,
+                layer,
+                action,
+                weight);
+
+            AddFilter(filterId);
+
+            return filterId;
+        }
+
         private void AddFilter(Guid id)
         {
             _filters.Add(id);

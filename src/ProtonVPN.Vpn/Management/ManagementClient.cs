@@ -136,7 +136,7 @@ namespace ProtonVPN.Vpn.Management
                 await HandleStateMessage(message);
                 handled = true;
             }
-            else if (message.IsBytecount)
+            else if (message.IsByteCount)
             {
                 HandleByteMessage(message);
                 handled = true;
@@ -182,7 +182,7 @@ namespace ProtonVPN.Vpn.Management
             {
                 await TrySend(_managementChannel.Messages.Bytecount());
             }
-            else if (message.IsBytecountSet)
+            else if (message.IsByteCountSet)
             {
                 await TrySend(_managementChannel.Messages.LogOn());
             }
