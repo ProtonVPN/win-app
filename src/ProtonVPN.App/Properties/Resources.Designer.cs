@@ -3222,9 +3222,9 @@ namespace ProtonVPN.Properties {
         /// <summary>
         ///   Looks up a localized string similar to There&apos;s a problem validating the VPN server certificate, which might indicate that the network connection is being tampered with or the server you are trying to connect to has a configuration problem. Get help from our customer support by sending a &lt;Hyperlink Foreground=&quot;White&quot; Command=&quot;{Binding ReportBugCommand}&quot;&gt;&lt;Run Text=&quot;Bug Report&quot;/&gt;&lt;/Hyperlink&gt;..
         /// </summary>
-        public static string Dialogs_DisconnectError_msg_TlsError {
+        public static string Dialogs_DisconnectError_msg_TlsCertificateError {
             get {
-                return ResourceManager.GetString("Dialogs_DisconnectError_msg_TlsError", resourceCulture);
+                return ResourceManager.GetString("Dialogs_DisconnectError_msg_TlsCertificateError", resourceCulture);
             }
         }
         

@@ -28,6 +28,7 @@ namespace ProtonVPN.Common.Vpn
         NoTapAdaptersError,
         TapRequiresUpdateError,
         TlsError,
+        TlsCertificateError,
         TimeoutError,
         UserTierTooLowError,
         Unpaid,

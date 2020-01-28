@@ -252,5 +252,19 @@ namespace ProtonVPN.NetworkFilter
             uint weight,
             [MarshalAs(UnmanagedType.LPStr)] string interfaceId,
             [In, Out] ref Guid filterKey);
+
+        [DllImport(
+            BinaryName,
+            EntryPoint = "IPFilterCreateLoopbackFilter",
+            CallingConvention = CallingConvention.Cdecl)]
+        public static extern uint CreateLoopbackFilter(
+            IntPtr sessionHandle,
+            [In] ref Guid providerKey,
+            [In] ref Guid sublayerKey,
+            ref DisplayData displayData,
+            uint layer,
+            uint action,
+            uint weight,
+            [In, Out] ref Guid filterKey);
     }
 }

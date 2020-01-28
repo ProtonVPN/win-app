@@ -68,7 +68,7 @@ namespace ProtonVPN.Vpn.Management
 
         private void Log(ReceivedManagementMessage message)
         {
-            if (!message.IsBytecount)
+            if (!message.IsByteCount)
                 _logger.Info($"Management -> {message}");
         }
 

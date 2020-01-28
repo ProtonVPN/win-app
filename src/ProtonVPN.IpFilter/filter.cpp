@@ -1,4 +1,3 @@
-#pragma once
 #include "pch.h"
 #include <fwptypes.h>
 #include <fwpmu.h>
@@ -369,6 +368,34 @@ unsigned int IPFilterCreateNetInterfaceFilter(
     conditions.push_back(ipfilter::condition::netInterface(
         ipfilter::matcher::equal(),
         *netInterfaceIt));
+
+    return IPFilterCreateFilter(
+        sessionHandle,
+        providerKey,
+        sublayerKey,
+        displayData,
+        layer,
+        action,
+        weight,
+        nullptr,
+        nullptr,
+        conditions,
+        filterKey);
+}
+
+unsigned int IPFilterCreateLoopbackFilter(
+    IPFilterSessionHandle sessionHandle,
+    GUID* providerKey,
+    GUID* sublayerKey,
+    const IPFilterDisplayData* displayData,
+    unsigned int layer,
+    unsigned int action,
+    unsigned int weight,
+    GUID* filterKey)
+{
+    std::vector<ipfilter::condition::Condition> conditions{};
+
+    conditions.push_back(ipfilter::condition::loopback());
 
     return IPFilterCreateFilter(
         sessionHandle,

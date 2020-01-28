@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Management\OpenVpnManagementPortsTest.cs" />
+    <Compile Include="Management\ManagementErrorTest.cs" />
     <Compile Include="OpenVpn\Arguments\LocalHostArgumentsTest.cs" />
     <Compile Include="OpenVpn\Arguments\NoBindArgumentsTest.cs" />
     <Compile Include="OpenVpn\Arguments\ManagementArgumentsTest.cs" />
