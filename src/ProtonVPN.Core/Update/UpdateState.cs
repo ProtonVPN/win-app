@@ -23,12 +23,20 @@ namespace ProtonVPN.Core.Update
 {
     public class UpdateState
     {
-        public UpdateState(IReadOnlyList<Release> releaseHistory, bool available, bool ready, UpdateStatus status)
+        public UpdateState(
+            IReadOnlyList<Release> releaseHistory,
+            bool available,
+            bool ready,
+            UpdateStatus status,
+            string filePath,
+            string fileArguments)
         {
             ReleaseHistory = releaseHistory;
             Available = available;
             Ready = ready;
             Status = status;
+            FilePath = filePath;
+            FileArguments = fileArguments;
         }
 
         public IReadOnlyList<Release> ReleaseHistory { get; }
@@ -38,5 +46,9 @@ namespace ProtonVPN.Core.Update
         public bool Ready { get; }
 
         public UpdateStatus Status { get; }
+
+        public string FilePath { get; }
+
+        public string FileArguments { get; }
     }
 }

@@ -102,6 +102,6 @@ namespace ProtonVPN.Update.Updates
             return Task.CompletedTask;
         }
 
-        private string FilePath(Release release) => _fileLocation.Path(release.File.Url);
+        internal string FilePath(Release release) => _fileLocation.Path(release.File.Url);
     }
 }

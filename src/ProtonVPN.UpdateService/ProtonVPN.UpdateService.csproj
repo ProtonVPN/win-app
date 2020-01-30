@@ -76,7 +76,7 @@
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Bootstrapper.cs" />
-    <Compile Include="ElevatedProcess.cs" />
+    <Compile Include="EventBasedLaunchableFile.cs" />
     <Compile Include="UpdateHandler.cs" />
     <Compile Include="UpdateService.cs">
       <SubType>Component</SubType>

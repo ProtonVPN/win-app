@@ -18,13 +18,13 @@
  */
 
 using GalaSoft.MvvmLight.Command;
+using ProtonVPN.Common.OS.Processes;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.MVVM;
 using ProtonVPN.Core.Update;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Resources;
-using System;
 using System.Dynamic;
 using System.Threading.Tasks;
 using System.Windows;
@@ -34,15 +34,16 @@ namespace ProtonVPN.About
 {
     public class UpdateViewModel : ViewModel, IUpdateStateAware, IVpnStateAware
     {
-        private readonly UpdateService _updateService;
         private readonly IModals _modals;
         private readonly IDialogs _dialogs;
+        private readonly IOsProcesses _osProcesses;
 
         private VpnStatus _vpnStatus;
+        private UpdateStateChangedEventArgs _updateStateChangedEventArgs;
 
-        public UpdateViewModel(UpdateService updateService, IModals modals, IDialogs dialogs)
+        public UpdateViewModel(IModals modals, IDialogs dialogs, IOsProcesses osProcesses)
         {
-            _updateService = updateService;
+            _osProcesses = osProcesses;
             _modals = modals;
             _dialogs = dialogs;
 
@@ -92,6 +93,7 @@ namespace ProtonVPN.About
 
         public void OnUpdateStateChanged(UpdateStateChangedEventArgs e)
         {
+            _updateStateChangedEventArgs = e;
             Status = e.Status;
             Available = e.Available;
             Ready = e.Ready;
@@ -111,10 +113,21 @@ namespace ProtonVPN.About
             }
 
             Updating = true;
-            _updateService.Update(false).ContinueWith(t =>
+
+            try
             {
-                Application.Current.Dispatcher.BeginInvoke((Action)(() => Updating = false));
-            });
+                _osProcesses.ElevatedProcess(
+                    _updateStateChangedEventArgs.FilePath,
+                    _updateStateChangedEventArgs.FileArguments).Start();
+
+
+                Application.Current.Shutdown();
+            }
+            catch (System.ComponentModel.Win32Exception)
+            {
+                // Privileges were not granted
+                Updating = false;
+            }
         }
 
         private bool CanUpdate() => !Updating && Ready;

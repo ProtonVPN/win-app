@@ -21,9 +21,18 @@ namespace ProtonVPN.UpdateService
 {
     static class Program
     {
-        static void Main()
+        static void Main(string[] args)
         {
-            new Bootstrapper().Initialize();
+            var bootstrapper = new Bootstrapper();
+
+            if (args.Length == 0)
+            {
+                bootstrapper.Initialize();
+            }
+            else
+            {
+                bootstrapper.StartUpdate();
+            }
         }
     }
 }

@@ -132,6 +132,10 @@ namespace ProtonVPN.Core
                 Resolve<IUserStorage>().ClearLogin();
                 appSettings.LoggedInWithSavedCredentials = false;
             }
+
+            Resolve<TrayIcon>().Hide();
+            Resolve<VpnServiceWrapper>().Stop();
+            Resolve<AppUpdateServiceWrapper>().Stop();
         }
 
         private async Task<bool> SessionExpired()
