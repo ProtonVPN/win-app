@@ -27,5 +27,7 @@ namespace ProtonVPN.Update
         bool Available { get; }
         bool Ready { get; }
         AppUpdateStatus Status { get; }
+        string FilePath { get; }
+        string FileArguments { get; }
     }
 }

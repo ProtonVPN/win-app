@@ -29,12 +29,16 @@ namespace ProtonVPN.UpdateServiceContract
             ICollection<ReleaseContract> releaseHistory,
             bool available,
             bool ready,
-            AppUpdateStatusContract status)
+            AppUpdateStatusContract status,
+            string filePath,
+            string fileArguments)
         {
             ReleaseHistory = releaseHistory;
             Available = available;
             Ready = ready;
             Status = status;
+            FilePath = filePath;
+            FileArguments = fileArguments;
         }
 
         [DataMember]
@@ -48,5 +52,11 @@ namespace ProtonVPN.UpdateServiceContract
 
         [DataMember]
         public AppUpdateStatusContract Status { get; private set; }
+
+        [DataMember]
+        public string FilePath { get; private set; }
+
+        [DataMember]
+        public string FileArguments { get; private set; }
     }
 }

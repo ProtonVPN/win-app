@@ -17,13 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.OS.Services;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Modals;
-using ProtonVPN.Core.Service;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Resources;
-using ProtonVPN.Windows;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -32,18 +29,12 @@ namespace ProtonVPN.Core
     internal class AppExitHandler : IVpnStateAware
     {
         private readonly IDialogs _dialogs;
-        private readonly IService _vpnService;
-        private readonly IService _appUpdateService;
         private VpnStatus _vpnStatus;
-        private readonly TrayIcon _trayIcon;
 
         public bool PendingExit { get; private set; }
 
-        public AppExitHandler(IDialogs dialogs, VpnServiceWrapper vpnService, TrayIcon trayIcon, AppUpdateServiceWrapper appUpdateService)
+        public AppExitHandler(IDialogs dialogs)
         {
-            _trayIcon = trayIcon;
-            _vpnService = vpnService;
-            _appUpdateService = appUpdateService;
             _dialogs = dialogs;
         }
 
@@ -58,9 +49,6 @@ namespace ProtonVPN.Core
             }
 
             PendingExit = true;
-            _vpnService.Stop();
-            _appUpdateService.Stop();
-            _trayIcon.Hide();
 
             Application.Current.Shutdown();
         }

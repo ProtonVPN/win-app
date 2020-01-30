@@ -46,7 +46,7 @@ namespace ProtonVPN.Core.Update
         private bool _requestedManualCheck;
         private bool _autoUpdateInProgress;
         private UpdateStatus _status = UpdateStatus.None;
-        private VpnStatus _vpnStatus = VpnStatus.Disconnected;
+        private VpnStateChangedEventArgs _vpnStateChangedEvent;
 
         public UpdateService(
             Config appConfig,
@@ -92,7 +92,7 @@ namespace ProtonVPN.Core.Update
 
         public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
         {
-            _vpnStatus = e.State.Status;
+            _vpnStateChangedEvent = e;
             return Task.CompletedTask;
         }
 
@@ -128,7 +128,8 @@ namespace ProtonVPN.Core.Update
         {
             return _appSettings.AutoUpdate &&
                    status == AppUpdateStatusContract.Ready &&
-                   _vpnStatus == VpnStatus.Disconnected;
+                   _vpnStateChangedEvent.State.Status == VpnStatus.Disconnected &&
+                   !_vpnStateChangedEvent.NetworkBlocked;
         }
 
         private UpdateState Map(UpdateStateContract e)
@@ -141,7 +142,7 @@ namespace ProtonVPN.Core.Update
                     release.ChangeLog.ToList()))
                 .ToList();
 
-            return new UpdateState(releaseHistory, e.Available, e.Ready, (UpdateStatus)e.Status);
+            return new UpdateState(releaseHistory, e.Available, e.Ready, (UpdateStatus)e.Status, e.FilePath, e.FileArguments);
         }
 
         private void HandleManualCheck(UpdateStatus status)

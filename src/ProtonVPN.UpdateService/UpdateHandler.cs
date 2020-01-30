@@ -92,7 +92,9 @@ namespace ProtonVPN.UpdateService
                             Map(e.ReleaseHistory),
                             e.Available,
                             e.Ready,
-                            Map(e.Status)));
+                            Map(e.Status),
+                            e.FilePath,
+                            e.FileArguments));
                     }
                     catch (Exception ex) when (ex.IsCommunicationException())
                     {

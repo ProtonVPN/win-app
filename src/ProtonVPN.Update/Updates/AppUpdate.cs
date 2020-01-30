@@ -51,6 +51,32 @@ namespace ProtonVPN.Update.Updates
 
         public bool Ready => _state.Ready;
 
+        public string FilePath
+        {
+            get
+            {
+                if (_state.NewRelease.New)
+                {
+                    return _state.AppUpdates.FilePath(_state.NewRelease);
+                }
+
+                return string.Empty;
+            }
+        }
+
+        public string FileArguments
+        {
+            get
+            {
+                if (_state.NewRelease.New)
+                {
+                    return _state.NewRelease.File.Arguments;
+                }
+
+                return string.Empty;
+            }
+        }
+
         public IReadOnlyList<IRelease> ReleaseHistory()
         {
             return _state.EarlyAccess ? GetAllReleases() : GetStableReleases();

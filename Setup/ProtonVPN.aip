@@ -30,10 +30,11 @@
     <ROW Property="REBOOT" MultiBuildValue="DefaultBuild:ReallySuppress"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;AI_SETUPEXEPATH;SETUPEXEDIR"/>
     <ROW Property="ServiceName" Value="ProtonVPN Service" Comments="Used by Services and custom action ModifyServicePermissions"/>
-    <ROW Property="SplitTunnelDriverFile" Value="Set by custom action" Comments="Full path to driver file. Used by custom action InstallSplitTunnelDriver."/>
+    <ROW Property="SplitTunnelDriverFile" Value="This will be set by custom action" Comments="Full path to driver file. Used by custom action InstallSplitTunnelDriver."/>
     <ROW Property="SplitTunnelServiceDisplayName" Value="ProtonVPN Split Tunnel" Comments="Display name of the Split Tunnel driver service. Used by custom action InstallSplitTunnelDriver."/>
     <ROW Property="SplitTunnelServiceName" Value="ProtonVPNSplitTunnelCalloutDriver" MultiBuildValue="DefaultBuild:ProtonVPNSplitTunnel" Comments="Name of the Split Tunnel driver service. Used by custom actions InstallSplitTunnelDiver and UninstallSplitTunnelDriver."/>
     <ROW Property="UpdateServiceName" Value="ProtonVPN Update Service" Comments="Used by Services and custom action ModifyServicePermissions"/>
+    <ROW Property="UpdateServicePath" Value="This will be set by custom action"/>
     <ROW Property="UpgradeCode" Value="{2B10124D-2F81-4BB1-9165-4F9B1B1BA0F9}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
     <ROW Property="WindowsType9XDisplay" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
@@ -412,7 +413,9 @@
     <ROW Action="AI_DATA_SETTER_2" Type="51" Source="CustomActionData" Target="ProtonVPN Service"/>
     <ROW Action="AI_DATA_SETTER_3" Type="51" Source="CustomActionData" Target="ProtonVPN.exe"/>
     <ROW Action="AI_DATA_SETTER_4" Type="51" Source="CustomActionData" Target="AEkAcwA2ADQAQgBpAHQAAgABAEkAcwBGAGEAbABsAGIAYQBjAGsAMwAyAEIAaQB0AAIAAQBQAGEAcgBhAG0AcwACAAEAUwBjAHIAaQBwAHQAAgBSAGUAbQBvAHYAZQAtAEkAVABFAE0AIAAkAGUAbgB2ADoAUABSAE8ARwBSAEEATQBEAEEAVABBAFwAUAByAG8AdABvAG4AVgBQAE4AIAAtAHIAZQBjAHUAcgBzAGU="/>
+    <ROW Action="AI_DATA_SETTER_5" Type="51" Source="CustomActionData" Target="AEkAcwA2ADQAQgBpAHQAAgABAEkAcwBGAGEAbABsAGIAYQBjAGsAMwAyAEIAaQB0AAIAAQBQAGEAcgBhAG0AcwACAAEAUwBjAHIAaQBwAHQAAgBQAGEAcgBhAG0AKAApAA0ACgANAAoAJABzAGUAcgB2AGkAYwBlAFAAYQB0AGgAIAA9ACAAQQBJAF8ARwBlAHQATQBzAGkAUAByAG8AcABlAHIAdAB5ACAAVQBwAGQAYQB0AGUAUwBlAHIAdgBpAGMAZQBQAGEAdABoAA0ACgBTAGMAaABUAGEAcwBrAHMAIAAvAEMAcgBlAGEAdABlACAALwBGACAALwBUAE4AIAAiAFAAcgBvAHQAbwBuAFYAUABOACAAVQBwAGQAYQB0AGUAIgAgAC8AUgBVACAASQBOAFQARQBSAEEAQwBUAEkAVgBFACAALwBJAFQAIAAvAFIATAAgAEgASQBHAEgARQBTAFQAIAAvAFQAUgAgACIAJwAkAHMAZQByAHYAaQBjAGUAUABhAHQAaAAnACAAdQBwAGQAYQB0AGUAIgAgAC8AUwBDACAATwBOAEUAVgBFAE4AVAAgAC8ARQBDACAAQQBwAHAAbABpAGMAYQB0AGkAbwBuACAALwBNAE8AIAAiACoAWwBcAFsAXQBTAHkAcwB0AGUAbQBbAFwAWwBdAFAAcgBvAHYAaQBkAGUAcgBbAFwAWwBdAEAATgBhAG0AZQA9ACcAUAByAG8AdABvAG4AVgBQAE4AJwBbAFwAXQBdACAAYQBuAGQAIABFAHYAZQBuAHQASQBEAD0AMQBbAFwAXQBdAFsAXABdAF0AIg=="/>
     <ROW Action="AI_DATA_SETTER_6" Type="51" Source="CustomActionData" Target="ProtonVPN.ErrorMessage.exe"/>
+    <ROW Action="AI_DATA_SETTER_7" Type="51" Source="CustomActionData" Target="AEkAcwA2ADQAQgBpAHQAAgABAEkAcwBGAGEAbABsAGIAYQBjAGsAMwAyAEIAaQB0AAIAAQBQAGEAcgBhAG0AcwACAAEAUwBjAHIAaQBwAHQAAgBQAGEAcgBhAG0AKAApAA0ACgANAAoAcwBjAGgAdABhAHMAawBzACAALwBEAGUAbABlAHQAZQAgAC8ARgAgAC8AVABOACAAIgBQAHIAbwB0AG8AbgBWAFAATgAgAFUAcABkAGEAdABlACI="/>
     <ROW Action="AI_DOWNGRADE" Type="19" Target="4010"/>
     <ROW Action="AI_DeleteCadLzma" Type="51" Source="AI_DeleteLzma" Target="[AI_SETUPEXEPATH]"/>
     <ROW Action="AI_DeleteLzma" Type="1025" Source="lzmaextractor.dll" Target="DeleteLZMAFiles"/>
@@ -441,6 +444,8 @@
     <ROW Action="AI_SHOW_LOG" Type="65" Source="aicustact.dll" Target="LaunchLogFile" WithoutSeq="true"/>
     <ROW Action="AI_STORE_LOCATION" Type="51" Source="ARPINSTALLLOCATION" Target="[APPDIR]"/>
     <ROW Action="AI_VerifyPrereq" Type="1" Source="Prereq.dll" Target="VerifyPrereq"/>
+    <ROW Action="CreateUpdateScheduledTask" Type="65" Source="PowerShellScriptLauncher.dll" Target="RunPowerShellScript" Options="1" AdditionalSeq="AI_DATA_SETTER_5"/>
+    <ROW Action="DeleteUpdateScheduledTask" Type="65" Source="PowerShellScriptLauncher.dll" Target="RunPowerShellScript" Options="1" AdditionalSeq="AI_DATA_SETTER_7"/>
     <ROW Action="InstallSplitTunnelDriver" Type="1" Source="ProtonVPN.InstallActions.dll" Target="InstallSplitTunnelDriver"/>
     <ROW Action="InstallTap" Type="1" Source="TapInstaller.CA.dll" Target="InstallTapAdapter"/>
     <ROW Action="LaunchApp" Type="194" Source="viewer.exe" Target="/EnforcedRunAsAdmin /DontWait /dir &quot;[APPDIR]&quot; &quot;[#ProtonVPN.exe]&quot;" Options="1"/>
@@ -453,10 +458,11 @@
     <ROW Action="SetSplitTunnelDriverFileWin10x86" Type="51" Source="SplitTunnelDriverFile" Target="[#ProtonVPN.SplitTunnelDriver.sys_3]"/>
     <ROW Action="SetSplitTunnelDriverFileWin7x64" Type="51" Source="SplitTunnelDriverFile" Target="[#ProtonVPN.SplitTunnelDriver.sys]"/>
     <ROW Action="SetSplitTunnelDriverFileWin7x86" Type="51" Source="SplitTunnelDriverFile" Target="[#ProtonVPN.SplitTunnelDriver.sys_2]"/>
+    <ROW Action="SetUpdateServicePath" Type="51" Source="UpdateServicePath" Target="[#ProtonVPN.UpdateService.exe]"/>
     <ROW Action="StopErrorMessageProcess" Type="1" Source="aicustact.dll" Target="StopProcess" Options="1" AdditionalSeq="AI_DATA_SETTER_6"/>
     <ROW Action="StopProcess" Type="1" Source="aicustact.dll" Target="StopProcess" Options="1" AdditionalSeq="AI_DATA_SETTER_3"/>
     <ROW Action="StopService" Type="1" Source="aicustact.dll" Target="StopWinService" Options="1" AdditionalSeq="AI_DATA_SETTER_2"/>
-    <ROW Action="StopUpdaterService" Type="1" Source="aicustact.dll" Target="StopWinService" Options="1" AdditionalSeq="AI_DATA_SETTER_1"/>
+    <ROW Action="StopUpdateService" Type="1" Source="aicustact.dll" Target="StopWinService" Options="1" AdditionalSeq="AI_DATA_SETTER_1"/>
     <ROW Action="UninstallSplitTunnelDriver" Type="1" Source="ProtonVPN.InstallActions.dll" Target="UninstallSplitTunnelDriver"/>
     <ROW Action="UninstallTap" Type="65" Source="TapInstaller.CA.dll" Target="UninstallTapAdapter"/>
   </COMPONENT>
@@ -566,7 +572,7 @@
     <ROW Action="AI_DetectSoftware" Sequence="101"/>
     <ROW Action="RemoveProgramData" Condition="( ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) OR ( Installed AND ( REMOVE = &quot;ALL&quot; OR AI_INSTALL_MODE = &quot;Remove&quot; ) ) ) AND ( (VersionNT &gt; 501) OR (VersionNT = 501 AND ServicePackLevel &gt;= 2) )" Sequence="64"/>
     <ROW Action="AI_DATA_SETTER_4" Condition="( ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) OR ( Installed AND ( REMOVE = &quot;ALL&quot; OR AI_INSTALL_MODE = &quot;Remove&quot; ) ) ) AND ( (VersionNT &gt; 501) OR (VersionNT = 501 AND ServicePackLevel &gt;= 2) )" Sequence="63"/>
-    <ROW Action="InstallTap" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) )" Sequence="6601"/>
+    <ROW Action="InstallTap" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) )" Sequence="6604"/>
     <ROW Action="AI_VerifyPrereq" Sequence="1101"/>
     <ROW Action="AI_ConfigureChainer" Condition="((UILevel = 2) OR (UILevel = 3)) AND (NOT UPGRADINGPRODUCTCODE)" Sequence="6598"/>
     <ROW Action="AI_LaunchChainer" Condition="AI_PREREQ_CHAINER AND (NOT UPGRADINGPRODUCTCODE)" Sequence="6599"/>
@@ -574,16 +580,21 @@
     <ROW Action="StopErrorMessageProcess" Sequence="53"/>
     <ROW Action="AI_DATA_SETTER_6" Sequence="51"/>
     <ROW Action="AI_DETECT_MODERNWIN" Condition="(VersionNT &gt;= 603)" Sequence="54" MsiKey="AI_DETECT_MODERNWIN"/>
-    <ROW Action="LaunchApp" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( REBOOT &lt;&gt; &quot;Force&quot; )" Sequence="6608"/>
-    <ROW Action="ModifyServicePermissions" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) )" Sequence="6602"/>
-    <ROW Action="UninstallSplitTunnelDriver" Condition="( ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) OR ( Installed AND ( REMOVE = &quot;ALL&quot; OR AI_INSTALL_MODE = &quot;Remove&quot; ) ) )" Sequence="6401"/>
-    <ROW Action="InstallSplitTunnelDriver" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) )" Sequence="6607"/>
-    <ROW Action="SetSplitTunnelDriverFileWin10x64" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( (VersionNT64) AND (VersionNT64 = 1000) )" Sequence="6603"/>
-    <ROW Action="SetSplitTunnelDriverFileWin10x86" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( (NOT VersionNT64) AND (VersionNT = 1000) )" Sequence="6604"/>
-    <ROW Action="SetSplitTunnelDriverFileWin7x64" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( (VersionNT64) AND (VersionNT64 &lt; 1000) )" Sequence="6605"/>
-    <ROW Action="SetSplitTunnelDriverFileWin7x86" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( (NOT VersionNT64) AND (VersionNT &lt; 1000) )" Sequence="6606"/>
-    <ROW Action="StopUpdaterService" Sequence="60"/>
+    <ROW Action="LaunchApp" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( REBOOT &lt;&gt; &quot;Force&quot; )" Sequence="6611"/>
+    <ROW Action="ModifyServicePermissions" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) )" Sequence="6605"/>
+    <ROW Action="UninstallSplitTunnelDriver" Condition="( ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) OR ( Installed AND ( REMOVE = &quot;ALL&quot; OR AI_INSTALL_MODE = &quot;Remove&quot; ) ) )" Sequence="6403"/>
+    <ROW Action="InstallSplitTunnelDriver" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) )" Sequence="6610"/>
+    <ROW Action="SetSplitTunnelDriverFileWin10x64" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( (VersionNT64) AND (VersionNT64 = 1000) )" Sequence="6606"/>
+    <ROW Action="SetSplitTunnelDriverFileWin10x86" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( (NOT VersionNT64) AND (VersionNT = 1000) )" Sequence="6607"/>
+    <ROW Action="SetSplitTunnelDriverFileWin7x64" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( (VersionNT64) AND (VersionNT64 &lt; 1000) )" Sequence="6608"/>
+    <ROW Action="SetSplitTunnelDriverFileWin7x86" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( (NOT VersionNT64) AND (VersionNT &lt; 1000) )" Sequence="6609"/>
+    <ROW Action="StopUpdateService" Sequence="60"/>
     <ROW Action="AI_DATA_SETTER_1" Sequence="59"/>
+    <ROW Action="CreateUpdateScheduledTask" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( (VersionNT &gt; 501) OR (VersionNT = 501 AND ServicePackLevel &gt;= 2) )" Sequence="6603"/>
+    <ROW Action="SetUpdateServicePath" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) )" Sequence="6601"/>
+    <ROW Action="AI_DATA_SETTER_5" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( (VersionNT &gt; 501) OR (VersionNT = 501 AND ServicePackLevel &gt;= 2) )" Sequence="6602"/>
+    <ROW Action="DeleteUpdateScheduledTask" Condition="( Installed AND ( REMOVE = &quot;ALL&quot; OR AI_INSTALL_MODE = &quot;Remove&quot; ) ) AND ( (VersionNT &gt; 501) OR (VersionNT = 501 AND ServicePackLevel &gt;= 2) )" Sequence="6402"/>
+    <ROW Action="AI_DATA_SETTER_7" Condition="( Installed AND ( REMOVE = &quot;ALL&quot; OR AI_INSTALL_MODE = &quot;Remove&quot; ) ) AND ( (VersionNT &gt; 501) OR (VersionNT = 501 AND ServicePackLevel &gt;= 2) )" Sequence="6401"/>
     <ROW Action="AI_AiRemoveFilesImmediate" Sequence="3499"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstallUISequenceComponent">

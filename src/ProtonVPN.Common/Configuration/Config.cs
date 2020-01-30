@@ -69,6 +69,9 @@ namespace ProtonVPN.Common.Configuration
         public string UpdateServiceLogFolder { get; internal set; }
 
         [Required]
+        public string UpdateFilePath { get; internal set; }
+
+        [Required]
         public string UpdatesPath { get; internal set; }
 
         [Required]

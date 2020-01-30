@@ -71,6 +71,8 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 UpdateServiceLogFolder = Path.Combine(commonAppDataFolder, "UpdaterLogs"),
 
+                UpdateFilePath = Path.Combine(commonAppDataFolder, "Updates", "update.txt"),
+
                 UpdatesPath = Path.Combine(commonAppDataFolder, "Updates"),
 
                 SplitTunnelServiceName = "ProtonVPNSplitTunnel",
