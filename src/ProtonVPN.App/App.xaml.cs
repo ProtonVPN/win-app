@@ -30,6 +30,7 @@ using ProtonVPN.Common.CrashReporting;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Config;
 using ProtonVPN.Core;
+using ProtonVPN.Core.Startup;
 using ProtonVPN.Native.PInvoke;
 
 namespace ProtonVPN
@@ -47,6 +48,21 @@ namespace ProtonVPN
 
         private static async Task Run(string[] args)
         {
+            // The app v1.13.0 starts update installer under local SYSTEM account.
+            // Therefore, when update is complete, the installer starts the app under
+            // SYSTEM account too. The app running under local SYSTEM account
+            // cannot access user settings. 
+            //
+            // If the app detects it is started under local SYSTEM account, it
+            // tries to restart itself under current user account. 
+            var shouldRestartAsUser = ElevatedApplication.RunningAsSystem();
+            if (shouldRestartAsUser)
+            {
+                await Task.Delay(2000);
+                ElevatedApplication.LaunchAsUser();
+                return;
+            }
+
             if (await SingleInstanceApplication.InitializeAsFirstInstance("{588dc704-8eac-4a43-9345-ec7186b23f05}", args))
             {
                 AppDomain.CurrentDomain.AssemblyResolve += OnAssemblyLoadFailed;
