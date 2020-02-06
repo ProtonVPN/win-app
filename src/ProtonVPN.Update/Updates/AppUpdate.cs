@@ -17,10 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Update.Releases;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ProtonVPN.Update.Releases;
 
 namespace ProtonVPN.Update.Updates
 {
@@ -111,10 +111,11 @@ namespace ProtonVPN.Update.Updates
         {
             if (auto && _state.NewRelease.DisableAutoUpdate)
             {
-                return this;
+                throw new AppUpdateException("Automatic update to this release is disabled");
             }
 
             await _state.AppUpdates.StartUpdate(_state.NewRelease);
+
             return this;
         }
 

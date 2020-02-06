@@ -17,13 +17,14 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
+using System.IO;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.OS.Event;
+using ProtonVPN.Update;
 using ProtonVPN.Update.Files.Launchable;
 using Sentry;
 using Sentry.Protocol;
-using System;
-using System.IO;
 
 namespace ProtonVPN.UpdateService
 {
@@ -55,6 +56,8 @@ namespace ProtonVPN.UpdateService
                     scope.SetTag("captured_in", "UpdateService_EventBasedLaunchableFile_Launch");
                     SentrySdk.CaptureException(e);
                 });
+
+                throw new AppUpdateException("Failed to start an update", e);
             }
         }
     }
