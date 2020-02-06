@@ -93,13 +93,6 @@ namespace ProtonVPN.UpdateService
             Resolve<ServicePointConfiguration>().Apply();
             CreateLogFolder();
             Resolve<IAppUpdates>().Cleanup();
-            Resolve<INotifyingAppUpdate>().StateChanged += (e, update) =>
-            {
-                if (update.Status == AppUpdateStatus.Updating)
-                {
-                    Resolve<UpdateService>().Stop();
-                }
-            };
 
             ServiceBase.Run(Resolve<UpdateService>());
 

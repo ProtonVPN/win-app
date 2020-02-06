@@ -95,9 +95,9 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 UpdateFirstCheckDelay = TimeSpan.FromSeconds(15),
 
-                UpdateCheckInterval = TimeSpan.FromHours(24),
+                UpdateCheckInterval = TimeSpan.FromHours(3),
 
-                UpdateRemindInterval = TimeSpan.FromHours(23),
+                UpdateRemindInterval = TimeSpan.FromHours(24),
 
                 ServerUpdateInterval = TimeSpan.FromMinutes(10),
 
