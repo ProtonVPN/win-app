@@ -2641,7 +2641,7 @@ The app failed to communicate with our server and has timed out. You might want 
   </data>
   <data name="Dialogs_DisconnectError_msg_TlsCertificateError" xml:space="preserve">
     <value>There's a problem validating the VPN server certificate, which might indicate that the network connection is being tampered with or the server you are trying to connect to has a configuration problem. Get help from our customer support by sending a &lt;Hyperlink Foreground="White" Command="{Binding ReportBugCommand}"&gt;&lt;Run Text="Bug Report"/&gt;&lt;/Hyperlink&gt;.</value>
-    <comment>The error description displayed in Disconnect modal window if VPN server certificate validation error has occured</comment>
+    <comment>The error description displayed in Disconnect modal window if VPN server certificate validation error has occurred</comment>
   </data>
   <data name="Login_msg_ExitKillSwitchConfirm" xml:space="preserve">
     <value>Kill Switch is blocking all connections to avoid leaking your data.&lt;LineBreak/&gt;
