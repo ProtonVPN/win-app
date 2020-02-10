@@ -164,26 +164,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                       AutomationProperties.AutomationId="{StaticResource EarlyAccessCheckbox}"/>
                         </DockPanel>
                     </Border>
-
-                    <Border BorderBrush="#464652" Height="50" BorderThickness="0,0,0,1">
-                        <DockPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <Label VerticalAlignment="Center" Foreground="White" FontSize="16" Content="{resources:Loc Settings_General_lbl_AutoUpdate}"/>
-                                <fa:FontAwesome ToolTip="{resources:Loc Settings_General_lbl_AutoUpdate_Info}"
-                                                Icon="InfoCircle"
-                                                VerticalAlignment="Center"
-                                                HorizontalAlignment="Left"
-                                                Foreground="{StaticResource PrimaryColor}"
-                                                FontSize="16"/>
-                            </StackPanel>
-
-                            <CheckBox Margin="0,0,14,0"
-                                      HorizontalAlignment="Right"
-                                      Style="{StaticResource ToggleSwitch}"
-                                      IsChecked="{Binding AutoUpdate}"
-                                      AutomationProperties.AutomationId="{StaticResource AutoUpdateCheckbox}"/>
-                        </DockPanel>
-                    </Border>
                 </StackPanel>
             </TabItem>
             <TabItem Header="{resources:Loc Settings_Connection_ttl}">

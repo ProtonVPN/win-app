@@ -24,15 +24,13 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 using ProtonVPN.Common.Configuration;
-using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Settings;
-using ProtonVPN.Core.Vpn;
 using ProtonVPN.UpdateServiceContract;
 
 namespace ProtonVPN.Core.Update
 {
-    public class UpdateService : ISettingsAware, ILoggedInAware, ILogoutAware, IVpnStateAware
+    public class UpdateService : ISettingsAware, ILoggedInAware, ILogoutAware
     {
         private readonly IAppSettings _appSettings;
         private readonly Config _appConfig;
@@ -45,7 +43,6 @@ namespace ProtonVPN.Core.Update
         private bool _manualCheck;
         private bool _requestedManualCheck;
         private UpdateStatus _status = UpdateStatus.None;
-        private VpnStateChangedEventArgs _vpnStateChangedEvent;
 
         public UpdateService(
             Config appConfig,
@@ -89,12 +86,6 @@ namespace ProtonVPN.Core.Update
             _timer.Stop();
         }
 
-        public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
-        {
-            _vpnStateChangedEvent = e;
-            return Task.CompletedTask;
-        }
-
         private void StartCheckingForUpdate(bool manualCheck)
         {
             _requestedManualCheck |= manualCheck;
@@ -104,28 +95,10 @@ namespace ProtonVPN.Core.Update
 
         private void _serviceClient_UpdateStateChanged(object sender, UpdateStateContract e)
         {
-            if (!_manualCheck && AllowAutoUpdate(e.Status) && !OnBatteryPower())
-            {
-                _serviceClient.StartUpdating(true);
-            }
-
             var state = Map(e);
             OnUpdateStateChanged(state, _manualCheck);
             HandleManualCheck(state.Status);
             HandleUpdating(state.Status);
-        }
-
-        private bool AllowAutoUpdate(AppUpdateStatusContract status)
-        {
-            return _appSettings.AutoUpdate &&
-                   status == AppUpdateStatusContract.Ready &&
-                   _vpnStateChangedEvent.State.Status == VpnStatus.Disconnected &&
-                   !_vpnStateChangedEvent.NetworkBlocked;
-        }
-
-        private bool OnBatteryPower()
-        {
-            return SystemParameters.PowerLineStatus == PowerLineStatus.Offline;
         }
 
         private UpdateState Map(UpdateStateContract e)
