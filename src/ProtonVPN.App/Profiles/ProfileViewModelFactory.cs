@@ -17,6 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Servers;
@@ -25,10 +29,6 @@ using ProtonVPN.Core.Servers.Name;
 using ProtonVPN.Core.Servers.Specs;
 using ProtonVPN.Profiles.Servers;
 using ProtonVPN.Resources;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ProtonVPN.Profiles
 {
@@ -57,7 +57,7 @@ namespace ProtonVPN.Profiles
                 .ToList();
         }
 
-        public ProfileViewModel GetProfileViewModel(Profile profile)
+        private ProfileViewModel GetProfileViewModel(Profile profile)
         {
             if (profile.IsPredefined)
             {
