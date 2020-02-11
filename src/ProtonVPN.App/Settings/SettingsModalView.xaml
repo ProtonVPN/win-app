@@ -267,7 +267,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
                                 <RowDefinition/>
-                                <RowDefinition/>
                             </Grid.RowDefinitions>
                             <RadioButton GroupName="NetShieldMode"
                                          Grid.Row="0"
@@ -288,10 +287,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             </RadioButton>
                             <Button Style="{StaticResource UpgradeButton}"
                                     Grid.Row="1"
-                                    Grid.Column="1"
-                                    Content="{resources:Loc Settings_Connection_btn_Upgrade}"/>
-                            <Button Style="{StaticResource UpgradeButton}"
-                                    Grid.Row="2"
                                     Grid.Column="1"
                                     Content="{resources:Loc Settings_Connection_btn_Upgrade}"/>
                         </Grid>
