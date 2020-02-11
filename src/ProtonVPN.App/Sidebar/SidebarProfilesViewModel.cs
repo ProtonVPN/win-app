@@ -17,22 +17,23 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Caliburn.Micro;
-using GalaSoft.MvvmLight.CommandWpf;
-using ProtonVPN.Core.Modals;
-using ProtonVPN.Core.Profiles;
-using ProtonVPN.Core.Service.Vpn;
-using ProtonVPN.Core.Settings;
-using ProtonVPN.Profiles;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Caliburn.Micro;
+using GalaSoft.MvvmLight.CommandWpf;
+using ProtonVPN.Core.Modals;
+using ProtonVPN.Core.Profiles;
+using ProtonVPN.Core.Servers;
+using ProtonVPN.Core.Service.Vpn;
+using ProtonVPN.Core.Settings;
+using ProtonVPN.Profiles;
 
 namespace ProtonVPN.Sidebar
 {
-    internal class SidebarProfilesViewModel : Screen, ISettingsAware
+    internal class SidebarProfilesViewModel : Screen, ISettingsAware, IServersAware
     {
         private readonly ProfileManager _profileManager;
         private readonly ProfileViewModelFactory _profileHelper;
@@ -82,6 +83,11 @@ namespace ProtonVPN.Sidebar
             {
                 await LoadProfiles();
             }
+        }
+
+        public void OnServersUpdated()
+        {
+            Load();
         }
 
         private async void ConnectAction(ProfileViewModel viewModel)
