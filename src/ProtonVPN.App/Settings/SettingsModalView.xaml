@@ -297,7 +297,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </Grid>
 
                     </StackPanel>
-
+                    -->
                     <DockPanel Height="50">
                         <StackPanel Orientation="Horizontal">
                             <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Content="{resources:Loc Settings_Connection_lbl_CustomDnsServer}"/>
@@ -338,7 +338,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 </TextBox.InputBindings>
                             </TextBox>
                         </DockPanel>
-                    </StackPanel>-->
+                    </StackPanel>
                 </StackPanel>
             </TabItem>
             <TabItem Header="{resources:Loc Settings_Advanced_ttl}">
