@@ -39,29 +39,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                    FontSize="14"
                    Text="{resources:Loc Dialogs_Update_msg_NewAppVersion}"/>
         <ScrollViewer Margin="30,0,5,30" Template="{StaticResource DarkScrollViewerControlTemplate}" Height="200">
-            <StackPanel>
-                <ItemsControl ItemsSource="{Binding Update.Release.ChangeLog}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock TextWrapping="Wrap" FontSize="14" Padding="0,0,30,0" Foreground="White">
-                                <Run Text="- "/>
-                                <Run Text="{Binding Mode=OneWay}"/>
-                            </TextBlock>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-                <ItemsControl ItemsSource="{Binding Update.Release.ChangeLog}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock TextWrapping="Wrap" FontSize="14" Padding="0,0,30,0" Foreground="White">
-                                <Run Text="- "/>
-                                <Run Text="{Binding Mode=OneWay}"/>
-                            </TextBlock>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </StackPanel>
-
+            <ItemsControl ItemsSource="{Binding Update.Release.ChangeLog}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock TextWrapping="Wrap" FontSize="14" Padding="0,0,30,0" Foreground="White">
+                            <Run Text="- "/>
+                            <Run Text="{Binding Mode=OneWay}"/>
+                        </TextBlock>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
         </ScrollViewer>
         
         <DockPanel Background="{StaticResource ModalBarColor}" Height="66">
