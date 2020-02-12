@@ -83,7 +83,6 @@
     <Compile Include="Api\Contracts\SessionsResponse.cs" />
     <Compile Include="Api\Contracts\VpnConfig.cs" />
     <Compile Include="Api\File.cs" />
-    <Compile Include="Api\Handlers\CertificatePublicKeyHash.cs" />
     <Compile Include="Api\Handlers\TlsPinning\CertificateExtensions.cs" />
     <Compile Include="Api\Handlers\TlsPinning\IReportClient.cs" />
     <Compile Include="Api\Handlers\TlsPinning\PublicKeyInfoHash.cs" />

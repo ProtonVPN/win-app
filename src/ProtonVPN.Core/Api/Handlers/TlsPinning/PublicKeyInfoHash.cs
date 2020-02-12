@@ -36,9 +36,9 @@ namespace ProtonVPN.Core.Api.Handlers.TlsPinning
         {
             var subjectPublicKeyInfo = GetSubjectPublicKeyInfoRaw(_certificate);
             byte[] digest;
-            using (var sha2 = new SHA256Managed())
+            using (var sha256 = new SHA256CryptoServiceProvider())
             {
-                digest = sha2.ComputeHash(subjectPublicKeyInfo);
+                digest = sha256.ComputeHash(subjectPublicKeyInfo);
             }
 
             return Convert.ToBase64String(digest);
