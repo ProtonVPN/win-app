@@ -40,7 +40,7 @@ namespace ProtonVPN.Update.Files.Validatable
         public async Task<string> Value()
         {
             using var stream = new FileStream(_filename, FileMode.Open, FileAccess.Read, FileShare.Read, FileBufferSize, true);
-            using var sha512 = new SHA512Managed();
+            using var sha512 = new SHA512CryptoServiceProvider();
 
             var buffer = new byte[FileBufferSize];
             int bytesRead;
