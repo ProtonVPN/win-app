@@ -71,6 +71,5 @@ namespace ProtonVPN.Core.Settings
         bool NetShieldEnabled { get; set; }
         int NetShieldMode { get; set; }
         bool NetShieldModalShown { get; set; }
-        bool AutoUpdate { get; set; }
     }
 }

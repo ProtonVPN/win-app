@@ -71,6 +71,8 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 UpdateServiceLogFolder = Path.Combine(commonAppDataFolder, "UpdaterLogs"),
 
+                UpdateFilePath = Path.Combine(commonAppDataFolder, "Updates", "update.txt"),
+
                 UpdatesPath = Path.Combine(commonAppDataFolder, "Updates"),
 
                 SplitTunnelServiceName = "ProtonVPNSplitTunnel",
@@ -93,9 +95,9 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 UpdateFirstCheckDelay = TimeSpan.FromSeconds(15),
 
-                UpdateCheckInterval = TimeSpan.FromHours(24),
+                UpdateCheckInterval = TimeSpan.FromHours(3),
 
-                UpdateRemindInterval = TimeSpan.FromHours(23),
+                UpdateRemindInterval = TimeSpan.FromHours(24),
 
                 ServerUpdateInterval = TimeSpan.FromMinutes(10),
 

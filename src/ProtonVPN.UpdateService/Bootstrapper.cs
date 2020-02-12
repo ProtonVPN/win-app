@@ -17,14 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
-using System.IO;
-using System.ServiceModel;
-using System.ServiceProcess;
 using Autofac;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.CrashReporting;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.OS.Event;
 using ProtonVPN.Common.OS.Net.Http;
 using ProtonVPN.Common.OS.Processes;
 using ProtonVPN.Core.Api;
@@ -33,6 +30,12 @@ using ProtonVPN.Core.Api.Handlers.TlsPinning;
 using ProtonVPN.Core.OS.Net;
 using ProtonVPN.Update;
 using ProtonVPN.Update.Config;
+using System;
+using System.IO;
+using System.ServiceModel;
+using System.ServiceProcess;
+using Sentry;
+using Sentry.Protocol;
 
 namespace ProtonVPN.UpdateService
 {
@@ -49,6 +52,37 @@ namespace ProtonVPN.UpdateService
             Start();
         }
 
+        public void StartUpdate()
+        {
+            Configure();
+            InitCrashReporting();
+
+            try
+            {
+                var content = System.IO.File.ReadAllText(Resolve<Config>().UpdateFilePath).Split('\n');
+                if (content.Length != 2)
+                {
+                    return;
+                }
+
+                StartElevatedProcess(content[0], content[1]);
+            }
+            catch (Exception e)
+            {
+                SentrySdk.WithScope(scope =>
+                {
+                     scope.Level = SentryLevel.Error;
+                     scope.SetTag("captured_in", "UpdateService_Bootstrapper_StartUpdate");
+                     SentrySdk.CaptureException(e);
+                });
+            }
+        }
+
+        private void StartElevatedProcess(string path, string arguments)
+        {
+            Resolve<IOsProcesses>().ElevatedProcess(path, arguments).Start();
+        }
+
         private void Start()
         {
             var config = Resolve<Config>();
@@ -59,13 +93,6 @@ namespace ProtonVPN.UpdateService
             Resolve<ServicePointConfiguration>().Apply();
             CreateLogFolder();
             Resolve<IAppUpdates>().Cleanup();
-            Resolve<INotifyingAppUpdate>().StateChanged += (e, update) =>
-            {
-                if (update.Status == AppUpdateStatus.Updating)
-                {
-                    Resolve<UpdateService>().Stop();
-                }
-            };
 
             ServiceBase.Run(Resolve<UpdateService>());
 
@@ -96,11 +123,12 @@ namespace ProtonVPN.UpdateService
                 .As<ILogger>().SingleInstance();
 
             builder.Register(c => c.Resolve<UpdateServiceHostFactory>().Create()).As<ServiceHost>().SingleInstance();
-            builder.RegisterType<ElevatedProcess>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<EventBasedLaunchableFile>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<UpdateHandler>().SingleInstance();
             builder.RegisterType<UpdateServiceHostFactory>().SingleInstance();
             builder.RegisterType<UpdateService>().SingleInstance();
             builder.RegisterType<ServicePointConfiguration>().SingleInstance();
+            builder.RegisterType<SystemEventLog>().SingleInstance();
 
             builder.Register(c =>
                     new CachingReportClient(

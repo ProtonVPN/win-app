@@ -37,5 +37,7 @@ namespace ProtonVPN.Core.Update
         public bool Ready => _update.Ready;
         public UpdateStatus Status => _update.Status;
         public bool ManualCheck { get; }
+        public string FilePath => _update.FilePath;
+        public string FileArguments => _update.FileArguments;
     }
 }

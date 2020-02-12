@@ -134,6 +134,7 @@ namespace ProtonVPN.Core
                 appSettings.LoggedInWithSavedCredentials = false;
             }
 
+            Resolve<TrayIcon>().Hide();
             Resolve<VpnServiceWrapper>().Stop();
             Resolve<AppUpdateServiceWrapper>().Stop();
         }

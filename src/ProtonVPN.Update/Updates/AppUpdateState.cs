@@ -32,11 +32,15 @@ namespace ProtonVPN.Update.Updates
             Available = update.Available;
             Ready = update.Ready;
             Status = status;
+            FilePath = update.FilePath ?? string.Empty;
+            FileArguments = update.FileArguments ?? string.Empty;
         }
 
         public IReadOnlyList<IRelease> ReleaseHistory { get; }
         public bool Available { get; }
         public bool Ready { get; }
         public AppUpdateStatus Status { get; }
+        public string FilePath { get; }
+        public string FileArguments { get; }
     }
 }

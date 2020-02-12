@@ -19,9 +19,10 @@
 
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
-using ProtonVPN.Common.Threading;
+using ProtonVPN.Common.OS.Processes;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.MVVM;
@@ -33,17 +34,15 @@ namespace ProtonVPN.About
 {
     public class UpdateViewModel : ViewModel, IUpdateStateAware, IVpnStateAware
     {
-        private readonly UpdateService _updateService;
         private readonly IDialogs _dialogs;
-        private readonly IScheduler _scheduler;
+        private readonly IOsProcesses _osProcesses;
 
         private VpnStatus _vpnStatus;
-
-        public UpdateViewModel(UpdateService updateService, IDialogs dialogs, IScheduler scheduler)
+        private UpdateStateChangedEventArgs _updateStateChangedEventArgs;
+        public UpdateViewModel(IDialogs dialogs, IOsProcesses osProcesses)
         {
-            _scheduler = scheduler;
-            _updateService = updateService;
             _dialogs = dialogs;
+            _osProcesses = osProcesses;
         }
 
         private RelayCommand _updateCommand;
@@ -94,6 +93,7 @@ namespace ProtonVPN.About
 
         public void OnUpdateStateChanged(UpdateStateChangedEventArgs e)
         {
+            _updateStateChangedEventArgs = e;
             Status = e.Status;
             Available = e.Available;
             Ready = e.Ready;
@@ -114,10 +114,21 @@ namespace ProtonVPN.About
             }
 
             Updating = true;
-            _updateService.Update(false).ContinueWith(t =>
+
+            try
             {
-                _scheduler.Schedule(() => Updating = false);
-            });
+                _osProcesses.ElevatedProcess(
+                    _updateStateChangedEventArgs.FilePath,
+                    _updateStateChangedEventArgs.FileArguments).Start();
+
+
+                Application.Current.Shutdown();
+            }
+            catch (System.ComponentModel.Win32Exception)
+            {
+                // Privileges were not granted
+                Updating = false;
+            }
         }
 
         private bool CanUpdate() => !Updating && Ready;

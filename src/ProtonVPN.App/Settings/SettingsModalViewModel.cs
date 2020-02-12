@@ -260,12 +260,6 @@ namespace ProtonVPN.Settings
             set => _appSettings.EarlyAccess = value;
         }
 
-        public bool AutoUpdate
-        {
-            get => _appSettings.AutoUpdate;
-            set => _appSettings.AutoUpdate = value;
-        }
-
         public bool ShowNotifications
         {
             get => _appSettings.ShowNotifications;
