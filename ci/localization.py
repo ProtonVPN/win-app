@@ -29,11 +29,14 @@ class Localization:
         p = Path()
         error = False
         for f in list(p.glob('.\langs\**\*.resx')):
-            if self.validate(f.absolute()):
-                self.AddLanguage(f)
-            else:
-                error = True
-                break
+            lang = self.getLanguageCode(f)
+            if lang in self.languages.split(','):
+                if self.validate(f.absolute()):
+                    self.AddLanguage(f)
+                else:
+                    error = True
+                    break
+            break
         
         shutil.rmtree(self.outputPath)
         
@@ -46,9 +49,8 @@ class Localization:
 
     def AddLanguage(self, src):
         lang = self.getLanguageCode(src)
-        if lang in self.languages.split(','):
-            dest = self.languageDst.format(lang=lang)
-            os.replace(str(src), dest)
+        dest = self.languageDst.format(lang=lang)
+        os.replace(str(src), dest)
 
     def getLanguageCode(self, path):
         match = re.match('.+\.([A-Za-zl-]+)\.', str(path))

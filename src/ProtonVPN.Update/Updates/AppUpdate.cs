@@ -17,10 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Update.Releases;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ProtonVPN.Update.Releases;
 
 namespace ProtonVPN.Update.Updates
 {
@@ -50,6 +50,32 @@ namespace ProtonVPN.Update.Updates
         public bool Available => !_state.NewRelease.Empty();
 
         public bool Ready => _state.Ready;
+
+        public string FilePath
+        {
+            get
+            {
+                if (_state.NewRelease.New)
+                {
+                    return _state.AppUpdates.FilePath(_state.NewRelease);
+                }
+
+                return string.Empty;
+            }
+        }
+
+        public string FileArguments
+        {
+            get
+            {
+                if (_state.NewRelease.New)
+                {
+                    return _state.NewRelease.File.Arguments;
+                }
+
+                return string.Empty;
+            }
+        }
 
         public IReadOnlyList<IRelease> ReleaseHistory()
         {
@@ -85,10 +111,11 @@ namespace ProtonVPN.Update.Updates
         {
             if (auto && _state.NewRelease.DisableAutoUpdate)
             {
-                return this;
+                throw new AppUpdateException("Automatic update to this release is disabled");
             }
 
             await _state.AppUpdates.StartUpdate(_state.NewRelease);
+
             return this;
         }
 

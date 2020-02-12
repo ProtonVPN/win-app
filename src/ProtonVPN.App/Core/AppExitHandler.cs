@@ -21,7 +21,6 @@ using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Resources;
-using ProtonVPN.Windows;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -31,13 +30,11 @@ namespace ProtonVPN.Core
     {
         private readonly IDialogs _dialogs;
         private VpnStatus _vpnStatus;
-        private readonly TrayIcon _trayIcon;
 
         public bool PendingExit { get; private set; }
 
-        public AppExitHandler(IDialogs dialogs, TrayIcon trayIcon)
+        public AppExitHandler(IDialogs dialogs)
         {
-            _trayIcon = trayIcon;
             _dialogs = dialogs;
         }
 
@@ -52,7 +49,6 @@ namespace ProtonVPN.Core
             }
 
             PendingExit = true;
-            _trayIcon.Hide();
 
             Application.Current.Shutdown();
         }

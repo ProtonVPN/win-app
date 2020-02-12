@@ -189,6 +189,7 @@
     </Compile>
     <Compile Include="Notifications\InsecureWifiNotification.cs" />
     <Compile Include="Notifications\UpdateNotification.cs" />
+    <Compile Include="Core\Startup\ElevatedApplication.cs" />
     <Compile Include="About\UpdateViewModel.cs" />
     <Compile Include="Account\PricingBuilderException.cs" />
     <Compile Include="Account\VpnInfoChecker.cs" />

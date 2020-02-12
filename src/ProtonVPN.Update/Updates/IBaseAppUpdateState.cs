@@ -26,5 +26,7 @@ namespace ProtonVPN.Update.Updates
         IReadOnlyList<IRelease> ReleaseHistory();
         bool Available { get; }
         bool Ready { get; }
+        string FilePath { get; }
+        string FileArguments { get; }
     }
 }

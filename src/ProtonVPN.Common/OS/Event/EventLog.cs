@@ -17,17 +17,30 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Collections.Generic;
 
-namespace ProtonVPN.Update
+using System.Diagnostics;
+
+namespace ProtonVPN.Common.OS.Event
 {
-    public interface IAppUpdateState
+    public class SystemEventLog
     {
-        IReadOnlyList<IRelease> ReleaseHistory { get; }
-        bool Available { get; }
-        bool Ready { get; }
-        AppUpdateStatus Status { get; }
-        string FilePath { get; }
-        string FileArguments { get; }
+        private const string Source = "ProtonVPN";
+
+        public void Log(string message, int eventId)
+        {
+            EnsureEventSourceExists();
+
+            var log = new EventLog {Source = Source};
+
+            log.WriteEntry(message, EventLogEntryType.Information, eventId);
+        }
+
+        private void EnsureEventSourceExists()
+        {
+            if (!EventLog.SourceExists(Source))
+            {
+                EventLog.CreateEventSource(Source, "Application");
+            }
+        }
     }
 }

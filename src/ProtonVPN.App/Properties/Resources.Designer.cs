@@ -4878,24 +4878,6 @@ namespace ProtonVPN.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Auto Update.
-        /// </summary>
-        public static string Settings_General_lbl_AutoUpdate {
-            get {
-                return ResourceManager.GetString("Settings_General_lbl_AutoUpdate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Automatically downloads and installs the latest version of the ProtonVPN app when the app is idle. Keep this activated for best app performance and security..
-        /// </summary>
-        public static string Settings_General_lbl_AutoUpdate_Info {
-            get {
-                return ResourceManager.GetString("Settings_General_lbl_AutoUpdate_Info", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Early Access.
         /// </summary>
         public static string Settings_General_lbl_EarlyAccess {
