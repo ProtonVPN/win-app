@@ -91,6 +91,7 @@
     <Compile Include="Api\Handlers\TlsPinning\ReportClient.cs" />
     <Compile Include="Api\Handlers\TlsPinning\CachingReportClient.cs" />
     <Compile Include="Api\Handlers\TlsPinning\TlsPinningPolicy.cs" />
+    <Compile Include="Api\Extensions\HttpRequestMessageExtensions.cs" />
     <Compile Include="Api\IApiAppVersion.cs" />
     <Compile Include="Abstract\IMigration.cs" />
     <Compile Include="Abstract\ISpecification.cs" />

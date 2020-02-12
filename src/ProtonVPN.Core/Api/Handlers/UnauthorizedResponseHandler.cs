@@ -25,6 +25,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Core.Abstract;
+using ProtonVPN.Core.Api.Extensions;
 
 namespace ProtonVPN.Core.Api.Handlers
 {
@@ -50,6 +51,12 @@ namespace ProtonVPN.Core.Api.Handlers
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request,
             CancellationToken cancellationToken)
         {
+            if (request.AuthHeadersInvalid())
+            {
+                SessionExpired?.Invoke(this, EventArgs.Empty);
+                return new UnauthorizedResponse();
+            }
+
             var refreshTask = _refreshTask;
             if (!refreshTask.IsCompleted)
             {
