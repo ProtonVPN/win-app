@@ -163,6 +163,8 @@ namespace ProtonVPN.Profiles.Form
                 await _profileManager.AddProfile(GetProfile());
             }
 
+            Clear();
+
             return true;
         }
 
@@ -200,7 +202,7 @@ namespace ProtonVPN.Profiles.Form
 
         public virtual void Clear()
         {
-            ProfileName = "";
+            ProfileName = string.Empty;
             Protocol = Protocol.Auto;
             SelectedServer = null;
             ColorCode = null;
@@ -215,7 +217,19 @@ namespace ProtonVPN.Profiles.Form
 
         public bool? Cancel()
         {
-            return HasUnsavedChanges() ? ShowDiscardModal() : false;
+            if (HasUnsavedChanges())
+            {
+                var result = ShowDiscardModal();
+                if (result == false)
+                {
+                    _unsavedChanges = false;
+                    ProfileName = string.Empty;
+                }
+
+                return result;
+            }
+
+            return false;
         }
 
         public List<string> GetErrors()

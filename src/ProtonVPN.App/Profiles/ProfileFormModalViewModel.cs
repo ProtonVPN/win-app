@@ -219,11 +219,7 @@ namespace ProtonVPN.Profiles
             if (!CanCancel())
                 return;
 
-            var result = Form.Cancel();
-            if (result.HasValue && !result.Value)
-            {
-                TryClose();
-            }
+            TryClose();
         }
 
         private bool CanCancel() => !Busy;
