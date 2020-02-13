@@ -42,7 +42,7 @@ namespace ProtonVPN.Service.Contract.Vpn
         Task UnRegisterCallback();
 
         [OperationContract(IsOneWay = false)]
-        Task<VpnStateContract> State();
+        Task RepeatState();
 
         [OperationContract(IsOneWay = false)]
         Task<InOutBytesContract> Total();

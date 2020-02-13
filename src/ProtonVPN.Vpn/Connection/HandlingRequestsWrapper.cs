@@ -134,7 +134,7 @@ namespace ProtonVPN.Vpn.Connection
                 Queued(Disconnect);
             }
 
-            InvokeStateChanged(state);
+            InvokeStateChanged(WithRemoteIp(state, _endpoint.Server.Ip));
         }
 
         private void Connect()
@@ -205,6 +205,23 @@ namespace ProtonVPN.Vpn.Connection
         private void InvokeStateChanged(VpnState state)
         {
             StateChanged?.Invoke(this, new EventArgs<VpnState>(state));
+        }
+
+        private VpnState WithRemoteIp(VpnState state, string remoteIp)
+        {
+            if (state.Status == VpnStatus.Disconnecting || 
+                state.Status == VpnStatus.Disconnected ||
+                !string.IsNullOrEmpty(state.RemoteIp))
+            {
+                return state;
+            }
+
+            return new VpnState(
+                state.Status,
+                state.Error,
+                state.LocalIp, 
+                remoteIp,
+                state.Protocol);
         }
 
         private void Queued(Action action)

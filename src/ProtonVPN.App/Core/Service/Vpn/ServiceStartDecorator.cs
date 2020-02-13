@@ -62,9 +62,9 @@ namespace ProtonVPN.Core.Service.Vpn
             return await _decorated.Total();
         }
 
-        public async Task<VpnState> ConnectionState()
+        public async Task RepeatState()
         {
-            return await _decorated.ConnectionState();
+            await _decorated.RepeatState();
         }
 
         public void RegisterCallback(Action<VpnStateChangedEventArgs> onVpnStateChanged)
