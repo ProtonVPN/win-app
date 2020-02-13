@@ -47,6 +47,7 @@ namespace ProtonVPN.Service
         private readonly IVpnConnection _vpnConnection;
         private readonly ILogger _logger;
         private readonly IServiceSettings _serviceSettings;
+        private readonly ITaskQueue _taskQueue;
 
         private VpnState _state = new VpnState(VpnStatus.Disconnected);
 
@@ -54,13 +55,14 @@ namespace ProtonVPN.Service
             KillSwitch.KillSwitch killSwitch,
             IVpnConnection vpnConnection,
             ILogger logger,
-            IServiceSettings serviceSettings)
+            IServiceSettings serviceSettings,
+            ITaskQueue taskQueue)
         {
             _killSwitch = killSwitch;
             _vpnConnection = vpnConnection;
             _logger = logger;
             _serviceSettings = serviceSettings;
-
+            _taskQueue = taskQueue;
             _vpnConnection.StateChanged += VpnConnection_StateChanged;
         }
 
@@ -111,9 +113,14 @@ namespace ProtonVPN.Service
             return Task.CompletedTask;
         }
 
-        public Task<VpnStateContract> State()
+        public Task RepeatState()
         {
-            return Map(_state).AsTask();
+            _taskQueue.Enqueue(() =>
+            {
+                CallbackStateChanged(_state);
+            });
+
+            return Task.CompletedTask;
         }
 
         public Task<InOutBytesContract> Total()
@@ -146,8 +153,13 @@ namespace ProtonVPN.Service
         private void VpnConnection_StateChanged(object sender, EventArgs<VpnState> e)
         {
             _state = e.Data;
-            _logger.Info($"Callbacking VPN state {_state.Status}");
-            Callback(callback => callback.OnStateChanged(Map(_state)));
+            CallbackStateChanged(_state);
+        }
+
+        private void CallbackStateChanged(VpnState state)
+        {
+            _logger.Info($"Callbacking VPN state {state.Status}");
+            Callback(callback => callback.OnStateChanged(Map(state)));
         }
 
         private void Callback(Action<IVpnEventsContract> action)

@@ -28,7 +28,7 @@ namespace ProtonVPN.Vpn.Connection
     /// <summary>
     /// Filters <see cref="StateChanged"/> events to not contain consequent events with
     /// the same status, error and remote IP value.
-    /// A wrapper around <see cref="ISingleVpnConnection"/>.
+    /// A wrapper around <see cref="IVpnConnection"/>.
     /// </summary>
     public class FilteringStateWrapper : IVpnConnection
     {

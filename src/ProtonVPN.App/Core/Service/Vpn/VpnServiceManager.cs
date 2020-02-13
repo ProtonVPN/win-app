@@ -71,10 +71,9 @@ namespace ProtonVPN.Core.Service.Vpn
             return Map(await _vpnService.Total());
         }
 
-        public async Task<VpnState> ConnectionState()
+        public async Task RepeatState()
         {
-            var contract = await _vpnService.State();
-            return new VpnState(Map(contract.Status), contract.EndpointIp, Map(contract.Protocol));
+            await _vpnService.RepeatState();
         }
 
         public Task Disconnect(VpnError vpnError = VpnError.None)

@@ -89,28 +89,16 @@ namespace ProtonVPN.Core.Service.Vpn
 
         public async Task GetState()
         {
-            var state = await _vpnServiceManager.ConnectionState();
-            var protocol = VpnProtocol.Auto;
-            if (state != null)
-            {
-                _lastServer = _lastServerCandidates.ServerByEntryIp(state.EntryIp);
-                State = new VpnState(state.Status, _lastServer);
-                protocol = state.Protocol;
-            }
-
-            RaiseVpnStateChanged(new VpnStateChangedEventArgs(State, VpnError.None, false, protocol));
+            await _vpnServiceManager.RepeatState();
         }
 
         public void OnVpnStateChanged(VpnStateChangedEventArgs e)
         {
             var state = e.State;
 
-            switch (state.Status)
+            if (!string.IsNullOrEmpty(state.EntryIp))
             {
-                case VpnStatus.Connecting:
-                case VpnStatus.Reconnecting:
-                    _lastServer = _lastServerCandidates.ServerByEntryIp(state.EntryIp);
-                    break;
+                _lastServer = _lastServerCandidates.ServerByEntryIp(state.EntryIp);
             }
 
             State = new VpnState(state.Status, _lastServer);

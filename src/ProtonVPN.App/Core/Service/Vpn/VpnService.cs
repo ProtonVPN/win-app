@@ -17,14 +17,14 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
+using System.ServiceModel;
+using System.Threading.Tasks;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Service.Contract.Settings;
 using ProtonVPN.Service.Contract.Vpn;
-using System;
-using System.ServiceModel;
-using System.Threading.Tasks;
 
 namespace ProtonVPN.Core.Service.Vpn
 {
@@ -60,8 +60,8 @@ namespace ProtonVPN.Core.Service.Vpn
         public Task Disconnect(SettingsContract settings, VpnErrorTypeContract vpnError) =>
             Invoke(p => p.Disconnect(settings, vpnError).Wrap());
 
-        public Task<VpnStateContract> State() =>
-            Invoke(p => p.State());
+        public Task RepeatState() =>
+            Invoke(p => p.RepeatState().Wrap());
 
         public Task<InOutBytesContract> Total() =>
             Invoke(p => p.Total());

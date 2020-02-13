@@ -35,7 +35,7 @@ namespace ProtonVPN.Core.Service.Vpn
 
         Task<InOutBytes> Total();
 
-        Task<VpnState> ConnectionState();
+        Task RepeatState();
 
         void RegisterCallback(Action<VpnStateChangedEventArgs> onVpnStateChanged);
     }
