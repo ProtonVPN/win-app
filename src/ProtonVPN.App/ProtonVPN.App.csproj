@@ -188,6 +188,7 @@
       <DependentUpon>UpdateModalView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Notifications\InsecureWifiNotification.cs" />
+    <Compile Include="Notifications\SystemProxyNotification.cs" />
     <Compile Include="Notifications\UpdateNotification.cs" />
     <Compile Include="Core\Startup\ElevatedApplication.cs" />
     <Compile Include="About\UpdateViewModel.cs" />

@@ -17,13 +17,35 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
+using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.Logging;
+
 namespace ProtonVPN.Common.OS.Registry
 {
-    public interface IStartupRecord
+    public class SafeSystemProxy : ISystemProxy
     {
-        bool Exists();
-        bool Valid();
-        void Create();
-        void Remove();
+        private readonly ISystemProxy _proxy;
+        private readonly ILogger _logger;
+
+        public SafeSystemProxy(ILogger logger, ISystemProxy proxy)
+        {
+            _logger = logger;
+            _proxy = proxy;
+        }
+
+        public bool Enabled()
+        {
+            try
+            {
+                return _proxy.Enabled();
+            }
+            catch (Exception e) when (e.IsRegistryAccessException())
+            {
+                _logger.Error("Can not access system proxy settings");
+                _logger.Error(e);
+                return false;
+            }
+        }
     }
 }

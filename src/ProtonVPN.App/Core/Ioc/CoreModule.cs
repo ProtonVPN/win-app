@@ -25,6 +25,7 @@ using ProtonVPN.Common.OS;
 using ProtonVPN.Common.OS.Net.Http;
 using ProtonVPN.Common.OS.Net.NetworkInterface;
 using ProtonVPN.Common.OS.Processes;
+using ProtonVPN.Common.OS.Registry;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Config.Url;
 using ProtonVPN.Core.Abstract;
@@ -203,6 +204,9 @@ namespace ProtonVPN.Core.Ioc
                 .SingleInstance();
             builder.Register(c => new Language.Language(c.Resolve<IAppSettings>()))
                 .AsSelf()
+                .AsImplementedInterfaces()
+                .SingleInstance();
+            builder.Register(c => new SafeSystemProxy(c.Resolve<ILogger>(), new SystemProxy()))
                 .AsImplementedInterfaces()
                 .SingleInstance();
         }

@@ -19,11 +19,19 @@
 
 namespace ProtonVPN.Common.OS.Registry
 {
-    public interface IStartupRecord
+    public class SystemProxy : ISystemProxy
     {
-        bool Exists();
-        bool Valid();
-        void Create();
-        void Remove();
+        private const string RegKey = "Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings";
+
+        public bool Enabled()
+        {
+            var key = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(RegKey, false);
+            if (key == null)
+            {
+                return false;
+            }
+
+            return (int) key.GetValue("ProxyEnable") == 1;
+        }
     }
 }

@@ -17,10 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Logging;
 using System;
-using System.IO;
-using System.Security;
+using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.Logging;
 
 namespace ProtonVPN.Common.OS.Registry
 {
@@ -70,20 +69,13 @@ namespace ProtonVPN.Common.OS.Registry
             {
                 return function();
             }
-            catch (Exception ex) when (IsRegistryAccessException(ex))
+            catch (Exception ex) when (ex.IsRegistryAccessException())
             {
                 _logger.Error($"Can't {actionName} auto start record in Windows registry");
                 _logger.Error(ex);
             }
 
             return defaultResult;
-        }
-
-        private bool IsRegistryAccessException(Exception ex)
-        {
-            return ex is SecurityException ||
-                   ex is UnauthorizedAccessException ||
-                   ex is IOException;
         }
     }
 }

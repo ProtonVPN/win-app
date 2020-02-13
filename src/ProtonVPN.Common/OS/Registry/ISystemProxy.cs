@@ -19,11 +19,8 @@
 
 namespace ProtonVPN.Common.OS.Registry
 {
-    public interface IStartupRecord
+    public interface ISystemProxy
     {
-        bool Exists();
-        bool Valid();
-        void Create();
-        void Remove();
+        bool Enabled();
     }
 }

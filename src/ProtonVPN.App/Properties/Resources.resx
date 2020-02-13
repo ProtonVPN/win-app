@@ -2660,4 +2660,8 @@ Exiting the application will disable the Kill Switch. Do you want to continue?</
     <value>Close</value>
     <comment>Button displayed in the Insecure Wi-Fi modal window when connected to insecure Wi-Fi network.</comment>
   </data>
+  <data name="Dialogs_Proxy_msg_ProxyDetected" xml:space="preserve">
+    <value>ProtonVPN has detected a proxy server configured on your local network. The ProtonVPN app cannot protect the traffic that passes through this proxy. This means your connection will not be completely protected as expected.</value>
+    <comment>The text displayed in modal window when the app detects system proxy is turned on</comment>
+  </data>
 </root>

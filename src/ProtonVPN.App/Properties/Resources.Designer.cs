@@ -3319,6 +3319,15 @@ namespace ProtonVPN.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ProtonVPN has detected a proxy server configured on your local network. The ProtonVPN app cannot protect the traffic that passes through this proxy. This means your connection will not be completely protected as expected..
+        /// </summary>
+        public static string Dialogs_Proxy_msg_ProxyDetected {
+            get {
+                return ResourceManager.GetString("Dialogs_Proxy_msg_ProxyDetected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The ProtonVPN Service that is responsible for your VPN connection is not running. It will try to complete your task again shortly. If this problem persists, try restarting the ProtonVPN app. If it still persists, try restarting your PC..
         /// </summary>
         public static string Dialogs_ServiceStart_Info {
