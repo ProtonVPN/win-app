@@ -142,7 +142,10 @@
     <Compile Include="OS\Processes\SystemProcesses.cs" />
     <Compile Include="OS\Registry\IStartupRecord.cs" />
     <Compile Include="OS\Registry\CurrentUserStartupRecord.cs" />
+    <Compile Include="OS\Registry\ISystemProxy.cs" />
     <Compile Include="OS\Registry\SafeStartupRecord.cs" />
+    <Compile Include="OS\Registry\SafeSystemProxy.cs" />
+    <Compile Include="OS\Registry\SystemProxy.cs" />
     <Compile Include="OS\Services\DriverService.cs" />
     <Compile Include="OS\Services\ExceptionExtensions.cs" />
     <Compile Include="OS\Services\IService.cs" />

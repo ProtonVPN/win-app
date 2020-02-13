@@ -19,7 +19,9 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Security;
 
 namespace ProtonVPN.Common.Extensions
 {
@@ -40,6 +42,13 @@ namespace ProtonVPN.Common.Extensions
             }
 
             return msg;
+        }
+
+        public static bool IsRegistryAccessException(this Exception ex)
+        {
+            return ex is SecurityException ||
+                   ex is UnauthorizedAccessException ||
+                   ex is IOException;
         }
 
         private static IEnumerable<Exception> ThisAndInnerExceptions(Exception e)

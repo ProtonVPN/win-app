@@ -196,6 +196,7 @@ namespace ProtonVPN.Core.Ioc
                     c.Resolve<IModals>()))
                 .AsImplementedInterfaces()
                 .SingleInstance();
+            builder.RegisterType<SystemProxyNotification>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<InsecureNetworkNotification>().AsImplementedInterfaces().AsSelf().SingleInstance();
         }
     }
