@@ -351,6 +351,7 @@
     <Compile Include="P2PDetection\Blocked\SafeBlockedTraffic.cs" />
     <Compile Include="P2PDetection\ITrafficForwardedAware.cs" />
     <Compile Include="P2PDetection\P2PDetectionTimeout.cs" />
+    <Compile Include="Profiles\Form\Error.cs" />
     <Compile Include="Profiles\Form\SecureCoreProfileFormView.xaml.cs">
       <DependentUpon>SecureCoreProfileFormView.xaml</DependentUpon>
     </Compile>

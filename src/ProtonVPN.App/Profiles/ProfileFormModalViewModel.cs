@@ -18,31 +18,34 @@
  */
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
 using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Modals;
 using ProtonVPN.Profiles.Form;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Input;
 using ProtonVPN.Profiles.Servers;
 
 namespace ProtonVPN.Profiles
 {
     public class ProfileFormModalViewModel : BaseModalViewModel
     {
+        private readonly Common.Configuration.Config _appConfig;
         private readonly StandardProfileFormViewModel _standardProfileFormViewModel;
         private readonly SecureCoreProfileFormViewModel _secureCoreProfileFormViewModel;
         private readonly TorProfileFormViewModel _torProfileFormViewModel;
         private readonly P2PProfileFormViewModel _p2PProfileFormViewModel;
 
         public ProfileFormModalViewModel(
+            Common.Configuration.Config appConfig,
             StandardProfileFormViewModel standardProfileFormViewModel,
             SecureCoreProfileFormViewModel secureCoreProfileFormViewModel,
             TorProfileFormViewModel torProfileFormViewModel,
             P2PProfileFormViewModel p2ProfileFormViewModel)
         {
+            _appConfig = appConfig;
             _p2PProfileFormViewModel = p2ProfileFormViewModel;
             _standardProfileFormViewModel = standardProfileFormViewModel;
             _secureCoreProfileFormViewModel = secureCoreProfileFormViewModel;
@@ -55,6 +58,8 @@ namespace ProtonVPN.Profiles
             CancelCommand = new RelayCommand(CancelAction, CanCancel);
             CloseErrorsCommand = new RelayCommand(CloseErrorsAction);
         }
+
+        public int MaxProfileNameLength => _appConfig.MaxProfileNameLength;
 
         public ICommand SelectServerTypeCommand { get; }
         public RelayCommand SaveCommand { get; }
@@ -93,20 +98,6 @@ namespace ProtonVPN.Profiles
         {
             get => _form;
             private set => Set(ref _form, value);
-        }
-
-        private bool _showErrors;
-        public bool ShowErrors
-        {
-            get => _showErrors;
-            private set => Set(ref _showErrors, value);
-        }
-
-        private List<string> _errors;
-        public List<string> Errors
-        {
-            get => _errors;
-            private set => Set(ref _errors, value);
         }
 
         public override void BeforeOpenModal(dynamic options)
@@ -182,7 +173,7 @@ namespace ProtonVPN.Profiles
         private void SelectServerTypeAction(ServerTypeViewModel item)
         {
             SetServerType(item.Features);
-            ShowErrors = false;
+            Form.Error = Error.None;
             Form.Load();
         }
 
@@ -199,11 +190,6 @@ namespace ProtonVPN.Profiles
                 {
                     TryClose();
                     CloseErrorsAction();
-                }
-                else
-                {
-                    Errors = Form.GetErrors();
-                    ShowErrors = true;
                 }
             }
             finally
@@ -226,14 +212,11 @@ namespace ProtonVPN.Profiles
 
         private void CloseErrorsAction()
         {
-            ShowErrors = false;
+            Form.Error = Error.None;
         }
 
         private void ClearForms()
         {
-            Errors = null;
-            CloseErrorsAction();
-
             _standardProfileFormViewModel.Clear();
             _secureCoreProfileFormViewModel.Clear();
             _p2PProfileFormViewModel.Clear();

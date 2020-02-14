@@ -21,7 +21,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
-             xmlns:resources="clr-namespace:ProtonVPN.Resources">
+             xmlns:resources="clr-namespace:ProtonVPN.Resources"
+             xmlns:form="clr-namespace:ProtonVPN.Profiles.Form">
     <Grid Style="{StaticResource ErrorsPanel}">
         <WrapPanel VerticalAlignment="Center" Margin="20,10,38,10">
             <fa:FontAwesome Margin="0,0,15,0"
@@ -32,25 +33,48 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Label Foreground="White"
                    FontSize="16"
                    VerticalAlignment="Center" Content="{resources:Loc Profiles_Profile_Error_lbl_NotValid}"/>
-            <ItemsControl ItemsSource="{Binding Errors}" VerticalAlignment="Center">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel Orientation="Horizontal" IsItemsHost="True"/>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock FontWeight="Bold"
-                                   FontSize="16"
-                                   Margin="0,0,10,0"
-                                   Foreground="White"
-                                   Text="{Binding}"
-                                   TextWrapping="Wrap"/>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+            <TextBlock Text="{resources:Loc Profiles_Profile_Error_msg_NameTooLong}" Name="StringFormat" Visibility="Collapsed"/>
+            <TextBlock>
+                <TextBlock.Resources>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="FontSize" Value="16"/>
+                        <Setter Property="Margin" Value="0,0,10,0"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                        <Setter Property="TextWrapping" Value="Wrap"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Form.Error}" Value="{x:Static form:Error.EmptyProfileName}">
+                                <Setter Property="Text" Value="{resources:Loc Profiles_Profile_Error_msg_NameEmpty}"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Form.Error}" Value="{x:Static form:Error.EmptyColor}">
+                                <Setter Property="Text" Value="{resources:Loc Profiles_Profile_Error_msg_ColorEmpty}"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Form.Error}" Value="{x:Static form:Error.EmptyCountry}">
+                                <Setter Property="Text" Value="{resources:Loc Profiles_Profile_Error_msg_CountryEmpty}"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Form.Error}" Value="{x:Static form:Error.EmptyServer}">
+                                <Setter Property="Text" Value="{resources:Loc Profiles_Profile_Error_msg_ServerEmpty}"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Form.Error}" Value="{x:Static form:Error.ProfileNameExists}">
+                                <Setter Property="Text" Value="{resources:Loc Profiles_Profile_Error_msg_NameExists}"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Form.Error}" Value="{x:Static form:Error.ProfileNameTooLong}">
+                                <Setter Property="Text">
+                                    <Setter.Value>
+                                        <MultiBinding Converter="{StaticResource StringFormatMultiValueConverter}">
+                                            <Binding ElementName="StringFormat" Path="Text"/>
+                                            <Binding Path="MaxProfileNameLength"/>
+                                        </MultiBinding>
+                                    </Setter.Value>
+                                </Setter>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Resources>
+            </TextBlock>
         </WrapPanel>
-        <Button Style="{StaticResource FormErrorsPanelCloseButton}" Panel.ZIndex="2"
+        <Button Style="{StaticResource FormErrorsPanelCloseButton}"
+                Panel.ZIndex="2"
                 Command="{Binding CloseErrorsCommand}"/>
     </Grid>
 </UserControl>
