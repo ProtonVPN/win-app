@@ -83,7 +83,18 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </ContentPresenter>
         </StackPanel>
 
-        <form:FormErrorsPanel/>
+        <form:FormErrorsPanel>
+            <form:FormErrorsPanel.Resources>
+                <Style TargetType="form:FormErrorsPanel">
+                    <Setter Property="Visibility" Value="Visible"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Form.Error}" Value="{x:Static form:Error.None}">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </form:FormErrorsPanel.Resources>
+        </form:FormErrorsPanel>
         <forms:FormButtons/>
     </Grid>
 </modals:BaseModalWindow>

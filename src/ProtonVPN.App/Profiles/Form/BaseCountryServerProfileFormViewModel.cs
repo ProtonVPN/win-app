@@ -17,6 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Servers;
@@ -25,10 +28,6 @@ using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.User;
 using ProtonVPN.Modals.Upsell;
 using ProtonVPN.Profiles.Servers;
-using ProtonVPN.Resources;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ProtonVPN.Profiles.Form
 {
@@ -119,18 +118,25 @@ namespace ProtonVPN.Profiles.Form
             return profile;
         }
 
-        protected override async Task<bool> IsFormValid()
+        protected override async Task<Error> GetFormError()
         {
-            if (!await base.IsFormValid())
-                return false;
+            var error = await base.GetFormError();
+            if (error != Error.None)
+            {
+                if (error == Error.EmptyServer && SelectedCountry == null)
+                {
+                    return Error.EmptyCountry;
+                }
+
+                return error;
+            }
 
             if (SelectedCountry == null)
             {
-                AddError(StringResources.Get("Profiles_Profile_Error_msg_CountryEmpty"));
-                return false;
+                return Error.EmptyCountry;
             }
 
-            return true;
+            return Error.None;
         }
 
         protected virtual List<IServerViewModel> GetServersByCountry(string countryCode)

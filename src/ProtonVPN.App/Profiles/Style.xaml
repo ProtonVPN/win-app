@@ -53,7 +53,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="VerticalAlignment" Value="Bottom"/>
     </Style>
     <Style x:Key="ErrorsPanel" TargetType="Grid">
-        <Setter Property="Visibility" Value="{Binding ShowErrors, Converter={StaticResource BoolToVis}}"/>
         <Setter Property="MinHeight" Value="55"/>
         <Setter Property="Background" Value="#9d9d9d"/>
         <Setter Property="VerticalAlignment" Value="Bottom"/>

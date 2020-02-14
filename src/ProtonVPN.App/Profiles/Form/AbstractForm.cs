@@ -46,8 +46,6 @@ namespace ProtonVPN.Profiles.Form
         private readonly IModals _modals;
         protected readonly ServerManager ServerManager;
 
-        private readonly List<string> _errors = new List<string>();
-
         private bool _unsavedChanges;
 
         private string _profileId;
@@ -142,6 +140,13 @@ namespace ProtonVPN.Profiles.Form
             }
         }
 
+        private Error _error;
+        public Error Error
+        {
+            get => _error;
+            set => Set(ref _error, value);
+        }
+
         public virtual void Load()
         {
             SelectRandomColor();
@@ -149,8 +154,10 @@ namespace ProtonVPN.Profiles.Form
 
         public async Task<bool> Save()
         {
-            if (!await IsFormValid())
+            var error = await GetFormError();
+            if (error != Error.None)
             {
+                Error = error;
                 return false;
             }
 
@@ -210,7 +217,7 @@ namespace ProtonVPN.Profiles.Form
             _profileId = null;
             EditMode = false;
             _unsavedChanges = false;
-            _errors.Clear();
+            Error = Error.None;
 
             ClearServers();
         }
@@ -230,28 +237,6 @@ namespace ProtonVPN.Profiles.Form
             }
 
             return false;
-        }
-
-        public List<string> GetErrors()
-        {
-            var list = new List<string>();
-            var lastIndex = _errors.Count - 1;
-            foreach (var error in _errors)
-            {
-                string message;
-                if (_errors.IndexOf(error).Equals(lastIndex))
-                {
-                    message = error;
-                }
-                else
-                {
-                    message = error + ", ";
-                }
-
-                list.Add(message);
-            }
-
-            return list;
         }
 
         public virtual bool HasUnsavedChanges()
@@ -304,45 +289,38 @@ namespace ProtonVPN.Profiles.Form
             return result;
         }
 
-        protected virtual async Task<bool> IsFormValid()
+        protected virtual async Task<Error> GetFormError()
         {
-            _errors.Clear();
-
             ProfileName = ProfileName?.Trim();
 
             if (string.IsNullOrEmpty(ProfileName))
             {
-                AddError(StringResources.Get("Profiles_Profile_Error_msg_NameEmpty"));
-                return false;
+                return Error.EmptyProfileName;
             }
 
             if (ProfileName.Length > _appConfig.MaxProfileNameLength)
             {
-                AddError(StringResources.Format("Profiles_Profile_Error_msg_NameTooLong", _appConfig.MaxProfileNameLength));
-                return false;
+                return Error.ProfileNameTooLong;
             }
 
             if (ColorCode == null)
             {
-                AddError(StringResources.Get("Profiles_Profile_Error_msg_ColorEmpty"));
-                return false;
+                return Error.EmptyColor;
             }
 
             if (SelectedServer == null)
             {
-                AddError(StringResources.Get("Profiles_Profile_Error_msg_ServerEmpty"));
-                return false;
+                return Error.EmptyServer;
             }
 
             var profile = GetProfile();
             if (EditMode && await _profileManager.OtherProfileWithNameExists(profile) ||
                 !EditMode && await _profileManager.ProfileWithNameExists(profile))
             {
-                AddError(StringResources.Get("Profiles_Profile_Error_msg_NameExists"));
-                return false;
+                return Error.ProfileNameExists;
             }
 
-            return true;
+            return Error.None;
         }
 
         protected virtual Profile GetProfile()
@@ -358,11 +336,6 @@ namespace ProtonVPN.Profiles.Form
         }
 
         protected abstract Features GetFeatures();
-
-        protected void AddError(string error)
-        {
-            _errors.Add(error);
-        }
 
         private bool ShowUpgradeMessageForServer(Server server)
         {
