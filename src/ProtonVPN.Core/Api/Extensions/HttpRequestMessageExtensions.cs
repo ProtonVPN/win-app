@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Linq;
 using System.Net.Http;
 
 namespace ProtonVPN.Core.Api.Extensions
@@ -35,7 +36,13 @@ namespace ProtonVPN.Core.Api.Extensions
 
         private static bool UserIdHeaderSet(this HttpRequestMessage request)
         {
-            return request.Headers.TryGetValues("x-pm-uid", out _);
+            var result = request.Headers.TryGetValues("x-pm-uid", out var value);
+            if (!result)
+            {
+                return false;
+            }
+
+            return !string.IsNullOrEmpty(value.FirstOrDefault());
         }
     }
 }
