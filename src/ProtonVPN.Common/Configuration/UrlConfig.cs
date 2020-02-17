@@ -61,5 +61,17 @@ namespace ProtonVPN.Common.Configuration
 
         [Required]
         public string PublicWifiSafetyUrl { get; internal set; }
+
+        [Required]
+        public string ProtonStatusUrl { get; internal set; }
+
+        [Required]
+        public string TorBrowserUrl { get; internal set; }
+
+        [Required]
+        public string ProtonTwitterUrl { get; internal set; }
+
+        [Required]
+        public string SupportFormUrl { get; internal set; }
     }
 }

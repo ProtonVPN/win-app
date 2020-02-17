@@ -43,6 +43,11 @@ namespace ProtonVPN.Modals
         {
             if (e.Key == Key.Escape)
             {
+                if (DataContext is BaseModalViewModel vm && vm.HideWindowControls)
+                {
+                    return;
+                }
+
                 Close();
             }
         }

@@ -1,0 +1,57 @@
+﻿<!--
+Copyright (c) 2020 Proton Technologies AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<local:BaseModalWindow x:Class="ProtonVPN.Modals.OutdatedAppModalView"
+                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                        xmlns:local="clr-namespace:ProtonVPN.Modals"
+                        xmlns:resources="clr-namespace:ProtonVPN.Resources"
+                        Style="{StaticResource BaseModalStyle}"
+                        SizeToContent="Height"
+                        Title="{resources:Loc Dialogs_ttl_Warning}"
+                        mc:Ignorable="d"
+                        Height="Auto"
+                        Width="500"
+                        d:DataContext="{d:DesignInstance local:OutdatedAppModalViewModel}">
+    <StackPanel>
+        <StackPanel Margin="20,50">
+            <TextBlock TextWrapping="Wrap" Padding="0" FontSize="16" Foreground="White" Text="{resources:Loc Dialogs_OutdatedApp_msg}"/>
+            <TextBlock TextWrapping="Wrap"
+                       Margin="0,10,0,0"
+                       Padding="0"
+                       FontSize="16"
+                       Foreground="White"
+                       Text="{resources:Loc Dialogs_OutdatedApp_msg_KillSwitchActive}"
+                       Visibility="{Binding KillSwitchEnabled, Converter={StaticResource BoolToVis}}"/>
+        </StackPanel>
+
+        <DockPanel Background="{StaticResource ModalBarColor}" Height="66">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Style="{StaticResource SecondaryModalButton}"
+                        Command="{Binding CloseCommand}"
+                        Content="{resources:Loc Dialogs_OutdatedApp_btn_Quit}"/>
+                <Button Style="{StaticResource PrimaryModalButton}"
+                        Command="{Binding Update.UpdateCommand}"
+                        Content="{resources:Loc Dialogs_OutdatedApp_btn_Update}"/>
+            </StackPanel>
+        </DockPanel>
+    </StackPanel>
+</local:BaseModalWindow>

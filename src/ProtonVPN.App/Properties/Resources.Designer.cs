@@ -3274,6 +3274,42 @@ namespace ProtonVPN.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Quit.
+        /// </summary>
+        public static string Dialogs_OutdatedApp_btn_Quit {
+            get {
+                return ResourceManager.GetString("Dialogs_OutdatedApp_btn_Quit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update.
+        /// </summary>
+        public static string Dialogs_OutdatedApp_btn_Update {
+            get {
+                return ResourceManager.GetString("Dialogs_OutdatedApp_btn_Update", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The application version you are using is no longer supported. Please update to the latest version..
+        /// </summary>
+        public static string Dialogs_OutdatedApp_msg {
+            get {
+                return ResourceManager.GetString("Dialogs_OutdatedApp_msg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Note that the Kill Switch is enabled. Updating or quitting the application will disabled it..
+        /// </summary>
+        public static string Dialogs_OutdatedApp_msg_KillSwitchActive {
+            get {
+                return ResourceManager.GetString("Dialogs_OutdatedApp_msg_KillSwitchActive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your connection has been disabled because you are using a server that does not support peer-to-peer (P2P) traffic. P2P is not supported on free servers or servers that are numbered 100 or greater. Please use a different server for P2P..
         /// </summary>
         public static string Dialogs_P2PBlocked_msg_Blocked {
@@ -3346,6 +3382,49 @@ namespace ProtonVPN.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ProtonVPN Troubleshoot.
+        /// </summary>
+        public static string Dialogs_Troubleshoot_ttl {
+            get {
+                return ResourceManager.GetString("Dialogs_Troubleshoot_ttl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string Dialogs_Troubleshooting_btn_Close {
+            get {
+                return ResourceManager.GetString("Dialogs_Troubleshooting_btn_Close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;Bold&gt;No internet connection&lt;/Bold&gt; - Please make sure that your internet connection is working.&lt;LineBreak/&gt;&lt;LineBreak/&gt;
+        ///
+        ///&lt;Bold&gt;
+        ///Internet Service Provider (ISP) problem&lt;/Bold&gt; - Try connecting to Proton from a different network (or use &lt;Hyperlink Command=&quot;{Binding TorCommand}&quot;&gt;Tor&lt;/Hyperlink&gt;).&lt;LineBreak/&gt;&lt;LineBreak/&gt;
+        ///
+        ///
+        ///&lt;Bold&gt;Government block&lt;/Bold&gt; - Your country may be blocking access to Proton. Try using &lt;Hyperlink Command=&quot;{Binding TorCommand}&quot;&gt;Tor&lt;/Hyperlink&gt; to access Proton.
+        ///&lt;LineBreak/&gt;&lt;LineB [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Dialogs_Troubleshooting_msg {
+            get {
+                return ResourceManager.GetString("Dialogs_Troubleshooting_msg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Potential problems that could cause your connection to time out and their solution.
+        /// </summary>
+        public static string Dialogs_Troubleshooting_msg_Title {
+            get {
+                return ResourceManager.GetString("Dialogs_Troubleshooting_msg_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Attention.
         /// </summary>
         public static string Dialogs_ttl_Question {
@@ -3409,66 +3488,11 @@ namespace ProtonVPN.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Get Help.
-        /// </summary>
-        public static string Login_Error_lnk_GetHelp {
-            get {
-                return ResourceManager.GetString("Login_Error_lnk_GetHelp", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to SHOW DETAILS.
-        /// </summary>
-        public static string Login_Error_lnk_ShowDetails {
-            get {
-                return ResourceManager.GetString("Login_Error_lnk_ShowDetails", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Update.
-        /// </summary>
-        public static string Login_Error_lnk_Update {
-            get {
-                return ResourceManager.GetString("Login_Error_lnk_Update", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The application version you are using is no longer supported. Please update to the latest version..
-        /// </summary>
-        public static string Login_Error_msg_AppIsOutdated {
-            get {
-                return ResourceManager.GetString("Login_Error_msg_AppIsOutdated", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Error occured.
-        /// </summary>
-        public static string Login_Error_msg_ErrorOccured {
-            get {
-                return ResourceManager.GetString("Login_Error_msg_ErrorOccured", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Your session has expired. Please re-log in..
         /// </summary>
         public static string Login_Error_msg_SessionExpired {
             get {
                 return ResourceManager.GetString("Login_Error_msg_SessionExpired", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to We&apos;re sorry. &lt;LineBreak/&gt;
-        ///The app failed to communicate with our server and has timed out. You might want to check your network connection..
-        /// </summary>
-        public static string Login_Error_msg_Timeout {
-            get {
-                return ResourceManager.GetString("Login_Error_msg_Timeout", resourceCulture);
             }
         }
         

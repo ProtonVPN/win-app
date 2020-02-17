@@ -17,27 +17,16 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using GalaSoft.MvvmLight.Command;
-using ProtonVPN.Config.Url;
-using System.Windows.Input;
-
-namespace ProtonVPN.Login.ViewModels
+namespace ProtonVPN.Modals
 {
-    public class DetailedErrorViewModel : StandardErrorViewModel
+    /// <summary>
+    /// Interaction logic for TroubleshootModalView.xaml
+    /// </summary>
+    public partial class TroubleshootModalView
     {
-        private readonly IActiveUrls _urls;
-
-        public DetailedErrorViewModel(IActiveUrls urls)
+        public TroubleshootModalView()
         {
-            _urls = urls;
-            ViewSolutionsCommand = new RelayCommand(ViewSolutionsAction);
-        }
-
-        public ICommand ViewSolutionsCommand { get; set; }
-
-        private void ViewSolutionsAction()
-        {
-            _urls.TroubleShootingUrl.Open();
+            InitializeComponent();
         }
     }
 }

@@ -121,10 +121,6 @@
     <value>ProtonVPN</value>
     <comment>The title of main app window. Should not be converted.</comment>
   </data>
-  <data name="Login_Error_msg_AppIsOutdated" xml:space="preserve">
-    <value>The application version you are using is no longer supported. Please update to the latest version.</value>
-    <comment>The error message displayed on the Login window when the app version is outdated</comment>
-  </data>
   <data name="App_msg_ExitConnectedConfirm" xml:space="preserve">
     <value>Exiting the application will disconnect the active VPN connection. Do you want to continue?</value>
     <comment>The question displayed when trying to exit the app while connected to VPN</comment>
@@ -493,14 +489,6 @@
     <value>Unknown error</value>
     <comment>The description of error displayed in Login window</comment>
   </data>
-  <data name="Login_Error_msg_ErrorOccured" xml:space="preserve">
-    <value>Error occured</value>
-    <comment>The message displayed in Error panel of Login window</comment>
-  </data>
-  <data name="Login_Error_lnk_ShowDetails" xml:space="preserve">
-    <value>SHOW DETAILS</value>
-    <comment>The text of Show Details hyperlink in Error panel of Login window</comment>
-  </data>
   <data name="Login_lbl_SecureInternetAnywhere" xml:space="preserve">
     <value>Secure Internet Anywhere</value>
     <comment>The text displayed on the bottom of Login window while logging in</comment>
@@ -541,10 +529,6 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
   <data name="Login_lnk_NeedHelp" xml:space="preserve">
     <value>Need Help?</value>
     <comment>The text of Need Help hyperlink of Login window (opens popup with more options)</comment>
-  </data>
-  <data name="Login_Error_lnk_Update" xml:space="preserve">
-    <value>Update</value>
-    <comment>The text of hyperlink in Login window displayed when app version is outdated (downloads latest app version and updates the app)</comment>
   </data>
   <data name="Trial_Expiring_lbl_Header" xml:space="preserve">
     <value>Your free trial is about to expire!</value>
@@ -941,10 +925,6 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
   <data name="Settings_General_ttl" xml:space="preserve">
     <value>General</value>
     <comment>The title of General tab in Settings window</comment>
-  </data>
-  <data name="Login_Error_lnk_GetHelp" xml:space="preserve">
-    <value>Get Help</value>
-    <comment>The text of Get Help hyperlink in Login window</comment>
   </data>
   <data name="About_lbl_LastUpdate" xml:space="preserve">
     <value>Last Update:</value>
@@ -2626,11 +2606,6 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <value>OpenVPN (UDP)</value>
     <comment>Protocol name displayed all over  the app (do not translate)</comment>
   </data>
-  <data name="Login_Error_msg_Timeout" xml:space="preserve">
-    <value>We're sorry. &lt;LineBreak/&gt;
-The app failed to communicate with our server and has timed out. You might want to check your network connection.</value>
-    <comment>The description of error displayed in Login window</comment>
-  </data>
   <data name="Dialogs_DisconnectError_msg_TlsCertificateError" xml:space="preserve">
     <value>There's a problem validating the VPN server certificate, which might indicate that the network connection is being tampered with or the server you are trying to connect to has a configuration problem. Get help from our customer support by sending a &lt;Hyperlink Foreground="White" Command="{Binding ReportBugCommand}"&gt;&lt;Run Text="Bug Report"/&gt;&lt;/Hyperlink&gt;.</value>
     <comment>The error description displayed in Disconnect modal window if VPN server certificate validation error has occurred</comment>
@@ -2663,5 +2638,55 @@ Exiting the application will disable the Kill Switch. Do you want to continue?</
   <data name="Dialogs_Proxy_msg_ProxyDetected" xml:space="preserve">
     <value>ProtonVPN has detected a proxy server configured on your local network. The ProtonVPN app cannot protect the traffic that passes through this proxy. This means your connection will not be completely protected as expected.</value>
     <comment>The text displayed in modal window when the app detects system proxy is turned on</comment>
+  </data>
+  <data name="Dialogs_Troubleshooting_btn_Close" xml:space="preserve">
+    <value>Close</value>
+    <comment>The button displayed in Troubleshoot modal window</comment>
+  </data>
+  <data name="Dialogs_Troubleshooting_msg" xml:space="preserve">
+    <value>&lt;Bold&gt;No internet connection&lt;/Bold&gt; - Please make sure that your internet connection is working.&lt;LineBreak/&gt;&lt;LineBreak/&gt;
+
+&lt;Bold&gt;
+Internet Service Provider (ISP) problem&lt;/Bold&gt; - Try connecting to Proton from a different network (or use &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor&lt;/Hyperlink&gt;).&lt;LineBreak/&gt;&lt;LineBreak/&gt;
+
+
+&lt;Bold&gt;Government block&lt;/Bold&gt; - Your country may be blocking access to Proton. Try using &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor&lt;/Hyperlink&gt; to access Proton.
+&lt;LineBreak/&gt;&lt;LineBreak/&gt;
+
+&lt;Bold&gt;Antivirus interference&lt;/Bold&gt; - Temporarily disable or remove your antivirus software.
+&lt;LineBreak/&gt;&lt;LineBreak/&gt;
+
+&lt;Bold&gt;Proxy/Firewall interference&lt;/Bold&gt; - Disable any proxies or firewalls, or contact your network administrator.
+&lt;LineBreak/&gt;&lt;LineBreak/&gt;
+
+&lt;Bold&gt;Proton is down&lt;/Bold&gt; - Check &lt;Hyperlink Command="{Binding ProtonStatusCommand}"&gt;Proton Status&lt;/Hyperlink&gt; for our system status.
+&lt;LineBreak/&gt;&lt;LineBreak/&gt;
+
+&lt;Bold&gt;Still can’t find a solution&lt;/Bold&gt; - Contact us directly through our &lt;Hyperlink Command="{Binding SupportFormCommand}"&gt;support form&lt;/Hyperlink&gt;, email (support@protonvpn.com), or &lt;Hyperlink Command="{Binding ProtonTwitterCommand}"&gt;Twitter&lt;/Hyperlink&gt;.</value>
+    <comment>The text displayed in troubleshooting modal window</comment>
+  </data>
+  <data name="Dialogs_Troubleshoot_ttl" xml:space="preserve">
+    <value>ProtonVPN Troubleshoot</value>
+    <comment>The text displayed in Troubleshoot modal window title</comment>
+  </data>
+  <data name="Dialogs_OutdatedApp_btn_Quit" xml:space="preserve">
+    <value>Quit</value>
+    <comment>The text on quit button in outdated app modal window</comment>
+  </data>
+  <data name="Dialogs_OutdatedApp_btn_Update" xml:space="preserve">
+    <value>Update</value>
+    <comment>The text on update button in outdated app modal window</comment>
+  </data>
+  <data name="Dialogs_OutdatedApp_msg" xml:space="preserve">
+    <value>The application version you are using is no longer supported. Please update to the latest version.</value>
+    <comment>The error message displayed on the outdated app window when the app version is outdated</comment>
+  </data>
+  <data name="Dialogs_OutdatedApp_msg_KillSwitchActive" xml:space="preserve">
+    <value>Note that the Kill Switch is enabled. Updating or quitting the application will disabled it.</value>
+    <comment>The error message displayed on the outdated app window when the app version is outdated and Kill Switch is enabled</comment>
+  </data>
+  <data name="Dialogs_Troubleshooting_msg_Title" xml:space="preserve">
+    <value>Potential problems that could cause your connection to time out and their solution</value>
+    <comment>The text displayed in troubleshooting modal window</comment>
   </data>
 </root>

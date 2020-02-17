@@ -48,6 +48,8 @@ namespace ProtonVPN.Modals
             set => Set(ref _loading, value);
         }
 
+        public bool HideWindowControls { get; set; }
+
         public WindowState WindowState
         {
             get => _windowState;

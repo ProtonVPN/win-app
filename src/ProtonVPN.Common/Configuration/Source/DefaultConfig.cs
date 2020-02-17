@@ -144,6 +144,10 @@ namespace ProtonVPN.Common.Configuration.Source
                     P2PStatusUrl = "http://protonstatus.com/vpn_status",
                     ProtonMailPricingUrl = "https://protonmail.com/pricing",
                     PublicWifiSafetyUrl = "https://protonvpn.com/blog/public-wifi-safety",
+                    ProtonStatusUrl = "https://protonstatus.com",
+                    TorBrowserUrl = "https://www.torproject.org",
+                    ProtonTwitterUrl = "https://twitter.com/ProtonVPN",
+                    SupportFormUrl = "https://protonvpn.com/support-form",
                 },
 
                 OpenVpn =

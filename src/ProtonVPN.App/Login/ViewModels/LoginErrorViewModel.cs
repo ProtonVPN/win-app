@@ -18,49 +18,33 @@
  */
 
 using ProtonVPN.Core.MVVM;
+using ProtonVPN.Resources;
 
 namespace ProtonVPN.Login.ViewModels
 {
     public class LoginErrorViewModel : ViewModel
     {
-        private readonly StandardErrorViewModel _standardErrorViewModel;
-        private readonly GeneralErrorViewModel _generalErrorViewModel;
+        private string _error;
 
-        public LoginErrorViewModel(StandardErrorViewModel standardErrorViewModel, GeneralErrorViewModel generalErrorViewModel)
+        public string Error
         {
-            _standardErrorViewModel = standardErrorViewModel;
-            _generalErrorViewModel = generalErrorViewModel;
+            get => _error;
+            set => Set(ref _error, value);
         }
 
-        private StandardErrorViewModel _viewModel;
-        public StandardErrorViewModel ViewModel
+        public void SetError(string error)
         {
-            get => _viewModel;
-            set => Set(ref _viewModel, value);
-        }
+            if (string.IsNullOrEmpty(error))
+            {
+                error = StringResources.Get("Login_Error_msg_Unknown");
+            }
 
-        public void SetStandardError(string message)
-        {
-            _standardErrorViewModel.SetError(message);
-            ViewModel = _standardErrorViewModel;
-        }
-
-        public void SetDetailedError(string message)
-        {
-            _generalErrorViewModel.SetDetailedErrorMessage(message);
-            ViewModel = _generalErrorViewModel;
-        }
-
-        public void SetOutdatedError(string message)
-        {
-            _generalErrorViewModel.SetOutdatedErrorMessage(message);
-            ViewModel = _generalErrorViewModel;
+            Error = error;
         }
 
         public void ClearError()
         {
-            ViewModel?.Reset();
-            _viewModel = null;
+            Error = string.Empty;
         }
     }
 }

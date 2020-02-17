@@ -22,18 +22,31 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:ProtonVPN.Login.Views"
-             xmlns:viewModels="clr-namespace:ProtonVPN.Login.ViewModels"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
              mc:Ignorable="d">
+
     <UserControl.Resources>
-        <DataTemplate DataType="{x:Type viewModels:StandardErrorViewModel}">
-            <local:StandardErrorView/>
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type viewModels:GeneralErrorViewModel}">
-            <local:GeneralErrorView/>
-        </DataTemplate>
+        <Style x:Key="ErrorPanel" TargetType="Grid">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Error, Converter={StaticResource EmptyStringToBoolConverter}}" Value="True">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
     </UserControl.Resources>
-    <Grid>
-        <ContentPresenter Content="{Binding ViewModel}"/>
+
+    <Grid Style="{StaticResource ErrorPanel}" Background="#f05152" VerticalAlignment="Top">
+        <DockPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <fa:FontAwesome Icon="ExclamationTriangle"
+                            Foreground="White"
+                            VerticalAlignment="Center"
+                            Padding="5,0,0,0"
+                            FontSize="14"/>
+            <TextBlock FontSize="14"
+                       Padding="10"
+                       Foreground="White"
+                       TextWrapping="Wrap"
+                       Text="{Binding Error}"/>
+        </DockPanel>
     </Grid>
 </UserControl>

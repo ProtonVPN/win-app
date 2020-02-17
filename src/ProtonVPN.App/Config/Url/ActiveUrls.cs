@@ -46,6 +46,10 @@ namespace ProtonVPN.Config.Url
         public IActiveUrl P2PStatusUrl                            => Url(_config.P2PStatusUrl);
         public IActiveUrl ProtonMailPricingUrl                    => Url(_config.ProtonMailPricingUrl);
         public IActiveUrl PublicWifiSafetyUrl                     => Url(_config.PublicWifiSafetyUrl);
+        public IActiveUrl ProtonStatusUrl                         => Url(_config.ProtonStatusUrl);
+        public IActiveUrl TorBrowserUrl                           => Url(_config.TorBrowserUrl);
+        public IActiveUrl ProtonTwitterUrl                        => Url(_config.ProtonTwitterUrl);
+        public IActiveUrl SupportFormUrl                          => Url(_config.SupportFormUrl);
 
         private ActiveUrl Url(string url)
         {

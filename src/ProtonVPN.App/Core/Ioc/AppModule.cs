@@ -174,6 +174,7 @@ namespace ProtonVPN.Core.Ioc
                 .AsImplementedInterfaces()
                 .AsSelf()
                 .SingleInstance();
+            builder.RegisterType<OutdatedAppNotification>().SingleInstance();
             builder.RegisterType<QuickConnector>().SingleInstance();
             builder.RegisterType<AppExitHandler>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterType<UserLocationService>().AsImplementedInterfaces().SingleInstance();
