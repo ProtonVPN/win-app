@@ -108,7 +108,6 @@ namespace ProtonVPN.Core
             LoadServersFromCache();
 
             RegisterMigrations(Resolve<AppSettingsStorage>(), Resolve<IEnumerable<IAppSettingsMigration>>());
-
             RegisterMigrations(Resolve<UserSettings>(), Resolve<IEnumerable<IUserSettingsMigration>>());
             Resolve<SyncedAutoStartup>().Sync();
 
@@ -177,14 +176,14 @@ namespace ProtonVPN.Core
                 var validateResult = await Resolve<UserValidator>().GetValidateResult();
                 if (validateResult.Failure)
                 {
-                    Resolve<LoginErrorViewModel>().SetDetailedError(validateResult.Error);
+                    Resolve<LoginErrorViewModel>().SetError(validateResult.Error);
                     ShowLoginForm();
                     return false;
                 }
             }
             catch (HttpRequestException ex)
             {
-                Resolve<LoginErrorViewModel>().SetDetailedError(ex.Message);
+                Resolve<LoginErrorViewModel>().SetError(ex.Message);
                 ShowLoginForm();
                 return false;
             }
@@ -391,20 +390,11 @@ namespace ProtonVPN.Core
                     }
 
                     Resolve<LoginViewModel>().OnSessionExpired();
-                    await Resolve<UserAuth>().Logout();
+                    Resolve<UserAuth>().Logout();
                 });
             };
 
-            Resolve<OutdatedAppHandler>().ForcedLogout += (sender, e) =>
-            {
-                Resolve<IScheduler>().Schedule(async () =>
-                {
-                    await Resolve<UserAuth>().Logout();
-                    Resolve<LoginViewModel>().OnForcedLogout(string.IsNullOrEmpty(e.Error)
-                        ? StringResources.Get("Login_Error_msg_AppIsOutdated")
-                        : e.Error);
-                });
-            };
+            Resolve<OutdatedAppHandler>().AppOutdated += Resolve<OutdatedAppNotification>().OnAppOutdated;
 
             Resolve<MonitoredVpnService>().ServiceStartedHandler += async (sender, name) =>
             {

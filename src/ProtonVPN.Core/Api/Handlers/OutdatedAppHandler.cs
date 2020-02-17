@@ -31,7 +31,7 @@ namespace ProtonVPN.Core.Api.Handlers
     /// </summary>
     public class OutdatedAppHandler : DelegatingHandler
     {
-        public event EventHandler<BaseResponse> ForcedLogout;
+        public event EventHandler<BaseResponse> AppOutdated;
 
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request,
             CancellationToken cancellationToken)
@@ -46,7 +46,7 @@ namespace ProtonVPN.Core.Api.Handlers
                 var result = JsonConvert.DeserializeObject<BaseResponse>(content);
                 if (ForceLogoutRequired(result.Code))
                 {
-                    ForcedLogout?.Invoke(this, result);
+                    AppOutdated?.Invoke(this, result);
                 }
             }
             catch (JsonException)

@@ -177,7 +177,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <Grid Background="#222329" VerticalAlignment="Stretch">
         <views:LoginErrorView DataContext="{Binding LoginErrorViewModel}" Panel.ZIndex="2"/>
 
-        <StackPanel Style="{StaticResource MainStackPanel}">
+            <StackPanel Style="{StaticResource MainStackPanel}">
             <DockPanel VerticalAlignment="Top" Margin="0,30,0,0" HorizontalAlignment="Center">
                 <icons:ProtonVpnSign HorizontalAlignment="Left" Color="White" Width="34"/>
                 <TextBlock Foreground="White" FontSize="32" Margin="5,0,0,0">

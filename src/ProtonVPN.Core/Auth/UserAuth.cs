@@ -160,7 +160,7 @@ namespace ProtonVPN.Core.Auth
             UserLoggedIn?.Invoke(this, new UserLoggedInEventArgs(autoLogin));
         }
 
-        public async Task Logout()
+        public void Logout()
         {
             if (!LoggedIn)
                 return;
@@ -168,6 +168,11 @@ namespace ProtonVPN.Core.Auth
             LoggedIn = false;
             UserLoggedOut?.Invoke(this, EventArgs.Empty);
 
+            SendLogoutRequest();
+        }
+
+        private async void SendLogoutRequest()
+        {
             try
             {
                 await _apiClient.GetLogoutResponse();

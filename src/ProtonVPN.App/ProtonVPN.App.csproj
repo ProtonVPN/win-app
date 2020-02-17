@@ -184,10 +184,19 @@
     </Compile>
     <Compile Include="About\LicenseModalViewModel.cs" />
     <Compile Include="About\ReleaseEqualityComparer.cs" />
+    <Compile Include="Modals\OutdatedAppModalView.xaml.cs">
+      <DependentUpon>OutdatedAppModalView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modals\OutdatedAppModalViewModel.cs" />
+    <Compile Include="Modals\TroubleshootModalView.xaml.cs">
+      <DependentUpon>TroubleshootModalView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modals\TroubleshootModalViewModel.cs" />
     <Compile Include="Modals\UpdateModalView.xaml.cs">
       <DependentUpon>UpdateModalView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Notifications\InsecureWifiNotification.cs" />
+    <Compile Include="Notifications\OutdatedAppNotification.cs" />
     <Compile Include="Notifications\SystemProxyNotification.cs" />
     <Compile Include="Notifications\UpdateNotification.cs" />
     <Compile Include="Core\Startup\ElevatedApplication.cs" />
@@ -389,26 +398,9 @@
     <Compile Include="Notifications\VpnStatusNotification.cs" />
     <Compile Include="Core\Settings\AppSettingsStorage.cs" />
     <Compile Include="Core\Startup\AutoStartup.cs" />
-    <Compile Include="Login\ViewModels\AbstractErrorViewModel.cs" />
-    <Compile Include="Login\ViewModels\DetailedErrorViewModel.cs" />
-    <Compile Include="Login\ViewModels\GeneralErrorViewModel.cs" />
     <Compile Include="Login\ViewModels\LoginErrorViewModel.cs" />
-    <Compile Include="Login\ViewModels\OutdatedAppErrorViewModel.cs" />
-    <Compile Include="Login\ViewModels\StandardErrorViewModel.cs" />
-    <Compile Include="Login\Views\DetailedErrorView.xaml.cs">
-      <DependentUpon>DetailedErrorView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Login\Views\GeneralErrorView.xaml.cs">
-      <DependentUpon>GeneralErrorView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Login\Views\LoginErrorView.xaml.cs">
       <DependentUpon>LoginErrorView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Login\Views\OutdatedErrorView.xaml.cs">
-      <DependentUpon>OutdatedErrorView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Login\Views\StandardErrorView.xaml.cs">
-      <DependentUpon>StandardErrorView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Map\IPinChangeAware.cs" />
     <Compile Include="Map\PinFactory.cs" />
@@ -755,6 +747,14 @@
     <Compile Include="ViewModels\AppLoadingViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Map\ViewModels\MapViewModel.cs" />
+    <Page Include="Modals\OutdatedAppModalView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modals\TroubleshootModalView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Modals\UpdateModalView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -964,27 +964,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Login\Styles\Login.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Login\Views\DetailedErrorView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Login\Views\GeneralErrorView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Login\Views\LoginErrorView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Login\Views\OutdatedErrorView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Login\Views\StandardErrorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

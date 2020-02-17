@@ -25,7 +25,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:converters="clr-namespace:ProtonVPN.Core.MVVM.Converters"
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
-    xmlns:markdown="clr-namespace:ProtonVPN.Core.Wpf.Markdown"
     mc:Ignorable="d">
     <Application.Resources>
         <ResourceDictionary>
@@ -85,7 +84,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <ResourceDictionary Source="Resources/Assets/Styles/MainWindow.xaml"/>
                 <ResourceDictionary Source="Views/Forms/Style.xaml"/>
                 <ResourceDictionary Source="ConnectionInfo/ConnectionInfo.xaml"/>
-                <ResourceDictionary Source="Login/Styles/Login.xaml"/>
                 <ResourceDictionary Source="Profiles/Style.xaml"/>
                 <ResourceDictionary Source="Resources/Assets/Styles/Sidebar.xaml"/>
             </ResourceDictionary.MergedDictionaries>

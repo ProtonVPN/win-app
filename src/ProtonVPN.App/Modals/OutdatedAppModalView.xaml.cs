@@ -17,11 +17,14 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Login.Views
+namespace ProtonVPN.Modals
 {
-    public partial class DetailedErrorView
+    /// <summary>
+    /// Interaction logic for OutdatedAppModalView.xaml
+    /// </summary>
+    public partial class OutdatedAppModalView
     {
-        public DetailedErrorView()
+        public OutdatedAppModalView()
         {
             InitializeComponent();
         }

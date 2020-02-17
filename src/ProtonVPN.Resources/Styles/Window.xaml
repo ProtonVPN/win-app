@@ -35,11 +35,21 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
     <Style x:Key="TitleDock" TargetType="DockPanel">
         <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="Height" Value="36"/>
         <Setter Property="Background" Value="{StaticResource ModalBarColor}"/>
         <Style.Triggers>
             <DataTrigger Binding="{Binding WindowState, RelativeSource={RelativeSource AncestorType=Window}}"
                          Value="Maximized">
                 <Setter Property="Margin" Value="7"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="WindowControlsPanel" TargetType="StackPanel">
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="Orientation" Value="Horizontal"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding HideWindowControls}" Value="True">
+                <Setter Property="Visibility" Value="Collapsed"/>
             </DataTrigger>
         </Style.Triggers>
     </Style>

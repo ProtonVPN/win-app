@@ -17,22 +17,21 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using GalaSoft.MvvmLight.Command;
-using Polly.Timeout;
-using ProtonVPN.Common.Extensions;
-using ProtonVPN.Config.Url;
-using ProtonVPN.Core.Auth;
-using ProtonVPN.Core.MVVM;
-using ProtonVPN.Core.Settings;
-using ProtonVPN.Resources;
-using System;
 using System.ComponentModel;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Common.Vpn;
+using ProtonVPN.Config.Url;
+using ProtonVPN.Core.Auth;
+using ProtonVPN.Core.Modals;
+using ProtonVPN.Core.MVVM;
+using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
+using ProtonVPN.Modals;
+using ProtonVPN.Resources;
 
 namespace ProtonVPN.Login.ViewModels
 {
@@ -45,6 +44,7 @@ namespace ProtonVPN.Login.ViewModels
         private readonly LoginWindowViewModel _loginWindowViewModel;
         private readonly IActiveUrls _urls;
         private readonly UserAuth _userAuth;
+        private readonly IModals _modals;
 
         public LoginErrorViewModel LoginErrorViewModel { get; }
 
@@ -52,7 +52,6 @@ namespace ProtonVPN.Login.ViewModels
         private string _password;
         private bool _showHelpBalloon;
         private bool _autoAuthFailed;
-        private bool _forcedLogout;
         private bool _networkBlocked;
 
         public LoginViewModel(
@@ -61,12 +60,14 @@ namespace ProtonVPN.Login.ViewModels
             IActiveUrls urls,
             IAppSettings appSettings,
             LoginErrorViewModel loginErrorViewModel,
-            UserAuth userAuth)
+            UserAuth userAuth,
+            IModals modals)
         {
             _appConfig = appConfig;
             _userAuth = userAuth;
             _appSettings = appSettings;
             _urls = urls;
+            _modals = modals;
             _loginWindowViewModel = loginWindowViewModel;
             LoginErrorViewModel = loginErrorViewModel;
 
@@ -164,13 +165,7 @@ namespace ProtonVPN.Login.ViewModels
 
         public void OnSessionExpired()
         {
-            LoginErrorViewModel.SetStandardError(StringResources.Get("Login_Error_msg_SessionExpired"));
-        }
-
-        public void OnForcedLogout(string message)
-        {
-            LoginErrorViewModel.SetOutdatedError(message);
-            _forcedLogout = true;
+            LoginErrorViewModel.SetError(StringResources.Get("Login_Error_msg_SessionExpired"));
         }
 
         public void OnAppSettingsChanged(PropertyChangedEventArgs e)
@@ -215,37 +210,24 @@ namespace ProtonVPN.Login.ViewModels
                 }
                 else
                 {
-                    if (!_forcedLogout)
+                    var error = loginResult.Error;
+                    if (loginResult.StatusCode == HttpStatusCode.Unauthorized)
                     {
-                        var error = loginResult.Error;
-                        if (loginResult.StatusCode == HttpStatusCode.Unauthorized)
-                        {
-                            error = StringResources.Get("Login_Error_msg_Unauthorized");
-                        }
-
-                        LoginErrorViewModel.SetStandardError(error);
+                        error = StringResources.Get("Login_Error_msg_Unauthorized");
                     }
+
+                    LoginErrorViewModel.SetError(error);
 
                     Password = "";
                     ShowLoginForm();
                 }
             }
-            catch (HttpRequestException e)
+            catch (HttpRequestException)
             {
-                LoginErrorViewModel.SetDetailedError(GetLoginError(e));
+                _modals.Show<TroubleshootModalViewModel>();
                 Password = "";
                 ShowLoginForm();
             }
-        }
-
-        private string GetLoginError(Exception e)
-        {
-            if (e.InnerException is TimeoutRejectedException)
-            {
-                return StringResources.Get("Login_Error_msg_Timeout");
-            }
-
-            return $"{e.Message} {e.MostInner()}";
         }
 
         private void ShowLoginForm()
@@ -260,7 +242,6 @@ namespace ProtonVPN.Login.ViewModels
             ErrorText = "";
             LoginErrorViewModel.ClearError();
             _autoAuthFailed = false;
-            _forcedLogout = false;
         }
 
         private void ToggleBalloonAction()

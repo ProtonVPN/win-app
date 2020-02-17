@@ -78,12 +78,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Style>
         <Style x:Key="ErrorPanel" TargetType="Grid">
             <Setter Property="Background" Value="#dd4445"/>
-            <Setter Property="Visibility" Value="Collapsed"/>
             <Setter Property="VerticalAlignment" Value="Bottom"/>
             <Setter Property="Margin" Value="0,0,0,66"/>
             <Style.Triggers>
-                <DataTrigger Binding="{Binding Error, Converter={StaticResource EmptyStringToBoolConverter}}" Value="False">
-                    <Setter Property="Visibility" Value="Visible"/>
+                <DataTrigger Binding="{Binding Error, Converter={StaticResource EmptyStringToBoolConverter}}" Value="True">
+                    <Setter Property="Visibility" Value="Collapsed"/>
                 </DataTrigger>
             </Style.Triggers>
         </Style>

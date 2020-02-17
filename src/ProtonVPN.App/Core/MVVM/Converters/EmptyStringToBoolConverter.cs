@@ -27,9 +27,11 @@ namespace ProtonVPN.Core.MVVM.Converters
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             if (value is string str)
+            {
                 return string.IsNullOrEmpty(str);
+            }
 
-            return false;
+            return value == null;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)

@@ -42,7 +42,7 @@ namespace ProtonVPN.Core.Test.Api.Handlers
             var called = 0;
             var fakeHttpMessageHandler = new MockHttpMessageHandler();
             var handler = new OutdatedAppHandler {InnerHandler = fakeHttpMessageHandler };
-            handler.ForcedLogout += (sender, args) => called++;
+            handler.AppOutdated += (sender, args) => called++;
             var httpClient = new HttpClient(handler) {BaseAddress = new Uri("http://127.0.0.1")};
             fakeHttpMessageHandler.When("*").Respond(req => new HttpResponseMessage
             {

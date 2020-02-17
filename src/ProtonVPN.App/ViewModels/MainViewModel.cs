@@ -211,20 +211,18 @@ namespace ProtonVPN.ViewModels
             _urls.HelpUrl.Open();
         }
 
-        private async void LogoutAction()
+        private void LogoutAction()
         {
             if (_vpnManager.Status == VpnStatus.Connected)
             {
                 var result = _dialogs.ShowQuestion(StringResources.Get("App_msg_LogoutConnectedConfirm"));
                 if (!result.HasValue || !result.Value)
+                {
                     return;
+                }
+            }
 
-                await _userAuth.Logout();
-            }
-            else
-            {
-                await _userAuth.Logout();
-            }
+            _userAuth.Logout();
         }
 
         private void ExitAction()

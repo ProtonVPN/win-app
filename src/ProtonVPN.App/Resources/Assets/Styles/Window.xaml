@@ -35,7 +35,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <DockPanel Style="{StaticResource TitleDock}">
                             <Path Margin="7,0" Fill="{StaticResource PrimaryColor}" Style="{StaticResource ProtonIcon}"/>
                             <Label VerticalAlignment="Center" Foreground="White" FontSize="14" Content="{TemplateBinding Title}"/>
-                            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                            <StackPanel Style="{StaticResource WindowControlsPanel}">
                                 <Button Style="{StaticResource WindowsMinimizeButton}"
                                         AutomationProperties.AutomationId="{StaticResource MinimizeButtonId}"
                                         Command="{Binding DataContext.MinimizeCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type modals:BaseModalWindow}}}"/>

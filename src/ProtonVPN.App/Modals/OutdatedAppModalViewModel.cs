@@ -17,39 +17,39 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
+using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Input;
+using ProtonVPN.About;
+using ProtonVPN.Core.Vpn;
 
 namespace ProtonVPN.Modals
 {
-    public class BaseModalWindow : Window
+    public class OutdatedAppModalViewModel : BaseModalViewModel, IVpnStateAware
     {
-        public BaseModalWindow()
+        public OutdatedAppModalViewModel(UpdateViewModel updateViewModel)
         {
-            PreviewKeyDown += HandleEsc;
+            HideWindowControls = true;
+            Update = updateViewModel;
         }
 
-        protected override void OnActivated(EventArgs e)
+        public UpdateViewModel Update { get; }
+
+        private bool _killSwitchEnabled;
+        public bool KillSwitchEnabled
         {
-            base.OnActivated(e);
-            if (WindowState == WindowState.Minimized)
-            {
-                WindowState = WindowState.Normal;
-            }
+            get => _killSwitchEnabled;
+            set => Set(ref _killSwitchEnabled, value);
         }
 
-        private void HandleEsc(object sender, KeyEventArgs e)
+        public override void CloseAction()
         {
-            if (e.Key == Key.Escape)
-            {
-                if (DataContext is BaseModalViewModel vm && vm.HideWindowControls)
-                {
-                    return;
-                }
+            Application.Current.Shutdown();
+        }
 
-                Close();
-            }
+        public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
+        {
+            KillSwitchEnabled = e.NetworkBlocked;
+            return Task.CompletedTask;
         }
     }
 }
