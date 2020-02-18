@@ -36,7 +36,6 @@ class Localization:
                 else:
                     error = True
                     break
-            break
         
         shutil.rmtree(self.outputPath)
         
