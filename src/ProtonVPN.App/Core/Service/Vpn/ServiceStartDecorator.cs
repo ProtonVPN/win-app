@@ -74,21 +74,26 @@ namespace ProtonVPN.Core.Service.Vpn
 
         private async Task InvokeAction(Func<Task> action)
         {
-            try
+            while (true)
             {
-                await action();
-            }
-            catch (EndpointNotFoundException)
-            {
-                var result = _modals.Show<ServiceStartModalViewModel>();
-                if (result != null && result.Value)
+                try
                 {
                     await action();
+
+                    break;
                 }
-            }
-            catch (Exception e) when (IsConnectionException(e))
-            {
-                _logger.Error(e);
+                catch (EndpointNotFoundException)
+                {
+                    var result = _modals.Show<ServiceStartModalViewModel>();
+                    if (result == null || !result.Value)
+                    {
+                        break;
+                    }
+                }
+                catch (Exception e) when (IsConnectionException(e))
+                {
+                    _logger.Error(e);
+                }
             }
         }
 

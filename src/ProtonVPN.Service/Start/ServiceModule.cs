@@ -62,7 +62,7 @@ namespace ProtonVPN.Service.Start
             builder.Register(c => new ServiceRetryPolicy(2, TimeSpan.FromSeconds(1))).SingleInstance();
             builder.Register(c => new CalloutDriver(
                 new ReliableService(
-                    c.Resolve<ServiceRetryPolicy>().Value(),
+                    c.Resolve<ServiceRetryPolicy>(),
                     new SafeService(
                         new LoggingService(
                             c.Resolve<ILogger>(),

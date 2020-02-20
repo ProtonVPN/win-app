@@ -20,7 +20,9 @@
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Core.Settings;
 using System;
+using System.ServiceModel;
 using System.Threading.Tasks;
+using ProtonVPN.Common.Extensions;
 
 namespace ProtonVPN.Core.Service.Settings
 {
@@ -57,9 +59,9 @@ namespace ProtonVPN.Core.Service.Settings
             {
                 await Task.Run(() => _client.Apply(_settingsContractProvider.GetSettingsContract()));
             }
-            catch (Exception ex)
+            catch (Exception ex) when (ex is CommunicationException || ex is TimeoutException || ex is TaskCanceledException)
             {
-                _logger.Error(ex);
+                _logger.Error(ex.CombinedMessage());
             }
         }
     }

@@ -17,18 +17,18 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
-using Polly;
+using System.Threading;
+using System.Threading.Tasks;
 using ProtonVPN.Common.Abstract;
 
 namespace ProtonVPN.Common.OS.Services
 {
     public class ReliableService : IService
     {
-        private readonly Policy<Result> _retryPolicy;
+        private readonly IServiceRetryPolicy _retryPolicy;
         private readonly IService _origin;
 
-        public ReliableService(Policy<Result> retryPolicy, IService origin)
+        public ReliableService(IServiceRetryPolicy retryPolicy, IService origin)
         {
             _retryPolicy = retryPolicy;
             _origin = origin;
@@ -36,24 +36,16 @@ namespace ProtonVPN.Common.OS.Services
 
         public string Name => _origin.Name;
 
-        public event EventHandler<string> ServiceStartedHandler;
+        public bool Running() => _origin.Running();
 
-        public bool IsRunning() => _origin.IsRunning();
-
-        public Result Start()
+        public Task<Result> StartAsync(CancellationToken cancellationToken)
         {
-            var result = _retryPolicy.Execute(() => _origin.Start());
-            if (result.Success)
-            {
-                ServiceStartedHandler?.Invoke(this, Name);
-            }
-
-            return result;
+            return _retryPolicy.ExecuteAsync(ct => _origin.StartAsync(ct), cancellationToken);
         }
 
-        public Result Stop()
+        public Task<Result> StopAsync(CancellationToken cancellationToken)
         {
-            return _retryPolicy.Execute(() => _origin.Stop());
+            return _origin.StopAsync(cancellationToken);
         }
     }
 }

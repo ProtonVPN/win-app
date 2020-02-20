@@ -17,34 +17,50 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Polly;
-using ProtonVPN.Common.Abstract;
 using System;
+using System.Threading;
+using System.Threading.Tasks;
+using Polly;
+using Polly.Timeout;
+using ProtonVPN.Common.Abstract;
 
 namespace ProtonVPN.Common.OS.Services
 {
-    public class ServiceRetryPolicy
+    public class ServiceRetryPolicy : IServiceRetryPolicy
     {
-        private readonly int _retryCount;
-        private readonly TimeSpan _retryDelay;
+        private readonly AsyncPolicy<Result> _policy;
 
         public ServiceRetryPolicy(int retryCount, TimeSpan retryDelay)
         {
-            _retryDelay = retryDelay;
-            _retryCount = retryCount;
+            _policy = Policy(retryCount, retryDelay);
         }
 
-        public Policy<Result> Value()
+        public async Task<Result> ExecuteAsync(Func<CancellationToken, Task<Result>> action, CancellationToken cancellationToken)
         {
-            var policy = HandleResult()
-                .WaitAndRetry(_retryCount, retryAttempt => _retryDelay);
+            try
+            {
+                return await _policy.ExecuteAsync(async ct => await action(ct), cancellationToken);
+            }
+            catch (OperationCanceledException)
+            {
+                return Result.Fail();
+            }
+        }
 
-            return policy;
+        private AsyncPolicy<Result> Policy(int retryCount, TimeSpan retryDelay)
+        {
+            var retryPolicy = HandleResult()
+                .Or<TimeoutRejectedException>()
+                .WaitAndRetryAsync(retryCount, retryAttempt => retryDelay);
+
+            return retryPolicy;
         }
 
         private PolicyBuilder<Result> HandleResult()
         {
-            return Policy<Result>.HandleResult(r => r.Failure);
+            return Policy<Result>.HandleResult(r => r.Failure)
+                .Or<OperationCanceledException>()
+                .Or<TimeoutException>();
         }
     }
 }

@@ -28,11 +28,11 @@ namespace ProtonVPN.Modals
     {
         private static readonly TimeSpan DelayBetweenServiceStartAttempts = TimeSpan.FromSeconds(3);
 
-        private readonly VpnServiceWrapper _service;
+        private readonly VpnSystemService _service;
 
         private bool _starting;
 
-        public ServiceStartModalViewModel(VpnServiceWrapper service)
+        public ServiceStartModalViewModel(VpnSystemService service)
         {
             _service = service;
         }

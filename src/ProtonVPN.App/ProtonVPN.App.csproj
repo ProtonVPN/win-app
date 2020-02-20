@@ -271,8 +271,8 @@
     <Compile Include="Core\Ioc\LoginModule.cs" />
     <Compile Include="Core\Ioc\TrialModule.cs" />
     <Compile Include="Modals\IModalWindows.cs" />
-    <Compile Include="Core\Service\AppUpdateServiceWrapper.cs" />
-    <Compile Include="Core\Service\VpnService.cs" />
+    <Compile Include="Core\Service\AppUpdateSystemService.cs" />
+    <Compile Include="Core\Service\VpnSystemService.cs" />
     <Compile Include="Core\Service\MonitoredVpnService.cs" />
     <Compile Include="Core\Service\Settings\SettingsContractProvider.cs" />
     <Compile Include="Core\Service\Settings\SettingsServiceClient.cs" />

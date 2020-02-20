@@ -45,35 +45,36 @@ namespace ProtonVPN.Common.Threading
 
         public static async Task TimeoutAfter(this Task task, TimeSpan timeout)
         {
-            using (var cancellationTokenSource = new CancellationTokenSource())
+            using var cancellationTokenSource = new CancellationTokenSource();
+
+            var completedTask = await Task.WhenAny(task, Task.Delay(timeout, cancellationTokenSource.Token));
+            if (completedTask != task)
             {
-
-                var completedTask = await Task.WhenAny(task, Task.Delay(timeout, cancellationTokenSource.Token));
-                if (completedTask == task)
-                {
-                    cancellationTokenSource.Cancel();
-                    await task; // Await to catch exceptions
-                    return;
-                }
-
-                throw new TimeoutException("The operation has timed out.");
+                throw new TimeoutException();
             }
+
+            cancellationTokenSource.Cancel();
+
+            // Task completed within timeout. The task may have faulted or been canceled.
+            // Await the task so that any exceptions/cancellation is rethrown.
+            await task;
         }
 
         public static async Task<TResult> TimeoutAfter<TResult>(this Task<TResult> task, TimeSpan timeout)
         {
-            using (var cancellationTokenSource = new CancellationTokenSource())
+            using var cancellationTokenSource = new CancellationTokenSource();
+
+            var completedTask = await Task.WhenAny(task, Task.Delay(timeout, cancellationTokenSource.Token));
+            if (completedTask != task)
             {
-
-                var completedTask = await Task.WhenAny(task, Task.Delay(timeout, cancellationTokenSource.Token));
-                if (completedTask == task)
-                {
-                    cancellationTokenSource.Cancel();
-                    return await task; // Await to catch exceptions
-                }
-
-                throw new TimeoutException("The operation has timed out.");
+                throw new TimeoutException();
             }
+
+            cancellationTokenSource.Cancel();
+
+            // Task completed within timeout. The task may have faulted or been canceled.
+            // Await the task so that any exceptions/cancellation is rethrown.
+            return await task;
         }
 
         public static async Task WithTimeout(this Task task, Task timeoutTask)
@@ -98,6 +99,22 @@ namespace ProtonVPN.Common.Threading
             // Task completed within timeout. The task may have faulted or been canceled.
             // Await the task so that any exceptions/cancellation is rethrown.
             return await task;
+        }
+
+        public static async Task TimeoutAfter(Func<CancellationToken, Task> action, TimeSpan timeout, CancellationToken cancellationToken)
+        {
+            using var timeoutSource = new CancellationTokenSource(timeout);
+            using var linkedCancellationSource =
+                CancellationTokenSource.CreateLinkedTokenSource(new[] { cancellationToken, timeoutSource.Token });
+
+            try
+            {
+                await action(linkedCancellationSource.Token);
+            }
+            catch (OperationCanceledException) when (!cancellationToken.IsCancellationRequested && timeoutSource.IsCancellationRequested)
+            {
+                throw new TimeoutException();
+            }
         }
     }
 }

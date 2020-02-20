@@ -19,6 +19,8 @@
 
 using System;
 using System.ComponentModel;
+using System.Threading;
+using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
@@ -49,8 +51,10 @@ namespace ProtonVPN.Common.Test.OS.Services
             const string name = "Our service";
             _origin.Name.Returns(name);
             var subject = new LoggingService(_logger, _origin);
+
             // Act
             var result = subject.Name;
+
             // Assert
             result.Should().Be(name);
         }
@@ -58,67 +62,215 @@ namespace ProtonVPN.Common.Test.OS.Services
         [DataTestMethod]
         [DataRow(true)]
         [DataRow(false)]
-        public void IsRunning_ShouldBe_Origin_IsRunning(bool value)
+        public void Running_ShouldBe_Origin_Running(bool value)
         {
             // Arrange
-            _origin.IsRunning().Returns(value);
+            _origin.Running().Returns(value);
             var subject = new LoggingService(_logger, _origin);
+
             // Act
-            var result = subject.IsRunning();
+            var result = subject.Running();
+
             // Assert
             result.Should().Be(value);
         }
 
         [TestMethod]
-        public void Start_ShouldBe_Origin_Start()
+        public async Task StartAsync_ShouldBe_Origin_StartAsync()
         {
             // Arrange
             var expected = Result.Ok();
-            _origin.Start().Returns(expected);
+            var cancellationToken = new CancellationToken();
+            _origin.StartAsync(cancellationToken).Returns(expected);
             var subject = new LoggingService(_logger, _origin);
+
             // Act
-            var result = subject.Start();
+            var result = await subject.StartAsync(cancellationToken);
+            
             // Assert
             result.Should().BeSameAs(expected);
         }
 
         [TestMethod]
-        public void Start_ShouldPass_Exception()
+        public async Task StartAsync_ShouldPass_Exception()
         {
             // Arrange
             var exception = new InvalidOperationException();
-            _origin.Start().Throws(exception);
+            var cancellationToken = CancellationToken.None;
+            _origin.StartAsync(cancellationToken).Throws(exception);
             var subject = new LoggingService(_logger, _origin);
+
             // Act
-            Action action = () => subject.Start();
+            Func<Task> action = async () => await subject.StartAsync(cancellationToken);
+
             // Assert
-            action.Should().ThrowExactly<InvalidOperationException>();
+            await action.Should().ThrowExactlyAsync<InvalidOperationException>();
         }
 
         [TestMethod]
-        public void Stop_ShouldBe_Origin_Stop()
+        public async Task StartAsync_ShouldLog()
+        {
+            // Arrange
+            var expected = Result.Ok();
+            var cancellationToken = new CancellationToken();
+            _origin.StartAsync(cancellationToken).Returns(expected);
+            var subject = new LoggingService(_logger, _origin);
+
+            // Act
+            await subject.StartAsync(cancellationToken);
+
+            // Assert
+            _logger.Received(2).Info(Arg.Any<string>());
+        }
+
+        [DataTestMethod]
+        [DataRow(typeof(InvalidOperationException), 1056)]
+        [DataRow(typeof(InvalidOperationException), 1062)]
+        [DataRow(typeof(OperationCanceledException), 0)]
+        [DataRow(typeof(TimeoutException), 0)]
+        public async Task StartAsync_ShouldLog_ExpectedException(Type exceptionType, int errorCode)
+        {
+            // Arrange
+            var exception = exceptionType == typeof(InvalidOperationException)
+                ? new InvalidOperationException("", new Win32Exception(errorCode))
+                : (Exception)Activator.CreateInstance(exceptionType);
+            var cancellationToken = CancellationToken.None;
+            _origin.StartAsync(cancellationToken).Throws(exception);
+            var subject = new LoggingService(_logger, _origin);
+
+            // Act
+            try
+            {
+                await subject.StartAsync(cancellationToken);
+            }
+            // ReSharper disable once EmptyGeneralCatchClause
+            catch
+            { }
+
+            // Assert
+            _logger.Received(2).Info(Arg.Any<string>());
+        }
+
+        [TestMethod]
+        public async Task StartAsync_ShouldLog_UnexpectedException()
+        {
+            // Arrange
+            var exception = new InvalidOperationException("");
+            var cancellationToken = CancellationToken.None;
+            _origin.StartAsync(cancellationToken).Throws(exception);
+            var subject = new LoggingService(_logger, _origin);
+
+            // Act
+            try
+            {
+                await subject.StartAsync(cancellationToken);
+            }
+            // ReSharper disable once EmptyGeneralCatchClause
+            catch
+            { }
+
+            // Assert
+            _logger.Received(1).Info(Arg.Any<string>());
+            _logger.Received(1).Error(Arg.Any<string>());
+        }
+
+        [TestMethod]
+        public async Task StopAsync_ShouldBe_Origin_StopAsync()
         {
             // Arrange
             var expected = Result.Fail();
-            _origin.Stop().Returns(expected);
+            var cancellationToken = new CancellationToken();
+            _origin.StopAsync(cancellationToken).Returns(expected);
             var subject = new LoggingService(_logger, _origin);
+
             // Act
-            var result = subject.Stop();
+            var result = await subject.StopAsync(cancellationToken);
+
             // Assert
             result.Should().BeSameAs(expected);
         }
 
         [TestMethod]
-        public void Stop_ShouldPass_Exception()
+        public async Task StopAsync_ShouldPass_Exception()
         {
             // Arrange
             var exception = new Win32Exception();
-            _origin.Stop().Throws(exception);
+            var cancellationToken = CancellationToken.None;
+            _origin.StopAsync(cancellationToken).Throws(exception);
             var subject = new LoggingService(_logger, _origin);
+
             // Act
-            Action action = () => subject.Stop();
+            Func<Task> action = async () => await subject.StopAsync(cancellationToken);
+
             // Assert
-            action.Should().ThrowExactly<Win32Exception>();
+            await action.Should().ThrowExactlyAsync<Win32Exception>();
+        }
+
+        [TestMethod]
+        public async Task StopAsync_ShouldLog()
+        {
+            // Arrange
+            var expected = Result.Fail();
+            var cancellationToken = new CancellationToken();
+            _origin.StopAsync(cancellationToken).Returns(expected);
+            var subject = new LoggingService(_logger, _origin);
+
+            // Act
+            await subject.StopAsync(cancellationToken);
+
+            // Assert
+            _logger.Received(2).Info(Arg.Any<string>());
+        }
+
+        [DataTestMethod]
+        [DataRow(typeof(InvalidOperationException), 1056)]
+        [DataRow(typeof(InvalidOperationException), 1062)]
+        [DataRow(typeof(OperationCanceledException), 0)]
+        [DataRow(typeof(TimeoutException), 0)]
+        public async Task StopAsync_ShouldLog_ExpectedException(Type exceptionType, int errorCode)
+        {
+            // Arrange
+            var exception = exceptionType == typeof(InvalidOperationException) 
+                ? new InvalidOperationException("", new Win32Exception(errorCode))
+                : (Exception)Activator.CreateInstance(exceptionType);
+            var cancellationToken = CancellationToken.None;
+            _origin.StopAsync(cancellationToken).Throws(exception);
+            var subject = new LoggingService(_logger, _origin);
+
+            // Act
+            try
+            {
+                await subject.StopAsync(cancellationToken);
+            }
+            // ReSharper disable once EmptyGeneralCatchClause
+            catch
+            { }
+
+            // Assert
+            _logger.Received(2).Info(Arg.Any<string>());
+        }
+
+        [TestMethod]
+        public async Task StopAsync_ShouldLog_UnexpectedException()
+        {
+            // Arrange
+            var exception = new InvalidOperationException("");
+            var cancellationToken = CancellationToken.None;
+            _origin.StopAsync(cancellationToken).Throws(exception);
+            var subject = new LoggingService(_logger, _origin);
+
+            // Act
+            try
+            {
+                await subject.StopAsync(cancellationToken);
+            }
+            // ReSharper disable once EmptyGeneralCatchClause
+            catch
+            { }
+
+            // Assert
+            _logger.Received(1).Info(Arg.Any<string>());
+            _logger.Received(1).Error(Arg.Any<string>());
         }
     }
 }

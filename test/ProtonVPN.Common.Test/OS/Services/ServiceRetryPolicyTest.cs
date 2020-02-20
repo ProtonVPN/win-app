@@ -18,44 +18,51 @@
  */
 
 using System;
+using System.Threading;
+using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ProtonVPN.Common.Abstract;
 using ProtonVPN.Common.OS.Services;
+using ProtonVPN.Common.Threading;
+using ProtonVPN.Test.Common.Breakpoints;
 
 namespace ProtonVPN.Common.Test.OS.Services
 {
     [TestClass]
     public class ServiceRetryPolicyTest
     {
+        private static readonly TimeSpan TestTimeout = TimeSpan.FromSeconds(5);
+
         [TestMethod]
-        public void Execute_ShouldBeSuccess_WhenActionReturnsSuccess()
+        public async Task ExecuteAsync_ShouldBe_ActionResult()
         {
             // Arrange
+            var expected = Result.Ok();
             var policy = new ServiceRetryPolicy(2, TimeSpan.Zero);
 
             // Act
-            var result = policy.Value().Execute(Result.Ok);
+            var result = await policy.ExecuteAsync( ct => Task.FromResult(expected), CancellationToken.None);
 
             // Assert
-            result.Success.Should().BeTrue();
+            result.Should().Be(expected);
         }
 
         [TestMethod]
-        public void Execute_ShouldBeFailure_WhenActionReturnsFailure()
+        public async Task ExecuteAsync_ShouldBeFailure_WhenActionReturnsFailure()
         {
             // Arrange
-            var policy = new ServiceRetryPolicy(2, TimeSpan.Zero);
+            var policy = new ServiceRetryPolicy(0, TimeSpan.Zero);
 
             // Act
-            var result = policy.Value().Execute(() => Result.Fail());
+            var result = await policy.ExecuteAsync(ct => Task.FromResult(Result.Fail()), CancellationToken.None);
 
             // Assert
             result.Failure.Should().BeTrue();
         }
 
         [TestMethod]
-        public void Execute_ShouldCallAction_RetryCountPlusOneTime_WhenActionReturnsFailure()
+        public async Task ExecuteAsync_ShouldCallAction_RetryCountPlusOneTime_WhenActionReturnsFailure()
         {
             // Arrange
             const int retryCount = 2;
@@ -63,14 +70,49 @@ namespace ProtonVPN.Common.Test.OS.Services
             var policy = new ServiceRetryPolicy(retryCount, TimeSpan.Zero);
 
             // Act
-            policy.Value().Execute(() =>
-            {
-                timesCalled++;
-                return Result.Fail();
-            });
+            await policy.ExecuteAsync(
+                ct =>
+                {
+                    timesCalled++;
+                    return Task.FromResult(Result.Fail());
+                },
+                CancellationToken.None);
 
             // Assert
             timesCalled.Should().Be(1 + retryCount);
+        }
+
+        [TestMethod]
+        public async Task ExecuteAsync_ShouldCancelAction_WhenCancellationToken_IsCancelled()
+        {
+            // Arrange
+            var policy = new ServiceRetryPolicy(0, TimeSpan.Zero);
+            using (var cancellationSource = new CancellationTokenSource())
+            using (var breakpoint = new Breakpoint())
+            {
+                var cancelled = false;
+
+                // Act
+                var task =  policy.ExecuteAsync(
+                    async ct =>
+                    {
+                        // ReSharper disable once AccessToDisposedClosure
+                        await breakpoint.Hit().WaitForContinue();
+                        cancelled = ct.IsCancellationRequested;
+                        ct.ThrowIfCancellationRequested();
+                        return Result.Ok();
+                    },
+                    cancellationSource.Token);
+
+                var hit = await breakpoint.WaitForHit().TimeoutAfter(TestTimeout);
+                cancellationSource.Cancel();
+                hit.Continue();
+                var result = await task.TimeoutAfter(TestTimeout);
+
+                // Assert
+                result.Success.Should().BeFalse();
+                cancelled.Should().BeTrue();
+            }
         }
     }
 }

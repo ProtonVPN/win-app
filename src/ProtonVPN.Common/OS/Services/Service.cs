@@ -20,6 +20,8 @@
 using System;
 using System.Linq;
 using System.ServiceProcess;
+using System.Threading;
+using System.Threading.Tasks;
 using ProtonVPN.Common.Abstract;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Helpers;
@@ -39,9 +41,7 @@ namespace ProtonVPN.Common.OS.Services
 
         public string Name { get; }
 
-        public event EventHandler<string> ServiceStartedHandler;
-
-        public bool IsRunning()
+        public bool Running()
         {
             return GetServices()
                 .Where(s => s.Status == ServiceControllerStatus.Running)
@@ -49,29 +49,30 @@ namespace ProtonVPN.Common.OS.Services
                 .ContainsIgnoringCase(Name);
         }
 
-        public Result Start()
+        public Task<Result> StartAsync(CancellationToken cancellationToken)
         {
-            return ServiceControllerResult(sc =>
+            return ServiceControllerResult(async sc =>
             {
                 sc.Start();
-                sc.WaitForStatus(ServiceControllerStatus.Running, WaitForServiceStatusDuration);
+                await sc.WaitForStatusAsync(ServiceControllerStatus.Running, WaitForServiceStatusDuration, cancellationToken);
             });
         }
 
-        public Result Stop()
+        public Task<Result> StopAsync(CancellationToken cancellationToken)
         {
             return ServiceControllerResult(sc =>
             {
                 sc.Stop();
+                return Task.CompletedTask;
             });
         }
 
         protected abstract ServiceController[] GetServices();
 
-        private Result ServiceControllerResult(Action<ServiceController> action)
+        private async Task<Result> ServiceControllerResult(Func<ServiceController, Task> action)
         {
             using var sc = new ServiceController(Name);
-            action(sc);
+            await action(sc);
             return Result.Ok();
         }
     }
