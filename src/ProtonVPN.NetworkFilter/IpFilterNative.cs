@@ -19,13 +19,21 @@
 
 using System;
 using System.Runtime.InteropServices;
+using Polly;
+using Polly.Retry;
 
 namespace ProtonVPN.NetworkFilter
 {
     internal class IpFilterNative
     {
-        public const uint ErrorSuccess = 0;
-        public const uint ErrorFilterNotFound = 0x80320003;
+        private const uint ErrorSuccess = 0;
+        private const uint ErrorFilterNotFound = 0x80320003;
+        private const uint ErrorTimeout = 0x80320012;
+        private const int RetryCount = 3;
+
+        private static readonly RetryPolicy _retryPolicy = Policy
+            .Handle<NetworkFilterException>(e => e.Code == ErrorTimeout)
+            .Retry(RetryCount);
 
         public static IntPtr CreateDynamicSession()
         {
@@ -386,6 +394,11 @@ namespace ProtonVPN.NetworkFilter
         }
 
         private static void AssertSuccess(Func<uint> function)
+        {
+            _retryPolicy.Execute(() => AssertSuccessInner(function));
+        }
+
+        private static void AssertSuccessInner(Func<uint> function)
         {
             uint status;
             try
