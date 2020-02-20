@@ -17,7 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
+using System.Threading;
+using System.Threading.Tasks;
 using ProtonVPN.Common.Abstract;
 
 namespace ProtonVPN.Common.OS.Services
@@ -25,9 +26,8 @@ namespace ProtonVPN.Common.OS.Services
     public interface IService
     {
         string Name { get; }
-        bool IsRunning();
-        Result Start();
-        Result Stop();
-        event EventHandler<string> ServiceStartedHandler;
+        bool Running();
+        Task<Result> StartAsync(CancellationToken cancellationToken);
+        Task<Result> StopAsync(CancellationToken cancellationToken);
     }
 }

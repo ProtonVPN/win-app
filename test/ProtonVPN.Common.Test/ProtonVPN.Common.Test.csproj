@@ -94,7 +94,6 @@
     <Compile Include="OS\Registry\SafeStartupRecordTest.cs" />
     <Compile Include="OS\Services\ServiceRetryPolicyTest.cs" />
     <Compile Include="OS\Services\ExceptionExtensionsTest.cs" />
-    <Compile Include="OS\Services\ServiceExtensionsTest.cs" />
     <Compile Include="OS\Services\SafeServiceTest.cs" />
     <Compile Include="OS\Services\LoggingServiceTest.cs" />
     <Compile Include="OS\Services\ReliableServiceTest.cs" />
@@ -105,8 +104,9 @@
     <Compile Include="Storage\CollectionStorageTest.cs" />
     <Compile Include="Text\Serialization\JsonSerializerTest.cs" />
     <Compile Include="Text\Serialization\JsonSerializerFactoryTest.cs" />
-    <Compile Include="Threading\CoalescingTaskQueueTest.cs" />
     <Compile Include="Threading\TaskCompletionSourceExtensionsTest.cs" />
+    <Compile Include="Threading\CoalescingTaskQueueTest.cs" />
+    <Compile Include="Threading\TaskExtensionsTest.cs" />
     <Compile Include="Vpn\VpnConfigTest.cs" />
     <Compile Include="Vpn\VpnHostTest.cs" />
   </ItemGroup>

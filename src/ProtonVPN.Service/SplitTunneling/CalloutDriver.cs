@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Threading;
 using ProtonVPN.Common.OS.Services;
 
 namespace ProtonVPN.Service.SplitTunneling
@@ -32,14 +33,18 @@ namespace ProtonVPN.Service.SplitTunneling
 
         public void Start()
         {
-            if (!_service.IsRunning())
-                _service.Start();
+            if (!_service.Running())
+            {
+                _service.StartAsync(CancellationToken.None).Wait();
+            }
         }
 
         public void Stop()
         {
-            if (_service.IsRunning())
-                _service.Stop();
+            if (_service.Running())
+            {
+                _service.StopAsync(CancellationToken.None).Wait();
+            }
         }
     }
 }

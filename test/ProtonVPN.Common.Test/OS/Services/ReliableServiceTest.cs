@@ -18,10 +18,11 @@
  */
 
 using System;
+using System.Threading;
+using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
-using Polly;
 using ProtonVPN.Common.Abstract;
 using ProtonVPN.Common.OS.Services;
 
@@ -30,13 +31,13 @@ namespace ProtonVPN.Common.Test.OS.Services
     [TestClass]
     public class ReliableServiceTest
     {
-        private Policy<Result> _retryPolicy;
+        private IServiceRetryPolicy _retryPolicy;
         private IService _origin;
 
         [TestInitialize]
         public void TestInitialize()
         {
-            _retryPolicy = Policy<Result>.HandleResult(r => r.Failure).WaitAndRetry(3, retryAttempt => TimeSpan.Zero);
+            _retryPolicy = Substitute.For<IServiceRetryPolicy>();
             _origin = Substitute.For<IService>();
         }
 
@@ -47,8 +48,10 @@ namespace ProtonVPN.Common.Test.OS.Services
             const string name = "My service";
             _origin.Name.Returns(name);
             var subject = new ReliableService(_retryPolicy, _origin);
+
             // Act
             var result = subject.Name;
+
             // Assert
             result.Should().Be(name);
         }
@@ -56,69 +59,52 @@ namespace ProtonVPN.Common.Test.OS.Services
         [DataTestMethod]
         [DataRow(true)]
         [DataRow(false)]
-        public void IsRunning_ShouldBe_Origin_IsRunning(bool value)
+        public void Running_ShouldBe_Origin_Running(bool value)
         {
             // Arrange
-            _origin.IsRunning().Returns(value);
+            _origin.Running().Returns(value);
             var subject = new ReliableService(_retryPolicy, _origin);
+
             // Act
-            var result = subject.IsRunning();
+            var result = subject.Running();
+
             // Assert
             result.Should().Be(value);
         }
 
         [TestMethod]
-        public void Start_ShouldBe_Origin_Start()
+        public async Task StartAsync_ShouldBe_Origin_StartAsync()
         {
             // Arrange
             var expected = Result.Ok();
-            _origin.Start().Returns(expected);
+            var cancellationToken = new CancellationToken();
+            _origin.StartAsync(cancellationToken).Returns(expected);
+            _retryPolicy
+                .ExecuteAsync(Arg.Any<Func<CancellationToken, Task<Result>>>(), Arg.Any<CancellationToken>())
+                .Returns(args => args.Arg<Func<CancellationToken, Task<Result>>>()(cancellationToken));
             var subject = new ReliableService(_retryPolicy, _origin);
+
             // Act
-            var result = subject.Start();
+            var result = await subject.StartAsync(cancellationToken);
+
             // Assert
             result.Should().BeSameAs(expected);
         }
 
         [TestMethod]
-        public void Start_ShouldCall_Origin_Start_RetryCountPlusOneTime_WhenReturnsFailure()
-        {
-            // Arrange
-            var expected = Result.Fail();
-            _origin.Start().Returns(expected);
-            var subject = new ReliableService(_retryPolicy, _origin);
-            // Act
-            var result = subject.Start();
-            // Assert
-            result.Should().BeSameAs(expected);
-            _origin.Received(4).Start();
-        }
-
-        [TestMethod]
-        public void Stop_ShouldBe_Origin_Stop()
+        public async Task StopAsync_ShouldBe_Origin_StopAsync()
         {
             // Arrange
             var expected = Result.Ok();
-            _origin.Stop().Returns(expected);
+            var cancellationToken = new CancellationToken();
+            _origin.StopAsync(cancellationToken).Returns(expected);
             var subject = new ReliableService(_retryPolicy, _origin);
-            // Act
-            var result = subject.Stop();
-            // Assert
-            result.Should().BeSameAs(expected);
-        }
 
-        [TestMethod]
-        public void Stop_ShouldCall_Origin_Stop_RetryCountPlusOneTime_WhenReturnsFailure()
-        {
-            // Arrange
-            var expected = Result.Fail();
-            _origin.Stop().Returns(expected);
-            var subject = new ReliableService(_retryPolicy, _origin);
             // Act
-            var result = subject.Stop();
+            var result = await subject.StopAsync(cancellationToken);
+
             // Assert
             result.Should().BeSameAs(expected);
-            _origin.Received(4).Stop();
         }
     }
 }

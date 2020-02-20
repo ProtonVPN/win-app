@@ -140,27 +140,27 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<AutoConnect>().SingleInstance();
             builder.RegisterInstance(Properties.Settings.Default);
 
+            builder.Register(c => new ServiceRetryPolicy(2, TimeSpan.FromSeconds(2))).SingleInstance();
             builder.Register(c =>
-                new VpnServiceWrapper(
-                    c.Resolve<ServiceRetryPolicy>().Value(),
-                        new SafeService(
-                            new LoggingService(
-                                c.Resolve<ILogger>(),
-                                new SystemService(
-                                    c.Resolve<Common.Configuration.Config>().ServiceName)))))
-                .SingleInstance();
-
-            builder.Register(c =>
-                    new AppUpdateServiceWrapper(
-                        c.Resolve<ServiceRetryPolicy>().Value(),
+                new VpnSystemService(
+                    new ReliableService(
+                        c.Resolve<ServiceRetryPolicy>(),
                             new SafeService(
                                 new LoggingService(
                                     c.Resolve<ILogger>(),
                                     new SystemService(
-                                        c.Resolve<Common.Configuration.Config>().UpdateServiceName)))))
+                                        c.Resolve<Common.Configuration.Config>().ServiceName))))))
                 .SingleInstance();
-
-            builder.Register(c => new ServiceRetryPolicy(2, TimeSpan.FromSeconds(1))).SingleInstance();
+            builder.Register(c =>
+                new AppUpdateSystemService(
+                    new ReliableService(
+                        c.Resolve<ServiceRetryPolicy>(),
+                            new SafeService(
+                                new LoggingService(
+                                    c.Resolve<ILogger>(),
+                                    new SystemService(
+                                        c.Resolve<Common.Configuration.Config>().UpdateServiceName))))))
+                .SingleInstance();
 
             builder.RegisterType<VpnServiceManager>().SingleInstance();
             builder.Register(c => new ServiceStartDecorator(

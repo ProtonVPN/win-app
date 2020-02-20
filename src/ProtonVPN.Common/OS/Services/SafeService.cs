@@ -19,6 +19,8 @@
 
 using System;
 using System.ComponentModel;
+using System.Threading;
+using System.Threading.Tasks;
 using ProtonVPN.Common.Abstract;
 
 namespace ProtonVPN.Common.OS.Services
@@ -34,13 +36,11 @@ namespace ProtonVPN.Common.OS.Services
 
         public string Name => _origin.Name;
 
-        public event EventHandler<string> ServiceStartedHandler;
-
-        public bool IsRunning()
+        public bool Running()
         {
             try
             {
-                return _origin.IsRunning();
+                return _origin.Running();
             }
             catch (Win32Exception)
             {
@@ -48,34 +48,30 @@ namespace ProtonVPN.Common.OS.Services
             }
         }
 
-        public Result Start()
+        public Task<Result> StartAsync(CancellationToken cancellationToken)
         {
-            return Safe(() => _origin.Start());
+            return Safe(() => _origin.StartAsync(cancellationToken));
         }
 
-        public Result Stop()
+        public Task<Result> StopAsync(CancellationToken cancellationToken)
         {
-            return Safe(() => _origin.Stop());
+            return Safe(() => _origin.StopAsync(cancellationToken));
         }
 
-        private Result Safe(Func<Result> action)
+        private async Task<Result> Safe(Func<Task<Result>> action)
         {
             try
             {
-                return action();
+                return await action();
             }
             catch (InvalidOperationException ex) when (ex.IsServiceAlreadyRunning() || ex.IsServiceNotRunning())
             {
                 return Result.Ok();
             }
-            catch (Exception ex) when (IsExpectedException(ex))
+            catch (Exception ex) when (ex.IsServiceAccessException() || ex is OperationCanceledException)
             {
                 return Result.Fail(ex);
             }
         }
-
-        private bool IsExpectedException(Exception ex) => ex is InvalidOperationException ||
-                                                          ex is System.ServiceProcess.TimeoutException ||
-                                                          ex is TimeoutException;
     }
 }

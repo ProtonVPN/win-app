@@ -104,8 +104,8 @@ namespace ProtonVPN.Core
 
             var appConfig = Resolve<Common.Configuration.Config>();
 
-            Resolve<LogCleaner>().Clean(appConfig.AppLogFolder, 30);
             Resolve<ILogger>().Info($"= Booting ProtonVPN version: {appConfig.AppVersion} os: {Environment.OSVersion.VersionString} {appConfig.OsBits} bit =");
+            Resolve<LogCleaner>().Clean(appConfig.AppLogFolder, 30);
             LoadServersFromCache();
 
             RegisterMigrations(Resolve<AppSettingsStorage>(), Resolve<IEnumerable<IAppSettingsMigration>>());
@@ -116,7 +116,7 @@ namespace ProtonVPN.Core
             RegisterEvents();
             IncreaseAppStartCount();
 
-            await StartService(Resolve<AppUpdateServiceWrapper>());
+            _ = StartService(Resolve<AppUpdateSystemService>());
 
             if (!LoggedInWithSavedCredentials() || !await IsUserValid() || await SessionExpired())
             {
@@ -137,8 +137,8 @@ namespace ProtonVPN.Core
             }
 
             Resolve<TrayIcon>().Hide();
-            Resolve<VpnServiceWrapper>().Stop();
-            Resolve<AppUpdateServiceWrapper>().Stop();
+            Resolve<VpnSystemService>().StopAsync();
+            Resolve<AppUpdateSystemService>().StopAsync();
         }
 
         private async Task<bool> SessionExpired()
@@ -399,7 +399,7 @@ namespace ProtonVPN.Core
 
             Resolve<OutdatedAppHandler>().AppOutdated += Resolve<OutdatedAppNotification>().OnAppOutdated;
 
-            Resolve<MonitoredVpnService>().ServiceStartedHandler += async (sender, name) =>
+            Resolve<MonitoredVpnService>().ServiceStarted += async (sender, name) =>
             {
                 await Resolve<IScheduler>().Schedule(async () =>
                 {
@@ -446,7 +446,8 @@ namespace ProtonVPN.Core
             Resolve<PinFactory>().BuildPins();
 
             LoadViewModels();
-            await StartService(Resolve<MonitoredVpnService>());
+            _ = StartService(Resolve<MonitoredVpnService>());
+            _ = StartService(Resolve<AppUpdateSystemService>());
             Resolve<P2PDetector>();
             Resolve<VpnInfoChecker>().Start(appConfig.VpnInfoCheckInterval.RandomizedWithDeviation(0.2));
 
@@ -483,13 +484,13 @@ namespace ProtonVPN.Core
             {
                 await Resolve<VpnManager>().GetState();
             }
-            catch (Exception ex) when (ex is CommunicationException || ex is TimeoutException)
+            catch (Exception ex) when (ex is CommunicationException || ex is TimeoutException || ex is TaskCanceledException)
             {
-                Resolve<ILogger>().Error(ex);
+                Resolve<ILogger>().Error(ex.CombinedMessage());
             }
         }
 
-        private async Task StartService(IService service)
+        private async Task StartService(IConcurrentService service)
         {
             var result = await service.StartAsync();
 
@@ -499,7 +500,7 @@ namespace ProtonVPN.Core
 
                 var config = Resolve<Common.Configuration.Config>();
                 var filename = config.ErrorMessageExePath;
-                var error = GetServiceErrorMessage(service, result.Exception);
+                var error = GetServiceErrorMessage(service.Name, result.Exception);
                 try
                 {
                     Resolve<IOsProcesses>().Process(filename, error).Start();
@@ -523,10 +524,10 @@ namespace ProtonVPN.Core
             });
         }
 
-        private string GetServiceErrorMessage(IService service, Exception e)
+        private string GetServiceErrorMessage(string serviceName, Exception e)
         {
             var error = e.InnerException?.Message ?? e.Message;
-            var failedToStart = string.Format(StringResources.Get("Dialogs_ServiceStart_msg_FailedToStart"), service.Name);
+            var failedToStart = string.Format(StringResources.Get("Dialogs_ServiceStart_msg_FailedToStart"), serviceName);
 
             return $"\"{failedToStart}\" \"{error}\"";
         }

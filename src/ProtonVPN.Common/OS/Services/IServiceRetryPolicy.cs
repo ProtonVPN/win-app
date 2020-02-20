@@ -17,21 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
+using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Abstract;
 
 namespace ProtonVPN.Common.OS.Services
 {
-    public static class ServiceExtensions
+    public interface IServiceRetryPolicy
     {
-        public static Task<Result> StartAsync(this IService service)
-        {
-            return Task.Run(service.Start);
-        }
-
-        public static Task<Result> StopAsync(this IService service)
-        {
-            return Task.Run(service.Stop);
-        }
+        Task<Result> ExecuteAsync(Func<CancellationToken, Task<Result>> action, CancellationToken cancellationToken);
     }
 }

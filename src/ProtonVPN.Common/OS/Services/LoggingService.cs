@@ -18,6 +18,8 @@
  */
 
 using System;
+using System.Threading;
+using System.Threading.Tasks;
 using ProtonVPN.Common.Abstract;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
@@ -37,48 +39,66 @@ namespace ProtonVPN.Common.OS.Services
 
         public string Name => _origin.Name;
 
-        public event EventHandler<string> ServiceStartedHandler;
+        public bool Running() => _origin.Running();
 
-        public bool IsRunning() => _origin.IsRunning();
-
-        public Result Start()
+        public Task<Result> StartAsync(CancellationToken cancellationToken)
         {
-            return Logged(() =>
-            {
-                _logger.Info($"Starting the service \"{Name}\"");
-                return _origin.Start();
-            });
+            return Logged(
+                "Starting", 
+                () => _origin.StartAsync(cancellationToken));
         }
 
-        public Result Stop()
+        public Task<Result> StopAsync(CancellationToken cancellationToken)
         {
-            return Logged(() =>
-            {
-                _logger.Info($"Stopping the service \"{Name}\"");
-                return _origin.Stop();
-            });
+            return Logged(
+                "Stopping", 
+                () => _origin.StopAsync(cancellationToken));
         }
 
-        private Result Logged(Func<Result> action)
+        private async Task<Result> Logged(string actionName, Func<Task<Result>> action)
         {
             try
             {
-                return action();
+                _logger.Info($"{ActionMessage()}");
+                var result = await action();
+                _logger.Info($"{ActionMessage()} {(result.Success ? "succeeded" : "failed")}");
+                
+                return result;
             }
             catch (InvalidOperationException e) when (e.IsServiceAlreadyRunning())
             {
-                _logger.Info($"The service \"{Name}\" is already running");
+                Info(": Already running");
                 throw;
             }
             catch (InvalidOperationException e) when (e.IsServiceNotRunning())
             {
-                _logger.Info($"The service \"{Name}\" is not running");
+                Info(": Not running");
+                throw;
+            }
+            catch (OperationCanceledException)
+            {
+                Info("cancelled");
+                throw;
+            }
+            catch (TimeoutException)
+            {
+                Info("timed out");
                 throw;
             }
             catch (Exception ex)
             {
-                _logger.Error($"Failed to start the service \"{Name}\": {ex.CombinedMessage()}");
+                _logger.Error($"{ActionMessage()} failed: {ex.CombinedMessage()}");
                 throw;
+            }
+
+            string ActionMessage()
+            {
+                return $"{actionName} the service \"{Name}\"";
+            }
+
+            void Info(string resultMessage)
+            {
+                _logger.Info($"{ActionMessage()} {resultMessage}");
             }
         }
     }

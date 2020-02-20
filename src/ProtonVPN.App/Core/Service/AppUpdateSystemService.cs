@@ -17,15 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Polly;
-using ProtonVPN.Common.Abstract;
 using ProtonVPN.Common.OS.Services;
 
 namespace ProtonVPN.Core.Service
 {
-    public class AppUpdateServiceWrapper : ReliableService
+    public class AppUpdateSystemService : ConcurrentService
     {
-        public AppUpdateServiceWrapper(Policy<Result> retryPolicy, IService origin) : base(retryPolicy, origin)
+        public AppUpdateSystemService(IService origin) : base(origin)
         {
         }
     }

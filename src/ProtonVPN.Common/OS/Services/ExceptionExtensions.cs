@@ -27,6 +27,11 @@ namespace ProtonVPN.Common.OS.Services
         private const int ServiceAlreadyRunning = 1056;
         private const int ServiceNotRunning = 1062;
 
+        public static bool IsServiceAccessException(this Exception ex) =>
+            ex is InvalidOperationException ||
+            ex is System.ServiceProcess.TimeoutException ||
+            ex is TimeoutException;
+
         public static bool IsServiceAlreadyRunning(this InvalidOperationException e) =>
             e.InnerException is Win32Exception ex &&
             ex.NativeErrorCode == ServiceAlreadyRunning;

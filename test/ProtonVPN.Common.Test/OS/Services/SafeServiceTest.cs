@@ -19,6 +19,8 @@
 
 using System;
 using System.ComponentModel;
+using System.Threading;
+using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
@@ -49,8 +51,10 @@ namespace ProtonVPN.Common.Test.OS.Services
             const string name = "My service";
             _origin.Name.Returns(name);
             var subject = new SafeService(_origin);
+
             // Act
             var result = subject.Name;
+
             // Assert
             result.Should().Be(name);
         }
@@ -58,66 +62,78 @@ namespace ProtonVPN.Common.Test.OS.Services
         [DataTestMethod]
         [DataRow(true)]
         [DataRow(false)]
-        public void IsRunning_ShouldBe_Origin_IsRunning(bool value)
+        public void Running_ShouldBe_Origin_Running(bool value)
         {
             // Arrange
-            _origin.IsRunning().Returns(value);
+            _origin.Running().Returns(value);
             var subject = new SafeService(_origin);
+
             // Act
-            var result = subject.IsRunning();
+            var result = subject.Running();
+
             // Assert
             result.Should().Be(value);
         }
 
         [DataTestMethod]
         [DataRow(typeof(Win32Exception))]
-        public void IsRunning_ShouldBeFalse_WhenOriginThrows_ExpectedException(Type exceptionType)
+        public void Running_ShouldBeFalse_WhenOriginThrows_ExpectedException(Type exceptionType)
         {
             // Arrange
             var exception = (Exception)Activator.CreateInstance(exceptionType);
-            _origin.IsRunning().Throws(exception);
+            _origin.Running().Throws(exception);
             var subject = new SafeService(_origin);
+
             // Act
-            var result = subject.IsRunning();
+            var result = subject.Running();
+
             // Assert
             result.Should().BeFalse();
         }
 
         [TestMethod]
-        public void IsRunning_ShouldPass_NotExpectedException()
+        public void Running_ShouldPass_NotExpectedException()
         {
             // Arrange
             var exception = new Exception();
-            _origin.IsRunning().Throws(exception);
+            _origin.Running().Throws(exception);
             var subject = new SafeService(_origin);
+
             // Act
-            Action action = () => subject.IsRunning();
+            Action action = () => subject.Running();
+
             // Assert
             action.Should().ThrowExactly<Exception>();
         }
 
         [TestMethod]
-        public void Start_ShouldBe_Origin_Start()
+        public async Task StartAsync_ShouldBe_Origin_StartAsync()
         {
             // Arrange
             var expected = Result.Ok();
-            _origin.Start().Returns(expected);
+            var cancellationToken = new CancellationToken();
+            _origin.StartAsync(cancellationToken).Returns(expected);
             var subject = new SafeService(_origin);
+
             // Act
-            var result = subject.Start();
+            var result = await subject.StartAsync(cancellationToken);
+
             // Assert
             result.Should().BeSameAs(expected);
         }
 
         [TestMethod]
-        public void Start_ShouldBeSuccess_WhenOriginThrows_ServiceAlreadyRunning()
+        public async Task StartAsync_ShouldBeSuccess_WhenOriginThrows_ServiceAlreadyRunning()
         {
             // Arrange
             var exception = new InvalidOperationException("", new Win32Exception(ServiceAlreadyRunning));
-            _origin.Start().Throws(exception);
+            var cancellationToken = CancellationToken.None;
+            _origin.StartAsync(cancellationToken).Throws(exception);
             var subject = new SafeService(_origin);
+
             // Act
-            var result = subject.Start();
+            var result = await subject.StartAsync(cancellationToken);
+
             // Assert
             result.Success.Should().BeTrue();
         }
@@ -126,41 +142,50 @@ namespace ProtonVPN.Common.Test.OS.Services
         [DataRow(typeof(InvalidOperationException))]
         [DataRow(typeof(System.ServiceProcess.TimeoutException))]
         [DataRow(typeof(TimeoutException))]
-        public void Start_ShouldBeFailure_WhenOriginThrows_ExpectedException(Type exceptionType)
+        public async Task StartAsync_ShouldBeFailure_WhenOriginThrows_ExpectedException(Type exceptionType)
         {
             // Arrange
             var exception = (Exception)Activator.CreateInstance(exceptionType);
-            _origin.Start().Throws(exception);
+            var cancellationToken = CancellationToken.None;
+            _origin.StartAsync(cancellationToken).Throws(exception);
             var subject = new SafeService(_origin);
+
             // Act
-            var result = subject.Start();
+            var result = await subject.StartAsync(cancellationToken);
+
             // Assert
             result.Failure.Should().BeTrue();
             result.Exception.Should().BeSameAs(exception);
         }
 
         [TestMethod]
-        public void Stop_ShouldBe_Origin_Stop()
+        public async Task StopAsync_ShouldBe_Origin_StopAsync()
         {
             // Arrange
             var expected = Result.Ok();
-            _origin.Stop().Returns(expected);
+            var cancellationToken = new CancellationToken();
+            _origin.StopAsync(cancellationToken).Returns(expected);
             var subject = new SafeService(_origin);
+
             // Act
-            var result = subject.Stop();
+            var result = await subject.StopAsync(cancellationToken);
+
             // Assert
             result.Should().BeSameAs(expected);
         }
 
         [TestMethod]
-        public void Stop_ShouldBeSuccess_WhenOriginThrows_ServiceNotRunning()
+        public async Task StopAsync_ShouldBeSuccess_WhenOriginThrows_ServiceNotRunning()
         {
             // Arrange
             var exception = new InvalidOperationException("", new Win32Exception(ServiceNotRunning));
-            _origin.Stop().Throws(exception);
+            var cancellationToken = CancellationToken.None;
+            _origin.StopAsync(cancellationToken).Throws(exception);
             var subject = new SafeService(_origin);
+
             // Act
-            var result = subject.Stop();
+            var result = await subject.StopAsync(cancellationToken);
+
             // Assert
             result.Success.Should().BeTrue();
         }
@@ -169,14 +194,17 @@ namespace ProtonVPN.Common.Test.OS.Services
         [DataRow(typeof(InvalidOperationException))]
         [DataRow(typeof(System.ServiceProcess.TimeoutException))]
         [DataRow(typeof(TimeoutException))]
-        public void Stop_ShouldBeFailure_WhenOriginThrows_ExpectedException(Type exceptionType)
+        public async Task StopAsync_ShouldBeFailure_WhenOriginThrows_ExpectedException(Type exceptionType)
         {
             // Arrange
             var exception = (Exception)Activator.CreateInstance(exceptionType);
-            _origin.Stop().Throws(exception);
+            var cancellationToken = CancellationToken.None;
+            _origin.StopAsync(cancellationToken).Throws(exception);
             var subject = new SafeService(_origin);
+
             // Act
-            var result = subject.Stop();
+            var result = await subject.StopAsync(cancellationToken);
+
             // Assert
             result.Failure.Should().BeTrue();
             result.Exception.Should().BeSameAs(exception);

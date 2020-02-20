@@ -27,14 +27,14 @@ using System.Windows.Threading;
 
 namespace ProtonVPN.Core.Service
 {
-    internal class MonitoredVpnService : IVpnStateAware, IService
+    internal class MonitoredVpnService : IVpnStateAware, IConcurrentService
     {
         private VpnStatus _vpnStatus;
 
-        private readonly VpnServiceWrapper _service;
+        private readonly VpnSystemService _service;
         private readonly DispatcherTimer _timer = new DispatcherTimer();
 
-        public MonitoredVpnService(Common.Configuration.Config appConfig, VpnServiceWrapper service)
+        public MonitoredVpnService(Common.Configuration.Config appConfig, VpnSystemService service)
         {
             _service = service;
 
@@ -42,26 +42,19 @@ namespace ProtonVPN.Core.Service
             _timer.Tick += OnTimerTick;
         }
 
+        public event EventHandler<string> ServiceStarted
+        {
+            add => _service.ServiceStarted += value;
+            remove => _service.ServiceStarted -= value;
+        }
+
         public string Name => _service.Name;
 
-        public event EventHandler<string> ServiceStartedHandler
-        {
-            add => _service.ServiceStartedHandler += value;
-            remove => _service.ServiceStartedHandler -= value;
-        }
+        public bool Running() => _service.Running();
 
-        private void OnTimerTick(object sender, EventArgs e)
-        {
-            if (_vpnStatus == VpnStatus.Disconnected)
-            {
-                return;
-            }
+        public Task<Result> StartAsync() => _service.StartAsync();
 
-            if (!IsRunning())
-            {
-                Start();
-            }
-        }
+        public Task<Result> StopAsync() => _service.StopAsync();
 
         public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
         {
@@ -80,19 +73,17 @@ namespace ProtonVPN.Core.Service
             return Task.CompletedTask;
         }
 
-        public bool IsRunning()
+        private void OnTimerTick(object sender, EventArgs e)
         {
-            return _service.IsRunning();
-        }
+            if (_vpnStatus == VpnStatus.Disconnected)
+            {
+                return;
+            }
 
-        public Result Start()
-        {
-            return _service.Start();
-        }
-
-        public Result Stop()
-        {
-            return _service.Stop();
+            if (!Running())
+            {
+                StartAsync();
+            }
         }
     }
 }
