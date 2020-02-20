@@ -402,7 +402,7 @@ namespace ProtonVPN.Core.Test.Api.Handlers
 
             public async Task<ApiResponseResult<RefreshTokenResponse>> RefreshTokenAsync(CancellationToken token)
             {
-                await Breakpoint.Hit().WaitFoContinue();
+                await Breakpoint.Hit().WaitForContinue();
                 return await _origin.RefreshTokenAsync(token);
             }
         }
@@ -420,7 +420,7 @@ namespace ProtonVPN.Core.Test.Api.Handlers
                 HttpRequestMessage request,
                 CancellationToken cancellationToken)
             {
-                await Breakpoint.Hit().WaitFoContinue();
+                await Breakpoint.Hit().WaitForContinue();
                 return await base.SendAsync(request, cancellationToken);
             }
 

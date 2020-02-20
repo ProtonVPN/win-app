@@ -32,7 +32,7 @@ namespace ProtonVPN.Test.Common.Breakpoints
             _continueSemaphore = new SemaphoreSlim(0);
         }
 
-        public Task WaitFoContinue()
+        public Task WaitForContinue()
         {
             return _continueSemaphore.WaitAsync();
         }
