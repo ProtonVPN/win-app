@@ -18,33 +18,22 @@
  */
 
 using System;
-using System.Threading;
 using System.Threading.Tasks;
 
-namespace ProtonVPN.Test.Common.Breakpoints
+namespace ProtonVPN.Common.Threading
 {
-    public class BreakpointHit : IDisposable
+    public static class CoalescingTaskQueueExtensions
     {
-        private readonly SemaphoreSlim _continueSemaphore;
+        public static Task<TResult> Enqueue<TArg, TResult>(
+            this CoalescingTaskQueue<TArg, TResult> queue,
+            Func<TResult> action,
+            TArg arg) => 
+            queue.Enqueue(_ => Task.FromResult(action()), arg);
 
-        public BreakpointHit()
-        {
-            _continueSemaphore = new SemaphoreSlim(0);
-        }
-
-        public Task WaitForContinue()
-        {
-            return _continueSemaphore.WaitAsync();
-        }
-
-        public void Continue()
-        {
-            _continueSemaphore.Release(1);
-        }
-
-        public void Dispose()
-        {
-            _continueSemaphore.Dispose();
-        }
+        public static Task<TResult> Enqueue<TArg, TResult>(
+            this CoalescingTaskQueue<TArg, TResult> queue,
+            Func<Task<TResult>> action,
+            TArg arg) => 
+            queue.Enqueue(_ => action(), arg);
     }
 }

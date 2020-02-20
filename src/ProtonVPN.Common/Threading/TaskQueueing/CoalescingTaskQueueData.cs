@@ -17,34 +17,22 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace ProtonVPN.Test.Common.Breakpoints
+namespace ProtonVPN.Common.Threading.TaskQueueing
 {
-    public class BreakpointHit : IDisposable
+    internal class CoalescingTaskQueueData<TArg, TResult>
     {
-        private readonly SemaphoreSlim _continueSemaphore;
+        public readonly QueuedTask<TArg, TResult> PendingTask;
+        public readonly QueuedTask<TArg, TResult> RunningTask;
 
-        public BreakpointHit()
+        public CoalescingTaskQueueData(
+            QueuedTask<TArg, TResult> pendingTask,
+            QueuedTask<TArg, TResult> runningTask)
         {
-            _continueSemaphore = new SemaphoreSlim(0);
+            PendingTask = pendingTask;
+            RunningTask = runningTask;
         }
 
-        public Task WaitForContinue()
-        {
-            return _continueSemaphore.WaitAsync();
-        }
-
-        public void Continue()
-        {
-            _continueSemaphore.Release(1);
-        }
-
-        public void Dispose()
-        {
-            _continueSemaphore.Dispose();
-        }
+        public static CoalescingTaskQueueData<TArg, TResult> Empty =>
+            new CoalescingTaskQueueData<TArg, TResult>(null, null);
     }
 }

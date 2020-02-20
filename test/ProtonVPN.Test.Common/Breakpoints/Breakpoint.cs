@@ -59,5 +59,4 @@ namespace ProtonVPN.Test.Common.Breakpoints
             }
         }
     }
-
 }
