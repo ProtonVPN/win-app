@@ -40,6 +40,8 @@ ProtonVPN Windows app includes the following 3rd party software:
 * [Caliburn.Micro.Core](https://caliburnmicro.com/) by Rob Eisenberg, Marco Amendola,
   Chin Bae, Ryan Cromwell, Nigel Sampson, Thomas Ibel, Matt Hidinger
   | [The MIT License](https://raw.githubusercontent.com/Caliburn-Micro/Caliburn.Micro/master/License.txt).
+* [DeviceId](https://github.com/MatthewKing/DeviceId) by Matthew King
+  | [The MIT License](http://opensource.org/licenses/MIT).
 * [DnsClient](http://dnsclient.michaco.net/) by MichaCo
   | [Apache License 2.0](https://github.com/MichaCo/DnsClient.NET/blob/master/LICENSE).
 * [DynamicExpresso.Core](https://github.com/davideicardi/DynamicExpresso) by Davide Icardi
