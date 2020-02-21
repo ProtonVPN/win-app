@@ -78,6 +78,7 @@
     <ROW Component="Caliburn.Micro.Platform.Core.dll" ComponentId="{294B2C0A-8A71-4EC6-A139-18AB3AAEEE33}" Directory_="APPDIR" Attributes="0" KeyPath="Caliburn.Micro.Platform.Core.dll"/>
     <ROW Component="Caliburn.Micro.Platform.dll" ComponentId="{A764037B-6C8D-4AA7-AFFD-AEB8EC5CD828}" Directory_="APPDIR" Attributes="0" KeyPath="Caliburn.Micro.Platform.dll"/>
     <ROW Component="Caliburn.Micro.dll" ComponentId="{B21823B7-0296-45CA-884A-C0B7C95D6133}" Directory_="APPDIR" Attributes="0" KeyPath="Caliburn.Micro.dll"/>
+    <ROW Component="DeviceId.dll" ComponentId="{24425D97-6949-4584-B580-9FC07DA07749}" Directory_="APPDIR" Attributes="0" KeyPath="DeviceId.dll"/>
     <ROW Component="DnsClient.dll" ComponentId="{34E2A2F6-8615-4B5A-82CC-94F43F1B97EA}" Directory_="APPDIR" Attributes="0" KeyPath="DnsClient.dll"/>
     <ROW Component="DynamicExpresso.Core.dll" ComponentId="{3CC4F9B3-E8E9-4261-A6F7-896541F64FBC}" Directory_="APPDIR" Attributes="0" KeyPath="DynamicExpresso.Core.dll"/>
     <ROW Component="FD92F08164915A061A35616A2E484" ComponentId="{2C2DFA76-698A-44B9-8F04-4096B39B2AD8}" Directory_="APPDIR" Attributes="4" KeyPath="FD92F08164915A061A35616A2E484" Options="2"/>
@@ -218,6 +219,7 @@
     <ROW File="COPYING.md" Component_="ProtonVPN.ErrorMessage.exe.config" FileName="COPYING.md" Attributes="0" SourcePath="..\COPYING.md" SelfReg="false"/>
     <ROW File="LICENSE" Component_="ProtonVPN.ErrorMessage.exe.config" FileName="LICENSE" Attributes="0" SourcePath="..\LICENSE" SelfReg="false"/>
     <ROW File="Polly.Contrib.WaitAndRetry.dll" Component_="Polly.Contrib.WaitAndRetry.dll" FileName="POLLYC~1.DLL|Polly.Contrib.WaitAndRetry.dll" Attributes="0" SourcePath="..\src\bin\Polly.Contrib.WaitAndRetry.dll" SelfReg="false"/>
+    <ROW File="DeviceId.dll" Component_="DeviceId.dll" FileName="DeviceId.dll" Attributes="0" SourcePath="..\src\bin\DeviceId.dll" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.AiRemoveFileComponent">
     <ROW RemoveFile="_" Condition="(AI_CLEAN_RESOURCES_UNINSTALL = &quot;1&quot;) AND (NOT UPGRADINGPRODUCTCODE)" Options="3"/>
@@ -543,6 +545,7 @@
     <ROW Feature_="MainFeature" Component_="ProtonVPN.UpdateServiceContract.dll"/>
     <ROW Feature_="MainFeature" Component_="ProtonVPN.TlsVerify.exe"/>
     <ROW Feature_="MainFeature" Component_="Polly.Contrib.WaitAndRetry.dll"/>
+    <ROW Feature_="MainFeature" Component_="DeviceId.dll"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
     <ROW Name="protonvpn.exe" SourcePath="images\protonvpn.ico" Index="0"/>
