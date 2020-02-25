@@ -33,6 +33,15 @@
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Albireo.Base32, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Albireo.Base32.1.1.0\lib\net47\Albireo.Base32.dll</HintPath>
+    </Reference>
+    <Reference Include="ARSoft.Tools.Net, Version=2.2.9.0, Culture=neutral, PublicKeyToken=1940454cd762ec57, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ARSoft.Tools.Net.2.2.9\lib\net45\ARSoft.Tools.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.1.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\..\packages\BouncyCastle.1.8.1\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
     <Reference Include="Caliburn.Micro, Version=3.2.0.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Caliburn.Micro.Core.3.2.0\lib\net45\Caliburn.Micro.dll</HintPath>
     </Reference>
@@ -175,6 +184,12 @@
     <Compile Include="Network\WifiConnection.cs" />
     <Compile Include="Network\WlanClient.cs" />
     <Compile Include="OS\Net\Dns\SystemDnsClient.cs" />
+    <Compile Include="OS\Net\DoH\BaseDnsMessage.cs" />
+    <Compile Include="OS\Net\DoH\Client.cs" />
+    <Compile Include="OS\Net\DoH\DnsMessageExtension.cs" />
+    <Compile Include="OS\Net\DoH\IDnsMessage.cs" />
+    <Compile Include="OS\Net\DoH\MainHostname.cs" />
+    <Compile Include="OS\Net\DoH\TxtMessage.cs" />
     <Compile Include="OS\Net\ServicePointConfiguration.cs" />
     <Compile Include="Profiles\ApiProfiles.cs" />
     <Compile Include="Profiles\Cached\CachedProfileData.cs" />

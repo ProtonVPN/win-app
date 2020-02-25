@@ -38,6 +38,7 @@ using ProtonVPN.Core.Events;
 using ProtonVPN.Core.Network;
 using ProtonVPN.Core.OS.Net;
 using ProtonVPN.Core.OS.Net.Dns;
+using ProtonVPN.Core.OS.Net.DoH;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Storage;
@@ -213,6 +214,7 @@ namespace ProtonVPN.Core.Ioc
             builder.Register(c => new SafeSystemProxy(c.Resolve<ILogger>(), new SystemProxy()))
                 .AsImplementedInterfaces()
                 .SingleInstance();
+            builder.RegisterType<MainHostname>().SingleInstance();
             builder.RegisterType<UnhandledExceptionLogging>().SingleInstance();
         }
     }

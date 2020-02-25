@@ -99,6 +99,7 @@
     <Compile Include="OS\Net\Dns\FixedDnsClientTest.cs" />
     <Compile Include="OS\Net\Dns\DnsClientsTest.cs" />
     <Compile Include="OS\Net\Dns\DnsClientTest.cs" />
+    <Compile Include="OS\Net\DoH\MainHostnameTest.cs" />
     <Compile Include="Profiles\ProfileExtensionsTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Servers\ServerSpecsTest.cs" />
