@@ -30,6 +30,10 @@ ProtonVPN Windows app includes the following 3rd party software:
   | [The GPL v2](https://github.com/OpenVPN/tap-windows6/blob/master/COPYRIGHT.GPL)
 * [Autofac](https://autofac.org/) by Autofac Contributors
   | [The MIT License](https://licenses.nuget.org/MIT).
+* [Albireo.Base32](https://github.com/kappa7194/base32) by Albireo
+  |  [The MIT License](https://opensource.org/licenses/MIT).
+* [ARSoft.Tools.Net](https://github.com/alexreinert/ARSoft.Tools.Net) By Alexander Reinert
+  | [Apache License 2.0](http://arsofttoolsnet.codeplex.com/license)
 * [ByteSize](https://github.com/omar/ByteSize) by Omar Khudeira
   | [The MIT License](https://raw.githubusercontent.com/omar/ByteSize/master/LICENSE).
 * [CalcBinding](https://github.com/Alex141/CalcBinding) by Alexander Zinchenko
