@@ -18,11 +18,11 @@
  */
 
 using System.Linq;
-using ProtonVPN.Core.Api.Handlers.TlsPinning;
 using System.Net.Http;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 using ProtonVPN.Common.Configuration.Api.Handlers.TlsPinning;
+using ProtonVPN.Core.Api.Handlers.TlsPinning;
 
 namespace ProtonVPN.Core.Api.Handlers
 {
@@ -39,39 +39,39 @@ namespace ProtonVPN.Core.Api.Handlers
         {
             _config = config;
             _reportClient = reportClient;
-            _policy = new TlsPinningPolicy(config);
+            _policy = new TlsPinningPolicy();
 
             ServerCertificateCustomValidationCallback = CertificateCustomValidationCallback;
         }
 
-        private bool CertificateCustomValidationCallback(HttpRequestMessage request, X509Certificate2 certificate,
+        protected bool CertificateCustomValidationCallback(HttpRequestMessage request, X509Certificate certificate,
             X509Chain chain, SslPolicyErrors sslPolicyErrors)
         {
-            if (sslPolicyErrors != SslPolicyErrors.None)
+            var host = request.Headers.Host ?? request.RequestUri.Host;
+            var domain = GetPinnedDomain(host) ?? GetPinnedDomain("*");
+            if (domain == null)
+            {
+                return sslPolicyErrors == SslPolicyErrors.None && !_config.Enforce;
+            }
+
+            if (domain.Name != "*" && sslPolicyErrors != SslPolicyErrors.None)
             {
                 return false;
             }
 
-            var host = request.Headers.Host ?? request.RequestUri.Host;
-            var domain = _config.PinnedDomains.FirstOrDefault(d => d.Name == host);
-            if (domain == null)
-            {
-                return !_config.Enforce;
-            }
-
-            var valid = IsValid(host, certificate);
+            var valid = _policy.Valid(domain, certificate);
             if (!valid && domain.SendReport)
             {
                 var knownPins = domain.PublicKeyHashes.ToList();
                 _reportClient.Send(new ReportBody(knownPins, request.RequestUri, chain).Value());
             }
 
-            return !domain.Enforce || valid;
+            return sslPolicyErrors == SslPolicyErrors.None && !domain.Enforce || valid;
         }
 
-        private bool IsValid(string host, X509Certificate2 certificate)
+        private TlsPinnedDomain GetPinnedDomain(string host)
         {
-            return _policy.Valid(host, certificate);
+            return _config.PinnedDomains.FirstOrDefault(d => d.Name == host);
         }
     }
 }

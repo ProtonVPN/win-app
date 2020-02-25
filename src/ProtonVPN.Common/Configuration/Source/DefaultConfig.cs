@@ -209,7 +209,20 @@ namespace ProtonVPN.Common.Configuration.Source
                             },
                             Enforce = true,
                             SendReport = true,
-                        }
+                        },
+                        new TlsPinnedDomain
+                        {
+                            Name = "*",
+                            PublicKeyHashes = new HashSet<string>
+                            {
+                                "EU6TS9MO0L/GsDHvVc9D5fChYLNy5JdGYpJw0ccgetM=",
+                                "iKPIHPnDNqdkvOnTClQ8zQAIKG0XavaPkcEo0LBAABA=",
+                                "MSlVrBCdL0hKyczvgYVSRNm88RicyY04Q2y5qrBt0xA=",
+                                "C2UxW0T1Ckl9s+8cXfjXxlEqwAfPM4HiW2y3UdtBeCw=",
+                            },
+                            Enforce = true,
+                            SendReport = true,
+                        },
                     },
                     Enforce = false,
                 },

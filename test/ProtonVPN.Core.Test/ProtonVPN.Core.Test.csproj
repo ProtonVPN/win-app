@@ -88,6 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\ApiClientTest.cs" />
+    <Compile Include="Api\Handlers\TlsPinning\PublicKeyInfoHashTest.cs" />
     <Compile Include="Api\SleepDurationProviderTest.cs" />
     <Compile Include="OS\Net\Dns\DnsClientExtensionsTest.cs" />
     <Compile Include="OS\Net\Dns\SafeDnsClientTest.cs" />
@@ -109,6 +110,12 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="TestData\rsa4096.badssl.com.cer">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\self-signed.badssl.com.cer">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

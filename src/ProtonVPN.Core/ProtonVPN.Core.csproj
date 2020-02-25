@@ -91,6 +91,7 @@
     <Compile Include="Api\Contracts\EventResponse.cs" />
     <Compile Include="Api\Contracts\SessionsResponse.cs" />
     <Compile Include="Api\Contracts\VpnConfig.cs" />
+    <Compile Include="Api\Extensions\X509CertificateExtensions.cs" />
     <Compile Include="Api\File.cs" />
     <Compile Include="Api\Handlers\TlsPinning\CertificateExtensions.cs" />
     <Compile Include="Api\Handlers\TlsPinning\IReportClient.cs" />

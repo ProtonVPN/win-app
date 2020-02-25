@@ -25,24 +25,15 @@ namespace ProtonVPN.Core.Api.Handlers.TlsPinning
 {
     internal class TlsPinningPolicy
     {
-        private readonly TlsPinningConfig _config;
-
-        public TlsPinningPolicy(TlsPinningConfig config)
+        public bool Valid(TlsPinnedDomain domain, X509Certificate certificate)
         {
-            _config = config;
-        }
-
-        public bool Valid(string host, X509Certificate2 certificate)
-        {
-            var pinnedDomain = _config.PinnedDomains?.FirstOrDefault(p => p.Name == host);
-
-            if (pinnedDomain == null)
+            if (domain == null)
             {
                 return true;
             }
 
             var hash = new PublicKeyInfoHash(certificate).Value();
-            return pinnedDomain.PublicKeyHashes.Contains(hash);
+            return domain.PublicKeyHashes.Contains(hash);
         }
     }
 }
