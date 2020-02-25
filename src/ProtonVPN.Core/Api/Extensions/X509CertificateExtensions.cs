@@ -17,23 +17,19 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using ProtonVPN.Common.Configuration.Api.Handlers.TlsPinning;
+using Org.BouncyCastle.Asn1;
+using Org.BouncyCastle.Asn1.X509;
+using Org.BouncyCastle.X509;
 
-namespace ProtonVPN.Core.Api.Handlers.TlsPinning
+namespace ProtonVPN.Core.Api.Extensions
 {
-    internal class TlsPinningPolicy
+    public static class X509CertificateExtensions
     {
-        public bool Valid(TlsPinnedDomain domain, X509Certificate certificate)
+        public static byte[] GetSubjectPublicKeyInfo(this System.Security.Cryptography.X509Certificates.X509Certificate certificate)
         {
-            if (domain == null)
-            {
-                return true;
-            }
-
-            var hash = new PublicKeyInfoHash(certificate).Value();
-            return domain.PublicKeyHashes.Contains(hash);
+            var cert = new X509CertificateParser().ReadCertificate(certificate.GetRawCertData());
+            var tbsCert = TbsCertificateStructure.GetInstance(Asn1Object.FromByteArray(cert.GetTbsCertificate()));
+            return tbsCert.SubjectPublicKeyInfo.GetDerEncoded();
         }
     }
 }

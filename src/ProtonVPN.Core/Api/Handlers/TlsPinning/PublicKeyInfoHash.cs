@@ -20,6 +20,7 @@
 using System;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
+using ProtonVPN.Core.Api.Extensions;
 
 namespace ProtonVPN.Core.Api.Handlers.TlsPinning
 {
@@ -34,87 +35,13 @@ namespace ProtonVPN.Core.Api.Handlers.TlsPinning
 
         public string Value()
         {
-            var subjectPublicKeyInfo = GetSubjectPublicKeyInfoRaw(_certificate);
             byte[] digest;
             using (var sha256 = new SHA256CryptoServiceProvider())
             {
-                digest = sha256.ComputeHash(subjectPublicKeyInfo);
+                digest = sha256.ComputeHash(_certificate.GetSubjectPublicKeyInfo());
             }
 
             return Convert.ToBase64String(digest);
-        }
-
-        private byte[] GetSubjectPublicKeyInfoRaw(X509Certificate x509Cert)
-        {
-            var rawCert = x509Cert.GetRawCertData();
-            var list = AsnNext(ref rawCert, true);
-            var tbsCertificate = AsnNext(ref list, false);
-            list = AsnNext(ref tbsCertificate, true);
-
-            AsnNext(ref list, false);
-            AsnNext(ref list, false);
-            AsnNext(ref list, false);
-            AsnNext(ref list, false);
-            AsnNext(ref list, false);
-            AsnNext(ref list, false);
-
-            return AsnNext(ref list, false);
-        }
-
-        private byte[] AsnNext(ref byte[] buffer, bool unwrap)
-        {
-            byte[] result;
-
-            if (buffer.Length < 2)
-            {
-                result = buffer;
-                buffer = new byte[0];
-                return result;
-            }
-
-            var index = 0;
-            index += 1;
-
-            int length = buffer[index];
-            index += 1;
-
-            var lengthBytes = 1;
-            if (length >= 0x80)
-            {
-                lengthBytes = length & 0x0F;
-                length = 0;
-
-                for (var i = 0; i < lengthBytes; i++)
-                {
-                    length = (length << 8) + buffer[2 + i];
-                    index += 1;
-                }
-                lengthBytes++;
-            }
-
-            int copyStart;
-            int copyLength;
-            if (unwrap)
-            {
-                copyStart = 1 + lengthBytes;
-                copyLength = length;
-            }
-            else
-            {
-                copyStart = 0;
-                copyLength = 1 + lengthBytes + length;
-            }
-            result = new byte[copyLength];
-            Array.Copy(buffer, copyStart, result, 0, copyLength);
-
-            var remaining = new byte[buffer.Length - (copyStart + copyLength)];
-            if (remaining.Length > 0)
-            {
-                Array.Copy(buffer, copyStart + copyLength, remaining, 0, remaining.Length);
-            }
-            buffer = remaining;
-
-            return result;
         }
     }
 }

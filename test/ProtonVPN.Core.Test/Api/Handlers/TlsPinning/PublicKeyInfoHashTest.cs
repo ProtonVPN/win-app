@@ -17,23 +17,24 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Linq;
 using System.Security.Cryptography.X509Certificates;
-using ProtonVPN.Common.Configuration.Api.Handlers.TlsPinning;
+using FluentAssertions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using ProtonVPN.Core.Api.Handlers.TlsPinning;
 
-namespace ProtonVPN.Core.Api.Handlers.TlsPinning
+namespace ProtonVPN.Core.Test.Api.Handlers.TlsPinning
 {
-    internal class TlsPinningPolicy
+    [TestClass]
+    public class PublicKeyInfoHashTest
     {
-        public bool Valid(TlsPinnedDomain domain, X509Certificate certificate)
+        [TestMethod]
+        [DataRow("TestData\\rsa4096.badssl.com.cer", "W8/42Z0ffufwnHIOSndT+eVzBJSC0E8uTIC8O6mEliQ=")]
+        [DataRow("TestData\\self-signed.badssl.com.cer", "9SLklscvzMYj8f+52lp5ze/hY0CFHyLSPQzSpYYIBm8=")]
+        public void Value_ShouldReturnCorrectPin(string certFile, string key)
         {
-            if (domain == null)
-            {
-                return true;
-            }
-
-            var hash = new PublicKeyInfoHash(certificate).Value();
-            return domain.PublicKeyHashes.Contains(hash);
+            var cert = X509Certificate.CreateFromCertFile(certFile);
+            var keyHash = new PublicKeyInfoHash(cert);
+            keyHash.Value().Should().Be(key);
         }
     }
 }
