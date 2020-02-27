@@ -21,7 +21,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.Api.Data;
-using ProtonVPN.Core.User;
 using UserLocation = ProtonVPN.Core.Api.Contracts.UserLocation;
 
 namespace ProtonVPN.Core.Api

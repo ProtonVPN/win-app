@@ -93,6 +93,7 @@
     <Compile Include="Api\Contracts\VpnConfig.cs" />
     <Compile Include="Api\Extensions\X509CertificateExtensions.cs" />
     <Compile Include="Api\File.cs" />
+    <Compile Include="Api\Handlers\AlternativeHostHandler.cs" />
     <Compile Include="Api\Handlers\TlsPinning\CertificateExtensions.cs" />
     <Compile Include="Api\Handlers\TlsPinning\IReportClient.cs" />
     <Compile Include="Api\Handlers\TlsPinning\PublicKeyInfoHash.cs" />
@@ -188,6 +189,7 @@
     <Compile Include="OS\Net\DoH\BaseDnsMessage.cs" />
     <Compile Include="OS\Net\DoH\Client.cs" />
     <Compile Include="OS\Net\DoH\DnsMessageExtension.cs" />
+    <Compile Include="OS\Net\DoH\DohClients.cs" />
     <Compile Include="OS\Net\DoH\IDnsMessage.cs" />
     <Compile Include="OS\Net\DoH\MainHostname.cs" />
     <Compile Include="OS\Net\DoH\TxtMessage.cs" />

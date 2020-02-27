@@ -18,6 +18,7 @@
  */
 
 using System;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using ProtonVPN.Common;
 using ProtonVPN.Core.Models;
@@ -71,5 +72,8 @@ namespace ProtonVPN.Core.Settings
         bool NetShieldEnabled { get; set; }
         int NetShieldMode { get; set; }
         bool NetShieldModalShown { get; set; }
+        DateTime LastPrimaryApiFail { get; set; }
+        StringCollection AlternativeApiBaseUrls { set; get; }
+        string ActiveAlternativeApiBaseUrl { set; get; }
     }
 }

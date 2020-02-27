@@ -29,20 +29,19 @@ namespace ProtonVPN.Core.OS.Net.DoH
     public class Client
     {
         private readonly HttpClient _httpClient;
+        private readonly string _providerUrl;
 
-        public Client(string providerUrl)
+        public Client(string providerUrl, TimeSpan timeout)
         {
-            _httpClient = new HttpClient
-            {
-                BaseAddress = new Uri(providerUrl),
-            };
+            _providerUrl = providerUrl;
+            _httpClient = new HttpClient {Timeout = timeout};
             _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/dns-message"));
         }
 
         public async Task<List<string>> ResolveTxtAsync(string domain)
         {
             var message = new TxtMessage(domain).ToBase64String();
-            var result = await _httpClient.GetAsync($"?dns={message}");
+            var result = await _httpClient.GetAsync($"{_providerUrl}?dns={message}");
             var content = await result.Content.ReadAsByteArrayAsync();
             var messageResult = DnsMessage.Parse(content);
             var list = new List<string>();

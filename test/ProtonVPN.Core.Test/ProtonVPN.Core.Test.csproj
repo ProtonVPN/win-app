@@ -88,6 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\ApiClientTest.cs" />
+    <Compile Include="Api\Handlers\AlternativeHostHandlerTest.cs" />
     <Compile Include="Api\Handlers\TlsPinning\PublicKeyInfoHashTest.cs" />
     <Compile Include="Api\SleepDurationProviderTest.cs" />
     <Compile Include="OS\Net\Dns\DnsClientExtensionsTest.cs" />

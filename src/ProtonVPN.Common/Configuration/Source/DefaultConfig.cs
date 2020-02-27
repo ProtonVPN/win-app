@@ -93,6 +93,8 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 ApiTimeout = TimeSpan.FromSeconds(20),
 
+                DohClientTimeout = TimeSpan.FromSeconds(10),
+
                 ApiRetries = 0,
 
                 UpdateFirstCheckDelay = TimeSpan.FromSeconds(15),
@@ -225,6 +227,12 @@ namespace ProtonVPN.Common.Configuration.Source
                         },
                     },
                     Enforce = false,
+                },
+
+                DoHProviders = new List<string>
+                {
+                    "https://dns11.quad9.net/dns-query",
+                    "https://dns.google/dns-query",
                 },
             };
         }

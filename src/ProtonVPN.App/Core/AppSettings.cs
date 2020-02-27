@@ -27,6 +27,7 @@ using ProtonVPN.Core.Settings.Contracts;
 using ProtonVPN.Core.Storage;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -243,6 +244,24 @@ namespace ProtonVPN.Core
         public int SidebarTab
         {
             get => Get<int>();
+            set => Set(value);
+        }
+
+        public DateTime LastPrimaryApiFail
+        {
+            get => Get<DateTime>();
+            set => Set(value);
+        }
+
+        public StringCollection AlternativeApiBaseUrls
+        {
+            get => Get<StringCollection>();
+            set => Set(value);
+        }
+
+        public string ActiveAlternativeApiBaseUrl
+        {
+            get => Get<string>();
             set => Set(value);
         }
 
