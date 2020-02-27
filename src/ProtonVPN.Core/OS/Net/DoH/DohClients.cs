@@ -18,30 +18,36 @@
  */
 
 using System;
-using System.Net.Http;
-using System.Net.Sockets;
-using System.Security.Authentication;
-using Newtonsoft.Json;
-using Polly.Timeout;
+using System.Collections.Generic;
 
-namespace ProtonVPN.Core.Api
+namespace ProtonVPN.Core.OS.Net.DoH
 {
-    public static class ApiExceptionHelper
+    public class DohClients
     {
-        public static bool IsApiCommunicationException(this Exception ex)
+        private readonly List<Client> _list = new List<Client>();
+
+        private readonly List<string> _providers;
+        private readonly TimeSpan _timeout;
+
+        public DohClients(List<string> providers, TimeSpan timeout)
         {
-            return ex is HttpRequestException ||
-                   ex is JsonException ||
-                   ex is OperationCanceledException ||
-                   ex is TimeoutRejectedException ||
-                   ex is SocketException;
+            _providers = providers;
+            _timeout = timeout;
         }
 
-        public static bool IsPotentialBlocking(this Exception e)
+        public List<Client> Get()
         {
-            return e is TimeoutException ||
-                   e is TimeoutRejectedException ||
-                   e.GetBaseException() is AuthenticationException;
+            if (_list.Count > 0)
+            {
+                return _list;
+            }
+
+            foreach (var provider in _providers)
+            {
+                _list.Add(new Client(provider, _timeout));
+            }
+
+            return _list;
         }
     }
 }

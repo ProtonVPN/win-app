@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.Net.Http;
 using Autofac;
 using Caliburn.Micro;
@@ -110,6 +111,13 @@ namespace ProtonVPN.Core.Ioc
                     {InnerHandler = c.Resolve<UnauthorizedResponseHandler>()}).SingleInstance();
 
             builder.Register(c =>
+                new AlternativeHostHandler(c.Resolve<DohClients>(),
+                        c.Resolve<MainHostname>(),
+                        c.Resolve<IAppSettings>(),
+                        new Uri(c.Resolve<Common.Configuration.Config>().Urls.ApiUrl).Host)
+                    { InnerHandler = c.Resolve<CancellingHandler>() }).SingleInstance();
+
+            builder.Register(c =>
                     new TokenClient(
                         new HttpClient(c.Resolve<RetryingHandler>())
                             {BaseAddress = c.Resolve<IActiveUrls>().ApiUrl.Uri},
@@ -141,12 +149,19 @@ namespace ProtonVPN.Core.Ioc
                             (retryCount, response, context) => new SleepDurationProvider(response).Value())
                         {InnerHandler = loggingHandler};
 
+                    var alternativeHostHandler = new AlternativeHostHandler(
+                        c.Resolve<DohClients>(),
+                        c.Resolve<MainHostname>(),
+                        c.Resolve<IAppSettings>(),
+                        new Uri(c.Resolve<Common.Configuration.Config>().Urls.ApiUrl).Host)
+                    { InnerHandler = retryingHandler};
+
                     return new ApiClient(
-                        new HttpClient(c.Resolve<CancellingHandler>())
+                        new HttpClient(c.Resolve<AlternativeHostHandler>())
                         {
                             BaseAddress = c.Resolve<IActiveUrls>().ApiUrl.Uri
                         },
-                        new HttpClient(retryingHandler)
+                        new HttpClient(alternativeHostHandler)
                         {
                             BaseAddress = c.Resolve<IActiveUrls>().ApiUrl.Uri,
                             DefaultRequestHeaders = { ConnectionClose = true }
@@ -214,7 +229,11 @@ namespace ProtonVPN.Core.Ioc
             builder.Register(c => new SafeSystemProxy(c.Resolve<ILogger>(), new SystemProxy()))
                 .AsImplementedInterfaces()
                 .SingleInstance();
-            builder.RegisterType<MainHostname>().SingleInstance();
+            builder.Register(c => new MainHostname(c.Resolve<Common.Configuration.Config>().Urls.ApiUrl)).SingleInstance();
+            builder.Register(c => new DohClients(
+                c.Resolve<Common.Configuration.Config>().DoHProviders,
+                c.Resolve<Common.Configuration.Config>().DohClientTimeout))
+                .SingleInstance();
             builder.RegisterType<UnhandledExceptionLogging>().SingleInstance();
         }
     }

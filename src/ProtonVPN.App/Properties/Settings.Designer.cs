@@ -1049,5 +1049,40 @@ namespace ProtonVPN.Properties {
                 this["SettingsVersion"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.DateTime LastPrimaryApiFail {
+            get {
+                return ((global::System.DateTime)(this["LastPrimaryApiFail"]));
+            }
+            set {
+                this["LastPrimaryApiFail"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string AlternativeApiBaseUrls {
+            get {
+                return ((string)(this["AlternativeApiBaseUrls"]));
+            }
+            set {
+                this["AlternativeApiBaseUrls"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ActiveAlternativeApiBaseUrl {
+            get {
+                return ((string)(this["ActiveAlternativeApiBaseUrl"]));
+            }
+            set {
+                this["ActiveAlternativeApiBaseUrl"] = value;
+            }
+        }
     }
 }

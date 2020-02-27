@@ -101,6 +101,9 @@ namespace ProtonVPN.Common.Configuration
         [Range(typeof(TimeSpan), "00:00:01", "00:01:00")]
         public TimeSpan ApiTimeout { get; internal set; }
 
+        [Range(typeof(TimeSpan), "00:00:01", "00:01:00")]
+        public TimeSpan DohClientTimeout { get; internal set; }
+
         [Range(0, 5)]
         public int ApiRetries { get; internal set; }
 
@@ -162,5 +165,7 @@ namespace ProtonVPN.Common.Configuration
         public OpenVpnConfig OpenVpn { get; } = new OpenVpnConfig();
 
         public TlsPinningConfig TlsPinningConfig { get; } = new TlsPinningConfig();
+
+        public List<string> DoHProviders { get; internal set; } = new List<string>();
     }
 }
