@@ -17,30 +17,50 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.ComponentModel;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
 using ProtonVPN.Config.Url;
+using ProtonVPN.Core.Settings;
 
 namespace ProtonVPN.Modals
 {
-    public class TroubleshootModalViewModel : BaseModalViewModel
+    public class TroubleshootModalViewModel : BaseModalViewModel, ISettingsAware
     {
         private readonly IActiveUrls _urls;
+        private readonly IAppSettings _appSettings;
 
-        public TroubleshootModalViewModel(IActiveUrls urls)
+        public TroubleshootModalViewModel(IActiveUrls urls, IAppSettings appSettings)
         {
             _urls = urls;
+            _appSettings = appSettings;
 
             ProtonStatusCommand = new RelayCommand(OpenProtonStatusPage);
             ProtonTwitterCommand = new RelayCommand(OpenProtonTwitterPage);
             TorCommand = new RelayCommand(OpenTorPage);
             SupportFormCommand = new RelayCommand(OpenSupportFormPage);
+            AlternativeRoutingCommand = new RelayCommand(OpenAlternativeRoutingPage);
         }
 
         public ICommand ProtonStatusCommand { get; }
         public ICommand ProtonTwitterCommand { get; }
         public ICommand TorCommand { get; }
         public ICommand SupportFormCommand { get; }
+        public ICommand AlternativeRoutingCommand { get; }
+
+        public bool DoHEnabled
+        {
+            get => _appSettings.DoHEnabled;
+            set => _appSettings.DoHEnabled = value;
+        }
+
+        public void OnAppSettingsChanged(PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(IAppSettings.DoHEnabled))
+            {
+                DoHEnabled = _appSettings.DoHEnabled;
+            }
+        }
 
         private void OpenProtonStatusPage()
         {
@@ -60,6 +80,11 @@ namespace ProtonVPN.Modals
         private void OpenSupportFormPage()
         {
             _urls.SupportFormUrl.Open();
+        }
+
+        private void OpenAlternativeRoutingPage()
+        {
+            _urls.AlternativeRoutingUrl.Open();
         }
     }
 }

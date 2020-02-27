@@ -185,6 +185,16 @@ namespace ProtonVPN.Settings
             set => Set(ref _netShieldFullyEnabled, value);
         }
 
+        public bool DoHEnabled
+        {
+            get => _appSettings.DoHEnabled;
+            set
+            {
+                _appSettings.DoHEnabled = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
         public bool CustomDnsEnabled
         {
             get => _appSettings.CustomDnsEnabled;

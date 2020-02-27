@@ -75,5 +75,6 @@ namespace ProtonVPN.Core.Settings
         DateTime LastPrimaryApiFail { get; set; }
         StringCollection AlternativeApiBaseUrls { set; get; }
         string ActiveAlternativeApiBaseUrl { set; get; }
+        bool DoHEnabled { get; set; }
     }
 }

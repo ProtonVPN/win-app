@@ -55,4 +55,5 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <system:String x:Key="ProfileFormNameInput">ProfileFormNameInput</system:String>
     <system:String x:Key="MinimizeButtonId">MinimizeButtonId</system:String>
     <system:String x:Key="LanguageCombobox">LanguageCombobox</system:String>
+    <system:String x:Key="DoHCheckbox">DoHCheckbox</system:String>
 </ResourceDictionary>

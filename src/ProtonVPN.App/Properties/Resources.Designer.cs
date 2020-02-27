@@ -3427,18 +3427,83 @@ namespace ProtonVPN.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;Bold&gt;No internet connection&lt;/Bold&gt; - Please make sure that your internet connection is working.&lt;LineBreak/&gt;&lt;LineBreak/&gt;
-        ///
-        ///&lt;Bold&gt;
-        ///Internet Service Provider (ISP) problem&lt;/Bold&gt; - Try connecting to Proton from a different network (or use &lt;Hyperlink Command=&quot;{Binding TorCommand}&quot;&gt;Tor&lt;/Hyperlink&gt;).&lt;LineBreak/&gt;&lt;LineBreak/&gt;
-        ///
-        ///
-        ///&lt;Bold&gt;Government block&lt;/Bold&gt; - Your country may be blocking access to Proton. Try using &lt;Hyperlink Command=&quot;{Binding TorCommand}&quot;&gt;Tor&lt;/Hyperlink&gt; to access Proton.
-        ///&lt;LineBreak/&gt;&lt;LineB [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to Learn More.
         /// </summary>
-        public static string Dialogs_Troubleshooting_msg {
+        public static string Dialogs_Troubleshooting_btn_LearnMore {
             get {
-                return ResourceManager.GetString("Dialogs_Troubleshooting_msg", resourceCulture);
+                return ResourceManager.GetString("Dialogs_Troubleshooting_btn_LearnMore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;Bold&gt;Alternative Routing&lt;/Bold&gt; - In case Proton sites are blocked, this setting allows the app to try alternative network routing to reach Proton, which can be useful for bypassing firewalls or network issues. We recommend keeping this setting on for greater reliability. &lt;Hyperlink Command=&quot;{Binding AlternativeRoutingCommand}&quot;&gt;Learn More&lt;/Hyperlink&gt;.
+        /// </summary>
+        public static string Dialogs_Troubleshooting_msg_AlternativeRouting {
+            get {
+                return ResourceManager.GetString("Dialogs_Troubleshooting_msg_AlternativeRouting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;Bold&gt;Antivirus interference&lt;/Bold&gt; - Temporarily disable or remove your antivirus software..
+        /// </summary>
+        public static string Dialogs_Troubleshooting_msg_Antivirus {
+            get {
+                return ResourceManager.GetString("Dialogs_Troubleshooting_msg_Antivirus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;Bold&gt;Proxy/Firewall interference&lt;/Bold&gt; - Disable any proxies or firewalls, or contact your network administrator..
+        /// </summary>
+        public static string Dialogs_Troubleshooting_msg_Firewall {
+            get {
+                return ResourceManager.GetString("Dialogs_Troubleshooting_msg_Firewall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;Bold&gt;Government block&lt;/Bold&gt; - Your country may be blocking access to Proton. Try using &lt;Hyperlink Command=&quot;{Binding TorCommand}&quot;&gt;Tor&lt;/Hyperlink&gt; to access Proton..
+        /// </summary>
+        public static string Dialogs_Troubleshooting_msg_GovBlock {
+            get {
+                return ResourceManager.GetString("Dialogs_Troubleshooting_msg_GovBlock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;Bold&gt;Government block&lt;/Bold&gt; - Your country may be blocking access to Proton. Try using &lt;Hyperlink Command=&quot;{Binding TorCommand}&quot;&gt;Tor&lt;/Hyperlink&gt; to access Proton..
+        /// </summary>
+        public static string Dialogs_Troubleshooting_msg_GovBlockDoH {
+            get {
+                return ResourceManager.GetString("Dialogs_Troubleshooting_msg_GovBlockDoH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;Bold&gt;Internet Service Provider (ISP) problem&lt;/Bold&gt; - Try connecting to Proton from a different network (or use &lt;Hyperlink Command=&quot;{Binding TorCommand}&quot;&gt;Tor&lt;/Hyperlink&gt;)..
+        /// </summary>
+        public static string Dialogs_Troubleshooting_msg_IspProblem {
+            get {
+                return ResourceManager.GetString("Dialogs_Troubleshooting_msg_IspProblem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;Bold&gt;No internet connection&lt;/Bold&gt; - Please make sure that your internet connection is working..
+        /// </summary>
+        public static string Dialogs_Troubleshooting_msg_NoInternet {
+            get {
+                return ResourceManager.GetString("Dialogs_Troubleshooting_msg_NoInternet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;Bold&gt;Proton is down&lt;/Bold&gt; - Check &lt;Hyperlink Command=&quot;{Binding ProtonStatusCommand}&quot;&gt;Proton Status&lt;/Hyperlink&gt; for our system status..
+        /// </summary>
+        public static string Dialogs_Troubleshooting_msg_ProtonDown {
+            get {
+                return ResourceManager.GetString("Dialogs_Troubleshooting_msg_ProtonDown", resourceCulture);
             }
         }
         
@@ -3448,6 +3513,15 @@ namespace ProtonVPN.Properties {
         public static string Dialogs_Troubleshooting_msg_Title {
             get {
                 return ResourceManager.GetString("Dialogs_Troubleshooting_msg_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;Bold&gt;Still can’t find a solution&lt;/Bold&gt; - Contact us directly through our &lt;Hyperlink Command=&quot;{Binding SupportFormCommand}&quot;&gt;support form&lt;/Hyperlink&gt;, email (support@protonvpn.com), or &lt;Hyperlink Command=&quot;{Binding ProtonTwitterCommand}&quot;&gt;Twitter&lt;/Hyperlink&gt;..
+        /// </summary>
+        public static string Dialogs_Troubleshooting_msg_Unknown {
+            get {
+                return ResourceManager.GetString("Dialogs_Troubleshooting_msg_Unknown", resourceCulture);
             }
         }
         
@@ -4844,6 +4918,24 @@ namespace ProtonVPN.Properties {
         public static string Settings_Advanced_lbl_DnsLeakProtection_Info {
             get {
                 return ResourceManager.GetString("Settings_Advanced_lbl_DnsLeakProtection_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Allow Alternative Routing.
+        /// </summary>
+        public static string Settings_Advanced_lbl_DoH {
+            get {
+                return ResourceManager.GetString("Settings_Advanced_lbl_DoH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In case Proton sites are blocked, this setting allows the app to try alternative network routing to reach Proton, which can be useful for bypassing firewalls or network issues. We recommend keeping this setting on for greater reliability..
+        /// </summary>
+        public static string Settings_Advanced_lbl_DoH_Info {
+            get {
+                return ResourceManager.GetString("Settings_Advanced_lbl_DoH_Info", resourceCulture);
             }
         }
         

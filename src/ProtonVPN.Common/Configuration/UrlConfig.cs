@@ -76,5 +76,8 @@ namespace ProtonVPN.Common.Configuration
 
         [Required]
         public string SupportFormUrl { get; internal set; }
+
+        [Required]
+        public string AlternativeRoutingUrl { get; internal set; }
     }
 }

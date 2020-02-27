@@ -370,6 +370,24 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <Border BorderBrush="#464652" Height="50" BorderThickness="0,0,0,1" DockPanel.Dock="Top">
                         <DockPanel>
                             <StackPanel Orientation="Horizontal">
+                                <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Content="{resources:Loc Settings_Advanced_lbl_DoH}"/>
+                                <fa:FontAwesome Icon="InfoCircle"
+                                                VerticalAlignment="Center"
+                                                HorizontalAlignment="Left"
+                                                Foreground="{StaticResource PrimaryColor}"
+                                                FontSize="16"
+                                                ToolTip="{resources:Loc Settings_Advanced_lbl_DoH_Info}"/>
+                            </StackPanel>
+                            <CheckBox HorizontalAlignment="Right"
+                                      Style="{StaticResource ToggleSwitch}"
+                                      IsChecked="{Binding DoHEnabled}"
+                                      AutomationProperties.AutomationId="{StaticResource DoHCheckbox}"/>
+                        </DockPanel>
+                    </Border>
+
+                    <Border BorderBrush="#464652" Height="50" BorderThickness="0,0,0,1" DockPanel.Dock="Top">
+                        <DockPanel>
+                            <StackPanel Orientation="Horizontal">
                                 <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Content="{resources:Loc Settings_Advanced_lbl_Ipv6Protection}"/>
                                 <fa:FontAwesome Icon="InfoCircle"
                                                 VerticalAlignment="Center"
