@@ -33,6 +33,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="300"
+             AutomationProperties.AutomationId="{StaticResource ConnectingScreenId}"
              d:DataContext="{d:DesignInstance connectingScreen:ConnectingViewModel}">
     <UserControl.Resources>
         <Style x:Key="ControlButton" TargetType="Button" BasedOn="{StaticResource ClearStyleButton}">

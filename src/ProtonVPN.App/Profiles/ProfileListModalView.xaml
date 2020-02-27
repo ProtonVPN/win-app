@@ -221,14 +221,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                                 <StackPanel Grid.Column="4" Orientation="Horizontal">
                                     <Button Style="{StaticResource FirstRowButton}"
+                                            AutomationProperties.AutomationId="{Binding ConnectAutomationId}"
                                             Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type modals:BaseModalWindow}}, Path=DataContext.ConnectCommand}" CommandParameter="{Binding}">
                                         <fa:FontAwesome Icon="PowerOff"/>
                                     </Button>
                                     <Button Style="{StaticResource RowButtonWithSeparator}"
+                                            AutomationProperties.AutomationId="{Binding EditAutomationId}"
                                             Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type modals:BaseModalWindow}}, Path=DataContext.EditCommand}" CommandParameter="{Binding}">
                                         <fa:FontAwesome Icon="Pencil"/>
                                     </Button>
                                     <Button Style="{StaticResource RowButton}"
+                                            AutomationProperties.AutomationId="{Binding DeleteAutomationId}"
                                             Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type modals:BaseModalWindow}}, Path=DataContext.RemoveCommand}" CommandParameter="{Binding}">
                                         <fa:FontAwesome Icon="Remove"/>
                                     </Button>

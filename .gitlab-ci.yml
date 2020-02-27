@@ -5,6 +5,7 @@ stages:
   - build
   - test
   - build-installer
+  - ui-test
   - mirror
   - bot # comes from translations/generator job
 
@@ -97,6 +98,18 @@ build-installer-for-debug:
   except:
     - master
     - /^release.*$/
+
+ui-test:
+  stage: ui-test
+  tags:
+    - windows
+  when: manual
+  script:
+    - powershell -File ci\uninstall-app.ps1
+    - powershell -Command "Start-Sleep -s 15"
+    - powershell -File ci\launch-installer.ps1
+    - powershell -Command "Start-Sleep -s 20"
+    - python ci\main.py ui-tests src\bin\ProtonVPN.UI.Test.dll
 
 mirror:
   stage: mirror

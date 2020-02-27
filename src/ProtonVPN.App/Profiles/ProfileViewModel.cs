@@ -65,6 +65,10 @@ namespace ProtonVPN.Profiles
         public IName ConnectionName { get; set; }
         public ProfileType Type { get; set; }
 
+        public string ConnectAutomationId => "Connect-" + Name;
+        public string EditAutomationId => "Edit-" + Name;
+        public string DeleteAutomationId => "Delete-" + Name;
+
         private ProfileSyncStatus _syncStatus;
         public ProfileSyncStatus SyncStatus
         {
