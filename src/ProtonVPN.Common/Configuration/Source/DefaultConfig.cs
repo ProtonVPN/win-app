@@ -153,6 +153,7 @@ namespace ProtonVPN.Common.Configuration.Source
                     TorBrowserUrl = "https://www.torproject.org",
                     ProtonTwitterUrl = "https://twitter.com/ProtonVPN",
                     SupportFormUrl = "https://protonvpn.com/support-form",
+                    AlternativeRoutingUrl = "https://protonmail.com/blog/anti-censorship-alternative-routing",
                 },
 
                 OpenVpn =

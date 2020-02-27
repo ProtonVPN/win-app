@@ -179,7 +179,8 @@ namespace ProtonVPN.Core.Api.Handlers
 
         private bool ProxyActivated()
         {
-            return DateTime.Now.Subtract(_appSettings.LastPrimaryApiFail).TotalHours < HoursToUseProxy &&
+            return _appSettings.DoHEnabled &&
+                   DateTime.Now.Subtract(_appSettings.LastPrimaryApiFail).TotalHours < HoursToUseProxy &&
                    !string.IsNullOrEmpty(_appSettings.ActiveAlternativeApiBaseUrl);
         }
 

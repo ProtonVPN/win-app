@@ -265,6 +265,12 @@ namespace ProtonVPN.Core
             set => Set(value);
         }
 
+        public bool DoHEnabled
+        {
+            get => Get<bool>();
+            set => Set(value);
+        }
+
         public SplitTunnelingApp[] SplitTunnelingBlockApps
         {
             get => Get<SplitTunnelingApp[]>() ?? new SplitTunnelingApp[0];

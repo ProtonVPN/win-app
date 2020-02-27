@@ -32,6 +32,25 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         Height="Auto"
                         Width="500"
                         d:DataContext="{d:DesignInstance local:TroubleshootModalViewModel}">
+    <local:BaseModalWindow.Resources>
+        <Style x:Key="SolutionText" TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="30,10"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+        <Style x:Key="BlockedByGovText" BasedOn="{StaticResource SolutionText}" TargetType="TextBlock">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding DoHEnabled}" Value="True">
+                    <Setter Property="behavior:TextStyleBehavior.FormattedText" Value="{resources:Loc Dialogs_Troubleshooting_msg_GovBlock}"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding DoHEnabled}" Value="False">
+                    <Setter Property="behavior:TextStyleBehavior.FormattedText" Value="{resources:Loc Dialogs_Troubleshooting_msg_GovBlockDoH}"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </local:BaseModalWindow.Resources>
     <StackPanel>
         <TextBlock VerticalAlignment="Top"
                    Margin="30,30,30,10"
@@ -41,12 +60,36 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                    Foreground="White"
                    FontSize="16"
                    behavior:TextStyleBehavior.FormattedText="{resources:Loc Dialogs_Troubleshooting_msg_Title}"/>
-        <TextBlock VerticalAlignment="Center"
-                   Margin="30,20"
-                   TextWrapping="Wrap"
-                   Foreground="White"
-                   FontSize="14"
-                   behavior:TextStyleBehavior.FormattedText="{resources:Loc Dialogs_Troubleshooting_msg}"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
+                <TextBlock Style="{StaticResource SolutionText}"
+                           behavior:TextStyleBehavior.FormattedText="{resources:Loc Dialogs_Troubleshooting_msg_AlternativeRouting}"/>
+            </StackPanel>
+            <CheckBox Margin="0,0,30,0"
+                      Grid.Column="1"
+                      HorizontalAlignment="Center"
+                      Style="{StaticResource ToggleSwitch}"
+                      IsChecked="{Binding DoHEnabled}"
+                      AutomationProperties.AutomationId="{StaticResource StartWithWindowsCheckbox}"/>
+        </Grid>
+
+        <TextBlock Style="{StaticResource SolutionText}"
+                   behavior:TextStyleBehavior.FormattedText="{resources:Loc Dialogs_Troubleshooting_msg_NoInternet}"/>
+        <TextBlock Style="{StaticResource SolutionText}"
+                   behavior:TextStyleBehavior.FormattedText="{resources:Loc Dialogs_Troubleshooting_msg_IspProblem}"/>
+        <TextBlock Style="{StaticResource BlockedByGovText}"/>
+        <TextBlock Style="{StaticResource SolutionText}"
+                   behavior:TextStyleBehavior.FormattedText="{resources:Loc Dialogs_Troubleshooting_msg_Antivirus}"/>
+        <TextBlock Style="{StaticResource SolutionText}"
+                   behavior:TextStyleBehavior.FormattedText="{resources:Loc Dialogs_Troubleshooting_msg_Firewall}"/>
+        <TextBlock Style="{StaticResource SolutionText}"
+                   behavior:TextStyleBehavior.FormattedText="{resources:Loc Dialogs_Troubleshooting_msg_ProtonDown}"/>
+        <TextBlock Style="{StaticResource SolutionText}"
+                   behavior:TextStyleBehavior.FormattedText="{resources:Loc Dialogs_Troubleshooting_msg_Unknown}"/>
         <DockPanel Background="{StaticResource ModalBarColor}" Height="66">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Style="{StaticResource PrimaryModalButton}"

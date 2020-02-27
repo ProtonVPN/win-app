@@ -2615,28 +2615,6 @@ Exiting the application will disable the Kill Switch. Do you want to continue?</
     <value>Close</value>
     <comment>The button displayed in Troubleshoot modal window</comment>
   </data>
-  <data name="Dialogs_Troubleshooting_msg" xml:space="preserve">
-    <value>&lt;Bold&gt;No internet connection&lt;/Bold&gt; - Please make sure that your internet connection is working.&lt;LineBreak/&gt;&lt;LineBreak/&gt;
-
-&lt;Bold&gt;
-Internet Service Provider (ISP) problem&lt;/Bold&gt; - Try connecting to Proton from a different network (or use &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor&lt;/Hyperlink&gt;).&lt;LineBreak/&gt;&lt;LineBreak/&gt;
-
-
-&lt;Bold&gt;Government block&lt;/Bold&gt; - Your country may be blocking access to Proton. Try using &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor&lt;/Hyperlink&gt; to access Proton.
-&lt;LineBreak/&gt;&lt;LineBreak/&gt;
-
-&lt;Bold&gt;Antivirus interference&lt;/Bold&gt; - Temporarily disable or remove your antivirus software.
-&lt;LineBreak/&gt;&lt;LineBreak/&gt;
-
-&lt;Bold&gt;Proxy/Firewall interference&lt;/Bold&gt; - Disable any proxies or firewalls, or contact your network administrator.
-&lt;LineBreak/&gt;&lt;LineBreak/&gt;
-
-&lt;Bold&gt;Proton is down&lt;/Bold&gt; - Check &lt;Hyperlink Command="{Binding ProtonStatusCommand}"&gt;Proton Status&lt;/Hyperlink&gt; for our system status.
-&lt;LineBreak/&gt;&lt;LineBreak/&gt;
-
-&lt;Bold&gt;Still can’t find a solution&lt;/Bold&gt; - Contact us directly through our &lt;Hyperlink Command="{Binding SupportFormCommand}"&gt;support form&lt;/Hyperlink&gt;, email (support@protonvpn.com), or &lt;Hyperlink Command="{Binding ProtonTwitterCommand}"&gt;Twitter&lt;/Hyperlink&gt;.</value>
-    <comment>The text displayed in troubleshooting modal window</comment>
-  </data>
   <data name="Dialogs_Troubleshoot_ttl" xml:space="preserve">
     <value>ProtonVPN Troubleshoot</value>
     <comment>The text displayed in Troubleshoot modal window title</comment>
@@ -2661,6 +2639,34 @@ Internet Service Provider (ISP) problem&lt;/Bold&gt; - Try connecting to Proton 
     <value>Potential problems that could cause your connection to time out and their solution</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
+  <data name="Dialogs_Troubleshooting_msg_Antivirus" xml:space="preserve">
+    <value>&lt;Bold&gt;Antivirus interference&lt;/Bold&gt; - Temporarily disable or remove your antivirus software.</value>
+    <comment>The text displayed in troubleshooting modal window</comment>
+  </data>
+  <data name="Dialogs_Troubleshooting_msg_Firewall" xml:space="preserve">
+    <value>&lt;Bold&gt;Proxy/Firewall interference&lt;/Bold&gt; - Disable any proxies or firewalls, or contact your network administrator.</value>
+    <comment>The text displayed in troubleshooting modal window</comment>
+  </data>
+  <data name="Dialogs_Troubleshooting_msg_GovBlock" xml:space="preserve">
+    <value>&lt;Bold&gt;Government block&lt;/Bold&gt; - Your country may be blocking access to Proton. Try using &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor&lt;/Hyperlink&gt; to access Proton.</value>
+    <comment>The text displayed in troubleshooting modal window</comment>
+  </data>
+  <data name="Dialogs_Troubleshooting_msg_IspProblem" xml:space="preserve">
+    <value>&lt;Bold&gt;Internet Service Provider (ISP) problem&lt;/Bold&gt; - Try connecting to Proton from a different network (or use &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor&lt;/Hyperlink&gt;).</value>
+    <comment>The text displayed in troubleshooting modal window</comment>
+  </data>
+  <data name="Dialogs_Troubleshooting_msg_NoInternet" xml:space="preserve">
+    <value>&lt;Bold&gt;No internet connection&lt;/Bold&gt; - Please make sure that your internet connection is working.</value>
+    <comment>The text displayed in troubleshooting modal window</comment>
+  </data>
+  <data name="Dialogs_Troubleshooting_msg_ProtonDown" xml:space="preserve">
+    <value>&lt;Bold&gt;Proton is down&lt;/Bold&gt; - Check &lt;Hyperlink Command="{Binding ProtonStatusCommand}"&gt;Proton Status&lt;/Hyperlink&gt; for our system status.</value>
+    <comment>The text displayed in troubleshooting modal window</comment>
+  </data>
+  <data name="Dialogs_Troubleshooting_msg_Unknown" xml:space="preserve">
+    <value>&lt;Bold&gt;Still can’t find a solution&lt;/Bold&gt; - Contact us directly through our &lt;Hyperlink Command="{Binding SupportFormCommand}"&gt;support form&lt;/Hyperlink&gt;, email (support@protonvpn.com), or &lt;Hyperlink Command="{Binding ProtonTwitterCommand}"&gt;Twitter&lt;/Hyperlink&gt;.</value>
+    <comment>The text displayed in troubleshooting modal window</comment>
+  </data>
   <data name="Dialogs_OutdatedApp_lbl_Error" xml:space="preserve">
     <value>A problem occurred while downloading a newer version. Update manually to get the latest one.</value>
     <comment>The text displayed in outdated app window when the app fails to download the latest app version</comment>
@@ -2673,6 +2679,18 @@ Internet Service Provider (ISP) problem&lt;/Bold&gt; - Try connecting to Proton 
     <value>Downloading</value>
     <comment>The text on download button when download is in process in outdated app modal window</comment>
   </data>
+  <data name="Dialogs_Troubleshooting_msg_GovBlockDoH" xml:space="preserve">
+    <value>&lt;Bold&gt;Government block&lt;/Bold&gt; - Your country may be blocking access to Proton. Try using &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor&lt;/Hyperlink&gt; to access Proton.</value>
+    <comment>The text displayed in troubleshooting modal window</comment>
+  </data>
+  <data name="Settings_Advanced_lbl_DoH" xml:space="preserve">
+    <value>Allow Alternative Routing</value>
+    <comment>The label for Alternative Routing toggle switch in Advanced tab of Settings window</comment>
+  </data>
+  <data name="Settings_Advanced_lbl_DoH_Info" xml:space="preserve">
+    <value>In case Proton sites are blocked, this setting allows the app to try alternative network routing to reach Proton, which can be useful for bypassing firewalls or network issues. We recommend keeping this setting on for greater reliability.</value>
+    <comment>The description of Allow Alternative Routing setting displayed in the tooltip of ( i ) image next to the label for Allow Alternative Routing toggle switch in Advanced tab of Settings window</comment>
+  </data>
   <data name="Notifications_InsecureWiFi_msg_Detected" xml:space="preserve">
     <value>Insecure Wi-Fi connection detected: {0}</value>
     <comment>The message displayed in the Insecure Wi-Fi notification when connected to insecure Wi-Fi network. The {0} is a placeholder for Wi-Fi network name.</comment>
@@ -2680,6 +2698,14 @@ Internet Service Provider (ISP) problem&lt;/Bold&gt; - Try connecting to Proton 
   <data name="Notifications_Update_lnk_WhatsNew" xml:space="preserve">
     <value>What's new</value>
     <comment>The text of What's new hyperlink in Update flash notification (opens About window)</comment>
+  </data>
+  <data name="Dialogs_Troubleshooting_btn_LearnMore" xml:space="preserve">
+    <value>Learn More</value>
+    <comment>The button displayed in Troubleshooting modal window</comment>
+  </data>
+  <data name="Dialogs_Troubleshooting_msg_AlternativeRouting" xml:space="preserve">
+    <value>&lt;Bold&gt;Alternative Routing&lt;/Bold&gt; - In case Proton sites are blocked, this setting allows the app to try alternative network routing to reach Proton, which can be useful for bypassing firewalls or network issues. We recommend keeping this setting on for greater reliability. &lt;Hyperlink Command="{Binding AlternativeRoutingCommand}"&gt;Learn More&lt;/Hyperlink&gt;</value>
+    <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Settings_General_lbl_Language" xml:space="preserve">
     <value>Language</value>
