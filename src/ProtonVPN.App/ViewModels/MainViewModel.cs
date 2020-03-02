@@ -211,7 +211,7 @@ namespace ProtonVPN.ViewModels
             _urls.HelpUrl.Open();
         }
 
-        private void LogoutAction()
+        private async void LogoutAction()
         {
             if (_vpnManager.Status == VpnStatus.Connected)
             {
@@ -223,6 +223,7 @@ namespace ProtonVPN.ViewModels
             }
 
             _userAuth.Logout();
+            await _vpnManager.Disconnect();
         }
 
         private void ExitAction()
