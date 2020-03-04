@@ -18,7 +18,7 @@
  */
 
 using System;
-using ProtonVPN.Update.Helpers;
+using ProtonVPN.Common.Extensions;
 
 namespace ProtonVPN.Update.Files.UpdatesDirectory
 {

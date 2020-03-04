@@ -55,29 +55,6 @@ namespace ProtonVPN.Update.Test.Helpers
         }
 
         [TestMethod]
-        public void IsFileAccessException_ShouldBe_When_Exception()
-        {
-            TestData[] testData = 
-            {
-                new TestData(false, new HttpRequestException()),
-                new TestData(false, new OperationCanceledException()),
-                new TestData(false, new SocketException()),
-                new TestData(true, new IOException()),
-                new TestData(true, new UnauthorizedAccessException()),
-                new TestData(false, new Win32Exception()),
-                new TestData(false, new AppUpdateException("")),
-                new TestData(false, new Exception()),
-            };
-
-            foreach (var data in testData)
-            {
-                var result = data.Exception.IsFileAccessException();
-
-                result.Should().Be(data.Expected, $"{data.Exception.GetType()} is not file access exception");
-            }
-        }
-
-        [TestMethod]
         public void IsProcessException_ShouldBe_When_Exception()
         {
             TestData[] testData =

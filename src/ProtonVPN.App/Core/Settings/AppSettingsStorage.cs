@@ -17,15 +17,16 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Logging;
-using ProtonVPN.Core.Abstract;
-using ProtonVPN.Core.Storage;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
 using System.IO;
 using System.Linq;
+using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.Logging;
+using ProtonVPN.Core.Abstract;
+using ProtonVPN.Core.Storage;
 
 namespace ProtonVPN.Core.Settings
 {
@@ -90,9 +91,8 @@ namespace ProtonVPN.Core.Settings
 
         private bool IsSettingsSavingException(Exception e)
         {
-            return e is IOException ||
+            return e.IsFileAccessException() ||
                    e is ArgumentException ||
-                   e is UnauthorizedAccessException ||
                    e is ConfigurationErrorsException;
         }
 

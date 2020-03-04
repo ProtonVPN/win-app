@@ -32,7 +32,7 @@ namespace ProtonVPN.Common.Extensions
             ex is IOException ||
             ex is UnauthorizedAccessException;
 
-        public static bool IsCommunicationException(this Exception ex) =>
+        public static bool IsServiceCommunicationException(this Exception ex) =>
             ex is CommunicationException ||
             ex is ObjectDisposedException odex && odex.ObjectName == "System.ServiceModel.Channels.ServiceChannel";
     }
