@@ -17,6 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
+using System.IO;
+using System.ServiceModel;
+using System.ServiceProcess;
 using Autofac;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.CrashReporting;
@@ -30,10 +34,6 @@ using ProtonVPN.Core.Api.Handlers.TlsPinning;
 using ProtonVPN.Core.OS.Net;
 using ProtonVPN.Update;
 using ProtonVPN.Update.Config;
-using System;
-using System.IO;
-using System.ServiceModel;
-using System.ServiceProcess;
 using Sentry;
 using Sentry.Protocol;
 
@@ -48,6 +48,7 @@ namespace ProtonVPN.UpdateService
         public void Initialize()
         {
             Configure();
+            InitCrashLogging();
             InitCrashReporting();
             Start();
         }
@@ -55,6 +56,7 @@ namespace ProtonVPN.UpdateService
         public void StartUpdate()
         {
             Configure();
+            InitCrashLogging();
             InitCrashReporting();
 
             try
@@ -81,6 +83,13 @@ namespace ProtonVPN.UpdateService
         private void StartElevatedProcess(string path, string arguments)
         {
             Resolve<IOsProcesses>().ElevatedProcess(path, arguments).Start();
+        }
+
+        private void InitCrashLogging()
+        {
+            var logging = Resolve<UnhandledExceptionLogging>();
+            logging.CaptureUnhandledExceptions();
+            logging.CaptureTaskExceptions();
         }
 
         private void Start()
@@ -129,6 +138,7 @@ namespace ProtonVPN.UpdateService
             builder.RegisterType<UpdateService>().SingleInstance();
             builder.RegisterType<ServicePointConfiguration>().SingleInstance();
             builder.RegisterType<SystemEventLog>().SingleInstance();
+            builder.RegisterType<UnhandledExceptionLogging>().SingleInstance();
 
             builder.Register(c =>
                     new CachingReportClient(

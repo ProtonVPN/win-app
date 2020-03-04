@@ -66,7 +66,9 @@ namespace ProtonVPN.Service.Start
 
             logger.Info($"= Booting ProtonVPN Service version: {config.AppVersion} os: {Environment.OSVersion.VersionString} {config.OsBits} bit =");
 
-            TaskScheduler.UnobservedTaskException += Task_UnobservedException;
+            Resolve<UnhandledExceptionLogging>().CaptureTaskExceptions();
+            Resolve<UnhandledExceptionLogging>().CaptureUnhandledExceptions();
+
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 
             InitCrashReporting();
@@ -122,35 +124,9 @@ namespace ProtonVPN.Service.Start
         {
             var config = Resolve<Common.Configuration.Config>();
             var processes = Resolve<IOsProcesses>();
-            LogException((Exception)e.ExceptionObject);
             Resolve<IVpnConnection>().Disconnect();
             Resolve<OpenVpnProcess>().Stop();
             processes.KillProcesses(config.AppName);
-        }
-
-        private void Task_UnobservedException(object sender, UnobservedTaskExceptionEventArgs e)
-        {
-            var logger = Resolve<ILogger>();
-            logger.Error($"Unobserved exception occured: {e.Exception.Message}");
-
-            foreach (var ex in e.Exception.Flatten().InnerExceptions)
-                logger.Error(ex);
-        }
-
-        private void LogException(Exception exception)
-        {
-            var logger = Resolve<ILogger>();
-
-            if (exception is AggregateException aggregateException)
-            {
-                logger.Fatal($"Aggregate exception occured: {aggregateException.Message}");
-                foreach (var ex in aggregateException.Flatten().InnerExceptions)
-                    logger.Fatal(ex.ToString());
-            }
-            else
-            {
-                logger.Fatal(exception.ToString());
-            }
         }
 
         private static void SetDllDirectories()

@@ -128,6 +128,7 @@ namespace ProtonVPN.Service.Start
             builder.RegisterType<SplitTunnelRoutes>().SingleInstance();
             builder.RegisterType<BestNetworkInterface>().SingleInstance();
             builder.RegisterType<SplitTunnelClient>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<UnhandledExceptionLogging>().SingleInstance();
         }
     }
 }
