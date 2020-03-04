@@ -135,6 +135,7 @@
     <Compile Include="Logging\NLogLogger.cs" />
     <Compile Include="Logging\NLogLoggerFactory.cs" />
     <Compile Include="Logging\NLogLoggingConfiguration.cs" />
+    <Compile Include="Logging\UnhandledExceptionLogging.cs" />
     <Compile Include="OS\Event\EventLog.cs" />
     <Compile Include="OS\IEnvironment.cs" />
     <Compile Include="OS\Net\Http\HttpClients.cs" />

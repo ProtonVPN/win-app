@@ -211,6 +211,7 @@ namespace ProtonVPN.Core.Ioc
             builder.Register(c => new SafeSystemProxy(c.Resolve<ILogger>(), new SystemProxy()))
                 .AsImplementedInterfaces()
                 .SingleInstance();
+            builder.RegisterType<UnhandledExceptionLogging>().SingleInstance();
         }
     }
 }

@@ -100,6 +100,10 @@ namespace ProtonVPN.Core
         {
             base.OnStartup(sender, e);
 
+            var logging = Resolve<UnhandledExceptionLogging>();
+            logging.CaptureUnhandledExceptions();
+            logging.CaptureTaskExceptions();
+
             Resolve<ServicePointConfiguration>().Apply();
 
             var appConfig = Resolve<Common.Configuration.Config>();
