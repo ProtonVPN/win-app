@@ -74,7 +74,7 @@ namespace ProtonVPN.Common.Test.Extensions
             var exception = (Exception)Activator.CreateInstance(exceptionType);
 
             // Act
-            var result = exception.IsCommunicationException();
+            var result = exception.IsServiceCommunicationException();
 
             // Assert
             result.Should().Be(expected);
@@ -87,7 +87,7 @@ namespace ProtonVPN.Common.Test.Extensions
             var exception = new ObjectDisposedException("System.String");
 
             // Act
-            var result = exception.IsCommunicationException();
+            var result = exception.IsServiceCommunicationException();
 
             // Assert
             result.Should().BeFalse();
@@ -100,7 +100,7 @@ namespace ProtonVPN.Common.Test.Extensions
             var exception = new ObjectDisposedException("System.ServiceModel.Channels.ServiceChannel");
 
             // Act
-            var result = exception.IsCommunicationException();
+            var result = exception.IsServiceCommunicationException();
 
             // Assert
             result.Should().BeTrue();

@@ -19,7 +19,6 @@
 
 using System;
 using System.ComponentModel;
-using System.IO;
 using System.Net.Http;
 using System.Net.Sockets;
 
@@ -32,12 +31,6 @@ namespace ProtonVPN.Update.Helpers
             return ex is HttpRequestException ||
                    ex is OperationCanceledException ||
                    ex is SocketException;
-        }
-
-        public static bool IsFileAccessException(this Exception ex)
-        {
-            return ex is IOException ||
-                   ex is UnauthorizedAccessException;
         }
 
         public static bool IsProcessException(this Exception ex)

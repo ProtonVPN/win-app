@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Modals;
 
@@ -30,7 +31,7 @@ namespace ProtonVPN.About
             {
                 License = File.ReadAllText(LicenseFile);
             }
-            catch (Exception e) when (e is IOException || e is UnauthorizedAccessException)
+            catch (Exception e) when (e.IsFileAccessException())
             {
                 _logger.Error(e);
             }

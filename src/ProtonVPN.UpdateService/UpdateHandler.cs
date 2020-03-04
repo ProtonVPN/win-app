@@ -96,7 +96,7 @@ namespace ProtonVPN.UpdateService
                             e.FilePath,
                             e.FileArguments));
                     }
-                    catch (Exception ex) when (ex.IsCommunicationException())
+                    catch (Exception ex) when (ex.IsServiceCommunicationException())
                     {
                         _logger.Warn($"Callback failed: {ex.Message}");
                         _callbacks.Remove(callback);

@@ -19,6 +19,7 @@
 
 using System;
 using System.Threading.Tasks;
+using ProtonVPN.Common.Extensions;
 using ProtonVPN.Update.Helpers;
 
 namespace ProtonVPN.Update.Files.Validatable
