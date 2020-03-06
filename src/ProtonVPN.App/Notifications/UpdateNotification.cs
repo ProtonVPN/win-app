@@ -18,6 +18,7 @@
  */
 
 using System;
+using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Update;
 using ProtonVPN.Modals;
@@ -30,6 +31,7 @@ namespace ProtonVPN.Notifications
         private readonly IModals _modals;
         private readonly ISystemNotification _systemNotification;
         private readonly TimeSpan _remindInterval;
+        private readonly UserAuth _userAuth;
 
         private DateTime _lastNotified = DateTime.MinValue;
         
@@ -37,18 +39,20 @@ namespace ProtonVPN.Notifications
         public UpdateNotification(
             TimeSpan remindInterval,
             ISystemNotification systemNotification,
-            IModals modals)
+            IModals modals,
+            UserAuth userAuth)
         {
             _modals = modals;
             _systemNotification = systemNotification;
             _remindInterval = remindInterval;
+            _userAuth = userAuth;
         }
 
         public void OnUpdateStateChanged(UpdateStateChangedEventArgs e)
         {
             if (e.Ready)
             {
-                if (RemindRequired(e))
+                if (RemindRequired(e) && _userAuth.LoggedIn)
                 {
                     Show();
                 }

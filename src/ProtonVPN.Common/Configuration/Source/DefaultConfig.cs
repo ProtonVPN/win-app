@@ -134,6 +134,7 @@ namespace ProtonVPN.Common.Configuration.Source
                     PasswordResetUrl = "https://account.protonvpn.com/reset-password",
                     ForgetUsernameUrl = "https://account.protonvpn.com/forgot-username",
                     UpdateUrl = "https://protonvpn.com/download/win-update.json",
+                    DownloadUrl = "https://protonvpn.com/download",
                     ApiUrl = "https://api.protonvpn.ch",
                     TlsReportUrl = "https://reports.protonmail.ch/reports/tls",
                     HelpUrl = "https://www.protonvpn.com/support",

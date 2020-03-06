@@ -24,6 +24,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                         xmlns:local="clr-namespace:ProtonVPN.Modals"
                         xmlns:resources="clr-namespace:ProtonVPN.Resources"
+                        xmlns:controls="clr-namespace:ProtonVPN.Views.Controls"
+                        xmlns:update="clr-namespace:ProtonVPN.Core.Update;assembly=ProtonVPN.Core"
+                        xmlns:fa="http://schemas.fontawesome.io/icons/"
                         Style="{StaticResource BaseModalStyle}"
                         SizeToContent="Height"
                         Title="{resources:Loc Dialogs_ttl_Warning}"
@@ -31,6 +34,66 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         Height="Auto"
                         Width="500"
                         d:DataContext="{d:DesignInstance local:OutdatedAppModalViewModel}">
+    <local:BaseModalWindow.Resources>
+        <Style x:Key="ErrorIcon" TargetType="fa:FontAwesome">
+            <Setter Property="Icon" Value="ExclamationTriangle"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Margin" Value="0,2,0,0"/>
+            <Setter Property="Visibility" Value="Collapsed"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Update.Status}" Value="{x:Static update:UpdateStatus.CheckFailed}">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Update.Status}" Value="{x:Static update:UpdateStatus.DownloadFailed}">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="UpdateButton" TargetType="Button" BasedOn="{StaticResource PrimaryModalButton}">
+            <Setter Property="Visibility" Value="Visible"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Update.Status}" Value="{x:Static update:UpdateStatus.CheckFailed}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Update.Status}" Value="{x:Static update:UpdateStatus.DownloadFailed}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Update.Ready}" Value="True">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="ManualUpdateButton" TargetType="Button" BasedOn="{StaticResource PrimaryModalButton}">
+            <Setter Property="Visibility" Value="Collapsed"/>
+            <Setter Property="ToolTip" Value="{resources:Loc Dialogs_OutdatedApp_lbl_Error}"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Update.Status}" Value="{x:Static update:UpdateStatus.CheckFailed}">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Update.Status}" Value="{x:Static update:UpdateStatus.DownloadFailed}">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Update.Ready}" Value="True">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="UpdateButtonLabel" TargetType="Label">
+            <Setter Property="Content" Value="{resources:Loc Dialogs_OutdatedApp_lbl_Update}"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Update.Status}" Value="{x:Static update:UpdateStatus.Checking}">
+                    <Setter Property="Content" Value="{resources:Loc Dialogs_OutdatedApp_lbl_Downloading}"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Update.Status}" Value="{x:Static update:UpdateStatus.Downloading}">
+                    <Setter Property="Content" Value="{resources:Loc Dialogs_OutdatedApp_lbl_Downloading}"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Update.Ready}" Value="True">
+                    <Setter Property="Content" Value="{resources:Loc Dialogs_OutdatedApp_lbl_Update}"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </local:BaseModalWindow.Resources>
     <StackPanel>
         <StackPanel Margin="20,50">
             <TextBlock TextWrapping="Wrap" Padding="0" FontSize="16" Foreground="White" Text="{resources:Loc Dialogs_OutdatedApp_msg}"/>
@@ -48,9 +111,37 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <Button Style="{StaticResource SecondaryModalButton}"
                         Command="{Binding CloseCommand}"
                         Content="{resources:Loc Dialogs_OutdatedApp_btn_Quit}"/>
-                <Button Style="{StaticResource PrimaryModalButton}"
-                        Command="{Binding Update.UpdateCommand}"
-                        Content="{resources:Loc Dialogs_OutdatedApp_btn_Update}"/>
+                <Button Style="{StaticResource UpdateButton}"
+                        Command="{Binding Update.UpdateCommand}">
+                    <DockPanel>
+                        <controls:ProtonAnimation Width="26" Height="26">
+                            <controls:ProtonAnimation.Resources>
+                                <Style TargetType="controls:ProtonAnimation">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Update.Status}" Value="{x:Static update:UpdateStatus.Downloading}">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Update.Status}" Value="{x:Static update:UpdateStatus.Checking}">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Update.Ready}" Value="True">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </controls:ProtonAnimation.Resources>
+                        </controls:ProtonAnimation>
+                        <Label Style="{StaticResource UpdateButtonLabel}" Foreground="White"/>
+                    </DockPanel>
+                </Button>
+                <Button Style="{StaticResource ManualUpdateButton}"
+                        Command="{Binding UpdateManuallyCommand}">
+                    <DockPanel>
+                        <fa:FontAwesome Style="{StaticResource ErrorIcon}"/>
+                        <Label Content="{resources:Loc Dialogs_OutdatedApp_lbl_UpdateManually}" Foreground="White"/>
+                    </DockPanel>
+                </Button>
             </StackPanel>
         </DockPanel>
     </StackPanel>

@@ -115,6 +115,8 @@ namespace ProtonVPN.Core
             RegisterEvents();
             IncreaseAppStartCount();
 
+            await StartService(Resolve<AppUpdateServiceWrapper>());
+
             if (!LoggedInWithSavedCredentials() || !await IsUserValid() || await SessionExpired())
             {
                 ShowLoginForm();
@@ -445,7 +447,6 @@ namespace ProtonVPN.Core
 
             LoadViewModels();
             await StartService(Resolve<MonitoredVpnService>());
-            await StartService(Resolve<AppUpdateServiceWrapper>());
             Resolve<P2PDetector>();
             Resolve<VpnInfoChecker>().Start(appConfig.VpnInfoCheckInterval);
 

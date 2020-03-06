@@ -31,7 +31,10 @@ namespace ProtonVPN.Common.Configuration
         
         [Required]
         public string UpdateUrl { get; internal set; }
-        
+
+        [Required]
+        public string DownloadUrl { get; internal set; }
+
         [Required]
         public string ApiUrl { get; internal set; }
         
