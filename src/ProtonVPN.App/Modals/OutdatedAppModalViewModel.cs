@@ -19,26 +19,43 @@
 
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
+using GalaSoft.MvvmLight.CommandWpf;
 using ProtonVPN.About;
+using ProtonVPN.Config.Url;
+using ProtonVPN.Core.Update;
 using ProtonVPN.Core.Vpn;
 
 namespace ProtonVPN.Modals
 {
     public class OutdatedAppModalViewModel : BaseModalViewModel, IVpnStateAware
     {
-        public OutdatedAppModalViewModel(UpdateViewModel updateViewModel)
+        private readonly UpdateService _appUpdater;
+        private readonly IActiveUrls _urls;
+
+        public OutdatedAppModalViewModel(UpdateViewModel updateViewModel, UpdateService appUpdater, IActiveUrls urls)
         {
             HideWindowControls = true;
             Update = updateViewModel;
+            UpdateManuallyCommand = new RelayCommand(UpdateManuallyAction);
+            _appUpdater = appUpdater;
+            _urls = urls;
         }
 
         public UpdateViewModel Update { get; }
+
+        public ICommand UpdateManuallyCommand { get; }
 
         private bool _killSwitchEnabled;
         public bool KillSwitchEnabled
         {
             get => _killSwitchEnabled;
             set => Set(ref _killSwitchEnabled, value);
+        }
+
+        public override void BeforeOpenModal(dynamic options)
+        {
+            _appUpdater.StartCheckingForUpdate();
         }
 
         public override void CloseAction()
@@ -50,6 +67,12 @@ namespace ProtonVPN.Modals
         {
             KillSwitchEnabled = e.NetworkBlocked;
             return Task.CompletedTask;
+        }
+
+        private void UpdateManuallyAction()
+        {
+            _urls.DownloadUrl.Open();
+            CloseAction();
         }
     }
 }

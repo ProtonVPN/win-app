@@ -174,7 +174,7 @@ namespace ProtonVPN.Core.Ioc
                 .AsImplementedInterfaces()
                 .AsSelf()
                 .SingleInstance();
-            builder.RegisterType<OutdatedAppNotification>().SingleInstance();
+            builder.RegisterType<OutdatedAppNotification>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterType<QuickConnector>().SingleInstance();
             builder.RegisterType<AppExitHandler>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterType<UserLocationService>().AsImplementedInterfaces().SingleInstance();
@@ -194,7 +194,8 @@ namespace ProtonVPN.Core.Ioc
             builder.Register(c => new UpdateNotification(
                     c.Resolve<Common.Configuration.Config>().UpdateRemindInterval,
                     c.Resolve<ISystemNotification>(),
-                    c.Resolve<IModals>()))
+                    c.Resolve<IModals>(),
+                    c.Resolve<UserAuth>()))
                 .AsImplementedInterfaces()
                 .SingleInstance();
             builder.RegisterType<SystemProxyNotification>().AsImplementedInterfaces().SingleInstance();

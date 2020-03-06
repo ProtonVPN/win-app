@@ -3283,16 +3283,34 @@ namespace ProtonVPN.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Update.
+        ///   Looks up a localized string similar to A problem occurred while downloading a newer version. Update manually to get the latest one..
         /// </summary>
-        public static string Dialogs_OutdatedApp_btn_Update {
+        public static string Dialogs_OutdatedApp_lbl_Error {
             get {
-                return ResourceManager.GetString("Dialogs_OutdatedApp_btn_Update", resourceCulture);
+                return ResourceManager.GetString("Dialogs_OutdatedApp_lbl_Error", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The application version you are using is no longer supported. Please update to the latest version..
+        ///   Looks up a localized string similar to Update.
+        /// </summary>
+        public static string Dialogs_OutdatedApp_lbl_Update {
+            get {
+                return ResourceManager.GetString("Dialogs_OutdatedApp_lbl_Update", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update manually.
+        /// </summary>
+        public static string Dialogs_OutdatedApp_lbl_UpdateManually {
+            get {
+                return ResourceManager.GetString("Dialogs_OutdatedApp_lbl_UpdateManually", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The application version you are using is no longer supported. Please, as soon as the update is available, update to the latest version..
         /// </summary>
         public static string Dialogs_OutdatedApp_msg {
             get {

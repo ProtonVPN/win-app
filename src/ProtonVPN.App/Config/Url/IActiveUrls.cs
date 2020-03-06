@@ -33,6 +33,7 @@ namespace ProtonVPN.Config.Url
         IActiveUrl RegisterUrl { get; }
         IActiveUrl TroubleShootingUrl { get; }
         IActiveUrl UpdateUrl { get; }
+        IActiveUrl DownloadUrl { get; }
         IActiveUrl PublicWifiSafetyUrl { get; }
         IActiveUrl ProtonStatusUrl { get; }
         IActiveUrl TorBrowserUrl { get; }

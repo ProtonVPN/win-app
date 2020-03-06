@@ -2673,12 +2673,12 @@ Internet Service Provider (ISP) problem&lt;/Bold&gt; - Try connecting to Proton 
     <value>Quit</value>
     <comment>The text on quit button in outdated app modal window</comment>
   </data>
-  <data name="Dialogs_OutdatedApp_btn_Update" xml:space="preserve">
+  <data name="Dialogs_OutdatedApp_lbl_Update" xml:space="preserve">
     <value>Update</value>
     <comment>The text on update button in outdated app modal window</comment>
   </data>
   <data name="Dialogs_OutdatedApp_msg" xml:space="preserve">
-    <value>The application version you are using is no longer supported. Please update to the latest version.</value>
+    <value>The application version you are using is no longer supported. Please, as soon as the update is available, update to the latest version.</value>
     <comment>The error message displayed on the outdated app window when the app version is outdated</comment>
   </data>
   <data name="Dialogs_OutdatedApp_msg_KillSwitchActive" xml:space="preserve">
@@ -2688,5 +2688,17 @@ Internet Service Provider (ISP) problem&lt;/Bold&gt; - Try connecting to Proton 
   <data name="Dialogs_Troubleshooting_msg_Title" xml:space="preserve">
     <value>Potential problems that could cause your connection to time out and their solution</value>
     <comment>The text displayed in troubleshooting modal window</comment>
+  </data>
+  <data name="Dialogs_OutdatedApp_lbl_Error" xml:space="preserve">
+    <value>A problem occurred while downloading a newer version. Update manually to get the latest one.</value>
+    <comment>The text displayed in outdated app window when the app fails to download the latest app version</comment>
+  </data>
+  <data name="Dialogs_OutdatedApp_lbl_UpdateManually" xml:space="preserve">
+    <value>Update manually</value>
+    <comment>The text on update button in outdated app modal window</comment>
+  </data>
+  <data name="Dialogs_OutdatedApp_lbl_Downloading" xml:space="preserve">
+    <value>Downloading</value>
+    <comment>The text on download button when download is in process in outdated app modal window</comment>
   </data>
 </root>
