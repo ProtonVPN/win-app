@@ -23,10 +23,10 @@
     <ROW Property="CommitHash" Value="REPLACE_ME"/>
     <ROW Property="Manufacturer" Value="Proton Technologies AG"/>
     <ROW Property="MsiLogging" MultiBuildValue="DefaultBuild:vp"/>
-    <ROW Property="ProductCode" Value="1033:{B351FE8E-8AA4-4E66-91C2-2082C21F9086} " Type="16"/>
+    <ROW Property="ProductCode" Value="1033:{31D3674A-3885-4F25-8562-81E0E161683A} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="ProtonVPN"/>
-    <ROW Property="ProductVersion" Value="1.13.4" Type="32"/>
+    <ROW Property="ProductVersion" Value="1.14.0" Type="32"/>
     <ROW Property="REBOOT" MultiBuildValue="DefaultBuild:ReallySuppress"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;AI_SETUPEXEPATH;SETUPEXEDIR"/>
     <ROW Property="ServiceName" Value="ProtonVPN Service" Comments="Used by Services and custom action ModifyServicePermissions"/>
@@ -69,7 +69,7 @@
     <ROW Directory="x86_Dir" Directory_Parent="APPDIR" DefaultDir="x86" DirectoryOptions="3"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
-    <ROW Component="AI_CustomARPName" ComponentId="{D8828759-CEB4-4D7B-BDA6-A8668A802075}" Directory_="APPDIR" Attributes="4" KeyPath="DisplayName" Options="1"/>
+    <ROW Component="AI_CustomARPName" ComponentId="{5BC0A7D4-47C5-431B-9DFD-64E7631026DA}" Directory_="APPDIR" Attributes="4" KeyPath="DisplayName" Options="1"/>
     <ROW Component="AI_ExePath" ComponentId="{47427A21-60A2-43B4-A150-6CBA74CF4A07}" Directory_="APPDIR" Attributes="4" KeyPath="AI_ExePath"/>
     <ROW Component="APPDIR" ComponentId="{75DDD993-CDFE-4D39-8C1A-07484ADD1A4E}" Directory_="APPDIR" Attributes="0"/>
     <ROW Component="Autofac.dll" ComponentId="{5CAF1486-9A6C-410A-8FD8-4BBAB7A96E82}" Directory_="APPDIR" Attributes="0" KeyPath="Autofac.dll"/>
