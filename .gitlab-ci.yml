@@ -17,7 +17,8 @@ build-release:
     - 'c:\nuget\nuget.exe restore ProtonVpn.sln'
     - MSBuild.exe /consoleloggerparameters:ErrorsOnly /maxcpucount /nologo /property:Configuration=Release /verbosity:quiet "src\\ProtonVPN.MarkupValidator\\ProtonVPN.MarkupValidator.csproj"
     - echo "Downloading translations from crowdin..."
-    - python ci\main.py download-translations $env:CROWDIN_KEY $env:LANGUAGES
+    - git clone -b windows-vpn --single-branch "https://gitlab-ci-token:${CI_JOB_TOKEN}@${I18N_PROTON_REPO}" --depth 1
+    - python ci\main.py add-languages
     - python ci\main.py add-commit-hash $env:CI_COMMIT_SHORT_SHA
     - echo "Building release..."
     - MSBuild.exe /consoleloggerparameters:ErrorsOnly /maxcpucount /nologo /property:Configuration=Release /verbosity:quiet "ProtonVpn.sln"
@@ -41,7 +42,8 @@ build-debug:
     - 'c:\nuget\nuget.exe restore ProtonVpn.sln'
     - MSBuild.exe /consoleloggerparameters:ErrorsOnly /maxcpucount /nologo /property:Configuration=Release /verbosity:quiet "src\\ProtonVPN.MarkupValidator\\ProtonVPN.MarkupValidator.csproj"
     - echo "Downloading translations from crowdin..."
-    - python ci\main.py download-translations $env:CROWDIN_KEY $env:LANGUAGES
+    - git clone -b windows-vpn --single-branch "https://gitlab-ci-token:${CI_JOB_TOKEN}@${I18N_CACHE_REPO}" --depth 1
+    - python ci\main.py add-languages
     - python ci\main.py add-commit-hash $env:CI_COMMIT_SHORT_SHA
     - echo "Building debug..."
     - MSBuild.exe /consoleloggerparameters:ErrorsOnly /maxcpucount /nologo /property:Configuration=Debug /verbosity:quiet "ProtonVpn.sln"

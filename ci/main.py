@@ -12,13 +12,11 @@ from pathlib import Path
 parser = argparse.ArgumentParser(description='ProtonVPN CI')
 subparsers = parser.add_subparsers(help='sub-command help', dest='command')
 
-parser_a = subparsers.add_parser('download-translations')
-parser_a.add_argument('crowdin_key', type=str, help='Crowdin api key')
-parser_a.add_argument('languages', type=str, help='Supported languages')
+subparsers.add_parser('add-languages')
 
-parser_b = subparsers.add_parser('sentry')
-parser_b.add_argument('path', type=str, help='Path to GlobalConfig file')
-parser_b.add_argument('dsn', type=str, help='Sentry dsn string', nargs='?', const='')
+parser_a = subparsers.add_parser('sentry')
+parser_a.add_argument('path', type=str, help='Path to GlobalConfig file')
+parser_a.add_argument('dsn', type=str, help='Sentry dsn string', nargs='?', const='')
 
 subparsers.add_parser('tests')
 subparsers.add_parser('tap-installer')
@@ -44,15 +42,12 @@ args = parser.parse_args()
 if args.command == 'sentry':
     sentry.createConfig(args.path, args.dsn)
 
-elif args.command == 'download-translations':
-    print('Downloading translations...')
+elif args.command == 'add-languages':
     loc = localization.Localization(
-        args.crowdin_key,
-        args.languages,
-        '.\\langs',
+        "locales\\*.resx",
         '.\src\\ProtonVPN.App\\Properties\\Resources.{lang}.resx',
         '.\\src\\bin\\ProtonVPN.MarkupValidator.exe')
-    err = loc.downloadTranslations()
+    err = loc.AddLanguages()
     sys.exit(err)
 
 elif args.command == 'tests':
