@@ -3283,6 +3283,15 @@ namespace ProtonVPN.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Downloading.
+        /// </summary>
+        public static string Dialogs_OutdatedApp_lbl_Downloading {
+            get {
+                return ResourceManager.GetString("Dialogs_OutdatedApp_lbl_Downloading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A problem occurred while downloading a newer version. Update manually to get the latest one..
         /// </summary>
         public static string Dialogs_OutdatedApp_lbl_Error {
@@ -3319,7 +3328,7 @@ namespace ProtonVPN.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Note that the Kill Switch is enabled. Updating or quitting the application will disabled it..
+        ///   Looks up a localized string similar to Note that the Kill Switch is enabled. Updating or quitting the application will disable it..
         /// </summary>
         public static string Dialogs_OutdatedApp_msg_KillSwitchActive {
             get {

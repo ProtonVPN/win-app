@@ -2682,7 +2682,7 @@ Internet Service Provider (ISP) problem&lt;/Bold&gt; - Try connecting to Proton 
     <comment>The error message displayed on the outdated app window when the app version is outdated</comment>
   </data>
   <data name="Dialogs_OutdatedApp_msg_KillSwitchActive" xml:space="preserve">
-    <value>Note that the Kill Switch is enabled. Updating or quitting the application will disabled it.</value>
+    <value>Note that the Kill Switch is enabled. Updating or quitting the application will disable it.</value>
     <comment>The error message displayed on the outdated app window when the app version is outdated and Kill Switch is enabled</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_Title" xml:space="preserve">
