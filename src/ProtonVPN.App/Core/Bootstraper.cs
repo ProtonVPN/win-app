@@ -116,9 +116,10 @@ namespace ProtonVPN.Core
             RegisterMigrations(Resolve<UserSettings>(), Resolve<IEnumerable<IUserSettingsMigration>>());
             Resolve<SyncedAutoStartup>().Sync();
 
-            ShowInitialWindow();
-            RegisterEvents();
             IncreaseAppStartCount();
+            RegisterEvents();
+            Resolve<Language.Language>().Initialize();
+            ShowInitialWindow();
 
             _ = StartService(Resolve<AppUpdateSystemService>());
 
