@@ -36,6 +36,7 @@ namespace ProtonVPN.Profiles.Form
         private CountryViewModel _selectedCountry;
         private List<CountryViewModel> _countries;
         private readonly IModals _modals;
+        private bool _unsavedChanges;
 
         protected BaseCountryServerProfileFormViewModel(
             Common.Configuration.Config appConfig,
@@ -67,10 +68,12 @@ namespace ProtonVPN.Profiles.Form
                         _modals.Show<NoServerInCountryDueTierUpsellModalViewModel>();
                     }
 
-                    _selectedCountry = value;
-                    if (EditMode)
-                        MarkFormDataChanged();
+                    if (EditMode && _selectedCountry != null)
+                    {
+                        _unsavedChanges = true;
+                    }
 
+                    _selectedCountry = value;
                     NotifyOfPropertyChange();
                 }
 
@@ -84,6 +87,11 @@ namespace ProtonVPN.Profiles.Form
         {
             LoadCountries();
             return Task.CompletedTask;
+        }
+
+        public override bool HasUnsavedChanges()
+        {
+            return _unsavedChanges || base.HasUnsavedChanges();
         }
 
         public override void Load()
@@ -108,6 +116,7 @@ namespace ProtonVPN.Profiles.Form
             base.Clear();
             SelectedCountry = null;
             Countries = null;
+            _unsavedChanges = false;
         }
 
         protected override Profile GetProfile()

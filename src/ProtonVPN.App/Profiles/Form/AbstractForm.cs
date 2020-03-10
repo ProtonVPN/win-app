@@ -249,11 +249,6 @@ namespace ProtonVPN.Profiles.Form
             return !string.IsNullOrEmpty(ProfileName);
         }
 
-        protected void MarkFormDataChanged()
-        {
-            _unsavedChanges = true;
-        }
-
         protected List<IServerViewModel> GetPredefinedServerViewModels()
         {
             return new List<IServerViewModel>
