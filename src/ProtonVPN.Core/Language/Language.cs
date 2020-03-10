@@ -17,28 +17,72 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Core.Settings;
-
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
+using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.Logging;
+using ProtonVPN.Core.Settings;
 
 namespace ProtonVPN.Core.Language
 {
     public class Language : ISettingsAware
     {
         private readonly IAppSettings _appSettings;
+        private readonly ILogger _logger;
+        private readonly string _translationsFolder;
+
+        private const string ResourceFile = "ProtonVPN.resources.dll";
 
         public event EventHandler<string> LanguageChanged;
 
-        public Language(IAppSettings appSettings)
+        public Language(IAppSettings appSettings, ILogger logger, string translationsFolder)
         {
             _appSettings = appSettings;
+            _logger = logger;
+            _translationsFolder = translationsFolder;
+        }
+
+        public void Initialize()
+        {
+            Change(_appSettings.Language);
         }
 
         public void OnAppSettingsChanged(PropertyChangedEventArgs e)
         {
             if (e.PropertyName.Equals(nameof(IAppSettings.Language)))
                 Change(_appSettings.Language);
+        }
+
+        public List<string> GetAll()
+        {
+            try
+            {
+                return InternalGetAll();
+            }
+            catch (Exception e) when (e.IsFileAccessException())
+            {
+                _logger.Error(e);
+                return new List<string> {"en"};
+            }
+        }
+
+        private List<string> InternalGetAll()
+        {
+            var langs = new List<string>();
+
+            var files = Directory.GetFiles(_translationsFolder, ResourceFile, SearchOption.AllDirectories);
+            foreach (var file in files)
+            {
+                var dirInfo = new DirectoryInfo(file);
+                if (dirInfo.Parent != null)
+                {
+                    langs.Add(dirInfo.Parent.Name);
+                }
+            }
+
+            return langs;
         }
 
         private void Change(string lang)

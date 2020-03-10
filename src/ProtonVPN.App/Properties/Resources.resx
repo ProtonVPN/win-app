@@ -2693,4 +2693,71 @@ Internet Service Provider (ISP) problem&lt;/Bold&gt; - Try connecting to Proton 
     <value>What's new</value>
     <comment>The text of What's new hyperlink in Update flash notification (opens About window)</comment>
   </data>
+  <data name="Settings_General_lbl_Language" xml:space="preserve">
+    <value>Language</value>
+    <comment>The label for Language combo box in General tab of Settings window</comment>
+  </data>
+  <data name="Language_ar" xml:space="preserve">
+    <value>Arabic</value>
+  </data>
+  <data name="Language_ca" xml:space="preserve">
+    <value>Catalan</value>
+  </data>
+  <data name="Language_de" xml:space="preserve">
+    <value>German</value>
+  </data>
+  <data name="Language_en" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="Language_es-ES" xml:space="preserve">
+    <value>Spanish</value>
+  </data>
+  <data name="Language_es-MX" xml:space="preserve">
+    <value>Spanish, Mexico</value>
+  </data>
+  <data name="Language_fa" xml:space="preserve">
+    <value>Persian</value>
+  </data>
+  <data name="Language_fr" xml:space="preserve">
+    <value>French</value>
+  </data>
+  <data name="Language_hu" xml:space="preserve">
+    <value>Hungarian</value>
+  </data>
+  <data name="Language_id" xml:space="preserve">
+    <value>Indonesian</value>
+  </data>
+  <data name="Language_it" xml:space="preserve">
+    <value>Italian</value>
+  </data>
+  <data name="Language_ja" xml:space="preserve">
+    <value>Japanese</value>
+  </data>
+  <data name="Language_lt" xml:space="preserve">
+    <value>Lithuanian</value>
+  </data>
+  <data name="Language_nl" xml:space="preserve">
+    <value>Dutch</value>
+  </data>
+  <data name="Language_pl" xml:space="preserve">
+    <value>Polish</value>
+  </data>
+  <data name="Language_pt-BR" xml:space="preserve">
+    <value>Portuguese, Brazilian</value>
+  </data>
+  <data name="Language_pt-PT" xml:space="preserve">
+    <value>Portuguese</value>
+  </data>
+  <data name="Language_ru" xml:space="preserve">
+    <value>Russian</value>
+  </data>
+  <data name="Language_tr" xml:space="preserve">
+    <value>Turkish</value>
+  </data>
+  <data name="Language_zh-CN" xml:space="preserve">
+    <value>Chinese Simplified</value>
+  </data>
+  <data name="Language_zh-TW" xml:space="preserve">
+    <value>Chinese Traditional</value>
+  </data>
 </root>

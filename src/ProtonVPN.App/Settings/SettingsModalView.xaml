@@ -106,6 +106,19 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <StackPanel Margin="25,20,25,40">
                     <Border BorderBrush="#464652" Height="50" BorderThickness="0,0,0,0">
                         <DockPanel>
+                            <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Content="{resources:Loc Settings_General_lbl_Language}"/>
+                            <wpf:Combobox HorizontalAlignment="Right"
+                                          Style="{StaticResource ComboDropdown}"
+                                          DisplayMemberPath="Value"
+                                          SelectedValuePath="Key"
+                                          ItemsSource="{Binding Languages}"
+                                          SelectedValue="{Binding SelectedLanguage}"
+                                          AutomationProperties.AutomationId="{StaticResource LanguageCombobox}"/>
+                        </DockPanel>
+                    </Border>
+
+                    <Border BorderBrush="#464652" Height="50" BorderThickness="0,0,0,0">
+                        <DockPanel>
                             <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Content="{resources:Loc Settings_General_lbl_StartMinimized}"/>
                             <wpf:Combobox
                                     HorizontalAlignment="Right"

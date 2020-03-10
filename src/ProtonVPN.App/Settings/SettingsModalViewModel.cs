@@ -51,6 +51,7 @@ namespace ProtonVPN.Settings
         private readonly IDialogs _dialogs;
         private readonly IUserStorage _userStorage;
         private readonly IActiveUrls _urls;
+        private readonly Language _language;
 
         private IReadOnlyList<ProfileViewModel> _autoConnectProfiles;
         private IReadOnlyList<ProfileViewModel> _quickConnectProfiles;
@@ -85,7 +86,8 @@ namespace ProtonVPN.Settings
             CustomDnsListViewModel customDnsListViewModel,
             IUserStorage userStorage,
             IDialogs dialogs,
-            IActiveUrls urls)
+            IActiveUrls urls,
+            Language language)
         {
             _dialogs = dialogs;
             _appSettings = appSettings;
@@ -93,6 +95,7 @@ namespace ProtonVPN.Settings
             _profileViewModelFactory = profileViewModelFactory;
             _userStorage = userStorage;
             _urls = urls;
+            _language = language;
 
             SplitTunnelingViewModel = splitTunnelingViewModel;
             Ips = customDnsListViewModel;
@@ -282,6 +285,20 @@ namespace ProtonVPN.Settings
             }
         }
 
+        public ObservableCollection<ComboBoxPair> Languages
+        {
+            get
+            {
+                var langs = new ObservableCollection<ComboBoxPair>();
+                foreach (var lang in _language.GetAll())
+                {
+                    langs.Add(new ComboBoxPair(lang, StringResources.Get($"Language_{lang}")));
+                }
+
+                return GetSorted(langs);
+            }
+        }
+
         public string SelectedLanguage
         {
             get => _appSettings.Language;
@@ -459,6 +476,18 @@ namespace ProtonVPN.Settings
         private void UpgradeAction()
         {
             _urls.AccountUrl.Open();
+        }
+
+        private ObservableCollection<ComboBoxPair> GetSorted(ObservableCollection<ComboBoxPair> collection)
+        {
+            var sorted = collection.OrderBy(l => l.Value);
+            var list = new ObservableCollection<ComboBoxPair>();
+            foreach (var item in sorted)
+            {
+                list.Add(item);
+            }
+
+            return list;
         }
     }
 }

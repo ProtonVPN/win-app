@@ -43,7 +43,6 @@ using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Storage;
 using ProtonVPN.Core.Threading;
 using ProtonVPN.Core.Update;
-using ProtonVPN.Notifications;
 using ProtonVPN.Resources;
 using ProtonVPN.Vpn;
 using Module = Autofac.Module;
@@ -204,7 +203,10 @@ namespace ProtonVPN.Core.Ioc
                 .AsSelf()
                 .AsImplementedInterfaces()
                 .SingleInstance();
-            builder.Register(c => new Language.Language(c.Resolve<IAppSettings>()))
+            builder.Register(c => new Language.Language(
+                    c.Resolve<IAppSettings>(),
+                    c.Resolve<ILogger>(),
+                    c.Resolve<Common.Configuration.Config>().TranslationsFolder))
                 .AsSelf()
                 .AsImplementedInterfaces()
                 .SingleInstance();
