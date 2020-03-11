@@ -79,7 +79,7 @@ namespace ProtonVPN.Core.Profiles
 
             _timer = new System.Timers.Timer
             {
-                Interval = _appConfig.ProfileSyncTimerPeriod.TotalMilliseconds,
+                Interval = _appConfig.ProfileSyncTimerPeriod.RandomizedWithDeviation(0.2).TotalMilliseconds,
                 AutoReset = true
             };
             _timer.Elapsed += (s, e) => OnTimerElapsed();

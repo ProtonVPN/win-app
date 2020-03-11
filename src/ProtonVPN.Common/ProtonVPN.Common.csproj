@@ -102,6 +102,7 @@
     <Compile Include="Extensions\ExceptionTypeExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Configuration\GlobalConfig.cs" />
+    <Compile Include="Extensions\TimeSpanExtensions.cs" />
     <Compile Include="Helpers\ConcatenatedSequence.cs" />
     <Compile Include="Helpers\Ensure.cs" />
     <Compile Include="EventArgsTValue.cs" />
