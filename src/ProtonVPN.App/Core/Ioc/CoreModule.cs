@@ -17,9 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Net.Http;
 using Autofac;
 using Caliburn.Micro;
 using ProtonVPN.About;
+using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.OS;
 using ProtonVPN.Common.OS.Net.Http;
@@ -43,7 +45,6 @@ using ProtonVPN.Core.Threading;
 using ProtonVPN.Core.Update;
 using ProtonVPN.Resources;
 using ProtonVPN.Vpn;
-using System.Net.Http;
 using Module = Autofac.Module;
 
 namespace ProtonVPN.Core.Ioc
@@ -200,7 +201,7 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<VpnCredentialProvider>().SingleInstance();
             builder.Register(c => new EventTimer(
                     c.Resolve<EventClient>(),
-                    c.Resolve<Common.Configuration.Config>().EventCheckInterval))
+                    c.Resolve<Common.Configuration.Config>().EventCheckInterval.RandomizedWithDeviation(0.2))) 
                 .AsSelf()
                 .AsImplementedInterfaces()
                 .SingleInstance();

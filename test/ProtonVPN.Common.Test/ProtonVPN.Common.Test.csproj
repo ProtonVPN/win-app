@@ -83,6 +83,7 @@
     <Compile Include="Configuration\Storage\FileConfigStorageTest.cs" />
     <Compile Include="Configuration\Storage\SafeConfigStorageTest.cs" />
     <Compile Include="Configuration\Storage\ValidatedConfigStorageTest.cs" />
+    <Compile Include="Extensions\TimeSpanExtensionsTest.cs" />
     <Compile Include="Helpers\ConcatenatedSequenceTest.cs" />
     <Compile Include="Helpers\RandomStringsTest.cs" />
     <Compile Include="Logging\LogCleanerTest.cs" />

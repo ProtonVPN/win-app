@@ -462,7 +462,7 @@ namespace ProtonVPN.Core
             await StartService(Resolve<MonitoredVpnService>());
             await StartService(Resolve<AppUpdateServiceWrapper>());
             Resolve<P2PDetector>();
-            Resolve<VpnInfoChecker>().Start(appConfig.VpnInfoCheckInterval);
+            Resolve<VpnInfoChecker>().Start(appConfig.VpnInfoCheckInterval.RandomizedWithDeviation(0.2));
 
             var appWindow = Resolve<AppWindow>();
             appWindow.DataContext = Resolve<MainViewModel>();
