@@ -20,6 +20,7 @@
 using System;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Configuration;
+using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Core.Auth;
@@ -49,7 +50,7 @@ namespace ProtonVPN.Core.Servers
             _serversProvider = serversProvider;
 
             _timer = scheduler.Timer();
-            _timer.Interval = appConfig.ServerUpdateInterval;
+            _timer.Interval = appConfig.ServerUpdateInterval.RandomizedWithDeviation(0.2);
             _timer.Tick += Timer_OnTick;
 
             _updateAction = new SingleAction(UpdateServers);

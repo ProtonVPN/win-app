@@ -28,6 +28,7 @@ using ProtonVPN.P2PDetection.Forwarded;
 using ProtonVPN.Resources;
 using System;
 using System.Threading.Tasks;
+using ProtonVPN.Common.Extensions;
 
 namespace ProtonVPN.P2PDetection
 {
@@ -59,7 +60,7 @@ namespace ProtonVPN.P2PDetection
             IScheduler scheduler,
             IModals modals,
             IDialogs dialogs) :
-            this(logger, blockedTraffic, forwardedTraffic, scheduler.Timer(), modals, dialogs, appConfig.P2PCheckInterval)
+            this(logger, blockedTraffic, forwardedTraffic, scheduler.Timer(), modals, dialogs, appConfig.P2PCheckInterval.RandomizedWithDeviation(0.2))
         { }
 
         public event EventHandler<string> TrafficForwarded;

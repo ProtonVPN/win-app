@@ -20,6 +20,7 @@
 using System.Net.Http;
 using Autofac;
 using Caliburn.Micro;
+using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.OS;
 using ProtonVPN.Common.OS.Net.Http;
@@ -198,7 +199,7 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<VpnCredentialProvider>().SingleInstance();
             builder.Register(c => new EventTimer(
                     c.Resolve<EventClient>(),
-                    c.Resolve<Common.Configuration.Config>().EventCheckInterval))
+                    c.Resolve<Common.Configuration.Config>().EventCheckInterval.RandomizedWithDeviation(0.2))) 
                 .AsSelf()
                 .AsImplementedInterfaces()
                 .SingleInstance();

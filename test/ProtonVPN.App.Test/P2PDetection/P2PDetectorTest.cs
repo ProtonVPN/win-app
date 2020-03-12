@@ -65,6 +65,8 @@ namespace ProtonVPN.App.Test.P2PDetection
             _modals = Substitute.For<IModals>();
             _dialogs = Substitute.For<IDialogs>();
 
+            _appConfig.P2PCheckInterval = TimeSpan.FromSeconds(10);
+
             _timer = Substitute.For<ISchedulerTimer>();
             _timer.When(x => x.Start()).Do(x => _timerIsEnabled = true);
             _timer.When(x => x.Stop()).Do(x => _timerIsEnabled = false);
@@ -83,7 +85,6 @@ namespace ProtonVPN.App.Test.P2PDetection
             new P2PDetector(_logger, _appConfig, _blockedTraffic, _forwardedTraffic, _scheduler, _modals, _dialogs);
             // Assert
             _scheduler.Timer().Received(1);
-            _timer.Received(1).Interval = checkInterval;
             _timer.Received(1).Tick += Arg.Any<EventHandler>();
         }
 
