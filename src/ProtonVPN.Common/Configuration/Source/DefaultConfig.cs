@@ -89,9 +89,9 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 ApiVersion = "3",
 
-                ApiTimeout = TimeSpan.FromSeconds(5),
+                ApiTimeout = TimeSpan.FromSeconds(20),
 
-                ApiRetries = 2,
+                ApiRetries = 0,
 
                 UpdateFirstCheckDelay = TimeSpan.FromSeconds(15),
 
@@ -119,7 +119,7 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 ForcedProfileSyncInterval = TimeSpan.FromMinutes(3),
 
-                EventCheckInterval = TimeSpan.FromSeconds(60),
+                EventCheckInterval = TimeSpan.FromMinutes(5),
 
                 ServiceCheckInterval = TimeSpan.FromSeconds(30),
 
