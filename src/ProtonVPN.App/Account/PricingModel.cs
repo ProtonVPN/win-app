@@ -48,7 +48,14 @@ namespace ProtonVPN.Account
 
         public string ServerAccessText => StringResources.Get($"Account_ServerAccess_val_{_name.FirstCharToUpper()}");
 
-        public string CountriesText => StringResources.Format("Account_lbl_Countries", Countries);
+        public string CountriesText
+        {
+            get
+            {
+                var word = StringResources.GetPlural("Account_lbl_Country", Countries);
+                return $"{Countries} {word}";
+            }
+        }
 
         public string MonthlyPriceText => IsFree 
             ? StringResources.Get("Account_lbl_MonthlyPriceZero") 
@@ -70,7 +77,14 @@ namespace ProtonVPN.Account
             }
         }
 
-        public string DevicesText => StringResources.Format("Account_lbl_Devices", Devices);
+        public string DevicesText
+        {
+            get
+            {
+                var word = StringResources.GetPlural("Account_lbl_Device", Devices);
+                return $"{Devices} {word}";
+            }
+        }
 
         public string Title => _name.ToUpper().Replace("VPN", "");
     }

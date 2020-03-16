@@ -79,7 +79,8 @@ namespace ProtonVPN.Sidebar
         public async void OnAppSettingsChanged(PropertyChangedEventArgs e)
         {
             if (e.PropertyName.Equals(nameof(IAppSettings.Profiles)) ||
-                e.PropertyName.Equals(nameof(IAppSettings.SecureCore)))
+                e.PropertyName.Equals(nameof(IAppSettings.SecureCore)) ||
+                e.PropertyName.Equals(nameof(IAppSettings.Language)))
             {
                 await LoadProfiles();
             }

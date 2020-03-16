@@ -20,9 +20,11 @@
 using System;
 using System.ComponentModel;
 using System.Globalization;
+using System.Threading;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Markup;
+using Huyn.PluralNet;
 
 namespace ProtonVPN.Resources
 {
@@ -53,6 +55,16 @@ namespace ProtonVPN.Resources
         {
             var idx = name.LastIndexOf('.');
             return name.Substring(idx + 1);
+        }
+
+        public string GetPlural(string key, decimal number)
+        {
+            if (!Thread.CurrentThread.CurrentUICulture.Equals(_currentCulture))
+            {
+                Thread.CurrentThread.CurrentUICulture = _currentCulture;
+            }
+
+            return Properties.Resources.ResourceManager.GetPlural(GetStringName(key), number);
         }
     }
 

@@ -33,7 +33,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Label Foreground="White"
                    FontSize="16"
                    VerticalAlignment="Center" Content="{resources:Loc Profiles_Profile_Error_lbl_NotValid}"/>
-            <TextBlock Text="{resources:Loc Profiles_Profile_Error_msg_NameTooLong}" Name="StringFormat" Visibility="Collapsed"/>
             <TextBlock>
                 <TextBlock.Resources>
                     <Style TargetType="TextBlock">
@@ -59,14 +58,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 <Setter Property="Text" Value="{resources:Loc Profiles_Profile_Error_msg_NameExists}"/>
                             </DataTrigger>
                             <DataTrigger Binding="{Binding Form.Error}" Value="{x:Static form:Error.ProfileNameTooLong}">
-                                <Setter Property="Text">
-                                    <Setter.Value>
-                                        <MultiBinding Converter="{StaticResource StringFormatMultiValueConverter}">
-                                            <Binding ElementName="StringFormat" Path="Text"/>
-                                            <Binding Path="MaxProfileNameLength"/>
-                                        </MultiBinding>
-                                    </Setter.Value>
-                                </Setter>
+                                <Setter Property="Text" Value="{Binding Form.ProfileErrorTooLong}"/>
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>

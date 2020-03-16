@@ -147,6 +147,9 @@ namespace ProtonVPN.Profiles.Form
             set => Set(ref _error, value);
         }
 
+        public string ProfileErrorTooLong => StringResources.GetPluralFormat("Profiles_Profile_Error_msg_NameTooLong",
+            _appConfig.MaxProfileNameLength);
+
         public virtual void Load()
         {
             SelectRandomColor();

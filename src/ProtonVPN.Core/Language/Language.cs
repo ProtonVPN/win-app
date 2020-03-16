@@ -70,7 +70,7 @@ namespace ProtonVPN.Core.Language
 
         private List<string> InternalGetAll()
         {
-            var langs = new List<string>();
+            var langs = new List<string> {"en"};
 
             var files = Directory.GetFiles(_translationsFolder, ResourceFile, SearchOption.AllDirectories);
             foreach (var file in files)
