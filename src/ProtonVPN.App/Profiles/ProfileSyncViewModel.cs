@@ -20,15 +20,18 @@
 using System;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
+using ProtonVPN.Core.Language;
 using ProtonVPN.Core.MVVM;
 using ProtonVPN.Core.Profiles;
 using ProtonVPN.Resources;
 
 namespace ProtonVPN.Profiles
 {
-    public class ProfileSyncViewModel : ViewModel, IProfileSyncStatusAware
+    public class ProfileSyncViewModel : ViewModel, IProfileSyncStatusAware, ILanguageAware
     {
         private readonly ISyncProfileStorage _syncProfiles;
+        private DateTime _changesSyncedAt = DateTime.Now;
+        private string _errorMessage = string.Empty;
 
         public ProfileSyncViewModel(ISyncProfileStorage syncProfiles)
         {
@@ -56,6 +59,8 @@ namespace ProtonVPN.Profiles
         public void OnProfileSyncStatusChanged(ProfileSyncStatus status, string errorMessage, DateTime changesSyncedAt)
         {
             SyncStatus = status;
+            _errorMessage = errorMessage;
+            _changesSyncedAt = changesSyncedAt;
 
             switch (status)
             {
@@ -82,15 +87,23 @@ namespace ProtonVPN.Profiles
             }
         }
 
+        public void OnLanguageChanged(string lang)
+        {
+            if (SyncStatus == ProfileSyncStatus.Succeeded)
+            {
+                OnProfileSyncStatusChanged(SyncStatus, _errorMessage, _changesSyncedAt);
+            }
+        }
+
         private (int Number, string Units) Elapsed(DateTime changesSyncedAt)
         {
             var elapsed = DateTime.UtcNow - changesSyncedAt;
             if (elapsed < TimeSpan.Zero)
                 elapsed = TimeSpan.Zero;
 
-            return elapsed.Days > 0 ? (elapsed.Days, StringResources.Get("TimeUnit_val_Day")) :
-                   elapsed.Hours > 0 ? (elapsed.Hours, StringResources.Get("TimeUnit_val_Hour")) :
-                   (elapsed.Minutes, StringResources.Get("TimeUnit_val_Minute"));
+            return elapsed.Days > 0 ? (elapsed.Days, StringResources.GetPlural("TimeUnit_val_Day", elapsed.Days)) :
+                elapsed.Hours > 0 ? (elapsed.Hours, StringResources.GetPlural("TimeUnit_val_Hour", elapsed.Hours)) :
+                (elapsed.Minutes, StringResources.GetPlural("TimeUnit_val_Minute", elapsed.Minutes));
         }
 
         private void SyncAction()

@@ -214,20 +214,38 @@ namespace ProtonVPN.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} Countries.
+        ///   Looks up a localized string similar to Country.
         /// </summary>
-        public static string Account_lbl_Countries {
+        public static string Account_lbl_Country_One {
             get {
-                return ResourceManager.GetString("Account_lbl_Countries", resourceCulture);
+                return ResourceManager.GetString("Account_lbl_Country_One", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} Devices.
+        ///   Looks up a localized string similar to Countries.
         /// </summary>
-        public static string Account_lbl_Devices {
+        public static string Account_lbl_Country_Other {
             get {
-                return ResourceManager.GetString("Account_lbl_Devices", resourceCulture);
+                return ResourceManager.GetString("Account_lbl_Country_Other", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Device.
+        /// </summary>
+        public static string Account_lbl_Device_One {
+            get {
+                return ResourceManager.GetString("Account_lbl_Device_One", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Devices.
+        /// </summary>
+        public static string Account_lbl_Device_Other {
+            get {
+                return ResourceManager.GetString("Account_lbl_Device_Other", resourceCulture);
             }
         }
         
@@ -484,11 +502,20 @@ namespace ProtonVPN.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You can only attach up to {0} file..
+        /// </summary>
+        public static string BugReport_AttachmentError_msg_TooMany_One {
+            get {
+                return ResourceManager.GetString("BugReport_AttachmentError_msg_TooMany_One", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You can only attach up to {0} files..
         /// </summary>
-        public static string BugReport_AttachmentError_msg_TooMany {
+        public static string BugReport_AttachmentError_msg_TooMany_Other {
             get {
-                return ResourceManager.GetString("BugReport_AttachmentError_msg_TooMany", resourceCulture);
+                return ResourceManager.GetString("BugReport_AttachmentError_msg_TooMany_Other", resourceCulture);
             }
         }
         
@@ -4272,11 +4299,20 @@ namespace ProtonVPN.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Maximum profile name length is {0} symbol. Please choose a shorter profile name..
+        /// </summary>
+        public static string Profiles_Profile_Error_msg_NameTooLong_One {
+            get {
+                return ResourceManager.GetString("Profiles_Profile_Error_msg_NameTooLong_One", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Maximum profile name length is {0} symbols. Please choose a shorter profile name..
         /// </summary>
-        public static string Profiles_Profile_Error_msg_NameTooLong {
+        public static string Profiles_Profile_Error_msg_NameTooLong_Other {
             get {
-                return ResourceManager.GetString("Profiles_Profile_Error_msg_NameTooLong", resourceCulture);
+                return ResourceManager.GetString("Profiles_Profile_Error_msg_NameTooLong_Other", resourceCulture);
             }
         }
         
@@ -5478,29 +5514,56 @@ namespace ProtonVPN.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to day(s).
+        ///   Looks up a localized string similar to day.
         /// </summary>
-        public static string TimeUnit_val_Day {
+        public static string TimeUnit_val_Day_One {
             get {
-                return ResourceManager.GetString("TimeUnit_val_Day", resourceCulture);
+                return ResourceManager.GetString("TimeUnit_val_Day_One", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to hour(s).
+        ///   Looks up a localized string similar to days.
         /// </summary>
-        public static string TimeUnit_val_Hour {
+        public static string TimeUnit_val_Day_Other {
             get {
-                return ResourceManager.GetString("TimeUnit_val_Hour", resourceCulture);
+                return ResourceManager.GetString("TimeUnit_val_Day_Other", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to minute(s).
+        ///   Looks up a localized string similar to hour.
         /// </summary>
-        public static string TimeUnit_val_Minute {
+        public static string TimeUnit_val_Hour_One {
             get {
-                return ResourceManager.GetString("TimeUnit_val_Minute", resourceCulture);
+                return ResourceManager.GetString("TimeUnit_val_Hour_One", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to hours.
+        /// </summary>
+        public static string TimeUnit_val_Hour_Other {
+            get {
+                return ResourceManager.GetString("TimeUnit_val_Hour_Other", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to minute.
+        /// </summary>
+        public static string TimeUnit_val_Minute_One {
+            get {
+                return ResourceManager.GetString("TimeUnit_val_Minute_One", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to minutes.
+        /// </summary>
+        public static string TimeUnit_val_Minute_Other {
+            get {
+                return ResourceManager.GetString("TimeUnit_val_Minute_Other", resourceCulture);
             }
         }
         

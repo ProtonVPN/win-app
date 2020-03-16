@@ -125,12 +125,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     Style="{StaticResource ComboDropdown}"
                                     ItemsSource="{Binding StartMinimizedModes}"
                                     SelectedValue="{Binding StartMinimized}"
+                                    SelectedValuePath="Key"
+                                    DisplayMemberPath="Value"
                                     AutomationProperties.AutomationId="{StaticResource StartMinimizedCombobox}">
-                                <wpf:Combobox.ItemTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding Converter={StaticResource EnumToDisplayTextConverter}}"/>
-                                    </DataTemplate>
-                                </wpf:Combobox.ItemTemplate>
                             </wpf:Combobox>
                         </DockPanel>
                     </Border>
@@ -227,13 +224,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                             Foreground="{StaticResource PrimaryColor}"
                                             FontSize="16"/>
                         </StackPanel>
-                        
+
                         <wpf:Combobox HorizontalAlignment="Right"
-                                      DisplayMemberPath="Key"
-                                      SelectedValuePath="Value"
                                       Style="{StaticResource ComboDropdown}"
                                       ItemsSource="{Binding Protocols}"
-                                      SelectedValue="{Binding SelectedProtocol}"/>
+                                      SelectedValue="{Binding SelectedProtocol}"
+                                      SelectedValuePath="Key"
+                                      DisplayMemberPath="Value"
+                                      IsSynchronizedWithCurrentItem="True"
+                                      AutomationProperties.AutomationId="{StaticResource ProtocolCombobox}"/>
                     </DockPanel>
 
                     <!--<DockPanel Height="50">

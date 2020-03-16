@@ -17,9 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -35,7 +33,6 @@ using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.User;
 using ProtonVPN.Core.Vpn;
-using ProtonVPN.Core.Wpf;
 using ProtonVPN.Modals;
 using ProtonVPN.Profiles;
 using ProtonVPN.Resources;
@@ -43,7 +40,7 @@ using ProtonVPN.Settings.SplitTunneling;
 
 namespace ProtonVPN.Settings
 {
-    public class SettingsModalViewModel : BaseModalViewModel, IVpnStateAware, ISettingsAware, ILanguageAware, IUserDataAware
+    public class SettingsModalViewModel : BaseModalViewModel, IVpnStateAware, ISettingsAware, IUserDataAware
     {
         private readonly IAppSettings _appSettings;
         private readonly VpnManager _vpnManager;
@@ -56,7 +53,7 @@ namespace ProtonVPN.Settings
         private IReadOnlyList<ProfileViewModel> _autoConnectProfiles;
         private IReadOnlyList<ProfileViewModel> _quickConnectProfiles;
 
-        private readonly ProfileViewModel _profileDisabledOption = new ProfileViewModel(new Profile
+        private ProfileViewModel _profileDisabledOption => new ProfileViewModel(new Profile
         {
             Id = "",
             Name = StringResources.Get("Settings_val_Disabled"),
@@ -249,7 +246,12 @@ namespace ProtonVPN.Settings
             }
         }
 
-        public StartMinimizedMode[] StartMinimizedModes { get; } = (StartMinimizedMode[])Enum.GetValues(typeof(StartMinimizedMode));
+        public List<KeyValuePair<StartMinimizedMode, string>> StartMinimizedModes => new List<KeyValuePair<StartMinimizedMode, string>>
+        {
+            new KeyValuePair<StartMinimizedMode, string>(StartMinimizedMode.Disabled, StringResources.Get("StartMinimizedMode_val_Disabled")),
+            new KeyValuePair<StartMinimizedMode, string>(StartMinimizedMode.ToSystray, StringResources.Get("StartMinimizedMode_val_ToSystray")),
+            new KeyValuePair<StartMinimizedMode, string>(StartMinimizedMode.ToTaskbar, StringResources.Get("StartMinimizedMode_val_ToTaskbar")),
+        };
 
         public StartMinimizedMode StartMinimized
         {
@@ -280,19 +282,23 @@ namespace ProtonVPN.Settings
             get => _appSettings.OvpnProtocol;
             set
             {
-                if (_appSettings.OvpnProtocol == value) return;
+                if (string.IsNullOrEmpty(value))
+                {
+                    return;
+                }
+
                 _appSettings.OvpnProtocol = value;
             }
         }
 
-        public ObservableCollection<ComboBoxPair> Languages
+        public List<KeyValuePair<string, string>> Languages
         {
             get
             {
-                var langs = new ObservableCollection<ComboBoxPair>();
+                var langs = new List<KeyValuePair<string, string>>();
                 foreach (var lang in _language.GetAll())
                 {
-                    langs.Add(new ComboBoxPair(lang, StringResources.Get($"Language_{lang}")));
+                    langs.Add(new KeyValuePair<string, string>(lang, StringResources.Get($"Language_{lang}")));
                 }
 
                 return GetSorted(langs);
@@ -309,11 +315,14 @@ namespace ProtonVPN.Settings
             }
         }
 
-        public ObservableCollection<ComboBoxPair> Protocols { get; } = new ObservableCollection<ComboBoxPair>
+        public List<KeyValuePair<string, string>> Protocols => new List<KeyValuePair<string, string>>
         {
-            new ComboBoxPair(StringResources.Get("Settings_Connection_DefaultProtocol_val_Auto"), "auto"),
-            new ComboBoxPair(StringResources.Get("Settings_Connection_DefaultProtocol_val_Tcp"), "tcp"),
-            new ComboBoxPair(StringResources.Get("Settings_Connection_DefaultProtocol_val_Udp"), "udp")
+            new KeyValuePair<string, string>("auto",
+                StringResources.Get("Settings_Connection_DefaultProtocol_val_Auto")),
+            new KeyValuePair<string, string>("tcp",
+                StringResources.Get("Settings_Connection_DefaultProtocol_val_Tcp")),
+            new KeyValuePair<string, string>("udp",
+                StringResources.Get("Settings_Connection_DefaultProtocol_val_Udp")),
         };
 
         public IReadOnlyList<ProfileViewModel> AutoConnectProfiles
@@ -368,6 +377,10 @@ namespace ProtonVPN.Settings
             {
                 SetKillSwitchEnabled();
             }
+            else if (e.PropertyName.Equals(nameof(IAppSettings.Language)))
+            {
+                OnLanguageChanged();
+            }
 
             if (_reconnectRequiredSettings.Contains(e.PropertyName))
             {
@@ -376,9 +389,17 @@ namespace ProtonVPN.Settings
             }
         }
 
-        public void OnLanguageChanged(string lang)
+        public async void OnLanguageChanged()
         {
+            NotifyOfPropertyChange(() => Languages);
+
             NotifyOfPropertyChange(() => Protocols);
+            NotifyOfPropertyChange(() => SelectedProtocol);
+
+            NotifyOfPropertyChange(() => StartMinimizedModes);
+            NotifyOfPropertyChange(() => StartMinimized);
+
+            await LoadProfiles();
         }
 
         public void OnUserDataChanged()
@@ -478,10 +499,10 @@ namespace ProtonVPN.Settings
             _urls.AccountUrl.Open();
         }
 
-        private ObservableCollection<ComboBoxPair> GetSorted(ObservableCollection<ComboBoxPair> collection)
+        private List<KeyValuePair<string, string>> GetSorted(List<KeyValuePair<string, string>> collection)
         {
             var sorted = collection.OrderBy(l => l.Value);
-            var list = new ObservableCollection<ComboBoxPair>();
+            var list = new List<KeyValuePair<string, string>>();
             foreach (var item in sorted)
             {
                 list.Add(item);

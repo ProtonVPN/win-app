@@ -257,8 +257,8 @@
     <value>Be the first to get the latest updates. Please keep in mind that early versions may be less stable.</value>
     <comment>The description of Early Access setting displayed in the tooltip of ( i ) image next to the label for Early Access toggle switch in General tab of Settings window</comment>
   </data>
-  <data name="Profiles_Profile_Error_msg_NameTooLong" xml:space="preserve">
-    <value>Maximum profile name length is {0} symbols. Please choose a shorter profile name.</value>
+  <data name="Profiles_Profile_Error_msg_NameTooLong_One" xml:space="preserve">
+    <value>Maximum profile name length is {0} symbol. Please choose a shorter profile name.</value>
     <comment>The error message displayed in Profile window when profile name is too long. The {0} is a placeholder for maximum profile name length value.</comment>
   </data>
   <data name="Profiles_msg_CountryOffline" xml:space="preserve">
@@ -465,8 +465,8 @@
     <value>You can only attach files under {0}.</value>
     <comment>The message displayed in bug Report window when file size is greater than max file size allowed. The {0} is a placeholder for max file size.</comment>
   </data>
-  <data name="BugReport_AttachmentError_msg_TooMany" xml:space="preserve">
-    <value>You can only attach up to {0} files.</value>
+  <data name="BugReport_AttachmentError_msg_TooMany_One" xml:space="preserve">
+    <value>You can only attach up to {0} file.</value>
     <comment>The message displayed in Bug Report window when number of files is greater than allowed. The {0} is a placeholder for max number of attachments allowed.</comment>
   </data>
   <data name="Servers_Load_lbl_IPAutoAssigned" xml:space="preserve">
@@ -977,18 +977,6 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
   <data name="Protocol_val_OpenVpnUdp" xml:space="preserve">
     <value>OpenVPN (UDP)</value>
     <comment>The name of VPN protocol selected for the Profile. Do not translate.</comment>
-  </data>
-  <data name="TimeUnit_val_Day" xml:space="preserve">
-    <value>day(s)</value>
-    <comment>The time unit: day(s)</comment>
-  </data>
-  <data name="TimeUnit_val_Hour" xml:space="preserve">
-    <value>hour(s)</value>
-    <comment>The time unit: hour(s)</comment>
-  </data>
-  <data name="TimeUnit_val_Minute" xml:space="preserve">
-    <value>minute(s)</value>
-    <comment>The time unit: minute(s)</comment>
   </data>
   <data name="ProfileSyncStatus_val_Succeeded_Info_NoData" xml:space="preserve">
     <value>No profile changes to synchronize</value>
@@ -2370,13 +2358,13 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <value>ProtonVPN</value>
     <comment>The title of Welcome window for non trial users</comment>
   </data>
-  <data name="Account_lbl_Countries" xml:space="preserve">
-    <value>{0} Countries</value>
-    <comment>The number of countries with available servers displayed in Account window. The {0} is a placeholder for number of countries.</comment>
+  <data name="Account_lbl_Country_One" xml:space="preserve">
+    <value>Country</value>
+    <comment>The number of countries with available servers displayed in Account window.</comment>
   </data>
-  <data name="Account_lbl_Devices" xml:space="preserve">
-    <value>{0} Devices</value>
-    <comment>The supported number of devices in Account window. The {0} is a placeholder for number of devices.</comment>
+  <data name="Account_lbl_Device_One" xml:space="preserve">
+    <value>Device</value>
+    <comment>The supported number of devices in Account window.</comment>
   </data>
   <data name="Account_lbl_MonthlyPriceZero" xml:space="preserve">
     <value>Free</value>
@@ -2759,5 +2747,45 @@ Internet Service Provider (ISP) problem&lt;/Bold&gt; - Try connecting to Proton 
   </data>
   <data name="Language_zh-TW" xml:space="preserve">
     <value>Chinese Traditional</value>
+  </data>
+  <data name="TimeUnit_val_Day_One" xml:space="preserve">
+    <value>day</value>
+    <comment>The time unit: day</comment>
+  </data>
+  <data name="TimeUnit_val_Day_Other" xml:space="preserve">
+    <value>days</value>
+    <comment>The time unit: days</comment>
+  </data>
+  <data name="TimeUnit_val_Hour_One" xml:space="preserve">
+    <value>hour</value>
+    <comment>The time unit: hour</comment>
+  </data>
+  <data name="TimeUnit_val_Hour_Other" xml:space="preserve">
+    <value>hours</value>
+    <comment>The time unit: hours</comment>
+  </data>
+  <data name="TimeUnit_val_Minute_One" xml:space="preserve">
+    <value>minute</value>
+    <comment>The time unit: minute</comment>
+  </data>
+  <data name="TimeUnit_val_Minute_Other" xml:space="preserve">
+    <value>minutes</value>
+    <comment>The time unit: minutes</comment>
+  </data>
+  <data name="Account_lbl_Country_Other" xml:space="preserve">
+    <value>Countries</value>
+    <comment>The number of countries with available servers displayed in Account window.</comment>
+  </data>
+  <data name="Account_lbl_Device_Other" xml:space="preserve">
+    <value>Devices</value>
+    <comment>The supported number of devices in Account window.</comment>
+  </data>
+  <data name="BugReport_AttachmentError_msg_TooMany_Other" xml:space="preserve">
+    <value>You can only attach up to {0} files.</value>
+    <comment>The message displayed in Bug Report window when number of files is greater than allowed. The {0} is a placeholder for max number of attachments allowed.</comment>
+  </data>
+  <data name="Profiles_Profile_Error_msg_NameTooLong_Other" xml:space="preserve">
+    <value>Maximum profile name length is {0} symbols. Please choose a shorter profile name.</value>
+    <comment>The error message displayed in Profile window when profile name is too long. The {0} is a placeholder for maximum profile name length value.</comment>
   </data>
 </root>

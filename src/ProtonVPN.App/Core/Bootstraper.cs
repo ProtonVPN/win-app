@@ -19,6 +19,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -367,6 +368,8 @@ namespace ProtonVPN.Core
 
             Resolve<Language.Language>().LanguageChanged += (sender, lang) =>
             {
+                TranslationSource.Instance.CurrentCulture = new CultureInfo(lang);
+
                 var instances = Resolve<IEnumerable<ILanguageAware>>();
                 foreach (var instance in instances)
                 {

@@ -25,6 +25,6 @@ namespace ProtonVPN.BugReporting.Errors
     {
         public int Limit { get; set; }
 
-        public string ErrorMessage => string.Format(StringResources.Get("BugReport_AttachmentError_msg_TooMany"), Limit);
+        public string ErrorMessage => StringResources.GetPluralFormat("BugReport_AttachmentError_msg_TooMany", Limit);
     }
 }

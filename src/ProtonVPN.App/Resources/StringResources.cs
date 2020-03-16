@@ -28,6 +28,16 @@ namespace ProtonVPN.Resources
             return TranslationSource.Instance["ProtonVPN.Properties.Resources." + key];
         }
 
+        public static string GetPlural(string key, decimal number)
+        {
+            return TranslationSource.Instance.GetPlural(key, number);
+        }
+
+        public static string GetPluralFormat(string key, decimal number)
+        {
+            return string.Format(GetPlural(key, number), number);
+        }
+
         public static string Format(string key, object args0)
         {
             return Safe(Get(key), (value) => string.Format(value, args0));

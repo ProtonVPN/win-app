@@ -95,6 +95,7 @@
     <ROW Component="PInvoke.Kernel32.dll" ComponentId="{3FCFE199-BFEB-492C-9069-AFCA117F3540}" Directory_="APPDIR" Attributes="0" KeyPath="PInvoke.Kernel32.dll"/>
     <ROW Component="PInvoke.Windows.Core.dll" ComponentId="{97B8E48E-41AA-4F56-BB66-65D9C9BB32BD}" Directory_="APPDIR" Attributes="0" KeyPath="PInvoke.Windows.Core.dll"/>
     <ROW Component="PInvoke.Windows.ShellScalingApi.dll" ComponentId="{103586DE-27A7-4B13-BCEF-189B552DF799}" Directory_="APPDIR" Attributes="0" KeyPath="PInvoke.Windows.ShellScalingApi.dll"/>
+    <ROW Component="PluralNet.dll" ComponentId="{9C483AC6-C72E-4815-9B00-36490E262D06}" Directory_="APPDIR" Attributes="0" KeyPath="PluralNet.dll"/>
     <ROW Component="Polly.Contrib.WaitAndRetry.dll" ComponentId="{BCC55C53-90F1-45C6-B746-612BAF98A860}" Directory_="APPDIR" Attributes="0" KeyPath="Polly.Contrib.WaitAndRetry.dll"/>
     <ROW Component="Polly.dll" ComponentId="{27789B2F-8E2A-4CAC-8958-82351E3F267A}" Directory_="APPDIR" Attributes="0" KeyPath="Polly.dll"/>
     <ROW Component="ProductInformation" ComponentId="{2741B490-2DE7-46C9-8120-5FD702469FF8}" Directory_="APPDIR" Attributes="4" KeyPath="Version"/>
@@ -220,6 +221,7 @@
     <ROW File="LICENSE" Component_="ProtonVPN.ErrorMessage.exe.config" FileName="LICENSE" Attributes="0" SourcePath="..\LICENSE" SelfReg="false"/>
     <ROW File="Polly.Contrib.WaitAndRetry.dll" Component_="Polly.Contrib.WaitAndRetry.dll" FileName="POLLYC~1.DLL|Polly.Contrib.WaitAndRetry.dll" Attributes="0" SourcePath="..\src\bin\Polly.Contrib.WaitAndRetry.dll" SelfReg="false"/>
     <ROW File="DeviceId.dll" Component_="DeviceId.dll" FileName="DeviceId.dll" Attributes="0" SourcePath="..\src\bin\DeviceId.dll" SelfReg="false"/>
+    <ROW File="PluralNet.dll" Component_="PluralNet.dll" FileName="PLURAL~1.DLL|PluralNet.dll" Attributes="0" SourcePath="..\src\bin\PluralNet.dll" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.AiRemoveFileComponent">
     <ROW RemoveFile="_" Condition="(AI_CLEAN_RESOURCES_UNINSTALL = &quot;1&quot;) AND (NOT UPGRADINGPRODUCTCODE)" Options="3"/>
@@ -546,6 +548,7 @@
     <ROW Feature_="MainFeature" Component_="ProtonVPN.TlsVerify.exe"/>
     <ROW Feature_="MainFeature" Component_="Polly.Contrib.WaitAndRetry.dll"/>
     <ROW Feature_="MainFeature" Component_="DeviceId.dll"/>
+    <ROW Feature_="MainFeature" Component_="PluralNet.dll"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
     <ROW Name="protonvpn.exe" SourcePath="images\protonvpn.ico" Index="0"/>
