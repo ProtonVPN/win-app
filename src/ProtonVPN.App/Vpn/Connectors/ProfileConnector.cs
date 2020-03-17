@@ -257,9 +257,11 @@ namespace ProtonVPN.Vpn.Connectors
                 { Common.Vpn.VpnProtocol.OpenVpnTcp, _openVpnConfig.TcpPorts() },
             };
 
+            var customDns = (from ip in _appSettings.CustomDnsIps where ip.Enabled select ip.Ip).ToList();
+
             return new Common.Vpn.VpnConfig(
                 portConfig,
-                (from ip in _appSettings.CustomDnsIps where ip.Enabled select ip.Ip).ToList());
+                _appSettings.CustomDnsEnabled ? customDns : new List<string>());
         }
 
         private async Task Connect(IEnumerable<Server> servers, VpnProtocol protocol)
