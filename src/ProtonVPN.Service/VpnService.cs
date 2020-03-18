@@ -17,19 +17,18 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Logging;
-using ProtonVPN.Common.Service;
-using ProtonVPN.Common.ServiceModel.Server;
-using ProtonVPN.Service.Firewall;
-using ProtonVPN.Service.Settings;
-using ProtonVPN.Vpn.Common;
-using Sentry;
-using Sentry.Protocol;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.ServiceProcess;
+using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Service;
+using ProtonVPN.Common.ServiceModel.Server;
+using ProtonVPN.Service.Firewall;
+using ProtonVPN.Vpn.Common;
+using Sentry;
+using Sentry.Protocol;
 
 namespace ProtonVPN.Service
 {
@@ -40,16 +39,13 @@ namespace ProtonVPN.Service
         private readonly List<ServiceHostFactory> _serviceHostsFactories;
         private readonly List<SafeServiceHost> _hosts;
         private readonly Ipv6 _ipv6;
-        private readonly IServiceSettings _serviceSettings;
 
         public VpnService(
             ILogger logger,
             IEnumerable<ServiceHostFactory> serviceHostsFactories,
             IVpnConnection vpnConnection,
-            Ipv6 ipv6,
-            IServiceSettings serviceSettings)
+            Ipv6 ipv6)
         {
-            _serviceSettings = serviceSettings;
             _ipv6 = ipv6;
             _logger = logger;
             _vpnConnection = vpnConnection;
@@ -86,17 +82,20 @@ namespace ProtonVPN.Service
         {
             try
             {
+                _logger.Info("Service is stopping");
                 LogEvent("Service is stopping");
+
                 _vpnConnection.Disconnect();
-                if (!_ipv6.Enabled && _serviceSettings.Ipv6LeakProtection)
+
+                if (!_ipv6.Enabled)
                 {
                     _ipv6.Enable();
                 }
 
                 foreach (var host in _hosts.ToList())
                 {
-                    host.Dispose();
                     _hosts.Remove(host);
+                    host.Dispose();
                 }
             }
             catch (Exception ex)

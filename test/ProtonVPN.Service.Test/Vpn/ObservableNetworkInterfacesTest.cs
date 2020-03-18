@@ -37,21 +37,23 @@ namespace ProtonVPN.Service.Test.Vpn
         }
 
         [TestMethod]
-        public void ShouldRaise_NetworkInterfacesAdded_WhenNewInterfaceAdded_AfterInitialization()
+        public void NetworkInterfacesAdded_ShouldNotBeRaised_FirstTimeAfterInitialization()
         {
             // Arrange
             var wasRaised = false;
             _interfaces.Interfaces().Returns(new INetworkInterface[] { new TestNetworkInterface("n1") });
             var subject = new ObservableNetworkInterfaces(_interfaces);
             subject.NetworkInterfacesAdded += (s, e) => wasRaised = true;
+
             // Act
             _interfaces.NetworkAddressChanged += Raise.Event();
+
             // Assert
-            wasRaised.Should().BeTrue();
+            wasRaised.Should().BeFalse();
         }
 
         [TestMethod]
-        public void ShouldRaise_NetworkInterfacesAdded_WhenNewInterfaceAdded()
+        public void NetworkInterfacesAdded_ShouldBeRaised_WhenNewInterfaceAdded()
         {
             // Arrange
             var wasRaised = false;
@@ -71,7 +73,7 @@ namespace ProtonVPN.Service.Test.Vpn
         }
 
         [TestMethod]
-        public void ShouldRaise_NetworkInterfacesAdded_WhenNewInterfaceAdded_AndOldRemoved()
+        public void NetworkInterfacesAdded_ShouldBeRaised_WhenNewInterfaceAdded_AndOldRemoved()
         {
             // Arrange
             var wasRaised = false;
@@ -91,7 +93,7 @@ namespace ProtonVPN.Service.Test.Vpn
         }
 
         [TestMethod]
-        public void ShouldNotRaise_NetworkInterfacesAdded_WhenSameNetworkInterfaces()
+        public void NetworkInterfacesAdded_ShouldBeRaised_WhenSameNetworkInterfaces()
         {
             // Arrange
             var wasRaised = false;
@@ -111,7 +113,7 @@ namespace ProtonVPN.Service.Test.Vpn
         }
 
         [TestMethod]
-        public void ShouldNotRaise_NetworkInterfacesAdded_WhenRemovedNetworkInterfaces()
+        public void NetworkInterfacesAdded_ShouldBeRaised_WhenRemovedNetworkInterfaces()
         {
             // Arrange
             var wasRaised = false;
@@ -131,7 +133,7 @@ namespace ProtonVPN.Service.Test.Vpn
         }
 
         [TestMethod]
-        public void ShouldNotRaise_NetworkInterfacesAdded_WhenNoNetworkInterfaces()
+        public void NetworkInterfacesAdded_ShouldBeRaised_WhenNoNetworkInterfaces()
         {
             // Arrange
             var wasRaised = false;
@@ -151,7 +153,7 @@ namespace ProtonVPN.Service.Test.Vpn
         }
 
         [TestMethod]
-        public void ShouldNotRaise_NetworkInterfacesAdded_WhenNoNewInterfaces_AfterNoNetworkInterfaces()
+        public void NetworkInterfacesAdded_ShouldBeRaised_WhenNoNewInterfaces_AfterNoNetworkInterfaces()
         {
             // Arrange
             var wasRaised = false;
