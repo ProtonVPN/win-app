@@ -31,7 +31,13 @@ namespace ProtonVPN.Common.OS.Registry
                 return false;
             }
 
-            return (int) key.GetValue("ProxyEnable") == 1;
+            var value = key.GetValue("ProxyEnable") as int?;
+            if (value == null)
+            {
+                return false;
+            }
+
+            return value == 1;
         }
     }
 }
