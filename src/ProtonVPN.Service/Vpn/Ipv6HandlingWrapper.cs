@@ -234,7 +234,7 @@ namespace ProtonVPN.Service.Vpn
 
         private void OnServiceSettingsChanged(object sender, Contract.Settings.SettingsContract e)
         {
-            ApplyIpv6Settings();
+            Queued(ApplyIpv6Settings);
         }
 
         private async void ApplyIpv6Settings()

@@ -46,7 +46,7 @@ namespace ProtonVPN.Service.Vpn
 
             var list = adapters.Where(a => !a.IsLoopback).Select(a => a.Id).ToList();
 
-            if (list.Except(_interfaces).Any())
+            if (_interfaces.Any() && list.Except(_interfaces).Any())
             {
                 NetworkInterfacesAdded?.Invoke(this, EventArgs.Empty);
             }

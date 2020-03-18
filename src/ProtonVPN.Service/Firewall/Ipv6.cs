@@ -63,6 +63,7 @@ namespace ProtonVPN.Service.Firewall
         {
             try
             {
+                _logger.Info($"IPv6: {actionMessage}");
                 action(AppName);
                 _logger.Info($"IPv6: {actionMessage} succeeded");
             }
