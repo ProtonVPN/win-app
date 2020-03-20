@@ -32,18 +32,6 @@ namespace ProtonVPN.Common.Extensions
             return string.Join(" ---> ", ThisAndInnerExceptions(exception).Select(ex => ex.Message));
         }
 
-        public static string MostInner(this Exception e)
-        {
-            var ex = e.InnerException;
-            var msg = string.Empty;
-            for (; ex != null; ex = ex.InnerException)
-            {
-                msg = ex.Message;
-            }
-
-            return msg;
-        }
-
         public static bool IsRegistryAccessException(this Exception ex)
         {
             return ex is SecurityException ||
