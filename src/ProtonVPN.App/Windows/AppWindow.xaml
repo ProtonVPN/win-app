@@ -32,6 +32,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         xmlns:resources="clr-namespace:ProtonVPN.Resources"
         xmlns:viewModel="clr-namespace:ProtonVPN.ViewModels"
         xmlns:view="clr-namespace:ProtonVPN.Views"
+        xmlns:flashNotifications="clr-namespace:ProtonVPN.FlashNotifications"
         mc:Ignorable="d"
         x:Name="Window"
         FontFamily="Segoe UI Symbol"
@@ -52,6 +53,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </DataTemplate>
         <DataTemplate DataType="{x:Type connectingScreen:ConnectingViewModel}">
             <connectingScreen:Connecting/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type flashNotifications:FlashNotificationViewModel}">
+            <flashNotifications:FlashNotifications/>
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewModels:LoginErrorViewModel}">
             <login:LoginErrorView/>
@@ -153,6 +157,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Border x:Name="BlurBorder" Style="{StaticResource BlurBorder}">
                 <Grid Margin="10">
                     <ContentControl Content="{Binding Map}"/>
+                    <flashNotifications:FlashNotifications VerticalAlignment="Bottom"
+                                                           MinHeight="40"
+                                                           HorizontalAlignment="Stretch"
+                                                           DataContext="{Binding FlashNotification}"/>
                 </Grid>
             </Border>
 

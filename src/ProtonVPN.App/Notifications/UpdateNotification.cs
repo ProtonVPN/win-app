@@ -18,34 +18,35 @@
  */
 
 using System;
+using Caliburn.Micro;
 using ProtonVPN.Core.Auth;
-using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Update;
-using ProtonVPN.Modals;
+using ProtonVPN.FlashNotifications;
 using ProtonVPN.Resources;
 
 namespace ProtonVPN.Notifications
 {
     public class UpdateNotification : IUpdateStateAware
     {
-        private readonly IModals _modals;
         private readonly ISystemNotification _systemNotification;
         private readonly TimeSpan _remindInterval;
         private readonly UserAuth _userAuth;
-
+        private readonly IEventAggregator _eventAggregator;
+        private readonly UpdateFlashNotificationViewModel _notificationViewModel;
         private DateTime _lastNotified = DateTime.MinValue;
-        
 
         public UpdateNotification(
             TimeSpan remindInterval,
             ISystemNotification systemNotification,
-            IModals modals,
-            UserAuth userAuth)
+            UserAuth userAuth,
+            IEventAggregator eventAggregator,
+            UpdateFlashNotificationViewModel notificationViewModel)
         {
-            _modals = modals;
             _systemNotification = systemNotification;
             _remindInterval = remindInterval;
             _userAuth = userAuth;
+            _eventAggregator = eventAggregator;
+            _notificationViewModel = notificationViewModel;
         }
 
         public void OnUpdateStateChanged(UpdateStateChangedEventArgs e)
@@ -73,12 +74,12 @@ namespace ProtonVPN.Notifications
         {
             _lastNotified = DateTime.Now;
             _systemNotification.Show(StringResources.Get("Dialogs_Update_msg_NewAppVersion"));
-            _modals.Show<UpdateModalViewModel>();
+            _eventAggregator.PublishOnUIThread(new ShowFlashMessage(_notificationViewModel));
         }
 
         private void Hide()
         {
-            _modals.Close<UpdateModalViewModel>();
+            _eventAggregator.PublishOnUIThread(new HideFlashMessage(_notificationViewModel));
         }
     }
 }

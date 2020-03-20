@@ -477,11 +477,7 @@
     <value>Via {0} to {1}</value>
     <comment>The heading of Secure Core server info displayed in Server Load popup. The {0} is a placeholder for entry country, {1} - exit country. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
   </data>
-  <data name="Dialogs_InsecureWiFi_msg_Detected" xml:space="preserve">
-    <value>Insecure Wi-Fi connection detected: {0}&lt;LineBreak/&gt;&lt;LineBreak/&gt;We detected the WiFi network you connected to is not protected by a password. Public WiFi can be monitored by hackers or the network administrator, potentially exposing your data and browsing activity. Do you want to connect to ProtonVPN?</value>
-    <comment>The message displayed in the Insecure Wi-Fi modal window when connected to insecure Wi-Fi network. The {0} is a placeholder for Wi-Fi network name.</comment>
-  </data>
-  <data name="Dialogs_Update_msg_NewAppVersion" xml:space="preserve">
+  <data name="Notifications_Update_msg_NewAppVersion" xml:space="preserve">
     <value>A new app version is now available!</value>
     <comment>The message displayed in the Update notification when new app version is ready to install</comment>
   </data>
@@ -2526,9 +2522,9 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <value>Smart protocol selection will automatically use the protocol and port that offer the best connectivity.</value>
     <comment>The description of Default Protocol settings displayed in the tooltip of ( i ) image next to the label for Default Protocol combo box in Connection tab of Settings window</comment>
   </data>
-  <data name="Dialogs_InsecureWifi_btn_Connect" xml:space="preserve">
-    <value>Connect to VPN</value>
-    <comment>Button displayed in the Insecure Wi-Fi modal window when connected to insecure Wi-Fi network.</comment>
+  <data name="Notifications_InsecureWiFi_LearnMore" xml:space="preserve">
+    <value>Learn More</value>
+    <comment>Button displayed in the Insecure Wi-Fi notification when connected to insecure Wi-Fi network.</comment>
   </data>
   <data name="Login_Error_msg_Unauthorized" xml:space="preserve">
     <value>Invalid refresh token, please log in again.</value>
@@ -2623,18 +2619,6 @@ Exiting the application will disable the Kill Switch. Do you want to continue?</
     <value>License</value>
     <comment>The title of License window</comment>
   </data>
-  <data name="Dialogs_Update_btn_Update" xml:space="preserve">
-    <value>Update</value>
-    <comment>The label for update button in update modal window</comment>
-  </data>
-  <data name="Dialogs_Update_ttl" xml:space="preserve">
-    <value>Update available</value>
-    <comment>The title of Update modal window</comment>
-  </data>
-  <data name="Dialogs_InsecureWifi_btn_Close" xml:space="preserve">
-    <value>Close</value>
-    <comment>Button displayed in the Insecure Wi-Fi modal window when connected to insecure Wi-Fi network.</comment>
-  </data>
   <data name="Dialogs_Proxy_msg_ProxyDetected" xml:space="preserve">
     <value>ProtonVPN has detected a proxy server configured on your local network. The ProtonVPN app cannot protect the traffic that passes through this proxy. This means your connection will not be completely protected as expected.</value>
     <comment>The text displayed in modal window when the app detects system proxy is turned on</comment>
@@ -2700,5 +2684,13 @@ Internet Service Provider (ISP) problem&lt;/Bold&gt; - Try connecting to Proton 
   <data name="Dialogs_OutdatedApp_lbl_Downloading" xml:space="preserve">
     <value>Downloading</value>
     <comment>The text on download button when download is in process in outdated app modal window</comment>
+  </data>
+  <data name="Notifications_InsecureWiFi_msg_Detected" xml:space="preserve">
+    <value>Insecure Wi-Fi connection detected: {0}</value>
+    <comment>The message displayed in the Insecure Wi-Fi notification when connected to insecure Wi-Fi network. The {0} is a placeholder for Wi-Fi network name.</comment>
+  </data>
+  <data name="Notifications_Update_lnk_WhatsNew" xml:space="preserve">
+    <value>What's new</value>
+    <comment>The text of What's new hyperlink in Update flash notification (opens About window)</comment>
   </data>
 </root>

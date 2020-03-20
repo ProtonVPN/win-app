@@ -18,23 +18,28 @@
  */
 
 using System.Threading.Tasks;
+using Caliburn.Micro;
 using ProtonVPN.Common.Vpn;
-using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Network;
 using ProtonVPN.Core.Vpn;
-using ProtonVPN.Modals;
+using ProtonVPN.FlashNotifications;
 
 namespace ProtonVPN.Notifications
 {
     internal class InsecureNetworkNotification : IVpnStateAware
     {
-        private readonly IModals _modals;
+        private readonly InsecureWifiNotificationViewModel _insecureWifiNotificationViewModel;
+        private readonly IEventAggregator _eventAggregator;
         private VpnStatus _vpnStatus = VpnStatus.Disconnected;
         private string _name = string.Empty;
 
-        public InsecureNetworkNotification(INetworkClient networkClient, IModals modals)
+        public InsecureNetworkNotification(
+            INetworkClient networkClient,
+            InsecureWifiNotificationViewModel insecureWifiNotificationViewModel,
+            IEventAggregator eventAggregator)
         {
-            _modals = modals;
+            _eventAggregator = eventAggregator;
+            _insecureWifiNotificationViewModel = insecureWifiNotificationViewModel;
             networkClient.WifiChangeDetected += OnWifiChangeDetected;
         }
 
@@ -44,7 +49,7 @@ namespace ProtonVPN.Notifications
 
             if (_vpnStatus == VpnStatus.Disconnected && !string.IsNullOrEmpty(_name))
             {
-                ShowModal();
+                ShowNotification();
             }
 
             return Task.CompletedTask;
@@ -60,18 +65,19 @@ namespace ProtonVPN.Notifications
                     return;
                 }
 
-                ShowModal();
+                ShowNotification();
             }
             else
             {
                 _name = string.Empty;
-                _modals.Close<InsecureWifiModalViewModel>();
+                _eventAggregator.PublishOnUIThread(new HideFlashMessage(_insecureWifiNotificationViewModel));
             }
         }
 
-        private void ShowModal()
+        private void ShowNotification()
         {
-            _modals.Show<InsecureWifiModalViewModel>(new { Name = _name });
+            _insecureWifiNotificationViewModel.Name = _name;
+            _eventAggregator.PublishOnUIThread(new ShowFlashMessage(_insecureWifiNotificationViewModel));
         }
     }
 }

@@ -17,20 +17,34 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.About;
+using GalaSoft.MvvmLight.CommandWpf;
+using ProtonVPN.Config.Url;
+using ProtonVPN.Core.MVVM;
+using ProtonVPN.Notifications;
 using ProtonVPN.Resources;
+using System.Windows.Input;
 
-namespace ProtonVPN.Modals
+namespace ProtonVPN.FlashNotifications
 {
-    public class UpdateModalViewModel : BaseModalViewModel
+    public class InsecureWifiNotificationViewModel : ViewModel, INotification
     {
-        public UpdateModalViewModel(UpdateViewModel update)
+        private readonly IActiveUrls _urls;
+
+        public InsecureWifiNotificationViewModel(IActiveUrls urls)
         {
-            Update = update;
+            _urls = urls;
+            LearnMoreCommand = new RelayCommand(LearnMoreAction);
         }
 
-        public UpdateViewModel Update { get; }
+        public ICommand LearnMoreCommand { get; private set; }
 
-        public string SecondaryButtonText => StringResources.Get("Dialogs_btn_Close");
+        public string Name { get; set; }
+
+        public string Message => StringResources.Format("Notifications_InsecureWiFi_msg_Detected", Name);
+
+        private void LearnMoreAction()
+        {
+            _urls.PublicWifiSafetyUrl.Open();
+        }
     }
 }

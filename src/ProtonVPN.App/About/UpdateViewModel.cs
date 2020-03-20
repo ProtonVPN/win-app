@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Dynamic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -36,17 +37,23 @@ namespace ProtonVPN.About
     {
         private readonly IDialogs _dialogs;
         private readonly IOsProcesses _osProcesses;
+        private readonly IModals _modals;
 
         private VpnStatus _vpnStatus;
         private UpdateStateChangedEventArgs _updateStateChangedEventArgs;
-        public UpdateViewModel(IDialogs dialogs, IOsProcesses osProcesses)
+        public UpdateViewModel(IDialogs dialogs, IOsProcesses osProcesses, IModals modals)
         {
             _dialogs = dialogs;
             _osProcesses = osProcesses;
+            _modals = modals;
+
+            OpenAboutCommand = new RelayCommand(OpenAbout);
         }
 
         private RelayCommand _updateCommand;
         public ICommand UpdateCommand => _updateCommand ??= new RelayCommand(Update, CanUpdate);
+
+        public ICommand OpenAboutCommand { get; }
 
         private UpdateStatus _status;
         public UpdateStatus Status
@@ -145,6 +152,13 @@ namespace ProtonVPN.About
             }
 
             return true;
+        }
+
+        private void OpenAbout()
+        {
+            dynamic options = new ExpandoObject();
+            options.SkipUpdateCheck = true;
+            _modals.Show<AboutModalViewModel>(options);
         }
     }
 }
