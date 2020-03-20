@@ -28,6 +28,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance sidebar:SidebarViewModel}">
 
+    <UserControl.Resources>
+        <Style x:Key="SidebarGrid" TargetType="Grid">
+            <Setter Property="Margin" Value="0,-49,0,0"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding FlashNotification.Notifications.Count, Converter={StaticResource ZeroToBoolConverter}}" Value="False">
+                    <Setter Property="Margin" Value="0,-49,0,45"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+
     <Grid Background="#202128" Panel.ZIndex="2" HorizontalAlignment="Left" Width="336">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -47,7 +58,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <sidebar:ConnectionStatus DataContext="{Binding ConnectionStatus}"/>
         </StackPanel>
 
-        <Grid Grid.Row="1" Margin="0,-49,0,0">
+        <Grid Grid.Row="1" Style="{StaticResource SidebarGrid}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>

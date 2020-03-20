@@ -3247,33 +3247,6 @@ namespace ProtonVPN.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Close.
-        /// </summary>
-        public static string Dialogs_InsecureWifi_btn_Close {
-            get {
-                return ResourceManager.GetString("Dialogs_InsecureWifi_btn_Close", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Connect to VPN.
-        /// </summary>
-        public static string Dialogs_InsecureWifi_btn_Connect {
-            get {
-                return ResourceManager.GetString("Dialogs_InsecureWifi_btn_Connect", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Insecure Wi-Fi connection detected: {0}&lt;LineBreak/&gt;&lt;LineBreak/&gt;We detected the WiFi network you connected to is not protected by a password. Public WiFi can be monitored by hackers or the network administrator, potentially exposing your data and browsing activity. Do you want to connect to ProtonVPN?.
-        /// </summary>
-        public static string Dialogs_InsecureWiFi_msg_Detected {
-            get {
-                return ResourceManager.GetString("Dialogs_InsecureWiFi_msg_Detected", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Quit.
         /// </summary>
         public static string Dialogs_OutdatedApp_btn_Quit {
@@ -3466,33 +3439,6 @@ namespace ProtonVPN.Properties {
         public static string Dialogs_ttl_Warning {
             get {
                 return ResourceManager.GetString("Dialogs_ttl_Warning", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Update.
-        /// </summary>
-        public static string Dialogs_Update_btn_Update {
-            get {
-                return ResourceManager.GetString("Dialogs_Update_btn_Update", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to A new app version is now available!.
-        /// </summary>
-        public static string Dialogs_Update_msg_NewAppVersion {
-            get {
-                return ResourceManager.GetString("Dialogs_Update_msg_NewAppVersion", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Update available.
-        /// </summary>
-        public static string Dialogs_Update_ttl {
-            get {
-                return ResourceManager.GetString("Dialogs_Update_ttl", resourceCulture);
             }
         }
         
@@ -3782,6 +3728,42 @@ namespace ProtonVPN.Properties {
         public static string NetShieldModal_msg {
             get {
                 return ResourceManager.GetString("NetShieldModal_msg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Learn More.
+        /// </summary>
+        public static string Notifications_InsecureWiFi_LearnMore {
+            get {
+                return ResourceManager.GetString("Notifications_InsecureWiFi_LearnMore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insecure Wi-Fi connection detected: {0}.
+        /// </summary>
+        public static string Notifications_InsecureWiFi_msg_Detected {
+            get {
+                return ResourceManager.GetString("Notifications_InsecureWiFi_msg_Detected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What&apos;s new.
+        /// </summary>
+        public static string Notifications_Update_lnk_WhatsNew {
+            get {
+                return ResourceManager.GetString("Notifications_Update_lnk_WhatsNew", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A new app version is now available!.
+        /// </summary>
+        public static string Notifications_Update_msg_NewAppVersion {
+            get {
+                return ResourceManager.GetString("Notifications_Update_msg_NewAppVersion", resourceCulture);
             }
         }
         

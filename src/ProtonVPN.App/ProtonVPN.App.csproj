@@ -184,6 +184,21 @@
     </Compile>
     <Compile Include="About\LicenseModalViewModel.cs" />
     <Compile Include="About\ReleaseEqualityComparer.cs" />
+    <Compile Include="Core\MVVM\Converters\ZeroToBoolConverter.cs" />
+    <Compile Include="FlashNotifications\FlashNotifications.xaml.cs">
+      <DependentUpon>FlashNotifications.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FlashNotifications\FlashNotificationViewModel.cs" />
+    <Compile Include="FlashNotifications\HideFlashMessage.cs" />
+    <Compile Include="FlashNotifications\InsecureWifiNotification.xaml.cs">
+      <DependentUpon>InsecureWifiNotification.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FlashNotifications\InsecureWifiNotificationViewModel.cs" />
+    <Compile Include="FlashNotifications\ShowFlashMessage.cs" />
+    <Compile Include="FlashNotifications\UpdateFlashNotification.xaml.cs">
+      <DependentUpon>UpdateFlashNotification.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FlashNotifications\UpdateFlashNotificationViewModel.cs" />
     <Compile Include="Modals\OutdatedAppModalView.xaml.cs">
       <DependentUpon>OutdatedAppModalView.xaml</DependentUpon>
     </Compile>
@@ -192,9 +207,7 @@
       <DependentUpon>TroubleshootModalView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modals\TroubleshootModalViewModel.cs" />
-    <Compile Include="Modals\UpdateModalView.xaml.cs">
-      <DependentUpon>UpdateModalView.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Notifications\INotification.cs" />
     <Compile Include="Notifications\InsecureWifiNotification.cs" />
     <Compile Include="Notifications\OutdatedAppNotification.cs" />
     <Compile Include="Notifications\SystemProxyNotification.cs" />
@@ -315,10 +328,6 @@
     <Compile Include="Core\Startup\SyncedAutoStartup.cs" />
     <Compile Include="Core\Wpf\Behavior\TextBlockAutoToolTipBehavior.cs" />
     <Compile Include="Core\Wpf\DataBindingExtensions.cs" />
-    <Compile Include="Modals\InsecureWifiModalView.xaml.cs">
-      <DependentUpon>InsecureWifiModalView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Modals\InsecureWifiModalViewModel.cs" />
     <Compile Include="Map\CountryLocation.cs" />
     <Compile Include="Map\MapOffset.cs" />
     <Compile Include="Modals\Dialogs\Dialogs.cs" />
@@ -477,7 +486,6 @@
     <Compile Include="Core\Wpf\ChangeAwareContentControl.cs" />
     <Compile Include="Core\Wpf\ControlExtensions.cs" />
     <Compile Include="Core\Wpf\Input\PasswordBoxAssistant.cs" />
-    <Compile Include="Modals\UpdateModalViewModel.cs" />
     <Compile Include="P2PDetection\P2PDetector.cs" />
     <Compile Include="Core\Settings\Migrations\v1_7_2\AppSettingsMigration.cs" />
     <Compile Include="Account\AccountModalView.xaml.cs">
@@ -748,19 +756,23 @@
     <Compile Include="ViewModels\AppLoadingViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Map\ViewModels\MapViewModel.cs" />
+    <Page Include="FlashNotifications\FlashNotifications.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FlashNotifications\InsecureWifiNotification.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FlashNotifications\UpdateFlashNotification.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Modals\OutdatedAppModalView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Modals\TroubleshootModalView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Modals\UpdateModalView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Modals\InsecureWifiModalView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

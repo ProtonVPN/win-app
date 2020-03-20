@@ -20,7 +20,6 @@
 using System;
 using System.ComponentModel;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 using ProtonVPN.Common.Configuration;
@@ -64,8 +63,6 @@ namespace ProtonVPN.Core.Update
         public event EventHandler<UpdateStateChangedEventArgs> UpdateStateChanged;
 
         public void StartCheckingForUpdate() => StartCheckingForUpdate(true);
-
-        public Task Update(bool auto) => _serviceClient.StartUpdating(auto);
 
         public void OnAppSettingsChanged(PropertyChangedEventArgs e)
         {

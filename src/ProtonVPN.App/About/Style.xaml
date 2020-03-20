@@ -91,4 +91,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </DataTrigger>
         </Style.Triggers>
     </Style>
+
+    <Style x:Key="WhatsNewButton" TargetType="Button" BasedOn="{StaticResource BaseUpdateButton}">
+        <Setter Property="Command" Value="{Binding OpenAboutCommand}"/>
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <TextBlock TextDecorations="Underline" Text="{resources:Loc Notifications_Update_lnk_WhatsNew}"/>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

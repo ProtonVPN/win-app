@@ -27,6 +27,7 @@ using ProtonVPN.Trial;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using ProtonVPN.Core.User;
+using ProtonVPN.FlashNotifications;
 
 namespace ProtonVPN.Sidebar
 {
@@ -40,6 +41,7 @@ namespace ProtonVPN.Sidebar
         public CountriesViewModel Countries { get; }
         public SidebarProfilesViewModel Profiles { get; }
         public ConnectionStatusViewModel ConnectionStatus { get; }
+        public FlashNotificationViewModel FlashNotification { get; }
         private readonly IAppSettings _appSettings;
 
         private const int CountriesTab = 0;
@@ -56,7 +58,8 @@ namespace ProtonVPN.Sidebar
             SidebarProfilesViewModel sidebarProfilesViewModel,
             TrialViewModel trialViewModel,
             ConnectionStatusViewModel connectionStatusViewModel,
-            CountriesViewModel countriesViewModel) : base(appSettings, sidebarManager)
+            CountriesViewModel countriesViewModel,
+            FlashNotificationViewModel flashNotificationsViewModel) : base(appSettings, sidebarManager)
         {
             _appSettings = appSettings;
             CountriesTabCommand = new RelayCommand(OpenCountriesTabAction);
@@ -67,6 +70,7 @@ namespace ProtonVPN.Sidebar
             Countries = countriesViewModel;
             Profiles = sidebarProfilesViewModel;
             ConnectionStatus = connectionStatusViewModel;
+            FlashNotification = flashNotificationsViewModel;
         }
 
         public ICommand CountriesTabCommand { get; }

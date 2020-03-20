@@ -50,6 +50,7 @@ using ProtonVPN.Vpn;
 using ProtonVPN.Vpn.Connectors;
 using System;
 using System.Windows;
+using ProtonVPN.FlashNotifications;
 
 namespace ProtonVPN.Core.Ioc
 {
@@ -194,8 +195,9 @@ namespace ProtonVPN.Core.Ioc
             builder.Register(c => new UpdateNotification(
                     c.Resolve<Common.Configuration.Config>().UpdateRemindInterval,
                     c.Resolve<ISystemNotification>(),
-                    c.Resolve<IModals>(),
-                    c.Resolve<UserAuth>()))
+                    c.Resolve<UserAuth>(),
+                    c.Resolve<IEventAggregator>(),
+                    c.Resolve<UpdateFlashNotificationViewModel>()))
                 .AsImplementedInterfaces()
                 .SingleInstance();
             builder.RegisterType<SystemProxyNotification>().AsImplementedInterfaces().SingleInstance();
