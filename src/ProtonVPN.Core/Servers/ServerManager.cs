@@ -56,11 +56,13 @@ namespace ProtonVPN.Core.Servers
 
         public IReadOnlyCollection<Server> GetServers(ISpecification<LogicalServerContract> spec)
         {
+            var userTier = _userStorage.User().MaxTier;
+
             return _servers
                 .Where(spec.IsSatisfiedBy)
                 .Select(Map)
                 .OrderBy(s => s.Name.ContainsIgnoringCase("free") ? 0 : 1)
-                .ThenBy(s => _userStorage.User().MaxTier < s.Tier)
+                .ThenBy(s => userTier < s.Tier)
                 .ThenBy(s => s.Name, _serverNameComparer)
                 .ToList();
         }
