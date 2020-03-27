@@ -20,19 +20,18 @@
 using System;
 using System.Text;
 using Albireo.Base32;
-using ProtonVPN.Common.Configuration;
 
 namespace ProtonVPN.Core.OS.Net.DoH
 {
     public class MainHostname
     {
-        private readonly Config _config;
+        private readonly string _apiUrl;
 
         private string _hostFormat = "d{0}.protonpro.xyz";
 
-        public MainHostname(Config config)
+        public MainHostname(string apiUrl)
         {
-            _config = config;
+            _apiUrl = apiUrl;
         }
 
         public string Value()
@@ -42,7 +41,7 @@ namespace ProtonVPN.Core.OS.Net.DoH
 
         private string GetBase32Host()
         {
-            var apiUri = new Uri(_config.Urls.ApiUrl);
+            var apiUri = new Uri(_apiUrl);
             return Base32.Encode(Encoding.UTF8.GetBytes(apiUri.Host)).TrimEnd('=');
         }
     }
