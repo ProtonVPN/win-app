@@ -19,7 +19,6 @@
 
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ProtonVPN.Common.Configuration;
 using ProtonVPN.Core.OS.Net.DoH;
 
 namespace ProtonVPN.Core.Test.OS.Net.DoH
@@ -30,11 +29,10 @@ namespace ProtonVPN.Core.Test.OS.Net.DoH
         [TestMethod]
         public void Value_ShouldReturnCorrectHost()
         {
-            var config = new ConfigFactory().Config();
-
-            var host = new MainHostname(config);
-
-            host.Value().Should().Be("dMFYGSLTQOJXXI33OOZYG4LTDNA.protonpro.xyz");
+            new MainHostname("https://api.protonvpn.ch")
+                .Value()
+                .Should()
+                .Be("dMFYGSLTQOJXXI33OOZYG4LTDNA.protonpro.xyz");
         }
     }
 }
