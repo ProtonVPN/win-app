@@ -17,14 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Core.Api;
-using ProtonVPN.Core.Api.Contracts;
-using ProtonVPN.Core.Servers;
-using ProtonVPN.Core.Servers.Specs;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using ProtonVPN.Core.Api;
+using ProtonVPN.Core.Api.Contracts;
+using ProtonVPN.Core.Servers;
 
 namespace ProtonVPN.Account
 {
@@ -132,18 +131,8 @@ namespace ProtonVPN.Account
 
         private int GetFreeCountriesCount()
         {
-            var servers = _serverManager.GetServers(new FreeServer());
-            var uniqueCountries = new List<string>();
-
-            foreach (var server in servers)
-            {
-                if (uniqueCountries.Contains(server.EntryCountry))
-                    continue;
-
-                uniqueCountries.Add(server.EntryCountry);
-            }
-
-            return uniqueCountries.Count;
+            //FIXME: this must be replaced by a proper value from api
+            return 3;
         }
 
         private float GetPlanCompletness(Pricing pricing)
