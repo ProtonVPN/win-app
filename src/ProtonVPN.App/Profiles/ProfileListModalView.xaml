@@ -90,6 +90,19 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </DataTrigger>
                 </Style.Triggers>
             </Style>
+            <Style x:Key="TroubleshootButton" TargetType="Button" BasedOn="{StaticResource ClearStyleButton}">
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
+                <Setter Property="Margin" Value="10,0,0,0"/>
+                <Setter Property="Visibility" Value="Collapsed"/>
+                <Setter Property="Command" Value="{Binding TroubleshootCommand}"/>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding ProfileSync.SyncStatus}" Value="{x:Static coreProfiles:ProfileSyncStatus.Failed}">
+                        <Setter Property="Visibility" Value="Visible"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
         </ResourceDictionary>
     </modals:BaseModalWindow.Resources>
 
@@ -238,6 +251,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                FontSize="16" Foreground="#777783"
                                Text="{Binding ProfileSync.SyncStatusMessage}"
                                TextTrimming="CharacterEllipsis"/>
+                    <Button Style="{StaticResource TroubleshootButton}">
+                        <Underline><TextBlock Text="{resources:Loc Profiles_btn_Troubleshoot}"/></Underline>
+                    </Button>
                 </DockPanel>
                 <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
                     <Button Style="{StaticResource SecondaryModalButton}"

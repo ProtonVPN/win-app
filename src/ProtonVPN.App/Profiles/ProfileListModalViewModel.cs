@@ -63,6 +63,7 @@ namespace ProtonVPN.Profiles
             RemoveCommand = new RelayCommand<ProfileViewModel>(RemoveAction);
             EditCommand = new RelayCommand<ProfileViewModel>(EditProfileAction);
             CreateProfileCommand = new RelayCommand(CreateProfileAction);
+            TroubleshootCommand = new RelayCommand(TroubleshootAction);
         }
 
         private IReadOnlyList<ProfileViewModel> _profiles;
@@ -76,6 +77,7 @@ namespace ProtonVPN.Profiles
         public ICommand EditCommand { get; set; }
         public ICommand ConnectCommand { get; set; }
         public ICommand CreateProfileCommand { get; set; }
+        public ICommand TroubleshootCommand { get; set; }
 
         public ProfileSyncViewModel ProfileSync { get; }
 
@@ -156,6 +158,11 @@ namespace ProtonVPN.Profiles
         private void CreateProfileAction()
         {
             _modals.Show<ProfileFormModalViewModel>();
+        }
+
+        private void TroubleshootAction()
+        {
+            _modals.Show<TroubleshootModalViewModel>();
         }
     }
 }

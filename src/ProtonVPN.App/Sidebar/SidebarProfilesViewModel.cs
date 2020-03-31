@@ -44,14 +44,12 @@ namespace ProtonVPN.Sidebar
             ProfileManager profileManager,
             ProfileViewModelFactory profileHelper,
             VpnManager vpnManager,
-            IModals modals,
-            ProfileSyncViewModel profileSync)
+            IModals modals)
         {
             _modals = modals;
             _profileManager = profileManager;
             _profileHelper = profileHelper;
             _vpnManager = vpnManager;
-            ProfileSync = profileSync;
 
             CreateProfileCommand = new RelayCommand(CreateProfileAction);
             ManageProfilesCommand = new RelayCommand(ManageProfilesAction);
@@ -61,8 +59,6 @@ namespace ProtonVPN.Sidebar
         public ICommand ConnectCommand { get; set; }
         public ICommand CreateProfileCommand { get; set; }
         public ICommand ManageProfilesCommand { get; set; }
-
-        public ProfileSyncViewModel ProfileSync { get; }
 
         private IReadOnlyList<ProfileViewModel> _profiles;
         public IReadOnlyList<ProfileViewModel> Profiles

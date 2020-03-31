@@ -77,7 +77,7 @@ namespace ProtonVPN.Profiles
                     SyncStatusMessage = StringResources.Get("ProfileSyncStatus_val_InProgress_Info");
                     break;
                 case ProfileSyncStatus.Failed:
-                    SyncStatusMessage = $"{StringResources.Get("ProfileSyncStatus_val_Failed_Info")}\n{errorMessage}";
+                    SyncStatusMessage = StringResources.Get("ProfileSyncStatus_val_Failed_Info");
                     break;
                 case ProfileSyncStatus.Overridden:
                     throw new NotSupportedException();
