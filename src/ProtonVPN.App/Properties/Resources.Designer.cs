@@ -565,6 +565,15 @@ namespace ProtonVPN.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Troubleshoot.
+        /// </summary>
+        public static string BugReport_btn_Troubleshoot {
+            get {
+                return ResourceManager.GetString("BugReport_btn_Troubleshoot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Account:.
         /// </summary>
         public static string BugReport_lbl_Account {
@@ -4207,6 +4216,15 @@ namespace ProtonVPN.Properties {
         public static string Profiles_btn_Sync {
             get {
                 return ResourceManager.GetString("Profiles_btn_Sync", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Troubleshoot.
+        /// </summary>
+        public static string Profiles_btn_Troubleshoot {
+            get {
+                return ResourceManager.GetString("Profiles_btn_Troubleshoot", resourceCulture);
             }
         }
         

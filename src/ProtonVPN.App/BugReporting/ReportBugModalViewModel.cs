@@ -135,7 +135,7 @@ namespace ProtonVPN.BugReporting
 
         public void OnAttachmentErrorOccured(AttachmentErrorEventArgs error)
         {
-            IReadOnlyList<Attachment> attachments = error.Attachments;
+            var attachments = error.Attachments;
             if (attachments.TooLarge().Any())
             {
                 var maxSize = ByteSize.FromBytes(_appConfig.ReportBugMaxFileSize);
@@ -187,9 +187,8 @@ namespace ProtonVPN.BugReporting
             return string.Join(", \n", items.Select(i => i.Name));
         }
 
-        private void ShowFailureView(string errorMessage)
+        private void ShowFailureView()
         {
-            _failureViewModel.ErrorMessage = errorMessage;
             OverlayViewModel = _failureViewModel;
         }
 
@@ -211,7 +210,7 @@ namespace ProtonVPN.BugReporting
             }
             else
             {
-                ShowFailureView(result.Error);
+                ShowFailureView();
             }
         }
 
