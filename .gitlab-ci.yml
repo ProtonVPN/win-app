@@ -6,6 +6,7 @@ stages:
   - test
   - build-installer
   - mirror
+  - bot # comes from translations/generator job
 
 build-release:
   stage: build
@@ -109,3 +110,13 @@ mirror:
     - git remote add public $PUBLIC_REPO_URL
     - git push public master
     - git push public "$(git describe --abbrev=0)"
+
+include:
+  - project: 'translations/generator'
+    ref: master
+    file: '/jobs/sync-crowdin.gitlab-ci.yml'
+
+i18n-sync-crowdin:
+  variables:
+      I18N_SYNC_CROWDIN_PROJECT: 'windows-vpn'
+  extends: .i18n-sync-crowdin-shared-windows
