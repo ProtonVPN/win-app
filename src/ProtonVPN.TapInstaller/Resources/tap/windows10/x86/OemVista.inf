@@ -54,8 +54,8 @@
    Class = Net
 
 ; This version number should match the version
-; number given in SOURCES.
-   DriverVer=05/30/2018,9.00.00.23
+; number given in ..\version.m4.
+   DriverVer = 09/27/2019,9.24.2.601
 
 [Strings]
    DeviceDescription = "TAP-ProtonVPN Windows Adapter V9"
@@ -65,13 +65,9 @@
 ;                      Manufacturer + Product Section (Done)
 ;----------------------------------------------------------------
 [Manufacturer]
-   %Provider% = tapprotonvpn, NTx86, NTamd64
+   %Provider% = tapprotonvpn, NTx86
 
 [tapprotonvpn.NTx86]
-   %DeviceDescription% = tapprotonvpn.ndi, root\tapprotonvpn ; Root enumerated
-   %DeviceDescription% = tapprotonvpn.ndi, tapprotonvpn      ; Legacy
-
-[tapprotonvpn.NTamd64]
    %DeviceDescription% = tapprotonvpn.ndi, root\tapprotonvpn ; Root enumerated
    %DeviceDescription% = tapprotonvpn.ndi, tapprotonvpn      ; Legacy
 
@@ -92,10 +88,10 @@
    CopyFiles       = tapprotonvpn.driver, tapprotonvpn.files
    AddReg          = tapprotonvpn.reg
    AddReg          = tapprotonvpn.params.reg
-   Characteristics = 0x81
-   *IfType            = 0x6 ; IF_TYPE_ETHERNET_CSMACD
+   Characteristics = 0x1
+   *IfType            = 53  ; IF_TYPE_PROP_VIRTUAL
    *MediaType         = 0x0 ; NdisMedium802_3
-   *PhysicalMediaType = 14  ; NdisPhysicalMedium802_3
+   *PhysicalMediaType = 0   ; NdisPhysicalMediumUnspecified
 
 [tapprotonvpn.ndi.Services]
    AddService = tapprotonvpn,        2, tapprotonvpn.service
