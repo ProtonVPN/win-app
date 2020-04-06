@@ -53,6 +53,7 @@
     <Compile Include="Common\ISingleVpnConnection.cs" />
     <Compile Include="Common\VpnException.cs" />
     <Compile Include="Common\VpnEndpoint.cs" />
+    <Compile Include="Common\VpnStateExtensions.cs" />
     <Compile Include="Config\Module.cs" />
     <Compile Include="Connection\BestPortWrapper.cs" />
     <Compile Include="Connection\IVpnEndpointCandidates.cs" />

@@ -74,7 +74,7 @@ namespace ProtonVPN.Vpn.Connection
 
             _connectRequested = true;
             _disconnectRequested = false;
-            _disconnectError = VpnError.None;
+            _disconnectError = VpnError.Unknown;
 
             _logger.Info("HandlingRequestsWrapper: Connect requested, queuing Connect");
             Queued(Connect);
@@ -116,7 +116,7 @@ namespace ProtonVPN.Vpn.Connection
             {
                 if (state.Status == VpnStatus.Disconnecting || state.Status == VpnStatus.Disconnected)
                 {
-                    InvokeStateChanged(new VpnState(state.Status, _disconnectError));
+                    InvokeStateChanged(state.WithError(_disconnectError));
                     return;
                 }
 
@@ -129,12 +129,30 @@ namespace ProtonVPN.Vpn.Connection
             {
                 // Force disconnect if disconnected while connecting
                 _disconnectRequested = true;
-                _disconnectError = state.Error;
+                _disconnectError = state.Error == VpnError.None ? VpnError.Unknown : state.Error;
                 _logger.Info("HandlingRequestsWrapper: Disconnecting unexpectedly, queuing Disconnect");
                 Queued(Disconnect);
             }
 
-            InvokeStateChanged(WithRemoteIp(state, _endpoint.Server.Ip));
+            if (state.Status == VpnStatus.Disconnecting || state.Status == VpnStatus.Disconnected)
+            {
+                var error = state.Error == VpnError.None ? VpnError.Unknown : state.Error;
+
+                if (_connecting)
+                {
+                    // Force disconnect if disconnected while connecting
+                    _disconnectRequested = true;
+                    _disconnectError = error;
+                    _logger.Info("HandlingRequestsWrapper: Disconnecting unexpectedly, queuing Disconnect");
+                    Queued(Disconnect);
+                    return;
+                }
+
+                InvokeStateChanged(state.WithError(error));
+                return;
+            }
+
+            InvokeStateChanged(WithFallbackRemoteIp(state, _endpoint.Server.Ip));
         }
 
         private void Connect()
@@ -207,7 +225,7 @@ namespace ProtonVPN.Vpn.Connection
             StateChanged?.Invoke(this, new EventArgs<VpnState>(state));
         }
 
-        private VpnState WithRemoteIp(VpnState state, string remoteIp)
+        private VpnState WithFallbackRemoteIp(VpnState state, string remoteIp)
         {
             if (state.Status == VpnStatus.Disconnecting || 
                 state.Status == VpnStatus.Disconnected ||
@@ -216,12 +234,7 @@ namespace ProtonVPN.Vpn.Connection
                 return state;
             }
 
-            return new VpnState(
-                state.Status,
-                state.Error,
-                state.LocalIp, 
-                remoteIp,
-                state.Protocol);
+            return state.WithRemoteIp(remoteIp);
         }
 
         private void Queued(Action action)
