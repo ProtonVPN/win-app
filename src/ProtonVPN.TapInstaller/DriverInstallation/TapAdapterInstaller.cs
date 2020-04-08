@@ -64,13 +64,26 @@ namespace TapInstaller.DriverInstallation
 
         private SetupResult InstalOrUpdateTapAdapter()
         {
-            var result = _tapInstallRunner.IsInstalled() ? _tapInstallRunner.Update() : _tapInstallRunner.Install();
+            if (_tapInstallRunner.IsInstalled())
+            {
+                return _tapInstallRunner.Remove().Success ? InstallInner() : SetupResult.Failure;
+            }
 
+            return InstallInner();
+        }
+
+        private SetupResult InstallInner()
+        {
+            var result = _tapInstallRunner.Install();
             if (result.Success)
+            {
                 return SetupResult.Success;
+            }
 
             if (result.RestartRequired)
+            {
                 return SetupResult.RestartRequired;
+            }
 
             return SetupResult.Failure;
         }
