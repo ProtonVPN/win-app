@@ -246,6 +246,10 @@ namespace ProtonVPN.Map.ViewModels
 
                 NotifyOfPropertyChange(nameof(SecureCore));
             }
+            else if (e.PropertyName == nameof(IAppSettings.Language))
+            {
+                GeneratePins();
+            }
         }
 
         public void OnPinsChanged()
