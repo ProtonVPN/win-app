@@ -195,11 +195,15 @@ namespace ProtonVPN.Sidebar
 
         public void OnAppSettingsChanged(PropertyChangedEventArgs e)
         {
-            if (!e.PropertyName.Equals(nameof(IAppSettings.SecureCore)))
-                return;
-
-            SetSecureCore(_appSettings.SecureCore);
-            CreateList();
+            if (e.PropertyName.Equals(nameof(IAppSettings.SecureCore)))
+            {
+                SetSecureCore(_appSettings.SecureCore);
+                CreateList();
+            }
+            else if (e.PropertyName.Equals(nameof(IAppSettings.Language)))
+            {
+                CreateList();
+            }
         }
 
         public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
