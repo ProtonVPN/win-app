@@ -102,7 +102,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
     <StackPanel Background="#1b1b20" Width="540">
         <TabControl Margin="0,20,0,0" SelectedIndex="{Binding SelectedTabIndex}">
-            <TabItem Header="{resources:Loc Settings_General_ttl}">
+            <TabItem>
+                <TabItem.Header>
+                    <TextBlock Text="{resources:Loc Settings_General_ttl}"
+                               TextTrimming="CharacterEllipsis"/>
+                </TabItem.Header>
                 <StackPanel Margin="25,20,25,40">
                     <Border BorderBrush="#464652" Height="50" BorderThickness="0,0,0,0">
                         <DockPanel>
@@ -175,7 +179,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </Border>
                 </StackPanel>
             </TabItem>
-            <TabItem Header="{resources:Loc Settings_Connection_ttl}">
+            <TabItem>
+                <TabItem.Header>
+                    <TextBlock Text="{resources:Loc Settings_Connection_ttl}"
+                               TextTrimming="CharacterEllipsis"/>
+                </TabItem.Header>
                 <StackPanel Margin="25,20,25,40">
                     <DockPanel Height="50">
                         <StackPanel Orientation="Horizontal">
@@ -328,7 +336,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </StackPanel>
                 </StackPanel>
             </TabItem>
-            <TabItem Header="{resources:Loc Settings_Advanced_ttl}">
+            <TabItem>
+                <TabItem.Header>
+                    <TextBlock Text="{resources:Loc Settings_Advanced_ttl}"
+                               TextTrimming="CharacterEllipsis"/>
+                </TabItem.Header>
                 <DockPanel Margin="25,20,25,20" LastChildFill="True">
                     <Border BorderBrush="#464652" Height="50" BorderThickness="0,0,0,1" DockPanel.Dock="Top">
                         <DockPanel>

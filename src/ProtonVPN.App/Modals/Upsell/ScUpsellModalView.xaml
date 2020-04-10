@@ -40,6 +40,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </TextBlock>
             <TextBlock TextWrapping="Wrap" FontSize="16" Foreground="White" Padding="15,8,10,0"
                        behavior:TextStyleBehavior.FormattedText="{resources:Loc Upsell_UpgradeRequired_msg_SecureCore_2}">
+                <TextBlock.Resources>
+                    <Style TargetType="Hyperlink">
+                        <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
+                        <Setter Property="FontSize" Value="16"/>
+                    </Style>
+                </TextBlock.Resources>
             </TextBlock>
             <TextBlock FontSize="16" Foreground="White" TextWrapping="Wrap" Padding="15,8,10,40" 
                        Text="{resources:Loc Upsell_UpgradeRequired_msg_SecureCore_Upgrade}"/>

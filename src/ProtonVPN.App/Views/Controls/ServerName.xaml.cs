@@ -30,10 +30,34 @@ namespace ProtonVPN.Views.Controls
             typeof(ServerName),
             new PropertyMetadata(null));
 
+        public static readonly DependencyProperty WrapElementsProperty = DependencyProperty.Register(
+            "WrapElements",
+            typeof(bool),
+            typeof(ServerName),
+            new PropertyMetadata(false));
+
+        public static readonly DependencyProperty AlignCenterProperty = DependencyProperty.Register(
+            "AlignCenter",
+            typeof(bool),
+            typeof(ServerName),
+            new PropertyMetadata(false));
+
         public IName ConnectionName
         {
             get => (IName)GetValue(ConnectionNameProperty);
             set => SetValue(ConnectionNameProperty, value);
+        }
+
+        public bool WrapElements
+        {
+            get => (bool)GetValue(WrapElementsProperty);
+            set => SetValue(WrapElementsProperty, value);
+        }
+
+        public bool AlignCenter
+        {
+            get => (bool)GetValue(AlignCenterProperty);
+            set => SetValue(AlignCenterProperty, value);
         }
 
         public ServerName()

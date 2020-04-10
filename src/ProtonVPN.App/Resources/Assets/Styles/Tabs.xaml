@@ -66,12 +66,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                          Panel.ZIndex="1"
                                          KeyboardNavigation.TabIndex="1"
                                          Background="Transparent"/>
-                            <!--<TabPanel x:Name="HeaderPanel"
-                                Margin="0,0,-1,0"
-                                IsItemsHost="True"
-                                Panel.ZIndex="1"
-                                KeyboardNavigation.TabIndex="1"
-                                Background="Transparent"/>-->
                         </Border>
                         <Border
                             Grid.Row="1"

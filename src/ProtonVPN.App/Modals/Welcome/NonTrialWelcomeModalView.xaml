@@ -113,7 +113,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <StackPanel Margin="140,40" VerticalAlignment="Center">
             <TextBlock Text="{resources:Loc Welcome_lbl_Welcome}"
                        FontWeight="Medium"
+                       TextWrapping="Wrap"
                        Padding="15,0,15,25"
+                       TextAlignment="Center"
                        HorizontalAlignment="Center"
                        FontSize="43"
                        Foreground="White"/>

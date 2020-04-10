@@ -30,8 +30,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         Style="{StaticResource BaseModalStyle}"
                         SizeToContent="Height"
                         Title="{resources:Loc Trial_Expired_ttl}"
-                        mc:Ignorable="d" 
-                        Height="Auto" 
+                        mc:Ignorable="d"
+                        Height="Auto"
                         Width="800"
                         d:DataContext="{d:DesignInstance trial:TrialEndModalViewModel}">
     <Grid>
@@ -43,6 +43,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        Padding="15,0,15,25"
                        HorizontalAlignment="Center"
                        FontSize="30"
+                       TextWrapping="Wrap"
                        Foreground="White"
                        behavior:TextStyleBehavior.FormattedText="{resources:Loc Trial_Expired_lbl_Header}">
             </TextBlock>

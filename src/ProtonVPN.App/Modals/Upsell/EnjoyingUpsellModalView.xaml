@@ -40,7 +40,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <icons:Mountains HorizontalAlignment="Right"
                          VerticalAlignment="Bottom"
                          Width="600"/>
-        <StackPanel Margin="80">
+        <StackPanel Margin="80,50">
             <TextBlock Foreground="White"
                        FontWeight="Medium"
                        FontSize="48"

@@ -250,6 +250,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <TextBlock Margin="10,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Stretch" MaxHeight="70"
                                FontSize="16" Foreground="#777783"
                                Text="{Binding ProfileSync.SyncStatusMessage}"
+                               ToolTip="{Binding ProfileSync.SyncStatusMessage}"
                                TextTrimming="CharacterEllipsis"/>
                     <Button Style="{StaticResource TroubleshootButton}">
                         <Underline><TextBlock Text="{resources:Loc Profiles_btn_Troubleshoot}"/></Underline>

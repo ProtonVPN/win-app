@@ -40,7 +40,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="Padding" Value="0"/>
     </Style>
 
-    <Style x:Key="ColumnValue" TargetType="Label">
+    <Style x:Key="ColumnValue" TargetType="TextBlock">
         <Setter Property="Padding" Value="0,2"/>
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="FontSize" Value="16"/>

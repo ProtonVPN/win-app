@@ -48,19 +48,21 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         <StackPanel Grid.Row="0" Margin="0,0,0,10">
             <RadioButton GroupName="Type"
-                         Content="{resources:Loc Settings_Advanced_SplitTunnel_lbl_Exclude}"
                          IsChecked="{Binding SplitTunnelMode, Converter={StaticResource ComparisonConverter}, ConverterParameter={x:Static common:SplitTunnelMode.Block}}"
                          BorderBrush="{StaticResource PrimaryColor}"
                          BorderThickness="2"
                          Padding="10,0,0,0"
                          Margin="0,5"
-                         Foreground="White"/>
+                         Foreground="White">
+                <TextBlock Text="{resources:Loc Settings_Advanced_SplitTunnel_lbl_Exclude}" TextWrapping="Wrap"/>
+            </RadioButton>
             <RadioButton GroupName="Type"
-                         Content="{resources:Loc Settings_Advanced_SplitTunnel_lbl_Include}"
                          IsChecked="{Binding SplitTunnelMode, Converter={StaticResource ComparisonConverter}, ConverterParameter={x:Static common:SplitTunnelMode.Permit}}"
                          Padding="10,0,0,0"
                          Margin="0,5"
-                         Foreground="White"/>
+                         Foreground="White">
+                <TextBlock Text="{resources:Loc Settings_Advanced_SplitTunnel_lbl_Include}" TextWrapping="Wrap"/>
+            </RadioButton>
         </StackPanel>
 
         <Grid Grid.Row="1">
