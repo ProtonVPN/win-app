@@ -27,20 +27,23 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <UserControl.Resources>
 
         <DataTemplate DataType="{x:Type name:StandardServerName}">
-            <StackPanel Orientation="Horizontal">
-                <TextBlock x:Name="EntryCountryAndServer" Style="{StaticResource ServerName}"
+            <Grid>
+                <TextBlock x:Name="EntryCountryAndServer"
+                           Style="{StaticResource ServerName}"
+                           TextTrimming="CharacterEllipsis"
                            FontSize="{Binding FontSize, ElementName=ServerNameControl}"
                            FontWeight="{Binding FontWeight, ElementName=ServerNameControl}">
                     <Run Text="{Binding EntryCountryCode, Converter={StaticResource CountryCodeToNameConverter}, Mode=OneWay}"/>
                     <Run Text="»"/>
-                    <Run Text="{Binding Name, Mode=OneWay}"/>
+                    <Run Text="{Binding Name, Mode=OneWay}" ToolTip="{Binding Name, Mode=OneWay}"/>
                 </TextBlock>
                 <TextBlock x:Name="ServerOnly" Style="{StaticResource ServerName}"
+                           TextTrimming="CharacterEllipsis"
                            FontSize="{Binding FontSize, ElementName=ServerNameControl}"
                            FontWeight="{Binding FontWeight, ElementName=ServerNameControl}">
                     <Run Text="{Binding Name, Mode=OneWay}"/>
                 </TextBlock>
-            </StackPanel>
+            </Grid>
             <DataTemplate.Triggers>
                 <DataTrigger Binding="{c:Binding 'EntryCountryCode != null'}" Value="True">
                     <Setter TargetName="EntryCountryAndServer" Property="Visibility" Value="Visible"/>
@@ -50,11 +53,20 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <Setter TargetName="EntryCountryAndServer" Property="Visibility" Value="Collapsed"/>
                     <Setter TargetName="ServerOnly" Property="Visibility" Value="Visible"/>
                 </DataTrigger>
+                <DataTrigger Binding="{Binding WrapElements, ElementName=ServerNameControl}" Value="True">
+                    <Setter TargetName="EntryCountryAndServer" Property="TextWrapping" Value="Wrap"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding AlignCenter, ElementName=ServerNameControl}" Value="True">
+                    <Setter TargetName="EntryCountryAndServer" Property="TextAlignment" Value="Center"/>
+                </DataTrigger>
             </DataTemplate.Triggers>
         </DataTemplate>
 
         <DataTemplate DataType="{x:Type name:SecureCoreName}">
-            <TextBlock Style="{StaticResource ServerName}" FontSize="{Binding FontSize, ElementName=ServerNameControl}">
+            <TextBlock Style="{StaticResource ServerName}"
+                       Name="SecureCoreName"
+                       TextTrimming="CharacterEllipsis"
+                       FontSize="{Binding FontSize, ElementName=ServerNameControl}">
                 <Run Text="{Binding EntryCountryCode, Converter={StaticResource CountryCodeToNameConverter}, Mode=OneWay}">
                     <Run.Style>
                         <Style TargetType="Run">
@@ -68,8 +80,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </Run.Style>
                 </Run>
                 <Run Text="»"/>
-                <Run Text="{Binding ExitCountryCode, Converter={StaticResource CountryCodeToNameConverter}, Mode=OneWay}"/>
+                <Run Text="{Binding ExitCountryCode, Converter={StaticResource CountryCodeToNameConverter}, Mode=OneWay}"
+                     ToolTip="{Binding ExitCountryCode, Converter={StaticResource CountryCodeToNameConverter}, Mode=OneWay}"/>
             </TextBlock>
+            <DataTemplate.Triggers>
+                <DataTrigger Binding="{Binding WrapElements, ElementName=ServerNameControl}" Value="True">
+                    <Setter TargetName="SecureCoreName" Property="TextWrapping" Value="Wrap"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding AlignCenter, ElementName=ServerNameControl}" Value="True">
+                    <Setter TargetName="SecureCoreName" Property="TextAlignment" Value="Center"/>
+                </DataTrigger>
+            </DataTemplate.Triggers>
         </DataTemplate>
     </UserControl.Resources>
 

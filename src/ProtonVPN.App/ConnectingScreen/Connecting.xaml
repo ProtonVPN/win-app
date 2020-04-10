@@ -135,21 +135,82 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <behavior:AnimateBehavior ToAnimate="{x:Static ProgressBar.ValueProperty}" Value="{Binding AnimatePercentage}" Duration="0.5" />
                 </i:Interaction.Behaviors>
             </ProgressBar>
-            <Label HorizontalAlignment="Center" Content="{Binding Message}" Foreground="White" Height="32"/>
-            <wpf:AlignableWrapPanel HorizontalAlignment="Center" Margin="0,20,0,0" HorizontalContentAlignment="Center" 
+            <Label HorizontalAlignment="Center"
+                   Content="{Binding Message}"
+                   Foreground="White"
+                   Height="32"/>
+            <wpf:AlignableWrapPanel HorizontalAlignment="Center"
+                                    Margin="0,20,0,0"
+                                    HorizontalContentAlignment="Center"
                                     Visibility="{Binding Reconnecting, Converter={StaticResource BoolToVis}}">
-                <TextBlock Padding="0" Text="{resources:Loc Connecting_lbl_FailedConnection_1}" FontSize="16" Foreground="White" VerticalAlignment="Center" Visibility="{c:Binding '!FailedConnectionName.IsSecureCore'}"/>
-                <TextBlock Padding="0" Text="{resources:Loc Connecting_lbl_FailedConnection_1_SecureCore}" FontSize="16" Foreground="White" VerticalAlignment="Center" Visibility="{c:Binding 'FailedConnectionName.IsSecureCore'}"/>
-                <controls:ServerName FontWeight="Bold" FontSize="16" Margin="5,3" HorizontalAlignment="Center" VerticalAlignment="Center" ConnectionName="{Binding FailedConnectionName}"/>
-                <TextBlock Padding="0" Text="{resources:Loc Connecting_lbl_FailedConnection_2}" FontSize="16" Foreground="White" VerticalAlignment="Center" Visibility="{c:Binding '!FailedConnectionName.IsSecureCore'}"/>
-                <TextBlock Padding="0" Text="{resources:Loc Connecting_lbl_FailedConnection_2_SecureCore}" FontSize="16" Foreground="White" VerticalAlignment="Center" Visibility="{c:Binding 'FailedConnectionName.IsSecureCore'}"/>
+                <TextBlock Padding="0"
+                           Text="{resources:Loc Connecting_lbl_FailedConnection_1}"
+                           FontSize="16"
+                           Foreground="White"
+                           VerticalAlignment="Center"
+                           Visibility="{c:Binding '!FailedConnectionName.IsSecureCore'}"/>
+                <TextBlock Padding="0"
+                           Text="{resources:Loc Connecting_lbl_FailedConnection_1_SecureCore}"
+                           FontSize="16"
+                           Foreground="White"
+                           VerticalAlignment="Center" Visibility="{c:Binding 'FailedConnectionName.IsSecureCore'}"/>
+                <controls:ServerName FontWeight="Bold"
+                                     FontSize="16"
+                                     Margin="5,3"
+                                     HorizontalAlignment="Center"
+                                     VerticalAlignment="Center"
+                                     WrapElements="True"
+                                     AlignCenter="True"
+                                     ConnectionName="{Binding FailedConnectionName}"/>
+                <TextBlock Padding="0"
+                           Text="{resources:Loc Connecting_lbl_FailedConnection_2}"
+                           FontSize="16"
+                           Foreground="White"
+                           VerticalAlignment="Center"
+                           Visibility="{c:Binding '!FailedConnectionName.IsSecureCore'}"/>
+                <TextBlock Padding="0"
+                           Text="{resources:Loc Connecting_lbl_FailedConnection_2_SecureCore}"
+                           FontSize="16"
+                           Foreground="White"
+                           VerticalAlignment="Center"
+                           Visibility="{c:Binding 'FailedConnectionName.IsSecureCore'}"/>
             </wpf:AlignableWrapPanel>
             <wpf:AlignableWrapPanel HorizontalAlignment="Center" Margin="0,5,0,0" HorizontalContentAlignment="Center">
-                <TextBlock Padding="0" Text="{resources:Loc Connecting_lbl_ConnectingTo_1}" FontSize="20" Foreground="White" VerticalAlignment="Center" Visibility="{c:Binding '!ConnectionName.IsSecureCore'}"/>
-                <TextBlock Padding="0" Text="{resources:Loc Connecting_lbl_ConnectingTo_1_SecureCore}" FontSize="20" Foreground="White" VerticalAlignment="Center" Visibility="{c:Binding 'ConnectionName.IsSecureCore'}"/>
-                <controls:ServerName FontWeight="Bold" FontSize="20" Margin="7,5" HorizontalAlignment="Center" VerticalAlignment="Center" ConnectionName="{Binding ConnectionName}"/>
-                <TextBlock Padding="0" Text="{resources:Loc Connecting_lbl_ConnectingTo_2}" FontSize="20" Foreground="White" VerticalAlignment="Center" Visibility="{c:Binding '!ConnectionName.IsSecureCore'}"/>
-                <TextBlock Padding="0" Text="{resources:Loc Connecting_lbl_ConnectingTo_2_SecureCore}" FontSize="20" Foreground="White" VerticalAlignment="Center" Visibility="{c:Binding 'ConnectionName.IsSecureCore'}"/>
+                <TextBlock Padding="0"
+                           TextTrimming="CharacterEllipsis"
+                           Text="{resources:Loc Connecting_lbl_ConnectingTo_1}"
+                           FontSize="20"
+                           Foreground="White"
+                           VerticalAlignment="Center"
+                           Visibility="{c:Binding '!ConnectionName.IsSecureCore'}"/>
+                <TextBlock Padding="0"
+                           TextTrimming="CharacterEllipsis"
+                           Text="{resources:Loc Connecting_lbl_ConnectingTo_1_SecureCore}"
+                           FontSize="20"
+                           Foreground="White"
+                           VerticalAlignment="Center"
+                           Visibility="{c:Binding 'ConnectionName.IsSecureCore'}"/>
+                <controls:ServerName FontWeight="Bold"
+                                     FontSize="20" Margin="7,5"
+                                     HorizontalAlignment="Center"
+                                     VerticalAlignment="Center"
+                                     WrapElements="True"
+                                     AlignCenter="True"
+                                     ConnectionName="{Binding ConnectionName}"/>
+                <TextBlock Padding="0"
+                           TextTrimming="CharacterEllipsis"
+                           Text="{resources:Loc Connecting_lbl_ConnectingTo_2}"
+                           FontSize="20"
+                           Foreground="White"
+                           VerticalAlignment="Center"
+                           Visibility="{c:Binding '!ConnectionName.IsSecureCore'}"/>
+                <TextBlock Padding="0"
+                           TextTrimming="CharacterEllipsis"
+                           Text="{resources:Loc Connecting_lbl_ConnectingTo_2_SecureCore}"
+                           FontSize="20"
+                           Foreground="White"
+                           VerticalAlignment="Center"
+                           Visibility="{c:Binding 'ConnectionName.IsSecureCore'}"/>
             </wpf:AlignableWrapPanel>
             <Button Style="{StaticResource CancelButton}" Command="{Binding DisconnectCommand}"/>
         </StackPanel>

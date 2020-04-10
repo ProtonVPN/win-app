@@ -229,14 +229,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </DataTrigger>
             </Style.Triggers>
         </Style>
-        <Style x:Key="MaintenanceLabel" TargetType="Label">
-            <Setter Property="Margin" Value="25,0,0,0"/>
+        <Style x:Key="MaintenanceIcon" TargetType="fa:FontAwesome">
+            <Setter Property="Margin" Value="0,0,4,0"/>
             <Setter Property="HorizontalAlignment" Value="Right"/>
-            <Setter Property="FontSize" Value="16"/>
-            <Setter Property="Foreground" Value="#797984"/>
+            <Setter Property="FontSize" Value="22"/>
+            <Setter Property="Foreground" Value="#98989d"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="Visibility" Value="Hidden"/>
-            <Setter Property="Content" Value="{resources:Loc Sidebar_Countries_lbl_Maintenance}"/>
+            <Setter Property="Icon" Value="Wrench"/>
             <Style.Triggers>
                 <DataTrigger Binding="{Binding Server.Status}" Value="0">
                     <Setter Property="Visibility" Value="Visible"/>
@@ -254,7 +254,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </Setter.Value>
             </Setter>
         </Style>
-        <Style x:Key="SecureCoreExitCountry" TargetType="Label">
+        <Style x:Key="SecureCoreExitCountry" TargetType="TextBlock">
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="Padding" Value="0,0,0,2"/>
@@ -480,14 +480,23 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <StackPanel Orientation="Horizontal">
                                 <Image HorizontalAlignment="Left" VerticalAlignment="Center" Source="{Binding CountryCode, Converter={StaticResource CountryToFlagConverter}}" Width="21" Height="15"/>
                                 <Label Content="»" Margin="5,3,0,0" FontSize="20" Foreground="{StaticResource PrimaryColor}"/>
-                                <Label x:Name="CountryLabel" Content="{Binding Name}" Style="{StaticResource SecureCoreExitCountry}"/>
                             </StackPanel>
+                            <Grid Width="200" Margin="50,0,0,0" HorizontalAlignment="Left">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0"
+                                           x:Name="CountryLabel"
+                                           Text="{Binding Name}"
+                                           Style="{StaticResource SecureCoreExitCountry}"
+                                           TextTrimming="CharacterEllipsis"/>
+                                <Button Grid.Column="1"
+                                        Style="{StaticResource SidebarCountryConnectButton}"
+                                        Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}, Path=DataContext.ConnectCountry}"
+                                        CommandParameter="{Binding}"/>
+                            </Grid>
                             <Button Style="{StaticResource ToggleButton}"/>
-                            <Button
-                                    Margin="0,0,30,0"
-                                    Style="{StaticResource SidebarCountryConnectButton}"
-                                    Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}, Path=DataContext.ConnectCountry}"
-                                    CommandParameter="{Binding}"/>
                         </Grid>
                     </Border>
                 </DataTemplate>
@@ -506,7 +515,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     Style="{StaticResource SidebarServerConnectButton}"
                                     Command="{Binding DataContext.Connect, RelativeSource={RelativeSource AncestorType=ListView}}"
                                     CommandParameter="{Binding}"/>
-                            <Label Style="{StaticResource MaintenanceLabel}"/>
+                            <fa:FontAwesome Style="{StaticResource MaintenanceIcon}" ToolTip="{resources:Loc Sidebar_Countries_lbl_Maintenance}"/>
                         </Grid>
                     </Grid>
                 </DataTemplate>
@@ -514,34 +523,39 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <Grid Style="{StaticResource ServerRowItem}">
                         <Grid Margin="27,0">
                             <controls:LoadBubble Margin="-2,0,0,0" Width="32" Height="32" DataContext="{Binding ConnectionInfoViewModel}" Style="{StaticResource LoadBubbleLeft}"/>
-                            <StackPanel Style="{StaticResource ServerRowStackPanel}">
-                                <Image Margin="33,0,10,0"
-                                       Source="{Binding Path=Server.EntryCountry, Converter={StaticResource CountryToFlagConverter}, Mode=OneWay}"
-                                       Style="{StaticResource ServerFlagImage}"/>
-                                <TextBlock Style="{StaticResource ServerName}" Margin="0,-5,0,0" FontSize="16">
-                                        <Run Text="{resources:Loc Servers_lbl_ViaCountry}"/>
-                                        <Run Text="{Binding Server.EntryCountry, Converter={StaticResource CountryCodeToNameConverter}, Mode=OneWay}">
-                                            <Run.Style>
-                                                <Style TargetType="Run">
-                                                    <Setter Property="Foreground" Value="White"/>
-                                                    <Style.Triggers>
-                                                        <DataTrigger Binding="{Binding UpgradeRequired}" Value="True">
-                                                            <Setter Property="Foreground" Value="Gray"/>
-                                                        </DataTrigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </Run.Style>
-                                        </Run>
-                                        <Run Text="»" FontSize="20" Foreground="{StaticResource PrimaryColor}"/>
+                            <Image Margin="33,0,10,0"
+                                   HorizontalAlignment="Left"
+                                   Source="{Binding Path=Server.EntryCountry, Converter={StaticResource CountryToFlagConverter}, Mode=OneWay}"
+                                   Style="{StaticResource ServerFlagImage}"/>
+                            <Grid Width="220" Margin="60,0,0,0" HorizontalAlignment="Left">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Column="0" Style="{StaticResource ServerName}" Margin="0,-5,0,0" FontSize="16" TextTrimming="CharacterEllipsis">
+                                    <Run Text="{resources:Loc Servers_lbl_ViaCountry}"/>
+                                    <Run Text="{Binding Server.EntryCountry, Converter={StaticResource CountryCodeToNameConverter}, Mode=OneWay}">
+                                        <Run.Style>
+                                            <Style TargetType="Run">
+                                                <Setter Property="Foreground" Value="White"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding UpgradeRequired}" Value="True">
+                                                        <Setter Property="Foreground" Value="Gray"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Run.Style>
+                                    </Run>
+                                    <Run Text="»" FontSize="20" Foreground="{StaticResource PrimaryColor}"/>
                                 </TextBlock>
-                                <sidebar:ServerFeatures Features="{Binding Features}" Style="{StaticResource ServerFeatures}"/>
-                            </StackPanel>
-                            <Button
-                                    Margin="38,0,0,0"
-                                    Style="{StaticResource SidebarServerConnectButton}"
-                                    Command="{Binding DataContext.Connect, RelativeSource={RelativeSource AncestorType=ListView}}"
-                                    CommandParameter="{Binding}"/>
-                            <Label Style="{StaticResource MaintenanceLabel}"/>
+
+                                <Button Grid.Column="1"
+                                        Style="{StaticResource SidebarServerConnectButton}"
+                                        Command="{Binding DataContext.Connect, RelativeSource={RelativeSource AncestorType=ListView}}"
+                                        CommandParameter="{Binding}"/>
+                            </Grid>
+                            <fa:FontAwesome Style="{StaticResource MaintenanceIcon}" ToolTip="{resources:Loc Sidebar_Countries_lbl_Maintenance}"/>
                             <Label Style="{StaticResource UpgradeRequiredLabel}" Content="{resources:Loc Servers_lbl_Upgrade}"/>
                         </Grid>
                     </Grid>

@@ -125,14 +125,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Border Grid.Column="1" BorderBrush="#403f4d" BorderThickness="0,0,1,0" Background="#262630">
                 <StackPanel Margin="20,5,20,10" HorizontalAlignment="Stretch">
                     <Label Style="{StaticResource ColumnTitle}" FontSize="14" Content="{resources:Loc Account_lbl_AccountType}"/>
-                    <Label Style="{StaticResource ColumnValue}" Content="{Binding AccountType}"/>
+                    <TextBlock Style="{StaticResource ColumnValue}" Text="{Binding AccountType}"/>
                 </StackPanel>
             </Border>
 
             <Border Grid.Column="2" BorderBrush="#403f4d" BorderThickness="0,0,1,0" Background="#262630">
                 <StackPanel Margin="20,5,20,10" HorizontalAlignment="Stretch">
                     <Label Style="{StaticResource ColumnTitle}" FontSize="14" Content="{resources:Loc Account_lbl_AccountPlan}"/>
-                    <Label Style="{StaticResource ColumnValue}" Foreground="{Binding PlanColor}" Content="{Binding PlanName}"/>
+                    <TextBlock Style="{StaticResource ColumnValue}" Foreground="{Binding PlanColor}" TextWrapping="Wrap" Text="{Binding PlanName}"/>
                 </StackPanel>
             </Border>
 

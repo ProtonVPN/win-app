@@ -139,7 +139,7 @@ namespace ProtonVPN.Map.Views
             CountryButton.Visibility = Visibility.Visible;
             UpdateLayout();
 
-            var pathWidth = CountryButton.ActualWidth + 20;
+            var pathWidth = CountryButton.ActualWidth + 60;
             var triangleCenter = pathWidth / 2;
             var triangleLeft = triangleCenter - TriangleWidth / 2;
             var triangleRight = triangleCenter + TriangleWidth / 2;
