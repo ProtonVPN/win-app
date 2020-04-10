@@ -3580,6 +3580,15 @@ namespace ProtonVPN.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Greek.
+        /// </summary>
+        public static string Language_el {
+            get {
+                return ResourceManager.GetString("Language_el", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to English.
         /// </summary>
         public static string Language_en {

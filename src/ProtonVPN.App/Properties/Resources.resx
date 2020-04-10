@@ -2814,6 +2814,9 @@ Exiting the application will disable the Kill Switch. Do you want to continue?</
     <value>Maximum profile name length is {0} symbols. Please choose a shorter profile name.</value>
     <comment>The error message displayed in Profile window when profile name is too long. The {0} is a placeholder for maximum profile name length value.</comment>
   </data>
+  <data name="Language_el" xml:space="preserve">
+    <value>Greek</value>
+  </data>
   <data name="BugReport_btn_Troubleshoot" xml:space="preserve">
     <value>Troubleshoot</value>
     <comment>The text on Troubleshoot button in Bug Report window (opens troubleshooting window)</comment>
