@@ -20,6 +20,7 @@
 using System;
 using System.ComponentModel;
 using System.Globalization;
+using System.Reflection;
 using System.Threading;
 using System.Windows;
 using System.Windows.Data;
@@ -62,9 +63,26 @@ namespace ProtonVPN.Resources
             if (!Thread.CurrentThread.CurrentUICulture.Equals(_currentCulture))
             {
                 Thread.CurrentThread.CurrentUICulture = _currentCulture;
+                ResetPluralProvider();
             }
 
             return Properties.Resources.ResourceManager.GetPlural(GetStringName(key), number);
+        }
+
+        private void ResetPluralProvider()
+        {
+            //This should be replaced to a better solution
+            var bindAttr = BindingFlags.Static | BindingFlags.NonPublic;
+            var lockObj = typeof(ResourceLoaderExtension).GetField("_objLock", bindAttr);
+            if (lockObj != null)
+            {
+                lock (lockObj)
+                {
+                    typeof(ResourceLoaderExtension)
+                        .GetField("_pluralProvider", bindAttr)
+                        ?.SetValue(null, null);
+                }
+            }
         }
     }
 
