@@ -21,19 +21,22 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.Threading;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Settings;
 
 namespace ProtonVPN.Core.Language
 {
-    public class Language : ISettingsAware
+    public class Language : ISettingsAware, ILoggedInAware
     {
         private readonly IAppSettings _appSettings;
         private readonly ILogger _logger;
         private readonly string _translationsFolder;
 
         private const string ResourceFile = "ProtonVPN.resources.dll";
+        private const string DefaultLanguage = "en";
 
         public event EventHandler<string> LanguageChanged;
 
@@ -46,7 +49,7 @@ namespace ProtonVPN.Core.Language
 
         public void Initialize()
         {
-            Change(_appSettings.Language);
+            Change(string.IsNullOrEmpty(_appSettings.Language) ? GetCurrentLanguage() : _appSettings.Language);
         }
 
         public void OnAppSettingsChanged(PropertyChangedEventArgs e)
@@ -64,13 +67,21 @@ namespace ProtonVPN.Core.Language
             catch (Exception e) when (e.IsFileAccessException())
             {
                 _logger.Error(e);
-                return new List<string> {"en"};
+                return new List<string> {DefaultLanguage};
+            }
+        }
+
+        public void OnUserLoggedIn()
+        {
+            if (string.IsNullOrEmpty(_appSettings.Language))
+            {
+                _appSettings.Language = GetCurrentLanguage();
             }
         }
 
         private List<string> InternalGetAll()
         {
-            var langs = new List<string> {"en"};
+            var langs = new List<string> {DefaultLanguage};
 
             var files = Directory.GetFiles(_translationsFolder, ResourceFile, SearchOption.AllDirectories);
             foreach (var file in files)
@@ -88,6 +99,12 @@ namespace ProtonVPN.Core.Language
         private void Change(string lang)
         {
             LanguageChanged?.Invoke(this, lang);
+        }
+
+        private string GetCurrentLanguage()
+        {
+            var osLanguage = Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName;
+            return GetAll().Contains(osLanguage) ? osLanguage : DefaultLanguage;
         }
     }
 }
