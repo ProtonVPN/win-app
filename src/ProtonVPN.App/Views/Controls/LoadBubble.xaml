@@ -132,10 +132,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1">
                                 <DockPanel Margin="5,5,0,0">
                                     <Grid>
-                                        <Border Style="{StaticResource PremiumInfoIconBorder}"/>
-                                        <Label Style="{StaticResource PremiumInfoIconLetter}">P</Label>
+                                        <Border Style="{StaticResource PlusInfoIconBorder}"/>
+                                        <Label Style="{StaticResource PlusInfoIconLetter}">P</Label>
                                     </Grid>
-                                    <TextBlock Text="{resources:Loc Servers_Feature_val_Premium}" Style="{StaticResource PremiumFeatureText}"/>
+                                    <TextBlock Text="{resources:Loc Servers_Feature_val_Plus}" Style="{StaticResource PlusFeatureText}"/>
                                 </DockPanel>
                             </StackPanel>
 
