@@ -834,9 +834,9 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <value>Server IP:</value>
     <comment>The label for server IP address in Server Load popup. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
   </data>
-  <data name="Servers_Feature_val_Premium" xml:space="preserve">
-    <value>Premium Server</value>
-    <comment>The name of Premium server feature</comment>
+  <data name="Servers_Feature_val_Plus" xml:space="preserve">
+    <value>Plus Server</value>
+    <comment>The name of Plus server feature</comment>
   </data>
   <data name="Servers_Feature_val_P2P" xml:space="preserve">
     <value>P2P Server</value>
@@ -2566,8 +2566,8 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <value>Connects to TOR network</value>
     <comment>The description displayed in a tooltip of Tor icon on a sidebar countries list</comment>
   </data>
-  <data name="Sidebar_Servers_info_premium" xml:space="preserve">
-    <value>Premium Server</value>
+  <data name="Sidebar_Servers_info_plus" xml:space="preserve">
+    <value>Plus Server</value>
     <comment>The description displayed in a tooltip of P icon on a sidebar server item</comment>
   </data>
   <data name="NetShieldModal_btn_GotIt" xml:space="preserve">

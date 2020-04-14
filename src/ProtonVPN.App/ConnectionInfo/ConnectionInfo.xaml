@@ -55,7 +55,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="PremiumIconBorder" TargetType="Border">
+    <Style x:Key="PlusIconBorder" TargetType="Border">
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="BorderBrush" Value="#98989d"/>
         <Setter Property="SnapsToDevicePixels" Value="True"/>
@@ -65,9 +65,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="CornerRadius" Value="1"/>
     </Style>
 
-    <Style x:Key="PremiumInfoIconBorder" TargetType="Border" BasedOn="{StaticResource PremiumIconBorder}">
+    <Style x:Key="PlusInfoIconBorder" TargetType="Border" BasedOn="{StaticResource PlusIconBorder}">
         <Style.Triggers>
-            <DataTrigger Binding="{Binding PremiumServer}" Value="True">
+            <DataTrigger Binding="{Binding PlusServer}" Value="True">
                 <Setter Property="BorderBrush" Value="{StaticResource PrimaryColor}"/>
             </DataTrigger>
         </Style.Triggers>
@@ -107,24 +107,24 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="PremiumFeatureText" TargetType="TextBlock" BasedOn="{StaticResource InfoFeatureText}">
+    <Style x:Key="PlusFeatureText" TargetType="TextBlock" BasedOn="{StaticResource InfoFeatureText}">
         <Style.Triggers>
-            <DataTrigger Binding="{Binding PremiumServer}" Value="True">
+            <DataTrigger Binding="{Binding PlusServer}" Value="True">
                 <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
                 <Setter Property="TextDecorations" Value="None"/>
             </DataTrigger>
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="PremiumIconLetter" TargetType="Label">
+    <Style x:Key="PlusIconLetter" TargetType="Label">
         <Setter Property="FontSize" Value="9"/>
         <Setter Property="Foreground" Value="#98989d"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
 
-    <Style x:Key="PremiumInfoIconLetter" TargetType="Label" BasedOn="{StaticResource PremiumIconLetter}">
+    <Style x:Key="PlusInfoIconLetter" TargetType="Label" BasedOn="{StaticResource PlusIconLetter}">
         <Style.Triggers>
-            <DataTrigger Binding="{Binding PremiumServer}" Value="True">
+            <DataTrigger Binding="{Binding PlusServer}" Value="True">
                 <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
             </DataTrigger>
         </Style.Triggers>

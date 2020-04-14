@@ -67,9 +67,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </Border>
             </DataTemplate>
             <DataTemplate DataType="{x:Type servers:PlusFeature}">
-                <Grid ToolTip="{resources:Loc Sidebar_Servers_info_premium}">
-                    <Border Style="{StaticResource PremiumIconBorder}" Width="17" Height="17"/>
-                    <Label Style="{StaticResource PremiumIconLetter}" FontSize="14">P</Label>
+                <Grid ToolTip="{resources:Loc Sidebar_Servers_info_plus}">
+                    <Border Style="{StaticResource PlusIconBorder}" Width="17" Height="17"/>
+                    <Label Style="{StaticResource PlusIconLetter}" FontSize="14">P</Label>
                 </Grid>
             </DataTemplate>
         </ItemsControl.Resources>

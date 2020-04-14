@@ -47,7 +47,7 @@ namespace ProtonVPN.ConnectionInfo
 
         public object Ip { get; }
         public bool SecureCore { get; }
-        public bool PremiumServer { get; }
+        public bool PlusServer { get; }
         public bool P2PServer { get; }
         public bool TorServer { get; }
 
@@ -65,7 +65,7 @@ namespace ProtonVPN.ConnectionInfo
             LoadNumber = server.Load;
             Load = $"{server.Load}%";
             Ip = new Ip {Address = server.ExitIp};
-            PremiumServer = server.Tier.Equals(ServerTiers.Plus);
+            PlusServer = server.Tier.Equals(ServerTiers.Plus);
             P2PServer = server.SupportsP2P();
             TorServer = server.SupportsTor();
             ServerInfo = new DefaultInfo
