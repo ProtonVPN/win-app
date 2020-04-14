@@ -2539,11 +2539,11 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <comment>The label for NetShield combo box in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_NetShield_lbl_Level1" xml:space="preserve">
-    <value>Level 1: Malware</value>
+    <value>Block malware only</value>
     <comment>The label of NetShield mode in NetShield section of Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_NetShield_lbl_Level2" xml:space="preserve">
-    <value>Level 2: Malware, ads &amp; tracking</value>
+    <value>Block malware, tracking, ads</value>
     <comment>The label of NetShield mode in NetShield section of Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_Warning_NetShield" xml:space="preserve">

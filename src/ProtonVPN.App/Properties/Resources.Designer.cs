@@ -5100,7 +5100,7 @@ namespace ProtonVPN.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Level 1: Malware.
+        ///   Looks up a localized string similar to Block malware only.
         /// </summary>
         public static string Settings_Connection_NetShield_lbl_Level1 {
             get {
@@ -5109,7 +5109,7 @@ namespace ProtonVPN.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Level 2: Malware, ads &amp; tracking.
+        ///   Looks up a localized string similar to Block malware, tracking, ads.
         /// </summary>
         public static string Settings_Connection_NetShield_lbl_Level2 {
             get {
