@@ -320,7 +320,11 @@ namespace ProtonVPN.Settings
             get => _appSettings.Language;
             set
             {
-                if (_appSettings.Language == value) return;
+                if (value == null || _appSettings.Language == value)
+                {
+                    return;
+                }
+
                 _appSettings.Language = value;
             }
         }
