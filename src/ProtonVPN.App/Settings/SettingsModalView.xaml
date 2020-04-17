@@ -108,7 +108,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                TextTrimming="CharacterEllipsis"/>
                 </TabItem.Header>
                 <StackPanel Margin="25,20,25,40">
-                    <Border BorderBrush="#464652" Height="50" BorderThickness="0,0,0,0">
+                    <Border BorderBrush="#464652" Height="40" BorderThickness="0,0,0,0">
                         <DockPanel>
                             <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Content="{resources:Loc Settings_General_lbl_Language}"/>
                             <wpf:Combobox HorizontalAlignment="Right"
@@ -121,7 +121,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </DockPanel>
                     </Border>
 
-                    <Border BorderBrush="#464652" Height="50" BorderThickness="0,0,0,0">
+                    <Border BorderBrush="#464652" Height="40" BorderThickness="0,0,0,0">
                         <DockPanel>
                             <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Content="{resources:Loc Settings_General_lbl_StartMinimized}"/>
                             <wpf:Combobox
@@ -136,7 +136,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </DockPanel>
                     </Border>
 
-                    <Border BorderBrush="#464652" Height="50" BorderThickness="0,0,0,1">
+                    <Border BorderBrush="#464652" Height="40" BorderThickness="0,0,0,1">
                         <DockPanel>
                             <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Content="{resources:Loc Settings_General_lbl_StartWithWindows}"/>
                             <CheckBox Margin="0,0,14,0"
@@ -147,7 +147,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </DockPanel>
                     </Border>
 
-                    <Border BorderBrush="#464652" Height="50" BorderThickness="0,0,0,1">
+                    <Border BorderBrush="#464652" Height="40" BorderThickness="0,0,0,1">
                         <DockPanel>
                             <Label VerticalAlignment="Center" Foreground="White" FontSize="16" Content="{resources:Loc Settings_General_lbl_ShowNotifications}"/>
                             <CheckBox Margin="0,0,14,0"
@@ -158,7 +158,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </DockPanel>
                     </Border>
 
-                    <Border BorderBrush="#464652" Height="50" BorderThickness="0,0,0,1">
+                    <Border BorderBrush="#464652" Height="40" BorderThickness="0,0,0,1">
                         <DockPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label VerticalAlignment="Center" Foreground="White" FontSize="16" Content="{resources:Loc Settings_General_lbl_EarlyAccess}"/>
@@ -185,7 +185,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                TextTrimming="CharacterEllipsis"/>
                 </TabItem.Header>
                 <StackPanel Margin="25,20,25,40">
-                    <DockPanel Height="50">
+                    <DockPanel Height="40">
                         <StackPanel Orientation="Horizontal">
                             <Label FontSize="16"
                                    Foreground="White"
@@ -204,7 +204,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </wpf:Combobox>
                     </DockPanel>
 
-                    <DockPanel Height="50">
+                    <DockPanel Height="40">
                         <StackPanel Orientation="Horizontal">
                             <Label FontSize="16"
                                    VerticalAlignment="Center"
@@ -223,7 +223,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </wpf:Combobox>
                     </DockPanel>
 
-                    <DockPanel Height="50">
+                    <DockPanel Height="40">
                         <StackPanel Orientation="Horizontal">
                             <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Content="{resources:Loc Settings_Connection_lbl_DefaultProtocol}"/>
                             <fa:FontAwesome Icon="InfoCircle"
@@ -243,7 +243,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                       AutomationProperties.AutomationId="{StaticResource ProtocolCombobox}"/>
                     </DockPanel>
 
-                    <!--<DockPanel Height="50">
+                    <!--<DockPanel Height="40">
                         <StackPanel Orientation="Horizontal">
                             <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Content="{resources:Loc Settings_Connection_lbl_NetShield}"/>
                             <fa:FontAwesome Icon="InfoCircle"
@@ -293,7 +293,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                     </StackPanel>
                     -->
-                    <DockPanel Height="50">
+                    <DockPanel Height="40">
                         <StackPanel Orientation="Horizontal">
                             <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Content="{resources:Loc Settings_Connection_lbl_CustomDnsServer}"/>
                             <fa:FontAwesome Icon="InfoCircle"
@@ -342,7 +342,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                TextTrimming="CharacterEllipsis"/>
                 </TabItem.Header>
                 <DockPanel Margin="25,20,25,20" LastChildFill="True">
-                    <Border BorderBrush="#464652" Height="50" BorderThickness="0,0,0,1" DockPanel.Dock="Top">
+                    <Border BorderBrush="#464652" Height="40" BorderThickness="0,0,0,1" DockPanel.Dock="Top">
                         <DockPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Content="{resources:Loc Settings_Advanced_lbl_KillSwitch}"/>
@@ -360,7 +360,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </DockPanel>
                     </Border>
 
-                    <Border BorderBrush="#464652" Height="50" BorderThickness="0,0,0,1" DockPanel.Dock="Top">
+                    <Border BorderBrush="#464652" Height="40" BorderThickness="0,0,0,1" DockPanel.Dock="Top">
                         <DockPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Content="{resources:Loc Settings_Advanced_lbl_DnsLeakProtection}"/>
@@ -379,7 +379,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </DockPanel>
                     </Border>
 
-                    <Border BorderBrush="#464652" Height="50" BorderThickness="0,0,0,1" DockPanel.Dock="Top">
+                    <Border BorderBrush="#464652" Height="40" BorderThickness="0,0,0,1" DockPanel.Dock="Top">
                         <DockPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Content="{resources:Loc Settings_Advanced_lbl_DoH}"/>
@@ -397,7 +397,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </DockPanel>
                     </Border>
 
-                    <Border BorderBrush="#464652" Height="50" BorderThickness="0,0,0,1" DockPanel.Dock="Top">
+                    <Border BorderBrush="#464652" Height="40" BorderThickness="0,0,0,1" DockPanel.Dock="Top">
                         <DockPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Content="{resources:Loc Settings_Advanced_lbl_Ipv6Protection}"/>
@@ -416,7 +416,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </DockPanel>
                     </Border>
 
-                    <Border Height="50" BorderThickness="0" DockPanel.Dock="Top">
+                    <Border Height="40" BorderThickness="0" DockPanel.Dock="Top">
                         <DockPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Content="{resources:Loc Settings_Advanced_lbl_SplitTunnel}"/>
@@ -453,7 +453,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </TabItem>
         </TabControl>
 
-        <Grid Background="#9d9d9d" MinHeight="50" VerticalAlignment="Bottom" Visibility="{Binding ChangesPending, Converter={StaticResource BoolToVis}}">
+        <Grid Background="#9d9d9d" MinHeight="40" VerticalAlignment="Bottom" Visibility="{Binding ChangesPending, Converter={StaticResource BoolToVis}}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition Width="Auto"/>
