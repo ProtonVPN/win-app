@@ -78,6 +78,7 @@ namespace ProtonVPN.Core.Api
             request.Headers.Add("x-pm-apiversion", _apiVersion);
             request.Headers.Add("x-pm-appversion", _appVersion.Value());
             request.Headers.Add("x-pm-locale", _locale);
+            request.Headers.Add("User-Agent", _appVersion.UserAgent());
 
             return request;
         }

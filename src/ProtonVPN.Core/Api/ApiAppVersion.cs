@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Core.Settings;
 
@@ -35,8 +36,17 @@ namespace ProtonVPN.Core.Api
 
         public string Value()
         {
-            var version = $"{_appConfig.ApiClientId}_{_appConfig.AppVersion}";
-            return _appSettings.EarlyAccess ? $"{version}-early" : version;
+            return $"{_appConfig.ApiClientId}_{GetVersion()}";
+        }
+
+        public string UserAgent()
+        {
+            return $"{_appConfig.UserAgent}/{GetVersion()} ({Environment.OSVersion})";
+        }
+
+        private string GetVersion()
+        {
+            return _appSettings.EarlyAccess ? $"{_appConfig.AppVersion}-early" : _appConfig.AppVersion;
         }
     }
 }
