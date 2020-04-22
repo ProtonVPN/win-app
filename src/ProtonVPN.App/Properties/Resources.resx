@@ -2825,4 +2825,8 @@ Exiting the application will disable the Kill Switch. Do you want to continue?</
     <value>Troubleshoot</value>
     <comment>The text on Troubleshoot button in Profiles window (opens troubleshooting window)</comment>
   </data>
+  <data name="Login_lbl_TakingLongerThanExpected" xml:space="preserve">
+    <value>Connection to ProtonVPN in progress...</value>
+    <comment>The text displayed in login window when login takes longer than expected</comment>
+  </data>
 </root>
