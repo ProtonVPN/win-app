@@ -3841,6 +3841,15 @@ namespace ProtonVPN.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Connection to ProtonVPN in progress....
+        /// </summary>
+        public static string Login_lbl_TakingLongerThanExpected {
+            get {
+                return ResourceManager.GetString("Login_lbl_TakingLongerThanExpected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Username.
         /// </summary>
         public static string Login_lbl_Username {
@@ -4760,11 +4769,11 @@ namespace ProtonVPN.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Premium Server.
+        ///   Looks up a localized string similar to Plus Server.
         /// </summary>
-        public static string Servers_Feature_val_Premium {
+        public static string Servers_Feature_val_Plus {
             get {
-                return ResourceManager.GetString("Servers_Feature_val_Premium", resourceCulture);
+                return ResourceManager.GetString("Servers_Feature_val_Plus", resourceCulture);
             }
         }
         
@@ -5534,11 +5543,11 @@ namespace ProtonVPN.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Premium Server.
+        ///   Looks up a localized string similar to Plus Server.
         /// </summary>
-        public static string Sidebar_Servers_info_premium {
+        public static string Sidebar_Servers_info_plus {
             get {
-                return ResourceManager.GetString("Sidebar_Servers_info_premium", resourceCulture);
+                return ResourceManager.GetString("Sidebar_Servers_info_plus", resourceCulture);
             }
         }
         
