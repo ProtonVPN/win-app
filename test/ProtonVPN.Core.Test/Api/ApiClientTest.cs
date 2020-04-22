@@ -48,6 +48,7 @@ namespace ProtonVPN.Core.Test.Api
 
             _appVersion = Substitute.For<IApiAppVersion>();
             _appVersion.Value().Returns(string.Empty);
+            _appVersion.UserAgent().Returns("User agent");
 
             _tokenStorage = Substitute.For<ITokenStorage>();
             _tokenStorage.AccessToken.Returns(string.Empty);

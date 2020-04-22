@@ -22,5 +22,7 @@ namespace ProtonVPN.Core.Api
     public interface IApiAppVersion
     {
         string Value();
+
+        string UserAgent();
     }
 }

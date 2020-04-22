@@ -98,6 +98,9 @@ namespace ProtonVPN.Common.Configuration
         [Required]
         public string ApiVersion { get; internal set; }
 
+        [Required]
+        public string UserAgent { get; internal set; }
+
         [Range(typeof(TimeSpan), "00:00:01", "00:01:00")]
         public TimeSpan ApiTimeout { get; internal set; }
 
