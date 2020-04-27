@@ -27,5 +27,6 @@ namespace ProtonVPN.NetworkFilter
         AppAuthConnectV6 = 3,
         BindRedirectV4 = 4,
         BindRedirectV6 = 5,
+        AppConnectRedirectV4 = 6,
     }
 }

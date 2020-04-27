@@ -40,6 +40,9 @@ void IPFilterGetLayerKey(
     case (unsigned int)IPFilterLayer::BindRedirectV6:
         spec = FWPM_LAYER_ALE_BIND_REDIRECT_V6;
         break;
+    case (unsigned int)IPFilterLayer::AppConnectRedirectV4:
+        spec = FWPM_LAYER_ALE_CONNECT_REDIRECT_V4;
+        break;
     default:
         throw std::invalid_argument("Invalid layer");
     }
