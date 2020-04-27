@@ -15,7 +15,8 @@ enum class IPFilterLayer : unsigned int
     AppAuthConnectV4 = 2,
     AppAuthConnectV6 = 3,
     BindRedirectV4 = 4,
-    BindRedirectV6 = 5
+    BindRedirectV6 = 5,
+    AppConnectRedirectV4 = 6,
 };
 
 enum class IPFilterAction : unsigned int
