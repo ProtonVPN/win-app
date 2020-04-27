@@ -13,6 +13,26 @@
 #pragma alloc_text (PAGE, UnregisterCallout)
 #endif
 
+BOOL isLoopbackConnection(const FWPS_INCOMING_VALUES* inValues)
+{
+    auto localAddr = RtlUlongByteSwap(inValues->incomingValue[
+        FWPS_FIELD_ALE_CONNECT_REDIRECT_V4_IP_LOCAL_ADDRESS].value.uint32);
+    auto remoteAddr = RtlUlongByteSwap(inValues->incomingValue[
+        FWPS_FIELD_ALE_CONNECT_REDIRECT_V4_IP_REMOTE_ADDRESS].value.uint32);
+
+    if (IN4_IS_ADDR_LOOPBACK((IN_ADDR*)(&localAddr)))
+    {
+        return TRUE;
+    }
+
+    if (IN4_IS_ADDR_LOOPBACK((IN_ADDR*)(&remoteAddr)))
+    {
+        return TRUE;
+    }
+
+    return FALSE;
+}
+
 //
 // The callout ClassifyFn1 function
 //
@@ -28,6 +48,8 @@ ClassifyFn1(
 )
 {
     TraceEvents(TRACE_LEVEL_INFORMATION, TRACE_CALLOUT, "%!FUNC! Entry");
+
+    classifyOut->actionType = FWP_ACTION_PERMIT;
 
     UNREFERENCED_PARAMETER(inFixedValues);
     UNREFERENCED_PARAMETER(inMetaValues);
@@ -55,10 +77,15 @@ ClassifyFn1(
         return;
     }
 
-    if (inFixedValues->layerId != FWPS_LAYER_ALE_BIND_REDIRECT_V4)
+    if (inFixedValues->layerId != FWPS_LAYER_ALE_CONNECT_REDIRECT_V4)
     {
         TraceEvents(TRACE_LEVEL_ERROR, TRACE_CALLOUT, "%!FUNC! Invalid layer");
 
+        return;
+    }
+
+    if (isLoopbackConnection(inFixedValues))
+    {
         return;
     }
 
@@ -85,14 +112,14 @@ ClassifyFn1(
     }
 
     auto size = filter->providerContext->dataBuffer->size;
-    if (size != sizeof(BIND_REDIRECT_DATA))
+    if (size != sizeof(CONNECT_REDIRECT_DATA))
     {
         TraceEvents(
             TRACE_LEVEL_ERROR,
             TRACE_CALLOUT,
             "%!FUNC! Provider context data size is %i instead of expected %i",
             size,
-            sizeof(BIND_REDIRECT_DATA));
+            sizeof(CONNECT_REDIRECT_DATA));
 
         return;
     }
@@ -106,7 +133,7 @@ ClassifyFn1(
 
     NTSTATUS status = STATUS_SUCCESS;
     UINT64 classifyHandle = 0;
-    FWPS_BIND_REQUEST0* writableLayerData = NULL;
+    FWPS_CONNECT_REQUEST* writableLayerData = NULL;
 
     status = FwpsAcquireClassifyHandle(
         (void*)classifyContext,
@@ -135,11 +162,11 @@ ClassifyFn1(
         goto Exit;
     }
 
-    for (FWPS_BIND_REQUEST* bindRequest = writableLayerData->previousVersion;
-         bindRequest != NULL;
-         bindRequest = bindRequest->previousVersion)
+    for (FWPS_CONNECT_REQUEST* connectRequest = writableLayerData->previousVersion;
+        connectRequest != NULL;
+        connectRequest = connectRequest->previousVersion)
     {
-        if (bindRequest->modifierFilterId == filter->filterId)
+        if (connectRequest->modifierFilterId == filter->filterId)
         {
             // Don't redirect the same socket more than once
 
@@ -149,7 +176,7 @@ ClassifyFn1(
         }
     }
 
-    BIND_REDIRECT_DATA* redirectData = (BIND_REDIRECT_DATA*)filter->providerContext->dataBuffer->data;
+    CONNECT_REDIRECT_DATA* redirectData = (CONNECT_REDIRECT_DATA*)filter->providerContext->dataBuffer->data;
 
     INETADDR_SET_ADDRESS((PSOCKADDR)&(writableLayerData->localAddressAndPort),
                          &(redirectData->localAddress.S_un.S_un_b.s_b1));
@@ -204,7 +231,7 @@ RegisterCallout(
 
     // Callout registration structure
     FWPS_CALLOUT1 callout = {0};
-    callout.calloutKey = BIND_REDIRECT_CALLOUT_KEY;
+    callout.calloutKey = CONNECT_REDIRECT_CALLOUT_KEY;
     callout.flags = 0;
     callout.classifyFn = ClassifyFn1;
     callout.notifyFn = NotifyFn1;
@@ -237,7 +264,7 @@ UnregisterCallout()
 
     NTSTATUS status;
 
-    status = FwpsCalloutUnregisterByKey0(&BIND_REDIRECT_CALLOUT_KEY);
+    status = FwpsCalloutUnregisterByKey0(&CONNECT_REDIRECT_CALLOUT_KEY);
 
     if (!NT_SUCCESS(status))
     {

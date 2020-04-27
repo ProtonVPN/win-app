@@ -8,7 +8,7 @@ Class       = WFPCALLOUTS
 ClassGuid   = {57465043-616C-6C6F-7574-5F636C617373}
 Provider    = %ManufacturerName%
 CatalogFile = ProtonVPN.SplitTunnelDriver.cat
-DriverVer = 11/29/2019,7.31.42.49
+DriverVer = 04/30/2020,12.13.23.370
 
 [SourceDisksNames]
 1 = %DiskName%,,,""

@@ -46,7 +46,7 @@ namespace ProtonVPN.Service.SplitTunneling
                         Description = "Redirects network connections",
                     },
                     WfpCalloutKey,
-                    Layer.BindRedirectV4
+                    Layer.AppConnectRedirectV4
                 );
 
                 var providerContext = _ipFilter.CreateProviderContext(
@@ -55,7 +55,7 @@ namespace ProtonVPN.Service.SplitTunneling
                         Name = "ProtonVPN Split Tunnel redirect context",
                         Description = "Instructs the callout driver where to redirect network connections",
                     },
-                    new BindingRedirectData(internetLocalIp));
+                    new ConnectRedirectData(internetLocalIp));
 
                 CreateAppFilters(apps, callout, providerContext);
 
@@ -82,7 +82,7 @@ namespace ProtonVPN.Service.SplitTunneling
                         Description = "Redirects network connections",
                     },
                     WfpCalloutKey,
-                    Layer.BindRedirectV4
+                    Layer.AppConnectRedirectV4
                 );
 
                 var providerContext = _ipFilter.CreateProviderContext(
@@ -91,7 +91,7 @@ namespace ProtonVPN.Service.SplitTunneling
                         Name = "ProtonVPN Split Tunnel redirect context",
                         Description = "Instructs the callout driver where to redirect network connections",
                     },
-                    new BindingRedirectData(internetLocalIp));
+                    new ConnectRedirectData(internetLocalIp));
 
                 _subLayer.CreateLayerCalloutFilter(
                         new DisplayData
@@ -99,7 +99,7 @@ namespace ProtonVPN.Service.SplitTunneling
                             Name = "ProtonVPN Split Tunnel redirect",
                             Description = "Redirects network connections"
                         },
-                        Layer.BindRedirectV4,
+                        Layer.AppConnectRedirectV4,
                         14,
                         callout,
                         providerContext);
@@ -110,7 +110,7 @@ namespace ProtonVPN.Service.SplitTunneling
                         Name = "ProtonVPN Split Tunnel redirect context",
                         Description = "Instructs the callout driver where to redirect network connections",
                     },
-                    new BindingRedirectData(vpnLocalIp));
+                    new ConnectRedirectData(vpnLocalIp));
 
                 CreateAppFilters(apps, callout, providerContext);
 
@@ -173,7 +173,7 @@ namespace ProtonVPN.Service.SplitTunneling
                     Name = "ProtonVPN Split Tunnel redirect app",
                     Description = "Redirects network connections of the app"
                 },
-                Layer.BindRedirectV4,
+                Layer.AppConnectRedirectV4,
                 15,
                 callout,
                 providerContext,
