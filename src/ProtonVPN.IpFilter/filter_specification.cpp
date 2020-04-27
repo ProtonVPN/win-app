@@ -37,7 +37,7 @@ namespace ipfilter
 
     void FilterSpecification::callout(GUID* calloutKey)
     {
-        this->action.type = FWP_ACTION_CALLOUT_UNKNOWN;
+        this->action.type = FWP_ACTION_CALLOUT_TERMINATING;
         this->action.calloutKey = *calloutKey;
     }
 

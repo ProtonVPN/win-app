@@ -21,17 +21,17 @@ using System.Net;
 
 namespace ProtonVPN.Service.SplitTunneling
 {
-    public class BindingRedirectData
+    public class ConnectRedirectData
     {
         private readonly IPAddress _ipAddress;
 
-        public BindingRedirectData(IPAddress ipAddress)
+        public ConnectRedirectData(IPAddress ipAddress)
         {
             _ipAddress = ipAddress;
         }
 
         public byte[] Value() => _ipAddress.GetAddressBytes();
 
-        public static implicit operator byte[](BindingRedirectData item) => item.Value();
+        public static implicit operator byte[](ConnectRedirectData item) => item.Value();
     }
 }
