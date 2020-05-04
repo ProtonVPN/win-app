@@ -18,6 +18,7 @@
  */
 
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
@@ -42,6 +43,7 @@ namespace ProtonVPN.Core.Api.Handlers
             _policy = new TlsPinningPolicy();
 
             ServerCertificateCustomValidationCallback = CertificateCustomValidationCallback;
+            AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
         }
 
         protected bool CertificateCustomValidationCallback(HttpRequestMessage request, X509Certificate certificate,
