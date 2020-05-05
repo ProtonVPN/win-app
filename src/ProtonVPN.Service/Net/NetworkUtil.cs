@@ -42,16 +42,6 @@ namespace ProtonVPN.Service.Net
             AssertSuccess(() => PInvoke.EnableIPv6(appName, interfaceId));
         }
 
-        public static void AddRoute(string ip)
-        {
-            AssertSuccess(() => PInvoke.AddRoute(ip));
-        }
-
-        public static void DeleteRoute(string ip)
-        {
-            AssertSuccess(() => PInvoke.DeleteRoute(ip));
-        }
-
         public static IPAddress GetBestInterfaceIp()
         {
             var bytes = new byte[4];

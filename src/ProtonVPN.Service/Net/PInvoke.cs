@@ -66,18 +66,6 @@ namespace ProtonVPN.Service.Net
 
         [DllImport(
             BinaryName,
-            EntryPoint = "AddRoute",
-            CallingConvention = CallingConvention.Cdecl)]
-        public static extern uint AddRoute([MarshalAs(UnmanagedType.LPWStr)] string ip);
-
-        [DllImport(
-            BinaryName,
-            EntryPoint = "DeleteRoute",
-            CallingConvention = CallingConvention.Cdecl)]
-        public static extern uint DeleteRoute([MarshalAs(UnmanagedType.LPWStr)] string ip);
-
-        [DllImport(
-            BinaryName,
             EntryPoint = "GetBestInterfaceIp",
             CallingConvention = CallingConvention.Cdecl)]
         public static extern uint GetBestInterfaceIp(IntPtr address);
