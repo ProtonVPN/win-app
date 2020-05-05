@@ -35,7 +35,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <local:BaseModalWindow.Resources>
         <Style x:Key="SolutionText" TargetType="TextBlock">
             <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="Margin" Value="30,10"/>
+            <Setter Property="Margin" Value="30,5"/>
             <Setter Property="TextWrapping" Value="Wrap"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontSize" Value="14"/>
@@ -53,7 +53,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     </local:BaseModalWindow.Resources>
     <StackPanel>
         <TextBlock VerticalAlignment="Top"
-                   Margin="30,30,30,10"
+                   Margin="30,20,30,5"
                    HorizontalAlignment="Center"
                    TextAlignment="Center"
                    TextWrapping="Wrap"
