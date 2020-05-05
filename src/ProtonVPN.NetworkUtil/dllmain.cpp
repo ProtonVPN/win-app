@@ -2,7 +2,6 @@
 #include <comdef.h>
 #include "NetworkConfiguration.h"
 #include "NetworkIPv6Settings.h"
-#include "Route.h"
 #include "BestInterface.h"
 
 #include <string>
@@ -85,18 +84,6 @@ extern "C" EXPORT long NetworkUtilDisableIPv6OnAllAdapters(wchar_t* appName, con
     }
 
     return 0;
-}
-
-extern "C" EXPORT DWORD AddRoute(PCWSTR address)
-{
-    Route route;
-    return route.Add(IpAddress(address), IpAddress(L"255.255.255.255"));
-}
-
-extern "C" EXPORT DWORD DeleteRoute(PCWSTR address)
-{
-    Route route;
-    return route.Delete(IpAddress(address), IpAddress(L"255.255.255.255"));
 }
 
 extern "C" EXPORT DWORD GetBestInterfaceIp(IN_ADDR* address)
