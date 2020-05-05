@@ -194,6 +194,8 @@ unsigned int IPFilterCreateRemoteIPv4Filter(
     unsigned int layer,
     unsigned int action,
     unsigned int weight,
+    GUID* calloutKey,
+    GUID* providerContextKey,
     const char* addr,
     GUID* filterKey)
 {
@@ -211,8 +213,8 @@ unsigned int IPFilterCreateRemoteIPv4Filter(
         layer,
         action,
         weight,
-        nullptr,
-        nullptr,
+        calloutKey,
+        providerContextKey,
         conditions,
         filterKey);
 }

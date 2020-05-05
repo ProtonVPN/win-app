@@ -173,6 +173,8 @@ namespace ProtonVPN.NetworkFilter
             uint layer,
             uint action,
             uint weight,
+            [In] ref Guid calloutKey,
+            [In] ref Guid providerContextKey,
             [MarshalAs(UnmanagedType.LPStr)] string addr,
             [In, Out] ref Guid filterKey);
 

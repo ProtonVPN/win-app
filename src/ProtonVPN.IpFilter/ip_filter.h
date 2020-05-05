@@ -114,6 +114,8 @@ extern "C" EXPORT unsigned int IPFilterCreateRemoteIPv4Filter(
     unsigned int layer,
     unsigned int action,
     unsigned int weight,
+    GUID * calloutKey,
+    GUID * providerContextKey,
     const char* addr,
     GUID* filterKey);
 
