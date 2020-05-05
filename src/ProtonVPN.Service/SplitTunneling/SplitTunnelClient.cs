@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -30,39 +31,39 @@ namespace ProtonVPN.Service.SplitTunneling
         private readonly ILogger _logger;
         private readonly BestNetworkInterface _bestInterface;
         private readonly SplitTunnelNetworkFilters _filters;
-        private readonly SplitTunnelRoutes _routes;
 
         public SplitTunnelClient(
             ILogger logger,
             BestNetworkInterface bestInterface,
-            SplitTunnelNetworkFilters filters,
-            SplitTunnelRoutes routes)
+            SplitTunnelNetworkFilters filters)
         {
             _logger = logger;
             _bestInterface = bestInterface;
             _filters = filters;
-            _routes = routes;
         }
 
         public void EnableExcludeMode(string[] appPaths, string[] ips)
         {
-            if (appPaths != null && appPaths.Length > 0)
+            string[] apps = new string[0];
+            if (appPaths != null)
             {
-                var apps = appPaths.Where(File.Exists).ToArray();
-                if (apps.Length == 0)
-                {
-                    return;
-                }
-
-                EnsureSucceeded(
-                    () => _filters.EnableExcludeMode(apps, _bestInterface.LocalIpAddress()),
-                    "SplitTunnel: Enabling exclude mode");
+                apps = appPaths.Where(File.Exists).ToArray();
             }
 
-            if (ips != null && ips.Length > 0)
+            string[] excludedIPs = new string[0];
+            if (ips != null)
             {
-                _routes.Add(ips);
+                excludedIPs = ips;
             }
+
+            if (apps.Length == 0 && excludedIPs.Length == 0)
+            {
+                return;
+            }
+
+            EnsureSucceeded(
+                () => _filters.EnableExcludeMode(apps, excludedIPs, _bestInterface.LocalIpAddress()),
+                "SplitTunnel: Enabling exclude mode");
         }
 
         public void EnableIncludeMode(string[] appPaths, string vpnLocalIp)
@@ -85,8 +86,6 @@ namespace ProtonVPN.Service.SplitTunneling
 
         public void Disable()
         {
-            _routes.Remove();
-
             EnsureSucceeded(
                 () => _filters.Disable(),
                 "SplitTunnel: Disabling");

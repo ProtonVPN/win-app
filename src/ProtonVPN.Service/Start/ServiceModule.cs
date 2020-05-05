@@ -125,7 +125,6 @@ namespace ProtonVPN.Service.Start
             builder.RegisterType<PermittedRemoteAddress>().AsSelf().SingleInstance();
             builder.RegisterType<AppFilter>().AsSelf().SingleInstance();
             builder.RegisterType<SplitTunnelNetworkFilters>().SingleInstance();
-            builder.RegisterType<SplitTunnelRoutes>().SingleInstance();
             builder.RegisterType<BestNetworkInterface>().SingleInstance();
             builder.RegisterType<SplitTunnelClient>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<UnhandledExceptionLogging>().SingleInstance();

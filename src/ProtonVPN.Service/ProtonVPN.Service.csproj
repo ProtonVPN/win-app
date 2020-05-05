@@ -147,7 +147,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="ServiceHosts\VpnConnectionHostFactory.cs" />
-    <Compile Include="SplitTunneling\SplitTunnelRoutes.cs" />
     <Compile Include="Start\ServiceModule.cs" />
     <Compile Include="VpnService.cs">
       <SubType>Component</SubType>
