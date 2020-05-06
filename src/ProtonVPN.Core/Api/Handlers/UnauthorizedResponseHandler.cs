@@ -26,6 +26,7 @@ using System.Threading.Tasks;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Core.Abstract;
 using ProtonVPN.Core.Api.Extensions;
+using ProtonVPN.Core.Settings;
 
 namespace ProtonVPN.Core.Api.Handlers
 {
@@ -37,15 +38,20 @@ namespace ProtonVPN.Core.Api.Handlers
     {
         private readonly ITokenClient _tokenClient;
         private readonly ITokenStorage _tokenStorage;
+        private readonly IUserStorage _userStorage;
 
         private volatile Task<bool> _refreshTask = Task.FromResult(true);
 
         public event EventHandler SessionExpired;
 
-        public UnauthorizedResponseHandler(ITokenClient tokenClient, ITokenStorage tokenStorage)
+        public UnauthorizedResponseHandler(
+            ITokenClient tokenClient,
+            ITokenStorage tokenStorage,
+            IUserStorage userStorage)
         {
             _tokenClient = tokenClient;
             _tokenStorage = tokenStorage;
+            _userStorage = userStorage;
         }
 
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request,
@@ -65,7 +71,7 @@ namespace ProtonVPN.Core.Api.Handlers
             }
 
             var response = await base.SendAsync(request, cancellationToken);
-            if (response.StatusCode == HttpStatusCode.Unauthorized)
+            if (response.StatusCode == HttpStatusCode.Unauthorized && !_userStorage.User().Empty())
             {
                 try
                 {

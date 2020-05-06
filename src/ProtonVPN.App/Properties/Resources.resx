@@ -497,10 +497,6 @@
     <value>Password</value>
     <comment>The label for Password text box in Login window</comment>
   </data>
-  <data name="Login_lbl_RememberLogin" xml:space="preserve">
-    <value>Remember Login</value>
-    <comment>The label for Remember Login toggle switch in Login window</comment>
-  </data>
   <data name="Settings_General_lbl_StartWithWindows" xml:space="preserve">
     <value>Start with Windows</value>
     <comment>The label for Start with Windows toggle switch in General tab of Settings window.

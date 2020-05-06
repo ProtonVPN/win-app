@@ -130,7 +130,7 @@ namespace ProtonVPN.Core
             _ = StartService(Resolve<MonitoredVpnService>());
             _ = StartService(Resolve<AppUpdateSystemService>());
 
-            if (!LoggedInWithSavedCredentials() || !await IsUserValid() || await SessionExpired())
+            if (Resolve<IUserStorage>().User().Empty() || !await IsUserValid() || await SessionExpired())
             {
                 ShowLoginForm();
                 return;
@@ -141,13 +141,6 @@ namespace ProtonVPN.Core
 
         public void OnExit()
         {
-            var appSettings = Resolve<IAppSettings>();
-            if (!appSettings.RememberLogin)
-            {
-                Resolve<IUserStorage>().ClearLogin();
-                appSettings.LoggedInWithSavedCredentials = false;
-            }
-
             Resolve<TrayIcon>().Hide();
             Resolve<VpnSystemService>().StopAsync();
             Resolve<AppUpdateSystemService>().StopAsync();
@@ -176,12 +169,6 @@ namespace ProtonVPN.Core
             var servers = Resolve<ICollectionStorage<LogicalServerContract>>().GetAll();
             if (servers.Any())
                 Resolve<ServerManager>().Load(servers);
-        }
-
-        private bool LoggedInWithSavedCredentials()
-        {
-            return Resolve<IAppSettings>().LoggedInWithSavedCredentials &&
-                   !Resolve<IUserStorage>().User().Empty();
         }
 
         private async Task<bool> IsUserValid()

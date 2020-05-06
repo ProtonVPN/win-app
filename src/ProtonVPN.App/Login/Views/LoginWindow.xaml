@@ -32,7 +32,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         WindowStartupLocation="CenterScreen"
         Title="{resources:Loc Login_ttl}"
         Width="440"
-        Height="600">
+        Height="550">
     <Window.Resources>
         <ResourceDictionary>
             <DataTemplate DataType="{x:Type viewModels:LoginViewModel}">

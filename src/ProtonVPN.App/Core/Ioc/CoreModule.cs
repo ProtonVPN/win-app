@@ -103,7 +103,8 @@ namespace ProtonVPN.Core.Ioc
             builder.Register(c =>
                 new UnauthorizedResponseHandler(
                         c.Resolve<ITokenClient>(),
-                        c.Resolve<ITokenStorage>())
+                        c.Resolve<ITokenStorage>(),
+                        c.Resolve<IUserStorage>())
                     {InnerHandler = c.Resolve<OutdatedAppHandler>()}).SingleInstance();
 
             builder.Register(c =>
