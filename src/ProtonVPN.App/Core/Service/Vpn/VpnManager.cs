@@ -44,6 +44,7 @@ namespace ProtonVPN.Core.Service.Vpn
         private readonly IAppSettings _appSettings;
         private readonly ITaskQueue _taskQueue = new SerialTaskQueue();
         private readonly GuestHoleState _guestHoleState;
+        private readonly IUserStorage _userStorage;
 
         private Profile _lastProfile;
         private ServerCandidates _lastServerCandidates;
@@ -55,13 +56,15 @@ namespace ProtonVPN.Core.Service.Vpn
             ProfileConnector profileConnector,
             IVpnServiceManager vpnServiceManager,
             IAppSettings appSettings,
-            GuestHoleState guestHoleState)
+            GuestHoleState guestHoleState,
+            IUserStorage userStorage)
         {
             _logger = logger;
             _profileConnector = profileConnector;
             _appSettings = appSettings;
             _vpnServiceManager = vpnServiceManager;
             _guestHoleState = guestHoleState;
+            _userStorage = userStorage;
             _lastServerCandidates = _profileConnector.ServerCandidates(null);
         }
 
@@ -98,7 +101,7 @@ namespace ProtonVPN.Core.Service.Vpn
 
         public void OnVpnStateChanged(VpnStateChangedEventArgs e)
         {
-            if (_guestHoleState.Active)
+            if (_guestHoleState.Active || _userStorage.User().Empty())
             {
                 return;
             }

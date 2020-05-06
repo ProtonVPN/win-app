@@ -3823,15 +3823,6 @@ namespace ProtonVPN.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Remember Login.
-        /// </summary>
-        public static string Login_lbl_RememberLogin {
-            get {
-                return ResourceManager.GetString("Login_lbl_RememberLogin", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Secure Internet Anywhere.
         /// </summary>
         public static string Login_lbl_SecureInternetAnywhere {

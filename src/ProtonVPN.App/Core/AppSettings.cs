@@ -34,7 +34,7 @@ using System.Runtime.CompilerServices;
 
 namespace ProtonVPN.Core
 {
-    internal class AppSettings : IAppSettings, INotifyPropertyChanged, ILoggedInAware, ILogoutAware
+    internal class AppSettings : IAppSettings, INotifyPropertyChanged, ILoggedInAware
     {
         private readonly ISettingsStorage _storage;
         private readonly UserSettings _userSettings;
@@ -115,12 +115,6 @@ namespace ProtonVPN.Core
             set => Set(value);
         }
 
-        public bool LoggedInWithSavedCredentials
-        {
-            get => Get<bool>();
-            set => Set(value);
-        }
-
         public StartMinimizedMode StartMinimized
         {
             get => Get<StartMinimizedMode>();
@@ -128,12 +122,6 @@ namespace ProtonVPN.Core
         }
 
         public bool EarlyAccess
-        {
-            get => Get<bool>();
-            set => Set(value);
-        }
-
-        public bool RememberLogin
         {
             get => Get<bool>();
             set => Set(value);
@@ -324,14 +312,6 @@ namespace ProtonVPN.Core
             var properties = _accessedPerUserProperties.ToList();
             _accessedPerUserProperties.Clear();
             OnPropertiesChanged(properties);
-
-            if (RememberLogin)
-                LoggedInWithSavedCredentials = true;
-        }
-
-        public void OnUserLoggedOut()
-        {
-            LoggedInWithSavedCredentials = false;
         }
 
         public string[] GetSplitTunnelApps()

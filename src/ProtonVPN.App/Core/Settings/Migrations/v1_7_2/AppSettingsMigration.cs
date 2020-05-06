@@ -31,7 +31,6 @@ namespace ProtonVPN.Core.Settings.Migrations.v1_7_2
         protected override void Migrate()
         {
             MigrateStartMinimized();
-            MigrateLoggedIn();
         }
 
         private void MigrateStartMinimized()
@@ -56,20 +55,6 @@ namespace ProtonVPN.Core.Settings.Migrations.v1_7_2
                 default:
                     Settings.Set(key, StartMinimizedMode.Disabled);
                     break;
-            }
-        }
-
-        private void MigrateLoggedIn()
-        {
-            var uid = Settings.Get<string>("Uid");
-            var username = Settings.Get<string>("Username");
-            var accessToken = Settings.Get<string>("AccessToken");
-            var refreshToken = Settings.Get<string>("RefreshToken");
-
-            if (!string.IsNullOrEmpty(uid) && !string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(accessToken) &&
-                !string.IsNullOrEmpty(refreshToken))
-            {
-                Settings.Set(nameof(IAppSettings.LoggedInWithSavedCredentials), true);
             }
         }
     }

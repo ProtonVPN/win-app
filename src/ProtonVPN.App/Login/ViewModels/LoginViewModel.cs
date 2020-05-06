@@ -153,12 +153,6 @@ namespace ProtonVPN.Login.ViewModels
             }
         }
 
-        public bool RememberLogin
-        {
-            get => _appSettings.RememberLogin;
-            set => _appSettings.RememberLogin = value;
-        }
-
         public bool StartOnStartup
         {
             get => _appSettings.StartOnStartup;

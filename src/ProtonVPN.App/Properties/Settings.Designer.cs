@@ -240,18 +240,6 @@ namespace ProtonVPN.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool RememberLogin {
-            get {
-                return ((bool)(this["RememberLogin"]));
-            }
-            set {
-                this["RememberLogin"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool SidebarMode {
             get {
@@ -915,18 +903,6 @@ namespace ProtonVPN.Properties {
             }
             set {
                 this["UserProfileChangesSyncedAt"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool LoggedInWithSavedCredentials {
-            get {
-                return ((bool)(this["LoggedInWithSavedCredentials"]));
-            }
-            set {
-                this["LoggedInWithSavedCredentials"] = value;
             }
         }
         

@@ -44,10 +44,8 @@ namespace ProtonVPN.Core.Settings
         string QuickConnect { get; set; }
         string LastEventId { get; set; }
         bool StartOnStartup { get; set; }
-        bool LoggedInWithSavedCredentials { get; set; }
         StartMinimizedMode StartMinimized { get; set; }
         bool EarlyAccess { get; set; }
-        bool RememberLogin { get; set; }
         bool SecureCore { get; set; }
         string LastUpdate { get; set; }
         bool KillSwitch { get; set; }

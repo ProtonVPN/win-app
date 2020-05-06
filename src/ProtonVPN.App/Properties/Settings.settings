@@ -56,9 +56,6 @@
     <Setting Name="Username" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="RememberLogin" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
     <Setting Name="SidebarMode" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
@@ -226,9 +223,6 @@
     </Setting>
     <Setting Name="UserProfileChangesSyncedAt" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
-    </Setting>
-    <Setting Name="LoggedInWithSavedCredentials" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="Language" Type="System.String" Scope="User">
       <Value Profile="(Default)" />

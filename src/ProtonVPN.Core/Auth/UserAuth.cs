@@ -169,6 +169,8 @@ namespace ProtonVPN.Core.Auth
             UserLoggedOut?.Invoke(this, EventArgs.Empty);
 
             SendLogoutRequest();
+
+            _userStorage.ClearLogin();
         }
 
         private async void SendLogoutRequest()
