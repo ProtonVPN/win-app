@@ -46,7 +46,6 @@ using ProtonVPN.Core.Api.Handlers;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Events;
 using ProtonVPN.Core.Ioc;
-using ProtonVPN.Core.Language;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Network;
 using ProtonVPN.Core.OS.Net;
@@ -388,12 +387,6 @@ namespace ProtonVPN.Core
             Resolve<Language.Language>().LanguageChanged += (sender, lang) =>
             {
                 TranslationSource.Instance.CurrentCulture = new CultureInfo(lang);
-
-                var instances = Resolve<IEnumerable<ILanguageAware>>();
-                foreach (var instance in instances)
-                {
-                    instance.OnLanguageChanged(lang);
-                }
             };
 
             Resolve<EventClient>().ApiDataChanged += async (sender, e) =>

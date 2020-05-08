@@ -18,10 +18,11 @@
  */
 
 using ProtonVPN.Core.MVVM;
+using ProtonVPN.ViewModels;
 
 namespace ProtonVPN.Login.ViewModels
 {
-    public class LoginWindowViewModel : ViewModel
+    public class LoginWindowViewModel : LanguageAwareViewModel
     {
         private ViewModel _currentPageViewModel;
         public ViewModel CurrentPageViewModel

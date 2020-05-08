@@ -568,6 +568,7 @@
     <Compile Include="Sidebar\SidebarProfilesViewModel.cs" />
     <Compile Include="Sidebar\SidebarViewModel.cs" />
     <Compile Include="Account\PricingBuilder.cs" />
+    <Compile Include="ViewModels\LanguageAwareViewModel.cs" />
     <Compile Include="ViewModels\TrayNotificationViewModel.cs" />
     <Compile Include="Views\AppLoading.xaml.cs">
       <DependentUpon>AppLoading.xaml</DependentUpon>

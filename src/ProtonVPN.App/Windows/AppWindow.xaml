@@ -38,7 +38,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         FontFamily="Segoe UI Symbol"
         Title="{resources:Loc App_ttl}"
         MinWidth="336"
-        MinHeight="600" 
+        MinHeight="600"
+        FlowDirection="{Binding FlowDirection}"
         d:DataContext="{d:DesignData viewModel:MainViewModel}">
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="{Binding ActualHeight,ElementName=Titlebar}" GlassFrameThickness="0 0 0 1" />

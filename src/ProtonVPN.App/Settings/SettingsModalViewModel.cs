@@ -379,8 +379,10 @@ namespace ProtonVPN.Settings
             SelectedTabIndex = 2;
         }
 
-        public async void OnAppSettingsChanged(PropertyChangedEventArgs e)
+        public override async void OnAppSettingsChanged(PropertyChangedEventArgs e)
         {
+            base.OnAppSettingsChanged(e);
+
             if (e.PropertyName.Equals(nameof(IAppSettings.StartOnStartup)))
             {
                 OnPropertyChanged(new PropertyChangedEventArgs(nameof(StartOnStartup)));

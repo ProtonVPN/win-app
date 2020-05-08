@@ -17,12 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using GalaSoft.MvvmLight.Command;
-using ProtonVPN.Common.Extensions;
-using ProtonVPN.Core.Language;
-using ProtonVPN.Core.MVVM;
-using ProtonVPN.Core.Settings;
-using ProtonVPN.Resources;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -31,11 +25,16 @@ using System.ComponentModel;
 using System.Linq;
 using System.Net;
 using System.Windows.Input;
+using GalaSoft.MvvmLight.Command;
+using ProtonVPN.Common.Extensions;
+using ProtonVPN.Core.MVVM;
+using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Settings.Contracts;
+using ProtonVPN.Resources;
 
 namespace ProtonVPN.Settings
 {
-    public abstract class IpListViewModel : ViewModel, INotifyDataErrorInfo, ISettingsAware, ILanguageAware
+    public abstract class IpListViewModel : ViewModel, INotifyDataErrorInfo, ISettingsAware
     {
         private bool _saving;
 
@@ -74,16 +73,16 @@ namespace ProtonVPN.Settings
         {
             if (_saving) return;
 
+            if (e.PropertyName == nameof(IAppSettings.Language))
+            {
+                Validate();
+            }
+
             if (e.PropertyName == GetSettingsPropertyName())
             {
                 _items = null;
                 RaisePropertyChanged(nameof(Items));
             }
-        }
-
-        public void OnLanguageChanged(string lang)
-        {
-            Validate();
         }
 
         protected abstract IpContract[] GetItems();

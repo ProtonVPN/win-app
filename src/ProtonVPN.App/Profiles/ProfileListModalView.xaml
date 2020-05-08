@@ -80,13 +80,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <Setter Property="VerticalAlignment" Value="Top"/>
             </Style>
             <Style x:Key="Protocol" TargetType="Label">
+                <Setter Property="FlowDirection" Value="LeftToRight"/>
                 <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
                 <Setter Property="FontSize" Value="16"/>
+                <Setter Property="Padding" Value="0"/>
                 <Setter Property="Foreground" Value="White"/>
                 <Style.Triggers>
                     <DataTrigger Binding="{Binding Protocol}" Value="{x:Static coreProfiles:Protocol.Auto}">
-                        <Setter Property="Foreground" Value="#777783"></Setter>
+                        <Setter Property="Foreground" Value="#777783"/>
                     </DataTrigger>
                 </Style.Triggers>
             </Style>
@@ -211,11 +213,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                                 HorizontalAlignment="Stretch"
                                                                 DataContext="{Binding ConnectionName}"
                                                                 FontSize="16"/>
-                                <Label Grid.Column="3"
-                                       Padding="0,5,15,5"
-                                       Style="{StaticResource Protocol}"
+                                <StackPanel Grid.Column="3">
+                                    <Label Margin="0,5,15,5"
+                                           Style="{StaticResource Protocol}"
+                                           Content="{Binding Protocol, Converter={StaticResource EnumToDisplayTextConverter}}"/>
+                                </StackPanel>
 
-                                       Content="{Binding Protocol, Converter={StaticResource EnumToDisplayTextConverter}}"/>
                                 <StackPanel Grid.Column="4" Orientation="Horizontal">
                                     <Button Style="{StaticResource FirstRowButton}"
                                             Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type modals:BaseModalWindow}}, Path=DataContext.ConnectCommand}" CommandParameter="{Binding}">

@@ -34,13 +34,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using ProtonVPN.ViewModels;
 
 namespace ProtonVPN.QuickLaunch
 {
     internal class QuickLaunchViewModel :
-        ViewModel,
+        LanguageAwareViewModel,
         IVpnStateAware,
-        ISettingsAware,
         ITrafficForwardedAware
     {
         private ViewModel _selectedProfile;
@@ -125,7 +125,7 @@ namespace ProtonVPN.QuickLaunch
             set
             {
                 _selectedProfile = value;
-                OnPropertyChanged();
+                NotifyOfPropertyChange(() => SelectedProfile);
             }
         }
 
@@ -183,8 +183,15 @@ namespace ProtonVPN.QuickLaunch
             return Task.CompletedTask;
         }
 
-        public async void OnAppSettingsChanged(PropertyChangedEventArgs e)
+        public override async void OnAppSettingsChanged(PropertyChangedEventArgs e)
         {
+            base.OnAppSettingsChanged(e);
+
+            if (e.PropertyName.Equals(nameof(IAppSettings.Language)))
+            {
+                await LoadProfiles();
+            }
+
             if (e.PropertyName.Equals(nameof(IAppSettings.Profiles))
                 || e.PropertyName.Equals(nameof(IAppSettings.SecureCore)))
             {

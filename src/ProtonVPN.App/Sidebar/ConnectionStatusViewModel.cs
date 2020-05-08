@@ -18,6 +18,7 @@
  */
 
 using System;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Threading;
@@ -44,7 +45,8 @@ namespace ProtonVPN.Sidebar
         IOnboardingStepAware,
         IServersAware,
         IUserLocationAware,
-        ITrafficForwardedAware
+        ITrafficForwardedAware,
+        ISettingsAware
     {
         private readonly VpnManager _vpnManager;
         private readonly QuickConnector _quickConnector;
@@ -211,6 +213,20 @@ namespace ProtonVPN.Sidebar
         public void OnStepChanged(int step)
         {
             ShowFirstOnboardingStep = step == 1;
+        }
+
+        public void OnAppSettingsChanged(PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName != nameof(IAppSettings.Language))
+            {
+                return;
+            }
+
+            OnPropertyChanged(nameof(ServerLoad));
+            if (ConnectedServer != null)
+            {
+                SetConnectionName(ConnectedServer);
+            }
         }
 
         private Server _connectedServer;

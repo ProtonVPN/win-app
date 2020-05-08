@@ -29,6 +29,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         ResizeMode="NoResize"
         WindowStyle="None"
         FontFamily="Segoe UI"
+        FlowDirection="{Binding FlowDirection}"
         WindowStartupLocation="CenterScreen"
         Title="{resources:Loc Login_ttl}"
         Width="440"

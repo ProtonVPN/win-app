@@ -113,7 +113,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                            Panel.ZIndex="1"
                            Visibility="{Binding ShowFifthOnboardingStep, Converter={StaticResource BoolToVis}}"/>
 
-            <controls:LogoWhite Width="120" Height="20" Margin="0,40,47,0" VerticalAlignment="Top" HorizontalAlignment="Right" x:Name="Logo" Panel.ZIndex="1"/>
+            <controls:LogoWhite Width="120"
+                                Height="20"
+                                FlowDirection="LeftToRight"
+                                Margin="0,40,47,0"
+                                VerticalAlignment="Top"
+                                HorizontalAlignment="Right"
+                                x:Name="Logo"
+                                Panel.ZIndex="1"/>
 
             <StackPanel Margin="0,70,40,0" VerticalAlignment="Top" HorizontalAlignment="Right" Panel.ZIndex="1" x:Name="VerticalZoomPanel" RenderTransformOrigin="0.5,0.5">
                 <Grid>
@@ -212,6 +219,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                               ViewportWidth="{Binding ViewportWidth, Mode=OneWayToSource}"
                               ViewportHeight="{Binding ViewportHeight, Mode=OneWayToSource}"
                               x:Name="ScrollViewer"
+                              FlowDirection="LeftToRight"
                               HorizontalScrollBarVisibility="Hidden"
                               VerticalScrollBarVisibility="Hidden"
                               IsManipulationEnabled="True"

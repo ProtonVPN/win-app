@@ -116,7 +116,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           SelectedValue="{Binding Protocol}">
                 <wpf:Combobox.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding Converter={StaticResource EnumToDisplayTextConverter}}"/>
+                        <TextBlock Text="{Binding Converter={StaticResource EnumToDisplayTextConverter}}" HorizontalAlignment="Left" FlowDirection="LeftToRight"/>
                     </DataTemplate>
                 </wpf:Combobox.ItemTemplate>
             </wpf:Combobox>

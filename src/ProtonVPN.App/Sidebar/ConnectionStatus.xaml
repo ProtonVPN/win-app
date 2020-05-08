@@ -174,34 +174,63 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <controls:ServerName Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0" Padding="0" Margin="0,0,0,3"
-                                 FontSize="16" ConnectionName="{Binding ConnectionName}" />
-            <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" Margin="0,3">
-                <Label Foreground="White" Padding="0" FontSize="14" Content="IP:"/>
-                <Label Foreground="White" Padding="3,0,0,0" FontWeight="Bold" FontSize="14" Content="{Binding Ip}" />
+            <controls:ServerName Grid.Row="0"
+                                 Grid.ColumnSpan="2"
+                                 Grid.Column="0"
+                                 Padding="0"
+                                 Margin="0,0,0,3"
+                                 FontSize="16"
+                                 ConnectionName="{Binding ConnectionName}" />
+            <StackPanel Orientation="Horizontal"
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Margin="0,3"
+                        FlowDirection="LeftToRight"
+                        HorizontalAlignment="Left">
+                <Label Foreground="White"
+                       Padding="0"
+                       FontSize="14"
+                       Content="IP:"/>
+                <Label Foreground="White"
+                       Padding="3,0,0,0"
+                       FontWeight="Bold"
+                       FontSize="14"
+                       Content="{Binding Ip}" />
             </StackPanel>
-            <StackPanel Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center"
-                        Orientation="Horizontal">
-                <TextBlock Foreground="White" Text="{Binding ServerLoad, Converter={StaticResource LoadToTextConverter}}"/>
-                <Grid Margin="3,1,0,0">
-                    <Ellipse Stroke="#4c4c59" StrokeThickness="1" Width="13" Height="13" />
-                    <controls:CircularProgressBar
+            <StackPanel Grid.Column="1"
+                        Grid.Row="1"
+                        HorizontalAlignment="Right"
                         VerticalAlignment="Center"
-                        HorizontalAlignment="Center"
-                        Radius="6"
-                        Percentage="{Binding ServerLoad}"
-                        StrokeThickness="2"
-                        SegmentColor="{Binding ServerLoad, Converter={StaticResource LoadToColor}}" />
+                        Orientation="Horizontal">
+                <TextBlock Foreground="White"
+                           Text="{Binding ServerLoad, Converter={StaticResource LoadToTextConverter}}"/>
+                <Grid Margin="3,1,0,0">
+                    <Ellipse Stroke="#4c4c59"
+                             StrokeThickness="1"
+                             Width="13"
+                             Height="13" />
+                    <controls:CircularProgressBar VerticalAlignment="Center"
+                                                  HorizontalAlignment="Center"
+                                                  Radius="6"
+                                                  Percentage="{Binding ServerLoad}"
+                                                  StrokeThickness="2"
+                                                  SegmentColor="{Binding ServerLoad, Converter={StaticResource LoadToColor}}" />
                 </Grid>
             </StackPanel>
             <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,3">
                 <TextBlock Padding="0"
+                           FlowDirection="LeftToRight"
                            Foreground="White"
                            FontSize="14"
                            Text="{Binding Protocol, Converter={StaticResource EnumToDisplayTextConverter}}"/>
             </StackPanel>
-            <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Center"
-                        HorizontalAlignment="Right" Orientation="Horizontal">
+            <StackPanel Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Grid.Row="2"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Right"
+                        Orientation="Horizontal"
+                        FlowDirection="LeftToRight">
                 <fa:FontAwesome Icon="ArrowDown" Foreground="White" FontSize="12" Padding="0,4,4,0" />
                 <TextBlock FontSize="12" Foreground="White" Padding="0,2,5,0">
                     <Run Text="{Binding CurrentDownloadSpeed, Converter={StaticResource BytesToSizeConverter}, Mode=OneWay}" />

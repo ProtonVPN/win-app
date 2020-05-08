@@ -54,8 +54,10 @@ namespace ProtonVPN.Modals
             set => _appSettings.DoHEnabled = value;
         }
 
-        public void OnAppSettingsChanged(PropertyChangedEventArgs e)
+        public override void OnAppSettingsChanged(PropertyChangedEventArgs e)
         {
+            base.OnAppSettingsChanged(e);
+
             if (e.PropertyName == nameof(IAppSettings.DoHEnabled))
             {
                 DoHEnabled = _appSettings.DoHEnabled;

@@ -34,6 +34,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         ShowInTaskbar="False"
         ResizeMode="CanMinimize"
         mc:Ignorable="d"
+        FlowDirection="{Binding FlowDirection}"
         SizeToContent="WidthAndHeight"
         Title="QuickLaunchWindow"
         Topmost="True"
@@ -155,7 +156,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     </Window.Resources>
     <StackPanel Width="296" Background="#222329">
         <DockPanel Background="#2b2c34" Height="58" VerticalAlignment="Top">
-            <controls1:LogoWhite HorizontalAlignment="Left" VerticalAlignment="Center" Margin="15,0,0,0"/>
+            <controls1:LogoWhite HorizontalAlignment="Left"
+                                 VerticalAlignment="Center"
+                                 Margin="15,0,0,0"
+                                 FlowDirection="LeftToRight"/>
             <Button Margin="0,0,10,0" HorizontalAlignment="Right" Style="{StaticResource WindowsCloseButton}" PreviewMouseLeftButtonDown="UIElement_OnMouseLeftButtonDown"/>
         </DockPanel>
 

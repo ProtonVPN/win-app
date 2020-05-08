@@ -162,7 +162,6 @@
     <Compile Include="Events\IEventChangeAware.cs" />
     <Compile Include="Events\UserInfoHandler.cs" />
     <Compile Include="Events\VpnProfileHandler.cs" />
-    <Compile Include="Language\ILanguageAware.cs" />
     <Compile Include="Language\Language.cs" />
     <Compile Include="Modals\IDialogs.cs" />
     <Compile Include="Modals\IDialogSettings.cs" />
