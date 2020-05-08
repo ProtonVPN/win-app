@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<DOCUMENT Type="Advanced Installer" CreateVersion="13.3" version="16.6.1" Modules="professional" RootPath="." Language="en" Id="{C8285BB8-B654-4FB0-A58E-4B4B320D8D29}">
+<DOCUMENT Type="Advanced Installer" CreateVersion="13.3" version="17.0" Modules="professional" RootPath="." Language="en" Id="{C8285BB8-B654-4FB0-A58E-4B4B320D8D29}">
   <COMPONENT cid="caphyon.advinst.msicomp.ProjectOptionsComponent">
-    <ROW Name="HiddenItems" Value="AppXProductDetailsComponent;AppXDependenciesComponent;AppXAppDetailsComponent;AppXVisualAssetsComponent;AppXCapabilitiesComponent;AppXAppDeclarationsComponent;AppXUriRulesComponent;ActSyncAppComponent;FixupComponent"/>
+    <ROW Name="HiddenItems" Value="AppXAppDetailsComponent;FixupComponent;AppXCapabilitiesComponent;AppXDependenciesComponent;AppXProductDetailsComponent;AppXVisualAssetsComponent;AppXAppDeclarationsComponent;AppXUriRulesComponent;MsiXDiffComponent;MsixManifestEditorComponent"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiPropsComponent">
     <ROW Property="AI_BITMAP_DISPLAY_MODE" Value="0"/>
@@ -55,6 +55,7 @@
     <ROW Directory="Binaries_Dir" Directory_Parent="APPDIR" DefaultDir="RESOUR~1|Resources"/>
     <ROW Directory="DesktopFolder" Directory_Parent="TARGETDIR" DefaultDir="DESKTO~1|DesktopFolder" IsPseudoRoot="1"/>
     <ROW Directory="LocalAppDataFolder" Directory_Parent="TARGETDIR" DefaultDir="LOCALA~1|LocalAppDataFolder" IsPseudoRoot="1"/>
+    <ROW Directory="Logs_Dir" Directory_Parent="ProtonVPN_1_Dir" DefaultDir="Logs"/>
     <ROW Directory="ProgramMenuFolder" Directory_Parent="TARGETDIR" DefaultDir="PROGRA~1|ProgramMenuFolder" IsPseudoRoot="1"/>
     <ROW Directory="ProtonVPN_1_Dir" Directory_Parent="LocalAppDataFolder" DefaultDir="PROTON~1|ProtonVPN"/>
     <ROW Directory="ProtonVPN_Dir" Directory_Parent="ProgramMenuFolder" DefaultDir="PROTON~1|ProtonVPN"/>
@@ -90,6 +91,7 @@
     <ROW Component="GalaSoft.MvvmLight.dll" ComponentId="{50FA9CA8-4DD4-4068-A0D8-D2C1D9D42947}" Directory_="APPDIR" Attributes="0" KeyPath="GalaSoft.MvvmLight.dll"/>
     <ROW Component="GoSrp.dll" ComponentId="{3DB767E8-ACF9-459F-A509-F57E76FBA633}" Directory_="x64_Dir" Attributes="256" KeyPath="GoSrp.dll"/>
     <ROW Component="GoSrp.dll_1" ComponentId="{89CC2AA9-0000-4E4B-9D5A-43ACC1B1D1E3}" Directory_="x86_Dir" Attributes="0" KeyPath="GoSrp.dll_1"/>
+    <ROW Component="Logs" ComponentId="{5012E344-2ED7-41C3-9A3D-83F3111DDB2C}" Directory_="Logs_Dir" Attributes="0"/>
     <ROW Component="Microsoft.Deployment.WindowsInstaller.dll" ComponentId="{FFB7E0D6-80C7-40A9-AC9E-BFEA81253FFB}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Deployment.WindowsInstaller.dll"/>
     <ROW Component="NLog.dll" ComponentId="{17246A16-5DDB-41C5-AD07-AD5D1B5B8121}" Directory_="APPDIR" Attributes="0" KeyPath="NLog.dll"/>
     <ROW Component="Newtonsoft.Json.dll" ComponentId="{E0A54725-459B-4F28-A4A0-7587B5B176E7}" Directory_="APPDIR" Attributes="0" KeyPath="Newtonsoft.Json.dll"/>
@@ -410,6 +412,7 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCreateFolderComponent">
     <ROW Directory_="ProtonVPN_Dir" Component_="ProtonVPN" ManualDelete="false"/>
     <ROW Directory_="APPDIR" Component_="APPDIR" ManualDelete="true"/>
+    <ROW Directory_="Logs_Dir" Component_="Logs" ManualDelete="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCustActComponent">
     <ROW Action="AI_AiRemoveFilesCommit" Type="11777" Source="ResourceCleaner.dll" Target="OnAiRemoveFilesCommit" WithoutSeq="true"/>
@@ -430,6 +433,7 @@
     <ROW Action="AI_DATA_SETTER_5" Type="51" Source="CustomActionData" Target="AEkAcwA2ADQAQgBpAHQAAgABAEkAcwBGAGEAbABsAGIAYQBjAGsAMwAyAEIAaQB0AAIAAQBQAGEAcgBhAG0AcwACAAEAUwBjAHIAaQBwAHQAAgBQAGEAcgBhAG0AKAApAA0ACgANAAoAJABzAGUAcgB2AGkAYwBlAFAAYQB0AGgAIAA9ACAAQQBJAF8ARwBlAHQATQBzAGkAUAByAG8AcABlAHIAdAB5ACAAVQBwAGQAYQB0AGUAUwBlAHIAdgBpAGMAZQBQAGEAdABoAA0ACgBTAGMAaABUAGEAcwBrAHMAIAAvAEMAcgBlAGEAdABlACAALwBGACAALwBUAE4AIAAiAFAAcgBvAHQAbwBuAFYAUABOACAAVQBwAGQAYQB0AGUAIgAgAC8AUgBVACAASQBOAFQARQBSAEEAQwBUAEkAVgBFACAALwBJAFQAIAAvAFIATAAgAEgASQBHAEgARQBTAFQAIAAvAFQAUgAgACIAJwAkAHMAZQByAHYAaQBjAGUAUABhAHQAaAAnACAAdQBwAGQAYQB0AGUAIgAgAC8AUwBDACAATwBOAEUAVgBFAE4AVAAgAC8ARQBDACAAQQBwAHAAbABpAGMAYQB0AGkAbwBuACAALwBNAE8AIAAiACoAWwBcAFsAXQBTAHkAcwB0AGUAbQBbAFwAWwBdAFAAcgBvAHYAaQBkAGUAcgBbAFwAWwBdAEAATgBhAG0AZQA9ACcAUAByAG8AdABvAG4AVgBQAE4AJwBbAFwAXQBdACAAYQBuAGQAIABFAHYAZQBuAHQASQBEAD0AMQBbAFwAXQBdAFsAXABdAF0AIg=="/>
     <ROW Action="AI_DATA_SETTER_6" Type="51" Source="CustomActionData" Target="ProtonVPN.ErrorMessage.exe"/>
     <ROW Action="AI_DATA_SETTER_7" Type="51" Source="CustomActionData" Target="AEkAcwA2ADQAQgBpAHQAAgABAEkAcwBGAGEAbABsAGIAYQBjAGsAMwAyAEIAaQB0AAIAAQBQAGEAcgBhAG0AcwACAAEAUwBjAHIAaQBwAHQAAgBQAGEAcgBhAG0AKAApAA0ACgANAAoAcwBjAGgAdABhAHMAawBzACAALwBEAGUAbABlAHQAZQAgAC8ARgAgAC8AVABOACAAIgBQAHIAbwB0AG8AbgBWAFAATgAgAFUAcABkAGEAdABlACI="/>
+    <ROW Action="AI_DATA_SETTER_8" Type="51" Source="CustomActionData" Target="AEkAcwA2ADQAQgBpAHQAAgAxAAEASQBzAEYAYQBsAGwAYgBhAGMAawAzADIAQgBpAHQAAgAxAAEAUABhAHIAYQBtAHMAAgABAFMAYwByAGkAcAB0AAIAJABsAG8AZwBGAGkAbABlACAAPQAgAEEASQBfAEcAZQB0AE0AcwBpAFAAcgBvAHAAZQByAHQAeQAgAE0AcwBpAEwAbwBnAEYAaQBsAGUATABvAGMAYQB0AGkAbwBuAA0ACgAkAGwAbwBjAGEAbABBAHAAcABEAGEAdABhAEYAbwBsAGQAZQByACAAPQAgAEEASQBfAEcAZQB0AE0AcwBpAFAAcgBvAHAAZQByAHQAeQAgAEwAbwBjAGEAbABBAHAAcABEAGEAdABhAEYAbwBsAGQAZQByAA0ACgAkAGwAbwBnAEYAbwBsAGQAZQByACAAPQAgACgAJABsAG8AYwBhAGwAQQBwAHAARABhAHQAYQBGAG8AbABkAGUAcgAgACsAIAAiAFwAUAByAG8AdABvAG4AVgBQAE4AXABMAG8AZwBzAFwAIgApAA0ACgAkAHQAbQBwAEwAbwBnAEYAaQBsAGUAIAA9ACAAKAAkAGwAbwBnAEYAbwBsAGQAZQByACAAKwAgACIAaQBuAHMAdABhAGwAbAAuAGwAbwBnACIAKQANAAoADQAKAEMAbwBwAHkALQBJAHQAZQBtACAAJABsAG8AZwBGAGkAbABlACAALQBEAGUAcwB0AGkAbgBhAHQAaQBvAG4AIAAkAHQAbQBwAEwAbwBnAEYAaQBsAGUADQAKAEMAbwBtAHAAcgBlAHMAcwAtAEEAcgBjAGgAaQB2AGUAIAAtAFAAYQB0AGgAIAAkAHQAbQBwAEwAbwBnAEYAaQBsAGUAIAAtAEQAZQBzAHQAaQBuAGEAdABpAG8AbgBQAGEAdABoACAAKAAkAGwAbwBnAEYAbwBsAGQAZQByACAAKwAgACIAaQBuAHMAdABhAGwAbAAtAGwAbwBnAC4AegBpAHAAIgApAA0ACgBSAGUAbQBvAHYAZQAtAEkAdABlAG0AIAAkAHQAbQBwAEwAbwBnAEYAaQBsAGU="/>
     <ROW Action="AI_DOWNGRADE" Type="19" Target="4010"/>
     <ROW Action="AI_DeleteCadLzma" Type="51" Source="AI_DeleteLzma" Target="[AI_SETUPEXEPATH]"/>
     <ROW Action="AI_DeleteLzma" Type="1025" Source="lzmaextractor.dll" Target="DeleteLZMAFiles"/>
@@ -458,6 +462,7 @@
     <ROW Action="AI_SHOW_LOG" Type="65" Source="aicustact.dll" Target="LaunchLogFile" WithoutSeq="true"/>
     <ROW Action="AI_STORE_LOCATION" Type="51" Source="ARPINSTALLLOCATION" Target="[APPDIR]"/>
     <ROW Action="AI_VerifyPrereq" Type="1" Source="Prereq.dll" Target="VerifyPrereq"/>
+    <ROW Action="CopyInstallLog" Type="1" Source="PowerShellScriptLauncher.dll" Target="RunPowerShellScript" Options="1" AdditionalSeq="AI_DATA_SETTER_8"/>
     <ROW Action="CreateUpdateScheduledTask" Type="65" Source="PowerShellScriptLauncher.dll" Target="RunPowerShellScript" Options="1" AdditionalSeq="AI_DATA_SETTER_5"/>
     <ROW Action="DeleteUpdateScheduledTask" Type="65" Source="PowerShellScriptLauncher.dll" Target="RunPowerShellScript" Options="1" AdditionalSeq="AI_DATA_SETTER_7"/>
     <ROW Action="InstallSplitTunnelDriver" Type="1" Source="ProtonVPN.InstallActions.dll" Target="InstallSplitTunnelDriver"/>
@@ -558,6 +563,7 @@
     <ROW Feature_="MainFeature" Component_="Albireo.Base32.dll"/>
     <ROW Feature_="MainFeature" Component_="ARSoft.Tools.Net.dll"/>
     <ROW Feature_="MainFeature" Component_="BouncyCastle.Crypto.dll"/>
+    <ROW Feature_="MainFeature" Component_="Logs"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
     <ROW Name="protonvpn.exe" SourcePath="images\protonvpn.ico" Index="0"/>
@@ -616,6 +622,8 @@
     <ROW Action="DeleteUpdateScheduledTask" Condition="( Installed AND ( REMOVE = &quot;ALL&quot; OR AI_INSTALL_MODE = &quot;Remove&quot; ) ) AND ( (VersionNT &gt; 501) OR (VersionNT = 501 AND ServicePackLevel &gt;= 2) )" Sequence="6402"/>
     <ROW Action="AI_DATA_SETTER_7" Condition="( Installed AND ( REMOVE = &quot;ALL&quot; OR AI_INSTALL_MODE = &quot;Remove&quot; ) ) AND ( (VersionNT &gt; 501) OR (VersionNT = 501 AND ServicePackLevel &gt;= 2) )" Sequence="6401"/>
     <ROW Action="AI_AiRemoveFilesImmediate" Sequence="3499"/>
+    <ROW Action="CopyInstallLog" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( (VersionNT &gt; 501) OR (VersionNT = 501 AND ServicePackLevel &gt;= 2) )" Sequence="6613"/>
+    <ROW Action="AI_DATA_SETTER_8" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( (VersionNT &gt; 501) OR (VersionNT = 501 AND ServicePackLevel &gt;= 2) )" Sequence="6612"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstallUISequenceComponent">
     <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="749"/>
