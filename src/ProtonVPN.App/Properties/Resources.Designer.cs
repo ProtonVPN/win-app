@@ -106,6 +106,15 @@ namespace ProtonVPN.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Licensing information:.
+        /// </summary>
+        public static string About_lbl_LicensingInformation {
+            get {
+                return ResourceManager.GetString("About_lbl_LicensingInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Update.
         /// </summary>
         public static string About_lnk_Update {
