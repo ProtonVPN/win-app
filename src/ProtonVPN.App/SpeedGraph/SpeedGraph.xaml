@@ -33,7 +33,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Setter Property="Margin" Value="0,2"/>
             <Setter Property="Padding" Value="5,0,5,0"/>
             <Setter Property="FontSize" Value="12"/>
-            <Setter Property="Width" Value="55"/>
+            <Setter Property="Width" Value="36"/>
             <Setter Property="Height" Value="16"/>
             <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
             <Setter Property="HorizontalContentAlignment" Value="Right"/>
@@ -45,6 +45,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Style>
 
         <Style x:Key="UnitColumn" TargetType="Label">
+            <Setter Property="Width" Value="36"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="Padding" Value="5,0,0,0"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
@@ -67,13 +68,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         <Style x:Key="UploadSpeedNumber" TargetType="Label" BasedOn="{StaticResource DataLabel}">
             <Setter Property="Foreground" Value="White"/>
-            <Setter Property="Width" Value="36"/>
             <Setter Property="Background" Value="#56b39c"/>
         </Style>
 
         <Style x:Key="DownloadSpeedNumber" TargetType="Label" BasedOn="{StaticResource DataLabel}">
             <Setter Property="Foreground" Value="White"/>
-            <Setter Property="Width" Value="36"/>
             <Setter Property="Background" Value="#369d5b"/>
         </Style>
 
@@ -98,12 +97,31 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Row="0" Grid.Column="1" Margin="0,0,0,5" x:Name="TopLabels">
-            <Label Content="{resources:Loc Map_SpeedGraph_lbl_Speed}" Padding="0" FontSize="10" Foreground="#33FFFFFF" VerticalAlignment="Bottom"/>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Label Foreground="#33FFFFFF" Padding="0,0,5,0" FontSize="10" Content="{Binding MaxBandwidth, Converter={StaticResource BytesToSizeConverter}}"/>
-                <Label Style="{StaticResource SpeedUnitColumn}" FontSize="10" HorizontalAlignment="Right" Foreground="#33FFFFFF" VerticalAlignment="Top" Padding="0" Content="{Binding MaxBandwidth, Converter={StaticResource BytesToUnitsConverter}}"/>
-            </StackPanel>
+        <Grid Grid.Row="0" Grid.Column="1" x:Name="TopLabels">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label Content="{resources:Loc Map_SpeedGraph_lbl_Speed}"
+                   Padding="0"
+                   FontSize="10"
+                   Grid.Column="0"
+                   HorizontalAlignment="Left"
+                   Foreground="#33FFFFFF"
+                   VerticalAlignment="Bottom"/>
+            <DockPanel HorizontalAlignment="Right" Grid.Column="1" FlowDirection="LeftToRight">
+                <Label Foreground="#33FFFFFF"
+                       Padding="0,0,5,0"
+                       FontSize="10"
+                       Content="{Binding MaxBandwidth, Converter={StaticResource BytesToSizeConverter}}"/>
+                <Label Style="{StaticResource SpeedUnitColumn}"
+                       FontSize="10"
+                       Width="Auto"
+                       Foreground="#33FFFFFF"
+                       VerticalAlignment="Top"
+                       Padding="0"
+                       Content="{Binding MaxBandwidth, Converter={StaticResource BytesToUnitsConverter}}"/>
+            </DockPanel>
         </Grid>
 
         <Grid Grid.Row="1" Grid.Column="1" x:Name="BottomLabels">
@@ -114,8 +132,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Grid Grid.Row="1" Grid.Column="0" x:Name="SessionStats">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="35"/>
+                <ColumnDefinition Width="80"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -142,68 +159,53 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Label Content="{resources:Loc Map_SpeedGraph_lbl_DownSpeed}" Grid.Column="0" Grid.Row="4" Style="{StaticResource TitleLabel}"/>
             <Label Content="{resources:Loc Map_SpeedGraph_lbl_UpSpeed}" Grid.Column="0" Grid.Row="5" Style="{StaticResource TitleLabel}"/>
 
-            <Label
-                Grid.Column="1"
-                Grid.Row="1"
-                Grid.ColumnSpan="2"
-                HorizontalAlignment="Center"
-                Style="{StaticResource DataLabel}"
-                Padding="0"
-                Content="{Binding SecondsPassed, Converter={StaticResource SecondsToTimeConverter}}"/>
-
-            <Label
-                Grid.Column="1"
-                Grid.Row="2"
-                Style="{StaticResource DownloadLabel}"
-                Content="{Binding TotalBytesDownloaded, Converter={StaticResource BytesToSizeConverter}}"/>
-            <Label
-                Grid.Column="2"
-                Grid.Row="2"
-                Style="{StaticResource UnitColumn}"
-                Foreground="{StaticResource PrimaryColorDimmed}"
-                Content="{Binding TotalBytesDownloaded, Converter={StaticResource BytesToUnitsConverter}}"/>
-
-            <Label
-                Grid.Column="1"
-                Grid.Row="3"
-                Style="{StaticResource DataLabel}"
-                Content="{Binding TotalBytesUploaded, Converter={StaticResource BytesToSizeConverter}}"/>
-            <Label
-                Grid.Column="2"
-                Grid.Row="3"
-                Style="{StaticResource UnitColumn}"
-                Foreground="{StaticResource PrimaryColor}"
-                Content="{Binding TotalBytesUploaded, Converter={StaticResource BytesToUnitsConverter}}"/>
-
-            <StackPanel
-                Grid.Column="1"
-                Grid.Row="4">
-                <Label 
-                    HorizontalAlignment="Right"
-                    Style="{StaticResource DownloadSpeedNumber}"
-                    Content="{Binding CurrentDownloadSpeed, Converter={StaticResource BytesToSizeConverter}}">
-                </Label>
-                
+            <StackPanel Grid.Column="1" Grid.Row="1" FlowDirection="LeftToRight">
+            <Label HorizontalAlignment="Right"
+                   Style="{StaticResource DataLabel}"
+                   Padding="0"
+                   Margin="0,0,17,0"
+                   Content="{Binding SecondsPassed, Converter={StaticResource SecondsToTimeConverter}}"/>
             </StackPanel>
-            <Label
-                Grid.Column="2"
-                Grid.Row="4"
-                Style="{StaticResource SpeedUnitColumn}"
-                Foreground="{StaticResource PrimaryColorDimmed}"
-                Content="{Binding CurrentDownloadSpeed, Converter={StaticResource BytesToUnitsConverter}}"/>
 
-            <StackPanel Grid.Column="1" Grid.Row="5">
-                <Label
-                    HorizontalAlignment="Right"
-                    Style="{StaticResource UploadSpeedNumber}"
-                    Content="{Binding CurrentUploadSpeed, Converter={StaticResource BytesToSizeConverter}}"/>
+            <StackPanel Grid.Column="1" Grid.Row="2" FlowDirection="LeftToRight">
+                <DockPanel HorizontalAlignment="Right" Margin="0,0,0,0">
+                    <Label Style="{StaticResource DownloadLabel}"
+                           Content="{Binding TotalBytesDownloaded, Converter={StaticResource BytesToSizeConverter}}"/>
+                    <Label Style="{StaticResource UnitColumn}"
+                           Foreground="{StaticResource PrimaryColorDimmed}"
+                           Content="{Binding TotalBytesDownloaded, Converter={StaticResource BytesToUnitsConverter}}"/>
+                </DockPanel>
             </StackPanel>
-            <Label
-                Grid.Column="2"
-                Grid.Row="5"
-                Style="{StaticResource SpeedUnitColumn}"
-                Foreground="{StaticResource PrimaryColor}"
-                Content="{Binding CurrentUploadSpeed, Converter={StaticResource BytesToUnitsConverter}}"/>
+
+            <StackPanel Grid.Column="1" Grid.Row="3" FlowDirection="LeftToRight">
+                <DockPanel HorizontalAlignment="Right" Margin="0,0,0,0">
+                    <Label Style="{StaticResource DataLabel}"
+                           Content="{Binding TotalBytesUploaded, Converter={StaticResource BytesToSizeConverter}}"/>
+                    <Label Style="{StaticResource UnitColumn}"
+                           Foreground="{StaticResource PrimaryColor}"
+                           Content="{Binding TotalBytesUploaded, Converter={StaticResource BytesToUnitsConverter}}"/>
+                </DockPanel>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Grid.Row="4" FlowDirection="LeftToRight">
+                <DockPanel HorizontalAlignment="Right">
+                    <Label Style="{StaticResource DownloadSpeedNumber}"
+                           Content="{Binding CurrentDownloadSpeed, Converter={StaticResource BytesToSizeConverter}}"/>
+                    <Label Style="{StaticResource SpeedUnitColumn}"
+                           Foreground="{StaticResource PrimaryColorDimmed}"
+                           Content="{Binding CurrentDownloadSpeed, Converter={StaticResource BytesToUnitsConverter}}"/>
+                </DockPanel>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Grid.Row="5" FlowDirection="LeftToRight">
+                <DockPanel HorizontalAlignment="Right">
+                    <Label Style="{StaticResource UploadSpeedNumber}"
+                           Content="{Binding CurrentUploadSpeed, Converter={StaticResource BytesToSizeConverter}}"/>
+                    <Label Style="{StaticResource SpeedUnitColumn}"
+                           Foreground="{StaticResource PrimaryColor}"
+                           Content="{Binding CurrentUploadSpeed, Converter={StaticResource BytesToUnitsConverter}}"/>
+                </DockPanel>
+            </StackPanel>
         </Grid>
 
         <Grid Grid.Row="1" Grid.Column="1" x:Name="Graph">

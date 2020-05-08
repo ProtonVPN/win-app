@@ -28,6 +28,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </Setter.Value>
         </Setter>
         <Setter Property="WindowState" Value="{Binding WindowState}"/>
+        <Setter Property="FlowDirection" Value="{Binding FlowDirection}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type modals:BaseModalWindow}">

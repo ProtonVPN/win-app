@@ -19,13 +19,13 @@
 
 using System.Windows;
 using System.Windows.Input;
-using Caliburn.Micro;
 using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Core.Modals;
+using ProtonVPN.ViewModels;
 
 namespace ProtonVPN.Modals
 {
-    public abstract class BaseModalViewModel : Screen, IModal
+    public abstract class BaseModalViewModel : LanguageAwareViewModel, IModal
     {
         private WindowState _windowState;
         private bool _loading;

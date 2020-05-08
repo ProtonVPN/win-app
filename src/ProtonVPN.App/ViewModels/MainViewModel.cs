@@ -31,7 +31,6 @@ using ProtonVPN.Core;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Events;
 using ProtonVPN.Core.Modals;
-using ProtonVPN.Core.MVVM;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.FlashNotifications;
@@ -44,7 +43,7 @@ using ProtonVPN.Settings;
 namespace ProtonVPN.ViewModels
 {
     internal class MainViewModel :
-        ViewModel,
+        LanguageAwareViewModel,
         IVpnStateAware,
         IOnboardingStepAware
     {

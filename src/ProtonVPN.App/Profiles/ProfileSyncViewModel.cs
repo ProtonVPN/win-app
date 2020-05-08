@@ -18,16 +18,17 @@
  */
 
 using System;
+using System.ComponentModel;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
-using ProtonVPN.Core.Language;
 using ProtonVPN.Core.MVVM;
 using ProtonVPN.Core.Profiles;
+using ProtonVPN.Core.Settings;
 using ProtonVPN.Resources;
 
 namespace ProtonVPN.Profiles
 {
-    public class ProfileSyncViewModel : ViewModel, IProfileSyncStatusAware, ILanguageAware
+    public class ProfileSyncViewModel : ViewModel, IProfileSyncStatusAware, ISettingsAware
     {
         private readonly ISyncProfileStorage _syncProfiles;
         private DateTime _changesSyncedAt = DateTime.Now;
@@ -86,10 +87,9 @@ namespace ProtonVPN.Profiles
                     break;
             }
         }
-
-        public void OnLanguageChanged(string lang)
+        public void OnAppSettingsChanged(PropertyChangedEventArgs e)
         {
-            if (SyncStatus == ProfileSyncStatus.Succeeded)
+            if (e.PropertyName.Equals(nameof(IAppSettings.Language)) && SyncStatus == ProfileSyncStatus.Succeeded)
             {
                 OnProfileSyncStatusChanged(SyncStatus, _errorMessage, _changesSyncedAt);
             }
