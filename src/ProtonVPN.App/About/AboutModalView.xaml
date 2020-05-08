@@ -86,7 +86,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                    Padding="0,5"
                                    Grid.Row="2"
                                    Grid.Column="0"
-                                   Content="Licensing information:"/>
+                                   Content="{resources:Loc About_lbl_LicensingInformation}"/>
                         <Button Grid.Row="2"
                                 Grid.Column="1"
                                 Padding="10,0,0,0"

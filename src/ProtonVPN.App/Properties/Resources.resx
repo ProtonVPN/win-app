@@ -2829,4 +2829,8 @@ Exiting the application will disable the Kill Switch. Do you want to continue?</
     <value>Connection to ProtonVPN in progress...</value>
     <comment>The text displayed in login window when login takes longer than expected</comment>
   </data>
+  <data name="About_lbl_LicensingInformation" xml:space="preserve">
+    <value>Licensing information:</value>
+    <comment>The label for licensing information in About window</comment>
+  </data>
 </root>
