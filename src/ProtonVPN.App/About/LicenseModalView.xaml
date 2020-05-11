@@ -100,7 +100,17 @@
         </Style>
     </modals:BaseModalWindow.Resources>
 
-    <FlowDocumentScrollViewer Foreground="White"
-                              Height="500"
-                              Document="{Binding License, Converter={StaticResource TextToFlowDocumentConverter}}"/>
+    <StackPanel>
+        <FlowDocumentScrollViewer Foreground="White"
+                                  Height="500"
+                                  Document="{Binding License, Converter={StaticResource TextToFlowDocumentConverter}}"/>
+        <DockPanel Background="{StaticResource ModalBarColor}" Height="66">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Style="{StaticResource PrimaryButton}"
+                        Command="{Binding CloseCommand}"
+                        Content="{resources:Loc Dialogs_btn_Close}"/>
+            </StackPanel>
+        </DockPanel>
+    </StackPanel>
+
 </modals:BaseModalWindow>
