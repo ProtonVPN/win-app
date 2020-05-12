@@ -44,13 +44,17 @@ namespace ProtonVPN.Service.Net
             BinaryName,
             EntryPoint = "NetworkUtilEnableIPv6OnAllAdapters",
             CallingConvention = CallingConvention.Cdecl)]
-        public static extern uint EnableIPv6OnAllAdapters([MarshalAs(UnmanagedType.LPWStr)] string appName);
+        public static extern uint EnableIPv6OnAllAdapters(
+            [MarshalAs(UnmanagedType.LPWStr)] string appName,
+            [MarshalAs(UnmanagedType.LPWStr)] string excludeId);
 
         [DllImport(
             BinaryName,
             EntryPoint = "NetworkUtilDisableIPv6OnAllAdapters",
             CallingConvention = CallingConvention.Cdecl)]
-        public static extern uint DisableIPv6OnAllAdapters([MarshalAs(UnmanagedType.LPWStr)] string appName);
+        public static extern uint DisableIPv6OnAllAdapters(
+            [MarshalAs(UnmanagedType.LPWStr)] string appName,
+            [MarshalAs(UnmanagedType.LPWStr)] string excludeId);
 
         [DllImport(
             BinaryName,

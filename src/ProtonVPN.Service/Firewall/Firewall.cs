@@ -160,6 +160,16 @@ namespace ProtonVPN.Service.Firewall
                     weight,
                     id);
             });
+
+            _ipLayer.ApplyToIpv6(layer =>
+            {
+                _sublayer.CreateNetInterfaceFilter(
+                    new DisplayData("ProtonVPN permit VPN tunnel", "Permit TAP adapter traffic"),
+                    Action.SoftPermit,
+                    layer,
+                    weight,
+                    id);
+            });
         }
 
         private void PermitOpenVpnServerAddress(string address)

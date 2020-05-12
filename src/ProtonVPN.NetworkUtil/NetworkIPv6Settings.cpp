@@ -1,5 +1,6 @@
 #include "StdAfx.h"
 #include "NetworkIPv6Settings.h"
+#include "NetInterface.h"
 #include <string>
 #include <set>
 #include <devguid.h>
@@ -17,82 +18,48 @@ namespace Proton
         {
         }
 
-        void NetworkIPv6Settings::enableIPv6OnAllAdapters(bool enable)
+        void NetworkIPv6Settings::enableIPv6OnInterfacesWithId(const std::wstring& id)
         {
-            CComPtr<INetCfgComponent> ipv6Component = this->getIPv6Component();
-
-            CComPtr<INetCfgComponentBindings> componentBindings;
-            assertSuccess(ipv6Component->QueryInterface(
-                IID_INetCfgComponentBindings,
-                reinterpret_cast<void**>(&componentBindings)
-            ));
-
-            CComPtr<IEnumNetCfgBindingPath> bindingPathList;
-            assertSuccess(componentBindings->EnumBindingPaths(
-                EBP_BELOW,
-                &bindingPathList
-            ));
-
-            while (true)
+            auto ifaces = GetNetworkInterfacesById(this->networkConfiguration, id);
+            for (auto iface : ifaces)
             {
-                CComPtr<INetCfgBindingPath> binding;
-                ULONG count = 0;
-
-                const auto result = bindingPathList->Next(1, &binding, &count);
-                if (result != S_OK)
-                {
-                    break;
-                }
-
-                LPWSTR token = nullptr;
-                binding->GetPathToken(&token);
-                std::wstring tokenStr = token;
-                CoTaskMemFree(token);
-                const auto enabled = binding->IsEnabled();
-
-                if (!enable)
-                {
-                    if (enabled == S_OK)
-                    {
-                        interfacesAffected.insert(tokenStr);
-                    }
-
-                    assertSuccess(binding->Enable(false));
-                }
-                else
-                {
-                    auto it = interfacesAffected.find(tokenStr);
-                    if (it != interfacesAffected.end())
-                    {
-                        assertSuccess(binding->Enable(true));
-                    }
-                }
-            }
-
-            if (enable)
-            {
-                interfacesAffected.clear();
+                iface.enableIPv6();
             }
         }
 
-        CComPtr<INetCfgComponent> NetworkIPv6Settings::getIPv6Component()
+        void NetworkIPv6Settings::enableIPv6OnAllAdapters(bool enable, const std::set<std::wstring>& excludeIds)
         {
-            CComPtr<INetCfgClass> networkProtocolComponents;
+            auto ifaces = GetNetworkInterfaces(this->networkConfiguration);
 
-            assertSuccess(this->networkConfiguration->QueryNetCfgClass(
-                &GUID_DEVCLASS_NETTRANS,
-                IID_INetCfgClass,
-                reinterpret_cast<void**>(&networkProtocolComponents)
-            ));
+            auto disable = !enable;
 
-            CComPtr<INetCfgComponent> ipv6Component;
+            if (disable)
+            {
+                interfacesAffected.clear();
+            }
 
-            assertSuccess(networkProtocolComponents->FindComponent(
-                L"ms_tcpip6",
-                &ipv6Component
-            ));
+            for (auto iface : ifaces)
+            {
+                if (excludeIds.find(iface.id()) != excludeIds.end())
+                {
+                    continue;
+                }
 
-            return ipv6Component;
+                if (disable && iface.isIPv6Enabled())
+                {
+                    interfacesAffected.insert(iface.bindName());
+                    iface.disableIPv6();
+                }
+                else if (enable)
+                {
+                    if (interfacesAffected.find(iface.bindName()) == interfacesAffected.end())
+                    {
+                        continue;
+                    }
+
+                    iface.enableIPv6();
+                }
+            }
         }
     }
 }

@@ -5,19 +5,28 @@
 #include "Route.h"
 #include "BestInterface.h"
 
+#include <string>
+#include <set>
+
 #define EXPORT __declspec(dllexport)
 
 const DWORD LockTimeoutMs = 5000;
 
-extern "C" EXPORT long NetworkUtilEnableIPv6OnAllAdapters(wchar_t* appName)
+extern "C" EXPORT long NetworkUtilEnableIPv6OnAllAdapters(wchar_t* appName, const wchar_t* excludeId)
 {
+    std::set<std::wstring> excludeIds{};
+    if (excludeId != nullptr)
+    {
+        excludeIds.insert(excludeId);
+    }
+
     try
     {
         auto networkConfig = Proton::NetworkUtil::NetworkConfiguration::instance();
         auto lock = networkConfig.acquireWriteLock(LockTimeoutMs, appName);
         networkConfig.initialize();
 
-        networkConfig.ipv6Settings().enableIPv6OnAllAdapters(true);
+        networkConfig.ipv6Settings().enableIPv6OnAllAdapters(true, excludeIds);
         networkConfig.applyChanges();
 
         lock->ReleaseWriteLock();
@@ -30,15 +39,21 @@ extern "C" EXPORT long NetworkUtilEnableIPv6OnAllAdapters(wchar_t* appName)
     return 0;
 }
 
-extern "C" EXPORT long NetworkUtilDisableIPv6OnAllAdapters(wchar_t* appName)
+extern "C" EXPORT long NetworkUtilDisableIPv6OnAllAdapters(wchar_t* appName, const wchar_t* excludeId)
 {
+    std::set<std::wstring> excludeIds{};
+    if (excludeId != nullptr)
+    {
+        excludeIds.insert(excludeId);
+    }
+
     try
     {
         auto networkConfig = Proton::NetworkUtil::NetworkConfiguration::instance();
         auto lock = networkConfig.acquireWriteLock(LockTimeoutMs, appName);
         networkConfig.initialize();
 
-        networkConfig.ipv6Settings().enableIPv6OnAllAdapters(false);
+        networkConfig.ipv6Settings().enableIPv6OnAllAdapters(false, excludeIds);
         networkConfig.applyChanges();
 
         lock->ReleaseWriteLock();

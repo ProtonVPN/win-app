@@ -27,14 +27,14 @@ namespace ProtonVPN.Service.Net
     {
         public const uint ErrorSuccess = 0;
 
-        public static void EnableIPv6OnAllAdapters(string appName)
+        public static void EnableIPv6OnAllAdapters(string appName, string excludeId)
         {
-            AssertSuccess(() => PInvoke.EnableIPv6OnAllAdapters(appName));
+            AssertSuccess(() => PInvoke.EnableIPv6OnAllAdapters(appName, excludeId));
         }
 
-        public static void DisableIPv6OnAllAdapters(string appName)
+        public static void DisableIPv6OnAllAdapters(string appName, string excludeId)
         {
-            AssertSuccess(() => PInvoke.DisableIPv6OnAllAdapters(appName));
+            AssertSuccess(() => PInvoke.DisableIPv6OnAllAdapters(appName, excludeId));
         }
 
         public static void AddRoute(string ip)
