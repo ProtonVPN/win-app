@@ -132,7 +132,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Grid Grid.Row="1" Grid.Column="0" x:Name="SessionStats">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="120"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -163,7 +163,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Label HorizontalAlignment="Right"
                    Style="{StaticResource DataLabel}"
                    Padding="0"
-                   Margin="0,0,17,0"
+                   Width="Auto"
+                   Margin="0,0,25,0"
                    Content="{Binding SecondsPassed, Converter={StaticResource SecondsToTimeConverter}}"/>
             </StackPanel>
 
