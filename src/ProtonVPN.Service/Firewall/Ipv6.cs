@@ -29,10 +29,12 @@ namespace ProtonVPN.Service.Firewall
         private const string AppName = "ProtonVPN";
 
         private readonly ILogger _logger;
+        private readonly Common.Configuration.Config _config;
 
-        public Ipv6(ILogger logger)
+        public Ipv6(ILogger logger, Common.Configuration.Config config)
         {
             _logger = logger;
+            _config = config;
         }
 
         public bool Enabled { get; private set; } = true;
@@ -59,12 +61,12 @@ namespace ProtonVPN.Service.Firewall
             Enabled = false;
         }
 
-        private void LoggingAction(Action<string> action, string actionMessage)
+        private void LoggingAction(Action<string, string> action, string actionMessage)
         {
             try
             {
                 _logger.Info($"IPv6: {actionMessage}");
-                action(AppName);
+                action(AppName, _config.OpenVpn.TapAdapterId);
                 _logger.Info($"IPv6: {actionMessage} succeeded");
             }
             catch (NetworkUtilException e)
