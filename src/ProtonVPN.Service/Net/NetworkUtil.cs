@@ -37,6 +37,11 @@ namespace ProtonVPN.Service.Net
             AssertSuccess(() => PInvoke.DisableIPv6OnAllAdapters(appName, excludeId));
         }
 
+        public static void EnableIPv6(string appName, string interfaceId)
+        {
+            AssertSuccess(() => PInvoke.EnableIPv6(appName, interfaceId));
+        }
+
         public static void AddRoute(string ip)
         {
             AssertSuccess(() => PInvoke.AddRoute(ip));

@@ -58,6 +58,14 @@ namespace ProtonVPN.Service.Net
 
         [DllImport(
             BinaryName,
+            EntryPoint = "NetworkUtilEnableIPv6",
+            CallingConvention = CallingConvention.Cdecl)]
+        public static extern uint EnableIPv6(
+            [MarshalAs(UnmanagedType.LPWStr)] string appName,
+            [MarshalAs(UnmanagedType.LPWStr)] string interfaceId);
+
+        [DllImport(
+            BinaryName,
             EntryPoint = "AddRoute",
             CallingConvention = CallingConvention.Cdecl)]
         public static extern uint AddRoute([MarshalAs(UnmanagedType.LPWStr)] string ip);
