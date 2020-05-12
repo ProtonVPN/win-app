@@ -12,6 +12,27 @@
 
 const DWORD LockTimeoutMs = 5000;
 
+extern "C" EXPORT long NetworkUtilEnableIPv6(const wchar_t* appName, const wchar_t* interfaceId)
+{
+    try
+    {
+        auto networkConfig = Proton::NetworkUtil::NetworkConfiguration::instance();
+        auto lock = networkConfig.acquireWriteLock(LockTimeoutMs, appName);
+        networkConfig.initialize();
+
+        networkConfig.ipv6Settings().enableIPv6OnInterfacesWithId(interfaceId);
+        networkConfig.applyChanges();
+
+        lock->ReleaseWriteLock();
+    }
+    catch (const _com_error& error)
+    {
+        return error.Error();
+    }
+
+    return 0;
+}
+
 extern "C" EXPORT long NetworkUtilEnableIPv6OnAllAdapters(wchar_t* appName, const wchar_t* excludeId)
 {
     std::set<std::wstring> excludeIds{};

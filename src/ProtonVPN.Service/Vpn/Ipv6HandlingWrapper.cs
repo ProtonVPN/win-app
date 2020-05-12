@@ -112,6 +112,8 @@ namespace ProtonVPN.Service.Vpn
 
             InvokeConnecting();
 
+            await _ipv6.EnableOnVPNInterfaceAsync();
+
             if (!_serviceSettings.Ipv6LeakProtection)
             {
                 _connectRequested = false;

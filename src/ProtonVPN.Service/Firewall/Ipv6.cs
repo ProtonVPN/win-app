@@ -49,6 +49,11 @@ namespace ProtonVPN.Service.Firewall
             return Task.Run(Enable);
         }
 
+        public Task EnableOnVPNInterfaceAsync()
+        {
+            return Task.Run(EnableOnVPNInterface);
+        }
+
         public void Enable()
         {
             LoggingAction(NetworkUtil.EnableIPv6OnAllAdapters, "Enabling");
@@ -59,6 +64,11 @@ namespace ProtonVPN.Service.Firewall
         {
             LoggingAction(NetworkUtil.DisableIPv6OnAllAdapters, "Disabling");
             Enabled = false;
+        }
+
+        private void EnableOnVPNInterface()
+        {
+            LoggingAction(NetworkUtil.EnableIPv6, "Enabling on VPN interface");
         }
 
         private void LoggingAction(Action<string, string> action, string actionMessage)
