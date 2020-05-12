@@ -253,8 +253,8 @@ namespace ProtonVPN.Vpn.Connectors
         {
             var portConfig = new Dictionary<VpnProtocol, IReadOnlyCollection<int>>
             {
-                { Common.Vpn.VpnProtocol.OpenVpnUdp, _openVpnConfig.UdpPorts() },
-                { Common.Vpn.VpnProtocol.OpenVpnTcp, _openVpnConfig.TcpPorts() },
+                { Common.Vpn.VpnProtocol.OpenVpnUdp, _openVpnConfig.UdpPorts },
+                { Common.Vpn.VpnProtocol.OpenVpnTcp, _openVpnConfig.TcpPorts },
             };
 
             var customDns = (from ip in _appSettings.CustomDnsIps where ip.Enabled select ip.Ip).ToList();

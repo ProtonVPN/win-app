@@ -26,18 +26,22 @@ namespace ProtonVPN.Config
 {
     public class VpnConfig : IVpnConfig
     {
-        private int[] _tcpPorts;
-        private int[] _udpPorts;
-        private IReadOnlyList<string> _blackHoleIps;
         private readonly IApiClient _apiClient;
 
-        public VpnConfig(IApiClient apiClient, int[] defaultTcpPorts, int[] defaultUdpPorts, IReadOnlyList<string> defaultBlackHoleIps)
+        public VpnConfig(IApiClient apiClient, Common.Configuration.Config config)
         {
             _apiClient = apiClient;
-            _tcpPorts = defaultTcpPorts;
-            _udpPorts = defaultUdpPorts;
-            _blackHoleIps = defaultBlackHoleIps;
+
+            TcpPorts = config.DefaultOpenVpnTcpPorts;
+            UdpPorts = config.DefaultOpenVpnUdpPorts;
+            BlackHoleIps = config.DefaultBlackHoleIps;
         }
+
+        public int[] TcpPorts { get; private set; }
+        public int[] UdpPorts { get; private set; }
+        public IReadOnlyList<string> BlackHoleIps { get; private set; }
+        public bool NetShieldEnabled { get; private set; }
+        public bool GuestHolesEnabled { get; private set; }
 
         public async Task Update()
         {
@@ -46,11 +50,14 @@ namespace ProtonVPN.Config
                 var response = await _apiClient.GetVpnConfig();
                 if (response.Success)
                 {
-                    _tcpPorts = response.Value.OpenVpnConfig.DefaultPorts.Tcp;
-                    _udpPorts = response.Value.OpenVpnConfig.DefaultPorts.Udp;
+                    TcpPorts = response.Value.OpenVpnConfig.DefaultPorts.Tcp;
+                    UdpPorts = response.Value.OpenVpnConfig.DefaultPorts.Udp;
+                    NetShieldEnabled = response.Value.FeatureFlags.NetShield;
+                    GuestHolesEnabled = response.Value.FeatureFlags.GuestHoles;
+
                     if (response.Value.HolesIps != null)
                     {
-                        _blackHoleIps = response.Value.HolesIps;
+                        BlackHoleIps = response.Value.HolesIps;
                     }
                 }
             }
@@ -58,21 +65,6 @@ namespace ProtonVPN.Config
             {
                 // ignore
             }
-        }
-
-        public int[] TcpPorts()
-        {
-            return _tcpPorts;
-        }
-
-        public int[] UdpPorts()
-        {
-            return _udpPorts;
-        }
-
-        public IReadOnlyList<string> BlackHoleIps()
-        {
-            return _blackHoleIps;
         }
     }
 }

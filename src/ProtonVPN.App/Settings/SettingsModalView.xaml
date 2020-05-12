@@ -243,56 +243,57 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                       AutomationProperties.AutomationId="{StaticResource ProtocolCombobox}"/>
                     </DockPanel>
 
-                    <!--<DockPanel Height="40">
-                        <StackPanel Orientation="Horizontal">
-                            <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Content="{resources:Loc Settings_Connection_lbl_NetShield}"/>
-                            <fa:FontAwesome Icon="InfoCircle"
+                    <StackPanel Visibility="{Binding NetShieldVisible, Converter={StaticResource BoolToVis}}">
+                        <DockPanel Height="40">
+                            <StackPanel Orientation="Horizontal">
+                                <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Content="{resources:Loc Settings_Connection_lbl_NetShield}"/>
+                                <fa:FontAwesome Icon="InfoCircle"
                                             VerticalAlignment="Center"
                                             ToolTip="{resources:Loc Settings_Connection_lbl_NetShield_Info}"
                                             Foreground="{StaticResource PrimaryColor}"
                                             FontSize="16"/>
-                        </StackPanel>
-                        <CheckBox Style="{StaticResource ToggleSwitch}"
+                            </StackPanel>
+                            <CheckBox Style="{StaticResource ToggleSwitch}"
                                   Margin="0,0,14,0"
                                   HorizontalAlignment="Right"
                                   IsChecked="{Binding NetShieldEnabled}"/>
 
-                    </DockPanel>
-                    <StackPanel Margin="12,0" Visibility="{Binding NetShieldEnabled, Converter={StaticResource BoolToVis}}">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                            </Grid.RowDefinitions>
-                            <RadioButton GroupName="NetShieldMode"
+                        </DockPanel>
+                        <StackPanel Margin="12,0" Visibility="{Binding NetShieldEnabled, Converter={StaticResource BoolToVis}}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <RadioButton GroupName="NetShieldMode"
                                          Grid.Row="0"
                                          Grid.Column="0"
                                          Grid.ColumnSpan="2"
                                          IsChecked="{Binding NetShieldMode, Converter={StaticResource ComparisonConverter}, ConverterParameter={StaticResource IntOne}}"
                                          BorderBrush="{StaticResource PrimaryColor}"
                                          Style="{StaticResource NetShieldRadio}">
-                                <TextBlock Text="{resources:Loc Settings_Connection_NetShield_lbl_Level1}" TextWrapping="Wrap"/>
-                            </RadioButton>
-                            <RadioButton GroupName="NetShieldMode"
+                                    <TextBlock Text="{resources:Loc Settings_Connection_NetShield_lbl_Level1}" TextWrapping="Wrap"/>
+                                </RadioButton>
+                                <RadioButton GroupName="NetShieldMode"
                                          Grid.Row="1"
                                          Grid.Column="0"
                                          IsChecked="{Binding NetShieldMode, Converter={StaticResource ComparisonConverter}, ConverterParameter={StaticResource IntTwo}}"
                                          IsEnabled="{Binding NetShieldFullyEnabled}"
                                          Style="{StaticResource NetShieldRadio}">
-                                <TextBlock Text="{resources:Loc Settings_Connection_NetShield_lbl_Level2}" TextWrapping="Wrap"/>
-                            </RadioButton>
-                            <Button Style="{StaticResource UpgradeButton}"
+                                    <TextBlock Text="{resources:Loc Settings_Connection_NetShield_lbl_Level2}" TextWrapping="Wrap"/>
+                                </RadioButton>
+                                <Button Style="{StaticResource UpgradeButton}"
                                     Grid.Row="1"
                                     Grid.Column="1"
                                     Content="{resources:Loc Settings_Connection_btn_Upgrade}"/>
-                        </Grid>
-
+                            </Grid>
+                        </StackPanel>
                     </StackPanel>
-                    -->
+
                     <DockPanel Height="40">
                         <StackPanel Orientation="Horizontal">
                             <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Content="{resources:Loc Settings_Connection_lbl_CustomDnsServer}"/>

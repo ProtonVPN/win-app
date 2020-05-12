@@ -59,7 +59,7 @@ namespace ProtonVPN.App.Test.P2PDetection.Forwarded
                 Ip = ip
             });
 
-            _vpnConfig.BlackHoleIps().Returns(new List<string> { "62.112.9.168", "104.245.144.186" });
+            _vpnConfig.BlackHoleIps.Returns(new List<string> { "62.112.9.168", "104.245.144.186" });
             _userLocationService.LocationAsync().Returns(response);
             var subject = new ForwardedTraffic(_userLocationService, _vpnConfig);
             // Act

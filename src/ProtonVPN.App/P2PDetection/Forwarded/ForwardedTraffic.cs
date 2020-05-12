@@ -48,7 +48,7 @@ namespace ProtonVPN.P2PDetection.Forwarded
             var response = await _userLocationService.LocationAsync();
             return response.Failure
                 ? new ForwardedTrafficResult(false, false, string.Empty)
-                : new ForwardedTrafficResult(true, _config.BlackHoleIps().Contains(response.Value.Ip),
+                : new ForwardedTrafficResult(true, _config.BlackHoleIps.Contains(response.Value.Ip),
                     response.Value.Ip);
         }
     }

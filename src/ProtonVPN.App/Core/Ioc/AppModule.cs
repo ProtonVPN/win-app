@@ -17,6 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
+using System.Windows;
 using Autofac;
 using Caliburn.Micro;
 using ProtonVPN.About;
@@ -26,7 +28,6 @@ using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.OS.Services;
 using ProtonVPN.Common.Text.Serialization;
 using ProtonVPN.Config;
-using ProtonVPN.Core.Api;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Profiles;
@@ -40,6 +41,7 @@ using ProtonVPN.Core.Settings.Migrations;
 using ProtonVPN.Core.Startup;
 using ProtonVPN.Core.Storage;
 using ProtonVPN.Core.User;
+using ProtonVPN.FlashNotifications;
 using ProtonVPN.Map;
 using ProtonVPN.Modals;
 using ProtonVPN.Modals.Dialogs;
@@ -49,9 +51,6 @@ using ProtonVPN.Settings.SplitTunneling;
 using ProtonVPN.Sidebar;
 using ProtonVPN.Vpn;
 using ProtonVPN.Vpn.Connectors;
-using System;
-using System.Windows;
-using ProtonVPN.FlashNotifications;
 
 namespace ProtonVPN.Core.Ioc
 {
@@ -185,13 +184,7 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<InstalledApps>().SingleInstance();
             builder.RegisterType<Onboarding.Onboarding>().AsSelf().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<SystemNotification>().AsImplementedInterfaces().SingleInstance();
-            builder.Register(c => new VpnConfig(
-                    c.Resolve<IApiClient>(),
-                    c.Resolve<Common.Configuration.Config>().DefaultOpenVpnTcpPorts,
-                    c.Resolve<Common.Configuration.Config>().DefaultOpenVpnUdpPorts,
-                    c.Resolve<Common.Configuration.Config>().DefaultBlackHoleIps))
-                .As<IVpnConfig>()
-                .SingleInstance();
+            builder.RegisterType<VpnConfig>().As<IVpnConfig>().SingleInstance();
             builder.RegisterType<MonitoredVpnService>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.Register(c => new UpdateNotification(
                     c.Resolve<Common.Configuration.Config>().UpdateRemindInterval,

@@ -24,12 +24,11 @@ namespace ProtonVPN.Config
 {
     public interface IVpnConfig
     {
-        int[] TcpPorts();
-
-        int[] UdpPorts();
-
-        IReadOnlyList<string> BlackHoleIps();
-
+        public int[] TcpPorts { get; }
+        public int[] UdpPorts { get; }
+        public IReadOnlyList<string> BlackHoleIps { get; }
+        public bool NetShieldEnabled { get; }
+        public bool GuestHolesEnabled { get; }
         Task Update();
     }
 }
