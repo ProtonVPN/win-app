@@ -28,6 +28,8 @@ namespace ProtonVPN.Core.Api.Contracts
 
         [JsonProperty(PropertyName = "HolesIPs")]
         public IReadOnlyList<string> HolesIps { get; set; }
+
+        public FeatureFlags FeatureFlags { get; set; }
     }
 
     public class OpenVpnConfig
@@ -41,5 +43,12 @@ namespace ProtonVPN.Core.Api.Contracts
     {
         public int[] Udp { get; set; }
         public int[] Tcp { get; set; }
+    }
+
+    public class FeatureFlags
+    {
+        public bool NetShield { get; set; }
+
+        public bool GuestHoles { get; set; }
     }
 }

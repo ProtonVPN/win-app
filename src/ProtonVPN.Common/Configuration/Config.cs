@@ -170,5 +170,9 @@ namespace ProtonVPN.Common.Configuration
         public TlsPinningConfig TlsPinningConfig { get; } = new TlsPinningConfig();
 
         public List<string> DoHProviders { get; internal set; } = new List<string>();
+
+        public bool NetShieldEnabled { get; internal set; }
+
+        public bool GuestHolesEnabled { get; internal set; }
     }
 }

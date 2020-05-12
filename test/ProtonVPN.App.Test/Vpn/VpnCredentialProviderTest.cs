@@ -20,6 +20,7 @@
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
+using ProtonVPN.Config;
 using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Vpn;
@@ -31,11 +32,20 @@ namespace ProtonVPN.App.Test.Vpn
     {
         private IAppSettings _appSettings;
         private IUserStorage _userStorage;
+        private IVpnConfig _vpnConfig;
+
+        private static string _username = "username";
+        private User _user = new User
+        {
+            VpnUsername = _username,
+            VpnPassword = "password"
+        };
 
         public VpnCredentialProviderTest()
         {
             _appSettings = Substitute.For<IAppSettings>();
             _userStorage = Substitute.For<IUserStorage>();
+            _vpnConfig = Substitute.For<IVpnConfig>();
         }
 
         [DataTestMethod]
@@ -45,41 +55,44 @@ namespace ProtonVPN.App.Test.Vpn
         public void Credentials_Should_Suffix_Username(int mode, string suffix)
         {
             // Arrange
-            var user = new User
-            {
-                VpnUsername = "username",
-                VpnPassword = "password"
-            };
-
-            _userStorage.User().Returns(user);
+            _userStorage.User().Returns(_user);
             _appSettings.NetShieldMode.Returns(mode);
             _appSettings.NetShieldEnabled.Returns(true);
+            _vpnConfig.NetShieldEnabled.Returns(true);
 
-            var sut = new VpnCredentialProvider(_appSettings, _userStorage);
+            var sut = new VpnCredentialProvider(_appSettings, _userStorage, _vpnConfig);
 
             // Assert
-            sut.Credentials().Username.Should().Be(user.VpnUsername + suffix);
+            sut.Credentials().Username.Should().Be(_user.VpnUsername + suffix);
         }
 
         [TestMethod]
         public void Credentials_Should_NotModify_Username()
         {
             // Arrange
-            var username = "username";
-            var user = new User
-            {
-                VpnUsername = username,
-                VpnPassword = "password"
-            };
-
-            _userStorage.User().Returns(user);
+            _userStorage.User().Returns(_user);
             _appSettings.NetShieldMode.Returns(2);
             _appSettings.NetShieldEnabled.Returns(false);
 
-            var sut = new VpnCredentialProvider(_appSettings, _userStorage);
+            var sut = new VpnCredentialProvider(_appSettings, _userStorage, _vpnConfig);
 
             // Assert
-            sut.Credentials().Username.Should().Be(username);
+            sut.Credentials().Username.Should().Be(_username);
+        }
+
+        [TestMethod]
+        public void Credentials_ShouldNotModifyUsernameIfNetShieldIsDisabled()
+        {
+            // Arrange
+            _userStorage.User().Returns(_user);
+            _appSettings.NetShieldMode.Returns(2);
+            _appSettings.NetShieldEnabled.Returns(true);
+            _vpnConfig.NetShieldEnabled.Returns(false);
+
+            var sut = new VpnCredentialProvider(_appSettings, _userStorage, _vpnConfig);
+
+            // Assert
+            sut.Credentials().Username.Should().Be(_username);
         }
     }
 }
