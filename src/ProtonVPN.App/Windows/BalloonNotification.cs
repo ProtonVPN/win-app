@@ -62,7 +62,7 @@ namespace ProtonVPN.Windows
             return window.Handle;
         }
 
-        [StructLayout(LayoutKind.Sequential)]
+        [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
         private struct NotifyIconData
         {
             public uint cbSize;
@@ -104,7 +104,7 @@ namespace ProtonVPN.Windows
             Guid = 32
         }
 
-        [DllImport("shell32.dll")]
+        [DllImport("shell32.dll", CharSet = CharSet.Unicode)]
         private static extern int Shell_NotifyIcon(NotifyCommand cmd, ref NotifyIconData data);
     }
 }
