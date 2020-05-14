@@ -96,6 +96,7 @@ namespace ProtonVPN.P2PDetection
             else
             {
                 StopTimer();
+                _trafficForwarded = false;
             }
 
             return Task.CompletedTask;
