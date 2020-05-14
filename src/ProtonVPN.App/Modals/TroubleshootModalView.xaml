@@ -60,36 +60,40 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                    Foreground="White"
                    FontSize="16"
                    behavior:TextStyleBehavior.FormattedText="{resources:Loc Dialogs_Troubleshooting_msg_Title}"/>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="0">
-                <TextBlock Style="{StaticResource SolutionText}"
+        <ScrollViewer Height="400" Template="{StaticResource DarkScrollViewerControlTemplate}">
+            <StackPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0">
+                        <TextBlock Style="{StaticResource SolutionText}"
                            behavior:TextStyleBehavior.FormattedText="{resources:Loc Dialogs_Troubleshooting_msg_AlternativeRouting}"/>
-            </StackPanel>
-            <CheckBox Margin="0,0,30,0"
+                    </StackPanel>
+                    <CheckBox Margin="0,0,30,0"
                       Grid.Column="1"
                       HorizontalAlignment="Center"
                       Style="{StaticResource ToggleSwitch}"
                       IsChecked="{Binding DoHEnabled}"
                       AutomationProperties.AutomationId="{StaticResource StartWithWindowsCheckbox}"/>
-        </Grid>
+                </Grid>
 
-        <TextBlock Style="{StaticResource SolutionText}"
+                <TextBlock Style="{StaticResource SolutionText}"
                    behavior:TextStyleBehavior.FormattedText="{resources:Loc Dialogs_Troubleshooting_msg_NoInternet}"/>
-        <TextBlock Style="{StaticResource SolutionText}"
+                <TextBlock Style="{StaticResource SolutionText}"
                    behavior:TextStyleBehavior.FormattedText="{resources:Loc Dialogs_Troubleshooting_msg_IspProblem}"/>
-        <TextBlock Style="{StaticResource BlockedByGovText}"/>
-        <TextBlock Style="{StaticResource SolutionText}"
+                <TextBlock Style="{StaticResource BlockedByGovText}"/>
+                <TextBlock Style="{StaticResource SolutionText}"
                    behavior:TextStyleBehavior.FormattedText="{resources:Loc Dialogs_Troubleshooting_msg_Antivirus}"/>
-        <TextBlock Style="{StaticResource SolutionText}"
+                <TextBlock Style="{StaticResource SolutionText}"
                    behavior:TextStyleBehavior.FormattedText="{resources:Loc Dialogs_Troubleshooting_msg_Firewall}"/>
-        <TextBlock Style="{StaticResource SolutionText}"
+                <TextBlock Style="{StaticResource SolutionText}"
                    behavior:TextStyleBehavior.FormattedText="{resources:Loc Dialogs_Troubleshooting_msg_ProtonDown}"/>
-        <TextBlock Style="{StaticResource SolutionText}"
+                <TextBlock Style="{StaticResource SolutionText}"
                    behavior:TextStyleBehavior.FormattedText="{resources:Loc Dialogs_Troubleshooting_msg_Unknown}"/>
+            </StackPanel>
+        </ScrollViewer>
         <DockPanel Background="{StaticResource ModalBarColor}" Height="66">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Style="{StaticResource PrimaryModalButton}"
