@@ -123,7 +123,7 @@ namespace ProtonVPN.Core
 
             IncreaseAppStartCount();
             RegisterEvents();
-            Resolve<Language.Language>().Initialize();
+            SetLanguage(Resolve<Language.Language>().GetStartupLanguage());
             ShowInitialWindow();
 
             _ = StartService(Resolve<MonitoredVpnService>());
@@ -341,6 +341,11 @@ namespace ProtonVPN.Core
 
             appSettings.PropertyChanged += (sender, e) =>
             {
+                if (e.PropertyName == nameof(IAppSettings.Language))
+                {
+                    SetLanguage(appSettings.Language);
+                }
+
                 var instances = Resolve<IEnumerable<ISettingsAware>>();
                 foreach (var instance in instances)
                 {
@@ -382,11 +387,6 @@ namespace ProtonVPN.Core
                 {
                     instance.OnGuestHoleStateChanged(active);
                 }
-            };
-
-            Resolve<Language.Language>().LanguageChanged += (sender, lang) =>
-            {
-                TranslationSource.Instance.CurrentCulture = new CultureInfo(lang);
             };
 
             Resolve<EventClient>().ApiDataChanged += async (sender, e) =>
@@ -547,6 +547,11 @@ namespace ProtonVPN.Core
             {
                 subject.RegisterMigration(migration);
             }
+        }
+
+        private void SetLanguage(string lang)
+        {
+            TranslationSource.Instance.CurrentCulture = new CultureInfo(lang);
         }
     }
 }

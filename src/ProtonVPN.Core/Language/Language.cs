@@ -19,7 +19,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.IO;
 using System.Threading;
 using ProtonVPN.Common.Extensions;
@@ -29,7 +28,7 @@ using ProtonVPN.Core.Settings;
 
 namespace ProtonVPN.Core.Language
 {
-    public class Language : ISettingsAware, ILoggedInAware
+    public class Language : ILoggedInAware
     {
         private readonly IAppSettings _appSettings;
         private readonly ILogger _logger;
@@ -38,8 +37,6 @@ namespace ProtonVPN.Core.Language
         private const string ResourceFile = "ProtonVPN.resources.dll";
         private const string DefaultLanguage = "en";
 
-        public event EventHandler<string> LanguageChanged;
-
         public Language(IAppSettings appSettings, ILogger logger, string translationsFolder)
         {
             _appSettings = appSettings;
@@ -47,15 +44,9 @@ namespace ProtonVPN.Core.Language
             _translationsFolder = translationsFolder;
         }
 
-        public void Initialize()
+        public string GetStartupLanguage()
         {
-            Change(string.IsNullOrEmpty(_appSettings.Language) ? GetCurrentLanguage() : _appSettings.Language);
-        }
-
-        public void OnAppSettingsChanged(PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName.Equals(nameof(IAppSettings.Language)))
-                Change(_appSettings.Language);
+            return string.IsNullOrEmpty(_appSettings.Language) ? GetCurrentLanguage() : _appSettings.Language;
         }
 
         public List<string> GetAll()
@@ -94,11 +85,6 @@ namespace ProtonVPN.Core.Language
             }
 
             return langs;
-        }
-
-        private void Change(string lang)
-        {
-            LanguageChanged?.Invoke(this, lang);
         }
 
         private string GetCurrentLanguage()
