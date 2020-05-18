@@ -1638,7 +1638,7 @@
     <Resource Include="Resources\Assets\Images\SidebarFlags\fm.jpg" />
     <Resource Include="Resources\Assets\Images\SidebarFlags\fr.jpg" />
     <Resource Include="Resources\Assets\Images\SidebarFlags\ga.jpg" />
-    <Resource Include="Resources\Assets\Images\SidebarFlags\gb.jpg" />
+    <Resource Include="Resources\Assets\Images\SidebarFlags\uk.jpg" />
     <Resource Include="Resources\Assets\Images\SidebarFlags\gd.jpg" />
     <Resource Include="Resources\Assets\Images\SidebarFlags\ge.jpg" />
     <Resource Include="Resources\Assets\Images\SidebarFlags\gh.jpg" />
