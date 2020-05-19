@@ -26,13 +26,17 @@ using ProtonVPN.Account;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.OS.Services;
+using ProtonVPN.Common.Storage;
 using ProtonVPN.Common.Text.Serialization;
 using ProtonVPN.Config;
+using ProtonVPN.Core.Api;
+using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Profiles.Cached;
 using ProtonVPN.Core.Servers;
+using ProtonVPN.Core.Servers.Contracts;
 using ProtonVPN.Core.Service;
 using ProtonVPN.Core.Service.Settings;
 using ProtonVPN.Core.Service.Vpn;
@@ -51,6 +55,7 @@ using ProtonVPN.Settings.SplitTunneling;
 using ProtonVPN.Sidebar;
 using ProtonVPN.Vpn;
 using ProtonVPN.Vpn.Connectors;
+using VpnConfig = ProtonVPN.Config.VpnConfig;
 
 namespace ProtonVPN.Core.Ioc
 {
@@ -71,7 +76,20 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<UpdateViewModel>().AsSelf().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<VpnConnectionSpeed>().AsImplementedInterfaces().AsSelf().SingleInstance();
 
-            builder.RegisterType<ServerCache>().SingleInstance();
+            builder.Register(c => new CollectionCache<LogicalServerContract>(
+                c.Resolve<ILogger>(),
+                c.Resolve<ITextSerializerFactory>(),
+                c.Resolve<Common.Configuration.Config>().ServersJsonCacheFilePath))
+                .As<ICollectionStorage<LogicalServerContract>>()
+                .SingleInstance();
+
+            builder.Register(c => new CollectionCache<GuestHoleServerContract>(
+                    c.Resolve<ILogger>(),
+                    c.Resolve<ITextSerializerFactory>(),
+                    c.Resolve<Common.Configuration.Config>().GuestHoleServersJsonFilePath))
+                .As<ICollectionStorage<GuestHoleServerContract>>()
+                .SingleInstance();
+
             builder.RegisterType<ApiServers>().SingleInstance();
             builder.RegisterType<ServerUpdater>().AsImplementedInterfaces().AsSelf().SingleInstance();
 
@@ -171,6 +189,8 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<ServerConnector>().SingleInstance();
             builder.RegisterType<ProfileConnector>().SingleInstance();
             builder.RegisterType<CountryConnector>().SingleInstance();
+            builder.RegisterType<GuestHoleConnector>().AsImplementedInterfaces().AsSelf().SingleInstance();
+            builder.RegisterType<GuestHoleState>().SingleInstance();
             builder.RegisterType<DisconnectError>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterType<VpnStateNotification>()
                 .AsImplementedInterfaces()

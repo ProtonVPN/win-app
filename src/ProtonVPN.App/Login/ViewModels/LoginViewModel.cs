@@ -25,6 +25,7 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Config.Url;
+using ProtonVPN.Core.Api;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.MVVM;
@@ -32,6 +33,7 @@ using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Modals;
 using ProtonVPN.Resources;
+using ProtonVPN.Vpn.Connectors;
 
 namespace ProtonVPN.Login.ViewModels
 {
@@ -45,6 +47,8 @@ namespace ProtonVPN.Login.ViewModels
         private readonly IActiveUrls _urls;
         private readonly UserAuth _userAuth;
         private readonly IModals _modals;
+        private readonly GuestHoleConnector _guestHoleConnector;
+        private readonly GuestHoleState _guestHoleState;
 
         public LoginErrorViewModel LoginErrorViewModel { get; }
 
@@ -61,7 +65,9 @@ namespace ProtonVPN.Login.ViewModels
             IAppSettings appSettings,
             LoginErrorViewModel loginErrorViewModel,
             UserAuth userAuth,
-            IModals modals)
+            IModals modals,
+            GuestHoleConnector guestHoleConnector,
+            GuestHoleState guestHoleState)
         {
             _appConfig = appConfig;
             _userAuth = userAuth;
@@ -69,6 +75,8 @@ namespace ProtonVPN.Login.ViewModels
             _urls = urls;
             _modals = modals;
             _loginWindowViewModel = loginWindowViewModel;
+            _guestHoleConnector = guestHoleConnector;
+            _guestHoleState = guestHoleState;
             LoginErrorViewModel = loginErrorViewModel;
 
             LoginCommand = new RelayCommand(LoginAction);
@@ -174,6 +182,28 @@ namespace ProtonVPN.Login.ViewModels
                 OnPropertyChanged(nameof(StartOnStartup));
         }
 
+        public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
+        {
+            KillSwitchActive = e.NetworkBlocked &&
+                               (e.State.Status == VpnStatus.Disconnecting ||
+                                e.State.Status == VpnStatus.Disconnected);
+
+            if (_guestHoleState.Active)
+            {
+                if (e.State.Status == VpnStatus.Connected)
+                {
+                    LoginAction();
+                }
+                else if (e.State.Status == VpnStatus.Disconnected)
+                {
+                    ShowLoginScreenWithTroubleshoot();
+                    _guestHoleState.SetState(false);
+                }
+            }
+
+            return Task.CompletedTask;
+        }
+
         private void HelpAction()
         {
             _urls.HelpUrl.Open();
@@ -224,10 +254,24 @@ namespace ProtonVPN.Login.ViewModels
             }
             catch (HttpRequestException)
             {
-                _modals.Show<TroubleshootModalViewModel>();
-                Password = "";
-                ShowLoginForm();
+                if (_guestHoleState.Active)
+                {
+                    await _guestHoleConnector.Disconnect();
+                    ShowLoginScreenWithTroubleshoot();
+                    _guestHoleState.SetState(false);
+                    return;
+                }
+
+                _guestHoleState.SetState(true);
+                await _guestHoleConnector.Connect();
             }
+        }
+
+        private void ShowLoginScreenWithTroubleshoot()
+        {
+            _modals.Show<TroubleshootModalViewModel>();
+            Password = "";
+            ShowLoginForm();
         }
 
         private void ShowLoginForm()
@@ -257,15 +301,6 @@ namespace ProtonVPN.Login.ViewModels
         private void ForgotUsernameAction()
         {
             _urls.ForgetUsernameUrl.Open();
-        }
-
-        public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
-        {
-            KillSwitchActive = e.NetworkBlocked &&
-                                  (e.State.Status == VpnStatus.Disconnecting ||
-                                   e.State.Status == VpnStatus.Disconnected);
-
-            return Task.CompletedTask;
         }
     }
 }

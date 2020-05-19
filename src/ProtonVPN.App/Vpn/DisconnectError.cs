@@ -72,7 +72,7 @@ namespace ProtonVPN.Vpn
 
         private bool ModalShouldBeShown(VpnStateChangedEventArgs e)
         {
-            return _loggedIn && (Reconnecting(e) || e.UnexpectedDisconnect);
+            return _loggedIn && e.Error != VpnError.NoneKeepEnabledKillSwitch && (Reconnecting(e) || e.UnexpectedDisconnect);
         }
 
         private bool Reconnecting(VpnStateChangedEventArgs e)

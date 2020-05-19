@@ -25,19 +25,24 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:controls="clr-namespace:ProtonVPN.Views.Controls"
              xmlns:resources="clr-namespace:ProtonVPN.Resources"
              xmlns:icons="clr-namespace:ProtonVPN.Views.Icons"
+             xmlns:viewModels="clr-namespace:ProtonVPN.Login.ViewModels"
              mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance viewModels:LoadingViewModel}"
              d:DesignWidth="440">
     <UserControl.Resources>
         <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary>
-                    <Style x:Key="MainStackPanel" TargetType="StackPanel">
-                        <Setter Property="Width" Value="330"/>
-                        <Setter Property="HorizontalAlignment" Value="Center"/>
-                        <Setter Property="Margin" Value="0,40,0,0"/>
-                    </Style>
-                </ResourceDictionary>
-            </ResourceDictionary.MergedDictionaries>
+            <Style x:Key="MainStackPanel" TargetType="StackPanel">
+                <Setter Property="Width" Value="330"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="0,40,0,0"/>
+            </Style>
+            <Style x:Key="LoadingLabel" TargetType="Label">
+                <Setter Property="FontStyle" Value="Italic"/>
+                <Setter Property="FontWeight" Value="Light"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+            </Style>
         </ResourceDictionary>
     </UserControl.Resources>
 
@@ -50,7 +55,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </TextBlock>
             </DockPanel>
             <controls:ProtonAnimation Width="100" Height="100" Margin="0,110,0,0"/>
-            <Label FontStyle="Italic" FontWeight="Light" FontSize="18" Foreground="White" HorizontalAlignment="Center" Margin="0,100,0,0" Content="{resources:Loc Login_lbl_SecureInternetAnywhere}"/>
+            <Label Style="{StaticResource LoadingLabel}"
+                   Margin="0,100,0,0" Content="{resources:Loc Login_lbl_SecureInternetAnywhere}"/>
+            <Label Style="{StaticResource LoadingLabel}"
+                   Margin="0,10,0,0"
+                   Content="{resources:Loc Login_lbl_TakingLongerThanExpected}"
+                   Visibility="{Binding LongLogin, Converter={StaticResource BoolToVis}}"/>
         </StackPanel>
     </Grid>
 </UserControl>

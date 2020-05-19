@@ -35,10 +35,13 @@ using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.OS.Processes;
 using ProtonVPN.Common.OS.Services;
+using ProtonVPN.Common.Storage;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Config;
 using ProtonVPN.Core.Abstract;
+using ProtonVPN.Core.Api;
+using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.Api.Handlers;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Events;
@@ -58,6 +61,7 @@ using ProtonVPN.Core.Startup;
 using ProtonVPN.Core.Update;
 using ProtonVPN.Core.User;
 using ProtonVPN.Core.Vpn;
+using ProtonVPN.Login;
 using ProtonVPN.Login.ViewModels;
 using ProtonVPN.Login.Views;
 using ProtonVPN.Map;
@@ -70,6 +74,7 @@ using ProtonVPN.Resources;
 using ProtonVPN.Sidebar;
 using ProtonVPN.Trial;
 using ProtonVPN.ViewModels;
+using ProtonVPN.Vpn.Connectors;
 using ProtonVPN.Windows;
 using Sentry;
 using Sentry.Protocol;
@@ -122,6 +127,7 @@ namespace ProtonVPN.Core
             Resolve<Language.Language>().Initialize();
             ShowInitialWindow();
 
+            _ = StartService(Resolve<MonitoredVpnService>());
             _ = StartService(Resolve<AppUpdateSystemService>());
 
             if (!LoggedInWithSavedCredentials() || !await IsUserValid() || await SessionExpired())
@@ -167,7 +173,7 @@ namespace ProtonVPN.Core
 
         private void LoadServersFromCache()
         {
-            var servers = Resolve<ServerCache>().GetAll();
+            var servers = Resolve<ICollectionStorage<LogicalServerContract>>().GetAll();
             if (servers.Any())
                 Resolve<ServerManager>().Load(servers);
         }
@@ -240,6 +246,18 @@ namespace ProtonVPN.Core
 
             userAuth.UserLoggedIn += async (sender, e) =>
             {
+                var guestHoleState = Resolve<GuestHoleState>();
+                if (guestHoleState.Active)
+                {
+                    await Resolve<ServerUpdater>().Update();
+                    await Resolve<IVpnServiceManager>().Disconnect(VpnError.NoneKeepEnabledKillSwitch);
+                    guestHoleState.SetState(false);
+                }
+                else
+                {
+                    await Resolve<ServerUpdater>().Update();
+                }
+
                 var instances = Resolve<IEnumerable<ILoggedInAware>>();
                 foreach (var instance in instances)
                 {
@@ -297,7 +315,12 @@ namespace ProtonVPN.Core
                 }
             };
 
-            vpnServiceManager.RegisterCallback(vpnManager.OnVpnStateChanged);
+            vpnServiceManager.RegisterCallback(async(e) =>
+            {
+                vpnManager.OnVpnStateChanged(e);
+                await Resolve<LoginViewModel>().OnVpnStateChanged(e);
+                await Resolve<GuestHoleConnector>().OnVpnStateChanged(e);
+            });
 
             vpnManager.VpnStateChanged += (sender, e) =>
             {
@@ -366,6 +389,15 @@ namespace ProtonVPN.Core
                 }
             };
 
+            Resolve<GuestHoleState>().GuestHoleStateChanged += (sender, active) =>
+            {
+                var instances = Resolve<IEnumerable<IGuestHoleStateAware>>();
+                foreach (var instance in instances)
+                {
+                    instance.OnGuestHoleStateChanged(active);
+                }
+            };
+
             Resolve<Language.Language>().LanguageChanged += (sender, lang) =>
             {
                 TranslationSource.Instance.CurrentCulture = new CultureInfo(lang);
@@ -406,17 +438,6 @@ namespace ProtonVPN.Core
             };
 
             Resolve<OutdatedAppHandler>().AppOutdated += Resolve<OutdatedAppNotification>().OnAppOutdated;
-
-            Resolve<MonitoredVpnService>().ServiceStarted += async (sender, name) =>
-            {
-                await Resolve<IScheduler>().Schedule(async () =>
-                {
-                    await InitializeStateFromService();
-                });
-
-                await Resolve<SettingsServiceClientManager>().UpdateServiceSettings();
-            };
-
             Resolve<IModals>();
             Resolve<InsecureNetworkNotification>();
         }
@@ -444,18 +465,18 @@ namespace ProtonVPN.Core
         private async Task SwitchToAppWindow(bool autoLogin)
         {
             var appConfig = Resolve<Common.Configuration.Config>();
-            await Resolve<ServerUpdater>().Update();
 
             if (!Resolve<UserAuth>().LoggedIn)
             {
                 return;
             }
 
+            await InitializeStateFromService();
+            await Resolve<SettingsServiceClientManager>().UpdateServiceSettings();
+
             Resolve<PinFactory>().BuildPins();
 
             LoadViewModels();
-            _ = StartService(Resolve<MonitoredVpnService>());
-            _ = StartService(Resolve<AppUpdateSystemService>());
             Resolve<P2PDetector>();
             Resolve<VpnInfoChecker>().Start(appConfig.VpnInfoCheckInterval.RandomizedWithDeviation(0.2));
 
@@ -465,10 +486,10 @@ namespace ProtonVPN.Core
             appWindow.Show();
             Resolve<LoginWindow>().Hide();
 
+            await Resolve<Trial.Trial>().Load();
             await Resolve<IUserLocationService>().Update();
             await Resolve<IVpnConfig>().Update();
             await Resolve<AutoConnect>().Load(autoLogin);
-            await Resolve<Trial.Trial>().Load();
             Resolve<SyncProfiles>().Sync();
             Resolve<INetworkClient>().CheckForInsecureWiFi();
             await Resolve<EventClient>().StoreLatestEvent();

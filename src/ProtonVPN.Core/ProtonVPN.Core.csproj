@@ -93,6 +93,7 @@
     <Compile Include="Api\Contracts\VpnConfig.cs" />
     <Compile Include="Api\Extensions\X509CertificateExtensions.cs" />
     <Compile Include="Api\File.cs" />
+    <Compile Include="Api\GuestHoleState.cs" />
     <Compile Include="Api\Handlers\AlternativeHostHandler.cs" />
     <Compile Include="Api\Handlers\TlsPinning\CertificateExtensions.cs" />
     <Compile Include="Api\Handlers\TlsPinning\IReportClient.cs" />
@@ -228,6 +229,7 @@
     <Compile Include="Servers\BestServer.cs" />
     <Compile Include="Servers\ApiServers.cs" />
     <Compile Include="Servers\FastestServer.cs" />
+    <Compile Include="Servers\Contracts\GuestHoleServerContract.cs" />
     <Compile Include="Servers\IServersAware.cs" />
     <Compile Include="Servers\Models\PhysicalServer.cs" />
     <Compile Include="Servers\Models\Server.cs" />
@@ -243,7 +245,6 @@
     <Compile Include="Servers\RandomServer.cs" />
     <Compile Include="Servers\ServerManager.cs" />
     <Compile Include="Servers\ServerNameComparer.cs" />
-    <Compile Include="Servers\ServerCache.cs" />
     <Compile Include="Servers\ServerUpdater.cs" />
     <Compile Include="Servers\ServerTiers.cs" />
     <Compile Include="Servers\Specs\FreeServer.cs" />

@@ -21,7 +21,18 @@ using ProtonVPN.Core.MVVM;
 
 namespace ProtonVPN.Login.ViewModels
 {
-    public class LoadingViewModel : ViewModel
+    public class LoadingViewModel : ViewModel, IGuestHoleStateAware
     {
+        private bool _longLogin;
+        public bool LongLogin
+        {
+            get => _longLogin;
+            set => Set(ref _longLogin, value);
+        }
+
+        public void OnGuestHoleStateChanged(bool active)
+        {
+            LongLogin = active;
+        }
     }
 }

@@ -20,7 +20,6 @@
 using System;
 using System.Threading.Tasks;
 using ProtonVPN.Core.Api;
-using ProtonVPN.Core.Settings;
 
 namespace ProtonVPN.Core.User
 {

@@ -24,6 +24,7 @@ using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
+using ProtonVPN.Core.Api;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Servers;
@@ -42,6 +43,7 @@ namespace ProtonVPN.Core.Service.Vpn
         private readonly IVpnServiceManager _vpnServiceManager;
         private readonly IAppSettings _appSettings;
         private readonly ITaskQueue _taskQueue = new SerialTaskQueue();
+        private readonly GuestHoleState _guestHoleState;
 
         private Profile _lastProfile;
         private ServerCandidates _lastServerCandidates;
@@ -52,12 +54,14 @@ namespace ProtonVPN.Core.Service.Vpn
             ILogger logger,
             ProfileConnector profileConnector,
             IVpnServiceManager vpnServiceManager,
-            IAppSettings appSettings)
+            IAppSettings appSettings,
+            GuestHoleState guestHoleState)
         {
             _logger = logger;
             _profileConnector = profileConnector;
             _appSettings = appSettings;
             _vpnServiceManager = vpnServiceManager;
+            _guestHoleState = guestHoleState;
             _lastServerCandidates = _profileConnector.ServerCandidates(null);
         }
 
@@ -94,6 +98,11 @@ namespace ProtonVPN.Core.Service.Vpn
 
         public void OnVpnStateChanged(VpnStateChangedEventArgs e)
         {
+            if (_guestHoleState.Active)
+            {
+                return;
+            }
+
             var state = e.State;
 
             if (!string.IsNullOrEmpty(state.EntryIp))

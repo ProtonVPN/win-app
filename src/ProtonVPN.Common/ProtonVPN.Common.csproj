@@ -112,6 +112,7 @@
     <Compile Include="OS\Services\ServiceControllerExtensions.cs" />
     <Compile Include="OS\Services\ServiceRetryPolicy.cs" />
     <Compile Include="OS\Services\SystemService.cs" />
+    <Compile Include="Storage\CollectionCache.cs" />
     <Compile Include="Storage\ICollectionStorage.cs" />
     <Compile Include="Storage\LoggingStorage.cs" />
     <Compile Include="Storage\CollectionStorage.cs" />

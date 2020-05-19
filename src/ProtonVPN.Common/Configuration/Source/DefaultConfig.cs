@@ -65,6 +65,8 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 ServersJsonCacheFilePath = Path.Combine(localAppDataFolder, "Servers.json"),
 
+                GuestHoleServersJsonFilePath = Path.Combine(localAppDataFolder, "GuestHoleServers.json"),
+
                 ServiceLogFolder = Path.Combine(commonAppDataFolder, "Logs"),
 
                 UpdateServiceName = "ProtonVPN Update Service",
@@ -98,6 +100,12 @@ namespace ProtonVPN.Common.Configuration.Source
                 DohClientTimeout = TimeSpan.FromSeconds(10),
 
                 ApiRetries = 0,
+
+                MaxGuestHoleRetries = 5,
+
+                GuestHoleVpnUsername = "guest",
+
+                GuestHoleVpnPassword = "guest",
 
                 UpdateFirstCheckDelay = TimeSpan.FromSeconds(15),
 

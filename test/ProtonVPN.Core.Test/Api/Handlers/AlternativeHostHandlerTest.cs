@@ -25,6 +25,7 @@ using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
+using ProtonVPN.Core.Api;
 using ProtonVPN.Core.Api.Handlers;
 using ProtonVPN.Core.OS.Net.DoH;
 using ProtonVPN.Core.Settings;
@@ -58,6 +59,7 @@ namespace ProtonVPN.Core.Test.Api.Handlers
                 new DohClients(new List<string> {"provider1", "provider2"}, TimeSpan.FromSeconds(10)),
                 new MainHostname("https://api.protonvpn.ch"),
                 _appSettings,
+                new GuestHoleState(),
                 "api.protonvpn.ch") { InnerHandler = _innerHandler };
 
             var client = new HttpClient(handler) { BaseAddress = _baseAddress };

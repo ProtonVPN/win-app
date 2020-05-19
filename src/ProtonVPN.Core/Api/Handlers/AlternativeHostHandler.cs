@@ -36,6 +36,7 @@ namespace ProtonVPN.Core.Api.Handlers
         private readonly MainHostname _mainHostname;
         private readonly IAppSettings _appSettings;
         private readonly SingleAction _fetchProxies;
+        private readonly GuestHoleState _guestHoleState;
 
         private const int HoursToUseProxy = 24;
         private string _activeBackendHost;
@@ -45,8 +46,10 @@ namespace ProtonVPN.Core.Api.Handlers
             DohClients dohClients,
             MainHostname mainHostname,
             IAppSettings appSettings,
+            GuestHoleState guestHoleState,
             string apiHost)
         {
+            _guestHoleState = guestHoleState;
             _mainHostname = mainHostname;
             _dohClients = dohClients;
             _appSettings = appSettings;
@@ -57,7 +60,7 @@ namespace ProtonVPN.Core.Api.Handlers
 
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken token)
         {
-            if (!_appSettings.DoHEnabled)
+            if (!_appSettings.DoHEnabled || _guestHoleState.Active)
             {
                 ResetBackendHost();
                 return await SendInternalAsync(request, token);
