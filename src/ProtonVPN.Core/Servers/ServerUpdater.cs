@@ -23,6 +23,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.Storage;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.Auth;
@@ -36,7 +37,7 @@ namespace ProtonVPN.Core.Servers
         private readonly ISchedulerTimer _timer;
         private readonly ServerManager _serverManager;
         private readonly ApiServers _apiServers;
-        private readonly ServerCache _serverCache;
+        private readonly ICollectionStorage<LogicalServerContract> _serverCache;
 
         private readonly SingleAction _updateAction;
 
@@ -47,7 +48,7 @@ namespace ProtonVPN.Core.Servers
             Config appConfig,
             ServerManager serverManager,
             ApiServers apiServers,
-            ServerCache serverCache)
+            ICollectionStorage<LogicalServerContract> serverCache)
         {
             _serverManager = serverManager;
             _apiServers = apiServers;

@@ -17,22 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Core.MVVM;
-
-namespace ProtonVPN.Login.ViewModels
+namespace ProtonVPN.Login
 {
-    public class LoadingViewModel : ViewModel, IGuestHoleStateAware
+    public interface IGuestHoleStateAware
     {
-        private bool _longLogin;
-        public bool LongLogin
-        {
-            get => _longLogin;
-            set => Set(ref _longLogin, value);
-        }
-
-        public void OnGuestHoleStateChanged(bool active)
-        {
-            LongLogin = active;
-        }
+        void OnGuestHoleStateChanged(bool active);
     }
 }

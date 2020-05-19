@@ -17,6 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
+using System.Net.Http;
+using System.Threading.Tasks;
 using ProtonVPN.Common.OS.Net.NetworkInterface;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
@@ -24,9 +27,6 @@ using ProtonVPN.Core.Api;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.User;
 using ProtonVPN.Core.Vpn;
-using System;
-using System.Net.Http;
-using System.Threading.Tasks;
 
 namespace ProtonVPN.Core
 {
@@ -38,6 +38,7 @@ namespace ProtonVPN.Core
         private readonly IUserStorage _userStorage;
         private readonly SingleAction _updateAction;
         private readonly SingleAction _delayedUpdateAction;
+        private readonly GuestHoleState _guestHoleState;
 
         private bool _disconnected = true;
         private bool _connected;
@@ -46,8 +47,10 @@ namespace ProtonVPN.Core
         public UserLocationService(
             IApiClient api,
             IUserStorage userStorage,
-            INetworkInterfaces networkInterfaces)
+            INetworkInterfaces networkInterfaces,
+            GuestHoleState guestHoleState)
         {
+            _guestHoleState = guestHoleState;
             _api = api;
             _userStorage = userStorage;
 
@@ -124,6 +127,11 @@ namespace ProtonVPN.Core
 
         private void NetworkInterfaces_NetworkAddressChanged(object sender, EventArgs e)
         {
+            if (_guestHoleState.Active)
+            {
+                return;
+            }
+
             _networkAddressChanged = true;
 
             if (_disconnected)

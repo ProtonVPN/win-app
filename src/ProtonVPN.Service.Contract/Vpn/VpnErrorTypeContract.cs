@@ -28,6 +28,9 @@ namespace ProtonVPN.Service.Contract.Vpn
         None,
 
         [EnumMember]
+        NoneKeepEnabledKillSwitch,
+
+        [EnumMember]
         NetshError,
 
         [EnumMember]

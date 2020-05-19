@@ -22,6 +22,7 @@ namespace ProtonVPN.Common.Vpn
     public enum VpnError
     {
         None,
+        NoneKeepEnabledKillSwitch,
         NetshError,
         AuthorizationError,
         TapAdapterInUseError,

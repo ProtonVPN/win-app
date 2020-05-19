@@ -7,6 +7,7 @@ import sentry
 import tests
 import installer
 import ssh
+import os
 from pathlib import Path
 
 parser = argparse.ArgumentParser(description='ProtonVPN CI')
@@ -32,6 +33,8 @@ parser_c.add_argument('path', type=str, help='Path for tests')
 
 custom_parser = subparsers.add_parser('prepare-ssh')
 custom_parser.add_argument('key', type=str, help='Private ssh key as a string')
+
+subparsers.add_parser('update-gh-list')
 
 if len(sys.argv) < 2:
     parser.print_usage()
@@ -82,3 +85,8 @@ elif args.command == 'add-commit-hash':
 elif args.command == 'prepare-ssh':
     print('Writing ssh key to the file')
     ssh.prepare(args.key)
+
+elif args.command == 'update-gh-list':
+    print('Updating guest hole servers json')
+    with open('.\Setup\GuestHoleServers.json', 'w') as file:
+        file.write(os.environ['GH_SERVERS'])

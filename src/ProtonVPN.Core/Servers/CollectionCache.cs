@@ -18,28 +18,24 @@
  */
 
 using System.Collections.Generic;
-using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Logging;
-using ProtonVPN.Common.Storage;
 using ProtonVPN.Common.Text.Serialization;
 using ProtonVPN.Core.Api.Contracts;
 
 namespace ProtonVPN.Core.Servers
 {
-    public class ServerCache
+    public class ServersStorage : ICollectionStorage<LogicalServerContract>
     {
-        private readonly ICollectionStorage<LogicalServerContract> _origin;
+        private readonly ICollectionStorage<T> _origin;
 
-        public ServerCache(ILogger logger, ITextSerializerFactory serializerFactory, Config config)
+        public ServersStorage(ILogger logger, ITextSerializerFactory serializerFactory, string filePath)
         {
-            _origin = 
-                new CollectionStorage<LogicalServerContract>(
-                    new SafeStorage<IEnumerable<LogicalServerContract>>(
-                        new LoggingStorage<IEnumerable<LogicalServerContract>>(
+            _origin =
+                new CollectionStorage<T>(
+                    new SafeStorage<IEnumerable<T>>(
+                        new LoggingStorage<IEnumerable<T>>(
                             logger,
-                            new FileStorage<IEnumerable<LogicalServerContract>>(
-                                serializerFactory,
-                                config.ServersJsonCacheFilePath))));
+                            new FileStorage<IEnumerable<T>>(serializerFactory, filePath))));
         }
 
         public IReadOnlyCollection<LogicalServerContract> GetAll()

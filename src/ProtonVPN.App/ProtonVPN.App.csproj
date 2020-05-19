@@ -202,6 +202,7 @@
       <DependentUpon>UpdateFlashNotification.xaml</DependentUpon>
     </Compile>
     <Compile Include="FlashNotifications\UpdateFlashNotificationViewModel.cs" />
+    <Compile Include="Login\IGuestHoleStateAware.cs" />
     <Compile Include="Modals\OutdatedAppModalView.xaml.cs">
       <DependentUpon>OutdatedAppModalView.xaml</DependentUpon>
     </Compile>
@@ -717,6 +718,7 @@
       <DependentUpon>SidebarProfiles.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vpn\Connectors\BaseConnector.cs" />
+    <Compile Include="Vpn\Connectors\GuestHoleConnector.cs" />
     <Compile Include="Vpn\Connectors\ServerConnector.cs" />
     <Compile Include="Vpn\Connectors\CountryConnector.cs" />
     <Compile Include="Vpn\Connectors\ProfileConnector.cs" />

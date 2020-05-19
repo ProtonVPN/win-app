@@ -60,6 +60,9 @@ namespace ProtonVPN.Common.Configuration
         public string ServersJsonCacheFilePath { get; internal set; }
 
         [Required]
+        public string GuestHoleServersJsonFilePath { get; internal set; }
+
+        [Required]
         public string ServiceLogFolder { get; internal set; }
 
         [Required]
@@ -109,6 +112,15 @@ namespace ProtonVPN.Common.Configuration
 
         [Range(0, 5)]
         public int ApiRetries { get; internal set; }
+
+        [Required]
+        public int MaxGuestHoleRetries { get; internal set; }
+
+        [Required]
+        public string GuestHoleVpnUsername { get; internal set; }
+
+        [Required]
+        public string GuestHoleVpnPassword { get; internal set; }
 
         [Range(typeof(TimeSpan), "00:00:00", "23:59:59")]
         public TimeSpan UpdateFirstCheckDelay { get; internal set; }

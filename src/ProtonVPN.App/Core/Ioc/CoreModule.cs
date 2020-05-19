@@ -114,6 +114,7 @@ namespace ProtonVPN.Core.Ioc
                 new AlternativeHostHandler(c.Resolve<DohClients>(),
                         c.Resolve<MainHostname>(),
                         c.Resolve<IAppSettings>(),
+                        c.Resolve<GuestHoleState>(),
                         new Uri(c.Resolve<Common.Configuration.Config>().Urls.ApiUrl).Host)
                     { InnerHandler = c.Resolve<CancellingHandler>() }).SingleInstance();
 
@@ -153,6 +154,7 @@ namespace ProtonVPN.Core.Ioc
                         c.Resolve<DohClients>(),
                         c.Resolve<MainHostname>(),
                         c.Resolve<IAppSettings>(),
+                        c.Resolve<GuestHoleState>(),
                         new Uri(c.Resolve<Common.Configuration.Config>().Urls.ApiUrl).Host)
                     { InnerHandler = retryingHandler};
 

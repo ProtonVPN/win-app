@@ -5426,6 +5426,24 @@ namespace ProtonVPN.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Blocked.
+        /// </summary>
+        public static string Sidebar_Connection_lbl_IP_Blocked {
+            get {
+                return ResourceManager.GetString("Sidebar_Connection_lbl_IP_Blocked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An Internet block is making it impossible to fetch your IP address..
+        /// </summary>
+        public static string Sidebar_Connection_lbl_IP_Blocked_Info {
+            get {
+                return ResourceManager.GetString("Sidebar_Connection_lbl_IP_Blocked_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Kill Switch activated!.
         /// </summary>
         public static string Sidebar_Connection_lbl_KillSwitch {
