@@ -23,10 +23,10 @@
     <ROW Property="CommitHash" Value="REPLACE_ME"/>
     <ROW Property="Manufacturer" Value="Proton Technologies AG"/>
     <ROW Property="MsiLogging" MultiBuildValue="DefaultBuild:vp"/>
-    <ROW Property="ProductCode" Value="1033:{8C8177CB-EBFD-40E1-8948-B032F285A3FC} " Type="16"/>
+    <ROW Property="ProductCode" Value="1033:{DD453090-4CC0-46AB-BE44-0992B19BF2CD} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="ProtonVPN"/>
-    <ROW Property="ProductVersion" Value="1.15.0" Type="32"/>
+    <ROW Property="ProductVersion" Value="1.16.0" Type="32"/>
     <ROW Property="REBOOT" MultiBuildValue="DefaultBuild:ReallySuppress"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;AI_SETUPEXEPATH;SETUPEXEDIR"/>
     <ROW Property="ServiceName" Value="ProtonVPN Service" Comments="Used by Services and custom action ModifyServicePermissions"/>
@@ -70,7 +70,7 @@
     <ROW Directory="x86_Dir" Directory_Parent="APPDIR" DefaultDir="x86" DirectoryOptions="3"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
-    <ROW Component="AI_CustomARPName" ComponentId="{5F1A5652-7B75-4CE0-AF44-422A0D34BBA2}" Directory_="APPDIR" Attributes="4" KeyPath="DisplayName" Options="1"/>
+    <ROW Component="AI_CustomARPName" ComponentId="{74BB6E07-75B1-41D1-996B-189C83206B40}" Directory_="APPDIR" Attributes="4" KeyPath="DisplayName" Options="1"/>
     <ROW Component="AI_ExePath" ComponentId="{47427A21-60A2-43B4-A150-6CBA74CF4A07}" Directory_="APPDIR" Attributes="4" KeyPath="AI_ExePath"/>
     <ROW Component="APPDIR" ComponentId="{75DDD993-CDFE-4D39-8C1A-07484ADD1A4E}" Directory_="APPDIR" Attributes="0"/>
     <ROW Component="ARSoft.Tools.Net.dll" ComponentId="{05CE9A73-14A8-494D-B2D3-8438A2A16DDB}" Directory_="APPDIR" Attributes="0" KeyPath="ARSoft.Tools.Net.dll"/>
@@ -91,8 +91,8 @@
     <ROW Component="GalaSoft.MvvmLight.dll" ComponentId="{50FA9CA8-4DD4-4068-A0D8-D2C1D9D42947}" Directory_="APPDIR" Attributes="0" KeyPath="GalaSoft.MvvmLight.dll"/>
     <ROW Component="GoSrp.dll" ComponentId="{3DB767E8-ACF9-459F-A509-F57E76FBA633}" Directory_="x64_Dir" Attributes="256" KeyPath="GoSrp.dll"/>
     <ROW Component="GoSrp.dll_1" ComponentId="{89CC2AA9-0000-4E4B-9D5A-43ACC1B1D1E3}" Directory_="x86_Dir" Attributes="0" KeyPath="GoSrp.dll_1"/>
-    <ROW Component="Logs" ComponentId="{5012E344-2ED7-41C3-9A3D-83F3111DDB2C}" Directory_="Logs_Dir" Attributes="0"/>
     <ROW Component="GuestHoleServers.json" ComponentId="{C5ACA4D0-1647-4D3A-B9CD-9FE054A81588}" Directory_="ProtonVPN_1_Dir" Attributes="0" KeyPath="GuestHoleServers.json" Type="0"/>
+    <ROW Component="Logs" ComponentId="{5012E344-2ED7-41C3-9A3D-83F3111DDB2C}" Directory_="Logs_Dir" Attributes="0"/>
     <ROW Component="Microsoft.Deployment.WindowsInstaller.dll" ComponentId="{FFB7E0D6-80C7-40A9-AC9E-BFEA81253FFB}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Deployment.WindowsInstaller.dll"/>
     <ROW Component="NLog.dll" ComponentId="{17246A16-5DDB-41C5-AD07-AD5D1B5B8121}" Directory_="APPDIR" Attributes="0" KeyPath="NLog.dll"/>
     <ROW Component="Newtonsoft.Json.dll" ComponentId="{E0A54725-459B-4F28-A4A0-7587B5B176E7}" Directory_="APPDIR" Attributes="0" KeyPath="Newtonsoft.Json.dll"/>
