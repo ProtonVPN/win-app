@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<DOCUMENT Type="Advanced Installer" CreateVersion="14.8" version="16.6.1" Modules="professional" RootPath="." Language="en" Id="{85E78441-8A67-4D03-B0F7-A4359A5A22F4}">
+<DOCUMENT Type="Advanced Installer" CreateVersion="14.8" version="17.0" Modules="professional" RootPath="." Language="en" Id="{85E78441-8A67-4D03-B0F7-A4359A5A22F4}">
   <COMPONENT cid="caphyon.advinst.msicomp.ProjectOptionsComponent">
-    <ROW Name="HiddenItems" Value="AppXProductDetailsComponent;AppXDependenciesComponent;AppXAppDetailsComponent;AppXVisualAssetsComponent;AppXCapabilitiesComponent;AppXAppDeclarationsComponent;AppXUriRulesComponent;MsiJavaComponent;MsiDriverPackagesComponent;UserAccountsComponent;ScheduledTasksComponent;SqlConnectionComponent;AutorunComponent;FirewallExceptionComponent;GameUxComponent;MsiDirectEditorComponent;SharePointSlnComponent;SilverlightSlnComponent;MultipleInstancesComponent;SccmComponent;ActSyncAppComponent;FixupComponent"/>
+    <ROW Name="HiddenItems" Value="AppXAppDetailsComponent;FixupComponent;AppXCapabilitiesComponent;AppXDependenciesComponent;AppXProductDetailsComponent;AppXVisualAssetsComponent;AppXAppDeclarationsComponent;AppXUriRulesComponent;MsiXDiffComponent;MsixManifestEditorComponent"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiPropsComponent">
     <ROW Property="AI_BITMAP_DISPLAY_MODE" Value="0"/>
@@ -33,6 +33,9 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiDirsComponent">
     <ROW Directory="APPDIR" Directory_Parent="TARGETDIR" DefaultDir="APPDIR:." IsPseudoRoot="1"/>
+    <ROW Directory="LocalAppDataFolder" Directory_Parent="TARGETDIR" DefaultDir="LOCALA~1|LocalAppDataFolder" IsPseudoRoot="1"/>
+    <ROW Directory="Logs_Dir" Directory_Parent="ProtonVPN_Dir" DefaultDir="Logs"/>
+    <ROW Directory="ProtonVPN_Dir" Directory_Parent="LocalAppDataFolder" DefaultDir="PROTON~1|ProtonVPN"/>
     <ROW Directory="TARGETDIR" DefaultDir="SourceDir"/>
     <ROW Directory="installer_Dir" Directory_Parent="APPDIR" DefaultDir="INSTAL~1|installer"/>
     <ROW Directory="windows10_Dir" Directory_Parent="APPDIR" DefaultDir="WINDOW~1|windows10"/>
@@ -47,6 +50,7 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
     <ROW Component="AI_ExePath" ComponentId="{B8201E8B-E898-41EE-BC89-06D74B09F2EB}" Directory_="APPDIR" Attributes="4" KeyPath="AI_ExePath"/>
     <ROW Component="APPDIR" ComponentId="{7120A08C-A9EB-42F5-82FA-1F63634111BA}" Directory_="APPDIR" Attributes="0"/>
+    <ROW Component="Logs" ComponentId="{8C5791D2-849C-4573-8195-E423663AE900}" Directory_="Logs_Dir" Attributes="0"/>
     <ROW Component="OemVista.inf" ComponentId="{DA652D39-DE38-434D-9346-B5C78D745DFD}" Directory_="x64_6_Dir" Attributes="0" KeyPath="OemVista.inf" Type="0"/>
     <ROW Component="OemVista.inf_4" ComponentId="{5254B8A0-06E8-4F01-B8D7-AB2D565090CC}" Directory_="x86_6_Dir" Attributes="0" KeyPath="OemVista.inf_4" Type="0"/>
     <ROW Component="OemVista.inf_5" ComponentId="{DB1433BF-6B50-49A4-B2DC-52581971E630}" Directory_="x64_7_Dir" Attributes="0" KeyPath="OemVista.inf_5" Type="0"/>
@@ -82,7 +86,7 @@
     <ROW BootstrOptKey="GlobalOptions" GeneralOptions="q" DownloadFolder="[AppDataFolder][|Manufacturer]\[|ProductName]\prerequisites" Options="2"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BuildComponent">
-    <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="0" Languages="en" InstallationType="2" CabsLocation="1" CompressCabs="false" UseLzma="true" LzmaMethod="2" LzmaCompressionLevel="2" PackageType="1" FilesInsideExe="true" ExeIconPath="images\protonvpn.ico" UseLargeSchema="true" UACExecutionLevel="2"/>
+    <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="1" Languages="en" InstallationType="2" CabsLocation="1" CompressCabs="false" UseLzma="true" LzmaMethod="2" LzmaCompressionLevel="2" PackageType="1" FilesInsideExe="true" ExeIconPath="images\protonvpn.ico" UseLargeSchema="true" UACExecutionLevel="2"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.DictionaryComponent">
     <ROW Path="&lt;AI_DICTS&gt;ui.ail"/>
@@ -116,6 +120,7 @@
     <ROW Property="AI_SETUPEXEPATH" Signature_="AI_EXE_PATH_LM" Builds="DefaultBuild"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiBinaryComponent">
+    <ROW Name="PowerShellScriptLauncher.dll" SourcePath="&lt;AI_CUSTACTS&gt;PowerShellScriptLauncher.dll"/>
     <ROW Name="Prereq.dll" SourcePath="&lt;AI_CUSTACTS&gt;Prereq.dll"/>
     <ROW Name="TapInstaller.CA.dll" SourcePath="..\src\bin\TapInstaller.CA.dll"/>
     <ROW Name="aicustact.dll" SourcePath="&lt;AI_CUSTACTS&gt;aicustact.dll"/>
@@ -215,10 +220,12 @@
     <ROW Directory_="windows10_Dir" Component_="windows10" ManualDelete="true"/>
     <ROW Directory_="windows7_Dir" Component_="windows7" ManualDelete="true"/>
     <ROW Directory_="APPDIR" Component_="APPDIR" ManualDelete="true"/>
+    <ROW Directory_="Logs_Dir" Component_="Logs" ManualDelete="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCustActComponent">
     <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Type="51" Source="AI_SETUPEXEPATH_ORIGINAL" Target="[AI_SETUPEXEPATH]"/>
     <ROW Action="AI_DATA_SETTER" Type="51" Source="AI_ExtractFiles" Target="[AI_SETUPEXEPATH]"/>
+    <ROW Action="AI_DATA_SETTER_1" Type="51" Source="CustomActionData" Target="AEkAcwA2ADQAQgBpAHQAAgABAEkAcwBGAGEAbABsAGIAYQBjAGsAMwAyAEIAaQB0AAIAAQBQAGEAcgBhAG0AcwACAAEAUwBjAHIAaQBwAHQAAgBmAHUAbgBjAHQAaQBvAG4AIABBAGQAZAAtAFoAaQBwAA0ACgBbAFwAewBdAA0ACgAgACAAIAAgAHAAYQByAGEAbQAoAFsAXABbAF0AcwB0AHIAaQBuAGcAWwBcAF0AXQAkAGYAaQBsAGUALAAgAFsAXABbAF0AcwB0AHIAaQBuAGcAWwBcAF0AXQAkAHoAaQBwAGYAaQBsAGUAbgBhAG0AZQApAA0ACgANAAoAIAAgACAAIABpAGYAKAAtAG4AbwB0ACAAKAB0AGUAcwB0AC0AcABhAHQAaAAoACQAegBpAHAAZgBpAGwAZQBuAGEAbQBlACkAKQApAA0ACgAgACAAIAAgAFsAXAB7AF0ADQAKACAAIAAgACAAIAAgACAAIABzAGUAdAAtAGMAbwBuAHQAZQBuAHQAIAAkAHoAaQBwAGYAaQBsAGUAbgBhAG0AZQAgACgAIgBQAEsAIgAgACsAIABbAFwAWwBdAGMAaABhAHIAWwBcAF0AXQA1ACAAKwAgAFsAXABbAF0AYwBoAGEAcgBbAFwAXQBdADYAIAArACAAKAAiACQAKABbAFwAWwBdAGMAaABhAHIAWwBcAF0AXQAwACkAIgAgACoAIAAxADgAKQApAA0ACgAgACAAIAAgACAAIAAgACAAKABkAGkAcgAgACQAegBpAHAAZgBpAGwAZQBuAGEAbQBlACkALgBJAHMAUgBlAGEAZABPAG4AbAB5ACAAPQAgACQAZgBhAGwAcwBlACAAIAANAAoAIAAgACAAIABbAFwAfQBdAA0ACgANAAoAIAAgACAAIAAkAHMAaABlAGwAbABBAHAAcABsAGkAYwBhAHQAaQBvAG4AIAA9ACAAbgBlAHcALQBvAGIAagBlAGMAdAAgAC0AYwBvAG0AIABzAGgAZQBsAGwALgBhAHAAcABsAGkAYwBhAHQAaQBvAG4ADQAKACAAIAAgACAAJAB6AGkAcABQAGEAYwBrAGEAZwBlACAAPQAgACQAcwBoAGUAbABsAEEAcABwAGwAaQBjAGEAdABpAG8AbgAuAE4AYQBtAGUAUwBwAGEAYwBlACgAJAB6AGkAcABmAGkAbABlAG4AYQBtAGUAKQANAAoAIAAgACAAIAAkAHoAaQBwAFAAYQBjAGsAYQBnAGUALgBDAG8AcAB5AEgAZQByAGUAKAAkAGYAaQBsAGUAKQANAAoAIAAgACAAIABTAHQAYQByAHQALQBzAGwAZQBlAHAAIAAtAG0AaQBsAGwAaQBzAGUAYwBvAG4AZABzACAAMQAwADAAMAANAAoAWwBcAH0AXQANAAoADQAKACQAbABvAGcARgBpAGwAZQAgAD0AIABBAEkAXwBHAGUAdABNAHMAaQBQAHIAbwBwAGUAcgB0AHkAIABNAHMAaQBMAG8AZwBGAGkAbABlAEwAbwBjAGEAdABpAG8AbgANAAoAJABsAG8AYwBhAGwAQQBwAHAARABhAHQAYQBGAG8AbABkAGUAcgAgAD0AIABBAEkAXwBHAGUAdABNAHMAaQBQAHIAbwBwAGUAcgB0AHkAIABMAG8AYwBhAGwAQQBwAHAARABhAHQAYQBGAG8AbABkAGUAcgANAAoAJABsAG8AZwBGAG8AbABkAGUAcgAgAD0AIAAoACQAbABvAGMAYQBsAEEAcABwAEQAYQB0AGEARgBvAGwAZABlAHIAIAArACAAIgBQAHIAbwB0AG8AbgBWAFAATgBcAEwAbwBnAHMAXAAiACkADQAKACQAdABtAHAATABvAGcARgBpAGwAZQAgAD0AIAAoACQAbABvAGcARgBvAGwAZABlAHIAIAArACAAIgB0AGEAcAAtAGkAbgBzAHQAYQBsAGwALgBsAG8AZwAiACkADQAKAA0ACgBDAG8AcAB5AC0ASQB0AGUAbQAgACQAbABvAGcARgBpAGwAZQAgAC0ARABlAHMAdABpAG4AYQB0AGkAbwBuACAAJAB0AG0AcABMAG8AZwBGAGkAbABlAA0ACgBBAGQAZAAtAFoAaQBwACAAJAB0AG0AcABMAG8AZwBGAGkAbABlACAAKAAkAGwAbwBnAEYAbwBsAGQAZQByACAAKwAgACIAdABhAHAALQBsAG8AZwAuAHoAaQBwACIAKQANAAoAUgBlAG0AbwB2AGUALQBJAHQAZQBtACAAJAB0AG0AcABMAG8AZwBGAGkAbABl"/>
     <ROW Action="AI_DOWNGRADE" Type="19" Target="4010"/>
     <ROW Action="AI_DeleteCadLzma" Type="51" Source="AI_DeleteLzma" Target="[AI_SETUPEXEPATH]"/>
     <ROW Action="AI_DeleteLzma" Type="1025" Source="lzmaextractor.dll" Target="DeleteLZMAFiles"/>
@@ -238,6 +245,7 @@
     <ROW Action="AI_ResolveKnownFolders" Type="1" Source="aicustact.dll" Target="AI_ResolveKnownFolders"/>
     <ROW Action="AI_SHOW_LOG" Type="65" Source="aicustact.dll" Target="LaunchLogFile" WithoutSeq="true"/>
     <ROW Action="AI_STORE_LOCATION" Type="51" Source="ARPINSTALLLOCATION" Target="[APPDIR]"/>
+    <ROW Action="CopyInstallLogs" Type="1" Source="PowerShellScriptLauncher.dll" Target="RunPowerShellScript" Options="1" AdditionalSeq="AI_DATA_SETTER_1"/>
     <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]" MultiBuildTarget="DefaultBuild:[ProgramFilesFolder]Proton Technologies\[ProductName]"/>
     <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][ProductName]"/>
     <ROW Action="SET_TARGETDIR_TO_APPDIR" Type="51" Source="TARGETDIR" Target="[APPDIR]"/>
@@ -256,6 +264,7 @@
     <ROW Feature_="MainFeature" Component_="windows10"/>
     <ROW Feature_="MainFeature" Component_="windows7"/>
     <ROW Feature_="MainFeature" Component_="APPDIR"/>
+    <ROW Feature_="MainFeature" Component_="Logs"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
     <ROW Name="protonvpn.exe" SourcePath="images\protonvpn.ico" Index="0"/>
@@ -280,6 +289,8 @@
     <ROW Action="AI_DATA_SETTER" Sequence="3997"/>
     <ROW Action="AI_EstimateExtractFiles" Sequence="3999" Builds="DefaultBuild"/>
     <ROW Action="UninstallTap" Condition="( Installed AND ( REMOVE = &quot;ALL&quot; OR AI_INSTALL_MODE = &quot;Remove&quot; ) AND NOT UPGRADINGPRODUCTCODE )" Sequence="1201"/>
+    <ROW Action="CopyInstallLogs" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) )" Sequence="6602"/>
+    <ROW Action="AI_DATA_SETTER_1" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) )" Sequence="6601"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstallUISequenceComponent">
     <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="749"/>
