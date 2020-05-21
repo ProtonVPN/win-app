@@ -99,7 +99,7 @@ namespace ProtonVPN.Vpn.Connectors
             }
         }
 
-        private IReadOnlyList<VpnHost> Servers()
+        public IReadOnlyList<VpnHost> Servers()
         {
             return _guestHoleServers
                 .GetAll()
