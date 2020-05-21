@@ -329,6 +329,8 @@ namespace ProtonVPN.NetworkFilter
             Layer layer,
             Action action,
             uint weight,
+            Guid calloutId,
+            Guid providerContextId,
             NetworkAddress address)
         {
             var id = Guid.Empty;
@@ -341,6 +343,8 @@ namespace ProtonVPN.NetworkFilter
                 (uint)layer,
                 (uint)action,
                 weight,
+                ref calloutId,
+                ref providerContextId,
                 ref address,
                 ref id));
 
