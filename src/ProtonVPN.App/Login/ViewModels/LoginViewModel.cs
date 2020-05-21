@@ -248,7 +248,7 @@ namespace ProtonVPN.Login.ViewModels
             }
             catch (HttpRequestException)
             {
-                if (_guestHoleState.Active)
+                if (_guestHoleState.Active || _guestHoleConnector.Servers().Count == 0)
                 {
                     await _guestHoleConnector.Disconnect();
                     ShowLoginScreenWithTroubleshoot();
