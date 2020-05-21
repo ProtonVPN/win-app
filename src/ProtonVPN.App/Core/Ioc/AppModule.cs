@@ -72,7 +72,6 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<JsonSerializerFactory>().As<ITextSerializerFactory>().SingleInstance();
 
             builder.RegisterType<SidebarManager>().SingleInstance();
-            builder.RegisterType<PricingBuilder>().SingleInstance();
             builder.RegisterType<UpdateViewModel>().AsSelf().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<VpnConnectionSpeed>().AsImplementedInterfaces().AsSelf().SingleInstance();
 

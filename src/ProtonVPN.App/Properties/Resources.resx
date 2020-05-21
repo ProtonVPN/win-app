@@ -2837,4 +2837,92 @@ Exiting the application will disable the Kill Switch. Do you want to continue?</
     <value>Licensing information:</value>
     <comment>The label for licensing information in About window</comment>
   </data>
+  <data name="Account_lbl_Basic" xml:space="preserve">
+    <value>Basic</value>
+    <comment>The name of VPN subscription plan</comment>
+  </data>
+  <data name="Account_lbl_Free" xml:space="preserve">
+    <value>Free</value>
+    <comment>The name of VPN subscription plan</comment>
+  </data>
+  <data name="Account_lbl_Plus" xml:space="preserve">
+    <value>Plus</value>
+    <comment>The name of VPN subscription plan</comment>
+  </data>
+  <data name="Account_lbl_Visionary" xml:space="preserve">
+    <value>Visionary</value>
+    <comment>The name of VPN subscription plan</comment>
+  </data>
+  <data name="Account_lbl_AccessContent" xml:space="preserve">
+    <value>Access blocked content</value>
+    <comment>The text displayed in Account window</comment>
+  </data>
+  <data name="Account_lbl_AccessContent_Info" xml:space="preserve">
+    <value>Access geo-blocked content (Netflix, Amazon Prime Video, BBC iPlayer, Wikipedia, Facebook, Youtube, etc) no matter where you are.</value>
+    <comment>Tooltip message shown in account window when hovered on Access blocked content exclamation mark icon</comment>
+  </data>
+  <data name="Account_lbl_AllPlusFeatures" xml:space="preserve">
+    <value>All Plus plan features</value>
+    <comment>The text displayed in Account window</comment>
+  </data>
+  <data name="Account_lbl_Connection_One" xml:space="preserve">
+    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; VPN connection</value>
+    <comment>The text displayed in Account window</comment>
+  </data>
+  <data name="Account_lbl_Connection_Other" xml:space="preserve">
+    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; VPN connections</value>
+    <comment>The text displayed in Account window</comment>
+  </data>
+  <data name="Account_lbl_Countries_Other" xml:space="preserve">
+    <value>Servers in &lt;Bold&gt;{0}&lt;/Bold&gt; countries</value>
+    <comment>The text displayed in Account window</comment>
+  </data>
+  <data name="Account_lbl_HighestSpeed" xml:space="preserve">
+    <value>&lt;Bold&gt;Highest&lt;/Bold&gt; speed (10Gbps)</value>
+    <comment>The text displayed in Account window</comment>
+  </data>
+  <data name="Account_lbl_HighSpeed" xml:space="preserve">
+    <value>&lt;Bold&gt;High&lt;/Bold&gt; speed</value>
+    <comment>The text displayed in Account window</comment>
+  </data>
+  <data name="Account_lbl_MediumSpeed" xml:space="preserve">
+    <value>&lt;Bold&gt;Medium&lt;/Bold&gt; speed</value>
+    <comment>The text displayed in Account window</comment>
+  </data>
+  <data name="Account_lbl_NoLogs" xml:space="preserve">
+    <value>No logs/No ads</value>
+    <comment>The text displayed in Account window</comment>
+  </data>
+  <data name="Account_lbl_P2P" xml:space="preserve">
+    <value>P2P filesharing/BitTorrent support</value>
+    <comment>The text displayed in Account window</comment>
+  </data>
+  <data name="Account_lbl_P2P_Info" xml:space="preserve">
+    <value>Support for file sharing protocols such as BitTorrent.</value>
+    <comment>Tooltip message shown in account window when hovered on P2P exclamation mark icon</comment>
+  </data>
+  <data name="Account_lbl_ProtonmailVisionaryAccount" xml:space="preserve">
+    <value>ProtonMail Visionary account</value>
+    <comment>The text displayed in Account window</comment>
+  </data>
+  <data name="Account_lbl_ProtonmailVisionaryAccount_Info" xml:space="preserve">
+    <value>Get access to all the paid features for both ProtonVPN and ProtonMail (the encrypted email service that millions use to protect their data) with one plan.</value>
+    <comment>The text displayed in Account window</comment>
+  </data>
+  <data name="Account_lbl_SecureCoreVpn" xml:space="preserve">
+    <value>Secure Core VPN</value>
+    <comment>The text displayed in Account window</comment>
+  </data>
+  <data name="Account_lbl_SecureCoreVpn_Info" xml:space="preserve">
+    <value>Defends against threats to VPN privacy by passing your Internet traffic through multiple servers.</value>
+    <comment>Tooltip message shown in account window when hovered on Secure Core VPN exclamation mark icon</comment>
+  </data>
+  <data name="Account_lbl_TorOverVpn" xml:space="preserve">
+    <value>TOR over VPN</value>
+    <comment>The text displayed in Account window</comment>
+  </data>
+  <data name="Account_lbl_TorOverVpn_Info" xml:space="preserve">
+    <value>Route your Internet traffic through the Tor network with a single click.</value>
+    <comment>Tooltip message shown in account window when hovered on TOR over VPN exclamation mark icon</comment>
+  </data>
 </root>

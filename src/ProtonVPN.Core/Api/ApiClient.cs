@@ -227,21 +227,6 @@ namespace ProtonVPN.Core.Api
             }
         }
 
-        public async Task<ApiResponseResult<PricingPlans>> GetPricing(string currency, sbyte cycle)
-        {
-            try
-            {
-                var request = GetRequest(HttpMethod.Get, $"payments/plans?Currency={currency}&Cycle={cycle}");
-                using var response = await _client.SendAsync(request).ConfigureAwait(false);
-                var body = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-                return Logged(ApiResponseResult<PricingPlans>(body, response.StatusCode), "Get payment plans");
-            }
-            catch (Exception e) when (e.IsApiCommunicationException())
-            {
-                throw new HttpRequestException(e.Message, e);
-            }
-        }
-
         public async Task<ApiResponseResult<SessionsResponse>> GetSessions()
         {
             try

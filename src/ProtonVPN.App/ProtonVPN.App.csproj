@@ -187,6 +187,7 @@
     </Compile>
     <Compile Include="About\LicenseModalViewModel.cs" />
     <Compile Include="About\ReleaseEqualityComparer.cs" />
+    <Compile Include="Core\MVVM\Converters\PluralConverter.cs" />
     <Compile Include="Core\MVVM\Converters\ZeroToBoolConverter.cs" />
     <Compile Include="FlashNotifications\FlashNotifications.xaml.cs">
       <DependentUpon>FlashNotifications.xaml</DependentUpon>
@@ -218,7 +219,6 @@
     <Compile Include="Notifications\UpdateNotification.cs" />
     <Compile Include="Core\Startup\ElevatedApplication.cs" />
     <Compile Include="About\UpdateViewModel.cs" />
-    <Compile Include="Account\PricingBuilderException.cs" />
     <Compile Include="Account\VpnInfoChecker.cs" />
     <Compile Include="Account\VpnPlanHelper.cs" />
     <Compile Include="BugReporting\Attachments\Attachment.cs" />
@@ -398,7 +398,6 @@
     <Compile Include="Core\Ioc\ProfilesModule.cs" />
     <Compile Include="Core\Ioc\UiModule.cs" />
     <Compile Include="Modals\Modals.cs" />
-    <Compile Include="Account\PricingModel.cs" />
     <Compile Include="SpeedGraph\ViewResolvingPlotModel.cs" />
     <Compile Include="Core\MVVM\Converters\BytesToSizeConverter.cs" />
     <Compile Include="Core\MVVM\Converters\ConnectionStatusFlagConverter.cs" />
@@ -567,7 +566,6 @@
     <Compile Include="Sidebar\SidebarBaseViewModel.cs" />
     <Compile Include="Sidebar\SidebarProfilesViewModel.cs" />
     <Compile Include="Sidebar\SidebarViewModel.cs" />
-    <Compile Include="Account\PricingBuilder.cs" />
     <Compile Include="ViewModels\LanguageAwareViewModel.cs" />
     <Compile Include="ViewModels\TrayNotificationViewModel.cs" />
     <Compile Include="Views\AppLoading.xaml.cs">

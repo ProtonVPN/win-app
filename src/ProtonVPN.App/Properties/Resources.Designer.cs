@@ -196,6 +196,24 @@ namespace ProtonVPN.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Access blocked content.
+        /// </summary>
+        public static string Account_lbl_AccessContent {
+            get {
+                return ResourceManager.GetString("Account_lbl_AccessContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Access geo-blocked content (Netflix, Amazon Prime Video, BBC iPlayer, Wikipedia, Facebook, Youtube, etc) no matter where you are..
+        /// </summary>
+        public static string Account_lbl_AccessContent_Info {
+            get {
+                return ResourceManager.GetString("Account_lbl_AccessContent_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Logged in as:.
         /// </summary>
         public static string Account_lbl_AccountName {
@@ -219,6 +237,51 @@ namespace ProtonVPN.Properties {
         public static string Account_lbl_AccountType {
             get {
                 return ResourceManager.GetString("Account_lbl_AccountType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All Plus plan features.
+        /// </summary>
+        public static string Account_lbl_AllPlusFeatures {
+            get {
+                return ResourceManager.GetString("Account_lbl_AllPlusFeatures", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Basic.
+        /// </summary>
+        public static string Account_lbl_Basic {
+            get {
+                return ResourceManager.GetString("Account_lbl_Basic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;Bold&gt;{0}&lt;/Bold&gt; VPN connection.
+        /// </summary>
+        public static string Account_lbl_Connection_One {
+            get {
+                return ResourceManager.GetString("Account_lbl_Connection_One", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;Bold&gt;{0}&lt;/Bold&gt; VPN connections.
+        /// </summary>
+        public static string Account_lbl_Connection_Other {
+            get {
+                return ResourceManager.GetString("Account_lbl_Connection_Other", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Servers in &lt;Bold&gt;{0}&lt;/Bold&gt; countries.
+        /// </summary>
+        public static string Account_lbl_Countries_Other {
+            get {
+                return ResourceManager.GetString("Account_lbl_Countries_Other", resourceCulture);
             }
         }
         
@@ -261,9 +324,144 @@ namespace ProtonVPN.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Free.
         /// </summary>
+        public static string Account_lbl_Free {
+            get {
+                return ResourceManager.GetString("Account_lbl_Free", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;Bold&gt;Highest&lt;/Bold&gt; speed (10Gbps).
+        /// </summary>
+        public static string Account_lbl_HighestSpeed {
+            get {
+                return ResourceManager.GetString("Account_lbl_HighestSpeed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;Bold&gt;High&lt;/Bold&gt; speed.
+        /// </summary>
+        public static string Account_lbl_HighSpeed {
+            get {
+                return ResourceManager.GetString("Account_lbl_HighSpeed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;Bold&gt;Medium&lt;/Bold&gt; speed.
+        /// </summary>
+        public static string Account_lbl_MediumSpeed {
+            get {
+                return ResourceManager.GetString("Account_lbl_MediumSpeed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Free.
+        /// </summary>
         public static string Account_lbl_MonthlyPriceZero {
             get {
                 return ResourceManager.GetString("Account_lbl_MonthlyPriceZero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No logs/No ads.
+        /// </summary>
+        public static string Account_lbl_NoLogs {
+            get {
+                return ResourceManager.GetString("Account_lbl_NoLogs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to P2P filesharing/BitTorrent support.
+        /// </summary>
+        public static string Account_lbl_P2P {
+            get {
+                return ResourceManager.GetString("Account_lbl_P2P", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Support for file sharing protocols such as BitTorrent..
+        /// </summary>
+        public static string Account_lbl_P2P_Info {
+            get {
+                return ResourceManager.GetString("Account_lbl_P2P_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Plus.
+        /// </summary>
+        public static string Account_lbl_Plus {
+            get {
+                return ResourceManager.GetString("Account_lbl_Plus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ProtonMail Visionary account.
+        /// </summary>
+        public static string Account_lbl_ProtonmailVisionaryAccount {
+            get {
+                return ResourceManager.GetString("Account_lbl_ProtonmailVisionaryAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Get access to all the paid features for both ProtonVPN and ProtonMail (the encrypted email service that millions use to protect their data) with one plan..
+        /// </summary>
+        public static string Account_lbl_ProtonmailVisionaryAccount_Info {
+            get {
+                return ResourceManager.GetString("Account_lbl_ProtonmailVisionaryAccount_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Secure Core VPN.
+        /// </summary>
+        public static string Account_lbl_SecureCoreVpn {
+            get {
+                return ResourceManager.GetString("Account_lbl_SecureCoreVpn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Defends against threats to VPN privacy by passing your Internet traffic through multiple servers..
+        /// </summary>
+        public static string Account_lbl_SecureCoreVpn_Info {
+            get {
+                return ResourceManager.GetString("Account_lbl_SecureCoreVpn_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TOR over VPN.
+        /// </summary>
+        public static string Account_lbl_TorOverVpn {
+            get {
+                return ResourceManager.GetString("Account_lbl_TorOverVpn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Route your Internet traffic through the Tor network with a single click..
+        /// </summary>
+        public static string Account_lbl_TorOverVpn_Info {
+            get {
+                return ResourceManager.GetString("Account_lbl_TorOverVpn_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Visionary.
+        /// </summary>
+        public static string Account_lbl_Visionary {
+            get {
+                return ResourceManager.GetString("Account_lbl_Visionary", resourceCulture);
             }
         }
         
