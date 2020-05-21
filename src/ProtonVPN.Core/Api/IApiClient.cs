@@ -35,7 +35,6 @@ namespace ProtonVPN.Core.Api
         Task<ApiResponseResult<ServerList>> GetServersAsync(string ip);
         Task<ApiResponseResult<UserLocation>> GetLocationDataAsync();
         Task<ApiResponseResult<BaseResponse>> ReportBugAsync(IEnumerable<KeyValuePair<string, string>> fields, IEnumerable<File> files);
-        Task<ApiResponseResult<PricingPlans>> GetPricing(string currency, sbyte cycle);
         Task<ApiResponseResult<SessionsResponse>> GetSessions();
         Task<ApiResponseResult<ProfilesResponse>> GetProfiles();
         Task<ApiResponseResult<ProfileResponse>> CreateProfile(BaseProfile profile);

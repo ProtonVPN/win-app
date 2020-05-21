@@ -54,6 +54,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <converters:StringFormatMultiValueConverter x:Key="StringFormatMultiValueConverter"/>
                     <converters:StringToUpperConverter x:Key="StringToUpperConverter"/>
                     <converters:ZeroToBoolConverter x:Key="ZeroToBoolConverter"/>
+                    <converters:PluralConverter x:Key="PluralConverter"/>
                 </ResourceDictionary>
                 <ResourceDictionary Source="/ProtonVPN.Resource;component/Styles/Colors.xaml"/>
                 <ResourceDictionary Source="/ProtonVPN.Resource;component/Styles/Controls.xaml"/>

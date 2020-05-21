@@ -120,8 +120,6 @@
     <Compile Include="Api\Contracts\Geographical\CoordinatesExtensions.cs" />
     <Compile Include="Api\Contracts\Geographical\UnitOfLength.cs" />
     <Compile Include="Api\Contracts\Location.cs" />
-    <Compile Include="Api\Contracts\PricingPlans.cs" />
-    <Compile Include="Api\Contracts\Pricing.cs" />
     <Compile Include="Api\Contracts\Profile.cs" />
     <Compile Include="Api\Contracts\ProfilesResponse.cs" />
     <Compile Include="Api\Contracts\RefreshTokenResponse.cs" />
