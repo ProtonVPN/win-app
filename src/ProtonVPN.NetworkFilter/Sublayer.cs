@@ -213,6 +213,33 @@ namespace ProtonVPN.NetworkFilter
                 layer,
                 action,
                 weight,
+                Guid.Empty,
+                Guid.Empty,
+                addr);
+
+            AddFilter(filterId);
+
+            return filterId;
+        }
+
+        public Guid CreateRemoteNetworkIPv4CalloutFilter(
+            DisplayData displayData,
+            Layer layer,
+            uint weight,
+            Callout callout,
+            ProviderContext providerContext,
+            NetworkAddress addr)
+        {
+            var filterId = IpFilterNative.CreateRemoteNetworkIPv4Filter(
+                Session.Handle,
+                ProviderId,
+                Id,
+                displayData,
+                layer,
+                Action.Callout,
+                weight,
+                callout.Id,
+                providerContext.Id,
                 addr);
 
             AddFilter(filterId);
