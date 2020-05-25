@@ -227,6 +227,13 @@ namespace ProtonVPN.Common.Configuration.Source
                         },
                         new TlsPinnedDomain
                         {
+                            Name = "download.protonvpn.net",
+                            PublicKeyHashes = new HashSet<string>(),
+                            Enforce = false,
+                            SendReport = false,
+                        },
+                        new TlsPinnedDomain
+                        {
                             Name = "*",
                             PublicKeyHashes = new HashSet<string>
                             {
