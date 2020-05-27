@@ -271,7 +271,13 @@ namespace ProtonVPN.Core
             set => Set(value);
         }
 
-        public IpContract[] SplitTunnelingIps
+        public IpContract[] SplitTunnelExcludeIps
+        {
+            get => Get<IpContract[]>() ?? new IpContract[0];
+            set => Set(value);
+        }
+
+        public IpContract[] SplitTunnelIncludeIps
         {
             get => Get<IpContract[]>() ?? new IpContract[0];
             set => Set(value);

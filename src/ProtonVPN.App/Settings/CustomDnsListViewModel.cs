@@ -31,6 +31,8 @@ namespace ProtonVPN.Settings
             _appSettings = appSettings;
         }
 
+        protected override bool SupportsIpRanges => false;
+
         protected override string GetSettingsPropertyName()
         {
             return nameof(IAppSettings.CustomDnsIps);

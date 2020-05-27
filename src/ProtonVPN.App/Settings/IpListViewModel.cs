@@ -23,10 +23,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Net;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
-using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.OS.Net;
 using ProtonVPN.Core.MVVM;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Settings.Contracts;
@@ -41,16 +40,13 @@ namespace ProtonVPN.Settings
         public event EventHandler<BringItemIntoViewEventArgs> BringItemIntoView;
 
         private RelayCommand _addCommand;
-        public ICommand AddCommand => _addCommand ?? (_addCommand =
-            new RelayCommand(AddAction));
+        public ICommand AddCommand => _addCommand ??= new RelayCommand(AddAction);
 
         private RelayCommand<SelectableItemWrapper<IpViewModel>> _removeCommand;
-        public ICommand RemoveCommand => _removeCommand ?? (_removeCommand =
-            new RelayCommand<SelectableItemWrapper<IpViewModel>>(RemoveAction));
+        public ICommand RemoveCommand => _removeCommand ??= new RelayCommand<SelectableItemWrapper<IpViewModel>>(RemoveAction);
 
         private ObservableCollection<SelectableItemWrapper<IpViewModel>> _items;
-        public ObservableCollection<SelectableItemWrapper<IpViewModel>> Items => _items ?? (_items = 
-            new ObservableCollection<SelectableItemWrapper<IpViewModel>>(WrappedItems(GetItemsInner())));
+        public ObservableCollection<SelectableItemWrapper<IpViewModel>> Items => _items ??= new ObservableCollection<SelectableItemWrapper<IpViewModel>>(WrappedItems(GetItemsInner()));
 
         private string _ip = "";
         public string Ip
@@ -69,7 +65,7 @@ namespace ProtonVPN.Settings
             Clear();
         }
 
-        public void OnAppSettingsChanged(PropertyChangedEventArgs e)
+        public virtual void OnAppSettingsChanged(PropertyChangedEventArgs e)
         {
             if (_saving) return;
 
@@ -86,6 +82,8 @@ namespace ProtonVPN.Settings
         }
 
         protected abstract IpContract[] GetItems();
+
+        protected abstract bool SupportsIpRanges { get; }
 
         protected abstract string GetSettingsPropertyName();
 
@@ -134,6 +132,7 @@ namespace ProtonVPN.Settings
         private void AddAction()
         {
             Validate();
+
             if (HasErrors)
                 return;
 
@@ -196,12 +195,14 @@ namespace ProtonVPN.Settings
                 return string.Empty;
 
             Ip = Ip.Trim();
+            var networkAddress = new NetworkAddress(Ip);
 
-            if (string.IsNullOrEmpty(Ip))
-                return string.Empty;
+            if (!SupportsIpRanges && networkAddress.IsCidr())
+            {
+                return StringResources.Get("Settings_Advanced_SplitTunnel_msg_IpInvalid");
+            }
 
-            if (IPAddress.TryParse(Ip, out var parsedIp)
-                && Ip.EqualsIgnoringCase(parsedIp.ToString()))
+            if (networkAddress.Valid())
             {
                 return string.Empty;
             }

@@ -49,16 +49,22 @@ namespace ProtonVPN.Service.Firewall
             if (_list.ContainsKey(address))
                 return;
 
+            var networkAddress = new Common.OS.Net.NetworkAddress(address);
+            if (!networkAddress.Valid())
+            {
+                return;
+            }
+
             _list[address] = new List<Guid>();
 
             _ipLayer.ApplyToIpv4(layer =>
             {
-                var guid = _sublayer.CreateRemoteIPv4Filter(
+                var guid = _sublayer.CreateRemoteNetworkIPv4Filter(
                     new DisplayData("ProtonVPN permit remote address", ""),
                     action,
                     layer,
                     14,
-                    address);
+                    new NetworkAddress(networkAddress.Ip, networkAddress.Mask));
 
                 _list[address].Add(guid);
             });

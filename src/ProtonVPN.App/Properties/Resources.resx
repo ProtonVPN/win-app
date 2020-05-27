@@ -759,7 +759,7 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <comment>The label of Split Tunnel mode in Split Tunneling section of Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_SplitTunnel_lbl_Include" xml:space="preserve">
-    <value>Only included apps will go through VPN tunnel</value>
+    <value>Only included apps/IPs will go through VPN tunnel</value>
     <comment>The label of Split Tunnel mode in Split Tunneling section of Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_SplitTunnel_lbl_Apps" xml:space="preserve">

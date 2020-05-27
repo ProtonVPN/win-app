@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Common;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Settings.Contracts;
 
@@ -31,19 +32,34 @@ namespace ProtonVPN.Settings.SplitTunneling
             _appSettings = appSettings;
         }
 
+        protected override bool SupportsIpRanges => true;
+
         protected override string GetSettingsPropertyName()
         {
-            return nameof(IAppSettings.SplitTunnelingIps);
+          return nameof(IAppSettings.SplitTunnelMode);
         }
 
         protected override void SaveData(IpContract[] ips)
         {
-            _appSettings.SplitTunnelingIps = ips;
+            if (_appSettings.SplitTunnelMode == SplitTunnelMode.Block)
+            {
+                _appSettings.SplitTunnelExcludeIps = ips;
+            }
+
+            if (_appSettings.SplitTunnelMode == SplitTunnelMode.Permit)
+            {
+                _appSettings.SplitTunnelIncludeIps = ips;
+            }
         }
 
         protected override IpContract[] GetItems()
         {
-            return _appSettings.SplitTunnelingIps;
+            if (_appSettings.SplitTunnelMode == SplitTunnelMode.Block)
+            {
+                return _appSettings.SplitTunnelExcludeIps;
+            }
+
+            return _appSettings.SplitTunnelIncludeIps;
         }
     }
 }

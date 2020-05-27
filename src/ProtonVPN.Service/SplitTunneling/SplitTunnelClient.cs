@@ -17,7 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -44,44 +43,32 @@ namespace ProtonVPN.Service.SplitTunneling
 
         public void EnableExcludeMode(string[] appPaths, string[] ips)
         {
-            string[] apps = new string[0];
-            if (appPaths != null)
-            {
-                apps = appPaths.Where(File.Exists).ToArray();
-            }
-
-            string[] excludedIPs = new string[0];
-            if (ips != null)
-            {
-                excludedIPs = ips;
-            }
-
-            if (apps.Length == 0 && excludedIPs.Length == 0)
+            var apps = GetAppPaths(appPaths);
+            if ((apps == null || apps.Length == 0) && (ips == null || ips.Length == 0))
             {
                 return;
             }
 
             EnsureSucceeded(
-                () => _filters.EnableExcludeMode(apps, excludedIPs, _bestInterface.LocalIpAddress()),
+                () => _filters.EnableExcludeMode(apps, ips, _bestInterface.LocalIpAddress()),
                 "SplitTunnel: Enabling exclude mode");
         }
 
-        public void EnableIncludeMode(string[] appPaths, string vpnLocalIp)
+        public void EnableIncludeMode(string[] appPaths, string[] ips, string vpnLocalIp)
         {
-            if (appPaths != null && appPaths.Length > 0)
+            var apps = GetAppPaths(appPaths);
+            if ((apps == null || apps.Length == 0) && (ips == null || ips.Length == 0))
             {
-                var apps = appPaths.Where(File.Exists).ToArray();
-                if (apps.Length == 0)
-                {
-                    return;
-                }
-                EnsureSucceeded(
-                    () => _filters.EnableIncludeMode(
-                        apps,
-                        _bestInterface.LocalIpAddress(),
-                        IPAddress.Parse(vpnLocalIp)),
-                    "SplitTunnel: Enabling include mode");
+                return;
             }
+
+            EnsureSucceeded(
+                () => _filters.EnableIncludeMode(
+                    apps,
+                    ips,
+                    _bestInterface.LocalIpAddress(),
+                    IPAddress.Parse(vpnLocalIp)),
+                "SplitTunnel: Enabling include mode");
         }
 
         public void Disable()
@@ -89,6 +76,11 @@ namespace ProtonVPN.Service.SplitTunneling
             EnsureSucceeded(
                 () => _filters.Disable(),
                 "SplitTunnel: Disabling");
+        }
+
+        private string[] GetAppPaths(string[] paths)
+        {
+            return paths.Where(File.Exists).ToArray();
         }
 
         private void EnsureSucceeded(System.Action action, string actionMessage)

@@ -585,12 +585,12 @@ namespace ProtonVPN.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string SplitTunnelingIps {
+        public string SplitTunnelExcludeIps {
             get {
-                return ((string)(this["SplitTunnelingIps"]));
+                return ((string)(this["SplitTunnelExcludeIps"]));
             }
             set {
-                this["SplitTunnelingIps"] = value;
+                this["SplitTunnelExcludeIps"] = value;
             }
         }
         
@@ -1070,6 +1070,30 @@ namespace ProtonVPN.Properties {
             }
             set {
                 this["DoHEnabled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string SplitTunnelIncludeIps {
+            get {
+                return ((string)(this["SplitTunnelIncludeIps"]));
+            }
+            set {
+                this["SplitTunnelIncludeIps"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string SplitTunnelingIps {
+            get {
+                return ((string)(this["SplitTunnelingIps"]));
+            }
+            set {
+                this["SplitTunnelingIps"] = value;
             }
         }
     }

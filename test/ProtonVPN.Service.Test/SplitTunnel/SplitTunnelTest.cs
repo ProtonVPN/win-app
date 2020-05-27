@@ -209,7 +209,7 @@ namespace ProtonVPN.Service.Test.SplitTunnel
             // Assert
             _splitTunnelClient
                 .Received(1)
-                .EnableIncludeMode(Arg.Any<string[]>(), Arg.Any<string>());
+                .EnableIncludeMode(Arg.Any<string[]>(), Arg.Any<string[]>(), Arg.Any<string>());
         }
 
         [TestMethod]

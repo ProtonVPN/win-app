@@ -69,7 +69,7 @@ namespace ProtonVPN.Service.SplitTunneling
             }
         }
 
-        public void EnableIncludeMode(IEnumerable<string> apps, IPAddress internetLocalIp, IPAddress vpnLocalIp)
+        public void EnableIncludeMode(IEnumerable<string> apps, IEnumerable<string> ips, IPAddress internetLocalIp, IPAddress vpnLocalIp)
         {
             Create();
 
@@ -114,6 +114,7 @@ namespace ProtonVPN.Service.SplitTunneling
                     new ConnectRedirectData(vpnLocalIp));
 
                 CreateAppFilters(apps, callout, providerContext);
+                CreateIPFilters(ips, callout, providerContext);
 
                 _ipFilter.Session.CommitTransaction();
             }
@@ -202,7 +203,13 @@ namespace ProtonVPN.Service.SplitTunneling
 
         private void CreateIPFilter(string ip, Callout callout, ProviderContext providerContext)
         {
-            _subLayer.CreateRemoteIPv4CalloutFilter(
+            var networkAddress = new Common.OS.Net.NetworkAddress(ip);
+            if (!networkAddress.Valid())
+            {
+                return;
+            }
+
+            _subLayer.CreateRemoteNetworkIPv4CalloutFilter(
                 new DisplayData
                 {
                     Name = "ProtonVPN Split Tunnel redirect IP",
@@ -212,7 +219,7 @@ namespace ProtonVPN.Service.SplitTunneling
                 15,
                 callout,
                 providerContext,
-                ip
+                new NetworkFilter.NetworkAddress(networkAddress.Ip, networkAddress.Mask)
             );
         }
     }

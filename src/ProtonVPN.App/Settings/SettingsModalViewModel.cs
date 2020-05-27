@@ -41,7 +41,7 @@ using ProtonVPN.Settings.SplitTunneling;
 
 namespace ProtonVPN.Settings
 {
-    public class SettingsModalViewModel : BaseModalViewModel, IVpnStateAware, ISettingsAware, IUserDataAware
+    public class SettingsModalViewModel : BaseModalViewModel, IVpnStateAware, IUserDataAware
     {
         private readonly IAppSettings _appSettings;
         private readonly VpnManager _vpnManager;
@@ -68,7 +68,8 @@ namespace ProtonVPN.Settings
             nameof(IAppSettings.SplitTunnelMode),
             nameof(IAppSettings.SplitTunnelingAllowApps),
             nameof(IAppSettings.SplitTunnelingBlockApps),
-            nameof(IAppSettings.SplitTunnelingIps),
+            nameof(IAppSettings.SplitTunnelIncludeIps),
+            nameof(IAppSettings.SplitTunnelExcludeIps),
             nameof(IAppSettings.KillSwitch),
             nameof(IAppSettings.OvpnProtocol),
             nameof(IAppSettings.CustomDnsEnabled),

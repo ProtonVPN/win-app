@@ -5255,7 +5255,7 @@ namespace ProtonVPN.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Only included apps will go through VPN tunnel.
+        ///   Looks up a localized string similar to Only included apps/IPs will go through VPN tunnel.
         /// </summary>
         public static string Settings_Advanced_SplitTunnel_lbl_Include {
             get {

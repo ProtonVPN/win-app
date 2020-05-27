@@ -25,7 +25,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:common="clr-namespace:ProtonVPN.Common;assembly=ProtonVPN.Common"
              xmlns:splitTunneling="clr-namespace:ProtonVPN.Settings.SplitTunneling"
              xmlns:resources="clr-namespace:ProtonVPN.Resources"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="500"
              HorizontalAlignment="Stretch"
              VerticalAlignment="Stretch"
@@ -70,10 +70,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto" SharedSizeGroup="Column2"/>
             </Grid.ColumnDefinitions>
-            <Border Grid.Column="0" Padding="0,0,0,5" Margin="0,0,15,0" BorderBrush="#464652" Style="{StaticResource IpInfoBorder}">
+            <Border Grid.Column="0" Padding="0,0,0,5" Margin="0,0,15,0" BorderBrush="#464652" BorderThickness="0,0,1,0">
                 <Label Content="{resources:Loc Settings_Advanced_SplitTunnel_lbl_Apps}" Padding="0" Foreground="White"/>
             </Border>
-            <Border Grid.Column="1" Padding="5,0,0,5" BorderThickness="0" Style="{StaticResource IpInfo}">
+            <Border Grid.Column="1" Padding="5,0,0,5" BorderThickness="0">
                 <Label Content="{resources:Loc Settings_Advanced_SplitTunnel_lbl_Ip}" Padding="0" Foreground="White"/>
             </Border>
         </Grid>
@@ -85,12 +85,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto" SharedSizeGroup="Column2"/>
                 </Grid.ColumnDefinitions>
-                <Border Grid.Column="0" Padding="0,0,12,0" BorderBrush="#464652" Style="{StaticResource IpInfoBorder}">
+                <Border Grid.Column="0" Padding="0,0,12,0" BorderBrush="#464652" BorderThickness="0,0,1,0">
                     <ItemsControl x:Name="AppsItemsControl" ItemTemplate="{StaticResource SelectableDeletableWrappedApp}"
                                   DataContext="{Binding Apps}" 
                                   ItemsSource="{Binding Items}"/>
                 </Border>
-                <Border Grid.Column="1" Padding="20,0,20,0" Style="{StaticResource IpInfo}">
+                <Border Grid.Column="1" Padding="20,0,20,0">
                     <ItemsControl x:Name="IpsItemsControl" ItemTemplate="{StaticResource SelectableDeletableWrappedItem}"
                                   DataContext="{Binding Ips}"
                                   ItemsSource="{Binding Items}"/>
@@ -103,13 +103,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto" SharedSizeGroup="Column2"/>
             </Grid.ColumnDefinitions>
-            <Border Grid.Column="0" Padding="0,0,0,5" Margin="0,0,15,-23" BorderBrush="#464652" Style="{StaticResource IpInfoBorder}">
+            <Border Grid.Column="0" Padding="0,0,0,5" Margin="0,0,15,-23" BorderBrush="#464652" BorderThickness="0,0,1,0">
                 <Button Style="{StaticResource SettingsAddButton}"
                         HorizontalAlignment="Left"
                         Content="{resources:Loc Settings_Advanced_SplitTunnel_btn_AddApp}"
                         Command="{Binding Apps.AddCommand}"/>
             </Border>
-            <Border Grid.Column="1" Padding="18,15,0,0" BorderThickness="0" Style="{StaticResource IpInfo}">
+            <Border Grid.Column="1" Padding="18,15,0,0" BorderThickness="0">
                 <DockPanel>
                     <Button Style="{StaticResource SettingsAddButton}" DockPanel.Dock="Right" VerticalAlignment="Center"
                             Command="{Binding Ips.AddCommand}"/>

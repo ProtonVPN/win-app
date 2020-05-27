@@ -143,7 +143,7 @@
     <Setting Name="SplitTunnelingBlockApps" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="SplitTunnelingIps" Type="System.String" Scope="User">
+    <Setting Name="SplitTunnelExcludeIps" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="SettingsSelectedTabIndex" Type="System.Int32" Scope="User">
@@ -265,6 +265,12 @@
     </Setting>
     <Setting Name="DoHEnabled" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="SplitTunnelIncludeIps" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="SplitTunnelingIps" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
     </Setting>
   </Settings>
 </SettingsFile>
