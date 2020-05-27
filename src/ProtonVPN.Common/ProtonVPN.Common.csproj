@@ -101,6 +101,7 @@
     <Compile Include="Configuration\UrlConfig.cs" />
     <Compile Include="CrashReporting\CrashReports.cs" />
     <Compile Include="Logging\LoggerExtensions.cs" />
+    <Compile Include="OS\Net\NetworkAddress.cs" />
     <Compile Include="OS\Services\ConcurrentService.cs" />
     <Compile Include="OS\Services\IConcurrentService.cs" />
     <Compile Include="OS\Services\IService.cs" />

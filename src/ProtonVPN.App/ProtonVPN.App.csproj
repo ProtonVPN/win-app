@@ -189,6 +189,7 @@
     <Compile Include="About\ReleaseEqualityComparer.cs" />
     <Compile Include="Core\MVVM\Converters\PluralConverter.cs" />
     <Compile Include="Core\MVVM\Converters\ZeroToBoolConverter.cs" />
+    <Compile Include="Core\Settings\Migrations\v1_17_0\AppSettingsMigration.cs" />
     <Compile Include="FlashNotifications\FlashNotifications.xaml.cs">
       <DependentUpon>FlashNotifications.xaml</DependentUpon>
     </Compile>

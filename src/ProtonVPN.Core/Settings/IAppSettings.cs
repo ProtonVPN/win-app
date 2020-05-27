@@ -61,7 +61,8 @@ namespace ProtonVPN.Core.Settings
         int SidebarTab { get; set; }
         SplitTunnelingApp[] SplitTunnelingBlockApps { get; set; }
         SplitTunnelingApp[] SplitTunnelingAllowApps { get; set; }
-        IpContract[] SplitTunnelingIps { get; set; }
+        IpContract[] SplitTunnelExcludeIps { get; set; }
+        IpContract[] SplitTunnelIncludeIps { get; set; }
         IpContract[] CustomDnsIps { get; set; }
         int SettingsSelectedTabIndex { get; set; }
         bool SplitTunnelingEnabled { get; set; }

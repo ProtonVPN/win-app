@@ -23,7 +23,7 @@ namespace ProtonVPN.Service.SplitTunneling
     {
         void EnableExcludeMode(string[] appPaths, string[] ips);
 
-        void EnableIncludeMode(string[] appPaths, string vpnLocalIp);
+        void EnableIncludeMode(string[] appPaths, string[] ips, string vpnLocalIp);
 
         void Disable();
     }

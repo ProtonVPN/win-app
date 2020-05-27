@@ -45,10 +45,23 @@ namespace ProtonVPN.Core.Service.Settings
                 {
                     Mode = _appSettings.SplitTunnelingEnabled ? _appSettings.SplitTunnelMode : SplitTunnelMode.Disabled,
                     AppPaths = _appSettings.GetSplitTunnelApps(),
-                    Ips = _appSettings.SplitTunnelingIps.Where(i => i.Enabled).Select(i => i.Ip).ToArray()
+                    Ips = GetSplitTunnelIps()
                 },
                 Ipv6LeakProtection = _appSettings.Ipv6LeakProtection,
             };
+        }
+
+        private string[] GetSplitTunnelIps()
+        {
+            switch (_appSettings.SplitTunnelMode)
+            {
+                case SplitTunnelMode.Permit:
+                    return _appSettings.SplitTunnelIncludeIps.Where(i => i.Enabled).Select(i => i.Ip).ToArray();
+                case SplitTunnelMode.Block:
+                    return _appSettings.SplitTunnelExcludeIps.Where(i => i.Enabled).Select(i => i.Ip).ToArray();
+                default:
+                    return new string[] {};
+            }
         }
     }
 }

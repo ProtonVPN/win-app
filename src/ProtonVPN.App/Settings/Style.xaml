@@ -338,22 +338,4 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </Setter.Value>
         </Setter>
     </Style>
-
-    <Style x:Key="IpInfo" TargetType="FrameworkElement">
-        <Setter Property="Visibility" Value="Hidden"/>
-        <Style.Triggers>
-            <DataTrigger Binding="{Binding SplitTunnelMode}" Value="{x:Static common:SplitTunnelMode.Block}">
-                <Setter Property="Visibility" Value="Visible"/>
-            </DataTrigger>
-        </Style.Triggers>
-    </Style>
-
-    <Style x:Key="IpInfoBorder" TargetType="Border">
-        <Setter Property="BorderThickness" Value="0"/>
-        <Style.Triggers>
-            <DataTrigger Binding="{Binding SplitTunnelMode}" Value="{x:Static common:SplitTunnelMode.Block}">
-                <Setter Property="BorderThickness" Value="0,0,1,0"/>
-            </DataTrigger>
-        </Style.Triggers>
-    </Style>
 </ResourceDictionary>

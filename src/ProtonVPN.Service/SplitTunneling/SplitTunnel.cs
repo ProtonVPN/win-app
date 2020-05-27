@@ -153,7 +153,11 @@ namespace ProtonVPN.Service.SplitTunneling
 
         private void EnableReversed(VpnState state)
         {
-            _splitTunnelClient.EnableIncludeMode(_reverseSplitTunnelApps.Value(), state.LocalIp);
+            _splitTunnelClient.EnableIncludeMode(
+                _reverseSplitTunnelApps.Value(),
+                _serviceSettings.SplitTunnelSettings.Ips,
+                state.LocalIp);
+
             _reverseEnabled = true;
         }
 
