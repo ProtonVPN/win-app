@@ -89,6 +89,7 @@
     <Compile Include="Helpers\ConcatenatedSequenceTest.cs" />
     <Compile Include="Helpers\RandomStringsTest.cs" />
     <Compile Include="Logging\LogCleanerTest.cs" />
+    <Compile Include="OS\Net\NetworkAddressTest.cs" />
     <Compile Include="OS\Net\NetworkInterface\NullNetworkInterfaceTest.cs" />
     <Compile Include="OS\Net\NetworkInterface\SafeSystemNetworkInterfacesTest.cs" />
     <Compile Include="OS\Registry\SafeStartupRecordTest.cs" />
