@@ -41,7 +41,6 @@ namespace ProtonVPN.Config
         public int[] UdpPorts { get; private set; }
         public IReadOnlyList<string> BlackHoleIps { get; private set; }
         public bool NetShieldEnabled { get; private set; }
-        public bool GuestHolesEnabled { get; private set; }
 
         public async Task Update()
         {
@@ -53,7 +52,6 @@ namespace ProtonVPN.Config
                     TcpPorts = response.Value.OpenVpnConfig.DefaultPorts.Tcp;
                     UdpPorts = response.Value.OpenVpnConfig.DefaultPorts.Udp;
                     NetShieldEnabled = response.Value.FeatureFlags.NetShield;
-                    GuestHolesEnabled = response.Value.FeatureFlags.GuestHoles;
 
                     if (response.Value.HolesIps != null)
                     {
