@@ -17,21 +17,20 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using GalaSoft.MvvmLight.Command;
-using ProtonVPN.Account;
-using ProtonVPN.BugReporting.Attachments;
-using ProtonVPN.Common.OS.Processes;
-using ProtonVPN.Core;
-using ProtonVPN.Core.Auth;
-using ProtonVPN.Core.MVVM;
-using ProtonVPN.Core.Settings;
-using ProtonVPN.Core.User;
-using ProtonVPN.Servers;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using GalaSoft.MvvmLight.Command;
+using ProtonVPN.Account;
+using ProtonVPN.BugReporting.Attachments;
+using ProtonVPN.Common.OS.Processes;
+using ProtonVPN.Core.Auth;
+using ProtonVPN.Core.MVVM;
+using ProtonVPN.Core.Settings;
+using ProtonVPN.Core.User;
+using ProtonVPN.Servers;
 
 namespace ProtonVPN.BugReporting
 {
@@ -170,9 +169,13 @@ namespace ProtonVPN.BugReporting
             LoadUserData();
         }
 
-        public Task OnUserLocationChanged(UserLocation location)
+        public Task OnUserLocationChanged(UserLocationEventArgs e)
         {
-            LoadUserLocation();
+            if (e.State == UserLocationState.Success)
+            {
+                LoadUserLocation();
+            }
+
             return Task.CompletedTask;
         }
 

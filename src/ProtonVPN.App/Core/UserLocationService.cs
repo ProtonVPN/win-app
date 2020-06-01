@@ -60,7 +60,7 @@ namespace ProtonVPN.Core
             networkInterfaces.NetworkAddressChanged += NetworkInterfaces_NetworkAddressChanged;
         }
 
-        public event EventHandler<UserLocation> UserLocationChanged;
+        public event EventHandler<UserLocationEventArgs> UserLocationChanged;
 
         public Task Update()
         {
@@ -98,8 +98,20 @@ namespace ProtonVPN.Core
 
         private async Task UpdateAction()
         {
+            if (_connected)
+            {
+                return;
+            }
+
             var response = await LocationAsync();
-            if (response.Success && !_connected)
+
+            // Extra check in case location request took longer
+            if (_connected)
+            {
+                return;
+            }
+
+            if (response.Success)
             {
                 _networkAddressChanged = false;
 
@@ -111,7 +123,12 @@ namespace ProtonVPN.Core
                 var location = Map(response.Value);
                 _userStorage.SaveLocation(location);
 
-                UserLocationChanged?.Invoke(this, location);
+                UserLocationChanged?.Invoke(this, new UserLocationEventArgs(UserLocationState.Success, location));
+            }
+            else
+            {
+                UserLocationChanged?.Invoke(this,
+                    new UserLocationEventArgs(UserLocationState.Failed, UserLocation.Empty));
             }
         }
 

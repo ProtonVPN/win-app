@@ -28,7 +28,6 @@ using ProtonVPN.Common.Threading;
 using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.User;
-using UserLocation = ProtonVPN.Core.User.UserLocation;
 
 namespace ProtonVPN.Core.Servers
 {
@@ -79,9 +78,12 @@ namespace ProtonVPN.Core.Servers
             await _updateAction.Run();
         }
 
-        public Task OnUserLocationChanged(UserLocation location)
+        public Task OnUserLocationChanged(UserLocationEventArgs e)
         {
-            _ = Update();
+            if (e.State == UserLocationState.Success)
+            {
+                _ = Update();
+            }
 
             return Task.CompletedTask;
         }

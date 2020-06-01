@@ -294,6 +294,8 @@
     <Compile Include="User\IUserLocationService.cs" />
     <Compile Include="User\IVpnPlanAware.cs" />
     <Compile Include="User\PlanStatus.cs" />
+    <Compile Include="User\UserLocationEventArgs.cs" />
+    <Compile Include="User\UserLocationState.cs" />
     <Compile Include="Vpn\IVpnStateAware.cs" />
     <Compile Include="Vpn\VpnState.cs" />
     <Compile Include="Vpn\VpnStateChangedEventArgs.cs" />

@@ -5615,20 +5615,20 @@ namespace ProtonVPN.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Blocked.
+        ///   Looks up a localized string similar to Unknown.
         /// </summary>
-        public static string Sidebar_Connection_lbl_IP_Blocked {
+        public static string Sidebar_Connection_lbl_IP_Unknown {
             get {
-                return ResourceManager.GetString("Sidebar_Connection_lbl_IP_Blocked", resourceCulture);
+                return ResourceManager.GetString("Sidebar_Connection_lbl_IP_Unknown", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An Internet block is making it impossible to fetch your IP address..
+        ///   Looks up a localized string similar to Unable to fetch your IP address due to network issues or restrictions from your ISP..
         /// </summary>
-        public static string Sidebar_Connection_lbl_IP_Blocked_Info {
+        public static string Sidebar_Connection_lbl_IP_Unknown_Info {
             get {
-                return ResourceManager.GetString("Sidebar_Connection_lbl_IP_Blocked_Info", resourceCulture);
+                return ResourceManager.GetString("Sidebar_Connection_lbl_IP_Unknown_Info", resourceCulture);
             }
         }
         

@@ -192,10 +192,14 @@ namespace ProtonVPN.Sidebar
             return Task.CompletedTask;
         }
 
-        public Task OnUserLocationChanged(UserLocation location)
+        public Task OnUserLocationChanged(UserLocationEventArgs e)
         {
-            if (_vpnManager.Status.Equals(VpnStatus.Disconnected))
-                SetIp(location.Ip);
+            if (_vpnManager.Status != VpnStatus.Disconnected)
+            {
+                return Task.CompletedTask;
+            }
+
+            SetIp(e.Location.Ip);
 
             return Task.CompletedTask;
         }

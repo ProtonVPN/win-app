@@ -2825,12 +2825,12 @@ Exiting the application will disable the Kill Switch. Do you want to continue?</
     <value>Connection to ProtonVPN in progress...</value>
     <comment>The text displayed in login window when login takes longer than expected</comment>
   </data>
-  <data name="Sidebar_Connection_lbl_IP_Blocked" xml:space="preserve">
-    <value>Blocked</value>
+  <data name="Sidebar_Connection_lbl_IP_Unknown" xml:space="preserve">
+    <value>Unknown</value>
     <comment>The text displayed on Connection section of Sidebar section of main app window</comment>
   </data>
-  <data name="Sidebar_Connection_lbl_IP_Blocked_Info" xml:space="preserve">
-    <value>An Internet block is making it impossible to fetch your IP address.</value>
+  <data name="Sidebar_Connection_lbl_IP_Unknown_Info" xml:space="preserve">
+    <value>Unable to fetch your IP address due to network issues or restrictions from your ISP.</value>
     <comment>The text displayed in a tooltip of Connection section of Sidebar section of main app window</comment>
   </data>
   <data name="About_lbl_LicensingInformation" xml:space="preserve">

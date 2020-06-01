@@ -29,6 +29,6 @@ namespace ProtonVPN.Core.User
 
         Task Update();
 
-        event EventHandler<UserLocation> UserLocationChanged;
+        event EventHandler<UserLocationEventArgs> UserLocationChanged;
     }
 }

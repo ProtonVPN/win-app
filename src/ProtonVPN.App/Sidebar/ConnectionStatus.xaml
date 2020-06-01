@@ -115,13 +115,25 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 <Setter Property="Text" Value="{Binding Ip, Mode=OneWay}"/>
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding Ip, Converter={StaticResource EmptyStringToBoolConverter}}" Value="True">
-                                        <Setter Property="Text" Value="{resources:Loc Sidebar_Connection_lbl_IP_Blocked}"/>
-                                        <Setter Property="ToolTip" Value="{resources:Loc Sidebar_Connection_lbl_IP_Blocked_Info}"/>
+                                        <Setter Property="Text" Value="{resources:Loc Sidebar_Connection_lbl_IP_Unknown}"/>
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
                         </Run.Style>
                     </Run>
+                    <fa:FontAwesome Icon="InfoCircle" Foreground="{StaticResource PrimaryColor}">
+                        <fa:FontAwesome.Style>
+                            <Style TargetType="fa:FontAwesome">
+                                <Setter Property="ToolTip" Value="{resources:Loc Sidebar_Connection_lbl_IP_Unknown_Info}"/>
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Ip, Converter={StaticResource EmptyStringToBoolConverter}}" Value="True">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </fa:FontAwesome.Style>
+                    </fa:FontAwesome>
                 </TextBlock>
             </StackPanel>
             <StackPanel Visibility="{Binding KillSwitchActivated, Converter={StaticResource BoolToVis}}">
