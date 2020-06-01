@@ -28,7 +28,6 @@ namespace ProtonVPN.Config
         public int[] UdpPorts { get; }
         public IReadOnlyList<string> BlackHoleIps { get; }
         public bool NetShieldEnabled { get; }
-        public bool GuestHolesEnabled { get; }
         Task Update();
     }
 }
