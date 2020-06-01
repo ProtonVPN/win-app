@@ -18,12 +18,11 @@
  */
 
 using System.Threading.Tasks;
-using ProtonVPN.Core.Settings;
 
 namespace ProtonVPN.Core.User
 {
     public interface IUserLocationAware
     {
-        Task OnUserLocationChanged(UserLocation location);
+        Task OnUserLocationChanged(UserLocationEventArgs location);
     }
 }
