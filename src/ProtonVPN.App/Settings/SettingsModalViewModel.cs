@@ -26,7 +26,7 @@ using GalaSoft.MvvmLight.CommandWpf;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Config;
 using ProtonVPN.Config.Url;
-using ProtonVPN.Core.Language;
+using ProtonVPN.Core;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Profiles;
@@ -49,7 +49,7 @@ namespace ProtonVPN.Settings
         private readonly IDialogs _dialogs;
         private readonly IUserStorage _userStorage;
         private readonly IActiveUrls _urls;
-        private readonly Language _language;
+        private readonly LanguageProvider _languageProvider;
         private readonly IVpnConfig _vpnConfig;
 
         private IReadOnlyList<ProfileViewModel> _autoConnectProfiles;
@@ -87,7 +87,7 @@ namespace ProtonVPN.Settings
             IUserStorage userStorage,
             IDialogs dialogs,
             IActiveUrls urls,
-            Language language,
+            LanguageProvider languageProvider,
             IVpnConfig vpnConfig)
         {
             _dialogs = dialogs;
@@ -96,7 +96,7 @@ namespace ProtonVPN.Settings
             _profileViewModelFactory = profileViewModelFactory;
             _userStorage = userStorage;
             _urls = urls;
-            _language = language;
+            _languageProvider = languageProvider;
             _vpnConfig = vpnConfig;
 
             SplitTunnelingViewModel = splitTunnelingViewModel;
@@ -313,7 +313,7 @@ namespace ProtonVPN.Settings
             get
             {
                 var langs = new List<KeyValuePair<string, string>>();
-                foreach (var lang in _language.GetAll())
+                foreach (var lang in _languageProvider.GetAll())
                 {
                     langs.Add(new KeyValuePair<string, string>(lang, StringResources.Get($"Language_{lang}")));
                 }

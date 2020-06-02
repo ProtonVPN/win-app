@@ -23,12 +23,13 @@
     <ROW Property="CommitHash" Value="REPLACE_ME"/>
     <ROW Property="Manufacturer" Value="Proton Technologies AG"/>
     <ROW Property="MsiLogging" MultiBuildValue="DefaultBuild:vp"/>
-    <ROW Property="ProductCode" Value="1033:{CC56589D-2FE8-4B38-9024-0ABCD9F3CB0E} " Type="16"/>
+    <ROW Property="ProductCode" Value="1031:{DD453090-4CC0-46AB-BE44-0992B19BF2CD} 1033:{DD453090-4CC0-46AB-BE44-0992B19BF2CD} 1036:{DD453090-4CC0-46AB-BE44-0992B19BF2CD} 1040:{DD453090-4CC0-46AB-BE44-0992B19BF2CD} 1043:{DD453090-4CC0-46AB-BE44-0992B19BF2CD} 1045:{DD453090-4CC0-46AB-BE44-0992B19BF2CD} 1046:{DD453090-4CC0-46AB-BE44-0992B19BF2CD} 1049:{DD453090-4CC0-46AB-BE44-0992B19BF2CD} 1065:{DD453090-4CC0-46AB-BE44-0992B19BF2CD} 2070:{DD453090-4CC0-46AB-BE44-0992B19BF2CD} 3082:{DD453090-4CC0-46AB-BE44-0992B19BF2CD} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="ProtonVPN"/>
     <ROW Property="ProductVersion" Value="1.16.1" Type="32"/>
     <ROW Property="REBOOT" MultiBuildValue="DefaultBuild:ReallySuppress"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;AI_SETUPEXEPATH;SETUPEXEDIR"/>
+    <ROW Property="SelectedLanguage" Value="This will be set by custom action"/>
     <ROW Property="ServiceName" Value="ProtonVPN Service" Comments="Used by Services and custom action ModifyServicePermissions"/>
     <ROW Property="SplitTunnelDriverFile" Value="This will be set by custom action" Comments="Full path to driver file. Used by custom action InstallSplitTunnelDriver."/>
     <ROW Property="SplitTunnelServiceDisplayName" Value="ProtonVPN Split Tunnel" Comments="Display name of the Split Tunnel driver service. Used by custom action InstallSplitTunnelDriver."/>
@@ -241,7 +242,7 @@
     <ROW Action="AI_DetectSoftware" Sequence="101"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BuildComponent">
-    <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="1" PackageFolder="ProtonVPN-SetupFiles" PackageFileName="ProtonVPN_win_v[|ProductVersion]" Languages="en" InstallationType="2" CabsLocation="1" UseLzma="true" LzmaMethod="2" LzmaCompressionLevel="2" PackageType="1" FilesInsideExe="true" ExeIconPath="images\protonvpn.ico" ExtUI="true" UseLargeSchema="true" ExeName="ProtonVPN_win_v[|ProductVersion]-[|CommitHash]" UACExecutionLevel="2"/>
+    <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="1" PackageFolder="ProtonVPN-SetupFiles" PackageFileName="ProtonVPN_win_v[|ProductVersion]" Languages="en;de;fr;fa;nl;it;pl;pt;ru;es;pt_BR" LangOpt="1" InstallationType="2" CabsLocation="1" UseLzma="true" LzmaMethod="2" LzmaCompressionLevel="2" PackageType="1" FilesInsideExe="true" ExeIconPath="images\protonvpn.ico" ExtUI="true" LangsDialog="true" UseLargeSchema="true" Unicode="true" ExeName="ProtonVPN_win_v[|ProductVersion]-[|CommitHash]" UACExecutionLevel="2"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.CacheComponent">
     <ATTRIBUTE name="Enable" value="false"/>
@@ -249,6 +250,16 @@
   <COMPONENT cid="caphyon.advinst.msicomp.DictionaryComponent">
     <ROW Path="&lt;AI_DICTS&gt;ui.ail"/>
     <ROW Path="&lt;AI_DICTS&gt;ui_en.ail"/>
+    <ROW Path="&lt;AI_DICTS&gt;ui_de.ail"/>
+    <ROW Path="&lt;AI_DICTS&gt;ui_fr.ail"/>
+    <ROW Path="&lt;AI_DICTS&gt;ui_fa.ail"/>
+    <ROW Path="&lt;AI_DICTS&gt;ui_nl.ail"/>
+    <ROW Path="&lt;AI_DICTS&gt;ui_it.ail"/>
+    <ROW Path="&lt;AI_DICTS&gt;ui_pl.ail"/>
+    <ROW Path="&lt;AI_DICTS&gt;ui_pt.ail"/>
+    <ROW Path="&lt;AI_DICTS&gt;ui_ru.ail"/>
+    <ROW Path="&lt;AI_DICTS&gt;ui_es.ail"/>
+    <ROW Path="&lt;AI_DICTS&gt;ui_pt_BR.ail"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.DigCertStoreComponent">
     <ROW TimeStampUrl="http://timestamp.digicert.com" SignerDescription="[|ProductName]" SignOptions="7" SignTool="0" UseSha256="1" Thumbprint="4e16963d13bcbd9a0f3be4b4dae5c83b0deb26c1 Subject: ProtonVPN AG&#10;Issuer: GlobalSign CodeSigning CA - SHA256 - G3&#10;Valid from 11/22/2017 to 11/22/2020&#10;User\MY"/>
@@ -256,6 +267,7 @@
   <COMPONENT cid="caphyon.advinst.msicomp.FragmentComponent">
     <ROW Fragment="CommonUI.aip" Path="&lt;AI_FRAGS&gt;CommonUI.aip"/>
     <ROW Fragment="FolderDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\FolderDlg.aip"/>
+    <ROW Fragment="LanguageDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\LanguageDlg.aip"/>
     <ROW Fragment="MaintenanceTypeDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\MaintenanceTypeDlg.aip"/>
     <ROW Fragment="MaintenanceWelcomeDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\MaintenanceWelcomeDlg.aip"/>
     <ROW Fragment="PreparePrereqDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\PreparePrereqDlg.aip"/>
@@ -410,6 +422,7 @@
     <ROW Dialog_="ExitDialog" Control_="Finish" Event="DoAction" Argument="AI_CleanPrereq" Condition="1" Ordering="301"/>
     <ROW Dialog_="FatalError" Control_="Finish" Event="DoAction" Argument="AI_CleanPrereq" Condition="1" Ordering="102"/>
     <ROW Dialog_="UserExit" Control_="Finish" Event="DoAction" Argument="AI_CleanPrereq" Condition="1" Ordering="101"/>
+    <ROW Dialog_="LanguageDlg" Control_="Next" Event="EndDialog" Argument="Return" Condition="AI_BOOTSTRAPPER" Ordering="1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCreateFolderComponent">
     <ROW Directory_="ProtonVPN_Dir" Component_="ProtonVPN" ManualDelete="false"/>
@@ -436,6 +449,7 @@
     <ROW Action="AI_DATA_SETTER_6" Type="51" Source="CustomActionData" Target="ProtonVPN.ErrorMessage.exe"/>
     <ROW Action="AI_DATA_SETTER_7" Type="51" Source="CustomActionData" Target="AEkAcwA2ADQAQgBpAHQAAgABAEkAcwBGAGEAbABsAGIAYQBjAGsAMwAyAEIAaQB0AAIAAQBQAGEAcgBhAG0AcwACAAEAUwBjAHIAaQBwAHQAAgBQAGEAcgBhAG0AKAApAA0ACgANAAoAcwBjAGgAdABhAHMAawBzACAALwBEAGUAbABlAHQAZQAgAC8ARgAgAC8AVABOACAAIgBQAHIAbwB0AG8AbgBWAFAATgAgAFUAcABkAGEAdABlACI="/>
     <ROW Action="AI_DATA_SETTER_8" Type="51" Source="CustomActionData" Target="AEkAcwA2ADQAQgBpAHQAAgAxAAEASQBzAEYAYQBsAGwAYgBhAGMAawAzADIAQgBpAHQAAgAxAAEAUABhAHIAYQBtAHMAAgABAFMAYwByAGkAcAB0AAIAZgB1AG4AYwB0AGkAbwBuACAAQQBkAGQALQBaAGkAcAANAAoAWwBcAHsAXQANAAoAIAAgACAAIABwAGEAcgBhAG0AKABbAFwAWwBdAHMAdAByAGkAbgBnAFsAXABdAF0AJABmAGkAbABlACwAIABbAFwAWwBdAHMAdAByAGkAbgBnAFsAXABdAF0AJAB6AGkAcABmAGkAbABlAG4AYQBtAGUAKQANAAoADQAKACAAIAAgACAAaQBmACgALQBuAG8AdAAgACgAdABlAHMAdAAtAHAAYQB0AGgAKAAkAHoAaQBwAGYAaQBsAGUAbgBhAG0AZQApACkAKQANAAoAIAAgACAAIABbAFwAewBdAA0ACgAgACAAIAAgACAAIAAgACAAcwBlAHQALQBjAG8AbgB0AGUAbgB0ACAAJAB6AGkAcABmAGkAbABlAG4AYQBtAGUAIAAoACIAUABLACIAIAArACAAWwBcAFsAXQBjAGgAYQByAFsAXABdAF0ANQAgACsAIABbAFwAWwBdAGMAaABhAHIAWwBcAF0AXQA2ACAAKwAgACgAIgAkACgAWwBcAFsAXQBjAGgAYQByAFsAXABdAF0AMAApACIAIAAqACAAMQA4ACkAKQANAAoAIAAgACAAIAAgACAAIAAgACgAZABpAHIAIAAkAHoAaQBwAGYAaQBsAGUAbgBhAG0AZQApAC4ASQBzAFIAZQBhAGQATwBuAGwAeQAgAD0AIAAkAGYAYQBsAHMAZQAgACAADQAKACAAIAAgACAAWwBcAH0AXQANAAoADQAKACAAIAAgACAAJABzAGgAZQBsAGwAQQBwAHAAbABpAGMAYQB0AGkAbwBuACAAPQAgAG4AZQB3AC0AbwBiAGoAZQBjAHQAIAAtAGMAbwBtACAAcwBoAGUAbABsAC4AYQBwAHAAbABpAGMAYQB0AGkAbwBuAA0ACgAgACAAIAAgACQAegBpAHAAUABhAGMAawBhAGcAZQAgAD0AIAAkAHMAaABlAGwAbABBAHAAcABsAGkAYwBhAHQAaQBvAG4ALgBOAGEAbQBlAFMAcABhAGMAZQAoACQAegBpAHAAZgBpAGwAZQBuAGEAbQBlACkADQAKACAAIAAgACAAJAB6AGkAcABQAGEAYwBrAGEAZwBlAC4AQwBvAHAAeQBIAGUAcgBlACgAJABmAGkAbABlACkADQAKACAAIAAgACAAUwB0AGEAcgB0AC0AcwBsAGUAZQBwACAALQBtAGkAbABsAGkAcwBlAGMAbwBuAGQAcwAgADEAMAAwADAADQAKAFsAXAB9AF0ADQAKAA0ACgAkAGwAbwBnAEYAaQBsAGUAIAA9ACAAQQBJAF8ARwBlAHQATQBzAGkAUAByAG8AcABlAHIAdAB5ACAATQBzAGkATABvAGcARgBpAGwAZQBMAG8AYwBhAHQAaQBvAG4ADQAKACQAbABvAGMAYQBsAEEAcABwAEQAYQB0AGEARgBvAGwAZABlAHIAIAA9ACAAQQBJAF8ARwBlAHQATQBzAGkAUAByAG8AcABlAHIAdAB5ACAATABvAGMAYQBsAEEAcABwAEQAYQB0AGEARgBvAGwAZABlAHIADQAKACQAbABvAGcARgBvAGwAZABlAHIAIAA9ACAAKAAkAGwAbwBjAGEAbABBAHAAcABEAGEAdABhAEYAbwBsAGQAZQByACAAKwAgACIAUAByAG8AdABvAG4AVgBQAE4AXABMAG8AZwBzAFwAIgApAA0ACgAkAHQAbQBwAEwAbwBnAEYAaQBsAGUAIAA9ACAAKAAkAGwAbwBnAEYAbwBsAGQAZQByACAAKwAgACIAaQBuAHMAdABhAGwAbAAuAGwAbwBnACIAKQANAAoADQAKAEMAbwBwAHkALQBJAHQAZQBtACAAJABsAG8AZwBGAGkAbABlACAALQBEAGUAcwB0AGkAbgBhAHQAaQBvAG4AIAAkAHQAbQBwAEwAbwBnAEYAaQBsAGUADQAKAEEAZABkAC0AWgBpAHAAIAAkAHQAbQBwAEwAbwBnAEYAaQBsAGUAIAAoACQAbABvAGcARgBvAGwAZABlAHIAIAArACAAIgBpAG4AcwB0AGEAbABsAC0AbABvAGcALgB6AGkAcAAiACkADQAKAFIAZQBtAG8AdgBlAC0ASQB0AGUAbQAgACQAdABtAHAATABvAGcARgBpAGwAZQ=="/>
+    <ROW Action="AI_DATA_SETTER_9" Type="51" Source="CustomActionData" Target="AEkAcwA2ADQAQgBpAHQAAgABAEkAcwBGAGEAbABsAGIAYQBjAGsAMwAyAEIAaQB0AAIAAQBQAGEAcgBhAG0AcwACAAEAUwBjAHIAaQBwAHQAAgAkAGwAYQBuAGcATQBTAEkAIAA9ACAAQQBJAF8ARwBlAHQATQBzAGkAUAByAG8AcABlAHIAdAB5ACAAUAByAG8AZAB1AGMAdABMAGEAbgBnAHUAYQBnAGUADQAKAA0ACgBzAHcAaQB0AGMAaAAgACgAJABsAGEAbgBnAE0AUwBJACkAIABbAFwAewBdAA0ACgANAAoAMQAwADMAMQAgAFsAXAB7AF0AJABsAGEAbgBnAHUAYQBnAGUAIAA9ACAAIgBkAGUAIgBbAFwAfQBdAA0ACgAxADAAMwAzACAAWwBcAHsAXQAkAGwAYQBuAGcAdQBhAGcAZQAgAD0AIAAiAGUAbgAiAFsAXAB9AF0ADQAKADEAMAAzADYAIABbAFwAewBdACQAbABhAG4AZwB1AGEAZwBlACAAPQAgACIAZgByACIAWwBcAH0AXQANAAoAMQAwADQAMAAgAFsAXAB7AF0AJABsAGEAbgBnAHUAYQBnAGUAIAA9ACAAIgBpAHQAIgBbAFwAfQBdAA0ACgAxADAANAAzACAAWwBcAHsAXQAkAGwAYQBuAGcAdQBhAGcAZQAgAD0AIAAiAG4AbAAiAFsAXAB9AF0ADQAKADEAMAA0ADUAIABbAFwAewBdACQAbABhAG4AZwB1AGEAZwBlACAAPQAgACIAcABsACIAWwBcAH0AXQANAAoAMQAwADQANgAgAFsAXAB7AF0AJABsAGEAbgBnAHUAYQBnAGUAIAA9ACAAIgBwAHQALQBCAFIAIgBbAFwAfQBdAA0ACgAxADAANAA5ACAAWwBcAHsAXQAkAGwAYQBuAGcAdQBhAGcAZQAgAD0AIAAiAHIAdQAiAFsAXAB9AF0ADQAKADEAMAA2ADUAIABbAFwAewBdACQAbABhAG4AZwB1AGEAZwBlACAAPQAgACIAZgBhACIAWwBcAH0AXQANAAoAMgAwADcAMAAgAFsAXAB7AF0AJABsAGEAbgBnAHUAYQBnAGUAIAA9ACAAIgBwAHQALQBQAFQAIgBbAFwAfQBdAA0ACgAzADAAOAAyACAAWwBcAHsAXQAkAGwAYQBuAGcAdQBhAGcAZQAgAD0AIAAiAGUAcwAtAEUAUwAiAFsAXAB9AF0ADQAKAA0ACgBbAFwAfQBdAA0ACgANAAoAQQBJAF8AUwBlAHQATQBzAGkAUAByAG8AcABlAHIAdAB5ACAAUwBlAGwAZQBjAHQAZQBkAEwAYQBuAGcAdQBhAGcAZQAgACQAbABhAG4AZwB1AGEAZwBl"/>
     <ROW Action="AI_DOWNGRADE" Type="19" Target="4010"/>
     <ROW Action="AI_DeleteCadLzma" Type="51" Source="AI_DeleteLzma" Target="[AI_SETUPEXEPATH]"/>
     <ROW Action="AI_DeleteLzma" Type="1025" Source="lzmaextractor.dll" Target="DeleteLZMAFiles"/>
@@ -469,12 +483,13 @@
     <ROW Action="DeleteUpdateScheduledTask" Type="65" Source="PowerShellScriptLauncher.dll" Target="RunPowerShellScript" Options="1" AdditionalSeq="AI_DATA_SETTER_7"/>
     <ROW Action="InstallSplitTunnelDriver" Type="1" Source="ProtonVPN.InstallActions.dll" Target="InstallSplitTunnelDriver"/>
     <ROW Action="InstallTap" Type="1" Source="TapInstaller.CA.dll" Target="InstallTapAdapter"/>
-    <ROW Action="LaunchApp" Type="194" Source="viewer.exe" Target="/EnforcedRunAsAdmin /DontWait /dir &quot;[APPDIR]&quot; &quot;[#ProtonVPN.exe]&quot;" Options="1"/>
+    <ROW Action="LaunchApp" Type="194" Source="viewer.exe" Target="/EnforcedRunAsAdmin /DontWait /dir &quot;[APPDIR]&quot; &quot;[#ProtonVPN.exe]&quot; /lang &quot;[SelectedLanguage]&quot;" Options="1"/>
     <ROW Action="ModifyServicePermissions" Type="1" Source="ProtonVPN.InstallActions.dll" Target="ModifyServicePermissions"/>
     <ROW Action="RemoveProgramData" Type="1" Source="PowerShellScriptLauncher.dll" Target="RunPowerShellScript" Options="1" AdditionalSeq="AI_DATA_SETTER_4"/>
     <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]" MultiBuildTarget="DefaultBuild:[ProgramFilesFolder]Proton Technologies\[ProductName]"/>
     <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][ProductName]"/>
     <ROW Action="SET_TARGETDIR_TO_APPDIR" Type="51" Source="TARGETDIR" Target="[APPDIR]"/>
+    <ROW Action="SetLanguageISOCode" Type="1" Source="PowerShellScriptLauncher.dll" Target="RunPowerShellScript" Options="1" AdditionalSeq="AI_DATA_SETTER_9"/>
     <ROW Action="SetSplitTunnelDriverFileWin10x64" Type="51" Source="SplitTunnelDriverFile" Target="[#ProtonVPN.SplitTunnelDriver.sys_1]"/>
     <ROW Action="SetSplitTunnelDriverFileWin10x86" Type="51" Source="SplitTunnelDriverFile" Target="[#ProtonVPN.SplitTunnelDriver.sys_3]"/>
     <ROW Action="SetSplitTunnelDriverFileWin7x64" Type="51" Source="SplitTunnelDriverFile" Target="[#ProtonVPN.SplitTunnelDriver.sys]"/>
@@ -609,7 +624,7 @@
     <ROW Action="StopErrorMessageProcess" Sequence="53"/>
     <ROW Action="AI_DATA_SETTER_6" Sequence="51"/>
     <ROW Action="AI_DETECT_MODERNWIN" Condition="(VersionNT &gt;= 603)" Sequence="54" MsiKey="AI_DETECT_MODERNWIN"/>
-    <ROW Action="LaunchApp" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( REBOOT &lt;&gt; &quot;Force&quot; )" Sequence="6611"/>
+    <ROW Action="LaunchApp" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( REBOOT &lt;&gt; &quot;Force&quot; )" Sequence="6613"/>
     <ROW Action="ModifyServicePermissions" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) )" Sequence="6605"/>
     <ROW Action="UninstallSplitTunnelDriver" Condition="( ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) OR ( Installed AND ( REMOVE = &quot;ALL&quot; OR AI_INSTALL_MODE = &quot;Remove&quot; ) ) )" Sequence="6403"/>
     <ROW Action="InstallSplitTunnelDriver" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) )" Sequence="6610"/>
@@ -624,9 +639,11 @@
     <ROW Action="AI_DATA_SETTER_5" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( (VersionNT &gt; 501) OR (VersionNT = 501 AND ServicePackLevel &gt;= 2) )" Sequence="6602"/>
     <ROW Action="DeleteUpdateScheduledTask" Condition="( Installed AND ( REMOVE = &quot;ALL&quot; OR AI_INSTALL_MODE = &quot;Remove&quot; ) ) AND ( (VersionNT &gt; 501) OR (VersionNT = 501 AND ServicePackLevel &gt;= 2) )" Sequence="6402"/>
     <ROW Action="AI_DATA_SETTER_7" Condition="( Installed AND ( REMOVE = &quot;ALL&quot; OR AI_INSTALL_MODE = &quot;Remove&quot; ) ) AND ( (VersionNT &gt; 501) OR (VersionNT = 501 AND ServicePackLevel &gt;= 2) )" Sequence="6401"/>
-    <ROW Action="CopyInstallLog" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( (VersionNT &gt; 501) OR (VersionNT = 501 AND ServicePackLevel &gt;= 2) )" Sequence="6613"/>
-    <ROW Action="AI_DATA_SETTER_8" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( (VersionNT &gt; 501) OR (VersionNT = 501 AND ServicePackLevel &gt;= 2) )" Sequence="6612"/>
+    <ROW Action="CopyInstallLog" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( (VersionNT &gt; 501) OR (VersionNT = 501 AND ServicePackLevel &gt;= 2) )" Sequence="6615"/>
+    <ROW Action="AI_DATA_SETTER_8" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( (VersionNT &gt; 501) OR (VersionNT = 501 AND ServicePackLevel &gt;= 2) )" Sequence="6614"/>
     <ROW Action="AI_AiRemoveFilesImmediate" Sequence="3499"/>
+    <ROW Action="SetLanguageISOCode" Condition="(VersionNT &gt; 501) OR (VersionNT = 501 AND ServicePackLevel &gt;= 2)" Sequence="6612"/>
+    <ROW Action="AI_DATA_SETTER_9" Condition="(VersionNT &gt; 501) OR (VersionNT = 501 AND ServicePackLevel &gt;= 2)" Sequence="6611"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstallUISequenceComponent">
     <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="749"/>
@@ -657,6 +674,7 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiRegsComponent">
     <ROW Registry="AI_ExePath" Root="-1" Key="Software\Caphyon\Advanced Installer\LZMA\[ProductCode]\[ProductVersion]" Name="AI_ExePath" Value="[AI_SETUPEXEPATH]" Component_="AI_ExePath"/>
+    <ROW Registry="AI_InstallLanguage" Root="-1" Key="Software\Caphyon\Advanced Installer\[ProductCode]" Name="AI_InstallLanguage" Value="[ProductLanguage]" Component_="ProductInformation"/>
     <ROW Registry="Comments" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Comments" Value="[ARPCOMMENTS]" Component_="AI_CustomARPName"/>
     <ROW Registry="Contact" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Contact" Value="[ARPCONTACT]" Component_="AI_CustomARPName"/>
     <ROW Registry="DisplayIcon" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="DisplayIcon" Value="[ARP_ICON_PATH]" Component_="AI_CustomARPName"/>

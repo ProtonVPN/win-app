@@ -216,6 +216,18 @@ namespace ProtonVPN.Core.Ioc
                 .SingleInstance();
             builder.RegisterType<SystemProxyNotification>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<InsecureNetworkNotification>().AsImplementedInterfaces().AsSelf().SingleInstance();
+            builder.Register(c => new Language(
+                    c.Resolve<IAppSettings>(),
+                    c.Resolve<LanguageProvider>(),
+                    c.Resolve<Common.Configuration.Config>().DefaultLocale))
+                .AsSelf()
+                .AsImplementedInterfaces()
+                .SingleInstance();
+            builder.Register(c => new LanguageProvider(c.Resolve<ILogger>(),
+                c.Resolve<Common.Configuration.Config>().TranslationsFolder,
+                c.Resolve<Common.Configuration.Config>().DefaultLocale))
+                .AsSelf()
+                .SingleInstance();
         }
     }
 }

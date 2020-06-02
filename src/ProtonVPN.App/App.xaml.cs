@@ -77,7 +77,7 @@ namespace ProtonVPN
                 var app = new App();
                 app.InitializeComponent();
                 
-                _bootstrapper = new Bootstrapper();
+                _bootstrapper = new Bootstrapper(args);
                 _bootstrapper.Initialize();
 
                 HandleIntentionalCrash(app, args);

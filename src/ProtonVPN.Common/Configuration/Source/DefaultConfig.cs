@@ -143,6 +143,8 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 DefaultBlackHoleIps = new List<string> {"62.112.9.168", "104.245.144.186"},
 
+                DefaultLocale = "en",
+
                 Urls =
                 {
                     PasswordResetUrl = "https://account.protonvpn.com/reset-password",

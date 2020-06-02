@@ -160,7 +160,6 @@
     <Compile Include="Events\IEventChangeAware.cs" />
     <Compile Include="Events\UserInfoHandler.cs" />
     <Compile Include="Events\VpnProfileHandler.cs" />
-    <Compile Include="Language\Language.cs" />
     <Compile Include="Modals\IDialogs.cs" />
     <Compile Include="Modals\IDialogSettings.cs" />
     <Compile Include="Modals\IModal.cs" />
@@ -305,7 +304,9 @@
     <None Include="packages.config" />
     <None Include="Profiles\README.md" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Language\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ProtonVPN.Common\ProtonVPN.Common.csproj">
       <Project>{03B8E43C-5680-4803-A745-0A104FE6620C}</Project>

@@ -86,6 +86,13 @@ namespace ProtonVPN.Core
 
         private T Resolve<T>() => _container.Resolve<T>();
 
+        private readonly string[] _args;
+
+        public Bootstrapper(string[] args)
+        {
+            _args = args;
+        }
+
         protected override void Configure()
         {
             var builder = new ContainerBuilder();
@@ -123,7 +130,7 @@ namespace ProtonVPN.Core
 
             IncreaseAppStartCount();
             RegisterEvents();
-            SetLanguage(Resolve<Language.Language>().GetStartupLanguage());
+            Resolve<Language>().Initialize(_args);
             ShowInitialWindow();
 
             _ = StartService(Resolve<MonitoredVpnService>());
@@ -344,7 +351,7 @@ namespace ProtonVPN.Core
             {
                 if (e.PropertyName == nameof(IAppSettings.Language))
                 {
-                    SetLanguage(appSettings.Language);
+                    TranslationSource.Instance.CurrentCulture = new CultureInfo(appSettings.Language);
                 }
 
                 var instances = Resolve<IEnumerable<ISettingsAware>>();
@@ -548,11 +555,6 @@ namespace ProtonVPN.Core
             {
                 subject.RegisterMigration(migration);
             }
-        }
-
-        private void SetLanguage(string lang)
-        {
-            TranslationSource.Instance.CurrentCulture = new CultureInfo(lang);
         }
     }
 }
