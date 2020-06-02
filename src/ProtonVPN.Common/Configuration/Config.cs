@@ -185,6 +185,7 @@ namespace ProtonVPN.Common.Configuration
 
         public bool NetShieldEnabled { get; internal set; }
 
-        public bool GuestHolesEnabled { get; internal set; }
+        [Required]
+        public string DefaultLocale { get; internal set; }
     }
 }

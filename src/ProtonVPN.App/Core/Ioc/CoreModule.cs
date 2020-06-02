@@ -222,13 +222,6 @@ namespace ProtonVPN.Core.Ioc
                 .AsSelf()
                 .AsImplementedInterfaces()
                 .SingleInstance();
-            builder.Register(c => new Language.Language(
-                    c.Resolve<IAppSettings>(),
-                    c.Resolve<ILogger>(),
-                    c.Resolve<Common.Configuration.Config>().TranslationsFolder))
-                .AsSelf()
-                .AsImplementedInterfaces()
-                .SingleInstance();
             builder.Register(c => new SafeSystemProxy(c.Resolve<ILogger>(), new SystemProxy()))
                 .AsImplementedInterfaces()
                 .SingleInstance();
