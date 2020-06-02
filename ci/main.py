@@ -50,8 +50,8 @@ elif args.command == 'add-languages':
         "locales\\*.resx",
         '.\src\\ProtonVPN.App\\Properties\\Resources.{lang}.resx',
         '.\\src\\bin\\ProtonVPN.MarkupValidator.exe')
-    err = loc.AddLanguages()
-    sys.exit(err)
+    returnCode = loc.AddLanguages()
+    sys.exit(returnCode)
 
 elif args.command == 'tests':
     tests.run('{path}*.Test.dll'.format(path=args.path))

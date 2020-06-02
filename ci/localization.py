@@ -14,13 +14,15 @@ class Localization:
         self.validator = validator
 
     def AddLanguages(self):
+        returnCode = 0
         for f in list(Path().glob(self.src)):
             lang = self.getLanguageCode(f)
             if self.validate(f.absolute()):
                 self.AddLanguage(f)
             else:
-                error = True
+                returnCode = 1
                 break
+        return returnCode
 
     def validate(self, file):
         print(file)
