@@ -22,9 +22,9 @@
     <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Callout.c" />
-    <ClCompile Include="Device.c" />
-    <ClCompile Include="Driver.c" />
+    <ClCompile Include="Callout.cpp" />
+    <ClCompile Include="Device.cpp" />
+    <ClCompile Include="Driver.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Callout.h" />
