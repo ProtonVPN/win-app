@@ -193,7 +193,7 @@ Exit:
 
     if (classifyHandle != 0)
     {
-        FwpsReleaseClassifyHandle0(classifyHandle);
+        FwpsReleaseClassifyHandle(classifyHandle);
     }
 
     TraceEvents(TRACE_LEVEL_INFORMATION, TRACE_CALLOUT, "%!FUNC! Exit");
@@ -206,7 +206,7 @@ NTSTATUS NTAPI
 NotifyFn1(
     IN FWPS_CALLOUT_NOTIFY_TYPE notifyType,
     IN const GUID* filterKey,
-    IN const FWPS_FILTER1* filter
+    IN const FWPS_FILTER* filter
 )
 {
     UNREFERENCED_PARAMETER(notifyType);
@@ -230,14 +230,14 @@ RegisterCallout(
     UINT32 CalloutId;
 
     // Callout registration structure
-    FWPS_CALLOUT1 callout = {0};
+    FWPS_CALLOUT callout = {0};
     callout.calloutKey = CONNECT_REDIRECT_CALLOUT_KEY;
     callout.flags = 0;
     callout.classifyFn = ClassifyFn1;
-    callout.notifyFn = NotifyFn1;
+    callout.notifyFn = reinterpret_cast<FWPS_CALLOUT_NOTIFY_FN>(NotifyFn1);
     callout.flowDeleteFn = NULL;
 
-    status = FwpsCalloutRegister1(
+    status = FwpsCalloutRegister(
         deviceObject,
         &callout,
         &CalloutId
@@ -264,7 +264,7 @@ UnregisterCallout()
 
     NTSTATUS status;
 
-    status = FwpsCalloutUnregisterByKey0(&CONNECT_REDIRECT_CALLOUT_KEY);
+    status = FwpsCalloutUnregisterByKey(&CONNECT_REDIRECT_CALLOUT_KEY);
 
     if (!NT_SUCCESS(status))
     {
