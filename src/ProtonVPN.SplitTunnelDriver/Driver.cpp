@@ -7,6 +7,7 @@
 
 #include "Device.h"
 #include "Callout.h"
+#include "Public.h"
 
 #ifdef ALLOC_PRAGMA
 #pragma alloc_text (INIT, DriverEntry)
@@ -64,7 +65,14 @@ DriverEntry(
     // Get the associated WDM device object
     PDEVICE_OBJECT deviceObject = WdfDeviceWdmGetDeviceObject(Device);
 
-    status = RegisterCallout(deviceObject);
+    status = RegisterCallout(deviceObject, CONNECT_REDIRECT_CALLOUT_KEY, RedirectConnection);
+    if (!NT_SUCCESS(status))
+    {
+        WPP_CLEANUP(DriverObject);
+        return status;
+    }
+
+    status = RegisterCallout(deviceObject, REDIRECT_UDP_CALLOUT_KEY, RedirectUDPFlow);
     if (!NT_SUCCESS(status))
     {
         WPP_CLEANUP(DriverObject);
@@ -86,7 +94,9 @@ DriverUnload(
 
     TraceEvents(TRACE_LEVEL_INFORMATION, TRACE_DRIVER, "%!FUNC! Entry");
 
-    UnregisterCallout();
+    UnregisterCallout(CONNECT_REDIRECT_CALLOUT_KEY);
+
+    UnregisterCallout(REDIRECT_UDP_CALLOUT_KEY);
 
     // Stop WPP Tracing
     WPP_CLEANUP(WdfDriverWdmGetDriverObject(Driver));

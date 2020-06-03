@@ -1,20 +1,31 @@
 #pragma once
 
-EXTERN_C_START
+#include <fwpsk.h>
+#include <fwpmtypes.h>
 
-//
-// Registers the callout
-//
-NTSTATUS
-RegisterCallout(
-    _In_ PDEVICE_OBJECT deviceObject
+NTSTATUS RegisterCallout(
+	_In_ PDEVICE_OBJECT deviceObject,
+	_In_ const GUID& key,
+	_In_ FWPS_CALLOUT_CLASSIFY_FN classifyFn);
+
+NTSTATUS UnregisterCallout(_In_ const GUID& key);
+
+void NTAPI RedirectConnection(
+	IN const FWPS_INCOMING_VALUES* inFixedValues,
+	IN const FWPS_INCOMING_METADATA_VALUES* inMetaValues,
+	IN OUT VOID* layerData,
+	IN const void* classifyContext,
+	IN const FWPS_FILTER* filter,
+	IN UINT64 flowContext,
+	IN OUT FWPS_CLASSIFY_OUT* classifyOut
 );
 
-//
-// Unregisters the callout
-//
-NTSTATUS
-UnregisterCallout(
+void NTAPI RedirectUDPFlow(
+	IN const FWPS_INCOMING_VALUES* inFixedValues,
+	IN const FWPS_INCOMING_METADATA_VALUES* inMetaValues,
+	IN OUT VOID* layerData,
+	IN const void* classifyContext,
+	IN const FWPS_FILTER* filter,
+	IN UINT64 flowContext,
+	IN OUT FWPS_CLASSIFY_OUT* classifyOut
 );
-
-EXTERN_C_END

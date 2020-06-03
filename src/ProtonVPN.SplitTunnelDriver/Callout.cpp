@@ -3,275 +3,263 @@
 #include <mstcpip.h>
 
 #include "Trace.h"
+#include "Public.h"
 #include "Callout.h"
 #include "Callout.tmh"
 
-#include "Public.h"
+const UINT8 TCP_PROTOCOL_ID = 6;
 
-#ifdef ALLOC_PRAGMA
-#pragma alloc_text (INIT, RegisterCallout)
-#pragma alloc_text (PAGE, UnregisterCallout)
-#endif
-
-BOOL isLoopbackConnection(const FWPS_INCOMING_VALUES* inValues)
+void SetSocketIPv4Addr(const SOCKADDR_STORAGE& sockAddrStorage, const IN_ADDR& addr)
 {
-    auto localAddr = RtlUlongByteSwap(inValues->incomingValue[
-        FWPS_FIELD_ALE_CONNECT_REDIRECT_V4_IP_LOCAL_ADDRESS].value.uint32);
-    auto remoteAddr = RtlUlongByteSwap(inValues->incomingValue[
-        FWPS_FIELD_ALE_CONNECT_REDIRECT_V4_IP_REMOTE_ADDRESS].value.uint32);
-
-    if (IN4_IS_ADDR_LOOPBACK((IN_ADDR*)(&localAddr)))
-    {
-        return TRUE;
-    }
-
-    if (IN4_IS_ADDR_LOOPBACK((IN_ADDR*)(&remoteAddr)))
-    {
-        return TRUE;
-    }
-
-    return FALSE;
+	INETADDR_SET_ADDRESS((PSOCKADDR) & (sockAddrStorage), &(addr.S_un.S_un_b.s_b1));
 }
 
-//
-// The callout ClassifyFn1 function
-//
-VOID NTAPI
-ClassifyFn1(
-    IN const FWPS_INCOMING_VALUES0* inFixedValues,
-    IN const FWPS_INCOMING_METADATA_VALUES0* inMetaValues,
-    IN OUT VOID* layerData,
-    IN const void* classifyContext,
-    IN const FWPS_FILTER1* filter,
-    IN UINT64 flowContext,
-    IN OUT FWPS_CLASSIFY_OUT0* classifyOut
+bool isLoopbackIPv4Address(UINT32 addr)
+{
+	if (IN4_IS_ADDR_LOOPBACK(reinterpret_cast<IN_ADDR*>(&addr)))
+	{
+		return true;
+	}
+
+	return false;
+}
+
+const CONNECT_REDIRECT_DATA* GetConnectRedirectDataFromProviderContext(const FWPM_PROVIDER_CONTEXT* context)
+{
+	if (context == nullptr)
+	{
+		return nullptr;
+	}
+
+	if (context->type != FWPM_GENERAL_CONTEXT)
+	{
+		return nullptr;
+	}
+
+	if (context->dataBuffer == nullptr)
+	{
+		return nullptr;
+	}
+
+	if (context->dataBuffer->size != sizeof(CONNECT_REDIRECT_DATA))
+	{
+		return nullptr;
+	}
+
+	return reinterpret_cast<CONNECT_REDIRECT_DATA*>(context->dataBuffer->data);
+}
+
+void NTAPI RedirectConnection(
+	IN const FWPS_INCOMING_VALUES* inFixedValues,
+	IN const FWPS_INCOMING_METADATA_VALUES*,
+	IN OUT void*,
+	IN const void* classifyContext,
+	IN const FWPS_FILTER* filter,
+	IN UINT64,
+	IN OUT FWPS_CLASSIFY_OUT* classifyOut
 )
 {
-    TraceEvents(TRACE_LEVEL_INFORMATION, TRACE_CALLOUT, "%!FUNC! Entry");
+	classifyOut->actionType = FWP_ACTION_PERMIT;
 
-    classifyOut->actionType = FWP_ACTION_PERMIT;
+	if (inFixedValues == nullptr)
+	{
+		return;
+	}
 
-    UNREFERENCED_PARAMETER(inFixedValues);
-    UNREFERENCED_PARAMETER(inMetaValues);
-    UNREFERENCED_PARAMETER(layerData);
-    UNREFERENCED_PARAMETER(flowContext);
+	if (inFixedValues->layerId != FWPS_LAYER_ALE_CONNECT_REDIRECT_V4)
+	{
+		return;
+	}
 
-    if (inFixedValues == NULL)
-    {
-        TraceEvents(TRACE_LEVEL_ERROR, TRACE_CALLOUT, "%!FUNC! inFixedValues is NULL");
+	if ((classifyOut->rights & FWPS_RIGHT_ACTION_WRITE) == 0)
+	{
+		return;
+	}
 
-        return;
-    }
+	auto flags = inFixedValues->incomingValue[FWPS_FIELD_ALE_CONNECT_REDIRECT_V4_FLAGS].value.uint32;
+	if (flags & FWP_CONDITION_FLAG_IS_REAUTHORIZE)
+	{
+		return;
+	}
 
-    if (classifyContext == NULL)
-    {
-        TraceEvents(TRACE_LEVEL_ERROR, TRACE_CALLOUT, "%!FUNC! classifyContext is NULL");
+	auto connectRedirectData = GetConnectRedirectDataFromProviderContext(filter->providerContext);
+	if (connectRedirectData == nullptr)
+	{
+		return;
+	}
 
-        return;
-    }
+	auto remoteAddr = RtlUlongByteSwap(inFixedValues->incomingValue[
+		FWPS_FIELD_ALE_CONNECT_REDIRECT_V4_IP_REMOTE_ADDRESS].value.uint32);
 
-    if (filter == NULL)
-    {
-        TraceEvents(TRACE_LEVEL_ERROR, TRACE_CALLOUT, "%!FUNC! filter is NULL");
+	if (isLoopbackIPv4Address(remoteAddr))
+	{
+		return;
+	}
 
-        return;
-    }
+	UINT64 classifyHandle{};
+	FWPS_CONNECT_REQUEST* connectReq{};
 
-    if (inFixedValues->layerId != FWPS_LAYER_ALE_CONNECT_REDIRECT_V4)
-    {
-        TraceEvents(TRACE_LEVEL_ERROR, TRACE_CALLOUT, "%!FUNC! Invalid layer");
+	__try
+	{
+		auto status = FwpsAcquireClassifyHandle(const_cast<void*>(classifyContext), 0, &classifyHandle);
+		if (!NT_SUCCESS(status))
+		{
+			return;
+		}
 
-        return;
-    }
+		status = FwpsAcquireWritableLayerDataPointer(classifyHandle,
+			filter->filterId, 0, reinterpret_cast<PVOID*>(&connectReq), classifyOut);
+		if (!NT_SUCCESS(status))
+		{
+			return;
+		}
 
-    if (isLoopbackConnection(inFixedValues))
-    {
-        return;
-    }
+		SetSocketIPv4Addr(connectReq->localAddressAndPort, connectRedirectData->localAddress);
+	}
+	__finally
+	{
+		if (connectReq != nullptr)
+		{
+			FwpsApplyModifiedLayerData(classifyHandle, reinterpret_cast<PVOID>(connectReq), 0);
+		}
 
-    if (filter->providerContext == NULL)
-    {
-        TraceEvents(TRACE_LEVEL_INFORMATION, TRACE_CALLOUT, "%!FUNC! Provider context not specified");
-
-        return;
-    }
-
-    if (filter->providerContext->type != FWPM_GENERAL_CONTEXT)
-    {
-        TraceEvents(TRACE_LEVEL_INFORMATION, TRACE_CALLOUT,
-                    "%!FUNC! Provider context type is not FWPM_GENERAL_CONTEXT");
-
-        return;
-    }
-
-    if (filter->providerContext->dataBuffer == NULL)
-    {
-        TraceEvents(TRACE_LEVEL_INFORMATION, TRACE_CALLOUT, "%!FUNC! Provider context data buffer is NULL");
-
-        return;
-    }
-
-    auto size = filter->providerContext->dataBuffer->size;
-    if (size != sizeof(CONNECT_REDIRECT_DATA))
-    {
-        TraceEvents(
-            TRACE_LEVEL_ERROR,
-            TRACE_CALLOUT,
-            "%!FUNC! Provider context data size is %i instead of expected %i",
-            size,
-            sizeof(CONNECT_REDIRECT_DATA));
-
-        return;
-    }
-
-    if (filter->providerContext->dataBuffer->data == NULL)
-    {
-        TraceEvents(TRACE_LEVEL_ERROR, TRACE_CALLOUT, "%!FUNC! Provider context data not specified");
-
-        return;
-    }
-
-    NTSTATUS status = STATUS_SUCCESS;
-    UINT64 classifyHandle = 0;
-    FWPS_CONNECT_REQUEST* writableLayerData = NULL;
-
-    status = FwpsAcquireClassifyHandle(
-        (void*)classifyContext,
-        0,
-        &classifyHandle);
-
-    if (status != STATUS_SUCCESS)
-    {
-        TraceEvents(TRACE_LEVEL_ERROR, TRACE_CALLOUT, "%!FUNC! FwpsAcquireClassifyHandle failed %!STATUS!", status);
-
-        return;
-    }
-
-    status = FwpsAcquireWritableLayerDataPointer(
-        classifyHandle,
-        filter->filterId,
-        0,
-        (PVOID*)(&writableLayerData),
-        classifyOut);
-
-    if (status != STATUS_SUCCESS)
-    {
-        TraceEvents(TRACE_LEVEL_ERROR, TRACE_CALLOUT, "%!FUNC! FwpsAcquireWritableLayerDataPointer failed %!STATUS!",
-                    status);
-
-        goto Exit;
-    }
-
-    for (FWPS_CONNECT_REQUEST* connectRequest = writableLayerData->previousVersion;
-        connectRequest != NULL;
-        connectRequest = connectRequest->previousVersion)
-    {
-        if (connectRequest->modifierFilterId == filter->filterId)
-        {
-            // Don't redirect the same socket more than once
-
-            TraceEvents(TRACE_LEVEL_WARNING, TRACE_CALLOUT, "%!FUNC! Already redirected");
-
-            goto Exit;
-        }
-    }
-
-    CONNECT_REDIRECT_DATA* redirectData = (CONNECT_REDIRECT_DATA*)filter->providerContext->dataBuffer->data;
-
-    INETADDR_SET_ADDRESS((PSOCKADDR)&(writableLayerData->localAddressAndPort),
-                         &(redirectData->localAddress.S_un.S_un_b.s_b1));
-
-Exit:
-
-    if (writableLayerData != NULL)
-    {
-        FwpsApplyModifiedLayerData(
-            classifyHandle,
-            (PVOID*)(&writableLayerData),
-            0);
-    }
-
-    if (classifyHandle != 0)
-    {
-        FwpsReleaseClassifyHandle(classifyHandle);
-    }
-
-    TraceEvents(TRACE_LEVEL_INFORMATION, TRACE_CALLOUT, "%!FUNC! Exit");
+		if (classifyHandle != 0)
+		{
+			FwpsReleaseClassifyHandle(classifyHandle);
+		}
+	}
 }
 
-//
-// The callout NotifyFn1 function
-//
-NTSTATUS NTAPI
-NotifyFn1(
-    IN FWPS_CALLOUT_NOTIFY_TYPE notifyType,
-    IN const GUID* filterKey,
-    IN const FWPS_FILTER* filter
+void NTAPI RedirectUDPFlow(
+	IN const FWPS_INCOMING_VALUES* inFixedValues,
+	IN const FWPS_INCOMING_METADATA_VALUES*,
+	IN OUT void*,
+	IN const void* classifyContext,
+	IN const FWPS_FILTER* filter,
+	IN UINT64,
+	IN OUT FWPS_CLASSIFY_OUT* classifyOut
 )
 {
-    UNREFERENCED_PARAMETER(notifyType);
-    UNREFERENCED_PARAMETER(filterKey);
-    UNREFERENCED_PARAMETER(filter);
+	classifyOut->actionType = FWP_ACTION_PERMIT;
 
-    return STATUS_SUCCESS;
+	if (inFixedValues == nullptr)
+	{
+		return;
+	}
+
+	if (inFixedValues->layerId != FWPS_LAYER_ALE_BIND_REDIRECT_V4)
+	{
+		return;
+	}
+
+	if ((classifyOut->rights & FWPS_RIGHT_ACTION_WRITE) == 0)
+	{
+		return;
+	}
+
+	auto flags = inFixedValues->incomingValue[FWPS_FIELD_ALE_BIND_REDIRECT_V4_FLAGS].value.uint32;
+	if (flags & FWP_CONDITION_FLAG_IS_REAUTHORIZE)
+	{
+		return;
+	}
+
+	auto protocol = inFixedValues->incomingValue[FWPS_FIELD_ALE_BIND_REDIRECT_V4_IP_PROTOCOL].value.uint8;
+	if (protocol == TCP_PROTOCOL_ID)
+	{
+		return;
+	}
+
+	auto connectRedirectData = GetConnectRedirectDataFromProviderContext(filter->providerContext);
+	if (connectRedirectData == nullptr)
+	{
+		return;
+	}
+
+	UINT64 classifyHandle{};
+	FWPS_BIND_REQUEST* bindReq{};
+
+	__try
+	{
+		auto status = FwpsAcquireClassifyHandle(const_cast<void*>(classifyContext), 0, &classifyHandle);
+		if (!NT_SUCCESS(status))
+		{
+			return;
+		}
+
+		status = FwpsAcquireWritableLayerDataPointer(classifyHandle,
+			filter->filterId, 0, reinterpret_cast<PVOID*>(&bindReq), classifyOut);
+		if (!NT_SUCCESS(status))
+		{
+			return;
+		}
+
+		SetSocketIPv4Addr(bindReq->localAddressAndPort, connectRedirectData->localAddress);
+	}
+	__finally
+	{
+		if (bindReq != nullptr)
+		{
+			FwpsApplyModifiedLayerData(classifyHandle, reinterpret_cast<PVOID>(bindReq), 0);
+		}
+
+		if (classifyHandle != 0)
+		{
+			FwpsReleaseClassifyHandle(classifyHandle);
+		}
+	}
 }
 
-//
-// Registers the callout
-//
-NTSTATUS
-RegisterCallout(
-    _In_ PDEVICE_OBJECT deviceObject
+NTSTATUS NTAPI NotifyFn(
+	IN FWPS_CALLOUT_NOTIFY_TYPE notifyType,
+	IN const GUID* filterKey,
+	IN const FWPS_FILTER* filter
 )
 {
-    TraceEvents(TRACE_LEVEL_INFORMATION, TRACE_CALLOUT, "%!FUNC! Entry");
+	UNREFERENCED_PARAMETER(notifyType);
+	UNREFERENCED_PARAMETER(filterKey);
+	UNREFERENCED_PARAMETER(filter);
 
-    NTSTATUS status;
-    UINT32 CalloutId;
-
-    // Callout registration structure
-    FWPS_CALLOUT callout = {0};
-    callout.calloutKey = CONNECT_REDIRECT_CALLOUT_KEY;
-    callout.flags = 0;
-    callout.classifyFn = ClassifyFn1;
-    callout.notifyFn = reinterpret_cast<FWPS_CALLOUT_NOTIFY_FN>(NotifyFn1);
-    callout.flowDeleteFn = NULL;
-
-    status = FwpsCalloutRegister(
-        deviceObject,
-        &callout,
-        &CalloutId
-    );
-
-    if (!NT_SUCCESS(status))
-    {
-        TraceEvents(TRACE_LEVEL_ERROR, TRACE_CALLOUT, "%!FUNC! FwpsCalloutRegister1 failed %!STATUS!", status);
-        return status;
-    }
-
-    TraceEvents(TRACE_LEVEL_INFORMATION, TRACE_CALLOUT, "%!FUNC! Exit");
-
-    return status;
+	return STATUS_SUCCESS;
 }
 
-//
-// Unregisters the callout
-//
-NTSTATUS
-UnregisterCallout()
+NTSTATUS RegisterCallout(
+	_In_ PDEVICE_OBJECT deviceObject,
+	_In_ const GUID& key,
+	_In_ FWPS_CALLOUT_CLASSIFY_FN classifyFn
+)
 {
-    TraceEvents(TRACE_LEVEL_INFORMATION, TRACE_CALLOUT, "%!FUNC! Entry");
+	TraceEvents(TRACE_LEVEL_INFORMATION, TRACE_CALLOUT, "%!FUNC! Entry");
 
-    NTSTATUS status;
+	FWPS_CALLOUT callout{};
+	callout.calloutKey = key;
+	callout.classifyFn = classifyFn;
+	callout.notifyFn = reinterpret_cast<FWPS_CALLOUT_NOTIFY_FN>(NotifyFn);
+	callout.flowDeleteFn = nullptr;
 
-    status = FwpsCalloutUnregisterByKey(&CONNECT_REDIRECT_CALLOUT_KEY);
+	auto status = FwpsCalloutRegister(deviceObject, &callout, nullptr);
+	if (!NT_SUCCESS(status))
+	{
+		TraceEvents(TRACE_LEVEL_ERROR, TRACE_CALLOUT, "%!FUNC! FwpsCalloutRegister1 failed %!STATUS!", status);
 
-    if (!NT_SUCCESS(status))
-    {
-        TraceEvents(TRACE_LEVEL_ERROR, TRACE_CALLOUT, "%!FUNC! FwpsCalloutUnregisterByKey0 failed %!STATUS!", status);
-    }
+		return status;
+	}
 
-    TraceEvents(TRACE_LEVEL_INFORMATION, TRACE_CALLOUT, "%!FUNC! Exit");
+	TraceEvents(TRACE_LEVEL_INFORMATION, TRACE_CALLOUT, "%!FUNC! Exit");
 
-    return status;
+	return status;
+}
+
+NTSTATUS UnregisterCallout(_In_ const GUID& key)
+{
+	TraceEvents(TRACE_LEVEL_INFORMATION, TRACE_CALLOUT, "%!FUNC! Entry");
+
+	auto status = FwpsCalloutUnregisterByKey(&key);
+	if (!NT_SUCCESS(status))
+	{
+		TraceEvents(TRACE_LEVEL_ERROR, TRACE_CALLOUT, "%!FUNC! FwpsCalloutUnregisterByKey failed %!STATUS!", status);
+	}
+
+	TraceEvents(TRACE_LEVEL_INFORMATION, TRACE_CALLOUT, "%!FUNC! Exit");
+
+	return status;
 }
