@@ -3,6 +3,7 @@
 #include "NetworkConfiguration.h"
 #include "NetworkIPv6Settings.h"
 #include "BestInterface.h"
+#include "Route.h"
 
 #include <string>
 #include <set>
@@ -90,6 +91,26 @@ extern "C" EXPORT DWORD GetBestInterfaceIp(IN_ADDR* address)
 {
     BestInterface bestInterface;
     *address = bestInterface.IpAddress();
+
+    return 0;
+}
+
+extern "C" EXPORT long NetworkUtilAddDefaultGatewayForIface(const GUID * ifaceId, wchar_t* gatewayAddr)
+{
+    if (!Proton::NetworkUtil::Route::AddDefaultGatewayForIface(ifaceId, gatewayAddr))
+    {
+        return 1;
+    }
+
+    return 0;
+}
+
+extern "C" EXPORT long NetworkUtilDeleteDefaultGatewayForIface(const GUID * ifaceId, wchar_t* gatewayAddr)
+{
+    if (!Proton::NetworkUtil::Route::DeleteDefaultGatewayForIface(ifaceId, gatewayAddr))
+    {
+        return 1;
+    }
 
     return 0;
 }
