@@ -21,7 +21,7 @@ using System;
 using System.Net;
 using System.Runtime.InteropServices;
 
-namespace ProtonVPN.Service.Net
+namespace ProtonVPN.Common.Os.Net
 {
     public class NetworkUtil
     {

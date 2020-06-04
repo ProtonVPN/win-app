@@ -20,7 +20,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace ProtonVPN.Service.Net
+namespace ProtonVPN.Common.Os.Net
 {
     internal class PInvoke
     {

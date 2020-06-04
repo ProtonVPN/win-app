@@ -20,7 +20,7 @@
 using System;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Logging;
-using ProtonVPN.Service.Net;
+using ProtonVPN.Common.Os.Net;
 
 namespace ProtonVPN.Service.Firewall
 {
