@@ -54,6 +54,16 @@ namespace ProtonVPN.Service.Net
             return new IPAddress(bytes);
         }
 
+        public static void AddDefaultGatewayForIface(Guid guid, string gatewayAddr)
+        {
+            AssertSuccess(() => PInvoke.AddDefaultGatewayForIface(ref guid, gatewayAddr));
+        }
+
+        public static void DeleteDefaultGatewayForIface(Guid guid, string gatewayAddr)
+        {
+            AssertSuccess(() => PInvoke.DeleteDefaultGatewayForIface(ref guid, gatewayAddr));
+        }
+
         private static void AssertSuccess(Func<uint> function)
         {
             uint status;

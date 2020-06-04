@@ -181,6 +181,7 @@
     <ClInclude Include="NetInterface.h" />
     <ClInclude Include="NetworkConfiguration.h" />
     <ClInclude Include="NetworkIPv6Settings.h" />
+    <ClInclude Include="Route.h" />
     <ClInclude Include="StdAfx.h" />
   </ItemGroup>
   <ItemGroup>
@@ -191,6 +192,7 @@
     <ClCompile Include="NetInterface.cpp" />
     <ClCompile Include="NetworkConfiguration.cpp" />
     <ClCompile Include="NetworkIPv6Settings.cpp" />
+    <ClCompile Include="Route.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -69,5 +69,21 @@ namespace ProtonVPN.Service.Net
             EntryPoint = "GetBestInterfaceIp",
             CallingConvention = CallingConvention.Cdecl)]
         public static extern uint GetBestInterfaceIp(IntPtr address);
+
+        [DllImport(
+            BinaryName,
+            EntryPoint = "NetworkUtilAddDefaultGatewayForIface",
+            CallingConvention = CallingConvention.Cdecl)]
+        public static extern uint AddDefaultGatewayForIface(
+            [In] ref Guid providerKey,
+            [MarshalAs(UnmanagedType.LPWStr)] string gatewayAddr);
+
+        [DllImport(
+            BinaryName,
+            EntryPoint = "NetworkUtilDeleteDefaultGatewayForIface",
+            CallingConvention = CallingConvention.Cdecl)]
+        public static extern uint DeleteDefaultGatewayForIface(
+            [In] ref Guid providerKey,
+            [MarshalAs(UnmanagedType.LPWStr)] string gatewayAddr);
     }
 }
