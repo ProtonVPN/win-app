@@ -18,7 +18,6 @@
  */
 
 using System;
-using System.Collections.Generic;
 using System.Net;
 using ProtonVPN.NetworkFilter;
 
@@ -33,7 +32,7 @@ namespace ProtonVPN.Service.SplitTunneling
         private IpFilter _ipFilter;
         private Sublayer _subLayer;
 
-        public void EnableExcludeMode(IEnumerable<string> apps, IEnumerable<string> ips, IPAddress internetLocalIp)
+        public void EnableExcludeMode(string[] apps, string[] ips, IPAddress internetLocalIp)
         {
             Create();
 
@@ -52,7 +51,6 @@ namespace ProtonVPN.Service.SplitTunneling
                     new ConnectRedirectData(internetLocalIp));
 
                 CreateAppFilters(apps, redirectUDPCallout, Layer.BindRedirectV4, providerContext);
-                CreateIPFilters(ips, redirectUDPCallout, Layer.BindRedirectV4, providerContext);
 
                 CreateAppFilters(apps, connectRedirectCallout, Layer.AppConnectRedirectV4, providerContext);
                 CreateIPFilters(ips, connectRedirectCallout, Layer.AppConnectRedirectV4, providerContext);
@@ -66,7 +64,7 @@ namespace ProtonVPN.Service.SplitTunneling
             }
         }
 
-        public void EnableIncludeMode(IEnumerable<string> apps, IEnumerable<string> ips, IPAddress internetLocalIp, IPAddress vpnLocalIp)
+        public void EnableIncludeMode(string[] apps, string[] ips, IPAddress internetLocalIp, IPAddress vpnLocalIp)
         {
             Create();
 
@@ -149,7 +147,7 @@ namespace ProtonVPN.Service.SplitTunneling
             _subLayer = null;
         }
 
-        private void CreateAppFilters(IEnumerable<string> apps, Callout callout, Layer layer, ProviderContext providerContext)
+        private void CreateAppFilters(string[] apps, Callout callout, Layer layer, ProviderContext providerContext)
         {
             foreach (var app in apps)
             {
@@ -183,7 +181,7 @@ namespace ProtonVPN.Service.SplitTunneling
                 app);
         }
 
-        private void CreateIPFilters(IEnumerable<string> ips, Callout callout, Layer layer, ProviderContext providerContext)
+        private void CreateIPFilters(string[] ips, Callout callout, Layer layer, ProviderContext providerContext)
         {
             foreach (var ip in ips)
             {
@@ -220,7 +218,7 @@ namespace ProtonVPN.Service.SplitTunneling
                 15,
                 callout,
                 providerContext,
-                new NetworkFilter.NetworkAddress(networkAddress.Ip, networkAddress.Mask)
+                new NetworkAddress(networkAddress.Ip, networkAddress.Mask)
             );
         }
 
