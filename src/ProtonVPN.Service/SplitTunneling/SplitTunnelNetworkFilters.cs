@@ -113,6 +113,8 @@ namespace ProtonVPN.Service.SplitTunneling
                     new ConnectRedirectData(vpnLocalIp));
 
                 CreateAppFilters(apps, connectRedirectCallout, Layer.AppConnectRedirectV4, providerContext);
+                CreateIPFilters(ips, connectRedirectCallout, Layer.AppConnectRedirectV4, providerContext);
+
                 CreateAppFilters(apps, redirectUDPCallout, Layer.BindRedirectV4, providerContext);
 
                 _ipFilter.Session.CommitTransaction();
