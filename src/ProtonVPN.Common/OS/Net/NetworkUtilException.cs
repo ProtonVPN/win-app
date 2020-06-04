@@ -19,7 +19,7 @@
 
 using System;
 
-namespace ProtonVPN.Service.Net
+namespace ProtonVPN.Common.Os.Net
 {
     public class NetworkUtilException : Exception
     {

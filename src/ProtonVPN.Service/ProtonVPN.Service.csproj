@@ -112,9 +112,6 @@
     <Compile Include="Firewall\Ipv6.cs" />
     <Compile Include="Firewall\Layer.cs" />
     <Compile Include="Firewall\AppFilter.cs" />
-    <Compile Include="Net\NetworkUtilException.cs" />
-    <Compile Include="Net\PInvoke.cs" />
-    <Compile Include="Net\NetworkUtil.cs" />
     <Compile Include="Firewall\PermittedRemoteAddress.cs" />
     <Compile Include="ServiceHosts\ServiceSettingsHostFactory.cs" />
     <Compile Include="Settings\IServiceSettings.cs" />

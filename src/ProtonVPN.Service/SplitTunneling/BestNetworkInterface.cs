@@ -18,7 +18,7 @@
  */
 
 using System.Net;
-using ProtonVPN.Service.Net;
+using ProtonVPN.Common.Os.Net;
 
 namespace ProtonVPN.Service.SplitTunneling
 {
