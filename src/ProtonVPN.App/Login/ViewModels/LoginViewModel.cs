@@ -37,7 +37,7 @@ using ProtonVPN.Vpn.Connectors;
 
 namespace ProtonVPN.Login.ViewModels
 {
-    public class LoginViewModel : ViewModel, ISettingsAware, IVpnStateAware
+    public class LoginViewModel : ViewModel, ISettingsAware
     {
         private string _errorText = "";
 
