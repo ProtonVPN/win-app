@@ -27,7 +27,7 @@ using ProtonVPN.Resources;
 
 namespace ProtonVPN.Login.Views
 {
-    public partial class LoginWindow : IVpnStateAware
+    public partial class LoginWindow
     {
         private bool _networkBlocked;
         private readonly IDialogs _dialogs;

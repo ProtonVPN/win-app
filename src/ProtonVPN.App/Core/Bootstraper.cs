@@ -305,6 +305,7 @@ namespace ProtonVPN.Core
             {
                 vpnManager.OnVpnStateChanged(e);
                 await Resolve<LoginViewModel>().OnVpnStateChanged(e);
+                await Resolve<LoginWindow>().OnVpnStateChanged(e);
                 await Resolve<GuestHoleConnector>().OnVpnStateChanged(e);
             });
 
