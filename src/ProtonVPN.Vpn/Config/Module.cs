@@ -20,6 +20,7 @@
 using Autofac;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.OS.Net.NetworkInterface;
 using ProtonVPN.Common.OS.Processes;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Vpn.Common;
@@ -34,6 +35,7 @@ namespace ProtonVPN.Vpn.Config
     {
         public void Load(ContainerBuilder builder)
         {
+            builder.RegisterType<SystemNetworkInterfaces>().As<INetworkInterfaces>().SingleInstance();
             builder.Register(c =>
                 {
                 var logger = c.Resolve<ILogger>();
@@ -55,6 +57,7 @@ namespace ProtonVPN.Vpn.Config
             var logger = c.Resolve<ILogger>();
             var config = c.Resolve<OpenVpnConfig>();
             var taskQueue = c.Resolve<ITaskQueue>();
+            var networkInterfaces = c.Resolve<INetworkInterfaces>();
             var candidates = new VpnEndpointCandidates();
 
             var vpnConnection = new OpenVpnConnection(
@@ -69,20 +72,24 @@ namespace ProtonVPN.Vpn.Config
 
             return new LoggingWrapper(
                 logger,
-                new ReconnectingWrapper(
+                new DefaultGatewayWrapper(
                     logger,
-                    taskQueue,
-                    candidates,
-                    new HandlingRequestsWrapper(
+                    config.TapAdapterDescription,
+                    networkInterfaces,
+                    new ReconnectingWrapper(
                         logger,
                         taskQueue,
-                        new BestPortWrapper(
+                        candidates,
+                        new HandlingRequestsWrapper(
                             logger,
                             taskQueue,
-                            new PingableOpenVpnPort(config.OpenVpnStaticKey),
-                            new QueueingEventsWrapper(
+                            new BestPortWrapper(
+                                logger,
                                 taskQueue,
-                                vpnConnection)))));
+                                new PingableOpenVpnPort(config.OpenVpnStaticKey),
+                                new QueueingEventsWrapper(
+                                    taskQueue,
+                                    vpnConnection))))));
         }
     }
 }
