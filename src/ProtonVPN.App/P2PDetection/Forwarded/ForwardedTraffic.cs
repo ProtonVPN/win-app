@@ -17,10 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Config;
-using ProtonVPN.Core.User;
 using System.Linq;
 using System.Threading.Tasks;
+using ProtonVPN.Config;
+using ProtonVPN.Core.Servers.Models;
+using ProtonVPN.Core.User;
+using ProtonVPN.Core.Vpn;
 
 namespace ProtonVPN.P2PDetection.Forwarded
 {
@@ -30,12 +32,14 @@ namespace ProtonVPN.P2PDetection.Forwarded
     /// <remarks>
     ///     If P2P traffic is detected on not free VPN server, on which internet provider does not support P2P,
     ///     all traffic is forwarded to another exit server, where internet provider supports P2P.
-    ///     Checking is done by comparing current user ip address to the predefined black hole exit ips.
+    ///     It is considered the traffic to be forwarded when current user IP does not match VPN server IP and
+    ///     current IP is one of the black hole predefined IPs.
     /// </remarks>
-    internal class ForwardedTraffic : IForwardedTraffic
+    internal class ForwardedTraffic : IForwardedTraffic, IVpnStateAware
     {
         private readonly IVpnConfig _config;
         private readonly IUserLocationService _userLocationService;
+        private Server _server = Server.Empty();
 
         public ForwardedTraffic(IUserLocationService userLocationService, IVpnConfig config)
         {
@@ -46,10 +50,29 @@ namespace ProtonVPN.P2PDetection.Forwarded
         public async Task<ForwardedTrafficResult> Value()
         {
             var response = await _userLocationService.LocationAsync();
-            return response.Failure
-                ? new ForwardedTrafficResult(false, false, string.Empty)
-                : new ForwardedTrafficResult(true, _config.BlackHoleIps.Contains(response.Value.Ip),
-                    response.Value.Ip);
+            if (response.Failure)
+            {
+                return new ForwardedTrafficResult(false, false, string.Empty);
+            }
+
+            return new ForwardedTrafficResult(true, IsForwarded(response.Value.Ip), response.Value.Ip);
+        }
+
+        public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
+        {
+            _server = e.State.Server;
+
+            return Task.CompletedTask;
+        }
+
+        private bool IsForwarded(string ip)
+        {
+            if (_server.Equals(Server.Empty()))
+            {
+                return false;
+            }
+
+            return ip != _server.ExitIp && _config.BlackHoleIps.Contains(ip);
         }
     }
 }

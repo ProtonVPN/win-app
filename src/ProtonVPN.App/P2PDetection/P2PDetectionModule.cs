@@ -48,7 +48,7 @@ namespace ProtonVPN.P2PDetection
                     new ForwardedTraffic(
                         c.Resolve<IUserLocationService>(),
                         c.Resolve<IVpnConfig>()))
-                .As<IForwardedTraffic>()
+                .AsImplementedInterfaces()
                 .SingleInstance();
 
             builder.RegisterType<P2PDetector>()
