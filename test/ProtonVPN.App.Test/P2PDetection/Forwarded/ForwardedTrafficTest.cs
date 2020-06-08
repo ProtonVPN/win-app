@@ -23,9 +23,13 @@ using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
+using ProtonVPN.Common.Vpn;
 using ProtonVPN.Config;
 using ProtonVPN.Core.Api;
+using ProtonVPN.Core.Api.Contracts;
+using ProtonVPN.Core.Servers.Models;
 using ProtonVPN.Core.User;
+using ProtonVPN.Core.Vpn;
 using ProtonVPN.P2PDetection.Forwarded;
 using UserLocation = ProtonVPN.Core.Api.Contracts.UserLocation;
 
@@ -46,12 +50,13 @@ namespace ProtonVPN.App.Test.P2PDetection.Forwarded
         }
 
         [DataTestMethod]
-        [DataRow("62.112.9.168", true)]
-        [DataRow("104.245.144.186", true)]
-        [DataRow("127.0.0.1", false)]
-        [DataRow("", false)]
-        [DataRow(null, false)]
-        public async Task Detected_ShouldBe_WhenUserLocationService_Returns(string ip, bool expected)
+        [DataRow("62.112.9.168", "127.0.0.1", true)]
+        [DataRow("62.112.9.168", "62.112.9.168", false)]
+        [DataRow("104.245.144.186", "127.0.0.1", true)]
+        [DataRow("127.0.0.1", "", false)]
+        [DataRow("", "", false)]
+        [DataRow(null, "", false)]
+        public async Task TrafficShouldBeForwardedWhenUserLocationServiceReturns(string ip, string currentConnectedIP, bool expected)
         {
             // Arrange
             var response = ApiResponseResult<UserLocation>.Ok(new UserLocation
@@ -62,10 +67,36 @@ namespace ProtonVPN.App.Test.P2PDetection.Forwarded
             _vpnConfig.BlackHoleIps.Returns(new List<string> { "62.112.9.168", "104.245.144.186" });
             _userLocationService.LocationAsync().Returns(response);
             var subject = new ForwardedTraffic(_userLocationService, _vpnConfig);
+            await subject.OnVpnStateChanged(new VpnStateChangedEventArgs(
+                VpnStatus.Connected,
+                VpnError.None,
+                GetConnectedServer(currentConnectedIP),
+                false,
+                VpnProtocol.Auto));
+
             // Act
             var result = await subject.Value();
+
             // Assert
             result.Forwarded.Should().Be(expected);
+        }
+
+        private Server GetConnectedServer(string ip)
+        {
+            return new Server(
+                "id",
+                "",
+                "",
+                "",
+                "",
+                "",
+                0,
+                0,
+                0,
+                0,
+                0,
+                new Location(),
+                new List<PhysicalServer>(), ip);
         }
     }
 }
