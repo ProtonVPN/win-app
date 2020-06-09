@@ -93,7 +93,7 @@
     <ROW Component="GoSrp.dll" ComponentId="{3DB767E8-ACF9-459F-A509-F57E76FBA633}" Directory_="x64_Dir" Attributes="256" KeyPath="GoSrp.dll"/>
     <ROW Component="GoSrp.dll_1" ComponentId="{89CC2AA9-0000-4E4B-9D5A-43ACC1B1D1E3}" Directory_="x86_Dir" Attributes="0" KeyPath="GoSrp.dll_1"/>
     <ROW Component="GuestHoleServers.json" ComponentId="{C5ACA4D0-1647-4D3A-B9CD-9FE054A81588}" Directory_="ProtonVPN_1_Dir" Attributes="0" KeyPath="GuestHoleServers.json" Type="0"/>
-    <ROW Component="Logs" ComponentId="{5012E344-2ED7-41C3-9A3D-83F3111DDB2C}" Directory_="Logs_Dir" Attributes="0"/>
+    <ROW Component="Logs" ComponentId="{973CE498-3D38-4B1D-9790-BF0E5196A202}" Directory_="Logs_Dir" Attributes="0"/>
     <ROW Component="Microsoft.Deployment.WindowsInstaller.dll" ComponentId="{FFB7E0D6-80C7-40A9-AC9E-BFEA81253FFB}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Deployment.WindowsInstaller.dll"/>
     <ROW Component="NLog.dll" ComponentId="{17246A16-5DDB-41C5-AD07-AD5D1B5B8121}" Directory_="APPDIR" Attributes="0" KeyPath="NLog.dll"/>
     <ROW Component="Newtonsoft.Json.dll" ComponentId="{E0A54725-459B-4F28-A4A0-7587B5B176E7}" Directory_="APPDIR" Attributes="0" KeyPath="Newtonsoft.Json.dll"/>
@@ -237,6 +237,7 @@
   <COMPONENT cid="caphyon.advinst.msicomp.AiRemoveFileComponent">
     <ROW RemoveFile="_" Condition="(AI_CLEAN_RESOURCES_UNINSTALL = &quot;1&quot;) AND (NOT UPGRADINGPRODUCTCODE)" Options="3"/>
     <ROW RemoveFile="__1" Condition="(AI_CLEAN_RESOURCES_UNINSTALL = &quot;1&quot;) AND (NOT UPGRADINGPRODUCTCODE)" Options="3"/>
+    <ROW RemoveFile="__2" Condition="(OLDPRODUCTS)" Options="3"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BootstrapperUISequenceComponent">
     <ROW Action="AI_DetectSoftware" Sequence="101"/>
@@ -427,7 +428,7 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCreateFolderComponent">
     <ROW Directory_="ProtonVPN_Dir" Component_="ProtonVPN" ManualDelete="false"/>
     <ROW Directory_="APPDIR" Component_="APPDIR" ManualDelete="true"/>
-    <ROW Directory_="Logs_Dir" Component_="Logs" ManualDelete="false"/>
+    <ROW Directory_="Logs_Dir" Component_="Logs" ManualDelete="true"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCustActComponent">
     <ROW Action="AI_AiRemoveFilesCommit" Type="11777" Source="ResourceCleaner.dll" Target="OnAiRemoveFilesCommit" WithoutSeq="true"/>
@@ -580,8 +581,8 @@
     <ROW Feature_="MainFeature" Component_="Albireo.Base32.dll"/>
     <ROW Feature_="MainFeature" Component_="ARSoft.Tools.Net.dll"/>
     <ROW Feature_="MainFeature" Component_="BouncyCastle.Crypto.dll"/>
-    <ROW Feature_="MainFeature" Component_="Logs"/>
     <ROW Feature_="MainFeature" Component_="GuestHoleServers.json"/>
+    <ROW Feature_="MainFeature" Component_="Logs"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
     <ROW Name="protonvpn.exe" SourcePath="images\protonvpn.ico" Index="0"/>
@@ -699,6 +700,7 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiRemoveFileComponent">
     <ROW FileKey="_" Component_="AI_ExePath" DirProperty="AppData_Dir" InstallMode="2"/>
     <ROW FileKey="__1" Component_="ProtonVPN.exe" DirProperty="ProtonVPN_1_Dir" InstallMode="2"/>
+    <ROW FileKey="__2" Component_="AI_ExePath" DirProperty="Logs_Dir" InstallMode="1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiServConfigFailureActionsComponent">
     <ROW MsiServiceConfigFailureActions="ServiceName" Name="[ServiceName]" Event="5" ResetPeriod="1" RebootMessage="[~]" Actions="1[~]1[~]1" DelayActions="1[~]1[~]1" Component_="AI_ExePath"/>
