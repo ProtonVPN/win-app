@@ -32,20 +32,17 @@ namespace ProtonVPN.Profiles
 {
     public class ProfileFormModalViewModel : BaseModalViewModel
     {
-        private readonly Common.Configuration.Config _appConfig;
         private readonly StandardProfileFormViewModel _standardProfileFormViewModel;
         private readonly SecureCoreProfileFormViewModel _secureCoreProfileFormViewModel;
         private readonly TorProfileFormViewModel _torProfileFormViewModel;
         private readonly P2PProfileFormViewModel _p2PProfileFormViewModel;
 
         public ProfileFormModalViewModel(
-            Common.Configuration.Config appConfig,
             StandardProfileFormViewModel standardProfileFormViewModel,
             SecureCoreProfileFormViewModel secureCoreProfileFormViewModel,
             TorProfileFormViewModel torProfileFormViewModel,
             P2PProfileFormViewModel p2ProfileFormViewModel)
         {
-            _appConfig = appConfig;
             _p2PProfileFormViewModel = p2ProfileFormViewModel;
             _standardProfileFormViewModel = standardProfileFormViewModel;
             _secureCoreProfileFormViewModel = secureCoreProfileFormViewModel;
@@ -58,8 +55,6 @@ namespace ProtonVPN.Profiles
             CancelCommand = new RelayCommand(CancelAction, CanCancel);
             CloseErrorsCommand = new RelayCommand(CloseErrorsAction);
         }
-
-        public int MaxProfileNameLength => _appConfig.MaxProfileNameLength;
 
         public ICommand SelectServerTypeCommand { get; }
         public RelayCommand SaveCommand { get; }
