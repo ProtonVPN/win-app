@@ -45,7 +45,10 @@ namespace ProtonVPN.Profiles.Form
         {
             base.Load();
             if (!EditMode)
+            {
                 LoadServers();
+                SelectedServer = Servers.FirstOrDefault();
+            }
         }
 
         public override void LoadProfile(Profile profile)
