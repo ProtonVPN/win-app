@@ -77,9 +77,8 @@ namespace ProtonVPN.Profiles.Form
                     NotifyOfPropertyChange();
                 }
 
-                var selectedServerName = SelectedServer?.Name;
                 LoadServers();
-                SelectedServer = Servers?.FirstOrDefault(s => s.Name == selectedServerName);
+                SelectedServer = GetSelectedServer();
             }
         }
 
@@ -208,6 +207,18 @@ namespace ProtonVPN.Profiles.Form
             }
 
             return false;
+        }
+
+        private IServerViewModel GetSelectedServer()
+        {
+            if (EditMode)
+            {
+                return _unsavedChanges
+                    ? Servers?.FirstOrDefault()
+                    : Servers?.FirstOrDefault(s => s.Name == SelectedServer?.Name);
+            }
+
+            return Servers?.FirstOrDefault();
         }
     }
 }
