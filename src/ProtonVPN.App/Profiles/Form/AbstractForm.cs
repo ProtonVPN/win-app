@@ -353,7 +353,10 @@ namespace ProtonVPN.Profiles.Form
 
         private void SelectRandomColor()
         {
-            ColorCode = _colorProvider.RandomColor();
+            if (string.IsNullOrEmpty(ColorCode))
+            {
+                ColorCode = _colorProvider.RandomColor();
+            }
         }
 
         private bool ShowUpgradeModal(IServerViewModel value)
