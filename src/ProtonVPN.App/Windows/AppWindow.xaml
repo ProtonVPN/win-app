@@ -42,7 +42,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         FlowDirection="{Binding FlowDirection}"
         d:DataContext="{d:DesignData viewModel:MainViewModel}">
     <WindowChrome.WindowChrome>
-        <WindowChrome CaptionHeight="{Binding ActualHeight,ElementName=Titlebar}" GlassFrameThickness="0 0 0 1" />
+        <WindowChrome CaptionHeight="{Binding ActualHeight, ElementName=Titlebar}" GlassFrameThickness="0" CornerRadius="0"/>
     </WindowChrome.WindowChrome>
 
     <Window.Resources>

@@ -46,7 +46,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     </Window.Resources>
 
     <WindowChrome.WindowChrome>
-        <WindowChrome CaptionHeight="{Binding ActualHeight, ElementName=Titlebar}" GlassFrameThickness="0 0 0 1"/>
+        <WindowChrome CaptionHeight="{Binding ActualHeight, ElementName=Titlebar}" GlassFrameThickness="0" CornerRadius="0"/>
     </WindowChrome.WindowChrome>
 
     <Grid Background="#2b2c34">
