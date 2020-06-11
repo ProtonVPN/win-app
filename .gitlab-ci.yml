@@ -103,7 +103,8 @@ ui-test:
   stage: ui-test
   tags:
     - windows
-  when: manual
+  only:
+    - develop
   script:
     - powershell -File ci\uninstall-app.ps1
     - powershell -Command "Start-Sleep -s 15"
