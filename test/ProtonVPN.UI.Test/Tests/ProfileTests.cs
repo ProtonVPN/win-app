@@ -71,21 +71,6 @@ namespace ProtonVPN.UI.Test.Tests
         }
 
         [TestMethod]
-        public void TryToCreateProfileWithoutServer()
-        {
-            loginWindow.LoginWithPlusUser();
-
-            mainWindow.ClickHamburgerMenu()
-                .HamburgerMenu.ClickProfiles();
-
-            profileWindow.ClickToCreateNewProfile()
-                .EnterProfileName("Standard Profile")
-                .SelectCountryFromList("Belgium")
-                .ClickSaveButton()
-                .VerifyServerErrorDisplayed();
-        }
-
-        [TestMethod]
         public void TryToCreateStandardProfile()
         {
             loginWindow.LoginWithPlusUser();
