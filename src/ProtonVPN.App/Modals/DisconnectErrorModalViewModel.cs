@@ -36,7 +36,7 @@ namespace ProtonVPN.Modals
         private bool _networkBlocked;
         private readonly IActiveUrls _urlConfig;
         private readonly ConnectionErrorResolver _connectionErrorResolver;
-        private readonly VpnManager _vpnManager;
+        private readonly IVpnManager _vpnManager;
         private readonly SettingsModalViewModel _settingsModalViewModel;
         private readonly IModals _modals;
         private readonly ILogger _logger;
@@ -51,7 +51,7 @@ namespace ProtonVPN.Modals
             ILogger logger,
             IActiveUrls urlConfig,
             ConnectionErrorResolver connectionErrorResolver,
-            VpnManager vpnManager,
+            IVpnManager vpnManager,
             IModals modals,
             SettingsModalViewModel settingsModalViewModel)
         {

@@ -33,11 +33,11 @@ namespace ProtonVPN.ViewModels
     internal class TrayNotificationViewModel : ViewModel, IVpnStateAware
     {
         private readonly QuickConnector _quickConnector;
-        private readonly VpnManager _vpnManager;
+        private readonly IVpnManager _vpnManager;
         private readonly AppExitHandler _appExitHandler;
 
         public TrayNotificationViewModel(
-            VpnManager vpnManager,
+            IVpnManager vpnManager,
             QuickConnector quickConnector,
             AppExitHandler appExitHandler,
             QuickLaunchViewModel quickLaunchViewModel)

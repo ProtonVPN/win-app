@@ -48,7 +48,7 @@ namespace ProtonVPN.ViewModels
         IOnboardingStepAware
     {
         private readonly UserAuth _userAuth;
-        private readonly VpnManager _vpnManager;
+        private readonly IVpnManager _vpnManager;
         private readonly IActiveUrls _urls;
         private readonly IEventAggregator _eventAggregator;
         private readonly AppExitHandler _appExitHandler;
@@ -59,7 +59,7 @@ namespace ProtonVPN.ViewModels
 
         public MainViewModel(
             UserAuth userAuth,
-            VpnManager vpnManager,
+            IVpnManager vpnManager,
             IActiveUrls urls,
             IEventAggregator eventAggregator,
             AppExitHandler appExitHandler,

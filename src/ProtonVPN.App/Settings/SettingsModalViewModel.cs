@@ -44,7 +44,7 @@ namespace ProtonVPN.Settings
     public class SettingsModalViewModel : BaseModalViewModel, IVpnStateAware, IUserDataAware
     {
         private readonly IAppSettings _appSettings;
-        private readonly VpnManager _vpnManager;
+        private readonly IVpnManager _vpnManager;
         private readonly ProfileViewModelFactory _profileViewModelFactory;
         private readonly IDialogs _dialogs;
         private readonly IUserStorage _userStorage;

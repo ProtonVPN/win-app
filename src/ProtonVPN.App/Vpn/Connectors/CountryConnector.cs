@@ -31,7 +31,7 @@ namespace ProtonVPN.Vpn.Connectors
 
         public CountryConnector(
             IAppSettings appSettings,
-            VpnManager vpnManager) :
+            IVpnManager vpnManager) :
             base(vpnManager)
         {
             _appSettings = appSettings;

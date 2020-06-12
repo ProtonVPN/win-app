@@ -36,7 +36,7 @@ using ProtonVPN.Vpn.Connectors;
 
 namespace ProtonVPN.Core.Service.Vpn
 {
-    public class VpnManager : IVpnPlanAware, ILogoutAware, IServersAware, ISettingsAware
+    public class VpnManager : IVpnManager, IVpnPlanAware, ILogoutAware, IServersAware, ISettingsAware
     {
         private readonly ILogger _logger;
         private readonly ProfileConnector _profileConnector;

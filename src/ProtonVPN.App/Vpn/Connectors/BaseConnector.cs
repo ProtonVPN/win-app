@@ -24,9 +24,9 @@ namespace ProtonVPN.Vpn.Connectors
 {
     public abstract class BaseConnector
     {
-        protected readonly VpnManager VpnManager;
+        protected readonly IVpnManager VpnManager;
 
-        protected BaseConnector(VpnManager vpnManager)
+        protected BaseConnector(IVpnManager vpnManager)
         {
             VpnManager = vpnManager;
         }

@@ -40,7 +40,7 @@ namespace ProtonVPN.ConnectingScreen
 
         public ICommand DisconnectCommand { get; set; }
 
-        private readonly VpnManager _vpnManager;
+        private readonly IVpnManager _vpnManager;
 
         private IName _connectionName;
         public IName ConnectionName
@@ -81,7 +81,7 @@ namespace ProtonVPN.ConnectingScreen
             set => Set(ref _animatePercentage, value);
         }
 
-        public ConnectingViewModel(VpnManager vpnManager)
+        public ConnectingViewModel(IVpnManager vpnManager)
         {
             _vpnManager = vpnManager;
 

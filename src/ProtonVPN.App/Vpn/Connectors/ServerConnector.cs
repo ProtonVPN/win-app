@@ -27,7 +27,7 @@ namespace ProtonVPN.Vpn.Connectors
 {
     public class ServerConnector : BaseConnector
     {
-        public ServerConnector(VpnManager vpnManager) : base(vpnManager)
+        public ServerConnector(IVpnManager vpnManager) : base(vpnManager)
         {
         }
 

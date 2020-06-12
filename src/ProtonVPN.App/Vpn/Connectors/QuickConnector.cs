@@ -30,7 +30,7 @@ namespace ProtonVPN.Vpn.Connectors
         private readonly IAppSettings _appSettings;
 
         public QuickConnector(
-            VpnManager vpnManager,
+            IVpnManager vpnManager,
             ProfileManager profileManager,
             IAppSettings appSettings) : 
             base(vpnManager)
