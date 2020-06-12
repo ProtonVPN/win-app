@@ -48,7 +48,7 @@ namespace ProtonVPN.Sidebar
         ITrafficForwardedAware,
         ISettingsAware
     {
-        private readonly VpnManager _vpnManager;
+        private readonly IVpnManager _vpnManager;
         private readonly QuickConnector _quickConnector;
         private readonly ServerManager _serverManager;
         private readonly VpnConnectionSpeed _speedTracker;
@@ -59,7 +59,7 @@ namespace ProtonVPN.Sidebar
         public ConnectionStatusViewModel(
             ServerManager serverManager,
             QuickConnector quickConnector,
-            VpnManager vpnManager,
+            IVpnManager vpnManager,
             VpnConnectionSpeed speedTracker,
             IUserStorage userStorage)
         {

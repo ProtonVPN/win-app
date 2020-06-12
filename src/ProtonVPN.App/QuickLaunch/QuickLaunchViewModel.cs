@@ -50,7 +50,7 @@ namespace ProtonVPN.QuickLaunch
         private readonly ProfileManager _profileManager;
         private readonly ProfileViewModelFactory _profileHelper;
         private readonly QuickConnector _quickConnector;
-        private readonly VpnManager _vpnManager;
+        private readonly IVpnManager _vpnManager;
         private readonly AppWindow _appWindow;
 
         private IReadOnlyList<ProfileViewModel> _profiles;
@@ -134,7 +134,7 @@ namespace ProtonVPN.QuickLaunch
             ProfileManager profileManager,
             QuickConnector quickConnector,
             ProfileViewModelFactory profileHelper,
-            VpnManager vpnManager,
+            IVpnManager vpnManager,
             AppWindow appWindow)
         {
             _appWindow = appWindow;

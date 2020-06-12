@@ -31,14 +31,14 @@ namespace ProtonVPN.Core
     internal class AutoConnect : IVpnStateAware
     {
         private readonly IAppSettings _appSettings;
-        private readonly VpnManager _vpnManager;
+        private readonly IVpnManager _vpnManager;
         private readonly ILogger _logger;
         private readonly ProfileManager _profileManager;
         private VpnStatus _vpnStatus;
 
         public AutoConnect(
             IAppSettings appSettings,
-            VpnManager vpnManager,
+            IVpnManager vpnManager,
             ILogger logger,
             ProfileManager profileManager)
         {

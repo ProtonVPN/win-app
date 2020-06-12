@@ -186,7 +186,7 @@ namespace ProtonVPN.Core.Ioc
                 c.Resolve<VpnServiceManager>(),
                 c.Resolve<IModals>()))
                 .As<IVpnServiceManager>().SingleInstance();
-            builder.RegisterType<VpnManager>().AsImplementedInterfaces().AsSelf().SingleInstance();
+            builder.RegisterType<VpnManager>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<ServerConnector>().SingleInstance();
             builder.RegisterType<ProfileConnector>().SingleInstance();
             builder.RegisterType<CountryConnector>().SingleInstance();

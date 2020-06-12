@@ -17,13 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using GalaSoft.MvvmLight.Command;
-using ProtonVPN.Core.Modals;
-using ProtonVPN.Core.Profiles;
-using ProtonVPN.Core.Service.Vpn;
-using ProtonVPN.Core.Settings;
-using ProtonVPN.Modals;
-using ProtonVPN.Resources;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -31,16 +24,23 @@ using System.Dynamic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using GalaSoft.MvvmLight.Command;
+using ProtonVPN.Core.Modals;
+using ProtonVPN.Core.Profiles;
+using ProtonVPN.Core.Service.Vpn;
+using ProtonVPN.Core.Settings;
+using ProtonVPN.Modals;
+using ProtonVPN.Resources;
 
 namespace ProtonVPN.Profiles
 {
-    internal class ProfileListModalViewModel : BaseModalViewModel, ISettingsAware, IProfileSyncStatusAware
+    internal class ProfileListModalViewModel : BaseModalViewModel, IProfileSyncStatusAware
     {
         private readonly ProfileManager _profileManager;
         private readonly IModals _modals;
         private readonly IDialogs _dialogs;
         private readonly ProfileViewModelFactory _profileHelper;
-        private readonly VpnManager _vpnManager;
+        private readonly IVpnManager _vpnManager;
 
         private ProfileSyncStatus _profileSyncStatus = ProfileSyncStatus.Succeeded;
 
@@ -49,7 +49,7 @@ namespace ProtonVPN.Profiles
             ProfileViewModelFactory profileHelper,
             IModals modals,
             IDialogs dialogs,
-            VpnManager vpnManager,
+            IVpnManager vpnManager,
             ProfileSyncViewModel profileSync)
         {
             ProfileSync = profileSync;

@@ -212,7 +212,6 @@ namespace ProtonVPN.Core
         {
             var vpnServiceManager = Resolve<IVpnServiceManager>();
             var userAuth = Resolve<UserAuth>();
-            var vpnManager = Resolve<VpnManager>();
             var appWindow = Resolve<AppWindow>();
             var appSettings = Resolve<IAppSettings>();
 
@@ -309,13 +308,13 @@ namespace ProtonVPN.Core
 
             vpnServiceManager.RegisterCallback(async(e) =>
             {
-                vpnManager.OnVpnStateChanged(e);
+                Resolve<IVpnManager>().OnVpnStateChanged(e);
                 await Resolve<LoginViewModel>().OnVpnStateChanged(e);
                 await Resolve<LoginWindow>().OnVpnStateChanged(e);
                 await Resolve<GuestHoleConnector>().OnVpnStateChanged(e);
             });
 
-            vpnManager.VpnStateChanged += (sender, e) =>
+            Resolve<IVpnManager>().VpnStateChanged += (sender, e) =>
             {
                 var instances = Resolve<IEnumerable<IVpnStateAware>>();
                 foreach (var instance in instances)
@@ -489,7 +488,7 @@ namespace ProtonVPN.Core
         {
             try
             {
-                await Resolve<VpnManager>().GetState();
+                await Resolve<IVpnManager>().GetState();
             }
             catch (Exception ex) when (ex is CommunicationException || ex is TimeoutException || ex is TaskCanceledException)
             {

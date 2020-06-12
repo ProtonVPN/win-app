@@ -37,13 +37,13 @@ namespace ProtonVPN.Sidebar
     {
         private readonly ProfileManager _profileManager;
         private readonly ProfileViewModelFactory _profileHelper;
-        private readonly VpnManager _vpnManager;
+        private readonly IVpnManager _vpnManager;
         private readonly IModals _modals;
 
         public SidebarProfilesViewModel(
             ProfileManager profileManager,
             ProfileViewModelFactory profileHelper,
-            VpnManager vpnManager,
+            IVpnManager vpnManager,
             IModals modals)
         {
             _modals = modals;
