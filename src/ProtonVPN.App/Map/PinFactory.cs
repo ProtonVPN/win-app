@@ -17,21 +17,20 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Servers.Name;
 using ProtonVPN.Core.Servers.Specs;
-using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.User;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Map.ViewModels.Pins;
 using ProtonVPN.Servers;
 using ProtonVPN.Vpn.Connectors;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ProtonVPN.Map
 {
@@ -47,7 +46,6 @@ namespace ProtonVPN.Map
         private List<AbstractPinViewModel> _secureCorePins = new List<AbstractPinViewModel>();
         private VpnStateChangedEventArgs _vpnState;
         private readonly ServerManager _serverManager;
-        private readonly VpnManager _vpnManager;
         private readonly ServerConnector _serverConnector;
         private readonly CountryConnector _countryConnector;
 
@@ -55,12 +53,10 @@ namespace ProtonVPN.Map
             MapLineManager mapLineManager,
             IUserStorage userStorage,
             ServerManager serverManager,
-            VpnManager vpnManager,
             ServerConnector serverConnector,
             CountryConnector countryConnector)
         {
             _serverManager = serverManager;
-            _vpnManager = vpnManager;
             _serverConnector = serverConnector;
             _countryConnector = countryConnector;
             _mapLineManager = mapLineManager;
@@ -272,7 +268,6 @@ namespace ProtonVPN.Map
         {
             return new SecureCorePinViewModel(
                 countryCode,
-                _vpnManager,
                 _mapLineManager,
                 this);
         }

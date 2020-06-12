@@ -45,6 +45,7 @@ namespace ProtonVPN.QuickLaunch
     {
         private ViewModel _selectedProfile;
         private string _vpnStateText;
+        private VpnStatus _vpnStatus;
 
         private readonly ProfileManager _profileManager;
         private readonly ProfileViewModelFactory _profileHelper;
@@ -151,6 +152,8 @@ namespace ProtonVPN.QuickLaunch
         {
             var server = e.State.Server;
 
+            _vpnStatus = e.State.Status;
+
             switch (e.State.Status)
             {
                 case VpnStatus.Connected:
@@ -201,8 +204,8 @@ namespace ProtonVPN.QuickLaunch
 
         private async void QuickConnectAction()
         {
-            if (_vpnManager.Status.Equals(VpnStatus.Disconnected) ||
-                _vpnManager.Status.Equals(VpnStatus.Disconnecting))
+            if (_vpnStatus.Equals(VpnStatus.Disconnected) ||
+                _vpnStatus.Equals(VpnStatus.Disconnecting))
             {
                 await _quickConnector.Connect();
             }

@@ -55,6 +55,7 @@ namespace ProtonVPN.Settings
 
         private IReadOnlyList<ProfileViewModel> _autoConnectProfiles;
         private IReadOnlyList<ProfileViewModel> _quickConnectProfiles;
+        private VpnStatus _vpnStatus;
 
         private ProfileViewModel _profileDisabledOption => new ProfileViewModel(new Profile
         {
@@ -358,6 +359,8 @@ namespace ProtonVPN.Settings
 
         public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
         {
+            _vpnStatus = e.State.Status;
+
             SetDisconnected();
 
             return Task.CompletedTask;
@@ -420,11 +423,6 @@ namespace ProtonVPN.Settings
                 return;
 
             KillSwitch = false;
-        }
-
-        private void RefreshReconnectRequiredState()
-        {
-            ChangesPending = _reconnectState.Required();
         }
 
         private void SetDisconnected()

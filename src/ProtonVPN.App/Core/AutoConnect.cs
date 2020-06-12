@@ -17,22 +17,24 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
+using System.Threading.Tasks;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
-using System;
-using System.Threading.Tasks;
+using ProtonVPN.Core.Vpn;
 
 namespace ProtonVPN.Core
 {
-    internal class AutoConnect
+    internal class AutoConnect : IVpnStateAware
     {
         private readonly IAppSettings _appSettings;
         private readonly VpnManager _vpnManager;
         private readonly ILogger _logger;
         private readonly ProfileManager _profileManager;
+        private VpnStatus _vpnStatus;
 
         public AutoConnect(
             IAppSettings appSettings,
@@ -72,7 +74,14 @@ namespace ProtonVPN.Core
 
         private bool AutoConnectRequired(bool autoLogin)
         {
-            return autoLogin && _vpnManager.Status.Equals(VpnStatus.Disconnected) && !string.IsNullOrEmpty(_appSettings.AutoConnect);
+            return autoLogin && _vpnStatus.Equals(VpnStatus.Disconnected) && !string.IsNullOrEmpty(_appSettings.AutoConnect);
+        }
+
+        public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
+        {
+            _vpnStatus = e.State.Status;
+
+            return Task.CompletedTask;
         }
     }
 }

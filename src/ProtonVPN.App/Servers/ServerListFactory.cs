@@ -17,35 +17,35 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Core.Servers;
-using ProtonVPN.Core.Servers.Specs;
-using ProtonVPN.Core.Service.Vpn;
-using ProtonVPN.Core.Settings;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
+using ProtonVPN.Common.Vpn;
+using ProtonVPN.Core.Servers;
+using ProtonVPN.Core.Servers.Specs;
+using ProtonVPN.Core.Settings;
+using ProtonVPN.Core.Vpn;
 
 namespace ProtonVPN.Servers
 {
-    internal class ServerListFactory : IServersAware
+    internal class ServerListFactory : IServersAware, IVpnStateAware
     {
         private readonly ServerManager _serverManager;
-        private readonly VpnManager _vpnManager;
         private readonly IUserStorage _userStorage;
         private readonly SortedCountries _sortedCountries;
 
         private ObservableCollection<IServerListItem> _countries = new ObservableCollection<IServerListItem>();
+        private VpnState _vpnState = new VpnState(VpnStatus.Disconnected);
 
         public ServerListFactory(
             ServerManager serverManager,
             IUserStorage userStorage,
-            VpnManager vpnManager,
             SortedCountries sortedCountries)
         {
             _sortedCountries = sortedCountries;
             _serverManager = serverManager;
             _userStorage = userStorage;
-            _vpnManager = vpnManager;
         }
 
         public ObservableCollection<IServerListItem> BuildServerList(string searchQuery = null)
@@ -79,7 +79,7 @@ namespace ProtonVPN.Servers
                         var servers = GetMatchedServers(country, searchQuery);
                         if (servers.Count > 0)
                         {
-                            list.Add(new ServersByCountryViewModel(country.CountryCode, _userStorage.User().MaxTier, _serverManager, _vpnManager.State)
+                            list.Add(new ServersByCountryViewModel(country.CountryCode, _userStorage.User().MaxTier, _serverManager, _vpnState)
                             {
                                 Servers = servers,
                                 Expanded = true,
@@ -113,6 +113,13 @@ namespace ProtonVPN.Servers
             _countries = CreateCountryList();
         }
 
+        public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
+        {
+            _vpnState = e.State;
+
+            return Task.CompletedTask;
+        }
+
         private ObservableCollection<IServerListItem> CreateCountryList()
         {
             var countries = _sortedCountries.List();
@@ -127,7 +134,7 @@ namespace ProtonVPN.Servers
                     continue;
                 }
 
-                list.Add(new ServersByCountryViewModel(country, user.MaxTier, _serverManager, _vpnManager.State));
+                list.Add(new ServersByCountryViewModel(country, user.MaxTier, _serverManager, _vpnState));
             }
 
             return list;

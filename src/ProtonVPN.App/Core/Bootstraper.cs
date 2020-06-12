@@ -36,7 +36,6 @@ using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.OS.Processes;
 using ProtonVPN.Common.OS.Services;
 using ProtonVPN.Common.Storage;
-using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Config;
 using ProtonVPN.Core.Abstract;
@@ -411,18 +410,9 @@ namespace ProtonVPN.Core
                 Resolve<ReportBugModalViewModel>().OnAttachmentErrorOccured(e);
             };
 
-            Resolve<UnauthorizedResponseHandler>().SessionExpired += async (sender, e) =>
+            Resolve<UnauthorizedResponseHandler>().SessionExpired += (sender, e) =>
             {
-                await Resolve<IScheduler>().Schedule(async () =>
-                {
-                    if (Resolve<VpnManager>().Status != VpnStatus.Disconnected)
-                    {
-                        await Resolve<IVpnServiceManager>().Disconnect(VpnError.Unknown);
-                    }
-
-                    Resolve<LoginViewModel>().OnSessionExpired();
-                    Resolve<UserAuth>().Logout();
-                });
+                Resolve<ExpiredSessionHandler>().Execute();
             };
 
             Resolve<OutdatedAppHandler>().AppOutdated += Resolve<OutdatedAppNotification>().OnAppOutdated;
