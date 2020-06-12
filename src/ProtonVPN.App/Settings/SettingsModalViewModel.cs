@@ -51,6 +51,7 @@ namespace ProtonVPN.Settings
         private readonly IActiveUrls _urls;
         private readonly LanguageProvider _languageProvider;
         private readonly IVpnConfig _vpnConfig;
+        private readonly ReconnectState _reconnectState;
 
         private IReadOnlyList<ProfileViewModel> _autoConnectProfiles;
         private IReadOnlyList<ProfileViewModel> _quickConnectProfiles;
@@ -62,33 +63,18 @@ namespace ProtonVPN.Settings
             ColorCode = "#777783"
         });
 
-        private readonly List<string> _reconnectRequiredSettings = new List<string>
-        {
-            nameof(IAppSettings.SplitTunnelingEnabled),
-            nameof(IAppSettings.SplitTunnelMode),
-            nameof(IAppSettings.SplitTunnelingAllowApps),
-            nameof(IAppSettings.SplitTunnelingBlockApps),
-            nameof(IAppSettings.SplitTunnelIncludeIps),
-            nameof(IAppSettings.SplitTunnelExcludeIps),
-            nameof(IAppSettings.KillSwitch),
-            nameof(IAppSettings.OvpnProtocol),
-            nameof(IAppSettings.CustomDnsEnabled),
-            nameof(IAppSettings.CustomDnsIps),
-            nameof(IAppSettings.NetShieldEnabled),
-            nameof(IAppSettings.NetShieldMode),
-        };
-
         public SettingsModalViewModel(
             IAppSettings appSettings,
-            VpnManager vpnManager,
-            ProfileViewModelFactory profileViewModelFactory,
-            SplitTunnelingViewModel splitTunnelingViewModel,
-            CustomDnsListViewModel customDnsListViewModel,
+            IVpnManager vpnManager,
             IUserStorage userStorage,
             IDialogs dialogs,
             IActiveUrls urls,
-            LanguageProvider languageProvider,
-            IVpnConfig vpnConfig)
+            ILanguageProvider languageProvider,
+            IVpnConfig vpnConfig,
+            ReconnectState reconnectState,
+            ProfileViewModelFactory profileViewModelFactory,
+            SplitTunnelingViewModel splitTunnelingViewModel,
+            CustomDnsListViewModel customDnsListViewModel)
         {
             _dialogs = dialogs;
             _appSettings = appSettings;
@@ -98,6 +84,7 @@ namespace ProtonVPN.Settings
             _urls = urls;
             _languageProvider = languageProvider;
             _vpnConfig = vpnConfig;
+            _reconnectState = reconnectState;
 
             SplitTunnelingViewModel = splitTunnelingViewModel;
             Ips = customDnsListViewModel;
@@ -366,6 +353,7 @@ namespace ProtonVPN.Settings
             SetKillSwitchEnabled();
             await LoadProfiles();
             SplitTunnelingViewModel.OnActivate();
+            RefreshReconnectRequiredState();
         }
 
         public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
@@ -405,11 +393,7 @@ namespace ProtonVPN.Settings
                 OnLanguageChanged();
             }
 
-            if (_reconnectRequiredSettings.Contains(e.PropertyName))
-            {
-                ChangesPending = _vpnManager.Status != VpnStatus.Disconnecting &&
-                                 _vpnManager.Status != VpnStatus.Disconnected;
-            }
+            RefreshReconnectRequiredState();
         }
 
         public async void OnLanguageChanged()
@@ -438,15 +422,20 @@ namespace ProtonVPN.Settings
             KillSwitch = false;
         }
 
+        private void RefreshReconnectRequiredState()
+        {
+            ChangesPending = _reconnectState.Required();
+        }
+
         private void SetDisconnected()
         {
-            Disconnected = _vpnManager.Status == VpnStatus.Disconnecting ||
-                           _vpnManager.Status == VpnStatus.Disconnected;
+            Disconnected = _vpnStatus == VpnStatus.Disconnecting ||
+                           _vpnStatus == VpnStatus.Disconnected;
+        }
 
-            if (Disconnected || _vpnManager.Status == VpnStatus.Connecting)
-            {
-                ChangesPending = false;
-            }
+        private void RefreshReconnectRequiredState()
+        {
+            ChangesPending = _reconnectState.Required();
         }
 
         private async Task LoadProfiles()

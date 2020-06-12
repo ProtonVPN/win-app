@@ -51,6 +51,7 @@ using ProtonVPN.Modals;
 using ProtonVPN.Modals.Dialogs;
 using ProtonVPN.Notifications;
 using ProtonVPN.Servers;
+using ProtonVPN.Settings;
 using ProtonVPN.Settings.SplitTunneling;
 using ProtonVPN.Sidebar;
 using ProtonVPN.Vpn;
@@ -228,6 +229,8 @@ namespace ProtonVPN.Core.Ioc
                 c.Resolve<Common.Configuration.Config>().DefaultLocale))
                 .AsSelf()
                 .SingleInstance();
+            builder.RegisterType<ExpiredSessionHandler>().AsImplementedInterfaces().AsSelf().SingleInstance();
+            builder.RegisterType<ReconnectState>().AsImplementedInterfaces().AsSelf().SingleInstance();
         }
     }
 }
