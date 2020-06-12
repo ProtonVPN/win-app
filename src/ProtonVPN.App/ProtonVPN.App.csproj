@@ -380,6 +380,7 @@
     <Compile Include="Servers\ServerListFactory.cs" />
     <Compile Include="Servers\SortedCountries.cs" />
     <Compile Include="Settings\CustomDnsListViewModel.cs" />
+    <Compile Include="Settings\ReconnectState.cs" />
     <Compile Include="Settings\SplitTunneling\AppListViewModel.cs" />
     <Compile Include="Settings\SplitTunneling\AppViewModel.cs" />
     <Compile Include="Settings\SplitTunneling\InstalledApps.cs" />
