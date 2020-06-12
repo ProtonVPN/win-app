@@ -162,6 +162,7 @@ namespace ProtonVPN.ViewModels
         public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
         {
             VpnStatus = e.State.Status;
+
             switch (e.State.Status)
             {
                 case VpnStatus.Connecting:
@@ -217,7 +218,7 @@ namespace ProtonVPN.ViewModels
 
         private async void LogoutAction()
         {
-            if (_vpnManager.Status == VpnStatus.Connected)
+            if (VpnStatus == VpnStatus.Connected)
             {
                 var result = _dialogs.ShowQuestion(StringResources.Get("App_msg_LogoutConnectedConfirm"));
                 if (!result.HasValue || !result.Value)

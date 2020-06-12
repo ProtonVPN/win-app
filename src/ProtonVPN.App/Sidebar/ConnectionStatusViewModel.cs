@@ -54,6 +54,7 @@ namespace ProtonVPN.Sidebar
         private readonly VpnConnectionSpeed _speedTracker;
         private readonly IUserStorage _userStorage;
         private readonly DispatcherTimer _timer;
+        private VpnStatus _vpnStatus;
 
         public ConnectionStatusViewModel(
             ServerManager serverManager,
@@ -156,7 +157,9 @@ namespace ProtonVPN.Sidebar
 
         public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
         {
-            switch (e.State.Status)
+            _vpnStatus = e.State.Status;
+
+            switch (_vpnStatus)
             {
                 case VpnStatus.Connected:
                     var server = e.State.Server;
@@ -194,7 +197,7 @@ namespace ProtonVPN.Sidebar
 
         public Task OnUserLocationChanged(UserLocationEventArgs e)
         {
-            if (_vpnManager.Status != VpnStatus.Disconnected)
+            if (_vpnStatus != VpnStatus.Disconnected)
             {
                 return Task.CompletedTask;
             }
@@ -264,8 +267,8 @@ namespace ProtonVPN.Sidebar
 
         private async void QuickConnectAction()
         {
-            if (_vpnManager.Status == VpnStatus.Disconnecting || 
-                _vpnManager.Status == VpnStatus.Disconnected )
+            if (_vpnStatus == VpnStatus.Disconnecting ||
+                _vpnStatus == VpnStatus.Disconnected)
             {
                 await _quickConnector.Connect();
             }

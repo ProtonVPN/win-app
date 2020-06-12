@@ -70,11 +70,7 @@ namespace ProtonVPN.Core.Service.Vpn
 
         public event EventHandler<VpnStateChangedEventArgs> VpnStateChanged;
 
-        public VpnState State { get; private set; } = new VpnState(VpnStatus.Disconnected);
-
-        public VpnStatus Status => State.Status;
-
-        public Protocol Protocol => _lastProfile?.Protocol ?? Protocol.Auto;
+        private VpnState _state = new VpnState(VpnStatus.Disconnected);
 
         public async Task Connect(Profile profile)
         {
@@ -113,10 +109,10 @@ namespace ProtonVPN.Core.Service.Vpn
                 _lastServer = _lastServerCandidates.ServerByEntryIp(state.EntryIp);
             }
 
-            State = new VpnState(state.Status, _lastServer);
+            _state = new VpnState(state.Status, _lastServer);
             _networkBlocked = e.NetworkBlocked;
 
-            RaiseVpnStateChanged(new VpnStateChangedEventArgs(State, e.Error, e.NetworkBlocked, e.Protocol));
+            RaiseVpnStateChanged(new VpnStateChangedEventArgs(_state, e.Error, e.NetworkBlocked, e.Protocol));
         }
 
         public Task OnVpnPlanChangedAsync(string plan)
@@ -129,8 +125,8 @@ namespace ProtonVPN.Core.Service.Vpn
 
         public void OnUserLoggedOut()
         {
-            State = new VpnState(VpnStatus.Disconnected);
-            RaiseVpnStateChanged(new VpnStateChangedEventArgs(State, VpnError.None, _networkBlocked));
+            _state = new VpnState(VpnStatus.Disconnected);
+            RaiseVpnStateChanged(new VpnStateChangedEventArgs(_state, VpnError.None, _networkBlocked));
         }
 
         public void OnServersUpdated()
@@ -156,8 +152,8 @@ namespace ProtonVPN.Core.Service.Vpn
 
         private async Task UpdateServersOrDisconnect(VpnError disconnectReason)
         {
-            if (Status == VpnStatus.Disconnecting ||
-                Status == VpnStatus.Disconnected ||
+            if (_state.Status == VpnStatus.Disconnecting ||
+                _state.Status == VpnStatus.Disconnected ||
                 _lastProfile == null)
             {
                 return;
@@ -177,8 +173,8 @@ namespace ProtonVPN.Core.Service.Vpn
                 && !_appSettings.KillSwitch)
             {
                 if (_networkBlocked &&
-                    (Status == VpnStatus.Disconnecting || 
-                     Status == VpnStatus.Disconnected))
+                    (_state.Status == VpnStatus.Disconnecting ||
+                     _state.Status == VpnStatus.Disconnected))
                 {
                     _logger.Info("Settings changed, Kill Switch disabled: Disconnecting to disable leak protection");
                     await _vpnServiceManager.Disconnect(VpnError.None);

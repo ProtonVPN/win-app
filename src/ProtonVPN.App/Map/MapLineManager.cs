@@ -19,32 +19,33 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Servers.Models;
 using ProtonVPN.Core.Servers.Specs;
-using ProtonVPN.Core.Service.Vpn;
+using ProtonVPN.Core.Vpn;
 using ProtonVPN.Map.ViewModels.MapLine;
 using ProtonVPN.Map.ViewModels.Pins;
 
 namespace ProtonVPN.Map
 {
-    internal class MapLineManager
+    internal class MapLineManager : IVpnStateAware
     {
         private readonly ServerManager _serverManager;
-        private readonly VpnManager _vpnManager;
         private List<AbstractPinViewModel> _secureCorePins;
         private Dictionary<string, AbstractPinViewModel> _pins;
         private List<MapLine> _lines = new List<MapLine>();
         private List<MapLine> _secureCoreLines = new List<MapLine>();
-        public static List<string> SecureCoreCountries = new List<string> { "IS", "SE", "CH" };
+        private VpnStatus _vpnStatus;
 
-        public MapLineManager(ServerManager serverManager, VpnManager vpnManager)
+        public MapLineManager(ServerManager serverManager)
         {
             _serverManager = serverManager;
-            _vpnManager = vpnManager;
         }
+
+        public static List<string> SecureCoreCountries = new List<string> { "IS", "SE", "CH" };
 
         public void BuildLines()
         {
@@ -74,8 +75,10 @@ namespace ProtonVPN.Map
 
         public void SetSecureCoreLinesVisibility(bool show)
         {
-            if (_vpnManager.Status.Equals(VpnStatus.Connected) && show)
+            if (_vpnStatus.Equals(VpnStatus.Connected) && show)
+            {
                 return;
+            }
 
             var lines = GetSecureCoreLines().OfType<SecureCoreLine>();
             foreach (var line in lines)
@@ -222,6 +225,13 @@ namespace ProtonVPN.Map
                     homeLine.Visible = visible;
                 }
             }
+        }
+
+        public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
+        {
+            _vpnStatus = e.State.Status;
+
+            return Task.CompletedTask;
         }
 
         private void BuildHomeLines()

@@ -20,8 +20,6 @@
 using System;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Vpn;
-using ProtonVPN.Core.Servers.Models;
-using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Vpn;
 
 namespace ProtonVPN.Map.ViewModels.Pins
@@ -30,27 +28,26 @@ namespace ProtonVPN.Map.ViewModels.Pins
     {
         private readonly MapLineManager _pinLineManager;
         private readonly PinFactory _pinFactory;
-        private readonly VpnManager _vpnManager;
+        private VpnStatus _vpnStatus;
 
         public double PinWidth => 15;
         public double PinHeight => 15;
 
         public SecureCorePinViewModel(
             string countryCode,
-            VpnManager vpnManager,
             MapLineManager pinLineManager,
             PinFactory pinFactory) : base(countryCode)
         {
-            _vpnManager = vpnManager;
             _pinLineManager = pinLineManager;
             _pinFactory = pinFactory;
         }
 
         public override void OnVpnStateChanged(VpnStateChangedEventArgs e)
         {
-            Connected = e.State.Server is Server server
-                        && e.State.Status == VpnStatus.Connected
-                        && server.EntryCountry.EqualsIgnoringCase(CountryCode);
+            _vpnStatus = e.State.Status;
+
+            Connected = e.State.Status == VpnStatus.Connected &&
+                        e.State.Server.EntryCountry.EqualsIgnoringCase(CountryCode);
         }
 
         protected override bool BeforeShowTooltip()
@@ -81,7 +78,7 @@ namespace ProtonVPN.Map.ViewModels.Pins
             {
                 if (!Connected)
                 {
-                    if (_vpnManager.Status.Equals(VpnStatus.Disconnected))
+                    if (_vpnStatus.Equals(VpnStatus.Disconnected))
                     {
                         _pinLineManager.SetSecureCoreLinesVisibility(true);
                     }
