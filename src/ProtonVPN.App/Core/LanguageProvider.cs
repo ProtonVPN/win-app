@@ -6,7 +6,7 @@ using ProtonVPN.Common.Logging;
 
 namespace ProtonVPN.Core
 {
-    public class LanguageProvider
+    public class LanguageProvider : ILanguageProvider
     {
         private const string ResourceFile = "ProtonVPN.resources.dll";
 
