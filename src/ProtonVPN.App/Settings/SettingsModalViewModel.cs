@@ -49,7 +49,7 @@ namespace ProtonVPN.Settings
         private readonly IDialogs _dialogs;
         private readonly IUserStorage _userStorage;
         private readonly IActiveUrls _urls;
-        private readonly LanguageProvider _languageProvider;
+        private readonly ILanguageProvider _languageProvider;
         private readonly IVpnConfig _vpnConfig;
         private readonly ReconnectState _reconnectState;
 

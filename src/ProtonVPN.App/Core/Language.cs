@@ -30,11 +30,11 @@ namespace ProtonVPN.Core
     public class Language : ILoggedInAware
     {
         private readonly IAppSettings _appSettings;
-        private readonly LanguageProvider _languageProvider;
+        private readonly ILanguageProvider _languageProvider;
         private readonly string _defaultLocale;
         private string _startupLanguage;
 
-        public Language(IAppSettings appSettings, LanguageProvider languageProvider, string defaultLocale)
+        public Language(IAppSettings appSettings, ILanguageProvider languageProvider, string defaultLocale)
         {
             _defaultLocale = defaultLocale;
             _languageProvider = languageProvider;

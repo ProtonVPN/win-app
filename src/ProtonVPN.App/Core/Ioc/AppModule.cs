@@ -219,7 +219,7 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<InsecureNetworkNotification>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.Register(c => new Language(
                     c.Resolve<IAppSettings>(),
-                    c.Resolve<LanguageProvider>(),
+                    c.Resolve<ILanguageProvider>(),
                     c.Resolve<Common.Configuration.Config>().DefaultLocale))
                 .AsSelf()
                 .AsImplementedInterfaces()
@@ -227,6 +227,7 @@ namespace ProtonVPN.Core.Ioc
             builder.Register(c => new LanguageProvider(c.Resolve<ILogger>(),
                 c.Resolve<Common.Configuration.Config>().TranslationsFolder,
                 c.Resolve<Common.Configuration.Config>().DefaultLocale))
+                .As<ILanguageProvider>()
                 .AsSelf()
                 .SingleInstance();
             builder.RegisterType<ExpiredSessionHandler>().AsImplementedInterfaces().AsSelf().SingleInstance();
