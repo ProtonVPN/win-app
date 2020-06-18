@@ -40,14 +40,20 @@ namespace ProtonVPN.Vpn
         {
             var user = _userStorage.User();
 
-            if (!_vpnConfig.NetShieldEnabled || !_appSettings.NetShieldEnabled)
+            return new VpnCredentials(GetUsername(_userStorage.User().VpnUsername), user.VpnPassword);
+        }
+
+        private string GetUsername(string username)
+        {
+            // p - proton, w - windows
+            username += "+pw";
+
+            if (_vpnConfig.NetShieldEnabled && _appSettings.NetShieldEnabled)
             {
-                return new VpnCredentials(user.VpnUsername, user.VpnPassword);
+                username += $"+f{_appSettings.NetShieldMode}";
             }
 
-            return new VpnCredentials(
-                $"{user.VpnUsername}+f{_appSettings.NetShieldMode}",
-                user.VpnPassword);
+            return username;
         }
     }
 }
