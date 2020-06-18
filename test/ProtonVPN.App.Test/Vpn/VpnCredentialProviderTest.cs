@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Linq;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
@@ -35,11 +36,16 @@ namespace ProtonVPN.App.Test.Vpn
         private IVpnConfig _vpnConfig;
 
         private static string _username = "username";
-        private User _user = new User
+        private readonly User _user = new User
         {
             VpnUsername = _username,
             VpnPassword = "password"
         };
+
+        private readonly string[] _netShieldSuffixes = { "+f1", "+f2", "+f3" };
+
+        // p - proton, w - windows
+        private readonly string _clientIdentifierSuffix = "pw";
 
         public VpnCredentialProviderTest()
         {
@@ -63,11 +69,14 @@ namespace ProtonVPN.App.Test.Vpn
             var sut = new VpnCredentialProvider(_appSettings, _userStorage, _vpnConfig);
 
             // Assert
-            sut.Credentials().Username.Should().Be(_user.VpnUsername + suffix);
+            sut.Credentials().Username.Replace(_username, string.Empty)
+                .Contains(suffix)
+                .Should()
+                .BeTrue();
         }
 
         [TestMethod]
-        public void Credentials_Should_NotModify_Username()
+        public void Credentials_Should_NotContainFSuffix_UsernameIfNetShieldIsDisabled()
         {
             // Arrange
             _userStorage.User().Returns(_user);
@@ -77,7 +86,7 @@ namespace ProtonVPN.App.Test.Vpn
             var sut = new VpnCredentialProvider(_appSettings, _userStorage, _vpnConfig);
 
             // Assert
-            sut.Credentials().Username.Should().Be(_username);
+            _netShieldSuffixes.Any(s => s.Contains(sut.Credentials().Username)).Should().BeFalse();
         }
 
         [TestMethod]
@@ -92,7 +101,18 @@ namespace ProtonVPN.App.Test.Vpn
             var sut = new VpnCredentialProvider(_appSettings, _userStorage, _vpnConfig);
 
             // Assert
-            sut.Credentials().Username.Should().Be(_username);
+            _netShieldSuffixes.Any(s => s.Contains(sut.Credentials().Username)).Should().BeFalse();
+        }
+
+        [TestMethod]
+        public void Credentials_ShouldContainClientIdentifier()
+        {
+            // Arrange
+            _userStorage.User().Returns(_user);
+            var sut = new VpnCredentialProvider(_appSettings, _userStorage, _vpnConfig);
+
+            // Assert
+            sut.Credentials().Username.Contains(_clientIdentifierSuffix).Should().BeTrue();
         }
     }
 }
