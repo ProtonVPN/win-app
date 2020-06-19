@@ -23,10 +23,10 @@
     <ROW Property="CommitHash" Value="REPLACE_ME"/>
     <ROW Property="Manufacturer" Value="Proton Technologies AG"/>
     <ROW Property="MsiLogging" MultiBuildValue="DefaultBuild:vp"/>
-    <ROW Property="ProductCode" Value="1031:{DD453090-4CC0-46AB-BE44-0992B19BF2CD} 1033:{DD453090-4CC0-46AB-BE44-0992B19BF2CD} 1036:{DD453090-4CC0-46AB-BE44-0992B19BF2CD} 1040:{DD453090-4CC0-46AB-BE44-0992B19BF2CD} 1043:{DD453090-4CC0-46AB-BE44-0992B19BF2CD} 1045:{DD453090-4CC0-46AB-BE44-0992B19BF2CD} 1046:{DD453090-4CC0-46AB-BE44-0992B19BF2CD} 1049:{DD453090-4CC0-46AB-BE44-0992B19BF2CD} 1065:{DD453090-4CC0-46AB-BE44-0992B19BF2CD} 2070:{DD453090-4CC0-46AB-BE44-0992B19BF2CD} 3082:{DD453090-4CC0-46AB-BE44-0992B19BF2CD} " Type="16"/>
+    <ROW Property="ProductCode" Value="1031:{5A5B28B4-5015-446C-B3F9-B1E58037B4FD} 1033:{5A5B28B4-5015-446C-B3F9-B1E58037B4FD} 1036:{5A5B28B4-5015-446C-B3F9-B1E58037B4FD} 1040:{5A5B28B4-5015-446C-B3F9-B1E58037B4FD} 1043:{5A5B28B4-5015-446C-B3F9-B1E58037B4FD} 1045:{5A5B28B4-5015-446C-B3F9-B1E58037B4FD} 1046:{5A5B28B4-5015-446C-B3F9-B1E58037B4FD} 1049:{5A5B28B4-5015-446C-B3F9-B1E58037B4FD} 1065:{5A5B28B4-5015-446C-B3F9-B1E58037B4FD} 2070:{5A5B28B4-5015-446C-B3F9-B1E58037B4FD} 3082:{5A5B28B4-5015-446C-B3F9-B1E58037B4FD} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="ProtonVPN"/>
-    <ROW Property="ProductVersion" Value="1.16.1" Type="32"/>
+    <ROW Property="ProductVersion" Value="1.16.2" Type="32"/>
     <ROW Property="REBOOT" MultiBuildValue="DefaultBuild:ReallySuppress"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;AI_SETUPEXEPATH;SETUPEXEDIR"/>
     <ROW Property="SelectedLanguage" Value="This will be set by custom action"/>
@@ -71,7 +71,7 @@
     <ROW Directory="x86_Dir" Directory_Parent="APPDIR" DefaultDir="x86" DirectoryOptions="3"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
-    <ROW Component="AI_CustomARPName" ComponentId="{814FECFA-6906-4EFA-9BFE-32289BD52947}" Directory_="APPDIR" Attributes="4" KeyPath="DisplayName" Options="1"/>
+    <ROW Component="AI_CustomARPName" ComponentId="{0F160487-A92E-4E9D-8E2D-364DBF6F287D}" Directory_="APPDIR" Attributes="4" KeyPath="DisplayName" Options="1"/>
     <ROW Component="AI_ExePath" ComponentId="{47427A21-60A2-43B4-A150-6CBA74CF4A07}" Directory_="APPDIR" Attributes="4" KeyPath="AI_ExePath"/>
     <ROW Component="APPDIR" ComponentId="{75DDD993-CDFE-4D39-8C1A-07484ADD1A4E}" Directory_="APPDIR" Attributes="0"/>
     <ROW Component="ARSoft.Tools.Net.dll" ComponentId="{05CE9A73-14A8-494D-B2D3-8438A2A16DDB}" Directory_="APPDIR" Attributes="0" KeyPath="ARSoft.Tools.Net.dll"/>
@@ -642,9 +642,9 @@
     <ROW Action="AI_DATA_SETTER_7" Condition="( Installed AND ( REMOVE = &quot;ALL&quot; OR AI_INSTALL_MODE = &quot;Remove&quot; ) ) AND ( (VersionNT &gt; 501) OR (VersionNT = 501 AND ServicePackLevel &gt;= 2) )" Sequence="6401"/>
     <ROW Action="CopyInstallLog" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( (VersionNT &gt; 501) OR (VersionNT = 501 AND ServicePackLevel &gt;= 2) )" Sequence="6615"/>
     <ROW Action="AI_DATA_SETTER_8" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( (VersionNT &gt; 501) OR (VersionNT = 501 AND ServicePackLevel &gt;= 2) )" Sequence="6614"/>
-    <ROW Action="AI_AiRemoveFilesImmediate" Sequence="3499"/>
     <ROW Action="SetLanguageISOCode" Condition="(VersionNT &gt; 501) OR (VersionNT = 501 AND ServicePackLevel &gt;= 2)" Sequence="6612"/>
     <ROW Action="AI_DATA_SETTER_9" Condition="(VersionNT &gt; 501) OR (VersionNT = 501 AND ServicePackLevel &gt;= 2)" Sequence="6611"/>
+    <ROW Action="AI_AiRemoveFilesImmediate" Sequence="3499"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstallUISequenceComponent">
     <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="749"/>
