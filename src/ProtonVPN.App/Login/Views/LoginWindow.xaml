@@ -55,5 +55,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Button Style="{StaticResource WindowsCloseButton}" Name="CloseButton"/>
         </DockPanel>
         <ContentControl VerticalAlignment="Stretch" Margin="0,36,0,0" Content="{Binding CurrentPageViewModel}" />
+        <Border BorderThickness="1" BorderBrush="{StaticResource SecondaryColor}"/>
     </Grid>
 </Window>

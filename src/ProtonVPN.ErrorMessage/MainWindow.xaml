@@ -23,14 +23,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="ProtonVPN" Height="150" Width="500">
+        Title="ProtonVPN"
+        WindowStyle="None"
+        SizeToContent="Height"
+        Width="500">
 
     <WindowChrome.WindowChrome>
-        <WindowChrome CaptionHeight="36" GlassFrameThickness="0 0 0 1" />
+        <WindowChrome CaptionHeight="36" GlassFrameThickness="0" CornerRadius="0" />
     </WindowChrome.WindowChrome>
 
-    <DockPanel>
-        <StackPanel Style="{StaticResource Titlebar}" x:Name="Titlebar">
+    <Grid>
+        <StackPanel Style="{StaticResource Titlebar}" x:Name="Titlebar" VerticalAlignment="Top" Panel.ZIndex="1">
             <DockPanel Style="{StaticResource TitleDock}">
                 <Path Margin="7,0" Fill="{StaticResource PrimaryColor}" Style="{StaticResource ProtonIcon}"/>
                 <Label Foreground="White" VerticalAlignment="Center">ProtonVPN</Label>
@@ -57,5 +60,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                            Name="Message"/>
             </DockPanel>
         </Border>
-    </DockPanel>
+        <Border BorderThickness="1" BorderBrush="{StaticResource SecondaryColor}" Panel.ZIndex="1"/>
+    </Grid>
 </Window>
