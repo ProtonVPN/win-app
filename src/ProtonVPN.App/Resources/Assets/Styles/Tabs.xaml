@@ -93,7 +93,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TabItem}">
-                    <Grid Margin="-17,0,-17,0">
+                    <Grid Margin="{TemplateBinding Margin}">
                         <Border Name="LeftShadow" Background="{TemplateBinding Background}" HorizontalAlignment="Left" Width="0" OpacityMask="{StaticResource TabOpacityMaskStart}"></Border>
                         <Grid Cursor="Hand">
                             <Grid.ColumnDefinitions>

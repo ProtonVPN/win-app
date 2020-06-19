@@ -102,9 +102,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
     <StackPanel Background="#1b1b20" Width="540">
         <TabControl Margin="0,20,0,0" SelectedIndex="{Binding SelectedTabIndex}">
-            <TabItem>
+            <TabItem Margin="0">
                 <TabItem.Header>
                     <TextBlock Text="{resources:Loc Settings_General_ttl}"
+                               Margin="-17,0,0,0"
                                TextTrimming="CharacterEllipsis"/>
                 </TabItem.Header>
                 <StackPanel Margin="25,20,25,40">
@@ -179,9 +180,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </Border>
                 </StackPanel>
             </TabItem>
-            <TabItem>
+            <TabItem Margin="-17,0,0,0">
                 <TabItem.Header>
                     <TextBlock Text="{resources:Loc Settings_Connection_ttl}"
+                               Margin="0"
                                TextTrimming="CharacterEllipsis"/>
                 </TabItem.Header>
                 <StackPanel Margin="25,20,25,40">
@@ -337,9 +339,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </StackPanel>
                 </StackPanel>
             </TabItem>
-            <TabItem>
+            <TabItem Margin="-17,0,0,0">
                 <TabItem.Header>
                     <TextBlock Text="{resources:Loc Settings_Advanced_ttl}"
+                               Margin="17,0,0,0"
                                TextTrimming="CharacterEllipsis"/>
                 </TabItem.Header>
                 <DockPanel Margin="25,20,25,20" LastChildFill="True">
