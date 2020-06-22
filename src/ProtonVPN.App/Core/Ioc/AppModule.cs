@@ -52,6 +52,7 @@ using ProtonVPN.Modals.Dialogs;
 using ProtonVPN.Notifications;
 using ProtonVPN.Servers;
 using ProtonVPN.Settings;
+using ProtonVPN.Settings.ReconnectNotification;
 using ProtonVPN.Settings.SplitTunneling;
 using ProtonVPN.Sidebar;
 using ProtonVPN.Vpn;
@@ -232,6 +233,7 @@ namespace ProtonVPN.Core.Ioc
                 .SingleInstance();
             builder.RegisterType<ExpiredSessionHandler>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterType<ReconnectState>().AsImplementedInterfaces().AsSelf().SingleInstance();
+            builder.RegisterType<SettingsBuilder>().SingleInstance();
         }
     }
 }

@@ -37,6 +37,7 @@ using ProtonVPN.Core.Vpn;
 using ProtonVPN.Modals;
 using ProtonVPN.Profiles;
 using ProtonVPN.Resources;
+using ProtonVPN.Settings.ReconnectNotification;
 using ProtonVPN.Settings.SplitTunneling;
 
 namespace ProtonVPN.Settings
@@ -354,7 +355,7 @@ namespace ProtonVPN.Settings
             SetKillSwitchEnabled();
             await LoadProfiles();
             SplitTunnelingViewModel.OnActivate();
-            RefreshReconnectRequiredState();
+            RefreshReconnectRequiredState(string.Empty);
         }
 
         public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
@@ -396,7 +397,7 @@ namespace ProtonVPN.Settings
                 OnLanguageChanged();
             }
 
-            RefreshReconnectRequiredState();
+            RefreshReconnectRequiredState(e.PropertyName);
         }
 
         public async void OnLanguageChanged()
@@ -431,9 +432,9 @@ namespace ProtonVPN.Settings
                            _vpnStatus == VpnStatus.Disconnected;
         }
 
-        private void RefreshReconnectRequiredState()
+        private void RefreshReconnectRequiredState(string settingChanged)
         {
-            ChangesPending = _reconnectState.Required();
+            ChangesPending = _reconnectState.Required(settingChanged);
         }
 
         private async Task LoadProfiles()

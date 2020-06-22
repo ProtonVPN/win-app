@@ -382,8 +382,13 @@
     <Compile Include="Servers\Countries.cs" />
     <Compile Include="Servers\ServerListFactory.cs" />
     <Compile Include="Servers\SortedCountries.cs" />
+    <Compile Include="Settings\ReconnectNotification\CompoundSetting.cs" />
     <Compile Include="Settings\CustomDnsListViewModel.cs" />
-    <Compile Include="Settings\ReconnectState.cs" />
+    <Compile Include="Settings\ReconnectNotification\CustomDnsSetting.cs" />
+    <Compile Include="Settings\ReconnectNotification\ReconnectState.cs" />
+    <Compile Include="Settings\ReconnectNotification\Setting.cs" />
+    <Compile Include="Settings\ReconnectNotification\SettingsBuilder.cs" />
+    <Compile Include="Settings\ReconnectNotification\SingleSetting.cs" />
     <Compile Include="Settings\SplitTunneling\AppListViewModel.cs" />
     <Compile Include="Settings\SplitTunneling\AppViewModel.cs" />
     <Compile Include="Settings\SplitTunneling\InstalledApps.cs" />
@@ -405,6 +410,7 @@
     <Compile Include="Core\Ioc\ProfilesModule.cs" />
     <Compile Include="Core\Ioc\UiModule.cs" />
     <Compile Include="Modals\Modals.cs" />
+    <Compile Include="Settings\ReconnectNotification\SplitTunnelModeSetting.cs" />
     <Compile Include="SpeedGraph\ViewResolvingPlotModel.cs" />
     <Compile Include="Core\MVVM\Converters\BytesToSizeConverter.cs" />
     <Compile Include="Core\MVVM\Converters\ConnectionStatusFlagConverter.cs" />
