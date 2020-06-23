@@ -3,10 +3,12 @@
 #include "NetworkConfiguration.h"
 #include "NetworkIPv6Settings.h"
 #include "BestInterface.h"
+#include "NetInterface.h"
 #include "Route.h"
 
 #include <string>
 #include <set>
+#include <algorithm>
 
 #define EXPORT __declspec(dllexport)
 
@@ -87,10 +89,28 @@ extern "C" EXPORT long NetworkUtilDisableIPv6OnAllAdapters(wchar_t* appName, con
     return 0;
 }
 
-extern "C" EXPORT DWORD GetBestInterfaceIp(IN_ADDR* address)
+extern "C" EXPORT DWORD GetBestInterfaceIp(IN_ADDR* address, const wchar_t* excludedIfaceHwid)
 {
+    std::vector<std::wstring> excludedIfaceGuids{};
+
+    try
+    {
+        auto networkConfig = Proton::NetworkUtil::NetworkConfiguration::instance();
+
+        networkConfig.initialize();
+
+        for (auto iface : networkConfig.getNetworkInterfacesById(excludedIfaceHwid))
+        {
+            excludedIfaceGuids.push_back(iface.bindName());
+        }
+    }
+    catch (const _com_error& error)
+    {
+        return error.Error();
+    }
+
     BestInterface bestInterface;
-    *address = bestInterface.IpAddress();
+    *address = bestInterface.IpAddress(excludedIfaceGuids);
 
     return 0;
 }

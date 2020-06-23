@@ -14,16 +14,19 @@ namespace ProtonVPN.Vpn.Connection
         private readonly IVpnConnection _origin;
         private readonly INetworkInterfaces _networkInterfaces;
         private readonly string _tapAdapterDescription;
+        private readonly string _tapAdapterId;
         private readonly ILogger _logger;
 
         public DefaultGatewayWrapper(
             ILogger logger,
+            string tapAdapterId,
             string tapAdapterDescription,
             INetworkInterfaces networkInterfaces,
             IVpnConnection origin)
         {
             _logger = logger;
             _tapAdapterDescription = tapAdapterDescription;
+            _tapAdapterId = tapAdapterId;
             _networkInterfaces = networkInterfaces;
             _origin = origin;
             _origin.StateChanged += Origin_StateChanged;
@@ -64,7 +67,7 @@ namespace ProtonVPN.Vpn.Connection
         {
             try
             {
-                var localInterfaceIp = NetworkUtil.GetBestInterfaceIp().ToString();
+                var localInterfaceIp = NetworkUtil.GetBestInterfaceIp(_tapAdapterId).ToString();
                 var tapInterface = _networkInterfaces.Interface(_tapAdapterDescription);
                 var parseResult = Guid.TryParse(tapInterface.Id, out var guid);
 
