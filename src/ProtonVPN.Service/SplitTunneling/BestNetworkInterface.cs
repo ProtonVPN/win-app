@@ -24,9 +24,16 @@ namespace ProtonVPN.Service.SplitTunneling
 {
     public class BestNetworkInterface
     {
+        private readonly Common.Configuration.Config _config;
+
+        public BestNetworkInterface(Common.Configuration.Config config)
+        {
+            _config = config;
+        }
+
         public IPAddress LocalIpAddress()
         {
-            return NetworkUtil.GetBestInterfaceIp();
+            return NetworkUtil.GetBestInterfaceIp(_config.OpenVpn.TapAdapterId);
         }
     }
 }

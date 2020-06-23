@@ -3,7 +3,14 @@
 #include <Iphlpapi.h>
 #include <ws2tcpip.h>
 
-IN_ADDR BestInterface::IpAddress()
+bool IsIfaceExcluded(const std::vector<std::wstring>& guids, const std::wstring& ifaceGuid)
+{
+    auto it = std::find(guids.begin(), guids.end(), ifaceGuid);
+
+    return it != guids.end();
+}
+
+IN_ADDR BestInterface::IpAddress(const std::vector<std::wstring>& excludedIfaceGuids)
 {
     PIP_ADAPTER_INFO pAdapterInfo;
     PIP_ADAPTER_INFO pAdapter;
@@ -34,6 +41,13 @@ IN_ADDR BestInterface::IpAddress()
         pAdapter = pAdapterInfo;
         while (pAdapter)
         {
+            std::string guid(pAdapter->AdapterName);
+            if (IsIfaceExcluded(excludedIfaceGuids, std::wstring(guid.begin(), guid.end())))
+            {
+                pAdapter = pAdapter->Next;
+                continue;
+            }
+
             pIPAddrString = &pAdapter->IpAddressList;
 
             pIPGwString = &pAdapter->GatewayList;
