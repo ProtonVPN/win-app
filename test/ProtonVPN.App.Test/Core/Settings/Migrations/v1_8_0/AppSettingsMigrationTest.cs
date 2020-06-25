@@ -21,8 +21,8 @@ using System;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
-using ProtonVPN.Core.Settings.Migrations.v1_8_0;
 using ProtonVPN.Core.Storage;
+using ProtonVPN.Settings.Migrations.v1_8_0;
 
 namespace ProtonVPN.App.Test.Core.Settings.Migrations.v1_8_0
 {

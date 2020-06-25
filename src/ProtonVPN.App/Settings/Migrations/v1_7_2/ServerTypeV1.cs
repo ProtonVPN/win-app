@@ -17,28 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Core.Storage;
-
-namespace ProtonVPN.Core.Settings.Migrations.v1_8_0
+namespace ProtonVPN.Settings.Migrations.v1_7_2
 {
-    internal class AppSettingsMigration : BaseAppSettingsMigration
+    public enum ServerTypeV1
     {
-        public AppSettingsMigration(ISettingsStorage appSettings): base(appSettings, "1.8.0")
-        {
-        }
-
-        protected override void Migrate()
-        {
-            MigrateSplitTunneling();
-        }
-
-        private void MigrateSplitTunneling()
-        {
-            if (Settings.Get<bool>("KillSwitch") &&
-                Settings.Get<bool>("SplitTunnelingEnabled"))
-            {
-                Settings.Set("SplitTunnelingEnabled", false);
-            }
-        }
+        Standard = 1,
+        SecureCore = 2,
+        P2P = 3,
+        Tor = 4
     }
 }

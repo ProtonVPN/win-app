@@ -17,29 +17,29 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Collections.Generic;
-using ProtonVPN.Core.Profiles;
+using ProtonVPN.Core.Servers.Models;
 
-namespace ProtonVPN.Core.Settings.Migrations.v1_7_2
+namespace ProtonVPN.Settings.Migrations.v1_7_2
 {
-    class MigratedProfileType
+    internal class MigratedCountryCode
     {
-        public static readonly Dictionary<ProfileTypeV1, ProfileType> Map = new Dictionary<ProfileTypeV1, ProfileType>
-        {
-            { ProfileTypeV1.Custom, ProfileType.Custom },
-            { ProfileTypeV1.Fastest, ProfileType.Fastest },
-            { ProfileTypeV1.Random, ProfileType.Random }
-        };
+        private readonly string _country;
+        private readonly Server _server;
 
-        private readonly ProfileTypeV1 _profileType;
-
-        public MigratedProfileType(ProfileTypeV1 profileType)
+        public MigratedCountryCode(string country, Server server)
         {
-            _profileType = profileType;
+            _country = country;
+            _server = server;
         }
 
-        public static implicit operator ProfileType(MigratedProfileType item) => item.Value();
+        public static implicit operator string(MigratedCountryCode item) => item.Value();
 
-        public ProfileType Value() => Map[_profileType];
+        public string Value()
+        {
+            if (!string.IsNullOrEmpty(_country))
+                return _country.ToUpper();
+
+            return _server?.ExitCountry?.ToUpper();
+        }
     }
 }

@@ -17,6 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.ComponentModel;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using ProtonVPN.Common;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Models;
@@ -25,12 +31,7 @@ using ProtonVPN.Core.Profiles.Cached;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Settings.Contracts;
 using ProtonVPN.Core.Storage;
-using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
+using ProtonVPN.Settings;
 
 namespace ProtonVPN.Core
 {

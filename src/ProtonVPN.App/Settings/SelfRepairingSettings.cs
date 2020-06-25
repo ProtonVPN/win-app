@@ -17,13 +17,14 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Core.Storage;
 using System;
 using System.Configuration;
 using System.Diagnostics;
+using ProtonVPN.Core;
+using ProtonVPN.Core.Storage;
 using File = System.IO.File;
 
-namespace ProtonVPN.Core.Settings
+namespace ProtonVPN.Settings
 {
     internal class SelfRepairingSettings : ISettingsStorage
     {

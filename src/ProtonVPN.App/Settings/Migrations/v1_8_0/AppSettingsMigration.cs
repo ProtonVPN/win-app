@@ -17,37 +17,28 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Extensions;
 using ProtonVPN.Core.Storage;
 
-namespace ProtonVPN.Core.Settings.Migrations.v1_10_0
+namespace ProtonVPN.Settings.Migrations.v1_8_0
 {
     internal class AppSettingsMigration : BaseAppSettingsMigration
     {
-        private const string UserSettingsVersionKey = "UserSettingsVersion";
-
-        public AppSettingsMigration(ISettingsStorage appSettings): 
-            base(appSettings, "1.10.0")
+        public AppSettingsMigration(ISettingsStorage appSettings): base(appSettings, "1.8.0")
         {
         }
 
         protected override void Migrate()
         {
-            if (!MigrationRequired()) return;
-
-            MigrateProtocol();
+            MigrateSplitTunneling();
         }
 
-        private bool MigrationRequired()
+        private void MigrateSplitTunneling()
         {
-            var userSettingsVersion = Settings.Get<string>(UserSettingsVersionKey);
-
-            return userSettingsVersion?.ContainsIgnoringCase("\"Value\":\"1.10.") != true;
-        }
-
-        private void MigrateProtocol()
-        {
-            Settings.Set("OvpnProtocol", "auto");
+            if (Settings.Get<bool>("KillSwitch") &&
+                Settings.Get<bool>("SplitTunnelingEnabled"))
+            {
+                Settings.Set("SplitTunnelingEnabled", false);
+            }
         }
     }
 }

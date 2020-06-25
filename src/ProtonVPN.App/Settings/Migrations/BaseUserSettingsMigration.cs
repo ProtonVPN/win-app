@@ -17,29 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Core.Servers.Models;
+using ProtonVPN.Core.Storage;
 
-namespace ProtonVPN.Core.Settings.Migrations.v1_7_2
+namespace ProtonVPN.Settings.Migrations
 {
-    internal class MigratedCountryCode
+    internal abstract class BaseUserSettingsMigration : BaseSettingsMigration, IUserSettingsMigration
     {
-        private readonly string _country;
-        private readonly Server _server;
-
-        public MigratedCountryCode(string country, Server server)
+        protected BaseUserSettingsMigration(ISettingsStorage userSettings, string toVersion): 
+            base(userSettings, toVersion)
         {
-            _country = country;
-            _server = server;
-        }
-
-        public static implicit operator string(MigratedCountryCode item) => item.Value();
-
-        public string Value()
-        {
-            if (!string.IsNullOrEmpty(_country))
-                return _country.ToUpper();
-
-            return _server?.ExitCountry?.ToUpper();
         }
     }
 }

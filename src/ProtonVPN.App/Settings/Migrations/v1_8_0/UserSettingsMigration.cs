@@ -17,11 +17,33 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Core.Abstract;
+using ProtonVPN.Core.Storage;
 
-namespace ProtonVPN.Core.Settings.Migrations
+namespace ProtonVPN.Settings.Migrations.v1_8_0
 {
-    internal interface IUserSettingsMigration : IMigration
+    internal class UserSettingsMigration : BaseUserSettingsMigration
     {
+        private ISettingsStorage AppSettings { get; }
+
+        public UserSettingsMigration(ISettingsStorage appSettings, ISettingsStorage userSettings) :
+            base(userSettings, "1.8.0")
+        {
+            AppSettings = appSettings;
+        }
+
+        protected override void Migrate()
+        {
+            MigrateSecureCoreMode();
+        }
+
+        private void MigrateSecureCoreMode()
+        {
+            MigrateToPerUser<bool>("SecureCore");
+        }
+
+        private void MigrateToPerUser<T>(string key)
+        {
+            Settings.Set(key, AppSettings.Get<T>(key));
+        }
     }
 }

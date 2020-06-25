@@ -22,7 +22,7 @@ using System.Diagnostics.CodeAnalysis;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
-using ProtonVPN.Core.Settings.Migrations;
+using ProtonVPN.Settings.Migrations;
 using ProtonVPN.Core.Storage;
 
 namespace ProtonVPN.App.Test.Core.Settings.Migrations

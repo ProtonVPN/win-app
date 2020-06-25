@@ -17,12 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Core.Abstract;
-using ProtonVPN.Core.Storage;
 using System.Collections.Generic;
 using System.Linq;
+using ProtonVPN.Core.Abstract;
+using ProtonVPN.Core.Storage;
 
-namespace ProtonVPN.Core.Settings
+namespace ProtonVPN.Settings
 {
     internal class UserSettings : ISettingsStorage, ISupportsMigration
     {

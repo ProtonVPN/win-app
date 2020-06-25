@@ -22,7 +22,7 @@ using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Servers.Specs;
 
-namespace ProtonVPN.Core.Settings.Migrations.v1_7_2
+namespace ProtonVPN.Settings.Migrations.v1_7_2
 {
     internal class MigratedProfile
     {

@@ -17,13 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Core.Settings.Migrations.v1_7_2
+using ProtonVPN.Core.Abstract;
+
+namespace ProtonVPN.Settings.Migrations
 {
-    public enum ServerTypeV1
+    internal interface IAppSettingsMigration : IMigration
     {
-        Standard = 1,
-        SecureCore = 2,
-        P2P = 3,
-        Tor = 4
     }
 }
