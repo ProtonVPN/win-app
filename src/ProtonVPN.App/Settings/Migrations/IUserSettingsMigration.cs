@@ -17,27 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Extensions;
-using ProtonVPN.Core.Profiles;
+using ProtonVPN.Core.Abstract;
 
-namespace ProtonVPN.Core.Settings.Migrations.v1_7_2
+namespace ProtonVPN.Settings.Migrations
 {
-    internal class MigratedProtocol
+    internal interface IUserSettingsMigration : IMigration
     {
-        private readonly string _protocol;
-
-        public MigratedProtocol(string protocol)
-        {
-            _protocol = protocol;
-        }
-
-        public static implicit operator Protocol(MigratedProtocol item) => item.Value();
-
-        public Protocol Value()
-        {
-            return _protocol?.EqualsIgnoringCase("udp") == true ? Protocol.OpenVpnUdp :
-                   _protocol?.EqualsIgnoringCase("tcp") == true ? Protocol.OpenVpnTcp :
-                   Protocol.Auto;
-        }
     }
 }

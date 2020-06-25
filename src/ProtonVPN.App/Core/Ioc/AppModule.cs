@@ -41,7 +41,6 @@ using ProtonVPN.Core.Service;
 using ProtonVPN.Core.Service.Settings;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
-using ProtonVPN.Core.Settings.Migrations;
 using ProtonVPN.Core.Startup;
 using ProtonVPN.Core.Storage;
 using ProtonVPN.Core.User;
@@ -52,6 +51,7 @@ using ProtonVPN.Modals.Dialogs;
 using ProtonVPN.Notifications;
 using ProtonVPN.Servers;
 using ProtonVPN.Settings;
+using ProtonVPN.Settings.Migrations;
 using ProtonVPN.Settings.ReconnectNotification;
 using ProtonVPN.Settings.SplitTunneling;
 using ProtonVPN.Sidebar;
@@ -139,16 +139,16 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<SyncProfile>().SingleInstance();
 
             builder.RegisterType<AppSettings>().AsImplementedInterfaces().SingleInstance();
-            builder.RegisterType<Settings.Migrations.v1_7_2.AppSettingsMigration>().AsImplementedInterfaces().SingleInstance();
-            builder.RegisterType<Settings.Migrations.v1_7_2.UserSettingsMigration>().AsImplementedInterfaces().SingleInstance();
-            builder.RegisterType<Settings.Migrations.v1_8_0.AppSettingsMigration>().AsImplementedInterfaces().SingleInstance();
-            builder.Register(c => new Settings.Migrations.v1_8_0.UserSettingsMigration(
+            builder.RegisterType<ProtonVPN.Settings.Migrations.v1_7_2.AppSettingsMigration>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<ProtonVPN.Settings.Migrations.v1_7_2.UserSettingsMigration>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<ProtonVPN.Settings.Migrations.v1_8_0.AppSettingsMigration>().AsImplementedInterfaces().SingleInstance();
+            builder.Register(c => new ProtonVPN.Settings.Migrations.v1_8_0.UserSettingsMigration(
                     c.Resolve<ISettingsStorage>(),
                     c.Resolve<UserSettings>()))
                 .As<IUserSettingsMigration>()
                 .SingleInstance();
-            builder.RegisterType<Settings.Migrations.v1_10_0.AppSettingsMigration>().AsImplementedInterfaces().SingleInstance();
-            builder.RegisterType<Settings.Migrations.v1_17_0.AppSettingsMigration>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<ProtonVPN.Settings.Migrations.v1_10_0.AppSettingsMigration>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<ProtonVPN.Settings.Migrations.v1_17_0.AppSettingsMigration>().AsImplementedInterfaces().SingleInstance();
 
             builder.RegisterType<MapLineManager>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterType<VpnEvents>();

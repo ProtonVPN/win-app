@@ -21,7 +21,7 @@ using System;
 using ProtonVPN.Core.Abstract;
 using ProtonVPN.Core.Storage;
 
-namespace ProtonVPN.Core.Settings.Migrations
+namespace ProtonVPN.Settings.Migrations
 {
     internal abstract class BaseSettingsMigration : IMigration
     {

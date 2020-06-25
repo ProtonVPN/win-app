@@ -46,6 +46,7 @@ using ProtonVPN.Core.Storage;
 using ProtonVPN.Core.Threading;
 using ProtonVPN.Core.Update;
 using ProtonVPN.Resources;
+using ProtonVPN.Settings;
 using ProtonVPN.Vpn;
 using Module = Autofac.Module;
 

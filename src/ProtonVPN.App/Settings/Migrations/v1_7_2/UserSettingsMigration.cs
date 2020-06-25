@@ -17,13 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
+using System.Linq;
 using ProtonVPN.Core.Profiles.Cached;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Storage;
-using System;
-using System.Linq;
 
-namespace ProtonVPN.Core.Settings.Migrations.v1_7_2
+namespace ProtonVPN.Settings.Migrations.v1_7_2
 {
     internal class UserSettingsMigration : IUserSettingsMigration
     {

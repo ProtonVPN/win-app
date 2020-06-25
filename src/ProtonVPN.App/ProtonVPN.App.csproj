@@ -193,8 +193,8 @@
     <Compile Include="Core\LanguageProvider.cs" />
     <Compile Include="Core\MVVM\Converters\PluralConverter.cs" />
     <Compile Include="Core\MVVM\Converters\ZeroToBoolConverter.cs" />
+    <Compile Include="Settings\Migrations\v1_17_0\AppSettingsMigration.cs" />
     <Compile Include="Core\Service\Vpn\IVpnManager.cs" />
-    <Compile Include="Core\Settings\Migrations\v1_17_0\AppSettingsMigration.cs" />
     <Compile Include="FlashNotifications\FlashNotifications.xaml.cs">
       <DependentUpon>FlashNotifications.xaml</DependentUpon>
     </Compile>
@@ -288,14 +288,14 @@
     <Compile Include="Core\Service\Settings\SettingsServiceClient.cs" />
     <Compile Include="Core\Service\Settings\SettingsServiceClientManager.cs" />
     <Compile Include="Core\Service\Vpn\ServiceStartDecorator.cs" />
-    <Compile Include="Core\Settings\Migrations\BaseSettingsMigration.cs" />
-    <Compile Include="Core\Settings\Migrations\BaseAppSettingsMigration.cs" />
-    <Compile Include="Core\Settings\Migrations\IUserSettingsMigration.cs" />
-    <Compile Include="Core\Settings\Migrations\IAppSettingsMigration.cs" />
-    <Compile Include="Core\Settings\Migrations\BaseUserSettingsMigration.cs" />
-    <Compile Include="Core\Settings\Migrations\v1_10_0\AppSettingsMigration.cs" />
-    <Compile Include="Core\Settings\Migrations\v1_8_0\AppSettingsMigration.cs" />
-    <Compile Include="Core\Settings\Migrations\v1_8_0\UserSettingsMigration.cs" />
+    <Compile Include="Settings\Migrations\BaseSettingsMigration.cs" />
+    <Compile Include="Settings\Migrations\BaseAppSettingsMigration.cs" />
+    <Compile Include="Settings\Migrations\IUserSettingsMigration.cs" />
+    <Compile Include="Settings\Migrations\IAppSettingsMigration.cs" />
+    <Compile Include="Settings\Migrations\BaseUserSettingsMigration.cs" />
+    <Compile Include="Settings\Migrations\v1_10_0\AppSettingsMigration.cs" />
+    <Compile Include="Settings\Migrations\v1_8_0\AppSettingsMigration.cs" />
+    <Compile Include="Settings\Migrations\v1_8_0\UserSettingsMigration.cs" />
     <Compile Include="Core\Wpf\CustomListView.cs" />
     <Compile Include="Core\Wpf\Markdown\Markdown.cs" />
     <Compile Include="Core\Wpf\Markdown\TextToFlowDocumentConverter.cs" />
@@ -320,17 +320,17 @@
     <Compile Include="Core\Service\Vpn\VpnService.cs" />
     <Compile Include="Core\Service\Vpn\VpnServiceManager.cs" />
     <Compile Include="Core\Service\Vpn\VpnSpeed.cs" />
-    <Compile Include="Core\Settings\Migrations\v1_7_2\MigratedCountryCode.cs" />
-    <Compile Include="Core\Settings\Migrations\v1_7_2\MigratedFeatures.cs" />
-    <Compile Include="Core\Settings\Migrations\v1_7_2\MigratedProtocol.cs" />
-    <Compile Include="Core\Settings\Migrations\v1_7_2\ServerTypeV1.cs" />
-    <Compile Include="Core\Settings\Migrations\v1_7_2\MigratedColorCode.cs" />
-    <Compile Include="Core\Settings\Migrations\v1_7_2\MigratedProfile.cs" />
-    <Compile Include="Core\Settings\Migrations\v1_7_2\MigratedProfileType.cs" />
-    <Compile Include="Core\Settings\Migrations\v1_7_2\MigratedServerId.cs" />
-    <Compile Include="Core\Settings\Migrations\v1_7_2\ProfileTypeV1.cs" />
-    <Compile Include="Core\Settings\PerUserSettings.cs" />
-    <Compile Include="Core\Settings\UserSettings.cs" />
+    <Compile Include="Settings\Migrations\v1_7_2\MigratedCountryCode.cs" />
+    <Compile Include="Settings\Migrations\v1_7_2\MigratedFeatures.cs" />
+    <Compile Include="Settings\Migrations\v1_7_2\MigratedProtocol.cs" />
+    <Compile Include="Settings\Migrations\v1_7_2\ServerTypeV1.cs" />
+    <Compile Include="Settings\Migrations\v1_7_2\MigratedColorCode.cs" />
+    <Compile Include="Settings\Migrations\v1_7_2\MigratedProfile.cs" />
+    <Compile Include="Settings\Migrations\v1_7_2\MigratedProfileType.cs" />
+    <Compile Include="Settings\Migrations\v1_7_2\MigratedServerId.cs" />
+    <Compile Include="Settings\Migrations\v1_7_2\ProfileTypeV1.cs" />
+    <Compile Include="Settings\PerUserSettings.cs" />
+    <Compile Include="Settings\UserSettings.cs" />
     <Compile Include="Core\Startup\IAutoStartup.cs" />
     <Compile Include="Core\Startup\ISyncableAutoStartup.cs" />
     <Compile Include="Core\Startup\SyncableAutoStartup.cs" />
@@ -356,7 +356,7 @@
     <Compile Include="Modals\Welcome\NonTrialWelcomeModalView.xaml.cs">
       <DependentUpon>NonTrialWelcomeModalView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Core\Settings\Migrations\v1_7_2\ProfileV1.cs" />
+    <Compile Include="Settings\Migrations\v1_7_2\ProfileV1.cs" />
     <Compile Include="Modals\Welcome\NonTrialWelcomeModalViewModel.cs" />
     <Compile Include="Modals\Welcome\TrialWelcomeModalViewModel.cs" />
     <Compile Include="Notifications\ISystemNotification.cs" />
@@ -421,7 +421,7 @@
     <Compile Include="Core\MVVM\Converters\LoadToTextConverter.cs" />
     <Compile Include="Core\MVVM\Converters\PinStateToBoolConverter.cs" />
     <Compile Include="Notifications\VpnStatusNotification.cs" />
-    <Compile Include="Core\Settings\AppSettingsStorage.cs" />
+    <Compile Include="Settings\AppSettingsStorage.cs" />
     <Compile Include="Core\Startup\AutoStartup.cs" />
     <Compile Include="Login\ViewModels\LoginErrorViewModel.cs" />
     <Compile Include="Login\Views\LoginErrorView.xaml.cs">
@@ -483,7 +483,7 @@
     </Compile>
     <Compile Include="Profiles\Form\StandardProfileFormViewModel.cs" />
     <Compile Include="Profiles\Form\TorProfileFormViewModel.cs" />
-    <Compile Include="Core\Settings\Migrations\v1_7_2\UserSettingsMigration.cs" />
+    <Compile Include="Settings\Migrations\v1_7_2\UserSettingsMigration.cs" />
     <Compile Include="Profiles\Servers\ServerTypeViewModel.cs" />
     <Compile Include="Profiles\ProfileViewModelFactory.cs" />
     <Compile Include="Map\MapLineManager.cs" />
@@ -494,15 +494,15 @@
     <Compile Include="Core\MVVM\Converters\StringNullOrEmptyToVisibilityConverter.cs" />
     <Compile Include="Login\PasswordBoxMonitor.cs" />
     <Compile Include="Map\PinStateToZIndex.cs" />
-    <Compile Include="Core\Settings\SelfRepairingSettings.cs" />
-    <Compile Include="Core\Settings\UserStorage.cs" />
+    <Compile Include="Settings\SelfRepairingSettings.cs" />
+    <Compile Include="Settings\UserStorage.cs" />
     <Compile Include="Core\SystemParams.cs" />
     <Compile Include="Core\Wpf\BorderGrid.cs" />
     <Compile Include="Core\Wpf\ChangeAwareContentControl.cs" />
     <Compile Include="Core\Wpf\ControlExtensions.cs" />
     <Compile Include="Core\Wpf\Input\PasswordBoxAssistant.cs" />
     <Compile Include="P2PDetection\P2PDetector.cs" />
-    <Compile Include="Core\Settings\Migrations\v1_7_2\AppSettingsMigration.cs" />
+    <Compile Include="Settings\Migrations\v1_7_2\AppSettingsMigration.cs" />
     <Compile Include="Account\AccountModalView.xaml.cs">
       <DependentUpon>AccountModalView.xaml</DependentUpon>
     </Compile>

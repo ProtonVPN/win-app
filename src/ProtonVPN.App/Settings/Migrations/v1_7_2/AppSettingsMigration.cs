@@ -18,9 +18,10 @@
  */
 
 using ProtonVPN.Core.Models;
+using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Storage;
 
-namespace ProtonVPN.Core.Settings.Migrations.v1_7_2
+namespace ProtonVPN.Settings.Migrations.v1_7_2
 {
     internal class AppSettingsMigration : BaseAppSettingsMigration
     {

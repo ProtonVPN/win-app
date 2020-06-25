@@ -20,7 +20,7 @@
 using Newtonsoft.Json;
 using ProtonVPN.Core.Servers.Models;
 
-namespace ProtonVPN.Core.Settings.Migrations.v1_7_2
+namespace ProtonVPN.Settings.Migrations.v1_7_2
 {
     public class ProfileV1
     {

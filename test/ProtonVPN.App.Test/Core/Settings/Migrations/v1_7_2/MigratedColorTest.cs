@@ -21,7 +21,7 @@ using System.Linq;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ProtonVPN.Core.Profiles;
-using ProtonVPN.Core.Settings.Migrations.v1_7_2;
+using ProtonVPN.Settings.Migrations.v1_7_2;
 
 namespace ProtonVPN.App.Test.Core.Settings.Migrations.v1_7_2
 {

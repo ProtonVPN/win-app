@@ -17,15 +17,29 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Core.Storage;
+using System.Collections.Generic;
+using ProtonVPN.Core.Profiles;
 
-namespace ProtonVPN.Core.Settings.Migrations
+namespace ProtonVPN.Settings.Migrations.v1_7_2
 {
-    internal abstract class BaseAppSettingsMigration : BaseSettingsMigration, IAppSettingsMigration
+    class MigratedProfileType
     {
-        protected BaseAppSettingsMigration(ISettingsStorage appSettings, string toVersion): 
-            base(appSettings, toVersion)
+        public static readonly Dictionary<ProfileTypeV1, ProfileType> Map = new Dictionary<ProfileTypeV1, ProfileType>
         {
+            { ProfileTypeV1.Custom, ProfileType.Custom },
+            { ProfileTypeV1.Fastest, ProfileType.Fastest },
+            { ProfileTypeV1.Random, ProfileType.Random }
+        };
+
+        private readonly ProfileTypeV1 _profileType;
+
+        public MigratedProfileType(ProfileTypeV1 profileType)
+        {
+            _profileType = profileType;
         }
+
+        public static implicit operator ProfileType(MigratedProfileType item) => item.Value();
+
+        public ProfileType Value() => Map[_profileType];
     }
 }

@@ -17,33 +17,27 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Core.Storage;
+using ProtonVPN.Common.Extensions;
+using ProtonVPN.Core.Profiles;
 
-namespace ProtonVPN.Core.Settings.Migrations.v1_8_0
+namespace ProtonVPN.Settings.Migrations.v1_7_2
 {
-    internal class UserSettingsMigration : BaseUserSettingsMigration
+    internal class MigratedProtocol
     {
-        private ISettingsStorage AppSettings { get; }
+        private readonly string _protocol;
 
-        public UserSettingsMigration(ISettingsStorage appSettings, ISettingsStorage userSettings) :
-            base(userSettings, "1.8.0")
+        public MigratedProtocol(string protocol)
         {
-            AppSettings = appSettings;
+            _protocol = protocol;
         }
 
-        protected override void Migrate()
-        {
-            MigrateSecureCoreMode();
-        }
+        public static implicit operator Protocol(MigratedProtocol item) => item.Value();
 
-        private void MigrateSecureCoreMode()
+        public Protocol Value()
         {
-            MigrateToPerUser<bool>("SecureCore");
-        }
-
-        private void MigrateToPerUser<T>(string key)
-        {
-            Settings.Set(key, AppSettings.Get<T>(key));
+            return _protocol?.EqualsIgnoringCase("udp") == true ? Protocol.OpenVpnUdp :
+                   _protocol?.EqualsIgnoringCase("tcp") == true ? Protocol.OpenVpnTcp :
+                   Protocol.Auto;
         }
     }
 }

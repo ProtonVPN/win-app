@@ -17,24 +17,37 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Core.Settings.Contracts;
+using ProtonVPN.Common.Extensions;
 using ProtonVPN.Core.Storage;
 
-namespace ProtonVPN.Core.Settings.Migrations.v1_17_0
+namespace ProtonVPN.Settings.Migrations.v1_10_0
 {
     internal class AppSettingsMigration : BaseAppSettingsMigration
     {
-        private const string ExcludeSplitTunnelIpsKey = "SplitTunnelingIps";
+        private const string UserSettingsVersionKey = "UserSettingsVersion";
 
-        public AppSettingsMigration(ISettingsStorage appSettings):
-            base(appSettings, "1.17.0")
+        public AppSettingsMigration(ISettingsStorage appSettings): 
+            base(appSettings, "1.10.0")
         {
         }
 
         protected override void Migrate()
         {
-            var oldIps = Settings.Get<IpContract[]>(ExcludeSplitTunnelIpsKey);
-            Settings.Set("SplitTunnelExcludeIps", oldIps);
+            if (!MigrationRequired()) return;
+
+            MigrateProtocol();
+        }
+
+        private bool MigrationRequired()
+        {
+            var userSettingsVersion = Settings.Get<string>(UserSettingsVersionKey);
+
+            return userSettingsVersion?.ContainsIgnoringCase("\"Value\":\"1.10.") != true;
+        }
+
+        private void MigrateProtocol()
+        {
+            Settings.Set("OvpnProtocol", "auto");
         }
     }
 }

@@ -18,13 +18,13 @@
  */
 
 using System;
-using ProtonVPN.Core.Auth;
-using ProtonVPN.Core.Storage;
 using System.Collections.Generic;
 using System.Linq;
+using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.OS.Crypto;
+using ProtonVPN.Core.Storage;
 
-namespace ProtonVPN.Core.Settings
+namespace ProtonVPN.Settings
 {
     internal class PerUserSettings : ISettingsStorage, ILoggedInAware, ILogoutAware
     {

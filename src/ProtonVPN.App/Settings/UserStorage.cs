@@ -22,12 +22,14 @@ using System.Globalization;
 using System.Security.Cryptography;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Core.Api.Contracts;
+using ProtonVPN.Core.Models;
 using ProtonVPN.Core.OS.Crypto;
 using ProtonVPN.Core.Servers;
+using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Storage;
 using UserLocation = ProtonVPN.Core.User.UserLocation;
 
-namespace ProtonVPN.Core.Settings
+namespace ProtonVPN.Settings
 {
     internal class UserStorage : IUserStorage
     {
@@ -63,7 +65,7 @@ namespace ProtonVPN.Core.Settings
             UserDataChanged?.Invoke(this, EventArgs.Empty);
         }
 
-        public Models.User User()
+        public User User()
         {
             try
             {
@@ -74,7 +76,7 @@ namespace ProtonVPN.Core.Settings
                 _logger.Error(e);
             }
 
-            return Models.User.EmptyUser();
+            return Core.Models.User.EmptyUser();
         }
 
         public void SaveLocation(UserLocation location)
@@ -107,7 +109,7 @@ namespace ProtonVPN.Core.Settings
 
         public void StoreVpnInfo(VpnInfoResponse vpnInfo)
         {
-            CacheUser(new Models.User
+            CacheUser(new User
             {
                 ExpirationTime = vpnInfo.Vpn.ExpirationTime,
                 MaxTier = vpnInfo.Vpn.MaxTier,
@@ -120,11 +122,11 @@ namespace ProtonVPN.Core.Settings
             });
         }
 
-        private Models.User UnsafeUser()
+        private User UnsafeUser()
         {
             var username = _storage.Get<string>("Username")?.Trim();
             if (string.IsNullOrEmpty(username))
-                return Models.User.EmptyUser();
+                return Core.Models.User.EmptyUser();
 
             username = username.Decrypt();
 
@@ -136,7 +138,7 @@ namespace ProtonVPN.Core.Settings
             if (!string.IsNullOrEmpty(vpnPassword))
                 vpnPassword = vpnPassword.Decrypt();
 
-            return new Models.User
+            return new User
             {
                 Username = username,
                 VpnPlan = _userSettings.Get<string>("VpnPlan"),
@@ -168,7 +170,7 @@ namespace ProtonVPN.Core.Settings
             return new UserLocation(ip.Decrypt(), latitudeFloat, longitudeFloat, isp.Decrypt(), country.Decrypt());
         }
 
-        private void SaveUserData(Models.User user)
+        private void SaveUserData(User user)
         {
             _userSettings.Set("VpnPlan", user.VpnPlan);
             _userSettings.Set("MaxTier", user.MaxTier);
@@ -180,7 +182,7 @@ namespace ProtonVPN.Core.Settings
             _userSettings.Set("VpnPassword", !string.IsNullOrEmpty(user.VpnPassword) ? user.VpnPassword.Encrypt() : string.Empty);
         }
 
-        private void CacheUser(Models.User user)
+        private void CacheUser(User user)
         {
             var previousData = User();
             SaveUserData(user);

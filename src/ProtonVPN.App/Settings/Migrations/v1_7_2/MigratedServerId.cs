@@ -19,7 +19,7 @@
 
 using System.Collections.Generic;
 
-namespace ProtonVPN.Core.Settings.Migrations.v1_7_2
+namespace ProtonVPN.Settings.Migrations.v1_7_2
 {
     internal class MigratedServerId
     {

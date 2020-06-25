@@ -19,12 +19,12 @@
 
 using ProtonVPN.Core.Storage;
 
-namespace ProtonVPN.Core.Settings.Migrations
+namespace ProtonVPN.Settings.Migrations
 {
-    internal abstract class BaseUserSettingsMigration : BaseSettingsMigration, IUserSettingsMigration
+    internal abstract class BaseAppSettingsMigration : BaseSettingsMigration, IAppSettingsMigration
     {
-        protected BaseUserSettingsMigration(ISettingsStorage userSettings, string toVersion): 
-            base(userSettings, toVersion)
+        protected BaseAppSettingsMigration(ISettingsStorage appSettings, string toVersion): 
+            base(appSettings, toVersion)
         {
         }
     }

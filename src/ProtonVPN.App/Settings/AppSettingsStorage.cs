@@ -28,7 +28,7 @@ using ProtonVPN.Common.Logging;
 using ProtonVPN.Core.Abstract;
 using ProtonVPN.Core.Storage;
 
-namespace ProtonVPN.Core.Settings
+namespace ProtonVPN.Settings
 {
     internal class AppSettingsStorage : ISettingsStorage, ISupportsMigration
     {
