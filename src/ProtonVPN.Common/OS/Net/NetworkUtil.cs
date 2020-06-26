@@ -42,12 +42,12 @@ namespace ProtonVPN.Common.Os.Net
             AssertSuccess(() => PInvoke.EnableIPv6(appName, interfaceId));
         }
 
-        public static IPAddress GetBestInterfaceIp()
+        public static IPAddress GetBestInterfaceIp(string excludedIfaceHwid)
         {
             var bytes = new byte[4];
             var pinnedBytes = GCHandle.Alloc(bytes, GCHandleType.Pinned);
 
-            AssertSuccess(() => PInvoke.GetBestInterfaceIp(pinnedBytes.AddrOfPinnedObject()));
+            AssertSuccess(() => PInvoke.GetBestInterfaceIp(pinnedBytes.AddrOfPinnedObject(), excludedIfaceHwid));
 
             pinnedBytes.Free();
 

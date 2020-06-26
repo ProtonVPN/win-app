@@ -65,5 +65,10 @@ namespace Proton
         {
             return NetworkIPv6Settings(this->config);
         }
+
+        const std::vector<NetInterface> NetworkConfiguration::getNetworkInterfacesById(const std::wstring& id)
+        {
+            return GetNetworkInterfacesById(this->config, id);
+        }
     }
 }
