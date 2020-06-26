@@ -17,7 +17,6 @@ namespace ProtonVPN.Settings.ReconnectNotification
         {
             _settings = new List<Setting>
             {
-                new SingleSetting(nameof(IAppSettings.KillSwitch), null, _appSettings),
                 new SingleSetting(nameof(IAppSettings.OvpnProtocol), null, _appSettings),
                 new CustomDnsSetting(nameof(IAppSettings.CustomDnsEnabled), null, _appSettings)
             };
@@ -25,19 +24,13 @@ namespace ProtonVPN.Settings.ReconnectNotification
             var st = new CompoundSetting(nameof(IAppSettings.SplitTunnelingEnabled), null, _appSettings);
             st.Add(new SplitTunnelModeSetting(nameof(IAppSettings.SplitTunnelMode), st, _appSettings));
 
-            _settings.Add(st);
-
-            AddNetShieldSettings();
-
-            return _settings;
-        }
-
-        private void AddNetShieldSettings()
-        {
             var ns = new CompoundSetting(nameof(IAppSettings.NetShieldEnabled), null, _appSettings);
             ns.Add(new SingleSetting(nameof(IAppSettings.NetShieldMode), ns, _appSettings));
 
+            _settings.Add(st);
             _settings.Add(ns);
+
+            return _settings;
         }
     }
 }
