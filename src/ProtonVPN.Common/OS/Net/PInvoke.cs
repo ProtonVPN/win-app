@@ -68,7 +68,9 @@ namespace ProtonVPN.Common.Os.Net
             BinaryName,
             EntryPoint = "GetBestInterfaceIp",
             CallingConvention = CallingConvention.Cdecl)]
-        public static extern uint GetBestInterfaceIp(IntPtr address);
+        public static extern uint GetBestInterfaceIp(
+            IntPtr address,
+            [MarshalAs(UnmanagedType.LPWStr)] string excludedIfaceHwid);
 
         [DllImport(
             BinaryName,

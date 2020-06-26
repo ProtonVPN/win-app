@@ -6,8 +6,10 @@
 #include <atlbase.h>
 
 #include "NetworkIPv6Settings.h"
+#include "NetInterface.h"
 
 #include <string>
+#include <vector>
 
 namespace Proton
 {
@@ -29,6 +31,8 @@ namespace Proton
                 const std::wstring& appName);
 
             NetworkIPv6Settings ipv6Settings();
+
+            const std::vector<NetInterface> getNetworkInterfacesById(const std::wstring& id);
 
         protected:
             NetworkConfiguration(CComPtr<INetCfg> config);
