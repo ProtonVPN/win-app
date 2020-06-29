@@ -46,7 +46,7 @@ namespace ProtonVPN.Core.Api
 
         private string GetVersion()
         {
-            return _appSettings.EarlyAccess ? $"{_appConfig.AppVersion}-early" : _appConfig.AppVersion;
+            return _appSettings.EarlyAccess ? $"{_appConfig.AppVersion}-beta" : _appConfig.AppVersion;
         }
     }
 }
