@@ -48,6 +48,12 @@ namespace ProtonVPN.NetworkFilter
 
         [DllImport(
             BinaryName,
+            EntryPoint = "IPFilterCreateSession",
+            CallingConvention = CallingConvention.Cdecl)]
+        public static extern uint CreateSession(ref IntPtr handle);
+
+        [DllImport(
+            BinaryName,
             EntryPoint = "IPFilterDestroySession",
             CallingConvention = CallingConvention.Cdecl)]
         public static extern uint DestroySession(IntPtr handle);
@@ -77,6 +83,24 @@ namespace ProtonVPN.NetworkFilter
         public static extern uint CreateProvider(
             IntPtr sessionHandle,
             ref DisplayData displayData,
+            uint persistent,
+            [In, Out] ref Guid key);
+
+        [DllImport(
+            BinaryName,
+            EntryPoint = "IPFilterIsProviderRegistered",
+            CallingConvention = CallingConvention.Cdecl)]
+        public static extern uint IsProviderRegistered(
+            IntPtr sessionHandle,
+            [In] ref Guid key,
+            [In, Out] ref uint result);
+
+        [DllImport(
+            BinaryName,
+            EntryPoint = "IPFilterDestroyProvider",
+            CallingConvention = CallingConvention.Cdecl)]
+        public static extern uint DestroyProvider(
+            IntPtr sessionHandle,
             [In, Out] ref Guid key);
 
         [DllImport(
@@ -89,6 +113,7 @@ namespace ProtonVPN.NetworkFilter
             [In] ref Guid providerKey,
             uint size,
             IntPtr data,
+            uint persistent,
             [In, Out] ref Guid key);
 
         [DllImport(
@@ -108,6 +133,7 @@ namespace ProtonVPN.NetworkFilter
             ref DisplayData displayData,
             [In] ref Guid providerKey,
             uint layer,
+            uint persistent,
             [In, Out] ref Guid key);
 
         [DllImport(
@@ -127,6 +153,7 @@ namespace ProtonVPN.NetworkFilter
             [In] ref Guid providerKey,
             ref DisplayData displayData,
             uint weight,
+            uint persistent,
             [In, Out] ref Guid key);
 
         [DllImport(
@@ -136,6 +163,51 @@ namespace ProtonVPN.NetworkFilter
         public static extern uint DestroySublayer(
             IntPtr sessionHandle,
             [In] ref Guid key);
+
+        [DllImport(
+            BinaryName,
+            EntryPoint = "IPFilterDoesSublayerExist",
+            CallingConvention = CallingConvention.Cdecl)]
+        public static extern uint DoesSublayerExist(
+            IntPtr sessionHandle,
+            [In] ref Guid key,
+            [In, Out] ref uint result);
+
+        [DllImport(
+            BinaryName,
+            EntryPoint = "IPFilterDoesFilterExist",
+            CallingConvention = CallingConvention.Cdecl)]
+        public static extern uint DoesFilterExist(
+            IntPtr sessionHandle,
+            [In] ref Guid key,
+            [In, Out] ref uint result);
+
+        [DllImport(
+            BinaryName,
+            EntryPoint = "IPFilterDoesProviderContextExist",
+            CallingConvention = CallingConvention.Cdecl)]
+        public static extern uint DoesProviderContextExist(
+            IntPtr sessionHandle,
+            [In] ref Guid key,
+            [In, Out] ref uint result);
+
+        [DllImport(
+            BinaryName,
+            EntryPoint = "IPFilterDoesCalloutExist",
+            CallingConvention = CallingConvention.Cdecl)]
+        public static extern uint DoesCalloutExist(
+            IntPtr sessionHandle,
+            [In] ref Guid key,
+            [In, Out] ref uint result);
+
+        [DllImport(
+            BinaryName,
+            EntryPoint = "IPFilterDestroySublayerFilters",
+            CallingConvention = CallingConvention.Cdecl)]
+        public static extern uint DestroySublayerFilters(
+            IntPtr sessionHandle,
+            [In] ref Guid providerId,
+            [In] ref Guid sublayerId);
 
         [DllImport(
             BinaryName,
@@ -159,6 +231,7 @@ namespace ProtonVPN.NetworkFilter
             uint weight,
             [In] ref Guid calloutKey,
             [In] ref Guid providerContextKey,
+            uint persistent,
             [In, Out] ref Guid filterKey);
 
         [DllImport(
@@ -176,6 +249,7 @@ namespace ProtonVPN.NetworkFilter
             [In] ref Guid calloutKey,
             [In] ref Guid providerContextKey,
             [MarshalAs(UnmanagedType.LPStr)] string addr,
+            uint persistent,
             [In, Out] ref Guid filterKey);
 
         [DllImport(
@@ -193,6 +267,7 @@ namespace ProtonVPN.NetworkFilter
             [In] ref Guid calloutKey,
             [In] ref Guid providerContextKey,
             [MarshalAs(UnmanagedType.LPWStr)] string appPath,
+            uint persistent,
             [In, Out] ref Guid filterKey);
 
         [DllImport(
@@ -208,6 +283,7 @@ namespace ProtonVPN.NetworkFilter
             uint action,
             uint weight,
             uint port,
+            uint persistent,
             [In, Out] ref Guid filterKey);
 
         [DllImport(
@@ -223,6 +299,7 @@ namespace ProtonVPN.NetworkFilter
             uint action,
             uint weight,
             uint port,
+            uint persistent,
             [In, Out] ref Guid filterKey);
 
         [DllImport(
@@ -240,6 +317,7 @@ namespace ProtonVPN.NetworkFilter
             [In] ref Guid calloutKey,
             [In] ref Guid providerContextKey,
             ref NetworkAddress addr,
+            uint persistent,
             [In, Out] ref Guid filterKey);
 
         [DllImport(
@@ -254,6 +332,7 @@ namespace ProtonVPN.NetworkFilter
             uint layer,
             uint action,
             uint weight,
+            uint persistent,
             uint index,
             [In, Out] ref Guid filterKey);
 
@@ -269,6 +348,7 @@ namespace ProtonVPN.NetworkFilter
             uint layer,
             uint action,
             uint weight,
+            uint persistent,
             [In, Out] ref Guid filterKey);
 
         [DllImport(
@@ -285,6 +365,7 @@ namespace ProtonVPN.NetworkFilter
             uint weight,
             [In] ref Guid calloutKey,
             uint index,
+            uint persistent,
             [In, Out] ref Guid filterKey);
     }
 }

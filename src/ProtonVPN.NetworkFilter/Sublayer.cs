@@ -39,10 +39,12 @@ namespace ProtonVPN.NetworkFilter
 
         public void DestroyAllFilters()
         {
-            foreach (var filter in _filters.ToList())
-            {
-                DestroyFilter(filter);
-            }
+            IpFilterNative.DestroySublayerFilters(Session.Handle, _ipFilter.ProviderId, Id);
+        }
+
+        public bool DoesFilterExist(Guid id)
+        {
+            return IpFilterNative.DoesFilterExist(Session.Handle, id);
         }
 
         public void DestroyAllCallouts()
@@ -72,8 +74,6 @@ namespace ProtonVPN.NetworkFilter
             catch (FilterNotFoundException)
             {
             }
-
-            RemoveFilter(filterId);
         }
 
         public void DestroyCallout(Guid calloutId)
@@ -95,16 +95,22 @@ namespace ProtonVPN.NetworkFilter
             DisplayData displayData,
             Action action,
             Layer layer,
-            uint weight)
+            uint weight,
+            bool persistent = false,
+            Guid id = new Guid())
         {
-            var filterId = IpFilterNative.CreateLayerFilter(
+            Guid filterId = IpFilterNative.CreateLayerFilter(
                 Session.Handle,
                 ProviderId,
                 Id,
                 displayData,
                 layer,
                 action,
-                weight, Guid.Empty, Guid.Empty);
+                weight,
+                Guid.Empty,
+                Guid.Empty,
+                persistent,
+                id);
 
             AddFilter(filterId);
 
@@ -116,9 +122,11 @@ namespace ProtonVPN.NetworkFilter
             Layer layer,
             uint weight,
             Callout callout,
-            ProviderContext providerContext)
+            ProviderContext providerContext,
+            bool persistent = false,
+            Guid id = new Guid())
         {
-            var filterId = IpFilterNative.CreateLayerFilter(
+            Guid filterId = IpFilterNative.CreateLayerFilter(
                 Session.Handle,
                 ProviderId,
                 Id,
@@ -127,7 +135,9 @@ namespace ProtonVPN.NetworkFilter
                 Action.Callout,
                 weight,
                 callout.Id, 
-                providerContext.Id);
+                providerContext.Id,
+                persistent,
+                id);
 
             AddFilter(filterId);
 
@@ -139,9 +149,11 @@ namespace ProtonVPN.NetworkFilter
             Action action,
             Layer layer,
             uint weight,
-            string address)
+            string address,
+            bool persistent = false,
+            Guid id = new Guid())
         {
-            var filterId = IpFilterNative.CreateRemoteIPv4Filter(
+            Guid filterId = IpFilterNative.CreateRemoteIPv4Filter(
                 Session.Handle,
                 ProviderId,
                 Id,
@@ -151,7 +163,9 @@ namespace ProtonVPN.NetworkFilter
                 weight,
                 Guid.Empty,
                 Guid.Empty,
-                address);
+                address,
+                persistent,
+                id);
 
             AddFilter(filterId);
 
@@ -163,9 +177,11 @@ namespace ProtonVPN.NetworkFilter
             uint weight,
             Callout callout,
             ProviderContext providerContext,
-            string address)
+            string address,
+            bool persistent = false,
+            Guid id = new Guid())
         {
-            var filterId = IpFilterNative.CreateRemoteIPv4Filter(
+            Guid filterId = IpFilterNative.CreateRemoteIPv4Filter(
                 Session.Handle,
                 ProviderId,
                 Id,
@@ -175,7 +191,9 @@ namespace ProtonVPN.NetworkFilter
                 weight,
                 callout.Id,
                 providerContext.Id,
-                address);
+                address,
+                persistent,
+                id);
 
             AddFilter(filterId);
 
@@ -187,9 +205,11 @@ namespace ProtonVPN.NetworkFilter
             Action action,
             Layer layer,
             uint weight,
-            string appPath)
+            string appPath,
+            bool persistent = false,
+            Guid id = new Guid())
         {
-            var filterId = IpFilterNative.CreateAppFilter(
+            Guid filterId = IpFilterNative.CreateAppFilter(
                 Session.Handle,
                 ProviderId,
                 Id,
@@ -199,7 +219,9 @@ namespace ProtonVPN.NetworkFilter
                 weight,
                 Guid.Empty, 
                 Guid.Empty,
-                appPath);
+                appPath,
+                persistent,
+                id);
 
             AddFilter(filterId);
 
@@ -211,9 +233,11 @@ namespace ProtonVPN.NetworkFilter
             uint weight,
             Callout callout,
             ProviderContext providerContext,
-            string appPath)
+            string appPath,
+            bool persistent = false,
+            Guid id = new Guid())
         {
-            var filterId = IpFilterNative.CreateAppFilter(
+            Guid filterId = IpFilterNative.CreateAppFilter(
                 Session.Handle,
                 ProviderId,
                 Id,
@@ -223,7 +247,9 @@ namespace ProtonVPN.NetworkFilter
                 weight,
                 callout.Id,
                 providerContext.Id,
-                appPath);
+                appPath,
+                persistent,
+                id);
 
             AddFilter(filterId);
 
@@ -235,9 +261,11 @@ namespace ProtonVPN.NetworkFilter
             Action action,
             Layer layer,
             uint weight,
-            NetworkAddress addr)
+            NetworkAddress addr,
+            bool persistent = false,
+            Guid id = new Guid())
         {
-            var filterId = IpFilterNative.CreateRemoteNetworkIPv4Filter(
+            Guid filterId = IpFilterNative.CreateRemoteNetworkIPv4Filter(
                 Session.Handle,
                 ProviderId,
                 Id,
@@ -247,7 +275,38 @@ namespace ProtonVPN.NetworkFilter
                 weight,
                 Guid.Empty,
                 Guid.Empty,
-                addr);
+                addr,
+                persistent,
+                id);
+
+            AddFilter(filterId);
+
+            return filterId;
+        }
+
+        public Guid CreateRemoteNetworkIPv4CalloutFilter(
+            DisplayData displayData,
+            Layer layer,
+            uint weight,
+            Callout callout,
+            ProviderContext providerContext,
+            NetworkAddress addr,
+            bool persistent = false,
+            Guid id = new Guid())
+        {
+            Guid filterId = IpFilterNative.CreateRemoteNetworkIPv4Filter(
+                Session.Handle,
+                ProviderId,
+                Id,
+                displayData,
+                layer,
+                Action.Callout,
+                weight,
+                callout.Id,
+                providerContext.Id,
+                addr,
+                persistent,
+                id);
 
             AddFilter(filterId);
 
@@ -259,9 +318,11 @@ namespace ProtonVPN.NetworkFilter
             Action action,
             Layer layer,
             uint weight,
-            uint port)
+            uint port,
+            bool persistent = false,
+            Guid id = new Guid())
         {
-            var filterId = IpFilterNative.CreateRemoteUdpPortFilter(
+            Guid filterId = IpFilterNative.CreateRemoteUdpPortFilter(
                 Session.Handle,
                 ProviderId,
                 Id,
@@ -269,7 +330,9 @@ namespace ProtonVPN.NetworkFilter
                 layer,
                 action,
                 weight,
-                port);
+                port,
+                persistent,
+                id);
 
             AddFilter(filterId);
 
@@ -281,9 +344,11 @@ namespace ProtonVPN.NetworkFilter
             Action action,
             Layer layer,
             uint weight,
-            uint port)
+            uint port,
+            bool persistent = false,
+            Guid id = new Guid())
         {
-            var filterId = IpFilterNative.CreateRemoteTcpPortFilter(
+            Guid filterId = IpFilterNative.CreateRemoteTcpPortFilter(
                 Session.Handle,
                 ProviderId,
                 Id,
@@ -291,7 +356,9 @@ namespace ProtonVPN.NetworkFilter
                 layer,
                 action,
                 weight,
-                port);
+                port,
+                persistent,
+                id);
 
             AddFilter(filterId);
 
@@ -302,10 +369,12 @@ namespace ProtonVPN.NetworkFilter
             DisplayData displayData,
             Action action,
             Layer layer,
+            uint index,
             uint weight,
-            uint index)
+            bool persistent = false,
+            Guid id = new Guid())
         {
-            var filterId = IpFilterNative.CreateNetInterfaceFilter(
+            Guid filterId = IpFilterNative.CreateNetInterfaceFilter(
                 Session.Handle,
                 ProviderId,
                 Id,
@@ -313,7 +382,9 @@ namespace ProtonVPN.NetworkFilter
                 layer,
                 action,
                 weight,
-                index);
+                index,
+                persistent,
+                id);
 
             AddFilter(filterId);
 
@@ -324,16 +395,18 @@ namespace ProtonVPN.NetworkFilter
             DisplayData displayData,
             Action action,
             Layer layer,
-            uint weight)
+            uint weight,
+            bool persistent = false)
         {
-            var filterId = IpFilterNative.CreateLoopbackFilter(
+            Guid filterId = IpFilterNative.CreateLoopbackFilter(
                 Session.Handle,
                 ProviderId,
                 Id,
                 displayData,
                 layer,
                 action,
-                weight);
+                weight,
+                persistent);
 
             AddFilter(filterId);
 
@@ -344,9 +417,10 @@ namespace ProtonVPN.NetworkFilter
             Layer layer,
             uint weight,
             Callout callout,
-            uint index)
+            uint index,
+            bool persistent = false)
         {
-            var filterId = IpFilterNative.BlockOutsideDns(
+            Guid filterId = IpFilterNative.BlockOutsideDns(
                 Session.Handle,
                 ProviderId,
                 Id,
@@ -355,7 +429,8 @@ namespace ProtonVPN.NetworkFilter
                 Action.Callout,
                 weight,
                 callout.Id,
-                index);
+                index,
+                (uint) (persistent ? 1 : 0));
 
             AddFilter(filterId);
 
