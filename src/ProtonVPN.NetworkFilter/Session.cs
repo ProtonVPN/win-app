@@ -35,6 +35,11 @@ namespace ProtonVPN.NetworkFilter
             return new Session(IpFilterNative.CreateDynamicSession());
         }
 
+        public static Session Permanent()
+        {
+            return new Session(IpFilterNative.CreateSession());
+        }
+
         public void Close()
         {
             IpFilterNative.DestroySession(Handle);

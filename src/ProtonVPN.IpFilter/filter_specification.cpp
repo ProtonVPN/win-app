@@ -35,6 +35,11 @@ namespace ipfilter
         this->flags ^= FWPM_FILTER_FLAG_CLEAR_ACTION_RIGHT;
     }
 
+    void FilterSpecification::persistent()
+    {
+        this->flags |= FWPM_FILTER_FLAG_PERSISTENT;
+    }
+
     void FilterSpecification::callout(GUID* calloutKey)
     {
         this->action.type = FWP_ACTION_CALLOUT_TERMINATING;

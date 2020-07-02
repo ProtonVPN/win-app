@@ -1,5 +1,7 @@
 #pragma once
 
+#define BOOL unsigned int
+
 #define EXPORT __declspec(dllexport)
 
 typedef void* IPFilterSessionHandle;
@@ -44,6 +46,9 @@ struct IPFilterNetworkAddress
 extern "C" EXPORT unsigned int IPFilterCreateDynamicSession(
     IPFilterSessionHandle* handle);
 
+extern "C" EXPORT unsigned int IPFilterCreateSession(
+    IPFilterSessionHandle* handle);
+
 extern "C" EXPORT unsigned int IPFilterDestroySession(
     IPFilterSessionHandle handle);
 
@@ -59,7 +64,17 @@ extern "C" EXPORT unsigned int IPFilterCommitTransaction(
 extern "C" EXPORT unsigned int IPFilterCreateProvider(
     IPFilterSessionHandle sessionHandle,
     const IPFilterDisplayData* displayData,
+    BOOL persistent,
     GUID* providerKey);
+
+extern "C" EXPORT unsigned int IPFilterDestroyProvider(
+    IPFilterSessionHandle sessionHandle,
+    GUID * providerKey);
+
+extern "C" EXPORT unsigned int IPFilterIsProviderRegistered(
+    IPFilterSessionHandle sessionHandle,
+    const GUID * providerKey,
+    unsigned int* result);
 
 extern "C" EXPORT unsigned int IPFilterCreateProviderContext(
     IPFilterSessionHandle sessionHandle,
@@ -67,6 +82,7 @@ extern "C" EXPORT unsigned int IPFilterCreateProviderContext(
     GUID* providerKey,
     unsigned int size,
     UINT8* data,
+    BOOL persistent,
     GUID* providerContextKey);
 
 extern "C" EXPORT unsigned int IPFilterDestroyProviderContext(
@@ -78,6 +94,7 @@ extern "C" EXPORT unsigned int IPFilterCreateCallout(
     const IPFilterDisplayData* displayData,
     GUID* providerKey,
     unsigned int layer,
+    BOOL persistent,
     GUID* calloutKey);
 
 extern "C" EXPORT unsigned int IPFilterCreateSublayer(
@@ -85,11 +102,37 @@ extern "C" EXPORT unsigned int IPFilterCreateSublayer(
     GUID* providerKey,
     const IPFilterDisplayData* displayData,
     unsigned int weight,
+    BOOL persistent,
     GUID* sublayerKey);
 
 extern "C" EXPORT unsigned int IPFilterDestroySublayer(
     IPFilterSessionHandle sessionHandle,
     GUID* subLayerKey);
+
+extern "C" EXPORT unsigned int IPFilterDestroySublayerFilters(
+    IPFilterSessionHandle sessionHandle,
+    GUID* providerKey,
+    GUID* sublayerKey);
+
+extern "C" EXPORT unsigned int IPFilterDoesSublayerExist(
+    IPFilterSessionHandle sessionHandle,
+    const GUID* sublayerKey,
+    unsigned int* result);
+
+extern "C" EXPORT unsigned int IPFilterDoesFilterExist(
+    IPFilterSessionHandle sessionHandle,
+    const GUID* filterKey,
+    unsigned int* result);
+
+extern "C" EXPORT unsigned int IPFilterDoesProviderContextExist(
+    IPFilterSessionHandle sessionHandle,
+    const GUID* providerContextKey,
+    unsigned int* result);
+
+extern "C" EXPORT unsigned int IPFilterDoesCalloutExist(
+    IPFilterSessionHandle sessionHandle,
+    const GUID* calloutKey,
+    unsigned int* result);
 
 extern "C" EXPORT unsigned int IPFilterDestroyFilter(
     IPFilterSessionHandle sessionHandle,
@@ -109,6 +152,7 @@ extern "C" EXPORT unsigned int IPFilterCreateLayerFilter(
     unsigned int weight,
     GUID* calloutKey,
     GUID* providerContextKey,
+    BOOL persistent,
     GUID* filterKey);
 
 extern "C" EXPORT unsigned int IPFilterCreateRemoteIPv4Filter(
@@ -122,6 +166,7 @@ extern "C" EXPORT unsigned int IPFilterCreateRemoteIPv4Filter(
     GUID * calloutKey,
     GUID * providerContextKey,
     const char* addr,
+    BOOL persistent,
     GUID* filterKey);
 
 extern "C" EXPORT unsigned int IPFilterCreateAppFilter(
@@ -135,6 +180,7 @@ extern "C" EXPORT unsigned int IPFilterCreateAppFilter(
     GUID* calloutKey,
     GUID* providerContextKey,
     const wchar_t* path,
+    BOOL persistent,
     GUID* filterKey);
 
 extern "C" EXPORT unsigned int IPFilterCreateRemoteTCPPortFilter(
@@ -146,6 +192,7 @@ extern "C" EXPORT unsigned int IPFilterCreateRemoteTCPPortFilter(
     unsigned int action,
     unsigned int weight,
     unsigned int port,
+    BOOL persistent,
     GUID* filterKey);
 
 extern "C" EXPORT unsigned int IPFilterCreateRemoteUDPPortFilter(
@@ -157,6 +204,7 @@ extern "C" EXPORT unsigned int IPFilterCreateRemoteUDPPortFilter(
     unsigned int action,
     unsigned int weight,
     unsigned int port,
+    BOOL persistent,
     GUID* filterKey);
 
 extern "C" EXPORT unsigned int IPFilterCreateRemoteNetworkIPv4Filter(
@@ -170,6 +218,7 @@ extern "C" EXPORT unsigned int IPFilterCreateRemoteNetworkIPv4Filter(
     GUID * calloutKey,
     GUID * providerContextKey,
     const IPFilterNetworkAddress* addr,
+    BOOL persistent,
     GUID* filterKey);
 
 extern "C" EXPORT unsigned int IPFilterCreateNetInterfaceFilter(
@@ -180,6 +229,7 @@ extern "C" EXPORT unsigned int IPFilterCreateNetInterfaceFilter(
     unsigned int layer,
     unsigned int action,
     unsigned int weight,
+    BOOL persistent,
     ULONG index,
     GUID* filterKey);
 
@@ -191,6 +241,7 @@ extern "C" EXPORT unsigned int IPFilterCreateLoopbackFilter(
     unsigned int layer,
     unsigned int action,
     unsigned int weight,
+    BOOL persistent,
     GUID* filterKey);
 
 extern "C" EXPORT unsigned int BlockOutsideDns(

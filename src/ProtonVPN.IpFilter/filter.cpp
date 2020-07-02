@@ -87,12 +87,18 @@ void IPFilterCreateFilterSpecification(
     unsigned int action,
     GUID* calloutKey,
     unsigned int weight,
+    BOOL persistent,
     const std::vector<ipfilter::condition::Condition>& conditions
 )
 {
     IPFilterSetFilterSpecificationAction(spec, action, calloutKey);
 
     spec.setWeight(weight);
+
+    if (persistent)
+    {
+        spec.persistent();
+    }
 
     for (auto condition : conditions)
     {
@@ -111,6 +117,7 @@ unsigned int IPFilterCreateFilter(
     GUID* calloutKey,
     GUID* providerContextKey,
     const std::vector<ipfilter::condition::Condition>& conditions,
+    bool persistent,
     GUID* filterKey)
 {
     ipfilter::FilterSpecification spec{};
@@ -120,6 +127,7 @@ unsigned int IPFilterCreateFilter(
         action,
         calloutKey,
         weight,
+        persistent,
         conditions);
 
     GUID layerKey{};
@@ -173,6 +181,7 @@ unsigned int IPFilterCreateLayerFilter(
     unsigned int weight,
     GUID* calloutKey,
     GUID* providerContextKey,
+    BOOL persistent,
     GUID* filterKey)
 {
     return IPFilterCreateFilter(
@@ -186,6 +195,7 @@ unsigned int IPFilterCreateLayerFilter(
         calloutKey,
         providerContextKey,
         {},
+        persistent,
         filterKey);
 }
 
@@ -200,6 +210,7 @@ unsigned int IPFilterCreateRemoteIPv4Filter(
     GUID* calloutKey,
     GUID* providerContextKey,
     const char* addr,
+    BOOL persistent,
     GUID* filterKey)
 {
     std::vector<ipfilter::condition::Condition> conditions{};
@@ -219,6 +230,7 @@ unsigned int IPFilterCreateRemoteIPv4Filter(
         calloutKey,
         providerContextKey,
         conditions,
+        persistent,
         filterKey);
 }
 
@@ -233,6 +245,7 @@ unsigned int IPFilterCreateAppFilter(
     GUID* calloutKey,
     GUID* providerContextKey,
     const wchar_t* path,
+    BOOL persistent,
     GUID* filterKey)
 {
     std::vector<ipfilter::condition::Condition> conditions{};
@@ -253,6 +266,7 @@ unsigned int IPFilterCreateAppFilter(
         calloutKey,
         providerContextKey,
         conditions,
+        persistent,
         filterKey);
 }
 
@@ -265,6 +279,7 @@ unsigned int IPFilterCreateRemoteTCPPortFilter(
     unsigned int action,
     unsigned int weight,
     unsigned int port,
+    BOOL persistent,
     GUID* filterKey)
 {
     return IPFilterCreateFilter(
@@ -282,6 +297,7 @@ unsigned int IPFilterCreateRemoteTCPPortFilter(
                                              ipfilter::value::TcpProtocol::tcp()),
             ipfilter::condition::remotePort(ipfilter::matcher::equal(), port)
         },
+        persistent,
         filterKey);
 }
 
@@ -294,6 +310,7 @@ unsigned int IPFilterCreateRemoteUDPPortFilter(
     unsigned int action,
     unsigned int weight,
     unsigned int port,
+    BOOL persistent,
     GUID* filterKey)
 {
     return IPFilterCreateFilter(
@@ -311,6 +328,7 @@ unsigned int IPFilterCreateRemoteUDPPortFilter(
                                              ipfilter::value::TcpProtocol::udp()),
             ipfilter::condition::remotePort(ipfilter::matcher::equal(), port)
         },
+        persistent,
         filterKey);
 }
 
@@ -325,6 +343,7 @@ unsigned int IPFilterCreateRemoteNetworkIPv4Filter(
     GUID* calloutKey,
     GUID* providerContextKey,
     const IPFilterNetworkAddress* addr,
+    BOOL persistent,
     GUID* filterKey)
 {
     std::vector<ipfilter::condition::Condition> conditions{};
@@ -349,6 +368,7 @@ unsigned int IPFilterCreateRemoteNetworkIPv4Filter(
         calloutKey,
         providerContextKey,
         conditions,
+        persistent,
         filterKey);
 }
 
@@ -361,6 +381,7 @@ unsigned int IPFilterCreateNetInterfaceFilter(
     unsigned int action,
     unsigned int weight,
     ULONG index,
+    BOOL persistent,
     GUID* filterKey)
 {
     std::vector<ipfilter::condition::Condition> conditions{};
@@ -390,6 +411,7 @@ unsigned int IPFilterCreateNetInterfaceFilter(
         nullptr,
         nullptr,
         conditions,
+        persistent,
         filterKey);
 }
 
@@ -401,6 +423,7 @@ unsigned int IPFilterCreateLoopbackFilter(
     unsigned int layer,
     unsigned int action,
     unsigned int weight,
+    BOOL persistent,
     GUID* filterKey)
 {
     std::vector<ipfilter::condition::Condition> conditions{};
@@ -418,6 +441,7 @@ unsigned int IPFilterCreateLoopbackFilter(
         nullptr,
         nullptr,
         conditions,
+        persistent,
         filterKey);
 }
 
@@ -431,6 +455,7 @@ unsigned int BlockOutsideDns(
     unsigned int weight,
     GUID* calloutKey,
     ULONG index,
+    BOOL persistent,
     GUID* filterKey)
 {
     std::vector<ipfilter::condition::Condition> conditions{};
@@ -457,5 +482,6 @@ unsigned int BlockOutsideDns(
         calloutKey,
         nullptr,
         conditions,
+        persistent,
         filterKey);
 }

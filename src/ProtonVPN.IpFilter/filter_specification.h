@@ -22,6 +22,8 @@ namespace ipfilter
 
         void soft();
 
+        void persistent();
+
         void callout(GUID* calloutKey);
 
         void setWeight(unsigned int weight);
