@@ -31,7 +31,7 @@ using ProtonVPN.Core.User;
 
 namespace ProtonVPN.Core.Servers
 {
-    public class ServerUpdater : ILoggedInAware, ILogoutAware, IUserLocationAware
+    public class ServerUpdater : IServerUpdater, ILoggedInAware, ILogoutAware, IUserLocationAware
     {
         private readonly ISchedulerTimer _timer;
         private readonly ServerManager _serverManager;

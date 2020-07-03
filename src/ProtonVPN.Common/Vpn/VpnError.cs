@@ -35,6 +35,8 @@ namespace ProtonVPN.Common.Vpn
         Unpaid,
         SessionLimitReached,
         PasswordChanged,
+        ServerOffline,
+        ServerRemoved,
         NoServers,
         Unknown
     }

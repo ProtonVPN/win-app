@@ -77,6 +77,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <Setter Property="behavior:TextStyleBehavior.FormattedText" Value="{resources:Loc Dialogs_DisconnectError_msg_NoServers}"/>
                     <Setter Property="Visibility" Value="Visible"/>
                 </DataTrigger>
+                <DataTrigger Binding="{Binding Error}" Value="{x:Static vpn:VpnError.ServerRemoved}">
+                    <Setter Property="behavior:TextStyleBehavior.FormattedText" Value="{resources:Loc Servers_msg_CantConnect_Missing}"/>
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Error}" Value="{x:Static vpn:VpnError.ServerOffline}">
+                    <Setter Property="behavior:TextStyleBehavior.FormattedText" Value="{resources:Loc Servers_msg_CantConnect_Maintenance}"/>
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
                 <DataTrigger Binding="{Binding Error}" Value="{x:Static vpn:VpnError.Unknown}">
                     <Setter Property="behavior:TextStyleBehavior.FormattedText" Value="{resources:Loc Dialogs_DisconnectError_msg_Unknown}"/>
                     <Setter Property="Visibility" Value="Visible"/>

@@ -92,7 +92,7 @@ namespace ProtonVPN.Core.Ioc
                 .SingleInstance();
 
             builder.RegisterType<ApiServers>().SingleInstance();
-            builder.RegisterType<ServerUpdater>().AsImplementedInterfaces().AsSelf().SingleInstance();
+            builder.RegisterType<ServerUpdater>().AsImplementedInterfaces().SingleInstance();
 
             builder.RegisterType<UserStorage>().As<IUserStorage>().SingleInstance();
             builder.RegisterType<TruncatedLocation>().SingleInstance();

@@ -67,6 +67,12 @@ namespace ProtonVPN.Service.Contract.Vpn
         PasswordChanged,
 
         [EnumMember]
+        ServerOffline,
+
+        [EnumMember]
+        ServerRemoved,
+
+        [EnumMember]
         NoServers,
 
         [EnumMember]

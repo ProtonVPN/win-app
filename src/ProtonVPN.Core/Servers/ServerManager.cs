@@ -67,7 +67,7 @@ namespace ProtonVPN.Core.Servers
                 .ToList();
         }
 
-        public Server GetServer(ISpecification<LogicalServerContract> spec)
+        public virtual Server GetServer(ISpecification<LogicalServerContract> spec)
         {
             return Map(_servers.Find(spec.IsSatisfiedBy));
         }

@@ -215,7 +215,7 @@ namespace ProtonVPN.Core
             var appWindow = Resolve<AppWindow>();
             var appSettings = Resolve<IAppSettings>();
 
-            Resolve<ServerUpdater>().ServersUpdated += (sender, e) =>
+            Resolve<IServerUpdater>().ServersUpdated += (sender, e) =>
             {
                 var instances = Resolve<IEnumerable<IServersAware>>();
                 foreach (var instance in instances)
@@ -238,15 +238,11 @@ namespace ProtonVPN.Core
             userAuth.UserLoggedIn += async (sender, e) =>
             {
                 var guestHoleState = Resolve<GuestHoleState>();
+                await Resolve<IServerUpdater>().Update();
                 if (guestHoleState.Active)
                 {
-                    await Resolve<ServerUpdater>().Update();
                     await Resolve<IVpnServiceManager>().Disconnect(VpnError.NoneKeepEnabledKillSwitch);
                     guestHoleState.SetState(false);
-                }
-                else
-                {
-                    await Resolve<ServerUpdater>().Update();
                 }
 
                 var instances = Resolve<IEnumerable<ILoggedInAware>>();

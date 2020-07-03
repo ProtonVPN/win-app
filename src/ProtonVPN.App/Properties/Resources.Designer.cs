@@ -3434,7 +3434,7 @@ namespace ProtonVPN.Properties {
                 return ResourceManager.GetString("Dialogs_DisconnectError_msg_OldVersion", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Maximum connection limit reached..
         /// </summary>
