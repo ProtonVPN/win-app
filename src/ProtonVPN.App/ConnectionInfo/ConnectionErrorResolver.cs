@@ -22,16 +22,29 @@ using ProtonVPN.Core.Api;
 using ProtonVPN.Core.Settings;
 using System.Net.Http;
 using System.Threading.Tasks;
+using ProtonVPN.Core.Servers;
+using ProtonVPN.Core.Servers.Models;
+using ProtonVPN.Core.Servers.Specs;
+using ProtonVPN.Core.Vpn;
 
 namespace ProtonVPN.ConnectionInfo
 {
-    public class ConnectionErrorResolver
+    public class ConnectionErrorResolver : IVpnStateAware
     {
         private readonly IUserStorage _userStorage;
         private readonly IApiClient _api;
+        private readonly ServerManager _serverManager;
+        private readonly IServerUpdater _serverUpdater;
+        private Server _server = Server.Empty();
 
-        public ConnectionErrorResolver(IUserStorage userStorage, IApiClient api)
+        public ConnectionErrorResolver(
+            IUserStorage userStorage,
+            IApiClient api,
+            ServerManager serverManager,
+            IServerUpdater serverUpdater)
         {
+            _serverUpdater = serverUpdater;
+            _serverManager = serverManager;
             _userStorage = userStorage;
             _api = api;
         }
@@ -62,7 +75,25 @@ namespace ProtonVPN.ConnectionInfo
                 return VpnError.UserTierTooLowError;
             }
 
+            await _serverUpdater.Update();
+            var server = _serverManager.GetServer(new ServerById(_server.Id));
+            if (server == null)
+            {
+                return VpnError.ServerRemoved;
+            }
+
+            if (server.Status == 0)
+            {
+                return VpnError.ServerOffline;
+            }
+
             return VpnError.Unknown;
+        }
+
+        public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
+        {
+            _server = e.State.Server;
+            return Task.CompletedTask;
         }
 
         private async Task<int> GetSessionCount()

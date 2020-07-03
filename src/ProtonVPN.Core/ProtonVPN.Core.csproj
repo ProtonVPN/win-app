@@ -227,6 +227,7 @@
     <Compile Include="Servers\FastestServer.cs" />
     <Compile Include="Servers\Contracts\GuestHoleServerContract.cs" />
     <Compile Include="Servers\IServersAware.cs" />
+    <Compile Include="Servers\IServerUpdater.cs" />
     <Compile Include="Servers\Models\PhysicalServer.cs" />
     <Compile Include="Servers\Models\Server.cs" />
     <Compile Include="Servers\ServerCandidates.cs" />
