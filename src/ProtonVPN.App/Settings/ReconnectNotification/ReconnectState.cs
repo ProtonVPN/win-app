@@ -9,13 +9,12 @@ namespace ProtonVPN.Settings.ReconnectNotification
     {
         private VpnStatus _vpnStatus;
         private readonly SettingsBuilder _settingsBuilder;
+        private List<Setting> _reconnectRequiredSettings = new List<Setting>();
 
         public ReconnectState(SettingsBuilder settingsBuilder)
         {
             _settingsBuilder = settingsBuilder;
         }
-
-        private List<Setting> _reconnectRequiredSettings;
 
         public bool Required(string settingChanged)
         {
