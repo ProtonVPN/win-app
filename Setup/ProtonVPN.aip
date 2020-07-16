@@ -243,7 +243,7 @@
     <ROW Action="AI_DetectSoftware" Sequence="101"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BuildComponent">
-    <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="1" PackageFolder="ProtonVPN-SetupFiles" PackageFileName="ProtonVPN_win_v[|ProductVersion]" Languages="en;de;fr;fa;nl;it;pl;pt;ru;es;pt_BR" LangOpt="1" InstallationType="2" CabsLocation="1" UseLzma="true" LzmaMethod="2" LzmaCompressionLevel="2" PackageType="1" FilesInsideExe="true" ExeIconPath="images\protonvpn.ico" ExtUI="true" LangsDialog="true" UseLargeSchema="true" Unicode="true" ExeName="ProtonVPN_win_v[|ProductVersion]-[|CommitHash]" UACExecutionLevel="2"/>
+    <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="1" PackageFolder="ProtonVPN-SetupFiles" PackageFileName="ProtonVPN_win_v[|ProductVersion]" Languages="en;de;fr;fa;nl;it;pl;pt;ru;es;pt_BR" LangOpt="1" InstallationType="2" CabsLocation="1" UseLzma="true" LzmaMethod="2" LzmaCompressionLevel="2" PackageType="1" FilesInsideExe="true" ExeIconPath="images\protonvpn.ico" ExeMetadata="FileDescription:[|ProductName] Installer [|CommitHash]" ExtUI="true" LangsDialog="true" UseLargeSchema="true" Unicode="true" ExeName="ProtonVPN_win_v[|ProductVersion]" UACExecutionLevel="2"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.CacheComponent">
     <ATTRIBUTE name="Enable" value="false"/>
