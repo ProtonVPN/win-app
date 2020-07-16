@@ -18,35 +18,29 @@
  */
 
 using System.Linq;
+using System.Threading;
 using OpenQA.Selenium;
 using ProtonVPN.UI.Test.TestsHelper;
 
-namespace ProtonVPN.UI.Test.Pages
+namespace ProtonVPN.UI.Test.Windows
 {
-    public class ProfileWindow : UITestSession
+    public class ProfileWindow : UIActions
     {
-        public ProfileWindow VerifyWindowIsOpened()
-        {
-            UIActions.CheckIfObjectWithNameIsDisplayed("Fastest");
-            UIActions.CheckIfObjectWithNameIsDisplayed("Random");
-            return this;
-        }
-
         public ProfileWindow ClickToCreateNewProfile()
         {
-            UIActions.ClickOnObjectWithId("NewProfileButton");
+            ClickOnObjectWithId("NewProfileButton");
             return this;
         }
 
         public ProfileWindow EnterProfileName(string text)
         {
-            UIActions.InsertTextIntoFieldWithId("textSource", text);
+            InsertTextIntoFieldWithId("textSource", text);
             return this;
         }
 
         public ProfileWindow ClickSaveButton()
         {
-            UIActions.ClickOnObjectWithName("Save");
+            ClickOnObjectWithName("Save");
             return this;
         }
 
@@ -72,7 +66,6 @@ namespace ProtonVPN.UI.Test.Pages
             return this;
         }
 
-
         public ProfileWindow SelectServerFromList(string server)
         {
             var serverSelect = Session.FindElementsByAccessibilityId("ServerBox");
@@ -86,6 +79,7 @@ namespace ProtonVPN.UI.Test.Pages
                     var childBox = box.FindElementByClassName("TextBlock");
                     if (childBox.Text == server)
                     {
+                        MoveToElement(childBox);
                         box.SendKeys(Keys.Enter);
                         break;
                     }
@@ -97,109 +91,68 @@ namespace ProtonVPN.UI.Test.Pages
 
         public ProfileWindow ClickSecureCore()
         {
-            UIActions.ClickOnObjectWithName("Secure Core");
+            ClickOnObjectWithName("Secure Core");
             return this;
         }
 
         public ProfileWindow ClickP2P()
         {
-            UIActions.ClickOnObjectWithName("P2P");
+            ClickOnObjectWithName("P2P");
             return this;
         }
 
         public ProfileWindow ConnectToProfile(string name)
         {
-            UIActions.ClickOnObjectWithId($"Connect-{name}");
+            Thread.Sleep(3000);
+            ClickOnObjectWithId($"Connect-{name}");
+            var quickConnectButton = Session.FindElementByAccessibilityId("SidebarQuickConnectButton");
+            WaitUntilTextMatches(quickConnectButton, "Disconnect", 15);
             return this;
         }
 
         public ProfileWindow ClickTor()
         {
-            UIActions.ClickOnObjectWithName("Tor");
+            ClickOnObjectWithName("Tor");
             return this;
         }
 
         public ProfileWindow ClickToDiscard()
         {
-            UIActions.ClickOnObjectWithName("Discard");
+            ClickOnObjectWithName("Discard");
             return this;
         }
 
         public ProfileWindow ClickToCancel()
         {
-            UIActions.ClickOnObjectWithXPath("//*[@Name = 'Cancel']");
+            ClickOnObjectWithXPath("//*[@Name = 'Cancel']");
             return this;
         }
 
         public ProfileWindow DeleteProfileByByName(string name)
         {
-            UIActions.ClickOnObjectWithId($"Delete-{name}");
+            Thread.Sleep(3000);
+            ClickOnObjectWithId($"Delete-{name}");
             return this;
         }
 
         public ProfileWindow ClickContinueDeletion()
         {
-            UIActions.ClickOnObjectWithId("ContinueButton");
+            ClickOnObjectWithId("ContinueButton");
             return this;
         }
 
         public ProfileWindow ClickEditProfile(string name)
         {
-            UIActions.ClickOnObjectWithId($"Edit-{name}");
+            Thread.Sleep(3000);
+            var buttonEdit = Session.FindElementByAccessibilityId($"Edit-{name}");
+            MoveToElement(buttonEdit);
+            ClickOnObjectWithId($"Edit-{name}");
             return this;
         }
 
         public ProfileWindow ClearProfileName()
         {
-            UIActions.ClearInput("textSource");
-            return this;
-        }
-
-        public ProfileWindow ClicktoConnect()
-        {
-            UIActions.ClickOnObjectWithXPath("//*[@Name = 'Connect'][3]");
-            return this;
-        }
-
-        public ProfileWindow ClickSetAsProfile()
-        {
-            UIActions.ClickOnObjectWithName("Set as profile");
-            return this;
-        }
-
-        public ProfileWindow VerifyProfileNameErrorDisplayed()
-        {
-            UIActions.CheckIfObjectWithNameIsDisplayed("Please select a profile name");
-            return this;
-        }
-
-        public ProfileWindow VerifyCountryErrorDisplayed()
-        {
-            UIActions.CheckIfObjectWithNameIsDisplayed("Please select a country");
-            return this;
-        }
-
-        public ProfileWindow VerifyServerErrorDisplayed()
-        {
-            UIActions.CheckIfObjectWithNameIsDisplayed("Please select a server");
-            return this;
-        }
-
-        public ProfileWindow VerifyProfileExists(string profileName)
-        {
-            UIActions.CheckIfObjectWithNameIsDisplayed(profileName);
-            return this;
-        }
-
-        public ProfileWindow VerifyUserIsConnectedToProfile(string status)
-        {
-            UIActions.CheckIfObjectWithNameIsDisplayed(status);
-            return this;
-        }
-
-        public ProfileWindow VerifyProfileDoesNotExist(string profileName)
-        {
-            UIActions.CheckIfObjectWithAutomationIdDoesNotExist(profileName);
+            ClearInput("textSource");
             return this;
         }
     }

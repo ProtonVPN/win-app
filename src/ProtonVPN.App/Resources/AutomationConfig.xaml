@@ -31,11 +31,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <system:String x:Key="MenuReportBugButton">MenuReportBugButton</system:String>
     <system:String x:Key="MenuLogoutButton">MenuLogoutButton</system:String>
     <system:String x:Key="MenuExitButton">MenuExitButton</system:String>
-
     <system:String x:Key="SidebarQuickConnectButton">SidebarQuickConnectButton</system:String>
     <system:String x:Key="SidebarCountriesButton">SidebarCountriesButton</system:String>
     <system:String x:Key="SidebarProfilesButton">SidebarProfilesButton</system:String>
-
     <system:String x:Key="SecureCoreCheckbox">SecureCoreCheckbox</system:String>
     <system:String x:Key="StartWithWindowsCheckbox">StartWithWindowsCheckbox</system:String>
     <system:String x:Key="StartMinimizedCombobox">StartMinimizedCombobox</system:String>
@@ -56,4 +54,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <system:String x:Key="LanguageCombobox">LanguageCombobox</system:String>
     <system:String x:Key="DoHCheckbox">DoHCheckbox</system:String>
     <system:String x:Key="ConnectingScreenId">ConnectingScreenId</system:String>
+    <system:String x:Key="WelcomeModal">WelcomeModal</system:String>
+    <system:String x:Key="IPAddressTextBlock">IPAddressTextBlock</system:String>
+    <system:String x:Key="ConnectionState">ConnectionState</system:String>
+    <system:String x:Key="ProfileConnectFastest">ProfileConnectFastest</system:String>
+    <system:String x:Key="CheckBoxCustomDnsServers">CheckBoxCustomDnsServers</system:String>
+    <system:String x:Key="InputIpv4Address">InputIpv4Address</system:String>
+    <system:String x:Key="SettingsPlusButton">SettingsPlusButton</system:String>
+    <system:String x:Key="ModalCloseButton">ModalCloseButton</system:String>
+    <system:String x:Key="DeleteButton">DeleteButton</system:String>
+    <system:String x:Key="TextButtonRecconect">TextButtonRecconect</system:String>
 </ResourceDictionary>

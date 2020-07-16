@@ -19,23 +19,32 @@
 
 using ProtonVPN.UI.Test.TestsHelper;
 
-namespace ProtonVPN.UI.Test.Actions
+namespace ProtonVPN.UI.Test.Windows
 {
-    public class Settings : UIActions
+    public class BugReportWindow : UIActions
     {
-        public static void ClickGeneralTab()
+        public BugReportWindow EnterYourEmail(string text)
         {
-            ClickOnObjectWithName("General");
+            InsertTextIntoFieldWithId("Email", text);
+            return this;
         }
 
-        public static void ClickConnectionTab()
+        public BugReportWindow EnterFeedback(string text)
         {
-            ClickOnObjectWithName("Connection");
+            InsertTextIntoFieldWithId("Feedback", text);
+            return this;
         }
 
-        public static void ClickAdvancedTab()
+        public BugReportWindow ClickSend()
         {
-            ClickOnObjectWithName("Advanced");
+            ClickOnObjectWithName("Send");
+            return this;
+        }
+
+        public BugReportWindow VerifySendingIsSuccessful()
+        {
+            CheckIfObjectWithNameIsDisplayed("The Bug Report has been successfully sent.", "The Bug Report was unsuccessfully sent.");
+            return this;
         }
     }
 }

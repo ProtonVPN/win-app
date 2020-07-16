@@ -308,7 +308,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <CheckBox Style="{StaticResource ToggleSwitch}"
                                   Margin="0,0,14,0"
                                   HorizontalAlignment="Right"
-                                  IsChecked="{Binding CustomDnsEnabled}"/>
+                                  IsChecked="{Binding CustomDnsEnabled}" 
+                                  AutomationProperties.AutomationId="{StaticResource CheckBoxCustomDnsServers}"/>
 
                     </DockPanel>
                     <StackPanel Margin="12,0" HorizontalAlignment="Left" Visibility="{Binding CustomDnsEnabled, Converter={StaticResource BoolToVis}}">
@@ -325,12 +326,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <DockPanel>
                             <Button Style="{StaticResource SettingsAddButton}"
                                     DockPanel.Dock="Right" VerticalAlignment="Center"
-                                    Command="{Binding Ips.AddCommand}"/>
+                                    Command="{Binding Ips.AddCommand}"
+                                    AutomationProperties.AutomationId="{StaticResource SettingsPlusButton}"/>
                             <TextBox Style="{StaticResource SettingsPlaceholderTextBox}"
                                      Margin="0,0,10,0"
                                      Tag="{resources:Loc Settings_Advanced_SplitTunnel_lbl_Ip_Watermark}"
                                      Text="{Binding Ips.Ip, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}"
-                                     MaxLength="20">
+                                     MaxLength="20" 
+                                     AutomationProperties.AutomationId="{StaticResource InputIpv4Address}">
                                 <TextBox.InputBindings>
                                     <KeyBinding Key="Return" Command="{Binding Ips.AddCommand}"/>
                                 </TextBox.InputBindings>
@@ -479,7 +482,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     HorizontalAlignment="Left"
                     BorderBrush="Transparent"
                     VerticalAlignment="Center"
-                    Foreground="White">
+                    Foreground="White"
+                    AutomationProperties.AutomationId="{StaticResource TextButtonRecconect}">
                 <TextBlock Text="{resources:Loc Settings_lnk_Reconnect}"
                            FontWeight="Bold"
                            FontSize="14"

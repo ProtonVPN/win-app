@@ -17,52 +17,89 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ProtonVPN.UI.Test.Pages;
+using ProtonVPN.UI.Test.Windows;
+using ProtonVPN.UI.Test.Results;
+using NUnit.Framework;
 
 namespace ProtonVPN.UI.Test.Tests
 {
-    [TestClass]
+    [TestFixture]
     public class LoginTests : UITestSession
     {
-        private readonly LoginWindow loginWindow = new LoginWindow();
-        private readonly MainWindow mainWindow = new MainWindow();
+        private readonly LoginWindow _loginActions = new LoginWindow();
+        private readonly LoginResult _loginResult = new LoginResult();
+        private readonly MainWindowResults _mainWindowResults = new MainWindowResults();
 
-        [TestMethod]
+        [Test]
         public void LoginAsFreeUser()
         {
-            loginWindow.LoginWithFreeUser();
-            mainWindow.VerifyUserIsLoggedIn();
+            TestCaseId = 231;
+
+            _loginActions.LoginWithFreeUser();
+            _mainWindowResults.VerifyUserIsLoggedIn();
         }
 
-        [TestMethod]
+        [Test]
         public void LoginAsBasicUser()
         {
-            loginWindow.LoginWithBasicUser();
-            mainWindow.VerifyUserIsLoggedIn();
+            TestCaseId = 231;
+
+            _loginActions.LoginWithBasicUser();
+            _mainWindowResults.VerifyUserIsLoggedIn();
         }
 
-        [TestMethod]
+        [Test]
+        public void LoginWithSpecialCharsUser()
+        {
+            TestCaseId = 233;
+
+            _loginActions.LoginWithAccountThatHasSpecialChars();
+            _mainWindowResults.VerifyUserIsLoggedIn();
+        }
+
+        [Test]
         public void LoginAsPlusUser()
         {
-            loginWindow.LoginWithPlusUser();
-            mainWindow.VerifyUserIsLoggedIn();
+            TestCaseId = 231;
+
+            _loginActions.LoginWithPlusUser();
+            _mainWindowResults.VerifyUserIsLoggedIn();
         }
 
-        [TestMethod]
+        [Test]
         public void LoginAsVisionaryUser()
         {
-            loginWindow.LoginWithVisionaryUser();
-            mainWindow.VerifyUserIsLoggedIn();
+            TestCaseId = 231;
+
+            _loginActions.LoginWithVisionaryUser();
+            _mainWindowResults.VerifyUserIsLoggedIn();
         }
 
-        [TestInitialize]
+        [Test]
+        public void LoginUsingIncorrectCredentials()
+        {
+            TestCaseId = 232;
+
+            _loginActions.LoginWithIncorrectCredentials();
+            _loginResult.VerifyLoginErrorIsShown();
+        }
+
+        [Test]
+        public void LoginAsTrialUser()
+        {
+            TestCaseId = 265;
+
+            _loginActions.LoginWithTrialUser();
+            _loginResult.VerifyTrialPopupIsShown();
+        }
+
+        [SetUp]
         public void TestInitialize()
         {
             CreateSession();
         }
 
-        [TestCleanup]
+        [TearDown]
         public void TestCleanup()
         {
             TearDown();

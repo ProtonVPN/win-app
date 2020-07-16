@@ -22,8 +22,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Windows;
+using ProtonVPN.UI.Test.ApiClient;
 
 namespace ProtonVPN.UI.Test
 {
@@ -31,13 +33,15 @@ namespace ProtonVPN.UI.Test
     {
         private const string WindowsApplicationDriverUrl = "http://127.0.0.1:4723";
         private const string AppPath = @"C:\Program Files (x86)\Proton Technologies\ProtonVPN\ProtonVPN.exe";
-
+        protected const double ImplicitWaitTimeInSeconds = 5;
+        private static readonly List<WindowsDriver<WindowsElement>> Sessions = new List<WindowsDriver<WindowsElement>>();
         protected static WindowsDriver<WindowsElement> Session;
-
-        private static readonly List<WindowsDriver<WindowsElement>> _sessions = new List<WindowsDriver<WindowsElement>>();
+        public static TestRailAPIClient TestRailClient;
+        public static ulong TestCaseId { get; set; }
 
         public static void CreateSession()
         {
+            TestCaseId = 0;
             if (Session != null)
             {
                 return;
@@ -54,41 +58,62 @@ namespace ProtonVPN.UI.Test
 
         public static void TearDown()
         {
-            foreach (var session in _sessions)
+            foreach (var session in Sessions)
             {
                 session.Quit();
                 session.Dispose();
             }
 
-            _sessions.Clear();
+            Sessions.Clear();
             Session = null;
+            TestRailClient.MarkTestsByStatus();
+        }
+
+        protected static void SetImplicitWait(double timeInSeconds)
+        {
+            Session.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(timeInSeconds);
         }
 
         private static void CreateSessionInner()
         {
+            try
+            {
+                Session = CreateNewDriver();
+            }
+            catch (WebDriverException)
+            {
+                Session = CreateNewDriver();
+            }
+
+            SetImplicitWait(ImplicitWaitTimeInSeconds);
+            Assert.IsNotNull(Session);
+            Sessions.Add(Session);
+            Session.SwitchTo().Window(Session.WindowHandles.First());
+        }
+
+        private static WindowsDriver<WindowsElement> CreateNewDriver()
+        {
             var options = new AppiumOptions();
             options.AddAdditionalCapability("app", AppPath);
             options.AddAdditionalCapability("deviceName", "WindowsPC");
-            Session = new WindowsDriver<WindowsElement>(new Uri(WindowsApplicationDriverUrl), options);
-            Session.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
-            Assert.IsNotNull(Session);
-            _sessions.Add(Session);
-            Session.SwitchTo().Window(Session.WindowHandles.First());
+            return new WindowsDriver<WindowsElement>(new Uri(WindowsApplicationDriverUrl), options);
         }
 
         private static void DeleteUserConfig()
         {
             var localAppDataFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ProtonVPN");
-            if (Directory.Exists(localAppDataFolder))
+            if (!Directory.Exists(localAppDataFolder))
             {
-                try
-                {
-                    Directory.Delete(localAppDataFolder, true);
-                }
-                catch (Exception)
-                {
-                    // ignored
-                }
+                return;
+            }
+
+            try
+            {
+                Directory.Delete(localAppDataFolder, true);
+            }
+            catch (Exception)
+            {
+                //ignored
             }
         }
     }

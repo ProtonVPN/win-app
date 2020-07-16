@@ -17,38 +17,41 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ProtonVPN.UI.Test.Pages;
-using System.Threading;
+using ProtonVPN.UI.Test.Windows;
+using ProtonVPN.UI.Test.Results;
+using NUnit.Framework;
 
 namespace ProtonVPN.UI.Test.Tests
 {
-    [TestClass]
+    [TestFixture]
     public class SettingsTests : UITestSession
     {
-        readonly LoginWindow loginWindow = new LoginWindow();
-        readonly MainWindow mainWindow = new MainWindow();
-        readonly SettingsWindow settingsWindow = new SettingsWindow();
+        private readonly LoginWindow _loginWindow = new LoginWindow();
+        private readonly MainWindow _mainWindow = new MainWindow();
+        private readonly SettingsWindow _settingsWindow = new SettingsWindow();
+        private readonly SettingsResult _settingsResult = new SettingsResult();
 
-        [TestMethod]
+        [Test]
         public void CheckIfSettingsGeneralTabHasAllInfo()
         {
-            loginWindow.LoginWithFreeUser();
+            TestCaseId = 21555;
 
-            mainWindow.ClickHamburgerMenu()
+            _loginWindow.LoginWithFreeUser();
+
+            _mainWindow.ClickHamburgerMenu()
                 .HamburgerMenu.ClickSettings();
 
-            settingsWindow.ClickGeneralTab()
-                .VerifySettingsAreDisplayed();
+            _settingsWindow.ClickGeneralTab();
+            _settingsResult.VerifySettingsAreDisplayed();
         }
 
-        [TestInitialize]
+        [SetUp]
         public void TestInitialize()
         {
             CreateSession();
         }
 
-        [TestCleanup]
+        [TearDown]
         public void TestCleanup()
         {
             TearDown();

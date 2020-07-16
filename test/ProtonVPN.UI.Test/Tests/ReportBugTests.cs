@@ -17,41 +17,42 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ProtonVPN.UI.Test.Pages;
-using System.Threading;
+using NUnit.Framework;
+using ProtonVPN.UI.Test.Windows;
 
 namespace ProtonVPN.UI.Test.Tests
 {
-    [TestClass]
+    [TestFixture]
     public class ReportBugTests : UITestSession
     {
-        readonly LoginWindow loginWindow = new LoginWindow();
-        readonly MainWindow mainWindow = new MainWindow();
-        readonly BugReportWindow bugReportWindow = new BugReportWindow();
+        private readonly LoginWindow _loginWindow = new LoginWindow();
+        private readonly MainWindow _mainWindow = new MainWindow();
+        private readonly BugReportWindow _bugReportWindow = new BugReportWindow();
 
-        [TestMethod]
+        [Test]
         public void SendBugReport()
         {
-            loginWindow.LoginWithFreeUser();
-            mainWindow.ClickHamburgerMenu().HamburgerMenu.ClickReportBug();
+            TestCaseId = 21554;
+
+            _loginWindow.LoginWithFreeUser();
+            _mainWindow.ClickHamburgerMenu().HamburgerMenu.ClickReportBug();
 
             RefreshSession();
 
-            bugReportWindow.EnterYourEmail("test@protonmail.com")
+            _bugReportWindow.EnterYourEmail("test@protonmail.com")
                 .EnterFeedback("Feedback")
                 .ClickSend();
 
-            bugReportWindow.VerifySendingIsSuccessful();
+            _bugReportWindow.VerifySendingIsSuccessful();
         }
 
-        [TestInitialize]
+        [SetUp]
         public void TestInitialize()
         {
             CreateSession();
         }
 
-        [TestCleanup]
+        [TearDown]
         public void TestCleanup()
         {
             TearDown();

@@ -17,32 +17,41 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ProtonVPN.UI.Test.Pages;
+using System.Threading.Tasks;
+using ProtonVPN.UI.Test.Windows;
+using ProtonVPN.UI.Test.Results;
+using NUnit.Framework;
 
 namespace ProtonVPN.UI.Test.Tests
 {
-    [TestClass]
+    [TestFixture]
     public class SecureCoreTests : UITestSession
     {
-        readonly LoginWindow loginWindow = new LoginWindow();
-        readonly MainWindow mainWindow = new MainWindow();
-        
+        private readonly LoginWindow _loginWindow = new LoginWindow();
+        private readonly MainWindow _mainWindow = new MainWindow();
+        private readonly MainWindowResults _mainWindowResults = new MainWindowResults();
 
-        [TestMethod]
-        public void ConnectViaMap()
+        [Test]
+        public async Task QuickConnectWhileSecureCoreIsEnabled()
         {
-            loginWindow.LoginWithPlusUser();
-            mainWindow.EnableSecureCore();
+            TestCaseId = 255;
+
+            _loginWindow.LoginWithPlusUser();
+            _mainWindow.EnableSecureCore();
+            _mainWindow.QuickConnect();
+            _mainWindowResults.CheckIfConnected();
+            await _mainWindowResults.CheckIfCorrectIPAddressIsShownAsync();
+            _mainWindow.DisconnectUsingSidebarButton();
+            await _mainWindowResults.CheckIfCorrectIPAddressIsShownAsync();
         }
 
-        [TestInitialize]
+        [SetUp]
         public void TestInitialize()
         {
             CreateSession();
         }
 
-        [TestCleanup]
+        [TearDown]
         public void TestCleanup()
         {
             TearDown();

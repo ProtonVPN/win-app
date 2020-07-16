@@ -21,10 +21,24 @@ using ProtonVPN.UI.Test.TestsHelper;
 
 namespace ProtonVPN.UI.Test.Results
 {
-    public class LoginResult
+    public class LoginResult : UIActions
     {
-        public static void LoginIsSuccessful() {
-            UIActions.CheckIfObjectWithIdIsDisplayed("MenuHamburgerButton");
+        public LoginResult VerifyLoginErrorIsShown()
+        {
+            CheckIfObjectWithClassNameIsDisplayed("LoginErrorView", "Login error is not shown.");
+            return this;
+        }
+
+        public LoginResult VerifyTrialPopupIsShown()
+        {
+            CheckIfObjectWithClassNameIsDisplayed("GiftBox", "Trial popup was not displayed");
+            return this;
+        }
+
+        public LoginResult VerifyUserIsOnLoginWindow()
+        {
+            CheckIfObjectWithNameIsDisplayed("Start with Windows", "User unsuccessfully disconnected.");
+            return this;
         }
     }
 }

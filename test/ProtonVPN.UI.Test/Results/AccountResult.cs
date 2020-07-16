@@ -21,12 +21,12 @@ using ProtonVPN.UI.Test.TestsHelper;
 
 namespace ProtonVPN.UI.Test.Results
 {
-    class AccountResult
+    public class AccountResult : UIActions
     {
-        
-        public static void IsSuccess(string objectname)
-        {
-            UIActions.CheckIfObjectWithNameIsDisplayed(objectname);
+        public AccountResult VerifyLoggedInAsTextIs(string objectName)
+        {   
+            CheckIfObjectWithNameIsDisplayed(objectName, "Username in account section is not displayed.");
+            return this;
         }
     }
 }

@@ -38,6 +38,12 @@ namespace ProtonVPN.UI.Test.TestsHelper
             return new TestUserData(username, password);
         }
 
+        public static TestUserData GetUserWithSpecialChars()
+        {
+            var (username, password) = GetUsernameAndPassword("SPECIAL_CHARS_USER");
+            return new TestUserData(username, password);
+        }
+
         public static TestUserData GetBasicUser()
         {
             var (username, password) = GetUsernameAndPassword("BASIC_USER");
@@ -62,7 +68,13 @@ namespace ProtonVPN.UI.Test.TestsHelper
             return new TestUserData(username, password);
         }
 
-        private static Tuple<string, string> GetUsernameAndPassword(string userType)
+        public static TestUserData GetTestrailUser()
+        {
+            var (username, password) = GetUsernameAndPassword("TESTRAIL_USER");
+            return new TestUserData(username, password);
+        }
+
+        private static (string, string) GetUsernameAndPassword(string userType)
         {
             var str = Environment.GetEnvironmentVariable(userType);
             if (string.IsNullOrEmpty(str))
@@ -71,7 +83,7 @@ namespace ProtonVPN.UI.Test.TestsHelper
             }
 
             var split = str.Split(':');
-            return new Tuple<string, string>(split[0], split[1]);
+            return (split[0], split[1]);
         }
     }
 }

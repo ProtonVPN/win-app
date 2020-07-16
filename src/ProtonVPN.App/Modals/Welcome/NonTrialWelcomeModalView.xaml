@@ -30,7 +30,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         Title="{resources:Loc Welcome_ttl}"
                         Height="540"
                         Width="800"
-                        AutomationProperties.AutomationId="WelcomeModal"
+                        AutomationProperties.AutomationId="{StaticResource WelcomeModal}"
                         d:DataContext="{d:DesignInstance welcome:NonTrialWelcomeModalViewModel}">
     <Grid>
         <Grid.Background>

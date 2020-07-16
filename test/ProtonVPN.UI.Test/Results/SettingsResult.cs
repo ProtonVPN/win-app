@@ -17,24 +17,49 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Net.NetworkInformation;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ProtonVPN.UI.Test.TestsHelper;
 
 namespace ProtonVPN.UI.Test.Results
 {
-    class SettingsResult
+    public class SettingsResult : UIActions
     {
-
-        public static void IsSuccess(string objectname)
+        public SettingsResult CheckIfDnsAddressMatches(string dnsAddress)
         {
-            UIActions.CheckIfObjectWithNameIsDisplayed(objectname);
+            var adapters = NetworkInterface.GetAllNetworkInterfaces();
+            foreach (var adapter in adapters)
+            {
+                var adapterProperties = adapter.GetIPProperties();
+                var dnsServers = adapterProperties.DnsAddresses;
+                if (dnsServers.Count > 0)
+                {
+                    if (adapter.Description.Contains("ProtonVPN"))
+                    {
+                        foreach (var dns in dnsServers)
+                        {
+                            Assert.AreEqual(dnsAddress, dns.ToString(), "Desired dns address " + dnsAddress + " does not match Windows dns address " + dns.ToString());
+                        }
+                    }
+                }
+            }
+
+            return this;
         }
 
-        public static void GeneralTabIsSuccess()
+        public SettingsResult VerifySettingsAreDisplayed()
         {
-            UIActions.CheckIfObjectWithNameIsDisplayed("Start Minimized");
-            UIActions.CheckIfObjectWithNameIsDisplayed("Start with Windows");
-            UIActions.CheckIfObjectWithNameIsDisplayed("Show Notifications");
-            UIActions.CheckIfObjectWithNameIsDisplayed("Early Access");
+            CheckIfObjectWithNameIsDisplayed("Start Minimized", "'Start minimized' option is not displayed");
+            CheckIfObjectWithNameIsDisplayed("Start with Windows", "'Start with windows' option is not displayed");
+            CheckIfObjectWithNameIsDisplayed("Show Notifications", "'Show Notifications' option is not displayed");
+            CheckIfObjectWithNameIsDisplayed("Early Access", "'Early Access' option is not displayed");
+            return this;
+        }
+
+        public SettingsResult CheckIfCustomDnsAddressWasNotAdded()
+        {
+            CheckIfObjectWithAutomationIdDoesNotExist("DeleteButton", "Expected dns address not to be added.");
+            return this;
         }
     }
 }

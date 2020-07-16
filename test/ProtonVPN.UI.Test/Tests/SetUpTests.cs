@@ -17,16 +17,26 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
+using System.IO;
+using NUnit.Framework;
+using ProtonVPN.UI.Test.ApiClient;
 using ProtonVPN.UI.Test.TestsHelper;
 
-namespace ProtonVPN.UI.Test.Pages
+namespace ProtonVPN.UI.Test.Tests
 {
-    public class AccountWindow
+    [SetUpFixture]
+    public class SetUpTests
     {
-        public AccountWindow VerifyLoggedInAsTextIs(string objectname)
+        [OneTimeSetUp]
+        public void TestInitialize()
         {
-            UIActions.CheckIfObjectWithNameIsDisplayed(objectname);
-            return this;
+             var dir = Path.GetDirectoryName(typeof(SetUpTests).Assembly.Location);
+             Directory.SetCurrentDirectory(dir);
+
+             UITestSession.TestRailClient = new TestRailAPIClient("https://proton.testrail.io/",
+                TestUserData.GetTestrailUser().Username, TestUserData.GetTestrailUser().Password);
+             UITestSession.TestRailClient.CreateTestRun("Test run " + DateTime.Now);
         }
     }
 }
