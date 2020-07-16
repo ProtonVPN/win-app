@@ -30,9 +30,6 @@ custom_parser.add_argument('hash', type=str, help='Commit hash string')
 parser_c = subparsers.add_parser('tests')
 parser_c.add_argument('path', type=str, help='Path for tests')
 
-parser_d = subparsers.add_parser('ui-tests')
-parser_d.add_argument('path', type=str, help='DLL path for ui test')
-
 custom_parser = subparsers.add_parser('prepare-ssh')
 custom_parser.add_argument('key', type=str, help='Private ssh key as a string')
 
@@ -57,9 +54,6 @@ elif args.command == 'add-languages':
 
 elif args.command == 'tests':
     tests.run('{path}*.Test.dll'.format(path=args.path))
-
-elif args.command == 'ui-tests':
-    tests.runSingle(args.path)
 
 elif args.command == 'app-installer':
     v = win32api.GetFileVersionInfo('.\src\\bin\ProtonVPN.exe', '\\')

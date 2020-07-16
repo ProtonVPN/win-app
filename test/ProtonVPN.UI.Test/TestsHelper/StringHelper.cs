@@ -17,23 +17,16 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.UI.Test.TestsHelper;
+using System.Linq;
 
-namespace ProtonVPN.UI.Test.Pages
+namespace ProtonVPN.UI.Test.TestsHelper
 {
-    public class LogoutConfirmationPopup
+    public static class StringHelper
     {
-
-        public LogoutConfirmationPopup ClickContinueButton()
+        public static string RemoveExtraText(this string value)
         {
-            UIActions.ClickOnObjectWithId("ContinueButton");
-            return this;
-        }
-
-        public LogoutConfirmationPopup ClickCancelButton()
-        {
-            UIActions.ClickOnObjectWithName("Cancel");
-            return this;
+            var allowedChars = "01234567890.,";
+            return new string(value.Where(c => allowedChars.Contains(c)).ToArray());
         }
     }
 }

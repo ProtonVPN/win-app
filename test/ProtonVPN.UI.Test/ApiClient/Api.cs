@@ -57,6 +57,18 @@ namespace ProtonVPN.UI.Test.ApiClient
             return (await _auth.AuthAsync(_username, _password)).Success;
         }
 
+        public async Task<string> GetCountry()
+        {
+            var locationData = await _api.GetLocationDataAsync();
+            return locationData.Value.Country;
+        }
+
+        public async Task<string> GetIpAddress()
+        {
+            var locationData = await _api.GetLocationDataAsync();
+            return locationData.Value.Ip;
+        }
+
         public async Task DeleteProfiles()
         {
             var profiles = await _api.GetProfiles();

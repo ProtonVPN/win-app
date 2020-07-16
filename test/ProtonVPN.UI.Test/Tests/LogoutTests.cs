@@ -17,77 +17,80 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Threading;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ProtonVPN.UI.Test.Pages;
+using ProtonVPN.UI.Test.Windows;
+using ProtonVPN.UI.Test.Results;
+using NUnit.Framework;
 
 namespace ProtonVPN.UI.Test.Tests
 {
-    [TestClass]
+    [TestFixture]
     public class LogoutTests : UITestSession
     {
-        readonly LoginWindow loginWindow = new LoginWindow();
-        readonly MainWindow mainWindow = new MainWindow();
-        readonly LogoutConfirmationPopup logoutConfirmationPopup = new LogoutConfirmationPopup();
+        private readonly LoginWindow _loginWindow = new LoginWindow();
+        private readonly LoginResult _loginResult = new LoginResult();
+        private readonly MainWindow _mainWindow = new MainWindow();
+        private readonly MainWindowResults _mainWindowResults = new MainWindowResults();
+        private readonly LogoutConfirmationPopup _logoutConfirmationPopup = new LogoutConfirmationPopup();
 
-        [TestMethod]
+        [Test]
         public void SuccessfulLogout()
         {
-            loginWindow.LoginWithPlusUser();
+            TestCaseId = 211;
 
-            mainWindow.ClickHamburgerMenu();
-            mainWindow.HamburgerMenu.ClickLogout();
+            _loginWindow.LoginWithPlusUser();
+
+            _mainWindow.ClickHamburgerMenu();
+            _mainWindow.HamburgerMenu.ClickLogout();
             RefreshSession();
 
-            loginWindow.VerifyUserIsOnLoginWindow();
+            _loginResult.VerifyUserIsOnLoginWindow();
         }
 
-        [TestMethod]
+        [Test]
         public void LogoutWhileConnectedToVpn()
         {
-            loginWindow.LoginWithPlusUser();
+            TestCaseId = 212;
 
-            mainWindow.ConnectViaQuickConnect();
-            //add waitUtils with looping until element visible or smthn
-            Thread.Sleep(20000);
-            mainWindow.ClickHamburgerMenu();
+            _loginWindow.LoginWithPlusUser();
+            _mainWindow.QuickConnect();
+            _mainWindow.ClickHamburgerMenu();
 
-            mainWindow.HamburgerMenu.ClickLogout();
+            _mainWindow.HamburgerMenu.ClickLogout();
             RefreshSession();
 
-            logoutConfirmationPopup.ClickContinueButton();
+            _logoutConfirmationPopup.ClickContinueButton();
             RefreshSession();
 
-            loginWindow.VerifyUserIsOnLoginWindow();
+            _loginResult.VerifyUserIsOnLoginWindow();
         }
 
-        [TestMethod]
+        [Test]
         public void CancelLogoutWhileConnectedToVpn()
         {
-            loginWindow.LoginWithPlusUser();
+            TestCaseId = 21549;
 
-            mainWindow.ConnectViaQuickConnect();
-            //add waitUtils with looping until element visible or smthn
-            Thread.Sleep(20000);
-            mainWindow
+            _loginWindow.LoginWithPlusUser();
+
+            _mainWindow
+                .QuickConnect()
                 .ClickHamburgerMenu()
                 .HamburgerMenu
-                    .ClickLogout();
+                .ClickLogout();
             
             RefreshSession();
-            logoutConfirmationPopup.ClickCancelButton();
+            _logoutConfirmationPopup.ClickCancelButton();
 
-            mainWindow.VerifyUserIsLoggedIn();
+            _mainWindowResults.VerifyUserIsLoggedIn();
         }
 
 
-        [TestInitialize]
+        [SetUp]
         public void TestInitialize()
         {
             CreateSession();
         }
 
-        [TestCleanup]
+        [TearDown]
         public void TestCleanup()
         {
             TearDown();

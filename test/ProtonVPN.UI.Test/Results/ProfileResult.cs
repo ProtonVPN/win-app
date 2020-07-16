@@ -17,46 +17,43 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using OpenQA.Selenium;
 using ProtonVPN.UI.Test.TestsHelper;
 
 namespace ProtonVPN.UI.Test.Results
 {
-    class ProfileResult: UIActions
+    public class ProfileResult : UIActions
     {
-        public static void IsSuccess()
+        public ProfileResult VerifyWindowIsOpened()
         {
-            CheckIfObjectWithNameIsDisplayed("Fastest");
-            CheckIfObjectWithNameIsDisplayed("Random");
+            CheckIfObjectWithNameIsDisplayed("Fastest", "Profiles window was not opened or missing Fastest profile option.");
+            CheckIfObjectWithNameIsDisplayed("Random", "Profiles window was not opened or missing Random profile option.");
+            return this;
         }
 
-        public static void EmptyProfileNameError()
+        public ProfileResult VerifyProfileNameErrorDisplayed()
         {
-            UIActions.CheckIfObjectWithNameIsDisplayed("Please select a profile name");
+            CheckIfObjectWithNameIsDisplayed("Please select a profile name", "Profile name error was not displayed.");
+            return this;
         }
 
-        public static void VerifyCountryErrorDisplayed()
+        public ProfileResult VerifyCountryErrorDisplayed()
         {
-            UIActions.CheckIfObjectWithNameIsDisplayed("Please select a country");
+            CheckIfObjectWithNameIsDisplayed("Please select a country", "Country error was not displayed.");
+            return this;
         }
 
-        public static void EmptyServerError()
+        public ProfileResult VerifyProfileExists(string profileName)
         {
-            UIActions.CheckIfObjectWithNameIsDisplayed("Please select a server");
+            WaitUntilDisplayed(By.Name(profileName), 5);
+            CheckIfObjectWithNameIsDisplayed(profileName, "Profile " + profileName + " does not exist.");
+            return this;
         }
 
-        public static void ProfileIsCreated(string profileName)
+        public ProfileResult VerifyProfileDoesNotExist(string profileName)
         {
-            UIActions.CheckIfObjectWithNameIsDisplayed(profileName);
-        }
-
-        public static void ConnectedToProfile(string status)
-        {
-            UIActions.CheckIfObjectWithNameIsDisplayed(status);
-        }
-
-        public static void ProfileIsNotVisible(string profileName)
-        {
-            UIActions.CheckIfObjectWithNameIsNotDisplayed(profileName);
+            CheckIfObjectWithAutomationIdDoesNotExist(profileName, "Expected profile to not exist, but it exists.");
+            return this;
         }
     }
 }

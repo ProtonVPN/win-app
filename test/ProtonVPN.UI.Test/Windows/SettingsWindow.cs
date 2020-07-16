@@ -17,32 +17,41 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ProtonVPN.UI.Test.TestsHelper;
 
-namespace ProtonVPN.UI.Test.Actions
+namespace ProtonVPN.UI.Test.Windows
 {
-    [TestClass]
-    public class LoginWindows : UIActions 
+    public class SettingsWindow : UIActions
     {
-        public static void ClickUsername()
+        public SettingsWindow ClickGeneralTab()
         {
-            ClickOnObjectWithId("LoginInput");
+            ClickOnObjectWithName("General");
+            return this;
         }
 
-        public static void EnterUsername(string username)
+        public SettingsWindow ClickConnectionTab()
         {
-            InsertTextIntoFieldWithId("LoginInput", username);
+            ClickOnObjectWithName("Connection");
+            return this;
         }
 
-        public static void EnterPassword(string password)
+        public SettingsWindow EnableCustomDnsServers()
         {
-            InsertTextIntoFieldWithId("LoginPasswordInput", password);
+            ClickOnObjectWithId("CheckBoxCustomDnsServers");
+            return this;
         }
 
-        public static void ClickLoginButton()
+        public SettingsWindow EnterCustomIpv4Address(string ipv4Address)
         {
-            ClickOnObjectWithId("LoginButton");
+            InsertTextIntoFieldWithId("InputIpv4Address", ipv4Address);
+            ClickOnObjectWithId("SettingsPlusButton");
+            return this;
+        }
+
+        public SettingsWindow CloseSettings()
+        {
+            ClickOnObjectWithId("ModalCloseButton");
+            return this;
         }
     }
 }

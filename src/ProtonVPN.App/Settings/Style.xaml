@@ -254,7 +254,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                       FocusVisualStyle="{x:Null}"/>
             <Button Margin="10,0,0,0" DockPanel.Dock="Right" Style="{StaticResource SettingsRemoveButton}"
                     Command="{Binding DataContext.RemoveCommand, RelativeSource={RelativeSource AncestorType=ItemsControl, Mode=FindAncestor}}"
-                    CommandParameter="{Binding}"/>
+                    CommandParameter="{Binding}" 
+                    AutomationProperties.AutomationId="{StaticResource DeleteButton}"/>
             <ContentPresenter Content="{Binding Item}" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
         </DockPanel>
     </DataTemplate>

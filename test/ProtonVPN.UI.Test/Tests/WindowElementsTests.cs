@@ -17,7 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Threading.Tasks;
 using ProtonVPN.UI.Test.Windows;
 using ProtonVPN.UI.Test.Results;
 using NUnit.Framework;
@@ -25,24 +24,20 @@ using NUnit.Framework;
 namespace ProtonVPN.UI.Test.Tests
 {
     [TestFixture]
-    public class SecureCoreTests : UITestSession
+    public class WindowElementsTests : UITestSession
     {
         private readonly LoginWindow _loginWindow = new LoginWindow();
         private readonly MainWindow _mainWindow = new MainWindow();
         private readonly MainWindowResults _mainWindowResults = new MainWindowResults();
 
         [Test]
-        public async Task QuickConnectWhileSecureCoreIsEnabled()
+        public void EnableSidebarMode()
         {
-            TestCaseId = 255;
+            TestCaseId = 251;
 
-            _loginWindow.LoginWithPlusUser();
-            _mainWindow.EnableSecureCore();
-            _mainWindow.QuickConnect();
-            _mainWindowResults.CheckIfConnected();
-            await _mainWindowResults.CheckIfCorrectIPAddressIsShownAsync();
-            _mainWindow.DisconnectUsingSidebarButton();
-            await _mainWindowResults.CheckIfCorrectIPAddressIsShownAsync();
+            _loginWindow.LoginWithBasicUser();
+            _mainWindow.ClickOnSidebarModeButton();
+            _mainWindowResults.CheckIfSidebarModeIsEnabled();
         }
 
         [SetUp]

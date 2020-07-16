@@ -17,37 +17,40 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ProtonVPN.UI.Test.Pages;
+using ProtonVPN.UI.Test.Windows;
+using ProtonVPN.UI.Test.Results;
 using ProtonVPN.UI.Test.TestsHelper;
+using NUnit.Framework;
 
 namespace ProtonVPN.UI.Test.Tests
 {
-    [TestClass]
+    [TestFixture]
     public class AccountTests : UITestSession
     {
-        [TestMethod]
+        private readonly AccountResult _accountResult = new AccountResult();
+        private readonly MainWindow _mainWindow = new MainWindow();
+        private readonly LoginWindow _loginActions = new LoginWindow();
+
+        [Test]
         public void CheckIfUsernameIsDisplayedInAccountSection()
         {
-            var loginWindow = new LoginWindow();
-            loginWindow.LoginWithPlusUser();
+            TestCaseId = 199;
 
-            var mainWindow = new MainWindow();
-            mainWindow.ClickHamburgerMenu().HamburgerMenu.ClickAccount();
-
+            _loginActions.LoginWithPlusUser();
+            _mainWindow.ClickHamburgerMenu()
+                .HamburgerMenu.ClickAccount();
             RefreshSession();
-            var accountWindow = new AccountWindow();
-            accountWindow.VerifyLoggedInAsTextIs(TestUserData.GetPlusUser().Username);
+            _accountResult.VerifyLoggedInAsTextIs(TestUserData.GetPlusUser().Username);
         }
 
-        [TestInitialize]
-        public void TestInitialize()
+        [SetUp]
+        public void SetUp()
         {
             CreateSession();
         }
 
-        [TestCleanup]
-        public void TestCleanup()
+        [TearDown]
+        public void CleanUp()
         {
             TearDown();
         }

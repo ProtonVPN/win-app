@@ -19,13 +19,20 @@
 
 using ProtonVPN.UI.Test.TestsHelper;
 
-namespace ProtonVPN.UI.Test.Results
+namespace ProtonVPN.UI.Test.Windows
 {
-    public class LogoutResult
+    public class LogoutConfirmationPopup : UIActions
     {
-        public static void LogoutIsSuccessful()
+        public LogoutConfirmationPopup ClickContinueButton()
         {
-            UIActions.CheckIfObjectWithNameIsDisplayed("Start with Windows");
+            ClickOnObjectWithId("ContinueButton");
+            return this;
+        }
+
+        public LogoutConfirmationPopup ClickCancelButton()
+        {
+            ClickOnObjectWithName("Cancel");
+            return this;
         }
     }
 }

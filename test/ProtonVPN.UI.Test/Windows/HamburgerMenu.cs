@@ -17,40 +17,39 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Threading;
 using ProtonVPN.UI.Test.TestsHelper;
 
-namespace ProtonVPN.UI.Test.Pages
+namespace ProtonVPN.UI.Test.Windows
 {
-    public class HamburgerMenu
+    public class HamburgerMenu : UIActions
     {
         public HamburgerMenu ClickAccount()
         {
-            UIActions.ClickOnObjectWithId("MenuAccountButton");
+            ClickOnObjectWithId("MenuAccountButton");
             return this;
         }
 
         public HamburgerMenu ClickLogout()
         {
-            UIActions.ClickOnObjectWithId("MenuLogoutButton");
+            ClickOnObjectWithId("MenuLogoutButton");
             return this;
         }
 
         public HamburgerMenu ClickReportBug()
         {
-            UIActions.ClickOnObjectWithId("MenuReportBugButton");
+            ClickOnObjectWithId("MenuReportBugButton");
             return this;
         }
 
         public HamburgerMenu ClickSettings()
         {
-            UIActions.ClickOnObjectWithId("MenuSettingsButton");
+            ClickOnObjectWithId("MenuSettingsButton");
             return this;
         }
 
         public HamburgerMenu ClickProfiles()
         {
-            UIActions.ClickOnObjectWithId("MenuProfilesButton");
+            ClickOnObjectWithId("MenuProfilesButton");
             return this;
         }
     }

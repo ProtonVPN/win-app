@@ -42,7 +42,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                             AutomationProperties.AutomationId="{StaticResource MinimizeButtonId}"
                                             Command="{Binding DataContext.MinimizeCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type modals:BaseModalWindow}}}"/>
                                     <Button Style="{StaticResource WindowsCloseButton}"
-                                            AutomationProperties.AutomationId="{StaticResource CloseButtonId}"
+                                            AutomationProperties.AutomationId="{StaticResource ModalCloseButton}"
                                             Command="{Binding DataContext.CloseCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type modals:BaseModalWindow}}}"/>
                                 </StackPanel>
                             </DockPanel>

@@ -19,12 +19,14 @@
 
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
+using OpenQA.Selenium.Support.UI;
 
 namespace ProtonVPN.UI.Test.TestsHelper
 {
     public class UIActions : UITestSession
     {
-      
         public static void InsertTextIntoFieldWithId(string objectId, string text)
         {
             var field = Session.FindElementByAccessibilityId(objectId);
@@ -36,10 +38,10 @@ namespace ProtonVPN.UI.Test.TestsHelper
             Session.FindElementByAccessibilityId(id).Clear();
         }
 
-        public static void InsertTextIntoFieldWithName(string objectName, string text)
+        public static void MoveToElement(IWebElement element)
         {
-            var field = Session.FindElementByName(objectName);
-            field.SendKeys(text);
+            var actions = new Actions(Session);
+            actions.MoveToElement(element).Build().Perform();
         }
 
         public static void ClickOnObjectWithId(string objectId)
@@ -50,66 +52,82 @@ namespace ProtonVPN.UI.Test.TestsHelper
 
         public static void ClickOnObjectWithName(string objectName)
         {
-
             var button = Session.FindElementByName(objectName);
             button.Click();
         }
 
-        public static void ClickOnObjectWithXPath(string objectpath)
+        public static void ClickOnObjectWithXPath(string objectPath)
         {
-            var button = Session.FindElementsByXPath(objectpath);
+            var button = Session.FindElementsByXPath(objectPath);
             button[0].Click();
         }
 
-        public static void CheckIfObjectWithIdIsDisplayed(string objectId)
+        public static void CheckIfObjectWithIdIsDisplayed(string objectId, string errorMessage)
         {
             var content = Session.FindElementByAccessibilityId(objectId).Displayed;
-            Assert.IsTrue(content);
+            Assert.IsTrue(content, errorMessage);
         }
 
-        public static void CheckIfObjectWithAutomationIdDoesNotExist(string id)
+        public static void WaitUntilElementIsNotVisible(By locator, int timeInSeconds)
+        {
+            var wait = new WebDriverWait(Session, TimeSpan.FromSeconds(timeInSeconds));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.InvisibilityOfElementLocated(locator));
+        }
+
+        public static void CheckIfObjectWithAutomationIdDoesNotExist(string id, string errorMessage)
         {
             var exists = false;
-            try
+            ExecuteWithTempWait(() =>
             {
                 Session.FindElementByAccessibilityId(id);
                 exists = true;
+            }, 1);
+
+            Assert.IsFalse(exists, errorMessage);
+        }
+
+        public static void CheckIfObjectWithNameIsDisplayed(string objectName, string errorMessage)
+        {
+            var content = Session.FindElementByName(objectName).Displayed;
+            Assert.IsTrue(content, errorMessage);
+        }
+
+        public static void WaitUntilTextMatches(IWebElement element, string text, int seconds)
+        {
+            var wait = new WebDriverWait(Session, TimeSpan.FromSeconds(seconds));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.TextToBePresentInElement(element, text));
+        }
+
+        public static void WaitUntilDisplayed(By selector, int timeInSeconds)
+        {
+            var wait = new WebDriverWait(Session, TimeSpan.FromSeconds(timeInSeconds));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(selector));
+        }
+
+        public static void CheckIfObjectWithClassNameIsDisplayed(string className, string errorMessage)
+        {
+            var content = Session.FindElementByClassName(className).Displayed;
+            Assert.IsTrue(content, errorMessage);
+        }
+
+        public static void CheckIfElementWithAutomationIdTextMatches(string automationId, string valueToMatch, string errorMessage)
+        {
+            var element = Session.FindElementByAccessibilityId(automationId);
+            Assert.IsTrue(element.Text.Equals(valueToMatch), errorMessage);
+        }
+
+        private static void ExecuteWithTempWait(Action action, double timeInSeconds)
+        {
+            try
+            {
+                SetImplicitWait(timeInSeconds);
+                action();
+                SetImplicitWait(ImplicitWaitTimeInSeconds);
             }
             catch (Exception)
             {
-                // Ignored
+                SetImplicitWait(ImplicitWaitTimeInSeconds);
             }
-
-            Assert.IsFalse(exists);
-        }
-
-        public static void CheckIfObjectWithNameIsDisplayed(string objectName)
-        {
-            var content = Session.FindElementByName(objectName).Displayed;
-            Assert.IsTrue(content);
-        }
-
-        public static void CheckIfObjectWithNameIsNotDisplayed(string objectName)
-        {
-            var elements = Session.FindElementsByName(objectName);
-            Assert.IsTrue(elements.Count == 0);
-        }
-
-        public void CloseWindow()
-        {
-            var close = Session.FindElementsByXPath("//*[@AutomationId = 'CloseButton']");
-            close[0].Click();
-        }
-
-        public static void CloseProfilesWindow()
-        {
-            var close = Session.FindElementByName("Close");
-            close.Click();
-        }
-
-        public static void ClickHamburgerMenu()
-        {
-            ClickOnObjectWithId("MenuHamburgerButton");
         }
     }
 }

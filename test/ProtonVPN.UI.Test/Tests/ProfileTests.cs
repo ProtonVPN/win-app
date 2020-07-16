@@ -17,221 +17,236 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ProtonVPN.UI.Test.ApiClient;
-using ProtonVPN.UI.Test.Pages;
+using ProtonVPN.UI.Test.Windows;
+using ProtonVPN.UI.Test.Results;
 using ProtonVPN.UI.Test.TestsHelper;
-using Profile = ProtonVPN.UI.Test.Actions.Profile;
+using NUnit.Framework;
 
 namespace ProtonVPN.UI.Test.Tests
 {
-    [TestClass]
-    public class ProfileTests : Profile
+    [TestFixture]
+    public class ProfileTests : UITestSession
     {
-        readonly LoginWindow loginWindow = new LoginWindow();
-        readonly MainWindow mainWindow = new MainWindow();
-        readonly ProfileWindow profileWindow = new ProfileWindow();
+        private readonly LoginWindow _loginWindow = new LoginWindow();
+        private readonly MainWindow _mainWindow = new MainWindow();
+        private readonly MainWindowResults _mainWindowResults = new MainWindowResults();
+        private readonly ProfileWindow _profileWindow = new ProfileWindow();
+        private readonly ProfileResult _profileResult = new ProfileResult();
 
-        [TestMethod]
+        [Test]
         public void DefaultProfilesOptions()
         {
-            loginWindow.LoginWithPlusUser();
-            mainWindow.ClickHamburgerMenu().HamburgerMenu.ClickProfiles();
-            profileWindow.VerifyWindowIsOpened();
+            TestCaseId = 234;
+
+            _loginWindow.LoginWithPlusUser();
+
+            _mainWindow.ClickHamburgerMenu()
+                .HamburgerMenu.ClickProfiles();
+
+            _profileResult.VerifyWindowIsOpened();
         }
 
-        [TestMethod]
+        [Test]
         public void TryToCreateProfileWithoutName()
         {
-            loginWindow.LoginWithPlusUser();
+            TestCaseId = 235;
 
-            mainWindow.ClickHamburgerMenu()
+            _loginWindow.LoginWithPlusUser();
+
+            _mainWindow.ClickHamburgerMenu()
                 .HamburgerMenu.ClickProfiles();
 
-            profileWindow.ClickToCreateNewProfile()
+            _profileWindow.ClickToCreateNewProfile()
                 .EnterProfileName("")
-                .ClickSaveButton()
-                .VerifyProfileNameErrorDisplayed();
+                .ClickSaveButton();
+            _profileResult.VerifyProfileNameErrorDisplayed();
         }
 
-        [TestMethod]
+        [Test]
         public void TryToCreateProfileWithoutCountry()
         {
-            loginWindow.LoginWithPlusUser();
+            TestCaseId = 235;
 
-            mainWindow.ClickHamburgerMenu()
+            _loginWindow.LoginWithPlusUser();
+
+            _mainWindow.ClickHamburgerMenu()
                 .HamburgerMenu.ClickProfiles();
 
-            profileWindow.ClickToCreateNewProfile()
+            _profileWindow.ClickToCreateNewProfile()
                 .EnterProfileName("Standard Profile")
-                .ClickSaveButton()
-                .VerifyCountryErrorDisplayed();
+                .ClickSaveButton();
+            _profileResult.VerifyCountryErrorDisplayed();
         }
 
-        [TestMethod]
+        [Test]
         public void TryToCreateStandardProfile()
         {
-            loginWindow.LoginWithPlusUser();
+            TestCaseId = 235;
 
-            mainWindow.ClickHamburgerMenu()
+            _loginWindow.LoginWithPlusUser();
+
+            _mainWindow.ClickHamburgerMenu()
                 .HamburgerMenu.ClickProfiles();
 
-            profileWindow.ClickToCreateNewProfile()
+            _profileWindow.ClickToCreateNewProfile()
                 .EnterProfileName("@Standard Profile")
                 .SelectCountryFromList("Belgium")
                 .SelectServerFromList("BE#1")
                 .ClickSaveButton();
 
-            Thread.Sleep(1000);
-
-            profileWindow.VerifyProfileExists("@Standard Profile");
+            _profileResult.VerifyProfileExists("@Standard Profile");
         }
 
-        [TestMethod]
+        [Test]
         public void TryToCreateSecureCoreProfile()
         {
-            loginWindow.LoginWithPlusUser();
+            TestCaseId = 236;
 
-            mainWindow.ClickHamburgerMenu()
+            _loginWindow.LoginWithPlusUser();
+
+            _mainWindow.ClickHamburgerMenu()
                 .HamburgerMenu.ClickProfiles();
 
-            profileWindow.ClickToCreateNewProfile()
+            _profileWindow.ClickToCreateNewProfile()
                 .ClickSecureCore()
                 .EnterProfileName("@Secure Core Profile")
                 .SelectCountryFromList("Belgium")
                 .SelectServerFromList("IS-BE#1")
                 .ClickSaveButton();
-            Thread.Sleep(1000);
 
-            profileWindow.VerifyProfileExists("@Secure Core Profile");
+            _profileResult.VerifyProfileExists("@Secure Core Profile");
         }
 
-        [TestMethod]
+        [Test]
         public void TryToCreateP2PProfile()
         {
-            loginWindow.LoginWithPlusUser();
+            TestCaseId = 21553;
 
-            mainWindow.ClickHamburgerMenu()
+            _loginWindow.LoginWithPlusUser();
+
+            _mainWindow.ClickHamburgerMenu()
                 .HamburgerMenu.ClickProfiles();
 
-            profileWindow.ClickToCreateNewProfile()
+            _profileWindow.ClickToCreateNewProfile()
                 .ClickP2P()
                 .EnterProfileName("@P2P Profile")
                 .SelectServerFromList("CH#5")
                 .ClickSaveButton();
-            Thread.Sleep(1000);
 
-            profileWindow.VerifyProfileExists("@P2P Profile");
+            _profileResult.VerifyProfileExists("@P2P Profile");
         }
 
-        [TestMethod]
+        [Test]
         public void TryToCreateTorProfile()
         {
-            loginWindow.LoginWithPlusUser();
+            TestCaseId = 21552;
 
-            mainWindow.ClickHamburgerMenu()
+            _loginWindow.LoginWithPlusUser();
+
+            _mainWindow.ClickHamburgerMenu()
                 .HamburgerMenu.ClickProfiles();
 
-            profileWindow.ClickToCreateNewProfile()
+            _profileWindow.ClickToCreateNewProfile()
                 .ClickTor()
                 .EnterProfileName("@Tor Profile")
                 .SelectServerFromList("CH#18-TOR")
                 .ClickSaveButton();
 
-            profileWindow.VerifyProfileExists("@Tor Profile");
+            _profileResult.VerifyProfileExists("@Tor Profile");
         }
 
-        [TestMethod]
+        [Test]
         public void DeleteProfile()
         {
+            TestCaseId = 239;
+
             var profileName = "@ProfileToDelete";
-            loginWindow.LoginWithPlusUser();
+            _loginWindow.LoginWithPlusUser();
 
-            mainWindow.ClickHamburgerMenu().HamburgerMenu.ClickProfiles();
+            _mainWindow.ClickHamburgerMenu().HamburgerMenu.ClickProfiles();
 
-            profileWindow.ClickToCreateNewProfile()
+            _profileWindow.ClickToCreateNewProfile()
                 .EnterProfileName(profileName)
                 .SelectCountryFromList("Belgium")
                 .SelectServerFromList("BE#1")
                 .ClickSaveButton();
 
-            Thread.Sleep(2000);
-
-            profileWindow.DeleteProfileByByName(profileName);
-            Thread.Sleep(1000);
-            profileWindow.ClickContinueDeletion();
-            profileWindow.VerifyProfileDoesNotExist(profileName);
+            _profileWindow.DeleteProfileByByName(profileName);
+            _profileWindow.ClickContinueDeletion();
+            _profileResult.VerifyProfileDoesNotExist(profileName);
         }
 
-        [TestMethod]
+        [Test]
         public void EditProfile()
         {
+            TestCaseId = 238;
+
             var profileName = "@ProfileToEdit";
             var newProfileName = "@ProfileToEdit-v2";
 
-            loginWindow.LoginWithPlusUser();
-            mainWindow.ClickHamburgerMenu().HamburgerMenu.ClickProfiles();
+            _loginWindow.LoginWithPlusUser();
+            _mainWindow.ClickHamburgerMenu().HamburgerMenu.ClickProfiles();
 
-            profileWindow.ClickToCreateNewProfile()
+            _profileWindow.ClickToCreateNewProfile()
                 .EnterProfileName(profileName)
                 .SelectCountryFromList("Belgium")
                 .SelectServerFromList("BE#1")
                 .ClickSaveButton();
 
-            Thread.Sleep(500);
 
-            profileWindow.ClickEditProfile(profileName)
+            _profileWindow.ClickEditProfile(profileName)
                 .ClearProfileName()
                 .EnterProfileName(newProfileName)
                 .ClickSaveButton();
 
-            Thread.Sleep(500);
-            profileWindow.VerifyProfileExists(newProfileName);
+            _profileResult.VerifyProfileExists(newProfileName);
         }
 
-        [TestMethod]
+        [Test]
         public void ConnectToCreatedProfile()
         {
+            TestCaseId = 21551;
+
             var profileName = "@ProfileToConnect";
 
-            loginWindow.LoginWithPlusUser();
-            mainWindow.ClickHamburgerMenu().HamburgerMenu.ClickProfiles();
+            _loginWindow.LoginWithPlusUser();
+            _mainWindow.ClickHamburgerMenu().HamburgerMenu.ClickProfiles();
             
-            profileWindow.ClickToCreateNewProfile()
+            _profileWindow.ClickToCreateNewProfile()
                 .EnterProfileName(profileName)
                 .SelectCountryFromList("Belgium")
                 .SelectServerFromList("BE#1")
                 .ClickSaveButton();
 
-            Thread.Sleep(1000);
 
-            profileWindow.ConnectToProfile(profileName);
-            mainWindow.VerifyConnecting();
+            _profileWindow.ConnectToProfile(profileName);
+            _mainWindowResults.CheckIfConnected();
         }
 
-        [TestMethod]
+        [Test]
         public void DiscardNewProfile()
         {
-            loginWindow.LoginWithPlusUser();
+            TestCaseId = 21550;
 
-            mainWindow.ClickHamburgerMenu()
+            _loginWindow.LoginWithPlusUser();
+
+            _mainWindow.ClickHamburgerMenu()
                 .HamburgerMenu.ClickProfiles();
 
-            Thread.Sleep(200);
 
-            profileWindow.ClickToCreateNewProfile()
+            _profileWindow.ClickToCreateNewProfile()
                 .EnterProfileName("@ProfileToDiscard")
                 .SelectCountryFromList("Belgium")
                 .SelectServerFromList("BE#1")
                 .ClickToCancel()
                 .ClickToDiscard();
 
-            profileWindow.VerifyProfileDoesNotExist("@ProfileToDiscard");
+            _profileResult.VerifyProfileDoesNotExist("@ProfileToDiscard");
         }
 
-        [TestInitialize]
+        [SetUp]
         public async Task TestInitialize()
         {
             CreateSession();
@@ -241,7 +256,7 @@ namespace ProtonVPN.UI.Test.Tests
             await api.DeleteProfiles();
         }
 
-        [TestCleanup]
+        [TearDown]
         public void TestCleanup()
         {
             TearDown();

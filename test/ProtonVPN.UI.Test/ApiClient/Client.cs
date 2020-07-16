@@ -74,6 +74,7 @@ namespace ProtonVPN.UI.Test.ApiClient
                     return Core.Api.ApiResponseResult<AuthInfo>.Fail(response.StatusCode,
                         "Incorrect login credentials. Please try again");
                 }
+
                 return validatedResponse;
             }
             catch (Exception e) when (e.IsApiCommunicationException())
@@ -120,7 +121,20 @@ namespace ProtonVPN.UI.Test.ApiClient
 
         public Task<ApiResponseResult<ServerList>> GetServersAsync(string ip) => throw new NotImplementedException();
 
-        public Task<ApiResponseResult<UserLocation>> GetLocationDataAsync() => throw new NotImplementedException();
+        public async Task<ApiResponseResult<UserLocation>> GetLocationDataAsync()
+        {
+            try
+            {
+                var request = GetAuthorizedRequest(HttpMethod.Get, "vpn/location");
+                using var response = await _client.SendAsync(request).ConfigureAwait(false);
+                var stream = await response.Content.ReadAsStreamAsync();
+                return GetResponseStreamResult<UserLocation>(stream, response.StatusCode);
+            }
+            catch(Exception e) when (e.IsApiCommunicationException())
+            {
+                throw new HttpRequestException(e.Message, e);
+            }
+        }
 
         public Task<ApiResponseResult<BaseResponse>> ReportBugAsync(IEnumerable<KeyValuePair<string, string>> fields, IEnumerable<File> files) => throw new NotImplementedException();
 
