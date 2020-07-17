@@ -88,7 +88,7 @@ namespace ProtonVPN.Core.Api.Handlers
             {
                 await _fetchProxies.Run();
 
-                if (_appSettings.AlternativeApiBaseUrls == null)
+                if (_appSettings.AlternativeApiBaseUrls.Count == 0)
                 {
                     throw;
                 }
@@ -199,6 +199,8 @@ namespace ProtonVPN.Core.Api.Handlers
         private async Task FetchProxies()
         {
             _appSettings.LastPrimaryApiFail = DateTime.Now;
+            _appSettings.AlternativeApiBaseUrls = new StringCollection();
+            ResetBackendHost();
 
             var clients = _dohClients.Get();
             foreach (var dohClient in clients)
