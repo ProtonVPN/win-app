@@ -228,24 +228,13 @@
     <Compile Include="Account\VpnInfoChecker.cs" />
     <Compile Include="Account\VpnPlanHelper.cs" />
     <Compile Include="BugReporting\Attachments\Attachment.cs" />
-    <Compile Include="BugReporting\Attachments\AttachmentErrorType.cs" />
     <Compile Include="BugReporting\Attachments\Attachments.cs" />
     <Compile Include="BugReporting\Attachments\AttachmentsToApiFiles.cs" />
     <Compile Include="BugReporting\Attachments\Source\FilesToAttachments.cs" />
-    <Compile Include="BugReporting\Attachments\AttachmentExtensions.cs" />
-    <Compile Include="BugReporting\Attachments\Filters\ExistingAttachmentFilter.cs" />
-    <Compile Include="BugReporting\Attachments\Filters\TooManyAttachmentFilter.cs" />
-    <Compile Include="BugReporting\Attachments\Filters\FileLengthAttachmentFilter.cs" />
     <Compile Include="BugReporting\Attachments\Source\LogFileSource.cs" />
     <Compile Include="BugReporting\Attachments\Source\SafeFileSource.cs" />
-    <Compile Include="BugReporting\Attachments\AttachmentErrorEventArgs.cs" />
-    <Compile Include="BugReporting\Attachments\Source\SelectFileSource.cs" />
-    <Compile Include="BugReporting\Attachments\Filters\TooLargeAttachmentFilter.cs" />
     <Compile Include="BugReporting\BugReport.cs" />
-    <Compile Include="BugReporting\Errors\AttachmentReadError.cs" />
     <Compile Include="BugReporting\EmailValidator.cs" />
-    <Compile Include="BugReporting\Errors\AttachmentLimit.cs" />
-    <Compile Include="BugReporting\Errors\AttachmentSizeLimit.cs" />
     <Compile Include="BugReporting\FailureView.xaml.cs">
       <DependentUpon>FailureView.xaml</DependentUpon>
     </Compile>

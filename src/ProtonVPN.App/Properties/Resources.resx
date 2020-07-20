@@ -425,14 +425,6 @@
     <value>Your ISP (optional)</value>
     <comment>The watermark text displayed in user ISP text box on Bug Report window</comment>
   </data>
-  <data name="BugReport_lnk_AddFile" xml:space="preserve">
-    <value>Add File</value>
-    <comment>The text on Add File button in Bug Report window (opens a window for selecting files to add)</comment>
-  </data>
-  <data name="BugReport_lbl_MaxFileSize" xml:space="preserve">
-    <value>Max file size limit:</value>
-    <comment>The label for max file size limit in Bug Report window</comment>
-  </data>
   <data name="BugReport_lbl_Feedback" xml:space="preserve">
     <value>Feedback</value>
     <comment>The label for user feedback text box in Bug Report window</comment>
@@ -460,14 +452,6 @@
   <data name="BugReport_msg_SendingSucceeded" xml:space="preserve">
     <value>The Bug Report has been successfully sent.</value>
     <comment>The message displayed in Bug Report window when sending completes</comment>
-  </data>
-  <data name="BugReport_AttachmentError_msg_TooLarge" xml:space="preserve">
-    <value>You can only attach files under {0}.</value>
-    <comment>The message displayed in bug Report window when file size is greater than max file size allowed. The {0} is a placeholder for max file size.</comment>
-  </data>
-  <data name="BugReport_AttachmentError_msg_TooMany_One" xml:space="preserve">
-    <value>You can only attach up to {0} file.</value>
-    <comment>The message displayed in Bug Report window when number of files is greater than allowed. The {0} is a placeholder for max number of attachments allowed.</comment>
   </data>
   <data name="Servers_Load_lbl_IPAutoAssigned" xml:space="preserve">
     <value>Auto assigned</value>
@@ -1001,22 +985,6 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
   <data name="Settings_msg_ReconnectRequired" xml:space="preserve">
     <value>Some changes require reconnecting in order to take effect.</value>
     <comment>The message displayed on the bottom of Settings window if any of settings changes requires VPN to be reconnected to take effect</comment>
-  </data>
-  <data name="BugReport_AttachmentError_lbl_TooLarge" xml:space="preserve">
-    <value>Files exceeding size limit:</value>
-    <comment>The heading for list of files not attached because of size limit displayed in a tooltip of error message in Bug Report window</comment>
-  </data>
-  <data name="BugReport_AttachmentError_msg_ReadError" xml:space="preserve">
-    <value>Unable to read the file.</value>
-    <comment>The message displayed in bug Report window when file read error occurs during sending report</comment>
-  </data>
-  <data name="BugReport_AttachmentError_lbl_ReadError" xml:space="preserve">
-    <value>Unable to read:</value>
-    <comment>The heading for list of files not attached because of read error displayed in a tooltip of error message in Bug Report window</comment>
-  </data>
-  <data name="BugReport_AttachmentError_lbl_TooMany" xml:space="preserve">
-    <value>Skipped files:</value>
-    <comment>The heading for list of files not attached because of count limit displayed in a tooltip of error message in Bug Report window</comment>
   </data>
   <data name="About_ttl" xml:space="preserve">
     <value>About</value>
@@ -2801,10 +2769,6 @@ Exiting the application will disable the Kill Switch. Do you want to continue?</
   <data name="Account_lbl_Device_Other" xml:space="preserve">
     <value>Devices</value>
     <comment>The supported number of devices in Account window.</comment>
-  </data>
-  <data name="BugReport_AttachmentError_msg_TooMany_Other" xml:space="preserve">
-    <value>You can only attach up to {0} files.</value>
-    <comment>The message displayed in Bug Report window when number of files is greater than allowed. The {0} is a placeholder for max number of attachments allowed.</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_NameTooLong_Other" xml:space="preserve">
     <value>Maximum profile name length is {0} symbols. Please choose a shorter profile name.</value>

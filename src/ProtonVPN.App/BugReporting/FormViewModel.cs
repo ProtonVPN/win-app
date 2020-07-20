@@ -61,12 +61,10 @@ namespace ProtonVPN.BugReporting
             _attachments = attachments;
             _processes = processes;
 
-            AddAttachmentCommand = new RelayCommand(AddAttachment);
             RemoveAttachmentCommand = new RelayCommand<Attachment>(RemoveAttachment);
             OpenAttachmentCommand = new RelayCommand<Attachment>(OpenAttachment);
         }
 
-        public ICommand AddAttachmentCommand { get; set; }
         public ICommand RemoveAttachmentCommand { get; set; }
         public ICommand OpenAttachmentCommand { get; set; }
 
@@ -133,11 +131,6 @@ namespace ProtonVPN.BugReporting
         public void RemoveAttachment(Attachment attachment)
         {
             _attachments.Remove(attachment);
-        }
-
-        public void AddAttachment()
-        {
-            _attachments.SelectFiles();
         }
 
         public bool IsValid()

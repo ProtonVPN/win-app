@@ -17,18 +17,18 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NSubstitute;
-using NSubstitute.ExceptionExtensions;
-using ProtonVPN.BugReporting.Attachments.Source;
-using ProtonVPN.Common.Logging;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Security;
+using FluentAssertions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NSubstitute;
+using NSubstitute.ExceptionExtensions;
+using ProtonVPN.BugReporting.Attachments.Source;
+using ProtonVPN.Common.Logging;
 
 namespace ProtonVPN.App.Test.BugReporting.Attachments.Source
 {

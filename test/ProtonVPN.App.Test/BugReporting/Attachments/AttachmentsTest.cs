@@ -17,14 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using ProtonVPN.BugReporting.Attachments;
-using ProtonVPN.Common.Logging;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 
 namespace ProtonVPN.App.Test.BugReporting.Attachments
 {
@@ -34,7 +33,6 @@ namespace ProtonVPN.App.Test.BugReporting.Attachments
     [SuppressMessage("ReSharper", "ReturnValueOfPureMethodIsNotUsed")]
     public class AttachmentsTest
     {
-        private ILogger _logger;
         private Common.Configuration.Config _appConfig;
         private IEnumerable<Attachment> _logFileSource;
         private IEnumerable<Attachment> _selectFileSource;
@@ -42,7 +40,6 @@ namespace ProtonVPN.App.Test.BugReporting.Attachments
         [TestInitialize]
         public void TestInitialize()
         {
-            _logger = Substitute.For<ILogger>();
             _appConfig = new Common.Configuration.Config();
             _logFileSource = Substitute.For<IEnumerable<Attachment>>();
             _selectFileSource = Substitute.For<IEnumerable<Attachment>>();
@@ -64,7 +61,7 @@ namespace ProtonVPN.App.Test.BugReporting.Attachments
                 new Attachment("TestData\\test-3.txt")
             };
             _logFileSource.GetEnumerator().Returns(items.Cast<Attachment>().GetEnumerator());
-            var subject = new ProtonVPN.BugReporting.Attachments.Attachments(_logger, _appConfig, _logFileSource, _selectFileSource);
+            var subject = new ProtonVPN.BugReporting.Attachments.Attachments(_logFileSource);
 
             subject.Load();
             subject.Items.Should().NotBeEmpty();
@@ -79,7 +76,7 @@ namespace ProtonVPN.App.Test.BugReporting.Attachments
         public void Load_ShouldEnumerate_LogFileSource()
         {
             // Arrange
-            var subject = new ProtonVPN.BugReporting.Attachments.Attachments(_logger, _appConfig, _logFileSource, _selectFileSource);
+            var subject = new ProtonVPN.BugReporting.Attachments.Attachments(_logFileSource);
             // Act
             subject.Load();
             // Assert
@@ -90,7 +87,7 @@ namespace ProtonVPN.App.Test.BugReporting.Attachments
         public void Load_ShouldNotEnumerate_SelectFileSource()
         {
             // Arrange
-            var subject = new ProtonVPN.BugReporting.Attachments.Attachments(_logger, _appConfig, _logFileSource, _selectFileSource);
+            var subject = new ProtonVPN.BugReporting.Attachments.Attachments(_logFileSource);
             // Act
             subject.Load();
             // Assert
@@ -108,7 +105,7 @@ namespace ProtonVPN.App.Test.BugReporting.Attachments
                 new Attachment("TestData\\test-3.txt")
             };
             _logFileSource.GetEnumerator().Returns(items.Cast<Attachment>().GetEnumerator());
-            var subject = new ProtonVPN.BugReporting.Attachments.Attachments(_logger, _appConfig, _logFileSource, _selectFileSource);
+            var subject = new ProtonVPN.BugReporting.Attachments.Attachments(_logFileSource);
             // Act
             subject.Load();
             // Assert
@@ -119,7 +116,7 @@ namespace ProtonVPN.App.Test.BugReporting.Attachments
         public void Items_ShouldByEmpty_Initially()
         {
             // Arrange
-            var subject = new ProtonVPN.BugReporting.Attachments.Attachments(_logger, _appConfig, _logFileSource, _selectFileSource);
+            var subject = new ProtonVPN.BugReporting.Attachments.Attachments(_logFileSource);
             // Act
             var result = subject.Items;
             // Assert
@@ -127,132 +124,14 @@ namespace ProtonVPN.App.Test.BugReporting.Attachments
         }
 
         [TestMethod]
-        public void SelectFiles_ShouldEnumerate_SelectFileSource()
-        {
-            // Arrange
-            var subject = new ProtonVPN.BugReporting.Attachments.Attachments(_logger, _appConfig, _logFileSource, _selectFileSource);
-            // Act
-            subject.SelectFiles();
-            // Assert
-            _selectFileSource.Received(1).GetEnumerator();
-        }
-
-        [TestMethod]
-        public void SelectFiles_ShouldLoad_UpToMaxItems()
-        {
-            // Arrange
-            const int maxItems = 2;
-            _appConfig.ReportBugMaxFiles = maxItems;
-            var items = new[]
-            {
-                new Attachment("TestData\\test.txt"),
-                new Attachment("TestData\\test-2.txt"),
-                new Attachment("TestData\\test-3.txt"),
-                new Attachment("TestData\\test-4.txt")
-            };
-            _selectFileSource.GetEnumerator().Returns(items.Cast<Attachment>().GetEnumerator());
-            var subject = new ProtonVPN.BugReporting.Attachments.Attachments(_logger, _appConfig, _logFileSource, _selectFileSource);
-            // Act
-            subject.SelectFiles();
-            // Assert
-            subject.Items.Should().HaveCount(maxItems);
-        }
-
-        [TestMethod]
-        public void SelectFiles_ShouldRaise_OnErrorOccured_WithSkippedItems()
-        {
-            // Arrange
-            const int maxItems = 2;
-            _appConfig.ReportBugMaxFiles = maxItems;
-            var items = new[]
-            {
-                new Attachment("TestData\\test.txt"),
-                new Attachment("TestData\\test-2.txt"),
-                new Attachment("TestData\\test-3.txt"),
-                new Attachment("TestData\\test-4.txt")
-            };
-            var skipped = new[]
-            {
-                new Attachment("TestData\\test-3.txt"),
-                new Attachment("TestData\\test-4.txt")
-            };
-            _selectFileSource.GetEnumerator().Returns(items.Cast<Attachment>().GetEnumerator());
-
-            var subject = new ProtonVPN.BugReporting.Attachments.Attachments(_logger, _appConfig, _logFileSource, _selectFileSource);
-            AttachmentErrorEventArgs error = null;
-            subject.OnErrorOccured += (sender, attachmentError) => error = attachmentError;
-            // Act
-            subject.SelectFiles();
-            // Assert
-            error.Attachments.Should().BeEquivalentTo(skipped);
-            error.Attachments.TooMany().Should().BeEquivalentTo(skipped);
-        }
-
-        [TestMethod]
-        public void SelectFiles_ShouldRaise_OnErrorOccured_WithTooLargeItems()
-        {
-            // Arrange
-            const long maxSize = 50;
-            _appConfig.ReportBugMaxFileSize = maxSize;
-            var items = new[]
-            {
-                new Attachment("TestData\\test.txt"),
-                new Attachment("TestData\\test-2.txt"),
-                new Attachment("TestData\\test-3.txt")
-            };
-            var tooLarge = new[]
-            {
-                new Attachment("TestData\\test-2.txt")
-            };
-            _selectFileSource.GetEnumerator().Returns(items.Cast<Attachment>().GetEnumerator());
-
-            var subject = new ProtonVPN.BugReporting.Attachments.Attachments(_logger, _appConfig, _logFileSource, _selectFileSource);
-            AttachmentErrorEventArgs error = null;
-            subject.OnErrorOccured += (sender, attachmentError) => error = attachmentError;
-            // Act
-            subject.SelectFiles();
-            // Assert
-            error.Attachments.Should().BeEquivalentTo(tooLarge);
-            error.Attachments.TooLarge().Should().BeEquivalentTo(tooLarge);
-        }
-
-        [TestMethod]
-        public void SelectFiles_ShouldRaise_OnErrorOccured_WhenAttachments_HaveMaxCount()
-        {
-            // Arrange
-            const int maxItems = 2;
-            _appConfig.ReportBugMaxFiles = maxItems;
-            var logItems = new[]
-            {
-                new Attachment("TestData\\test.txt"),
-                new Attachment("TestData\\test-2.txt")
-            };
-            var newItems = new[]
-            {
-                new Attachment("TestData\\test-3.txt"),
-                new Attachment("TestData\\test-4.txt")
-            };
-            _logFileSource.GetEnumerator().Returns(logItems.Cast<Attachment>().GetEnumerator());
-            _selectFileSource.GetEnumerator().Returns(newItems.Cast<Attachment>().GetEnumerator());
-
-            var subject = new ProtonVPN.BugReporting.Attachments.Attachments(_logger, _appConfig, _logFileSource, _selectFileSource);
-            subject.Load();
-            AttachmentErrorEventArgs error = null;
-            subject.OnErrorOccured += (sender, attachmentError) => error = attachmentError;
-            // Act
-            subject.SelectFiles();
-            // Assert
-            error.Should().NotBeNull();
-        }
-
-        [TestMethod]
         public void Remove_ShouldRemoveItem()
         {
             // Arrange
+            var itemToRemove = new Attachment("TestData\\test-2.txt");
             var items = new[]
             {
                 new Attachment("TestData\\test.txt"),
-                new Attachment("TestData\\test-2.txt"),
+                itemToRemove,
                 new Attachment("TestData\\test-3.txt")
             };
             var expected = new[]
@@ -261,12 +140,13 @@ namespace ProtonVPN.App.Test.BugReporting.Attachments
                 new Attachment("TestData\\test-3.txt")
             };
             _logFileSource.GetEnumerator().Returns(items.Cast<Attachment>().GetEnumerator());
-            var subject = new ProtonVPN.BugReporting.Attachments.Attachments(_logger, _appConfig, _logFileSource, _selectFileSource);
+            var subject = new ProtonVPN.BugReporting.Attachments.Attachments(_logFileSource);
 
             subject.Load();
             subject.Items.Should().BeEquivalentTo(items);
+
             // Act
-            subject.Remove(new Attachment("TestData\\test-2.txt"));
+            subject.Remove(itemToRemove);
             // Assert
             subject.Items.Should().BeEquivalentTo(expected);
         }

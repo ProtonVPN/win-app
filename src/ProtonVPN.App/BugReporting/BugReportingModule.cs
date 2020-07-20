@@ -21,7 +21,6 @@ using Autofac;
 using ProtonVPN.BugReporting.Attachments.Source;
 using ProtonVPN.Common.Helpers;
 using ProtonVPN.Common.Logging;
-using Module = Autofac.Module;
 
 namespace ProtonVPN.BugReporting
 {
@@ -39,8 +38,6 @@ namespace ProtonVPN.BugReporting
                 var logger = c.Resolve<ILogger>();
 
                 return new Attachments.Attachments(
-                    logger,
-                    appConfig,
                     new FilesToAttachments(
                         new ConcatenatedSequence<string>(
                             new SafeFileSource(logger,
@@ -48,9 +45,7 @@ namespace ProtonVPN.BugReporting
                             new SafeFileSource(logger,
                                 new LogFileSource(appConfig.ServiceLogFolder, appConfig.MaxServiceLogsAttached)),
                             new SafeFileSource(logger,
-                                new LogFileSource(appConfig.UpdateServiceLogFolder, appConfig.MaxUpdaterServiceLogsAttached)))),
-                    new FilesToAttachments(
-                        new SelectFileSource()));
+                                new LogFileSource(appConfig.UpdateServiceLogFolder, appConfig.MaxUpdaterServiceLogsAttached)))));
             }).SingleInstance();
         }
     }

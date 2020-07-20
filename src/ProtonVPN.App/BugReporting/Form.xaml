@@ -191,32 +191,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </TextBlock>
                 </Grid>
             </Grid>
-            <DockPanel Margin="0,20,0,5" DockPanel.Dock="Top">
-                <fa:FontAwesome Icon="Paperclip"
-                                Foreground="{StaticResource PrimaryColor}"
-                                FontSize="14"
-                                FontWeight="Bold"
-                                Padding="0,0,5,0"
-                                VerticalAlignment="Center"/>
-                <Button Style="{StaticResource ClearStyleButton}"
-                        VerticalAlignment="Center"
-                        FontSize="14"
-                        Command="{Binding AddAttachmentCommand}"
-                        HorizontalAlignment="Left"
-                        Foreground="{StaticResource PrimaryColor}"
-                        Background="Transparent"
-                        BorderBrush="Transparent"
-                        FontWeight="Bold">
-                    <Underline>
-                        <Run Text="{resources:Loc BugReport_lnk_AddFile}"/>
-                    </Underline>
-                </Button>
-            </DockPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" DockPanel.Dock="Bottom">
-                <Label Content="{resources:Loc BugReport_lbl_MaxFileSize}" Padding="0,5" Foreground="#5b5e6c"/>
-                <Label Content="{Binding MaxFileSize, Converter={StaticResource BytesToStringConverter}}" Foreground="#5b5e6c"/>
-            </StackPanel>
-            <Border Style="{StaticResource FormBorder}" VerticalAlignment="Stretch">
+
+            <Border Style="{StaticResource FormBorder}" VerticalAlignment="Stretch" Margin="0,25,0,0">
                 <ScrollViewer VerticalAlignment="Stretch" Style="{StaticResource Scroller}" PanningMode="VerticalOnly" Margin="0,5,0,0">
                     <ItemsControl ItemsSource="{Binding Attachments}">
                         <ItemsControl.ItemTemplate>
