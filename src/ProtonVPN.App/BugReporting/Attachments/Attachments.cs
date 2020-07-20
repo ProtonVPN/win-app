@@ -17,33 +17,19 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.BugReporting.Attachments.Filters;
-using ProtonVPN.Common.Logging;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 
 namespace ProtonVPN.BugReporting.Attachments
 {
     public class Attachments
     {
         private readonly IEnumerable<Attachment> _logFileSource;
-        private readonly IEnumerable<Attachment> _filteredItems;
 
-        public Attachments(ILogger logger, Common.Configuration.Config appConfig, IEnumerable<Attachment> logFileSource, IEnumerable<Attachment> selectFileSource)
+        public Attachments(IEnumerable<Attachment> logFileSource)
         {
             _logFileSource = logFileSource;
-
-            _filteredItems = 
-                new TooLargeAttachmentFilter(appConfig.ReportBugMaxFileSize,
-                    new FileLengthAttachmentFilter(logger,
-                        new TooManyAttachmentFilter(Items, appConfig.ReportBugMaxFiles,
-                            new ExistingAttachmentFilter(Items,
-                                selectFileSource))));
         }
-
-        public EventHandler<AttachmentErrorEventArgs> OnErrorOccured;
 
         public void Load()
         {
@@ -52,22 +38,6 @@ namespace ProtonVPN.BugReporting.Attachments
         }
 
         public ObservableCollection<Attachment> Items { get; } = new ObservableCollection<Attachment>();
-
-        public void SelectFiles()
-        {
-            var items = new List<Attachment>();
-            foreach (var item in _filteredItems)
-            {
-                // Items without errors should be added to Items collection during the enumeration, not after.
-                // The TooManyAttachmentFilter depends on this functionality.
-                AddWithoutError(item);
-                items.Add(item);
-            }
-
-            var errorItems = items.WithError().ToList();
-            if (errorItems.Any())
-                OnErrorOccured?.Invoke(this, new AttachmentErrorEventArgs(errorItems));
-        }
 
         public void Remove(Attachment item)
         {
@@ -80,12 +50,6 @@ namespace ProtonVPN.BugReporting.Attachments
             {
                 Items.Add(item);
             }
-        }
-
-        private void AddWithoutError(Attachment item)
-        {
-            if (!item.HasError())
-                Items.Add(item);
         }
     }
 }

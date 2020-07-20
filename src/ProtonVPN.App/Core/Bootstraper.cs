@@ -30,7 +30,6 @@ using Autofac;
 using Caliburn.Micro;
 using ProtonVPN.Account;
 using ProtonVPN.BugReporting;
-using ProtonVPN.BugReporting.Attachments;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.OS.Processes;
@@ -399,11 +398,6 @@ namespace ProtonVPN.Core
                 {
                     await instance.OnApiDataChanged(e);
                 }
-            };
-
-            Resolve<Attachments>().OnErrorOccured += (sender, e) =>
-            {
-                Resolve<ReportBugModalViewModel>().OnAttachmentErrorOccured(e);
             };
 
             Resolve<UnauthorizedResponseHandler>().SessionExpired += (sender, e) =>

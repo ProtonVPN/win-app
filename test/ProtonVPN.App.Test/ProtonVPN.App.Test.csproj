@@ -93,12 +93,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BugReporting\Attachments\AttachmentTest.cs" />
-    <Compile Include="BugReporting\Attachments\AttachmentErrorEventArgsTest.cs" />
-    <Compile Include="BugReporting\Attachments\Filters\FileLengthAttachmentFilterTest.cs" />
     <Compile Include="BugReporting\Attachments\Source\FilesToAttachmentsTest.cs" />
-    <Compile Include="BugReporting\Attachments\Filters\TooManyAttachmentFilterTest.cs" />
-    <Compile Include="BugReporting\Attachments\Filters\TooLargeAttachmentFilterTest.cs" />
-    <Compile Include="BugReporting\Attachments\Filters\ExistingAttachmentFilterTest.cs" />
     <Compile Include="BugReporting\Attachments\Source\LogFileSourceTest.cs" />
     <Compile Include="BugReporting\Attachments\Source\SafeFileSourceTest.cs" />
     <Compile Include="BugReporting\Attachments\AttachmentsTest.cs" />

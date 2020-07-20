@@ -664,69 +664,6 @@ namespace ProtonVPN.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unable to read:.
-        /// </summary>
-        public static string BugReport_AttachmentError_lbl_ReadError {
-            get {
-                return ResourceManager.GetString("BugReport_AttachmentError_lbl_ReadError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Files exceeding size limit:.
-        /// </summary>
-        public static string BugReport_AttachmentError_lbl_TooLarge {
-            get {
-                return ResourceManager.GetString("BugReport_AttachmentError_lbl_TooLarge", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Skipped files:.
-        /// </summary>
-        public static string BugReport_AttachmentError_lbl_TooMany {
-            get {
-                return ResourceManager.GetString("BugReport_AttachmentError_lbl_TooMany", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unable to read the file..
-        /// </summary>
-        public static string BugReport_AttachmentError_msg_ReadError {
-            get {
-                return ResourceManager.GetString("BugReport_AttachmentError_msg_ReadError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to You can only attach files under {0}..
-        /// </summary>
-        public static string BugReport_AttachmentError_msg_TooLarge {
-            get {
-                return ResourceManager.GetString("BugReport_AttachmentError_msg_TooLarge", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to You can only attach up to {0} file..
-        /// </summary>
-        public static string BugReport_AttachmentError_msg_TooMany_One {
-            get {
-                return ResourceManager.GetString("BugReport_AttachmentError_msg_TooMany_One", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to You can only attach up to {0} files..
-        /// </summary>
-        public static string BugReport_AttachmentError_msg_TooMany_Other {
-            get {
-                return ResourceManager.GetString("BugReport_AttachmentError_msg_TooMany_Other", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Back.
         /// </summary>
         public static string BugReport_btn_Back {
@@ -862,15 +799,6 @@ namespace ProtonVPN.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Max file size limit:.
-        /// </summary>
-        public static string BugReport_lbl_MaxFileSize {
-            get {
-                return ResourceManager.GetString("BugReport_lbl_MaxFileSize", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Plan:.
         /// </summary>
         public static string BugReport_lbl_Plan {
@@ -885,15 +813,6 @@ namespace ProtonVPN.Properties {
         public static string BugReport_lbl_Version {
             get {
                 return ResourceManager.GetString("BugReport_lbl_Version", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Add File.
-        /// </summary>
-        public static string BugReport_lnk_AddFile {
-            get {
-                return ResourceManager.GetString("BugReport_lnk_AddFile", resourceCulture);
             }
         }
         
@@ -3434,7 +3353,7 @@ namespace ProtonVPN.Properties {
                 return ResourceManager.GetString("Dialogs_DisconnectError_msg_OldVersion", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Maximum connection limit reached..
         /// </summary>
