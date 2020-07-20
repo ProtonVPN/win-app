@@ -18,10 +18,14 @@
  */
 
 using System;
+using System.Diagnostics;
+using Castle.Core.Internal;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Appium.Windows;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
+using ProtonVPN.Common.Extensions;
 
 namespace ProtonVPN.UI.Test.TestsHelper
 {
@@ -110,10 +114,40 @@ namespace ProtonVPN.UI.Test.TestsHelper
             Assert.IsTrue(content, errorMessage);
         }
 
+        public static void CloseAllChromeWindows()
+        {
+            Process[] process = Process.GetProcessesByName("chrome");
+
+            if(process.IsNullOrEmpty())
+            {
+                return;
+            }
+
+            process.ForEach(proc => proc.Kill());
+        }
+
         public static void CheckIfElementWithAutomationIdTextMatches(string automationId, string valueToMatch, string errorMessage)
         {
             var element = Session.FindElementByAccessibilityId(automationId);
             Assert.IsTrue(element.Text.Equals(valueToMatch), errorMessage);
+        }
+
+        public static void WaitUntilElementExistsByAutomationId(string automationId,int timeoutInSeconds)
+        {
+            var wait = new DefaultWait<WindowsDriver<WindowsElement>>(Session)
+            {
+                Timeout = TimeSpan.FromSeconds(timeoutInSeconds),
+                PollingInterval = TimeSpan.FromMilliseconds(100)
+            };
+
+            WindowsElement mainWindow = null;
+            wait.IgnoreExceptionTypes(typeof(WebDriverException));
+            wait.Until(driver =>
+            {
+                RefreshSession();
+                mainWindow = Session.FindElementByAccessibilityId(automationId);
+                return mainWindow != null;
+            });
         }
 
         private static void ExecuteWithTempWait(Action action, double timeInSeconds)

@@ -51,6 +51,11 @@ namespace ProtonVPN.UI.Test.ApiClient
 
         public void MarkTestsByStatus()
         {
+            if(!IsTestRailReportingEnabled)
+            {
+                return;
+            }
+
             if (TestCaseId == 0)
             {
                 return;

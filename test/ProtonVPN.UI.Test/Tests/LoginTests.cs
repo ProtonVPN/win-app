@@ -37,6 +37,10 @@ namespace ProtonVPN.UI.Test.Tests
 
             _loginActions.LoginWithFreeUser();
             _mainWindowResults.VerifyUserIsLoggedIn();
+            TestRailClient.MarkTestsByStatus();
+
+            //In CI side, fresh installation is performed
+            TestCaseId = 197;
         }
 
         [Test]

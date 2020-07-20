@@ -202,7 +202,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <wpf:Combobox HorizontalAlignment="Right"
                                       Style="{StaticResource ComboDropdown}"
                                       ItemsSource="{Binding AutoConnectProfiles}"
-                                      SelectedValue="{Binding AutoConnect}">
+                                      SelectedValue="{Binding AutoConnect}"
+                                      AutomationProperties.AutomationId="{StaticResource AutoConnectComboBox}">
                         </wpf:Combobox>
                     </DockPanel>
 

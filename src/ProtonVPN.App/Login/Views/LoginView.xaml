@@ -232,7 +232,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </StackPanel>
         </StackPanel>
         <DockPanel Style="{StaticResource Footer}">
-            <Button Style="{StaticResource FooterButton}" Command="{Binding RegisterCommand}">
+            <Button Style="{StaticResource FooterButton}" Command="{Binding RegisterCommand}" 
+                    AutomationProperties.AutomationId="{StaticResource CreateAccountButton}">
                 <Underline>
                     <Run Text="{resources:Loc Login_lnk_CreateAccount}"/>
                 </Underline>
@@ -248,12 +249,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <StackPanel HorizontalAlignment="Center">
                         <StackPanel Background="#2b2c34" SnapsToDevicePixels="True">
                             <StackPanel Margin="5,12">
-                                <Button Style="{StaticResource PopupButton}" Command="{Binding ResetPasswordCommand}">
+                                <Button Style="{StaticResource PopupButton}" Command="{Binding ResetPasswordCommand}"
+                                        AutomationProperties.AutomationId="{StaticResource ResetPasswordButton}">
                                     <Underline>
                                         <Run Text="{resources:Loc Login_lnk_ResetPassword}"/>
                                     </Underline>
                                 </Button>
-                                <Button Style="{StaticResource PopupButton}" Command="{Binding ForgotUsernameCommand}">
+                                <Button Style="{StaticResource PopupButton}" Command="{Binding ForgotUsernameCommand}"
+                                        AutomationProperties.AutomationId="{StaticResource ForgotUsernameButton}">
                                     <Underline>
                                         <Run Text="{resources:Loc Login_lnk_ForgotUsername}"/>
                                     </Underline>
