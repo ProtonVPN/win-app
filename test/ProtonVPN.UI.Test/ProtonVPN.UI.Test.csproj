@@ -120,7 +120,7 @@
     <Compile Include="TestsHelper\TestUserData.cs" />
     <Compile Include="TestsHelper\UIActions.cs" />
     <Compile Include="Tests\ConnectionTests.cs" />
-    <Compile Include="Tests\ReportBugTests.cs" />
+    <Compile Include="Tests\SupportTests.cs" />
     <Compile Include="Tests\SecureCoreTests.cs" />
     <Compile Include="Tests\SettingsTests.cs" />
     <Compile Include="Tests\AccountTests.cs" />

@@ -21,12 +21,16 @@ using System.Globalization;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ProtonVPN.UI.Test.TestsHelper;
+using ProtonVPN.UI.Test.Windows;
 using TestTools.ApiClient;
 
 namespace ProtonVPN.UI.Test.Results
 {
     public class MainWindowResults : UIActions
     {
+        private readonly MainWindow _mainWindow = new MainWindow();
+        private readonly LoginWindow _loginWindow = new LoginWindow();
+
         public MainWindowResults VerifyUserIsLoggedIn()
         {
             CheckIfObjectWithIdIsDisplayed("MenuHamburgerButton", "User was not logged in.");
@@ -68,6 +72,17 @@ namespace ProtonVPN.UI.Test.Results
         public MainWindowResults CheckIfSidebarModeIsEnabled()
         {
             CheckIfObjectWithIdIsDisplayed("MapModeButton", "Failed to enable sidebar mode");
+            return this;
+        }
+
+        public MainWindowResults CheckIfSameServerIsKeptAfterKillingApp()
+        {
+            var ipAddress = _mainWindow.GetTextBlockIpAddress();
+            KillProtonVpnProcess();
+            RefreshSession();
+            _loginWindow.WaitUntilLoginIsFinished();
+            RefreshSession();
+            Assert.AreEqual(ipAddress, _mainWindow.GetTextBlockIpAddress(), "User was not connected to the same server.");
             return this;
         }
     }

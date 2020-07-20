@@ -19,18 +19,22 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Windows;
+using ProtonVPN.Common.Extensions;
 using ProtonVPN.UI.Test.ApiClient;
+using ProtonVPN.UI.Test.TestsHelper;
 
 namespace ProtonVPN.UI.Test
 {
     public class UITestSession
     {
+        protected static bool IsTestRailReportingEnabled = true;
         private const string WindowsApplicationDriverUrl = "http://127.0.0.1:4723";
         private const string AppPath = @"C:\Program Files (x86)\Proton Technologies\ProtonVPN\ProtonVPN.exe";
         protected const double ImplicitWaitTimeInSeconds = 5;
@@ -69,6 +73,19 @@ namespace ProtonVPN.UI.Test
             TestRailClient.MarkTestsByStatus();
         }
 
+        public static void KillProtonVpnProcess()
+        {
+            Process[] proc = Process.GetProcessesByName("ProtonVPN");
+            proc.ForEach(p => p.Kill());
+        }
+
+        public static void KillProtonVPNProcessAndReopenIt()
+        {
+            KillProtonVpnProcess();
+            RefreshSession();
+            UIActions.WaitUntilElementIsNotVisible(By.ClassName("Loading"), 15);
+            RefreshSession();
+        }
         protected static void SetImplicitWait(double timeInSeconds)
         {
             Session.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(timeInSeconds);

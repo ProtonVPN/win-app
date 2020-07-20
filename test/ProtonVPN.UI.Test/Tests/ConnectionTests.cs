@@ -165,6 +165,16 @@ namespace ProtonVPN.UI.Test.Tests
             _settingsResult.CheckIfCustomDnsAddressWasNotAdded();
         }
 
+        [Test]
+        public void CheckIfConnectionIsRestoredToSameServerAfterAppKill()
+        {
+            TestCaseId = 217;
+
+            _loginWindow.LoginWithPlusUser();
+            _mainWindow.QuickConnect();
+            _mainWindowResults.CheckIfSameServerIsKeptAfterKillingApp();
+        }
+
         [SetUp]
         public void TestInitialize()
         {
