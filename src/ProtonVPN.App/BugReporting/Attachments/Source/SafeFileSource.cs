@@ -17,13 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Extensions;
-using ProtonVPN.Common.Logging;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security;
+using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.Logging;
 
 namespace ProtonVPN.BugReporting.Attachments.Source
 {

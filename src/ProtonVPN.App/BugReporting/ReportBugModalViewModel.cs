@@ -19,6 +19,7 @@
 
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
+using ProtonVPN.BugReporting.NetworkLogs;
 using ProtonVPN.Core.MVVM;
 using ProtonVPN.Modals;
 
@@ -30,6 +31,7 @@ namespace ProtonVPN.BugReporting
         private readonly SentViewModel _sentViewModel;
         private readonly SendingViewModel _sendingViewModel;
         private readonly FailureViewModel _failureViewModel;
+        private readonly NetworkLogWriter _networkLogWriter;
 
         private ViewModel _currentViewModel;
         private bool _sending;
@@ -42,8 +44,10 @@ namespace ProtonVPN.BugReporting
             SendingViewModel sendingViewModel,
             SentViewModel sentViewModel,
             FormViewModel formViewModel,
-            FailureViewModel failureViewModel)
+            FailureViewModel failureViewModel,
+            NetworkLogWriter networkLogWriter)
         {
+            _networkLogWriter = networkLogWriter;
             _bugReport = bugReport;
             _sendingViewModel = sendingViewModel;
             _sentViewModel = sentViewModel;
@@ -109,6 +113,7 @@ namespace ProtonVPN.BugReporting
             if (OverlayViewModel is SentViewModel)
                 ClearOverlay();
 
+            _networkLogWriter.Write();
             FormViewModel.Load();
         }
 

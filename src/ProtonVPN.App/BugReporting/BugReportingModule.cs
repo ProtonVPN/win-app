@@ -19,6 +19,7 @@
 
 using Autofac;
 using ProtonVPN.BugReporting.Attachments.Source;
+using ProtonVPN.BugReporting.NetworkLogs;
 using ProtonVPN.Common.Helpers;
 using ProtonVPN.Common.Logging;
 
@@ -47,6 +48,9 @@ namespace ProtonVPN.BugReporting
                             new SafeFileSource(logger,
                                 new LogFileSource(appConfig.UpdateServiceLogFolder, appConfig.MaxUpdaterServiceLogsAttached)))));
             }).SingleInstance();
+
+            builder.RegisterType<NetworkAdapterLog>().As<ILog>().SingleInstance();
+            builder.RegisterType<NetworkLogWriter>().SingleInstance();
         }
     }
 }

@@ -817,7 +817,7 @@ namespace ProtonVPN.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Be sure to provide detailed information about the problem you encountered and attach any files that could help us reproduce the issue. Please provide us with a way to contact you if more information is needed..
+        ///   Looks up a localized string similar to Be sure to provide detailed information about the problem you encountered. Please provide us with a way to contact you if more information is needed..
         /// </summary>
         public static string BugReport_msg_Info {
             get {

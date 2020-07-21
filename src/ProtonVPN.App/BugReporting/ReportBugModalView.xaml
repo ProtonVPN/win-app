@@ -26,11 +26,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         xmlns:wpf="clr-namespace:ProtonVPN.Core.Wpf"
         xmlns:modals="clr-namespace:ProtonVPN.Modals"
         xmlns:resources="clr-namespace:ProtonVPN.Resources"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
         Style="{StaticResource BaseModalStyle}"
         Title="{resources:Loc BugReport_ttl}"
         mc:Ignorable="d"
         Width="800"
-        Height="600"
+        Height="525"
         d:DataContext="{d:DesignInstance bugReporting:ReportBugModalViewModel}">
     <Window.Resources>
         <Style x:Key="ButtonsPanel" TargetType="StackPanel">
@@ -106,8 +107,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         Content="{resources:Loc BugReport_btn_Cancel}"
                         Command="{Binding CloseCommand}"/>
                     <Button Style="{StaticResource PrimaryModalButton}"
-                        Content="{resources:Loc BugReport_btn_Send}"
-                        Command="{Binding SendReportCommand}"/>
+                            Content="{resources:Loc BugReport_btn_Send}"
+                            Command="{Binding SendReportCommand}"/>
                 </StackPanel>
                 <StackPanel Style="{StaticResource FailureButtonsPanel}">
                     <Button Style="{StaticResource SecondaryModalButton}"
