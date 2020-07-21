@@ -187,6 +187,10 @@
     </Compile>
     <Compile Include="About\LicenseModalViewModel.cs" />
     <Compile Include="About\ReleaseEqualityComparer.cs" />
+    <Compile Include="BugReporting\NetworkLogs\BaseLog.cs" />
+    <Compile Include="BugReporting\NetworkLogs\ILog.cs" />
+    <Compile Include="BugReporting\NetworkLogs\NetworkAdapterLog.cs" />
+    <Compile Include="BugReporting\NetworkLogs\NetworkLogWriter.cs" />
     <Compile Include="Core\ExpiredSessionHandler.cs" />
     <Compile Include="Core\ILanguageProvider.cs" />
     <Compile Include="Core\Language.cs" />

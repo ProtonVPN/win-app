@@ -23,6 +23,12 @@ namespace ProtonVPN.Common.OS.Net.NetworkInterface
     {
         string Id { get; }
 
+        string Name { get; }
+
+        string Description { get; }
+
+        bool IsActive { get; }
+
         bool IsLoopback { get; }
     }
 }

@@ -390,7 +390,7 @@
     <comment>The message displayed in Bug Report window when sending bug report fails</comment>
   </data>
   <data name="BugReport_msg_Info" xml:space="preserve">
-    <value>Be sure to provide detailed information about the problem you encountered and attach any files that could help us reproduce the issue. Please provide us with a way to contact you if more information is needed.</value>
+    <value>Be sure to provide detailed information about the problem you encountered. Please provide us with a way to contact you if more information is needed.</value>
     <comment>The description displayed on top of Bug Report window</comment>
   </data>
   <data name="BugReport_lbl_Plan" xml:space="preserve">

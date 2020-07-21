@@ -89,7 +89,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        Foreground="White" 
                        FontSize="14" 
                        Content="{resources:Loc BugReport_lbl_Account}"/>
-                <TextBlock Grid.Column="1" Grid.Row="0" Padding="0,0,0,5" MaxHeight="60" 
+                <TextBlock Grid.Column="1"
+                           Grid.Row="0"
+                           Padding="0,0,0,5"
+                           MaxHeight="60"
                            Foreground="White" 
                            FontSize="14" 
                            Text="{Binding Account}"
@@ -104,7 +107,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <Label Grid.Column="1" Grid.Row="2" Foreground="White" FontSize="14" Padding="0,0,0,5" Content="{Binding Version}"/>
             </Grid>
         </StackPanel>
-        <DockPanel Grid.Row="1" Grid.Column="0" Margin="30,20,10,20">
+        <DockPanel Grid.Row="1" Grid.Column="0" Margin="30,0,10,20">
             <Grid DockPanel.Dock="Top">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -142,7 +145,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </TextBlock.Style>
                     </TextBlock>
                 </Grid>
-                <Label Grid.Row="1" Grid.Column="0" Margin="0,0,10,0" Padding="0" VerticalAlignment="Center" FontSize="14" Foreground="White" Content="{resources:Loc BugReport_lbl_Country}"/>
+                <Label Grid.Row="1"
+                       Grid.Column="0"
+                       Margin="0,0,10,0"
+                       Padding="0"
+                       VerticalAlignment="Center"
+                       FontSize="14"
+                       Foreground="White"
+                       Content="{resources:Loc BugReport_lbl_Country}"/>
                 <Grid Grid.Row="1" Grid.Column="1">
                     <TextBox Style="{StaticResource BugReportTextBox}"
                              x:Name="Country"
@@ -153,7 +163,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                              FontSize="14"
                              BorderThickness="0,0,0,1"
                              Padding="7,14"/>
-                    <TextBlock IsHitTestVisible="False" FontSize="14" Text="{resources:Loc BugReport_lbl_Country_Watermark}" HorizontalAlignment="Left" Margin="7,14" Foreground="#4a4c55">
+                    <TextBlock IsHitTestVisible="False"
+                               FontSize="14"
+                               Text="{resources:Loc BugReport_lbl_Country_Watermark}"
+                               HorizontalAlignment="Left"
+                               Margin="7,14"
+                               Foreground="#4a4c55">
                         <TextBlock.Style>
                             <Style TargetType="{x:Type TextBlock}">
                                 <Setter Property="Visibility" Value="Collapsed"/>
@@ -166,7 +181,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </TextBlock.Style>
                     </TextBlock>
                 </Grid>
-                <Label Grid.Row="2" Grid.Column="0" Margin="0,0,10,0" Padding="0" VerticalAlignment="Center" FontSize="14" Foreground="White" Content="{resources:Loc BugReport_lbl_Isp}"/>
+                <Label Grid.Row="2"
+                       Grid.Column="0"
+                       Margin="0,0,10,0"
+                       Padding="0"
+                       VerticalAlignment="Center"
+                       FontSize="14"
+                       Foreground="White"
+                       Content="{resources:Loc BugReport_lbl_Isp}"/>
                 <Grid Grid.Row="2" Grid.Column="1">
                     <TextBox Style="{StaticResource BugReportTextBox}"
                              x:Name="Isp"
@@ -177,7 +199,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                              CaretBrush="White"
                              FontSize="14"
                              Padding="7,14"/>
-                    <TextBlock IsHitTestVisible="False" FontSize="14" Text="{resources:Loc BugReport_lbl_Isp_Watermark}" HorizontalAlignment="Left" Margin="7,14" Foreground="#4a4c55">
+                    <TextBlock IsHitTestVisible="False"
+                               FontSize="14"
+                               Text="{resources:Loc BugReport_lbl_Isp_Watermark}"
+                               HorizontalAlignment="Left"
+                               Margin="7,14"
+                               Foreground="#4a4c55">
                         <TextBlock.Style>
                             <Style TargetType="{x:Type TextBlock}">
                                 <Setter Property="Visibility" Value="Collapsed"/>
@@ -236,23 +263,27 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </ScrollViewer>
             </Border>
         </DockPanel>
-        <DockPanel Grid.Row="1" Grid.Column="1" Margin="10,20,30,20">
+        <DockPanel Grid.Row="1" Grid.Column="1" Margin="10,0,30,20">
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
                 <Label Padding="0,15,5,10" FontSize="14" Foreground="White" Content="{resources:Loc BugReport_lbl_Feedback}"/>
                 <Label Foreground="Red" Padding="0,15,0,0" FontSize="14" Content="*"/>
             </StackPanel>
             <Grid DockPanel.Dock="Bottom">
                 <TextBox Style="{StaticResource BugReportTextBox}"
-                        x:Name="Feedback"
-                        Background="#201f25"
-                        BorderThickness="1"
-                        Foreground="White"
-                        CaretBrush="White"
-                        FontSize="14"
-                        Text="{Binding Feedback, UpdateSourceTrigger=PropertyChanged}"
-                        AcceptsReturn="True"
-                        TextWrapping="Wrap"/>
-                <TextBlock Margin="7,7,0,0" FontSize="14" VerticalAlignment="Top" HorizontalAlignment="Stretch" Foreground="#4a4c55" 
+                         x:Name="Feedback"
+                         Background="#201f25"
+                         BorderThickness="1"
+                         Foreground="White"
+                         CaretBrush="White"
+                         FontSize="14"
+                         Text="{Binding Feedback, UpdateSourceTrigger=PropertyChanged}"
+                         AcceptsReturn="True"
+                         TextWrapping="Wrap"/>
+                <TextBlock Margin="7,7,0,0"
+                           FontSize="14"
+                           VerticalAlignment="Top"
+                           HorizontalAlignment="Stretch"
+                           Foreground="#4a4c55"
                            Text="{resources:Loc BugReport_lbl_Feedback_Watermark}"
                            IsHitTestVisible="False">
                     <TextBlock.Style>

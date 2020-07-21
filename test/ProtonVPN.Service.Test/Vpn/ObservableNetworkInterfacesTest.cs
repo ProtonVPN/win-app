@@ -185,7 +185,14 @@ namespace ProtonVPN.Service.Test.Vpn
             }
 
             public string Id { get; }
+
+            public string Name => string.Empty;
+
+            public string Description => string.Empty;
+
             public bool IsLoopback => false;
+
+            public bool IsActive => false;
         }
 
         #endregion

@@ -17,11 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using ProtonVPN.Common.Helpers;
 
 namespace ProtonVPN.BugReporting.Attachments
 {
-    public class Attachment
+    public class Attachment : IEquatable<Attachment>
     {
         public string Name { get; }
 
@@ -45,6 +46,11 @@ namespace ProtonVPN.BugReporting.Attachments
         public Attachment WithLength(long length)
         {
             return new Attachment(Name, Path, length);
+        }
+
+        public bool Equals(Attachment other)
+        {
+            return Path == other?.Path;
         }
     }
 }
