@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
 using ProtonVPN.BugReporting;
 using ProtonVPN.Common.Logging;
@@ -24,9 +25,9 @@ using ProtonVPN.Common.Vpn;
 using ProtonVPN.Config.Url;
 using ProtonVPN.ConnectionInfo;
 using ProtonVPN.Core.Modals;
+using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Settings;
-using System.Windows.Input;
 
 namespace ProtonVPN.Modals
 {
@@ -40,6 +41,7 @@ namespace ProtonVPN.Modals
         private readonly SettingsModalViewModel _settingsModalViewModel;
         private readonly IModals _modals;
         private readonly ILogger _logger;
+        private readonly ProfileManager _profileManager;
 
         public ICommand OpenHelpArticleCommand { get; set; }
         public ICommand SettingsCommand { get; set; }
@@ -53,7 +55,8 @@ namespace ProtonVPN.Modals
             ConnectionErrorResolver connectionErrorResolver,
             IVpnManager vpnManager,
             IModals modals,
-            SettingsModalViewModel settingsModalViewModel)
+            SettingsModalViewModel settingsModalViewModel,
+            ProfileManager profileManager)
         {
             _logger = logger;
             _modals = modals;
@@ -61,6 +64,8 @@ namespace ProtonVPN.Modals
             _vpnManager = vpnManager;
             _connectionErrorResolver = connectionErrorResolver;
             _urlConfig = urlConfig;
+            _profileManager = profileManager;
+
             OpenHelpArticleCommand = new RelayCommand(OpenHelpArticleAction);
             SettingsCommand = new RelayCommand(OpenSettings);
             DisableKillSwitchCommand = new RelayCommand(DisableKillSwitch);
@@ -98,14 +103,20 @@ namespace ProtonVPN.Modals
             if (Error == VpnError.AuthorizationError)
             {
                 var error = await _connectionErrorResolver.ResolveError();
-                if (error == VpnError.PasswordChanged)
+                switch (error)
                 {
-                    TryClose(true);
-                    await _vpnManager.Reconnect();
-                }
-                else
-                {
-                    Error = error;
+                    case VpnError.PasswordChanged:
+                        TryClose(true);
+                        await _vpnManager.Reconnect();
+                        break;
+                    case VpnError.ServerOffline:
+                    case VpnError.ServerRemoved:
+                        TryClose(true);
+                        await _vpnManager.Connect(await _profileManager.GetFastestProfile());
+                        break;
+                    default:
+                        Error = error;
+                        break;
                 }
             }
         }
