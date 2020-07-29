@@ -18,8 +18,6 @@
  */
 
 using NUnit.Framework;
-using ProtonVPN.UI.Test.Results;
-using ProtonVPN.UI.Test.TestsHelper;
 using ProtonVPN.UI.Test.Windows;
 
 namespace ProtonVPN.UI.Test.Tests
@@ -30,7 +28,6 @@ namespace ProtonVPN.UI.Test.Tests
         private readonly LoginWindow _loginWindow = new LoginWindow();
         private readonly MainWindow _mainWindow = new MainWindow();
         private readonly BugReportWindow _bugReportWindow = new BugReportWindow();
-        private readonly LoginResult _loginResult = new LoginResult();
 
         [Test]
         public void SendBugReport()
@@ -47,41 +44,6 @@ namespace ProtonVPN.UI.Test.Tests
                 .ClickSend();
 
             _bugReportWindow.VerifySendingIsSuccessful();
-        }
-
-        [Test]
-        public void ResetPassword()
-        {
-            TestCaseId = 200;
-
-            UIActions.CloseAllChromeWindows();
-            _loginWindow
-                .ClickNeedHelpButton()
-                .ClickResetPasswordButton();
-            _loginResult.VerifyChromeWindowIsOpened();
-        }
-
-        [Test]
-        public void ForgotUsername()
-        {
-            TestCaseId = 201;
-
-            UIActions.CloseAllChromeWindows();
-            _loginWindow
-                .ClickNeedHelpButton()
-                .ClickForgotUsernameButton();
-            _loginResult.VerifyChromeWindowIsOpened();
-        }
-
-        [Test]
-        public void CreateAccount()
-        {
-            TestCaseId = 199;
-
-            UIActions.CloseAllChromeWindows();
-            _loginWindow
-                .ClickCreateAccountButton();
-            _loginResult.VerifyChromeWindowIsOpened();
         }
 
         [SetUp]

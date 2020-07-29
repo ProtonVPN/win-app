@@ -18,31 +18,21 @@
  */
 
 using System;
-using System.IO;
-using NUnit.Framework;
-using ProtonVPN.UI.Test.ApiClient;
-using ProtonVPN.UI.Test.TestsHelper;
+using Castle.Core.Internal;
 
-namespace ProtonVPN.UI.Test.Tests
+namespace ProtonVPN.UI.Test.TestsHelper
 {
-    [SetUpFixture]
-    public class SetUpTests : UITestSession
+    class TestEnvironment
     {
-        private readonly string _testRailUrl = "https://proton.testrail.io/";
-
-        [OneTimeSetUp]
-        public void TestInitialize()
+        public static bool AreTestsRunningLocally()
         {
-            var dir = Path.GetDirectoryName(typeof(SetUpTests).Assembly.Location);
-            Directory.SetCurrentDirectory(dir);
-
-            TestRailClient = new TestRailAPIClient(_testRailUrl,
-                   TestUserData.GetTestrailUser().Username, TestUserData.GetTestrailUser().Password);
-
-            if (!TestEnvironment.AreTestsRunningLocally())
+            var isLocalEnvironment = false;
+            var ciCommitHash = Environment.GetEnvironmentVariable("CI_COMMIT_SHA");
+            if (ciCommitHash.IsNullOrEmpty())
             {
-                TestRailClient.CreateTestRun("Test run " + DateTime.Now);
+                isLocalEnvironment = true;
             }
+            return isLocalEnvironment;
         }
     }
 }

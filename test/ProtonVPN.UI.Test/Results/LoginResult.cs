@@ -17,11 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Diagnostics;
-using System.Threading;
-using Castle.Core.Internal;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ProtonVPN.Common.Extensions;
 using ProtonVPN.UI.Test.TestsHelper;
 
 namespace ProtonVPN.UI.Test.Results
@@ -43,15 +38,6 @@ namespace ProtonVPN.UI.Test.Results
         public LoginResult VerifyUserIsOnLoginWindow()
         {
             CheckIfObjectWithNameIsDisplayed("Start with Windows", "User unsuccessfully disconnected.");
-            return this;
-        }
-
-        public LoginResult VerifyChromeWindowIsOpened()
-        {
-            Thread.Sleep(1000);
-            Process[] process = Process.GetProcessesByName("chrome");
-            Assert.IsFalse(process.IsNullOrEmpty(), "Chrome process is not started.");
-            process.ForEach(proc => proc.Kill());
             return this;
         }
     }
