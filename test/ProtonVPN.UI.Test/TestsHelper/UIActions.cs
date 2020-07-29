@@ -18,14 +18,11 @@
  */
 
 using System;
-using System.Diagnostics;
-using Castle.Core.Internal;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Windows;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
-using ProtonVPN.Common.Extensions;
 
 namespace ProtonVPN.UI.Test.TestsHelper
 {
@@ -112,18 +109,6 @@ namespace ProtonVPN.UI.Test.TestsHelper
         {
             var content = Session.FindElementByClassName(className).Displayed;
             Assert.IsTrue(content, errorMessage);
-        }
-
-        public static void CloseAllChromeWindows()
-        {
-            Process[] process = Process.GetProcessesByName("chrome");
-
-            if(process.IsNullOrEmpty())
-            {
-                return;
-            }
-
-            process.ForEach(proc => proc.Kill());
         }
 
         public static void CheckIfElementWithAutomationIdTextMatches(string automationId, string valueToMatch, string errorMessage)

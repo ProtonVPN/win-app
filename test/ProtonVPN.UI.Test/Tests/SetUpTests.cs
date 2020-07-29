@@ -28,16 +28,18 @@ namespace ProtonVPN.UI.Test.Tests
     [SetUpFixture]
     public class SetUpTests : UITestSession
     {
+        private readonly string _testRailUrl = "https://proton.testrail.io/";
+
         [OneTimeSetUp]
         public void TestInitialize()
         {
             var dir = Path.GetDirectoryName(typeof(SetUpTests).Assembly.Location);
             Directory.SetCurrentDirectory(dir);
 
-            TestRailClient = new TestRailAPIClient("https://proton.testrail.io/",
+            TestRailClient = new TestRailAPIClient(_testRailUrl,
                    TestUserData.GetTestrailUser().Username, TestUserData.GetTestrailUser().Password);
 
-            if (IsTestRailReportingEnabled)
+            if (!TestEnvironment.AreTestsRunningLocally())
             {
                 TestRailClient.CreateTestRun("Test run " + DateTime.Now);
             }

@@ -34,7 +34,6 @@ namespace ProtonVPN.UI.Test
 {
     public class UITestSession
     {
-        protected static bool IsTestRailReportingEnabled = true;
         private const string WindowsApplicationDriverUrl = "http://127.0.0.1:4723";
         private const string AppPath = @"C:\Program Files (x86)\Proton Technologies\ProtonVPN\ProtonVPN.exe";
         protected const double ImplicitWaitTimeInSeconds = 5;
@@ -86,6 +85,7 @@ namespace ProtonVPN.UI.Test
             UIActions.WaitUntilElementIsNotVisible(By.ClassName("Loading"), 15);
             RefreshSession();
         }
+
         protected static void SetImplicitWait(double timeInSeconds)
         {
             Session.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(timeInSeconds);

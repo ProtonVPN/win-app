@@ -103,6 +103,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiClient\TestRailAPI.cs" />
+    <Compile Include="TestsHelper\TestEnvironment.cs" />
     <Compile Include="Tests\SetUpTests.cs" />
     <Compile Include="Windows\BugReportWindow.cs" />
     <Compile Include="Windows\HamburgerMenu.cs" />

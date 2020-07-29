@@ -46,30 +46,6 @@ namespace ProtonVPN.UI.Test.Windows
             return this;
         }
 
-        public LoginWindow ClickNeedHelpButton()
-        {
-            ClickOnObjectWithId("HelpButton");
-            return this;
-        }
-
-        public LoginWindow ClickResetPasswordButton()
-        {
-            ClickOnObjectWithId("ResetPasswordButton");
-            return this;
-        }
-
-        public LoginWindow ClickForgotUsernameButton()
-        {
-            ClickOnObjectWithId("ForgotUsernameButton");
-            return this;
-        }
-
-        public LoginWindow ClickCreateAccountButton()
-        {
-            ClickOnObjectWithId("CreateAccountButton");
-            return this;
-        }
-
         public LoginWindow LoginWithPlusUser()
         {
             return PerformLogin(TestUserData.GetPlusUser().Username, TestUserData.GetPlusUser().Password);
