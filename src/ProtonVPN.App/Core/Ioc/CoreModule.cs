@@ -123,6 +123,7 @@ namespace ProtonVPN.Core.Ioc
 
             builder.Register(c =>
                     new TokenClient(
+                        c.Resolve<ILogger>(),
                         new HttpClient(c.Resolve<RetryingHandler>())
                             {BaseAddress = c.Resolve<IActiveUrls>().ApiUrl.Uri},
                         c.Resolve<IApiAppVersion>(),

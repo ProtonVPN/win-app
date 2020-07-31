@@ -20,12 +20,11 @@
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using NSubstitute;
+using ProtonVPN.Common.Logging;
 using ProtonVPN.Core.Abstract;
-using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.Auth;
-using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Settings;
-using UserLocation = ProtonVPN.Core.User.UserLocation;
 
 namespace ProtonVPN.UI.Test.ApiClient
 {
@@ -42,9 +41,10 @@ namespace ProtonVPN.UI.Test.ApiClient
             _password = password;
 
             var tokenStorage = new TokenStorage();
-            var userStorage = new UserStorage();
+            var userStorage = Substitute.For<IUserStorage>();
+            var logger = Substitute.For<ILogger>();
 
-            _api = new Client(new HttpClient
+            _api = new Client(logger, new HttpClient
             {
                 BaseAddress = new Uri("https://api.protonvpn.ch")
             }, tokenStorage);
@@ -84,31 +84,5 @@ namespace ProtonVPN.UI.Test.ApiClient
         public string AccessToken { get; set; }
         public string RefreshToken { get; set; }
         public string Uid { get; set; }
-    }
-
-    internal class UserStorage : IUserStorage
-    {
-        public event EventHandler UserDataChanged;
-        public event EventHandler<string> VpnPlanChanged;
-
-        public User User() => throw new NotImplementedException();
-
-        public UserLocation Location() => throw new NotImplementedException();
-
-        public void ClearLogin() => throw new NotImplementedException();
-
-        public void StoreVpnInfo(VpnInfoResponse vpnInfo)
-        {
-
-        }
-
-        public void SaveLocation(UserLocation location) => throw new NotImplementedException();
-
-        public void SaveUsername(string username)
-        {
-
-        }
-
-        public void SetFreePlan() => throw new NotImplementedException();
     }
 }

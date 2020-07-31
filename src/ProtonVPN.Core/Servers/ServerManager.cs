@@ -77,6 +77,15 @@ namespace ProtonVPN.Core.Servers
                 .ToList();
         }
 
+        public PhysicalServer GetPhysicalServerByExitIp(string ip)
+        {
+            return (from logical in _servers
+                    from physical in logical.Servers
+                    where physical.ExitIp == ip
+                    select Map(physical))
+                .FirstOrDefault();
+        }
+
         public virtual Server GetServer(ISpecification<LogicalServerContract> spec)
         {
             return Map(_servers.Find(spec.IsSatisfiedBy));
@@ -177,7 +186,7 @@ namespace ProtonVPN.Core.Servers
 
         private static PhysicalServer Map(PhysicalServerContract server)
         {
-            return new PhysicalServer(server.EntryIp, server.ExitIp, server.Domain, server.Status);
+            return new PhysicalServer(server.Id, server.EntryIp, server.ExitIp, server.Domain, server.Status);
         }
 
         /// <summary>

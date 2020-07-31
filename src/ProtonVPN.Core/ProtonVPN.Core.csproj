@@ -89,6 +89,7 @@
     </Compile>
     <Compile Include="Api\ApiAppVersion.cs" />
     <Compile Include="Api\Contracts\EventResponse.cs" />
+    <Compile Include="Api\Contracts\ServerStatusResponse.cs" />
     <Compile Include="Api\Contracts\SessionsResponse.cs" />
     <Compile Include="Api\Contracts\VpnConfig.cs" />
     <Compile Include="Api\Extensions\X509CertificateExtensions.cs" />
