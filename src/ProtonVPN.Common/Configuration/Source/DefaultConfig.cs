@@ -147,6 +147,8 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 DefaultLocale = "en",
 
+                MaintenanceCheckInterval = TimeSpan.FromMinutes(30),
+
                 Urls =
                 {
                     PasswordResetUrl = "https://account.protonvpn.com/reset-password",

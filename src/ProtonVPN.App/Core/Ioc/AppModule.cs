@@ -248,6 +248,7 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<ExpiredSessionHandler>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterType<ReconnectState>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterType<SettingsBuilder>().SingleInstance();
+            builder.RegisterType<ReconnectManager>().AsImplementedInterfaces().SingleInstance();
             builder.Register(c => new VpnInfoChecker(
                     c.Resolve<Common.Configuration.Config>().VpnInfoCheckInterval.RandomizedWithDeviation(0.2),
                     c.Resolve<IEventAggregator>(),

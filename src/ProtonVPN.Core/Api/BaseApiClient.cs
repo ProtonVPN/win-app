@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.IO;
 using Newtonsoft.Json;
 using ProtonVPN.Common.OS.Net.Http;
 using ProtonVPN.Core.Abstract;
@@ -24,22 +25,27 @@ using ProtonVPN.Core.Api.Contracts;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using ProtonVPN.Common.Logging;
 
 namespace ProtonVPN.Core.Api
 {
     public class BaseApiClient
     {
+        private readonly JsonSerializer _jsonSerializer = new JsonSerializer();
         private readonly IApiAppVersion _appVersion;
         protected readonly ITokenStorage TokenStorage;
         private readonly string _apiVersion;
         private readonly string _locale;
+        private readonly ILogger _logger;
 
         public BaseApiClient(
+            ILogger logger,
             IApiAppVersion appVersion,
             ITokenStorage tokenStorage,
             string apiVersion,
             string locale)
         {
+            _logger = logger;
             _apiVersion = apiVersion;
             TokenStorage = tokenStorage;
             _appVersion = appVersion;
@@ -90,6 +96,33 @@ namespace ProtonVPN.Core.Api
             request.Headers.Add("Authorization", $"Bearer {TokenStorage.AccessToken}");
 
             return request;
+        }
+
+        protected ApiResponseResult<T> GetResponseStreamResult<T>(Stream stream, HttpStatusCode code) where T : BaseResponse
+        {
+            using var streamReader = new StreamReader(stream);
+            using var jsonTextReader = new JsonTextReader(streamReader);
+
+            var response = _jsonSerializer.Deserialize<T>(jsonTextReader);
+            if (response == null)
+            {
+                throw new HttpRequestException(string.Empty);
+            }
+
+            if (response.Code != ResponseCodes.OkResponse)
+            {
+                return Api.ApiResponseResult<T>.Fail(code, response.Error);
+            }
+
+            return Api.ApiResponseResult<T>.Ok(response);
+        }
+
+        protected ApiResponseResult<T> Logged<T>(ApiResponseResult<T> result, string message = null) where T : BaseResponse
+        {
+            if (result.Failure)
+                _logger.Error($"API: {(!string.IsNullOrEmpty(message) ? message : "Request")} failed: {result.Error}");
+
+            return result;
         }
     }
 }
