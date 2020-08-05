@@ -781,6 +781,38 @@ namespace ProtonVPN.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to What are the exact steps you performed?.
+        /// </summary>
+        public static string BugReport_lbl_HowToReproduce {
+            get {
+                return ResourceManager.GetString("BugReport_lbl_HowToReproduce", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Include app logs and system details.
+        /// </summary>
+        public static string BugReport_lbl_IncludeLogs {
+            get {
+                return ResourceManager.GetString("BugReport_lbl_IncludeLogs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Providing the following details, our team can identify your problem and a possible solution with higher chances and shorter time:
+        ///Drivers installation log
+        ///List of installed applications
+        ///ProtonVPN app and ProtonVPN service logs
+        ///List of network adapters
+        ///Routing table information.
+        /// </summary>
+        public static string BugReport_lbl_IncludeLogsInfo {
+            get {
+                return ResourceManager.GetString("BugReport_lbl_IncludeLogsInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ISP:.
         /// </summary>
         public static string BugReport_lbl_Isp {
@@ -813,6 +845,15 @@ namespace ProtonVPN.Properties {
         public static string BugReport_lbl_Version {
             get {
                 return ResourceManager.GetString("BugReport_lbl_Version", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What went wrong?.
+        /// </summary>
+        public static string BugReport_lbl_WhatWentWrong {
+            get {
+                return ResourceManager.GetString("BugReport_lbl_WhatWentWrong", resourceCulture);
             }
         }
         
@@ -5773,6 +5814,15 @@ namespace ProtonVPN.Properties {
         public static string StartMinimizedMode_val_ToTaskbar {
             get {
                 return ResourceManager.GetString("StartMinimizedMode_val_ToTaskbar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start typing....
+        /// </summary>
+        public static string TextBoxPlaceholder {
+            get {
+                return ResourceManager.GetString("TextBoxPlaceholder", resourceCulture);
             }
         }
         
