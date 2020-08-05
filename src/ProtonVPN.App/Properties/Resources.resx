@@ -2889,4 +2889,29 @@ Exiting the application will disable the Kill Switch. Do you want to continue?</
     <value>Route your Internet traffic through the Tor network with a single click.</value>
     <comment>Tooltip message shown in account window when hovered on TOR over VPN exclamation mark icon</comment>
   </data>
+  <data name="BugReport_lbl_HowToReproduce" xml:space="preserve">
+    <value>What are the exact steps you performed?</value>
+    <comment>The label in Bug Report window</comment>
+  </data>
+  <data name="BugReport_lbl_IncludeLogs" xml:space="preserve">
+    <value>Include app logs and system details</value>
+    <comment>The label in Bug Report window</comment>
+  </data>
+  <data name="BugReport_lbl_IncludeLogsInfo" xml:space="preserve">
+    <value>Providing the following details, our team can identify your problem and a possible solution with higher chances and shorter time:
+Drivers installation log
+List of installed applications
+ProtonVPN app and ProtonVPN service logs
+List of network adapters
+Routing table information</value>
+    <comment>The text inside info tooltip in Bug Report window</comment>
+  </data>
+  <data name="BugReport_lbl_WhatWentWrong" xml:space="preserve">
+    <value>What went wrong?</value>
+    <comment>The label in Bug Report window</comment>
+  </data>
+  <data name="TextBoxPlaceholder" xml:space="preserve">
+    <value>Start typing...</value>
+    <comment>The text disaplayed as a placeholder on any text box all over the application</comment>
+  </data>
 </root>
