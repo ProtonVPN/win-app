@@ -83,7 +83,7 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 LocalAppDataFolder = localAppDataFolder,
 
-                MaxAppLogsAttached = 3,
+                MaxAppLogsAttached = 10,
 
                 MaxServiceLogsAttached = 3,
 

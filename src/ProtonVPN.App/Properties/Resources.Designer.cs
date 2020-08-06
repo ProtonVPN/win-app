@@ -718,33 +718,6 @@ namespace ProtonVPN.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Account:.
-        /// </summary>
-        public static string BugReport_lbl_Account {
-            get {
-                return ResourceManager.GetString("BugReport_lbl_Account", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Country:.
-        /// </summary>
-        public static string BugReport_lbl_Country {
-            get {
-                return ResourceManager.GetString("BugReport_lbl_Country", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Your Country (optional).
-        /// </summary>
-        public static string BugReport_lbl_Country_Watermark {
-            get {
-                return ResourceManager.GetString("BugReport_lbl_Country_Watermark", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Email:.
         /// </summary>
         public static string BugReport_lbl_Email {
@@ -759,24 +732,6 @@ namespace ProtonVPN.Properties {
         public static string BugReport_lbl_Email_Watermark {
             get {
                 return ResourceManager.GetString("BugReport_lbl_Email_Watermark", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Feedback.
-        /// </summary>
-        public static string BugReport_lbl_Feedback {
-            get {
-                return ResourceManager.GetString("BugReport_lbl_Feedback", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Your message....
-        /// </summary>
-        public static string BugReport_lbl_Feedback_Watermark {
-            get {
-                return ResourceManager.GetString("BugReport_lbl_Feedback_Watermark", resourceCulture);
             }
         }
         
@@ -800,51 +755,15 @@ namespace ProtonVPN.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to Providing the following details, our team can identify your problem and a possible solution with higher chances and shorter time:
-        ///Drivers installation log
-        ///List of installed applications
-        ///ProtonVPN app and ProtonVPN service logs
-        ///List of network adapters
-        ///Routing table information.
+        ///• Drivers installation log
+        ///• List of installed applications
+        ///• ProtonVPN app and ProtonVPN service logs
+        ///• List of network adapters
+        ///• Routing table information.
         /// </summary>
         public static string BugReport_lbl_IncludeLogsInfo {
             get {
                 return ResourceManager.GetString("BugReport_lbl_IncludeLogsInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ISP:.
-        /// </summary>
-        public static string BugReport_lbl_Isp {
-            get {
-                return ResourceManager.GetString("BugReport_lbl_Isp", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Your ISP (optional).
-        /// </summary>
-        public static string BugReport_lbl_Isp_Watermark {
-            get {
-                return ResourceManager.GetString("BugReport_lbl_Isp_Watermark", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Plan:.
-        /// </summary>
-        public static string BugReport_lbl_Plan {
-            get {
-                return ResourceManager.GetString("BugReport_lbl_Plan", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Version:.
-        /// </summary>
-        public static string BugReport_lbl_Version {
-            get {
-                return ResourceManager.GetString("BugReport_lbl_Version", resourceCulture);
             }
         }
         
@@ -854,15 +773,6 @@ namespace ProtonVPN.Properties {
         public static string BugReport_lbl_WhatWentWrong {
             get {
                 return ResourceManager.GetString("BugReport_lbl_WhatWentWrong", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Be sure to provide detailed information about the problem you encountered. Please provide us with a way to contact you if more information is needed..
-        /// </summary>
-        public static string BugReport_msg_Info {
-            get {
-                return ResourceManager.GetString("BugReport_msg_Info", resourceCulture);
             }
         }
         

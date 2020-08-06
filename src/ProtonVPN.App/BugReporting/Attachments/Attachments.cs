@@ -18,7 +18,7 @@
  */
 
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace ProtonVPN.BugReporting.Attachments
 {
@@ -31,25 +31,9 @@ namespace ProtonVPN.BugReporting.Attachments
             _logFileSource = logFileSource;
         }
 
-        public void Load()
+        public List<Attachment> Get()
         {
-            Items.Clear();
-            Add(_logFileSource);
-        }
-
-        public ObservableCollection<Attachment> Items { get; } = new ObservableCollection<Attachment>();
-
-        public void Remove(Attachment item)
-        {
-            Items.Remove(item);
-        }
-
-        private void Add(IEnumerable<Attachment> items)
-        {
-            foreach (var item in items)
-            {
-                Items.Add(item);
-            }
+            return _logFileSource.ToList();
         }
     }
 }

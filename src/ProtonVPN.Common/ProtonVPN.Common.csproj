@@ -105,6 +105,9 @@
     <Compile Include="OS\Net\NetworkUtil.cs" />
     <Compile Include="OS\Net\NetworkUtilException.cs" />
     <Compile Include="OS\Net\PInvoke.cs" />
+    <Compile Include="OS\Processes\BaseSystemProcess.cs" />
+    <Compile Include="OS\Processes\CmdOutputProcess.cs" />
+    <Compile Include="OS\Processes\ProcessStartInfoExtensions.cs" />
     <Compile Include="OS\Services\ConcurrentService.cs" />
     <Compile Include="OS\Services\IConcurrentService.cs" />
     <Compile Include="OS\Services\IService.cs" />

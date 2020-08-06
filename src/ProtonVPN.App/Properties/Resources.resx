@@ -389,18 +389,6 @@
     <value>Failed to send Bug Report. Please try again.</value>
     <comment>The message displayed in Bug Report window when sending bug report fails</comment>
   </data>
-  <data name="BugReport_msg_Info" xml:space="preserve">
-    <value>Be sure to provide detailed information about the problem you encountered. Please provide us with a way to contact you if more information is needed.</value>
-    <comment>The description displayed on top of Bug Report window</comment>
-  </data>
-  <data name="BugReport_lbl_Plan" xml:space="preserve">
-    <value>Plan:</value>
-    <comment>The label for user account plan in Bug Report window</comment>
-  </data>
-  <data name="BugReport_lbl_Version" xml:space="preserve">
-    <value>Version:</value>
-    <comment>The label for current app version in Bug Report window</comment>
-  </data>
   <data name="BugReport_lbl_Email" xml:space="preserve">
     <value>Email:</value>
     <comment>The label for user e-mail address in Bug Report window</comment>
@@ -409,29 +397,9 @@
     <value>Country:</value>
     <comment>The label for Country combo box in Profile window</comment>
   </data>
-  <data name="BugReport_lbl_Isp" xml:space="preserve">
-    <value>ISP:</value>
-    <comment>The label for user ISP in Bug Report window</comment>
-  </data>
   <data name="BugReport_lbl_Email_Watermark" xml:space="preserve">
     <value>Your E-mail Address</value>
     <comment>The watermark text displayed in empty user e-mail text box in Bug Report window</comment>
-  </data>
-  <data name="BugReport_lbl_Country_Watermark" xml:space="preserve">
-    <value>Your Country (optional)</value>
-    <comment>The watermark text displayed in empty user country text box on Bug Report window</comment>
-  </data>
-  <data name="BugReport_lbl_Isp_Watermark" xml:space="preserve">
-    <value>Your ISP (optional)</value>
-    <comment>The watermark text displayed in user ISP text box on Bug Report window</comment>
-  </data>
-  <data name="BugReport_lbl_Feedback" xml:space="preserve">
-    <value>Feedback</value>
-    <comment>The label for user feedback text box in Bug Report window</comment>
-  </data>
-  <data name="BugReport_lbl_Feedback_Watermark" xml:space="preserve">
-    <value>Your message...</value>
-    <comment>The watermark text displayed in user feedback text box on Bug Report window</comment>
   </data>
   <data name="BugReport_btn_Send" xml:space="preserve">
     <value>Send</value>
@@ -1006,10 +974,6 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <value>Profiles</value>
     <comment>The header of Profiles menu item in the main app window (opens Profiles window)</comment>
   </data>
-  <data name="BugReport_lbl_Account" xml:space="preserve">
-    <value>Account:</value>
-    <comment>The label of user logon name in Bug Report window</comment>
-  </data>
   <data name="Profiles_ttl" xml:space="preserve">
     <value>Profiles</value>
     <comment>The title of Profiles window</comment>
@@ -1113,10 +1077,6 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
   <data name="App_mnu_ReportBug" xml:space="preserve">
     <value>Report Bug</value>
     <comment>The header of Report Bug menu item in the main app window (opens Bug Report window)</comment>
-  </data>
-  <data name="BugReport_lbl_Country" xml:space="preserve">
-    <value>Country:</value>
-    <comment>The label for user country in Bug Report window</comment>
   </data>
   <data name="Connecting_lbl_ConnectingTo_1" xml:space="preserve">
     <value>Connecting to</value>
@@ -2899,11 +2859,11 @@ Exiting the application will disable the Kill Switch. Do you want to continue?</
   </data>
   <data name="BugReport_lbl_IncludeLogsInfo" xml:space="preserve">
     <value>Providing the following details, our team can identify your problem and a possible solution with higher chances and shorter time:
-Drivers installation log
-List of installed applications
-ProtonVPN app and ProtonVPN service logs
-List of network adapters
-Routing table information</value>
+• Drivers installation log
+• List of installed applications
+• ProtonVPN app and ProtonVPN service logs
+• List of network adapters
+• Routing table information</value>
     <comment>The text inside info tooltip in Bug Report window</comment>
   </data>
   <data name="BugReport_lbl_WhatWentWrong" xml:space="preserve">

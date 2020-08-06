@@ -19,7 +19,6 @@
 
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
-using ProtonVPN.BugReporting.NetworkLogs;
 using ProtonVPN.Core.MVVM;
 using ProtonVPN.Modals;
 
@@ -31,23 +30,19 @@ namespace ProtonVPN.BugReporting
         private readonly SentViewModel _sentViewModel;
         private readonly SendingViewModel _sendingViewModel;
         private readonly FailureViewModel _failureViewModel;
-        private readonly NetworkLogWriter _networkLogWriter;
 
         private ViewModel _currentViewModel;
         private bool _sending;
         private bool _sent;
         private object _error = string.Empty;
-        private string _errorDetails;
 
         public ReportBugModalViewModel(
             BugReport bugReport,
             SendingViewModel sendingViewModel,
             SentViewModel sentViewModel,
             FormViewModel formViewModel,
-            FailureViewModel failureViewModel,
-            NetworkLogWriter networkLogWriter)
+            FailureViewModel failureViewModel)
         {
-            _networkLogWriter = networkLogWriter;
             _bugReport = bugReport;
             _sendingViewModel = sendingViewModel;
             _sentViewModel = sentViewModel;
@@ -70,12 +65,6 @@ namespace ProtonVPN.BugReporting
         {
             get => _error;
             set => Set(ref _error, value);
-        }
-
-        public string ErrorDetails
-        {
-            get => _errorDetails;
-            set => Set(ref _errorDetails, value);
         }
 
         public ViewModel OverlayViewModel
@@ -113,7 +102,6 @@ namespace ProtonVPN.BugReporting
             if (OverlayViewModel is SentViewModel)
                 ClearOverlay();
 
-            _networkLogWriter.Write();
             FormViewModel.Load();
         }
 
@@ -140,8 +128,9 @@ namespace ProtonVPN.BugReporting
             ShowSendingWindow();
             Error = string.Empty;
 
-            var result = await _bugReport.Send(
-                FormViewModel.GetFields());
+            var result = FormViewModel.IncludeLogs
+                ? await _bugReport.SendWithLogsAsync(FormViewModel.GetFields())
+                : await _bugReport.SendAsync(FormViewModel.GetFields());
 
             Sending = false;
 
