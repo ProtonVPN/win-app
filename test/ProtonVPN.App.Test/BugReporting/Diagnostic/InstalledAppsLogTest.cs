@@ -17,27 +17,24 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Diagnostics;
-using ProtonVPN.Common.Logging;
+using System.IO;
+using FluentAssertions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using ProtonVPN.BugReporting.Diagnostic;
 
-namespace ProtonVPN.Common.OS.Processes
+namespace ProtonVPN.App.Test.BugReporting.Diagnostic
 {
-    public class SystemProcess : BaseSystemProcess
+    [TestClass]
+    public class InstalledAppsLogTest : BaseLogTest
     {
-        public SystemProcess(ILogger logger, Process process) : base(logger, process)
+        [TestMethod]
+        public void ItShouldCreateLogFile()
         {
-            AddEventHandlers();
-        }
+            // Act
+            new InstalledAppsLog(TmpPath).Write();
 
-        public override void Start()
-        {
-            base.Start();
-
-            if (Process.StartInfo.RedirectStandardError)
-                Process.BeginErrorReadLine();
-
-            if (Process.StartInfo.RedirectStandardOutput)
-                Process.BeginOutputReadLine();
+            // Assert
+            File.Exists(Path.Combine(TmpPath, "Apps.txt")).Should().BeTrue();
         }
     }
 }

@@ -17,27 +17,33 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Diagnostics;
-using ProtonVPN.Common.Logging;
+using System.IO;
+using ProtonVPN.Common.OS.Processes;
 
-namespace ProtonVPN.Common.OS.Processes
+namespace ProtonVPN.BugReporting.Diagnostic
 {
-    public class SystemProcess : BaseSystemProcess
+    internal class RoutingTableLog : BaseLog
     {
-        public SystemProcess(ILogger logger, Process process) : base(logger, process)
+        private readonly IOsProcesses _osProcesses;
+
+        public RoutingTableLog(IOsProcesses osProcesses, string path) : base(path, "RoutingTable.txt")
         {
-            AddEventHandlers();
+            _osProcesses = osProcesses;
         }
 
-        public override void Start()
+        public override void Write()
         {
-            base.Start();
+            File.WriteAllText(Path, Content);
+        }
 
-            if (Process.StartInfo.RedirectStandardError)
-                Process.BeginErrorReadLine();
-
-            if (Process.StartInfo.RedirectStandardOutput)
-                Process.BeginOutputReadLine();
+        private string Content
+        {
+            get
+            {
+                using var process = _osProcesses.CommandLineProcess("/c route print");
+                process.Start();
+                return process.StandardOutput.ReadToEnd();
+            }
         }
     }
 }

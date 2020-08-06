@@ -26,6 +26,9 @@ namespace ProtonVPN.Common.OS.Processes
     {
         public string Name => "";
         public StreamWriter StandardInput => StreamWriter.Null;
+        public StreamReader StandardOutput => StreamReader.Null;
+        public void AddEventHandlers() => throw new NotImplementedException();
+
         public int ExitCode => 0;
 
         public event EventHandler<EventArgs<string>> OutputDataReceived = delegate { };

@@ -19,13 +19,7 @@
 
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Account;
-using ProtonVPN.BugReporting.Attachments;
-using ProtonVPN.Common.OS.Processes;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.MVVM;
 using ProtonVPN.Core.Settings;
@@ -34,41 +28,21 @@ using ProtonVPN.Servers;
 
 namespace ProtonVPN.BugReporting
 {
-    public class FormViewModel : ViewModel, IUserDataAware, ILogoutAware, IUserLocationAware
+    public class FormViewModel : ViewModel, IUserDataAware, ILogoutAware
     {
-        private string _account;
-        private string _plan;
-        private string _version;
-        private string _feedback;
+        private string _whatWentWrong;
+        private string _stepsToReproduce;
         private string _email;
-        private string _isp;
-        private string _country;
-        private string _planColor;
+        private bool _includeLogs;
 
         private readonly IUserStorage _userStorage;
-        private readonly Attachments.Attachments _attachments;
-        private readonly IOsProcesses _processes;
         private readonly Common.Configuration.Config _appConfig;
 
-        public FormViewModel(
-            Common.Configuration.Config appConfig,
-            IUserStorage userStorage,
-            Attachments.Attachments attachments,
-            IOsProcesses processes)
+        public FormViewModel(Common.Configuration.Config appConfig, IUserStorage userStorage)
         {
             _appConfig = appConfig;
             _userStorage = userStorage;
-            _attachments = attachments;
-            _processes = processes;
-
-            RemoveAttachmentCommand = new RelayCommand<Attachment>(RemoveAttachment);
-            OpenAttachmentCommand = new RelayCommand<Attachment>(OpenAttachment);
         }
-
-        public ICommand RemoveAttachmentCommand { get; set; }
-        public ICommand OpenAttachmentCommand { get; set; }
-
-        public ObservableCollection<Attachment> Attachments => _attachments.Items;
 
         public string Email
         {
@@ -76,100 +50,64 @@ namespace ProtonVPN.BugReporting
             set => Set(ref _email, value);
         }
 
-        public string Feedback
+        public string WhatWentWrong
         {
-            get => _feedback;
-            set => Set(ref _feedback, value);
+            get => _whatWentWrong;
+            set => Set(ref _whatWentWrong, value);
         }
 
-        public string Account
+        public string StepsToReproduce
         {
-            get => _account;
-            set => Set(ref _account, value);
+            get => _stepsToReproduce;
+            set => Set(ref _stepsToReproduce, value);
         }
 
-        public string Plan
+        public bool IncludeLogs
         {
-            get => _plan;
-            set => Set(ref _plan, value);
+            get => _includeLogs;
+            set => Set(ref _includeLogs, value);
         }
-
-        public string Version
-        {
-            get => _version;
-            set => Set(ref _version, value);
-        }
-
-        public string PlanColor
-        {
-            get => _planColor;
-            set => Set(ref _planColor, value);
-        }
-
-        public string Isp
-        {
-            get => _isp;
-            set => Set(ref _isp, value);
-        }
-
-        public string Country
-        {
-            get => _country;
-            set => Set(ref _country, value);
-        }
-
-        public double MaxFileSize => _appConfig.ReportBugMaxFileSize;
 
         public void Load()
         {
             ClearForm();
-            LoadUserData();
-            LoadUserLocation();
-            _attachments.Load();
-        }
-
-        public void RemoveAttachment(Attachment attachment)
-        {
-            _attachments.Remove(attachment);
+            LoadEmail();
         }
 
         public bool IsValid()
         {
-            return !string.IsNullOrEmpty(Email) && !string.IsNullOrEmpty(Feedback);
+            return !string.IsNullOrEmpty(Email) &&
+                   !string.IsNullOrEmpty(WhatWentWrong) &&
+                   !string.IsNullOrEmpty(StepsToReproduce);
         }
 
         public KeyValuePair<string, string>[] GetFields()
         {
+            var user = _userStorage.User();
+            var location = _userStorage.Location();
+            var country = Countries.GetName(location.Country);
+            var isp = location.Isp;
+
             return new[]
             {
                 new KeyValuePair<string, string>("OS", "Windows"),
                 new KeyValuePair<string, string>("OSVersion", Environment.OSVersion.ToString()),
                 new KeyValuePair<string, string>("Client", "Windows app"),
-                new KeyValuePair<string, string>("ClientVersion", Version),
+                new KeyValuePair<string, string>("ClientVersion", _appConfig.AppVersion),
                 new KeyValuePair<string, string>("Title", "Windows app form"),
-                new KeyValuePair<string, string>("Description", Feedback),
-                new KeyValuePair<string, string>("Username", Account),
-                new KeyValuePair<string, string>("Plan", Plan),
+                new KeyValuePair<string, string>("Description", Description),
+                new KeyValuePair<string, string>("Username", user.Username),
+                new KeyValuePair<string, string>("Plan", VpnPlanHelper.GetPlanName(user.VpnPlan)),
                 new KeyValuePair<string, string>("Email", Email),
-                new KeyValuePair<string, string>("Country", string.IsNullOrEmpty(Country) ? "" : Country),
-                new KeyValuePair<string, string>("ISP", string.IsNullOrEmpty(Isp) ? "" : Isp),
+                new KeyValuePair<string, string>("Country", string.IsNullOrEmpty(country) ? "" : country),
+                new KeyValuePair<string, string>("ISP", string.IsNullOrEmpty(isp) ? "" : isp),
                 new KeyValuePair<string, string>("ClientType", "2")
             };
         }
 
         public void OnUserDataChanged()
         {
-            LoadUserData();
-        }
-
-        public Task OnUserLocationChanged(UserLocationEventArgs e)
-        {
-            if (e.State == UserLocationState.Success)
-            {
-                LoadUserLocation();
-            }
-
-            return Task.CompletedTask;
+            LoadEmail();
         }
 
         public void OnUserLoggedOut()
@@ -177,34 +115,24 @@ namespace ProtonVPN.BugReporting
             Email = string.Empty;
         }
 
+        private string Description => $"What went wrong?\n\n{WhatWentWrong}\n\n" +
+                                      $"What are the exact steps you performed?\n\n{StepsToReproduce}";
+
         private void ClearForm()
         {
-            Feedback = string.Empty;
+            WhatWentWrong = string.Empty;
+            StepsToReproduce = string.Empty;
+            IncludeLogs = true;
         }
 
-        private void LoadUserData()
+        private void LoadEmail()
         {
             var user = _userStorage.User();
-            Account = user.Username;
-            Plan = VpnPlanHelper.GetPlanName(user.VpnPlan);
-            Version = _appConfig.AppVersion;
-            PlanColor = VpnPlanHelper.GetPlanColor(user.VpnPlan);
+
             if (EmailValidator.IsValid(user.Username))
             {
                 Email = user.Username;
             }
-        }
-
-        private void LoadUserLocation()
-        {
-            var location = _userStorage.Location();
-            Country = Countries.GetName(location.Country);
-            Isp = location.Isp;
-        }
-
-        private void OpenAttachment(Attachment attachment)
-        {
-            _processes.Open(attachment.Path);
         }
     }
 }

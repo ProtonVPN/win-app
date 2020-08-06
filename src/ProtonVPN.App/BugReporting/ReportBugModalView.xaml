@@ -26,12 +26,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         xmlns:wpf="clr-namespace:ProtonVPN.Core.Wpf"
         xmlns:modals="clr-namespace:ProtonVPN.Modals"
         xmlns:resources="clr-namespace:ProtonVPN.Resources"
-        xmlns:fa="http://schemas.fontawesome.io/icons/"
         Style="{StaticResource BaseModalStyle}"
         Title="{resources:Loc BugReport_ttl}"
         mc:Ignorable="d"
-        Width="800"
-        Height="525"
+        Width="Auto"
+        Height="Auto"
+        SizeToContent="WidthAndHeight"
         d:DataContext="{d:DesignInstance bugReporting:ReportBugModalViewModel}">
     <Window.Resources>
         <Style x:Key="ButtonsPanel" TargetType="StackPanel">

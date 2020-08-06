@@ -28,6 +28,8 @@ namespace ProtonVPN.Common.OS.Processes
 
         StreamWriter StandardInput { get; }
 
+        StreamReader StandardOutput { get; }
+
         int ExitCode { get; }
 
         void Start();

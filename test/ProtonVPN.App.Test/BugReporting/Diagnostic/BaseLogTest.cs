@@ -17,27 +17,24 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Diagnostics;
-using ProtonVPN.Common.Logging;
+using System.IO;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ProtonVPN.Common.OS.Processes
+namespace ProtonVPN.App.Test.BugReporting.Diagnostic
 {
-    public class SystemProcess : BaseSystemProcess
+    public class BaseLogTest
     {
-        public SystemProcess(ILogger logger, Process process) : base(logger, process)
+        protected const string TmpPath = "BugReporting\\Diagnostic\\Tmp";
+
+        [TestInitialize]
+        public virtual void Initialize()
         {
-            AddEventHandlers();
-        }
+            if (Directory.Exists(TmpPath))
+            {
+                Directory.Delete(TmpPath, true);
+            }
 
-        public override void Start()
-        {
-            base.Start();
-
-            if (Process.StartInfo.RedirectStandardError)
-                Process.BeginErrorReadLine();
-
-            if (Process.StartInfo.RedirectStandardOutput)
-                Process.BeginOutputReadLine();
+            Directory.CreateDirectory(TmpPath);
         }
     }
 }

@@ -18,26 +18,29 @@
  */
 
 using System.Diagnostics;
-using ProtonVPN.Common.Logging;
 
 namespace ProtonVPN.Common.OS.Processes
 {
-    public class SystemProcess : BaseSystemProcess
+    public static class ProcessStartInfoExtensions
     {
-        public SystemProcess(ILogger logger, Process process) : base(logger, process)
+        public  static ProcessStartInfo StandardInfo(this ProcessStartInfo info)
         {
-            AddEventHandlers();
+            info.CreateNoWindow = true;
+            info.UseShellExecute = false;
+            info.RedirectStandardError = true;
+            info.RedirectStandardOutput = true;
+            info.RedirectStandardInput = true;
+
+            return info;
         }
 
-        public override void Start()
+        public static ProcessStartInfo NoRedirectInfo(this ProcessStartInfo info)
         {
-            base.Start();
+            info.CreateNoWindow = true;
+            info.UseShellExecute = false;
+            info.RedirectStandardOutput = true;
 
-            if (Process.StartInfo.RedirectStandardError)
-                Process.BeginErrorReadLine();
-
-            if (Process.StartInfo.RedirectStandardOutput)
-                Process.BeginOutputReadLine();
+            return info;
         }
     }
 }

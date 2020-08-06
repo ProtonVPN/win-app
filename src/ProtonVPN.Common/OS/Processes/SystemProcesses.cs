@@ -48,6 +48,14 @@ namespace ProtonVPN.Common.OS.Processes
             return new SystemProcess(_logger, process);
         }
 
+        public IOsProcess CommandLineProcess(string arguments)
+        {
+            return new CmdOutputProcess(_logger, new Process
+            {
+                StartInfo = new ProcessStartInfo("cmd.exe", arguments).NoRedirectInfo()
+            });
+        }
+
         public IOsProcess[] ProcessesByName(string filename)
         {
             var name = GetProcessName(filename);
@@ -97,17 +105,7 @@ namespace ProtonVPN.Common.OS.Processes
         {
             return new Process
             {
-                StartInfo =
-                {
-                    FileName = filename,
-                    Arguments = arguments,
-                    CreateNoWindow = true,
-
-                    UseShellExecute = false,
-                    RedirectStandardError = true,
-                    RedirectStandardOutput = true,
-                    RedirectStandardInput = true
-                },
+                StartInfo = new ProcessStartInfo(filename, arguments).StandardInfo(),
                 EnableRaisingEvents = true
             };
         }
@@ -121,7 +119,6 @@ namespace ProtonVPN.Common.OS.Processes
                     FileName = filename,
                     Arguments = arguments,
                     CreateNoWindow = true,
-
                     UseShellExecute = true,
                     Verb = "runas",
                     WorkingDirectory = Environment.CurrentDirectory

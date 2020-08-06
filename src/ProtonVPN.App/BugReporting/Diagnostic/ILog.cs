@@ -17,27 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Diagnostics;
-using ProtonVPN.Common.Logging;
-
-namespace ProtonVPN.Common.OS.Processes
+namespace ProtonVPN.BugReporting.Diagnostic
 {
-    public class SystemProcess : BaseSystemProcess
+    public interface ILog
     {
-        public SystemProcess(ILogger logger, Process process) : base(logger, process)
-        {
-            AddEventHandlers();
-        }
+        string Path { get; }
 
-        public override void Start()
-        {
-            base.Start();
-
-            if (Process.StartInfo.RedirectStandardError)
-                Process.BeginErrorReadLine();
-
-            if (Process.StartInfo.RedirectStandardOutput)
-                Process.BeginOutputReadLine();
-        }
+        void Write();
     }
 }

@@ -22,22 +22,10 @@ using ProtonVPN.Common.Logging;
 
 namespace ProtonVPN.Common.OS.Processes
 {
-    public class SystemProcess : BaseSystemProcess
+    public class CmdOutputProcess : BaseSystemProcess
     {
-        public SystemProcess(ILogger logger, Process process) : base(logger, process)
+        public CmdOutputProcess(ILogger logger, Process process) : base(logger, process)
         {
-            AddEventHandlers();
-        }
-
-        public override void Start()
-        {
-            base.Start();
-
-            if (Process.StartInfo.RedirectStandardError)
-                Process.BeginErrorReadLine();
-
-            if (Process.StartInfo.RedirectStandardOutput)
-                Process.BeginOutputReadLine();
         }
     }
 }

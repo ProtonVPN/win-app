@@ -17,27 +17,28 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Diagnostics;
-using ProtonVPN.Common.Logging;
+using System;
+using System.IO;
+using System.IO.Compression;
 
-namespace ProtonVPN.Common.OS.Processes
+namespace ProtonVPN.BugReporting.Diagnostic
 {
-    public class SystemProcess : BaseSystemProcess
+    internal class DriverInstallLog : BaseLog
     {
-        public SystemProcess(ILogger logger, Process process) : base(logger, process)
+        private const string Filename = "setupapi.dev.log";
+
+        public DriverInstallLog(string path) : base(path, Filename)
         {
-            AddEventHandlers();
         }
 
-        public override void Start()
+        public override void Write()
         {
-            base.Start();
+            var windowsPath = Environment.GetFolderPath(Environment.SpecialFolder.Windows);
+            var copyFrom = System.IO.Path.Combine(windowsPath, "inf", Filename);
 
-            if (Process.StartInfo.RedirectStandardError)
-                Process.BeginErrorReadLine();
-
-            if (Process.StartInfo.RedirectStandardOutput)
-                Process.BeginOutputReadLine();
+            using var fs = new FileStream(Path.Replace(".log", ".zip"), FileMode.Create);
+            using var arch = new ZipArchive(fs, ZipArchiveMode.Create);
+            arch.CreateEntryFromFile(copyFrom, Filename);
         }
     }
 }

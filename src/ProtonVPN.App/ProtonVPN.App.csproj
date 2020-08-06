@@ -144,6 +144,7 @@
     <Reference Include="System.Device" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Management" />
     <Reference Include="System.Net" />
     <Reference Include="System.Net.Http" />
@@ -187,10 +188,13 @@
     </Compile>
     <Compile Include="About\LicenseModalViewModel.cs" />
     <Compile Include="About\ReleaseEqualityComparer.cs" />
-    <Compile Include="BugReporting\NetworkLogs\BaseLog.cs" />
-    <Compile Include="BugReporting\NetworkLogs\ILog.cs" />
-    <Compile Include="BugReporting\NetworkLogs\NetworkAdapterLog.cs" />
-    <Compile Include="BugReporting\NetworkLogs\NetworkLogWriter.cs" />
+    <Compile Include="BugReporting\Diagnostic\BaseLog.cs" />
+    <Compile Include="BugReporting\Diagnostic\DriverInstallLog.cs" />
+    <Compile Include="BugReporting\Diagnostic\ILog.cs" />
+    <Compile Include="BugReporting\Diagnostic\InstalledAppsLog.cs" />
+    <Compile Include="BugReporting\Diagnostic\NetworkAdapterLog.cs" />
+    <Compile Include="BugReporting\Diagnostic\NetworkLogWriter.cs" />
+    <Compile Include="BugReporting\Diagnostic\RoutingTableLog.cs" />
     <Compile Include="Core\ExpiredSessionHandler.cs" />
     <Compile Include="Core\ILanguageProvider.cs" />
     <Compile Include="Core\Language.cs" />
