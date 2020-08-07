@@ -173,6 +173,27 @@ namespace ProtonVPN.Core.Api
             }
         }
 
+        public async Task<ApiResponseResult<ServerList>> GetServerLoadsAsync(string ip)
+        {
+            try
+            {
+                var uri = "vpn/loads";
+                if (!string.IsNullOrEmpty(ip))
+                {
+                    uri += $"?IP={ip}";
+                }
+
+                var request = GetAuthorizedRequest(HttpMethod.Get, uri);
+                using var response = await _client.SendAsync(request).ConfigureAwait(false);
+                var stream = await response.Content.ReadAsStreamAsync();
+                return Logged(GetResponseStreamResult<ServerList>(stream, response.StatusCode), "Get server loads");
+            }
+            catch (Exception e) when (e.IsApiCommunicationException())
+            {
+                throw new HttpRequestException(e.Message, e);
+            }
+        }
+
         public async Task<ApiResponseResult<UserLocation>> GetLocationDataAsync()
         {
             try

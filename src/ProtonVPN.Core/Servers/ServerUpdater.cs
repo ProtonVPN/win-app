@@ -27,17 +27,15 @@ using ProtonVPN.Common.Storage;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.Auth;
-using ProtonVPN.Core.User;
 
 namespace ProtonVPN.Core.Servers
 {
-    public class ServerUpdater : IServerUpdater, ILoggedInAware, ILogoutAware, IUserLocationAware
+    public class ServerUpdater : IServerUpdater, ILoggedInAware, ILogoutAware
     {
         private readonly ISchedulerTimer _timer;
         private readonly ServerManager _serverManager;
-        private readonly ApiServers _apiServers;
+        private readonly IApiServers _apiServers;
         private readonly ICollectionStorage<LogicalServerContract> _serverCache;
-
         private readonly SingleAction _updateAction;
 
         private bool _firstTime = true;
@@ -46,8 +44,9 @@ namespace ProtonVPN.Core.Servers
             IScheduler scheduler,
             Config appConfig,
             ServerManager serverManager,
-            ApiServers apiServers,
-            ICollectionStorage<LogicalServerContract> serverCache)
+            IApiServers apiServers,
+            ICollectionStorage<LogicalServerContract> serverCache,
+            ServerLoadUpdater serverLoadUpdater)
         {
             _serverManager = serverManager;
             _apiServers = apiServers;
@@ -58,6 +57,7 @@ namespace ProtonVPN.Core.Servers
             _timer.Tick += Timer_OnTick;
 
             _updateAction = new SingleAction(UpdateServers);
+            serverLoadUpdater.ServerLoadsUpdated += OnServerLoadsUpdated;
         }
 
         public event EventHandler ServersUpdated;
@@ -78,14 +78,9 @@ namespace ProtonVPN.Core.Servers
             await _updateAction.Run();
         }
 
-        public Task OnUserLocationChanged(UserLocationEventArgs e)
+        private void OnServerLoadsUpdated(object sender, EventArgs e)
         {
-            if (e.State == UserLocationState.Success)
-            {
-                _ = Update();
-            }
-
-            return Task.CompletedTask;
+            InvokeServersUpdated();
         }
 
         private async Task UpdateServers()
@@ -104,14 +99,14 @@ namespace ProtonVPN.Core.Servers
         {
             if (!_firstTime)
             {
-                return await _apiServers.GetAsync();
+                return await _apiServers.GetServersAsync();
             }
 
             _firstTime = false;
 
             if (_serverManager.Empty())
             {
-                return await _apiServers.GetAsync();
+                return await _apiServers.GetServersAsync();
             }
 
             // First time after start or logoff server update is scheduled without waiting for the result

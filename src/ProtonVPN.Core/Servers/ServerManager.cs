@@ -54,6 +54,16 @@ namespace ProtonVPN.Core.Servers
             SaveCountries(servers);
         }
 
+        public virtual void UpdateLoads(IReadOnlyCollection<LogicalServerContract> servers)
+        {
+            var updatedServers = servers.ToDictionary(server => server.Id);
+            foreach (var server in _servers.Where(server => updatedServers.ContainsKey(server.Id)))
+            {
+                server.Load = updatedServers[server.Id].Load;
+                server.Score = updatedServers[server.Id].Score;
+            }
+        }
+
         public IReadOnlyCollection<Server> GetServers(ISpecification<LogicalServerContract> spec)
         {
             var userTier = _userStorage.User().MaxTier;

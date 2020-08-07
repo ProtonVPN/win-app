@@ -28,6 +28,7 @@ using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.OS.Services;
 using ProtonVPN.Common.Storage;
 using ProtonVPN.Common.Text.Serialization;
+using ProtonVPN.Common.Threading;
 using ProtonVPN.Config;
 using ProtonVPN.Core.Api;
 using ProtonVPN.Core.Api.Contracts;
@@ -44,6 +45,7 @@ using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Startup;
 using ProtonVPN.Core.Storage;
 using ProtonVPN.Core.User;
+using ProtonVPN.Core.Window;
 using ProtonVPN.FlashNotifications;
 using ProtonVPN.Map;
 using ProtonVPN.Modals;
@@ -91,8 +93,20 @@ namespace ProtonVPN.Core.Ioc
                 .As<ICollectionStorage<GuestHoleServerContract>>()
                 .SingleInstance();
 
-            builder.RegisterType<ApiServers>().SingleInstance();
+            builder.RegisterType<ApiServers>().As<IApiServers>().SingleInstance();
             builder.RegisterType<ServerUpdater>().AsImplementedInterfaces().SingleInstance();
+            builder.Register(c => new ServerLoadUpdater(
+                    c.Resolve<Common.Configuration.Config>().ServerLoadUpdateInterval,
+                    c.Resolve<ServerManager>(),
+                    c.Resolve<IScheduler>(),
+                    c.Resolve<IEventAggregator>(),
+                    c.Resolve<IMainWindowState>(),
+                    c.Resolve<IApiServers>(),
+                    c.Resolve<ISingleActionFactory>(),
+                    c.Resolve<ILastServerLoadTimeProvider>()))
+                .AsImplementedInterfaces()
+                .AsSelf()
+                .SingleInstance();
 
             builder.RegisterType<UserStorage>().As<IUserStorage>().SingleInstance();
             builder.RegisterType<TruncatedLocation>().SingleInstance();

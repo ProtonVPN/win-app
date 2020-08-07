@@ -33,6 +33,7 @@ namespace ProtonVPN.Core.Api
         Task<ApiResponseResult<BaseResponse>> GetLogoutResponse();
         Task<ApiResponseResult<EventResponse>> GetEventResponse(string lastId = default);
         Task<ApiResponseResult<ServerList>> GetServersAsync(string ip);
+        Task<ApiResponseResult<ServerList>> GetServerLoadsAsync(string ip);
         Task<ApiResponseResult<UserLocation>> GetLocationDataAsync();
         Task<ApiResponseResult<BaseResponse>> ReportBugAsync(IEnumerable<KeyValuePair<string, string>> fields, IEnumerable<File> files);
         Task<ApiResponseResult<SessionsResponse>> GetSessions();

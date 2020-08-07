@@ -23,7 +23,7 @@ using System.Threading.Tasks;
 
 namespace ProtonVPN.Common.Threading
 {
-    public class SingleAction
+    public class SingleAction : ISingleAction
     {
         private readonly Func<CancellationToken, Task> _action;
         private readonly CancellationHandle _cancellationHandle;
