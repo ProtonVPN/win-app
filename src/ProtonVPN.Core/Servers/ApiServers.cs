@@ -28,7 +28,7 @@ using ProtonVPN.Core.User;
 
 namespace ProtonVPN.Core.Servers
 {
-    public class ApiServers
+    public class ApiServers : IApiServers
     {
         private readonly ILogger _logger;
         private readonly IApiClient _apiClient;
@@ -44,11 +44,29 @@ namespace ProtonVPN.Core.Servers
             _location = location;
         }
 
-        public async Task<IReadOnlyCollection<LogicalServerContract>> GetAsync()
+        public async Task<IReadOnlyCollection<LogicalServerContract>> GetServersAsync()
         {
             try
             {
                 var response = await _apiClient.GetServersAsync(_location.Ip());
+                if (response.Success)
+                {
+                    return response.Value.Servers;
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                _logger.Error("API: Get servers failed: " + ex.CombinedMessage());
+            }
+
+            return new LogicalServerContract[0];
+        }
+
+        public async Task<IReadOnlyCollection<LogicalServerContract>> GetLoadsAsync()
+        {
+            try
+            {
+                var response = await _apiClient.GetServerLoadsAsync(_location.Ip());
                 if (response.Success)
                 {
                     return response.Value.Servers;

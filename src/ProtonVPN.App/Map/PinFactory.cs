@@ -261,7 +261,6 @@ namespace ProtonVPN.Map
             };
 
             return pin;
-
         }
 
         private SecureCorePinViewModel GetSecureCorePin(string countryCode)

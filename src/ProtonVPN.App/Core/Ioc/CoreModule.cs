@@ -45,6 +45,7 @@ using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Storage;
 using ProtonVPN.Core.Threading;
 using ProtonVPN.Core.Update;
+using ProtonVPN.Core.Window;
 using ProtonVPN.Resources;
 using ProtonVPN.Settings;
 using ProtonVPN.Vpn;
@@ -232,6 +233,9 @@ namespace ProtonVPN.Core.Ioc
                 c.Resolve<Common.Configuration.Config>().DohClientTimeout))
                 .SingleInstance();
             builder.RegisterType<UnhandledExceptionLogging>().SingleInstance();
+            builder.RegisterType<MainWindowState>().As<IMainWindowState>().SingleInstance();
+            builder.RegisterType<SingleActionFactory>().As<ISingleActionFactory>().SingleInstance();
+            builder.RegisterType<LastServerLoadTimeProvider>().As<ILastServerLoadTimeProvider>().SingleInstance();
         }
     }
 }

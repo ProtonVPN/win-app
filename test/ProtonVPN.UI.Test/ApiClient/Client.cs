@@ -121,6 +121,8 @@ namespace ProtonVPN.UI.Test.ApiClient
 
         public Task<ApiResponseResult<ServerList>> GetServersAsync(string ip) => throw new NotImplementedException();
 
+        public Task<ApiResponseResult<ServerList>> GetServerLoadsAsync(string ip) => throw new NotImplementedException();
+
         public async Task<ApiResponseResult<UserLocation>> GetLocationDataAsync()
         {
             try

@@ -195,11 +195,14 @@
     <Compile Include="Threading\CoalescingTaskQueue.cs" />
     <Compile Include="Threading\CoalescingTaskQueueExtensions.cs" />
     <Compile Include="Threading\ISchedulerTimer.cs" />
+    <Compile Include="Threading\ISingleAction.cs" />
+    <Compile Include="Threading\ISingleActionFactory.cs" />
     <Compile Include="Threading\ITaskQueue.cs" />
     <Compile Include="Threading\ITaskQueueExtensions.cs" />
     <Compile Include="Threading\IScheduler.cs" />
     <Compile Include="Threading\SerialTaskQueue.cs" />
     <Compile Include="Threading\SingleAction.cs" />
+    <Compile Include="Threading\SingleActionFactory.cs" />
     <Compile Include="Threading\TaskCompletedEventArgs.cs" />
     <Compile Include="Threading\TaskCompletionSourceExtensions.cs" />
     <Compile Include="Threading\TaskExtensions.cs" />
