@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
+using ProtonVPN.Config;
 using ProtonVPN.Core.Api;
 using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Servers;
@@ -19,9 +20,10 @@ namespace ProtonVPN.Core.Service.Vpn
         private readonly ISchedulerTimer _timer;
         private readonly ServerManager _serverManager;
         private readonly IServerUpdater _serverUpdater;
+        private readonly IVpnConfig _config;
 
         public ReconnectManager(
-            Common.Configuration.Config config,
+            IVpnConfig config,
             IApiClient apiClient,
             ProfileManager profileManager,
             ServerManager serverManager,
@@ -29,6 +31,7 @@ namespace ProtonVPN.Core.Service.Vpn
             IScheduler scheduler,
             IServerUpdater serverUpdater)
         {
+            _config = config;
             _serverUpdater = serverUpdater;
             _serverManager = serverManager;
             _vpnManager = vpnManager;
@@ -36,18 +39,23 @@ namespace ProtonVPN.Core.Service.Vpn
             _apiClient = apiClient;
 
             _timer = scheduler.Timer();
-            _timer.Interval = config.MaintenanceCheckInterval;
             _timer.Tick += OnTimerTick;
         }
 
         public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
         {
+            if (!_config.MaintenanceTrackerEnabled)
+            {
+                return Task.CompletedTask;
+            }
+
             _state = e.State;
 
             if (e.State.Status == VpnStatus.Connected)
             {
                 if (!_timer.IsEnabled)
                 {
+                    _timer.Interval = _config.MaintenanceCheckInterval;
                     _timer.Start();
                 }
             }

@@ -147,6 +147,8 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 DefaultLocale = "en",
 
+                MaintenanceTrackerEnabled = true,
+
                 MaintenanceCheckInterval = TimeSpan.FromMinutes(30),
 
                 Urls =
