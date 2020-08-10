@@ -44,11 +44,20 @@ namespace ProtonVPN.BugReporting
                     new FilesToAttachments(
                         new ConcatenatedSequence<string>(
                             new SafeFileSource(logger,
-                                new LogFileSource(appConfig.AppLogFolder, appConfig.MaxAppLogsAttached)),
+                                new LogFileSource(
+                                    appConfig.ReportBugMaxFileSize,
+                                    appConfig.AppLogFolder,
+                                    appConfig.MaxAppLogsAttached)),
                             new SafeFileSource(logger,
-                                new LogFileSource(appConfig.ServiceLogFolder, appConfig.MaxServiceLogsAttached)),
+                                new LogFileSource(
+                                    appConfig.ReportBugMaxFileSize,
+                                    appConfig.ServiceLogFolder,
+                                    appConfig.MaxServiceLogsAttached)),
                             new SafeFileSource(logger,
-                                new LogFileSource(appConfig.UpdateServiceLogFolder, appConfig.MaxUpdaterServiceLogsAttached)))));
+                                new LogFileSource(
+                                    appConfig.ReportBugMaxFileSize,
+                                    appConfig.UpdateServiceLogFolder,
+                                    appConfig.MaxUpdaterServiceLogsAttached)))));
             }).SingleInstance();
 
             builder.Register(c => new InstalledAppsLog(c.Resolve<Common.Configuration.Config>().AppLogFolder))
