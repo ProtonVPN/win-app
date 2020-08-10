@@ -17,45 +17,41 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Core.Api;
-using ProtonVPN.Core.Auth;
-using ProtonVPN.Core.Settings;
 using System;
 using System.Net.Http;
 using System.Threading;
-using System.Windows.Threading;
+using Caliburn.Micro;
+using ProtonVPN.Core.Api;
+using ProtonVPN.Core.Settings;
+using ProtonVPN.Core.Window;
 
 namespace ProtonVPN.Account
 {
-    public class VpnInfoChecker : ILogoutAware
+    public class VpnInfoChecker : IHandle<WindowStateMessage>
     {
+        private readonly TimeSpan _checkInterval;
         private readonly IApiClient _api;
         private readonly IUserStorage _userStorage;
-        private readonly DispatcherTimer _timer;
         private static readonly SemaphoreSlim Semaphore = new SemaphoreSlim(1, 1);
+        private DateTime _lastCheck = DateTime.Now;
 
-        public VpnInfoChecker(IApiClient api, IUserStorage userStorage)
+        public VpnInfoChecker(TimeSpan checkInterval, IEventAggregator eventAggregator, IApiClient api, IUserStorage userStorage)
         {
+            eventAggregator.Subscribe(this);
+
+            _checkInterval = checkInterval;
             _api = api;
             _userStorage = userStorage;
-            _timer = new DispatcherTimer();
-            _timer.Tick += OnTimerTick;
         }
 
-        public void Start(TimeSpan interval)
+        public async void Handle(WindowStateMessage message)
         {
-            _timer.Interval = interval;
-            _timer.Start();
-        }
+            if (!message.Active || DateTime.Now.Subtract(_lastCheck) < _checkInterval)
+            {
+                return;
+            }
 
-        public void OnUserLoggedOut()
-        {
-            if (_timer.IsEnabled)
-                _timer.Stop();
-        }
-
-        private async void OnTimerTick(object sender, EventArgs e)
-        {
+            _lastCheck = DateTime.Now;
             await Semaphore.WaitAsync();
 
             try

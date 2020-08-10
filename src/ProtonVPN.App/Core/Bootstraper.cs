@@ -446,7 +446,7 @@ namespace ProtonVPN.Core
 
             LoadViewModels();
             Resolve<P2PDetector>();
-            Resolve<VpnInfoChecker>().Start(appConfig.VpnInfoCheckInterval.RandomizedWithDeviation(0.2));
+            Resolve<VpnInfoChecker>();
 
             var appWindow = Resolve<AppWindow>();
             appWindow.DataContext = Resolve<MainViewModel>();

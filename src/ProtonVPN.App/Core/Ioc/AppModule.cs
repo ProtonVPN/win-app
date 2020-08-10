@@ -24,6 +24,7 @@ using Caliburn.Micro;
 using ProtonVPN.About;
 using ProtonVPN.Account;
 using ProtonVPN.Common.Configuration;
+using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.OS.Services;
 using ProtonVPN.Common.Storage;
@@ -216,7 +217,6 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<QuickConnector>().SingleInstance();
             builder.RegisterType<AppExitHandler>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterType<UserLocationService>().AsImplementedInterfaces().SingleInstance();
-            builder.RegisterType<VpnInfoChecker>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterType<InstalledApps>().SingleInstance();
             builder.RegisterType<Onboarding.Onboarding>().AsSelf().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<SystemNotification>().AsImplementedInterfaces().SingleInstance();
@@ -248,6 +248,11 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<ExpiredSessionHandler>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterType<ReconnectState>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterType<SettingsBuilder>().SingleInstance();
+            builder.Register(c => new VpnInfoChecker(
+                    c.Resolve<Common.Configuration.Config>().VpnInfoCheckInterval.RandomizedWithDeviation(0.2),
+                    c.Resolve<IEventAggregator>(),
+                    c.Resolve<IApiClient>(),
+                    c.Resolve<IUserStorage>())).SingleInstance();
         }
     }
 }
