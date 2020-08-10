@@ -178,6 +178,8 @@ namespace ProtonVPN.Common.Configuration
 
         public IReadOnlyList<string> DefaultBlackHoleIps { get; internal set; } = new List<string>();
 
+        public bool MaintenanceTrackerEnabled { get; internal set; }
+
         public UrlConfig Urls { get; } = new UrlConfig();
 
         public OpenVpnConfig OpenVpn { get; } = new OpenVpnConfig();
@@ -185,8 +187,6 @@ namespace ProtonVPN.Common.Configuration
         public TlsPinningConfig TlsPinningConfig { get; } = new TlsPinningConfig();
 
         public List<string> DoHProviders { get; internal set; } = new List<string>();
-
-        public bool NetShieldEnabled { get; internal set; }
 
         [Required]
         public string DefaultLocale { get; internal set; }
