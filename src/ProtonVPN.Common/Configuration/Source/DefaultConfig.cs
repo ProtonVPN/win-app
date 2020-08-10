@@ -119,7 +119,7 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 P2PCheckInterval = TimeSpan.FromSeconds(30),
 
-                VpnInfoCheckInterval = TimeSpan.FromMinutes(5),
+                VpnInfoCheckInterval = TimeSpan.FromMinutes(3),
 
                 DefaultCurrency = "USD",
 
