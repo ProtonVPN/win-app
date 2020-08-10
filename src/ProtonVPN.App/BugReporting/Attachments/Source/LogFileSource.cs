@@ -28,9 +28,11 @@ namespace ProtonVPN.BugReporting.Attachments.Source
     {
         private readonly string _path;
         private readonly int _count;
+        private readonly long _maxFileSie;
 
-        public LogFileSource(string path, int count)
+        public LogFileSource(long maxFileSie, string path, int count)
         {
+            _maxFileSie = maxFileSie;
             _path = path;
             _count = count;
         }
@@ -50,6 +52,7 @@ namespace ProtonVPN.BugReporting.Attachments.Source
             var directory = new DirectoryInfo(_path);
             var fileNames = directory
                 .GetFiles()
+                .Where(f => f.Length <= _maxFileSie)
                 .OrderByDescending(p => p.LastWriteTimeUtc)
                 .Take(_count)
                 .Select(f => f.FullName);
