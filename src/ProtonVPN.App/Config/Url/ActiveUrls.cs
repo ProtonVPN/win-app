@@ -33,6 +33,7 @@ namespace ProtonVPN.Config.Url
             _processes = processes;
         }
 
+        public IActiveUrl BfeArticleUrl                           => Url(_config.BfeArticleUrl);
         public IActiveUrl PasswordResetUrl                        => Url(_config.PasswordResetUrl);
         public IActiveUrl ForgetUsernameUrl                       => Url(_config.ForgetUsernameUrl);
         public IActiveUrl UpdateUrl                               => Url(_config.UpdateUrl);

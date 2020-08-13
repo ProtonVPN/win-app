@@ -24,6 +24,9 @@ namespace ProtonVPN.Common.Configuration
     public class UrlConfig
     {
         [Required]
+        public string BfeArticleUrl { get; internal set; }
+
+        [Required]
         public string PasswordResetUrl { get; internal set; }
 
         [Required]

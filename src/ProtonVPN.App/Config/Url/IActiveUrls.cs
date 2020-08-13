@@ -23,6 +23,7 @@ namespace ProtonVPN.Config.Url
     {
         IActiveUrl AccountUrl { get; }
         IActiveUrl AboutSecureCoreUrl { get; }
+        IActiveUrl BfeArticleUrl { get; }
         IActiveUrl ApiUrl { get; }
         IActiveUrl TlsReportUrl { get; }
         IActiveUrl ForgetUsernameUrl { get; }

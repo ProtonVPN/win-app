@@ -200,7 +200,8 @@ namespace ProtonVPN.Core.Ioc
             builder.Register(c => new ServiceStartDecorator(
                 c.Resolve<ILogger>(),
                 c.Resolve<VpnServiceManager>(),
-                c.Resolve<IModals>()))
+                c.Resolve<IModals>(),
+                c.Resolve<BaseFilteringEngineService>()))
                 .As<IVpnServiceManager>().SingleInstance();
             builder.RegisterType<VpnManager>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<ServerConnector>().SingleInstance();
@@ -221,7 +222,13 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<Onboarding.Onboarding>().AsSelf().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<SystemNotification>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<VpnConfig>().As<IVpnConfig>().SingleInstance();
-            builder.RegisterType<MonitoredVpnService>().AsImplementedInterfaces().AsSelf().SingleInstance();
+            builder.Register(c => new MonitoredVpnService(
+                    c.Resolve<Common.Configuration.Config>(),
+                    c.Resolve<VpnSystemService>()))
+                .AsImplementedInterfaces()
+                .AsSelf()
+                .SingleInstance();
+            builder.RegisterType<BaseFilteringEngineService>().SingleInstance();
             builder.Register(c => new UpdateNotification(
                     c.Resolve<Common.Configuration.Config>().UpdateRemindInterval,
                     c.Resolve<ISystemNotification>(),

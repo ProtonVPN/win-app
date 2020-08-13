@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.ServiceModel;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.OS.Services;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Vpn;
@@ -34,9 +35,15 @@ namespace ProtonVPN.Core.Service.Vpn
         private readonly ILogger _logger;
         private readonly IVpnServiceManager _decorated;
         private readonly IModals _modals;
+        private readonly IService _baseFilteringEngineService;
 
-        public ServiceStartDecorator(ILogger logger, IVpnServiceManager decorated, IModals modals)
+        public ServiceStartDecorator(
+            ILogger logger,
+            IVpnServiceManager decorated,
+            IModals modals,
+            IService baseFilteringEngineService)
         {
+            _baseFilteringEngineService = baseFilteringEngineService;
             _logger = logger;
             _modals = modals;
             _decorated = decorated;
@@ -64,7 +71,10 @@ namespace ProtonVPN.Core.Service.Vpn
 
         public async Task RepeatState()
         {
-            await _decorated.RepeatState();
+            if (_baseFilteringEngineService.Running())
+            {
+                await _decorated.RepeatState();
+            }
         }
 
         public void RegisterCallback(Action<VpnStateChangedEventArgs> onVpnStateChanged)
@@ -74,6 +84,12 @@ namespace ProtonVPN.Core.Service.Vpn
 
         private async Task InvokeAction(Func<Task> action)
         {
+            if (!_baseFilteringEngineService.Running())
+            {
+                _modals.Show<BfeWarningModalViewModel>();
+                return;
+            }
+
             while (true)
             {
                 try

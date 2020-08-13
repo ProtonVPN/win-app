@@ -2882,6 +2882,11 @@ Exiting the application will disable the Kill Switch. Do you want to continue?</
     <value>You can connect to ProtonVPN on a maximum of 5 devices at the same time. Please disconnect one of your other devices from ProtonVPN and try again.</value>
     <comment>The error description displayed in Disconnect modal window when maximum VPN connection limit is reached</comment>
   </data>
+  <data name="Dialogs_Bfe_msg_info" xml:space="preserve">
+    <value>One of the services required by ProtonVPN (Base Filtering Engine) is not running.&lt;LineBreak/&gt;
+Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these"/&gt;&lt;/Hyperlink&gt; instructions to enable it again and retry.</value>
+    <comment>The text on Base Filtering Engine dialog window</comment>
+  </data>
   <data name="ErrorWindow_lbl_Download" xml:space="preserve">
     <value>Download</value>
   </data>

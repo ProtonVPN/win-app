@@ -132,7 +132,7 @@ namespace ProtonVPN.Core
             Resolve<Language>().Initialize(_args);
             ShowInitialWindow();
 
-            _ = StartService(Resolve<MonitoredVpnService>());
+            StartVpnService();
             _ = StartService(Resolve<AppUpdateSystemService>());
 
             if (Resolve<IUserStorage>().User().Empty() || !await IsUserValid() || await SessionExpired())
@@ -149,6 +149,14 @@ namespace ProtonVPN.Core
             Resolve<TrayIcon>().Hide();
             Resolve<VpnSystemService>().StopAsync();
             Resolve<AppUpdateSystemService>().StopAsync();
+        }
+
+        private void StartVpnService()
+        {
+            if (Resolve<BaseFilteringEngineService>().Running())
+            {
+                _ = StartService(Resolve<MonitoredVpnService>());
+            }
         }
 
         private async Task<bool> SessionExpired()
