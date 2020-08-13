@@ -198,7 +198,12 @@
     <Compile Include="Core\LanguageProvider.cs" />
     <Compile Include="Core\MVVM\Converters\PluralConverter.cs" />
     <Compile Include="Core\MVVM\Converters\ZeroToBoolConverter.cs" />
+    <Compile Include="Core\Service\BaseFilteringEngineService.cs" />
     <Compile Include="Core\Service\Vpn\ReconnectManager.cs" />
+    <Compile Include="Modals\BfeWarningModalView.xaml.cs">
+      <DependentUpon>BfeWarningModalView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modals\BfeWarningModalViewModel.cs" />
     <Compile Include="Settings\Migrations\v1_17_0\AppSettingsMigration.cs" />
     <Compile Include="Core\Service\Vpn\IVpnManager.cs" />
     <Compile Include="FlashNotifications\FlashNotifications.xaml.cs">
@@ -770,6 +775,10 @@
     <Page Include="FlashNotifications\UpdateFlashNotification.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Modals\BfeWarningModalView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Modals\OutdatedAppModalView.xaml">
       <SubType>Designer</SubType>

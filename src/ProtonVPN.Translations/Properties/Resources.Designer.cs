@@ -3216,6 +3216,16 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to One of the services required by ProtonVPN (Base Filtering Engine) is not running.&lt;LineBreak/&gt;
+        ///Please follow &lt;Hyperlink Command=&quot;{Binding OpenArticleCommand}&quot;&gt;&lt;Run Text=&quot;these&quot;/&gt;&lt;/Hyperlink&gt; instructions to enable it again and retry..
+        /// </summary>
+        public static string Dialogs_Bfe_msg_info {
+            get {
+                return ResourceManager.GetString("Dialogs_Bfe_msg_info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         public static string Dialogs_btn_Cancel {
