@@ -76,7 +76,7 @@ namespace ProtonVPN
 
                 var app = new App();
                 app.InitializeComponent();
-                
+
                 _bootstrapper = new Bootstrapper(args);
                 _bootstrapper.Initialize();
 
@@ -155,6 +155,12 @@ namespace ProtonVPN
         private static void SetDllDirectories()
         {
             Kernel32.SetDefaultDllDirectories(Kernel32.SetDefaultDllDirectoriesFlags.LOAD_LIBRARY_SEARCH_DEFAULT_DIRS);
+        }
+
+        protected override void OnSessionEnding(SessionEndingCancelEventArgs e)
+        {
+            base.OnSessionEnding(e);
+            _bootstrapper.OnExit();
         }
     }
 }

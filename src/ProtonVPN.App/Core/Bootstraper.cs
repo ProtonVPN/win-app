@@ -432,8 +432,6 @@ namespace ProtonVPN.Core
 
         private async Task SwitchToAppWindow(bool autoLogin)
         {
-            var appConfig = Resolve<Common.Configuration.Config>();
-
             if (!Resolve<UserAuth>().LoggedIn)
             {
                 return;
