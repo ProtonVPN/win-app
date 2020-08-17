@@ -26,7 +26,10 @@ using ProtonVPN.Config.Url;
 using ProtonVPN.ConnectionInfo;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Profiles;
+using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Service.Vpn;
+using ProtonVPN.Core.Settings;
+using ProtonVPN.Resources;
 using ProtonVPN.Settings;
 
 namespace ProtonVPN.Modals
@@ -42,12 +45,19 @@ namespace ProtonVPN.Modals
         private readonly IModals _modals;
         private readonly ILogger _logger;
         private readonly ProfileManager _profileManager;
+        private readonly IUserStorage _userStorage;
 
         public ICommand OpenHelpArticleCommand { get; set; }
+
         public ICommand SettingsCommand { get; set; }
+
         public ICommand DisableKillSwitchCommand { get; set; }
+
         public ICommand ReportBugCommand { get; set; }
+
         public ICommand GoToAccountCommand { get; set; }
+
+        public ICommand UpgradeCommand { get; set; }
 
         public DisconnectErrorModalViewModel(
             ILogger logger,
@@ -56,8 +66,10 @@ namespace ProtonVPN.Modals
             IVpnManager vpnManager,
             IModals modals,
             SettingsModalViewModel settingsModalViewModel,
-            ProfileManager profileManager)
+            ProfileManager profileManager,
+            IUserStorage userStorage)
         {
+            _userStorage = userStorage;
             _logger = logger;
             _modals = modals;
             _settingsModalViewModel = settingsModalViewModel;
@@ -71,6 +83,7 @@ namespace ProtonVPN.Modals
             DisableKillSwitchCommand = new RelayCommand(DisableKillSwitch);
             ReportBugCommand = new RelayCommand(ReportBug);
             GoToAccountCommand = new RelayCommand(OpenAccountPage);
+            UpgradeCommand = new RelayCommand(UpgradeAction);
         }
 
         public VpnError Error
@@ -78,6 +91,25 @@ namespace ProtonVPN.Modals
             get => _error;
             set => Set(ref _error, value);
         }
+
+        public string ErrorDescription
+        {
+            get
+            {
+                switch (Error)
+                {
+                    case VpnError.SessionLimitReached:
+                        return _userStorage.User().MaxTier < ServerTiers.Plus ?
+                            StringResources.Get("Dialogs_DisconnectError_msg_SessionLimitFreeBasic") :
+                            StringResources.Get("Dialogs_DisconnectError_msg_SessionLimitPlus");
+                    default:
+                        return string.Empty;
+                }
+            }
+        }
+
+        public bool ShowUpgrade => Error == VpnError.SessionLimitReached &&
+                                   _userStorage.User().MaxTier < ServerTiers.Plus;
 
         public bool NetworkBlocked
         {
@@ -116,6 +148,8 @@ namespace ProtonVPN.Modals
                         break;
                     default:
                         Error = error;
+                        NotifyOfPropertyChange(nameof(ShowUpgrade));
+                        NotifyOfPropertyChange(nameof(ErrorDescription));
                         break;
                 }
             }
@@ -149,6 +183,12 @@ namespace ProtonVPN.Modals
         {
             TryClose();
             _modals.Show<ReportBugModalViewModel>();
+        }
+
+        private void UpgradeAction()
+        {
+            _urlConfig.AccountUrl.Open();
+            TryClose();
         }
     }
 }

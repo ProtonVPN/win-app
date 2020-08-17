@@ -26,6 +26,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         xmlns:vpn="clr-namespace:ProtonVPN.Common.Vpn;assembly=ProtonVPN.Common"
                         xmlns:behavior="clr-namespace:ProtonVPN.Core.Wpf.Behavior"
                         xmlns:resources="clr-namespace:ProtonVPN.Resources"
+                        xmlns:calcBinding="clr-namespace:CalcBinding;assembly=CalcBinding"
                         Style="{StaticResource BaseModalStyle}"
                         SizeToContent="Height"
                         Title="{resources:Loc Dialogs_ttl_Warning}"
@@ -66,7 +67,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <Setter Property="Visibility" Value="Visible"/>
                 </DataTrigger>
                 <DataTrigger Binding="{Binding Error}" Value="{x:Static vpn:VpnError.SessionLimitReached}">
-                    <Setter Property="behavior:TextStyleBehavior.FormattedText" Value="{resources:Loc Dialogs_DisconnectError_msg_SessionLimit}"/>
+                    <Setter Property="behavior:TextStyleBehavior.FormattedText" Value="{Binding ErrorDescription}"/>
                     <Setter Property="Visibility" Value="Visible"/>
                 </DataTrigger>
                 <DataTrigger Binding="{Binding Error}" Value="{x:Static vpn:VpnError.UserTierTooLowError}">
@@ -129,7 +130,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             Content="{resources:Loc Dialogs_DisconnectError_btn_Disable}"/>
                     <Button Style="{StaticResource PrimaryModalButton}"
                             Command="{Binding CloseCommand}"
-                            Content="{resources:Loc Dialogs_btn_Close}"/>
+                            Content="{resources:Loc Dialogs_btn_Close}"
+                            Visibility="{calcBinding:Binding !ShowUpgrade}"/>
+                    <Button Style="{StaticResource SecondaryModalButton}"
+                            Command="{Binding CloseCommand}"
+                            Content="{resources:Loc Dialogs_btn_Close}"
+                            Visibility="{calcBinding:Binding ShowUpgrade}"/>
+                    <Button Style="{StaticResource PrimaryModalButton}"
+                            Command="{Binding UpgradeCommand}"
+                            Content="{resources:Loc Dialogs_DisconnectError_btn_Upgrade}"
+                            Visibility="{calcBinding:Binding ShowUpgrade}"/>
                 </StackPanel>
             </DockPanel>
         </StackPanel>
