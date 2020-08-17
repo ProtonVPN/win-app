@@ -3252,6 +3252,15 @@ namespace ProtonVPN.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Upgrade.
+        /// </summary>
+        public static string Dialogs_DisconnectError_btn_Upgrade {
+            get {
+                return ResourceManager.GetString("Dialogs_DisconnectError_btn_Upgrade", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All TAP adapters are in use..
         /// </summary>
         public static string Dialogs_DisconnectError_msg_AllAdaptersInUse {
@@ -3306,11 +3315,20 @@ namespace ProtonVPN.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Maximum connection limit reached..
+        ///   Looks up a localized string similar to You reached the maximum number of devices that you can simultaneously connect to ProtonVPN. Upgrade to Plus to use ProtonVPN on up to 5 devices at the same time..
         /// </summary>
-        public static string Dialogs_DisconnectError_msg_SessionLimit {
+        public static string Dialogs_DisconnectError_msg_SessionLimitFreeBasic {
             get {
-                return ResourceManager.GetString("Dialogs_DisconnectError_msg_SessionLimit", resourceCulture);
+                return ResourceManager.GetString("Dialogs_DisconnectError_msg_SessionLimitFreeBasic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can connect to ProtonVPN on a maximum of 5 devices at the same time. Please disconnect one of your other devices from ProtonVPN and try again..
+        /// </summary>
+        public static string Dialogs_DisconnectError_msg_SessionLimitPlus {
+            get {
+                return ResourceManager.GetString("Dialogs_DisconnectError_msg_SessionLimitPlus", resourceCulture);
             }
         }
         

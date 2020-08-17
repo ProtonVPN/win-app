@@ -289,8 +289,8 @@
     <value>Your account currently has an overdue invoice. Please pay all unpaid invoices at   &lt;Hyperlink Foreground="White" Command="{Binding GoToAccountCommand}"&gt;account.protonvpn.com&lt;/Hyperlink&gt;</value>
     <comment>The error description displayed in Disconnect modal window if user has unpaid invoices</comment>
   </data>
-  <data name="Dialogs_DisconnectError_msg_SessionLimit" xml:space="preserve">
-    <value>Maximum connection limit reached.</value>
+  <data name="Dialogs_DisconnectError_msg_SessionLimitFreeBasic" xml:space="preserve">
+    <value>You reached the maximum number of devices that you can simultaneously connect to ProtonVPN. Upgrade to Plus to use ProtonVPN on up to 5 devices at the same time.</value>
     <comment>The error description displayed in Disconnect modal window when maximum VPN connection limit is reached</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_Unknown" xml:space="preserve">
@@ -2873,5 +2873,13 @@ Exiting the application will disable the Kill Switch. Do you want to continue?</
   <data name="TextBoxPlaceholder" xml:space="preserve">
     <value>Start typing...</value>
     <comment>The text disaplayed as a placeholder on any text box all over the application</comment>
+  </data>
+  <data name="Dialogs_DisconnectError_btn_Upgrade" xml:space="preserve">
+    <value>Upgrade</value>
+    <comment>The text on Upgrade button in Disconnect modal window</comment>
+  </data>
+  <data name="Dialogs_DisconnectError_msg_SessionLimitPlus" xml:space="preserve">
+    <value>You can connect to ProtonVPN on a maximum of 5 devices at the same time. Please disconnect one of your other devices from ProtonVPN and try again.</value>
+    <comment>The error description displayed in Disconnect modal window when maximum VPN connection limit is reached</comment>
   </data>
 </root>
