@@ -17,18 +17,18 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Threading.Tasks;
-using ProtonVPN.UI.Test.ApiClient;
-using ProtonVPN.UI.Test.Windows;
+using System.Diagnostics;
+using NUnit.Framework;
 using ProtonVPN.UI.Test.Results;
 using ProtonVPN.UI.Test.TestsHelper;
-using NUnit.Framework;
+using ProtonVPN.UI.Test.Windows;
 
 namespace ProtonVPN.UI.Test.Tests
 {
     [TestFixture]
     public class ProfileTests : UITestSession
     {
+        private const string ProfileCleaner = "TestTools.ProfileCleaner.exe";
         private readonly LoginWindow _loginWindow = new LoginWindow();
         private readonly MainWindow _mainWindow = new MainWindow();
         private readonly MainWindowResults _mainWindowResults = new MainWindowResults();
@@ -247,13 +247,15 @@ namespace ProtonVPN.UI.Test.Tests
         }
 
         [SetUp]
-        public async Task TestInitialize()
+        public void TestInitialize()
         {
             CreateSession();
 
-            var api = new Api(TestUserData.GetPlusUser().Username, TestUserData.GetPlusUser().Password);
-            await api.Login();
-            await api.DeleteProfiles();
+            var args = $"{TestUserData.GetPlusUser().Username} {TestUserData.GetPlusUser().Password}";
+            var process = new Process();
+            process.StartInfo = new ProcessStartInfo(ProfileCleaner, args);
+            process.Start();
+            process.WaitForExit();
         }
 
         [TearDown]
