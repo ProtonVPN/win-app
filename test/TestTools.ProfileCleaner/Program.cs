@@ -17,13 +17,23 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Core.Api;
+using System.Threading.Tasks;
+using TestTools.ApiClient;
 
-namespace ProtonVPN.UI.Test.ApiClient
+namespace TestTools.ProfileCleaner
 {
-    internal class ApiAppVersion : IApiAppVersion
+    public class Program
     {
-        public string Value() => "WindowsVPN_1.15.0";
-        public string UserAgent() => "WindowsVPN_1.15.0";
+        static async Task Main(string[] args)
+        {
+            if (args.Length != 2)
+            {
+                return;
+            }
+
+            var api = new Api(args[0], args[1]);
+            await api.Login();
+            await api.DeleteProfiles();
+        }
     }
 }

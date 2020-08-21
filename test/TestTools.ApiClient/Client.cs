@@ -19,11 +19,8 @@
 
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Core.Abstract;
 using ProtonVPN.Core.Api;
@@ -31,12 +28,11 @@ using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.Api.Data;
 using File = ProtonVPN.Core.Api.File;
 
-namespace ProtonVPN.UI.Test.ApiClient
+namespace TestTools.ApiClient
 {
     public class Client : BaseApiClient, IApiClient
     {
         private readonly HttpClient _client;
-        private readonly JsonSerializer _jsonSerializer = new JsonSerializer();
 
         public Client(
             ILogger logger,
@@ -75,7 +71,7 @@ namespace ProtonVPN.UI.Test.ApiClient
                 var validatedResponse = ApiResponseResult<AuthInfo>(body, response.StatusCode);
                 if (validatedResponse.Success && string.IsNullOrEmpty(validatedResponse.Value.Salt))
                 {
-                    return Core.Api.ApiResponseResult<AuthInfo>.Fail(response.StatusCode,
+                    return ProtonVPN.Core.Api.ApiResponseResult<AuthInfo>.Fail(response.StatusCode,
                         "Incorrect login credentials. Please try again");
                 }
 
@@ -153,24 +149,5 @@ namespace ProtonVPN.UI.Test.ApiClient
         public Task<ApiResponseResult<VpnConfig>> GetVpnConfig() => throw new NotImplementedException();
 
         public Task<ApiResponseResult<PhysicalServerResponse>> GetServerAsync(string serverId) => throw new NotImplementedException();
-
-        private ApiResponseResult<T> GetResponseStreamResult<T>(Stream stream, HttpStatusCode code) where T : BaseResponse
-        {
-            using var streamReader = new StreamReader(stream);
-            using var jsonTextReader = new JsonTextReader(streamReader);
-
-            var response = _jsonSerializer.Deserialize<T>(jsonTextReader);
-            if (response == null)
-            {
-                throw new HttpRequestException(string.Empty);
-            }
-
-            if (response.Code != ResponseCodes.OkResponse)
-            {
-                return Core.Api.ApiResponseResult<T>.Fail(code, response.Error);
-            }
-
-            return Core.Api.ApiResponseResult<T>.Ok(response);
-        }
     }
 }

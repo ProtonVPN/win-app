@@ -20,8 +20,8 @@
 using System.Globalization;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ProtonVPN.UI.Test.ApiClient;
 using ProtonVPN.UI.Test.TestsHelper;
+using TestTools.ApiClient;
 
 namespace ProtonVPN.UI.Test.Results
 {
