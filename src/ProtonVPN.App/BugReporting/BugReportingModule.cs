@@ -46,6 +46,11 @@ namespace ProtonVPN.BugReporting
                             new SafeFileSource(logger,
                                 new LogFileSource(
                                     appConfig.ReportBugMaxFileSize,
+                                    appConfig.DiagnosticsLogFolder,
+                                    appConfig.MaxDiagnosticLogsAttached)),
+                            new SafeFileSource(logger,
+                                new LogFileSource(
+                                    appConfig.ReportBugMaxFileSize,
                                     appConfig.AppLogFolder,
                                     appConfig.MaxAppLogsAttached)),
                             new SafeFileSource(logger,
@@ -60,23 +65,23 @@ namespace ProtonVPN.BugReporting
                                     appConfig.MaxUpdaterServiceLogsAttached)))));
             }).SingleInstance();
 
-            builder.Register(c => new InstalledAppsLog(c.Resolve<Common.Configuration.Config>().AppLogFolder))
+            builder.Register(c => new InstalledAppsLog(c.Resolve<Common.Configuration.Config>().DiagnosticsLogFolder))
                 .As<ILog>()
                 .SingleInstance();
 
-            builder.Register(c => new DriverInstallLog(c.Resolve<Common.Configuration.Config>().AppLogFolder))
+            builder.Register(c => new DriverInstallLog(c.Resolve<Common.Configuration.Config>().DiagnosticsLogFolder))
                 .As<ILog>()
                 .SingleInstance();
 
             builder.Register(c => new NetworkAdapterLog(
                     c.Resolve<INetworkInterfaces>(),
-                    c.Resolve<Common.Configuration.Config>().AppLogFolder))
+                    c.Resolve<Common.Configuration.Config>().DiagnosticsLogFolder))
                 .As<ILog>()
                 .SingleInstance();
 
             builder.Register(c => new RoutingTableLog(
                     c.Resolve<IOsProcesses>(),
-                    c.Resolve<Common.Configuration.Config>().AppLogFolder))
+                    c.Resolve<Common.Configuration.Config>().DiagnosticsLogFolder))
                 .As<ILog>()
                 .SingleInstance();
 
