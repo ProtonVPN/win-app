@@ -33,6 +33,7 @@ namespace ProtonVPN.Config
         public void Prepare()
         {
             Directory.CreateDirectory(_config.LocalAppDataFolder);
+            Directory.CreateDirectory(_config.DiagnosticsLogFolder);
         }
     }
 }
