@@ -22,14 +22,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:bugReporting="clr-namespace:ProtonVPN.BugReporting"
              xmlns:resources="clr-namespace:ProtonVPN.Resources"
-             xmlns:icons="clr-namespace:ProtonVPN.Views.Icons"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              mc:Ignorable="d"
-             Width="370"
-             d:DesignWidth="800"
-             d:DataContext="{d:DesignInstance bugReporting:FormViewModel}">
+             Width="Auto">
     <UserControl.Resources>
         <Style x:Key="BugReportTextBox" BasedOn="{x:Null}" TargetType="{x:Type TextBox}">
             <Setter Property="SnapsToDevicePixels" Value="True"/>
@@ -88,10 +84,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </TextBlock.Style>
                 </TextBlock>
             </Grid>
-            <StackPanel Orientation="Horizontal">
-                <Label Padding="0,15,5,10" FontSize="14" Foreground="White" Content="{resources:Loc BugReport_lbl_WhatWentWrong}"/>
-                <Label Foreground="Red" Padding="0,15,0,0" FontSize="14" Content="*"/>
-            </StackPanel>
+            <TextBlock Padding="0,15,5,10"
+                       FontSize="14"
+                       Foreground="White"
+                       TextWrapping="Wrap">
+                <Run Text="{resources:Loc BugReport_lbl_WhatWentWrong}"/>
+                <Run Text="*" Foreground="Red"/>
+            </TextBlock>
             <Grid>
                 <TextBox Style="{StaticResource BugReportTextBox}"
                          x:Name="WhatWentWrong"
@@ -124,10 +123,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </TextBlock.Style>
                 </TextBlock>
             </Grid>
-            <StackPanel Orientation="Horizontal">
-                <Label Padding="0,15,5,10" FontSize="14" Foreground="White" Content="{resources:Loc BugReport_lbl_HowToReproduce}"/>
-                <Label Foreground="Red" Padding="0,15,0,0" FontSize="14" Content="*"/>
-            </StackPanel>
+            <TextBlock Padding="0,15,5,10"
+                       FontSize="14"
+                       Foreground="White"
+                       TextWrapping="Wrap">
+                <Run Text="{resources:Loc BugReport_lbl_HowToReproduce}"/>
+                <Run Text="*" Foreground="Red"/>
+            </TextBlock>
             <Grid>
                 <TextBox Style="{StaticResource BugReportTextBox}"
                          x:Name="StepsToReproduce"
