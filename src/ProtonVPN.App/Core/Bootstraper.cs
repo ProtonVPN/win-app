@@ -153,6 +153,11 @@ namespace ProtonVPN.Core
 
         private async Task<bool> SessionExpired()
         {
+            if (string.IsNullOrEmpty(Resolve<ITokenStorage>().AccessToken))
+            {
+                return true;
+            }
+
             try
             {
                 var result = await Resolve<UserAuth>().RefreshVpnInfo();
