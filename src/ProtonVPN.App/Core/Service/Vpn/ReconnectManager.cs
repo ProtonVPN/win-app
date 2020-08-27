@@ -77,6 +77,7 @@ namespace ProtonVPN.Core.Service.Vpn
                 return;
             }
 
+            _serverManager.MarkServerUnderMaintenance(_state.Server.ExitIp);
             await _serverUpdater.Update();
             var fastestProfile = await _profileManager.GetFastestProfile();
             await _vpnManager.Connect(fastestProfile);

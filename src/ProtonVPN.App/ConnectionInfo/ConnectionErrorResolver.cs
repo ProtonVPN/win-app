@@ -79,11 +79,13 @@ namespace ProtonVPN.ConnectionInfo
             var server = _serverManager.GetServer(new ServerById(_server.Id));
             if (server == null)
             {
+                _serverManager.MarkServerUnderMaintenance(_server.ExitIp);
                 return VpnError.ServerRemoved;
             }
 
             if (server.Status == 0)
             {
+                _serverManager.MarkServerUnderMaintenance(_server.ExitIp);
                 return VpnError.ServerOffline;
             }
 
