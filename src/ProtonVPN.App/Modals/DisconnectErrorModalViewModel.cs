@@ -19,7 +19,6 @@
 
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
-using ProtonVPN.BugReporting;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Config.Url;
@@ -53,8 +52,6 @@ namespace ProtonVPN.Modals
 
         public ICommand DisableKillSwitchCommand { get; set; }
 
-        public ICommand ReportBugCommand { get; set; }
-
         public ICommand GoToAccountCommand { get; set; }
 
         public ICommand UpgradeCommand { get; set; }
@@ -81,7 +78,6 @@ namespace ProtonVPN.Modals
             OpenHelpArticleCommand = new RelayCommand(OpenHelpArticleAction);
             SettingsCommand = new RelayCommand(OpenSettings);
             DisableKillSwitchCommand = new RelayCommand(DisableKillSwitch);
-            ReportBugCommand = new RelayCommand(ReportBug);
             GoToAccountCommand = new RelayCommand(OpenAccountPage);
             UpgradeCommand = new RelayCommand(UpgradeAction);
         }
@@ -143,6 +139,7 @@ namespace ProtonVPN.Modals
                         break;
                     case VpnError.ServerOffline:
                     case VpnError.ServerRemoved:
+                    case VpnError.Unknown:
                         TryClose(true);
                         await _vpnManager.Connect(await _profileManager.GetFastestProfile());
                         break;
@@ -177,12 +174,6 @@ namespace ProtonVPN.Modals
             TryClose();
             await _vpnManager.Disconnect();
             _logger.Info("Killswitch disabled");
-        }
-
-        private void ReportBug()
-        {
-            TryClose();
-            _modals.Show<ReportBugModalViewModel>();
         }
 
         private void UpgradeAction()

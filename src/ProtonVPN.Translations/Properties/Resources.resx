@@ -293,10 +293,6 @@
     <value>You reached the maximum number of devices that you can simultaneously connect to ProtonVPN. Upgrade to Plus to use ProtonVPN on up to 5 devices at the same time.</value>
     <comment>The error description displayed in Disconnect modal window when maximum VPN connection limit is reached</comment>
   </data>
-  <data name="Dialogs_DisconnectError_msg_Unknown" xml:space="preserve">
-    <value>Unknown error. Get help from our customer support by sending a &lt;Hyperlink Foreground="White" Command="{Binding ReportBugCommand}"&gt;&lt;Run Text="Bug Report"/&gt;&lt;/Hyperlink&gt;.</value>
-    <comment>The error description displayed in Disconnect modal window if error is not identified</comment>
-  </data>
   <data name="Servers_msg_CantConnect_Maintenance" xml:space="preserve">
     <value>The server you are trying to connect to is currently offline for maintenance. Please select another server or profile.</value>
     <comment>The message displayed when connecting to server which is on maintenance</comment>

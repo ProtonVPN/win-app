@@ -3370,15 +3370,6 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unknown error. Get help from our customer support by sending a &lt;Hyperlink Foreground=&quot;White&quot; Command=&quot;{Binding ReportBugCommand}&quot;&gt;&lt;Run Text=&quot;Bug Report&quot;/&gt;&lt;/Hyperlink&gt;..
-        /// </summary>
-        public static string Dialogs_DisconnectError_msg_Unknown {
-            get {
-                return ResourceManager.GetString("Dialogs_DisconnectError_msg_Unknown", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Your account currently has an overdue invoice. Please pay all unpaid invoices at   &lt;Hyperlink Foreground=&quot;White&quot; Command=&quot;{Binding GoToAccountCommand}&quot;&gt;account.protonvpn.com&lt;/Hyperlink&gt;.
         /// </summary>
         public static string Dialogs_DisconnectError_msg_Unpaid {
