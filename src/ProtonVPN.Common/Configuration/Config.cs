@@ -122,9 +122,6 @@ namespace ProtonVPN.Common.Configuration
         [Required]
         public string GuestHoleVpnPassword { get; internal set; }
 
-        [Range(typeof(TimeSpan), "00:00:00", "23:59:59")]
-        public TimeSpan UpdateFirstCheckDelay { get; internal set; }
-
         [Range(typeof(TimeSpan), "00:00:10", "10:00:00:00")]
         public TimeSpan UpdateCheckInterval { get; internal set; }
 
