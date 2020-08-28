@@ -107,8 +107,6 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 GuestHoleVpnPassword = "guest",
 
-                UpdateFirstCheckDelay = TimeSpan.FromSeconds(15),
-
                 UpdateCheckInterval = TimeSpan.FromHours(3),
 
                 UpdateRemindInterval = TimeSpan.FromHours(24),
