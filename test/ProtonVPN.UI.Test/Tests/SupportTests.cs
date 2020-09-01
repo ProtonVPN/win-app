@@ -40,7 +40,8 @@ namespace ProtonVPN.UI.Test.Tests
             RefreshSession();
 
             _bugReportWindow.EnterYourEmail("test@protonmail.com")
-                .EnterFeedback("Feedback")
+                .EnterWhatWentWrong("Feedback")
+                .EnterStepsToReproduce("Feedback")
                 .ClickSend();
 
             _bugReportWindow.VerifySendingIsSuccessful();

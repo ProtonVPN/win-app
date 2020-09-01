@@ -64,7 +64,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                          CaretBrush="White"
                          FontSize="14"
                          BorderThickness="0,0,0,1"
-                         Padding="7,14"/>
+                         Padding="7,14"
+                         AutomationProperties.AutomationId="{StaticResource ReportBugEmailTextBlock}"/>
                 <TextBlock Grid.Column="1"
                            IsHitTestVisible="False"
                            FontSize="14"
@@ -102,7 +103,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                          FontSize="14"
                          Text="{Binding WhatWentWrong, UpdateSourceTrigger=PropertyChanged}"
                          AcceptsReturn="True"
-                         TextWrapping="Wrap"/>
+                         TextWrapping="Wrap"
+                         AutomationProperties.AutomationId="{StaticResource ReportBugIssueTextBlock}"/>
                 <TextBlock Margin="7,7,0,0"
                            Padding="2,0,0,0"
                            FontSize="14"
@@ -141,7 +143,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                          FontSize="14"
                          Text="{Binding StepsToReproduce, UpdateSourceTrigger=PropertyChanged}"
                          AcceptsReturn="True"
-                         TextWrapping="Wrap"/>
+                         TextWrapping="Wrap"
+                         AutomationProperties.AutomationId="{StaticResource ReportBugStepsTextBlock}"/>
                 <TextBlock Margin="7,7,0,0"
                            Padding="2,0,0,0"
                            FontSize="14"
