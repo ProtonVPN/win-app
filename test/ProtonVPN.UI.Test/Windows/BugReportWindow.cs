@@ -25,13 +25,19 @@ namespace ProtonVPN.UI.Test.Windows
     {
         public BugReportWindow EnterYourEmail(string text)
         {
-            InsertTextIntoFieldWithId("Email", text);
+            InsertTextIntoFieldWithId("ReportBugEmailTextBlock", text);
             return this;
         }
 
-        public BugReportWindow EnterFeedback(string text)
+        public BugReportWindow EnterWhatWentWrong(string text)
         {
-            InsertTextIntoFieldWithId("Feedback", text);
+            InsertTextIntoFieldWithId("ReportBugIssueTextBlock", text);
+            return this;
+        }
+
+        public BugReportWindow EnterStepsToReproduce(string text)
+        {
+            InsertTextIntoFieldWithId("ReportBugStepsTextBlock", text);
             return this;
         }
 

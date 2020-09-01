@@ -68,4 +68,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <system:String x:Key="ForgotUsernameButton">ForgotUsernameButton</system:String>
     <system:String x:Key="CreateAccountButton">CreateAccountButton</system:String>
     <system:String x:Key="AutoConnectComboBox">AutoConnectComboBox</system:String>
+    <system:String x:Key="ReportBugEmailTextBlock">ReportBugEmailTextBlock</system:String>
+    <system:String x:Key="ReportBugIssueTextBlock">ReportBugIssueTextBlock</system:String>
+    <system:String x:Key="ReportBugStepsTextBlock">ReportBugStepsTextBlock</system:String>
 </ResourceDictionary>
