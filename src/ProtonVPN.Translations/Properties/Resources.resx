@@ -2882,4 +2882,25 @@ Exiting the application will disable the Kill Switch. Do you want to continue?</
     <value>You can connect to ProtonVPN on a maximum of 5 devices at the same time. Please disconnect one of your other devices from ProtonVPN and try again.</value>
     <comment>The error description displayed in Disconnect modal window when maximum VPN connection limit is reached</comment>
   </data>
+  <data name="ErrorWindow_lbl_Download" xml:space="preserve">
+    <value>Download</value>
+  </data>
+  <data name="ErrorWindow_lbl_Repair" xml:space="preserve">
+    <value>Repair</value>
+  </data>
+  <data name="ErrorWindow_lbl_MissingHeading" xml:space="preserve">
+    <value>The application is missing a required file</value>
+  </data>
+  <data name="ErrorWindow_lbl_MissingInfo" xml:space="preserve">
+    <value>Some applications on your PC might have removed some files or prevented them to be installed successfully.</value>
+  </data>
+  <data name="ErrorWindow_lbl_DownloadInfo" xml:space="preserve">
+    <value>Download ant install the latest version to fix the problem.</value>
+  </data>
+  <data name="ErrorWindow_lbl_RepairInfo" xml:space="preserve">
+    <value>Please repair your installation.</value>
+  </data>
+  <data name="ErrorWindow_lbl_Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
 </root>

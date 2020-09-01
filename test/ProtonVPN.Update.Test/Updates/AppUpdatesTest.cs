@@ -180,7 +180,6 @@ namespace ProtonVPN.Update.Test.Updates
             CopyFile("ProtonVPN_win_v1.0.0.exe", updatesPath);
             CopyFile("ProtonVPN_win_v1.5.0.exe", updatesPath);
             CopyFile("ProtonVPN_win_v1.5.1.exe", updatesPath);
-            CopyFile("ProtonVPN_win_v1.5.2.exe", updatesPath, "Later version.exe");
 
             var updater = AppUpdates(new Version(1, 5, 1), updatesPath);
 
@@ -189,7 +188,7 @@ namespace ProtonVPN.Update.Test.Updates
             var files = Directory.GetFiles(updatesPath, "*", SearchOption.AllDirectories);
             files.Should()
                 .HaveCount(1)
-                .And.Match(f => Path.GetFileName(f.First()) == "Later version.exe");
+                .And.Match(f => Path.GetFileName(f.First()) == "ProtonVPN_win_v1.5.1.exe");
         }
 
         #endregion

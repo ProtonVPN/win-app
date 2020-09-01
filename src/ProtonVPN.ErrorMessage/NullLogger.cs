@@ -17,13 +17,30 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Views.Controls
+using System;
+using ProtonVPN.Common.Logging;
+
+namespace ProtonVPN.ErrorMessage
 {
-    public partial class ProtonAnimation
+    internal class NullLogger : ILogger
     {
-        public ProtonAnimation()
+        public void Info(string message) { }
+
+        public void Error(string message) { }
+
+        public void Fatal(string message) { }
+
+        public void Debug(string message) { }
+
+        public void Trace(string message) { }
+
+        public void Warn(string message) { }
+
+        public void Error(Exception exception) { }
+
+        public bool IsTraceEnabled()
         {
-            InitializeComponent();
+            return false;
         }
     }
 }

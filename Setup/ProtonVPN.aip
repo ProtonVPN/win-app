@@ -124,6 +124,7 @@
     <ROW Component="ProtonVPN.SplitTunnelDriver.sys_2" ComponentId="{EE68B219-EEAA-4E04-9C44-A7D8CC5B3FE0}" Directory_="Win7_1_Dir" Attributes="0" Condition="(NOT VersionNT64) AND (VersionNT &lt; 1000)" KeyPath="ProtonVPN.SplitTunnelDriver.sys_2" Type="0"/>
     <ROW Component="ProtonVPN.SplitTunnelDriver.sys_3" ComponentId="{9CF98DD7-3344-4429-828A-873079529BB0}" Directory_="Win10_1_Dir" Attributes="0" Condition="(NOT VersionNT64) AND (VersionNT = 1000)" KeyPath="ProtonVPN.SplitTunnelDriver.sys_3" Type="0"/>
     <ROW Component="ProtonVPN.TlsVerify.exe" ComponentId="{506832CF-F805-46DC-B246-022014A9B263}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.TlsVerify.exe"/>
+    <ROW Component="ProtonVPN.Translations.dll" ComponentId="{E059058A-E73E-443C-B23F-62091B63FE11}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.Translations.dll"/>
     <ROW Component="ProtonVPN.Update.dll" ComponentId="{FE3166FE-8A51-44AF-9ADC-BE4B5AFBA5FE}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.Update.dll"/>
     <ROW Component="ProtonVPN.UpdateService.exe" ComponentId="{F98028EA-85CC-4905-85FB-0DBD88526567}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.UpdateService.exe"/>
     <ROW Component="ProtonVPN.UpdateServiceContract.dll" ComponentId="{694AB59A-8291-429B-911A-6C52F250D6DE}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.UpdateServiceContract.dll"/>
@@ -233,6 +234,7 @@
     <ROW File="ARSoft.Tools.Net.dll" Component_="ARSoft.Tools.Net.dll" FileName="ARSOFT~1.DLL|ARSoft.Tools.Net.dll" Attributes="0" SourcePath="..\src\bin\ARSoft.Tools.Net.dll" SelfReg="false" DigSign="true"/>
     <ROW File="BouncyCastle.Crypto.dll" Component_="BouncyCastle.Crypto.dll" FileName="BOUNCY~1.DLL|BouncyCastle.Crypto.dll" Attributes="0" SourcePath="..\src\bin\BouncyCastle.Crypto.dll" SelfReg="false" DigSign="true"/>
     <ROW File="GuestHoleServers.json" Component_="GuestHoleServers.json" FileName="GUESTH~1.JSO|GuestHoleServers.json" Attributes="0" SourcePath="GuestHoleServers.json" SelfReg="false"/>
+    <ROW File="ProtonVPN.Translations.dll" Component_="ProtonVPN.Translations.dll" FileName="PROTO~10.DLL|ProtonVPN.Translations.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ProtonVPN.Translations.dll" SelfReg="false" DigSign="true"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.AiRemoveFileComponent">
     <ROW RemoveFile="_" Condition="(AI_CLEAN_RESOURCES_UNINSTALL = &quot;1&quot;) AND (NOT UPGRADINGPRODUCTCODE)" Options="3"/>
@@ -583,6 +585,7 @@
     <ROW Feature_="MainFeature" Component_="BouncyCastle.Crypto.dll"/>
     <ROW Feature_="MainFeature" Component_="GuestHoleServers.json"/>
     <ROW Feature_="MainFeature" Component_="Logs"/>
+    <ROW Feature_="MainFeature" Component_="ProtonVPN.Translations.dll"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
     <ROW Name="protonvpn.exe" SourcePath="images\protonvpn.ico" Index="0"/>
@@ -615,8 +618,8 @@
     <ROW Action="AI_DATA_SETTER" Sequence="3997"/>
     <ROW Action="AI_EstimateExtractFiles" Sequence="3999" Builds="DefaultBuild"/>
     <ROW Action="AI_DetectSoftware" Sequence="101"/>
-    <ROW Action="RemoveProgramData" Condition="( ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) OR ( Installed AND ( REMOVE = &quot;ALL&quot; OR AI_INSTALL_MODE = &quot;Remove&quot; ) ) ) AND ( (VersionNT &gt; 501) OR (VersionNT = 501 AND ServicePackLevel &gt;= 2) )" Sequence="64"/>
-    <ROW Action="AI_DATA_SETTER_4" Condition="( ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) OR ( Installed AND ( REMOVE = &quot;ALL&quot; OR AI_INSTALL_MODE = &quot;Remove&quot; ) ) ) AND ( (VersionNT &gt; 501) OR (VersionNT = 501 AND ServicePackLevel &gt;= 2) )" Sequence="63"/>
+    <ROW Action="RemoveProgramData" Condition="( Installed AND ( REMOVE = &quot;ALL&quot; OR AI_INSTALL_MODE = &quot;Remove&quot; ) ) AND ( (VersionNT &gt; 501) OR (VersionNT = 501 AND ServicePackLevel &gt;= 2) )" Sequence="64"/>
+    <ROW Action="AI_DATA_SETTER_4" Condition="( Installed AND ( REMOVE = &quot;ALL&quot; OR AI_INSTALL_MODE = &quot;Remove&quot; ) ) AND ( (VersionNT &gt; 501) OR (VersionNT = 501 AND ServicePackLevel &gt;= 2) )" Sequence="63"/>
     <ROW Action="InstallTap" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) )" Sequence="6604"/>
     <ROW Action="AI_VerifyPrereq" Sequence="1101"/>
     <ROW Action="AI_ConfigureChainer" Condition="((UILevel = 2) OR (UILevel = 3)) AND (NOT UPGRADINGPRODUCTCODE)" Sequence="6598"/>

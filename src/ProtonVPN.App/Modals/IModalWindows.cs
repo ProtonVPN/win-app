@@ -18,6 +18,7 @@
  */
 
 using System.Collections.Generic;
+using ProtonVPN.Resource;
 
 namespace ProtonVPN.Modals
 {

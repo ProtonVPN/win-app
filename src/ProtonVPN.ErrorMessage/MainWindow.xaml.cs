@@ -17,28 +17,33 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Windows;
+
 namespace ProtonVPN.ErrorMessage
 {
     public partial class MainWindow
     {
-        public MainWindow()
+        private readonly MainWindowViewModel _vm;
+
+        internal MainWindow(MainWindowViewModel vm)
         {
+            _vm = vm;
             InitializeComponent();
 
-            CloseButton.Click += CloseButton_Click;
+            DataContext = vm;
         }
 
-        public void SetMessage(string message)
+        private void Repair(object sender, RoutedEventArgs e)
         {
-            Message.Text = message;
+            _vm.Repair();
         }
 
-        public void SetTitle(string title)
+        private void Download(object sender, RoutedEventArgs e)
         {
-            Title.Text = title;
+            _vm.Download();
         }
 
-        private void CloseButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void Close(object sender, RoutedEventArgs e)
         {
             Close();
         }

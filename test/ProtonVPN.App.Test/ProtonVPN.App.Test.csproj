@@ -148,6 +148,10 @@
       <Project>{ca44b51d-7645-413a-818f-2c5b57db67dd}</Project>
       <Name>ProtonVPN.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\src\ProtonVPN.Resources\ProtonVPN.Resource.csproj">
+      <Project>{45A0EA81-D37E-4D7F-8CE1-CE6B6A95A9ED}</Project>
+      <Name>ProtonVPN.Resource</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="BugReporting\Attachments\TestData\test-2.txt">

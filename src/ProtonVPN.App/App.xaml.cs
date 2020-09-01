@@ -18,7 +18,6 @@
  */
 
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Reflection;
 using System.Runtime;
@@ -38,7 +37,6 @@ namespace ProtonVPN
     public partial class App
     {
         private static Bootstrapper _bootstrapper;
-        private static readonly List<string> FailedLibs = new List<string>();
 
         [STAThread]
         public static void Main(string[] args)
@@ -109,11 +107,8 @@ namespace ProtonVPN
             }
 #endif
 
-            if (!FailedLibs.Contains(name))
-            {
-                Process.Start("ProtonVPN.ErrorMessage.exe", $"\"The application is missing required file\" \"{args.Name}\"");
-                FailedLibs.Add(name);
-            }
+            Process.Start("ProtonVPN.ErrorMessage.exe");
+            Environment.Exit(0);
 
             return null;
         }

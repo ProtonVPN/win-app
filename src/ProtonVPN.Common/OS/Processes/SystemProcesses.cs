@@ -56,6 +56,14 @@ namespace ProtonVPN.Common.OS.Processes
             });
         }
 
+        public IOsProcess ElevatedCommandLineProcess(string arguments)
+        {
+            return new CmdOutputProcess(_logger, new Process
+            {
+                StartInfo = new ProcessStartInfo("cmd.exe", arguments).ElevatedInfo()
+            });
+        }
+
         public IOsProcess[] ProcessesByName(string filename)
         {
             var name = GetProcessName(filename);

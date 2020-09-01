@@ -22,10 +22,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:controls="clr-namespace:ProtonVPN.Views.Controls"
              xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
              xmlns:icons="clr-namespace:ProtonVPN.Views.Icons"
              xmlns:viewModels="clr-namespace:ProtonVPN.Login.ViewModels"
+             xmlns:controls="clr-namespace:ProtonVPN.Resource.Controls;assembly=ProtonVPN.Resource"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance viewModels:LoadingViewModel}"
              d:DesignWidth="440">

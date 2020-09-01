@@ -1,13 +1,13 @@
-﻿<modals:BaseModalWindow x:Class="ProtonVPN.About.LicenseModalView"
+﻿<resource:BaseModalWindow x:Class="ProtonVPN.About.LicenseModalView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:modals="clr-namespace:ProtonVPN.Modals"
              xmlns:about="clr-namespace:ProtonVPN.About"
              xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
              xmlns:markdown="clr-namespace:ProtonVPN.Core.Wpf.Markdown"
              xmlns:system="clr-namespace:System;assembly=mscorlib"
+             xmlns:resource="clr-namespace:ProtonVPN.Resource;assembly=ProtonVPN.Resource"
              Style="{StaticResource BaseModalStyle}"
              SizeToContent="Height"
              Title="{translations:Loc License_ttl}"
@@ -15,7 +15,7 @@
              Width="600"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=about:LicenseModalViewModel, IsDesignTimeCreatable=False}">
-    <modals:BaseModalWindow.Resources>
+    <resource:BaseModalWindow.Resources>
         <Style TargetType="FlowDocument" x:Key="DocumentStyle">
             <Setter Property="FontFamily" Value="Calibri"/>
             <Setter Property="TextAlignment" Value="Left"/>
@@ -98,7 +98,7 @@
         <Style TargetType="ScrollViewer">
             <Setter Property="Template" Value="{StaticResource DarkScrollViewerControlTemplate}"/>
         </Style>
-    </modals:BaseModalWindow.Resources>
+    </resource:BaseModalWindow.Resources>
 
     <StackPanel>
         <FlowDocumentScrollViewer Foreground="White"
@@ -113,4 +113,4 @@
         </DockPanel>
     </StackPanel>
 
-</modals:BaseModalWindow>
+</resource:BaseModalWindow>

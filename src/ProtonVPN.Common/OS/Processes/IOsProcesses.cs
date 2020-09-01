@@ -26,6 +26,7 @@ namespace ProtonVPN.Common.OS.Processes
         IOsProcess ElevatedProcess(string filename, string arguments = null);
 
         IOsProcess CommandLineProcess(string arguments = null);
+        IOsProcess ElevatedCommandLineProcess(string arguments = null);
 
         IOsProcess[] ProcessesByName(string filename);
 

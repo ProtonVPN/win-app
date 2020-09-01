@@ -29,6 +29,7 @@ using System.Windows;
 using FluentAssertions;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Modals;
+using ProtonVPN.Resource;
 
 namespace ProtonVPN.App.Test.Modals
 {

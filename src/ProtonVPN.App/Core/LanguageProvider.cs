@@ -8,7 +8,7 @@ namespace ProtonVPN.Core
 {
     public class LanguageProvider : ILanguageProvider
     {
-        private const string ResourceFile = "ProtonVPN.resources.dll";
+        private const string ResourceFile = "ProtonVPN.Translations.resources.dll";
 
         private readonly ILogger _logger;
         private readonly string _translationsFolder;

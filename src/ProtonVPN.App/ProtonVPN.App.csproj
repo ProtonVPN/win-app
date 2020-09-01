@@ -428,7 +428,6 @@
       <DependentUpon>Map.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modals\BaseModalViewModel.cs" />
-    <Compile Include="Modals\BaseModalWindow.cs" />
     <Compile Include="Modals\Dialogs\QuestionModalView.xaml.cs">
       <DependentUpon>QuestionModalView.xaml</DependentUpon>
     </Compile>
@@ -608,9 +607,6 @@
     </Compile>
     <Compile Include="Map\Views\Pin.xaml.cs">
       <DependentUpon>Pin.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Controls\ProtonAnimation.xaml.cs">
-      <DependentUpon>ProtonAnimation.xaml</DependentUpon>
     </Compile>
     <Compile Include="Map\Views\SecureCorePin.xaml.cs">
       <DependentUpon>SecureCorePin.xaml</DependentUpon>
@@ -863,14 +859,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\Assets\Styles\Window.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Resources\AutomationConfig.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Settings\SplitTunneling\SplitTunnelingView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1116,10 +1104,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Controls\ProtonAnimation.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Map\Views\SecureCorePin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1229,22 +1213,11 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.*.resx" />
     <None Include="app.manifest" />
     <None Include="gosrp.bat" />
     <None Include="..\..\COPYING.md">
