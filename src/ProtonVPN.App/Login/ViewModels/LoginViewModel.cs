@@ -32,7 +32,7 @@ using ProtonVPN.Core.MVVM;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Modals;
-using ProtonVPN.Resources;
+using ProtonVPN.Translations;
 using ProtonVPN.Vpn.Connectors;
 
 namespace ProtonVPN.Login.ViewModels

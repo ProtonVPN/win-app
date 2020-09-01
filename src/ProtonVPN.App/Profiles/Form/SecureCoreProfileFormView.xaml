@@ -24,7 +24,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:form="clr-namespace:ProtonVPN.Profiles.Form"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:resources="clr-namespace:ProtonVPN.Resources"
+             xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance form:SecureCoreProfileFormViewModel}">
 
@@ -48,10 +48,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource ColumnTitle}" Content="{resources:Loc Profiles_Profile_lbl_ExitCountry}"/>
+        <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource ColumnTitle}" Content="{translations:Loc Profiles_Profile_lbl_ExitCountry}"/>
         <StackPanel Grid.Row="0" Grid.Column="1">
             <Grid>
-                <TextBlock Style="{StaticResource CountryPlaceholder}" Text="{resources:Loc Profiles_Profile_ExitCountry_Watermark}"/>
+                <TextBlock Style="{StaticResource CountryPlaceholder}" Text="{translations:Loc Profiles_Profile_ExitCountry_Watermark}"/>
                 <wpf:Combobox Style="{StaticResource ComboDropdown}"
                               Margin="0"
                               x:Name="CountryBox"
@@ -68,7 +68,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </wpf:Combobox>
             </Grid>
         </StackPanel>
-        <Label Grid.Row="1" Grid.Column="0" Margin="0,8,0,0" Style="{StaticResource ColumnTitle}" Content="{resources:Loc Profiles_Profile_lbl_Server}"/>
+        <Label Grid.Row="1" Grid.Column="0" Margin="0,8,0,0" Style="{StaticResource ColumnTitle}" Content="{translations:Loc Profiles_Profile_lbl_Server}"/>
         <StackPanel Grid.Row="1" Grid.Column="1" Margin="0,8,0,0" Background="Transparent">
             <form:ServerDropdown/>
         </StackPanel>

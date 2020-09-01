@@ -24,7 +24,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     xmlns:command="http://www.galasoft.ch/mvvmlight"
                     xmlns:c="clr-namespace:CalcBinding;assembly=CalcBinding"
                     xmlns:pins="clr-namespace:ProtonVPN.Map.ViewModels.Pins"
-                    xmlns:resources="clr-namespace:ProtonVPN.Resources">
+                    xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations">
 
     <Style x:Key="TooltipText" TargetType="TextBlock">
         <Setter Property="Foreground" Value="White"/>
@@ -77,7 +77,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 <Condition Binding="{Binding Connected}" Value="True"/>
                                 <Condition Binding="{Binding IsMouseOver, ElementName=NodeName}" Value="True"/>
                             </MultiDataTrigger.Conditions>
-                            <Setter TargetName="ServerName" Property="Text" Value="{resources:Loc Map_btn_Disconnect}"/>
+                            <Setter TargetName="ServerName" Property="Text" Value="{translations:Loc Map_btn_Disconnect}"/>
                             <Setter TargetName="ServerName" Property="FontWeight" Value="Bold"/>
                             <Setter TargetName="NodeName" Property="Padding" Value="20,3"/>
                         </MultiDataTrigger>
@@ -86,7 +86,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 <Condition Binding="{Binding Connected}" Value="False"/>
                                 <Condition Binding="{Binding IsMouseOver, ElementName=NodeName}" Value="True"/>
                             </MultiDataTrigger.Conditions>
-                            <Setter TargetName="ServerName" Property="Text" Value="{resources:Loc Map_btn_Connect}"/>
+                            <Setter TargetName="ServerName" Property="Text" Value="{translations:Loc Map_btn_Connect}"/>
                             <Setter TargetName="ServerName" Property="FontWeight" Value="Bold"/>
                             <Setter TargetName="NodeName" Property="Padding" Value="20,3"/>
                         </MultiDataTrigger>

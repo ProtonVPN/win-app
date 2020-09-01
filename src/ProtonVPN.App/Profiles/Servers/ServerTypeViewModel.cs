@@ -19,7 +19,7 @@
 
 using ProtonVPN.Core.MVVM;
 using ProtonVPN.Core.Servers;
-using ProtonVPN.Resources;
+using ProtonVPN.Translations;
 using System;
 using System.Collections.Generic;
 using System.Linq;

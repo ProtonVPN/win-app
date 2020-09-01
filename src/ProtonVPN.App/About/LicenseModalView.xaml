@@ -5,12 +5,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:modals="clr-namespace:ProtonVPN.Modals"
              xmlns:about="clr-namespace:ProtonVPN.About"
-             xmlns:resources="clr-namespace:ProtonVPN.Resources"
+             xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
              xmlns:markdown="clr-namespace:ProtonVPN.Core.Wpf.Markdown"
              xmlns:system="clr-namespace:System;assembly=mscorlib"
              Style="{StaticResource BaseModalStyle}"
              SizeToContent="Height"
-             Title="{resources:Loc License_ttl}"
+             Title="{translations:Loc License_ttl}"
              Height="Auto"
              Width="600"
              mc:Ignorable="d"
@@ -108,7 +108,7 @@
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Style="{StaticResource PrimaryButton}"
                         Command="{Binding CloseCommand}"
-                        Content="{resources:Loc Dialogs_btn_Close}"/>
+                        Content="{translations:Loc Dialogs_btn_Close}"/>
             </StackPanel>
         </DockPanel>
     </StackPanel>

@@ -17,17 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Translations;
+using System.Runtime.InteropServices;
 
-namespace ProtonVPN.Servers
-{
-    public class Countries
-    {
-        public static string GetName(string code)
-        {
-            return code != null 
-                ? StringResources.Get($"Country_val_{code.ToUpper()}") 
-                : "";
-        }
-    }
-}
+[assembly: Guid("6fa56d72-c965-4ce4-a6ae-d2d5b1b4b57a")]

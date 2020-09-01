@@ -24,10 +24,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                         xmlns:icons="clr-namespace:ProtonVPN.Views.Icons"
                         xmlns:modals="clr-namespace:ProtonVPN.Modals"
-                        xmlns:resources="clr-namespace:ProtonVPN.Resources"
+                        xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
                         Style="{StaticResource BaseModalStyle}"
                         SizeToContent="Height"
-                        Title="{resources:Loc Dialogs_P2PForward_ttl}"
+                        Title="{translations:Loc Dialogs_P2PForward_ttl}"
                         mc:Ignorable="d"
                         Height="Auto"
                         Width="500"
@@ -35,20 +35,20 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <Grid>
         <StackPanel>
             <TextBlock TextWrapping="Wrap" Padding="20,50" FontSize="16" Foreground="White">
-                <Run Text="{resources:Loc Dialogs_P2PForward_msg_Warning_1}"/>
+                <Run Text="{translations:Loc Dialogs_P2PForward_msg_Warning_1}"/>
                 <icons:P2P
                     Foreground="White"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Center"
                     Width="18"
                     Height="14"/>
-                <Run Text="{resources:Loc Dialogs_P2PForward_msg_Warning_2}"/>
+                <Run Text="{translations:Loc Dialogs_P2PForward_msg_Warning_2}"/>
             </TextBlock>
             <DockPanel Background="{StaticResource ModalBarColor}" Height="66">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <Button Style="{StaticResource PrimaryModalButton}"
                             Command="{Binding CloseCommand}"
-                            Content="{resources:Loc Dialogs_P2PForward_btn_Close}"/>
+                            Content="{translations:Loc Dialogs_P2PForward_btn_Close}"/>
                 </StackPanel>
             </DockPanel>
         </StackPanel>

@@ -24,10 +24,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                         xmlns:modals="clr-namespace:ProtonVPN.Modals"
                         xmlns:upsell="clr-namespace:ProtonVPN.Modals.Upsell"
-                        xmlns:resources="clr-namespace:ProtonVPN.Resources"
+                        xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
                         Style="{StaticResource BaseModalStyle}"
                         SizeToContent="Height"
-                        Title="{resources:Loc Upsell_UpgradeRequired_ttl}"
+                        Title="{translations:Loc Upsell_UpgradeRequired_ttl}"
                         mc:Ignorable="d"
                         Height="Auto"
                         Width="500"
@@ -35,17 +35,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <Grid>
         <StackPanel>
             <TextBlock TextWrapping="Wrap" FontSize="16" Foreground="White" Padding="15,40,10,5">
-                <Run Text="{resources:Loc Upsell_UpgradeRequired_msg_Plus}"/>
+                <Run Text="{translations:Loc Upsell_UpgradeRequired_msg_Plus}"/>
             </TextBlock>
             <TextBlock FontSize="16" Foreground="White" TextWrapping="Wrap" Padding="15,5,10,40"
-                       Text="{resources:Loc Upsell_UpgradeRequired_msg_Upgrade}"/>
+                       Text="{translations:Loc Upsell_UpgradeRequired_msg_Upgrade}"/>
             <DockPanel Background="{StaticResource ModalBarColor}" Height="66">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <Button Style="{StaticResource SecondaryButton}"
-                            Content="{resources:Loc Upsell_UpgradeRequired_btn_Close}"
+                            Content="{translations:Loc Upsell_UpgradeRequired_btn_Close}"
                             Command="{Binding CloseCommand}"/>
                     <Button Style="{StaticResource PrimaryButton}"
-                            Content="{resources:Loc Upsell_UpgradeRequired_btn_Upgrade}"
+                            Content="{translations:Loc Upsell_UpgradeRequired_btn_Upgrade}"
                             Command="{Binding ContinueCommand}"/>
                 </StackPanel>
             </DockPanel>

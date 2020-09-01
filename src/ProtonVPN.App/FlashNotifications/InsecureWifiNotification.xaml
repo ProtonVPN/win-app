@@ -24,7 +24,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              xmlns:flashNotifications="clr-namespace:ProtonVPN.FlashNotifications"
-             xmlns:resources="clr-namespace:ProtonVPN.Resources"
+             xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance flashNotifications:InsecureWifiNotificationViewModel}"
              d:DesignHeight="450" d:DesignWidth="800">
@@ -50,7 +50,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             BorderBrush="Transparent">
                         <TextBlock Margin="0,0,0,0"
                                    FontSize="14"
-                                   Text="{resources:Loc Notifications_InsecureWiFi_LearnMore}"
+                                   Text="{translations:Loc Notifications_InsecureWiFi_LearnMore}"
                                    TextDecorations="Underline"/>
                     </Button>
                 </TextBlock>

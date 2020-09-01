@@ -18,7 +18,7 @@
  */
 
 using ProtonVPN.Core.Modals;
-using ProtonVPN.Resources;
+using ProtonVPN.Translations;
 
 namespace ProtonVPN.Modals.Dialogs
 {

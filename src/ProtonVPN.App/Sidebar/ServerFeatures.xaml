@@ -25,7 +25,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:servers="clr-namespace:ProtonVPN.Servers"
              x:ClassModifier="internal"
              xmlns:icons="clr-namespace:ProtonVPN.Views.Icons"
-             xmlns:resources="clr-namespace:ProtonVPN.Resources"
+             xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
              mc:Ignorable="d">
 
     <UserControl.Resources>
@@ -47,7 +47,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </ItemsControl.ItemsPanel>
         <ItemsControl.Resources>
             <DataTemplate DataType="{x:Type servers:P2PFeature}">
-                <Border Style="{StaticResource ServerFeature}" ToolTip="{resources:Loc Servers_Feature_val_P2P}">
+                <Border Style="{StaticResource ServerFeature}" ToolTip="{translations:Loc Servers_Feature_val_P2P}">
                     <icons:P2P
                         Foreground="#98989d"
                         VerticalAlignment="Center"
@@ -57,7 +57,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </Border>
             </DataTemplate>
             <DataTemplate DataType="{x:Type servers:TorFeature}">
-                <Border Style="{StaticResource ServerFeature}" ToolTip="{resources:Loc Servers_Feature_val_Tor}">
+                <Border Style="{StaticResource ServerFeature}" ToolTip="{translations:Loc Servers_Feature_val_Tor}">
                     <icons:Tor
                         Foreground="#98989d"
                         VerticalAlignment="Center"
@@ -67,7 +67,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </Border>
             </DataTemplate>
             <DataTemplate DataType="{x:Type servers:PlusFeature}">
-                <Grid ToolTip="{resources:Loc Sidebar_Servers_info_plus}">
+                <Grid ToolTip="{translations:Loc Sidebar_Servers_info_plus}">
                     <Border Style="{StaticResource PlusIconBorder}" Width="17" Height="17"/>
                     <Label Style="{StaticResource PlusIconLetter}" FontSize="14">P</Label>
                 </Grid>

@@ -28,7 +28,7 @@ using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.User;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Onboarding;
-using ProtonVPN.Resources;
+using ProtonVPN.Translations;
 using ProtonVPN.Servers;
 using ProtonVPN.Trial;
 using ProtonVPN.Vpn.Connectors;

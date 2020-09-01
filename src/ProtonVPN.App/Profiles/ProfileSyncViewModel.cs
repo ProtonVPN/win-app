@@ -24,7 +24,7 @@ using GalaSoft.MvvmLight.CommandWpf;
 using ProtonVPN.Core.MVVM;
 using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Settings;
-using ProtonVPN.Resources;
+using ProtonVPN.Translations;
 
 namespace ProtonVPN.Profiles
 {

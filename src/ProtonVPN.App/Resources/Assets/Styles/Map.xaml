@@ -20,7 +20,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:fa="http://schemas.fontawesome.io/icons/"
-                    xmlns:resources="clr-namespace:ProtonVPN.Resources">
+                    xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations">
     <Style x:Key="HomeEllipse" TargetType="Ellipse">
         <Setter Property="Fill" Value="#767682"/>
         <Setter Property="Width" Value="43"/>
@@ -81,7 +81,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Style.Triggers>
     </Style>
     <Style x:Key="ConnectionHomeLabel" TargetType="Label">
-        <Setter Property="Content" Value="{resources:Loc Map_VpnStatus_val_Disconnected}"/>
+        <Setter Property="Content" Value="{translations:Loc Map_VpnStatus_val_Disconnected}"/>
         <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="FontSize" Value="20"/>
         <Setter Property="Padding" Value="10,0,0,0"/>
@@ -94,7 +94,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <Condition Binding="{Binding Connected}" Value="True"/>
                     <Condition Binding="{Binding SecureCore}" Value="True"/>
                 </MultiDataTrigger.Conditions>
-                <Setter Property="Content" Value="{resources:Loc Map_VpnStatus_val_Connected}"/>
+                <Setter Property="Content" Value="{translations:Loc Map_VpnStatus_val_Connected}"/>
                 <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
             </MultiDataTrigger>
             <MultiDataTrigger>
@@ -102,7 +102,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <Condition Binding="{Binding Connected}" Value="True"/>
                     <Condition Binding="{Binding SecureCore}" Value="False"/>
                 </MultiDataTrigger.Conditions>
-                <Setter Property="Content" Value="{resources:Loc Map_VpnStatus_val_Connected}"/>
+                <Setter Property="Content" Value="{translations:Loc Map_VpnStatus_val_Connected}"/>
                 <Setter Property="Foreground" Value="White"/>
             </MultiDataTrigger>
         </Style.Triggers>

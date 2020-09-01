@@ -23,7 +23,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:controls="clr-namespace:ProtonVPN.Views.Controls"
-             xmlns:resources="clr-namespace:ProtonVPN.Resources"
+             xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
              mc:Ignorable="d">
     <Grid Background="{StaticResource ModalContentColor}">
         <StackPanel VerticalAlignment="Center">
@@ -32,7 +32,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                    Margin="0,20,0,0"
                    FontSize="16"
                    HorizontalAlignment="Center"
-                   Content="{resources:Loc BugReport_msg_Sending}"/>
+                   Content="{translations:Loc BugReport_msg_Sending}"/>
         </StackPanel>
     </Grid>
 </UserControl>

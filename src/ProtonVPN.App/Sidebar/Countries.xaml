@@ -29,7 +29,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              xmlns:icons="clr-namespace:ProtonVPN.Views.Icons"
              xmlns:sidebar="clr-namespace:ProtonVPN.Sidebar"
-             xmlns:resources="clr-namespace:ProtonVPN.Resources"
+             xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
              xmlns:wpf="clr-namespace:ProtonVPN.Core.Wpf"
              xmlns:onboarding="clr-namespace:ProtonVPN.Onboarding"
              mc:Ignorable="d"
@@ -162,7 +162,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Margin" Value="59,0,0,0"/>
             <Setter Property="IsHitTestVisible" Value="False"/>
-            <Setter Property="Text" Value="{resources:Loc Sidebar_Countries_lbl_Search_Watermark}"/>
+            <Setter Property="Text" Value="{translations:Loc Sidebar_Countries_lbl_Search_Watermark}"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="Visibility" Value="Collapsed"/>
             <Style.Triggers>
@@ -291,11 +291,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           HorizontalAlignment="Right"
                           AutomationProperties.AutomationId="{StaticResource SecureCoreCheckbox}"
                           Style="{StaticResource ToggleSwitch}"/>
-                <Label Style="{StaticResource SecureCoreLabel}" Content="{resources:Loc Sidebar_Countries_lbl_SecureCore}"/>
+                <Label Style="{StaticResource SecureCoreLabel}" Content="{translations:Loc Sidebar_Countries_lbl_SecureCore}"/>
                 <fa:FontAwesome
                     Icon="InfoCircle"
                     Padding="9,4,0,0"
-                    ToolTip="{resources:Loc Sidebar_Countries_lbl_SecureCore_Info}"
+                    ToolTip="{translations:Loc Sidebar_Countries_lbl_SecureCore_Info}"
                     Foreground="{StaticResource PrimaryColor}"
                     FontSize="16"/>
             </StackPanel>
@@ -437,7 +437,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                                 <StackPanel Orientation="Horizontal" Grid.Column="1">
                                     <Border Style="{StaticResource CountryFeature}"
-                                            ToolTip="{resources:Loc Sidebar_Countries_info_Tor}"
+                                            ToolTip="{translations:Loc Sidebar_Countries_info_Tor}"
                                             Visibility="{Binding Tor, Converter={StaticResource BoolToVis}}">
                                         <icons:Tor Foreground="#98989d"
                                                    VerticalAlignment="Center"
@@ -447,7 +447,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     </Border>
 
                                     <Border Style="{StaticResource CountryFeature}"
-                                            ToolTip="{resources:Loc Sidebar_Countries_info_P2P}"
+                                            ToolTip="{translations:Loc Sidebar_Countries_info_P2P}"
                                             Visibility="{Binding P2P, Converter={StaticResource BoolToVis}}">
                                         <icons:P2P Foreground="#98989d"
                                                    VerticalAlignment="Center"
@@ -509,13 +509,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 <sidebar:ServerFeatures Features="{Binding Features}" Style="{StaticResource ServerFeatures}"/>
                             </StackPanel>
                             <Label Style="{StaticResource City}" FontSize="14" FontWeight="Normal" Content="{Binding Server.City}"/>
-                            <Label Style="{StaticResource UpgradeRequiredLabel}" Content="{resources:Loc Servers_lbl_Upgrade}"/>
+                            <Label Style="{StaticResource UpgradeRequiredLabel}" Content="{translations:Loc Servers_lbl_Upgrade}"/>
                             <Button
                                     Margin="38,0,0,0"
                                     Style="{StaticResource SidebarServerConnectButton}"
                                     Command="{Binding DataContext.Connect, RelativeSource={RelativeSource AncestorType=ListView}}"
                                     CommandParameter="{Binding}"/>
-                            <fa:FontAwesome Style="{StaticResource MaintenanceIcon}" ToolTip="{resources:Loc Sidebar_Countries_lbl_Maintenance}"/>
+                            <fa:FontAwesome Style="{StaticResource MaintenanceIcon}" ToolTip="{translations:Loc Sidebar_Countries_lbl_Maintenance}"/>
                         </Grid>
                     </Grid>
                 </DataTemplate>
@@ -534,7 +534,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 </Grid.ColumnDefinitions>
 
                                 <TextBlock Grid.Column="0" Style="{StaticResource ServerName}" Margin="0,-5,0,0" FontSize="16" TextTrimming="CharacterEllipsis">
-                                    <Run Text="{resources:Loc Servers_lbl_ViaCountry}"/>
+                                    <Run Text="{translations:Loc Servers_lbl_ViaCountry}"/>
                                     <Run Text="{Binding Server.EntryCountry, Converter={StaticResource CountryCodeToNameConverter}, Mode=OneWay}">
                                         <Run.Style>
                                             <Style TargetType="Run">
@@ -555,8 +555,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         Command="{Binding DataContext.Connect, RelativeSource={RelativeSource AncestorType=ListView}}"
                                         CommandParameter="{Binding}"/>
                             </Grid>
-                            <fa:FontAwesome Style="{StaticResource MaintenanceIcon}" ToolTip="{resources:Loc Sidebar_Countries_lbl_Maintenance}"/>
-                            <Label Style="{StaticResource UpgradeRequiredLabel}" Content="{resources:Loc Servers_lbl_Upgrade}"/>
+                            <fa:FontAwesome Style="{StaticResource MaintenanceIcon}" ToolTip="{translations:Loc Sidebar_Countries_lbl_Maintenance}"/>
+                            <Label Style="{StaticResource UpgradeRequiredLabel}" Content="{translations:Loc Servers_lbl_Upgrade}"/>
                         </Grid>
                     </Grid>
                 </DataTemplate>

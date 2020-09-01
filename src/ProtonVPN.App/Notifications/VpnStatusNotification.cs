@@ -21,7 +21,7 @@ using System;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Vpn;
-using ProtonVPN.Resources;
+using ProtonVPN.Translations;
 
 namespace ProtonVPN.Notifications
 {

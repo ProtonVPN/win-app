@@ -25,7 +25,7 @@ using ProtonVPN.Core.Vpn;
 using ProtonVPN.Modals;
 using ProtonVPN.P2PDetection.Blocked;
 using ProtonVPN.P2PDetection.Forwarded;
-using ProtonVPN.Resources;
+using ProtonVPN.Translations;
 using System;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Extensions;

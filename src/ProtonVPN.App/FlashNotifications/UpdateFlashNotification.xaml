@@ -24,7 +24,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:flashNotifications="clr-namespace:ProtonVPN.FlashNotifications"
-             xmlns:resources="clr-namespace:ProtonVPN.Resources"
+             xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300"
              d:DataContext="{d:DesignInstance Type=flashNotifications:UpdateFlashNotificationViewModel, IsDesignTimeCreatable=False}">
@@ -37,7 +37,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <WrapPanel Orientation="Horizontal" Margin="0,8,20,8">
             <fa:ImageAwesome Spin="{Binding Updating}" Width="12" VerticalAlignment="Center"
                              Icon="Refresh" Foreground="White"/>
-            <Label Content="{resources:Loc Notifications_Update_msg_NewAppVersion}" Foreground="White" FontSize="14"/>
+            <Label Content="{translations:Loc Notifications_Update_msg_NewAppVersion}" Foreground="White" FontSize="14"/>
             <Button Style="{StaticResource WhatsNewButton}" Margin="8,0,0,0"/>
             <Button Style="{StaticResource UpdateButton}" Margin="8,0,0,0" Visibility="Visible"/>
         </WrapPanel>

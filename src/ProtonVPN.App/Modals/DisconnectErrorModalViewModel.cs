@@ -29,7 +29,7 @@ using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
-using ProtonVPN.Resources;
+using ProtonVPN.Translations;
 using ProtonVPN.Settings;
 
 namespace ProtonVPN.Modals

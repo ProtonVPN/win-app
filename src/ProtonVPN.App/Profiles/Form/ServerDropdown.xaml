@@ -23,7 +23,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:wpf="clr-namespace:ProtonVPN.Core.Wpf"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              xmlns:servers="clr-namespace:ProtonVPN.Profiles.Servers"
-             xmlns:resources="clr-namespace:ProtonVPN.Resources">
+             xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations">
     <UserControl.Resources>
         <Style x:Key="ServerPlaceholder" TargetType="TextBlock" BasedOn="{StaticResource ProfileFormPlaceholder}">
             <Style.Triggers>
@@ -34,7 +34,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Style>
     </UserControl.Resources>
     <Grid>
-        <TextBlock Style="{StaticResource ServerPlaceholder}" Text="{resources:Loc Profiles_Profile_lbl_Server_Watermark}"/>
+        <TextBlock Style="{StaticResource ServerPlaceholder}" Text="{translations:Loc Profiles_Profile_lbl_Server_Watermark}"/>
         <wpf:Combobox x:Name="ServerBox"
                       Style="{StaticResource ComboDropdown}"
                       Margin="0"

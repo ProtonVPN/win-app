@@ -20,7 +20,7 @@
 using ProtonVPN.About;
 using ProtonVPN.Core.MVVM;
 using ProtonVPN.Notifications;
-using ProtonVPN.Resources;
+using ProtonVPN.Translations;
 
 namespace ProtonVPN.FlashNotifications
 {

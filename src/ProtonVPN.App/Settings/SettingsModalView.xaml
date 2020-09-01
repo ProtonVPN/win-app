@@ -29,12 +29,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         xmlns:profiles="clr-namespace:ProtonVPN.Profiles"
                         xmlns:settings="clr-namespace:ProtonVPN.Settings"
                         xmlns:splittunneling="clr-namespace:ProtonVPN.Settings.SplitTunneling"
-                        xmlns:resources="clr-namespace:ProtonVPN.Resources"
+                        xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
                         xmlns:system="clr-namespace:System;assembly=mscorlib"
                         mc:Ignorable="d"
                         ResizeMode="NoResize"
                         Style="{StaticResource BaseModalStyle}"
-                        Title="{resources:Loc Settings_ttl}"
+                        Title="{translations:Loc Settings_ttl}"
                         SizeToContent="WidthAndHeight"
                         d:DataContext="{d:DesignInstance settings:SettingsModalViewModel}">
     <Window.Resources>
@@ -104,14 +104,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <TabControl Margin="0,20,0,0" SelectedIndex="{Binding SelectedTabIndex}">
             <TabItem Margin="0">
                 <TabItem.Header>
-                    <TextBlock Text="{resources:Loc Settings_General_ttl}"
+                    <TextBlock Text="{translations:Loc Settings_General_ttl}"
                                Margin="-17,0,0,0"
                                TextTrimming="CharacterEllipsis"/>
                 </TabItem.Header>
                 <StackPanel Margin="25,20,25,40">
                     <Border BorderBrush="#464652" Height="40" BorderThickness="0,0,0,0">
                         <DockPanel>
-                            <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Content="{resources:Loc Settings_General_lbl_Language}"/>
+                            <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Content="{translations:Loc Settings_General_lbl_Language}"/>
                             <wpf:Combobox HorizontalAlignment="Right"
                                           Style="{StaticResource ComboDropdown}"
                                           DisplayMemberPath="Value"
@@ -124,7 +124,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                     <Border BorderBrush="#464652" Height="40" BorderThickness="0,0,0,0">
                         <DockPanel>
-                            <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Content="{resources:Loc Settings_General_lbl_StartMinimized}"/>
+                            <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Content="{translations:Loc Settings_General_lbl_StartMinimized}"/>
                             <wpf:Combobox
                                     HorizontalAlignment="Right"
                                     Style="{StaticResource ComboDropdown}"
@@ -139,7 +139,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                     <Border BorderBrush="#464652" Height="40" BorderThickness="0,0,0,1">
                         <DockPanel>
-                            <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Content="{resources:Loc Settings_General_lbl_StartWithWindows}"/>
+                            <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Content="{translations:Loc Settings_General_lbl_StartWithWindows}"/>
                             <CheckBox Margin="0,0,14,0"
                                       HorizontalAlignment="Right"
                                       Style="{StaticResource ToggleSwitch}"
@@ -150,7 +150,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                     <Border BorderBrush="#464652" Height="40" BorderThickness="0,0,0,1">
                         <DockPanel>
-                            <Label VerticalAlignment="Center" Foreground="White" FontSize="16" Content="{resources:Loc Settings_General_lbl_ShowNotifications}"/>
+                            <Label VerticalAlignment="Center" Foreground="White" FontSize="16" Content="{translations:Loc Settings_General_lbl_ShowNotifications}"/>
                             <CheckBox Margin="0,0,14,0"
                                       HorizontalAlignment="Right"
                                       Style="{StaticResource ToggleSwitch}"
@@ -162,8 +162,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <Border BorderBrush="#464652" Height="40" BorderThickness="0,0,0,1">
                         <DockPanel>
                             <StackPanel Orientation="Horizontal">
-                                <Label VerticalAlignment="Center" Foreground="White" FontSize="16" Content="{resources:Loc Settings_General_lbl_EarlyAccess}"/>
-                                <fa:FontAwesome ToolTip="{resources:Loc Settings_General_lbl_EarlyAccess_Info}"
+                                <Label VerticalAlignment="Center" Foreground="White" FontSize="16" Content="{translations:Loc Settings_General_lbl_EarlyAccess}"/>
+                                <fa:FontAwesome ToolTip="{translations:Loc Settings_General_lbl_EarlyAccess_Info}"
                                                 Icon="InfoCircle"
                                                 VerticalAlignment="Center"
                                                 HorizontalAlignment="Left"
@@ -182,7 +182,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </TabItem>
             <TabItem Margin="-17,0,0,0">
                 <TabItem.Header>
-                    <TextBlock Text="{resources:Loc Settings_Connection_ttl}"
+                    <TextBlock Text="{translations:Loc Settings_Connection_ttl}"
                                Margin="0"
                                TextTrimming="CharacterEllipsis"/>
                 </TabItem.Header>
@@ -192,10 +192,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <Label FontSize="16"
                                    Foreground="White"
                                    VerticalAlignment="Center"
-                                   Content="{resources:Loc Settings_Connection_lbl_AutoConnect}"/>
+                                   Content="{translations:Loc Settings_Connection_lbl_AutoConnect}"/>
                             <fa:FontAwesome Icon="InfoCircle"
                                             VerticalAlignment="Center"
-                                            ToolTip="{resources:Loc Settings_Connection_lbl_AutoConnect_Info}"
+                                            ToolTip="{translations:Loc Settings_Connection_lbl_AutoConnect_Info}"
                                             Foreground="{StaticResource PrimaryColor}"
                                             FontSize="16"/>
                         </StackPanel>
@@ -212,10 +212,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <Label FontSize="16"
                                    VerticalAlignment="Center"
                                    Foreground="White"
-                                   Content="{resources:Loc Settings_Connection_lbl_QuickConnect}"/>
+                                   Content="{translations:Loc Settings_Connection_lbl_QuickConnect}"/>
                             <fa:FontAwesome Icon="InfoCircle"
                                     VerticalAlignment="Center"
-                                    ToolTip="{resources:Loc Settings_Connection_lbl_QuickConnect_Info}"
+                                    ToolTip="{translations:Loc Settings_Connection_lbl_QuickConnect_Info}"
                                     Foreground="{StaticResource PrimaryColor}"
                                     FontSize="16"/>
                         </StackPanel>
@@ -228,10 +228,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                     <DockPanel Height="40">
                         <StackPanel Orientation="Horizontal">
-                            <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Content="{resources:Loc Settings_Connection_lbl_DefaultProtocol}"/>
+                            <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Content="{translations:Loc Settings_Connection_lbl_DefaultProtocol}"/>
                             <fa:FontAwesome Icon="InfoCircle"
                                             VerticalAlignment="Center"
-                                            ToolTip="{resources:Loc Settings_Connection_lbl_DefaultProtocol_Info}"
+                                            ToolTip="{translations:Loc Settings_Connection_lbl_DefaultProtocol_Info}"
                                             Foreground="{StaticResource PrimaryColor}"
                                             FontSize="16"/>
                         </StackPanel>
@@ -249,10 +249,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <StackPanel Visibility="{Binding NetShieldVisible, Converter={StaticResource BoolToVis}}">
                         <DockPanel Height="40">
                             <StackPanel Orientation="Horizontal">
-                                <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Content="{resources:Loc Settings_Connection_lbl_NetShield}"/>
+                                <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Content="{translations:Loc Settings_Connection_lbl_NetShield}"/>
                                 <fa:FontAwesome Icon="InfoCircle"
                                             VerticalAlignment="Center"
-                                            ToolTip="{resources:Loc Settings_Connection_lbl_NetShield_Info}"
+                                            ToolTip="{translations:Loc Settings_Connection_lbl_NetShield_Info}"
                                             Foreground="{StaticResource PrimaryColor}"
                                             FontSize="16"/>
                             </StackPanel>
@@ -279,7 +279,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                          IsChecked="{Binding NetShieldMode, Converter={StaticResource ComparisonConverter}, ConverterParameter={StaticResource IntOne}}"
                                          BorderBrush="{StaticResource PrimaryColor}"
                                          Style="{StaticResource NetShieldRadio}">
-                                    <TextBlock Text="{resources:Loc Settings_Connection_NetShield_lbl_Level1}" TextWrapping="Wrap"/>
+                                    <TextBlock Text="{translations:Loc Settings_Connection_NetShield_lbl_Level1}" TextWrapping="Wrap"/>
                                 </RadioButton>
                                 <RadioButton GroupName="NetShieldMode"
                                          Grid.Row="1"
@@ -287,22 +287,22 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                          IsChecked="{Binding NetShieldMode, Converter={StaticResource ComparisonConverter}, ConverterParameter={StaticResource IntTwo}}"
                                          IsEnabled="{Binding NetShieldFullyEnabled}"
                                          Style="{StaticResource NetShieldRadio}">
-                                    <TextBlock Text="{resources:Loc Settings_Connection_NetShield_lbl_Level2}" TextWrapping="Wrap"/>
+                                    <TextBlock Text="{translations:Loc Settings_Connection_NetShield_lbl_Level2}" TextWrapping="Wrap"/>
                                 </RadioButton>
                                 <Button Style="{StaticResource UpgradeButton}"
                                     Grid.Row="1"
                                     Grid.Column="1"
-                                    Content="{resources:Loc Settings_Connection_btn_Upgrade}"/>
+                                    Content="{translations:Loc Settings_Connection_btn_Upgrade}"/>
                             </Grid>
                         </StackPanel>
                     </StackPanel>
 
                     <DockPanel Height="40">
                         <StackPanel Orientation="Horizontal">
-                            <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Content="{resources:Loc Settings_Connection_lbl_CustomDnsServer}"/>
+                            <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Content="{translations:Loc Settings_Connection_lbl_CustomDnsServer}"/>
                             <fa:FontAwesome Icon="InfoCircle"
                                             VerticalAlignment="Center"
-                                            ToolTip="{resources:Loc Settings_Connection_lbl_CustomDnsServer_Info}"
+                                            ToolTip="{translations:Loc Settings_Connection_lbl_CustomDnsServer_Info}"
                                             Foreground="{StaticResource PrimaryColor}"
                                             FontSize="16"/>
                         </StackPanel>
@@ -331,7 +331,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     AutomationProperties.AutomationId="{StaticResource SettingsPlusButton}"/>
                             <TextBox Style="{StaticResource SettingsPlaceholderTextBox}"
                                      Margin="0,0,10,0"
-                                     Tag="{resources:Loc Settings_Advanced_SplitTunnel_lbl_Ip_Watermark}"
+                                     Tag="{translations:Loc Settings_Advanced_SplitTunnel_lbl_Ip_Watermark}"
                                      Text="{Binding Ips.Ip, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}"
                                      MaxLength="20" 
                                      AutomationProperties.AutomationId="{StaticResource InputIpv4Address}">
@@ -345,7 +345,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </TabItem>
             <TabItem Margin="-17,0,0,0">
                 <TabItem.Header>
-                    <TextBlock Text="{resources:Loc Settings_Advanced_ttl}"
+                    <TextBlock Text="{translations:Loc Settings_Advanced_ttl}"
                                Margin="17,0,0,0"
                                TextTrimming="CharacterEllipsis"/>
                 </TabItem.Header>
@@ -353,13 +353,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <Border BorderBrush="#464652" Height="40" BorderThickness="0,0,0,1" DockPanel.Dock="Top">
                         <DockPanel>
                             <StackPanel Orientation="Horizontal">
-                                <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Content="{resources:Loc Settings_Advanced_lbl_KillSwitch}"/>
+                                <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Content="{translations:Loc Settings_Advanced_lbl_KillSwitch}"/>
                                 <fa:FontAwesome Icon="InfoCircle"
                                             VerticalAlignment="Center"
                                             HorizontalAlignment="Left"
                                             Foreground="{StaticResource PrimaryColor}"
                                             FontSize="16"
-                                            ToolTip="{resources:Loc Settings_Advanced_lbl_KillSwitch_Info}"/>
+                                            ToolTip="{translations:Loc Settings_Advanced_lbl_KillSwitch_Info}"/>
                             </StackPanel>
                             <CheckBox HorizontalAlignment="Right"
                                       Style="{StaticResource ToggleSwitch}"
@@ -371,13 +371,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <Border BorderBrush="#464652" Height="40" BorderThickness="0,0,0,1" DockPanel.Dock="Top">
                         <DockPanel>
                             <StackPanel Orientation="Horizontal">
-                                <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Content="{resources:Loc Settings_Advanced_lbl_DnsLeakProtection}"/>
+                                <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Content="{translations:Loc Settings_Advanced_lbl_DnsLeakProtection}"/>
                                 <fa:FontAwesome Icon="InfoCircle"
                                             VerticalAlignment="Center"
                                             HorizontalAlignment="Left"
                                             Foreground="{StaticResource PrimaryColor}"
                                             FontSize="16"
-                                            ToolTip="{resources:Loc Settings_Advanced_lbl_DnsLeakProtection_Info}"/>
+                                            ToolTip="{translations:Loc Settings_Advanced_lbl_DnsLeakProtection_Info}"/>
                             </StackPanel>
 
                             <CheckBox HorizontalAlignment="Right"
@@ -390,13 +390,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <Border BorderBrush="#464652" Height="40" BorderThickness="0,0,0,1" DockPanel.Dock="Top">
                         <DockPanel>
                             <StackPanel Orientation="Horizontal">
-                                <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Content="{resources:Loc Settings_Advanced_lbl_DoH}"/>
+                                <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Content="{translations:Loc Settings_Advanced_lbl_DoH}"/>
                                 <fa:FontAwesome Icon="InfoCircle"
                                                 VerticalAlignment="Center"
                                                 HorizontalAlignment="Left"
                                                 Foreground="{StaticResource PrimaryColor}"
                                                 FontSize="16"
-                                                ToolTip="{resources:Loc Settings_Advanced_lbl_DoH_Info}"/>
+                                                ToolTip="{translations:Loc Settings_Advanced_lbl_DoH_Info}"/>
                             </StackPanel>
                             <CheckBox HorizontalAlignment="Right"
                                       Style="{StaticResource ToggleSwitch}"
@@ -408,13 +408,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <Border BorderBrush="#464652" Height="40" BorderThickness="0,0,0,1" DockPanel.Dock="Top">
                         <DockPanel>
                             <StackPanel Orientation="Horizontal">
-                                <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Content="{resources:Loc Settings_Advanced_lbl_Ipv6Protection}"/>
+                                <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Content="{translations:Loc Settings_Advanced_lbl_Ipv6Protection}"/>
                                 <fa:FontAwesome Icon="InfoCircle"
                                                 VerticalAlignment="Center"
                                                 HorizontalAlignment="Left"
                                                 Foreground="{StaticResource PrimaryColor}"
                                                 FontSize="16"
-                                                ToolTip="{resources:Loc Settings_Advanced_lbl_Ipv6Protection_Info}"/>
+                                                ToolTip="{translations:Loc Settings_Advanced_lbl_Ipv6Protection_Info}"/>
                             </StackPanel>
 
                             <CheckBox HorizontalAlignment="Right"
@@ -427,13 +427,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <Border Height="40" BorderThickness="0" DockPanel.Dock="Top">
                         <DockPanel>
                             <StackPanel Orientation="Horizontal">
-                                <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Content="{resources:Loc Settings_Advanced_lbl_SplitTunnel}"/>
+                                <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Content="{translations:Loc Settings_Advanced_lbl_SplitTunnel}"/>
                                 <fa:FontAwesome Icon="InfoCircle"
                                                 VerticalAlignment="Center"
                                                 HorizontalAlignment="Left"
                                                 Foreground="{StaticResource PrimaryColor}"
                                                 FontSize="16"
-                                                ToolTip="{resources:Loc Settings_Advanced_lbl_SplitTunnel_Info}"/>
+                                                ToolTip="{translations:Loc Settings_Advanced_lbl_SplitTunnel_Info}"/>
                             </StackPanel>
                             <CheckBox Style="{StaticResource ToggleSwitch}"
                                       HorizontalAlignment="Right"
@@ -469,7 +469,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <TextBlock Grid.Column="0"
                        VerticalAlignment="Center"
                        TextWrapping="Wrap"
-                       Text="{resources:Loc Settings_msg_ReconnectRequired}"
+                       Text="{translations:Loc Settings_msg_ReconnectRequired}"
                        Padding="15,5"
                        FontSize="14"
                        FontWeight="Bold"
@@ -485,7 +485,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     VerticalAlignment="Center"
                     Foreground="White"
                     AutomationProperties.AutomationId="{StaticResource TextButtonRecconect}">
-                <TextBlock Text="{resources:Loc Settings_lnk_Reconnect}"
+                <TextBlock Text="{translations:Loc Settings_lnk_Reconnect}"
                            FontWeight="Bold"
                            FontSize="14"
                            TextDecorations="Underline"/>

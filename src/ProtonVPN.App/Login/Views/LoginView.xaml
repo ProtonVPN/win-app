@@ -27,7 +27,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:input="clr-namespace:ProtonVPN.Core.Wpf.Input"
              xmlns:views="clr-namespace:ProtonVPN.Login.Views"
              xmlns:viewModels="clr-namespace:ProtonVPN.Login.ViewModels"
-             xmlns:resources="clr-namespace:ProtonVPN.Resources"
+             xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
              xmlns:icons="clr-namespace:ProtonVPN.Views.Icons"
              mc:Ignorable="d"
              d:DesignWidth="440"
@@ -185,17 +185,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </TextBlock>
             </DockPanel>
             <StackPanel Style="{StaticResource LoginForm}">
-                <Label Content="{resources:Loc Login_lbl_Username}"
+                <Label Content="{translations:Loc Login_lbl_Username}"
                        Style="{StaticResource FormLabel}"
                        Visibility="{Binding LoginText, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}"/>
                 <wpf:PlaceholderTextBox x:Name="LoginInput"
                                         KeyDown="UsernameInput_KeyDown"
                                         Text="{Binding LoginText, UpdateSourceTrigger=PropertyChanged}"
                                         Style="{StaticResource EmailInput}"
-                                        Tag="{resources:Loc Login_lbl_Username}"
+                                        Tag="{translations:Loc Login_lbl_Username}"
                                         AutomationProperties.AutomationId="{StaticResource LoginUsernameInput}"/>
                 <Label Style="{StaticResource FormLabel}"
-                       Content="{resources:Loc Login_lbl_Password}"
+                       Content="{translations:Loc Login_lbl_Password}"
                        Visibility="{Binding Password, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}"/>
                 <Grid Name="PasswordContainer" Height="36">
                     <TextBox Name="PasswordText" Text="{Binding Password}" Style="{StaticResource PasswordInputHidden}"/>
@@ -203,7 +203,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                  input:PasswordBoxAssistant.BindPassword="true"
                                  input:PasswordBoxAssistant.BoundPassword="{Binding Path=Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                  Style="{StaticResource PasswordInput}"
-                                 Tag="{resources:Loc Login_lbl_Password}"
+                                 Tag="{translations:Loc Login_lbl_Password}"
                                  FontFamily="Segoe UI"
                                  PasswordChanged="PasswordInput_PasswordChanged"
                                  KeyDown="PasswordInput_KeyDown"
@@ -218,7 +218,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <Label Foreground="White"
                            FontSize="14"
                            Padding="0"
-                           Content="{resources:Loc Login_lbl_StartWithWindows}"/>
+                           Content="{translations:Loc Login_lbl_StartWithWindows}"/>
                     <CheckBox IsChecked="{Binding StartOnStartup, Mode=TwoWay}"
                               FocusVisualStyle="{x:Null}"
                               HorizontalAlignment="Right"
@@ -227,7 +227,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <Button Style="{StaticResource LoginButton}"
                         Command="{Binding LoginCommand}"
                         CommandParameter="{Binding ElementName=PasswordInput}"
-                        Content="{resources:Loc Login_btn_Login}"
+                        Content="{translations:Loc Login_btn_Login}"
                         AutomationProperties.AutomationId="{StaticResource LoginButtonId}"/>
             </StackPanel>
         </StackPanel>
@@ -235,7 +235,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Button Style="{StaticResource FooterButton}" Command="{Binding RegisterCommand}" 
                     AutomationProperties.AutomationId="{StaticResource CreateAccountButton}">
                 <Underline>
-                    <Run Text="{resources:Loc Login_lnk_CreateAccount}"/>
+                    <Run Text="{translations:Loc Login_lnk_CreateAccount}"/>
                 </Underline>
             </Button>
             <Grid HorizontalAlignment="Right">
@@ -252,13 +252,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 <Button Style="{StaticResource PopupButton}" Command="{Binding ResetPasswordCommand}"
                                         AutomationProperties.AutomationId="{StaticResource ResetPasswordButton}">
                                     <Underline>
-                                        <Run Text="{resources:Loc Login_lnk_ResetPassword}"/>
+                                        <Run Text="{translations:Loc Login_lnk_ResetPassword}"/>
                                     </Underline>
                                 </Button>
                                 <Button Style="{StaticResource PopupButton}" Command="{Binding ForgotUsernameCommand}"
                                         AutomationProperties.AutomationId="{StaticResource ForgotUsernameButton}">
                                     <Underline>
-                                        <Run Text="{resources:Loc Login_lnk_ForgotUsername}"/>
+                                        <Run Text="{translations:Loc Login_lnk_ForgotUsername}"/>
                                     </Underline>
                                 </Button>
                             </StackPanel>
@@ -268,7 +268,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </Popup>
                 <Button Style="{StaticResource HelpButton}" Name="HelpButton" HorizontalAlignment="Right">
                     <Underline>
-                        <Run Text="{resources:Loc Login_lnk_NeedHelp}"/>
+                        <Run Text="{translations:Loc Login_lnk_NeedHelp}"/>
                     </Underline>
                 </Button>
             </Grid>
@@ -286,7 +286,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        VerticalAlignment="Center"
                        TextAlignment="Center"
                        FontSize="14"
-                       Text="{resources:Loc Login_lbl_KillSwitch}"/>
+                       Text="{translations:Loc Login_lbl_KillSwitch}"/>
         </DockPanel>
     </Grid>
 </UserControl>

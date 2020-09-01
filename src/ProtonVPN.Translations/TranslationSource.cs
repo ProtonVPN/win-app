@@ -27,7 +27,7 @@ using System.Windows.Data;
 using System.Windows.Markup;
 using Huyn.PluralNet;
 
-namespace ProtonVPN.Resources
+namespace ProtonVPN.Translations
 {
     public class TranslationSource : INotifyPropertyChanged
     {

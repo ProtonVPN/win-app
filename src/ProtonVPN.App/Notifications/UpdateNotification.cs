@@ -22,7 +22,7 @@ using Caliburn.Micro;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Update;
 using ProtonVPN.FlashNotifications;
-using ProtonVPN.Resources;
+using ProtonVPN.Translations;
 
 namespace ProtonVPN.Notifications
 {
