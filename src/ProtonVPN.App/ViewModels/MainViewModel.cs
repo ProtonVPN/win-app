@@ -37,7 +37,7 @@ using ProtonVPN.FlashNotifications;
 using ProtonVPN.Map.ViewModels;
 using ProtonVPN.Onboarding;
 using ProtonVPN.Profiles;
-using ProtonVPN.Resources;
+using ProtonVPN.Translations;
 using ProtonVPN.Settings;
 
 namespace ProtonVPN.ViewModels

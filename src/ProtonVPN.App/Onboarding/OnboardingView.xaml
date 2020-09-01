@@ -24,17 +24,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              xmlns:onboarding="clr-namespace:ProtonVPN.Onboarding"
-             xmlns:resources="clr-namespace:ProtonVPN.Resources"
+             xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance onboarding:OnboardingViewModel}">
     <UserControl.Resources>
         <Style x:Key="NextButton" TargetType="Label">
             <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
-            <Setter Property="Content" Value="{resources:Loc Onboarding_btn_NextStep}"/>
+            <Setter Property="Content" Value="{translations:Loc Onboarding_btn_NextStep}"/>
             <Style.Triggers>
                 <DataTrigger Binding="{Binding IsLastStep}" Value="True">
                     <Setter Property="HorizontalAlignment" Value="Center"/>
-                    <Setter Property="Content" Value="{resources:Loc Onboarding_btn_EndTour}"/>
+                    <Setter Property="Content" Value="{translations:Loc Onboarding_btn_EndTour}"/>
                 </DataTrigger>
             </Style.Triggers>
         </Style>
@@ -95,19 +95,19 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <Style TargetType="Label">
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding Number}" Value="1">
-                            <Setter Property="Content" Value="{resources:Loc Onboarding_ttl_Step_1}"/>
+                            <Setter Property="Content" Value="{translations:Loc Onboarding_ttl_Step_1}"/>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Number}" Value="2">
-                            <Setter Property="Content" Value="{resources:Loc Onboarding_ttl_Step_2}"/>
+                            <Setter Property="Content" Value="{translations:Loc Onboarding_ttl_Step_2}"/>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Number}" Value="3">
-                            <Setter Property="Content" Value="{resources:Loc Onboarding_ttl_Step_3}"/>
+                            <Setter Property="Content" Value="{translations:Loc Onboarding_ttl_Step_3}"/>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Number}" Value="4">
-                            <Setter Property="Content" Value="{resources:Loc Onboarding_ttl_Step_4}"/>
+                            <Setter Property="Content" Value="{translations:Loc Onboarding_ttl_Step_4}"/>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Number}" Value="5">
-                            <Setter Property="Content" Value="{resources:Loc Onboarding_ttl_Step_5}"/>
+                            <Setter Property="Content" Value="{translations:Loc Onboarding_ttl_Step_5}"/>
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
@@ -125,19 +125,19 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <Style TargetType="TextBlock">
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding Number}" Value="1">
-                            <Setter Property="Text" Value="{resources:Loc Onboarding_msg_Step_1}"/>
+                            <Setter Property="Text" Value="{translations:Loc Onboarding_msg_Step_1}"/>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Number}" Value="2">
-                            <Setter Property="Text" Value="{resources:Loc Onboarding_msg_Step_2}"/>
+                            <Setter Property="Text" Value="{translations:Loc Onboarding_msg_Step_2}"/>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Number}" Value="3">
-                            <Setter Property="Text" Value="{resources:Loc Onboarding_msg_Step_3}"/>
+                            <Setter Property="Text" Value="{translations:Loc Onboarding_msg_Step_3}"/>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Number}" Value="4">
-                            <Setter Property="Text" Value="{resources:Loc Onboarding_msg_Step_4}"/>
+                            <Setter Property="Text" Value="{translations:Loc Onboarding_msg_Step_4}"/>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Number}" Value="5">
-                            <Setter Property="Text" Value="{resources:Loc Onboarding_msg_Step_5}"/>
+                            <Setter Property="Text" Value="{translations:Loc Onboarding_msg_Step_5}"/>
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>

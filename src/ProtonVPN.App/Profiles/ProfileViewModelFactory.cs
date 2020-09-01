@@ -28,7 +28,7 @@ using ProtonVPN.Core.Servers.Models;
 using ProtonVPN.Core.Servers.Name;
 using ProtonVPN.Core.Servers.Specs;
 using ProtonVPN.Profiles.Servers;
-using ProtonVPN.Resources;
+using ProtonVPN.Translations;
 
 namespace ProtonVPN.Profiles
 {

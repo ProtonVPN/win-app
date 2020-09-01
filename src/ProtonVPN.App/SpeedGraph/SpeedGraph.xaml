@@ -23,8 +23,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:oxy="http://oxyplot.org/wpf"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:resources="clr-namespace:ProtonVPN.Resources"
              xmlns:speedGraph="clr-namespace:ProtonVPN.SpeedGraph"
+             xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance speedGraph:SpeedGraphViewModel}">
 
@@ -102,7 +102,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Label Content="{resources:Loc Map_SpeedGraph_lbl_Speed}"
+            <Label Content="{translations:Loc Map_SpeedGraph_lbl_Speed}"
                    Padding="0"
                    FontSize="10"
                    Grid.Column="0"
@@ -125,7 +125,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Grid>
 
         <Grid Grid.Row="1" Grid.Column="1" x:Name="BottomLabels">
-            <Label Content="{resources:Loc Map_SpeedGraph_lbl_TimeUnits}" Padding="0" FontSize="10" Margin="0,0,0,-10" Foreground="#33FFFFFF" VerticalAlignment="Bottom"/>
+            <Label Content="{translations:Loc Map_SpeedGraph_lbl_TimeUnits}" Padding="0" FontSize="10" Margin="0,0,0,-10" Foreground="#33FFFFFF" VerticalAlignment="Bottom"/>
             <Label Content="0" Padding="0" FontSize="10" Margin="0,0,0,-10" HorizontalAlignment="Right" Foreground="#33FFFFFF" VerticalAlignment="Bottom"/>
         </Grid>
 
@@ -147,17 +147,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 Grid.Column="0"
                 Grid.Row="0"
                 Grid.ColumnSpan="2"
-                Content="{resources:Loc Map_SpeedGraph_lbl_Traffic}"
+                Content="{translations:Loc Map_SpeedGraph_lbl_Traffic}"
                 Padding="0,2"
                 FontWeight="Bold"
                 FontSize="12"
                 Foreground="{StaticResource PrimaryColor}"/>
 
-            <Label Content="{resources:Loc Map_SpeedGraph_lbl_Session}" Grid.Column="0" Grid.Row="1" Style="{StaticResource TitleLabel}"/>
-            <Label Content="{resources:Loc Map_SpeedGraph_lbl_DownVolume}" Grid.Column="0" Grid.Row="2" Style="{StaticResource TitleLabel}"/>
-            <Label Content="{resources:Loc Map_SpeedGraph_lbl_UpVolume}" Grid.Column="0" Grid.Row="3" Style="{StaticResource TitleLabel}"/>
-            <Label Content="{resources:Loc Map_SpeedGraph_lbl_DownSpeed}" Grid.Column="0" Grid.Row="4" Style="{StaticResource TitleLabel}"/>
-            <Label Content="{resources:Loc Map_SpeedGraph_lbl_UpSpeed}" Grid.Column="0" Grid.Row="5" Style="{StaticResource TitleLabel}"/>
+            <Label Content="{translations:Loc Map_SpeedGraph_lbl_Session}" Grid.Column="0" Grid.Row="1" Style="{StaticResource TitleLabel}"/>
+            <Label Content="{translations:Loc Map_SpeedGraph_lbl_DownVolume}" Grid.Column="0" Grid.Row="2" Style="{StaticResource TitleLabel}"/>
+            <Label Content="{translations:Loc Map_SpeedGraph_lbl_UpVolume}" Grid.Column="0" Grid.Row="3" Style="{StaticResource TitleLabel}"/>
+            <Label Content="{translations:Loc Map_SpeedGraph_lbl_DownSpeed}" Grid.Column="0" Grid.Row="4" Style="{StaticResource TitleLabel}"/>
+            <Label Content="{translations:Loc Map_SpeedGraph_lbl_UpSpeed}" Grid.Column="0" Grid.Row="5" Style="{StaticResource TitleLabel}"/>
 
             <StackPanel Grid.Column="1" Grid.Row="1" FlowDirection="LeftToRight">
             <Label HorizontalAlignment="Right"

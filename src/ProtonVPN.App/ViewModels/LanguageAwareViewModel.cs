@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Windows;
 using Caliburn.Micro;
 using ProtonVPN.Core.Settings;
-using ProtonVPN.Resources;
+using ProtonVPN.Translations;
 
 namespace ProtonVPN.ViewModels
 {

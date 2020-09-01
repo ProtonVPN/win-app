@@ -24,10 +24,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                         xmlns:modals="clr-namespace:ProtonVPN.Modals"
                         xmlns:upsell="clr-namespace:ProtonVPN.Modals.Upsell"
-                        xmlns:resources="clr-namespace:ProtonVPN.Resources"
+                        xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
                         Style="{StaticResource BaseModalStyle}"
                         mc:Ignorable="d"
-                        Title="{resources:Loc Upsell_UpgradeRequired_ttl}"
+                        Title="{translations:Loc Upsell_UpgradeRequired_ttl}"
                         SizeToContent="Height"
                         Height="Auto"
                         Width="500"
@@ -35,14 +35,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <Grid>
         <StackPanel>
             <TextBlock TextWrapping="Wrap" FontSize="16" Foreground="White" Padding="15,40"
-                       Text="{resources:Loc Upsell_UpgradeRequired_msg_NoServerInCountry}"/>
+                       Text="{translations:Loc Upsell_UpgradeRequired_msg_NoServerInCountry}"/>
             <DockPanel Background="{StaticResource ModalBarColor}" Height="66">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <Button Style="{StaticResource SecondaryButton}"
-                            Content="{resources:Loc Upsell_UpgradeRequired_btn_Close}"
+                            Content="{translations:Loc Upsell_UpgradeRequired_btn_Close}"
                             Command="{Binding CloseCommand}"/>
                     <Button Style="{StaticResource PrimaryButton}"
-                            Content="{resources:Loc Upsell_UpgradeRequired_btn_Upgrade}"
+                            Content="{translations:Loc Upsell_UpgradeRequired_btn_Upgrade}"
                             Command="{Binding ContinueCommand}"/>
                 </StackPanel>
             </DockPanel>

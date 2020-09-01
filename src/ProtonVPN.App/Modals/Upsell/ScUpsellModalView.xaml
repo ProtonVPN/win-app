@@ -25,9 +25,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         xmlns:modals="clr-namespace:ProtonVPN.Modals"
                         xmlns:upsell="clr-namespace:ProtonVPN.Modals.Upsell"
                         xmlns:behavior="clr-namespace:ProtonVPN.Core.Wpf.Behavior"
-                        xmlns:resources="clr-namespace:ProtonVPN.Resources"
+                        xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
                         Style="{StaticResource BaseModalStyle}"
-                        Title="{resources:Loc Upsell_UpgradeRequired_ttl}"
+                        Title="{translations:Loc Upsell_UpgradeRequired_ttl}"
                         SizeToContent="Height"
                         mc:Ignorable="d"
                         Height="Auto"
@@ -36,10 +36,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <Grid>
         <StackPanel>
             <TextBlock TextWrapping="Wrap" FontSize="16" Foreground="White" Padding="15,40,10,0">
-                <Run Text="{resources:Loc Upsell_UpgradeRequired_msg_SecureCore_1}"/>
+                <Run Text="{translations:Loc Upsell_UpgradeRequired_msg_SecureCore_1}"/>
             </TextBlock>
             <TextBlock TextWrapping="Wrap" FontSize="16" Foreground="White" Padding="15,8,10,0"
-                       behavior:TextStyleBehavior.FormattedText="{resources:Loc Upsell_UpgradeRequired_msg_SecureCore_2}">
+                       behavior:TextStyleBehavior.FormattedText="{translations:Loc Upsell_UpgradeRequired_msg_SecureCore_2}">
                 <TextBlock.Resources>
                     <Style TargetType="Hyperlink">
                         <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
@@ -48,14 +48,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </TextBlock.Resources>
             </TextBlock>
             <TextBlock FontSize="16" Foreground="White" TextWrapping="Wrap" Padding="15,8,10,40" 
-                       Text="{resources:Loc Upsell_UpgradeRequired_msg_SecureCore_Upgrade}"/>
+                       Text="{translations:Loc Upsell_UpgradeRequired_msg_SecureCore_Upgrade}"/>
             <DockPanel Background="{StaticResource ModalBarColor}" Height="66">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <Button Style="{StaticResource SecondaryButton}"
-                            Content="{resources:Loc Upsell_UpgradeRequired_btn_Close}"
+                            Content="{translations:Loc Upsell_UpgradeRequired_btn_Close}"
                             Command="{Binding CloseCommand}"/>
                     <Button Style="{StaticResource PrimaryButton}"
-                            Content="{resources:Loc Upsell_UpgradeRequired_btn_Upgrade}"
+                            Content="{translations:Loc Upsell_UpgradeRequired_btn_Upgrade}"
                             Command="{Binding ContinueCommand}"/>
                 </StackPanel>
             </DockPanel>

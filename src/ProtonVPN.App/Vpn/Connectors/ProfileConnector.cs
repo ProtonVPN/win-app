@@ -31,7 +31,7 @@ using ProtonVPN.Core.Servers.Specs;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Modals.Upsell;
-using ProtonVPN.Resources;
+using ProtonVPN.Translations;
 using System;
 using System.Collections.Generic;
 using System.Linq;

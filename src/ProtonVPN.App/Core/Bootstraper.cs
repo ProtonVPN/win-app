@@ -66,7 +66,7 @@ using ProtonVPN.Notifications;
 using ProtonVPN.Onboarding;
 using ProtonVPN.P2PDetection;
 using ProtonVPN.QuickLaunch;
-using ProtonVPN.Resources;
+using ProtonVPN.Translations;
 using ProtonVPN.Settings;
 using ProtonVPN.Settings.Migrations;
 using ProtonVPN.Sidebar;

@@ -29,7 +29,7 @@ using ProtonVPN.Common.OS.Net;
 using ProtonVPN.Core.MVVM;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Settings.Contracts;
-using ProtonVPN.Resources;
+using ProtonVPN.Translations;
 
 namespace ProtonVPN.Settings
 {

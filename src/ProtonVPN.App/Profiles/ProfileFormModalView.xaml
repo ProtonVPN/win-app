@@ -27,17 +27,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                         xmlns:profiles="clr-namespace:ProtonVPN.Profiles"
-                        xmlns:resources="clr-namespace:ProtonVPN.Resources"
+                        xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
                         mc:Ignorable="d"
                         Width="600"
                         Height="530"
                         d:DataContext="{d:DesignInstance profiles:ProfileFormModalViewModel }">
     <modals:BaseModalWindow.Style>
         <Style TargetType="modals:BaseModalWindow" BasedOn="{StaticResource BaseModalStyle}">
-            <Setter Property="Title" Value="{resources:Loc Profiles_Profile_ttl_Create}"/>
+            <Setter Property="Title" Value="{translations:Loc Profiles_Profile_ttl_Create}"/>
             <Style.Triggers>
                 <DataTrigger Binding="{Binding Form.EditMode}" Value="True">
-                    <Setter Property="Title" Value="{resources:Loc Profiles_Profile_ttl_Edit}"/>
+                    <Setter Property="Title" Value="{translations:Loc Profiles_Profile_ttl_Edit}"/>
                 </DataTrigger>
             </Style.Triggers>
         </Style>

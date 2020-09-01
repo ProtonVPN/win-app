@@ -26,11 +26,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         xmlns:upsell="clr-namespace:ProtonVPN.Modals.Upsell"
                         xmlns:icons="clr-namespace:ProtonVPN.Views.Icons"
                         xmlns:behavior="clr-namespace:ProtonVPN.Core.Wpf.Behavior"
-                        xmlns:resources="clr-namespace:ProtonVPN.Resources"
+                        xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
                         Style="{StaticResource BaseModalStyle}"
                         Height="550"
                         Width="800"
-                        Title="{resources:Loc Upsell_Enjoying_ttl}"
+                        Title="{translations:Loc Upsell_Enjoying_ttl}"
                         mc:Ignorable="d" 
                         d:DataContext="{d:DesignInstance upsell:EnjoyingUpsellModalViewModel}">
     <Grid>
@@ -45,7 +45,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        FontWeight="Medium"
                        FontSize="48"
                        TextWrapping="Wrap"
-                       behavior:TextStyleBehavior.FormattedText="{resources:Loc Upsell_Enjoying_lbl_Heading}"/>
+                       behavior:TextStyleBehavior.FormattedText="{translations:Loc Upsell_Enjoying_lbl_Heading}"/>
             <TextBlock Foreground="White"
                        FontWeight="Medium"
                        Margin="0,30"
@@ -53,14 +53,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        HorizontalAlignment="Left"
                        TextWrapping="Wrap"
                        FontSize="20"
-                       Text="{resources:Loc Upsell_Enjoying_lbl_Benefits}"/>
+                       Text="{translations:Loc Upsell_Enjoying_lbl_Benefits}"/>
             <StackPanel HorizontalAlignment="Left">
                 <Button Style="{StaticResource PrimaryVividModalButton}"
                         Padding="20,0"
                         HorizontalAlignment="Left"
                         FontWeight="Medium"
                         FontSize="22"
-                        Content="{resources:Loc Upsell_Enjoying_btn_Upgrade}"
+                        Content="{translations:Loc Upsell_Enjoying_btn_Upgrade}"
                         Command="{Binding ContinueCommand}"/>
                 <DockPanel Margin="0,10,0,0" HorizontalAlignment="Center">
                     <icons:Info Width="13" Height="13" Color="#00a651"/>
@@ -68,7 +68,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                            Foreground="White"
                            FontWeight="Light"
                            FontSize="11"
-                           Content="{resources:Loc Upsell_Enjoying_lbl_MoneyBack}"/>
+                           Content="{translations:Loc Upsell_Enjoying_lbl_MoneyBack}"/>
                 </DockPanel>
             </StackPanel>
 

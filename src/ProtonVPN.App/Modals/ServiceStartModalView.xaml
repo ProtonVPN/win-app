@@ -23,10 +23,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                         xmlns:modals="clr-namespace:ProtonVPN.Modals"
-                        xmlns:resources="clr-namespace:ProtonVPN.Resources"
+                        xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
                         Style="{StaticResource BaseModalStyle}"
                         SizeToContent="Height"
-                        Title="{resources:Loc Dialogs_ttl_Warning}"
+                        Title="{translations:Loc Dialogs_ttl_Warning}"
                         mc:Ignorable="d"
                         Height="Auto"
                         Width="500"
@@ -35,7 +35,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <StackPanel>
             <StackPanel Margin="30,40">
                 <TextBlock TextWrapping="Wrap" FontSize="14">
-                    <Run Foreground="White" Text="{resources:Loc Dialogs_ServiceStart_Info}"/>
+                    <Run Foreground="White" Text="{translations:Loc Dialogs_ServiceStart_Info}"/>
                 </TextBlock>
             </StackPanel>
         </StackPanel>

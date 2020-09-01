@@ -22,7 +22,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:resources="clr-namespace:ProtonVPN.Resources"
+             xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
              mc:Ignorable="d">
     <Grid Background="{StaticResource ModalContentColor}">
         <StackPanel VerticalAlignment="Center">
@@ -35,7 +35,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                    Margin="0,20,0,0"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
-                   Content="{resources:Loc BugReport_msg_SendingSucceeded}"/>
+                   Content="{translations:Loc BugReport_msg_SendingSucceeded}"/>
         </StackPanel>
     </Grid>
 </UserControl>

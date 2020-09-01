@@ -21,7 +21,7 @@ using GalaSoft.MvvmLight.CommandWpf;
 using ProtonVPN.Config.Url;
 using ProtonVPN.Core.MVVM;
 using ProtonVPN.Notifications;
-using ProtonVPN.Resources;
+using ProtonVPN.Translations;
 using System.Windows.Input;
 
 namespace ProtonVPN.FlashNotifications

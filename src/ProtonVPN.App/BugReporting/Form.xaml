@@ -23,7 +23,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:bugReporting="clr-namespace:ProtonVPN.BugReporting"
-             xmlns:resources="clr-namespace:ProtonVPN.Resources"
+             xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
              xmlns:icons="clr-namespace:ProtonVPN.Views.Icons"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              mc:Ignorable="d"
@@ -56,7 +56,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <DockPanel Grid.Column="0">
-                    <Label Padding="0" VerticalAlignment="Center" FontSize="14" Foreground="White" Content="{resources:Loc BugReport_lbl_Email}"/>
+                    <Label Padding="0" VerticalAlignment="Center" FontSize="14" Foreground="White" Content="{translations:Loc BugReport_lbl_Email}"/>
                     <Label Foreground="Red" Padding="5,15,0,0" FontSize="14" Content="*"/>
                 </DockPanel>
                 <TextBox Style="{StaticResource BugReportTextBox}"
@@ -72,7 +72,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <TextBlock Grid.Column="1"
                            IsHitTestVisible="False"
                            FontSize="14"
-                           Text="{resources:Loc BugReport_lbl_Email_Watermark}"
+                           Text="{translations:Loc BugReport_lbl_Email_Watermark}"
                            HorizontalAlignment="Left"
                            Margin="7,14"
                            Foreground="#4a4c55">
@@ -89,7 +89,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </TextBlock>
             </Grid>
             <StackPanel Orientation="Horizontal">
-                <Label Padding="0,15,5,10" FontSize="14" Foreground="White" Content="{resources:Loc BugReport_lbl_WhatWentWrong}"/>
+                <Label Padding="0,15,5,10" FontSize="14" Foreground="White" Content="{translations:Loc BugReport_lbl_WhatWentWrong}"/>
                 <Label Foreground="Red" Padding="0,15,0,0" FontSize="14" Content="*"/>
             </StackPanel>
             <Grid>
@@ -110,7 +110,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                            VerticalAlignment="Top"
                            HorizontalAlignment="Stretch"
                            Foreground="#4a4c55"
-                           Text="{resources:Loc TextBoxPlaceholder}"
+                           Text="{translations:Loc TextBoxPlaceholder}"
                            IsHitTestVisible="False">
                     <TextBlock.Style>
                         <Style TargetType="{x:Type TextBlock}">
@@ -125,7 +125,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </TextBlock>
             </Grid>
             <StackPanel Orientation="Horizontal">
-                <Label Padding="0,15,5,10" FontSize="14" Foreground="White" Content="{resources:Loc BugReport_lbl_HowToReproduce}"/>
+                <Label Padding="0,15,5,10" FontSize="14" Foreground="White" Content="{translations:Loc BugReport_lbl_HowToReproduce}"/>
                 <Label Foreground="Red" Padding="0,15,0,0" FontSize="14" Content="*"/>
             </StackPanel>
             <Grid>
@@ -146,7 +146,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                            VerticalAlignment="Top"
                            HorizontalAlignment="Stretch"
                            Foreground="#4a4c55"
-                           Text="{resources:Loc TextBoxPlaceholder}"
+                           Text="{translations:Loc TextBoxPlaceholder}"
                            IsHitTestVisible="False">
                     <TextBlock.Style>
                         <Style TargetType="{x:Type TextBlock}">
@@ -167,11 +167,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <Label FontSize="14"
                            Foreground="White"
                            VerticalAlignment="Center"
-                           Content="{resources:Loc BugReport_lbl_IncludeLogs}"/>
+                           Content="{translations:Loc BugReport_lbl_IncludeLogs}"/>
                     <fa:FontAwesome Icon="InfoCircle"
                                     VerticalAlignment="Center"
                                     FontSize="14"
-                                    ToolTip="{resources:Loc BugReport_lbl_IncludeLogsInfo}"
+                                    ToolTip="{translations:Loc BugReport_lbl_IncludeLogsInfo}"
                                     Foreground="{StaticResource PrimaryColor}"/>
                 </StackPanel>
             </DockPanel>

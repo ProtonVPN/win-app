@@ -24,14 +24,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModels="clr-namespace:ProtonVPN.Login.ViewModels"
         xmlns:views="clr-namespace:ProtonVPN.Login.Views"
-        xmlns:resources="clr-namespace:ProtonVPN.Resources"
+        xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
         mc:Ignorable="d"
         ResizeMode="NoResize"
         WindowStyle="None"
         FontFamily="Segoe UI"
         FlowDirection="{Binding FlowDirection}"
         WindowStartupLocation="CenterScreen"
-        Title="{resources:Loc Login_ttl}"
+        Title="{translations:Loc Login_ttl}"
         Width="440"
         Height="550">
     <Window.Resources>

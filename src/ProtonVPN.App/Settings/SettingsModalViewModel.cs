@@ -36,7 +36,7 @@ using ProtonVPN.Core.User;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Modals;
 using ProtonVPN.Profiles;
-using ProtonVPN.Resources;
+using ProtonVPN.Translations;
 using ProtonVPN.Settings.ReconnectNotification;
 using ProtonVPN.Settings.SplitTunneling;
 

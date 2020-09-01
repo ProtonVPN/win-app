@@ -24,7 +24,7 @@ using ProtonVPN.Core.Servers.Models;
 using ProtonVPN.Core.Servers.Name;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Vpn;
-using ProtonVPN.Resources;
+using ProtonVPN.Translations;
 using System.Threading.Tasks;
 using System.Windows.Input;
 

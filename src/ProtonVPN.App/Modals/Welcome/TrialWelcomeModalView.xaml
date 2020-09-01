@@ -25,10 +25,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         xmlns:modals="clr-namespace:ProtonVPN.Modals"
                         xmlns:icons="clr-namespace:ProtonVPN.Views.Icons"
                         xmlns:welcome="clr-namespace:ProtonVPN.Modals.Welcome"
-                        xmlns:resources="clr-namespace:ProtonVPN.Resources"
+                        xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
                         Style="{StaticResource BaseModalStyle}"
                         SizeToContent="Height"
-                        Title="{resources:Loc Welcome_ttl_Trial}"
+                        Title="{translations:Loc Welcome_ttl_Trial}"
                         mc:Ignorable="d"
                         Height="Auto"
                         Width="800"
@@ -39,7 +39,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Grid.Background>
         <icons:GiftBox Width="296" HorizontalAlignment="Right" Margin="0,0,-45,0" VerticalAlignment="Bottom"/>
         <StackPanel Margin="90,40">
-            <TextBlock Text="{resources:Loc Welcome_lbl_TrialEnjoy}"
+            <TextBlock Text="{translations:Loc Welcome_lbl_TrialEnjoy}"
                        FontWeight="Medium"
                        Padding="15,0,15,25"
                        HorizontalAlignment="Center"
@@ -55,31 +55,31 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        FontSize="18"
                        TextWrapping="Wrap"
                        LineHeight="30"
-                       Text="{resources:Loc Welcome_lbl_TrialGift}"
+                       Text="{translations:Loc Welcome_lbl_TrialGift}"
                        Foreground="White"/>
 
             <StackPanel HorizontalAlignment="Center" Margin="0,40">
                 <DockPanel>
                     <icons:Checkbox Width="20"/>
-                    <Label Foreground="White" FontSize="18" Margin="8,5" FontWeight="Medium" Content="{resources:Loc Trial_Features_lbl_SecureCore}"/>
+                    <Label Foreground="White" FontSize="18" Margin="8,5" FontWeight="Medium" Content="{translations:Loc Trial_Features_lbl_SecureCore}"/>
                 </DockPanel>
                 <DockPanel>
                     <icons:Checkbox Width="20"/>
-                    <Label Foreground="White" FontSize="18" Margin="8,5" FontWeight="Medium" Content="{resources:Loc Trial_Features_lbl_P2PServers}"/>
+                    <Label Foreground="White" FontSize="18" Margin="8,5" FontWeight="Medium" Content="{translations:Loc Trial_Features_lbl_P2PServers}"/>
                 </DockPanel>
                 <DockPanel>
                     <icons:Checkbox Width="20"/>
-                    <Label Foreground="White" FontSize="18" Margin="8,5" FontWeight="Medium" Content="{resources:Loc Trial_Features_lbl_MultipleConnections}"/>
+                    <Label Foreground="White" FontSize="18" Margin="8,5" FontWeight="Medium" Content="{translations:Loc Trial_Features_lbl_MultipleConnections}"/>
                 </DockPanel>
                 <DockPanel>
                     <icons:Checkbox Width="20"/>
-                    <Label Foreground="White" FontSize="18" Margin="8,5" FontWeight="Medium" Content="{resources:Loc Trial_Features_lbl_MultipleCountries}"/>
+                    <Label Foreground="White" FontSize="18" Margin="8,5" FontWeight="Medium" Content="{translations:Loc Trial_Features_lbl_MultipleCountries}"/>
                 </DockPanel>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,15,0,0">
                 <Button Style="{StaticResource SecondaryVividModalButton}"
-                        Content="{resources:Loc Welcome_btn_Skip}"
+                        Content="{translations:Loc Welcome_btn_Skip}"
                         Padding="15,0"
                         MinWidth="120"
                         Margin="15,0"
@@ -88,7 +88,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         Command="{Binding TakeATourCommand}"
                         Padding="15,0"
                         Margin="15,0"
-                        Content="{resources:Loc Welcome_btn_TakeATour}"/>
+                        Content="{translations:Loc Welcome_btn_TakeATour}"/>
             </StackPanel>
         </StackPanel>
     </Grid>

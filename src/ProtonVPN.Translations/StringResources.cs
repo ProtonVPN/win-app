@@ -19,13 +19,13 @@
 
 using System;
 
-namespace ProtonVPN.Resources
+namespace ProtonVPN.Translations
 {
     public class StringResources
     {
         public static string Get(string key)
         {
-            return TranslationSource.Instance["ProtonVPN.Properties.Resources." + key];
+            return TranslationSource.Instance["ProtonVPN.Translations.Properties.Resources." + key];
         }
 
         public static string GetPlural(string key, decimal number)

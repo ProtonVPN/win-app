@@ -17,7 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Resources;
+using ProtonVPN.Translations;
 using System;
 using System.Globalization;
 using System.Windows.Data;

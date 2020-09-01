@@ -18,7 +18,7 @@
  */
 
 using ProtonVPN.Core.MVVM;
-using ProtonVPN.Resources;
+using ProtonVPN.Translations;
 
 namespace ProtonVPN.Login.ViewModels
 {

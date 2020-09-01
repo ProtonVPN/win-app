@@ -25,7 +25,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:user="clr-namespace:ProtonVPN.Core.User;assembly=ProtonVPN.Core"
              xmlns:trial="clr-namespace:ProtonVPN.Sidebar.Trial"
              xmlns:behavior="clr-namespace:ProtonVPN.Core.Wpf.Behavior"
-             xmlns:resources="clr-namespace:ProtonVPN.Resources"
+             xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance trial:TrialViewModel}">
 
@@ -34,7 +34,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </DataTemplate>
         <DataTemplate x:Key="TrialStartedTemplate">
             <StackPanel DataContext="{Binding Path=DataContext.TrialViewModel, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}">
-                <TextBlock Padding="0,0,0,5" FontSize="14" Foreground="White" TextWrapping="Wrap" MaxWidth="170" Text="{resources:Loc Sidebar_Trial_lbl_ExpiresIn}"/>
+                <TextBlock Padding="0,0,0,5" FontSize="14" Foreground="White" TextWrapping="Wrap" MaxWidth="170" Text="{translations:Loc Sidebar_Trial_lbl_ExpiresIn}"/>
                 <Grid Width="140">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
@@ -50,22 +50,22 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Row="0" Grid.Column="0" Foreground="White" Text="{Binding TimeLeft.Days}" FontWeight="Bold"/>
-                    <TextBlock Grid.Row="1" Foreground="White" Grid.Column="0" Text="{resources:Loc Sidebar_Trial_TimeUnit_val_Days}"/>
+                    <TextBlock Grid.Row="1" Foreground="White" Grid.Column="0" Text="{translations:Loc Sidebar_Trial_TimeUnit_val_Days}"/>
                     <StackPanel Grid.Row="0" Grid.Column="1">
                         <TextBlock Foreground="White" Text=":" HorizontalAlignment="Center" Margin="-4,0,0,0"/>
                     </StackPanel>
                     <TextBlock Grid.Row="0" Foreground="White" Grid.Column="2" Text="{Binding TimeLeft.Hours}" FontWeight="Bold"/>
-                    <TextBlock Grid.Row="1" Foreground="White" Grid.Column="2" Text="{resources:Loc Sidebar_Trial_TimeUnit_val_Hours}"/>
+                    <TextBlock Grid.Row="1" Foreground="White" Grid.Column="2" Text="{translations:Loc Sidebar_Trial_TimeUnit_val_Hours}"/>
                     <StackPanel Grid.Row="0" Grid.Column="3">
                         <TextBlock Foreground="White" Text=":" HorizontalAlignment="Center" Margin="-4,0,0,0"/>
                     </StackPanel>
                     <TextBlock Grid.Row="0" Foreground="White" Grid.Column="4" Text="{Binding TimeLeft, StringFormat=mm}" FontWeight="Bold"/>
-                    <TextBlock Grid.Row="1" Foreground="White" Grid.Column="4" Text="{resources:Loc Sidebar_Trial_TimeUnit_val_Minutes}"/>
+                    <TextBlock Grid.Row="1" Foreground="White" Grid.Column="4" Text="{translations:Loc Sidebar_Trial_TimeUnit_val_Minutes}"/>
                     <StackPanel Grid.Row="0" Grid.Column="5">
                         <TextBlock Foreground="White" Text=":" HorizontalAlignment="Center" Margin="-4,0,0,0"/>
                     </StackPanel>
                     <TextBlock Grid.Row="0" Foreground="White" Grid.Column="6" Text="{Binding TimeLeft, StringFormat=ss}" FontWeight="Bold"/>
-                    <TextBlock Grid.Row="1" Foreground="White" Grid.Column="6" Text="{resources:Loc Sidebar_Trial_TimeUnit_val_Seconds}"/>
+                    <TextBlock Grid.Row="1" Foreground="White" Grid.Column="6" Text="{translations:Loc Sidebar_Trial_TimeUnit_val_Seconds}"/>
                 </Grid>
             </StackPanel>
         </DataTemplate>
@@ -73,7 +73,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <TextBlock Foreground="White"
                        FontSize="15"
                        TextWrapping="Wrap"
-                       behavior:TextStyleBehavior.FormattedText="{resources:Loc Sidebar_Trial_lbl_FreeVersion}"/>
+                       behavior:TextStyleBehavior.FormattedText="{translations:Loc Sidebar_Trial_lbl_FreeVersion}"/>
         </DataTemplate>
         <DataTemplate DataType="{x:Type user:PlanStatus}">
             <ContentControl Content="{Binding}">
@@ -118,6 +118,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 FontWeight="Medium"
                 HorizontalAlignment="Right"
                 Command="{Binding UpgradeCommand}"
-                Content="{resources:Loc Sidebar_Trial_btn_Upgrade, Converter={StaticResource StringToUpperConverter}}"/>
+                Content="{translations:Loc Sidebar_Trial_btn_Upgrade, Converter={StaticResource StringToUpperConverter}}"/>
     </Grid>
 </UserControl>

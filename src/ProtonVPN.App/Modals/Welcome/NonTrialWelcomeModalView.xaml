@@ -24,10 +24,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                         xmlns:welcome="clr-namespace:ProtonVPN.Modals.Welcome"
-                        xmlns:resources="clr-namespace:ProtonVPN.Resources"
+                        xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
                         mc:Ignorable="d"
                         Style="{StaticResource BaseModalStyle}"
-                        Title="{resources:Loc Welcome_ttl}"
+                        Title="{translations:Loc Welcome_ttl}"
                         Height="540"
                         Width="800"
                         AutomationProperties.AutomationId="{StaticResource WelcomeModal}"
@@ -112,7 +112,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Viewbox>
 
         <StackPanel Margin="140,40" VerticalAlignment="Center">
-            <TextBlock Text="{resources:Loc Welcome_lbl_Welcome}"
+            <TextBlock Text="{translations:Loc Welcome_lbl_Welcome}"
                        FontWeight="Medium"
                        TextWrapping="Wrap"
                        Padding="15,0,15,25"
@@ -128,11 +128,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        FontSize="18"
                        TextWrapping="Wrap"
                        LineHeight="30"
-                       Text="{resources:Loc Welcome_lbl_Thanks}"
+                       Text="{translations:Loc Welcome_lbl_Thanks}"
                        Foreground="White"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,80,0,0">
                 <Button Style="{StaticResource SecondaryVividModalButton}"
-                        Content="{resources:Loc Welcome_btn_Skip}"
+                        Content="{translations:Loc Welcome_btn_Skip}"
                         MinWidth="130"
                         Padding="15,0"
                         Margin="15,0"
@@ -142,7 +142,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         MinWidth="130"
                         Padding="15,0"
                         Margin="15,0"
-                        Content="{resources:Loc Welcome_btn_TakeATour}"/>
+                        Content="{translations:Loc Welcome_btn_TakeATour}"/>
             </StackPanel>
         </StackPanel>
     </Grid>

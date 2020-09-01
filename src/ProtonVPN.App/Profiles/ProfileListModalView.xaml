@@ -26,9 +26,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         xmlns:profiles="clr-namespace:ProtonVPN.Profiles"
                         xmlns:modals="clr-namespace:ProtonVPN.Modals"
                         xmlns:coreProfiles="clr-namespace:ProtonVPN.Core.Profiles;assembly=ProtonVPN.Core"
-                        xmlns:resources="clr-namespace:ProtonVPN.Resources"
+                        xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
                         Style="{StaticResource BaseModalStyle}"
-                        Title="{resources:Loc Profiles_ttl}"
+                        Title="{translations:Loc Profiles_ttl}"
                         Width="1000"
                         Height="500"
                         mc:Ignorable="d"
@@ -119,11 +119,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <ColumnDefinition Width="Auto" SharedSizeGroup="Action"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Column="0" Style="{StaticResource HeadingLabel}" Text="{resources:Loc Profiles_col_Profile}"/>
-                <TextBlock Grid.Column="1" Style="{StaticResource HeadingLabel}" Text="{resources:Loc Profiles_col_Status}"/>
-                <TextBlock Grid.Column="2" Style="{StaticResource HeadingLabel}" Text="{resources:Loc Profiles_col_Connection}"/>
-                <TextBlock Grid.Column="3" Style="{StaticResource HeadingLabel}" Text="{resources:Loc Profiles_col_Protocol}"/>
-                <TextBlock Grid.Column="4" Style="{StaticResource HeadingLabel}" Text="{resources:Loc Profiles_col_Action}"/>
+                <TextBlock Grid.Column="0" Style="{StaticResource HeadingLabel}" Text="{translations:Loc Profiles_col_Profile}"/>
+                <TextBlock Grid.Column="1" Style="{StaticResource HeadingLabel}" Text="{translations:Loc Profiles_col_Status}"/>
+                <TextBlock Grid.Column="2" Style="{StaticResource HeadingLabel}" Text="{translations:Loc Profiles_col_Connection}"/>
+                <TextBlock Grid.Column="3" Style="{StaticResource HeadingLabel}" Text="{translations:Loc Profiles_col_Protocol}"/>
+                <TextBlock Grid.Column="4" Style="{StaticResource HeadingLabel}" Text="{translations:Loc Profiles_col_Action}"/>
             </Grid>
         </DockPanel>
 
@@ -259,20 +259,20 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                ToolTip="{Binding ProfileSync.SyncStatusMessage}"
                                TextTrimming="CharacterEllipsis"/>
                     <Button Style="{StaticResource TroubleshootButton}">
-                        <Underline><TextBlock Text="{resources:Loc Profiles_btn_Troubleshoot}"/></Underline>
+                        <Underline><TextBlock Text="{translations:Loc Profiles_btn_Troubleshoot}"/></Underline>
                     </Button>
                 </DockPanel>
                 <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
                     <Button Style="{StaticResource SecondaryModalButton}"
                             Command="{Binding ProfileSync.SyncCommand}"
-                            Content="{resources:Loc Profiles_btn_Sync}"/>
+                            Content="{translations:Loc Profiles_btn_Sync}"/>
                     <Button x:Name="NewProfileButton"
                             Style="{StaticResource SecondaryModalButton}"
                             Command="{Binding CreateProfileCommand}"
-                            Content="{resources:Loc Profiles_btn_Create}"/>
+                            Content="{translations:Loc Profiles_btn_Create}"/>
                     <Button Style="{StaticResource PrimaryModalButton}"
                             Command="{Binding CloseCommand}"
-                            Content="{resources:Loc Profiles_btn_Close}"/>
+                            Content="{translations:Loc Profiles_btn_Close}"/>
                 </StackPanel>
             </Grid>
         </DockPanel>

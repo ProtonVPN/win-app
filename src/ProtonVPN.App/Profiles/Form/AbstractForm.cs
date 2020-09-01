@@ -31,7 +31,7 @@ using ProtonVPN.Core.Settings;
 using ProtonVPN.Modals.Dialogs;
 using ProtonVPN.Modals.Upsell;
 using ProtonVPN.Profiles.Servers;
-using ProtonVPN.Resources;
+using ProtonVPN.Translations;
 using ServerViewModel = ProtonVPN.Profiles.Servers.ServerViewModel;
 
 namespace ProtonVPN.Profiles.Form

@@ -20,7 +20,7 @@
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Vpn;
-using ProtonVPN.Resources;
+using ProtonVPN.Translations;
 using System.Threading.Tasks;
 using System.Windows;
 

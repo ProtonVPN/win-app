@@ -25,9 +25,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         xmlns:bugReporting="clr-namespace:ProtonVPN.BugReporting"
         xmlns:wpf="clr-namespace:ProtonVPN.Core.Wpf"
         xmlns:modals="clr-namespace:ProtonVPN.Modals"
-        xmlns:resources="clr-namespace:ProtonVPN.Resources"
+        xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
         Style="{StaticResource BaseModalStyle}"
-        Title="{resources:Loc BugReport_ttl}"
+        Title="{translations:Loc BugReport_ttl}"
         mc:Ignorable="d"
         Width="Auto"
         Height="Auto"
@@ -101,26 +101,26 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </Grid>
 
             <DockPanel Grid.Row="1" Background="{StaticResource ModalBarColor}" Height="66" LastChildFill="False">
-                <Label Style="{StaticResource SendingLabel}" Content="{resources:Loc BugReport_msg_SendingInfo}"/>
+                <Label Style="{StaticResource SendingLabel}" Content="{translations:Loc BugReport_msg_SendingInfo}"/>
                 <StackPanel Style="{StaticResource FormButtonsPanel}">
                     <Button Style="{StaticResource SecondaryModalButton}"
-                        Content="{resources:Loc BugReport_btn_Cancel}"
+                        Content="{translations:Loc BugReport_btn_Cancel}"
                         Command="{Binding CloseCommand}"/>
                     <Button Style="{StaticResource PrimaryModalButton}"
-                            Content="{resources:Loc BugReport_btn_Send}"
+                            Content="{translations:Loc BugReport_btn_Send}"
                             Command="{Binding SendReportCommand}"/>
                 </StackPanel>
                 <StackPanel Style="{StaticResource FailureButtonsPanel}">
                     <Button Style="{StaticResource SecondaryModalButton}"
-                        Content="{resources:Loc BugReport_btn_Back}"
+                        Content="{translations:Loc BugReport_btn_Back}"
                         Command="{Binding BackCommand}"/>
                     <Button Style="{StaticResource PrimaryModalButton}"
-                        Content="{resources:Loc BugReport_btn_Retry}"
+                        Content="{translations:Loc BugReport_btn_Retry}"
                         Command="{Binding RetryCommand}"/>
                 </StackPanel>
                 <StackPanel Style="{StaticResource SuccessButtonsPanel}">
                     <Button Style="{StaticResource PrimaryModalButton}"
-                        Content="{resources:Loc BugReport_btn_Close}"
+                        Content="{translations:Loc BugReport_btn_Close}"
                         Command="{Binding CloseCommand}"/>
                 </StackPanel>
             </DockPanel>

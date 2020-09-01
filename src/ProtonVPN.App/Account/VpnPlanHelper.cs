@@ -18,7 +18,7 @@
  */
 
 using ProtonVPN.Common.Extensions;
-using ProtonVPN.Resources;
+using ProtonVPN.Translations;
 
 namespace ProtonVPN.Account
 {

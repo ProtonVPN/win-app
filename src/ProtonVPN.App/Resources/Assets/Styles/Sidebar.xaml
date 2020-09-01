@@ -23,7 +23,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     xmlns:sidebar="clr-namespace:ProtonVPN.Sidebar"
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                    xmlns:resources="clr-namespace:ProtonVPN.Resources"
+                    xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
                     mc:Ignorable="d">
 
     <Style x:Key="ButtonGrid" TargetType="Grid">
@@ -104,14 +104,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Border>
         <ControlTemplate.Triggers>
             <DataTrigger Binding="{Binding Connected}" Value="True">
-                <Setter TargetName="Button" Property="Content" Value="{resources:Loc Servers_btn_Disconnect}"/>
+                <Setter TargetName="Button" Property="Content" Value="{translations:Loc Servers_btn_Disconnect}"/>
                 <Setter Property="Visibility" Value="Visible"/>
             </DataTrigger>
             <DataTrigger Binding="{Binding Connected}" Value="False">
-                <Setter TargetName="Button" Property="Content" Value="{resources:Loc Servers_btn_Connect}"/>
+                <Setter TargetName="Button" Property="Content" Value="{translations:Loc Servers_btn_Connect}"/>
             </DataTrigger>
             <DataTrigger Binding="{Binding UpgradeRequired}" Value="True">
-                <Setter TargetName="Button" Property="Content" Value="{resources:Loc Servers_btn_Upgrade}"/>
+                <Setter TargetName="Button" Property="Content" Value="{translations:Loc Servers_btn_Upgrade}"/>
             </DataTrigger>
             <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Border}}, Path=IsMouseOver}" Value="True">
                 <Setter Property="Visibility" Value="Visible"/>
@@ -128,7 +128,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <Setter TargetName="ConnectButtonOutterBorder" Property="BorderBrush" Value="Red"/>
                 <Setter TargetName="ConnectButtonInnerBorder" Property="Background" Value="Red"/>
                 <Setter TargetName="Button" Property="Foreground" Value="White"/>
-                <Setter TargetName="Button" Property="Content" Value="{resources:Loc Servers_btn_Disconnect}"/>
+                <Setter TargetName="Button" Property="Content" Value="{translations:Loc Servers_btn_Disconnect}"/>
             </MultiDataTrigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
@@ -164,7 +164,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="Border.CornerRadius" Value="20"/>
         <Setter Property="Width" Value="150"/>
         <Setter Property="Height" Value="40"/>
-        <Setter Property="Content" Value="{resources:Loc Sidebar_Profiles_btn_Create}"/>
+        <Setter Property="Content" Value="{translations:Loc Sidebar_Profiles_btn_Create}"/>
         <Setter Property="Margin" Value="0,20,0,0"/>
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="Border.BorderBrush" Value="White"/>
@@ -250,7 +250,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                VerticalContentAlignment="Center"
                                HorizontalAlignment="Stretch"
                                HorizontalContentAlignment="Center"
-                               Content="{resources:Loc Sidebar_Countries_ttl}"/>
+                               Content="{translations:Loc Sidebar_Countries_ttl}"/>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
@@ -273,7 +273,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <ControlTemplate>
                     <Grid>
                         <Path Name="Path" Fill="#24242b" HorizontalAlignment="Left" Data="M58.000,-0.000 L50.970,-0.000 C50.970,-0.000 29.000,-0.875 24.606,15.750 C20.212,32.375 18.894,41.562 10.545,45.500 C2.197,49.437 -0.000,49.000 -0.000,49.000 L185.000,49.000 L185.000,-0.000 Z" Stretch="Fill"/>
-                        <Label Name="Label" Margin="6,0,0,0" Foreground="#494c58" HorizontalContentAlignment="Center" VerticalAlignment="Stretch" VerticalContentAlignment="Center" FontSize="16" Content="{resources:Loc Sidebar_Profiles_ttl}"/>
+                        <Label Name="Label" Margin="6,0,0,0" Foreground="#494c58" HorizontalContentAlignment="Center" VerticalAlignment="Stretch" VerticalContentAlignment="Center" FontSize="16" Content="{translations:Loc Sidebar_Profiles_ttl}"/>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
