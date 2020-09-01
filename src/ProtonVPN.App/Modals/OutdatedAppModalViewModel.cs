@@ -63,6 +63,11 @@ namespace ProtonVPN.Modals
             Application.Current.Shutdown();
         }
 
+        protected override void OnDeactivate(bool close)
+        {
+            CloseAction();
+        }
+
         public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
         {
             KillSwitchEnabled = e.NetworkBlocked;

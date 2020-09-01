@@ -17,26 +17,24 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Common.OS.Processes;
+
 namespace ProtonVPN.ErrorMessage
 {
-    internal class ParsedMessage
+    internal class RepairLauncher
     {
-        private readonly string[] _messages;
-        private const string UnknownError = "Unknown error";
+        private readonly IOsProcesses _osProcesses;
+        private readonly string _productCode;
 
-        public ParsedMessage(string[] messages)
+        public RepairLauncher(IOsProcesses osProcesses, string productCode)
         {
-            _messages = messages;
+            _productCode = productCode;
+            _osProcesses = osProcesses;
         }
 
-        public override string ToString()
+        public void Repair()
         {
-            return _messages.Length == 0 ? UnknownError : GetMessage();
-        }
-
-        private string GetMessage()
-        {
-            return "Missing file: " + _messages[0];
+            _osProcesses.ElevatedCommandLineProcess($"/c msiexec /fa \"{_productCode}\"").Start();
         }
     }
 }

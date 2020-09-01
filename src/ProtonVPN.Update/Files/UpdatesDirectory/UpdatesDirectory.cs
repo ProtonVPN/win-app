@@ -65,7 +65,7 @@ namespace ProtonVPN.Update.Files.UpdatesDirectory
             var files = Directory.GetFiles(dir, "*", SearchOption.TopDirectoryOnly);
             foreach (var file in files)
             {
-                if (!IsExeFile(file) || FileVersion(file) <= currentVersion)
+                if (!IsExeFile(file) || FileVersion(file) < currentVersion)
                     File.Delete(file);
             }
         }

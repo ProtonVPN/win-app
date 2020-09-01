@@ -3648,6 +3648,69 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string ErrorWindow_lbl_Close {
+            get {
+                return ResourceManager.GetString("ErrorWindow_lbl_Close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Download.
+        /// </summary>
+        public static string ErrorWindow_lbl_Download {
+            get {
+                return ResourceManager.GetString("ErrorWindow_lbl_Download", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Download ant install the latest version to fix the problem..
+        /// </summary>
+        public static string ErrorWindow_lbl_DownloadInfo {
+            get {
+                return ResourceManager.GetString("ErrorWindow_lbl_DownloadInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The application is missing a required file.
+        /// </summary>
+        public static string ErrorWindow_lbl_MissingHeading {
+            get {
+                return ResourceManager.GetString("ErrorWindow_lbl_MissingHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Some applications on your PC might have removed some files or prevented them to be installed successfully..
+        /// </summary>
+        public static string ErrorWindow_lbl_MissingInfo {
+            get {
+                return ResourceManager.GetString("ErrorWindow_lbl_MissingInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Repair.
+        /// </summary>
+        public static string ErrorWindow_lbl_Repair {
+            get {
+                return ResourceManager.GetString("ErrorWindow_lbl_Repair", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please repair your installation..
+        /// </summary>
+        public static string ErrorWindow_lbl_RepairInfo {
+            get {
+                return ResourceManager.GetString("ErrorWindow_lbl_RepairInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Arabic.
         /// </summary>
         public static string Language_ar {

@@ -17,18 +17,30 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows;
-using ProtonVPN.Resource;
+using System;
+using System.Windows.Input;
 
-namespace ProtonVPN.Modals
+namespace ProtonVPN.ErrorMessage
 {
-    public class ModalWindows : IModalWindows
+    internal class GenericCommand : ICommand
     {
-        public IEnumerable<BaseModalWindow> List()
+        private readonly Action _action;
+
+        public GenericCommand(Action action)
         {
-            return Application.Current.Windows.OfType<BaseModalWindow>();
+            _action = action;
         }
+
+        public bool CanExecute(object parameter)
+        {
+            return true;
+        }
+
+        public void Execute(object parameter)
+        {
+            _action.Invoke();
+        }
+
+        public event EventHandler CanExecuteChanged;
     }
 }

@@ -18,17 +18,29 @@
  */
 
 using System.Windows;
+using ProtonVPN.Common.Configuration;
+using ProtonVPN.Common.OS.Processes;
 
 namespace ProtonVPN.ErrorMessage
 {
     public partial class App
     {
-        public void OnStart(object sender, StartupEventArgs e)
+        private void OnStartup(object sender, StartupEventArgs e)
         {
-            var window = new MainWindow();
-            window.SetTitle(e.Args[0] ?? string.Empty);
-            window.SetMessage(e.Args[1] ?? string.Empty);
+            var config = new ConfigFactory().Config();
+            var osProcesses = new SystemProcesses(new NullLogger());
+            var productCode = GetProductCode();
+            var installerPath = new InstallerPath(productCode, config);
+            var repairLauncher = new RepairLauncher(osProcesses, productCode);
+            var vm = new MainWindowViewModel(config, repairLauncher, osProcesses, installerPath);
+            var window = new MainWindow(vm);
             window.Show();
+        }
+
+        private string GetProductCode()
+        {
+            var productCode = new ProductCode("ProtonVPN");
+            return productCode.Value();
         }
     }
 }

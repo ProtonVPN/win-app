@@ -17,18 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows;
-using ProtonVPN.Resource;
-
-namespace ProtonVPN.Modals
+namespace ProtonVPN.Resource.Controls
 {
-    public class ModalWindows : IModalWindows
+    public partial class ProtonAnimation
     {
-        public IEnumerable<BaseModalWindow> List()
+        public ProtonAnimation()
         {
-            return Application.Current.Windows.OfType<BaseModalWindow>();
+            InitializeComponent();
         }
     }
 }
