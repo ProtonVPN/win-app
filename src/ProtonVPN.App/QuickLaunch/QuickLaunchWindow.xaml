@@ -26,10 +26,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         xmlns:calcBinding="clr-namespace:CalcBinding;assembly=CalcBinding"
         xmlns:fa="http://schemas.fontawesome.io/icons/"
         xmlns:controls1="clr-namespace:ProtonVPN.Views.Controls"
-        xmlns:wpf="clr-namespace:ProtonVPN.Core.Wpf"
         xmlns:profiles="clr-namespace:ProtonVPN.Profiles"
         xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
         xmlns:quickLaunch="clr-namespace:ProtonVPN.QuickLaunch"
+        xmlns:resource="clr-namespace:ProtonVPN.Resource;assembly=ProtonVPN.Resource"
         WindowStyle="None"
         ShowInTaskbar="False"
         ResizeMode="CanMinimize"
@@ -166,7 +166,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Grid Margin="0,15" HorizontalAlignment="Center" Height="50">
             <StackPanel VerticalAlignment="Center">
                 <StackPanel Visibility="{Binding Connecting, Converter={StaticResource BoolToVis}}" Orientation="Horizontal">
-                    <Image Name="Spinner" Style="{StaticResource Spinner}" wpf:ControlExtension.Spin="{Binding Connecting}" Visibility="{Binding Connecting, Converter={StaticResource BoolToVis}}"/>
+                    <Image Name="Spinner" Style="{StaticResource Spinner}" resource:ControlExtension.Spin="{Binding Connecting}" Visibility="{Binding Connecting, Converter={StaticResource BoolToVis}}"/>
                     <TextBlock Foreground="White" FontSize="14" Padding="10,0,0,0">
                         <Run Text="{translations:Loc QuickLaunch_lbl_Connecting}"/><Run Text=" "/>
                         <Run Text="{Binding ServerName, Mode=OneWay}"/>

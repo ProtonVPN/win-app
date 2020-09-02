@@ -512,7 +512,6 @@
     <Compile Include="Core\Wpf\Behavior\TextStyleBehavior.cs" />
     <Compile Include="Core\Wpf\ClippingBorder.cs" />
     <Compile Include="Core\Wpf\ComboBox.cs" />
-    <Compile Include="Core\Wpf\ControlExtension.cs" />
     <Compile Include="Core\Wpf\PlaceholderTextBox.cs" />
     <Compile Include="Core\Wpf\Scrollviewer.cs" />
     <Compile Include="Sidebar\Trial\TrialView.xaml.cs">
@@ -993,15 +992,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Resources\Assets\Styles\Animations.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Resources\Assets\Styles\Checkbox.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Resources\Assets\Styles\ClearButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1018,10 +1009,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\Assets\Styles\Menu.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Resources\Assets\Styles\Modal.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
