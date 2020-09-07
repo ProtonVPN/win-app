@@ -156,6 +156,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </MultiDataTrigger.Conditions>
                 <Setter Property="Visibility" Value="Collapsed"/>
             </MultiDataTrigger>
+            <DataTrigger Binding="{Binding Dimmed}" Value="True">
+                <Setter Property="Visibility" Value="Collapsed"/>
+            </DataTrigger>
         </Style.Triggers>
     </Style>
     <Style x:Key="CreateProfileButton" TargetType="Button" BasedOn="{StaticResource ClearStyleButton}">

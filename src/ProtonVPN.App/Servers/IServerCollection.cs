@@ -24,9 +24,15 @@ namespace ProtonVPN.Servers
     internal interface IServerCollection : IServerListItem
     {
         bool Connected { get; }
+
         bool Expanded { get; set; }
+
         bool IsMarkedForRemoval { get; }
+
         string CountryCode { get; }
+
         ObservableCollection<IServerListItem> Servers { get; }
+
+        bool HasAvailableServers();
     }
 }
