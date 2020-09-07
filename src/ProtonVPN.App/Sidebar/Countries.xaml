@@ -139,6 +139,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </Grid>
 
                         <ControlTemplate.Triggers>
+                            <DataTrigger Binding="{Binding Dimmed}" Value="True">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                            </DataTrigger>
                             <DataTrigger Binding="{Binding Expanded}" Value="True">
                                 <Setter TargetName="Arrow" Property="Icon" Value="ChevronUp"/>
                                 <Setter TargetName="Arrow" Property="Margin" Value="0.5,-0.5,0,2"/>
@@ -237,8 +240,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="Visibility" Value="Hidden"/>
             <Setter Property="Icon" Value="Wrench"/>
+            <Setter Property="ToolTip" Value="{translations:Loc Sidebar_Countries_lbl_Maintenance}"/>
             <Style.Triggers>
                 <DataTrigger Binding="{Binding Server.Status}" Value="0">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="CountryMaintenanceIcon" BasedOn="{StaticResource MaintenanceIcon}" TargetType="fa:FontAwesome">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Dimmed}" Value="True">
                     <Setter Property="Visibility" Value="Visible"/>
                 </DataTrigger>
             </Style.Triggers>
@@ -273,6 +284,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Setter Property="MinHeight" Value="48"/>
             <Setter Property="Background" Value="{StaticResource SidebarTabBackgroundColor}"/>
             <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Dimmed}" Value="True">
+                    <Setter Property="Cursor" Value="Arrow"/>
+                </DataTrigger>
+            </Style.Triggers>
         </Style>
     </UserControl.Resources>
 
@@ -464,6 +480,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             </Grid>
 
                             <Button Style="{StaticResource ToggleButton}"/>
+                            <fa:FontAwesome Style="{StaticResource CountryMaintenanceIcon}"/>
                         </Grid>
                     </Border>
                 </DataTemplate>
@@ -497,6 +514,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         CommandParameter="{Binding}"/>
                             </Grid>
                             <Button Style="{StaticResource ToggleButton}"/>
+                            <fa:FontAwesome Style="{StaticResource CountryMaintenanceIcon}"/>
                         </Grid>
                     </Border>
                 </DataTemplate>
@@ -515,7 +533,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     Style="{StaticResource SidebarServerConnectButton}"
                                     Command="{Binding DataContext.Connect, RelativeSource={RelativeSource AncestorType=ListView}}"
                                     CommandParameter="{Binding}"/>
-                            <fa:FontAwesome Style="{StaticResource MaintenanceIcon}" ToolTip="{translations:Loc Sidebar_Countries_lbl_Maintenance}"/>
+                            <fa:FontAwesome Style="{StaticResource MaintenanceIcon}"/>
                         </Grid>
                     </Grid>
                 </DataTemplate>
@@ -555,7 +573,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         Command="{Binding DataContext.Connect, RelativeSource={RelativeSource AncestorType=ListView}}"
                                         CommandParameter="{Binding}"/>
                             </Grid>
-                            <fa:FontAwesome Style="{StaticResource MaintenanceIcon}" ToolTip="{translations:Loc Sidebar_Countries_lbl_Maintenance}"/>
+                            <fa:FontAwesome Style="{StaticResource MaintenanceIcon}"/>
                             <Label Style="{StaticResource UpgradeRequiredLabel}" Content="{translations:Loc Servers_lbl_Upgrade}"/>
                         </Grid>
                     </Grid>

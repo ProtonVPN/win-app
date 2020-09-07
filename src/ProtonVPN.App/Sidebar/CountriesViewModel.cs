@@ -134,10 +134,11 @@ namespace ProtonVPN.Sidebar
 
         public void ExpandCollection(IServerCollection serverCollection)
         {
-            if (serverCollection.Expanded)
+            if (serverCollection.Expanded || !serverCollection.HasAvailableServers())
             {
                 return;
             }
+
             serverCollection.Expanded = true;
 
             var index = _items.IndexOf(serverCollection) + 1;

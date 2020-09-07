@@ -63,7 +63,7 @@ namespace ProtonVPN.Servers
             }
         }
 
-        protected override bool HasAvailableServers()
+        public override bool HasAvailableServers()
         {
             if (!ServersAvailable.HasValue)
             {
