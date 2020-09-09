@@ -24,15 +24,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:bugReporting="clr-namespace:ProtonVPN.BugReporting"
         xmlns:wpf="clr-namespace:ProtonVPN.Core.Wpf"
-        xmlns:fa="http://schemas.fontawesome.io/icons/"
         xmlns:modals="clr-namespace:ProtonVPN.Modals"
-        xmlns:errors="clr-namespace:ProtonVPN.BugReporting.Errors"
         xmlns:resources="clr-namespace:ProtonVPN.Resources"
         Style="{StaticResource BaseModalStyle}"
         Title="{resources:Loc BugReport_ttl}"
         mc:Ignorable="d"
-        Width="800"
-        Height="600"
+        Width="400"
+        Height="Auto"
+        SizeToContent="Height"
         d:DataContext="{d:DesignInstance bugReporting:ReportBugModalViewModel}">
     <Window.Resources>
         <Style x:Key="ButtonsPanel" TargetType="StackPanel">
@@ -62,27 +61,18 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </DataTrigger>
             </Style.Triggers>
         </Style>
-        <Style x:Key="SendingLabel" TargetType="Label">
-            <Setter Property="DockPanel.Dock" Value="Right"/>
+        <Style x:Key="SendingText" TargetType="TextBlock">
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontSize" Value="16"/>
-            <Setter Property="HorizontalAlignment" Value="Right"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="TextAlignment" Value="Center"/>
             <Setter Property="Visibility" Value="Collapsed"/>
             <Setter Property="Margin" Value="10,0"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
             <Style.Triggers>
                 <DataTrigger Binding="{Binding Sending}" Value="True">
                     <Setter Property="Visibility" Value="Visible"/>
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
-        <Style x:Key="ErrorPanel" TargetType="Grid">
-            <Setter Property="Background" Value="#dd4445"/>
-            <Setter Property="VerticalAlignment" Value="Bottom"/>
-            <Setter Property="Margin" Value="0,0,0,66"/>
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding Error, Converter={StaticResource EmptyStringToBoolConverter}}" Value="True">
-                    <Setter Property="Visibility" Value="Collapsed"/>
                 </DataTrigger>
             </Style.Triggers>
         </Style>
@@ -111,83 +101,33 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </wpf:ChangeAwareContentControl>
             </Grid>
 
-            <DockPanel Grid.Row="1" Background="{StaticResource ModalBarColor}" Height="66" LastChildFill="False">
-                <Label Style="{StaticResource SendingLabel}" Content="{resources:Loc BugReport_msg_SendingInfo}"/>
-                <StackPanel Style="{StaticResource FormButtonsPanel}">
-                    <Button Style="{StaticResource SecondaryModalButton}"
-                        Content="{resources:Loc BugReport_btn_Cancel}"
-                        Command="{Binding CloseCommand}"/>
-                    <Button Style="{StaticResource PrimaryModalButton}"
-                        Content="{resources:Loc BugReport_btn_Send}"
-                        Command="{Binding SendReportCommand}"/>
+            <Grid Grid.Row="1" Background="{StaticResource ModalBarColor}" Height="66">
+                <TextBlock Style="{StaticResource SendingText}"
+                           Text="{resources:Loc BugReport_msg_SendingInfo}"/>
+                <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <StackPanel Style="{StaticResource FormButtonsPanel}">
+                        <Button Style="{StaticResource SecondaryModalButton}"
+                                Content="{resources:Loc BugReport_btn_Cancel}"
+                                Command="{Binding CloseCommand}"/>
+                        <Button Style="{StaticResource PrimaryModalButton}"
+                                Content="{resources:Loc BugReport_btn_Send}"
+                                Command="{Binding SendReportCommand}"/>
+                    </StackPanel>
+                    <StackPanel Style="{StaticResource FailureButtonsPanel}">
+                        <Button Style="{StaticResource SecondaryModalButton}"
+                                Content="{resources:Loc BugReport_btn_Back}"
+                                Command="{Binding BackCommand}"/>
+                        <Button Style="{StaticResource PrimaryModalButton}"
+                                Content="{resources:Loc BugReport_btn_Retry}"
+                                Command="{Binding RetryCommand}"/>
+                    </StackPanel>
+                    <StackPanel Style="{StaticResource SuccessButtonsPanel}">
+                        <Button Style="{StaticResource PrimaryModalButton}"
+                                Content="{resources:Loc BugReport_btn_Close}"
+                                Command="{Binding CloseCommand}"/>
+                    </StackPanel>
                 </StackPanel>
-                <StackPanel Style="{StaticResource FailureButtonsPanel}">
-                    <Button Style="{StaticResource SecondaryModalButton}"
-                        Content="{resources:Loc BugReport_btn_Back}"
-                        Command="{Binding BackCommand}"/>
-                    <Button Style="{StaticResource PrimaryModalButton}"
-                        Content="{resources:Loc BugReport_btn_Retry}"
-                        Command="{Binding RetryCommand}"/>
-                </StackPanel>
-                <StackPanel Style="{StaticResource SuccessButtonsPanel}">
-                    <Button Style="{StaticResource PrimaryModalButton}"
-                        Content="{resources:Loc BugReport_btn_Close}"
-                        Command="{Binding CloseCommand}"/>
-                </StackPanel>
-            </DockPanel>
-        </Grid>
-        <Grid Style="{StaticResource ErrorPanel}">
-            <StackPanel Orientation="Horizontal" Margin="10,10">
-                <ContentPresenter Content="{Binding Error}">
-                    <ContentPresenter.Resources>
-                        <DataTemplate DataType="{x:Type errors:AttachmentSizeLimit}">
-                            <Grid>
-                                <TextBlock TextWrapping="Wrap"
-                                           FontSize="14"
-                                           MaxWidth="520"
-                                           Foreground="White"
-                                           Text="{Binding ErrorMessage, Mode=OneWay}"/>
-                            </Grid>
-                        </DataTemplate>
-                        <DataTemplate DataType="{x:Type errors:AttachmentLimit}">
-                            <Grid>
-                                <TextBlock TextWrapping="Wrap"
-                                           FontSize="14"
-                                           MaxWidth="520"
-                                           Foreground="White"
-                                           Text="{Binding ErrorMessage, Mode=OneWay}">
-                                </TextBlock>
-                            </Grid>
-                        </DataTemplate>
-                        <DataTemplate DataType="{x:Type errors:AttachmentReadError}">
-                            <Grid>
-                                <TextBlock TextWrapping="Wrap"
-                                           FontSize="14"
-                                           MaxWidth="520"
-                                           Foreground="White"
-                                           Text="{resources:Loc BugReport_AttachmentError_msg_ReadError}">
-                                </TextBlock>
-                            </Grid>
-                        </DataTemplate>
-                    </ContentPresenter.Resources>
-                </ContentPresenter>
-
-                <fa:FontAwesome Icon="InfoCircle"
-                                Foreground="White"
-                                FontSize="14"
-                                Padding="5,0"
-                                VerticalAlignment="Center"
-                                ToolTip="{Binding ErrorDetails}"/>
-            </StackPanel>
-
-            <Button Style="{StaticResource ClearStyleButton}"
-                    HorizontalAlignment="Right"
-                    Margin="0,0,15,0"
-                    Background="Transparent"
-                    BorderBrush="Transparent"
-                    Command="{Binding CloseErrorCommand}">
-                <fa:FontAwesome Icon="Close" Foreground="White" FontSize="12" FontWeight="Bold"/>
-            </Button>
+            </Grid>
         </Grid>
     </Grid>
 </modals:BaseModalWindow>

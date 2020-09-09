@@ -29,6 +29,8 @@ namespace ProtonVPN.Core.Api.Contracts
         [JsonProperty(PropertyName = "HolesIPs")]
         public IReadOnlyList<string> HolesIps { get; set; }
 
+        public int? ServerRefreshInterval { get; set; }
+
         public FeatureFlags FeatureFlags { get; set; }
     }
 
@@ -50,5 +52,7 @@ namespace ProtonVPN.Core.Api.Contracts
         public bool NetShield { get; set; }
 
         public bool GuestHoles { get; set; }
+
+        public bool? ServerRefresh { get; set; }
     }
 }

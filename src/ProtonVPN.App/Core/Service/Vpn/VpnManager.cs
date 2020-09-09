@@ -36,7 +36,7 @@ using ProtonVPN.Vpn.Connectors;
 
 namespace ProtonVPN.Core.Service.Vpn
 {
-    public class VpnManager : IVpnManager, IVpnPlanAware, ILogoutAware, IServersAware, ISettingsAware
+    public class VpnManager : IVpnManager, IVpnPlanAware, ILogoutAware, ISettingsAware
     {
         private readonly ILogger _logger;
         private readonly ProfileConnector _profileConnector;
@@ -127,11 +127,6 @@ namespace ProtonVPN.Core.Service.Vpn
         {
             _state = new VpnState(VpnStatus.Disconnected);
             RaiseVpnStateChanged(new VpnStateChangedEventArgs(_state, VpnError.None, _networkBlocked));
-        }
-
-        public void OnServersUpdated()
-        {
-            Queued(() => UpdateServersOrDisconnect(VpnError.NoServers));
         }
 
         private async Task ConnectInternal(Profile profile)

@@ -21,13 +21,15 @@ namespace ProtonVPN.Core.Servers.Models
 {
     public class PhysicalServer
     {
+        public string Id { get; }
         public string EntryIp { get; }
         public string ExitIp { get; }
         public string Domain { get; }
         public sbyte Status { get; }
 
-        public PhysicalServer(string entryIp, string exitIp, string domain, sbyte status)
+        public PhysicalServer(string id, string entryIp, string exitIp, string domain, sbyte status)
         {
+            Id = id;
             EntryIp = entryIp;
             ExitIp = exitIp;
             Domain = domain;

@@ -89,6 +89,7 @@
     </Compile>
     <Compile Include="Api\ApiAppVersion.cs" />
     <Compile Include="Api\Contracts\EventResponse.cs" />
+    <Compile Include="Api\Contracts\ServerStatusResponse.cs" />
     <Compile Include="Api\Contracts\SessionsResponse.cs" />
     <Compile Include="Api\Contracts\VpnConfig.cs" />
     <Compile Include="Api\Extensions\X509CertificateExtensions.cs" />
@@ -226,8 +227,11 @@
     <Compile Include="Servers\ApiServers.cs" />
     <Compile Include="Servers\FastestServer.cs" />
     <Compile Include="Servers\Contracts\GuestHoleServerContract.cs" />
+    <Compile Include="Servers\IApiServers.cs" />
+    <Compile Include="Servers\ILastServerLoadTimeProvider.cs" />
     <Compile Include="Servers\IServersAware.cs" />
     <Compile Include="Servers\IServerUpdater.cs" />
+    <Compile Include="Servers\LastServerLoadTimeProvider.cs" />
     <Compile Include="Servers\Models\PhysicalServer.cs" />
     <Compile Include="Servers\Models\Server.cs" />
     <Compile Include="Servers\ServerCandidates.cs" />
@@ -240,6 +244,7 @@
     <Compile Include="Servers\Name\StandardProfileName.cs" />
     <Compile Include="Servers\Name\StandardServerName.cs" />
     <Compile Include="Servers\RandomServer.cs" />
+    <Compile Include="Servers\ServerLoadUpdater.cs" />
     <Compile Include="Servers\ServerManager.cs" />
     <Compile Include="Servers\ServerNameComparer.cs" />
     <Compile Include="Servers\ServerUpdater.cs" />
@@ -299,6 +304,9 @@
     <Compile Include="Vpn\IVpnStateAware.cs" />
     <Compile Include="Vpn\VpnState.cs" />
     <Compile Include="Vpn\VpnStateChangedEventArgs.cs" />
+    <Compile Include="Window\IMainWindowState.cs" />
+    <Compile Include="Window\MainWindowState.cs" />
+    <Compile Include="Window\WindowStateMessage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

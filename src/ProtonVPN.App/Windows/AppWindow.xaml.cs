@@ -34,6 +34,7 @@ using System.Windows.Forms;
 using System.Windows.Interop;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Effects;
+using ProtonVPN.Core.Window;
 
 namespace ProtonVPN.Windows
 {
@@ -85,6 +86,9 @@ namespace ProtonVPN.Windows
             _blurOutAnimation.Completed += OnBlurOutAnimationCompleted;
             _blurInAnimation.Completed += OnBlurInAnimationCompleted;
             Loaded += OnWindowLoaded;
+
+            Deactivated += PublishWindowState;
+            Activated += PublishWindowState;
         }
 
         public void Handle(ToggleOverlay message)
@@ -129,6 +133,15 @@ namespace ProtonVPN.Windows
             {
                 TurnOffSidebarMode();
             }
+        }
+
+        public void OnStepChanged(int step)
+        {
+            var min = DefaultWidth;
+            if (Width < min)
+                Width = min;
+
+            ResizeMode = step > 0 ? ResizeMode.NoResize : ResizeMode.CanResize;
         }
 
         protected override void OnStateChanged(EventArgs e)
@@ -334,13 +347,9 @@ namespace ProtonVPN.Windows
             }
         }
 
-        public void OnStepChanged(int step)
+        private void PublishWindowState(object sender, EventArgs e)
         {
-            var min = DefaultWidth;
-            if (Width < min)
-                Width = min;
-
-            ResizeMode = step > 0 ? ResizeMode.NoResize : ResizeMode.CanResize;
+            _eventAggregator.PublishOnUIThread(new WindowStateMessage(IsActive));
         }
     }
 }

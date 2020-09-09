@@ -38,6 +38,12 @@ namespace ProtonVPN.Common.OS.Net.NetworkInterface
 
         public string Id => _networkInterface.Id;
 
+        public string Name => _networkInterface.Name;
+
+        public string Description => _networkInterface.Description;
+
         public bool IsLoopback => _networkInterface.NetworkInterfaceType == NetworkInterfaceType.Loopback;
+
+        public bool IsActive => _networkInterface.OperationalStatus == OperationalStatus.Up;
     }
 }

@@ -19,9 +19,11 @@
 
 using Autofac;
 using ProtonVPN.BugReporting.Attachments.Source;
+using ProtonVPN.BugReporting.Diagnostic;
 using ProtonVPN.Common.Helpers;
 using ProtonVPN.Common.Logging;
-using Module = Autofac.Module;
+using ProtonVPN.Common.OS.Net.NetworkInterface;
+using ProtonVPN.Common.OS.Processes;
 
 namespace ProtonVPN.BugReporting
 {
@@ -39,19 +41,51 @@ namespace ProtonVPN.BugReporting
                 var logger = c.Resolve<ILogger>();
 
                 return new Attachments.Attachments(
-                    logger,
-                    appConfig,
                     new FilesToAttachments(
                         new ConcatenatedSequence<string>(
                             new SafeFileSource(logger,
-                                new LogFileSource(appConfig.AppLogFolder, appConfig.MaxAppLogsAttached)),
+                                new LogFileSource(
+                                    appConfig.ReportBugMaxFileSize,
+                                    appConfig.DiagnosticsLogFolder,
+                                    appConfig.MaxDiagnosticLogsAttached)),
                             new SafeFileSource(logger,
-                                new LogFileSource(appConfig.ServiceLogFolder, appConfig.MaxServiceLogsAttached)),
+                                new LogFileSource(
+                                    appConfig.ReportBugMaxFileSize,
+                                    appConfig.AppLogFolder,
+                                    appConfig.MaxAppLogsAttached)),
                             new SafeFileSource(logger,
-                                new LogFileSource(appConfig.UpdateServiceLogFolder, appConfig.MaxUpdaterServiceLogsAttached)))),
-                    new FilesToAttachments(
-                        new SelectFileSource()));
+                                new LogFileSource(
+                                    appConfig.ReportBugMaxFileSize,
+                                    appConfig.ServiceLogFolder,
+                                    appConfig.MaxServiceLogsAttached)),
+                            new SafeFileSource(logger,
+                                new LogFileSource(
+                                    appConfig.ReportBugMaxFileSize,
+                                    appConfig.UpdateServiceLogFolder,
+                                    appConfig.MaxUpdaterServiceLogsAttached)))));
             }).SingleInstance();
+
+            builder.Register(c => new InstalledAppsLog(c.Resolve<Common.Configuration.Config>().DiagnosticsLogFolder))
+                .As<ILog>()
+                .SingleInstance();
+
+            builder.Register(c => new DriverInstallLog(c.Resolve<Common.Configuration.Config>().DiagnosticsLogFolder))
+                .As<ILog>()
+                .SingleInstance();
+
+            builder.Register(c => new NetworkAdapterLog(
+                    c.Resolve<INetworkInterfaces>(),
+                    c.Resolve<Common.Configuration.Config>().DiagnosticsLogFolder))
+                .As<ILog>()
+                .SingleInstance();
+
+            builder.Register(c => new RoutingTableLog(
+                    c.Resolve<IOsProcesses>(),
+                    c.Resolve<Common.Configuration.Config>().DiagnosticsLogFolder))
+                .As<ILog>()
+                .SingleInstance();
+
+            builder.RegisterType<NetworkLogWriter>().SingleInstance();
         }
     }
 }

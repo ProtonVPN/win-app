@@ -17,14 +17,14 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common;
-using ProtonVPN.Common.Logging;
-using ProtonVPN.Common.Vpn;
-using ProtonVPN.Vpn.Common;
 using System;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
+using ProtonVPN.Common;
+using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Vpn;
+using ProtonVPN.Vpn.Common;
 
 namespace ProtonVPN.Vpn.Management
 {

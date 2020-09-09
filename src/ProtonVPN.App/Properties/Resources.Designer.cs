@@ -664,69 +664,6 @@ namespace ProtonVPN.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unable to read:.
-        /// </summary>
-        public static string BugReport_AttachmentError_lbl_ReadError {
-            get {
-                return ResourceManager.GetString("BugReport_AttachmentError_lbl_ReadError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Files exceeding size limit:.
-        /// </summary>
-        public static string BugReport_AttachmentError_lbl_TooLarge {
-            get {
-                return ResourceManager.GetString("BugReport_AttachmentError_lbl_TooLarge", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Skipped files:.
-        /// </summary>
-        public static string BugReport_AttachmentError_lbl_TooMany {
-            get {
-                return ResourceManager.GetString("BugReport_AttachmentError_lbl_TooMany", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unable to read the file..
-        /// </summary>
-        public static string BugReport_AttachmentError_msg_ReadError {
-            get {
-                return ResourceManager.GetString("BugReport_AttachmentError_msg_ReadError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to You can only attach files under {0}..
-        /// </summary>
-        public static string BugReport_AttachmentError_msg_TooLarge {
-            get {
-                return ResourceManager.GetString("BugReport_AttachmentError_msg_TooLarge", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to You can only attach up to {0} file..
-        /// </summary>
-        public static string BugReport_AttachmentError_msg_TooMany_One {
-            get {
-                return ResourceManager.GetString("BugReport_AttachmentError_msg_TooMany_One", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to You can only attach up to {0} files..
-        /// </summary>
-        public static string BugReport_AttachmentError_msg_TooMany_Other {
-            get {
-                return ResourceManager.GetString("BugReport_AttachmentError_msg_TooMany_Other", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Back.
         /// </summary>
         public static string BugReport_btn_Back {
@@ -781,33 +718,6 @@ namespace ProtonVPN.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Account:.
-        /// </summary>
-        public static string BugReport_lbl_Account {
-            get {
-                return ResourceManager.GetString("BugReport_lbl_Account", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Country:.
-        /// </summary>
-        public static string BugReport_lbl_Country {
-            get {
-                return ResourceManager.GetString("BugReport_lbl_Country", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Your Country (optional).
-        /// </summary>
-        public static string BugReport_lbl_Country_Watermark {
-            get {
-                return ResourceManager.GetString("BugReport_lbl_Country_Watermark", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Email:.
         /// </summary>
         public static string BugReport_lbl_Email {
@@ -826,83 +736,43 @@ namespace ProtonVPN.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Feedback.
+        ///   Looks up a localized string similar to What are the exact steps you performed?.
         /// </summary>
-        public static string BugReport_lbl_Feedback {
+        public static string BugReport_lbl_HowToReproduce {
             get {
-                return ResourceManager.GetString("BugReport_lbl_Feedback", resourceCulture);
+                return ResourceManager.GetString("BugReport_lbl_HowToReproduce", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your message....
+        ///   Looks up a localized string similar to Include app logs and system details.
         /// </summary>
-        public static string BugReport_lbl_Feedback_Watermark {
+        public static string BugReport_lbl_IncludeLogs {
             get {
-                return ResourceManager.GetString("BugReport_lbl_Feedback_Watermark", resourceCulture);
+                return ResourceManager.GetString("BugReport_lbl_IncludeLogs", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ISP:.
+        ///   Looks up a localized string similar to Providing the following details, our team can identify your problem and a possible solution with higher chances and shorter time:
+        ///• Drivers installation log
+        ///• List of installed applications
+        ///• ProtonVPN app and ProtonVPN service logs
+        ///• List of network adapters
+        ///• Routing table information.
         /// </summary>
-        public static string BugReport_lbl_Isp {
+        public static string BugReport_lbl_IncludeLogsInfo {
             get {
-                return ResourceManager.GetString("BugReport_lbl_Isp", resourceCulture);
+                return ResourceManager.GetString("BugReport_lbl_IncludeLogsInfo", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your ISP (optional).
+        ///   Looks up a localized string similar to What went wrong?.
         /// </summary>
-        public static string BugReport_lbl_Isp_Watermark {
+        public static string BugReport_lbl_WhatWentWrong {
             get {
-                return ResourceManager.GetString("BugReport_lbl_Isp_Watermark", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Max file size limit:.
-        /// </summary>
-        public static string BugReport_lbl_MaxFileSize {
-            get {
-                return ResourceManager.GetString("BugReport_lbl_MaxFileSize", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Plan:.
-        /// </summary>
-        public static string BugReport_lbl_Plan {
-            get {
-                return ResourceManager.GetString("BugReport_lbl_Plan", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Version:.
-        /// </summary>
-        public static string BugReport_lbl_Version {
-            get {
-                return ResourceManager.GetString("BugReport_lbl_Version", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Add File.
-        /// </summary>
-        public static string BugReport_lnk_AddFile {
-            get {
-                return ResourceManager.GetString("BugReport_lnk_AddFile", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Be sure to provide detailed information about the problem you encountered and attach any files that could help us reproduce the issue. Please provide us with a way to contact you if more information is needed..
-        /// </summary>
-        public static string BugReport_msg_Info {
-            get {
-                return ResourceManager.GetString("BugReport_msg_Info", resourceCulture);
+                return ResourceManager.GetString("BugReport_lbl_WhatWentWrong", resourceCulture);
             }
         }
         
@@ -3434,7 +3304,7 @@ namespace ProtonVPN.Properties {
                 return ResourceManager.GetString("Dialogs_DisconnectError_msg_OldVersion", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Maximum connection limit reached..
         /// </summary>
@@ -5854,6 +5724,15 @@ namespace ProtonVPN.Properties {
         public static string StartMinimizedMode_val_ToTaskbar {
             get {
                 return ResourceManager.GetString("StartMinimizedMode_val_ToTaskbar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start typing....
+        /// </summary>
+        public static string TextBoxPlaceholder {
+            get {
+                return ResourceManager.GetString("TextBoxPlaceholder", resourceCulture);
             }
         }
         

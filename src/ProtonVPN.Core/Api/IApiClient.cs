@@ -29,10 +29,12 @@ namespace ProtonVPN.Core.Api
     {
         Task<ApiResponseResult<AuthResponse>> GetAuthResponse(AuthRequestData data);
         Task<ApiResponseResult<AuthInfo>> GetAuthInfoResponse(AuthInfoRequestData data);
+        Task<ApiResponseResult<PhysicalServerResponse>> GetServerAsync(string serverId);
         Task<ApiResponseResult<VpnInfoResponse>> GetVpnInfoResponse();
         Task<ApiResponseResult<BaseResponse>> GetLogoutResponse();
         Task<ApiResponseResult<EventResponse>> GetEventResponse(string lastId = default);
         Task<ApiResponseResult<ServerList>> GetServersAsync(string ip);
+        Task<ApiResponseResult<ServerList>> GetServerLoadsAsync(string ip);
         Task<ApiResponseResult<UserLocation>> GetLocationDataAsync();
         Task<ApiResponseResult<BaseResponse>> ReportBugAsync(IEnumerable<KeyValuePair<string, string>> fields, IEnumerable<File> files);
         Task<ApiResponseResult<SessionsResponse>> GetSessions();

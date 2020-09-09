@@ -19,7 +19,6 @@
 
 using System;
 using System.Runtime.InteropServices;
-using System.Windows;
 using System.Windows.Interop;
 using ProtonVPN.Core.Native.Structures;
 
@@ -37,14 +36,14 @@ namespace ProtonVPN.Core.Native
         [DllImport("user32.dll")]
         private static extern bool GetWindowPlacement(IntPtr hWnd, [In, Out] WindowPlacement lpwndpl);
 
-        public static WindowPlacement GetWindowPlacement(this Window window)
+        public static WindowPlacement GetWindowPlacement(this System.Windows.Window window)
         {
             var result = new WindowPlacement();
             GetWindowPlacement(new WindowInteropHelper(window).Handle, result);
             return result;
         }
 
-        public static bool SetWindowPlacement(this Window window, WindowPlacement placement, bool restoreFromMinimizedState, bool hide)
+        public static bool SetWindowPlacement(this System.Windows.Window window, WindowPlacement placement, bool restoreFromMinimizedState, bool hide)
         {
             placement.Length = Marshal.SizeOf(typeof(WindowPlacement));
             placement.Flags = 0;

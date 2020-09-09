@@ -30,7 +30,6 @@ using Autofac;
 using Caliburn.Micro;
 using ProtonVPN.Account;
 using ProtonVPN.BugReporting;
-using ProtonVPN.BugReporting.Attachments;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.OS.Processes;
@@ -54,7 +53,6 @@ using ProtonVPN.Core.Service;
 using ProtonVPN.Core.Service.Settings;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
-using ProtonVPN.Core.Settings.Migrations;
 using ProtonVPN.Core.Startup;
 using ProtonVPN.Core.Update;
 using ProtonVPN.Core.User;
@@ -69,6 +67,8 @@ using ProtonVPN.Onboarding;
 using ProtonVPN.P2PDetection;
 using ProtonVPN.QuickLaunch;
 using ProtonVPN.Resources;
+using ProtonVPN.Settings;
+using ProtonVPN.Settings.Migrations;
 using ProtonVPN.Sidebar;
 using ProtonVPN.Trial;
 using ProtonVPN.ViewModels;
@@ -400,11 +400,6 @@ namespace ProtonVPN.Core
                 }
             };
 
-            Resolve<Attachments>().OnErrorOccured += (sender, e) =>
-            {
-                Resolve<ReportBugModalViewModel>().OnAttachmentErrorOccured(e);
-            };
-
             Resolve<UnauthorizedResponseHandler>().SessionExpired += (sender, e) =>
             {
                 Resolve<ExpiredSessionHandler>().Execute();
@@ -451,7 +446,7 @@ namespace ProtonVPN.Core
 
             LoadViewModels();
             Resolve<P2PDetector>();
-            Resolve<VpnInfoChecker>().Start(appConfig.VpnInfoCheckInterval.RandomizedWithDeviation(0.2));
+            Resolve<VpnInfoChecker>();
 
             var appWindow = Resolve<AppWindow>();
             appWindow.DataContext = Resolve<MainViewModel>();

@@ -24,6 +24,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using ProtonVPN.Common.Logging;
 using ProtonVPN.Core.Abstract;
 using ProtonVPN.Core.Api;
 using ProtonVPN.Core.Api.Contracts;
@@ -37,7 +38,10 @@ namespace ProtonVPN.UI.Test.ApiClient
         private readonly HttpClient _client;
         private readonly JsonSerializer _jsonSerializer = new JsonSerializer();
 
-        public Client(HttpClient client, ITokenStorage tokenStorage) : base(new ApiAppVersion(), tokenStorage, "3", "en")
+        public Client(
+            ILogger logger,
+            HttpClient client,
+            ITokenStorage tokenStorage) : base(logger, new ApiAppVersion(), tokenStorage, "3", "en")
         {
             _client = client;
         }
@@ -121,6 +125,8 @@ namespace ProtonVPN.UI.Test.ApiClient
 
         public Task<ApiResponseResult<ServerList>> GetServersAsync(string ip) => throw new NotImplementedException();
 
+        public Task<ApiResponseResult<ServerList>> GetServerLoadsAsync(string ip) => throw new NotImplementedException();
+
         public async Task<ApiResponseResult<UserLocation>> GetLocationDataAsync()
         {
             try
@@ -146,6 +152,7 @@ namespace ProtonVPN.UI.Test.ApiClient
 
         public Task<ApiResponseResult<VpnConfig>> GetVpnConfig() => throw new NotImplementedException();
 
+        public Task<ApiResponseResult<PhysicalServerResponse>> GetServerAsync(string serverId) => throw new NotImplementedException();
 
         private ApiResponseResult<T> GetResponseStreamResult<T>(Stream stream, HttpStatusCode code) where T : BaseResponse
         {

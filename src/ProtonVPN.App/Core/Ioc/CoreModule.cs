@@ -45,7 +45,9 @@ using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Storage;
 using ProtonVPN.Core.Threading;
 using ProtonVPN.Core.Update;
+using ProtonVPN.Core.Window;
 using ProtonVPN.Resources;
+using ProtonVPN.Settings;
 using ProtonVPN.Vpn;
 using Module = Autofac.Module;
 
@@ -121,6 +123,7 @@ namespace ProtonVPN.Core.Ioc
 
             builder.Register(c =>
                     new TokenClient(
+                        c.Resolve<ILogger>(),
                         new HttpClient(c.Resolve<RetryingHandler>())
                             {BaseAddress = c.Resolve<IActiveUrls>().ApiUrl.Uri},
                         c.Resolve<IApiAppVersion>(),
@@ -231,6 +234,9 @@ namespace ProtonVPN.Core.Ioc
                 c.Resolve<Common.Configuration.Config>().DohClientTimeout))
                 .SingleInstance();
             builder.RegisterType<UnhandledExceptionLogging>().SingleInstance();
+            builder.RegisterType<MainWindowState>().As<IMainWindowState>().SingleInstance();
+            builder.RegisterType<SingleActionFactory>().As<ISingleActionFactory>().SingleInstance();
+            builder.RegisterType<LastServerLoadTimeProvider>().As<ILastServerLoadTimeProvider>().SingleInstance();
         }
     }
 }

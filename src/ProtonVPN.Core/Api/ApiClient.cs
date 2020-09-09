@@ -19,11 +19,8 @@
 
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Core.Abstract;
 using ProtonVPN.Core.Api.Contracts;
@@ -36,9 +33,6 @@ namespace ProtonVPN.Core.Api
     {
         private readonly HttpClient _client;
         private readonly HttpClient _noCacheClient;
-        private readonly ILogger _logger;
-
-        private readonly JsonSerializer _jsonSerializer = new JsonSerializer();
 
         public ApiClient(
             HttpClient client,
@@ -47,9 +41,8 @@ namespace ProtonVPN.Core.Api
             ITokenStorage tokenStorage,
             IApiAppVersion appVersion,
             string apiVersion,
-            string locale) : base(appVersion, tokenStorage, apiVersion, locale)
+            string locale) : base(logger, appVersion, tokenStorage, apiVersion, locale)
         {
-            _logger = logger;
             _client = client;
             _noCacheClient = noCacheClient;
         }
@@ -159,13 +152,6 @@ namespace ProtonVPN.Core.Api
                 var uri = "vpn/logicals";
                 if (!string.IsNullOrEmpty(ip))
                 {
-                    // The following route is used to retrieve VPN server information,
-                    // including scores for the best server to connect to depending on
-                    // a user's proximity to a server and its load. To provide relevant
-                    // scores even when connected to VPN, we send a truncated version
-                    // of the user's public IP address. In keeping with our no-logs policy,
-                    // this partial IP address is not stored on the server and is only used
-                    // to fulfill this one-off API request.
                     uri += $"?IP={ip}";
                 }
 
@@ -173,6 +159,27 @@ namespace ProtonVPN.Core.Api
                 using var response = await _client.SendAsync(request).ConfigureAwait(false);
                 var stream = await response.Content.ReadAsStreamAsync();
                 return Logged(GetResponseStreamResult<ServerList>(stream, response.StatusCode), "Get servers");
+            }
+            catch (Exception e) when (e.IsApiCommunicationException())
+            {
+                throw new HttpRequestException(e.Message, e);
+            }
+        }
+
+        public async Task<ApiResponseResult<ServerList>> GetServerLoadsAsync(string ip)
+        {
+            try
+            {
+                var uri = "vpn/loads";
+                if (!string.IsNullOrEmpty(ip))
+                {
+                    uri += $"?IP={ip}";
+                }
+
+                var request = GetAuthorizedRequest(HttpMethod.Get, uri);
+                using var response = await _client.SendAsync(request).ConfigureAwait(false);
+                var stream = await response.Content.ReadAsStreamAsync();
+                return Logged(GetResponseStreamResult<ServerList>(stream, response.StatusCode), "Get server loads");
             }
             catch (Exception e) when (e.IsApiCommunicationException())
             {
@@ -319,31 +326,19 @@ namespace ProtonVPN.Core.Api
             }
         }
 
-        private ApiResponseResult<T> GetResponseStreamResult<T>(Stream stream, HttpStatusCode code) where T : BaseResponse
+        public async Task<ApiResponseResult<PhysicalServerResponse>> GetServerAsync(string serverId)
         {
-            using var streamReader = new StreamReader(stream);
-            using var jsonTextReader = new JsonTextReader(streamReader);
-
-            var response = _jsonSerializer.Deserialize<T>(jsonTextReader);
-            if (response == null)
+            try
             {
-                throw new HttpRequestException(string.Empty);
+                var request = GetAuthorizedRequest(HttpMethod.Get, $"vpn/servers/{serverId}");
+                using var response = await _client.SendAsync(request).ConfigureAwait(false);
+                var body = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+                return Logged(ApiResponseResult<PhysicalServerResponse>(body, response.StatusCode), "Get server status");
             }
-
-            if (response.Code != ResponseCodes.OkResponse)
+            catch (Exception e) when (e.IsApiCommunicationException())
             {
-                return Api.ApiResponseResult<T>.Fail(code, response.Error);
+                throw new HttpRequestException(e.Message, e);
             }
-
-            return Api.ApiResponseResult<T>.Ok(response);
-        }
-
-        protected ApiResponseResult<T> Logged<T>(ApiResponseResult<T> result, string message = null) where T : BaseResponse
-        {
-            if (result.Failure)
-                _logger.Error($"API: {(!string.IsNullOrEmpty(message) ? message : "Request")} failed: {result.Error}");
-
-            return result;
         }
     }
 }

@@ -42,6 +42,9 @@ namespace ProtonVPN.Common.Configuration
         public string AppLogFolder { get; internal set; }
 
         [Required]
+        public string DiagnosticsLogFolder { get; internal set; }
+
+        [Required]
         public string TranslationsFolder { get; internal set; }
 
         [Required]
@@ -90,6 +93,9 @@ namespace ProtonVPN.Common.Configuration
         public int MaxAppLogsAttached { get; internal set; }
 
         [Range(1, 100)]
+        public int MaxDiagnosticLogsAttached { get; internal set; }
+
+        [Range(1, 100)]
         public int MaxServiceLogsAttached { get; internal set; }
 
         [Range(1, 100)]
@@ -135,6 +141,9 @@ namespace ProtonVPN.Common.Configuration
         public TimeSpan ServerUpdateInterval { get; internal set; }
 
         [Range(typeof(TimeSpan), "00:00:10", "23:59:59")]
+        public TimeSpan ServerLoadUpdateInterval { get; internal set; }
+
+        [Range(typeof(TimeSpan), "00:00:10", "23:59:59")]
         public TimeSpan P2PCheckInterval { get; internal set; }
 
         [Range(typeof(TimeSpan), "00:00:10", "23:59:59")]
@@ -175,6 +184,8 @@ namespace ProtonVPN.Common.Configuration
 
         public IReadOnlyList<string> DefaultBlackHoleIps { get; internal set; } = new List<string>();
 
+        public bool MaintenanceTrackerEnabled { get; internal set; }
+
         public UrlConfig Urls { get; } = new UrlConfig();
 
         public OpenVpnConfig OpenVpn { get; } = new OpenVpnConfig();
@@ -183,9 +194,10 @@ namespace ProtonVPN.Common.Configuration
 
         public List<string> DoHProviders { get; internal set; } = new List<string>();
 
-        public bool NetShieldEnabled { get; internal set; }
-
         [Required]
         public string DefaultLocale { get; internal set; }
+
+        [Range(typeof(TimeSpan), "00:00:00", "23:59:59")]
+        public TimeSpan MaintenanceCheckInterval { get; internal set; }
     }
 }

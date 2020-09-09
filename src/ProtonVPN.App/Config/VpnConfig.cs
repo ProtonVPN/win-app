@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -35,12 +36,21 @@ namespace ProtonVPN.Config
             TcpPorts = config.DefaultOpenVpnTcpPorts;
             UdpPorts = config.DefaultOpenVpnUdpPorts;
             BlackHoleIps = config.DefaultBlackHoleIps;
+            MaintenanceTrackerEnabled = config.MaintenanceTrackerEnabled;
+            MaintenanceCheckInterval = config.MaintenanceCheckInterval;
         }
 
         public int[] TcpPorts { get; private set; }
+
         public int[] UdpPorts { get; private set; }
+
         public IReadOnlyList<string> BlackHoleIps { get; private set; }
+
         public bool NetShieldEnabled { get; private set; }
+
+        public bool MaintenanceTrackerEnabled { get; private set; }
+
+        public TimeSpan MaintenanceCheckInterval { get; private set; }
 
         public async Task Update()
         {
@@ -52,6 +62,16 @@ namespace ProtonVPN.Config
                     TcpPorts = response.Value.OpenVpnConfig.DefaultPorts.Tcp;
                     UdpPorts = response.Value.OpenVpnConfig.DefaultPorts.Udp;
                     NetShieldEnabled = response.Value.FeatureFlags.NetShield;
+
+                    if (response.Value.FeatureFlags.ServerRefresh.HasValue)
+                    {
+                        MaintenanceTrackerEnabled = response.Value.FeatureFlags.ServerRefresh.Value;
+                    }
+
+                    if (response.Value.ServerRefreshInterval.HasValue)
+                    {
+                        MaintenanceCheckInterval = TimeSpan.FromMinutes(response.Value.ServerRefreshInterval.Value);
+                    }
 
                     if (response.Value.HolesIps != null)
                     {

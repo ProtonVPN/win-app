@@ -28,23 +28,25 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <UserControl.Resources>
         <Style x:Key="TroubleshootButton" TargetType="Button" BasedOn="{StaticResource ClearStyleButton}">
             <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Margin" Value="0,10,0,0"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
             <Setter Property="Command" Value="{Binding TroubleshootCommand}"/>
         </Style>
     </UserControl.Resources>
     <Grid Background="{StaticResource ModalContentColor}">
-        <StackPanel VerticalAlignment="Center">
-            <icons:Failure
-                Width="64"
-                Height="64"
-                Foreground="White"
-                HorizontalAlignment="Center"/>
-            <Label Content="{resources:Loc BugReport_msg_SendingFailed}"
-                   FontSize="16"
-                   Margin="0,20,0,0"
-                   HorizontalAlignment="Center"
-                   Foreground="White"/>
+        <StackPanel VerticalAlignment="Center" Margin="10">
+            <icons:Failure Width="64"
+                           Height="64"
+                           Foreground="White"
+                           HorizontalAlignment="Center"/>
+            <TextBlock Text="{resources:Loc BugReport_msg_SendingFailed}"
+                       TextWrapping="Wrap"
+                       FontSize="16"
+                       TextAlignment="Center"
+                       Margin="0,20,0,0"
+                       HorizontalAlignment="Center"
+                       Foreground="White"/>
             <Button Style="{StaticResource TroubleshootButton}">
                 <Underline>
                     <TextBlock Text="{resources:Loc BugReport_btn_Troubleshoot}"/>
