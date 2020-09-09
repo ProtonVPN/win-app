@@ -17,8 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Helpers;
 using System;
+using ProtonVPN.Common.Helpers;
 
 namespace ProtonVPN.BugReporting.Attachments
 {
@@ -30,12 +30,10 @@ namespace ProtonVPN.BugReporting.Attachments
 
         public long Length { get; }
 
-        public AttachmentErrorType ErrorType { get; }
-
-        public Attachment(string filePath) : this(System.IO.Path.GetFileName(filePath), filePath, 0, AttachmentErrorType.None)
+        public Attachment(string filePath) : this(System.IO.Path.GetFileName(filePath), filePath, 0)
         { }
 
-        private Attachment(string name, string path, long length, AttachmentErrorType errorType)
+        private Attachment(string name, string path, long length)
         {
             Ensure.NotEmpty(name, nameof(name));
             Ensure.NotEmpty(path, nameof(path));
@@ -43,44 +41,16 @@ namespace ProtonVPN.BugReporting.Attachments
             Name = name;
             Path = path;
             Length = length;
-            ErrorType = errorType;
         }
 
         public Attachment WithLength(long length)
         {
-            return new Attachment(Name, Path, length, ErrorType);
+            return new Attachment(Name, Path, length);
         }
-
-        public Attachment WithError(AttachmentErrorType errorType)
-        {
-            return new Attachment(Name, Path, Length, errorType);
-        }
-
-        #region IEquatable
 
         public bool Equals(Attachment other)
         {
-            if (ReferenceEquals(null, other)) return false;
-            if (ReferenceEquals(this, other)) return true;
-
-            return string.Equals(Path, other.Path, StringComparison.OrdinalIgnoreCase);
+            return Path == other?.Path;
         }
-
-        public override bool Equals(object obj)
-        {
-            if (ReferenceEquals(null, obj)) return false;
-            if (ReferenceEquals(this, obj)) return true;
-            if (!ReferenceEquals(GetType(), obj.GetType())) return false;
-
-            return Equals((Attachment) obj);
-        }
-
-        public override int GetHashCode()
-        {
-            return HashCode.Start
-                .Hash(Path.ToUpperInvariant());
-        }
-
-        #endregion
     }
 }

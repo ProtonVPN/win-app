@@ -53,6 +53,8 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 AppLogFolder = Path.Combine(localAppDataFolder, "Logs"),
 
+                DiagnosticsLogFolder = Path.Combine(localAppDataFolder, "DiagnosticLogs"),
+
                 TranslationsFolder = baseFolder,
 
                 ErrorMessageExePath = Path.Combine(baseFolder, "ProtonVPN.ErrorMessage.exe"),
@@ -83,11 +85,13 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 LocalAppDataFolder = localAppDataFolder,
 
-                MaxAppLogsAttached = 3,
+                MaxDiagnosticLogsAttached = 4,
 
-                MaxServiceLogsAttached = 3,
+                MaxAppLogsAttached = 2,
 
-                MaxUpdaterServiceLogsAttached = 3,
+                MaxServiceLogsAttached = 2,
+
+                MaxUpdaterServiceLogsAttached = 2,
 
                 ApiClientId = "WindowsVPN",
 
@@ -113,11 +117,13 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 UpdateRemindInterval = TimeSpan.FromHours(24),
 
-                ServerUpdateInterval = TimeSpan.FromMinutes(10),
+                ServerUpdateInterval = TimeSpan.FromHours(3),
+
+                ServerLoadUpdateInterval = TimeSpan.FromMinutes(15),
 
                 P2PCheckInterval = TimeSpan.FromSeconds(30),
 
-                VpnInfoCheckInterval = TimeSpan.FromMinutes(5),
+                VpnInfoCheckInterval = TimeSpan.FromMinutes(3),
 
                 DefaultCurrency = "USD",
 
@@ -144,6 +150,10 @@ namespace ProtonVPN.Common.Configuration.Source
                 DefaultBlackHoleIps = new List<string> {"62.112.9.168", "104.245.144.186"},
 
                 DefaultLocale = "en",
+
+                MaintenanceTrackerEnabled = true,
+
+                MaintenanceCheckInterval = TimeSpan.FromMinutes(30),
 
                 Urls =
                 {

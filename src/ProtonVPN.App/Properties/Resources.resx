@@ -389,18 +389,6 @@
     <value>Failed to send Bug Report. Please try again.</value>
     <comment>The message displayed in Bug Report window when sending bug report fails</comment>
   </data>
-  <data name="BugReport_msg_Info" xml:space="preserve">
-    <value>Be sure to provide detailed information about the problem you encountered and attach any files that could help us reproduce the issue. Please provide us with a way to contact you if more information is needed.</value>
-    <comment>The description displayed on top of Bug Report window</comment>
-  </data>
-  <data name="BugReport_lbl_Plan" xml:space="preserve">
-    <value>Plan:</value>
-    <comment>The label for user account plan in Bug Report window</comment>
-  </data>
-  <data name="BugReport_lbl_Version" xml:space="preserve">
-    <value>Version:</value>
-    <comment>The label for current app version in Bug Report window</comment>
-  </data>
   <data name="BugReport_lbl_Email" xml:space="preserve">
     <value>Email:</value>
     <comment>The label for user e-mail address in Bug Report window</comment>
@@ -409,37 +397,9 @@
     <value>Country:</value>
     <comment>The label for Country combo box in Profile window</comment>
   </data>
-  <data name="BugReport_lbl_Isp" xml:space="preserve">
-    <value>ISP:</value>
-    <comment>The label for user ISP in Bug Report window</comment>
-  </data>
   <data name="BugReport_lbl_Email_Watermark" xml:space="preserve">
     <value>Your E-mail Address</value>
     <comment>The watermark text displayed in empty user e-mail text box in Bug Report window</comment>
-  </data>
-  <data name="BugReport_lbl_Country_Watermark" xml:space="preserve">
-    <value>Your Country (optional)</value>
-    <comment>The watermark text displayed in empty user country text box on Bug Report window</comment>
-  </data>
-  <data name="BugReport_lbl_Isp_Watermark" xml:space="preserve">
-    <value>Your ISP (optional)</value>
-    <comment>The watermark text displayed in user ISP text box on Bug Report window</comment>
-  </data>
-  <data name="BugReport_lnk_AddFile" xml:space="preserve">
-    <value>Add File</value>
-    <comment>The text on Add File button in Bug Report window (opens a window for selecting files to add)</comment>
-  </data>
-  <data name="BugReport_lbl_MaxFileSize" xml:space="preserve">
-    <value>Max file size limit:</value>
-    <comment>The label for max file size limit in Bug Report window</comment>
-  </data>
-  <data name="BugReport_lbl_Feedback" xml:space="preserve">
-    <value>Feedback</value>
-    <comment>The label for user feedback text box in Bug Report window</comment>
-  </data>
-  <data name="BugReport_lbl_Feedback_Watermark" xml:space="preserve">
-    <value>Your message...</value>
-    <comment>The watermark text displayed in user feedback text box on Bug Report window</comment>
   </data>
   <data name="BugReport_btn_Send" xml:space="preserve">
     <value>Send</value>
@@ -460,14 +420,6 @@
   <data name="BugReport_msg_SendingSucceeded" xml:space="preserve">
     <value>The Bug Report has been successfully sent.</value>
     <comment>The message displayed in Bug Report window when sending completes</comment>
-  </data>
-  <data name="BugReport_AttachmentError_msg_TooLarge" xml:space="preserve">
-    <value>You can only attach files under {0}.</value>
-    <comment>The message displayed in bug Report window when file size is greater than max file size allowed. The {0} is a placeholder for max file size.</comment>
-  </data>
-  <data name="BugReport_AttachmentError_msg_TooMany_One" xml:space="preserve">
-    <value>You can only attach up to {0} file.</value>
-    <comment>The message displayed in Bug Report window when number of files is greater than allowed. The {0} is a placeholder for max number of attachments allowed.</comment>
   </data>
   <data name="Servers_Load_lbl_IPAutoAssigned" xml:space="preserve">
     <value>Auto assigned</value>
@@ -1002,22 +954,6 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <value>Some changes require reconnecting in order to take effect.</value>
     <comment>The message displayed on the bottom of Settings window if any of settings changes requires VPN to be reconnected to take effect</comment>
   </data>
-  <data name="BugReport_AttachmentError_lbl_TooLarge" xml:space="preserve">
-    <value>Files exceeding size limit:</value>
-    <comment>The heading for list of files not attached because of size limit displayed in a tooltip of error message in Bug Report window</comment>
-  </data>
-  <data name="BugReport_AttachmentError_msg_ReadError" xml:space="preserve">
-    <value>Unable to read the file.</value>
-    <comment>The message displayed in bug Report window when file read error occurs during sending report</comment>
-  </data>
-  <data name="BugReport_AttachmentError_lbl_ReadError" xml:space="preserve">
-    <value>Unable to read:</value>
-    <comment>The heading for list of files not attached because of read error displayed in a tooltip of error message in Bug Report window</comment>
-  </data>
-  <data name="BugReport_AttachmentError_lbl_TooMany" xml:space="preserve">
-    <value>Skipped files:</value>
-    <comment>The heading for list of files not attached because of count limit displayed in a tooltip of error message in Bug Report window</comment>
-  </data>
   <data name="About_ttl" xml:space="preserve">
     <value>About</value>
     <comment>The title of About window</comment>
@@ -1037,10 +973,6 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
   <data name="App_mnu_Profiles" xml:space="preserve">
     <value>Profiles</value>
     <comment>The header of Profiles menu item in the main app window (opens Profiles window)</comment>
-  </data>
-  <data name="BugReport_lbl_Account" xml:space="preserve">
-    <value>Account:</value>
-    <comment>The label of user logon name in Bug Report window</comment>
   </data>
   <data name="Profiles_ttl" xml:space="preserve">
     <value>Profiles</value>
@@ -1145,10 +1077,6 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
   <data name="App_mnu_ReportBug" xml:space="preserve">
     <value>Report Bug</value>
     <comment>The header of Report Bug menu item in the main app window (opens Bug Report window)</comment>
-  </data>
-  <data name="BugReport_lbl_Country" xml:space="preserve">
-    <value>Country:</value>
-    <comment>The label for user country in Bug Report window</comment>
   </data>
   <data name="Connecting_lbl_ConnectingTo_1" xml:space="preserve">
     <value>Connecting to</value>
@@ -2802,10 +2730,6 @@ Exiting the application will disable the Kill Switch. Do you want to continue?</
     <value>Devices</value>
     <comment>The supported number of devices in Account window.</comment>
   </data>
-  <data name="BugReport_AttachmentError_msg_TooMany_Other" xml:space="preserve">
-    <value>You can only attach up to {0} files.</value>
-    <comment>The message displayed in Bug Report window when number of files is greater than allowed. The {0} is a placeholder for max number of attachments allowed.</comment>
-  </data>
   <data name="Profiles_Profile_Error_msg_NameTooLong_Other" xml:space="preserve">
     <value>Maximum profile name length is {0} symbols. Please choose a shorter profile name.</value>
     <comment>The error message displayed in Profile window when profile name is too long. The {0} is a placeholder for maximum profile name length value.</comment>
@@ -2924,5 +2848,30 @@ Exiting the application will disable the Kill Switch. Do you want to continue?</
   <data name="Account_lbl_TorOverVpn_Info" xml:space="preserve">
     <value>Route your Internet traffic through the Tor network with a single click.</value>
     <comment>Tooltip message shown in account window when hovered on TOR over VPN exclamation mark icon</comment>
+  </data>
+  <data name="BugReport_lbl_HowToReproduce" xml:space="preserve">
+    <value>What are the exact steps you performed?</value>
+    <comment>The label in Bug Report window</comment>
+  </data>
+  <data name="BugReport_lbl_IncludeLogs" xml:space="preserve">
+    <value>Include app logs and system details</value>
+    <comment>The label in Bug Report window</comment>
+  </data>
+  <data name="BugReport_lbl_IncludeLogsInfo" xml:space="preserve">
+    <value>Providing the following details, our team can identify your problem and a possible solution with higher chances and shorter time:
+• Drivers installation log
+• List of installed applications
+• ProtonVPN app and ProtonVPN service logs
+• List of network adapters
+• Routing table information</value>
+    <comment>The text inside info tooltip in Bug Report window</comment>
+  </data>
+  <data name="BugReport_lbl_WhatWentWrong" xml:space="preserve">
+    <value>What went wrong?</value>
+    <comment>The label in Bug Report window</comment>
+  </data>
+  <data name="TextBoxPlaceholder" xml:space="preserve">
+    <value>Start typing...</value>
+    <comment>The text disaplayed as a placeholder on any text box all over the application</comment>
   </data>
 </root>

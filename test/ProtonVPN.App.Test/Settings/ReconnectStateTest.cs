@@ -26,29 +26,29 @@ namespace ProtonVPN.App.Test.Settings
         public async Task ReconnectShouldBeRequiredOnlyIfChangesPending()
         {
             // Arrange
-            _appSettings.KillSwitch.Returns(false);
+            _appSettings.OvpnProtocol.Returns("tcp");
             var sut = new ReconnectState(_settingsBuilder);
             await sut.OnVpnStateChanged(GetVpnStateEventArgs(VpnStatus.Connected));
-            _appSettings.KillSwitch.Returns(true);
+            _appSettings.OvpnProtocol.Returns("udp");
 
             // Assert
-            sut.Required(nameof(IAppSettings.KillSwitch)).Should().BeTrue();
+            sut.Required(nameof(IAppSettings.OvpnProtocol)).Should().BeTrue();
         }
 
         [TestMethod]
         public async Task ReconnectShouldNotBeRequiredIfDisconnected()
         {
             // Arrange
-            _appSettings.KillSwitch.Returns(false);
+            _appSettings.OvpnProtocol.Returns("tcp");
             var sut = new ReconnectState(_settingsBuilder);
             await sut.OnVpnStateChanged(GetVpnStateEventArgs(VpnStatus.Connected));
-            _appSettings.KillSwitch.Returns(true);
+            _appSettings.OvpnProtocol.Returns("udp");
 
             // Act
             await sut.OnVpnStateChanged(GetVpnStateEventArgs(VpnStatus.Disconnected));
 
             // Assert
-            sut.Required(nameof(IAppSettings.KillSwitch)).Should().BeFalse();
+            sut.Required(nameof(IAppSettings.OvpnProtocol)).Should().BeFalse();
         }
 
         private VpnStateChangedEventArgs GetVpnStateEventArgs(VpnStatus status)

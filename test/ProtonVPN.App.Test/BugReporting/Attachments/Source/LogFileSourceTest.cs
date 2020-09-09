@@ -31,6 +31,8 @@ namespace ProtonVPN.App.Test.BugReporting.Attachments.Source
     [DeploymentItem("BugReporting\\Attachments\\TestData", "TestData")]
     public class LogFileSourceTest
     {
+        private const long MaxFileSize = 50 * 1024;
+
         [TestMethod]
         public void Enumerable_ShouldBe_FileNamesFrom_Directory()
         {
@@ -38,7 +40,7 @@ namespace ProtonVPN.App.Test.BugReporting.Attachments.Source
             const string folderPath = nameof(Enumerable_ShouldBe_FileNamesFrom_Directory);
             var fileNames = new[] { "Log 1.txt", "Log 2.txt", "Log 3.txt" };
             PrepareFiles(folderPath, fileNames);
-            var fileSource = new LogFileSource(folderPath, 5);
+            var fileSource = new LogFileSource(MaxFileSize, folderPath, 5);
             // Act
             var result = fileSource.Select(Path.GetFileName).ToList();
             // Assert
@@ -52,7 +54,7 @@ namespace ProtonVPN.App.Test.BugReporting.Attachments.Source
             const string folderPath = nameof(Enumerable_ShouldTake_OnlyCountOfFiles);
             var fileNames = new[] { "Log 1.txt", "Log 2.txt", "Log 3.txt" };
             PrepareFiles(folderPath, fileNames);
-            var fileSource = new LogFileSource(folderPath, 2);
+            var fileSource = new LogFileSource(MaxFileSize, folderPath, 2);
             // Act
             var result = fileSource.ToList();
             // Assert
@@ -69,11 +71,28 @@ namespace ProtonVPN.App.Test.BugReporting.Attachments.Source
             File.SetLastWriteTimeUtc(Path.Combine(folderPath, "Log 1.txt"), new DateTime(2020, 05, 15, 0, 3, 3));
             File.SetLastWriteTimeUtc(Path.Combine(folderPath, "Log 2.txt"), new DateTime(2020, 05, 15, 0, 1, 1));
             File.SetLastWriteTimeUtc(Path.Combine(folderPath, "Log 3.txt"), new DateTime(2020, 05, 15, 0, 2, 2));
-            var fileSource = new LogFileSource(folderPath, 3);
+            var fileSource = new LogFileSource(MaxFileSize, folderPath, 3);
             // Act
             var result = fileSource.Select(Path.GetFileName).ToList();
             // Assert
             result.Should().ContainInOrder("Log 1.txt", "Log 3.txt", "Log 2.txt");
+        }
+
+        [TestMethod]
+        public void Enumerable_ShouldTake_OnlyUnderSizeLimit()
+        {
+            // Arrange
+            const string folderPath = nameof(Enumerable_ShouldTake_OnlyUnderSizeLimit);
+            var fileNames = new[] { "Log 1.txt", "Log 2.txt", "tooBigFile.txt", "Log 3.txt" };
+            PrepareFiles(folderPath, fileNames);
+            File.WriteAllBytes(Path.Combine(folderPath, "tooBigFile.txt"), new byte[MaxFileSize + 1]);
+            var fileSource = new LogFileSource(MaxFileSize, folderPath, 4);
+
+            // Act
+            var result = fileSource.Select(Path.GetFileName).ToList();
+
+            // Assert
+            result.Contains("tooBigFile.txt").Should().BeFalse();
         }
 
         #region Helpers

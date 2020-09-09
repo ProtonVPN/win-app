@@ -21,6 +21,13 @@ using ProtonVPN.Core.Settings;
 
 namespace ProtonVPN.Core.User
 {
+    // The following route is used to retrieve VPN server information,
+    // including scores for the best server to connect to depending on
+    // a user's proximity to a server and its load. To provide relevant
+    // scores even when connected to VPN, we send a truncated version
+    // of the user's public IP address. In keeping with our no-logs policy,
+    // this partial IP address is not stored on the server and is only used
+    // to fulfill this one-off API request.
     public class TruncatedLocation
     {
         private readonly IUserStorage _userStorage;

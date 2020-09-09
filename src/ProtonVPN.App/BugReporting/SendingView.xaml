@@ -28,11 +28,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <Grid Background="{StaticResource ModalContentColor}">
         <StackPanel VerticalAlignment="Center">
             <controls:ProtonAnimation Width="100" Height="100" HorizontalAlignment="Center"/>
-            <Label Foreground="White"
+            <TextBlock Foreground="White"
                    Margin="0,20,0,0"
                    FontSize="16"
                    HorizontalAlignment="Center"
-                   Content="{resources:Loc BugReport_msg_Sending}"/>
+                   Text="{resources:Loc BugReport_msg_Sending}"/>
         </StackPanel>
     </Grid>
 </UserControl>

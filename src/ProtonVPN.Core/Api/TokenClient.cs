@@ -21,6 +21,7 @@ using System;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using ProtonVPN.Common.Logging;
 using ProtonVPN.Core.Abstract;
 using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.Api.Data;
@@ -32,11 +33,12 @@ namespace ProtonVPN.Core.Api
         private readonly HttpClient _client;
 
         public TokenClient(
+            ILogger logger,
             HttpClient client,
             IApiAppVersion appVersion,
             ITokenStorage tokenStorage,
             string apiVersion,
-            string locale) : base(appVersion, tokenStorage, apiVersion, locale)
+            string locale) : base(logger, appVersion, tokenStorage, apiVersion, locale)
         {
             _client = client;
         }
