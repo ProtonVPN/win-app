@@ -42,6 +42,9 @@ namespace ProtonVPN.Common.Configuration
         public string AppLogFolder { get; internal set; }
 
         [Required]
+        public string DiagnosticsLogFolder { get; internal set; }
+
+        [Required]
         public string TranslationsFolder { get; internal set; }
 
         [Required]
@@ -88,6 +91,9 @@ namespace ProtonVPN.Common.Configuration
 
         [Range(1, 100)]
         public int MaxAppLogsAttached { get; internal set; }
+
+        [Range(1, 100)]
+        public int MaxDiagnosticLogsAttached { get; internal set; }
 
         [Range(1, 100)]
         public int MaxServiceLogsAttached { get; internal set; }

@@ -53,6 +53,8 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 AppLogFolder = Path.Combine(localAppDataFolder, "Logs"),
 
+                DiagnosticsLogFolder = Path.Combine(localAppDataFolder, "DiagnosticLogs"),
+
                 TranslationsFolder = baseFolder,
 
                 ErrorMessageExePath = Path.Combine(baseFolder, "ProtonVPN.ErrorMessage.exe"),
@@ -83,11 +85,13 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 LocalAppDataFolder = localAppDataFolder,
 
-                MaxAppLogsAttached = 10,
+                MaxDiagnosticLogsAttached = 4,
 
-                MaxServiceLogsAttached = 3,
+                MaxAppLogsAttached = 2,
 
-                MaxUpdaterServiceLogsAttached = 3,
+                MaxServiceLogsAttached = 2,
+
+                MaxUpdaterServiceLogsAttached = 2,
 
                 ApiClientId = "WindowsVPN",
 

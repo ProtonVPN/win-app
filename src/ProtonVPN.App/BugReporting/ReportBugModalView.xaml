@@ -29,9 +29,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         Style="{StaticResource BaseModalStyle}"
         Title="{translations:Loc BugReport_ttl}"
         mc:Ignorable="d"
-        Width="Auto"
+        Width="400"
         Height="Auto"
-        SizeToContent="WidthAndHeight"
+        SizeToContent="Height"
         d:DataContext="{d:DesignInstance bugReporting:ReportBugModalViewModel}">
     <Window.Resources>
         <Style x:Key="ButtonsPanel" TargetType="StackPanel">
@@ -61,14 +61,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </DataTrigger>
             </Style.Triggers>
         </Style>
-        <Style x:Key="SendingLabel" TargetType="Label">
-            <Setter Property="DockPanel.Dock" Value="Right"/>
+        <Style x:Key="SendingText" TargetType="TextBlock">
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontSize" Value="16"/>
-            <Setter Property="HorizontalAlignment" Value="Right"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="TextAlignment" Value="Center"/>
             <Setter Property="Visibility" Value="Collapsed"/>
             <Setter Property="Margin" Value="10,0"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
             <Style.Triggers>
                 <DataTrigger Binding="{Binding Sending}" Value="True">
                     <Setter Property="Visibility" Value="Visible"/>
@@ -100,31 +101,33 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </wpf:ChangeAwareContentControl>
             </Grid>
 
-            <DockPanel Grid.Row="1" Background="{StaticResource ModalBarColor}" Height="66" LastChildFill="False">
-                <Label Style="{StaticResource SendingLabel}" Content="{translations:Loc BugReport_msg_SendingInfo}"/>
-                <StackPanel Style="{StaticResource FormButtonsPanel}">
-                    <Button Style="{StaticResource SecondaryModalButton}"
-                        Content="{translations:Loc BugReport_btn_Cancel}"
-                        Command="{Binding CloseCommand}"/>
-                    <Button Style="{StaticResource PrimaryModalButton}"
-                            Content="{translations:Loc BugReport_btn_Send}"
-                            Command="{Binding SendReportCommand}"/>
+            <Grid Grid.Row="1" Background="{StaticResource ModalBarColor}" Height="66">
+                <TextBlock Style="{StaticResource SendingText}"
+                           Text="{translations:Loc BugReport_msg_SendingInfo}"/>
+                <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <StackPanel Style="{StaticResource FormButtonsPanel}">
+                        <Button Style="{StaticResource SecondaryModalButton}"
+                                Content="{translations:Loc BugReport_btn_Cancel}"
+                                Command="{Binding CloseCommand}"/>
+                        <Button Style="{StaticResource PrimaryModalButton}"
+                                Content="{translations:Loc BugReport_btn_Send}"
+                                Command="{Binding SendReportCommand}"/>
+                    </StackPanel>
+                    <StackPanel Style="{StaticResource FailureButtonsPanel}">
+                        <Button Style="{StaticResource SecondaryModalButton}"
+                                Content="{translations:Loc BugReport_btn_Back}"
+                                Command="{Binding BackCommand}"/>
+                        <Button Style="{StaticResource PrimaryModalButton}"
+                                Content="{translations:Loc BugReport_btn_Retry}"
+                                Command="{Binding RetryCommand}"/>
+                    </StackPanel>
+                    <StackPanel Style="{StaticResource SuccessButtonsPanel}">
+                        <Button Style="{StaticResource PrimaryModalButton}"
+                                Content="{translations:Loc BugReport_btn_Close}"
+                                Command="{Binding CloseCommand}"/>
+                    </StackPanel>
                 </StackPanel>
-                <StackPanel Style="{StaticResource FailureButtonsPanel}">
-                    <Button Style="{StaticResource SecondaryModalButton}"
-                        Content="{translations:Loc BugReport_btn_Back}"
-                        Command="{Binding BackCommand}"/>
-                    <Button Style="{StaticResource PrimaryModalButton}"
-                        Content="{translations:Loc BugReport_btn_Retry}"
-                        Command="{Binding RetryCommand}"/>
-                </StackPanel>
-                <StackPanel Style="{StaticResource SuccessButtonsPanel}">
-                    <Button Style="{StaticResource PrimaryModalButton}"
-                        Content="{translations:Loc BugReport_btn_Close}"
-                        Command="{Binding CloseCommand}"/>
-                </StackPanel>
-            </DockPanel>
+            </Grid>
         </Grid>
     </Grid>
 </resource:BaseModalWindow>
-

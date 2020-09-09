@@ -17,48 +17,58 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
+using System.IO;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ProtonVPN.Config;
-using System;
-using System.IO;
 
 namespace ProtonVPN.App.Test.Core.Config
 {
     [TestClass]
     public class ConfigDirectoriesTest
     {
+        private const string MainFolder = "ProtonVPN";
+        private const string DiagnosticFolder = "Diagnostics";
+
         [TestMethod]
         public void Prepare_ShouldCreate_LocalAppDataFolder()
         {
             // Arrange
-            const string path = nameof(Prepare_ShouldCreate_LocalAppDataFolder);
-            if (Directory.Exists(path))
+            if (Directory.Exists(MainFolder))
             {
-                Directory.Delete(path);
+                Directory.Delete(MainFolder);
             }
+            var subject = new ConfigDirectories(GetConfig());
 
-            var config = new Common.Configuration.Config { LocalAppDataFolder = path };
-            var subject = new ConfigDirectories(config);
             // Act
             subject.Prepare();
+
             // Assert
-            Directory.Exists(path).Should().BeTrue();
+            Directory.Exists(MainFolder).Should().BeTrue();
+            Directory.Exists(DiagnosticFolder).Should().BeTrue();
         }
 
         [TestMethod]
         public void Prepare_ShouldSucceed_When_LocalAppDataFolder_Exists()
         {
             // Arrange
-            const string path = nameof(Prepare_ShouldSucceed_When_LocalAppDataFolder_Exists);
-            Directory.CreateDirectory(path);
+            var subject = new ConfigDirectories(GetConfig());
 
-            var config = new Common.Configuration.Config { LocalAppDataFolder = path };
-            var subject = new ConfigDirectories(config);
             // Act
             Action action = () => subject.Prepare();
+
             // Assert
             action.Should().NotThrow();
+        }
+
+        private Common.Configuration.Config GetConfig()
+        {
+            return new Common.Configuration.Config
+            {
+                LocalAppDataFolder = MainFolder,
+                DiagnosticsLogFolder = DiagnosticFolder
+            };
         }
     }
 }
