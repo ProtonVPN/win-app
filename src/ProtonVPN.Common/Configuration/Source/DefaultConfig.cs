@@ -155,8 +155,7 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 Urls =
                 {
-                    //TODO: change to proper link
-                    BfeArticleUrl = "https://protonvpn.com",
+                    BfeArticleUrl = "https://protonvpn.com/support/how-to-enable-the-base-filtering-engine",
                     PasswordResetUrl = "https://account.protonvpn.com/reset-password",
                     ForgetUsernameUrl = "https://account.protonvpn.com/forgot-username",
                     UpdateUrl = "https://protonvpn.com/download/win-update.json",
