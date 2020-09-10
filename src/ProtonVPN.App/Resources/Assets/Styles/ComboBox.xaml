@@ -65,15 +65,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         BorderThickness="{TemplateBinding BorderThickness}"
                         Margin="{TemplateBinding Margin}"
                         Padding="{TemplateBinding Padding}">
-                        <ContentPresenter
-                            Margin="{TemplateBinding Margin}"
-                            VerticalAlignment="{TemplateBinding VerticalAlignment}"
-                            HorizontalAlignment="{TemplateBinding HorizontalAlignment}"/>
+                        <ContentPresenter Margin="{TemplateBinding Margin}"
+                                          VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalAlignment}"/>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Setter Property="Margin" Value="3,0"/>
+        <Setter Property="Margin" Value="3,1"/>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Cursor" Value="Hand"/>
@@ -84,7 +83,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <Style x:Key="Combobox" TargetType="{x:Type wpf:Combobox}">
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="FontSize" Value="16"/>
-        <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="SnapsToDevicePixels" Value="true"/>

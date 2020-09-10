@@ -33,7 +33,7 @@ namespace ProtonVPN.Account
                 case "vpnplus":
                 case "visionary":
                 case "trial":
-                    return StringResources.Get($"VpnPlan_val_{vpnPlan.FirstCharToUpper()}");
+                    return Translation.Get($"VpnPlan_val_{vpnPlan.FirstCharToUpper()}");
                 default:
                     return "Unknown plan";
             }

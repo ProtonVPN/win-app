@@ -381,6 +381,7 @@
     <Compile Include="Servers\Countries.cs" />
     <Compile Include="Servers\ServerListFactory.cs" />
     <Compile Include="Servers\SortedCountries.cs" />
+    <Compile Include="Settings\LanguageViewModel.cs" />
     <Compile Include="Settings\ReconnectNotification\CompoundSetting.cs" />
     <Compile Include="Settings\CustomDnsListViewModel.cs" />
     <Compile Include="Settings\ReconnectNotification\CustomDnsSetting.cs" />

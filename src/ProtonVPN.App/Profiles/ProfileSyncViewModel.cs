@@ -67,18 +67,18 @@ namespace ProtonVPN.Profiles
             {
                 case ProfileSyncStatus.Succeeded:
                     if (changesSyncedAt == DateTime.MinValue)
-                        SyncStatusMessage = StringResources.Get("ProfileSyncStatus_val_Succeeded_Info_NoData");
+                        SyncStatusMessage = Translation.Get("ProfileSyncStatus_val_Succeeded_Info_NoData");
                     else
                     {
                         var (number, units) = Elapsed(changesSyncedAt);
-                        SyncStatusMessage = StringResources.Format("ProfileSyncStatus_val_Succeeded_Info", number, units);
+                        SyncStatusMessage = Translation.Format("ProfileSyncStatus_val_Succeeded_Info", number, units);
                     }
                     break;
                 case ProfileSyncStatus.InProgress:
-                    SyncStatusMessage = StringResources.Get("ProfileSyncStatus_val_InProgress_Info");
+                    SyncStatusMessage = Translation.Get("ProfileSyncStatus_val_InProgress_Info");
                     break;
                 case ProfileSyncStatus.Failed:
-                    SyncStatusMessage = StringResources.Get("ProfileSyncStatus_val_Failed_Info");
+                    SyncStatusMessage = Translation.Get("ProfileSyncStatus_val_Failed_Info");
                     break;
                 case ProfileSyncStatus.Overridden:
                     throw new NotSupportedException();
@@ -101,9 +101,9 @@ namespace ProtonVPN.Profiles
             if (elapsed < TimeSpan.Zero)
                 elapsed = TimeSpan.Zero;
 
-            return elapsed.Days > 0 ? (elapsed.Days, StringResources.GetPlural("TimeUnit_val_Day", elapsed.Days)) :
-                elapsed.Hours > 0 ? (elapsed.Hours, StringResources.GetPlural("TimeUnit_val_Hour", elapsed.Hours)) :
-                (elapsed.Minutes, StringResources.GetPlural("TimeUnit_val_Minute", elapsed.Minutes));
+            return elapsed.Days > 0 ? (elapsed.Days, Translation.GetPlural("TimeUnit_val_Day", elapsed.Days)) :
+                elapsed.Hours > 0 ? (elapsed.Hours, Translation.GetPlural("TimeUnit_val_Hour", elapsed.Hours)) :
+                (elapsed.Minutes, Translation.GetPlural("TimeUnit_val_Minute", elapsed.Minutes));
         }
 
         private void SyncAction()

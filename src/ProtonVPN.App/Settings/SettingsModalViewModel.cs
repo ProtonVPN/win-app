@@ -36,9 +36,10 @@ using ProtonVPN.Core.User;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Modals;
 using ProtonVPN.Profiles;
-using ProtonVPN.Translations;
+using ProtonVPN.Resource;
 using ProtonVPN.Settings.ReconnectNotification;
 using ProtonVPN.Settings.SplitTunneling;
+using ProtonVPN.Translations;
 
 namespace ProtonVPN.Settings
 {
@@ -61,7 +62,7 @@ namespace ProtonVPN.Settings
         private ProfileViewModel _profileDisabledOption => new ProfileViewModel(new Profile
         {
             Id = "",
-            Name = StringResources.Get("Settings_val_Disabled"),
+            Name = Translation.Get("Settings_val_Disabled"),
             ColorCode = "#777783"
         });
 
@@ -198,7 +199,7 @@ namespace ProtonVPN.Settings
             {
                 if (value && _appSettings.NetShieldEnabled)
                 {
-                    var result =_dialogs.ShowQuestion(StringResources.Get("Settings_Connection_Warning_CustomDnsServer"));
+                    var result =_dialogs.ShowQuestion(Translation.Get("Settings_Connection_Warning_CustomDnsServer"));
                     if (result.HasValue && !result.Value)
                     {
                         return;
@@ -220,15 +221,15 @@ namespace ProtonVPN.Settings
                 if (value && !_appSettings.NetShieldModalShown)
                 {
                     _dialogs.ShowWarning(
-                        StringResources.Get("NetShieldModal_msg"),
-                        StringResources.Get("NetShieldModal_btn_GotIt"));
+                        Translation.Get("NetShieldModal_msg"),
+                        Translation.Get("NetShieldModal_btn_GotIt"));
 
                     _appSettings.NetShieldModalShown = true;
                 }
 
                 if (value && _appSettings.CustomDnsEnabled)
                 {
-                    var result = _dialogs.ShowQuestion(StringResources.Get("Settings_Connection_Warning_NetShield"));
+                    var result = _dialogs.ShowQuestion(Translation.Get("Settings_Connection_Warning_NetShield"));
                     if (result.HasValue && !result.Value)
                     {
                         return;
@@ -254,9 +255,9 @@ namespace ProtonVPN.Settings
 
         public List<KeyValuePair<StartMinimizedMode, string>> StartMinimizedModes => new List<KeyValuePair<StartMinimizedMode, string>>
         {
-            new KeyValuePair<StartMinimizedMode, string>(StartMinimizedMode.Disabled, StringResources.Get("StartMinimizedMode_val_Disabled")),
-            new KeyValuePair<StartMinimizedMode, string>(StartMinimizedMode.ToSystray, StringResources.Get("StartMinimizedMode_val_ToSystray")),
-            new KeyValuePair<StartMinimizedMode, string>(StartMinimizedMode.ToTaskbar, StringResources.Get("StartMinimizedMode_val_ToTaskbar")),
+            new KeyValuePair<StartMinimizedMode, string>(StartMinimizedMode.Disabled, Translation.Get("StartMinimizedMode_val_Disabled")),
+            new KeyValuePair<StartMinimizedMode, string>(StartMinimizedMode.ToSystray, Translation.Get("StartMinimizedMode_val_ToSystray")),
+            new KeyValuePair<StartMinimizedMode, string>(StartMinimizedMode.ToTaskbar, Translation.Get("StartMinimizedMode_val_ToTaskbar")),
         };
 
         public StartMinimizedMode StartMinimized
@@ -297,17 +298,19 @@ namespace ProtonVPN.Settings
             }
         }
 
-        public List<KeyValuePair<string, string>> Languages
+        public List<LanguageViewModel> Languages
         {
             get
             {
-                var langs = new List<KeyValuePair<string, string>>();
-                foreach (var lang in _languageProvider.GetAll())
-                {
-                    langs.Add(new KeyValuePair<string, string>(lang, StringResources.Get($"Language_{lang}")));
-                }
+                var languages = _languageProvider
+                    .GetAll()
+                    .Select(lang => new LanguageViewModel
+                    {
+                        Code = lang,
+                        Title = StringResource.Get($"Language_{lang}")
+                    }).ToList();
 
-                return GetSorted(langs);
+                return GetSorted(languages);
             }
         }
 
@@ -328,11 +331,11 @@ namespace ProtonVPN.Settings
         public List<KeyValuePair<string, string>> Protocols => new List<KeyValuePair<string, string>>
         {
             new KeyValuePair<string, string>("auto",
-                StringResources.Get("Settings_Connection_DefaultProtocol_val_Auto")),
+                Translation.Get("Settings_Connection_DefaultProtocol_val_Auto")),
             new KeyValuePair<string, string>("tcp",
-                StringResources.Get("Settings_Connection_DefaultProtocol_val_Tcp")),
+                Translation.Get("Settings_Connection_DefaultProtocol_val_Tcp")),
             new KeyValuePair<string, string>("udp",
-                StringResources.Get("Settings_Connection_DefaultProtocol_val_Udp")),
+                Translation.Get("Settings_Connection_DefaultProtocol_val_Udp")),
         };
 
         public IReadOnlyList<ProfileViewModel> AutoConnectProfiles
@@ -510,16 +513,9 @@ namespace ProtonVPN.Settings
             _urls.AccountUrl.Open();
         }
 
-        private List<KeyValuePair<string, string>> GetSorted(List<KeyValuePair<string, string>> collection)
+        private List<LanguageViewModel> GetSorted(List<LanguageViewModel> collection)
         {
-            var sorted = collection.OrderBy(l => l.Value);
-            var list = new List<KeyValuePair<string, string>>();
-            foreach (var item in sorted)
-            {
-                list.Add(item);
-            }
-
-            return list;
+            return collection.OrderBy(l => l.Code).ToList();
         }
     }
 }

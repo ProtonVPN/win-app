@@ -535,7 +535,7 @@ namespace ProtonVPN.Core
         private string GetServiceErrorMessage(string serviceName, Exception e)
         {
             var error = e.InnerException?.Message ?? e.Message;
-            var failedToStart = string.Format(StringResources.Get("Dialogs_ServiceStart_msg_FailedToStart"), serviceName);
+            var failedToStart = string.Format(Translation.Get("Dialogs_ServiceStart_msg_FailedToStart"), serviceName);
 
             return $"\"{failedToStart}\" \"{error}\"";
         }

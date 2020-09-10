@@ -303,7 +303,7 @@ namespace ProtonVPN.Sidebar
                            State.Status.Equals(VpnStatus.Reconnecting) ||
                            State.Status.Equals(VpnStatus.Connected)))
             {
-                var result = _dialogs.ShowQuestion(StringResources.Get("Sidebar_Countries_msg_SecureCoreDisableConfirm"));
+                var result = _dialogs.ShowQuestion(Translation.Get("Sidebar_Countries_msg_SecureCoreDisableConfirm"));
                 if (result.HasValue && result.Value)
                 {
                     await _serverConnector.Disconnect();
@@ -318,7 +318,7 @@ namespace ProtonVPN.Sidebar
                           State.Status.Equals(VpnStatus.Reconnecting) ||
                           State.Status.Equals(VpnStatus.Connected)))
             {
-                var result = _dialogs.ShowQuestion(StringResources.Get("Sidebar_Countries_msg_SecureCoreEnableConfirm"));
+                var result = _dialogs.ShowQuestion(Translation.Get("Sidebar_Countries_msg_SecureCoreEnableConfirm"));
                 if (result.HasValue && result.Value)
                 {
                     await _serverConnector.Disconnect();

@@ -73,7 +73,7 @@ namespace ProtonVPN.Notifications
         private void Show()
         {
             _lastNotified = DateTime.Now;
-            _systemNotification.Show(StringResources.Get("Dialogs_Update_msg_NewAppVersion"));
+            _systemNotification.Show(Translation.Get("Dialogs_Update_msg_NewAppVersion"));
             _eventAggregator.PublishOnUIThread(new ShowFlashMessage(_notificationViewModel));
         }
 

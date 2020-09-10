@@ -31,7 +31,7 @@ namespace ProtonVPN.FlashNotifications
             Update = update;
         }
 
-        public string Message => StringResources.Get("Notifications_Update_msg_NewAppVersion");
+        public string Message => Translation.Get("Notifications_Update_msg_NewAppVersion");
 
         public UpdateViewModel Update { get; }
     }

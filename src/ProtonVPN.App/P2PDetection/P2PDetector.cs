@@ -161,7 +161,7 @@ namespace ProtonVPN.P2PDetection
 
         private void ShowBlockedTrafficModal()
         {
-            _dialogs.ShowWarning(StringResources.Get("Dialogs_P2PBlocked_msg_Blocked"));
+            _dialogs.ShowWarning(Translation.Get("Dialogs_P2PBlocked_msg_Blocked"));
         }
 
         private void ShowForwardedTrafficModal()

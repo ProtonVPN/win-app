@@ -31,7 +31,7 @@ namespace ProtonVPN.ConnectionInfo
         {
             get
             {
-                var str = StringResources.Get("Servers_Load_lbl_ViaCountry");
+                var str = Translation.Get("Servers_Load_lbl_ViaCountry");
                 return string.Format(str, EntryCountry, ExitCountry);
             }
         }

@@ -12,7 +12,7 @@ namespace ProtonVPN.Core.MVVM.Converters
             var str = (string)value;
             double.TryParse(parameter.ToString(), out var number);
 
-            return StringResources.GetPluralFormat(str, (decimal) number);
+            return Translation.GetPluralFormat(str, (decimal) number);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

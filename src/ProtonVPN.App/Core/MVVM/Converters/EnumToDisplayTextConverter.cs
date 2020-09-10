@@ -34,7 +34,7 @@ namespace ProtonVPN.Core.MVVM.Converters
             var sourceType = value.GetType();
             var enumName = Enum.GetName(sourceType, value);
             var key = $"{sourceType.Name}_val_{enumName}";
-            return StringResources.Get(key);
+            return Translation.Get(key);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

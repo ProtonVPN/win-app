@@ -114,11 +114,20 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Content="{translations:Loc Settings_General_lbl_Language}"/>
                             <wpf:Combobox HorizontalAlignment="Right"
                                           Style="{StaticResource ComboDropdown}"
-                                          DisplayMemberPath="Value"
-                                          SelectedValuePath="Key"
+                                          SelectedValuePath="Code"
+                                          MaxWidth="220"
                                           ItemsSource="{Binding Languages}"
                                           SelectedValue="{Binding SelectedLanguage}"
-                                          AutomationProperties.AutomationId="{StaticResource LanguageCombobox}"/>
+                                          AutomationProperties.AutomationId="{StaticResource LanguageCombobox}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Foreground="White"
+                                                   TextTrimming="CharacterEllipsis">
+                                            <Run Text="{Binding Title}"/>
+                                        </TextBlock>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </wpf:Combobox>
                         </DockPanel>
                     </Border>
 

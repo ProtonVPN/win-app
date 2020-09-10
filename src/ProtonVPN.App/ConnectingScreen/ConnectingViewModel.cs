@@ -102,16 +102,16 @@ namespace ProtonVPN.ConnectingScreen
                     SetConnecting(e.State);
                     break;
                 case VpnStatus.Waiting:
-                    SetConnectingState(20, Message = StringResources.Get("Connecting_VpnStatus_val_Waiting"), e.State.Server);
+                    SetConnectingState(20, Message = Translation.Get("Connecting_VpnStatus_val_Waiting"), e.State.Server);
                     break;
                 case VpnStatus.Authenticating:
-                    SetConnectingState(40, Message = StringResources.Get("Connecting_VpnStatus_val_Authenticating"), e.State.Server);
+                    SetConnectingState(40, Message = Translation.Get("Connecting_VpnStatus_val_Authenticating"), e.State.Server);
                     break;
                 case VpnStatus.RetrievingConfiguration:
-                    SetConnectingState(60, Message = StringResources.Get("Connecting_VpnStatus_val_RetrievingConfiguration"), e.State.Server);
+                    SetConnectingState(60, Message = Translation.Get("Connecting_VpnStatus_val_RetrievingConfiguration"), e.State.Server);
                     break;
                 case VpnStatus.AssigningIp:
-                    SetConnectingState(80, Message = StringResources.Get("Connecting_VpnStatus_val_AssigningIp"), e.State.Server);
+                    SetConnectingState(80, Message = Translation.Get("Connecting_VpnStatus_val_AssigningIp"), e.State.Server);
                     break;
                 case VpnStatus.Connected:
                     AnimatePercentage = 100;
@@ -137,7 +137,7 @@ namespace ProtonVPN.ConnectingScreen
         private void SetConnecting(VpnState state)
         {
             Percentage = 0;
-            SetConnectingState(0, Message = StringResources.Get("Connecting_VpnStatus_val_Connecting"), state.Server);
+            SetConnectingState(0, Message = Translation.Get("Connecting_VpnStatus_val_Connecting"), state.Server);
         }
 
         private void SetConnectingState(int percentage, string message, Server server)

@@ -220,7 +220,7 @@ namespace ProtonVPN.ViewModels
         {
             if (VpnStatus == VpnStatus.Connected)
             {
-                var result = _dialogs.ShowQuestion(StringResources.Get("App_msg_LogoutConnectedConfirm"));
+                var result = _dialogs.ShowQuestion(Translation.Get("App_msg_LogoutConnectedConfirm"));
                 if (!result.HasValue || !result.Value)
                 {
                     return;

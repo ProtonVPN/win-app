@@ -21,7 +21,7 @@ using System;
 
 namespace ProtonVPN.Translations
 {
-    public class StringResources
+    public class Translation
     {
         public static string Get(string key)
         {

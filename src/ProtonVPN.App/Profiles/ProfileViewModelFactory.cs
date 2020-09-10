@@ -130,7 +130,7 @@ namespace ProtonVPN.Profiles
         private string ServerNameAsProfile(ProfileType type)
         {
             var profileType = Enum.GetName(typeof(ProfileType), type);
-            return StringResources.Get($"Profiles_Profile_Name_val_{profileType}");
+            return Translation.Get($"Profiles_Profile_Name_val_{profileType}");
         }
 
         private PredefinedProfileViewModel CreatePredefinedVpnProfile(Profile profile)
@@ -141,13 +141,13 @@ namespace ProtonVPN.Profiles
             {
                 case "Fastest":
                     profileViewModel.Icon = "Signal";
-                    profileViewModel.Text = StringResources.Get("Profiles_Profile_Name_val_Fastest");
-                    profileViewModel.Description = StringResources.Get("Profiles_Profile_Description_val_Fastest");
+                    profileViewModel.Text = Translation.Get("Profiles_Profile_Name_val_Fastest");
+                    profileViewModel.Description = Translation.Get("Profiles_Profile_Description_val_Fastest");
                     break;
                 case "Random":
                     profileViewModel.Icon = "Random";
-                    profileViewModel.Text = StringResources.Get("Profiles_Profile_Name_val_Random");
-                    profileViewModel.Description = StringResources.Get("Profiles_Profile_Description_val_Random");
+                    profileViewModel.Text = Translation.Get("Profiles_Profile_Name_val_Random");
+                    profileViewModel.Description = Translation.Get("Profiles_Profile_Description_val_Random");
                     break;
             }
 

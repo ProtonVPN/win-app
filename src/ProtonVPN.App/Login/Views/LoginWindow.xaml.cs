@@ -66,7 +66,7 @@ namespace ProtonVPN.Login.Views
 
             if (_networkBlocked)
             {
-                var result = _dialogs.ShowQuestion(StringResources.Get("Login_msg_ExitKillSwitchConfirm"));
+                var result = _dialogs.ShowQuestion(Translation.Get("Login_msg_ExitKillSwitchConfirm"));
                 if (!result.HasValue || !result.Value)
                 {
                     return;

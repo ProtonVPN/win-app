@@ -167,7 +167,7 @@ namespace ProtonVPN.Login.ViewModels
 
         public void OnSessionExpired()
         {
-            LoginErrorViewModel.SetError(StringResources.Get("Login_Error_msg_SessionExpired"));
+            LoginErrorViewModel.SetError(Translation.Get("Login_Error_msg_SessionExpired"));
         }
 
         public void OnAppSettingsChanged(PropertyChangedEventArgs e)
@@ -237,7 +237,7 @@ namespace ProtonVPN.Login.ViewModels
                     var error = loginResult.Error;
                     if (loginResult.StatusCode == HttpStatusCode.Unauthorized)
                     {
-                        error = StringResources.Get("Login_Error_msg_Unauthorized");
+                        error = Translation.Get("Login_Error_msg_Unauthorized");
                     }
 
                     LoginErrorViewModel.SetError(error);
