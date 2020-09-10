@@ -144,7 +144,7 @@ namespace ProtonVPN.About
         {
             if (_vpnStatus != VpnStatus.Disconnected && _vpnStatus != VpnStatus.Disconnecting)
             {
-                var result = _dialogs.ShowQuestion(StringResources.Get("App_msg_UpdateConnectedConfirm"));
+                var result = _dialogs.ShowQuestion(Translation.Get("App_msg_UpdateConnectedConfirm"));
                 if (result.HasValue && result.Value == false)
                 {
                     return false;

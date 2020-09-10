@@ -43,7 +43,7 @@ namespace ProtonVPN.Core
             if (_vpnStatus != VpnStatus.Disconnected &&
                 _vpnStatus != VpnStatus.Disconnecting)
             {
-                var result = _dialogs.ShowQuestion(StringResources.Get("App_msg_ExitConnectedConfirm"));
+                var result = _dialogs.ShowQuestion(Translation.Get("App_msg_ExitConnectedConfirm"));
                 if (result == false)
                     return;
             }

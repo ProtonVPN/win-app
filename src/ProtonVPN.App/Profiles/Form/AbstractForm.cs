@@ -147,7 +147,7 @@ namespace ProtonVPN.Profiles.Form
             set => Set(ref _error, value);
         }
 
-        public string ProfileErrorTooLong => StringResources.GetPluralFormat("Profiles_Profile_Error_msg_NameTooLong",
+        public string ProfileErrorTooLong => Translation.GetPluralFormat("Profiles_Profile_Error_msg_NameTooLong",
             _appConfig.MaxProfileNameLength);
 
         public virtual void Load()
@@ -258,13 +258,13 @@ namespace ProtonVPN.Profiles.Form
             {
                 new PredefinedServerViewModel
                 {
-                    Name = StringResources.Get("Profiles_Profile_Name_val_Fastest"),
+                    Name = Translation.Get("Profiles_Profile_Name_val_Fastest"),
                     Icon = "Signal",
                     Type = ProfileType.Fastest
                 },
                 new PredefinedServerViewModel
                 {
-                    Name = StringResources.Get("Profiles_Profile_Name_val_Random"),
+                    Name = Translation.Get("Profiles_Profile_Name_val_Random"),
                     Icon = "Random",
                     Type = ProfileType.Random
                 }
@@ -382,9 +382,9 @@ namespace ProtonVPN.Profiles.Form
         private bool? ShowDiscardModal()
         {
             var settings = DialogSettings
-                .FromMessage(StringResources.Get("Profiles_Profile_msg_DiscardChangesConfirm"))
-                .WithPrimaryButtonText(StringResources.Get("Profiles_Profile_btn_KeepEditing"))
-                .WithSecondaryButtonText(StringResources.Get("Profiles_Profile_btn_Discard"));
+                .FromMessage(Translation.Get("Profiles_Profile_msg_DiscardChangesConfirm"))
+                .WithPrimaryButtonText(Translation.Get("Profiles_Profile_btn_KeepEditing"))
+                .WithSecondaryButtonText(Translation.Get("Profiles_Profile_btn_Discard"));
 
             return _dialogs.ShowQuestion(settings);
         }

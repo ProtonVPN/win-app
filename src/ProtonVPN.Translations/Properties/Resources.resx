@@ -2631,69 +2631,6 @@ Exiting the application will disable the Kill Switch. Do you want to continue?</
     <value>Language</value>
     <comment>The label for Language combo box in General tab of Settings window</comment>
   </data>
-  <data name="Language_ar" xml:space="preserve">
-    <value>Arabic</value>
-  </data>
-  <data name="Language_ca" xml:space="preserve">
-    <value>Catalan</value>
-  </data>
-  <data name="Language_de" xml:space="preserve">
-    <value>German</value>
-  </data>
-  <data name="Language_en" xml:space="preserve">
-    <value>English</value>
-  </data>
-  <data name="Language_es-ES" xml:space="preserve">
-    <value>Spanish</value>
-  </data>
-  <data name="Language_es-MX" xml:space="preserve">
-    <value>Spanish, Mexico</value>
-  </data>
-  <data name="Language_fa" xml:space="preserve">
-    <value>Persian</value>
-  </data>
-  <data name="Language_fr" xml:space="preserve">
-    <value>French</value>
-  </data>
-  <data name="Language_hu" xml:space="preserve">
-    <value>Hungarian</value>
-  </data>
-  <data name="Language_id" xml:space="preserve">
-    <value>Indonesian</value>
-  </data>
-  <data name="Language_it" xml:space="preserve">
-    <value>Italian</value>
-  </data>
-  <data name="Language_ja" xml:space="preserve">
-    <value>Japanese</value>
-  </data>
-  <data name="Language_lt" xml:space="preserve">
-    <value>Lithuanian</value>
-  </data>
-  <data name="Language_nl" xml:space="preserve">
-    <value>Dutch</value>
-  </data>
-  <data name="Language_pl" xml:space="preserve">
-    <value>Polish</value>
-  </data>
-  <data name="Language_pt-BR" xml:space="preserve">
-    <value>Portuguese, Brazilian</value>
-  </data>
-  <data name="Language_pt-PT" xml:space="preserve">
-    <value>Portuguese</value>
-  </data>
-  <data name="Language_ru" xml:space="preserve">
-    <value>Russian</value>
-  </data>
-  <data name="Language_tr" xml:space="preserve">
-    <value>Turkish</value>
-  </data>
-  <data name="Language_zh-CN" xml:space="preserve">
-    <value>Chinese Simplified</value>
-  </data>
-  <data name="Language_zh-TW" xml:space="preserve">
-    <value>Chinese Traditional</value>
-  </data>
   <data name="TimeUnit_val_Day_One" xml:space="preserve">
     <value>day</value>
     <comment>The time unit: day</comment>
@@ -2729,9 +2666,6 @@ Exiting the application will disable the Kill Switch. Do you want to continue?</
   <data name="Profiles_Profile_Error_msg_NameTooLong_Other" xml:space="preserve">
     <value>Maximum profile name length is {0} symbols. Please choose a shorter profile name.</value>
     <comment>The error message displayed in Profile window when profile name is too long. The {0} is a placeholder for maximum profile name length value.</comment>
-  </data>
-  <data name="Language_el" xml:space="preserve">
-    <value>Greek</value>
   </data>
   <data name="BugReport_btn_Troubleshoot" xml:space="preserve">
     <value>Troubleshoot</value>

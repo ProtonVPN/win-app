@@ -181,7 +181,7 @@ namespace ProtonVPN.Vpn.Connectors
 
             if (!candidates.Any())
             {
-                _dialogs.ShowWarning(StringResources.Get("Profiles_msg_NoServersAvailable"));
+                _dialogs.ShowWarning(Translation.Get("Profiles_msg_NoServersAvailable"));
                 return;
             }
 
@@ -204,7 +204,7 @@ namespace ProtonVPN.Vpn.Connectors
 
             if (!candidates.OnlineServers().Any())
             {
-                _dialogs.ShowWarning(StringResources.Get("Profiles_msg_AllServersOffline"));
+                _dialogs.ShowWarning(Translation.Get("Profiles_msg_AllServersOffline"));
                 return;
             }
 
@@ -215,7 +215,7 @@ namespace ProtonVPN.Vpn.Connectors
         {
             if (!candidates.Any())
             {
-                _dialogs.ShowWarning(StringResources.Get("Profiles_msg_NoServersAvailable"));
+                _dialogs.ShowWarning(Translation.Get("Profiles_msg_NoServersAvailable"));
                 return;
             }
 
@@ -229,7 +229,7 @@ namespace ProtonVPN.Vpn.Connectors
 
             if (!candidates.OnlineServers().Any())
             {
-                _dialogs.ShowWarning(StringResources.Get("Profiles_msg_CountryOffline"));
+                _dialogs.ShowWarning(Translation.Get("Profiles_msg_CountryOffline"));
                 return;
             }
 
@@ -318,12 +318,12 @@ namespace ProtonVPN.Vpn.Connectors
 
         private void HandleEmptyServer()
         {
-            _dialogs.ShowWarning(StringResources.Get("Servers_msg_CantConnect_Missing"));
+            _dialogs.ShowWarning(Translation.Get("Servers_msg_CantConnect_Missing"));
         }
 
         private void HandleOfflineServer()
         {
-            _dialogs.ShowWarning(StringResources.Get("Servers_msg_CantConnect_Maintenance"));
+            _dialogs.ShowWarning(Translation.Get("Servers_msg_CantConnect_Maintenance"));
         }
 
         private void HandleUserTierTooLow(Server server)
@@ -354,7 +354,7 @@ namespace ProtonVPN.Vpn.Connectors
             if (!secureCore || _appSettings.SecureCore)
                 return false;
 
-            var result = _dialogs.ShowQuestion(StringResources.Get("Servers_msg_EnableSecureCoreConfirm"));
+            var result = _dialogs.ShowQuestion(Translation.Get("Servers_msg_EnableSecureCoreConfirm"));
             if (result.HasValue && result.Value)
             {
                 _appSettings.SecureCore = true;
@@ -369,7 +369,7 @@ namespace ProtonVPN.Vpn.Connectors
             if (secureCore || !_appSettings.SecureCore)
                 return false;
 
-            var result = _dialogs.ShowQuestion(StringResources.Get("Servers_msg_DisableSecureCoreConfirm"));
+            var result = _dialogs.ShowQuestion(Translation.Get("Servers_msg_DisableSecureCoreConfirm"));
             if (result.HasValue && result.Value)
             {
                 _appSettings.SecureCore = false;

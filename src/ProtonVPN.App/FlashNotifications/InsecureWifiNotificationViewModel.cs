@@ -40,7 +40,7 @@ namespace ProtonVPN.FlashNotifications
 
         public string Name { get; set; }
 
-        public string Message => StringResources.Format("Notifications_InsecureWiFi_msg_Detected", Name);
+        public string Message => Translation.Format("Notifications_InsecureWiFi_msg_Detected", Name);
 
         private void LearnMoreAction()
         {

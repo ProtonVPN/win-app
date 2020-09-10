@@ -55,7 +55,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="StringResources.cs" />
+    <Compile Include="Translation.cs" />
     <Compile Include="TranslationSource.cs" />
   </ItemGroup>
   <ItemGroup>

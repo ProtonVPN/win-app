@@ -38,7 +38,7 @@ namespace ProtonVPN.Modals.Dialogs
         public bool? ShowWarning(string message)
         {
             var settings = DialogSettings.FromMessage(message)
-                .WithPrimaryButtonText(StringResources.Get("Dialogs_btn_Close"));
+                .WithPrimaryButtonText(Translation.Get("Dialogs_btn_Close"));
 
             _warningViewModel.ApplySettings(settings);
             return _modals.Show<WarningModalViewModel>();

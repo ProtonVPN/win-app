@@ -117,7 +117,7 @@ namespace ProtonVPN.Profiles
         {
             if (viewModel == null) return;
             var profile = await _profileManager.GetProfileById(viewModel.Id);
-            var result = _dialogs.ShowQuestion(StringResources.Get("Profiles_msg_DeleteConfirm"));
+            var result = _dialogs.ShowQuestion(Translation.Get("Profiles_msg_DeleteConfirm"));
 
             if (result.HasValue && result.Value)
             {

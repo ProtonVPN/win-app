@@ -96,8 +96,8 @@ namespace ProtonVPN.Modals
                 {
                     case VpnError.SessionLimitReached:
                         return _userStorage.User().MaxTier < ServerTiers.Plus ?
-                            StringResources.Get("Dialogs_DisconnectError_msg_SessionLimitFreeBasic") :
-                            StringResources.Get("Dialogs_DisconnectError_msg_SessionLimitPlus");
+                            Translation.Get("Dialogs_DisconnectError_msg_SessionLimitFreeBasic") :
+                            Translation.Get("Dialogs_DisconnectError_msg_SessionLimitPlus");
                     default:
                         return string.Empty;
                 }

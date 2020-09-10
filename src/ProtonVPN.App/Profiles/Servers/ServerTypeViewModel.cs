@@ -65,7 +65,7 @@ namespace ProtonVPN.Profiles.Servers
         private static string GetName(Features features)
         {
             var enumName = Enum.GetName(typeof(Features), features);
-            return StringResources.Get($"ServerType_val_{enumName}");
+            return Translation.Get($"ServerType_val_{enumName}");
         }
     }
 }
