@@ -225,10 +225,11 @@ namespace ProtonVPN.ViewModels
                 {
                     return;
                 }
+
+                await _vpnManager.Disconnect();
             }
 
             _userAuth.Logout();
-            await _vpnManager.Disconnect();
         }
 
         private void ExitAction()
