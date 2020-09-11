@@ -121,14 +121,20 @@ namespace ProtonVPN.Core.Servers
 
         public bool CountryHasAvailableServers(string country, sbyte userTier)
         {
-            var servers = GetServers(new EntryCountryServer(country) && !new TorServer() && new OnlineServer());
+            var servers = GetServers(new EntryCountryServer(country) && !new TorServer());
             return servers.FirstOrDefault(s => userTier >= s.Tier) != null;
         }
 
         public bool CountryHasAvailableSecureCoreServers(string country, sbyte userTier)
         {
-            var servers = GetServers(new SecureCoreServer() && new ExitCountryServer(country) && new OnlineServer());
+            var servers = GetServers(new SecureCoreServer() && new ExitCountryServer(country));
             return servers.FirstOrDefault(s => userTier >= s.Tier) != null;
+        }
+
+        public bool CountryUnderMaintenance(string country)
+        {
+            var servers = GetServers(new OnlineServer() && new ExitCountryServer(country));
+            return servers.Count == 0;
         }
 
         public bool Empty() => !_servers.Any();

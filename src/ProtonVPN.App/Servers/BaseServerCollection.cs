@@ -52,7 +52,7 @@ namespace ProtonVPN.Servers
             }
         }
 
-        public bool Dimmed => !HasAvailableServers();
+        public bool Dimmed => !HasAvailableServers() || Maintenance;
 
         public bool Expanded
         {
@@ -91,5 +91,7 @@ namespace ProtonVPN.Servers
         }
 
         public abstract bool HasAvailableServers();
+
+        public abstract bool Maintenance { get; }
     }
 }
