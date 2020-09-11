@@ -43,6 +43,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <TextBlock Text="{translations:Loc BugReport_msg_SendingFailed}"
                        FontSize="16"
                        TextAlignment="Center"
+                       TextWrapping="Wrap"
                        Margin="0,20,0,0"
                        HorizontalAlignment="Center"
                        Foreground="White"/>
