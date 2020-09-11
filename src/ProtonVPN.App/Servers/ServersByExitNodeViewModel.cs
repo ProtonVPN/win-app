@@ -72,5 +72,7 @@ namespace ProtonVPN.Servers
 
             return ServersAvailable.Value;
         }
+
+        public override bool Maintenance => _serverManager.CountryUnderMaintenance(CountryCode);
     }
 }

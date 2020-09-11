@@ -24,7 +24,11 @@ namespace ProtonVPN.Servers
     internal interface IServerListItem
     {
         void OnVpnStateChanged(VpnState state);
+
         string Name { get; }
+
         bool MatchesQuery(string query);
+
+        bool Maintenance { get; }
     }
 }

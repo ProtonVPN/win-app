@@ -139,7 +139,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </Grid>
 
                         <ControlTemplate.Triggers>
-                            <DataTrigger Binding="{Binding Dimmed}" Value="True">
+                            <DataTrigger Binding="{Binding Maintenance}" Value="True">
                                 <Setter Property="Visibility" Value="Collapsed"/>
                             </DataTrigger>
                             <DataTrigger Binding="{Binding Expanded}" Value="True">
@@ -242,14 +242,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Setter Property="Icon" Value="Wrench"/>
             <Setter Property="ToolTip" Value="{translations:Loc Sidebar_Countries_lbl_Maintenance}"/>
             <Style.Triggers>
-                <DataTrigger Binding="{Binding Server.Status}" Value="0">
+                <DataTrigger Binding="{Binding Maintenance}" Value="True">
                     <Setter Property="Visibility" Value="Visible"/>
                 </DataTrigger>
             </Style.Triggers>
         </Style>
         <Style x:Key="CountryMaintenanceIcon" BasedOn="{StaticResource MaintenanceIcon}" TargetType="fa:FontAwesome">
             <Style.Triggers>
-                <DataTrigger Binding="{Binding Dimmed}" Value="True">
+                <DataTrigger Binding="{Binding Maintenance}" Value="True">
                     <Setter Property="Visibility" Value="Visible"/>
                 </DataTrigger>
             </Style.Triggers>
@@ -285,7 +285,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Setter Property="Background" Value="{StaticResource SidebarTabBackgroundColor}"/>
             <Setter Property="HorizontalAlignment" Value="Stretch"/>
             <Style.Triggers>
-                <DataTrigger Binding="{Binding Dimmed}" Value="True">
+                <DataTrigger Binding="{Binding Maintenance}" Value="True">
                     <Setter Property="Cursor" Value="Arrow"/>
                 </DataTrigger>
             </Style.Triggers>
