@@ -20,6 +20,7 @@
 using System;
 using System.Collections.Generic;
 using ProtonVPN.Account;
+using ProtonVPN.BugReporting.Diagnostic;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.MVVM;
 using ProtonVPN.Core.Settings;
@@ -37,9 +38,14 @@ namespace ProtonVPN.BugReporting
 
         private readonly IUserStorage _userStorage;
         private readonly Common.Configuration.Config _appConfig;
+        private readonly SystemState _systemState;
 
-        public FormViewModel(Common.Configuration.Config appConfig, IUserStorage userStorage)
+        public FormViewModel(
+            Common.Configuration.Config appConfig,
+            IUserStorage userStorage,
+            SystemState systemState)
         {
+            _systemState = systemState;
             _appConfig = appConfig;
             _userStorage = userStorage;
         }
@@ -116,7 +122,9 @@ namespace ProtonVPN.BugReporting
         }
 
         private string Description => $"What went wrong?\n\n{WhatWentWrong}\n\n" +
-                                      $"What are the exact steps you performed?\n\n{StepsToReproduce}";
+                                      $"What are the exact steps you performed?\n\n{StepsToReproduce}\n\n" +
+                                      "Additional info:\n" +
+                                      "Pending reboot: " + (_systemState.PendingReboot() ? "true" : "false");
 
         private void ClearForm()
         {
