@@ -23,6 +23,7 @@ using Autofac;
 using Caliburn.Micro;
 using ProtonVPN.About;
 using ProtonVPN.Account;
+using ProtonVPN.BugReporting.Diagnostic;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
@@ -255,6 +256,7 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<ExpiredSessionHandler>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterType<ReconnectState>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterType<SettingsBuilder>().SingleInstance();
+            builder.RegisterType<SystemState>().SingleInstance();
             builder.RegisterType<ReconnectManager>().AsImplementedInterfaces().SingleInstance();
             builder.Register(c => new VpnInfoChecker(
                     c.Resolve<Common.Configuration.Config>().VpnInfoCheckInterval.RandomizedWithDeviation(0.2),
