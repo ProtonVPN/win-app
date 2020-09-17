@@ -2838,4 +2838,16 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="ErrorWindow_lbl_Close" xml:space="preserve">
     <value>Close</value>
   </data>
+  <data name="Dialogs_Reboot_btn_Reboot" xml:space="preserve">
+    <value>Continue</value>
+  </data>
+  <data name="Dialogs_Reboot_btn_SkipReboot" xml:space="preserve">
+    <value>Skip Reboot</value>
+  </data>
+  <data name="Dialogs_Reboot_msg" xml:space="preserve">
+    <value>ProtonVPN has detected a pending installation that requires to reboot your system before proceeding the installation. Click "Skip Reboot" if you want to proceed without restarting your system. Click Continue to reboot and automatically resume the installation process.</value>
+  </data>
+  <data name="Dialogs_Reboot_ttl" xml:space="preserve">
+    <value>ProtonVPN</value>
+  </data>
 </root>

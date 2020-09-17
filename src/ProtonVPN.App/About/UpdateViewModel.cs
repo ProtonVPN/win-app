@@ -23,12 +23,14 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
+using ProtonVPN.BugReporting.Diagnostic;
 using ProtonVPN.Common.OS.Processes;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.MVVM;
 using ProtonVPN.Core.Update;
 using ProtonVPN.Core.Vpn;
+using ProtonVPN.Modals;
 using ProtonVPN.Translations;
 
 namespace ProtonVPN.About
@@ -38,11 +40,18 @@ namespace ProtonVPN.About
         private readonly IDialogs _dialogs;
         private readonly IOsProcesses _osProcesses;
         private readonly IModals _modals;
+        private readonly SystemState _systemState;
 
         private VpnStatus _vpnStatus;
         private UpdateStateChangedEventArgs _updateStateChangedEventArgs;
-        public UpdateViewModel(IDialogs dialogs, IOsProcesses osProcesses, IModals modals)
+
+        public UpdateViewModel(
+            IDialogs dialogs,
+            IOsProcesses osProcesses,
+            IModals modals,
+            SystemState systemState)
         {
+            _systemState = systemState;
             _dialogs = dialogs;
             _osProcesses = osProcesses;
             _modals = modals;
@@ -120,6 +129,22 @@ namespace ProtonVPN.About
                 return;
             }
 
+            if (_systemState.PendingReboot())
+            {
+                var result = _modals.Show<RebootModalViewModel>();
+                if (result.HasValue && result.Value)
+                {
+                    UpdateInternal();
+                }
+
+                return;
+            }
+
+            UpdateInternal();
+        }
+
+        private void UpdateInternal()
+        {
             Updating = true;
 
             try
