@@ -3496,6 +3496,42 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Continue.
+        /// </summary>
+        public static string Dialogs_Reboot_btn_Reboot {
+            get {
+                return ResourceManager.GetString("Dialogs_Reboot_btn_Reboot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Skip Reboot.
+        /// </summary>
+        public static string Dialogs_Reboot_btn_SkipReboot {
+            get {
+                return ResourceManager.GetString("Dialogs_Reboot_btn_SkipReboot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ProtonVPN has detected a pending installation that requires to reboot your system before proceeding the installation. Click &quot;Skip Reboot&quot; if you want to proceed without restarting your system. Click Continue to reboot and automatically resume the installation process..
+        /// </summary>
+        public static string Dialogs_Reboot_msg {
+            get {
+                return ResourceManager.GetString("Dialogs_Reboot_msg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ProtonVPN.
+        /// </summary>
+        public static string Dialogs_Reboot_ttl {
+            get {
+                return ResourceManager.GetString("Dialogs_Reboot_ttl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The ProtonVPN Service that is responsible for your VPN connection is not running. It will try to complete your task again shortly. If this problem persists, try restarting the ProtonVPN app. If it still persists, try restarting your PC..
         /// </summary>
         public static string Dialogs_ServiceStart_Info {
