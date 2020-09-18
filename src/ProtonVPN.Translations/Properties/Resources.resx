@@ -286,7 +286,7 @@
     <comment>The message displayed in Disconnect modal window while trying to identify connection problem</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_Unpaid" xml:space="preserve">
-    <value>Your account currently has an overdue invoice. Please pay all unpaid invoices at   &lt;Hyperlink Foreground="White" Command="{Binding GoToAccountCommand}"&gt;account.protonvpn.com&lt;/Hyperlink&gt;</value>
+    <value>Your account currently has an unpaid invoice. To keep your online browsing encrypted and secure, please pay unpaid invoices at &lt;Hyperlink Foreground="White" Command="{Binding GoToAccountCommand}"&gt;account.protonvpn.com&lt;/Hyperlink&gt;</value>
     <comment>The error description displayed in Disconnect modal window if user has unpaid invoices</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_SessionLimitFreeBasic" xml:space="preserve">
