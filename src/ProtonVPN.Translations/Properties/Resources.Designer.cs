@@ -3370,7 +3370,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your account currently has an overdue invoice. Please pay all unpaid invoices at   &lt;Hyperlink Foreground=&quot;White&quot; Command=&quot;{Binding GoToAccountCommand}&quot;&gt;account.protonvpn.com&lt;/Hyperlink&gt;.
+        ///   Looks up a localized string similar to Your account currently has an unpaid invoice. To keep your online browsing encrypted and secure, please pay unpaid invoices at &lt;Hyperlink Foreground=&quot;White&quot; Command=&quot;{Binding GoToAccountCommand}&quot;&gt;account.protonvpn.com&lt;/Hyperlink&gt;.
         /// </summary>
         public static string Dialogs_DisconnectError_msg_Unpaid {
             get {
