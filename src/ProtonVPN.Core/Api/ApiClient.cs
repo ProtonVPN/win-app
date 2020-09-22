@@ -155,7 +155,7 @@ namespace ProtonVPN.Core.Api
                     uri += $"?IP={ip}";
                 }
 
-                var request = GetRequest(HttpMethod.Get, uri);
+                var request = GetAuthorizedRequest(HttpMethod.Get, uri);
                 using var response = await _client.SendAsync(request).ConfigureAwait(false);
                 var stream = await response.Content.ReadAsStreamAsync();
                 return Logged(GetResponseStreamResult<ServerList>(stream, response.StatusCode), "Get servers");
@@ -176,7 +176,7 @@ namespace ProtonVPN.Core.Api
                     uri += $"?IP={ip}";
                 }
 
-                var request = GetRequest(HttpMethod.Get, uri);
+                var request = GetAuthorizedRequest(HttpMethod.Get, uri);
                 using var response = await _client.SendAsync(request).ConfigureAwait(false);
                 var stream = await response.Content.ReadAsStreamAsync();
                 return Logged(GetResponseStreamResult<ServerList>(stream, response.StatusCode), "Get server loads");
