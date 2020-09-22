@@ -84,6 +84,8 @@ namespace ProtonVPN.Servers
 
         public List<IServerFeature> Features { get; set; }
 
+        public bool Maintenance => Server.Status == 0;
+
         public ServerItemViewModel(Server server, sbyte userTier)
         {
             _userTier = userTier;
@@ -135,6 +137,11 @@ namespace ProtonVPN.Servers
             ConnectedToCountry = connected;
         }
 
+        public bool MatchesQuery(string query = null)
+        {
+            return !string.IsNullOrEmpty(query) && Name.ToLower().Contains(query);
+        }
+
         private void AssignServer(Server server)
         {
             Server = server;
@@ -169,11 +176,6 @@ namespace ProtonVPN.Servers
         {
             Connected = true;
             Connecting = false;
-        }
-
-        public bool MatchesQuery(string query = null)
-        {
-            return !string.IsNullOrEmpty(query) && Name.ToLower().Contains(query);
         }
     }
 }
