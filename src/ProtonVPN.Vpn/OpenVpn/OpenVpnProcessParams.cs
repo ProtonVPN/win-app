@@ -28,17 +28,24 @@ namespace ProtonVPN.Vpn.OpenVpn
             VpnEndpoint endpoint,
             int managementPort,
             string password,
-            IReadOnlyCollection<string> customDns)
+            IReadOnlyCollection<string> customDns,
+            bool useLowPriorityRoute)
         {
             Endpoint = endpoint;
             ManagementPort = managementPort;
             Password = password;
             CustomDns = customDns;
+            UseLowPriorityRoute = useLowPriorityRoute;
         }
 
         public VpnEndpoint Endpoint { get; }
+
         public int ManagementPort { get; }
+
         public string Password { get; }
+
         public IReadOnlyCollection<string> CustomDns { get; }
+
+        public bool UseLowPriorityRoute { get; }
     }
 }

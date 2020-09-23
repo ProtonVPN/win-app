@@ -70,6 +70,11 @@ namespace ProtonVPN.Vpn.OpenVpn
                 .Add(new CustomDnsArguments(processParams.CustomDns))
                 .Add(new TlsVerifyArguments(_config, processParams.Endpoint.Server.Name));
 
+            if (processParams.UseLowPriorityRoute)
+            {
+                arguments.Add(new LowDefaultRouteArgument());
+            }
+
             _startCompletionSource?.TrySetCanceled();
             _startCompletionSource = new TaskCompletionSource<bool>();
 

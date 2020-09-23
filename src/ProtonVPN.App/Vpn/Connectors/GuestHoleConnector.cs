@@ -116,7 +116,7 @@ namespace ProtonVPN.Vpn.Connectors
                 { VpnProtocol.OpenVpnTcp, _openVpnConfig.TcpPorts },
             };
 
-            return new VpnConfig(portConfig, new List<string>());
+            return new VpnConfig(portConfig, new List<string>(), false);
         }
     }
 }
