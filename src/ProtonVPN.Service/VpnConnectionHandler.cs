@@ -231,7 +231,7 @@ namespace ProtonVPN.Service
         private static VpnConfig Map(VpnConfigContract config)
         {
             var portConfig = config.Ports.ToDictionary(p => Map(p.Key), p => (IReadOnlyCollection<int>)p.Value.ToList());
-            return new VpnConfig(portConfig, config.CustomDns);
+            return new VpnConfig(portConfig, config.CustomDns, config.UseLowPriorityRoute);
         }
 
         private static InOutBytesContract Map(InOutBytes bytes)

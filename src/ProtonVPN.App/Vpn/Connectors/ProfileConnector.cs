@@ -36,6 +36,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ProtonVPN.Common;
 using Profile = ProtonVPN.Core.Profiles.Profile;
 
 namespace ProtonVPN.Vpn.Connectors
@@ -261,7 +262,8 @@ namespace ProtonVPN.Vpn.Connectors
 
             return new Common.Vpn.VpnConfig(
                 portConfig,
-                _appSettings.CustomDnsEnabled ? customDns : new List<string>());
+                _appSettings.CustomDnsEnabled ? customDns : new List<string>(),
+                _appSettings.SplitTunnelingEnabled && _appSettings.SplitTunnelMode == SplitTunnelMode.Permit);
         }
 
         private async Task Connect(IEnumerable<Server> servers, VpnProtocol protocol)

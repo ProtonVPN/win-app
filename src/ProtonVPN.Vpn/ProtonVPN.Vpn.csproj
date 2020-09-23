@@ -75,6 +75,7 @@
     <Compile Include="OpenVpn\Arguments\LocalHostArguments.cs" />
     <Compile Include="OpenVpn\Arguments\EndpointArguments.cs" />
     <Compile Include="OpenVpn\Arguments\BindArguments.cs" />
+    <Compile Include="OpenVpn\Arguments\LowDefaultRouteArgument.cs" />
     <Compile Include="OpenVpn\Arguments\TlsVerifyArguments.cs" />
     <Compile Include="OpenVpn\Arguments\ManagementArguments.cs" />
     <Compile Include="OpenVpn\Arguments\NoBindArguments.cs" />

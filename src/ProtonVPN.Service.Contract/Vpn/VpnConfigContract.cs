@@ -30,5 +30,8 @@ namespace ProtonVPN.Service.Contract.Vpn
 
         [DataMember(IsRequired = true)]
         public List<string> CustomDns { get; set; }
+
+        [DataMember(IsRequired = true)]
+        public bool UseLowPriorityRoute { get; set; }
     }
 }

@@ -132,6 +132,7 @@ namespace ProtonVPN.Core.Service.Vpn
             {
                 Ports = portConfig,
                 CustomDns = config.CustomDns.ToList(),
+                UseLowPriorityRoute =  config.UseLowPriorityRoute,
             };
         }
 

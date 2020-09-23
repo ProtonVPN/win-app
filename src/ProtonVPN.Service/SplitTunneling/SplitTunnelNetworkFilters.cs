@@ -73,38 +73,7 @@ namespace ProtonVPN.Service.SplitTunneling
             {
                 var connectRedirectCallout = CreateConnectRedirectCallout();
                 var redirectUDPCallout = CreateUDPRedirectCallout();
-
                 var providerContext = _ipFilter.CreateProviderContext(
-                    new DisplayData
-                    {
-                        Name = "ProtonVPN Split Tunnel redirect context",
-                        Description = "Instructs the callout driver where to redirect network connections",
-                    },
-                    new ConnectRedirectData(internetLocalIp));
-
-                _subLayer.CreateLayerCalloutFilter(
-                        new DisplayData
-                        {
-                            Name = "ProtonVPN Split Tunnel redirect",
-                            Description = "Redirects network connections"
-                        },
-                        Layer.AppConnectRedirectV4,
-                        14,
-                        connectRedirectCallout,
-                        providerContext);
-
-                _subLayer.CreateLayerCalloutFilter(
-                        new DisplayData
-                        {
-                            Name = "ProtonVPN Split Tunnel redirect",
-                            Description = "Redirects network connections"
-                        },
-                        Layer.BindRedirectV4,
-                        14,
-                        redirectUDPCallout,
-                        providerContext);
-
-                providerContext = _ipFilter.CreateProviderContext(
                     new DisplayData
                     {
                         Name = "ProtonVPN Split Tunnel redirect context",
@@ -114,7 +83,6 @@ namespace ProtonVPN.Service.SplitTunneling
 
                 CreateAppFilters(apps, connectRedirectCallout, Layer.AppConnectRedirectV4, providerContext);
                 CreateIPFilters(ips, connectRedirectCallout, Layer.AppConnectRedirectV4, providerContext);
-
                 CreateAppFilters(apps, redirectUDPCallout, Layer.BindRedirectV4, providerContext);
 
                 _ipFilter.Session.CommitTransaction();
