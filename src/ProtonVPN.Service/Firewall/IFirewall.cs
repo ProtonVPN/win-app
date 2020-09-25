@@ -21,7 +21,7 @@ namespace ProtonVPN.Service.Firewall
 {
     public interface IFirewall
     {
-        void EnableLeakProtection(string serverIp);
+        void EnableLeakProtection(FirewallParams firewallParams);
 
         void DisableLeakProtection();
 
