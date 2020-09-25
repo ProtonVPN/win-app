@@ -390,6 +390,49 @@ unsigned int IPFilterCreateNetInterfaceFilter(
         filterKey);
 }
 
+unsigned int IPFilterCreateNetInterfaceDnsFilter(
+    IPFilterSessionHandle sessionHandle,
+    GUID* providerKey,
+    GUID* sublayerKey,
+    const IPFilterDisplayData* displayData,
+    unsigned int layer,
+    unsigned int action,
+    unsigned int weight,
+    const char* name,
+    GUID* filterKey)
+{
+    std::vector<ipfilter::condition::Condition> conditions{};
+
+    auto netInterfaces = ipfilter::getNetworkInterfaces();
+
+    auto netInterfaceIt = ipfilter::findNetworkInterfaceByName(
+        netInterfaces,
+        name);
+    if (netInterfaceIt == std::end(netInterfaces))
+    {
+        return E_ADAPTER_NOT_FOUND;
+    }
+
+    conditions.push_back(ipfilter::condition::netInterface(
+        ipfilter::matcher::equal(),
+        *netInterfaceIt));
+
+    conditions.push_back(ipfilter::condition::remotePort(ipfilter::matcher::equal(), 53));
+
+    return IPFilterCreateFilter(
+        sessionHandle,
+        providerKey,
+        sublayerKey,
+        displayData,
+        layer,
+        action,
+        weight,
+        nullptr,
+        nullptr,
+        conditions,
+        filterKey);
+}
+
 unsigned int IPFilterCreateLoopbackFilter(
     IPFilterSessionHandle sessionHandle,
     GUID* providerKey,

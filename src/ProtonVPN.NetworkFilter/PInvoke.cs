@@ -259,6 +259,21 @@ namespace ProtonVPN.NetworkFilter
 
         [DllImport(
             BinaryName,
+            EntryPoint = "IPFilterCreateNetInterfaceDnsFilter",
+            CallingConvention = CallingConvention.Cdecl)]
+        public static extern uint CreateNetInterfaceDnsFilter(
+            IntPtr sessionHandle,
+            [In] ref Guid providerKey,
+            [In] ref Guid sublayerKey,
+            ref DisplayData displayData,
+            uint layer,
+            uint action,
+            uint weight,
+            [MarshalAs(UnmanagedType.LPStr)] string interfaceId,
+            [In, Out] ref Guid filterKey);
+
+        [DllImport(
+            BinaryName,
             EntryPoint = "IPFilterCreateLoopbackFilter",
             CallingConvention = CallingConvention.Cdecl)]
         public static extern uint CreateLoopbackFilter(
