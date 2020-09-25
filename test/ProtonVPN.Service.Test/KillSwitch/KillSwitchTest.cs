@@ -44,9 +44,10 @@ namespace ProtonVPN.Service.Test.KillSwitch
         }
 
         [TestMethod]
-        [DataRow(SplitTunnelMode.Block)]
-        [DataRow(SplitTunnelMode.Disabled)]
-        public void OnVpnConnecting_SplitTunnelBlockMode_BlockInternet(SplitTunnelMode mode)
+        [DataRow(SplitTunnelMode.Block, false)]
+        [DataRow(SplitTunnelMode.Permit, true)]
+        [DataRow(SplitTunnelMode.Disabled, false)]
+        public void OnVpnConnecting_SplitTunnelBlockMode_BlockInternet(SplitTunnelMode mode, bool dnsLeakOnly)
         {
             // Arrange
             var killSwitch = GetKillSwitch(mode);
@@ -55,20 +56,7 @@ namespace ProtonVPN.Service.Test.KillSwitch
             killSwitch.OnVpnConnecting(GetConnectingVpnState());
 
             // Assert
-            _firewall.Received(1).EnableLeakProtection(RemoteIp);
-        }
-
-        [TestMethod]
-        public void OnVpnConnecting_SplitTunnelPermitMode_BlockInternet()
-        {
-            // Arrange
-            var killSwitch = GetKillSwitch(SplitTunnelMode.Permit);
-
-            // Act
-            killSwitch.OnVpnConnecting(GetConnectingVpnState());
-
-            // Assert
-            _firewall.Received(1).DisableLeakProtection();
+            _firewall.ReceivedWithAnyArgs(1).EnableLeakProtection(Arg.Is<FirewallParams>(p => p.DnsLeakOnly == dnsLeakOnly));
         }
 
         [TestMethod]
@@ -81,7 +69,7 @@ namespace ProtonVPN.Service.Test.KillSwitch
             killSwitch.OnVpnConnected(GetConnectedVpnState());
 
             // Assert
-            _firewall.Received(0).EnableLeakProtection("127.0.0.1");
+            _firewall.Received(0).EnableLeakProtection(new FirewallParams("127.0.0.1", false));
         }
 
         [TestMethod]
@@ -115,19 +103,15 @@ namespace ProtonVPN.Service.Test.KillSwitch
         }
 
         [DataTestMethod]
-        [DataRow(VpnStatus.Connecting, SplitTunnelMode.Disabled, true)]
-        [DataRow(VpnStatus.Connecting, SplitTunnelMode.Block, true)]
-        [DataRow(VpnStatus.Connecting, SplitTunnelMode.Permit, false)]
-        [DataRow(VpnStatus.Reconnecting, SplitTunnelMode.Disabled, true)]
-        [DataRow(VpnStatus.Reconnecting, SplitTunnelMode.Block, true)]
-        [DataRow(VpnStatus.Reconnecting, SplitTunnelMode.Permit, false)]
-        public void ExpectedLeakProtectionStatus_ShouldBe_Expected_WhenConnecting(VpnStatus status, SplitTunnelMode splitTunnelMode, bool expected)
+        [DataRow(VpnStatus.Connecting)]
+        [DataRow(VpnStatus.Reconnecting)]
+        public void ExpectedLeakProtectionStatus_ShouldBe_Enabled_WhenConnecting(VpnStatus status)
         {
             // Arrange
             var state = new VpnState(status);
             _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsContract
             {
-                Mode = splitTunnelMode
+                Mode = SplitTunnelMode.Block
             });
             var killSwitch = new Service.KillSwitch.KillSwitch(_firewall, _serviceSettings);
 
@@ -135,7 +119,7 @@ namespace ProtonVPN.Service.Test.KillSwitch
             var result = killSwitch.ExpectedLeakProtectionStatus(state);
 
             //Assert
-            result.Should().Be(expected);
+            result.Should().Be(true);
         }
 
         [DataTestMethod]
