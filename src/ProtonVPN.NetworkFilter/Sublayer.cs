@@ -313,6 +313,28 @@ namespace ProtonVPN.NetworkFilter
             return filterId;
         }
 
+        public Guid CreateNetInterfaceDnsFilter(
+            DisplayData displayData,
+            Action action,
+            Layer layer,
+            uint weight,
+            string interfaceId)
+        {
+            var filterId = IpFilterNative.CreateNetInterfaceDnsFilter(
+                Session.Handle,
+                ProviderId,
+                Id,
+                displayData,
+                layer,
+                action,
+                weight,
+                interfaceId);
+
+            AddFilter(filterId);
+
+            return filterId;
+        }
+
         public Guid CreateLoopbackFilter(
             DisplayData displayData,
             Action action,
