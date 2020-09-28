@@ -177,6 +177,7 @@
   <ItemGroup>
     <ClInclude Include="Assertion.h" />
     <ClInclude Include="BestInterface.h" />
+    <ClInclude Include="InterfaceMetric.h" />
     <ClInclude Include="IpAddress.h" />
     <ClInclude Include="NetInterface.h" />
     <ClInclude Include="NetworkConfiguration.h" />
@@ -188,6 +189,7 @@
     <ClCompile Include="Assertion.cpp" />
     <ClCompile Include="BestInterface.cpp" />
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="InterfaceMetric.cpp" />
     <ClCompile Include="IpAddress.cpp" />
     <ClCompile Include="NetInterface.cpp" />
     <ClCompile Include="NetworkConfiguration.cpp" />

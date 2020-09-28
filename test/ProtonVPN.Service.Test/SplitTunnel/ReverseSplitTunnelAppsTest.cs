@@ -30,18 +30,6 @@ namespace ProtonVPN.Service.Test.SplitTunnel
     public class ReverseSplitTunnelAppsTest
     {
         [TestMethod]
-        public void Value_ShouldContainSvchost_Exe()
-        {
-            // Arrange
-            var serviceSettings = Substitute.For<IServiceSettings>();
-            serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsContract());
-            var sut = new IncludeModeApps(serviceSettings);
-
-            // Assert
-            sut.Value().Should().Contain(e => e.Contains("svchost.exe"));
-        }
-
-        [TestMethod]
         public void Value_ShouldContainApps()
         {
             // Arrange

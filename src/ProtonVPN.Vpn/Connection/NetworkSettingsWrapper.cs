@@ -9,7 +9,7 @@ using ProtonVPN.Vpn.Common;
 
 namespace ProtonVPN.Vpn.Connection
 {
-    internal class DefaultGatewayWrapper : IVpnConnection
+    internal class NetworkSettingsWrapper : IVpnConnection
     {
         private readonly IVpnConnection _origin;
         private readonly INetworkInterfaces _networkInterfaces;
@@ -17,7 +17,7 @@ namespace ProtonVPN.Vpn.Connection
         private readonly string _tapAdapterId;
         private readonly ILogger _logger;
 
-        public DefaultGatewayWrapper(
+        public NetworkSettingsWrapper(
             ILogger logger,
             string tapAdapterId,
             string tapAdapterDescription,
@@ -38,7 +38,7 @@ namespace ProtonVPN.Vpn.Connection
         public void Connect(IReadOnlyList<VpnHost> servers, VpnConfig config, VpnProtocol protocol,
             VpnCredentials credentials)
         {
-            AddDefaultGateway();
+            ApplyNetworkSettings();
 
             _origin.Connect(servers, config, protocol, credentials);
         }
@@ -46,6 +46,7 @@ namespace ProtonVPN.Vpn.Connection
         public void Disconnect(VpnError error = VpnError.None)
         {
             _origin.Disconnect(error);
+            RestoreNetworkSettings();
         }
 
         public void UpdateServers(IReadOnlyList<VpnHost> servers, VpnConfig config)
@@ -63,26 +64,57 @@ namespace ProtonVPN.Vpn.Connection
             StateChanged?.Invoke(this, new EventArgs<VpnState>(state));
         }
 
-        private void AddDefaultGateway()
+        private void ApplyNetworkSettings()
         {
+            var tapGuid = GetTapGuid();
+            if (tapGuid == null)
+            {
+                return;
+            }
+
             try
             {
                 var localInterfaceIp = NetworkUtil.GetBestInterfaceIp(_tapAdapterId).ToString();
-                var tapInterface = _networkInterfaces.Interface(_tapAdapterDescription);
-                var parseResult = Guid.TryParse(tapInterface.Id, out var guid);
 
-                if (!parseResult)
-                {
-                    return;
-                }
-
-                NetworkUtil.DeleteDefaultGatewayForIface(guid, localInterfaceIp);
-                NetworkUtil.AddDefaultGatewayForIface(guid, localInterfaceIp);
+                NetworkUtil.DeleteDefaultGatewayForIface(tapGuid.Value, localInterfaceIp);
+                NetworkUtil.AddDefaultGatewayForIface(tapGuid.Value, localInterfaceIp);
+                NetworkUtil.SetLowestTapMetric(tapGuid.Value);
             }
             catch (NetworkUtilException e)
             {
-                _logger.Error("Add default TAP gateway failed. Error code: " + e.Code);
+                _logger.Error("Failed to apply network settings. Error code: " + e.Code);
             }
+        }
+
+        private void RestoreNetworkSettings()
+        {
+            var tapGuid = GetTapGuid();
+            if (tapGuid == null)
+            {
+                return;
+            }
+
+            try
+            {
+                NetworkUtil.RestoreDefaultTapMetric(tapGuid.Value);
+            }
+            catch (NetworkUtilException e)
+            {
+                _logger.Error("Failed restore network settings. Error code: " + e.Code);
+            }
+        }
+
+        private Guid? GetTapGuid()
+        {
+            var tapInterface = _networkInterfaces.Interface(_tapAdapterDescription);
+            var parseResult = Guid.TryParse(tapInterface.Id, out var guid);
+
+            if (!parseResult)
+            {
+                return null;
+            }
+
+            return guid;
         }
     }
 }

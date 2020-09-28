@@ -155,6 +155,27 @@ namespace ProtonVPN.Service.Firewall
                     weight,
                     53);
             });
+
+            _ipLayer.ApplyToIpv6(layer =>
+            {
+                _sublayer.CreateRemoteTcpPortFilter(new DisplayData(
+                        "ProtonVPN block DNS", "Block TCP 53 port"),
+                    Action.HardBlock,
+                    layer,
+                    weight,
+                    53);
+            });
+
+            _ipLayer.ApplyToIpv6(layer =>
+            {
+                _sublayer.CreateRemoteUdpPortFilter(new DisplayData(
+                        "ProtonVPN block DNS",
+                        "Block UDP 53 port"),
+                    Action.HardBlock,
+                    layer,
+                    weight,
+                    53);
+            });
         }
 
         private void PermitDhcp(uint weight)

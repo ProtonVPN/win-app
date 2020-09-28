@@ -1,10 +1,8 @@
-#include "Route.h"
-
 #include <winsock2.h>
-#include <iphlpapi.h>
 #include <ws2tcpip.h>
 #include <vector>
 #include <string>
+#include "Route.h"
 
 namespace Proton
 {
@@ -12,13 +10,6 @@ namespace Proton
     {
         namespace Route
         {
-            struct IfaceInfo
-            {
-                GUID Guid;
-                ULONG Ipv4Metric;
-                IF_INDEX Index;
-            };
-
             bool GetIfaceInfo(const GUID& guid, IfaceInfo& info)
             {
                 ULONG adapterListSize = 0;
@@ -50,6 +41,7 @@ namespace Proton
                         info.Guid = guid;
                         info.Ipv4Metric = adapter->Ipv4Metric;
                         info.Index = adapter->IfIndex;
+                        info.Luid = adapter->Luid;
 
                         return true;
                     }
