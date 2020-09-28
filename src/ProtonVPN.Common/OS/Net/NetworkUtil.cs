@@ -64,6 +64,16 @@ namespace ProtonVPN.Common.Os.Net
             AssertSuccess(() => PInvoke.DeleteDefaultGatewayForIface(ref guid, gatewayAddr));
         }
 
+        public static void SetLowestTapMetric(Guid guid)
+        {
+            AssertSuccess(() => PInvoke.SetLowestTapMetric(ref guid));
+        }
+
+        public static void RestoreDefaultTapMetric(Guid guid)
+        {
+            AssertSuccess(() => PInvoke.RestoreDefaultTapMetric(ref guid));
+        }
+
         private static void AssertSuccess(Func<uint> function)
         {
             uint status;
