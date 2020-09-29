@@ -1071,7 +1071,7 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <comment>The app update status in About window</comment>
   </data>
   <data name="App_mnu_ReportBug" xml:space="preserve">
-    <value>Report Bug</value>
+    <value>Report a Bug</value>
     <comment>The header of Report Bug menu item in the main app window (opens Bug Report window)</comment>
   </data>
   <data name="Connecting_lbl_ConnectingTo_1" xml:space="preserve">
