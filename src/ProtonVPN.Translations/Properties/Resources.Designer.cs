@@ -610,7 +610,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Report Bug.
+        ///   Looks up a localized string similar to Report a Bug.
         /// </summary>
         public static string App_mnu_ReportBug {
             get {
