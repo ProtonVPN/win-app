@@ -22,7 +22,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:resources="clr-namespace:ProtonVPN.Resources"
+             xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
@@ -61,14 +61,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </Border>
             <ControlTemplate.Triggers>
                 <DataTrigger Binding="{Binding Connected}" Value="True">
-                    <Setter TargetName="Button" Property="Content" Value="{resources:Loc Servers_btn_Disconnect}"/>
+                    <Setter TargetName="Button" Property="Content" Value="{translations:Loc Servers_btn_Disconnect}"/>
                     <Setter Property="Visibility" Value="Visible"/>
                 </DataTrigger>
                 <DataTrigger Binding="{Binding Connected}" Value="False">
-                    <Setter TargetName="Button" Property="Content" Value="{resources:Loc Servers_btn_Connect}"/>
+                    <Setter TargetName="Button" Property="Content" Value="{translations:Loc Servers_btn_Connect}"/>
                 </DataTrigger>
                 <DataTrigger Binding="{Binding UpgradeRequired}" Value="True">
-                    <Setter TargetName="Button" Property="Content" Value="{resources:Loc Servers_btn_Upgrade}"/>
+                    <Setter TargetName="Button" Property="Content" Value="{translations:Loc Servers_btn_Upgrade}"/>
                 </DataTrigger>
                 <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Border}}, Path=IsMouseOver}" Value="True">
                     <Setter Property="Visibility" Value="Visible"/>
@@ -85,7 +85,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <Setter TargetName="ConnectButtonOutterBorder" Property="BorderBrush" Value="Red"/>
                     <Setter TargetName="ConnectButtonInnerBorder" Property="Background" Value="Red"/>
                     <Setter TargetName="Button" Property="Foreground" Value="White"/>
-                    <Setter TargetName="Button" Property="Content" Value="{resources:Loc Servers_btn_Disconnect}"/>
+                    <Setter TargetName="Button" Property="Content" Value="{translations:Loc Servers_btn_Disconnect}"/>
                 </MultiDataTrigger>
             </ControlTemplate.Triggers>
         </ControlTemplate>

@@ -43,6 +43,22 @@ namespace ProtonVPN.UI.Test.Tests
             await _mainWindowResults.CheckIfCorrectIPAddressIsShownAsync();
             _mainWindow.DisconnectUsingSidebarButton();
             await _mainWindowResults.CheckIfCorrectIPAddressIsShownAsync();
+            TestRailClient.MarkTestsByStatus();
+
+            TestCaseId = 256;
+            _mainWindow.DisconnectUsingSidebarButton();
+            _mainWindowResults.CheckIfDisconnected();
+        }
+
+        [Test]
+        public void CheckIfAfterKillingAppSecureCoreConnectionIsRestored()
+        {
+            TestCaseId = 218;
+
+            _loginWindow.LoginWithPlusUser();
+            _mainWindow.EnableSecureCore();
+            _mainWindow.QuickConnect();
+            _mainWindowResults.CheckIfSameServerIsKeptAfterKillingApp();
         }
 
         [SetUp]

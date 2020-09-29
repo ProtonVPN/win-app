@@ -19,7 +19,6 @@
 
 using System;
 using System.Threading.Tasks;
-using ProtonVPN.Common.OS.Services;
 using ProtonVPN.Core.Service;
 
 namespace ProtonVPN.Modals

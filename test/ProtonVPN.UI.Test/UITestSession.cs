@@ -19,13 +19,16 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Windows;
+using ProtonVPN.Common.Extensions;
 using ProtonVPN.UI.Test.ApiClient;
+using ProtonVPN.UI.Test.TestsHelper;
 
 namespace ProtonVPN.UI.Test
 {
@@ -67,6 +70,20 @@ namespace ProtonVPN.UI.Test
             Sessions.Clear();
             Session = null;
             TestRailClient.MarkTestsByStatus();
+        }
+
+        public static void KillProtonVpnProcess()
+        {
+            Process[] proc = Process.GetProcessesByName("ProtonVPN");
+            proc.ForEach(p => p.Kill());
+        }
+
+        public static void KillProtonVPNProcessAndReopenIt()
+        {
+            KillProtonVpnProcess();
+            RefreshSession();
+            UIActions.WaitUntilElementIsNotVisible(By.ClassName("Loading"), 15);
+            RefreshSession();
         }
 
         protected static void SetImplicitWait(double timeInSeconds)

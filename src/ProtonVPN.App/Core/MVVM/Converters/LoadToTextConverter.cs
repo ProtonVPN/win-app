@@ -17,7 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Resources;
+using ProtonVPN.Translations;
 using System;
 using System.Globalization;
 using System.Windows.Data;
@@ -29,8 +29,8 @@ namespace ProtonVPN.Core.MVVM.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return value != null 
-                ? StringResources.Format("Servers_Load_lbl_LoadInfo", (int)value)
-                : StringResources.Get("Servers_Load_lbl_LoadInfo_NoData");
+                ? Translation.Format("Servers_Load_lbl_LoadInfo", (int)value)
+                : Translation.Get("Servers_Load_lbl_LoadInfo_NoData");
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

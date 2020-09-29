@@ -117,9 +117,6 @@
     <Reference Include="PInvoke.Windows.ShellScalingApi, Version=0.6.0.0, Culture=neutral, PublicKeyToken=9e300f9f87f04a7a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\PInvoke.Windows.ShellScalingApi.0.6.6\lib\net45\PInvoke.Windows.ShellScalingApi.dll</HintPath>
     </Reference>
-    <Reference Include="PluralNet, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\PluralNet.1.0.5\lib\portable-net45+win8+wpa81\PluralNet.dll</HintPath>
-    </Reference>
     <Reference Include="Polly, Version=7.0.0.0, Culture=neutral, PublicKeyToken=c8a3ffc3f8f825cc, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Polly.7.2.0\lib\net472\Polly.dll</HintPath>
     </Reference>
@@ -194,6 +191,7 @@
     <Compile Include="BugReporting\Diagnostic\InstalledAppsLog.cs" />
     <Compile Include="BugReporting\Diagnostic\NetworkAdapterLog.cs" />
     <Compile Include="BugReporting\Diagnostic\NetworkLogWriter.cs" />
+    <Compile Include="BugReporting\Diagnostic\SystemState.cs" />
     <Compile Include="BugReporting\Diagnostic\RoutingTableLog.cs" />
     <Compile Include="Core\ExpiredSessionHandler.cs" />
     <Compile Include="Core\ILanguageProvider.cs" />
@@ -201,7 +199,16 @@
     <Compile Include="Core\LanguageProvider.cs" />
     <Compile Include="Core\MVVM\Converters\PluralConverter.cs" />
     <Compile Include="Core\MVVM\Converters\ZeroToBoolConverter.cs" />
+    <Compile Include="Core\Service\BaseFilteringEngineService.cs" />
     <Compile Include="Core\Service\Vpn\ReconnectManager.cs" />
+    <Compile Include="Modals\BfeWarningModalView.xaml.cs">
+      <DependentUpon>BfeWarningModalView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modals\BfeWarningModalViewModel.cs" />
+    <Compile Include="Modals\RebootModalView.xaml.cs">
+      <DependentUpon>RebootModalView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modals\RebootModalViewModel.cs" />
     <Compile Include="Settings\Migrations\v1_17_0\AppSettingsMigration.cs" />
     <Compile Include="Core\Service\Vpn\IVpnManager.cs" />
     <Compile Include="FlashNotifications\FlashNotifications.xaml.cs">
@@ -376,10 +383,10 @@
       <DependentUpon>ProfileConnectionView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Profiles\ProfileSyncViewModel.cs" />
-    <Compile Include="Resources\TranslationSource.cs" />
     <Compile Include="Servers\Countries.cs" />
     <Compile Include="Servers\ServerListFactory.cs" />
     <Compile Include="Servers\SortedCountries.cs" />
+    <Compile Include="Settings\LanguageViewModel.cs" />
     <Compile Include="Settings\ReconnectNotification\CompoundSetting.cs" />
     <Compile Include="Settings\CustomDnsListViewModel.cs" />
     <Compile Include="Settings\ReconnectNotification\CustomDnsSetting.cs" />
@@ -432,7 +439,6 @@
       <DependentUpon>Map.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modals\BaseModalViewModel.cs" />
-    <Compile Include="Modals\BaseModalWindow.cs" />
     <Compile Include="Modals\Dialogs\QuestionModalView.xaml.cs">
       <DependentUpon>QuestionModalView.xaml</DependentUpon>
     </Compile>
@@ -510,14 +516,12 @@
     <Compile Include="Sidebar\SidebarManager.cs" />
     <Compile Include="Sidebar\SidebarModeEventArgs.cs" />
     <Compile Include="Core\SingleInstanceApplication.cs" />
-    <Compile Include="Resources\StringResources.cs" />
     <Compile Include="Core\AppSettings.cs" />
     <Compile Include="Core\Wpf\AlignableWrapPanel.cs" />
     <Compile Include="Core\Wpf\Behavior\AnimateBehaviour.cs" />
     <Compile Include="Core\Wpf\Behavior\TextStyleBehavior.cs" />
     <Compile Include="Core\Wpf\ClippingBorder.cs" />
     <Compile Include="Core\Wpf\ComboBox.cs" />
-    <Compile Include="Core\Wpf\ControlExtension.cs" />
     <Compile Include="Core\Wpf\PlaceholderTextBox.cs" />
     <Compile Include="Core\Wpf\Scrollviewer.cs" />
     <Compile Include="Sidebar\Trial\TrialView.xaml.cs">
@@ -614,9 +618,6 @@
     </Compile>
     <Compile Include="Map\Views\Pin.xaml.cs">
       <DependentUpon>Pin.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Controls\ProtonAnimation.xaml.cs">
-      <DependentUpon>ProtonAnimation.xaml</DependentUpon>
     </Compile>
     <Compile Include="Map\Views\SecureCorePin.xaml.cs">
       <DependentUpon>SecureCorePin.xaml</DependentUpon>
@@ -781,9 +782,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Modals\BfeWarningModalView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Modals\OutdatedAppModalView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modals\RebootModalView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Modals\TroubleshootModalView.xaml">
       <SubType>Designer</SubType>
@@ -866,14 +875,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\Assets\Styles\Sidebar.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Resources\Assets\Styles\Window.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Resources\AutomationConfig.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -998,15 +999,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Resources\Assets\Styles\Animations.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Resources\Assets\Styles\Checkbox.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Resources\Assets\Styles\ClearButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1023,10 +1016,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\Assets\Styles\Menu.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Resources\Assets\Styles\Modal.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1131,10 +1120,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Map\Views\Pin.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Controls\ProtonAnimation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1247,22 +1232,11 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.*.resx" />
     <None Include="app.manifest" />
     <None Include="gosrp.bat" />
     <None Include="..\..\COPYING.md">
@@ -1584,6 +1558,10 @@
     <ProjectReference Include="..\ProtonVPN.Service.Contract\ProtonVPN.Service.Contract.csproj">
       <Project>{96c5d688-c0f1-4a63-9e26-e485fd0e1365}</Project>
       <Name>ProtonVPN.Service.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProtonVPN.Translations\ProtonVPN.Translations.csproj">
+      <Project>{2a00c747-8bc0-4ef1-a53e-37a7e156d910}</Project>
+      <Name>ProtonVPN.Translations</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

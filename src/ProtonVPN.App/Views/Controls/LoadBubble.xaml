@@ -24,7 +24,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:controls="clr-namespace:ProtonVPN.Views.Controls"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              xmlns:connectionInfo="clr-namespace:ProtonVPN.ConnectionInfo"
-             xmlns:resources="clr-namespace:ProtonVPN.Resources">
+             xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations">
 
     <UserControl.Resources>
         <ResourceDictionary>
@@ -95,8 +95,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
 
-                            <Label Grid.Row="0" Grid.Column="0" Content="{resources:Loc Servers_Load_lbl_Load}" Foreground="#626270" FontSize="12"/>
-                            <Label Grid.Row="1" Grid.Column="0" Content="{resources:Loc Servers_Load_lbl_IP}" Foreground="#626270" FontSize="12"/>
+                            <Label Grid.Row="0" Grid.Column="0" Content="{translations:Loc Servers_Load_lbl_Load}" Foreground="#626270" FontSize="12"/>
+                            <Label Grid.Row="1" Grid.Column="0" Content="{translations:Loc Servers_Load_lbl_IP}" Foreground="#626270" FontSize="12"/>
 
                             <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
                                 <Label Content="{Binding Load}" Foreground="White" FontSize="12"/>
@@ -114,7 +114,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <ContentPresenter Grid.Row="1" Grid.Column="1" Content="{Binding Ip}">
                                 <ContentPresenter.Resources>
                                     <DataTemplate DataType="{x:Type connectionInfo:AutoAssignedIp}">
-                                        <TextBlock Foreground="White" Padding="5" FontSize="12" Text="{resources:Loc Servers_Load_lbl_IPAutoAssigned}"/>
+                                        <TextBlock Foreground="White" Padding="5" FontSize="12" Text="{translations:Loc Servers_Load_lbl_IPAutoAssigned}"/>
                                     </DataTemplate>
                                     <DataTemplate DataType="{x:Type connectionInfo:Ip}">
                                         <TextBlock Foreground="White" Padding="5" FontSize="12" Text="{Binding Address}"/>
@@ -125,7 +125,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0">
                                 <DockPanel Margin="5,5,0,0">
                                     <Path Style="{StaticResource SecureCoreIcon}"/>
-                                    <TextBlock Text="{resources:Loc Servers_Feature_val_SecureCore}" Style="{StaticResource SecureCoreFeatureText}"/>
+                                    <TextBlock Text="{translations:Loc Servers_Feature_val_SecureCore}" Style="{StaticResource SecureCoreFeatureText}"/>
                                 </DockPanel>
                             </StackPanel>
 
@@ -135,21 +135,21 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         <Border Style="{StaticResource PlusInfoIconBorder}"/>
                                         <Label Style="{StaticResource PlusInfoIconLetter}">P</Label>
                                     </Grid>
-                                    <TextBlock Text="{resources:Loc Servers_Feature_val_Plus}" Style="{StaticResource PlusFeatureText}"/>
+                                    <TextBlock Text="{translations:Loc Servers_Feature_val_Plus}" Style="{StaticResource PlusFeatureText}"/>
                                 </DockPanel>
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="0">
                                 <DockPanel Margin="5,5,0,5">
                                     <icons:P2P Style="{StaticResource P2PFeatureIcon}"/>
-                                    <TextBlock Text="{resources:Loc Servers_Feature_val_P2P}" Style="{StaticResource P2PFeatureText}"/>
+                                    <TextBlock Text="{translations:Loc Servers_Feature_val_P2P}" Style="{StaticResource P2PFeatureText}"/>
                                 </DockPanel>
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1">
                                 <DockPanel Margin="5,5,0,5">
                                     <icons:Tor Style="{StaticResource TorFeatureIcon}"/>
-                                    <TextBlock Text="{resources:Loc Servers_Feature_val_Tor}" Style="{StaticResource TorFeatureText}"/>
+                                    <TextBlock Text="{translations:Loc Servers_Feature_val_Tor}" Style="{StaticResource TorFeatureText}"/>
                                 </DockPanel>
                             </StackPanel>
                         </Grid>

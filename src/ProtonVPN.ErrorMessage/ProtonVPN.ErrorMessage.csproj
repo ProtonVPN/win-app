@@ -15,6 +15,7 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -27,7 +28,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -61,6 +61,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -79,6 +80,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BaseWindowViewModel.cs" />
+    <Compile Include="GenericCommand.cs" />
+    <Compile Include="InstallerPath.cs" />
+    <Compile Include="MainWindowViewModel.cs" />
+    <Compile Include="NullLogger.cs" />
+    <Compile Include="RepairLauncher.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -96,7 +103,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ParsedMessage.cs" />
+    <Compile Include="ProductCode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -107,9 +114,17 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ProtonVPN.Common\ProtonVPN.Common.csproj">
+      <Project>{03B8E43C-5680-4803-A745-0A104FE6620C}</Project>
+      <Name>ProtonVPN.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ProtonVPN.Resources\ProtonVPN.Resource.csproj">
       <Project>{45a0ea81-d37e-4d7f-8ce1-ce6b6a95a9ed}</Project>
       <Name>ProtonVPN.Resource</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProtonVPN.Translations\ProtonVPN.Translations.csproj">
+      <Project>{2a00c747-8bc0-4ef1-a53e-37a7e156d910}</Project>
+      <Name>ProtonVPN.Translations</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

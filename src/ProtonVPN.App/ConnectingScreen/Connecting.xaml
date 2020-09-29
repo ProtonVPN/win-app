@@ -29,7 +29,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:controls="clr-namespace:ProtonVPN.Views.Controls"
              xmlns:wpf="clr-namespace:ProtonVPN.Core.Wpf"
              xmlns:connectingScreen="clr-namespace:ProtonVPN.ConnectingScreen"
-             xmlns:resources="clr-namespace:ProtonVPN.Resources"
+             xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="300"
@@ -53,7 +53,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </Style.Triggers>
         </Style>
         <Style x:Key="CancelButton" TargetType="Button" BasedOn="{StaticResource ControlButton}">
-            <Setter Property="Content" Value="{resources:Loc Connecting_btn_Cancel}"/>
+            <Setter Property="Content" Value="{translations:Loc Connecting_btn_Cancel}"/>
             <Setter Property="AutomationProperties.AutomationId" Value="{StaticResource CancelButtonId}"/>
         </Style>
         <ControlTemplate x:Key="EllipseAnimationContent">
@@ -145,13 +145,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     HorizontalContentAlignment="Center"
                                     Visibility="{Binding Reconnecting, Converter={StaticResource BoolToVis}}">
                 <TextBlock Padding="0"
-                           Text="{resources:Loc Connecting_lbl_FailedConnection_1}"
+                           Text="{translations:Loc Connecting_lbl_FailedConnection_1}"
                            FontSize="16"
                            Foreground="White"
                            VerticalAlignment="Center"
                            Visibility="{c:Binding '!FailedConnectionName.IsSecureCore'}"/>
                 <TextBlock Padding="0"
-                           Text="{resources:Loc Connecting_lbl_FailedConnection_1_SecureCore}"
+                           Text="{translations:Loc Connecting_lbl_FailedConnection_1_SecureCore}"
                            FontSize="16"
                            Foreground="White"
                            VerticalAlignment="Center" Visibility="{c:Binding 'FailedConnectionName.IsSecureCore'}"/>
@@ -164,13 +164,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                      AlignCenter="True"
                                      ConnectionName="{Binding FailedConnectionName}"/>
                 <TextBlock Padding="0"
-                           Text="{resources:Loc Connecting_lbl_FailedConnection_2}"
+                           Text="{translations:Loc Connecting_lbl_FailedConnection_2}"
                            FontSize="16"
                            Foreground="White"
                            VerticalAlignment="Center"
                            Visibility="{c:Binding '!FailedConnectionName.IsSecureCore'}"/>
                 <TextBlock Padding="0"
-                           Text="{resources:Loc Connecting_lbl_FailedConnection_2_SecureCore}"
+                           Text="{translations:Loc Connecting_lbl_FailedConnection_2_SecureCore}"
                            FontSize="16"
                            Foreground="White"
                            VerticalAlignment="Center"
@@ -179,14 +179,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <wpf:AlignableWrapPanel HorizontalAlignment="Center" Margin="0,5,0,0" HorizontalContentAlignment="Center">
                 <TextBlock Padding="0"
                            TextTrimming="CharacterEllipsis"
-                           Text="{resources:Loc Connecting_lbl_ConnectingTo_1}"
+                           Text="{translations:Loc Connecting_lbl_ConnectingTo_1}"
                            FontSize="20"
                            Foreground="White"
                            VerticalAlignment="Center"
                            Visibility="{c:Binding '!ConnectionName.IsSecureCore'}"/>
                 <TextBlock Padding="0"
                            TextTrimming="CharacterEllipsis"
-                           Text="{resources:Loc Connecting_lbl_ConnectingTo_1_SecureCore}"
+                           Text="{translations:Loc Connecting_lbl_ConnectingTo_1_SecureCore}"
                            FontSize="20"
                            Foreground="White"
                            VerticalAlignment="Center"
@@ -200,14 +200,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                      ConnectionName="{Binding ConnectionName}"/>
                 <TextBlock Padding="0"
                            TextTrimming="CharacterEllipsis"
-                           Text="{resources:Loc Connecting_lbl_ConnectingTo_2}"
+                           Text="{translations:Loc Connecting_lbl_ConnectingTo_2}"
                            FontSize="20"
                            Foreground="White"
                            VerticalAlignment="Center"
                            Visibility="{c:Binding '!ConnectionName.IsSecureCore'}"/>
                 <TextBlock Padding="0"
                            TextTrimming="CharacterEllipsis"
-                           Text="{resources:Loc Connecting_lbl_ConnectingTo_2_SecureCore}"
+                           Text="{translations:Loc Connecting_lbl_ConnectingTo_2_SecureCore}"
                            FontSize="20"
                            Foreground="White"
                            VerticalAlignment="Center"

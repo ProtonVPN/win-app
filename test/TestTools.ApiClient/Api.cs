@@ -26,9 +26,9 @@ using ProtonVPN.Core.Abstract;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Settings;
 
-namespace ProtonVPN.UI.Test.ApiClient
+namespace TestTools.ApiClient
 {
-    internal class Api
+    public class Api
     {
         private readonly string _username;
         private readonly string _password;

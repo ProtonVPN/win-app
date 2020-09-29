@@ -24,7 +24,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModels="clr-namespace:ProtonVPN.ViewModels"
         xmlns:calcBinding="clr-namespace:CalcBinding;assembly=CalcBinding"
-        xmlns:resources="clr-namespace:ProtonVPN.Resources"
+        xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
         WindowStyle="None"
         ShowInTaskbar="False"
         ResizeMode="CanMinimize"
@@ -35,9 +35,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         d:DataContext="{d:DesignInstance viewModels:TrayNotificationViewModel}">
     <Border BorderBrush="#959595" Background="#f5f5f5" BorderThickness="1">
         <StackPanel Margin="2">
-            <MenuItem Padding="0" Margin="0" Command="{Binding ConnectCommand}" Header="{resources:Loc App_mnu_Connect}" Visibility="{calcBinding:Binding CanConnect}"/>
-            <MenuItem Command="{Binding DisconnectCommand}" Header="{resources:Loc App_mnu_Disconnect}" Visibility="{calcBinding:Binding CanDisconnect}"/>
-            <MenuItem Command="{Binding ExitCommand}" Header="{resources:Loc App_mnu_Exit}"/>
+            <MenuItem Padding="0" Margin="0" Command="{Binding ConnectCommand}" Header="{translations:Loc App_mnu_Connect}" Visibility="{calcBinding:Binding CanConnect}"/>
+            <MenuItem Command="{Binding DisconnectCommand}" Header="{translations:Loc App_mnu_Disconnect}" Visibility="{calcBinding:Binding CanDisconnect}"/>
+            <MenuItem Command="{Binding ExitCommand}" Header="{translations:Loc App_mnu_Exit}"/>
         </StackPanel>
     </Border>
 </Window>

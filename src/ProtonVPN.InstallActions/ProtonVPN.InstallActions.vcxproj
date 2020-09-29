@@ -95,6 +95,8 @@
   <ItemGroup>
     <ClInclude Include="framework.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="StartupApp.h" />
+    <ClInclude Include="SystemState.h" />
     <ClInclude Include="Service.h" />
     <ClInclude Include="StringHelper.h" />
     <ClInclude Include="Utils.h" />
@@ -105,6 +107,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="StartupApp.cpp" />
+    <ClCompile Include="SystemState.cpp" />
     <ClCompile Include="Service.cpp" />
     <ClCompile Include="Utils.cpp" />
   </ItemGroup>

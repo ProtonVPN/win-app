@@ -21,7 +21,7 @@ using GalaSoft.MvvmLight.CommandWpf;
 using ProtonVPN.Config.Url;
 using ProtonVPN.Core.MVVM;
 using ProtonVPN.Notifications;
-using ProtonVPN.Resources;
+using ProtonVPN.Translations;
 using System.Windows.Input;
 
 namespace ProtonVPN.FlashNotifications
@@ -40,7 +40,7 @@ namespace ProtonVPN.FlashNotifications
 
         public string Name { get; set; }
 
-        public string Message => StringResources.Format("Notifications_InsecureWiFi_msg_Detected", Name);
+        public string Message => Translation.Format("Notifications_InsecureWiFi_msg_Detected", Name);
 
         private void LearnMoreAction()
         {

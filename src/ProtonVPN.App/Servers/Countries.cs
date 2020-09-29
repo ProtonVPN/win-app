@@ -17,7 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Resources;
+using ProtonVPN.Translations;
 
 namespace ProtonVPN.Servers
 {
@@ -26,7 +26,7 @@ namespace ProtonVPN.Servers
         public static string GetName(string code)
         {
             return code != null 
-                ? StringResources.Get($"Country_val_{code.ToUpper()}") 
+                ? Translation.Get($"Country_val_{code.ToUpper()}")
                 : "";
         }
     }

@@ -42,5 +42,15 @@ namespace ProtonVPN.Common.OS.Processes
 
             return info;
         }
+
+        public static ProcessStartInfo ElevatedInfo(this ProcessStartInfo info)
+        {
+            info.CreateNoWindow = true;
+            info.UseShellExecute = true;
+            info.RedirectStandardOutput = false;
+            info.Verb = "runas";
+
+            return info;
+        }
     }
 }

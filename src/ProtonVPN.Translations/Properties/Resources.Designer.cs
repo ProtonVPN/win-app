@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ProtonVPN.Properties {
+namespace ProtonVPN.Translations.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace ProtonVPN.Properties {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ProtonVPN.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ProtonVPN.Translations.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -3216,6 +3216,16 @@ namespace ProtonVPN.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to One of the services required by ProtonVPN (Base Filtering Engine) is not running.&lt;LineBreak/&gt;
+        ///Please follow &lt;Hyperlink Command=&quot;{Binding OpenArticleCommand}&quot;&gt;&lt;Run Text=&quot;these&quot;/&gt;&lt;/Hyperlink&gt; instructions to enable it again and retry..
+        /// </summary>
+        public static string Dialogs_Bfe_msg_info {
+            get {
+                return ResourceManager.GetString("Dialogs_Bfe_msg_info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         public static string Dialogs_btn_Cancel {
@@ -3248,6 +3258,15 @@ namespace ProtonVPN.Properties {
         public static string Dialogs_DisconnectError_btn_Disable {
             get {
                 return ResourceManager.GetString("Dialogs_DisconnectError_btn_Disable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upgrade.
+        /// </summary>
+        public static string Dialogs_DisconnectError_btn_Upgrade {
+            get {
+                return ResourceManager.GetString("Dialogs_DisconnectError_btn_Upgrade", resourceCulture);
             }
         }
         
@@ -3306,11 +3325,20 @@ namespace ProtonVPN.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Maximum connection limit reached..
+        ///   Looks up a localized string similar to You reached the maximum number of devices that you can simultaneously connect to ProtonVPN. Upgrade to Plus to use ProtonVPN on up to 5 devices at the same time..
         /// </summary>
-        public static string Dialogs_DisconnectError_msg_SessionLimit {
+        public static string Dialogs_DisconnectError_msg_SessionLimitFreeBasic {
             get {
-                return ResourceManager.GetString("Dialogs_DisconnectError_msg_SessionLimit", resourceCulture);
+                return ResourceManager.GetString("Dialogs_DisconnectError_msg_SessionLimitFreeBasic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can connect to ProtonVPN on a maximum of 5 devices at the same time. Please disconnect one of your other devices from ProtonVPN and try again..
+        /// </summary>
+        public static string Dialogs_DisconnectError_msg_SessionLimitPlus {
+            get {
+                return ResourceManager.GetString("Dialogs_DisconnectError_msg_SessionLimitPlus", resourceCulture);
             }
         }
         
@@ -3342,16 +3370,7 @@ namespace ProtonVPN.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unknown error. Get help from our customer support by sending a &lt;Hyperlink Foreground=&quot;White&quot; Command=&quot;{Binding ReportBugCommand}&quot;&gt;&lt;Run Text=&quot;Bug Report&quot;/&gt;&lt;/Hyperlink&gt;..
-        /// </summary>
-        public static string Dialogs_DisconnectError_msg_Unknown {
-            get {
-                return ResourceManager.GetString("Dialogs_DisconnectError_msg_Unknown", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Your account currently has an overdue invoice. Please pay all unpaid invoices at   &lt;Hyperlink Foreground=&quot;White&quot; Command=&quot;{Binding GoToAccountCommand}&quot;&gt;account.protonvpn.com&lt;/Hyperlink&gt;.
+        ///   Looks up a localized string similar to Your account currently has an unpaid invoice. To keep your online browsing encrypted and secure, please pay unpaid invoices at &lt;Hyperlink Foreground=&quot;White&quot; Command=&quot;{Binding GoToAccountCommand}&quot;&gt;account.protonvpn.com&lt;/Hyperlink&gt;.
         /// </summary>
         public static string Dialogs_DisconnectError_msg_Unpaid {
             get {
@@ -3473,6 +3492,42 @@ namespace ProtonVPN.Properties {
         public static string Dialogs_Proxy_msg_ProxyDetected {
             get {
                 return ResourceManager.GetString("Dialogs_Proxy_msg_ProxyDetected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Continue.
+        /// </summary>
+        public static string Dialogs_Reboot_btn_Reboot {
+            get {
+                return ResourceManager.GetString("Dialogs_Reboot_btn_Reboot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Skip Reboot.
+        /// </summary>
+        public static string Dialogs_Reboot_btn_SkipReboot {
+            get {
+                return ResourceManager.GetString("Dialogs_Reboot_btn_SkipReboot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ProtonVPN has detected a pending installation that requires to reboot your system before proceeding the installation. Click &quot;Skip Reboot&quot; if you want to proceed without restarting your system. Click Continue to reboot and automatically resume the installation process..
+        /// </summary>
+        public static string Dialogs_Reboot_msg {
+            get {
+                return ResourceManager.GetString("Dialogs_Reboot_msg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ProtonVPN.
+        /// </summary>
+        public static string Dialogs_Reboot_ttl {
+            get {
+                return ResourceManager.GetString("Dialogs_Reboot_ttl", resourceCulture);
             }
         }
         
@@ -3630,200 +3685,65 @@ namespace ProtonVPN.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Arabic.
+        ///   Looks up a localized string similar to Close.
         /// </summary>
-        public static string Language_ar {
+        public static string ErrorWindow_lbl_Close {
             get {
-                return ResourceManager.GetString("Language_ar", resourceCulture);
+                return ResourceManager.GetString("ErrorWindow_lbl_Close", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Catalan.
+        ///   Looks up a localized string similar to Download.
         /// </summary>
-        public static string Language_ca {
+        public static string ErrorWindow_lbl_Download {
             get {
-                return ResourceManager.GetString("Language_ca", resourceCulture);
+                return ResourceManager.GetString("ErrorWindow_lbl_Download", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to German.
+        ///   Looks up a localized string similar to Download ant install the latest version to fix the problem..
         /// </summary>
-        public static string Language_de {
+        public static string ErrorWindow_lbl_DownloadInfo {
             get {
-                return ResourceManager.GetString("Language_de", resourceCulture);
+                return ResourceManager.GetString("ErrorWindow_lbl_DownloadInfo", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Greek.
+        ///   Looks up a localized string similar to The application is missing a required file.
         /// </summary>
-        public static string Language_el {
+        public static string ErrorWindow_lbl_MissingHeading {
             get {
-                return ResourceManager.GetString("Language_el", resourceCulture);
+                return ResourceManager.GetString("ErrorWindow_lbl_MissingHeading", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to English.
+        ///   Looks up a localized string similar to Some applications on your PC might have removed some files or prevented them to be installed successfully..
         /// </summary>
-        public static string Language_en {
+        public static string ErrorWindow_lbl_MissingInfo {
             get {
-                return ResourceManager.GetString("Language_en", resourceCulture);
+                return ResourceManager.GetString("ErrorWindow_lbl_MissingInfo", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Spanish.
+        ///   Looks up a localized string similar to Repair.
         /// </summary>
-        public static string Language_es_ES {
+        public static string ErrorWindow_lbl_Repair {
             get {
-                return ResourceManager.GetString("Language_es-ES", resourceCulture);
+                return ResourceManager.GetString("ErrorWindow_lbl_Repair", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Spanish, Mexico.
+        ///   Looks up a localized string similar to Please repair your installation..
         /// </summary>
-        public static string Language_es_MX {
+        public static string ErrorWindow_lbl_RepairInfo {
             get {
-                return ResourceManager.GetString("Language_es-MX", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Persian.
-        /// </summary>
-        public static string Language_fa {
-            get {
-                return ResourceManager.GetString("Language_fa", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to French.
-        /// </summary>
-        public static string Language_fr {
-            get {
-                return ResourceManager.GetString("Language_fr", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Hungarian.
-        /// </summary>
-        public static string Language_hu {
-            get {
-                return ResourceManager.GetString("Language_hu", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Indonesian.
-        /// </summary>
-        public static string Language_id {
-            get {
-                return ResourceManager.GetString("Language_id", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Italian.
-        /// </summary>
-        public static string Language_it {
-            get {
-                return ResourceManager.GetString("Language_it", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Japanese.
-        /// </summary>
-        public static string Language_ja {
-            get {
-                return ResourceManager.GetString("Language_ja", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Lithuanian.
-        /// </summary>
-        public static string Language_lt {
-            get {
-                return ResourceManager.GetString("Language_lt", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Dutch.
-        /// </summary>
-        public static string Language_nl {
-            get {
-                return ResourceManager.GetString("Language_nl", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Polish.
-        /// </summary>
-        public static string Language_pl {
-            get {
-                return ResourceManager.GetString("Language_pl", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Portuguese, Brazilian.
-        /// </summary>
-        public static string Language_pt_BR {
-            get {
-                return ResourceManager.GetString("Language_pt-BR", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Portuguese.
-        /// </summary>
-        public static string Language_pt_PT {
-            get {
-                return ResourceManager.GetString("Language_pt-PT", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Russian.
-        /// </summary>
-        public static string Language_ru {
-            get {
-                return ResourceManager.GetString("Language_ru", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Turkish.
-        /// </summary>
-        public static string Language_tr {
-            get {
-                return ResourceManager.GetString("Language_tr", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Chinese Simplified.
-        /// </summary>
-        public static string Language_zh_CN {
-            get {
-                return ResourceManager.GetString("Language_zh-CN", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Chinese Traditional.
-        /// </summary>
-        public static string Language_zh_TW {
-            get {
-                return ResourceManager.GetString("Language_zh-TW", resourceCulture);
+                return ResourceManager.GetString("ErrorWindow_lbl_RepairInfo", resourceCulture);
             }
         }
         

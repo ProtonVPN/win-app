@@ -45,12 +45,11 @@ namespace ProtonVPN.UI.Test.Windows
         public MainWindow ConnectByCountryName(string countryName)
         {
             var inputSearch = Session.FindElementByAccessibilityId("SearchInput");
-            var buttonQuickConnect = Session.FindElementByAccessibilityId("SidebarQuickConnectButton");
             inputSearch.SendKeys(countryName);
             var countryBox = Session.FindElementByName(countryName);
             MoveToElement(countryBox);
             ClickOnObjectWithName("CONNECT");
-            WaitUntilTextMatches(buttonQuickConnect, "Disconnect", 20);
+            WaitUntilConnected();
             return this;
         }
 
@@ -70,8 +69,7 @@ namespace ProtonVPN.UI.Test.Windows
         public MainWindow QuickConnect()
         {
             ClickQuickConnectButton();
-            var quickConnectButton = Session.FindElementByAccessibilityId("SidebarQuickConnectButton");
-            WaitUntilTextMatches(quickConnectButton, "Disconnect", 20);
+            WaitUntilConnected();
             return this;
         }
 
@@ -86,8 +84,7 @@ namespace ProtonVPN.UI.Test.Windows
             var element = Session.FindElementByName(profileName);
             MoveToElement(element);
             ClickOnObjectWithName("CONNECT");
-            var quickConnectButton = Session.FindElementByAccessibilityId("SidebarQuickConnectButton");
-            WaitUntilTextMatches(quickConnectButton, "Disconnect", 20);
+            WaitUntilConnected();
             return this;
         }
 
@@ -109,6 +106,19 @@ namespace ProtonVPN.UI.Test.Windows
         {
             ClickOnObjectWithId("SidebarModeButton");
             return this;
+        }
+
+        public MainWindow WaitUntilConnected()
+        {
+            var quickConnectButton = Session.FindElementByAccessibilityId("SidebarQuickConnectButton");
+            WaitUntilTextMatches(quickConnectButton, "Disconnect", 20);
+            return this;
+        }
+
+        public string GetTextBlockIpAddress()
+        {
+            var textBlockIpAddress = Session.FindElementByAccessibilityId("IPAddressTextBlock").Text.RemoveExtraText();
+            return textBlockIpAddress;
         }
     }
 }

@@ -56,20 +56,20 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <converters:ZeroToBoolConverter x:Key="ZeroToBoolConverter"/>
                     <converters:PluralConverter x:Key="PluralConverter"/>
                 </ResourceDictionary>
+                <ResourceDictionary Source="/ProtonVPN.Resource;component/Automation/Config.xaml"/>
                 <ResourceDictionary Source="/ProtonVPN.Resource;component/Styles/Colors.xaml"/>
                 <ResourceDictionary Source="/ProtonVPN.Resource;component/Styles/Controls.xaml"/>
                 <ResourceDictionary Source="/ProtonVPN.Resource;component/Styles/Window.xaml"/>
+                <ResourceDictionary Source="/ProtonVPN.Resource;component/Styles/Animations.xaml"/>
+                <ResourceDictionary Source="/ProtonVPN.Resource;component/Styles/ClearButton.xaml"/>
+                <ResourceDictionary Source="/ProtonVPN.Resource;component/Styles/Modal.xaml"/>
                 <ResourceDictionary Source="Views/Icons/Gradients.xaml"/>
                 <ResourceDictionary Source="Resources/Assets/Styles/Common.xaml"/>
-                <ResourceDictionary Source="Resources/AutomationConfig.xaml"/>
-                <ResourceDictionary Source="Resources/Assets/Styles/Window.xaml"/>
                 <ResourceDictionary Source="Resources/Assets/Styles/ProgressBar.xaml"/>
                 <ResourceDictionary Source="Resources/Assets/Styles/Server.xaml"/>
                 <ResourceDictionary Source="Resources/Assets/Styles/Spinner.xaml"/>
                 <ResourceDictionary Source="Resources/Assets/Styles/OxyPlot.xaml"/>
                 <ResourceDictionary Source="Resources/Assets/Styles/Scrollbar.xaml"/>
-                <ResourceDictionary Source="Resources/Assets/Styles/Animations.xaml"/>
-                <ResourceDictionary Source="Resources/Assets/Styles/ClearButton.xaml"/>
                 <ResourceDictionary Source="Resources/Assets/Styles/Pin.xaml"/>
                 <ResourceDictionary Source="Resources/Assets/Styles/CheckBox.xaml"/>
                 <ResourceDictionary Source="Resources/Assets/Styles/ComboBox.xaml"/>
@@ -81,7 +81,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <ResourceDictionary Source="Resources/Assets/Styles/PasswordBox.xaml"/>
                 <ResourceDictionary Source="Resources/Assets/Styles/ToggleButton.xaml"/>
                 <ResourceDictionary Source="Resources/Assets/Styles/ToggleSwitch.xaml"/>
-                <ResourceDictionary Source="Resources/Assets/Styles/Modal.xaml"/>
                 <ResourceDictionary Source="Resources/Assets/Styles/Menu.xaml"/>
                 <ResourceDictionary Source="Resources/Assets/Styles/MainWindow.xaml"/>
                 <ResourceDictionary Source="Views/Forms/Style.xaml"/>

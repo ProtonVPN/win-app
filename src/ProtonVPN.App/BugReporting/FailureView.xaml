@@ -23,7 +23,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:icons="clr-namespace:ProtonVPN.Views.Icons"
-             xmlns:resources="clr-namespace:ProtonVPN.Resources"
+             xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
              mc:Ignorable="d">
     <UserControl.Resources>
         <Style x:Key="TroubleshootButton" TargetType="Button" BasedOn="{StaticResource ClearStyleButton}">
@@ -40,16 +40,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                            Height="64"
                            Foreground="White"
                            HorizontalAlignment="Center"/>
-            <TextBlock Text="{resources:Loc BugReport_msg_SendingFailed}"
-                       TextWrapping="Wrap"
+            <TextBlock Text="{translations:Loc BugReport_msg_SendingFailed}"
                        FontSize="16"
                        TextAlignment="Center"
+                       TextWrapping="Wrap"
                        Margin="0,20,0,0"
                        HorizontalAlignment="Center"
                        Foreground="White"/>
             <Button Style="{StaticResource TroubleshootButton}">
                 <Underline>
-                    <TextBlock Text="{resources:Loc BugReport_btn_Troubleshoot}"/>
+                    <TextBlock Text="{translations:Loc BugReport_btn_Troubleshoot}"/>
                 </Underline>
             </Button>
         </StackPanel>

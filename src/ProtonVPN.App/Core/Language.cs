@@ -23,7 +23,7 @@ using System.Threading;
 using ProtonVPN.Common.Cli;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Settings;
-using ProtonVPN.Resources;
+using ProtonVPN.Translations;
 
 namespace ProtonVPN.Core
 {

@@ -29,7 +29,7 @@ using ProtonVPN.Common.OS.Net;
 using ProtonVPN.Core.MVVM;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Settings.Contracts;
-using ProtonVPN.Resources;
+using ProtonVPN.Translations;
 
 namespace ProtonVPN.Settings
 {
@@ -199,7 +199,7 @@ namespace ProtonVPN.Settings
 
             if (!SupportsIpRanges && networkAddress.IsCidr())
             {
-                return StringResources.Get("Settings_Advanced_SplitTunnel_msg_IpInvalid");
+                return Translation.Get("Settings_Advanced_SplitTunnel_msg_IpInvalid");
             }
 
             if (networkAddress.Valid())
@@ -207,7 +207,7 @@ namespace ProtonVPN.Settings
                 return string.Empty;
             }
 
-            return StringResources.Get("Settings_Advanced_SplitTunnel_msg_IpInvalid");
+            return Translation.Get("Settings_Advanced_SplitTunnel_msg_IpInvalid");
         }
 
         private void RaiseBringItemIntoView(object item)

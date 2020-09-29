@@ -21,7 +21,7 @@ using System;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Vpn;
-using ProtonVPN.Resources;
+using ProtonVPN.Translations;
 
 namespace ProtonVPN.Notifications
 {
@@ -41,11 +41,11 @@ namespace ProtonVPN.Notifications
             switch (e.State.Status)
             {
                 case VpnStatus.Connected:
-                    _systemNotification.Show(StringResources.Format("Notifications_VpnState_msg_Connected", server?.Name, Environment.NewLine, server?.ExitIp));
+                    _systemNotification.Show(Translation.Format("Notifications_VpnState_msg_Connected", server?.Name, Environment.NewLine, server?.ExitIp));
                     break;
                 case VpnStatus.Disconnecting when _lastVpnStatus == VpnStatus.Connected:
                 case VpnStatus.Disconnected when _lastVpnStatus == VpnStatus.Connected:
-                    _systemNotification.Show(StringResources.Get("Notifications_VpnState_msg_Disconnected"));
+                    _systemNotification.Show(Translation.Get("Notifications_VpnState_msg_Disconnected"));
                     break;
             }
 

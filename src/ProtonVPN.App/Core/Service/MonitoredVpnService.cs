@@ -17,22 +17,21 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
+using System.Threading.Tasks;
+using System.Windows.Threading;
 using ProtonVPN.Common.Abstract;
 using ProtonVPN.Common.OS.Services;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Vpn;
-using System;
-using System.Threading.Tasks;
-using System.Windows.Threading;
 
 namespace ProtonVPN.Core.Service
 {
     internal class MonitoredVpnService : IVpnStateAware, IConcurrentService
     {
         private VpnStatus _vpnStatus;
-
-        private readonly VpnSystemService _service;
         private readonly DispatcherTimer _timer = new DispatcherTimer();
+        private readonly VpnSystemService _service;
 
         public MonitoredVpnService(Common.Configuration.Config appConfig, VpnSystemService service)
         {
@@ -52,7 +51,10 @@ namespace ProtonVPN.Core.Service
 
         public bool Running() => _service.Running();
 
-        public Task<Result> StartAsync() => _service.StartAsync();
+        public Task<Result> StartAsync()
+        {
+            return _service.StartAsync();
+        }
 
         public Task<Result> StopAsync() => _service.StopAsync();
 

@@ -37,7 +37,7 @@ using ProtonVPN.FlashNotifications;
 using ProtonVPN.Map.ViewModels;
 using ProtonVPN.Onboarding;
 using ProtonVPN.Profiles;
-using ProtonVPN.Resources;
+using ProtonVPN.Translations;
 using ProtonVPN.Settings;
 
 namespace ProtonVPN.ViewModels
@@ -220,15 +220,16 @@ namespace ProtonVPN.ViewModels
         {
             if (VpnStatus == VpnStatus.Connected)
             {
-                var result = _dialogs.ShowQuestion(StringResources.Get("App_msg_LogoutConnectedConfirm"));
+                var result = _dialogs.ShowQuestion(Translation.Get("App_msg_LogoutConnectedConfirm"));
                 if (!result.HasValue || !result.Value)
                 {
                     return;
                 }
+
+                await _vpnManager.Disconnect();
             }
 
             _userAuth.Logout();
-            await _vpnManager.Disconnect();
         }
 
         private void ExitAction()
