@@ -63,6 +63,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                          Foreground="White"
                          CaretBrush="White"
                          FontSize="14"
+                         MaxLength="254"
+                         TextWrapping="NoWrap"
                          BorderThickness="0,0,0,1"
                          Padding="7,14"
                          AutomationProperties.AutomationId="{StaticResource ReportBugEmailTextBlock}"/>
