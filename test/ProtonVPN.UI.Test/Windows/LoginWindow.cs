@@ -18,6 +18,7 @@
  */
 
 using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 using ProtonVPN.UI.Test.TestsHelper;
 
 namespace ProtonVPN.UI.Test.Windows
@@ -83,8 +84,14 @@ namespace ProtonVPN.UI.Test.Windows
             EnterUsername(TestUserData.GetTrialUser().Username)
                 .EnterPassword(TestUserData.GetTrialUser().Password)
                 .ClickLoginButton();
-            WaitUntilElementIsNotVisible(By.ClassName("Loading"), 15);
+            WaitUntilLoginIsFinished();
             RefreshSession();
+            return this;
+        }
+
+        public LoginWindow WaitUntilLoginIsFinished()
+        {
+            WaitUntilElementIsNotVisible(By.ClassName("Loading"), 15);
             return this;
         }
 
@@ -93,12 +100,11 @@ namespace ProtonVPN.UI.Test.Windows
             EnterUsername(username)
                 .EnterPassword(password)
                 .ClickLoginButton();
-
-            WaitUntilElementIsNotVisible(By.ClassName("Loading"), 15);
-            RefreshSession();
-
-            ClickOnObjectWithName("Skip");
-
+            
+            WaitUntilElementExistsByAutomationId("WelcomeModal", 20);
+            Session.FindElementByAccessibilityId("WelcomeModal").Click();
+            var actions = new Actions(Session);
+            actions.SendKeys(Keys.Escape).Build().Perform();
             return this;
         }
     }

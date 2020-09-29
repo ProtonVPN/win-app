@@ -23,7 +23,7 @@ using System.Windows;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Vpn;
-using ProtonVPN.Resources;
+using ProtonVPN.Translations;
 
 namespace ProtonVPN.Login.Views
 {
@@ -66,7 +66,7 @@ namespace ProtonVPN.Login.Views
 
             if (_networkBlocked)
             {
-                var result = _dialogs.ShowQuestion(StringResources.Get("Login_msg_ExitKillSwitchConfirm"));
+                var result = _dialogs.ShowQuestion(Translation.Get("Login_msg_ExitKillSwitchConfirm"));
                 if (!result.HasValue || !result.Value)
                 {
                     return;

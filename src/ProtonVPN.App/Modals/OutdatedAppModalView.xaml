@@ -17,24 +17,25 @@ You should have received a copy of the GNU General Public License
 along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 -->
 
-<local:BaseModalWindow x:Class="ProtonVPN.Modals.OutdatedAppModalView"
+<resource:BaseModalWindow x:Class="ProtonVPN.Modals.OutdatedAppModalView"
                         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                         xmlns:local="clr-namespace:ProtonVPN.Modals"
-                        xmlns:resources="clr-namespace:ProtonVPN.Resources"
-                        xmlns:controls="clr-namespace:ProtonVPN.Views.Controls"
+                        xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
                         xmlns:update="clr-namespace:ProtonVPN.Core.Update;assembly=ProtonVPN.Core"
                         xmlns:fa="http://schemas.fontawesome.io/icons/"
+                        xmlns:resource="clr-namespace:ProtonVPN.Resource;assembly=ProtonVPN.Resource"
+                        xmlns:controls="clr-namespace:ProtonVPN.Resource.Controls;assembly=ProtonVPN.Resource"
                         Style="{StaticResource BaseModalStyle}"
                         SizeToContent="Height"
-                        Title="{resources:Loc Dialogs_ttl_Warning}"
+                        Title="{translations:Loc Dialogs_ttl_Warning}"
                         mc:Ignorable="d"
                         Height="Auto"
                         Width="500"
                         d:DataContext="{d:DesignInstance local:OutdatedAppModalViewModel}">
-    <local:BaseModalWindow.Resources>
+    <resource:BaseModalWindow.Resources>
         <Style x:Key="ErrorIcon" TargetType="fa:FontAwesome">
             <Setter Property="Icon" Value="ExclamationTriangle"/>
             <Setter Property="Foreground" Value="White"/>
@@ -66,7 +67,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Style>
         <Style x:Key="ManualUpdateButton" TargetType="Button" BasedOn="{StaticResource PrimaryModalButton}">
             <Setter Property="Visibility" Value="Collapsed"/>
-            <Setter Property="ToolTip" Value="{resources:Loc Dialogs_OutdatedApp_lbl_Error}"/>
+            <Setter Property="ToolTip" Value="{translations:Loc Dialogs_OutdatedApp_lbl_Error}"/>
             <Style.Triggers>
                 <DataTrigger Binding="{Binding Update.Status}" Value="{x:Static update:UpdateStatus.CheckFailed}">
                     <Setter Property="Visibility" Value="Visible"/>
@@ -80,29 +81,29 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </Style.Triggers>
         </Style>
         <Style x:Key="UpdateButtonLabel" TargetType="Label">
-            <Setter Property="Content" Value="{resources:Loc Dialogs_OutdatedApp_lbl_Update}"/>
+            <Setter Property="Content" Value="{translations:Loc Dialogs_OutdatedApp_lbl_Update}"/>
             <Style.Triggers>
                 <DataTrigger Binding="{Binding Update.Status}" Value="{x:Static update:UpdateStatus.Checking}">
-                    <Setter Property="Content" Value="{resources:Loc Dialogs_OutdatedApp_lbl_Downloading}"/>
+                    <Setter Property="Content" Value="{translations:Loc Dialogs_OutdatedApp_lbl_Downloading}"/>
                 </DataTrigger>
                 <DataTrigger Binding="{Binding Update.Status}" Value="{x:Static update:UpdateStatus.Downloading}">
-                    <Setter Property="Content" Value="{resources:Loc Dialogs_OutdatedApp_lbl_Downloading}"/>
+                    <Setter Property="Content" Value="{translations:Loc Dialogs_OutdatedApp_lbl_Downloading}"/>
                 </DataTrigger>
                 <DataTrigger Binding="{Binding Update.Ready}" Value="True">
-                    <Setter Property="Content" Value="{resources:Loc Dialogs_OutdatedApp_lbl_Update}"/>
+                    <Setter Property="Content" Value="{translations:Loc Dialogs_OutdatedApp_lbl_Update}"/>
                 </DataTrigger>
             </Style.Triggers>
         </Style>
-    </local:BaseModalWindow.Resources>
+    </resource:BaseModalWindow.Resources>
     <StackPanel>
         <StackPanel Margin="20,50">
-            <TextBlock TextWrapping="Wrap" Padding="0" FontSize="16" Foreground="White" Text="{resources:Loc Dialogs_OutdatedApp_msg}"/>
+            <TextBlock TextWrapping="Wrap" Padding="0" FontSize="16" Foreground="White" Text="{translations:Loc Dialogs_OutdatedApp_msg}"/>
             <TextBlock TextWrapping="Wrap"
                        Margin="0,10,0,0"
                        Padding="0"
                        FontSize="16"
                        Foreground="White"
-                       Text="{resources:Loc Dialogs_OutdatedApp_msg_KillSwitchActive}"
+                       Text="{translations:Loc Dialogs_OutdatedApp_msg_KillSwitchActive}"
                        Visibility="{Binding KillSwitchEnabled, Converter={StaticResource BoolToVis}}"/>
         </StackPanel>
 
@@ -110,7 +111,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Style="{StaticResource SecondaryModalButton}"
                         Command="{Binding CloseCommand}"
-                        Content="{resources:Loc Dialogs_OutdatedApp_btn_Quit}"/>
+                        Content="{translations:Loc Dialogs_OutdatedApp_btn_Quit}"/>
                 <Button Style="{StaticResource UpdateButton}"
                         Command="{Binding Update.UpdateCommand}">
                     <DockPanel>
@@ -139,10 +140,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         Command="{Binding UpdateManuallyCommand}">
                     <DockPanel>
                         <fa:FontAwesome Style="{StaticResource ErrorIcon}"/>
-                        <Label Content="{resources:Loc Dialogs_OutdatedApp_lbl_UpdateManually}" Foreground="White"/>
+                        <Label Content="{translations:Loc Dialogs_OutdatedApp_lbl_UpdateManually}" Foreground="White"/>
                     </DockPanel>
                 </Button>
             </StackPanel>
         </DockPanel>
     </StackPanel>
-</local:BaseModalWindow>
+</resource:BaseModalWindow>

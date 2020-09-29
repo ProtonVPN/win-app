@@ -18,7 +18,7 @@
  */
 
 using ProtonVPN.Core.MVVM;
-using ProtonVPN.Resources;
+using ProtonVPN.Translations;
 
 namespace ProtonVPN.Login.ViewModels
 {
@@ -36,7 +36,7 @@ namespace ProtonVPN.Login.ViewModels
         {
             if (string.IsNullOrEmpty(error))
             {
-                error = StringResources.Get("Login_Error_msg_Unknown");
+                error = Translation.Get("Login_Error_msg_Unknown");
             }
 
             Error = error;

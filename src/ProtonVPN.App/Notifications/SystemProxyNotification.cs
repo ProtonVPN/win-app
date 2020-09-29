@@ -22,7 +22,7 @@ using ProtonVPN.Common.OS.Registry;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Vpn;
-using ProtonVPN.Resources;
+using ProtonVPN.Translations;
 
 namespace ProtonVPN.Notifications
 {
@@ -43,7 +43,7 @@ namespace ProtonVPN.Notifications
             if (e.State.Status == VpnStatus.Connected && _proxy.Enabled() && !_modalShown)
             {
                 _modalShown = true;
-                _dialogs.ShowWarning(StringResources.Get("Dialogs_Proxy_msg_ProxyDetected"));
+                _dialogs.ShowWarning(Translation.Get("Dialogs_Proxy_msg_ProxyDetected"));
             }
 
             if (e.State.Status == VpnStatus.Disconnected)

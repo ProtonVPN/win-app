@@ -66,10 +66,10 @@ using ProtonVPN.Notifications;
 using ProtonVPN.Onboarding;
 using ProtonVPN.P2PDetection;
 using ProtonVPN.QuickLaunch;
-using ProtonVPN.Resources;
 using ProtonVPN.Settings;
 using ProtonVPN.Settings.Migrations;
 using ProtonVPN.Sidebar;
+using ProtonVPN.Translations;
 using ProtonVPN.Trial;
 using ProtonVPN.ViewModels;
 using ProtonVPN.Vpn.Connectors;
@@ -132,7 +132,7 @@ namespace ProtonVPN.Core
             Resolve<Language>().Initialize(_args);
             ShowInitialWindow();
 
-            _ = StartService(Resolve<MonitoredVpnService>());
+            StartVpnService();
             _ = StartService(Resolve<AppUpdateSystemService>());
 
             if (Resolve<IUserStorage>().User().Empty() || !await IsUserValid() || await SessionExpired())
@@ -151,8 +151,21 @@ namespace ProtonVPN.Core
             Resolve<AppUpdateSystemService>().StopAsync();
         }
 
+        private void StartVpnService()
+        {
+            if (Resolve<BaseFilteringEngineService>().Running())
+            {
+                _ = StartService(Resolve<MonitoredVpnService>());
+            }
+        }
+
         private async Task<bool> SessionExpired()
         {
+            if (string.IsNullOrEmpty(Resolve<ITokenStorage>().AccessToken))
+            {
+                return true;
+            }
+
             try
             {
                 var result = await Resolve<UserAuth>().RefreshVpnInfo();
@@ -432,8 +445,6 @@ namespace ProtonVPN.Core
 
         private async Task SwitchToAppWindow(bool autoLogin)
         {
-            var appConfig = Resolve<Common.Configuration.Config>();
-
             if (!Resolve<UserAuth>().LoggedIn)
             {
                 return;
@@ -524,7 +535,7 @@ namespace ProtonVPN.Core
         private string GetServiceErrorMessage(string serviceName, Exception e)
         {
             var error = e.InnerException?.Message ?? e.Message;
-            var failedToStart = string.Format(StringResources.Get("Dialogs_ServiceStart_msg_FailedToStart"), serviceName);
+            var failedToStart = string.Format(Translation.Get("Dialogs_ServiceStart_msg_FailedToStart"), serviceName);
 
             return $"\"{failedToStart}\" \"{error}\"";
         }

@@ -17,13 +17,24 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Core.Api;
+using ProtonVPN.Common.OS.Processes;
 
-namespace ProtonVPN.UI.Test.ApiClient
+namespace ProtonVPN.ErrorMessage
 {
-    internal class ApiAppVersion : IApiAppVersion
+    internal class RepairLauncher
     {
-        public string Value() => "WindowsVPN_1.15.0";
-        public string UserAgent() => "WindowsVPN_1.15.0";
+        private readonly IOsProcesses _osProcesses;
+        private readonly string _productCode;
+
+        public RepairLauncher(IOsProcesses osProcesses, string productCode)
+        {
+            _productCode = productCode;
+            _osProcesses = osProcesses;
+        }
+
+        public void Repair()
+        {
+            _osProcesses.ElevatedCommandLineProcess($"/c msiexec /fa \"{_productCode}\"").Start();
+        }
     }
 }

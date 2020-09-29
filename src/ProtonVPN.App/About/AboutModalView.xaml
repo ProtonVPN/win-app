@@ -17,7 +17,7 @@ You should have received a copy of the GNU General Public License
 along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 -->
 
-<modals:BaseModalWindow x:Class="ProtonVPN.About.AboutModalView"
+<resource:BaseModalWindow x:Class="ProtonVPN.About.AboutModalView"
                         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                         xmlns:fa="http://schemas.fontawesome.io/icons/"
                         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -25,16 +25,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                         xmlns:c="clr-namespace:CalcBinding;assembly=CalcBinding"
                         xmlns:local="clr-namespace:ProtonVPN.About"
-                        xmlns:modals="clr-namespace:ProtonVPN.Modals"
-                        xmlns:resources="clr-namespace:ProtonVPN.Resources"
+                        xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
+                        xmlns:resource="clr-namespace:ProtonVPN.Resource;assembly=ProtonVPN.Resource"
                         Style="{StaticResource BaseModalStyle}"
                         SizeToContent="Height"
-                        Title="{resources:Loc About_ttl}"
+                        Title="{translations:Loc About_ttl}"
                         Height="Auto" Width="600"
                         mc:Ignorable="d" 
                         d:DataContext="{d:DesignInstance Type=local:AboutModalViewModel, IsDesignTimeCreatable=False}">
    
-    <modals:BaseModalWindow.Resources>
+    <resource:BaseModalWindow.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Style.xaml"/>
@@ -56,7 +56,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
-    </modals:BaseModalWindow.Resources>
+    </resource:BaseModalWindow.Resources>
 
     <Grid Background="{StaticResource ModalColor}">
         <StackPanel>
@@ -73,12 +73,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <RowDefinition/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
-                        <Label Grid.Row="0" Grid.Column="0" Padding="0,5" FontSize="16" Content="{resources:Loc About_lbl_CurrentVersion}" Foreground="White"/>
+                        <Label Grid.Row="0" Grid.Column="0" Padding="0,5" FontSize="16" Content="{translations:Loc About_lbl_CurrentVersion}" Foreground="White"/>
                         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
                             <Label Padding="10,5,5,5" FontWeight="Bold" FontSize="16" Content="{Binding AppVersion}" Foreground="White"/>
-                            <Label Padding="0,5" Style="{StaticResource EarlyAccessStyle}" Content="{resources:Loc About_lbl_CurrentVersion_EarlyAccess}"/>
+                            <Label Padding="0,5" Style="{StaticResource EarlyAccessStyle}" Content="{translations:Loc About_lbl_CurrentVersion_EarlyAccess}"/>
                         </StackPanel>
-                        <Label Grid.Row="1" Grid.Column="0" Padding="0,5" FontSize="16" Content="{resources:Loc About_lbl_LastUpdate}" Foreground="White"/>
+                        <Label Grid.Row="1" Grid.Column="0" Padding="0,5" FontSize="16" Content="{translations:Loc About_lbl_LastUpdate}" Foreground="White"/>
                         <Label Grid.Row="1" Grid.Column="1" Padding="10,5" FontWeight="Bold" FontSize="16" Content="{Binding LastUpdate}" Foreground="White"/>
 
                         <Label Foreground="White"
@@ -86,7 +86,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                    Padding="0,5"
                                    Grid.Row="2"
                                    Grid.Column="0"
-                                   Content="{resources:Loc About_lbl_LicensingInformation}"/>
+                                   Content="{translations:Loc About_lbl_LicensingInformation}"/>
                         <Button Grid.Row="2"
                                 Grid.Column="1"
                                 Padding="10,0,0,0"
@@ -115,7 +115,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <DataTemplate>
                                 <StackPanel Margin="0,20,0,0">
                                     <DockPanel Margin="0,0,0,10">
-                                        <TextBlock Text="{resources:Loc About_lbl_ChangelogVersion}" Name="StringFormat" Visibility="Collapsed"/>
+                                        <TextBlock Text="{translations:Loc About_lbl_ChangelogVersion}" Name="StringFormat" Visibility="Collapsed"/>
                                         <TextBlock FontSize="20" FontWeight="Bold" Foreground="White">
                                             <TextBlock.Text>
                                                 <MultiBinding Converter="{StaticResource StringFormatMultiValueConverter}">
@@ -125,7 +125,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                             </TextBlock.Text>
                                         </TextBlock>
                                         <TextBlock Margin="5,0,0,0" VerticalAlignment="Top"
-                                                   FontSize="12" FontWeight="Bold" Foreground="{StaticResource PrimaryColor}" Text="{resources:Loc About_lbl_ChangelogVersion_New}"
+                                                   FontSize="12" FontWeight="Bold" Foreground="{StaticResource PrimaryColor}" Text="{translations:Loc About_lbl_ChangelogVersion_New}"
                                                    Visibility="{c:Binding New, FalseToVisibility=Collapsed}"/>
                                         <Separator Margin="10,0" Background="#333439" Height="2"/>
                                     </DockPanel>
@@ -149,10 +149,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <Button Style="{StaticResource PrimaryButton}"
                             Command="{Binding CloseCommand}"
-                            Content="{resources:Loc Dialogs_btn_Close}"/>
+                            Content="{translations:Loc Dialogs_btn_Close}"/>
                 </StackPanel>
             </DockPanel>
         </StackPanel>
     </Grid>
-</modals:BaseModalWindow>
+</resource:BaseModalWindow>
 

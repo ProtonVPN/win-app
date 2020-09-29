@@ -22,7 +22,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:resources="clr-namespace:ProtonVPN.Resources"
+             xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              mc:Ignorable="d"
              Width="Auto">
@@ -52,7 +52,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <DockPanel Grid.Column="0">
-                    <Label Padding="0" VerticalAlignment="Center" FontSize="14" Foreground="White" Content="{resources:Loc BugReport_lbl_Email}"/>
+                    <Label Padding="0" VerticalAlignment="Center" FontSize="14" Foreground="White" Content="{translations:Loc BugReport_lbl_Email}"/>
                     <Label Foreground="Red" Padding="5,15,0,0" FontSize="14" Content="*"/>
                 </DockPanel>
                 <TextBox Style="{StaticResource BugReportTextBox}"
@@ -64,11 +64,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                          CaretBrush="White"
                          FontSize="14"
                          BorderThickness="0,0,0,1"
-                         Padding="7,14"/>
+                         Padding="7,14"
+                         AutomationProperties.AutomationId="{StaticResource ReportBugEmailTextBlock}"/>
                 <TextBlock Grid.Column="1"
                            IsHitTestVisible="False"
                            FontSize="14"
-                           Text="{resources:Loc BugReport_lbl_Email_Watermark}"
+                           Text="{translations:Loc BugReport_lbl_Email_Watermark}"
                            HorizontalAlignment="Left"
                            Margin="7,14"
                            Foreground="#4a4c55">
@@ -88,7 +89,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        FontSize="14"
                        Foreground="White"
                        TextWrapping="Wrap">
-                <Run Text="{resources:Loc BugReport_lbl_WhatWentWrong}"/>
+                <Run Text="{translations:Loc BugReport_lbl_WhatWentWrong}"/>
                 <Run Text="*" Foreground="Red"/>
             </TextBlock>
             <Grid>
@@ -102,14 +103,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                          FontSize="14"
                          Text="{Binding WhatWentWrong, UpdateSourceTrigger=PropertyChanged}"
                          AcceptsReturn="True"
-                         TextWrapping="Wrap"/>
+                         TextWrapping="Wrap"
+                         AutomationProperties.AutomationId="{StaticResource ReportBugIssueTextBlock}"/>
                 <TextBlock Margin="7,7,0,0"
                            Padding="2,0,0,0"
                            FontSize="14"
                            VerticalAlignment="Top"
                            HorizontalAlignment="Stretch"
                            Foreground="#4a4c55"
-                           Text="{resources:Loc TextBoxPlaceholder}"
+                           Text="{translations:Loc TextBoxPlaceholder}"
                            IsHitTestVisible="False">
                     <TextBlock.Style>
                         <Style TargetType="{x:Type TextBlock}">
@@ -127,7 +129,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        FontSize="14"
                        Foreground="White"
                        TextWrapping="Wrap">
-                <Run Text="{resources:Loc BugReport_lbl_HowToReproduce}"/>
+                <Run Text="{translations:Loc BugReport_lbl_HowToReproduce}"/>
                 <Run Text="*" Foreground="Red"/>
             </TextBlock>
             <Grid>
@@ -141,14 +143,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                          FontSize="14"
                          Text="{Binding StepsToReproduce, UpdateSourceTrigger=PropertyChanged}"
                          AcceptsReturn="True"
-                         TextWrapping="Wrap"/>
+                         TextWrapping="Wrap"
+                         AutomationProperties.AutomationId="{StaticResource ReportBugStepsTextBlock}"/>
                 <TextBlock Margin="7,7,0,0"
                            Padding="2,0,0,0"
                            FontSize="14"
                            VerticalAlignment="Top"
                            HorizontalAlignment="Stretch"
                            Foreground="#4a4c55"
-                           Text="{resources:Loc TextBoxPlaceholder}"
+                           Text="{translations:Loc TextBoxPlaceholder}"
                            IsHitTestVisible="False">
                     <TextBlock.Style>
                         <Style TargetType="{x:Type TextBlock}">
@@ -170,12 +173,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                Foreground="White"
                                VerticalAlignment="Center"
                                TextWrapping="Wrap">
-                        <Run Text="{resources:Loc BugReport_lbl_IncludeLogs}"/>
+                        <Run Text="{translations:Loc BugReport_lbl_IncludeLogs}"/>
                         <fa:FontAwesome Icon="InfoCircle"
                                         VerticalAlignment="Center"
                                         FontSize="14"
                                         Margin="5,0"
-                                        ToolTip="{resources:Loc BugReport_lbl_IncludeLogsInfo}"
+                                        ToolTip="{translations:Loc BugReport_lbl_IncludeLogsInfo}"
                                         Foreground="{StaticResource PrimaryColor}"/>
                     </TextBlock>
                 </WrapPanel>

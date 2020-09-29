@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Windows.Data;
-using ProtonVPN.Resources;
+using ProtonVPN.Translations;
 
 namespace ProtonVPN.Core.MVVM.Converters
 {
@@ -12,7 +12,7 @@ namespace ProtonVPN.Core.MVVM.Converters
             var str = (string)value;
             double.TryParse(parameter.ToString(), out var number);
 
-            return StringResources.GetPluralFormat(str, (decimal) number);
+            return Translation.GetPluralFormat(str, (decimal) number);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

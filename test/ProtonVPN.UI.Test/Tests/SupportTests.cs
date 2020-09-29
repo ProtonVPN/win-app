@@ -23,7 +23,7 @@ using ProtonVPN.UI.Test.Windows;
 namespace ProtonVPN.UI.Test.Tests
 {
     [TestFixture]
-    public class ReportBugTests : UITestSession
+    public class SupportTests : UITestSession
     {
         private readonly LoginWindow _loginWindow = new LoginWindow();
         private readonly MainWindow _mainWindow = new MainWindow();
@@ -40,7 +40,8 @@ namespace ProtonVPN.UI.Test.Tests
             RefreshSession();
 
             _bugReportWindow.EnterYourEmail("test@protonmail.com")
-                .EnterFeedback("Feedback")
+                .EnterWhatWentWrong("Feedback")
+                .EnterStepsToReproduce("Feedback")
                 .ClickSend();
 
             _bugReportWindow.VerifySendingIsSuccessful();

@@ -25,7 +25,7 @@ using ProtonVPN.Core.Vpn;
 using ProtonVPN.Modals;
 using ProtonVPN.P2PDetection.Blocked;
 using ProtonVPN.P2PDetection.Forwarded;
-using ProtonVPN.Resources;
+using ProtonVPN.Translations;
 using System;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Extensions;
@@ -161,7 +161,7 @@ namespace ProtonVPN.P2PDetection
 
         private void ShowBlockedTrafficModal()
         {
-            _dialogs.ShowWarning(StringResources.Get("Dialogs_P2PBlocked_msg_Blocked"));
+            _dialogs.ShowWarning(Translation.Get("Dialogs_P2PBlocked_msg_Blocked"));
         }
 
         private void ShowForwardedTrafficModal()

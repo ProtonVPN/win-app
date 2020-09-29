@@ -91,6 +91,15 @@ namespace ProtonVPN.Core.Servers
             return Map(_servers.Find(spec.IsSatisfiedBy));
         }
 
+        public void MarkServerUnderMaintenance(string exitIp)
+        {
+            foreach (var server in _servers.SelectMany(logical =>
+                logical.Servers.Where(server => server.ExitIp == exitIp)))
+            {
+                server.Status = 0;
+            }
+        }
+
         public virtual IReadOnlyCollection<string> GetCountries()
         {
             return _countries;
@@ -120,6 +129,12 @@ namespace ProtonVPN.Core.Servers
         {
             var servers = GetServers(new SecureCoreServer() && new ExitCountryServer(country));
             return servers.FirstOrDefault(s => userTier >= s.Tier) != null;
+        }
+
+        public bool CountryUnderMaintenance(string country)
+        {
+            var servers = GetServers(new OnlineServer() && new ExitCountryServer(country));
+            return servers.Count == 0;
         }
 
         public bool Empty() => !_servers.Any();

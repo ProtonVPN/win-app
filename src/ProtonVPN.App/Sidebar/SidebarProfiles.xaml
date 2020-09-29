@@ -25,7 +25,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:profiles="clr-namespace:ProtonVPN.Profiles"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              xmlns:sidebar="clr-namespace:ProtonVPN.Sidebar"
-             xmlns:resources="clr-namespace:ProtonVPN.Resources"
+             xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
              xmlns:controls="clr-namespace:ProtonVPN.Views.Controls"
              xmlns:profiles1="clr-namespace:ProtonVPN.Core.Profiles;assembly=ProtonVPN.Core"
              mc:Ignorable="d"
@@ -137,7 +137,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <Button Style="{StaticResource CreateProfileButton}"/>
                     <Button Style="{StaticResource ManageProfilesButton}">
                         <Underline>
-                            <Run Text="{resources:Loc Sidebar_Profiles_lnk_Manage}"/>
+                            <Run Text="{translations:Loc Sidebar_Profiles_lnk_Manage}"/>
                         </Underline>
                     </Button>
                 </StackPanel>

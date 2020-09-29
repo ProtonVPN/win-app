@@ -111,8 +111,6 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 GuestHoleVpnPassword = "guest",
 
-                UpdateFirstCheckDelay = TimeSpan.FromSeconds(15),
-
                 UpdateCheckInterval = TimeSpan.FromHours(3),
 
                 UpdateRemindInterval = TimeSpan.FromHours(24),
@@ -157,6 +155,7 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 Urls =
                 {
+                    BfeArticleUrl = "https://protonvpn.com/support/how-to-enable-the-base-filtering-engine",
                     PasswordResetUrl = "https://account.protonvpn.com/reset-password",
                     ForgetUsernameUrl = "https://account.protonvpn.com/forgot-username",
                     UpdateUrl = "https://protonvpn.com/download/win-update.json",

@@ -24,7 +24,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:common="clr-namespace:ProtonVPN.Common;assembly=ProtonVPN.Common"
              xmlns:splitTunneling="clr-namespace:ProtonVPN.Settings.SplitTunneling"
-             xmlns:resources="clr-namespace:ProtonVPN.Resources"
+             xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="500"
              HorizontalAlignment="Stretch"
@@ -54,14 +54,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                          Padding="10,0,0,0"
                          Margin="0,5"
                          Foreground="White">
-                <TextBlock Text="{resources:Loc Settings_Advanced_SplitTunnel_lbl_Exclude}" TextWrapping="Wrap"/>
+                <TextBlock Text="{translations:Loc Settings_Advanced_SplitTunnel_lbl_Exclude}" TextWrapping="Wrap"/>
             </RadioButton>
             <RadioButton GroupName="Type"
                          IsChecked="{Binding SplitTunnelMode, Converter={StaticResource ComparisonConverter}, ConverterParameter={x:Static common:SplitTunnelMode.Permit}}"
                          Padding="10,0,0,0"
                          Margin="0,5"
                          Foreground="White">
-                <TextBlock Text="{resources:Loc Settings_Advanced_SplitTunnel_lbl_Include}" TextWrapping="Wrap"/>
+                <TextBlock Text="{translations:Loc Settings_Advanced_SplitTunnel_lbl_Include}" TextWrapping="Wrap"/>
             </RadioButton>
         </StackPanel>
 
@@ -71,10 +71,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <ColumnDefinition Width="Auto" SharedSizeGroup="Column2"/>
             </Grid.ColumnDefinitions>
             <Border Grid.Column="0" Padding="0,0,0,5" Margin="0,0,15,0" BorderBrush="#464652" BorderThickness="0,0,1,0">
-                <Label Content="{resources:Loc Settings_Advanced_SplitTunnel_lbl_Apps}" Padding="0" Foreground="White"/>
+                <Label Content="{translations:Loc Settings_Advanced_SplitTunnel_lbl_Apps}" Padding="0" Foreground="White"/>
             </Border>
             <Border Grid.Column="1" Padding="5,0,0,5" BorderThickness="0">
-                <Label Content="{resources:Loc Settings_Advanced_SplitTunnel_lbl_Ip}" Padding="0" Foreground="White"/>
+                <Label Content="{translations:Loc Settings_Advanced_SplitTunnel_lbl_Ip}" Padding="0" Foreground="White"/>
             </Border>
         </Grid>
 
@@ -106,7 +106,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Border Grid.Column="0" Padding="0,0,0,5" Margin="0,0,15,-23" BorderBrush="#464652" BorderThickness="0,0,1,0">
                 <Button Style="{StaticResource SettingsAddButton}"
                         HorizontalAlignment="Left"
-                        Content="{resources:Loc Settings_Advanced_SplitTunnel_btn_AddApp}"
+                        Content="{translations:Loc Settings_Advanced_SplitTunnel_btn_AddApp}"
                         Command="{Binding Apps.AddCommand}"/>
             </Border>
             <Border Grid.Column="1" Padding="18,15,0,0" BorderThickness="0">
@@ -114,7 +114,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <Button Style="{StaticResource SettingsAddButton}" DockPanel.Dock="Right" VerticalAlignment="Center"
                             Command="{Binding Ips.AddCommand}"/>
                     <TextBox Style="{StaticResource SettingsPlaceholderTextBox}" Margin="0,0,10,0"
-                             Tag="{resources:Loc Settings_Advanced_SplitTunnel_lbl_Ip_Watermark}"
+                             Tag="{translations:Loc Settings_Advanced_SplitTunnel_lbl_Ip_Watermark}"
                              Text="{Binding Ips.Ip, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}"
                              MaxLength="20">
                         <TextBox.InputBindings>

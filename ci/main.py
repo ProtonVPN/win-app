@@ -47,7 +47,7 @@ if args.command == 'sentry':
 elif args.command == 'add-languages':
     loc = localization.Localization(
         "locales\\*.resx",
-        '.\src\\ProtonVPN.App\\Properties\\Resources.{lang}.resx',
+        '.\src\\ProtonVPN.Translations\\Properties\\Resources.{lang}.resx',
         '.\\src\\bin\\ProtonVPN.MarkupValidator.exe')
     returnCode = loc.AddLanguages()
     sys.exit(returnCode)
@@ -60,7 +60,7 @@ elif args.command == 'app-installer':
     semVersion = "%d.%d.%d" % (v['FileVersionMS'] / 65536, v['FileVersionMS'] % 65536, v['FileVersionLS'] / 65536)
     params = ''
     p = Path()
-    for f in list(p.glob('.\src\\bin\**\ProtonVPN.resources.dll')):
+    for f in list(p.glob('.\src\\bin\**\ProtonVPN.Translations.resources.dll')):
         params = params + "\r\nAddFolder APPDIR {folder}".format(folder=f.parent.absolute())
 
     print('Building app installer')

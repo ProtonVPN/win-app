@@ -52,11 +52,7 @@ namespace ProtonVPN.Servers
             }
         }
 
-        public bool Dimmed
-        {
-            get => !HasAvailableServers();
-            set { }
-        }
+        public bool Dimmed => !HasAvailableServers() || Maintenance;
 
         public bool Expanded
         {
@@ -81,11 +77,7 @@ namespace ProtonVPN.Servers
             set => Set(ref _upgradeRequired, value);
         }
 
-        public string Name
-        {
-            get => Countries.GetName(CountryCode);
-            set { }
-        }
+        public string Name => Countries.GetName(CountryCode);
 
         public bool IsMarkedForRemoval { get; set; } = false;
 
@@ -98,6 +90,8 @@ namespace ProtonVPN.Servers
             return !string.IsNullOrEmpty(query) && Name.ToLower().Contains(query);
         }
 
-        protected abstract bool HasAvailableServers();
+        public abstract bool HasAvailableServers();
+
+        public abstract bool Maintenance { get; }
     }
 }

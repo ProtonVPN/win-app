@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using OpenQA.Selenium;
 using ProtonVPN.UI.Test.TestsHelper;
 
 namespace ProtonVPN.UI.Test.Windows
@@ -51,6 +52,27 @@ namespace ProtonVPN.UI.Test.Windows
         public SettingsWindow CloseSettings()
         {
             ClickOnObjectWithId("ModalCloseButton");
+            return this;
+        }
+
+        public SettingsWindow EnableAutoConnectToFastestServer()
+        {
+            SelectAutoConnectProfile("Fastest");
+            return this;
+        }
+
+        public SettingsWindow DisableAutoConnect()
+        {
+            SelectAutoConnectProfile("Disabled");
+            return this;
+        }
+
+        private SettingsWindow SelectAutoConnectProfile(string autoConnectProfile)
+        {
+            ClickOnObjectWithId("AutoConnectComboBox");
+            var autoConnectElement = Session.FindElementByXPath("//Text[@Name='"+autoConnectProfile+"']/parent::ListItem");
+            MoveToElement(autoConnectElement);
+            autoConnectElement.SendKeys(Keys.Enter);
             return this;
         }
     }

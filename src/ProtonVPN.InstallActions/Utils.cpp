@@ -50,3 +50,8 @@ std::wstring GetProperty(std::wstring name)
 
     return valueBuf;
 }
+
+void SetProperty(const std::wstring name, const std::wstring value)
+{
+    MsiSetProperty(msiHandle, name.c_str(), value.c_str());
+}

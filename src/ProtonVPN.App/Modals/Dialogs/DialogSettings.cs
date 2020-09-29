@@ -18,7 +18,7 @@
  */
 
 using ProtonVPN.Core.Modals;
-using ProtonVPN.Resources;
+using ProtonVPN.Translations;
 
 namespace ProtonVPN.Modals.Dialogs
 {
@@ -33,7 +33,7 @@ namespace ProtonVPN.Modals.Dialogs
 
         public static DialogSettings FromMessage(string message)
         {
-            return new DialogSettings(message, StringResources.Get("Dialogs_btn_Continue"), StringResources.Get("Dialogs_btn_Cancel"));
+            return new DialogSettings(message, Translation.Get("Dialogs_btn_Continue"), Translation.Get("Dialogs_btn_Cancel"));
         }
 
         public DialogSettings WithPrimaryButtonText(string text)

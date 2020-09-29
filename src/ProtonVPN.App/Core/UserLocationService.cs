@@ -24,6 +24,7 @@ using ProtonVPN.Common.OS.Net.NetworkInterface;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Api;
+using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.User;
 using ProtonVPN.Core.Vpn;
@@ -43,13 +44,16 @@ namespace ProtonVPN.Core
         private bool _disconnected = true;
         private bool _connected;
         private bool _networkAddressChanged;
+        private readonly UserAuth _userAuth;
 
         public UserLocationService(
             IApiClient api,
             IUserStorage userStorage,
             INetworkInterfaces networkInterfaces,
+            UserAuth userAuth,
             GuestHoleState guestHoleState)
         {
+            _userAuth = userAuth;
             _guestHoleState = guestHoleState;
             _api = api;
             _userStorage = userStorage;
@@ -98,7 +102,7 @@ namespace ProtonVPN.Core
 
         private async Task UpdateAction()
         {
-            if (_connected)
+            if (_connected || !_userAuth.LoggedIn)
             {
                 return;
             }

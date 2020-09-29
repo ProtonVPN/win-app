@@ -92,7 +92,7 @@ namespace ProtonVPN.Servers
             }
         }
 
-        protected override bool HasAvailableServers()
+        public override bool HasAvailableServers()
         {
             if (!ServersAvailable.HasValue)
             {
@@ -101,5 +101,7 @@ namespace ProtonVPN.Servers
 
             return ServersAvailable.Value;
         }
+
+        public override bool Maintenance => _serverManager.CountryUnderMaintenance(CountryCode);
     }
 }

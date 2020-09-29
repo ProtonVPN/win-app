@@ -17,13 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Views.Controls
+using ProtonVPN.Core.Api;
+
+namespace TestTools.ApiClient
 {
-    public partial class ProtonAnimation
+    internal class ApiAppVersion : IApiAppVersion
     {
-        public ProtonAnimation()
-        {
-            InitializeComponent();
-        }
+        public string Value() => "WindowsVPN_1.17.0";
+        public string UserAgent() => "WindowsVPN_1.17.0";
     }
 }

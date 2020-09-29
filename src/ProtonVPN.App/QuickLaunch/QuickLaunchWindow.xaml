@@ -26,10 +26,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         xmlns:calcBinding="clr-namespace:CalcBinding;assembly=CalcBinding"
         xmlns:fa="http://schemas.fontawesome.io/icons/"
         xmlns:controls1="clr-namespace:ProtonVPN.Views.Controls"
-        xmlns:wpf="clr-namespace:ProtonVPN.Core.Wpf"
         xmlns:profiles="clr-namespace:ProtonVPN.Profiles"
-        xmlns:resources="clr-namespace:ProtonVPN.Resources"
+        xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
         xmlns:quickLaunch="clr-namespace:ProtonVPN.QuickLaunch"
+        xmlns:resource="clr-namespace:ProtonVPN.Resource;assembly=ProtonVPN.Resource"
         WindowStyle="None"
         ShowInTaskbar="False"
         ResizeMode="CanMinimize"
@@ -56,7 +56,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <Setter Property="FontWeight" Value="Bold"/>
                 <Setter Property="Foreground" Value="{StaticResource RedColor}"/>
                 <Setter Property="HorizontalAlignment" Value="Center"/>
-                <Setter Property="Content" Value="{resources:Loc QuickLaunch_lbl_Disconnected}"/>
+                <Setter Property="Content" Value="{translations:Loc QuickLaunch_lbl_Disconnected}"/>
                 <Setter Property="Visibility" Value="{Binding Disconnected, Converter={StaticResource BoolToVis}}"/>
             </Style>
             <Style x:Key="QuickConnectButton" TargetType="Button" BasedOn="{StaticResource ClearStyleButton}">
@@ -67,7 +67,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <Setter Property="FontSize" Value="16"/>
                 <Setter Property="FontWeight" Value="Bold"/>
                 <Setter Property="Height" Value="44"/>
-                <Setter Property="Content" Value="{resources:Loc QuickLaunch_btn_Connect}"/>
+                <Setter Property="Content" Value="{translations:Loc QuickLaunch_btn_Connect}"/>
                 <Setter Property="Padding" Value="0,0,33,1"/>
                 <Setter Property="Command" Value="{Binding QuickConnectCommand}"/>
                 <Style.Triggers>
@@ -78,12 +78,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <DataTrigger Binding="{Binding Connected}" Value="True">
                         <Setter Property="BorderBrush" Value="White"/>
                         <Setter Property="Background" Value="Transparent"/>
-                        <Setter Property="Content" Value="{resources:Loc QuickLaunch_btn_Disconnect}"/>
+                        <Setter Property="Content" Value="{translations:Loc QuickLaunch_btn_Disconnect}"/>
                     </DataTrigger>
                     <DataTrigger Binding="{Binding Connecting}" Value="True">
                         <Setter Property="BorderBrush" Value="White"/>
                         <Setter Property="Background" Value="Transparent"/>
-                        <Setter Property="Content" Value="{resources:Loc QuickLaunch_btn_Disconnect}"/>
+                        <Setter Property="Content" Value="{translations:Loc QuickLaunch_btn_Disconnect}"/>
                     </DataTrigger>
                 </Style.Triggers>
             </Style>
@@ -166,9 +166,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Grid Margin="0,15" HorizontalAlignment="Center" Height="50">
             <StackPanel VerticalAlignment="Center">
                 <StackPanel Visibility="{Binding Connecting, Converter={StaticResource BoolToVis}}" Orientation="Horizontal">
-                    <Image Name="Spinner" Style="{StaticResource Spinner}" wpf:ControlExtension.Spin="{Binding Connecting}" Visibility="{Binding Connecting, Converter={StaticResource BoolToVis}}"/>
+                    <Image Name="Spinner" Style="{StaticResource Spinner}" resource:ControlExtension.Spin="{Binding Connecting}" Visibility="{Binding Connecting, Converter={StaticResource BoolToVis}}"/>
                     <TextBlock Foreground="White" FontSize="14" Padding="10,0,0,0">
-                        <Run Text="{resources:Loc QuickLaunch_lbl_Connecting}"/><Run Text=" "/>
+                        <Run Text="{translations:Loc QuickLaunch_lbl_Connecting}"/><Run Text=" "/>
                         <Run Text="{Binding ServerName, Mode=OneWay}"/>
                     </TextBlock>
                 </StackPanel>
@@ -197,7 +197,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Popup Name="Popup" Style="{StaticResource QuickConnectPopup}">
                 <Border Width="{Binding Path=ActualWidth, ElementName=QuickConnect}" Style="{StaticResource QuickConnectDropdown}">
                     <StackPanel>
-                        <Label Style="{StaticResource QuickConnectLabel}" Content="{resources:Loc QuickLaunch_lbl_Profiles}"/>
+                        <Label Style="{StaticResource QuickConnectLabel}" Content="{translations:Loc QuickLaunch_lbl_Profiles}"/>
                         <ScrollViewer Template="{StaticResource LightScrollViewerControlTemplate}" PanningMode="VerticalOnly" MaxHeight="250">
                             <ItemsControl ItemsSource="{Binding Profiles}">
                                 <ItemsControl.ItemsPanel>
@@ -246,7 +246,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Grid>
 
         <StackPanel Height="42" Background="#2b2c34">
-            <Button Command="{Binding ShowAppCommand}" Style="{StaticResource OpenAppButton}" Content="{resources:Loc QuickLaunch_btn_OpenApp}"/>
+            <Button Command="{Binding ShowAppCommand}" Style="{StaticResource OpenAppButton}" Content="{translations:Loc QuickLaunch_btn_OpenApp}"/>
         </StackPanel>
     </StackPanel>
 </Window>

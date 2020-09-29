@@ -24,7 +24,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:wpf="clr-namespace:ProtonVPN.Core.Wpf"
              xmlns:form="clr-namespace:ProtonVPN.Profiles.Form"
-             xmlns:resources="clr-namespace:ProtonVPN.Resources"
+             xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance form:AbstractForm}">
     <UserControl.Resources>
@@ -73,17 +73,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Grid.RowDefinitions>
 
         <Label Grid.Row="0" Grid.Column="0"
-               Content="{resources:Loc Profiles_Profile_lbl_Name}"
+               Content="{translations:Loc Profiles_Profile_lbl_Name}"
                Style="{StaticResource ColumnTitle}"/>
         <DockPanel Grid.Row="0" Grid.Column="1">
-            <wpf:PlaceholderTextBox Tag="{resources:Loc Profiles_Profile_Name_Watermark}"
+            <wpf:PlaceholderTextBox Tag="{translations:Loc Profiles_Profile_Name_Watermark}"
                                     Style="{StaticResource PlaceholderTextBox}"
                                     AutomationProperties.AutomationId="{StaticResource ProfileFormNameInput}"
                                     Text="{Binding ProfileName, UpdateSourceTrigger=PropertyChanged}"/>
         </DockPanel>
 
         <Label Grid.Row="1" Grid.Column="0"
-               Content="{resources:Loc Profiles_Profile_lbl_Color}"
+               Content="{translations:Loc Profiles_Profile_lbl_Color}"
                Style="{StaticResource ColumnTitle}"/>
         <DockPanel Grid.Row="1" Grid.Column="1">
             <ItemsControl ItemsSource="{Binding Colors}">
@@ -108,7 +108,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </ItemsControl>
         </DockPanel>
 
-        <Label Grid.Row="2" Grid.Column="0" Style="{StaticResource ColumnTitle}" Content="{resources:Loc Profiles_Profile_lbl_Protocol}"/>
+        <Label Grid.Row="2" Grid.Column="0" Style="{StaticResource ColumnTitle}" Content="{translations:Loc Profiles_Profile_lbl_Protocol}"/>
         <DockPanel Grid.Row="2" Grid.Column="1">
             <wpf:Combobox Margin="0"
                           Style="{StaticResource ComboDropdown}"

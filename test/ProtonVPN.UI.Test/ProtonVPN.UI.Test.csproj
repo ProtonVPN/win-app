@@ -105,10 +105,8 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApiClient\ApiVersion.cs" />
-    <Compile Include="ApiClient\Client.cs" />
-    <Compile Include="ApiClient\Api.cs" />
     <Compile Include="ApiClient\TestRailAPI.cs" />
+    <Compile Include="TestsHelper\TestEnvironment.cs" />
     <Compile Include="Tests\SetUpTests.cs" />
     <Compile Include="Windows\BugReportWindow.cs" />
     <Compile Include="Windows\HamburgerMenu.cs" />
@@ -126,7 +124,7 @@
     <Compile Include="TestsHelper\TestUserData.cs" />
     <Compile Include="TestsHelper\UIActions.cs" />
     <Compile Include="Tests\ConnectionTests.cs" />
-    <Compile Include="Tests\ReportBugTests.cs" />
+    <Compile Include="Tests\SupportTests.cs" />
     <Compile Include="Tests\SecureCoreTests.cs" />
     <Compile Include="Tests\SettingsTests.cs" />
     <Compile Include="Tests\AccountTests.cs" />
@@ -153,6 +151,10 @@
     <ProjectReference Include="..\..\src\ProtonVPN.Core\ProtonVPN.Core.csproj">
       <Project>{CA44B51D-7645-413A-818F-2C5B57DB67DD}</Project>
       <Name>ProtonVPN.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TestTools.ApiClient\TestTools.ApiClient.csproj">
+      <Project>{F059E362-20A2-472B-82CA-E727D31AC0C7}</Project>
+      <Name>TestTools.ApiClient</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

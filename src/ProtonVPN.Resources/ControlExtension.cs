@@ -19,7 +19,7 @@
 
 using System.Windows;
 
-namespace ProtonVPN.Core.Wpf
+namespace ProtonVPN.Resource
 {
     public class ControlExtension
     {

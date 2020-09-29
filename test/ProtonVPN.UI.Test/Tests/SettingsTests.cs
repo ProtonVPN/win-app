@@ -28,6 +28,7 @@ namespace ProtonVPN.UI.Test.Tests
     {
         private readonly LoginWindow _loginWindow = new LoginWindow();
         private readonly MainWindow _mainWindow = new MainWindow();
+        private readonly MainWindowResults _mainWindowResults = new MainWindowResults();
         private readonly SettingsWindow _settingsWindow = new SettingsWindow();
         private readonly SettingsResult _settingsResult = new SettingsResult();
 
@@ -43,6 +44,30 @@ namespace ProtonVPN.UI.Test.Tests
 
             _settingsWindow.ClickGeneralTab();
             _settingsResult.VerifySettingsAreDisplayed();
+        }
+
+        [Test]
+        public void CheckIfOpenAndCloseSavesSession()
+        {
+            TestCaseId = 204;
+
+            _loginWindow.LoginWithPlusUser();
+            _mainWindow.ClickHamburgerMenu()
+                .HamburgerMenu.ClickSettings();
+            _settingsWindow.ClickConnectionTab();
+            _settingsWindow.EnableAutoConnectToFastestServer();
+            KillProtonVPNProcessAndReopenIt();
+            _mainWindow.WaitUntilConnected();
+            TestRailClient.MarkTestsByStatus();
+
+            TestCaseId = 205;
+            _mainWindow.DisconnectUsingSidebarButton();
+            _mainWindow.ClickHamburgerMenu()
+                .HamburgerMenu.ClickSettings();
+            _settingsWindow.ClickConnectionTab();
+            _settingsWindow.DisableAutoConnect();
+            KillProtonVPNProcessAndReopenIt();
+            _mainWindowResults.CheckIfDisconnected();
         }
 
         [SetUp]

@@ -20,6 +20,7 @@
 using System.Web;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
+using ProtonVPN.UI.Test.TestsHelper;
 using TestRail;
 using TestRail.Types;
 
@@ -51,6 +52,11 @@ namespace ProtonVPN.UI.Test.ApiClient
 
         public void MarkTestsByStatus()
         {
+            if(TestEnvironment.AreTestsRunningLocally())
+            {
+                return;
+            }
+
             if (TestCaseId == 0)
             {
                 return;

@@ -17,26 +17,23 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.ErrorMessage
+using System.Threading.Tasks;
+using TestTools.ApiClient;
+
+namespace TestTools.ProfileCleaner
 {
-    internal class ParsedMessage
+    public class Program
     {
-        private readonly string[] _messages;
-        private const string UnknownError = "Unknown error";
-
-        public ParsedMessage(string[] messages)
+        static async Task Main(string[] args)
         {
-            _messages = messages;
-        }
+            if (args.Length != 2)
+            {
+                return;
+            }
 
-        public override string ToString()
-        {
-            return _messages.Length == 0 ? UnknownError : GetMessage();
-        }
-
-        private string GetMessage()
-        {
-            return "Missing file: " + _messages[0];
+            var api = new Api(args[0], args[1]);
+            await api.Login();
+            await api.DeleteProfiles();
         }
     }
 }

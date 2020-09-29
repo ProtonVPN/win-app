@@ -170,7 +170,7 @@ namespace ProtonVPN.Core.Auth
 
             SendLogoutRequest();
 
-            _userStorage.ClearLogin();
+            _tokenStorage.AccessToken = string.Empty;
         }
 
         private async void SendLogoutRequest()

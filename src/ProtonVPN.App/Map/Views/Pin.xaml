@@ -23,7 +23,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:views="clr-namespace:ProtonVPN.Map.Views"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:command="http://www.galasoft.ch/mvvmlight"
-             xmlns:resources="clr-namespace:ProtonVPN.Resources">
+             xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations">
     <UserControl.Resources>
         <Style TargetType="views:Pin">
             <Setter Property="Highlighted" Value="{Binding Highlighted, Mode=TwoWay}"/>
@@ -47,7 +47,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     <Condition Binding="{Binding Connected}" Value="True"/>
                                     <Condition Binding="{Binding IsMouseOver, ElementName=CountryName}" Value="True"/>
                                 </MultiDataTrigger.Conditions>
-                                <Setter TargetName="CountryName" Property="Text" Value="{resources:Loc Map_btn_Disconnect}"/>
+                                <Setter TargetName="CountryName" Property="Text" Value="{translations:Loc Map_btn_Disconnect}"/>
                                 <Setter TargetName="CountryName" Property="FontWeight" Value="Bold"/>
                                 <Setter TargetName="CountryName" Property="Padding" Value="20,0"/>
                             </MultiDataTrigger>
@@ -56,7 +56,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     <Condition Binding="{Binding Connected}" Value="False"/>
                                     <Condition Binding="{Binding IsMouseOver, ElementName=CountryName}" Value="True"/>
                                 </MultiDataTrigger.Conditions>
-                                <Setter TargetName="CountryName" Property="Text" Value="{resources:Loc Map_btn_Connect}"/>
+                                <Setter TargetName="CountryName" Property="Text" Value="{translations:Loc Map_btn_Connect}"/>
                                 <Setter TargetName="CountryName" Property="FontWeight" Value="Bold"/>
                                 <Setter TargetName="CountryName" Property="Padding" Value="20,0"/>
                             </MultiDataTrigger>

@@ -28,7 +28,7 @@ using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.User;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Onboarding;
-using ProtonVPN.Resources;
+using ProtonVPN.Translations;
 using ProtonVPN.Servers;
 using ProtonVPN.Trial;
 using ProtonVPN.Vpn.Connectors;
@@ -134,10 +134,11 @@ namespace ProtonVPN.Sidebar
 
         public void ExpandCollection(IServerCollection serverCollection)
         {
-            if (serverCollection.Expanded)
+            if (serverCollection.Expanded || !serverCollection.HasAvailableServers())
             {
                 return;
             }
+
             serverCollection.Expanded = true;
 
             var index = _items.IndexOf(serverCollection) + 1;
@@ -302,7 +303,7 @@ namespace ProtonVPN.Sidebar
                            State.Status.Equals(VpnStatus.Reconnecting) ||
                            State.Status.Equals(VpnStatus.Connected)))
             {
-                var result = _dialogs.ShowQuestion(StringResources.Get("Sidebar_Countries_msg_SecureCoreDisableConfirm"));
+                var result = _dialogs.ShowQuestion(Translation.Get("Sidebar_Countries_msg_SecureCoreDisableConfirm"));
                 if (result.HasValue && result.Value)
                 {
                     await _serverConnector.Disconnect();
@@ -317,7 +318,7 @@ namespace ProtonVPN.Sidebar
                           State.Status.Equals(VpnStatus.Reconnecting) ||
                           State.Status.Equals(VpnStatus.Connected)))
             {
-                var result = _dialogs.ShowQuestion(StringResources.Get("Sidebar_Countries_msg_SecureCoreEnableConfirm"));
+                var result = _dialogs.ShowQuestion(Translation.Get("Sidebar_Countries_msg_SecureCoreEnableConfirm"));
                 if (result.HasValue && result.Value)
                 {
                     await _serverConnector.Disconnect();

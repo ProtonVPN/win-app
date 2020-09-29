@@ -34,12 +34,10 @@ namespace ProtonVPN.Core.Update
         private readonly IAppSettings _appSettings;
         private readonly Config _appConfig;
         private readonly ServiceClient _serviceClient;
-        private readonly TimeSpan _updateInterval;
         private DateTime _lastCheckTime;
 
         private readonly DispatcherTimer _timer;
 
-        private bool _firstCheck;
         private bool _manualCheck;
         private bool _requestedManualCheck;
         private UpdateStatus _status = UpdateStatus.None;
@@ -49,13 +47,13 @@ namespace ProtonVPN.Core.Update
             IAppSettings appSettings,
             ServiceClient serviceClient)
         {
-            _updateInterval = appConfig.UpdateCheckInterval;
             _appConfig = appConfig;
             _serviceClient = serviceClient;
             _appSettings = appSettings;
 
             _timer = new DispatcherTimer();
             _timer.Tick += TimerTick;
+            _timer.Interval = appConfig.UpdateCheckInterval;
 
             _serviceClient.UpdateStateChanged += OnUpdateStateChanged;
         }
@@ -74,8 +72,7 @@ namespace ProtonVPN.Core.Update
 
         public void OnUserLoggedIn()
         {
-            _firstCheck = true;
-            _timer.Interval = _appConfig.UpdateFirstCheckDelay;
+            StartCheckingForUpdate(true);
             _timer.Start();
         }
 
@@ -147,12 +144,6 @@ namespace ProtonVPN.Core.Update
 
         private void TimerTick(object sender, EventArgs e)
         {
-            if (_firstCheck)
-            {
-                _firstCheck = false;
-                _timer.Interval = _updateInterval;
-            }
-
             StartCheckingForUpdate(false);
         }
     }

@@ -21,7 +21,7 @@ using System;
 using System.Windows;
 using System.Windows.Input;
 
-namespace ProtonVPN.Modals
+namespace ProtonVPN.Resource
 {
     public class BaseModalWindow : Window
     {
@@ -43,11 +43,6 @@ namespace ProtonVPN.Modals
         {
             if (e.Key == Key.Escape)
             {
-                if (DataContext is BaseModalViewModel vm && vm.HideWindowControls)
-                {
-                    return;
-                }
-
                 Close();
             }
         }

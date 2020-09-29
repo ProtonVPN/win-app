@@ -21,7 +21,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
-             xmlns:resources="clr-namespace:ProtonVPN.Resources"
+             xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
              xmlns:form="clr-namespace:ProtonVPN.Profiles.Form">
     <Grid Style="{StaticResource ErrorsPanel}">
         <WrapPanel VerticalAlignment="Center" Margin="20,10,38,10">
@@ -32,7 +32,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             VerticalAlignment="Center"/>
             <Label Foreground="White"
                    FontSize="16"
-                   VerticalAlignment="Center" Content="{resources:Loc Profiles_Profile_Error_lbl_NotValid}"/>
+                   VerticalAlignment="Center" Content="{translations:Loc Profiles_Profile_Error_lbl_NotValid}"/>
             <TextBlock>
                 <TextBlock.Resources>
                     <Style TargetType="TextBlock">
@@ -43,19 +43,19 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <Setter Property="TextWrapping" Value="Wrap"/>
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding Form.Error}" Value="{x:Static form:Error.EmptyProfileName}">
-                                <Setter Property="Text" Value="{resources:Loc Profiles_Profile_Error_msg_NameEmpty}"/>
+                                <Setter Property="Text" Value="{translations:Loc Profiles_Profile_Error_msg_NameEmpty}"/>
                             </DataTrigger>
                             <DataTrigger Binding="{Binding Form.Error}" Value="{x:Static form:Error.EmptyColor}">
-                                <Setter Property="Text" Value="{resources:Loc Profiles_Profile_Error_msg_ColorEmpty}"/>
+                                <Setter Property="Text" Value="{translations:Loc Profiles_Profile_Error_msg_ColorEmpty}"/>
                             </DataTrigger>
                             <DataTrigger Binding="{Binding Form.Error}" Value="{x:Static form:Error.EmptyCountry}">
-                                <Setter Property="Text" Value="{resources:Loc Profiles_Profile_Error_msg_CountryEmpty}"/>
+                                <Setter Property="Text" Value="{translations:Loc Profiles_Profile_Error_msg_CountryEmpty}"/>
                             </DataTrigger>
                             <DataTrigger Binding="{Binding Form.Error}" Value="{x:Static form:Error.EmptyServer}">
-                                <Setter Property="Text" Value="{resources:Loc Profiles_Profile_Error_msg_ServerEmpty}"/>
+                                <Setter Property="Text" Value="{translations:Loc Profiles_Profile_Error_msg_ServerEmpty}"/>
                             </DataTrigger>
                             <DataTrigger Binding="{Binding Form.Error}" Value="{x:Static form:Error.ProfileNameExists}">
-                                <Setter Property="Text" Value="{resources:Loc Profiles_Profile_Error_msg_NameExists}"/>
+                                <Setter Property="Text" Value="{translations:Loc Profiles_Profile_Error_msg_NameExists}"/>
                             </DataTrigger>
                             <DataTrigger Binding="{Binding Form.Error}" Value="{x:Static form:Error.ProfileNameTooLong}">
                                 <Setter Property="Text" Value="{Binding Form.ProfileErrorTooLong}"/>
