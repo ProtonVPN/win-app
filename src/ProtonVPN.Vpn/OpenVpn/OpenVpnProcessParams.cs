@@ -19,6 +19,7 @@
 
 using ProtonVPN.Vpn.Common;
 using System.Collections.Generic;
+using ProtonVPN.Common;
 
 namespace ProtonVPN.Vpn.OpenVpn
 {
@@ -29,13 +30,15 @@ namespace ProtonVPN.Vpn.OpenVpn
             int managementPort,
             string password,
             IReadOnlyCollection<string> customDns,
-            bool useLowPriorityRoute)
+            SplitTunnelMode splitTunnelMode,
+            IReadOnlyCollection<string> splitTunnelIPs)
         {
             Endpoint = endpoint;
             ManagementPort = managementPort;
             Password = password;
             CustomDns = customDns;
-            UseLowPriorityRoute = useLowPriorityRoute;
+            SplitTunnelMode = splitTunnelMode;
+            SplitTunnelIPs = splitTunnelIPs;
         }
 
         public VpnEndpoint Endpoint { get; }
@@ -46,6 +49,8 @@ namespace ProtonVPN.Vpn.OpenVpn
 
         public IReadOnlyCollection<string> CustomDns { get; }
 
-        public bool UseLowPriorityRoute { get; }
+        public SplitTunnelMode SplitTunnelMode { get; }
+
+        public IReadOnlyCollection<string> SplitTunnelIPs { get; }
     }
 }

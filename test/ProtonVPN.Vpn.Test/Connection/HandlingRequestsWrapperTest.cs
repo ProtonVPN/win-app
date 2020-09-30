@@ -53,7 +53,7 @@ namespace ProtonVPN.Vpn.Test.Connection
 
             _endpoint = new VpnEndpoint(new VpnHost("proton.vpn", "135.27.46.203"), VpnProtocol.OpenVpnTcp, 777);
             _credentials = new VpnCredentials("username", "password");
-            _config = new VpnConfig(new Dictionary<VpnProtocol, IReadOnlyCollection<int>>(), new List<string>(), false);
+            _config = new VpnConfig(new Dictionary<VpnProtocol, IReadOnlyCollection<int>>(), new List<string>(), SplitTunnelMode.Disabled, new List<string>());
         }
 
         [TestMethod]
