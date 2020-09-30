@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ProtonVPN.Common;
 using ProtonVPN.Common.Storage;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Config;
@@ -116,7 +117,7 @@ namespace ProtonVPN.Vpn.Connectors
                 { VpnProtocol.OpenVpnTcp, _openVpnConfig.TcpPorts },
             };
 
-            return new VpnConfig(portConfig, new List<string>(), false);
+            return new VpnConfig(portConfig, new List<string>(), SplitTunnelMode.Disabled, new List<string>());
         }
     }
 }

@@ -51,10 +51,7 @@ namespace ProtonVPN.Service.SplitTunneling
                     new ConnectRedirectData(internetLocalIp));
 
                 CreateAppFilters(apps, redirectUDPCallout, Layer.BindRedirectV4, providerContext);
-
                 CreateAppFilters(apps, connectRedirectCallout, Layer.AppConnectRedirectV4, providerContext);
-                CreateIPFilters(ips, connectRedirectCallout, Layer.AppConnectRedirectV4, providerContext);
-
                 _ipFilter.Session.CommitTransaction();
             }
             catch
@@ -82,9 +79,7 @@ namespace ProtonVPN.Service.SplitTunneling
                     new ConnectRedirectData(vpnLocalIp));
 
                 CreateAppFilters(apps, connectRedirectCallout, Layer.AppConnectRedirectV4, providerContext);
-                CreateIPFilters(ips, connectRedirectCallout, Layer.AppConnectRedirectV4, providerContext);
                 CreateAppFilters(apps, redirectUDPCallout, Layer.BindRedirectV4, providerContext);
-
                 _ipFilter.Session.CommitTransaction();
             }
             catch
@@ -149,47 +144,6 @@ namespace ProtonVPN.Service.SplitTunneling
                 callout,
                 providerContext,
                 app);
-        }
-
-        private void CreateIPFilters(string[] ips, Callout callout, Layer layer, ProviderContext providerContext)
-        {
-            foreach (var ip in ips)
-            {
-                SafeCreateIPFilter(ip, callout, layer, providerContext);
-            }
-        }
-
-        private void SafeCreateIPFilter(string ip, Callout callout, Layer layer, ProviderContext providerContext)
-        {
-            try
-            {
-                CreateIPFilter(ip, callout, layer, providerContext);
-            }
-            catch (NetworkFilterException)
-            {
-            }
-        }
-
-        private void CreateIPFilter(string ip, Callout callout, Layer layer, ProviderContext providerContext)
-        {
-            var networkAddress = new Common.OS.Net.NetworkAddress(ip);
-            if (!networkAddress.Valid())
-            {
-                return;
-            }
-
-            _subLayer.CreateRemoteNetworkIPv4CalloutFilter(
-                new DisplayData
-                {
-                    Name = "ProtonVPN Split Tunnel redirect IP",
-                    Description = "Redirects network connections of the IP"
-                },
-                layer,
-                15,
-                callout,
-                providerContext,
-                new NetworkAddress(networkAddress.Ip, networkAddress.Mask)
-            );
         }
 
         private Callout CreateConnectRedirectCallout()

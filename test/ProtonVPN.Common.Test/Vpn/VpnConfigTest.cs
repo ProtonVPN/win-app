@@ -49,7 +49,7 @@ namespace ProtonVPN.Common.Test.Vpn
             };
 
             // Act
-            Action action = () => new VpnConfig(portConfig, customDns, false);
+            Action action = () => new VpnConfig(portConfig, customDns, SplitTunnelMode.Disabled, new List<string>());
 
             // Assert
             action.Should().Throw<ArgumentException>();
@@ -73,7 +73,7 @@ namespace ProtonVPN.Common.Test.Vpn
             };
 
             // Act
-            Action action = () => new VpnConfig(portConfig, customDns, false);
+            Action action = () => new VpnConfig(portConfig, customDns, SplitTunnelMode.Disabled, new List<string>());
 
             // Assert
             action.Should().Throw<ArgumentException>();
