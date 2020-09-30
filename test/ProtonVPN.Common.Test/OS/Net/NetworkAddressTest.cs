@@ -32,9 +32,13 @@ namespace ProtonVPN.Common.Test.OS.Net
         [DataRow("127.0.0.1", "127.0.0.1")]
         [DataRow("127.0.0.0/24", "127.0.0.0")]
         [DataRow("127.0.0.0/32", "127.0.0.0")]
-        public void ItShouldReturnCorrectIp(string address, string expectedAddres)
+        [DataRow("127.0.0.1/32", "127.0.0.1")]
+        [DataRow("127.5.5.5/16", "127.5.0.0")]
+        [DataRow("127.0.0.5/8", "127.0.0.0")]
+        [DataRow("127.65.55.1/10", "127.64.0.0")]
+        public void ItShouldReturnCorrectIp(string address, string expectedAddress)
         {
-            new NetworkAddress(address).Ip.Should().Be(expectedAddres);
+            new NetworkAddress(address).Ip.Should().Be(expectedAddress);
         }
 
         [TestMethod]

@@ -144,7 +144,8 @@ namespace ProtonVPN.Settings
             if (string.IsNullOrEmpty(Ip))
                 return;
 
-            var newIp = new IpViewModel(Ip);
+            var formattedIp = new NetworkAddress(Ip);
+            var newIp = new IpViewModel(formattedIp.GetCidrString());
             var item = Items.FirstOrDefault(i => i.Item.Equals(newIp));
             if (item == null)
             {

@@ -20,6 +20,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using ProtonVPN.Common;
+using ProtonVPN.Common.OS.Net;
 
 namespace ProtonVPN.Vpn.OpenVpn.Arguments
 {
@@ -43,13 +44,14 @@ namespace ProtonVPN.Vpn.OpenVpn.Arguments
 
             foreach (var ip in _ips)
             {
+                var address = new NetworkAddress(ip);
                 switch (_splitTunnelMode)
                 {
                     case SplitTunnelMode.Permit:
-                        yield return $"--route {ip} 255.255.255.255 vpn_gateway 32000";
+                        yield return $"--route {address.Ip} {address.Mask} vpn_gateway 32000";
                         break;
                     case SplitTunnelMode.Block:
-                        yield return $"--route {ip} 255.255.255.255 net_gateway metric";
+                        yield return $"--route {address.Ip} {address.Mask} net_gateway metric";
                         break;
                 }
             }
