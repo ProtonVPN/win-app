@@ -2850,4 +2850,19 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="Dialogs_Reboot_ttl" xml:space="preserve">
     <value>ProtonVPN</value>
   </data>
+  <data name="Dialogs_DisabledService_btn_Enable" xml:space="preserve">
+    <value>Enable</value>
+  </data>
+  <data name="Dialogs_DisabledService_msg_Info" xml:space="preserve">
+    <value>The ProtonVPN service required for your VPN connection seems to be disabled. Click on Enable to fix it.&lt;LineBreak/&gt;Note that this operation requires Admin privileges.</value>
+  </data>
+  <data name="Dialogs_DisabledService_btn_LearnMore" xml:space="preserve">
+    <value>Learn more</value>
+  </data>
+  <data name="Dialogs_DisabledService_btn_ShowLess" xml:space="preserve">
+    <value>Show less</value>
+  </data>
+  <data name="Dialogs_DisabledService_msg_ExtraInfo" xml:space="preserve">
+    <value>Sometimes, anti-virus software will mistakenly categorise ProtonVPN as a vulnarability and disable it. By clicking Enable, you are giving your system permission to reactivate the ProtonVPN Service.&lt;LineBreak/&gt;If the ProtonVPN Service is still disabled, try restarting your PC or reinstalling ProtonVPN.</value>
+  </data>
 </root>

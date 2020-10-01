@@ -26,9 +26,17 @@ namespace ProtonVPN.Common.OS.Services
     public interface IConcurrentService
     {
         event EventHandler<string> ServiceStarted;
+
         string Name { get; }
+
         bool Running();
+
+        bool Enabled();
+
+        void Enable();
+
         Task<Result> StartAsync();
+
         Task<Result> StopAsync();
     }
 }

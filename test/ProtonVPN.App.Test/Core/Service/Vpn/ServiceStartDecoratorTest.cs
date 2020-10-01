@@ -23,6 +23,7 @@ using NSubstitute;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.OS.Services;
 using ProtonVPN.Core.Modals;
+using ProtonVPN.Core.Service;
 using ProtonVPN.Core.Service.Vpn;
 
 namespace ProtonVPN.App.Test.Core.Service.Vpn
@@ -34,6 +35,7 @@ namespace ProtonVPN.App.Test.Core.Service.Vpn
         private IVpnServiceManager _decorated;
         private IModals _modals;
         private IService _baseFilteringEngineService;
+        private VpnSystemService _vpnService;
 
         [TestInitialize]
         public void Initialize()
@@ -42,6 +44,7 @@ namespace ProtonVPN.App.Test.Core.Service.Vpn
             _decorated = Substitute.For<IVpnServiceManager>();
             _modals = Substitute.For<IModals>();
             _baseFilteringEngineService = Substitute.For<IService>();
+            _vpnService = new VpnSystemService(Substitute.For<IService>());
         }
 
         [TestMethod]
@@ -49,7 +52,7 @@ namespace ProtonVPN.App.Test.Core.Service.Vpn
         {
             // Arrange
             _baseFilteringEngineService.Running().Returns(false);
-            var sut = new ServiceStartDecorator(_logger, _decorated, _modals, _baseFilteringEngineService);
+            var sut = new ServiceStartDecorator(_logger, _decorated, _modals, _baseFilteringEngineService, _vpnService);
 
             // Act
             await sut.Connect(default);
@@ -63,7 +66,7 @@ namespace ProtonVPN.App.Test.Core.Service.Vpn
         {
             // Arrange
             _baseFilteringEngineService.Running().Returns(false);
-            var sut = new ServiceStartDecorator(_logger, _decorated, _modals, _baseFilteringEngineService);
+            var sut = new ServiceStartDecorator(_logger, _decorated, _modals, _baseFilteringEngineService, _vpnService);
 
             // Act
             await sut.UpdateServers(default, default);
@@ -77,13 +80,28 @@ namespace ProtonVPN.App.Test.Core.Service.Vpn
         {
             // Arrange
             _baseFilteringEngineService.Running().Returns(false);
-            var sut = new ServiceStartDecorator(_logger, _decorated, _modals, _baseFilteringEngineService);
+            var sut = new ServiceStartDecorator(_logger, _decorated, _modals, _baseFilteringEngineService, _vpnService);
 
             // Act
             await sut.RepeatState();
 
             // Assert
             await _decorated.DidNotReceive().RepeatState();
+        }
+
+        [TestMethod]
+        public async Task Connect_ShouldNotBeExecuted_WhenServiceIsDisabled()
+        {
+            // Arrange
+            _vpnService.Enabled().Returns(false);
+            _baseFilteringEngineService.Running().Returns(true);
+            var sut = new ServiceStartDecorator(_logger, _decorated, _modals, _baseFilteringEngineService, _vpnService);
+
+            // Act
+            await sut.Connect(default);
+
+            // Assert
+            await _decorated.DidNotReceive().Connect(default);
         }
     }
 }
