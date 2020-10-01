@@ -17,13 +17,14 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Common.OS.Processes;
 using ProtonVPN.Common.OS.Services;
 
 namespace ProtonVPN.Core.Service
 {
     internal class BaseFilteringEngineService : SystemService
     {
-        public BaseFilteringEngineService() : base("BFE")
+        public BaseFilteringEngineService(IOsProcesses osProcesses) : base("BFE", osProcesses)
         {
         }
     }

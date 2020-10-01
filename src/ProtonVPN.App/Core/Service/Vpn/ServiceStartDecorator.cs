@@ -27,22 +27,26 @@ using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Modals;
+using TimeoutException = System.TimeoutException;
 
 namespace ProtonVPN.Core.Service.Vpn
 {
-    public class ServiceStartDecorator : IVpnServiceManager
+    internal class ServiceStartDecorator : IVpnServiceManager
     {
         private readonly ILogger _logger;
         private readonly IVpnServiceManager _decorated;
         private readonly IModals _modals;
         private readonly IService _baseFilteringEngineService;
+        private readonly VpnSystemService _vpnService;
 
         public ServiceStartDecorator(
             ILogger logger,
             IVpnServiceManager decorated,
             IModals modals,
-            IService baseFilteringEngineService)
+            IService baseFilteringEngineService,
+            VpnSystemService vpnService)
         {
+            _vpnService = vpnService;
             _baseFilteringEngineService = baseFilteringEngineService;
             _logger = logger;
             _modals = modals;
@@ -88,6 +92,18 @@ namespace ProtonVPN.Core.Service.Vpn
             {
                 _modals.Show<BfeWarningModalViewModel>();
                 return;
+            }
+
+            if (!_vpnService.Enabled())
+            {
+                var result = _modals.Show<DisabledServiceModalViewModel>();
+                if (!result.HasValue || !result.Value)
+                {
+                    return;
+                }
+
+                _vpnService.Enable();
+                await _vpnService.StartAsync();
             }
 
             while (true)

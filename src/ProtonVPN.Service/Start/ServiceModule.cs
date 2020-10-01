@@ -67,7 +67,8 @@ namespace ProtonVPN.Service.Start
                         new LoggingService(
                             c.Resolve<ILogger>(),
                             new DriverService(
-                                c.Resolve<Common.Configuration.Config>().SplitTunnelServiceName))))))
+                                c.Resolve<Common.Configuration.Config>().SplitTunnelServiceName,
+                                c.Resolve<IOsProcesses>()))))))
                 .AsImplementedInterfaces().AsSelf().SingleInstance();
 
             builder.RegisterType<SettingsStorage>().SingleInstance();
