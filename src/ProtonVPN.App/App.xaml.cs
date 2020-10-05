@@ -38,6 +38,8 @@ namespace ProtonVPN
     {
         private static Bootstrapper _bootstrapper;
 
+        private static bool _failedToLoadAssembly;
+
         [STAThread]
         public static void Main(string[] args)
         {
@@ -91,6 +93,11 @@ namespace ProtonVPN
 
         private static Assembly OnAssemblyLoadFailed(object sender, ResolveEventArgs args)
         {
+            if (_failedToLoadAssembly)
+            {
+                return null;
+            }
+
             var name = new AssemblyName(args.Name).Name;
             if (name.ContainsIgnoringCase(".resources") ||
                 name.EndsWithIgnoringCase("XmlSerializers") ||
@@ -106,6 +113,8 @@ namespace ProtonVPN
                 return null;
             }
 #endif
+
+            _failedToLoadAssembly = true;
 
             Process.Start("ProtonVPN.ErrorMessage.exe");
             Environment.Exit(0);
