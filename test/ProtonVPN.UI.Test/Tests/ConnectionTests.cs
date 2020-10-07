@@ -39,7 +39,7 @@ namespace ProtonVPN.UI.Test.Tests
         {
             TestCaseId = 225;
 
-            _loginWindow.LoginWithBasicUser();
+            _loginWindow.LoginWithTrialUser();
             _mainWindow.QuickConnect();
             _mainWindowResults.CheckIfConnected();
             await _mainWindowResults.CheckIfCorrectIPAddressIsShownAsync();
@@ -53,7 +53,7 @@ namespace ProtonVPN.UI.Test.Tests
         {
             TestCaseId = 225;
 
-            _loginWindow.LoginWithBasicUser();
+            _loginWindow.LoginWithFreeUser();
             _mainWindow.QuickConnect();
             _mainWindowResults.CheckIfConnected();
             TestRailClient.MarkTestsByStatus();

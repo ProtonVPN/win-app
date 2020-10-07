@@ -71,4 +71,5 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <system:String x:Key="ReportBugEmailTextBlock">ReportBugEmailTextBlock</system:String>
     <system:String x:Key="ReportBugIssueTextBlock">ReportBugIssueTextBlock</system:String>
     <system:String x:Key="ReportBugStepsTextBlock">ReportBugStepsTextBlock</system:String>
+    <system:String x:Key="TrialModal">TrialModal</system:String>
 </ResourceDictionary>
