@@ -17,43 +17,39 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Vpn;
-using ProtonVPN.Core.Config;
+using System.Collections.Generic;
+using System.Linq;
 using ProtonVPN.Core.Settings;
 
-namespace ProtonVPN.Vpn
+namespace ProtonVPN.Core.Announcements
 {
-    public class VpnCredentialProvider
+    public class AnnouncementCache : IAnnouncementCache
     {
         private readonly IAppSettings _appSettings;
-        private readonly IUserStorage _userStorage;
-        private readonly IClientConfig _clientConfig;
 
-        public VpnCredentialProvider(IAppSettings appSettings, IUserStorage userStorage, IClientConfig clientConfig)
+        public AnnouncementCache(IAppSettings appSettings)
         {
-            _clientConfig = clientConfig;
-            _userStorage = userStorage;
             _appSettings = appSettings;
         }
 
-        public VpnCredentials Credentials()
+        public IReadOnlyList<AnnouncementItem> Get()
         {
-            var user = _userStorage.User();
-
-            return new VpnCredentials(GetUsername(_userStorage.User().VpnUsername), user.VpnPassword);
+            return _appSettings.Announcements;
         }
 
-        private string GetUsername(string username)
+        public void Store(IReadOnlyList<AnnouncementItem> announcements)
         {
-            // p - proton, w - windows
-            username += "+pw";
-
-            if (_clientConfig.NetShieldEnabled && _appSettings.NetShieldEnabled)
+            foreach (var announcement in announcements)
             {
-                username += $"+f{_appSettings.NetShieldMode}";
+                announcement.Seen = Seen(announcement.Id);
             }
 
-            return username;
+            _appSettings.Announcements = announcements;
+        }
+
+        private bool Seen(string id)
+        {
+            return _appSettings.Announcements.Any(announcement => announcement.Id == id && announcement.Seen);
         }
     }
 }

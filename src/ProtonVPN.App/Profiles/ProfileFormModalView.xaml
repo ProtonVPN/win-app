@@ -31,7 +31,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         mc:Ignorable="d"
                         Width="600"
                         Height="530"
-                        d:DataContext="{d:DesignInstance profiles:ProfileFormModalViewModel }">
+                        d:DataContext="{d:DesignInstance profiles:ProfileFormModalViewModel}">
     <resource:BaseModalWindow.Style>
         <Style TargetType="resource:BaseModalWindow" BasedOn="{StaticResource BaseModalStyle}">
             <Setter Property="Title" Value="{translations:Loc Profiles_Profile_ttl_Create}"/>

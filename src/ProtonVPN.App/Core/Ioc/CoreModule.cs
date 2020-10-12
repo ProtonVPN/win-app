@@ -31,10 +31,12 @@ using ProtonVPN.Common.OS.Registry;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Config.Url;
 using ProtonVPN.Core.Abstract;
+using ProtonVPN.Core.Announcements;
 using ProtonVPN.Core.Api;
 using ProtonVPN.Core.Api.Handlers;
 using ProtonVPN.Core.Api.Handlers.TlsPinning;
 using ProtonVPN.Core.Auth;
+using ProtonVPN.Core.Config;
 using ProtonVPN.Core.Events;
 using ProtonVPN.Core.Network;
 using ProtonVPN.Core.OS.Net;
@@ -237,6 +239,16 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<MainWindowState>().As<IMainWindowState>().SingleInstance();
             builder.RegisterType<SingleActionFactory>().As<ISingleActionFactory>().SingleInstance();
             builder.RegisterType<LastServerLoadTimeProvider>().As<ILastServerLoadTimeProvider>().SingleInstance();
+            builder.RegisterType<ClientConfig>().AsImplementedInterfaces().SingleInstance();
+            builder.Register(c => new AnnouncementService(
+                c.Resolve<IClientConfig>(),
+                c.Resolve<IScheduler>(),
+                c.Resolve<IApiClient>(),
+                c.Resolve<IAnnouncementCache>(),
+                c.Resolve<Common.Configuration.Config>().AnnouncementUpdateInterval))
+                .AsImplementedInterfaces()
+                .SingleInstance();
+            builder.RegisterType<AnnouncementCache>().As<IAnnouncementCache>().SingleInstance();
         }
     }
 }

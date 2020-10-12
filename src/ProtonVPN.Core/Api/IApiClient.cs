@@ -43,5 +43,6 @@ namespace ProtonVPN.Core.Api
         Task<ApiResponseResult<ProfileResponse>> UpdateProfile(string id, BaseProfile profile);
         Task<ApiResponseResult<ProfileResponse>> DeleteProfile(string id);
         Task<ApiResponseResult<VpnConfig>> GetVpnConfig();
+        Task<ApiResponseResult<AnnouncementsResponse>> GetAnnouncementsAsync();
     }
 }

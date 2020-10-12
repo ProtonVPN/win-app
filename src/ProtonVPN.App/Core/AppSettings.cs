@@ -24,6 +24,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using ProtonVPN.Common;
+using ProtonVPN.Core.Announcements;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Native.Structures;
@@ -53,6 +54,12 @@ namespace ProtonVPN.Core
         public CachedProfileDataContract Profiles
         {
             get => GetPerUser<CachedProfileDataContract>() ?? new CachedProfileDataContract();
+            set => SetPerUser(value);
+        }
+
+        public IReadOnlyList<AnnouncementItem> Announcements
+        {
+            get => GetPerUser<IReadOnlyList<AnnouncementItem>>() ?? new List<AnnouncementItem>();
             set => SetPerUser(value);
         }
 

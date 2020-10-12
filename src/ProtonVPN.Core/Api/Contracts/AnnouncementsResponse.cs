@@ -22,40 +22,27 @@ using Newtonsoft.Json;
 
 namespace ProtonVPN.Core.Api.Contracts
 {
-    public class VpnConfig : BaseResponse
+    public class AnnouncementsResponse : BaseResponse
     {
-        public OpenVpnConfig OpenVpnConfig { get; set; }
-
-        [JsonProperty(PropertyName = "HolesIPs")]
-        public IReadOnlyList<string> HolesIps { get; set; }
-
-        public int? ServerRefreshInterval { get; set; }
-
-        public FeatureFlags FeatureFlags { get; set; }
+        [JsonProperty(PropertyName = "Notifications")]
+        public List<Announcement> Announcements { get; set; }
     }
 
-    public class OpenVpnConfig
+    public class Announcement
     {
-        public Ports DefaultPorts { get; set; }
+        [JsonProperty(PropertyName = "NotificationID")]
+        public string Id { get; set; }
 
-        public Ports XorPorts { get; set; }
+        public Offer Offer { get; set; }
     }
 
-    public class Ports
+    public class Offer
     {
-        public int[] Udp { get; set; }
-        public int[] Tcp { get; set; }
-    }
+        public string Label { get; set; }
 
-    public class FeatureFlags
-    {
-        public bool NetShield { get; set; }
+        [JsonProperty(PropertyName = "URL")]
+        public string Url { get; set; }
 
-        public bool GuestHoles { get; set; }
-
-        public bool? ServerRefresh { get; set; }
-
-        [JsonProperty(PropertyName = "PollNotificationAPI")]
-        public bool? PollNotificationApi { get; set; }
+        public string Icon { get; set; }
     }
 }

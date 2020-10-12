@@ -19,7 +19,7 @@
 
 using System.Linq;
 using System.Threading.Tasks;
-using ProtonVPN.Config;
+using ProtonVPN.Core.Config;
 using ProtonVPN.Core.Servers.Models;
 using ProtonVPN.Core.User;
 using ProtonVPN.Core.Vpn;
@@ -37,11 +37,11 @@ namespace ProtonVPN.P2PDetection.Forwarded
     /// </remarks>
     internal class ForwardedTraffic : IForwardedTraffic, IVpnStateAware
     {
-        private readonly IVpnConfig _config;
+        private readonly IClientConfig _config;
         private readonly IUserLocationService _userLocationService;
         private Server _server = Server.Empty();
 
-        public ForwardedTraffic(IUserLocationService userLocationService, IVpnConfig config)
+        public ForwardedTraffic(IUserLocationService userLocationService, IClientConfig config)
         {
             _config = config;
             _userLocationService = userLocationService;

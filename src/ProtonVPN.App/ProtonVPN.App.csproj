@@ -283,9 +283,7 @@
     <Compile Include="Config\ConfigDirectories.cs" />
     <Compile Include="Config\Url\ActiveUrl.cs" />
     <Compile Include="Config\Url\IActiveUrl.cs" />
-    <Compile Include="Config\IVpnConfig.cs" />
     <Compile Include="Config\Url\IActiveUrls.cs" />
-    <Compile Include="Config\VpnConfig.cs" />
     <Compile Include="Config\Url\ActiveUrls.cs" />
     <Compile Include="Core\Ioc\LoginModule.cs" />
     <Compile Include="Core\Ioc\TrialModule.cs" />
@@ -420,6 +418,12 @@
     <Compile Include="Core\Ioc\UiModule.cs" />
     <Compile Include="Modals\Modals.cs" />
     <Compile Include="Settings\ReconnectNotification\SplitTunnelModeSetting.cs" />
+    <Compile Include="Sidebar\Announcements\Announcement.cs" />
+    <Compile Include="Sidebar\Announcements\AnnouncementsView.xaml.cs">
+      <DependentUpon>AnnouncementsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Sidebar\Announcements\AnnouncementsViewModel.cs" />
+    <Compile Include="Sidebar\Announcements\IAnnouncementsAware.cs" />
     <Compile Include="SpeedGraph\ViewResolvingPlotModel.cs" />
     <Compile Include="Core\MVVM\Converters\BytesToSizeConverter.cs" />
     <Compile Include="Core\MVVM\Converters\ConnectionStatusFlagConverter.cs" />
@@ -896,6 +900,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Settings\SplitTunneling\SplitTunnelingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Sidebar\Announcements\AnnouncementsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1795,7 +1803,9 @@
     <Resource Include="Resources\Assets\Images\SidebarFlags\zm.jpg" />
     <Resource Include="Resources\Assets\Images\SidebarFlags\zw.jpg" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\Assets\Images\bullhorn-solid.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>

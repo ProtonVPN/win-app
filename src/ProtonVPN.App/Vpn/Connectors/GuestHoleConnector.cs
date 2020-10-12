@@ -24,12 +24,11 @@ using System.Threading.Tasks;
 using ProtonVPN.Common;
 using ProtonVPN.Common.Storage;
 using ProtonVPN.Common.Vpn;
-using ProtonVPN.Config;
 using ProtonVPN.Core.Api;
+using ProtonVPN.Core.Config;
 using ProtonVPN.Core.Servers.Contracts;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Vpn;
-using VpnConfig = ProtonVPN.Common.Vpn.VpnConfig;
 
 namespace ProtonVPN.Vpn.Connectors
 {
@@ -40,14 +39,14 @@ namespace ProtonVPN.Vpn.Connectors
         private readonly Random _random = new Random();
 
         private readonly IVpnServiceManager _vpnServiceManager;
-        private readonly IVpnConfig _openVpnConfig;
+        private readonly IClientConfig _clientConfig;
         private readonly GuestHoleState _guestHoleState;
         private readonly Common.Configuration.Config _config;
         private readonly ICollectionStorage<GuestHoleServerContract> _guestHoleServers;
 
         public GuestHoleConnector(
             IVpnServiceManager vpnServiceManager,
-            IVpnConfig openVpnConfig,
+            IClientConfig clientConfig,
             GuestHoleState guestHoleState,
             Common.Configuration.Config config,
             ICollectionStorage<GuestHoleServerContract> guestHoleServers)
@@ -56,7 +55,7 @@ namespace ProtonVPN.Vpn.Connectors
             _config = config;
             _guestHoleState = guestHoleState;
             _vpnServiceManager = vpnServiceManager;
-            _openVpnConfig = openVpnConfig;
+            _clientConfig = clientConfig;
         }
 
         public async Task Connect()
@@ -113,8 +112,8 @@ namespace ProtonVPN.Vpn.Connectors
         {
             var portConfig = new Dictionary<VpnProtocol, IReadOnlyCollection<int>>
             {
-                { VpnProtocol.OpenVpnUdp, _openVpnConfig.UdpPorts },
-                { VpnProtocol.OpenVpnTcp, _openVpnConfig.TcpPorts },
+                { VpnProtocol.OpenVpnUdp, _clientConfig.UdpPorts },
+                { VpnProtocol.OpenVpnTcp, _clientConfig.TcpPorts },
             };
 
             return new VpnConfig(portConfig, new List<string>(), SplitTunnelMode.Disabled, new List<string>());

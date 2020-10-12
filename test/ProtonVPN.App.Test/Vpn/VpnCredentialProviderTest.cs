@@ -21,7 +21,7 @@ using System.Linq;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
-using ProtonVPN.Config;
+using ProtonVPN.Core.Config;
 using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Vpn;
@@ -33,7 +33,7 @@ namespace ProtonVPN.App.Test.Vpn
     {
         private IAppSettings _appSettings;
         private IUserStorage _userStorage;
-        private IVpnConfig _vpnConfig;
+        private IClientConfig _clientConfig;
 
         private static string _username = "username";
         private readonly User _user = new User
@@ -51,7 +51,7 @@ namespace ProtonVPN.App.Test.Vpn
         {
             _appSettings = Substitute.For<IAppSettings>();
             _userStorage = Substitute.For<IUserStorage>();
-            _vpnConfig = Substitute.For<IVpnConfig>();
+            _clientConfig = Substitute.For<IClientConfig>();
         }
 
         [DataTestMethod]
@@ -64,9 +64,9 @@ namespace ProtonVPN.App.Test.Vpn
             _userStorage.User().Returns(_user);
             _appSettings.NetShieldMode.Returns(mode);
             _appSettings.NetShieldEnabled.Returns(true);
-            _vpnConfig.NetShieldEnabled.Returns(true);
+            _clientConfig.NetShieldEnabled.Returns(true);
 
-            var sut = new VpnCredentialProvider(_appSettings, _userStorage, _vpnConfig);
+            var sut = new VpnCredentialProvider(_appSettings, _userStorage, _clientConfig);
 
             // Assert
             sut.Credentials().Username.Replace(_username, string.Empty)
@@ -83,7 +83,7 @@ namespace ProtonVPN.App.Test.Vpn
             _appSettings.NetShieldMode.Returns(2);
             _appSettings.NetShieldEnabled.Returns(false);
 
-            var sut = new VpnCredentialProvider(_appSettings, _userStorage, _vpnConfig);
+            var sut = new VpnCredentialProvider(_appSettings, _userStorage, _clientConfig);
 
             // Assert
             _netShieldSuffixes.Any(s => s.Contains(sut.Credentials().Username)).Should().BeFalse();
@@ -96,9 +96,9 @@ namespace ProtonVPN.App.Test.Vpn
             _userStorage.User().Returns(_user);
             _appSettings.NetShieldMode.Returns(2);
             _appSettings.NetShieldEnabled.Returns(true);
-            _vpnConfig.NetShieldEnabled.Returns(false);
+            _clientConfig.NetShieldEnabled.Returns(false);
 
-            var sut = new VpnCredentialProvider(_appSettings, _userStorage, _vpnConfig);
+            var sut = new VpnCredentialProvider(_appSettings, _userStorage, _clientConfig);
 
             // Assert
             _netShieldSuffixes.Any(s => s.Contains(sut.Credentials().Username)).Should().BeFalse();
@@ -109,7 +109,7 @@ namespace ProtonVPN.App.Test.Vpn
         {
             // Arrange
             _userStorage.User().Returns(_user);
-            var sut = new VpnCredentialProvider(_appSettings, _userStorage, _vpnConfig);
+            var sut = new VpnCredentialProvider(_appSettings, _userStorage, _clientConfig);
 
             // Assert
             sut.Credentials().Username.Contains(_clientIdentifierSuffix).Should().BeTrue();

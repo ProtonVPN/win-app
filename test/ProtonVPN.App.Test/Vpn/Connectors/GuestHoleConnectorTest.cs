@@ -4,8 +4,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using ProtonVPN.Common.Storage;
 using ProtonVPN.Common.Vpn;
-using ProtonVPN.Config;
 using ProtonVPN.Core.Api;
+using ProtonVPN.Core.Config;
 using ProtonVPN.Core.Servers.Contracts;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Vpn;
@@ -20,7 +20,7 @@ namespace ProtonVPN.App.Test.Vpn.Connectors
 
         private GuestHoleConnector _connector;
         private readonly IVpnServiceManager _serviceManager = Substitute.For<IVpnServiceManager>();
-        private readonly IVpnConfig _vpnConfig = Substitute.For<IVpnConfig>();
+        private readonly IClientConfig _clientConfig = Substitute.For<IClientConfig>();
         private readonly Common.Configuration.Config _config = new Common.Configuration.Config
         {
             MaxGuestHoleRetries = MaxRetries,
@@ -38,7 +38,7 @@ namespace ProtonVPN.App.Test.Vpn.Connectors
             guestHoleState.SetState(true);
 
             _guestHoleServers.GetAll().Returns(new List<GuestHoleServerContract>());
-            _connector = new GuestHoleConnector(_serviceManager, _vpnConfig, guestHoleState, _config, _guestHoleServers);
+            _connector = new GuestHoleConnector(_serviceManager, _clientConfig, guestHoleState, _config, _guestHoleServers);
         }
 
         [TestMethod]

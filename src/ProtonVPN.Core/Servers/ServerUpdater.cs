@@ -21,7 +21,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Storage;
 using ProtonVPN.Common.Threading;
@@ -42,7 +41,7 @@ namespace ProtonVPN.Core.Servers
 
         public ServerUpdater(
             IScheduler scheduler,
-            Config appConfig,
+            Common.Configuration.Config appConfig,
             ServerManager serverManager,
             IApiServers apiServers,
             ICollectionStorage<LogicalServerContract> serverCache,

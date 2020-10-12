@@ -138,7 +138,13 @@ namespace ProtonVPN.Common.Configuration
         public TimeSpan ServerUpdateInterval { get; internal set; }
 
         [Range(typeof(TimeSpan), "00:00:10", "23:59:59")]
+        public TimeSpan AnnouncementUpdateInterval { get; internal set; }
+
+        [Range(typeof(TimeSpan), "00:00:10", "23:59:59")]
         public TimeSpan ServerLoadUpdateInterval { get; internal set; }
+
+        [Range(typeof(TimeSpan), "00:00:10", "23:59:59")]
+        public TimeSpan ClientConfigUpdateInterval { get; internal set; }
 
         [Range(typeof(TimeSpan), "00:00:10", "23:59:59")]
         public TimeSpan P2PCheckInterval { get; internal set; }
@@ -182,6 +188,8 @@ namespace ProtonVPN.Common.Configuration
         public IReadOnlyList<string> DefaultBlackHoleIps { get; internal set; } = new List<string>();
 
         public bool MaintenanceTrackerEnabled { get; internal set; }
+
+        public bool PollNotificationApiEnabled { get; internal set; }
 
         public UrlConfig Urls { get; } = new UrlConfig();
 
