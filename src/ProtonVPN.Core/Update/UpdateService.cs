@@ -22,7 +22,6 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Threading;
-using ProtonVPN.Common.Configuration;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.UpdateServiceContract;
@@ -32,7 +31,7 @@ namespace ProtonVPN.Core.Update
     public class UpdateService : ISettingsAware, ILoggedInAware, ILogoutAware
     {
         private readonly IAppSettings _appSettings;
-        private readonly Config _appConfig;
+        private readonly Common.Configuration.Config _appConfig;
         private readonly ServiceClient _serviceClient;
         private DateTime _lastCheckTime;
 
@@ -43,7 +42,7 @@ namespace ProtonVPN.Core.Update
         private UpdateStatus _status = UpdateStatus.None;
 
         public UpdateService(
-            Config appConfig,
+            Common.Configuration.Config appConfig,
             IAppSettings appSettings,
             ServiceClient serviceClient)
         {

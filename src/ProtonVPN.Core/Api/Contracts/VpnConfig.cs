@@ -54,5 +54,8 @@ namespace ProtonVPN.Core.Api.Contracts
         public bool GuestHoles { get; set; }
 
         public bool? ServerRefresh { get; set; }
+
+        [JsonProperty(PropertyName = "PollNotificationAPI")]
+        public bool? PollNotificationApi { get; set; }
     }
 }

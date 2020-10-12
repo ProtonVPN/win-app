@@ -36,12 +36,13 @@ using ProtonVPN.Common.OS.Processes;
 using ProtonVPN.Common.OS.Services;
 using ProtonVPN.Common.Storage;
 using ProtonVPN.Common.Vpn;
-using ProtonVPN.Config;
 using ProtonVPN.Core.Abstract;
+using ProtonVPN.Core.Announcements;
 using ProtonVPN.Core.Api;
 using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.Api.Handlers;
 using ProtonVPN.Core.Auth;
+using ProtonVPN.Core.Config;
 using ProtonVPN.Core.Events;
 using ProtonVPN.Core.Ioc;
 using ProtonVPN.Core.Modals;
@@ -69,6 +70,7 @@ using ProtonVPN.QuickLaunch;
 using ProtonVPN.Settings;
 using ProtonVPN.Settings.Migrations;
 using ProtonVPN.Sidebar;
+using ProtonVPN.Sidebar.Announcements;
 using ProtonVPN.Translations;
 using ProtonVPN.Trial;
 using ProtonVPN.ViewModels;
@@ -251,6 +253,15 @@ namespace ProtonVPN.Core
                 foreach (var instance in instances)
                 {
                     instance.OnUserLocationChanged(location);
+                }
+            };
+
+            Resolve<IAnnouncements>().AnnouncementsChanged += (sender, e) =>
+            {
+                var instances = Resolve<IEnumerable<IAnnouncementsAware>>();
+                foreach (var instance in instances)
+                {
+                    instance.OnAnnouncementsChanged();
                 }
             };
 
@@ -475,7 +486,8 @@ namespace ProtonVPN.Core
 
             await Resolve<Trial.Trial>().Load();
             await Resolve<IUserLocationService>().Update();
-            await Resolve<IVpnConfig>().Update();
+            await Resolve<IClientConfig>().Update();
+            await Resolve<IAnnouncements>().Update();
             await Resolve<AutoConnect>().Load(autoLogin);
             Resolve<SyncProfiles>().Sync();
             Resolve<INetworkClient>().CheckForInsecureWiFi();

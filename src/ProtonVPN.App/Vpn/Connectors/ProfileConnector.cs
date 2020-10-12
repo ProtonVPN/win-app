@@ -17,12 +17,17 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using ProtonVPN.Common;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Vpn;
-using ProtonVPN.Config;
 using ProtonVPN.Core.Abstract;
 using ProtonVPN.Core.Api.Contracts;
+using ProtonVPN.Core.Config;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Servers;
@@ -32,11 +37,6 @@ using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Modals.Upsell;
 using ProtonVPN.Translations;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using ProtonVPN.Common;
 using Profile = ProtonVPN.Core.Profiles.Profile;
 
 namespace ProtonVPN.Vpn.Connectors
@@ -51,7 +51,7 @@ namespace ProtonVPN.Vpn.Connectors
         private readonly ServerManager _serverManager;
         private readonly ServerCandidatesFactory _serverCandidatesFactory;
         private readonly IVpnServiceManager _vpnServiceManager;
-        private readonly IVpnConfig _openVpnConfig;
+        private readonly IClientConfig _clientConfig;
         private readonly IModals _modals;
         private readonly IDialogs _dialogs;
         private readonly VpnCredentialProvider _vpnCredentialProvider;
@@ -63,7 +63,7 @@ namespace ProtonVPN.Vpn.Connectors
             ServerManager serverManager,
             ServerCandidatesFactory serverCandidatesFactory,
             IVpnServiceManager vpnServiceManager,
-            IVpnConfig openVpnConfig,
+            IClientConfig clientConfig,
             IModals modals,
             IDialogs dialogs,
             VpnCredentialProvider vpnCredentialProvider)
@@ -77,7 +77,7 @@ namespace ProtonVPN.Vpn.Connectors
             _serverCandidatesFactory = serverCandidatesFactory;
             _appSettings = appSettings;
             _vpnServiceManager = vpnServiceManager;
-            _openVpnConfig = openVpnConfig;
+            _clientConfig = clientConfig;
         }
 
         public ServerCandidates ServerCandidates(Profile profile)
@@ -254,8 +254,8 @@ namespace ProtonVPN.Vpn.Connectors
         {
             var portConfig = new Dictionary<VpnProtocol, IReadOnlyCollection<int>>
             {
-                { Common.Vpn.VpnProtocol.OpenVpnUdp, _openVpnConfig.UdpPorts },
-                { Common.Vpn.VpnProtocol.OpenVpnTcp, _openVpnConfig.TcpPorts },
+                { Common.Vpn.VpnProtocol.OpenVpnUdp, _clientConfig.UdpPorts },
+                { Common.Vpn.VpnProtocol.OpenVpnTcp, _clientConfig.TcpPorts },
             };
 
             var customDns = (from ip in _appSettings.CustomDnsIps where ip.Enabled select ip.Ip).ToList();

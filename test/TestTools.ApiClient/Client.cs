@@ -149,5 +149,7 @@ namespace TestTools.ApiClient
         public Task<ApiResponseResult<VpnConfig>> GetVpnConfig() => throw new NotImplementedException();
 
         public Task<ApiResponseResult<PhysicalServerResponse>> GetServerAsync(string serverId) => throw new NotImplementedException();
+
+        public Task<ApiResponseResult<AnnouncementsResponse>> GetAnnouncementsAsync() => throw new NotImplementedException();
     }
 }

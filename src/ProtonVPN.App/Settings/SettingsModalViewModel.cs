@@ -24,9 +24,9 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
 using ProtonVPN.Common.Vpn;
-using ProtonVPN.Config;
 using ProtonVPN.Config.Url;
 using ProtonVPN.Core;
+using ProtonVPN.Core.Config;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Profiles;
@@ -52,7 +52,7 @@ namespace ProtonVPN.Settings
         private readonly IUserStorage _userStorage;
         private readonly IActiveUrls _urls;
         private readonly ILanguageProvider _languageProvider;
-        private readonly IVpnConfig _vpnConfig;
+        private readonly IClientConfig _clientConfig;
         private readonly ReconnectState _reconnectState;
 
         private IReadOnlyList<ProfileViewModel> _autoConnectProfiles;
@@ -73,7 +73,7 @@ namespace ProtonVPN.Settings
             IDialogs dialogs,
             IActiveUrls urls,
             ILanguageProvider languageProvider,
-            IVpnConfig vpnConfig,
+            IClientConfig clientConfig,
             ReconnectState reconnectState,
             ProfileViewModelFactory profileViewModelFactory,
             SplitTunnelingViewModel splitTunnelingViewModel,
@@ -86,7 +86,7 @@ namespace ProtonVPN.Settings
             _userStorage = userStorage;
             _urls = urls;
             _languageProvider = languageProvider;
-            _vpnConfig = vpnConfig;
+            _clientConfig = clientConfig;
             _reconnectState = reconnectState;
 
             SplitTunnelingViewModel = splitTunnelingViewModel;
@@ -101,7 +101,7 @@ namespace ProtonVPN.Settings
 
         public IpListViewModel Ips { get; }
 
-        public bool NetShieldVisible => _vpnConfig.NetShieldEnabled;
+        public bool NetShieldVisible => _clientConfig.NetShieldEnabled;
 
         private bool _changesPending;
         public bool ChangesPending

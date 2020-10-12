@@ -21,9 +21,9 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ProtonVPN.Config
+namespace ProtonVPN.Core.Config
 {
-    public interface IVpnConfig
+    public interface IClientConfig
     {
         public int[] TcpPorts { get; }
 
@@ -34,6 +34,8 @@ namespace ProtonVPN.Config
         public bool NetShieldEnabled { get; }
 
         public bool MaintenanceTrackerEnabled { get; }
+
+        public bool PollNotificationApiEnabled { get; }
 
         public TimeSpan MaintenanceCheckInterval { get; }
 

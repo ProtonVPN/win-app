@@ -21,23 +21,36 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.Threading;
 using ProtonVPN.Core.Api;
+using ProtonVPN.Core.Auth;
 
-namespace ProtonVPN.Config
+namespace ProtonVPN.Core.Config
 {
-    public class VpnConfig : IVpnConfig
+    public class ClientConfig : IClientConfig, ILoggedInAware, ILogoutAware
     {
         private readonly IApiClient _apiClient;
+        private readonly ISchedulerTimer _timer;
+        private readonly SingleAction _updateAction;
 
-        public VpnConfig(IApiClient apiClient, Common.Configuration.Config config)
+        public ClientConfig(
+            IScheduler scheduler,
+            IApiClient apiClient,
+            Common.Configuration.Config config)
         {
             _apiClient = apiClient;
+            _timer = scheduler.Timer();
+            _timer.Interval = config.ClientConfigUpdateInterval.RandomizedWithDeviation(0.2);
+            _timer.Tick += Timer_OnTick;
+            _updateAction = new SingleAction(UpdateAction);
 
             TcpPorts = config.DefaultOpenVpnTcpPorts;
             UdpPorts = config.DefaultOpenVpnUdpPorts;
             BlackHoleIps = config.DefaultBlackHoleIps;
             MaintenanceTrackerEnabled = config.MaintenanceTrackerEnabled;
             MaintenanceCheckInterval = config.MaintenanceCheckInterval;
+            PollNotificationApiEnabled = config.PollNotificationApiEnabled;
         }
 
         public int[] TcpPorts { get; private set; }
@@ -50,9 +63,31 @@ namespace ProtonVPN.Config
 
         public bool MaintenanceTrackerEnabled { get; private set; }
 
+        public bool PollNotificationApiEnabled { get; private set; }
+
         public TimeSpan MaintenanceCheckInterval { get; private set; }
 
         public async Task Update()
+        {
+            await _updateAction.Run();
+        }
+
+        public void OnUserLoggedIn()
+        {
+            _timer.Start();
+        }
+
+        public void OnUserLoggedOut()
+        {
+            _timer.Stop();
+        }
+
+        private void Timer_OnTick(object sender, EventArgs eventArgs)
+        {
+            _updateAction.Run();
+        }
+
+        private async Task UpdateAction()
         {
             try
             {
@@ -66,6 +101,11 @@ namespace ProtonVPN.Config
                     if (response.Value.FeatureFlags.ServerRefresh.HasValue)
                     {
                         MaintenanceTrackerEnabled = response.Value.FeatureFlags.ServerRefresh.Value;
+                    }
+
+                    if (response.Value.FeatureFlags.PollNotificationApi.HasValue)
+                    {
+                        PollNotificationApiEnabled = response.Value.FeatureFlags.PollNotificationApi.Value;
                     }
 
                     if (response.Value.ServerRefreshInterval.HasValue)

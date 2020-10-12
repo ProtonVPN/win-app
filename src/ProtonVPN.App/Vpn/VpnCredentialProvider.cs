@@ -18,7 +18,7 @@
  */
 
 using ProtonVPN.Common.Vpn;
-using ProtonVPN.Config;
+using ProtonVPN.Core.Config;
 using ProtonVPN.Core.Settings;
 
 namespace ProtonVPN.Vpn
@@ -27,11 +27,11 @@ namespace ProtonVPN.Vpn
     {
         private readonly IAppSettings _appSettings;
         private readonly IUserStorage _userStorage;
-        private readonly IVpnConfig _vpnConfig;
+        private readonly IClientConfig _clientConfig;
 
-        public VpnCredentialProvider(IAppSettings appSettings, IUserStorage userStorage, IVpnConfig vpnConfig)
+        public VpnCredentialProvider(IAppSettings appSettings, IUserStorage userStorage, IClientConfig clientConfig)
         {
-            _vpnConfig = vpnConfig;
+            _clientConfig = clientConfig;
             _userStorage = userStorage;
             _appSettings = appSettings;
         }
@@ -48,7 +48,7 @@ namespace ProtonVPN.Vpn
             // p - proton, w - windows
             username += "+pw";
 
-            if (_vpnConfig.NetShieldEnabled && _appSettings.NetShieldEnabled)
+            if (_clientConfig.NetShieldEnabled && _appSettings.NetShieldEnabled)
             {
                 username += $"+f{_appSettings.NetShieldMode}";
             }
