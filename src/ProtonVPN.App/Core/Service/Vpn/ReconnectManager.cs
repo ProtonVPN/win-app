@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Api;
-using ProtonVPN.Core.Config;
 using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Servers;
+using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
 
 namespace ProtonVPN.Core.Service.Vpn
@@ -20,10 +20,10 @@ namespace ProtonVPN.Core.Service.Vpn
         private readonly ISchedulerTimer _timer;
         private readonly ServerManager _serverManager;
         private readonly IServerUpdater _serverUpdater;
-        private readonly IClientConfig _clientConfig;
+        private readonly IAppSettings _appSettings;
 
         public ReconnectManager(
-            IClientConfig clientConfig,
+            IAppSettings appSettings,
             IApiClient apiClient,
             ProfileManager profileManager,
             ServerManager serverManager,
@@ -31,7 +31,7 @@ namespace ProtonVPN.Core.Service.Vpn
             IScheduler scheduler,
             IServerUpdater serverUpdater)
         {
-            _clientConfig = clientConfig;
+            _appSettings = appSettings;
             _serverUpdater = serverUpdater;
             _serverManager = serverManager;
             _vpnManager = vpnManager;
@@ -44,7 +44,7 @@ namespace ProtonVPN.Core.Service.Vpn
 
         public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
         {
-            if (!_clientConfig.MaintenanceTrackerEnabled)
+            if (!_appSettings.FeatureMaintenanceTrackerEnabled)
             {
                 return Task.CompletedTask;
             }
@@ -55,7 +55,7 @@ namespace ProtonVPN.Core.Service.Vpn
             {
                 if (!_timer.IsEnabled)
                 {
-                    _timer.Interval = _clientConfig.MaintenanceCheckInterval;
+                    _timer.Interval = _appSettings.MaintenanceCheckInterval;
                     _timer.Start();
                 }
             }

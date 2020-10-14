@@ -18,13 +18,13 @@
  */
 
 using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Core.Api;
 using ProtonVPN.Core.Auth;
+using ProtonVPN.Core.Settings;
 
 namespace ProtonVPN.Core.Config
 {
@@ -33,39 +33,21 @@ namespace ProtonVPN.Core.Config
         private readonly IApiClient _apiClient;
         private readonly ISchedulerTimer _timer;
         private readonly SingleAction _updateAction;
+        private readonly IAppSettings _appSettings;
 
         public ClientConfig(
+            IAppSettings appSettings,
             IScheduler scheduler,
             IApiClient apiClient,
             Common.Configuration.Config config)
         {
+            _appSettings = appSettings;
             _apiClient = apiClient;
             _timer = scheduler.Timer();
             _timer.Interval = config.ClientConfigUpdateInterval.RandomizedWithDeviation(0.2);
             _timer.Tick += Timer_OnTick;
             _updateAction = new SingleAction(UpdateAction);
-
-            TcpPorts = config.DefaultOpenVpnTcpPorts;
-            UdpPorts = config.DefaultOpenVpnUdpPorts;
-            BlackHoleIps = config.DefaultBlackHoleIps;
-            MaintenanceTrackerEnabled = config.MaintenanceTrackerEnabled;
-            MaintenanceCheckInterval = config.MaintenanceCheckInterval;
-            PollNotificationApiEnabled = config.PollNotificationApiEnabled;
         }
-
-        public int[] TcpPorts { get; private set; }
-
-        public int[] UdpPorts { get; private set; }
-
-        public IReadOnlyList<string> BlackHoleIps { get; private set; }
-
-        public bool NetShieldEnabled { get; private set; }
-
-        public bool MaintenanceTrackerEnabled { get; private set; }
-
-        public bool PollNotificationApiEnabled { get; private set; }
-
-        public TimeSpan MaintenanceCheckInterval { get; private set; }
 
         public async Task Update()
         {
@@ -94,28 +76,28 @@ namespace ProtonVPN.Core.Config
                 var response = await _apiClient.GetVpnConfig();
                 if (response.Success)
                 {
-                    TcpPorts = response.Value.OpenVpnConfig.DefaultPorts.Tcp;
-                    UdpPorts = response.Value.OpenVpnConfig.DefaultPorts.Udp;
-                    NetShieldEnabled = response.Value.FeatureFlags.NetShield;
+                    _appSettings.OpenVpnTcpPorts = response.Value.OpenVpnConfig.DefaultPorts.Tcp;
+                    _appSettings.OpenVpnUdpPorts = response.Value.OpenVpnConfig.DefaultPorts.Udp;
+                    _appSettings.FeatureNetShieldEnabled = response.Value.FeatureFlags.NetShield;
 
                     if (response.Value.FeatureFlags.ServerRefresh.HasValue)
                     {
-                        MaintenanceTrackerEnabled = response.Value.FeatureFlags.ServerRefresh.Value;
+                        _appSettings.FeatureMaintenanceTrackerEnabled = response.Value.FeatureFlags.ServerRefresh.Value;
                     }
 
                     if (response.Value.FeatureFlags.PollNotificationApi.HasValue)
                     {
-                        PollNotificationApiEnabled = response.Value.FeatureFlags.PollNotificationApi.Value;
+                        _appSettings.FeaturePollNotificationApiEnabled = response.Value.FeatureFlags.PollNotificationApi.Value;
                     }
 
                     if (response.Value.ServerRefreshInterval.HasValue)
                     {
-                        MaintenanceCheckInterval = TimeSpan.FromMinutes(response.Value.ServerRefreshInterval.Value);
+                        _appSettings.MaintenanceCheckInterval = TimeSpan.FromMinutes(response.Value.ServerRefreshInterval.Value);
                     }
 
                     if (response.Value.HolesIps != null)
                     {
-                        BlackHoleIps = response.Value.HolesIps;
+                        _appSettings.BlackHoleIps = response.Value.HolesIps;
                     }
                 }
             }

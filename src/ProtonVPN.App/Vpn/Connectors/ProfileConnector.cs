@@ -27,7 +27,6 @@ using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Abstract;
 using ProtonVPN.Core.Api.Contracts;
-using ProtonVPN.Core.Config;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Servers;
@@ -51,7 +50,6 @@ namespace ProtonVPN.Vpn.Connectors
         private readonly ServerManager _serverManager;
         private readonly ServerCandidatesFactory _serverCandidatesFactory;
         private readonly IVpnServiceManager _vpnServiceManager;
-        private readonly IClientConfig _clientConfig;
         private readonly IModals _modals;
         private readonly IDialogs _dialogs;
         private readonly VpnCredentialProvider _vpnCredentialProvider;
@@ -63,7 +61,6 @@ namespace ProtonVPN.Vpn.Connectors
             ServerManager serverManager,
             ServerCandidatesFactory serverCandidatesFactory,
             IVpnServiceManager vpnServiceManager,
-            IClientConfig clientConfig,
             IModals modals,
             IDialogs dialogs,
             VpnCredentialProvider vpnCredentialProvider)
@@ -77,7 +74,6 @@ namespace ProtonVPN.Vpn.Connectors
             _serverCandidatesFactory = serverCandidatesFactory;
             _appSettings = appSettings;
             _vpnServiceManager = vpnServiceManager;
-            _clientConfig = clientConfig;
         }
 
         public ServerCandidates ServerCandidates(Profile profile)
@@ -254,8 +250,8 @@ namespace ProtonVPN.Vpn.Connectors
         {
             var portConfig = new Dictionary<VpnProtocol, IReadOnlyCollection<int>>
             {
-                { Common.Vpn.VpnProtocol.OpenVpnUdp, _clientConfig.UdpPorts },
-                { Common.Vpn.VpnProtocol.OpenVpnTcp, _clientConfig.TcpPorts },
+                { Common.Vpn.VpnProtocol.OpenVpnUdp, _appSettings.OpenVpnUdpPorts },
+                { Common.Vpn.VpnProtocol.OpenVpnTcp, _appSettings.OpenVpnTcpPorts },
             };
 
             var customDns = (from ip in _appSettings.CustomDnsIps where ip.Enabled select ip.Ip).ToList();

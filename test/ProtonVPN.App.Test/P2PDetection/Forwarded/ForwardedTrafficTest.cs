@@ -18,6 +18,7 @@
  */
 
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using FluentAssertions;
@@ -26,8 +27,8 @@ using NSubstitute;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Api;
 using ProtonVPN.Core.Api.Contracts;
-using ProtonVPN.Core.Config;
 using ProtonVPN.Core.Servers.Models;
+using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.User;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.P2PDetection.Forwarded;
@@ -40,13 +41,13 @@ namespace ProtonVPN.App.Test.P2PDetection.Forwarded
     public class ForwardedTrafficTest
     {
         private IUserLocationService _userLocationService;
-        private IClientConfig _clientConfig;
+        private IAppSettings _appSettings;
 
         [TestInitialize]
         public void TestInitialize()
         {
             _userLocationService = Substitute.For<IUserLocationService>();
-            _clientConfig = Substitute.For<IClientConfig>();
+            _appSettings = Substitute.For<IAppSettings>();
         }
 
         [DataTestMethod]
@@ -64,9 +65,9 @@ namespace ProtonVPN.App.Test.P2PDetection.Forwarded
                 Ip = ip
             });
 
-            _clientConfig.BlackHoleIps.Returns(new List<string> { "62.112.9.168", "104.245.144.186" });
+            _appSettings.BlackHoleIps.Returns(new StringCollection { "62.112.9.168", "104.245.144.186" });
             _userLocationService.LocationAsync().Returns(response);
-            var subject = new ForwardedTraffic(_userLocationService, _clientConfig);
+            var subject = new ForwardedTraffic(_userLocationService, _appSettings);
             await subject.OnVpnStateChanged(new VpnStateChangedEventArgs(
                 VpnStatus.Connected,
                 VpnError.None,

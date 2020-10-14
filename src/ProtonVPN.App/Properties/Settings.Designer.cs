@@ -1108,5 +1108,89 @@ namespace ProtonVPN.Properties {
                 this["UserAnnouncements"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string OpenVpnTcpPorts {
+            get {
+                return ((string)(this["OpenVpnTcpPorts"]));
+            }
+            set {
+                this["OpenVpnTcpPorts"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string OpenVpnUdpPorts {
+            get {
+                return ((string)(this["OpenVpnUdpPorts"]));
+            }
+            set {
+                this["OpenVpnUdpPorts"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string BlackHoleIps {
+            get {
+                return ((string)(this["BlackHoleIps"]));
+            }
+            set {
+                this["BlackHoleIps"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool FeatureNetShieldEnabled {
+            get {
+                return ((bool)(this["FeatureNetShieldEnabled"]));
+            }
+            set {
+                this["FeatureNetShieldEnabled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool FeatureMaintenanceTrackerEnabled {
+            get {
+                return ((bool)(this["FeatureMaintenanceTrackerEnabled"]));
+            }
+            set {
+                this["FeatureMaintenanceTrackerEnabled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool FeaturePollNotificationApiEnabled {
+            get {
+                return ((bool)(this["FeaturePollNotificationApiEnabled"]));
+            }
+            set {
+                this["FeaturePollNotificationApiEnabled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("00:00:00")]
+        public global::System.TimeSpan MaintenanceCheckInterval {
+            get {
+                return ((global::System.TimeSpan)(this["MaintenanceCheckInterval"]));
+            }
+            set {
+                this["MaintenanceCheckInterval"] = value;
+            }
+        }
     }
 }
