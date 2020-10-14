@@ -104,7 +104,8 @@ namespace ProtonVPN.Sidebar.Announcements
 
         private void OpenAnnouncement(Announcement announcement)
         {
-            var url = new ActiveUrl(_processes, announcement.Url);
+            var url = new ActiveUrl(_processes, announcement.Url)
+                .WithQueryParams(new Dictionary<string, string> {{"utm_source", "windowsvpn"}});
             url.Open();
             _announcements.MarkAsSeen(announcement.Id);
         }
