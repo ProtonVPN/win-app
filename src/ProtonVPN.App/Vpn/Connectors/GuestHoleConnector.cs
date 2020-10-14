@@ -25,9 +25,9 @@ using ProtonVPN.Common;
 using ProtonVPN.Common.Storage;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Api;
-using ProtonVPN.Core.Config;
 using ProtonVPN.Core.Servers.Contracts;
 using ProtonVPN.Core.Service.Vpn;
+using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
 
 namespace ProtonVPN.Vpn.Connectors
@@ -39,14 +39,14 @@ namespace ProtonVPN.Vpn.Connectors
         private readonly Random _random = new Random();
 
         private readonly IVpnServiceManager _vpnServiceManager;
-        private readonly IClientConfig _clientConfig;
+        private readonly IAppSettings _appSettings;
         private readonly GuestHoleState _guestHoleState;
         private readonly Common.Configuration.Config _config;
         private readonly ICollectionStorage<GuestHoleServerContract> _guestHoleServers;
 
         public GuestHoleConnector(
             IVpnServiceManager vpnServiceManager,
-            IClientConfig clientConfig,
+            IAppSettings appSettings,
             GuestHoleState guestHoleState,
             Common.Configuration.Config config,
             ICollectionStorage<GuestHoleServerContract> guestHoleServers)
@@ -55,7 +55,7 @@ namespace ProtonVPN.Vpn.Connectors
             _config = config;
             _guestHoleState = guestHoleState;
             _vpnServiceManager = vpnServiceManager;
-            _clientConfig = clientConfig;
+            _appSettings = appSettings;
         }
 
         public async Task Connect()
@@ -112,8 +112,8 @@ namespace ProtonVPN.Vpn.Connectors
         {
             var portConfig = new Dictionary<VpnProtocol, IReadOnlyCollection<int>>
             {
-                { VpnProtocol.OpenVpnUdp, _clientConfig.UdpPorts },
-                { VpnProtocol.OpenVpnTcp, _clientConfig.TcpPorts },
+                { VpnProtocol.OpenVpnUdp, _appSettings.OpenVpnUdpPorts },
+                { VpnProtocol.OpenVpnTcp, _appSettings.OpenVpnTcpPorts },
             };
 
             return new VpnConfig(portConfig, new List<string>(), SplitTunnelMode.Disabled, new List<string>());

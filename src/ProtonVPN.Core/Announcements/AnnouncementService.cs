@@ -26,26 +26,26 @@ using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Core.Api;
 using ProtonVPN.Core.Auth;
-using ProtonVPN.Core.Config;
+using ProtonVPN.Core.Settings;
 
 namespace ProtonVPN.Core.Announcements
 {
     public class AnnouncementService : IAnnouncements, ILoggedInAware, ILogoutAware
     {
-        private readonly IClientConfig _clientConfig;
+        private readonly IAppSettings _appSettings;
         private readonly IApiClient _apiClient;
         private readonly IAnnouncementCache _announcementCache;
         private readonly ISchedulerTimer _timer;
         private readonly SingleAction _updateAction;
 
         public AnnouncementService(
-            IClientConfig clientConfig,
+            IAppSettings appSettings,
             IScheduler scheduler,
             IApiClient apiClient,
             IAnnouncementCache announcementCache,
             TimeSpan updateInterval)
         {
-            _clientConfig = clientConfig;
+            _appSettings = appSettings;
             _announcementCache = announcementCache;
             _apiClient = apiClient;
             _timer = scheduler.Timer();
@@ -94,7 +94,7 @@ namespace ProtonVPN.Core.Announcements
 
         private async Task Fetch()
         {
-            if (!_clientConfig.PollNotificationApiEnabled)
+            if (!_appSettings.FeaturePollNotificationApiEnabled)
             {
                 ClearCache();
                 return;

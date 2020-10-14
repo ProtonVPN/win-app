@@ -17,28 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ProtonVPN.Core.Config
 {
     public interface IClientConfig
     {
-        public int[] TcpPorts { get; }
-
-        public int[] UdpPorts { get; }
-
-        public IReadOnlyList<string> BlackHoleIps { get; }
-
-        public bool NetShieldEnabled { get; }
-
-        public bool MaintenanceTrackerEnabled { get; }
-
-        public bool PollNotificationApiEnabled { get; }
-
-        public TimeSpan MaintenanceCheckInterval { get; }
-
         Task Update();
     }
 }

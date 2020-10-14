@@ -187,10 +187,6 @@ namespace ProtonVPN.Common.Configuration
 
         public IReadOnlyList<string> DefaultBlackHoleIps { get; internal set; } = new List<string>();
 
-        public bool MaintenanceTrackerEnabled { get; internal set; }
-
-        public bool PollNotificationApiEnabled { get; internal set; }
-
         public UrlConfig Urls { get; } = new UrlConfig();
 
         public OpenVpnConfig OpenVpn { get; } = new OpenVpnConfig();

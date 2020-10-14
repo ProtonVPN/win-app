@@ -20,7 +20,7 @@
 using Autofac;
 using ProtonVPN.Common.OS.Net.Http;
 using ProtonVPN.Config.Url;
-using ProtonVPN.Core.Config;
+using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.User;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.P2PDetection.Blocked;
@@ -47,7 +47,7 @@ namespace ProtonVPN.P2PDetection
             builder.Register(c => 
                     new ForwardedTraffic(
                         c.Resolve<IUserLocationService>(),
-                        c.Resolve<IClientConfig>()))
+                        c.Resolve<IAppSettings>()))
                 .AsImplementedInterfaces()
                 .SingleInstance();
 

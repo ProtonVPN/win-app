@@ -78,5 +78,12 @@ namespace ProtonVPN.Core.Settings
         string ActiveAlternativeApiBaseUrl { set; get; }
         bool DoHEnabled { get; set; }
         IReadOnlyList<AnnouncementItem> Announcements { get; set; }
+        int[] OpenVpnTcpPorts { get; set; }
+        int[] OpenVpnUdpPorts { get; set; }
+        StringCollection BlackHoleIps { get; set; }
+        bool FeatureNetShieldEnabled { get; set; }
+        bool FeatureMaintenanceTrackerEnabled { get; set; }
+        bool FeaturePollNotificationApiEnabled { get; set; }
+        TimeSpan MaintenanceCheckInterval { get; set; }
     }
 }

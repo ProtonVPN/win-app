@@ -241,7 +241,7 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<LastServerLoadTimeProvider>().As<ILastServerLoadTimeProvider>().SingleInstance();
             builder.RegisterType<ClientConfig>().AsImplementedInterfaces().SingleInstance();
             builder.Register(c => new AnnouncementService(
-                c.Resolve<IClientConfig>(),
+                c.Resolve<IAppSettings>(),
                 c.Resolve<IScheduler>(),
                 c.Resolve<IApiClient>(),
                 c.Resolve<IAnnouncementCache>(),
