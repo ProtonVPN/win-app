@@ -19,13 +19,15 @@
 
 using ProtonVPN.Common.OS.Processes;
 using System;
+using System.Collections.Generic;
+using System.Web;
 
 namespace ProtonVPN.Config.Url
 {
     internal class ActiveUrl : IActiveUrl
     {
         private readonly IOsProcesses _processes;
-        private readonly string _url;
+        private string _url;
 
         public ActiveUrl(IOsProcesses processes, string url)
         {
@@ -33,10 +35,37 @@ namespace ProtonVPN.Config.Url
             _url = url;
         }
 
+        public ActiveUrl WithQueryParams(Dictionary<string, string> parameters)
+        {
+            try
+            {
+                var uriBuilder = new UriBuilder(_url);
+                var query = HttpUtility.ParseQueryString(uriBuilder.Query);
+                foreach (var item in parameters)
+                {
+                    query[item.Key] = item.Value;
+                }
+
+                uriBuilder.Query = query.ToString();
+                _url = uriBuilder.ToString();
+            }
+            catch (UriFormatException)
+            {
+                // ignore
+            }
+
+            return this;
+        }
+
         public Uri Uri => new Uri(_url);
 
         public void Open()
         {
+            if (string.IsNullOrEmpty(_url))
+            {
+                return;
+            }
+
             _processes.Open(_url);
         }
     }
