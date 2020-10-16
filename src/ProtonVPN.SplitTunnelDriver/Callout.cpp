@@ -14,9 +14,14 @@ void SetSocketIPv4Addr(const SOCKADDR_STORAGE& sockAddrStorage, const IN_ADDR& a
 	INETADDR_SET_ADDRESS((PSOCKADDR) & (sockAddrStorage), &(addr.S_un.S_un_b.s_b1));
 }
 
-bool isLoopbackIPv4Address(UINT32 addr)
+bool isLocalNetwork(UINT32 addr)
 {
-	if (IN4_IS_ADDR_LOOPBACK(reinterpret_cast<IN_ADDR*>(&addr)))
+	if (IN4_IS_ADDR_LOOPBACK(reinterpret_cast<IN_ADDR*>(&addr)) || //127/8
+		IN4_IS_ADDR_LINKLOCAL(reinterpret_cast<IN_ADDR*>(&addr)) || //169.254/16
+		IN4_IS_ADDR_RFC1918(reinterpret_cast<IN_ADDR*>(&addr)) || //10/8, 172.16/12, 192.168/16
+		IN4_IS_ADDR_MC_LINKLOCAL(reinterpret_cast<IN_ADDR*>(&addr)) || //224.0.0/24
+		IN4_IS_ADDR_BROADCAST(reinterpret_cast<IN_ADDR*>(&addr)) || //255.255.255.255
+		IN4_IS_ADDR_MC_ADMINLOCAL(reinterpret_cast<IN_ADDR*>(&addr))) //239.255/16
 	{
 		return true;
 	}
@@ -91,7 +96,7 @@ void NTAPI RedirectConnection(
 	auto remoteAddr = RtlUlongByteSwap(inFixedValues->incomingValue[
 		FWPS_FIELD_ALE_CONNECT_REDIRECT_V4_IP_REMOTE_ADDRESS].value.uint32);
 
-	if (isLoopbackIPv4Address(remoteAddr))
+	if (isLocalNetwork(remoteAddr))
 	{
 		return;
 	}
