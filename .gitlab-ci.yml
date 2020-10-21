@@ -4,10 +4,23 @@ variables:
 stages:
   - build
   - test
+  - sign
   - build-installer
   - ui-test
   - mirror
   - bot # comes from translations/generator job
+
+sign:
+  stage: sign
+  tags:
+    - windows
+  script:
+    - echo "Signing files..."
+    - python ci\main.py sign
+  artifacts:
+    expire_in: 1 day
+    paths:
+      - src/bin/
 
 build-release:
   stage: build
@@ -27,7 +40,6 @@ build-release:
     expire_in: 1 day
     paths:
       - src/bin/
-      - langs
   only:
     - master
     - /^release.*$/
@@ -52,7 +64,6 @@ build-debug:
     expire_in: 1 day
     paths:
       - src/bin/
-      - langs
   except:
     - master
     - /^release.*$/

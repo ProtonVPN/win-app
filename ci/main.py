@@ -4,6 +4,7 @@ import argparse
 import win32api
 import localization
 import sentry
+import signing
 import tests
 import installer
 import ssh
@@ -20,6 +21,7 @@ parser_a.add_argument('path', type=str, help='Path to GlobalConfig file')
 parser_a.add_argument('dsn', type=str, help='Sentry dsn string', nargs='?', const='')
 
 subparsers.add_parser('tap-installer')
+subparsers.add_parser('sign')
 
 custom_parser = subparsers.add_parser('app-installer')
 custom_parser.add_argument('hash', type=str, help='Commit hash string')
@@ -54,6 +56,9 @@ elif args.command == 'add-languages':
 
 elif args.command == 'tests':
     tests.run('{path}*.Test.dll'.format(path=args.path))
+
+elif args.command == 'sign':
+    signing.sign()
 
 elif args.command == 'app-installer':
     v = win32api.GetFileVersionInfo('.\src\\bin\ProtonVPN.exe', '\\')
