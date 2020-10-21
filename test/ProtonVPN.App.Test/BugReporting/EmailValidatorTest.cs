@@ -69,10 +69,8 @@ namespace ProtonVPN.App.Test.BugReporting
         [DataRow("^%#$@#$#@%@#.com")]
         [DataRow("@domain.com")]
         [DataRow("Joe Smith <email@domain.com>")]
-        [DataRow("joe\"smith\"@domain.com")]
         [DataRow("email.domain.com")]
         [DataRow("email@domain@domain.com")]
-        [DataRow(".email@domain.com")]
         [DataRow("joe..smith@domain.com ")]
         [DataRow("email@domain.com (Joe Smith)")]
         public void IsValid_ShouldBeFalse_WhenEmail_IsNotValid(string email)

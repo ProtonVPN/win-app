@@ -18,7 +18,6 @@
  */
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -30,10 +29,11 @@ using ProtonVPN.Core.MVVM;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Settings.Contracts;
 using ProtonVPN.Translations;
+using ProtonVPN.Validation;
 
 namespace ProtonVPN.Settings
 {
-    public abstract class IpListViewModel : ViewModel, INotifyDataErrorInfo, ISettingsAware
+    public abstract class IpListViewModel : ValidationViewModel, ISettingsAware
     {
         private bool _saving;
 
@@ -89,7 +89,7 @@ namespace ProtonVPN.Settings
 
         private void Clear()
         {
-            ClearErrors();
+            ClearError(nameof(Ip));
             Ip = "";
             _items = null;
             RaisePropertyChanged(nameof(Items));
@@ -215,55 +215,5 @@ namespace ProtonVPN.Settings
         {
             BringItemIntoView?.Invoke(this, new BringItemIntoViewEventArgs(item));
         }
-
-        #region INotifyDataErrorInfo
-
-        private readonly Dictionary<string, string> _errors = new Dictionary<string, string>();
-
-        public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
-
-        public bool HasErrors => _errors.Any();
-
-        public IEnumerable GetErrors(string propertyName)
-        {
-            if (_errors.TryGetValue(propertyName, out var value))
-                return new[] { value };
-
-            return null;
-        }
-
-        private void SetError(string propertyName, string value)
-        {
-            if (!string.IsNullOrEmpty(value))
-            {
-                if (_errors.TryGetValue(propertyName, out var oldValue) && value == oldValue)
-                    return;
-
-                _errors[propertyName] = value;
-                RaiseErrorsChanged(propertyName);
-            }
-            else
-            {
-                if (_errors.Remove(propertyName))
-                    RaiseErrorsChanged(propertyName);
-            }
-        }
-
-        private void ClearErrors()
-        {
-            var propertyNames = _errors.Keys.ToArray();
-            _errors.Clear();
-            foreach (var propertyName in propertyNames)
-            {
-                RaiseErrorsChanged(propertyName);
-            }
-        }
-
-        private void RaiseErrorsChanged(string propertyName)
-        {
-            ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
-        }
-
-        #endregion
     }
 }

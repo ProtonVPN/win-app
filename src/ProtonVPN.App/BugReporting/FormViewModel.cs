@@ -19,17 +19,19 @@
 
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using ProtonVPN.Account;
 using ProtonVPN.BugReporting.Diagnostic;
 using ProtonVPN.Core.Auth;
-using ProtonVPN.Core.MVVM;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.User;
 using ProtonVPN.Servers;
+using ProtonVPN.Translations;
+using ProtonVPN.Validation;
 
 namespace ProtonVPN.BugReporting
 {
-    public class FormViewModel : ViewModel, IUserDataAware, ILogoutAware
+    public class FormViewModel : ValidationViewModel, IUserDataAware, ILogoutAware
     {
         private string _whatWentWrong;
         private string _stepsToReproduce;
@@ -53,19 +55,31 @@ namespace ProtonVPN.BugReporting
         public string Email
         {
             get => _email;
-            set => Set(ref _email, value);
+            set
+            {
+                Set(ref _email, value);
+                Validate();
+            } 
         }
 
         public string WhatWentWrong
         {
             get => _whatWentWrong;
-            set => Set(ref _whatWentWrong, value);
+            set
+            {
+                Set(ref _whatWentWrong, value);
+                Validate();
+            }
         }
 
         public string StepsToReproduce
         {
             get => _stepsToReproduce;
-            set => Set(ref _stepsToReproduce, value);
+            set
+            {
+                Set(ref _stepsToReproduce, value);
+                Validate();
+            }
         }
 
         public bool IncludeLogs
@@ -78,13 +92,6 @@ namespace ProtonVPN.BugReporting
         {
             ClearForm();
             LoadEmail();
-        }
-
-        public bool IsValid()
-        {
-            return !string.IsNullOrEmpty(Email) &&
-                   !string.IsNullOrEmpty(WhatWentWrong) &&
-                   !string.IsNullOrEmpty(StepsToReproduce);
         }
 
         public KeyValuePair<string, string>[] GetFields()
@@ -140,6 +147,45 @@ namespace ProtonVPN.BugReporting
             if (EmailValidator.IsValid(user.Username))
             {
                 Email = user.Username;
+            }
+        }
+
+        public new bool HasErrors => base.HasErrors || string.IsNullOrEmpty(Email);
+
+        private void Validate([CallerMemberName] string field = null)
+        {
+            switch (field)
+            {
+                case nameof(Email):
+                    if (!EmailValidator.IsValid(Email))
+                    {
+                        SetError(nameof(Email), Translation.Get("BugReport_msg_EmailNotValid"));
+                    }
+                    else
+                    {
+                        ClearError(field);
+                    }
+                    break;
+                case nameof(WhatWentWrong):
+                    if (string.IsNullOrEmpty(WhatWentWrong))
+                    {
+                        SetError(nameof(WhatWentWrong), "empty");
+                    }
+                    else
+                    {
+                        ClearError(field);
+                    }
+                    break;
+                case nameof(StepsToReproduce):
+                    if (string.IsNullOrEmpty(StepsToReproduce))
+                    {
+                        SetError(nameof(StepsToReproduce), "empty");
+                    }
+                    else
+                    {
+                        ClearError(field);
+                    }
+                    break;
             }
         }
     }

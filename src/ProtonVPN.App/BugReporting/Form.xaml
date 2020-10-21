@@ -53,21 +53,30 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </Grid.ColumnDefinitions>
                 <DockPanel Grid.Column="0">
                     <Label Padding="0" VerticalAlignment="Center" FontSize="14" Foreground="White" Content="{translations:Loc BugReport_lbl_Email}"/>
-                    <Label Foreground="Red" Padding="5,15,0,0" FontSize="14" Content="*"/>
+                    <Label Foreground="#D65151" Padding="5,15,0,0" FontSize="14" Content="*"/>
                 </DockPanel>
-                <TextBox Style="{StaticResource BugReportTextBox}"
-                         Grid.Column="1"
-                         x:Name="Email"
-                         Background="Transparent"
-                         Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"
-                         Foreground="White"
-                         CaretBrush="White"
-                         FontSize="14"
-                         MaxLength="254"
-                         TextWrapping="NoWrap"
-                         BorderThickness="0,0,0,1"
-                         Padding="7,14"
-                         AutomationProperties.AutomationId="{StaticResource ReportBugEmailTextBlock}"/>
+                <AdornerDecorator Grid.Column="1">
+                    <TextBox Style="{StaticResource BugReportTextBox}"
+                             Validation.ErrorTemplate="{StaticResource RedBorderWithErrorMessageTemplate}"
+                             x:Name="Email"
+                             Background="Transparent"
+                             Foreground="White"
+                             CaretBrush="White"
+                             FontSize="14"
+                             MaxLength="254"
+                             TextWrapping="NoWrap"
+                             BorderThickness="0,0,0,1"
+                             Padding="7,14"
+                             AutomationProperties.AutomationId="{StaticResource ReportBugEmailTextBlock}">
+                        <TextBox.Text>
+                            <Binding Path="Email"
+                                     Mode="TwoWay"
+                                     ValidatesOnNotifyDataErrors="True"
+                                     UpdateSourceTrigger="PropertyChanged">
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                </AdornerDecorator>
                 <TextBlock Grid.Column="1"
                            IsHitTestVisible="False"
                            FontSize="14"
@@ -92,7 +101,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        Foreground="White"
                        TextWrapping="Wrap">
                 <Run Text="{translations:Loc BugReport_lbl_WhatWentWrong}"/>
-                <Run Text="*" Foreground="Red"/>
+                <Run Text="*" Foreground="#D65151"/>
             </TextBlock>
             <Grid>
                 <TextBox Style="{StaticResource BugReportTextBox}"
@@ -132,7 +141,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        Foreground="White"
                        TextWrapping="Wrap">
                 <Run Text="{translations:Loc BugReport_lbl_HowToReproduce}"/>
-                <Run Text="*" Foreground="Red"/>
+                <Run Text="*" Foreground="#D65151"/>
             </TextBlock>
             <Grid>
                 <TextBox Style="{StaticResource BugReportTextBox}"
