@@ -26,8 +26,15 @@ namespace ProtonVPN.Common.OS.Services
     public interface IService
     {
         string Name { get; }
+
         bool Running();
+
+        bool Enabled();
+
+        void Enable();
+
         Task<Result> StartAsync(CancellationToken cancellationToken);
+
         Task<Result> StopAsync(CancellationToken cancellationToken);
     }
 }

@@ -63,7 +63,13 @@ namespace ProtonVPN.Service.KillSwitch
             switch (UpdatedLeakProtectionStatus(state))
             {
                 case true:
-                    _firewall.EnableLeakProtection(state.RemoteIp);
+                    if (_firewall.LeakProtectionEnabled)
+                    {
+                        _firewall.DisableLeakProtection();
+                    }
+                    var dnsLeakOnly = _serviceSettings.SplitTunnelSettings.Mode == SplitTunnelMode.Permit;
+                    var firewallParams = new FirewallParams(state.RemoteIp, dnsLeakOnly);
+                    _firewall.EnableLeakProtection(firewallParams);
                     break;
                 case false:
                     _firewall.DisableLeakProtection();
@@ -77,21 +83,15 @@ namespace ProtonVPN.Service.KillSwitch
             {
                 case VpnStatus.Connecting:
                 case VpnStatus.Reconnecting:
-                {
-                    return _serviceSettings.SplitTunnelSettings.Mode == SplitTunnelMode.Disabled ||
-                           _serviceSettings.SplitTunnelSettings.Mode == SplitTunnelMode.Block;
-                }
-
+                    return true;
                 case VpnStatus.Disconnecting:
                 case VpnStatus.Disconnected:
-                {
                     if (state.Error == VpnError.None || !_serviceSettings.KillSwitchSettings.Enabled)
                     {
                         return false;
                     }
 
                     break;
-                }
             }
 
             return null;

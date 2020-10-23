@@ -106,6 +106,7 @@
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Config\ConfigDirectories.cs" />
+    <Compile Include="Firewall\FirewallParams.cs" />
     <Compile Include="Firewall\IFilterCollection.cs" />
     <Compile Include="Firewall\IFirewall.cs" />
     <Compile Include="Firewall\IpFilter.cs" />

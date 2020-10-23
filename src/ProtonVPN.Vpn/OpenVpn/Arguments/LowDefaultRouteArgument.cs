@@ -17,25 +17,19 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Linq;
-using ProtonVPN.Service.Settings;
+using System.Collections;
+using System.Collections.Generic;
 
-namespace ProtonVPN.Service.SplitTunneling
+namespace ProtonVPN.Vpn.OpenVpn.Arguments
 {
-    public class IncludeModeApps
+    internal class LowDefaultRouteArgument : IEnumerable<string>
     {
-        private readonly IServiceSettings _serviceSettings;
-
-        public IncludeModeApps(IServiceSettings serviceSettings)
+        public IEnumerator<string> GetEnumerator()
         {
-            _serviceSettings = serviceSettings;
+            yield return "--pull-filter ignore \"redirect-gateway\"";
+            yield return "--route 0.0.0.0 0.0.0.0 vpn_gateway 32000";
         }
 
-        public string[] Value()
-        {
-            return _serviceSettings.SplitTunnelSettings.AppPaths == null
-                ? new string[] { }
-                : _serviceSettings.SplitTunnelSettings.AppPaths.ToArray();
-        }
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 }

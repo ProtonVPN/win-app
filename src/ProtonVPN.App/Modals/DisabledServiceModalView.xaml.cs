@@ -17,25 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Linq;
-using ProtonVPN.Service.Settings;
-
-namespace ProtonVPN.Service.SplitTunneling
+namespace ProtonVPN.Modals
 {
-    public class IncludeModeApps
+    public partial class DisabledServiceModalView
     {
-        private readonly IServiceSettings _serviceSettings;
-
-        public IncludeModeApps(IServiceSettings serviceSettings)
+        public DisabledServiceModalView()
         {
-            _serviceSettings = serviceSettings;
-        }
-
-        public string[] Value()
-        {
-            return _serviceSettings.SplitTunnelSettings.AppPaths == null
-                ? new string[] { }
-                : _serviceSettings.SplitTunnelSettings.AppPaths.ToArray();
+            InitializeComponent();
         }
     }
 }

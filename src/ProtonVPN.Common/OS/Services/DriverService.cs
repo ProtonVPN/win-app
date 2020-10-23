@@ -18,12 +18,13 @@
  */
 
 using System.ServiceProcess;
+using ProtonVPN.Common.OS.Processes;
 
 namespace ProtonVPN.Common.OS.Services
 {
     public class DriverService : Service
     {
-        public DriverService(string serviceName) : base(serviceName)
+        public DriverService(string serviceName, IOsProcesses osProcesses) : base(serviceName, osProcesses)
         {
         }
 

@@ -25,7 +25,7 @@ namespace ProtonVPN.Service.SplitTunneling
 {
     public class SplitTunnelNetworkFilters
     {
-        private const uint WfpSubLayerWeight = 7;
+        private const uint WfpSubLayerWeight = 10001;
         private static readonly Guid WfpCalloutKey = Guid.Parse("{3c5a284f-af01-51fa-4361-6c6c50424144}");
         private static readonly Guid WfpRedirectUDPCalloutKey = Guid.Parse("{10636af3-50d6-4f53-acb7-d5af33217fca}");
 
@@ -51,10 +51,7 @@ namespace ProtonVPN.Service.SplitTunneling
                     new ConnectRedirectData(internetLocalIp));
 
                 CreateAppFilters(apps, redirectUDPCallout, Layer.BindRedirectV4, providerContext);
-
                 CreateAppFilters(apps, connectRedirectCallout, Layer.AppConnectRedirectV4, providerContext);
-                CreateIPFilters(ips, connectRedirectCallout, Layer.AppConnectRedirectV4, providerContext);
-
                 _ipFilter.Session.CommitTransaction();
             }
             catch
@@ -73,38 +70,7 @@ namespace ProtonVPN.Service.SplitTunneling
             {
                 var connectRedirectCallout = CreateConnectRedirectCallout();
                 var redirectUDPCallout = CreateUDPRedirectCallout();
-
                 var providerContext = _ipFilter.CreateProviderContext(
-                    new DisplayData
-                    {
-                        Name = "ProtonVPN Split Tunnel redirect context",
-                        Description = "Instructs the callout driver where to redirect network connections",
-                    },
-                    new ConnectRedirectData(internetLocalIp));
-
-                _subLayer.CreateLayerCalloutFilter(
-                        new DisplayData
-                        {
-                            Name = "ProtonVPN Split Tunnel redirect",
-                            Description = "Redirects network connections"
-                        },
-                        Layer.AppConnectRedirectV4,
-                        14,
-                        connectRedirectCallout,
-                        providerContext);
-
-                _subLayer.CreateLayerCalloutFilter(
-                        new DisplayData
-                        {
-                            Name = "ProtonVPN Split Tunnel redirect",
-                            Description = "Redirects network connections"
-                        },
-                        Layer.BindRedirectV4,
-                        14,
-                        redirectUDPCallout,
-                        providerContext);
-
-                providerContext = _ipFilter.CreateProviderContext(
                     new DisplayData
                     {
                         Name = "ProtonVPN Split Tunnel redirect context",
@@ -113,10 +79,7 @@ namespace ProtonVPN.Service.SplitTunneling
                     new ConnectRedirectData(vpnLocalIp));
 
                 CreateAppFilters(apps, connectRedirectCallout, Layer.AppConnectRedirectV4, providerContext);
-                CreateIPFilters(ips, connectRedirectCallout, Layer.AppConnectRedirectV4, providerContext);
-
                 CreateAppFilters(apps, redirectUDPCallout, Layer.BindRedirectV4, providerContext);
-
                 _ipFilter.Session.CommitTransaction();
             }
             catch
@@ -181,47 +144,6 @@ namespace ProtonVPN.Service.SplitTunneling
                 callout,
                 providerContext,
                 app);
-        }
-
-        private void CreateIPFilters(string[] ips, Callout callout, Layer layer, ProviderContext providerContext)
-        {
-            foreach (var ip in ips)
-            {
-                SafeCreateIPFilter(ip, callout, layer, providerContext);
-            }
-        }
-
-        private void SafeCreateIPFilter(string ip, Callout callout, Layer layer, ProviderContext providerContext)
-        {
-            try
-            {
-                CreateIPFilter(ip, callout, layer, providerContext);
-            }
-            catch (NetworkFilterException)
-            {
-            }
-        }
-
-        private void CreateIPFilter(string ip, Callout callout, Layer layer, ProviderContext providerContext)
-        {
-            var networkAddress = new Common.OS.Net.NetworkAddress(ip);
-            if (!networkAddress.Valid())
-            {
-                return;
-            }
-
-            _subLayer.CreateRemoteNetworkIPv4CalloutFilter(
-                new DisplayData
-                {
-                    Name = "ProtonVPN Split Tunnel redirect IP",
-                    Description = "Redirects network connections of the IP"
-                },
-                layer,
-                15,
-                callout,
-                providerContext,
-                new NetworkAddress(networkAddress.Ip, networkAddress.Mask)
-            );
         }
 
         private Callout CreateConnectRedirectCallout()

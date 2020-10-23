@@ -87,5 +87,17 @@ namespace ProtonVPN.Common.Os.Net
         public static extern uint DeleteDefaultGatewayForIface(
             [In] ref Guid providerKey,
             [MarshalAs(UnmanagedType.LPWStr)] string gatewayAddr);
+
+        [DllImport(
+            BinaryName,
+            EntryPoint = "SetLowestTapMetric",
+            CallingConvention = CallingConvention.Cdecl)]
+        public static extern uint SetLowestTapMetric([In] ref Guid tapGuid);
+
+        [DllImport(
+            BinaryName,
+            EntryPoint = "RestoreDefaultTapMetric",
+            CallingConvention = CallingConvention.Cdecl)]
+        public static extern uint RestoreDefaultTapMetric([In] ref Guid tapGuid);
     }
 }

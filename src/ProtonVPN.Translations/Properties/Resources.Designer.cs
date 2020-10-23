@@ -610,7 +610,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Report Bug.
+        ///   Looks up a localized string similar to Report a Bug.
         /// </summary>
         public static string App_mnu_ReportBug {
             get {
@@ -3249,6 +3249,51 @@ namespace ProtonVPN.Translations.Properties {
         public static string Dialogs_btn_Continue {
             get {
                 return ResourceManager.GetString("Dialogs_btn_Continue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable.
+        /// </summary>
+        public static string Dialogs_DisabledService_btn_Enable {
+            get {
+                return ResourceManager.GetString("Dialogs_DisabledService_btn_Enable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Learn more.
+        /// </summary>
+        public static string Dialogs_DisabledService_btn_LearnMore {
+            get {
+                return ResourceManager.GetString("Dialogs_DisabledService_btn_LearnMore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show less.
+        /// </summary>
+        public static string Dialogs_DisabledService_btn_ShowLess {
+            get {
+                return ResourceManager.GetString("Dialogs_DisabledService_btn_ShowLess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sometimes, anti-virus software will mistakenly categorise ProtonVPN as a vulnarability and disable it. By clicking Enable, you are giving your system permission to reactivate the ProtonVPN Service.&lt;LineBreak/&gt;If the ProtonVPN Service is still disabled, try restarting your PC or reinstalling ProtonVPN..
+        /// </summary>
+        public static string Dialogs_DisabledService_msg_ExtraInfo {
+            get {
+                return ResourceManager.GetString("Dialogs_DisabledService_msg_ExtraInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The ProtonVPN service required for your VPN connection seems to be disabled. Click on Enable to fix it.&lt;LineBreak/&gt;Note that this operation requires Admin privileges..
+        /// </summary>
+        public static string Dialogs_DisabledService_msg_Info {
+            get {
+                return ResourceManager.GetString("Dialogs_DisabledService_msg_Info", resourceCulture);
             }
         }
         

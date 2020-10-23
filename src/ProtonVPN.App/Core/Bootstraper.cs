@@ -153,10 +153,18 @@ namespace ProtonVPN.Core
 
         private void StartVpnService()
         {
-            if (Resolve<BaseFilteringEngineService>().Running())
+            if (!Resolve<BaseFilteringEngineService>().Running())
             {
-                _ = StartService(Resolve<MonitoredVpnService>());
+                return;
             }
+
+            var service = Resolve<MonitoredVpnService>();
+            if (!service.Enabled())
+            {
+                return;
+            }
+
+            _ = StartService(service);
         }
 
         private async Task<bool> SessionExpired()

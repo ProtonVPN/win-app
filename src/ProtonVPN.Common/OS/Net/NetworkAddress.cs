@@ -26,12 +26,11 @@ namespace ProtonVPN.Common.OS.Net
                 if (IsCidr())
                 {
                     var parts = GetCidrParts();
-                    if (parts.Length < 4)
-                    {
-                        return string.Empty;
-                    }
+                    var mask = StrMaskToUint(parts[4]);
+                    var ipUint = GetIpUint(IPAddress.Parse(string.Join(".", parts.Take(4))));
+                    var ipNetworkOrder = (uint)IPAddress.HostToNetworkOrder((int)(ipUint & mask));
 
-                    ip = string.Join(".", parts.Take(4));
+                    return new IPAddress(ipNetworkOrder).ToString();
                 }
 
                 return IpValid(ip) ? ip : string.Empty;
@@ -59,6 +58,17 @@ namespace ProtonVPN.Common.OS.Net
             }
         }
 
+        public string GetCidrString()
+        {
+            if (IsCidr())
+            {
+                var parts = GetCidrParts();
+                return Ip + "/" + parts[4];
+            }
+
+            return Ip;
+        }
+
         public bool Valid()
         {
             if (IsCidr())
@@ -82,14 +92,32 @@ namespace ProtonVPN.Common.OS.Net
 
         private string GetMask(string bits)
         {
-            var mask = 0xffffffff;
-            mask <<= (32 - Convert.ToInt32(bits));
+            var mask = StrMaskToUint(bits);
             return new IPAddress((uint)IPAddress.HostToNetworkOrder((int)mask)).ToString();
         }
 
         private string[] GetCidrParts()
         {
             return _address.Split('.', '/');
+        }
+
+        private uint GetIpUint(IPAddress address)
+        {
+            var bytes = address.GetAddressBytes();
+            var ip = (uint)bytes[3] << 0;
+            ip += (uint)bytes[2] << 8;
+            ip += (uint)bytes[1] << 16;
+            ip += (uint)bytes[0] << 24;
+
+            return ip;
+        }
+
+        private uint StrMaskToUint(string strMask)
+        {
+            var mask = 0xffffffff;
+            mask <<= (32 - Convert.ToInt32(strMask));
+
+            return mask;
         }
     }
 }

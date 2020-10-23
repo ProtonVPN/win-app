@@ -5,6 +5,7 @@
 #include "BestInterface.h"
 #include "NetInterface.h"
 #include "Route.h"
+#include "InterfaceMetric.h"
 
 #include <string>
 #include <set>
@@ -128,6 +129,30 @@ extern "C" EXPORT long NetworkUtilAddDefaultGatewayForIface(const GUID * ifaceId
 extern "C" EXPORT long NetworkUtilDeleteDefaultGatewayForIface(const GUID * ifaceId, wchar_t* gatewayAddr)
 {
     if (!Proton::NetworkUtil::Route::DeleteDefaultGatewayForIface(ifaceId, gatewayAddr))
+    {
+        return 1;
+    }
+
+    return 0;
+}
+
+extern "C" EXPORT long SetLowestTapMetric(const GUID * ifaceId)
+{
+    Proton::NetworkUtil::Route::IfaceInfo info{};
+    if (GetIfaceInfo(*ifaceId, info) &&
+        Proton::NetworkUtil::InterfaceMetric::instance()->SetLowestMetric(info.Luid))
+	{
+        return 1;
+	}
+
+    return 0;
+}
+
+extern "C" EXPORT long RestoreDefaultTapMetric(const GUID * ifaceId)
+{
+    Proton::NetworkUtil::Route::IfaceInfo info{};
+    if (GetIfaceInfo(*ifaceId, info) &&
+        Proton::NetworkUtil::InterfaceMetric::instance()->RestoreDefaultMetric(info.Luid))
     {
         return 1;
     }

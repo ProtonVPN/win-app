@@ -53,9 +53,9 @@ namespace ProtonVPN.Service.Firewall
 
         public bool LeakProtectionEnabled { get; private set; }
 
-        public void EnableLeakProtection(string serverIp)
+        public void EnableLeakProtection(FirewallParams firewallParams)
         {
-            PermitOpenVpnServerAddress(serverIp);
+            PermitOpenVpnServerAddress(firewallParams.ServerIp);
 
             if (LeakProtectionEnabled)
                 return;
@@ -65,21 +65,29 @@ namespace ProtonVPN.Service.Firewall
                 _logger.Info("Firewall: Blocking internet");
 
                 var tapInterface = _networkInterfaces.Interface(_config.OpenVpn.TapAdapterDescription);
+                if (firewallParams.DnsLeakOnly)
+                {
+                    BlockDns(3);
+                    PermitTunnelDns(tapInterface.Id, 4);
+                }
+                else
+                {
+                    PermitTunnelDns(tapInterface.Id, 4);
+                    PermitDhcp(4);
+                    PermitFromNetworkInterface(tapInterface.Id, 4);
+                    PermitFromApp(4);
+                    PermitFromService(4);
+                    PermitFromUpdateService(4);
 
-                PermitDhcp(4);
-                PermitFromNetworkInterface(tapInterface.Id, 4);
-                PermitFromApp(4);
-                PermitFromService(4);
-                PermitFromUpdateService(4);
+                    BlockDns(3);
 
-                BlockDns(3);
+                    PermitIpv4Loopback(2);
+                    PermitIpv6Loopback(2);
+                    PermitPrivateNetwork(2);
 
-                PermitIpv4Loopback(2);
-                PermitIpv6Loopback(2);
-                PermitPrivateNetwork(2);
-
-                BlockAllIpv4Network(1);
-                BlockAllIpv6Network(1);
+                    BlockAllIpv4Network(1);
+                    BlockAllIpv6Network(1);
+                }
 
                 LeakProtectionEnabled = true;
 
@@ -112,6 +120,19 @@ namespace ProtonVPN.Service.Firewall
             }
         }
 
+        public void PermitTunnelDns(string id, uint weight)
+        {
+            _ipLayer.ApplyToIpv4(layer =>
+            {
+                _sublayer.CreateNetInterfaceDnsFilter(
+                    new DisplayData("ProtonVPN permit VPN tunnel", "Permit TAP adapter traffic"),
+                    Action.HardPermit,
+                    layer,
+                    weight,
+                    id);
+            });
+        }
+
         private void BlockDns(uint weight)
         {
             _ipLayer.ApplyToIpv4(layer =>
@@ -125,6 +146,27 @@ namespace ProtonVPN.Service.Firewall
             });
 
             _ipLayer.ApplyToIpv4(layer =>
+            {
+                _sublayer.CreateRemoteUdpPortFilter(new DisplayData(
+                        "ProtonVPN block DNS",
+                        "Block UDP 53 port"),
+                    Action.HardBlock,
+                    layer,
+                    weight,
+                    53);
+            });
+
+            _ipLayer.ApplyToIpv6(layer =>
+            {
+                _sublayer.CreateRemoteTcpPortFilter(new DisplayData(
+                        "ProtonVPN block DNS", "Block TCP 53 port"),
+                    Action.HardBlock,
+                    layer,
+                    weight,
+                    53);
+            });
+
+            _ipLayer.ApplyToIpv6(layer =>
             {
                 _sublayer.CreateRemoteUdpPortFilter(new DisplayData(
                         "ProtonVPN block DNS",
@@ -304,6 +346,30 @@ namespace ProtonVPN.Service.Firewall
                     layer,
                     weight,
                     new NetworkAddress("192.168.0.0", "255.255.0.0"));
+            });
+
+            _ipLayer.ApplyToIpv4(layer =>
+            {
+                _sublayer.CreateRemoteNetworkIPv4Filter(
+                    new DisplayData(
+                        "ProtonVPN permit private network",
+                        ""),
+                    Action.HardPermit,
+                    layer,
+                    weight,
+                    new NetworkAddress("224.0.0.0", "240.0.0.0"));
+            });
+
+            _ipLayer.ApplyToIpv4(layer =>
+            {
+                _sublayer.CreateRemoteNetworkIPv4Filter(
+                    new DisplayData(
+                        "ProtonVPN permit private network",
+                        ""),
+                    Action.HardPermit,
+                    layer,
+                    weight,
+                    new NetworkAddress("255.255.255.255", "255.255.255.255"));
             });
         }
 

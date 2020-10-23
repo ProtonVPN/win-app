@@ -38,6 +38,10 @@ namespace ProtonVPN.Common.OS.Services
 
         public bool Running() => _origin.Running();
 
+        public bool Enabled() => _origin.Enabled();
+
+        public void Enable() => _origin.Enable();
+
         public Task<Result> StartAsync(CancellationToken cancellationToken)
         {
             return _retryPolicy.ExecuteAsync(ct => _origin.StartAsync(ct), cancellationToken);
