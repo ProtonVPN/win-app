@@ -31,7 +31,7 @@ namespace ProtonVPN.NetworkFilter
         private const uint ErrorTimeout = 0x80320012;
         private const int RetryCount = 3;
 
-        private static readonly RetryPolicy _retryPolicy = Policy
+        private static readonly RetryPolicy RetryPolicy = Policy
             .Handle<NetworkFilterException>(e => e.Code == ErrorTimeout)
             .Retry(RetryCount);
 
@@ -377,6 +377,32 @@ namespace ProtonVPN.NetworkFilter
             return id;
         }
 
+        public static Guid CreateNetInterfaceDnsFilter(
+            IntPtr sessionHandle,
+            Guid providerId,
+            Guid sublayerId,
+            DisplayData displayData,
+            Layer layer,
+            Action action,
+            uint weight,
+            string interfaceId)
+        {
+            var id = Guid.Empty;
+
+            AssertSuccess(() => PInvoke.CreateNetInterfaceDnsFilter(
+                sessionHandle,
+                ref providerId,
+                ref sublayerId,
+                ref displayData,
+                (uint)layer,
+                (uint)action,
+                weight,
+                interfaceId,
+                ref id));
+
+            return id;
+        }
+
         public static Guid CreateLoopbackFilter(
             IntPtr sessionHandle,
             Guid providerId,
@@ -403,7 +429,7 @@ namespace ProtonVPN.NetworkFilter
 
         private static void AssertSuccess(Func<uint> function)
         {
-            _retryPolicy.Execute(() => AssertSuccessInner(function));
+            RetryPolicy.Execute(() => AssertSuccessInner(function));
         }
 
         private static void AssertSuccessInner(Func<uint> function)

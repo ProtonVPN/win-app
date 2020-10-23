@@ -47,6 +47,10 @@ namespace ProtonVPN.Common.OS.Services
 
         public bool Running() => _origin.Running();
 
+        public bool Enabled() => _origin.Enabled();
+
+        public void Enable() => _origin.Enable();
+
         public async Task<Result> StartAsync()
         {
             try

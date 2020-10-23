@@ -132,6 +132,8 @@ namespace ProtonVPN.Core.Service.Vpn
             {
                 Ports = portConfig,
                 CustomDns = config.CustomDns.ToList(),
+                SplitTunnelMode = config.SplitTunnelMode,
+                SplitTunnelIPs = config.SplitTunnelIPs.ToList()
             };
         }
 

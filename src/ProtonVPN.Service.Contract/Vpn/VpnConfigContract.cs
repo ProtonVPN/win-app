@@ -19,6 +19,7 @@
 
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using ProtonVPN.Common;
 
 namespace ProtonVPN.Service.Contract.Vpn
 {
@@ -30,5 +31,11 @@ namespace ProtonVPN.Service.Contract.Vpn
 
         [DataMember(IsRequired = true)]
         public List<string> CustomDns { get; set; }
+
+        [DataMember(IsRequired = true)]
+        public SplitTunnelMode SplitTunnelMode { get; set; }
+
+        [DataMember(IsRequired = true)]
+        public List<string> SplitTunnelIPs { get; set; }
     }
 }

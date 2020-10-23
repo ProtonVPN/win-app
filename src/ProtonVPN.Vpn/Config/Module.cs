@@ -72,7 +72,7 @@ namespace ProtonVPN.Vpn.Config
 
             return new LoggingWrapper(
                 logger,
-                new DefaultGatewayWrapper(
+                new NetworkSettingsWrapper(
                     logger,
                     config.TapAdapterId,
                     config.TapAdapterDescription,

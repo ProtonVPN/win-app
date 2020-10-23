@@ -19,6 +19,7 @@
 
 using ProtonVPN.Vpn.Common;
 using System.Collections.Generic;
+using ProtonVPN.Common;
 
 namespace ProtonVPN.Vpn.OpenVpn
 {
@@ -28,17 +29,28 @@ namespace ProtonVPN.Vpn.OpenVpn
             VpnEndpoint endpoint,
             int managementPort,
             string password,
-            IReadOnlyCollection<string> customDns)
+            IReadOnlyCollection<string> customDns,
+            SplitTunnelMode splitTunnelMode,
+            IReadOnlyCollection<string> splitTunnelIPs)
         {
             Endpoint = endpoint;
             ManagementPort = managementPort;
             Password = password;
             CustomDns = customDns;
+            SplitTunnelMode = splitTunnelMode;
+            SplitTunnelIPs = splitTunnelIPs;
         }
 
         public VpnEndpoint Endpoint { get; }
+
         public int ManagementPort { get; }
+
         public string Password { get; }
+
         public IReadOnlyCollection<string> CustomDns { get; }
+
+        public SplitTunnelMode SplitTunnelMode { get; }
+
+        public IReadOnlyCollection<string> SplitTunnelIPs { get; }
     }
 }

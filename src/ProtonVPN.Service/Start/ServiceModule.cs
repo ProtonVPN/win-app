@@ -67,7 +67,8 @@ namespace ProtonVPN.Service.Start
                         new LoggingService(
                             c.Resolve<ILogger>(),
                             new DriverService(
-                                c.Resolve<Common.Configuration.Config>().SplitTunnelServiceName))))))
+                                c.Resolve<Common.Configuration.Config>().SplitTunnelServiceName,
+                                c.Resolve<IOsProcesses>()))))))
                 .AsImplementedInterfaces().AsSelf().SingleInstance();
 
             builder.RegisterType<SettingsStorage>().SingleInstance();
@@ -100,7 +101,7 @@ namespace ProtonVPN.Service.Start
             builder.RegisterType<Firewall.Firewall>().AsImplementedInterfaces().SingleInstance();
             builder.Register(c => c.Resolve<IpFilter>().Instance.CreateSublayer(
                 new NetworkFilter.DisplayData{ Name = "ProtonVPN Firewall filters" },
-                1)).SingleInstance();
+                10000)).SingleInstance();
 
             builder.RegisterType<IpFilter>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterType<IncludeModeApps>().AsSelf().SingleInstance();

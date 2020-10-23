@@ -104,7 +104,7 @@ namespace ProtonVPN.Vpn.Connection
 
             var port = _managementPorts.Port();
             var password = ManagementPassword();
-            var processParams = new OpenVpnProcessParams(_endpoint, port, password, _config.CustomDns);
+            var processParams = new OpenVpnProcessParams(_endpoint, port, password, _config.CustomDns, _config.SplitTunnelMode, _config.SplitTunnelIPs);
 
             cancellationToken.ThrowIfCancellationRequested();
 

@@ -56,7 +56,7 @@
     <Compile Include="Common\VpnStateExtensions.cs" />
     <Compile Include="Config\Module.cs" />
     <Compile Include="Connection\BestPortWrapper.cs" />
-    <Compile Include="Connection\DefaultGatewayWrapper.cs" />
+    <Compile Include="Connection\NetworkSettingsWrapper.cs" />
     <Compile Include="Connection\IVpnEndpointCandidates.cs" />
     <Compile Include="Connection\QueuingRequestsWrapper.cs" />
     <Compile Include="Connection\ReconnectingWrapper.cs" />
@@ -75,6 +75,8 @@
     <Compile Include="OpenVpn\Arguments\LocalHostArguments.cs" />
     <Compile Include="OpenVpn\Arguments\EndpointArguments.cs" />
     <Compile Include="OpenVpn\Arguments\BindArguments.cs" />
+    <Compile Include="OpenVpn\Arguments\LowDefaultRouteArgument.cs" />
+    <Compile Include="OpenVpn\Arguments\SplitTunnelRoutesArgument.cs" />
     <Compile Include="OpenVpn\Arguments\TlsVerifyArguments.cs" />
     <Compile Include="OpenVpn\Arguments\ManagementArguments.cs" />
     <Compile Include="OpenVpn\Arguments\NoBindArguments.cs" />

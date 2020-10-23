@@ -29,15 +29,23 @@ namespace ProtonVPN.Common.Vpn
 
         public IReadOnlyCollection<string> CustomDns { get; }
 
+        public SplitTunnelMode SplitTunnelMode { get; }
+
+        public IReadOnlyCollection<string> SplitTunnelIPs { get; }
+
         public VpnConfig(
             IReadOnlyDictionary<VpnProtocol, IReadOnlyCollection<int>> portConfig,
-            IReadOnlyCollection<string> customDns)
+            IReadOnlyCollection<string> customDns,
+            SplitTunnelMode splitTunnelMode,
+            IReadOnlyCollection<string> splitTunnelIPs)
         {
             AssertPortsValid(portConfig);
             AssertCustomDnsValid(customDns);
 
             Ports = portConfig;
             CustomDns = customDns;
+            SplitTunnelMode = splitTunnelMode;
+            SplitTunnelIPs = splitTunnelIPs;
         }
 
         private void AssertCustomDnsValid(IReadOnlyCollection<string> customDns)

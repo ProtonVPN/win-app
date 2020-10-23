@@ -201,9 +201,13 @@
     <Compile Include="Core\MVVM\Converters\ZeroToBoolConverter.cs" />
     <Compile Include="Core\Service\BaseFilteringEngineService.cs" />
     <Compile Include="Core\Service\Vpn\ReconnectManager.cs" />
+    <Compile Include="Modals\DisabledServiceModalView.xaml.cs">
+      <DependentUpon>DisabledServiceModalView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modals\BfeWarningModalView.xaml.cs">
       <DependentUpon>BfeWarningModalView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Modals\DisabledServiceModalViewModel.cs" />
     <Compile Include="Modals\BfeWarningModalViewModel.cs" />
     <Compile Include="Modals\RebootModalView.xaml.cs">
       <DependentUpon>RebootModalView.xaml</DependentUpon>
@@ -638,6 +642,12 @@
       <DependentUpon>FormErrorsPanelView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Forms\FormErrorsPanelViewModel.cs" />
+    <Compile Include="Views\Icons\ArrowUp.xaml.cs">
+      <DependentUpon>ArrowUp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Icons\ArrowDown.xaml.cs">
+      <DependentUpon>ArrowDown.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Icons\Checkbox.xaml.cs">
       <DependentUpon>Checkbox.xaml</DependentUpon>
     </Compile>
@@ -673,6 +683,9 @@
     </Compile>
     <Compile Include="Views\Icons\SecureStreaming.xaml.cs">
       <DependentUpon>SecureStreaming.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Icons\Shield.xaml.cs">
+      <DependentUpon>Shield.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Icons\Timedout.xaml.cs">
       <DependentUpon>Timedout.xaml</DependentUpon>
@@ -779,6 +792,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="FlashNotifications\UpdateFlashNotification.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Modals\DisabledServiceModalView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -910,6 +927,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Icons\ArrowUp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Icons\ArrowDown.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Icons\Checkbox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -947,6 +972,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Icons\SecureStreaming.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Icons\Shield.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

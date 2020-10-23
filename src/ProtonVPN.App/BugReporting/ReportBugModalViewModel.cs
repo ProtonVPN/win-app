@@ -57,7 +57,7 @@ namespace ProtonVPN.BugReporting
 
         public ICommand SendReportCommand { get; set; }
         public ICommand BackCommand { get; set; }
-        public ICommand RetryCommand { get; set; }
+        public RelayCommand RetryCommand { get; set; }
         public ICommand CloseErrorCommand { get; set; }
         public FormViewModel FormViewModel { get; set; }
 
@@ -120,6 +120,7 @@ namespace ProtonVPN.BugReporting
         private void ShowFailureView()
         {
             OverlayViewModel = _failureViewModel;
+            RetryCommand.RaiseCanExecuteChanged();
         }
 
         private async void SendReport()

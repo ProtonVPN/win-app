@@ -27,6 +27,7 @@ using ProtonVPN.BugReporting.Diagnostic;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.OS.Processes;
 using ProtonVPN.Common.OS.Services;
 using ProtonVPN.Common.Storage;
 using ProtonVPN.Common.Text.Serialization;
@@ -184,7 +185,8 @@ namespace ProtonVPN.Core.Ioc
                                 new LoggingService(
                                     c.Resolve<ILogger>(),
                                     new SystemService(
-                                        c.Resolve<Common.Configuration.Config>().ServiceName))))))
+                                        c.Resolve<Common.Configuration.Config>().ServiceName,
+                                        c.Resolve<IOsProcesses>()))))))
                 .SingleInstance();
             builder.Register(c =>
                 new AppUpdateSystemService(
@@ -194,7 +196,8 @@ namespace ProtonVPN.Core.Ioc
                                 new LoggingService(
                                     c.Resolve<ILogger>(),
                                     new SystemService(
-                                        c.Resolve<Common.Configuration.Config>().UpdateServiceName))))))
+                                        c.Resolve<Common.Configuration.Config>().UpdateServiceName,
+                                        c.Resolve<IOsProcesses>()))))))
                 .SingleInstance();
 
             builder.RegisterType<VpnServiceManager>().SingleInstance();
@@ -202,7 +205,8 @@ namespace ProtonVPN.Core.Ioc
                 c.Resolve<ILogger>(),
                 c.Resolve<VpnServiceManager>(),
                 c.Resolve<IModals>(),
-                c.Resolve<BaseFilteringEngineService>()))
+                c.Resolve<BaseFilteringEngineService>(),
+                c.Resolve<VpnSystemService>()))
                 .As<IVpnServiceManager>().SingleInstance();
             builder.RegisterType<VpnManager>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<ServerConnector>().SingleInstance();

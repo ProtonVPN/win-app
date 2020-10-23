@@ -48,6 +48,30 @@ namespace ProtonVPN.Common.OS.Services
             }
         }
 
+        public bool Enabled()
+        {
+            try
+            {
+                return _origin.Enabled();
+            }
+            catch (Win32Exception)
+            {
+                return false;
+            }
+        }
+
+        public void Enable()
+        {
+            try
+            {
+                _origin.Enable();
+            }
+            catch (Exception)
+            {
+                // ignored
+            }
+        }
+
         public Task<Result> StartAsync(CancellationToken cancellationToken)
         {
             return Safe(() => _origin.StartAsync(cancellationToken));

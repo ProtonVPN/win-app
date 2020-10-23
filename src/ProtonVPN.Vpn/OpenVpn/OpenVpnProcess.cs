@@ -70,6 +70,19 @@ namespace ProtonVPN.Vpn.OpenVpn
                 .Add(new CustomDnsArguments(processParams.CustomDns))
                 .Add(new TlsVerifyArguments(_config, processParams.Endpoint.Server.Name));
 
+            if (processParams.SplitTunnelMode == SplitTunnelMode.Permit)
+            {
+                arguments.Add(new LowDefaultRouteArgument());
+            }
+
+            if (processParams.SplitTunnelMode != SplitTunnelMode.Disabled &&
+                processParams.SplitTunnelIPs.Count > 0)
+            {
+                arguments.Add(new SplitTunnelRoutesArgument(
+                    processParams.SplitTunnelIPs,
+                    processParams.SplitTunnelMode));
+            }
+
             _startCompletionSource?.TrySetCanceled();
             _startCompletionSource = new TaskCompletionSource<bool>();
 

@@ -17,10 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Linq;
 using ProtonVPN.Service.Settings;
-using System;
-using System.Collections.Generic;
-using System.IO;
 
 namespace ProtonVPN.Service.SplitTunneling
 {
@@ -35,18 +33,9 @@ namespace ProtonVPN.Service.SplitTunneling
 
         public string[] Value()
         {
-            var list = new List<string>
-            {
-                Path.Combine(Environment.SystemDirectory, "svchost.exe")
-            };
-
-            if (_serviceSettings.SplitTunnelSettings.AppPaths == null)
-                return list.ToArray();
-
-            foreach (var path in _serviceSettings.SplitTunnelSettings.AppPaths)
-                list.Add(path);
-
-            return list.ToArray();
+            return _serviceSettings.SplitTunnelSettings.AppPaths == null
+                ? new string[] { }
+                : _serviceSettings.SplitTunnelSettings.AppPaths.ToArray();
         }
     }
 }
