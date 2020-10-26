@@ -41,7 +41,7 @@ namespace ProtonVPN.App.Test.P2PDetection.Blocked
             _httpClients = Substitute.For<IHttpClients>();
             _httpClient = Substitute.For<IHttpClient>();
 
-            _httpClients.Client().Returns(_httpClient);
+            _httpClients.Client(default).ReturnsForAnyArgs(_httpClient);
         }
 
         [TestMethod]

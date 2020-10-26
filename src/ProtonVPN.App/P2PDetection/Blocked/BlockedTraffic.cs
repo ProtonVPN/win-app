@@ -20,6 +20,7 @@
 using ProtonVPN.Common.Helpers;
 using ProtonVPN.Common.OS.Net.Http;
 using System;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace ProtonVPN.P2PDetection.Blocked
@@ -43,8 +44,10 @@ namespace ProtonVPN.P2PDetection.Blocked
             Ensure.NotNull(p2PStatusUri, nameof(p2PStatusUri));
 
             _p2PStatusUri = p2PStatusUri;
-
-            _httpClient = httpClients.Client();
+            _httpClient = httpClients.Client(new HttpClientHandler
+            {
+                UseCookies = false
+            });
             _httpClient.Timeout = timeout;
         }
 
