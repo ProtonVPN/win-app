@@ -262,6 +262,11 @@ namespace ProtonVPN.Sidebar
 
         private void SetUserIp()
         {
+            if (_connected)
+            {
+                return;
+            }
+
             Ip = _userStorage.Location().Ip;
         }
 
