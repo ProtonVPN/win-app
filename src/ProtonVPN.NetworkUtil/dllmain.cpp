@@ -139,8 +139,8 @@ extern "C" EXPORT long NetworkUtilDeleteDefaultGatewayForIface(const GUID * ifac
 extern "C" EXPORT long SetLowestTapMetric(const GUID * ifaceId)
 {
     Proton::NetworkUtil::Route::IfaceInfo info{};
-    if (GetIfaceInfo(*ifaceId, info) &&
-        Proton::NetworkUtil::InterfaceMetric::instance()->SetLowestMetric(info.Luid))
+    if (!GetIfaceInfo(*ifaceId, info) ||
+        !Proton::NetworkUtil::InterfaceMetric::instance()->SetLowestMetric(info.Luid))
 	{
         return 1;
 	}
@@ -151,8 +151,8 @@ extern "C" EXPORT long SetLowestTapMetric(const GUID * ifaceId)
 extern "C" EXPORT long RestoreDefaultTapMetric(const GUID * ifaceId)
 {
     Proton::NetworkUtil::Route::IfaceInfo info{};
-    if (GetIfaceInfo(*ifaceId, info) &&
-        Proton::NetworkUtil::InterfaceMetric::instance()->RestoreDefaultMetric(info.Luid))
+    if (!GetIfaceInfo(*ifaceId, info) ||
+        !Proton::NetworkUtil::InterfaceMetric::instance()->RestoreDefaultMetric(info.Luid))
     {
         return 1;
     }
