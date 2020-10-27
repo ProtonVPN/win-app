@@ -46,6 +46,7 @@ using ProtonVPN.Core.Config;
 using ProtonVPN.Core.Events;
 using ProtonVPN.Core.Ioc;
 using ProtonVPN.Core.Modals;
+using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Network;
 using ProtonVPN.Core.OS.Net;
 using ProtonVPN.Core.Profiles;
@@ -223,6 +224,11 @@ namespace ProtonVPN.Core
 
         private void ShowInitialWindow()
         {
+            if (Resolve<IAppSettings>().StartMinimized != StartMinimizedMode.Disabled)
+            {
+                return;
+            }
+
             var loginWindow = Resolve<LoginWindow>();
             var loginWindowViewModel = Resolve<LoginWindowViewModel>();
             Application.Current.MainWindow = loginWindow;
@@ -455,11 +461,12 @@ namespace ProtonVPN.Core
             loginWindow.DataContext = loginWindowViewModel;
             Application.Current.MainWindow = loginWindow;
             loginWindow.Show();
+            loginWindow.Activate();
         }
 
         private void ShowLoginForm()
         {
-            Resolve<LoginWindowViewModel>().CurrentPageViewModel = Resolve<LoginViewModel>();
+            SwitchToLoginWindow();
         }
 
         private async Task SwitchToAppWindow(bool autoLogin)
@@ -481,7 +488,11 @@ namespace ProtonVPN.Core
             var appWindow = Resolve<AppWindow>();
             appWindow.DataContext = Resolve<MainViewModel>();
             Application.Current.MainWindow = appWindow;
-            appWindow.Show();
+            if (Resolve<IAppSettings>().StartMinimized != StartMinimizedMode.ToSystray)
+            {
+                appWindow.Show();
+            }
+
             Resolve<LoginWindow>().Hide();
 
             await Resolve<Trial.Trial>().Load();

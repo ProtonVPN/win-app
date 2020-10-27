@@ -186,7 +186,6 @@ namespace ProtonVPN.Windows
 
             if (_appSettings.StartMinimized == StartMinimizedMode.ToSystray)
             {
-                Visibility = Visibility.Hidden;
                 SetWindowPlacement(false, true);
                 return;
             }
