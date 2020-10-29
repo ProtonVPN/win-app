@@ -63,10 +63,6 @@ namespace ProtonVPN.Service.KillSwitch
             switch (UpdatedLeakProtectionStatus(state))
             {
                 case true:
-                    if (_firewall.LeakProtectionEnabled)
-                    {
-                        _firewall.DisableLeakProtection();
-                    }
                     var dnsLeakOnly = _serviceSettings.SplitTunnelSettings.Mode == SplitTunnelMode.Permit;
                     var firewallParams = new FirewallParams(state.RemoteIp, dnsLeakOnly);
                     _firewall.EnableLeakProtection(firewallParams);
