@@ -777,6 +777,15 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email not valid.
+        /// </summary>
+        public static string BugReport_msg_EmailNotValid {
+            get {
+                return ResourceManager.GetString("BugReport_msg_EmailNotValid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Processing report....
         /// </summary>
         public static string BugReport_msg_Sending {
@@ -5117,7 +5126,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to IP address should be valid IPv4 address.
+        ///   Looks up a localized string similar to IP not valid.
         /// </summary>
         public static string Settings_Advanced_SplitTunnel_msg_IpInvalid {
             get {

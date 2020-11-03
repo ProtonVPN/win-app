@@ -18,7 +18,6 @@
  */
 
 using System;
-using ProtonVPN.Common.Configuration;
 using ProtonVPN.Core.Settings;
 
 namespace ProtonVPN.Core.Api
@@ -26,9 +25,9 @@ namespace ProtonVPN.Core.Api
     public class ApiAppVersion : IApiAppVersion
     {
         private readonly IAppSettings _appSettings;
-        private readonly Config _appConfig;
+        private readonly Common.Configuration.Config _appConfig;
 
-        public ApiAppVersion(IAppSettings appSettings, Config appConfig)
+        public ApiAppVersion(IAppSettings appSettings, Common.Configuration.Config appConfig)
         {
             _appConfig = appConfig;
             _appSettings = appSettings;

@@ -117,11 +117,15 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 ServerUpdateInterval = TimeSpan.FromHours(3),
 
+                AnnouncementUpdateInterval = TimeSpan.FromHours(12),
+
                 ServerLoadUpdateInterval = TimeSpan.FromMinutes(15),
 
                 P2PCheckInterval = TimeSpan.FromSeconds(30),
 
                 VpnInfoCheckInterval = TimeSpan.FromMinutes(3),
+
+                ClientConfigUpdateInterval = TimeSpan.FromHours(3),
 
                 DefaultCurrency = "USD",
 
@@ -148,8 +152,6 @@ namespace ProtonVPN.Common.Configuration.Source
                 DefaultBlackHoleIps = new List<string> {"62.112.9.168", "104.245.144.186"},
 
                 DefaultLocale = "en",
-
-                MaintenanceTrackerEnabled = true,
 
                 MaintenanceCheckInterval = TimeSpan.FromMinutes(30),
 

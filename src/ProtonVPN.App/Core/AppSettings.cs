@@ -24,6 +24,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using ProtonVPN.Common;
+using ProtonVPN.Core.Announcements;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Native.Structures;
@@ -39,11 +40,12 @@ namespace ProtonVPN.Core
     {
         private readonly ISettingsStorage _storage;
         private readonly UserSettings _userSettings;
-
+        private readonly Common.Configuration.Config _config;
         private readonly HashSet<string> _accessedPerUserProperties = new HashSet<string>();
 
-        public AppSettings(ISettingsStorage storage, UserSettings userSettings)
+        public AppSettings(ISettingsStorage storage, UserSettings userSettings, Common.Configuration.Config config)
         {
+            _config = config;
             _storage = storage;
             _userSettings = userSettings;
         }
@@ -53,6 +55,12 @@ namespace ProtonVPN.Core
         public CachedProfileDataContract Profiles
         {
             get => GetPerUser<CachedProfileDataContract>() ?? new CachedProfileDataContract();
+            set => SetPerUser(value);
+        }
+
+        public IReadOnlyList<AnnouncementItem> Announcements
+        {
+            get => GetPerUser<IReadOnlyList<AnnouncementItem>>() ?? new List<AnnouncementItem>();
             set => SetPerUser(value);
         }
 
@@ -308,9 +316,65 @@ namespace ProtonVPN.Core
             set => Set(value);
         }
 
-        public bool AutoUpdate
+        public int[] OpenVpnTcpPorts
+        {
+            get => Get<int[]>() ?? _config.DefaultOpenVpnTcpPorts;
+            set => Set(value);
+        }
+
+        public int[] OpenVpnUdpPorts
+        {
+            get => Get<int[]>() ?? _config.DefaultOpenVpnUdpPorts;
+            set => Set(value);
+        }
+
+        public StringCollection BlackHoleIps
+        {
+            get
+            {
+                var list = Get<StringCollection>();
+                if (list == null)
+                {
+                    list = new StringCollection();
+                    list.AddRange(_config.DefaultBlackHoleIps.ToArray());
+                }
+
+                return list;
+            }
+
+            set => Set(value);
+        }
+
+        public bool FeatureNetShieldEnabled
         {
             get => Get<bool>();
+            set => Set(value);
+        }
+
+        public bool FeatureMaintenanceTrackerEnabled
+        {
+            get => Get<bool>();
+            set => Set(value);
+        }
+
+        public bool FeaturePollNotificationApiEnabled
+        {
+            get => Get<bool>();
+            set => Set(value);
+        }
+
+        public TimeSpan MaintenanceCheckInterval
+        {
+            get
+            {
+                var value = Get<TimeSpan>();
+                if (value == TimeSpan.Zero)
+                {
+                    value = _config.MaintenanceCheckInterval;
+                }
+
+                return value;
+            }
             set => Set(value);
         }
 

@@ -39,9 +39,13 @@ namespace ProtonVPN.Sidebar
         ITrialStateAware
     {
         public CountriesViewModel Countries { get; }
+
         public SidebarProfilesViewModel Profiles { get; }
+
         public ConnectionStatusViewModel ConnectionStatus { get; }
+
         public FlashNotificationViewModel FlashNotification { get; }
+
         private readonly IAppSettings _appSettings;
 
         private const int CountriesTab = 0;

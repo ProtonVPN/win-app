@@ -18,9 +18,11 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using ProtonVPN.Common;
+using ProtonVPN.Core.Announcements;
 using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Native.Structures;
 using ProtonVPN.Core.Profiles.Cached;
@@ -75,5 +77,13 @@ namespace ProtonVPN.Core.Settings
         StringCollection AlternativeApiBaseUrls { set; get; }
         string ActiveAlternativeApiBaseUrl { set; get; }
         bool DoHEnabled { get; set; }
+        IReadOnlyList<AnnouncementItem> Announcements { get; set; }
+        int[] OpenVpnTcpPorts { get; set; }
+        int[] OpenVpnUdpPorts { get; set; }
+        StringCollection BlackHoleIps { get; set; }
+        bool FeatureNetShieldEnabled { get; set; }
+        bool FeatureMaintenanceTrackerEnabled { get; set; }
+        bool FeaturePollNotificationApiEnabled { get; set; }
+        TimeSpan MaintenanceCheckInterval { get; set; }
     }
 }

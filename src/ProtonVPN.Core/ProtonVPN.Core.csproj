@@ -87,7 +87,13 @@
     <Compile Include="..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Announcements\AnnouncementItem.cs" />
+    <Compile Include="Announcements\AnnouncementCache.cs" />
+    <Compile Include="Announcements\AnnouncementService.cs" />
+    <Compile Include="Announcements\IAnnouncementCache.cs" />
+    <Compile Include="Announcements\IAnnouncements.cs" />
     <Compile Include="Api\ApiAppVersion.cs" />
+    <Compile Include="Api\Contracts\AnnouncementsResponse.cs" />
     <Compile Include="Api\Contracts\EventResponse.cs" />
     <Compile Include="Api\Contracts\ServerStatusResponse.cs" />
     <Compile Include="Api\Contracts\SessionsResponse.cs" />
@@ -301,7 +307,9 @@
     <Compile Include="User\PlanStatus.cs" />
     <Compile Include="User\UserLocationEventArgs.cs" />
     <Compile Include="User\UserLocationState.cs" />
+    <Compile Include="Config\IClientConfig.cs" />
     <Compile Include="Vpn\IVpnStateAware.cs" />
+    <Compile Include="Config\ClientConfig.cs" />
     <Compile Include="Vpn\VpnState.cs" />
     <Compile Include="Vpn\VpnStateChangedEventArgs.cs" />
     <Compile Include="Window\IMainWindowState.cs" />

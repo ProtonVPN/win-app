@@ -130,52 +130,36 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBox}">
-                    <Grid>
-                        <Border Name="border"
+                    <Border Name="border"
                             Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             SnapsToDevicePixels="True">
-                            <Grid>
-                                <ScrollViewer x:Name="PART_ContentHost" Panel.ZIndex="2" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
-                                <Label Panel.ZIndex="1"
-                                        BorderBrush="{x:Null}"
-                                        BorderThickness="0"
-                                        Background="{x:Null}"
-                                        IsHitTestVisible="False"
-                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                        Margin="{TemplateBinding Padding}"
-                                        Foreground="Silver"
-                                        Content="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
-                                    <Label.Style>
-                                        <Style TargetType="Label">
-                                            <Setter Property="Visibility" Value="Hidden"/>
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding Text, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Value="">
-                                                    <Setter Property="Visibility" Value="Visible"/>
-                                                </DataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </Label.Style>
-                                </Label>
-                            </Grid>
-                        </Border>
-                        <Border x:Name="errorBorder"
-                                Margin="-2,0,-2,0"
-                                Background="{x:Null}"
-                                BorderBrush="Red"
-                                BorderThickness="1"
-                                SnapsToDevicePixels="True"
-                                Visibility="Hidden"/>
-                    </Grid>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="Validation.HasError" Value="True">
-                            <Setter TargetName="errorBorder" Property="Visibility" Value="Visible"/>
-                            <Setter TargetName="PART_ContentHost" Property="ToolTip"
-                                Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Validation.Errors)[0].ErrorContent}"/>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
+                        <Grid>
+                            <ScrollViewer x:Name="PART_ContentHost" Panel.ZIndex="2" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                            <Label Panel.ZIndex="1"
+                                    BorderBrush="{x:Null}"
+                                    BorderThickness="0"
+                                    Background="{x:Null}"
+                                    IsHitTestVisible="False"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    Margin="{TemplateBinding Padding}"
+                                    Foreground="Silver"
+                                    Content="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                                <Label.Style>
+                                    <Style TargetType="Label">
+                                        <Setter Property="Visibility" Value="Hidden"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Text, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Value="">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Label.Style>
+                            </Label>
+                        </Grid>
+                    </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

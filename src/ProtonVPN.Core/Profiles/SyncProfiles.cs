@@ -17,6 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Threading;
@@ -24,12 +29,6 @@ using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Profiles.Cached;
 using ProtonVPN.Core.Profiles.Comparers;
 using ProtonVPN.Core.Settings;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using ProtonVPN.Common.Configuration;
 
 namespace ProtonVPN.Core.Profiles
 {
@@ -64,7 +63,14 @@ namespace ProtonVPN.Core.Profiles
 
         private ProfileSyncStatus _syncStatus = ProfileSyncStatus.Succeeded;
 
-        public SyncProfiles(Config appConfig, ILogger logger, IAppSettings appSettings, Profiles profiles, CachedProfiles cachedProfiles, ApiProfiles apiProfiles, SyncProfile syncProfile)
+        public SyncProfiles(
+            Common.Configuration.Config appConfig,
+            ILogger logger,
+            IAppSettings appSettings,
+            Profiles profiles,
+            CachedProfiles cachedProfiles,
+            ApiProfiles apiProfiles,
+            SyncProfile syncProfile)
         {
             _appConfig = appConfig;
             _logger = logger;
@@ -321,7 +327,7 @@ namespace ProtonVPN.Core.Profiles
         }
 
         private DateTime? _changesSyncedAt;
-        private readonly Config _appConfig;
+        private readonly Common.Configuration.Config _appConfig;
 
         private DateTime ChangesSyncedAt
         {

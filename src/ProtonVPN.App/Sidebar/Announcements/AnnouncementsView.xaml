@@ -1,0 +1,132 @@
+﻿<!--
+Copyright (c) 2020 Proton Technologies AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<UserControl x:Class="ProtonVPN.Sidebar.Announcements.AnnouncementsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
+             xmlns:announcements="clr-namespace:ProtonVPN.Sidebar.Announcements"
+             d:DataContext="{d:DesignInstance announcements:AnnouncementsViewModel}"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style x:Key="ToggleButton" TargetType="ToggleButton" BasedOn="{StaticResource EmptyToggleButton}">
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="IsChecked" Value="{Binding ShowAnnouncements, Mode=TwoWay}"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+        <Style x:Key="AnnouncementsPopup" TargetType="Popup">
+            <Setter Property="IsOpen" Value="{Binding IsChecked, ElementName=TogglePopupButton, Mode=TwoWay}"/>
+            <Setter Property="StaysOpen" Value="False"/>
+            <Setter Property="VerticalOffset" Value="5"/>
+            <Setter Property="AllowsTransparency" Value="True"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="PlacementTarget" Value="{Binding ElementName=TogglePopupButton}"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid Visibility="{Binding HasAnnouncements, Converter={StaticResource BoolToVis}}">
+        <ToggleButton Style="{StaticResource ToggleButton}"
+                      MouseEnter="OpenPopupButton_MouseEnter"
+                      MouseLeave="OpenPopupButton_MouseLeave"
+                      x:Name="TogglePopupButton">
+            <Grid>
+                <fa:FontAwesome Icon="Bell"
+                                Padding="0"
+                                Foreground="{StaticResource GrayColor}"
+                                FontSize="17"/>
+                <Ellipse Width="10"
+                         Height="10"
+                         Margin="10,-7,0,0"
+                         Stroke="#202128"
+                         StrokeThickness="1"
+                         Fill="{StaticResource PrimaryColor}">
+                    <Ellipse.Resources>
+                        <Style TargetType="Ellipse">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding HasUnread}" Value="True">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Ellipse.Resources>
+                </Ellipse>
+            </Grid>
+        </ToggleButton>
+        <Popup Style="{StaticResource AnnouncementsPopup}" Name="Popup">
+            <Grid>
+                <Polygon Points="0,0 16,0 8,8"
+                         StrokeThickness="0"
+                         Fill="{StaticResource SidebarTabBackgroundColor}"
+                         VerticalAlignment="Top"
+                         RenderTransformOrigin="0.5,0.5"
+                         HorizontalAlignment="Center">
+                    <Polygon.RenderTransform>
+                        <ScaleTransform ScaleY="-1"/>
+                    </Polygon.RenderTransform>
+                </Polygon>
+                <ScrollViewer Template="{StaticResource DarkScrollViewerControlTemplate}"
+                              MaxHeight="160"
+                              Background="{StaticResource SidebarTabBackgroundColor}"
+                              VerticalAlignment="Top"
+                              Margin="0,8,0,0">
+                    <ItemsControl ItemsSource="{Binding Items}" Padding="0,0,10,0">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Margin="15,15,15,0"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate DataType="{x:Type announcements:Announcement}">
+                                <DockPanel Margin="0,0,0,10" MaxWidth="300">
+                                    <Image Source="{Binding Icon}"
+                                       ImageFailed="Image_OnImageFailed"
+                                       MaxHeight="20"/>
+                                    <Button VerticalAlignment="Center"
+                                        Margin="7,0,0,0"
+                                        HorizontalAlignment="Left"
+                                        Command="{Binding DataContext.OpenAnnouncementCommand, RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}}"
+                                        CommandParameter="{Binding}">
+                                        <TextBlock Text="{Binding Label}"
+                                               TextWrapping="Wrap"/>
+                                        <Button.Resources>
+                                            <Style TargetType="{x:Type Button}" BasedOn="{StaticResource ClearStyleButton}">
+                                                <Setter Property="BorderThickness" Value="0"/>
+                                                <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Seen}" Value="True">
+                                                        <Setter Property="Foreground" Value="White"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Button.Resources>
+                                    </Button>
+                                </DockPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Grid>
+        </Popup>
+    </Grid>
+</UserControl>
