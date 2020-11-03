@@ -34,6 +34,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Background" Value="{StaticResource PrimaryColorDimmed}"/>
             </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" Value="#71C191"/>
+                <Setter Property="Foreground" Value="#E6E1E1"/>
+            </Trigger>
         </Style.Triggers>
     </Style>
     <Style x:Key="PrimaryVividModalButton" TargetType="Button" BasedOn="{StaticResource PrimaryModalButton}">

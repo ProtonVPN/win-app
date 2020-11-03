@@ -34,7 +34,6 @@ namespace ProtonVPN.BugReporting
         private ViewModel _currentViewModel;
         private bool _sending;
         private bool _sent;
-        private object _error = string.Empty;
 
         public ReportBugModalViewModel(
             BugReport bugReport,
@@ -52,20 +51,12 @@ namespace ProtonVPN.BugReporting
             SendReportCommand = new RelayCommand(SendReport, CanSend);
             BackCommand = new RelayCommand(Back);
             RetryCommand = new RelayCommand(Retry, CanSend);
-            CloseErrorCommand = new RelayCommand(CloseErrorAction);
         }
 
         public ICommand SendReportCommand { get; set; }
         public ICommand BackCommand { get; set; }
         public RelayCommand RetryCommand { get; set; }
-        public ICommand CloseErrorCommand { get; set; }
         public FormViewModel FormViewModel { get; set; }
-
-        public object Error
-        {
-            get => _error;
-            set => Set(ref _error, value);
-        }
 
         public ViewModel OverlayViewModel
         {
@@ -110,15 +101,15 @@ namespace ProtonVPN.BugReporting
             base.CloseAction();
 
             Sent = false;
-            Error = string.Empty;
             if (OverlayViewModel is FailureViewModel)
             {
                 ClearOverlay();
             }
         }
 
-        private void ShowFailureView()
+        private void ShowFailureView(string error)
         {
+            _failureViewModel.Error = error;
             OverlayViewModel = _failureViewModel;
             RetryCommand.RaiseCanExecuteChanged();
         }
@@ -127,7 +118,6 @@ namespace ProtonVPN.BugReporting
         {
             Sending = true;
             ShowSendingWindow();
-            Error = string.Empty;
 
             var result = FormViewModel.IncludeLogs
                 ? await _bugReport.SendWithLogsAsync(FormViewModel.GetFields())
@@ -138,17 +128,16 @@ namespace ProtonVPN.BugReporting
             if (result.Success)
             {
                 ShowReportSentWindow();
-                Error = string.Empty;
             }
             else
             {
-                ShowFailureView();
+                ShowFailureView(result.Error);
             }
         }
 
         private bool CanSend()
         {
-            return !_sending && FormViewModel.IsValid();
+            return !_sending && !FormViewModel.HasErrors;
         }
 
         private void Retry()
@@ -164,11 +153,6 @@ namespace ProtonVPN.BugReporting
         private void Back()
         {
             ClearOverlay();
-        }
-
-        private void CloseErrorAction()
-        {
-            Error = string.Empty;
         }
     }
 }

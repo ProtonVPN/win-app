@@ -21,22 +21,16 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ProtonVPN.Config
+namespace ProtonVPN.Core.Announcements
 {
-    public interface IVpnConfig
+    public interface IAnnouncements
     {
-        public int[] TcpPorts { get; }
+        public IReadOnlyCollection<AnnouncementItem> Get();
 
-        public int[] UdpPorts { get; }
+        public Task Update();
 
-        public IReadOnlyList<string> BlackHoleIps { get; }
+        public void MarkAsSeen(string id);
 
-        public bool NetShieldEnabled { get; }
-
-        public bool MaintenanceTrackerEnabled { get; }
-
-        public TimeSpan MaintenanceCheckInterval { get; }
-
-        Task Update();
+        public event EventHandler AnnouncementsChanged;
     }
 }

@@ -25,7 +25,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using ProtonVPN.Common.Configuration;
 
 namespace ProtonVPN.Core.Profiles
 {
@@ -39,16 +38,16 @@ namespace ProtonVPN.Core.Profiles
         private readonly ILogger _logger;
         private readonly CachedProfiles _cachedProfiles;
         private readonly IProfileStorageAsync _apiProfiles;
-        private readonly Config _appConfig;
+        private readonly Common.Configuration.Config _appConfig;
 
         private CancellationToken _cancellationToken;
         private bool _failed;
 
-        public SyncProfile(Config appConfig, ILogger logger, CachedProfiles cachedProfiles, ApiProfiles apiProfiles) :
+        public SyncProfile(Common.Configuration.Config appConfig, ILogger logger, CachedProfiles cachedProfiles, ApiProfiles apiProfiles) :
             this(appConfig, logger, cachedProfiles, new NullSafeProfileStorage(apiProfiles))
         { }
 
-        private SyncProfile(Config appConfig, ILogger logger, CachedProfiles cachedProfiles, IProfileStorageAsync apiProfiles)
+        private SyncProfile(Common.Configuration.Config appConfig, ILogger logger, CachedProfiles cachedProfiles, IProfileStorageAsync apiProfiles)
         {
             _appConfig = appConfig;
             _logger = logger;

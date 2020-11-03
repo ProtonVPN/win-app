@@ -35,6 +35,14 @@ namespace ProtonVPN.BugReporting
             TroubleshootCommand = new RelayCommand(TroubleshootAction);
         }
 
+        private string _error;
+
+        public string Error
+        {
+            get => _error;
+            set => Set(ref _error, value);
+        }
+
         public ICommand TroubleshootCommand { get; set; }
 
         private void TroubleshootAction()

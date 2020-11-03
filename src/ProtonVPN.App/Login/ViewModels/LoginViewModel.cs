@@ -244,21 +244,33 @@ namespace ProtonVPN.Login.ViewModels
 
                     Password = "";
                     ShowLoginForm();
+                    await DisableGuestHole();
                 }
             }
             catch (HttpRequestException)
             {
-                if (_guestHoleState.Active || _guestHoleConnector.Servers().Count == 0)
+                if (await DisableGuestHole())
                 {
-                    await _guestHoleConnector.Disconnect();
-                    ShowLoginScreenWithTroubleshoot();
-                    _guestHoleState.SetState(false);
                     return;
                 }
 
                 _guestHoleState.SetState(true);
                 await _guestHoleConnector.Connect();
             }
+        }
+
+        private async Task<bool> DisableGuestHole()
+        {
+            if (_guestHoleState.Active || _guestHoleConnector.Servers().Count == 0)
+            {
+                await _guestHoleConnector.Disconnect();
+                ShowLoginScreenWithTroubleshoot();
+                _guestHoleState.SetState(false);
+
+                return true;
+            }
+
+            return false;
         }
 
         private void ShowLoginScreenWithTroubleshoot()

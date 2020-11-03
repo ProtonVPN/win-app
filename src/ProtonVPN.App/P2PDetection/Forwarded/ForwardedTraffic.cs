@@ -17,10 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Linq;
 using System.Threading.Tasks;
-using ProtonVPN.Config;
 using ProtonVPN.Core.Servers.Models;
+using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.User;
 using ProtonVPN.Core.Vpn;
 
@@ -37,13 +36,13 @@ namespace ProtonVPN.P2PDetection.Forwarded
     /// </remarks>
     internal class ForwardedTraffic : IForwardedTraffic, IVpnStateAware
     {
-        private readonly IVpnConfig _config;
+        private readonly IAppSettings _appSettings;
         private readonly IUserLocationService _userLocationService;
         private Server _server = Server.Empty();
 
-        public ForwardedTraffic(IUserLocationService userLocationService, IVpnConfig config)
+        public ForwardedTraffic(IUserLocationService userLocationService, IAppSettings appSettings)
         {
-            _config = config;
+            _appSettings = appSettings;
             _userLocationService = userLocationService;
         }
 
@@ -72,7 +71,7 @@ namespace ProtonVPN.P2PDetection.Forwarded
                 return false;
             }
 
-            return ip != _server.ExitIp && _config.BlackHoleIps.Contains(ip);
+            return ip != _server.ExitIp && _appSettings.BlackHoleIps.Contains(ip);
         }
     }
 }

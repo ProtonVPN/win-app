@@ -340,5 +340,20 @@ namespace ProtonVPN.Core.Api
                 throw new HttpRequestException(e.Message, e);
             }
         }
+
+        public async Task<ApiResponseResult<AnnouncementsResponse>> GetAnnouncementsAsync()
+        {
+            try
+            {
+                var request = GetAuthorizedRequest(HttpMethod.Get, "core/v4/notifications");
+                using var response = await _client.SendAsync(request).ConfigureAwait(false);
+                var body = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+                return Logged(ApiResponseResult<AnnouncementsResponse>(body, response.StatusCode), "Get announcements");
+            }
+            catch (Exception e) when (e.IsApiCommunicationException())
+            {
+                throw new HttpRequestException(e.Message, e);
+            }
+        }
     }
 }

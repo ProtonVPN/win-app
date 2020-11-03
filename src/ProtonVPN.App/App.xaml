@@ -64,6 +64,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <ResourceDictionary Source="/ProtonVPN.Resource;component/Styles/ClearButton.xaml"/>
                 <ResourceDictionary Source="/ProtonVPN.Resource;component/Styles/Modal.xaml"/>
                 <ResourceDictionary Source="Views/Icons/Gradients.xaml"/>
+                <ResourceDictionary Source="Validation/Validation.xaml"/>
                 <ResourceDictionary Source="Resources/Assets/Styles/Common.xaml"/>
                 <ResourceDictionary Source="Resources/Assets/Styles/ProgressBar.xaml"/>
                 <ResourceDictionary Source="Resources/Assets/Styles/Server.xaml"/>

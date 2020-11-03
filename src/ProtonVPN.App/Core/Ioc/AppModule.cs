@@ -32,7 +32,6 @@ using ProtonVPN.Common.OS.Services;
 using ProtonVPN.Common.Storage;
 using ProtonVPN.Common.Text.Serialization;
 using ProtonVPN.Common.Threading;
-using ProtonVPN.Config;
 using ProtonVPN.Core.Api;
 using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.Auth;
@@ -62,7 +61,6 @@ using ProtonVPN.Settings.SplitTunneling;
 using ProtonVPN.Sidebar;
 using ProtonVPN.Vpn;
 using ProtonVPN.Vpn.Connectors;
-using VpnConfig = ProtonVPN.Config.VpnConfig;
 
 namespace ProtonVPN.Core.Ioc
 {
@@ -226,7 +224,6 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<InstalledApps>().SingleInstance();
             builder.RegisterType<Onboarding.Onboarding>().AsSelf().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<SystemNotification>().AsImplementedInterfaces().SingleInstance();
-            builder.RegisterType<VpnConfig>().As<IVpnConfig>().SingleInstance();
             builder.Register(c => new MonitoredVpnService(
                     c.Resolve<Common.Configuration.Config>(),
                     c.Resolve<VpnSystemService>()))

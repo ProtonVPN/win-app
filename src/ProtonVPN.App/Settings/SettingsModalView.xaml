@@ -338,16 +338,19 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     DockPanel.Dock="Right" VerticalAlignment="Center"
                                     Command="{Binding Ips.AddCommand}"
                                     AutomationProperties.AutomationId="{StaticResource SettingsPlusButton}"/>
-                            <TextBox Style="{StaticResource SettingsPlaceholderTextBox}"
-                                     Margin="0,0,10,0"
-                                     Tag="{translations:Loc Settings_Advanced_SplitTunnel_lbl_Ip_Watermark}"
-                                     Text="{Binding Ips.Ip, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}"
-                                     MaxLength="20" 
-                                     AutomationProperties.AutomationId="{StaticResource InputIpv4Address}">
-                                <TextBox.InputBindings>
-                                    <KeyBinding Key="Return" Command="{Binding Ips.AddCommand}"/>
-                                </TextBox.InputBindings>
-                            </TextBox>
+                            <AdornerDecorator>
+                                <TextBox Style="{StaticResource SettingsPlaceholderTextBox}"
+                                         Validation.ErrorTemplate="{StaticResource RedBorderWithErrorMessageTemplate}"
+                                         Margin="0,0,10,0"
+                                         Tag="{translations:Loc Settings_Advanced_SplitTunnel_lbl_Ip_Watermark}"
+                                         Text="{Binding Ips.Ip, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}"
+                                         MaxLength="20"
+                                         AutomationProperties.AutomationId="{StaticResource InputIpv4Address}">
+                                    <TextBox.InputBindings>
+                                        <KeyBinding Key="Return" Command="{Binding Ips.AddCommand}"/>
+                                    </TextBox.InputBindings>
+                                </TextBox>
+                            </AdornerDecorator>
                         </DockPanel>
                     </StackPanel>
                 </StackPanel>

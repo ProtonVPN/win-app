@@ -35,6 +35,7 @@ using ProtonVPN.Core.User;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Onboarding;
 using ProtonVPN.P2PDetection;
+using ProtonVPN.Sidebar.Announcements;
 using ProtonVPN.Vpn.Connectors;
 
 namespace ProtonVPN.Sidebar
@@ -61,7 +62,8 @@ namespace ProtonVPN.Sidebar
             QuickConnector quickConnector,
             IVpnManager vpnManager,
             VpnConnectionSpeed speedTracker,
-            IUserStorage userStorage)
+            IUserStorage userStorage,
+            AnnouncementsViewModel announcementsViewModel)
         {
             _quickConnector = quickConnector;
             _vpnManager = vpnManager;
@@ -71,10 +73,13 @@ namespace ProtonVPN.Sidebar
 
             QuickConnectCommand = new RelayCommand(QuickConnectAction);
             DisableKillSwitchCommand = new RelayCommand(DisableKillSwitch);
+            Announcements = announcementsViewModel;
 
             _timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
             _timer.Tick += OnSecondPassed;
         }
+
+        public AnnouncementsViewModel Announcements { get; }
 
         public ICommand QuickConnectCommand { get; set; }
         public ICommand DisableKillSwitchCommand { get; set; }
