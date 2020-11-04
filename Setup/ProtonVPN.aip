@@ -54,13 +54,16 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiDirsComponent">
     <ROW Directory="APPDIR" Directory_Parent="TARGETDIR" DefaultDir="APPDIR:." IsPseudoRoot="1"/>
+    <ROW Directory="AppDataFolder" Directory_Parent="TARGETDIR" DefaultDir="APPDAT~1|AppDataFolder" IsPseudoRoot="1"/>
     <ROW Directory="AppData_Dir" Directory_Parent="APPDIR" DefaultDir="AppData"/>
     <ROW Directory="Binaries_Dir" Directory_Parent="APPDIR" DefaultDir="RESOUR~1|Resources"/>
     <ROW Directory="DesktopFolder" Directory_Parent="TARGETDIR" DefaultDir="DESKTO~1|DesktopFolder" IsPseudoRoot="1"/>
     <ROW Directory="LocalAppDataFolder" Directory_Parent="TARGETDIR" DefaultDir="LOCALA~1|LocalAppDataFolder" IsPseudoRoot="1"/>
     <ROW Directory="Logs_Dir" Directory_Parent="ProtonVPN_1_Dir" DefaultDir="Logs"/>
     <ROW Directory="ProgramMenuFolder" Directory_Parent="TARGETDIR" DefaultDir="PROGRA~1|ProgramMenuFolder" IsPseudoRoot="1"/>
+    <ROW Directory="ProtonTechnologiesAG_Dir" Directory_Parent="AppDataFolder" DefaultDir="PROTON~1|Proton Technologies AG"/>
     <ROW Directory="ProtonVPN_1_Dir" Directory_Parent="LocalAppDataFolder" DefaultDir="PROTON~1|ProtonVPN"/>
+    <ROW Directory="ProtonVPN_2_Dir" Directory_Parent="ProtonTechnologiesAG_Dir" DefaultDir="PROTON~1|ProtonVPN"/>
     <ROW Directory="ProtonVPN_Dir" Directory_Parent="ProgramMenuFolder" DefaultDir="PROTON~1|ProtonVPN"/>
     <ROW Directory="TARGETDIR" DefaultDir="SourceDir"/>
     <ROW Directory="Win10_1_Dir" Directory_Parent="x86_Dir" DefaultDir="Win10" DirectoryOptions="3"/>
@@ -134,6 +137,7 @@
     <ROW Component="ProtonVPN.exe" ComponentId="{A6366893-9124-490B-A671-56545084D5CA}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.exe"/>
     <ROW Component="ProtonVPNService.exe" ComponentId="{FF69F947-BECA-41DA-9868-390F00B71BE1}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPNService.exe"/>
     <ROW Component="ProtonVPN_1" ComponentId="{ACB3B68A-E766-4500-839B-16BFD1B73654}" Directory_="APPDIR" Attributes="4" KeyPath="ProtonVPN"/>
+    <ROW Component="ProtonVPN_3" ComponentId="{4FF5EBF7-6718-4D88-87DF-A8A87B8603A3}" Directory_="ProtonVPN_2_Dir" Attributes="0"/>
     <ROW Component="Sentry.PlatformAbstractions.dll" ComponentId="{426B912C-30F2-441C-9C0A-B82E729946F0}" Directory_="APPDIR" Attributes="0" KeyPath="Sentry.PlatformAbstractions.dll"/>
     <ROW Component="Sentry.Protocol.dll" ComponentId="{FAB7F502-0A1C-4B84-BDB7-0217C098C4D4}" Directory_="APPDIR" Attributes="0" KeyPath="Sentry.Protocol.dll"/>
     <ROW Component="Sentry.dll" ComponentId="{AA57D927-5AD1-4BC0-AE4F-5CD31F6D87DF}" Directory_="APPDIR" Attributes="0" KeyPath="Sentry.dll"/>
@@ -242,6 +246,7 @@
     <ROW RemoveFile="_" Condition="(AI_CLEAN_RESOURCES_UNINSTALL = &quot;1&quot;) AND (NOT UPGRADINGPRODUCTCODE)" Options="3"/>
     <ROW RemoveFile="__1" Condition="(AI_CLEAN_RESOURCES_UNINSTALL = &quot;1&quot;) AND (NOT UPGRADINGPRODUCTCODE)" Options="3"/>
     <ROW RemoveFile="__2" Condition="(OLDPRODUCTS)" Options="3"/>
+    <ROW RemoveFile="__3" Options="3"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BootstrapperUISequenceComponent">
     <ROW Action="AI_DetectSoftware" Sequence="101"/>
@@ -432,6 +437,7 @@
     <ROW Directory_="ProtonVPN_Dir" Component_="ProtonVPN" ManualDelete="false"/>
     <ROW Directory_="APPDIR" Component_="APPDIR" ManualDelete="true"/>
     <ROW Directory_="Logs_Dir" Component_="Logs" ManualDelete="true"/>
+    <ROW Directory_="ProtonVPN_2_Dir" Component_="ProtonVPN_3" ManualDelete="true"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCustActComponent">
     <ROW Action="AI_AiRemoveFilesCommit" Type="11777" Source="ResourceCleaner.dll" Target="OnAiRemoveFilesCommit" WithoutSeq="true"/>
@@ -591,6 +597,7 @@
     <ROW Feature_="MainFeature" Component_="GuestHoleServers.json"/>
     <ROW Feature_="MainFeature" Component_="Logs"/>
     <ROW Feature_="MainFeature" Component_="ProtonVPN.Translations.dll"/>
+    <ROW Feature_="MainFeature" Component_="ProtonVPN_3"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
     <ROW Name="protonvpn.exe" SourcePath="images\protonvpn.ico" Index="0"/>
@@ -655,8 +662,8 @@
     <ROW Action="CheckForPendingReboot" Condition="( NOT Installed ) AND ( UILevel = &quot;5&quot; )" Sequence="51"/>
     <ROW Action="RebootAction" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( REBOOT_WINDOW_BTN_PRESSED = &quot;IDYES&quot; )" Sequence="55"/>
     <ROW Action="SetSetupExeName" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( REBOOT_WINDOW_BTN_PRESSED = &quot;IDYES&quot; )" Sequence="54"/>
-    <ROW Action="AI_AiRemoveFilesImmediate" Sequence="3499"/>
     <ROW Action="LaunchAppAfterUpdate" Condition="( NOT Installed AND OLDPRODUCTS ) AND ( REBOOT &lt;&gt; &quot;Force&quot; )" Sequence="6613"/>
+    <ROW Action="AI_AiRemoveFilesImmediate" Sequence="3499"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstallUISequenceComponent">
     <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="749"/>
@@ -713,6 +720,7 @@
     <ROW FileKey="_" Component_="AI_ExePath" DirProperty="AppData_Dir" InstallMode="2"/>
     <ROW FileKey="__1" Component_="ProtonVPN.exe" DirProperty="ProtonVPN_1_Dir" InstallMode="2"/>
     <ROW FileKey="__2" Component_="AI_ExePath" DirProperty="Logs_Dir" InstallMode="1"/>
+    <ROW FileKey="__3" Component_="ProtonVPN" DirProperty="ProtonVPN_2_Dir" InstallMode="2"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiServConfigFailureActionsComponent">
     <ROW MsiServiceConfigFailureActions="ServiceName" Name="[ServiceName]" Event="5" ResetPeriod="1" RebootMessage="[~]" Actions="1[~]1[~]1" DelayActions="1[~]1[~]1" Component_="AI_ExePath"/>
@@ -739,7 +747,7 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.PreReqComponent">
     <ROW PrereqKey="A6D7F21EAEB4C4A901F0979CF110936" DisplayName=".NET Framework 4.7.2" SetupFileUrl="https://download.microsoft.com/download/6/E/4/6E48E8AB-DC00-419E-9704-06DD46E5F81D/NDP472-KB4054530-x86-x64-AllOS-ENU.exe" Location="1" ExactSize="83943272" WinNTVersions="Windows Vista RTM x86, Windows Server 2008 x86, Windows 7 RTM x86, Windows 10 version 1507 x86, Windows 10 version 1511 x86, Windows 10 version 1803 x86, Windows 10 version 1809 x86, Windows 10 version 1903 x86, Windows 10 version 1909 x86" WinNT64Versions="Windows Vista RTM x64, Windows Server 2008 x64, Windows 7 RTM x64, Windows Server 2008 R2 RTM x64, Windows 10 version 1507 x64, Windows 10 version 1511 x64, Windows 10 version 1803 x64, Windows 10 version 1809 x64, Windows Server 2019 x64, Windows 10 version 1903 x64, Windows 10 version 1909 x64" Operator="1" NoUiComLine="/q /norestart" Options="xym" MD5="87450cfa175585b23a76bbd7052ee66b" TargetName=".NET Framework 4.7.2"/>
-    <ROW PrereqKey="FD92F08164915A061A35616A2E484" DisplayName="ProtonVPNTap" VersionMin="1.1.1" SetupFileUrl="ProtonVPNTap-SetupFiles\ProtonVPNTap.exe" Location="0" ExactSize="0" Operator="1" Options="mzf" TargetName="ProtonVPNTap.exe" Feature="FD92F08164915A061A35616A2E484"/>
+    <ROW PrereqKey="FD92F08164915A061A35616A2E484" DisplayName="ProtonVPNTap" VersionMin="1.1.1" SetupFileUrl="ProtonVPNTap-SetupFiles\ProtonVPNTap_1.1.1.exe" Location="0" ExactSize="0" Operator="1" Options="mzf" TargetName="ProtonVPNTap_1.1.1.exe" Feature="FD92F08164915A061A35616A2E484"/>
     <ROW PrereqKey="RequiredApplication_2" DisplayName="Windows 7 x64 security update (KB2992611)" SetupFileUrl="https://download.microsoft.com/download/E/C/5/EC5D4973-A233-4F48-A555-65DF1E6DDA99/Windows6.1-KB2992611-x64.msu" Location="1" ExactSize="0" WinNTVersions="Windows 9x/ME/NT/2000/XP/Vista/Windows 7/Windows 8 x86/Windows 8.1 x86/Windows 10 x86" WinNT64Versions="Windows Vista RTM x64, Windows Server 2008 x64, Windows 8 x64, Windows Server 2012 x64, Windows 8.1 x64, Windows Server 2012 R2 x64, Windows 10 x64, Windows Server x64" Operator="1" NoUiComLine="/quiet /norestart" Options="y"/>
     <ROW PrereqKey="RequiredApplication_3" DisplayName="Windows 7 x86 security update (KB2992611)" SetupFileUrl="https://download.microsoft.com/download/F/1/9/F19ED8C4-B547-49C3-B3EA-759D3613FD75/Windows6.1-KB2992611-x86.msu" Location="1" ExactSize="0" WinNTVersions="Windows Vista RTM x86, Windows Server 2008 x86, Windows 8 x86, Windows 8.1 x86, Windows 10 x86" WinNT64Versions="Windows XP/Vista/Windows 7/Windows 8 x64/Windows 8.1 x64/Windows 10 x64" Operator="1" NoUiComLine="/quiet /norestart" Options="y"/>
     <ROW PrereqKey="Windows7x64securi" DisplayName="Windows 7 x64 security update (KB3033929)" SetupFileUrl="https://download.microsoft.com/download/C/8/7/C87AE67E-A228-48FB-8F02-B2A9A1238099/Windows6.1-KB3033929-x64.msu" Location="1" ExactSize="0" WinNTVersions="Windows 9x/ME/NT/2000/XP/Vista/Windows 7/Windows 8 x86/Windows 8.1 x86/Windows 10 x86" WinNT64Versions="Windows Vista RTM x64, Windows Server 2008 x64, Windows 8 x64, Windows Server 2012 x64, Windows 8.1 x64, Windows Server 2012 R2 x64, Windows 10 x64, Windows Server x64" Operator="1" NoUiComLine="/quiet /norestart" Options="y"/>
