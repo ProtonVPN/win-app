@@ -67,8 +67,8 @@
     <ATTRIBUTE name="CurrentFeature" value="MainFeature"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFilesComponent">
-    <ROW File="tapinstall.exe" Component_="tapinstall.exe" FileName="TAPINS~1.EXE|tapinstall.exe" Attributes="0" SourcePath="..\src\bin\Resources\tap\installer\x64\tapinstall.exe" SelfReg="false" DigSign="true"/>
-    <ROW File="tapinstall.exe_2" Component_="tapinstall.exe_2" FileName="TAPINS~1.EXE|tapinstall.exe" Attributes="0" SourcePath="..\src\bin\Resources\tap\installer\x86\tapinstall.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="tapinstall.exe" Component_="tapinstall.exe" FileName="TAPINS~1.EXE|tapinstall.exe" Attributes="0" SourcePath="..\src\bin\Resources\tap\installer\x64\tapinstall.exe" SelfReg="false"/>
+    <ROW File="tapinstall.exe_2" Component_="tapinstall.exe_2" FileName="TAPINS~1.EXE|tapinstall.exe" Attributes="0" SourcePath="..\src\bin\Resources\tap\installer\x86\tapinstall.exe" SelfReg="false"/>
     <ROW File="OemVista.inf" Component_="OemVista.inf" FileName="OemVista.inf" Attributes="0" SourcePath="..\src\bin\Resources\tap\windows10\x64\OemVista.inf" SelfReg="false"/>
     <ROW File="tapprotonvpn.cat" Component_="OemVista.inf" FileName="TAPPRO~1.CAT|tapprotonvpn.cat" Attributes="0" SourcePath="..\src\bin\Resources\tap\windows10\x64\tapprotonvpn.cat" SelfReg="false"/>
     <ROW File="tapprotonvpn.Sys" Component_="OemVista.inf" FileName="TAPPRO~1.SYS|tapprotonvpn.Sys" Attributes="0" SourcePath="..\src\bin\Resources\tap\windows10\x64\tapprotonvpn.Sys" SelfReg="false"/>
@@ -86,7 +86,7 @@
     <ROW BootstrOptKey="GlobalOptions" GeneralOptions="q" DownloadFolder="[AppDataFolder][|Manufacturer]\[|ProductName]\prerequisites" Options="2"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BuildComponent">
-    <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="1" Languages="en" InstallationType="2" CabsLocation="1" CompressCabs="false" UseLzma="true" LzmaMethod="2" LzmaCompressionLevel="2" PackageType="1" FilesInsideExe="true" ExeIconPath="images\protonvpn.ico" ExtUI="true" UseLargeSchema="true" UACExecutionLevel="2"/>
+    <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="1" PackageFileName="ProtonVPNTap_[|ProductVersion]" Languages="en" InstallationType="2" CabsLocation="1" CompressCabs="false" UseLzma="true" LzmaMethod="2" LzmaCompressionLevel="2" PackageType="1" FilesInsideExe="true" ExeIconPath="images\protonvpn.ico" ExtUI="true" UseLargeSchema="true" ExeName="ProtonVPNTap_[|ProductVersion]" UACExecutionLevel="2"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.DictionaryComponent">
     <ROW Path="&lt;AI_DICTS&gt;ui.ail"/>
