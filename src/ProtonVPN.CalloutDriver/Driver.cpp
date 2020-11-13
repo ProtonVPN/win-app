@@ -15,6 +15,9 @@
 #endif
 
 WDFDEVICE Device = NULL;
+HANDLE injectHandle = nullptr;
+NDIS_HANDLE nbl_pool_handle = nullptr;
+NDIS_HANDLE nb_pool_handle = nullptr;
 
 NTSTATUS
 DriverEntry(
@@ -79,6 +82,50 @@ DriverEntry(
         return status;
     }
 
+    status = FwpsInjectionHandleCreate(AF_INET, FWPS_INJECTION_TYPE_NETWORK, &injectHandle);
+    if (!NT_SUCCESS(status))
+    {
+        WPP_CLEANUP(DriverObject);
+        return status;
+    }
+
+    status = RegisterCallout(deviceObject, BLOCK_DNS_CALLOUT_KEY, BlockDnsBySendingServerFailPacket);
+    if (!NT_SUCCESS(status))
+    {
+        WPP_CLEANUP(DriverObject);
+        return status;
+    }
+
+    NET_BUFFER_LIST_POOL_PARAMETERS nbl_pool_params;
+    NET_BUFFER_POOL_PARAMETERS nb_pool_params;
+
+    RtlZeroMemory(&nbl_pool_params, sizeof(nbl_pool_params));
+    nbl_pool_params.Header.Type = NDIS_OBJECT_TYPE_DEFAULT;
+    nbl_pool_params.Header.Revision = NET_BUFFER_LIST_POOL_PARAMETERS_REVISION_1;
+    nbl_pool_params.Header.Size = sizeof(nbl_pool_params);
+    nbl_pool_params.fAllocateNetBuffer = TRUE;
+    nbl_pool_params.PoolTag = ProtonTAG;
+    nbl_pool_params.DataSize = 0;
+    nbl_pool_handle = NdisAllocateNetBufferListPool(nullptr, &nbl_pool_params);
+    if (nbl_pool_handle == nullptr)
+    {
+        WPP_CLEANUP(DriverObject);
+        return STATUS_INSUFFICIENT_RESOURCES;
+    }
+
+    RtlZeroMemory(&nb_pool_params, sizeof(nb_pool_params));
+    nb_pool_params.Header.Type = NDIS_OBJECT_TYPE_DEFAULT;
+    nb_pool_params.Header.Revision = NET_BUFFER_POOL_PARAMETERS_REVISION_1;
+    nb_pool_params.Header.Size = NDIS_SIZEOF_NET_BUFFER_POOL_PARAMETERS_REVISION_1;
+    nb_pool_params.PoolTag = ProtonTAG;
+    nb_pool_params.DataSize = 0;
+    nb_pool_handle = NdisAllocateNetBufferPool(nullptr, &nb_pool_params);
+    if (nb_pool_handle == nullptr)
+    {
+        WPP_CLEANUP(DriverObject);
+        return STATUS_INSUFFICIENT_RESOURCES;
+    }
+
     TraceEvents(TRACE_LEVEL_INFORMATION, TRACE_DRIVER, "%!FUNC! Exit");
 
     return status;
@@ -95,8 +142,18 @@ DriverUnload(
     TraceEvents(TRACE_LEVEL_INFORMATION, TRACE_DRIVER, "%!FUNC! Entry");
 
     UnregisterCallout(CONNECT_REDIRECT_CALLOUT_KEY);
-
     UnregisterCallout(REDIRECT_UDP_CALLOUT_KEY);
+    UnregisterCallout(BLOCK_DNS_CALLOUT_KEY);
+
+    if (nbl_pool_handle != nullptr)
+    {
+        NdisFreeNetBufferListPool(nbl_pool_handle);
+    }
+
+    if (nb_pool_handle != nullptr)
+    {
+        NdisFreeNetBufferPool(nb_pool_handle);
+    }
 
     // Stop WPP Tracing
     WPP_CLEANUP(WdfDriverWdmGetDriverObject(Driver));

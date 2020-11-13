@@ -214,6 +214,215 @@ void NTAPI RedirectUDPFlow(
 	}
 }
 
+VOID NTAPI CompleteBasicPacketInjection(_In_ VOID*,
+	_Inout_ NET_BUFFER_LIST*,
+	_In_ BOOLEAN)
+{
+}
+
+void PacketDnsReplyInitv4(PDNSPACKETV4 packet)
+{
+	memset(packet, 0, sizeof(DNSPACKETV4));
+	packet->ip.Version = 4;
+	packet->ip.HdrLength = sizeof(WINDIVERT_IPHDR) / sizeof(UINT32);
+	packet->ip.Length = htons(sizeof(DNSPACKETV4));
+	packet->ip.Protocol = IPPROTO_UDP;
+	packet->ip.Id = 0;
+	packet->ip.TTL = 64;
+	packet->udp.Length = ntohs(sizeof(WINDIVERT_UDPHDR) + sizeof(DNSHEADER));
+}
+
+UINT16 CalcChecksum(PVOID data, UINT len)
+{
+	UINT32 sum = 0;
+	const auto* data16 = static_cast<const UINT16*>(data);
+	const size_t len16 = len >> 1;
+
+	for (size_t i = 0; i < len16; i++)
+	{
+		sum += static_cast<UINT32>(data16[i]);
+	}
+
+	if (len & 0x1)
+	{
+		const auto* data8 = static_cast<const UINT8*>(data);
+		sum += static_cast<UINT16>(data8[len - 1]);
+	}
+
+	sum = (sum & 0xFFFF) + (sum >> 16);
+	sum += (sum >> 16);
+	sum = ~sum;
+
+	return static_cast<UINT16>(sum);
+}
+
+DNSPACKETV4 GetDnsResponsePacket(UINT16 transaction_id, UINT32 src_addr, UINT32 dst_addr, UINT16 src_port, UINT16 dst_port)
+{
+	DNSPACKETV4 packet;
+	PacketDnsReplyInitv4(&packet);
+	packet.ip.SrcAddr = src_addr;
+	packet.ip.DstAddr = dst_addr;
+	packet.udp.SrcPort = src_port;
+	packet.udp.DstPort = dst_port;
+	packet.dns.transaction_id = transaction_id;
+	packet.ip.Checksum = CalcChecksum(
+		&packet.ip,
+		packet.ip.HdrLength * sizeof(UINT32));
+
+	return packet;
+}
+
+bool BlockDnsPacket(PNET_BUFFER buffer, UINT32 interface_index, UINT32 subinterface_index)
+{
+	UNREFERENCED_PARAMETER(interface_index);
+	UNREFERENCED_PARAMETER(subinterface_index);
+	
+	const UINT total_len = NET_BUFFER_DATA_LENGTH(buffer);
+	if (total_len < sizeof(WINDIVERT_IPHDR))
+	{
+		return false;
+	}
+
+	auto* ip_header = static_cast<PWINDIVERT_IPHDR>(NdisGetDataBuffer(buffer, sizeof(WINDIVERT_IPHDR), nullptr, 1, 0));
+	if (ip_header == nullptr)
+	{
+		return false;
+	}
+
+	const UINT ip_header_len = ip_header->HdrLength * sizeof(UINT32);
+	if (ip_header->Version != 4 ||
+		RtlUshortByteSwap(ip_header->Length) != total_len ||
+		ip_header->HdrLength < 5 ||
+		ip_header_len > total_len)
+	{
+		return false;
+	}
+
+	if (ip_header->Protocol != IPPROTO_UDP)
+	{
+		return false;
+	}
+
+	auto offset_delta = ip_header_len;
+	
+	NdisAdvanceNetBufferDataStart(buffer, offset_delta, FALSE, nullptr);
+	auto* udp_header = static_cast<PWINDIVERT_UDPHDR>(NdisGetDataBuffer(buffer, sizeof(WINDIVERT_UDPHDR), nullptr, 1, 0));
+
+	if (static_cast<UINT32>(ntohs(udp_header->DstPort)) != 53)
+	{
+		NdisRetreatNetBufferDataStart(buffer, offset_delta, 0, nullptr);
+		return false;
+	}
+
+	const UINT udp_header_len = 8;
+	NdisAdvanceNetBufferDataStart(buffer, udp_header_len, FALSE, nullptr);
+	auto* dns_header = static_cast<PDNSHEADER>(NdisGetDataBuffer(buffer, sizeof(DNSHEADER), nullptr, 1, 0));
+	offset_delta += udp_header_len;
+
+	auto dns_packet = GetDnsResponsePacket(
+		dns_header->transaction_id,
+		ip_header->DstAddr,
+		ip_header->SrcAddr,
+		udp_header->DstPort,
+		udp_header->SrcPort);
+	
+	UINT packet_length = RtlUshortByteSwap(dns_packet.ip.Length);
+	auto* mdl_copy = IoAllocateMdl(&dns_packet, packet_length, FALSE, FALSE, nullptr);
+	MmBuildMdlForNonPagedPool(mdl_copy);
+
+	NET_BUFFER_LIST* cloned_net_buffer_list;
+	auto status = FwpsAllocateNetBufferAndNetBufferList0(
+		nbl_pool_handle,
+		0,
+		0,
+		mdl_copy,
+		0,
+		packet_length,
+		&cloned_net_buffer_list);
+
+	if (!NT_SUCCESS(status))
+	{
+		IoFreeMdl(mdl_copy);
+		NdisRetreatNetBufferDataStart(buffer, offset_delta, 0, nullptr);
+		return false;
+	}
+
+	status = FwpsInjectNetworkReceiveAsync0(
+		injectHandle,
+		nullptr,
+		0,
+		UNSPECIFIED_COMPARTMENT_ID,
+		interface_index,
+		subinterface_index,
+		cloned_net_buffer_list,
+		CompleteBasicPacketInjection,
+		nullptr);
+
+	if (!NT_SUCCESS(status))
+	{
+		FwpsFreeNetBufferList0(cloned_net_buffer_list);
+		IoFreeMdl(mdl_copy);
+		NdisRetreatNetBufferDataStart(buffer, offset_delta, 0, nullptr);
+		return false;
+	}
+
+	FwpsFreeNetBufferList0(cloned_net_buffer_list);
+	IoFreeMdl(mdl_copy);
+	NdisRetreatNetBufferDataStart(buffer, offset_delta, 0, nullptr);
+
+	return true;
+}
+
+void NTAPI BlockDnsBySendingServerFailPacket(
+	IN const FWPS_INCOMING_VALUES* inFixedValues,
+	IN const FWPS_INCOMING_METADATA_VALUES*,
+	IN OUT void* packet,
+	IN const void*,
+	IN const FWPS_FILTER*,
+	IN UINT64,
+	IN OUT FWPS_CLASSIFY_OUT* result)
+{
+	if (packet == nullptr)
+	{
+		return;
+	}
+
+	result->actionType = FWP_ACTION_PERMIT;
+
+	auto* const buffers = static_cast<PNET_BUFFER_LIST>(packet);
+	HANDLE packet_context = nullptr;
+
+	if (NET_BUFFER_LIST_NEXT_NBL(buffers) != nullptr)
+	{
+		return;
+	}
+
+	const auto packet_state = FwpsQueryPacketInjectionState0(injectHandle, buffers, &packet_context);
+	if (packet_state == FWPS_PACKET_INJECTED_BY_SELF ||
+		packet_state == FWPS_PACKET_PREVIOUSLY_INJECTED_BY_SELF)
+	{
+		return;
+	}
+
+	const auto interfaceIndex = static_cast<IF_INDEX>(inFixedValues->incomingValue[FWPS_FIELD_OUTBOUND_IPPACKET_V4_INTERFACE_INDEX].value.uint32);
+	const auto subInterfaceIndex = static_cast<IF_INDEX>(inFixedValues->incomingValue[FWPS_FIELD_OUTBOUND_IPPACKET_V4_SUB_INTERFACE_INDEX].value.uint32);
+	auto blocked = false;
+	auto* buffer = NET_BUFFER_LIST_FIRST_NB(buffers);
+
+    while (buffer != nullptr)
+	{
+		blocked = BlockDnsPacket(buffer, interfaceIndex, subInterfaceIndex);
+		buffer = NET_BUFFER_NEXT_NB(buffer);
+	}
+
+	if (blocked)
+	{
+		result->actionType = FWP_ACTION_BLOCK;
+		result->flags |= FWPS_CLASSIFY_OUT_FLAG_ABSORB;
+		result->rights &= ~FWPS_RIGHT_ACTION_WRITE;
+	}
+}
+
 NTSTATUS NTAPI NotifyFn(
 	IN FWPS_CALLOUT_NOTIFY_TYPE notifyType,
 	IN const GUID* filterKey,

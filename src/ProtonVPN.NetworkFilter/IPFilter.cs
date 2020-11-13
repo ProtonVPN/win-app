@@ -89,11 +89,9 @@ namespace ProtonVPN.NetworkFilter
             return new Callout(id);
         }
 
-        public void DestroyCallout(Callout callout)
+        public void DestroyCallout(Guid key)
         {
-            IpFilterNative.DestroyCallout(
-                Session.Handle,
-                callout.Id);
+            IpFilterNative.DestroyCallout(Session.Handle, key);
         }
     }
 }
