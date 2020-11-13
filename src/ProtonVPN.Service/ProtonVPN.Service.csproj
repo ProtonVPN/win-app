@@ -123,9 +123,9 @@
     <Compile Include="Firewall\Firewall.cs" />
     <Compile Include="Firewall\FirewallException.cs" />
     <Compile Include="SplitTunneling\BestNetworkInterface.cs" />
-    <Compile Include="SplitTunneling\CalloutDriver.cs" />
+    <Compile Include="Driver\CalloutDriver.cs" />
     <Compile Include="SplitTunneling\ConnectRedirectData.cs" />
-    <Compile Include="SplitTunneling\IDriver.cs" />
+    <Compile Include="Driver\IDriver.cs" />
     <Compile Include="SplitTunneling\ISplitTunnelClient.cs" />
     <Compile Include="SplitTunneling\IncludeModeApps.cs" />
     <Compile Include="SplitTunneling\SplitTunnel.cs" />

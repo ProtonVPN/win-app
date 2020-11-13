@@ -84,7 +84,7 @@ namespace ProtonVPN.Common.Configuration
         public string UpdatesPath { get; internal set; }
 
         [Required]
-        public string SplitTunnelServiceName { get; internal set; }
+        public string CalloutServiceName { get; internal set; }
 
         [Required]
         public string LocalAppDataFolder { get; internal set; }

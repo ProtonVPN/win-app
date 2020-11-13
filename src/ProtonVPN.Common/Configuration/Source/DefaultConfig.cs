@@ -81,7 +81,7 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 UpdatesPath = Path.Combine(commonAppDataFolder, "Updates"),
 
-                SplitTunnelServiceName = "ProtonVPNSplitTunnel",
+                CalloutServiceName = "ProtonVPNCallout",
 
                 LocalAppDataFolder = localAppDataFolder,
 

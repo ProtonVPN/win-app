@@ -33,7 +33,6 @@ namespace ProtonVPN.Service.Test.SplitTunnel
     public class SplitTunnelTest
     {
         private IServiceSettings _serviceSettings;
-        private IDriver _calloutDriver;
         private ISplitTunnelClient _splitTunnelClient;
         private IncludeModeApps _reverseSplitTunnelApps;
         private IFilterCollection _appFilter;
@@ -43,7 +42,6 @@ namespace ProtonVPN.Service.Test.SplitTunnel
         public void TestInitialize()
         {
             _serviceSettings = Substitute.For<IServiceSettings>();
-            _calloutDriver = Substitute.For<IDriver>();
             _splitTunnelClient = Substitute.For<ISplitTunnelClient>();
             _appFilter = Substitute.For<IFilterCollection>();
             _reverseSplitTunnelApps = new IncludeModeApps(_serviceSettings);
@@ -137,9 +135,6 @@ namespace ProtonVPN.Service.Test.SplitTunnel
 
             // Act
             splitTunnel.OnVpnConnected(GetConnectedVpnState());
-
-            // Assert
-            _calloutDriver.Received(1).Start();
         }
 
         [TestMethod]
@@ -154,9 +149,6 @@ namespace ProtonVPN.Service.Test.SplitTunnel
 
             // Act
             splitTunnel.OnVpnConnected(GetConnectedVpnState());
-
-            // Assert
-            _calloutDriver.Received(1).Start();
         }
 
         [TestMethod]
@@ -171,9 +163,6 @@ namespace ProtonVPN.Service.Test.SplitTunnel
 
             // Act
             splitTunnel.OnVpnConnected(GetConnectedVpnState());
-
-            // Assert
-            _calloutDriver.Received(0).Start();
         }
 
         [TestMethod]
@@ -297,9 +286,6 @@ namespace ProtonVPN.Service.Test.SplitTunnel
 
             // Act
             splitTunnel.OnVpnDisconnected(GetDisconnectedVpnState(true));
-
-            // Assert
-            _calloutDriver.Received(1).Stop();
         }
 
         private SplitTunneling.SplitTunnel GetSplitTunnel(bool enabled = false, bool reverseEnabled = false)
@@ -308,7 +294,6 @@ namespace ProtonVPN.Service.Test.SplitTunnel
                 enabled,
                 reverseEnabled,
                 _serviceSettings,
-                _calloutDriver,
                 _splitTunnelClient,
                 _reverseSplitTunnelApps,
                 _appFilter,

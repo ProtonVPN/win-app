@@ -17,12 +17,34 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Service.SplitTunneling
-{
-    public interface IDriver
-    {
-        void Start();
+using System.Threading;
+using ProtonVPN.Common.OS.Services;
 
-        void Stop();
+namespace ProtonVPN.Service.Driver
+{
+    public class CalloutDriver : IDriver
+    {
+        private readonly IService _service;
+
+        public CalloutDriver(IService service)
+        {
+            _service = service;
+        }
+
+        public void Start()
+        {
+            if (!_service.Running())
+            {
+                _service.StartAsync(CancellationToken.None).Wait();
+            }
+        }
+
+        public void Stop()
+        {
+            if (_service.Running())
+            {
+                _service.StopAsync(CancellationToken.None).Wait();
+            }
+        }
     }
 }

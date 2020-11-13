@@ -27,6 +27,7 @@ using ProtonVPN.Common.OS.Services;
 using ProtonVPN.Common.Service;
 using ProtonVPN.Common.Text.Serialization;
 using ProtonVPN.Common.Threading;
+using ProtonVPN.Service.Driver;
 using ProtonVPN.Service.Firewall;
 using ProtonVPN.Service.ServiceHosts;
 using ProtonVPN.Service.Settings;
@@ -67,7 +68,7 @@ namespace ProtonVPN.Service.Start
                         new LoggingService(
                             c.Resolve<ILogger>(),
                             new DriverService(
-                                c.Resolve<Common.Configuration.Config>().SplitTunnelServiceName,
+                                c.Resolve<Common.Configuration.Config>().CalloutServiceName,
                                 c.Resolve<IOsProcesses>()))))))
                 .AsImplementedInterfaces().AsSelf().SingleInstance();
 
@@ -108,7 +109,6 @@ namespace ProtonVPN.Service.Start
             builder.RegisterType<IpLayer>().AsSelf().SingleInstance();
             builder.Register(c => new SplitTunnel(
                 c.Resolve<IServiceSettings>(),
-                c.Resolve<CalloutDriver>(),
                 c.Resolve<ISplitTunnelClient>(),
                 c.Resolve<IncludeModeApps>(),
                 c.Resolve<AppFilter>(),

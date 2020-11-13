@@ -17,6 +17,7 @@ enum class IPFilterLayer : unsigned int
     BindRedirectV4 = 4,
     BindRedirectV6 = 5,
     AppConnectRedirectV4 = 6,
+    OutboundIPPacketV4 = 7,
 };
 
 enum class IPFilterAction : unsigned int
@@ -93,6 +94,10 @@ extern "C" EXPORT unsigned int IPFilterDestroySublayer(
 extern "C" EXPORT unsigned int IPFilterDestroyFilter(
     IPFilterSessionHandle sessionHandle,
     GUID* filterKey);
+
+extern "C" EXPORT unsigned int IPFilterDestroyCallout(
+    IPFilterSessionHandle sessionHandle,
+    GUID * calloutKey);
 
 extern "C" EXPORT unsigned int IPFilterCreateLayerFilter(
     IPFilterSessionHandle sessionHandle,
@@ -178,18 +183,6 @@ extern "C" EXPORT unsigned int IPFilterCreateNetInterfaceFilter(
     const char* name,
     GUID* filterKey);
 
-
-extern "C" EXPORT unsigned int IPFilterCreateNetInterfaceDnsFilter(
-    IPFilterSessionHandle sessionHandle,
-    GUID * providerKey,
-    GUID * sublayerKey,
-    const IPFilterDisplayData * displayData,
-    unsigned int layer,
-    unsigned int action,
-    unsigned int weight,
-    const char* name,
-    GUID * filterKey);
-
 extern "C" EXPORT unsigned int IPFilterCreateLoopbackFilter(
     IPFilterSessionHandle sessionHandle,
     GUID* providerKey,
@@ -199,3 +192,15 @@ extern "C" EXPORT unsigned int IPFilterCreateLoopbackFilter(
     unsigned int action,
     unsigned int weight,
     GUID* filterKey);
+
+extern "C" EXPORT unsigned int BlockOutsideDns(
+    IPFilterSessionHandle sessionHandle,
+    GUID * providerKey,
+    GUID * sublayerKey,
+    const IPFilterDisplayData * displayData,
+    unsigned int layer,
+    unsigned int action,
+    unsigned int weight,
+    GUID * calloutKey,
+    const char* name,
+    GUID * filterKey);

@@ -1,5 +1,5 @@
 ;
-; ProtonVPN.SplitTunnelDriver.inf
+; ProtonVPN.CalloutDriver.inf
 ;
 
 [Version]
@@ -7,49 +7,49 @@ Signature   = "$WINDOWS NT$"
 Class       = WFPCALLOUTS
 ClassGuid   = {57465043-616C-6C6F-7574-5F636C617373}
 Provider    = %ManufacturerName%
-CatalogFile = ProtonVPN.SplitTunnelDriver.cat
-DriverVer = 06/03/2020,1.0.3.0
+CatalogFile = ProtonVPN.CalloutDriver.cat
+DriverVer = 11/25/2020,14.8.7.791
 
 [SourceDisksNames]
 1 = %DiskName%,,,""
 
 [SourceDisksFiles]
-ProtonVPN.SplitTunnelDriver.sys = 1,,
+ProtonVPN.CalloutDriver.sys = 1,,
 
 [DestinationDirs]
 DefaultDestDir                    = 12         ; %WinDir%\System32\Drivers
-ProtonVPN.SplitTunnelDriver.Files = 12         ; %WinDir%\System32\Drivers
+ProtonVPN.CalloutDriver.Files = 12         ; %WinDir%\System32\Drivers
 
 [DefaultInstall.NTx86]
 OptionDesc = %ServiceDescription%
-CopyFiles  = ProtonVPN.SplitTunnelDriver.Files
+CopyFiles  = ProtonVPN.CalloutDriver.Files
 
 [DefaultUninstall.NTx86]
 LegacyUninstall = 1
-DelFiles = ProtonVPN.SplitTunnelDriver.Files
+DelFiles = ProtonVPN.CalloutDriver.Files
 
 [DefaultInstall.NTx86.Services]
-AddService = %ServiceName%,,ProtonVPN.SplitTunnelDriver.Service
+AddService = %ServiceName%,,ProtonVPN.CalloutDriver.Service
 
 [DefaultUninstall.NTx86.Services]
 DelService = %ServiceName%,0x200               ; SPSVCINST_STOPSERVICE
 
-[ProtonVPN.SplitTunnelDriver.Files]
-ProtonVPN.SplitTunnelDriver.sys,,,0x00000040   ; COPYFLG_OVERWRITE_OLDER_ONLY
+[ProtonVPN.CalloutDriver.Files]
+ProtonVPN.CalloutDriver.sys,,,0x00000040   ; COPYFLG_OVERWRITE_OLDER_ONLY
 
-[ProtonVPN.SplitTunnelDriver.Service]
+[ProtonVPN.CalloutDriver.Service]
 DisplayName    = %ServiceDisplayName%
 Description    = %ServiceDescription%
 ServiceType    = 1                             ; SERVICE_KERNEL_DRIVER
 StartType      = 3                             ; SERVICE_DEMAND_START
 ErrorControl   = 1                             ; SERVICE_ERROR_NORMAL
-ServiceBinary  = %12%\ProtonVPN.SplitTunnelDriver.sys
+ServiceBinary  = %12%\ProtonVPN.CalloutDriver.sys
 LoadOrderGroup = NDIS
 Dependencies   = TCPIP                         ; Load after TCPIP.sys
 
 [Strings]
 ManufacturerName   = "Proton Technologies AG"
-DiskName           = "ProtonVPN Split Tunnel Driver Installation Disk"
-ServiceName        = "ProtonVPNSplitTunnel"
-ServiceDisplayName = "ProtonVPN Split Tunnel"
-ServiceDescription = "ProtonVPN Split Tunnel Driver"
+DiskName           = "ProtonVPN Callout Driver Installation Disk"
+ServiceName        = "ProtonVPNCallout"
+ServiceDisplayName = "ProtonVPN Callout"
+ServiceDescription = "ProtonVPN Callout Driver"

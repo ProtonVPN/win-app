@@ -34,7 +34,7 @@
     <ClInclude Include="Trace.h" />
   </ItemGroup>
   <ItemGroup>
-    <Inf Include="ProtonVPN.SplitTunnelDriver.inf" />
+    <Inf Include="ProtonVPN.CalloutDriver.inf" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{85E3F2D0-84AA-4DD2-B23A-B41D779A5FA9}</ProjectGuid>
@@ -43,8 +43,9 @@
     <MinimumVisualStudioVersion>12.0</MinimumVisualStudioVersion>
     <Configuration>Debug</Configuration>
     <Platform Condition="'$(Platform)' == ''">Win32</Platform>
-    <RootNamespace>ProtonVPN_SplitTunnelDriver</RootNamespace>
+    <RootNamespace>ProtonVPN_CalloutDriver</RootNamespace>
     <WindowsTargetPlatformVersion>$(LatestTargetPlatformVersion)</WindowsTargetPlatformVersion>
+    <ProjectName>ProtonVPN.CalloutDriver</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

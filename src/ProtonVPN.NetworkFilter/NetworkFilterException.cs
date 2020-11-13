@@ -67,6 +67,13 @@ namespace ProtonVPN.NetworkFilter
         }
     }
 
+    public class CalloutNotFoundException : NetworkFilterException
+    {
+        public CalloutNotFoundException(uint code) : base(code)
+        {
+        }
+    }
+
     public class InUseException: NetworkFilterException
     {
         public InUseException(uint code): base(code)

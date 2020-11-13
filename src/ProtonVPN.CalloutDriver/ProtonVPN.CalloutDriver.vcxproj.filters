@@ -22,7 +22,7 @@
     <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Inf Include="ProtonVPN.SplitTunnelDriver.inf">
+    <Inf Include="ProtonVPN.CalloutDriver.inf">
       <Filter>Driver Files</Filter>
     </Inf>
   </ItemGroup>

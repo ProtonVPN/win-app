@@ -27,6 +27,7 @@ namespace ProtonVPN.NetworkFilter
     {
         private readonly IpFilter _ipFilter;
         private readonly HashSet<Guid> _filters = new HashSet<Guid>();
+        private readonly HashSet<Guid> _callouts = new HashSet<Guid>();
 
         public Sublayer(IpFilter ipFilter, Guid id)
         {
@@ -44,6 +45,22 @@ namespace ProtonVPN.NetworkFilter
             }
         }
 
+        public void DestroyAllCallouts()
+        {
+            foreach (var key in _callouts.ToList())
+            {
+                _ipFilter.DestroyCallout(key);
+            }
+        }
+
+        public Callout CreateCallout(DisplayData displayData, Guid calloutId, Layer layer)
+        {
+            var callout = _ipFilter.CreateCallout(displayData, calloutId, layer);
+            _callouts.Add(callout.Id);
+
+            return callout;
+        }
+
         public void DestroyFilter(Guid filterId)
         {
             try
@@ -57,6 +74,21 @@ namespace ProtonVPN.NetworkFilter
             }
 
             RemoveFilter(filterId);
+        }
+
+        public void DestroyCallout(Guid calloutId)
+        {
+            try
+            {
+                IpFilterNative.DestroyCallout(
+                    Session.Handle,
+                    calloutId);
+            }
+            catch (CalloutNotFoundException)
+            {
+            }
+
+            _callouts.Remove(calloutId);
         }
 
         public Guid CreateLayerFilter(
@@ -288,28 +320,6 @@ namespace ProtonVPN.NetworkFilter
             return filterId;
         }
 
-        public Guid CreateNetInterfaceDnsFilter(
-            DisplayData displayData,
-            Action action,
-            Layer layer,
-            uint weight,
-            string interfaceId)
-        {
-            var filterId = IpFilterNative.CreateNetInterfaceDnsFilter(
-                Session.Handle,
-                ProviderId,
-                Id,
-                displayData,
-                layer,
-                action,
-                weight,
-                interfaceId);
-
-            AddFilter(filterId);
-
-            return filterId;
-        }
-
         public Guid CreateLoopbackFilter(
             DisplayData displayData,
             Action action,
@@ -324,6 +334,28 @@ namespace ProtonVPN.NetworkFilter
                 layer,
                 action,
                 weight);
+
+            AddFilter(filterId);
+
+            return filterId;
+        }
+
+        public Guid BlockOutsideDns(DisplayData displayData,
+            Layer layer,
+            uint weight,
+            Callout callout,
+            string interfaceId)
+        {
+            var filterId = IpFilterNative.BlockOutsideDns(
+                Session.Handle,
+                ProviderId,
+                Id,
+                displayData,
+                layer,
+                Action.Callout,
+                weight,
+                callout.Id,
+                interfaceId);
 
             AddFilter(filterId);
 

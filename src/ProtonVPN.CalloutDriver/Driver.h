@@ -6,3 +6,5 @@ DRIVER_INITIALIZE DriverEntry;
 EVT_WDF_DRIVER_UNLOAD DriverUnload;
 
 EXTERN_C_END
+
+#define ProtonTAG 'pvpn'

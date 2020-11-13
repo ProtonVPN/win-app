@@ -28,5 +28,6 @@ namespace ProtonVPN.NetworkFilter
         BindRedirectV4 = 4,
         BindRedirectV6 = 5,
         AppConnectRedirectV4 = 6,
+        OutboundIPPacketV4 = 7,
     }
 }
