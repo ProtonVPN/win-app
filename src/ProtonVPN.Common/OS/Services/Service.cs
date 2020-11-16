@@ -54,10 +54,11 @@ namespace ProtonVPN.Common.OS.Services
 
         public bool Enabled()
         {
+            //We first find the service and only then access StartType property, because if the service
+            //is marked for removal, it will throw Win32Exception
             return GetServices()
-                .Where(s => s.StartType == ServiceStartMode.Manual)
-                .Select(s => s.ServiceName)
-                .ContainsIgnoringCase(Name);
+                .Where(service => service.ServiceName.EqualsIgnoringCase(Name))
+                .Any(service => service.StartType == ServiceStartMode.Manual);
         }
 
         public void Enable()

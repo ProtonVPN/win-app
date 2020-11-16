@@ -249,8 +249,9 @@ namespace ProtonVPN.Login.ViewModels
             }
             catch (HttpRequestException)
             {
-                if (await DisableGuestHole())
+                if (await DisableGuestHole() || _guestHoleConnector.Servers().Count == 0)
                 {
+                    ShowLoginScreenWithTroubleshoot();
                     return;
                 }
 
@@ -261,16 +262,15 @@ namespace ProtonVPN.Login.ViewModels
 
         private async Task<bool> DisableGuestHole()
         {
-            if (_guestHoleState.Active || _guestHoleConnector.Servers().Count == 0)
+            if (!_guestHoleState.Active)
             {
-                await _guestHoleConnector.Disconnect();
-                ShowLoginScreenWithTroubleshoot();
-                _guestHoleState.SetState(false);
-
-                return true;
+                return false;
             }
 
-            return false;
+            await _guestHoleConnector.Disconnect();
+            _guestHoleState.SetState(false);
+
+            return true;
         }
 
         private void ShowLoginScreenWithTroubleshoot()

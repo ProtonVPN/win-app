@@ -94,7 +94,7 @@ namespace ProtonVPN.UI.Test.Tests
             TestCaseId = 265;
 
             _loginActions.LoginWithTrialUser();
-            _loginResult.VerifyTrialPopupIsShown();
+            _mainWindowResults.VerifyUserIsLoggedIn();
         }
 
         [SetUp]

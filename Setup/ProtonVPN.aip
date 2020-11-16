@@ -24,10 +24,10 @@
     <ROW Property="Manufacturer" Value="Proton Technologies AG"/>
     <ROW Property="MsiLogging" MultiBuildValue="DefaultBuild:vp"/>
     <ROW Property="PENDING_REBOOT" Value="0"/>
-    <ROW Property="ProductCode" Value="1031:{D19979C9-8B5B-4500-AA6A-EF331F658074} 1033:{D19979C9-8B5B-4500-AA6A-EF331F658074} 1036:{D19979C9-8B5B-4500-AA6A-EF331F658074} 1040:{D19979C9-8B5B-4500-AA6A-EF331F658074} 1043:{D19979C9-8B5B-4500-AA6A-EF331F658074} 1045:{D19979C9-8B5B-4500-AA6A-EF331F658074} 1046:{D19979C9-8B5B-4500-AA6A-EF331F658074} 1049:{D19979C9-8B5B-4500-AA6A-EF331F658074} 1065:{D19979C9-8B5B-4500-AA6A-EF331F658074} 2070:{D19979C9-8B5B-4500-AA6A-EF331F658074} 3082:{D19979C9-8B5B-4500-AA6A-EF331F658074} " Type="16"/>
+    <ROW Property="ProductCode" Value="1031:{FD5DFEEE-C563-4D04-B3F4-E5C7D5F5B1E9} 1033:{FD5DFEEE-C563-4D04-B3F4-E5C7D5F5B1E9} 1036:{FD5DFEEE-C563-4D04-B3F4-E5C7D5F5B1E9} 1040:{FD5DFEEE-C563-4D04-B3F4-E5C7D5F5B1E9} 1043:{FD5DFEEE-C563-4D04-B3F4-E5C7D5F5B1E9} 1045:{FD5DFEEE-C563-4D04-B3F4-E5C7D5F5B1E9} 1046:{FD5DFEEE-C563-4D04-B3F4-E5C7D5F5B1E9} 1049:{FD5DFEEE-C563-4D04-B3F4-E5C7D5F5B1E9} 1065:{FD5DFEEE-C563-4D04-B3F4-E5C7D5F5B1E9} 2070:{FD5DFEEE-C563-4D04-B3F4-E5C7D5F5B1E9} 3082:{FD5DFEEE-C563-4D04-B3F4-E5C7D5F5B1E9} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="ProtonVPN"/>
-    <ROW Property="ProductVersion" Value="1.17.5" Type="32"/>
+    <ROW Property="ProductVersion" Value="1.17.6" Type="32"/>
     <ROW Property="REBOOT" MultiBuildValue="DefaultBuild:ReallySuppress"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;AI_SETUPEXEPATH;SETUPEXEDIR"/>
     <ROW Property="SelectedLanguage" Value="This will be set by custom action"/>
@@ -54,13 +54,16 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiDirsComponent">
     <ROW Directory="APPDIR" Directory_Parent="TARGETDIR" DefaultDir="APPDIR:." IsPseudoRoot="1"/>
+    <ROW Directory="AppDataFolder" Directory_Parent="TARGETDIR" DefaultDir="APPDAT~1|AppDataFolder" IsPseudoRoot="1"/>
     <ROW Directory="AppData_Dir" Directory_Parent="APPDIR" DefaultDir="AppData"/>
     <ROW Directory="Binaries_Dir" Directory_Parent="APPDIR" DefaultDir="RESOUR~1|Resources"/>
     <ROW Directory="DesktopFolder" Directory_Parent="TARGETDIR" DefaultDir="DESKTO~1|DesktopFolder" IsPseudoRoot="1"/>
     <ROW Directory="LocalAppDataFolder" Directory_Parent="TARGETDIR" DefaultDir="LOCALA~1|LocalAppDataFolder" IsPseudoRoot="1"/>
     <ROW Directory="Logs_Dir" Directory_Parent="ProtonVPN_1_Dir" DefaultDir="Logs"/>
     <ROW Directory="ProgramMenuFolder" Directory_Parent="TARGETDIR" DefaultDir="PROGRA~1|ProgramMenuFolder" IsPseudoRoot="1"/>
+    <ROW Directory="ProtonTechnologiesAG_Dir" Directory_Parent="AppDataFolder" DefaultDir="PROTON~1|Proton Technologies AG"/>
     <ROW Directory="ProtonVPN_1_Dir" Directory_Parent="LocalAppDataFolder" DefaultDir="PROTON~1|ProtonVPN"/>
+    <ROW Directory="ProtonVPN_2_Dir" Directory_Parent="ProtonTechnologiesAG_Dir" DefaultDir="PROTON~1|ProtonVPN"/>
     <ROW Directory="ProtonVPN_Dir" Directory_Parent="ProgramMenuFolder" DefaultDir="PROTON~1|ProtonVPN"/>
     <ROW Directory="TARGETDIR" DefaultDir="SourceDir"/>
     <ROW Directory="Win10_1_Dir" Directory_Parent="x86_Dir" DefaultDir="Win10" DirectoryOptions="3"/>
@@ -73,7 +76,7 @@
     <ROW Directory="x86_Dir" Directory_Parent="APPDIR" DefaultDir="x86" DirectoryOptions="3"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
-    <ROW Component="AI_CustomARPName" ComponentId="{8E32E08E-55A6-49DC-A6F9-26EABB2FD278}" Directory_="APPDIR" Attributes="4" KeyPath="DisplayName" Options="1"/>
+    <ROW Component="AI_CustomARPName" ComponentId="{E06201A2-74FE-4087-AB99-08F1C0202699}" Directory_="APPDIR" Attributes="4" KeyPath="DisplayName" Options="1"/>
     <ROW Component="AI_ExePath" ComponentId="{47427A21-60A2-43B4-A150-6CBA74CF4A07}" Directory_="APPDIR" Attributes="4" KeyPath="AI_ExePath"/>
     <ROW Component="APPDIR" ComponentId="{75DDD993-CDFE-4D39-8C1A-07484ADD1A4E}" Directory_="APPDIR" Attributes="0"/>
     <ROW Component="ARSoft.Tools.Net.dll" ComponentId="{05CE9A73-14A8-494D-B2D3-8438A2A16DDB}" Directory_="APPDIR" Attributes="0" KeyPath="ARSoft.Tools.Net.dll"/>
@@ -134,6 +137,7 @@
     <ROW Component="ProtonVPN.exe" ComponentId="{A6366893-9124-490B-A671-56545084D5CA}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.exe"/>
     <ROW Component="ProtonVPNService.exe" ComponentId="{FF69F947-BECA-41DA-9868-390F00B71BE1}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPNService.exe"/>
     <ROW Component="ProtonVPN_1" ComponentId="{ACB3B68A-E766-4500-839B-16BFD1B73654}" Directory_="APPDIR" Attributes="4" KeyPath="ProtonVPN"/>
+    <ROW Component="ProtonVPN_3" ComponentId="{4FF5EBF7-6718-4D88-87DF-A8A87B8603A3}" Directory_="ProtonVPN_2_Dir" Attributes="0"/>
     <ROW Component="Sentry.PlatformAbstractions.dll" ComponentId="{426B912C-30F2-441C-9C0A-B82E729946F0}" Directory_="APPDIR" Attributes="0" KeyPath="Sentry.PlatformAbstractions.dll"/>
     <ROW Component="Sentry.Protocol.dll" ComponentId="{FAB7F502-0A1C-4B84-BDB7-0217C098C4D4}" Directory_="APPDIR" Attributes="0" KeyPath="Sentry.Protocol.dll"/>
     <ROW Component="Sentry.dll" ComponentId="{AA57D927-5AD1-4BC0-AE4F-5CD31F6D87DF}" Directory_="APPDIR" Attributes="0" KeyPath="Sentry.dll"/>
@@ -160,94 +164,95 @@
     <ATTRIBUTE name="CurrentFeature" value="MainFeature"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFilesComponent">
-    <ROW File="ProtonVPN.exe" Component_="ProtonVPN.exe" FileName="PROTON~1.EXE|ProtonVPN.exe" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ProtonVPN.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="ProtonVPN.exe" Component_="ProtonVPN.exe" FileName="PROTON~1.EXE|ProtonVPN.exe" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ProtonVPN.exe" SelfReg="false"/>
     <ROW File="libcrypto1_1.dll" Component_="libcrypto1_1.dll" FileName="LIBCRY~1.DLL|libcrypto-1_1.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Resources\32-bit\libcrypto-1_1.dll" SelfReg="false"/>
     <ROW File="liblzo22.dll" Component_="liblzo22.dll" FileName="LIBLZO~1.DLL|liblzo2-2.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Resources\32-bit\liblzo2-2.dll" SelfReg="false"/>
     <ROW File="libpkcs11helper1.dll" Component_="libpkcs11helper1.dll" FileName="LIBPKC~1.DLL|libpkcs11-helper-1.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Resources\32-bit\libpkcs11-helper-1.dll" SelfReg="false"/>
     <ROW File="libssl1_1.dll" Component_="libssl1_1.dll" FileName="LIBSSL~1.DLL|libssl-1_1.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Resources\32-bit\libssl-1_1.dll" SelfReg="false"/>
-    <ROW File="openvpn.exe" Component_="openvpn.exe" FileName="openvpn.exe" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Resources\32-bit\openvpn.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="openvpn.exe" Component_="openvpn.exe" FileName="openvpn.exe" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Resources\32-bit\openvpn.exe" SelfReg="false"/>
     <ROW File="libcrypto1_1x64.dll" Component_="libcrypto1_1x64.dll" FileName="LIBCRY~1.DLL|libcrypto-1_1-x64.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Resources\64-bit\libcrypto-1_1-x64.dll" SelfReg="false"/>
     <ROW File="liblzo22.dll_1" Component_="liblzo22.dll_1" FileName="LIBLZO~1.DLL|liblzo2-2.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Resources\64-bit\liblzo2-2.dll" SelfReg="false"/>
     <ROW File="libpkcs11helper1.dll_1" Component_="libpkcs11helper1.dll_1" FileName="LIBPKC~1.DLL|libpkcs11-helper-1.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Resources\64-bit\libpkcs11-helper-1.dll" SelfReg="false"/>
     <ROW File="libssl1_1x64.dll" Component_="libssl1_1x64.dll" FileName="LIBSSL~1.DLL|libssl-1_1-x64.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Resources\64-bit\libssl-1_1-x64.dll" SelfReg="false"/>
-    <ROW File="openvpn.exe_1" Component_="openvpn.exe_1" FileName="openvpn.exe" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Resources\64-bit\openvpn.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="openvpn.exe_1" Component_="openvpn.exe_1" FileName="openvpn.exe" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Resources\64-bit\openvpn.exe" SelfReg="false"/>
     <ROW File="config.ovpn" Component_="config.ovpn" FileName="CONFIG~1.OVP|config.ovpn" Attributes="0" SourcePath="..\src\bin\Resources\config.ovpn" SelfReg="false"/>
-    <ROW File="ProtonVPN.ErrorMessage.exe" Component_="ProtonVPN.ErrorMessage.exe" FileName="PROTON~2.EXE|ProtonVPN.ErrorMessage.exe" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ProtonVPN.ErrorMessage.exe" SelfReg="false" DigSign="true"/>
-    <ROW File="ProtonVPNService.exe" Component_="ProtonVPNService.exe" FileName="PROTON~3.EXE|ProtonVPNService.exe" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ProtonVPNService.exe" SelfReg="false" DigSign="true"/>
-    <ROW File="Autofac.dll" Component_="Autofac.dll" FileName="Autofac.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Autofac.dll" SelfReg="false" DigSign="true"/>
-    <ROW File="ByteSize.dll" Component_="ByteSize.dll" FileName="ByteSize.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ByteSize.dll" SelfReg="false" DigSign="true"/>
-    <ROW File="CalcBinding.dll" Component_="CalcBinding.dll" FileName="CALCBI~1.DLL|CalcBinding.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\CalcBinding.dll" SelfReg="false" DigSign="true"/>
-    <ROW File="Caliburn.Micro.dll" Component_="Caliburn.Micro.dll" FileName="CALIBU~1.DLL|Caliburn.Micro.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Caliburn.Micro.dll" SelfReg="false" DigSign="true"/>
-    <ROW File="Caliburn.Micro.Platform.Core.dll" Component_="Caliburn.Micro.Platform.Core.dll" FileName="CALIBU~2.DLL|Caliburn.Micro.Platform.Core.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Caliburn.Micro.Platform.Core.dll" SelfReg="false" DigSign="true"/>
-    <ROW File="Caliburn.Micro.Platform.dll" Component_="Caliburn.Micro.Platform.dll" FileName="CALIBU~3.DLL|Caliburn.Micro.Platform.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Caliburn.Micro.Platform.dll" SelfReg="false" DigSign="true"/>
-    <ROW File="DynamicExpresso.Core.dll" Component_="DynamicExpresso.Core.dll" FileName="DYNAMI~1.DLL|DynamicExpresso.Core.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\DynamicExpresso.Core.dll" SelfReg="false" DigSign="true"/>
-    <ROW File="FontAwesome.WPF.dll" Component_="FontAwesome.WPF.dll" FileName="FONTAW~1.DLL|FontAwesome.WPF.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\FontAwesome.WPF.dll" SelfReg="false" DigSign="true"/>
-    <ROW File="GalaSoft.MvvmLight.dll" Component_="GalaSoft.MvvmLight.dll" FileName="GALASO~1.DLL|GalaSoft.MvvmLight.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\GalaSoft.MvvmLight.dll" SelfReg="false" DigSign="true"/>
-    <ROW File="GalaSoft.MvvmLight.Platform.dll" Component_="GalaSoft.MvvmLight.Platform.dll" FileName="GALASO~3.DLL|GalaSoft.MvvmLight.Platform.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\GalaSoft.MvvmLight.Platform.dll" SelfReg="false" DigSign="true"/>
+    <ROW File="ProtonVPN.ErrorMessage.exe" Component_="ProtonVPN.ErrorMessage.exe" FileName="PROTON~2.EXE|ProtonVPN.ErrorMessage.exe" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ProtonVPN.ErrorMessage.exe" SelfReg="false"/>
+    <ROW File="ProtonVPNService.exe" Component_="ProtonVPNService.exe" FileName="PROTON~3.EXE|ProtonVPNService.exe" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ProtonVPNService.exe" SelfReg="false"/>
+    <ROW File="Autofac.dll" Component_="Autofac.dll" FileName="Autofac.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Autofac.dll" SelfReg="false"/>
+    <ROW File="ByteSize.dll" Component_="ByteSize.dll" FileName="ByteSize.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ByteSize.dll" SelfReg="false"/>
+    <ROW File="CalcBinding.dll" Component_="CalcBinding.dll" FileName="CALCBI~1.DLL|CalcBinding.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\CalcBinding.dll" SelfReg="false"/>
+    <ROW File="Caliburn.Micro.dll" Component_="Caliburn.Micro.dll" FileName="CALIBU~1.DLL|Caliburn.Micro.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Caliburn.Micro.dll" SelfReg="false"/>
+    <ROW File="Caliburn.Micro.Platform.Core.dll" Component_="Caliburn.Micro.Platform.Core.dll" FileName="CALIBU~2.DLL|Caliburn.Micro.Platform.Core.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Caliburn.Micro.Platform.Core.dll" SelfReg="false"/>
+    <ROW File="Caliburn.Micro.Platform.dll" Component_="Caliburn.Micro.Platform.dll" FileName="CALIBU~3.DLL|Caliburn.Micro.Platform.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Caliburn.Micro.Platform.dll" SelfReg="false"/>
+    <ROW File="DynamicExpresso.Core.dll" Component_="DynamicExpresso.Core.dll" FileName="DYNAMI~1.DLL|DynamicExpresso.Core.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\DynamicExpresso.Core.dll" SelfReg="false"/>
+    <ROW File="FontAwesome.WPF.dll" Component_="FontAwesome.WPF.dll" FileName="FONTAW~1.DLL|FontAwesome.WPF.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\FontAwesome.WPF.dll" SelfReg="false"/>
+    <ROW File="GalaSoft.MvvmLight.dll" Component_="GalaSoft.MvvmLight.dll" FileName="GALASO~1.DLL|GalaSoft.MvvmLight.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\GalaSoft.MvvmLight.dll" SelfReg="false"/>
+    <ROW File="GalaSoft.MvvmLight.Platform.dll" Component_="GalaSoft.MvvmLight.Platform.dll" FileName="GALASO~3.DLL|GalaSoft.MvvmLight.Platform.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\GalaSoft.MvvmLight.Platform.dll" SelfReg="false"/>
     <ROW File="Newtonsoft.Json.dll" Component_="Newtonsoft.Json.dll" FileName="NEWTON~1.DLL|Newtonsoft.Json.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Newtonsoft.Json.dll" SelfReg="false"/>
-    <ROW File="NLog.dll" Component_="NLog.dll" FileName="NLog.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\NLog.dll" SelfReg="false" DigSign="true"/>
-    <ROW File="OxyPlot.dll" Component_="OxyPlot.dll" FileName="OxyPlot.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\OxyPlot.dll" SelfReg="false" DigSign="true"/>
-    <ROW File="OxyPlot.Wpf.dll" Component_="OxyPlot.Wpf.dll" FileName="OXYPLO~1.DLL|OxyPlot.Wpf.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\OxyPlot.Wpf.dll" SelfReg="false" DigSign="true"/>
-    <ROW File="PInvoke.Kernel32.dll" Component_="PInvoke.Kernel32.dll" FileName="PINVOK~2.DLL|PInvoke.Kernel32.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\PInvoke.Kernel32.dll" SelfReg="false" DigSign="true"/>
-    <ROW File="PInvoke.Windows.Core.dll" Component_="PInvoke.Windows.Core.dll" FileName="PINVOK~5.DLL|PInvoke.Windows.Core.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\PInvoke.Windows.Core.dll" SelfReg="false" DigSign="true"/>
-    <ROW File="PInvoke.Windows.ShellScalingApi.dll" Component_="PInvoke.Windows.ShellScalingApi.dll" FileName="PINVOK~6.DLL|PInvoke.Windows.ShellScalingApi.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\PInvoke.Windows.ShellScalingApi.dll" SelfReg="false" DigSign="true"/>
-    <ROW File="Polly.dll" Component_="Polly.dll" FileName="Polly.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Polly.dll" SelfReg="false" DigSign="true"/>
-    <ROW File="ProtonVPN.Common.dll" Component_="ProtonVPN.Common.dll" FileName="PROTON~1.DLL|ProtonVPN.Common.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ProtonVPN.Common.dll" SelfReg="false" DigSign="true"/>
-    <ROW File="ProtonVPN.Core.dll" Component_="ProtonVPN.Core.dll" FileName="PROTON~2.DLL|ProtonVPN.Core.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ProtonVPN.Core.dll" SelfReg="false" DigSign="true"/>
-    <ROW File="ProtonVPN.Resource.dll" Component_="ProtonVPN.Resource.dll" FileName="PROTON~3.DLL|ProtonVPN.Resource.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ProtonVPN.Resource.dll" SelfReg="false" DigSign="true"/>
-    <ROW File="ProtonVPN.Update.dll" Component_="ProtonVPN.Update.dll" FileName="PROTON~4.DLL|ProtonVPN.Update.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ProtonVPN.Update.dll" SelfReg="false" DigSign="true"/>
-    <ROW File="ProtonVPN.Vpn.dll" Component_="ProtonVPN.Vpn.dll" FileName="PROTON~5.DLL|ProtonVPN.Vpn.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ProtonVPN.Vpn.dll" SelfReg="false" DigSign="true"/>
-    <ROW File="Sentry.dll" Component_="Sentry.dll" FileName="Sentry.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Sentry.dll" SelfReg="false" DigSign="true"/>
-    <ROW File="Sentry.PlatformAbstractions.dll" Component_="Sentry.PlatformAbstractions.dll" FileName="SENTRY~1.DLL|Sentry.PlatformAbstractions.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Sentry.PlatformAbstractions.dll" SelfReg="false" DigSign="true"/>
-    <ROW File="Sentry.Protocol.dll" Component_="Sentry.Protocol.dll" FileName="SENTRY~2.DLL|Sentry.Protocol.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Sentry.Protocol.dll" SelfReg="false" DigSign="true"/>
+    <ROW File="NLog.dll" Component_="NLog.dll" FileName="NLog.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\NLog.dll" SelfReg="false"/>
+    <ROW File="OxyPlot.dll" Component_="OxyPlot.dll" FileName="OxyPlot.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\OxyPlot.dll" SelfReg="false"/>
+    <ROW File="OxyPlot.Wpf.dll" Component_="OxyPlot.Wpf.dll" FileName="OXYPLO~1.DLL|OxyPlot.Wpf.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\OxyPlot.Wpf.dll" SelfReg="false"/>
+    <ROW File="PInvoke.Kernel32.dll" Component_="PInvoke.Kernel32.dll" FileName="PINVOK~2.DLL|PInvoke.Kernel32.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\PInvoke.Kernel32.dll" SelfReg="false"/>
+    <ROW File="PInvoke.Windows.Core.dll" Component_="PInvoke.Windows.Core.dll" FileName="PINVOK~5.DLL|PInvoke.Windows.Core.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\PInvoke.Windows.Core.dll" SelfReg="false"/>
+    <ROW File="PInvoke.Windows.ShellScalingApi.dll" Component_="PInvoke.Windows.ShellScalingApi.dll" FileName="PINVOK~6.DLL|PInvoke.Windows.ShellScalingApi.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\PInvoke.Windows.ShellScalingApi.dll" SelfReg="false"/>
+    <ROW File="Polly.dll" Component_="Polly.dll" FileName="Polly.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Polly.dll" SelfReg="false"/>
+    <ROW File="ProtonVPN.Common.dll" Component_="ProtonVPN.Common.dll" FileName="PROTON~1.DLL|ProtonVPN.Common.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ProtonVPN.Common.dll" SelfReg="false"/>
+    <ROW File="ProtonVPN.Core.dll" Component_="ProtonVPN.Core.dll" FileName="PROTON~2.DLL|ProtonVPN.Core.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ProtonVPN.Core.dll" SelfReg="false"/>
+    <ROW File="ProtonVPN.Resource.dll" Component_="ProtonVPN.Resource.dll" FileName="PROTON~3.DLL|ProtonVPN.Resource.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ProtonVPN.Resource.dll" SelfReg="false"/>
+    <ROW File="ProtonVPN.Update.dll" Component_="ProtonVPN.Update.dll" FileName="PROTON~4.DLL|ProtonVPN.Update.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ProtonVPN.Update.dll" SelfReg="false"/>
+    <ROW File="ProtonVPN.Vpn.dll" Component_="ProtonVPN.Vpn.dll" FileName="PROTON~5.DLL|ProtonVPN.Vpn.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ProtonVPN.Vpn.dll" SelfReg="false"/>
+    <ROW File="Sentry.dll" Component_="Sentry.dll" FileName="Sentry.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Sentry.dll" SelfReg="false"/>
+    <ROW File="Sentry.PlatformAbstractions.dll" Component_="Sentry.PlatformAbstractions.dll" FileName="SENTRY~1.DLL|Sentry.PlatformAbstractions.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Sentry.PlatformAbstractions.dll" SelfReg="false"/>
+    <ROW File="Sentry.Protocol.dll" Component_="Sentry.Protocol.dll" FileName="SENTRY~2.DLL|Sentry.Protocol.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Sentry.Protocol.dll" SelfReg="false"/>
     <ROW File="System.Collections.Immutable.dll" Component_="System.Collections.Immutable.dll" FileName="SYSTEM~1.DLL|System.Collections.Immutable.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\System.Collections.Immutable.dll" SelfReg="false"/>
     <ROW File="System.Windows.Interactivity.dll" Component_="System.Windows.Interactivity.dll" FileName="SYSTEM~9.DLL|System.Windows.Interactivity.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\System.Windows.Interactivity.dll" SelfReg="false"/>
     <ROW File="TapInstaller.CA.dll" Component_="TapInstaller.CA.dll" FileName="TAPINS~1.DLL|TapInstaller.CA.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\TapInstaller.CA.dll" SelfReg="false"/>
-    <ROW File="TapInstaller.dll" Component_="TapInstaller.dll" FileName="TAPINS~2.DLL|TapInstaller.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\TapInstaller.dll" SelfReg="false" DigSign="true"/>
+    <ROW File="TapInstaller.dll" Component_="TapInstaller.dll" FileName="TAPINS~2.DLL|TapInstaller.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\TapInstaller.dll" SelfReg="false"/>
     <ROW File="ProtonVPN.ErrorMessage.exe.config" Component_="ProtonVPN.ErrorMessage.exe.config" FileName="PROTON~1.CON|ProtonVPN.ErrorMessage.exe.config" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ProtonVPN.ErrorMessage.exe.config" SelfReg="false"/>
     <ROW File="ProtonVPN.exe.config" Component_="ProtonVPN.ErrorMessage.exe.config" FileName="PROTON~2.CON|ProtonVPN.exe.config" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ProtonVPN.exe.config" SelfReg="false"/>
     <ROW File="ProtonVPNService.exe.config" Component_="ProtonVPN.ErrorMessage.exe.config" FileName="PROTON~4.CON|ProtonVPNService.exe.config" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ProtonVPNService.exe.config" SelfReg="false"/>
     <ROW File="Microsoft.Deployment.WindowsInstaller.dll" Component_="Microsoft.Deployment.WindowsInstaller.dll" FileName="MICROS~1.DLL|Microsoft.Deployment.WindowsInstaller.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Microsoft.Deployment.WindowsInstaller.dll" SelfReg="false"/>
-    <ROW File="ProtonVPN.Service.Contract.dll" Component_="ProtonVPN.Service.Contract.dll" FileName="PROTON~6.DLL|ProtonVPN.Service.Contract.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ProtonVPN.Service.Contract.dll" SelfReg="false" DigSign="true"/>
-    <ROW File="DnsClient.dll" Component_="DnsClient.dll" FileName="DNSCLI~1.DLL|DnsClient.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\DnsClient.dll" SelfReg="false" DigSign="true"/>
+    <ROW File="ProtonVPN.Service.Contract.dll" Component_="ProtonVPN.Service.Contract.dll" FileName="PROTON~6.DLL|ProtonVPN.Service.Contract.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ProtonVPN.Service.Contract.dll" SelfReg="false"/>
+    <ROW File="DnsClient.dll" Component_="DnsClient.dll" FileName="DNSCLI~1.DLL|DnsClient.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\DnsClient.dll" SelfReg="false"/>
     <ROW File="System.Buffers.dll" Component_="System.Buffers.dll" FileName="SYSTEM~2.DLL|System.Buffers.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\System.Buffers.dll" SelfReg="false"/>
     <ROW File="ProtonVPN.Resource.dll.config" Component_="ProtonVPN.ErrorMessage.exe.config" FileName="PROTON~3.CON|ProtonVPN.Resource.dll.config" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ProtonVPN.Resource.dll.config" SelfReg="false"/>
-    <ROW File="ProtonVPN.NetworkUtil.dll" Component_="ProtonVPN.NetworkUtil.dll" FileName="PROTON~1.DLL|ProtonVPN.NetworkUtil.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\x64\ProtonVPN.NetworkUtil.dll" SelfReg="false" DigSign="true"/>
-    <ROW File="ProtonVPN.NetworkUtil.dll_1" Component_="ProtonVPN.NetworkUtil.dll_1" FileName="PROTON~1.DLL|ProtonVPN.NetworkUtil.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\x86\ProtonVPN.NetworkUtil.dll" SelfReg="false" DigSign="true"/>
-    <ROW File="GoSrp.dll" Component_="GoSrp.dll" FileName="GoSrp.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\x64\GoSrp.dll" SelfReg="false" DigSign="true"/>
-    <ROW File="GoSrp.dll_1" Component_="GoSrp.dll_1" FileName="GoSrp.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\x86\GoSrp.dll" SelfReg="false" DigSign="true"/>
-    <ROW File="ProtonVPN.Native.dll" Component_="ProtonVPN.Native.dll" FileName="PROTON~7.DLL|ProtonVPN.Native.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ProtonVPN.Native.dll" SelfReg="false" DigSign="true"/>
-    <ROW File="ProtonVPN.IpFilter.dll" Component_="ProtonVPN.IpFilter.dll" FileName="PROTON~2.DLL|ProtonVPN.IpFilter.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\x86\ProtonVPN.IpFilter.dll" SelfReg="false" DigSign="true"/>
-    <ROW File="ProtonVPN.IpFilter.dll_1" Component_="ProtonVPN.IpFilter.dll_1" FileName="PROTON~2.DLL|ProtonVPN.IpFilter.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\x64\ProtonVPN.IpFilter.dll" SelfReg="false" DigSign="true"/>
-    <ROW File="ProtonVPN.NetworkFilter.dll" Component_="ProtonVPN.NetworkFilter.dll" FileName="PROTON~8.DLL|ProtonVPN.NetworkFilter.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ProtonVPN.NetworkFilter.dll" SelfReg="false" DigSign="true"/>
+    <ROW File="ProtonVPN.NetworkUtil.dll" Component_="ProtonVPN.NetworkUtil.dll" FileName="PROTON~1.DLL|ProtonVPN.NetworkUtil.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\x64\ProtonVPN.NetworkUtil.dll" SelfReg="false"/>
+    <ROW File="ProtonVPN.NetworkUtil.dll_1" Component_="ProtonVPN.NetworkUtil.dll_1" FileName="PROTON~1.DLL|ProtonVPN.NetworkUtil.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\x86\ProtonVPN.NetworkUtil.dll" SelfReg="false"/>
+    <ROW File="GoSrp.dll" Component_="GoSrp.dll" FileName="GoSrp.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\x64\GoSrp.dll" SelfReg="false"/>
+    <ROW File="GoSrp.dll_1" Component_="GoSrp.dll_1" FileName="GoSrp.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\x86\GoSrp.dll" SelfReg="false"/>
+    <ROW File="ProtonVPN.Native.dll" Component_="ProtonVPN.Native.dll" FileName="PROTON~7.DLL|ProtonVPN.Native.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ProtonVPN.Native.dll" SelfReg="false"/>
+    <ROW File="ProtonVPN.IpFilter.dll" Component_="ProtonVPN.IpFilter.dll" FileName="PROTON~2.DLL|ProtonVPN.IpFilter.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\x86\ProtonVPN.IpFilter.dll" SelfReg="false"/>
+    <ROW File="ProtonVPN.IpFilter.dll_1" Component_="ProtonVPN.IpFilter.dll_1" FileName="PROTON~2.DLL|ProtonVPN.IpFilter.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\x64\ProtonVPN.IpFilter.dll" SelfReg="false"/>
+    <ROW File="ProtonVPN.NetworkFilter.dll" Component_="ProtonVPN.NetworkFilter.dll" FileName="PROTON~8.DLL|ProtonVPN.NetworkFilter.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ProtonVPN.NetworkFilter.dll" SelfReg="false"/>
     <ROW File="ProtonVPN.SplitTunnelDriver.sys" Component_="ProtonVPN.SplitTunnelDriver.sys" FileName="PROTON~1.SYS|ProtonVPN.SplitTunnelDriver.sys" Version="65535.65535.65535.65535" Attributes="0" SourcePath="SplitTunnel\x64\win7\ProtonVPN.SplitTunnelDriver.sys" SelfReg="false"/>
     <ROW File="ProtonVPN.SplitTunnelDriver.sys_1" Component_="ProtonVPN.SplitTunnelDriver.sys_1" FileName="PROTON~1.SYS|ProtonVPN.SplitTunnelDriver.sys" Version="65535.65535.65535.65535" Attributes="0" SourcePath="SplitTunnel\x64\win10\ProtonVPN.SplitTunnelDriver.sys" SelfReg="false"/>
     <ROW File="ProtonVPN.SplitTunnelDriver.sys_2" Component_="ProtonVPN.SplitTunnelDriver.sys_2" FileName="PROTON~1.SYS|ProtonVPN.SplitTunnelDriver.sys" Version="65535.65535.65535.65535" Attributes="0" SourcePath="SplitTunnel\x86\win7\ProtonVPN.SplitTunnelDriver.sys" SelfReg="false"/>
     <ROW File="ProtonVPN.SplitTunnelDriver.sys_3" Component_="ProtonVPN.SplitTunnelDriver.sys_3" FileName="PROTON~1.SYS|ProtonVPN.SplitTunnelDriver.sys" Version="65535.65535.65535.65535" Attributes="0" SourcePath="SplitTunnel\x86\win10\ProtonVPN.SplitTunnelDriver.sys" SelfReg="false"/>
-    <ROW File="ProtonVPN.UpdateService.exe" Component_="ProtonVPN.UpdateService.exe" FileName="PROTON~4.EXE|ProtonVPN.UpdateService.exe" Attributes="0" SourcePath="..\src\bin\ProtonVPN.UpdateService.exe" SelfReg="false" DigSign="true"/>
-    <ROW File="ProtonVPN.UpdateServiceContract.dll" Component_="ProtonVPN.UpdateServiceContract.dll" FileName="PROTON~9.DLL|ProtonVPN.UpdateServiceContract.dll" Attributes="0" SourcePath="..\src\bin\ProtonVPN.UpdateServiceContract.dll" SelfReg="false" DigSign="true"/>
-    <ROW File="ProtonVPN.TlsVerify.exe" Component_="ProtonVPN.TlsVerify.exe" FileName="PROTON~5.EXE|ProtonVPN.TlsVerify.exe" Attributes="0" SourcePath="..\src\bin\ProtonVPN.TlsVerify.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="ProtonVPN.UpdateService.exe" Component_="ProtonVPN.UpdateService.exe" FileName="PROTON~4.EXE|ProtonVPN.UpdateService.exe" Attributes="0" SourcePath="..\src\bin\ProtonVPN.UpdateService.exe" SelfReg="false"/>
+    <ROW File="ProtonVPN.UpdateServiceContract.dll" Component_="ProtonVPN.UpdateServiceContract.dll" FileName="PROTON~9.DLL|ProtonVPN.UpdateServiceContract.dll" Attributes="0" SourcePath="..\src\bin\ProtonVPN.UpdateServiceContract.dll" SelfReg="false"/>
+    <ROW File="ProtonVPN.TlsVerify.exe" Component_="ProtonVPN.TlsVerify.exe" FileName="PROTON~5.EXE|ProtonVPN.TlsVerify.exe" Attributes="0" SourcePath="..\src\bin\ProtonVPN.TlsVerify.exe" SelfReg="false"/>
     <ROW File="COPYING.md" Component_="ProtonVPN.ErrorMessage.exe.config" FileName="COPYING.md" Attributes="0" SourcePath="..\COPYING.md" SelfReg="false"/>
     <ROW File="LICENSE" Component_="ProtonVPN.ErrorMessage.exe.config" FileName="LICENSE" Attributes="0" SourcePath="..\LICENSE" SelfReg="false"/>
-    <ROW File="Polly.Contrib.WaitAndRetry.dll" Component_="Polly.Contrib.WaitAndRetry.dll" FileName="POLLYC~1.DLL|Polly.Contrib.WaitAndRetry.dll" Attributes="0" SourcePath="..\src\bin\Polly.Contrib.WaitAndRetry.dll" SelfReg="false" DigSign="true"/>
-    <ROW File="DeviceId.dll" Component_="DeviceId.dll" FileName="DeviceId.dll" Attributes="0" SourcePath="..\src\bin\DeviceId.dll" SelfReg="false" DigSign="true"/>
-    <ROW File="PluralNet.dll" Component_="PluralNet.dll" FileName="PLURAL~1.DLL|PluralNet.dll" Attributes="0" SourcePath="..\src\bin\PluralNet.dll" SelfReg="false" DigSign="true"/>
-    <ROW File="Albireo.Base32.dll" Component_="Albireo.Base32.dll" FileName="ALBIRE~1.DLL|Albireo.Base32.dll" Attributes="0" SourcePath="..\src\bin\Albireo.Base32.dll" SelfReg="false" DigSign="true"/>
-    <ROW File="ARSoft.Tools.Net.dll" Component_="ARSoft.Tools.Net.dll" FileName="ARSOFT~1.DLL|ARSoft.Tools.Net.dll" Attributes="0" SourcePath="..\src\bin\ARSoft.Tools.Net.dll" SelfReg="false" DigSign="true"/>
-    <ROW File="BouncyCastle.Crypto.dll" Component_="BouncyCastle.Crypto.dll" FileName="BOUNCY~1.DLL|BouncyCastle.Crypto.dll" Attributes="0" SourcePath="..\src\bin\BouncyCastle.Crypto.dll" SelfReg="false" DigSign="true"/>
+    <ROW File="Polly.Contrib.WaitAndRetry.dll" Component_="Polly.Contrib.WaitAndRetry.dll" FileName="POLLYC~1.DLL|Polly.Contrib.WaitAndRetry.dll" Attributes="0" SourcePath="..\src\bin\Polly.Contrib.WaitAndRetry.dll" SelfReg="false"/>
+    <ROW File="DeviceId.dll" Component_="DeviceId.dll" FileName="DeviceId.dll" Attributes="0" SourcePath="..\src\bin\DeviceId.dll" SelfReg="false"/>
+    <ROW File="PluralNet.dll" Component_="PluralNet.dll" FileName="PLURAL~1.DLL|PluralNet.dll" Attributes="0" SourcePath="..\src\bin\PluralNet.dll" SelfReg="false"/>
+    <ROW File="Albireo.Base32.dll" Component_="Albireo.Base32.dll" FileName="ALBIRE~1.DLL|Albireo.Base32.dll" Attributes="0" SourcePath="..\src\bin\Albireo.Base32.dll" SelfReg="false"/>
+    <ROW File="ARSoft.Tools.Net.dll" Component_="ARSoft.Tools.Net.dll" FileName="ARSOFT~1.DLL|ARSoft.Tools.Net.dll" Attributes="0" SourcePath="..\src\bin\ARSoft.Tools.Net.dll" SelfReg="false"/>
+    <ROW File="BouncyCastle.Crypto.dll" Component_="BouncyCastle.Crypto.dll" FileName="BOUNCY~1.DLL|BouncyCastle.Crypto.dll" Attributes="0" SourcePath="..\src\bin\BouncyCastle.Crypto.dll" SelfReg="false"/>
     <ROW File="GuestHoleServers.json" Component_="GuestHoleServers.json" FileName="GUESTH~1.JSO|GuestHoleServers.json" Attributes="0" SourcePath="GuestHoleServers.json" SelfReg="false"/>
-    <ROW File="ProtonVPN.Translations.dll" Component_="ProtonVPN.Translations.dll" FileName="PROTO~10.DLL|ProtonVPN.Translations.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ProtonVPN.Translations.dll" SelfReg="false" DigSign="true"/>
+    <ROW File="ProtonVPN.Translations.dll" Component_="ProtonVPN.Translations.dll" FileName="PROTO~10.DLL|ProtonVPN.Translations.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ProtonVPN.Translations.dll" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.AiRemoveFileComponent">
     <ROW RemoveFile="_" Condition="(AI_CLEAN_RESOURCES_UNINSTALL = &quot;1&quot;) AND (NOT UPGRADINGPRODUCTCODE)" Options="3"/>
     <ROW RemoveFile="__1" Condition="(AI_CLEAN_RESOURCES_UNINSTALL = &quot;1&quot;) AND (NOT UPGRADINGPRODUCTCODE)" Options="3"/>
     <ROW RemoveFile="__2" Condition="(OLDPRODUCTS)" Options="3"/>
+    <ROW RemoveFile="__3" Options="3"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BootstrapperUISequenceComponent">
     <ROW Action="AI_DetectSoftware" Sequence="101"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BuildComponent">
-    <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="1" PackageFolder="ProtonVPN-SetupFiles" PackageFileName="ProtonVPN_win_v[|ProductVersion]" Languages="en;de;fr;fa;nl;it;pl;pt;ru;es;pt_BR" LangOpt="1" InstallationType="2" CabsLocation="1" UseLzma="true" LzmaMethod="2" LzmaCompressionLevel="2" PackageType="1" FilesInsideExe="true" ExeIconPath="images\protonvpn.ico" ExeMetadata="FileDescription:[|ProductName] Installer [|CommitHash]" ExtUI="true" LangsDialog="true" UseLargeSchema="true" Unicode="true" ExeName="ProtonVPN_win_v[|ProductVersion]" UACExecutionLevel="2"/>
+    <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="1" PackageFolder="ProtonVPN-SetupFiles" PackageFileName="ProtonVPN_win_v[|ProductVersion]" Languages="en;de;fr;fa;nl;it;pl;pt;ru;es;pt_BR" LangOpt="1" InstallationType="2" CabsLocation="1" UseLzma="true" LzmaMethod="2" LzmaCompressionLevel="2" PackageType="1" FilesInsideExe="true" ExeIconPath="images\protonvpn.ico" ExeMetadata="FileDescription:[|ProductName] Installer [|CommitHash]" ExtUI="true" Options="4" LangsDialog="true" UseLargeSchema="true" Unicode="true" ExeName="ProtonVPN_win_v[|ProductVersion]" UACExecutionLevel="2"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.CacheComponent">
     <ATTRIBUTE name="Enable" value="false"/>
@@ -317,7 +322,6 @@
     <ROW Name="ProtonVPN.InstallActions.dll" SourcePath="..\src\bin\ProtonVPN.InstallActions.dll"/>
     <ROW Name="ResourceCleaner.dll" SourcePath="&lt;AI_CUSTACTS&gt;ResourceCleaner.dll"/>
     <ROW Name="SoftwareDetector.dll" SourcePath="&lt;AI_CUSTACTS&gt;SoftwareDetector.dll"/>
-    <ROW Name="TapInstaller.CA.dll" SourcePath="..\src\bin\TapInstaller.CA.dll"/>
     <ROW Name="aicustact.dll" SourcePath="&lt;AI_CUSTACTS&gt;aicustact.dll"/>
     <ROW Name="aipackagechainer.exe" SourcePath="&lt;AI_CUSTACTS&gt;aipackagechainer.exe"/>
     <ROW Name="lzmaextractor.dll" SourcePath="&lt;AI_CUSTACTS&gt;lzmaextractor.dll"/>
@@ -433,6 +437,7 @@
     <ROW Directory_="ProtonVPN_Dir" Component_="ProtonVPN" ManualDelete="false"/>
     <ROW Directory_="APPDIR" Component_="APPDIR" ManualDelete="true"/>
     <ROW Directory_="Logs_Dir" Component_="Logs" ManualDelete="true"/>
+    <ROW Directory_="ProtonVPN_2_Dir" Component_="ProtonVPN_3" ManualDelete="true"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCustActComponent">
     <ROW Action="AI_AiRemoveFilesCommit" Type="11777" Source="ResourceCleaner.dll" Target="OnAiRemoveFilesCommit" WithoutSeq="true"/>
@@ -489,8 +494,8 @@
     <ROW Action="CreateUpdateScheduledTask" Type="65" Source="PowerShellScriptLauncher.dll" Target="RunPowerShellScript" Options="1" AdditionalSeq="AI_DATA_SETTER_5"/>
     <ROW Action="DeleteUpdateScheduledTask" Type="65" Source="PowerShellScriptLauncher.dll" Target="RunPowerShellScript" Options="1" AdditionalSeq="AI_DATA_SETTER_7"/>
     <ROW Action="InstallSplitTunnelDriver" Type="1" Source="ProtonVPN.InstallActions.dll" Target="InstallSplitTunnelDriver"/>
-    <ROW Action="InstallTap" Type="1" Source="TapInstaller.CA.dll" Target="InstallTapAdapter"/>
-    <ROW Action="LaunchApp" Type="194" Source="viewer.exe" Target="/EnforcedRunAsAdmin /DontWait /dir &quot;[APPDIR]&quot; &quot;[#ProtonVPN.exe]&quot; /lang &quot;[SelectedLanguage]&quot;" Options="1"/>
+    <ROW Action="LaunchAppAfterInstall" Type="194" Source="viewer.exe" Target="/EnforcedRunAsAdmin /DontWait /dir &quot;[APPDIR]&quot; &quot;[#ProtonVPN.exe]&quot; /lang &quot;[SelectedLanguage]&quot;" Options="1"/>
+    <ROW Action="LaunchAppAfterUpdate" Type="194" Source="viewer.exe" Target="/EnforcedRunAsAdmin /DontWait /dir &quot;[APPDIR]&quot; &quot;[#ProtonVPN.exe]&quot;" Options="1"/>
     <ROW Action="ModifyServicePermissions" Type="1" Source="ProtonVPN.InstallActions.dll" Target="ModifyServicePermissions"/>
     <ROW Action="RebootAction" Type="1" Source="ProtonVPN.InstallActions.dll" Target="Reboot"/>
     <ROW Action="RebootWarning" Type="1" Source="aicustact.dll" Target="MsgBox" Options="1" AdditionalSeq="AI_DATA_SETTER_10"/>
@@ -510,7 +515,6 @@
     <ROW Action="StopService" Type="1" Source="aicustact.dll" Target="StopWinService" Options="1" AdditionalSeq="AI_DATA_SETTER_2"/>
     <ROW Action="StopUpdateService" Type="1" Source="aicustact.dll" Target="StopWinService" Options="1" AdditionalSeq="AI_DATA_SETTER_1"/>
     <ROW Action="UninstallSplitTunnelDriver" Type="1" Source="ProtonVPN.InstallActions.dll" Target="UninstallSplitTunnelDriver"/>
-    <ROW Action="UninstallTap" Type="65" Source="TapInstaller.CA.dll" Target="UninstallTapAdapter"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatCompsComponent">
     <ROW Feature_="FD92F08164915A061A35616A2E484" Component_="FD92F08164915A061A35616A2E484"/>
@@ -593,6 +597,7 @@
     <ROW Feature_="MainFeature" Component_="GuestHoleServers.json"/>
     <ROW Feature_="MainFeature" Component_="Logs"/>
     <ROW Feature_="MainFeature" Component_="ProtonVPN.Translations.dll"/>
+    <ROW Feature_="MainFeature" Component_="ProtonVPN_3"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
     <ROW Name="protonvpn.exe" SourcePath="images\protonvpn.ico" Index="0"/>
@@ -627,22 +632,20 @@
     <ROW Action="AI_DetectSoftware" Sequence="101"/>
     <ROW Action="RemoveProgramData" Condition="( Installed AND ( REMOVE = &quot;ALL&quot; OR AI_INSTALL_MODE = &quot;Remove&quot; ) ) AND ( (VersionNT &gt; 501) OR (VersionNT = 501 AND ServicePackLevel &gt;= 2) )" Sequence="68"/>
     <ROW Action="AI_DATA_SETTER_4" Condition="( Installed AND ( REMOVE = &quot;ALL&quot; OR AI_INSTALL_MODE = &quot;Remove&quot; ) ) AND ( (VersionNT &gt; 501) OR (VersionNT = 501 AND ServicePackLevel &gt;= 2) )" Sequence="67"/>
-    <ROW Action="InstallTap" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) )" Sequence="6604"/>
     <ROW Action="AI_VerifyPrereq" Sequence="1101"/>
     <ROW Action="AI_ConfigureChainer" Condition="((UILevel = 2) OR (UILevel = 3)) AND (NOT UPGRADINGPRODUCTCODE)" Sequence="6598"/>
     <ROW Action="AI_LaunchChainer" Condition="AI_PREREQ_CHAINER AND (NOT UPGRADINGPRODUCTCODE)" Sequence="6599"/>
-    <ROW Action="UninstallTap" Condition="( Installed AND ( REMOVE = &quot;ALL&quot; OR AI_INSTALL_MODE = &quot;Remove&quot; ) AND NOT UPGRADINGPRODUCTCODE )" Sequence="1201"/>
     <ROW Action="StopErrorMessageProcess" Sequence="57"/>
     <ROW Action="AI_DATA_SETTER_6" Sequence="56"/>
     <ROW Action="AI_DETECT_MODERNWIN" Condition="(VersionNT &gt;= 603)" Sequence="58" MsiKey="AI_DETECT_MODERNWIN"/>
-    <ROW Action="LaunchApp" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( REBOOT &lt;&gt; &quot;Force&quot; )" Sequence="6613"/>
-    <ROW Action="ModifyServicePermissions" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) )" Sequence="6605"/>
+    <ROW Action="LaunchAppAfterInstall" Condition="( ( NOT Installed AND NOT OLDPRODUCTS ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( REBOOT &lt;&gt; &quot;Force&quot; )" Sequence="6612"/>
+    <ROW Action="ModifyServicePermissions" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) )" Sequence="6604"/>
     <ROW Action="UninstallSplitTunnelDriver" Condition="( ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) OR ( Installed AND ( REMOVE = &quot;ALL&quot; OR AI_INSTALL_MODE = &quot;Remove&quot; ) ) )" Sequence="6403"/>
-    <ROW Action="InstallSplitTunnelDriver" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) )" Sequence="6610"/>
-    <ROW Action="SetSplitTunnelDriverFileWin10x64" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( (VersionNT64) AND (VersionNT64 = 1000) )" Sequence="6606"/>
-    <ROW Action="SetSplitTunnelDriverFileWin10x86" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( (NOT VersionNT64) AND (VersionNT = 1000) )" Sequence="6607"/>
-    <ROW Action="SetSplitTunnelDriverFileWin7x64" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( (VersionNT64) AND (VersionNT64 &lt; 1000) )" Sequence="6608"/>
-    <ROW Action="SetSplitTunnelDriverFileWin7x86" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( (NOT VersionNT64) AND (VersionNT &lt; 1000) )" Sequence="6609"/>
+    <ROW Action="InstallSplitTunnelDriver" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) )" Sequence="6609"/>
+    <ROW Action="SetSplitTunnelDriverFileWin10x64" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( (VersionNT64) AND (VersionNT64 = 1000) )" Sequence="6605"/>
+    <ROW Action="SetSplitTunnelDriverFileWin10x86" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( (NOT VersionNT64) AND (VersionNT = 1000) )" Sequence="6606"/>
+    <ROW Action="SetSplitTunnelDriverFileWin7x64" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( (VersionNT64) AND (VersionNT64 &lt; 1000) )" Sequence="6607"/>
+    <ROW Action="SetSplitTunnelDriverFileWin7x86" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( (NOT VersionNT64) AND (VersionNT &lt; 1000) )" Sequence="6608"/>
     <ROW Action="StopUpdateService" Sequence="64"/>
     <ROW Action="AI_DATA_SETTER_1" Sequence="63"/>
     <ROW Action="CreateUpdateScheduledTask" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( (VersionNT &gt; 501) OR (VersionNT = 501 AND ServicePackLevel &gt;= 2) )" Sequence="6603"/>
@@ -652,13 +655,14 @@
     <ROW Action="AI_DATA_SETTER_7" Condition="( Installed AND ( REMOVE = &quot;ALL&quot; OR AI_INSTALL_MODE = &quot;Remove&quot; ) ) AND ( (VersionNT &gt; 501) OR (VersionNT = 501 AND ServicePackLevel &gt;= 2) )" Sequence="6401"/>
     <ROW Action="CopyInstallLog" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( (VersionNT &gt; 501) OR (VersionNT = 501 AND ServicePackLevel &gt;= 2) )" Sequence="6615"/>
     <ROW Action="AI_DATA_SETTER_8" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( (VersionNT &gt; 501) OR (VersionNT = 501 AND ServicePackLevel &gt;= 2) )" Sequence="6614"/>
-    <ROW Action="SetLanguageISOCode" Condition="(VersionNT &gt; 501) OR (VersionNT = 501 AND ServicePackLevel &gt;= 2)" Sequence="6612"/>
-    <ROW Action="AI_DATA_SETTER_9" Condition="(VersionNT &gt; 501) OR (VersionNT = 501 AND ServicePackLevel &gt;= 2)" Sequence="6611"/>
+    <ROW Action="SetLanguageISOCode" Condition="(VersionNT &gt; 501) OR (VersionNT = 501 AND ServicePackLevel &gt;= 2)" Sequence="6611"/>
+    <ROW Action="AI_DATA_SETTER_9" Condition="(VersionNT &gt; 501) OR (VersionNT = 501 AND ServicePackLevel &gt;= 2)" Sequence="6610"/>
     <ROW Action="RebootWarning" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( PENDING_REBOOT = 1 )" Sequence="53"/>
     <ROW Action="AI_DATA_SETTER_10" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( PENDING_REBOOT = 1 )" Sequence="52"/>
     <ROW Action="CheckForPendingReboot" Condition="( NOT Installed ) AND ( UILevel = &quot;5&quot; )" Sequence="51"/>
     <ROW Action="RebootAction" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( REBOOT_WINDOW_BTN_PRESSED = &quot;IDYES&quot; )" Sequence="55"/>
     <ROW Action="SetSetupExeName" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( REBOOT_WINDOW_BTN_PRESSED = &quot;IDYES&quot; )" Sequence="54"/>
+    <ROW Action="LaunchAppAfterUpdate" Condition="( NOT Installed AND OLDPRODUCTS ) AND ( REBOOT &lt;&gt; &quot;Force&quot; )" Sequence="6613"/>
     <ROW Action="AI_AiRemoveFilesImmediate" Sequence="3499"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstallUISequenceComponent">
@@ -716,6 +720,7 @@
     <ROW FileKey="_" Component_="AI_ExePath" DirProperty="AppData_Dir" InstallMode="2"/>
     <ROW FileKey="__1" Component_="ProtonVPN.exe" DirProperty="ProtonVPN_1_Dir" InstallMode="2"/>
     <ROW FileKey="__2" Component_="AI_ExePath" DirProperty="Logs_Dir" InstallMode="1"/>
+    <ROW FileKey="__3" Component_="ProtonVPN" DirProperty="ProtonVPN_2_Dir" InstallMode="2"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiServConfigFailureActionsComponent">
     <ROW MsiServiceConfigFailureActions="ServiceName" Name="[ServiceName]" Event="5" ResetPeriod="1" RebootMessage="[~]" Actions="1[~]1[~]1" DelayActions="1[~]1[~]1" Component_="AI_ExePath"/>
@@ -742,7 +747,7 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.PreReqComponent">
     <ROW PrereqKey="A6D7F21EAEB4C4A901F0979CF110936" DisplayName=".NET Framework 4.7.2" SetupFileUrl="https://download.microsoft.com/download/6/E/4/6E48E8AB-DC00-419E-9704-06DD46E5F81D/NDP472-KB4054530-x86-x64-AllOS-ENU.exe" Location="1" ExactSize="83943272" WinNTVersions="Windows Vista RTM x86, Windows Server 2008 x86, Windows 7 RTM x86, Windows 10 version 1507 x86, Windows 10 version 1511 x86, Windows 10 version 1803 x86, Windows 10 version 1809 x86, Windows 10 version 1903 x86, Windows 10 version 1909 x86" WinNT64Versions="Windows Vista RTM x64, Windows Server 2008 x64, Windows 7 RTM x64, Windows Server 2008 R2 RTM x64, Windows 10 version 1507 x64, Windows 10 version 1511 x64, Windows 10 version 1803 x64, Windows 10 version 1809 x64, Windows Server 2019 x64, Windows 10 version 1903 x64, Windows 10 version 1909 x64" Operator="1" NoUiComLine="/q /norestart" Options="xym" MD5="87450cfa175585b23a76bbd7052ee66b" TargetName=".NET Framework 4.7.2"/>
-    <ROW PrereqKey="FD92F08164915A061A35616A2E484" DisplayName="ProtonVPNTap" VersionMin="1.1.0" SetupFileUrl="ProtonVPNTap-SetupFiles\ProtonVPNTap.exe" Location="0" ExactSize="0" Operator="1" Options="mzf" TargetName="ProtonVPNTap.exe" Feature="FD92F08164915A061A35616A2E484"/>
+    <ROW PrereqKey="FD92F08164915A061A35616A2E484" DisplayName="ProtonVPNTap" VersionMin="1.1.1" SetupFileUrl="ProtonVPNTap-SetupFiles\ProtonVPNTap_1.1.1.exe" Location="0" ExactSize="0" Operator="1" Options="mzf" TargetName="ProtonVPNTap_1.1.1.exe" Feature="FD92F08164915A061A35616A2E484"/>
     <ROW PrereqKey="RequiredApplication_2" DisplayName="Windows 7 x64 security update (KB2992611)" SetupFileUrl="https://download.microsoft.com/download/E/C/5/EC5D4973-A233-4F48-A555-65DF1E6DDA99/Windows6.1-KB2992611-x64.msu" Location="1" ExactSize="0" WinNTVersions="Windows 9x/ME/NT/2000/XP/Vista/Windows 7/Windows 8 x86/Windows 8.1 x86/Windows 10 x86" WinNT64Versions="Windows Vista RTM x64, Windows Server 2008 x64, Windows 8 x64, Windows Server 2012 x64, Windows 8.1 x64, Windows Server 2012 R2 x64, Windows 10 x64, Windows Server x64" Operator="1" NoUiComLine="/quiet /norestart" Options="y"/>
     <ROW PrereqKey="RequiredApplication_3" DisplayName="Windows 7 x86 security update (KB2992611)" SetupFileUrl="https://download.microsoft.com/download/F/1/9/F19ED8C4-B547-49C3-B3EA-759D3613FD75/Windows6.1-KB2992611-x86.msu" Location="1" ExactSize="0" WinNTVersions="Windows Vista RTM x86, Windows Server 2008 x86, Windows 8 x86, Windows 8.1 x86, Windows 10 x86" WinNT64Versions="Windows XP/Vista/Windows 7/Windows 8 x64/Windows 8.1 x64/Windows 10 x64" Operator="1" NoUiComLine="/quiet /norestart" Options="y"/>
     <ROW PrereqKey="Windows7x64securi" DisplayName="Windows 7 x64 security update (KB3033929)" SetupFileUrl="https://download.microsoft.com/download/C/8/7/C87AE67E-A228-48FB-8F02-B2A9A1238099/Windows6.1-KB3033929-x64.msu" Location="1" ExactSize="0" WinNTVersions="Windows 9x/ME/NT/2000/XP/Vista/Windows 7/Windows 8 x86/Windows 8.1 x86/Windows 10 x86" WinNT64Versions="Windows Vista RTM x64, Windows Server 2008 x64, Windows 8 x64, Windows Server 2012 x64, Windows 8.1 x64, Windows Server 2012 R2 x64, Windows 10 x64, Windows Server x64" Operator="1" NoUiComLine="/quiet /norestart" Options="y"/>
@@ -753,7 +758,7 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.PreReqSearchComponent">
     <ROW SearchKey="A6D7F21EAEB4C4A901F0979CF110936Rele" Prereq="A6D7F21EAEB4C4A901F0979CF110936" SearchType="9" SearchString="HKLM\SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full\Release" RefContent="G461807" Order="1" Property="PreReqSearch_A6D7F21EAEB4C4A901F097"/>
-    <ROW SearchKey="FD92F08164915A061A35616A2E484UpgradeCode" Prereq="FD92F08164915A061A35616A2E484" SearchType="4" SearchString="{E23B9F7F-AA0A-481A-8ECA-FA69794BF50A}" VerMin="1.1.0" Order="1" Property="PreReqSearch_FD92F08164915A061A3561"/>
+    <ROW SearchKey="FD92F08164915A061A35616A2E484UpgradeCode" Prereq="FD92F08164915A061A35616A2E484" SearchType="4" SearchString="{E23B9F7F-AA0A-481A-8ECA-FA69794BF50A}" VerMin="1.1.1" Order="1" Property="PreReqSearch_FD92F08164915A061A3561"/>
     <ROW SearchKey="SystemFolderKernel32.dll" Prereq="Windows7x64securi_1" SearchType="0" SearchString="[SystemFolder]Kernel32.dll" VerMin="6.1.7601.17617" VerMax="6.1.7601.20999" Order="1" Property="PreReqSearch"/>
     <ROW SearchKey="SystemFolderKernel32.dll_1" Prereq="Windows7x64securi_1" SearchType="0" SearchString="[SystemFolder]Kernel32.dll" VerMin="6.1.7601.21728" Order="0" Property="PreReqSearch_1"/>
     <ROW SearchKey="SystemFolderKernel32.dll_2" Prereq="Windows7x86securi_1" SearchType="0" SearchString="[SystemFolder]Kernel32.dll" VerMin="6.1.7601.17617" VerMax="6.1.7601.20999" Order="1" Property="PreReqSearch_3"/>
