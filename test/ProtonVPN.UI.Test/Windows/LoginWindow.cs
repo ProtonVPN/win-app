@@ -84,8 +84,10 @@ namespace ProtonVPN.UI.Test.Windows
             EnterUsername(TestUserData.GetTrialUser().Username)
                 .EnterPassword(TestUserData.GetTrialUser().Password)
                 .ClickLoginButton();
-            WaitUntilLoginIsFinished();
-            RefreshSession();
+            WaitUntilElementExistsByAutomationId("TrialModal", 20);
+            Session.FindElementByAccessibilityId("TrialModal").Click();
+            var actions = new Actions(Session);
+            actions.SendKeys(Keys.Escape).Build().Perform();
             return this;
         }
 

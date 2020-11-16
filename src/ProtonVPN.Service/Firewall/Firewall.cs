@@ -34,8 +34,10 @@ namespace ProtonVPN.Service.Firewall
         private readonly INetworkInterfaces _networkInterfaces;
         private readonly IpLayer _ipLayer;
         private readonly Sublayer _sublayer;
+        private FirewallParams _lastParams = FirewallParams.Null;
 
         private readonly List<ValueTuple<string, List<Guid>>> _serverAddressFilters = new List<ValueTuple<string, List<Guid>>>();
+        private readonly List<Guid> _baseProtectionFilters = new List<Guid>();
 
         public Firewall(
             ILogger logger,
@@ -57,36 +59,25 @@ namespace ProtonVPN.Service.Firewall
         {
             PermitOpenVpnServerAddress(firewallParams.ServerIp);
 
-            if (LeakProtectionEnabled)
+            if (firewallParams.DnsLeakOnly == _lastParams.DnsLeakOnly && LeakProtectionEnabled)
+            {
                 return;
+            }
 
             try
             {
                 _logger.Info("Firewall: Blocking internet");
 
                 var tapInterface = _networkInterfaces.Interface(_config.OpenVpn.TapAdapterDescription);
+                EnableDnsLeakProtection(tapInterface.Id);
+
                 if (firewallParams.DnsLeakOnly)
                 {
-                    BlockDns(3);
-                    PermitTunnelDns(tapInterface.Id, 4);
+                    DisableBaseProtection();
                 }
                 else
                 {
-                    PermitTunnelDns(tapInterface.Id, 4);
-                    PermitDhcp(4);
-                    PermitFromNetworkInterface(tapInterface.Id, 4);
-                    PermitFromApp(4);
-                    PermitFromService(4);
-                    PermitFromUpdateService(4);
-
-                    BlockDns(3);
-
-                    PermitIpv4Loopback(2);
-                    PermitIpv6Loopback(2);
-                    PermitPrivateNetwork(2);
-
-                    BlockAllIpv4Network(1);
-                    BlockAllIpv6Network(1);
+                    EnableBaseLeakProtection(tapInterface.Id);
                 }
 
                 LeakProtectionEnabled = true;
@@ -97,6 +88,8 @@ namespace ProtonVPN.Service.Firewall
             {
                 _logger.Error(ex);
             }
+
+            _lastParams = firewallParams;
         }
 
         public void DisableLeakProtection()
@@ -110,6 +103,7 @@ namespace ProtonVPN.Service.Firewall
 
                 _sublayer.DestroyAllFilters();
                 _serverAddressFilters.Clear();
+                _baseProtectionFilters.Clear();
                 LeakProtectionEnabled = false;
 
                 _logger.Info("Firewall: Internet restored");
@@ -120,7 +114,40 @@ namespace ProtonVPN.Service.Firewall
             }
         }
 
-        public void PermitTunnelDns(string id, uint weight)
+        private void DisableBaseProtection()
+        {
+            DeleteIpFilters(_baseProtectionFilters);
+            _baseProtectionFilters.Clear();
+        }
+
+        private void EnableDnsLeakProtection(string tapId)
+        {
+            if (LeakProtectionEnabled)
+            {
+                return;
+            }
+
+            BlockDns(3);
+            PermitTunnelDns(tapId, 4);
+        }
+
+        private void EnableBaseLeakProtection(string tapId)
+        {
+            PermitDhcp(4);
+            PermitFromNetworkInterface(tapId, 4);
+            PermitFromApp(4);
+            PermitFromService(4);
+            PermitFromUpdateService(4);
+
+            PermitIpv4Loopback(2);
+            PermitIpv6Loopback(2);
+            PermitPrivateNetwork(2);
+
+            BlockAllIpv4Network(1);
+            BlockAllIpv6Network(1);
+        }
+
+        private void PermitTunnelDns(string id, uint weight)
         {
             _ipLayer.ApplyToIpv4(layer =>
             {
@@ -182,12 +209,12 @@ namespace ProtonVPN.Service.Firewall
         {
             _ipLayer.ApplyToIpv4(layer =>
             {
-                _sublayer.CreateRemoteUdpPortFilter(
+                _baseProtectionFilters.Add(_sublayer.CreateRemoteUdpPortFilter(
                     new DisplayData("ProtonVPN permit DHCP", "Permit 67 UDP port"),
                     Action.SoftPermit,
                     layer,
                     weight,
-                    67);
+                    67));
             });
         }
 
@@ -195,22 +222,22 @@ namespace ProtonVPN.Service.Firewall
         {
             _ipLayer.ApplyToIpv4(layer =>
             {
-                _sublayer.CreateNetInterfaceFilter(
+                _baseProtectionFilters.Add(_sublayer.CreateNetInterfaceFilter(
                     new DisplayData("ProtonVPN permit VPN tunnel", "Permit TAP adapter traffic"),
                     Action.SoftPermit,
                     layer,
                     weight,
-                    id);
+                    id));
             });
 
             _ipLayer.ApplyToIpv6(layer =>
             {
-                _sublayer.CreateNetInterfaceFilter(
+                _baseProtectionFilters.Add(_sublayer.CreateNetInterfaceFilter(
                     new DisplayData("ProtonVPN permit VPN tunnel", "Permit TAP adapter traffic"),
                     Action.SoftPermit,
                     layer,
                     weight,
-                    id);
+                    id));
             });
         }
 
@@ -268,11 +295,11 @@ namespace ProtonVPN.Service.Firewall
         {
             _ipLayer.ApplyToIpv4(layer =>
             {
-                _sublayer.CreateLayerFilter(
+                _baseProtectionFilters.Add(_sublayer.CreateLayerFilter(
                     new DisplayData("ProtonVPN block IPv4", "Block all IPv4 traffic"),
                     Action.SoftBlock,
                     layer,
-                    weight);
+                    weight));
             });
         }
 
@@ -280,11 +307,11 @@ namespace ProtonVPN.Service.Firewall
         {
             _ipLayer.ApplyToIpv6(layer =>
             {
-                _sublayer.CreateLayerFilter(
+                _baseProtectionFilters.Add(_sublayer.CreateLayerFilter(
                     new DisplayData("ProtonVPN block IPv6", "Block all IPv6 traffic"),
                     Action.SoftBlock,
                     layer,
-                    weight);
+                    weight));
             });
         }
 
@@ -292,11 +319,11 @@ namespace ProtonVPN.Service.Firewall
         {
             _ipLayer.ApplyToIpv4(layer =>
             {
-                _sublayer.CreateLoopbackFilter(
+                _baseProtectionFilters.Add(_sublayer.CreateLoopbackFilter(
                     new DisplayData("ProtonVPN permit IPv4 loopback", "Permit IPv4 loopback traffic"),
                     Action.HardPermit,
                     layer,
-                    weight);
+                    weight));
             });
         }
 
@@ -304,11 +331,11 @@ namespace ProtonVPN.Service.Firewall
         {
             _ipLayer.ApplyToIpv6(layer =>
             {
-                _sublayer.CreateLoopbackFilter(
+                _baseProtectionFilters.Add(_sublayer.CreateLoopbackFilter(
                     new DisplayData("ProtonVPN permit IPv6 loopback", "Permit IPv6 loopback traffic"),
                     Action.HardPermit,
                     layer,
-                    weight);
+                    weight));
             });
         }
 
@@ -316,60 +343,52 @@ namespace ProtonVPN.Service.Firewall
         {
             _ipLayer.ApplyToIpv4(layer =>
             {
-                _sublayer.CreateRemoteNetworkIPv4Filter(new DisplayData(
-                        "ProtonVPN permit private network",
-                        ""),
+                _baseProtectionFilters.Add(_sublayer.CreateRemoteNetworkIPv4Filter(
+                    new DisplayData("ProtonVPN permit private network", ""),
                     Action.HardPermit,
                     layer,
                     weight,
-                    new NetworkAddress("10.0.0.0", "255.0.0.0"));
+                    new NetworkAddress("10.0.0.0", "255.0.0.0")));
             });
 
             _ipLayer.ApplyToIpv4(layer =>
             {
-                _sublayer.CreateRemoteNetworkIPv4Filter(new DisplayData(
-                        "ProtonVPN permit private network",
-                        ""),
+                _baseProtectionFilters.Add(_sublayer.CreateRemoteNetworkIPv4Filter(
+                    new DisplayData("ProtonVPN permit private network", ""),
                     Action.HardPermit,
                     layer,
                     weight,
-                    new NetworkAddress("172.16.0.0", "255.240.0.0"));
+                    new NetworkAddress("172.16.0.0", "255.240.0.0")));
             });
 
             _ipLayer.ApplyToIpv4(layer =>
             {
-                _sublayer.CreateRemoteNetworkIPv4Filter(
-                    new DisplayData(
-                        "ProtonVPN permit private network",
-                        ""),
+                _baseProtectionFilters.Add(_sublayer.CreateRemoteNetworkIPv4Filter(
+                    new DisplayData("ProtonVPN permit private network", ""),
                     Action.HardPermit,
                     layer,
                     weight,
-                    new NetworkAddress("192.168.0.0", "255.255.0.0"));
+                    new NetworkAddress("192.168.0.0", "255.255.0.0")));
             });
 
             _ipLayer.ApplyToIpv4(layer =>
             {
-                _sublayer.CreateRemoteNetworkIPv4Filter(
-                    new DisplayData(
-                        "ProtonVPN permit private network",
-                        ""),
+                _baseProtectionFilters.Add(_sublayer.CreateRemoteNetworkIPv4Filter(
+                    new DisplayData("ProtonVPN permit private network", ""),
                     Action.HardPermit,
                     layer,
                     weight,
-                    new NetworkAddress("224.0.0.0", "240.0.0.0"));
+                    new NetworkAddress("224.0.0.0", "240.0.0.0")));
             });
 
             _ipLayer.ApplyToIpv4(layer =>
             {
-                _sublayer.CreateRemoteNetworkIPv4Filter(
-                    new DisplayData(
-                        "ProtonVPN permit private network",
-                        ""),
+                _baseProtectionFilters.Add(_sublayer.CreateRemoteNetworkIPv4Filter(
+                    new DisplayData("ProtonVPN permit private network", ""),
                     Action.HardPermit,
                     layer,
                     weight,
-                    new NetworkAddress("255.255.255.255", "255.255.255.255"));
+                    new NetworkAddress("255.255.255.255", "255.255.255.255")));
             });
         }
 
@@ -377,12 +396,12 @@ namespace ProtonVPN.Service.Firewall
         {
             _ipLayer.ApplyToIpv4(layer =>
             {
-                _sublayer.CreateAppFilter(
+                _baseProtectionFilters.Add(_sublayer.CreateAppFilter(
                     new DisplayData("ProtonVPN permit app", "Permit ProtonVPN app to bypass VPN tunnel"),
                     Action.HardPermit,
                     layer,
                     weight,
-                    _config.AppExePath);
+                    _config.AppExePath));
             });
         }
 
@@ -390,12 +409,12 @@ namespace ProtonVPN.Service.Firewall
         {
             _ipLayer.ApplyToIpv4(layer =>
             {
-                _sublayer.CreateAppFilter(
+                _baseProtectionFilters.Add(_sublayer.CreateAppFilter(
                     new DisplayData("ProtonVPN permit service", "Permit ProtonVPN Service to bypass VPN tunnel"),
                     Action.HardPermit,
                     layer,
                     weight,
-                    _config.ServiceExePath);
+                    _config.ServiceExePath));
             });
         }
 
@@ -403,12 +422,12 @@ namespace ProtonVPN.Service.Firewall
         {
             _ipLayer.ApplyToIpv4(layer =>
             {
-                _sublayer.CreateAppFilter(
+                _baseProtectionFilters.Add(_sublayer.CreateAppFilter(
                     new DisplayData("ProtonVPN permit update service", "Permit ProtonVPN Update Service to bypass VPN tunnel"),
                     Action.HardPermit,
                     layer,
                     weight,
-                    _config.UpdateServiceExePath);
+                    _config.UpdateServiceExePath));
             });
         }
     }

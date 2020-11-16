@@ -2863,7 +2863,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Show less</value>
   </data>
   <data name="Dialogs_DisabledService_msg_ExtraInfo" xml:space="preserve">
-    <value>Sometimes, anti-virus software will mistakenly categorise ProtonVPN as a vulnarability and disable it. By clicking Enable, you are giving your system permission to reactivate the ProtonVPN Service.&lt;LineBreak/&gt;If the ProtonVPN Service is still disabled, try restarting your PC or reinstalling ProtonVPN.</value>
+    <value>Sometimes, anti-virus software will mistakenly categorize ProtonVPN as a vulnerability and disable it. By clicking Enable, you are giving your system permission to reactivate the ProtonVPN Service.&lt;LineBreak/&gt;If the ProtonVPN Service is still disabled, try restarting your PC or reinstalling ProtonVPN.</value>
   </data>
   <data name="BugReport_msg_EmailNotValid" xml:space="preserve">
     <value>Email not valid</value>
