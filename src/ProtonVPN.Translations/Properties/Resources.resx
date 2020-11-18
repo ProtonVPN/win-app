@@ -1219,7 +1219,7 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <comment>The text on Disconnect button in Connection section of Sidebar section of main app window (disconnect from VPN)</comment>
   </data>
   <data name="Sidebar_Countries_lbl_Maintenance" xml:space="preserve">
-    <value>Maintenance</value>
+    <value>Under maintenance</value>
     <comment>The text displayed next to the country in Countries tab of Sidebar section of main app window when all servers in the country are under maintenance.</comment>
   </data>
   <data name="Sidebar_Countries_lbl_Search_Watermark" xml:space="preserve">
