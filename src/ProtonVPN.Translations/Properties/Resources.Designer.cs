@@ -3289,7 +3289,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sometimes, anti-virus software will mistakenly categorise ProtonVPN as a vulnarability and disable it. By clicking Enable, you are giving your system permission to reactivate the ProtonVPN Service.&lt;LineBreak/&gt;If the ProtonVPN Service is still disabled, try restarting your PC or reinstalling ProtonVPN..
+        ///   Looks up a localized string similar to Sometimes, anti-virus software will mistakenly categorize ProtonVPN as a vulnerability and disable it. By clicking Enable, you are giving your system permission to reactivate the ProtonVPN Service.&lt;LineBreak/&gt;If the ProtonVPN Service is still disabled, try restarting your PC or reinstalling ProtonVPN..
         /// </summary>
         public static string Dialogs_DisabledService_msg_ExtraInfo {
             get {
@@ -5513,7 +5513,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Maintenance.
+        ///   Looks up a localized string similar to Under maintenance.
         /// </summary>
         public static string Sidebar_Countries_lbl_Maintenance {
             get {
