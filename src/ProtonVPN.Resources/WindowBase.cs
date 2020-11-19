@@ -19,32 +19,36 @@
 
 using System;
 using System.Windows;
-using System.Windows.Input;
+using System.Windows.Interop;
 
 namespace ProtonVPN.Resource
 {
-    public class BaseModalWindow : WindowBase
+    public class WindowBase : Window
     {
-        public BaseModalWindow()
+        private const int WM_NCHITTEST_MESSAGE = 0x0084;
+
+        protected override void OnSourceInitialized(EventArgs e)
         {
-            PreviewKeyDown += HandleEsc;
+            base.OnSourceInitialized(e);
+            ((HwndSource)PresentationSource.FromVisual(this)).AddHook(HookProc);
         }
 
-        protected override void OnActivated(EventArgs e)
+        /// <summary>This specific catch prevents a crash in WindowChromeWorker._HandleNCHitTest</summary>
+        private IntPtr HookProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
         {
-            base.OnActivated(e);
-            if (WindowState == WindowState.Minimized)
+            if (msg == WM_NCHITTEST_MESSAGE)
             {
-                WindowState = WindowState.Normal;
+                try
+                {
+                    lParam.ToInt32();
+                }
+                catch (OverflowException)
+                {
+                    handled = true;
+                }
             }
-        }
 
-        private void HandleEsc(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Escape)
-            {
-                Close();
-            }
+            return IntPtr.Zero;
         }
     }
 }
