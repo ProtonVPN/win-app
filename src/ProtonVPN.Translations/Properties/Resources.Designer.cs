@@ -4901,6 +4901,15 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Server Status:.
+        /// </summary>
+        public static string Servers_Load_lbl_Status {
+            get {
+                return ResourceManager.GetString("Servers_Load_lbl_Status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Via {0} to {1}.
         /// </summary>
         public static string Servers_Load_lbl_ViaCountry {
