@@ -81,6 +81,7 @@
       <DependentUpon>Strings.resx</DependentUpon>
     </Compile>
     <Compile Include="StringResource.cs" />
+    <Compile Include="WindowBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="protonvpn.ico" />
