@@ -45,6 +45,8 @@ namespace ProtonVPN.ConnectionInfo
             set => Set(ref _loadNumber, value);
         }
 
+
+        public bool Maintenance { get; }
         public object Ip { get; }
         public bool SecureCore { get; }
         public bool PlusServer { get; }
@@ -64,6 +66,7 @@ namespace ProtonVPN.ConnectionInfo
 
             LoadNumber = server.Load;
             Load = $"{server.Load}%";
+            Maintenance = server.Status == 0;
             Ip = new Ip {Address = server.ExitIp};
             PlusServer = server.Tier.Equals(ServerTiers.Plus);
             P2PServer = server.SupportsP2P();
