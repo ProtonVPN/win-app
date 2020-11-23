@@ -128,6 +128,9 @@ namespace ProtonVPN.Common.Configuration
         [Required]
         public string GuestHoleVpnPassword { get; internal set; }
 
+        [Required]
+        public string VpnUsernameSuffix { get; set; }
+
         [Range(typeof(TimeSpan), "00:00:10", "10:00:00:00")]
         public TimeSpan UpdateCheckInterval { get; internal set; }
 

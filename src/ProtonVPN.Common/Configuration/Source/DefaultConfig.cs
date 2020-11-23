@@ -111,6 +111,8 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 GuestHoleVpnPassword = "guest",
 
+                VpnUsernameSuffix = "+pw", // p - proton, w - windows
+
                 UpdateCheckInterval = TimeSpan.FromHours(3),
 
                 UpdateRemindInterval = TimeSpan.FromHours(24),

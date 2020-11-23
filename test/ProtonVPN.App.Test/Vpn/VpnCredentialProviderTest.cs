@@ -32,6 +32,10 @@ namespace ProtonVPN.App.Test.Vpn
     {
         private IAppSettings _appSettings;
         private IUserStorage _userStorage;
+        private readonly Common.Configuration.Config _config = new Common.Configuration.Config
+        {
+            VpnUsernameSuffix = "+pw"
+        };
 
         private static string _username = "username";
         private readonly User _user = new User
@@ -63,7 +67,7 @@ namespace ProtonVPN.App.Test.Vpn
             _appSettings.NetShieldEnabled.Returns(true);
             _appSettings.FeatureNetShieldEnabled.Returns(true);
 
-            var sut = new VpnCredentialProvider(_appSettings, _userStorage);
+            var sut = new VpnCredentialProvider(_config, _appSettings, _userStorage);
 
             // Assert
             sut.Credentials().Username.Replace(_username, string.Empty)
@@ -80,7 +84,7 @@ namespace ProtonVPN.App.Test.Vpn
             _appSettings.NetShieldMode.Returns(2);
             _appSettings.NetShieldEnabled.Returns(false);
 
-            var sut = new VpnCredentialProvider(_appSettings, _userStorage);
+            var sut = new VpnCredentialProvider(_config, _appSettings, _userStorage);
 
             // Assert
             _netShieldSuffixes.Any(s => s.Contains(sut.Credentials().Username)).Should().BeFalse();
@@ -95,7 +99,7 @@ namespace ProtonVPN.App.Test.Vpn
             _appSettings.NetShieldEnabled.Returns(true);
             _appSettings.FeatureNetShieldEnabled.Returns(false);
 
-            var sut = new VpnCredentialProvider(_appSettings, _userStorage);
+            var sut = new VpnCredentialProvider(_config, _appSettings, _userStorage);
 
             // Assert
             _netShieldSuffixes.Any(s => s.Contains(sut.Credentials().Username)).Should().BeFalse();
@@ -106,7 +110,7 @@ namespace ProtonVPN.App.Test.Vpn
         {
             // Arrange
             _userStorage.User().Returns(_user);
-            var sut = new VpnCredentialProvider(_appSettings, _userStorage);
+            var sut = new VpnCredentialProvider(_config, _appSettings, _userStorage);
 
             // Assert
             sut.Credentials().Username.Contains(_clientIdentifierSuffix).Should().BeTrue();
