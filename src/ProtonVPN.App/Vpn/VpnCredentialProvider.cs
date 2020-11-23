@@ -24,11 +24,13 @@ namespace ProtonVPN.Vpn
 {
     public class VpnCredentialProvider
     {
+        private readonly Common.Configuration.Config _config;
         private readonly IAppSettings _appSettings;
         private readonly IUserStorage _userStorage;
 
-        public VpnCredentialProvider(IAppSettings appSettings, IUserStorage userStorage)
+        public VpnCredentialProvider(Common.Configuration.Config config, IAppSettings appSettings, IUserStorage userStorage)
         {
+            _config = config;
             _userStorage = userStorage;
             _appSettings = appSettings;
         }
@@ -37,13 +39,12 @@ namespace ProtonVPN.Vpn
         {
             var user = _userStorage.User();
 
-            return new VpnCredentials(GetUsername(_userStorage.User().VpnUsername), user.VpnPassword);
+            return new VpnCredentials(AddSuffixToUsername(_userStorage.User().VpnUsername), user.VpnPassword);
         }
 
-        private string GetUsername(string username)
+        private string AddSuffixToUsername(string username)
         {
-            // p - proton, w - windows
-            username += "+pw";
+            username += _config.VpnUsernameSuffix;
 
             if (_appSettings.FeatureNetShieldEnabled && _appSettings.NetShieldEnabled)
             {
