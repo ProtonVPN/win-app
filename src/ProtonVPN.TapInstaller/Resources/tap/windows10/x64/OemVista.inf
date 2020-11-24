@@ -65,9 +65,17 @@
 ;                      Manufacturer + Product Section (Done)
 ;----------------------------------------------------------------
 [Manufacturer]
-   %Provider% = tapprotonvpn, NTamd64
+   %Provider% = tapprotonvpn, NTamd64, NTx86, NTARM64
+
+[tapprotonvpn.NTx86]
+   %DeviceDescription% = tapprotonvpn.ndi, root\tapprotonvpn ; Root enumerated
+   %DeviceDescription% = tapprotonvpn.ndi, tapprotonvpn      ; Legacy
 
 [tapprotonvpn.NTamd64]
+   %DeviceDescription% = tapprotonvpn.ndi, root\tapprotonvpn ; Root enumerated
+   %DeviceDescription% = tapprotonvpn.ndi, tapprotonvpn      ; Legacy
+
+[tapprotonvpn.NTARM64]
    %DeviceDescription% = tapprotonvpn.ndi, root\tapprotonvpn ; Root enumerated
    %DeviceDescription% = tapprotonvpn.ndi, tapprotonvpn      ; Legacy
 
