@@ -74,7 +74,7 @@ elif args.command == 'app-installer':
 
 elif args.command == 'tap-installer':
     print('Building tap installer')
-    err = installer.build('1.1.1', '', 'Setup/ProtonVPNTap.aip')
+    err = installer.build('1.1.2', '', 'Setup/ProtonVPNTap.aip')
     sys.exit(err)
 
 elif args.command == 'add-commit-hash':
