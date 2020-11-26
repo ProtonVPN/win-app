@@ -9,6 +9,7 @@ import tests
 import installer
 import ssh
 import os
+import guest_hole_server_loader
 from pathlib import Path
 
 parser = argparse.ArgumentParser(description='ProtonVPN CI')
@@ -91,6 +92,5 @@ elif args.command == 'prepare-ssh':
     ssh.prepare(args.key)
 
 elif args.command == 'update-gh-list':
-    print('Updating guest hole servers json')
-    with open('.\Setup\GuestHoleServers.json', 'w') as file:
-        file.write(os.environ['GH_SERVERS'])
+    print('Executing guest hole server loader')
+    guest_hole_server_loader.load()
