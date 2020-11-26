@@ -303,7 +303,7 @@ namespace ProtonVPN.NetworkFilter
             Action action,
             Layer layer,
             uint weight,
-            string interfaceId)
+            uint index)
         {
             var filterId = IpFilterNative.CreateNetInterfaceFilter(
                 Session.Handle,
@@ -313,7 +313,7 @@ namespace ProtonVPN.NetworkFilter
                 layer,
                 action,
                 weight,
-                interfaceId);
+                index);
 
             AddFilter(filterId);
 
@@ -344,7 +344,7 @@ namespace ProtonVPN.NetworkFilter
             Layer layer,
             uint weight,
             Callout callout,
-            string interfaceId)
+            uint index)
         {
             var filterId = IpFilterNative.BlockOutsideDns(
                 Session.Handle,
@@ -355,7 +355,7 @@ namespace ProtonVPN.NetworkFilter
                 Action.Callout,
                 weight,
                 callout.Id,
-                interfaceId);
+                index);
 
             AddFilter(filterId);
 

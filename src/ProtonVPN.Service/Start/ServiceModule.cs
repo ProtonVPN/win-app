@@ -48,7 +48,8 @@ namespace ProtonVPN.Service.Start
             builder.Register(c => new ConfigFactory().Config());
             builder.RegisterType<Bootstrapper>().SingleInstance();
 
-            builder.Register(c => new NLogLoggingConfiguration(c.Resolve<Common.Configuration.Config>().ServiceLogFolder, "service"))
+            builder.Register(c =>
+                    new NLogLoggingConfiguration(c.Resolve<Common.Configuration.Config>().ServiceLogFolder, "service"))
                 .AsSelf().SingleInstance();
             builder.RegisterType<NLogLoggerFactory>().As<ILoggerFactory>().SingleInstance();
             builder.Register(c => c.Resolve<ILoggerFactory>().Logger())
@@ -62,22 +63,23 @@ namespace ProtonVPN.Service.Start
 
             builder.Register(c => new ServiceRetryPolicy(2, TimeSpan.FromSeconds(1))).SingleInstance();
             builder.Register(c => new CalloutDriver(
-                new ReliableService(
-                    c.Resolve<ServiceRetryPolicy>(),
-                    new SafeService(
-                        new LoggingService(
-                            c.Resolve<ILogger>(),
-                            new DriverService(
-                                c.Resolve<Common.Configuration.Config>().CalloutServiceName,
-                                c.Resolve<IOsProcesses>()))))))
+                    new ReliableService(
+                        c.Resolve<ServiceRetryPolicy>(),
+                        new SafeService(
+                            new LoggingService(
+                                c.Resolve<ILogger>(),
+                                new DriverService(
+                                    c.Resolve<Common.Configuration.Config>().CalloutServiceName,
+                                    c.Resolve<IOsProcesses>()))))))
                 .AsImplementedInterfaces().AsSelf().SingleInstance();
 
             builder.RegisterType<SettingsStorage>().SingleInstance();
 
-            builder.Register(c => c.Resolve<Common.Configuration.Config>().OpenVpn).As<OpenVpnConfig>().SingleInstance();
+            builder.Register(c => c.Resolve<Common.Configuration.Config>().OpenVpn).As<OpenVpnConfig>()
+                .SingleInstance();
             var vpnModule = new ProtonVPN.Vpn.Config.Module();
             vpnModule.Load(builder);
-            builder.Register(c => 
+            builder.Register(c =>
                     new ObservableConnection(
                         new FilteringStateWrapper(
                             new QueuingRequestsWrapper(
@@ -88,7 +90,7 @@ namespace ProtonVPN.Service.Start
                                     c.Resolve<ObservableNetworkInterfaces>(),
                                     c.Resolve<Ipv6>(),
                                     c.Resolve<ITaskQueue>(),
-                                vpnModule.VpnConnection(c))))))
+                                    vpnModule.VpnConnection(c))))))
                 .AsSelf().As<IVpnConnection>().SingleInstance();
 
             builder.RegisterType<ServiceSettingsHostFactory>().As<ServiceHostFactory>().SingleInstance();
@@ -101,18 +103,18 @@ namespace ProtonVPN.Service.Start
             builder.RegisterType<ObservableNetworkInterfaces>().SingleInstance();
             builder.RegisterType<Firewall.Firewall>().AsImplementedInterfaces().SingleInstance();
             builder.Register(c => c.Resolve<IpFilter>().Instance.CreateSublayer(
-                new NetworkFilter.DisplayData{ Name = "ProtonVPN Firewall filters" },
+                new NetworkFilter.DisplayData {Name = "ProtonVPN Firewall filters"},
                 10000)).SingleInstance();
 
             builder.RegisterType<IpFilter>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterType<IncludeModeApps>().AsSelf().SingleInstance();
             builder.RegisterType<IpLayer>().AsSelf().SingleInstance();
             builder.Register(c => new SplitTunnel(
-                c.Resolve<IServiceSettings>(),
-                c.Resolve<ISplitTunnelClient>(),
-                c.Resolve<IncludeModeApps>(),
-                c.Resolve<AppFilter>(),
-                c.Resolve<PermittedRemoteAddress>()))
+                    c.Resolve<IServiceSettings>(),
+                    c.Resolve<ISplitTunnelClient>(),
+                    c.Resolve<IncludeModeApps>(),
+                    c.Resolve<AppFilter>(),
+                    c.Resolve<PermittedRemoteAddress>()))
                 .AsImplementedInterfaces()
                 .AsSelf()
                 .SingleInstance();
@@ -129,6 +131,14 @@ namespace ProtonVPN.Service.Start
             builder.RegisterType<BestNetworkInterface>().SingleInstance();
             builder.RegisterType<SplitTunnelClient>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<UnhandledExceptionLogging>().SingleInstance();
+            builder.Register(c =>
+                    new NetworkSettings(
+                        c.Resolve<ILogger>(),
+                        c.Resolve<INetworkInterfaces>(),
+                        c.Resolve<Common.Configuration.Config>()))
+                .AsImplementedInterfaces()
+                .AsSelf()
+                .SingleInstance();
         }
     }
 }

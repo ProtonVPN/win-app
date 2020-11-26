@@ -60,7 +60,7 @@ namespace ProtonVPN.Common.Test.OS.Net.NetworkInterface
         public void Interfaces_ShouldBe_Origin_Interfaces()
         {
             // Arrange
-            var expected = new INetworkInterface[] { new TestNetworkInterface("t1"), new TestNetworkInterface("t2") };
+            var expected = new INetworkInterface[] {new TestNetworkInterface("t1"), new TestNetworkInterface("t2")};
             _origin.Interfaces().Returns(expected);
             var subject = new SafeSystemNetworkInterfaces(_logger, _origin);
             // Act
@@ -186,6 +186,8 @@ namespace ProtonVPN.Common.Test.OS.Net.NetworkInterface
             public bool IsLoopback => false;
 
             public bool IsActive => false;
+
+            public uint Index => 0;
         }
 
         #endregion

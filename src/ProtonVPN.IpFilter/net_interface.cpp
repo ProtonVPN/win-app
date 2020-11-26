@@ -61,16 +61,16 @@ namespace ipfilter
         return ifaces;
     }
 
-    std::vector<NetInterface>::iterator findNetworkInterfaceByName(
+    std::vector<NetInterface>::iterator findNetworkInterfaceByIndex(
         std::vector<NetInterface>& interfaces,
-        const std::string& name)
+        ULONG index)
     {
         return std::find_if(
             interfaces.begin(),
             interfaces.end(),
-            [&name](const auto& netInterface)
+            [&index](const auto& netInterface)
             {
-                return netInterface.getName() == name;
+                return netInterface.getIndex() == index;
             });
     }
 }

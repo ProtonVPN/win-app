@@ -254,7 +254,7 @@ namespace ProtonVPN.NetworkFilter
             uint layer,
             uint action,
             uint weight,
-            [MarshalAs(UnmanagedType.LPStr)] string interfaceId,
+            uint index,
             [In, Out] ref Guid filterKey);
 
         [DllImport(
@@ -284,7 +284,7 @@ namespace ProtonVPN.NetworkFilter
             uint action,
             uint weight,
             [In] ref Guid calloutKey,
-            [MarshalAs(UnmanagedType.LPStr)] string interfaceId,
+            uint index,
             [In, Out] ref Guid filterKey);
     }
 }

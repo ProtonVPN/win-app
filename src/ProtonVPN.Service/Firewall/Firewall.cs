@@ -75,8 +75,8 @@ namespace ProtonVPN.Service.Firewall
             {
                 _logger.Info("Firewall: Blocking internet");
 
-                var tapInterface = _networkInterfaces.Interface(_config.OpenVpn.TapAdapterDescription);
-                EnableDnsLeakProtection(tapInterface.Id);
+                var tapInterfaceIndex = _networkInterfaces.InterfaceIndex(_config.OpenVpn.TapAdapterDescription, _config.OpenVpn.TapAdapterId);
+                EnableDnsLeakProtection(tapInterfaceIndex);
 
                 if (firewallParams.DnsLeakOnly)
                 {
@@ -84,7 +84,7 @@ namespace ProtonVPN.Service.Firewall
                 }
                 else
                 {
-                    EnableBaseLeakProtection(tapInterface.Id);
+                    EnableBaseLeakProtection(tapInterfaceIndex);
                 }
 
                 LeakProtectionEnabled = true;
@@ -128,20 +128,20 @@ namespace ProtonVPN.Service.Firewall
             _baseProtectionFilters.Clear();
         }
 
-        private void EnableDnsLeakProtection(string tapId)
+        private void EnableDnsLeakProtection(uint tapInterfaceIndex)
         {
             if (LeakProtectionEnabled)
             {
                 return;
             }
 
-            BlockOutsideDns(3, tapId);
+            BlockOutsideDns(3, tapInterfaceIndex);
         }
 
-        private void EnableBaseLeakProtection(string tapId)
+        private void EnableBaseLeakProtection(uint tapInterfaceIndex)
         {
             PermitDhcp(4);
-            PermitFromNetworkInterface(tapId, 4);
+            PermitFromNetworkInterface(tapInterfaceIndex, 4);
             PermitFromApp(4);
             PermitFromService(4);
             PermitFromUpdateService(4);
@@ -154,7 +154,7 @@ namespace ProtonVPN.Service.Firewall
             BlockAllIpv6Network(1);
         }
 
-        private void BlockOutsideDns(uint weight, string tapInterfaceId)
+        private void BlockOutsideDns(uint weight, uint tapInterfaceIndex)
         {
             var callout = _sublayer.CreateCallout(
                 new DisplayData
@@ -169,7 +169,7 @@ namespace ProtonVPN.Service.Firewall
                 Layer.OutboundIPPacketV4,
                 weight,
                 callout,
-                tapInterfaceId);
+                tapInterfaceIndex);
         }
 
         private void PermitDhcp(uint weight)
@@ -185,7 +185,7 @@ namespace ProtonVPN.Service.Firewall
             });
         }
 
-        private void PermitFromNetworkInterface(string id, uint weight)
+        private void PermitFromNetworkInterface(uint tapInterfaceIndex, uint weight)
         {
             _ipLayer.ApplyToIpv4(layer =>
             {
@@ -194,7 +194,7 @@ namespace ProtonVPN.Service.Firewall
                     Action.SoftPermit,
                     layer,
                     weight,
-                    id));
+                    tapInterfaceIndex));
             });
 
             _ipLayer.ApplyToIpv6(layer =>
@@ -204,7 +204,7 @@ namespace ProtonVPN.Service.Firewall
                     Action.SoftPermit,
                     layer,
                     weight,
-                    id));
+                    tapInterfaceIndex));
             });
         }
 

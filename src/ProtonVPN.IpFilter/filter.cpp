@@ -360,16 +360,16 @@ unsigned int IPFilterCreateNetInterfaceFilter(
     unsigned int layer,
     unsigned int action,
     unsigned int weight,
-    const char* name,
+    ULONG index,
     GUID* filterKey)
 {
     std::vector<ipfilter::condition::Condition> conditions{};
 
     auto netInterfaces = ipfilter::getNetworkInterfaces();
 
-    auto netInterfaceIt = ipfilter::findNetworkInterfaceByName(
+    auto netInterfaceIt = ipfilter::findNetworkInterfaceByIndex(
         netInterfaces,
-        name);
+        index);
     if (netInterfaceIt == std::end(netInterfaces))
     {
         return E_ADAPTER_NOT_FOUND;
@@ -430,13 +430,13 @@ unsigned int BlockOutsideDns(
     unsigned int action,
     unsigned int weight,
     GUID* calloutKey,
-    const char* name,
+    ULONG index,
     GUID* filterKey)
 {
     std::vector<ipfilter::condition::Condition> conditions{};
 
     auto netInterfaces = ipfilter::getNetworkInterfaces();
-    auto netInterfaceIt = findNetworkInterfaceByName(netInterfaces, name);
+    auto netInterfaceIt = findNetworkInterfaceByIndex(netInterfaces, index);
     if (netInterfaceIt == std::end(netInterfaces))
     {
         return E_ADAPTER_NOT_FOUND;
