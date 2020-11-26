@@ -180,7 +180,7 @@ extern "C" EXPORT unsigned int IPFilterCreateNetInterfaceFilter(
     unsigned int layer,
     unsigned int action,
     unsigned int weight,
-    const char* name,
+    ULONG index,
     GUID* filterKey);
 
 extern "C" EXPORT unsigned int IPFilterCreateLoopbackFilter(
@@ -202,5 +202,5 @@ extern "C" EXPORT unsigned int BlockOutsideDns(
     unsigned int action,
     unsigned int weight,
     GUID * calloutKey,
-    const char* name,
+    ULONG index,
     GUID * filterKey);

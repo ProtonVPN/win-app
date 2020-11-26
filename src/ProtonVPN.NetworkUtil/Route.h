@@ -1,6 +1,5 @@
 #pragma once
 
-#include <Guiddef.h>
 #include <iphlpapi.h>
 
 namespace Proton
@@ -11,17 +10,16 @@ namespace Proton
         {
             struct IfaceInfo
             {
-                GUID Guid;
                 ULONG Ipv4Metric;
                 IF_INDEX Index;
                 IF_LUID Luid;
             };
 
-            bool AddDefaultGatewayForIface(const GUID* guid, const wchar_t* gatewayAddr);
+            bool AddDefaultGatewayForIface(UINT index, const wchar_t* gatewayAddr);
 
-            bool DeleteDefaultGatewayForIface(const GUID* guid, const wchar_t* gatewayAddr);
+            bool DeleteDefaultGatewayForIface(UINT index, const wchar_t* gatewayAddr);
 
-            bool GetIfaceInfo(const GUID& guid, IfaceInfo& info);
+            bool GetIfaceInfo(UINT index, IfaceInfo& info);
         }
     }
 }

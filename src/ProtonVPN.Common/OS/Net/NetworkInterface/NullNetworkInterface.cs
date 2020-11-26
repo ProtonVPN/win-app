@@ -33,5 +33,7 @@ namespace ProtonVPN.Common.OS.Net.NetworkInterface
         public bool IsLoopback => false;
 
         public bool IsActive => false;
+
+        public uint Index => 0;
     }
 }

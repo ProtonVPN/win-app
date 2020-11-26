@@ -159,6 +159,7 @@
     <Compile Include="VpnConnectionHandler.cs" />
     <Compile Include="Vpn\Ipv6HandlingWrapper.cs" />
     <Compile Include="Vpn\IVpnStateAware.cs" />
+    <Compile Include="Vpn\NetworkSettingsWrapper.cs" />
     <Compile Include="Vpn\ObservableConnection.cs" />
     <Compile Include="Vpn\ObservableNetworkInterfaces.cs" />
   </ItemGroup>

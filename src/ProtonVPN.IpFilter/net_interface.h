@@ -24,7 +24,7 @@ namespace ipfilter
 
     std::vector<NetInterface> getNetworkInterfaces();
 
-    std::vector<NetInterface>::iterator findNetworkInterfaceByName(
+    std::vector<NetInterface>::iterator findNetworkInterfaceByIndex(
         std::vector<NetInterface>& interfaces,
-        const std::string& name);
+        ULONG index);
 }

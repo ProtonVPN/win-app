@@ -360,7 +360,7 @@ namespace ProtonVPN.NetworkFilter
             Layer layer,
             Action action,
             uint weight,
-            string interfaceId)
+            uint index)
         {
             var id = Guid.Empty;
 
@@ -372,7 +372,7 @@ namespace ProtonVPN.NetworkFilter
                 (uint)layer,
                 (uint)action,
                 weight,
-                interfaceId,
+                index,
                 ref id));
 
             return id;
@@ -411,7 +411,7 @@ namespace ProtonVPN.NetworkFilter
             Action action,
             uint weight,
             Guid calloutId,
-            string interfaceId)
+            uint index)
         {
             var id = Guid.Empty;
 
@@ -424,7 +424,7 @@ namespace ProtonVPN.NetworkFilter
                 (uint)action,
                 weight,
                 ref calloutId,
-                interfaceId,
+                index,
                 ref id));
 
             return id;

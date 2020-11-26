@@ -38,18 +38,18 @@ namespace ProtonVPN.Vpn.Config
             builder.RegisterType<SystemNetworkInterfaces>().As<INetworkInterfaces>().SingleInstance();
             builder.Register(c =>
                 {
-                var logger = c.Resolve<ILogger>();
-                var config = c.Resolve<OpenVpnConfig>();
+                    var logger = c.Resolve<ILogger>();
+                    var config = c.Resolve<OpenVpnConfig>();
 
-                return new OpenVpnProcess(
-                    logger,
-                    c.Resolve<IOsProcesses>(),
-                    new OpenVpnExitEvent(logger,
-                        new SystemSynchronizationEvents(logger),
-                        config.ExitEventName),
-                    config);
+                    return new OpenVpnProcess(
+                        logger,
+                        c.Resolve<IOsProcesses>(),
+                        new OpenVpnExitEvent(logger,
+                            new SystemSynchronizationEvents(logger),
+                            config.ExitEventName),
+                        config);
                 }
-                ).SingleInstance();
+            ).SingleInstance();
         }
 
         public IVpnConnection VpnConnection(IComponentContext c)
@@ -57,7 +57,6 @@ namespace ProtonVPN.Vpn.Config
             var logger = c.Resolve<ILogger>();
             var config = c.Resolve<OpenVpnConfig>();
             var taskQueue = c.Resolve<ITaskQueue>();
-            var networkInterfaces = c.Resolve<INetworkInterfaces>();
             var candidates = new VpnEndpointCandidates();
 
             var vpnConnection = new OpenVpnConnection(
@@ -72,25 +71,20 @@ namespace ProtonVPN.Vpn.Config
 
             return new LoggingWrapper(
                 logger,
-                new NetworkSettingsWrapper(
+                new ReconnectingWrapper(
                     logger,
-                    config.TapAdapterId,
-                    config.TapAdapterDescription,
-                    networkInterfaces,
-                    new ReconnectingWrapper(
+                    taskQueue,
+                    candidates,
+                    new HandlingRequestsWrapper(
                         logger,
                         taskQueue,
-                        candidates,
-                        new HandlingRequestsWrapper(
+                        new BestPortWrapper(
                             logger,
                             taskQueue,
-                            new BestPortWrapper(
-                                logger,
+                            new PingableOpenVpnPort(config.OpenVpnStaticKey),
+                            new QueueingEventsWrapper(
                                 taskQueue,
-                                new PingableOpenVpnPort(config.OpenVpnStaticKey),
-                                new QueueingEventsWrapper(
-                                    taskQueue,
-                                    vpnConnection))))));
+                                vpnConnection)))));
         }
     }
 }
