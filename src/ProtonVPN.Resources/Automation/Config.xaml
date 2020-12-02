@@ -34,7 +34,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <system:String x:Key="SidebarQuickConnectButton">SidebarQuickConnectButton</system:String>
     <system:String x:Key="SidebarCountriesButton">SidebarCountriesButton</system:String>
     <system:String x:Key="SidebarProfilesButton">SidebarProfilesButton</system:String>
-    <system:String x:Key="SecureCoreCheckbox">SecureCoreCheckbox</system:String>
     <system:String x:Key="StartWithWindowsCheckbox">StartWithWindowsCheckbox</system:String>
     <system:String x:Key="StartMinimizedCombobox">StartMinimizedCombobox</system:String>
     <system:String x:Key="ProtocolCombobox">StartMinimizedCombobox</system:String>

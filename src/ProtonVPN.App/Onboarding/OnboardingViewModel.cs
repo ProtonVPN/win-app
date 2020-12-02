@@ -17,22 +17,27 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.ComponentModel;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
 using ProtonVPN.Core.MVVM;
+using ProtonVPN.Core.Settings;
 
 namespace ProtonVPN.Onboarding
 {
-    public class OnboardingViewModel : ViewModel, IOnboardingStepAware
+    public class OnboardingViewModel : ViewModel, IOnboardingStepAware, ISettingsAware
     {
         private readonly Onboarding _onboarding;
+        private readonly IAppSettings _appSettings;
 
         private int _number;
         private bool _isLastStep;
         private bool _isFirstStep;
+        private bool _isFeatureNetShieldEnabled;
 
-        public OnboardingViewModel(Onboarding onboarding)
+        public OnboardingViewModel(Onboarding onboarding, IAppSettings appSettings)
         {
+            _appSettings = appSettings;
             _onboarding = onboarding;
             NextTipCommand = new RelayCommand(NextTipAction);
             PrevTipCommand = new RelayCommand(PrevTipAction);
@@ -59,11 +64,29 @@ namespace ProtonVPN.Onboarding
             set => Set(ref _isFirstStep, value);
         }
 
+        public bool IsFeatureNetShieldEnabled
+        {
+            get => _isFeatureNetShieldEnabled;
+            set => Set(ref _isFeatureNetShieldEnabled, value);
+        }
+
         public void OnStepChanged(int step)
         {
             Number = step;
             IsLastStep = _onboarding.IsLastStep();
             IsFirstStep = _onboarding.IsFirstStep();
+            if (step == 4)
+            {
+                SetIsNetShieldFeatureEnabled();
+            }
+        }
+
+        public void OnAppSettingsChanged(PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(IAppSettings.FeatureNetShieldEnabled))
+            {
+                SetIsNetShieldFeatureEnabled();
+            }
         }
 
         private void NextTipAction()
@@ -77,6 +100,11 @@ namespace ProtonVPN.Onboarding
         private void PrevTipAction()
         {
             _onboarding.GoToPreviousStep();
+        }
+
+        private void SetIsNetShieldFeatureEnabled()
+        {
+            IsFeatureNetShieldEnabled = _appSettings.FeatureNetShieldEnabled;
         }
     }
 }

@@ -41,5 +41,7 @@ namespace ProtonVPN.Config.Url
         IActiveUrl ProtonTwitterUrl { get; }
         IActiveUrl SupportFormUrl { get; }
         IActiveUrl AlternativeRoutingUrl { get; }
+        IActiveUrl AboutNetShieldUrl { get; }
+        IActiveUrl AboutKillSwitchUrl { get; }
     }
 }

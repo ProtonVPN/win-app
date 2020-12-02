@@ -23,7 +23,6 @@ using ProtonVPN.Core.MVVM;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Map.ViewModels.Pins;
-using ProtonVPN.Onboarding;
 using ProtonVPN.Sidebar;
 using ProtonVPN.SpeedGraph;
 using System.Collections.Generic;
@@ -39,8 +38,7 @@ namespace ProtonVPN.Map.ViewModels
     internal class MapViewModel : SidebarBaseViewModel,
         IVpnStateAware,
         ISettingsAware,
-        IPinChangeAware,
-        IOnboardingStepAware
+        IPinChangeAware
     {
         private double _viewportHeight;
         private double _viewportWidth;
@@ -58,7 +56,6 @@ namespace ProtonVPN.Map.ViewModels
 
         private bool _connected;
         private bool _disconnected = true;
-        private bool _showFifthOnboardingStep;
         private VpnStateChangedEventArgs _vpnState;
 
         private readonly IAppSettings _appSettings;
@@ -136,12 +133,6 @@ namespace ProtonVPN.Map.ViewModels
         {
             get => _disconnected;
             set => Set(ref _disconnected, value);
-        }
-
-        public bool ShowFifthOnboardingStep
-        {
-            get => _showFifthOnboardingStep;
-            set => Set(ref _showFifthOnboardingStep, value);
         }
 
         public ICommand ResizePins { get; }
@@ -261,11 +252,6 @@ namespace ProtonVPN.Map.ViewModels
                 OnVpnStateChanged(_vpnState);
                 NotifyOfPropertyChange(nameof(Lines));
             }
-        }
-
-        public void OnStepChanged(int step)
-        {
-            ShowFifthOnboardingStep = step == 5;
         }
 
         private void BuildMapElements()

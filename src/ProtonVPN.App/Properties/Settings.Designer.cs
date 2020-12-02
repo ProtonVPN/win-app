@@ -1005,18 +1005,6 @@ namespace ProtonVPN.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string UserNetShieldModalShown {
-            get {
-                return ((string)(this["UserNetShieldModalShown"]));
-            }
-            set {
-                this["UserNetShieldModalShown"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string SettingsVersion {
             get {
                 return ((string)(this["SettingsVersion"]));

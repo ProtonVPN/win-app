@@ -201,7 +201,8 @@ namespace ProtonVPN.Settings
                         return;
                     }
 
-                    NetShieldEnabled = false;
+                    _appSettings.NetShieldEnabled = false;
+                    NotifyOfPropertyChange(nameof(NetShieldEnabled));
                 }
 
                 _appSettings.CustomDnsEnabled = value;
@@ -214,15 +215,6 @@ namespace ProtonVPN.Settings
             get => _appSettings.NetShieldEnabled;
             set
             {
-                if (value && !_appSettings.NetShieldModalShown)
-                {
-                    _dialogs.ShowWarning(
-                        Translation.Get("NetShieldModal_msg"),
-                        Translation.Get("NetShieldModal_btn_GotIt"));
-
-                    _appSettings.NetShieldModalShown = true;
-                }
-
                 if (value && _appSettings.CustomDnsEnabled)
                 {
                     var result = _dialogs.ShowQuestion(Translation.Get("Settings_Connection_Warning_NetShield"));
@@ -231,7 +223,8 @@ namespace ProtonVPN.Settings
                         return;
                     }
 
-                    CustomDnsEnabled = false;
+                    _appSettings.CustomDnsEnabled = false;
+                    NotifyOfPropertyChange(nameof(CustomDnsEnabled));
                 }
 
                 _appSettings.NetShieldEnabled = value;
@@ -355,6 +348,7 @@ namespace ProtonVPN.Settings
             await LoadProfiles();
             SplitTunnelingViewModel.OnActivate();
             RefreshReconnectRequiredState(string.Empty);
+            SetNetShieldPermissions();
         }
 
         public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
@@ -377,23 +371,27 @@ namespace ProtonVPN.Settings
 
             if (e.PropertyName.Equals(nameof(IAppSettings.StartOnStartup)))
             {
-                OnPropertyChanged(new PropertyChangedEventArgs(nameof(StartOnStartup)));
+                NotifyOfPropertyChange(nameof(StartOnStartup));
             }
             else if (e.PropertyName.Equals(nameof(IAppSettings.Profiles)))
             {
                 await LoadProfiles();
             }
-            else if (e.PropertyName.Equals(nameof(IAppSettings.SplitTunnelMode)))
-            {
-                SetKillSwitchEnabled();
-            }
             else if (e.PropertyName.Equals(nameof(IAppSettings.SplitTunnelingEnabled)))
             {
-                SetKillSwitchEnabled();
+                NotifyOfPropertyChange(nameof(KillSwitch));
             }
             else if (e.PropertyName.Equals(nameof(IAppSettings.Language)))
             {
                 OnLanguageChanged();
+            }
+            else if (e.PropertyName.Equals(nameof(IAppSettings.NetShieldMode)) ||
+                     e.PropertyName.Equals(nameof(IAppSettings.NetShieldEnabled)))
+            {
+                if (_appSettings.NetShieldEnabled)
+                {
+                    _appSettings.CustomDnsEnabled = false;
+                }
             }
 
             RefreshReconnectRequiredState(e.PropertyName);

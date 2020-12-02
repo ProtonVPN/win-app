@@ -17,6 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Input;
 using Caliburn.Micro;
 using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Common.Vpn;
@@ -27,17 +33,11 @@ using ProtonVPN.Core.Servers.Models;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.User;
 using ProtonVPN.Core.Vpn;
-using ProtonVPN.Onboarding;
-using ProtonVPN.Translations;
 using ProtonVPN.Servers;
+using ProtonVPN.Sidebar.QuickSettings;
+using ProtonVPN.Translations;
 using ProtonVPN.Trial;
 using ProtonVPN.Vpn.Connectors;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Input;
 
 namespace ProtonVPN.Sidebar
 {
@@ -46,7 +46,6 @@ namespace ProtonVPN.Sidebar
         IVpnPlanAware,
         IVpnStateAware,
         ISettingsAware,
-        IOnboardingStepAware,
         ITrialStateAware,
         ILogoutAware,
         IServersAware
@@ -66,7 +65,8 @@ namespace ProtonVPN.Sidebar
             App app,
             IDialogs dialogs,
             ServerConnector serverConnector,
-            CountryConnector countryConnector)
+            CountryConnector countryConnector,
+            QuickSettingsViewModel quickSettingsViewModel)
         {
             _appSettings = appSettings;
             _serverListFactory = serverListFactory;
@@ -74,6 +74,7 @@ namespace ProtonVPN.Sidebar
             _dialogs = dialogs;
             _serverConnector = serverConnector;
             _countryConnector = countryConnector;
+            QuickSettingsViewModel = quickSettingsViewModel;
 
             Connect = new RelayCommand<ServerItemViewModel>(ConnectAction);
             ConnectCountry = new RelayCommand<IServerCollection>(ConnectCountryAction);
@@ -81,6 +82,8 @@ namespace ProtonVPN.Sidebar
             ToggleSecureCoreCommand = new RelayCommand(ToggleSecureCoreAction);
             ClearSearchCommand = new RelayCommand(ClearSearchAction);
         }
+
+        public QuickSettingsViewModel QuickSettingsViewModel { get; }
 
         public ICommand Connect { get; }
         public ICommand ConnectCountry { get; }
@@ -116,13 +119,6 @@ namespace ProtonVPN.Sidebar
         {
             get => _secureCore;
             set { }
-        }
-
-        private bool _showFourthOnboardingStep;
-        public bool ShowFourthOnboardingStep
-        {
-            get => _showFourthOnboardingStep;
-            set => Set(ref _showFourthOnboardingStep, value);
         }
 
         private ObservableCollection<IServerListItem> _items = new ObservableCollection<IServerListItem>();
@@ -241,11 +237,6 @@ namespace ProtonVPN.Sidebar
         {
             CreateList();
             return Task.CompletedTask;
-        }
-
-        public void OnStepChanged(int step)
-        {
-            ShowFourthOnboardingStep = step == 4;
         }
 
         public Task OnTrialStateChangedAsync(PlanStatus status)
