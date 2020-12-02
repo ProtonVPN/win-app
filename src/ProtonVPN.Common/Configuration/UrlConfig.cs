@@ -82,5 +82,11 @@ namespace ProtonVPN.Common.Configuration
 
         [Required]
         public string AlternativeRoutingUrl { get; internal set; }
+
+        [Required]
+        public string AboutNetShieldUrl { get; internal set; }
+
+        [Required]
+        public string AboutKillSwitchUrl { get; internal set; }
     }
 }

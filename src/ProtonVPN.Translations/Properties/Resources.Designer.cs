@@ -3802,6 +3802,15 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Kill Switch.
+        /// </summary>
+        public static string KillSwitch {
+            get {
+                return ResourceManager.GetString("KillSwitch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to License.
         /// </summary>
         public static string License_ttl {
@@ -4073,20 +4082,11 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Got it.
+        ///   Looks up a localized string similar to NetShield.
         /// </summary>
-        public static string NetShieldModal_btn_GotIt {
+        public static string NetShield {
             get {
-                return ResourceManager.GetString("NetShieldModal_btn_GotIt", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to NetShield compares your DNS requests to lists of known trackers, ads, and malware. It may block or prevent a website from working correctly if it appears on one of these lists. If you feel a website has been incorrectly marked as malware or an ad, please contact our Support team..
-        /// </summary>
-        public static string NetShieldModal_msg {
-            get {
-                return ResourceManager.GetString("NetShieldModal_msg", resourceCulture);
+                return ResourceManager.GetString("NetShield", resourceCulture);
             }
         }
         
@@ -4163,6 +4163,33 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to • Prevent your IP to be exposed by turning on &lt;Bold&gt;Kill Switch&lt;/Bold&gt;..
+        /// </summary>
+        public static string Onboarding_msg_KillSwitch {
+            get {
+                return ResourceManager.GetString("Onboarding_msg_KillSwitch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to • Surf the web freely from malware and ads with &lt;Bold&gt;NetShield&lt;/Bold&gt;..
+        /// </summary>
+        public static string Onboarding_msg_NetShield {
+            get {
+                return ResourceManager.GetString("Onboarding_msg_NetShield", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to • Add one extra layer of security with &lt;Bold&gt;Secure Core&lt;/Bold&gt;..
+        /// </summary>
+        public static string Onboarding_msg_SecureCore {
+            get {
+                return ResourceManager.GetString("Onboarding_msg_SecureCore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Automatically connect to the server that will provide you with the fastest connection..
         /// </summary>
         public static string Onboarding_msg_Step_1 {
@@ -4190,20 +4217,11 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Turn on Secure Core to route your traffic through additional servers for another layer of network security. Available to Plus and Visionary members..
+        ///   Looks up a localized string similar to Increase your security with one click:.
         /// </summary>
         public static string Onboarding_msg_Step_4 {
             get {
                 return ResourceManager.GetString("Onboarding_msg_Step_4", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to See where VPN servers are located. Find the one nearest to your location..
-        /// </summary>
-        public static string Onboarding_msg_Step_5 {
-            get {
-                return ResourceManager.GetString("Onboarding_msg_Step_5", resourceCulture);
             }
         }
         
@@ -4235,20 +4253,11 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Secure Core.
+        ///   Looks up a localized string similar to Quick Settings.
         /// </summary>
         public static string Onboarding_ttl_Step_4 {
             get {
                 return ResourceManager.GetString("Onboarding_ttl_Step_4", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Map.
-        /// </summary>
-        public static string Onboarding_ttl_Step_5 {
-            get {
-                return ResourceManager.GetString("Onboarding_ttl_Step_5", resourceCulture);
             }
         }
         
@@ -4775,6 +4784,141 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to GET PLUS.
+        /// </summary>
+        public static string QuickSettings_btn_GetPlus {
+            get {
+                return ResourceManager.GetString("QuickSettings_btn_GetPlus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kill Switch Off.
+        /// </summary>
+        public static string QuickSettings_btn_KillSwitchOff {
+            get {
+                return ResourceManager.GetString("QuickSettings_btn_KillSwitchOff", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kill Switch On.
+        /// </summary>
+        public static string QuickSettings_btn_KillSwitchOn {
+            get {
+                return ResourceManager.GetString("QuickSettings_btn_KillSwitchOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Learn more.
+        /// </summary>
+        public static string QuickSettings_btn_LearnMore {
+            get {
+                return ResourceManager.GetString("QuickSettings_btn_LearnMore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Don&apos;t block.
+        /// </summary>
+        public static string QuickSettings_btn_NetshieldOff {
+            get {
+                return ResourceManager.GetString("QuickSettings_btn_NetshieldOff", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Block malware only.
+        /// </summary>
+        public static string QuickSettings_btn_NetshieldOnFirst {
+            get {
+                return ResourceManager.GetString("QuickSettings_btn_NetshieldOnFirst", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Block malware, ads &amp; trackers.
+        /// </summary>
+        public static string QuickSettings_btn_NetshieldOnSecond {
+            get {
+                return ResourceManager.GetString("QuickSettings_btn_NetshieldOnSecond", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Secure Core Off.
+        /// </summary>
+        public static string QuickSettings_btn_SecureCoreOff {
+            get {
+                return ResourceManager.GetString("QuickSettings_btn_SecureCoreOff", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Secure Core On.
+        /// </summary>
+        public static string QuickSettings_btn_SecureCoreOn {
+            get {
+                return ResourceManager.GetString("QuickSettings_btn_SecureCoreOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disables Internet if the VPN connection drops to prevent accidental IP leak. &lt;Hyperlink Command=&quot;{Binding KillSwitchLearnMoreCommand}&quot;&gt;Learn more.&lt;/Hyperlink&gt;.
+        /// </summary>
+        public static string QuickSettings_lbl_KillSwitchInfo {
+            get {
+                return ResourceManager.GetString("QuickSettings_lbl_KillSwitchInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Browse the Internet without ads and malware. &lt;Hyperlink Command=&quot;{Binding NetShieldLearnMoreCommand}&quot;&gt;Learn more.&lt;/Hyperlink&gt;.
+        /// </summary>
+        public static string QuickSettings_lbl_NetShieldInfo {
+            get {
+                return ResourceManager.GetString("QuickSettings_lbl_NetShieldInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If websites don&apos;t load, try disabling NetShield.
+        /// </summary>
+        public static string QuickSettings_lbl_NetShieldWarning {
+            get {
+                return ResourceManager.GetString("QuickSettings_lbl_NetShieldWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Route your most sensitive data through our safest servers in privacy-friendly countries. &lt;Hyperlink Command=&quot;{Binding SecureCoreLearnMoreCommand}&quot;&gt;Learn more.&lt;/Hyperlink&gt;.
+        /// </summary>
+        public static string QuickSettings_lbl_SecureCoreInfo {
+            get {
+                return ResourceManager.GetString("QuickSettings_lbl_SecureCoreInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Secure Core may reduce VPN speed.
+        /// </summary>
+        public static string QuickSettings_lbl_SecureCoreWarning {
+            get {
+                return ResourceManager.GetString("QuickSettings_lbl_SecureCoreWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Secure Core.
+        /// </summary>
+        public static string SecureCore {
+            get {
+                return ResourceManager.GetString("SecureCore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to CONNECT.
         /// </summary>
         public static string Servers_btn_Connect {
@@ -4933,24 +5077,6 @@ namespace ProtonVPN.Translations.Properties {
         public static string Servers_msg_CantConnect_Missing {
             get {
                 return ResourceManager.GetString("Servers_msg_CantConnect_Missing", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to You are trying to connect to a standard VPN server while Secure Core mode is enabled.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Bold&gt;Disable Secure Core and continue?&lt;/Bold&gt;.
-        /// </summary>
-        public static string Servers_msg_DisableSecureCoreConfirm {
-            get {
-                return ResourceManager.GetString("Servers_msg_DisableSecureCoreConfirm", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to You are trying to connect to a Secure Core server without Secure Core mode enabled.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Bold&gt;Enable Secure Core and continue?&lt;/Bold&gt;.
-        /// </summary>
-        public static string Servers_msg_EnableSecureCoreConfirm {
-            get {
-                return ResourceManager.GetString("Servers_msg_EnableSecureCoreConfirm", resourceCulture);
             }
         }
         

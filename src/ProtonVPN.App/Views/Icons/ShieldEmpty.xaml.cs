@@ -17,11 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Sidebar
+namespace ProtonVPN.Views.Icons
 {
-    public partial class Countries
+    public partial class ShieldEmpty
     {
-        public Countries()
+        public ShieldEmpty()
         {
             InitializeComponent();
         }

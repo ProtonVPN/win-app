@@ -248,9 +248,6 @@
     <Setting Name="NetShieldEnabled" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="UserNetShieldModalShown" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
     <Setting Name="SettingsVersion" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>

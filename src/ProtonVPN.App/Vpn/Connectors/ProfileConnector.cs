@@ -92,7 +92,8 @@ namespace ProtonVPN.Vpn.Connectors
 
             if (servers.Any())
             {
-                return SwitchSecureCoreMode(servers.First().IsSecureCore());
+                SwitchSecureCoreMode(servers.First().IsSecureCore());
+                return true;
             }
 
             HandleNoServersAvailable(candidates.Items, profile);
@@ -250,8 +251,8 @@ namespace ProtonVPN.Vpn.Connectors
         {
             var portConfig = new Dictionary<VpnProtocol, IReadOnlyCollection<int>>
             {
-                { Common.Vpn.VpnProtocol.OpenVpnUdp, _appSettings.OpenVpnUdpPorts },
-                { Common.Vpn.VpnProtocol.OpenVpnTcp, _appSettings.OpenVpnTcpPorts },
+                {Common.Vpn.VpnProtocol.OpenVpnUdp, _appSettings.OpenVpnUdpPorts},
+                {Common.Vpn.VpnProtocol.OpenVpnTcp, _appSettings.OpenVpnTcpPorts},
             };
 
             var customDns = (from ip in _appSettings.CustomDnsIps where ip.Enabled select ip.Ip).ToList();
@@ -298,15 +299,16 @@ namespace ProtonVPN.Vpn.Connectors
                 VpnConfig());
         }
 
-        private bool SwitchSecureCoreMode(bool secureCore)
+        private void SwitchSecureCoreMode(bool secureCore)
         {
-            if (TryConnectToSecureCoreFromNonSecureCoreMode(secureCore))
-                return false;
-
-            if (TryConnectToNonSecureCoreFromSecureCoreMode(secureCore))
-                return false;
-
-            return true;
+            if (secureCore && !_appSettings.SecureCore)
+            {
+                _appSettings.SecureCore = true;
+            }
+            else if (!secureCore && _appSettings.SecureCore)
+            {
+                _appSettings.SecureCore = false;
+            }
         }
 
         private void HandleNoCustomServerAvailable(Server server)
@@ -350,46 +352,12 @@ namespace ProtonVPN.Vpn.Connectors
             switch (server.Tier)
             {
                 case ServerTiers.Basic:
-                    {
-                        _modals.Show<UpsellModalViewModel>();
-                        break;
-                    }
+                    _modals.Show<UpsellModalViewModel>();
+                    break;
                 case ServerTiers.Plus:
-                    {
-                        _modals.Show<PlusUpsellModalViewModel>();
-                        break;
-                    }
+                    _modals.Show<PlusUpsellModalViewModel>();
+                    break;
             }
-        }
-
-        private bool TryConnectToSecureCoreFromNonSecureCoreMode(bool secureCore)
-        {
-            if (!secureCore || _appSettings.SecureCore)
-                return false;
-
-            var result = _dialogs.ShowQuestion(Translation.Get("Servers_msg_EnableSecureCoreConfirm"));
-            if (result.HasValue && result.Value)
-            {
-                _appSettings.SecureCore = true;
-                return false;
-            }
-
-            return true;
-        }
-
-        private bool TryConnectToNonSecureCoreFromSecureCoreMode(bool secureCore)
-        {
-            if (secureCore || !_appSettings.SecureCore)
-                return false;
-
-            var result = _dialogs.ShowQuestion(Translation.Get("Servers_msg_DisableSecureCoreConfirm"));
-            if (result.HasValue && result.Value)
-            {
-                _appSettings.SecureCore = false;
-                return false;
-            }
-
-            return true;
         }
 
         private IReadOnlyList<VpnHost> Servers(IEnumerable<Server> servers)

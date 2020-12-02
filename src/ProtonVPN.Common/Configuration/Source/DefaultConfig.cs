@@ -179,6 +179,8 @@ namespace ProtonVPN.Common.Configuration.Source
                     ProtonTwitterUrl = "https://twitter.com/ProtonVPN",
                     SupportFormUrl = "https://protonvpn.com/support-form",
                     AlternativeRoutingUrl = "https://protonmail.com/blog/anti-censorship-alternative-routing",
+                    AboutKillSwitchUrl = "https://protonvpn.com/support/what-is-kill-switch",
+                    AboutNetShieldUrl = "https://protonvpn.com/support/netshield",
                 },
 
                 OpenVpn =

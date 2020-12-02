@@ -197,6 +197,7 @@
     <Compile Include="Core\ILanguageProvider.cs" />
     <Compile Include="Core\Language.cs" />
     <Compile Include="Core\LanguageProvider.cs" />
+    <Compile Include="Core\MVVM\Converters\InvertedBoolConverter.cs" />
     <Compile Include="Core\MVVM\Converters\PluralConverter.cs" />
     <Compile Include="Core\MVVM\Converters\ZeroToBoolConverter.cs" />
     <Compile Include="Core\Service\BaseFilteringEngineService.cs" />
@@ -337,6 +338,7 @@
     <Compile Include="Settings\Migrations\v1_7_2\MigratedServerId.cs" />
     <Compile Include="Settings\Migrations\v1_7_2\ProfileTypeV1.cs" />
     <Compile Include="Settings\PerUserSettings.cs" />
+    <Compile Include="Settings\SettingChangeListener.cs" />
     <Compile Include="Settings\UserSettings.cs" />
     <Compile Include="Core\Startup\IAutoStartup.cs" />
     <Compile Include="Core\Startup\ISyncableAutoStartup.cs" />
@@ -424,6 +426,15 @@
     </Compile>
     <Compile Include="Sidebar\Announcements\AnnouncementsViewModel.cs" />
     <Compile Include="Sidebar\Announcements\IAnnouncementsAware.cs" />
+    <Compile Include="Sidebar\QuickSettings\NetShieldSettingButton.cs" />
+    <Compile Include="Sidebar\QuickSettings\PopupArrowPositionConverter.cs" />
+    <Compile Include="Sidebar\QuickSettings\QuickSettingButton.cs" />
+    <Compile Include="Sidebar\QuickSettings\QuickSettingButtonBase.cs" />
+    <Compile Include="Sidebar\QuickSettings\SettingButton.cs" />
+    <Compile Include="Sidebar\QuickSettings\QuickSettingsView.xaml.cs">
+      <DependentUpon>QuickSettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Sidebar\QuickSettings\QuickSettingsViewModel.cs" />
     <Compile Include="SpeedGraph\ViewResolvingPlotModel.cs" />
     <Compile Include="Core\MVVM\Converters\BytesToSizeConverter.cs" />
     <Compile Include="Core\MVVM\Converters\ConnectionStatusFlagConverter.cs" />
@@ -692,6 +703,27 @@
     <Compile Include="Views\Icons\Shield.xaml.cs">
       <DependentUpon>Shield.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Icons\ShieldEmpty.xaml.cs">
+      <DependentUpon>ShieldEmpty.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Icons\ShieldFull.xaml.cs">
+      <DependentUpon>ShieldFull.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Icons\ShieldHalf.xaml.cs">
+      <DependentUpon>ShieldHalf.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Icons\MultipleLocks.xaml.cs">
+      <DependentUpon>MultipleLocks.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Icons\SingleLock.xaml.cs">
+      <DependentUpon>SingleLock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Icons\SwitchOn.xaml.cs">
+      <DependentUpon>SwitchOn.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Icons\SwitchOff.xaml.cs">
+      <DependentUpon>SwitchOff.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Icons\Timedout.xaml.cs">
       <DependentUpon>Timedout.xaml</DependentUpon>
     </Compile>
@@ -908,6 +940,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Sidebar\QuickSettings\QuickSettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Sidebar\Trial\TrialView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -989,6 +1025,34 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Icons\Shield.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Icons\ShieldEmpty.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Icons\ShieldFull.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Icons\ShieldHalf.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Icons\MultipleLocks.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Icons\SingleLock.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Icons\SwitchOn.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Icons\SwitchOff.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

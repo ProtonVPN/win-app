@@ -17,13 +17,27 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Sidebar
+using System;
+using System.Globalization;
+using System.Windows.Data;
+
+namespace ProtonVPN.Core.MVVM.Converters
 {
-    public partial class Countries
+    public class InvertedBoolConverter : IValueConverter
     {
-        public Countries()
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            InitializeComponent();
+            if (value is bool boolValue)
+            {
+                return !boolValue;
+            }
+
+            return false;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
         }
     }
 }

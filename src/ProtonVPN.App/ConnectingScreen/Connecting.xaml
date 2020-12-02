@@ -37,24 +37,24 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              d:DataContext="{d:DesignInstance connectingScreen:ConnectingViewModel}">
     <UserControl.Resources>
         <Style x:Key="ControlButton" TargetType="Button" BasedOn="{StaticResource ClearStyleButton}">
-            <Setter Property="Margin" Value="0,30,0,0"/>
-            <Setter Property="Width" Value="120"/>
-            <Setter Property="FontSize" Value="16"/>
-            <Setter Property="Height" Value="40"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Border.CornerRadius" Value="20"/>
-            <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="Margin" Value="0,30,0,0" />
+            <Setter Property="Width" Value="120" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Height" Value="40" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Border.CornerRadius" Value="20" />
+            <Setter Property="BorderBrush" Value="White" />
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="White"/>
-                    <Setter Property="Foreground" Value="Black"/>
+                    <Setter Property="Background" Value="White" />
+                    <Setter Property="Foreground" Value="Black" />
                 </Trigger>
             </Style.Triggers>
         </Style>
         <Style x:Key="CancelButton" TargetType="Button" BasedOn="{StaticResource ControlButton}">
-            <Setter Property="Content" Value="{translations:Loc Connecting_btn_Cancel}"/>
-            <Setter Property="AutomationProperties.AutomationId" Value="{StaticResource CancelButtonId}"/>
+            <Setter Property="Content" Value="{translations:Loc Connecting_btn_Cancel}" />
+            <Setter Property="AutomationProperties.AutomationId" Value="{StaticResource CancelButtonId}" />
         </Style>
         <ControlTemplate x:Key="EllipseAnimationContent">
             <Grid>
@@ -66,8 +66,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     Stroke="White" RenderTransformOrigin="0.5,0.5">
                     <Ellipse.RenderTransform>
                         <TransformGroup>
-                            <ScaleTransform x:Name="ScaleTransform1"/>
-                            <RotateTransform Angle="-45"/>
+                            <ScaleTransform x:Name="ScaleTransform1" />
+                            <RotateTransform Angle="-45" />
                         </TransformGroup>
                     </Ellipse.RenderTransform>
                 </Ellipse>
@@ -79,8 +79,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     Stroke="White" RenderTransformOrigin="0.5,0.5">
                     <Ellipse.RenderTransform>
                         <TransformGroup>
-                            <ScaleTransform x:Name="ScaleTransform2"/>
-                            <RotateTransform Angle="45"/>
+                            <ScaleTransform x:Name="ScaleTransform2" />
+                            <RotateTransform Angle="45" />
                         </TransformGroup>
                     </Ellipse.RenderTransform>
                 </Ellipse>
@@ -97,7 +97,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     To="0"
                                     Duration="0:0:1"
                                     AutoReverse="True"
-                                    RepeatBehavior="Forever"/>
+                                    RepeatBehavior="Forever" />
                             </Storyboard>
                         </BeginStoryboard>
                         <BeginStoryboard Name="EllipseStoryboard2">
@@ -109,13 +109,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     To="0"
                                     Duration="0:0:1"
                                     AutoReverse="True"
-                                    RepeatBehavior="Forever"/>
+                                    RepeatBehavior="Forever" />
                             </Storyboard>
                         </BeginStoryboard>
                     </Trigger.EnterActions>
                     <Trigger.ExitActions>
-                        <RemoveStoryboard BeginStoryboardName="EllipseStoryboard1"/>
-                        <RemoveStoryboard BeginStoryboardName="EllipseStoryboard2"/>
+                        <RemoveStoryboard BeginStoryboardName="EllipseStoryboard1" />
+                        <RemoveStoryboard BeginStoryboardName="EllipseStoryboard2" />
                     </Trigger.ExitActions>
                 </Trigger>
             </ControlTemplate.Triggers>
@@ -123,23 +123,31 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     </UserControl.Resources>
     <Grid>
         <StackPanel VerticalAlignment="Center">
-            <ContentControl Template="{StaticResource EllipseAnimationContent}"/>
+            <ContentControl Template="{StaticResource EllipseAnimationContent}" />
             <ProgressBar Margin="0,40,0,0" Width="300"
-                SnapsToDevicePixels="True"
-                Minimum="0"
-                Maximum="100"
-                Background="White"
-                Height="2"
-                Foreground="{StaticResource PrimaryColor}"
-                Value="{Binding Percentage}">
+                         SnapsToDevicePixels="True"
+                         Minimum="0"
+                         Maximum="100"
+                         Background="White"
+                         Height="2"
+                         Foreground="{StaticResource PrimaryColor}"
+                         Value="{Binding Percentage}">
                 <i:Interaction.Behaviors>
-                    <behavior:AnimateBehavior ToAnimate="{x:Static ProgressBar.ValueProperty}" Value="{Binding AnimatePercentage}" Duration="0.5" />
+                    <behavior:AnimateBehavior ToAnimate="{x:Static ProgressBar.ValueProperty}"
+                                              Value="{Binding AnimatePercentage}" Duration="0.5" />
                 </i:Interaction.Behaviors>
             </ProgressBar>
             <Label HorizontalAlignment="Center"
                    Content="{Binding Message}"
                    Foreground="White"
-                   Height="32"/>
+                   Height="32" />
+            <TextBlock Padding="0"
+                       Text="Applying settings..."
+                       FontSize="12"
+                       Foreground="White"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Visibility="{Binding ApplyingSettings, Converter={StaticResource BoolToVis}}"/>
             <wpf:AlignableWrapPanel HorizontalAlignment="Center"
                                     Margin="0,20,0,0"
                                     HorizontalContentAlignment="Center"
@@ -149,12 +157,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                            FontSize="16"
                            Foreground="White"
                            VerticalAlignment="Center"
-                           Visibility="{c:Binding '!FailedConnectionName.IsSecureCore'}"/>
+                           Visibility="{c:Binding '!FailedConnectionName.IsSecureCore'}" />
                 <TextBlock Padding="0"
                            Text="{translations:Loc Connecting_lbl_FailedConnection_1_SecureCore}"
                            FontSize="16"
                            Foreground="White"
-                           VerticalAlignment="Center" Visibility="{c:Binding 'FailedConnectionName.IsSecureCore'}"/>
+                           VerticalAlignment="Center"
+                           Visibility="{c:Binding 'FailedConnectionName.IsSecureCore'}" />
                 <controls:ServerName FontWeight="Bold"
                                      FontSize="16"
                                      Margin="5,3"
@@ -162,19 +171,19 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                      VerticalAlignment="Center"
                                      WrapElements="True"
                                      AlignCenter="True"
-                                     ConnectionName="{Binding FailedConnectionName}"/>
+                                     ConnectionName="{Binding FailedConnectionName}" />
                 <TextBlock Padding="0"
                            Text="{translations:Loc Connecting_lbl_FailedConnection_2}"
                            FontSize="16"
                            Foreground="White"
                            VerticalAlignment="Center"
-                           Visibility="{c:Binding '!FailedConnectionName.IsSecureCore'}"/>
+                           Visibility="{c:Binding '!FailedConnectionName.IsSecureCore'}" />
                 <TextBlock Padding="0"
                            Text="{translations:Loc Connecting_lbl_FailedConnection_2_SecureCore}"
                            FontSize="16"
                            Foreground="White"
                            VerticalAlignment="Center"
-                           Visibility="{c:Binding 'FailedConnectionName.IsSecureCore'}"/>
+                           Visibility="{c:Binding 'FailedConnectionName.IsSecureCore'}" />
             </wpf:AlignableWrapPanel>
             <wpf:AlignableWrapPanel HorizontalAlignment="Center" Margin="0,5,0,0" HorizontalContentAlignment="Center">
                 <TextBlock Padding="0"
@@ -183,37 +192,37 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                            FontSize="20"
                            Foreground="White"
                            VerticalAlignment="Center"
-                           Visibility="{c:Binding '!ConnectionName.IsSecureCore'}"/>
+                           Visibility="{c:Binding '!ConnectionName.IsSecureCore'}" />
                 <TextBlock Padding="0"
                            TextTrimming="CharacterEllipsis"
                            Text="{translations:Loc Connecting_lbl_ConnectingTo_1_SecureCore}"
                            FontSize="20"
                            Foreground="White"
                            VerticalAlignment="Center"
-                           Visibility="{c:Binding 'ConnectionName.IsSecureCore'}"/>
+                           Visibility="{c:Binding 'ConnectionName.IsSecureCore'}" />
                 <controls:ServerName FontWeight="Bold"
                                      FontSize="20" Margin="7,5"
                                      HorizontalAlignment="Center"
                                      VerticalAlignment="Center"
                                      WrapElements="True"
                                      AlignCenter="True"
-                                     ConnectionName="{Binding ConnectionName}"/>
+                                     ConnectionName="{Binding ConnectionName}" />
                 <TextBlock Padding="0"
                            TextTrimming="CharacterEllipsis"
                            Text="{translations:Loc Connecting_lbl_ConnectingTo_2}"
                            FontSize="20"
                            Foreground="White"
                            VerticalAlignment="Center"
-                           Visibility="{c:Binding '!ConnectionName.IsSecureCore'}"/>
+                           Visibility="{c:Binding '!ConnectionName.IsSecureCore'}" />
                 <TextBlock Padding="0"
                            TextTrimming="CharacterEllipsis"
                            Text="{translations:Loc Connecting_lbl_ConnectingTo_2_SecureCore}"
                            FontSize="20"
                            Foreground="White"
                            VerticalAlignment="Center"
-                           Visibility="{c:Binding 'ConnectionName.IsSecureCore'}"/>
+                           Visibility="{c:Binding 'ConnectionName.IsSecureCore'}" />
             </wpf:AlignableWrapPanel>
-            <Button Style="{StaticResource CancelButton}" Command="{Binding DisconnectCommand}"/>
+            <Button Style="{StaticResource CancelButton}" Command="{Binding DisconnectCommand}" />
         </StackPanel>
     </Grid>
 </UserControl>

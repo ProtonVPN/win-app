@@ -32,7 +32,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     xmlns:mapLine="clr-namespace:ProtonVPN.Map.ViewModels.MapLine"
     xmlns:pins="clr-namespace:ProtonVPN.Map.ViewModels.Pins"
     xmlns:speedGraph="clr-namespace:ProtonVPN.SpeedGraph"
-    xmlns:onboarding="clr-namespace:ProtonVPN.Onboarding"
     x:Class="ProtonVPN.Map.Views.Map"
     mc:Ignorable="d"
     d:DesignHeight="800">
@@ -106,13 +105,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <Label Grid.Row="1" Grid.Column="0" Content="Y:" Foreground="White"/>
                 <Label Grid.Row="1" Grid.Column="1" Name="YCoordinate" Foreground="White"/>
             </Grid>
-
-            <onboarding:Step Number="5"
-                           VerticalAlignment="Top"
-                           HorizontalAlignment="Left"
-                           Margin="50,50,0,0"
-                           Panel.ZIndex="1"
-                           Visibility="{Binding ShowFifthOnboardingStep, Converter={StaticResource BoolToVis}}"/>
 
             <controls:LogoWhite Width="120"
                                 Height="20"

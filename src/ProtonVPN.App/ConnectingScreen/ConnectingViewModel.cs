@@ -27,22 +27,33 @@ using ProtonVPN.Core.Vpn;
 using ProtonVPN.Translations;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using ProtonVPN.Settings;
 
 namespace ProtonVPN.ConnectingScreen
 {
     internal class ConnectingViewModel : ViewModel, IVpnStateAware
     {
+        private readonly SettingChangeListener _settingChangeListener;
         private int _percentage;
         private int _animatePercentage;
         private string _message;
         private Server _server;
         private Server _failedServer;
 
+        public ConnectingViewModel(IVpnManager vpnManager, SettingChangeListener settingChangeListener)
+        {
+            _vpnManager = vpnManager;
+            _settingChangeListener = settingChangeListener;
+
+            DisconnectCommand = new RelayCommand(DisconnectAction);
+        }
+
         public ICommand DisconnectCommand { get; set; }
 
         private readonly IVpnManager _vpnManager;
 
         private IName _connectionName;
+
         public IName ConnectionName
         {
             get => _connectionName;
@@ -50,6 +61,7 @@ namespace ProtonVPN.ConnectingScreen
         }
 
         private IName _failedConnectionName;
+
         public IName FailedConnectionName
         {
             get => _failedConnectionName;
@@ -63,10 +75,19 @@ namespace ProtonVPN.ConnectingScreen
         }
 
         private bool _reconnecting;
+
         public bool Reconnecting
         {
             get => _reconnecting;
             set => Set(ref _reconnecting, value);
+        }
+
+        private bool _applyingSettings;
+
+        public bool ApplyingSettings
+        {
+            get => _applyingSettings;
+            set => Set(ref _applyingSettings, value);
         }
 
         public int Percentage
@@ -79,13 +100,6 @@ namespace ProtonVPN.ConnectingScreen
         {
             get => _animatePercentage;
             set => Set(ref _animatePercentage, value);
-        }
-
-        public ConnectingViewModel(IVpnManager vpnManager)
-        {
-            _vpnManager = vpnManager;
-
-            DisconnectCommand = new RelayCommand(DisconnectAction);
         }
 
         public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
@@ -102,16 +116,20 @@ namespace ProtonVPN.ConnectingScreen
                     SetConnecting(e.State);
                     break;
                 case VpnStatus.Waiting:
-                    SetConnectingState(20, Message = Translation.Get("Connecting_VpnStatus_val_Waiting"), e.State.Server);
+                    SetConnectingState(20, Message = Translation.Get("Connecting_VpnStatus_val_Waiting"),
+                        e.State.Server);
                     break;
                 case VpnStatus.Authenticating:
-                    SetConnectingState(40, Message = Translation.Get("Connecting_VpnStatus_val_Authenticating"), e.State.Server);
+                    SetConnectingState(40, Message = Translation.Get("Connecting_VpnStatus_val_Authenticating"),
+                        e.State.Server);
                     break;
                 case VpnStatus.RetrievingConfiguration:
-                    SetConnectingState(60, Message = Translation.Get("Connecting_VpnStatus_val_RetrievingConfiguration"), e.State.Server);
+                    SetConnectingState(60,
+                        Message = Translation.Get("Connecting_VpnStatus_val_RetrievingConfiguration"), e.State.Server);
                     break;
                 case VpnStatus.AssigningIp:
-                    SetConnectingState(80, Message = Translation.Get("Connecting_VpnStatus_val_AssigningIp"), e.State.Server);
+                    SetConnectingState(80, Message = Translation.Get("Connecting_VpnStatus_val_AssigningIp"),
+                        e.State.Server);
                     break;
                 case VpnStatus.Connected:
                     AnimatePercentage = 100;
@@ -144,9 +162,12 @@ namespace ProtonVPN.ConnectingScreen
         {
             AnimatePercentage = percentage;
             Message = message;
+            ApplyingSettings = _settingChangeListener.PendingReconnect();
 
             if (server == null)
+            {
                 return;
+            }
 
             ConnectionName = GetConnectionName(server);
 
