@@ -214,25 +214,30 @@ void NTAPI RedirectUDPFlow(
 	}
 }
 
-VOID NTAPI CompleteBasicPacketInjection(_In_ VOID*,
-	_Inout_ NET_BUFFER_LIST*,
+VOID NTAPI CompleteBasicPacketInjection(VOID *data,
+	_Inout_ NET_BUFFER_LIST *bufferList,
 	_In_ BOOLEAN)
 {
+	PNET_BUFFER buffer = NET_BUFFER_LIST_FIRST_NB(bufferList);
+	PMDL mdl = NET_BUFFER_FIRST_MDL(buffer);
+	ExFreePoolWithTag(data, ProtonTAG);
+	IoFreeMdl(mdl);
+	FwpsFreeNetBufferList0(bufferList);
 }
 
 void PacketDnsReplyInitv4(PDNSPACKETV4 packet)
 {
 	memset(packet, 0, sizeof(DNSPACKETV4));
 	packet->ip.Version = 4;
-	packet->ip.HdrLength = sizeof(WINDIVERT_IPHDR) / sizeof(UINT32);
+	packet->ip.HdrLength = sizeof(IPHDR) / sizeof(UINT32);
 	packet->ip.Length = htons(sizeof(DNSPACKETV4));
 	packet->ip.Protocol = IPPROTO_UDP;
 	packet->ip.Id = 0;
 	packet->ip.TTL = 64;
-	packet->udp.Length = ntohs(sizeof(WINDIVERT_UDPHDR) + sizeof(DNSHEADER));
+	packet->udp.Length = ntohs(sizeof(UDPHDR) + sizeof(DNSHEADER));
 }
 
-UINT16 CalcChecksum(PVOID data, UINT len)
+UINT16 CalcChecksum(const PVOID data, UINT len)
 {
 	UINT32 sum = 0;
 	const auto* data16 = static_cast<const UINT16*>(data);
@@ -274,16 +279,13 @@ DNSPACKETV4 GetDnsResponsePacket(UINT16 transaction_id, UINT32 src_addr, UINT32 
 
 bool BlockDnsPacket(PNET_BUFFER buffer, UINT32 interface_index, UINT32 subinterface_index)
 {
-	UNREFERENCED_PARAMETER(interface_index);
-	UNREFERENCED_PARAMETER(subinterface_index);
-	
 	const UINT total_len = NET_BUFFER_DATA_LENGTH(buffer);
-	if (total_len < sizeof(WINDIVERT_IPHDR))
+	if (total_len < sizeof(IPHDR))
 	{
 		return false;
 	}
 
-	auto* ip_header = static_cast<PWINDIVERT_IPHDR>(NdisGetDataBuffer(buffer, sizeof(WINDIVERT_IPHDR), nullptr, 1, 0));
+	auto* ip_header = static_cast<PIPHDR>(NdisGetDataBuffer(buffer, sizeof(IPHDR), nullptr, 1, 0));
 	if (ip_header == nullptr)
 	{
 		return false;
@@ -306,7 +308,7 @@ bool BlockDnsPacket(PNET_BUFFER buffer, UINT32 interface_index, UINT32 subinterf
 	auto offset_delta = ip_header_len;
 	
 	NdisAdvanceNetBufferDataStart(buffer, offset_delta, FALSE, nullptr);
-	auto* udp_header = static_cast<PWINDIVERT_UDPHDR>(NdisGetDataBuffer(buffer, sizeof(WINDIVERT_UDPHDR), nullptr, 1, 0));
+	auto* udp_header = static_cast<PUDPHDR>(NdisGetDataBuffer(buffer, sizeof(UDPHDR), nullptr, 1, 0));
 
 	if (static_cast<UINT32>(ntohs(udp_header->DstPort)) != 53)
 	{
@@ -318,6 +320,7 @@ bool BlockDnsPacket(PNET_BUFFER buffer, UINT32 interface_index, UINT32 subinterf
 	NdisAdvanceNetBufferDataStart(buffer, udp_header_len, FALSE, nullptr);
 	auto* dns_header = static_cast<PDNSHEADER>(NdisGetDataBuffer(buffer, sizeof(DNSHEADER), nullptr, 1, 0));
 	offset_delta += udp_header_len;
+	NdisRetreatNetBufferDataStart(buffer, offset_delta, 0, nullptr);
 
 	auto dns_packet = GetDnsResponsePacket(
 		dns_header->transaction_id,
@@ -325,12 +328,25 @@ bool BlockDnsPacket(PNET_BUFFER buffer, UINT32 interface_index, UINT32 subinterf
 		ip_header->SrcAddr,
 		udp_header->DstPort,
 		udp_header->SrcPort);
-	
+
 	UINT packet_length = RtlUshortByteSwap(dns_packet.ip.Length);
-	auto* mdl_copy = IoAllocateMdl(&dns_packet, packet_length, FALSE, FALSE, nullptr);
+	PVOID new_packet_data = ExAllocatePoolWithTag(NonPagedPool, packet_length, ProtonTAG);
+	if (new_packet_data == nullptr)
+	{
+	    return false;
+	}
+
+	RtlCopyMemory(new_packet_data, &dns_packet, packet_length);
+
+	auto* mdl_copy = IoAllocateMdl(new_packet_data, packet_length, FALSE, FALSE, nullptr);
+	if (mdl_copy == nullptr)
+	{
+		goto block_dns_failed;
+	}
+
 	MmBuildMdlForNonPagedPool(mdl_copy);
 
-	NET_BUFFER_LIST* cloned_net_buffer_list;
+	PNET_BUFFER_LIST cloned_net_buffer_list = nullptr;
 	auto status = FwpsAllocateNetBufferAndNetBufferList0(
 		nbl_pool_handle,
 		0,
@@ -342,9 +358,7 @@ bool BlockDnsPacket(PNET_BUFFER buffer, UINT32 interface_index, UINT32 subinterf
 
 	if (!NT_SUCCESS(status))
 	{
-		IoFreeMdl(mdl_copy);
-		NdisRetreatNetBufferDataStart(buffer, offset_delta, 0, nullptr);
-		return false;
+		goto block_dns_failed;
 	}
 
 	status = FwpsInjectNetworkReceiveAsync0(
@@ -356,21 +370,28 @@ bool BlockDnsPacket(PNET_BUFFER buffer, UINT32 interface_index, UINT32 subinterf
 		subinterface_index,
 		cloned_net_buffer_list,
 		CompleteBasicPacketInjection,
-		nullptr);
+		new_packet_data);
 
 	if (!NT_SUCCESS(status))
 	{
-		FwpsFreeNetBufferList0(cloned_net_buffer_list);
-		IoFreeMdl(mdl_copy);
-		NdisRetreatNetBufferDataStart(buffer, offset_delta, 0, nullptr);
-		return false;
+		goto block_dns_failed;
 	}
 
-	FwpsFreeNetBufferList0(cloned_net_buffer_list);
-	IoFreeMdl(mdl_copy);
-	NdisRetreatNetBufferDataStart(buffer, offset_delta, 0, nullptr);
-
 	return true;
+
+block_dns_failed:
+
+	if (mdl_copy != nullptr)
+	{
+		IoFreeMdl(mdl_copy);
+	}
+
+	if (new_packet_data != nullptr)
+	{
+		ExFreePoolWithTag(new_packet_data, ProtonTAG);
+	}
+
+	return false;
 }
 
 void NTAPI BlockDnsBySendingServerFailPacket(
@@ -382,7 +403,7 @@ void NTAPI BlockDnsBySendingServerFailPacket(
 	IN UINT64,
 	IN OUT FWPS_CLASSIFY_OUT* result)
 {
-	if (packet == nullptr)
+	if ((result->rights & FWPS_RIGHT_ACTION_WRITE) == 0 || packet == nullptr)
 	{
 		return;
 	}
