@@ -33,6 +33,8 @@ DEFINE_GUID(REDIRECT_UDP_CALLOUT_KEY,
 DEFINE_GUID(BLOCK_DNS_CALLOUT_KEY,
     0x10636af3, 0x50d6, 0x4f53, 0xac, 0xb7, 0xd5, 0xaf, 0x33, 0x21, 0x7f, 0xcb);
 
+#define ProtonTAG 'pvpn'
+
 //
 // Data structure passed to the callout in a provider context attached to the callout filter.
 // Contains local IP address to bind to.
@@ -44,4 +46,3 @@ typedef struct CONNECT_REDIRECT_DATA
 
 extern HANDLE injectHandle;
 extern NDIS_HANDLE nbl_pool_handle;
-extern NDIS_HANDLE nb_pool_handle;

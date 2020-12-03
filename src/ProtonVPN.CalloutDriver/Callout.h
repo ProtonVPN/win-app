@@ -53,7 +53,7 @@ typedef struct
 	UINT16 Checksum;
 	UINT32 SrcAddr;
 	UINT32 DstAddr;
-} WINDIVERT_IPHDR, * PWINDIVERT_IPHDR;
+} IPHDR, * PIPHDR;
 
 typedef struct
 {
@@ -61,7 +61,7 @@ typedef struct
 	UINT16 DstPort;
 	UINT16 Length;
 	UINT16 Checksum;
-} WINDIVERT_UDPHDR, * PWINDIVERT_UDPHDR;
+} UDPHDR, * PUDPHDR;
 
 typedef struct
 {
@@ -75,8 +75,8 @@ typedef struct
 
 typedef struct
 {
-	WINDIVERT_IPHDR ip;
-	WINDIVERT_UDPHDR udp;
+	IPHDR ip;
+	UDPHDR udp;
 	DNSHEADER dns;
 } DNSPACKETV4, * PDNSPACKETV4;
 
