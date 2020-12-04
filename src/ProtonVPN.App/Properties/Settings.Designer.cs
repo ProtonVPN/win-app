@@ -980,25 +980,25 @@ namespace ProtonVPN.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public int NetShieldMode {
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string UserNetShieldMode {
             get {
-                return ((int)(this["NetShieldMode"]));
+                return ((string)(this["UserNetShieldMode"]));
             }
             set {
-                this["NetShieldMode"] = value;
+                this["UserNetShieldMode"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool NetShieldEnabled {
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string UserNetShieldEnabled {
             get {
-                return ((bool)(this["NetShieldEnabled"]));
+                return ((string)(this["UserNetShieldEnabled"]));
             }
             set {
-                this["NetShieldEnabled"] = value;
+                this["UserNetShieldEnabled"] = value;
             }
         }
         
@@ -1178,6 +1178,30 @@ namespace ProtonVPN.Properties {
             }
             set {
                 this["MaintenanceCheckInterval"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool UserNetShieldEnabledDefault {
+            get {
+                return ((bool)(this["UserNetShieldEnabledDefault"]));
+            }
+            set {
+                this["UserNetShieldEnabledDefault"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int UserNetShieldModeDefault {
+            get {
+                return ((int)(this["UserNetShieldModeDefault"]));
+            }
+            set {
+                this["UserNetShieldModeDefault"] = value;
             }
         }
     }
