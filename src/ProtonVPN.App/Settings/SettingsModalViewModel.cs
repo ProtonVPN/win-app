@@ -385,7 +385,8 @@ namespace ProtonVPN.Settings
             {
                 OnLanguageChanged();
             }
-            else if (e.PropertyName.Equals(nameof(IAppSettings.NetShieldMode)) ||
+            else if (e.PropertyName.Equals(nameof(IAppSettings.FeatureNetShieldEnabled)) ||
+                     e.PropertyName.Equals(nameof(IAppSettings.NetShieldMode)) ||
                      e.PropertyName.Equals(nameof(IAppSettings.NetShieldEnabled)))
             {
                 if (_appSettings.IsNetShieldEnabled())
