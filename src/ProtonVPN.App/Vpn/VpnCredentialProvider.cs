@@ -28,7 +28,8 @@ namespace ProtonVPN.Vpn
         private readonly IAppSettings _appSettings;
         private readonly IUserStorage _userStorage;
 
-        public VpnCredentialProvider(Common.Configuration.Config config, IAppSettings appSettings, IUserStorage userStorage)
+        public VpnCredentialProvider(Common.Configuration.Config config, IAppSettings appSettings,
+            IUserStorage userStorage)
         {
             _config = config;
             _userStorage = userStorage;
@@ -46,7 +47,7 @@ namespace ProtonVPN.Vpn
         {
             username += _config.VpnUsernameSuffix;
 
-            if (_appSettings.FeatureNetShieldEnabled && _appSettings.NetShieldEnabled)
+            if (_appSettings.IsNetShieldEnabled())
             {
                 username += $"+f{_appSettings.NetShieldMode}";
             }
