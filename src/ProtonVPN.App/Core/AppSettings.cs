@@ -174,14 +174,14 @@ namespace ProtonVPN.Core
 
         public bool NetShieldEnabled
         {
-            get => Get<bool>();
-            set => Set(value);
+            get => GetPerUser<bool>();
+            set => SetPerUser(value);
         }
 
         public int NetShieldMode
         {
-            get => Get<int>();
-            set => Set(value);
+            get => GetPerUser<int>();
+            set => SetPerUser(value);
         }
 
         public bool SidebarMode
