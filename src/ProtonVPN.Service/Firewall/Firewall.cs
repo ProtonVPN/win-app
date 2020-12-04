@@ -113,6 +113,7 @@ namespace ProtonVPN.Service.Firewall
                 _serverAddressFilters.Clear();
                 _baseProtectionFilters.Clear();
                 LeakProtectionEnabled = false;
+                _calloutDriver.Stop();
 
                 _logger.Info("Firewall: Internet restored");
             }
