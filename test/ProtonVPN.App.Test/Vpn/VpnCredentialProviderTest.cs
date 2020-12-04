@@ -64,8 +64,7 @@ namespace ProtonVPN.App.Test.Vpn
             // Arrange
             _userStorage.User().Returns(_user);
             _appSettings.NetShieldMode.Returns(mode);
-            _appSettings.NetShieldEnabled.Returns(true);
-            _appSettings.FeatureNetShieldEnabled.Returns(true);
+            _appSettings.IsNetShieldEnabled().Returns(true);
 
             var sut = new VpnCredentialProvider(_config, _appSettings, _userStorage);
 

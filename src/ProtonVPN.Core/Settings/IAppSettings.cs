@@ -84,5 +84,6 @@ namespace ProtonVPN.Core.Settings
         bool FeatureMaintenanceTrackerEnabled { get; set; }
         bool FeaturePollNotificationApiEnabled { get; set; }
         TimeSpan MaintenanceCheckInterval { get; set; }
+        bool IsNetShieldEnabled();
     }
 }

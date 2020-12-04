@@ -193,7 +193,7 @@ namespace ProtonVPN.Settings
             get => _appSettings.CustomDnsEnabled;
             set
             {
-                if (value && _appSettings.NetShieldEnabled)
+                if (value && _appSettings.IsNetShieldEnabled())
                 {
                     var result =_dialogs.ShowQuestion(Translation.Get("Settings_Connection_Warning_CustomDnsServer"));
                     if (result.HasValue && !result.Value)
@@ -388,7 +388,7 @@ namespace ProtonVPN.Settings
             else if (e.PropertyName.Equals(nameof(IAppSettings.NetShieldMode)) ||
                      e.PropertyName.Equals(nameof(IAppSettings.NetShieldEnabled)))
             {
-                if (_appSettings.NetShieldEnabled)
+                if (_appSettings.IsNetShieldEnabled())
                 {
                     _appSettings.CustomDnsEnabled = false;
                 }

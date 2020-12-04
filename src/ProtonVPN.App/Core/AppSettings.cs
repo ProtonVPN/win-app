@@ -172,6 +172,9 @@ namespace ProtonVPN.Core
             set => Set(value);
         }
 
+        [Obsolete(
+            "Use this only for checking if the user enabled/disabled the feature." +
+            "Use IsNetShieldEnabled() for checking if the NetShield is/should be enabled.")]
         public bool NetShieldEnabled
         {
             get => GetPerUser<bool>();
@@ -400,6 +403,11 @@ namespace ProtonVPN.Core
             }
 
             return apps;
+        }
+
+        public bool IsNetShieldEnabled()
+        {
+            return FeatureNetShieldEnabled && NetShieldEnabled;
         }
 
         private void OnPropertyChanged([CallerMemberName] string propertyName = null)
