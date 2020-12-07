@@ -13,10 +13,10 @@
     <ROW Property="MSIFASTINSTALL" MultiBuildValue="DefaultBuild:7"/>
     <ROW Property="Manufacturer" Value="Proton Technologies AG"/>
     <ROW Property="MsiLogging" MultiBuildValue="DefaultBuild:vp"/>
-    <ROW Property="ProductCode" Value="1033:{845860F1-DC0C-4B3A-BD2D-AA4073280DC1} " Type="16"/>
+    <ROW Property="ProductCode" Value="1033:{5DA710E2-1B81-4675-BFC5-76BAF63AE1F6} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="ProtonVPNTap"/>
-    <ROW Property="ProductVersion" Value="1.1.2" Type="32"/>
+    <ROW Property="ProductVersion" Value="1.1.3" Type="32"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;AI_SETUPEXEPATH;SETUPEXEDIR"/>
     <ROW Property="UpgradeCode" Value="{E23B9F7F-AA0A-481A-8ECA-FA69794BF50A}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
