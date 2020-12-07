@@ -285,7 +285,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                            PlacementTarget="{Binding ElementName=QuickMenuContainer}"
                            VerticalOffset="0"
                            IsOpen="{Binding IsChecked, ElementName=SecureCoreToggle, Mode=TwoWay}">
-                        <Grid>
+                        <Grid UseLayoutRounding="True">
                             <Polygon Style="{StaticResource Triangle}">
                                 <Polygon.Margin>
                                     <MultiBinding Converter="{StaticResource PopupArrowPositionConverter}">
@@ -362,7 +362,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                            PlacementTarget="{Binding ElementName=QuickMenuContainer}"
                            VerticalOffset="0"
                            IsOpen="{Binding IsChecked, ElementName=NetShieldToggle, Mode=TwoWay, FallbackValue=False}">
-                        <Grid>
+                        <Grid UseLayoutRounding="True">
                             <Polygon Style="{StaticResource Triangle}">
                                 <Polygon.Margin>
                                     <MultiBinding Converter="{StaticResource PopupArrowPositionConverter}">
@@ -439,7 +439,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                            PlacementTarget="{Binding ElementName=QuickMenuContainer}"
                            VerticalOffset="0"
                            IsOpen="{Binding IsChecked, ElementName=KillSwitchToggle, Mode=TwoWay}">
-                        <Grid>
+                        <Grid UseLayoutRounding="True">
                             <Polygon Style="{StaticResource Triangle}">
                                 <Polygon.Margin>
                                     <MultiBinding Converter="{StaticResource PopupArrowPositionConverter}">
