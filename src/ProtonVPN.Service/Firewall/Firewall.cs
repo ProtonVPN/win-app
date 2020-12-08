@@ -174,6 +174,16 @@ namespace ProtonVPN.Service.Firewall
 
             _ipLayer.ApplyToIpv4(layer =>
             {
+                _sublayer.CreateRemoteUdpPortFilter(new DisplayData(
+                        "ProtonVPN DNS filter", "Permit UDP 53 port so we can block it at network layer"),
+                    Action.HardPermit,
+                    layer,
+                    weight,
+                    53);
+            });
+
+            _ipLayer.ApplyToIpv4(layer =>
+            {
                 _sublayer.CreateRemoteTcpPortFilter(new DisplayData(
                         "ProtonVPN block DNS", "Block TCP 53 port"),
                     Action.HardBlock,
