@@ -75,9 +75,30 @@ typedef struct
 
 typedef struct
 {
+	UINT16 qname;
+	UINT16 qtype;
+	UINT16 qclass;
+} DNSQUESTION, * PDNSQUESTION;
+
+typedef struct
+{
+	UINT16 name;
+	UINT16 type;
+	UINT16 class_;
+	UINT16 ttl;
+	UINT16 rdlength;
+	UINT16 rdata;
+} DNSANSWER, * PDNSANSWER;
+
+typedef struct
+{
 	IPHDR ip;
 	UDPHDR udp;
 	DNSHEADER dns;
+	DNSQUESTION question;
+	DNSANSWER answer;
+	DNSANSWER authority;
+	DNSANSWER additional;
 } DNSPACKETV4, * PDNSPACKETV4;
 
 VOID NTAPI CompleteBasicPacketInjection(_In_ VOID* pContext,
