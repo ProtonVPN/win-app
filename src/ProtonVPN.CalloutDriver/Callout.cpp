@@ -1,4 +1,4 @@
-#include <fwpsk.h>
+﻿#include <fwpsk.h>
 #include <fwpmtypes.h>
 #include <mstcpip.h>
 
@@ -6,6 +6,7 @@
 #include "Public.h"
 #include "Callout.h"
 #include "Callout.tmh"
+#include "stdio.h"
 
 const UINT8 TCP_PROTOCOL_ID = 6;
 
@@ -261,31 +262,23 @@ UINT16 CalcChecksum(const PVOID data, UINT len)
 	return static_cast<UINT16>(sum);
 }
 
-DNSPACKETV4 GetDnsResponsePacket(UINT16 transaction_id, UINT32 src_addr, UINT32 dst_addr, UINT16 src_port, UINT16 dst_port)
-{
-	DNSPACKETV4 packet;
-	PacketDnsReplyInitv4(&packet);
-	packet.ip.SrcAddr = src_addr;
-	packet.ip.DstAddr = dst_addr;
-	packet.udp.SrcPort = src_port;
-	packet.udp.DstPort = dst_port;
-	packet.dns.transaction_id = transaction_id;
-	packet.ip.Checksum = CalcChecksum(
-		&packet.ip,
-		packet.ip.HdrLength * sizeof(UINT32));
-
-	return packet;
-}
-
 bool BlockDnsPacket(PNET_BUFFER buffer, UINT32 interface_index, UINT32 subinterface_index)
 {
+	unsigned char buffer_data[2048];
 	const UINT total_len = NET_BUFFER_DATA_LENGTH(buffer);
-	if (total_len < sizeof(IPHDR))
+
+	if (total_len < sizeof(IPHDR) || total_len > 2048)
 	{
 		return false;
 	}
 
-	auto* ip_header = static_cast<PIPHDR>(NdisGetDataBuffer(buffer, sizeof(IPHDR), nullptr, 1, 0));
+	auto *result = NdisGetDataBuffer(buffer, total_len, buffer_data, 1, 0);
+	if (result == nullptr)
+	{
+		return false;
+	}
+
+	auto* ip_header = reinterpret_cast<PIPHDR>(buffer_data);
 	if (ip_header == nullptr)
 	{
 		return false;
@@ -293,52 +286,52 @@ bool BlockDnsPacket(PNET_BUFFER buffer, UINT32 interface_index, UINT32 subinterf
 
 	const UINT ip_header_len = ip_header->HdrLength * sizeof(UINT32);
 	if (ip_header->Version != 4 ||
-		RtlUshortByteSwap(ip_header->Length) != total_len ||
-		ip_header->HdrLength < 5 ||
-		ip_header_len > total_len)
+		ntohs(ip_header->Length) != total_len ||
+		ip_header_len < sizeof(IPHDR) ||
+		ip_header->Protocol != IPPROTO_UDP ||
+		total_len < ip_header_len + sizeof(UDPHDR) + sizeof(DNSHEADER))
 	{
 		return false;
 	}
 
-	if (ip_header->Protocol != IPPROTO_UDP)
+	auto* udp_header = reinterpret_cast<PUDPHDR>(buffer_data + ip_header_len);
+	if (ntohs(udp_header->DstPort) != 53)
 	{
 		return false;
 	}
 
-	auto offset_delta = ip_header_len;
-	
-	NdisAdvanceNetBufferDataStart(buffer, offset_delta, FALSE, nullptr);
-	auto* udp_header = static_cast<PUDPHDR>(NdisGetDataBuffer(buffer, sizeof(UDPHDR), nullptr, 1, 0));
+	const UINT udp_header_len = sizeof(UDPHDR);
+	const UINT udp_payload_size = total_len - ip_header_len - udp_header_len;
+	const auto dns_header_size = buffer_data + ip_header_len + udp_header_len;
+	auto* dns_header = reinterpret_cast<PDNSHEADER>(dns_header_size);
 
-	if (static_cast<UINT32>(ntohs(udp_header->DstPort)) != 53)
-	{
-		NdisRetreatNetBufferDataStart(buffer, offset_delta, 0, nullptr);
-		return false;
-	}
+	unsigned char reply[2048];
+	auto dns_packet = reinterpret_cast<DNSPACKETV4*>(reply);
+	PacketDnsReplyInitv4(dns_packet);
 
-	const UINT udp_header_len = 8;
-	NdisAdvanceNetBufferDataStart(buffer, udp_header_len, FALSE, nullptr);
-	auto* dns_header = static_cast<PDNSHEADER>(NdisGetDataBuffer(buffer, sizeof(DNSHEADER), nullptr, 1, 0));
-	offset_delta += udp_header_len;
-	NdisRetreatNetBufferDataStart(buffer, offset_delta, 0, nullptr);
+	//28 = 20 bytes of IP header and 8 bytes of UDP header. So we skip those
+	memcpy(reply + sizeof(IPHDR) + sizeof(UDPHDR), dns_header_size, udp_payload_size);
 
-	auto dns_packet = GetDnsResponsePacket(
-		dns_header->transaction_id,
-		ip_header->DstAddr,
-		ip_header->SrcAddr,
-		udp_header->DstPort,
-		udp_header->SrcPort);
+	const UINT reply_size = sizeof(IPHDR) + sizeof(UDPHDR) + udp_payload_size;
+	dns_packet->dns.flags = htons(0x8002);
+	dns_packet->ip.SrcAddr = ip_header->DstAddr;
+	dns_packet->ip.DstAddr = ip_header->SrcAddr;
+	dns_packet->ip.Length = htons(static_cast<UINT16>(reply_size));
+	dns_packet->udp.SrcPort = udp_header->DstPort;
+	dns_packet->udp.DstPort = udp_header->SrcPort;
+	dns_packet->udp.Length = htons(udp_payload_size + sizeof(UDPHDR));
+	dns_packet->ip.Checksum = CalcChecksum(&dns_packet->ip, dns_packet->ip.HdrLength * sizeof(UINT32));
+	dns_packet->dns.transaction_id = dns_header->transaction_id;
 
-	UINT packet_length = RtlUshortByteSwap(dns_packet.ip.Length);
-	PVOID new_packet_data = ExAllocatePoolWithTag(NonPagedPool, packet_length, ProtonTAG);
+	PVOID new_packet_data = ExAllocatePoolWithTag(NonPagedPool, reply_size, ProtonTAG);
 	if (new_packet_data == nullptr)
 	{
-	    return false;
+		return false;
 	}
 
-	RtlCopyMemory(new_packet_data, &dns_packet, packet_length);
+	RtlCopyMemory(new_packet_data, dns_packet, reply_size);
 
-	auto* mdl_copy = IoAllocateMdl(new_packet_data, packet_length, FALSE, FALSE, nullptr);
+	auto* mdl_copy = IoAllocateMdl(new_packet_data, reply_size, FALSE, FALSE, nullptr);
 	if (mdl_copy == nullptr)
 	{
 		goto block_dns_failed;
@@ -353,7 +346,7 @@ bool BlockDnsPacket(PNET_BUFFER buffer, UINT32 interface_index, UINT32 subinterf
 		0,
 		mdl_copy,
 		0,
-		packet_length,
+		reply_size,
 		&cloned_net_buffer_list);
 
 	if (!NT_SUCCESS(status))
@@ -393,6 +386,7 @@ block_dns_failed:
 
 	return false;
 }
+
 
 void NTAPI BlockDnsBySendingServerFailPacket(
 	IN const FWPS_INCOMING_VALUES* inFixedValues,
