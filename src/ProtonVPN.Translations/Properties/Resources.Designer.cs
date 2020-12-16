@@ -3514,7 +3514,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your connection has been disabled because you are using a server that does not support peer-to-peer (P2P) traffic. P2P is not supported on free servers or servers that are numbered 100 or greater. Please use a different server for P2P..
+        ///   Looks up a localized string similar to Your connection has been disabled because you are using a server that does not support peer-to-peer (P2P) traffic. P2P is not supported on free servers. Please use a different server for P2P..
         /// </summary>
         public static string Dialogs_P2PBlocked_msg_Blocked {
             get {

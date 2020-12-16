@@ -294,8 +294,8 @@
     <comment>The message displayed when connecting to server which was removed and doesn't exist anymore</comment>
   </data>
   <data name="Dialogs_P2PBlocked_msg_Blocked" xml:space="preserve">
-    <value>Your connection has been disabled because you are using a server that does not support peer-to-peer (P2P) traffic. P2P is not supported on free servers or servers that are numbered 100 or greater. Please use a different server for P2P.</value>
-    <comment>The warning message displayed when P2P traffic is detected on servers not allowing it. The number is in the server name like "NL#101".</comment>
+    <value>Your connection has been disabled because you are using a server that does not support peer-to-peer (P2P) traffic. P2P is not supported on free servers. Please use a different server for P2P.</value>
+    <comment>The warning message displayed when P2P traffic is detected on servers not allowing it.</comment>
   </data>
   <data name="Settings_Connection_lbl_QuickConnect_Info" xml:space="preserve">
     <value>The Quick Connect button connects you to the selected profile.</value>
