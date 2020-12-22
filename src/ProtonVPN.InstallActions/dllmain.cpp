@@ -9,6 +9,7 @@
 #include "StartupApp.h"
 #include "SystemState.h"
 #include "Utils.h"
+#include "TunAdapter.h"
 #include "bitcompressor.hpp"
 #include "bitexception.hpp"
 #include "PathManager.h"
@@ -31,6 +32,19 @@ const auto SelectedLanguageProperty = L"SelectedLanguage";
 const auto MsiLogFileLocationProperty = L"MsiLogFileLocation";
 const auto LocalAppDataFolderProperty = L"LocalAppDataFolder";
 const auto ApplicationDirectoryProperty = L"APPDIR";
+const auto WintunDllPathProperty = L"WintunDllPath";
+
+extern "C" EXPORT long InstallTunAdapter(MSIHANDLE hInstall)
+{
+    SetMsiHandle(hInstall);
+    return InstallTunAdapter(GetProperty(WintunDllPathProperty).c_str());
+}
+
+extern "C" EXPORT long UninstallTunAdapter(MSIHANDLE hInstall)
+{
+    SetMsiHandle(hInstall);
+    return UninstallTunAdapter(GetProperty(WintunDllPathProperty).c_str());
+}
 
 extern "C" EXPORT long ModifyServicePermissions(MSIHANDLE hInstall)
 {
