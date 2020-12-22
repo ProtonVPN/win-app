@@ -84,6 +84,7 @@ build-installer-for-release:
     - windows
   script:
     - python ci\main.py tap-installer
+    - python ci\main.py tun-installer
     - python ci\main.py update-gh-list
     - python ci\main.py app-installer $env:CI_COMMIT_SHORT_SHA
   artifacts:
@@ -100,6 +101,7 @@ build-installer-for-debug:
     - windows
   script:
     - python ci\main.py tap-installer
+    - python ci\main.py tun-installer
     - python ci\main.py update-gh-list
     - python ci\main.py app-installer $env:CI_COMMIT_SHORT_SHA
   artifacts:

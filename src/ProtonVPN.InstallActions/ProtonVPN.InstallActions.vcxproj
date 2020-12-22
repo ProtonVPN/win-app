@@ -112,7 +112,9 @@
     <ClInclude Include="SystemState.h" />
     <ClInclude Include="Service.h" />
     <ClInclude Include="StringHelper.h" />
+    <ClInclude Include="TunAdapter.h" />
     <ClInclude Include="Utils.h" />
+    <ClInclude Include="Wintun.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
@@ -122,6 +124,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="TunAdapter.cpp" />
     <ClCompile Include="StartupApp.cpp" />
     <ClCompile Include="StringConverter.cpp" />
     <ClCompile Include="SystemState.cpp" />
