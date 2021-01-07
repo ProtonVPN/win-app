@@ -105,6 +105,7 @@
   <ItemGroup>
     <ClInclude Include="EnvironmentVariable.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="Installer.h" />
     <ClInclude Include="PathManager.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="StartupApp.h" />
@@ -119,6 +120,7 @@
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="EnvironmentVariable.cpp" />
+    <ClCompile Include="Installer.cpp" />
     <ClCompile Include="PathManager.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

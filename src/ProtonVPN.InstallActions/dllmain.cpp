@@ -6,14 +6,16 @@
 #include <strsafe.h>
 #include "EnvironmentVariable.h"
 #include "Service.h"
+#include "msiquery.h"
 #include "StartupApp.h"
 #include "SystemState.h"
 #include "Utils.h"
-#include "TunAdapter.h"
 #include "bitcompressor.hpp"
 #include "bitexception.hpp"
 #include "PathManager.h"
 #include "StringConverter.h"
+#include "Installer.h"
+#include "TunAdapter.h"
 
 #define EXPORT __declspec(dllexport)
 
@@ -33,6 +35,14 @@ const auto MsiLogFileLocationProperty = L"MsiLogFileLocation";
 const auto LocalAppDataFolderProperty = L"LocalAppDataFolder";
 const auto ApplicationDirectoryProperty = L"APPDIR";
 const auto WintunDllPathProperty = L"WintunDllPath";
+const auto ProductUpgradeCodeProperty = L"ProductUpgradeCode";
+const auto RebootRequiredProperty = L"RebootRequired";
+
+extern "C" EXPORT long UninstallProduct(MSIHANDLE hInstall)
+{
+    SetMsiHandle(hInstall);
+    return Uninstall(GetProperty(ProductUpgradeCodeProperty).c_str());
+}
 
 extern "C" EXPORT long InstallTunAdapter(MSIHANDLE hInstall)
 {
@@ -43,7 +53,14 @@ extern "C" EXPORT long InstallTunAdapter(MSIHANDLE hInstall)
 extern "C" EXPORT long UninstallTunAdapter(MSIHANDLE hInstall)
 {
     SetMsiHandle(hInstall);
-    return UninstallTunAdapter(GetProperty(WintunDllPathProperty).c_str());
+    BOOL* rebootRequired = nullptr;
+    const auto result = UninstallTunAdapter(GetProperty(WintunDllPathProperty).c_str(), rebootRequired);
+    if (rebootRequired)
+    {
+        MsiSetProperty(hInstall, RebootRequiredProperty, L"1");
+    }
+
+    return result;
 }
 
 extern "C" EXPORT long ModifyServicePermissions(MSIHANDLE hInstall)

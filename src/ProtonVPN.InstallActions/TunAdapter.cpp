@@ -5,9 +5,9 @@
 #include "Wintun.h"
 
 static WINTUN_CREATE_ADAPTER_FUNC WintunCreateAdapter;
-static WINTUN_DELETE_ADAPTER_FUNC WintunDeleteAdapter;
 static WINTUN_FREE_ADAPTER_FUNC WintunFreeAdapter;
 static WINTUN_OPEN_ADAPTER_FUNC WintunOpenAdapter;
+static WINTUN_DELETE_POOL_DRIVER_FUNC WintunDeletePoolDriver;
 
 const WCHAR *AdapterName = L"ProtonVPN";
 const WCHAR *AdapterDescription = L"ProtonVPN TUN";
@@ -47,7 +47,7 @@ static HMODULE InitializeWintun(LPCWSTR dllPath)
 
 #define X(Name, Type) (((Name) = (Type)GetProcAddress(Wintun, #Name)) == NULL)
     if (X(WintunCreateAdapter, WINTUN_CREATE_ADAPTER_FUNC) ||
-        X(WintunDeleteAdapter, WINTUN_DELETE_ADAPTER_FUNC) ||
+        X(WintunDeletePoolDriver, WINTUN_DELETE_POOL_DRIVER_FUNC) ||
         X(WintunFreeAdapter, WINTUN_FREE_ADAPTER_FUNC) ||
         X(WintunOpenAdapter, WINTUN_OPEN_ADAPTER_FUNC))
 #undef X
@@ -93,7 +93,7 @@ int InstallTunAdapter(LPCWSTR dllPath)
     return LastError;
 }
 
-int UninstallTunAdapter(LPCWSTR dllPath)
+int UninstallTunAdapter(LPCWSTR dllPath, BOOL* rebootRequired)
 {
     DWORD LastError = ERROR_SUCCESS;
     HMODULE Wintun = InitializeWintun(dllPath);
@@ -107,7 +107,7 @@ int UninstallTunAdapter(LPCWSTR dllPath)
     WINTUN_ADAPTER_HANDLE Adapter = WintunOpenAdapter(AdapterName, AdapterDescription);
     if (Adapter)
     {
-        if (WintunDeleteAdapter(Adapter, false, nullptr))
+        if (WintunDeletePoolDriver(AdapterName, rebootRequired))
         {
             WintunFreeAdapter(Adapter);
             LogMessage(L"ProtonVPN TUN adapter uninstalled.");

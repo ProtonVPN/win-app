@@ -2,4 +2,4 @@
 
 int InstallTunAdapter(LPCWSTR dllPath);
 
-int UninstallTunAdapter(LPCWSTR dllPath);
+int UninstallTunAdapter(LPCWSTR dllPath, BOOL* rebootRequired);
