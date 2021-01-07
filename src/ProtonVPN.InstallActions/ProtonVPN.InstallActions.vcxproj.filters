@@ -51,6 +51,9 @@
     <ClInclude Include="PathManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Installer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -81,6 +84,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PathManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Installer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
