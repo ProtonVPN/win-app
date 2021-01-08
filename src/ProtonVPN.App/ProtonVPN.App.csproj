@@ -345,6 +345,7 @@
     <Compile Include="Settings\Migrations\v1_7_2\MigratedProfileType.cs" />
     <Compile Include="Settings\Migrations\v1_7_2\MigratedServerId.cs" />
     <Compile Include="Settings\Migrations\v1_7_2\ProfileTypeV1.cs" />
+    <Compile Include="Settings\NetworkAdapter.cs" />
     <Compile Include="Settings\PerUserSettings.cs" />
     <Compile Include="Settings\UserSettings.cs" />
     <Compile Include="Core\Startup\IAutoStartup.cs" />

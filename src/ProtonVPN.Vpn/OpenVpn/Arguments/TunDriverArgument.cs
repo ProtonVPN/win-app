@@ -17,23 +17,18 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Service.Firewall
+using System.Collections;
+using System.Collections.Generic;
+
+namespace ProtonVPN.Vpn.OpenVpn.Arguments
 {
-    public class FirewallParams
+    internal class TunDriverArgument : IEnumerable<string>
     {
-        public FirewallParams(string serverIp, bool dnsLeakOnly, uint interfaceIndex)
+        public IEnumerator<string> GetEnumerator()
         {
-            ServerIp = serverIp;
-            DnsLeakOnly = dnsLeakOnly;
-            InterfaceIndex = interfaceIndex;
+            yield return $"--windows-driver wintun";
         }
 
-        public static FirewallParams Null => new FirewallParams(string.Empty, false, 0);
-
-        public string ServerIp { get; }
-
-        public bool DnsLeakOnly { get; }
-
-        public uint InterfaceIndex { get; }
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 }

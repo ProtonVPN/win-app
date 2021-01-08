@@ -33,11 +33,14 @@ namespace ProtonVPN.Common.Vpn
 
         public IReadOnlyCollection<string> SplitTunnelIPs { get; }
 
+        public bool UseTunAdapter { get; }
+
         public VpnConfig(
             IReadOnlyDictionary<VpnProtocol, IReadOnlyCollection<int>> portConfig,
             IReadOnlyCollection<string> customDns,
             SplitTunnelMode splitTunnelMode,
-            IReadOnlyCollection<string> splitTunnelIPs)
+            IReadOnlyCollection<string> splitTunnelIPs,
+            bool useTunAdapter)
         {
             AssertPortsValid(portConfig);
             AssertCustomDnsValid(customDns);
@@ -46,11 +49,19 @@ namespace ProtonVPN.Common.Vpn
             CustomDns = customDns;
             SplitTunnelMode = splitTunnelMode;
             SplitTunnelIPs = splitTunnelIPs;
+            UseTunAdapter = useTunAdapter;
+        }
+
+        public VpnConfig(
+            IReadOnlyDictionary<VpnProtocol, IReadOnlyCollection<int>> portConfig,
+            SplitTunnelMode splitTunnelMode, bool useTunAdapter) :
+            this(portConfig, new List<string>(), splitTunnelMode, new List<string>(), useTunAdapter)
+        {
         }
 
         private void AssertCustomDnsValid(IReadOnlyCollection<string> customDns)
         {
-            foreach (var dns in customDns)
+            foreach (string dns in customDns)
             {
                 if (!dns.IsValidIpAddress())
                 {
@@ -61,9 +72,9 @@ namespace ProtonVPN.Common.Vpn
 
         private void AssertPortsValid(IReadOnlyDictionary<VpnProtocol, IReadOnlyCollection<int>> ports)
         {
-            foreach (var item in ports)
+            foreach (KeyValuePair<VpnProtocol, IReadOnlyCollection<int>> item in ports)
             {
-                foreach (var port in item.Value)
+                foreach (int port in item.Value)
                 {
                     if (port < 1 || port > 65535)
                     {

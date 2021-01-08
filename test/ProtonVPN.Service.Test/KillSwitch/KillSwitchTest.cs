@@ -24,6 +24,7 @@ using ProtonVPN.Common;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Service.Contract.Settings;
 using ProtonVPN.Service.Firewall;
+using ProtonVPN.Service.Network;
 using ProtonVPN.Service.Settings;
 using ProtonVPN.Vpn.Common;
 
@@ -34,6 +35,7 @@ namespace ProtonVPN.Service.Test.KillSwitch
     {
         private IFirewall _firewall;
         private IServiceSettings _serviceSettings;
+        private ICurrentNetworkAdapter _currentNetworkAdapter;
         private const string RemoteIp = "2.2.2.2";
 
         [TestInitialize]
@@ -41,6 +43,7 @@ namespace ProtonVPN.Service.Test.KillSwitch
         {
             _firewall = Substitute.For<IFirewall>();
             _serviceSettings = Substitute.For<IServiceSettings>();
+            _currentNetworkAdapter = Substitute.For<ICurrentNetworkAdapter>();
         }
 
         [TestMethod]
@@ -50,36 +53,39 @@ namespace ProtonVPN.Service.Test.KillSwitch
         public void OnVpnConnecting_SplitTunnelBlockMode_BlockInternet(SplitTunnelMode mode, bool dnsLeakOnly)
         {
             // Arrange
-            var killSwitch = GetKillSwitch(mode);
+            Service.KillSwitch.KillSwitch killSwitch = GetKillSwitch(mode);
 
             // Act
             killSwitch.OnVpnConnecting(GetConnectingVpnState());
 
             // Assert
-            _firewall.ReceivedWithAnyArgs(1).EnableLeakProtection(Arg.Is<FirewallParams>(p => p.DnsLeakOnly == dnsLeakOnly));
+            _firewall.ReceivedWithAnyArgs(1)
+                .EnableLeakProtection(Arg.Is<FirewallParams>(p => p.DnsLeakOnly == dnsLeakOnly));
         }
 
         [TestMethod]
         public void OnVpnConnected_WhenSplitTunnelPermitMode_DoNotBlockInternet()
         {
             // Arrange
-            var killSwitch = GetKillSwitch(SplitTunnelMode.Permit);
+            Service.KillSwitch.KillSwitch killSwitch = GetKillSwitch(SplitTunnelMode.Permit);
 
             // Act
             killSwitch.OnVpnConnected(GetConnectedVpnState());
 
             // Assert
-            _firewall.Received(0).EnableLeakProtection(new FirewallParams("127.0.0.1", false));
+            _firewall.Received(0)
+                .EnableLeakProtection(new FirewallParams("127.0.0.1", dnsLeakOnly: false, interfaceIndex: 0));
         }
 
         [TestMethod]
         public void OnVpnDisconnected_ManualDisconnect_RestoreInternet()
         {
             // Arrange
-            var sut = new Service.KillSwitch.KillSwitch(_firewall, _serviceSettings);
+            Service.KillSwitch.KillSwitch sut =
+                new Service.KillSwitch.KillSwitch(_firewall, _serviceSettings, _currentNetworkAdapter);
 
             // Act
-            sut.OnVpnDisconnected(GetDisconnectedVpnState(true));
+            sut.OnVpnDisconnected(GetDisconnectedVpnState(manualDisconnect: true));
 
             // Assert
             _firewall.Received(1).DisableLeakProtection();
@@ -89,11 +95,8 @@ namespace ProtonVPN.Service.Test.KillSwitch
         public void OnVpnDisconnected_UnexpectedDisconnectWithKillSwitchOff_RestoreInternet()
         {
             // Arrange
-            _serviceSettings.KillSwitchSettings.Returns(new KillSwitchSettingsContract
-            {
-                Enabled = false
-            });
-            var sut = new Service.KillSwitch.KillSwitch(_firewall, _serviceSettings);
+            _serviceSettings.KillSwitchSettings.Returns(new KillSwitchSettingsContract {Enabled = false});
+            var sut = new Service.KillSwitch.KillSwitch(_firewall, _serviceSettings, _currentNetworkAdapter);
 
             // Act
             sut.OnVpnDisconnected(GetDisconnectedVpnState());
@@ -113,10 +116,11 @@ namespace ProtonVPN.Service.Test.KillSwitch
             {
                 Mode = SplitTunnelMode.Block
             });
-            var killSwitch = new Service.KillSwitch.KillSwitch(_firewall, _serviceSettings);
+            Service.KillSwitch.KillSwitch killSwitch =
+                new Service.KillSwitch.KillSwitch(_firewall, _serviceSettings, _currentNetworkAdapter);
 
             // Act
-            var result = killSwitch.ExpectedLeakProtectionStatus(state);
+            bool result = killSwitch.ExpectedLeakProtectionStatus(state);
 
             //Assert
             result.Should().Be(true);
@@ -139,19 +143,18 @@ namespace ProtonVPN.Service.Test.KillSwitch
         [DataRow(VpnStatus.Disconnected, VpnError.NetshError, false, true, false)]
         [DataRow(VpnStatus.Disconnected, VpnError.NetshError, true, false, false)]
         [DataRow(VpnStatus.Disconnected, VpnError.NetshError, true, true, true)]
-        public void ExpectedLeakProtectionStatus_ShouldBe_Expected_WhenDisconnecting(VpnStatus status, VpnError error, bool killSwitchEnabled, bool leakProtectionEnabled, bool expected)
+        public void ExpectedLeakProtectionStatus_ShouldBe_Expected_WhenDisconnecting(VpnStatus status, VpnError error,
+            bool killSwitchEnabled, bool leakProtectionEnabled, bool expected)
         {
             // Arrange
             var state = new VpnState(status, error);
-            _serviceSettings.KillSwitchSettings.Returns(new KillSwitchSettingsContract
-            {
-                Enabled = killSwitchEnabled
-            });
+            _serviceSettings.KillSwitchSettings.Returns(new KillSwitchSettingsContract {Enabled = killSwitchEnabled});
             _firewall.LeakProtectionEnabled.Returns(leakProtectionEnabled);
-            var killSwitch = new Service.KillSwitch.KillSwitch(_firewall, _serviceSettings);
+            Service.KillSwitch.KillSwitch killSwitch =
+                new Service.KillSwitch.KillSwitch(_firewall, _serviceSettings, _currentNetworkAdapter);
 
             // Act
-            var result = killSwitch.ExpectedLeakProtectionStatus(state);
+            bool result = killSwitch.ExpectedLeakProtectionStatus(state);
 
             //Assert
             result.Should().Be(expected);
@@ -168,15 +171,17 @@ namespace ProtonVPN.Service.Test.KillSwitch
         [DataRow(VpnStatus.AssigningIp, true)]
         [DataRow(VpnStatus.Connected, false)]
         [DataRow(VpnStatus.Connected, true)]
-        public void ExpectedLeakProtectionStatus_ShouldBe_Firewall_LeakProtectionEnabled_WhenOtherStatus(VpnStatus status, bool leakProtectionEnabled)
+        public void ExpectedLeakProtectionStatus_ShouldBe_Firewall_LeakProtectionEnabled_WhenOtherStatus(
+            VpnStatus status, bool leakProtectionEnabled)
         {
             // Arrange
             var state = new VpnState(status);
             _firewall.LeakProtectionEnabled.Returns(leakProtectionEnabled);
-            var killSwitch = new Service.KillSwitch.KillSwitch(_firewall, _serviceSettings);
+            Service.KillSwitch.KillSwitch killSwitch =
+                new Service.KillSwitch.KillSwitch(_firewall, _serviceSettings, _currentNetworkAdapter);
 
             // Act
-            var result = killSwitch.ExpectedLeakProtectionStatus(state);
+            bool result = killSwitch.ExpectedLeakProtectionStatus(state);
 
             //Assert
             result.Should().Be(leakProtectionEnabled);
@@ -186,12 +191,10 @@ namespace ProtonVPN.Service.Test.KillSwitch
         {
             _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsContract
             {
-                Mode = mode,
-                AppPaths = new string[0],
-                Ips = new string[0]
+                Mode = mode, AppPaths = new string[0], Ips = new string[0]
             });
 
-            return new Service.KillSwitch.KillSwitch(_firewall, _serviceSettings);
+            return new Service.KillSwitch.KillSwitch(_firewall, _serviceSettings, _currentNetworkAdapter);
         }
 
         private VpnState GetDisconnectedVpnState(bool manualDisconnect = false)

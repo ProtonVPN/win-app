@@ -271,6 +271,18 @@ namespace ProtonVPN.Settings
                 Translation.Get("Settings_Connection_DefaultProtocol_val_Udp")),
         };
 
+        public List<KeyValuePair<NetworkAdapter, string>> NetworkDrivers => new List<KeyValuePair<NetworkAdapter, string>>
+        {
+            new KeyValuePair<NetworkAdapter, string>(NetworkAdapter.Tun, Translation.Get("Settings_Advanced_lbl_Tun")),
+            new KeyValuePair<NetworkAdapter, string>(NetworkAdapter.Tap, Translation.Get("Settings_Advanced_lbl_Tap")),
+        };
+
+        public NetworkAdapter SelectedNetworkDriver
+        {
+            get => _appSettings.UseTunAdapter ? NetworkAdapter.Tun : NetworkAdapter.Tap;
+            set => _appSettings.UseTunAdapter = value == NetworkAdapter.Tun;
+        }
+
         public IReadOnlyList<ProfileViewModel> AutoConnectProfiles
         {
             get => _autoConnectProfiles;

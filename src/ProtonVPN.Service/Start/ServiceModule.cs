@@ -29,6 +29,7 @@ using ProtonVPN.Common.Text.Serialization;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Service.Driver;
 using ProtonVPN.Service.Firewall;
+using ProtonVPN.Service.Network;
 using ProtonVPN.Service.ServiceHosts;
 using ProtonVPN.Service.Settings;
 using ProtonVPN.Service.SplitTunneling;
@@ -131,11 +132,8 @@ namespace ProtonVPN.Service.Start
             builder.RegisterType<BestNetworkInterface>().SingleInstance();
             builder.RegisterType<SplitTunnelClient>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<UnhandledExceptionLogging>().SingleInstance();
-            builder.Register(c =>
-                    new NetworkSettings(
-                        c.Resolve<ILogger>(),
-                        c.Resolve<INetworkInterfaces>(),
-                        c.Resolve<Common.Configuration.Config>()))
+            builder.RegisterType<CurrentNetworkAdapter>().As<ICurrentNetworkAdapter>().SingleInstance();
+            builder.Register(c => new NetworkSettings(c.Resolve<ILogger>(), c.Resolve<ICurrentNetworkAdapter>()))
                 .AsImplementedInterfaces()
                 .AsSelf()
                 .SingleInstance();

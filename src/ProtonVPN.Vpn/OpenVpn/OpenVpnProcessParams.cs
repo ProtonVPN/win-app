@@ -31,7 +31,8 @@ namespace ProtonVPN.Vpn.OpenVpn
             string password,
             IReadOnlyCollection<string> customDns,
             SplitTunnelMode splitTunnelMode,
-            IReadOnlyCollection<string> splitTunnelIPs)
+            IReadOnlyCollection<string> splitTunnelIPs,
+            bool useTunAdapter)
         {
             Endpoint = endpoint;
             ManagementPort = managementPort;
@@ -39,6 +40,7 @@ namespace ProtonVPN.Vpn.OpenVpn
             CustomDns = customDns;
             SplitTunnelMode = splitTunnelMode;
             SplitTunnelIPs = splitTunnelIPs;
+            UseTunAdapter = useTunAdapter;
         }
 
         public VpnEndpoint Endpoint { get; }
@@ -52,5 +54,7 @@ namespace ProtonVPN.Vpn.OpenVpn
         public SplitTunnelMode SplitTunnelMode { get; }
 
         public IReadOnlyCollection<string> SplitTunnelIPs { get; }
+
+        public bool UseTunAdapter { get; }
     }
 }

@@ -21,7 +21,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using ProtonVPN.Common.Logging;
-using ProtonVPN.Common.OS.Net.NetworkInterface;
 using ProtonVPN.NetworkFilter;
 using ProtonVPN.Service.Driver;
 using Action = ProtonVPN.NetworkFilter.Action;
@@ -33,7 +32,6 @@ namespace ProtonVPN.Service.Firewall
         private readonly ILogger _logger;
         private readonly IDriver _calloutDriver;
         private readonly Common.Configuration.Config _config;
-        private readonly INetworkInterfaces _networkInterfaces;
         private readonly IpLayer _ipLayer;
         private readonly Sublayer _sublayer;
         private FirewallParams _lastParams = FirewallParams.Null;
@@ -46,13 +44,11 @@ namespace ProtonVPN.Service.Firewall
             ILogger logger,
             IDriver calloutDriver,
             Common.Configuration.Config config,
-            INetworkInterfaces networkInterfaces,
             IpLayer ipLayer,
             Sublayer sublayer)
         {
             _logger = logger;
             _config = config;
-            _networkInterfaces = networkInterfaces;
             _ipLayer = ipLayer;
             _sublayer = sublayer;
             _calloutDriver = calloutDriver;
@@ -75,8 +71,7 @@ namespace ProtonVPN.Service.Firewall
             {
                 _logger.Info("Firewall: Blocking internet");
 
-                var tapInterfaceIndex = _networkInterfaces.InterfaceIndex(_config.OpenVpn.TapAdapterDescription, _config.OpenVpn.TapAdapterId);
-                EnableDnsLeakProtection(tapInterfaceIndex);
+                EnableDnsLeakProtection(firewallParams.InterfaceIndex);
 
                 if (firewallParams.DnsLeakOnly)
                 {
@@ -84,7 +79,7 @@ namespace ProtonVPN.Service.Firewall
                 }
                 else
                 {
-                    EnableBaseLeakProtection(tapInterfaceIndex);
+                    EnableBaseLeakProtection(firewallParams.InterfaceIndex);
                 }
 
                 LeakProtectionEnabled = true;

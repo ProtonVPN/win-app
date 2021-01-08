@@ -39,7 +39,7 @@ namespace ProtonVPN.Service
     [ServiceBehavior(
         InstanceContextMode = InstanceContextMode.Single,
         ConcurrencyMode = ConcurrencyMode.Single)]
-    public class VpnConnectionHandler : IVpnConnectionContract
+    internal class VpnConnectionHandler : IVpnConnectionContract
     {
         private readonly object _callbackLock = new object();
         private readonly List<IVpnEventsContract> _callbacks = new List<IVpnEventsContract>();
@@ -212,7 +212,7 @@ namespace ProtonVPN.Service
 
         private static VpnStatusContract Map(VpnStatus vpnStatus)
         {
-            return (VpnStatusContract) vpnStatus;
+            return (VpnStatusContract)vpnStatus;
         }
 
         private static VpnProtocolContract Map(VpnProtocol protocol)
@@ -222,7 +222,7 @@ namespace ProtonVPN.Service
 
         private static VpnProtocol Map(VpnProtocolContract protocol)
         {
-            return (VpnProtocol) protocol;
+            return (VpnProtocol)protocol;
         }
 
         private static VpnCredentials Map(VpnCredentialsContract credentials)
@@ -243,10 +243,11 @@ namespace ProtonVPN.Service
             return new VpnHost(server.Name, server.Ip);
         }
 
-        private static VpnConfig Map(VpnConfigContract config)
+        private VpnConfig Map(VpnConfigContract config)
         {
-            var portConfig = config.Ports.ToDictionary(p => Map(p.Key), p => (IReadOnlyCollection<int>)p.Value.ToList());
-            return new VpnConfig(portConfig, config.CustomDns, config.SplitTunnelMode, config.SplitTunnelIPs);
+            Dictionary<VpnProtocol, IReadOnlyCollection<int>> portConfig =
+                config.Ports.ToDictionary(p => Map(p.Key), p => (IReadOnlyCollection<int>)p.Value.ToList());
+            return new VpnConfig(portConfig, config.CustomDns, config.SplitTunnelMode, config.SplitTunnelIPs, _serviceSettings.UseTunAdapter);
         }
 
         private static InOutBytesContract Map(InOutBytes bytes)
@@ -261,7 +262,7 @@ namespace ProtonVPN.Service
 
         private static VpnErrorTypeContract Map(VpnError errorType)
         {
-            return (VpnErrorTypeContract) errorType;
+            return (VpnErrorTypeContract)errorType;
         }
     }
 }

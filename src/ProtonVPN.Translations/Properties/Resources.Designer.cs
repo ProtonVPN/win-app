@@ -3334,7 +3334,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to All TAP adapters are in use..
+        ///   Looks up a localized string similar to All TAP/TUN adapters are in use..
         /// </summary>
         public static string Dialogs_DisconnectError_msg_AllAdaptersInUse {
             get {
@@ -3370,7 +3370,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TAP adapter is missing..
+        ///   Looks up a localized string similar to TAP/TUN adapter is missing..
         /// </summary>
         public static string Dialogs_DisconnectError_msg_NoTap {
             get {
@@ -3379,7 +3379,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Current TAP adapter version is outdated..
+        ///   Looks up a localized string similar to Current TAP/TUN adapter version is outdated..
         /// </summary>
         public static string Dialogs_DisconnectError_msg_OldVersion {
             get {
@@ -5223,6 +5223,24 @@ namespace ProtonVPN.Translations.Properties {
                 return ResourceManager.GetString("Settings_Advanced_lbl_Ipv6Protection_Info", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Network driver.
+        /// </summary>
+        public static string Settings_Advanced_lbl_NetworkDriver {
+            get {
+                return ResourceManager.GetString("Settings_Advanced_lbl_NetworkDriver", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Network drivers can impact your connection and speed. The new Tun adapter provides higher speed, fallback on Tap adapter if you encounter any connectivity problem..
+        /// </summary>
+        public static string Settings_Advanced_lbl_NetworkDriver_info {
+            get {
+                return ResourceManager.GetString("Settings_Advanced_lbl_NetworkDriver_info", resourceCulture);
+            }
+        }
         
         /// <summary>
         ///   Looks up a localized string similar to Split Tunneling.
@@ -5239,6 +5257,24 @@ namespace ProtonVPN.Translations.Properties {
         public static string Settings_Advanced_lbl_SplitTunnel_Info {
             get {
                 return ResourceManager.GetString("Settings_Advanced_lbl_SplitTunnel_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tap adapter.
+        /// </summary>
+        public static string Settings_Advanced_lbl_Tap {
+            get {
+                return ResourceManager.GetString("Settings_Advanced_lbl_Tap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tun adapter.
+        /// </summary>
+        public static string Settings_Advanced_lbl_Tun {
+            get {
+                return ResourceManager.GetString("Settings_Advanced_lbl_Tun", resourceCulture);
             }
         }
         

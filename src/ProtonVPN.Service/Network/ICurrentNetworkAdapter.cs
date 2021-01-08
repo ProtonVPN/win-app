@@ -17,23 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Service.Firewall
+namespace ProtonVPN.Service.Network
 {
-    public class FirewallParams
+    internal interface ICurrentNetworkAdapter
     {
-        public FirewallParams(string serverIp, bool dnsLeakOnly, uint interfaceIndex)
-        {
-            ServerIp = serverIp;
-            DnsLeakOnly = dnsLeakOnly;
-            InterfaceIndex = interfaceIndex;
-        }
+        uint Index { get; }
 
-        public static FirewallParams Null => new FirewallParams(string.Empty, false, 0);
-
-        public string ServerIp { get; }
-
-        public bool DnsLeakOnly { get; }
-
-        public uint InterfaceIndex { get; }
+        string HardwareId { get; }
     }
 }
