@@ -325,10 +325,6 @@
     <value>to Systray</value>
     <comment>The name of start minimized mode displayed in Start Minimized combo box in General tab of Settings window</comment>
   </data>
-  <data name="Settings_Advanced_lbl_KillSwitch_Info" xml:space="preserve">
-    <value>Blocks all network traffic when the VPN tunnel is lost. Cannot be switched on together with Split Tunneling.</value>
-    <comment>The description of Kill Switch setting displayed in the tooltip of ( i ) image next to the label for Kill Switch toggle switch in Advanced tab of Settings window</comment>
-  </data>
   <data name="Settings_Advanced_lbl_SplitTunnel_Info" xml:space="preserve">
     <value>Exclude an application or an IP address from VPN traffic or include only specific apps. Cannot be switched on together with Kill Switch.</value>
     <comment>The description of Split Tunneling setting displayed in the tooltip of ( i ) image next to the label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
@@ -595,7 +591,7 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <comment>The description of onboarding step 3 in Onboarding overlay of main app window</comment>
   </data>
   <data name="Onboarding_msg_Step_4" xml:space="preserve">
-    <value>Increase your security with one click:</value>
+    <value>Adapt your VPN connection to your online activity with ProtonVPN's special features for optimal speed and privacy protection.</value>
     <comment>The description of onboarding step 4 in Onboarding overlay of main app window</comment>
   </data>
   <data name="Onboarding_btn_EndTour" xml:space="preserve">
@@ -721,10 +717,6 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
   <data name="Settings_Connection_lbl_DefaultProtocol" xml:space="preserve">
     <value>Default Protocol</value>
     <comment>The label for Default Protocol combo box in Connection tab of Settings window</comment>
-  </data>
-  <data name="Settings_Advanced_lbl_KillSwitch" xml:space="preserve">
-    <value>VPN Kill Switch</value>
-    <comment>The label for Kill Switch toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_DnsLeakProtection" xml:space="preserve">
     <value>DNS Leak Protection</value>
@@ -1253,6 +1245,10 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
   <data name="ServerType_val_Tor" xml:space="preserve">
     <value>Tor</value>
     <comment>The server type in Profile window</comment>
+  </data>
+  <data name="Sidebar_Separator_Others" xml:space="preserve">
+    <value>OTHERS</value>
+    <comment>When Port Forwarding is enabled, we show the P2P servers first and only then the OTHERS.</comment>
   </data>
   <data name="Country_val_AD" xml:space="preserve">
     <value>Andorra</value>
@@ -2442,29 +2438,9 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <value>Using Custom DNS servers will disable NetShield. DNS servers are responsible for directing you to the correct websites. &lt;LineBreak/&gt;&lt;LineBreak/&gt;Only use DNS servers that you trust. Do you want to turn Custom DNS servers on?</value>
     <comment>The text displayed in Custom DNS Servers warning modal window when use is trying to turn the feature ON when NetShield feature is turned on as well</comment>
   </data>
-  <data name="Settings_Connection_lbl_NetShield" xml:space="preserve">
-    <value>NetShield</value>
-    <comment>The label for NetShield combo box in Connection tab of Settings window</comment>
-  </data>
-  <data name="Settings_Connection_NetShield_lbl_Level1" xml:space="preserve">
-    <value>Block malware only</value>
-    <comment>The label of NetShield mode in NetShield section of Connection tab of Settings window</comment>
-  </data>
-  <data name="Settings_Connection_NetShield_lbl_Level2" xml:space="preserve">
-    <value>Block malware, tracking, ads</value>
-    <comment>The label of NetShield mode in NetShield section of Connection tab of Settings window</comment>
-  </data>
-  <data name="Settings_Connection_Warning_NetShield" xml:space="preserve">
-    <value>Using NetShield will disable Custom DNS Servers.&lt;LineBreak/&gt;&lt;LineBreak/&gt; Do you want to turn NetShield on?</value>
-    <comment>The text displayed in NetShield warning modal window when use is trying to turn the feature ON while Custom DNS Servers are enabled as well</comment>
-  </data>
   <data name="Settings_Connection_btn_Upgrade" xml:space="preserve">
     <value>Upgrade</value>
     <comment>The text on Upgrade button in Connection tab of Settings window</comment>
-  </data>
-  <data name="Settings_Connection_lbl_NetShield_Info" xml:space="preserve">
-    <value>This feature will process your DNS requests and automatically block trackers, ads, and harmful websites.</value>
-    <comment>The description of NetShield settings displayed in the tooltip of ( i ) image next to the label for NetShield combo box in Connection tab of Settings window</comment>
   </data>
   <data name="Sidebar_Countries_info_P2P" xml:space="preserve">
     <value>Supports P2P traffic</value>
@@ -2830,6 +2806,9 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="Dialogs_Reboot_ttl" xml:space="preserve">
     <value>ProtonVPN</value>
   </data>
+  <data name="Dialogs_btn_Enable" xml:space="preserve">
+    <value>Enable</value>
+  </data>
   <data name="Dialogs_DisabledService_btn_Enable" xml:space="preserve">
     <value>Enable</value>
   </data>
@@ -2845,8 +2824,23 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="Dialogs_DisabledService_msg_ExtraInfo" xml:space="preserve">
     <value>Sometimes, anti-virus software will mistakenly categorize ProtonVPN as a vulnerability and disable it. By clicking Enable, you are giving your system permission to reactivate the ProtonVPN Service.&lt;LineBreak/&gt;If the ProtonVPN Service is still disabled, try restarting your PC or reinstalling ProtonVPN.</value>
   </data>
+  <data name="Dialogs_PortForwardingConfirmation_ttl" xml:space="preserve">
+    <value>Enable Port Forwarding?</value>
+  </data>
+  <data name="Dialogs_PortForwardingConfirmation_msg" xml:space="preserve">
+    <value>Enable Port Forwarding only when you need it to ensure the strongest privacy and security protection.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadPortForwardingRisksCommand}"&gt;Do I need Port Forwarding?&lt;/Hyperlink&gt;</value>
+  </data>
+  <data name="Dialogs_DoNotShowThisMessageAgain" xml:space="preserve">
+    <value>Don't show this message again</value>
+  </data>
   <data name="BugReport_msg_EmailNotValid" xml:space="preserve">
     <value>Email not valid</value>
+  </data>
+  <data name="QuickSettings_btn_PortForwardingOff" xml:space="preserve">
+    <value>Port Forwarding Off</value>
+  </data>
+  <data name="QuickSettings_btn_PortForwardingOn" xml:space="preserve">
+    <value>Port Forwarding On</value>
   </data>
   <data name="QuickSettings_btn_KillSwitchOff" xml:space="preserve">
     <value>Kill Switch Off</value>
@@ -2872,6 +2866,9 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="QuickSettings_btn_SecureCoreOn" xml:space="preserve">
     <value>Secure Core On</value>
   </data>
+  <data name="QuickSettings_lbl_PortForwardingInfo" xml:space="preserve">
+    <value>Speed up your torrenting and online gaming by allowing supported local apps to be reachable from the Internet. &lt;Hyperlink Command="{Binding PortForwardingLearnMoreCommand}"&gt;Learn more.&lt;/Hyperlink&gt;</value>
+  </data>
   <data name="QuickSettings_lbl_KillSwitchInfo" xml:space="preserve">
     <value>Disables Internet if the VPN connection drops to prevent accidental IP leak. &lt;Hyperlink Command="{Binding KillSwitchLearnMoreCommand}"&gt;Learn more.&lt;/Hyperlink&gt;</value>
   </data>
@@ -2890,6 +2887,9 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="QuickSettings_btn_GetPlus" xml:space="preserve">
     <value>GET PLUS</value>
   </data>
+  <data name="PortForwarding" xml:space="preserve">
+    <value>Port Forwarding</value>
+  </data>
   <data name="KillSwitch" xml:space="preserve">
     <value>Kill Switch</value>
   </data>
@@ -2899,13 +2899,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="SecureCore" xml:space="preserve">
     <value>Secure Core</value>
   </data>
-  <data name="Onboarding_msg_KillSwitch" xml:space="preserve">
-    <value>• Prevent your IP to be exposed by turning on &lt;Bold&gt;Kill Switch&lt;/Bold&gt;.</value>
-  </data>
-  <data name="Onboarding_msg_NetShield" xml:space="preserve">
-    <value>• Surf the web freely from malware and ads with &lt;Bold&gt;NetShield&lt;/Bold&gt;.</value>
-  </data>
-  <data name="Onboarding_msg_SecureCore" xml:space="preserve">
-    <value>• Add one extra layer of security with &lt;Bold&gt;Secure Core&lt;/Bold&gt;.</value>
+  <data name="Settings_Advanced_lbl_btn_LearnMore" xml:space="preserve">
+    <value>Learn more</value>
   </data>
 </root>

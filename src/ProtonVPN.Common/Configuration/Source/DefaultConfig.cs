@@ -181,6 +181,8 @@ namespace ProtonVPN.Common.Configuration.Source
                     AlternativeRoutingUrl = "https://protonmail.com/blog/anti-censorship-alternative-routing",
                     AboutKillSwitchUrl = "https://protonvpn.com/support/what-is-kill-switch",
                     AboutNetShieldUrl = "https://protonvpn.com/support/netshield",
+                    AboutPortForwardingUrl = "https://protonvpn.com/support/port-forwarding",
+                    PortForwardingRisksUrl = "https://protonvpn.com/support/port-forwarding-risks"
                 },
 
                 OpenVpn =

@@ -88,5 +88,11 @@ namespace ProtonVPN.Common.Configuration
 
         [Required]
         public string AboutKillSwitchUrl { get; internal set; }
+
+        [Required]
+        public string AboutPortForwardingUrl { get; internal set; }
+
+        [Required]
+        public string PortForwardingRisksUrl { get; internal set; }
     }
 }

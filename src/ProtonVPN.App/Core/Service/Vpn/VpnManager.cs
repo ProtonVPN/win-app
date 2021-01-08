@@ -18,6 +18,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Extensions;
@@ -72,9 +73,9 @@ namespace ProtonVPN.Core.Service.Vpn
 
         private VpnState _state = new VpnState(VpnStatus.Disconnected);
 
-        public async Task Connect(Profile profile)
+        public async Task Connect(Profile profile, Profile fallbackProfile = null)
         {
-            await Queued(() => ConnectInternal(profile));
+            await Queued(() => ConnectToBestProfileAsync(profile, fallbackProfile));
         }
 
         public async Task Reconnect()
@@ -102,7 +103,7 @@ namespace ProtonVPN.Core.Service.Vpn
                 return;
             }
 
-            var state = e.State;
+            VpnState state = e.State;
 
             if (!string.IsNullOrEmpty(state.EntryIp))
             {
@@ -118,7 +119,9 @@ namespace ProtonVPN.Core.Service.Vpn
         public Task OnVpnPlanChangedAsync(string plan)
         {
             if (_lastServer != null)
+            {
                 Queued(() => UpdateServersOrDisconnect(VpnError.UserTierTooLowError));
+            }
 
             return Task.CompletedTask;
         }
@@ -129,20 +132,71 @@ namespace ProtonVPN.Core.Service.Vpn
             RaiseVpnStateChanged(new VpnStateChangedEventArgs(_state, VpnError.None, _networkBlocked));
         }
 
-        private async Task ConnectInternal(Profile profile)
+        private async Task ConnectToBestProfileAsync(Profile profile, Profile fallbackProfile = null)
         {
-            var candidates = _profileConnector.ServerCandidates(profile);
-            var canConnect = _profileConnector.CanConnect(candidates, profile);
-            if (canConnect)
+            IList<Profile> profiles = this.CreateProfilePreferenceList(profile, fallbackProfile);
+            VpnManagerProfileCandidates profileCandidates = this.GetBestProfileCandidates(profiles);
+
+            if (profileCandidates.CanConnect)
             {
-                if (profile.IsPredefined || profile.IsTemporary)
-                {
-                    profile.Protocol = ToProtocol(_appSettings.OvpnProtocol);
-                }
-                _lastProfile = profile;
-                _lastServerCandidates = candidates;
-                await _profileConnector.Connect(candidates, profile);
+                await ConnectAsync(profileCandidates.Profile, profileCandidates.Candidates);
             }
+            else
+            {
+                _profileConnector.HandleNoServersAvailable(profileCandidates.Candidates.Items, profileCandidates.Profile);
+            }
+        }
+
+        private IList<Profile> CreateProfilePreferenceList(Profile profile, Profile fallbackProfile = null)
+        {
+            IList<Profile> profiles = new List<Profile>();
+
+            if (profile.Features == Features.None && _appSettings.IsPortForwardingEnabled())
+            {
+                Profile p2pProfile = profile.Clone();
+                p2pProfile.Features = Features.P2P;
+                profiles.Add(p2pProfile);
+            }
+
+            profiles.Add(profile);
+
+            if (fallbackProfile != null)
+            {
+                profiles.Add(fallbackProfile);
+            }
+
+            return profiles;
+        }
+
+        private VpnManagerProfileCandidates GetBestProfileCandidates(IList<Profile> profiles)
+        {
+            VpnManagerProfileCandidates bestProfileCandidates = new VpnManagerProfileCandidates();
+
+            foreach (Profile profile in profiles)
+            {
+                bestProfileCandidates.Profile = profile;
+                bestProfileCandidates.Candidates = _profileConnector.ServerCandidates(profile);
+                bestProfileCandidates.CanConnect = _profileConnector.CanConnect(bestProfileCandidates.Candidates, profile);
+
+                if (bestProfileCandidates.CanConnect)
+                {
+                    break;
+                }
+            }
+
+            return bestProfileCandidates;
+        }
+
+        private async Task ConnectAsync(Profile profile, ServerCandidates candidates)
+        {
+            if (profile.IsPredefined || profile.IsTemporary)
+            {
+                profile.Protocol = ToProtocol(_appSettings.OvpnProtocol);
+            }
+
+            _lastProfile = profile;
+            _lastServerCandidates = candidates;
+            await _profileConnector.Connect(candidates, profile);
         }
 
         private async Task UpdateServersOrDisconnect(VpnError disconnectReason)
@@ -164,7 +218,7 @@ namespace ProtonVPN.Core.Service.Vpn
 
         public async void OnAppSettingsChanged(PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(IAppSettings.KillSwitch) 
+            if (e.PropertyName == nameof(IAppSettings.KillSwitch)
                 && !_appSettings.KillSwitch)
             {
                 if (_networkBlocked &&

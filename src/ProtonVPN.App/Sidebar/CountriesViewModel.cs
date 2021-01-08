@@ -17,9 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -27,15 +27,14 @@ using Caliburn.Micro;
 using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Auth;
-using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Servers.Models;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.User;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Servers;
+using ProtonVPN.Settings;
 using ProtonVPN.Sidebar.QuickSettings;
-using ProtonVPN.Translations;
 using ProtonVPN.Trial;
 using ProtonVPN.Vpn.Connectors;
 
@@ -53,9 +52,9 @@ namespace ProtonVPN.Sidebar
         private readonly IAppSettings _appSettings;
         private readonly ServerListFactory _serverListFactory;
         private readonly App _app;
-        private readonly IDialogs _dialogs;
         private readonly ServerConnector _serverConnector;
         private readonly CountryConnector _countryConnector;
+        private readonly IVpnReconnector _vpnReconnector;
 
         private VpnStateChangedEventArgs _vpnState = new VpnStateChangedEventArgs(new VpnState(VpnStatus.Disconnected), VpnError.None, false);
 
@@ -63,23 +62,22 @@ namespace ProtonVPN.Sidebar
             IAppSettings appSettings,
             ServerListFactory serverListFactory,
             App app,
-            IDialogs dialogs,
             ServerConnector serverConnector,
             CountryConnector countryConnector,
-            QuickSettingsViewModel quickSettingsViewModel)
+            QuickSettingsViewModel quickSettingsViewModel,
+            IVpnReconnector vpnReconnector)
         {
             _appSettings = appSettings;
             _serverListFactory = serverListFactory;
             _app = app;
-            _dialogs = dialogs;
             _serverConnector = serverConnector;
             _countryConnector = countryConnector;
             QuickSettingsViewModel = quickSettingsViewModel;
+            _vpnReconnector = vpnReconnector;
 
             Connect = new RelayCommand<ServerItemViewModel>(ConnectAction);
             ConnectCountry = new RelayCommand<IServerCollection>(ConnectCountryAction);
             Expand = new RelayCommand<IServerCollection>(ExpandAction);
-            ToggleSecureCoreCommand = new RelayCommand(ToggleSecureCoreAction);
             ClearSearchCommand = new RelayCommand(ClearSearchAction);
         }
 
@@ -88,7 +86,6 @@ namespace ProtonVPN.Sidebar
         public ICommand Connect { get; }
         public ICommand ConnectCountry { get; }
         public ICommand Expand { get; set; }
-        public ICommand ToggleSecureCoreCommand { get; }
         public ICommand ClearSearchCommand { get; }
 
         private bool _searchNotEmpty;
@@ -114,10 +111,16 @@ namespace ProtonVPN.Sidebar
         }
 
         private bool _secureCore;
-        [SuppressMessage("ReSharper", "ValueParameterNotUsed")]
         public bool SecureCore
         {
             get => _secureCore;
+            set { }
+        }
+
+        private bool _portForwarding;
+        public bool PortForwarding
+        {
+            get => _portForwarding;
             set { }
         }
 
@@ -137,11 +140,12 @@ namespace ProtonVPN.Sidebar
 
             serverCollection.Expanded = true;
 
-            var index = _items.IndexOf(serverCollection) + 1;
+            int index = _items.IndexOf(serverCollection) + 1;
             _app.Dispatcher?.Invoke(() =>
             {
-                var collection = new ObservableCollection<IServerListItem>(serverCollection.Servers.Reverse());
-                foreach (var serverListItem in collection)
+                ObservableCollection<IServerListItem> collection = 
+                    new ObservableCollection<IServerListItem>(serverCollection.Servers.Reverse());
+                foreach (IServerListItem serverListItem in collection)
                 {
                     if (serverListItem is ServerItemViewModel server)
                     {
@@ -159,7 +163,7 @@ namespace ProtonVPN.Sidebar
             }
             serverCollection.Expanded = false;
 
-            foreach (var item in serverCollection.Servers)
+            foreach (IServerListItem item in serverCollection.Servers)
             {
                 if (item is ServerItemViewModel server)
                 {
@@ -171,6 +175,7 @@ namespace ProtonVPN.Sidebar
         public void Load()
         {
             SetSecureCore(_appSettings.SecureCore);
+            SetPortForwarding(_appSettings);
             CreateList();
         }
 
@@ -179,36 +184,52 @@ namespace ProtonVPN.Sidebar
             CreateList();
             if (!State.Status.Equals(VpnStatus.Connected) ||
                 !(State.Server is Server server))
+            {
                 return;
+            }
 
             ExpandCountry(server.EntryCountry);
             UpdateVpnState(State);
 
             if (server.IsSecureCore())
+            {
                 NotifyScServerRowsOfConnectedState(server, true);
+            }
             else
+            {
                 NotifyServerRowsOfConnectedState(server, true);
+            }
         }
 
         public void OnAppSettingsChanged(PropertyChangedEventArgs e)
         {
-            if (e.PropertyName.Equals(nameof(IAppSettings.SecureCore)))
+            switch (e.PropertyName)
             {
-                SetSecureCore(_appSettings.SecureCore);
-                CreateList();
-            }
-            else if (e.PropertyName.Equals(nameof(IAppSettings.Language)))
-            {
-                CreateList();
+                case nameof(IAppSettings.SecureCore):
+                    SetSecureCore(_appSettings.SecureCore);
+                    CreateList();
+                    break;
+
+                case nameof(IAppSettings.PortForwardingEnabled):
+                case nameof(IAppSettings.FeaturePortForwardingEnabled):
+                    SetPortForwarding(_appSettings);
+                    CreateList();
+                    break;
+
+                case nameof(IAppSettings.Language):
+                    CreateList();
+                    break;
             }
         }
 
-        public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
+        public async Task OnVpnStateChanged(VpnStateChangedEventArgs e)
         {
             _vpnState = e;
 
             if (!(e.State.Server is Server server))
-                return Task.CompletedTask;
+            {
+                return;
+            }
 
             if (e.State.Status == VpnStatus.Connected)
             {
@@ -229,22 +250,25 @@ namespace ProtonVPN.Sidebar
             {
                 UpdateVpnState(e.State);
             }
-
-            return Task.CompletedTask;
         }
 
-        public Task OnVpnPlanChangedAsync(string plan)
+        public async Task OnVpnPlanChangedAsync(string plan)
         {
             CreateList();
-            return Task.CompletedTask;
         }
 
-        public Task OnTrialStateChangedAsync(PlanStatus status)
+        public async Task OnTrialStateChangedAsync(PlanStatus status)
         {
             if (status == PlanStatus.Expired)
+            {
                 _appSettings.SecureCore = false;
+                await ReconnectAsync();
+            }
+        }
 
-            return Task.CompletedTask;
+        private async Task ReconnectAsync()
+        {
+            await _vpnReconnector.ReconnectAsync();
         }
 
         public void OnUserLoggedOut()
@@ -253,29 +277,33 @@ namespace ProtonVPN.Sidebar
             NotifyOfPropertyChange(nameof(SearchValue));
         }
 
-        private async void ToggleSecureCoreAction()
-        {
-            var value = !SecureCore;
-            if (!await AllowToChangeSecureCore(value))
-            {
-                return;
-            }
-
-            _appSettings.SecureCore = value;
-        }
-
         private void SetSecureCore(bool value)
         {
             Set(ref _secureCore, value, nameof(SecureCore));
         }
 
+        private void SetPortForwarding(IAppSettings appSettings)
+        {
+            bool isPortForwardingEnabled = appSettings.PortForwardingEnabled && appSettings.FeaturePortForwardingEnabled;
+            Set(ref _portForwarding, isPortForwardingEnabled, nameof(PortForwarding));
+        }
+
         private void CreateList()
         {
-            Items = SecureCore
-                ? _serverListFactory.BuildSecureCoreList()
-                : _serverListFactory.BuildServerList(SearchValue);
+            if (SecureCore)
+            {
+                Items = _serverListFactory.BuildSecureCoreList();
+            }
+            else if (PortForwarding)
+            {
+                Items = _serverListFactory.BuildPortForwardingList(SearchValue);
+            }
+            else
+            {
+                Items = _serverListFactory.BuildServerList(SearchValue);
+            }
 
-            foreach (var item in Items.ToList())
+            foreach (IServerListItem item in Items.ToList())
             {
                 if (item is ServersByCountryViewModel serversByCountry && serversByCountry.Expanded)
                 {
@@ -285,50 +313,17 @@ namespace ProtonVPN.Sidebar
             }
 
             if (_vpnState != null)
+            {
                 OnVpnStateChanged(_vpnState);
-        }
-
-        private async Task<bool> AllowToChangeSecureCore(bool value)
-        {
-            if (!value && (State.Status.Equals(VpnStatus.Connecting) ||
-                           State.Status.Equals(VpnStatus.Reconnecting) ||
-                           State.Status.Equals(VpnStatus.Connected)))
-            {
-                var result = _dialogs.ShowQuestion(Translation.Get("Sidebar_Countries_msg_SecureCoreDisableConfirm"));
-                if (result.HasValue && result.Value)
-                {
-                    await _serverConnector.Disconnect();
-                }
-                else
-                {
-                    return false;
-                }
             }
-
-            if (value && (State.Status.Equals(VpnStatus.Connecting) ||
-                          State.Status.Equals(VpnStatus.Reconnecting) ||
-                          State.Status.Equals(VpnStatus.Connected)))
-            {
-                var result = _dialogs.ShowQuestion(Translation.Get("Sidebar_Countries_msg_SecureCoreEnableConfirm"));
-                if (result.HasValue && result.Value)
-                {
-                    await _serverConnector.Disconnect();
-                }
-                else
-                {
-                    return false;
-                }
-            }
-
-            return true;
         }
 
         private void NotifyServerRowsOfConnectedState(Server server, bool connected)
         {
-            var serverRows = Items.OfType<ServerItemViewModel>()
+            IEnumerable<ServerItemViewModel> serverRows = Items.OfType<ServerItemViewModel>()
                 .Where(c => c.Server.EntryCountry.Equals(server.EntryCountry));
 
-            foreach (var row in serverRows)
+            foreach (ServerItemViewModel row in serverRows)
             {
                 row.SetConnectedToCountry(connected);
             }
@@ -336,10 +331,10 @@ namespace ProtonVPN.Sidebar
 
         private void NotifyScServerRowsOfConnectedState(Server server, bool connected)
         {
-            var serverRows = Items.OfType<SecureCoreItemViewModel>()
+            IEnumerable<SecureCoreItemViewModel> serverRows = Items.OfType<SecureCoreItemViewModel>()
                 .Where(c => c.Server.IsSecureCore() && c.Server.ExitCountry.Equals(server.ExitCountry));
 
-            foreach (var row in serverRows)
+            foreach (SecureCoreItemViewModel row in serverRows)
             {
                 row.SetConnectedToCountry(connected);
             }
@@ -348,11 +343,13 @@ namespace ProtonVPN.Sidebar
         private void UpdateVpnState(VpnState state)
         {
             if (Items == null)
-                return;
-
-            foreach (var item in Items)
             {
-                if (item is ServersByCountryViewModel || item is ServersByExitNodeViewModel)
+                return;
+            }
+
+            foreach (IServerListItem item in Items)
+            {
+                if (item is ServersByCountryViewModel || item is ServersByExitNodeViewModel || item is CountrySeparatorViewModel)
                 {
                     item.OnVpnStateChanged(state);
                 }
@@ -361,7 +358,7 @@ namespace ProtonVPN.Sidebar
 
         private void ExpandCountry(string countryCode)
         {
-            var countryRow = Items.OfType<ServersByCountryViewModel>()
+            ServersByCountryViewModel countryRow = Items.OfType<ServersByCountryViewModel>()
                 .FirstOrDefault(c => c.CountryCode.Equals(countryCode));
             if (countryRow != null)
             {
@@ -371,7 +368,7 @@ namespace ProtonVPN.Sidebar
 
         private void ExpandScCountry(string countryCode)
         {
-            var countryRow = Items.OfType<ServersByExitNodeViewModel>()
+            ServersByExitNodeViewModel countryRow = Items.OfType<ServersByExitNodeViewModel>()
                 .FirstOrDefault(c => c.CountryCode.Equals(countryCode));
             if (countryRow != null)
             {
@@ -404,7 +401,7 @@ namespace ProtonVPN.Sidebar
 
         private async void ConnectCountryAction(IServerCollection serverCollection)
         {
-            var currentServer = State.Server;
+            Server currentServer = State.Server;
 
             if (State.Status.Equals(VpnStatus.Connected) &&
                 serverCollection.CountryCode.Equals(currentServer?.ExitCountry))

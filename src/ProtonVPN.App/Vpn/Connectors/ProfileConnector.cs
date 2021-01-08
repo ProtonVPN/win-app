@@ -79,7 +79,9 @@ namespace ProtonVPN.Vpn.Connectors
         public ServerCandidates ServerCandidates(Profile profile)
         {
             if (profile == null)
+            {
                 return _serverCandidatesFactory.ServerCandidates(new Server[0]);
+            }
 
             var serverSpec = ProfileServerSpec(profile);
             var servers = _serverManager.GetServers(serverSpec);
@@ -88,15 +90,13 @@ namespace ProtonVPN.Vpn.Connectors
 
         public bool CanConnect(ServerCandidates candidates, Profile profile)
         {
-            var servers = Servers(candidates);
+            IReadOnlyList<Server> servers = Servers(candidates);
 
             if (servers.Any())
             {
                 SwitchSecureCoreMode(servers.First().IsSecureCore());
                 return true;
             }
-
-            HandleNoServersAvailable(candidates.Items, profile);
 
             return false;
         }
@@ -112,7 +112,10 @@ namespace ProtonVPN.Vpn.Connectors
         public async Task<bool> UpdateServers(ServerCandidates candidates, Profile profile)
         {
             var servers = Servers(candidates);
-            if (!servers.Any()) return false;
+            if (!servers.Any())
+            {
+                return false;
+            }
 
             var sortedServers = Sorted(servers, profile.ProfileType);
             await UpdateServers(sortedServers);
@@ -132,31 +135,57 @@ namespace ProtonVPN.Vpn.Connectors
 
         private IEnumerable<Server> Sorted(IEnumerable<Server> source, ProfileType profileType)
         {
-            var random = new Random();
-            return source.OrderBy(s => profileType == ProfileType.Random ? random.NextDouble() : s.Score);
+            if (profileType == ProfileType.Random)
+            {
+                Random random = new Random();
+                return source.OrderBy(s => random.NextDouble());
+            }
+
+            if (_appSettings.FeaturePortForwardingEnabled && _appSettings.PortForwardingEnabled)
+            {
+                return source.OrderByDescending(s => s.SupportsP2P()).ThenBy(s => s.Score);
+            }
+
+            return source.OrderBy(s => s.Score);
         }
 
         private Specification<LogicalServerContract> ProfileServerSpec(Profile profile)
         {
             if (profile.ProfileType == ProfileType.Custom)
+            {
                 return new ServerById(profile.ServerId);
+            }
 
             Specification<LogicalServerContract> spec = new ServerByFeatures(ServerFeatures(profile));
 
             if (!string.IsNullOrEmpty(profile.CountryCode))
+            {
                 spec &= new ExitCountryServer(profile.CountryCode);
+            }
 
             return spec;
         }
 
         private Features ServerFeatures(Profile profile)
         {
-            return profile.IsPredefined
-                ? _appSettings.SecureCore ? Features.SecureCore : Features.None
-                : profile.Features;
+            if (profile.IsPredefined)
+            {
+                if (_appSettings.SecureCore)
+                {
+                    return Features.SecureCore;
+                }
+                if (_appSettings.IsPortForwardingEnabled())
+                {
+                    return profile.Features;
+                }
+
+                return Features.None;
+            }
+
+            return profile.Features;
         }
 
-        private void HandleNoServersAvailable(IReadOnlyCollection<Server> candidates, Profile profile)
+        public void HandleNoServersAvailable(IReadOnlyCollection<Server> candidates, Profile profile)
         {
             if (profile.ProfileType == ProfileType.Custom)
             {
@@ -301,11 +330,18 @@ namespace ProtonVPN.Vpn.Connectors
 
         private void SwitchSecureCoreMode(bool secureCore)
         {
-            if (secureCore && !_appSettings.SecureCore)
+            if (secureCore)
             {
-                _appSettings.SecureCore = true;
+                if (_appSettings.PortForwardingEnabled)
+                {
+                    _appSettings.PortForwardingEnabled = false;
+                }
+                if (!_appSettings.SecureCore)
+                {
+                    _appSettings.SecureCore = true;
+                }
             }
-            else if (!secureCore && _appSettings.SecureCore)
+            else if (_appSettings.SecureCore)
             {
                 _appSettings.SecureCore = false;
             }

@@ -32,6 +32,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <SolidColorBrush x:Key="ModalContentColor" Color="#222329"/>
     <SolidColorBrush x:Key="PinFillColor" Color="#26272e"/>
     <SolidColorBrush x:Key="InactivePinStrokeColor" Color="#8c8c8e"/>
+    <SolidColorBrush x:Key="SidebarSecondaryBackgroundColor" Color="#2a2a33"/>
     <SolidColorBrush x:Key="ModalColor" Color="#222328"/>
     <SolidColorBrush x:Key="RedColor" Color="#f73737"/>
     <SolidColorBrush x:Key="WarningColor" Color="#ffcc00"/>

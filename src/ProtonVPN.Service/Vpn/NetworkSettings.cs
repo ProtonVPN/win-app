@@ -1,4 +1,23 @@
-﻿using ProtonVPN.Common.Logging;
+﻿/*
+ * Copyright (c) 2020 Proton Technologies AG
+ *
+ * This file is part of ProtonVPN.
+ *
+ * ProtonVPN is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * ProtonVPN is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Os.Net;
 using ProtonVPN.Common.OS.Net.NetworkInterface;
 using ProtonVPN.Vpn.Common;
@@ -21,10 +40,9 @@ namespace ProtonVPN.Service.Vpn
             _networkInterfaces = networkInterfaces;
         }
 
-        public bool ApplyNetworkSettings()
+        public bool ApplyNetworkSettings(NetworkSettingsConfig settingsConfig)
         {
-            var tapInterfaceIndex =
-                _networkInterfaces.InterfaceIndex(_config.OpenVpn.TapAdapterDescription, _config.OpenVpn.TapAdapterId);
+            uint tapInterfaceIndex = GetTapInterfaceIndex();
             if (tapInterfaceIndex == 0)
             {
                 return false;
@@ -32,11 +50,14 @@ namespace ProtonVPN.Service.Vpn
 
             try
             {
-                var localInterfaceIp = NetworkUtil.GetBestInterfaceIp(_config.OpenVpn.TapAdapterId).ToString();
-
-                NetworkUtil.DeleteDefaultGatewayForIface(tapInterfaceIndex, localInterfaceIp);
-                NetworkUtil.AddDefaultGatewayForIface(tapInterfaceIndex, localInterfaceIp);
+                string localInterfaceIp = NetworkUtil.GetBestInterfaceIp(_config.OpenVpn.TapAdapterId).ToString();
                 NetworkUtil.SetLowestTapMetric(tapInterfaceIndex);
+                NetworkUtil.DeleteDefaultGatewayForIface(tapInterfaceIndex, localInterfaceIp);
+
+                if (settingsConfig.AddDefaultGatewayForTap)
+                {
+                    NetworkUtil.AddDefaultGatewayForIface(tapInterfaceIndex, localInterfaceIp);
+                }
             }
             catch (NetworkUtilException e)
             {
@@ -49,8 +70,7 @@ namespace ProtonVPN.Service.Vpn
 
         private void RestoreNetworkSettings()
         {
-            var tapInterfaceIndex =
-                _networkInterfaces.InterfaceIndex(_config.OpenVpn.TapAdapterDescription, _config.OpenVpn.TapAdapterId);
+            uint tapInterfaceIndex = GetTapInterfaceIndex();
             if (tapInterfaceIndex == 0)
             {
                 return;
@@ -64,6 +84,13 @@ namespace ProtonVPN.Service.Vpn
             {
                 _logger.Error("Failed restore network settings. Error code: " + e.Code);
             }
+        }
+
+        private uint GetTapInterfaceIndex()
+        {
+            return _networkInterfaces.InterfaceIndex(
+                _config.OpenVpn.TapAdapterDescription,
+                _config.OpenVpn.TapAdapterId);
         }
 
         public void OnVpnDisconnected(VpnState state)

@@ -82,8 +82,12 @@ namespace ProtonVPN.Service
             var protocol = Map(connectionRequest.Protocol);
             var credentials = Map(connectionRequest.Credentials);
             var config = Map(connectionRequest.VpnConfig);
+            NetworkSettingsConfig settingsConfig = new NetworkSettingsConfig
+            {
+                AddDefaultGatewayForTap = !connectionRequest.Settings.PortForwardingEnabled
+            };
 
-            if (_networkSettings.ApplyNetworkSettings())
+            if (_networkSettings.ApplyNetworkSettings(settingsConfig))
             {
                 _vpnConnection.Connect(
                     endpoints,

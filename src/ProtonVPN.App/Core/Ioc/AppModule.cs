@@ -109,6 +109,7 @@ namespace ProtonVPN.Core.Ioc
                 .AsSelf()
                 .SingleInstance();
 
+            builder.RegisterType<SortedCountries>().As<ISortedCountries>().SingleInstance();
             builder.RegisterType<UserStorage>().As<IUserStorage>().SingleInstance();
             builder.RegisterType<TruncatedLocation>().SingleInstance();
 
@@ -269,7 +270,7 @@ namespace ProtonVPN.Core.Ioc
                 c.Resolve<IEventAggregator>(),
                 c.Resolve<IApiClient>(),
                 c.Resolve<IUserStorage>())).SingleInstance();
-            builder.RegisterType<SettingChangeListener>().AsImplementedInterfaces().AsSelf().SingleInstance();
+            builder.RegisterType<VpnReconnector>().AsImplementedInterfaces().SingleInstance();
         }
     }
 }

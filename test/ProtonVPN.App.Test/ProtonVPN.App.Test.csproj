@@ -128,8 +128,10 @@
     <Compile Include="P2PDetection\P2PDetectionTimeoutTest.cs" />
     <Compile Include="P2PDetection\P2PDetectorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Servers\ServerListFactoryTest.cs" />
     <Compile Include="Settings\ReconnectStateTest.cs" />
     <Compile Include="Vpn\Connectors\GuestHoleConnectorTest.cs" />
+    <Compile Include="Vpn\Connectors\ProfileConnectorTest.cs" />
     <Compile Include="Vpn\VpnCredentialProviderTest.cs" />
   </ItemGroup>
   <ItemGroup>

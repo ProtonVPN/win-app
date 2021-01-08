@@ -181,6 +181,15 @@ namespace ProtonVPN.Core
             set => SetPerUser(value);
         }
 
+        [Obsolete(
+            "Use this only for checking if the user enabled/disabled the feature." +
+            "Use IsPortForwardingEnabled() for checking if Port Forwarding is/should be enabled.")]
+        public bool PortForwardingEnabled
+        {
+            get => Get<bool>();
+            set => Set(value);
+        }
+
         public int NetShieldMode
         {
             get => GetPerUser<int>();
@@ -366,6 +375,18 @@ namespace ProtonVPN.Core
             set => Set(value);
         }
 
+        public bool FeaturePortForwardingEnabled
+        {
+            get => Get<bool>();
+            set => Set(value);
+        }
+
+        public bool DoNotShowPortForwardingConfirmationDialog
+        {
+            get => Get<bool>();
+            set => Set(value);
+        }
+
         public TimeSpan MaintenanceCheckInterval
         {
             get
@@ -408,6 +429,11 @@ namespace ProtonVPN.Core
         public bool IsNetShieldEnabled()
         {
             return FeatureNetShieldEnabled && NetShieldEnabled;
+        }
+
+        public bool IsPortForwardingEnabled()
+        {
+            return FeaturePortForwardingEnabled && PortForwardingEnabled;
         }
 
         private void OnPropertyChanged([CallerMemberName] string propertyName = null)

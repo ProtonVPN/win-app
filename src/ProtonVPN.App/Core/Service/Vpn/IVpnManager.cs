@@ -8,7 +8,7 @@ namespace ProtonVPN.Core.Service.Vpn
 {
     public interface IVpnManager
     {
-        Task Connect(Profile profile);
+        Task Connect(Profile profile, Profile fallbackProfile = null);
 
         Task Reconnect();
 
