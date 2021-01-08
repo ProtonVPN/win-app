@@ -60,23 +60,23 @@ namespace ProtonVPN.Sidebar.QuickSettings
             _appSettings = appSettings;
             _vpnReconnector = vpnReconnector;
 
-            SecureCoreLearnMoreCommand = new RelayCommand(OpenSecureCoreArticle);
-            NetShieldLearnMoreCommand = new RelayCommand(OpenNetShieldArticle);
-            KillSwitchLearnMoreCommand = new RelayCommand(OpenKillSwitchArticle);
-            PortForwardingLearnMoreCommand = new RelayCommand(OpenPortForwardingArticle);
+            SecureCoreLearnMoreCommand = new RelayCommand(OpenSecureCoreArticleAction);
+            NetShieldLearnMoreCommand = new RelayCommand(OpenNetShieldArticleAction);
+            KillSwitchLearnMoreCommand = new RelayCommand(OpenKillSwitchArticleAction);
+            PortForwardingLearnMoreCommand = new RelayCommand(OpenPortForwardingArticleAction);
 
-            SecureCoreOffCommand = new RelayCommand(TurnOffSecureCoreAsync);
-            SecureCoreOnCommand = new RelayCommand(TurnOnSecureCoreAsync, () => IsUserTierPlusOrHigher);
+            SecureCoreOffCommand = new RelayCommand(TurnOffSecureCoreActionAsync);
+            SecureCoreOnCommand = new RelayCommand(TurnOnSecureCoreActionAsync);
 
-            NetShieldOffCommand = new RelayCommand(TurnOffNetShieldAsync);
-            NetShieldOnFirstCommand = new RelayCommand(TurnOnNetShieldFirstModeAsync, () => !IsFreeUser);
-            NetShieldOnSecondCommand = new RelayCommand(TurnOnNetShieldSecondModeAsync, () => !IsFreeUser);
+            NetShieldOffCommand = new RelayCommand(TurnOffNetShieldActionAsync);
+            NetShieldOnFirstCommand = new RelayCommand(TurnOnNetShieldFirstModeActionAsync);
+            NetShieldOnSecondCommand = new RelayCommand(TurnOnNetShieldSecondModeActionAsync);
 
-            KillSwitchOffCommand = new RelayCommand(TurnOffKillSwitchAsync);
-            KillSwitchOnCommand = new RelayCommand(TurnOnKillSwitchAsync);
+            KillSwitchOffCommand = new RelayCommand(TurnOffKillSwitchActionAsync);
+            KillSwitchOnCommand = new RelayCommand(TurnOnKillSwitchActionAsync);
 
-            PortForwardingOffCommand = new RelayCommand(TurnOffPortForwardingAsync);
-            PortForwardingOnCommand = new RelayCommand(TurnOnPortForwardingAsync, () => IsUserTierPlusOrHigher);
+            PortForwardingOffCommand = new RelayCommand(TurnOffPortForwardingActionAsync);
+            PortForwardingOnCommand = new RelayCommand(TurnOnPortForwardingActionAsync);
 
             GetPlusCommand = new RelayCommand(GetPlusAction);
         }
@@ -237,7 +237,7 @@ namespace ProtonVPN.Sidebar.QuickSettings
             ShowOnboardingStep = step == 4;
         }
 
-        private async void TurnOffSecureCoreAsync()
+        private async void TurnOffSecureCoreActionAsync()
         {
             _appSettings.SecureCore = false;
             await ReconnectAsync();
@@ -248,26 +248,45 @@ namespace ProtonVPN.Sidebar.QuickSettings
             await _vpnReconnector.ReconnectAsync();
         }
 
-        private async void TurnOnSecureCoreAsync()
+        private async void TurnOnSecureCoreActionAsync()
         {
-            _appSettings.PortForwardingEnabled = false;
-            _appSettings.SecureCore = true;
-            await ReconnectAsync();
+            if (IsUserTierPlusOrHigher)
+            {
+                _appSettings.PortForwardingEnabled = false;
+                _appSettings.SecureCore = true;
+                await ReconnectAsync();
+            }
+            else
+            {
+                _urls.AccountUrl.Open();
+            }
         }
 
-        private async void TurnOffKillSwitchAsync()
+        private async void TurnOffKillSwitchActionAsync()
         {
             _appSettings.KillSwitch = false;
             await ReconnectAsync();
         }
 
-        private async void TurnOnKillSwitchAsync()
+        private async void TurnOnKillSwitchActionAsync()
         {
             _appSettings.KillSwitch = true;
             await ReconnectAsync();
         }
 
-        private async void TurnOnPortForwardingAsync()
+        private async void TurnOnPortForwardingActionAsync()
+        {
+            if (IsUserTierPlusOrHigher)
+            {
+                await TurnOnPortForwardingAsync();
+            }
+            else
+            {
+                _urls.AccountUrl.Open();
+            }
+        }
+
+        private async Task TurnOnPortForwardingAsync()
         {
             if (_appSettings.PortForwardingEnabled)
             {
@@ -296,48 +315,62 @@ namespace ProtonVPN.Sidebar.QuickSettings
             await ReconnectAsync();
         }
 
-        private async void TurnOffPortForwardingAsync()
+        private async void TurnOffPortForwardingActionAsync()
         {
             _appSettings.PortForwardingEnabled = false;
             await ReconnectAsync();
         }
 
-        private async void TurnOffNetShieldAsync()
+        private async void TurnOffNetShieldActionAsync()
         {
             _appSettings.NetShieldEnabled = false;
             await ReconnectAsync();
         }
 
-        private async void TurnOnNetShieldFirstModeAsync()
+        private async void TurnOnNetShieldFirstModeActionAsync()
         {
-            _appSettings.NetShieldEnabled = true;
-            _appSettings.NetShieldMode = 1;
-            await ReconnectAsync();
+            if (IsFreeUser)
+            {
+                _urls.AccountUrl.Open();
+            }
+            else
+            {
+                _appSettings.NetShieldEnabled = true;
+                _appSettings.NetShieldMode = 1;
+                await ReconnectAsync();
+            }
         }
 
-        private async void TurnOnNetShieldSecondModeAsync()
+        private async void TurnOnNetShieldSecondModeActionAsync()
         {
-            _appSettings.NetShieldEnabled = true;
-            _appSettings.NetShieldMode = 2;
-            await ReconnectAsync();
+            if (IsFreeUser)
+            {
+                _urls.AccountUrl.Open();
+            }
+            else
+            {
+                _appSettings.NetShieldEnabled = true;
+                _appSettings.NetShieldMode = 2;
+                await ReconnectAsync();
+            }
         }
 
-        private void OpenSecureCoreArticle()
+        private void OpenSecureCoreArticleAction()
         {
             _urls.AboutSecureCoreUrl.Open();
         }
 
-        private void OpenNetShieldArticle()
+        private void OpenNetShieldArticleAction()
         {
             _urls.AboutNetShieldUrl.Open();
         }
 
-        private void OpenKillSwitchArticle()
+        private void OpenKillSwitchArticleAction()
         {
             _urls.AboutKillSwitchUrl.Open();
         }
 
-        private void OpenPortForwardingArticle()
+        private void OpenPortForwardingArticleAction()
         {
             _urls.AboutPortForwardingUrl.Open();
         }

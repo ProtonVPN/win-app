@@ -147,7 +147,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         Height="18"
                                         BorderBrush="White"
                                         CornerRadius="9">
-                                    <Label Content="PLUS"
+                                    <Label x:Name="PlusLabel"
+                                           Content="PLUS"
                                            Padding="8,0"
                                            VerticalAlignment="Center"
                                            FontWeight="Bold"
@@ -179,8 +180,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             </Trigger>
                             <Trigger Property="Disabled" Value="True">
                                 <Setter TargetName="Title" Property="Foreground" Value="#6e6e75" />
-                                <Setter TargetName="Icon" Property="Foreground" Value="#76798b" />
+                                <Setter TargetName="Icon" Property="Foreground" Value="#6e6e75" />
                                 <Setter TargetName="Plus" Property="Visibility" Value="Visible" />
+                                <Setter TargetName="Plus" Property="BorderBrush" Value="#6e6e75" />
+                                <Setter TargetName="PlusLabel" Property="Foreground" Value="#6e6e75" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
