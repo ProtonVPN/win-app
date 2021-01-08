@@ -390,6 +390,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                                  Command="{Binding NetShieldOnFirstCommand}"
                                                                  Active="{Binding IsNetShieldFirstButtonOn}"
                                                                  IsTurnOnButton="True"
+                                                                 Disabled="{Binding IsFreeUser}"
                                                                  Title="{translations:Loc QuickSettings_btn_NetshieldOnFirst}">
                                         <quickSettings:SettingButton.Icon>
                                             <icons:ShieldHalf Style="{StaticResource Icon}" />
