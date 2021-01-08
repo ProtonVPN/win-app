@@ -21,16 +21,19 @@ namespace ProtonVPN.Service.Firewall
 {
     public class FirewallParams
     {
-        public FirewallParams(string serverIp, bool dnsLeakOnly)
+        public FirewallParams(string serverIp, bool dnsLeakOnly, uint interfaceIndex)
         {
             ServerIp = serverIp;
             DnsLeakOnly = dnsLeakOnly;
+            InterfaceIndex = interfaceIndex;
         }
 
-        public static FirewallParams Null => new FirewallParams(string.Empty, false);
+        public static FirewallParams Null => new FirewallParams(string.Empty, false, 0);
 
         public string ServerIp { get; }
 
         public bool DnsLeakOnly { get; }
+
+        public uint InterfaceIndex { get; }
     }
 }

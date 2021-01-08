@@ -212,6 +212,10 @@ namespace ProtonVPN.Common.Configuration.Source
                     TapAdapterDescription = "TAP-ProtonVPN Windows Adapter V9",
 
                     TapAdapterId = "tapprotonvpn",
+
+                    TunAdapterDescription = "ProtonVPN Tunnel",
+
+                    TunAdapterId = "Wintun",
                 },
 
                 TlsPinningConfig =

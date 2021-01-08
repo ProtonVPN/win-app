@@ -102,9 +102,10 @@ namespace ProtonVPN.Vpn.Connection
 
             OnStateChanged(VpnStatus.Connecting);
 
-            var port = _managementPorts.Port();
-            var password = ManagementPassword();
-            var processParams = new OpenVpnProcessParams(_endpoint, port, password, _config.CustomDns, _config.SplitTunnelMode, _config.SplitTunnelIPs);
+            int port = _managementPorts.Port();
+            string password = ManagementPassword();
+            OpenVpnProcessParams processParams = new OpenVpnProcessParams(_endpoint, port, password, _config.CustomDns,
+                _config.SplitTunnelMode, _config.SplitTunnelIPs, _config.UseTunAdapter);
 
             cancellationToken.ThrowIfCancellationRequested();
 
@@ -171,6 +172,7 @@ namespace ProtonVPN.Vpn.Connection
             {
                 await TryCloseVpnConnectionAndWait(connectTask);
             }
+
             if (!connectTask.IsCompleted)
             {
                 await CancelVpnConnectionAndWait(connectTask);
@@ -193,7 +195,8 @@ namespace ProtonVPN.Vpn.Connection
                 _logger.Info($"OpenVpnConnection: Waiting for Connection task to finish...");
                 if (await Task.WhenAny(connectTask, Task.Delay(WaitForConnectionTaskToFinishAfterClose)) != connectTask)
                 {
-                    _logger.Warn($"OpenVpnConnection: Connection task has not finished in {WaitForConnectionTaskToFinishAfterClose}");
+                    _logger.Warn(
+                        $"OpenVpnConnection: Connection task has not finished in {WaitForConnectionTaskToFinishAfterClose}");
                     return;
                 }
 
@@ -215,8 +218,10 @@ namespace ProtonVPN.Vpn.Connection
                 _connectAction.Cancel();
 
                 _logger.Info($"OpenVpnConnection: Waiting for Connection task to finish...");
-                if (await Task.WhenAny(connectTask, Task.Delay(WaitForConnectionTaskToFinishAfterCancellation)) != connectTask)
-                    _logger.Warn($"OpenVpnConnection: Connection task has not finished in {WaitForConnectionTaskToFinishAfterCancellation}");
+                if (await Task.WhenAny(connectTask, Task.Delay(WaitForConnectionTaskToFinishAfterCancellation)) !=
+                    connectTask)
+                    _logger.Warn(
+                        $"OpenVpnConnection: Connection task has not finished in {WaitForConnectionTaskToFinishAfterCancellation}");
             }
             catch (Exception ex) when (IsImplementationException(ex))
             {
@@ -232,7 +237,8 @@ namespace ProtonVPN.Vpn.Connection
             if ((state.Status == VpnStatus.Connecting || state.Status == VpnStatus.Reconnecting) &&
                 string.IsNullOrEmpty(state.RemoteIp))
             {
-                state = new VpnState(state.Status, VpnError.None, string.Empty, _endpoint.Server.Ip, _endpoint.Protocol);
+                state = new VpnState(state.Status, VpnError.None, string.Empty, _endpoint.Server.Ip,
+                    _endpoint.Protocol);
             }
 
             if (state.Status == VpnStatus.Disconnecting && !_disconnectAction.IsRunning)

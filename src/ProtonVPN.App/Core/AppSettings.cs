@@ -340,6 +340,12 @@ namespace ProtonVPN.Core
             set => Set(value);
         }
 
+        public bool UseTunAdapter
+        {
+            get => Get<bool>();
+            set => Set(value);
+        }
+
         public StringCollection BlackHoleIps
         {
             get

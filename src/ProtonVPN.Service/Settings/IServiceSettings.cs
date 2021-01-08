@@ -32,6 +32,8 @@ namespace ProtonVPN.Service.Settings
 
         bool Ipv6LeakProtection { get; }
 
+        bool UseTunAdapter { get; }
+
         void Apply(SettingsContract settings);
     }
 }

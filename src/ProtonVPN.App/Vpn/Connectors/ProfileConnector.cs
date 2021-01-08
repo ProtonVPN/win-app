@@ -290,7 +290,8 @@ namespace ProtonVPN.Vpn.Connectors
                 portConfig,
                 _appSettings.CustomDnsEnabled ? customDns : new List<string>(),
                 _appSettings.SplitTunnelingEnabled ? _appSettings.SplitTunnelMode : SplitTunnelMode.Disabled,
-                GetSplitTunnelIPs());
+                GetSplitTunnelIPs(),
+                _appSettings.UseTunAdapter);
         }
 
         private List<string> GetSplitTunnelIPs()

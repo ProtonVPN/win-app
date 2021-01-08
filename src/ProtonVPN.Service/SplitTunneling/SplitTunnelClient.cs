@@ -25,7 +25,7 @@ using ProtonVPN.NetworkFilter;
 
 namespace ProtonVPN.Service.SplitTunneling
 {
-    public class SplitTunnelClient : ISplitTunnelClient
+    internal class SplitTunnelClient : ISplitTunnelClient
     {
         private readonly ILogger _logger;
         private readonly BestNetworkInterface _bestInterface;

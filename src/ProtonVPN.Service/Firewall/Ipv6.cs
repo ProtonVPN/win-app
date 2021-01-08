@@ -21,6 +21,7 @@ using System;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Os.Net;
+using ProtonVPN.Service.Network;
 
 namespace ProtonVPN.Service.Firewall
 {
@@ -29,12 +30,12 @@ namespace ProtonVPN.Service.Firewall
         private const string AppName = "ProtonVPN";
 
         private readonly ILogger _logger;
-        private readonly Common.Configuration.Config _config;
+        private readonly ICurrentNetworkAdapter _currentNetworkAdapter;
 
-        public Ipv6(ILogger logger, Common.Configuration.Config config)
+        public Ipv6(ILogger logger, ICurrentNetworkAdapter currentNetworkAdapter)
         {
             _logger = logger;
-            _config = config;
+            _currentNetworkAdapter = currentNetworkAdapter;
         }
 
         public bool Enabled { get; private set; } = true;
@@ -76,7 +77,7 @@ namespace ProtonVPN.Service.Firewall
             try
             {
                 _logger.Info($"IPv6: {actionMessage}");
-                action(AppName, _config.OpenVpn.TapAdapterId);
+                action(AppName, _currentNetworkAdapter.HardwareId);
                 _logger.Info($"IPv6: {actionMessage} succeeded");
             }
             catch (NetworkUtilException e)

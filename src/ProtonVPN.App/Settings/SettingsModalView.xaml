@@ -277,6 +277,30 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                TextTrimming="CharacterEllipsis"/>
                 </TabItem.Header>
                 <DockPanel Margin="25,20,25,20" LastChildFill="True">
+
+                    <Border Height="40" DockPanel.Dock="Top">
+                        <DockPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Content="{translations:Loc Settings_Advanced_lbl_NetworkDriver}"/>
+                                <fa:FontAwesome Icon="InfoCircle"
+                                                VerticalAlignment="Center"
+                                                HorizontalAlignment="Left"
+                                                Foreground="{StaticResource PrimaryColor}"
+                                                FontSize="16"
+                                                ToolTip="{translations:Loc Settings_Advanced_lbl_NetworkDriver_info}"/>
+                            </StackPanel>
+
+                            <wpf:Combobox HorizontalAlignment="Right"
+                                          Style="{StaticResource ComboDropdown}"
+                                          ItemsSource="{Binding NetworkDrivers}"
+                                          SelectedValue="{Binding SelectedNetworkDriver}"
+                                          SelectedValuePath="Key"
+                                          DisplayMemberPath="Value"
+                                          IsSynchronizedWithCurrentItem="True"
+                                          AutomationProperties.AutomationId="{StaticResource NetworkDriverCheckbox}"/>
+                        </DockPanel>
+                    </Border>
+
                     <Border BorderBrush="#464652" Height="40" BorderThickness="0,0,0,1" DockPanel.Dock="Top">
                         <DockPanel>
                             <StackPanel Orientation="Horizontal">
@@ -333,7 +357,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </DockPanel>
                     </Border>
 
-                    <Border Height="40" BorderThickness="0" DockPanel.Dock="Top">
+                    <Border BorderBrush="#464652" Height="40" BorderThickness="0,0,0,1" DockPanel.Dock="Top">
                         <DockPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Content="{translations:Loc Settings_Advanced_lbl_SplitTunnel}"/>

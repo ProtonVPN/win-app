@@ -2327,7 +2327,7 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <comment>The text on Disable button in Disconnect modal window</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_AllAdaptersInUse" xml:space="preserve">
-    <value>All TAP adapters are in use.</value>
+    <value>All TAP/TUN adapters are in use.</value>
     <comment>The error description displayed in Disconnect modal window if all TAP adapters are in use</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_TapErrorHelp" xml:space="preserve">
@@ -2335,11 +2335,11 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <comment>The text displayed in Disconnect modal window if TAP error is detected</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_NoTap" xml:space="preserve">
-    <value>TAP adapter is missing.</value>
+    <value>TAP/TUN adapter is missing.</value>
     <comment>The error description displayed in Disconnect modal window if TAP adapter is not installed</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_OldVersion" xml:space="preserve">
-    <value>Current TAP adapter version is outdated.</value>
+    <value>Current TAP/TUN adapter version is outdated.</value>
     <comment>The error description displayed in Disconnect modal window if TAP adapter version is too low</comment>
   </data>
   <data name="Dialogs_ServiceStart_Info" xml:space="preserve">
@@ -2901,5 +2901,17 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   </data>
   <data name="Settings_Advanced_lbl_btn_LearnMore" xml:space="preserve">
     <value>Learn more</value>
+  </data>
+  <data name="Settings_Advanced_lbl_NetworkDriver" xml:space="preserve">
+    <value>Network driver</value>
+  </data>
+  <data name="Settings_Advanced_lbl_NetworkDriver_info" xml:space="preserve">
+    <value>Network drivers can impact your connection and speed. The new Tun adapter provides higher speed, fallback on Tap adapter if you encounter any connectivity problem.</value>
+  </data>
+  <data name="Settings_Advanced_lbl_Tap" xml:space="preserve">
+    <value>Tap adapter</value>
+  </data>
+  <data name="Settings_Advanced_lbl_Tun" xml:space="preserve">
+    <value>Tun adapter</value>
   </data>
 </root>

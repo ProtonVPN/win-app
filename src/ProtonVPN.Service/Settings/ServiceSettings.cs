@@ -63,6 +63,15 @@ namespace ProtonVPN.Service.Settings
             }
         }
 
+        public bool UseTunAdapter
+        {
+            get
+            {
+                Load();
+                return _settings.UseTunAdapter;
+            }
+        }
+
         public void Apply(SettingsContract settings)
         {
             Ensure.NotNull(settings, nameof(settings));

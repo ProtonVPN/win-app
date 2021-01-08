@@ -19,21 +19,22 @@
 
 using System.Net;
 using ProtonVPN.Common.Os.Net;
+using ProtonVPN.Service.Network;
 
 namespace ProtonVPN.Service.SplitTunneling
 {
-    public class BestNetworkInterface
+    internal class BestNetworkInterface
     {
-        private readonly Common.Configuration.Config _config;
+        private readonly ICurrentNetworkAdapter _currentNetworkAdapter;
 
-        public BestNetworkInterface(Common.Configuration.Config config)
+        public BestNetworkInterface(ICurrentNetworkAdapter currentNetworkAdapter)
         {
-            _config = config;
+            _currentNetworkAdapter = currentNetworkAdapter;
         }
 
         public IPAddress LocalIpAddress()
         {
-            return NetworkUtil.GetBestInterfaceIp(_config.OpenVpn.TapAdapterId);
+            return NetworkUtil.GetBestInterfaceIp(_currentNetworkAdapter.HardwareId);
         }
     }
 }
