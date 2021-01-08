@@ -63,7 +63,7 @@ namespace ProtonVPN.Sidebar.QuickSettings
             {
                 _appSettings.NetShieldEnabled = true;
                 _appSettings.NetShieldMode = 1;
-            });
+            }, () => !IsFreeUser);
             NetShieldOnSecondCommand = new RelayCommand(() =>
             {
                 _appSettings.NetShieldEnabled = true;
@@ -145,6 +145,16 @@ namespace ProtonVPN.Sidebar.QuickSettings
 
         public void OnUserDataChanged()
         {
+            if (IsFreeUser && _appSettings.NetShieldEnabled)
+            {
+                _appSettings.NetShieldEnabled = false;
+
+                NotifyOfPropertyChange(nameof(IsNetShieldOn));
+                NotifyOfPropertyChange(nameof(IsNetShieldOffButtonOn));
+                NotifyOfPropertyChange(nameof(IsNetShieldFirstButtonOn));
+                NotifyOfPropertyChange(nameof(IsNetShieldSecondButtonOn));
+            }
+
             NotifyOfPropertyChange(nameof(IsFreeUser));
             NotifyOfPropertyChange(nameof(AllowSecureCore));
         }
