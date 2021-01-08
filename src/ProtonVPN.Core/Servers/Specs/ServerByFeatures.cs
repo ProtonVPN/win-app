@@ -38,11 +38,14 @@ namespace ProtonVPN.Core.Servers.Specs
 
         private static Specification<LogicalServerContract> SpecByFeatures(Features features)
         {
-            var spec = (features.IsSecureCore() ? (Specification<LogicalServerContract>) new SecureCoreServer() : new StandardServer()) &
-                       (features.SupportsTor() ? new TorServer() : !new TorServer());
+            Specification<LogicalServerContract> spec = 
+                (features.IsSecureCore() ? (Specification<LogicalServerContract>) new SecureCoreServer() : new StandardServer()) &
+                (features.SupportsTor() ? new TorServer() : !new TorServer());
 
             if (features.SupportsP2P())
+            {
                 spec &= new P2PServer();
+            }
 
             return spec;
         }

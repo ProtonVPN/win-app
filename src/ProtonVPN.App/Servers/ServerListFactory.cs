@@ -22,10 +22,13 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Vpn;
+using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Servers;
+using ProtonVPN.Core.Servers.Models;
 using ProtonVPN.Core.Servers.Specs;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
+using ProtonVPN.Translations;
 
 namespace ProtonVPN.Servers
 {
@@ -33,7 +36,7 @@ namespace ProtonVPN.Servers
     {
         private readonly ServerManager _serverManager;
         private readonly IUserStorage _userStorage;
-        private readonly SortedCountries _sortedCountries;
+        private readonly ISortedCountries _sortedCountries;
 
         private ObservableCollection<IServerListItem> _countries = new ObservableCollection<IServerListItem>();
         private VpnState _vpnState = new VpnState(VpnStatus.Disconnected);
@@ -41,7 +44,7 @@ namespace ProtonVPN.Servers
         public ServerListFactory(
             ServerManager serverManager,
             IUserStorage userStorage,
-            SortedCountries sortedCountries)
+            ISortedCountries sortedCountries)
         {
             _sortedCountries = sortedCountries;
             _serverManager = serverManager;
@@ -50,15 +53,13 @@ namespace ProtonVPN.Servers
 
         public ObservableCollection<IServerListItem> BuildServerList(string searchQuery = null)
         {
-            var list = new ObservableCollection<IServerListItem>();
-
+            ObservableCollection<IServerListItem> list = new ObservableCollection<IServerListItem>();
             searchQuery = searchQuery?.ToLower();
+            _countries = CreateCountryList();
 
             if (string.IsNullOrEmpty(searchQuery))
             {
-                _countries = CreateCountryList();
-
-                foreach (var c in _countries)
+                foreach (IServerListItem c in _countries)
                 {
                     list.Add(c);
                 }
@@ -66,7 +67,7 @@ namespace ProtonVPN.Servers
                 return list;
             }
 
-            foreach (var item in _countries)
+            foreach (IServerListItem item in _countries)
             {
                 if (item.MatchesQuery(searchQuery))
                 {
@@ -76,7 +77,7 @@ namespace ProtonVPN.Servers
                 {
                     if (item is ServersByCountryViewModel country)
                     {
-                        var servers = GetMatchedServers(country, searchQuery);
+                        ObservableCollection<IServerListItem> servers = GetMatchedServers(country, searchQuery);
                         if (servers.Count > 0)
                         {
                             list.Add(new ServersByCountryViewModel(country.CountryCode, _userStorage.User().MaxTier, _serverManager, _vpnState)
@@ -94,18 +95,76 @@ namespace ProtonVPN.Servers
 
         public ObservableCollection<IServerListItem> BuildSecureCoreList()
         {
-            var collection = new ObservableCollection<IServerListItem>();
-            var countries = GetExitCountries();
-            var user = _userStorage.User();
+            ObservableCollection<IServerListItem> collection = new ObservableCollection<IServerListItem>();
+            IEnumerable<string> countries = GetExitCountries();
+            User user = _userStorage.User();
 
-            foreach (var country in countries)
+            foreach (string country in countries)
             {
-                var row = new ServersByExitNodeViewModel(country, user.MaxTier, _serverManager);
+                ServersByExitNodeViewModel row = new ServersByExitNodeViewModel(country, user.MaxTier, _serverManager);
                 row.LoadServers();
                 collection.Add(row);
             }
 
             return collection;
+        }
+
+        public ObservableCollection<IServerListItem> BuildPortForwardingList(string searchQuery = null)
+        {
+            searchQuery = searchQuery?.ToLower();
+            User user = _userStorage.User();
+            IReadOnlyCollection<Server> servers = _serverManager.GetServers(new StandardServer());
+
+            IList<string> p2pList = servers
+                .Where(s => s.SupportsP2P())
+                .GroupBy(s => s.ExitCountry).Select(s => s.Key)
+                .OrderBy(Countries.GetName).ToList();
+
+            IList<string> nonP2PList = servers
+                .GroupBy(s => s.ExitCountry).Select(s => s.Key)
+                .Except(p2pList)
+                .OrderBy(Countries.GetName).ToList();
+
+            List<IServerListItem> list = new List<IServerListItem>();
+            list.Add(CreateCountryListSeparator(Translation.Get("ServerType_val_P2P")));
+            list.AddRange(CreateServersByCountryViewModels(user, p2pList, searchQuery));
+            list.Add(CreateCountryListSeparator(Translation.Get("Sidebar_Separator_Others")));
+            list.AddRange(CreateServersByCountryViewModels(user, nonP2PList, searchQuery));
+
+            return new ObservableCollection<IServerListItem>(list);
+        }
+
+        private IEnumerable<IServerListItem> CreateServersByCountryViewModels(User user, IList<string> countryCodes, string searchQuery)
+        {
+            foreach (string countryCode in countryCodes)
+            {
+                ServersByCountryViewModel country = new ServersByCountryViewModel(countryCode, user.MaxTier, _serverManager, _vpnState);
+                if (string.IsNullOrEmpty(searchQuery) || country.MatchesQuery(searchQuery))
+                {
+                    country.LoadServers();
+                    yield return country;
+                }
+                else if (!string.IsNullOrEmpty(searchQuery))
+                {
+                    ObservableCollection<IServerListItem> servers = GetMatchedServers(country, searchQuery);
+                    if (servers.Count > 0)
+                    {
+                        yield return new ServersByCountryViewModel(country.CountryCode, _userStorage.User().MaxTier, _serverManager, _vpnState)
+                        {
+                            Servers = servers,
+                            Expanded = true,
+                        };
+                    }
+                }
+            }
+        }
+
+        private IServerListItem CreateCountryListSeparator(string name)
+        {
+            return new CountrySeparatorViewModel()
+            {
+                Name = name
+            };
         }
 
         public void OnServersUpdated()
@@ -122,13 +181,13 @@ namespace ProtonVPN.Servers
 
         private ObservableCollection<IServerListItem> CreateCountryList()
         {
-            var countries = _sortedCountries.List();
-            var user = _userStorage.User();
-            var list = new ObservableCollection<IServerListItem>();
+            List<string> countries = _sortedCountries.List();
+            User user = _userStorage.User();
+            ObservableCollection<IServerListItem> list = new ObservableCollection<IServerListItem>();
 
-            foreach (var country in countries)
+            foreach (string country in countries)
             {
-                var name = Countries.GetName(country);
+                string name = Countries.GetName(country);
                 if (string.IsNullOrEmpty(name))
                 {
                     continue;
@@ -142,9 +201,9 @@ namespace ProtonVPN.Servers
 
         private IEnumerable<string> GetExitCountries()
         {
-            var list = new List<string>();
-            var servers = _serverManager.GetServers(new SecureCoreServer());
-            foreach (var server in servers)
+            IList<string> list = new List<string>();
+            IReadOnlyCollection<Server> servers = _serverManager.GetServers(new SecureCoreServer());
+            foreach (Server server in servers)
             {
                 if (!list.Contains(server.ExitCountry))
                 {
@@ -157,9 +216,9 @@ namespace ProtonVPN.Servers
 
         private ObservableCollection<IServerListItem> GetMatchedServers(ServersByCountryViewModel country, string searchQuery)
         {
-            var servers = new ObservableCollection<IServerListItem>();
+            ObservableCollection<IServerListItem> servers = new ObservableCollection<IServerListItem>();
 
-            foreach (var server in country.Servers)
+            foreach (IServerListItem server in country.Servers)
             {
                 if (server.MatchesQuery(searchQuery))
                 {

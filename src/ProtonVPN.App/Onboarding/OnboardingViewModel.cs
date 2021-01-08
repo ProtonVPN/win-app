@@ -34,6 +34,7 @@ namespace ProtonVPN.Onboarding
         private bool _isLastStep;
         private bool _isFirstStep;
         private bool _isFeatureNetShieldEnabled;
+        private bool _isFeaturePortForwardingEnabled;
 
         public OnboardingViewModel(Onboarding onboarding, IAppSettings appSettings)
         {
@@ -70,6 +71,12 @@ namespace ProtonVPN.Onboarding
             set => Set(ref _isFeatureNetShieldEnabled, value);
         }
 
+        public bool IsFeaturePortForwardingEnabled
+        {
+            get => _isFeaturePortForwardingEnabled;
+            set => Set(ref _isFeaturePortForwardingEnabled, value);
+        }
+
         public void OnStepChanged(int step)
         {
             Number = step;
@@ -78,6 +85,7 @@ namespace ProtonVPN.Onboarding
             if (step == 4)
             {
                 SetIsNetShieldFeatureEnabled();
+                SetIsPortForwardingFeatureEnabled();
             }
         }
 
@@ -86,6 +94,10 @@ namespace ProtonVPN.Onboarding
             if (e.PropertyName == nameof(IAppSettings.FeatureNetShieldEnabled))
             {
                 SetIsNetShieldFeatureEnabled();
+            }
+            if (e.PropertyName == nameof(IAppSettings.FeaturePortForwardingEnabled))
+            {
+                SetIsPortForwardingFeatureEnabled();
             }
         }
 
@@ -105,6 +117,11 @@ namespace ProtonVPN.Onboarding
         private void SetIsNetShieldFeatureEnabled()
         {
             IsFeatureNetShieldEnabled = _appSettings.FeatureNetShieldEnabled;
+        }
+
+        private void SetIsPortForwardingFeatureEnabled()
+        {
+            IsFeaturePortForwardingEnabled = _appSettings.FeaturePortForwardingEnabled;
         }
     }
 }

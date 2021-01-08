@@ -17,16 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Service.Contract.Settings
+namespace ProtonVPN.Service.Vpn
 {
-    public class SettingsContract
+    public class NetworkSettingsConfig
     {
-        public KillSwitchSettingsContract KillSwitch { get; set; }
-
-        public SplitTunnelSettingsContract SplitTunnel { get; set; }
-
-        public bool Ipv6LeakProtection { get; set; }
-
-        public bool PortForwardingEnabled { get; set; }
+        public bool AddDefaultGatewayForTap { get; set; }
     }
 }

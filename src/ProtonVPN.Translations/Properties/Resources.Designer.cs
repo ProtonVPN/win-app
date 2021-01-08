@@ -3264,6 +3264,15 @@ namespace ProtonVPN.Translations.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Enable.
         /// </summary>
+        public static string Dialogs_btn_Enable {
+            get {
+                return ResourceManager.GetString("Dialogs_btn_Enable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable.
+        /// </summary>
         public static string Dialogs_DisabledService_btn_Enable {
             get {
                 return ResourceManager.GetString("Dialogs_DisabledService_btn_Enable", resourceCulture);
@@ -3433,6 +3442,15 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Don&apos;t show this message again.
+        /// </summary>
+        public static string Dialogs_DoNotShowThisMessageAgain {
+            get {
+                return ResourceManager.GetString("Dialogs_DoNotShowThisMessageAgain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Quit.
         /// </summary>
         public static string Dialogs_OutdatedApp_btn_Quit {
@@ -3537,6 +3555,24 @@ namespace ProtonVPN.Translations.Properties {
         public static string Dialogs_P2PForward_ttl {
             get {
                 return ResourceManager.GetString("Dialogs_P2PForward_ttl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable Port Forwarding only when you need it to ensure the strongest privacy and security protection.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command=&quot;{Binding ReadPortForwardingRisksCommand}&quot;&gt;Do I need Port Forwarding?&lt;/Hyperlink&gt;.
+        /// </summary>
+        public static string Dialogs_PortForwardingConfirmation_msg {
+            get {
+                return ResourceManager.GetString("Dialogs_PortForwardingConfirmation_msg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable Port Forwarding?.
+        /// </summary>
+        public static string Dialogs_PortForwardingConfirmation_ttl {
+            get {
+                return ResourceManager.GetString("Dialogs_PortForwardingConfirmation_ttl", resourceCulture);
             }
         }
         
@@ -4163,33 +4199,6 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to • Prevent your IP to be exposed by turning on &lt;Bold&gt;Kill Switch&lt;/Bold&gt;..
-        /// </summary>
-        public static string Onboarding_msg_KillSwitch {
-            get {
-                return ResourceManager.GetString("Onboarding_msg_KillSwitch", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to • Surf the web freely from malware and ads with &lt;Bold&gt;NetShield&lt;/Bold&gt;..
-        /// </summary>
-        public static string Onboarding_msg_NetShield {
-            get {
-                return ResourceManager.GetString("Onboarding_msg_NetShield", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to • Add one extra layer of security with &lt;Bold&gt;Secure Core&lt;/Bold&gt;..
-        /// </summary>
-        public static string Onboarding_msg_SecureCore {
-            get {
-                return ResourceManager.GetString("Onboarding_msg_SecureCore", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Automatically connect to the server that will provide you with the fastest connection..
         /// </summary>
         public static string Onboarding_msg_Step_1 {
@@ -4217,7 +4226,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Increase your security with one click:.
+        ///   Looks up a localized string similar to Adapt your VPN connection to your online activity with ProtonVPN&apos;s special features for optimal speed and privacy protection..
         /// </summary>
         public static string Onboarding_msg_Step_4 {
             get {
@@ -4258,6 +4267,15 @@ namespace ProtonVPN.Translations.Properties {
         public static string Onboarding_ttl_Step_4 {
             get {
                 return ResourceManager.GetString("Onboarding_ttl_Step_4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Port Forwarding.
+        /// </summary>
+        public static string PortForwarding {
+            get {
+                return ResourceManager.GetString("PortForwarding", resourceCulture);
             }
         }
         
@@ -4847,6 +4865,24 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Port Forwarding Off.
+        /// </summary>
+        public static string QuickSettings_btn_PortForwardingOff {
+            get {
+                return ResourceManager.GetString("QuickSettings_btn_PortForwardingOff", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Port Forwarding On.
+        /// </summary>
+        public static string QuickSettings_btn_PortForwardingOn {
+            get {
+                return ResourceManager.GetString("QuickSettings_btn_PortForwardingOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Secure Core Off.
         /// </summary>
         public static string QuickSettings_btn_SecureCoreOff {
@@ -4888,6 +4924,15 @@ namespace ProtonVPN.Translations.Properties {
         public static string QuickSettings_lbl_NetShieldWarning {
             get {
                 return ResourceManager.GetString("QuickSettings_lbl_NetShieldWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Speed up your torrenting and online gaming by allowing supported local apps to be reachable from the Internet. &lt;Hyperlink Command=&quot;{Binding PortForwardingLearnMoreCommand}&quot;&gt;Learn more.&lt;/Hyperlink&gt;.
+        /// </summary>
+        public static string QuickSettings_lbl_PortForwardingInfo {
+            get {
+                return ResourceManager.GetString("QuickSettings_lbl_PortForwardingInfo", resourceCulture);
             }
         }
         
@@ -5117,6 +5162,15 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Learn more.
+        /// </summary>
+        public static string Settings_Advanced_lbl_btn_LearnMore {
+            get {
+                return ResourceManager.GetString("Settings_Advanced_lbl_btn_LearnMore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to DNS Leak Protection.
         /// </summary>
         public static string Settings_Advanced_lbl_DnsLeakProtection {
@@ -5167,24 +5221,6 @@ namespace ProtonVPN.Translations.Properties {
         public static string Settings_Advanced_lbl_Ipv6Protection_Info {
             get {
                 return ResourceManager.GetString("Settings_Advanced_lbl_Ipv6Protection_Info", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to VPN Kill Switch.
-        /// </summary>
-        public static string Settings_Advanced_lbl_KillSwitch {
-            get {
-                return ResourceManager.GetString("Settings_Advanced_lbl_KillSwitch", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Blocks all network traffic when the VPN tunnel is lost. Cannot be switched on together with Split Tunneling..
-        /// </summary>
-        public static string Settings_Advanced_lbl_KillSwitch_Info {
-            get {
-                return ResourceManager.GetString("Settings_Advanced_lbl_KillSwitch_Info", resourceCulture);
             }
         }
         
@@ -5369,24 +5405,6 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to NetShield.
-        /// </summary>
-        public static string Settings_Connection_lbl_NetShield {
-            get {
-                return ResourceManager.GetString("Settings_Connection_lbl_NetShield", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This feature will process your DNS requests and automatically block trackers, ads, and harmful websites..
-        /// </summary>
-        public static string Settings_Connection_lbl_NetShield_Info {
-            get {
-                return ResourceManager.GetString("Settings_Connection_lbl_NetShield_Info", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Quick Connect.
         /// </summary>
         public static string Settings_Connection_lbl_QuickConnect {
@@ -5405,24 +5423,6 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Block malware only.
-        /// </summary>
-        public static string Settings_Connection_NetShield_lbl_Level1 {
-            get {
-                return ResourceManager.GetString("Settings_Connection_NetShield_lbl_Level1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Block malware, tracking, ads.
-        /// </summary>
-        public static string Settings_Connection_NetShield_lbl_Level2 {
-            get {
-                return ResourceManager.GetString("Settings_Connection_NetShield_lbl_Level2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Connection.
         /// </summary>
         public static string Settings_Connection_ttl {
@@ -5437,15 +5437,6 @@ namespace ProtonVPN.Translations.Properties {
         public static string Settings_Connection_Warning_CustomDnsServer {
             get {
                 return ResourceManager.GetString("Settings_Connection_Warning_CustomDnsServer", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Using NetShield will disable Custom DNS Servers.&lt;LineBreak/&gt;&lt;LineBreak/&gt; Do you want to turn NetShield on?.
-        /// </summary>
-        public static string Settings_Connection_Warning_NetShield {
-            get {
-                return ResourceManager.GetString("Settings_Connection_Warning_NetShield", resourceCulture);
             }
         }
         
@@ -5734,6 +5725,15 @@ namespace ProtonVPN.Translations.Properties {
         public static string Sidebar_Profiles_ttl {
             get {
                 return ResourceManager.GetString("Sidebar_Profiles_ttl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OTHERS.
+        /// </summary>
+        public static string Sidebar_Separator_Others {
+            get {
+                return ResourceManager.GetString("Sidebar_Separator_Others", resourceCulture);
             }
         }
         

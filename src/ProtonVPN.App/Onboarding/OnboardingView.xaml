@@ -159,15 +159,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <Setter Property="ContentTemplate">
                                 <Setter.Value>
                                     <DataTemplate>
-                                        <StackPanel>
-                                            <TextBlock Style="{StaticResource StepDetailsText}"
-                                                       behavior:TextStyleBehavior.FormattedText="{translations:Loc Onboarding_msg_SecureCore}" />
-                                            <TextBlock Style="{StaticResource StepDetailsText}"
-                                                       Visibility="{Binding Path=DataContext.IsFeatureNetShieldEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Converter={StaticResource BoolToVis}}"
-                                                       behavior:TextStyleBehavior.FormattedText="{translations:Loc Onboarding_msg_NetShield}" />
-                                            <TextBlock Style="{StaticResource StepDetailsText}"
-                                                       behavior:TextStyleBehavior.FormattedText="{translations:Loc Onboarding_msg_KillSwitch}" />
-                                        </StackPanel>
+                                        <TextBlock Style="{StaticResource StepDetailsText}"
+                                                   behavior:TextStyleBehavior.FormattedText="{translations:Loc Onboarding_msg_Step_4}" />
                                     </DataTemplate>
                                 </Setter.Value>
                             </Setter>

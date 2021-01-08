@@ -76,6 +76,9 @@ namespace ProtonVPN.Core.Settings
         StringCollection AlternativeApiBaseUrls { set; get; }
         string ActiveAlternativeApiBaseUrl { set; get; }
         bool DoHEnabled { get; set; }
+        bool PortForwardingEnabled { get; set; }
+        bool FeaturePortForwardingEnabled { get; set; }
+        bool DoNotShowPortForwardingConfirmationDialog { get; set; }
         IReadOnlyList<AnnouncementItem> Announcements { get; set; }
         int[] OpenVpnTcpPorts { get; set; }
         int[] OpenVpnUdpPorts { get; set; }
@@ -85,5 +88,6 @@ namespace ProtonVPN.Core.Settings
         bool FeaturePollNotificationApiEnabled { get; set; }
         TimeSpan MaintenanceCheckInterval { get; set; }
         bool IsNetShieldEnabled();
+        bool IsPortForwardingEnabled();
     }
 }

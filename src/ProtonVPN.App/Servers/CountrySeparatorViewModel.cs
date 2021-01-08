@@ -17,16 +17,23 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Service.Contract.Settings
+using ProtonVPN.Core.MVVM;
+using ProtonVPN.Core.Vpn;
+
+namespace ProtonVPN.Servers
 {
-    public class SettingsContract
+    public class CountrySeparatorViewModel : ViewModel, IServerListItem
     {
-        public KillSwitchSettingsContract KillSwitch { get; set; }
+        public string Name { get; set; }
+        public bool Maintenance { get; } = false;
 
-        public SplitTunnelSettingsContract SplitTunnel { get; set; }
+        public void OnVpnStateChanged(VpnState state)
+        {
+        }
 
-        public bool Ipv6LeakProtection { get; set; }
-
-        public bool PortForwardingEnabled { get; set; }
+        public bool MatchesQuery(string query)
+        {
+            return true;
+        }
     }
 }
