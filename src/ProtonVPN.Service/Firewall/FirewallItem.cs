@@ -17,10 +17,20 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Service.Vpn
+using System;
+
+namespace ProtonVPN.Service.Firewall
 {
-    public class NetworkSettingsConfig
+    internal class FirewallItem
     {
-        public bool AddDefaultGatewayForTap { get; set; }
+        public FirewallItem(FirewallItemType itemType, Guid guid)
+        {
+            ItemType = itemType;
+            Guid = guid;
+        }
+
+        public FirewallItemType ItemType { get; }
+
+        public Guid Guid { get; }
     }
 }

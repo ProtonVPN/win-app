@@ -49,7 +49,6 @@ namespace ProtonVPN.Core.Service.Settings
                 },
                 Ipv6LeakProtection = _appSettings.Ipv6LeakProtection,
                 UseTunAdapter = _appSettings.UseTunAdapter,
-                PortForwardingEnabled = _appSettings.IsPortForwardingEnabled(),
             };
         }
 

@@ -35,7 +35,7 @@ namespace ProtonVPN.Service.Vpn
             _currentNetworkAdapter = currentNetworkAdapter;
         }
 
-        public bool ApplyNetworkSettings(NetworkSettingsConfig settingsConfig)
+        public bool ApplyNetworkSettings()
         {
             uint interfaceIndex = _currentNetworkAdapter.Index;
             if (interfaceIndex == 0)
@@ -45,14 +45,7 @@ namespace ProtonVPN.Service.Vpn
 
             try
             {
-                string localInterfaceIp = NetworkUtil.GetBestInterfaceIp(_currentNetworkAdapter.HardwareId).ToString();
                 NetworkUtil.SetLowestTapMetric(interfaceIndex);
-                NetworkUtil.DeleteDefaultGatewayForIface(interfaceIndex, localInterfaceIp);
-
-                if (settingsConfig.AddDefaultGatewayForTap)
-                {
-                    NetworkUtil.AddDefaultGatewayForIface(interfaceIndex, localInterfaceIp);
-                }
             }
             catch (NetworkUtilException e)
             {

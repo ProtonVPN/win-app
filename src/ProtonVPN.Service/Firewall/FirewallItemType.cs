@@ -17,19 +17,14 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Collections;
-using System.Collections.Generic;
-
-namespace ProtonVPN.Vpn.OpenVpn.Arguments
+namespace ProtonVPN.Service.Firewall
 {
-    internal class LowDefaultRouteArgument : IEnumerable<string>
+    internal enum FirewallItemType
     {
-        public IEnumerator<string> GetEnumerator()
-        {
-            yield return "--pull-filter ignore \"redirect-gateway\"";
-            yield return "--route 0.0.0.0 0.0.0.0 vpn_gateway 32000";
-        }
-
-        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+        DnsFilter,
+        DnsCalloutFilter,
+        DnsCallout,
+        PermitInterfaceFilter,
+        BaseProtectionFilter,
     }
 }

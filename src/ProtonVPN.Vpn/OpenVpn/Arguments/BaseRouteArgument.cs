@@ -20,40 +20,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using ProtonVPN.Common;
-using ProtonVPN.Common.OS.Net;
 
 namespace ProtonVPN.Vpn.OpenVpn.Arguments
 {
-    internal class SplitTunnelRoutesArgument : IEnumerable<string>
+    internal class BaseRouteArgument : IEnumerable<string>
     {
-        private readonly IReadOnlyCollection<string> _ips;
         private readonly SplitTunnelMode _splitTunnelMode;
 
-        public SplitTunnelRoutesArgument(IReadOnlyCollection<string> ips, SplitTunnelMode splitTunnelMode)
+        public BaseRouteArgument(SplitTunnelMode splitTunnelMode)
         {
-            _ips = ips;
             _splitTunnelMode = splitTunnelMode;
         }
 
         public IEnumerator<string> GetEnumerator()
         {
-            if (_ips == null || _ips.Count == 0)
+            switch (_splitTunnelMode)
             {
-                yield break;
-            }
-
-            foreach (string ip in _ips)
-            {
-                var address = new NetworkAddress(ip);
-                switch (_splitTunnelMode)
-                {
-                    case SplitTunnelMode.Permit:
-                        yield return $"--route {address.Ip} {address.Mask} vpn_gateway 32000";
-                        break;
-                    case SplitTunnelMode.Block:
-                        yield return $"--route {address.Ip} {address.Mask} net_gateway metric";
-                        break;
-                }
+                case SplitTunnelMode.Permit:
+                    yield return "--pull-filter ignore \"redirect-gateway\"";
+                    yield return "--route 0.0.0.0 0.0.0.0 vpn_gateway 32000";
+                    break;
+                case SplitTunnelMode.Block:
+                    yield return "--pull-filter ignore \"redirect-gateway\"";
+                    yield return "--route 0.0.0.0 0.0.0.0 net_gateway 32000";
+                    yield return "--route 0.0.0.0 0.0.0.0 vpn_gateway";
+                    break;
+                default:
+                    yield return "--pull-filter ignore \"redirect-gateway def1\"";
+                    yield return "--redirect-gateway";
+                    yield return "--route 0.0.0.0 0.0.0.0 net_gateway";
+                    break;
             }
         }
 

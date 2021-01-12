@@ -116,26 +116,6 @@ extern "C" EXPORT DWORD GetBestInterfaceIp(IN_ADDR* address, const wchar_t* excl
     return 0;
 }
 
-extern "C" EXPORT long NetworkUtilAddDefaultGatewayForIface(UINT index, wchar_t* gatewayAddr)
-{
-    if (!Proton::NetworkUtil::Route::AddDefaultGatewayForIface(index, gatewayAddr))
-    {
-        return 1;
-    }
-
-    return 0;
-}
-
-extern "C" EXPORT long NetworkUtilDeleteDefaultGatewayForIface(UINT index, wchar_t* gatewayAddr)
-{
-    if (!Proton::NetworkUtil::Route::DeleteDefaultGatewayForIface(index, gatewayAddr))
-    {
-        return 1;
-    }
-
-    return 0;
-}
-
 extern "C" EXPORT long SetLowestTapMetric(UINT index)
 {
     Proton::NetworkUtil::Route::IfaceInfo info{};
