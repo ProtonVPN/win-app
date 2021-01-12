@@ -45,52 +45,25 @@ namespace ProtonVPN.Vpn.OpenVpn
         private TaskCompletionSource<bool> _startCompletionSource;
 
         internal OpenVpnProcess(
-                ILogger logger,
-                IOsProcesses processes,
-                OpenVpnExitEvent processExitEvent,
-                OpenVpnConfig config)
+            ILogger logger,
+            IOsProcesses processes,
+            OpenVpnExitEvent processExitEvent,
+            OpenVpnConfig config)
         {
             _logger = logger;
             _processes = processes;
             _processExitEvent = processExitEvent;
             _config = config;
 
-            _process =_nullProcess = new NullOsProcess();
+            _process = _nullProcess = new NullOsProcess();
         }
 
         public Task<bool> Start(OpenVpnProcessParams processParams)
         {
-            var localIp = new BestLocalEndpoint(processParams.Endpoint).Ip();
-
-            var arguments = new CommandLineArguments()
-                .Add(new BasicArguments(_config))
-                .Add(new ManagementArguments(_config, processParams.ManagementPort))
-                .Add(new EndpointArguments(processParams.Endpoint))
-                .Add(new BindArguments(localIp))
-                .Add(new CustomDnsArguments(processParams.CustomDns))
-                .Add(new TlsVerifyArguments(_config, processParams.Endpoint.Server.Name));
-
-            if (processParams.UseTunAdapter)
-            {
-                arguments.Add(new TunDriverArgument());
-            }
-
-            if (processParams.SplitTunnelMode == SplitTunnelMode.Permit)
-            {
-                arguments.Add(new LowDefaultRouteArgument());
-            }
-
-            if (processParams.SplitTunnelMode != SplitTunnelMode.Disabled &&
-                processParams.SplitTunnelIPs.Count > 0)
-            {
-                arguments.Add(new SplitTunnelRoutesArgument(
-                    processParams.SplitTunnelIPs,
-                    processParams.SplitTunnelMode));
-            }
-
             _startCompletionSource?.TrySetCanceled();
             _startCompletionSource = new TaskCompletionSource<bool>();
 
+            string arguments = GetCommandLineArguments(processParams);
             _process = _processes.Process(_config.ExePath, arguments);
             AddEventHandlers();
             _process.Start();
@@ -108,6 +81,26 @@ namespace ProtonVPN.Vpn.OpenVpn
             WaitForProcessToExit(WaitAfterSignalingExit);
             KillNotExitedProcesses();
             Cleanup();
+        }
+
+        private string GetCommandLineArguments(OpenVpnProcessParams processParams)
+        {
+            CommandLineArguments arguments = new CommandLineArguments()
+                .Add(new BasicArguments(_config))
+                .Add(new ManagementArguments(_config, processParams.ManagementPort))
+                .Add(new EndpointArguments(processParams.Endpoint))
+                .Add(new BindArguments(new BestLocalEndpoint(processParams.Endpoint).Ip()))
+                .Add(new CustomDnsArguments(processParams.CustomDns))
+                .Add(new TlsVerifyArguments(_config, processParams.Endpoint.Server.Name))
+                .Add(new BaseRouteArgument(processParams.SplitTunnelMode))
+                .Add(new SplitTunnelRoutesArgument(processParams.SplitTunnelIPs, processParams.SplitTunnelMode));
+
+            if (processParams.UseTunAdapter)
+            {
+                arguments.Add(new TunDriverArgument());
+            }
+
+            return arguments;
         }
 
         private void AddEventHandlers()
@@ -153,7 +146,7 @@ namespace ProtonVPN.Vpn.OpenVpn
 
         private void Process_ErrorDataReceived(object sender, EventArgs<string> e)
         {
-            var message = $"OpenVPN -> {e.Data}";
+            string message = $"OpenVPN -> {e.Data}";
 
             if (e.Data.StartsWithIgnoringCase("Enter Management Password:"))
             {

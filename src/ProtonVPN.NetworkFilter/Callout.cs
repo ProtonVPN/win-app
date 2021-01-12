@@ -23,7 +23,7 @@ namespace ProtonVPN.NetworkFilter
 {
     public class Callout
     {
-        internal Guid Id { get; }
+        public Guid Id { get; }
 
         public Callout(Guid id)
         {

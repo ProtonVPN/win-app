@@ -106,6 +106,7 @@
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Config\ConfigDirectories.cs" />
+    <Compile Include="Firewall\FirewallItem.cs" />
     <Compile Include="Firewall\FirewallParams.cs" />
     <Compile Include="Firewall\IFilterCollection.cs" />
     <Compile Include="Firewall\IFirewall.cs" />
@@ -113,6 +114,7 @@
     <Compile Include="Firewall\Ipv6.cs" />
     <Compile Include="Firewall\Layer.cs" />
     <Compile Include="Firewall\AppFilter.cs" />
+    <Compile Include="Firewall\FirewallItemType.cs" />
     <Compile Include="Firewall\PermittedRemoteAddress.cs" />
     <Compile Include="Network\CurrentNetworkAdapter.cs" />
     <Compile Include="Network\ICurrentNetworkAdapter.cs" />
@@ -161,7 +163,6 @@
     <Compile Include="VpnConnectionHandler.cs" />
     <Compile Include="Vpn\Ipv6HandlingWrapper.cs" />
     <Compile Include="Vpn\IVpnStateAware.cs" />
-    <Compile Include="Vpn\NetworkSettingsConfig.cs" />
     <Compile Include="Vpn\NetworkSettings.cs" />
     <Compile Include="Vpn\ObservableConnection.cs" />
     <Compile Include="Vpn\ObservableNetworkInterfaces.cs" />

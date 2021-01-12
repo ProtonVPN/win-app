@@ -28,7 +28,5 @@ namespace ProtonVPN.Service.Contract.Settings
         public bool Ipv6LeakProtection { get; set; }
 
         public bool UseTunAdapter { get; set; }
-
-        public bool PortForwardingEnabled { get; set; }
     }
 }

@@ -74,22 +74,6 @@ namespace ProtonVPN.Common.Os.Net
 
         [DllImport(
             BinaryName,
-            EntryPoint = "NetworkUtilAddDefaultGatewayForIface",
-            CallingConvention = CallingConvention.Cdecl)]
-        public static extern uint AddDefaultGatewayForIface(
-            uint index,
-            [MarshalAs(UnmanagedType.LPWStr)] string gatewayAddr);
-
-        [DllImport(
-            BinaryName,
-            EntryPoint = "NetworkUtilDeleteDefaultGatewayForIface",
-            CallingConvention = CallingConvention.Cdecl)]
-        public static extern uint DeleteDefaultGatewayForIface(
-            uint index,
-            [MarshalAs(UnmanagedType.LPWStr)] string gatewayAddr);
-
-        [DllImport(
-            BinaryName,
             EntryPoint = "SetLowestTapMetric",
             CallingConvention = CallingConvention.Cdecl)]
         public static extern uint SetLowestTapMetric(uint index);
