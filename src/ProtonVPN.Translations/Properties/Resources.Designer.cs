@@ -5171,24 +5171,6 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to VPN Kill Switch.
-        /// </summary>
-        public static string Settings_Advanced_lbl_KillSwitch {
-            get {
-                return ResourceManager.GetString("Settings_Advanced_lbl_KillSwitch", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Blocks all network traffic when the VPN tunnel is lost. Cannot be switched on together with Split Tunneling..
-        /// </summary>
-        public static string Settings_Advanced_lbl_KillSwitch_Info {
-            get {
-                return ResourceManager.GetString("Settings_Advanced_lbl_KillSwitch_Info", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Split Tunneling.
         /// </summary>
         public static string Settings_Advanced_lbl_SplitTunnel {
@@ -5369,24 +5351,6 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to NetShield.
-        /// </summary>
-        public static string Settings_Connection_lbl_NetShield {
-            get {
-                return ResourceManager.GetString("Settings_Connection_lbl_NetShield", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This feature will process your DNS requests and automatically block trackers, ads, and harmful websites..
-        /// </summary>
-        public static string Settings_Connection_lbl_NetShield_Info {
-            get {
-                return ResourceManager.GetString("Settings_Connection_lbl_NetShield_Info", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Quick Connect.
         /// </summary>
         public static string Settings_Connection_lbl_QuickConnect {
@@ -5405,24 +5369,6 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Block malware only.
-        /// </summary>
-        public static string Settings_Connection_NetShield_lbl_Level1 {
-            get {
-                return ResourceManager.GetString("Settings_Connection_NetShield_lbl_Level1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Block malware, tracking, ads.
-        /// </summary>
-        public static string Settings_Connection_NetShield_lbl_Level2 {
-            get {
-                return ResourceManager.GetString("Settings_Connection_NetShield_lbl_Level2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Connection.
         /// </summary>
         public static string Settings_Connection_ttl {
@@ -5437,15 +5383,6 @@ namespace ProtonVPN.Translations.Properties {
         public static string Settings_Connection_Warning_CustomDnsServer {
             get {
                 return ResourceManager.GetString("Settings_Connection_Warning_CustomDnsServer", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Using NetShield will disable Custom DNS Servers.&lt;LineBreak/&gt;&lt;LineBreak/&gt; Do you want to turn NetShield on?.
-        /// </summary>
-        public static string Settings_Connection_Warning_NetShield {
-            get {
-                return ResourceManager.GetString("Settings_Connection_Warning_NetShield", resourceCulture);
             }
         }
         

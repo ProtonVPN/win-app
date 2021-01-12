@@ -325,10 +325,6 @@
     <value>to Systray</value>
     <comment>The name of start minimized mode displayed in Start Minimized combo box in General tab of Settings window</comment>
   </data>
-  <data name="Settings_Advanced_lbl_KillSwitch_Info" xml:space="preserve">
-    <value>Blocks all network traffic when the VPN tunnel is lost. Cannot be switched on together with Split Tunneling.</value>
-    <comment>The description of Kill Switch setting displayed in the tooltip of ( i ) image next to the label for Kill Switch toggle switch in Advanced tab of Settings window</comment>
-  </data>
   <data name="Settings_Advanced_lbl_SplitTunnel_Info" xml:space="preserve">
     <value>Exclude an application or an IP address from VPN traffic or include only specific apps. Cannot be switched on together with Kill Switch.</value>
     <comment>The description of Split Tunneling setting displayed in the tooltip of ( i ) image next to the label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
@@ -721,10 +717,6 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
   <data name="Settings_Connection_lbl_DefaultProtocol" xml:space="preserve">
     <value>Default Protocol</value>
     <comment>The label for Default Protocol combo box in Connection tab of Settings window</comment>
-  </data>
-  <data name="Settings_Advanced_lbl_KillSwitch" xml:space="preserve">
-    <value>VPN Kill Switch</value>
-    <comment>The label for Kill Switch toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_DnsLeakProtection" xml:space="preserve">
     <value>DNS Leak Protection</value>
@@ -2442,29 +2434,9 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <value>Using Custom DNS servers will disable NetShield. DNS servers are responsible for directing you to the correct websites. &lt;LineBreak/&gt;&lt;LineBreak/&gt;Only use DNS servers that you trust. Do you want to turn Custom DNS servers on?</value>
     <comment>The text displayed in Custom DNS Servers warning modal window when use is trying to turn the feature ON when NetShield feature is turned on as well</comment>
   </data>
-  <data name="Settings_Connection_lbl_NetShield" xml:space="preserve">
-    <value>NetShield</value>
-    <comment>The label for NetShield combo box in Connection tab of Settings window</comment>
-  </data>
-  <data name="Settings_Connection_NetShield_lbl_Level1" xml:space="preserve">
-    <value>Block malware only</value>
-    <comment>The label of NetShield mode in NetShield section of Connection tab of Settings window</comment>
-  </data>
-  <data name="Settings_Connection_NetShield_lbl_Level2" xml:space="preserve">
-    <value>Block malware, tracking, ads</value>
-    <comment>The label of NetShield mode in NetShield section of Connection tab of Settings window</comment>
-  </data>
-  <data name="Settings_Connection_Warning_NetShield" xml:space="preserve">
-    <value>Using NetShield will disable Custom DNS Servers.&lt;LineBreak/&gt;&lt;LineBreak/&gt; Do you want to turn NetShield on?</value>
-    <comment>The text displayed in NetShield warning modal window when use is trying to turn the feature ON while Custom DNS Servers are enabled as well</comment>
-  </data>
   <data name="Settings_Connection_btn_Upgrade" xml:space="preserve">
     <value>Upgrade</value>
     <comment>The text on Upgrade button in Connection tab of Settings window</comment>
-  </data>
-  <data name="Settings_Connection_lbl_NetShield_Info" xml:space="preserve">
-    <value>This feature will process your DNS requests and automatically block trackers, ads, and harmful websites.</value>
-    <comment>The description of NetShield settings displayed in the tooltip of ( i ) image next to the label for NetShield combo box in Connection tab of Settings window</comment>
   </data>
   <data name="Sidebar_Countries_info_P2P" xml:space="preserve">
     <value>Supports P2P traffic</value>
