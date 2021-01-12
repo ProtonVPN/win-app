@@ -26,6 +26,7 @@ using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Config.Url;
 using ProtonVPN.Core.Api;
+using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.MVVM;
@@ -208,33 +209,31 @@ namespace ProtonVPN.Login.ViewModels
             _urls.RegisterUrl.Open();
         }
 
-        private bool AllowLogin()
+        private bool IsLoginDisallowed(string username, string password)
         {
-            LoginText = LoginText?.Trim();
-
-            if (string.IsNullOrEmpty(LoginText) || string.IsNullOrEmpty(Password))
-            {
-                return false;
-            }
-
-            return true;
+            return string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password);
         }
 
         private async void LoginAction()
         {
             try
             {
-                if (!AllowLogin())
-                    return;
+                string username = LoginText?.Trim();
+                string password = Password;
 
-                var loginResult = await _userAuth.LoginUserAsync(LoginText, Password);
+                if (IsLoginDisallowed(username, password))
+                {
+                    return;
+                }
+
+                ApiResponseResult<AuthResponse> loginResult = await _userAuth.LoginUserAsync(username, password);
                 if (loginResult.Success)
                 {
                     AfterLogin();
                 }
                 else
                 {
-                    var error = loginResult.Error;
+                    string error = loginResult.Error;
                     if (loginResult.StatusCode == HttpStatusCode.Unauthorized)
                     {
                         error = Translation.Get("Login_Error_msg_Unauthorized");
