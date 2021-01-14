@@ -68,10 +68,7 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<OsEnvironment>().As<IEnvironment>().SingleInstance();
             builder.RegisterType<SystemProcesses>().As<IOsProcesses>().SingleInstance();
             builder.Register(c => 
-                    new SafeSystemNetworkInterfaces(
-                        c.Resolve<ILogger>(),
-                        new SystemNetworkInterfaces(
-                            c.Resolve<ILogger>())))
+                    new SafeSystemNetworkInterfaces(c.Resolve<ILogger>(), new SystemNetworkInterfaces()))
                 .As<INetworkInterfaces>().SingleInstance();
             builder.RegisterType<HttpClients>().As<IHttpClients>().SingleInstance();
             builder.Register(c => Schedulers.FromApplicationDispatcher()).As<IScheduler>().SingleInstance();

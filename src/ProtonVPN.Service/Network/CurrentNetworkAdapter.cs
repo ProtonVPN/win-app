@@ -44,12 +44,10 @@ namespace ProtonVPN.Service.Network
             {
                 if (_serviceSettings.UseTunAdapter)
                 {
-                    return _networkInterfaces.InterfaceIndex(_config.OpenVpn.TunAdapterDescription,
-                        _config.OpenVpn.TunAdapterId);
+                    return _networkInterfaces.InterfaceIndex(_config.OpenVpn.TunAdapterId);
                 }
 
-                return _networkInterfaces.InterfaceIndex(_config.OpenVpn.TapAdapterDescription,
-                    _config.OpenVpn.TapAdapterId);
+                return _networkInterfaces.InterfaceIndex(_config.OpenVpn.TapAdapterId);
             }
         }
 

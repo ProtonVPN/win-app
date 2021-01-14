@@ -45,13 +45,7 @@ namespace ProtonVPN.Common.Configuration
         public byte[] OpenVpnStaticKey { get; internal set; }
 
         [Required]
-        public string TapAdapterDescription { get; internal set; }
-
-        [Required]
         public string TapAdapterId { get; internal set; }
-
-        [Required]
-        public string TunAdapterDescription { get; internal set; }
 
         [Required]
         public string TunAdapterId { get; internal set; }

@@ -54,24 +54,11 @@ namespace ProtonVPN.Common.OS.Net.NetworkInterface
             }
         }
 
-        public INetworkInterface Interface(string interfaceDescription)
+        public uint InterfaceIndex(string hardwareId)
         {
             try
             {
-                return _origin.Interface(interfaceDescription);
-            }
-            catch (NetworkInformationException ex)
-            {
-                _logger.Error($"Failed to retrieve a system network interface: {ex.CombinedMessage()}");
-                return new NullNetworkInterface();
-            }
-        }
-
-        public uint InterfaceIndex(string description, string hardwareId)
-        {
-            try
-            {
-                return _origin.InterfaceIndex(description, hardwareId);
+                return _origin.InterfaceIndex(hardwareId);
             }
             catch (NetworkInformationException ex)
             {

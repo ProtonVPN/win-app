@@ -209,11 +209,7 @@ namespace ProtonVPN.Common.Configuration.Source
 
                     TlsExportCertFolder = Path.Combine(commonAppDataFolder, "ExportCert"),
 
-                    TapAdapterDescription = "TAP-ProtonVPN Windows Adapter V9",
-
                     TapAdapterId = "tapprotonvpn",
-
-                    TunAdapterDescription = "ProtonVPN Tunnel",
 
                     TunAdapterId = "wintun",
                 },
