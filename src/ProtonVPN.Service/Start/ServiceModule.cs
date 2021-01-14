@@ -123,8 +123,7 @@ namespace ProtonVPN.Service.Start
             builder.Register(c =>
                     new SafeSystemNetworkInterfaces(
                         c.Resolve<ILogger>(),
-                        new SystemNetworkInterfaces(
-                            c.Resolve<ILogger>())))
+                        new SystemNetworkInterfaces()))
                 .As<INetworkInterfaces>().SingleInstance();
             builder.RegisterType<PermittedRemoteAddress>().AsSelf().SingleInstance();
             builder.RegisterType<AppFilter>().AsSelf().SingleInstance();

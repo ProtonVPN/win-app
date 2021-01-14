@@ -19,10 +19,9 @@
 
 using System;
 using System.Linq;
-using System.Management;
 using System.Net.NetworkInformation;
-using ProtonVPN.Common.Extensions;
-using ProtonVPN.Common.Logging;
+using System.Security;
+using Microsoft.Win32;
 
 namespace ProtonVPN.Common.OS.Net.NetworkInterface
 {
@@ -31,12 +30,8 @@ namespace ProtonVPN.Common.OS.Net.NetworkInterface
     /// </summary>
     public class SystemNetworkInterfaces : INetworkInterfaces
     {
-        private readonly ILogger _logger;
-
-        public SystemNetworkInterfaces(ILogger logger)
+        public SystemNetworkInterfaces()
         {
-            _logger = logger;
-
             NetworkChange.NetworkAddressChanged += (s, e) => this.NetworkAddressChanged?.Invoke(s, e);
         }
 
@@ -52,67 +47,50 @@ namespace ProtonVPN.Common.OS.Net.NetworkInterface
                 .ToArray();
         }
 
-        public INetworkInterface Interface(string interfaceDescription)
+        public uint InterfaceIndex(string hardwareId)
         {
-            var networkInterface = System.Net.NetworkInformation.NetworkInterface.GetAllNetworkInterfaces()
-                .FirstOrDefault(c => c.Description.StartsWithIgnoringCase(interfaceDescription));
-
-            if (networkInterface != null)
-                return new SystemNetworkInterface(networkInterface);
-
-            _logger.Warn($"Unable to find network interface \"{interfaceDescription}\"");
-            return new NullNetworkInterface();
-        }
-
-        public uint InterfaceIndex(string description, string hardwareId)
-        {
-            //First try to find TAP interface index by description using System.Net.NetworkInformation
-            //as it's faster than querying WMI.
-            var index = Interface(description).Index;
-            if (index == 0)
+            string guid = GetInterfaceGuid(hardwareId);
+            if (!string.IsNullOrEmpty(guid))
             {
-                index = InterfaceIndexByHardwareId(hardwareId);
+                INetworkInterface netInterface = Interfaces().FirstOrDefault(i => i.Id == guid);
+                return netInterface?.Index ?? 0;
             }
 
-            return index;
+            return 0;
         }
 
-        private uint InterfaceIndexByHardwareId(string hardwareId)
+        private string GetInterfaceGuid(string hardwareId)
         {
-            var adapterSearch = new ManagementObjectSearcher("root\\CIMV2",
-                "SELECT PNPDeviceID, ConfigManagerErrorCode, InterfaceIndex FROM Win32_NetworkAdapter");
-            foreach (var networkAdapter in adapterSearch.Get())
+            //This key is consistent across windows and does not change.
+            string keyStr = @"SYSTEM\CurrentControlSet\Control\Class\{4d36e972-e325-11ce-bfc1-08002be10318}";
+            using RegistryKey key = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(keyStr);
+            if (key != null)
             {
-                var pnpDeviceId = (string)networkAdapter["PNPDeviceID"];
-                if (string.IsNullOrEmpty(pnpDeviceId))
+                foreach (string adapterKey in key.GetSubKeyNames())
                 {
-                    continue;
-                }
-
-                var txt = "SELECT HardWareID FROM win32_PNPEntity where DeviceID='" +
-                          pnpDeviceId.Replace("\\", "\\\\") + "'";
-                var deviceSearch = new ManagementObjectSearcher("root\\CIMV2", txt);
-                foreach (var device in deviceSearch.Get())
-                {
-                    var hardwareIds = (string[])device["HardWareID"];
-                    if (hardwareIds != null && hardwareIds.Length > 0)
+                    try
                     {
-                        if (hardwareIds[0] == hardwareId)
+                        RegistryKey adapter = key.OpenSubKey(adapterKey);
+                        if (adapter == null)
                         {
-                            var error = Convert.ToUInt32(networkAdapter["ConfigManagerErrorCode"]);
-                            if (error != 0)
-                            {
-                                _logger.Error("TAP adapter error code: " + error);
-                                return 0;
-                            }
-
-                            return Convert.ToUInt32(networkAdapter["InterfaceIndex"]);
+                            continue;
                         }
+
+                        object componentId = adapter.GetValue("ComponentId");
+                        object adapterGuid = adapter.GetValue("NetCfgInstanceId");
+                        if (componentId?.ToString() == hardwareId)
+                        {
+                            return adapterGuid?.ToString();
+                        }
+                    }
+                    catch (SecurityException)
+                    {
+                        //ignore
                     }
                 }
             }
 
-            return 0;
+            return string.Empty;
         }
     }
 }
