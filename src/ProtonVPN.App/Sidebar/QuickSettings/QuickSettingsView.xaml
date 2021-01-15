@@ -278,6 +278,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                               IsEnabled="{Binding ElementName=SecureCorePopup, Path=IsOpen, Converter={StaticResource InvertedBoolConverter}}"
                                               Active="{Binding IsSecureCoreOnButtonOn}"
                                               Number="0"
+                                              AutomationProperties.AutomationId="{StaticResource SecureCoreButton}"
                                               ToolTip="{translations:Loc SecureCore}"
                                               x:Name="SecureCoreToggle">
                 <quickSettings:QuickSettingButton.Popup>
@@ -307,6 +308,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     <quickSettings:SettingButton Style="{StaticResource FeatureOnOffButton}"
                                                                  Command="{Binding SecureCoreOffCommand}"
                                                                  Active="{Binding IsSecureCoreOffButtonOn}"
+                                                                 AutomationProperties.AutomationId="{StaticResource SecureCoreOffButton}"
                                                                  Title="{translations:Loc QuickSettings_btn_SecureCoreOff}">
                                         <quickSettings:SettingButton.Icon>
                                             <icons:SingleLock Style="{StaticResource Icon}" />
@@ -316,6 +318,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                                  Command="{Binding SecureCoreOnCommand}"
                                                                  Active="{Binding IsSecureCoreOnButtonOn}"
                                                                  IsTurnOnButton="True"
+                                                                 AutomationProperties.AutomationId="{StaticResource SecureCoreOnButton}"
                                                                  Disabled="{Binding IsUserTierPlusOrHigher, Converter={StaticResource InvertedBoolConverter}}"
                                                                  Title="{translations:Loc QuickSettings_btn_SecureCoreOn}">
                                         <quickSettings:SettingButton.Icon>
