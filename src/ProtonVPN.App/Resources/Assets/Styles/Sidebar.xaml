@@ -191,7 +191,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     </Style>
     <Style x:Key="MapSidebarModeButton" TargetType="Button" BasedOn="{StaticResource ClearStyleButton}">
         <Setter Property="Panel.ZIndex" Value="2"/>
-        <Setter Property="Margin" Value="0,20,0,0"/>
+        <Setter Property="Margin" Value="0,72,0,0"/>
         <Setter Property="Padding" Value="0"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="HorizontalAlignment" Value="Left"/>
