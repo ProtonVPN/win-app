@@ -31,6 +31,7 @@ using ProtonVPN.Common.Vpn;
 using ProtonVPN.Service.Contract.Settings;
 using ProtonVPN.Service.Contract.Vpn;
 using ProtonVPN.Service.Settings;
+using ProtonVPN.Service.Vpn;
 using ProtonVPN.Vpn.Common;
 
 namespace ProtonVPN.Service
@@ -48,16 +49,19 @@ namespace ProtonVPN.Service
         private readonly ILogger _logger;
         private readonly IServiceSettings _serviceSettings;
         private readonly ITaskQueue _taskQueue;
+        private readonly NetworkSettings _networkSettings;
 
         private VpnState _state = new VpnState(VpnStatus.Disconnected);
 
         public VpnConnectionHandler(
             KillSwitch.KillSwitch killSwitch,
+            NetworkSettings networkSettings,
             IVpnConnection vpnConnection,
             ILogger logger,
             IServiceSettings serviceSettings,
             ITaskQueue taskQueue)
         {
+            _networkSettings = networkSettings;
             _killSwitch = killSwitch;
             _vpnConnection = vpnConnection;
             _logger = logger;
@@ -79,11 +83,18 @@ namespace ProtonVPN.Service
             var credentials = Map(connectionRequest.Credentials);
             var config = Map(connectionRequest.VpnConfig);
 
-            _vpnConnection.Connect(
-                endpoints,
-                config,
-                protocol,
-                credentials);
+            if (_networkSettings.ApplyNetworkSettings())
+            {
+                _vpnConnection.Connect(
+                    endpoints,
+                    config,
+                    protocol,
+                    credentials);
+            }
+            else
+            {
+                CallbackStateChanged(new VpnState(VpnStatus.Disconnected, VpnError.NoTapAdaptersError));
+            }
 
             return Task.CompletedTask;
         }

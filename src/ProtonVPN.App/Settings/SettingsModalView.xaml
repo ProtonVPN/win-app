@@ -29,7 +29,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         xmlns:settings="clr-namespace:ProtonVPN.Settings"
                         xmlns:splittunneling="clr-namespace:ProtonVPN.Settings.SplitTunneling"
                         xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
-                        xmlns:system="clr-namespace:System;assembly=mscorlib"
                         xmlns:resource="clr-namespace:ProtonVPN.Resource;assembly=ProtonVPN.Resource"
                         mc:Ignorable="d"
                         ResizeMode="NoResize"
@@ -61,40 +60,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 VerticalAlignment="Center"/>
                         </StackPanel>
                     </DataTemplate>
-                    <Style x:Key="NetShieldRadio" TargetType="RadioButton" BasedOn="{StaticResource {x:Type RadioButton}}">
-                        <Setter Property="BorderThickness" Value="2"/>
-                        <Setter Property="Padding" Value="10,0,0,0"/>
-                        <Setter Property="Margin" Value="0,5"/>
-                        <Setter Property="Foreground" Value="White"/>
-                        <Style.Triggers>
-                            <Trigger Property="IsEnabled" Value="False">
-                                <Setter Property="Foreground" Value="Gray"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                    <Style x:Key="UpgradeButton" TargetType="Button" BasedOn="{StaticResource ClearStyleButton}">
-                        <Setter Property="Height" Value="24"/>
-                        <Setter Property="HorizontalAlignment" Value="Right"/>
-                        <Setter Property="Padding" Value="15,0,15,1"/>
-                        <Setter Property="FontSize" Value="14"/>
-                        <Setter Property="Border.CornerRadius" Value="12"/>
-                        <Setter Property="Foreground" Value="White"/>
-                        <Setter Property="Background" Value="{StaticResource PrimaryColor}"/>
-                        <Setter Property="BorderBrush" Value="Transparent"/>
-                        <Setter Property="Visibility" Value="Collapsed"/>
-                        <Setter Property="Command" Value="{Binding UpgradeCommand}"/>
-                        <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="{StaticResource PrimaryColorDimmed}"/>
-                            </Trigger>
-                            <DataTrigger Binding="{Binding NetShieldFullyEnabled}" Value="False">
-                                <Setter Property="Visibility" Value="Visible"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                    <system:Int32 x:Key="IntOne">1</system:Int32>
-                    <system:Int32 x:Key="IntTwo">2</system:Int32>
-                    <system:Int32 x:Key="IntThree">3</system:Int32>
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
@@ -255,57 +220,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                       AutomationProperties.AutomationId="{StaticResource ProtocolCombobox}"/>
                     </DockPanel>
 
-                    <StackPanel Visibility="{Binding NetShieldVisible, Converter={StaticResource BoolToVis}}">
-                        <DockPanel Height="40">
-                            <StackPanel Orientation="Horizontal">
-                                <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Content="{translations:Loc Settings_Connection_lbl_NetShield}"/>
-                                <fa:FontAwesome Icon="InfoCircle"
-                                            VerticalAlignment="Center"
-                                            ToolTip="{translations:Loc Settings_Connection_lbl_NetShield_Info}"
-                                            Foreground="{StaticResource PrimaryColor}"
-                                            FontSize="16"/>
-                            </StackPanel>
-                            <CheckBox Style="{StaticResource ToggleSwitch}"
-                                  Margin="0,0,14,0"
-                                  HorizontalAlignment="Right"
-                                  IsChecked="{Binding NetShieldEnabled}"/>
-
-                        </DockPanel>
-                        <StackPanel Margin="12,0" Visibility="{Binding NetShieldEnabled, Converter={StaticResource BoolToVis}}">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                </Grid.RowDefinitions>
-                                <RadioButton GroupName="NetShieldMode"
-                                         Grid.Row="0"
-                                         Grid.Column="0"
-                                         Grid.ColumnSpan="2"
-                                         IsChecked="{Binding NetShieldMode, Converter={StaticResource ComparisonConverter}, ConverterParameter={StaticResource IntOne}}"
-                                         BorderBrush="{StaticResource PrimaryColor}"
-                                         Style="{StaticResource NetShieldRadio}">
-                                    <TextBlock Text="{translations:Loc Settings_Connection_NetShield_lbl_Level1}" TextWrapping="Wrap"/>
-                                </RadioButton>
-                                <RadioButton GroupName="NetShieldMode"
-                                         Grid.Row="1"
-                                         Grid.Column="0"
-                                         IsChecked="{Binding NetShieldMode, Converter={StaticResource ComparisonConverter}, ConverterParameter={StaticResource IntTwo}}"
-                                         IsEnabled="{Binding NetShieldFullyEnabled}"
-                                         Style="{StaticResource NetShieldRadio}">
-                                    <TextBlock Text="{translations:Loc Settings_Connection_NetShield_lbl_Level2}" TextWrapping="Wrap"/>
-                                </RadioButton>
-                                <Button Style="{StaticResource UpgradeButton}"
-                                    Grid.Row="1"
-                                    Grid.Column="1"
-                                    Content="{translations:Loc Settings_Connection_btn_Upgrade}"/>
-                            </Grid>
-                        </StackPanel>
-                    </StackPanel>
-
                     <DockPanel Height="40">
                         <StackPanel Orientation="Horizontal">
                             <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Content="{translations:Loc Settings_Connection_lbl_CustomDnsServer}"/>
@@ -362,24 +276,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                TextTrimming="CharacterEllipsis"/>
                 </TabItem.Header>
                 <DockPanel Margin="25,20,25,20" LastChildFill="True">
-                    <Border BorderBrush="#464652" Height="40" BorderThickness="0,0,0,1" DockPanel.Dock="Top">
-                        <DockPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Content="{translations:Loc Settings_Advanced_lbl_KillSwitch}"/>
-                                <fa:FontAwesome Icon="InfoCircle"
-                                            VerticalAlignment="Center"
-                                            HorizontalAlignment="Left"
-                                            Foreground="{StaticResource PrimaryColor}"
-                                            FontSize="16"
-                                            ToolTip="{translations:Loc Settings_Advanced_lbl_KillSwitch_Info}"/>
-                            </StackPanel>
-                            <CheckBox HorizontalAlignment="Right"
-                                      Style="{StaticResource ToggleSwitch}"
-                                      IsChecked="{Binding KillSwitch}"
-                                      AutomationProperties.AutomationId="{StaticResource VpnKillswitchCheckbox}"/>
-                        </DockPanel>
-                    </Border>
-
                     <Border BorderBrush="#464652" Height="40" BorderThickness="0,0,0,1" DockPanel.Dock="Top">
                         <DockPanel>
                             <StackPanel Orientation="Horizontal">

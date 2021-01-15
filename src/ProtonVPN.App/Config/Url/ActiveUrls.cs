@@ -53,6 +53,8 @@ namespace ProtonVPN.Config.Url
         public IActiveUrl ProtonTwitterUrl                        => Url(_config.ProtonTwitterUrl);
         public IActiveUrl SupportFormUrl                          => Url(_config.SupportFormUrl);
         public IActiveUrl AlternativeRoutingUrl                   => Url(_config.AlternativeRoutingUrl);
+        public IActiveUrl AboutNetShieldUrl                       => Url(_config.AboutNetShieldUrl);
+        public IActiveUrl AboutKillSwitchUrl                      => Url(_config.AboutKillSwitchUrl);
 
         private ActiveUrl Url(string url)
         {

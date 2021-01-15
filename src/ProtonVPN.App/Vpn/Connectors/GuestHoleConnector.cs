@@ -64,9 +64,14 @@ namespace ProtonVPN.Vpn.Connectors
                 Servers(),
                 VpnProtocol.Auto,
                 VpnConfig(),
-                new VpnCredentials(_config.GuestHoleVpnUsername, _config.GuestHoleVpnPassword));
+                new VpnCredentials(AddSuffixToUsername(_config.GuestHoleVpnUsername), _config.GuestHoleVpnPassword));
 
             await _vpnServiceManager.Connect(request);
+        }
+
+        private string AddSuffixToUsername(string username)
+        {
+            return username + _config.VpnUsernameSuffix;
         }
 
         public async Task Disconnect()

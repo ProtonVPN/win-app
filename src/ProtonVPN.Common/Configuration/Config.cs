@@ -84,7 +84,7 @@ namespace ProtonVPN.Common.Configuration
         public string UpdatesPath { get; internal set; }
 
         [Required]
-        public string SplitTunnelServiceName { get; internal set; }
+        public string CalloutServiceName { get; internal set; }
 
         [Required]
         public string LocalAppDataFolder { get; internal set; }
@@ -127,6 +127,9 @@ namespace ProtonVPN.Common.Configuration
 
         [Required]
         public string GuestHoleVpnPassword { get; internal set; }
+
+        [Required]
+        public string VpnUsernameSuffix { get; set; }
 
         [Range(typeof(TimeSpan), "00:00:10", "10:00:00:00")]
         public TimeSpan UpdateCheckInterval { get; internal set; }

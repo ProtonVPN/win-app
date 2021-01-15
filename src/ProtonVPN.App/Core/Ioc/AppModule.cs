@@ -81,9 +81,9 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<VpnConnectionSpeed>().AsImplementedInterfaces().AsSelf().SingleInstance();
 
             builder.Register(c => new CollectionCache<LogicalServerContract>(
-                c.Resolve<ILogger>(),
-                c.Resolve<ITextSerializerFactory>(),
-                c.Resolve<Common.Configuration.Config>().ServersJsonCacheFilePath))
+                    c.Resolve<ILogger>(),
+                    c.Resolve<ITextSerializerFactory>(),
+                    c.Resolve<Common.Configuration.Config>().ServersJsonCacheFilePath))
                 .As<ICollectionStorage<LogicalServerContract>>()
                 .SingleInstance();
 
@@ -120,7 +120,7 @@ namespace ProtonVPN.Core.Ioc
 
             builder.RegisterType<SortedCountries>().SingleInstance();
             builder.RegisterType<ServerListFactory>().AsImplementedInterfaces().AsSelf().SingleInstance();
-            builder.RegisterInstance((App) Application.Current).SingleInstance();
+            builder.RegisterInstance((App)Application.Current).SingleInstance();
             builder.RegisterType<VpnService>().AsSelf().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<ModalWindows>().As<IModalWindows>().SingleInstance();
             builder.RegisterType<ProtonVPN.Modals.Modals>().As<IModals>().SingleInstance();
@@ -130,7 +130,7 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<SyncedAutoStartup>().AsSelf().As<ISettingsAware>().SingleInstance();
 
             builder.RegisterType<AppSettingsStorage>().SingleInstance();
-            builder.Register(c => 
+            builder.Register(c =>
                     new EnumerableAsJsonSettings(
                         new CachedSettings(
                             new EnumAsStringSettings(
@@ -154,16 +154,21 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<SyncProfile>().SingleInstance();
 
             builder.RegisterType<AppSettings>().AsImplementedInterfaces().SingleInstance();
-            builder.RegisterType<ProtonVPN.Settings.Migrations.v1_7_2.AppSettingsMigration>().AsImplementedInterfaces().SingleInstance();
-            builder.RegisterType<ProtonVPN.Settings.Migrations.v1_7_2.UserSettingsMigration>().AsImplementedInterfaces().SingleInstance();
-            builder.RegisterType<ProtonVPN.Settings.Migrations.v1_8_0.AppSettingsMigration>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<ProtonVPN.Settings.Migrations.v1_7_2.AppSettingsMigration>().AsImplementedInterfaces()
+                .SingleInstance();
+            builder.RegisterType<ProtonVPN.Settings.Migrations.v1_7_2.UserSettingsMigration>().AsImplementedInterfaces()
+                .SingleInstance();
+            builder.RegisterType<ProtonVPN.Settings.Migrations.v1_8_0.AppSettingsMigration>().AsImplementedInterfaces()
+                .SingleInstance();
             builder.Register(c => new ProtonVPN.Settings.Migrations.v1_8_0.UserSettingsMigration(
                     c.Resolve<ISettingsStorage>(),
                     c.Resolve<UserSettings>()))
                 .As<IUserSettingsMigration>()
                 .SingleInstance();
-            builder.RegisterType<ProtonVPN.Settings.Migrations.v1_10_0.AppSettingsMigration>().AsImplementedInterfaces().SingleInstance();
-            builder.RegisterType<ProtonVPN.Settings.Migrations.v1_17_0.AppSettingsMigration>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<ProtonVPN.Settings.Migrations.v1_10_0.AppSettingsMigration>().AsImplementedInterfaces()
+                .SingleInstance();
+            builder.RegisterType<ProtonVPN.Settings.Migrations.v1_17_0.AppSettingsMigration>().AsImplementedInterfaces()
+                .SingleInstance();
 
             builder.RegisterType<MapLineManager>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterType<VpnEvents>();
@@ -176,9 +181,9 @@ namespace ProtonVPN.Core.Ioc
 
             builder.Register(c => new ServiceRetryPolicy(2, TimeSpan.FromSeconds(2))).SingleInstance();
             builder.Register(c =>
-                new VpnSystemService(
-                    new ReliableService(
-                        c.Resolve<ServiceRetryPolicy>(),
+                    new VpnSystemService(
+                        new ReliableService(
+                            c.Resolve<ServiceRetryPolicy>(),
                             new SafeService(
                                 new LoggingService(
                                     c.Resolve<ILogger>(),
@@ -187,9 +192,9 @@ namespace ProtonVPN.Core.Ioc
                                         c.Resolve<IOsProcesses>()))))))
                 .SingleInstance();
             builder.Register(c =>
-                new AppUpdateSystemService(
-                    new ReliableService(
-                        c.Resolve<ServiceRetryPolicy>(),
+                    new AppUpdateSystemService(
+                        new ReliableService(
+                            c.Resolve<ServiceRetryPolicy>(),
                             new SafeService(
                                 new LoggingService(
                                     c.Resolve<ILogger>(),
@@ -200,11 +205,11 @@ namespace ProtonVPN.Core.Ioc
 
             builder.RegisterType<VpnServiceManager>().SingleInstance();
             builder.Register(c => new ServiceStartDecorator(
-                c.Resolve<ILogger>(),
-                c.Resolve<VpnServiceManager>(),
-                c.Resolve<IModals>(),
-                c.Resolve<BaseFilteringEngineService>(),
-                c.Resolve<VpnSystemService>()))
+                    c.Resolve<ILogger>(),
+                    c.Resolve<VpnServiceManager>(),
+                    c.Resolve<IModals>(),
+                    c.Resolve<BaseFilteringEngineService>(),
+                    c.Resolve<VpnSystemService>()))
                 .As<IVpnServiceManager>().SingleInstance();
             builder.RegisterType<VpnManager>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<ServerConnector>().SingleInstance();
@@ -249,8 +254,8 @@ namespace ProtonVPN.Core.Ioc
                 .AsImplementedInterfaces()
                 .SingleInstance();
             builder.Register(c => new LanguageProvider(c.Resolve<ILogger>(),
-                c.Resolve<Common.Configuration.Config>().TranslationsFolder,
-                c.Resolve<Common.Configuration.Config>().DefaultLocale))
+                    c.Resolve<Common.Configuration.Config>().TranslationsFolder,
+                    c.Resolve<Common.Configuration.Config>().DefaultLocale))
                 .As<ILanguageProvider>()
                 .AsSelf()
                 .SingleInstance();
@@ -260,10 +265,11 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<SystemState>().SingleInstance();
             builder.RegisterType<ReconnectManager>().AsImplementedInterfaces().SingleInstance();
             builder.Register(c => new VpnInfoChecker(
-                    c.Resolve<Common.Configuration.Config>().VpnInfoCheckInterval.RandomizedWithDeviation(0.2),
-                    c.Resolve<IEventAggregator>(),
-                    c.Resolve<IApiClient>(),
-                    c.Resolve<IUserStorage>())).SingleInstance();
+                c.Resolve<Common.Configuration.Config>().VpnInfoCheckInterval.RandomizedWithDeviation(0.2),
+                c.Resolve<IEventAggregator>(),
+                c.Resolve<IApiClient>(),
+                c.Resolve<IUserStorage>())).SingleInstance();
+            builder.RegisterType<SettingChangeListener>().AsImplementedInterfaces().AsSelf().SingleInstance();
         }
     }
 }

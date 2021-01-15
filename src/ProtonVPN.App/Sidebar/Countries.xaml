@@ -31,7 +31,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:sidebar="clr-namespace:ProtonVPN.Sidebar"
              xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
              xmlns:wpf="clr-namespace:ProtonVPN.Core.Wpf"
-             xmlns:onboarding="clr-namespace:ProtonVPN.Onboarding"
+             xmlns:quickSettings="clr-namespace:ProtonVPN.Sidebar.QuickSettings"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="300"
@@ -163,7 +163,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Setter Property="FontSize" Value="16"/>
             <Setter Property="Foreground" Value="{StaticResource GrayColor}"/>
             <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Margin" Value="59,0,0,0"/>
             <Setter Property="IsHitTestVisible" Value="False"/>
             <Setter Property="Text" Value="{translations:Loc Sidebar_Countries_lbl_Search_Watermark}"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
@@ -178,28 +177,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </Style.Triggers>
         </Style>
         <Style x:Key="SearchInput" TargetType="TextBox">
-            <Setter Property="Height" Value="48"/>
             <Setter Property="FontSize" Value="16"/>
             <Setter Property="Foreground" Value="{StaticResource GrayColor}"/>
             <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Margin" Value="59,0,30,0"/>
             <Setter Property="CaretBrush" Value="{StaticResource GrayColor}"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Text" Value="{Binding SearchValue, UpdateSourceTrigger=PropertyChanged}"/>
-        </Style>
-        <Style x:Key="SecureCoreLabel" TargetType="Label">
-            <Setter Property="Foreground" Value="{StaticResource GrayColor}"/>
-            <Setter Property="FontSize" Value="16"/>
-            <Setter Property="Margin" Value="5,0,0,0"/>
-            <Setter Property="Padding" Value="5,0,0,2"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding SecureCore}" Value="True">
-                    <Setter Property="Foreground" Value="White"/>
-                </DataTrigger>
-            </Style.Triggers>
         </Style>
         <Style x:Key="ServerFeatures" TargetType="sidebar:ServerFeatures">
             <Setter Property="Visibility" Value="Visible"/>
@@ -298,65 +284,47 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Border Grid.Row="0" BorderThickness="0,0,0,1" BorderBrush="#3b3b43" Padding="0,15">
-            <StackPanel Margin="27,0,0,0" Orientation="Horizontal">
-                <CheckBox x:Name="SecureCoreSwitch"
-                          IsChecked="{Binding SecureCore}"
-                          Command="{Binding ToggleSecureCoreCommand}"
-                          FocusVisualStyle="{x:Null}"
-                          HorizontalAlignment="Right"
-                          AutomationProperties.AutomationId="{StaticResource SecureCoreCheckbox}"
-                          Style="{StaticResource ToggleSwitch}"/>
-                <Label Style="{StaticResource SecureCoreLabel}" Content="{translations:Loc Sidebar_Countries_lbl_SecureCore}"/>
-                <fa:FontAwesome
-                    Icon="InfoCircle"
-                    Padding="9,4,0,0"
-                    ToolTip="{translations:Loc Sidebar_Countries_lbl_SecureCore_Info}"
-                    Foreground="{StaticResource PrimaryColor}"
-                    FontSize="16"/>
-            </StackPanel>
-        </Border>
-        <onboarding:Step Number="4"
-                       Grid.Row="0"
-                       HorizontalAlignment="Right"
-                       Margin="0,0,80,0">
-            <onboarding:Step.Style>
-                <Style TargetType="onboarding:Step">
-                    <Setter Property="Visibility" Value="Collapsed"/>
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding ShowFourthOnboardingStep}" Value="True">
-                            <Setter Property="Visibility" Value="Visible"/>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </onboarding:Step.Style>
-        </onboarding:Step>
+        <quickSettings:QuickSettingsView Grid.Row="0"
+                                         DataContext="{Binding QuickSettingsViewModel}"/>
         <Grid Grid.Row="1" Visibility="{c:Binding '!SecureCore'}">
-            <Border BorderBrush="#3b3b43" BorderThickness="0,0,0,1"/>
-            <fa:FontAwesome Icon="Search"
-                            FontSize="16"
-                            VerticalAlignment="Center"
-                            Foreground="{StaticResource GrayColor}"
-                            HorizontalAlignment="Left"
-                            Margin="30,0,0,0"/>
-            <Grid>
-                <TextBox Style="{StaticResource SearchInput}" x:Name="SearchInput"/>
-                <TextBlock Style="{StaticResource SearchPlaceholder}"/>
-                <Button Style="{StaticResource ClearStyleButton}"
-                        Visibility="{Binding SearchNotEmpty, Converter={StaticResource BoolToVis}}"
-                        HorizontalAlignment="Right"
-                        Background="Transparent"
-                        BorderThickness="0"
-                        Margin="0,0,10,0"
-                        Command="{Binding ClearSearchCommand}"
-                        VerticalAlignment="Center">
-                    <fa:FontAwesome Icon="Times"
+            <Border CornerRadius="2"
+                    Width="270"
+                    Background="#2a2a33"
+                    BorderBrush="#484850"
+                    BorderThickness="1"
+                    Margin="0,0,0,10"
+                    Height="40">
+                <DockPanel>
+                    <fa:FontAwesome Icon="Search"
                                     FontSize="16"
-                                    Cursor="Hand"
-                                    Foreground="{StaticResource GrayColor}"/>
-                </Button>
-
-            </Grid>
+                                    VerticalAlignment="Center"
+                                    Foreground="{StaticResource GrayColor}"
+                                    HorizontalAlignment="Left"
+                                    Margin="10,0,0,0"/>
+                    <Grid Margin="10,0,0,0" VerticalAlignment="Center">
+                        <TextBox Style="{StaticResource SearchInput}"
+                                 x:Name="SearchInput"
+                                 Foreground="White"
+                                 VerticalAlignment="Center"/>
+                        <TextBlock Style="{StaticResource SearchPlaceholder}" HorizontalAlignment="Stretch"/>
+                        <Button Style="{StaticResource ClearStyleButton}"
+                                Visibility="{Binding SearchNotEmpty, Converter={StaticResource BoolToVis}}"
+                                HorizontalAlignment="Right"
+                                Background="Transparent"
+                                BorderThickness="0"
+                                Margin="0,0,10,0"
+                                Command="{Binding ClearSearchCommand}"
+                                VerticalAlignment="Center">
+                            <fa:FontAwesome Icon="TimesCircle"
+                                            FontSize="18"
+                                            VerticalAlignment="Center"
+                                            Cursor="Hand"
+                                            Padding="0"
+                                            Foreground="{StaticResource GrayColor}"/>
+                        </Button>
+                    </Grid>
+                </DockPanel>
+            </Border>
         </Grid>
 
         <wpf:CustomListView x:Name="ListView"

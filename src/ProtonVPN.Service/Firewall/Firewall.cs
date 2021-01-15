@@ -23,6 +23,7 @@ using System.Linq;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.OS.Net.NetworkInterface;
 using ProtonVPN.NetworkFilter;
+using ProtonVPN.Service.Driver;
 using Action = ProtonVPN.NetworkFilter.Action;
 
 namespace ProtonVPN.Service.Firewall
@@ -30,6 +31,7 @@ namespace ProtonVPN.Service.Firewall
     internal class Firewall : IFirewall
     {
         private readonly ILogger _logger;
+        private readonly IDriver _calloutDriver;
         private readonly Common.Configuration.Config _config;
         private readonly INetworkInterfaces _networkInterfaces;
         private readonly IpLayer _ipLayer;
@@ -37,10 +39,12 @@ namespace ProtonVPN.Service.Firewall
         private FirewallParams _lastParams = FirewallParams.Null;
 
         private readonly List<ValueTuple<string, List<Guid>>> _serverAddressFilters = new List<ValueTuple<string, List<Guid>>>();
+        private readonly Guid _networkLayerCalloutGuid = Guid.Parse("{10636af3-50d6-4f53-acb7-d5af33217fcb}");
         private readonly List<Guid> _baseProtectionFilters = new List<Guid>();
 
         public Firewall(
             ILogger logger,
+            IDriver calloutDriver,
             Common.Configuration.Config config,
             INetworkInterfaces networkInterfaces,
             IpLayer ipLayer,
@@ -51,6 +55,7 @@ namespace ProtonVPN.Service.Firewall
             _networkInterfaces = networkInterfaces;
             _ipLayer = ipLayer;
             _sublayer = sublayer;
+            _calloutDriver = calloutDriver;
         }
 
         public bool LeakProtectionEnabled { get; private set; }
@@ -64,12 +69,14 @@ namespace ProtonVPN.Service.Firewall
                 return;
             }
 
+            _calloutDriver.Start();
+
             try
             {
                 _logger.Info("Firewall: Blocking internet");
 
-                var tapInterface = _networkInterfaces.Interface(_config.OpenVpn.TapAdapterDescription);
-                EnableDnsLeakProtection(tapInterface.Id);
+                var tapInterfaceIndex = _networkInterfaces.InterfaceIndex(_config.OpenVpn.TapAdapterDescription, _config.OpenVpn.TapAdapterId);
+                EnableDnsLeakProtection(tapInterfaceIndex);
 
                 if (firewallParams.DnsLeakOnly)
                 {
@@ -77,7 +84,7 @@ namespace ProtonVPN.Service.Firewall
                 }
                 else
                 {
-                    EnableBaseLeakProtection(tapInterface.Id);
+                    EnableBaseLeakProtection(tapInterfaceIndex);
                 }
 
                 LeakProtectionEnabled = true;
@@ -102,9 +109,11 @@ namespace ProtonVPN.Service.Firewall
                 _logger.Info("Firewall: Restoring internet");
 
                 _sublayer.DestroyAllFilters();
+                _sublayer.DestroyAllCallouts();
                 _serverAddressFilters.Clear();
                 _baseProtectionFilters.Clear();
                 LeakProtectionEnabled = false;
+                _calloutDriver.Stop();
 
                 _logger.Info("Firewall: Internet restored");
             }
@@ -120,21 +129,20 @@ namespace ProtonVPN.Service.Firewall
             _baseProtectionFilters.Clear();
         }
 
-        private void EnableDnsLeakProtection(string tapId)
+        private void EnableDnsLeakProtection(uint tapInterfaceIndex)
         {
             if (LeakProtectionEnabled)
             {
                 return;
             }
 
-            BlockDns(3);
-            PermitTunnelDns(tapId, 4);
+            BlockOutsideDns(3, tapInterfaceIndex);
         }
 
-        private void EnableBaseLeakProtection(string tapId)
+        private void EnableBaseLeakProtection(uint tapInterfaceIndex)
         {
             PermitDhcp(4);
-            PermitFromNetworkInterface(tapId, 4);
+            PermitFromNetworkInterface(tapInterfaceIndex, 4);
             PermitFromApp(4);
             PermitFromService(4);
             PermitFromUpdateService(4);
@@ -147,26 +155,28 @@ namespace ProtonVPN.Service.Firewall
             BlockAllIpv6Network(1);
         }
 
-        private void PermitTunnelDns(string id, uint weight)
+        private void BlockOutsideDns(uint weight, uint tapInterfaceIndex)
         {
-            _ipLayer.ApplyToIpv4(layer =>
-            {
-                _sublayer.CreateNetInterfaceDnsFilter(
-                    new DisplayData("ProtonVPN permit VPN tunnel", "Permit TAP adapter traffic"),
-                    Action.HardPermit,
-                    layer,
-                    weight,
-                    id);
-            });
-        }
+            var callout = _sublayer.CreateCallout(
+                new DisplayData
+                {
+                    Name = "ProtonVPN block dns callout",
+                    Description = "Sends server failure packet response for non TAP DNS queries.",
+                },
+                _networkLayerCalloutGuid,
+                Layer.OutboundIPPacketV4);
 
-        private void BlockDns(uint weight)
-        {
+            _sublayer.BlockOutsideDns(new DisplayData("ProtonVPN block DNS", "Block outside dns"),
+                Layer.OutboundIPPacketV4,
+                weight,
+                callout,
+                tapInterfaceIndex);
+
             _ipLayer.ApplyToIpv4(layer =>
             {
-                _sublayer.CreateRemoteTcpPortFilter(new DisplayData(
-                        "ProtonVPN block DNS", "Block TCP 53 port"),
-                    Action.HardBlock,
+                _sublayer.CreateRemoteUdpPortFilter(new DisplayData(
+                        "ProtonVPN DNS filter", "Permit UDP 53 port so we can block it at network layer"),
+                    Action.HardPermit,
                     layer,
                     weight,
                     53);
@@ -174,9 +184,8 @@ namespace ProtonVPN.Service.Firewall
 
             _ipLayer.ApplyToIpv4(layer =>
             {
-                _sublayer.CreateRemoteUdpPortFilter(new DisplayData(
-                        "ProtonVPN block DNS",
-                        "Block UDP 53 port"),
+                _sublayer.CreateRemoteTcpPortFilter(new DisplayData(
+                        "ProtonVPN block DNS", "Block TCP 53 port"),
                     Action.HardBlock,
                     layer,
                     weight,
@@ -218,7 +227,7 @@ namespace ProtonVPN.Service.Firewall
             });
         }
 
-        private void PermitFromNetworkInterface(string id, uint weight)
+        private void PermitFromNetworkInterface(uint tapInterfaceIndex, uint weight)
         {
             _ipLayer.ApplyToIpv4(layer =>
             {
@@ -227,7 +236,7 @@ namespace ProtonVPN.Service.Firewall
                     Action.SoftPermit,
                     layer,
                     weight,
-                    id));
+                    tapInterfaceIndex));
             });
 
             _ipLayer.ApplyToIpv6(layer =>
@@ -237,7 +246,7 @@ namespace ProtonVPN.Service.Firewall
                     Action.SoftPermit,
                     layer,
                     weight,
-                    id));
+                    tapInterfaceIndex));
             });
         }
 

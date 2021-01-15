@@ -9,8 +9,8 @@
 
 namespace ipfilter
 {
-    NetInterface::NetInterface(const std::string& name, uint64_t localId):
-        name(name), localId(localId)
+    NetInterface::NetInterface(const std::string& name, uint64_t localId, ULONG index):
+        name(name), localId(localId), index(index)
     {
     }
 
@@ -22,6 +22,11 @@ namespace ipfilter
     uint64_t NetInterface::getLocalId() const
     {
         return this->localId;
+    }
+
+    ULONG NetInterface::getIndex() const
+    {
+        return this->index;
     }
 
     std::vector<NetInterface> getNetworkInterfaces()
@@ -49,23 +54,23 @@ namespace ipfilter
         auto address = buffer.as<IP_ADAPTER_ADDRESSES_LH>();
         while (address)
         {
-            ifaces.push_back(NetInterface(address->AdapterName, address->Luid.Value));
+            ifaces.push_back(NetInterface(address->AdapterName, address->Luid.Value, address->IfIndex));
             address = address->Next;
         }
 
         return ifaces;
     }
 
-    std::vector<NetInterface>::iterator findNetworkInterfaceByName(
+    std::vector<NetInterface>::iterator findNetworkInterfaceByIndex(
         std::vector<NetInterface>& interfaces,
-        const std::string& name)
+        ULONG index)
     {
         return std::find_if(
             interfaces.begin(),
             interfaces.end(),
-            [&name](const auto& netInterface)
+            [&index](const auto& netInterface)
             {
-                return netInterface.getName() == name;
+                return netInterface.getIndex() == index;
             });
     }
 }

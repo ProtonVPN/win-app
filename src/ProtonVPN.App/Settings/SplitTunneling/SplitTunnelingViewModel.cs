@@ -24,11 +24,14 @@ using ProtonVPN.Core.Settings;
 
 namespace ProtonVPN.Settings.SplitTunneling
 {
-    public class SplitTunnelingViewModel: ViewModel, ISettingsAware
+    public class SplitTunnelingViewModel : ViewModel, ISettingsAware
     {
         private readonly IAppSettings _appSettings;
 
-        public SplitTunnelingViewModel(IAppSettings appSettings, AppListViewModel apps, SplitTunnelingIpListViewModel ips)
+        public SplitTunnelingViewModel(
+            IAppSettings appSettings,
+            AppListViewModel apps,
+            SplitTunnelingIpListViewModel ips)
         {
             _appSettings = appSettings;
             Apps = apps;
@@ -40,6 +43,11 @@ namespace ProtonVPN.Settings.SplitTunneling
             get => _appSettings.SplitTunnelingEnabled;
             set
             {
+                if (value)
+                {
+                    _appSettings.KillSwitch = false;
+                }
+
                 _appSettings.SplitTunnelingEnabled = value;
                 OnPropertyChanged(nameof(Enabled));
             }
@@ -60,6 +68,7 @@ namespace ProtonVPN.Settings.SplitTunneling
         public IpListViewModel Ips { get; }
 
         private bool _disconnected;
+
         public bool Disconnected
         {
             get => _disconnected;

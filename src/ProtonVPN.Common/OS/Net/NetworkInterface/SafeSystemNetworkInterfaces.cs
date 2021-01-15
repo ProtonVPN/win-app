@@ -37,7 +37,7 @@ namespace ProtonVPN.Common.OS.Net.NetworkInterface
 
         public event EventHandler NetworkAddressChanged
         {
-            add => _origin.NetworkAddressChanged += value; 
+            add => _origin.NetworkAddressChanged += value;
             remove => _origin.NetworkAddressChanged -= value;
         }
 
@@ -64,6 +64,19 @@ namespace ProtonVPN.Common.OS.Net.NetworkInterface
             {
                 _logger.Error($"Failed to retrieve a system network interface: {ex.CombinedMessage()}");
                 return new NullNetworkInterface();
+            }
+        }
+
+        public uint InterfaceIndex(string description, string hardwareId)
+        {
+            try
+            {
+                return _origin.InterfaceIndex(description, hardwareId);
+            }
+            catch (NetworkInformationException ex)
+            {
+                _logger.Error($"Failed to retrieve a system network interface: {ex.CombinedMessage()}");
+                return 0;
             }
         }
     }

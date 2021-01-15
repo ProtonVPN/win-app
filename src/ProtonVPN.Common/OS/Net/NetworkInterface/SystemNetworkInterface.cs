@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using ProtonVPN.Common.Helpers;
 using System.Net.NetworkInformation;
 
@@ -45,5 +46,14 @@ namespace ProtonVPN.Common.OS.Net.NetworkInterface
         public bool IsLoopback => _networkInterface.NetworkInterfaceType == NetworkInterfaceType.Loopback;
 
         public bool IsActive => _networkInterface.OperationalStatus == OperationalStatus.Up;
+
+        public uint Index
+        {
+            get
+            {
+                var props = _networkInterface.GetIPProperties().GetIPv4Properties();
+                return props != null ? Convert.ToUInt32(props.Index) : 0;
+            }
+        }
     }
 }

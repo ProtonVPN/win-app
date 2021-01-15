@@ -49,5 +49,7 @@ namespace ipfilter
                                 const value::ApplicationId& appId);
 
         Condition netInterface(matcher::Matcher matcher, const NetInterface& iface);
+
+        Condition netInterfaceIndex(matcher::Matcher matcher, const NetInterface& iface);
     }
 }

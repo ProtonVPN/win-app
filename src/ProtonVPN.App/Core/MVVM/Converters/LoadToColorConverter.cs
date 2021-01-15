@@ -29,7 +29,9 @@ namespace ProtonVPN.Core.MVVM.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value == null)
+            {
                 return "#ea4c21";
+            }
 
             var load = (int)value;
 

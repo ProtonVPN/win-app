@@ -31,7 +31,6 @@ using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
-using ProtonVPN.Core.User;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Modals;
 using ProtonVPN.Profiles;
@@ -42,13 +41,12 @@ using ProtonVPN.Translations;
 
 namespace ProtonVPN.Settings
 {
-    public class SettingsModalViewModel : BaseModalViewModel, IVpnStateAware, IUserDataAware
+    public class SettingsModalViewModel : BaseModalViewModel, IVpnStateAware
     {
         private readonly IAppSettings _appSettings;
         private readonly IVpnManager _vpnManager;
         private readonly ProfileViewModelFactory _profileViewModelFactory;
         private readonly IDialogs _dialogs;
-        private readonly IUserStorage _userStorage;
         private readonly IActiveUrls _urls;
         private readonly ILanguageProvider _languageProvider;
         private readonly ReconnectState _reconnectState;
@@ -67,7 +65,6 @@ namespace ProtonVPN.Settings
         public SettingsModalViewModel(
             IAppSettings appSettings,
             IVpnManager vpnManager,
-            IUserStorage userStorage,
             IDialogs dialogs,
             IActiveUrls urls,
             ILanguageProvider languageProvider,
@@ -80,7 +77,6 @@ namespace ProtonVPN.Settings
             _appSettings = appSettings;
             _vpnManager = vpnManager;
             _profileViewModelFactory = profileViewModelFactory;
-            _userStorage = userStorage;
             _urls = urls;
             _languageProvider = languageProvider;
             _reconnectState = reconnectState;
@@ -96,8 +92,6 @@ namespace ProtonVPN.Settings
         public ICommand UpgradeCommand { get; set; }
 
         public IpListViewModel Ips { get; }
-
-        public bool NetShieldVisible => _appSettings.FeatureNetShieldEnabled;
 
         private bool _changesPending;
         public bool ChangesPending
@@ -151,16 +145,6 @@ namespace ProtonVPN.Settings
             }
         }
 
-        public bool KillSwitch
-        {
-            get => _appSettings.KillSwitch;
-            set
-            {
-                _appSettings.KillSwitch = value;
-                NotifyOfPropertyChange();
-            }
-        }
-
         public bool Ipv6LeakProtection
         {
             get => _appSettings.Ipv6LeakProtection;
@@ -193,7 +177,7 @@ namespace ProtonVPN.Settings
             get => _appSettings.CustomDnsEnabled;
             set
             {
-                if (value && _appSettings.NetShieldEnabled)
+                if (value && _appSettings.IsNetShieldEnabled())
                 {
                     var result =_dialogs.ShowQuestion(Translation.Get("Settings_Connection_Warning_CustomDnsServer"));
                     if (result.HasValue && !result.Value)
@@ -201,50 +185,10 @@ namespace ProtonVPN.Settings
                         return;
                     }
 
-                    NetShieldEnabled = false;
+                    _appSettings.NetShieldEnabled = false;
                 }
 
                 _appSettings.CustomDnsEnabled = value;
-                NotifyOfPropertyChange();
-            }
-        }
-
-        public bool NetShieldEnabled
-        {
-            get => _appSettings.NetShieldEnabled;
-            set
-            {
-                if (value && !_appSettings.NetShieldModalShown)
-                {
-                    _dialogs.ShowWarning(
-                        Translation.Get("NetShieldModal_msg"),
-                        Translation.Get("NetShieldModal_btn_GotIt"));
-
-                    _appSettings.NetShieldModalShown = true;
-                }
-
-                if (value && _appSettings.CustomDnsEnabled)
-                {
-                    var result = _dialogs.ShowQuestion(Translation.Get("Settings_Connection_Warning_NetShield"));
-                    if (result.HasValue && !result.Value)
-                    {
-                        return;
-                    }
-
-                    CustomDnsEnabled = false;
-                }
-
-                _appSettings.NetShieldEnabled = value;
-                NotifyOfPropertyChange();
-            }
-        }
-
-        public int NetShieldMode
-        {
-            get => _appSettings.NetShieldMode;
-            set
-            {
-                _appSettings.NetShieldMode = value;
                 NotifyOfPropertyChange();
             }
         }
@@ -351,7 +295,6 @@ namespace ProtonVPN.Settings
         protected override async void OnActivate()
         {
             SetDisconnected();
-            SetKillSwitchEnabled();
             await LoadProfiles();
             SplitTunnelingViewModel.OnActivate();
             RefreshReconnectRequiredState(string.Empty);
@@ -377,23 +320,24 @@ namespace ProtonVPN.Settings
 
             if (e.PropertyName.Equals(nameof(IAppSettings.StartOnStartup)))
             {
-                OnPropertyChanged(new PropertyChangedEventArgs(nameof(StartOnStartup)));
+                NotifyOfPropertyChange(nameof(StartOnStartup));
             }
             else if (e.PropertyName.Equals(nameof(IAppSettings.Profiles)))
             {
                 await LoadProfiles();
             }
-            else if (e.PropertyName.Equals(nameof(IAppSettings.SplitTunnelMode)))
-            {
-                SetKillSwitchEnabled();
-            }
-            else if (e.PropertyName.Equals(nameof(IAppSettings.SplitTunnelingEnabled)))
-            {
-                SetKillSwitchEnabled();
-            }
             else if (e.PropertyName.Equals(nameof(IAppSettings.Language)))
             {
                 OnLanguageChanged();
+            }
+            else if (e.PropertyName.Equals(nameof(IAppSettings.FeatureNetShieldEnabled)) ||
+                     e.PropertyName.Equals(nameof(IAppSettings.NetShieldMode)) ||
+                     e.PropertyName.Equals(nameof(IAppSettings.NetShieldEnabled)))
+            {
+                if (_appSettings.IsNetShieldEnabled())
+                {
+                    _appSettings.CustomDnsEnabled = false;
+                }
             }
 
             RefreshReconnectRequiredState(e.PropertyName);
@@ -410,19 +354,6 @@ namespace ProtonVPN.Settings
             NotifyOfPropertyChange(() => StartMinimized);
 
             await LoadProfiles();
-        }
-
-        public void OnUserDataChanged()
-        {
-            SetNetShieldPermissions();
-        }
-
-        private void SetKillSwitchEnabled()
-        {
-            if (!_appSettings.SplitTunnelingEnabled)
-                return;
-
-            KillSwitch = false;
         }
 
         private void SetDisconnected()
@@ -493,15 +424,6 @@ namespace ProtonVPN.Settings
         private async void ReconnectAction()
         {
             await _vpnManager.Reconnect();
-        }
-
-        private void SetNetShieldPermissions()
-        {
-            NetShieldFullyEnabled = _userStorage.User().MaxTier > 0;
-            if (!NetShieldFullyEnabled)
-            {
-                NetShieldMode = 1;
-            }
         }
 
         private void UpgradeAction()

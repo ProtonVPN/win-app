@@ -17,10 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
-
 namespace ProtonVPN.Sidebar
 {
     public partial class Countries
@@ -28,14 +24,6 @@ namespace ProtonVPN.Sidebar
         public Countries()
         {
             InitializeComponent();
-
-            SecureCoreSwitch.Checked += SecureCoreSwitchChecked;
-            SecureCoreSwitch.Unchecked += SecureCoreSwitchChecked;
-        }
-
-        private static void SecureCoreSwitchChecked(object sender, RoutedEventArgs e)
-        {
-            ((CheckBox)sender).GetBindingExpression(ToggleButton.IsCheckedProperty)?.UpdateTarget();
         }
     }
 }

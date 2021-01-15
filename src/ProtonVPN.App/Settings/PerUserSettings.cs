@@ -19,6 +19,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.OS.Crypto;
@@ -29,6 +30,7 @@ namespace ProtonVPN.Settings
     internal class PerUserSettings : ISettingsStorage, ILoggedInAware, ILogoutAware
     {
         private const string KeyPrefix = "User";
+        private const string DefaultKeySuffix = "Default";
         private const string UserKey = "Username";
         private readonly ISettingsStorage _storage;
         private readonly Dictionary<string, object> _cache = new Dictionary<string, object>();
@@ -42,10 +44,12 @@ namespace ProtonVPN.Settings
         public T Get<T>(string key)
         {
             if (_cache.TryGetValue(key, out object cachedValue))
-                return cachedValue is T result ? result : default(T);
+                return cachedValue is T result ? result : default;
 
             var perUser = _storage.Get<PerUser<T>[]>(PerUserKey(key))?.SingleOrDefault(i => i.User == User);
-            var value = perUser != null ? perUser.Value : default(T);
+            var value = perUser != null
+                ? perUser.Value
+                : GetDefault<T>(key);
 
             _cache[key] = value;
             return value;
@@ -79,7 +83,20 @@ namespace ProtonVPN.Settings
             _user = string.Empty;
         }
 
+        private T GetDefault<T>(string key)
+        {
+            try
+            {
+                return _storage.Get<T>(PerUserDefaultKey(key));
+            }
+            catch (SettingsPropertyNotFoundException)
+            {
+                return default;
+            }
+        }
+
         private string PerUserKey(string key) => KeyPrefix + key;
+        private string PerUserDefaultKey(string key) => KeyPrefix + key + DefaultKeySuffix;
 
         private string User
         {

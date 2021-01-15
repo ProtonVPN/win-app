@@ -41,7 +41,7 @@ namespace ProtonVPN.Service.Test.Vpn
         {
             // Arrange
             var wasRaised = false;
-            _interfaces.Interfaces().Returns(new INetworkInterface[] { new TestNetworkInterface("n1") });
+            _interfaces.Interfaces().Returns(new INetworkInterface[] {new TestNetworkInterface("n1")});
             var subject = new ObservableNetworkInterfaces(_interfaces);
             subject.NetworkInterfacesAdded += (s, e) => wasRaised = true;
 
@@ -57,12 +57,13 @@ namespace ProtonVPN.Service.Test.Vpn
         {
             // Arrange
             var wasRaised = false;
-            _interfaces.Interfaces().Returns(new INetworkInterface[] { new TestNetworkInterface("n1") });
+            _interfaces.Interfaces().Returns(new INetworkInterface[] {new TestNetworkInterface("n1")});
             var subject = new ObservableNetworkInterfaces(_interfaces);
             subject.NetworkInterfacesAdded += (s, e) => wasRaised = true;
             _interfaces.NetworkAddressChanged += Raise.Event();
 
-            _interfaces.Interfaces().Returns(new INetworkInterface[] { new TestNetworkInterface("n1"), new TestNetworkInterface("n2") });
+            _interfaces.Interfaces()
+                .Returns(new INetworkInterface[] {new TestNetworkInterface("n1"), new TestNetworkInterface("n2")});
             wasRaised = false;
 
             // Act
@@ -77,12 +78,12 @@ namespace ProtonVPN.Service.Test.Vpn
         {
             // Arrange
             var wasRaised = false;
-            _interfaces.Interfaces().Returns(new INetworkInterface[] { new TestNetworkInterface("n1") });
+            _interfaces.Interfaces().Returns(new INetworkInterface[] {new TestNetworkInterface("n1")});
             var subject = new ObservableNetworkInterfaces(_interfaces);
             subject.NetworkInterfacesAdded += (s, e) => wasRaised = true;
             _interfaces.NetworkAddressChanged += Raise.Event();
 
-            _interfaces.Interfaces().Returns(new INetworkInterface[] { new TestNetworkInterface("n2") });
+            _interfaces.Interfaces().Returns(new INetworkInterface[] {new TestNetworkInterface("n2")});
             wasRaised = false;
 
             // Act
@@ -97,12 +98,14 @@ namespace ProtonVPN.Service.Test.Vpn
         {
             // Arrange
             var wasRaised = false;
-            _interfaces.Interfaces().Returns(new INetworkInterface[] { new TestNetworkInterface("n1"), new TestNetworkInterface("n2") });
+            _interfaces.Interfaces()
+                .Returns(new INetworkInterface[] {new TestNetworkInterface("n1"), new TestNetworkInterface("n2")});
             var subject = new ObservableNetworkInterfaces(_interfaces);
             subject.NetworkInterfacesAdded += (s, e) => wasRaised = true;
             _interfaces.NetworkAddressChanged += Raise.Event();
 
-            _interfaces.Interfaces().Returns(new INetworkInterface[] { new TestNetworkInterface("n1"), new TestNetworkInterface("n2") });
+            _interfaces.Interfaces()
+                .Returns(new INetworkInterface[] {new TestNetworkInterface("n1"), new TestNetworkInterface("n2")});
             wasRaised = false;
 
             // Act
@@ -117,12 +120,13 @@ namespace ProtonVPN.Service.Test.Vpn
         {
             // Arrange
             var wasRaised = false;
-            _interfaces.Interfaces().Returns(new INetworkInterface[] { new TestNetworkInterface("n1"), new TestNetworkInterface("n2") });
+            _interfaces.Interfaces()
+                .Returns(new INetworkInterface[] {new TestNetworkInterface("n1"), new TestNetworkInterface("n2")});
             var subject = new ObservableNetworkInterfaces(_interfaces);
             subject.NetworkInterfacesAdded += (s, e) => wasRaised = true;
             _interfaces.NetworkAddressChanged += Raise.Event();
 
-            _interfaces.Interfaces().Returns(new INetworkInterface[] { new TestNetworkInterface("n2") });
+            _interfaces.Interfaces().Returns(new INetworkInterface[] {new TestNetworkInterface("n2")});
             wasRaised = false;
 
             // Act
@@ -137,7 +141,7 @@ namespace ProtonVPN.Service.Test.Vpn
         {
             // Arrange
             var wasRaised = false;
-            _interfaces.Interfaces().Returns(new INetworkInterface[] { new TestNetworkInterface("n1") });
+            _interfaces.Interfaces().Returns(new INetworkInterface[] {new TestNetworkInterface("n1")});
             var subject = new ObservableNetworkInterfaces(_interfaces);
             subject.NetworkInterfacesAdded += (s, e) => wasRaised = true;
             _interfaces.NetworkAddressChanged += Raise.Event();
@@ -157,7 +161,7 @@ namespace ProtonVPN.Service.Test.Vpn
         {
             // Arrange
             var wasRaised = false;
-            _interfaces.Interfaces().Returns(new INetworkInterface[] { new TestNetworkInterface("n1") });
+            _interfaces.Interfaces().Returns(new INetworkInterface[] {new TestNetworkInterface("n1")});
             var subject = new ObservableNetworkInterfaces(_interfaces);
             subject.NetworkInterfacesAdded += (s, e) => wasRaised = true;
             _interfaces.NetworkAddressChanged += Raise.Event();
@@ -165,7 +169,7 @@ namespace ProtonVPN.Service.Test.Vpn
             _interfaces.Interfaces().Returns(new INetworkInterface[] { });
             _interfaces.NetworkAddressChanged += Raise.Event();
 
-            _interfaces.Interfaces().Returns(new INetworkInterface[] { new TestNetworkInterface("n1") });
+            _interfaces.Interfaces().Returns(new INetworkInterface[] {new TestNetworkInterface("n1")});
             wasRaised = false;
 
             // Act
@@ -193,6 +197,8 @@ namespace ProtonVPN.Service.Test.Vpn
             public bool IsLoopback => false;
 
             public bool IsActive => false;
+
+            public uint Index => 0;
         }
 
         #endregion

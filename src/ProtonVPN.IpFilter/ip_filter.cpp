@@ -146,6 +146,13 @@ unsigned int IPFilterCreateCallout(
     return result;
 }
 
+unsigned int IPFilterDestroyCallout(
+    IPFilterSessionHandle sessionHandle,
+    GUID* calloutKey)
+{
+    return FwpmCalloutDeleteByKey0(sessionHandle, calloutKey);
+}
+
 unsigned int IPFilterCreateSublayer(
     IPFilterSessionHandle sessionHandle,
     GUID* providerKey,

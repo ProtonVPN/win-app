@@ -43,8 +43,18 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 <TextBlock HorizontalAlignment="Center"
                                            Padding="5,2,5,0"
                                            Foreground="#26262b"
-                                           FontSize="14"
-                                           Text="{Binding DataContext.LoadNumber, Converter={StaticResource LoadToTextConverter}}"/>
+                                           FontSize="14">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Text" Value="{Binding LoadNumber, Converter={StaticResource LoadToTextConverter}}" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Maintenance}" Value="True">
+                                                    <Setter Property="Text" Value="{translations:Loc Sidebar_Countries_lbl_Maintenance}" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
                             </Grid>
                         </ControlTemplate>
                     </Setter.Value>
@@ -92,22 +102,54 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 <RowDefinition/>
                                 <RowDefinition/>
                                 <RowDefinition/>
-                                <RowDefinition/>
                             </Grid.RowDefinitions>
 
-                            <Label Grid.Row="0" Grid.Column="0" Content="{translations:Loc Servers_Load_lbl_Load}" Foreground="#626270" FontSize="12"/>
+                            <Label Grid.Row="0" Grid.Column="0" Foreground="#626270" FontSize="12">
+                                <Label.Style>
+                                    <Style TargetType="Label">
+                                        <Setter Property="Content" Value="{translations:Loc Servers_Load_lbl_Load}" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Maintenance}" Value="True">
+                                                <Setter Property="Content" Value="{translations:Loc Servers_Load_lbl_Status}" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Label.Style>
+                            </Label>
                             <Label Grid.Row="1" Grid.Column="0" Content="{translations:Loc Servers_Load_lbl_IP}" Foreground="#626270" FontSize="12"/>
 
                             <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
-                                <Label Content="{Binding Load}" Foreground="White" FontSize="12"/>
+                                <Label Foreground="White" FontSize="12">
+                                    <Label.Style>
+                                        <Style TargetType="Label">
+                                            <Setter Property="Content" Value="{Binding Load}" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Maintenance}" Value="True">
+                                                    <Setter Property="Content" Value="{translations:Loc Sidebar_Countries_lbl_Maintenance}" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Label.Style>
+                                </Label>
                                 <Grid>
                                     <Ellipse Stroke="#4c4c59" StrokeThickness="1" Width="13" Height="13"/>
                                     <controls:CircularProgressBar
                                         VerticalAlignment="Center"
                                         HorizontalAlignment="Center"
                                         Radius="6"
+                                        StrokeThickness="2"
                                         Percentage="{Binding LoadNumber}"
-                                        StrokeThickness="2" SegmentColor="{Binding LoadNumber, Converter={StaticResource LoadToColor}}"/>
+                                        SegmentColor="{Binding LoadNumber, Converter={StaticResource LoadToColor}}"/>
+                                    <Grid.Style>
+                                        <Style TargetType="Grid">
+                                            <Setter Property="Visibility" Value="Visible" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Maintenance}" Value="True">
+                                                    <Setter Property="Visibility" Value="Collapsed" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Grid.Style>
                                 </Grid>
                             </StackPanel>
 
@@ -122,36 +164,74 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 </ContentPresenter.Resources>
                             </ContentPresenter>
 
-                            <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0">
-                                <DockPanel Margin="5,5,0,0">
-                                    <Path Style="{StaticResource SecureCoreIcon}"/>
-                                    <TextBlock Text="{translations:Loc Servers_Feature_val_SecureCore}" Style="{StaticResource SecureCoreFeatureText}"/>
-                                </DockPanel>
-                            </StackPanel>
+                            <WrapPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2" MaxWidth="224">
+                                <StackPanel Orientation="Horizontal" Width="110" Height="28">
+                                    <DockPanel Margin="5,5,0,0">
+                                        <Path Style="{StaticResource SecureCoreIcon}"/>
+                                        <TextBlock Text="{translations:Loc Servers_Feature_val_SecureCore}" Style="{StaticResource InfoFeatureText}"/>
+                                    </DockPanel>
+                                    <StackPanel.Style>
+                                        <Style TargetType="StackPanel">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding SecureCore}" Value="False">
+                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </StackPanel.Style>
+                                </StackPanel>
 
-                            <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1">
-                                <DockPanel Margin="5,5,0,0">
-                                    <Grid>
-                                        <Border Style="{StaticResource PlusInfoIconBorder}"/>
-                                        <Label Style="{StaticResource PlusInfoIconLetter}">P</Label>
-                                    </Grid>
-                                    <TextBlock Text="{translations:Loc Servers_Feature_val_Plus}" Style="{StaticResource PlusFeatureText}"/>
-                                </DockPanel>
-                            </StackPanel>
+                                <StackPanel Orientation="Horizontal" Width="110" Height="28">
+                                    <DockPanel Margin="5,5,0,0">
+                                        <Grid>
+                                            <Border Style="{StaticResource PlusInfoIconBorder}"/>
+                                            <Label Style="{StaticResource PlusInfoIconLetter}">P</Label>
+                                        </Grid>
+                                        <TextBlock Text="{translations:Loc Servers_Feature_val_Plus}" Style="{StaticResource InfoFeatureText}"/>
+                                    </DockPanel>
+                                    <StackPanel.Style>
+                                        <Style TargetType="StackPanel">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding PlusServer}" Value="False">
+                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </StackPanel.Style>
+                                </StackPanel>
 
-                            <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="0">
-                                <DockPanel Margin="5,5,0,5">
-                                    <icons:P2P Style="{StaticResource P2PFeatureIcon}"/>
-                                    <TextBlock Text="{translations:Loc Servers_Feature_val_P2P}" Style="{StaticResource P2PFeatureText}"/>
-                                </DockPanel>
-                            </StackPanel>
+                                <StackPanel Orientation="Horizontal" Width="110" Height="28">
+                                    <DockPanel Margin="5,5,0,5">
+                                        <icons:P2P Style="{StaticResource P2PFeatureIcon}"/>
+                                        <TextBlock Text="{translations:Loc Servers_Feature_val_P2P}" Style="{StaticResource InfoFeatureText}"/>
+                                    </DockPanel>
+                                    <StackPanel.Style>
+                                        <Style TargetType="StackPanel">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding P2PServer}" Value="False">
+                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </StackPanel.Style>
+                                </StackPanel>
 
-                            <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1">
-                                <DockPanel Margin="5,5,0,5">
-                                    <icons:Tor Style="{StaticResource TorFeatureIcon}"/>
-                                    <TextBlock Text="{translations:Loc Servers_Feature_val_Tor}" Style="{StaticResource TorFeatureText}"/>
-                                </DockPanel>
-                            </StackPanel>
+                                <StackPanel Orientation="Horizontal" Width="110" Height="28">
+                                    <DockPanel Margin="5,5,0,5">
+                                        <icons:Tor Style="{StaticResource TorFeatureIcon}"/>
+                                        <TextBlock Text="{translations:Loc Servers_Feature_val_Tor}" Style="{StaticResource InfoFeatureText}"/>
+                                    </DockPanel>
+                                    <StackPanel.Style>
+                                        <Style TargetType="StackPanel">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding TorServer}" Value="False">
+                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </StackPanel.Style>
+                                </StackPanel>
+                            </WrapPanel>
                         </Grid>
                     </StackPanel>
                 </StackPanel>
@@ -171,9 +251,20 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center"
                 Radius="10"
-                Percentage="{Binding LoadNumber}"
-                StrokeThickness="2"
-                SegmentColor="{Binding LoadNumber, Converter={StaticResource LoadToColor}}"/>
+                StrokeThickness="2">
+                <controls:CircularProgressBar.Style>
+                    <Style TargetType="controls:CircularProgressBar">
+                        <Setter Property="Percentage" Value="{Binding LoadNumber}" />
+                        <Setter Property="SegmentColor" Value="{Binding LoadNumber, Converter={StaticResource LoadToColor}}" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Maintenance}" Value="True">
+                                <Setter Property="Percentage" Value="100" />
+                                <Setter Property="SegmentColor" Value="Transparent" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </controls:CircularProgressBar.Style>
+            </controls:CircularProgressBar>
             <fa:FontAwesome Icon="Info" FontSize="12" VerticalAlignment="Center" Foreground="#4c4c59"/>
         </Grid>
 
@@ -205,7 +296,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </Style>
             </ToggleButton.Style>
             <ToggleButton.ToolTip>
-                <ToolTip Style="{StaticResource LoadTooltip}" DataContext="{Binding Path=PlacementTarget.Parent, RelativeSource={x:Static RelativeSource.Self}}"/>
+                <ToolTip Style="{StaticResource LoadTooltip}"/>
             </ToggleButton.ToolTip>
         </ToggleButton>
     </Grid>

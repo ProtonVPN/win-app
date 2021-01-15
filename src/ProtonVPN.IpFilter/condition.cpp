@@ -90,5 +90,13 @@ namespace ipfilter
                 FWPM_CONDITION_IP_LOCAL_INTERFACE,
                 std::make_shared<value::NetInterfaceId>(iface.getLocalId()));
         }
+
+        Condition netInterfaceIndex(matcher::Matcher matcher, const NetInterface& iface)
+        {
+            return Condition(
+                matcher,
+                FWPM_CONDITION_INTERFACE_INDEX,
+                std::make_shared<value::NetInterfaceIndex>(iface.getIndex()));
+        }
     }
 }

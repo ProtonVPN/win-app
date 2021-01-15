@@ -81,7 +81,7 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 UpdatesPath = Path.Combine(commonAppDataFolder, "Updates"),
 
-                SplitTunnelServiceName = "ProtonVPNSplitTunnel",
+                CalloutServiceName = "ProtonVPNCallout",
 
                 LocalAppDataFolder = localAppDataFolder,
 
@@ -110,6 +110,8 @@ namespace ProtonVPN.Common.Configuration.Source
                 GuestHoleVpnUsername = "guest",
 
                 GuestHoleVpnPassword = "guest",
+
+                VpnUsernameSuffix = "+pw", // p - proton, w - windows
 
                 UpdateCheckInterval = TimeSpan.FromHours(3),
 
@@ -177,6 +179,8 @@ namespace ProtonVPN.Common.Configuration.Source
                     ProtonTwitterUrl = "https://twitter.com/ProtonVPN",
                     SupportFormUrl = "https://protonvpn.com/support-form",
                     AlternativeRoutingUrl = "https://protonmail.com/blog/anti-censorship-alternative-routing",
+                    AboutKillSwitchUrl = "https://protonvpn.com/support/what-is-kill-switch",
+                    AboutNetShieldUrl = "https://protonvpn.com/support/netshield",
                 },
 
                 OpenVpn =
