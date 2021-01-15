@@ -146,6 +146,7 @@ namespace ProtonVPN.UI.Test.Tests
             _mainWindow.ClickHamburgerMenu().HamburgerMenu.ClickSettings();
             _settingsWindow.ClickConnectionTab();
             _settingsWindow.EnableCustomDnsServers();
+            _settingsWindow.DisableNetshieldForCustomDns();
             _settingsWindow.EnterCustomIpv4Address("8.8.8.8");
             _settingsWindow.CloseSettings();
             _mainWindow.QuickConnect();
@@ -161,6 +162,7 @@ namespace ProtonVPN.UI.Test.Tests
             _mainWindow.ClickHamburgerMenu().HamburgerMenu.ClickSettings();
             _settingsWindow.ClickConnectionTab();
             _settingsWindow.EnableCustomDnsServers();
+            _settingsWindow.DisableNetshieldForCustomDns();
             _settingsWindow.EnterCustomIpv4Address("1.A.B.4");
             _settingsResult.CheckIfCustomDnsAddressWasNotAdded();
         }

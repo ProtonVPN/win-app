@@ -42,6 +42,12 @@ namespace ProtonVPN.UI.Test.Windows
             return this;
         }
 
+        public SettingsWindow DisableNetshieldForCustomDns()
+        {
+            ClickOnObjectWithId("ContinueButton");
+            return this;
+        }
+
         public SettingsWindow EnterCustomIpv4Address(string ipv4Address)
         {
             InsertTextIntoFieldWithId("InputIpv4Address", ipv4Address);
