@@ -606,7 +606,6 @@
     <Compile Include="Settings\SettingsModalViewModel.cs" />
     <Compile Include="Sidebar\ConnectionStatusViewModel.cs" />
     <Compile Include="Sidebar\CountriesViewModel.cs" />
-    <Compile Include="Sidebar\SidebarBaseViewModel.cs" />
     <Compile Include="Sidebar\SidebarProfilesViewModel.cs" />
     <Compile Include="Sidebar\SidebarViewModel.cs" />
     <Compile Include="Validation\ValidationViewModel.cs" />
