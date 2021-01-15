@@ -25,10 +25,10 @@
     <ROW Property="Manufacturer" Value="Proton Technologies AG"/>
     <ROW Property="MsiLogging" MultiBuildValue="DefaultBuild:vp"/>
     <ROW Property="PENDING_REBOOT" Value="0"/>
-    <ROW Property="ProductCode" Value="1031:{FD5DFEEE-C563-4D04-B3F4-E5C7D5F5B1E9} 1033:{FD5DFEEE-C563-4D04-B3F4-E5C7D5F5B1E9} 1036:{FD5DFEEE-C563-4D04-B3F4-E5C7D5F5B1E9} 1040:{FD5DFEEE-C563-4D04-B3F4-E5C7D5F5B1E9} 1043:{FD5DFEEE-C563-4D04-B3F4-E5C7D5F5B1E9} 1045:{FD5DFEEE-C563-4D04-B3F4-E5C7D5F5B1E9} 1046:{FD5DFEEE-C563-4D04-B3F4-E5C7D5F5B1E9} 1049:{FD5DFEEE-C563-4D04-B3F4-E5C7D5F5B1E9} 1065:{FD5DFEEE-C563-4D04-B3F4-E5C7D5F5B1E9} 2070:{FD5DFEEE-C563-4D04-B3F4-E5C7D5F5B1E9} 3082:{FD5DFEEE-C563-4D04-B3F4-E5C7D5F5B1E9} " Type="16"/>
+    <ROW Property="ProductCode" Value="1031:{E1B7E6B6-393F-4DCB-BCA5-00000E00CC7A} 1033:{E1B7E6B6-393F-4DCB-BCA5-00000E00CC7A} 1036:{E1B7E6B6-393F-4DCB-BCA5-00000E00CC7A} 1040:{E1B7E6B6-393F-4DCB-BCA5-00000E00CC7A} 1043:{E1B7E6B6-393F-4DCB-BCA5-00000E00CC7A} 1045:{E1B7E6B6-393F-4DCB-BCA5-00000E00CC7A} 1046:{E1B7E6B6-393F-4DCB-BCA5-00000E00CC7A} 1049:{E1B7E6B6-393F-4DCB-BCA5-00000E00CC7A} 1065:{E1B7E6B6-393F-4DCB-BCA5-00000E00CC7A} 2070:{E1B7E6B6-393F-4DCB-BCA5-00000E00CC7A} 3082:{E1B7E6B6-393F-4DCB-BCA5-00000E00CC7A} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="ProtonVPN"/>
-    <ROW Property="ProductVersion" Value="1.17.6" Type="32"/>
+    <ROW Property="ProductVersion" Value="1.18.2" Type="32"/>
     <ROW Property="REBOOT" MultiBuildValue="DefaultBuild:ReallySuppress"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;AI_SETUPEXEPATH;SETUPEXEDIR"/>
     <ROW Property="SelectedLanguage" Value="This will be set by custom action"/>
@@ -73,7 +73,7 @@
     <ROW Directory="x86_Dir" Directory_Parent="APPDIR" DefaultDir="x86" DirectoryOptions="3"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
-    <ROW Component="AI_CustomARPName" ComponentId="{E06201A2-74FE-4087-AB99-08F1C0202699}" Directory_="APPDIR" Attributes="4" KeyPath="DisplayName" Options="1"/>
+    <ROW Component="AI_CustomARPName" ComponentId="{5AD9E2A4-1D46-4661-8B05-71E7D86BC4DF}" Directory_="APPDIR" Attributes="4" KeyPath="DisplayName" Options="1"/>
     <ROW Component="AI_ExePath" ComponentId="{47427A21-60A2-43B4-A150-6CBA74CF4A07}" Directory_="APPDIR" Attributes="4" KeyPath="AI_ExePath"/>
     <ROW Component="APPDIR" ComponentId="{75DDD993-CDFE-4D39-8C1A-07484ADD1A4E}" Directory_="APPDIR" Attributes="0"/>
     <ROW Component="ARSoft.Tools.Net.dll" ComponentId="{05CE9A73-14A8-494D-B2D3-8438A2A16DDB}" Directory_="APPDIR" Attributes="0" KeyPath="ARSoft.Tools.Net.dll"/>
