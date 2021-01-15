@@ -28,5 +28,7 @@ namespace ProtonVPN.Common.OS.Net.NetworkInterface
         INetworkInterface[] Interfaces();
 
         INetworkInterface Interface(string description);
+
+        uint InterfaceIndex(string description, string hardwareId);
     }
 }

@@ -19,6 +19,9 @@ To enable the sending of crash reports to Sentry server the environment variable
 SENTRY_DSN should contain valid Sentry DSN value during build. If environment variable
 SENTRY_DSN is not set, sending of crash reports will be disabled.
 
+Also run the following Git command in the repository folder:  
+`git submodule update --init`
+
 ### Visual Studio 2019
 
 When installing Visual Studio 2019 16.4.2 select the following configuration:

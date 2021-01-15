@@ -242,13 +242,10 @@
     <Setting Name="CustomDnsIps" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="NetShieldMode" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">1</Value>
+    <Setting Name="UserNetShieldMode" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="NetShieldEnabled" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="UserNetShieldModalShown" Type="System.String" Scope="User">
+    <Setting Name="UserNetShieldEnabled" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="SettingsVersion" Type="System.String" Scope="User">
@@ -295,6 +292,12 @@
     </Setting>
     <Setting Name="MaintenanceCheckInterval" Type="System.TimeSpan" Scope="User">
       <Value Profile="(Default)">00:00:00</Value>
+    </Setting>
+    <Setting Name="UserNetShieldEnabledDefault" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="UserNetShieldModeDefault" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
     </Setting>
   </Settings>
 </SettingsFile>

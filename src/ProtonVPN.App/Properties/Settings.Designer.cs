@@ -980,37 +980,25 @@ namespace ProtonVPN.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public int NetShieldMode {
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string UserNetShieldMode {
             get {
-                return ((int)(this["NetShieldMode"]));
+                return ((string)(this["UserNetShieldMode"]));
             }
             set {
-                this["NetShieldMode"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool NetShieldEnabled {
-            get {
-                return ((bool)(this["NetShieldEnabled"]));
-            }
-            set {
-                this["NetShieldEnabled"] = value;
+                this["UserNetShieldMode"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string UserNetShieldModalShown {
+        public string UserNetShieldEnabled {
             get {
-                return ((string)(this["UserNetShieldModalShown"]));
+                return ((string)(this["UserNetShieldEnabled"]));
             }
             set {
-                this["UserNetShieldModalShown"] = value;
+                this["UserNetShieldEnabled"] = value;
             }
         }
         
@@ -1190,6 +1178,30 @@ namespace ProtonVPN.Properties {
             }
             set {
                 this["MaintenanceCheckInterval"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool UserNetShieldEnabledDefault {
+            get {
+                return ((bool)(this["UserNetShieldEnabledDefault"]));
+            }
+            set {
+                this["UserNetShieldEnabledDefault"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int UserNetShieldModeDefault {
+            get {
+                return ((int)(this["UserNetShieldModeDefault"]));
+            }
+            set {
+                this["UserNetShieldModeDefault"] = value;
             }
         }
     }

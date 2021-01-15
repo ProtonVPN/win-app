@@ -116,9 +116,9 @@ extern "C" EXPORT DWORD GetBestInterfaceIp(IN_ADDR* address, const wchar_t* excl
     return 0;
 }
 
-extern "C" EXPORT long NetworkUtilAddDefaultGatewayForIface(const GUID * ifaceId, wchar_t* gatewayAddr)
+extern "C" EXPORT long NetworkUtilAddDefaultGatewayForIface(UINT index, wchar_t* gatewayAddr)
 {
-    if (!Proton::NetworkUtil::Route::AddDefaultGatewayForIface(ifaceId, gatewayAddr))
+    if (!Proton::NetworkUtil::Route::AddDefaultGatewayForIface(index, gatewayAddr))
     {
         return 1;
     }
@@ -126,9 +126,9 @@ extern "C" EXPORT long NetworkUtilAddDefaultGatewayForIface(const GUID * ifaceId
     return 0;
 }
 
-extern "C" EXPORT long NetworkUtilDeleteDefaultGatewayForIface(const GUID * ifaceId, wchar_t* gatewayAddr)
+extern "C" EXPORT long NetworkUtilDeleteDefaultGatewayForIface(UINT index, wchar_t* gatewayAddr)
 {
-    if (!Proton::NetworkUtil::Route::DeleteDefaultGatewayForIface(ifaceId, gatewayAddr))
+    if (!Proton::NetworkUtil::Route::DeleteDefaultGatewayForIface(index, gatewayAddr))
     {
         return 1;
     }
@@ -136,10 +136,10 @@ extern "C" EXPORT long NetworkUtilDeleteDefaultGatewayForIface(const GUID * ifac
     return 0;
 }
 
-extern "C" EXPORT long SetLowestTapMetric(const GUID * ifaceId)
+extern "C" EXPORT long SetLowestTapMetric(UINT index)
 {
     Proton::NetworkUtil::Route::IfaceInfo info{};
-    if (!GetIfaceInfo(*ifaceId, info) ||
+    if (!GetIfaceInfo(index, info) ||
         !Proton::NetworkUtil::InterfaceMetric::instance()->SetLowestMetric(info.Luid))
 	{
         return 1;
@@ -148,10 +148,10 @@ extern "C" EXPORT long SetLowestTapMetric(const GUID * ifaceId)
     return 0;
 }
 
-extern "C" EXPORT long RestoreDefaultTapMetric(const GUID * ifaceId)
+extern "C" EXPORT long RestoreDefaultTapMetric(UINT index)
 {
     Proton::NetworkUtil::Route::IfaceInfo info{};
-    if (!GetIfaceInfo(*ifaceId, info) ||
+    if (!GetIfaceInfo(index, info) ||
         !Proton::NetworkUtil::InterfaceMetric::instance()->RestoreDefaultMetric(info.Luid))
     {
         return 1;

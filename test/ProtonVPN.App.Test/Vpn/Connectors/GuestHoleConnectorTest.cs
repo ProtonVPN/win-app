@@ -45,6 +45,7 @@ namespace ProtonVPN.App.Test.Vpn.Connectors
             MaxGuestHoleRetries = MaxRetries,
             GuestHoleVpnUsername = "guest",
             GuestHoleVpnPassword = "guest",
+            VpnUsernameSuffix = "+pw"
         };
 
         private readonly ICollectionStorage<GuestHoleServerContract> _guestHoleServers =
@@ -63,13 +64,16 @@ namespace ProtonVPN.App.Test.Vpn.Connectors
         [TestMethod]
         public async Task ItShouldConnectWithGuestCredentials()
         {
+            // Arrange
+            string expectedUsername = _config.GuestHoleVpnUsername + _config.VpnUsernameSuffix;
+
             // Act
             await _connector.Connect();
 
             // Assert
             await _serviceManager.Received(1)
                 .Connect(Arg.Is<VpnConnectionRequest>(c =>
-                    c.Credentials.Username == _config.GuestHoleVpnUsername &&
+                    c.Credentials.Username == expectedUsername &&
                     c.Credentials.Password == _config.GuestHoleVpnPassword));
         }
 

@@ -149,14 +149,6 @@
     <value>There are unsaved profile changes.&lt;LineBreak/&gt;&lt;LineBreak/&gt;Are you sure you want to discard?</value>
     <comment>The message displayed in Question dialog when cancelling changes in Profile window.</comment>
   </data>
-  <data name="Servers_msg_EnableSecureCoreConfirm" xml:space="preserve">
-    <value>You are trying to connect to a Secure Core server without Secure Core mode enabled.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Bold&gt;Enable Secure Core and continue?&lt;/Bold&gt;</value>
-    <comment>The confirmation question displayed when connecting to Secure Core server when not in Secure Core mode</comment>
-  </data>
-  <data name="Servers_msg_DisableSecureCoreConfirm" xml:space="preserve">
-    <value>You are trying to connect to a standard VPN server while Secure Core mode is enabled.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Bold&gt;Disable Secure Core and continue?&lt;/Bold&gt;</value>
-    <comment>The confirmation question displayed when connecting to not Secure Core server when in Secure Core mode</comment>
-  </data>
   <data name="Servers_Feature_val_SecureCore" xml:space="preserve">
     <value>Secure Core</value>
     <comment>The name of Secure Core server feature</comment>
@@ -319,7 +311,7 @@
   </data>
   <data name="Dialogs_P2PForward_msg_Warning_2" xml:space="preserve">
     <value>to avoid traffic rerouting.</value>
-    <comment>The right part of the warning message in Forwarded P2P window. It shall be translated in pair with the resource "Dialogs_P2PForward_msg_Warning_1" as if they combine one text string including imaginary placeholder {0} between them. If translated text suppose to not include any text aftere the imaginary placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
+    <comment>The right part of the warning message in Forwarded P2P window. It shall be translated in pair with the resource "Dialogs_P2PForward_msg_Warning_1" as if they combine one text string including imaginary placeholder {0} between them. If translated text suppose to not include any text after the imaginary placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="StartMinimizedMode_val_Disabled" xml:space="preserve">
     <value>Disabled</value>
@@ -332,10 +324,6 @@
   <data name="StartMinimizedMode_val_ToSystray" xml:space="preserve">
     <value>to Systray</value>
     <comment>The name of start minimized mode displayed in Start Minimized combo box in General tab of Settings window</comment>
-  </data>
-  <data name="Settings_Advanced_lbl_KillSwitch_Info" xml:space="preserve">
-    <value>Blocks all network traffic when the VPN tunnel is lost. Cannot be switched on together with Split Tunneling.</value>
-    <comment>The description of Kill Switch setting displayed in the tooltip of ( i ) image next to the label for Kill Switch toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_SplitTunnel_Info" xml:space="preserve">
     <value>Exclude an application or an IP address from VPN traffic or include only specific apps. Cannot be switched on together with Kill Switch.</value>
@@ -590,10 +578,6 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <value>Countries</value>
     <comment>The title of onboarding step 3 in Onboarding overlay of main app window</comment>
   </data>
-  <data name="Onboarding_ttl_Step_5" xml:space="preserve">
-    <value>Map</value>
-    <comment>The title of onboarding step 5 in Onboarding overlay of main app window</comment>
-  </data>
   <data name="Onboarding_msg_Step_1" xml:space="preserve">
     <value>Automatically connect to the server that will provide you with the fastest connection.</value>
     <comment>The description of onboarding step 1 in Onboarding overlay of main app window</comment>
@@ -607,12 +591,8 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <comment>The description of onboarding step 3 in Onboarding overlay of main app window</comment>
   </data>
   <data name="Onboarding_msg_Step_4" xml:space="preserve">
-    <value>Turn on Secure Core to route your traffic through additional servers for another layer of network security. Available to Plus and Visionary members.</value>
+    <value>Increase your security with one click:</value>
     <comment>The description of onboarding step 4 in Onboarding overlay of main app window</comment>
-  </data>
-  <data name="Onboarding_msg_Step_5" xml:space="preserve">
-    <value>See where VPN servers are located. Find the one nearest to your location.</value>
-    <comment>The description of onboarding step 5 in Onboarding overlay of main app window</comment>
   </data>
   <data name="Onboarding_btn_EndTour" xml:space="preserve">
     <value>End Tour</value>
@@ -738,10 +718,6 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <value>Default Protocol</value>
     <comment>The label for Default Protocol combo box in Connection tab of Settings window</comment>
   </data>
-  <data name="Settings_Advanced_lbl_KillSwitch" xml:space="preserve">
-    <value>VPN Kill Switch</value>
-    <comment>The label for Kill Switch toggle switch in Advanced tab of Settings window</comment>
-  </data>
   <data name="Settings_Advanced_lbl_DnsLeakProtection" xml:space="preserve">
     <value>DNS Leak Protection</value>
     <comment>The label for DNS Leak Protection toggle switch in Advanced tab of Settings window</comment>
@@ -773,6 +749,10 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
   <data name="Servers_Load_lbl_Load" xml:space="preserve">
     <value>Server Load:</value>
     <comment>The label for server load in Server Load popup. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
+  </data>
+  <data name="Servers_Load_lbl_Status" xml:space="preserve">
+    <value>Server Status:</value>
+    <comment>The label for server status in Server Load popup. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
   </data>
   <data name="Servers_Load_lbl_IP" xml:space="preserve">
     <value>Server IP:</value>
@@ -1076,7 +1056,7 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
   </data>
   <data name="Connecting_lbl_ConnectingTo_1" xml:space="preserve">
     <value>Connecting to</value>
-    <comment>The beginning of text for VPN server being connected to in Connecting overlay of main app window. It shall be tranlsated as a text before imaginary placeholder {0} in the text string "Connecting to {0}". If translated text suppose to not include any text before the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
+    <comment>The beginning of text for VPN server being connected to in Connecting overlay of main app window. It shall be translated as a text before imaginary placeholder {0} in the text string "Connecting to {0}". If translated text suppose to not include any text before the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Connecting_VpnStatus_val_Waiting" xml:space="preserve">
     <value>Initializing Connection</value>
@@ -1139,7 +1119,7 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <comment>The title of onboarding step 2 in Onboarding overlay of main app window</comment>
   </data>
   <data name="Onboarding_ttl_Step_4" xml:space="preserve">
-    <value>Secure Core</value>
+    <value>Quick Settings</value>
     <comment>The title of onboarding step 4 in Onboarding overlay of main app window</comment>
   </data>
   <data name="Sidebar_Countries_ttl" xml:space="preserve">
@@ -1219,7 +1199,7 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <comment>The text on Disconnect button in Connection section of Sidebar section of main app window (disconnect from VPN)</comment>
   </data>
   <data name="Sidebar_Countries_lbl_Maintenance" xml:space="preserve">
-    <value>Maintenance</value>
+    <value>Under maintenance</value>
     <comment>The text displayed next to the country in Countries tab of Sidebar section of main app window when all servers in the country are under maintenance.</comment>
   </data>
   <data name="Sidebar_Countries_lbl_Search_Watermark" xml:space="preserve">
@@ -2336,7 +2316,7 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
   </data>
   <data name="Dialogs_DisconnectError_msg_KillSwitch" xml:space="preserve">
     <value>Kill Switch is blocking all connections to avoid leaking your data. To dismiss this window, click CLOSE. If you would like to temporarily disable Kill Switch and reconnect to the Internet WITHOUT VPN protection, click DISABLE. To turn off Kill Switch permanently, go to &lt;Hyperlink Command="{Binding SettingsCommand}"&gt;Settings.&lt;/Hyperlink&gt;</value>
-    <comment>The text displayed in Disconnect modal window ifn disconnect occured with Kill Switch turned on.</comment>
+    <comment>The text displayed in Disconnect modal window ifn disconnect occurred with Kill Switch turned on.</comment>
   </data>
   <data name="Dialogs_DisconnectError_btn_Disable" xml:space="preserve">
     <value>DISABLE</value>
@@ -2372,11 +2352,11 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
   </data>
   <data name="Connecting_lbl_FailedConnection_1" xml:space="preserve">
     <value>Connection to</value>
-    <comment>The beginning of text for VPN server failed to connect to in Connecting overlay of main app window. It shall be tranlsated as a text before imaginary placeholder {0} in the text string "Connection to {0} has failed". If translated text suppose to not include any text before the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
+    <comment>The beginning of text for VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text before imaginary placeholder {0} in the text string "Connection to {0} has failed". If translated text suppose to not include any text before the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Connecting_lbl_FailedConnection_2" xml:space="preserve">
     <value>has failed</value>
-    <comment>The end of text for VPN server failed to connect to in Connecting overlay of main app window. It shall be tranlsated as a text after imaginary placeholder {0} in the text string "Connection to {0} has failed". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
+    <comment>The end of text for VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text after imaginary placeholder {0} in the text string "Connection to {0} has failed". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Settings_Connection_DefaultProtocol_val_Auto" xml:space="preserve">
     <value>Smart (default)</value>
@@ -2400,23 +2380,23 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
   </data>
   <data name="Connecting_lbl_ConnectingTo_1_SecureCore" xml:space="preserve">
     <value>Creating</value>
-    <comment>The beginning of text for Secure Core VPN server being connected to in Connecting overlay of main app window. It shall be tranlsated as a text before imaginary placeholder {0} in the text string "Creating {0} connection". If translated text suppose to not include any text before the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
+    <comment>The beginning of text for Secure Core VPN server being connected to in Connecting overlay of main app window. It shall be translated as a text before imaginary placeholder {0} in the text string "Creating {0} connection". If translated text suppose to not include any text before the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Connecting_lbl_ConnectingTo_2" xml:space="preserve">
     <value />
-    <comment>The end of text for VPN server being connected to in Connecting overlay of main app window. It shall be tranlsated as the text after imaginary placeholder {0} in the text string "Connecting to {0}". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
+    <comment>The end of text for VPN server being connected to in Connecting overlay of main app window. It shall be translated as the text after imaginary placeholder {0} in the text string "Connecting to {0}". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Connecting_lbl_ConnectingTo_2_SecureCore" xml:space="preserve">
     <value>connection</value>
-    <comment>The end of text for Secure Core VPN server being connected to in Connecting overlay of main app window. It shall be tranlsated as a text after imaginary placeholder {0} in the text string "Creating {0} connection". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
+    <comment>The end of text for Secure Core VPN server being connected to in Connecting overlay of main app window. It shall be translated as a text after imaginary placeholder {0} in the text string "Creating {0} connection". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Connecting_lbl_FailedConnection_1_SecureCore" xml:space="preserve">
     <value>The</value>
-    <comment>The beginning of text for Secure Core VPN server failed to connect to in Connecting overlay of main app window. It shall be tranlsated as a text before imaginary placeholder {0} in the text string "The {0} connection has failed". If translated text suppose to not include any text before the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
+    <comment>The beginning of text for Secure Core VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text before imaginary placeholder {0} in the text string "The {0} connection has failed". If translated text suppose to not include any text before the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Connecting_lbl_FailedConnection_2_SecureCore" xml:space="preserve">
     <value>connection has failed</value>
-    <comment>The end of text for Secure Core VPN server failed to connect to in Connecting overlay of main app window. It shall be tranlsated as a text after imaginary placeholder {0} in the text string "The {0} connection has failed". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
+    <comment>The end of text for Secure Core VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text after imaginary placeholder {0} in the text string "The {0} connection has failed". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Settings_Advanced_lbl_Ipv6Protection" xml:space="preserve">
     <value>IPv6 Leak Protection</value>
@@ -2454,29 +2434,9 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <value>Using Custom DNS servers will disable NetShield. DNS servers are responsible for directing you to the correct websites. &lt;LineBreak/&gt;&lt;LineBreak/&gt;Only use DNS servers that you trust. Do you want to turn Custom DNS servers on?</value>
     <comment>The text displayed in Custom DNS Servers warning modal window when use is trying to turn the feature ON when NetShield feature is turned on as well</comment>
   </data>
-  <data name="Settings_Connection_lbl_NetShield" xml:space="preserve">
-    <value>NetShield</value>
-    <comment>The label for NetShield combo box in Connection tab of Settings window</comment>
-  </data>
-  <data name="Settings_Connection_NetShield_lbl_Level1" xml:space="preserve">
-    <value>Block malware only</value>
-    <comment>The label of NetShield mode in NetShield section of Connection tab of Settings window</comment>
-  </data>
-  <data name="Settings_Connection_NetShield_lbl_Level2" xml:space="preserve">
-    <value>Block malware, tracking, ads</value>
-    <comment>The label of NetShield mode in NetShield section of Connection tab of Settings window</comment>
-  </data>
-  <data name="Settings_Connection_Warning_NetShield" xml:space="preserve">
-    <value>Using NetShield will disable Custom DNS Servers.&lt;LineBreak/&gt;&lt;LineBreak/&gt; Do you want to turn NetShield on?</value>
-    <comment>The text displayed in NetShield warning modal window when use is trying to turn the feature ON while Custom DNS Servers are enabled as well</comment>
-  </data>
   <data name="Settings_Connection_btn_Upgrade" xml:space="preserve">
     <value>Upgrade</value>
     <comment>The text on Upgrade button in Connection tab of Settings window</comment>
-  </data>
-  <data name="Settings_Connection_lbl_NetShield_Info" xml:space="preserve">
-    <value>This feature will process your DNS requests and automatically block trackers, ads, and harmful websites.</value>
-    <comment>The description of NetShield settings displayed in the tooltip of ( i ) image next to the label for NetShield combo box in Connection tab of Settings window</comment>
   </data>
   <data name="Sidebar_Countries_info_P2P" xml:space="preserve">
     <value>Supports P2P traffic</value>
@@ -2489,14 +2449,6 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
   <data name="Sidebar_Servers_info_plus" xml:space="preserve">
     <value>Plus Server</value>
     <comment>The description displayed in a tooltip of P icon on a sidebar server item</comment>
-  </data>
-  <data name="NetShieldModal_btn_GotIt" xml:space="preserve">
-    <value>Got it</value>
-    <comment>A button label displayed in NetShield modal window when NetShield feature is turned for the first time</comment>
-  </data>
-  <data name="NetShieldModal_msg" xml:space="preserve">
-    <value>NetShield compares your DNS requests to lists of known trackers, ads, and malware. It may block or prevent a website from working correctly if it appears on one of these lists. If you feel a website has been incorrectly marked as malware or an ad, please contact our Support team.</value>
-    <comment>The text displayed in NetShield modal window when NetShield feature is turned for the first time</comment>
   </data>
   <data name="VpnProtocol_val_Auto" xml:space="preserve">
     <value>Smart</value>
@@ -2517,7 +2469,7 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
   <data name="Login_msg_ExitKillSwitchConfirm" xml:space="preserve">
     <value>Kill Switch is blocking all connections to avoid leaking your data.&lt;LineBreak/&gt;
 Exiting the application will disable the Kill Switch. Do you want to continue?</value>
-    <comment>The text displayed in the login window modal when user tries to close the app wihile Kill Switch is active</comment>
+    <comment>The text displayed in the login window modal when user tries to close the app while Kill Switch is active</comment>
   </data>
   <data name="Login_lbl_KillSwitch" xml:space="preserve">
     <value>Kill Switch is currently active</value>
@@ -2802,7 +2754,7 @@ Exiting the application will disable the Kill Switch. Do you want to continue?</
   </data>
   <data name="TextBoxPlaceholder" xml:space="preserve">
     <value>Start typing...</value>
-    <comment>The text disaplayed as a placeholder on any text box all over the application</comment>
+    <comment>The text displayed as a placeholder on any text box all over the application</comment>
   </data>
   <data name="Dialogs_DisconnectError_btn_Upgrade" xml:space="preserve">
     <value>Upgrade</value>
@@ -2867,5 +2819,65 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   </data>
   <data name="BugReport_msg_EmailNotValid" xml:space="preserve">
     <value>Email not valid</value>
+  </data>
+  <data name="QuickSettings_btn_KillSwitchOff" xml:space="preserve">
+    <value>Kill Switch Off</value>
+  </data>
+  <data name="QuickSettings_btn_KillSwitchOn" xml:space="preserve">
+    <value>Kill Switch On</value>
+  </data>
+  <data name="QuickSettings_btn_LearnMore" xml:space="preserve">
+    <value>Learn more</value>
+  </data>
+  <data name="QuickSettings_btn_NetshieldOff" xml:space="preserve">
+    <value>Don't block</value>
+  </data>
+  <data name="QuickSettings_btn_NetshieldOnFirst" xml:space="preserve">
+    <value>Block malware only</value>
+  </data>
+  <data name="QuickSettings_btn_NetshieldOnSecond" xml:space="preserve">
+    <value>Block malware, ads &amp; trackers</value>
+  </data>
+  <data name="QuickSettings_btn_SecureCoreOff" xml:space="preserve">
+    <value>Secure Core Off</value>
+  </data>
+  <data name="QuickSettings_btn_SecureCoreOn" xml:space="preserve">
+    <value>Secure Core On</value>
+  </data>
+  <data name="QuickSettings_lbl_KillSwitchInfo" xml:space="preserve">
+    <value>Disables Internet if the VPN connection drops to prevent accidental IP leak. &lt;Hyperlink Command="{Binding KillSwitchLearnMoreCommand}"&gt;Learn more.&lt;/Hyperlink&gt;</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldInfo" xml:space="preserve">
+    <value>Browse the Internet without ads and malware. &lt;Hyperlink Command="{Binding NetShieldLearnMoreCommand}"&gt;Learn more.&lt;/Hyperlink&gt;</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldWarning" xml:space="preserve">
+    <value>If websites don't load, try disabling NetShield</value>
+  </data>
+  <data name="QuickSettings_lbl_SecureCoreInfo" xml:space="preserve">
+    <value>Route your most sensitive data through our safest servers in privacy-friendly countries. &lt;Hyperlink Command="{Binding SecureCoreLearnMoreCommand}"&gt;Learn more.&lt;/Hyperlink&gt;</value>
+  </data>
+  <data name="QuickSettings_lbl_SecureCoreWarning" xml:space="preserve">
+    <value>Secure Core may reduce VPN speed</value>
+  </data>
+  <data name="QuickSettings_btn_GetPlus" xml:space="preserve">
+    <value>GET PLUS</value>
+  </data>
+  <data name="KillSwitch" xml:space="preserve">
+    <value>Kill Switch</value>
+  </data>
+  <data name="NetShield" xml:space="preserve">
+    <value>NetShield</value>
+  </data>
+  <data name="SecureCore" xml:space="preserve">
+    <value>Secure Core</value>
+  </data>
+  <data name="Onboarding_msg_KillSwitch" xml:space="preserve">
+    <value>• Prevent your IP to be exposed by turning on &lt;Bold&gt;Kill Switch&lt;/Bold&gt;.</value>
+  </data>
+  <data name="Onboarding_msg_NetShield" xml:space="preserve">
+    <value>• Surf the web freely from malware and ads with &lt;Bold&gt;NetShield&lt;/Bold&gt;.</value>
+  </data>
+  <data name="Onboarding_msg_SecureCore" xml:space="preserve">
+    <value>• Add one extra layer of security with &lt;Bold&gt;Secure Core&lt;/Bold&gt;.</value>
   </data>
 </root>

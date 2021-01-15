@@ -10,7 +10,7 @@ namespace Proton
     {
         namespace Route
         {
-            bool GetIfaceInfo(const GUID& guid, IfaceInfo& info)
+            bool GetIfaceInfo(UINT index, IfaceInfo& info)
             {
                 ULONG adapterListSize = 0;
 
@@ -33,12 +33,8 @@ namespace Proton
                 {
                     std::string adapterName = adapter->AdapterName;
 
-                    GUID adapterGuid{};
-                    CLSIDFromString(std::wstring(adapterName.begin(), adapterName.end()).data(), &adapterGuid);
-
-                    if (adapterGuid == guid)
+                    if (adapter->IfIndex == index)
                     {
-                        info.Guid = guid;
                         info.Ipv4Metric = adapter->Ipv4Metric;
                         info.Index = adapter->IfIndex;
                         info.Luid = adapter->Luid;
@@ -52,10 +48,10 @@ namespace Proton
                 return false;
             }
 
-            bool AddDefaultGatewayForIface(const GUID* guid, const wchar_t* gatewayAddr)
+            bool AddDefaultGatewayForIface(UINT index, const wchar_t* gatewayAddr)
             {
                 IfaceInfo info{};
-                if (!GetIfaceInfo(*guid, info))
+                if (!GetIfaceInfo(index, info))
                 {
                     return false;
                 }
@@ -79,10 +75,10 @@ namespace Proton
                 return true;
             }
 
-            bool DeleteDefaultGatewayForIface(const GUID* guid, const wchar_t* gatewayAddr)
+            bool DeleteDefaultGatewayForIface(UINT index, const wchar_t* gatewayAddr)
             {
                 IfaceInfo info{};
-                if (!GetIfaceInfo(*guid, info))
+                if (!GetIfaceInfo(index, info))
                 {
                     return false;
                 }

@@ -23,7 +23,7 @@ using System.Windows.Input;
 
 namespace ProtonVPN.Resource
 {
-    public class BaseModalWindow : Window
+    public class BaseModalWindow : WindowBase
     {
         public BaseModalWindow()
         {

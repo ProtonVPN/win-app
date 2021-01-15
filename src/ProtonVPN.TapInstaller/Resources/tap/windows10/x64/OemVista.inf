@@ -55,7 +55,7 @@
 
 ; This version number should match the version
 ; number given in ..\version.m4.
-   DriverVer = 09/27/2019,9.24.2.601
+   DriverVer = 10/08/2020,9.24.6.601
 
 [Strings]
    DeviceDescription = "TAP-ProtonVPN Windows Adapter V9"
@@ -65,9 +65,13 @@
 ;                      Manufacturer + Product Section (Done)
 ;----------------------------------------------------------------
 [Manufacturer]
-   %Provider% = tapprotonvpn, NTamd64
+   %Provider% = tapprotonvpn, NTamd64, NTARM64
 
 [tapprotonvpn.NTamd64]
+   %DeviceDescription% = tapprotonvpn.ndi, root\tapprotonvpn ; Root enumerated
+   %DeviceDescription% = tapprotonvpn.ndi, tapprotonvpn      ; Legacy
+
+[tapprotonvpn.NTARM64]
    %DeviceDescription% = tapprotonvpn.ndi, root\tapprotonvpn ; Root enumerated
    %DeviceDescription% = tapprotonvpn.ndi, tapprotonvpn      ; Legacy
 
@@ -88,6 +92,7 @@
    CopyFiles       = tapprotonvpn.driver, tapprotonvpn.files
    AddReg          = tapprotonvpn.reg
    AddReg          = tapprotonvpn.params.reg
+   DelReg          = tapprotonvpn.params.delreg
    Characteristics = 0x1
    *IfType            = 53  ; IF_TYPE_PROP_VIRTUAL
    *MediaType         = 0x0 ; NdisMedium802_3
@@ -117,15 +122,18 @@
    HKR, Ndi\params\MediaStatus,          Optional,  0, "0"
    HKR, Ndi\params\MediaStatus\enum,     "0",       0, "Application Controlled"
    HKR, Ndi\params\MediaStatus\enum,     "1",       0, "Always Connected"
-   HKR, Ndi\params\MAC,                  ParamDesc, 0, "MAC Address"
-   HKR, Ndi\params\MAC,                  Type,      0, "edit"
-   HKR, Ndi\params\MAC,                  Optional,  0, "1"
+   HKR, Ndi\params\NetworkAddress,       ParamDesc, 0, "MAC Address"
+   HKR, Ndi\params\NetworkAddress,       Type,      0, "edit"
+   HKR, Ndi\params\NetworkAddress,       Optional,  0, "1"
    HKR, Ndi\params\AllowNonAdmin,        ParamDesc, 0, "Non-Admin Access"
    HKR, Ndi\params\AllowNonAdmin,        Type,      0, "enum"
    HKR, Ndi\params\AllowNonAdmin,        Default,   0, "1"
    HKR, Ndi\params\AllowNonAdmin,        Optional,  0, "0"
    HKR, Ndi\params\AllowNonAdmin\enum,   "0",       0, "Not Allowed"
    HKR, Ndi\params\AllowNonAdmin\enum,   "1",       0, "Allowed"
+
+[tapprotonvpn.params.delreg]
+   HKR, Ndi\params\MAC
 
 ;----------------------------------------------------------------
 ;                             Service Section

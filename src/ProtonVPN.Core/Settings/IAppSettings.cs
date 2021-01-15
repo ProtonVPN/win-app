@@ -72,7 +72,6 @@ namespace ProtonVPN.Core.Settings
         string[] GetSplitTunnelApps();
         bool NetShieldEnabled { get; set; }
         int NetShieldMode { get; set; }
-        bool NetShieldModalShown { get; set; }
         DateTime LastPrimaryApiFail { get; set; }
         StringCollection AlternativeApiBaseUrls { set; get; }
         string ActiveAlternativeApiBaseUrl { set; get; }
@@ -85,5 +84,6 @@ namespace ProtonVPN.Core.Settings
         bool FeatureMaintenanceTrackerEnabled { get; set; }
         bool FeaturePollNotificationApiEnabled { get; set; }
         TimeSpan MaintenanceCheckInterval { get; set; }
+        bool IsNetShieldEnabled();
     }
 }

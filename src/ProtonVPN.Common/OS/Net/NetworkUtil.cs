@@ -54,24 +54,24 @@ namespace ProtonVPN.Common.Os.Net
             return new IPAddress(bytes);
         }
 
-        public static void AddDefaultGatewayForIface(Guid guid, string gatewayAddr)
+        public static void AddDefaultGatewayForIface(uint index, string gatewayAddr)
         {
-            AssertSuccess(() => PInvoke.AddDefaultGatewayForIface(ref guid, gatewayAddr));
+            AssertSuccess(() => PInvoke.AddDefaultGatewayForIface(index, gatewayAddr));
         }
 
-        public static void DeleteDefaultGatewayForIface(Guid guid, string gatewayAddr)
+        public static void DeleteDefaultGatewayForIface(uint index, string gatewayAddr)
         {
-            AssertSuccess(() => PInvoke.DeleteDefaultGatewayForIface(ref guid, gatewayAddr));
+            AssertSuccess(() => PInvoke.DeleteDefaultGatewayForIface(index, gatewayAddr));
         }
 
-        public static void SetLowestTapMetric(Guid guid)
+        public static void SetLowestTapMetric(uint index)
         {
-            AssertSuccess(() => PInvoke.SetLowestTapMetric(ref guid));
+            AssertSuccess(() => PInvoke.SetLowestTapMetric(index));
         }
 
-        public static void RestoreDefaultTapMetric(Guid guid)
+        public static void RestoreDefaultTapMetric(uint index)
         {
-            AssertSuccess(() => PInvoke.RestoreDefaultTapMetric(ref guid));
+            AssertSuccess(() => PInvoke.RestoreDefaultTapMetric(index));
         }
 
         private static void AssertSuccess(Func<uint> function)

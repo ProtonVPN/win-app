@@ -16,9 +16,9 @@ using namespace std;
 
 const auto ServiceNameProperty = L"ServiceName";
 const auto UpdateServiceNameProperty = L"UpdateServiceName";
-const auto SplitTunnelServiceNameProperty = L"SplitTunnelServiceName";
-const auto SplitTunnelServiceDisplayNameProperty = L"SplitTunnelServiceDisplayName";
-const auto SplitTunnelDriverFileProperty = L"SplitTunnelDriverFile";
+const auto CalloutServiceNameProperty = L"CalloutServiceName";
+const auto CalloutServiceDisplayNameProperty = L"CalloutServiceDisplayName";
+const auto CalloutDriverFileProperty = L"CalloutDriverFile";
 
 extern "C" EXPORT long ModifyServicePermissions(MSIHANDLE hInstall)
 {
@@ -34,10 +34,10 @@ extern "C" EXPORT long ModifyServicePermissions(MSIHANDLE hInstall)
     return result;
 }
 
-extern "C" EXPORT long UninstallSplitTunnelDriver(MSIHANDLE hInstall)
+extern "C" EXPORT long UninstallCalloutDriver(MSIHANDLE hInstall)
 {
     SetMsiHandle(hInstall);
-    const auto serviceName = GetProperty(SplitTunnelServiceNameProperty);
+    const auto serviceName = GetProperty(CalloutServiceNameProperty);
 
     const auto result = DeleteService(serviceName);
     LogMessage(L"DeleteService returned: ", result);
@@ -45,12 +45,12 @@ extern "C" EXPORT long UninstallSplitTunnelDriver(MSIHANDLE hInstall)
     return result;
 }
 
-extern "C" EXPORT long InstallSplitTunnelDriver(MSIHANDLE hInstall)
+extern "C" EXPORT long InstallCalloutDriver(MSIHANDLE hInstall)
 {
     SetMsiHandle(hInstall);
-    const auto driverFile = GetProperty(SplitTunnelDriverFileProperty);
-    const auto serviceName = GetProperty(SplitTunnelServiceNameProperty);
-    const auto serviceDisplayName = GetProperty(SplitTunnelServiceDisplayNameProperty);
+    const auto driverFile = GetProperty(CalloutDriverFileProperty);
+    const auto serviceName = GetProperty(CalloutServiceNameProperty);
+    const auto serviceDisplayName = GetProperty(CalloutServiceDisplayNameProperty);
 
     const auto result = CreateDriverService(
         serviceName,

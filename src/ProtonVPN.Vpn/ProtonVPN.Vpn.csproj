@@ -56,7 +56,6 @@
     <Compile Include="Common\VpnStateExtensions.cs" />
     <Compile Include="Config\Module.cs" />
     <Compile Include="Connection\BestPortWrapper.cs" />
-    <Compile Include="Connection\NetworkSettingsWrapper.cs" />
     <Compile Include="Connection\IVpnEndpointCandidates.cs" />
     <Compile Include="Connection\QueuingRequestsWrapper.cs" />
     <Compile Include="Connection\ReconnectingWrapper.cs" />

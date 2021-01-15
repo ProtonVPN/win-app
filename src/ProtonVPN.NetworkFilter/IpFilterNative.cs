@@ -28,6 +28,7 @@ namespace ProtonVPN.NetworkFilter
     {
         private const uint ErrorSuccess = 0;
         private const uint ErrorFilterNotFound = 0x80320003;
+        private const uint ErrorCalloutNotFound = 0x80320001;
         private const uint ErrorTimeout = 0x80320012;
         private const int RetryCount = 3;
 
@@ -359,7 +360,7 @@ namespace ProtonVPN.NetworkFilter
             Layer layer,
             Action action,
             uint weight,
-            string interfaceId)
+            uint index)
         {
             var id = Guid.Empty;
 
@@ -371,33 +372,7 @@ namespace ProtonVPN.NetworkFilter
                 (uint)layer,
                 (uint)action,
                 weight,
-                interfaceId,
-                ref id));
-
-            return id;
-        }
-
-        public static Guid CreateNetInterfaceDnsFilter(
-            IntPtr sessionHandle,
-            Guid providerId,
-            Guid sublayerId,
-            DisplayData displayData,
-            Layer layer,
-            Action action,
-            uint weight,
-            string interfaceId)
-        {
-            var id = Guid.Empty;
-
-            AssertSuccess(() => PInvoke.CreateNetInterfaceDnsFilter(
-                sessionHandle,
-                ref providerId,
-                ref sublayerId,
-                ref displayData,
-                (uint)layer,
-                (uint)action,
-                weight,
-                interfaceId,
+                index,
                 ref id));
 
             return id;
@@ -427,6 +402,34 @@ namespace ProtonVPN.NetworkFilter
             return id;
         }
 
+        public static Guid BlockOutsideDns(
+            IntPtr sessionHandle,
+            Guid providerId,
+            Guid sublayerId,
+            DisplayData displayData,
+            Layer layer,
+            Action action,
+            uint weight,
+            Guid calloutId,
+            uint index)
+        {
+            var id = Guid.Empty;
+
+            AssertSuccess(() => PInvoke.BlockOutsideDns(
+                sessionHandle,
+                ref providerId,
+                ref sublayerId,
+                ref displayData,
+                (uint)layer,
+                (uint)action,
+                weight,
+                ref calloutId,
+                index,
+                ref id));
+
+            return id;
+        }
+
         private static void AssertSuccess(Func<uint> function)
         {
             RetryPolicy.Execute(() => AssertSuccessInner(function));
@@ -450,6 +453,8 @@ namespace ProtonVPN.NetworkFilter
                     return;
                 case ErrorFilterNotFound:
                     throw new FilterNotFoundException(status);
+                case ErrorCalloutNotFound:
+                    throw new CalloutNotFoundException(status);
                 default:
                     throw new NetworkFilterException(status);
             }

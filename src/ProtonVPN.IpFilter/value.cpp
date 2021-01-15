@@ -163,5 +163,19 @@ namespace ipfilter
 
             return value;
         }
+
+        NetInterfaceIndex::NetInterfaceIndex(ULONG index): index(index)
+        {
+        }
+
+        NetInterfaceIndex::operator FWP_CONDITION_VALUE0()
+        {
+            FWP_CONDITION_VALUE0 value{};
+
+            value.type = FWP_UINT32;
+            value.uint32 = this->index;
+
+            return value;
+        }
     }
 }

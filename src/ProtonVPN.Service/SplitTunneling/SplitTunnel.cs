@@ -33,7 +33,6 @@ namespace ProtonVPN.Service.SplitTunneling
         private bool _enabled;
 
         private readonly IServiceSettings _serviceSettings;
-        private readonly IDriver _calloutDriver;
         private readonly IncludeModeApps _reverseSplitTunnelApps;
         private readonly ISplitTunnelClient _splitTunnelClient;
         private readonly IFilterCollection _appFilter;
@@ -41,7 +40,6 @@ namespace ProtonVPN.Service.SplitTunneling
 
         public SplitTunnel(
             IServiceSettings serviceSettings,
-            IDriver calloutDriver,
             ISplitTunnelClient splitTunnelClient,
             IncludeModeApps reverseSplitTunnelApps,
             IFilterCollection appFilter,
@@ -51,7 +49,6 @@ namespace ProtonVPN.Service.SplitTunneling
             _appFilter = appFilter;
             _splitTunnelClient = splitTunnelClient;
             _reverseSplitTunnelApps = reverseSplitTunnelApps;
-            _calloutDriver = calloutDriver;
             _serviceSettings = serviceSettings;
         }
 
@@ -59,13 +56,11 @@ namespace ProtonVPN.Service.SplitTunneling
             bool enabled,
             bool reverseEnabled,
             IServiceSettings serviceSettings,
-            IDriver calloutDriver,
             ISplitTunnelClient splitTunnelClient,
             IncludeModeApps reverseSplitTunnelApps,
             IFilterCollection appFilter,
             IFilterCollection permittedRemoteAddress) :
             this(serviceSettings,
-                calloutDriver,
                 splitTunnelClient,
                 reverseSplitTunnelApps,
                 appFilter,
@@ -105,8 +100,6 @@ namespace ProtonVPN.Service.SplitTunneling
                     _appFilter.RemoveAll();
                     break;
             }
-
-            _calloutDriver.Start();
         }
 
         public void OnVpnDisconnected(VpnState state)
@@ -120,7 +113,6 @@ namespace ProtonVPN.Service.SplitTunneling
 
         private void DisableSplitTunnel()
         {
-            _calloutDriver.Stop();
             Disable();
             DisableReversed();
         }

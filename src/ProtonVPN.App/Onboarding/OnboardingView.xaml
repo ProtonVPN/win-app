@@ -25,53 +25,60 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              xmlns:onboarding="clr-namespace:ProtonVPN.Onboarding"
              xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
+             xmlns:behavior="clr-namespace:ProtonVPN.Core.Wpf.Behavior"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance onboarding:OnboardingViewModel}">
     <UserControl.Resources>
         <Style x:Key="NextButton" TargetType="Label">
-            <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
-            <Setter Property="Content" Value="{translations:Loc Onboarding_btn_NextStep}"/>
+            <Setter Property="Foreground" Value="{StaticResource PrimaryColor}" />
+            <Setter Property="Content" Value="{translations:Loc Onboarding_btn_NextStep}" />
             <Style.Triggers>
                 <DataTrigger Binding="{Binding IsLastStep}" Value="True">
-                    <Setter Property="HorizontalAlignment" Value="Center"/>
-                    <Setter Property="Content" Value="{translations:Loc Onboarding_btn_EndTour}"/>
+                    <Setter Property="HorizontalAlignment" Value="Center" />
+                    <Setter Property="Content" Value="{translations:Loc Onboarding_btn_EndTour}" />
                 </DataTrigger>
             </Style.Triggers>
         </Style>
         <Style x:Key="PrevButton" BasedOn="{StaticResource ModalButton}" TargetType="Button">
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="VerticalAlignment" Value="Bottom"/>
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="Padding" Value="0"/>
-            <Setter Property="Margin" Value="20,0,20,10"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Visibility" Value="Visible"/>
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="VerticalAlignment" Value="Bottom" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Margin" Value="20,0,20,10" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Visibility" Value="Visible" />
             <Style.Triggers>
                 <DataTrigger Binding="{Binding IsFirstStep}" Value="True">
-                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Setter Property="Visibility" Value="Collapsed" />
                 </DataTrigger>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="Background" Value="Transparent" />
                 </Trigger>
             </Style.Triggers>
         </Style>
         <Style x:Key="ArrowIcon" TargetType="fa:FontAwesome">
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="Icon" Value="ArrowRight"/>
-            <Setter Property="Margin" Value="10,3,0,0"/>
-            <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
-            <Setter Property="Visibility" Value="Visible"/>
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Icon" Value="ArrowRight" />
+            <Setter Property="Margin" Value="10,3,0,0" />
+            <Setter Property="Foreground" Value="{StaticResource PrimaryColor}" />
+            <Setter Property="Visibility" Value="Visible" />
             <Style.Triggers>
                 <DataTrigger Binding="{Binding IsLastStep}" Value="True">
-                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Setter Property="Visibility" Value="Collapsed" />
                 </DataTrigger>
             </Style.Triggers>
+        </Style>
+        <Style x:Key="StepDetailsText" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="TextWrapping" Value="Wrap" />
         </Style>
     </UserControl.Resources>
     <Grid>
         <Border CornerRadius="20,0,0,20"
                 MinWidth="250"
-                Background="{StaticResource PrimaryColor}"/>
+                Background="{StaticResource PrimaryColor}" />
         <Border VerticalAlignment="Top"
                 HorizontalAlignment="Left"
                 Margin="20,20,0,0"
@@ -84,7 +91,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                    HorizontalAlignment="Center"
                    FontSize="16"
                    VerticalAlignment="Center"
-                   Content="{Binding Number}"/>
+                   Content="{Binding Number}" />
         </Border>
         <Label Foreground="White"
                HorizontalAlignment="Left"
@@ -95,54 +102,80 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <Style TargetType="Label">
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding Number}" Value="1">
-                            <Setter Property="Content" Value="{translations:Loc Onboarding_ttl_Step_1}"/>
+                            <Setter Property="Content" Value="{translations:Loc Onboarding_ttl_Step_1}" />
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Number}" Value="2">
-                            <Setter Property="Content" Value="{translations:Loc Onboarding_ttl_Step_2}"/>
+                            <Setter Property="Content" Value="{translations:Loc Onboarding_ttl_Step_2}" />
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Number}" Value="3">
-                            <Setter Property="Content" Value="{translations:Loc Onboarding_ttl_Step_3}"/>
+                            <Setter Property="Content" Value="{translations:Loc Onboarding_ttl_Step_3}" />
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Number}" Value="4">
-                            <Setter Property="Content" Value="{translations:Loc Onboarding_ttl_Step_4}"/>
+                            <Setter Property="Content" Value="{translations:Loc Onboarding_ttl_Step_4}" />
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Number}" Value="5">
-                            <Setter Property="Content" Value="{translations:Loc Onboarding_ttl_Step_5}"/>
+                            <Setter Property="Content" Value="{translations:Loc Onboarding_ttl_Step_5}" />
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
             </Label.Style>
         </Label>
 
-        <TextBlock Foreground="White"
-                   HorizontalAlignment="Left"
-                   FontSize="14"
-                   TextWrapping="Wrap"
-                   Margin="20,80"
-                   MaxWidth="250"
-                   VerticalAlignment="Top">
-            <TextBlock.Style>
-                <Style TargetType="TextBlock">
+        <ContentControl MaxWidth="250" Margin="20,80" VerticalAlignment="Top">
+            <ContentControl.Style>
+                <Style TargetType="ContentControl">
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding Number}" Value="1">
-                            <Setter Property="Text" Value="{translations:Loc Onboarding_msg_Step_1}"/>
+                            <Setter Property="ContentTemplate">
+                                <Setter.Value>
+                                    <DataTemplate>
+                                        <TextBlock Style="{StaticResource StepDetailsText}"
+                                                   behavior:TextStyleBehavior.FormattedText="{translations:Loc Onboarding_msg_Step_1}" />
+                                    </DataTemplate>
+                                </Setter.Value>
+                            </Setter>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Number}" Value="2">
-                            <Setter Property="Text" Value="{translations:Loc Onboarding_msg_Step_2}"/>
+                            <Setter Property="ContentTemplate">
+                                <Setter.Value>
+                                    <DataTemplate>
+                                        <TextBlock Style="{StaticResource StepDetailsText}"
+                                                   behavior:TextStyleBehavior.FormattedText="{translations:Loc Onboarding_msg_Step_2}" />
+                                    </DataTemplate>
+                                </Setter.Value>
+                            </Setter>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Number}" Value="3">
-                            <Setter Property="Text" Value="{translations:Loc Onboarding_msg_Step_3}"/>
+                            <Setter Property="ContentTemplate">
+                                <Setter.Value>
+                                    <DataTemplate>
+                                        <TextBlock Style="{StaticResource StepDetailsText}"
+                                                   behavior:TextStyleBehavior.FormattedText="{translations:Loc Onboarding_msg_Step_3}" />
+                                    </DataTemplate>
+                                </Setter.Value>
+                            </Setter>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Number}" Value="4">
-                            <Setter Property="Text" Value="{translations:Loc Onboarding_msg_Step_4}"/>
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding Number}" Value="5">
-                            <Setter Property="Text" Value="{translations:Loc Onboarding_msg_Step_5}"/>
+                            <Setter Property="ContentTemplate">
+                                <Setter.Value>
+                                    <DataTemplate>
+                                        <StackPanel>
+                                            <TextBlock Style="{StaticResource StepDetailsText}"
+                                                       behavior:TextStyleBehavior.FormattedText="{translations:Loc Onboarding_msg_SecureCore}" />
+                                            <TextBlock Style="{StaticResource StepDetailsText}"
+                                                       Visibility="{Binding Path=DataContext.IsFeatureNetShieldEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Converter={StaticResource BoolToVis}}"
+                                                       behavior:TextStyleBehavior.FormattedText="{translations:Loc Onboarding_msg_NetShield}" />
+                                            <TextBlock Style="{StaticResource StepDetailsText}"
+                                                       behavior:TextStyleBehavior.FormattedText="{translations:Loc Onboarding_msg_KillSwitch}" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </Setter.Value>
+                            </Setter>
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
-            </TextBlock.Style>
-        </TextBlock>
+            </ContentControl.Style>
+        </ContentControl>
 
         <DockPanel>
             <Button Style="{StaticResource PrevButton}" Command="{Binding PrevTipCommand}">
@@ -151,11 +184,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             Width="30"
                             Height="30"
                             CornerRadius="15"
-                            BorderThickness="1"/>
+                            BorderThickness="1" />
                     <fa:FontAwesome Icon="ArrowLeft"
                                     Foreground="#4f8d59"
                                     VerticalAlignment="Center"
-                                    HorizontalAlignment="Center"/>
+                                    HorizontalAlignment="Center" />
                 </Grid>
             </Button>
             <Button Style="{StaticResource ModalButton}"
@@ -168,8 +201,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     Command="{Binding NextTipCommand}"
                     Margin="0,0,10,10">
                 <DockPanel>
-                    <Label Style="{StaticResource NextButton}"/>
-                    <fa:FontAwesome Style="{StaticResource ArrowIcon}"/>
+                    <Label Style="{StaticResource NextButton}" />
+                    <fa:FontAwesome Style="{StaticResource ArrowIcon}" />
                 </DockPanel>
             </Button>
         </DockPanel>

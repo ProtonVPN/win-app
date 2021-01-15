@@ -25,7 +25,7 @@ namespace ProtonVPN.Onboarding
 {
     public class Onboarding : ILoggedInAware
     {
-        private const int StepCount = 5;
+        private const int StepCount = 4;
 
         private readonly IAppSettings _appSettings;
 

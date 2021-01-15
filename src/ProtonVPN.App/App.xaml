@@ -25,6 +25,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:converters="clr-namespace:ProtonVPN.Core.MVVM.Converters"
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    xmlns:quickSettings="clr-namespace:ProtonVPN.Sidebar.QuickSettings"
     mc:Ignorable="d">
     <Application.Resources>
         <ResourceDictionary>
@@ -55,6 +56,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <converters:StringToUpperConverter x:Key="StringToUpperConverter"/>
                     <converters:ZeroToBoolConverter x:Key="ZeroToBoolConverter"/>
                     <converters:PluralConverter x:Key="PluralConverter"/>
+                    <converters:InvertedBoolConverter x:Key="InvertedBoolConverter"/>
+                    <quickSettings:PopupArrowPositionConverter x:Key="PopupArrowPositionConverter"/>
                 </ResourceDictionary>
                 <ResourceDictionary Source="/ProtonVPN.Resource;component/Automation/Config.xaml"/>
                 <ResourceDictionary Source="/ProtonVPN.Resource;component/Styles/Colors.xaml"/>

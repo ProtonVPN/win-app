@@ -103,5 +103,16 @@ namespace ipfilter
         private:
             uint64_t localId;
         };
+
+        class NetInterfaceIndex : public Value
+        {
+        public:
+            NetInterfaceIndex(ULONG index);
+
+            virtual operator FWP_CONDITION_VALUE0();
+
+        private:
+            ULONG index;
+        };
     }
 }
