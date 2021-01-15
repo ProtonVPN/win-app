@@ -512,7 +512,6 @@ namespace ProtonVPN.Core
             Resolve<CountriesViewModel>().Load();
             Resolve<QuickLaunchViewModel>().Load();
             Resolve<MapViewModel>().Load();
-            Resolve<SidebarViewModel>().Load();
             Resolve<SidebarProfilesViewModel>().Load();
             Resolve<ConnectionStatusViewModel>().Load();
         }

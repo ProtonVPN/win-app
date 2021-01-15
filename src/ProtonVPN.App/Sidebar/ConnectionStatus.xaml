@@ -77,6 +77,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     </UserControl.Resources>
 
     <Grid Height="220" Width="336">
+        <Button Style="{StaticResource SidebarModeButton}"/>
         <Image VerticalAlignment="Top"
                Source="{Binding ServerExitCountry, Converter={StaticResource ConnectionStatusFlagConverter}}" />
         <Grid>

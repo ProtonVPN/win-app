@@ -45,14 +45,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Button Style="{StaticResource SidebarModeButton}">
-            <Button.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform ScaleX="-1"/>
-                </TransformGroup>
-            </Button.RenderTransform>
-        </Button>
-
         <StackPanel HorizontalAlignment="Center" Grid.Row="0">
             <trial:TrialView Visibility="{Binding ShowTrialView, Converter={StaticResource BoolToVis}}"/>
             <sidebar:ConnectionStatus DataContext="{Binding ConnectionStatus}"/>

@@ -17,22 +17,21 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Threading.Tasks;
+using System.Windows.Input;
 using Caliburn.Micro;
 using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Settings;
+using ProtonVPN.Core.User;
+using ProtonVPN.FlashNotifications;
 using ProtonVPN.Onboarding;
 using ProtonVPN.Sidebar.Trial;
 using ProtonVPN.Trial;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using ProtonVPN.Core.User;
-using ProtonVPN.FlashNotifications;
 
 namespace ProtonVPN.Sidebar
 {
-    internal class SidebarViewModel :
-        SidebarBaseViewModel,
+    internal class SidebarViewModel : Screen,
         IOnboardingStepAware,
         ILogoutAware,
         ILoggedInAware,
@@ -58,12 +57,11 @@ namespace ProtonVPN.Sidebar
 
         public SidebarViewModel(
             IAppSettings appSettings,
-            SidebarManager sidebarManager,
             SidebarProfilesViewModel sidebarProfilesViewModel,
             TrialViewModel trialViewModel,
             ConnectionStatusViewModel connectionStatusViewModel,
             CountriesViewModel countriesViewModel,
-            FlashNotificationViewModel flashNotificationsViewModel) : base(appSettings, sidebarManager)
+            FlashNotificationViewModel flashNotificationsViewModel)
         {
             _appSettings = appSettings;
             CountriesTabCommand = new RelayCommand(OpenCountriesTabAction);
