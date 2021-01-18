@@ -309,6 +309,7 @@
     <Compile Include="Settings\Migrations\IAppSettingsMigration.cs" />
     <Compile Include="Settings\Migrations\BaseUserSettingsMigration.cs" />
     <Compile Include="Settings\Migrations\v1_10_0\AppSettingsMigration.cs" />
+    <Compile Include="Settings\Migrations\v1_18_3\AppSettingsMigration.cs" />
     <Compile Include="Settings\Migrations\v1_8_0\AppSettingsMigration.cs" />
     <Compile Include="Settings\Migrations\v1_8_0\UserSettingsMigration.cs" />
     <Compile Include="Core\Wpf\CustomListView.cs" />

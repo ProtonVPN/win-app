@@ -170,6 +170,8 @@ namespace ProtonVPN.Core.Ioc
                 .SingleInstance();
             builder.RegisterType<ProtonVPN.Settings.Migrations.v1_17_0.AppSettingsMigration>().AsImplementedInterfaces()
                 .SingleInstance();
+            builder.RegisterType<ProtonVPN.Settings.Migrations.v1_18_3.AppSettingsMigration>().AsImplementedInterfaces()
+                .SingleInstance();
 
             builder.RegisterType<MapLineManager>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterType<VpnEvents>();
