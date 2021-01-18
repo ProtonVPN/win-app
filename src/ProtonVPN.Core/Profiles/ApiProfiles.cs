@@ -62,8 +62,10 @@ namespace ProtonVPN.Core.Profiles
         {
             Ensure.NotNull(profile, nameof(profile));
             Ensure.IsTrue(!profile.IsPredefined, "Can't create predefined profile");
+            Ensure.IsTrue(profile.IsColorCodeValid());
 
-            var response = await HandleErrors(() => _apiClient.CreateProfile(ToApiProfile(profile)));
+            ApiResponseResult<ProfileResponse> response = await HandleErrors(
+                () => _apiClient.CreateProfile(ToApiProfile(profile)));
 
             UpdatePropertiesFromApiProfile(profile, response.Value.Profile);
         }
@@ -72,8 +74,10 @@ namespace ProtonVPN.Core.Profiles
         {
             Ensure.NotNull(profile, nameof(profile));
             Ensure.IsTrue(!profile.IsPredefined, "Can't update predefined profile");
+            Ensure.IsTrue(profile.IsColorCodeValid());
 
-            var response = await HandleErrors(() => _apiClient.UpdateProfile(profile.ExternalId, ToApiProfile(profile)));
+            ApiResponseResult<ProfileResponse> response = await HandleErrors(
+                () => _apiClient.UpdateProfile(profile.ExternalId, ToApiProfile(profile)));
 
             UpdatePropertiesFromApiProfile(profile, response.Value.Profile);
         }
