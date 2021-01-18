@@ -41,7 +41,7 @@ csharp_new_line_between_query_expression_clauses=true
 # csharp_prefer_braces = true:error
 
 # http://kent-boogaart.com/blog/editorconfig-reference-for-c-developers#csharp_prefer_simple_default_expression
-csharp_prefer_simple_default_expression=true:error
+csharp_prefer_simple_default_expression=false:error
 
 # http://kent-boogaart.com/blog/editorconfig-reference-for-c-developers#csharp_preserve_single_line_blocks
 csharp_preserve_single_line_blocks=true
