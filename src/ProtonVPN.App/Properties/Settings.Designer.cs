@@ -981,6 +981,30 @@ namespace ProtonVPN.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string UserCustomDnsEnabled {
+            get {
+                return ((string)(this["UserCustomDnsEnabled"]));
+            }
+            set {
+                this["UserCustomDnsEnabled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string UserCustomDnsIps {
+            get {
+                return ((string)(this["UserCustomDnsIps"]));
+            }
+            set {
+                this["UserCustomDnsIps"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string UserNetShieldMode {
             get {
                 return ((string)(this["UserNetShieldMode"]));

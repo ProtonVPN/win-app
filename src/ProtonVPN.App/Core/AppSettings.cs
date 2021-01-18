@@ -168,8 +168,8 @@ namespace ProtonVPN.Core
 
         public bool CustomDnsEnabled
         {
-            get => Get<bool>();
-            set => Set(value);
+            get => GetPerUser<bool>();
+            set => SetPerUser(value);
         }
 
         [Obsolete(
@@ -306,8 +306,8 @@ namespace ProtonVPN.Core
 
         public IpContract[] CustomDnsIps
         {
-            get => Get<IpContract[]>() ?? new IpContract[0];
-            set => Set(value);
+            get => GetPerUser<IpContract[]>() ?? new IpContract[0];
+            set => SetPerUser(value);
         }
 
         public int SettingsSelectedTabIndex
