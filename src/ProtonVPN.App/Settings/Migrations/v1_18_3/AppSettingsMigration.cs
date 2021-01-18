@@ -39,7 +39,12 @@ namespace ProtonVPN.Settings.Migrations.v1_18_3
 
         protected override void Migrate()
         {
-            string[] usernames = Settings.Get<PerUser<string>[]>(UserSettingsVersionKey).Select(pu => pu.User).ToArray();
+            string[] usernames = Settings?.Get<PerUser<string>[]>(UserSettingsVersionKey)?.Select(pu => pu.User).ToArray();
+            if (usernames == null)
+            {
+                return;
+            }
+
             bool isCustomDnsEnabled = Settings.Get<bool>(CustomDnsEnabledKey);
             IpContract[] customDnsIps = Settings.Get<IpContract[]>(CustomDnsIpsKey);
 
