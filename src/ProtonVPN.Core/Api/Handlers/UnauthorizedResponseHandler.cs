@@ -23,8 +23,10 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
+using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Core.Abstract;
+using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.Api.Extensions;
 using ProtonVPN.Core.Settings;
 
@@ -40,6 +42,7 @@ namespace ProtonVPN.Core.Api.Handlers
         private readonly ITokenStorage _tokenStorage;
         private readonly IUserStorage _userStorage;
 
+        private readonly ILogger _logger;
         private volatile Task<bool> _refreshTask = Task.FromResult(true);
 
         public event EventHandler SessionExpired;
@@ -47,11 +50,13 @@ namespace ProtonVPN.Core.Api.Handlers
         public UnauthorizedResponseHandler(
             ITokenClient tokenClient,
             ITokenStorage tokenStorage,
-            IUserStorage userStorage)
+            IUserStorage userStorage,
+            ILogger logger)
         {
             _tokenClient = tokenClient;
             _tokenStorage = tokenStorage;
             _userStorage = userStorage;
+            _logger = logger;
         }
 
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request,
@@ -63,19 +68,19 @@ namespace ProtonVPN.Core.Api.Handlers
                 return new UnauthorizedResponse();
             }
 
-            var refreshTask = _refreshTask;
+            Task<bool> refreshTask = _refreshTask;
             if (!refreshTask.IsCompleted)
             {
-                var refreshSucceeded = await refreshTask;
+                bool refreshSucceeded = await refreshTask;
                 return await ResendAsync(request, cancellationToken, refreshSucceeded);
             }
 
-            var response = await base.SendAsync(request, cancellationToken);
+            HttpResponseMessage response = await base.SendAsync(request, cancellationToken);
             if (response.StatusCode == HttpStatusCode.Unauthorized && !_userStorage.User().Empty())
             {
                 try
                 {
-                    var refreshSucceeded = await Refresh(refreshTask, cancellationToken);
+                    bool refreshSucceeded = await Refresh(refreshTask, cancellationToken);
                     return await ResendAsync(request, cancellationToken, refreshSucceeded);
                 }
                 finally
@@ -102,10 +107,10 @@ namespace ProtonVPN.Core.Api.Handlers
 
         private async Task<bool> Refresh(Task<bool> refreshTask, CancellationToken cancellationToken)
         {
-            var taskCompletion = new TaskCompletionSource<bool>();
-            var newTask = taskCompletion.Task;
+            TaskCompletionSource<bool> taskCompletion = new TaskCompletionSource<bool>();
+            Task<bool> newTask = taskCompletion.Task;
 
-            var prevTask = Interlocked.CompareExchange(ref _refreshTask, newTask, refreshTask);
+            Task<bool> prevTask = Interlocked.CompareExchange(ref _refreshTask, newTask, refreshTask);
 
             if (prevTask != refreshTask)
             {
@@ -119,14 +124,15 @@ namespace ProtonVPN.Core.Api.Handlers
 
         private async Task<bool> RefreshTokens(CancellationToken cancellationToken)
         {
-            if (string.IsNullOrEmpty(_tokenStorage.RefreshToken))
+            if (string.IsNullOrEmpty(_tokenStorage.RefreshToken) || string.IsNullOrEmpty(_tokenStorage.Uid))
             {
                 return false;
             }
 
             try
             {
-                var response = await _tokenClient.RefreshTokenAsync(cancellationToken);
+                ApiResponseResult<RefreshTokenResponse> response =
+                    await _tokenClient.RefreshTokenAsync(cancellationToken);
 
                 if (response.Success)
                 {
@@ -135,6 +141,10 @@ namespace ProtonVPN.Core.Api.Handlers
 
                     return true;
                 }
+            }
+            catch (ArgumentNullException e)
+            {
+                _logger.Error($"An error occurred when refreshing the auth token: {e.ParamName}");
             }
             catch (HttpRequestException)
             { }
