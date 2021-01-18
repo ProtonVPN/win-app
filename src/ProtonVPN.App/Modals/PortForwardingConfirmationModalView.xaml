@@ -43,15 +43,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
             <DockPanel Margin="20,30,20,50">
                 <CheckBox Style="{StaticResource Checkbox}"
-                          IsChecked="{Binding IsToNotShowThisMessageAgain}"/>
-                <WrapPanel>
-                    <TextBlock FontSize="14"
-                               Foreground="White"
-                               VerticalAlignment="Center"
-                               TextWrapping="Wrap">
-                        <Run Text="{translations:Loc Dialogs_DoNotShowThisMessageAgain}"/>
-                    </TextBlock>
-                </WrapPanel>
+                          IsChecked="{Binding IsToNotShowThisMessageAgain}">
+                    <Label FontSize="14"
+                           Foreground="White"
+                           VerticalAlignment="Center"
+                           Content="{translations:Loc Dialogs_DoNotShowThisMessageAgain}"/>
+                </CheckBox>
             </DockPanel>
 
             <DockPanel Background="{StaticResource ModalBarColor}" Height="66">
