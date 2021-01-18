@@ -17,21 +17,26 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Servers.Models;
-using System;
 
 namespace ProtonVPN.Core.Profiles
 {
     public class Profile
     {
+        private static readonly Regex _hexColorRegex = new Regex("^#(?:[0-9a-fA-F]{3}){1,2}$");
+        private static readonly ColorProvider _colorProvider = new ColorProvider();
+
         public Profile() : this(null)
         { }
 
         public Profile(string id)
         {
             Id = !string.IsNullOrEmpty(id) ? id : Guid.NewGuid().ToString();
+            _colorCode = GetRandomColor();
         }
 
         public string Id { get; set; }
@@ -48,7 +53,12 @@ namespace ProtonVPN.Core.Profiles
 
         public Features Features { get; set; }
 
-        public string ColorCode { get; set; }
+        private string _colorCode;
+        public string ColorCode
+        {
+            get => _colorCode;
+            set => _colorCode = GetValidColorCode(value);
+        }
 
         public string Name { get; set; }
 
@@ -65,8 +75,8 @@ namespace ProtonVPN.Core.Profiles
         public ProfileStatus Status { get; set; }
 
         public ProfileSyncStatus SyncStatus { get; set; }
-        
-        public DateTime ModifiedAt { get; set; } 
+
+        public DateTime ModifiedAt { get; set; }
 
         public string OriginalName { get; set; }
 
@@ -77,9 +87,29 @@ namespace ProtonVPN.Core.Profiles
 
         public Profile Clone()
         {
-            var clone = (Profile) MemberwiseClone();
+            var clone = (Profile)MemberwiseClone();
             clone.Server = null;
             return clone;
+        }
+
+        private string GetValidColorCode(string colorCode)
+        {
+            return IsColorCodeValid(colorCode) ? colorCode : GetRandomColor();
+        }
+
+        private bool IsColorCodeValid(string colorCode)
+        {
+            return colorCode != null && _hexColorRegex.IsMatch(colorCode);
+        }
+
+        private string GetRandomColor()
+        {
+            return _colorProvider.RandomColor();
+        }
+
+        public bool IsColorCodeValid()
+        {
+            return IsColorCodeValid(ColorCode);
         }
     }
 }
