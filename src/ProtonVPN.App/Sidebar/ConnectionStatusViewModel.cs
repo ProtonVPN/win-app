@@ -36,7 +36,6 @@ using ProtonVPN.Core.Vpn;
 using ProtonVPN.Onboarding;
 using ProtonVPN.P2PDetection;
 using ProtonVPN.Sidebar.Announcements;
-using ProtonVPN.Vpn.Connectors;
 
 namespace ProtonVPN.Sidebar
 {
@@ -52,7 +51,6 @@ namespace ProtonVPN.Sidebar
         private readonly IAppSettings _appSettings;
         private readonly SidebarManager _sidebarManager;
         private readonly IVpnManager _vpnManager;
-        private readonly QuickConnector _quickConnector;
         private readonly ServerManager _serverManager;
         private readonly VpnConnectionSpeed _speedTracker;
         private readonly IUserStorage _userStorage;
@@ -64,7 +62,6 @@ namespace ProtonVPN.Sidebar
             IAppSettings appSettings,
             SidebarManager sidebarManager,
             ServerManager serverManager,
-            QuickConnector quickConnector,
             IVpnManager vpnManager,
             VpnConnectionSpeed speedTracker,
             IUserStorage userStorage,
@@ -72,7 +69,6 @@ namespace ProtonVPN.Sidebar
         {
             _appSettings = appSettings;
             _sidebarManager = sidebarManager;
-            _quickConnector = quickConnector;
             _vpnManager = vpnManager;
             _serverManager = serverManager;
             _speedTracker = speedTracker;
@@ -300,11 +296,11 @@ namespace ProtonVPN.Sidebar
             if (_vpnStatus == VpnStatus.Disconnecting ||
                 _vpnStatus == VpnStatus.Disconnected)
             {
-                await _quickConnector.Connect();
+                await _vpnManager.QuickConnect();
             }
             else
             {
-                await _quickConnector.Disconnect();
+                await _vpnManager.Disconnect();
             }
         }
 

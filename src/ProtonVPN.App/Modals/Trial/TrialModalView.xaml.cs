@@ -17,25 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using GalaSoft.MvvmLight.CommandWpf;
-using ProtonVPN.Config.Url;
-using System.Windows.Input;
-
 namespace ProtonVPN.Modals.Trial
 {
-    public abstract class BaseTrialModalViewModel : BaseModalViewModel
+    public partial class TrialModalView
     {
-        protected readonly IActiveUrls Urls;
-
-        protected BaseTrialModalViewModel(IActiveUrls urls)
+        public TrialModalView()
         {
-            Urls = urls;
-
-            UpgradeCommand = new RelayCommand(UpgradeAction);
+            InitializeComponent();
         }
-
-        public ICommand UpgradeCommand { get; set; }
-
-        protected abstract void UpgradeAction();
     }
 }

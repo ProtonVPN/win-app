@@ -21,6 +21,10 @@ namespace ProtonVPN.Core.User
 {
     public enum PlanStatus
     {
-        TrialNotStarted, TrialStarted, Free, Paid, Expired
+        TrialNotStarted,
+        TrialStarted,
+        Free,
+        Paid,
+        Expired,
     }
 }

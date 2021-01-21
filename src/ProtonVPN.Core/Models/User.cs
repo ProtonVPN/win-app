@@ -68,6 +68,11 @@ namespace ProtonVPN.Core.Models
             return VpnPlan != null && !VpnPlan.Equals("trial") && !VpnPlan.Equals("free");
         }
 
+        public bool IsTrial()
+        {
+            return VpnPlan != null && VpnPlan.Equals("trial");
+        }
+
         public long TrialExpirationTimeInSeconds()
         {
             var now = ((DateTimeOffset)DateTime.Now).ToUnixTimeSeconds();
