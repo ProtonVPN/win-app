@@ -10,6 +10,8 @@ namespace ProtonVPN.Core.Service.Vpn
     {
         Task Connect(Profile profile, Profile fallbackProfile = null);
 
+        Task QuickConnect();
+
         Task Reconnect();
 
         Task Disconnect(VpnError vpnError = VpnError.None);

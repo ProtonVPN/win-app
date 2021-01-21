@@ -17,6 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.MVVM;
@@ -26,15 +32,8 @@ using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.P2PDetection;
 using ProtonVPN.Profiles;
-using ProtonVPN.Vpn.Connectors;
-using ProtonVPN.Windows;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Input;
 using ProtonVPN.ViewModels;
+using ProtonVPN.Windows;
 
 namespace ProtonVPN.QuickLaunch
 {
@@ -49,7 +48,6 @@ namespace ProtonVPN.QuickLaunch
 
         private readonly ProfileManager _profileManager;
         private readonly ProfileViewModelFactory _profileHelper;
-        private readonly QuickConnector _quickConnector;
         private readonly IVpnManager _vpnManager;
         private readonly AppWindow _appWindow;
 
@@ -132,7 +130,6 @@ namespace ProtonVPN.QuickLaunch
 
         public QuickLaunchViewModel(
             ProfileManager profileManager,
-            QuickConnector quickConnector,
             ProfileViewModelFactory profileHelper,
             IVpnManager vpnManager,
             AppWindow appWindow)
@@ -145,7 +142,6 @@ namespace ProtonVPN.QuickLaunch
             _profileHelper = profileHelper;
             _profileManager = profileManager;
             _vpnManager = vpnManager;
-            _quickConnector = quickConnector;
         }
 
         public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
@@ -207,11 +203,11 @@ namespace ProtonVPN.QuickLaunch
             if (_vpnStatus.Equals(VpnStatus.Disconnected) ||
                 _vpnStatus.Equals(VpnStatus.Disconnecting))
             {
-                await _quickConnector.Connect();
+                await _vpnManager.QuickConnect();
             }
             else
             {
-                await _quickConnector.Disconnect();
+                await _vpnManager.Disconnect();
             }
         }
 

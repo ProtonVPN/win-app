@@ -219,6 +219,10 @@
       <DependentUpon>RebootModalView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modals\RebootModalViewModel.cs" />
+    <Compile Include="Modals\Trial\TrialModalView.xaml.cs">
+      <DependentUpon>TrialModalView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modals\Trial\TrialModalViewModel.cs" />
     <Compile Include="Servers\ISortedCountries.cs" />
     <Compile Include="Settings\IVpnReconnector.cs" />
     <Compile Include="Settings\Migrations\v1_17_0\AppSettingsMigration.cs" />
@@ -472,8 +476,6 @@
       <DependentUpon>QuestionModalView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modals\Dialogs\QuestionModalViewModel.cs" />
-    <Compile Include="Modals\Trial\BaseTrialModalViewModel.cs" />
-    <Compile Include="Modals\Trial\TrialAboutToExpireModalViewModel.cs" />
     <Compile Include="Modals\Upsell\EnjoyingUpsellModalView.xaml.cs">
       <DependentUpon>EnjoyingUpsellModalView.xaml</DependentUpon>
     </Compile>
@@ -482,9 +484,6 @@
       <DependentUpon>NoServerInCountryDueTierUpsellModalView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modals\Upsell\NoServerInCountryDueTierUpsellModalViewModel.cs" />
-    <Compile Include="Modals\Trial\TrialAboutToExpireModalView.xaml.cs">
-      <DependentUpon>TrialAboutToExpireModalView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Modals\Dialogs\WarningModalView.xaml.cs">
       <DependentUpon>WarningModalView.xaml</DependentUpon>
     </Compile>
@@ -580,7 +579,6 @@
     <Compile Include="Modals\P2PForwardModalViewModel.cs" />
     <Compile Include="Modals\Upsell\ScUpsellModalViewModel.cs" />
     <Compile Include="Modals\Upsell\PlusUpsellModalViewModel.cs" />
-    <Compile Include="Modals\Trial\TrialEndModalViewModel.cs" />
     <Compile Include="Modals\Welcome\BaseWelcomeModalViewModel.cs" />
     <Compile Include="Modals\Upsell\UpsellModalViewModel.cs" />
     <Compile Include="Profiles\PredefinedProfileViewModel.cs" />
@@ -760,9 +758,6 @@
     <Compile Include="Modals\Upsell\PlusUpsellModalView.xaml.cs">
       <DependentUpon>PlusUpsellModalView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Modals\Trial\TrialEndModalView.xaml.cs">
-      <DependentUpon>TrialEndModalView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Modals\Welcome\TrialWelcomeModalView.xaml.cs">
       <DependentUpon>TrialWelcomeModalView.xaml</DependentUpon>
     </Compile>
@@ -795,7 +790,6 @@
     <Compile Include="Vpn\Connectors\ServerConnector.cs" />
     <Compile Include="Vpn\Connectors\CountryConnector.cs" />
     <Compile Include="Vpn\Connectors\ProfileConnector.cs" />
-    <Compile Include="Vpn\Connectors\QuickConnector.cs" />
     <Compile Include="Login\Views\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
@@ -864,6 +858,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Modals\Trial\TrialModalView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Modals\TroubleshootModalView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -889,10 +887,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Modals\Upsell\NoServerInCountryDueTierUpsellModalView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Modals\Trial\TrialAboutToExpireModalView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1298,10 +1292,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Modals\Upsell\PlusUpsellModalView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Modals\Trial\TrialEndModalView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

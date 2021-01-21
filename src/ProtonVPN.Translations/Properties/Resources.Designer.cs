@@ -5938,51 +5938,6 @@ namespace ProtonVPN.Translations.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Maybe Later.
         /// </summary>
-        public static string Trial_Expired_btn_Close {
-            get {
-                return ResourceManager.GetString("Trial_Expired_btn_Close", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Upgrade Now.
-        /// </summary>
-        public static string Trial_Expired_btn_Upgrade {
-            get {
-                return ResourceManager.GetString("Trial_Expired_btn_Upgrade", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Your account has been downgraded to ProtonVPN FREE. Here&apos;s what you will miss from ProtonVPN Plus:.
-        /// </summary>
-        public static string Trial_Expired_lbl_Expired {
-            get {
-                return ResourceManager.GetString("Trial_Expired_lbl_Expired", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to YOUR FREE TRIAL &lt;Run Foreground=&quot;#eb3c4b&quot;&gt;EXPIRED&lt;/Run&gt;.
-        /// </summary>
-        public static string Trial_Expired_lbl_Header {
-            get {
-                return ResourceManager.GetString("Trial_Expired_lbl_Header", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ProtonVPN Trial.
-        /// </summary>
-        public static string Trial_Expired_ttl {
-            get {
-                return ResourceManager.GetString("Trial_Expired_ttl", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Maybe Later.
-        /// </summary>
         public static string Trial_Expiring_btn_Close {
             get {
                 return ResourceManager.GetString("Trial_Expiring_btn_Close", resourceCulture);
@@ -5999,20 +5954,29 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your free trial is about to expire!.
+        /// </summary>
+        public static string Trial_Expiring_lbl_AboutToExpire {
+            get {
+                return ResourceManager.GetString("Trial_Expiring_lbl_AboutToExpire", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your free trial EXPIRED.
+        /// </summary>
+        public static string Trial_Expiring_lbl_Expired {
+            get {
+                return ResourceManager.GetString("Trial_Expiring_lbl_Expired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Upgrade to ProtonVPN PLUS and continue enjoying these features:.
         /// </summary>
         public static string Trial_Expiring_lbl_Features {
             get {
                 return ResourceManager.GetString("Trial_Expiring_lbl_Features", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Your free trial is about to expire!.
-        /// </summary>
-        public static string Trial_Expiring_lbl_Header {
-            get {
-                return ResourceManager.GetString("Trial_Expiring_lbl_Header", resourceCulture);
             }
         }
         

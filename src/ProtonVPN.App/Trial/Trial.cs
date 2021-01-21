@@ -104,7 +104,9 @@ namespace ProtonVPN.Trial
                 ShowTrialEndModal();
             }
             else if (TrialIsAboutToExpire())
+            {
                 ShowTrialAboutToExpireModal();
+            }
         }
 
         private void HandleModals()
@@ -143,7 +145,7 @@ namespace ProtonVPN.Trial
             if (_appSettings.AboutToExpireModalShown || !_appSettings.WelcomeModalShown)
                 return;
 
-            _modals.Show<TrialAboutToExpireModalViewModel>();
+            _modals.Show<TrialModalViewModel>();
             _appSettings.AboutToExpireModalShown = true;
         }
 
@@ -174,7 +176,7 @@ namespace ProtonVPN.Trial
 
         private void ShowTrialEndModal()
         {
-            _modals.Show<TrialEndModalViewModel>();
+            _modals.Show<TrialModalViewModel>();
             _appSettings.ExpiredModalShown = true;
         }
 

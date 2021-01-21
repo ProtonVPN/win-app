@@ -17,25 +17,44 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Windows.Input;
+using GalaSoft.MvvmLight.CommandWpf;
 using ProtonVPN.Config.Url;
+using ProtonVPN.Core.Settings;
+using ProtonVPN.Core.User;
 
 namespace ProtonVPN.Modals.Trial
 {
-    public class TrialEndModalViewModel : BaseTrialModalViewModel
+    public class TrialModalViewModel : BaseModalViewModel, IUserDataAware
     {
-        public TrialEndModalViewModel(IActiveUrls urls) : base(urls)
+        private readonly IActiveUrls _urls;
+        private readonly IUserStorage _userStorage;
+        private bool _expired;
+
+        public TrialModalViewModel(IActiveUrls urls, IUserStorage userStorage)
         {
+            _userStorage = userStorage;
+            _urls = urls;
+            UpgradeCommand = new RelayCommand(UpgradeAction);
         }
 
-        protected override void UpgradeAction()
+        public ICommand UpgradeCommand { get; set; }
+
+        public bool Expired
         {
-            Urls.AccountUrl.Open();
+            get => _expired;
+            set => Set(ref _expired, value);
+        }
+
+        public void UpgradeAction()
+        {
+            _urls.AccountUrl.Open();
             TryClose(true);
         }
 
-        public override void CloseAction()
+        public void OnUserDataChanged()
         {
-            TryClose(false);
+            Expired = !_userStorage.User().IsTrial();
         }
     }
 }

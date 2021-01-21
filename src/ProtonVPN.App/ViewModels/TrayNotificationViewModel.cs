@@ -17,6 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Threading.Tasks;
+using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core;
@@ -24,26 +26,20 @@ using ProtonVPN.Core.MVVM;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.QuickLaunch;
-using ProtonVPN.Vpn.Connectors;
-using System.Threading.Tasks;
-using System.Windows.Input;
 
 namespace ProtonVPN.ViewModels
 {
     internal class TrayNotificationViewModel : ViewModel, IVpnStateAware
     {
-        private readonly QuickConnector _quickConnector;
         private readonly IVpnManager _vpnManager;
         private readonly AppExitHandler _appExitHandler;
 
         public TrayNotificationViewModel(
             IVpnManager vpnManager,
-            QuickConnector quickConnector,
             AppExitHandler appExitHandler,
             QuickLaunchViewModel quickLaunchViewModel)
         {
             _vpnManager = vpnManager;
-            _quickConnector = quickConnector;
             _appExitHandler = appExitHandler;
 
             ExitCommand = new RelayCommand(ExitAction);
@@ -132,7 +128,7 @@ namespace ProtonVPN.ViewModels
 
         private async void ConnectAction()
         {
-            await _quickConnector.Connect();
+            await _vpnManager.QuickConnect();
         }
 
         private async void DisconnectAction()

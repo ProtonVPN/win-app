@@ -458,9 +458,9 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <value>Need Help?</value>
     <comment>The text of Need Help hyperlink of Login window (opens popup with more options)</comment>
   </data>
-  <data name="Trial_Expiring_lbl_Header" xml:space="preserve">
+  <data name="Trial_Expiring_lbl_AboutToExpire" xml:space="preserve">
     <value>Your free trial is about to expire!</value>
-    <comment>The heading message of Trial Expiring window</comment>
+    <comment>The heading message of trial modal window</comment>
   </data>
   <data name="Trial_Expiring_lbl_Features" xml:space="preserve">
     <value>Upgrade to ProtonVPN PLUS and continue enjoying these features:</value>
@@ -513,10 +513,6 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
   <data name="Trial_Features_lbl_MultipleCountries" xml:space="preserve">
     <value>Multiple Countries</value>
     <comment>The name of multiple countries feature available to PLUS subscription plan users displayed in Trial windows</comment>
-  </data>
-  <data name="Trial_Expired_lbl_Expired" xml:space="preserve">
-    <value>Your account has been downgraded to ProtonVPN FREE. Here's what you will miss from ProtonVPN Plus:</value>
-    <comment>The message displayed in the Trial Expired window</comment>
   </data>
   <data name="Upsell_Enjoying_lbl_Benefits" xml:space="preserve">
     <value>Use Secure Core, stream your favorite TV shows, use on up to 5 different devices and more!</value>
@@ -882,10 +878,6 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <value>Manage Profiles</value>
     <comment>The text of hyperlink on Profiles tab of Sidebar section of main app window (opens Profiles window)</comment>
   </data>
-  <data name="Trial_Expired_ttl" xml:space="preserve">
-    <value>ProtonVPN Trial</value>
-    <comment>The title of Trial Expired window</comment>
-  </data>
   <data name="Profiles_Profile_lbl_Protocol" xml:space="preserve">
     <value>Protocol:</value>
     <comment>The label for Protocol combo box in Profile window</comment>
@@ -1077,14 +1069,6 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
   <data name="Sidebar_Trial_btn_Upgrade" xml:space="preserve">
     <value>Upgrade</value>
     <comment>The text on Upgrade button in Trial section of Sidebar in main app window</comment>
-  </data>
-  <data name="Trial_Expired_btn_Close" xml:space="preserve">
-    <value>Maybe Later</value>
-    <comment>The text on close button in Trial Expired window (closes the window)</comment>
-  </data>
-  <data name="Trial_Expired_btn_Upgrade" xml:space="preserve">
-    <value>Upgrade Now</value>
-    <comment>The text on upgrade button in Trial Expired window (opens user account web page)</comment>
   </data>
   <data name="Trial_Expiring_ttl" xml:space="preserve">
     <value>ProtonVPN Trial</value>
@@ -2250,10 +2234,6 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <value>Zimbabwe</value>
     <comment>The name of ZW country</comment>
   </data>
-  <data name="Trial_Expired_lbl_Header" xml:space="preserve">
-    <value>YOUR FREE TRIAL &lt;Run Foreground="#eb3c4b"&gt;EXPIRED&lt;/Run&gt;</value>
-    <comment>The heading text of Trial Expired window. Word "EXPIRED" is displayed in red color.</comment>
-  </data>
   <data name="Upsell_Enjoying_lbl_Heading" xml:space="preserve">
     <value>Enjoying ProtonVPN?&lt;LineBreak/&gt;Get Plus for only $8/mo</value>
     <comment>The heading text in Enjoying Upsell window</comment>
@@ -2901,6 +2881,10 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   </data>
   <data name="Settings_Advanced_lbl_btn_LearnMore" xml:space="preserve">
     <value>Learn more</value>
+  </data>
+  <data name="Trial_Expiring_lbl_Expired" xml:space="preserve">
+    <value>Your free trial EXPIRED</value>
+    <comment>The heading message of trial modal window</comment>
   </data>
   <data name="Settings_Advanced_lbl_NetworkDriver" xml:space="preserve">
     <value>Network driver</value>

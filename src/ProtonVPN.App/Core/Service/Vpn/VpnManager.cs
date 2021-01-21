@@ -41,6 +41,7 @@ namespace ProtonVPN.Core.Service.Vpn
     {
         private readonly ILogger _logger;
         private readonly ProfileConnector _profileConnector;
+        private readonly ProfileManager _profileManager;
         private readonly IVpnServiceManager _vpnServiceManager;
         private readonly IAppSettings _appSettings;
         private readonly ITaskQueue _taskQueue = new SerialTaskQueue();
@@ -55,6 +56,7 @@ namespace ProtonVPN.Core.Service.Vpn
         public VpnManager(
             ILogger logger,
             ProfileConnector profileConnector,
+            ProfileManager profileManager,
             IVpnServiceManager vpnServiceManager,
             IAppSettings appSettings,
             GuestHoleState guestHoleState,
@@ -62,6 +64,7 @@ namespace ProtonVPN.Core.Service.Vpn
         {
             _logger = logger;
             _profileConnector = profileConnector;
+            _profileManager = profileManager;
             _appSettings = appSettings;
             _vpnServiceManager = vpnServiceManager;
             _guestHoleState = guestHoleState;
@@ -76,6 +79,14 @@ namespace ProtonVPN.Core.Service.Vpn
         public async Task Connect(Profile profile, Profile fallbackProfile = null)
         {
             await Queued(() => ConnectToBestProfileAsync(profile, fallbackProfile));
+        }
+
+        public async Task QuickConnect()
+        {
+            Profile profile = await _profileManager.GetProfileById(_appSettings.QuickConnect) ??
+                              await _profileManager.GetFastestProfile();
+
+            await Connect(profile);
         }
 
         public async Task Reconnect()
@@ -116,14 +127,12 @@ namespace ProtonVPN.Core.Service.Vpn
             RaiseVpnStateChanged(new VpnStateChangedEventArgs(_state, e.Error, e.NetworkBlocked, e.Protocol));
         }
 
-        public Task OnVpnPlanChangedAsync(string plan)
+        public async Task OnVpnPlanChangedAsync(string plan)
         {
             if (_lastServer != null)
             {
-                Queued(() => UpdateServersOrDisconnect(VpnError.UserTierTooLowError));
+                await UpdateServersOrReconnect();
             }
-
-            return Task.CompletedTask;
         }
 
         public void OnUserLoggedOut()
@@ -199,7 +208,7 @@ namespace ProtonVPN.Core.Service.Vpn
             await _profileConnector.Connect(candidates, profile);
         }
 
-        private async Task UpdateServersOrDisconnect(VpnError disconnectReason)
+        private async Task UpdateServersOrReconnect()
         {
             if (_state.Status == VpnStatus.Disconnecting ||
                 _state.Status == VpnStatus.Disconnected ||
@@ -212,7 +221,8 @@ namespace ProtonVPN.Core.Service.Vpn
 
             if (!await _profileConnector.UpdateServers(_lastServerCandidates, _lastProfile))
             {
-                await _vpnServiceManager.Disconnect(disconnectReason);
+                Profile profile = await _profileManager.GetFastestProfile();
+                await Connect(profile);
             }
         }
 
