@@ -23,7 +23,6 @@ namespace ProtonVPN.Service.Firewall
     {
         DnsFilter,
         DnsCalloutFilter,
-        DnsCallout,
         PermitInterfaceFilter,
         BaseProtectionFilter,
     }

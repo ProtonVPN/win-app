@@ -314,6 +314,56 @@ unsigned int IPFilterDestroySublayerFilters(
     return status;
 }
 
+unsigned int IPFilterDestroyCallouts(IPFilterSessionHandle sessionHandle, GUID* providerKey)
+{
+    HANDLE enumHandle = nullptr;
+
+    FWPM_CALLOUT_ENUM_TEMPLATE tpl;
+    memset(&tpl, 0, sizeof(tpl));
+    tpl.providerKey = providerKey;
+
+    auto status = FwpmCalloutCreateEnumHandle(sessionHandle,
+        &tpl,
+        &enumHandle);
+    if (status != ERROR_SUCCESS)
+    {
+        return status;
+    }
+
+    while (true)
+    {
+        FWPM_CALLOUT** callouts{};
+        UINT32 calloutCount{};
+
+        status = FwpmCalloutEnum(sessionHandle, enumHandle, 1, &callouts, &calloutCount);
+        if (status != ERROR_SUCCESS || calloutCount == 0)
+        {
+            break;
+        }
+
+        for (UINT32 i = 0; i < calloutCount; i++)
+        {
+            FWPM_CALLOUT* callout = callouts[i];
+            if (callout->providerKey == nullptr || *callout->providerKey != *providerKey)
+            {
+                continue;
+            }
+
+            status = IPFilterDestroyCallout(sessionHandle, &callout->calloutKey);
+            if (status != ERROR_SUCCESS)
+            {
+                break;
+            }
+        }
+
+        FwpmFreeMemory(reinterpret_cast<void**>(&callouts));
+    }
+
+    FwpmCalloutDestroyEnumHandle(sessionHandle, enumHandle);
+
+    return status;
+}
+
 unsigned int IPFilterDoesSublayerExist(
     IPFilterSessionHandle sessionHandle,
     const GUID* sublayerKey,

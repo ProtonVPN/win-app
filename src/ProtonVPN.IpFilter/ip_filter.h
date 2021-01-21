@@ -114,6 +114,10 @@ extern "C" EXPORT unsigned int IPFilterDestroySublayerFilters(
     GUID* providerKey,
     GUID* sublayerKey);
 
+extern "C" EXPORT unsigned int IPFilterDestroyCallouts(
+    IPFilterSessionHandle sessionHandle,
+    GUID * providerKey);
+
 extern "C" EXPORT unsigned int IPFilterDoesSublayerExist(
     IPFilterSessionHandle sessionHandle,
     const GUID* sublayerKey,
@@ -229,8 +233,8 @@ extern "C" EXPORT unsigned int IPFilterCreateNetInterfaceFilter(
     unsigned int layer,
     unsigned int action,
     unsigned int weight,
-    BOOL persistent,
     ULONG index,
+    BOOL persistent,
     GUID* filterKey);
 
 extern "C" EXPORT unsigned int IPFilterCreateLoopbackFilter(
@@ -254,4 +258,5 @@ extern "C" EXPORT unsigned int BlockOutsideDns(
     unsigned int weight,
     GUID * calloutKey,
     ULONG index,
+    BOOL persistent,
     GUID * filterKey);

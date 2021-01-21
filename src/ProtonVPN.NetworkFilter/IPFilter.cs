@@ -128,5 +128,10 @@ namespace ProtonVPN.NetworkFilter
         {
             IpFilterNative.DestroyCallout(Session.Handle, key);
         }
+
+        public void DestroyCallouts(Guid providerId)
+        {
+            IpFilterNative.DestroyCallouts(Session.Handle, providerId);
+        }
     }
 }

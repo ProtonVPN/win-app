@@ -282,6 +282,11 @@ namespace ProtonVPN.NetworkFilter
                 ref sublayerId));
         }
 
+        public static void DestroyCallouts(IntPtr sessionHandle, Guid providerId)
+        {
+            AssertSuccess(() => PInvoke.DestroyCallouts(sessionHandle, ref providerId));
+        }
+
         public static void DestroyFilter(
             IntPtr sessionHandle,
             Guid id)
@@ -483,8 +488,8 @@ namespace ProtonVPN.NetworkFilter
                 (uint)layer,
                 (uint)action,
                 weight,
-                (uint)(persistent ? 1 : 0),
                 index,
+                (uint)(persistent ? 1 : 0),
                 ref id));
 
             return id;

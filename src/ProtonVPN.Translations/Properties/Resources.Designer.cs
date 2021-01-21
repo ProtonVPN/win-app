@@ -4919,6 +4919,15 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Kill Switch Always-On.
+        /// </summary>
+        public static string QuickSettings_btn_KillSwitchAlwaysOn {
+            get {
+                return ResourceManager.GetString("QuickSettings_btn_KillSwitchAlwaysOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Kill Switch Off.
         /// </summary>
         public static string QuickSettings_btn_KillSwitchOff {

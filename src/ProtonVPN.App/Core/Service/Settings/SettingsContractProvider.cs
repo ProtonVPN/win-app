@@ -37,10 +37,7 @@ namespace ProtonVPN.Core.Service.Settings
         {
             return new SettingsContract
             {
-                KillSwitch = new KillSwitchSettingsContract
-                {
-                    Enabled = _appSettings.KillSwitch
-                },
+                KillSwitchMode = _appSettings.KillSwitchMode,
                 SplitTunnel = new SplitTunnelSettingsContract
                 {
                     Mode = _appSettings.SplitTunnelingEnabled ? _appSettings.SplitTunnelMode : SplitTunnelMode.Disabled,

@@ -2898,6 +2898,9 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="Settings_Advanced_lbl_Tun" xml:space="preserve">
     <value>TUN adapter (beta)</value>
   </data>
+  <data name="QuickSettings_btn_KillSwitchAlwaysOn" xml:space="preserve">
+    <value>Kill Switch Always-On</value>
+  </data>
   <data name="Dialogs_TunFallback_btn_OpenSettings" xml:space="preserve">
     <value>Open Settings</value>
   </data>

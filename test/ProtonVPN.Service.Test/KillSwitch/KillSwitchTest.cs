@@ -21,6 +21,7 @@ using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using ProtonVPN.Common;
+using ProtonVPN.Common.KillSwitch;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Service.Contract.Settings;
 using ProtonVPN.Service.Firewall;
@@ -74,7 +75,7 @@ namespace ProtonVPN.Service.Test.KillSwitch
 
             // Assert
             _firewall.Received(0)
-                .EnableLeakProtection(new FirewallParams("127.0.0.1", dnsLeakOnly: false, interfaceIndex: 0));
+                .EnableLeakProtection(new FirewallParams("127.0.0.1", dnsLeakOnly: false, interfaceIndex: 0, persistent: false));
         }
 
         [TestMethod]
@@ -95,7 +96,7 @@ namespace ProtonVPN.Service.Test.KillSwitch
         public void OnVpnDisconnected_UnexpectedDisconnectWithKillSwitchOff_RestoreInternet()
         {
             // Arrange
-            _serviceSettings.KillSwitchSettings.Returns(new KillSwitchSettingsContract {Enabled = false});
+            _serviceSettings.KillSwitchMode.Returns(KillSwitchMode.Off);
             var sut = new Service.KillSwitch.KillSwitch(_firewall, _serviceSettings, _currentNetworkInterface);
 
             // Act
@@ -127,28 +128,28 @@ namespace ProtonVPN.Service.Test.KillSwitch
         }
 
         [DataTestMethod]
-        [DataRow(VpnStatus.Disconnecting, VpnError.None, false, false, false)]
-        [DataRow(VpnStatus.Disconnecting, VpnError.None, true, false, false)]
-        [DataRow(VpnStatus.Disconnecting, VpnError.None, false, true, false)]
-        [DataRow(VpnStatus.Disconnecting, VpnError.None, true, true, false)]
-        [DataRow(VpnStatus.Disconnecting, VpnError.NetshError, false, false, false)]
-        [DataRow(VpnStatus.Disconnecting, VpnError.NetshError, false, true, false)]
-        [DataRow(VpnStatus.Disconnecting, VpnError.NetshError, true, false, false)]
-        [DataRow(VpnStatus.Disconnecting, VpnError.NetshError, true, true, true)]
-        [DataRow(VpnStatus.Disconnected, VpnError.None, false, false, false)]
-        [DataRow(VpnStatus.Disconnected, VpnError.None, true, false, false)]
-        [DataRow(VpnStatus.Disconnected, VpnError.None, false, true, false)]
-        [DataRow(VpnStatus.Disconnected, VpnError.None, true, true, false)]
-        [DataRow(VpnStatus.Disconnected, VpnError.NetshError, false, false, false)]
-        [DataRow(VpnStatus.Disconnected, VpnError.NetshError, false, true, false)]
-        [DataRow(VpnStatus.Disconnected, VpnError.NetshError, true, false, false)]
-        [DataRow(VpnStatus.Disconnected, VpnError.NetshError, true, true, true)]
+        [DataRow(VpnStatus.Disconnecting, VpnError.None, KillSwitchMode.Off, false, false)]
+        [DataRow(VpnStatus.Disconnecting, VpnError.None, KillSwitchMode.Soft, false, false)]
+        [DataRow(VpnStatus.Disconnecting, VpnError.None, KillSwitchMode.Off, true, false)]
+        [DataRow(VpnStatus.Disconnecting, VpnError.None, KillSwitchMode.Soft, true, false)]
+        [DataRow(VpnStatus.Disconnecting, VpnError.NetshError, KillSwitchMode.Off, false, false)]
+        [DataRow(VpnStatus.Disconnecting, VpnError.NetshError, KillSwitchMode.Off, true, false)]
+        [DataRow(VpnStatus.Disconnecting, VpnError.NetshError, KillSwitchMode.Soft, false, true)]
+        [DataRow(VpnStatus.Disconnecting, VpnError.NetshError, KillSwitchMode.Soft, true, true)]
+        [DataRow(VpnStatus.Disconnected, VpnError.None, KillSwitchMode.Off, false, false)]
+        [DataRow(VpnStatus.Disconnected, VpnError.None, KillSwitchMode.Soft, false, false)]
+        [DataRow(VpnStatus.Disconnected, VpnError.None, KillSwitchMode.Off, true, false)]
+        [DataRow(VpnStatus.Disconnected, VpnError.None, KillSwitchMode.Soft, true, false)]
+        [DataRow(VpnStatus.Disconnected, VpnError.NetshError, KillSwitchMode.Off, false, false)]
+        [DataRow(VpnStatus.Disconnected, VpnError.NetshError, KillSwitchMode.Off, true, false)]
+        [DataRow(VpnStatus.Disconnected, VpnError.NetshError, KillSwitchMode.Soft, false, true)]
+        [DataRow(VpnStatus.Disconnected, VpnError.NetshError, KillSwitchMode.Soft, true, true)]
         public void ExpectedLeakProtectionStatus_ShouldBe_Expected_WhenDisconnecting(VpnStatus status, VpnError error,
-            bool killSwitchEnabled, bool leakProtectionEnabled, bool expected)
+            KillSwitchMode killSwitchMode, bool leakProtectionEnabled, bool expected)
         {
             // Arrange
             var state = new VpnState(status, error);
-            _serviceSettings.KillSwitchSettings.Returns(new KillSwitchSettingsContract {Enabled = killSwitchEnabled});
+            _serviceSettings.KillSwitchMode.Returns(killSwitchMode);
             _firewall.LeakProtectionEnabled.Returns(leakProtectionEnabled);
             Service.KillSwitch.KillSwitch killSwitch =
                 new Service.KillSwitch.KillSwitch(_firewall, _serviceSettings, _currentNetworkInterface);

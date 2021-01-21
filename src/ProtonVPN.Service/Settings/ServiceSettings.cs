@@ -17,9 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Helpers;
-using ProtonVPN.Service.Contract.Settings;
 using System;
+using ProtonVPN.Common.Helpers;
+using ProtonVPN.Common.KillSwitch;
+using ProtonVPN.Service.Contract.Settings;
 
 namespace ProtonVPN.Service.Settings
 {
@@ -36,12 +37,12 @@ namespace ProtonVPN.Service.Settings
             _storage = storage;
         }
 
-        public KillSwitchSettingsContract KillSwitchSettings 
+        public KillSwitchMode KillSwitchMode
         {
             get
             {
                 Load();
-                return _settings.KillSwitch ?? (_settings.KillSwitch = new KillSwitchSettingsContract());
+                return _settings.KillSwitchMode;
             }
         }
 
@@ -50,7 +51,7 @@ namespace ProtonVPN.Service.Settings
             get
             {
                 Load();
-                return _settings.SplitTunnel ?? (_settings.SplitTunnel = new SplitTunnelSettingsContract());
+                return _settings.SplitTunnel ??= new SplitTunnelSettingsContract();
             }
         }
 

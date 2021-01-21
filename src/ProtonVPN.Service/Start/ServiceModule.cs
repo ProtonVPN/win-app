@@ -61,7 +61,7 @@ namespace ProtonVPN.Service.Start
             builder.RegisterType<JsonSerializerFactory>().As<ITextSerializerFactory>().SingleInstance();
 
             builder.RegisterType<SettingsHandler>().SingleInstance();
-            builder.RegisterType<VpnConnectionHandler>().SingleInstance();
+            builder.RegisterType<VpnConnectionHandler>().AsImplementedInterfaces().AsSelf().SingleInstance();
 
             builder.Register(c => new ServiceRetryPolicy(2, TimeSpan.FromSeconds(1))).SingleInstance();
             builder.Register(c => new CalloutDriver(
@@ -104,9 +104,6 @@ namespace ProtonVPN.Service.Start
             builder.RegisterType<Ipv6>().SingleInstance();
             builder.RegisterType<ObservableNetworkInterfaces>().SingleInstance();
             builder.RegisterType<Firewall.Firewall>().AsImplementedInterfaces().SingleInstance();
-            builder.Register(c => c.Resolve<IpFilter>().Instance.CreateSublayer(
-                new NetworkFilter.DisplayData {Name = "ProtonVPN Firewall filters"},
-                10000)).SingleInstance();
 
             builder.RegisterType<IpFilter>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterType<IncludeModeApps>().AsSelf().SingleInstance();

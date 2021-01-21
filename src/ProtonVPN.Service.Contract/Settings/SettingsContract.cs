@@ -17,11 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Common.KillSwitch;
+
 namespace ProtonVPN.Service.Contract.Settings
 {
     public class SettingsContract
     {
-        public KillSwitchSettingsContract KillSwitch { get; set; }
+        public KillSwitchMode KillSwitchMode { get; set; }
 
         public SplitTunnelSettingsContract SplitTunnel { get; set; }
 

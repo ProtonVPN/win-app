@@ -17,12 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Logging;
-using ProtonVPN.Core.Settings;
 using System;
 using System.ServiceModel;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.Logging;
+using ProtonVPN.Core.Settings;
 
 namespace ProtonVPN.Core.Service.Settings
 {
@@ -44,7 +44,7 @@ namespace ProtonVPN.Core.Service.Settings
 
             appSettings.PropertyChanged += async (s, e) =>
             {
-                if (e.PropertyName == nameof(IAppSettings.KillSwitch) ||
+                if (e.PropertyName == nameof(IAppSettings.KillSwitchMode) ||
                     e.PropertyName == nameof(IAppSettings.Ipv6LeakProtection))
                 {
                     _logger.Info($"Setting \"{e.PropertyName}\" changed");

@@ -39,7 +39,7 @@ namespace ProtonVPN.Service
     [ServiceBehavior(
         InstanceContextMode = InstanceContextMode.Single,
         ConcurrencyMode = ConcurrencyMode.Single)]
-    internal class VpnConnectionHandler : IVpnConnectionContract
+    internal class VpnConnectionHandler : IVpnConnectionContract, IServiceSettingsAware
     {
         private readonly object _callbackLock = new object();
         private readonly List<IVpnEventsContract> _callbacks = new List<IVpnEventsContract>();
@@ -161,6 +161,14 @@ namespace ProtonVPN.Service
             return Task.CompletedTask;
         }
 
+        public void OnServiceSettingsChanged(SettingsContract settings)
+        {
+            if (_state.Status == VpnStatus.Disconnected)
+            {
+                CallbackStateChanged(new VpnState(VpnStatus.Disconnected, VpnError.None));
+            }
+        }
+
         private void HandleNoTapError()
         {
             if (_state.Status == VpnStatus.Disconnected)
@@ -189,7 +197,7 @@ namespace ProtonVPN.Service
         {
             lock (_callbackLock)
             {
-                foreach (var callback in _callbacks.ToList())
+                foreach (IVpnEventsContract callback in _callbacks.ToList())
                 {
                     try
                     {

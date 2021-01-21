@@ -21,17 +21,17 @@ using System.Windows;
 
 namespace ProtonVPN.Sidebar.QuickSettings
 {
-    internal class NetShieldSettingButton : QuickSettingButtonBase
+    internal class MultiValueSettingsButton : QuickSettingButtonBase
     {
-        static NetShieldSettingButton()
+        static MultiValueSettingsButton()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(NetShieldSettingButton),
-                new FrameworkPropertyMetadata(typeof(NetShieldSettingButton)));
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(MultiValueSettingsButton),
+                new FrameworkPropertyMetadata(typeof(MultiValueSettingsButton)));
         }
 
         public static readonly DependencyProperty ModeProperty =
             DependencyProperty.Register("Mode", typeof(int),
-                typeof(NetShieldSettingButton),
+                typeof(MultiValueSettingsButton),
                 new FrameworkPropertyMetadata(0));
 
         public int Mode
@@ -42,7 +42,7 @@ namespace ProtonVPN.Sidebar.QuickSettings
 
         public static readonly DependencyProperty EnabledProperty =
             DependencyProperty.Register("Enabled", typeof(bool),
-                typeof(NetShieldSettingButton),
+                typeof(MultiValueSettingsButton),
                 new FrameworkPropertyMetadata(false));
 
         public bool Enabled
