@@ -28,35 +28,41 @@ namespace ProtonVPN.Service.Firewall
 {
     public class AppFilter : IFilterCollection
     {
-        private readonly Sublayer _sublayer;
+        private readonly IpFilter _ipFilter;
         private readonly IpLayer _ipLayer;
         private readonly Dictionary<string, List<Guid>> _list = new Dictionary<string, List<Guid>>();
 
-        public AppFilter(Sublayer sublayer, IpLayer ipLayer)
+        public AppFilter(IpFilter ipFilter, IpLayer ipLayer)
         {
             _ipLayer = ipLayer;
-            _sublayer = sublayer;
+            _ipFilter = ipFilter;
         }
 
         public void Add(string[] paths, Action action)
         {
-            foreach (var path in paths)
+            foreach (string path in paths)
+            {
                 Add(path, action);
+            }
         }
 
         public void Add(string path, Action action)
         {
             if (_list.ContainsKey(path))
+            {
                 return;
+            }
 
             if (!File.Exists(path))
+            {
                 return;
+            }
 
             _list[path] = new List<Guid>();
 
             _ipLayer.ApplyToIpv4(layer =>
             {
-                var guid = _sublayer.CreateAppFilter(
+                Guid guid = _ipFilter.Sublayer.CreateAppFilter(
                     new DisplayData("ProtonVPN permit app", "Allow app to bypass VPN tunnel"),
                     action,
                     layer,
@@ -70,10 +76,14 @@ namespace ProtonVPN.Service.Firewall
         public void Remove(string path)
         {
             if (!_list.ContainsKey(path))
+            {
                 return;
+            }
 
-            foreach (var guid in _list[path])
-                _sublayer.DestroyFilter(guid);
+            foreach (Guid guid in _list[path])
+            {
+                _ipFilter.Sublayer.DestroyFilter(guid);
+            }
 
             _list.Remove(path);
         }
@@ -81,10 +91,14 @@ namespace ProtonVPN.Service.Firewall
         public void RemoveAll()
         {
             if (_list.Count == 0)
+            {
                 return;
+            }
 
-            foreach (var element in _list.ToList())
+            foreach (KeyValuePair<string, List<Guid>> element in _list.ToList())
+            {
                 Remove(element.Key);
+            }
         }
     }
 }

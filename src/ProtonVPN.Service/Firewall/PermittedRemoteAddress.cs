@@ -28,26 +28,30 @@ namespace ProtonVPN.Service.Firewall
     public class PermittedRemoteAddress : IFilterCollection
     {
         private readonly IpLayer _ipLayer;
-        private readonly Sublayer _sublayer;
+        private readonly IpFilter _ipFilter;
 
         private readonly Dictionary<string,List<Guid>> _list = new Dictionary<string, List<Guid>>();
 
-        public PermittedRemoteAddress(Sublayer sublayer, IpLayer ipLayer)
+        public PermittedRemoteAddress(IpFilter ipFilter, IpLayer ipLayer)
         {
             _ipLayer = ipLayer;
-            _sublayer = sublayer;
+            _ipFilter = ipFilter;
         }
 
         public void Add(string[] addresses, Action action)
         {
-            foreach (var address in addresses)
+            foreach (string address in addresses)
+            {
                 Add(address, action);
+            }
         }
 
         public void Add(string address, Action action)
         {
             if (_list.ContainsKey(address))
+            {
                 return;
+            }
 
             var networkAddress = new Common.OS.Net.NetworkAddress(address);
             if (!networkAddress.Valid())
@@ -59,7 +63,7 @@ namespace ProtonVPN.Service.Firewall
 
             _ipLayer.ApplyToIpv4(layer =>
             {
-                var guid = _sublayer.CreateRemoteNetworkIPv4Filter(
+                Guid guid = _ipFilter.Sublayer.CreateRemoteNetworkIPv4Filter(
                     new DisplayData("ProtonVPN permit remote address", ""),
                     action,
                     layer,
@@ -73,10 +77,14 @@ namespace ProtonVPN.Service.Firewall
         public void Remove(string address)
         {
             if (!_list.ContainsKey(address))
+            {
                 return;
+            }
 
-            foreach (var guid in _list[address])
-                _sublayer.DestroyFilter(guid);
+            foreach (Guid guid in _list[address])
+            {
+                _ipFilter.Sublayer.DestroyFilter(guid);
+            }
 
             _list.Remove(address);
         }
@@ -84,10 +92,14 @@ namespace ProtonVPN.Service.Firewall
         public void RemoveAll()
         {
             if (_list.Count == 0)
+            {
                 return;
+            }
 
-            foreach (var element in _list.ToList())
+            foreach (KeyValuePair<string, List<Guid>> element in _list.ToList())
+            {
                 Remove(element.Key);
+            }
         }
     }
 }

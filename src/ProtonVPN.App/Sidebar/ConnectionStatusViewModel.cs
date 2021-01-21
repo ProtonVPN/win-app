@@ -23,6 +23,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Threading;
 using GalaSoft.MvvmLight.Command;
+using ProtonVPN.Common.KillSwitch;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.MVVM;
 using ProtonVPN.Core.Servers;
@@ -320,9 +321,9 @@ namespace ProtonVPN.Sidebar
             }
         }
 
-        private async void DisableKillSwitch()
+        private void DisableKillSwitch()
         {
-            await _vpnManager.Disconnect();
+            _appSettings.KillSwitchMode = KillSwitchMode.Off;
         }
 
         private void ToggleSidebarModeAction()

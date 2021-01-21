@@ -18,7 +18,9 @@
  */
 
 using ProtonVPN.Common;
+using ProtonVPN.Common.KillSwitch;
 using ProtonVPN.Common.Vpn;
+using ProtonVPN.Service.Contract.Settings;
 using ProtonVPN.Service.Firewall;
 using ProtonVPN.Service.Network;
 using ProtonVPN.Service.Settings;
@@ -27,11 +29,13 @@ using ProtonVPN.Vpn.Common;
 
 namespace ProtonVPN.Service.KillSwitch
 {
-    internal class KillSwitch : IVpnStateAware
+    internal class KillSwitch : IVpnStateAware, IServiceSettingsAware
     {
         private readonly IFirewall _firewall;
         private readonly IServiceSettings _serviceSettings;
         private readonly ICurrentNetworkInterface _currentNetworkInterface;
+        private VpnState _lastVpnState = new(VpnStatus.Disconnected);
+        private KillSwitchMode _killSwitchMode;
 
         public KillSwitch(
             IFirewall firewall,
@@ -45,15 +49,18 @@ namespace ProtonVPN.Service.KillSwitch
 
         public void OnVpnConnecting(VpnState state)
         {
+            _lastVpnState = state;
             UpdateLeakProtectionStatus(state);
         }
 
         public void OnVpnConnected(VpnState state)
         {
+            _lastVpnState = state;
         }
 
         public void OnVpnDisconnected(VpnState state)
         {
+            _lastVpnState = state;
             UpdateLeakProtectionStatus(state);
         }
 
@@ -67,14 +74,54 @@ namespace ProtonVPN.Service.KillSwitch
             switch (UpdatedLeakProtectionStatus(state))
             {
                 case true:
-                    var dnsLeakOnly = _serviceSettings.SplitTunnelSettings.Mode == SplitTunnelMode.Permit;
-                    var firewallParams = new FirewallParams(state.RemoteIp, dnsLeakOnly, _currentNetworkInterface.Index);
-                    _firewall.EnableLeakProtection(firewallParams);
+                    EnableLeakProtection();
                     break;
                 case false:
                     _firewall.DisableLeakProtection();
                     break;
             }
+        }
+
+        public void OnServiceSettingsChanged(SettingsContract settings)
+        {
+            if (_killSwitchMode != settings.KillSwitchMode)
+            {
+                switch (settings.KillSwitchMode)
+                {
+                    case KillSwitchMode.Off when _lastVpnState.Status != VpnStatus.Connected:
+                        _firewall.DisableLeakProtection();
+                        break;
+                    case KillSwitchMode.Off when _lastVpnState.Status == VpnStatus.Connected:
+                    case KillSwitchMode.Soft when _lastVpnState.Status == VpnStatus.Connected:
+                    case KillSwitchMode.Hard:
+                        EnableLeakProtection();
+                        break;
+                    case KillSwitchMode.Soft:
+                        if (_lastVpnState.Error != VpnError.NoneKeepEnabledKillSwitch)
+                        {
+                            _firewall.DisableLeakProtection();
+                        }
+                        break;
+                }
+            }
+            else
+            {
+                if (settings.KillSwitchMode == KillSwitchMode.Hard && !_firewall.LeakProtectionEnabled)
+                {
+                    EnableLeakProtection();
+                }
+            }
+
+            _killSwitchMode = settings.KillSwitchMode;
+        }
+
+        private void EnableLeakProtection()
+        {
+            bool dnsLeakOnly = _serviceSettings.SplitTunnelSettings.Mode == SplitTunnelMode.Permit;
+            bool persistent = _serviceSettings.KillSwitchMode == KillSwitchMode.Hard;
+            var firewallParams = new FirewallParams(_lastVpnState.RemoteIp, dnsLeakOnly, _currentNetworkInterface.Index,
+                persistent);
+            _firewall.EnableLeakProtection(firewallParams);
         }
 
         private bool? UpdatedLeakProtectionStatus(VpnState state)
@@ -86,12 +133,14 @@ namespace ProtonVPN.Service.KillSwitch
                     return true;
                 case VpnStatus.Disconnecting:
                 case VpnStatus.Disconnected:
-                    if (state.Error == VpnError.None || !_serviceSettings.KillSwitchSettings.Enabled)
+                    if (state.Error == VpnError.None)
                     {
-                        return false;
+                        return _serviceSettings.KillSwitchMode == KillSwitchMode.Hard;
                     }
-
-                    break;
+                    else
+                    {
+                        return _serviceSettings.KillSwitchMode != KillSwitchMode.Off;
+                    }
             }
 
             return null;

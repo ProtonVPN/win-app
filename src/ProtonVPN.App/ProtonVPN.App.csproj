@@ -457,7 +457,7 @@
     <Compile Include="Sidebar\Announcements\AnnouncementsViewModel.cs" />
     <Compile Include="Sidebar\Announcements\IAnnouncementsAware.cs" />
     <Compile Include="Servers\CountrySeparatorViewModel.cs" />
-    <Compile Include="Sidebar\QuickSettings\NetShieldSettingButton.cs" />
+    <Compile Include="Sidebar\QuickSettings\MultiValueSettingsButton.cs" />
     <Compile Include="Sidebar\QuickSettings\PopupArrowPositionConverter.cs" />
     <Compile Include="Sidebar\QuickSettings\QuickSettingButton.cs" />
     <Compile Include="Sidebar\QuickSettings\QuickSettingButtonBase.cs" />
@@ -745,6 +745,9 @@
     </Compile>
     <Compile Include="Views\Icons\Reflect.xaml.cs">
       <DependentUpon>Reflect.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Icons\SwitchLock.xaml.cs">
+      <DependentUpon>SwitchLock.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Icons\SwitchOn.xaml.cs">
       <DependentUpon>SwitchOn.xaml</DependentUpon>
@@ -1088,6 +1091,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Icons\Reflect.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Icons\SwitchLock.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

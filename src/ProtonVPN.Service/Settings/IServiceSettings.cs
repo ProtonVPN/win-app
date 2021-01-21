@@ -19,6 +19,7 @@
 
 using ProtonVPN.Service.Contract.Settings;
 using System;
+using ProtonVPN.Common.KillSwitch;
 
 namespace ProtonVPN.Service.Settings
 {
@@ -26,7 +27,7 @@ namespace ProtonVPN.Service.Settings
     {
         event EventHandler<SettingsContract> SettingsChanged;
 
-        KillSwitchSettingsContract KillSwitchSettings { get; }
+        KillSwitchMode KillSwitchMode { get; }
 
         SplitTunnelSettingsContract SplitTunnelSettings { get; }
 

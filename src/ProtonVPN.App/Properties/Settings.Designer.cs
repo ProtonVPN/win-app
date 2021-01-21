@@ -1276,5 +1276,17 @@ namespace ProtonVPN.Properties {
                 this["DoNotShowPortForwardingConfirmationDialog"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string KillSwitchMode {
+            get {
+                return ((string)(this["KillSwitchMode"]));
+            }
+            set {
+                this["KillSwitchMode"] = value;
+            }
+        }
     }
 }

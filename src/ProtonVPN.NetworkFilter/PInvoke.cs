@@ -211,6 +211,12 @@ namespace ProtonVPN.NetworkFilter
 
         [DllImport(
             BinaryName,
+            EntryPoint = "IPFilterDestroyCallouts",
+            CallingConvention = CallingConvention.Cdecl)]
+        public static extern uint DestroyCallouts(IntPtr sessionHandle, [In] ref Guid providerId);
+
+        [DllImport(
+            BinaryName,
             EntryPoint = "IPFilterDestroyFilter",
             CallingConvention = CallingConvention.Cdecl)]
         public static extern uint DestroyFilter(
@@ -332,8 +338,8 @@ namespace ProtonVPN.NetworkFilter
             uint layer,
             uint action,
             uint weight,
-            uint persistent,
             uint index,
+            uint persistent,
             [In, Out] ref Guid filterKey);
 
         [DllImport(

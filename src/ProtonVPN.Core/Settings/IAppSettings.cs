@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using ProtonVPN.Common;
+using ProtonVPN.Common.KillSwitch;
 using ProtonVPN.Core.Announcements;
 using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Native.Structures;
@@ -50,7 +51,7 @@ namespace ProtonVPN.Core.Settings
         bool EarlyAccess { get; set; }
         bool SecureCore { get; set; }
         string LastUpdate { get; set; }
-        bool KillSwitch { get; set; }
+        KillSwitchMode KillSwitchMode { get; set; }
         bool Ipv6LeakProtection { get; set; }
         bool CustomDnsEnabled { get; set; }
         bool SidebarMode { get; set; }

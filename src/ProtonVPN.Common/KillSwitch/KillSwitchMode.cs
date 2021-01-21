@@ -17,18 +17,18 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.KillSwitch;
+using System.Runtime.Serialization;
 
-namespace ProtonVPN.Service.Contract.Settings
+namespace ProtonVPN.Common.KillSwitch
 {
-    public class SettingsContract
+    [DataContract]
+    public enum KillSwitchMode
     {
-        public KillSwitchMode KillSwitchMode { get; set; }
-
-        public SplitTunnelSettingsContract SplitTunnel { get; set; }
-
-        public bool Ipv6LeakProtection { get; set; }
-
-        public bool UseTunAdapter { get; set; }
+        [EnumMember]
+        Off,
+        [EnumMember]
+        Soft,
+        [EnumMember]
+        Hard,
     }
 }

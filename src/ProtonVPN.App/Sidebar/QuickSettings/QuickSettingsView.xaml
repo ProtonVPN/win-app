@@ -44,10 +44,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </Setter.Value>
             </Setter>
         </Style>
-        <Style x:Key="NetShieldToggle" TargetType="{x:Type quickSettings:NetShieldSettingButton}">
+        <Style x:Key="NetShieldToggle" TargetType="{x:Type quickSettings:MultiValueSettingsButton}">
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type quickSettings:NetShieldSettingButton}">
+                    <ControlTemplate TargetType="{x:Type quickSettings:MultiValueSettingsButton}">
                         <Grid Margin="5,0" Cursor="Hand">
                             <Border x:Name="Border"
                                     Style="{StaticResource ShadowBorder}" />
@@ -91,6 +91,59 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             </MultiTrigger>
                             <Trigger Property="Enabled" Value="False">
                                 <Setter TargetName="OffIcon" Property="Visibility" Value="Visible" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="KillSwitchToggle" TargetType="{x:Type quickSettings:MultiValueSettingsButton}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type quickSettings:MultiValueSettingsButton}">
+                        <Grid Margin="5,0" Cursor="Hand">
+                            <Border x:Name="Border"
+                                    Style="{StaticResource ShadowBorder}" />
+                            <icons:SwitchOff x:Name="KillSwitchOffIcon"
+                                             Foreground="White"
+                                             Width="18"
+                                             Height="18"
+                                             Visibility="Collapsed" />
+                            <icons:SwitchOn x:Name="KillSwitchOnIcon"
+                                            Foreground="{StaticResource PrimaryColor}"
+                                            Width="18"
+                                            Height="18"
+                                            Visibility="Collapsed" />
+                            <icons:SwitchLock x:Name="KillSwitchAlwaysOnIcon"
+                                              Foreground="{StaticResource PrimaryColor}"
+                                              Width="18"
+                                              Height="18"
+                                              Visibility="Collapsed" />
+                            <ContentPresenter Content="{TemplateBinding Popup}" />
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="Border" Property="BorderBrush" Value="#121215" />
+                                <Setter TargetName="Border" Property="BorderThickness" Value="0 1 0 0" />
+                                <Setter TargetName="Border" Property="Background" Value="#27272d" />
+                                <Setter TargetName="Border" Property="Effect" Value="{x:Null}" />
+                            </Trigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="Mode" Value="1" />
+                                    <Condition Property="Enabled" Value="True" />
+                                </MultiTrigger.Conditions>
+                                <Setter TargetName="KillSwitchOnIcon" Property="Visibility" Value="Visible" />
+                            </MultiTrigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="Mode" Value="2" />
+                                    <Condition Property="Enabled" Value="True" />
+                                </MultiTrigger.Conditions>
+                                <Setter TargetName="KillSwitchAlwaysOnIcon" Property="Visibility" Value="Visible" />
+                            </MultiTrigger>
+                            <Trigger Property="Enabled" Value="False">
+                                <Setter TargetName="KillSwitchOffIcon" Property="Visibility" Value="Visible" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -329,7 +382,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         <Button.Style>
                                             <Style TargetType="Button" BasedOn="{StaticResource PlusButton}">
                                                 <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding IsUserTierPlusOrHigher}" Value="False">
+                                                    <DataTrigger Binding="{Binding IsUserTierPlusOrHigher}"
+                                                                 Value="False">
                                                         <Setter Property="Visibility" Value="Visible" />
                                                     </DataTrigger>
                                                 </Style.Triggers>
@@ -352,15 +406,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                          Foreground="{StaticResource PrimaryColor}" />
                 </quickSettings:QuickSettingButton.ActiveIcon>
             </quickSettings:QuickSettingButton>
-            <quickSettings:NetShieldSettingButton Style="{StaticResource NetShieldToggle}"
-                                                  Mode="{Binding NetShieldMode}"
-                                                  ToolTip="{translations:Loc NetShield}"
-                                                  IsChecked="{Binding ShowNetShieldPopup, Mode=TwoWay}"
-                                                  IsEnabled="{Binding ElementName=NetShieldPopup, Path=IsOpen, Converter={StaticResource InvertedBoolConverter}}"
-                                                  Enabled="{Binding IsNetShieldOn}"
-                                                  Visibility="{Binding IsNetShieldVisible, Converter={StaticResource BoolToVis}}"
-                                                  x:Name="NetShieldToggle">
-                <quickSettings:NetShieldSettingButton.Popup>
+            <quickSettings:MultiValueSettingsButton Style="{StaticResource NetShieldToggle}"
+                                                    Mode="{Binding NetShieldMode}"
+                                                    ToolTip="{translations:Loc NetShield}"
+                                                    IsChecked="{Binding ShowNetShieldPopup, Mode=TwoWay}"
+                                                    IsEnabled="{Binding ElementName=NetShieldPopup, Path=IsOpen, Converter={StaticResource InvertedBoolConverter}}"
+                                                    Enabled="{Binding IsNetShieldOn}"
+                                                    Visibility="{Binding IsNetShieldVisible, Converter={StaticResource BoolToVis}}"
+                                                    x:Name="NetShieldToggle">
+                <quickSettings:MultiValueSettingsButton.Popup>
                     <Popup x:Name="NetShieldPopup"
                            AllowsTransparency="True"
                            StaysOpen="False"
@@ -429,16 +483,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             </Border>
                         </Grid>
                     </Popup>
-                </quickSettings:NetShieldSettingButton.Popup>
-            </quickSettings:NetShieldSettingButton>
-            <quickSettings:QuickSettingButton Style="{StaticResource QuickSettingsToggle}"
+                </quickSettings:MultiValueSettingsButton.Popup>
+            </quickSettings:MultiValueSettingsButton>
+            <quickSettings:MultiValueSettingsButton Style="{StaticResource KillSwitchToggle}"
                                               Number="{Binding KillSwitchButtonNumber}"
                                               IsChecked="{Binding ShowKillSwitchPopup, Mode=TwoWay}"
                                               IsEnabled="{Binding ElementName=KillSwitchPopup, Path=IsOpen, Mode=TwoWay, Converter={StaticResource InvertedBoolConverter}}"
-                                              Active="{Binding IsKillSwitchOnButtonOn}"
                                               ToolTip="{translations:Loc KillSwitch}"
+                                              Mode="{Binding KillSwitchMode}"
+                                              Enabled="{Binding IsKillSwitchEnabled}"
                                               x:Name="KillSwitchToggle">
-                <quickSettings:QuickSettingButton.Popup>
+                <quickSettings:MultiValueSettingsButton.Popup>
                     <Popup x:Name="KillSwitchPopup"
                            AllowsTransparency="True"
                            StaysOpen="False"
@@ -463,8 +518,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     <TextBlock Style="{StaticResource FeatureInfoText}"
                                                behavior:TextStyleBehavior.FormattedText="{translations:Loc QuickSettings_lbl_KillSwitchInfo}" />
                                     <quickSettings:SettingButton Style="{StaticResource FeatureOnOffButton}"
-                                                                 Command="{Binding KillSwitchOffCommand}"
-                                                                 Active="{Binding IsKillSwitchOffButtonOn}"
+                                                                 Command="{Binding DisableKillSwitchCommand}"
+                                                                 Active="{Binding IsKillSwitchDisabled}"
                                                                  Title="{translations:Loc QuickSettings_btn_KillSwitchOff}">
                                         <quickSettings:SettingButton.Icon>
                                             <icons:SwitchOff Width="18"
@@ -472,28 +527,29 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         </quickSettings:SettingButton.Icon>
                                     </quickSettings:SettingButton>
                                     <quickSettings:SettingButton Style="{StaticResource FeatureOnOffButton}"
-                                                                 Command="{Binding KillSwitchOnCommand}"
-                                                                 Active="{Binding IsKillSwitchOnButtonOn}"
+                                                                 Command="{Binding EnableSoftKillSwitchCommand}"
+                                                                 Active="{Binding IsSoftKillSwitchEnabled}"
                                                                  IsTurnOnButton="True"
                                                                  Title="{translations:Loc QuickSettings_btn_KillSwitchOn}">
                                         <quickSettings:SettingButton.Icon>
                                             <icons:SwitchOn Style="{StaticResource Icon}" />
                                         </quickSettings:SettingButton.Icon>
                                     </quickSettings:SettingButton>
+                                    <quickSettings:SettingButton Style="{StaticResource FeatureOnOffButton}"
+                                                                 Command="{Binding EnableHardKillSwitchCommand}"
+                                                                 Active="{Binding IsHardKillSwitchEnabled}"
+                                                                 IsTurnOnButton="True"
+                                                                 Title="{translations:Loc QuickSettings_btn_KillSwitchAlwaysOn}">
+                                        <quickSettings:SettingButton.Icon>
+                                            <icons:SwitchLock Width="18" Height="18" Margin="5,0,0,0" />
+                                        </quickSettings:SettingButton.Icon>
+                                    </quickSettings:SettingButton>
                                 </StackPanel>
                             </Border>
                         </Grid>
                     </Popup>
-                </quickSettings:QuickSettingButton.Popup>
-                <quickSettings:QuickSettingButton.Icon>
-                    <icons:SwitchOff Style="{StaticResource Icon}"
-                                     Foreground="White" />
-                </quickSettings:QuickSettingButton.Icon>
-                <quickSettings:QuickSettingButton.ActiveIcon>
-                    <icons:SwitchOn Style="{StaticResource Icon}"
-                                    Foreground="{StaticResource PrimaryColor}" />
-                </quickSettings:QuickSettingButton.ActiveIcon>
-            </quickSettings:QuickSettingButton>
+                </quickSettings:MultiValueSettingsButton.Popup>
+            </quickSettings:MultiValueSettingsButton>
             <quickSettings:QuickSettingButton Style="{StaticResource QuickSettingsToggle}"
                                               Number="{Binding PortForwardingButtonNumber}"
                                               IsChecked="{Binding ShowPortForwardingPopup, Mode=TwoWay}"
@@ -548,7 +604,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         <Button.Style>
                                             <Style TargetType="Button" BasedOn="{StaticResource PlusButton}">
                                                 <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding IsUserTierPlusOrHigher}" Value="False">
+                                                    <DataTrigger Binding="{Binding IsUserTierPlusOrHigher}"
+                                                                 Value="False">
                                                         <Setter Property="Visibility" Value="Visible" />
                                                     </DataTrigger>
                                                 </Style.Triggers>
@@ -562,13 +619,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </quickSettings:QuickSettingButton.Popup>
                 <quickSettings:QuickSettingButton.Icon>
                     <icons:Reflect Style="{StaticResource Icon}"
-                                   Foreground="White" 
-                                   Width="23" 
+                                   Foreground="White"
+                                   Width="23"
                                    Margin="0,0,2,0" />
                 </quickSettings:QuickSettingButton.Icon>
                 <quickSettings:QuickSettingButton.ActiveIcon>
                     <icons:Exchange Style="{StaticResource Icon}"
-                                    Foreground="{StaticResource PrimaryColor}" 
+                                    Foreground="{StaticResource PrimaryColor}"
                                     Width="23" />
                 </quickSettings:QuickSettingButton.ActiveIcon>
             </quickSettings:QuickSettingButton>

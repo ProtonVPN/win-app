@@ -72,8 +72,9 @@ namespace ProtonVPN.Sidebar.QuickSettings
             NetShieldOnFirstCommand = new RelayCommand(TurnOnNetShieldFirstModeActionAsync);
             NetShieldOnSecondCommand = new RelayCommand(TurnOnNetShieldSecondModeActionAsync);
 
-            KillSwitchOffCommand = new RelayCommand(TurnOffKillSwitchActionAsync);
-            KillSwitchOnCommand = new RelayCommand(TurnOnKillSwitchActionAsync);
+            DisableKillSwitchCommand = new RelayCommand(DisableKillSwitchAction);
+            EnableSoftKillSwitchCommand = new RelayCommand(EnableSoftKillSwitchAction);
+            EnableHardKillSwitchCommand = new RelayCommand(EnableHardKillSwitchAction);
 
             PortForwardingOffCommand = new RelayCommand(TurnOffPortForwardingActionAsync);
             PortForwardingOnCommand = new RelayCommand(TurnOnPortForwardingActionAsync);
@@ -89,8 +90,9 @@ namespace ProtonVPN.Sidebar.QuickSettings
         public ICommand SecureCoreLearnMoreCommand { get; }
         public ICommand PortForwardingLearnMoreCommand { get; }
 
-        public ICommand KillSwitchOnCommand { get; }
-        public ICommand KillSwitchOffCommand { get; }
+        public ICommand EnableSoftKillSwitchCommand { get; }
+        public ICommand EnableHardKillSwitchCommand { get; }
+        public ICommand DisableKillSwitchCommand { get; }
 
         public ICommand NetShieldOffCommand { get; }
         public ICommand NetShieldOnFirstCommand { get; }
@@ -119,9 +121,11 @@ namespace ProtonVPN.Sidebar.QuickSettings
         public int PortForwardingButtonNumber => KillSwitchButtonNumber + 1;
         public int TotalButtons => 2 + (_appSettings.FeatureNetShieldEnabled ? 1 : 0) + (_appSettings.FeaturePortForwardingEnabled ? 1 : 0);
 
-        public bool IsKillSwitchOnButtonOn => _appSettings.KillSwitch;
-        public bool IsKillSwitchOffButtonOn => !_appSettings.KillSwitch;
-
+        public bool IsSoftKillSwitchEnabled => _appSettings.KillSwitchMode == Common.KillSwitch.KillSwitchMode.Soft;
+        public bool IsHardKillSwitchEnabled => _appSettings.KillSwitchMode == Common.KillSwitch.KillSwitchMode.Hard;
+        public bool IsKillSwitchDisabled => _appSettings.KillSwitchMode == Common.KillSwitch.KillSwitchMode.Off;
+        public bool IsKillSwitchEnabled => IsSoftKillSwitchEnabled || IsHardKillSwitchEnabled;
+        public int KillSwitchMode => (int) _appSettings.KillSwitchMode;
         public bool IsFreeUser => _userStorage.User().TrialStatus() == PlanStatus.Free;
 
         public bool IsUserTierPlusOrHigher => _userStorage.User().MaxTier >= ServerTiers.Plus;
@@ -186,9 +190,12 @@ namespace ProtonVPN.Sidebar.QuickSettings
         {
             switch (e.PropertyName)
             {
-                case nameof(IAppSettings.KillSwitch):
-                    NotifyOfPropertyChange(nameof(IsKillSwitchOnButtonOn));
-                    NotifyOfPropertyChange(nameof(IsKillSwitchOffButtonOn));
+                case nameof(IAppSettings.KillSwitchMode):
+                    NotifyOfPropertyChange(nameof(IsKillSwitchEnabled));
+                    NotifyOfPropertyChange(nameof(IsSoftKillSwitchEnabled));
+                    NotifyOfPropertyChange(nameof(IsKillSwitchDisabled));
+                    NotifyOfPropertyChange(nameof(IsHardKillSwitchEnabled));
+                    NotifyOfPropertyChange(nameof(KillSwitchMode));
                     break;
                 case nameof(IAppSettings.NetShieldEnabled):
                 case nameof(IAppSettings.NetShieldMode):
@@ -262,16 +269,19 @@ namespace ProtonVPN.Sidebar.QuickSettings
             }
         }
 
-        private async void TurnOffKillSwitchActionAsync()
+        private void DisableKillSwitchAction()
         {
-            _appSettings.KillSwitch = false;
-            await ReconnectAsync();
+            _appSettings.KillSwitchMode = Common.KillSwitch.KillSwitchMode.Off;
         }
 
-        private async void TurnOnKillSwitchActionAsync()
+        private void EnableSoftKillSwitchAction()
         {
-            _appSettings.KillSwitch = true;
-            await ReconnectAsync();
+            _appSettings.KillSwitchMode = Common.KillSwitch.KillSwitchMode.Soft;
+        }
+
+        private void EnableHardKillSwitchAction()
+        {
+            _appSettings.KillSwitchMode = Common.KillSwitch.KillSwitchMode.Hard;
         }
 
         private async void TurnOnPortForwardingActionAsync()

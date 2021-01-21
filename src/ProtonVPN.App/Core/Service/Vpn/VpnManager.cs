@@ -19,10 +19,8 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Extensions;
-using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.OS.Net;
 using ProtonVPN.Common.OS.Net.NetworkInterface;
 using ProtonVPN.Common.Threading;
@@ -43,10 +41,9 @@ using Sentry.Protocol;
 
 namespace ProtonVPN.Core.Service.Vpn
 {
-    public class VpnManager : IVpnManager, IVpnPlanAware, ILogoutAware, ISettingsAware
+    public class VpnManager : IVpnManager, IVpnPlanAware, ILogoutAware
     {
         private readonly ITaskQueue _taskQueue = new SerialTaskQueue();
-        private readonly ILogger _logger;
         private readonly ProfileConnector _profileConnector;
         private readonly ProfileManager _profileManager;
         private readonly IVpnServiceManager _vpnServiceManager;
@@ -63,7 +60,6 @@ namespace ProtonVPN.Core.Service.Vpn
         private bool _tunChangedToTap;
 
         public VpnManager(
-            ILogger logger,
             ProfileConnector profileConnector,
             ProfileManager profileManager,
             IVpnServiceManager vpnServiceManager,
@@ -73,7 +69,6 @@ namespace ProtonVPN.Core.Service.Vpn
             INetworkInterfaceLoader networkInterfaceLoader,
             IPopupWindows popupWindows)
         {
-            _logger = logger;
             _profileConnector = profileConnector;
             _profileManager = profileManager;
             _vpnServiceManager = vpnServiceManager;
@@ -272,21 +267,6 @@ namespace ProtonVPN.Core.Service.Vpn
             {
                 Profile profile = await _profileManager.GetFastestProfile();
                 await Connect(profile);
-            }
-        }
-
-        public async void OnAppSettingsChanged(PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == nameof(IAppSettings.KillSwitch)
-                && !_appSettings.KillSwitch)
-            {
-                if (_networkBlocked &&
-                    (_state.Status == VpnStatus.Disconnecting ||
-                     _state.Status == VpnStatus.Disconnected))
-                {
-                    _logger.Info("Settings changed, Kill Switch disabled: Disconnecting to disable leak protection");
-                    await _vpnServiceManager.Disconnect(VpnError.None);
-                }
             }
         }
 

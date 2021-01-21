@@ -101,6 +101,7 @@
     <Compile Include="Configuration\OpenVpnConfig.cs" />
     <Compile Include="Configuration\UrlConfig.cs" />
     <Compile Include="CrashReporting\CrashReports.cs" />
+    <Compile Include="KillSwitch\KillSwitchMode.cs" />
     <Compile Include="Logging\LoggerExtensions.cs" />
     <Compile Include="OS\Net\INetworkInterfaceLoader.cs" />
     <Compile Include="OS\Net\NetworkInterfaceLoader.cs" />

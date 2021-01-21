@@ -17,10 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Service.Contract.Settings
+namespace ProtonVPN.NetworkFilter
 {
-    public class KillSwitchSettingsContract
+    public enum SessionType
     {
-        public bool Enabled { get; set; }
+        Dynamic,
+        Permanent,
     }
 }

@@ -19,6 +19,7 @@
 
 using System.ComponentModel;
 using ProtonVPN.Common;
+using ProtonVPN.Common.KillSwitch;
 using ProtonVPN.Core.MVVM;
 using ProtonVPN.Core.Settings;
 
@@ -45,7 +46,7 @@ namespace ProtonVPN.Settings.SplitTunneling
             {
                 if (value)
                 {
-                    _appSettings.KillSwitch = false;
+                    _appSettings.KillSwitchMode = KillSwitchMode.Off;
                 }
 
                 _appSettings.SplitTunnelingEnabled = value;
@@ -83,7 +84,7 @@ namespace ProtonVPN.Settings.SplitTunneling
 
         public void OnAppSettingsChanged(PropertyChangedEventArgs e)
         {
-            if (e.PropertyName.Equals(nameof(IAppSettings.KillSwitch)) && _appSettings.KillSwitch)
+            if (e.PropertyName.Equals(nameof(IAppSettings.KillSwitchMode)) && _appSettings.KillSwitchMode != KillSwitchMode.Off)
             {
                 _appSettings.SplitTunnelingEnabled = false;
                 OnPropertyChanged(nameof(Enabled));
