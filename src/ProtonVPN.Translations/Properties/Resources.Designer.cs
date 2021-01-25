@@ -3586,7 +3586,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Continue.
+        ///   Looks up a localized string similar to Restart.
         /// </summary>
         public static string Dialogs_Reboot_btn_Reboot {
             get {
@@ -3595,7 +3595,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Skip Reboot.
+        ///   Looks up a localized string similar to Continue without.
         /// </summary>
         public static string Dialogs_Reboot_btn_SkipReboot {
             get {
@@ -3604,7 +3604,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ProtonVPN has detected a pending installation that requires to reboot your system before proceeding the installation. Click &quot;Skip Reboot&quot; if you want to proceed without restarting your system. Click Continue to reboot and automatically resume the installation process..
+        ///   Looks up a localized string similar to To avoid any ProtonVPN errors, we strongly recommend restarting your computer to update other applications first. ProtonVPN will automatically resume installation afterward. Restart now?.
         /// </summary>
         public static string Dialogs_Reboot_msg {
             get {
@@ -3613,7 +3613,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ProtonVPN.
+        ///   Looks up a localized string similar to Your computer needs to restart.
         /// </summary>
         public static string Dialogs_Reboot_ttl {
             get {

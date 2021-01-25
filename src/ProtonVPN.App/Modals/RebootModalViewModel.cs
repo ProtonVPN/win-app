@@ -48,7 +48,7 @@ namespace ProtonVPN.Modals
 
         private void RebootAction()
         {
-            var key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\RunOnce", true);
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\RunOnce", true);
             key?.SetValue("", _updateState.FilePath);
 
             _osProcesses.CommandLineProcess("/C shutdown -f -r -t 0").Start();
