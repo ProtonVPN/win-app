@@ -2795,16 +2795,16 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Close</value>
   </data>
   <data name="Dialogs_Reboot_btn_Reboot" xml:space="preserve">
-    <value>Continue</value>
+    <value>Restart</value>
   </data>
   <data name="Dialogs_Reboot_btn_SkipReboot" xml:space="preserve">
-    <value>Skip Reboot</value>
+    <value>Continue without</value>
   </data>
   <data name="Dialogs_Reboot_msg" xml:space="preserve">
-    <value>ProtonVPN has detected a pending installation that requires to reboot your system before proceeding the installation. Click "Skip Reboot" if you want to proceed without restarting your system. Click Continue to reboot and automatically resume the installation process.</value>
+    <value>To avoid any ProtonVPN errors, we strongly recommend restarting your computer to update other applications first. ProtonVPN will automatically resume installation afterward. Restart now?</value>
   </data>
   <data name="Dialogs_Reboot_ttl" xml:space="preserve">
-    <value>ProtonVPN</value>
+    <value>Your computer needs to restart</value>
   </data>
   <data name="Dialogs_btn_Enable" xml:space="preserve">
     <value>Enable</value>
