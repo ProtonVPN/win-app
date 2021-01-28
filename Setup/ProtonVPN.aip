@@ -222,24 +222,24 @@
     <ROW File="ProtonVPN.IpFilter.dll" Component_="ProtonVPN.IpFilter.dll" FileName="PROTON~2.DLL|ProtonVPN.IpFilter.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\x86\ProtonVPN.IpFilter.dll" SelfReg="false"/>
     <ROW File="ProtonVPN.IpFilter.dll_1" Component_="ProtonVPN.IpFilter.dll_1" FileName="PROTON~2.DLL|ProtonVPN.IpFilter.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\x64\ProtonVPN.IpFilter.dll" SelfReg="false"/>
     <ROW File="ProtonVPN.NetworkFilter.dll" Component_="ProtonVPN.NetworkFilter.dll" FileName="PROTON~8.DLL|ProtonVPN.NetworkFilter.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ProtonVPN.NetworkFilter.dll" SelfReg="false"/>
-    <ROW File="ProtonVPN.UpdateService.exe" Component_="ProtonVPN.UpdateService.exe" FileName="PROTON~4.EXE|ProtonVPN.UpdateService.exe" Attributes="0" SourcePath="..\src\bin\ProtonVPN.UpdateService.exe" SelfReg="false"/>
-    <ROW File="ProtonVPN.UpdateServiceContract.dll" Component_="ProtonVPN.UpdateServiceContract.dll" FileName="PROTON~9.DLL|ProtonVPN.UpdateServiceContract.dll" Attributes="0" SourcePath="..\src\bin\ProtonVPN.UpdateServiceContract.dll" SelfReg="false"/>
-    <ROW File="ProtonVPN.TlsVerify.exe" Component_="ProtonVPN.TlsVerify.exe" FileName="PROTON~5.EXE|ProtonVPN.TlsVerify.exe" Attributes="0" SourcePath="..\src\bin\ProtonVPN.TlsVerify.exe" SelfReg="false"/>
-    <ROW File="COPYING.md" Component_="ProtonVPN.ErrorMessage.exe.config" FileName="COPYING.md" Attributes="0" SourcePath="..\COPYING.md" SelfReg="false"/>
-    <ROW File="LICENSE" Component_="ProtonVPN.ErrorMessage.exe.config" FileName="LICENSE" Attributes="0" SourcePath="..\LICENSE" SelfReg="false"/>
-    <ROW File="Polly.Contrib.WaitAndRetry.dll" Component_="Polly.Contrib.WaitAndRetry.dll" FileName="POLLYC~1.DLL|Polly.Contrib.WaitAndRetry.dll" Attributes="0" SourcePath="..\src\bin\Polly.Contrib.WaitAndRetry.dll" SelfReg="false"/>
-    <ROW File="DeviceId.dll" Component_="DeviceId.dll" FileName="DeviceId.dll" Attributes="0" SourcePath="..\src\bin\DeviceId.dll" SelfReg="false"/>
-    <ROW File="PluralNet.dll" Component_="PluralNet.dll" FileName="PLURAL~1.DLL|PluralNet.dll" Attributes="0" SourcePath="..\src\bin\PluralNet.dll" SelfReg="false"/>
-    <ROW File="Albireo.Base32.dll" Component_="Albireo.Base32.dll" FileName="ALBIRE~1.DLL|Albireo.Base32.dll" Attributes="0" SourcePath="..\src\bin\Albireo.Base32.dll" SelfReg="false"/>
-    <ROW File="ARSoft.Tools.Net.dll" Component_="ARSoft.Tools.Net.dll" FileName="ARSOFT~1.DLL|ARSoft.Tools.Net.dll" Attributes="0" SourcePath="..\src\bin\ARSoft.Tools.Net.dll" SelfReg="false"/>
-    <ROW File="BouncyCastle.Crypto.dll" Component_="BouncyCastle.Crypto.dll" FileName="BOUNCY~1.DLL|BouncyCastle.Crypto.dll" Attributes="0" SourcePath="..\src\bin\BouncyCastle.Crypto.dll" SelfReg="false"/>
+    <ROW File="ProtonVPN.UpdateService.exe" Component_="ProtonVPN.UpdateService.exe" FileName="PROTON~4.EXE|ProtonVPN.UpdateService.exe" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ProtonVPN.UpdateService.exe" SelfReg="false"/>
+    <ROW File="ProtonVPN.UpdateServiceContract.dll" Component_="ProtonVPN.UpdateServiceContract.dll" FileName="PROTON~9.DLL|ProtonVPN.UpdateServiceContract.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ProtonVPN.UpdateServiceContract.dll" SelfReg="false"/>
+    <ROW File="ProtonVPN.TlsVerify.exe" Component_="ProtonVPN.TlsVerify.exe" FileName="PROTON~5.EXE|ProtonVPN.TlsVerify.exe" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ProtonVPN.TlsVerify.exe" SelfReg="false"/>
+    <ROW File="COPYING.md" Component_="ProtonVPN.ErrorMessage.exe.config" FileName="COPYING.md" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\COPYING.md" SelfReg="false"/>
+    <ROW File="LICENSE" Component_="ProtonVPN.ErrorMessage.exe.config" FileName="LICENSE" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\LICENSE" SelfReg="false"/>
+    <ROW File="Polly.Contrib.WaitAndRetry.dll" Component_="Polly.Contrib.WaitAndRetry.dll" FileName="POLLYC~1.DLL|Polly.Contrib.WaitAndRetry.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Polly.Contrib.WaitAndRetry.dll" SelfReg="false"/>
+    <ROW File="DeviceId.dll" Component_="DeviceId.dll" FileName="DeviceId.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\DeviceId.dll" SelfReg="false"/>
+    <ROW File="PluralNet.dll" Component_="PluralNet.dll" FileName="PLURAL~1.DLL|PluralNet.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\PluralNet.dll" SelfReg="false"/>
+    <ROW File="Albireo.Base32.dll" Component_="Albireo.Base32.dll" FileName="ALBIRE~1.DLL|Albireo.Base32.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Albireo.Base32.dll" SelfReg="false"/>
+    <ROW File="ARSoft.Tools.Net.dll" Component_="ARSoft.Tools.Net.dll" FileName="ARSOFT~1.DLL|ARSoft.Tools.Net.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ARSoft.Tools.Net.dll" SelfReg="false"/>
+    <ROW File="BouncyCastle.Crypto.dll" Component_="BouncyCastle.Crypto.dll" FileName="BOUNCY~1.DLL|BouncyCastle.Crypto.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\BouncyCastle.Crypto.dll" SelfReg="false"/>
     <ROW File="GuestHoleServers.json" Component_="GuestHoleServers.json" FileName="GUESTH~1.JSO|GuestHoleServers.json" Attributes="0" SourcePath="GuestHoleServers.json" SelfReg="false"/>
     <ROW File="ProtonVPN.Translations.dll" Component_="ProtonVPN.Translations.dll" FileName="PROTO~10.DLL|ProtonVPN.Translations.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ProtonVPN.Translations.dll" SelfReg="false"/>
     <ROW File="ProtonVPN.CalloutDriver.sys" Component_="ProtonVPN.SplitTunnelDriver.sys" FileName="PROTON~2.SYS|ProtonVPN.CalloutDriver.sys" Version="65535.65535.65535.65535" Attributes="0" SourcePath="SplitTunnel\x64\win7\ProtonVPN.CalloutDriver.sys" SelfReg="false"/>
     <ROW File="ProtonVPN.CalloutDriver.sys_1" Component_="ProtonVPN.SplitTunnelDriver.sys_1" FileName="PROTON~2.SYS|ProtonVPN.CalloutDriver.sys" Version="65535.65535.65535.65535" Attributes="0" SourcePath="SplitTunnel\x64\win10\ProtonVPN.CalloutDriver.sys" SelfReg="false"/>
     <ROW File="ProtonVPN.CalloutDriver.sys_2" Component_="ProtonVPN.SplitTunnelDriver.sys_2" FileName="PROTON~2.SYS|ProtonVPN.CalloutDriver.sys" Version="65535.65535.65535.65535" Attributes="0" SourcePath="SplitTunnel\x86\win7\ProtonVPN.CalloutDriver.sys" SelfReg="false"/>
     <ROW File="ProtonVPN.CalloutDriver.sys_3" Component_="ProtonVPN.SplitTunnelDriver.sys_3" FileName="PROTON~2.SYS|ProtonVPN.CalloutDriver.sys" Version="65535.65535.65535.65535" Attributes="0" SourcePath="SplitTunnel\x86\win10\ProtonVPN.CalloutDriver.sys" SelfReg="false"/>
-    <ROW File="za.dll" Component_="za.dll" FileName="7za.dll" Attributes="0" SourcePath="..\src\bin\7za.dll" SelfReg="false" DigSign="true"/>
+    <ROW File="za.dll" Component_="za.dll" FileName="7za.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\7za.dll" SelfReg="false" DigSign="true"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.AiRemoveFileComponent">
     <ROW RemoveFile="_" Condition="(AI_CLEAN_RESOURCES_UNINSTALL = &quot;1&quot;) AND (NOT UPGRADINGPRODUCTCODE)" Options="3"/>
@@ -603,10 +603,6 @@
     <ROW Action="AI_AiRemoveFilesRollback" Sequence="3099"/>
     <ROW Action="AI_GetArpIconPath" Sequence="1401"/>
     <ROW Action="AI_ProcessFailActions" Sequence="5849"/>
-    <ROW Action="StopService" Sequence="60"/>
-    <ROW Action="AI_DATA_SETTER_2" Sequence="55"/>
-    <ROW Action="StopProcess" Sequence="54"/>
-    <ROW Action="AI_DATA_SETTER_3" Sequence="58"/>
     <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Sequence="99" Builds="DefaultBuild"/>
     <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Condition="AI_SETUPEXEPATH_ORIGINAL" Sequence="102" Builds="DefaultBuild"/>
     <ROW Action="AI_DeleteCadLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="199" Builds="DefaultBuild"/>
@@ -620,9 +616,7 @@
     <ROW Action="AI_VerifyPrereq" Sequence="1101"/>
     <ROW Action="AI_ConfigureChainer" Condition="((UILevel = 2) OR (UILevel = 3)) AND (NOT UPGRADINGPRODUCTCODE)" Sequence="6598"/>
     <ROW Action="AI_LaunchChainer" Condition="AI_PREREQ_CHAINER AND (NOT UPGRADINGPRODUCTCODE)" Sequence="6599"/>
-    <ROW Action="StopErrorMessageProcess" Sequence="56"/>
-    <ROW Action="AI_DATA_SETTER_6" Sequence="52"/>
-    <ROW Action="AI_DETECT_MODERNWIN" Condition="(VersionNT &gt;= 603)" Sequence="53" MsiKey="AI_DETECT_MODERNWIN"/>
+    <ROW Action="AI_DETECT_MODERNWIN" Condition="(VersionNT &gt;= 603)" Sequence="59" MsiKey="AI_DETECT_MODERNWIN"/>
     <ROW Action="LaunchAppAfterInstall" Condition="( ( NOT Installed AND NOT OLDPRODUCTS ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( REBOOT &lt;&gt; &quot;Force&quot; )" Sequence="6612"/>
     <ROW Action="ModifyServicePermissions" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) )" Sequence="6602"/>
     <ROW Action="UninstallCalloutDriver" Condition="( ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) OR ( Installed AND ( REMOVE = &quot;ALL&quot; OR AI_INSTALL_MODE = &quot;Remove&quot; ) ) )" Sequence="6402"/>
@@ -631,17 +625,22 @@
     <ROW Action="SetCalloutDriverFileWin10x86" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( (NOT VersionNT64) AND (VersionNT = 1000) )" Sequence="6604"/>
     <ROW Action="SetCalloutDriverFileWin7x64" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( (VersionNT64) AND (VersionNT64 &lt; 1000) )" Sequence="6605"/>
     <ROW Action="SetCalloutDriverFileWin7x86" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( (NOT VersionNT64) AND (VersionNT &lt; 1000) )" Sequence="6606"/>
-    <ROW Action="StopUpdateService" Sequence="59"/>
-    <ROW Action="AI_DATA_SETTER_1" Sequence="57"/>
     <ROW Action="SetUpdateServicePath" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) )" Sequence="6601"/>
     <ROW Action="CopyInstallLog" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( (VersionNT &gt; 501) OR (VersionNT = 501 AND ServicePackLevel &gt;= 2) )" Sequence="6614"/>
     <ROW Action="SetLanguageISOCode" Condition="(VersionNT &gt; 501) OR (VersionNT = 501 AND ServicePackLevel &gt;= 2)" Sequence="6611"/>
-    <ROW Action="CheckForPendingReboot" Condition="( NOT Installed ) AND ( UILevel = &quot;5&quot; )" Sequence="51"/>
     <ROW Action="LaunchAppAfterUpdate" Condition="( NOT Installed AND OLDPRODUCTS ) AND ( REBOOT &lt;&gt; &quot;Force&quot; )" Sequence="6613"/>
     <ROW Action="AI_ExtractFiles" Sequence="1399" Builds="DefaultBuild"/>
     <ROW Action="AI_DATA_SETTER" Sequence="1398"/>
     <ROW Action="RemoveProgramData" Condition="( Installed AND ( REMOVE = &quot;ALL&quot; OR AI_INSTALL_MODE = &quot;Remove&quot; ) ) AND ( (VersionNT &gt; 501) OR (VersionNT = 501 AND ServicePackLevel &gt;= 2) )" Sequence="6401"/>
     <ROW Action="AI_AiRemoveFilesImmediate" Sequence="3499"/>
+    <ROW Action="StopService" Sequence="56"/>
+    <ROW Action="AI_DATA_SETTER_2" Sequence="55"/>
+    <ROW Action="StopUpdateService" Sequence="58"/>
+    <ROW Action="AI_DATA_SETTER_1" Sequence="57"/>
+    <ROW Action="StopErrorMessageProcess" Sequence="52"/>
+    <ROW Action="AI_DATA_SETTER_6" Sequence="51"/>
+    <ROW Action="StopProcess" Sequence="54"/>
+    <ROW Action="AI_DATA_SETTER_3" Sequence="53"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstallUISequenceComponent">
     <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="749"/>
