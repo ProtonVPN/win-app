@@ -25,10 +25,10 @@
     <ROW Property="Manufacturer" Value="Proton Technologies AG"/>
     <ROW Property="MsiLogging" MultiBuildValue="DefaultBuild:vp"/>
     <ROW Property="PENDING_REBOOT" Value="0"/>
-    <ROW Property="ProductCode" Value="1031:{E1B7E6B6-393F-4DCB-BCA5-00000E00CC7A} 1033:{E1B7E6B6-393F-4DCB-BCA5-00000E00CC7A} 1036:{E1B7E6B6-393F-4DCB-BCA5-00000E00CC7A} 1040:{E1B7E6B6-393F-4DCB-BCA5-00000E00CC7A} 1043:{E1B7E6B6-393F-4DCB-BCA5-00000E00CC7A} 1045:{E1B7E6B6-393F-4DCB-BCA5-00000E00CC7A} 1046:{E1B7E6B6-393F-4DCB-BCA5-00000E00CC7A} 1049:{E1B7E6B6-393F-4DCB-BCA5-00000E00CC7A} 1065:{E1B7E6B6-393F-4DCB-BCA5-00000E00CC7A} 2070:{E1B7E6B6-393F-4DCB-BCA5-00000E00CC7A} 3082:{E1B7E6B6-393F-4DCB-BCA5-00000E00CC7A} " Type="16"/>
+    <ROW Property="ProductCode" Value="1031:{FFAFEA09-E7DA-4710-A278-7F0506C96829} 1033:{FFAFEA09-E7DA-4710-A278-7F0506C96829} 1036:{FFAFEA09-E7DA-4710-A278-7F0506C96829} 1040:{FFAFEA09-E7DA-4710-A278-7F0506C96829} 1043:{FFAFEA09-E7DA-4710-A278-7F0506C96829} 1045:{FFAFEA09-E7DA-4710-A278-7F0506C96829} 1046:{FFAFEA09-E7DA-4710-A278-7F0506C96829} 1049:{FFAFEA09-E7DA-4710-A278-7F0506C96829} 1065:{FFAFEA09-E7DA-4710-A278-7F0506C96829} 2070:{FFAFEA09-E7DA-4710-A278-7F0506C96829} 3082:{FFAFEA09-E7DA-4710-A278-7F0506C96829} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="ProtonVPN"/>
-    <ROW Property="ProductVersion" Value="1.18.2" Type="32"/>
+    <ROW Property="ProductVersion" Value="1.18.5" Type="32"/>
     <ROW Property="REBOOT" MultiBuildValue="DefaultBuild:ReallySuppress"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;AI_SETUPEXEPATH;SETUPEXEDIR"/>
     <ROW Property="SelectedLanguage" Value="This will be set by custom action"/>
@@ -73,7 +73,7 @@
     <ROW Directory="x86_Dir" Directory_Parent="APPDIR" DefaultDir="x86" DirectoryOptions="3"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
-    <ROW Component="AI_CustomARPName" ComponentId="{5AD9E2A4-1D46-4661-8B05-71E7D86BC4DF}" Directory_="APPDIR" Attributes="4" KeyPath="DisplayName" Options="1"/>
+    <ROW Component="AI_CustomARPName" ComponentId="{86F6D732-4D28-4215-A00E-EEEA7BA28076}" Directory_="APPDIR" Attributes="4" KeyPath="DisplayName" Options="1"/>
     <ROW Component="AI_ExePath" ComponentId="{47427A21-60A2-43B4-A150-6CBA74CF4A07}" Directory_="APPDIR" Attributes="4" KeyPath="AI_ExePath"/>
     <ROW Component="APPDIR" ComponentId="{75DDD993-CDFE-4D39-8C1A-07484ADD1A4E}" Directory_="APPDIR" Attributes="0"/>
     <ROW Component="ARSoft.Tools.Net.dll" ComponentId="{05CE9A73-14A8-494D-B2D3-8438A2A16DDB}" Directory_="APPDIR" Attributes="0" KeyPath="ARSoft.Tools.Net.dll"/>
@@ -489,7 +489,7 @@
     <ROW Action="ModifyServicePermissions" Type="1" Source="ProtonVPN.InstallActions.dll" Target="ModifyServicePermissions"/>
     <ROW Action="RebootAction" Type="1" Source="ProtonVPN.InstallActions.dll" Target="Reboot"/>
     <ROW Action="RebootWarning" Type="1" Source="aicustact.dll" Target="MsgBox" Options="1" AdditionalSeq="AI_DATA_SETTER_10"/>
-    <ROW Action="RemoveProgramData" Type="1" Source="ProtonVPN.InstallActions.dll" Target="RemoveProgramData"/>
+    <ROW Action="RemoveProgramData" Type="65" Source="ProtonVPN.InstallActions.dll" Target="RemoveProgramData"/>
     <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]" MultiBuildTarget="DefaultBuild:[ProgramFilesFolder]Proton Technologies\[ProductName]"/>
     <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][ProductName]"/>
     <ROW Action="SET_TARGETDIR_TO_APPDIR" Type="51" Source="TARGETDIR" Target="[APPDIR]"/>
@@ -631,8 +631,7 @@
     <ROW Action="LaunchAppAfterUpdate" Condition="( NOT Installed AND OLDPRODUCTS ) AND ( REBOOT &lt;&gt; &quot;Force&quot; )" Sequence="6613"/>
     <ROW Action="AI_ExtractFiles" Sequence="1399" Builds="DefaultBuild"/>
     <ROW Action="AI_DATA_SETTER" Sequence="1398"/>
-    <ROW Action="RemoveProgramData" Condition="( Installed AND ( REMOVE = &quot;ALL&quot; OR AI_INSTALL_MODE = &quot;Remove&quot; ) ) AND ( (VersionNT &gt; 501) OR (VersionNT = 501 AND ServicePackLevel &gt;= 2) )" Sequence="6401"/>
-    <ROW Action="AI_AiRemoveFilesImmediate" Sequence="3499"/>
+    <ROW Action="RemoveProgramData" Condition="( Installed AND ( REMOVE = &quot;ALL&quot; OR AI_INSTALL_MODE = &quot;Remove&quot; ) AND NOT UPGRADINGPRODUCTCODE )" Sequence="6401"/>
     <ROW Action="StopService" Sequence="56"/>
     <ROW Action="AI_DATA_SETTER_2" Sequence="55"/>
     <ROW Action="StopUpdateService" Sequence="58"/>
@@ -641,6 +640,7 @@
     <ROW Action="AI_DATA_SETTER_6" Sequence="51"/>
     <ROW Action="StopProcess" Sequence="54"/>
     <ROW Action="AI_DATA_SETTER_3" Sequence="53"/>
+    <ROW Action="AI_AiRemoveFilesImmediate" Sequence="3499"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstallUISequenceComponent">
     <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="749"/>
