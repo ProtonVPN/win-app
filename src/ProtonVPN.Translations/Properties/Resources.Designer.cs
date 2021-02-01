@@ -4802,15 +4802,6 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to GET PLUS.
-        /// </summary>
-        public static string QuickSettings_btn_GetPlus {
-            get {
-                return ResourceManager.GetString("QuickSettings_btn_GetPlus", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Kill Switch Off.
         /// </summary>
         public static string QuickSettings_btn_KillSwitchOff {
@@ -4897,6 +4888,15 @@ namespace ProtonVPN.Translations.Properties {
         public static string QuickSettings_btn_SecureCoreOn {
             get {
                 return ResourceManager.GetString("QuickSettings_btn_SecureCoreOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UPGRADE.
+        /// </summary>
+        public static string QuickSettings_btn_Upgrade {
+            get {
+                return ResourceManager.GetString("QuickSettings_btn_Upgrade", resourceCulture);
             }
         }
         
