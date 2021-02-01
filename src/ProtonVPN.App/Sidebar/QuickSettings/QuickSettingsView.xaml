@@ -239,7 +239,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Setter Property="Height" Value="18" />
         </Style>
         <Style x:Key="PlusButton" TargetType="Button" BasedOn="{StaticResource PrimaryModalButton}">
-            <Setter Property="Content" Value="{translations:Loc QuickSettings_btn_GetPlus}" />
+            <Setter Property="Content" Value="{translations:Loc QuickSettings_btn_Upgrade}" />
             <Setter Property="Visibility" Value="Collapsed" />
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="Margin" Value="0,10,0,0" />

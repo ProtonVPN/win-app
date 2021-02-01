@@ -2884,8 +2884,8 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="QuickSettings_lbl_SecureCoreWarning" xml:space="preserve">
     <value>Secure Core may reduce VPN speed</value>
   </data>
-  <data name="QuickSettings_btn_GetPlus" xml:space="preserve">
-    <value>GET PLUS</value>
+  <data name="QuickSettings_btn_Upgrade" xml:space="preserve">
+    <value>UPGRADE</value>
   </data>
   <data name="PortForwarding" xml:space="preserve">
     <value>Port Forwarding</value>
