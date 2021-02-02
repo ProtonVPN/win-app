@@ -93,7 +93,7 @@ namespace ProtonVPN.Service
             }
             else
             {
-                CallbackStateChanged(new VpnState(VpnStatus.Disconnected, VpnError.NoTapAdaptersError));
+                HandleNoTapError();
             }
 
             return Task.CompletedTask;
@@ -159,6 +159,18 @@ namespace ProtonVPN.Service
             }
 
             return Task.CompletedTask;
+        }
+
+        private void HandleNoTapError()
+        {
+            if (_state.Status == VpnStatus.Disconnected)
+            {
+                CallbackStateChanged(new VpnState(VpnStatus.Disconnected, VpnError.NoTapAdaptersError));
+            }
+            else
+            {
+                _vpnConnection.Disconnect(VpnError.NoTapAdaptersError);
+            }
         }
 
         private void VpnConnection_StateChanged(object sender, EventArgs<VpnState> e)
