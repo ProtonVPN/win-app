@@ -48,6 +48,7 @@ namespace ProtonVPN.Core.Service.Settings
                     Ips = GetSplitTunnelIps()
                 },
                 Ipv6LeakProtection = _appSettings.Ipv6LeakProtection,
+                PortForwardingEnabled = _appSettings.IsPortForwardingEnabled(),
             };
         }
 

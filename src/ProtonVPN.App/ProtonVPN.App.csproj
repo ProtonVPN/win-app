@@ -202,6 +202,7 @@
     <Compile Include="Core\MVVM\Converters\ZeroToBoolConverter.cs" />
     <Compile Include="Core\Service\BaseFilteringEngineService.cs" />
     <Compile Include="Core\Service\Vpn\ReconnectManager.cs" />
+    <Compile Include="Core\Service\Vpn\VpnManagerProfileCandidates.cs" />
     <Compile Include="Modals\DisabledServiceModalView.xaml.cs">
       <DependentUpon>DisabledServiceModalView.xaml</DependentUpon>
     </Compile>
@@ -210,10 +211,16 @@
     </Compile>
     <Compile Include="Modals\DisabledServiceModalViewModel.cs" />
     <Compile Include="Modals\BfeWarningModalViewModel.cs" />
+    <Compile Include="Modals\PortForwardingConfirmationModalViewModel.cs" />
+    <Compile Include="Modals\PortForwardingConfirmationModalView.xaml.cs">
+      <DependentUpon>PortForwardingConfirmationModalView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modals\RebootModalView.xaml.cs">
       <DependentUpon>RebootModalView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modals\RebootModalViewModel.cs" />
+    <Compile Include="Servers\ISortedCountries.cs" />
+    <Compile Include="Settings\IVpnReconnector.cs" />
     <Compile Include="Settings\Migrations\v1_17_0\AppSettingsMigration.cs" />
     <Compile Include="Core\Service\Vpn\IVpnManager.cs" />
     <Compile Include="FlashNotifications\FlashNotifications.xaml.cs">
@@ -302,6 +309,7 @@
     <Compile Include="Settings\Migrations\IAppSettingsMigration.cs" />
     <Compile Include="Settings\Migrations\BaseUserSettingsMigration.cs" />
     <Compile Include="Settings\Migrations\v1_10_0\AppSettingsMigration.cs" />
+    <Compile Include="Settings\Migrations\v1_18_3\AppSettingsMigration.cs" />
     <Compile Include="Settings\Migrations\v1_8_0\AppSettingsMigration.cs" />
     <Compile Include="Settings\Migrations\v1_8_0\UserSettingsMigration.cs" />
     <Compile Include="Core\Wpf\CustomListView.cs" />
@@ -338,7 +346,6 @@
     <Compile Include="Settings\Migrations\v1_7_2\MigratedServerId.cs" />
     <Compile Include="Settings\Migrations\v1_7_2\ProfileTypeV1.cs" />
     <Compile Include="Settings\PerUserSettings.cs" />
-    <Compile Include="Settings\SettingChangeListener.cs" />
     <Compile Include="Settings\UserSettings.cs" />
     <Compile Include="Core\Startup\IAutoStartup.cs" />
     <Compile Include="Core\Startup\ISyncableAutoStartup.cs" />
@@ -420,12 +427,14 @@
     <Compile Include="Core\Ioc\UiModule.cs" />
     <Compile Include="Modals\Modals.cs" />
     <Compile Include="Settings\ReconnectNotification\SplitTunnelModeSetting.cs" />
+    <Compile Include="Settings\VpnReconnector.cs" />
     <Compile Include="Sidebar\Announcements\Announcement.cs" />
     <Compile Include="Sidebar\Announcements\AnnouncementsView.xaml.cs">
       <DependentUpon>AnnouncementsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Sidebar\Announcements\AnnouncementsViewModel.cs" />
     <Compile Include="Sidebar\Announcements\IAnnouncementsAware.cs" />
+    <Compile Include="Servers\CountrySeparatorViewModel.cs" />
     <Compile Include="Sidebar\QuickSettings\NetShieldSettingButton.cs" />
     <Compile Include="Sidebar\QuickSettings\PopupArrowPositionConverter.cs" />
     <Compile Include="Sidebar\QuickSettings\QuickSettingButton.cs" />
@@ -597,7 +606,6 @@
     <Compile Include="Settings\SettingsModalViewModel.cs" />
     <Compile Include="Sidebar\ConnectionStatusViewModel.cs" />
     <Compile Include="Sidebar\CountriesViewModel.cs" />
-    <Compile Include="Sidebar\SidebarBaseViewModel.cs" />
     <Compile Include="Sidebar\SidebarProfilesViewModel.cs" />
     <Compile Include="Sidebar\SidebarViewModel.cs" />
     <Compile Include="Validation\ValidationViewModel.cs" />
@@ -682,8 +690,8 @@
     <Compile Include="Views\Icons\MultipleDevices.xaml.cs">
       <DependentUpon>MultipleDevices.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Icons\P2P.xaml.cs">
-      <DependentUpon>P2P.xaml</DependentUpon>
+    <Compile Include="Views\Icons\Exchange.xaml.cs">
+      <DependentUpon>Exchange.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Icons\Phone.xaml.cs">
       <DependentUpon>Phone.xaml</DependentUpon>
@@ -717,6 +725,9 @@
     </Compile>
     <Compile Include="Views\Icons\SingleLock.xaml.cs">
       <DependentUpon>SingleLock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Icons\Reflect.xaml.cs">
+      <DependentUpon>Reflect.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Icons\SwitchOn.xaml.cs">
       <DependentUpon>SwitchOn.xaml</DependentUpon>
@@ -843,6 +854,10 @@
     <Page Include="Modals\OutdatedAppModalView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modals\PortForwardingConfirmationModalView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Modals\RebootModalView.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -1048,6 +1063,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\Icons\Reflect.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\Icons\SwitchOn.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -1245,7 +1264,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Icons\P2P.xaml">
+    <Page Include="Views\Icons\Exchange.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

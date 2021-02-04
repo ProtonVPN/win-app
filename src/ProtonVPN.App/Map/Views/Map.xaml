@@ -56,7 +56,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Button Style="{StaticResource MapSidebarModeButton}"/>
             <Grid Style="{StaticResource ConnectionStatusBoxHolder}" x:Name="ConnectionStatus">
                 <StackPanel Orientation="Horizontal" Height="57">
                     <Path Data="M 65.005858,0 H 0 c 0,0 15.666998,6.3327028 23.999998,24.845704 8.209037,18.237597 17.780151,31.682176 41.00586,32.080078 v -0.03711 z"

@@ -189,13 +189,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Command" Value="{Binding ManageProfilesCommand}"/>
     </Style>
-    <Style x:Key="MapSidebarModeButton" TargetType="Button" BasedOn="{StaticResource ClearStyleButton}">
+    <Style x:Key="SidebarModeButton" TargetType="Button" BasedOn="{StaticResource ClearStyleButton}">
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="Panel.ZIndex" Value="2"/>
-        <Setter Property="Margin" Value="0,20,0,0"/>
+        <Setter Property="Margin" Value="0,-49,-28,0"/>
         <Setter Property="Padding" Value="0"/>
         <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="HorizontalAlignment" Value="Left"/>
-        <Setter Property="VerticalAlignment" Value="Top"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="AutomationProperties.AutomationId" Value="{StaticResource SidebarModeButtonId}"/>
         <Setter Property="Command" Value="{Binding ToggleSidebarModeCommand}"/>
@@ -211,20 +211,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Setter>
         <Style.Triggers>
             <DataTrigger Binding="{Binding SidebarMode}" Value="True">
-                <Setter Property="Visibility" Value="Collapsed"/>
-            </DataTrigger>
-        </Style.Triggers>
-    </Style>
-    <Style x:Key="SidebarModeButton" TargetType="Button" BasedOn="{StaticResource MapSidebarModeButton}">
-        <Setter Property="HorizontalAlignment" Value="Right"/>
-        <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
-        <Setter Property="AutomationProperties.AutomationId" Value="{StaticResource MapModeButton}"/>
-        <Style.Triggers>
-            <DataTrigger Binding="{Binding SidebarMode}" Value="False">
-                <Setter Property="Visibility" Value="Collapsed"/>
-            </DataTrigger>
-            <DataTrigger Binding="{Binding SidebarMode}" Value="True">
-                <Setter Property="Visibility" Value="Visible"/>
+                <Setter Property="RenderTransform">
+                    <Setter.Value>
+                        <ScaleTransform ScaleX="-1.0"/>
+                    </Setter.Value>
+                </Setter>
             </DataTrigger>
         </Style.Triggers>
     </Style>

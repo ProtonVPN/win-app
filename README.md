@@ -129,13 +129,14 @@ directory by default.
 The TAP adapter is built from official source by applying a patch to have ProtonVPN specific
 name and identification. See [win-tap-adapter](https://github.com/ProtonVPN/win-tap-adapter) repository.
 
-#### Split Tunnel driver
+#### Callout driver
 
-The kernel-mode driver "ProtonVPN SplitTunnel" is used for redirecting socket bindings when
-Split Tunnel is enabled.
+The kernel-mode driver "ProtonVPN Callout Driver" is used for redirecting socket bindings when
+Split Tunnel is enabled and preventing DNS leak by sending SERVFAIL response packet for DNS
+requests which were made from other interfaces than ProtonVPN uses.
 
 The driver is installed as a system service. It is started when connecting to VPN and stopped
-when disconnecting by ProtonVPN Service when Split Tunnel is enabled.
+when disconnecting by ProtonVPN Service.
 
 ## Folder structure
 
@@ -184,20 +185,18 @@ ProtonVPN Windows app is created using C# and C++ programming languages, WPF and
 technologies. The Visual Studio solution consists of a series of projects:
 - **ProtonVPN.App** - the main project which builds to ProtonVPN GUI app executable.
   It contains startup logic and GUI (view models and views).
+- **ProtonVPN.CalloutDriver** - the callout driver written in C++ used for split tunneling and DNS leak protection.
 - **ProtonVPN.Common** - the classes shared between projects.
 - **ProtonVPN.Core** - the business logic of the application.
-- **ProtonVPN.ErrorMessage** - displays an error message when the application cannot
-  be run. Builds to an executable.
+- **ProtonVPN.ErrorMessage** - displays an error message when the application cannot be run. Builds to an executable.
 - **ProtonVPN.InstallActions** - the C++ actions used by the app installer.
 - **ProtonVPN.IpFilter** - the C++ library for configuring Windows firewall filters.
 - **ProtonVPN.Native** - the C# wrapper around Windows system libraries.
 - **ProtonVPN.NetworkFilter** - the C# wrapper around C++ library for configuring Windows firewall.
 - **ProtonVPN.NetworkUtil** - the C++ library for changing network configuration.
 - **ProtonVPN.Resource** - contains resources shared between projects.
-- **ProtonVPN.Service** - the Windows service which handles VPN, Windows firewall and 
-  Split Tunneling.
+- **ProtonVPN.Service** - the Windows service which handles VPN, Windows firewall and Split Tunneling.
 - **ProtonVPN.Service.Contract** - contains the service contract.
-- **ProtonVPN.SplitTunnelDriver** - the Split Tunnel callout driver written in C++.
 - **ProtonVPN.TapInstaller** - the TAP install action used in the app installer.
 - **ProtonVPN.TlsVerify** - the command line utility which verifies the VPN server certificate.
 - **ProtonVPN.Update** - the application update module used in the update service.
@@ -206,4 +205,3 @@ technologies. The Visual Studio solution consists of a series of projects:
 - **ProtonVPN.Vpn** - the OpenVPN management module used in the service.
 
 Solution folder "Test" contains test projects.
-

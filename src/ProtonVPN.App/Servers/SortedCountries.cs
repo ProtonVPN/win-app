@@ -21,10 +21,11 @@ using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Settings;
 using System.Collections.Generic;
 using System.Linq;
+using ProtonVPN.Core.Models;
 
 namespace ProtonVPN.Servers
 {
-    public class SortedCountries
+    public class SortedCountries : ISortedCountries
     {
         private readonly IUserStorage _userStorage;
         private readonly ServerManager _serverManager;
@@ -37,13 +38,15 @@ namespace ProtonVPN.Servers
 
         public List<string> List()
         {
-            var user = _userStorage.User();
-            var allCountries = _serverManager.GetCountries().OrderBy(Countries.GetName);
+            User user = _userStorage.User();
+            IOrderedEnumerable<string> allCountries = _serverManager.GetCountries().OrderBy(Countries.GetName);
 
             if (!user.MaxTier.Equals(ServerTiers.Free))
+            {
                 return allCountries.ToList();
+            }
 
-            var freeCountries = _serverManager.GetCountriesWithFreeServers()
+            List<string> freeCountries = _serverManager.GetCountriesWithFreeServers()
                 .OrderByDescending(Countries.GetName)
                 .ToList();
 

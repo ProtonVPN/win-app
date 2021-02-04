@@ -62,13 +62,18 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>..\..\CppLibraries\Bit7z\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalDependencies>msi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>msi.lib;..\..\CppLibraries\Bit7z\lib\bit7z_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy /y /d "..\..\CppLibraries\7-Zip\7za.dll" "$(OutDir)"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -82,6 +87,8 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <AdditionalIncludeDirectories>..\..\CppLibraries\Bit7z\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -89,13 +96,19 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalDependencies>msi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>msi.lib;..\..\CppLibraries\Bit7z\lib\bit7z.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy /y /d "..\..\CppLibraries\7-Zip\7za.dll" "$(OutDir)"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="EnvironmentVariable.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="PathManager.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="StartupApp.h" />
+    <ClInclude Include="StringConverter.h" />
     <ClInclude Include="SystemState.h" />
     <ClInclude Include="Service.h" />
     <ClInclude Include="StringHelper.h" />
@@ -103,11 +116,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="EnvironmentVariable.cpp" />
+    <ClCompile Include="PathManager.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="StartupApp.cpp" />
+    <ClCompile Include="StringConverter.cpp" />
     <ClCompile Include="SystemState.cpp" />
     <ClCompile Include="Service.cpp" />
     <ClCompile Include="Utils.cpp" />

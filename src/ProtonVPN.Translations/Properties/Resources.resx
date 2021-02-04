@@ -294,8 +294,8 @@
     <comment>The message displayed when connecting to server which was removed and doesn't exist anymore</comment>
   </data>
   <data name="Dialogs_P2PBlocked_msg_Blocked" xml:space="preserve">
-    <value>Your connection has been disabled because you are using a server that does not support peer-to-peer (P2P) traffic. P2P is not supported on free servers or servers that are numbered 100 or greater. Please use a different server for P2P.</value>
-    <comment>The warning message displayed when P2P traffic is detected on servers not allowing it. The number is in the server name like "NL#101".</comment>
+    <value>Your connection has been disabled because you are using a server that does not support peer-to-peer (P2P) traffic. P2P is not supported on free servers. Please use a different server for P2P.</value>
+    <comment>The warning message displayed when P2P traffic is detected on servers not allowing it.</comment>
   </data>
   <data name="Settings_Connection_lbl_QuickConnect_Info" xml:space="preserve">
     <value>The Quick Connect button connects you to the selected profile.</value>
@@ -591,7 +591,7 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <comment>The description of onboarding step 3 in Onboarding overlay of main app window</comment>
   </data>
   <data name="Onboarding_msg_Step_4" xml:space="preserve">
-    <value>Increase your security with one click:</value>
+    <value>Adapt your VPN connection to your online activity with ProtonVPN's special features for optimal speed and privacy protection.</value>
     <comment>The description of onboarding step 4 in Onboarding overlay of main app window</comment>
   </data>
   <data name="Onboarding_btn_EndTour" xml:space="preserve">
@@ -1245,6 +1245,10 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
   <data name="ServerType_val_Tor" xml:space="preserve">
     <value>Tor</value>
     <comment>The server type in Profile window</comment>
+  </data>
+  <data name="Sidebar_Separator_Others" xml:space="preserve">
+    <value>OTHERS</value>
+    <comment>When Port Forwarding is enabled, we show the P2P servers first and only then the OTHERS.</comment>
   </data>
   <data name="Country_val_AD" xml:space="preserve">
     <value>Andorra</value>
@@ -2802,6 +2806,9 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="Dialogs_Reboot_ttl" xml:space="preserve">
     <value>ProtonVPN</value>
   </data>
+  <data name="Dialogs_btn_Enable" xml:space="preserve">
+    <value>Enable</value>
+  </data>
   <data name="Dialogs_DisabledService_btn_Enable" xml:space="preserve">
     <value>Enable</value>
   </data>
@@ -2817,8 +2824,23 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="Dialogs_DisabledService_msg_ExtraInfo" xml:space="preserve">
     <value>Sometimes, anti-virus software will mistakenly categorize ProtonVPN as a vulnerability and disable it. By clicking Enable, you are giving your system permission to reactivate the ProtonVPN Service.&lt;LineBreak/&gt;If the ProtonVPN Service is still disabled, try restarting your PC or reinstalling ProtonVPN.</value>
   </data>
+  <data name="Dialogs_PortForwardingConfirmation_ttl" xml:space="preserve">
+    <value>Enable Port Forwarding?</value>
+  </data>
+  <data name="Dialogs_PortForwardingConfirmation_msg" xml:space="preserve">
+    <value>Enable Port Forwarding only when you need it to ensure the strongest privacy and security protection.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadPortForwardingRisksCommand}"&gt;Do I need Port Forwarding?&lt;/Hyperlink&gt;</value>
+  </data>
+  <data name="Dialogs_DoNotShowThisMessageAgain" xml:space="preserve">
+    <value>Don't show this message again</value>
+  </data>
   <data name="BugReport_msg_EmailNotValid" xml:space="preserve">
     <value>Email not valid</value>
+  </data>
+  <data name="QuickSettings_btn_PortForwardingOff" xml:space="preserve">
+    <value>Port Forwarding Off</value>
+  </data>
+  <data name="QuickSettings_btn_PortForwardingOn" xml:space="preserve">
+    <value>Port Forwarding On</value>
   </data>
   <data name="QuickSettings_btn_KillSwitchOff" xml:space="preserve">
     <value>Kill Switch Off</value>
@@ -2844,6 +2866,9 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="QuickSettings_btn_SecureCoreOn" xml:space="preserve">
     <value>Secure Core On</value>
   </data>
+  <data name="QuickSettings_lbl_PortForwardingInfo" xml:space="preserve">
+    <value>Speed up your torrenting and online gaming by allowing supported local apps to be reachable from the Internet. &lt;Hyperlink Command="{Binding PortForwardingLearnMoreCommand}"&gt;Learn more.&lt;/Hyperlink&gt;</value>
+  </data>
   <data name="QuickSettings_lbl_KillSwitchInfo" xml:space="preserve">
     <value>Disables Internet if the VPN connection drops to prevent accidental IP leak. &lt;Hyperlink Command="{Binding KillSwitchLearnMoreCommand}"&gt;Learn more.&lt;/Hyperlink&gt;</value>
   </data>
@@ -2862,6 +2887,9 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="QuickSettings_btn_GetPlus" xml:space="preserve">
     <value>GET PLUS</value>
   </data>
+  <data name="PortForwarding" xml:space="preserve">
+    <value>Port Forwarding</value>
+  </data>
   <data name="KillSwitch" xml:space="preserve">
     <value>Kill Switch</value>
   </data>
@@ -2871,13 +2899,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="SecureCore" xml:space="preserve">
     <value>Secure Core</value>
   </data>
-  <data name="Onboarding_msg_KillSwitch" xml:space="preserve">
-    <value>• Prevent your IP to be exposed by turning on &lt;Bold&gt;Kill Switch&lt;/Bold&gt;.</value>
-  </data>
-  <data name="Onboarding_msg_NetShield" xml:space="preserve">
-    <value>• Surf the web freely from malware and ads with &lt;Bold&gt;NetShield&lt;/Bold&gt;.</value>
-  </data>
-  <data name="Onboarding_msg_SecureCore" xml:space="preserve">
-    <value>• Add one extra layer of security with &lt;Bold&gt;Secure Core&lt;/Bold&gt;.</value>
+  <data name="Settings_Advanced_lbl_btn_LearnMore" xml:space="preserve">
+    <value>Learn more</value>
   </data>
 </root>

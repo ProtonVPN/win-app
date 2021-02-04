@@ -26,5 +26,7 @@ namespace ProtonVPN.Service.Contract.Settings
         public SplitTunnelSettingsContract SplitTunnel { get; set; }
 
         public bool Ipv6LeakProtection { get; set; }
+
+        public bool PortForwardingEnabled { get; set; }
     }
 }

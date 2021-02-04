@@ -220,7 +220,7 @@ namespace ProtonVPN.Map
             var secureCorePins = new List<AbstractPinViewModel>();
             var servers = _serverManager.GetServers(new SecureCoreServer());
 
-            foreach (var secureCoreCountryCode in MapLineManager.SecureCoreCountries)
+            foreach (string secureCoreCountryCode in SecureCoreCountry.CountryCodes)
             {
                 var pin = GetSecureCorePin(secureCoreCountryCode);
                 secureCorePins.Add(pin);

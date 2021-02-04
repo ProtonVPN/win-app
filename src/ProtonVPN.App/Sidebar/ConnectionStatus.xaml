@@ -77,6 +77,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     </UserControl.Resources>
 
     <Grid Height="220" Width="336">
+        <Button Style="{StaticResource SidebarModeButton}"/>
         <Image VerticalAlignment="Top"
                Source="{Binding ServerExitCountry, Converter={StaticResource ConnectionStatusFlagConverter}}" />
         <Grid>
@@ -95,222 +96,172 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </LinearGradientBrush>
             </Grid.Background>
         </Grid>
-        <ContentControl>
-            <ContentControl.Style>
-                <Style TargetType="{x:Type ContentControl}">
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding Disconnected}" Value="True">
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate>
-                                        <Grid Margin="36,24">
-                                            <StackPanel Style="{StaticResource DisconnectedPanel}">
-                                                <DockPanel>
-                                                    <fa:FontAwesome Foreground="#d53535"
-                                                                    FontSize="16"
-                                                                    ToolTip="{translations:Loc Sidebar_Connection_lbl_Disconnected_Info}"
-                                                                    Icon="ExclamationTriangle"
-                                                                    Padding="0,3"
-                                                                    VerticalAlignment="Top" />
-                                                    <Label Padding="5,0,0,0"
-                                                           Foreground="#d53535"
-                                                           FontWeight="Bold"
-                                                           FontSize="16"
-                                                           ToolTip="{translations:Loc Sidebar_Connection_lbl_Disconnected_Info}"
-                                                           Content="{translations:Loc Sidebar_Connection_lbl_Disconnected}" />
-                                                    <announcements:AnnouncementsView DataContext="{Binding Announcements}"
-                                                                                     HorizontalAlignment="Right"/>
-                                                </DockPanel>
-                                                <TextBlock Foreground="White" FontSize="14" Margin="0,10,0,0"
-                                                           AutomationProperties.AutomationId="{StaticResource IPAddressTextBlock}">
-                                                    <Run Text="IP:" />
-                                                    <Run FontWeight="Bold">
-                                                        <Run.Style>
-                                                            <Style TargetType="Run">
-                                                                <Setter Property="Text"
-                                                                        Value="{Binding Ip, Mode=OneWay}" />
-                                                                <Style.Triggers>
-                                                                    <DataTrigger
-                                                                        Binding="{Binding Ip, Converter={StaticResource EmptyStringToBoolConverter}}"
-                                                                        Value="True">
-                                                                        <Setter Property="Text"
-                                                                                Value="{translations:Loc Sidebar_Connection_lbl_IP_Unknown}" />
-                                                                    </DataTrigger>
-                                                                </Style.Triggers>
-                                                            </Style>
-                                                        </Run.Style>
-                                                    </Run>
-                                                    <fa:FontAwesome Icon="InfoCircle"
-                                                                    Foreground="{StaticResource PrimaryColor}">
-                                                        <fa:FontAwesome.Style>
-                                                            <Style TargetType="fa:FontAwesome">
-                                                                <Setter Property="ToolTip"
-                                                                        Value="{translations:Loc Sidebar_Connection_lbl_IP_Unknown_Info}" />
-                                                                <Setter Property="Visibility" Value="Collapsed" />
-                                                                <Style.Triggers>
-                                                                    <DataTrigger
-                                                                        Binding="{Binding Ip, Converter={StaticResource EmptyStringToBoolConverter}}"
-                                                                        Value="True">
-                                                                        <Setter Property="Visibility" Value="Visible" />
-                                                                    </DataTrigger>
-                                                                </Style.Triggers>
-                                                            </Style>
-                                                        </fa:FontAwesome.Style>
-                                                    </fa:FontAwesome>
-                                                </TextBlock>
-                                            </StackPanel>
-                                            <StackPanel
-                                                Visibility="{Binding KillSwitchActivated, Converter={StaticResource BoolToVis}}">
-                                                <Grid
-                                                    ToolTip="{translations:Loc Sidebar_Connection_lbl_KillSwitch_Info}">
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="Auto" />
-                                                        <ColumnDefinition />
-                                                    </Grid.ColumnDefinitions>
-                                                    <Grid.RowDefinitions>
-                                                        <RowDefinition />
-                                                        <RowDefinition />
-                                                    </Grid.RowDefinitions>
-                                                    <fa:FontAwesome Grid.Column="0"
-                                                                    Grid.Row="0"
-                                                                    Foreground="{StaticResource WarningColor}"
-                                                                    FontSize="16"
-                                                                    Icon="ExclamationTriangle"
-                                                                    Padding="0,3"
-                                                                    VerticalAlignment="Top" />
-                                                    <TextBlock Padding="5,0,0,0"
-                                                               Grid.Column="1"
-                                                               Grid.Row="0"
-                                                               Foreground="{StaticResource WarningColor}"
-                                                               FontWeight="Bold"
-                                                               FontSize="16"
-                                                               TextWrapping="Wrap"
-                                                               Text="{translations:Loc Sidebar_Connection_lbl_KillSwitch}" />
-                                                    <Button Style="{StaticResource ClearStyleButton}"
-                                                            Grid.Column="1"
-                                                            Grid.Row="1"
-                                                            HorizontalAlignment="Left"
-                                                            Margin="0,5,0,0"
-                                                            Command="{Binding DisableKillSwitchCommand}">
-                                                        <TextBlock TextDecorations="Underline"
-                                                                   FontWeight="Bold"
-                                                                   Foreground="White"
-                                                                   Text="{translations:Loc Sidebar_Connection_btn_Disable}"
-                                                                   FontSize="14" />
-                                                    </Button>
-                                                </Grid>
-                                            </StackPanel>
-                                        </Grid>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding Connected}" Value="True">
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate>
-                                        <Grid Visibility="{Binding Connected, Converter={StaticResource BoolToVis}}"
-                                              Margin="36,24">
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto" />
-                                                <RowDefinition Height="Auto" />
-                                                <RowDefinition Height="Auto" />
-                                            </Grid.RowDefinitions>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition />
-                                                <ColumnDefinition />
-                                            </Grid.ColumnDefinitions>
-                                            <DockPanel Grid.Row="0"
-                                                       Grid.ColumnSpan="2"
-                                                       Grid.Column="0">
-                                                <announcements:AnnouncementsView DataContext="{Binding Announcements}"
-                                                                                 DockPanel.Dock="Right" />
-                                                <controls:ServerName Padding="0"
-                                                                     Margin="0,0,0,3"
-                                                                     FontSize="16"
-                                                                     ConnectionName="{Binding ConnectionName}" />
-                                            </DockPanel>
-
-                                            <StackPanel Orientation="Horizontal"
-                                                        Grid.Row="1"
-                                                        Grid.Column="0"
-                                                        Margin="0,3"
-                                                        FlowDirection="LeftToRight"
-                                                        HorizontalAlignment="Left">
-                                                <Label Foreground="White"
-                                                       Padding="0"
-                                                       FontSize="14"
-                                                       Content="IP:" />
-                                                <Label Foreground="White"
-                                                       Padding="3,0,0,0"
-                                                       FontWeight="Bold"
-                                                       FontSize="14"
-                                                       AutomationProperties.AutomationId="{StaticResource IPAddressTextBlock}"
-                                                       Content="{Binding Ip}" />
-                                            </StackPanel>
-                                            <StackPanel Grid.Column="1"
-                                                        Grid.Row="1"
-                                                        HorizontalAlignment="Right"
-                                                        VerticalAlignment="Center"
-                                                        Orientation="Horizontal">
-                                                <TextBlock Foreground="White"
-                                                           Text="{Binding ServerLoad, Converter={StaticResource LoadToTextConverter}}" />
-                                                <Grid Margin="3,1,0,0">
-                                                    <Ellipse Stroke="#4c4c59"
-                                                             StrokeThickness="1"
-                                                             Width="13"
-                                                             Height="13" />
-                                                    <controls:CircularProgressBar VerticalAlignment="Center"
-                                                                                  HorizontalAlignment="Center"
-                                                                                  Radius="6"
-                                                                                  Percentage="{Binding ServerLoad}"
-                                                                                  StrokeThickness="2"
-                                                                                  SegmentColor="{Binding ServerLoad, Converter={StaticResource LoadToColor}}" />
-                                                </Grid>
-                                            </StackPanel>
-                                            <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal"
-                                                        VerticalAlignment="Center" Margin="0,3">
-                                                <TextBlock Padding="0"
-                                                           FlowDirection="LeftToRight"
-                                                           Foreground="White"
-                                                           FontSize="14"
-                                                           Text="{Binding Protocol, Converter={StaticResource EnumToDisplayTextConverter}}" />
-                                            </StackPanel>
-                                            <StackPanel Grid.Column="0"
-                                                        Grid.ColumnSpan="2"
-                                                        Grid.Row="2"
-                                                        VerticalAlignment="Center"
-                                                        HorizontalAlignment="Right"
-                                                        Orientation="Horizontal"
-                                                        FlowDirection="LeftToRight">
-                                                <fa:FontAwesome Icon="ArrowDown" Foreground="White" FontSize="12"
-                                                                Padding="0,4,4,0" />
-                                                <TextBlock FontSize="12" Foreground="White" Padding="0,2,5,0">
-                                                    <Run
-                                                        Text="{Binding CurrentDownloadSpeed, Converter={StaticResource BytesToSizeConverter}, Mode=OneWay}" />
-                                                    <Run
-                                                        Text="{Binding CurrentDownloadSpeed, Converter={StaticResource BytesToUnitsConverter}, Mode=OneWay}" />
-                                                    <Run Text="/s" />
-                                                </TextBlock>
-                                                <fa:FontAwesome Icon="ArrowUp" Foreground="White" FontSize="12"
-                                                                Padding="0,4,4,0" />
-                                                <TextBlock FontSize="12" Foreground="White" Padding="0,1,5,0">
-                                                    <Run
-                                                        Text="{Binding CurrentUploadSpeed, Converter={StaticResource BytesToSizeConverter}, Mode=OneWay}" />
-                                                    <Run
-                                                        Text="{Binding CurrentUploadSpeed, Converter={StaticResource BytesToUnitsConverter}, Mode=OneWay}" />
-                                                    <Run Text="/s" />
-                                                </TextBlock>
-                                            </StackPanel>
-                                        </Grid>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </ContentControl.Style>
-        </ContentControl>
+        <announcements:AnnouncementsView DataContext="{Binding Announcements}"
+                                         VerticalAlignment="Top"
+                                         Margin="0,15,15,0"
+                                         HorizontalAlignment="Right"/>
+        <Grid Visibility="{Binding Disconnected, Converter={StaticResource BoolToVis}}" Margin="36,24">
+            <StackPanel Style="{StaticResource DisconnectedPanel}">
+                <StackPanel Orientation="Horizontal" ToolTip="{translations:Loc Sidebar_Connection_lbl_Disconnected_Info}">
+                    <fa:FontAwesome Foreground="#d53535"
+                                    FontSize="16"
+                                    Icon="ExclamationTriangle"
+                                    Padding="0,3"
+                                    VerticalAlignment="Top" />
+                    <Label Padding="5,0,0,0"
+                           Foreground="#d53535"
+                           FontWeight="Bold"
+                           FontSize="16" Content="{translations:Loc Sidebar_Connection_lbl_Disconnected}"/>
+                </StackPanel>
+                <TextBlock Foreground="White" FontSize="14" Margin="0,10,0,0" AutomationProperties.AutomationId="{StaticResource IPAddressTextBlock}">
+                    <Run Text="IP:"/>
+                    <Run FontWeight="Bold">
+                        <Run.Style>
+                            <Style TargetType="Run">
+                                <Setter Property="Text" Value="{Binding Ip, Mode=OneWay}"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Ip, Converter={StaticResource EmptyStringToBoolConverter}}" Value="True">
+                                        <Setter Property="Text" Value="{translations:Loc Sidebar_Connection_lbl_IP_Unknown}"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Run.Style>
+                    </Run>
+                    <fa:FontAwesome Icon="InfoCircle" Foreground="{StaticResource PrimaryColor}">
+                        <fa:FontAwesome.Style>
+                            <Style TargetType="fa:FontAwesome">
+                                <Setter Property="ToolTip" Value="{translations:Loc Sidebar_Connection_lbl_IP_Unknown_Info}"/>
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Ip, Converter={StaticResource EmptyStringToBoolConverter}}" Value="True">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </fa:FontAwesome.Style>
+                    </fa:FontAwesome>
+                </TextBlock>
+            </StackPanel>
+            <StackPanel Visibility="{Binding KillSwitchActivated, Converter={StaticResource BoolToVis}}">
+                <Grid ToolTip="{translations:Loc Sidebar_Connection_lbl_KillSwitch_Info}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <fa:FontAwesome Grid.Column="0"
+                                    Grid.Row="0"
+                                    Foreground="{StaticResource WarningColor}"
+                                    FontSize="16"
+                                    Icon="ExclamationTriangle"
+                                    Padding="0,3"
+                                    VerticalAlignment="Top" />
+                    <TextBlock Padding="5,0,0,0"
+                               Grid.Column="1"
+                               Grid.Row="0"
+                               Foreground="{StaticResource WarningColor}"
+                               FontWeight="Bold"
+                               FontSize="16"
+                               TextWrapping="Wrap"
+                               Text="{translations:Loc Sidebar_Connection_lbl_KillSwitch}"/>
+                    <Button Style="{StaticResource ClearStyleButton}"
+                            Grid.Column="1"
+                            Grid.Row="1"
+                            HorizontalAlignment="Left"
+                            Margin="0,5,0,0"
+                            Command="{Binding DisableKillSwitchCommand}">
+                        <TextBlock TextDecorations="Underline"
+                                   FontWeight="Bold"
+                                   Foreground="White"
+                                   Text="{translations:Loc Sidebar_Connection_btn_Disable}"
+                                   FontSize="14"/>
+                    </Button>
+                </Grid>
+            </StackPanel>
+        </Grid>
+        <Grid Visibility="{Binding Connected, Converter={StaticResource BoolToVis}}" Margin="36,24">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <controls:ServerName Grid.Row="0"
+                                 Grid.ColumnSpan="2"
+                                 Grid.Column="0"
+                                 Padding="0"
+                                 Margin="0,0,0,3"
+                                 FontSize="16"
+                                 ConnectionName="{Binding ConnectionName}" />
+            <StackPanel Orientation="Horizontal"
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Margin="0,3"
+                        FlowDirection="LeftToRight"
+                        HorizontalAlignment="Left">
+                <Label Foreground="White"
+                       Padding="0"
+                       FontSize="14"
+                       Content="IP:"/>
+                <Label Foreground="White"
+                       Padding="3,0,0,0"
+                       FontWeight="Bold"
+                       FontSize="14"
+                       AutomationProperties.AutomationId="{StaticResource IPAddressTextBlock}"
+                       Content="{Binding Ip}" />
+            </StackPanel>
+            <StackPanel Grid.Column="1"
+                        Grid.Row="1"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Orientation="Horizontal">
+                <TextBlock Foreground="White"
+                           Text="{Binding ServerLoad, Converter={StaticResource LoadToTextConverter}}"/>
+                <Grid Margin="3,1,0,0">
+                    <Ellipse Stroke="#4c4c59"
+                             StrokeThickness="1"
+                             Width="13"
+                             Height="13" />
+                    <controls:CircularProgressBar VerticalAlignment="Center"
+                                                  HorizontalAlignment="Center"
+                                                  Radius="6"
+                                                  Percentage="{Binding ServerLoad}"
+                                                  StrokeThickness="2"
+                                                  SegmentColor="{Binding ServerLoad, Converter={StaticResource LoadToColor}}" />
+                </Grid>
+            </StackPanel>
+            <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,3">
+                <TextBlock Padding="0"
+                           FlowDirection="LeftToRight"
+                           Foreground="White"
+                           FontSize="14"
+                           Text="{Binding Protocol, Converter={StaticResource EnumToDisplayTextConverter}}"/>
+            </StackPanel>
+            <StackPanel Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Grid.Row="2"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Right"
+                        Orientation="Horizontal"
+                        FlowDirection="LeftToRight">
+                <fa:FontAwesome Icon="ArrowDown" Foreground="White" FontSize="12" Padding="0,4,4,0" />
+                <TextBlock FontSize="12" Foreground="White" Padding="0,2,5,0">
+                    <Run Text="{Binding CurrentDownloadSpeed, Converter={StaticResource BytesToSizeConverter}, Mode=OneWay}" />
+                    <Run Text="{Binding CurrentDownloadSpeed, Converter={StaticResource BytesToUnitsConverter}, Mode=OneWay}" /><Run Text="/s" />
+                </TextBlock>
+                <fa:FontAwesome Icon="ArrowUp" Foreground="White" FontSize="12" Padding="0,4,4,0" />
+                <TextBlock FontSize="12" Foreground="White" Padding="0,1,5,0">
+                    <Run Text="{Binding CurrentUploadSpeed, Converter={StaticResource BytesToSizeConverter}, Mode=OneWay}" />
+                    <Run Text="{Binding CurrentUploadSpeed, Converter={StaticResource BytesToUnitsConverter}, Mode=OneWay}" /><Run Text="/s" />
+                </TextBlock>
+            </StackPanel>
+        </Grid>
         <Button Style="{StaticResource QuickConnectButton}"
                 AutomationProperties.AutomationId="{StaticResource SidebarQuickConnectButton}" />
         <onboarding:Step Number="1"

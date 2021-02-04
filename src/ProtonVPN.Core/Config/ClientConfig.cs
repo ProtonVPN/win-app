@@ -95,6 +95,11 @@ namespace ProtonVPN.Core.Config
                         _appSettings.MaintenanceCheckInterval = TimeSpan.FromMinutes(response.Value.ServerRefreshInterval.Value);
                     }
 
+                    if (response.Value.FeatureFlags.PortForwarding.HasValue)
+                    {
+                        _appSettings.FeaturePortForwardingEnabled = response.Value.FeatureFlags.PortForwarding.Value;
+                    }
+
                     if (response.Value.HolesIps != null)
                     {
                         _appSettings.BlackHoleIps = response.Value.HolesIps;

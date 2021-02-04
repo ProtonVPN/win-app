@@ -33,24 +33,25 @@ namespace ProtonVPN.ConnectingScreen
 {
     internal class ConnectingViewModel : ViewModel, IVpnStateAware
     {
-        private readonly SettingChangeListener _settingChangeListener;
         private int _percentage;
         private int _animatePercentage;
         private string _message;
         private Server _server;
         private Server _failedServer;
 
-        public ConnectingViewModel(IVpnManager vpnManager, SettingChangeListener settingChangeListener)
+        private readonly IVpnManager _vpnManager;
+        private readonly IVpnReconnector _vpnReconnector;
+
+        public ConnectingViewModel(IVpnManager vpnManager,
+            IVpnReconnector vpnReconnector)
         {
             _vpnManager = vpnManager;
-            _settingChangeListener = settingChangeListener;
+            _vpnReconnector = vpnReconnector;
 
             DisconnectCommand = new RelayCommand(DisconnectAction);
         }
 
         public ICommand DisconnectCommand { get; set; }
-
-        private readonly IVpnManager _vpnManager;
 
         private IName _connectionName;
 
@@ -162,7 +163,7 @@ namespace ProtonVPN.ConnectingScreen
         {
             AnimatePercentage = percentage;
             Message = message;
-            ApplyingSettings = _settingChangeListener.PendingReconnect();
+            ApplyingSettings = _vpnReconnector.IsPendingReconnect();
 
             if (server == null)
             {

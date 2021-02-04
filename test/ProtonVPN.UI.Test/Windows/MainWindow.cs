@@ -98,7 +98,8 @@ namespace ProtonVPN.UI.Test.Windows
 
         public MainWindow EnableSecureCore()
         {
-            ClickOnObjectWithId("SecureCoreCheckbox");
+            ClickOnObjectWithId("SecureCoreButton");
+            ClickOnObjectWithId("SecureCoreOnButton");
             return this;
         }
 

@@ -36,6 +36,15 @@
     <ClInclude Include="StartupApp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="EnvironmentVariable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StringConverter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PathManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -54,6 +63,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="StartupApp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EnvironmentVariable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StringConverter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PathManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

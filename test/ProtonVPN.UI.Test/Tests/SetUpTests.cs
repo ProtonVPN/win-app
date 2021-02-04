@@ -22,6 +22,7 @@ using System.IO;
 using NUnit.Framework;
 using ProtonVPN.UI.Test.ApiClient;
 using ProtonVPN.UI.Test.TestsHelper;
+using System.Reflection;
 
 namespace ProtonVPN.UI.Test.Tests
 {
@@ -38,10 +39,13 @@ namespace ProtonVPN.UI.Test.Tests
 
             TestRailClient = new TestRailAPIClient(_testRailUrl,
                    TestUserData.GetTestrailUser().Username, TestUserData.GetTestrailUser().Password);
-
+            var asm = Assembly.GetExecutingAssembly();
+            var path = System.IO.Path.GetDirectoryName(asm.Location) + "/ProtonVpn.exe";
+            var version = Assembly.LoadFile(path).GetName().Version.ToString();
+            version = version.Substring(0, version.Length - 2);
             if (!TestEnvironment.AreTestsRunningLocally())
             {
-                TestRailClient.CreateTestRun("Test run " + DateTime.Now);
+                TestRailClient.CreateTestRun(version + " test run " + DateTime.Now);
             }
         }
     }

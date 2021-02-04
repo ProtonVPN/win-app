@@ -45,7 +45,7 @@ namespace ProtonVPN.Map
             _serverManager = serverManager;
         }
 
-        public static List<string> SecureCoreCountries = new List<string> { "IS", "SE", "CH" };
+        private static readonly IReadOnlyList<string> _secureCoreCountries = SecureCoreCountry.CountryCodes;
 
         public void BuildLines()
         {
@@ -272,11 +272,11 @@ namespace ProtonVPN.Map
         {
             var lines = new List<MapLine>();
 
-            for (var i = 0; i < SecureCoreCountries.Count; i++)
+            for (var i = 0; i < _secureCoreCountries.Count; i++)
             {
-                var pin1 = GetSecureCorePinByCountry(SecureCoreCountries[i]);
-                var pin2 = GetSecureCorePinByCountry(i < SecureCoreCountries.Count - 1
-                    ? SecureCoreCountries[i + 1] : SecureCoreCountries[0]);
+                var pin1 = GetSecureCorePinByCountry(_secureCoreCountries[i]);
+                var pin2 = GetSecureCorePinByCountry(i < _secureCoreCountries.Count - 1
+                    ? _secureCoreCountries[i + 1] : _secureCoreCountries[0]);
                 if (pin1 == null || pin2 == null) continue;
 
                 lines.Add(

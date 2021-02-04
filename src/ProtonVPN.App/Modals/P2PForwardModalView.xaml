@@ -37,7 +37,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <StackPanel>
             <TextBlock TextWrapping="Wrap" Padding="20,50" FontSize="16" Foreground="White">
                 <Run Text="{translations:Loc Dialogs_P2PForward_msg_Warning_1}"/>
-                <icons:P2P
+                <icons:Exchange
                     Foreground="White"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Center"

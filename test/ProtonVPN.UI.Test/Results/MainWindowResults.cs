@@ -40,8 +40,8 @@ namespace ProtonVPN.UI.Test.Results
         public async Task<MainWindowResults> CheckIfCorrectIPAddressIsShownAsync()
         {
             var api = new Api(TestUserData.GetPlusUser().Username, TestUserData.GetPlusUser().Password);
-            var ipAddress = await api.GetIpAddress();
-            var textBlockIpAddress = Session.FindElementByAccessibilityId("IPAddressTextBlock").Text.RemoveExtraText();
+            string ipAddress = await api.GetIpAddress();
+            string textBlockIpAddress = Session.FindElementByAccessibilityId("IPAddressTextBlock").Text.RemoveExtraText();
             Assert.IsTrue(ipAddress.Equals(textBlockIpAddress), "Incorrect IP address is displayed.");
             return this;
         }
@@ -49,9 +49,9 @@ namespace ProtonVPN.UI.Test.Results
         public async Task<MainWindowResults> CheckIfCorrectCountryIsShownAsync()
         {
             var api = new Api(TestUserData.GetPlusUser().Username, TestUserData.GetPlusUser().Password);
-            var country = await api.GetCountry();
+            string country = await api.GetCountry();
             var region = new RegionInfo(country);
-            var dashboardRegionName = Session.FindElementByAccessibilityId("EntryCountryAndServer").Text;
+            string dashboardRegionName = Session.FindElementByAccessibilityId("EntryCountryAndServer").Text;
             dashboardRegionName = dashboardRegionName.Split('»')[0].Replace(" ", "");
             Assert.IsTrue(dashboardRegionName.Contains(region.DisplayName.Replace(" ", "")), "Incorrect country name is displayed.");
             return this;
@@ -71,13 +71,13 @@ namespace ProtonVPN.UI.Test.Results
 
         public MainWindowResults CheckIfSidebarModeIsEnabled()
         {
-            CheckIfObjectWithIdIsDisplayed("MapModeButton", "Failed to enable sidebar mode");
+            CheckIfObjectIsNotDisplayed("Logo", "Failed to enable sidebar mode");
             return this;
         }
 
         public MainWindowResults CheckIfSameServerIsKeptAfterKillingApp()
         {
-            var ipAddress = _mainWindow.GetTextBlockIpAddress();
+            string ipAddress = _mainWindow.GetTextBlockIpAddress();
             KillProtonVpnProcess();
             RefreshSession();
             _loginWindow.WaitUntilLoginIsFinished();

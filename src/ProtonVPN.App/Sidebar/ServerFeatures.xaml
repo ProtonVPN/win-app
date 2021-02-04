@@ -48,7 +48,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <ItemsControl.Resources>
             <DataTemplate DataType="{x:Type servers:P2PFeature}">
                 <Border Style="{StaticResource ServerFeature}" ToolTip="{translations:Loc Servers_Feature_val_P2P}">
-                    <icons:P2P
+                    <icons:Exchange
                         Foreground="#98989d"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Center"

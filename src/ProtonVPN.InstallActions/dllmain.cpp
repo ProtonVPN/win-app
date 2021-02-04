@@ -1,14 +1,18 @@
 #pragma once
 #include "pch.h"
-#include "msiquery.h"
-#include "Service.h"
-#include <iostream>
+#include <filesystem>
+#include <fstream>
 #include <string>
 #include <strsafe.h>
-
+#include "EnvironmentVariable.h"
+#include "Service.h"
 #include "StartupApp.h"
 #include "SystemState.h"
 #include "Utils.h"
+#include "bitcompressor.hpp"
+#include "bitexception.hpp"
+#include "PathManager.h"
+#include "StringConverter.h"
 
 #define EXPORT __declspec(dllexport)
 
@@ -19,6 +23,14 @@ const auto UpdateServiceNameProperty = L"UpdateServiceName";
 const auto CalloutServiceNameProperty = L"CalloutServiceName";
 const auto CalloutServiceDisplayNameProperty = L"CalloutServiceDisplayName";
 const auto CalloutDriverFileProperty = L"CalloutDriverFile";
+const auto SplitTunnelServiceNameProperty = L"SplitTunnelServiceName";
+const auto SplitTunnelServiceDisplayNameProperty = L"SplitTunnelServiceDisplayName";
+const auto SplitTunnelDriverFileProperty = L"SplitTunnelDriverFile";
+const auto ProductLanguageProperty = L"ProductLanguage";
+const auto SelectedLanguageProperty = L"SelectedLanguage";
+const auto MsiLogFileLocationProperty = L"MsiLogFileLocation";
+const auto LocalAppDataFolderProperty = L"LocalAppDataFolder";
+const auto ApplicationDirectoryProperty = L"APPDIR";
 
 extern "C" EXPORT long ModifyServicePermissions(MSIHANDLE hInstall)
 {
@@ -101,5 +113,91 @@ extern "C" EXPORT long Reboot(MSIHANDLE hInstall)
         return 1;
     }
 
+    return 0;
+}
+
+extern "C" EXPORT long RemoveProgramData(MSIHANDLE hInstall)
+{
+    SetMsiHandle(hInstall);
+
+    const string programDataPath = GetEnvironmentVariable("PROGRAMDATA");
+    if (programDataPath.empty())
+    {
+        return -1;
+    }
+    const std::filesystem::path path(programDataPath + "\\ProtonVPN");
+    std::filesystem::remove_all(path);
+    
+    return 0;
+}
+
+extern "C" EXPORT long SetLanguageISOCode(MSIHANDLE hInstall)
+{
+    SetMsiHandle(hInstall);
+
+    const wstring strValue = GetProperty(ProductLanguageProperty);
+    const int value = std::stoi(strValue);
+    wstring language = L"";
+    switch (value)
+    {
+        case 1031: language = L"de"; break;
+        case 1033: language = L"en"; break;
+        case 1036: language = L"fr"; break;
+        case 1040: language = L"it"; break;
+        case 1043: language = L"nl"; break;
+        case 1045: language = L"pl"; break;
+        case 1046: language = L"pt-BR"; break;
+        case 1049: language = L"ru"; break;
+        case 1065: language = L"fa"; break;
+        case 2070: language = L"pt-PT"; break;
+        case 3082: language = L"es-ES"; break;
+    }
+    if (!language.empty())
+    {
+        SetProperty(SelectedLanguageProperty, language);
+    }
+
+    return 0;
+}
+
+void AddFileToZip(const std::wstring& zipFileName, const std::wstring& fileName)
+{
+    std::wstring installDirectory = GetProperty(ApplicationDirectoryProperty);
+    const std::wstring sevenZipDllPath = AddEndingSlashIfNotExists(installDirectory) + L"7za.dll";
+
+    try 
+    {
+        bit7z::Bit7zLibrary lib{ sevenZipDllPath };
+        bit7z::BitCompressor compressor{ lib, bit7z::BitFormat::SevenZip };
+
+        std::vector<std::wstring> files = { fileName };
+
+        compressor.setUpdateMode(true);
+        compressor.compressFiles(files, zipFileName);
+    }
+    catch (const bit7z::BitException& ex) 
+    {
+        LogMessage(L"Error when compressing file to zip: " + Utf8StringToWstring(ex.what()));
+    }
+}
+
+extern "C" EXPORT long CopyInstallLog(MSIHANDLE hInstall)
+{
+    SetMsiHandle(hInstall);
+    
+    const std::wstring logFile = GetProperty(MsiLogFileLocationProperty);
+    std::wstring localAppDataFolder = GetProperty(LocalAppDataFolderProperty);
+    const std::wstring logFolder = AddEndingSlashIfNotExists(localAppDataFolder) + L"ProtonVPN\\Logs\\";
+    const std::wstring tmpLogFile = logFolder + L"install.log";
+
+    std::filesystem::create_directories(logFolder);
+    const std::filesystem::copy_options copyOptions = std::filesystem::copy_options::overwrite_existing;
+    std::filesystem::copy_file(logFile, tmpLogFile, copyOptions);
+
+    const std::wstring zipFileName = logFolder + L"install-log.7z";
+
+    AddFileToZip(zipFileName, tmpLogFile);
+    std::filesystem::remove(tmpLogFile);
+    
     return 0;
 }

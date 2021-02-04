@@ -1,0 +1,47 @@
+﻿<!--
+Copyright (c) 2020 Proton Technologies AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<UserControl x:Class="ProtonVPN.Views.Icons.Reflect"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             x:Name="UserControl">
+    <Canvas Width="15.096" Height="18.596001">
+        <Canvas.RenderTransform>
+            <TranslateTransform X="0" Y="0"/>
+        </Canvas.RenderTransform>
+        <Canvas.Resources/>
+        <Canvas>
+            <Canvas.RenderTransform>
+                <ScaleTransform ScaleX="1.3333333" ScaleY="1.3333333"/>
+            </Canvas.RenderTransform>
+            <Canvas>
+                <Path Fill="{Binding Foreground, ElementName=UserControl}" Data="m 9.07 1.945 h 2.25 v 12 H 9.07 Z"/>
+                <Canvas>
+                    <Path StrokeThickness="1.5" Stroke="{Binding Foreground, ElementName=UserControl}" 
+                          StrokeMiterLimit="4" StrokeLineJoin="Miter" StrokeStartLineCap="Flat" StrokeEndLineCap="Flat" 
+                          Data="M 2.742 12.887 7.684 7.941 4.242 4.5"/>
+                </Canvas>
+                <Path Fill="{Binding Foreground, ElementName=UserControl}" Data="M 1.855 1.855 6.895 3.184 3.184 6.895 Z"/>
+            </Canvas>
+        </Canvas>
+    </Canvas>
+</UserControl>
