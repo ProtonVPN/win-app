@@ -32,10 +32,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using Caliburn.Micro;
 
 namespace ProtonVPN.Map.ViewModels
 {
-    internal class MapViewModel : SidebarBaseViewModel,
+    internal class MapViewModel : Screen,
         IVpnStateAware,
         ISettingsAware,
         IPinChangeAware
@@ -157,8 +158,7 @@ namespace ProtonVPN.Map.ViewModels
             PinFactory pinFactory,
             MapLineManager pinLineManager,
             SpeedGraphViewModel speedGraphViewModel,
-            SidebarViewModel sidebarViewModel,
-            SidebarManager sidebarManager) : base(appSettings, sidebarManager)
+            SidebarViewModel sidebarViewModel)
         {
             _appSettings = appSettings;
             _pinFactory = pinFactory;
@@ -211,10 +211,8 @@ namespace ProtonVPN.Map.ViewModels
             return Task.CompletedTask;
         }
 
-        public override void Load()
+        public void Load()
         {
-            base.Load();
-
             BuildMapElements();
         }
 

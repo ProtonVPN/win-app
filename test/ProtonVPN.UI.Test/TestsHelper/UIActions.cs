@@ -69,6 +69,12 @@ namespace ProtonVPN.UI.Test.TestsHelper
             Assert.IsTrue(content, errorMessage);
         }
 
+        public static void CheckIfObjectIsNotDisplayed(string objectId, string errorMessage)
+        {
+            var content = Session.FindElementByAccessibilityId(objectId).Displayed;
+            Assert.IsFalse(content, errorMessage);
+        }
+
         public static void WaitUntilElementIsNotVisible(By locator, int timeInSeconds)
         {
             var wait = new WebDriverWait(Session, TimeSpan.FromSeconds(timeInSeconds));

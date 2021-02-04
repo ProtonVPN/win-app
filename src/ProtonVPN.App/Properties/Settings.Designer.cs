@@ -12,7 +12,7 @@ namespace ProtonVPN.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.7.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.8.1.0")]
     public sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -981,6 +981,30 @@ namespace ProtonVPN.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string UserCustomDnsEnabled {
+            get {
+                return ((string)(this["UserCustomDnsEnabled"]));
+            }
+            set {
+                this["UserCustomDnsEnabled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string UserCustomDnsIps {
+            get {
+                return ((string)(this["UserCustomDnsIps"]));
+            }
+            set {
+                this["UserCustomDnsIps"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string UserNetShieldMode {
             get {
                 return ((string)(this["UserNetShieldMode"]));
@@ -1202,6 +1226,42 @@ namespace ProtonVPN.Properties {
             }
             set {
                 this["UserNetShieldModeDefault"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool PortForwardingEnabled {
+            get {
+                return ((bool)(this["PortForwardingEnabled"]));
+            }
+            set {
+                this["PortForwardingEnabled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool FeaturePortForwardingEnabled {
+            get {
+                return ((bool)(this["FeaturePortForwardingEnabled"]));
+            }
+            set {
+                this["FeaturePortForwardingEnabled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool DoNotShowPortForwardingConfirmationDialog {
+            get {
+                return ((bool)(this["DoNotShowPortForwardingConfirmationDialog"]));
+            }
+            set {
+                this["DoNotShowPortForwardingConfirmationDialog"] = value;
             }
         }
     }

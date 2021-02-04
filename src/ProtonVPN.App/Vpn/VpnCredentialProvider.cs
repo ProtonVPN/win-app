@@ -18,6 +18,7 @@
  */
 
 using ProtonVPN.Common.Vpn;
+using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Settings;
 
 namespace ProtonVPN.Vpn
@@ -38,9 +39,9 @@ namespace ProtonVPN.Vpn
 
         public VpnCredentials Credentials()
         {
-            var user = _userStorage.User();
+            User user = _userStorage.User();
 
-            return new VpnCredentials(AddSuffixToUsername(_userStorage.User().VpnUsername), user.VpnPassword);
+            return new VpnCredentials(AddSuffixToUsername(user.VpnUsername), user.VpnPassword);
         }
 
         private string AddSuffixToUsername(string username)
@@ -50,6 +51,11 @@ namespace ProtonVPN.Vpn
             if (_appSettings.IsNetShieldEnabled())
             {
                 username += $"+f{_appSettings.NetShieldMode}";
+            }
+
+            if (_appSettings.IsPortForwardingEnabled())
+            {
+                username += "+pmp";
             }
 
             return username;

@@ -202,7 +202,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                                 <StackPanel Orientation="Horizontal" Width="110" Height="28">
                                     <DockPanel Margin="5,5,0,5">
-                                        <icons:P2P Style="{StaticResource P2PFeatureIcon}"/>
+                                        <icons:Exchange Style="{StaticResource P2PFeatureIcon}"/>
                                         <TextBlock Text="{translations:Loc Servers_Feature_val_P2P}" Style="{StaticResource InfoFeatureText}"/>
                                     </DockPanel>
                                     <StackPanel.Style>

@@ -245,8 +245,6 @@ namespace ProtonVPN.QuickLaunch
 
         private void ShowAppAction()
         {
-            if (!_appWindow.IsLoaded) return;
-
             _appWindow.Show();
             if (_appWindow.WindowState.Equals(WindowState.Minimized))
             {

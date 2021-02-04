@@ -1,4 +1,4 @@
-﻿<!--
+<!--
 Copyright (c) 2020 Proton Technologies AG
 
 This file is part of ProtonVPN.
@@ -147,7 +147,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         Height="18"
                                         BorderBrush="White"
                                         CornerRadius="9">
-                                    <Label Content="PLUS"
+                                    <Label x:Name="PlusLabel"
+                                           Content="PLUS"
                                            Padding="8,0"
                                            VerticalAlignment="Center"
                                            FontWeight="Bold"
@@ -179,8 +180,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             </Trigger>
                             <Trigger Property="Disabled" Value="True">
                                 <Setter TargetName="Title" Property="Foreground" Value="#6e6e75" />
-                                <Setter TargetName="Icon" Property="Foreground" Value="#76798b" />
+                                <Setter TargetName="Icon" Property="Foreground" Value="#6e6e75" />
                                 <Setter TargetName="Plus" Property="Visibility" Value="Visible" />
+                                <Setter TargetName="Plus" Property="BorderBrush" Value="#6e6e75" />
+                                <Setter TargetName="PlusLabel" Property="Foreground" Value="#6e6e75" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -275,6 +278,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                               IsEnabled="{Binding ElementName=SecureCorePopup, Path=IsOpen, Converter={StaticResource InvertedBoolConverter}}"
                                               Active="{Binding IsSecureCoreOnButtonOn}"
                                               Number="0"
+                                              AutomationProperties.AutomationId="{StaticResource SecureCoreButton}"
                                               ToolTip="{translations:Loc SecureCore}"
                                               x:Name="SecureCoreToggle">
                 <quickSettings:QuickSettingButton.Popup>
@@ -304,6 +308,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     <quickSettings:SettingButton Style="{StaticResource FeatureOnOffButton}"
                                                                  Command="{Binding SecureCoreOffCommand}"
                                                                  Active="{Binding IsSecureCoreOffButtonOn}"
+                                                                 AutomationProperties.AutomationId="{StaticResource SecureCoreOffButton}"
                                                                  Title="{translations:Loc QuickSettings_btn_SecureCoreOff}">
                                         <quickSettings:SettingButton.Icon>
                                             <icons:SingleLock Style="{StaticResource Icon}" />
@@ -313,7 +318,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                                  Command="{Binding SecureCoreOnCommand}"
                                                                  Active="{Binding IsSecureCoreOnButtonOn}"
                                                                  IsTurnOnButton="True"
-                                                                 Disabled="{Binding AllowSecureCore, Converter={StaticResource InvertedBoolConverter}}"
+                                                                 AutomationProperties.AutomationId="{StaticResource SecureCoreOnButton}"
+                                                                 Disabled="{Binding IsUserTierPlusOrHigher, Converter={StaticResource InvertedBoolConverter}}"
                                                                  Title="{translations:Loc QuickSettings_btn_SecureCoreOn}">
                                         <quickSettings:SettingButton.Icon>
                                             <icons:MultipleLocks Style="{StaticResource Icon}" />
@@ -323,7 +329,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         <Button.Style>
                                             <Style TargetType="Button" BasedOn="{StaticResource PlusButton}">
                                                 <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding AllowSecureCore}" Value="False">
+                                                    <DataTrigger Binding="{Binding IsUserTierPlusOrHigher}" Value="False">
                                                         <Setter Property="Visibility" Value="Visible" />
                                                     </DataTrigger>
                                                 </Style.Triggers>
@@ -429,7 +435,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                               Number="{Binding KillSwitchButtonNumber}"
                                               IsChecked="{Binding ShowKillSwitchPopup, Mode=TwoWay}"
                                               IsEnabled="{Binding ElementName=KillSwitchPopup, Path=IsOpen, Mode=TwoWay, Converter={StaticResource InvertedBoolConverter}}"
-                                              Active="{Binding IsKsOnButtonOn}"
+                                              Active="{Binding IsKillSwitchOnButtonOn}"
                                               ToolTip="{translations:Loc KillSwitch}"
                                               x:Name="KillSwitchToggle">
                 <quickSettings:QuickSettingButton.Popup>
@@ -458,7 +464,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                behavior:TextStyleBehavior.FormattedText="{translations:Loc QuickSettings_lbl_KillSwitchInfo}" />
                                     <quickSettings:SettingButton Style="{StaticResource FeatureOnOffButton}"
                                                                  Command="{Binding KillSwitchOffCommand}"
-                                                                 Active="{Binding IsKsOffButtonOn}"
+                                                                 Active="{Binding IsKillSwitchOffButtonOn}"
                                                                  Title="{translations:Loc QuickSettings_btn_KillSwitchOff}">
                                         <quickSettings:SettingButton.Icon>
                                             <icons:SwitchOff Width="18"
@@ -467,7 +473,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     </quickSettings:SettingButton>
                                     <quickSettings:SettingButton Style="{StaticResource FeatureOnOffButton}"
                                                                  Command="{Binding KillSwitchOnCommand}"
-                                                                 Active="{Binding IsKsOnButtonOn}"
+                                                                 Active="{Binding IsKillSwitchOnButtonOn}"
                                                                  IsTurnOnButton="True"
                                                                  Title="{translations:Loc QuickSettings_btn_KillSwitchOn}">
                                         <quickSettings:SettingButton.Icon>
@@ -486,6 +492,84 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <quickSettings:QuickSettingButton.ActiveIcon>
                     <icons:SwitchOn Style="{StaticResource Icon}"
                                     Foreground="{StaticResource PrimaryColor}" />
+                </quickSettings:QuickSettingButton.ActiveIcon>
+            </quickSettings:QuickSettingButton>
+            <quickSettings:QuickSettingButton Style="{StaticResource QuickSettingsToggle}"
+                                              Number="{Binding PortForwardingButtonNumber}"
+                                              IsChecked="{Binding ShowPortForwardingPopup, Mode=TwoWay}"
+                                              IsEnabled="{Binding ElementName=PortForwardingPopup, Path=IsOpen, Mode=TwoWay, Converter={StaticResource InvertedBoolConverter}}"
+                                              Active="{Binding IsPortForwardingOnButtonOn}"
+                                              ToolTip="{translations:Loc PortForwarding}"
+                                              Visibility="{Binding IsPortForwardingVisible, Converter={StaticResource BoolToVis}}"
+                                              x:Name="PortForwardingToggle">
+                <quickSettings:QuickSettingButton.Popup>
+                    <Popup x:Name="PortForwardingPopup"
+                           AllowsTransparency="True"
+                           StaysOpen="False"
+                           HorizontalOffset="-5"
+                           PlacementTarget="{Binding ElementName=QuickMenuContainer}"
+                           VerticalOffset="0"
+                           IsOpen="{Binding IsChecked, ElementName=PortForwardingToggle, Mode=TwoWay}">
+                        <Grid UseLayoutRounding="True">
+                            <Polygon Style="{StaticResource Triangle}">
+                                <Polygon.Margin>
+                                    <MultiBinding Converter="{StaticResource PopupArrowPositionConverter}">
+                                        <Binding Path="TotalButtons" />
+                                        <Binding Path="PortForwardingButtonNumber" />
+                                        <Binding ElementName="QuickMenuContainer" Path="Width" />
+                                    </MultiBinding>
+                                </Polygon.Margin>
+                            </Polygon>
+                            <Border Style="{StaticResource PopupBorder}">
+                                <StackPanel>
+                                    <TextBlock Style="{StaticResource FeatureTitleText}"
+                                               Text="{translations:Loc PortForwarding}" />
+                                    <TextBlock Style="{StaticResource FeatureInfoText}"
+                                               behavior:TextStyleBehavior.FormattedText="{translations:Loc QuickSettings_lbl_PortForwardingInfo}" />
+                                    <quickSettings:SettingButton Style="{StaticResource FeatureOnOffButton}"
+                                                                 Command="{Binding PortForwardingOffCommand}"
+                                                                 Active="{Binding IsPortForwardingOffButtonOn}"
+                                                                 Title="{translations:Loc QuickSettings_btn_PortForwardingOff}">
+                                        <quickSettings:SettingButton.Icon>
+                                            <icons:Reflect Width="18" Height="18" />
+                                        </quickSettings:SettingButton.Icon>
+                                    </quickSettings:SettingButton>
+                                    <quickSettings:SettingButton Style="{StaticResource FeatureOnOffButton}"
+                                                                 Command="{Binding PortForwardingOnCommand}"
+                                                                 Active="{Binding IsPortForwardingOnButtonOn}"
+                                                                 IsTurnOnButton="True"
+                                                                 Disabled="{Binding IsUserTierPlusOrHigher, Converter={StaticResource InvertedBoolConverter}}"
+                                                                 Title="{translations:Loc QuickSettings_btn_PortForwardingOn}">
+                                        <quickSettings:SettingButton.Icon>
+                                            <icons:Exchange Style="{StaticResource Icon}" />
+                                        </quickSettings:SettingButton.Icon>
+                                    </quickSettings:SettingButton>
+                                    <Button>
+                                        <Button.Style>
+                                            <Style TargetType="Button" BasedOn="{StaticResource PlusButton}">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding IsUserTierPlusOrHigher}" Value="False">
+                                                        <Setter Property="Visibility" Value="Visible" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Button.Style>
+                                    </Button>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+                    </Popup>
+                </quickSettings:QuickSettingButton.Popup>
+                <quickSettings:QuickSettingButton.Icon>
+                    <icons:Reflect Style="{StaticResource Icon}"
+                                   Foreground="White" 
+                                   Width="23" 
+                                   Margin="0,0,2,0" />
+                </quickSettings:QuickSettingButton.Icon>
+                <quickSettings:QuickSettingButton.ActiveIcon>
+                    <icons:Exchange Style="{StaticResource Icon}"
+                                    Foreground="{StaticResource PrimaryColor}" 
+                                    Width="23" />
                 </quickSettings:QuickSettingButton.ActiveIcon>
             </quickSettings:QuickSettingButton>
         </UniformGrid>

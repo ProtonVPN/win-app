@@ -55,6 +55,8 @@ namespace ProtonVPN.Core.Api.Contracts
 
         public bool? ServerRefresh { get; set; }
 
+        public bool? PortForwarding { get; set; }
+
         [JsonProperty(PropertyName = "PollNotificationAPI")]
         public bool? PollNotificationApi { get; set; }
     }

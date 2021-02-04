@@ -24,6 +24,9 @@ DriverEntry(
     _In_ PUNICODE_STRING RegistryPath
 )
 {
+    //https://docs.microsoft.com/en-us/windows-hardware/drivers/kernel/single-binary-opt-in-pool-nx-optin
+    ExInitializeDriverRuntime(DrvRtPoolNxOptIn);
+
     WDF_DRIVER_CONFIG config;
     WDFDRIVER driver;
     NTSTATUS status;
@@ -129,6 +132,11 @@ DriverUnload(
     UnregisterCallout(CONNECT_REDIRECT_CALLOUT_KEY);
     UnregisterCallout(REDIRECT_UDP_CALLOUT_KEY);
     UnregisterCallout(BLOCK_DNS_CALLOUT_KEY);
+
+    if (injectHandle != nullptr)
+    {
+        FwpsInjectionHandleDestroy0(injectHandle);
+    }
 
     if (nbl_pool_handle != nullptr)
     {

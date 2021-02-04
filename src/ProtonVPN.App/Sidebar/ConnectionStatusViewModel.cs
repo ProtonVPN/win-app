@@ -49,6 +49,8 @@ namespace ProtonVPN.Sidebar
         ITrafficForwardedAware,
         ISettingsAware
     {
+        private readonly IAppSettings _appSettings;
+        private readonly SidebarManager _sidebarManager;
         private readonly IVpnManager _vpnManager;
         private readonly QuickConnector _quickConnector;
         private readonly ServerManager _serverManager;
@@ -56,8 +58,11 @@ namespace ProtonVPN.Sidebar
         private readonly IUserStorage _userStorage;
         private readonly DispatcherTimer _timer;
         private VpnStatus _vpnStatus;
+        private bool _sidebarMode;
 
         public ConnectionStatusViewModel(
+            IAppSettings appSettings,
+            SidebarManager sidebarManager,
             ServerManager serverManager,
             QuickConnector quickConnector,
             IVpnManager vpnManager,
@@ -65,6 +70,8 @@ namespace ProtonVPN.Sidebar
             IUserStorage userStorage,
             AnnouncementsViewModel announcementsViewModel)
         {
+            _appSettings = appSettings;
+            _sidebarManager = sidebarManager;
             _quickConnector = quickConnector;
             _vpnManager = vpnManager;
             _serverManager = serverManager;
@@ -73,6 +80,7 @@ namespace ProtonVPN.Sidebar
 
             QuickConnectCommand = new RelayCommand(QuickConnectAction);
             DisableKillSwitchCommand = new RelayCommand(DisableKillSwitch);
+            ToggleSidebarModeCommand = new RelayCommand(ToggleSidebarModeAction);
             Announcements = announcementsViewModel;
 
             _timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
@@ -83,6 +91,7 @@ namespace ProtonVPN.Sidebar
 
         public ICommand QuickConnectCommand { get; set; }
         public ICommand DisableKillSwitchCommand { get; set; }
+        public ICommand ToggleSidebarModeCommand { get; set; }
 
         private bool _killSwitchActivated;
         public bool KillSwitchActivated
@@ -149,6 +158,12 @@ namespace ProtonVPN.Sidebar
         {
             get => _currentUploadSpeed;
             set => Set(ref _currentUploadSpeed, value);
+        }
+
+        public bool SidebarMode
+        {
+            get => _sidebarMode;
+            set => Set(ref _sidebarMode, value);
         }
 
         public void OnServersUpdated()
@@ -220,6 +235,7 @@ namespace ProtonVPN.Sidebar
         public void Load()
         {
             SetUserIp();
+            SetSidebarMode();
         }
 
         public void OnStepChanged(int step)
@@ -229,15 +245,19 @@ namespace ProtonVPN.Sidebar
 
         public void OnAppSettingsChanged(PropertyChangedEventArgs e)
         {
-            if (e.PropertyName != nameof(IAppSettings.Language))
+            if (e.PropertyName == nameof(IAppSettings.SidebarMode))
             {
-                return;
+                SetSidebarMode();
             }
 
-            OnPropertyChanged(nameof(ServerLoad));
-            if (ConnectedServer != null)
+            if (e.PropertyName == nameof(IAppSettings.Language))
             {
-                SetConnectionName(ConnectedServer);
+                OnPropertyChanged(nameof(ServerLoad));
+                Server connectedServer = ConnectedServer;
+                if (connectedServer != null)
+                {
+                    SetConnectionName(connectedServer);
+                }
             }
         }
 
@@ -255,7 +275,7 @@ namespace ProtonVPN.Sidebar
 
         private void OnSecondPassed(object sender, EventArgs e)
         {
-            var speed = _speedTracker.Speed();
+            VpnSpeed speed = _speedTracker.Speed();
             CurrentDownloadSpeed = speed.DownloadSpeed;
             CurrentUploadSpeed = speed.UploadSpeed;
         }
@@ -307,6 +327,18 @@ namespace ProtonVPN.Sidebar
         private async void DisableKillSwitch()
         {
             await _vpnManager.Disconnect();
+        }
+
+        private void ToggleSidebarModeAction()
+        {
+            SidebarMode = !SidebarMode;
+            _sidebarManager.ToggleSidebar();
+        }
+
+        private void SetSidebarMode()
+        {
+            _sidebarMode = _appSettings.SidebarMode;
+            OnPropertyChanged(nameof(SidebarMode));
         }
     }
 }

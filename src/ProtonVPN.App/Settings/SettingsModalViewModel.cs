@@ -155,13 +155,6 @@ namespace ProtonVPN.Settings
             }
         }
 
-        private bool _netShieldFullyEnabled;
-        public bool NetShieldFullyEnabled
-        {
-            get => _netShieldFullyEnabled;
-            set => Set(ref _netShieldFullyEnabled, value);
-        }
-
         public bool DoHEnabled
         {
             get => _appSettings.DoHEnabled;

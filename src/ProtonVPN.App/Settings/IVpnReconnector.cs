@@ -17,13 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Views.Icons
+using System.Threading.Tasks;
+
+namespace ProtonVPN.Settings
 {
-    public partial class P2P
+    public interface IVpnReconnector
     {
-        public P2P()
-        {
-            InitializeComponent();
-        }
+        Task ReconnectAsync();
+        bool IsPendingReconnect();
     }
 }

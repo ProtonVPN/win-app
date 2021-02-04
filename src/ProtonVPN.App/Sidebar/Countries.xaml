@@ -263,6 +263,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </DataTrigger>
             </Style.Triggers>
         </Style>
+        <Style x:Key="CountrySeparator" TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Padding" Value="0,0,0,2"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Foreground" Value="DarkGray"/>
+        </Style>
         <Style x:Key="CountryRow" TargetType="Border">
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="BorderBrush" Value="{StaticResource SidebarBorderColor}"/>
@@ -289,7 +296,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Grid Grid.Row="1" Visibility="{c:Binding '!SecureCore'}">
             <Border CornerRadius="2"
                     Width="270"
-                    Background="#2a2a33"
+                    Background="{StaticResource SidebarSecondaryBackgroundColor}"
                     BorderBrush="#484850"
                     BorderThickness="1"
                     Margin="0,0,0,10"
@@ -349,12 +356,24 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     <ContentPresenter/>
                                 </Border>
                                 <ControlTemplate.Triggers>
+                                    <DataTrigger Binding="{Binding Converter={StaticResource DataTypeConverter}}" Value="{x:Type servers:CountrySeparatorViewModel}">
+                                        <Setter TargetName="Border" Property="BorderThickness" Value="0,1,0,0"/>
+                                        <Setter TargetName="Border" Property="MinHeight" Value="12"/>
+                                        <Setter TargetName="Border" Property="Cursor" Value="Arrow"/>
+                                    </DataTrigger>
                                     <DataTrigger Binding="{Binding Converter={StaticResource DataTypeConverter}}" Value="{x:Type servers:ServersByCountryViewModel}">
                                         <Setter TargetName="Border" Property="BorderThickness" Value="0,1,0,0"/>
                                     </DataTrigger>
                                     <DataTrigger Binding="{Binding Converter={StaticResource DataTypeConverter}}" Value="{x:Type servers:ServersByExitNodeViewModel}">
                                         <Setter TargetName="Border" Property="BorderThickness" Value="0,1,0,0"/>
                                     </DataTrigger>
+                                    <MultiDataTrigger>
+                                        <MultiDataTrigger.Conditions>
+                                            <Condition Binding="{Binding Connected}" Value="True"/>
+                                            <Condition Binding="{Binding Converter={StaticResource DataTypeConverter}}" Value="{x:Type servers:CountrySeparatorViewModel}"/>
+                                        </MultiDataTrigger.Conditions>
+                                        <Setter TargetName="Border" Property="Background" Value="#2f2f37"/>
+                                    </MultiDataTrigger>
                                     <MultiDataTrigger>
                                         <MultiDataTrigger.Conditions>
                                             <Condition Binding="{Binding Connected}" Value="True"/>
@@ -379,6 +398,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </Style>
             </wpf:CustomListView.ItemContainerStyle>
             <ItemsControl.Resources>
+                <DataTemplate DataType="{x:Type servers:CountrySeparatorViewModel}">
+                    <Border x:Name="Border" Background="{StaticResource SidebarSecondaryBackgroundColor}">
+                        <Grid Width="200" Margin="27,3,0,3" HorizontalAlignment="Left">
+                            <TextBlock x:Name="CountryLabel"
+                                       Text="{Binding Name}"
+                                       Style="{StaticResource CountrySeparator}"
+                                       TextTrimming="CharacterEllipsis"/>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
                 <DataTemplate x:Key="BaseTemplate" DataType="{x:Type servers:ServersByCountryViewModel}">
                     <Border x:Name="Border" Background="Transparent">
                         <i:Interaction.Triggers>
@@ -433,7 +462,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     <Border Style="{StaticResource CountryFeature}"
                                             ToolTip="{translations:Loc Sidebar_Countries_info_P2P}"
                                             Visibility="{Binding P2P, Converter={StaticResource BoolToVis}}">
-                                        <icons:P2P Foreground="#98989d"
+                                        <icons:Exchange Foreground="#98989d"
                                                    VerticalAlignment="Center"
                                                    HorizontalAlignment="Center"
                                                    Width="18"

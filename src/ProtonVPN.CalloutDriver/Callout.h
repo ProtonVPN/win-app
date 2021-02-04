@@ -101,10 +101,6 @@ typedef struct
 	DNSANSWER additional;
 } DNSPACKETV4, * PDNSPACKETV4;
 
-VOID NTAPI CompleteBasicPacketInjection(_In_ VOID* pContext,
-	_Inout_ NET_BUFFER_LIST* pNetBufferList,
-	_In_ BOOLEAN dispatchLevel);
-
 NTSTATUS RegisterCallout(
 	_In_ PDEVICE_OBJECT deviceObject,
 	_In_ const GUID& key,
@@ -147,3 +143,5 @@ void NTAPI BlockDnsBySendingServerFailPacket(
 #define ntohs(x)                        BYTESWAP16(x)
 #define htons(x)                        BYTESWAP16(x)
 #define RtlUshortByteSwap(_x)    _byteswap_ushort((USHORT)(_x))
+
+#define MAX_PACKET_SIZE 2048

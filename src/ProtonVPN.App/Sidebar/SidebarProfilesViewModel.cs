@@ -89,9 +89,17 @@ namespace ProtonVPN.Sidebar
 
         private async void ConnectAction(ProfileViewModel viewModel)
         {
-            if (viewModel == null) return;
-            var profile = await _profileManager.GetProfileById(viewModel.Id);
-            if (profile == null) return;
+            if (viewModel == null)
+            {
+                return;
+            }
+
+            Profile profile = await _profileManager.GetProfileById(viewModel.Id);
+
+            if (profile == null)
+            {
+                return;
+            }
 
             await _vpnManager.Connect(profile);
         }
