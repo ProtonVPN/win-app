@@ -18,7 +18,6 @@ void add_installer_to_startup()
     if (!CopyFile(installer_path.c_str(), new_path.c_str(), false))
     {
         LogMessage(L"Failed to copy the installer file: " + std::to_wstring(GetLastError()));
-        return;
     }
 
     HKEY h_key = nullptr;
