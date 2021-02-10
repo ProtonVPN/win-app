@@ -19,6 +19,7 @@
 
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
+using ProtonVPN.Common.Abstract;
 using ProtonVPN.Core.MVVM;
 using ProtonVPN.Modals;
 
@@ -91,7 +92,9 @@ namespace ProtonVPN.BugReporting
             base.OnActivate();
 
             if (OverlayViewModel is SentViewModel)
+            {
                 ClearOverlay();
+            }
 
             FormViewModel.Load();
         }
@@ -119,7 +122,7 @@ namespace ProtonVPN.BugReporting
             Sending = true;
             ShowSendingWindow();
 
-            var result = FormViewModel.IncludeLogs
+            Result result = FormViewModel.IncludeLogs
                 ? await _bugReport.SendWithLogsAsync(FormViewModel.GetFields())
                 : await _bugReport.SendAsync(FormViewModel.GetFields());
 
