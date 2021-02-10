@@ -17,11 +17,30 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Modals.Welcome
+using System.Windows.Input;
+using GalaSoft.MvvmLight.CommandWpf;
+using ProtonVPN.Config.Url;
+
+namespace ProtonVPN.Windows.Popups
 {
-    public class TrialWelcomeModalViewModel : BaseWelcomeModalViewModel
+    public abstract class BaseUpgradePlanPopupViewModel : BasePopupViewModel
     {
-        public TrialWelcomeModalViewModel(Onboarding.Onboarding onboarding) : base(onboarding)
-        { }
+        private readonly IActiveUrls _urls;
+
+        protected BaseUpgradePlanPopupViewModel(IActiveUrls urls, AppWindow appWindow)
+            : base(appWindow)
+        {
+            _urls = urls;
+
+            UpgradeCommand = new RelayCommand(UpgradeAction);
+        }
+
+        public ICommand UpgradeCommand { get; set; }
+
+        protected virtual void UpgradeAction()
+        {
+            _urls.AccountUrl.Open();
+            TryClose();
+        }
     }
 }

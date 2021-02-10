@@ -17,11 +17,25 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Modals.Welcome
+using System.Windows;
+
+namespace ProtonVPN.Resource
 {
-    public class NonTrialWelcomeModalViewModel : BaseWelcomeModalViewModel
+    public class BasePopupWindow : WindowBase
     {
-        public NonTrialWelcomeModalViewModel(Onboarding.Onboarding onboarding) : base(onboarding)
-        { }
+        public BasePopupWindow()
+        {
+            WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            DataContextChanged += OnDataContextChanged;
+        }
+
+        private void OnDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            dynamic dataContext = DataContext;
+            if (dataContext != null)
+            {
+                Owner = dataContext.Owner;
+            }
+        }
     }
 }

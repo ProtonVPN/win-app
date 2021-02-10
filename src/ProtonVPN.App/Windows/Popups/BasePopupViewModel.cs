@@ -17,13 +17,28 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Modals.Upsell
+using System.Windows;
+using ProtonVPN.Core.Window.Popups;
+
+namespace ProtonVPN.Windows.Popups
 {
-    public partial class EnjoyingUpsellModalView
+    public abstract class BasePopupViewModel : BaseWindowViewModel, IPopupWindow
     {
-        public EnjoyingUpsellModalView()
+        public Window Owner { get; }
+
+        protected BasePopupViewModel(AppWindow appWindow)
         {
-            InitializeComponent();
+            Owner = appWindow;
+        }
+
+        public override void CloseAction()
+        {
+            TryClose();
+        }
+
+        public void TryClose()
+        {
+            base.TryClose();
         }
     }
 }

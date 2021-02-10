@@ -33,7 +33,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         xmlns:behavior="clr-namespace:ProtonVPN.Core.Wpf.Behavior"
                         mc:Ignorable="d"
                         ResizeMode="NoResize"
-                        Style="{StaticResource BaseModalStyle}"
+                        Style="{StaticResource BaseWindowStyle}"
                         Title="{translations:Loc Settings_ttl}"
                         SizeToContent="WidthAndHeight"
                         d:DataContext="{d:DesignInstance settings:SettingsModalViewModel}">

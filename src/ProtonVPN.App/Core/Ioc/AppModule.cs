@@ -48,6 +48,7 @@ using ProtonVPN.Core.Startup;
 using ProtonVPN.Core.Storage;
 using ProtonVPN.Core.User;
 using ProtonVPN.Core.Window;
+using ProtonVPN.Core.Window.Popups;
 using ProtonVPN.FlashNotifications;
 using ProtonVPN.Map;
 using ProtonVPN.Modals;
@@ -125,6 +126,7 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<VpnService>().AsSelf().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<ModalWindows>().As<IModalWindows>().SingleInstance();
             builder.RegisterType<ProtonVPN.Modals.Modals>().As<IModals>().SingleInstance();
+            builder.RegisterType<ProtonVPN.Windows.Popups.PopupWindows>().As<IPopupWindows>().SingleInstance();
             builder.RegisterType<Dialogs>().As<IDialogs>().SingleInstance();
             builder.RegisterType<AutoStartup>().As<IAutoStartup>().SingleInstance();
             builder.RegisterType<SyncableAutoStartup>().As<ISyncableAutoStartup>().SingleInstance();
