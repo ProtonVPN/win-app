@@ -17,33 +17,37 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Core.Modals;
-using ProtonVPN.Windows;
+using System.Windows;
+using System.Windows.Input;
+using GalaSoft.MvvmLight.Command;
+using ProtonVPN.ViewModels;
 
-namespace ProtonVPN.Modals
+namespace ProtonVPN.Windows
 {
-    public abstract class BaseModalViewModel : BaseWindowViewModel, IModal
+    public abstract class BaseWindowViewModel : LanguageAwareViewModel
     {
-        private bool _loading;
-        protected bool Loaded;
+        private WindowState _windowState;
 
-        public bool StayOnTop { get; protected set; }
-
-        public bool Loading
+        protected BaseWindowViewModel()
         {
-            get => _loading;
-            set => Set(ref _loading, value);
+            CloseCommand = new RelayCommand(CloseAction);
+            MinimizeCommand = new RelayCommand(MinimizeAction);
         }
 
-        public bool HideWindowControls { get; set; }
+        public ICommand CloseCommand { get; set; }
+        public ICommand MinimizeCommand { get; set; }
 
-        public override void CloseAction()
+        public WindowState WindowState
         {
-            TryClose(false);
+            get => _windowState;
+            set => Set(ref _windowState, value);
         }
 
-        public virtual void BeforeOpenModal(dynamic options)
+        public abstract void CloseAction();
+
+        private void MinimizeAction()
         {
+            WindowState = WindowState.Minimized;
         }
     }
 }

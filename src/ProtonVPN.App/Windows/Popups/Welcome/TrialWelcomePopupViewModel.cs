@@ -17,20 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Config.Url;
-
-namespace ProtonVPN.Modals.Upsell
+namespace ProtonVPN.Windows.Popups.Welcome
 {
-    public class EnjoyingUpsellModalViewModel : UpsellModalViewModel
+    public class TrialWelcomePopupViewModel : BaseWelcomePopupViewModel
     {
-        public EnjoyingUpsellModalViewModel(IActiveUrls urls) : base(urls)
+        public TrialWelcomePopupViewModel(Onboarding.Onboarding onboarding, AppWindow appWindow) 
+            : base(onboarding, appWindow)
         {
-        }
-
-        protected override void ContinueAction()
-        {
-            Urls.AccountUrl.Open();
-            TryClose(true);
         }
     }
 }

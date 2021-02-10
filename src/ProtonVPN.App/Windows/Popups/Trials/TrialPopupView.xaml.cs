@@ -17,9 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Resource
+namespace ProtonVPN.Windows.Popups.Trials
 {
-    public class BaseModalWindow : WindowBase
+    public partial class TrialPopupView
     {
+        public TrialPopupView()
+        {
+            InitializeComponent();
+        }
     }
 }

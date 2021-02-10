@@ -58,6 +58,7 @@
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="BaseModalWindow.cs" />
+    <Compile Include="BasePopupWindow.cs" />
     <Compile Include="ControlExtension.cs" />
     <Compile Include="Controls\ProtonAnimation.xaml.cs">
       <DependentUpon>ProtonAnimation.xaml</DependentUpon>

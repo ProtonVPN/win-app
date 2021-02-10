@@ -38,7 +38,7 @@ using ProtonVPN.Core.Window;
 
 namespace ProtonVPN.Windows
 {
-    internal partial class AppWindow :
+    public partial class AppWindow :
         IHandle<ToggleOverlay>,
         IOnboardingStepAware
     {

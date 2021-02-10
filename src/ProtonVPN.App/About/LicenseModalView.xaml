@@ -8,7 +8,7 @@
              xmlns:markdown="clr-namespace:ProtonVPN.Core.Wpf.Markdown"
              xmlns:system="clr-namespace:System;assembly=mscorlib"
              xmlns:resource="clr-namespace:ProtonVPN.Resource;assembly=ProtonVPN.Resource"
-             Style="{StaticResource BaseModalStyle}"
+             Style="{StaticResource BaseWindowStyle}"
              SizeToContent="Height"
              Title="{translations:Loc License_ttl}"
              Height="Auto"

@@ -17,9 +17,32 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Resource
+using ProtonVPN.Config.Url;
+using ProtonVPN.Core.Settings;
+using ProtonVPN.Core.User;
+
+namespace ProtonVPN.Windows.Popups.Trials
 {
-    public class BaseModalWindow : WindowBase
+    public class TrialPopupViewModel : BaseUpgradePlanPopupViewModel, IUserDataAware
     {
+        private bool _expired;
+        private readonly IUserStorage _userStorage;
+
+        public TrialPopupViewModel(IActiveUrls urls, IUserStorage userStorage, AppWindow appWindow)
+            : base(urls, appWindow)
+        {
+            _userStorage = userStorage;
+        }
+
+        public bool Expired
+        {
+            get => _expired;
+            set => Set(ref _expired, value);
+        }
+
+        public void OnUserDataChanged()
+        {
+            Expired = !_userStorage.User().IsTrial();
+        }
     }
 }

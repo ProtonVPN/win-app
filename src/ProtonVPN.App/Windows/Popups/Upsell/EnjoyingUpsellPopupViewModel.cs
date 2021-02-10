@@ -17,9 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Resource
+using ProtonVPN.Config.Url;
+
+namespace ProtonVPN.Windows.Popups.Upsell
 {
-    public class BaseModalWindow : WindowBase
+    public class EnjoyingUpsellPopupViewModel : BaseUpgradePlanPopupViewModel
     {
+        public EnjoyingUpsellPopupViewModel(IActiveUrls urls, AppWindow appWindow)
+            : base(urls, appWindow)
+        {
+        }
     }
 }

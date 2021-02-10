@@ -18,80 +18,66 @@
  */
 
 using System.Collections.Generic;
-using System.Dynamic;
 using System.Linq;
 using System.Windows;
 using Autofac;
 using Caliburn.Micro;
 using ProtonVPN.Common.Threading;
-using ProtonVPN.Core.Modals;
+using ProtonVPN.Core.Window.Popups;
+using ProtonVPN.Resource;
 
-namespace ProtonVPN.Modals
+namespace ProtonVPN.Windows.Popups
 {
-    public class Modals : IModals
+    public class PopupWindows : IPopupWindows
     {
         private readonly IComponentContext _container;
         private readonly IWindowManager _windowManager;
-        private readonly IModalWindows _modalWindows;
         private readonly IScheduler _scheduler;
 
-        public Modals(
+        public PopupWindows(
             IScheduler scheduler,
             IComponentContext container,
-            IWindowManager windowManager,
-            IModalWindows modalWindows)
+            IWindowManager windowManager)
         {
             _scheduler = scheduler;
-            _modalWindows = modalWindows;
             _container = container;
             _windowManager = windowManager;
         }
 
-        public bool? Show<T>(dynamic options = null) where T : IModal
+        public void Show<T>(dynamic options = null) where T : IPopupWindow
         {
-            return _scheduler.Schedule<bool?>(() =>
-            {
-                if (ModalOpened<T>())
-                {
-                    return false;
-                }
+            T screen = _container.Resolve<T>();
 
-                return _windowManager.ShowDialog(Screen<T>(options), null, Settings());
+            _scheduler.Schedule(() =>
+            {
+                if (!ModalOpened<T>())
+                {
+                    _windowManager.ShowWindow(screen);
+                }
             });
         }
 
         private bool ModalOpened<T>()
         {
-            return _modalWindows.List().Any(x => x.DataContext.GetType() == typeof(T));
+            return GetAll().Any(x => x.DataContext.GetType() == typeof(T));
         }
 
-        private dynamic Settings()
+        private IEnumerable<BasePopupWindow> GetAll()
         {
-            dynamic settings = new ExpandoObject();
-            settings.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-            settings.ResizeMode = ResizeMode.NoResize;
-            return settings;
+            return Application.Current.Windows.OfType<BasePopupWindow>();
         }
 
-        private T Screen<T>(dynamic options = null) where T : IModal
+        public void Close<T>() where T : IPopupWindow
         {
-            T screen = _container.Resolve<T>();
-            screen.BeforeOpenModal(options);
-            return screen;
-        }
-
-        public void Close<T>(bool? dialogResult = null) where T : IModal
-        {
-            _container.Resolve<T>().TryClose(dialogResult);
+            _container.Resolve<T>().TryClose();
         }
 
         public void CloseAll()
         {
-            IEnumerable<IModal> dialogs = _container.Resolve<IEnumerable<IModal>>()
-                .Where(m => !m.StayOnTop);
-            foreach (IModal dialog in dialogs)
+            IEnumerable<IPopupWindow> windows = _container.Resolve<IEnumerable<IPopupWindow>>();
+            foreach (IPopupWindow window in windows)
             {
-                dialog.TryClose(false);
+                window.TryClose();
             }
         }
     }

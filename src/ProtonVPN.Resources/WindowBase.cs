@@ -19,6 +19,7 @@
 
 using System;
 using System.Windows;
+using System.Windows.Input;
 using System.Windows.Interop;
 
 namespace ProtonVPN.Resource
@@ -26,6 +27,28 @@ namespace ProtonVPN.Resource
     public class WindowBase : Window
     {
         private const int WM_NCHITTEST_MESSAGE = 0x0084;
+
+        public WindowBase()
+        {
+            PreviewKeyDown += HandleEsc;
+        }
+
+        private void HandleEsc(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape)
+            {
+                Close();
+            }
+        }
+
+        protected override void OnActivated(EventArgs e)
+        {
+            base.OnActivated(e);
+            if (WindowState == WindowState.Minimized)
+            {
+                WindowState = WindowState.Normal;
+            }
+        }
 
         protected override void OnSourceInitialized(EventArgs e)
         {

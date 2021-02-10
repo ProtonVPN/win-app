@@ -17,9 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Resource
+namespace ProtonVPN.Windows.Popups.Welcome
 {
-    public class BaseModalWindow : WindowBase
+    public class NonTrialWelcomePopupViewModel : BaseWelcomePopupViewModel
     {
+        public NonTrialWelcomePopupViewModel(Onboarding.Onboarding onboarding, AppWindow appWindow)
+            : base(onboarding, appWindow)
+        {
+        }
     }
 }

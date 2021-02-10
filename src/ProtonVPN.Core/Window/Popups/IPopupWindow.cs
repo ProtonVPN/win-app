@@ -17,9 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Resource
+namespace ProtonVPN.Core.Window.Popups
 {
-    public class BaseModalWindow : WindowBase
+    public interface IPopupWindow
     {
+        void TryClose();
     }
 }

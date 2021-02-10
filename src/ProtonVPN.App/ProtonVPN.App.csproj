@@ -219,10 +219,9 @@
       <DependentUpon>RebootModalView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modals\RebootModalViewModel.cs" />
-    <Compile Include="Modals\Trial\TrialModalView.xaml.cs">
-      <DependentUpon>TrialModalView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Modals\Trial\TrialModalViewModel.cs" />
+    <Compile Include="Windows\BaseWindowViewModel.cs" />
+    <Compile Include="Windows\Popups\BaseUpgradePlanPopupViewModel.cs" />
+    <Compile Include="Windows\Popups\PopupWindows.cs" />
     <Compile Include="Servers\ISortedCountries.cs" />
     <Compile Include="Settings\IVpnReconnector.cs" />
     <Compile Include="Settings\Migrations\v1_17_0\AppSettingsMigration.cs" />
@@ -374,12 +373,13 @@
     <Compile Include="Modals\Upsell\NoServerDueTierUpsellModalView.xaml.cs">
       <DependentUpon>NoServerDueTierUpsellModalView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Modals\Welcome\NonTrialWelcomeModalView.xaml.cs">
-      <DependentUpon>NonTrialWelcomeModalView.xaml</DependentUpon>
+    <Compile Include="Windows\Popups\Welcome\BaseWelcomePopupViewModel.cs" />
+    <Compile Include="Windows\Popups\Welcome\NonTrialWelcomePopupView.xaml.cs">
+      <DependentUpon>NonTrialWelcomePopupView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Settings\Migrations\v1_7_2\ProfileV1.cs" />
-    <Compile Include="Modals\Welcome\NonTrialWelcomeModalViewModel.cs" />
-    <Compile Include="Modals\Welcome\TrialWelcomeModalViewModel.cs" />
+    <Compile Include="Windows\Popups\Welcome\NonTrialWelcomePopupViewModel.cs" />
+    <Compile Include="Windows\Popups\Welcome\TrialWelcomePopupViewModel.cs" />
     <Compile Include="Notifications\ISystemNotification.cs" />
     <Compile Include="Notifications\SystemNotification.cs" />
     <Compile Include="P2PDetection\Blocked\BlockedTraffic.cs" />
@@ -476,10 +476,11 @@
       <DependentUpon>QuestionModalView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modals\Dialogs\QuestionModalViewModel.cs" />
-    <Compile Include="Modals\Upsell\EnjoyingUpsellModalView.xaml.cs">
-      <DependentUpon>EnjoyingUpsellModalView.xaml</DependentUpon>
+    <Compile Include="Windows\Popups\BasePopupViewModel.cs" />
+    <Compile Include="Windows\Popups\Upsell\EnjoyingUpsellPopupView.xaml.cs">
+      <DependentUpon>EnjoyingUpsellPopupView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Modals\Upsell\EnjoyingUpsellModalViewModel.cs" />
+    <Compile Include="Windows\Popups\Upsell\EnjoyingUpsellPopupViewModel.cs" />
     <Compile Include="Modals\Upsell\NoServerInCountryDueTierUpsellModalView.xaml.cs">
       <DependentUpon>NoServerInCountryDueTierUpsellModalView.xaml</DependentUpon>
     </Compile>
@@ -579,7 +580,7 @@
     <Compile Include="Modals\P2PForwardModalViewModel.cs" />
     <Compile Include="Modals\Upsell\ScUpsellModalViewModel.cs" />
     <Compile Include="Modals\Upsell\PlusUpsellModalViewModel.cs" />
-    <Compile Include="Modals\Welcome\BaseWelcomeModalViewModel.cs" />
+    <Compile Include="Windows\Popups\Trials\TrialPopupViewModel.cs" />
     <Compile Include="Modals\Upsell\UpsellModalViewModel.cs" />
     <Compile Include="Profiles\PredefinedProfileViewModel.cs" />
     <Compile Include="Profiles\Form\CountryViewModel.cs" />
@@ -758,8 +759,11 @@
     <Compile Include="Modals\Upsell\PlusUpsellModalView.xaml.cs">
       <DependentUpon>PlusUpsellModalView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Modals\Welcome\TrialWelcomeModalView.xaml.cs">
-      <DependentUpon>TrialWelcomeModalView.xaml</DependentUpon>
+    <Compile Include="Windows\Popups\Trials\TrialPopupView.xaml.cs">
+      <DependentUpon>TrialPopupView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Popups\Welcome\TrialWelcomePopupView.xaml.cs">
+      <DependentUpon>TrialWelcomePopupView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modals\Upsell\UpsellModalView.xaml.cs">
       <DependentUpon>UpsellModalView.xaml</DependentUpon>
@@ -858,10 +862,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Modals\Trial\TrialModalView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Modals\TroubleshootModalView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -878,7 +878,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Modals\Upsell\EnjoyingUpsellModalView.xaml">
+    <Page Include="Windows\Popups\Upsell\EnjoyingUpsellPopupView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -894,7 +894,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Modals\Welcome\NonTrialWelcomeModalView.xaml">
+    <Page Include="Windows\Popups\Welcome\NonTrialWelcomePopupView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1295,7 +1295,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Modals\Welcome\TrialWelcomeModalView.xaml">
+    <Page Include="Windows\Popups\Trials\TrialPopupView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Popups\Welcome\TrialWelcomePopupView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -29,7 +29,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        Width="550"
                        Height="Auto"
                        SizeToContent="Height"
-                       Style="{StaticResource BaseModalStyle}">
+                       Style="{StaticResource BaseWindowStyle}">
     <Grid>
         <StackPanel>
             <TextBlock TextWrapping="Wrap"

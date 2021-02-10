@@ -32,7 +32,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         mc:Ignorable="d"
                         Title="{translations:Loc Account_ttl}"
                         ResizeMode="NoResize"
-                        Style="{StaticResource BaseModalStyle}"
+                        Style="{StaticResource BaseWindowStyle}"
                         Height="500"
                         Width="900"
                         d:DataContext="{d:DesignInstance account:AccountModalViewModel}">
