@@ -18,7 +18,7 @@ namespace ipfilter
             Condition(matcher::Matcher matcher, const GUID& identifier,
                       const std::shared_ptr<value::Value>& value);
 
-            virtual operator FWPM_FILTER_CONDITION0();
+            virtual operator FWPM_FILTER_CONDITION();
 
         private:
             matcher::Matcher matcher;

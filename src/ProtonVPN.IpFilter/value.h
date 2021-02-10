@@ -11,7 +11,7 @@ namespace ipfilter
         class Value
         {
         public:
-            virtual operator FWP_CONDITION_VALUE0() = 0;
+            virtual operator FWP_CONDITION_VALUE() = 0;
         };
 
         class IpAddressV4 : public Value
@@ -19,7 +19,7 @@ namespace ipfilter
         public:
             IpAddressV4(const ip::AddressV4& addr);
 
-            virtual operator FWP_CONDITION_VALUE0();
+            virtual operator FWP_CONDITION_VALUE();
 
         private:
             ip::AddressV4 addr;
@@ -30,7 +30,7 @@ namespace ipfilter
         public:
             IpNetworkAddressV4(const ip::AddressV4& addr, const ip::AddressV4& mask);
 
-            virtual operator FWP_CONDITION_VALUE0();
+            virtual operator FWP_CONDITION_VALUE();
 
         private:
             FWP_V4_ADDR_AND_MASK addr;
@@ -41,7 +41,7 @@ namespace ipfilter
         public:
             Port(unsigned short number);
 
-            virtual operator FWP_CONDITION_VALUE0();
+            virtual operator FWP_CONDITION_VALUE();
 
         private:
             unsigned short number;
@@ -50,7 +50,7 @@ namespace ipfilter
         class TcpProtocol : public Value
         {
         public:
-            virtual operator FWP_CONDITION_VALUE0();
+            virtual operator FWP_CONDITION_VALUE();
 
             static TcpProtocol udp();
 
@@ -65,7 +65,7 @@ namespace ipfilter
         class Flag : public Value
         {
         public:
-            virtual operator FWP_CONDITION_VALUE0();
+            virtual operator FWP_CONDITION_VALUE();
 
             static Flag loopback();
 
@@ -78,7 +78,7 @@ namespace ipfilter
         class ApplicationId : public Value
         {
         public:
-            virtual operator FWP_CONDITION_VALUE0();
+            virtual operator FWP_CONDITION_VALUE();
 
             static ApplicationId fromFilePath(const std::wstring& path);
 
@@ -98,7 +98,7 @@ namespace ipfilter
         public:
             NetInterfaceId(uint64_t localId);
 
-            virtual operator FWP_CONDITION_VALUE0();
+            virtual operator FWP_CONDITION_VALUE();
 
         private:
             uint64_t localId;
@@ -109,7 +109,7 @@ namespace ipfilter
         public:
             NetInterfaceIndex(ULONG index);
 
-            virtual operator FWP_CONDITION_VALUE0();
+            virtual operator FWP_CONDITION_VALUE();
 
         private:
             ULONG index;

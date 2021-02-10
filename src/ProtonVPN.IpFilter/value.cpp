@@ -13,9 +13,9 @@ namespace ipfilter
         {
         }
 
-        IpAddressV4::operator FWP_CONDITION_VALUE0()
+        IpAddressV4::operator FWP_CONDITION_VALUE()
         {
-            FWP_CONDITION_VALUE0 value{};
+            FWP_CONDITION_VALUE value{};
 
             value.type = FWP_UINT32;
             value.uint32 = htonl(this->addr.uint32());
@@ -31,9 +31,9 @@ namespace ipfilter
             this->addr.mask = htonl(mask.uint32());
         }
 
-        IpNetworkAddressV4::operator FWP_CONDITION_VALUE0()
+        IpNetworkAddressV4::operator FWP_CONDITION_VALUE()
         {
-            FWP_CONDITION_VALUE0 value{};
+            FWP_CONDITION_VALUE value{};
 
             value.type = FWP_V4_ADDR_MASK;
             value.v4AddrMask = &this->addr;
@@ -45,9 +45,9 @@ namespace ipfilter
         {
         }
 
-        Port::operator FWP_CONDITION_VALUE0()
+        Port::operator FWP_CONDITION_VALUE()
         {
-            FWP_CONDITION_VALUE0 value{};
+            FWP_CONDITION_VALUE value{};
 
             value.type = FWP_UINT16;
             value.uint16 = this->number;
@@ -60,9 +60,9 @@ namespace ipfilter
         {
         }
 
-        TcpProtocol::operator FWP_CONDITION_VALUE0()
+        TcpProtocol::operator FWP_CONDITION_VALUE()
         {
-            FWP_CONDITION_VALUE0 value{};
+            FWP_CONDITION_VALUE value{};
 
             value.type = FWP_UINT8;
             value.uint16 = this->protocol;
@@ -84,9 +84,9 @@ namespace ipfilter
         {
         }
 
-        Flag::operator FWP_CONDITION_VALUE0()
+        Flag::operator FWP_CONDITION_VALUE()
         {
-            FWP_CONDITION_VALUE0 value{};
+            FWP_CONDITION_VALUE value{};
 
             value.type = FWP_UINT32;
             value.uint32 = this->flag;
@@ -99,9 +99,9 @@ namespace ipfilter
             return Flag(FWP_CONDITION_FLAG_IS_LOOPBACK);
         }
 
-        ApplicationId::operator FWP_CONDITION_VALUE0()
+        ApplicationId::operator FWP_CONDITION_VALUE()
         {
-            FWP_CONDITION_VALUE0 value{};
+            FWP_CONDITION_VALUE value{};
 
             value.type = FWP_BYTE_BLOB_TYPE;
             value.byteBlob = &this->blob;
@@ -113,7 +113,7 @@ namespace ipfilter
         {
             FWP_BYTE_BLOB* byteBlob = nullptr;
 
-            auto result = FwpmGetAppIdFromFileName0(path.c_str(), &byteBlob);
+            auto result = FwpmGetAppIdFromFileName(path.c_str(), &byteBlob);
             if (result != ERROR_SUCCESS)
             {
                 throw std::runtime_error("Application id resolution failed");
@@ -121,7 +121,7 @@ namespace ipfilter
 
             ApplicationId id(*byteBlob);
 
-            FwpmFreeMemory0(reinterpret_cast<void **>(&byteBlob));
+            FwpmFreeMemory(reinterpret_cast<void **>(&byteBlob));
 
             return id;
         }
@@ -154,9 +154,9 @@ namespace ipfilter
         {
         }
 
-        NetInterfaceId::operator FWP_CONDITION_VALUE0()
+        NetInterfaceId::operator FWP_CONDITION_VALUE()
         {
-            FWP_CONDITION_VALUE0 value{};
+            FWP_CONDITION_VALUE value{};
 
             value.type = FWP_UINT64;
             value.uint64 = &this->localId;
@@ -168,9 +168,9 @@ namespace ipfilter
         {
         }
 
-        NetInterfaceIndex::operator FWP_CONDITION_VALUE0()
+        NetInterfaceIndex::operator FWP_CONDITION_VALUE()
         {
-            FWP_CONDITION_VALUE0 value{};
+            FWP_CONDITION_VALUE value{};
 
             value.type = FWP_UINT32;
             value.uint32 = this->index;
