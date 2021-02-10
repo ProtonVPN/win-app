@@ -1,0 +1,9 @@
+<nlog>
+    <targets>
+        <target name="console" type="Console" />
+    </targets>
+
+    <rules>
+        <logger name="*" minlevel="Warn" appendTo="console" />
+    </rules>
+</nlog>
