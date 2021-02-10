@@ -157,7 +157,7 @@ unsigned int IPFilterCreateFilter(
     filter.displayData.name = const_cast<wchar_t *>(displayData->name);
     filter.displayData.description = const_cast<wchar_t *>(displayData->description);
 
-    auto result = FwpmFilterAdd0(
+    auto result = FwpmFilterAdd(
         sessionHandle,
         &filter,
         nullptr,

@@ -9,26 +9,26 @@
 
 unsigned int IPFilterStartTransaction(IPFilterSessionHandle* handle)
 {
-    return FwpmTransactionBegin0(handle, 0);
+    return FwpmTransactionBegin(handle, 0);
 }
 
 unsigned int IPFilterAbortTransaction(IPFilterSessionHandle* handle)
 {
-    return FwpmTransactionAbort0(handle);
+    return FwpmTransactionAbort(handle);
 }
 
 unsigned int IPFilterCommitTransaction(IPFilterSessionHandle* handle)
 {
-    return FwpmTransactionCommit0(handle);
+    return FwpmTransactionCommit(handle);
 }
 
 unsigned int IPFilterCreateDynamicSession(
     IPFilterSessionHandle* handle)
 {
-    FWPM_SESSION0 session{};
+    FWPM_SESSION session{};
     session.flags = FWPM_SESSION_FLAG_DYNAMIC;
 
-    return FwpmEngineOpen0(
+    return FwpmEngineOpen(
         nullptr,
         RPC_C_AUTHN_WINNT,
         nullptr,
@@ -49,7 +49,7 @@ unsigned int IPFilterCreateSession(IPFilterSessionHandle* handle)
 unsigned int IPFilterDestroySession(
     IPFilterSessionHandle handle)
 {
-    return FwpmEngineClose0(handle);
+    return FwpmEngineClose(handle);
 }
 
 unsigned int IPFilterCreateProvider(
@@ -58,7 +58,7 @@ unsigned int IPFilterCreateProvider(
     BOOL persistent,
     GUID* providerKey)
 {
-    FWPM_PROVIDER0 provider{};
+    FWPM_PROVIDER provider{};
 
     provider.providerKey = ipfilter::guid::makeGuid(providerKey);
     provider.displayData.name = const_cast<wchar_t *>(displayData->name);
@@ -69,7 +69,7 @@ unsigned int IPFilterCreateProvider(
         provider.flags |= FWPM_PROVIDER_FLAG_PERSISTENT;
     }
 
-    auto result = FwpmProviderAdd0(
+    auto result = FwpmProviderAdd(
         const_cast<void *>(sessionHandle),
         &provider,
         nullptr);
@@ -130,7 +130,7 @@ unsigned int IPFilterCreateProviderContext(
     BOOL persistent,
     GUID* providerContextKey)
 {
-    FWPM_PROVIDER_CONTEXT0 context{};
+    FWPM_PROVIDER_CONTEXT context{};
 
     context.providerContextKey = ipfilter::guid::makeGuid(providerContextKey);
     context.providerKey = providerKey;
@@ -149,7 +149,7 @@ unsigned int IPFilterCreateProviderContext(
 
     UINT64 id;
 
-    auto result = FwpmProviderContextAdd0(
+    auto result = FwpmProviderContextAdd(
         const_cast<void*>(sessionHandle),
         &context,
         nullptr,
@@ -169,7 +169,7 @@ unsigned int IPFilterDestroyProviderContext(
     IPFilterSessionHandle sessionHandle,
     GUID* providerContextKey)
 {
-    return FwpmProviderContextDeleteByKey0(sessionHandle, providerContextKey);
+    return FwpmProviderContextDeleteByKey(sessionHandle, providerContextKey);
 }
 
 unsigned int IPFilterCreateCallout(
@@ -183,7 +183,7 @@ unsigned int IPFilterCreateCallout(
     GUID layerKey{};
     IPFilterGetLayerKey(layerKey, layer);
 
-    FWPM_CALLOUT0 callout{};
+    FWPM_CALLOUT callout{};
 
     callout.calloutKey = ipfilter::guid::makeGuid(calloutKey);
     callout.providerKey = providerKey;
@@ -199,7 +199,7 @@ unsigned int IPFilterCreateCallout(
 
     UINT32 id;
 
-    auto result = FwpmCalloutAdd0(
+    auto result = FwpmCalloutAdd(
         const_cast<void*>(sessionHandle),
         &callout,
         nullptr,
@@ -217,7 +217,7 @@ unsigned int IPFilterDestroyCallout(
     IPFilterSessionHandle sessionHandle,
     GUID* calloutKey)
 {
-    return FwpmCalloutDeleteByKey0(sessionHandle, calloutKey);
+    return FwpmCalloutDeleteByKey(sessionHandle, calloutKey);
 }
 
 unsigned int IPFilterCreateSublayer(
@@ -228,7 +228,7 @@ unsigned int IPFilterCreateSublayer(
     BOOL persistent,
     GUID* sublayerKey)
 {
-    FWPM_SUBLAYER0 sublayer{};
+    FWPM_SUBLAYER sublayer{};
     sublayer.subLayerKey = ipfilter::guid::makeGuid(sublayerKey);
     sublayer.providerKey = providerKey;
     sublayer.displayData.name = const_cast<wchar_t *>(displayData->name);
@@ -240,7 +240,7 @@ unsigned int IPFilterCreateSublayer(
         sublayer.flags |= FWPM_SUBLAYER_FLAG_PERSISTENT;
     }
 
-    auto result = FwpmSubLayerAdd0(
+    auto result = FwpmSubLayerAdd(
         sessionHandle,
         &sublayer,
         nullptr);
@@ -257,7 +257,7 @@ unsigned int IPFilterDestroySublayer(
     IPFilterSessionHandle sessionHandle,
     GUID* subLayerKey)
 {
-    return FwpmSubLayerDeleteByKey0(sessionHandle, subLayerKey);
+    return FwpmSubLayerDeleteByKey(sessionHandle, subLayerKey);
 }
 
 unsigned int IPFilterDestroySublayerFilters(

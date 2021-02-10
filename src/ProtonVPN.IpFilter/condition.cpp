@@ -11,9 +11,9 @@ namespace ipfilter
         {
         }
 
-        Condition::operator FWPM_FILTER_CONDITION0()
+        Condition::operator FWPM_FILTER_CONDITION()
         {
-            FWPM_FILTER_CONDITION0 condition{};
+            FWPM_FILTER_CONDITION condition{};
 
             condition.fieldKey = this->identifier;
             condition.matchType = this->matcher;
