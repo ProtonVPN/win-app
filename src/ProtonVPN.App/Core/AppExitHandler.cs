@@ -23,6 +23,7 @@ using ProtonVPN.Core.Vpn;
 using ProtonVPN.Translations;
 using System.Threading.Tasks;
 using System.Windows;
+using ProtonVPN.Core.Service.Vpn;
 
 namespace ProtonVPN.Core
 {
@@ -30,11 +31,13 @@ namespace ProtonVPN.Core
     {
         private readonly IDialogs _dialogs;
         private VpnStatus _vpnStatus;
+        private readonly VpnService _vpnService;
 
         public bool PendingExit { get; private set; }
 
-        public AppExitHandler(IDialogs dialogs)
+        public AppExitHandler(IDialogs dialogs, VpnService vpnService)
         {
+            _vpnService = vpnService;
             _dialogs = dialogs;
         }
 
@@ -50,6 +53,7 @@ namespace ProtonVPN.Core
 
             PendingExit = true;
 
+            _vpnService.UnRegisterCallback();
             Application.Current.Shutdown();
         }
 

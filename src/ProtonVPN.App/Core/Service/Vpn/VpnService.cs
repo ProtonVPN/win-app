@@ -22,13 +22,12 @@ using System.ServiceModel;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Threading;
-using ProtonVPN.Core.Auth;
 using ProtonVPN.Service.Contract.Settings;
 using ProtonVPN.Service.Contract.Vpn;
 
 namespace ProtonVPN.Core.Service.Vpn
 {
-    public class VpnService : ILogoutAware
+    public class VpnService
     {
         private readonly ServiceChannelFactory _channelFactory;
         private readonly ILogger _logger;
@@ -66,15 +65,9 @@ namespace ProtonVPN.Core.Service.Vpn
         public Task<InOutBytesContract> Total() =>
             Invoke(p => p.Total());
 
-        public void OnUserLoggedOut()
-        {
-            UnRegisterCallback(_channel);
-            CloseChannel();
-        }
-
         private async Task<T> Invoke<T>(Func<IVpnConnectionContract, Task<T>> serviceCall)
         {
-            var retryCount = 1;
+            int retryCount = 1;
             while (true)
             {
                 try
@@ -98,7 +91,7 @@ namespace ProtonVPN.Core.Service.Vpn
 
         private ServiceChannel<IVpnConnectionContract> GetChannel()
         {
-            return _channel ?? (_channel = NewChannel());
+            return _channel ??= NewChannel();
         }
 
         private ServiceChannel<IVpnConnectionContract> NewChannel()
@@ -125,11 +118,11 @@ namespace ProtonVPN.Core.Service.Vpn
             }
         }
 
-        private void UnRegisterCallback(ServiceChannel<IVpnConnectionContract> channel)
+        public void UnRegisterCallback()
         {
             try
             {
-                channel?.Proxy.UnRegisterCallback();
+                _channel?.Proxy.UnRegisterCallback();
             }
             catch (Exception e) when (IsCommunicationException(e))
             {

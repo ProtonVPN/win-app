@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using Autofac;
 using ProtonVPN.Common;
 using ProtonVPN.Common.KillSwitch;
 using ProtonVPN.Common.Vpn;
@@ -29,7 +30,7 @@ using ProtonVPN.Vpn.Common;
 
 namespace ProtonVPN.Service.KillSwitch
 {
-    internal class KillSwitch : IVpnStateAware, IServiceSettingsAware
+    internal class KillSwitch : IVpnStateAware, IServiceSettingsAware, IStartable
     {
         private readonly IFirewall _firewall;
         private readonly IServiceSettings _serviceSettings;
@@ -45,6 +46,11 @@ namespace ProtonVPN.Service.KillSwitch
             _firewall = firewall;
             _serviceSettings = serviceSettings;
             _currentNetworkInterface = currentNetworkInterface;
+        }
+
+        public void Start()
+        {
+            _killSwitchMode = _serviceSettings.KillSwitchMode;
         }
 
         public void OnVpnConnecting(VpnState state)
@@ -66,7 +72,7 @@ namespace ProtonVPN.Service.KillSwitch
 
         public bool ExpectedLeakProtectionStatus(VpnState state)
         {
-            return UpdatedLeakProtectionStatus(state) ?? _firewall.LeakProtectionEnabled;
+           return UpdatedLeakProtectionStatus(state) ?? _firewall.LeakProtectionEnabled;
         }
 
         private void UpdateLeakProtectionStatus(VpnState state)

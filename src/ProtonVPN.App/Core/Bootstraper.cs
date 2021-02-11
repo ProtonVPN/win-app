@@ -136,10 +136,7 @@ namespace ProtonVPN.Core
             IncreaseAppStartCount();
             RegisterEvents();
             Resolve<Language>().Initialize(_args);
-            ShowInitialWindow();
-
-            await StartVpnService();
-            await StartService(Resolve<AppUpdateSystemService>());
+            await ShowInitialWindow();
 
             if (Resolve<IUserStorage>().User().Empty() || !await IsUserValid() || await SessionExpired())
             {
@@ -225,7 +222,7 @@ namespace ProtonVPN.Core
             return true;
         }
 
-        private void ShowInitialWindow()
+        private async Task ShowInitialWindow()
         {
             if (Resolve<IAppSettings>().StartMinimized != StartMinimizedMode.Disabled)
             {
@@ -238,6 +235,10 @@ namespace ProtonVPN.Core
             loginWindowViewModel.CurrentPageViewModel = Resolve<LoadingViewModel>();
             loginWindow.DataContext = loginWindowViewModel;
             loginWindow.Show();
+
+            await StartVpnService();
+            await StartService(Resolve<AppUpdateSystemService>());
+            await InitializeStateFromService();
         }
 
         private void RegisterEvents()
@@ -246,6 +247,7 @@ namespace ProtonVPN.Core
             UserAuth userAuth = Resolve<UserAuth>();
             AppWindow appWindow = Resolve<AppWindow>();
             IAppSettings appSettings = Resolve<IAppSettings>();
+            Resolve<SettingsServiceClientManager>();
 
             Resolve<IServerUpdater>().ServersUpdated += (sender, e) =>
             {
@@ -479,7 +481,6 @@ namespace ProtonVPN.Core
                 return;
             }
 
-            await InitializeStateFromService();
             await Resolve<SettingsServiceClientManager>().UpdateServiceSettings();
 
             Resolve<PinFactory>().BuildPins();
