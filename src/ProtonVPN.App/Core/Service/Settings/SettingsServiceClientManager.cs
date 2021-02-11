@@ -18,6 +18,7 @@
  */
 
 using System;
+using System.ComponentModel;
 using System.ServiceModel;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Extensions;
@@ -26,7 +27,7 @@ using ProtonVPN.Core.Settings;
 
 namespace ProtonVPN.Core.Service.Settings
 {
-    internal class SettingsServiceClientManager
+    internal class SettingsServiceClientManager : ISettingsAware
     {
         private readonly SettingsServiceClient _client;
         private readonly ILogger _logger;
@@ -34,23 +35,12 @@ namespace ProtonVPN.Core.Service.Settings
 
         public SettingsServiceClientManager(
             SettingsServiceClient client,
-            IAppSettings appSettings,
             ILogger logger,
             SettingsContractProvider settingsContractProvider)
         {
             _settingsContractProvider = settingsContractProvider;
             _client = client;
             _logger = logger;
-
-            appSettings.PropertyChanged += async (s, e) =>
-            {
-                if (e.PropertyName == nameof(IAppSettings.KillSwitchMode) ||
-                    e.PropertyName == nameof(IAppSettings.Ipv6LeakProtection))
-                {
-                    _logger.Info($"Setting \"{e.PropertyName}\" changed");
-                    await UpdateServiceSettings();
-                }
-            };
         }
 
         public async Task UpdateServiceSettings()
@@ -62,6 +52,16 @@ namespace ProtonVPN.Core.Service.Settings
             catch (Exception ex) when (ex is CommunicationException || ex is TimeoutException || ex is TaskCanceledException)
             {
                 _logger.Error(ex.CombinedMessage());
+            }
+        }
+
+        public async void OnAppSettingsChanged(PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(IAppSettings.KillSwitchMode) ||
+                e.PropertyName == nameof(IAppSettings.Ipv6LeakProtection))
+            {
+                _logger.Info($"Setting \"{e.PropertyName}\" changed");
+                await UpdateServiceSettings();
             }
         }
     }

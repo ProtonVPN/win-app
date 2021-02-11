@@ -20,7 +20,6 @@
 using System;
 using System.Collections.Generic;
 using System.ServiceProcess;
-using System.Threading.Tasks;
 using Autofac;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.CrashReporting;

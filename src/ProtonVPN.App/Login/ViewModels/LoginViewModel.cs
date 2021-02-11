@@ -23,6 +23,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
+using ProtonVPN.Common.KillSwitch;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Config.Url;
 using ProtonVPN.Core.Api;
@@ -86,6 +87,7 @@ namespace ProtonVPN.Login.ViewModels
             ToggleHelpBalloon = new RelayCommand(ToggleBalloonAction);
             ResetPasswordCommand = new RelayCommand(ResetPasswordAction);
             ForgotUsernameCommand = new RelayCommand(ForgotUsernameAction);
+            DisableKillSwitchCommand = new RelayCommand(DisableKillSwitchAction);
         }
 
         public ICommand LoginCommand { get; }
@@ -94,6 +96,7 @@ namespace ProtonVPN.Login.ViewModels
         public ICommand ToggleHelpBalloon { get; }
         public ICommand ResetPasswordCommand { get; }
         public ICommand ForgotUsernameCommand { get; }
+        public ICommand DisableKillSwitchCommand { get; }
 
         public string AppVersion => $"v.{_appConfig.AppVersion}";
 
@@ -166,6 +169,8 @@ namespace ProtonVPN.Login.ViewModels
             set => Set(ref _networkBlocked, value);
         }
 
+        public KillSwitchMode KillSwitchMode => _appSettings.KillSwitchMode;
+
         public void OnSessionExpired()
         {
             LoginErrorViewModel.SetError(Translation.Get("Login_Error_msg_SessionExpired"));
@@ -174,8 +179,12 @@ namespace ProtonVPN.Login.ViewModels
         public void OnAppSettingsChanged(PropertyChangedEventArgs e)
         {
             if (e.PropertyName.Equals(nameof(IAppSettings.StartOnStartup)))
+            {
                 OnPropertyChanged(nameof(StartOnStartup));
+            }
         }
+
+        private bool _connectingInGuestHoleMode;
 
         public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
         {
@@ -183,14 +192,24 @@ namespace ProtonVPN.Login.ViewModels
                                (e.State.Status == VpnStatus.Disconnecting ||
                                 e.State.Status == VpnStatus.Disconnected);
 
+            if (e.State.Status == VpnStatus.Connecting)
+            {
+                _connectingInGuestHoleMode = true;
+            }
+            else if (e.State.Status == VpnStatus.Disconnected)
+            {
+                _connectingInGuestHoleMode = false;
+            }
+
             if (_guestHoleState.Active)
             {
                 if (e.State.Status == VpnStatus.Connected)
                 {
                     LoginAction();
                 }
-                else if (e.State.Status == VpnStatus.Disconnected)
+                else if (_connectingInGuestHoleMode && e.State.Status == VpnStatus.Disconnected)
                 {
+                    _connectingInGuestHoleMode = false;
                     ShowLoginScreenWithTroubleshoot();
                     _guestHoleState.SetState(false);
                 }
@@ -306,6 +325,11 @@ namespace ProtonVPN.Login.ViewModels
         private void ForgotUsernameAction()
         {
             _urls.ForgetUsernameUrl.Open();
+        }
+
+        private void DisableKillSwitchAction()
+        {
+            _appSettings.KillSwitchMode = KillSwitchMode.Off;
         }
     }
 }

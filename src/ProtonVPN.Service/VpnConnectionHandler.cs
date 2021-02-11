@@ -165,7 +165,7 @@ namespace ProtonVPN.Service
         {
             if (_state.Status == VpnStatus.Disconnected)
             {
-                CallbackStateChanged(new VpnState(VpnStatus.Disconnected, VpnError.None));
+                CallbackStateChanged(_state);
             }
         }
 
@@ -218,11 +218,17 @@ namespace ProtonVPN.Service
 
         private VpnStateContract Map(VpnState state)
         {
+            bool killSwitchEnabled = _killSwitch.ExpectedLeakProtectionStatus(state);
+            if (!killSwitchEnabled)
+            {
+                _state = new VpnState(state.Status, VpnError.None);
+            }
+
             return new VpnStateContract(
                 Map(state.Status),
                 Map(state.Error),
                 state.RemoteIp,
-                _killSwitch.ExpectedLeakProtectionStatus(state),
+                killSwitchEnabled,
                 Map(state.Protocol));
         }
 
