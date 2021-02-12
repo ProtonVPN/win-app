@@ -355,6 +355,9 @@ namespace ProtonVPN.Settings
             NotifyOfPropertyChange(() => Protocols);
             NotifyOfPropertyChange(() => SelectedProtocol);
 
+            NotifyOfPropertyChange(() => NetworkDrivers);
+            NotifyOfPropertyChange(() => SelectedNetworkDriver);
+
             NotifyOfPropertyChange(() => StartMinimizedModes);
             NotifyOfPropertyChange(() => StartMinimized);
 
