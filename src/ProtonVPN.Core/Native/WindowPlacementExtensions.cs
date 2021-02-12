@@ -26,10 +26,6 @@ namespace ProtonVPN.Core.Native
 {
     public static class WindowPlacementExtensions
     {
-        private const int SW_HIDE = 0;
-        private const int SW_SHOWNORMAL = 1;
-        private const int SW_SHOWMINIMIZED = 2;
-
         [DllImport("user32.dll")]
         private static extern bool SetWindowPlacement(IntPtr hWnd, [In] WindowPlacement lpwndpl);
 
@@ -43,16 +39,23 @@ namespace ProtonVPN.Core.Native
             return result;
         }
 
-        public static bool SetWindowPlacement(this System.Windows.Window window, WindowPlacement placement, bool restoreFromMinimizedState, bool hide)
+        public static bool SetWindowPlacement(this System.Windows.Window window, WindowPlacement placement, WindowStates windowState)
         {
             placement.Length = Marshal.SizeOf(typeof(WindowPlacement));
             placement.Flags = 0;
 
-            if (restoreFromMinimizedState)
-                placement.ShowCommand = placement.ShowCommand == SW_SHOWMINIMIZED ? SW_SHOWNORMAL : placement.ShowCommand;
-
-            if (hide)
-                placement.ShowCommand = SW_HIDE;
+            switch (windowState)
+            {
+                case WindowStates.Minimized:
+                    placement.ShowCommand = (int)WindowStates.Minimized;
+                    break;
+                case WindowStates.Normal when placement.ShowCommand == (int)WindowStates.Minimized:
+                    placement.ShowCommand = (int)WindowStates.Normal;
+                    break;
+                case WindowStates.Hidden:
+                    placement.ShowCommand = (int)WindowStates.Hidden;
+                    break;
+            }
 
             return SetWindowPlacement(new WindowInteropHelper(window).Handle, placement);
         }

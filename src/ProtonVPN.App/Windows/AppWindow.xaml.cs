@@ -34,6 +34,7 @@ using System.Windows.Forms;
 using System.Windows.Interop;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Effects;
+using ProtonVPN.Core.Native.Structures;
 using ProtonVPN.Core.Window;
 
 namespace ProtonVPN.Windows
@@ -137,9 +138,11 @@ namespace ProtonVPN.Windows
 
         public void OnStepChanged(int step)
         {
-            var min = DefaultWidth;
+            int min = DefaultWidth;
             if (Width < min)
+            {
                 Width = min;
+            }
 
             ResizeMode = step > 0 ? ResizeMode.NoResize : ResizeMode.CanResize;
         }
@@ -155,7 +158,9 @@ namespace ProtonVPN.Windows
             else
             {
                 if (WindowState.Equals(WindowState.Minimized))
+                {
                     return;
+                }
 
                 _appSettings.SidebarMode = _sidebarModeBeforeMaximize;
                 if (_appSettings.SidebarMode)
@@ -167,7 +172,7 @@ namespace ProtonVPN.Windows
                     TurnOffSidebarMode();
                 }
 
-                SetWindowPlacement(true, false);
+                SetWindowPlacement(WindowStates.Normal);
             }
         }
 
@@ -181,25 +186,25 @@ namespace ProtonVPN.Windows
         {
             base.OnSourceInitialized(e);
 
-            var source = PresentationSource.FromVisual(this) as HwndSource;
+            HwndSource source = PresentationSource.FromVisual(this) as HwndSource;
             source?.AddHook(WndProc);
 
             if (_appSettings.StartMinimized == StartMinimizedMode.ToSystray)
             {
-                SetWindowPlacement(false, true);
+                SetWindowPlacement(WindowStates.Hidden);
                 return;
             }
 
             if (_appSettings.StartMinimized == StartMinimizedMode.ToTaskbar)
             {
                 WindowState = WindowState.Minimized;
-                SetWindowPlacement(false, false);
+                SetWindowPlacement(WindowStates.Minimized);
                 return;
             }
 
             if (!_appSettings.SidebarMode || _appSettings.SidebarWindowPlacement != null)
             {
-                SetWindowPlacement(true, false);
+                SetWindowPlacement(WindowStates.Normal);
             }
 
             SetToggleButton();
@@ -241,7 +246,9 @@ namespace ProtonVPN.Windows
                 SetToggleButton();
 
                 if (!WindowState.Equals(WindowState.Maximized))
+                {
                     SaveWindowsPlacement();
+                }
             }
 
             return IntPtr.Zero;
@@ -255,7 +262,9 @@ namespace ProtonVPN.Windows
         private void OnBlurOutAnimationCompleted(object sender, EventArgs e)
         {
             if (_blurInProgress)
+            {
                 return;
+            }
 
             BlurBorder.Effect = null;
             _blurOutInProgress = false;
@@ -290,8 +299,8 @@ namespace ProtonVPN.Windows
         {
             if (_appSettings.WindowPlacement != null)
             {
-                var width = _appSettings.WindowPlacement.NormalPosition.Right -
-                      _appSettings.WindowPlacement.NormalPosition.Left;
+                int width = _appSettings.WindowPlacement.NormalPosition.Right -
+                            _appSettings.WindowPlacement.NormalPosition.Left;
                 Width = width * 96 / SystemParams.GetDpiX();
             }
             else
@@ -318,13 +327,14 @@ namespace ProtonVPN.Windows
             WindowState = WindowState.Minimized;
         }
 
-        private void SetWindowPlacement(bool restoreFromMinimizedState, bool hide)
+        private void SetWindowPlacement(WindowStates windowState)
         {
-            var placement = _appSettings.SidebarMode ? _appSettings.SidebarWindowPlacement : _appSettings.WindowPlacement;
-            if (placement == null)
-                return;
+            WindowPlacement placement = _appSettings.SidebarMode ? _appSettings.SidebarWindowPlacement : _appSettings.WindowPlacement;
 
-            this.SetWindowPlacement(placement, restoreFromMinimizedState, hide);
+            if (placement != null)
+            {
+                this.SetWindowPlacement(placement, windowState);
+            }
         }
 
         private void SaveWindowsPlacement()
@@ -335,12 +345,14 @@ namespace ProtonVPN.Windows
             }
             else
             {
-                var placement = this.GetWindowPlacement();
-                var width = placement.NormalPosition.Right - placement.NormalPosition.Left;
+                WindowPlacement placement = this.GetWindowPlacement();
+                int width = placement.NormalPosition.Right - placement.NormalPosition.Left;
                 //Prevent saving window placement when snapping window in sidebar mode
                 //to left side of the screen, because it provides wrong size.
                 if (width == SidebarWidth && !_appSettings.SidebarMode)
+                {
                     return;
+                }
 
                 _appSettings.WindowPlacement = this.GetWindowPlacement();
             }
