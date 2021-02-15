@@ -79,7 +79,7 @@
     <Compile Include="OpenVpn\Arguments\TlsVerifyArguments.cs" />
     <Compile Include="OpenVpn\Arguments\ManagementArguments.cs" />
     <Compile Include="OpenVpn\Arguments\NoBindArguments.cs" />
-    <Compile Include="OpenVpn\Arguments\TunDriverArgument.cs" />
+    <Compile Include="OpenVpn\Arguments\NetworkDriverArgument.cs" />
     <Compile Include="OpenVpn\BestLocalEndpoint.cs" />
     <Compile Include="OpenVpn\OpenVpnProcessParams.cs" />
     <Compile Include="OpenVpn\SafeBestNetworkInterface.cs" />

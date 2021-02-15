@@ -48,7 +48,7 @@ namespace ProtonVPN.App.Test.BugReporting.Diagnostic
                 CreateInterface("interface1"),
                 CreateInterface("interface2"),
             };
-            _networkInterfaces.Interfaces().Returns(interfaces);
+            _networkInterfaces.GetInterfaces().Returns(interfaces);
 
             var log = new NetworkAdapterLog(_networkInterfaces, TmpPath);
 

@@ -41,11 +41,11 @@ namespace ProtonVPN.Common.OS.Net.NetworkInterface
             remove => _origin.NetworkAddressChanged -= value;
         }
 
-        public INetworkInterface[] Interfaces()
+        public INetworkInterface[] GetInterfaces()
         {
             try
             {
-                return _origin.Interfaces();
+                return _origin.GetInterfaces();
             }
             catch (NetworkInformationException ex)
             {
@@ -54,16 +54,16 @@ namespace ProtonVPN.Common.OS.Net.NetworkInterface
             }
         }
 
-        public uint InterfaceIndex(string hardwareId)
+        public INetworkInterface GetByDescription(string description)
         {
             try
             {
-                return _origin.InterfaceIndex(hardwareId);
+                return _origin.GetByDescription(description);
             }
             catch (NetworkInformationException ex)
             {
                 _logger.Error($"Failed to retrieve a system network interface: {ex.CombinedMessage()}");
-                return 0;
+                return new NullNetworkInterface();
             }
         }
     }

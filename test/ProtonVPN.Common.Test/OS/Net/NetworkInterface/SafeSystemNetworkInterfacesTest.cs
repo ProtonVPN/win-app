@@ -61,12 +61,12 @@ namespace ProtonVPN.Common.Test.OS.Net.NetworkInterface
         {
             // Arrange
             var expected = new INetworkInterface[] {new TestNetworkInterface("t1"), new TestNetworkInterface("t2")};
-            _origin.Interfaces().Returns(expected);
+            _origin.GetInterfaces().Returns(expected);
             var subject = new SafeSystemNetworkInterfaces(_logger, _origin);
             // Act
-            var result = subject.Interfaces();
+            var result = subject.GetInterfaces();
             // Assert
-            _origin.Received().Interfaces();
+            _origin.Received().GetInterfaces();
             result.Should().HaveCount(2);
         }
 
@@ -76,10 +76,10 @@ namespace ProtonVPN.Common.Test.OS.Net.NetworkInterface
         {
             // Arrange
             var exception = (Exception)Activator.CreateInstance(exceptionType);
-            _origin.Interfaces().Throws(exception);
+            _origin.GetInterfaces().Throws(exception);
             var subject = new SafeSystemNetworkInterfaces(_logger, _origin);
             // Act
-            var result = subject.Interfaces();
+            var result = subject.GetInterfaces();
             // Assert
             result.Should().BeEmpty();
         }
@@ -89,10 +89,10 @@ namespace ProtonVPN.Common.Test.OS.Net.NetworkInterface
         {
             // Arrange
             var exception = new Exception();
-            _origin.Interfaces().Throws(exception);
+            _origin.GetInterfaces().Throws(exception);
             var subject = new SafeSystemNetworkInterfaces(_logger, _origin);
             // Act
-            Action action = () => subject.Interfaces();
+            Action action = () => subject.GetInterfaces();
             // Assert
             action.Should().Throw<Exception>();
         }
@@ -102,10 +102,10 @@ namespace ProtonVPN.Common.Test.OS.Net.NetworkInterface
         {
             // Arrange
             var exception = new NetworkInformationException();
-            _origin.Interfaces().Throws(exception);
+            _origin.GetInterfaces().Throws(exception);
             var subject = new SafeSystemNetworkInterfaces(_logger, _origin);
             // Act
-            _ = subject.Interfaces();
+            _ = subject.GetInterfaces();
             // Assert
             _logger.ReceivedWithAnyArgs().Error("");
         }

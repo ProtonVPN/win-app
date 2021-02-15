@@ -42,12 +42,11 @@ namespace ProtonVPN.Service.Network
         {
             get
             {
-                if (_serviceSettings.UseTunAdapter)
-                {
-                    return _networkInterfaces.InterfaceIndex(_config.OpenVpn.TunAdapterId);
-                }
+                string adapterDescription = _serviceSettings.UseTunAdapter
+                    ? _config.OpenVpn.TunAdapterDescription
+                    : _config.OpenVpn.TapAdapterDescription;
 
-                return _networkInterfaces.InterfaceIndex(_config.OpenVpn.TapAdapterId);
+                return _networkInterfaces.GetByDescription(adapterDescription)?.Index ?? 0;
             }
         }
 

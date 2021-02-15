@@ -97,7 +97,7 @@ namespace ProtonVPN.Vpn.OpenVpn
 
             if (processParams.UseTunAdapter)
             {
-                arguments.Add(new TunDriverArgument());
+                arguments.Add(new NetworkDriverArgument(processParams.InterfaceGuid, processParams.UseTunAdapter));
             }
 
             return arguments;

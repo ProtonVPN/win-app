@@ -61,6 +61,8 @@ namespace ProtonVPN.Vpn.Config
 
             var vpnConnection = new OpenVpnConnection(
                 logger,
+                c.Resolve<ProtonVPN.Common.Configuration.Config>(),
+                c.Resolve<INetworkInterfaces>(),
                 c.Resolve<OpenVpnProcess>(),
                 new ManagementClient(
                     logger,
