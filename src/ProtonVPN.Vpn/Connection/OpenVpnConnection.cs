@@ -26,6 +26,7 @@ using System.Threading.Tasks;
 using ProtonVPN.Common;
 using ProtonVPN.Common.Helpers;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.OS.Net.NetworkInterface;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Vpn.Common;
@@ -46,6 +47,8 @@ namespace ProtonVPN.Vpn.Connection
         private readonly ILogger _logger;
         private readonly ManagementClient _managementClient;
         private readonly OpenVpnProcess _process;
+        private readonly ProtonVPN.Common.Configuration.Config _appConfig;
+        private readonly INetworkInterfaces _networkInterfaces;
 
         private readonly OpenVpnManagementPorts _managementPorts;
         private readonly RandomStrings _randomStrings;
@@ -59,9 +62,13 @@ namespace ProtonVPN.Vpn.Connection
 
         public OpenVpnConnection(
             ILogger logger,
+            ProtonVPN.Common.Configuration.Config appConfig,
+            INetworkInterfaces networkInterfaces,
             OpenVpnProcess process,
             ManagementClient managementClient)
         {
+            _networkInterfaces = networkInterfaces;
+            _appConfig = appConfig;
             _logger = logger;
             _process = process;
             _managementClient = managementClient;
@@ -104,8 +111,16 @@ namespace ProtonVPN.Vpn.Connection
 
             int port = _managementPorts.Port();
             string password = ManagementPassword();
-            OpenVpnProcessParams processParams = new OpenVpnProcessParams(_endpoint, port, password, _config.CustomDns,
-                _config.SplitTunnelMode, _config.SplitTunnelIPs, _config.UseTunAdapter);
+
+            OpenVpnProcessParams processParams = new OpenVpnProcessParams(
+                _endpoint,
+                port,
+                password,
+                _config.CustomDns,
+                _config.SplitTunnelMode,
+                _config.SplitTunnelIPs,
+                _config.UseTunAdapter,
+                InterfaceGuid());
 
             cancellationToken.ThrowIfCancellationRequested();
 
@@ -127,6 +142,15 @@ namespace ProtonVPN.Vpn.Connection
             }
 
             cancellationToken.ThrowIfCancellationRequested();
+        }
+
+        private string InterfaceGuid()
+        {
+            string adapterDescription = _config.UseTunAdapter
+                ? _appConfig.OpenVpn.TunAdapterDescription
+                : _appConfig.OpenVpn.TapAdapterDescription;
+
+            return _networkInterfaces.GetByDescription(adapterDescription)?.Id ?? string.Empty;
         }
 
         private string ManagementPassword()

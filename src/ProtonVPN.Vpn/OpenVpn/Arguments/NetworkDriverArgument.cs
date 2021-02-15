@@ -22,11 +22,25 @@ using System.Collections.Generic;
 
 namespace ProtonVPN.Vpn.OpenVpn.Arguments
 {
-    internal class TunDriverArgument : IEnumerable<string>
+    internal class NetworkDriverArgument : IEnumerable<string>
     {
+        private readonly string _interfaceGuid;
+        private readonly bool _useTun;
+
+        public NetworkDriverArgument(string interfaceGuid, bool useTun)
+        {
+            _useTun = useTun;
+            _interfaceGuid = interfaceGuid;
+        }
+
         public IEnumerator<string> GetEnumerator()
         {
-            yield return $"--windows-driver wintun";
+            yield return $"--dev-node \"{_interfaceGuid}\"";
+
+            if (_useTun)
+            {
+                yield return "--windows-driver wintun";
+            }
         }
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();

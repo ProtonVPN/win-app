@@ -20,8 +20,6 @@
 using System;
 using System.Linq;
 using System.Net.NetworkInformation;
-using System.Security;
-using Microsoft.Win32;
 
 namespace ProtonVPN.Common.OS.Net.NetworkInterface
 {
@@ -32,14 +30,15 @@ namespace ProtonVPN.Common.OS.Net.NetworkInterface
     {
         public SystemNetworkInterfaces()
         {
-            NetworkChange.NetworkAddressChanged += (s, e) => this.NetworkAddressChanged?.Invoke(s, e);
+            NetworkChange.NetworkAddressChanged += (s, e) => NetworkAddressChanged?.Invoke(s, e);
         }
 
         public event EventHandler NetworkAddressChanged;
 
-        public INetworkInterface[] Interfaces()
+        public INetworkInterface[] GetInterfaces()
         {
-            var interfaces = System.Net.NetworkInformation.NetworkInterface.GetAllNetworkInterfaces();
+            System.Net.NetworkInformation.NetworkInterface[] interfaces =
+                System.Net.NetworkInformation.NetworkInterface.GetAllNetworkInterfaces();
 
             return interfaces
                 .Select(i => new SystemNetworkInterface(i))
@@ -47,50 +46,9 @@ namespace ProtonVPN.Common.OS.Net.NetworkInterface
                 .ToArray();
         }
 
-        public uint InterfaceIndex(string hardwareId)
+        public INetworkInterface GetByDescription(string description)
         {
-            string guid = GetInterfaceGuid(hardwareId);
-            if (!string.IsNullOrEmpty(guid))
-            {
-                INetworkInterface netInterface = Interfaces().FirstOrDefault(i => i.Id == guid);
-                return netInterface?.Index ?? 0;
-            }
-
-            return 0;
-        }
-
-        private string GetInterfaceGuid(string hardwareId)
-        {
-            //This key is consistent across windows and does not change.
-            string keyStr = @"SYSTEM\CurrentControlSet\Control\Class\{4d36e972-e325-11ce-bfc1-08002be10318}";
-            using RegistryKey key = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(keyStr);
-            if (key != null)
-            {
-                foreach (string adapterKey in key.GetSubKeyNames())
-                {
-                    try
-                    {
-                        RegistryKey adapter = key.OpenSubKey(adapterKey);
-                        if (adapter == null)
-                        {
-                            continue;
-                        }
-
-                        object componentId = adapter.GetValue("ComponentId");
-                        object adapterGuid = adapter.GetValue("NetCfgInstanceId");
-                        if (componentId?.ToString() == hardwareId)
-                        {
-                            return adapterGuid?.ToString();
-                        }
-                    }
-                    catch (SecurityException)
-                    {
-                        //ignore
-                    }
-                }
-            }
-
-            return string.Empty;
+            return GetInterfaces().FirstOrDefault(i => i.Description.Contains(description));
         }
     }
 }

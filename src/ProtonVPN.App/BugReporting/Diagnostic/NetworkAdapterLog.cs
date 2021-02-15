@@ -41,7 +41,7 @@ namespace ProtonVPN.BugReporting.Diagnostic
             get
             {
                 var str = string.Empty;
-                var interfaces = _networkInterfaces.Interfaces();
+                var interfaces = _networkInterfaces.GetInterfaces();
                 foreach (var networkInterface in interfaces)
                 {
                     str += GetInterfaceDetails(networkInterface);
