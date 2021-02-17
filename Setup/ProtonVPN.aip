@@ -495,6 +495,7 @@
     <ROW Action="RemoveProgramData" Type="65" Source="ProtonVPN.InstallActions.dll" Target="RemoveProgramData"/>
     <ROW Action="RemoveTap" Type="65" Source="ProtonVPN.InstallActions.dll" Target="UninstallProduct"/>
     <ROW Action="RemoveTun" Type="65" Source="ProtonVPN.InstallActions.dll" Target="UninstallProduct"/>
+    <ROW Action="RemoveWfpObjects" Type="65" Source="ProtonVPN.InstallActions.dll" Target="RemoveWfpObjects"/>
     <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]" MultiBuildTarget="DefaultBuild:[ProgramFilesFolder]Proton Technologies\[ProductName]"/>
     <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][ProductName]"/>
     <ROW Action="SET_TARGETDIR_TO_APPDIR" Type="51" Source="TARGETDIR" Target="[APPDIR]"/>
@@ -649,6 +650,7 @@
     <ROW Action="AI_DATA_SETTER_1" Sequence="57"/>
     <ROW Action="SetLanguageISOCode" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) )" Sequence="6608"/>
     <ROW Action="InstallCalloutDriver" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) )" Sequence="6607"/>
+    <ROW Action="RemoveWfpObjects" Condition="( ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) OR ( Installed AND ( REMOVE = &quot;ALL&quot; OR AI_INSTALL_MODE = &quot;Remove&quot; ) ) )" Sequence="6403"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstallUISequenceComponent">
     <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="749"/>
