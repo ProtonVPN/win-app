@@ -71,6 +71,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Native", "src\ProtonVPN.Native\ProtonVPN.Native.csproj", "{CB301B4C-D518-41F5-873B-9B1F145DB4AF}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ProtonVPN.InstallActions", "src\ProtonVPN.InstallActions\ProtonVPN.InstallActions.vcxproj", "{BBCBB464-BDCB-49CD-830F-965D07CE1446}"
+	ProjectSection(ProjectDependencies) = postProject
+		{25781B52-5858-4387-80A5-C9C38C32B3CC} = {25781B52-5858-4387-80A5-C9C38C32B3CC}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ProtonVPN.CalloutDriver", "src\ProtonVPN.CalloutDriver\ProtonVPN.CalloutDriver.vcxproj", "{85E3F2D0-84AA-4DD2-B23A-B41D779A5FA9}"
 EndProject
