@@ -9,13 +9,6 @@
 #include "filter_specification.h"
 #include "net_interface.h"
 
-unsigned int IPFilterDestroyFilter(
-    IPFilterSessionHandle sessionHandle,
-    GUID* filterKey)
-{
-    return FwpmFilterDeleteByKey0(sessionHandle, filterKey);
-}
-
 void IPFilterGetLayerKey(
     GUID& spec,
     unsigned int layer)

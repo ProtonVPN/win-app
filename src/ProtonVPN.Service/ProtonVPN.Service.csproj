@@ -214,7 +214,9 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="AfterBuild" BeforeTargets="Build;Rebuild">
+    <MSBuild Projects="..\ProtonVPN.IpFilterLib\ProtonVPN.IpFilterLib.vcxproj" Properties="PlatformToolset=v142;Platform=Win32;Configuration=$(Configuration);OutDir=$(TargetDir)x86\" />
     <MSBuild Projects="..\ProtonVPN.IpFilter\ProtonVPN.IpFilter.vcxproj" Properties="PlatformToolset=v142;Platform=Win32;Configuration=$(Configuration);OutDir=$(TargetDir)x86\" />
+    <MSBuild Projects="..\ProtonVPN.IpFilterLib\ProtonVPN.IpFilterLib.vcxproj" Properties="PlatformToolset=v142;Platform=x64;Configuration=$(Configuration);OutDir=$(TargetDir)x64\" />
     <MSBuild Projects="..\ProtonVPN.IpFilter\ProtonVPN.IpFilter.vcxproj" Properties="PlatformToolset=v142;Platform=x64;Configuration=$(Configuration);OutDir=$(TargetDir)x64\" />
     <MSBuild Projects="..\ProtonVPN.NetworkUtil\ProtonVPN.NetworkUtil.vcxproj" Properties="PlatformToolset=v142;Platform=Win32;Configuration=$(Configuration);OutDir=$(TargetDir)x86\" />
     <MSBuild Projects="..\ProtonVPN.NetworkUtil\ProtonVPN.NetworkUtil.vcxproj" Properties="PlatformToolset=v142;Platform=x64;Configuration=$(Configuration);OutDir=$(TargetDir)x64\" />

@@ -7,17 +7,17 @@
 #include <fwptypes.h>
 #include <fwpmu.h>
 
-unsigned int IPFilterStartTransaction(IPFilterSessionHandle* handle)
+unsigned int IPFilterStartTransaction(IPFilterSessionHandle handle)
 {
     return FwpmTransactionBegin(handle, 0);
 }
 
-unsigned int IPFilterAbortTransaction(IPFilterSessionHandle* handle)
+unsigned int IPFilterAbortTransaction(IPFilterSessionHandle handle)
 {
     return FwpmTransactionAbort(handle);
 }
 
-unsigned int IPFilterCommitTransaction(IPFilterSessionHandle* handle)
+unsigned int IPFilterCommitTransaction(IPFilterSessionHandle handle)
 {
     return FwpmTransactionCommit(handle);
 }
@@ -257,7 +257,20 @@ unsigned int IPFilterDestroySublayer(
     IPFilterSessionHandle sessionHandle,
     GUID* subLayerKey)
 {
-    return FwpmSubLayerDeleteByKey(sessionHandle, subLayerKey);
+    auto result = FwpmSubLayerDeleteByKey(sessionHandle, subLayerKey);
+    if (result == FWP_E_SUBLAYER_NOT_FOUND)
+    {
+        return ERROR_SUCCESS;
+    }
+
+    return result;
+}
+
+unsigned int IPFilterDestroyFilter(
+    IPFilterSessionHandle sessionHandle,
+    GUID* filterKey)
+{
+    return FwpmFilterDeleteByKey(sessionHandle, filterKey);
 }
 
 unsigned int IPFilterDestroySublayerFilters(
