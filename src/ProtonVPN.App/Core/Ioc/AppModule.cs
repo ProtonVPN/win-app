@@ -128,7 +128,7 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<VpnService>().AsSelf().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<ModalWindows>().As<IModalWindows>().SingleInstance();
             builder.RegisterType<ProtonVPN.Modals.Modals>().As<IModals>().SingleInstance();
-            builder.RegisterType<ProtonVPN.Windows.Popups.PopupWindows>().As<IPopupWindows>().SingleInstance();
+            builder.RegisterType<Windows.Popups.PopupWindows>().As<IPopupWindows>().SingleInstance();
             builder.RegisterType<Dialogs>().As<IDialogs>().SingleInstance();
             builder.RegisterType<AutoStartup>().As<IAutoStartup>().SingleInstance();
             builder.RegisterType<SyncableAutoStartup>().As<ISyncableAutoStartup>().SingleInstance();
@@ -175,6 +175,8 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<ProtonVPN.Settings.Migrations.v1_17_0.AppSettingsMigration>().AsImplementedInterfaces()
                 .SingleInstance();
             builder.RegisterType<ProtonVPN.Settings.Migrations.v1_18_3.AppSettingsMigration>().AsImplementedInterfaces()
+                .SingleInstance();
+            builder.RegisterType<ProtonVPN.Settings.Migrations.v1_20_0.AppSettingsMigration>().AsImplementedInterfaces()
                 .SingleInstance();
 
             builder.RegisterType<MapLineManager>().AsImplementedInterfaces().AsSelf().SingleInstance();
