@@ -235,6 +235,7 @@
     </Compile>
     <Compile Include="Modals\RebootModalViewModel.cs" />
     <Compile Include="Modals\ExitModalViewModel.cs" />
+    <Compile Include="Settings\Migrations\v1_20_0\AppSettingsMigration.cs" />
     <Compile Include="PlanDowngrading\PlanDowngradeHandler.cs" />
     <Compile Include="Windows\BaseWindowViewModel.cs" />
     <Compile Include="Windows\Popups\BaseUpgradePlanPopupViewModel.cs" />
