@@ -124,10 +124,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <Button Style="{StaticResource SecondaryModalButton}"
                             Visibility="{Binding NetworkBlocked, Converter={StaticResource BoolToVis}}"
                             Command="{Binding DisableKillSwitchCommand}"
-                            Content="{translations:Loc Dialogs_DisconnectError_btn_Disable}"/>
+                            Content="{translations:Loc Dialogs_DisconnectError_btn_DisableKillSwitch}"/>
                     <Button Style="{StaticResource PrimaryModalButton}"
                             Command="{Binding CloseCommand}"
-                            Content="{translations:Loc Dialogs_btn_Close}"
+                            Content="{translations:Loc Dialogs_btn_Ok}"
                             Visibility="{calcBinding:Binding !ShowUpgrade}"/>
                     <Button Style="{StaticResource SecondaryModalButton}"
                             Command="{Binding CloseCommand}"

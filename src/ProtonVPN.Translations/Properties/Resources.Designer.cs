@@ -3307,6 +3307,15 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ok.
+        /// </summary>
+        public static string Dialogs_btn_Ok {
+            get {
+                return ResourceManager.GetString("Dialogs_btn_Ok", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enable.
         /// </summary>
         public static string Dialogs_DisabledService_btn_Enable {
@@ -3352,11 +3361,11 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DISABLE.
+        ///   Looks up a localized string similar to Disable Kill Switch.
         /// </summary>
-        public static string Dialogs_DisconnectError_btn_Disable {
+        public static string Dialogs_DisconnectError_btn_DisableKillSwitch {
             get {
-                return ResourceManager.GetString("Dialogs_DisconnectError_btn_Disable", resourceCulture);
+                return ResourceManager.GetString("Dialogs_DisconnectError_btn_DisableKillSwitch", resourceCulture);
             }
         }
         
@@ -3370,7 +3379,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to All TAP/TUN adapters are in use..
+        ///   Looks up a localized string similar to Your network adapter is currently in use..
         /// </summary>
         public static string Dialogs_DisconnectError_msg_AllAdaptersInUse {
             get {
@@ -3388,7 +3397,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kill Switch is blocking all connections to avoid leaking your data. To dismiss this window, click CLOSE. If you would like to temporarily disable Kill Switch and reconnect to the Internet WITHOUT VPN protection, click DISABLE. To turn off Kill Switch permanently, go to &lt;Hyperlink Command=&quot;{Binding SettingsCommand}&quot;&gt;Settings.&lt;/Hyperlink&gt;.
+        ///   Looks up a localized string similar to Kill Switch is protecting your IP by blocking all connections. In case of trouble you can disable Kill Switch..
         /// </summary>
         public static string Dialogs_DisconnectError_msg_KillSwitch {
             get {
@@ -3406,7 +3415,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TAP/TUN adapter is missing..
+        ///   Looks up a localized string similar to The network adapter is missing..
         /// </summary>
         public static string Dialogs_DisconnectError_msg_NoTap {
             get {
@@ -3415,7 +3424,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Current TAP/TUN adapter version is outdated..
+        ///   Looks up a localized string similar to The network adapter version is outdated..
         /// </summary>
         public static string Dialogs_DisconnectError_msg_OldVersion {
             get {
