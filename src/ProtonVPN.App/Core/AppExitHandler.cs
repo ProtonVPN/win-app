@@ -17,38 +17,39 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Vpn;
-using ProtonVPN.Core.Modals;
-using ProtonVPN.Core.Vpn;
-using ProtonVPN.Translations;
 using System.Threading.Tasks;
 using System.Windows;
+using ProtonVPN.Common.Vpn;
+using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Service.Vpn;
+using ProtonVPN.Core.Vpn;
+using ProtonVPN.Modals;
 
 namespace ProtonVPN.Core
 {
-    internal class AppExitHandler : IVpnStateAware
+    public class AppExitHandler : IVpnStateAware
     {
-        private readonly IDialogs _dialogs;
-        private VpnStatus _vpnStatus;
+        private readonly IModals _modals;
         private readonly VpnService _vpnService;
+        private VpnStateChangedEventArgs _vpnStateChangedEventArgs = new(new VpnState(VpnStatus.Disconnected), VpnError.None, false);
+
+        public AppExitHandler(IModals modals, VpnService vpnService)
+        {
+            _vpnService = vpnService;
+            _modals = modals;
+        }
 
         public bool PendingExit { get; private set; }
 
-        public AppExitHandler(IDialogs dialogs, VpnService vpnService)
-        {
-            _vpnService = vpnService;
-            _dialogs = dialogs;
-        }
-
         public void RequestExit()
         {
-            if (_vpnStatus != VpnStatus.Disconnected &&
-                _vpnStatus != VpnStatus.Disconnecting)
+            if (ShowModal())
             {
-                var result = _dialogs.ShowQuestion(Translation.Get("App_msg_ExitConnectedConfirm"));
+                bool? result = _modals.Show<ExitModalViewModel>();
                 if (result == false)
+                {
                     return;
+                }
             }
 
             PendingExit = true;
@@ -59,8 +60,15 @@ namespace ProtonVPN.Core
 
         public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
         {
-            _vpnStatus = e.State.Status;
+            _vpnStateChangedEventArgs = e;
             return Task.CompletedTask;
+        }
+
+        private bool ShowModal()
+        {
+            return (_vpnStateChangedEventArgs.State.Status != VpnStatus.Disconnected &&
+                    _vpnStateChangedEventArgs.State.Status != VpnStatus.Disconnecting) ||
+                   _vpnStateChangedEventArgs.NetworkBlocked;
         }
     }
 }

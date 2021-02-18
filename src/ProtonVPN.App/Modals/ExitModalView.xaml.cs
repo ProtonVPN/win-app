@@ -17,32 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Windows;
-using ProtonVPN.Core;
-
-namespace ProtonVPN.Login.Views
+namespace ProtonVPN.Modals
 {
-    public partial class LoginWindow
+    public partial class ExitModalView
     {
-        private readonly AppExitHandler _appExitHandler;
-
-        public LoginWindow(AppExitHandler appExitHandler)
+        public ExitModalView()
         {
-            _appExitHandler = appExitHandler;
             InitializeComponent();
-
-            CloseButton.Click += CloseButton_Click;
-            MinimizeButton.Click += Minimize_Click;
-        }
-
-        private void CloseButton_Click(object sender, RoutedEventArgs e)
-        {
-            _appExitHandler.RequestExit();
-        }
-
-        private void Minimize_Click(object sender, RoutedEventArgs e)
-        {
-            WindowState = WindowState.Minimized;
         }
     }
 }
