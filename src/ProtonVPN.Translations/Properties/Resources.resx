@@ -2299,15 +2299,15 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <comment>The name of ZZ (unknown or not specified) country</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_KillSwitch" xml:space="preserve">
-    <value>Kill Switch is blocking all connections to avoid leaking your data. To dismiss this window, click CLOSE. If you would like to temporarily disable Kill Switch and reconnect to the Internet WITHOUT VPN protection, click DISABLE. To turn off Kill Switch permanently, go to &lt;Hyperlink Command="{Binding SettingsCommand}"&gt;Settings.&lt;/Hyperlink&gt;</value>
+    <value>Kill Switch is protecting your IP by blocking all connections. In case of trouble you can disable Kill Switch.</value>
     <comment>The text displayed in Disconnect modal window ifn disconnect occurred with Kill Switch turned on.</comment>
   </data>
-  <data name="Dialogs_DisconnectError_btn_Disable" xml:space="preserve">
-    <value>DISABLE</value>
+  <data name="Dialogs_DisconnectError_btn_DisableKillSwitch" xml:space="preserve">
+    <value>Disable Kill Switch</value>
     <comment>The text on Disable button in Disconnect modal window</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_AllAdaptersInUse" xml:space="preserve">
-    <value>All TAP/TUN adapters are in use.</value>
+    <value>Your network adapter is currently in use.</value>
     <comment>The error description displayed in Disconnect modal window if all TAP adapters are in use</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_TapErrorHelp" xml:space="preserve">
@@ -2315,11 +2315,11 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <comment>The text displayed in Disconnect modal window if TAP error is detected</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_NoTap" xml:space="preserve">
-    <value>TAP/TUN adapter is missing.</value>
+    <value>The network adapter is missing.</value>
     <comment>The error description displayed in Disconnect modal window if TAP adapter is not installed</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_OldVersion" xml:space="preserve">
-    <value>Current TAP/TUN adapter version is outdated.</value>
+    <value>The network adapter version is outdated.</value>
     <comment>The error description displayed in Disconnect modal window if TAP adapter version is too low</comment>
   </data>
   <data name="Dialogs_ServiceStart_Info" xml:space="preserve">
@@ -2900,6 +2900,9 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   </data>
   <data name="QuickSettings_btn_KillSwitchAlwaysOn" xml:space="preserve">
     <value>Kill Switch Always-On</value>
+  </data>
+  <data name="Dialogs_btn_Ok" xml:space="preserve">
+    <value>Ok</value>
   </data>
   <data name="Dialogs_TunFallback_btn_OpenSettings" xml:space="preserve">
     <value>Open Settings</value>
