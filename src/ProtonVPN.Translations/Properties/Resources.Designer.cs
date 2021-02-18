@@ -628,15 +628,6 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Exiting the application will disconnect the active VPN connection. Do you want to continue?.
-        /// </summary>
-        public static string App_msg_ExitConnectedConfirm {
-            get {
-                return ResourceManager.GetString("App_msg_ExitConnectedConfirm", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Logging out of the application will disconnect the active VPN connection. Do you want to continue?.
         /// </summary>
         public static string App_msg_LogoutConnectedConfirm {
@@ -3496,6 +3487,60 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string Dialogs_Exit_btn_Cancel {
+            get {
+                return ResourceManager.GetString("Dialogs_Exit_btn_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exit.
+        /// </summary>
+        public static string Dialogs_Exit_btn_Exit {
+            get {
+                return ResourceManager.GetString("Dialogs_Exit_btn_Exit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you want to continue?.
+        /// </summary>
+        public static string Dialogs_Exit_msg_Confirm {
+            get {
+                return ResourceManager.GetString("Dialogs_Exit_msg_Confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exiting the application will disconnect you from the VPN..
+        /// </summary>
+        public static string Dialogs_Exit_msg_Connected {
+            get {
+                return ResourceManager.GetString("Dialogs_Exit_msg_Connected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kill Switch Always-On is enabled. Exiting the application will block all the outgoing connections until ProtonVPN is connected again..
+        /// </summary>
+        public static string Dialogs_Exit_msg_KillSwitchAlwaysOn {
+            get {
+                return ResourceManager.GetString("Dialogs_Exit_msg_KillSwitchAlwaysOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kill Switch is blocking all connections to avoid leaking your data. Exiting the application will disable the Kill Switch..
+        /// </summary>
+        public static string Dialogs_Exit_msg_KillSwitchOn {
+            get {
+                return ResourceManager.GetString("Dialogs_Exit_msg_KillSwitchOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Quit.
         /// </summary>
         public static string Dialogs_OutdatedApp_btn_Quit {
@@ -4059,16 +4104,6 @@ namespace ProtonVPN.Translations.Properties {
         public static string Login_lnk_ResetPassword {
             get {
                 return ResourceManager.GetString("Login_lnk_ResetPassword", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Kill Switch is blocking all connections to avoid leaking your data.&lt;LineBreak/&gt;
-        ///Exiting the application will disable the Kill Switch. Do you want to continue?.
-        /// </summary>
-        public static string Login_msg_ExitKillSwitchConfirm {
-            get {
-                return ResourceManager.GetString("Login_msg_ExitKillSwitchConfirm", resourceCulture);
             }
         }
         

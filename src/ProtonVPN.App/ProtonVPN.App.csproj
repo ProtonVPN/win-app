@@ -211,6 +211,9 @@
       <DependentUpon>DelinquencyModalView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modals\Delinquencies\DelinquencyModalViewModel.cs" />
+    <Compile Include="Modals\ExitModalView.xaml.cs">
+      <DependentUpon>ExitModalView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modals\TunInUseModalView.xaml.cs">
       <DependentUpon>TunInUseModalView.xaml</DependentUpon>
     </Compile>
@@ -231,6 +234,7 @@
       <DependentUpon>RebootModalView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modals\RebootModalViewModel.cs" />
+    <Compile Include="Modals\ExitModalViewModel.cs" />
     <Compile Include="PlanDowngrading\PlanDowngradeHandler.cs" />
     <Compile Include="Windows\BaseWindowViewModel.cs" />
     <Compile Include="Windows\Popups\BaseUpgradePlanPopupViewModel.cs" />
@@ -859,6 +863,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="FlashNotifications\UpdateFlashNotification.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Modals\ExitModalView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
