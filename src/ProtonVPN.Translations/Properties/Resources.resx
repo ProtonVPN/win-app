@@ -2914,6 +2914,12 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="Dialogs_Exit_btn_Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="Dialogs_KillSwitchConfirmation_msg" xml:space="preserve">
+    <value>With Kill Switch Always On, if the VPN is not connected for any reason, you won't be able to access the Internet.</value>
+  </data>
+  <data name="Dialogs_KillSwitchConfirmation_ttl" xml:space="preserve">
+    <value>Enable Kill Switch Always-On?</value>
+  </data>
   <data name="Dialogs_TunFallback_btn_OpenSettings" xml:space="preserve">
     <value>Open Settings</value>
   </data>

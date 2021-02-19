@@ -394,6 +394,12 @@ namespace ProtonVPN.Core
             set => Set(value);
         }
 
+        public bool DoNotShowKillSwitchConfirmationDialog
+        {
+            get => GetPerUser<bool>();
+            set => SetPerUser(value);
+        }
+
         public TimeSpan MaintenanceCheckInterval
         {
             get

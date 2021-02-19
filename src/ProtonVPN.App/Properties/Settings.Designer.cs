@@ -1288,5 +1288,17 @@ namespace ProtonVPN.Properties {
                 this["KillSwitchMode"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string UserDoNotShowKillSwitchConfirmationDialog {
+            get {
+                return ((string)(this["UserDoNotShowKillSwitchConfirmationDialog"]));
+            }
+            set {
+                this["UserDoNotShowKillSwitchConfirmationDialog"] = value;
+            }
+        }
     }
 }
