@@ -320,5 +320,8 @@
     <Setting Name="KillSwitchMode" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="UserDoNotShowKillSwitchConfirmationDialog" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

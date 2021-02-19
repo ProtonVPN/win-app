@@ -281,6 +281,15 @@ namespace ProtonVPN.Sidebar.QuickSettings
 
         private void EnableHardKillSwitchAction()
         {
+            if (!_appSettings.DoNotShowKillSwitchConfirmationDialog)
+            {
+                bool? result = _modals.Show<KillSwitchConfirmationModalViewModel>();
+                if (result.HasValue && !result.Value)
+                {
+                    return;
+                }
+            }
+
             _appSettings.KillSwitchMode = Common.KillSwitch.KillSwitchMode.Hard;
         }
 

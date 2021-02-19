@@ -3541,6 +3541,24 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to With Kill Switch Always On, if the VPN is not connected for any reason, you won&apos;t be able to access the Internet..
+        /// </summary>
+        public static string Dialogs_KillSwitchConfirmation_msg {
+            get {
+                return ResourceManager.GetString("Dialogs_KillSwitchConfirmation_msg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable Kill Switch Always-On?.
+        /// </summary>
+        public static string Dialogs_KillSwitchConfirmation_ttl {
+            get {
+                return ResourceManager.GetString("Dialogs_KillSwitchConfirmation_ttl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Quit.
         /// </summary>
         public static string Dialogs_OutdatedApp_btn_Quit {

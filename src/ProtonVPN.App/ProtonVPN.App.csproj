@@ -226,6 +226,10 @@
     </Compile>
     <Compile Include="Modals\DisabledServiceModalViewModel.cs" />
     <Compile Include="Modals\BfeWarningModalViewModel.cs" />
+    <Compile Include="Modals\KillSwitchConfirmationModalViewModel.cs" />
+    <Compile Include="Modals\KillSwitchConfirmationModalView.xaml.cs">
+      <DependentUpon>KillSwitchConfirmationModalView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modals\PortForwardingConfirmationModalViewModel.cs" />
     <Compile Include="Modals\PortForwardingConfirmationModalView.xaml.cs">
       <DependentUpon>PortForwardingConfirmationModalView.xaml</DependentUpon>
@@ -890,6 +894,10 @@
     <Page Include="Modals\OutdatedAppModalView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modals\KillSwitchConfirmationModalView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Modals\PortForwardingConfirmationModalView.xaml">
       <Generator>MSBuild:Compile</Generator>
