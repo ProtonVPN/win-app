@@ -66,5 +66,18 @@ namespace ProtonVPN.Common.OS.Net.NetworkInterface
                 return new NullNetworkInterface();
             }
         }
+
+        public INetworkInterface GetByName(string name)
+        {
+            try
+            {
+                return _origin.GetByName(name);
+            }
+            catch (NetworkInformationException ex)
+            {
+                _logger.Error($"Failed to retrieve a system network interface: {ex.CombinedMessage()}");
+                return new NullNetworkInterface();
+            }
+        }
     }
 }
