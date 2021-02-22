@@ -54,6 +54,6 @@ namespace ProtonVPN.Common.Configuration
         public string TunAdapterId { get; internal set; }
 
         [Required]
-        public string TunAdapterDescription { get; internal set; }
+        public string TunAdapterName { get; internal set; }
     }
 }

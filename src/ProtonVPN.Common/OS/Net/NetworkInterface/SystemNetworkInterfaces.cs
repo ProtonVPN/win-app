@@ -50,5 +50,10 @@ namespace ProtonVPN.Common.OS.Net.NetworkInterface
         {
             return GetInterfaces().FirstOrDefault(i => i.Description.Contains(description));
         }
+
+        public INetworkInterface GetByName(string name)
+        {
+            return GetInterfaces().FirstOrDefault(i => i.Name == name);
+        }
     }
 }

@@ -146,11 +146,12 @@ namespace ProtonVPN.Vpn.Connection
 
         private string InterfaceGuid()
         {
-            string adapterDescription = _config.UseTunAdapter
-                ? _appConfig.OpenVpn.TunAdapterDescription
-                : _appConfig.OpenVpn.TapAdapterDescription;
+            if (_config.UseTunAdapter)
+            {
+                return _networkInterfaces.GetByName(_appConfig.OpenVpn.TunAdapterName)?.Id ?? string.Empty;
+            }
 
-            return _networkInterfaces.GetByDescription(adapterDescription)?.Id ?? string.Empty;
+            return _networkInterfaces.GetByDescription(_appConfig.OpenVpn.TapAdapterDescription)?.Id ?? string.Empty;
         }
 
         private string ManagementPassword()

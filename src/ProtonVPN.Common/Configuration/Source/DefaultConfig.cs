@@ -215,7 +215,7 @@ namespace ProtonVPN.Common.Configuration.Source
 
                     TunAdapterId = "wintun",
 
-                    TunAdapterDescription = "ProtonVPN Tunnel",
+                    TunAdapterName = "ProtonVPN TUN",
                 },
 
                 TlsPinningConfig =

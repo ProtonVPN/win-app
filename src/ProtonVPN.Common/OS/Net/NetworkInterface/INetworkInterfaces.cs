@@ -26,7 +26,7 @@ namespace ProtonVPN.Common.OS.Net.NetworkInterface
         event EventHandler NetworkAddressChanged;
 
         INetworkInterface[] GetInterfaces();
-
         INetworkInterface GetByDescription(string description);
+        INetworkInterface GetByName(string name);
     }
 }
