@@ -67,20 +67,6 @@ namespace ProtonVPN.NetworkFilter
             return new Sublayer(this, sublayerId);
         }
 
-        public void DestroySublayer(Sublayer sublayer)
-        {
-            sublayer.DestroyAllFilters();
-
-            IpFilterNative.DestroySublayer(
-                Session.Handle,
-                sublayer.Id);
-        }
-
-        public bool DoesSublayerExist(Guid id)
-        {
-            return IpFilterNative.DoesSublayerExist(Session.Handle, id);
-        }
-
         public ProviderContext CreateProviderContext(DisplayData displayData, byte[] data, bool persistent = false, Guid id = new Guid())
         {
             var providerContextId = IpFilterNative.CreateProviderContext(
@@ -94,23 +80,6 @@ namespace ProtonVPN.NetworkFilter
             return new ProviderContext(providerContextId);
         }
 
-        public bool DoesProviderContextExist(Guid id)
-        {
-            return IpFilterNative.DoesProviderContextExist(Session.Handle, id);
-        }
-
-        public bool DoesProviderCalloutExist(Guid id)
-        {
-            return IpFilterNative.DoesCalloutExist(Session.Handle, id);
-        }
-
-        public void DestroyProviderContext(ProviderContext context)
-        {
-            IpFilterNative.DestroyProviderContext(
-                Session.Handle,
-                context.Id);
-        }
-
         public Callout CreateCallout(DisplayData displayData, Guid key, Layer layer, bool persistent = false)
         {
             var calloutId = IpFilterNative.CreateCallout(
@@ -122,16 +91,6 @@ namespace ProtonVPN.NetworkFilter
                 persistent);
 
             return new Callout(calloutId);
-        }
-
-        public void DestroyCallout(Guid key)
-        {
-            IpFilterNative.DestroyCallout(Session.Handle, key);
-        }
-
-        public void DestroyCallouts(Guid providerId)
-        {
-            IpFilterNative.DestroyCallouts(Session.Handle, providerId);
         }
     }
 }
