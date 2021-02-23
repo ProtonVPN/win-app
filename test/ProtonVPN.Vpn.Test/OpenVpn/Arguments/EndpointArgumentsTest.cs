@@ -36,7 +36,7 @@ namespace ProtonVPN.Vpn.Test.OpenVpn.Arguments
         public void Enumerable_ShouldContain_ExpectedNumberOfOptions()
         {
             // Arrange
-            var endpoint = new VpnEndpoint(new VpnHost("abc.com", "4.5.6.7"), VpnProtocol.OpenVpnUdp, 48965);
+            var endpoint = new VpnEndpoint(new VpnHost("abc.com", "4.5.6.7", string.Empty), VpnProtocol.OpenVpnUdp, 48965);
             var subject = new EndpointArguments(endpoint);
 
             // Act
@@ -50,7 +50,7 @@ namespace ProtonVPN.Vpn.Test.OpenVpn.Arguments
         public void Enumerable_ShouldContain_RemoteOption()
         {
             // Arrange
-            var endpoint = new VpnEndpoint(new VpnHost("abc.com", "11.22.33.44"), VpnProtocol.OpenVpnUdp, 61874);
+            var endpoint = new VpnEndpoint(new VpnHost("abc.com", "11.22.33.44", string.Empty), VpnProtocol.OpenVpnUdp, 61874);
             var subject = new EndpointArguments(endpoint);
 
             // Act
@@ -66,7 +66,7 @@ namespace ProtonVPN.Vpn.Test.OpenVpn.Arguments
         public void Enumerable_ShouldMap_VpnProtocol(VpnProtocol protocol, string expected)
         {
             // Arrange
-            var endpoint = new VpnEndpoint(new VpnHost("abc.com", "7.7.7.7"), protocol, 44444);
+            var endpoint = new VpnEndpoint(new VpnHost("abc.com", "7.7.7.7", string.Empty), protocol, 44444);
             var subject = new EndpointArguments(endpoint);
 
             // Act
@@ -81,7 +81,7 @@ namespace ProtonVPN.Vpn.Test.OpenVpn.Arguments
         public void Enumerable_ShouldThrow_WhenProtocolIsNotSupported(VpnProtocol protocol)
         {
             // Arrange
-            var endpoint = new VpnEndpoint(new VpnHost("abc.com", "1.2.3.4"), protocol, 54321);
+            var endpoint = new VpnEndpoint(new VpnHost("abc.com", "1.2.3.4", string.Empty), protocol, 54321);
             var subject = new EndpointArguments(endpoint);
 
             // Act

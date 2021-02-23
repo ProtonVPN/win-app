@@ -51,7 +51,7 @@ namespace ProtonVPN.Vpn.Test.Connection
             _taskQueue = new TaskQueue();
             _origin = Substitute.For<ISingleVpnConnection>();
 
-            _endpoint = new VpnEndpoint(new VpnHost("proton.vpn", "135.27.46.203"), VpnProtocol.OpenVpnTcp, 777);
+            _endpoint = new VpnEndpoint(new VpnHost("proton.vpn", "135.27.46.203", string.Empty), VpnProtocol.OpenVpnTcp, 777);
             _credentials = new VpnCredentials("username", "password");
             _config = new VpnConfig(new Dictionary<VpnProtocol, IReadOnlyCollection<int>>(), SplitTunnelMode.Disabled, useTunAdapter: false);
         }

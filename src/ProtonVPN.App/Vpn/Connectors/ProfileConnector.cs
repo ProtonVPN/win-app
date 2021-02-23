@@ -44,7 +44,7 @@ namespace ProtonVPN.Vpn.Connectors
 {
     public class ProfileConnector
     {
-        private readonly Random _random = new Random();
+        private readonly Random _random = new();
 
         private readonly ILogger _logger;
         private readonly IUserStorage _userStorage;
@@ -90,7 +90,7 @@ namespace ProtonVPN.Vpn.Connectors
             return _serverCandidatesFactory.ServerCandidates(servers);
         }
 
-        public bool CanConnect(ServerCandidates candidates, Profile profile)
+        public bool CanConnect(ServerCandidates candidates)
         {
             IReadOnlyList<Server> servers = Servers(candidates);
 
@@ -140,7 +140,7 @@ namespace ProtonVPN.Vpn.Connectors
             if (profileType == ProfileType.Random)
             {
                 Random random = new Random();
-                return source.OrderBy(s => random.NextDouble());
+                return source.OrderBy(_ => random.NextDouble());
             }
 
             if (_appSettings.FeaturePortForwardingEnabled && _appSettings.PortForwardingEnabled)
@@ -421,7 +421,7 @@ namespace ProtonVPN.Vpn.Connectors
             return servers
                 .SelectMany(s => s.Servers.OrderBy(_ => _random.Next()))
                 .Where(s => s.Status != 0)
-                .Select(s => new VpnHost(s.Domain, s.EntryIp))
+                .Select(s => new VpnHost(s.Domain, s.EntryIp, s.Label))
                 .Distinct(s => s.Ip)
                 .ToList();
         }

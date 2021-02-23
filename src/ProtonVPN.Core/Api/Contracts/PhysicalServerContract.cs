@@ -35,5 +35,7 @@ namespace ProtonVPN.Core.Api.Contracts
         public string Domain;
 
         public sbyte Status;
+
+        public string Label;
     }
 }

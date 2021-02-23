@@ -248,7 +248,7 @@ namespace ProtonVPN.Service
 
         private static VpnHost Map(VpnHostContract server)
         {
-            return new VpnHost(server.Name, server.Ip);
+            return new VpnHost(server.Name, server.Ip, server.Label);
         }
 
         private VpnConfig Map(VpnConfigContract config)
