@@ -29,5 +29,8 @@ namespace ProtonVPN.Service.Contract.Vpn
 
         [DataMember]
         public string Ip { get; set; }
+
+        [DataMember]
+        public string Label { get; set; }
     }
 }

@@ -108,8 +108,8 @@ namespace ProtonVPN.Vpn.Connectors
         {
             return _guestHoleServers
                 .GetAll()
-                .Select(server => new VpnHost(server.Host, server.Ip))
-                .OrderBy(s => _random.Next())
+                .Select(server => new VpnHost(server.Host, server.Ip, string.Empty))
+                .OrderBy(_ => _random.Next())
                 .ToList();
         }
 

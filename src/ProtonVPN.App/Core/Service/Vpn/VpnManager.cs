@@ -234,8 +234,7 @@ namespace ProtonVPN.Core.Service.Vpn
             {
                 bestProfileCandidates.Profile = profile;
                 bestProfileCandidates.Candidates = _profileConnector.ServerCandidates(profile);
-                bestProfileCandidates.CanConnect =
-                    _profileConnector.CanConnect(bestProfileCandidates.Candidates, profile);
+                bestProfileCandidates.CanConnect = _profileConnector.CanConnect(bestProfileCandidates.Candidates);
 
                 if (bestProfileCandidates.CanConnect)
                 {
