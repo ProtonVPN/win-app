@@ -33,5 +33,7 @@ namespace ProtonVPN.BugReporting.Diagnostic
         public abstract void Write();
 
         public string Path => System.IO.Path.Combine(_path, _filename);
+
+        public string Filename => _filename;
     }
 }

@@ -55,6 +55,8 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 DiagnosticsLogFolder = Path.Combine(localAppDataFolder, "DiagnosticLogs"),
 
+                DiagnosticsZipPath = Path.Combine(localAppDataFolder, "DiagnosticLogs", "diagnostic_logs.zip"),
+
                 TranslationsFolder = baseFolder,
 
                 ErrorMessageExePath = Path.Combine(baseFolder, "ProtonVPN.ErrorMessage.exe"),
