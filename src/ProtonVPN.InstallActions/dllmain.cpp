@@ -37,6 +37,7 @@ const auto ApplicationDirectoryProperty = L"APPDIR";
 const auto WintunDllPathProperty = L"WintunDllPath";
 const auto ProductUpgradeCodeProperty = L"ProductUpgradeCode";
 const auto RebootRequiredProperty = L"RebootRequired";
+const auto ProductNameProperty = L"ProductName";
 
 extern "C" EXPORT long UninstallProduct(MSIHANDLE hInstall)
 {
@@ -215,17 +216,18 @@ void AddFileToZip(const std::wstring& zipFileName, const std::wstring& fileName)
 extern "C" EXPORT long CopyInstallLog(MSIHANDLE hInstall)
 {
     SetMsiHandle(hInstall);
-    
+
+    const std::wstring productName = GetProperty(ProductNameProperty);
     const std::wstring logFile = GetProperty(MsiLogFileLocationProperty);
     std::wstring localAppDataFolder = GetProperty(LocalAppDataFolderProperty);
-    const std::wstring logFolder = AddEndingSlashIfNotExists(localAppDataFolder) + L"ProtonVPN\\Logs\\";
-    const std::wstring tmpLogFile = logFolder + L"install.log";
+    const std::wstring logFolder = AddEndingSlashIfNotExists(localAppDataFolder) + L"ProtonVPN\\DiagnosticLogs\\";
+    const std::wstring tmpLogFile = logFolder + productName + L"_install.log";
 
     std::filesystem::create_directories(logFolder);
     const std::filesystem::copy_options copyOptions = std::filesystem::copy_options::overwrite_existing;
-    std::filesystem::copy_file(logFile, tmpLogFile, copyOptions);
+    copy_file(logFile, tmpLogFile, copyOptions);
 
-    const std::wstring zipFileName = logFolder + L"install-log.7z";
+    const std::wstring zipFileName = logFolder + productName + L"_install-log.7z";
 
     AddFileToZip(zipFileName, tmpLogFile);
     std::filesystem::remove(tmpLogFile);

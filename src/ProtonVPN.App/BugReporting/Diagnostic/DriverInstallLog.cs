@@ -25,20 +25,20 @@ namespace ProtonVPN.BugReporting.Diagnostic
 {
     internal class DriverInstallLog : BaseLog
     {
-        private const string Filename = "setupapi.dev.log";
+        private const string SetupApiLogFile = "setupapi.dev.log";
 
-        public DriverInstallLog(string path) : base(path, Filename)
+        public DriverInstallLog(string path) : base(path, "setupapi.dev.zip")
         {
         }
 
         public override void Write()
         {
-            var windowsPath = Environment.GetFolderPath(Environment.SpecialFolder.Windows);
-            var copyFrom = System.IO.Path.Combine(windowsPath, "inf", Filename);
+            string windowsPath = Environment.GetFolderPath(Environment.SpecialFolder.Windows);
+            string copyFrom = System.IO.Path.Combine(windowsPath, "inf", SetupApiLogFile);
 
-            using var fs = new FileStream(Path.Replace(".log", ".zip"), FileMode.Create);
+            using var fs = new FileStream(Path, FileMode.Create);
             using var arch = new ZipArchive(fs, ZipArchiveMode.Create);
-            arch.CreateEntryFromFile(copyFrom, Filename);
+            arch.CreateEntryFromFile(copyFrom, SetupApiLogFile);
         }
     }
 }
