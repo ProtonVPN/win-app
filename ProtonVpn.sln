@@ -97,6 +97,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ProtonVPN.IpFilterLib", "sr
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ProtonVPN.IPFilter", "src\ProtonVPN.IPFilter\ProtonVPN.IPFilter.vcxproj", "{75126704-A03B-4AA2-B182-189263397E8F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.RestoreInternet", "ProtonVPN.RestoreInternet\ProtonVPN.RestoreInternet.csproj", "{8D07769D-0AAE-4224-AECB-DF68567F6B00}"
+	ProjectSection(ProjectDependencies) = postProject
+		{BBCBB464-BDCB-49CD-830F-965D07CE1446} = {BBCBB464-BDCB-49CD-830F-965D07CE1446}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -475,6 +480,18 @@ Global
 		{75126704-A03B-4AA2-B182-189263397E8F}.Release|Any CPU.ActiveCfg = Release|x64
 		{75126704-A03B-4AA2-B182-189263397E8F}.Release|x64.ActiveCfg = Release|x64
 		{75126704-A03B-4AA2-B182-189263397E8F}.Release|x86.ActiveCfg = Release|Win32
+		{8D07769D-0AAE-4224-AECB-DF68567F6B00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D07769D-0AAE-4224-AECB-DF68567F6B00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D07769D-0AAE-4224-AECB-DF68567F6B00}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{8D07769D-0AAE-4224-AECB-DF68567F6B00}.Debug|x64.Build.0 = Debug|Any CPU
+		{8D07769D-0AAE-4224-AECB-DF68567F6B00}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8D07769D-0AAE-4224-AECB-DF68567F6B00}.Debug|x86.Build.0 = Debug|Any CPU
+		{8D07769D-0AAE-4224-AECB-DF68567F6B00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D07769D-0AAE-4224-AECB-DF68567F6B00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D07769D-0AAE-4224-AECB-DF68567F6B00}.Release|x64.ActiveCfg = Release|Any CPU
+		{8D07769D-0AAE-4224-AECB-DF68567F6B00}.Release|x64.Build.0 = Release|Any CPU
+		{8D07769D-0AAE-4224-AECB-DF68567F6B00}.Release|x86.ActiveCfg = Release|Any CPU
+		{8D07769D-0AAE-4224-AECB-DF68567F6B00}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
