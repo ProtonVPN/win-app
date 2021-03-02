@@ -102,6 +102,7 @@
     <Compile Include="Api\File.cs" />
     <Compile Include="Api\GuestHoleState.cs" />
     <Compile Include="Api\Handlers\AlternativeHostHandler.cs" />
+    <Compile Include="Api\Handlers\RefreshTokenStatus.cs" />
     <Compile Include="Api\Handlers\TlsPinning\CertificateExtensions.cs" />
     <Compile Include="Api\Handlers\TlsPinning\IReportClient.cs" />
     <Compile Include="Api\Handlers\TlsPinning\PublicKeyInfoHash.cs" />

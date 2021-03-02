@@ -43,7 +43,7 @@ namespace ProtonVPN.Core.Api.Handlers
         private readonly IUserStorage _userStorage;
 
         private readonly ILogger _logger;
-        private volatile Task<bool> _refreshTask = Task.FromResult(true);
+        private volatile Task<RefreshTokenStatus> _refreshTask = Task.FromResult(RefreshTokenStatus.Success);
 
         public event EventHandler SessionExpired;
 
@@ -68,10 +68,10 @@ namespace ProtonVPN.Core.Api.Handlers
                 return new UnauthorizedResponse();
             }
 
-            Task<bool> refreshTask = _refreshTask;
+            Task<RefreshTokenStatus> refreshTask = _refreshTask;
             if (!refreshTask.IsCompleted)
             {
-                bool refreshSucceeded = await refreshTask;
+                RefreshTokenStatus refreshSucceeded = await refreshTask;
                 return await ResendAsync(request, cancellationToken, refreshSucceeded);
             }
 
@@ -80,7 +80,7 @@ namespace ProtonVPN.Core.Api.Handlers
             {
                 try
                 {
-                    bool refreshSucceeded = await Refresh(refreshTask, cancellationToken);
+                    RefreshTokenStatus refreshSucceeded = await Refresh(refreshTask, cancellationToken);
                     return await ResendAsync(request, cancellationToken, refreshSucceeded);
                 }
                 finally
@@ -92,25 +92,30 @@ namespace ProtonVPN.Core.Api.Handlers
             return response;
         }
 
-        private async Task<HttpResponseMessage> ResendAsync(HttpRequestMessage request, CancellationToken cancellationToken,
-            bool refreshSucceeded)
+        private async Task<HttpResponseMessage> ResendAsync(HttpRequestMessage request,
+            CancellationToken cancellationToken,
+            RefreshTokenStatus refreshTokenStatus)
         {
-            if (refreshSucceeded)
+            switch (refreshTokenStatus)
             {
-                PrepareRequest(request);
-                return await base.SendAsync(request, cancellationToken);
+                case RefreshTokenStatus.Success:
+                    PrepareRequest(request);
+                    return await base.SendAsync(request, cancellationToken);
+                case RefreshTokenStatus.Unauthorized:
+                    SessionExpired?.Invoke(this, EventArgs.Empty);
+                    return new UnauthorizedResponse();
+                default:
+                    return new UnauthorizedResponse();
             }
-
-            SessionExpired?.Invoke(this, EventArgs.Empty);
-            return new UnauthorizedResponse();
         }
 
-        private async Task<bool> Refresh(Task<bool> refreshTask, CancellationToken cancellationToken)
+        private async Task<RefreshTokenStatus> Refresh(Task<RefreshTokenStatus> refreshTask,
+            CancellationToken cancellationToken)
         {
-            TaskCompletionSource<bool> taskCompletion = new TaskCompletionSource<bool>();
-            Task<bool> newTask = taskCompletion.Task;
+            TaskCompletionSource<RefreshTokenStatus> taskCompletion = new TaskCompletionSource<RefreshTokenStatus>();
+            Task<RefreshTokenStatus> newTask = taskCompletion.Task;
 
-            Task<bool> prevTask = Interlocked.CompareExchange(ref _refreshTask, newTask, refreshTask);
+            Task<RefreshTokenStatus> prevTask = Interlocked.CompareExchange(ref _refreshTask, newTask, refreshTask);
 
             if (prevTask != refreshTask)
             {
@@ -122,11 +127,11 @@ namespace ProtonVPN.Core.Api.Handlers
             return await newTask;
         }
 
-        private async Task<bool> RefreshTokens(CancellationToken cancellationToken)
+        private async Task<RefreshTokenStatus> RefreshTokens(CancellationToken cancellationToken)
         {
             if (string.IsNullOrEmpty(_tokenStorage.RefreshToken) || string.IsNullOrEmpty(_tokenStorage.Uid))
             {
-                return false;
+                return RefreshTokenStatus.Unauthorized;
             }
 
             try
@@ -139,7 +144,7 @@ namespace ProtonVPN.Core.Api.Handlers
                     _tokenStorage.AccessToken = response.Value.AccessToken;
                     _tokenStorage.RefreshToken = response.Value.RefreshToken;
 
-                    return true;
+                    return RefreshTokenStatus.Success;
                 }
             }
             catch (ArgumentNullException e)
@@ -147,9 +152,11 @@ namespace ProtonVPN.Core.Api.Handlers
                 _logger.Error($"An error occurred when refreshing the auth token: {e.ParamName}");
             }
             catch (HttpRequestException)
-            { }
+            {
+                return RefreshTokenStatus.Fail;
+            }
 
-            return false;
+            return RefreshTokenStatus.Unauthorized;
         }
 
         private void PrepareRequest(HttpRequestMessage request)
