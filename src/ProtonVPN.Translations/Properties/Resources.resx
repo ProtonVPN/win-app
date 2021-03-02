@@ -2890,12 +2890,12 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Network driver</value>
   </data>
   <data name="Settings_Advanced_lbl_NetworkDriver_info" xml:space="preserve">
-    <value>Network drivers can impact your connection and speed. The new Tun adapter provides higher speed, fallback on Tap adapter if you encounter any connectivity problem.</value>
+    <value>Network drivers can impact your connection and speed. The new TUN adapter provides higher speed, fallback on TAP adapter if you encounter any connectivity problem.</value>
   </data>
   <data name="Settings_Advanced_lbl_Tap" xml:space="preserve">
-    <value>Tap adapter</value>
+    <value>TAP adapter</value>
   </data>
   <data name="Settings_Advanced_lbl_Tun" xml:space="preserve">
-    <value>Tun adapter</value>
+    <value>TUN adapter</value>
   </data>
 </root>
