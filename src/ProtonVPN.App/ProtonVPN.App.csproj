@@ -203,6 +203,10 @@
     <Compile Include="Core\Service\BaseFilteringEngineService.cs" />
     <Compile Include="Core\Service\Vpn\ReconnectManager.cs" />
     <Compile Include="Core\Service\Vpn\VpnManagerProfileCandidates.cs" />
+    <Compile Include="Modals\TunInUseModalView.xaml.cs">
+      <DependentUpon>TunInUseModalView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modals\TunInUseModalViewModel.cs" />
     <Compile Include="Modals\DisabledServiceModalView.xaml.cs">
       <DependentUpon>DisabledServiceModalView.xaml</DependentUpon>
     </Compile>
@@ -839,6 +843,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="FlashNotifications\UpdateFlashNotification.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Modals\TunInUseModalView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

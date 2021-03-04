@@ -2904,4 +2904,10 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="Dialogs_TunFallback_msg" xml:space="preserve">
     <value>ProtonVPN uses the TUN adapter by default for improved performance, but it is not responding correctly. You are therefore now using the TAP adapter. You can switch between TAP and TUN in the Advanced Settings.</value>
   </data>
+  <data name="Dialogs_TunInUse_btn_SwitchToTap" xml:space="preserve">
+    <value>Switch to TAP</value>
+  </data>
+  <data name="Dialogs_TunInUse_msg" xml:space="preserve">
+    <value>ProtonVPN could not connect because the TUN network adapter is already in use. Please disconnect any active VPNs and retry. Alternatively, switch to the TAP adapter (you can change back to TUN in the Advanced Settings).</value>
+  </data>
 </root>

@@ -45,6 +45,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <system:String x:Key="SaveButton">SaveButton</system:String>
     <system:String x:Key="CloseButtonId">CloseButton</system:String>
     <system:String x:Key="OpenSettingsButtonId">OpenSettingsButtonId</system:String>
+    <system:String x:Key="SwitchToTapButtonId">SwitchToTapButtonId</system:String>
     <system:String x:Key="TryAgainButtonId">TryAgainButton</system:String>
     <system:String x:Key="ContinueButtonId">ContinueButton</system:String>
     <system:String x:Key="SidebarModeButtonId">SidebarModeButton</system:String>
