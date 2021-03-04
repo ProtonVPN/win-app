@@ -3793,6 +3793,24 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Switch to TAP.
+        /// </summary>
+        public static string Dialogs_TunInUse_btn_SwitchToTap {
+            get {
+                return ResourceManager.GetString("Dialogs_TunInUse_btn_SwitchToTap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ProtonVPN could not connect because the TUN network adapter is already in use. Please disconnect any active VPNs and retry. Alternatively, switch to the TAP adapter (you can change back to TUN in the Advanced Settings)..
+        /// </summary>
+        public static string Dialogs_TunInUse_msg {
+            get {
+                return ResourceManager.GetString("Dialogs_TunInUse_msg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Close.
         /// </summary>
         public static string ErrorWindow_lbl_Close {
