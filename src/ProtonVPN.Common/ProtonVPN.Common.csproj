@@ -102,6 +102,8 @@
     <Compile Include="Configuration\UrlConfig.cs" />
     <Compile Include="CrashReporting\CrashReports.cs" />
     <Compile Include="Logging\LoggerExtensions.cs" />
+    <Compile Include="OS\Net\INetworkInterfaceLoader.cs" />
+    <Compile Include="OS\Net\NetworkInterfaceLoader.cs" />
     <Compile Include="OS\Net\NetworkAddress.cs" />
     <Compile Include="OS\Net\NetworkUtil.cs" />
     <Compile Include="OS\Net\NetworkUtilException.cs" />

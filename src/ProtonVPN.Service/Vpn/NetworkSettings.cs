@@ -26,18 +26,18 @@ namespace ProtonVPN.Service.Vpn
 {
     internal class NetworkSettings : IVpnStateAware
     {
-        private readonly ICurrentNetworkAdapter _currentNetworkAdapter;
+        private readonly ICurrentNetworkInterface _currentNetworkInterface;
         private readonly ILogger _logger;
 
-        public NetworkSettings(ILogger logger, ICurrentNetworkAdapter currentNetworkAdapter)
+        public NetworkSettings(ILogger logger, ICurrentNetworkInterface currentNetworkInterface)
         {
             _logger = logger;
-            _currentNetworkAdapter = currentNetworkAdapter;
+            _currentNetworkInterface = currentNetworkInterface;
         }
 
         public bool ApplyNetworkSettings()
         {
-            uint interfaceIndex = _currentNetworkAdapter.Index;
+            uint interfaceIndex = _currentNetworkInterface.Index;
             if (interfaceIndex == 0)
             {
                 return false;
@@ -58,7 +58,7 @@ namespace ProtonVPN.Service.Vpn
 
         private void RestoreNetworkSettings()
         {
-            uint interfaceIndex = _currentNetworkAdapter.Index;
+            uint interfaceIndex = _currentNetworkInterface.Index;
             if (interfaceIndex == 0)
             {
                 return;

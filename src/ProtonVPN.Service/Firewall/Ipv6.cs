@@ -30,12 +30,12 @@ namespace ProtonVPN.Service.Firewall
         private const string AppName = "ProtonVPN";
 
         private readonly ILogger _logger;
-        private readonly ICurrentNetworkAdapter _currentNetworkAdapter;
+        private readonly ICurrentNetworkInterface _currentNetworkInterface;
 
-        public Ipv6(ILogger logger, ICurrentNetworkAdapter currentNetworkAdapter)
+        public Ipv6(ILogger logger, ICurrentNetworkInterface currentNetworkInterface)
         {
             _logger = logger;
-            _currentNetworkAdapter = currentNetworkAdapter;
+            _currentNetworkInterface = currentNetworkInterface;
         }
 
         public bool Enabled { get; private set; } = true;
@@ -77,7 +77,7 @@ namespace ProtonVPN.Service.Firewall
             try
             {
                 _logger.Info($"IPv6: {actionMessage}");
-                action(AppName, _currentNetworkAdapter.HardwareId);
+                action(AppName, _currentNetworkInterface.HardwareId);
                 _logger.Info($"IPv6: {actionMessage} succeeded");
             }
             catch (NetworkUtilException e)

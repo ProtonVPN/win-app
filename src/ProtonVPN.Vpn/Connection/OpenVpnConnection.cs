@@ -26,7 +26,7 @@ using System.Threading.Tasks;
 using ProtonVPN.Common;
 using ProtonVPN.Common.Helpers;
 using ProtonVPN.Common.Logging;
-using ProtonVPN.Common.OS.Net.NetworkInterface;
+using ProtonVPN.Common.OS.Net;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Vpn.Common;
@@ -45,10 +45,9 @@ namespace ProtonVPN.Vpn.Connection
         private const int ManagementPasswordLength = 16;
 
         private readonly ILogger _logger;
-        private readonly ManagementClient _managementClient;
+        private readonly INetworkInterfaceLoader _networkInterfaceLoader;
         private readonly OpenVpnProcess _process;
-        private readonly ProtonVPN.Common.Configuration.Config _appConfig;
-        private readonly INetworkInterfaces _networkInterfaces;
+        private readonly ManagementClient _managementClient;
 
         private readonly OpenVpnManagementPorts _managementPorts;
         private readonly RandomStrings _randomStrings;
@@ -62,14 +61,12 @@ namespace ProtonVPN.Vpn.Connection
 
         public OpenVpnConnection(
             ILogger logger,
-            ProtonVPN.Common.Configuration.Config appConfig,
-            INetworkInterfaces networkInterfaces,
+            INetworkInterfaceLoader networkInterfaceLoader,
             OpenVpnProcess process,
             ManagementClient managementClient)
         {
-            _networkInterfaces = networkInterfaces;
-            _appConfig = appConfig;
             _logger = logger;
+            _networkInterfaceLoader = networkInterfaceLoader;
             _process = process;
             _managementClient = managementClient;
 
@@ -148,10 +145,10 @@ namespace ProtonVPN.Vpn.Connection
         {
             if (_config.UseTunAdapter)
             {
-                return _networkInterfaces.GetByName(_appConfig.OpenVpn.TunAdapterName)?.Id ?? string.Empty;
+                return _networkInterfaceLoader.GetTunInterface()?.Id ?? string.Empty;
             }
 
-            return _networkInterfaces.GetByDescription(_appConfig.OpenVpn.TapAdapterDescription)?.Id ?? string.Empty;
+            return _networkInterfaceLoader.GetTapInterface()?.Id ?? string.Empty;
         }
 
         private string ManagementPassword()

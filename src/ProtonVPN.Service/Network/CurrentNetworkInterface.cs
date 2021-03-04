@@ -17,25 +17,25 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.OS.Net.NetworkInterface;
+using ProtonVPN.Common.OS.Net;
 using ProtonVPN.Service.Settings;
 
 namespace ProtonVPN.Service.Network
 {
-    internal class CurrentNetworkAdapter : ICurrentNetworkAdapter
+    internal class CurrentNetworkInterface : ICurrentNetworkInterface
     {
-        private readonly IServiceSettings _serviceSettings;
-        private readonly INetworkInterfaces _networkInterfaces;
         private readonly Common.Configuration.Config _config;
+        private readonly IServiceSettings _serviceSettings;
+        private readonly INetworkInterfaceLoader _networkInterfaceLoader;
 
-        public CurrentNetworkAdapter(
+        public CurrentNetworkInterface(
             Common.Configuration.Config config,
             IServiceSettings serviceSettings,
-            INetworkInterfaces networkInterfaces)
+            INetworkInterfaceLoader networkInterfaceLoader)
         {
             _config = config;
-            _networkInterfaces = networkInterfaces;
             _serviceSettings = serviceSettings;
+            _networkInterfaceLoader = networkInterfaceLoader;
         }
 
         public uint Index
@@ -44,10 +44,10 @@ namespace ProtonVPN.Service.Network
             {
                 if (_serviceSettings.UseTunAdapter)
                 {
-                    return _networkInterfaces.GetByName(_config.OpenVpn.TunAdapterName)?.Index ?? 0;
+                    return _networkInterfaceLoader.GetTunInterface()?.Index ?? 0;
                 }
 
-                return _networkInterfaces.GetByDescription(_config.OpenVpn.TapAdapterDescription)?.Index ?? 0;
+                return _networkInterfaceLoader.GetTapInterface()?.Index ?? 0;
             }
         }
 
