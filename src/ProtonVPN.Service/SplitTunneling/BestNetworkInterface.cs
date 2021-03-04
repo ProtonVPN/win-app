@@ -25,16 +25,16 @@ namespace ProtonVPN.Service.SplitTunneling
 {
     internal class BestNetworkInterface
     {
-        private readonly ICurrentNetworkAdapter _currentNetworkAdapter;
+        private readonly ICurrentNetworkInterface _currentNetworkInterface;
 
-        public BestNetworkInterface(ICurrentNetworkAdapter currentNetworkAdapter)
+        public BestNetworkInterface(ICurrentNetworkInterface currentNetworkInterface)
         {
-            _currentNetworkAdapter = currentNetworkAdapter;
+            _currentNetworkInterface = currentNetworkInterface;
         }
 
         public IPAddress LocalIpAddress()
         {
-            return NetworkUtil.GetBestInterfaceIp(_currentNetworkAdapter.HardwareId);
+            return NetworkUtil.GetBestInterfaceIp(_currentNetworkInterface.HardwareId);
         }
     }
 }

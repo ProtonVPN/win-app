@@ -116,8 +116,8 @@
     <Compile Include="Firewall\AppFilter.cs" />
     <Compile Include="Firewall\FirewallItemType.cs" />
     <Compile Include="Firewall\PermittedRemoteAddress.cs" />
-    <Compile Include="Network\CurrentNetworkAdapter.cs" />
-    <Compile Include="Network\ICurrentNetworkAdapter.cs" />
+    <Compile Include="Network\CurrentNetworkInterface.cs" />
+    <Compile Include="Network\ICurrentNetworkInterface.cs" />
     <Compile Include="ServiceHosts\ServiceSettingsHostFactory.cs" />
     <Compile Include="Settings\IServiceSettings.cs" />
     <Compile Include="Settings\IServiceSettingsAware.cs" />

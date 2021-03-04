@@ -23,6 +23,8 @@ using System.ComponentModel;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.OS.Net;
+using ProtonVPN.Common.OS.Net.NetworkInterface;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Api;
@@ -34,24 +36,28 @@ using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.User;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Vpn.Connectors;
+using Sentry;
+using Sentry.Protocol;
 
 namespace ProtonVPN.Core.Service.Vpn
 {
     public class VpnManager : IVpnManager, IVpnPlanAware, ILogoutAware, ISettingsAware
     {
+        private readonly ITaskQueue _taskQueue = new SerialTaskQueue();
         private readonly ILogger _logger;
         private readonly ProfileConnector _profileConnector;
         private readonly ProfileManager _profileManager;
         private readonly IVpnServiceManager _vpnServiceManager;
         private readonly IAppSettings _appSettings;
-        private readonly ITaskQueue _taskQueue = new SerialTaskQueue();
         private readonly GuestHoleState _guestHoleState;
         private readonly IUserStorage _userStorage;
+        private readonly INetworkInterfaceLoader _networkInterfaceLoader;
 
         private Profile _lastProfile;
         private ServerCandidates _lastServerCandidates;
         private Server _lastServer = Server.Empty();
         private bool _networkBlocked;
+        private bool _tunChangedToTap;
 
         public VpnManager(
             ILogger logger,
@@ -60,24 +66,41 @@ namespace ProtonVPN.Core.Service.Vpn
             IVpnServiceManager vpnServiceManager,
             IAppSettings appSettings,
             GuestHoleState guestHoleState,
-            IUserStorage userStorage)
+            IUserStorage userStorage,
+            INetworkInterfaceLoader networkInterfaceLoader)
         {
             _logger = logger;
             _profileConnector = profileConnector;
             _profileManager = profileManager;
-            _appSettings = appSettings;
             _vpnServiceManager = vpnServiceManager;
+            _appSettings = appSettings;
             _guestHoleState = guestHoleState;
             _userStorage = userStorage;
+            _networkInterfaceLoader = networkInterfaceLoader;
             _lastServerCandidates = _profileConnector.ServerCandidates(null);
         }
 
         public event EventHandler<VpnStateChangedEventArgs> VpnStateChanged;
 
-        private VpnState _state = new VpnState(VpnStatus.Disconnected);
+        private VpnState _state = new(VpnStatus.Disconnected);
 
         public async Task Connect(Profile profile, Profile fallbackProfile = null)
         {
+            INetworkInterface tunInterface = _networkInterfaceLoader.GetTunInterface();
+            INetworkInterface tapInterface = _networkInterfaceLoader.GetTapInterface();
+            if (tunInterface == null && tapInterface == null)
+            {
+                RaiseVpnStateChanged(new VpnStateChangedEventArgs(new VpnState(VpnStatus.Disconnected),
+                    VpnError.NoTapAdaptersError, false));
+                return;
+            }
+
+            if (tunInterface == null && _appSettings.UseTunAdapter)
+            {
+                _appSettings.UseTunAdapter = false;
+                _tunChangedToTap = true;
+            }
+
             await Queued(() => ConnectToBestProfileAsync(profile, fallbackProfile));
         }
 
@@ -125,6 +148,17 @@ namespace ProtonVPN.Core.Service.Vpn
             _networkBlocked = e.NetworkBlocked;
 
             RaiseVpnStateChanged(new VpnStateChangedEventArgs(_state, e.Error, e.NetworkBlocked, e.Protocol));
+
+            switch (e.State.Status)
+            {
+                case VpnStatus.Connected when _tunChangedToTap:
+                    _tunChangedToTap = false;
+                    SendTunFallbackEvent();
+                    break;
+                case VpnStatus.Disconnected:
+                    _tunChangedToTap = false;
+                    break;
+            }
         }
 
         public async Task OnVpnPlanChangedAsync(string plan)
@@ -141,6 +175,14 @@ namespace ProtonVPN.Core.Service.Vpn
             RaiseVpnStateChanged(new VpnStateChangedEventArgs(_state, VpnError.None, _networkBlocked));
         }
 
+        private void SendTunFallbackEvent()
+        {
+            SentrySdk.CaptureEvent(new SentryEvent
+            {
+                Message = "Successful TAP connection after failed with TUN.", Level = SentryLevel.Info,
+            });
+        }
+
         private async Task ConnectToBestProfileAsync(Profile profile, Profile fallbackProfile = null)
         {
             IList<Profile> profiles = this.CreateProfilePreferenceList(profile, fallbackProfile);
@@ -152,7 +194,8 @@ namespace ProtonVPN.Core.Service.Vpn
             }
             else
             {
-                _profileConnector.HandleNoServersAvailable(profileCandidates.Candidates.Items, profileCandidates.Profile);
+                _profileConnector.HandleNoServersAvailable(profileCandidates.Candidates.Items,
+                    profileCandidates.Profile);
             }
         }
 
@@ -185,7 +228,8 @@ namespace ProtonVPN.Core.Service.Vpn
             {
                 bestProfileCandidates.Profile = profile;
                 bestProfileCandidates.Candidates = _profileConnector.ServerCandidates(profile);
-                bestProfileCandidates.CanConnect = _profileConnector.CanConnect(bestProfileCandidates.Candidates, profile);
+                bestProfileCandidates.CanConnect =
+                    _profileConnector.CanConnect(bestProfileCandidates.Candidates, profile);
 
                 if (bestProfileCandidates.CanConnect)
                 {

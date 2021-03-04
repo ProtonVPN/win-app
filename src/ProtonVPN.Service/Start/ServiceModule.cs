@@ -21,6 +21,7 @@ using System;
 using Autofac;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.OS.Net;
 using ProtonVPN.Common.OS.Net.NetworkInterface;
 using ProtonVPN.Common.OS.Processes;
 using ProtonVPN.Common.OS.Services;
@@ -125,14 +126,15 @@ namespace ProtonVPN.Service.Start
                         c.Resolve<ILogger>(),
                         new SystemNetworkInterfaces()))
                 .As<INetworkInterfaces>().SingleInstance();
+            builder.RegisterType<NetworkInterfaceLoader>().As<INetworkInterfaceLoader>().SingleInstance();
             builder.RegisterType<PermittedRemoteAddress>().AsSelf().SingleInstance();
             builder.RegisterType<AppFilter>().AsSelf().SingleInstance();
             builder.RegisterType<SplitTunnelNetworkFilters>().SingleInstance();
             builder.RegisterType<BestNetworkInterface>().SingleInstance();
             builder.RegisterType<SplitTunnelClient>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<UnhandledExceptionLogging>().SingleInstance();
-            builder.RegisterType<CurrentNetworkAdapter>().As<ICurrentNetworkAdapter>().SingleInstance();
-            builder.Register(c => new NetworkSettings(c.Resolve<ILogger>(), c.Resolve<ICurrentNetworkAdapter>()))
+            builder.RegisterType<CurrentNetworkInterface>().As<ICurrentNetworkInterface>().SingleInstance();
+            builder.Register(c => new NetworkSettings(c.Resolve<ILogger>(), c.Resolve<ICurrentNetworkInterface>()))
                 .AsImplementedInterfaces()
                 .AsSelf()
                 .SingleInstance();

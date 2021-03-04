@@ -2898,4 +2898,10 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="Settings_Advanced_lbl_Tun" xml:space="preserve">
     <value>TUN adapter</value>
   </data>
+  <data name="Dialogs_TunFallback_btn_OpenSettings" xml:space="preserve">
+    <value>Open Settings</value>
+  </data>
+  <data name="Dialogs_TunFallback_msg" xml:space="preserve">
+    <value>ProtonVPN uses the TUN adapter by default for improved performance, but it is not responding correctly. You are therefore now using the TAP adapter. You can switch between TAP and TUN in the Advanced Settings.</value>
+  </data>
 </root>

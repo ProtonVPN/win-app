@@ -31,16 +31,16 @@ namespace ProtonVPN.Service.KillSwitch
     {
         private readonly IFirewall _firewall;
         private readonly IServiceSettings _serviceSettings;
-        private readonly ICurrentNetworkAdapter _currentNetworkAdapter;
+        private readonly ICurrentNetworkInterface _currentNetworkInterface;
 
         public KillSwitch(
             IFirewall firewall,
             IServiceSettings serviceSettings,
-            ICurrentNetworkAdapter currentNetworkAdapter)
+            ICurrentNetworkInterface currentNetworkInterface)
         {
             _firewall = firewall;
             _serviceSettings = serviceSettings;
-            _currentNetworkAdapter = currentNetworkAdapter;
+            _currentNetworkInterface = currentNetworkInterface;
         }
 
         public void OnVpnConnecting(VpnState state)
@@ -68,7 +68,7 @@ namespace ProtonVPN.Service.KillSwitch
             {
                 case true:
                     var dnsLeakOnly = _serviceSettings.SplitTunnelSettings.Mode == SplitTunnelMode.Permit;
-                    var firewallParams = new FirewallParams(state.RemoteIp, dnsLeakOnly, _currentNetworkAdapter.Index);
+                    var firewallParams = new FirewallParams(state.RemoteIp, dnsLeakOnly, _currentNetworkInterface.Index);
                     _firewall.EnableLeakProtection(firewallParams);
                     break;
                 case false:

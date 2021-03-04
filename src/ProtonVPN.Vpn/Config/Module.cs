@@ -20,7 +20,7 @@
 using Autofac;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Logging;
-using ProtonVPN.Common.OS.Net.NetworkInterface;
+using ProtonVPN.Common.OS.Net;
 using ProtonVPN.Common.OS.Processes;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Vpn.Common;
@@ -35,7 +35,7 @@ namespace ProtonVPN.Vpn.Config
     {
         public void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<SystemNetworkInterfaces>().As<INetworkInterfaces>().SingleInstance();
+            builder.RegisterType<NetworkInterfaceLoader>().As<INetworkInterfaceLoader>().SingleInstance();
             builder.Register(c =>
                 {
                     var logger = c.Resolve<ILogger>();
@@ -61,8 +61,7 @@ namespace ProtonVPN.Vpn.Config
 
             var vpnConnection = new OpenVpnConnection(
                 logger,
-                c.Resolve<ProtonVPN.Common.Configuration.Config>(),
-                c.Resolve<INetworkInterfaces>(),
+                c.Resolve<INetworkInterfaceLoader>(),
                 c.Resolve<OpenVpnProcess>(),
                 new ManagementClient(
                     logger,

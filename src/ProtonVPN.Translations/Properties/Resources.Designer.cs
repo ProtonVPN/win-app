@@ -3775,6 +3775,24 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Open Settings.
+        /// </summary>
+        public static string Dialogs_TunFallback_btn_OpenSettings {
+            get {
+                return ResourceManager.GetString("Dialogs_TunFallback_btn_OpenSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ProtonVPN uses the TUN adapter by default for improved performance, but it is not responding correctly. You are therefore now using the TAP adapter. You can switch between TAP and TUN in the Advanced Settings..
+        /// </summary>
+        public static string Dialogs_TunFallback_msg {
+            get {
+                return ResourceManager.GetString("Dialogs_TunFallback_msg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Close.
         /// </summary>
         public static string ErrorWindow_lbl_Close {
@@ -5223,7 +5241,7 @@ namespace ProtonVPN.Translations.Properties {
                 return ResourceManager.GetString("Settings_Advanced_lbl_Ipv6Protection_Info", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Network driver.
         /// </summary>

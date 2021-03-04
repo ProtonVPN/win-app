@@ -35,8 +35,6 @@ namespace ProtonVPN.Modals
             set => Set(ref _loading, value);
         }
 
-        public bool HideWindowControls { get; set; }
-
         public override void CloseAction()
         {
             TryClose(false);

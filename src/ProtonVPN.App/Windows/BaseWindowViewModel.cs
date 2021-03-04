@@ -37,6 +37,8 @@ namespace ProtonVPN.Windows
         public ICommand CloseCommand { get; set; }
         public ICommand MinimizeCommand { get; set; }
 
+        public bool HideWindowControls { get; set; }
+
         public WindowState WindowState
         {
             get => _windowState;
