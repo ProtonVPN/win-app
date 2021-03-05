@@ -2355,7 +2355,7 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <comment>The button displayed in the sidebar connection block when Kill Switch is activated and vpn connection is dropped</comment>
   </data>
   <data name="App_msg_UpdateConnectedConfirm" xml:space="preserve">
-    <value>Updating the application will disconnect the active VPN connection. Do you want to continue?</value>
+    <value>To complete the update process, ProtonVPN will temporary disconnect and deactivate Kill Switch Always-On if any of these are active. Do you want to continue?</value>
     <comment>The question displayed when trying to update the app while connected to VPN</comment>
   </data>
   <data name="Connecting_lbl_ConnectingTo_1_SecureCore" xml:space="preserve">
