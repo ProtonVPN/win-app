@@ -24,10 +24,12 @@ using System.Windows;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using ProtonVPN.BugReporting.Diagnostic;
+using ProtonVPN.Common.KillSwitch;
 using ProtonVPN.Common.OS.Processes;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.MVVM;
+using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Update;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Modals;
@@ -40,6 +42,7 @@ namespace ProtonVPN.About
         private readonly IDialogs _dialogs;
         private readonly IOsProcesses _osProcesses;
         private readonly IModals _modals;
+        private readonly IAppSettings _appSettings;
         private readonly ISystemState _systemState;
 
         private VpnStatus _vpnStatus;
@@ -49,12 +52,14 @@ namespace ProtonVPN.About
             IDialogs dialogs,
             IOsProcesses osProcesses,
             IModals modals,
+            IAppSettings appSettings,
             ISystemState systemState)
         {
-            _systemState = systemState;
             _dialogs = dialogs;
             _osProcesses = osProcesses;
             _modals = modals;
+            _appSettings = appSettings;
+            _systemState = systemState;
 
             OpenAboutCommand = new RelayCommand(OpenAbout);
         }
@@ -65,6 +70,7 @@ namespace ProtonVPN.About
         public ICommand OpenAboutCommand { get; }
 
         private UpdateStatus _status;
+
         public UpdateStatus Status
         {
             get => _status;
@@ -72,6 +78,7 @@ namespace ProtonVPN.About
         }
 
         private bool _available;
+
         public bool Available
         {
             get => _available;
@@ -79,6 +86,7 @@ namespace ProtonVPN.About
         }
 
         private bool _ready;
+
         public bool Ready
         {
             get => _ready;
@@ -90,6 +98,7 @@ namespace ProtonVPN.About
         }
 
         private bool _updating;
+
         public bool Updating
         {
             get => _updating;
@@ -101,6 +110,7 @@ namespace ProtonVPN.About
         }
 
         private Release _release;
+
         public Release Release
         {
             get => _release;
@@ -167,9 +177,9 @@ namespace ProtonVPN.About
 
         private bool AllowToDisconnect()
         {
-            if (_vpnStatus != VpnStatus.Disconnected && _vpnStatus != VpnStatus.Disconnecting)
+            if (ShowConfirmationModal())
             {
-                var result = _dialogs.ShowQuestion(Translation.Get("App_msg_UpdateConnectedConfirm"));
+                bool? result = _dialogs.ShowQuestion(Translation.Get("App_msg_UpdateConnectedConfirm"));
                 if (result.HasValue && result.Value == false)
                 {
                     return false;
@@ -184,6 +194,12 @@ namespace ProtonVPN.About
             dynamic options = new ExpandoObject();
             options.SkipUpdateCheck = true;
             _modals.Show<AboutModalViewModel>(options);
+        }
+
+        private bool ShowConfirmationModal()
+        {
+            return (_vpnStatus != VpnStatus.Disconnected && _vpnStatus != VpnStatus.Disconnecting) ||
+                   _appSettings.KillSwitchMode == KillSwitchMode.Hard;
         }
     }
 }
