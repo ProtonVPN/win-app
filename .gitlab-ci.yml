@@ -90,6 +90,8 @@ build-installer-for-release:
   artifacts:
     paths:
       - Setup/ProtonVPN-SetupFiles/
+      - Setup/ProtonVPNTun-SetupFiles/
+      - Setup/ProtonVPNTap-SetupFiles/
     expire_in: 4 weeks
   only:
     - master
