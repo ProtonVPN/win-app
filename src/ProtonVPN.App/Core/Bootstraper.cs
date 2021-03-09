@@ -247,7 +247,7 @@ namespace ProtonVPN.Core
             UserAuth userAuth = Resolve<UserAuth>();
             AppWindow appWindow = Resolve<AppWindow>();
             IAppSettings appSettings = Resolve<IAppSettings>();
-            Resolve<SettingsServiceClientManager>();
+            Resolve<ISettingsServiceClientManager>();
 
             Resolve<IServerUpdater>().ServersUpdated += (sender, e) =>
             {
@@ -480,7 +480,7 @@ namespace ProtonVPN.Core
                 return;
             }
 
-            await Resolve<SettingsServiceClientManager>().UpdateServiceSettings();
+            await Resolve<ISettingsServiceClientManager>().UpdateServiceSettings();
 
             Resolve<PinFactory>().BuildPins();
 
