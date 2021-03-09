@@ -87,7 +87,7 @@ namespace ProtonVPN.Core.Service.Vpn
 
         private VpnConnectionRequestContract Map(VpnConnectionRequest request)
         {
-            return new VpnConnectionRequestContract
+            return new()
             {
                 Servers = Map(request.Servers),
                 Protocol = Map(request.Protocol),

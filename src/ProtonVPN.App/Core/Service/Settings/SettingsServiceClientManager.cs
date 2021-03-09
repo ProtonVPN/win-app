@@ -22,12 +22,14 @@ using System.ComponentModel;
 using System.ServiceModel;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.KillSwitch;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Core.Settings;
+using ProtonVPN.Service.Contract.Settings;
 
 namespace ProtonVPN.Core.Service.Settings
 {
-    internal class SettingsServiceClientManager : ISettingsAware
+    public class SettingsServiceClientManager : ISettingsServiceClientManager, ISettingsAware
     {
         private readonly SettingsServiceClient _client;
         private readonly ILogger _logger;
@@ -45,9 +47,28 @@ namespace ProtonVPN.Core.Service.Settings
 
         public async Task UpdateServiceSettings()
         {
+            await UpdateServiceSettingsInternal(_settingsContractProvider.GetSettingsContract());
+        }
+
+        public async Task DisableKillSwitch()
+        {
+            SettingsContract settingsContract = _settingsContractProvider.GetSettingsContract();
+            settingsContract.KillSwitchMode = KillSwitchMode.Off;
+            await UpdateServiceSettingsInternal(settingsContract);
+        }
+
+        public async Task EnableHardKillSwitch()
+        {
+            SettingsContract settingsContract = _settingsContractProvider.GetSettingsContract();
+            settingsContract.KillSwitchMode = KillSwitchMode.Hard;
+            await UpdateServiceSettingsInternal(settingsContract);
+        }
+
+        private async Task UpdateServiceSettingsInternal(SettingsContract settingsContract)
+        {
             try
             {
-                await Task.Run(() => _client.Apply(_settingsContractProvider.GetSettingsContract()));
+                await Task.Run(() => _client.Apply(settingsContract));
             }
             catch (Exception ex) when (ex is CommunicationException || ex is TimeoutException || ex is TaskCanceledException)
             {

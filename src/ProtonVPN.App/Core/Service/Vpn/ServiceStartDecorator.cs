@@ -96,7 +96,7 @@ namespace ProtonVPN.Core.Service.Vpn
 
             if (!_vpnService.Enabled())
             {
-                var result = _modals.Show<DisabledServiceModalViewModel>();
+                bool? result = _modals.Show<DisabledServiceModalViewModel>();
                 if (!result.HasValue || !result.Value)
                 {
                     return;
@@ -116,7 +116,7 @@ namespace ProtonVPN.Core.Service.Vpn
                 }
                 catch (EndpointNotFoundException)
                 {
-                    var result = _modals.Show<ServiceStartModalViewModel>();
+                    bool? result = _modals.Show<ServiceStartModalViewModel>();
                     if (result == null || !result.Value)
                     {
                         break;

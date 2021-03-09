@@ -29,6 +29,8 @@ using ProtonVPN.Common.OS.Processes;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.MVVM;
+using ProtonVPN.Core.Service.Settings;
+using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Update;
 using ProtonVPN.Core.Vpn;
@@ -43,23 +45,29 @@ namespace ProtonVPN.About
         private readonly IOsProcesses _osProcesses;
         private readonly IModals _modals;
         private readonly IAppSettings _appSettings;
+        private readonly IVpnServiceManager _vpnServiceManager;
         private readonly ISystemState _systemState;
+        private readonly ISettingsServiceClientManager _settingsServiceClientManager;
 
-        private VpnStatus _vpnStatus;
         private UpdateStateChangedEventArgs _updateStateChangedEventArgs;
+        private VpnStatus _vpnStatus;
 
         public UpdateViewModel(
             IDialogs dialogs,
             IOsProcesses osProcesses,
             IModals modals,
             IAppSettings appSettings,
-            ISystemState systemState)
+            IVpnServiceManager vpnServiceManager,
+            ISystemState systemState,
+            ISettingsServiceClientManager settingsServiceClientManager)
         {
             _dialogs = dialogs;
             _osProcesses = osProcesses;
             _modals = modals;
             _appSettings = appSettings;
+            _vpnServiceManager = vpnServiceManager;
             _systemState = systemState;
+            _settingsServiceClientManager = settingsServiceClientManager;
 
             OpenAboutCommand = new RelayCommand(OpenAbout);
         }
@@ -132,7 +140,7 @@ namespace ProtonVPN.About
             return Task.CompletedTask;
         }
 
-        private void Update()
+        private async void Update()
         {
             if (!CanUpdate() || !AllowToDisconnect())
             {
@@ -141,21 +149,26 @@ namespace ProtonVPN.About
 
             if (_systemState.PendingReboot())
             {
-                var result = _modals.Show<RebootModalViewModel>();
+                bool? result = _modals.Show<RebootModalViewModel>();
                 if (result.HasValue && result.Value)
                 {
-                    UpdateInternal();
+                    await UpdateInternal();
                 }
 
                 return;
             }
 
-            UpdateInternal();
+            await UpdateInternal();
         }
 
-        private void UpdateInternal()
+        private async Task UpdateInternal()
         {
             Updating = true;
+
+            if (_appSettings.KillSwitchMode == KillSwitchMode.Hard)
+            {
+                await _settingsServiceClientManager.DisableKillSwitch();
+            }
 
             try
             {
@@ -163,11 +176,15 @@ namespace ProtonVPN.About
                     _updateStateChangedEventArgs.FilePath,
                     _updateStateChangedEventArgs.FileArguments).Start();
 
-
                 Application.Current.Shutdown();
             }
             catch (System.ComponentModel.Win32Exception)
             {
+                if (_appSettings.KillSwitchMode == KillSwitchMode.Hard)
+                {
+                    await _settingsServiceClientManager.EnableHardKillSwitch();
+                }
+
                 // Privileges were not granted
                 Updating = false;
             }

@@ -30,6 +30,7 @@ using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Service.Contract.Settings;
 using ProtonVPN.Service.Contract.Vpn;
+using ProtonVPN.Service.Firewall;
 using ProtonVPN.Service.Settings;
 using ProtonVPN.Service.Vpn;
 using ProtonVPN.Vpn.Common;
@@ -41,8 +42,8 @@ namespace ProtonVPN.Service
         ConcurrencyMode = ConcurrencyMode.Single)]
     internal class VpnConnectionHandler : IVpnConnectionContract, IServiceSettingsAware
     {
-        private readonly object _callbackLock = new object();
-        private readonly List<IVpnEventsContract> _callbacks = new List<IVpnEventsContract>();
+        private readonly object _callbackLock = new();
+        private readonly List<IVpnEventsContract> _callbacks = new();
 
         private readonly KillSwitch.KillSwitch _killSwitch;
         private readonly IVpnConnection _vpnConnection;
@@ -51,13 +52,14 @@ namespace ProtonVPN.Service
         private readonly ITaskQueue _taskQueue;
         private readonly NetworkSettings _networkSettings;
 
-        private VpnState _state = new VpnState(VpnStatus.Disconnected);
+        private VpnState _state = new(VpnStatus.Disconnected);
 
         public VpnConnectionHandler(
             KillSwitch.KillSwitch killSwitch,
             NetworkSettings networkSettings,
             IVpnConnection vpnConnection,
             ILogger logger,
+            IFirewall firewall,
             IServiceSettings serviceSettings,
             ITaskQueue taskQueue)
         {
