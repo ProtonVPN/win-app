@@ -33,7 +33,7 @@ namespace ProtonVPN.BugReporting
         {
             base.Load(builder);
 
-            builder.RegisterType<BugReport>().SingleInstance();
+            builder.RegisterType<BugReport>().As<IBugReport>().SingleInstance();
 
             builder.Register(c =>
             {

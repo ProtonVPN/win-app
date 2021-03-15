@@ -35,7 +35,9 @@ using ProtonVPN.Core.Servers.Models;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.User;
 using ProtonVPN.Core.Vpn;
+using ProtonVPN.Core.Window.Popups;
 using ProtonVPN.Vpn.Connectors;
+using ProtonVPN.Windows.Popups;
 using Sentry;
 using Sentry.Protocol;
 
@@ -52,6 +54,7 @@ namespace ProtonVPN.Core.Service.Vpn
         private readonly GuestHoleState _guestHoleState;
         private readonly IUserStorage _userStorage;
         private readonly INetworkInterfaceLoader _networkInterfaceLoader;
+        private readonly IPopupWindows _popupWindows;
 
         private Profile _lastProfile;
         private ServerCandidates _lastServerCandidates;
@@ -67,7 +70,8 @@ namespace ProtonVPN.Core.Service.Vpn
             IAppSettings appSettings,
             GuestHoleState guestHoleState,
             IUserStorage userStorage,
-            INetworkInterfaceLoader networkInterfaceLoader)
+            INetworkInterfaceLoader networkInterfaceLoader,
+            IPopupWindows popupWindows)
         {
             _logger = logger;
             _profileConnector = profileConnector;
@@ -77,6 +81,7 @@ namespace ProtonVPN.Core.Service.Vpn
             _guestHoleState = guestHoleState;
             _userStorage = userStorage;
             _networkInterfaceLoader = networkInterfaceLoader;
+            _popupWindows = popupWindows;
             _lastServerCandidates = _profileConnector.ServerCandidates(null);
         }
 
@@ -154,6 +159,7 @@ namespace ProtonVPN.Core.Service.Vpn
                 case VpnStatus.Connected when _tunChangedToTap:
                     _tunChangedToTap = false;
                     SendTunFallbackEvent();
+                    _popupWindows.Show<TunFallbackPopupViewModel>();
                     break;
                 case VpnStatus.Disconnected:
                     _tunChangedToTap = false;

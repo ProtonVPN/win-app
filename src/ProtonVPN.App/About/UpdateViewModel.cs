@@ -40,7 +40,7 @@ namespace ProtonVPN.About
         private readonly IDialogs _dialogs;
         private readonly IOsProcesses _osProcesses;
         private readonly IModals _modals;
-        private readonly SystemState _systemState;
+        private readonly ISystemState _systemState;
 
         private VpnStatus _vpnStatus;
         private UpdateStateChangedEventArgs _updateStateChangedEventArgs;
@@ -49,7 +49,7 @@ namespace ProtonVPN.About
             IDialogs dialogs,
             IOsProcesses osProcesses,
             IModals modals,
-            SystemState systemState)
+            ISystemState systemState)
         {
             _systemState = systemState;
             _dialogs = dialogs;
