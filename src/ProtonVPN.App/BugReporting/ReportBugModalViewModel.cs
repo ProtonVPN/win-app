@@ -27,7 +27,7 @@ namespace ProtonVPN.BugReporting
 {
     public class ReportBugModalViewModel : BaseModalViewModel
     {
-        private readonly BugReport _bugReport;
+        private readonly IBugReport _bugReport;
         private readonly SentViewModel _sentViewModel;
         private readonly SendingViewModel _sendingViewModel;
         private readonly FailureViewModel _failureViewModel;
@@ -37,7 +37,7 @@ namespace ProtonVPN.BugReporting
         private bool _sent;
 
         public ReportBugModalViewModel(
-            BugReport bugReport,
+            IBugReport bugReport,
             SendingViewModel sendingViewModel,
             SentViewModel sentViewModel,
             FormViewModel formViewModel,

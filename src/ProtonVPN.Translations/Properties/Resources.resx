@@ -2896,7 +2896,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>TAP adapter</value>
   </data>
   <data name="Settings_Advanced_lbl_Tun" xml:space="preserve">
-    <value>TUN adapter</value>
+    <value>TUN adapter (beta)</value>
   </data>
   <data name="Dialogs_TunFallback_btn_OpenSettings" xml:space="preserve">
     <value>Open Settings</value>
@@ -2909,5 +2909,20 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   </data>
   <data name="Dialogs_TunInUse_msg" xml:space="preserve">
     <value>ProtonVPN could not connect because the TUN network adapter is already in use. Please disconnect any active VPNs and retry. Alternatively, switch to the TAP adapter (you can change back to TUN in the Advanced Settings).</value>
+  </data>
+  <data name="Popup_TunFallback_msg" xml:space="preserve">
+    <value>The ProtonVPN TUN adapter provides improved performance, but it is not responding correctly.&lt;LineBreak/&gt;&lt;LineBreak/&gt;Therefore, TAP adapter is now set as default.&lt;LineBreak/&gt;&lt;LineBreak/&gt;You can switch between TAP and TUN in the &lt;Hyperlink Command="{Binding OpenAdvancedSettingsCommand}"&gt;Advanced Settings.&lt;/Hyperlink&gt;</value>
+  </data>
+  <data name="Popup_TunFallback_btn_ReportProblem" xml:space="preserve">
+    <value>Report this problem</value>
+  </data>
+  <data name="Popup_TunFallback_lbl_SendingReport" xml:space="preserve">
+    <value>Sending report...</value>
+  </data>
+  <data name="Popup_TunFallback_lbl_FailedToSend" xml:space="preserve">
+    <value>An error occured, please try again later.</value>
+  </data>
+  <data name="Popup_TunFallback_lbl_SentSuccessfully" xml:space="preserve">
+    <value>Report sent successfully.</value>
   </data>
 </root>

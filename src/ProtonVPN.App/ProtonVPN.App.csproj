@@ -189,10 +189,14 @@
     <Compile Include="BugReporting\Diagnostic\DriverInstallLog.cs" />
     <Compile Include="BugReporting\Diagnostic\ILog.cs" />
     <Compile Include="BugReporting\Diagnostic\InstalledAppsLog.cs" />
+    <Compile Include="BugReporting\Diagnostic\ISystemState.cs" />
     <Compile Include="BugReporting\Diagnostic\NetworkAdapterLog.cs" />
     <Compile Include="BugReporting\Diagnostic\NetworkLogWriter.cs" />
     <Compile Include="BugReporting\Diagnostic\SystemState.cs" />
     <Compile Include="BugReporting\Diagnostic\RoutingTableLog.cs" />
+    <Compile Include="BugReporting\IBugReport.cs" />
+    <Compile Include="BugReporting\IReportFieldProvider.cs" />
+    <Compile Include="BugReporting\ReportFieldProvider.cs" />
     <Compile Include="Core\ExpiredSessionHandler.cs" />
     <Compile Include="Core\ILanguageProvider.cs" />
     <Compile Include="Core\Language.cs" />
@@ -377,6 +381,10 @@
     <Compile Include="Modals\Upsell\NoServerDueTierUpsellModalView.xaml.cs">
       <DependentUpon>NoServerDueTierUpsellModalView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\Popups\TunFallbackPopupView.xaml.cs">
+      <DependentUpon>TunFallbackPopupView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Popups\TunFallbackPpupViewModel.cs" />
     <Compile Include="Windows\Popups\Welcome\BaseWelcomePopupViewModel.cs" />
     <Compile Include="Windows\Popups\Welcome\NonTrialWelcomePopupView.xaml.cs">
       <DependentUpon>NonTrialWelcomePopupView.xaml</DependentUpon>
@@ -885,6 +893,10 @@
     <Page Include="Modals\DisconnectErrorModalView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Popups\TunFallbackPopupView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Windows\Popups\Upsell\EnjoyingUpsellPopupView.xaml">
       <SubType>Designer</SubType>

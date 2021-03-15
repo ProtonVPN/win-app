@@ -17,15 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using ProtonVPN.Account;
-using ProtonVPN.BugReporting.Diagnostic;
 using ProtonVPN.Core.Auth;
+using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.User;
-using ProtonVPN.Servers;
 using ProtonVPN.Translations;
 using ProtonVPN.Validation;
 
@@ -39,17 +36,12 @@ namespace ProtonVPN.BugReporting
         private bool _includeLogs;
 
         private readonly IUserStorage _userStorage;
-        private readonly Common.Configuration.Config _appConfig;
-        private readonly SystemState _systemState;
+        private readonly IReportFieldProvider _reportFieldProvider;
 
-        public FormViewModel(
-            Common.Configuration.Config appConfig,
-            IUserStorage userStorage,
-            SystemState systemState)
+        public FormViewModel(IUserStorage userStorage, IReportFieldProvider reportFieldProvider)
         {
-            _systemState = systemState;
-            _appConfig = appConfig;
             _userStorage = userStorage;
+            _reportFieldProvider = reportFieldProvider;
         }
 
         public string Email
@@ -59,7 +51,7 @@ namespace ProtonVPN.BugReporting
             {
                 Set(ref _email, value);
                 Validate();
-            } 
+            }
         }
 
         public string WhatWentWrong
@@ -96,26 +88,7 @@ namespace ProtonVPN.BugReporting
 
         public KeyValuePair<string, string>[] GetFields()
         {
-            var user = _userStorage.User();
-            var location = _userStorage.Location();
-            var country = Countries.GetName(location.Country);
-            var isp = location.Isp;
-
-            return new[]
-            {
-                new KeyValuePair<string, string>("OS", "Windows"),
-                new KeyValuePair<string, string>("OSVersion", Environment.OSVersion.ToString()),
-                new KeyValuePair<string, string>("Client", "Windows app"),
-                new KeyValuePair<string, string>("ClientVersion", _appConfig.AppVersion),
-                new KeyValuePair<string, string>("Title", "Windows app form"),
-                new KeyValuePair<string, string>("Description", Description),
-                new KeyValuePair<string, string>("Username", user.Username),
-                new KeyValuePair<string, string>("Plan", VpnPlanHelper.GetPlanName(user.VpnPlan)),
-                new KeyValuePair<string, string>("Email", Email),
-                new KeyValuePair<string, string>("Country", string.IsNullOrEmpty(country) ? "" : country),
-                new KeyValuePair<string, string>("ISP", string.IsNullOrEmpty(isp) ? "" : isp),
-                new KeyValuePair<string, string>("ClientType", "2")
-            };
+            return _reportFieldProvider.GetFields(Description, Email);
         }
 
         public void OnUserDataChanged()
@@ -129,9 +102,7 @@ namespace ProtonVPN.BugReporting
         }
 
         private string Description => $"What went wrong?\n\n{WhatWentWrong}\n\n" +
-                                      $"What are the exact steps you performed?\n\n{StepsToReproduce}\n\n" +
-                                      "Additional info:\n" +
-                                      "Pending reboot: " + (_systemState.PendingReboot() ? "true" : "false");
+                                      $"What are the exact steps you performed?\n\n{StepsToReproduce}";
 
         private void ClearForm()
         {
@@ -142,7 +113,7 @@ namespace ProtonVPN.BugReporting
 
         private void LoadEmail()
         {
-            var user = _userStorage.User();
+            User user = _userStorage.User();
 
             if (EmailValidator.IsValid(user.Username))
             {
@@ -165,6 +136,7 @@ namespace ProtonVPN.BugReporting
                     {
                         ClearError(field);
                     }
+
                     break;
                 case nameof(WhatWentWrong):
                     if (string.IsNullOrEmpty(WhatWentWrong))
@@ -175,6 +147,7 @@ namespace ProtonVPN.BugReporting
                     {
                         ClearError(field);
                     }
+
                     break;
                 case nameof(StepsToReproduce):
                     if (string.IsNullOrEmpty(StepsToReproduce))
@@ -185,6 +158,7 @@ namespace ProtonVPN.BugReporting
                     {
                         ClearError(field);
                     }
+
                     break;
             }
         }

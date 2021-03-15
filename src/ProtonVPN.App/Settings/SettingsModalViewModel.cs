@@ -172,7 +172,7 @@ namespace ProtonVPN.Settings
             {
                 if (value && _appSettings.IsNetShieldEnabled())
                 {
-                    var result =_dialogs.ShowQuestion(Translation.Get("Settings_Connection_Warning_CustomDnsServer"));
+                    bool? result =_dialogs.ShowQuestion(Translation.Get("Settings_Connection_Warning_CustomDnsServer"));
                     if (result.HasValue && !result.Value)
                     {
                         return;
@@ -186,7 +186,7 @@ namespace ProtonVPN.Settings
             }
         }
 
-        public List<KeyValuePair<StartMinimizedMode, string>> StartMinimizedModes => new List<KeyValuePair<StartMinimizedMode, string>>
+        public List<KeyValuePair<StartMinimizedMode, string>> StartMinimizedModes => new()
         {
             new KeyValuePair<StartMinimizedMode, string>(StartMinimizedMode.Disabled, Translation.Get("StartMinimizedMode_val_Disabled")),
             new KeyValuePair<StartMinimizedMode, string>(StartMinimizedMode.ToSystray, Translation.Get("StartMinimizedMode_val_ToSystray")),
@@ -261,7 +261,7 @@ namespace ProtonVPN.Settings
             }
         }
 
-        public List<KeyValuePair<string, string>> Protocols => new List<KeyValuePair<string, string>>
+        public List<KeyValuePair<string, string>> Protocols => new()
         {
             new KeyValuePair<string, string>("auto",
                 Translation.Get("Settings_Connection_DefaultProtocol_val_Auto")),
@@ -271,10 +271,10 @@ namespace ProtonVPN.Settings
                 Translation.Get("Settings_Connection_DefaultProtocol_val_Udp")),
         };
 
-        public List<KeyValuePair<NetworkAdapter, string>> NetworkDrivers => new List<KeyValuePair<NetworkAdapter, string>>
+        public List<KeyValuePair<NetworkAdapter, string>> NetworkDrivers => new()
         {
-            new KeyValuePair<NetworkAdapter, string>(NetworkAdapter.Tun, Translation.Get("Settings_Advanced_lbl_Tun")),
             new KeyValuePair<NetworkAdapter, string>(NetworkAdapter.Tap, Translation.Get("Settings_Advanced_lbl_Tap")),
+            new KeyValuePair<NetworkAdapter, string>(NetworkAdapter.Tun, Translation.Get("Settings_Advanced_lbl_Tun")),
         };
 
         public NetworkAdapter SelectedNetworkDriver

@@ -23,9 +23,9 @@ using Microsoft.Win32;
 
 namespace ProtonVPN.BugReporting.Diagnostic
 {
-    public class SystemState
+    public class SystemState : ISystemState
     {
-        private readonly List<string> _keysExist = new List<string>
+        private readonly List<string> _keysExist = new()
         {
             @"SOFTWARE\Microsoft\Windows\CurrentVersion\Component Based Servicing\RebootPending",
             @"SOFTWARE\Microsoft\Windows\CurrentVersion\Component Based Servicing\RebootInProgress",
@@ -34,7 +34,7 @@ namespace ProtonVPN.BugReporting.Diagnostic
             @"SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\PostRebootReporting",
         };
 
-        private readonly Dictionary<string, List<string>> _valuesEqual = new Dictionary<string, List<string>>
+        private readonly Dictionary<string, List<string>> _valuesEqual = new()
         {
             {@"SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce", new List<string> {"DVDRebootSignal"}},
         };
