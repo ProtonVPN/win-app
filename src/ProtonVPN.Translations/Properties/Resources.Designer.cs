@@ -3748,6 +3748,15 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to For Split Tunnel to function properly, you must disable Kill Switch..
+        /// </summary>
+        public static string Dialogs_SplitTunnelWarning_msg {
+            get {
+                return ResourceManager.GetString("Dialogs_SplitTunnelWarning_msg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ProtonVPN Troubleshoot.
         /// </summary>
         public static string Dialogs_Troubleshoot_ttl {
