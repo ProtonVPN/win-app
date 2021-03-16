@@ -2920,6 +2920,9 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="Dialogs_KillSwitchConfirmation_ttl" xml:space="preserve">
     <value>Enable Kill Switch Always-On?</value>
   </data>
+  <data name="Dialogs_SplitTunnelWarning_msg" xml:space="preserve">
+    <value>For Split Tunnel to function properly, you must disable Kill Switch.</value>
+  </data>
   <data name="Dialogs_TunFallback_btn_OpenSettings" xml:space="preserve">
     <value>Open Settings</value>
   </data>
