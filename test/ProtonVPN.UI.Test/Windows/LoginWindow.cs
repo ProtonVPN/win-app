@@ -79,18 +79,6 @@ namespace ProtonVPN.UI.Test.Windows
             return PerformLogin(TestUserData.GetVisionaryUser().Username, TestUserData.GetVisionaryUser().Password);
         }
 
-        public LoginWindow LoginWithTrialUser()
-        {
-            EnterUsername(TestUserData.GetTrialUser().Username)
-                .EnterPassword(TestUserData.GetTrialUser().Password)
-                .ClickLoginButton();
-            WaitUntilElementExistsByAutomationId("TrialModal", 20);
-            Session.FindElementByAccessibilityId("TrialModal").Click();
-            var actions = new Actions(Session);
-            actions.SendKeys(Keys.Escape).Build().Perform();
-            return this;
-        }
-
         public LoginWindow WaitUntilLoginIsFinished()
         {
             WaitUntilElementIsNotVisible(By.ClassName("Loading"), 15);

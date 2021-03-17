@@ -88,15 +88,6 @@ namespace ProtonVPN.UI.Test.Tests
             _loginResult.VerifyLoginErrorIsShown();
         }
 
-        [Test]
-        public void LoginAsTrialUser()
-        {
-            TestCaseId = 265;
-
-            _loginActions.LoginWithTrialUser();
-            _mainWindowResults.VerifyUserIsLoggedIn();
-        }
-
         [SetUp]
         public void TestInitialize()
         {
