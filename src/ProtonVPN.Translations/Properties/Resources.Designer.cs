@@ -637,7 +637,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to To complete the update process, ProtonVPN will temporary disconnect and deactivate Kill Switch Always-On if any of these are active. Do you want to continue?.
+        ///   Looks up a localized string similar to To complete the update process, ProtonVPN will temporary disconnect and deactivate Permanent Kill Switch if any of these are active. Do you want to continue?.
         /// </summary>
         public static string App_msg_UpdateConnectedConfirm {
             get {
@@ -3523,15 +3523,6 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kill Switch Always-On is enabled. Exiting the application will block all the outgoing connections until ProtonVPN is connected again..
-        /// </summary>
-        public static string Dialogs_Exit_msg_KillSwitchAlwaysOn {
-            get {
-                return ResourceManager.GetString("Dialogs_Exit_msg_KillSwitchAlwaysOn", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Kill Switch is blocking all connections to avoid leaking your data. Exiting the application will disable the Kill Switch..
         /// </summary>
         public static string Dialogs_Exit_msg_KillSwitchOn {
@@ -3541,7 +3532,16 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to With Kill Switch Always On, if the VPN is not connected for any reason, you won&apos;t be able to access the Internet..
+        ///   Looks up a localized string similar to Permanent Kill Switch is enabled. Exiting the application will block all the outgoing connections until ProtonVPN is connected again..
+        /// </summary>
+        public static string Dialogs_Exit_msg_PermanentKillSwitch {
+            get {
+                return ResourceManager.GetString("Dialogs_Exit_msg_PermanentKillSwitch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to With Permanent Kill Switch, if the VPN is not connected for any reason, you won&apos;t be able to access the Internet..
         /// </summary>
         public static string Dialogs_KillSwitchConfirmation_msg {
             get {
@@ -3550,7 +3550,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enable Kill Switch Always-On?.
+        ///   Looks up a localized string similar to Enable Permanent Kill Switch?.
         /// </summary>
         public static string Dialogs_KillSwitchConfirmation_ttl {
             get {
@@ -4990,15 +4990,6 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kill Switch Always-On.
-        /// </summary>
-        public static string QuickSettings_btn_KillSwitchAlwaysOn {
-            get {
-                return ResourceManager.GetString("QuickSettings_btn_KillSwitchAlwaysOn", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Kill Switch Off.
         /// </summary>
         public static string QuickSettings_btn_KillSwitchOff {
@@ -5049,6 +5040,15 @@ namespace ProtonVPN.Translations.Properties {
         public static string QuickSettings_btn_NetshieldOnSecond {
             get {
                 return ResourceManager.GetString("QuickSettings_btn_NetshieldOnSecond", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Permanent Kill Switch.
+        /// </summary>
+        public static string QuickSettings_btn_PermanentKillSwitch {
+            get {
+                return ResourceManager.GetString("QuickSettings_btn_PermanentKillSwitch", resourceCulture);
             }
         }
         
