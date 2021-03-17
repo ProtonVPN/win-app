@@ -539,7 +539,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                                  Command="{Binding EnableHardKillSwitchCommand}"
                                                                  Active="{Binding IsHardKillSwitchEnabled}"
                                                                  IsTurnOnButton="True"
-                                                                 Title="{translations:Loc QuickSettings_btn_KillSwitchAlwaysOn}">
+                                                                 Title="{translations:Loc QuickSettings_btn_PermanentKillSwitch}">
                                         <quickSettings:SettingButton.Icon>
                                             <icons:SwitchLock Width="18" Height="18" Margin="5,0,0,0" />
                                         </quickSettings:SettingButton.Icon>
