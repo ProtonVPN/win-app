@@ -35,20 +35,6 @@ namespace ProtonVPN.UI.Test.Tests
         private readonly SettingsResult _settingsResult = new SettingsResult();
 
         [Test]
-        public async Task ConnectUsingQuickConnectTrialUser()
-        {
-            TestCaseId = 225;
-
-            _loginWindow.LoginWithTrialUser();
-            _mainWindow.QuickConnect();
-            _mainWindowResults.CheckIfConnected();
-            await _mainWindowResults.CheckIfCorrectIPAddressIsShownAsync();
-            await _mainWindowResults.CheckIfCorrectCountryIsShownAsync();
-            _mainWindow.DisconnectUsingSidebarButton();
-            _mainWindowResults.CheckIfDisconnected();
-        }
-
-        [Test]
         public async Task ConnectUsingQuickConnectFreeUser()
         {
             TestCaseId = 225;
