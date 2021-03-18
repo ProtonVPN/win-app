@@ -20,6 +20,7 @@
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Config.Url;
+using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.User;
 using ProtonVPN.Modals;
@@ -95,11 +96,11 @@ namespace ProtonVPN.Account
 
         private void SetUserDetails()
         {
-            var user = _userStorage.User();
-            PlanName = VpnPlanHelper.GetPlanName(user.VpnPlan);
+            User user = _userStorage.User();
+            PlanName = VpnPlanHelper.GetPlanName(user.OriginalVpnPlan);
             Username = user.Username;
             AccountType = user.GetAccountPlan();
-            PlanColor = VpnPlanHelper.GetPlanColor(user.VpnPlan);
+            PlanColor = VpnPlanHelper.GetPlanColor(user.OriginalVpnPlan);
         }
 
         private void ManageAccountAction()

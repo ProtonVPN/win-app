@@ -3271,6 +3271,42 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string Dialogs_Delinquency_btn_Close {
+            get {
+                return ResourceManager.GetString("Dialogs_Delinquency_btn_Close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check invoices.
+        /// </summary>
+        public static string Dialogs_Delinquency_btn_Invoices {
+            get {
+                return ResourceManager.GetString("Dialogs_Delinquency_btn_Invoices", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The account is flagged as delinquent due to unpaid invoices. You can continue to use ProtonVPN, but any paid features are now disabled.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command=&quot;{Binding ReadAboutDelinquencyCommand}&quot;&gt;Read more about delinquency.&lt;/Hyperlink&gt;.
+        /// </summary>
+        public static string Dialogs_Delinquency_msg_Delinquency {
+            get {
+                return ResourceManager.GetString("Dialogs_Delinquency_msg_Delinquency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delinquent account.
+        /// </summary>
+        public static string Dialogs_Delinquency_ttl {
+            get {
+                return ResourceManager.GetString("Dialogs_Delinquency_ttl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enable.
         /// </summary>
         public static string Dialogs_DisabledService_btn_Enable {
@@ -5864,11 +5900,29 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Check invoices.
+        /// </summary>
+        public static string Sidebar_Trial_btn_Invoices {
+            get {
+                return ResourceManager.GetString("Sidebar_Trial_btn_Invoices", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Upgrade.
         /// </summary>
         public static string Sidebar_Trial_btn_Upgrade {
             get {
                 return ResourceManager.GetString("Sidebar_Trial_btn_Upgrade", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Paid features are disabled due to delinquency.
+        /// </summary>
+        public static string Sidebar_Trial_lbl_Delinquency {
+            get {
+                return ResourceManager.GetString("Sidebar_Trial_lbl_Delinquency", resourceCulture);
             }
         }
         

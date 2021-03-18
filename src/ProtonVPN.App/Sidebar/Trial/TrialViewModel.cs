@@ -17,26 +17,34 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using GalaSoft.MvvmLight.Command;
-using ProtonVPN.Config.Url;
-using ProtonVPN.Core.MVVM;
-using ProtonVPN.Core.User;
-using ProtonVPN.Trial;
 using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using GalaSoft.MvvmLight.Command;
+using ProtonVPN.Config.Url;
+using ProtonVPN.Core.MVVM;
+using ProtonVPN.Core.Settings;
+using ProtonVPN.Core.User;
+using ProtonVPN.Trial;
 
 namespace ProtonVPN.Sidebar.Trial
 {
     public class TrialViewModel : ViewModel, ITrialStateAware, ITrialDurationAware
     {
+        private readonly IActiveUrls _urls;
+        private readonly IUserStorage _userStorage;
+
         private TimeSpan _timeLeft;
         private PlanStatus _trialStatus;
-        private readonly IActiveUrls _urls;
 
-        public TrialViewModel(IActiveUrls urls)
+        public TrialViewModel(IActiveUrls urls, IUserStorage userStorage)
         {
             _urls = urls;
+            _userStorage = userStorage;
+            if (_userStorage.User().IsDelinquent())
+            {
+                TrialStatus = PlanStatus.Delinquent;
+            }
             UpgradeCommand = new RelayCommand(UpgradeAction);
         }
 
@@ -60,12 +68,13 @@ namespace ProtonVPN.Sidebar.Trial
 
         private void UpgradeAction()
         {
-            _urls.AccountUrl.Open();
+            IActiveUrl url = _trialStatus == PlanStatus.Delinquent ? _urls.InvoicesUrl : _urls.AccountUrl;
+            url.Open();
         }
 
         public Task OnTrialStateChangedAsync(PlanStatus status)
         {
-            TrialStatus = status;
+            TrialStatus = _userStorage.User().IsDelinquent() ? PlanStatus.Delinquent : status;
             return Task.CompletedTask;
         }
 

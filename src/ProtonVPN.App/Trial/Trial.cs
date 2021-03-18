@@ -136,7 +136,7 @@ namespace ProtonVPN.Trial
             {
                 ShowTrialEndModal();
             }
-            else if (!user.Paid())
+            else if (!user.Paid() && !_userStorage.User().IsDelinquent())
             {
                 ShowEnjoyModal();
             }
@@ -211,7 +211,7 @@ namespace ProtonVPN.Trial
             _appSettings.ExpiredModalShown = true;
         }
 
-        public Task OnVpnPlanChangedAsync(string plan)
+        public Task OnVpnPlanChangedAsync(VpnPlanChangedEventArgs e)
         {
             User user = _userStorage.User();
             InvokeStateChange(user.TrialStatus());

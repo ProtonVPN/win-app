@@ -27,18 +27,21 @@ using ProtonVPN.Core.OS.Crypto;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Storage;
+using ProtonVPN.Core.User;
 using UserLocation = ProtonVPN.Core.User.UserLocation;
 
 namespace ProtonVPN.Settings
 {
     internal class UserStorage : IUserStorage
     {
+        private const string FREE_VPN_PLAN = "free";
+
         private readonly ILogger _logger;
         private readonly ISettingsStorage _storage;
         private readonly UserSettings _userSettings;
 
         public event EventHandler UserDataChanged;
-        public event EventHandler<string> VpnPlanChanged;
+        public event EventHandler<VpnPlanChangedEventArgs> VpnPlanChanged;
 
         public UserStorage(
             ILogger logger,
@@ -57,11 +60,14 @@ namespace ProtonVPN.Settings
 
         public void SetFreePlan()
         {
-            _userSettings.Set("VpnPlan", "free");
+            string oldVpnPlan = _userSettings.Get<string>("VpnPlan");
+
+            _userSettings.Set("VpnPlan", FREE_VPN_PLAN);
             _userSettings.Set("ExpirationTime", 0);
             _userSettings.Set("MaxTier", ServerTiers.Free);
-
-            VpnPlanChanged?.Invoke(this, "free");
+            
+            VpnPlanChangedEventArgs eventArgs = new VpnPlanChangedEventArgs(oldVpnPlan, FREE_VPN_PLAN);
+            VpnPlanChanged?.Invoke(this, eventArgs);
             UserDataChanged?.Invoke(this, EventArgs.Empty);
         }
 
@@ -109,70 +115,97 @@ namespace ProtonVPN.Settings
 
         public void StoreVpnInfo(VpnInfoResponse vpnInfo)
         {
+            int expirationTime = vpnInfo.Vpn.ExpirationTime;
+            sbyte maxTier = vpnInfo.Vpn.MaxTier;
+            string vpnPlan = vpnInfo.Vpn.PlanName;
+
+            if (Core.Models.User.IsDelinquent(vpnInfo.Delinquent))
+            {
+                expirationTime = 0;
+                maxTier = ServerTiers.Free;
+                vpnPlan = FREE_VPN_PLAN;
+            }
+
             CacheUser(new User
             {
-                ExpirationTime = vpnInfo.Vpn.ExpirationTime,
-                MaxTier = vpnInfo.Vpn.MaxTier,
+                ExpirationTime = expirationTime,
+                MaxTier = maxTier,
                 Services = vpnInfo.Services,
-                VpnPlan = vpnInfo.Vpn.PlanName,
+                VpnPlan = vpnPlan,
                 VpnPassword = vpnInfo.Vpn.Password,
                 VpnUsername = vpnInfo.Vpn.Name,
                 Delinquent = vpnInfo.Delinquent,
-                MaxConnect = vpnInfo.Vpn.MaxConnect
+                MaxConnect = vpnInfo.Vpn.MaxConnect,
+                OriginalVpnPlan = vpnInfo.Vpn.PlanName
             });
         }
 
         private User UnsafeUser()
         {
-            var username = _storage.Get<string>("Username")?.Trim();
+            string username = _storage.Get<string>("Username")?.Trim();
             if (string.IsNullOrEmpty(username))
+            {
                 return Core.Models.User.EmptyUser();
+            }
 
             username = username.Decrypt();
 
-            var vpnUsername = _userSettings.Get<string>("VpnUsername");
+            string vpnUsername = _userSettings.Get<string>("VpnUsername");
             if (!string.IsNullOrEmpty(vpnUsername))
+            {
                 vpnUsername = vpnUsername.Decrypt();
+            }
 
-            var vpnPassword = _userSettings.Get<string>("VpnPassword");
+            string vpnPassword = _userSettings.Get<string>("VpnPassword");
             if (!string.IsNullOrEmpty(vpnPassword))
+            {
                 vpnPassword = vpnPassword.Decrypt();
+            }
+
+            int delinquent = _userSettings.Get<int>("Delinquent");
+            string originalVpnPlan = _userSettings.Get<string>("VpnPlan");
+            string vpnPlan = originalVpnPlan;
+            if (Core.Models.User.IsDelinquent(delinquent))
+            {
+                vpnPlan = FREE_VPN_PLAN;
+            }
 
             return new User
             {
                 Username = username,
-                VpnPlan = _userSettings.Get<string>("VpnPlan"),
+                VpnPlan = vpnPlan,
                 MaxTier = _userSettings.Get<sbyte>("MaxTier"),
-                Delinquent = _userSettings.Get<int>("Delinquent"),
+                Delinquent = delinquent,
                 ExpirationTime = _userSettings.Get<int>("ExpirationTime"),
                 MaxConnect = _userSettings.Get<int>("MaxConnect"),
                 Services = _userSettings.Get<int>("Services"),
                 VpnUsername = vpnUsername,
-                VpnPassword = vpnPassword
+                VpnPassword = vpnPassword,
+                OriginalVpnPlan = originalVpnPlan
             };
         }
 
         public UserLocation UnsafeLocation()
         {
-            var ip = _storage.Get<string>("Ip")?.Trim();
-            var latitude = _storage.Get<string>("Latitude")?.Trim();
-            var longitude = _storage.Get<string>("Longitude")?.Trim();
-            var isp = _storage.Get<string>("Isp");
-            var country = _storage.Get<string>("Country");
+            string ip = _storage.Get<string>("Ip")?.Trim();
+            string latitude = _storage.Get<string>("Latitude")?.Trim();
+            string longitude = _storage.Get<string>("Longitude")?.Trim();
+            string isp = _storage.Get<string>("Isp");
+            string country = _storage.Get<string>("Country");
 
             if (string.IsNullOrEmpty(ip) || string.IsNullOrEmpty(latitude) || string.IsNullOrEmpty(longitude))
             {
                 return UserLocation.Empty;
             }
 
-            var latitudeFloat = float.Parse(latitude.Decrypt(), CultureInfo.InvariantCulture.NumberFormat);
-            var longitudeFloat = float.Parse(longitude.Decrypt(), CultureInfo.InvariantCulture.NumberFormat);
+            float latitudeFloat = float.Parse(latitude.Decrypt(), CultureInfo.InvariantCulture.NumberFormat);
+            float longitudeFloat = float.Parse(longitude.Decrypt(), CultureInfo.InvariantCulture.NumberFormat);
             return new UserLocation(ip.Decrypt(), latitudeFloat, longitudeFloat, isp.Decrypt(), country.Decrypt());
         }
 
         private void SaveUserData(User user)
         {
-            _userSettings.Set("VpnPlan", user.VpnPlan);
+            _userSettings.Set("VpnPlan", user.OriginalVpnPlan);
             _userSettings.Set("MaxTier", user.MaxTier);
             _userSettings.Set("Delinquent", user.Delinquent);
             _userSettings.Set("ExpirationTime", user.ExpirationTime);
@@ -184,11 +217,14 @@ namespace ProtonVPN.Settings
 
         private void CacheUser(User user)
         {
-            var previousData = User();
+            User previousData = User();
             SaveUserData(user);
 
             if (previousData.VpnPlan != user.VpnPlan)
-                VpnPlanChanged?.Invoke(this, user.VpnPlan);
+            {
+                VpnPlanChangedEventArgs eventArgs = new VpnPlanChangedEventArgs(previousData.VpnPlan, user.VpnPlan);
+                VpnPlanChanged?.Invoke(this, eventArgs);
+            }
 
             UserDataChanged?.Invoke(this, EventArgs.Empty);
         }

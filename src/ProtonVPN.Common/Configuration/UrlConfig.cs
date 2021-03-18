@@ -94,5 +94,11 @@ namespace ProtonVPN.Common.Configuration
 
         [Required]
         public string PortForwardingRisksUrl { get; internal set; }
+
+        [Required]
+        public string AboutDelinquencyUrl { get; internal set; }
+
+        [Required]
+        public string InvoicesUrl { get; internal set; }
     }
 }

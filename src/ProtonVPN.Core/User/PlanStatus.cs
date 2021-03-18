@@ -26,5 +26,6 @@ namespace ProtonVPN.Core.User
         Free,
         Paid,
         Expired,
+        Delinquent
     }
 }

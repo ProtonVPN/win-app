@@ -23,6 +23,6 @@ namespace ProtonVPN.Core.User
 {
     public interface IVpnPlanAware
     {
-        Task OnVpnPlanChangedAsync(string plan);
+        Task OnVpnPlanChangedAsync(VpnPlanChangedEventArgs e);
     }
 }

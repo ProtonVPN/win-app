@@ -173,6 +173,7 @@
     <Compile Include="Modals\IModal.cs" />
     <Compile Include="Modals\IModals.cs" />
     <Compile Include="Native\WindowStates.cs" />
+    <Compile Include="User\VpnPlanChangedEventArgs.cs" />
     <Compile Include="Window\Popups\IPopupWindow.cs" />
     <Compile Include="Window\Popups\IPopupWindows.cs" />
     <Compile Include="Models\User.cs" />

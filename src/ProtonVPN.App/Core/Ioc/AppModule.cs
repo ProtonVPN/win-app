@@ -55,6 +55,7 @@ using ProtonVPN.Map;
 using ProtonVPN.Modals;
 using ProtonVPN.Modals.Dialogs;
 using ProtonVPN.Notifications;
+using ProtonVPN.PlanDowngrading;
 using ProtonVPN.Servers;
 using ProtonVPN.Settings;
 using ProtonVPN.Settings.Migrations;
@@ -276,6 +277,7 @@ namespace ProtonVPN.Core.Ioc
                 c.Resolve<IUserStorage>())).SingleInstance();
             builder.RegisterType<VpnReconnector>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<ReportFieldProvider>().As<IReportFieldProvider>().SingleInstance();
+            builder.RegisterType<PlanDowngradeHandler>().AsImplementedInterfaces().AsSelf().SingleInstance();
         }
     }
 }

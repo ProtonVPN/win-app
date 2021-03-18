@@ -167,7 +167,7 @@ namespace ProtonVPN.Core.Service.Vpn
             }
         }
 
-        public async Task OnVpnPlanChangedAsync(string plan)
+        public async Task OnVpnPlanChangedAsync(VpnPlanChangedEventArgs e)
         {
             if (_lastServer != null)
             {

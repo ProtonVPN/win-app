@@ -184,7 +184,9 @@ namespace ProtonVPN.Common.Configuration.Source
                     AboutKillSwitchUrl = "https://protonvpn.com/support/what-is-kill-switch",
                     AboutNetShieldUrl = "https://protonvpn.com/support/netshield",
                     AboutPortForwardingUrl = "https://protonvpn.com/support/port-forwarding",
-                    PortForwardingRisksUrl = "https://protonvpn.com/support/port-forwarding-risks"
+                    PortForwardingRisksUrl = "https://protonvpn.com/support/port-forwarding-risks",
+                    AboutDelinquencyUrl = "https://protonvpn.com/support/delinquency",
+                    InvoicesUrl = "https://account.protonvpn.com/payments#invoices"
                 },
 
                 OpenVpn =

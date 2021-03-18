@@ -174,7 +174,7 @@ namespace ProtonVPN.Map
             return Task.CompletedTask;
         }
 
-        public Task OnVpnPlanChangedAsync(string plan)
+        public Task OnVpnPlanChangedAsync(VpnPlanChangedEventArgs e)
         {
             RebuildPins();
 

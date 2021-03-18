@@ -34,6 +34,8 @@ using ProtonVPN.Core.Servers.Models;
 using ProtonVPN.Core.Servers.Specs;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
+using ProtonVPN.Core.Settings.Contracts;
+using ProtonVPN.Modals.Delinquencies;
 using ProtonVPN.Modals.Upsell;
 using ProtonVPN.Translations;
 using Profile = ProtonVPN.Core.Profiles.Profile;
@@ -83,8 +85,8 @@ namespace ProtonVPN.Vpn.Connectors
                 return _serverCandidatesFactory.ServerCandidates(new Server[0]);
             }
 
-            var serverSpec = ProfileServerSpec(profile);
-            var servers = _serverManager.GetServers(serverSpec);
+            Specification<LogicalServerContract> serverSpec = ProfileServerSpec(profile);
+            IReadOnlyCollection<Server> servers = _serverManager.GetServers(serverSpec);
             return _serverCandidatesFactory.ServerCandidates(servers);
         }
 
@@ -103,21 +105,21 @@ namespace ProtonVPN.Vpn.Connectors
 
         public async Task Connect(ServerCandidates candidates, Profile profile)
         {
-            var servers = Servers(candidates);
+            IReadOnlyList<Server> servers = Servers(candidates);
 
-            var sortedServers = Sorted(servers, profile.ProfileType);
+            IEnumerable<Server> sortedServers = Sorted(servers, profile.ProfileType);
             await Connect(sortedServers, VpnProtocol(profile.Protocol));
         }
 
         public async Task<bool> UpdateServers(ServerCandidates candidates, Profile profile)
         {
-            var servers = Servers(candidates);
+            IReadOnlyList<Server> servers = Servers(candidates);
             if (!servers.Any())
             {
                 return false;
             }
 
-            var sortedServers = Sorted(servers, profile.ProfileType);
+            IEnumerable<Server> sortedServers = Sorted(servers, profile.ProfileType);
             await UpdateServers(sortedServers);
 
             return true;
@@ -125,7 +127,7 @@ namespace ProtonVPN.Vpn.Connectors
 
         private IReadOnlyList<Server> Servers(ServerCandidates candidates)
         {
-            var servers = candidates.Items
+            IReadOnlyList<Server> servers = candidates.Items
                 .OnlineServers()
                 .UpToTierServers(_userStorage.User().MaxTier)
                 .ToList();
@@ -193,6 +195,12 @@ namespace ProtonVPN.Vpn.Connectors
                 return;
             }
 
+            if (_userStorage.User().IsDelinquent())
+            {
+                HandleDelinquentUser();
+                return;
+            }
+
             if ((profile.Features.IsSecureCore() || profile.IsPredefined && _appSettings.SecureCore) &&
                 _userStorage.User().MaxTier < ServerTiers.Plus)
             {
@@ -212,7 +220,7 @@ namespace ProtonVPN.Vpn.Connectors
                 return;
             }
 
-            var userTierServers = candidates.UpToTierServers(_userStorage.User().MaxTier);
+            IEnumerable<Server> userTierServers = candidates.UpToTierServers(_userStorage.User().MaxTier);
 
             if (!userTierServers.Any())
             {
@@ -246,7 +254,7 @@ namespace ProtonVPN.Vpn.Connectors
                 return;
             }
 
-            var userTierServers = candidates.UpToTierServers(_userStorage.User().MaxTier);
+            IEnumerable<Server> userTierServers = candidates.UpToTierServers(_userStorage.User().MaxTier);
 
             if (!userTierServers.Any())
             {
@@ -278,13 +286,13 @@ namespace ProtonVPN.Vpn.Connectors
 
         private Common.Vpn.VpnConfig VpnConfig()
         {
-            var portConfig = new Dictionary<VpnProtocol, IReadOnlyCollection<int>>
+            Dictionary<VpnProtocol, IReadOnlyCollection<int>> portConfig = new Dictionary<VpnProtocol, IReadOnlyCollection<int>>
             {
                 {Common.Vpn.VpnProtocol.OpenVpnUdp, _appSettings.OpenVpnUdpPorts},
                 {Common.Vpn.VpnProtocol.OpenVpnTcp, _appSettings.OpenVpnTcpPorts},
             };
 
-            var customDns = (from ip in _appSettings.CustomDnsIps where ip.Enabled select ip.Ip).ToList();
+            List<string> customDns = (from ip in _appSettings.CustomDnsIps where ip.Enabled select ip.Ip).ToList();
 
             return new Common.Vpn.VpnConfig(
                 portConfig,
@@ -296,10 +304,10 @@ namespace ProtonVPN.Vpn.Connectors
 
         private List<string> GetSplitTunnelIPs()
         {
-            var list = new List<string>();
+            List<string> list = new List<string>();
             if (_appSettings.SplitTunnelMode != SplitTunnelMode.Disabled)
             {
-                var ips = _appSettings.SplitTunnelMode == SplitTunnelMode.Permit
+                IpContract[] ips = _appSettings.SplitTunnelMode == SplitTunnelMode.Permit
                     ? _appSettings.SplitTunnelIncludeIps
                     : _appSettings.SplitTunnelExcludeIps;
                 list.AddRange(from ip in ips where ip.Enabled select ip.Ip);
@@ -310,7 +318,7 @@ namespace ProtonVPN.Vpn.Connectors
 
         private async Task Connect(IEnumerable<Server> servers, VpnProtocol protocol)
         {
-            var request = new VpnConnectionRequest(
+            VpnConnectionRequest request = new VpnConnectionRequest(
                 Servers(servers),
                 protocol,
                 VpnConfig(),
@@ -356,6 +364,12 @@ namespace ProtonVPN.Vpn.Connectors
                 return;
             }
 
+            if (_userStorage.User().IsDelinquent())
+            {
+                HandleDelinquentUser();
+                return;
+            }
+
             if (_userStorage.User().MaxTier < server.Tier)
             {
                 HandleUserTierTooLow(server);
@@ -371,6 +385,11 @@ namespace ProtonVPN.Vpn.Connectors
         private void HandleEmptyServer()
         {
             _dialogs.ShowWarning(Translation.Get("Servers_msg_CantConnect_Missing"));
+        }
+
+        private void HandleDelinquentUser()
+        {
+            _modals.Show<DelinquencyModalViewModel>();
         }
 
         private void HandleOfflineServer()
