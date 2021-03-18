@@ -75,11 +75,20 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        TextWrapping="Wrap"
                        behavior:TextStyleBehavior.FormattedText="{translations:Loc Sidebar_Trial_lbl_FreeVersion}"/>
         </DataTemplate>
+        <DataTemplate x:Key="DelinquentTemplate">
+            <TextBlock Foreground="White"
+                       FontSize="15"
+                       TextWrapping="Wrap"
+                       behavior:TextStyleBehavior.FormattedText="{translations:Loc Sidebar_Trial_lbl_Delinquency}"/>
+        </DataTemplate>
         <DataTemplate DataType="{x:Type user:PlanStatus}">
             <ContentControl Content="{Binding}">
                 <ContentControl.Style>
                     <Style TargetType="{x:Type ContentControl}">
                         <Style.Triggers>
+                            <DataTrigger Binding="{Binding}" Value="{x:Static user:PlanStatus.Delinquent}">
+                                <Setter Property="ContentTemplate" Value="{StaticResource DelinquentTemplate}"/>
+                            </DataTrigger>
                             <DataTrigger Binding="{Binding}" Value="{x:Static user:PlanStatus.TrialNotStarted}">
                                 <Setter Property="ContentTemplate" Value="{StaticResource TrialNotStartedTemplate}"/>
                             </DataTrigger>
@@ -112,12 +121,21 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         Grid.Column="0"
                         Margin="20,20,5,20"
                         HorizontalAlignment="Stretch"/>
-        <Button Style="{StaticResource PrimaryModalButton}"
-                Padding="20,0"
+        <Button Padding="20,0"
                 Grid.Column="1"
                 FontWeight="Medium"
                 HorizontalAlignment="Right"
-                Command="{Binding UpgradeCommand}"
-                Content="{translations:Loc Sidebar_Trial_btn_Upgrade, Converter={StaticResource StringToUpperConverter}}"/>
+                Command="{Binding UpgradeCommand}">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}" BasedOn="{StaticResource PrimaryModalButton}">
+                    <Setter Property="Content" Value="{translations:Loc Sidebar_Trial_btn_Upgrade, Converter={StaticResource StringToUpperConverter}}" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding TrialStatus}" Value="{x:Static user:PlanStatus.Delinquent}">
+                            <Setter Property="Content" Value="{translations:Loc Sidebar_Trial_btn_Invoices}" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
     </Grid>
 </UserControl>

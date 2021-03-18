@@ -17,24 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
-using ProtonVPN.Core.Api.Contracts;
-using ProtonVPN.Core.User;
-using UserLocation = ProtonVPN.Core.User.UserLocation;
-
-namespace ProtonVPN.Core.Settings
+namespace ProtonVPN.Modals.Delinquencies
 {
-    public interface IUserStorage
+    public partial class DelinquencyModalView
     {
-        event EventHandler UserDataChanged;
-        event EventHandler<VpnPlanChangedEventArgs> VpnPlanChanged;
-
-        Models.User User();
-        UserLocation Location();
-        void ClearLogin();
-        void StoreVpnInfo(VpnInfoResponse vpnInfo);
-        void SaveLocation(UserLocation location);
-        void SaveUsername(string username);
-        void SetFreePlan();
+        public DelinquencyModalView()
+        {
+            InitializeComponent();
+        }
     }
 }

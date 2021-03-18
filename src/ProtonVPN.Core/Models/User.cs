@@ -33,6 +33,7 @@ namespace ProtonVPN.Core.Models
         public int ExpirationTime { get; set; }
         public int Delinquent { get; set; }
         public int MaxConnect { get; set; }
+        public string OriginalVpnPlan { get; set; }
 
         public string GetAccountPlan()
         {
@@ -75,14 +76,24 @@ namespace ProtonVPN.Core.Models
 
         public long TrialExpirationTimeInSeconds()
         {
-            var now = ((DateTimeOffset)DateTime.Now).ToUnixTimeSeconds();
-            var secondsLeft = ExpirationTime - now;
+            long now = ((DateTimeOffset)DateTime.Now).ToUnixTimeSeconds();
+            long secondsLeft = ExpirationTime - now;
             return secondsLeft < 0 ? 0 : secondsLeft;
         }
 
         public bool Empty()
         {
             return string.IsNullOrEmpty(Username);
+        }
+
+        public bool IsDelinquent()
+        {
+            return IsDelinquent(Delinquent);
+        }
+
+        public static bool IsDelinquent(int delinquent)
+        {
+            return delinquent > 2;
         }
 
         public static User EmptyUser()

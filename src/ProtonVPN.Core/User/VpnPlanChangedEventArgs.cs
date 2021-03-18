@@ -17,24 +17,21 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
-using ProtonVPN.Core.Api.Contracts;
-using ProtonVPN.Core.User;
-using UserLocation = ProtonVPN.Core.User.UserLocation;
-
-namespace ProtonVPN.Core.Settings
+namespace ProtonVPN.Core.User
 {
-    public interface IUserStorage
+    public class VpnPlanChangedEventArgs
     {
-        event EventHandler UserDataChanged;
-        event EventHandler<VpnPlanChangedEventArgs> VpnPlanChanged;
+        public string OldVpnPlan { get; }
+        public string NewVpnPlan { get; }
+        public bool IsDowngrade { get; }
 
-        Models.User User();
-        UserLocation Location();
-        void ClearLogin();
-        void StoreVpnInfo(VpnInfoResponse vpnInfo);
-        void SaveLocation(UserLocation location);
-        void SaveUsername(string username);
-        void SetFreePlan();
+        public VpnPlanChangedEventArgs(string oldVpnPlan, string newVpnPlan)
+        {
+            OldVpnPlan = oldVpnPlan;
+            NewVpnPlan = newVpnPlan;
+            IsDowngrade = (oldVpnPlan != newVpnPlan) && (
+                            (newVpnPlan == "free") ||
+                            (newVpnPlan == "vpnbasic" && oldVpnPlan != "free"));
+        }
     }
 }

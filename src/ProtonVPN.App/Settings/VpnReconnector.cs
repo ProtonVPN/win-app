@@ -46,7 +46,8 @@ namespace ProtonVPN.Settings
 
         public async Task ReconnectAsync()
         {
-            if (_vpnStatus == VpnStatus.Disconnected)
+            if (_vpnStatus == VpnStatus.Disconnected || 
+                _vpnStatus == VpnStatus.Disconnecting)
             {
                 return;
             }

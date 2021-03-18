@@ -17,14 +17,16 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Vpn;
-using ProtonVPN.Core.Api;
-using ProtonVPN.Core.Settings;
 using System.Net.Http;
 using System.Threading.Tasks;
+using ProtonVPN.Common.Vpn;
+using ProtonVPN.Core.Api;
+using ProtonVPN.Core.Api.Contracts;
+using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Servers.Models;
 using ProtonVPN.Core.Servers.Specs;
+using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
 
 namespace ProtonVPN.ConnectionInfo
@@ -51,8 +53,8 @@ namespace ProtonVPN.ConnectionInfo
 
         public async Task<VpnError> ResolveError()
         {
-            var oldUserInfo = _userStorage.User();
-            if (oldUserInfo.Delinquent > 2)
+            User oldUserInfo = _userStorage.User();
+            if (oldUserInfo.IsDelinquent())
             {
                 return VpnError.Unpaid;
             }
@@ -63,7 +65,7 @@ namespace ProtonVPN.ConnectionInfo
             }
 
             await UpdateUserInfo();
-            var newUserInfo = _userStorage.User();
+            User newUserInfo = _userStorage.User();
 
             if (oldUserInfo.VpnPassword != newUserInfo.VpnPassword)
             {
@@ -76,7 +78,7 @@ namespace ProtonVPN.ConnectionInfo
             }
 
             await _serverUpdater.Update();
-            var server = _serverManager.GetServer(new ServerById(_server.Id));
+            Server server = _serverManager.GetServer(new ServerById(_server.Id));
             if (server == null)
             {
                 _serverManager.MarkServerUnderMaintenance(_server.ExitIp);
@@ -102,9 +104,11 @@ namespace ProtonVPN.ConnectionInfo
         {
             try
             {
-                var response = await _api.GetSessions();
+                ApiResponseResult<SessionsResponse> response = await _api.GetSessions();
                 if (response.Success)
+                {
                     return response.Value.Sessions.Count;
+                }
             }
             catch (HttpRequestException)
             {
@@ -117,7 +121,7 @@ namespace ProtonVPN.ConnectionInfo
         {
             try
             {
-                var result = await _api.GetVpnInfoResponse();
+                ApiResponseResult<VpnInfoResponse> result = await _api.GetVpnInfoResponse();
                 if (result.Success)
                 {
                     _userStorage.StoreVpnInfo(result.Value);

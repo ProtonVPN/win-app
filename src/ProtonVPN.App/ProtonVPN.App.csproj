@@ -207,6 +207,10 @@
     <Compile Include="Core\Service\BaseFilteringEngineService.cs" />
     <Compile Include="Core\Service\Vpn\ReconnectManager.cs" />
     <Compile Include="Core\Service\Vpn\VpnManagerProfileCandidates.cs" />
+    <Compile Include="Modals\Delinquencies\DelinquencyModalView.xaml.cs">
+      <DependentUpon>DelinquencyModalView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modals\Delinquencies\DelinquencyModalViewModel.cs" />
     <Compile Include="Modals\TunInUseModalView.xaml.cs">
       <DependentUpon>TunInUseModalView.xaml</DependentUpon>
     </Compile>
@@ -227,6 +231,7 @@
       <DependentUpon>RebootModalView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modals\RebootModalViewModel.cs" />
+    <Compile Include="PlanDowngrading\PlanDowngradeHandler.cs" />
     <Compile Include="Windows\BaseWindowViewModel.cs" />
     <Compile Include="Windows\Popups\BaseUpgradePlanPopupViewModel.cs" />
     <Compile Include="Windows\Popups\PopupWindows.cs" />
@@ -851,6 +856,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="FlashNotifications\UpdateFlashNotification.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Modals\Delinquencies\DelinquencyModalView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
