@@ -8,10 +8,16 @@ static WINTUN_CREATE_ADAPTER_FUNC WintunCreateAdapter;
 static WINTUN_FREE_ADAPTER_FUNC WintunFreeAdapter;
 static WINTUN_OPEN_ADAPTER_FUNC WintunOpenAdapter;
 static WINTUN_DELETE_POOL_DRIVER_FUNC WintunDeletePoolDriver;
+static WINTUN_SET_LOGGER_FUNC WintunSetLogger;
 
-const WCHAR *AdapterName = L"ProtonVPN";
-const WCHAR *AdapterDescription = L"ProtonVPN TUN";
+const WCHAR *AdapterPoolName = L"ProtonVPN";
+const WCHAR *AdapterName = L"ProtonVPN TUN";
 const GUID AdapterGuid = { 0xafdeecba, 0xdfba, 0xcaff, {0x50, 0x44, 0x01, 0x34, 0x12, 0xbc, 0xea, 0xcd} };
+
+static void CALLBACK InstallLogger(_In_ WINTUN_LOGGER_LEVEL Level, _In_z_ const WCHAR* LogLine)
+{
+    LogMessage(LogLine);
+}
 
 static void SetCurrentDir(const std::wstring path, size_t lastSlashPosition)
 {
@@ -49,6 +55,7 @@ static HMODULE InitializeWintun(LPCWSTR dllPath)
     if (X(WintunCreateAdapter, WINTUN_CREATE_ADAPTER_FUNC) ||
         X(WintunDeletePoolDriver, WINTUN_DELETE_POOL_DRIVER_FUNC) ||
         X(WintunFreeAdapter, WINTUN_FREE_ADAPTER_FUNC) ||
+        X(WintunSetLogger, WINTUN_SET_LOGGER_FUNC) ||
         X(WintunOpenAdapter, WINTUN_OPEN_ADAPTER_FUNC))
 #undef X
     {
@@ -66,6 +73,7 @@ int InstallTunAdapter(LPCWSTR dllPath)
 {
     DWORD LastError = ERROR_SUCCESS;
     HMODULE Wintun = InitializeWintun(dllPath);
+
     if (!Wintun)
     {
         LastError = GetLastError();
@@ -73,19 +81,36 @@ int InstallTunAdapter(LPCWSTR dllPath)
         return LastError;
     }
 
-    WINTUN_ADAPTER_HANDLE Adapter = WintunOpenAdapter(AdapterName, AdapterDescription);
-    if (Adapter)
+    WintunSetLogger(InstallLogger);
+
+    WINTUN_ADAPTER_HANDLE Adapter = WintunOpenAdapter(AdapterPoolName, AdapterName);
+    if (Adapter != nullptr)
     {
-        LogMessage(L"ProtonVPN TUN adapter already exists. Skipping.");
+        LogMessage(L"ProtonVPN TUN adapter detected. Trying to remove...");
+        WintunFreeAdapter(Adapter);
+
+        BOOL* rebootRequired = nullptr;
+        if (WintunDeletePoolDriver(AdapterPoolName, rebootRequired) == 0)
+        {
+            LastError = GetLastError();
+            LogMessage(L"Failed to uninstall ProtonVPN TUN adapter: ", LastError);
+        }
+        else
+        {
+            LogMessage(L"ProtonVPN TUN removed. ");
+        }
+    }
+
+    LogMessage(L"Trying to install ProtonVPN TUN: ");
+    Adapter = WintunCreateAdapter(AdapterPoolName, AdapterName, &AdapterGuid, nullptr);
+    if (Adapter == nullptr)
+    {
+        LastError = GetLastError();
+        LogMessage(L"Failed to create ProtonVPN TUN adapter: ", LastError);
     }
     else
     {
-        Adapter = WintunCreateAdapter(AdapterName, AdapterDescription, &AdapterGuid, nullptr);
-        if (!Adapter)
-        {
-            LastError = GetLastError();
-            LogMessage(L"Failed to create ProtonVPN TUN adapter: ", LastError);
-        }
+        WintunFreeAdapter(Adapter);
     }
 
     FreeLibrary(Wintun);
@@ -104,18 +129,21 @@ int UninstallTunAdapter(LPCWSTR dllPath, BOOL* rebootRequired)
         return LastError;
     }
 
-    WINTUN_ADAPTER_HANDLE Adapter = WintunOpenAdapter(AdapterName, AdapterDescription);
-    if (Adapter)
+    WintunSetLogger(InstallLogger);
+
+    WINTUN_ADAPTER_HANDLE Adapter = WintunOpenAdapter(AdapterPoolName, AdapterName);
+    if (Adapter != nullptr)
     {
-        if (WintunDeletePoolDriver(AdapterName, rebootRequired))
-        {
-            WintunFreeAdapter(Adapter);
-            LogMessage(L"ProtonVPN TUN adapter uninstalled.");
-        }
-        else
+        WintunFreeAdapter(Adapter);
+
+        if (WintunDeletePoolDriver(AdapterPoolName, rebootRequired) == 0)
         {
             LastError = GetLastError();
             LogMessage(L"Failed to uninstall ProtonVPN TUN adapter: ", LastError);
+        }
+        else
+        {
+            LogMessage(L"ProtonVPN TUN adapter uninstalled.");
         }
     }
     else
