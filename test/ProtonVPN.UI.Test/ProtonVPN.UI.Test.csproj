@@ -105,6 +105,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiClient\CommonAPI.cs" />
     <Compile Include="ApiClient\TestRailAPI.cs" />
     <Compile Include="TestsHelper\TestEnvironment.cs" />
     <Compile Include="Tests\SetUpTests.cs" />

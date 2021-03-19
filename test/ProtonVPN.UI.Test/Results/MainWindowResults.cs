@@ -17,12 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Globalization;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using ProtonVPN.UI.Test.ApiClient;
 using ProtonVPN.UI.Test.TestsHelper;
 using ProtonVPN.UI.Test.Windows;
-using TestTools.ApiClient;
 
 namespace ProtonVPN.UI.Test.Results
 {
@@ -30,6 +29,7 @@ namespace ProtonVPN.UI.Test.Results
     {
         private readonly MainWindow _mainWindow = new MainWindow();
         private readonly LoginWindow _loginWindow = new LoginWindow();
+        private readonly CommonAPI _client = new CommonAPI("http://ip-api.com");
 
         public MainWindowResults VerifyUserIsLoggedIn()
         {
@@ -39,21 +39,18 @@ namespace ProtonVPN.UI.Test.Results
 
         public async Task<MainWindowResults> CheckIfCorrectIPAddressIsShownAsync()
         {
-            var api = new Api(TestUserData.GetPlusUser().Username, TestUserData.GetPlusUser().Password);
-            string ipAddress = await api.GetIpAddress();
+            string ipAddress = await _client.GetIpAddress();
             string textBlockIpAddress = Session.FindElementByAccessibilityId("IPAddressTextBlock").Text.RemoveExtraText();
-            Assert.IsTrue(ipAddress.Equals(textBlockIpAddress), "Incorrect IP address is displayed.");
+            Assert.IsTrue(ipAddress.Equals(textBlockIpAddress), "Incorrect IP address is displayed. API returned IP: " + ipAddress + " App IP addres: " + textBlockIpAddress);
             return this;
         }
         
         public async Task<MainWindowResults> CheckIfCorrectCountryIsShownAsync()
         {
-            var api = new Api(TestUserData.GetPlusUser().Username, TestUserData.GetPlusUser().Password);
-            string country = await api.GetCountry();
-            var region = new RegionInfo(country);
+            string region = await _client.GetCountry();
             string dashboardRegionName = Session.FindElementByAccessibilityId("EntryCountryAndServer").Text;
             dashboardRegionName = dashboardRegionName.Split('»')[0].Replace(" ", "");
-            Assert.IsTrue(dashboardRegionName.Contains(region.DisplayName.Replace(" ", "")), "Incorrect country name is displayed.");
+            Assert.IsTrue(dashboardRegionName.Contains(region.Replace(" ", "")), "Incorrect country name is displayed. API returned country: " + region + " App Country: " +  dashboardRegionName);
             return this;
         }
 
