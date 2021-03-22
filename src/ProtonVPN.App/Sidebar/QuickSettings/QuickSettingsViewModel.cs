@@ -119,13 +119,15 @@ namespace ProtonVPN.Sidebar.QuickSettings
 
         public int KillSwitchButtonNumber => _appSettings.FeatureNetShieldEnabled ? 2 : 1;
         public int PortForwardingButtonNumber => KillSwitchButtonNumber + 1;
-        public int TotalButtons => 2 + (_appSettings.FeatureNetShieldEnabled ? 1 : 0) + (_appSettings.FeaturePortForwardingEnabled ? 1 : 0);
+
+        public int TotalButtons => 2 + (_appSettings.FeatureNetShieldEnabled ? 1 : 0) +
+                                   (_appSettings.FeaturePortForwardingEnabled ? 1 : 0);
 
         public bool IsSoftKillSwitchEnabled => _appSettings.KillSwitchMode == Common.KillSwitch.KillSwitchMode.Soft;
         public bool IsHardKillSwitchEnabled => _appSettings.KillSwitchMode == Common.KillSwitch.KillSwitchMode.Hard;
         public bool IsKillSwitchDisabled => _appSettings.KillSwitchMode == Common.KillSwitch.KillSwitchMode.Off;
         public bool IsKillSwitchEnabled => IsSoftKillSwitchEnabled || IsHardKillSwitchEnabled;
-        public int KillSwitchMode => (int) _appSettings.KillSwitchMode;
+        public int KillSwitchMode => (int)_appSettings.KillSwitchMode;
         public bool IsFreeUser => _userStorage.User().TrialStatus() == PlanStatus.Free;
 
         public bool IsUserTierPlusOrHigher => _userStorage.User().MaxTier >= ServerTiers.Plus;
@@ -228,7 +230,7 @@ namespace ProtonVPN.Sidebar.QuickSettings
 
         public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
         {
-            if (e.State.Status == VpnStatus.Connecting)
+            if (e.State.Status == VpnStatus.Connecting || e.State.Status == VpnStatus.Reconnecting)
             {
                 ShowSecureCorePopup = false;
                 ShowNetShieldPopup = false;
@@ -246,6 +248,7 @@ namespace ProtonVPN.Sidebar.QuickSettings
 
         private async void TurnOffSecureCoreActionAsync()
         {
+            HideSecureCorePopup();
             _appSettings.SecureCore = false;
             await ReconnectAsync();
         }
@@ -255,8 +258,15 @@ namespace ProtonVPN.Sidebar.QuickSettings
             await _vpnReconnector.ReconnectAsync();
         }
 
+        private void HideSecureCorePopup()
+        {
+            ShowSecureCorePopup = false;
+        }
+
         private async void TurnOnSecureCoreActionAsync()
         {
+            HideSecureCorePopup();
+
             if (IsUserTierPlusOrHigher)
             {
                 _appSettings.PortForwardingEnabled = false;
@@ -269,18 +279,27 @@ namespace ProtonVPN.Sidebar.QuickSettings
             }
         }
 
+        private void HideKillSwitchPopup()
+        {
+            ShowKillSwitchPopup = false;
+        }
+
         private void DisableKillSwitchAction()
         {
+            HideKillSwitchPopup();
             _appSettings.KillSwitchMode = Common.KillSwitch.KillSwitchMode.Off;
         }
 
         private void EnableSoftKillSwitchAction()
         {
+            HideKillSwitchPopup();
             _appSettings.KillSwitchMode = Common.KillSwitch.KillSwitchMode.Soft;
         }
 
         private void EnableHardKillSwitchAction()
         {
+            HideKillSwitchPopup();
+
             if (!_appSettings.DoNotShowKillSwitchConfirmationDialog)
             {
                 bool? result = _modals.Show<KillSwitchConfirmationModalViewModel>();
@@ -293,8 +312,15 @@ namespace ProtonVPN.Sidebar.QuickSettings
             _appSettings.KillSwitchMode = Common.KillSwitch.KillSwitchMode.Hard;
         }
 
+        private void HidePortForwardingPopup()
+        {
+            ShowPortForwardingPopup = false;
+        }
+
         private async void TurnOnPortForwardingActionAsync()
         {
+            HidePortForwardingPopup();
+
             if (IsUserTierPlusOrHigher)
             {
                 await TurnOnPortForwardingAsync();
@@ -336,31 +362,36 @@ namespace ProtonVPN.Sidebar.QuickSettings
 
         private async void TurnOffPortForwardingActionAsync()
         {
+            HidePortForwardingPopup();
             _appSettings.PortForwardingEnabled = false;
             await ReconnectAsync();
         }
 
+        private void HideNetShieldPopup()
+        {
+            ShowNetShieldPopup = false;
+        }
+
         private async void TurnOffNetShieldActionAsync()
         {
+            HideNetShieldPopup();
             _appSettings.NetShieldEnabled = false;
             await ReconnectAsync();
         }
 
         private async void TurnOnNetShieldFirstModeActionAsync()
         {
-            if (IsFreeUser)
-            {
-                _urls.AccountUrl.Open();
-            }
-            else
-            {
-                _appSettings.NetShieldEnabled = true;
-                _appSettings.NetShieldMode = 1;
-                await ReconnectAsync();
-            }
+            HideNetShieldPopup();
+            await EnableNetShieldMode(1);
         }
 
         private async void TurnOnNetShieldSecondModeActionAsync()
+        {
+            HideNetShieldPopup();
+            await EnableNetShieldMode(2);
+        }
+
+        private async Task EnableNetShieldMode(int mode)
         {
             if (IsFreeUser)
             {
@@ -369,7 +400,7 @@ namespace ProtonVPN.Sidebar.QuickSettings
             else
             {
                 _appSettings.NetShieldEnabled = true;
-                _appSettings.NetShieldMode = 2;
+                _appSettings.NetShieldMode = mode;
                 await ReconnectAsync();
             }
         }
