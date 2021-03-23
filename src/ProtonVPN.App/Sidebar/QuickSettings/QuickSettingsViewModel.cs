@@ -22,6 +22,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Caliburn.Micro;
 using GalaSoft.MvvmLight.CommandWpf;
+using ProtonVPN.Common;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Config.Url;
 using ProtonVPN.Core.Modals;
@@ -73,8 +74,8 @@ namespace ProtonVPN.Sidebar.QuickSettings
             NetShieldOnSecondCommand = new RelayCommand(TurnOnNetShieldSecondModeActionAsync);
 
             DisableKillSwitchCommand = new RelayCommand(DisableKillSwitchAction);
-            EnableSoftKillSwitchCommand = new RelayCommand(EnableSoftKillSwitchAction);
-            EnableHardKillSwitchCommand = new RelayCommand(EnableHardKillSwitchAction);
+            EnableSoftKillSwitchCommand = new RelayCommand(EnableSoftKillSwitchActionAsync);
+            EnableHardKillSwitchCommand = new RelayCommand(EnableHardKillSwitchActionAsync);
 
             PortForwardingOffCommand = new RelayCommand(TurnOffPortForwardingActionAsync);
             PortForwardingOnCommand = new RelayCommand(TurnOnPortForwardingActionAsync);
@@ -290,13 +291,29 @@ namespace ProtonVPN.Sidebar.QuickSettings
             _appSettings.KillSwitchMode = Common.KillSwitch.KillSwitchMode.Off;
         }
 
-        private void EnableSoftKillSwitchAction()
+        private bool WasSplitTunnelDisabled()
         {
-            HideKillSwitchPopup();
-            _appSettings.KillSwitchMode = Common.KillSwitch.KillSwitchMode.Soft;
+            if (_appSettings.SplitTunnelMode != SplitTunnelMode.Disabled)
+            {
+                _appSettings.SplitTunnelMode = SplitTunnelMode.Disabled;
+                return true;
+            }
+
+            return false;
         }
 
-        private void EnableHardKillSwitchAction()
+        private async void EnableSoftKillSwitchActionAsync()
+        {
+            HideKillSwitchPopup();
+            bool splitTunnelDisabled = WasSplitTunnelDisabled();
+            _appSettings.KillSwitchMode = Common.KillSwitch.KillSwitchMode.Soft;
+            if (splitTunnelDisabled)
+            {
+                await ReconnectAsync();
+            }
+        }
+
+        private async void EnableHardKillSwitchActionAsync()
         {
             HideKillSwitchPopup();
 
@@ -309,7 +326,12 @@ namespace ProtonVPN.Sidebar.QuickSettings
                 }
             }
 
+            bool splitTunnelDisabled = WasSplitTunnelDisabled();
             _appSettings.KillSwitchMode = Common.KillSwitch.KillSwitchMode.Hard;
+            if (splitTunnelDisabled)
+            {
+                await ReconnectAsync();
+            }
         }
 
         private void HidePortForwardingPopup()
