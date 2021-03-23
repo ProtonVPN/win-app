@@ -222,6 +222,13 @@ namespace ProtonVPN.Core
             return true;
         }
 
+        private async Task StartAllServices()
+        {
+            await StartVpnService();
+            await StartService(Resolve<AppUpdateSystemService>());
+            await InitializeStateFromService();
+        }
+
         private async Task ShowInitialWindow()
         {
             if (Resolve<IAppSettings>().StartMinimized != StartMinimizedMode.Disabled)
@@ -236,9 +243,7 @@ namespace ProtonVPN.Core
             loginWindow.DataContext = loginWindowViewModel;
             loginWindow.Show();
 
-            await StartVpnService();
-            await StartService(Resolve<AppUpdateSystemService>());
-            await InitializeStateFromService();
+            await StartAllServices();
         }
 
         private void RegisterEvents()
@@ -478,6 +483,11 @@ namespace ProtonVPN.Core
             if (!Resolve<UserAuth>().LoggedIn)
             {
                 return;
+            }
+
+            if (Resolve<IAppSettings>().StartMinimized != StartMinimizedMode.Disabled)
+            {
+                await StartAllServices();
             }
 
             await Resolve<ISettingsServiceClientManager>().UpdateServiceSettings();
