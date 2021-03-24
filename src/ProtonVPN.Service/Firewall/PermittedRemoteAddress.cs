@@ -63,7 +63,7 @@ namespace ProtonVPN.Service.Firewall
 
             _ipLayer.ApplyToIpv4(layer =>
             {
-                Guid guid = _ipFilter.Sublayer.CreateRemoteNetworkIPv4Filter(
+                Guid guid = _ipFilter.DynamicSublayer.CreateRemoteNetworkIPv4Filter(
                     new DisplayData("ProtonVPN permit remote address", ""),
                     action,
                     layer,
@@ -83,7 +83,7 @@ namespace ProtonVPN.Service.Firewall
 
             foreach (Guid guid in _list[address])
             {
-                _ipFilter.Sublayer.DestroyFilter(guid);
+                _ipFilter.DynamicSublayer.DestroyFilter(guid);
             }
 
             _list.Remove(address);

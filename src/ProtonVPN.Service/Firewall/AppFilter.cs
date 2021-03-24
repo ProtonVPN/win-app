@@ -62,7 +62,7 @@ namespace ProtonVPN.Service.Firewall
 
             _ipLayer.ApplyToIpv4(layer =>
             {
-                Guid guid = _ipFilter.Sublayer.CreateAppFilter(
+                Guid guid = _ipFilter.DynamicSublayer.CreateAppFilter(
                     new DisplayData("ProtonVPN permit app", "Allow app to bypass VPN tunnel"),
                     action,
                     layer,
@@ -82,7 +82,7 @@ namespace ProtonVPN.Service.Firewall
 
             foreach (Guid guid in _list[path])
             {
-                _ipFilter.Sublayer.DestroyFilter(guid);
+                _ipFilter.DynamicSublayer.DestroyFilter(guid);
             }
 
             _list.Remove(path);

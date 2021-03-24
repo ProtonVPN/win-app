@@ -21,7 +21,6 @@ using System;
 using System.Dynamic;
 using System.Threading;
 using System.Threading.Tasks;
-using ProtonVPN.Common.KillSwitch;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Modals;
@@ -80,8 +79,7 @@ namespace ProtonVPN.Vpn
             return _loggedIn &&
                    !_modalShowed &&
                    e.Error != VpnError.NoneKeepEnabledKillSwitch &&
-                   e.UnexpectedDisconnect &&
-                   _appSettings.KillSwitchMode != KillSwitchMode.Off;
+                   e.UnexpectedDisconnect;
         }
 
         private void ShowModal(VpnStateChangedEventArgs e)

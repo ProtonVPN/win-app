@@ -31,9 +31,8 @@ namespace ProtonVPN.Service.Firewall
         private readonly Guid _sublayerGuid = Guid.Parse("{aa867e71-5765-4be3-9399-581585c226ce}");
 
         private readonly ILogger _logger;
-        private NetworkFilter.IpFilter _previousInstance;
-        private Sublayer _previousSublayer;
-        private const int SublayerWeight = 1000;
+        private const int PermanentSublayerWeight = 1000;
+        private const int DynamicSublayerWeight = 1001;
 
         public IpFilter(ILogger logger)
         {
@@ -42,55 +41,20 @@ namespace ProtonVPN.Service.Firewall
 
         public void Start()
         {
-            CreatePermanentFilers();
+            CreatePermanentFilters();
+            CreateDynamicSession();
+            CreatePermanentSession();
         }
 
-        public NetworkFilter.IpFilter Instance { get; private set; }
+        public NetworkFilter.IpFilter PermanentInstance { get; private set; }
+        public NetworkFilter.IpFilter DynamicInstance { get; private set; }
 
-        public Sublayer Sublayer { get; private set; }
+        public Sublayer PermanentSublayer { get; private set; }
+        public Sublayer DynamicSublayer { get; private set; }
 
-        public void StartSession(SessionType type)
+        public Sublayer GetSublayer(SessionType type)
         {
-            _previousInstance = Instance;
-            _previousSublayer = Sublayer;
-
-            switch (type)
-            {
-                case SessionType.Permanent:
-                    CreatePermanentSession();
-                    break;
-                case SessionType.Dynamic:
-                    CreateDynamicSession();
-                    break;
-            }
-        }
-
-        public void ClosePreviousSession()
-        {
-            if (_previousInstance != null)
-            {
-                CloseSession(_previousInstance, _previousSublayer);
-                _previousInstance = null;
-                _previousSublayer = null;
-            }
-        }
-
-        public void CloseCurrentSession()
-        {
-            if (Instance != null && Sublayer != null)
-            {
-                CloseSession(Instance, Sublayer);
-                Instance = null;
-                Sublayer = null;
-            }
-        }
-
-        public void DeletePermanentFilters()
-        {
-            var instance = new NetworkFilter.IpFilter(Session.Permanent(), _providerGuid);
-            var sublayer = new Sublayer(instance, _sublayerGuid);
-            sublayer.DestroyAllFilters();
-            instance.Session.Close();
+            return type == SessionType.Dynamic ? DynamicSublayer : PermanentSublayer;
         }
 
         public void CloseSession(NetworkFilter.IpFilter instance, Sublayer sublayer)
@@ -105,20 +69,21 @@ namespace ProtonVPN.Service.Firewall
 
         private void CreateDynamicSession()
         {
-            Instance = NetworkFilter.IpFilter.Create(
+            DynamicInstance = NetworkFilter.IpFilter.Create(
                 Session.Dynamic(),
-                new DisplayData("ProtonVPN", "ProtonVPN Dynamic Provider"));
+                new DisplayData {Name = "ProtonVPN Dynamic Provider"});
 
-            Sublayer = Instance.CreateSublayer(new DisplayData { Name = "ProtonVPN Firewall filters" }, SublayerWeight);
+            DynamicSublayer = DynamicInstance.CreateSublayer(new DisplayData {Name = "ProtonVPN Dynamic Sublayer"},
+                DynamicSublayerWeight);
         }
 
         private void CreatePermanentSession()
         {
-            Instance = new NetworkFilter.IpFilter(Session.Permanent(), _providerGuid);
-            Sublayer = new Sublayer(Instance, _sublayerGuid);
+            PermanentInstance = new NetworkFilter.IpFilter(Session.Permanent(), _providerGuid);
+            PermanentSublayer = new Sublayer(PermanentInstance, _sublayerGuid);
         }
 
-        private void CreatePermanentFilers()
+        private void CreatePermanentFilters()
         {
             var session = Session.Permanent();
             if (NetworkFilter.IpFilter.IsRegistered(session, _providerGuid))
@@ -132,12 +97,12 @@ namespace ProtonVPN.Service.Firewall
                 ExecuteTransaction(session, () =>
                 {
                     NetworkFilter.IpFilter instance = NetworkFilter.IpFilter.Create(session,
-                        new DisplayData("ProtonVPN", "ProtonVPN Permanent Provider"),
+                        new DisplayData {Name = "ProtonVPN Permanent Provider"},
                         true,
                         _providerGuid);
 
-                    instance.CreateSublayer(new DisplayData("ProtonVPN Permanent Sublayer", "Permanent Sublayer"),
-                        SublayerWeight,
+                    instance.CreateSublayer(new DisplayData {Name = "ProtonVPN Permanent Sublayer"},
+                        PermanentSublayerWeight,
                         true,
                         _sublayerGuid);
 
