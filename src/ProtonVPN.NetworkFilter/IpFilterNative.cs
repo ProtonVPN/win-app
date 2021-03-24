@@ -282,6 +282,21 @@ namespace ProtonVPN.NetworkFilter
                 ref sublayerId));
         }
 
+        public static uint GetSublayerFilterCount(IntPtr sessionHandle,
+            Guid providerId,
+            Guid sublayerId)
+        {
+            uint total = 0;
+
+            AssertSuccess(() => PInvoke.GetSublayerFilterCount(
+                sessionHandle,
+                ref providerId,
+                ref sublayerId,
+                ref total));
+
+            return total;
+        }
+
         public static void DestroyCallouts(IntPtr sessionHandle, Guid providerId)
         {
             AssertSuccess(() => PInvoke.DestroyCallouts(sessionHandle, ref providerId));

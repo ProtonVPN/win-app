@@ -92,23 +92,7 @@ namespace ProtonVPN.Service.KillSwitch
         {
             if (_killSwitchMode != settings.KillSwitchMode)
             {
-                switch (settings.KillSwitchMode)
-                {
-                    case KillSwitchMode.Off when _lastVpnState.Status != VpnStatus.Connected:
-                        _firewall.DisableLeakProtection();
-                        break;
-                    case KillSwitchMode.Off when _lastVpnState.Status == VpnStatus.Connected:
-                    case KillSwitchMode.Soft when _lastVpnState.Status == VpnStatus.Connected:
-                    case KillSwitchMode.Hard:
-                        EnableLeakProtection();
-                        break;
-                    case KillSwitchMode.Soft:
-                        if (_lastVpnState.Error != VpnError.NoneKeepEnabledKillSwitch)
-                        {
-                            _firewall.DisableLeakProtection();
-                        }
-                        break;
-                }
+                HandleKillSwitchModeChange(settings.KillSwitchMode);
             }
             else
             {
@@ -119,6 +103,27 @@ namespace ProtonVPN.Service.KillSwitch
             }
 
             _killSwitchMode = settings.KillSwitchMode;
+        }
+
+        private void HandleKillSwitchModeChange(KillSwitchMode killSwitchMode)
+        {
+            switch (killSwitchMode)
+            {
+                case KillSwitchMode.Off when _lastVpnState.Status != VpnStatus.Connected:
+                    _firewall.DisableLeakProtection();
+                    break;
+                case KillSwitchMode.Off when _lastVpnState.Status == VpnStatus.Connected:
+                case KillSwitchMode.Soft when _lastVpnState.Status == VpnStatus.Connected:
+                case KillSwitchMode.Hard:
+                    EnableLeakProtection();
+                    break;
+                case KillSwitchMode.Soft:
+                    if (_lastVpnState.Error != VpnError.NoneKeepEnabledKillSwitch)
+                    {
+                        _firewall.DisableLeakProtection();
+                    }
+                    break;
+            }
         }
 
         private void EnableLeakProtection()

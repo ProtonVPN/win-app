@@ -20,6 +20,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Autofac;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.NetworkFilter;
 using ProtonVPN.Service.Driver;
@@ -27,7 +28,7 @@ using Action = ProtonVPN.NetworkFilter.Action;
 
 namespace ProtonVPN.Service.Firewall
 {
-    internal class Firewall : IFirewall
+    internal class Firewall : IFirewall, IStartable
     {
         private readonly ILogger _logger;
         private readonly IDriver _calloutDriver;
@@ -58,6 +59,19 @@ namespace ProtonVPN.Service.Firewall
 
         public bool LeakProtectionEnabled { get; private set; }
 
+        public void Start()
+        {
+            if (_ipFilter.PermanentSublayer.GetFilterCount() > 0)
+            {
+                _lastParams = new FirewallParams(
+                    serverIp: string.Empty,
+                    dnsLeakOnly: false,
+                    interfaceIndex: 0,
+                    persistent: true);
+                LeakProtectionEnabled = true;
+            }
+        }
+
         public void EnableLeakProtection(FirewallParams firewallParams)
         {
             if (LeakProtectionEnabled)
@@ -66,26 +80,32 @@ namespace ProtonVPN.Service.Firewall
                 return;
             }
 
-            if (_ipFilter.Instance == null)
-            {
-                _ipFilter.StartSession(firewallParams.SessionType);
-            }
-
-            if (_ipFilter.Instance.Session.Type == SessionType.Dynamic && firewallParams.SessionType == SessionType.Permanent)
-            {
-                _ipFilter.StartSession(SessionType.Permanent);
-                _ipFilter.ClosePreviousSession();
-            }
-            else if (_ipFilter.Instance.Session.Type == SessionType.Permanent && firewallParams.SessionType == SessionType.Dynamic)
-            {
-                _ipFilter.StartSession(SessionType.Dynamic);
-                _ipFilter.ClosePreviousSession();
-            }
-
             _calloutDriver.Start();
             PermitOpenVpnServerAddress(firewallParams);
             ApplyFilters(firewallParams);
             _lastParams = firewallParams;
+        }
+
+        public void DisableLeakProtection()
+        {
+            try
+            {
+                _logger.Info("Firewall: Restoring internet");
+
+                _ipFilter.DynamicSublayer.DestroyAllFilters();
+                _ipFilter.PermanentSublayer.DestroyAllFilters();
+                _serverAddressFilters.Clear();
+                _firewallItems.Clear();
+                LeakProtectionEnabled = false;
+                _calloutDriver.Stop();
+                _lastParams = FirewallParams.Null;
+
+                _logger.Info("Firewall: Internet restored");
+            }
+            catch (NetworkFilterException ex)
+            {
+                _logger.Error(ex);
+            }
         }
 
         private void ApplyFilters(FirewallParams firewallParams)
@@ -111,54 +131,39 @@ namespace ProtonVPN.Service.Firewall
             }
         }
 
-        public void DisableLeakProtection()
-        {
-            try
-            {
-                _logger.Info("Firewall: Restoring internet");
-
-                _ipFilter.CloseCurrentSession();
-                _ipFilter.DeletePermanentFilters();
-                _serverAddressFilters.Clear();
-                _firewallItems.Clear();
-                LeakProtectionEnabled = false;
-                _calloutDriver.Stop();
-                _lastParams = FirewallParams.Null;
-
-                _logger.Info("Firewall: Internet restored");
-            }
-            catch (NetworkFilterException ex)
-            {
-                _logger.Error(ex);
-            }
-        }
-
         private void ApplyChange(FirewallParams firewallParams)
         {
+            if (_lastParams.InterfaceIndex == 0)
+            {
+                HandlePermanentStateAfterReboot(firewallParams);
+                _lastParams = firewallParams;
+                return;
+            }
+
             if (firewallParams.SessionType != _lastParams.SessionType)
             {
-                _ipFilter.StartSession(firewallParams.SessionType);
                 _serverAddressFilters.Clear();
+                List<Guid> previousGuids = GetFirewallGuidsByType(FirewallItemType.VariableFilter);
                 ApplyFilters(firewallParams);
-                _ipFilter.ClosePreviousSession();
+                RemoveItems(previousGuids, _lastParams.SessionType);
             }
 
             if (firewallParams.InterfaceIndex != _lastParams.InterfaceIndex)
             {
                 List<Guid> previousGuids = GetFirewallGuidsByType(FirewallItemType.PermitInterfaceFilter);
                 PermitFromNetworkInterface(4, firewallParams);
-                RemoveItems(previousGuids);
+                RemoveItems(previousGuids, _lastParams.SessionType);
 
                 previousGuids = GetFirewallGuidsByType(FirewallItemType.DnsCalloutFilter);
-                CreateDnsCalloutFilter(firewallParams);
-                RemoveItems(previousGuids);
+                CreateDnsCalloutFilter(4, firewallParams);
+                RemoveItems(previousGuids, _lastParams.SessionType);
             }
 
             if (firewallParams.DnsLeakOnly != _lastParams.DnsLeakOnly)
             {
                 if (firewallParams.DnsLeakOnly)
                 {
-                    RemoveItems(GetFirewallGuidsByType(FirewallItemType.BaseProtectionFilter));
+                    RemoveItems(GetFirewallGuidsByType(FirewallItemType.VariableFilter), _lastParams.SessionType);
                 }
                 else
                 {
@@ -170,9 +175,17 @@ namespace ProtonVPN.Service.Firewall
             _lastParams = firewallParams;
         }
 
-        private void RemoveItems(List<Guid> guids)
+        private void HandlePermanentStateAfterReboot(FirewallParams firewallParams)
         {
-            DeleteIpFilters(guids);
+            _calloutDriver.Start();
+            CreateDnsCalloutFilter(4, firewallParams);
+            PermitFromNetworkInterface(4, firewallParams);
+            PermitOpenVpnServerAddress(firewallParams);
+        }
+
+        private void RemoveItems(List<Guid> guids, SessionType sessionType)
+        {
+            DeleteIpFilters(guids, sessionType);
             List<FirewallItem> firewallItems = _firewallItems.Where(item => guids.Contains(item.Guid)).ToList();
 
             foreach (FirewallItem item in firewallItems)
@@ -184,38 +197,38 @@ namespace ProtonVPN.Service.Firewall
         private List<Guid> GetFirewallGuidsByType(FirewallItemType type)
         {
             return _firewallItems
-                .Where(item => item.ItemType == type)
+                .Where(item => type == item.ItemType)
                 .Select(item => item.Guid)
                 .ToList();
         }
 
         private void EnableDnsLeakProtection(FirewallParams firewallParams)
         {
-            CreateDnsCalloutFilter(firewallParams);
             BlockDns(3, firewallParams);
+            CreateDnsCalloutFilter(4, firewallParams);
         }
 
         private void EnableBaseLeakProtection(FirewallParams firewallParams)
         {
             PermitDhcp(4, firewallParams);
             PermitFromNetworkInterface(4, firewallParams);
-            PermitFromProcesses(4, firewallParams.Persistent);
+            PermitFromProcesses(4, firewallParams);
 
-            PermitIpv4Loopback(2, firewallParams.Persistent);
-            PermitIpv6Loopback(2, firewallParams.Persistent);
-            PermitPrivateNetwork(2, firewallParams.Persistent);
+            PermitIpv4Loopback(2, firewallParams);
+            PermitIpv6Loopback(2, firewallParams);
+            PermitPrivateNetwork(2, firewallParams);
 
-            BlockAllIpv4Network(1, firewallParams.Persistent);
-            BlockAllIpv6Network(1, firewallParams.Persistent);
+            BlockAllIpv4Network(1, firewallParams);
+            BlockAllIpv6Network(1, firewallParams);
         }
 
         private void BlockDns(uint weight, FirewallParams firewallParams)
         {
             _ipLayer.ApplyToIpv4(layer =>
             {
-                Guid guid = _ipFilter.Sublayer.CreateRemoteUdpPortFilter(new DisplayData(
-                        "ProtonVPN DNS filter", "Permit UDP 53 port so we can block it at network layer"),
-                    Action.HardPermit,
+                Guid guid = _ipFilter.GetSublayer(firewallParams.SessionType).CreateRemoteUdpPortFilter(new DisplayData(
+                        "ProtonVPN DNS filter", "Block UDP 53 port"),
+                    Action.HardBlock,
                     layer,
                     weight,
                     DnsUdpPort,
@@ -225,7 +238,7 @@ namespace ProtonVPN.Service.Firewall
 
             _ipLayer.ApplyToIpv4(layer =>
             {
-                Guid guid = _ipFilter.Sublayer.CreateRemoteTcpPortFilter(new DisplayData(
+                Guid guid = _ipFilter.GetSublayer(firewallParams.SessionType).CreateRemoteTcpPortFilter(new DisplayData(
                         "ProtonVPN block DNS", "Block TCP 53 port"),
                     Action.HardBlock,
                     layer,
@@ -237,7 +250,7 @@ namespace ProtonVPN.Service.Firewall
 
             _ipLayer.ApplyToIpv6(layer =>
             {
-                Guid guid = _ipFilter.Sublayer.CreateRemoteTcpPortFilter(new DisplayData(
+                Guid guid = _ipFilter.GetSublayer(firewallParams.SessionType).CreateRemoteTcpPortFilter(new DisplayData(
                         "ProtonVPN block DNS", "Block TCP 53 port"),
                     Action.HardBlock,
                     layer,
@@ -249,7 +262,7 @@ namespace ProtonVPN.Service.Firewall
 
             _ipLayer.ApplyToIpv6(layer =>
             {
-                Guid guid = _ipFilter.Sublayer.CreateRemoteUdpPortFilter(new DisplayData(
+                Guid guid = _ipFilter.GetSublayer(firewallParams.SessionType).CreateRemoteUdpPortFilter(new DisplayData(
                         "ProtonVPN block DNS", "Block UDP 53 port"),
                     Action.HardBlock,
                     layer,
@@ -260,29 +273,40 @@ namespace ProtonVPN.Service.Firewall
             });
         }
 
-        private void CreateDnsCalloutFilter(FirewallParams firewallParams)
+        private void CreateDnsCalloutFilter(uint weight, FirewallParams firewallParams)
         {
-            Guid guid = _ipFilter.Sublayer.BlockOutsideDns(new DisplayData("ProtonVPN block DNS", "Block outside dns"),
+            Guid guid = _ipFilter.DynamicSublayer.BlockOutsideDns(
+                new DisplayData("ProtonVPN block DNS", "Block outside dns"),
                 Layer.OutboundIPPacketV4,
-                3,
+                weight,
                 IpFilter.DnsCalloutGuid,
-                firewallParams.InterfaceIndex,
-                firewallParams.Persistent);
+                firewallParams.InterfaceIndex);
             _firewallItems.Add(new FirewallItem(FirewallItemType.DnsCalloutFilter, guid));
+
+            _ipLayer.ApplyToIpv4(layer =>
+            {
+                guid = _ipFilter.DynamicSublayer.CreateRemoteUdpPortFilter(
+                    new DisplayData("ProtonVPN DNS filter", "Permit UDP 53 port so we can block it at network layer"),
+                    Action.HardPermit,
+                    layer,
+                    weight,
+                    DnsUdpPort);
+                _firewallItems.Add(new FirewallItem(FirewallItemType.DnsFilter, guid));
+            });
         }
 
         private void PermitDhcp(uint weight, FirewallParams firewallParams)
         {
             _ipLayer.ApplyToIpv4(layer =>
             {
-                Guid guid = _ipFilter.Sublayer.CreateRemoteUdpPortFilter(
+                Guid guid = _ipFilter.GetSublayer(firewallParams.SessionType).CreateRemoteUdpPortFilter(
                     new DisplayData("ProtonVPN permit DHCP", "Permit 67 UDP port"),
                     Action.SoftPermit,
                     layer,
                     weight,
                     DhcpUdpPort,
                     firewallParams.Persistent);
-                _firewallItems.Add(new FirewallItem(FirewallItemType.BaseProtectionFilter, guid));
+                _firewallItems.Add(new FirewallItem(FirewallItemType.VariableFilter, guid));
             });
         }
 
@@ -290,30 +314,28 @@ namespace ProtonVPN.Service.Firewall
         {
             _ipLayer.ApplyToIpv4(layer =>
             {
-                Guid guid = _ipFilter.Sublayer.CreateNetInterfaceFilter(
+                Guid guid = _ipFilter.DynamicSublayer.CreateNetInterfaceFilter(
                     new DisplayData("ProtonVPN permit VPN tunnel", "Permit TAP adapter traffic"),
-                    Action.SoftPermit,
+                    Action.HardPermit,
                     layer,
                     firewallParams.InterfaceIndex,
-                    weight,
-                    firewallParams.Persistent);
+                    weight);
                 _firewallItems.Add(new FirewallItem(FirewallItemType.PermitInterfaceFilter, guid));
             });
 
             _ipLayer.ApplyToIpv6(layer =>
             {
-                Guid guid = _ipFilter.Sublayer.CreateNetInterfaceFilter(
+                Guid guid = _ipFilter.DynamicSublayer.CreateNetInterfaceFilter(
                     new DisplayData("ProtonVPN permit VPN tunnel", "Permit TAP adapter traffic"),
-                    Action.SoftPermit,
+                    Action.HardPermit,
                     layer,
                     firewallParams.InterfaceIndex,
-                    weight,
-                    firewallParams.Persistent);
+                    weight);
                 _firewallItems.Add(new FirewallItem(FirewallItemType.PermitInterfaceFilter, guid));
             });
         }
 
-        private void PermitOpenVpnServerAddress(FirewallParams firewallParams)
+        private void PermitOpenVpnServerAddress(FirewallParams firewallParams, SessionType? sessionType = null)
         {
             if (string.IsNullOrEmpty(firewallParams.ServerIp))
             {
@@ -332,102 +354,106 @@ namespace ProtonVPN.Service.Firewall
 
             _ipLayer.ApplyToIpv4(layer =>
             {
-                filterGuids.Add(_ipFilter.Sublayer.CreateRemoteIPv4Filter(
+                filterGuids.Add(_ipFilter.DynamicSublayer.CreateRemoteIPv4Filter(
                     new DisplayData("ProtonVPN permit OpenVPN server", "Permit server ip"),
                     Action.HardPermit,
                     layer,
                     1,
-                    firewallParams.ServerIp,
-                    firewallParams.Persistent));
+                    firewallParams.ServerIp));
             });
 
             _serverAddressFilters.Add((firewallParams.ServerIp, filterGuids));
 
-            DeletePreviousFilters();
+            DeletePreviousFilters(sessionType);
         }
 
-        private void DeletePreviousFilters()
+        private void DeletePreviousFilters(SessionType? sessionType = null)
         {
+            if (sessionType == null)
+            {
+                return;
+            }
+
             if (_serverAddressFilters.Count >= 3)
             {
-                (string oldAddress, var guids) = _serverAddressFilters.FirstOrDefault();
+                (string oldAddress, List<Guid> guids) = _serverAddressFilters.FirstOrDefault();
                 if (guids == null)
                 {
                     return;
                 }
 
-                DeleteIpFilters(guids);
+                DeleteIpFilters(guids, sessionType.Value);
                 _serverAddressFilters.RemoveAll(tuple => tuple.Item1 == oldAddress);
             }
         }
 
-        private void DeleteIpFilters(List<Guid> guids)
+        private void DeleteIpFilters(List<Guid> guids, SessionType sessionType)
         {
             foreach (Guid guid in guids)
             {
-                _ipFilter.Sublayer.DestroyFilter(guid);
+                _ipFilter.GetSublayer(sessionType).DestroyFilter(guid);
             }
         }
 
-        private void BlockAllIpv4Network(uint weight, bool persistent)
+        private void BlockAllIpv4Network(uint weight, FirewallParams firewallParams)
         {
             _ipLayer.ApplyToIpv4(layer =>
             {
-                Guid guid = _ipFilter.Sublayer.CreateLayerFilter(
+                Guid guid = _ipFilter.GetSublayer(firewallParams.SessionType).CreateLayerFilter(
                     new DisplayData("ProtonVPN block IPv4", "Block all IPv4 traffic"),
                     Action.SoftBlock,
                     layer,
                     weight,
-                    persistent);
-                _firewallItems.Add(new FirewallItem(FirewallItemType.BaseProtectionFilter, guid));
+                    firewallParams.Persistent);
+                _firewallItems.Add(new FirewallItem(FirewallItemType.VariableFilter, guid));
             });
         }
 
-        private void BlockAllIpv6Network(uint weight, bool persistent)
+        private void BlockAllIpv6Network(uint weight, FirewallParams firewallParams)
         {
             _ipLayer.ApplyToIpv6(layer =>
             {
-                Guid guid = _ipFilter.Sublayer.CreateLayerFilter(
+                Guid guid = _ipFilter.GetSublayer(firewallParams.SessionType).CreateLayerFilter(
                     new DisplayData("ProtonVPN block IPv6", "Block all IPv6 traffic"),
                     Action.SoftBlock,
                     layer,
                     weight,
-                    persistent);
-                _firewallItems.Add(new FirewallItem(FirewallItemType.BaseProtectionFilter, guid));
+                    firewallParams.Persistent);
+                _firewallItems.Add(new FirewallItem(FirewallItemType.VariableFilter, guid));
             });
         }
 
-        private void PermitIpv4Loopback(uint weight, bool persistent)
+        private void PermitIpv4Loopback(uint weight, FirewallParams firewallParams)
         {
             _ipLayer.ApplyToIpv4(layer =>
             {
-                Guid guid = _ipFilter.Sublayer.CreateLoopbackFilter(
+                Guid guid = _ipFilter.GetSublayer(firewallParams.SessionType).CreateLoopbackFilter(
                     new DisplayData("ProtonVPN permit IPv4 loopback", "Permit IPv4 loopback traffic"),
                     Action.HardPermit,
                     layer,
                     weight,
-                    persistent);
-                _firewallItems.Add(new FirewallItem(FirewallItemType.BaseProtectionFilter, guid));
+                    firewallParams.Persistent);
+                _firewallItems.Add(new FirewallItem(FirewallItemType.VariableFilter, guid));
             });
         }
 
-        private void PermitIpv6Loopback(uint weight, bool persistent)
+        private void PermitIpv6Loopback(uint weight, FirewallParams firewallParams)
         {
             _ipLayer.ApplyToIpv6(layer =>
             {
-                Guid guid = _ipFilter.Sublayer.CreateLoopbackFilter(
+                Guid guid = _ipFilter.GetSublayer(firewallParams.SessionType).CreateLoopbackFilter(
                     new DisplayData("ProtonVPN permit IPv6 loopback", "Permit IPv6 loopback traffic"),
                     Action.HardPermit,
                     layer,
                     weight,
-                    persistent);
-                _firewallItems.Add(new FirewallItem(FirewallItemType.BaseProtectionFilter, guid));
+                    firewallParams.Persistent);
+                _firewallItems.Add(new FirewallItem(FirewallItemType.VariableFilter, guid));
             });
         }
 
-        private void PermitPrivateNetwork(uint weight, bool persistent)
+        private void PermitPrivateNetwork(uint weight, FirewallParams firewallParams)
         {
-            List<NetworkAddress> networkAddresses = new List<NetworkAddress>
+            List<NetworkAddress> networkAddresses = new()
             {
                 new NetworkAddress("10.0.0.0", "255.0.0.0"),
                 new NetworkAddress("172.16.0.0", "255.240.0.0"),
@@ -440,19 +466,19 @@ namespace ProtonVPN.Service.Firewall
             {
                 _ipLayer.ApplyToIpv4(layer =>
                 {
-                    Guid guid = _ipFilter.Sublayer.CreateRemoteNetworkIPv4Filter(
+                    Guid guid = _ipFilter.GetSublayer(firewallParams.SessionType).CreateRemoteNetworkIPv4Filter(
                         new DisplayData("ProtonVPN permit private network", ""),
                         Action.HardPermit,
                         layer,
                         weight,
                         networkAddress,
-                        persistent);
-                    _firewallItems.Add(new FirewallItem(FirewallItemType.BaseProtectionFilter, guid));
+                        firewallParams.Persistent);
+                    _firewallItems.Add(new FirewallItem(FirewallItemType.VariableFilter, guid));
                 });
             }
         }
 
-        private void PermitFromProcesses(uint weight, bool persistent)
+        private void PermitFromProcesses(uint weight, FirewallParams firewallParams)
         {
             List<string> processes = new List<string>
             {
@@ -463,14 +489,14 @@ namespace ProtonVPN.Service.Firewall
             {
                 _ipLayer.ApplyToIpv4(layer =>
                 {
-                    Guid guid = _ipFilter.Sublayer.CreateAppFilter(
+                    Guid guid = _ipFilter.GetSublayer(firewallParams.SessionType).CreateAppFilter(
                         new DisplayData("ProtonVPN permit app", "Permit ProtonVPN app to bypass VPN tunnel"),
                         Action.HardPermit,
                         layer,
                         weight,
                         processPath,
-                        persistent);
-                    _firewallItems.Add(new FirewallItem(FirewallItemType.BaseProtectionFilter, guid));
+                        firewallParams.Persistent);
+                    _firewallItems.Add(new FirewallItem(FirewallItemType.VariableFilter, guid));
                 });
             }
         }

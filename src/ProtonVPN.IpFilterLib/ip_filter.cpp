@@ -273,6 +273,57 @@ unsigned int IPFilterDestroyFilter(
     return FwpmFilterDeleteByKey(sessionHandle, filterKey);
 }
 
+unsigned int IPFilterGetSublayerFilterCount(
+    IPFilterSessionHandle sessionHandle,
+    GUID* providerKey,
+    GUID* sublayerKey,
+    unsigned int* result)
+{
+    HANDLE enumHandle = nullptr;
+
+    auto status = FwpmFilterCreateEnumHandle(sessionHandle,
+        nullptr,
+        &enumHandle);
+    if (status != ERROR_SUCCESS)
+    {
+        return status;
+    }
+
+    while (true)
+    {
+        FWPM_FILTER** filters{};
+        UINT32 filterCount{};
+
+        status = FwpmFilterEnum(sessionHandle, enumHandle, 1, &filters, &filterCount);
+        if (status != ERROR_SUCCESS || filterCount == 0)
+        {
+            break;
+        }
+
+        for (UINT32 i = 0; i < filterCount; i++)
+        {
+            FWPM_FILTER* filter = filters[i];
+            if (filter->providerKey == nullptr || *filter->providerKey != *providerKey)
+            {
+                continue;
+            }
+
+            if (filter->subLayerKey != *sublayerKey)
+            {
+                continue;
+            }
+
+            (*result)++;
+        }
+
+        FwpmFreeMemory(reinterpret_cast<void**>(&filters));
+    }
+
+    FwpmFilterDestroyEnumHandle(sessionHandle, enumHandle);
+
+    return status;
+}
+
 unsigned int IPFilterDestroySublayerFilters(
     IPFilterSessionHandle sessionHandle,
     GUID* providerKey,

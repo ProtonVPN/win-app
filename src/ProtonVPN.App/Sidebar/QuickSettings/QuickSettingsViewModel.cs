@@ -293,9 +293,9 @@ namespace ProtonVPN.Sidebar.QuickSettings
 
         private bool WasSplitTunnelDisabled()
         {
-            if (_appSettings.SplitTunnelMode != SplitTunnelMode.Disabled)
+            if (_appSettings.SplitTunnelingEnabled)
             {
-                _appSettings.SplitTunnelMode = SplitTunnelMode.Disabled;
+                _appSettings.SplitTunnelingEnabled = false;
                 return true;
             }
 
