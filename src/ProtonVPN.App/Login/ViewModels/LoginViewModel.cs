@@ -59,6 +59,7 @@ namespace ProtonVPN.Login.ViewModels
         private bool _showHelpBalloon;
         private bool _autoAuthFailed;
         private bool _networkBlocked;
+        private VpnStatus _lastVpnStatus = VpnStatus.Disconnected;
 
         public LoginViewModel(
             Common.Configuration.Config appConfig,
@@ -184,21 +185,22 @@ namespace ProtonVPN.Login.ViewModels
             }
         }
 
-        private bool _connectingInGuestHoleMode;
-
-        public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
+        public async Task OnVpnStateChanged(VpnStateChangedEventArgs e)
         {
-            KillSwitchActive = e.NetworkBlocked &&
-                               (e.State.Status == VpnStatus.Disconnecting ||
-                                e.State.Status == VpnStatus.Disconnected);
-
-            if (e.State.Status == VpnStatus.Connecting)
+            if (e.NetworkBlocked && e.State.Status == VpnStatus.Disconnecting ||
+                e.State.Status == VpnStatus.Disconnected)
             {
-                _connectingInGuestHoleMode = true;
+                KillSwitchActive = true;
             }
-            else if (e.State.Status == VpnStatus.Disconnected)
+
+            if (!e.NetworkBlocked)
             {
-                _connectingInGuestHoleMode = false;
+                KillSwitchActive = false;
+            }
+
+            if (_lastVpnStatus == e.State.Status)
+            {
+                return;
             }
 
             if (_guestHoleState.Active)
@@ -207,15 +209,14 @@ namespace ProtonVPN.Login.ViewModels
                 {
                     LoginAction();
                 }
-                else if (_connectingInGuestHoleMode && e.State.Status == VpnStatus.Disconnected)
+                else if (e.State.Status == VpnStatus.Disconnected)
                 {
-                    _connectingInGuestHoleMode = false;
-                    ShowLoginScreenWithTroubleshoot();
                     _guestHoleState.SetState(false);
+                    ShowLoginScreenWithTroubleshoot();
                 }
             }
 
-            return Task.CompletedTask;
+            _lastVpnStatus = e.State.Status;
         }
 
         private void HelpAction()
