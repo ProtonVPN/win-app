@@ -239,7 +239,8 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<SystemNotification>().AsImplementedInterfaces().SingleInstance();
             builder.Register(c => new MonitoredVpnService(
                     c.Resolve<Common.Configuration.Config>(),
-                    c.Resolve<VpnSystemService>()))
+                    c.Resolve<VpnSystemService>(),
+                    c.Resolve<IVpnManager>()))
                 .AsImplementedInterfaces()
                 .AsSelf()
                 .SingleInstance();
