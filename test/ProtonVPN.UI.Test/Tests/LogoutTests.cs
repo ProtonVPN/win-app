@@ -61,6 +61,8 @@ namespace ProtonVPN.UI.Test.Tests
             _logoutConfirmationPopup.ClickContinueButton();
             RefreshSession();
 
+            _loginWindow.WaitUntilLoginInputIsDisplayed();
+
             _loginResult.VerifyUserIsOnLoginWindow();
         }
 
