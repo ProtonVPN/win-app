@@ -27,7 +27,7 @@ namespace ProtonVPN.UI.Test.Windows
     {
         public LoginWindow EnterUsername(string username)
         {
-            WaitUntilDisplayed(By.XPath("//*[@AutomationId='LoginInput']"), 5);
+            WaitUntilLoginInputIsDisplayed();
             ClickOnObjectWithId("LoginInput");
             InsertTextIntoFieldWithId("LoginInput", username);
             return this;
@@ -82,6 +82,12 @@ namespace ProtonVPN.UI.Test.Windows
         public LoginWindow WaitUntilLoginIsFinished()
         {
             WaitUntilElementIsNotVisible(By.ClassName("Loading"), 15);
+            return this;
+        }
+
+        public LoginWindow WaitUntilLoginInputIsDisplayed()
+        {
+            WaitUntilElementExistsByAutomationId("LoginInput", 10);
             return this;
         }
 
