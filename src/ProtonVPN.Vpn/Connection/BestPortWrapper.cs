@@ -97,10 +97,12 @@ namespace ProtonVPN.Vpn.Connection
             if (endpoint.Port != 0)
             {
                 _vpnEndpoint = endpoint;
+                _logger.Info($"Connecting to {endpoint.Server.Ip}:{endpoint.Port} as it responded fastest");
                 _origin.Connect(endpoint, GetCredentials(endpoint), _config);
             }
             else
             {
+                _logger.Info("None of the VPN ports responded, disconnecting.");
                 DelayedDisconnect(cancellationToken);
             }
         }
@@ -200,21 +202,13 @@ namespace ProtonVPN.Vpn.Connection
 
         private async Task<VpnEndpoint> BestEndpoint(IReadOnlyList<Task<VpnEndpoint>> candidates)
         {
-            VpnEndpoint[] result = await Task.WhenAll(candidates);
-            List<VpnEndpoint> aliveCandidates = result.Where(c => c.Port > 0).ToList();
-            if (aliveCandidates.Count > 0)
-            {
-                var rnd = new Random();
-                return aliveCandidates[rnd.Next(aliveCandidates.Count)];
-            }
-
-            return VpnEndpoint.EmptyEndpoint;
+            Task<VpnEndpoint> firstCompletedTask = await Task.WhenAny(candidates);
+            VpnEndpoint firstCandidate = await firstCompletedTask;
+            return firstCandidate ?? VpnEndpoint.EmptyEndpoint;
         }
 
         private IReadOnlyList<Task<VpnEndpoint>> EndpointCandidates(VpnHost server, VpnProtocol protocol)
         {
-            _logger.Info($"Pinging VPN server {server.Ip} for {protocol} protocol");
-
             Task timeoutTask = Task.Delay(EndpointTimeout);
 
             return (from pair in _config.Ports
@@ -225,6 +219,7 @@ namespace ProtonVPN.Vpn.Connection
 
         private async Task<VpnEndpoint> GetPortAlive(VpnEndpoint endpoint, Task timeoutTask)
         {
+            _logger.Info($"Pinging VPN server {endpoint.Server.Ip}:{endpoint.Port} for {endpoint.Protocol} protocol");
             bool alive = await _pingableOpenVpnPort.Alive(endpoint, timeoutTask);
             return alive ? endpoint : VpnEndpoint.EmptyEndpoint;
         }
