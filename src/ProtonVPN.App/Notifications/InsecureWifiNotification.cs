@@ -20,18 +20,19 @@
 using System.Threading.Tasks;
 using Caliburn.Micro;
 using ProtonVPN.Common.Vpn;
+using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Network;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.FlashNotifications;
 
 namespace ProtonVPN.Notifications
 {
-    internal class InsecureNetworkNotification : IVpnStateAware
+    internal class InsecureNetworkNotification : IVpnStateAware, ILoggedInAware
     {
         private readonly InsecureWifiNotificationViewModel _insecureWifiNotificationViewModel;
         private readonly IEventAggregator _eventAggregator;
         private VpnStatus _vpnStatus = VpnStatus.Disconnected;
-        private string _name = string.Empty;
+        private string _currentInsecureWifiName = string.Empty;
 
         public InsecureNetworkNotification(
             INetworkClient networkClient,
@@ -43,23 +44,52 @@ namespace ProtonVPN.Notifications
             networkClient.WifiChangeDetected += OnWifiChangeDetected;
         }
 
-        public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
+        public async Task OnVpnStateChanged(VpnStateChangedEventArgs e)
         {
-            _vpnStatus = e.State.Status;
-
-            if (_vpnStatus == VpnStatus.Disconnected && !string.IsNullOrEmpty(_name))
+            if (_vpnStatus == e.State.Status)
             {
-                ShowNotification();
+                return;
             }
 
-            return Task.CompletedTask;
+            _vpnStatus = e.State.Status;
+            HandleNotification();
         }
+
+        public void OnUserLoggedIn()
+        {
+            HandleNotification();
+        }
+
+        private void HandleNotification()
+        {
+            if (IsCurrentWifiSecure)
+            {
+                return;
+            }
+
+            switch (_vpnStatus)
+            {
+                case VpnStatus.Connected:
+                    HideNotification();
+                    break;
+                case VpnStatus.Disconnected:
+                    ShowNotification();
+                    break;
+            }
+        }
+
+        private bool IsCurrentWifiSecure => string.IsNullOrEmpty(_currentInsecureWifiName);
 
         private void OnWifiChangeDetected(object sender, WifiChangeEventArgs e)
         {
-            if (!e.Secure)
+            if (e.Secure)
             {
-                _name = e.Name;
+                HideNotification();
+                _currentInsecureWifiName = string.Empty;
+            }
+            else
+            {
+                _currentInsecureWifiName = e.Name;
                 if (_vpnStatus != VpnStatus.Disconnected && _vpnStatus != VpnStatus.Disconnecting)
                 {
                     return;
@@ -67,17 +97,17 @@ namespace ProtonVPN.Notifications
 
                 ShowNotification();
             }
-            else
-            {
-                _name = string.Empty;
-                _eventAggregator.PublishOnUIThread(new HideFlashMessage(_insecureWifiNotificationViewModel));
-            }
         }
 
         private void ShowNotification()
         {
-            _insecureWifiNotificationViewModel.Name = _name;
+            _insecureWifiNotificationViewModel.Name = _currentInsecureWifiName;
             _eventAggregator.PublishOnUIThread(new ShowFlashMessage(_insecureWifiNotificationViewModel));
+        }
+
+        private void HideNotification()
+        {
+            _eventAggregator.PublishOnUIThread(new HideFlashMessage(_insecureWifiNotificationViewModel));
         }
     }
 }
