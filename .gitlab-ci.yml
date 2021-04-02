@@ -7,6 +7,7 @@ stages:
   - sign
   - build-installer
   - ui-test
+  - installation-test
   - mirror
   - bot # comes from translations/generator job
 
@@ -125,6 +126,18 @@ ui-test:
     - powershell -File ci\launch-installer.ps1
     - powershell -Command "Start-Sleep -s 20"
     - VSTest.Console.exe src\bin\ProtonVPN.UI.Test.dll
+    
+installation-test:
+  stage: ui-test
+  tags:
+    - windows
+  when: manual
+  script:
+    - powershell -File ci\uninstall-app.ps1
+    - powershell -Command "Start-Sleep -s 25"
+    - powershell -File ci\launch-installer-UI.ps1
+    - powershell -File ci\start-installer-tests.ps1
+    - TasktTestRunner.exe
 
 mirror:
   stage: mirror
