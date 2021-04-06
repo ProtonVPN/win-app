@@ -36,6 +36,7 @@ namespace ProtonVPN.Service.Firewall
         private readonly IpLayer _ipLayer;
         private readonly IpFilter _ipFilter;
         private FirewallParams _lastParams = FirewallParams.Null;
+        private bool _dnsCalloutFiltersAdded;
 
         private readonly List<ValueTuple<string, List<Guid>>> _serverAddressFilters = new();
         private readonly List<FirewallItem> _firewallItems = new();
@@ -97,6 +98,7 @@ namespace ProtonVPN.Service.Firewall
                 _serverAddressFilters.Clear();
                 _firewallItems.Clear();
                 LeakProtectionEnabled = false;
+                _dnsCalloutFiltersAdded = false;
                 _calloutDriver.Stop();
                 _lastParams = FirewallParams.Null;
 
@@ -155,6 +157,7 @@ namespace ProtonVPN.Service.Firewall
                 RemoveItems(previousGuids, _lastParams.SessionType);
 
                 previousGuids = GetFirewallGuidsByType(FirewallItemType.DnsCalloutFilter);
+                _dnsCalloutFiltersAdded = false;
                 CreateDnsCalloutFilter(4, firewallParams);
                 RemoveItems(previousGuids, _lastParams.SessionType);
             }
@@ -233,7 +236,7 @@ namespace ProtonVPN.Service.Firewall
                     weight,
                     DnsUdpPort,
                     firewallParams.Persistent);
-                _firewallItems.Add(new FirewallItem(FirewallItemType.DnsFilter, guid));
+                _firewallItems.Add(new FirewallItem(FirewallItemType.VariableFilter, guid));
             });
 
             _ipLayer.ApplyToIpv4(layer =>
@@ -245,7 +248,7 @@ namespace ProtonVPN.Service.Firewall
                     weight,
                     DnsUdpPort,
                     firewallParams.Persistent);
-                _firewallItems.Add(new FirewallItem(FirewallItemType.DnsFilter, guid));
+                _firewallItems.Add(new FirewallItem(FirewallItemType.VariableFilter, guid));
             });
 
             _ipLayer.ApplyToIpv6(layer =>
@@ -257,7 +260,7 @@ namespace ProtonVPN.Service.Firewall
                     weight,
                     DnsUdpPort,
                     firewallParams.Persistent);
-                _firewallItems.Add(new FirewallItem(FirewallItemType.DnsFilter, guid));
+                _firewallItems.Add(new FirewallItem(FirewallItemType.VariableFilter, guid));
             });
 
             _ipLayer.ApplyToIpv6(layer =>
@@ -269,12 +272,17 @@ namespace ProtonVPN.Service.Firewall
                     weight,
                     DnsUdpPort,
                     firewallParams.Persistent);
-                _firewallItems.Add(new FirewallItem(FirewallItemType.DnsFilter, guid));
+                _firewallItems.Add(new FirewallItem(FirewallItemType.VariableFilter, guid));
             });
         }
 
         private void CreateDnsCalloutFilter(uint weight, FirewallParams firewallParams)
         {
+            if (_dnsCalloutFiltersAdded)
+            {
+                return;
+            }
+
             Guid guid = _ipFilter.DynamicSublayer.BlockOutsideDns(
                 new DisplayData("ProtonVPN block DNS", "Block outside dns"),
                 Layer.OutboundIPPacketV4,
@@ -293,6 +301,8 @@ namespace ProtonVPN.Service.Firewall
                     DnsUdpPort);
                 _firewallItems.Add(new FirewallItem(FirewallItemType.DnsFilter, guid));
             });
+
+            _dnsCalloutFiltersAdded = true;
         }
 
         private void PermitDhcp(uint weight, FirewallParams firewallParams)
