@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<DOCUMENT Type="Advanced Installer" CreateVersion="13.3" version="17.6" Modules="professional" RootPath="." Language="en" Id="{C8285BB8-B654-4FB0-A58E-4B4B320D8D29}">
+<DOCUMENT Type="Advanced Installer" CreateVersion="13.3" version="18.0" Modules="professional" RootPath="." Language="en" Id="{C8285BB8-B654-4FB0-A58E-4B4B320D8D29}">
   <COMPONENT cid="caphyon.advinst.msicomp.MsiPropsComponent">
     <ROW Property="AI_BITMAP_DISPLAY_MODE" Value="0"/>
     <ROW Property="AI_CLEAN_RESOURCES_DISABLE_UPGRADE" Value="1"/>
@@ -25,10 +25,10 @@
     <ROW Property="Manufacturer" Value="Proton Technologies AG"/>
     <ROW Property="MsiLogging" MultiBuildValue="DefaultBuild:vp"/>
     <ROW Property="PENDING_REBOOT" Value="0"/>
-    <ROW Property="ProductCode" Value="1031:{2CEF45A3-5EDF-4BF0-854D-FEAD05A22C1E} 1033:{2CEF45A3-5EDF-4BF0-854D-FEAD05A22C1E} 1036:{2CEF45A3-5EDF-4BF0-854D-FEAD05A22C1E} 1040:{2CEF45A3-5EDF-4BF0-854D-FEAD05A22C1E} 1043:{2CEF45A3-5EDF-4BF0-854D-FEAD05A22C1E} 1045:{2CEF45A3-5EDF-4BF0-854D-FEAD05A22C1E} 1046:{2CEF45A3-5EDF-4BF0-854D-FEAD05A22C1E} 1049:{2CEF45A3-5EDF-4BF0-854D-FEAD05A22C1E} 1065:{2CEF45A3-5EDF-4BF0-854D-FEAD05A22C1E} 2070:{2CEF45A3-5EDF-4BF0-854D-FEAD05A22C1E} 3082:{2CEF45A3-5EDF-4BF0-854D-FEAD05A22C1E} " Type="16"/>
+    <ROW Property="ProductCode" Value="1031:{43B895EF-2E68-43A5-AF20-6FBAFDD52E05} 1033:{43B895EF-2E68-43A5-AF20-6FBAFDD52E05} 1036:{43B895EF-2E68-43A5-AF20-6FBAFDD52E05} 1040:{43B895EF-2E68-43A5-AF20-6FBAFDD52E05} 1043:{43B895EF-2E68-43A5-AF20-6FBAFDD52E05} 1045:{43B895EF-2E68-43A5-AF20-6FBAFDD52E05} 1046:{43B895EF-2E68-43A5-AF20-6FBAFDD52E05} 1049:{43B895EF-2E68-43A5-AF20-6FBAFDD52E05} 1065:{43B895EF-2E68-43A5-AF20-6FBAFDD52E05} 2070:{43B895EF-2E68-43A5-AF20-6FBAFDD52E05} 3082:{43B895EF-2E68-43A5-AF20-6FBAFDD52E05} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="ProtonVPN"/>
-    <ROW Property="ProductVersion" Value="1.20.0" Type="32"/>
+    <ROW Property="ProductVersion" Value="1.20.1" Type="32"/>
     <ROW Property="REBOOT" MultiBuildValue="DefaultBuild:ReallySuppress"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;AI_SETUPEXEPATH;SETUPEXEDIR"/>
     <ROW Property="SelectedLanguage" Value="This will be set by custom action"/>
@@ -74,7 +74,7 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
     <ROW Component="A7C0318B44EF690B391D753065B05" ComponentId="{8DFC0212-F989-444F-81FB-9D221A745FE8}" Directory_="APPDIR" Attributes="0" Options="2"/>
-    <ROW Component="AI_CustomARPName" ComponentId="{EC43F598-DA10-4A7A-B430-A315D783CC9B}" Directory_="APPDIR" Attributes="4" KeyPath="DisplayName" Options="1"/>
+    <ROW Component="AI_CustomARPName" ComponentId="{3A8F1636-9E2F-4964-9BBE-C5F736CDD656}" Directory_="APPDIR" Attributes="4" KeyPath="DisplayName" Options="1"/>
     <ROW Component="AI_ExePath" ComponentId="{47427A21-60A2-43B4-A150-6CBA74CF4A07}" Directory_="APPDIR" Attributes="4" KeyPath="AI_ExePath"/>
     <ROW Component="APPDIR" ComponentId="{75DDD993-CDFE-4D39-8C1A-07484ADD1A4E}" Directory_="APPDIR" Attributes="0"/>
     <ROW Component="ARSoft.Tools.Net.dll" ComponentId="{05CE9A73-14A8-494D-B2D3-8438A2A16DDB}" Directory_="APPDIR" Attributes="0" KeyPath="ARSoft.Tools.Net.dll"/>
@@ -645,7 +645,6 @@
     <ROW Action="AI_ExtractFiles" Sequence="1399" Builds="DefaultBuild"/>
     <ROW Action="AI_DATA_SETTER" Sequence="1398"/>
     <ROW Action="RemoveProgramData" Condition="( Installed AND ( REMOVE = &quot;ALL&quot; OR AI_INSTALL_MODE = &quot;Remove&quot; ) AND NOT UPGRADINGPRODUCTCODE )" Sequence="6401"/>
-    <ROW Action="AI_AiRemoveFilesImmediate" Sequence="3499"/>
     <ROW Action="StopProcess" Sequence="54"/>
     <ROW Action="AI_DATA_SETTER_3" Sequence="53"/>
     <ROW Action="StopErrorMessageProcess" Sequence="52"/>
@@ -657,6 +656,7 @@
     <ROW Action="SetLanguageISOCode" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) )" Sequence="6608"/>
     <ROW Action="InstallCalloutDriver" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) )" Sequence="6607"/>
     <ROW Action="RemoveWfpObjects" Condition="( ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) OR ( Installed AND ( REMOVE = &quot;ALL&quot; OR AI_INSTALL_MODE = &quot;Remove&quot; ) ) )" Sequence="6403"/>
+    <ROW Action="AI_AiRemoveFilesImmediate" Sequence="3499"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstallUISequenceComponent">
     <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="749"/>
