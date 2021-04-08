@@ -20,80 +20,91 @@
 using System;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Security;
 using System.Text;
 
 namespace ProtonVPN.Core.Srp
 {
     public static class SrpPInvoke
     {
-        private const string binaryName = "GoSrp.dll";
+        private const string BinaryName = "GoSrp.dll";
 
         static SrpPInvoke()
         {
             Environment.SetEnvironmentVariable("GODEBUG", "cgocheck=0");
 
-            var handle = LoadLibrary(BinaryPath);
+            IntPtr handle = LoadLibrary(BinaryPath);
             if (handle == IntPtr.Zero)
             {
                 throw new DllNotFoundException($"Failed to load binary: {BinaryPath}.");
             }
         }
 
-        static string BinaryPath
-        {
-            get
-            {
-                if (Environment.Is64BitOperatingSystem)
-                {
-                    return $"x64\\{binaryName}";
-                }
+        private static string BinaryPath =>
+            Environment.Is64BitOperatingSystem ? $"x64\\{BinaryName}" : $"x86\\{BinaryName}";
 
-                return $"x86\\{binaryName}";
-            }
-        }
-
-        [DllImport("kernel32.dll")]
+        [DllImport("Kernel32.dll")]
         private static extern IntPtr LoadLibrary(string path);
 
-        public struct GoString
-        {
-            public IntPtr p;
-            public IntPtr n;
+        [DllImport("Kernel32.dll", EntryPoint = "RtlZeroMemory", SetLastError = false)]
+        public static extern void ZeroMemory(IntPtr dest, int size);
 
-            public void Free()
+        public struct GoBytes : IDisposable
+        {
+            // Pointer to the UTF-8 encoded string buffer
+            public IntPtr P;
+
+            // Length of the string buffer in bytes
+            public IntPtr N;
+
+            // Total size of the buffer in bytes
+            public IntPtr C;
+
+            public void Dispose()
             {
-                Marshal.FreeHGlobal(p);
+                ZeroMemory(P, C.ToInt32());
+                Marshal.FreeHGlobal(P);
             }
         }
 
         public struct GoSlice
         {
-            public IntPtr data;
-            public int len;
-            public int cap;
+            public IntPtr Data;
+            public int Len;
+            public int Cap;
         }
 
         public static byte[] ConvertToBytes(this GoSlice goBytes)
         {
-            var bytes = new byte[goBytes.len];
-            for (var i = 0; i < goBytes.len; i++)
+            byte[] bytes = new byte[goBytes.Len];
+            for (int i = 0; i < goBytes.Len; i++)
             {
-                bytes[i] = Marshal.ReadByte(goBytes.data, i);
+                bytes[i] = Marshal.ReadByte(goBytes.Data, i);
             }
 
             return bytes;
         }
 
-        public static GoString ToGoString(this string str)
+        public static GoBytes ToGoBytes(this string str)
         {
-            var buffer = Encoding.UTF8.GetBytes(str);
-            var nativeUtf8 = Marshal.AllocHGlobal(buffer.Length);
+            byte[] buffer = Encoding.UTF8.GetBytes(str);
+            IntPtr nativeUtf8 = Marshal.AllocHGlobal(buffer.Length);
             Marshal.Copy(buffer, 0, nativeUtf8, buffer.Length);
-            return new GoString
-            {
-                p = nativeUtf8,
-                n = (IntPtr) buffer.Length
-            };
+            return new GoBytes {P = nativeUtf8, N = (IntPtr)buffer.Length, C = (IntPtr)buffer.Length};
+        }
+
+        public static unsafe GoBytes ToGoBytes(this SecureString str)
+        {
+            IntPtr nativeUnicode = Marshal.SecureStringToGlobalAllocUnicode(str);
+            int maxLength = Encoding.UTF8.GetMaxByteCount(str.Length);
+            IntPtr nativeUtf8 = Marshal.AllocHGlobal(Encoding.UTF8.GetMaxByteCount(str.Length));
+            int nativeUtf8Length = Encoding.UTF8.GetBytes(
+                (char*)nativeUnicode.ToPointer(),
+                str.Length,
+                (byte*)nativeUtf8.ToPointer(),
+                maxLength);
+            Marshal.ZeroFreeGlobalAllocUnicode(nativeUnicode);
+            return new GoBytes {P = nativeUtf8, N = (IntPtr)nativeUtf8Length, C = (IntPtr)nativeUtf8Length};
         }
 
         public class GoProofs
@@ -103,32 +114,37 @@ namespace ProtonVPN.Core.Srp
             public byte[] ExpectedServerProof;
         }
 
-        public static GoProofs GenerateProofs(int version, string username, string password, string salt, string signedModulus, string serverEphemeral, int bitLength = 2048)
+        public static GoProofs GenerateProofs(int version, string username, SecureString password, string salt,
+            string signedModulus, string serverEphemeral, int bitLength = 2048)
         {
-            var goUsername = username.ToGoString();
-            var goPassword = password.ToGoString();
-            var goSalt = salt.ToGoString();
-            var goModulus = signedModulus.ToGoString();
-            var goEphemeral = serverEphemeral.ToGoString();
-            var outBytes = NativeGenerateProofs(version, goUsername, goPassword, goSalt, goModulus, goEphemeral, bitLength);
-            var bytes = outBytes.ConvertToBytes();
+            byte[] bytes;
+
+            using (var goUsername = username.ToGoBytes())
+            using (var goPassword = password.ToGoBytes())
+            using (var goSalt = salt.ToGoBytes())
+            using (var goModulus = signedModulus.ToGoBytes())
+            using (var goEphemeral = serverEphemeral.ToGoBytes())
+            {
+                bytes = NativeGenerateProofs(version, goUsername, goPassword, goSalt, goModulus, goEphemeral, bitLength)
+                    .ConvertToBytes();
+            }
 
             using (var memStream = new MemoryStream(bytes))
             {
                 var reader = new BinaryReader(memStream);
                 reader.ReadByte();
-                var type = reader.ReadByte();
+                byte type = reader.ReadByte();
 
                 if (type == 0)
                 {
-                    var size = reader.ReadUInt16();
-                    var bmsg = reader.ReadBytes(size);
+                    ushort size = reader.ReadUInt16();
+                    byte[] bmsg = reader.ReadBytes(size);
                     throw new Exception("go-srp: " + Encoding.UTF8.GetString(bmsg));
                 }
 
                 if (type == 1)
                 {
-                    UInt16 size = reader.ReadUInt16();
+                    ushort size = reader.ReadUInt16();
                     byte[] clientProof = reader.ReadBytes(size);
                     size = reader.ReadUInt16();
                     byte[] clientEphemeral = reader.ReadBytes(size);
@@ -148,6 +164,7 @@ namespace ProtonVPN.Core.Srp
         }
 
         [DllImport("GoSrp", EntryPoint = "GenerateProofs", CallingConvention = CallingConvention.Cdecl)]
-        private static extern GoSlice NativeGenerateProofs(int version, GoString username, GoString password, GoString salt, GoString signedModulus, GoString serverEphemeral, int bits);
+        private static extern GoSlice NativeGenerateProofs(int version, GoBytes username, GoBytes password,
+            GoBytes salt, GoBytes signedModulus, GoBytes serverEphemeral, int bits);
     }
 }

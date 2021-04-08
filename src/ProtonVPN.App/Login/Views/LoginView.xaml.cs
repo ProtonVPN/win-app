@@ -78,6 +78,7 @@ namespace ProtonVPN.Login.Views
         {
             PasswordInput.Visibility = Visibility.Visible;
             PasswordText.Visibility = Visibility.Hidden;
+            PasswordText.Text = string.Empty;
         }
 
         private void ImgShowHide_PreviewMouseDown(object sender, MouseEventArgs e)

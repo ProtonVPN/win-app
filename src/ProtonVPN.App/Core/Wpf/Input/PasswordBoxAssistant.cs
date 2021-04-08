@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Security;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -25,7 +26,7 @@ namespace ProtonVPN.Core.Wpf.Input
     public static class PasswordBoxAssistant
     {
         public static readonly DependencyProperty BoundPassword =
-            DependencyProperty.RegisterAttached("BoundPassword", typeof(string), typeof(PasswordBoxAssistant), new PropertyMetadata(string.Empty, OnBoundPasswordChanged));
+            DependencyProperty.RegisterAttached("BoundPassword", typeof(SecureString), typeof(PasswordBoxAssistant), new PropertyMetadata(new SecureString(), OnBoundPasswordChanged));
 
         public static readonly DependencyProperty BindPassword = DependencyProperty.RegisterAttached(
             "BindPassword", typeof(bool), typeof(PasswordBoxAssistant), new PropertyMetadata(false, OnBindPasswordChanged));
@@ -44,11 +45,10 @@ namespace ProtonVPN.Core.Wpf.Input
 
             box.PasswordChanged -= HandlePasswordChanged;
 
-            string newPassword = (string)e.NewValue;
-
             if (!GetUpdatingPassword(box))
             {
-                box.Password = newPassword;
+                // SecurePassword is read only, it can be cleared only.
+                box.Clear();
             }
 
             box.PasswordChanged += HandlePasswordChanged;
@@ -81,7 +81,7 @@ namespace ProtonVPN.Core.Wpf.Input
         {
             PasswordBox box = sender as PasswordBox;
             SetUpdatingPassword(box, true);
-            SetBoundPassword(box, box.Password);
+            SetBoundPassword(box, box.SecurePassword);
             SetUpdatingPassword(box, false);
         }
 
@@ -95,12 +95,12 @@ namespace ProtonVPN.Core.Wpf.Input
             return (bool)dp.GetValue(BindPassword);
         }
 
-        public static string GetBoundPassword(DependencyObject dp)
+        public static SecureString GetBoundPassword(DependencyObject dp)
         {
-            return (string)dp.GetValue(BoundPassword);
+            return (SecureString)dp.GetValue(BoundPassword);
         }
 
-        public static void SetBoundPassword(DependencyObject dp, string value)
+        public static void SetBoundPassword(DependencyObject dp, SecureString value)
         {
             dp.SetValue(BoundPassword, value);
         }
