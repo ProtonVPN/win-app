@@ -20,6 +20,7 @@
 using System.ComponentModel;
 using System.Net;
 using System.Net.Http;
+using System.Security;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
@@ -56,7 +57,7 @@ namespace ProtonVPN.Login.ViewModels
         public LoginErrorViewModel LoginErrorViewModel { get; }
 
         private string _loginText;
-        private string _password;
+        private SecureString _password;
         private bool _showHelpBalloon;
         private bool _autoAuthFailed;
         private bool _networkBlocked;
@@ -118,7 +119,7 @@ namespace ProtonVPN.Login.ViewModels
                 if (_loginText != null && _loginText != value && _autoAuthFailed)
                 {
                     _autoAuthFailed = false;
-                    Password = "";
+                    Password = new SecureString();
                 }
 
                 if (!Set(ref _loginText, value))
@@ -129,25 +130,24 @@ namespace ProtonVPN.Login.ViewModels
             }
         }
 
-        public string Password
+        public SecureString Password
         {
             get => _password;
             set
             {
-                if (!string.IsNullOrEmpty(value) && _password != value && _autoAuthFailed)
+                if (value != null && value.Length != 0 && _autoAuthFailed)
                 {
                     _autoAuthFailed = false;
                 }
 
-                if (!Set(ref _password, value))
-                    return;
+                Set(ref _password, value);
 
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(FieldsFilledIn));
             }
         }
 
-        public bool FieldsFilledIn => !string.IsNullOrEmpty(LoginText?.Trim()) && !string.IsNullOrEmpty(Password);
+        public bool FieldsFilledIn => !string.IsNullOrEmpty(LoginText?.Trim()) && Password != null && Password.Length != 0;
 
         public string ErrorText
         {
@@ -232,9 +232,9 @@ namespace ProtonVPN.Login.ViewModels
             _urls.RegisterUrl.Open();
         }
 
-        private bool IsLoginDisallowed(string username, string password)
+        private bool IsLoginDisallowed(string username, SecureString password)
         {
-            return string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password);
+            return string.IsNullOrEmpty(username) || password == null || password.Length == 0;
         }
 
         private async void LoginAction()
@@ -242,16 +242,15 @@ namespace ProtonVPN.Login.ViewModels
             try
             {
                 string username = LoginText?.Trim();
-                string password = Password;
 
-                if (IsLoginDisallowed(username, password))
+                if (IsLoginDisallowed(username, Password))
                 {
                     return;
                 }
 
                 LoginErrorViewModel.ClearError();
 
-                ApiResponseResult<AuthResponse> loginResult = await _userAuth.LoginUserAsync(username, password);
+                ApiResponseResult<AuthResponse> loginResult = await _userAuth.LoginUserAsync(username, Password);
                 await HandleLoginResultAsync(loginResult);
             }
             catch (HttpRequestException)
@@ -292,7 +291,7 @@ namespace ProtonVPN.Login.ViewModels
                 LoginErrorViewModel.SetError(error);
             }
 
-            Password = "";
+            Password = new SecureString();
             ShowLoginForm();
             await DisableGuestHole();
         }
@@ -313,7 +312,7 @@ namespace ProtonVPN.Login.ViewModels
         private void ShowLoginScreenWithTroubleshoot()
         {
             _modals.Show<TroubleshootModalViewModel>();
-            Password = "";
+            Password = new SecureString();
             ShowLoginForm();
         }
 
@@ -325,7 +324,7 @@ namespace ProtonVPN.Login.ViewModels
         private void AfterLogin()
         {
             LoginText = "";
-            Password = "";
+            Password = new SecureString();
             ErrorText = "";
             LoginErrorViewModel.ClearError();
             _autoAuthFailed = false;
