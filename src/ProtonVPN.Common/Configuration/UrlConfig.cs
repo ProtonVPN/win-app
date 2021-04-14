@@ -100,5 +100,8 @@ namespace ProtonVPN.Common.Configuration
 
         [Required]
         public string InvoicesUrl { get; internal set; }
+
+        [Required]
+        public string AboutSmartProtocolUrl { get; internal set; }
     }
 }

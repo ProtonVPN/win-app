@@ -23,6 +23,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
+using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.KillSwitch;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Config.Url;
@@ -81,6 +82,8 @@ namespace ProtonVPN.Login.ViewModels
             _guestHoleConnector = guestHoleConnector;
             _guestHoleState = guestHoleState;
             LoginErrorViewModel = loginErrorViewModel;
+
+            LoginErrorViewModel.ClearError();
 
             LoginCommand = new RelayCommand(LoginAction);
             RegisterCommand = new RelayCommand(RegisterAction);
@@ -246,25 +249,10 @@ namespace ProtonVPN.Login.ViewModels
                     return;
                 }
 
+                LoginErrorViewModel.ClearError();
+
                 ApiResponseResult<AuthResponse> loginResult = await _userAuth.LoginUserAsync(username, password);
-                if (loginResult.Success)
-                {
-                    AfterLogin();
-                }
-                else
-                {
-                    string error = loginResult.Error;
-                    if (loginResult.StatusCode == HttpStatusCode.Unauthorized)
-                    {
-                        error = Translation.Get("Login_Error_msg_Unauthorized");
-                    }
-
-                    LoginErrorViewModel.SetError(error);
-
-                    Password = "";
-                    ShowLoginForm();
-                    await DisableGuestHole();
-                }
+                await HandleLoginResultAsync(loginResult);
             }
             catch (HttpRequestException)
             {
@@ -277,6 +265,36 @@ namespace ProtonVPN.Login.ViewModels
                 _guestHoleState.SetState(true);
                 await _guestHoleConnector.Connect();
             }
+        }
+
+        private async Task HandleLoginResultAsync(ApiResponseResult<AuthResponse> loginResult)
+        {
+            if (loginResult.Success)
+            {
+                AfterLogin();
+            }
+            else
+            {
+                await HandleLoginFailureAsync(loginResult);
+            }
+        }
+
+        private async Task HandleLoginFailureAsync(ApiResponseResult<AuthResponse> loginResult)
+        {
+            if (loginResult.Actions.IsNullOrEmpty()) // If Actions exist, it should be handled by ActionableFailureApiResultEventHandler
+            {
+                string error = loginResult.Error;
+                if (loginResult.StatusCode == HttpStatusCode.Unauthorized)
+                {
+                    error = Translation.Get("Login_Error_msg_Unauthorized");
+                }
+
+                LoginErrorViewModel.SetError(error);
+            }
+
+            Password = "";
+            ShowLoginForm();
+            await DisableGuestHole();
         }
 
         private async Task<bool> DisableGuestHole()

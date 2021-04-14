@@ -36,7 +36,7 @@ namespace ProtonVPN.Vpn.Management
 
         public override string ToString() => _messageText;
 
-        public bool IsChannelDisconnected => _messageText.NullOrEmpty();
+        public bool IsChannelDisconnected => _messageText.IsNullOrEmpty();
 
         public bool IsWaitingHoldRelease => _messageText.StartsWithIgnoringCase(">HOLD");
 

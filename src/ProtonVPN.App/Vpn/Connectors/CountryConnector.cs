@@ -48,7 +48,7 @@ namespace ProtonVPN.Vpn.Connectors
                 CountryCode = countryCode,
             };
 
-            await VpnManager.Connect(profile);
+            await VpnManager.ConnectAsync(profile);
         }
     }
 }

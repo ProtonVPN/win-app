@@ -86,9 +86,22 @@ namespace ProtonVPN.Vpn.Connection
 
             _candidates.Set(servers);
             _candidates.Reset();
-            _endpoint = _candidates.Next(_protocol);
 
-            _origin.Connect(_endpoint, credentials, config);
+            ConnectToNextEndpoint();
+        }
+
+        private void ConnectToNextEndpoint()
+        {
+            _endpoint = _candidates.Next(_protocol);
+            if (_endpoint?.Server == null || _endpoint.Server.IsEmpty())
+            {
+                _logger.Info("No more VPN endpoints to try, disconnecting");
+                Disconnect(_state.Error);
+            }
+            else
+            {
+                _origin.Connect(_endpoint, _credentials, _config);
+            }
         }
 
         public void Disconnect(VpnError error = VpnError.None)
@@ -163,8 +176,7 @@ namespace ProtonVPN.Vpn.Connection
             {
                 _reconnectPending = false;
                 _reconnecting = true;
-                _endpoint = _candidates.Next(_protocol);
-                _origin.Connect(_endpoint, _credentials, _config);
+                ConnectToNextEndpoint();
             }
         }
 

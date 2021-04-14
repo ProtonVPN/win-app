@@ -77,11 +77,11 @@ namespace ProtonVPN.Core.Servers
                 .ToList();
         }
 
-        public PhysicalServer GetPhysicalServerByExitIp(string ip)
+        public PhysicalServer GetPhysicalServerByServer(Server server)
         {
             return (from logical in _servers
                     from physical in logical.Servers
-                    where physical.ExitIp == ip
+                    where logical.Id == server.Id && physical.ExitIp == server.ExitIp
                     select Map(physical))
                 .FirstOrDefault();
         }

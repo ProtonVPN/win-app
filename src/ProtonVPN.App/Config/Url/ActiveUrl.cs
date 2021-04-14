@@ -20,6 +20,7 @@
 using ProtonVPN.Common.OS.Processes;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Web;
 
 namespace ProtonVPN.Config.Url
@@ -39,9 +40,9 @@ namespace ProtonVPN.Config.Url
         {
             try
             {
-                var uriBuilder = new UriBuilder(_url);
-                var query = HttpUtility.ParseQueryString(uriBuilder.Query);
-                foreach (var item in parameters)
+                UriBuilder uriBuilder = new UriBuilder(_url);
+                NameValueCollection query = HttpUtility.ParseQueryString(uriBuilder.Query);
+                foreach (KeyValuePair<string, string> item in parameters)
                 {
                     query[item.Key] = item.Value;
                 }

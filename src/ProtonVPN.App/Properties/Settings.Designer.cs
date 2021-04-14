@@ -1300,5 +1300,41 @@ namespace ProtonVPN.Properties {
                 this["UserDoNotShowKillSwitchConfirmationDialog"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool SmartReconnectEnabled {
+            get {
+                return ((bool)(this["SmartReconnectEnabled"]));
+            }
+            set {
+                this["SmartReconnectEnabled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool SmartReconnectNotificationsEnabled {
+            get {
+                return ((bool)(this["SmartReconnectNotificationsEnabled"]));
+            }
+            set {
+                this["SmartReconnectNotificationsEnabled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool FeatureSmartReconnectEnabled {
+            get {
+                return ((bool)(this["FeatureSmartReconnectEnabled"]));
+            }
+            set {
+                this["FeatureSmartReconnectEnabled"] = value;
+            }
+        }
     }
 }

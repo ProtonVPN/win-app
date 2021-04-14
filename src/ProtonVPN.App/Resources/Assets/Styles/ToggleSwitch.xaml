@@ -82,8 +82,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 <Condition Property="IsChecked" Value="False"/>
                                 <Condition Property="IsEnabled" Value="False"/>
                             </MultiTrigger.Conditions>
-                            <Setter TargetName="OutterBorder" Property="Background" Value="Transparent"/>
                             <Setter TargetName="dockPanel" Property="TextElement.Foreground" Value="Gray"/>
+                            <Setter TargetName="OutterBorder" Property="Background" Value="#41414B"/>
+                            <Setter TargetName="slider" Property="Background" Value="#78787D"/>
                             <Setter Property="RenderTransform" TargetName="slider">
                                 <Setter.Value>
                                     <TranslateTransform X="0" />

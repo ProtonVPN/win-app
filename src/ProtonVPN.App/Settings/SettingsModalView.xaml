@@ -60,6 +60,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 VerticalAlignment="Center"/>
                         </StackPanel>
                     </DataTemplate>
+                    <Style x:Key="BorderSettingContainer" TargetType="Border">
+                        <Setter Property="Height" Value="40"/>
+                        <Setter Property="BorderBrush" Value="#464652"/>
+                        <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                    </Style>
+                    <Style x:Key="BorderlessSettingContainer" TargetType="Border" BasedOn="{StaticResource BorderSettingContainer}">
+                        <Setter Property="BorderThickness" Value="0,0,0,0"/>
+                    </Style>
+                    <Style x:Key="DoubleBorderSettingContainer" TargetType="Border" BasedOn="{StaticResource BorderSettingContainer}">
+                        <Setter Property="BorderThickness" Value="0,1,0,1"/>
+                    </Style>
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
@@ -74,9 +85,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                TextTrimming="CharacterEllipsis"/>
                 </TabItem.Header>
                 <StackPanel Margin="25,20,25,40">
-                    <Border BorderBrush="#464652" Height="40" BorderThickness="0,0,0,0">
+                    <Border Style="{StaticResource BorderlessSettingContainer}">
                         <DockPanel>
-                            <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Content="{translations:Loc Settings_General_lbl_Language}"/>
+                            <Label Foreground="White" FontSize="16" VerticalAlignment="Center" 
+                                   Content="{translations:Loc Settings_General_lbl_Language}"/>
                             <wpf:Combobox HorizontalAlignment="Right"
                                           Style="{StaticResource ComboDropdown}"
                                           SelectedValuePath="Code"
@@ -96,9 +108,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </DockPanel>
                     </Border>
 
-                    <Border BorderBrush="#464652" Height="40" BorderThickness="0,0,0,0">
+                    <Border Style="{StaticResource BorderlessSettingContainer}">
                         <DockPanel>
-                            <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Content="{translations:Loc Settings_General_lbl_StartMinimized}"/>
+                            <Label Foreground="White" FontSize="16" VerticalAlignment="Center" 
+                                   Content="{translations:Loc Settings_General_lbl_StartMinimized}"/>
                             <wpf:Combobox
                                     HorizontalAlignment="Right"
                                     Style="{StaticResource ComboDropdown}"
@@ -111,9 +124,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </DockPanel>
                     </Border>
 
-                    <Border BorderBrush="#464652" Height="40" BorderThickness="0,0,0,1">
+                    <Border Style="{StaticResource BorderSettingContainer}">
                         <DockPanel>
-                            <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Content="{translations:Loc Settings_General_lbl_StartWithWindows}"/>
+                            <Label Foreground="White" FontSize="16" VerticalAlignment="Center" 
+                                   Content="{translations:Loc Settings_General_lbl_StartWithWindows}"/>
                             <CheckBox Margin="0,0,14,0"
                                       HorizontalAlignment="Right"
                                       Style="{StaticResource ToggleSwitch}"
@@ -122,9 +136,20 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </DockPanel>
                     </Border>
 
-                    <Border BorderBrush="#464652" Height="40" BorderThickness="0,0,0,1">
+                    <Border Height="32">
+                        <Border.Style>
+                            <Style TargetType="Border" BasedOn="{StaticResource BorderlessSettingContainer}">
+                                <Setter Property="Margin" Value="0,4,0,4"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsSmartReconnectFeatureEnabled}" Value="True">
+                                        <Setter Property="Margin" Value="0,4,0,0"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
                         <DockPanel>
-                            <Label VerticalAlignment="Center" Foreground="White" FontSize="16" Content="{translations:Loc Settings_General_lbl_ShowNotifications}"/>
+                            <Label VerticalAlignment="Center" Foreground="White" FontSize="16" 
+                                   Content="{translations:Loc Settings_General_lbl_ShowNotifications}"/>
                             <CheckBox Margin="0,0,14,0"
                                       HorizontalAlignment="Right"
                                       Style="{StaticResource ToggleSwitch}"
@@ -133,10 +158,34 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </DockPanel>
                     </Border>
 
-                    <Border BorderBrush="#464652" Height="40" BorderThickness="0,0,0,1">
+                    <Border Style="{StaticResource BorderlessSettingContainer}" Padding="0,0,0,4" 
+                            Visibility="{Binding IsSmartReconnectFeatureEnabled, Converter={StaticResource BoolToVis}}">
                         <DockPanel>
                             <StackPanel Orientation="Horizontal">
-                                <Label VerticalAlignment="Center" Foreground="White" FontSize="16" Content="{translations:Loc Settings_General_lbl_EarlyAccess}"/>
+                                <TextBlock  Foreground="#464652" FontSize="32" VerticalAlignment="Bottom" Margin="0,0,0,0" Text="└" />
+                                <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Margin="5,0,0,0" 
+                                       Content="{translations:Loc Settings_Connection_lbl_SmartReconnectNotifications}"/>
+                                <fa:FontAwesome Icon="InfoCircle"
+                                                VerticalAlignment="Center"
+                                                ToolTip="{translations:Loc Settings_Connection_lbl_SmartReconnectNotifications_Info}"
+                                                Foreground="{StaticResource PrimaryColor}"
+                                                FontSize="16"/>
+                            </StackPanel>
+
+                            <CheckBox Style="{StaticResource ToggleSwitch}"
+                                      Margin="0,0,14,0"
+                                      HorizontalAlignment="Right"
+                                      IsChecked="{Binding SmartReconnectNotifications}"
+                                      IsEnabled="{Binding IsSmartReconnectNotificationsEditable}"
+                                      AutomationProperties.AutomationId="{StaticResource SmartReconnectNotificationsCheckbox}"/>
+                        </DockPanel>
+                    </Border>
+
+                    <Border Style="{StaticResource DoubleBorderSettingContainer}">
+                        <DockPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label VerticalAlignment="Center" Foreground="White" FontSize="16" 
+                                       Content="{translations:Loc Settings_General_lbl_EarlyAccess}"/>
                                 <fa:FontAwesome ToolTip="{translations:Loc Settings_General_lbl_EarlyAccess_Info}"
                                                 Icon="InfoCircle"
                                                 VerticalAlignment="Center"
@@ -161,81 +210,113 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                TextTrimming="CharacterEllipsis"/>
                 </TabItem.Header>
                 <StackPanel Margin="25,20,25,40">
-                    <DockPanel Height="40">
-                        <StackPanel Orientation="Horizontal">
-                            <Label FontSize="16"
-                                   Foreground="White"
-                                   VerticalAlignment="Center"
-                                   Content="{translations:Loc Settings_Connection_lbl_AutoConnect}"/>
-                            <fa:FontAwesome Icon="InfoCircle"
-                                            VerticalAlignment="Center"
-                                            ToolTip="{translations:Loc Settings_Connection_lbl_AutoConnect_Info}"
-                                            Foreground="{StaticResource PrimaryColor}"
-                                            FontSize="16"/>
-                        </StackPanel>
-                        <wpf:Combobox HorizontalAlignment="Right"
-                                      Style="{StaticResource ComboDropdown}"
-                                      ItemsSource="{Binding AutoConnectProfiles}"
-                                      SelectedValue="{Binding AutoConnect}"
-                                      AutomationProperties.AutomationId="{StaticResource AutoConnectComboBox}">
-                        </wpf:Combobox>
-                    </DockPanel>
+                    <Border Style="{StaticResource BorderlessSettingContainer}">
+                        <DockPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label FontSize="16"
+                                       Foreground="White"
+                                       VerticalAlignment="Center"
+                                       Content="{translations:Loc Settings_Connection_lbl_AutoConnect}"/>
+                                <fa:FontAwesome Icon="InfoCircle"
+                                                VerticalAlignment="Center"
+                                                ToolTip="{translations:Loc Settings_Connection_lbl_AutoConnect_Info}"
+                                                Foreground="{StaticResource PrimaryColor}"
+                                                FontSize="16"/>
+                            </StackPanel>
+                            <wpf:Combobox HorizontalAlignment="Right"
+                                          Style="{StaticResource ComboDropdown}"
+                                          ItemsSource="{Binding AutoConnectProfiles}"
+                                          SelectedValue="{Binding AutoConnect}"
+                                          AutomationProperties.AutomationId="{StaticResource AutoConnectComboBox}">
+                            </wpf:Combobox>
+                        </DockPanel>
+                    </Border>
 
-                    <DockPanel Height="40">
-                        <StackPanel Orientation="Horizontal">
-                            <Label FontSize="16"
-                                   VerticalAlignment="Center"
-                                   Foreground="White"
-                                   Content="{translations:Loc Settings_Connection_lbl_QuickConnect}"/>
-                            <fa:FontAwesome Icon="InfoCircle"
-                                    VerticalAlignment="Center"
-                                    ToolTip="{translations:Loc Settings_Connection_lbl_QuickConnect_Info}"
-                                    Foreground="{StaticResource PrimaryColor}"
-                                    FontSize="16"/>
-                        </StackPanel>
-                        <wpf:Combobox HorizontalAlignment="Right"
-                                      Style="{StaticResource ComboDropdown}"
-                                      ItemsSource="{Binding QuickConnectProfiles}"
-                                      SelectedValue="{Binding QuickConnect}">
-                        </wpf:Combobox>
-                    </DockPanel>
+                    <Border Style="{StaticResource BorderlessSettingContainer}">
+                        <DockPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label FontSize="16"
+                                       VerticalAlignment="Center"
+                                       Foreground="White"
+                                       Content="{translations:Loc Settings_Connection_lbl_QuickConnect}"/>
+                                <fa:FontAwesome Icon="InfoCircle"
+                                        VerticalAlignment="Center"
+                                        ToolTip="{translations:Loc Settings_Connection_lbl_QuickConnect_Info}"
+                                        Foreground="{StaticResource PrimaryColor}"
+                                        FontSize="16"/>
+                            </StackPanel>
+                            <wpf:Combobox HorizontalAlignment="Right"
+                                          Style="{StaticResource ComboDropdown}"
+                                          ItemsSource="{Binding QuickConnectProfiles}"
+                                          SelectedValue="{Binding QuickConnect}">
+                            </wpf:Combobox>
+                        </DockPanel>
+                    </Border>
 
-                    <DockPanel Height="40">
-                        <StackPanel Orientation="Horizontal">
-                            <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Content="{translations:Loc Settings_Connection_lbl_DefaultProtocol}"/>
-                            <fa:FontAwesome Icon="InfoCircle"
-                                            VerticalAlignment="Center"
-                                            ToolTip="{translations:Loc Settings_Connection_lbl_DefaultProtocol_Info}"
-                                            Foreground="{StaticResource PrimaryColor}"
-                                            FontSize="16"/>
-                        </StackPanel>
+                    <Border Style="{StaticResource BorderlessSettingContainer}">
+                        <DockPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Foreground="White" FontSize="16" VerticalAlignment="Center" 
+                                       Content="{translations:Loc Settings_Connection_lbl_DefaultProtocol}"/>
+                                <fa:FontAwesome Icon="InfoCircle"
+                                                VerticalAlignment="Center"
+                                                ToolTip="{translations:Loc Settings_Connection_lbl_DefaultProtocol_Info}"
+                                                Foreground="{StaticResource PrimaryColor}"
+                                                FontSize="16"/>
+                            </StackPanel>
 
-                        <wpf:Combobox HorizontalAlignment="Right"
-                                      Style="{StaticResource ComboDropdown}"
-                                      ItemsSource="{Binding Protocols}"
-                                      SelectedValue="{Binding SelectedProtocol}"
-                                      SelectedValuePath="Key"
-                                      DisplayMemberPath="Value"
-                                      IsSynchronizedWithCurrentItem="True"
-                                      AutomationProperties.AutomationId="{StaticResource ProtocolCombobox}"/>
-                    </DockPanel>
+                            <wpf:Combobox HorizontalAlignment="Right"
+                                          Style="{StaticResource ComboDropdown}"
+                                          ItemsSource="{Binding Protocols}"
+                                          SelectedValue="{Binding SelectedProtocol}"
+                                          SelectedValuePath="Key"
+                                          DisplayMemberPath="Value"
+                                          IsSynchronizedWithCurrentItem="True"
+                                          AutomationProperties.AutomationId="{StaticResource ProtocolCombobox}"/>
+                        </DockPanel>
+                    </Border>
 
-                    <DockPanel Height="40">
-                        <StackPanel Orientation="Horizontal">
-                            <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Content="{translations:Loc Settings_Connection_lbl_CustomDnsServer}"/>
-                            <fa:FontAwesome Icon="InfoCircle"
-                                            VerticalAlignment="Center"
-                                            ToolTip="{translations:Loc Settings_Connection_lbl_CustomDnsServer_Info}"
-                                            Foreground="{StaticResource PrimaryColor}"
-                                            FontSize="16"/>
-                        </StackPanel>
-                        <CheckBox Style="{StaticResource ToggleSwitch}"
-                                  Margin="0,0,14,0"
-                                  HorizontalAlignment="Right"
-                                  IsChecked="{Binding CustomDnsEnabled}" 
-                                  AutomationProperties.AutomationId="{StaticResource CheckBoxCustomDnsServers}"/>
+                    <Border Style="{StaticResource BorderSettingContainer}" 
+                            Visibility="{Binding IsSmartReconnectFeatureEnabled, Converter={StaticResource BoolToVis}}">
+                        <DockPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Foreground="White" FontSize="16" VerticalAlignment="Center" 
+                                       Content="{translations:Loc Settings_Connection_lbl_SmartReconnect}"/>
+                                <fa:FontAwesome Icon="InfoCircle"
+                                                VerticalAlignment="Center"
+                                                ToolTip="{translations:Loc Settings_Connection_lbl_SmartReconnect_Info}"
+                                                Foreground="{StaticResource PrimaryColor}"
+                                                FontSize="16"/>
+                            </StackPanel>
 
-                    </DockPanel>
+                            <CheckBox Style="{StaticResource ToggleSwitch}"
+                                      Margin="0,0,14,0"
+                                      HorizontalAlignment="Right"
+                                      IsChecked="{Binding SmartReconnect}"
+                                      AutomationProperties.AutomationId="{StaticResource SmartReconnectCheckbox}"/>
+                        </DockPanel>
+                    </Border>
+
+                    <Border Style="{StaticResource BorderlessSettingContainer}">
+                        <DockPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Foreground="White" FontSize="16" VerticalAlignment="Center" 
+                                       Content="{translations:Loc Settings_Connection_lbl_CustomDnsServer}"/>
+                                <fa:FontAwesome Icon="InfoCircle"
+                                                VerticalAlignment="Center"
+                                                ToolTip="{translations:Loc Settings_Connection_lbl_CustomDnsServer_Info}"
+                                                Foreground="{StaticResource PrimaryColor}"
+                                                FontSize="16"/>
+                            </StackPanel>
+                            <CheckBox Style="{StaticResource ToggleSwitch}"
+                                      Margin="0,0,14,0"
+                                      HorizontalAlignment="Right"
+                                      IsChecked="{Binding CustomDnsEnabled}" 
+                                      AutomationProperties.AutomationId="{StaticResource CheckBoxCustomDnsServers}"/>
+
+                        </DockPanel>
+                    </Border>
+
                     <StackPanel Margin="12,0" HorizontalAlignment="Left" Visibility="{Binding CustomDnsEnabled, Converter={StaticResource BoolToVis}}">
                         <ScrollViewer Template="{StaticResource DarkScrollViewerControlTemplate}"
                                       Margin="0,-12,-15,-12"
@@ -277,10 +358,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </TabItem.Header>
                 <DockPanel Margin="25,20,25,20" LastChildFill="True">
 
-                    <Border Height="40" DockPanel.Dock="Top">
+                    <Border DockPanel.Dock="Top" Style="{StaticResource BorderlessSettingContainer}">
                         <DockPanel>
                             <StackPanel Orientation="Horizontal">
-                                <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Content="{translations:Loc Settings_Advanced_lbl_NetworkDriver}"/>
+                                <Label Foreground="White" FontSize="16" VerticalAlignment="Center" 
+                                       Content="{translations:Loc Settings_Advanced_lbl_NetworkDriver}"/>
                                 <fa:FontAwesome Icon="InfoCircle"
                                                 VerticalAlignment="Center"
                                                 HorizontalAlignment="Left"
@@ -300,10 +382,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </DockPanel>
                     </Border>
 
-                    <Border BorderBrush="#464652" Height="40" BorderThickness="0,0,0,1" DockPanel.Dock="Top">
+                    <Border DockPanel.Dock="Top" Style="{StaticResource BorderSettingContainer}">
                         <DockPanel>
                             <StackPanel Orientation="Horizontal">
-                                <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Content="{translations:Loc Settings_Advanced_lbl_DnsLeakProtection}"/>
+                                <Label Foreground="White" FontSize="16" VerticalAlignment="Center" 
+                                       Content="{translations:Loc Settings_Advanced_lbl_DnsLeakProtection}"/>
                                 <fa:FontAwesome Icon="InfoCircle"
                                             VerticalAlignment="Center"
                                             HorizontalAlignment="Left"
@@ -319,10 +402,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </DockPanel>
                     </Border>
 
-                    <Border BorderBrush="#464652" Height="40" BorderThickness="0,0,0,1" DockPanel.Dock="Top">
+                    <Border DockPanel.Dock="Top" Style="{StaticResource BorderSettingContainer}">
                         <DockPanel>
                             <StackPanel Orientation="Horizontal">
-                                <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Content="{translations:Loc Settings_Advanced_lbl_DoH}"/>
+                                <Label Foreground="White" FontSize="16" VerticalAlignment="Center" 
+                                       Content="{translations:Loc Settings_Advanced_lbl_DoH}"/>
                                 <fa:FontAwesome Icon="InfoCircle"
                                                 VerticalAlignment="Center"
                                                 HorizontalAlignment="Left"
@@ -337,10 +421,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </DockPanel>
                     </Border>
 
-                    <Border BorderBrush="#464652" Height="40" BorderThickness="0,0,0,1" DockPanel.Dock="Top">
+                    <Border DockPanel.Dock="Top" Style="{StaticResource BorderSettingContainer}">
                         <DockPanel>
                             <StackPanel Orientation="Horizontal">
-                                <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Content="{translations:Loc Settings_Advanced_lbl_Ipv6Protection}"/>
+                                <Label Foreground="White" FontSize="16" VerticalAlignment="Center" 
+                                       Content="{translations:Loc Settings_Advanced_lbl_Ipv6Protection}"/>
                                 <fa:FontAwesome Icon="InfoCircle"
                                                 VerticalAlignment="Center"
                                                 HorizontalAlignment="Left"
@@ -356,10 +441,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </DockPanel>
                     </Border>
 
-                    <Border BorderBrush="#464652" Height="40" BorderThickness="0,0,0,1" DockPanel.Dock="Top">
+                    <Border DockPanel.Dock="Top" Style="{StaticResource BorderlessSettingContainer}">
                         <DockPanel>
                             <StackPanel Orientation="Horizontal">
-                                <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Content="{translations:Loc Settings_Advanced_lbl_SplitTunnel}"/>
+                                <Label Foreground="White" FontSize="16" VerticalAlignment="Center" 
+                                       Content="{translations:Loc Settings_Advanced_lbl_SplitTunnel}"/>
                                 <fa:FontAwesome Icon="InfoCircle"
                                                 VerticalAlignment="Center"
                                                 HorizontalAlignment="Left"
@@ -373,10 +459,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </DockPanel>
                     </Border>
 
-                    <Border BorderBrush="#464652" BorderThickness="0" MaxHeight="274" Height="Auto">
+                    <Border BorderThickness="0" MaxHeight="274" Height="Auto">
                         <Border.Style>
-                            <Style TargetType="Border">
-                                <Setter Property="Height" Value="{Binding ActualHeight, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=FrameworkElement}}"/>
+                            <Style TargetType="Border" BasedOn="{StaticResource BorderSettingContainer}">
+                                <Setter Property="Height" 
+                                        Value="{Binding ActualHeight, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=FrameworkElement}}"/>
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding Visibility, ElementName=SplitTunneling}" Value="Collapsed">
                                         <Setter Property="Height" Value="Auto"/>
@@ -393,7 +480,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </TabItem>
         </TabControl>
 
-        <Grid Background="#9d9d9d" MinHeight="40" VerticalAlignment="Bottom" Visibility="{Binding ChangesPending, Converter={StaticResource BoolToVis}}">
+        <Grid Background="#9d9d9d" MinHeight="40" VerticalAlignment="Bottom" 
+              Visibility="{Binding ChangesPending, Converter={StaticResource BoolToVis}}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition Width="Auto"/>

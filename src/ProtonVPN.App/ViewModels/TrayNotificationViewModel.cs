@@ -128,12 +128,12 @@ namespace ProtonVPN.ViewModels
 
         private async void ConnectAction()
         {
-            await _vpnManager.QuickConnect();
+            await _vpnManager.QuickConnectAsync();
         }
 
         private async void DisconnectAction()
         {
-            await _vpnManager.Disconnect();
+            await _vpnManager.DisconnectAsync();
         }
     }
 }

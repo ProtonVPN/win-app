@@ -92,7 +92,7 @@ namespace ProtonVPN.Core.Service
             }
 
             StartAsync();
-            _vpnManager.Reconnect();
+            _vpnManager.ReconnectAsync();
         }
     }
 }

@@ -17,33 +17,57 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Collections.Generic;
 using ProtonVPN.Common.Abstract;
 using System.Net;
+using ProtonVPN.Core.Api.Contracts;
 
 namespace ProtonVPN.Core.Api
 {
     public class ApiResponseResult<T> : Result<T>
+        where T : BaseResponse
     {
-        protected ApiResponseResult(HttpStatusCode code, T value, bool success, string error) : base(value, success, error)
+        protected ApiResponseResult(HttpStatusCode code, bool success, string error, T value)
+            : base(value, success, error)
+        {
+            StatusCode = code;
+            Actions = value?.Details?.Actions;
+        }
+
+        protected ApiResponseResult(HttpStatusCode code, bool success, BaseResponse other)
+            : this(code, success, other?.Error)
+        {
+            Actions = other?.Details?.Actions;
+        }
+
+        protected ApiResponseResult(HttpStatusCode code, bool success, string error)
+            : base(default(T), success, error)
         {
             StatusCode = code;
         }
 
         public HttpStatusCode StatusCode { get; }
+        public IList<BaseResponseDetailAction> Actions { get; }
 
         public static ApiResponseResult<T> Ok(T value)
         {
-            return new ApiResponseResult<T>(0, value, true, "");
+            return new ApiResponseResult<T>(0, true, "", value);
         }
 
         public static ApiResponseResult<T> Fail(HttpStatusCode code, string error)
         {
-            return new ApiResponseResult<T>(code, default(T), false, error);
+            return new ApiResponseResult<T>(code, false, error);
         }
 
         public static ApiResponseResult<T> Fail(T value, HttpStatusCode code, string error)
         {
-            return new ApiResponseResult<T>(code, value, false, error);
+            return new ApiResponseResult<T>(code, false, error, value);
+        }
+
+        public static ApiResponseResult<T> Fail<TOther>(ApiResponseResult<TOther> other)
+            where TOther : BaseResponse
+        {
+            return new ApiResponseResult<T>(other.StatusCode, false, other.Value);
         }
     }
 }

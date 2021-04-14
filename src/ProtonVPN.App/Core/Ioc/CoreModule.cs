@@ -49,6 +49,7 @@ using ProtonVPN.Core.Storage;
 using ProtonVPN.Core.Threading;
 using ProtonVPN.Core.Update;
 using ProtonVPN.Core.Window;
+using ProtonVPN.Modals.ApiActions;
 using ProtonVPN.Translations;
 using ProtonVPN.Settings;
 using ProtonVPN.Vpn;
@@ -182,6 +183,8 @@ namespace ProtonVPN.Core.Ioc
                 })
                 .As<IApiClient>()
                 .SingleInstance();
+
+            builder.RegisterType<ActionableFailureApiResultEventHandler>().SingleInstance();
 
             builder.Register(c => new NLogLoggingConfiguration(c.Resolve<Common.Configuration.Config>().AppLogFolder, "app"))
                 .AsSelf().SingleInstance();

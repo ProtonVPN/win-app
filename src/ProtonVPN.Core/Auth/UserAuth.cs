@@ -107,7 +107,7 @@ namespace ProtonVPN.Core.Auth
                 return authResult;
             }
 
-            return ApiResponseResult<AuthResponse>.Fail(vpnInfo.StatusCode, vpnInfo.Error);
+            return ApiResponseResult<AuthResponse>.Fail(vpnInfo);
         }
 
         public async Task<ApiResponseResult<AuthResponse>> AuthAsync(string username, string password)

@@ -2954,13 +2954,25 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Delinquent account</value>
     <comment>The title of the Delinquency window</comment>
   </data>
-  <data name="Dialogs_Delinquency_msg_Delinquency" xml:space="preserve">
+  <data name="Dialogs_Delinquency_btn_Invoices" xml:space="preserve">
+    <value>Check invoices</value>
+    <comment>The text on invoices button in the Delinquency window (opens web page for invoice payment)</comment>
+  </data>
+  <data name="Sidebar_Trial_lbl_Delinquency" xml:space="preserve">
+    <value>Paid features are disabled due to delinquency</value>
+    <comment>The text displayed in Trial section of Sidebar section of main app window when user is flagged as delinquent.</comment>
+  </data>
+  <data name="Sidebar_Trial_btn_Invoices" xml:space="preserve">
+    <value>Check invoices</value>
+    <comment>The text on invoices button in the Delinquency message on the sidebar (opens web page for invoice payment)</comment>
+  </data>
+  <data name="Dialogs_Delinquency_ttl" xml:space="preserve">
+    <value>Delinquent account</value>
+    <comment>The title of the Delinquency window</comment>
+  </data>
+  <data name="Dialogs_Delinquency_msg" xml:space="preserve">
     <value>The account is flagged as delinquent due to unpaid invoices. You can continue to use ProtonVPN, but any paid features are now disabled.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadAboutDelinquencyCommand}"&gt;Read more about delinquency.&lt;/Hyperlink&gt;</value>
     <comment>The message displayed in the Delinquency window. The codes between &lt; and &gt; should be kept as is (Do not forget to translate the inner "Read more about delinquency.").</comment>
-  </data>
-  <data name="Dialogs_Delinquency_btn_Close" xml:space="preserve">
-    <value>Close</value>
-    <comment>The text on close button in the Delinquency window (closes the window)</comment>
   </data>
   <data name="Dialogs_Delinquency_btn_Invoices" xml:space="preserve">
     <value>Check invoices</value>
@@ -2973,5 +2985,45 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="Sidebar_Trial_btn_Invoices" xml:space="preserve">
     <value>Check invoices</value>
     <comment>The text on invoices button in the Delinquency message on the sidebar (opens web page for invoice payment)</comment>
+  </data>
+  <data name="Dialogs_EnableSmartProtocol_ttl" xml:space="preserve">
+    <value>Smart Protocol is currently disabled</value>
+    <comment>The title of the Enable Smart Protocol window</comment>
+  </data>
+  <data name="Dialogs_EnableSmartProtocol_msg" xml:space="preserve">
+    <value>ProtonVPN detected that your current network is preventing a connection to the VPN. Enabling Smart Protocol might bypass these limitations.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadAboutSmartProtocolCommand}"&gt;Read more about Smart Protocol.&lt;/Hyperlink&gt;</value>
+    <comment>The message displayed in the Enable Smart Protocol window. The codes between &lt; and &gt; should be kept as is (Do not forget to translate the inner "Read more about Smart Protocol.").</comment>
+  </data>
+  <data name="Dialogs_EnableSmartProtocol_btn_Enable" xml:space="preserve">
+    <value>Enable</value>
+    <comment>The text on Enable button in the Enable Smart Protocol window</comment>
+  </data>
+  <data name="Settings_Connection_lbl_SmartReconnect" xml:space="preserve">
+    <value>Smart Reconnect</value>
+    <comment>The label for Smart Reconnect toggle switch in Connection tab of Settings window</comment>
+  </data>
+  <data name="Settings_Connection_lbl_SmartReconnect_Info" xml:space="preserve">
+    <value>Automatically connect to a similar server if the one you selected is inaccessible.</value>
+    <comment>The description of Smart Reconnect setting displayed in the tooltip of the ( i ) image next to the label for Smart Reconnect toggle switch in Connection tab of Settings window</comment>
+  </data>
+  <data name="Settings_Connection_lbl_SmartReconnectNotifications" xml:space="preserve">
+    <value>Smart Reconnect Notifications</value>
+    <comment>The label for Smart Reconnect Notifications toggle switch in Connection tab of Settings window</comment>
+  </data>
+  <data name="Settings_Connection_lbl_SmartReconnectNotifications_Info" xml:space="preserve">
+    <value>Be notified when ProtonVPN connects to a server other than the one you selected.</value>
+    <comment>The description of Smart Reconnect Notifications setting displayed in the tooltip of the ( i ) image next to the label for Smart Reconnect Notifications toggle switch in Connection tab of Settings window</comment>
+  </data>
+  <data name="Dialogs_NonSmartReconnectionFailed_ttl" xml:space="preserve">
+    <value>Connection failed</value>
+    <comment>The title of the NonSmartReconnectionFailed window</comment>
+  </data>
+    <data name="Dialogs_NonSmartReconnectionFailed_msg" xml:space="preserve">
+    <value>ProtonVPN couldn't connect to the selected server.&lt;LineBreak/&gt;Please, use Quick Connect or enable Smart Reconnect in the &lt;Hyperlink Command="{Binding OpenSettingsCommand}"&gt;Settings&lt;/Hyperlink&gt;.</value>
+    <comment>The message displayed in the NonSmartReconnectionFailed window. The codes between &lt; and &gt; should be kept as is (Do not forget to translate the inner text "Settings").</comment>
+  </data>
+  <data name="Dialogs_NonSmartReconnectionFailed_btn_QuickConnect" xml:space="preserve">
+    <value>Quick Connect</value>
+    <comment>The text on Quick Connect button in the NonSmartReconnectionFailed window</comment>
   </data>
 </root>

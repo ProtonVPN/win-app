@@ -17,6 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
 using ProtonVPN.Common.KillSwitch;
@@ -34,8 +36,6 @@ namespace ProtonVPN.Modals
 {
     public class DisconnectErrorModalViewModel : BaseModalViewModel
     {
-        private VpnError _error;
-        private bool _networkBlocked;
         private readonly IActiveUrls _urlConfig;
         private readonly ConnectionErrorResolver _connectionErrorResolver;
         private readonly IVpnManager _vpnManager;
@@ -44,12 +44,13 @@ namespace ProtonVPN.Modals
         private readonly IUserStorage _userStorage;
         private readonly IAppSettings _appSettings;
 
+        private VpnError _error;
+        private bool _networkBlocked;
+
         public ICommand OpenHelpArticleCommand { get; set; }
-
+        public ICommand SettingsCommand { get; set; }
         public ICommand DisableKillSwitchCommand { get; set; }
-
         public ICommand GoToAccountCommand { get; set; }
-
         public ICommand UpgradeCommand { get; set; }
 
         public DisconnectErrorModalViewModel(
@@ -123,28 +124,57 @@ namespace ProtonVPN.Modals
         {
             base.OnViewReady(view);
 
-            if (Error == VpnError.AuthorizationError)
+            switch (Error)
             {
-                var error = await _connectionErrorResolver.ResolveError();
-                switch (error)
-                {
-                    case VpnError.PasswordChanged:
-                        TryClose(true);
-                        await _vpnManager.Reconnect();
-                        break;
-                    case VpnError.ServerOffline:
-                    case VpnError.ServerRemoved:
-                    case VpnError.Unknown:
-                        TryClose(true);
-                        await _vpnManager.Connect(await _profileManager.GetFastestProfile());
-                        break;
-                    default:
-                        Error = error;
-                        NotifyOfPropertyChange(nameof(ShowUpgrade));
-                        NotifyOfPropertyChange(nameof(ErrorDescription));
-                        break;
-                }
+                case VpnError.TimeoutError:
+                    await ReconnectAsync();
+                    break;
+                case VpnError.AuthorizationError:
+                    await HandleAuthorizationError();
+                    break;
             }
+        }
+
+        private async Task ReconnectAsync()
+        {
+            await CloseModalAsync();
+            await _vpnManager.ReconnectAsync(new VpnReconnectionSettings() { IsToReconnectIfDisconnected = true });
+        }
+
+        private async Task CloseModalAsync()
+        {
+            // If TryClose() is called before any await (that actually awaits), Caliburn will throw a NullReferenceException after OnViewReady() ends
+            await Task.Delay(TimeSpan.FromMilliseconds(1));
+            TryClose(true);
+        }
+
+        private async Task HandleAuthorizationError()
+        {
+            VpnError error = await _connectionErrorResolver.ResolveError();
+            switch (error)
+            {
+                case VpnError.PasswordChanged:
+                    await ReconnectAsync();
+                    break;
+                case VpnError.ServerOffline:
+                case VpnError.ServerRemoved:
+                    await ReconnectWithoutLastServerAsync();
+                    break;
+                case VpnError.Unknown:
+                    await ReconnectAsync();
+                    break;
+                default:
+                    Error = error;
+                    NotifyOfPropertyChange(nameof(ShowUpgrade));
+                    NotifyOfPropertyChange(nameof(ErrorDescription));
+                    break;
+            }
+        }
+
+        private async Task ReconnectWithoutLastServerAsync()
+        {
+            await CloseModalAsync();
+            await _vpnManager.ReconnectAsync(new VpnReconnectionSettings() { IsToReconnectIfDisconnected = true, IsToExcludeLastServer = true });
         }
 
         private void OpenHelpArticleAction()

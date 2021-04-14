@@ -17,6 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Threading.Tasks;
+using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.MVVM;
@@ -25,9 +27,6 @@ using ProtonVPN.Core.Servers.Name;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Translations;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using ProtonVPN.Settings;
 
 namespace ProtonVPN.ConnectingScreen
 {
@@ -81,14 +80,6 @@ namespace ProtonVPN.ConnectingScreen
         {
             get => _reconnecting;
             set => Set(ref _reconnecting, value);
-        }
-
-        private bool _applyingSettings;
-
-        public bool ApplyingSettings
-        {
-            get => _applyingSettings;
-            set => Set(ref _applyingSettings, value);
         }
 
         public int Percentage
@@ -163,7 +154,6 @@ namespace ProtonVPN.ConnectingScreen
         {
             AnimatePercentage = percentage;
             Message = message;
-            ApplyingSettings = _vpnReconnector.IsPendingReconnect();
 
             if (server == null)
             {
@@ -192,7 +182,7 @@ namespace ProtonVPN.ConnectingScreen
 
         private async void DisconnectAction()
         {
-            await _vpnManager.Disconnect();
+            await _vpnManager.DisconnectAsync();
         }
     }
 }

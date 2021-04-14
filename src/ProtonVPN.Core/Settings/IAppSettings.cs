@@ -26,6 +26,7 @@ using ProtonVPN.Common.KillSwitch;
 using ProtonVPN.Core.Announcements;
 using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Native.Structures;
+using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Profiles.Cached;
 using ProtonVPN.Core.Settings.Contracts;
 
@@ -90,7 +91,14 @@ namespace ProtonVPN.Core.Settings
         bool FeaturePollNotificationApiEnabled { get; set; }
         TimeSpan MaintenanceCheckInterval { get; set; }
         bool UseTunAdapter { get; set; }
+        bool SmartReconnectEnabled { get; set; }
+        bool SmartReconnectNotificationsEnabled { get; set; }
+        bool FeatureSmartReconnectEnabled { get; set; }
+
         bool IsNetShieldEnabled();
         bool IsPortForwardingEnabled();
+        bool IsSmartReconnectEnabled();
+        bool IsSmartReconnectNotificationsEnabled();
+        Protocol GetProtocol();
     }
 }

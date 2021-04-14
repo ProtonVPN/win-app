@@ -104,6 +104,8 @@ namespace ProtonVPN.Core.Config
                     {
                         _appSettings.BlackHoleIps = response.Value.HolesIps;
                     }
+
+                    _appSettings.FeatureSmartReconnectEnabled = response.Value.FeatureFlags.SmartReconnect ?? true;
                 }
             }
             catch (HttpRequestException)

@@ -47,16 +47,11 @@ namespace ProtonVPN.Vpn.Connection
         public VpnEndpoint Next(VpnProtocol protocol)
         {
             if (!string.IsNullOrEmpty(Current.Server.Ip))
-                _skippedIps[protocol].Add(Current.Server.Ip);
-
-            var server = _all.FirstOrDefault(i => !_skippedIps[protocol].Contains(i.Ip));
-
-            if (server.IsEmpty())
             {
-                _skippedIps[protocol].Clear();
-                server = _all.FirstOrDefault();
+                _skippedIps[protocol].Add(Current.Server.Ip);
             }
 
+            VpnHost server = _all.FirstOrDefault(i => !_skippedIps[protocol].Contains(i.Ip));
             Current = Endpoint(server, protocol);
 
             return Current;

@@ -3262,15 +3262,6 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Close.
-        /// </summary>
-        public static string Dialogs_Delinquency_btn_Close {
-            get {
-                return ResourceManager.GetString("Dialogs_Delinquency_btn_Close", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Check invoices.
         /// </summary>
         public static string Dialogs_Delinquency_btn_Invoices {
@@ -3282,9 +3273,9 @@ namespace ProtonVPN.Translations.Properties {
         /// <summary>
         ///   Looks up a localized string similar to The account is flagged as delinquent due to unpaid invoices. You can continue to use ProtonVPN, but any paid features are now disabled.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command=&quot;{Binding ReadAboutDelinquencyCommand}&quot;&gt;Read more about delinquency.&lt;/Hyperlink&gt;.
         /// </summary>
-        public static string Dialogs_Delinquency_msg_Delinquency {
+        public static string Dialogs_Delinquency_msg {
             get {
-                return ResourceManager.GetString("Dialogs_Delinquency_msg_Delinquency", resourceCulture);
+                return ResourceManager.GetString("Dialogs_Delinquency_msg", resourceCulture);
             }
         }
         
@@ -3555,6 +3546,60 @@ namespace ProtonVPN.Translations.Properties {
         public static string Dialogs_KillSwitchConfirmation_ttl {
             get {
                 return ResourceManager.GetString("Dialogs_KillSwitchConfirmation_ttl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable.
+        /// </summary>
+        public static string Dialogs_EnableSmartProtocol_btn_Enable {
+            get {
+                return ResourceManager.GetString("Dialogs_EnableSmartProtocol_btn_Enable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ProtonVPN detected that your current network is preventing a connection to the VPN. Enabling Smart Protocol might bypass these limitations.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command=&quot;{Binding ReadAboutSmartProtocolCommand}&quot;&gt;Read more about Smart Protocol.&lt;/Hyperlink&gt;.
+        /// </summary>
+        public static string Dialogs_EnableSmartProtocol_msg {
+            get {
+                return ResourceManager.GetString("Dialogs_EnableSmartProtocol_msg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Smart Protocol is currently disabled.
+        /// </summary>
+        public static string Dialogs_EnableSmartProtocol_ttl {
+            get {
+                return ResourceManager.GetString("Dialogs_EnableSmartProtocol_ttl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quick Connect.
+        /// </summary>
+        public static string Dialogs_NonSmartReconnectionFailed_btn_QuickConnect {
+            get {
+                return ResourceManager.GetString("Dialogs_NonSmartReconnectionFailed_btn_QuickConnect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ProtonVPN couldn&apos;t connect to the selected server.&lt;LineBreak/&gt;Please, use Quick Connect or enable Smart Reconnect in the &lt;Hyperlink Command=&quot;{Binding OpenSettingsCommand}&quot;&gt;Settings&lt;/Hyperlink&gt;..
+        /// </summary>
+        public static string Dialogs_NonSmartReconnectionFailed_msg {
+            get {
+                return ResourceManager.GetString("Dialogs_NonSmartReconnectionFailed_msg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Connection failed.
+        /// </summary>
+        public static string Dialogs_NonSmartReconnectionFailed_ttl {
+            get {
+                return ResourceManager.GetString("Dialogs_NonSmartReconnectionFailed_ttl", resourceCulture);
             }
         }
         
@@ -5652,6 +5697,42 @@ namespace ProtonVPN.Translations.Properties {
         public static string Settings_Connection_lbl_QuickConnect_Info {
             get {
                 return ResourceManager.GetString("Settings_Connection_lbl_QuickConnect_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Smart Reconnect.
+        /// </summary>
+        public static string Settings_Connection_lbl_SmartReconnect {
+            get {
+                return ResourceManager.GetString("Settings_Connection_lbl_SmartReconnect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Automatically connect to a similar server if the one you selected is inaccessible..
+        /// </summary>
+        public static string Settings_Connection_lbl_SmartReconnect_Info {
+            get {
+                return ResourceManager.GetString("Settings_Connection_lbl_SmartReconnect_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Smart Reconnect Notifications.
+        /// </summary>
+        public static string Settings_Connection_lbl_SmartReconnectNotifications {
+            get {
+                return ResourceManager.GetString("Settings_Connection_lbl_SmartReconnectNotifications", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Be notified when ProtonVPN connects to a server other than the one you selected..
+        /// </summary>
+        public static string Settings_Connection_lbl_SmartReconnectNotifications_Info {
+            get {
+                return ResourceManager.GetString("Settings_Connection_lbl_SmartReconnectNotifications_Info", resourceCulture);
             }
         }
         

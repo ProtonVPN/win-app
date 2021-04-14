@@ -297,11 +297,11 @@ namespace ProtonVPN.Sidebar
             if (_vpnStatus == VpnStatus.Disconnecting ||
                 _vpnStatus == VpnStatus.Disconnected)
             {
-                await _vpnManager.QuickConnect();
+                await _vpnManager.QuickConnectAsync();
             }
             else
             {
-                await _vpnManager.Disconnect();
+                await _vpnManager.DisconnectAsync();
             }
         }
 

@@ -103,12 +103,20 @@ namespace ProtonVPN.Vpn.Connectors
             return false;
         }
 
-        public async Task Connect(ServerCandidates candidates, Profile profile)
+        public async Task Connect(ServerCandidates candidates, Profile profile, Protocol? overrideProtocol = null)
         {
             IReadOnlyList<Server> servers = Servers(candidates);
+            IEnumerable<Server> sortedServers = SortServers(servers, profile.ProfileType);
+            Protocol protocol = overrideProtocol ?? profile.Protocol;
 
-            IEnumerable<Server> sortedServers = Sorted(servers, profile.ProfileType);
-            await Connect(sortedServers, VpnProtocol(profile.Protocol));
+            await Connect(sortedServers, VpnProtocol(protocol));
+        }
+
+        public async Task ConnectWithPreSortedCandidates(ServerCandidates sortedCandidates, Protocol protocol)
+        {
+            IReadOnlyList<Server> sortedServers = Servers(sortedCandidates);
+
+            await Connect(sortedServers, VpnProtocol(protocol));
         }
 
         public async Task<bool> UpdateServers(ServerCandidates candidates, Profile profile)
@@ -119,13 +127,13 @@ namespace ProtonVPN.Vpn.Connectors
                 return false;
             }
 
-            IEnumerable<Server> sortedServers = Sorted(servers, profile.ProfileType);
+            IEnumerable<Server> sortedServers = SortServers(servers, profile.ProfileType);
             await UpdateServers(sortedServers);
 
             return true;
         }
 
-        private IReadOnlyList<Server> Servers(ServerCandidates candidates)
+        public IReadOnlyList<Server> Servers(ServerCandidates candidates)
         {
             IReadOnlyList<Server> servers = candidates.Items
                 .OnlineServers()
@@ -135,7 +143,7 @@ namespace ProtonVPN.Vpn.Connectors
             return servers;
         }
 
-        private IEnumerable<Server> Sorted(IEnumerable<Server> source, ProfileType profileType)
+        public IEnumerable<Server> SortServers(IEnumerable<Server> source, ProfileType profileType)
         {
             if (profileType == ProfileType.Random)
             {
@@ -163,6 +171,21 @@ namespace ProtonVPN.Vpn.Connectors
             if (!string.IsNullOrEmpty(profile.CountryCode))
             {
                 spec &= new ExitCountryServer(profile.CountryCode);
+            }
+
+            if (!string.IsNullOrEmpty(profile.EntryCountryCode))
+            {
+                spec &= new EntryCountryServer(profile.EntryCountryCode);
+            }
+
+            if (!string.IsNullOrEmpty(profile.City))
+            {
+                spec &= new ExitCityServer(profile.City);
+            }
+
+            if (profile.ExactTier.HasValue)
+            {
+                spec &= new MaxTierServer(profile.ExactTier.Value);
             }
 
             return spec;

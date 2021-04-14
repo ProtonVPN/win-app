@@ -4,8 +4,10 @@ using System.Threading.Tasks;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Api;
+using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Servers;
+using ProtonVPN.Core.Servers.Models;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
 
@@ -79,13 +81,15 @@ namespace ProtonVPN.Core.Service.Vpn
 
             _serverManager.MarkServerUnderMaintenance(_state.Server.ExitIp);
             await _serverUpdater.Update();
-            var fastestProfile = await _profileManager.GetFastestProfile();
-            await _vpnManager.Connect(fastestProfile);
+            if (_appSettings.IsSmartReconnectEnabled())
+            {
+                await _vpnManager.ReconnectAsync(new VpnReconnectionSettings { IsToReconnectIfDisconnected = true, IsToExcludeLastServer = true });
+            }
         }
 
         private async Task<bool> ServerOffline()
         {
-            var server = _serverManager.GetPhysicalServerByExitIp(_state.Server.ExitIp);
+            PhysicalServer server = _serverManager.GetPhysicalServerByServer(_state.Server);
             if (server == null)
             {
                 //Server removed from api
@@ -94,7 +98,7 @@ namespace ProtonVPN.Core.Service.Vpn
 
             try
             {
-                var result = await _apiClient.GetServerAsync(server.Id);
+                ApiResponseResult<PhysicalServerResponse> result = await _apiClient.GetServerAsync(server.Id);
                 if (!result.Success)
                 {
                     return false;

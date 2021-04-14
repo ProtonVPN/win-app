@@ -65,6 +65,7 @@ using ProtonVPN.Login.ViewModels;
 using ProtonVPN.Login.Views;
 using ProtonVPN.Map;
 using ProtonVPN.Map.ViewModels;
+using ProtonVPN.Modals.ApiActions;
 using ProtonVPN.Notifications;
 using ProtonVPN.Onboarding;
 using ProtonVPN.P2PDetection;
@@ -455,6 +456,7 @@ namespace ProtonVPN.Core
             Resolve<OutdatedAppHandler>().AppOutdated += Resolve<OutdatedAppNotification>().OnAppOutdated;
             Resolve<IModals>();
             Resolve<InsecureNetworkNotification>();
+            Resolve<ActionableFailureApiResultEventHandler>();
         }
 
         private void OnUserLoggingIn()
@@ -534,7 +536,7 @@ namespace ProtonVPN.Core
         {
             try
             {
-                await Resolve<IVpnManager>().GetState();
+                await Resolve<IVpnManager>().GetStateAsync();
             }
             catch (Exception ex) when (ex is CommunicationException || ex is TimeoutException || ex is TaskCanceledException)
             {

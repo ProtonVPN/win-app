@@ -141,13 +141,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                    Content="{Binding Message}"
                    Foreground="White"
                    Height="32" />
-            <TextBlock Padding="0"
-                       Text="Applying settings..."
-                       FontSize="12"
-                       Foreground="White"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center"
-                       Visibility="{Binding ApplyingSettings, Converter={StaticResource BoolToVis}}"/>
             <wpf:AlignableWrapPanel HorizontalAlignment="Center"
                                     Margin="0,20,0,0"
                                     HorizontalContentAlignment="Center"

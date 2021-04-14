@@ -206,8 +206,21 @@
     <Compile Include="Core\MVVM\Converters\ZeroToBoolConverter.cs" />
     <Compile Include="Core\Service\BaseFilteringEngineService.cs" />
     <Compile Include="Core\Service\Settings\ISettingsServiceClientManager.cs" />
+    <Compile Include="Core\Service\Vpn\ISimilarServerCandidatesGenerator.cs" />
+    <Compile Include="Core\Service\Vpn\IVpnConnector.cs" />
+    <Compile Include="Core\Service\Vpn\IVpnReconnector.cs" />
     <Compile Include="Core\Service\Vpn\ReconnectManager.cs" />
+    <Compile Include="Core\Service\Vpn\SimilarServerCandidatesGenerator.cs" />
+    <Compile Include="Core\Service\Vpn\VpnConnector.cs" />
     <Compile Include="Core\Service\Vpn\VpnManagerProfileCandidates.cs" />
+    <Compile Include="Core\Service\Vpn\VpnReconnectionSettings.cs" />
+    <Compile Include="Core\Service\Vpn\VpnReconnectionSteps.cs" />
+    <Compile Include="Core\Service\Vpn\VpnReconnector.cs" />
+    <Compile Include="Modals\ApiActions\ActionableFailureApiResultEventHandler.cs" />
+    <Compile Include="Modals\ApiActions\ApiActionModalViewModel.cs" />
+    <Compile Include="Modals\ApiActions\ApiActionModalView.xaml.cs">
+      <DependentUpon>ApiActionModalView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modals\Delinquencies\DelinquencyModalView.xaml.cs">
       <DependentUpon>DelinquencyModalView.xaml</DependentUpon>
     </Compile>
@@ -235,10 +248,18 @@
     <Compile Include="Modals\PortForwardingConfirmationModalView.xaml.cs">
       <DependentUpon>PortForwardingConfirmationModalView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Modals\Protocols\EnableSmartProtocolModalView.xaml.cs">
+      <DependentUpon>EnableSmartProtocolModalView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modals\Protocols\EnableSmartProtocolModalViewModel.cs" />
     <Compile Include="Modals\RebootModalView.xaml.cs">
       <DependentUpon>RebootModalView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modals\RebootModalViewModel.cs" />
+    <Compile Include="Modals\Reconnections\NonSmartReconnectionFailedModalView.xaml.cs">
+      <DependentUpon>NonSmartReconnectionFailedModalView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modals\Reconnections\NonSmartReconnectionFailedModalViewModel.cs" />
     <Compile Include="Modals\ExitModalViewModel.cs" />
     <Compile Include="Settings\Migrations\v1_20_0\AppSettingsMigration.cs" />
     <Compile Include="PlanDowngrading\PlanDowngradeHandler.cs" />
@@ -246,7 +267,6 @@
     <Compile Include="Windows\Popups\BaseUpgradePlanPopupViewModel.cs" />
     <Compile Include="Windows\Popups\PopupWindows.cs" />
     <Compile Include="Servers\ISortedCountries.cs" />
-    <Compile Include="Settings\IVpnReconnector.cs" />
     <Compile Include="Settings\Migrations\v1_17_0\AppSettingsMigration.cs" />
     <Compile Include="Core\Service\Vpn\IVpnManager.cs" />
     <Compile Include="FlashNotifications\FlashNotifications.xaml.cs">
@@ -459,7 +479,6 @@
     <Compile Include="Core\Ioc\UiModule.cs" />
     <Compile Include="Modals\Modals.cs" />
     <Compile Include="Settings\ReconnectNotification\SplitTunnelModeSetting.cs" />
-    <Compile Include="Settings\VpnReconnector.cs" />
     <Compile Include="Sidebar\Announcements\Announcement.cs" />
     <Compile Include="Sidebar\Announcements\AnnouncementsView.xaml.cs">
       <DependentUpon>AnnouncementsView.xaml</DependentUpon>
@@ -872,6 +891,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Modals\ApiActions\ApiActionModalView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Modals\ExitModalView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -904,7 +927,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Modals\Protocols\EnableSmartProtocolModalView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Modals\RebootModalView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Modals\Reconnections\NonSmartReconnectionFailedModalView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

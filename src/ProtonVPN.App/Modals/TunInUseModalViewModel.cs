@@ -42,7 +42,7 @@ namespace ProtonVPN.Modals
         {
             TryClose();
             _appSettings.UseTunAdapter = false;
-            await _vpnManager.Reconnect();
+            await _vpnManager.ReconnectAsync();
         }
     }
 }

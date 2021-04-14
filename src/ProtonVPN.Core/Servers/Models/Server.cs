@@ -115,6 +115,11 @@ namespace ProtonVPN.Core.Servers.Models
             return (Server) MemberwiseClone();
         }
 
+        public bool IsEmpty()
+        {
+            return Equals(Empty());
+        }
+
         public static Server Empty() =>
             new Server(
                 "",

@@ -59,7 +59,8 @@ namespace ProtonVPN.ConnectionInfo
                 return VpnError.Unpaid;
             }
 
-            if (await GetSessionCount() >= oldUserInfo.MaxConnect)
+            int sessionCount = await GetSessionCount();
+            if (sessionCount >= oldUserInfo.MaxConnect)
             {
                 return VpnError.SessionLimitReached;
             }
