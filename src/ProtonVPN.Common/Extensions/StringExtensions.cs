@@ -26,7 +26,7 @@ namespace ProtonVPN.Common.Extensions
 {
     public static class StringExtensions
     {
-        public static bool NullOrEmpty(this string value)
+        public static bool IsNullOrEmpty(this string value)
         {
             return string.IsNullOrEmpty(value);
         }

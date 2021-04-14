@@ -25,7 +25,7 @@ using UserLocation = ProtonVPN.Core.Api.Contracts.UserLocation;
 
 namespace ProtonVPN.Core.Api
 {
-    public interface IApiClient
+    public interface IApiClient : IClientBase
     {
         Task<ApiResponseResult<AuthResponse>> GetAuthResponse(AuthRequestData data);
         Task<ApiResponseResult<AuthInfo>> GetAuthInfoResponse(AuthInfoRequestData data);

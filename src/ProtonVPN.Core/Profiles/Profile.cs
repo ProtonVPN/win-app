@@ -70,6 +70,12 @@ namespace ProtonVPN.Core.Profiles
 
         public string CountryCode { get; set; }
 
+        public string EntryCountryCode { get; set; }
+
+        public string City { get; set; }
+
+        public sbyte? ExactTier { get; set; }
+
         public string ServerId { get; set; }
 
         public ProfileStatus Status { get; set; }

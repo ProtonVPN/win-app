@@ -20,25 +20,25 @@
 using System.Threading.Tasks;
 using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Servers;
+using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.User;
-using ProtonVPN.Settings;
 
 namespace ProtonVPN.PlanDowngrading
 {
     public class PlanDowngradeHandler : IVpnPlanAware
     {
         private readonly IUserStorage _userStorage;
-        private readonly IVpnReconnector _vpnReconnector;
+        private readonly IVpnManager _vpnManager;
         private readonly IAppSettings _appSettings;
 
         public PlanDowngradeHandler(
             IUserStorage userStorage,
-            IVpnReconnector vpnReconnector, 
+            IVpnManager vpnManager, 
             IAppSettings appSettings)
         {
             _userStorage = userStorage;
-            _vpnReconnector = vpnReconnector;
+            _vpnManager = vpnManager;
             _appSettings = appSettings;
         }
 
@@ -67,7 +67,7 @@ namespace ProtonVPN.PlanDowngrading
                 _appSettings.NetShieldEnabled = false;
             }
 
-            await _vpnReconnector.ReconnectAsync();
+            await _vpnManager.ReconnectAsync(new VpnReconnectionSettings() { IsToForceSmartReconnect = true });
         }
     }
 }

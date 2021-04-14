@@ -17,13 +17,17 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Threading.Tasks;
+using ProtonVPN.Core.Api.Contracts;
 
-namespace ProtonVPN.Settings
+namespace ProtonVPN.Core.Api
 {
-    public interface IVpnReconnector
+    public class ActionableFailureApiResultEventArgs
     {
-        Task ReconnectAsync();
-        bool IsPendingReconnect();
+        public ApiResponseResult<BaseResponse> Result { get; }
+
+        public ActionableFailureApiResultEventArgs(ApiResponseResult<BaseResponse> result)
+        {
+            Result = result;
+        }
     }
 }

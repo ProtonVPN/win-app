@@ -24,11 +24,13 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using ProtonVPN.Common;
+using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.KillSwitch;
 using ProtonVPN.Core.Announcements;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Native.Structures;
+using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Profiles.Cached;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Settings.Contracts;
@@ -400,6 +402,24 @@ namespace ProtonVPN.Core
             set => SetPerUser(value);
         }
 
+        public bool SmartReconnectEnabled
+        {
+            get => Get<bool>();
+            set => Set(value);
+        }
+
+        public bool SmartReconnectNotificationsEnabled
+        {
+            get => Get<bool>();
+            set => Set(value);
+        }
+
+        public bool FeatureSmartReconnectEnabled
+        {
+            get => Get<bool>();
+            set => Set(value);
+        }
+
         public TimeSpan MaintenanceCheckInterval
         {
             get
@@ -447,6 +467,25 @@ namespace ProtonVPN.Core
         public bool IsPortForwardingEnabled()
         {
             return FeaturePortForwardingEnabled && PortForwardingEnabled;
+        }
+
+        public bool IsSmartReconnectEnabled()
+        {
+            return FeatureSmartReconnectEnabled && SmartReconnectEnabled;
+        }
+
+        public bool IsSmartReconnectNotificationsEnabled()
+        {
+            return ShowNotifications && SmartReconnectNotificationsEnabled;
+        }
+
+        public Protocol GetProtocol()
+        {
+            string protocolStr = OvpnProtocol;
+            return protocolStr.EqualsIgnoringCase("auto") ? Protocol.Auto :
+                protocolStr.EqualsIgnoringCase("udp") ? Protocol.OpenVpnUdp :
+                protocolStr.EqualsIgnoringCase("tcp") ? Protocol.OpenVpnTcp :
+                throw new ArgumentException();
         }
 
         private void OnPropertyChanged([CallerMemberName] string propertyName = null)

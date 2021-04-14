@@ -22,6 +22,7 @@ namespace ProtonVPN.Core.Api
     public class ResponseCodes
     {
         public const int OkResponse = 1000;
+        public const int ForcePasswordChangeResponse = 2011;
         public const int OutdatedAppResponse = 5003;
         public const int OutdatedApiResponse = 5005;
         public const int InvalidProfileIdOnUpdate = 86062;

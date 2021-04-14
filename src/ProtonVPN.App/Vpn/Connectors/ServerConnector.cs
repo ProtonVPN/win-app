@@ -41,7 +41,7 @@ namespace ProtonVPN.Vpn.Connectors
                 ServerId = server.Id
             };
 
-            await VpnManager.Connect(profile);
+            await VpnManager.ConnectAsync(profile);
         }
     }
 }

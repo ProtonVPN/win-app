@@ -186,7 +186,8 @@ namespace ProtonVPN.Common.Configuration.Source
                     AboutPortForwardingUrl = "https://protonvpn.com/support/port-forwarding",
                     PortForwardingRisksUrl = "https://protonvpn.com/support/port-forwarding-risks",
                     AboutDelinquencyUrl = "https://protonvpn.com/support/delinquency",
-                    InvoicesUrl = "https://account.protonvpn.com/payments#invoices"
+                    InvoicesUrl = "https://account.protonvpn.com/payments#invoices",
+                    AboutSmartProtocolUrl = "https://protonvpn.com/support/how-to-change-vpn-protocols"
                 },
 
                 OpenVpn =

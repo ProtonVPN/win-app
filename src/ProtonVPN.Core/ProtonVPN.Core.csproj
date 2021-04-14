@@ -94,6 +94,8 @@
     <Compile Include="Announcements\IAnnouncements.cs" />
     <Compile Include="Api\ApiAppVersion.cs" />
     <Compile Include="Api\Contracts\AnnouncementsResponse.cs" />
+    <Compile Include="Api\Contracts\BaseResponseDetail.cs" />
+    <Compile Include="Api\Contracts\BaseResponseDetailAction.cs" />
     <Compile Include="Api\Contracts\EventResponse.cs" />
     <Compile Include="Api\Contracts\ServerStatusResponse.cs" />
     <Compile Include="Api\Contracts\SessionsResponse.cs" />
@@ -154,10 +156,12 @@
     <Compile Include="Api\Handlers\UnauthorizedResponseHandler.cs" />
     <Compile Include="Api\ApiClient.cs" />
     <Compile Include="Api\IApiClient.cs" />
+    <Compile Include="Api\IClientBase.cs" />
     <Compile Include="Api\ITokenClient.cs" />
     <Compile Include="Api\ResponseCodes.cs" />
     <Compile Include="Api\SleepDurationProvider.cs" />
     <Compile Include="Api\TokenClient.cs" />
+    <Compile Include="Api\ActionableFailureApiResultEventArgs.cs" />
     <Compile Include="Auth\ILoggedInAware.cs" />
     <Compile Include="Auth\ILogoutAware.cs" />
     <Compile Include="Auth\UserAuth.cs" />
@@ -173,6 +177,8 @@
     <Compile Include="Modals\IModal.cs" />
     <Compile Include="Modals\IModals.cs" />
     <Compile Include="Native\WindowStates.cs" />
+    <Compile Include="Servers\Specs\ExactTierServer.cs" />
+    <Compile Include="Servers\Specs\ExitCityServer.cs" />
     <Compile Include="User\VpnPlanChangedEventArgs.cs" />
     <Compile Include="Window\Popups\IPopupWindow.cs" />
     <Compile Include="Window\Popups\IPopupWindows.cs" />

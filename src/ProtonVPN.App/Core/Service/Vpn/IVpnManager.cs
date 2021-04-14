@@ -8,15 +8,15 @@ namespace ProtonVPN.Core.Service.Vpn
 {
     public interface IVpnManager
     {
-        Task Connect(Profile profile, Profile fallbackProfile = null);
+        Task ConnectAsync(Profile profile, Profile fallbackProfile = null);
 
-        Task QuickConnect();
+        Task QuickConnectAsync();
 
-        Task Reconnect();
+        Task ReconnectAsync(VpnReconnectionSettings settings = null);
 
-        Task Disconnect(VpnError vpnError = VpnError.None);
+        Task DisconnectAsync(VpnError vpnError = VpnError.None);
 
-        Task GetState();
+        Task GetStateAsync();
 
         void OnVpnStateChanged(VpnStateChangedEventArgs e);
 

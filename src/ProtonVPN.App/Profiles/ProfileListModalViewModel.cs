@@ -143,7 +143,7 @@ namespace ProtonVPN.Profiles
             var profile = await _profileManager.GetProfileById(viewModel.Id);
             if (profile == null) return;
 
-            await _vpnManager.Connect(profile);
+            await _vpnManager.ConnectAsync(profile);
         }
 
         private async void EditProfileAction(ProfileViewModel viewModel)

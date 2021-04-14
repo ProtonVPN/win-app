@@ -37,11 +37,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <Grid>
         <StackPanel>
             <TextBlock TextWrapping="Wrap" FontSize="16" Foreground="White" Padding="15,40" 
-                       behavior:TextStyleBehavior.FormattedText="{translations:Loc Dialogs_Delinquency_msg_Delinquency}"/>
+                       behavior:TextStyleBehavior.FormattedText="{translations:Loc Dialogs_Delinquency_msg}"/>
             <DockPanel Background="{StaticResource ModalBarColor}" Height="66">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <Button Style="{StaticResource SecondaryButton}"
-                            Content="{translations:Loc Dialogs_Delinquency_btn_Close}"
+                            Content="{translations:Loc Dialogs_btn_Close}"
                             Command="{Binding CloseCommand}"/>
                     <Button Style="{StaticResource PrimaryButton}"
                             Content="{translations:Loc Dialogs_Delinquency_btn_Invoices}"
