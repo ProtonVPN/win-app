@@ -19,10 +19,10 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Extensions;
-using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.OS.Net;
+using ProtonVPN.Common.OS.Net.NetworkInterface;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Api;
@@ -33,49 +33,83 @@ using ProtonVPN.Core.Servers.Models;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.User;
 using ProtonVPN.Core.Vpn;
+using ProtonVPN.Core.Window.Popups;
 using ProtonVPN.Vpn.Connectors;
+using ProtonVPN.Windows.Popups;
+using Sentry;
+using Sentry.Protocol;
 
 namespace ProtonVPN.Core.Service.Vpn
 {
-    public class VpnManager : IVpnManager, IVpnPlanAware, ILogoutAware, ISettingsAware
+    public class VpnManager : IVpnManager, IVpnPlanAware, ILogoutAware
     {
-        private readonly ILogger _logger;
+        private readonly ITaskQueue _taskQueue = new SerialTaskQueue();
         private readonly ProfileConnector _profileConnector;
+        private readonly ProfileManager _profileManager;
         private readonly IVpnServiceManager _vpnServiceManager;
         private readonly IAppSettings _appSettings;
-        private readonly ITaskQueue _taskQueue = new SerialTaskQueue();
         private readonly GuestHoleState _guestHoleState;
         private readonly IUserStorage _userStorage;
+        private readonly INetworkInterfaceLoader _networkInterfaceLoader;
+        private readonly IPopupWindows _popupWindows;
 
         private Profile _lastProfile;
         private ServerCandidates _lastServerCandidates;
         private Server _lastServer = Server.Empty();
         private bool _networkBlocked;
+        private bool _tunChangedToTap;
 
         public VpnManager(
-            ILogger logger,
             ProfileConnector profileConnector,
+            ProfileManager profileManager,
             IVpnServiceManager vpnServiceManager,
             IAppSettings appSettings,
             GuestHoleState guestHoleState,
-            IUserStorage userStorage)
+            IUserStorage userStorage,
+            INetworkInterfaceLoader networkInterfaceLoader,
+            IPopupWindows popupWindows)
         {
-            _logger = logger;
             _profileConnector = profileConnector;
-            _appSettings = appSettings;
+            _profileManager = profileManager;
             _vpnServiceManager = vpnServiceManager;
+            _appSettings = appSettings;
             _guestHoleState = guestHoleState;
             _userStorage = userStorage;
+            _networkInterfaceLoader = networkInterfaceLoader;
+            _popupWindows = popupWindows;
             _lastServerCandidates = _profileConnector.ServerCandidates(null);
         }
 
         public event EventHandler<VpnStateChangedEventArgs> VpnStateChanged;
 
-        private VpnState _state = new VpnState(VpnStatus.Disconnected);
+        private VpnState _state = new(VpnStatus.Disconnected);
 
         public async Task Connect(Profile profile, Profile fallbackProfile = null)
         {
+            INetworkInterface tunInterface = _networkInterfaceLoader.GetTunInterface();
+            INetworkInterface tapInterface = _networkInterfaceLoader.GetTapInterface();
+            if (tunInterface == null && tapInterface == null)
+            {
+                RaiseVpnStateChanged(new VpnStateChangedEventArgs(new VpnState(VpnStatus.Disconnected),
+                    VpnError.NoTapAdaptersError, false));
+                return;
+            }
+
+            if (tunInterface == null && _appSettings.UseTunAdapter)
+            {
+                _appSettings.UseTunAdapter = false;
+                _tunChangedToTap = true;
+            }
+
             await Queued(() => ConnectToBestProfileAsync(profile, fallbackProfile));
+        }
+
+        public async Task QuickConnect()
+        {
+            Profile profile = await _profileManager.GetProfileById(_appSettings.QuickConnect) ??
+                              await _profileManager.GetFastestProfile();
+
+            await Connect(profile);
         }
 
         public async Task Reconnect()
@@ -114,22 +148,40 @@ namespace ProtonVPN.Core.Service.Vpn
             _networkBlocked = e.NetworkBlocked;
 
             RaiseVpnStateChanged(new VpnStateChangedEventArgs(_state, e.Error, e.NetworkBlocked, e.Protocol));
+
+            switch (e.State.Status)
+            {
+                case VpnStatus.Connected when _tunChangedToTap:
+                    _tunChangedToTap = false;
+                    SendTunFallbackEvent();
+                    _popupWindows.Show<TunFallbackPopupViewModel>();
+                    break;
+                case VpnStatus.Disconnected:
+                    _tunChangedToTap = false;
+                    break;
+            }
         }
 
-        public Task OnVpnPlanChangedAsync(string plan)
+        public async Task OnVpnPlanChangedAsync(VpnPlanChangedEventArgs e)
         {
             if (_lastServer != null)
             {
-                Queued(() => UpdateServersOrDisconnect(VpnError.UserTierTooLowError));
+                await UpdateServersOrReconnect();
             }
-
-            return Task.CompletedTask;
         }
 
         public void OnUserLoggedOut()
         {
             _state = new VpnState(VpnStatus.Disconnected);
             RaiseVpnStateChanged(new VpnStateChangedEventArgs(_state, VpnError.None, _networkBlocked));
+        }
+
+        private void SendTunFallbackEvent()
+        {
+            SentrySdk.CaptureEvent(new SentryEvent
+            {
+                Message = "Successful TAP connection after failed with TUN.", Level = SentryLevel.Info,
+            });
         }
 
         private async Task ConnectToBestProfileAsync(Profile profile, Profile fallbackProfile = null)
@@ -143,7 +195,8 @@ namespace ProtonVPN.Core.Service.Vpn
             }
             else
             {
-                _profileConnector.HandleNoServersAvailable(profileCandidates.Candidates.Items, profileCandidates.Profile);
+                _profileConnector.HandleNoServersAvailable(profileCandidates.Candidates.Items,
+                    profileCandidates.Profile);
             }
         }
 
@@ -176,7 +229,7 @@ namespace ProtonVPN.Core.Service.Vpn
             {
                 bestProfileCandidates.Profile = profile;
                 bestProfileCandidates.Candidates = _profileConnector.ServerCandidates(profile);
-                bestProfileCandidates.CanConnect = _profileConnector.CanConnect(bestProfileCandidates.Candidates, profile);
+                bestProfileCandidates.CanConnect = _profileConnector.CanConnect(bestProfileCandidates.Candidates);
 
                 if (bestProfileCandidates.CanConnect)
                 {
@@ -199,7 +252,7 @@ namespace ProtonVPN.Core.Service.Vpn
             await _profileConnector.Connect(candidates, profile);
         }
 
-        private async Task UpdateServersOrDisconnect(VpnError disconnectReason)
+        private async Task UpdateServersOrReconnect()
         {
             if (_state.Status == VpnStatus.Disconnecting ||
                 _state.Status == VpnStatus.Disconnected ||
@@ -212,22 +265,8 @@ namespace ProtonVPN.Core.Service.Vpn
 
             if (!await _profileConnector.UpdateServers(_lastServerCandidates, _lastProfile))
             {
-                await _vpnServiceManager.Disconnect(disconnectReason);
-            }
-        }
-
-        public async void OnAppSettingsChanged(PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == nameof(IAppSettings.KillSwitch)
-                && !_appSettings.KillSwitch)
-            {
-                if (_networkBlocked &&
-                    (_state.Status == VpnStatus.Disconnecting ||
-                     _state.Status == VpnStatus.Disconnected))
-                {
-                    _logger.Info("Settings changed, Kill Switch disabled: Disconnecting to disable leak protection");
-                    await _vpnServiceManager.Disconnect(VpnError.None);
-                }
+                Profile profile = await _profileManager.GetFastestProfile();
+                await Connect(profile);
             }
         }
 

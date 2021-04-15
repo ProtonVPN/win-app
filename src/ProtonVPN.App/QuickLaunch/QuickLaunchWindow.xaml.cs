@@ -24,7 +24,7 @@ using System.Windows.Input;
 
 namespace ProtonVPN.QuickLaunch
 {
-    internal partial class QuickLaunchWindow
+    public partial class QuickLaunchWindow
     {
         public QuickLaunchWindow()
         {

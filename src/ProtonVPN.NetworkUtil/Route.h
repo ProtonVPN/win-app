@@ -15,10 +15,6 @@ namespace Proton
                 IF_LUID Luid;
             };
 
-            bool AddDefaultGatewayForIface(UINT index, const wchar_t* gatewayAddr);
-
-            bool DeleteDefaultGatewayForIface(UINT index, const wchar_t* gatewayAddr);
-
             bool GetIfaceInfo(UINT index, IfaceInfo& info);
         }
     }

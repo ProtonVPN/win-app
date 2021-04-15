@@ -24,15 +24,22 @@ namespace ProtonVPN.NetworkFilter
     public class Session
     {
         public IntPtr Handle { get; }
+        public SessionType Type { get; }
 
-        protected Session(IntPtr handle)
+        protected Session(IntPtr handle, SessionType type)
         {
             Handle = handle;
+            Type = type;
         }
 
         public static Session Dynamic()
         {
-            return new Session(IpFilterNative.CreateDynamicSession());
+            return new Session(IpFilterNative.CreateDynamicSession(), SessionType.Dynamic);
+        }
+
+        public static Session Permanent()
+        {
+            return new Session(IpFilterNative.CreateSession(), SessionType.Permanent);
         }
 
         public void Close()

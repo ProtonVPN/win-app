@@ -42,7 +42,7 @@ namespace ProtonVPN.Vpn.OpenVpn.Arguments
                 yield break;
             }
 
-            foreach (var ip in _ips)
+            foreach (string ip in _ips)
             {
                 var address = new NetworkAddress(ip);
                 switch (_splitTunnelMode)

@@ -21,6 +21,7 @@ using System;
 using Autofac;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.OS.Net;
 using ProtonVPN.Common.OS.Net.NetworkInterface;
 using ProtonVPN.Common.OS.Processes;
 using ProtonVPN.Common.OS.Services;
@@ -29,6 +30,7 @@ using ProtonVPN.Common.Text.Serialization;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Service.Driver;
 using ProtonVPN.Service.Firewall;
+using ProtonVPN.Service.Network;
 using ProtonVPN.Service.ServiceHosts;
 using ProtonVPN.Service.Settings;
 using ProtonVPN.Service.SplitTunneling;
@@ -59,7 +61,7 @@ namespace ProtonVPN.Service.Start
             builder.RegisterType<JsonSerializerFactory>().As<ITextSerializerFactory>().SingleInstance();
 
             builder.RegisterType<SettingsHandler>().SingleInstance();
-            builder.RegisterType<VpnConnectionHandler>().SingleInstance();
+            builder.RegisterType<VpnConnectionHandler>().AsImplementedInterfaces().AsSelf().SingleInstance();
 
             builder.Register(c => new ServiceRetryPolicy(2, TimeSpan.FromSeconds(1))).SingleInstance();
             builder.Register(c => new CalloutDriver(
@@ -102,9 +104,6 @@ namespace ProtonVPN.Service.Start
             builder.RegisterType<Ipv6>().SingleInstance();
             builder.RegisterType<ObservableNetworkInterfaces>().SingleInstance();
             builder.RegisterType<Firewall.Firewall>().AsImplementedInterfaces().SingleInstance();
-            builder.Register(c => c.Resolve<IpFilter>().Instance.CreateSublayer(
-                new NetworkFilter.DisplayData {Name = "ProtonVPN Firewall filters"},
-                10000)).SingleInstance();
 
             builder.RegisterType<IpFilter>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterType<IncludeModeApps>().AsSelf().SingleInstance();
@@ -122,20 +121,17 @@ namespace ProtonVPN.Service.Start
             builder.Register(c =>
                     new SafeSystemNetworkInterfaces(
                         c.Resolve<ILogger>(),
-                        new SystemNetworkInterfaces(
-                            c.Resolve<ILogger>())))
+                        new SystemNetworkInterfaces()))
                 .As<INetworkInterfaces>().SingleInstance();
+            builder.RegisterType<NetworkInterfaceLoader>().As<INetworkInterfaceLoader>().SingleInstance();
             builder.RegisterType<PermittedRemoteAddress>().AsSelf().SingleInstance();
             builder.RegisterType<AppFilter>().AsSelf().SingleInstance();
             builder.RegisterType<SplitTunnelNetworkFilters>().SingleInstance();
             builder.RegisterType<BestNetworkInterface>().SingleInstance();
             builder.RegisterType<SplitTunnelClient>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<UnhandledExceptionLogging>().SingleInstance();
-            builder.Register(c =>
-                    new NetworkSettings(
-                        c.Resolve<ILogger>(),
-                        c.Resolve<INetworkInterfaces>(),
-                        c.Resolve<Common.Configuration.Config>()))
+            builder.RegisterType<CurrentNetworkInterface>().As<ICurrentNetworkInterface>().SingleInstance();
+            builder.Register(c => new NetworkSettings(c.Resolve<ILogger>(), c.Resolve<ICurrentNetworkInterface>()))
                 .AsImplementedInterfaces()
                 .AsSelf()
                 .SingleInstance();

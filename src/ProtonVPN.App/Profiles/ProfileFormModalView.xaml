@@ -33,7 +33,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         Height="530"
                         d:DataContext="{d:DesignInstance profiles:ProfileFormModalViewModel}">
     <resource:BaseModalWindow.Style>
-        <Style TargetType="resource:BaseModalWindow" BasedOn="{StaticResource BaseModalStyle}">
+        <Style TargetType="resource:BaseModalWindow" BasedOn="{StaticResource BaseWindowStyle}">
             <Setter Property="Title" Value="{translations:Loc Profiles_Profile_ttl_Create}"/>
             <Style.Triggers>
                 <DataTrigger Binding="{Binding Form.EditMode}" Value="True">

@@ -19,6 +19,8 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.IO.Compression;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Logging;
 
@@ -28,9 +30,11 @@ namespace ProtonVPN.BugReporting.Diagnostic
     {
         private readonly IEnumerable<ILog> _networkLogs;
         private readonly ILogger _logger;
+        private readonly Common.Configuration.Config _config;
 
-        public NetworkLogWriter(IEnumerable<ILog> networkLogs, ILogger logger)
+        public NetworkLogWriter(Common.Configuration.Config config, IEnumerable<ILog> networkLogs, ILogger logger)
         {
+            _config = config;
             _logger = logger;
             _networkLogs = networkLogs;
         }
@@ -39,11 +43,19 @@ namespace ProtonVPN.BugReporting.Diagnostic
         {
             await Task.Run(() =>
             {
-                foreach (var log in _networkLogs)
+                using var fs = new FileStream(_config.DiagnosticsZipPath, FileMode.Create);
+                using var arch = new ZipArchive(fs, ZipArchiveMode.Create);
+
+                foreach (ILog log in _networkLogs)
                 {
                     try
                     {
                         log.Write();
+                        arch.CreateEntryFromFile(log.Path, log.Filename);
+                        if (File.Exists(log.Path))
+                        {
+                            File.Delete(log.Path);
+                        }
                     }
                     catch (Exception e)
                     {

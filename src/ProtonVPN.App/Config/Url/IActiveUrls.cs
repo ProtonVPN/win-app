@@ -45,5 +45,7 @@ namespace ProtonVPN.Config.Url
         IActiveUrl AboutKillSwitchUrl { get; }
         IActiveUrl AboutPortForwardingUrl { get; }
         IActiveUrl PortForwardingRisksUrl { get; }
+        IActiveUrl AboutDelinquencyUrl { get; }
+        IActiveUrl InvoicesUrl { get; }
     }
 }

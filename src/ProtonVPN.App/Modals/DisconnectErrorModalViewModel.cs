@@ -19,17 +19,16 @@
 
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
+using ProtonVPN.Common.KillSwitch;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Config.Url;
 using ProtonVPN.ConnectionInfo;
-using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Translations;
-using ProtonVPN.Settings;
 
 namespace ProtonVPN.Modals
 {
@@ -40,15 +39,12 @@ namespace ProtonVPN.Modals
         private readonly IActiveUrls _urlConfig;
         private readonly ConnectionErrorResolver _connectionErrorResolver;
         private readonly IVpnManager _vpnManager;
-        private readonly SettingsModalViewModel _settingsModalViewModel;
-        private readonly IModals _modals;
         private readonly ILogger _logger;
         private readonly ProfileManager _profileManager;
         private readonly IUserStorage _userStorage;
+        private readonly IAppSettings _appSettings;
 
         public ICommand OpenHelpArticleCommand { get; set; }
-
-        public ICommand SettingsCommand { get; set; }
 
         public ICommand DisableKillSwitchCommand { get; set; }
 
@@ -59,24 +55,21 @@ namespace ProtonVPN.Modals
         public DisconnectErrorModalViewModel(
             ILogger logger,
             IActiveUrls urlConfig,
+            IAppSettings appSettings,
             ConnectionErrorResolver connectionErrorResolver,
             IVpnManager vpnManager,
-            IModals modals,
-            SettingsModalViewModel settingsModalViewModel,
             ProfileManager profileManager,
             IUserStorage userStorage)
         {
             _userStorage = userStorage;
             _logger = logger;
-            _modals = modals;
-            _settingsModalViewModel = settingsModalViewModel;
+            _appSettings = appSettings;
             _vpnManager = vpnManager;
             _connectionErrorResolver = connectionErrorResolver;
             _urlConfig = urlConfig;
             _profileManager = profileManager;
 
             OpenHelpArticleCommand = new RelayCommand(OpenHelpArticleAction);
-            SettingsCommand = new RelayCommand(OpenSettings);
             DisableKillSwitchCommand = new RelayCommand(DisableKillSwitch);
             GoToAccountCommand = new RelayCommand(OpenAccountPage);
             UpgradeCommand = new RelayCommand(UpgradeAction);
@@ -116,7 +109,9 @@ namespace ProtonVPN.Modals
         public override void BeforeOpenModal(dynamic options)
         {
             if (options == null)
+            {
                 return;
+            }
 
             NetworkBlocked = options.NetworkBlocked;
             Error = options.Error;
@@ -157,23 +152,15 @@ namespace ProtonVPN.Modals
             _urlConfig.TroubleShootingUrl.Open();
         }
 
-        private void OpenSettings()
-        {
-            TryClose();
-            _settingsModalViewModel.OpenAdvancedTab();
-            _modals.Show<SettingsModalViewModel>();
-        }
-
         private void OpenAccountPage()
         {
             _urlConfig.AccountUrl.Open();
         }
 
-        private async void DisableKillSwitch()
+        private void DisableKillSwitch()
         {
+            _appSettings.KillSwitchMode = KillSwitchMode.Off;
             TryClose();
-            await _vpnManager.Disconnect();
-            _logger.Info("Killswitch disabled");
         }
 
         private void UpgradeAction()

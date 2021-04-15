@@ -23,9 +23,11 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
+using ProtonVPN.Common.KillSwitch;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Config.Url;
 using ProtonVPN.Core.Api;
+using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.MVVM;
@@ -57,6 +59,7 @@ namespace ProtonVPN.Login.ViewModels
         private bool _showHelpBalloon;
         private bool _autoAuthFailed;
         private bool _networkBlocked;
+        private VpnStatus _lastVpnStatus = VpnStatus.Disconnected;
 
         public LoginViewModel(
             Common.Configuration.Config appConfig,
@@ -85,6 +88,7 @@ namespace ProtonVPN.Login.ViewModels
             ToggleHelpBalloon = new RelayCommand(ToggleBalloonAction);
             ResetPasswordCommand = new RelayCommand(ResetPasswordAction);
             ForgotUsernameCommand = new RelayCommand(ForgotUsernameAction);
+            DisableKillSwitchCommand = new RelayCommand(DisableKillSwitchAction);
         }
 
         public ICommand LoginCommand { get; }
@@ -93,6 +97,7 @@ namespace ProtonVPN.Login.ViewModels
         public ICommand ToggleHelpBalloon { get; }
         public ICommand ResetPasswordCommand { get; }
         public ICommand ForgotUsernameCommand { get; }
+        public ICommand DisableKillSwitchCommand { get; }
 
         public string AppVersion => $"v.{_appConfig.AppVersion}";
 
@@ -165,6 +170,8 @@ namespace ProtonVPN.Login.ViewModels
             set => Set(ref _networkBlocked, value);
         }
 
+        public KillSwitchMode KillSwitchMode => _appSettings.KillSwitchMode;
+
         public void OnSessionExpired()
         {
             LoginErrorViewModel.SetError(Translation.Get("Login_Error_msg_SessionExpired"));
@@ -173,14 +180,28 @@ namespace ProtonVPN.Login.ViewModels
         public void OnAppSettingsChanged(PropertyChangedEventArgs e)
         {
             if (e.PropertyName.Equals(nameof(IAppSettings.StartOnStartup)))
+            {
                 OnPropertyChanged(nameof(StartOnStartup));
+            }
         }
 
-        public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
+        public async Task OnVpnStateChanged(VpnStateChangedEventArgs e)
         {
-            KillSwitchActive = e.NetworkBlocked &&
-                               (e.State.Status == VpnStatus.Disconnecting ||
-                                e.State.Status == VpnStatus.Disconnected);
+            if (e.NetworkBlocked && e.State.Status == VpnStatus.Disconnecting ||
+                e.State.Status == VpnStatus.Disconnected)
+            {
+                KillSwitchActive = true;
+            }
+
+            if (!e.NetworkBlocked)
+            {
+                KillSwitchActive = false;
+            }
+
+            if (_lastVpnStatus == e.State.Status)
+            {
+                return;
+            }
 
             if (_guestHoleState.Active)
             {
@@ -190,12 +211,12 @@ namespace ProtonVPN.Login.ViewModels
                 }
                 else if (e.State.Status == VpnStatus.Disconnected)
                 {
-                    ShowLoginScreenWithTroubleshoot();
                     _guestHoleState.SetState(false);
+                    ShowLoginScreenWithTroubleshoot();
                 }
             }
 
-            return Task.CompletedTask;
+            _lastVpnStatus = e.State.Status;
         }
 
         private void HelpAction()
@@ -208,33 +229,31 @@ namespace ProtonVPN.Login.ViewModels
             _urls.RegisterUrl.Open();
         }
 
-        private bool AllowLogin()
+        private bool IsLoginDisallowed(string username, string password)
         {
-            LoginText = LoginText?.Trim();
-
-            if (string.IsNullOrEmpty(LoginText) || string.IsNullOrEmpty(Password))
-            {
-                return false;
-            }
-
-            return true;
+            return string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password);
         }
 
         private async void LoginAction()
         {
             try
             {
-                if (!AllowLogin())
-                    return;
+                string username = LoginText?.Trim();
+                string password = Password;
 
-                var loginResult = await _userAuth.LoginUserAsync(LoginText, Password);
+                if (IsLoginDisallowed(username, password))
+                {
+                    return;
+                }
+
+                ApiResponseResult<AuthResponse> loginResult = await _userAuth.LoginUserAsync(username, password);
                 if (loginResult.Success)
                 {
                     AfterLogin();
                 }
                 else
                 {
-                    var error = loginResult.Error;
+                    string error = loginResult.Error;
                     if (loginResult.StatusCode == HttpStatusCode.Unauthorized)
                     {
                         error = Translation.Get("Login_Error_msg_Unauthorized");
@@ -307,6 +326,11 @@ namespace ProtonVPN.Login.ViewModels
         private void ForgotUsernameAction()
         {
             _urls.ForgetUsernameUrl.Open();
+        }
+
+        private void DisableKillSwitchAction()
+        {
+            _appSettings.KillSwitchMode = KillSwitchMode.Off;
         }
     }
 }

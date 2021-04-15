@@ -18,6 +18,7 @@
  */
 
 using System;
+using System.Linq;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
@@ -45,26 +46,46 @@ namespace ProtonVPN.Core.Api
 
         public async Task<ApiResponseResult<RefreshTokenResponse>> RefreshTokenAsync(CancellationToken token)
         {
-            var data = new RefreshTokenData
+            RefreshTokenData data = new RefreshTokenData
             {
                 ResponseType = "token",
                 RefreshToken = TokenStorage.RefreshToken,
                 GrantType = "refresh_token",
                 RedirectUri = "http://api.protonvpn.ch"
             };
+            ValidateRefreshTokenData(data);
 
             try
             {
-                var request = GetAuthorizedRequest(HttpMethod.Post, "auth/refresh");
+                HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Post, "auth/refresh");
+                this.ValidateRequestHeaders(request);
                 request.Content = GetJsonContent(data);
 
-                using var response = await _client.SendAsync(request, token);
-                var body = await response.Content.ReadAsStringAsync();
+                using HttpResponseMessage response = await _client.SendAsync(request, token);
+                string body = await response.Content.ReadAsStringAsync();
                 return ApiResponseResult<RefreshTokenResponse>(body, response.StatusCode);
             }
             catch (Exception e) when (e.IsApiCommunicationException())
             {
                 throw new HttpRequestException(e.Message);
+            }
+        }
+
+        private void ValidateRefreshTokenData(RefreshTokenData data)
+        {
+            if (data.RefreshToken == null)
+            {
+                throw new ArgumentNullException("The RefreshToken in RefreshTokenData can't be null.");
+            }
+        }
+
+        private void ValidateRequestHeaders(HttpRequestMessage request)
+        {
+            string uid = request?.Headers?.GetValues("x-pm-uid")?.FirstOrDefault();
+
+            if (uid == null)
+            {
+                throw new ArgumentNullException("The UID header in the HttpRequest can't be null.");
             }
         }
     }

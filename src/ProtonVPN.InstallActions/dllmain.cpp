@@ -6,6 +6,7 @@
 #include <strsafe.h>
 #include "EnvironmentVariable.h"
 #include "Service.h"
+#include "msiquery.h"
 #include "StartupApp.h"
 #include "SystemState.h"
 #include "Utils.h"
@@ -13,6 +14,9 @@
 #include "bitexception.hpp"
 #include "PathManager.h"
 #include "StringConverter.h"
+#include "Installer.h"
+#include "TunAdapter.h"
+#include "ip_filter.h"
 
 #define EXPORT __declspec(dllexport)
 
@@ -31,6 +35,81 @@ const auto SelectedLanguageProperty = L"SelectedLanguage";
 const auto MsiLogFileLocationProperty = L"MsiLogFileLocation";
 const auto LocalAppDataFolderProperty = L"LocalAppDataFolder";
 const auto ApplicationDirectoryProperty = L"APPDIR";
+const auto WintunDllPathProperty = L"WintunDllPath";
+const auto ProductUpgradeCodeProperty = L"ProductUpgradeCode";
+const auto RebootRequiredProperty = L"RebootRequired";
+const auto ProductNameProperty = L"ProductName";
+
+GUID providerGUID = { 0x20865f68, 0x0b04, 0x44da, { 0xbb, 0x83, 0x22, 0x38, 0x62, 0x25, 0x40, 0xfa } };
+GUID sublayerGUID = { 0xaa867e71, 0x5765, 0x4be3, { 0x93, 0x99, 0x58, 0x15, 0x85, 0xc2, 0x26, 0xce } };
+
+extern "C" EXPORT long RemoveWfpObjects(MSIHANDLE hInstall)
+{
+    SetMsiHandle(hInstall);
+
+    IPFilterSessionHandle h = nullptr;
+    UINT status = IPFilterCreateDynamicSession(&h);
+    if (status != NO_ERROR)
+    {
+        return status;
+    }
+
+    IPFilterStartTransaction(h);
+
+    status = IPFilterDestroySublayerFilters(h, &providerGUID, &sublayerGUID);
+    if (status != NO_ERROR)
+    {
+        goto abort_transaction;
+    }
+
+    status = IPFilterDestroyCallouts(h, &providerGUID);
+    if (status != NO_ERROR)
+    {
+        goto abort_transaction;
+    }
+
+    status = IPFilterDestroySublayer(h, &sublayerGUID);
+    if (status != NO_ERROR)
+    {
+        goto abort_transaction;
+    }
+
+    status = IPFilterDestroyProvider(h, &providerGUID);
+    IPFilterCommitTransaction(h);
+    goto close_session;
+
+abort_transaction:
+    IPFilterAbortTransaction(h);
+close_session:
+    IPFilterDestroySession(h);
+
+    return status;
+}
+
+extern "C" EXPORT long UninstallProduct(MSIHANDLE hInstall)
+{
+    SetMsiHandle(hInstall);
+    return Uninstall(GetProperty(ProductUpgradeCodeProperty).c_str());
+}
+
+extern "C" EXPORT long InstallTunAdapter(MSIHANDLE hInstall)
+{
+    SetMsiHandle(hInstall);
+    return InstallTunAdapter(GetProperty(WintunDllPathProperty).c_str());
+}
+
+extern "C" EXPORT long UninstallTunAdapter(MSIHANDLE hInstall)
+{
+    SetMsiHandle(hInstall);
+    BOOL* rebootRequired = nullptr;
+    const auto result = UninstallTunAdapter(GetProperty(WintunDllPathProperty).c_str(), rebootRequired);
+    if (rebootRequired)
+    {
+        MsiSetProperty(hInstall, RebootRequiredProperty, L"1");
+    }
+
+    return result;
+}
 
 extern "C" EXPORT long ModifyServicePermissions(MSIHANDLE hInstall)
 {
@@ -184,17 +263,18 @@ void AddFileToZip(const std::wstring& zipFileName, const std::wstring& fileName)
 extern "C" EXPORT long CopyInstallLog(MSIHANDLE hInstall)
 {
     SetMsiHandle(hInstall);
-    
+
+    const std::wstring productName = GetProperty(ProductNameProperty);
     const std::wstring logFile = GetProperty(MsiLogFileLocationProperty);
     std::wstring localAppDataFolder = GetProperty(LocalAppDataFolderProperty);
-    const std::wstring logFolder = AddEndingSlashIfNotExists(localAppDataFolder) + L"ProtonVPN\\Logs\\";
-    const std::wstring tmpLogFile = logFolder + L"install.log";
+    const std::wstring logFolder = AddEndingSlashIfNotExists(localAppDataFolder) + L"ProtonVPN\\DiagnosticLogs\\";
+    const std::wstring tmpLogFile = logFolder + productName + L"_install.log";
 
     std::filesystem::create_directories(logFolder);
     const std::filesystem::copy_options copyOptions = std::filesystem::copy_options::overwrite_existing;
-    std::filesystem::copy_file(logFile, tmpLogFile, copyOptions);
+    copy_file(logFile, tmpLogFile, copyOptions);
 
-    const std::wstring zipFileName = logFolder + L"install-log.7z";
+    const std::wstring zipFileName = logFolder + productName + L"_install-log.7z";
 
     AddFileToZip(zipFileName, tmpLogFile);
     std::filesystem::remove(tmpLogFile);

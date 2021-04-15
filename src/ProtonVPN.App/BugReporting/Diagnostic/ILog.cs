@@ -23,6 +23,8 @@ namespace ProtonVPN.BugReporting.Diagnostic
     {
         string Path { get; }
 
+        string Filename { get; }
+
         void Write();
     }
 }

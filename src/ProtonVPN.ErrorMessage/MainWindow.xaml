@@ -27,7 +27,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           xmlns:resource="clr-namespace:ProtonVPN.Resource;assembly=ProtonVPN.Resource"
                           d:DataContext="{d:DesignInstance errorMessage:MainWindowViewModel}"
                           mc:Ignorable="d"
-                          Style="{StaticResource BaseModalStyle}"
+                          Style="{StaticResource BaseWindowStyle}"
                           Title="ProtonVPN"
                           ResizeMode="NoResize"
                           SizeToContent="Height"

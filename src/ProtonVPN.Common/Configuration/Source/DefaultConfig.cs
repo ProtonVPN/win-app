@@ -55,6 +55,8 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 DiagnosticsLogFolder = Path.Combine(localAppDataFolder, "DiagnosticLogs"),
 
+                DiagnosticsZipPath = Path.Combine(localAppDataFolder, "DiagnosticLogs", "diagnostic_logs.zip"),
+
                 TranslationsFolder = baseFolder,
 
                 ErrorMessageExePath = Path.Combine(baseFolder, "ProtonVPN.ErrorMessage.exe"),
@@ -182,7 +184,9 @@ namespace ProtonVPN.Common.Configuration.Source
                     AboutKillSwitchUrl = "https://protonvpn.com/support/what-is-kill-switch",
                     AboutNetShieldUrl = "https://protonvpn.com/support/netshield",
                     AboutPortForwardingUrl = "https://protonvpn.com/support/port-forwarding",
-                    PortForwardingRisksUrl = "https://protonvpn.com/support/port-forwarding-risks"
+                    PortForwardingRisksUrl = "https://protonvpn.com/support/port-forwarding-risks",
+                    AboutDelinquencyUrl = "https://protonvpn.com/support/delinquency",
+                    InvoicesUrl = "https://account.protonvpn.com/payments#invoices"
                 },
 
                 OpenVpn =
@@ -209,9 +213,13 @@ namespace ProtonVPN.Common.Configuration.Source
 
                     TlsExportCertFolder = Path.Combine(commonAppDataFolder, "ExportCert"),
 
+                    TapAdapterId = "tapprotonvpn",
+
                     TapAdapterDescription = "TAP-ProtonVPN Windows Adapter V9",
 
-                    TapAdapterId = "tapprotonvpn",
+                    TunAdapterId = "wintun",
+
+                    TunAdapterName = "ProtonVPN TUN",
                 },
 
                 TlsPinningConfig =

@@ -23,7 +23,7 @@ namespace ProtonVPN.NetworkFilter
 {
     public class IpFilter
     {
-        protected IpFilter(Session session, Guid providerId)
+        public IpFilter(Session session, Guid providerId)
         {
             Session = session;
             ProviderId = providerId;
@@ -32,66 +32,65 @@ namespace ProtonVPN.NetworkFilter
         public Session Session { get; }
         public Guid ProviderId { get; }
 
-        public static IpFilter Create(Session session, DisplayData displayData)
+        public static IpFilter Create(Session session, DisplayData displayData, bool persistent = false, Guid providerId = new Guid())
         {
             return new IpFilter(
                 session,
-                IpFilterNative.CreateProvider(session.Handle, displayData));
+                IpFilterNative.CreateProvider(session.Handle, displayData, persistent, providerId));
         }
 
-        public Sublayer CreateSublayer(DisplayData displayData, uint weight)
+        public static bool IsRegistered(Session session, Guid providerId)
         {
-            var id = IpFilterNative.CreateSublayer(
+            return IpFilterNative.IsProviderRegistered(session.Handle, providerId);
+        }
+
+        public static void Destroy(Session session, Guid providerId)
+        {
+            IpFilterNative.DestroyProvider(session.Handle, providerId);
+        }
+
+        public void Destroy()
+        {
+            IpFilterNative.DestroyProvider(Session.Handle, ProviderId);
+        }
+
+        public Sublayer CreateSublayer(DisplayData displayData, uint weight, bool persistent = false, Guid id = new Guid())
+        {
+            var sublayerId = IpFilterNative.CreateSublayer(
                 Session.Handle,
                 ProviderId,
                 displayData,
-                weight);
+                weight,
+                persistent,
+                id);
 
-            return new Sublayer(this, id);
+            return new Sublayer(this, sublayerId);
         }
 
-        public void DestroySublayer(Sublayer sublayer)
+        public ProviderContext CreateProviderContext(DisplayData displayData, byte[] data, bool persistent = false, Guid id = new Guid())
         {
-            sublayer.DestroyAllFilters();
-
-            IpFilterNative.DestroySublayer(
-                Session.Handle,
-                sublayer.Id);
-        }
-
-        public ProviderContext CreateProviderContext(DisplayData displayData, byte[] data)
-        {
-            var id = IpFilterNative.CreateProviderContext(
+            var providerContextId = IpFilterNative.CreateProviderContext(
                 Session.Handle,
                 ProviderId,
                 displayData,
-                data);
+                data,
+                persistent,
+                id);
 
-            return new ProviderContext(id);
+            return new ProviderContext(providerContextId);
         }
 
-        public void DestroyProviderContext(ProviderContext context)
+        public Callout CreateCallout(DisplayData displayData, Guid key, Layer layer, bool persistent = false)
         {
-            IpFilterNative.DestroyProviderContext(
-                Session.Handle,
-                context.Id);
-        }
-
-        public Callout CreateCallout(DisplayData displayData, Guid key, Layer layer)
-        {
-            var id = IpFilterNative.CreateCallout(
+            var calloutId = IpFilterNative.CreateCallout(
                 Session.Handle,
                 key,
                 ProviderId,
                 displayData,
-                layer);
+                layer,
+                persistent);
 
-            return new Callout(id);
-        }
-
-        public void DestroyCallout(Guid key)
-        {
-            IpFilterNative.DestroyCallout(Session.Handle, key);
+            return new Callout(calloutId);
         }
     }
 }

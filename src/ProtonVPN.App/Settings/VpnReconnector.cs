@@ -26,31 +26,28 @@ using ProtonVPN.Core.Servers.Models;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
-using ProtonVPN.Vpn.Connectors;
 
 namespace ProtonVPN.Settings
 {
     internal class VpnReconnector : IVpnStateAware, IVpnReconnector
     {
         private readonly IVpnManager _vpnManager;
-        private readonly QuickConnector _quickConnector;
         private readonly IAppSettings _appSettings;
 
         private VpnStatus _vpnStatus;
         private Server _server;
         private bool _pendingReconnect;
 
-        public VpnReconnector(IVpnManager vpnManager, QuickConnector quickConnector,
-            IAppSettings appSettings)
+        public VpnReconnector(IVpnManager vpnManager, IAppSettings appSettings)
         {
-            _quickConnector = quickConnector;
             _vpnManager = vpnManager;
             _appSettings = appSettings;
         }
 
         public async Task ReconnectAsync()
         {
-            if (_vpnStatus == VpnStatus.Disconnected)
+            if (_vpnStatus == VpnStatus.Disconnected || 
+                _vpnStatus == VpnStatus.Disconnecting)
             {
                 return;
             }
@@ -71,7 +68,7 @@ namespace ProtonVPN.Settings
         {
             if (SecureCoreCountry.CountryCodes.Contains(_server.ExitCountry))
             {
-                await _quickConnector.Connect();
+                await _vpnManager.QuickConnect();
             }
             else
             {

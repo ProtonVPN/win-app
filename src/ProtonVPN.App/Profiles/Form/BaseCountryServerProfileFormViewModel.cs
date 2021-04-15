@@ -82,7 +82,7 @@ namespace ProtonVPN.Profiles.Form
             }
         }
 
-        public Task OnVpnPlanChangedAsync(string plan)
+        public Task OnVpnPlanChangedAsync(VpnPlanChangedEventArgs e)
         {
             LoadCountries();
             return Task.CompletedTask;

@@ -50,7 +50,7 @@ namespace ProtonVPN.Core.Service.Vpn
         {
             Ensure.NotNull(request, nameof(request));
 
-            var contract = Map(request);
+            VpnConnectionRequestContract contract = Map(request);
 
             await _vpnService.Connect(contract);
         }
@@ -60,8 +60,8 @@ namespace ProtonVPN.Core.Service.Vpn
             Ensure.NotNull(servers, nameof(servers));
             Ensure.NotNull(config, nameof(config));
 
-            var endpointIpsContract = Map(servers);
-            var configContract = Map(config);
+            VpnHostContract[] endpointIpsContract = Map(servers);
+            VpnConfigContract configContract = Map(config);
 
             await _vpnService.UpdateServers(endpointIpsContract, configContract);
         }
@@ -87,7 +87,7 @@ namespace ProtonVPN.Core.Service.Vpn
 
         private VpnConnectionRequestContract Map(VpnConnectionRequest request)
         {
-            return new VpnConnectionRequestContract
+            return new()
             {
                 Servers = Map(request.Servers),
                 Protocol = Map(request.Protocol),
@@ -107,7 +107,8 @@ namespace ProtonVPN.Core.Service.Vpn
             return new VpnHostContract
             {
                 Name = host.Name, 
-                Ip = host.Ip
+                Ip = host.Ip,
+                Label = host.Label,
             };
         }
 
@@ -139,9 +140,9 @@ namespace ProtonVPN.Core.Service.Vpn
 
         private static VpnStateChangedEventArgs Map(VpnStateContract contract)
         {
-            var status = Map(contract.Status);
-            var error = Map(contract.Error);
-            var protocol = Map(contract.Protocol);
+            VpnStatus status = Map(contract.Status);
+            VpnError error = Map(contract.Error);
+            VpnProtocol protocol = Map(contract.Protocol);
 
             return new VpnStateChangedEventArgs(status, error, contract.EndpointIp, contract.NetworkBlocked, protocol);
         }

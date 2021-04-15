@@ -41,7 +41,7 @@ namespace ProtonVPN.Service.Vpn
 
         private void NetworkInterfaces_NetworkAddressChanged(object sender, EventArgs e)
         {
-            var adapters = _networkInterfaces.Interfaces();
+            var adapters = _networkInterfaces.GetInterfaces();
             if (!adapters.Any()) return;
 
             var list = adapters.Where(a => !a.IsLoopback).Select(a => a.Id).ToList();

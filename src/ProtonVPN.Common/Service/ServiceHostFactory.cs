@@ -25,13 +25,16 @@ namespace ProtonVPN.Common.Service
 {
     public abstract class ServiceHostFactory
     {
+        private const int MaxMessageSize = 1024 * 1000;
+
         public abstract SafeServiceHost Create();
 
         protected NetNamedPipeBinding BuildNamedPipe()
         {
             return new NetNamedPipeBinding
             {
-                ReceiveTimeout = TimeSpan.MaxValue
+                ReceiveTimeout = TimeSpan.MaxValue,
+                MaxReceivedMessageSize = MaxMessageSize,
             };
         }
     }

@@ -55,11 +55,9 @@ namespace ProtonVPN.Settings
         private IReadOnlyList<ProfileViewModel> _quickConnectProfiles;
         private VpnStatus _vpnStatus;
 
-        private ProfileViewModel _profileDisabledOption => new ProfileViewModel(new Profile
+        private ProfileViewModel _profileDisabledOption => new(new Profile
         {
-            Id = "",
-            Name = Translation.Get("Settings_val_Disabled"),
-            ColorCode = "#777783"
+            Id = "", Name = Translation.Get("Settings_val_Disabled"), ColorCode = "#777783"
         });
 
         public SettingsModalViewModel(
@@ -94,6 +92,7 @@ namespace ProtonVPN.Settings
         public IpListViewModel Ips { get; }
 
         private bool _changesPending;
+
         public bool ChangesPending
         {
             get => _changesPending;
@@ -101,6 +100,7 @@ namespace ProtonVPN.Settings
         }
 
         private bool _disconnected;
+
         public bool Disconnected
         {
             get => _disconnected;
@@ -118,6 +118,7 @@ namespace ProtonVPN.Settings
         }
 
         private ProfileViewModel _autoConnect;
+
         public ProfileViewModel AutoConnect
         {
             get => _autoConnect;
@@ -132,6 +133,7 @@ namespace ProtonVPN.Settings
         }
 
         private ProfileViewModel _quickConnect;
+
         public ProfileViewModel QuickConnect
         {
             get => _quickConnect;
@@ -172,7 +174,8 @@ namespace ProtonVPN.Settings
             {
                 if (value && _appSettings.IsNetShieldEnabled())
                 {
-                    var result =_dialogs.ShowQuestion(Translation.Get("Settings_Connection_Warning_CustomDnsServer"));
+                    bool? result =
+                        _dialogs.ShowQuestion(Translation.Get("Settings_Connection_Warning_CustomDnsServer"));
                     if (result.HasValue && !result.Value)
                     {
                         return;
@@ -186,11 +189,11 @@ namespace ProtonVPN.Settings
             }
         }
 
-        public List<KeyValuePair<StartMinimizedMode, string>> StartMinimizedModes => new List<KeyValuePair<StartMinimizedMode, string>>
+        public List<KeyValuePair<StartMinimizedMode, string>> StartMinimizedModes => new()
         {
-            new KeyValuePair<StartMinimizedMode, string>(StartMinimizedMode.Disabled, Translation.Get("StartMinimizedMode_val_Disabled")),
-            new KeyValuePair<StartMinimizedMode, string>(StartMinimizedMode.ToSystray, Translation.Get("StartMinimizedMode_val_ToSystray")),
-            new KeyValuePair<StartMinimizedMode, string>(StartMinimizedMode.ToTaskbar, Translation.Get("StartMinimizedMode_val_ToTaskbar")),
+            new(StartMinimizedMode.Disabled, Translation.Get("StartMinimizedMode_val_Disabled")),
+            new(StartMinimizedMode.ToSystray, Translation.Get("StartMinimizedMode_val_ToSystray")),
+            new(StartMinimizedMode.ToTaskbar, Translation.Get("StartMinimizedMode_val_ToTaskbar")),
         };
 
         public StartMinimizedMode StartMinimized
@@ -237,11 +240,8 @@ namespace ProtonVPN.Settings
             {
                 var languages = _languageProvider
                     .GetAll()
-                    .Select(lang => new LanguageViewModel
-                    {
-                        Code = lang,
-                        Title = StringResource.Get($"Language_{lang}")
-                    }).ToList();
+                    .Select(lang => new LanguageViewModel {Code = lang, Title = StringResource.Get($"Language_{lang}")})
+                    .ToList();
 
                 return GetSorted(languages);
             }
@@ -261,15 +261,24 @@ namespace ProtonVPN.Settings
             }
         }
 
-        public List<KeyValuePair<string, string>> Protocols => new List<KeyValuePair<string, string>>
+        public List<KeyValuePair<string, string>> Protocols => new()
         {
-            new KeyValuePair<string, string>("auto",
-                Translation.Get("Settings_Connection_DefaultProtocol_val_Auto")),
-            new KeyValuePair<string, string>("tcp",
-                Translation.Get("Settings_Connection_DefaultProtocol_val_Tcp")),
-            new KeyValuePair<string, string>("udp",
-                Translation.Get("Settings_Connection_DefaultProtocol_val_Udp")),
+            new("auto", Translation.Get("Settings_Connection_DefaultProtocol_val_Auto")),
+            new("tcp", Translation.Get("Settings_Connection_DefaultProtocol_val_Tcp")),
+            new("udp", Translation.Get("Settings_Connection_DefaultProtocol_val_Udp")),
         };
+
+        public List<KeyValuePair<NetworkAdapter, string>> NetworkDrivers => new()
+        {
+            new KeyValuePair<NetworkAdapter, string>(NetworkAdapter.Tap, Translation.Get("Settings_Advanced_lbl_Tap")),
+            new KeyValuePair<NetworkAdapter, string>(NetworkAdapter.Tun, Translation.Get("Settings_Advanced_lbl_Tun")),
+        };
+
+        public NetworkAdapter SelectedNetworkDriver
+        {
+            get => _appSettings.UseTunAdapter ? NetworkAdapter.Tun : NetworkAdapter.Tap;
+            set => _appSettings.UseTunAdapter = value == NetworkAdapter.Tun;
+        }
 
         public IReadOnlyList<ProfileViewModel> AutoConnectProfiles
         {
@@ -343,6 +352,9 @@ namespace ProtonVPN.Settings
             NotifyOfPropertyChange(() => Protocols);
             NotifyOfPropertyChange(() => SelectedProtocol);
 
+            NotifyOfPropertyChange(() => NetworkDrivers);
+            NotifyOfPropertyChange(() => SelectedNetworkDriver);
+
             NotifyOfPropertyChange(() => StartMinimizedModes);
             NotifyOfPropertyChange(() => StartMinimized);
 
@@ -370,10 +382,7 @@ namespace ProtonVPN.Settings
 
         private async Task LoadAutoConnectProfiles()
         {
-            var profiles = new List<ProfileViewModel>
-            {
-                _profileDisabledOption
-            };
+            List<ProfileViewModel> profiles = new() {_profileDisabledOption};
             profiles.AddRange(await GetProfiles());
 
             AutoConnectProfiles = profiles;
@@ -394,7 +403,7 @@ namespace ProtonVPN.Settings
 
         private ProfileViewModel GetSelectedAutoConnectProfile()
         {
-            var profile = AutoConnectProfiles.FirstOrDefault(p => p.Id == _appSettings.AutoConnect);
+            ProfileViewModel profile = AutoConnectProfiles.FirstOrDefault(p => p.Id == _appSettings.AutoConnect);
             if (profile == null)
             {
                 return _profileDisabledOption;
@@ -405,7 +414,7 @@ namespace ProtonVPN.Settings
 
         private ProfileViewModel GetSelectedQuickConnectProfile()
         {
-            var profile = QuickConnectProfiles.FirstOrDefault(p => p.Id == _appSettings.QuickConnect);
+            ProfileViewModel profile = QuickConnectProfiles.FirstOrDefault(p => p.Id == _appSettings.QuickConnect);
             if (profile != null)
             {
                 return profile;

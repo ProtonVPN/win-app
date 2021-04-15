@@ -9,33 +9,6 @@ HKEY get_key(const LPCWSTR key)
 	return h_key;
 }
 
-bool net_logon_check()
-{
-	const auto key = get_key(TEXT("SYSTEM\\CurrentControlSet\\Services\\Netlogon"));
-	if (key != nullptr)
-	{
-		WCHAR sz_buffer[512];
-		DWORD dw_buffer_size = sizeof sz_buffer;
-		const auto result = RegQueryValueEx(key, nullptr, nullptr, nullptr, reinterpret_cast<LPBYTE>(sz_buffer),
-		                                    &dw_buffer_size);
-		if (result == ERROR_SUCCESS && wcscmp(sz_buffer, L"JoinDomain") == 0)
-		{
-			RegCloseKey(key);
-			return true;
-		}
-
-		if (result == ERROR_SUCCESS && wcscmp(sz_buffer, L"AvoidSpnSet") == 0)
-		{
-			RegCloseKey(key);
-			return true;
-		}
-
-		RegCloseKey(key);
-	}
-
-	return false;
-}
-
 bool run_once_check()
 {
 	const auto key = get_key(TEXT("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\RunOnce"));
@@ -57,32 +30,6 @@ bool run_once_check()
 	return false;
 }
 
-bool session_manager_check()
-{
-	const auto key = get_key(TEXT("SYSTEM\\CurrentControlSet\\Control\\Session Manager"));
-	if (key != nullptr)
-	{
-		LPCWSTR values_not_null[] = {
-			TEXT("PendingFileRenameOperations"),
-			TEXT("PendingFileRenameOperations2"),
-		};
-
-		for (const auto value : values_not_null)
-		{
-			const auto result = RegQueryValueEx(key, value, nullptr, nullptr, nullptr, nullptr);
-			if (result == ERROR_SUCCESS)
-			{
-				RegCloseKey(key);
-				return true;
-			}
-		}
-
-		RegCloseKey(key);
-	}
-
-	return false;
-}
-
 bool check_keys_exist()
 {
 	LPCWSTR keys_exist[] = {
@@ -90,7 +37,6 @@ bool check_keys_exist()
 		TEXT("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Component Based Servicing\\RebootInProgress"),
 		TEXT("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\WindowsUpdate\\Auto Update\\RebootRequired"),
 		TEXT("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Component Based Servicing\\PackagesPending"),
-		TEXT("SOFTWARE\\Microsoft\\ServerManager\\CurrentRebootAttemps"),
 		TEXT("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\WindowsUpdate\\Auto Update\\PostRebootReporting"),
 	};
 
@@ -164,8 +110,6 @@ bool pending_update()
 bool pending_reboot()
 {
 	return check_keys_exist() ||
-		net_logon_check() ||
 		run_once_check() ||
-		session_manager_check() ||
 		pending_update();
 }

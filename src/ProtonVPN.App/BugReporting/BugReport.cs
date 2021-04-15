@@ -29,7 +29,7 @@ using ProtonVPN.Core.Api;
 
 namespace ProtonVPN.BugReporting
 {
-    public class BugReport
+    public class BugReport : IBugReport
     {
         private readonly IApiClient _apiClient;
         private readonly Attachments.Attachments _attachments;

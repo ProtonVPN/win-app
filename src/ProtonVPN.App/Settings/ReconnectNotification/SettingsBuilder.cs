@@ -18,6 +18,7 @@ namespace ProtonVPN.Settings.ReconnectNotification
             _settings = new List<Setting>
             {
                 new SingleSetting(nameof(IAppSettings.OvpnProtocol), null, _appSettings),
+                new SingleSetting(nameof(IAppSettings.UseTunAdapter), null, _appSettings),
                 new SingleSetting(nameof(IAppSettings.PortForwardingEnabled), null, _appSettings),
                 new CustomDnsSetting(nameof(IAppSettings.CustomDnsEnabled), null, _appSettings)
             };

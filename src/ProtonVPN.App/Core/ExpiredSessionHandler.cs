@@ -34,7 +34,7 @@ namespace ProtonVPN.Core
             {
                 if (_vpnStatus != VpnStatus.Disconnected)
                 {
-                    await _vpnServiceManager.Disconnect(VpnError.None);
+                    await _vpnServiceManager.Disconnect(VpnError.NoneKeepEnabledKillSwitch);
                 }
 
                 _loginViewModel.OnSessionExpired();

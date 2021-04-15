@@ -51,9 +51,9 @@ namespace ProtonVPN.Vpn.Test.Connection
             _taskQueue = new TaskQueue();
             _origin = Substitute.For<ISingleVpnConnection>();
 
-            _endpoint = new VpnEndpoint(new VpnHost("proton.vpn", "135.27.46.203"), VpnProtocol.OpenVpnTcp, 777);
+            _endpoint = new VpnEndpoint(new VpnHost("proton.vpn", "135.27.46.203", string.Empty), VpnProtocol.OpenVpnTcp, 777);
             _credentials = new VpnCredentials("username", "password");
-            _config = new VpnConfig(new Dictionary<VpnProtocol, IReadOnlyCollection<int>>(), new List<string>(), SplitTunnelMode.Disabled, new List<string>());
+            _config = new VpnConfig(new Dictionary<VpnProtocol, IReadOnlyCollection<int>>(), SplitTunnelMode.Disabled, useTunAdapter: false);
         }
 
         [TestMethod]
@@ -131,11 +131,7 @@ namespace ProtonVPN.Vpn.Test.Connection
             _origin
                 .When(x => x.Connect(Arg.Any<VpnEndpoint>(), Arg.Any<VpnCredentials>(), Arg.Any<VpnConfig>()))
                 .Do(x => RaiseStateChangedEvents(
-                    new[]
-                    {
-                        new VpnState(VpnStatus.Connecting),
-                        new VpnState(VpnStatus.Connected)
-                    }));
+                    new[] {new VpnState(VpnStatus.Connecting), new VpnState(VpnStatus.Connected)}));
         }
 
         private void SetupUnexpectedDisconnect(VpnError error)
@@ -145,7 +141,7 @@ namespace ProtonVPN.Vpn.Test.Connection
                 if (e.Data.Status == VpnStatus.Connected)
                 {
                     _taskQueue.Enqueue(() => RaiseStateChangedEvents(
-                        new []
+                        new[]
                         {
                             new VpnState(VpnStatus.Disconnecting, error),
                             new VpnState(VpnStatus.Disconnected, error)
@@ -185,7 +181,6 @@ namespace ProtonVPN.Vpn.Test.Connection
                 {
                     task = _lastTask;
                     await task;
-
                 } while (task != _lastTask);
             }
         }

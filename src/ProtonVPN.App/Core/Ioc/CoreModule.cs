@@ -24,6 +24,7 @@ using Caliburn.Micro;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.OS;
+using ProtonVPN.Common.OS.Net;
 using ProtonVPN.Common.OS.Net.Http;
 using ProtonVPN.Common.OS.Net.NetworkInterface;
 using ProtonVPN.Common.OS.Processes;
@@ -68,11 +69,9 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<OsEnvironment>().As<IEnvironment>().SingleInstance();
             builder.RegisterType<SystemProcesses>().As<IOsProcesses>().SingleInstance();
             builder.Register(c => 
-                    new SafeSystemNetworkInterfaces(
-                        c.Resolve<ILogger>(),
-                        new SystemNetworkInterfaces(
-                            c.Resolve<ILogger>())))
+                    new SafeSystemNetworkInterfaces(c.Resolve<ILogger>(), new SystemNetworkInterfaces()))
                 .As<INetworkInterfaces>().SingleInstance();
+            builder.RegisterType<NetworkInterfaceLoader>().As<INetworkInterfaceLoader>().SingleInstance();
             builder.RegisterType<HttpClients>().As<IHttpClients>().SingleInstance();
             builder.Register(c => Schedulers.FromApplicationDispatcher()).As<IScheduler>().SingleInstance();
             builder.Register(c => new TokenStorage(c.Resolve<UserSettings>())).As<ITokenStorage>().SingleInstance();
@@ -108,7 +107,8 @@ namespace ProtonVPN.Core.Ioc
                 new UnauthorizedResponseHandler(
                         c.Resolve<ITokenClient>(),
                         c.Resolve<ITokenStorage>(),
-                        c.Resolve<IUserStorage>())
+                        c.Resolve<IUserStorage>(),
+                        c.Resolve<ILogger>())
                     {InnerHandler = c.Resolve<OutdatedAppHandler>()}).SingleInstance();
 
             builder.Register(c =>

@@ -30,6 +30,7 @@ using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Service.Contract.Settings;
 using ProtonVPN.Service.Contract.Vpn;
+using ProtonVPN.Service.Firewall;
 using ProtonVPN.Service.Settings;
 using ProtonVPN.Service.Vpn;
 using ProtonVPN.Vpn.Common;
@@ -39,10 +40,10 @@ namespace ProtonVPN.Service
     [ServiceBehavior(
         InstanceContextMode = InstanceContextMode.Single,
         ConcurrencyMode = ConcurrencyMode.Single)]
-    public class VpnConnectionHandler : IVpnConnectionContract
+    internal class VpnConnectionHandler : IVpnConnectionContract, IServiceSettingsAware
     {
-        private readonly object _callbackLock = new object();
-        private readonly List<IVpnEventsContract> _callbacks = new List<IVpnEventsContract>();
+        private readonly object _callbackLock = new();
+        private readonly List<IVpnEventsContract> _callbacks = new();
 
         private readonly KillSwitch.KillSwitch _killSwitch;
         private readonly IVpnConnection _vpnConnection;
@@ -51,13 +52,14 @@ namespace ProtonVPN.Service
         private readonly ITaskQueue _taskQueue;
         private readonly NetworkSettings _networkSettings;
 
-        private VpnState _state = new VpnState(VpnStatus.Disconnected);
+        private VpnState _state = new(VpnStatus.Disconnected);
 
         public VpnConnectionHandler(
             KillSwitch.KillSwitch killSwitch,
             NetworkSettings networkSettings,
             IVpnConnection vpnConnection,
             ILogger logger,
+            IFirewall firewall,
             IServiceSettings serviceSettings,
             ITaskQueue taskQueue)
         {
@@ -78,16 +80,12 @@ namespace ProtonVPN.Service
 
             _serviceSettings.Apply(connectionRequest.Settings);
 
-            var endpoints = Map(connectionRequest.Servers);
-            var protocol = Map(connectionRequest.Protocol);
-            var credentials = Map(connectionRequest.Credentials);
-            var config = Map(connectionRequest.VpnConfig);
-            NetworkSettingsConfig settingsConfig = new NetworkSettingsConfig
-            {
-                AddDefaultGatewayForTap = !connectionRequest.Settings.PortForwardingEnabled
-            };
+            IReadOnlyList<VpnHost> endpoints = Map(connectionRequest.Servers);
+            VpnProtocol protocol = Map(connectionRequest.Protocol);
+            VpnCredentials credentials = Map(connectionRequest.Credentials);
+            VpnConfig config = Map(connectionRequest.VpnConfig);
 
-            if (_networkSettings.ApplyNetworkSettings(settingsConfig))
+            if (_networkSettings.ApplyNetworkSettings())
             {
                 _vpnConnection.Connect(
                     endpoints,
@@ -97,7 +95,7 @@ namespace ProtonVPN.Service
             }
             else
             {
-                CallbackStateChanged(new VpnState(VpnStatus.Disconnected, VpnError.NoTapAdaptersError));
+                HandleNoTapError();
             }
 
             return Task.CompletedTask;
@@ -165,6 +163,26 @@ namespace ProtonVPN.Service
             return Task.CompletedTask;
         }
 
+        public void OnServiceSettingsChanged(SettingsContract settings)
+        {
+            if (_state.Status == VpnStatus.Disconnected)
+            {
+                CallbackStateChanged(_state);
+            }
+        }
+
+        private void HandleNoTapError()
+        {
+            if (_state.Status == VpnStatus.Disconnected)
+            {
+                CallbackStateChanged(new VpnState(VpnStatus.Disconnected, VpnError.NoTapAdaptersError));
+            }
+            else
+            {
+                _vpnConnection.Disconnect(VpnError.NoTapAdaptersError);
+            }
+        }
+
         private void VpnConnection_StateChanged(object sender, EventArgs<VpnState> e)
         {
             _state = e.Data;
@@ -181,7 +199,7 @@ namespace ProtonVPN.Service
         {
             lock (_callbackLock)
             {
-                foreach (var callback in _callbacks.ToList())
+                foreach (IVpnEventsContract callback in _callbacks.ToList())
                 {
                     try
                     {
@@ -202,17 +220,23 @@ namespace ProtonVPN.Service
 
         private VpnStateContract Map(VpnState state)
         {
+            bool killSwitchEnabled = _killSwitch.ExpectedLeakProtectionStatus(state);
+            if (!killSwitchEnabled)
+            {
+                _state = new VpnState(state.Status, VpnError.None);
+            }
+
             return new VpnStateContract(
                 Map(state.Status),
                 Map(state.Error),
                 state.RemoteIp,
-                _killSwitch.ExpectedLeakProtectionStatus(state),
+                killSwitchEnabled,
                 Map(state.Protocol));
         }
 
         private static VpnStatusContract Map(VpnStatus vpnStatus)
         {
-            return (VpnStatusContract) vpnStatus;
+            return (VpnStatusContract)vpnStatus;
         }
 
         private static VpnProtocolContract Map(VpnProtocol protocol)
@@ -222,7 +246,7 @@ namespace ProtonVPN.Service
 
         private static VpnProtocol Map(VpnProtocolContract protocol)
         {
-            return (VpnProtocol) protocol;
+            return (VpnProtocol)protocol;
         }
 
         private static VpnCredentials Map(VpnCredentialsContract credentials)
@@ -240,13 +264,14 @@ namespace ProtonVPN.Service
 
         private static VpnHost Map(VpnHostContract server)
         {
-            return new VpnHost(server.Name, server.Ip);
+            return new VpnHost(server.Name, server.Ip, server.Label);
         }
 
-        private static VpnConfig Map(VpnConfigContract config)
+        private VpnConfig Map(VpnConfigContract config)
         {
-            var portConfig = config.Ports.ToDictionary(p => Map(p.Key), p => (IReadOnlyCollection<int>)p.Value.ToList());
-            return new VpnConfig(portConfig, config.CustomDns, config.SplitTunnelMode, config.SplitTunnelIPs);
+            Dictionary<VpnProtocol, IReadOnlyCollection<int>> portConfig =
+                config.Ports.ToDictionary(p => Map(p.Key), p => (IReadOnlyCollection<int>)p.Value.ToList());
+            return new VpnConfig(portConfig, config.CustomDns, config.SplitTunnelMode, config.SplitTunnelIPs, _serviceSettings.UseTunAdapter);
         }
 
         private static InOutBytesContract Map(InOutBytes bytes)
@@ -261,7 +286,7 @@ namespace ProtonVPN.Service
 
         private static VpnErrorTypeContract Map(VpnError errorType)
         {
-            return (VpnErrorTypeContract) errorType;
+            return (VpnErrorTypeContract)errorType;
         }
     }
 }

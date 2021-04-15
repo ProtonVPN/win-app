@@ -25,18 +25,21 @@ namespace ProtonVPN.Common.Vpn
 {
     public struct VpnHost
     {
-        public VpnHost(string name, string ip)
+        public VpnHost(string name, string ip, string label)
         {
             AssertHostNameIsValid(name);
             AssertIpAddressIsValid(ip);
 
             Name = name;
             Ip = ip;
+            Label = label;
         }
 
         public string Name { get; }
 
         public string Ip { get; }
+
+        public string Label { get; }
 
         public bool IsEmpty() => string.IsNullOrEmpty(Name) && string.IsNullOrEmpty(Ip);
 
@@ -44,7 +47,7 @@ namespace ProtonVPN.Common.Vpn
         {
             Ensure.NotEmpty(hostName, nameof(hostName));
 
-            var hostNameType = Uri.CheckHostName(hostName);
+            UriHostNameType hostNameType = Uri.CheckHostName(hostName);
             if (hostNameType != UriHostNameType.Dns && hostNameType != UriHostNameType.IPv4)
             {
                 throw new ArgumentException($"Invalid argument {nameof(hostName)} value: {hostName}");

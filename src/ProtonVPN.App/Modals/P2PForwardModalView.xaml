@@ -26,7 +26,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         xmlns:modals="clr-namespace:ProtonVPN.Modals"
                         xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
                         xmlns:resource="clr-namespace:ProtonVPN.Resource;assembly=ProtonVPN.Resource"
-                        Style="{StaticResource BaseModalStyle}"
+                        Style="{StaticResource BaseWindowStyle}"
                         SizeToContent="Height"
                         Title="{translations:Loc Dialogs_P2PForward_ttl}"
                         mc:Ignorable="d"

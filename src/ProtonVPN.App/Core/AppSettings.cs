@@ -24,6 +24,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using ProtonVPN.Common;
+using ProtonVPN.Common.KillSwitch;
 using ProtonVPN.Core.Announcements;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Models;
@@ -154,9 +155,9 @@ namespace ProtonVPN.Core
             set => Set(value);
         }
 
-        public bool KillSwitch
+        public KillSwitchMode KillSwitchMode
         {
-            get => Get<bool>();
+            get => Get<KillSwitchMode>();
             set => Set(value);
         }
 
@@ -340,6 +341,12 @@ namespace ProtonVPN.Core
             set => Set(value);
         }
 
+        public bool UseTunAdapter
+        {
+            get => Get<bool>();
+            set => Set(value);
+        }
+
         public StringCollection BlackHoleIps
         {
             get
@@ -385,6 +392,12 @@ namespace ProtonVPN.Core
         {
             get => Get<bool>();
             set => Set(value);
+        }
+
+        public bool DoNotShowKillSwitchConfirmationDialog
+        {
+            get => GetPerUser<bool>();
+            set => SetPerUser(value);
         }
 
         public TimeSpan MaintenanceCheckInterval

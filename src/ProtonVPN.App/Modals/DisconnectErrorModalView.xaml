@@ -28,7 +28,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
                         xmlns:calcBinding="clr-namespace:CalcBinding;assembly=CalcBinding"
                         xmlns:resource="clr-namespace:ProtonVPN.Resource;assembly=ProtonVPN.Resource"
-                        Style="{StaticResource BaseModalStyle}"
+                        Style="{StaticResource BaseWindowStyle}"
                         SizeToContent="Height"
                         Title="{translations:Loc Dialogs_ttl_Warning}"
                         mc:Ignorable="d"
@@ -124,10 +124,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <Button Style="{StaticResource SecondaryModalButton}"
                             Visibility="{Binding NetworkBlocked, Converter={StaticResource BoolToVis}}"
                             Command="{Binding DisableKillSwitchCommand}"
-                            Content="{translations:Loc Dialogs_DisconnectError_btn_Disable}"/>
+                            Content="{translations:Loc Dialogs_DisconnectError_btn_DisableKillSwitch}"/>
                     <Button Style="{StaticResource PrimaryModalButton}"
                             Command="{Binding CloseCommand}"
-                            Content="{translations:Loc Dialogs_btn_Close}"
+                            Content="{translations:Loc Dialogs_btn_Ok}"
                             Visibility="{calcBinding:Binding !ShowUpgrade}"/>
                     <Button Style="{StaticResource SecondaryModalButton}"
                             Command="{Binding CloseCommand}"

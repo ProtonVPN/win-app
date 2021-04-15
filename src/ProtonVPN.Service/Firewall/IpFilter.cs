@@ -17,19 +17,131 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using Autofac;
+using ProtonVPN.Common.Logging;
+using ProtonVPN.NetworkFilter;
 
 namespace ProtonVPN.Service.Firewall
 {
     public class IpFilter : IStartable
     {
-        public void Start()
+        public static Guid DnsCalloutGuid = Guid.Parse("{10636af3-50d6-4f53-acb7-d5af33217fcb}");
+        private readonly Guid _providerGuid = Guid.Parse("{20865f68-0b04-44da-bb83-2238622540fa}");
+        private readonly Guid _sublayerGuid = Guid.Parse("{aa867e71-5765-4be3-9399-581585c226ce}");
+
+        private readonly ILogger _logger;
+        private const int PermanentSublayerWeight = 1000;
+        private const int DynamicSublayerWeight = 1001;
+
+        public IpFilter(ILogger logger)
         {
-            Instance = NetworkFilter.IpFilter.Create(
-                NetworkFilter.Session.Dynamic(), 
-                new NetworkFilter.DisplayData("Proton Technologies AG", "ProtonVPN Firewall provider"));
+            _logger = logger;
         }
 
-        public NetworkFilter.IpFilter Instance { get; private set; }
+        public void Start()
+        {
+            CreatePermanentFilters();
+            CreateDynamicSession();
+            CreatePermanentSession();
+        }
+
+        public NetworkFilter.IpFilter PermanentInstance { get; private set; }
+        public NetworkFilter.IpFilter DynamicInstance { get; private set; }
+
+        public Sublayer PermanentSublayer { get; private set; }
+        public Sublayer DynamicSublayer { get; private set; }
+
+        public Sublayer GetSublayer(SessionType type)
+        {
+            return type == SessionType.Dynamic ? DynamicSublayer : PermanentSublayer;
+        }
+
+        public void CloseSession(NetworkFilter.IpFilter instance, Sublayer sublayer)
+        {
+            if (instance.Session.Type == SessionType.Permanent)
+            {
+                sublayer.DestroyAllFilters();
+            }
+
+            instance.Session.Close();
+        }
+
+        private void CreateDynamicSession()
+        {
+            DynamicInstance = NetworkFilter.IpFilter.Create(
+                Session.Dynamic(),
+                new DisplayData {Name = "ProtonVPN Dynamic Provider"});
+
+            DynamicSublayer = DynamicInstance.CreateSublayer(new DisplayData {Name = "ProtonVPN Dynamic Sublayer"},
+                DynamicSublayerWeight);
+        }
+
+        private void CreatePermanentSession()
+        {
+            PermanentInstance = new NetworkFilter.IpFilter(Session.Permanent(), _providerGuid);
+            PermanentSublayer = new Sublayer(PermanentInstance, _sublayerGuid);
+        }
+
+        private void CreatePermanentFilters()
+        {
+            var session = Session.Permanent();
+            if (NetworkFilter.IpFilter.IsRegistered(session, _providerGuid))
+            {
+                session.Close();
+                return;
+            }
+
+            try
+            {
+                ExecuteTransaction(session, () =>
+                {
+                    NetworkFilter.IpFilter instance = NetworkFilter.IpFilter.Create(session,
+                        new DisplayData {Name = "ProtonVPN Permanent Provider"},
+                        true,
+                        _providerGuid);
+
+                    instance.CreateSublayer(new DisplayData {Name = "ProtonVPN Permanent Sublayer"},
+                        PermanentSublayerWeight,
+                        true,
+                        _sublayerGuid);
+
+                    instance.CreateCallout(
+                        new DisplayData
+                        {
+                            Name = "ProtonVPN block dns callout",
+                            Description = "Sends server failure packet response for non TAP/TUN DNS queries.",
+                        },
+                        DnsCalloutGuid,
+                        Layer.OutboundIPPacketV4,
+                        true);
+                });
+            }
+            catch (NetworkFilterException e)
+            {
+                _logger.Error(e);
+                throw;
+            }
+            finally
+            {
+                session.Close();
+            }
+        }
+
+        private void ExecuteTransaction(Session session, System.Action action)
+        {
+            session.StartTransaction();
+
+            try
+            {
+                action();
+                session.CommitTransaction();
+            }
+            catch (NetworkFilterException)
+            {
+                session.AbortTransaction();
+                throw;
+            }
+        }
     }
 }

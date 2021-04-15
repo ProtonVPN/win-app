@@ -29,6 +29,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:viewModels="clr-namespace:ProtonVPN.Login.ViewModels"
              xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
              xmlns:icons="clr-namespace:ProtonVPN.Views.Icons"
+             xmlns:connectionInfo="clr-namespace:ProtonVPN.ConnectionInfo"
+             xmlns:killSwitch="clr-namespace:ProtonVPN.Common.KillSwitch;assembly=ProtonVPN.Common"
              mc:Ignorable="d"
              d:DesignWidth="440"
              d:DesignHeight="570"
@@ -37,118 +39,122 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <UserControl.Resources>
         <ResourceDictionary>
             <Style x:Key="EmailInput" TargetType="wpf:PlaceholderTextBox" BasedOn="{StaticResource placeHolder}">
-                <Setter Property="Foreground" Value="White"/>
-                <Setter Property="Height" Value="36"/>
-                <Setter Property="VerticalContentAlignment" Value="Center"/>
-                <Setter Property="BorderBrush" Value="#505158"/>
-                <Setter Property="BorderThickness" Value="0,0,0,2"/>
-                <Setter Property="ActiveBorderThickness" Value="0,0,0,2"/>
-                <Setter Property="FontSize" Value="14"/>
-                <Setter Property="Margin" Value="0,0,0,40"/>
+                <Setter Property="Foreground" Value="White" />
+                <Setter Property="Height" Value="36" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+                <Setter Property="BorderBrush" Value="#505158" />
+                <Setter Property="BorderThickness" Value="0,0,0,2" />
+                <Setter Property="ActiveBorderThickness" Value="0,0,0,2" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="Margin" Value="0,0,0,40" />
             </Style>
             <Style x:Key="LoginButton" TargetType="Button" BasedOn="{StaticResource ClearStyleButton}">
-                <Setter Property="BorderBrush" Value="#4e505d"/>
-                <Setter Property="Border.CornerRadius" Value="19"/>
-                <Setter Property="Width" Value="128"/>
-                <Setter Property="Height" Value="38"/>
-                <Setter Property="Margin" Value="0,30,0,0"/>
-                <Setter Property="Foreground" Value="#424450"/>
-                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="BorderBrush" Value="#4e505d" />
+                <Setter Property="Border.CornerRadius" Value="19" />
+                <Setter Property="Width" Value="128" />
+                <Setter Property="Height" Value="38" />
+                <Setter Property="Margin" Value="0,30,0,0" />
+                <Setter Property="Foreground" Value="#424450" />
+                <Setter Property="Background" Value="Transparent" />
                 <Style.Triggers>
                     <DataTrigger Binding="{Binding FieldsFilledIn}" Value="True">
-                        <Setter Property="Background" Value="{StaticResource PrimaryColor}"/>
-                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="Background" Value="{StaticResource PrimaryColor}" />
+                        <Setter Property="Foreground" Value="White" />
                     </DataTrigger>
                 </Style.Triggers>
             </Style>
             <Style x:Key="PasswordInputHidden" TargetType="TextBox">
-                <Setter Property="BorderThickness" Value="0,0,0,1"/>
-                <Setter Property="Height" Value="36"/>
-                <Setter Property="FontSize" Value="14"/>
-                <Setter Property="Foreground" Value="#999999"/>
-                <Setter Property="VerticalAlignment" Value="Top"/>
-                <Setter Property="VerticalContentAlignment" Value="Center"/>
-                <Setter Property="Visibility" Value="Hidden"/>
+                <Setter Property="BorderThickness" Value="0,0,0,1" />
+                <Setter Property="Height" Value="36" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="Foreground" Value="#999999" />
+                <Setter Property="VerticalAlignment" Value="Top" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+                <Setter Property="Visibility" Value="Hidden" />
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="Control">
                             <Grid>
-                                <Border x:Name="outerBorder" CornerRadius="1" BorderBrush="#505158" BorderThickness="0,0,0,2"/>
-                                <Label x:Name="placeholder" Content="" FontSize="14" Foreground="White" VerticalAlignment="Center" Visibility="Visible"/>
-                                <ScrollViewer HorizontalAlignment="Left" SnapsToDevicePixels="True" x:Name="PART_ContentHost"/>
-                                <ContentPresenter x:Name="ContentPresenter" Margin="2" HorizontalAlignment="Left" VerticalAlignment="Center" RecognizesAccessKey="True"/>
+                                <Border x:Name="outerBorder" CornerRadius="1" BorderBrush="#505158"
+                                        BorderThickness="0,0,0,2" />
+                                <Label x:Name="placeholder" Content="" FontSize="14" Foreground="White"
+                                       VerticalAlignment="Center" Visibility="Visible" />
+                                <ScrollViewer HorizontalAlignment="Left" SnapsToDevicePixels="True"
+                                              x:Name="PART_ContentHost" />
+                                <ContentPresenter x:Name="ContentPresenter" Margin="2" HorizontalAlignment="Left"
+                                                  VerticalAlignment="Center" RecognizesAccessKey="True" />
                             </Grid>
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
             </Style>
             <Style x:Key="PasswordInput" BasedOn="{StaticResource PasswordBoxStyle}" TargetType="PasswordBox">
-                <Setter Property="Height" Value="36"/>
-                <Setter Property="CaretBrush" Value="White"/>
-                <Setter Property="Width" Value="{Binding ElementName=PasswordContainer, Path=ActualWidth}"/>
-                <Setter Property="FontSize" Value="14"/>
-                <Setter Property="Margin" Value="0"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="HorizontalAlignment" Value="Left"/>
-                <Setter Property="BorderBrush" Value="#505158"/>
-                <Setter Property="BorderThickness" Value="0,0,0,2"/>
-                <Setter Property="Background" Value="Transparent"/>
-                <Setter Property="VerticalContentAlignment" Value="Center"/>
-                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="Height" Value="36" />
+                <Setter Property="CaretBrush" Value="White" />
+                <Setter Property="Width" Value="{Binding ElementName=PasswordContainer, Path=ActualWidth}" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="Margin" Value="0" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="HorizontalAlignment" Value="Left" />
+                <Setter Property="BorderBrush" Value="#505158" />
+                <Setter Property="BorderThickness" Value="0,0,0,2" />
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+                <Setter Property="Foreground" Value="White" />
             </Style>
             <Style x:Key="PasswordEye" TargetType="fa:FontAwesome">
-                <Setter Property="Cursor" Value="Hand"/>
-                <Setter Property="FontSize" Value="14"/>
-                <Setter Property="HorizontalAlignment" Value="Right"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="Margin" Value="0,0,5,0"/>
-                <Setter Property="Visibility" Value="Hidden"/>
-                <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
-                <Setter Property="Icon" Value="Eye"/>
+                <Setter Property="Cursor" Value="Hand" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="HorizontalAlignment" Value="Right" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="Margin" Value="0,0,5,0" />
+                <Setter Property="Visibility" Value="Hidden" />
+                <Setter Property="Foreground" Value="{StaticResource PrimaryColor}" />
+                <Setter Property="Icon" Value="Eye" />
                 <Style.Triggers>
                     <DataTrigger Binding="{Binding ElementName=PasswordText, Path=IsVisible}" Value="True">
-                        <Setter Property="Icon" Value="EyeSlash"/>
+                        <Setter Property="Icon" Value="EyeSlash" />
                     </DataTrigger>
                 </Style.Triggers>
             </Style>
             <Style x:Key="MainStackPanel" TargetType="StackPanel">
-                <Setter Property="Width" Value="330"/>
-                <Setter Property="HorizontalAlignment" Value="Center"/>
-                <Setter Property="VerticalAlignment" Value="Top"/>
-                <Setter Property="Margin" Value="0,40,0,0"/>
+                <Setter Property="Width" Value="330" />
+                <Setter Property="HorizontalAlignment" Value="Center" />
+                <Setter Property="VerticalAlignment" Value="Top" />
+                <Setter Property="Margin" Value="0,40,0,0" />
             </Style>
             <Style x:Key="LoginForm" TargetType="StackPanel">
-                <Setter Property="Margin" Value="0,60,0,0"/>
+                <Setter Property="Margin" Value="0,60,0,0" />
             </Style>
             <Style x:Key="Footer" TargetType="DockPanel">
-                <Setter Property="Width" Value="330"/>
-                <Setter Property="HorizontalAlignment" Value="Center"/>
-                <Setter Property="VerticalAlignment" Value="Bottom"/>
-                <Setter Property="Margin" Value="20,0,20,25"/>
+                <Setter Property="Width" Value="330" />
+                <Setter Property="HorizontalAlignment" Value="Center" />
+                <Setter Property="VerticalAlignment" Value="Bottom" />
+                <Setter Property="Margin" Value="20,0,20,25" />
             </Style>
             <Style x:Key="FooterButton" TargetType="Button" BasedOn="{StaticResource ClearStyleButton}">
-                <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
-                <Setter Property="BorderThickness" Value="0"/>
-                <Setter Property="FontSize" Value="14"/>
-                <Setter Property="Padding" Value="0,5"/>
-                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="Foreground" Value="{StaticResource PrimaryColor}" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="Padding" Value="0,5" />
+                <Setter Property="Background" Value="Transparent" />
             </Style>
             <Style x:Key="HelpButton" TargetType="Button" BasedOn="{StaticResource FooterButton}">
-                <Setter Property="Command" Value="{Binding ToggleHelpBalloon}"/>
-                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="Command" Value="{Binding ToggleHelpBalloon}" />
+                <Setter Property="HorizontalAlignment" Value="Center" />
             </Style>
             <Style x:Key="FormLabel" TargetType="Label">
-                <Setter Property="Padding" Value="2,0,0,0"/>
-                <Setter Property="FontSize" Value="14"/>
-                <Setter Property="Foreground" Value="#5f6172"/>
+                <Setter Property="Padding" Value="2,0,0,0" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="Foreground" Value="#5f6172" />
             </Style>
             <Style x:Key="PopupButton" TargetType="Button" BasedOn="{StaticResource ClearStyleButton}">
-                <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
-                <Setter Property="FontSize" Value="14"/>
-                <Setter Property="Background" Value="Transparent"/>
-                <Setter Property="Margin" Value="10,3"/>
-                <Setter Property="BorderBrush" Value="Transparent"/>
-                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="Foreground" Value="{StaticResource PrimaryColor}" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="Margin" Value="10,3" />
+                <Setter Property="BorderBrush" Value="Transparent" />
+                <Setter Property="BorderThickness" Value="0" />
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type Button}">
@@ -162,9 +168,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     <fa:FontAwesome Margin="0,4,10,0"
                                                     Icon="HandOutlineRight"
                                                     FontSize="14"
-                                                    Foreground="#505158"/>
+                                                    Foreground="#505158" />
                                     <ContentPresenter HorizontalAlignment="Right"
-                                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
                                 </StackPanel>
                             </Border>
                         </ControlTemplate>
@@ -175,30 +181,30 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     </UserControl.Resources>
 
     <Grid Background="#222329" VerticalAlignment="Stretch">
-        <views:LoginErrorView DataContext="{Binding LoginErrorViewModel}" Panel.ZIndex="2"/>
+        <views:LoginErrorView DataContext="{Binding LoginErrorViewModel}" Panel.ZIndex="2" />
 
         <StackPanel Style="{StaticResource MainStackPanel}">
             <DockPanel VerticalAlignment="Top" Margin="0,30,0,0" HorizontalAlignment="Center">
-                <icons:ProtonVpnSign HorizontalAlignment="Left" Color="White" Width="34"/>
+                <icons:ProtonVpnSign HorizontalAlignment="Left" Color="White" Width="34" />
                 <TextBlock Foreground="White" FontSize="32" Margin="5,0,0,0">
-                    <Run Text="Proton"/><Run Text="VPN" FontWeight="Bold"/>
+                    <Run Text="Proton" /><Run Text="VPN" FontWeight="Bold" />
                 </TextBlock>
             </DockPanel>
             <StackPanel Style="{StaticResource LoginForm}">
                 <Label Content="{translations:Loc Login_lbl_Username}"
                        Style="{StaticResource FormLabel}"
-                       Visibility="{Binding LoginText, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}"/>
+                       Visibility="{Binding LoginText, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}" />
                 <wpf:PlaceholderTextBox x:Name="LoginInput"
                                         KeyDown="UsernameInput_KeyDown"
                                         Text="{Binding LoginText, UpdateSourceTrigger=PropertyChanged}"
                                         Style="{StaticResource EmailInput}"
                                         Tag="{translations:Loc Login_lbl_Username}"
-                                        AutomationProperties.AutomationId="{StaticResource LoginUsernameInput}"/>
+                                        AutomationProperties.AutomationId="{StaticResource LoginUsernameInput}" />
                 <Label Style="{StaticResource FormLabel}"
                        Content="{translations:Loc Login_lbl_Password}"
-                       Visibility="{Binding Password, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}"/>
+                       Visibility="{Binding Password, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}" />
                 <Grid Name="PasswordContainer" Height="36">
-                    <TextBox Name="PasswordText" Text="{Binding Password}" Style="{StaticResource PasswordInputHidden}"/>
+                    <TextBox Name="PasswordText" Text="{Binding Password}" Style="{StaticResource PasswordInputHidden}" />
                     <PasswordBox Name="PasswordInput"
                                  input:PasswordBoxAssistant.BindPassword="true"
                                  input:PasswordBoxAssistant.BoundPassword="{Binding Path=Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -207,35 +213,35 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                  FontFamily="Segoe UI"
                                  PasswordChanged="PasswordInput_PasswordChanged"
                                  KeyDown="PasswordInput_KeyDown"
-                                 AutomationProperties.AutomationId="{StaticResource LoginPasswordInput}"/>
+                                 AutomationProperties.AutomationId="{StaticResource LoginPasswordInput}" />
                     <fa:FontAwesome Name="ImgShowHide"
                                     Style="{StaticResource PasswordEye}"
                                     MouseLeave="ImgShowHide_MouseLeave"
                                     PreviewMouseDown="ImgShowHide_PreviewMouseDown"
-                                    PreviewMouseUp="ImgShowHide_PreviewMouseUp"/>
+                                    PreviewMouseUp="ImgShowHide_PreviewMouseUp" />
                 </Grid>
                 <DockPanel Margin="0,20,0,0">
                     <Label Foreground="White"
                            FontSize="14"
                            Padding="0"
-                           Content="{translations:Loc Login_lbl_StartWithWindows}"/>
+                           Content="{translations:Loc Login_lbl_StartWithWindows}" />
                     <CheckBox IsChecked="{Binding StartOnStartup, Mode=TwoWay}"
                               FocusVisualStyle="{x:Null}"
                               HorizontalAlignment="Right"
-                              Style="{StaticResource ToggleSwitch}"/>
+                              Style="{StaticResource ToggleSwitch}" />
                 </DockPanel>
                 <Button Style="{StaticResource LoginButton}"
                         Command="{Binding LoginCommand}"
                         CommandParameter="{Binding ElementName=PasswordInput}"
                         Content="{translations:Loc Login_btn_Login}"
-                        AutomationProperties.AutomationId="{StaticResource LoginButtonId}"/>
+                        AutomationProperties.AutomationId="{StaticResource LoginButtonId}" />
             </StackPanel>
         </StackPanel>
         <DockPanel Style="{StaticResource Footer}">
-            <Button Style="{StaticResource FooterButton}" Command="{Binding RegisterCommand}" 
+            <Button Style="{StaticResource FooterButton}" Command="{Binding RegisterCommand}"
                     AutomationProperties.AutomationId="{StaticResource CreateAccountButton}">
                 <Underline>
-                    <Run Text="{translations:Loc Login_lnk_CreateAccount}"/>
+                    <Run Text="{translations:Loc Login_lnk_CreateAccount}" />
                 </Underline>
             </Button>
             <Grid HorizontalAlignment="Right">
@@ -252,23 +258,24 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 <Button Style="{StaticResource PopupButton}" Command="{Binding ResetPasswordCommand}"
                                         AutomationProperties.AutomationId="{StaticResource ResetPasswordButton}">
                                     <Underline>
-                                        <Run Text="{translations:Loc Login_lnk_ResetPassword}"/>
+                                        <Run Text="{translations:Loc Login_lnk_ResetPassword}" />
                                     </Underline>
                                 </Button>
                                 <Button Style="{StaticResource PopupButton}" Command="{Binding ForgotUsernameCommand}"
                                         AutomationProperties.AutomationId="{StaticResource ForgotUsernameButton}">
                                     <Underline>
-                                        <Run Text="{translations:Loc Login_lnk_ForgotUsername}"/>
+                                        <Run Text="{translations:Loc Login_lnk_ForgotUsername}" />
                                     </Underline>
                                 </Button>
                             </StackPanel>
                         </StackPanel>
-                        <Polygon Fill="#2b2c34" SnapsToDevicePixels="True" VerticalAlignment="Bottom" Width="24" Height="10" Points="0,0 12,10,24,0"/>
+                        <Polygon Fill="#2b2c34" SnapsToDevicePixels="True" VerticalAlignment="Bottom" Width="24"
+                                 Height="10" Points="0,0 12,10,24,0" />
                     </StackPanel>
                 </Popup>
                 <Button Style="{StaticResource HelpButton}" Name="HelpButton" HorizontalAlignment="Right">
                     <Underline>
-                        <Run Text="{translations:Loc Login_lnk_NeedHelp}"/>
+                        <Run Text="{translations:Loc Login_lnk_NeedHelp}" />
                     </Underline>
                 </Button>
             </Grid>
@@ -277,16 +284,71 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                Foreground="#5f6172"
                VerticalAlignment="Bottom"
                HorizontalAlignment="Right"
-               Margin="0,0,5,5"/>
-        <DockPanel Background="{StaticResource PrimaryColor}"
-                   Height="50"
-                   VerticalAlignment="Bottom"
-                   Visibility="{Binding KillSwitchActive, Converter={StaticResource BoolToVis}}">
-            <TextBlock Foreground="White"
-                       VerticalAlignment="Center"
-                       TextAlignment="Center"
-                       FontSize="14"
-                       Text="{translations:Loc Login_lbl_KillSwitch}"/>
-        </DockPanel>
+               Margin="0,0,5,5" />
+        <Grid Background="{StaticResource PrimaryColor}"
+              Height="50"
+              Visibility="{Binding KillSwitchActive, Converter={StaticResource BoolToVis}}"
+              VerticalAlignment="Bottom">
+            <DockPanel HorizontalAlignment="Stretch" Margin="40,0">
+                <ContentControl Margin="0,0,5,0">
+                    <ContentControl.Style>
+                        <Style TargetType="ContentControl">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding KillSwitchMode}"
+                                             Value="{x:Static killSwitch:KillSwitchMode.Soft}">
+                                    <Setter Property="ContentTemplate">
+                                        <Setter.Value>
+                                            <DataTemplate>
+                                                <icons:SwitchOn Foreground="White"
+                                                                Width="18"
+                                                                Height="18" />
+                                            </DataTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding KillSwitchMode}"
+                                             Value="{x:Static killSwitch:KillSwitchMode.Hard}">
+                                    <Setter Property="ContentTemplate">
+                                        <Setter.Value>
+                                            <DataTemplate>
+                                                <icons:SwitchLock Foreground="White"
+                                                                  Width="18"
+                                                                  Height="18" />
+                                            </DataTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ContentControl.Style>
+                </ContentControl>
+                <TextBlock Foreground="White"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           TextAlignment="Center"
+                           FontSize="14"
+                           Text="{translations:Loc Login_lbl_KillSwitch}" />
+                <Button Height="30"
+                        HorizontalAlignment="Right"
+                        Padding="20,0"
+                        Command="{Binding DisableKillSwitchCommand}"
+                        Visibility="Visible"
+                        Content="Disable">
+                    <Button.Style>
+                        <Style TargetType="Button" BasedOn="{StaticResource PrimaryButton}">
+                            <Setter Property="BorderBrush" Value="White" />
+                            <Setter Property="BorderThickness" Value="1" />
+                            <Setter Property="Border.CornerRadius" Value="15" />
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="White" />
+                                    <Setter Property="Foreground" Value="{StaticResource PrimaryColor}" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </DockPanel>
+        </Grid>
     </Grid>
 </UserControl>

@@ -54,16 +54,6 @@ namespace ProtonVPN.Common.Os.Net
             return new IPAddress(bytes);
         }
 
-        public static void AddDefaultGatewayForIface(uint index, string gatewayAddr)
-        {
-            AssertSuccess(() => PInvoke.AddDefaultGatewayForIface(index, gatewayAddr));
-        }
-
-        public static void DeleteDefaultGatewayForIface(uint index, string gatewayAddr)
-        {
-            AssertSuccess(() => PInvoke.DeleteDefaultGatewayForIface(index, gatewayAddr));
-        }
-
         public static void SetLowestTapMetric(uint index)
         {
             AssertSuccess(() => PInvoke.SetLowestTapMetric(index));
