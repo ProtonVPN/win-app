@@ -7,6 +7,7 @@ stages:
   - sign
   - build-installer
   - ui-test
+  - installation-test
   - mirror
   - bot # comes from translations/generator job
 
@@ -84,11 +85,14 @@ build-installer-for-release:
     - windows
   script:
     - python ci\main.py tap-installer
+    - python ci\main.py tun-installer
     - python ci\main.py update-gh-list
     - python ci\main.py app-installer $env:CI_COMMIT_SHORT_SHA
   artifacts:
     paths:
       - Setup/ProtonVPN-SetupFiles/
+      - Setup/ProtonVPNTun-SetupFiles/
+      - Setup/ProtonVPNTap-SetupFiles/
     expire_in: 4 weeks
   only:
     - master
@@ -100,6 +104,7 @@ build-installer-for-debug:
     - windows
   script:
     - python ci\main.py tap-installer
+    - python ci\main.py tun-installer
     - python ci\main.py update-gh-list
     - python ci\main.py app-installer $env:CI_COMMIT_SHORT_SHA
   artifacts:
@@ -121,6 +126,18 @@ ui-test:
     - powershell -File ci\launch-installer.ps1
     - powershell -Command "Start-Sleep -s 20"
     - VSTest.Console.exe src\bin\ProtonVPN.UI.Test.dll
+    
+installation-test:
+  stage: ui-test
+  tags:
+    - windows
+  when: manual
+  script:
+    - powershell -File ci\uninstall-app.ps1
+    - powershell -Command "Start-Sleep -s 25"
+    - powershell -File ci\launch-installer-UI.ps1
+    - powershell -File ci\start-installer-tests.ps1
+    - TasktTestRunner.exe
 
 mirror:
   stage: mirror

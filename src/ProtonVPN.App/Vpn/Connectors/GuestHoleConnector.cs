@@ -108,8 +108,8 @@ namespace ProtonVPN.Vpn.Connectors
         {
             return _guestHoleServers
                 .GetAll()
-                .Select(server => new VpnHost(server.Host, server.Ip))
-                .OrderBy(s => _random.Next())
+                .Select(server => new VpnHost(server.Host, server.Ip, string.Empty))
+                .OrderBy(_ => _random.Next())
                 .ToList();
         }
 
@@ -117,11 +117,11 @@ namespace ProtonVPN.Vpn.Connectors
         {
             var portConfig = new Dictionary<VpnProtocol, IReadOnlyCollection<int>>
             {
-                { VpnProtocol.OpenVpnUdp, _appSettings.OpenVpnUdpPorts },
-                { VpnProtocol.OpenVpnTcp, _appSettings.OpenVpnTcpPorts },
+                {VpnProtocol.OpenVpnUdp, _appSettings.OpenVpnUdpPorts},
+                {VpnProtocol.OpenVpnTcp, _appSettings.OpenVpnTcpPorts},
             };
 
-            return new VpnConfig(portConfig, new List<string>(), SplitTunnelMode.Disabled, new List<string>());
+            return new VpnConfig(portConfig, SplitTunnelMode.Disabled, _appSettings.UseTunAdapter);
         }
     }
 }

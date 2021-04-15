@@ -48,7 +48,6 @@
     </Compile>
     <Compile Include="Servers\PhysicalServerContract.cs" />
     <Compile Include="Servers\ServerContract.cs" />
-    <Compile Include="Settings\KillSwitchSettingsContract.cs" />
     <Compile Include="Vpn\InOutBytesContract.cs" />
     <Compile Include="Settings\SplitTunnelSettingsContract.cs" />
     <Compile Include="Settings\ISettingsContract.cs" />

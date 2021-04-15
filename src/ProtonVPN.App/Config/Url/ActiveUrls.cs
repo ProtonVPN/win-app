@@ -57,6 +57,8 @@ namespace ProtonVPN.Config.Url
         public IActiveUrl AboutKillSwitchUrl                      => Url(_config.AboutKillSwitchUrl);
         public IActiveUrl AboutPortForwardingUrl                  => Url(_config.AboutPortForwardingUrl);
         public IActiveUrl PortForwardingRisksUrl                  => Url(_config.PortForwardingRisksUrl);
+        public IActiveUrl AboutDelinquencyUrl                     => Url(_config.AboutDelinquencyUrl);
+        public IActiveUrl InvoicesUrl                             => Url(_config.InvoicesUrl);
 
         private ActiveUrl Url(string url)
         {

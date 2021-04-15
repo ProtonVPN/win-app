@@ -36,6 +36,12 @@
     <ClInclude Include="StartupApp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Wintun.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TunAdapter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="EnvironmentVariable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -43,6 +49,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PathManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Installer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -65,6 +74,9 @@
     <ClCompile Include="StartupApp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="TunAdapter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="EnvironmentVariable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -72,6 +84,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PathManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Installer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -47,60 +47,6 @@ namespace Proton
 
                 return false;
             }
-
-            bool AddDefaultGatewayForIface(UINT index, const wchar_t* gatewayAddr)
-            {
-                IfaceInfo info{};
-                if (!GetIfaceInfo(index, info))
-                {
-                    return false;
-                }
-
-                MIB_IPFORWARDROW route{};
-                route.dwForwardIfIndex = info.Index;
-                route.dwForwardProto = MIB_IPPROTO_NETMGMT;
-                route.dwForwardMetric1 = info.Ipv4Metric;
-                route.dwForwardMetric2 = -1;
-                route.dwForwardMetric3 = -1;
-                route.dwForwardMetric4 = -1;
-
-                InetPton(AF_INET, gatewayAddr, &route.dwForwardNextHop);
-
-                auto status = CreateIpForwardEntry(&route);
-                if (status != NO_ERROR && status != ERROR_OBJECT_ALREADY_EXISTS)
-                {
-                    return false;
-                }
-
-                return true;
-            }
-
-            bool DeleteDefaultGatewayForIface(UINT index, const wchar_t* gatewayAddr)
-            {
-                IfaceInfo info{};
-                if (!GetIfaceInfo(index, info))
-                {
-                    return false;
-                }
-
-                MIB_IPFORWARDROW route{};
-                route.dwForwardIfIndex = info.Index;
-                route.dwForwardProto = MIB_IPPROTO_NETMGMT;
-                route.dwForwardMetric1 = info.Ipv4Metric;
-                route.dwForwardMetric2 = -1;
-                route.dwForwardMetric3 = -1;
-                route.dwForwardMetric4 = -1;
-
-                InetPton(AF_INET, gatewayAddr, &route.dwForwardNextHop);
-
-                auto status = DeleteIpForwardEntry(&route);
-                if (status != NO_ERROR && status != ERROR_NOT_FOUND)
-                {
-                    return false;
-                }
-
-                return true;
-            }
         }
     }
 }

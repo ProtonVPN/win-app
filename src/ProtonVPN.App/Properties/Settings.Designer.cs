@@ -1232,6 +1232,18 @@ namespace ProtonVPN.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool UseTunAdapter {
+            get {
+                return ((bool)(this["UseTunAdapter"]));
+            }
+            set {
+                this["UseTunAdapter"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool PortForwardingEnabled {
             get {
                 return ((bool)(this["PortForwardingEnabled"]));
@@ -1262,6 +1274,30 @@ namespace ProtonVPN.Properties {
             }
             set {
                 this["DoNotShowPortForwardingConfirmationDialog"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string KillSwitchMode {
+            get {
+                return ((string)(this["KillSwitchMode"]));
+            }
+            set {
+                this["KillSwitchMode"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string UserDoNotShowKillSwitchConfirmationDialog {
+            get {
+                return ((string)(this["UserDoNotShowKillSwitchConfirmationDialog"]));
+            }
+            set {
+                this["UserDoNotShowKillSwitchConfirmationDialog"] = value;
             }
         }
     }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<DOCUMENT Type="Advanced Installer" CreateVersion="13.3" version="17.6" Modules="professional" RootPath="." Language="en" Id="{C8285BB8-B654-4FB0-A58E-4B4B320D8D29}">
+<DOCUMENT Type="Advanced Installer" CreateVersion="13.3" version="18.0" Modules="professional" RootPath="." Language="en" Id="{C8285BB8-B654-4FB0-A58E-4B4B320D8D29}">
   <COMPONENT cid="caphyon.advinst.msicomp.MsiPropsComponent">
     <ROW Property="AI_BITMAP_DISPLAY_MODE" Value="0"/>
     <ROW Property="AI_CLEAN_RESOURCES_DISABLE_UPGRADE" Value="1"/>
@@ -25,10 +25,10 @@
     <ROW Property="Manufacturer" Value="Proton Technologies AG"/>
     <ROW Property="MsiLogging" MultiBuildValue="DefaultBuild:vp"/>
     <ROW Property="PENDING_REBOOT" Value="0"/>
-    <ROW Property="ProductCode" Value="1031:{FFAFEA09-E7DA-4710-A278-7F0506C96829} 1033:{FFAFEA09-E7DA-4710-A278-7F0506C96829} 1036:{FFAFEA09-E7DA-4710-A278-7F0506C96829} 1040:{FFAFEA09-E7DA-4710-A278-7F0506C96829} 1043:{FFAFEA09-E7DA-4710-A278-7F0506C96829} 1045:{FFAFEA09-E7DA-4710-A278-7F0506C96829} 1046:{FFAFEA09-E7DA-4710-A278-7F0506C96829} 1049:{FFAFEA09-E7DA-4710-A278-7F0506C96829} 1065:{FFAFEA09-E7DA-4710-A278-7F0506C96829} 2070:{FFAFEA09-E7DA-4710-A278-7F0506C96829} 3082:{FFAFEA09-E7DA-4710-A278-7F0506C96829} " Type="16"/>
+    <ROW Property="ProductCode" Value="1031:{43B895EF-2E68-43A5-AF20-6FBAFDD52E05} 1033:{43B895EF-2E68-43A5-AF20-6FBAFDD52E05} 1036:{43B895EF-2E68-43A5-AF20-6FBAFDD52E05} 1040:{43B895EF-2E68-43A5-AF20-6FBAFDD52E05} 1043:{43B895EF-2E68-43A5-AF20-6FBAFDD52E05} 1045:{43B895EF-2E68-43A5-AF20-6FBAFDD52E05} 1046:{43B895EF-2E68-43A5-AF20-6FBAFDD52E05} 1049:{43B895EF-2E68-43A5-AF20-6FBAFDD52E05} 1065:{43B895EF-2E68-43A5-AF20-6FBAFDD52E05} 2070:{43B895EF-2E68-43A5-AF20-6FBAFDD52E05} 3082:{43B895EF-2E68-43A5-AF20-6FBAFDD52E05} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="ProtonVPN"/>
-    <ROW Property="ProductVersion" Value="1.18.5" Type="32"/>
+    <ROW Property="ProductVersion" Value="1.20.1" Type="32"/>
     <ROW Property="REBOOT" MultiBuildValue="DefaultBuild:ReallySuppress"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;AI_SETUPEXEPATH;SETUPEXEDIR"/>
     <ROW Property="SelectedLanguage" Value="This will be set by custom action"/>
@@ -73,7 +73,8 @@
     <ROW Directory="x86_Dir" Directory_Parent="APPDIR" DefaultDir="x86" DirectoryOptions="3"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
-    <ROW Component="AI_CustomARPName" ComponentId="{86F6D732-4D28-4215-A00E-EEEA7BA28076}" Directory_="APPDIR" Attributes="4" KeyPath="DisplayName" Options="1"/>
+    <ROW Component="A7C0318B44EF690B391D753065B05" ComponentId="{8DFC0212-F989-444F-81FB-9D221A745FE8}" Directory_="APPDIR" Attributes="0" Options="2"/>
+    <ROW Component="AI_CustomARPName" ComponentId="{3A8F1636-9E2F-4964-9BBE-C5F736CDD656}" Directory_="APPDIR" Attributes="4" KeyPath="DisplayName" Options="1"/>
     <ROW Component="AI_ExePath" ComponentId="{47427A21-60A2-43B4-A150-6CBA74CF4A07}" Directory_="APPDIR" Attributes="4" KeyPath="AI_ExePath"/>
     <ROW Component="APPDIR" ComponentId="{75DDD993-CDFE-4D39-8C1A-07484ADD1A4E}" Directory_="APPDIR" Attributes="0"/>
     <ROW Component="ARSoft.Tools.Net.dll" ComponentId="{05CE9A73-14A8-494D-B2D3-8438A2A16DDB}" Directory_="APPDIR" Attributes="0" KeyPath="ARSoft.Tools.Net.dll"/>
@@ -113,6 +114,7 @@
     <ROW Component="ProtonVPN.Core.dll" ComponentId="{013523A0-681E-4750-84F0-28055A0D3577}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.Core.dll"/>
     <ROW Component="ProtonVPN.ErrorMessage.exe" ComponentId="{7D400777-A405-4B27-A033-3D04B9C6EFA3}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.ErrorMessage.exe"/>
     <ROW Component="ProtonVPN.ErrorMessage.exe.config" ComponentId="{238C676F-3CA2-4456-B0B6-0E2D2000E7C8}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.ErrorMessage.exe.config" Type="0"/>
+    <ROW Component="ProtonVPN.InstallActions.dll" ComponentId="{763A499C-00AE-4F4B-BD7F-57E8ECBD669B}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.InstallActions.dll"/>
     <ROW Component="ProtonVPN.IpFilter.dll" ComponentId="{14CAACAC-C59B-4E4B-AB4A-F84256D6288A}" Directory_="x86_Dir" Attributes="0" KeyPath="ProtonVPN.IpFilter.dll"/>
     <ROW Component="ProtonVPN.IpFilter.dll_1" ComponentId="{A193C29E-DB67-48B2-8886-F17AA59402D0}" Directory_="x64_Dir" Attributes="256" KeyPath="ProtonVPN.IpFilter.dll_1"/>
     <ROW Component="ProtonVPN.Native.dll" ComponentId="{87B7262C-A027-46AC-B720-E8B7F5C52376}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.Native.dll"/>
@@ -120,6 +122,7 @@
     <ROW Component="ProtonVPN.NetworkUtil.dll" ComponentId="{B2D5B2F5-5494-4365-BC19-C537CB46E927}" Directory_="x64_Dir" Attributes="256" KeyPath="ProtonVPN.NetworkUtil.dll"/>
     <ROW Component="ProtonVPN.NetworkUtil.dll_1" ComponentId="{B00E8049-AF65-4EAB-A915-4AB9D68188FB}" Directory_="x86_Dir" Attributes="0" KeyPath="ProtonVPN.NetworkUtil.dll_1"/>
     <ROW Component="ProtonVPN.Resource.dll" ComponentId="{329A3BA8-1441-4410-8030-6AB0D75D5F30}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.Resource.dll"/>
+    <ROW Component="ProtonVPN.RestoreInternet.exe" ComponentId="{38975AD9-15B8-401F-920E-08EF4EE97D69}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.RestoreInternet.exe"/>
     <ROW Component="ProtonVPN.Service.Contract.dll" ComponentId="{B4DFA49E-3198-4511-8047-98C501711907}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.Service.Contract.dll"/>
     <ROW Component="ProtonVPN.SplitTunnelDriver.sys" ComponentId="{8148E68F-FB9D-4149-B67C-362867DDB511}" Directory_="Win7_Dir" Attributes="256" Condition="(VersionNT64) AND (VersionNT &lt; 1000)" KeyPath="ProtonVPN.CalloutDriver.sys" Type="0"/>
     <ROW Component="ProtonVPN.SplitTunnelDriver.sys_1" ComponentId="{AB391847-8715-48FA-B7F5-910FB7405667}" Directory_="Win10_Dir" Attributes="256" Condition="(VersionNT64) AND (VersionNT = 1000)" KeyPath="ProtonVPN.CalloutDriver.sys_1" Type="0"/>
@@ -133,6 +136,7 @@
     <ROW Component="ProtonVPN.Vpn.dll" ComponentId="{1231DE6D-B1C3-4E8A-913F-9D43769CAD37}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.Vpn.dll"/>
     <ROW Component="ProtonVPN.exe" ComponentId="{A6366893-9124-490B-A671-56545084D5CA}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.exe"/>
     <ROW Component="ProtonVPNService.exe" ComponentId="{FF69F947-BECA-41DA-9868-390F00B71BE1}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPNService.exe"/>
+    <ROW Component="ProtonVPNTun" ComponentId="{B9C0B418-4523-47B5-8CEF-732F3AA6ED18}" Directory_="APPDIR" Attributes="4" KeyPath="ProtonVPNTun" Options="2"/>
     <ROW Component="ProtonVPN_1" ComponentId="{ACB3B68A-E766-4500-839B-16BFD1B73654}" Directory_="APPDIR" Attributes="4" KeyPath="ProtonVPN"/>
     <ROW Component="ProtonVPN_3" ComponentId="{4FF5EBF7-6718-4D88-87DF-A8A87B8603A3}" Directory_="ProtonVPN_2_Dir" Attributes="0"/>
     <ROW Component="Sentry.PlatformAbstractions.dll" ComponentId="{426B912C-30F2-441C-9C0A-B82E729946F0}" Directory_="APPDIR" Attributes="0" KeyPath="Sentry.PlatformAbstractions.dll"/>
@@ -157,8 +161,9 @@
     <ROW Component="za.dll" ComponentId="{B7D45BB9-FB0D-4DB3-99CE-7815C47628ED}" Directory_="APPDIR" Attributes="0" KeyPath="za.dll"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
-    <ROW Feature="FD92F08164915A061A35616A2E484" Title="ProtonVPNTap" Description="ProtonVPNTap" Display="7" Level="1" Attributes="16"/>
+    <ROW Feature="FD92F08164915A061A35616A2E484" Title="ProtonVPNTap" Description="ProtonVPNTap" Display="3" Level="1" Attributes="16"/>
     <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0"/>
+    <ROW Feature="ProtonVPNTun" Title="ProtonVPNTun" Description="ProtonVPNTun" Display="5" Level="1" Attributes="16"/>
     <ATTRIBUTE name="CurrentFeature" value="MainFeature"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFilesComponent">
@@ -240,6 +245,8 @@
     <ROW File="ProtonVPN.CalloutDriver.sys_2" Component_="ProtonVPN.SplitTunnelDriver.sys_2" FileName="PROTON~2.SYS|ProtonVPN.CalloutDriver.sys" Version="65535.65535.65535.65535" Attributes="0" SourcePath="SplitTunnel\x86\win7\ProtonVPN.CalloutDriver.sys" SelfReg="false"/>
     <ROW File="ProtonVPN.CalloutDriver.sys_3" Component_="ProtonVPN.SplitTunnelDriver.sys_3" FileName="PROTON~2.SYS|ProtonVPN.CalloutDriver.sys" Version="65535.65535.65535.65535" Attributes="0" SourcePath="SplitTunnel\x86\win10\ProtonVPN.CalloutDriver.sys" SelfReg="false"/>
     <ROW File="za.dll" Component_="za.dll" FileName="7za.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\7za.dll" SelfReg="false" DigSign="true"/>
+    <ROW File="ProtonVPN.InstallActions.dll" Component_="ProtonVPN.InstallActions.dll" FileName="PROTO~11.DLL|ProtonVPN.InstallActions.dll" Attributes="0" SourcePath="..\src\bin\ProtonVPN.InstallActions.dll" SelfReg="false"/>
+    <ROW File="ProtonVPN.RestoreInternet.exe" Component_="ProtonVPN.RestoreInternet.exe" FileName="PROTON~6.EXE|ProtonVPN.RestoreInternet.exe" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ProtonVPN.RestoreInternet.exe" SelfReg="false" DigSign="true"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.AiRemoveFileComponent">
     <ROW RemoveFile="_" Condition="(AI_CLEAN_RESOURCES_UNINSTALL = &quot;1&quot;) AND (NOT UPGRADINGPRODUCTCODE)" Options="3"/>
@@ -472,7 +479,7 @@
     <ROW Action="AI_InstallModeCheck" Type="1" Source="aicustact.dll" Target="UpdateInstallMode" WithoutSeq="true"/>
     <ROW Action="AI_InstallPostPrerequisite" Type="1" Source="Prereq.dll" Target="InstallPostPrereq"/>
     <ROW Action="AI_InstallPrerequisite" Type="65" Source="Prereq.dll" Target="InstallPrereq"/>
-    <ROW Action="AI_LaunchChainer" Type="3314" Source="AI_PREREQ_CHAINER"/>
+    <ROW Action="AI_LaunchChainer" Type="1266" Source="AI_PREREQ_CHAINER"/>
     <ROW Action="AI_PREPARE_UPGRADE" Type="65" Source="aicustact.dll" Target="PrepareUpgrade"/>
     <ROW Action="AI_ProcessFailActions" Type="1" Source="aicustact.dll" Target="ProcessFailActions"/>
     <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Type="51" Source="AI_SETUPEXEPATH" Target="[AI_SETUPEXEPATH_ORIGINAL]"/>
@@ -490,6 +497,9 @@
     <ROW Action="RebootAction" Type="1" Source="ProtonVPN.InstallActions.dll" Target="Reboot"/>
     <ROW Action="RebootWarning" Type="1" Source="aicustact.dll" Target="MsgBox" Options="1" AdditionalSeq="AI_DATA_SETTER_10"/>
     <ROW Action="RemoveProgramData" Type="65" Source="ProtonVPN.InstallActions.dll" Target="RemoveProgramData"/>
+    <ROW Action="RemoveTap" Type="65" Source="ProtonVPN.InstallActions.dll" Target="UninstallProduct"/>
+    <ROW Action="RemoveTun" Type="65" Source="ProtonVPN.InstallActions.dll" Target="UninstallProduct"/>
+    <ROW Action="RemoveWfpObjects" Type="65" Source="ProtonVPN.InstallActions.dll" Target="RemoveWfpObjects"/>
     <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]" MultiBuildTarget="DefaultBuild:[ProgramFilesFolder]Proton Technologies\[ProductName]"/>
     <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][ProductName]"/>
     <ROW Action="SET_TARGETDIR_TO_APPDIR" Type="51" Source="TARGETDIR" Target="[APPDIR]"/>
@@ -497,7 +507,9 @@
     <ROW Action="SetCalloutDriverFileWin10x86" Type="51" Source="CalloutDriverFile" Target="[#ProtonVPN.CalloutDriver.sys_3]"/>
     <ROW Action="SetCalloutDriverFileWin7x64" Type="51" Source="CalloutDriverFile" Target="[#ProtonVPN.CalloutDriver.sys]"/>
     <ROW Action="SetCalloutDriverFileWin7x86" Type="51" Source="CalloutDriverFile" Target="[#ProtonVPN.CalloutDriver.sys_2]"/>
-    <ROW Action="SetLanguageISOCode" Type="1" Source="ProtonVPN.InstallActions.dll" Target="SetLanguageISOCode"/>
+    <ROW Action="SetLanguageISOCode" Type="65" Source="ProtonVPN.InstallActions.dll" Target="SetLanguageISOCode"/>
+    <ROW Action="SetTapUpgradeCode" Type="51" Source="ProductUpgradeCode" Target="{E23B9F7F-AA0A-481A-8ECA-FA69794BF50A}"/>
+    <ROW Action="SetTunUpgradeCode" Type="51" Source="ProductUpgradeCode" Target="{FED0679F-A292-4507-AEF5-DD2BB8898A36}"/>
     <ROW Action="SetUpdateServicePath" Type="51" Source="UpdateServicePath" Target="[#ProtonVPN.UpdateService.exe]"/>
     <ROW Action="StopErrorMessageProcess" Type="1" Source="aicustact.dll" Target="StopProcess" Options="1" AdditionalSeq="AI_DATA_SETTER_6"/>
     <ROW Action="StopProcess" Type="1" Source="aicustact.dll" Target="StopProcess" Options="1" AdditionalSeq="AI_DATA_SETTER_3"/>
@@ -588,6 +600,9 @@
     <ROW Feature_="MainFeature" Component_="ProtonVPN.Translations.dll"/>
     <ROW Feature_="MainFeature" Component_="ProtonVPN_3"/>
     <ROW Feature_="MainFeature" Component_="za.dll"/>
+    <ROW Feature_="ProtonVPNTun" Component_="ProtonVPNTun"/>
+    <ROW Feature_="MainFeature" Component_="ProtonVPN.InstallActions.dll"/>
+    <ROW Feature_="MainFeature" Component_="ProtonVPN.RestoreInternet.exe"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
     <ROW Name="protonvpn.exe" SourcePath="images\protonvpn.ico" Index="0"/>
@@ -597,8 +612,8 @@
     <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="749"/>
     <ROW Action="AI_STORE_LOCATION" Condition="(Not Installed) OR REINSTALL" Sequence="1501"/>
     <ROW Action="AI_PREPARE_UPGRADE" Condition="AI_UPGRADE=&quot;No&quot; AND (Not Installed)" Sequence="1397"/>
-    <ROW Action="AI_ResolveKnownFolders" Sequence="61"/>
-    <ROW Action="AI_EnableDebugLog" Sequence="60"/>
+    <ROW Action="AI_ResolveKnownFolders" Sequence="62"/>
+    <ROW Action="AI_EnableDebugLog" Sequence="61"/>
     <ROW Action="AI_AppSearchEx" Sequence="103"/>
     <ROW Action="AI_AiRemoveFilesRollback" Sequence="3099"/>
     <ROW Action="AI_GetArpIconPath" Sequence="1401"/>
@@ -620,26 +635,27 @@
     <ROW Action="LaunchAppAfterInstall" Condition="( ( NOT Installed AND NOT OLDPRODUCTS ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( REBOOT &lt;&gt; &quot;Force&quot; )" Sequence="6612"/>
     <ROW Action="ModifyServicePermissions" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) )" Sequence="6602"/>
     <ROW Action="UninstallCalloutDriver" Condition="( ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) OR ( Installed AND ( REMOVE = &quot;ALL&quot; OR AI_INSTALL_MODE = &quot;Remove&quot; ) ) )" Sequence="6402"/>
-    <ROW Action="InstallCalloutDriver" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) )" Sequence="6607"/>
     <ROW Action="SetCalloutDriverFileWin10x64" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( (VersionNT64) AND (VersionNT64 = 1000) )" Sequence="6603"/>
     <ROW Action="SetCalloutDriverFileWin10x86" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( (NOT VersionNT64) AND (VersionNT = 1000) )" Sequence="6604"/>
     <ROW Action="SetCalloutDriverFileWin7x64" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( (VersionNT64) AND (VersionNT64 &lt; 1000) )" Sequence="6605"/>
     <ROW Action="SetCalloutDriverFileWin7x86" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( (NOT VersionNT64) AND (VersionNT &lt; 1000) )" Sequence="6606"/>
     <ROW Action="SetUpdateServicePath" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) )" Sequence="6601"/>
-    <ROW Action="CopyInstallLog" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( (VersionNT &gt; 501) OR (VersionNT = 501 AND ServicePackLevel &gt;= 2) )" Sequence="6614"/>
-    <ROW Action="SetLanguageISOCode" Condition="(VersionNT &gt; 501) OR (VersionNT = 501 AND ServicePackLevel &gt;= 2)" Sequence="6611"/>
+    <ROW Action="CopyInstallLog" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) )" Sequence="6614"/>
     <ROW Action="LaunchAppAfterUpdate" Condition="( NOT Installed AND OLDPRODUCTS ) AND ( REBOOT &lt;&gt; &quot;Force&quot; )" Sequence="6613"/>
     <ROW Action="AI_ExtractFiles" Sequence="1399" Builds="DefaultBuild"/>
     <ROW Action="AI_DATA_SETTER" Sequence="1398"/>
     <ROW Action="RemoveProgramData" Condition="( Installed AND ( REMOVE = &quot;ALL&quot; OR AI_INSTALL_MODE = &quot;Remove&quot; ) AND NOT UPGRADINGPRODUCTCODE )" Sequence="6401"/>
+    <ROW Action="StopProcess" Sequence="54"/>
+    <ROW Action="AI_DATA_SETTER_3" Sequence="53"/>
+    <ROW Action="StopErrorMessageProcess" Sequence="52"/>
+    <ROW Action="AI_DATA_SETTER_6" Sequence="51"/>
     <ROW Action="StopService" Sequence="56"/>
     <ROW Action="AI_DATA_SETTER_2" Sequence="55"/>
     <ROW Action="StopUpdateService" Sequence="58"/>
     <ROW Action="AI_DATA_SETTER_1" Sequence="57"/>
-    <ROW Action="StopErrorMessageProcess" Sequence="52"/>
-    <ROW Action="AI_DATA_SETTER_6" Sequence="51"/>
-    <ROW Action="StopProcess" Sequence="54"/>
-    <ROW Action="AI_DATA_SETTER_3" Sequence="53"/>
+    <ROW Action="SetLanguageISOCode" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) )" Sequence="6608"/>
+    <ROW Action="InstallCalloutDriver" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) )" Sequence="6607"/>
+    <ROW Action="RemoveWfpObjects" Condition="( ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) OR ( Installed AND ( REMOVE = &quot;ALL&quot; OR AI_INSTALL_MODE = &quot;Remove&quot; ) ) )" Sequence="6403"/>
     <ROW Action="AI_AiRemoveFilesImmediate" Sequence="3499"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstallUISequenceComponent">
@@ -654,11 +670,15 @@
     <ROW Action="AI_DownloadPrereq" Sequence="1296"/>
     <ROW Action="AI_ExtractPrereq" Sequence="1297"/>
     <ROW Action="AI_InstallPrerequisite" Sequence="1298"/>
-    <ROW Action="AI_InstallPostPrerequisite" Sequence="1301"/>
+    <ROW Action="AI_InstallPostPrerequisite" Sequence="1305"/>
     <ROW Action="CheckForPendingReboot" Condition="( NOT Installed ) AND ( UILevel = &quot;5&quot; )" Sequence="51"/>
     <ROW Action="RebootWarning" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( PENDING_REBOOT = 1 )" Sequence="53"/>
     <ROW Action="AI_DATA_SETTER_10" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( PENDING_REBOOT = 1 )" Sequence="52"/>
     <ROW Action="RebootAction" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( REBOOT_WINDOW_BTN_PRESSED = &quot;IDYES&quot; )" Sequence="54"/>
+    <ROW Action="SetTunUpgradeCode" Condition="( Installed AND ( REMOVE = &quot;ALL&quot; OR AI_INSTALL_MODE = &quot;Remove&quot; ) )" Sequence="1301"/>
+    <ROW Action="RemoveTun" Condition="( Installed AND ( REMOVE = &quot;ALL&quot; OR AI_INSTALL_MODE = &quot;Remove&quot; ) )" Sequence="1302"/>
+    <ROW Action="SetTapUpgradeCode" Condition="( Installed AND ( REMOVE = &quot;ALL&quot; OR AI_INSTALL_MODE = &quot;Remove&quot; ) )" Sequence="1303"/>
+    <ROW Action="RemoveTap" Condition="( Installed AND ( REMOVE = &quot;ALL&quot; OR AI_INSTALL_MODE = &quot;Remove&quot; ) )" Sequence="1304"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiLaunchConditionsComponent">
     <ROW Condition="( Version9X OR ( NOT VersionNT64 ) OR ( VersionNT64 AND ((VersionNT64 &lt;&gt; 600) OR (MsiNTProductType &lt;&gt; 1)) AND ((VersionNT64 &lt;&gt; 600) OR (MsiNTProductType = 1)) AND ((VersionNT64 &lt;&gt; 601) OR (ServicePackLevel &lt;&gt; 0) OR (MsiNTProductType &lt;&gt; 1)) AND ((VersionNT64 &lt;&gt; 601) OR (ServicePackLevel &lt;&gt; 0) OR (MsiNTProductType = 1)) AND ((VersionNT64 &lt;&gt; 602) OR (MsiNTProductType &lt;&gt; 1)) AND ((VersionNT64 &lt;&gt; 1000) OR (MsiNTProductType &lt;&gt; 1) OR (WindowsBuild &lt;&gt; 10240)) AND ((VersionNT64 &lt;&gt; 1000) OR (MsiNTProductType &lt;&gt; 1) OR (WindowsBuild &lt;&gt; 10586)) ) )" Description="[ProductName] cannot be installed on the following Windows versions: [WindowsTypeNT64Display]." DescriptionLocId="AI.LaunchCondition.NoSpecificNT64" IsPredefined="true" Builds="DefaultBuild"/>
@@ -688,6 +708,7 @@
     <ROW Registry="InstallLocation" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="InstallLocation" Value="[APPDIR]" Component_="AI_CustomARPName"/>
     <ROW Registry="Path" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Path" Value="[APPDIR]" Component_="ProductInformation"/>
     <ROW Registry="ProtonVPN" Root="1" Key="Software\Run" Name="ProtonVPN" Value="[ProgramFilesFolder]Proton Technologies\ProtonVPN\ProtonVPN.exe" Component_="ProtonVPN_1"/>
+    <ROW Registry="ProtonVPNTun" Root="-1" Key="Software\Caphyon\Advanced Installer\Prereqs\[ProductCode]\[ProductVersion]" Name="ProtonVPNTun" Value="1" Component_="ProtonVPNTun"/>
     <ROW Registry="Publisher" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Publisher" Value="[Manufacturer]" Component_="AI_CustomARPName"/>
     <ROW Registry="URLInfoAbout" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="URLInfoAbout" Value="[ARPURLINFOABOUT]" Component_="AI_CustomARPName"/>
     <ROW Registry="URLUpdateInfo" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="URLUpdateInfo" Value="[ARPURLUPDATEINFO]" Component_="AI_CustomARPName"/>
@@ -729,24 +750,24 @@
   <COMPONENT cid="caphyon.advinst.msicomp.PreReqComponent">
     <ROW PrereqKey="A6D7F21EAEB4C4A901F0979CF110936" DisplayName=".NET Framework 4.7.2" SetupFileUrl="https://download.microsoft.com/download/6/E/4/6E48E8AB-DC00-419E-9704-06DD46E5F81D/NDP472-KB4054530-x86-x64-AllOS-ENU.exe" Location="1" ExactSize="83943272" WinNTVersions="Windows Vista RTM x86, Windows Server 2008 x86, Windows 7 RTM x86, Windows 10 version 1507 x86, Windows 10 version 1511 x86, Windows 10 version 1803 x86, Windows 10 version 1809 x86, Windows 10 version 1903 x86, Windows 10 version 1909 x86" WinNT64Versions="Windows Vista RTM x64, Windows Server 2008 x64, Windows 7 RTM x64, Windows Server 2008 R2 RTM x64, Windows 10 version 1507 x64, Windows 10 version 1511 x64, Windows 10 version 1803 x64, Windows 10 version 1809 x64, Windows Server 2019 x64, Windows 10 version 1903 x64, Windows 10 version 1909 x64" Operator="1" NoUiComLine="/q /norestart" Options="xym" MD5="87450cfa175585b23a76bbd7052ee66b" TargetName=".NET Framework 4.7.2"/>
     <ROW PrereqKey="FD92F08164915A061A35616A2E484" DisplayName="ProtonVPNTap" VersionMin="1.1.3" SetupFileUrl="ProtonVPNTap-SetupFiles\ProtonVPNTap_1.1.3.exe" Location="0" ExactSize="0" Operator="1" Options="mzf" TargetName="ProtonVPNTap_1.1.3.exe" Feature="FD92F08164915A061A35616A2E484"/>
+    <ROW PrereqKey="ProtonVPNTun" DisplayName="ProtonVPNTun" VersionMin="0.10.0" SetupFileUrl="ProtonVPNTun-SetupFiles\ProtonVPNTun_0.10.0.exe" Location="0" ExactSize="0" Operator="1" Options="fmz" TargetName="ProtonVPNTun\ProtonVPNTun_0.10.0.exe" Feature="ProtonVPNTun"/>
     <ROW PrereqKey="RequiredApplication_2" DisplayName="Windows 7 x64 security update (KB2992611)" SetupFileUrl="https://download.microsoft.com/download/E/C/5/EC5D4973-A233-4F48-A555-65DF1E6DDA99/Windows6.1-KB2992611-x64.msu" Location="1" ExactSize="0" WinNTVersions="Windows 9x/ME/NT/2000/XP/Vista/Windows 7/Windows 8 x86/Windows 8.1 x86/Windows 10 x86" WinNT64Versions="Windows Vista RTM x64, Windows Server 2008 x64, Windows 8 x64, Windows Server 2012 x64, Windows 8.1 x64, Windows Server 2012 R2 x64, Windows 10 x64, Windows Server x64" Operator="1" NoUiComLine="/quiet /norestart" Options="y" TargetName="Windows 7 x64 security update (KB2992611)"/>
     <ROW PrereqKey="RequiredApplication_3" DisplayName="Windows 7 x86 security update (KB2992611)" SetupFileUrl="https://download.microsoft.com/download/F/1/9/F19ED8C4-B547-49C3-B3EA-759D3613FD75/Windows6.1-KB2992611-x86.msu" Location="1" ExactSize="0" WinNTVersions="Windows Vista RTM x86, Windows Server 2008 x86, Windows 8 x86, Windows 8.1 x86, Windows 10 x86" WinNT64Versions="Windows XP/Vista/Windows 7/Windows 8 x64/Windows 8.1 x64/Windows 10 x64" Operator="1" NoUiComLine="/quiet /norestart" Options="y" TargetName="Windows 7 x86 security update (KB2992611)"/>
     <ROW PrereqKey="Windows7x64securi" DisplayName="Windows 7 x64 security update (KB3033929)" SetupFileUrl="https://download.microsoft.com/download/C/8/7/C87AE67E-A228-48FB-8F02-B2A9A1238099/Windows6.1-KB3033929-x64.msu" Location="1" ExactSize="0" WinNTVersions="Windows 9x/ME/NT/2000/XP/Vista/Windows 7/Windows 8 x86/Windows 8.1 x86/Windows 10 x86" WinNT64Versions="Windows Vista RTM x64, Windows Server 2008 x64, Windows 8 x64, Windows Server 2012 x64, Windows 8.1 x64, Windows Server 2012 R2 x64, Windows 10 x64, Windows Server x64" Operator="1" NoUiComLine="/quiet /norestart" Options="y" TargetName="Windows 7 x64 security update (KB3033929)"/>
-    <ROW PrereqKey="Windows7x64securi_1" DisplayName="Windows 7 x64 security update (KB2533623)" SetupFileUrl="https://download.microsoft.com/download/F/1/0/F106E158-89A1-41E3-A9B5-32FEB2A99A0B/Windows6.1-KB2533623-x64.msu" Location="1" ExactSize="0" WinNTVersions="Windows 9x/ME/NT/2000/XP/Vista/Windows 7/Windows 8 x86/Windows 8.1 x86/Windows 10 x86" WinNT64Versions="Windows Vista RTM x64, Windows Server 2008 x64, Windows 8 x64, Windows Server 2012 x64, Windows 8.1 x64, Windows Server 2012 R2 x64, Windows 10 x64, Windows Server x64" Operator="1" NoUiComLine="/quiet /norestart" Options="y" TargetName="Windows 7 x64 security update (KB2533623)"/>
+    <ROW PrereqKey="Windows7x64securi_1" DisplayName="Windows 7 x64 security update (KB3063858)" SetupFileUrl="https://download.microsoft.com/download/0/8/E/08E0386B-F6AF-4651-8D1B-C0A95D2731F0/Windows6.1-KB3063858-x64.msu" Location="1" ExactSize="0" WinNTVersions="Windows 9x/ME/NT/2000/XP/Vista/Windows 7/Windows 8 x86/Windows 8.1 x86/Windows 10 x86" WinNT64Versions="Windows Vista x64, Windows Server 2008 x64, Windows Server 2008 R2 x64, Windows 8 x64, Windows Server 2012 x64, Windows 8.1 x64, Windows Server 2012 R2 x64, Windows 10 x64, Windows Server x64" Operator="1" Options="yrR" TargetName="Windows 7 x86 security update (KB3063858)"/>
     <ROW PrereqKey="Windows7x86securi" DisplayName="Windows 7 x86 security update (KB3033929)" SetupFileUrl="https://download.microsoft.com/download/3/7/4/37473F39-5728-4153-9A25-64C09DE9ED52/Windows6.1-KB3033929-x86.msu" Location="1" ExactSize="0" WinNTVersions="Windows Vista RTM x86, Windows Server 2008 x86, Windows 8 x86, Windows 8.1 x86, Windows 10 x86" WinNT64Versions="Windows XP/Vista/Windows 7/Windows 8 x64/Windows 8.1 x64/Windows 10 x64" Operator="1" NoUiComLine="/quiet /norestart" Options="y" TargetName="Windows 7 x86 security update (KB3033929)"/>
-    <ROW PrereqKey="Windows7x86securi_1" DisplayName="Windows 7 x86 security update (KB2533623)" SetupFileUrl="https://download.microsoft.com/download/2/D/7/2D78D0DD-2802-41F5-88D6-DC1D559F206D/Windows6.1-KB2533623-x86.msu" Location="1" ExactSize="0" WinNTVersions="Windows Vista RTM x86, Windows Server 2008 x86, Windows 8 x86, Windows 8.1 x86, Windows 10 x86" WinNT64Versions="Windows XP/Vista/Windows 7/Windows 8 x64/Windows 8.1 x64/Windows 10 x64" Operator="1" NoUiComLine="/quiet /norestart" Options="y" TargetName="Windows 7 x86 security update (KB2533623)"/>
-    <ATTRIBUTE name="PrereqsOrder" value="A6D7F21EAEB4C4A901F0979CF110936 Windows7x64securi_1 Windows7x86securi_1 FD92F08164915A061A35616A2E484 RequiredApplication_2 RequiredApplication_3 Windows7x64securi Windows7x86securi"/>
+    <ROW PrereqKey="Windows7x86securi_1" DisplayName="Windows 7 x86 security update (KB3063858)" SetupFileUrl="https://download.microsoft.com/download/C/9/6/C96CD606-3E05-4E1C-B201-51211AE80B1E/Windows6.1-KB3063858-x86.msu" Location="1" ExactSize="0" WinNTVersions="Windows Vista x86, Windows Server 2008 x86, Windows 8 x86, Windows 8.1 x86, Windows 10 x86" WinNT64Versions="Windows XP/Vista/Windows 7/Windows 8 x64/Windows 8.1 x64/Windows 10 x64" Operator="1" Options="yrR" TargetName="Windows 7 x86 security update (KB3063858)"/>
+    <ATTRIBUTE name="PrereqsOrder" value="FD92F08164915A061A35616A2E484 ProtonVPNTun RequiredApplication_2 RequiredApplication_3 Windows7x64securi Windows7x86securi Windows7x86securi_1 Windows7x64securi_1 A6D7F21EAEB4C4A901F0979CF110936"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.PreReqSearchComponent">
     <ROW SearchKey="A6D7F21EAEB4C4A901F0979CF110936Rele" Prereq="A6D7F21EAEB4C4A901F0979CF110936" SearchType="9" SearchString="HKLM\SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full\Release" RefContent="G461807" Order="1" Property="PreReqSearch_A6D7F21EAEB4C4A901F097"/>
     <ROW SearchKey="FD92F08164915A061A35616A2E484UpgradeCode" Prereq="FD92F08164915A061A35616A2E484" SearchType="4" SearchString="{E23B9F7F-AA0A-481A-8ECA-FA69794BF50A}" VerMin="1.1.3" Order="1" Property="PreReqSearch_FD92F08164915A061A3561"/>
-    <ROW SearchKey="SystemFolderKernel32.dll" Prereq="Windows7x64securi_1" SearchType="0" SearchString="[SystemFolder]Kernel32.dll" VerMin="6.1.7601.17617" VerMax="6.1.7601.20999" Order="1" Property="PreReqSearch"/>
-    <ROW SearchKey="SystemFolderKernel32.dll_1" Prereq="Windows7x64securi_1" SearchType="0" SearchString="[SystemFolder]Kernel32.dll" VerMin="6.1.7601.21728" Order="0" Property="PreReqSearch_1"/>
-    <ROW SearchKey="SystemFolderKernel32.dll_2" Prereq="Windows7x86securi_1" SearchType="0" SearchString="[SystemFolder]Kernel32.dll" VerMin="6.1.7601.17617" VerMax="6.1.7601.20999" Order="1" Property="PreReqSearch_3"/>
-    <ROW SearchKey="SystemFolderKernel32.dll_3" Prereq="Windows7x86securi_1" SearchType="0" SearchString="[SystemFolder]Kernel32.dll" VerMin="6.1.7601.21728" Order="0" Property="PreReqSearch_5"/>
+    <ROW SearchKey="SystemFolderfile.dll" Prereq="ProtonVPNTun" SearchType="4" SearchString="{FED0679F-A292-4507-AEF5-DD2BB8898A36}" VerMin="0.10.0" Order="1" Property="PreReqSearch_6"/>
     <ROW SearchKey="SystemFolderfile.dll_2" Prereq="RequiredApplication_2" SearchType="10" SearchString="check-KB2992611.bat" RefContent="WND_HIDE" Order="1" Property="PreReqSearch_2"/>
     <ROW SearchKey="checkKB3033929.bat" Prereq="RequiredApplication_3" SearchType="10" SearchString="check-KB2992611.bat" RefContent="WND_HIDE" Order="2" Property="PreReqSearch_4"/>
     <ROW SearchKey="checkKB3033929.bat_1" Prereq="Windows7x64securi" SearchType="10" SearchString="check-KB3033929.bat" RefContent="WND_HIDE" Order="1" Property="PreReqSearch_2_1"/>
     <ROW SearchKey="checkKB3033929.bat_2" Prereq="Windows7x86securi" SearchType="10" SearchString="check-KB3033929.bat" RefContent="WND_HIDE" Order="2" Property="PreReqSearch_4_1"/>
+    <ROW SearchKey="checkKB3063858.bat" Prereq="Windows7x86securi_1" SearchType="10" SearchString="check-KB3063858.bat" Order="1" Property="PreReqSearch_6_1"/>
+    <ROW SearchKey="checkKB3063858.bat_1" Prereq="Windows7x64securi_1" SearchType="10" SearchString="check-KB3063858.bat" Order="1" Property="PreReqSearch_7"/>
   </COMPONENT>
 </DOCUMENT>

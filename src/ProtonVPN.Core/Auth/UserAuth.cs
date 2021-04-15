@@ -58,7 +58,7 @@ namespace ProtonVPN.Core.Auth
 
         public async Task<ApiResponseResult<VpnInfoResponse>> RefreshVpnInfo()
         {
-            var vpnInfo = await _apiClient.GetVpnInfoResponse();
+            ApiResponseResult<VpnInfoResponse> vpnInfo = await _apiClient.GetVpnInfoResponse();
             if (vpnInfo.Success)
             {
                 if (!vpnInfo.Value.Vpn.Status.Equals(UserStatusVpnAccess))
@@ -76,7 +76,7 @@ namespace ProtonVPN.Core.Auth
         {
             try
             {
-                var infoResult = await RefreshVpnInfo();
+                ApiResponseResult<VpnInfoResponse> infoResult = await RefreshVpnInfo();
                 if (infoResult.Success)
                 {
                     onSuccess(infoResult.Value);
@@ -93,13 +93,13 @@ namespace ProtonVPN.Core.Auth
             _logger?.Info("Trying to login user");
             UserLoggingIn?.Invoke(this, EventArgs.Empty);
 
-            var authResult = await AuthAsync(username, password);
+            ApiResponseResult<AuthResponse> authResult = await AuthAsync(username, password);
             if (authResult.Failure)
             {
                 return authResult;
             }
 
-            var vpnInfo = await RefreshVpnInfo();
+            ApiResponseResult<VpnInfoResponse> vpnInfo = await RefreshVpnInfo();
             if (vpnInfo.Success)
             {
                 _userStorage.StoreVpnInfo(vpnInfo.Value);
@@ -112,7 +112,7 @@ namespace ProtonVPN.Core.Auth
 
         public async Task<ApiResponseResult<AuthResponse>> AuthAsync(string username, string password)
         {
-            var authInfo = await _apiClient.GetAuthInfoResponse(new AuthInfoRequestData
+            ApiResponseResult<AuthInfo> authInfo = await _apiClient.GetAuthInfoResponse(new AuthInfoRequestData
             {
                 Username = username
             });
@@ -122,8 +122,8 @@ namespace ProtonVPN.Core.Auth
                 return ApiResponseResult<AuthResponse>.Fail(authInfo.StatusCode, authInfo.Error);
             }
 
-            var proofs = SrpPInvoke.GenerateProofs(4, username, password, authInfo.Value.Salt, authInfo.Value.Modulus, authInfo.Value.ServerEphemeral);
-            var authData = new AuthRequestData
+            SrpPInvoke.GoProofs proofs = SrpPInvoke.GenerateProofs(4, username, password, authInfo.Value.Salt, authInfo.Value.Modulus, authInfo.Value.ServerEphemeral);
+            AuthRequestData authData = new AuthRequestData
             {
                 ClientEphemeral = Convert.ToBase64String(proofs.ClientEphemeral),
                 ClientProof = Convert.ToBase64String(proofs.ClientProof),
@@ -132,7 +132,7 @@ namespace ProtonVPN.Core.Auth
                 Username = username
             };
 
-            var response = await _apiClient.GetAuthResponse(authData);
+            ApiResponseResult<AuthResponse> response = await _apiClient.GetAuthResponse(authData);
             if (response.Success)
             {
                 if (!Convert.ToBase64String(proofs.ExpectedServerProof).Equals(response.Value.ServerProof))

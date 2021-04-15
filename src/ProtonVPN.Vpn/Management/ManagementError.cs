@@ -82,7 +82,8 @@ namespace ProtonVPN.Vpn.Management
         private static bool ContainsTapInUseError(string message)
         {
             return message.ContainsIgnoringCase("All TAP-Windows adapters on this system are currently in use")
-                || message.ContainsIgnoringCase("All TAP-Win32 adapters on this system are currently in use");
+                || message.ContainsIgnoringCase("All TAP-Win32 adapters on this system are currently in use")
+                || message.ContainsIgnoringCase("Failed to open wintun adapter");
         }
 
         private static bool ContainsNoTapError(string message)

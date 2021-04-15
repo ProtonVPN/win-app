@@ -22,6 +22,7 @@ parser_a.add_argument('path', type=str, help='Path to GlobalConfig file')
 parser_a.add_argument('dsn', type=str, help='Sentry dsn string', nargs='?', const='')
 
 subparsers.add_parser('tap-installer')
+subparsers.add_parser('tun-installer')
 subparsers.add_parser('sign')
 
 custom_parser = subparsers.add_parser('app-installer')
@@ -76,6 +77,11 @@ elif args.command == 'app-installer':
 elif args.command == 'tap-installer':
     print('Building tap installer')
     err = installer.build('1.1.3', '', 'Setup/ProtonVPNTap.aip')
+    sys.exit(err)
+
+elif args.command == 'tun-installer':
+    print('Building tun installer')
+    err = installer.build('0.10.0', '', 'Setup/ProtonVPNTun.aip')
     sys.exit(err)
 
 elif args.command == 'add-commit-hash':

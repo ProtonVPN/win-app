@@ -35,9 +35,8 @@ namespace ProtonVPN.Vpn
         private readonly IModals _modals;
         private readonly IAppSettings _appSettings;
 
-        private bool _connected;
         private bool _loggedIn;
-
+        private bool _modalShowed;
 
         public DisconnectError(IModals modals, IAppSettings appSettings)
         {
@@ -47,7 +46,13 @@ namespace ProtonVPN.Vpn
 
         public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
         {
-            var status = e.State.Status;
+            if (_appSettings.UseTunAdapter && e.Error == VpnError.TapAdapterInUseError)
+            {
+                _modals.Show<TunInUseModalViewModel>();
+                return Task.CompletedTask;
+            }
+
+            VpnStatus status = e.State.Status;
 
             if (ModalShouldBeShown(e))
             {
@@ -62,9 +67,8 @@ namespace ProtonVPN.Vpn
                     e.Error == VpnError.None)
                 {
                     Post(CloseModal);
+                    _modalShowed = false;
                 }
-
-                _connected = status == VpnStatus.Connected;
             }
 
             return Task.CompletedTask;
@@ -72,15 +76,10 @@ namespace ProtonVPN.Vpn
 
         private bool ModalShouldBeShown(VpnStateChangedEventArgs e)
         {
-            return _loggedIn && e.Error != VpnError.NoneKeepEnabledKillSwitch && (Reconnecting(e) || e.UnexpectedDisconnect);
-        }
-
-        private bool Reconnecting(VpnStateChangedEventArgs e)
-        {
-            return e.State.Status == VpnStatus.Reconnecting &&
-                   e.NetworkBlocked &&
-                   _connected &&
-                   _appSettings.KillSwitch;
+            return _loggedIn &&
+                   !_modalShowed &&
+                   e.Error != VpnError.NoneKeepEnabledKillSwitch &&
+                   e.UnexpectedDisconnect;
         }
 
         private void ShowModal(VpnStateChangedEventArgs e)
@@ -89,6 +88,7 @@ namespace ProtonVPN.Vpn
             options.NetworkBlocked = e.NetworkBlocked;
             options.Error = e.Error;
 
+            _modalShowed = true;
             _modals.Show<DisconnectErrorModalViewModel>(options);
         }
 

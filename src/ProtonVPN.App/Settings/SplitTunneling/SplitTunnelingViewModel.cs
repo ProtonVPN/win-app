@@ -19,20 +19,26 @@
 
 using System.ComponentModel;
 using ProtonVPN.Common;
+using ProtonVPN.Common.KillSwitch;
+using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.MVVM;
 using ProtonVPN.Core.Settings;
+using ProtonVPN.Translations;
 
 namespace ProtonVPN.Settings.SplitTunneling
 {
     public class SplitTunnelingViewModel : ViewModel, ISettingsAware
     {
         private readonly IAppSettings _appSettings;
+        private readonly IDialogs _dialogs;
 
         public SplitTunnelingViewModel(
+            IDialogs dialogs,
             IAppSettings appSettings,
             AppListViewModel apps,
             SplitTunnelingIpListViewModel ips)
         {
+            _dialogs = dialogs;
             _appSettings = appSettings;
             Apps = apps;
             Ips = ips;
@@ -45,7 +51,16 @@ namespace ProtonVPN.Settings.SplitTunneling
             {
                 if (value)
                 {
-                    _appSettings.KillSwitch = false;
+                    if (_appSettings.KillSwitchMode != KillSwitchMode.Off)
+                    {
+                        bool? result = _dialogs.ShowQuestion(Translation.Get("Dialogs_SplitTunnelWarning_msg"));
+                        if (!result.HasValue || !result.Value)
+                        {
+                            return;
+                        }
+                    }
+
+                    _appSettings.KillSwitchMode = KillSwitchMode.Off;
                 }
 
                 _appSettings.SplitTunnelingEnabled = value;
@@ -83,7 +98,7 @@ namespace ProtonVPN.Settings.SplitTunneling
 
         public void OnAppSettingsChanged(PropertyChangedEventArgs e)
         {
-            if (e.PropertyName.Equals(nameof(IAppSettings.KillSwitch)) && _appSettings.KillSwitch)
+            if (e.PropertyName.Equals(nameof(IAppSettings.KillSwitchMode)) && _appSettings.KillSwitchMode != KillSwitchMode.Off)
             {
                 _appSettings.SplitTunnelingEnabled = false;
                 OnPropertyChanged(nameof(Enabled));

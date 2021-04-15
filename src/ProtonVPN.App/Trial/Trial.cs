@@ -21,13 +21,14 @@ using System;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Auth;
-using ProtonVPN.Core.Modals;
+using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.User;
 using ProtonVPN.Core.Vpn;
-using ProtonVPN.Modals.Trial;
-using ProtonVPN.Modals.Upsell;
-using ProtonVPN.Modals.Welcome;
+using ProtonVPN.Core.Window.Popups;
+using ProtonVPN.Windows.Popups.Trials;
+using ProtonVPN.Windows.Popups.Upsell;
+using ProtonVPN.Windows.Popups.Welcome;
 
 namespace ProtonVPN.Trial
 {
@@ -36,7 +37,7 @@ namespace ProtonVPN.Trial
         private readonly IAppSettings _appSettings;
         private readonly UserAuth _userAuth;
         private readonly IUserStorage _userStorage;
-        private readonly IModals _modals;
+        private readonly IPopupWindows _popupWindows;
 
         public event EventHandler<PlanStatus> StateChanged;
 
@@ -44,9 +45,9 @@ namespace ProtonVPN.Trial
             IAppSettings appSettings,
             UserAuth userAuth,
             IUserStorage userStorage,
-            IModals modals)
+            IPopupWindows popupWindows)
         {
-            _modals = modals;
+            _popupWindows = popupWindows;
             _userStorage = userStorage;
             _userAuth = userAuth;
             _appSettings = appSettings;
@@ -54,20 +55,30 @@ namespace ProtonVPN.Trial
 
         public async Task Load()
         {
-            var user = _userStorage.User();
+            User user = _userStorage.User();
             if (_appSettings.TrialExpirationTime == 0)
             {
                 if (user.TrialStatus().Equals(PlanStatus.TrialNotStarted))
+                {
                     InvokeStateChange(user.TrialStatus());
+                }
+
                 if (user.TrialStatus().Equals(PlanStatus.TrialStarted))
+                {
                     await Start();
+                }
+
                 if (user.VpnPlan.Equals("free") && user.TrialStatus().Equals(PlanStatus.Free))
+                {
                     InvokeStateChange(PlanStatus.Free);
+                }
             }
             else if (_appSettings.TrialExpirationTime > 0)
             {
                 if (user.TrialStatus().Equals(PlanStatus.TrialStarted))
+                {
                     await Start();
+                }
 
                 InvokeStateChange(user.TrialStatus());
             }
@@ -78,11 +89,15 @@ namespace ProtonVPN.Trial
         public async Task OnVpnStateChanged(VpnStateChangedEventArgs e)
         {
             if (!e.State.Status.Equals(VpnStatus.Connected))
+            {
                 return;
+            }
 
-            var user = _userStorage.User();
+            User user = _userStorage.User();
             if (user.TrialStatus().Equals(PlanStatus.TrialNotStarted))
+            {
                 await Start();
+            }
         }
 
         public async Task Start()
@@ -104,27 +119,39 @@ namespace ProtonVPN.Trial
                 ShowTrialEndModal();
             }
             else if (TrialIsAboutToExpire())
+            {
                 ShowTrialAboutToExpireModal();
+            }
         }
 
         private void HandleModals()
         {
-            var user = _userStorage.User();
+            User user = _userStorage.User();
 
             if (WelcomeModalHasToBeShown())
+            {
                 ShowWelcomeModal();
+            }
             else if (TrialEndModalHasToBeShown())
+            {
                 ShowTrialEndModal();
-            else if (!user.Paid())
+            }
+            else if (!user.Paid() && !_userStorage.User().IsDelinquent())
+            {
                 ShowEnjoyModal();
+            }
         }
 
         private void ShowEnjoyModal()
         {
-            var rand = new Random();
-            var randomNumber = rand.Next(0, 100);
-            if (randomNumber >= 15) return;
-            _modals.Show<EnjoyingUpsellModalViewModel>();
+            Random rand = new Random();
+            int randomNumber = rand.Next(0, 100);
+            if (randomNumber >= 15)
+            {
+                return;
+            }
+
+            _popupWindows.Show<EnjoyingUpsellPopupViewModel>();
         }
 
         private void InvokeStateChange(PlanStatus status)
@@ -134,33 +161,39 @@ namespace ProtonVPN.Trial
 
         private bool TrialIsAboutToExpire()
         {
-            var user = _userStorage.User();
+            User user = _userStorage.User();
             return user.TrialExpirationTimeInSeconds() <= 60 * 60 * 48;
         }
 
         private void ShowTrialAboutToExpireModal()
         {
             if (_appSettings.AboutToExpireModalShown || !_appSettings.WelcomeModalShown)
+            {
                 return;
+            }
 
-            _modals.Show<TrialAboutToExpireModalViewModel>();
+            _popupWindows.Show<TrialPopupViewModel>();
             _appSettings.AboutToExpireModalShown = true;
         }
 
         private void ShowWelcomeModal()
         {
-            var user = _userStorage.User();
+            User user = _userStorage.User();
             if (user.VpnPlan.Equals("trial"))
-                _modals.Show<TrialWelcomeModalViewModel>();
+            {
+                _popupWindows.Show<TrialWelcomePopupViewModel>();
+            }
             else
-                _modals.Show<NonTrialWelcomeModalViewModel>();
+            {
+                _popupWindows.Show<NonTrialWelcomePopupViewModel>();
+            }
 
             _appSettings.WelcomeModalShown = true;
         }
 
         private bool TrialEndModalHasToBeShown()
         {
-            var user = _userStorage.User();
+            User user = _userStorage.User();
             return !_appSettings.ExpiredModalShown &&
                    _appSettings.WelcomeModalShown &&
                    _appSettings.TrialExpirationTime > 0 &&
@@ -174,13 +207,13 @@ namespace ProtonVPN.Trial
 
         private void ShowTrialEndModal()
         {
-            _modals.Show<TrialEndModalViewModel>();
+            _popupWindows.Show<TrialPopupViewModel>();
             _appSettings.ExpiredModalShown = true;
         }
 
-        public Task OnVpnPlanChangedAsync(string plan)
+        public Task OnVpnPlanChangedAsync(VpnPlanChangedEventArgs e)
         {
-            var user = _userStorage.User();
+            User user = _userStorage.User();
             InvokeStateChange(user.TrialStatus());
 
             return Task.CompletedTask;

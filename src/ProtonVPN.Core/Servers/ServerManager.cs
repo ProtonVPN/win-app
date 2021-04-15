@@ -32,8 +32,8 @@ namespace ProtonVPN.Core.Servers
     public class ServerManager
     {
         private readonly ServerNameComparer _serverNameComparer;
-        private List<LogicalServerContract> _servers = new List<LogicalServerContract>();
-        private List<string> _countries = new List<string>();
+        private List<LogicalServerContract> _servers = new();
+        private List<string> _countries = new();
         private readonly IUserStorage _userStorage;
 
         public ServerManager(IUserStorage userStorage)
@@ -56,8 +56,8 @@ namespace ProtonVPN.Core.Servers
 
         public virtual void UpdateLoads(IReadOnlyCollection<LogicalServerContract> servers)
         {
-            var updatedServers = servers.ToDictionary(server => server.Id);
-            foreach (var server in _servers.Where(server => updatedServers.ContainsKey(server.Id)))
+            Dictionary<string, LogicalServerContract> updatedServers = servers.ToDictionary(server => server.Id);
+            foreach (LogicalServerContract server in _servers.Where(server => updatedServers.ContainsKey(server.Id)))
             {
                 server.Load = updatedServers[server.Id].Load;
                 server.Score = updatedServers[server.Id].Score;
@@ -66,7 +66,7 @@ namespace ProtonVPN.Core.Servers
 
         public IReadOnlyCollection<Server> GetServers(ISpecification<LogicalServerContract> spec)
         {
-            var userTier = _userStorage.User().MaxTier;
+            sbyte userTier = _userStorage.User().MaxTier;
 
             return _servers
                 .Where(spec.IsSatisfiedBy)
@@ -93,7 +93,7 @@ namespace ProtonVPN.Core.Servers
 
         public void MarkServerUnderMaintenance(string exitIp)
         {
-            foreach (var server in _servers.SelectMany(logical =>
+            foreach (PhysicalServerContract server in _servers.SelectMany(logical =>
                 logical.Servers.Where(server => server.ExitIp == exitIp)))
             {
                 server.Status = 0;
@@ -107,8 +107,8 @@ namespace ProtonVPN.Core.Servers
 
         public virtual IReadOnlyCollection<string> GetCountriesWithFreeServers()
         {
-            var result = new List<string>();
-            foreach (var server in _servers)
+            List<string> result = new();
+            foreach (LogicalServerContract server in _servers)
             {
                 if (server.Tier.Equals(ServerTiers.Free) && !result.Contains(server.EntryCountry))
                 {
@@ -121,19 +121,19 @@ namespace ProtonVPN.Core.Servers
 
         public bool CountryHasAvailableServers(string country, sbyte userTier)
         {
-            var servers = GetServers(new EntryCountryServer(country) && !new TorServer());
+            IReadOnlyCollection<Server> servers = GetServers(new EntryCountryServer(country) && !new TorServer());
             return servers.FirstOrDefault(s => userTier >= s.Tier) != null;
         }
 
         public bool CountryHasAvailableSecureCoreServers(string country, sbyte userTier)
         {
-            var servers = GetServers(new SecureCoreServer() && new ExitCountryServer(country));
+            IReadOnlyCollection<Server> servers = GetServers(new SecureCoreServer() && new ExitCountryServer(country));
             return servers.FirstOrDefault(s => userTier >= s.Tier) != null;
         }
 
         public bool CountryUnderMaintenance(string country)
         {
-            var servers = GetServers(new OnlineServer() && new ExitCountryServer(country));
+            IReadOnlyCollection<Server> servers = GetServers(new OnlineServer() && new ExitCountryServer(country));
             return servers.Count == 0;
         }
 
@@ -146,15 +146,23 @@ namespace ProtonVPN.Core.Servers
 
         private void SaveCountries(IEnumerable<LogicalServerContract> servers)
         {
-            var countryCodes = new List<string>();
-            foreach (var server in servers)
+            List<string> countryCodes = new();
+            foreach (LogicalServerContract server in servers)
             {
                 if (server == null)
+                {
                     continue;
+                }
+
                 if (!IsCountry(server))
+                {
                     continue;
+                }
+
                 if (countryCodes.Contains(server.EntryCountry))
+                {
                     continue;
+                }
 
                 countryCodes.Add(server.EntryCountry);
             }
@@ -164,12 +172,17 @@ namespace ProtonVPN.Core.Servers
 
         private static bool IsCountry(LogicalServerContract server)
         {
-            var code = server.EntryCountry;
+            string code = server.EntryCountry;
             if (code.Equals("AA") || code.Equals("ZZ") || code.StartsWith("X"))
+            {
                 return false;
-            var letters = new[] { "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
+            }
+
+            string[] letters = {"M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
             if (code.StartsWith("Q") && letters.Contains(code.Substring(1, 1)))
+            {
                 return false;
+            }
 
             return true;
         }
@@ -177,9 +190,11 @@ namespace ProtonVPN.Core.Servers
         private static Server Map(LogicalServerContract item)
         {
             if (item == null)
+            {
                 return null;
+            }
 
-            var physicalServers = item.Servers.Select(Map).ToList();
+            List<PhysicalServer> physicalServers = item.Servers.Select(Map).ToList();
 
             return new Server(
                 item.Id,
@@ -196,12 +211,18 @@ namespace ProtonVPN.Core.Servers
                 item.Location,
                 physicalServers,
                 ExitIp(physicalServers)
-                );
+            );
         }
 
         private static PhysicalServer Map(PhysicalServerContract server)
         {
-            return new PhysicalServer(server.Id, server.EntryIp, server.ExitIp, server.Domain, server.Status);
+            return new PhysicalServer(
+                id: server.Id,
+                entryIp: server.EntryIp,
+                exitIp: server.ExitIp,
+                domain: server.Domain,
+                label: server.Label,
+                status: server.Status);
         }
 
         /// <summary>

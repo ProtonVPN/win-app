@@ -30,7 +30,10 @@ namespace ProtonVPN.Core.Profiles
 
         public static bool IsValid(this Profile profile)
         {
-            if (profile == null) return false;
+            if (profile == null) 
+            {
+                return false;
+            }
 
             // The old ServerId (mapped to LogicalID on the API) value might be not mapped by the profile migration.
             if (!string.IsNullOrEmpty(profile.ServerId) && profile.ServerId.Length < 5)
@@ -38,7 +41,7 @@ namespace ProtonVPN.Core.Profiles
                 return false;
             }
 
-            return true;
+            return profile.IsColorCodeValid();
         }
 
         public static bool HasElapsed(this Profile profile, TimeSpan timeSpan)

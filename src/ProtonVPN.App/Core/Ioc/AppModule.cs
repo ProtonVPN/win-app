@@ -23,6 +23,7 @@ using Autofac;
 using Caliburn.Micro;
 using ProtonVPN.About;
 using ProtonVPN.Account;
+using ProtonVPN.BugReporting;
 using ProtonVPN.BugReporting.Diagnostic;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
@@ -48,11 +49,13 @@ using ProtonVPN.Core.Startup;
 using ProtonVPN.Core.Storage;
 using ProtonVPN.Core.User;
 using ProtonVPN.Core.Window;
+using ProtonVPN.Core.Window.Popups;
 using ProtonVPN.FlashNotifications;
 using ProtonVPN.Map;
 using ProtonVPN.Modals;
 using ProtonVPN.Modals.Dialogs;
 using ProtonVPN.Notifications;
+using ProtonVPN.PlanDowngrading;
 using ProtonVPN.Servers;
 using ProtonVPN.Settings;
 using ProtonVPN.Settings.Migrations;
@@ -125,6 +128,7 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<VpnService>().AsSelf().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<ModalWindows>().As<IModalWindows>().SingleInstance();
             builder.RegisterType<ProtonVPN.Modals.Modals>().As<IModals>().SingleInstance();
+            builder.RegisterType<Windows.Popups.PopupWindows>().As<IPopupWindows>().SingleInstance();
             builder.RegisterType<Dialogs>().As<IDialogs>().SingleInstance();
             builder.RegisterType<AutoStartup>().As<IAutoStartup>().SingleInstance();
             builder.RegisterType<SyncableAutoStartup>().As<ISyncableAutoStartup>().SingleInstance();
@@ -172,10 +176,12 @@ namespace ProtonVPN.Core.Ioc
                 .SingleInstance();
             builder.RegisterType<ProtonVPN.Settings.Migrations.v1_18_3.AppSettingsMigration>().AsImplementedInterfaces()
                 .SingleInstance();
+            builder.RegisterType<ProtonVPN.Settings.Migrations.v1_20_0.AppSettingsMigration>().AsImplementedInterfaces()
+                .SingleInstance();
 
             builder.RegisterType<MapLineManager>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterType<VpnEvents>();
-            builder.RegisterType<SettingsServiceClientManager>().SingleInstance();
+            builder.RegisterType<SettingsServiceClientManager>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<SettingsServiceClient>().SingleInstance();
             builder.RegisterType<ServiceChannelFactory>().SingleInstance();
             builder.RegisterType<SettingsContractProvider>().SingleInstance();
@@ -226,7 +232,6 @@ namespace ProtonVPN.Core.Ioc
                 .AsSelf()
                 .SingleInstance();
             builder.RegisterType<OutdatedAppNotification>().AsImplementedInterfaces().AsSelf().SingleInstance();
-            builder.RegisterType<QuickConnector>().SingleInstance();
             builder.RegisterType<AppExitHandler>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterType<UserLocationService>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<InstalledApps>().SingleInstance();
@@ -234,7 +239,8 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<SystemNotification>().AsImplementedInterfaces().SingleInstance();
             builder.Register(c => new MonitoredVpnService(
                     c.Resolve<Common.Configuration.Config>(),
-                    c.Resolve<VpnSystemService>()))
+                    c.Resolve<VpnSystemService>(),
+                    c.Resolve<IVpnManager>()))
                 .AsImplementedInterfaces()
                 .AsSelf()
                 .SingleInstance();
@@ -265,7 +271,7 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<ExpiredSessionHandler>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterType<ReconnectState>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterType<SettingsBuilder>().SingleInstance();
-            builder.RegisterType<SystemState>().SingleInstance();
+            builder.RegisterType<SystemState>().As<ISystemState>().SingleInstance();
             builder.RegisterType<ReconnectManager>().AsImplementedInterfaces().SingleInstance();
             builder.Register(c => new VpnInfoChecker(
                 c.Resolve<Common.Configuration.Config>().VpnInfoCheckInterval.RandomizedWithDeviation(0.2),
@@ -273,6 +279,8 @@ namespace ProtonVPN.Core.Ioc
                 c.Resolve<IApiClient>(),
                 c.Resolve<IUserStorage>())).SingleInstance();
             builder.RegisterType<VpnReconnector>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<ReportFieldProvider>().As<IReportFieldProvider>().SingleInstance();
+            builder.RegisterType<PlanDowngradeHandler>().AsImplementedInterfaces().AsSelf().SingleInstance();
         }
     }
 }

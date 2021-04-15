@@ -61,12 +61,12 @@ namespace ProtonVPN.Common.Test.OS.Net.NetworkInterface
         {
             // Arrange
             var expected = new INetworkInterface[] {new TestNetworkInterface("t1"), new TestNetworkInterface("t2")};
-            _origin.Interfaces().Returns(expected);
+            _origin.GetInterfaces().Returns(expected);
             var subject = new SafeSystemNetworkInterfaces(_logger, _origin);
             // Act
-            var result = subject.Interfaces();
+            var result = subject.GetInterfaces();
             // Assert
-            _origin.Received().Interfaces();
+            _origin.Received().GetInterfaces();
             result.Should().HaveCount(2);
         }
 
@@ -76,10 +76,10 @@ namespace ProtonVPN.Common.Test.OS.Net.NetworkInterface
         {
             // Arrange
             var exception = (Exception)Activator.CreateInstance(exceptionType);
-            _origin.Interfaces().Throws(exception);
+            _origin.GetInterfaces().Throws(exception);
             var subject = new SafeSystemNetworkInterfaces(_logger, _origin);
             // Act
-            var result = subject.Interfaces();
+            var result = subject.GetInterfaces();
             // Assert
             result.Should().BeEmpty();
         }
@@ -89,10 +89,10 @@ namespace ProtonVPN.Common.Test.OS.Net.NetworkInterface
         {
             // Arrange
             var exception = new Exception();
-            _origin.Interfaces().Throws(exception);
+            _origin.GetInterfaces().Throws(exception);
             var subject = new SafeSystemNetworkInterfaces(_logger, _origin);
             // Act
-            Action action = () => subject.Interfaces();
+            Action action = () => subject.GetInterfaces();
             // Assert
             action.Should().Throw<Exception>();
         }
@@ -102,68 +102,10 @@ namespace ProtonVPN.Common.Test.OS.Net.NetworkInterface
         {
             // Arrange
             var exception = new NetworkInformationException();
-            _origin.Interfaces().Throws(exception);
+            _origin.GetInterfaces().Throws(exception);
             var subject = new SafeSystemNetworkInterfaces(_logger, _origin);
             // Act
-            _ = subject.Interfaces();
-            // Assert
-            _logger.ReceivedWithAnyArgs().Error("");
-        }
-
-        [TestMethod]
-        public void Interface_ShouldBe_Origin_Interface()
-        {
-            // Arrange
-            const string description = "Some interface";
-            var expected = new TestNetworkInterface("t3");
-            _origin.Interface(description).Returns(expected);
-            var subject = new SafeSystemNetworkInterfaces(_logger, _origin);
-            // Act
-            var result = subject.Interface(description);
-            // Assert
-            _origin.Received().Interface(description);
-            result.Id.Should().Be("t3");
-        }
-
-        [DataTestMethod]
-        [DataRow(typeof(NetworkInformationException))]
-        public void Interface_ShouldSuppress_ExpectedException(Type exceptionType)
-        {
-            // Arrange
-            const string description = "Another interface";
-            var exception = (Exception)Activator.CreateInstance(exceptionType);
-            _origin.Interface(description).Throws(exception);
-            var subject = new SafeSystemNetworkInterfaces(_logger, _origin);
-            // Act
-            var result = subject.Interface(description);
-            // Assert
-            result.Id.Should().BeEmpty();
-        }
-
-        [TestMethod]
-        public void Interface_ShouldPass_NotExpectedException()
-        {
-            // Arrange
-            const string description = "TG-ina";
-            var exception = new Exception();
-            _origin.Interface(description).Throws(exception);
-            var subject = new SafeSystemNetworkInterfaces(_logger, _origin);
-            // Act
-            Action action = () => subject.Interface(description);
-            // Assert
-            action.Should().Throw<Exception>();
-        }
-
-        [DataTestMethod]
-        public void Interface_ShouldLog_ExpectedException()
-        {
-            // Arrange
-            const string description = "CE-ina";
-            var exception = new NetworkInformationException();
-            _origin.Interface(description).Throws(exception);
-            var subject = new SafeSystemNetworkInterfaces(_logger, _origin);
-            // Act
-            _ = subject.Interface(description);
+            _ = subject.GetInterfaces();
             // Assert
             _logger.ReceivedWithAnyArgs().Error("");
         }

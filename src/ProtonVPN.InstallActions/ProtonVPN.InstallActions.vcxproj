@@ -63,17 +63,20 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>..\..\CppLibraries\Bit7z\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\ProtonVPN.IpFilterLib;..\..\CppLibraries\Bit7z\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalDependencies>msi.lib;..\..\CppLibraries\Bit7z\lib\bit7z_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>msi.lib;..\..\CppLibraries\Bit7z\lib\bit7z_d.lib;Ws2_32.lib;rpcrt4.lib;fwpuclnt.lib;iphlpapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /y /d "..\..\CppLibraries\7-Zip\7za.dll" "$(OutDir)"</Command>
     </PostBuildEvent>
+    <PreLinkEvent>
+      <Command>msbuild ..\ProtonVPN.IpFilterLib\ProtonVPN.IpFilterLib.vcxproj /property:Configuration=Debug /property:Platform=x86 -target:Clean;Build</Command>
+    </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -87,7 +90,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalIncludeDirectories>..\..\CppLibraries\Bit7z\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\ProtonVPN.IpFilterLib;..\..\CppLibraries\Bit7z\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -96,15 +99,23 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalDependencies>msi.lib;..\..\CppLibraries\Bit7z\lib\bit7z.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>msi.lib;..\..\CppLibraries\Bit7z\lib\bit7z.lib;Ws2_32.lib;rpcrt4.lib;fwpuclnt.lib;iphlpapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /y /d "..\..\CppLibraries\7-Zip\7za.dll" "$(OutDir)"</Command>
     </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreLinkEvent>
+      <Command>msbuild ..\ProtonVPN.IpFilterLib\ProtonVPN.IpFilterLib.vcxproj /property:Configuration=Release /property:Platform=x86 -target:Clean;Build</Command>
+    </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="EnvironmentVariable.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="Installer.h" />
     <ClInclude Include="PathManager.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="StartupApp.h" />
@@ -112,16 +123,20 @@
     <ClInclude Include="SystemState.h" />
     <ClInclude Include="Service.h" />
     <ClInclude Include="StringHelper.h" />
+    <ClInclude Include="TunAdapter.h" />
     <ClInclude Include="Utils.h" />
+    <ClInclude Include="Wintun.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="EnvironmentVariable.cpp" />
+    <ClCompile Include="Installer.cpp" />
     <ClCompile Include="PathManager.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="TunAdapter.cpp" />
     <ClCompile Include="StartupApp.cpp" />
     <ClCompile Include="StringConverter.cpp" />
     <ClCompile Include="SystemState.cpp" />
@@ -130,6 +145,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ProtonVPN.IpFilterLib\ProtonVPN.IpFilterLib.vcxproj">
+      <Project>{22381b63-9ba0-4df8-bdb1-ec4ae1b7470d}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

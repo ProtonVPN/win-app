@@ -19,45 +19,33 @@
 
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Os.Net;
-using ProtonVPN.Common.OS.Net.NetworkInterface;
+using ProtonVPN.Service.Network;
 using ProtonVPN.Vpn.Common;
 
 namespace ProtonVPN.Service.Vpn
 {
-    public class NetworkSettings : IVpnStateAware
+    internal class NetworkSettings : IVpnStateAware
     {
-        private readonly INetworkInterfaces _networkInterfaces;
+        private readonly ICurrentNetworkInterface _currentNetworkInterface;
         private readonly ILogger _logger;
-        private readonly Common.Configuration.Config _config;
 
-        public NetworkSettings(
-            ILogger logger,
-            INetworkInterfaces networkInterfaces,
-            Common.Configuration.Config config)
+        public NetworkSettings(ILogger logger, ICurrentNetworkInterface currentNetworkInterface)
         {
-            _config = config;
             _logger = logger;
-            _networkInterfaces = networkInterfaces;
+            _currentNetworkInterface = currentNetworkInterface;
         }
 
-        public bool ApplyNetworkSettings(NetworkSettingsConfig settingsConfig)
+        public bool ApplyNetworkSettings()
         {
-            uint tapInterfaceIndex = GetTapInterfaceIndex();
-            if (tapInterfaceIndex == 0)
+            uint interfaceIndex = _currentNetworkInterface.Index;
+            if (interfaceIndex == 0)
             {
                 return false;
             }
 
             try
             {
-                string localInterfaceIp = NetworkUtil.GetBestInterfaceIp(_config.OpenVpn.TapAdapterId).ToString();
-                NetworkUtil.SetLowestTapMetric(tapInterfaceIndex);
-                NetworkUtil.DeleteDefaultGatewayForIface(tapInterfaceIndex, localInterfaceIp);
-
-                if (settingsConfig.AddDefaultGatewayForTap)
-                {
-                    NetworkUtil.AddDefaultGatewayForIface(tapInterfaceIndex, localInterfaceIp);
-                }
+                NetworkUtil.SetLowestTapMetric(interfaceIndex);
             }
             catch (NetworkUtilException e)
             {
@@ -70,27 +58,20 @@ namespace ProtonVPN.Service.Vpn
 
         private void RestoreNetworkSettings()
         {
-            uint tapInterfaceIndex = GetTapInterfaceIndex();
-            if (tapInterfaceIndex == 0)
+            uint interfaceIndex = _currentNetworkInterface.Index;
+            if (interfaceIndex == 0)
             {
                 return;
             }
 
             try
             {
-                NetworkUtil.RestoreDefaultTapMetric(tapInterfaceIndex);
+                NetworkUtil.RestoreDefaultTapMetric(interfaceIndex);
             }
             catch (NetworkUtilException e)
             {
                 _logger.Error("Failed restore network settings. Error code: " + e.Code);
             }
-        }
-
-        private uint GetTapInterfaceIndex()
-        {
-            return _networkInterfaces.InterfaceIndex(
-                _config.OpenVpn.TapAdapterDescription,
-                _config.OpenVpn.TapAdapterId);
         }
 
         public void OnVpnDisconnected(VpnState state)

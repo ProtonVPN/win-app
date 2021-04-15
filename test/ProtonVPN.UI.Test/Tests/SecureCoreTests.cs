@@ -41,8 +41,6 @@ namespace ProtonVPN.UI.Test.Tests
             _mainWindow.QuickConnect();
             _mainWindowResults.CheckIfConnected();
             await _mainWindowResults.CheckIfCorrectIPAddressIsShownAsync();
-            _mainWindow.DisconnectUsingSidebarButton();
-            await _mainWindowResults.CheckIfCorrectIPAddressIsShownAsync();
             TestRailClient.MarkTestsByStatus();
 
             TestCaseId = 256;

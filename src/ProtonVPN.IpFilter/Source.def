@@ -1,0 +1,34 @@
+LIBRARY
+EXPORTS
+	BlockOutsideDns
+	IPFilterAbortTransaction
+	IPFilterCommitTransaction
+	IPFilterCreateAppFilter
+	IPFilterCreateCallout
+	IPFilterCreateDynamicSession
+	IPFilterCreateLayerFilter
+	IPFilterCreateLoopbackFilter
+	IPFilterCreateNetInterfaceFilter
+	IPFilterCreateProvider
+	IPFilterCreateProviderContext
+	IPFilterCreateRemoteIPv4Filter
+	IPFilterCreateRemoteNetworkIPv4Filter
+	IPFilterCreateRemoteTCPPortFilter
+	IPFilterCreateRemoteUDPPortFilter
+	IPFilterCreateSession
+	IPFilterCreateSublayer
+	IPFilterDestroyCallout
+	IPFilterDestroyCallouts
+	IPFilterDestroyFilter
+	IPFilterDestroyProvider
+	IPFilterDestroyProviderContext
+	IPFilterDestroySession
+	IPFilterDestroySublayer
+	IPFilterDestroySublayerFilters
+	IPFilterGetSublayerFilterCount
+	IPFilterDoesCalloutExist
+	IPFilterDoesFilterExist
+	IPFilterDoesProviderContextExist
+	IPFilterDoesSublayerExist
+	IPFilterIsProviderRegistered
+	IPFilterStartTransaction

@@ -2,7 +2,6 @@ import json
 import random
 from urllib.request import urlopen
 
-
 def load():
     # Constants
 
@@ -23,18 +22,25 @@ def load():
                                        if (logical_server['Features'] & secure_core_flag) == 0]
     print(''.join(['Number of non Secure Core logical servers: ', str(len(non_secure_core_logical_servers))]))
 
-    random_logical_servers = random.sample(non_secure_core_logical_servers, num_guest_hole_servers)
-    print(''.join(['Number of random logical servers: ', str(len(random_logical_servers))]))
+    random.shuffle(non_secure_core_logical_servers)
 
     servers_str: str = ""
+    unique_entries: array = []
 
-    for logical_server in random_logical_servers:
+    for logical_server in non_secure_core_logical_servers:
         server = logical_server['Servers'][0]
+        if server['EntryIP'] in unique_entries:
+            continue
+
         server_json_object = "".join(['{"host":"', server['Domain'], '","ip":"', server['EntryIP'], '"}'])
         servers_str = ",".join([servers_str, server_json_object])
+        unique_entries.append(server['EntryIP'])
+
+        if len(unique_entries) >= num_guest_hole_servers:
+            break
 
     servers_str = servers_str.lstrip(',')
-    
+
     with open('.\Setup\GuestHoleServers.json', 'w') as file:
         file.write("".join(['[', servers_str, ']']))
 

@@ -45,6 +45,9 @@ namespace ProtonVPN.Common.Configuration
         public string DiagnosticsLogFolder { get; internal set; }
 
         [Required]
+        public string DiagnosticsZipPath { get; internal set; }
+
+        [Required]
         public string TranslationsFolder { get; internal set; }
 
         [Required]

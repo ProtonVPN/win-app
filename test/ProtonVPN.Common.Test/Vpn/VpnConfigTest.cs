@@ -31,7 +31,7 @@ namespace ProtonVPN.Common.Test.Vpn
         [TestMethod]
         public void VpnConfig_ShouldThrow_WhenPortIsNotValid()
         {
-            var portConfig = GetPortConfig(new List<int>
+            Dictionary<VpnProtocol, IReadOnlyCollection<int>> portConfig = GetPortConfig(new List<int>
             {
                 1,
                 2,
@@ -42,14 +42,11 @@ namespace ProtonVPN.Common.Test.Vpn
                 9999999
             });
 
-            var customDns = new List<string>
-            {
-                "1.1.1.1",
-                "8.8.8.8",
-            };
+            var customDns = new List<string> {"1.1.1.1", "8.8.8.8",};
 
             // Act
-            Action action = () => new VpnConfig(portConfig, customDns, SplitTunnelMode.Disabled, new List<string>());
+            Action action = () => new VpnConfig(portConfig, customDns, SplitTunnelMode.Disabled, new List<string>(),
+                useTunAdapter: false);
 
             // Assert
             action.Should().Throw<ArgumentException>();
@@ -58,22 +55,13 @@ namespace ProtonVPN.Common.Test.Vpn
         [TestMethod]
         public void VpnConfig_ShouldThrow_WhenDnsIsNotValid()
         {
-            var portConfig = GetPortConfig(new List<int>
-            {
-                1,
-                2,
-                3,
-            });
+            Dictionary<VpnProtocol, IReadOnlyCollection<int>> portConfig = GetPortConfig(new List<int> {1, 2, 3,});
 
-            var customDns = new List<string>
-            {
-                "1.1.1.1",
-                "8.8.8.8",
-                "--invalid-ip",
-            };
+            var customDns = new List<string> {"1.1.1.1", "8.8.8.8", "--invalid-ip",};
 
             // Act
-            Action action = () => new VpnConfig(portConfig, customDns, SplitTunnelMode.Disabled, new List<string>());
+            Action action = () =>
+                new VpnConfig(portConfig, customDns, SplitTunnelMode.Disabled, new List<string>(), useTunAdapter: false);
 
             // Assert
             action.Should().Throw<ArgumentException>();
@@ -81,12 +69,7 @@ namespace ProtonVPN.Common.Test.Vpn
 
         private Dictionary<VpnProtocol, IReadOnlyCollection<int>> GetPortConfig(List<int> ports)
         {
-            return new Dictionary<VpnProtocol, IReadOnlyCollection<int>>
-            {
-                {
-                    VpnProtocol.OpenVpnTcp, ports
-                }
-            };
+            return new Dictionary<VpnProtocol, IReadOnlyCollection<int>> {{VpnProtocol.OpenVpnTcp, ports}};
         }
     }
 }

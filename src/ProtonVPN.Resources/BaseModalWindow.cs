@@ -17,34 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
-using System.Windows;
-using System.Windows.Input;
-
 namespace ProtonVPN.Resource
 {
     public class BaseModalWindow : WindowBase
     {
-        public BaseModalWindow()
-        {
-            PreviewKeyDown += HandleEsc;
-        }
-
-        protected override void OnActivated(EventArgs e)
-        {
-            base.OnActivated(e);
-            if (WindowState == WindowState.Minimized)
-            {
-                WindowState = WindowState.Normal;
-            }
-        }
-
-        private void HandleEsc(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Escape)
-            {
-                Close();
-            }
-        }
     }
 }

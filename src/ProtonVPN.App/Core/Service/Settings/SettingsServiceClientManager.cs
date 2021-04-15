@@ -17,16 +17,19 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Logging;
-using ProtonVPN.Core.Settings;
 using System;
+using System.ComponentModel;
 using System.ServiceModel;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.KillSwitch;
+using ProtonVPN.Common.Logging;
+using ProtonVPN.Core.Settings;
+using ProtonVPN.Service.Contract.Settings;
 
 namespace ProtonVPN.Core.Service.Settings
 {
-    internal class SettingsServiceClientManager
+    public class SettingsServiceClientManager : ISettingsServiceClientManager, ISettingsAware
     {
         private readonly SettingsServiceClient _client;
         private readonly ILogger _logger;
@@ -34,34 +37,52 @@ namespace ProtonVPN.Core.Service.Settings
 
         public SettingsServiceClientManager(
             SettingsServiceClient client,
-            IAppSettings appSettings,
             ILogger logger,
             SettingsContractProvider settingsContractProvider)
         {
             _settingsContractProvider = settingsContractProvider;
             _client = client;
             _logger = logger;
-
-            appSettings.PropertyChanged += async (s, e) =>
-            {
-                if (e.PropertyName == nameof(IAppSettings.KillSwitch) ||
-                    e.PropertyName == nameof(IAppSettings.Ipv6LeakProtection))
-                {
-                    _logger.Info($"Setting \"{e.PropertyName}\" changed");
-                    await UpdateServiceSettings();
-                }
-            };
         }
 
         public async Task UpdateServiceSettings()
         {
+            await UpdateServiceSettingsInternal(_settingsContractProvider.GetSettingsContract());
+        }
+
+        public async Task DisableKillSwitch()
+        {
+            SettingsContract settingsContract = _settingsContractProvider.GetSettingsContract();
+            settingsContract.KillSwitchMode = KillSwitchMode.Off;
+            await UpdateServiceSettingsInternal(settingsContract);
+        }
+
+        public async Task EnableHardKillSwitch()
+        {
+            SettingsContract settingsContract = _settingsContractProvider.GetSettingsContract();
+            settingsContract.KillSwitchMode = KillSwitchMode.Hard;
+            await UpdateServiceSettingsInternal(settingsContract);
+        }
+
+        private async Task UpdateServiceSettingsInternal(SettingsContract settingsContract)
+        {
             try
             {
-                await Task.Run(() => _client.Apply(_settingsContractProvider.GetSettingsContract()));
+                await Task.Run(() => _client.Apply(settingsContract));
             }
             catch (Exception ex) when (ex is CommunicationException || ex is TimeoutException || ex is TaskCanceledException)
             {
                 _logger.Error(ex.CombinedMessage());
+            }
+        }
+
+        public async void OnAppSettingsChanged(PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(IAppSettings.KillSwitchMode) ||
+                e.PropertyName == nameof(IAppSettings.Ipv6LeakProtection))
+            {
+                _logger.Info($"Setting \"{e.PropertyName}\" changed");
+                await UpdateServiceSettings();
             }
         }
     }

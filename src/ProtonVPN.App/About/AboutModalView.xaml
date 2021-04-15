@@ -27,7 +27,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         xmlns:local="clr-namespace:ProtonVPN.About"
                         xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
                         xmlns:resource="clr-namespace:ProtonVPN.Resource;assembly=ProtonVPN.Resource"
-                        Style="{StaticResource BaseModalStyle}"
+                        Style="{StaticResource BaseWindowStyle}"
                         SizeToContent="Height"
                         Title="{translations:Loc About_ttl}"
                         Height="Auto" Width="600"

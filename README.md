@@ -2,15 +2,17 @@
 
 Copyright (c) 2020 Proton Technologies AG
 
-This repository holds the ProtonVPN Windows app.  
-For a detailed build information see [BUILD](BUILD.md).  
-For licensing information see [COPYING](COPYING.md).  
+This repository holds the ProtonVPN Windows app.
+For a detailed build information see [BUILD](BUILD.md).
+For licensing information see [COPYING](COPYING.md).
 For contribution policy see [CONTRIBUTING](CONTRIBUTING.md).
 
 ## Description
 
 The [ProtonVPN](https://protonvpn.com) Windows app is intended for every ProtonVPN service user,
 paid or free and supports all functionalities available to authenticated users (user signup instead happens on the web site).
+
+You can download the latest stable release, either on [ProtonVPN official website](https://protonvpn.com/download) or directly on the [official GitHub repository](https://github.com/ProtonVPN/win-app/releases/latest).
 
 ### The application
 
@@ -24,7 +26,7 @@ The app consists of these interacting parts:
 
 #### GUI application
 
-The ProtonVPN GUI app is installed into "C:\Program Files (x86)\Proton Technologies\ProtonVPN" 
+The ProtonVPN GUI app is installed into "C:\Program Files (x86)\Proton Technologies\ProtonVPN"
 directory by default. The main executable is "ProtonVPN.exe".
 
 ProtonVPN GUI app starts ProtonVPN Service and Update Service when launched and stops services
@@ -32,9 +34,9 @@ when closed.
 
 App logs are saved to "%LOCALAPPDATA%\ProtonVPN\Logs" directory.
 
-The ProtonVPN build using Debug configuration optionally loads its configuration from file 
+The ProtonVPN build using Debug configuration optionally loads its configuration from file
 "ProtonVPN.config" in the app directory. This file is not deployed during install. If the configuration
-file doesn't exist or contains not valid values the app tries to save default configuration 
+file doesn't exist or contains not valid values the app tries to save default configuration
 used in the app.
 
 To monitor Http traffic of ProtonVPN GUI app using Fiddler or another tool, you might need to disable
@@ -93,7 +95,7 @@ following content or an existing file should be updated to contain the "<system.
 ```
 <?xml version="1.0" encoding="utf-8"?>
 <configuration>
-  <startup> 
+  <startup>
     <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.7.2" />
   </startup>
   <system.net>
@@ -121,7 +123,7 @@ TAP adapter. See [win-openvpn](https://github.com/ProtonVPN/win-openvpn) reposit
 
 #### TAP adapter
 
-TAP adapter "TAP-ProtonVPN Windows Adapter V9" is used by the OpenVPN. 
+TAP adapter "TAP-ProtonVPN Windows Adapter V9" is used by the OpenVPN.
 
 The TAP adapter is installed into "C:\Program Files (x86)\Proton Technologies\ProtonVPNTap"
 directory by default.
@@ -143,11 +145,11 @@ when disconnecting by ProtonVPN Service.
 The main repository folder contains the .NET Visual Studio solution of the
 ProtonVPN Windows app named ProtonVPN.
 
-### Folder "ci" 
+### Folder "ci"
 
 Contains continuous integration scripts.
 
-### Folder "packages" 
+### Folder "packages"
 
 It contains NuGet packages of the ProtonVPN solution.
 
@@ -168,7 +170,7 @@ This folder contains Visual Studio solution projects.
 
 ### Folder "src\bin"
 
-This folder contains Visual Studio project build output. This folder can be safely 
+This folder contains Visual Studio project build output. This folder can be safely
 deleted as it's content is recreated by building the solution.
 
 ### Folder "src\srp"
@@ -177,11 +179,11 @@ This folder contains GIT submodule of [ProtonMail SRP library](https://github.co
 
 ### Folder "test"
 
-This folder contains test projects of the ProtonVPN solution. 
+This folder contains test projects of the ProtonVPN solution.
 
 ## Solution
 
-ProtonVPN Windows app is created using C# and C++ programming languages, WPF and MVVM 
+ProtonVPN Windows app is created using C# and C++ programming languages, WPF and MVVM
 technologies. The Visual Studio solution consists of a series of projects:
 - **ProtonVPN.App** - the main project which builds to ProtonVPN GUI app executable.
   It contains startup logic and GUI (view models and views).

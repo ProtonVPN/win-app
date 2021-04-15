@@ -52,24 +52,17 @@ namespace ProtonVPN.Modals
             return _scheduler.Schedule<bool?>(() =>
             {
                 if (ModalOpened<T>())
+                {
                     return false;
+                }
 
                 return _windowManager.ShowDialog(Screen<T>(options), null, Settings());
             });
         }
 
-        public void Close<T>(bool? dialogResult = null) where T : IModal
+        private bool ModalOpened<T>()
         {
-            _container.Resolve<T>().TryClose(dialogResult);
-        }
-
-        public void CloseAll()
-        {
-            var dialogs = _container.Resolve<IEnumerable<IModal>>().Where(m => !m.StayOnTop);
-            foreach (var dialog in dialogs)
-            {
-                dialog.TryClose(false);
-            }
+            return _modalWindows.List().Any(x => x.DataContext.GetType() == typeof(T));
         }
 
         private dynamic Settings()
@@ -82,14 +75,24 @@ namespace ProtonVPN.Modals
 
         private T Screen<T>(dynamic options = null) where T : IModal
         {
-            var screen = _container.Resolve<T>();
+            T screen = _container.Resolve<T>();
             screen.BeforeOpenModal(options);
             return screen;
         }
 
-        private bool ModalOpened<T>()
+        public void Close<T>(bool? dialogResult = null) where T : IModal
         {
-            return _modalWindows.List().Any(x => x.DataContext.GetType() == typeof(T));
+            _container.Resolve<T>().TryClose(dialogResult);
+        }
+
+        public void CloseAll()
+        {
+            IEnumerable<IModal> dialogs = _container.Resolve<IEnumerable<IModal>>()
+                .Where(m => !m.StayOnTop);
+            foreach (IModal dialog in dialogs)
+            {
+                dialog.TryClose(false);
+            }
         }
     }
 }

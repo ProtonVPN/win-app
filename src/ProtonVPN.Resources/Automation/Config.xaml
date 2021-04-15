@@ -38,11 +38,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <system:String x:Key="StartMinimizedCombobox">StartMinimizedCombobox</system:String>
     <system:String x:Key="ProtocolCombobox">StartMinimizedCombobox</system:String>
     <system:String x:Key="Ipv6ProtectionCheckbox">Ipv6ProtectionCheckbox</system:String>
+    <system:String x:Key="NetworkDriverCheckbox">NetworkDriverCheckbox</system:String>
     <system:String x:Key="ShowNotificationsCheckbox">ShowNotificationsCheckbox</system:String>
     <system:String x:Key="EarlyAccessCheckbox">EarlyAccessCheckbox</system:String>
     <system:String x:Key="CancelButtonId">CancelButton</system:String>
     <system:String x:Key="SaveButton">SaveButton</system:String>
     <system:String x:Key="CloseButtonId">CloseButton</system:String>
+    <system:String x:Key="ReportProblemButtonId">ReportProblemButtonId</system:String>
+    <system:String x:Key="OpenSettingsButtonId">OpenSettingsButtonId</system:String>
+    <system:String x:Key="SwitchToTapButtonId">SwitchToTapButtonId</system:String>
     <system:String x:Key="TryAgainButtonId">TryAgainButton</system:String>
     <system:String x:Key="ContinueButtonId">ContinueButton</system:String>
     <system:String x:Key="SidebarModeButtonId">SidebarModeButton</system:String>

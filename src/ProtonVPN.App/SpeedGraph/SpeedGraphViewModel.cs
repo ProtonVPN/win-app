@@ -17,31 +17,34 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Threading;
 using OxyPlot;
 using OxyPlot.Series;
+using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.MVVM;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Vpn;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Windows.Threading;
 
 namespace ProtonVPN.SpeedGraph
 {
     internal class SpeedGraphViewModel : ViewModel, IVpnStateAware, ILogoutAware
     {
         private ViewResolvingPlotModel _plotModel;
-        private readonly LineSeries _downloadAreaSeries = new LineSeries();
-        private List<DataPoint> _downloadDataPoints = new List<DataPoint>();
-        private readonly LineSeries _uploadAreaSeries = new LineSeries();
-        private List<DataPoint> _uploadDataPoints = new List<DataPoint>();
+        private readonly LineSeries _downloadAreaSeries = new();
+        private List<DataPoint> _downloadDataPoints = new();
+        private readonly LineSeries _uploadAreaSeries = new();
+        private List<DataPoint> _uploadDataPoints = new();
         private int _secondsPassed;
         private readonly int _maxDataPoints = 60;
         private readonly VpnConnectionSpeed _speedTracker;
         private readonly DispatcherTimer _timer;
+        private readonly ILogger _logger;
 
         private double _totalBytesDownloaded;
         private double _totalBytesUploaded;
@@ -49,8 +52,9 @@ namespace ProtonVPN.SpeedGraph
         private double _currentUploadSpeed;
         private double _maxBandwidth;
 
-        public SpeedGraphViewModel(VpnConnectionSpeed speedTracker)
+        public SpeedGraphViewModel(VpnConnectionSpeed speedTracker, ILogger logger)
         {
+            _logger = logger;
             _speedTracker = speedTracker;
 
             InitPlotModel();
@@ -58,10 +62,7 @@ namespace ProtonVPN.SpeedGraph
             InitDownloadSeries();
             InitUploadSeries();
 
-            _timer = new DispatcherTimer
-            {
-                Interval = TimeSpan.FromSeconds(1)
-            };
+            _timer = new DispatcherTimer {Interval = TimeSpan.FromSeconds(1)};
             _timer.Tick += DrawSpeedLines;
         }
 
@@ -113,7 +114,11 @@ namespace ProtonVPN.SpeedGraph
 
         public void OnUserLoggedOut()
         {
-            ResetGraph();
+            if (_timer.IsEnabled)
+            {
+                _logger.Info("Session graph stopped due to logout");
+                ResetGraph();
+            }
         }
 
         public void InitDownloadSeries()
@@ -144,10 +149,12 @@ namespace ProtonVPN.SpeedGraph
 
                 PlotModel.InvalidatePlot(true);
 
+                _logger.Info("Session graph started.");
                 _timer.Start();
             }
-            else
+            else if (_timer.IsEnabled)
             {
+                _logger.Info("Session graph stopped due to VPN status change: " + e.State.Status);
                 ResetGraph();
             }
 
@@ -156,8 +163,8 @@ namespace ProtonVPN.SpeedGraph
 
         private void ResetGraph()
         {
-            ClearSeries();
             _timer.Stop();
+            ClearSeries();
             SecondsPassed = 0;
 
             TotalBytesDownloaded = 0;
@@ -170,10 +177,7 @@ namespace ProtonVPN.SpeedGraph
 
         private void InitPlotModel()
         {
-            PlotModel = new ViewResolvingPlotModel
-            {
-                PlotAreaBorderThickness = new OxyThickness(0)
-            };
+            PlotModel = new ViewResolvingPlotModel {PlotAreaBorderThickness = new OxyThickness(0)};
             PlotModel.Updated += HideAxis;
         }
 
@@ -205,21 +209,8 @@ namespace ProtonVPN.SpeedGraph
 
         private double GetMaxBandwidthValue()
         {
-            var max = 0d;
-
-            foreach (var point in _uploadDataPoints)
-            {
-                if (point.Y > max)
-                    max = point.Y;
-            }
-
-            foreach (var point in _downloadDataPoints)
-            {
-                if (point.Y > max)
-                    max = point.Y;
-            }
-
-            return max;
+            double max = _uploadDataPoints.Select(point => point.Y).Prepend(0).Max();
+            return _downloadDataPoints.Select(point => point.Y).Prepend(max).Max();
         }
 
         private void HideAxis(object sender, EventArgs args)
@@ -238,7 +229,7 @@ namespace ProtonVPN.SpeedGraph
 
         private void DrawDownloadSpeed()
         {
-            var speed = _speedTracker.Speed();
+            VpnSpeed speed = _speedTracker.Speed();
             TotalBytesDownloaded = _speedTracker.TotalDownloaded();
             CurrentDownloadSpeed = speed.DownloadSpeed;
 
@@ -254,7 +245,7 @@ namespace ProtonVPN.SpeedGraph
 
         private void DrawUploadSpeed()
         {
-            var speed = _speedTracker.Speed();
+            VpnSpeed speed = _speedTracker.Speed();
             TotalBytesUploaded = _speedTracker.TotalUploaded();
             CurrentUploadSpeed = speed.UploadSpeed;
 
@@ -270,7 +261,7 @@ namespace ProtonVPN.SpeedGraph
 
         private void PopulateInitialValues(List<DataPoint> list)
         {
-            for (var i = 0; i < _maxDataPoints; i++)
+            for (int i = 0; i < _maxDataPoints; i++)
             {
                 list.Add(new DataPoint(i, 1));
             }

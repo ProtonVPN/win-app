@@ -25,14 +25,16 @@ namespace ProtonVPN.Core.Servers.Models
         public string EntryIp { get; }
         public string ExitIp { get; }
         public string Domain { get; }
+        public string Label { get; }
         public sbyte Status { get; }
 
-        public PhysicalServer(string id, string entryIp, string exitIp, string domain, sbyte status)
+        public PhysicalServer(string id, string entryIp, string exitIp, string domain, string label, sbyte status)
         {
             Id = id;
             EntryIp = entryIp;
             ExitIp = exitIp;
             Domain = domain;
+            Label = label;
             Status = status;
         }
     }

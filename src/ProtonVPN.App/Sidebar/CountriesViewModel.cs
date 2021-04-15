@@ -252,7 +252,7 @@ namespace ProtonVPN.Sidebar
             }
         }
 
-        public async Task OnVpnPlanChangedAsync(string plan)
+        public async Task OnVpnPlanChangedAsync(VpnPlanChangedEventArgs e)
         {
             CreateList();
         }

@@ -628,15 +628,6 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Exiting the application will disconnect the active VPN connection. Do you want to continue?.
-        /// </summary>
-        public static string App_msg_ExitConnectedConfirm {
-            get {
-                return ResourceManager.GetString("App_msg_ExitConnectedConfirm", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Logging out of the application will disconnect the active VPN connection. Do you want to continue?.
         /// </summary>
         public static string App_msg_LogoutConnectedConfirm {
@@ -646,7 +637,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Updating the application will disconnect the active VPN connection. Do you want to continue?.
+        ///   Looks up a localized string similar to To complete the update process, ProtonVPN will temporary disconnect and deactivate Permanent Kill Switch if any of these are active. Do you want to continue?.
         /// </summary>
         public static string App_msg_UpdateConnectedConfirm {
             get {
@@ -3271,6 +3262,51 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string Dialogs_Delinquency_btn_Close {
+            get {
+                return ResourceManager.GetString("Dialogs_Delinquency_btn_Close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check invoices.
+        /// </summary>
+        public static string Dialogs_Delinquency_btn_Invoices {
+            get {
+                return ResourceManager.GetString("Dialogs_Delinquency_btn_Invoices", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The account is flagged as delinquent due to unpaid invoices. You can continue to use ProtonVPN, but any paid features are now disabled.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command=&quot;{Binding ReadAboutDelinquencyCommand}&quot;&gt;Read more about delinquency.&lt;/Hyperlink&gt;.
+        /// </summary>
+        public static string Dialogs_Delinquency_msg_Delinquency {
+            get {
+                return ResourceManager.GetString("Dialogs_Delinquency_msg_Delinquency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delinquent account.
+        /// </summary>
+        public static string Dialogs_Delinquency_ttl {
+            get {
+                return ResourceManager.GetString("Dialogs_Delinquency_ttl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ok.
+        /// </summary>
+        public static string Dialogs_btn_Ok {
+            get {
+                return ResourceManager.GetString("Dialogs_btn_Ok", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enable.
         /// </summary>
         public static string Dialogs_DisabledService_btn_Enable {
@@ -3316,11 +3352,11 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DISABLE.
+        ///   Looks up a localized string similar to Disable Kill Switch.
         /// </summary>
-        public static string Dialogs_DisconnectError_btn_Disable {
+        public static string Dialogs_DisconnectError_btn_DisableKillSwitch {
             get {
-                return ResourceManager.GetString("Dialogs_DisconnectError_btn_Disable", resourceCulture);
+                return ResourceManager.GetString("Dialogs_DisconnectError_btn_DisableKillSwitch", resourceCulture);
             }
         }
         
@@ -3334,7 +3370,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to All TAP adapters are in use..
+        ///   Looks up a localized string similar to Your network adapter is currently in use..
         /// </summary>
         public static string Dialogs_DisconnectError_msg_AllAdaptersInUse {
             get {
@@ -3352,7 +3388,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kill Switch is blocking all connections to avoid leaking your data. To dismiss this window, click CLOSE. If you would like to temporarily disable Kill Switch and reconnect to the Internet WITHOUT VPN protection, click DISABLE. To turn off Kill Switch permanently, go to &lt;Hyperlink Command=&quot;{Binding SettingsCommand}&quot;&gt;Settings.&lt;/Hyperlink&gt;.
+        ///   Looks up a localized string similar to Kill Switch is protecting your IP by blocking all connections. In case of trouble you can disable Kill Switch..
         /// </summary>
         public static string Dialogs_DisconnectError_msg_KillSwitch {
             get {
@@ -3370,7 +3406,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TAP adapter is missing..
+        ///   Looks up a localized string similar to The network adapter is missing..
         /// </summary>
         public static string Dialogs_DisconnectError_msg_NoTap {
             get {
@@ -3379,7 +3415,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Current TAP adapter version is outdated..
+        ///   Looks up a localized string similar to The network adapter version is outdated..
         /// </summary>
         public static string Dialogs_DisconnectError_msg_OldVersion {
             get {
@@ -3447,6 +3483,78 @@ namespace ProtonVPN.Translations.Properties {
         public static string Dialogs_DoNotShowThisMessageAgain {
             get {
                 return ResourceManager.GetString("Dialogs_DoNotShowThisMessageAgain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string Dialogs_Exit_btn_Cancel {
+            get {
+                return ResourceManager.GetString("Dialogs_Exit_btn_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exit.
+        /// </summary>
+        public static string Dialogs_Exit_btn_Exit {
+            get {
+                return ResourceManager.GetString("Dialogs_Exit_btn_Exit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you want to continue?.
+        /// </summary>
+        public static string Dialogs_Exit_msg_Confirm {
+            get {
+                return ResourceManager.GetString("Dialogs_Exit_msg_Confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exiting the application will disconnect you from the VPN..
+        /// </summary>
+        public static string Dialogs_Exit_msg_Connected {
+            get {
+                return ResourceManager.GetString("Dialogs_Exit_msg_Connected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kill Switch is blocking all connections to avoid leaking your data. Exiting the application will disable the Kill Switch..
+        /// </summary>
+        public static string Dialogs_Exit_msg_KillSwitchOn {
+            get {
+                return ResourceManager.GetString("Dialogs_Exit_msg_KillSwitchOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Permanent Kill Switch is enabled. Exiting the application will block all the outgoing connections until ProtonVPN is connected again..
+        /// </summary>
+        public static string Dialogs_Exit_msg_PermanentKillSwitch {
+            get {
+                return ResourceManager.GetString("Dialogs_Exit_msg_PermanentKillSwitch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to With Permanent Kill Switch, if the VPN is not connected for any reason, you won&apos;t be able to access the Internet..
+        /// </summary>
+        public static string Dialogs_KillSwitchConfirmation_msg {
+            get {
+                return ResourceManager.GetString("Dialogs_KillSwitchConfirmation_msg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable Permanent Kill Switch?.
+        /// </summary>
+        public static string Dialogs_KillSwitchConfirmation_ttl {
+            get {
+                return ResourceManager.GetString("Dialogs_KillSwitchConfirmation_ttl", resourceCulture);
             }
         }
         
@@ -3586,7 +3694,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Continue.
+        ///   Looks up a localized string similar to Restart.
         /// </summary>
         public static string Dialogs_Reboot_btn_Reboot {
             get {
@@ -3595,7 +3703,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Skip Reboot.
+        ///   Looks up a localized string similar to Continue without.
         /// </summary>
         public static string Dialogs_Reboot_btn_SkipReboot {
             get {
@@ -3604,7 +3712,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ProtonVPN has detected a pending installation that requires to reboot your system before proceeding the installation. Click &quot;Skip Reboot&quot; if you want to proceed without restarting your system. Click Continue to reboot and automatically resume the installation process..
+        ///   Looks up a localized string similar to To avoid any ProtonVPN errors, we strongly recommend restarting your computer to update other applications first. ProtonVPN will automatically resume installation afterward. Restart now?.
         /// </summary>
         public static string Dialogs_Reboot_msg {
             get {
@@ -3613,7 +3721,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ProtonVPN.
+        ///   Looks up a localized string similar to Your computer needs to restart.
         /// </summary>
         public static string Dialogs_Reboot_ttl {
             get {
@@ -3636,6 +3744,15 @@ namespace ProtonVPN.Translations.Properties {
         public static string Dialogs_ServiceStart_msg_FailedToStart {
             get {
                 return ResourceManager.GetString("Dialogs_ServiceStart_msg_FailedToStart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to For Split Tunnel to function properly, you must disable Kill Switch..
+        /// </summary>
+        public static string Dialogs_SplitTunnelWarning_msg {
+            get {
+                return ResourceManager.GetString("Dialogs_SplitTunnelWarning_msg", resourceCulture);
             }
         }
         
@@ -3771,6 +3888,42 @@ namespace ProtonVPN.Translations.Properties {
         public static string Dialogs_ttl_Warning {
             get {
                 return ResourceManager.GetString("Dialogs_ttl_Warning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open Settings.
+        /// </summary>
+        public static string Dialogs_TunFallback_btn_OpenSettings {
+            get {
+                return ResourceManager.GetString("Dialogs_TunFallback_btn_OpenSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ProtonVPN uses the TUN adapter by default for improved performance, but it is not responding correctly. You are therefore now using the TAP adapter. You can switch between TAP and TUN in the Advanced Settings..
+        /// </summary>
+        public static string Dialogs_TunFallback_msg {
+            get {
+                return ResourceManager.GetString("Dialogs_TunFallback_msg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Switch to TAP.
+        /// </summary>
+        public static string Dialogs_TunInUse_btn_SwitchToTap {
+            get {
+                return ResourceManager.GetString("Dialogs_TunInUse_btn_SwitchToTap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ProtonVPN could not connect because the TUN network adapter is already in use. Please disconnect any active VPNs and retry. Alternatively, switch to the TAP adapter (you can change back to TUN in the Advanced Settings)..
+        /// </summary>
+        public static string Dialogs_TunInUse_msg {
+            get {
+                return ResourceManager.GetString("Dialogs_TunInUse_msg", resourceCulture);
             }
         }
         
@@ -3978,16 +4131,6 @@ namespace ProtonVPN.Translations.Properties {
         public static string Login_lnk_ResetPassword {
             get {
                 return ResourceManager.GetString("Login_lnk_ResetPassword", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Kill Switch is blocking all connections to avoid leaking your data.&lt;LineBreak/&gt;
-        ///Exiting the application will disable the Kill Switch. Do you want to continue?.
-        /// </summary>
-        public static string Login_msg_ExitKillSwitchConfirm {
-            get {
-                return ResourceManager.GetString("Login_msg_ExitKillSwitchConfirm", resourceCulture);
             }
         }
         
@@ -4267,6 +4410,51 @@ namespace ProtonVPN.Translations.Properties {
         public static string Onboarding_ttl_Step_4 {
             get {
                 return ResourceManager.GetString("Onboarding_ttl_Step_4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Report this problem.
+        /// </summary>
+        public static string Popup_TunFallback_btn_ReportProblem {
+            get {
+                return ResourceManager.GetString("Popup_TunFallback_btn_ReportProblem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occured, please try again later..
+        /// </summary>
+        public static string Popup_TunFallback_lbl_FailedToSend {
+            get {
+                return ResourceManager.GetString("Popup_TunFallback_lbl_FailedToSend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sending report....
+        /// </summary>
+        public static string Popup_TunFallback_lbl_SendingReport {
+            get {
+                return ResourceManager.GetString("Popup_TunFallback_lbl_SendingReport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Report sent successfully..
+        /// </summary>
+        public static string Popup_TunFallback_lbl_SentSuccessfully {
+            get {
+                return ResourceManager.GetString("Popup_TunFallback_lbl_SentSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The ProtonVPN TUN adapter provides improved performance, but it is not responding correctly.&lt;LineBreak/&gt;&lt;LineBreak/&gt;Therefore, TAP adapter is now set as default.&lt;LineBreak/&gt;&lt;LineBreak/&gt;You can switch between TAP and TUN in the &lt;Hyperlink Command=&quot;{Binding OpenAdvancedSettingsCommand}&quot;&gt;Advanced Settings.&lt;/Hyperlink&gt;.
+        /// </summary>
+        public static string Popup_TunFallback_msg {
+            get {
+                return ResourceManager.GetString("Popup_TunFallback_msg", resourceCulture);
             }
         }
         
@@ -4802,15 +4990,6 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to GET PLUS.
-        /// </summary>
-        public static string QuickSettings_btn_GetPlus {
-            get {
-                return ResourceManager.GetString("QuickSettings_btn_GetPlus", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Kill Switch Off.
         /// </summary>
         public static string QuickSettings_btn_KillSwitchOff {
@@ -4865,6 +5044,15 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Permanent Kill Switch.
+        /// </summary>
+        public static string QuickSettings_btn_PermanentKillSwitch {
+            get {
+                return ResourceManager.GetString("QuickSettings_btn_PermanentKillSwitch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Port Forwarding Off.
         /// </summary>
         public static string QuickSettings_btn_PortForwardingOff {
@@ -4897,6 +5085,15 @@ namespace ProtonVPN.Translations.Properties {
         public static string QuickSettings_btn_SecureCoreOn {
             get {
                 return ResourceManager.GetString("QuickSettings_btn_SecureCoreOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UPGRADE.
+        /// </summary>
+        public static string QuickSettings_btn_Upgrade {
+            get {
+                return ResourceManager.GetString("QuickSettings_btn_Upgrade", resourceCulture);
             }
         }
         
@@ -5225,6 +5422,24 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Network driver.
+        /// </summary>
+        public static string Settings_Advanced_lbl_NetworkDriver {
+            get {
+                return ResourceManager.GetString("Settings_Advanced_lbl_NetworkDriver", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Network drivers can impact your connection and speed. The new TUN adapter provides higher speed, fallback on TAP adapter if you encounter any connectivity problem..
+        /// </summary>
+        public static string Settings_Advanced_lbl_NetworkDriver_info {
+            get {
+                return ResourceManager.GetString("Settings_Advanced_lbl_NetworkDriver_info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Split Tunneling.
         /// </summary>
         public static string Settings_Advanced_lbl_SplitTunnel {
@@ -5239,6 +5454,24 @@ namespace ProtonVPN.Translations.Properties {
         public static string Settings_Advanced_lbl_SplitTunnel_Info {
             get {
                 return ResourceManager.GetString("Settings_Advanced_lbl_SplitTunnel_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TAP adapter.
+        /// </summary>
+        public static string Settings_Advanced_lbl_Tap {
+            get {
+                return ResourceManager.GetString("Settings_Advanced_lbl_Tap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TUN adapter (beta).
+        /// </summary>
+        public static string Settings_Advanced_lbl_Tun {
+            get {
+                return ResourceManager.GetString("Settings_Advanced_lbl_Tun", resourceCulture);
             }
         }
         
@@ -5747,11 +5980,29 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Check invoices.
+        /// </summary>
+        public static string Sidebar_Trial_btn_Invoices {
+            get {
+                return ResourceManager.GetString("Sidebar_Trial_btn_Invoices", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Upgrade.
         /// </summary>
         public static string Sidebar_Trial_btn_Upgrade {
             get {
                 return ResourceManager.GetString("Sidebar_Trial_btn_Upgrade", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Paid features are disabled due to delinquency.
+        /// </summary>
+        public static string Sidebar_Trial_lbl_Delinquency {
+            get {
+                return ResourceManager.GetString("Sidebar_Trial_lbl_Delinquency", resourceCulture);
             }
         }
         
@@ -5902,51 +6153,6 @@ namespace ProtonVPN.Translations.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Maybe Later.
         /// </summary>
-        public static string Trial_Expired_btn_Close {
-            get {
-                return ResourceManager.GetString("Trial_Expired_btn_Close", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Upgrade Now.
-        /// </summary>
-        public static string Trial_Expired_btn_Upgrade {
-            get {
-                return ResourceManager.GetString("Trial_Expired_btn_Upgrade", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Your account has been downgraded to ProtonVPN FREE. Here&apos;s what you will miss from ProtonVPN Plus:.
-        /// </summary>
-        public static string Trial_Expired_lbl_Expired {
-            get {
-                return ResourceManager.GetString("Trial_Expired_lbl_Expired", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to YOUR FREE TRIAL &lt;Run Foreground=&quot;#eb3c4b&quot;&gt;EXPIRED&lt;/Run&gt;.
-        /// </summary>
-        public static string Trial_Expired_lbl_Header {
-            get {
-                return ResourceManager.GetString("Trial_Expired_lbl_Header", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ProtonVPN Trial.
-        /// </summary>
-        public static string Trial_Expired_ttl {
-            get {
-                return ResourceManager.GetString("Trial_Expired_ttl", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Maybe Later.
-        /// </summary>
         public static string Trial_Expiring_btn_Close {
             get {
                 return ResourceManager.GetString("Trial_Expiring_btn_Close", resourceCulture);
@@ -5963,20 +6169,29 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your free trial is about to expire!.
+        /// </summary>
+        public static string Trial_Expiring_lbl_AboutToExpire {
+            get {
+                return ResourceManager.GetString("Trial_Expiring_lbl_AboutToExpire", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your free trial EXPIRED.
+        /// </summary>
+        public static string Trial_Expiring_lbl_Expired {
+            get {
+                return ResourceManager.GetString("Trial_Expiring_lbl_Expired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Upgrade to ProtonVPN PLUS and continue enjoying these features:.
         /// </summary>
         public static string Trial_Expiring_lbl_Features {
             get {
                 return ResourceManager.GetString("Trial_Expiring_lbl_Features", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Your free trial is about to expire!.
-        /// </summary>
-        public static string Trial_Expiring_lbl_Header {
-            get {
-                return ResourceManager.GetString("Trial_Expiring_lbl_Header", resourceCulture);
             }
         }
         
