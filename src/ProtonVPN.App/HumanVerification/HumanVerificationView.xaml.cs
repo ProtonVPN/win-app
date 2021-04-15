@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,23 +17,26 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Newtonsoft.Json;
-using ProtonVPN.Core.Api.Contracts;
-using System.Net;
-using System.Net.Http;
+using System.Windows;
 
-namespace ProtonVPN.Core.Api.Handlers
+namespace ProtonVPN.HumanVerification
 {
-    public class UnauthorizedResponse : HttpResponseMessage
+    public partial class HumanVerificationView
     {
-        public UnauthorizedResponse() : base(HttpStatusCode.Unauthorized)
+        public HumanVerificationView()
         {
-            Content = new StringContent(
-                JsonConvert.SerializeObject(
-                    new BaseResponse {
-                        Code = 10013,
-                        Error = string.Empty
-                    }));
+            InitializeComponent();
+        }
+
+        protected override void OnRenderSizeChanged(SizeChangedInfo sizeInfo)
+        {
+            base.OnRenderSizeChanged(sizeInfo);
+
+            if (Owner != null)
+            {
+                Left = Owner.Left + (Owner.ActualWidth - sizeInfo.NewSize.Width) / 2;
+                Top = Owner.Top + (Owner.ActualHeight - sizeInfo.NewSize.Height) / 2;
+            }
         }
     }
 }

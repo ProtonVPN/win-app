@@ -31,15 +31,15 @@ namespace ProtonVPN.Common.Configuration.Source
     {
         public Config Value()
         {
-            var location = Assembly.GetEntryAssembly()?.Location;
-            var baseFolder = (location != null ? new FileInfo(location).DirectoryName : null)
-                             ?? AppDomain.CurrentDomain.BaseDirectory;
+            string location = Assembly.GetEntryAssembly()?.Location;
+            string baseFolder = (location != null ? new FileInfo(location).DirectoryName : null)
+                                ?? AppDomain.CurrentDomain.BaseDirectory;
 
-            var localAppDataFolder =
+            string localAppDataFolder =
                 Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ProtonVPN");
-            var commonAppDataFolder =
+            string commonAppDataFolder =
                 Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "ProtonVPN");
-            var osBits = Environment.Is64BitOperatingSystem ? 64 : 32;
+            int osBits = Environment.Is64BitOperatingSystem ? 64 : 32;
 
             return new Config
             {
@@ -186,6 +186,7 @@ namespace ProtonVPN.Common.Configuration.Source
                     AboutPortForwardingUrl = "https://protonvpn.com/support/port-forwarding",
                     PortForwardingRisksUrl = "https://protonvpn.com/support/port-forwarding-risks",
                     AboutDelinquencyUrl = "https://protonvpn.com/support/delinquency",
+                    CaptchaUrl = "https://api.protonvpn.ch/core/v4/captcha?Token={0}",
                     InvoicesUrl = "https://account.protonvpn.com/payments#invoices",
                     AboutSmartProtocolUrl = "https://protonvpn.com/support/how-to-change-vpn-protocols"
                 },

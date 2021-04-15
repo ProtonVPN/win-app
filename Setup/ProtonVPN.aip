@@ -69,6 +69,11 @@
     <ROW Directory="Win7_Dir" Directory_Parent="x64_Dir" DefaultDir="Win7" DirectoryOptions="3"/>
     <ROW Directory="bit_1_Dir" Directory_Parent="Binaries_Dir" DefaultDir="64-bit" DirectoryOptions="3"/>
     <ROW Directory="bit_Dir" Directory_Parent="Binaries_Dir" DefaultDir="32-bit" DirectoryOptions="3"/>
+    <ROW Directory="native_1_Dir" Directory_Parent="winx64_Dir" DefaultDir="native"/>
+    <ROW Directory="native_2_Dir" Directory_Parent="winx86_Dir" DefaultDir="native"/>
+    <ROW Directory="runtimes_Dir" Directory_Parent="APPDIR" DefaultDir="runtimes"/>
+    <ROW Directory="winx64_Dir" Directory_Parent="runtimes_Dir" DefaultDir="win-x64"/>
+    <ROW Directory="winx86_Dir" Directory_Parent="runtimes_Dir" DefaultDir="win-x86"/>
     <ROW Directory="x64_Dir" Directory_Parent="APPDIR" DefaultDir="x64" DirectoryOptions="3"/>
     <ROW Directory="x86_Dir" Directory_Parent="APPDIR" DefaultDir="x86" DirectoryOptions="3"/>
   </COMPONENT>
@@ -99,6 +104,8 @@
     <ROW Component="Logs" ComponentId="{973CE498-3D38-4B1D-9790-BF0E5196A202}" Directory_="Logs_Dir" Attributes="0"/>
     <ROW Component="Microsoft.Deployment.WindowsInstaller.dll" ComponentId="{FFB7E0D6-80C7-40A9-AC9E-BFEA81253FFB}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Deployment.WindowsInstaller.dll"/>
     <ROW Component="Microsoft.Toolkit.Uwp.Notifications.dll" ComponentId="{6DE7272A-D513-4F72-9A0A-763828A16A2E}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Toolkit.Uwp.Notifications.dll"/>
+    <ROW Component="Microsoft.Web.WebView2.Core.dll" ComponentId="{6282B095-9B93-4480-A4C0-92A979835E50}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Web.WebView2.Core.dll"/>
+    <ROW Component="Microsoft.Web.WebView2.Wpf.dll" ComponentId="{5308BF6F-9BCF-424F-A63A-112AD8C2A6C8}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Web.WebView2.Wpf.dll"/>
     <ROW Component="NLog.dll" ComponentId="{17246A16-5DDB-41C5-AD07-AD5D1B5B8121}" Directory_="APPDIR" Attributes="0" KeyPath="NLog.dll"/>
     <ROW Component="Newtonsoft.Json.dll" ComponentId="{E0A54725-459B-4F28-A4A0-7587B5B176E7}" Directory_="APPDIR" Attributes="0" KeyPath="Newtonsoft.Json.dll"/>
     <ROW Component="OxyPlot.Wpf.dll" ComponentId="{E3A7EA56-A92F-41C6-9A0A-26026B6E9B7D}" Directory_="APPDIR" Attributes="0" KeyPath="OxyPlot.Wpf.dll"/>
@@ -149,6 +156,8 @@
     <ROW Component="System.Windows.Interactivity.dll" ComponentId="{8862DADA-0116-4219-8641-D0B85AB74B27}" Directory_="APPDIR" Attributes="0" KeyPath="System.Windows.Interactivity.dll"/>
     <ROW Component="TapInstaller.CA.dll" ComponentId="{3CD5546F-9BFE-4EF9-A535-F2E3320E76D8}" Directory_="APPDIR" Attributes="0" KeyPath="TapInstaller.CA.dll"/>
     <ROW Component="TapInstaller.dll" ComponentId="{6C0E1AC7-D393-43D7-8842-549A396829EB}" Directory_="APPDIR" Attributes="0" KeyPath="TapInstaller.dll"/>
+    <ROW Component="WebView2Loader.dll_1" ComponentId="{2EA095EA-C501-4A0B-B50D-FFF6383F6077}" Directory_="native_1_Dir" Attributes="256" KeyPath="WebView2Loader.dll_1"/>
+    <ROW Component="WebView2Loader.dll_2" ComponentId="{7B52FD4C-77FC-441E-830E-31363BA5A2A6}" Directory_="native_2_Dir" Attributes="0" KeyPath="WebView2Loader.dll_2"/>
     <ROW Component="config.ovpn" ComponentId="{0B387BF9-0755-4C70-81A5-48180795855C}" Directory_="Binaries_Dir" Attributes="0" KeyPath="config.ovpn" Type="0"/>
     <ROW Component="libcrypto1_1.dll" ComponentId="{F5111CFC-D038-4A4A-927B-F4FA1D0463C9}" Directory_="bit_Dir" Attributes="0" KeyPath="libcrypto1_1.dll"/>
     <ROW Component="libcrypto1_1x64.dll" ComponentId="{9BA46CFB-D246-4182-9AFB-3CA5D2A29D53}" Directory_="bit_1_Dir" Attributes="256" KeyPath="libcrypto1_1x64.dll"/>
@@ -249,8 +258,12 @@
     <ROW File="za.dll" Component_="za.dll" FileName="7za.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\7za.dll" SelfReg="false" DigSign="true"/>
     <ROW File="ProtonVPN.InstallActions.dll" Component_="ProtonVPN.InstallActions.dll" FileName="PROTO~11.DLL|ProtonVPN.InstallActions.dll" Attributes="0" SourcePath="..\src\bin\ProtonVPN.InstallActions.dll" SelfReg="false"/>
     <ROW File="ProtonVPN.RestoreInternet.exe" Component_="ProtonVPN.RestoreInternet.exe" FileName="PROTON~6.EXE|ProtonVPN.RestoreInternet.exe" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ProtonVPN.RestoreInternet.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="WebView2Loader.dll_1" Component_="WebView2Loader.dll_1" FileName="WEBVIE~1.DLL|WebView2Loader.dll" Attributes="0" SourcePath="..\src\bin\runtimes\win-x64\native\WebView2Loader.dll" SelfReg="false"/>
+    <ROW File="WebView2Loader.dll_2" Component_="WebView2Loader.dll_2" FileName="WEBVIE~1.DLL|WebView2Loader.dll" Attributes="0" SourcePath="..\src\bin\runtimes\win-x86\native\WebView2Loader.dll" SelfReg="false"/>
     <ROW File="Microsoft.Toolkit.Uwp.Notifications.dll" Component_="Microsoft.Toolkit.Uwp.Notifications.dll" FileName="MICROS~2.DLL|Microsoft.Toolkit.Uwp.Notifications.dll" Attributes="0" SourcePath="..\src\bin\Microsoft.Toolkit.Uwp.Notifications.dll" SelfReg="false"/>
     <ROW File="System.ValueTuple.dll" Component_="System.ValueTuple.dll" FileName="SYSTEM~3.DLL|System.ValueTuple.dll" Attributes="0" SourcePath="..\src\bin\System.ValueTuple.dll" SelfReg="false"/>
+    <ROW File="Microsoft.Web.WebView2.Wpf.dll" Component_="Microsoft.Web.WebView2.Wpf.dll" FileName="MICROS~3.DLL|Microsoft.Web.WebView2.Wpf.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Microsoft.Web.WebView2.Wpf.dll" SelfReg="false"/>
+    <ROW File="Microsoft.Web.WebView2.Core.dll" Component_="Microsoft.Web.WebView2.Core.dll" FileName="MICROS~4.DLL|Microsoft.Web.WebView2.Core.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Microsoft.Web.WebView2.Core.dll" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.AiRemoveFileComponent">
     <ROW RemoveFile="_" Condition="(AI_CLEAN_RESOURCES_UNINSTALL = &quot;1&quot;) AND (NOT UPGRADINGPRODUCTCODE)" Options="3"/>
@@ -607,8 +620,12 @@
     <ROW Feature_="ProtonVPNTun" Component_="ProtonVPNTun"/>
     <ROW Feature_="MainFeature" Component_="ProtonVPN.InstallActions.dll"/>
     <ROW Feature_="MainFeature" Component_="ProtonVPN.RestoreInternet.exe"/>
+    <ROW Feature_="MainFeature" Component_="WebView2Loader.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="WebView2Loader.dll_2"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.Toolkit.Uwp.Notifications.dll"/>
     <ROW Feature_="MainFeature" Component_="System.ValueTuple.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.Web.WebView2.Wpf.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.Web.WebView2.Core.dll"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
     <ROW Name="protonvpn.exe" SourcePath="images\protonvpn.ico" Index="0"/>
@@ -757,16 +774,18 @@
     <ROW PrereqKey="A6D7F21EAEB4C4A901F0979CF110936" DisplayName=".NET Framework 4.7.2" SetupFileUrl="https://download.microsoft.com/download/6/E/4/6E48E8AB-DC00-419E-9704-06DD46E5F81D/NDP472-KB4054530-x86-x64-AllOS-ENU.exe" Location="1" ExactSize="83943272" WinNTVersions="Windows Vista RTM x86, Windows Server 2008 x86, Windows 7 RTM x86, Windows 10 version 1507 x86, Windows 10 version 1511 x86, Windows 10 version 1803 x86, Windows 10 version 1809 x86, Windows 10 version 1903 x86, Windows 10 version 1909 x86" WinNT64Versions="Windows Vista RTM x64, Windows Server 2008 x64, Windows 7 RTM x64, Windows Server 2008 R2 RTM x64, Windows 10 version 1507 x64, Windows 10 version 1511 x64, Windows 10 version 1803 x64, Windows 10 version 1809 x64, Windows Server 2019 x64, Windows 10 version 1903 x64, Windows 10 version 1909 x64" Operator="1" NoUiComLine="/q /norestart" Options="xym" MD5="87450cfa175585b23a76bbd7052ee66b" TargetName=".NET Framework 4.7.2"/>
     <ROW PrereqKey="FD92F08164915A061A35616A2E484" DisplayName="ProtonVPNTap" VersionMin="1.1.3" SetupFileUrl="ProtonVPNTap-SetupFiles\ProtonVPNTap_1.1.3.exe" Location="0" ExactSize="0" Operator="1" Options="mzf" TargetName="ProtonVPNTap_1.1.3.exe" Feature="FD92F08164915A061A35616A2E484"/>
     <ROW PrereqKey="ProtonVPNTun" DisplayName="ProtonVPNTun" VersionMin="0.10.0" SetupFileUrl="ProtonVPNTun-SetupFiles\ProtonVPNTun_0.10.0.exe" Location="0" ExactSize="0" Operator="1" Options="fmz" TargetName="ProtonVPNTun\ProtonVPNTun_0.10.0.exe" Feature="ProtonVPNTun"/>
+    <ROW PrereqKey="RequiredApplication" DisplayName="WebView2 Runtime" SetupFileUrl="https://go.microsoft.com/fwlink/p/?LinkId=2124703" Location="1" ExactSize="0" WinNTVersions="Windows Vista x86, Windows Server 2008 x86" WinNT64Versions="Windows Vista x64, Windows Server 2008 x64" Operator="1" ComLine="/silent /install" BasicUiComLine="/silent /install" NoUiComLine="/silent /install" Options="y" TargetName="WebView2 Runtime"/>
     <ROW PrereqKey="RequiredApplication_2" DisplayName="Windows 7 x64 security update (KB2992611)" SetupFileUrl="https://download.microsoft.com/download/E/C/5/EC5D4973-A233-4F48-A555-65DF1E6DDA99/Windows6.1-KB2992611-x64.msu" Location="1" ExactSize="0" WinNTVersions="Windows 9x/ME/NT/2000/XP/Vista/Windows 7/Windows 8 x86/Windows 8.1 x86/Windows 10 x86" WinNT64Versions="Windows Vista RTM x64, Windows Server 2008 x64, Windows 8 x64, Windows Server 2012 x64, Windows 8.1 x64, Windows Server 2012 R2 x64, Windows 10 x64, Windows Server x64" Operator="1" NoUiComLine="/quiet /norestart" Options="y" TargetName="Windows 7 x64 security update (KB2992611)"/>
     <ROW PrereqKey="RequiredApplication_3" DisplayName="Windows 7 x86 security update (KB2992611)" SetupFileUrl="https://download.microsoft.com/download/F/1/9/F19ED8C4-B547-49C3-B3EA-759D3613FD75/Windows6.1-KB2992611-x86.msu" Location="1" ExactSize="0" WinNTVersions="Windows Vista RTM x86, Windows Server 2008 x86, Windows 8 x86, Windows 8.1 x86, Windows 10 x86" WinNT64Versions="Windows XP/Vista/Windows 7/Windows 8 x64/Windows 8.1 x64/Windows 10 x64" Operator="1" NoUiComLine="/quiet /norestart" Options="y" TargetName="Windows 7 x86 security update (KB2992611)"/>
     <ROW PrereqKey="Windows7x64securi" DisplayName="Windows 7 x64 security update (KB3033929)" SetupFileUrl="https://download.microsoft.com/download/C/8/7/C87AE67E-A228-48FB-8F02-B2A9A1238099/Windows6.1-KB3033929-x64.msu" Location="1" ExactSize="0" WinNTVersions="Windows 9x/ME/NT/2000/XP/Vista/Windows 7/Windows 8 x86/Windows 8.1 x86/Windows 10 x86" WinNT64Versions="Windows Vista RTM x64, Windows Server 2008 x64, Windows 8 x64, Windows Server 2012 x64, Windows 8.1 x64, Windows Server 2012 R2 x64, Windows 10 x64, Windows Server x64" Operator="1" NoUiComLine="/quiet /norestart" Options="y" TargetName="Windows 7 x64 security update (KB3033929)"/>
     <ROW PrereqKey="Windows7x64securi_1" DisplayName="Windows 7 x64 security update (KB3063858)" SetupFileUrl="https://download.microsoft.com/download/0/8/E/08E0386B-F6AF-4651-8D1B-C0A95D2731F0/Windows6.1-KB3063858-x64.msu" Location="1" ExactSize="0" WinNTVersions="Windows 9x/ME/NT/2000/XP/Vista/Windows 7/Windows 8 x86/Windows 8.1 x86/Windows 10 x86" WinNT64Versions="Windows Vista x64, Windows Server 2008 x64, Windows Server 2008 R2 x64, Windows 8 x64, Windows Server 2012 x64, Windows 8.1 x64, Windows Server 2012 R2 x64, Windows 10 x64, Windows Server x64" Operator="1" Options="yrR" TargetName="Windows 7 x86 security update (KB3063858)"/>
     <ROW PrereqKey="Windows7x86securi" DisplayName="Windows 7 x86 security update (KB3033929)" SetupFileUrl="https://download.microsoft.com/download/3/7/4/37473F39-5728-4153-9A25-64C09DE9ED52/Windows6.1-KB3033929-x86.msu" Location="1" ExactSize="0" WinNTVersions="Windows Vista RTM x86, Windows Server 2008 x86, Windows 8 x86, Windows 8.1 x86, Windows 10 x86" WinNT64Versions="Windows XP/Vista/Windows 7/Windows 8 x64/Windows 8.1 x64/Windows 10 x64" Operator="1" NoUiComLine="/quiet /norestart" Options="y" TargetName="Windows 7 x86 security update (KB3033929)"/>
     <ROW PrereqKey="Windows7x86securi_1" DisplayName="Windows 7 x86 security update (KB3063858)" SetupFileUrl="https://download.microsoft.com/download/C/9/6/C96CD606-3E05-4E1C-B201-51211AE80B1E/Windows6.1-KB3063858-x86.msu" Location="1" ExactSize="0" WinNTVersions="Windows Vista x86, Windows Server 2008 x86, Windows 8 x86, Windows 8.1 x86, Windows 10 x86" WinNT64Versions="Windows XP/Vista/Windows 7/Windows 8 x64/Windows 8.1 x64/Windows 10 x64" Operator="1" Options="yrR" TargetName="Windows 7 x86 security update (KB3063858)"/>
-    <ATTRIBUTE name="PrereqsOrder" value="FD92F08164915A061A35616A2E484 ProtonVPNTun RequiredApplication_2 RequiredApplication_3 Windows7x64securi Windows7x86securi Windows7x86securi_1 Windows7x64securi_1 A6D7F21EAEB4C4A901F0979CF110936"/>
+    <ATTRIBUTE name="PrereqsOrder" value="FD92F08164915A061A35616A2E484 ProtonVPNTun RequiredApplication_2 RequiredApplication_3 Windows7x64securi Windows7x86securi Windows7x86securi_1 Windows7x64securi_1 A6D7F21EAEB4C4A901F0979CF110936 RequiredApplication"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.PreReqSearchComponent">
     <ROW SearchKey="A6D7F21EAEB4C4A901F0979CF110936Rele" Prereq="A6D7F21EAEB4C4A901F0979CF110936" SearchType="9" SearchString="HKLM\SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full\Release" RefContent="G461807" Order="1" Property="PreReqSearch_A6D7F21EAEB4C4A901F097"/>
+    <ROW SearchKey="EB18F8B0084CBDB6D28C97FE7E9062" Prereq="RequiredApplication" SearchType="7" SearchString="HKLM\SOFTWARE\Microsoft\EdgeUpdate\Clients\{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}\pv" Order="2" Property="PreReqSearch_3"/>
     <ROW SearchKey="FD92F08164915A061A35616A2E484UpgradeCode" Prereq="FD92F08164915A061A35616A2E484" SearchType="4" SearchString="{E23B9F7F-AA0A-481A-8ECA-FA69794BF50A}" VerMin="1.1.3" Order="1" Property="PreReqSearch_FD92F08164915A061A3561"/>
     <ROW SearchKey="SystemFolderfile.dll" Prereq="ProtonVPNTun" SearchType="4" SearchString="{FED0679F-A292-4507-AEF5-DD2BB8898A36}" VerMin="0.10.0" Order="1" Property="PreReqSearch_6"/>
     <ROW SearchKey="SystemFolderfile.dll_2" Prereq="RequiredApplication_2" SearchType="10" SearchString="check-KB2992611.bat" RefContent="WND_HIDE" Order="1" Property="PreReqSearch_2"/>

@@ -28,5 +28,6 @@ namespace ProtonVPN.Core.Api
         public const int InvalidProfileIdOnUpdate = 86062;
         public const int InvalidProfileIdOnDelete = 86063;
         public const int ProfileNameConflict = 86065;
+        public const int HumanVerificationRequired = 9001;
     }
 }

@@ -24,5 +24,8 @@ namespace ProtonVPN.Core.Api.Contracts
     public class BaseResponseDetail
     {
         public IList<BaseResponseDetailAction> Actions { get; set; }
+        public string Description { get; set; }
+        public IReadOnlyList<string> HumanVerificationMethods { get; set; }
+        public string HumanVerificationToken { get; set; }
     }
 }
