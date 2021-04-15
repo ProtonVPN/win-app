@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,15 +17,22 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Collections.Generic;
+using Microsoft.Web.WebView2.Core;
 
-namespace ProtonVPN.Core.Api.Contracts
+namespace ProtonVPN.HumanVerification
 {
-    public class BaseResponseDetail
+    public class WebViewConfig
     {
-        public IList<BaseResponseDetailAction> Actions { get; set; }
-        public string Description { get; set; }
-        public IReadOnlyList<string> HumanVerificationMethods { get; set; }
-        public string HumanVerificationToken { get; set; }
+        public static bool IsWebViewSupported()
+        {
+            try
+            {
+                return !string.IsNullOrEmpty(CoreWebView2Environment.GetAvailableBrowserVersionString());
+            }
+            catch (WebView2RuntimeNotFoundException)
+            {
+                return false;
+            }
+        }
     }
 }

@@ -2986,7 +2986,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Connection failed</value>
     <comment>The title of the NonVpnAccelerationFailed window</comment>
   </data>
-    <data name="Dialogs_NonVpnAccelerationFailed_msg" xml:space="preserve">
+  <data name="Dialogs_NonVpnAccelerationFailed_msg" xml:space="preserve">
     <value>ProtonVPN couldn't connect to the selected server.&lt;LineBreak/&gt;Please, use Quick Connect or enable VPN Accelerator in the &lt;Hyperlink Command="{Binding OpenSettingsCommand}"&gt;Settings&lt;/Hyperlink&gt;.</value>
     <comment>The message displayed in the NonVpnAccelerationFailed window. The codes between &lt; and &gt; should be kept as is (Do not forget to translate the inner text "Settings").</comment>
   </data>
@@ -3129,5 +3129,8 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="Tooltips_VpnAcceleratorReconnection_btn_NotificationSettings" xml:space="preserve">
     <value>Notification Settings</value>
     <comment>The text button of the VPN Accelerator reconnection tooltip that opens the Notification Settings</comment>
+  </data>
+  <data name="Dialogs_HumanVerification_ttl" xml:space="preserve">
+    <value>Human verification</value>
   </data>
 </root>

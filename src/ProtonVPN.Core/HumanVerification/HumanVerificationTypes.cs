@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,15 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Collections.Generic;
-
-namespace ProtonVPN.Core.Api.Contracts
+namespace ProtonVPN.Core.HumanVerification
 {
-    public class BaseResponseDetail
+    public class HumanVerificationTypes
     {
-        public IList<BaseResponseDetailAction> Actions { get; set; }
-        public string Description { get; set; }
-        public IReadOnlyList<string> HumanVerificationMethods { get; set; }
-        public string HumanVerificationToken { get; set; }
+        public const string Captcha = "captcha";
     }
 }

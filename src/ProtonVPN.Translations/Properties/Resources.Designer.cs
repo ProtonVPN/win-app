@@ -3568,6 +3568,15 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Human verification.
+        /// </summary>
+        public static string Dialogs_HumanVerification_ttl {
+            get {
+                return ResourceManager.GetString("Dialogs_HumanVerification_ttl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to With Permanent Kill Switch, if the VPN is not connected for any reason, you won&apos;t be able to access the Internet..
         /// </summary>
         public static string Dialogs_KillSwitchConfirmation_msg {

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -39,6 +39,7 @@ using ProtonVPN.Core.Api.Handlers.TlsPinning;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Config;
 using ProtonVPN.Core.Events;
+using ProtonVPN.Core.HumanVerification;
 using ProtonVPN.Core.Network;
 using ProtonVPN.Core.OS.Net;
 using ProtonVPN.Core.OS.Net.Dns;
@@ -49,6 +50,7 @@ using ProtonVPN.Core.Storage;
 using ProtonVPN.Core.Threading;
 using ProtonVPN.Core.Update;
 using ProtonVPN.Core.Window;
+using ProtonVPN.HumanVerification;
 using ProtonVPN.Modals.ApiActions;
 using ProtonVPN.Translations;
 using ProtonVPN.Settings;
@@ -63,6 +65,7 @@ namespace ProtonVPN.Core.Ioc
         {
             base.Load(builder);
 
+            builder.RegisterType<HumanVerifier>().As<IHumanVerifier>().SingleInstance();
             builder.RegisterType<ServicePointConfiguration>().SingleInstance();
             builder.RegisterType<ServerManager>().SingleInstance();
             builder.RegisterType<ActiveUrls>().As<IActiveUrls>().SingleInstance();
@@ -105,12 +108,16 @@ namespace ProtonVPN.Core.Ioc
                     {InnerHandler = c.Resolve<RetryingHandler>()}).SingleInstance();
 
             builder.Register(c =>
+                new HumanVerificationHandler(c.Resolve<IHumanVerifier>(), WebViewConfig.IsWebViewSupported())
+                    {InnerHandler = c.Resolve<OutdatedAppHandler>()}).SingleInstance();
+
+            builder.Register(c =>
                 new UnauthorizedResponseHandler(
                         c.Resolve<ITokenClient>(),
                         c.Resolve<ITokenStorage>(),
                         c.Resolve<IUserStorage>(),
                         c.Resolve<ILogger>())
-                    {InnerHandler = c.Resolve<OutdatedAppHandler>()}).SingleInstance();
+                    {InnerHandler = c.Resolve<HumanVerificationHandler>()}).SingleInstance();
 
             builder.Register(c =>
                 new CancellingHandler
