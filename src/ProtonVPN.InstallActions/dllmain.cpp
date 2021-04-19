@@ -48,7 +48,7 @@ extern "C" EXPORT long RemoveWfpObjects(MSIHANDLE hInstall)
     SetMsiHandle(hInstall);
 
     IPFilterSessionHandle h = nullptr;
-    UINT status = IPFilterCreateDynamicSession(&h);
+    UINT status = IPFilterCreateSession(&h);
     if (status != NO_ERROR)
     {
         return status;
