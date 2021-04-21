@@ -354,33 +354,36 @@ namespace ProtonVPN.Service.Firewall
 
         private void PermitOpenVpnServerAddress(FirewallParams firewallParams)
         {
-            if (string.IsNullOrEmpty(firewallParams.ServerIp) || IsServerPermitted(firewallParams.ServerIp))
+            if (string.IsNullOrEmpty(firewallParams.ServerIp))
             {
                 return;
             }
+
+            ReorderServerPermitFilters(firewallParams.ServerIp);
 
             var filterGuids = new List<Guid>();
 
             _ipLayer.ApplyToIpv4(layer =>
             {
-                filterGuids.Add(_ipFilter.DynamicSublayer.CreateRemoteIPv4Filter(
+                filterGuids.Add(_ipFilter.GetSublayer(firewallParams.SessionType).CreateRemoteIPv4Filter(
                     new DisplayData("ProtonVPN permit OpenVPN server", "Permit server ip"),
                     Action.HardPermit,
                     layer,
                     1,
-                    firewallParams.ServerIp));
+                    firewallParams.ServerIp,
+                    persistent: false));
             });
 
             _serverAddressFilters.Add((firewallParams.ServerIp, filterGuids));
 
-            DeletePreviousFilters();
+            DeletePreviousServerPermitFilters();
         }
 
-        private bool IsServerPermitted(string serverIp)
+        private void ReorderServerPermitFilters(string serverIp)
         {
             if (_serverAddressFilters.Count == 0)
             {
-                return false;
+                return;
             }
 
             int index = 0;
@@ -401,14 +404,10 @@ namespace ProtonVPN.Service.Firewall
             {
                 _serverAddressFilters.RemoveAt(index);
                 _serverAddressFilters.Add(item.Value);
-
-                return true;
             }
-
-            return false;
         }
 
-        private void DeletePreviousFilters()
+        private void DeletePreviousServerPermitFilters()
         {
             if (_serverAddressFilters.Count >= 3)
             {
@@ -418,7 +417,9 @@ namespace ProtonVPN.Service.Firewall
                     return;
                 }
 
-                DeleteIpFilters(guids, SessionType.Dynamic);
+                //Use permanent session here to be able to remove filters created
+                //on both dynamic and permanent sublayers.
+                DeleteIpFilters(guids, SessionType.Permanent);
                 _serverAddressFilters.RemoveAll(tuple => tuple.Item1 == oldAddress);
             }
         }
