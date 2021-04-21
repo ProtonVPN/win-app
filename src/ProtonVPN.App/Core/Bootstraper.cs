@@ -94,6 +94,8 @@ namespace ProtonVPN.Core
 
         private readonly string[] _args;
 
+        private INotificationUserActionHandler _notificationUserActionHandler;
+
         public Bootstrapper(string[] args)
         {
             _args = args;
@@ -253,6 +255,7 @@ namespace ProtonVPN.Core
             UserAuth userAuth = Resolve<UserAuth>();
             AppWindow appWindow = Resolve<AppWindow>();
             IAppSettings appSettings = Resolve<IAppSettings>();
+            _notificationUserActionHandler = Resolve<INotificationUserActionHandler>();
             Resolve<ISettingsServiceClientManager>();
 
             Resolve<IServerUpdater>().ServersUpdated += (sender, e) =>
@@ -592,6 +595,11 @@ namespace ProtonVPN.Core
             {
                 subject.RegisterMigration(migration);
             }
+        }
+
+        public void OnToastNotificationUserAction(NotificationUserAction data)
+        {
+            _notificationUserActionHandler?.Handle(data);
         }
     }
 }

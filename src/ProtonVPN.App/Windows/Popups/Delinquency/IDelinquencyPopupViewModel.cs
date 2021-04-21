@@ -17,24 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Extensions;
+using ProtonVPN.Core.Servers.Models;
 
-namespace ProtonVPN.Core.User
+namespace ProtonVPN.Windows.Popups.Delinquency
 {
-    public class VpnPlanChangedEventArgs
+    public interface IDelinquencyPopupViewModel
     {
-        public string OldVpnPlan { get; }
-        public string NewVpnPlan { get; }
-        public bool IsDowngrade { get; }
-
-        public VpnPlanChangedEventArgs(string oldVpnPlan, string newVpnPlan)
-        {
-            OldVpnPlan = oldVpnPlan;
-            NewVpnPlan = newVpnPlan;
-            IsDowngrade = !oldVpnPlan.IsNullOrEmpty() &&
-                          oldVpnPlan != newVpnPlan && (
-                              (newVpnPlan == "free") ||
-                              (newVpnPlan == "vpnbasic" && oldVpnPlan != "free"));
-        }
+        void SetNoReconnectionData();
+        void SetReconnectionData(Server previousServer, Server currentServer);
     }
 }

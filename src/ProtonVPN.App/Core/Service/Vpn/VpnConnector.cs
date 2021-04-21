@@ -277,36 +277,29 @@ namespace ProtonVPN.Core.Service.Vpn
             VpnStateChanged?.Invoke(this, e);
         }
 
-        public async Task OnVpnPlanChangedAsync(VpnPlanChangedEventArgs e)
-        {
-            if (LastServer != null)
-            {
-                await UpdateServersOrReconnect();
-            }
-        }
-
-        private async Task UpdateServersOrReconnect()
-        {
-            if (State.Status == VpnStatus.Disconnecting ||
-                State.Status == VpnStatus.Disconnected ||
-                LastProfile == null)
-            {
-                return;
-            }
-
-            LastServerCandidates = _profileConnector.ServerCandidates(LastProfile);
-
-            if (!await _profileConnector.UpdateServers(LastServerCandidates, LastProfile))
-            {
-                Profile profile = await _profileManager.GetFastestProfile();
-                await ConnectToBestProfileAsync(profile);
-            }
-        }
-
         public void OnUserLoggedOut()
         {
             State = new VpnState(VpnStatus.Disconnected);
             RaiseVpnStateChanged(new VpnStateChangedEventArgs(State, VpnError.None, NetworkBlocked));
+        }
+        
+        public async Task OnVpnPlanChangedAsync(VpnPlanChangedEventArgs e)
+        {
+            if (LastServer != null)
+            {
+                await UpdateServers();
+            }
+        }
+
+        private async Task UpdateServers()
+        {
+            if (State.Status != VpnStatus.Disconnecting && 
+                State.Status != VpnStatus.Disconnected && 
+                LastProfile != null)
+            {
+                LastServerCandidates = _profileConnector.ServerCandidates(LastProfile);
+                await _profileConnector.UpdateServers(LastServerCandidates, LastProfile);
+            }
         }
     }
 }

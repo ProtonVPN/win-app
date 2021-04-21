@@ -59,24 +59,24 @@ namespace ProtonVPN.Core.Service.Vpn
 
         public async Task ConnectAsync(Profile profile, Profile fallbackProfile = null)
         {
-            await Queued(() => _vpnConnector.ConnectToBestProfileAsync(profile, fallbackProfile));
+            await Enqueue(() => _vpnConnector.ConnectToBestProfileAsync(profile, fallbackProfile));
         }
 
         public async Task QuickConnectAsync()
         {
-            await Queued(() => _vpnConnector.QuickConnectAsync());
+            await Enqueue(() => _vpnConnector.QuickConnectAsync());
         }
 
         public async Task ReconnectAsync(VpnReconnectionSettings settings = null)
         {
-            await Queued(() => _vpnReconnector.ReconnectAsync(
+            await Enqueue(() => _vpnReconnector.ReconnectAsync(
                 _vpnConnector.LastServer, _vpnConnector.LastProfile, settings));
         }
 
         public async Task DisconnectAsync(VpnError vpnError = VpnError.None)
         {
             _vpnReconnector.OnDisconnectionRequest();
-            await Queued(() => _vpnServiceManager.Disconnect(vpnError));
+            await Enqueue(() => _vpnServiceManager.Disconnect(vpnError));
         }
 
         public async Task GetStateAsync()
@@ -84,7 +84,7 @@ namespace ProtonVPN.Core.Service.Vpn
             await _vpnServiceManager.RepeatState();
         }
 
-        private Task Queued(Func<Task> function)
+        private Task Enqueue(Func<Task> function)
         {
             return _taskQueue.Enqueue(function);
         }

@@ -98,6 +98,7 @@
     <ROW Component="GuestHoleServers.json" ComponentId="{C5ACA4D0-1647-4D3A-B9CD-9FE054A81588}" Directory_="ProtonVPN_1_Dir" Attributes="0" KeyPath="GuestHoleServers.json" Type="0"/>
     <ROW Component="Logs" ComponentId="{973CE498-3D38-4B1D-9790-BF0E5196A202}" Directory_="Logs_Dir" Attributes="0"/>
     <ROW Component="Microsoft.Deployment.WindowsInstaller.dll" ComponentId="{FFB7E0D6-80C7-40A9-AC9E-BFEA81253FFB}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Deployment.WindowsInstaller.dll"/>
+    <ROW Component="Microsoft.Toolkit.Uwp.Notifications.dll" ComponentId="{6DE7272A-D513-4F72-9A0A-763828A16A2E}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Toolkit.Uwp.Notifications.dll"/>
     <ROW Component="NLog.dll" ComponentId="{17246A16-5DDB-41C5-AD07-AD5D1B5B8121}" Directory_="APPDIR" Attributes="0" KeyPath="NLog.dll"/>
     <ROW Component="Newtonsoft.Json.dll" ComponentId="{E0A54725-459B-4F28-A4A0-7587B5B176E7}" Directory_="APPDIR" Attributes="0" KeyPath="Newtonsoft.Json.dll"/>
     <ROW Component="OxyPlot.Wpf.dll" ComponentId="{E3A7EA56-A92F-41C6-9A0A-26026B6E9B7D}" Directory_="APPDIR" Attributes="0" KeyPath="OxyPlot.Wpf.dll"/>
@@ -144,6 +145,7 @@
     <ROW Component="Sentry.dll" ComponentId="{AA57D927-5AD1-4BC0-AE4F-5CD31F6D87DF}" Directory_="APPDIR" Attributes="0" KeyPath="Sentry.dll"/>
     <ROW Component="System.Buffers.dll" ComponentId="{D6DD1AE0-5E93-42A7-B5E2-296BFC7074CD}" Directory_="APPDIR" Attributes="0" KeyPath="System.Buffers.dll"/>
     <ROW Component="System.Collections.Immutable.dll" ComponentId="{F0B8D2D3-7CCB-401B-BBA4-263FB479A4B8}" Directory_="APPDIR" Attributes="0" KeyPath="System.Collections.Immutable.dll"/>
+    <ROW Component="System.ValueTuple.dll" ComponentId="{C85E70A5-9B52-4455-ACA1-877E27AA6212}" Directory_="APPDIR" Attributes="0" KeyPath="System.ValueTuple.dll"/>
     <ROW Component="System.Windows.Interactivity.dll" ComponentId="{8862DADA-0116-4219-8641-D0B85AB74B27}" Directory_="APPDIR" Attributes="0" KeyPath="System.Windows.Interactivity.dll"/>
     <ROW Component="TapInstaller.CA.dll" ComponentId="{3CD5546F-9BFE-4EF9-A535-F2E3320E76D8}" Directory_="APPDIR" Attributes="0" KeyPath="TapInstaller.CA.dll"/>
     <ROW Component="TapInstaller.dll" ComponentId="{6C0E1AC7-D393-43D7-8842-549A396829EB}" Directory_="APPDIR" Attributes="0" KeyPath="TapInstaller.dll"/>
@@ -247,6 +249,8 @@
     <ROW File="za.dll" Component_="za.dll" FileName="7za.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\7za.dll" SelfReg="false" DigSign="true"/>
     <ROW File="ProtonVPN.InstallActions.dll" Component_="ProtonVPN.InstallActions.dll" FileName="PROTO~11.DLL|ProtonVPN.InstallActions.dll" Attributes="0" SourcePath="..\src\bin\ProtonVPN.InstallActions.dll" SelfReg="false"/>
     <ROW File="ProtonVPN.RestoreInternet.exe" Component_="ProtonVPN.RestoreInternet.exe" FileName="PROTON~6.EXE|ProtonVPN.RestoreInternet.exe" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ProtonVPN.RestoreInternet.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="Microsoft.Toolkit.Uwp.Notifications.dll" Component_="Microsoft.Toolkit.Uwp.Notifications.dll" FileName="MICROS~2.DLL|Microsoft.Toolkit.Uwp.Notifications.dll" Attributes="0" SourcePath="..\src\bin\Microsoft.Toolkit.Uwp.Notifications.dll" SelfReg="false"/>
+    <ROW File="System.ValueTuple.dll" Component_="System.ValueTuple.dll" FileName="SYSTEM~3.DLL|System.ValueTuple.dll" Attributes="0" SourcePath="..\src\bin\System.ValueTuple.dll" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.AiRemoveFileComponent">
     <ROW RemoveFile="_" Condition="(AI_CLEAN_RESOURCES_UNINSTALL = &quot;1&quot;) AND (NOT UPGRADINGPRODUCTCODE)" Options="3"/>
@@ -603,6 +607,8 @@
     <ROW Feature_="ProtonVPNTun" Component_="ProtonVPNTun"/>
     <ROW Feature_="MainFeature" Component_="ProtonVPN.InstallActions.dll"/>
     <ROW Feature_="MainFeature" Component_="ProtonVPN.RestoreInternet.exe"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.Toolkit.Uwp.Notifications.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.ValueTuple.dll"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
     <ROW Name="protonvpn.exe" SourcePath="images\protonvpn.ico" Index="0"/>

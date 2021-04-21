@@ -17,24 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Extensions;
-
-namespace ProtonVPN.Core.User
+namespace ProtonVPN.Windows.Popups.SubscriptionExpiration
 {
-    public class VpnPlanChangedEventArgs
+    public partial class SubscriptionExpiredPopupView
     {
-        public string OldVpnPlan { get; }
-        public string NewVpnPlan { get; }
-        public bool IsDowngrade { get; }
-
-        public VpnPlanChangedEventArgs(string oldVpnPlan, string newVpnPlan)
+        public SubscriptionExpiredPopupView()
         {
-            OldVpnPlan = oldVpnPlan;
-            NewVpnPlan = newVpnPlan;
-            IsDowngrade = !oldVpnPlan.IsNullOrEmpty() &&
-                          oldVpnPlan != newVpnPlan && (
-                              (newVpnPlan == "free") ||
-                              (newVpnPlan == "vpnbasic" && oldVpnPlan != "free"));
+            InitializeComponent();
         }
     }
 }

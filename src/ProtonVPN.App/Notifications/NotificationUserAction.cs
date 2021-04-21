@@ -17,24 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Extensions;
+using System.Collections.Generic;
 
-namespace ProtonVPN.Core.User
+namespace ProtonVPN.Notifications
 {
-    public class VpnPlanChangedEventArgs
+    public class NotificationUserAction
     {
-        public string OldVpnPlan { get; }
-        public string NewVpnPlan { get; }
-        public bool IsDowngrade { get; }
-
-        public VpnPlanChangedEventArgs(string oldVpnPlan, string newVpnPlan)
-        {
-            OldVpnPlan = oldVpnPlan;
-            NewVpnPlan = newVpnPlan;
-            IsDowngrade = !oldVpnPlan.IsNullOrEmpty() &&
-                          oldVpnPlan != newVpnPlan && (
-                              (newVpnPlan == "free") ||
-                              (newVpnPlan == "vpnbasic" && oldVpnPlan != "free"));
-        }
+        public IDictionary<string, string> Arguments { get; set; }
+        public IDictionary<string, object> UserInputs { get; set; }
     }
 }

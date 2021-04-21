@@ -17,35 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Windows.Input;
-using GalaSoft.MvvmLight.CommandWpf;
-using ProtonVPN.Config.Url;
-using ProtonVPN.Modals.Dialogs;
-
-namespace ProtonVPN.Modals.Delinquencies
+namespace ProtonVPN.Windows.Popups.Delinquency
 {
-    public class DelinquencyModalViewModel : QuestionModalViewModel
+    public partial class DelinquencyPopupView
     {
-        protected readonly IActiveUrls Urls;
-
-        public DelinquencyModalViewModel(IActiveUrls urls)
+        public DelinquencyPopupView()
         {
-            Urls = urls;
-
-            ReadAboutDelinquencyCommand = new RelayCommand(ReadAboutDelinquencyAction);
-        }
-
-        public ICommand ReadAboutDelinquencyCommand { get; }
-
-        protected override void ContinueAction()
-        {
-            Urls.InvoicesUrl.Open();
-            TryClose(true);
-        }
-
-        private void ReadAboutDelinquencyAction()
-        {
-            Urls.AboutDelinquencyUrl.Open();
+            InitializeComponent();
         }
     }
 }

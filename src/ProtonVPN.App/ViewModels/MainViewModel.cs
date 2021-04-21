@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Caliburn.Micro;
@@ -33,19 +34,18 @@ using ProtonVPN.Core.Events;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Vpn;
+using ProtonVPN.Core.Window.Popups;
 using ProtonVPN.FlashNotifications;
 using ProtonVPN.Map.ViewModels;
 using ProtonVPN.Onboarding;
 using ProtonVPN.Profiles;
-using ProtonVPN.Translations;
 using ProtonVPN.Settings;
+using ProtonVPN.Translations;
+using ProtonVPN.Windows.Popups.DeveloperTools;
 
 namespace ProtonVPN.ViewModels
 {
-    internal class MainViewModel :
-        LanguageAwareViewModel,
-        IVpnStateAware,
-        IOnboardingStepAware
+    internal class MainViewModel : LanguageAwareViewModel, IVpnStateAware, IOnboardingStepAware
     {
         private readonly UserAuth _userAuth;
         private readonly IVpnManager _vpnManager;
@@ -54,6 +54,7 @@ namespace ProtonVPN.ViewModels
         private readonly AppExitHandler _appExitHandler;
         private readonly IModals _modals;
         private readonly IDialogs _dialogs;
+        private readonly IPopupWindows _popups;
 
         private bool _connecting;
 
@@ -64,7 +65,8 @@ namespace ProtonVPN.ViewModels
             IEventAggregator eventAggregator,
             AppExitHandler appExitHandler,
             IModals modals,
-            IDialogs dialogs,
+            IDialogs dialogs, 
+            IPopupWindows popups,
             MapViewModel mapViewModel,
             ConnectingViewModel connectingViewModel,
             OnboardingViewModel onboardingViewModel,
@@ -78,6 +80,7 @@ namespace ProtonVPN.ViewModels
             _appExitHandler = appExitHandler;
             _modals = modals;
             _dialogs = dialogs;
+            _popups = popups;
 
             Map = mapViewModel;
             Connection = connectingViewModel;
@@ -87,14 +90,23 @@ namespace ProtonVPN.ViewModels
 
             eventAggregator.Subscribe(this);
 
-            SettingsCommand = new RelayCommand(SettingsAction, CanClick);
+            AboutCommand = new RelayCommand(AboutAction, CanClick);
             AccountCommand = new RelayCommand(AccountAction, CanClick);
             ProfilesCommand = new RelayCommand(ProfilesAction, CanClick);
-            LogoutCommand = new RelayCommand(LogoutAction);
-            ExitCommand = new RelayCommand(ExitAction);
+            SettingsCommand = new RelayCommand(SettingsAction, CanClick);
             HelpCommand = new RelayCommand(HelpAction);
             ReportBugCommand = new RelayCommand(ReportBugAction, CanClick);
-            AboutCommand = new RelayCommand(AboutAction, CanClick);
+            DeveloperToolsCommand = new RelayCommand(DeveloperToolsAction);
+            LogoutCommand = new RelayCommand(LogoutAction);
+            ExitCommand = new RelayCommand(ExitAction);
+
+            SetDeveloperToolsVisibility();
+        }
+
+        [Conditional("DEBUG")]
+        private void SetDeveloperToolsVisibility()
+        {
+            IsToShowDeveloperTools = true;
         }
 
         public MapViewModel Map { get; }
@@ -103,15 +115,17 @@ namespace ProtonVPN.ViewModels
         public TrayNotificationViewModel TrayNotification { get; }
         public FlashNotificationViewModel FlashNotification { get; }
 
-
-        public ICommand SettingsCommand { get; }
+        public ICommand AboutCommand { get; }
         public ICommand AccountCommand { get; }
         public ICommand ProfilesCommand { get; }
-        public ICommand LogoutCommand { get; }
-        public ICommand AboutCommand { get; }
+        public ICommand SettingsCommand { get; }
         public ICommand HelpCommand { get; }
         public ICommand ReportBugCommand { get; }
+        public ICommand DeveloperToolsCommand { get; }
+        public ICommand LogoutCommand { get; }
         public ICommand ExitCommand { get; }
+
+        public bool IsToShowDeveloperTools { get; private set; }
 
         public bool Connecting
         {
@@ -152,11 +166,6 @@ namespace ProtonVPN.ViewModels
         public void Load()
         {
             SetupMenuItems();
-        }
-
-        public void ProfilesAction()
-        {
-            _modals.Show<ProfileListModalViewModel>();
         }
 
         public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
@@ -201,19 +210,39 @@ namespace ProtonVPN.ViewModels
             return !Connecting;
         }
 
-        private void ReportBugAction()
-        {
-            _modals.Show<ReportBugModalViewModel>();
-        }
-
         private void AboutAction()
         {
             _modals.Show<AboutModalViewModel>();
         }
 
+        private void AccountAction()
+        {
+            _modals.Show<AccountModalViewModel>();
+        }
+
+        public void ProfilesAction()
+        {
+            _modals.Show<ProfileListModalViewModel>();
+        }
+
+        private void SettingsAction()
+        {
+            _modals.Show<SettingsModalViewModel>();
+        }
+
         private void HelpAction()
         {
             _urls.HelpUrl.Open();
+        }
+
+        private void ReportBugAction()
+        {
+            _modals.Show<ReportBugModalViewModel>();
+        }
+
+        private void DeveloperToolsAction()
+        {
+            _popups.Show<DeveloperToolsPopupViewModel>();
         }
 
         private async void LogoutAction()
@@ -235,16 +264,6 @@ namespace ProtonVPN.ViewModels
         private void ExitAction()
         {
             _appExitHandler.RequestExit();
-        }
-
-        private void SettingsAction()
-        {
-            _modals.Show<SettingsModalViewModel>();
-        }
-
-        private void AccountAction()
-        {
-            _modals.Show<AccountModalViewModel>();
         }
     }
 }

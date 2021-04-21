@@ -25,30 +25,24 @@ using ProtonVPN.Common.KillSwitch;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Config.Url;
-using ProtonVPN.ConnectionInfo;
-using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
-using ProtonVPN.Translations;
 
 namespace ProtonVPN.Modals
 {
     public class DisconnectErrorModalViewModel : BaseModalViewModel
     {
-        private readonly IActiveUrls _urlConfig;
-        private readonly ConnectionErrorResolver _connectionErrorResolver;
-        private readonly IVpnManager _vpnManager;
         private readonly ILogger _logger;
-        private readonly ProfileManager _profileManager;
-        private readonly IUserStorage _userStorage;
+        private readonly IActiveUrls _urlConfig;
         private readonly IAppSettings _appSettings;
+        private readonly IVpnManager _vpnManager;
+        private readonly IUserStorage _userStorage;
 
         private VpnError _error;
         private bool _networkBlocked;
 
         public ICommand OpenHelpArticleCommand { get; set; }
-        public ICommand SettingsCommand { get; set; }
         public ICommand DisableKillSwitchCommand { get; set; }
         public ICommand GoToAccountCommand { get; set; }
         public ICommand UpgradeCommand { get; set; }
@@ -57,18 +51,14 @@ namespace ProtonVPN.Modals
             ILogger logger,
             IActiveUrls urlConfig,
             IAppSettings appSettings,
-            ConnectionErrorResolver connectionErrorResolver,
             IVpnManager vpnManager,
-            ProfileManager profileManager,
             IUserStorage userStorage)
         {
-            _userStorage = userStorage;
             _logger = logger;
+            _urlConfig = urlConfig;
             _appSettings = appSettings;
             _vpnManager = vpnManager;
-            _connectionErrorResolver = connectionErrorResolver;
-            _urlConfig = urlConfig;
-            _profileManager = profileManager;
+            _userStorage = userStorage;
 
             OpenHelpArticleCommand = new RelayCommand(OpenHelpArticleAction);
             DisableKillSwitchCommand = new RelayCommand(DisableKillSwitch);
@@ -80,22 +70,6 @@ namespace ProtonVPN.Modals
         {
             get => _error;
             set => Set(ref _error, value);
-        }
-
-        public string ErrorDescription
-        {
-            get
-            {
-                switch (Error)
-                {
-                    case VpnError.SessionLimitReached:
-                        return _userStorage.User().MaxTier < ServerTiers.Plus ?
-                            Translation.Get("Dialogs_DisconnectError_msg_SessionLimitFreeBasic") :
-                            Translation.Get("Dialogs_DisconnectError_msg_SessionLimitPlus");
-                    default:
-                        return string.Empty;
-                }
-            }
         }
 
         public bool ShowUpgrade => Error == VpnError.SessionLimitReached &&
@@ -127,10 +101,16 @@ namespace ProtonVPN.Modals
             switch (Error)
             {
                 case VpnError.TimeoutError:
+                case VpnError.UserTierTooLowError:
+                case VpnError.Unpaid:
+                case VpnError.SessionLimitReached:
+                case VpnError.PasswordChanged:
+                case VpnError.Unknown:
                     await ReconnectAsync();
                     break;
-                case VpnError.AuthorizationError:
-                    await HandleAuthorizationError();
+                case VpnError.ServerOffline:
+                case VpnError.ServerRemoved:
+                    await ReconnectWithoutLastServerAsync();
                     break;
             }
         }
@@ -146,29 +126,6 @@ namespace ProtonVPN.Modals
             // If TryClose() is called before any await (that actually awaits), Caliburn will throw a NullReferenceException after OnViewReady() ends
             await Task.Delay(TimeSpan.FromMilliseconds(1));
             TryClose(true);
-        }
-
-        private async Task HandleAuthorizationError()
-        {
-            VpnError error = await _connectionErrorResolver.ResolveError();
-            switch (error)
-            {
-                case VpnError.PasswordChanged:
-                    await ReconnectAsync();
-                    break;
-                case VpnError.ServerOffline:
-                case VpnError.ServerRemoved:
-                    await ReconnectWithoutLastServerAsync();
-                    break;
-                case VpnError.Unknown:
-                    await ReconnectAsync();
-                    break;
-                default:
-                    Error = error;
-                    NotifyOfPropertyChange(nameof(ShowUpgrade));
-                    NotifyOfPropertyChange(nameof(ErrorDescription));
-                    break;
-            }
         }
 
         private async Task ReconnectWithoutLastServerAsync()

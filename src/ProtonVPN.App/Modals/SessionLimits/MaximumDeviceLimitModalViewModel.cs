@@ -20,41 +20,35 @@
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
 using ProtonVPN.Config.Url;
-using ProtonVPN.Core.Settings;
-using ProtonVPN.Core.User;
+using ProtonVPN.Modals.Dialogs;
 
-namespace ProtonVPN.Modals.Trial
+namespace ProtonVPN.Modals.SessionLimits
 {
-    public class TrialModalViewModel : BaseModalViewModel, IUserDataAware
+    public class MaximumDeviceLimitModalViewModel : QuestionModalViewModel
     {
         private readonly IActiveUrls _urls;
-        private readonly IUserStorage _userStorage;
-        private bool _expired;
 
-        public TrialModalViewModel(IActiveUrls urls, IUserStorage userStorage)
+        public bool HasMaxTierPlan { get; private set; } = true;
+        public bool NotHasMaxTierPlan => !HasMaxTierPlan;
+
+        public MaximumDeviceLimitModalViewModel(IActiveUrls urls)
         {
-            _userStorage = userStorage;
             _urls = urls;
+
             UpgradeCommand = new RelayCommand(UpgradeAction);
+        }
+
+        public void SetPlan(bool hasMaxTierPlan)
+        {
+            HasMaxTierPlan = hasMaxTierPlan;
         }
 
         public ICommand UpgradeCommand { get; set; }
 
-        public bool Expired
-        {
-            get => _expired;
-            set => Set(ref _expired, value);
-        }
-
-        public void UpgradeAction()
+        protected virtual void UpgradeAction()
         {
             _urls.AccountUrl.Open();
-            TryClose(true);
-        }
-
-        public void OnUserDataChanged()
-        {
-            Expired = !_userStorage.User().IsTrial();
+            TryClose();
         }
     }
 }

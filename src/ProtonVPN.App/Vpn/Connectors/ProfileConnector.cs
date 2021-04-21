@@ -35,9 +35,10 @@ using ProtonVPN.Core.Servers.Specs;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Settings.Contracts;
-using ProtonVPN.Modals.Delinquencies;
+using ProtonVPN.Core.Window.Popups;
 using ProtonVPN.Modals.Upsell;
 using ProtonVPN.Translations;
+using ProtonVPN.Windows.Popups.Delinquency;
 using Profile = ProtonVPN.Core.Profiles.Profile;
 
 namespace ProtonVPN.Vpn.Connectors
@@ -55,6 +56,8 @@ namespace ProtonVPN.Vpn.Connectors
         private readonly IModals _modals;
         private readonly IDialogs _dialogs;
         private readonly VpnCredentialProvider _vpnCredentialProvider;
+        private readonly IPopupWindows _popupWindows;
+        private readonly IDelinquencyPopupViewModel _delinquencyPopupViewModel;
 
         public ProfileConnector(
             ILogger logger,
@@ -65,17 +68,21 @@ namespace ProtonVPN.Vpn.Connectors
             IVpnServiceManager vpnServiceManager,
             IModals modals,
             IDialogs dialogs,
-            VpnCredentialProvider vpnCredentialProvider)
+            VpnCredentialProvider vpnCredentialProvider,
+            IPopupWindows popupWindows,
+            IDelinquencyPopupViewModel delinquencyPopupViewModel)
         {
             _logger = logger;
-            _vpnCredentialProvider = vpnCredentialProvider;
-            _modals = modals;
-            _dialogs = dialogs;
             _userStorage = userStorage;
+            _appSettings = appSettings;
             _serverManager = serverManager;
             _serverCandidatesFactory = serverCandidatesFactory;
-            _appSettings = appSettings;
             _vpnServiceManager = vpnServiceManager;
+            _modals = modals;
+            _dialogs = dialogs;
+            _vpnCredentialProvider = vpnCredentialProvider;
+            _popupWindows = popupWindows;
+            _delinquencyPopupViewModel = delinquencyPopupViewModel;
         }
 
         public ServerCandidates ServerCandidates(Profile profile)
@@ -412,7 +419,8 @@ namespace ProtonVPN.Vpn.Connectors
 
         private void HandleDelinquentUser()
         {
-            _modals.Show<DelinquencyModalViewModel>();
+            _delinquencyPopupViewModel.SetNoReconnectionData();
+            _popupWindows.Show<DelinquencyPopupViewModel>();
         }
 
         private void HandleOfflineServer()
