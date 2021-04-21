@@ -27,30 +27,32 @@ using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Modals.Protocols;
 using ProtonVPN.Modals.Reconnections;
+using ProtonVPN.Notifications;
+using ProtonVPN.Translations;
 
 namespace ProtonVPN.Core.Service.Vpn
 {
     public class VpnReconnector : IVpnReconnector
     {
         private readonly IAppSettings _appSettings;
-        private readonly ServerCandidatesFactory _serverCandidatesFactory;
         private readonly ISimilarServerCandidatesGenerator _similarServerCandidatesGenerator;
         private readonly IModals _modals;
         private readonly IVpnConnector _vpnConnector;
+        private readonly INotificationSender _notificationSender;
 
         private VpnReconnectionSteps _reconnectionStep;
 
-        public VpnReconnector(IAppSettings appSettings, 
-            ServerCandidatesFactory serverCandidatesFactory,
+        public VpnReconnector(IAppSettings appSettings,
             ISimilarServerCandidatesGenerator similarServerCandidatesGenerator,
             IModals modals,
-            IVpnConnector vpnConnector)
+            IVpnConnector vpnConnector, 
+            INotificationSender notificationSender)
         {
             _appSettings = appSettings;
-            _serverCandidatesFactory = serverCandidatesFactory;
             _similarServerCandidatesGenerator = similarServerCandidatesGenerator;
             _modals = modals;
             _vpnConnector = vpnConnector;
+            _notificationSender = notificationSender;
         }
 
         public async Task ReconnectAsync(Server lastServer, Profile lastProfile, VpnReconnectionSettings settings = null)
@@ -59,16 +61,17 @@ namespace ProtonVPN.Core.Service.Vpn
 
             if (!settings.IsToReconnectIfDisconnected && IsDisconnected())
             {
+                _reconnectionStep = VpnReconnectionSteps.UserChoice;
                 return;
             }
 
             VpnReconnectionSteps reconnectionStep = _reconnectionStep;
             bool isSmartReconnectEnabled = settings.IsToForceSmartReconnect || _appSettings.IsSmartReconnectEnabled();
 
-            reconnectionStep = IncrementReconnectionStep(reconnectionStep, lastServer, lastProfile, 
+            reconnectionStep = IncrementReconnectionStep(reconnectionStep, lastServer, lastProfile,
                 isSmartReconnectEnabled: isSmartReconnectEnabled, isToExcludeLastServer: settings.IsToExcludeLastServer);
 
-            await ExecuteReconnectionAsync(reconnectionStep, lastServer, lastProfile, 
+            await ExecuteReconnectionAsync(reconnectionStep, lastServer, lastProfile,
                 isSmartReconnectEnabled: isSmartReconnectEnabled, isToTryLastServer: !settings.IsToExcludeLastServer);
 
             if (reconnectionStep == VpnReconnectionSteps.Disconnect)
@@ -86,7 +89,7 @@ namespace ProtonVPN.Core.Service.Vpn
                    _vpnConnector.State.Status == VpnStatus.Disconnecting;
         }
 
-        private VpnReconnectionSteps IncrementReconnectionStep(VpnReconnectionSteps reconnectionStep, 
+        private VpnReconnectionSteps IncrementReconnectionStep(VpnReconnectionSteps reconnectionStep,
             Server lastServer, Profile lastProfile, bool isSmartReconnectEnabled, bool isToExcludeLastServer)
         {
             if (reconnectionStep < VpnReconnectionSteps.Disconnect)
@@ -143,6 +146,13 @@ namespace ProtonVPN.Core.Service.Vpn
             if (protocol == Protocol.Auto)
             {
                 return VpnReconnectionSteps.QuickConnect;
+            }
+
+            if (_appSettings.IsSmartReconnectNotificationsEnabled())
+            {
+                _notificationSender.Send(
+                    Translation.Get("Notifications_EnableSmartProtocol_ttl"),
+                    Translation.Get("Notifications_EnableSmartProtocol_msg"));
             }
 
             bool? isToChangeProtocolToAuto = _modals.Show<EnableSmartProtocolModalViewModel>();

@@ -17,13 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Modals.Trial
+namespace ProtonVPN.Notifications
 {
-    public partial class TrialModalView
+    public interface INotificationUserActionHandler
     {
-        public TrialModalView()
-        {
-            InitializeComponent();
-        }
+        void Handle(NotificationUserAction data);
     }
 }

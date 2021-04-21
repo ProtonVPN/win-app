@@ -20,8 +20,12 @@
 using System;
 using System.Net.Http;
 using System.Threading;
+using System.Threading.Tasks;
 using Caliburn.Micro;
+using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.Threading;
 using ProtonVPN.Core.Api;
+using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Window;
 
@@ -34,19 +38,44 @@ namespace ProtonVPN.Account
         private readonly IUserStorage _userStorage;
         private static readonly SemaphoreSlim Semaphore = new SemaphoreSlim(1, 1);
         private DateTime _lastCheck = DateTime.Now;
+        private readonly ISchedulerTimer _timer;
 
-        public VpnInfoChecker(TimeSpan checkInterval, IEventAggregator eventAggregator, IApiClient api, IUserStorage userStorage)
+        public VpnInfoChecker(Common.Configuration.Config appConfig,
+            IEventAggregator eventAggregator, 
+            IApiClient api, 
+            IUserStorage userStorage,
+            IScheduler scheduler)
         {
             eventAggregator.Subscribe(this);
 
-            _checkInterval = checkInterval;
+            _checkInterval = appConfig.VpnInfoCheckInterval.RandomizedWithDeviation(0.2);
             _api = api;
             _userStorage = userStorage;
+            
+            _timer = scheduler.Timer();
+            _timer.Interval = appConfig.ServerUpdateInterval.RandomizedWithDeviation(0.2);
+            _timer.Tick += OnTimerTick;
+            _timer.Start();
+        }
+
+        private async void OnTimerTick(object sender, EventArgs e)
+        {
+            await Handle();
         }
 
         public async void Handle(WindowStateMessage message)
         {
-            if (!message.Active || DateTime.Now.Subtract(_lastCheck) < _checkInterval)
+            if (!message.Active)
+            {
+                return;
+            }
+
+            await Handle();
+        }
+
+        private async Task Handle()
+        {
+            if (DateTime.Now.Subtract(_lastCheck) < _checkInterval)
             {
                 return;
             }
@@ -56,9 +85,11 @@ namespace ProtonVPN.Account
 
             try
             {
-                var response = await _api.GetVpnInfoResponse();
+                ApiResponseResult<VpnInfoResponse> response = await _api.GetVpnInfoResponse();
                 if (response.Success)
+                {
                     _userStorage.StoreVpnInfo(response.Value);
+                }
             }
             catch (HttpRequestException)
             {

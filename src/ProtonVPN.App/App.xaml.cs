@@ -19,10 +19,12 @@
 
 using System;
 using System.Diagnostics;
+using System.Linq;
 using System.Reflection;
 using System.Runtime;
 using System.Threading.Tasks;
 using System.Windows;
+using Microsoft.Toolkit.Uwp.Notifications;
 using ProtonVPN.Common.Cli;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.CrashReporting;
@@ -31,6 +33,7 @@ using ProtonVPN.Config;
 using ProtonVPN.Core;
 using ProtonVPN.Core.Startup;
 using ProtonVPN.Native.PInvoke;
+using ProtonVPN.Notifications;
 
 namespace ProtonVPN
 {
@@ -165,6 +168,31 @@ namespace ProtonVPN
         {
             base.OnSessionEnding(e);
             _bootstrapper.OnExit();
+        }
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            AddToastNotificationActionHandler();
+            base.OnStartup(e);
+        }
+
+        private void AddToastNotificationActionHandler()
+        {
+            ToastNotificationManagerCompat.OnActivated += OnToastNotificationUserAction;
+        }
+
+        private void OnToastNotificationUserAction(ToastNotificationActivatedEventArgsCompat e)
+        {
+            ToastArguments args = ToastArguments.Parse(e.Argument);
+            Application.Current.Dispatcher.Invoke(delegate
+            {
+                NotificationUserAction data = new()
+                {
+                    Arguments = args.ToDictionary(p => p.Key, p => p.Value),
+                    UserInputs = e.UserInput.ToDictionary(p => p.Key, p => p.Value)
+                };
+                _bootstrapper.OnToastNotificationUserAction(data);
+            });
         }
     }
 }

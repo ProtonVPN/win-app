@@ -51,5 +51,10 @@ namespace ProtonVPN.Core.Servers.Models
         {
             return servers.Where(s => s.Tier <= maxTier);
         }
+
+        public static bool IsNullOrEmpty(this Server server)
+        {
+            return server == null || server.IsEmpty();
+        }
     }
 }

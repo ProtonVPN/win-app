@@ -64,6 +64,7 @@ using ProtonVPN.Settings.SplitTunneling;
 using ProtonVPN.Sidebar;
 using ProtonVPN.Vpn;
 using ProtonVPN.Vpn.Connectors;
+using ProtonVPN.Windows.Popups.Delinquency;
 
 namespace ProtonVPN.Core.Ioc
 {
@@ -277,13 +278,16 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<SystemState>().As<ISystemState>().SingleInstance();
             builder.RegisterType<ReconnectManager>().AsImplementedInterfaces().SingleInstance();
             builder.Register(c => new VpnInfoChecker(
-                c.Resolve<Common.Configuration.Config>().VpnInfoCheckInterval.RandomizedWithDeviation(0.2),
+                c.Resolve<Common.Configuration.Config>(),
                 c.Resolve<IEventAggregator>(),
                 c.Resolve<IApiClient>(),
-                c.Resolve<IUserStorage>())).SingleInstance();
+                c.Resolve<IUserStorage>(),
+                c.Resolve<IScheduler>())).SingleInstance();
             builder.RegisterType<VpnReconnector>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<ReportFieldProvider>().As<IReportFieldProvider>().SingleInstance();
             builder.RegisterType<PlanDowngradeHandler>().AsImplementedInterfaces().AsSelf().SingleInstance();
+            builder.RegisterType<NotificationSender>().As<INotificationSender>().SingleInstance();
+            builder.RegisterType<NotificationUserActionHandler>().As<INotificationUserActionHandler>().SingleInstance();
         }
     }
 }

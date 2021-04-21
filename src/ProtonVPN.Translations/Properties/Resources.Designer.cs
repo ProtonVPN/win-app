@@ -3262,11 +3262,38 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No Thanks.
+        /// </summary>
+        public static string Dialogs_btn_NoThanks {
+            get {
+                return ResourceManager.GetString("Dialogs_btn_NoThanks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ok.
+        /// </summary>
+        public static string Dialogs_btn_Ok {
+            get {
+                return ResourceManager.GetString("Dialogs_btn_Ok", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Check invoices.
         /// </summary>
         public static string Dialogs_Delinquency_btn_Invoices {
             get {
                 return ResourceManager.GetString("Dialogs_Delinquency_btn_Invoices", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update My Billing.
+        /// </summary>
+        public static string Dialogs_Delinquency_GoToBilling {
+            get {
+                return ResourceManager.GetString("Dialogs_Delinquency_GoToBilling", resourceCulture);
             }
         }
         
@@ -3280,20 +3307,38 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You will be able to access premium features again after these are paid. For now, we are reconnecting to the fastest FREE plan server available..
+        /// </summary>
+        public static string Dialogs_Delinquency_Reconnected_Subtitle {
+            get {
+                return ResourceManager.GetString("Dialogs_Delinquency_Reconnected_Subtitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You will be able to access premium features again after these are paid..
+        /// </summary>
+        public static string Dialogs_Delinquency_Subtitle {
+            get {
+                return ResourceManager.GetString("Dialogs_Delinquency_Subtitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your VPN account has pending invoices.
+        /// </summary>
+        public static string Dialogs_Delinquency_Title {
+            get {
+                return ResourceManager.GetString("Dialogs_Delinquency_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delinquent account.
         /// </summary>
         public static string Dialogs_Delinquency_ttl {
             get {
                 return ResourceManager.GetString("Dialogs_Delinquency_ttl", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Ok.
-        /// </summary>
-        public static string Dialogs_btn_Ok {
-            get {
-                return ResourceManager.GetString("Dialogs_btn_Ok", resourceCulture);
             }
         }
         
@@ -3415,38 +3460,11 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You reached the maximum number of devices that you can simultaneously connect to ProtonVPN. Upgrade to Plus to use ProtonVPN on up to 5 devices at the same time..
-        /// </summary>
-        public static string Dialogs_DisconnectError_msg_SessionLimitFreeBasic {
-            get {
-                return ResourceManager.GetString("Dialogs_DisconnectError_msg_SessionLimitFreeBasic", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to You can connect to ProtonVPN on a maximum of 5 devices at the same time. Please disconnect one of your other devices from ProtonVPN and try again..
-        /// </summary>
-        public static string Dialogs_DisconnectError_msg_SessionLimitPlus {
-            get {
-                return ResourceManager.GetString("Dialogs_DisconnectError_msg_SessionLimitPlus", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Please see this support &lt;Hyperlink Command=&quot;{Binding OpenHelpArticleCommand}&quot;&gt;article&lt;/Hyperlink&gt; how to fix it..
         /// </summary>
         public static string Dialogs_DisconnectError_msg_TapErrorHelp {
             get {
                 return ResourceManager.GetString("Dialogs_DisconnectError_msg_TapErrorHelp", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to You have been disconnected because your plan was downgraded. Please upgrade your plan to access all countries and premium features..
-        /// </summary>
-        public static string Dialogs_DisconnectError_msg_TierTooLow {
-            get {
-                return ResourceManager.GetString("Dialogs_DisconnectError_msg_TierTooLow", resourceCulture);
             }
         }
         
@@ -3460,20 +3478,38 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your account currently has an unpaid invoice. To keep your online browsing encrypted and secure, please pay unpaid invoices at &lt;Hyperlink Foreground=&quot;White&quot; Command=&quot;{Binding GoToAccountCommand}&quot;&gt;account.protonvpn.com&lt;/Hyperlink&gt;.
-        /// </summary>
-        public static string Dialogs_DisconnectError_msg_Unpaid {
-            get {
-                return ResourceManager.GetString("Dialogs_DisconnectError_msg_Unpaid", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Don&apos;t show this message again.
         /// </summary>
         public static string Dialogs_DoNotShowThisMessageAgain {
             get {
                 return ResourceManager.GetString("Dialogs_DoNotShowThisMessageAgain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable.
+        /// </summary>
+        public static string Dialogs_EnableSmartProtocol_btn_Enable {
+            get {
+                return ResourceManager.GetString("Dialogs_EnableSmartProtocol_btn_Enable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ProtonVPN detected that your current network is preventing a connection to the VPN. Enabling Smart Protocol might bypass these limitations.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command=&quot;{Binding ReadAboutSmartProtocolCommand}&quot;&gt;Read more about Smart Protocol.&lt;/Hyperlink&gt;.
+        /// </summary>
+        public static string Dialogs_EnableSmartProtocol_msg {
+            get {
+                return ResourceManager.GetString("Dialogs_EnableSmartProtocol_msg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Smart Protocol is currently disabled.
+        /// </summary>
+        public static string Dialogs_EnableSmartProtocol_ttl {
+            get {
+                return ResourceManager.GetString("Dialogs_EnableSmartProtocol_ttl", resourceCulture);
             }
         }
         
@@ -3550,29 +3586,47 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enable.
+        ///   Looks up a localized string similar to Got It.
         /// </summary>
-        public static string Dialogs_EnableSmartProtocol_btn_Enable {
+        public static string Dialogs_MaximumDeviceLimit_Disconnect_Ok {
             get {
-                return ResourceManager.GetString("Dialogs_EnableSmartProtocol_btn_Enable", resourceCulture);
+                return ResourceManager.GetString("Dialogs_MaximumDeviceLimit_Disconnect_Ok", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ProtonVPN detected that your current network is preventing a connection to the VPN. Enabling Smart Protocol might bypass these limitations.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command=&quot;{Binding ReadAboutSmartProtocolCommand}&quot;&gt;Read more about Smart Protocol.&lt;/Hyperlink&gt;.
+        ///   Looks up a localized string similar to Please disconnect another device to connect this one..
         /// </summary>
-        public static string Dialogs_EnableSmartProtocol_msg {
+        public static string Dialogs_MaximumDeviceLimit_Disconnect_Subtitle {
             get {
-                return ResourceManager.GetString("Dialogs_EnableSmartProtocol_msg", resourceCulture);
+                return ResourceManager.GetString("Dialogs_MaximumDeviceLimit_Disconnect_Subtitle", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Smart Protocol is currently disabled.
+        ///   Looks up a localized string similar to You have reached your maximum device limit.
         /// </summary>
-        public static string Dialogs_EnableSmartProtocol_ttl {
+        public static string Dialogs_MaximumDeviceLimit_Title {
             get {
-                return ResourceManager.GetString("Dialogs_EnableSmartProtocol_ttl", resourceCulture);
+                return ResourceManager.GetString("Dialogs_MaximumDeviceLimit_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upgrade.
+        /// </summary>
+        public static string Dialogs_MaximumDeviceLimit_Upgrade {
+            get {
+                return ResourceManager.GetString("Dialogs_MaximumDeviceLimit_Upgrade", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please disconnect another device to connect this one or upgrade to PLUS to get up to 5 devices connected at the same time..
+        /// </summary>
+        public static string Dialogs_MaximumDeviceLimit_Upgrade_Subtitle {
+            get {
+                return ResourceManager.GetString("Dialogs_MaximumDeviceLimit_Upgrade_Subtitle", resourceCulture);
             }
         }
         
@@ -3775,6 +3829,24 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to From server:.
+        /// </summary>
+        public static string Dialogs_reconnection_FromServer {
+            get {
+                return ResourceManager.GetString("Dialogs_reconnection_FromServer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To server:.
+        /// </summary>
+        public static string Dialogs_reconnection_ToServer {
+            get {
+                return ResourceManager.GetString("Dialogs_reconnection_ToServer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The ProtonVPN Service that is responsible for your VPN connection is not running. It will try to complete your task again shortly. If this problem persists, try restarting the ProtonVPN app. If it still persists, try restarting your PC..
         /// </summary>
         public static string Dialogs_ServiceStart_Info {
@@ -3798,6 +3870,78 @@ namespace ProtonVPN.Translations.Properties {
         public static string Dialogs_SplitTunnelWarning_msg {
             get {
                 return ResourceManager.GetString("Dialogs_SplitTunnelWarning_msg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hundreds of servers in 54 countries.
+        /// </summary>
+        public static string Dialogs_SubscriptionExpired_ListOption1 {
+            get {
+                return ResourceManager.GetString("Dialogs_SubscriptionExpired_ListOption1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Connect up to 5 devices at the same time.
+        /// </summary>
+        public static string Dialogs_SubscriptionExpired_ListOption2 {
+            get {
+                return ResourceManager.GetString("Dialogs_SubscriptionExpired_ListOption2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Advanced features: NetShield, Secure Core, Tor, P2P.
+        /// </summary>
+        public static string Dialogs_SubscriptionExpired_ListOption3 {
+            get {
+                return ResourceManager.GetString("Dialogs_SubscriptionExpired_ListOption3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upgrade again to enjoy all the features:.
+        /// </summary>
+        public static string Dialogs_SubscriptionExpired_ListTitle {
+            get {
+                return ResourceManager.GetString("Dialogs_SubscriptionExpired_ListTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your subscription has been downgraded, so we are reconnecting to the fastest available server..
+        /// </summary>
+        public static string Dialogs_SubscriptionExpired_Reconnected_Subtitle {
+            get {
+                return ResourceManager.GetString("Dialogs_SubscriptionExpired_Reconnected_Subtitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your subscription has been downgraded..
+        /// </summary>
+        public static string Dialogs_SubscriptionExpired_Subtitle {
+            get {
+                return ResourceManager.GetString("Dialogs_SubscriptionExpired_Subtitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your VPN subscription plan has expired.
+        /// </summary>
+        public static string Dialogs_SubscriptionExpired_Title {
+            get {
+                return ResourceManager.GetString("Dialogs_SubscriptionExpired_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upgrade Again.
+        /// </summary>
+        public static string Dialogs_SubscriptionExpired_Upgrade {
+            get {
+                return ResourceManager.GetString("Dialogs_SubscriptionExpired_Upgrade", resourceCulture);
             }
         }
         
@@ -4315,6 +4459,51 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You will be able to access premium features again after these are paid..
+        /// </summary>
+        public static string Notifications_Delinquency_Description {
+            get {
+                return ResourceManager.GetString("Notifications_Delinquency_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You will be able to access premium features again after these are paid. For now, we are reconnecting to the fastest FREE plan server available..
+        /// </summary>
+        public static string Notifications_Delinquency_Reconnected_Description {
+            get {
+                return ResourceManager.GetString("Notifications_Delinquency_Reconnected_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your VPN account has pending invoices.
+        /// </summary>
+        public static string Notifications_Delinquency_Title {
+            get {
+                return ResourceManager.GetString("Notifications_Delinquency_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ProtonVPN detected that your current network is preventing a connection to the VPN. Enabling Smart Protocol might bypass these limitations..
+        /// </summary>
+        public static string Notifications_EnableSmartProtocol_msg {
+            get {
+                return ResourceManager.GetString("Notifications_EnableSmartProtocol_msg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Smart Protocol is currently disabled.
+        /// </summary>
+        public static string Notifications_EnableSmartProtocol_ttl {
+            get {
+                return ResourceManager.GetString("Notifications_EnableSmartProtocol_ttl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Learn More.
         /// </summary>
         public static string Notifications_InsecureWiFi_LearnMore {
@@ -4329,6 +4518,60 @@ namespace ProtonVPN.Translations.Properties {
         public static string Notifications_InsecureWiFi_msg_Detected {
             get {
                 return ResourceManager.GetString("Notifications_InsecureWiFi_msg_Detected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please disconnect another device to connect this one..
+        /// </summary>
+        public static string Notifications_MaximumDeviceLimit_Disconnect_Description {
+            get {
+                return ResourceManager.GetString("Notifications_MaximumDeviceLimit_Disconnect_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have reached your maximum device limit.
+        /// </summary>
+        public static string Notifications_MaximumDeviceLimit_Title {
+            get {
+                return ResourceManager.GetString("Notifications_MaximumDeviceLimit_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please disconnect another device to connect this one or upgrade to PLUS to get up to 5 devices connected at the same time..
+        /// </summary>
+        public static string Notifications_MaximumDeviceLimit_Upgrade_Description {
+            get {
+                return ResourceManager.GetString("Notifications_MaximumDeviceLimit_Upgrade_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your subscription has been downgraded. Upgrade again to enjoy all the features..
+        /// </summary>
+        public static string Notifications_SubscriptionExpired_Description {
+            get {
+                return ResourceManager.GetString("Notifications_SubscriptionExpired_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your subscription has been downgraded, so we are reconnecting to the fastest available server. Upgrade again to enjoy all the features..
+        /// </summary>
+        public static string Notifications_SubscriptionExpired_Reconnected_Description {
+            get {
+                return ResourceManager.GetString("Notifications_SubscriptionExpired_Reconnected_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your VPN subscription plan has expired.
+        /// </summary>
+        public static string Notifications_SubscriptionExpired_Title {
+            get {
+                return ResourceManager.GetString("Notifications_SubscriptionExpired_Title", resourceCulture);
             }
         }
         
@@ -4468,7 +4711,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An error occured, please try again later..
+        ///   Looks up a localized string similar to An error occurred, please try again later..
         /// </summary>
         public static string Popup_TunFallback_lbl_FailedToSend {
             get {

@@ -273,14 +273,6 @@
     <value>Identifying problem...</value>
     <comment>The message displayed in Disconnect modal window while trying to identify connection problem</comment>
   </data>
-  <data name="Dialogs_DisconnectError_msg_Unpaid" xml:space="preserve">
-    <value>Your account currently has an unpaid invoice. To keep your online browsing encrypted and secure, please pay unpaid invoices at &lt;Hyperlink Foreground="White" Command="{Binding GoToAccountCommand}"&gt;account.protonvpn.com&lt;/Hyperlink&gt;</value>
-    <comment>The error description displayed in Disconnect modal window if user has unpaid invoices</comment>
-  </data>
-  <data name="Dialogs_DisconnectError_msg_SessionLimitFreeBasic" xml:space="preserve">
-    <value>You reached the maximum number of devices that you can simultaneously connect to ProtonVPN. Upgrade to Plus to use ProtonVPN on up to 5 devices at the same time.</value>
-    <comment>The error description displayed in Disconnect modal window when maximum VPN connection limit is reached</comment>
-  </data>
   <data name="Servers_msg_CantConnect_Maintenance" xml:space="preserve">
     <value>The server you are trying to connect to is currently offline for maintenance. Please select another server or profile.</value>
     <comment>The message displayed when connecting to server which is on maintenance</comment>
@@ -2322,10 +2314,6 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <value>The ProtonVPN Service that is responsible for your VPN connection is not running. It will try to complete your task again shortly. If this problem persists, try restarting the ProtonVPN app. If it still persists, try restarting your PC.</value>
     <comment>The text displayed in Service Start window</comment>
   </data>
-  <data name="Dialogs_DisconnectError_msg_TierTooLow" xml:space="preserve">
-    <value>You have been disconnected because your plan was downgraded. Please upgrade your plan to access all countries and premium features.</value>
-    <comment>The error description displayed in Disconnect modal window when user subscription plan has been downgraded (not necessarily to Free). The trial period might have been ended or the user might have changed his plan.</comment>
-  </data>
   <data name="Dialogs_DisconnectError_msg_NoServers" xml:space="preserve">
     <value>There are no servers available right now for your selection. Please select a different option.</value>
     <comment>The error description displayed in Disconnect modal window if disconnected because there are no servers available to connect to</comment>
@@ -2735,10 +2723,6 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <value>Upgrade</value>
     <comment>The text on Upgrade button in Disconnect modal window</comment>
   </data>
-  <data name="Dialogs_DisconnectError_msg_SessionLimitPlus" xml:space="preserve">
-    <value>You can connect to ProtonVPN on a maximum of 5 devices at the same time. Please disconnect one of your other devices from ProtonVPN and try again.</value>
-    <comment>The error description displayed in Disconnect modal window when maximum VPN connection limit is reached</comment>
-  </data>
   <data name="Dialogs_Bfe_msg_info" xml:space="preserve">
     <value>One of the services required by ProtonVPN (Base Filtering Engine) is not running.&lt;LineBreak/&gt;
 Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these"/&gt;&lt;/Hyperlink&gt; instructions to enable it again and retry.</value>
@@ -2945,26 +2929,14 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Sending report...</value>
   </data>
   <data name="Popup_TunFallback_lbl_FailedToSend" xml:space="preserve">
-    <value>An error occured, please try again later.</value>
+    <value>An error occurred, please try again later.</value>
   </data>
   <data name="Popup_TunFallback_lbl_SentSuccessfully" xml:space="preserve">
     <value>Report sent successfully.</value>
   </data>
-  <data name="Dialogs_Delinquency_ttl" xml:space="preserve">
-    <value>Delinquent account</value>
-    <comment>The title of the Delinquency window</comment>
-  </data>
   <data name="Dialogs_Delinquency_btn_Invoices" xml:space="preserve">
     <value>Check invoices</value>
     <comment>The text on invoices button in the Delinquency window (opens web page for invoice payment)</comment>
-  </data>
-  <data name="Sidebar_Trial_lbl_Delinquency" xml:space="preserve">
-    <value>Paid features are disabled due to delinquency</value>
-    <comment>The text displayed in Trial section of Sidebar section of main app window when user is flagged as delinquent.</comment>
-  </data>
-  <data name="Sidebar_Trial_btn_Invoices" xml:space="preserve">
-    <value>Check invoices</value>
-    <comment>The text on invoices button in the Delinquency message on the sidebar (opens web page for invoice payment)</comment>
   </data>
   <data name="Dialogs_Delinquency_ttl" xml:space="preserve">
     <value>Delinquent account</value>
@@ -2973,10 +2945,6 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="Dialogs_Delinquency_msg" xml:space="preserve">
     <value>The account is flagged as delinquent due to unpaid invoices. You can continue to use ProtonVPN, but any paid features are now disabled.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadAboutDelinquencyCommand}"&gt;Read more about delinquency.&lt;/Hyperlink&gt;</value>
     <comment>The message displayed in the Delinquency window. The codes between &lt; and &gt; should be kept as is (Do not forget to translate the inner "Read more about delinquency.").</comment>
-  </data>
-  <data name="Dialogs_Delinquency_btn_Invoices" xml:space="preserve">
-    <value>Check invoices</value>
-    <comment>The text on invoices button in the Delinquency window (opens web page for invoice payment)</comment>
   </data>
   <data name="Sidebar_Trial_lbl_Delinquency" xml:space="preserve">
     <value>Paid features are disabled due to delinquency</value>
@@ -3025,5 +2993,130 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="Dialogs_NonSmartReconnectionFailed_btn_QuickConnect" xml:space="preserve">
     <value>Quick Connect</value>
     <comment>The text on Quick Connect button in the NonSmartReconnectionFailed window</comment>
+  </data>
+  <data name="Dialogs_SubscriptionExpired_Title" xml:space="preserve">
+    <value>Your VPN subscription plan has expired</value>
+    <comment>The title of the Subscription Expired window</comment>
+  </data>
+  <data name="Dialogs_SubscriptionExpired_Subtitle" xml:space="preserve">
+    <value>Your subscription has been downgraded.</value>
+    <comment>The subtitle of the Subscription Expired window</comment>
+  </data>
+  <data name="Dialogs_SubscriptionExpired_Reconnected_Subtitle" xml:space="preserve">
+    <value>Your subscription has been downgraded, so we are reconnecting to the fastest available server.</value>
+    <comment>The subtitle of the Subscription Expired window when the user is reconnected</comment>
+  </data>
+  <data name="Dialogs_SubscriptionExpired_ListTitle" xml:space="preserve">
+    <value>Upgrade again to enjoy all the features:</value>
+    <comment>The text right before the subscriber benefits list in the Subscription Expired window</comment>
+  </data>
+  <data name="Dialogs_SubscriptionExpired_ListOption1" xml:space="preserve">
+    <value>Hundreds of servers in 54 countries</value>
+    <comment>An option of the subscriber benefits list in the Subscription Expired window</comment>
+  </data>
+  <data name="Dialogs_SubscriptionExpired_ListOption2" xml:space="preserve">
+    <value>Connect up to 5 devices at the same time</value>
+    <comment>An option of the subscriber benefits list in the Subscription Expired window</comment>
+  </data>
+  <data name="Dialogs_SubscriptionExpired_ListOption3" xml:space="preserve">
+    <value>Advanced features: NetShield, Secure Core, Tor, P2P</value>
+    <comment>An option of the subscriber benefits list in the Subscription Expired window</comment>
+  </data>
+  <data name="Dialogs_SubscriptionExpired_Upgrade" xml:space="preserve">
+    <value>Upgrade Again</value>
+    <comment>The upgrade button text in the Subscription Expired window</comment>
+  </data>
+  <data name="Dialogs_Delinquency_Title" xml:space="preserve">
+    <value>Your VPN account has pending invoices</value>
+    <comment>The title of the Delinquency window</comment>
+  </data>
+  <data name="Dialogs_Delinquency_Subtitle" xml:space="preserve">
+    <value>You will be able to access premium features again after these are paid.</value>
+    <comment>The subtitle of the Delinquency window</comment>
+  </data>
+  <data name="Dialogs_Delinquency_Reconnected_Subtitle" xml:space="preserve">
+    <value>You will be able to access premium features again after these are paid. For now, we are reconnecting to the fastest FREE plan server available.</value>
+    <comment>The subtitle of the Delinquency window when the user is reconnected</comment>
+  </data>
+  <data name="Dialogs_Delinquency_GoToBilling" xml:space="preserve">
+    <value>Update My Billing</value>
+    <comment>The "go to billing website" button text in the Delinquency window</comment>
+  </data>
+  <data name="Dialogs_btn_NoThanks" xml:space="preserve">
+    <value>No Thanks</value>
+    <comment>The text on NoThanks button in dialog windows</comment>
+  </data>
+  <data name="Dialogs_reconnection_FromServer" xml:space="preserve">
+    <value>From server:</value>
+    <comment>The label for the previous server in dialog windows</comment>
+  </data>
+  <data name="Dialogs_reconnection_ToServer" xml:space="preserve">
+    <value>To server:</value>
+    <comment>The label for the new server in dialog windows</comment>
+  </data>
+  <data name="Dialogs_MaximumDeviceLimit_Title" xml:space="preserve">
+    <value>You have reached your maximum device limit</value>
+    <comment>The title of the Maximum Device Limit window</comment>
+  </data>
+  <data name="Dialogs_MaximumDeviceLimit_Upgrade_Subtitle" xml:space="preserve">
+    <value>Please disconnect another device to connect this one or upgrade to PLUS to get up to 5 devices connected at the same time.</value>
+    <comment>The subtitle of the Maximum Device Limit window when the user can upgrade the subscription plan</comment>
+  </data>
+  <data name="Dialogs_MaximumDeviceLimit_Upgrade" xml:space="preserve">
+    <value>Upgrade</value>
+    <comment>The upgrade button text in the Maximum Device Limit window when the user can upgrade the subscription plan</comment>
+  </data>
+  
+  <data name="Dialogs_MaximumDeviceLimit_Disconnect_Subtitle" xml:space="preserve">
+    <value>Please disconnect another device to connect this one.</value>
+    <comment>The subtitle of the Maximum Device Limit window when the user already has the highest subscription plan</comment>
+  </data>
+  <data name="Dialogs_MaximumDeviceLimit_Disconnect_Ok" xml:space="preserve">
+    <value>Got It</value>
+    <comment>The ok button text in the Maximum Device Limit window when the user already has the highest subscription plan</comment>
+  </data>
+  <data name="Notifications_SubscriptionExpired_Title" xml:space="preserve">
+    <value>Your VPN subscription plan has expired</value>
+    <comment>The title of the Subscription Expired notification</comment>
+  </data>
+  <data name="Notifications_SubscriptionExpired_Description" xml:space="preserve">
+    <value>Your subscription has been downgraded. Upgrade again to enjoy all the features.</value>
+    <comment>The description of the Subscription Expired notification</comment>
+  </data>
+  <data name="Notifications_SubscriptionExpired_Reconnected_Description" xml:space="preserve">
+    <value>Your subscription has been downgraded, so we are reconnecting to the fastest available server. Upgrade again to enjoy all the features.</value>
+    <comment>The description of the Subscription Expired notification when the user is reconnected</comment>
+  </data>
+  <data name="Notifications_Delinquency_Title" xml:space="preserve">
+    <value>Your VPN account has pending invoices</value>
+    <comment>The title of the Delinquency notification</comment>
+  </data>
+  <data name="Notifications_Delinquency_Description" xml:space="preserve">
+    <value>You will be able to access premium features again after these are paid.</value>
+    <comment>The description of the Delinquency notification</comment>
+  </data>
+  <data name="Notifications_Delinquency_Reconnected_Description" xml:space="preserve">
+    <value>You will be able to access premium features again after these are paid. For now, we are reconnecting to the fastest FREE plan server available.</value>
+    <comment>The description of the Delinquency notification when the user is reconnected</comment>
+  </data>
+  <data name="Notifications_MaximumDeviceLimit_Title" xml:space="preserve">
+    <value>You have reached your maximum device limit</value>
+    <comment>The title of the Maximum Device Limit notification</comment>
+  </data>
+  <data name="Notifications_MaximumDeviceLimit_Upgrade_Description" xml:space="preserve">
+    <value>Please disconnect another device to connect this one or upgrade to PLUS to get up to 5 devices connected at the same time.</value>
+    <comment>The description of the Maximum Device Limit notification when the user can upgrade the subscription plan</comment>
+  </data>
+  <data name="Notifications_MaximumDeviceLimit_Disconnect_Description" xml:space="preserve">
+    <value>Please disconnect another device to connect this one.</value>
+    <comment>The description of the Maximum Device Limit notification when the user already has the highest subscription plan</comment>
+  </data>
+  <data name="Notifications_EnableSmartProtocol_ttl" xml:space="preserve">
+    <value>Smart Protocol is currently disabled</value>
+    <comment>The title of the Enable Smart Protocol notification</comment>
+  </data>
+  <data name="Notifications_EnableSmartProtocol_msg" xml:space="preserve">
+    <value>ProtonVPN detected that your current network is preventing a connection to the VPN. Enabling Smart Protocol might bypass these limitations.</value>
+    <comment>The message displayed in the Enable Smart Protocol notification.</comment>
   </data>
 </root>

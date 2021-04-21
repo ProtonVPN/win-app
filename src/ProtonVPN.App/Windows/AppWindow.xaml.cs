@@ -17,15 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Caliburn.Micro;
-using ProtonVPN.Core;
-using ProtonVPN.Core.Events;
-using ProtonVPN.Core.Models;
-using ProtonVPN.Core.Native;
-using ProtonVPN.Core.Settings;
-using ProtonVPN.Onboarding;
-using ProtonVPN.QuickLaunch;
-using ProtonVPN.Sidebar;
 using System;
 using System.ComponentModel;
 using System.Reflection;
@@ -34,8 +25,17 @@ using System.Windows.Forms;
 using System.Windows.Interop;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Effects;
+using Caliburn.Micro;
+using ProtonVPN.Core;
+using ProtonVPN.Core.Events;
+using ProtonVPN.Core.Models;
+using ProtonVPN.Core.Native;
 using ProtonVPN.Core.Native.Structures;
+using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Window;
+using ProtonVPN.Onboarding;
+using ProtonVPN.QuickLaunch;
+using ProtonVPN.Sidebar;
 
 namespace ProtonVPN.Windows
 {

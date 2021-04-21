@@ -17,11 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Modals.Delinquencies
+namespace ProtonVPN.Views.Icons
 {
-    public partial class DelinquencyModalView
+    public partial class UpsellTunnel
     {
-        public DelinquencyModalView()
+        public UpsellTunnel()
         {
             InitializeComponent();
         }
