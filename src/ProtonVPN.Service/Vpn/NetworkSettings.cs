@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -35,43 +35,9 @@ namespace ProtonVPN.Service.Vpn
             _currentNetworkInterface = currentNetworkInterface;
         }
 
-        public bool ApplyNetworkSettings()
+        public bool IsNetworkAdapterAvailable()
         {
-            uint interfaceIndex = _currentNetworkInterface.Index;
-            if (interfaceIndex == 0)
-            {
-                return false;
-            }
-
-            try
-            {
-                NetworkUtil.SetLowestTapMetric(interfaceIndex);
-            }
-            catch (NetworkUtilException e)
-            {
-                _logger.Error("Failed to apply network settings. Error code: " + e.Code);
-                return false;
-            }
-
-            return true;
-        }
-
-        private void RestoreNetworkSettings()
-        {
-            uint interfaceIndex = _currentNetworkInterface.Index;
-            if (interfaceIndex == 0)
-            {
-                return;
-            }
-
-            try
-            {
-                NetworkUtil.RestoreDefaultTapMetric(interfaceIndex);
-            }
-            catch (NetworkUtilException e)
-            {
-                _logger.Error("Failed restore network settings. Error code: " + e.Code);
-            }
+            return _currentNetworkInterface.Index != 0;
         }
 
         public void OnVpnDisconnected(VpnState state)
@@ -85,6 +51,43 @@ namespace ProtonVPN.Service.Vpn
 
         public void OnVpnConnecting(VpnState state)
         {
+            ApplyNetworkSettings();
+        }
+
+        private void ApplyNetworkSettings()
+        {
+            uint interfaceIndex = _currentNetworkInterface.Index;
+
+            try
+            {
+                _logger.Info("Setting interface metric...");
+                NetworkUtil.SetLowestTapMetric(interfaceIndex);
+                _logger.Info("Interface metric set.");
+            }
+            catch (NetworkUtilException e)
+            {
+                _logger.Error("Failed to apply network settings. Error code: " + e.Code);
+            }
+        }
+
+        private void RestoreNetworkSettings()
+        {
+            uint interfaceIndex = _currentNetworkInterface.Index;
+            if (interfaceIndex == 0)
+            {
+                return;
+            }
+
+            try
+            {
+                _logger.Info("Restoring interface metric...");
+                NetworkUtil.RestoreDefaultTapMetric(interfaceIndex);
+                _logger.Info("Interface metric restored.");
+            }
+            catch (NetworkUtilException e)
+            {
+                _logger.Error("Failed restore network settings. Error code: " + e.Code);
+            }
         }
     }
 }
