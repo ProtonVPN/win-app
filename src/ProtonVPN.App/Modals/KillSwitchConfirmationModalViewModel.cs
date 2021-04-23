@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.ComponentModel;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
 using ProtonVPN.Core.Settings;
@@ -32,8 +33,6 @@ namespace ProtonVPN.Modals
         public KillSwitchConfirmationModalViewModel(IAppSettings appSettings)
         {
             _appSettings = appSettings;
-
-            IsToNotShowThisMessageAgain = _appSettings.DoNotShowKillSwitchConfirmationDialog;
 
             CancelCommand = new RelayCommand(CancelAction);
             EnableCommand = new RelayCommand(EnableAction);
@@ -51,6 +50,16 @@ namespace ProtonVPN.Modals
         public override void CloseAction()
         {
             CancelAction();
+        }
+
+        public override void OnAppSettingsChanged(PropertyChangedEventArgs e)
+        {
+            base.OnAppSettingsChanged(e);
+
+            if (e.PropertyName == nameof(IAppSettings.DoNotShowKillSwitchConfirmationDialog))
+            {
+                IsToNotShowThisMessageAgain = _appSettings.DoNotShowKillSwitchConfirmationDialog;
+            }
         }
 
         private void CancelAction()
