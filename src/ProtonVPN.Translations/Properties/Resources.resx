@@ -2966,33 +2966,33 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Enable</value>
     <comment>The text on Enable button in the Enable Smart Protocol window</comment>
   </data>
-  <data name="Settings_Connection_lbl_SmartReconnect" xml:space="preserve">
-    <value>Smart Reconnect</value>
-    <comment>The label for Smart Reconnect toggle switch in Connection tab of Settings window</comment>
+  <data name="Settings_Connection_lbl_VpnAccelerator" xml:space="preserve">
+    <value>VPN Accelerator</value>
+    <comment>The label for VPN Accelerator toggle switch in Connection tab of Settings window</comment>
   </data>
-  <data name="Settings_Connection_lbl_SmartReconnect_Info" xml:space="preserve">
+  <data name="Settings_Connection_lbl_VpnAccelerator_Info" xml:space="preserve">
     <value>Automatically connect to a similar server if the one you selected is inaccessible.</value>
-    <comment>The description of Smart Reconnect setting displayed in the tooltip of the ( i ) image next to the label for Smart Reconnect toggle switch in Connection tab of Settings window</comment>
+    <comment>The description of VPN Accelerator setting displayed in the tooltip of the ( i ) image next to the label for VPN Accelerator toggle switch in Connection tab of Settings window</comment>
   </data>
-  <data name="Settings_Connection_lbl_SmartReconnectNotifications" xml:space="preserve">
-    <value>Smart Reconnect Notifications</value>
-    <comment>The label for Smart Reconnect Notifications toggle switch in Connection tab of Settings window</comment>
+  <data name="Settings_Connection_lbl_VpnAcceleratorNotifications" xml:space="preserve">
+    <value>VPN Accelerator Notifications</value>
+    <comment>The label for VPN Accelerator Notifications toggle switch in Connection tab of Settings window</comment>
   </data>
-  <data name="Settings_Connection_lbl_SmartReconnectNotifications_Info" xml:space="preserve">
+  <data name="Settings_Connection_lbl_VpnAcceleratorNotifications_Info" xml:space="preserve">
     <value>Be notified when ProtonVPN connects to a server other than the one you selected.</value>
-    <comment>The description of Smart Reconnect Notifications setting displayed in the tooltip of the ( i ) image next to the label for Smart Reconnect Notifications toggle switch in Connection tab of Settings window</comment>
+    <comment>The description of VPN Accelerator Notifications setting displayed in the tooltip of the ( i ) image next to the label for VPN Accelerator Notifications toggle switch in Connection tab of Settings window</comment>
   </data>
-  <data name="Dialogs_NonSmartReconnectionFailed_ttl" xml:space="preserve">
+  <data name="Dialogs_NonVpnAccelerationFailed_ttl" xml:space="preserve">
     <value>Connection failed</value>
-    <comment>The title of the NonSmartReconnectionFailed window</comment>
+    <comment>The title of the NonVpnAccelerationFailed window</comment>
   </data>
-    <data name="Dialogs_NonSmartReconnectionFailed_msg" xml:space="preserve">
-    <value>ProtonVPN couldn't connect to the selected server.&lt;LineBreak/&gt;Please, use Quick Connect or enable Smart Reconnect in the &lt;Hyperlink Command="{Binding OpenSettingsCommand}"&gt;Settings&lt;/Hyperlink&gt;.</value>
-    <comment>The message displayed in the NonSmartReconnectionFailed window. The codes between &lt; and &gt; should be kept as is (Do not forget to translate the inner text "Settings").</comment>
+    <data name="Dialogs_NonVpnAccelerationFailed_msg" xml:space="preserve">
+    <value>ProtonVPN couldn't connect to the selected server.&lt;LineBreak/&gt;Please, use Quick Connect or enable VPN Accelerator in the &lt;Hyperlink Command="{Binding OpenSettingsCommand}"&gt;Settings&lt;/Hyperlink&gt;.</value>
+    <comment>The message displayed in the NonVpnAccelerationFailed window. The codes between &lt; and &gt; should be kept as is (Do not forget to translate the inner text "Settings").</comment>
   </data>
-  <data name="Dialogs_NonSmartReconnectionFailed_btn_QuickConnect" xml:space="preserve">
+  <data name="Dialogs_NonVpnAccelerationFailed_btn_QuickConnect" xml:space="preserve">
     <value>Quick Connect</value>
-    <comment>The text on Quick Connect button in the NonSmartReconnectionFailed window</comment>
+    <comment>The text on Quick Connect button in the NonVpnAccelerationFailed window</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_Title" xml:space="preserve">
     <value>Your VPN subscription plan has expired</value>
@@ -3066,7 +3066,6 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Upgrade</value>
     <comment>The upgrade button text in the Maximum Device Limit window when the user can upgrade the subscription plan</comment>
   </data>
-  
   <data name="Dialogs_MaximumDeviceLimit_Disconnect_Subtitle" xml:space="preserve">
     <value>Please disconnect another device to connect this one.</value>
     <comment>The subtitle of the Maximum Device Limit window when the user already has the highest subscription plan</comment>

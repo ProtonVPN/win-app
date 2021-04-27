@@ -91,14 +91,14 @@ namespace ProtonVPN.Core.Settings
         bool FeaturePollNotificationApiEnabled { get; set; }
         TimeSpan MaintenanceCheckInterval { get; set; }
         bool UseTunAdapter { get; set; }
-        bool SmartReconnectEnabled { get; set; }
-        bool SmartReconnectNotificationsEnabled { get; set; }
-        bool FeatureSmartReconnectEnabled { get; set; }
+        bool VpnAcceleratorEnabled { get; set; }
+        bool VpnAcceleratorNotificationsEnabled { get; set; }
+        bool FeatureVpnAcceleratorEnabled { get; set; }
 
         bool IsNetShieldEnabled();
         bool IsPortForwardingEnabled();
-        bool IsSmartReconnectEnabled();
-        bool IsSmartReconnectNotificationsEnabled();
+        bool IsVpnAcceleratorEnabled();
+        bool IsVpnAcceleratorNotificationsEnabled();
         Protocol GetProtocol();
     }
 }

@@ -288,6 +288,7 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<PlanDowngradeHandler>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterType<NotificationSender>().As<INotificationSender>().SingleInstance();
             builder.RegisterType<NotificationUserActionHandler>().As<INotificationUserActionHandler>().SingleInstance();
+            builder.RegisterType<DelinquencyPopupViewModel>().AsImplementedInterfaces().SingleInstance();
         }
     }
 }

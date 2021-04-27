@@ -402,19 +402,19 @@ namespace ProtonVPN.Core
             set => SetPerUser(value);
         }
 
-        public bool SmartReconnectEnabled
+        public bool VpnAcceleratorEnabled
         {
             get => Get<bool>();
             set => Set(value);
         }
 
-        public bool SmartReconnectNotificationsEnabled
+        public bool VpnAcceleratorNotificationsEnabled
         {
             get => Get<bool>();
             set => Set(value);
         }
 
-        public bool FeatureSmartReconnectEnabled
+        public bool FeatureVpnAcceleratorEnabled
         {
             get => Get<bool>();
             set => Set(value);
@@ -469,14 +469,14 @@ namespace ProtonVPN.Core
             return FeaturePortForwardingEnabled && PortForwardingEnabled;
         }
 
-        public bool IsSmartReconnectEnabled()
+        public bool IsVpnAcceleratorEnabled()
         {
-            return FeatureSmartReconnectEnabled && SmartReconnectEnabled;
+            return FeatureVpnAcceleratorEnabled && VpnAcceleratorEnabled;
         }
 
-        public bool IsSmartReconnectNotificationsEnabled()
+        public bool IsVpnAcceleratorNotificationsEnabled()
         {
-            return ShowNotifications && SmartReconnectNotificationsEnabled;
+            return ShowNotifications && VpnAcceleratorNotificationsEnabled;
         }
 
         public Protocol GetProtocol()

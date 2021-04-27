@@ -268,7 +268,7 @@ namespace ProtonVPN.Sidebar
 
         private async Task ReconnectAsync()
         {
-            await _vpnManager.ReconnectAsync(new VpnReconnectionSettings() { IsToForceSmartReconnect = true });
+            await _vpnManager.ReconnectAsync(new VpnReconnectionSettings() { IsToForceVpnAccelerator = true });
         }
 
         public void OnUserLoggedOut()

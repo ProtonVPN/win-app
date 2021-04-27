@@ -141,7 +141,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <Style TargetType="Border" BasedOn="{StaticResource BorderlessSettingContainer}">
                                 <Setter Property="Margin" Value="0,4,0,4"/>
                                 <Style.Triggers>
-                                    <DataTrigger Binding="{Binding IsSmartReconnectFeatureEnabled}" Value="True">
+                                    <DataTrigger Binding="{Binding IsVpnAcceleratorFeatureEnabled}" Value="True">
                                         <Setter Property="Margin" Value="0,4,0,0"/>
                                     </DataTrigger>
                                 </Style.Triggers>
@@ -159,15 +159,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </Border>
 
                     <Border Style="{StaticResource BorderlessSettingContainer}" Padding="0,0,0,4" 
-                            Visibility="{Binding IsSmartReconnectFeatureEnabled, Converter={StaticResource BoolToVis}}">
+                            Visibility="{Binding IsVpnAcceleratorFeatureEnabled, Converter={StaticResource BoolToVis}}">
                         <DockPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock  Foreground="#464652" FontSize="32" VerticalAlignment="Bottom" Margin="0,0,0,0" Text="└" />
                                 <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Margin="5,0,0,0" 
-                                       Content="{translations:Loc Settings_Connection_lbl_SmartReconnectNotifications}"/>
+                                       Content="{translations:Loc Settings_Connection_lbl_VpnAcceleratorNotifications}"/>
                                 <fa:FontAwesome Icon="InfoCircle"
                                                 VerticalAlignment="Center"
-                                                ToolTip="{translations:Loc Settings_Connection_lbl_SmartReconnectNotifications_Info}"
+                                                ToolTip="{translations:Loc Settings_Connection_lbl_VpnAcceleratorNotifications_Info}"
                                                 Foreground="{StaticResource PrimaryColor}"
                                                 FontSize="16"/>
                             </StackPanel>
@@ -175,9 +175,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <CheckBox Style="{StaticResource ToggleSwitch}"
                                       Margin="0,0,14,0"
                                       HorizontalAlignment="Right"
-                                      IsChecked="{Binding SmartReconnectNotifications}"
-                                      IsEnabled="{Binding IsSmartReconnectNotificationsEditable}"
-                                      AutomationProperties.AutomationId="{StaticResource SmartReconnectNotificationsCheckbox}"/>
+                                      IsChecked="{Binding VpnAcceleratorNotifications}"
+                                      IsEnabled="{Binding IsVpnAcceleratorNotificationsEditable}"
+                                      AutomationProperties.AutomationId="{StaticResource VpnAcceleratorNotificationsCheckbox}"/>
                         </DockPanel>
                     </Border>
 
@@ -277,14 +277,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </Border>
 
                     <Border Style="{StaticResource BorderSettingContainer}" 
-                            Visibility="{Binding IsSmartReconnectFeatureEnabled, Converter={StaticResource BoolToVis}}">
+                            Visibility="{Binding IsVpnAcceleratorFeatureEnabled, Converter={StaticResource BoolToVis}}">
                         <DockPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Foreground="White" FontSize="16" VerticalAlignment="Center" 
-                                       Content="{translations:Loc Settings_Connection_lbl_SmartReconnect}"/>
+                                       Content="{translations:Loc Settings_Connection_lbl_VpnAccelerator}"/>
                                 <fa:FontAwesome Icon="InfoCircle"
                                                 VerticalAlignment="Center"
-                                                ToolTip="{translations:Loc Settings_Connection_lbl_SmartReconnect_Info}"
+                                                ToolTip="{translations:Loc Settings_Connection_lbl_VpnAccelerator_Info}"
                                                 Foreground="{StaticResource PrimaryColor}"
                                                 FontSize="16"/>
                             </StackPanel>
@@ -292,8 +292,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <CheckBox Style="{StaticResource ToggleSwitch}"
                                       Margin="0,0,14,0"
                                       HorizontalAlignment="Right"
-                                      IsChecked="{Binding SmartReconnect}"
-                                      AutomationProperties.AutomationId="{StaticResource SmartReconnectCheckbox}"/>
+                                      IsChecked="{Binding VpnAccelerator}"
+                                      AutomationProperties.AutomationId="{StaticResource VpnAcceleratorCheckbox}"/>
                         </DockPanel>
                     </Border>
 

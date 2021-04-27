@@ -77,6 +77,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <system:String x:Key="SecureCoreButton">SecureCoreButton</system:String>
     <system:String x:Key="SecureCoreOnButton">SecureCoreOnButton</system:String>
     <system:String x:Key="SecureCoreOffButton">SecureCoreOffButton</system:String>
-    <system:String x:Key="SmartReconnectCheckbox">SmartReconnectCheckbox</system:String>
-    <system:String x:Key="SmartReconnectNotificationsCheckbox">SmartReconnectNotificationsCheckbox</system:String>
+    <system:String x:Key="VpnAcceleratorCheckbox">VpnAcceleratorCheckbox</system:String>
+    <system:String x:Key="VpnAcceleratorNotificationsCheckbox">VpnAcceleratorNotificationsCheckbox</system:String>
 </ResourceDictionary>

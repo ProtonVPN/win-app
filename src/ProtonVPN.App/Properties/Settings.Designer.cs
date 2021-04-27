@@ -1304,36 +1304,36 @@ namespace ProtonVPN.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool SmartReconnectEnabled {
+        public bool VpnAcceleratorEnabled {
             get {
-                return ((bool)(this["SmartReconnectEnabled"]));
+                return ((bool)(this["VpnAcceleratorEnabled"]));
             }
             set {
-                this["SmartReconnectEnabled"] = value;
+                this["VpnAcceleratorEnabled"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool SmartReconnectNotificationsEnabled {
+        public bool VpnAcceleratorNotificationsEnabled {
             get {
-                return ((bool)(this["SmartReconnectNotificationsEnabled"]));
+                return ((bool)(this["VpnAcceleratorNotificationsEnabled"]));
             }
             set {
-                this["SmartReconnectNotificationsEnabled"] = value;
+                this["VpnAcceleratorNotificationsEnabled"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool FeatureSmartReconnectEnabled {
+        public bool FeatureVpnAcceleratorEnabled {
             get {
-                return ((bool)(this["FeatureSmartReconnectEnabled"]));
+                return ((bool)(this["FeatureVpnAcceleratorEnabled"]));
             }
             set {
-                this["FeatureSmartReconnectEnabled"] = value;
+                this["FeatureVpnAcceleratorEnabled"] = value;
             }
         }
     }

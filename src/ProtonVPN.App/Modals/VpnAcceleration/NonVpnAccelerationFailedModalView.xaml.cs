@@ -17,11 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Modals.Reconnections
+namespace ProtonVPN.Modals.VpnAcceleration
 {
-    public partial class NonSmartReconnectionFailedModalView
+    public partial class NonVpnAccelerationFailedModalView
     {
-        public NonSmartReconnectionFailedModalView()
+        public NonVpnAccelerationFailedModalView()
         {
             InitializeComponent();
         }
