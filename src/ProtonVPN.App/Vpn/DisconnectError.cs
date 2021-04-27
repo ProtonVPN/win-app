@@ -141,7 +141,7 @@ namespace ProtonVPN.Vpn
             VpnReconnectionSettings reconnectionSettings = new()
             {
                 IsToReconnectIfDisconnected = true, 
-                IsToForceSmartReconnect = true
+                IsToForceVpnAccelerator = true
             };
             await _vpnManager.ReconnectAsync(reconnectionSettings);
         }
@@ -179,7 +179,6 @@ namespace ProtonVPN.Vpn
                     return false;
             }
         }
-
 
         private void ShowDisconnectErrorModalViewModel(VpnError error, bool networkBlocked)
         {

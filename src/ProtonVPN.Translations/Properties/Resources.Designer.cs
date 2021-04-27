@@ -3633,27 +3633,27 @@ namespace ProtonVPN.Translations.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Quick Connect.
         /// </summary>
-        public static string Dialogs_NonSmartReconnectionFailed_btn_QuickConnect {
+        public static string Dialogs_NonVpnAccelerationFailed_btn_QuickConnect {
             get {
-                return ResourceManager.GetString("Dialogs_NonSmartReconnectionFailed_btn_QuickConnect", resourceCulture);
+                return ResourceManager.GetString("Dialogs_NonVpnAccelerationFailed_btn_QuickConnect", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ProtonVPN couldn&apos;t connect to the selected server.&lt;LineBreak/&gt;Please, use Quick Connect or enable Smart Reconnect in the &lt;Hyperlink Command=&quot;{Binding OpenSettingsCommand}&quot;&gt;Settings&lt;/Hyperlink&gt;..
+        ///   Looks up a localized string similar to ProtonVPN couldn&apos;t connect to the selected server.&lt;LineBreak/&gt;Please, use Quick Connect or enable VPN Accelerator in the &lt;Hyperlink Command=&quot;{Binding OpenSettingsCommand}&quot;&gt;Settings&lt;/Hyperlink&gt;..
         /// </summary>
-        public static string Dialogs_NonSmartReconnectionFailed_msg {
+        public static string Dialogs_NonVpnAccelerationFailed_msg {
             get {
-                return ResourceManager.GetString("Dialogs_NonSmartReconnectionFailed_msg", resourceCulture);
+                return ResourceManager.GetString("Dialogs_NonVpnAccelerationFailed_msg", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Connection failed.
         /// </summary>
-        public static string Dialogs_NonSmartReconnectionFailed_ttl {
+        public static string Dialogs_NonVpnAccelerationFailed_ttl {
             get {
-                return ResourceManager.GetString("Dialogs_NonSmartReconnectionFailed_ttl", resourceCulture);
+                return ResourceManager.GetString("Dialogs_NonVpnAccelerationFailed_ttl", resourceCulture);
             }
         }
         
@@ -5944,38 +5944,38 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Smart Reconnect.
+        ///   Looks up a localized string similar to VPN Accelerator.
         /// </summary>
-        public static string Settings_Connection_lbl_SmartReconnect {
+        public static string Settings_Connection_lbl_VpnAccelerator {
             get {
-                return ResourceManager.GetString("Settings_Connection_lbl_SmartReconnect", resourceCulture);
+                return ResourceManager.GetString("Settings_Connection_lbl_VpnAccelerator", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Automatically connect to a similar server if the one you selected is inaccessible..
         /// </summary>
-        public static string Settings_Connection_lbl_SmartReconnect_Info {
+        public static string Settings_Connection_lbl_VpnAccelerator_Info {
             get {
-                return ResourceManager.GetString("Settings_Connection_lbl_SmartReconnect_Info", resourceCulture);
+                return ResourceManager.GetString("Settings_Connection_lbl_VpnAccelerator_Info", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Smart Reconnect Notifications.
+        ///   Looks up a localized string similar to VPN Accelerator Notifications.
         /// </summary>
-        public static string Settings_Connection_lbl_SmartReconnectNotifications {
+        public static string Settings_Connection_lbl_VpnAcceleratorNotifications {
             get {
-                return ResourceManager.GetString("Settings_Connection_lbl_SmartReconnectNotifications", resourceCulture);
+                return ResourceManager.GetString("Settings_Connection_lbl_VpnAcceleratorNotifications", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Be notified when ProtonVPN connects to a server other than the one you selected..
         /// </summary>
-        public static string Settings_Connection_lbl_SmartReconnectNotifications_Info {
+        public static string Settings_Connection_lbl_VpnAcceleratorNotifications_Info {
             get {
-                return ResourceManager.GetString("Settings_Connection_lbl_SmartReconnectNotifications_Info", resourceCulture);
+                return ResourceManager.GetString("Settings_Connection_lbl_VpnAcceleratorNotifications_Info", resourceCulture);
             }
         }
         

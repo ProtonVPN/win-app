@@ -129,7 +129,7 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
 
         private async void ShowReconnectionTooltipAction()
         {
-            await Task.Delay(TimeSpan.FromSeconds(10));
+            await Task.Delay(TimeSpan.FromSeconds(7));
             Server previousServer = new Server(Guid.NewGuid().ToString(), "CH-PT#20", "Porto", 
                 "CH", "PT", "protonvpn.com", 0, 2, 1, 50, 1, null, null, "192.168.123.124");
             Server currentServer = new Server(Guid.NewGuid().ToString(), "SE-PT#23", "Porto", 

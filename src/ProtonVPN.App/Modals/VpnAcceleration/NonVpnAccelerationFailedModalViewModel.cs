@@ -19,27 +19,26 @@
 
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
-using ProtonVPN.Config.Url;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Modals.Dialogs;
 using ProtonVPN.Settings;
 
-namespace ProtonVPN.Modals.Reconnections
+namespace ProtonVPN.Modals.VpnAcceleration
 {
-    public class NonSmartReconnectionFailedModalViewModel : QuestionModalViewModel
+    public class NonVpnAccelerationFailedModalViewModel : QuestionModalViewModel
     {
         private readonly IModals _modals;
         private readonly IVpnManager _vpnManager;
-        protected readonly IActiveUrls Urls;
+        private readonly SettingsModalViewModel _settingsModalViewModel;
 
-        public NonSmartReconnectionFailedModalViewModel(IModals modals, 
-            IVpnManager vpnManager, 
-            IActiveUrls urls)
+        public NonVpnAccelerationFailedModalViewModel(IModals modals, 
+            IVpnManager vpnManager,
+            SettingsModalViewModel settingsModalViewModel)
         {
             _modals = modals;
             _vpnManager = vpnManager;
-            Urls = urls;
+            _settingsModalViewModel = settingsModalViewModel;
 
             OpenSettingsCommand = new RelayCommand(OpenSettingsAction);
         }
@@ -49,6 +48,7 @@ namespace ProtonVPN.Modals.Reconnections
         private void OpenSettingsAction()
         {
             base.ContinueAction();
+            _settingsModalViewModel.OpenConnectionTab();
             _modals.Show<SettingsModalViewModel>();
         }
 

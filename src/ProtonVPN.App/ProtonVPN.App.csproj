@@ -207,10 +207,10 @@
       <DependentUpon>RebootModalView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modals\RebootModalViewModel.cs" />
-    <Compile Include="Modals\Reconnections\NonSmartReconnectionFailedModalView.xaml.cs">
-      <DependentUpon>NonSmartReconnectionFailedModalView.xaml</DependentUpon>
+    <Compile Include="Modals\VpnAcceleration\NonVpnAccelerationFailedModalView.xaml.cs">
+      <DependentUpon>NonVpnAccelerationFailedModalView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Modals\Reconnections\NonSmartReconnectionFailedModalViewModel.cs" />
+    <Compile Include="Modals\VpnAcceleration\NonVpnAccelerationFailedModalViewModel.cs" />
     <Compile Include="Modals\ExitModalViewModel.cs" />
     <Compile Include="Settings\Migrations\v1_20_0\AppSettingsMigration.cs" />
     <Compile Include="PlanDowngrading\PlanDowngradeHandler.cs" />
@@ -910,7 +910,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Modals\Reconnections\NonSmartReconnectionFailedModalView.xaml">
+    <Page Include="Modals\VpnAcceleration\NonVpnAccelerationFailedModalView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
