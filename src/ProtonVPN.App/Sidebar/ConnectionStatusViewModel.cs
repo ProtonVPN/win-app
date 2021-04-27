@@ -25,6 +25,7 @@ using System.Windows.Threading;
 using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Common.KillSwitch;
 using ProtonVPN.Common.Vpn;
+using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.MVVM;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Servers.Models;
@@ -36,11 +37,12 @@ using ProtonVPN.Core.User;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Onboarding;
 using ProtonVPN.P2PDetection;
+using ProtonVPN.Settings;
 using ProtonVPN.Sidebar.Announcements;
 
 namespace ProtonVPN.Sidebar
 {
-    internal class ConnectionStatusViewModel :
+    public class ConnectionStatusViewModel :
         ViewModel,
         IVpnStateAware,
         IOnboardingStepAware,
@@ -55,6 +57,8 @@ namespace ProtonVPN.Sidebar
         private readonly ServerManager _serverManager;
         private readonly VpnConnectionSpeed _speedTracker;
         private readonly IUserStorage _userStorage;
+        private readonly IModals _modals;
+        private readonly SettingsModalViewModel _settingsModalViewModel;
         private readonly DispatcherTimer _timer;
         private VpnStatus _vpnStatus;
         private bool _sidebarMode;
@@ -66,6 +70,8 @@ namespace ProtonVPN.Sidebar
             IVpnManager vpnManager,
             VpnConnectionSpeed speedTracker,
             IUserStorage userStorage,
+            IModals modals,
+            SettingsModalViewModel settingsModalViewModel,
             AnnouncementsViewModel announcementsViewModel)
         {
             _appSettings = appSettings;
@@ -74,10 +80,14 @@ namespace ProtonVPN.Sidebar
             _serverManager = serverManager;
             _speedTracker = speedTracker;
             _userStorage = userStorage;
+            _modals = modals;
+            _settingsModalViewModel = settingsModalViewModel;
 
             QuickConnectCommand = new RelayCommand(QuickConnectAction);
             DisableKillSwitchCommand = new RelayCommand(DisableKillSwitch);
             ToggleSidebarModeCommand = new RelayCommand(ToggleSidebarModeAction);
+            CloseVpnAcceleratorReconnectionPopupCommand = new RelayCommand(CloseVpnAcceleratorReconnectionPopupAction);
+            OpenNotificationSettingsCommand = new RelayCommand(OpenNotificationSettingsAction);
             Announcements = announcementsViewModel;
 
             _timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
@@ -89,6 +99,8 @@ namespace ProtonVPN.Sidebar
         public ICommand QuickConnectCommand { get; set; }
         public ICommand DisableKillSwitchCommand { get; set; }
         public ICommand ToggleSidebarModeCommand { get; set; }
+        public ICommand CloseVpnAcceleratorReconnectionPopupCommand { get; set; }
+        public ICommand OpenNotificationSettingsCommand { get; set; }
 
         private bool _killSwitchActivated;
         public bool KillSwitchActivated
@@ -162,6 +174,29 @@ namespace ProtonVPN.Sidebar
             get => _sidebarMode;
             set => Set(ref _sidebarMode, value);
         }
+        
+        public bool IsToShowVpnAcceleratorReconnectionPopup { get; set; }
+        public Server FromServer { get; private set; }
+        public bool IsFromServerSecureCore { get; private set; }
+        public Server ToServer { get; private set; }
+        public bool IsToServerSecureCore { get; private set; }
+
+        public void ShowVpnAcceleratorReconnectionPopup(Server previousServer, Server currentServer)
+        {
+            IsToShowVpnAcceleratorReconnectionPopup = true;
+
+            FromServer = previousServer;
+            IsFromServerSecureCore = previousServer.IsSecureCore();
+
+            ToServer = currentServer;
+            IsToServerSecureCore = currentServer.IsSecureCore();
+
+            OnPropertyChanged(nameof(IsToShowVpnAcceleratorReconnectionPopup));
+            OnPropertyChanged(nameof(FromServer));
+            OnPropertyChanged(nameof(IsFromServerSecureCore));
+            OnPropertyChanged(nameof(ToServer));
+            OnPropertyChanged(nameof(IsToServerSecureCore));
+        }
 
         public void OnServersUpdated()
         {
@@ -179,7 +214,7 @@ namespace ProtonVPN.Sidebar
             switch (_vpnStatus)
             {
                 case VpnStatus.Connected:
-                    var server = e.State.Server;
+                    Server server = e.State.Server;
                     if (server != null)
                     {
                         Connected = true;
@@ -336,6 +371,19 @@ namespace ProtonVPN.Sidebar
         {
             _sidebarMode = _appSettings.SidebarMode;
             OnPropertyChanged(nameof(SidebarMode));
+        }
+
+        private void CloseVpnAcceleratorReconnectionPopupAction()
+        {
+            IsToShowVpnAcceleratorReconnectionPopup = false;
+            OnPropertyChanged(nameof(IsToShowVpnAcceleratorReconnectionPopup));
+        }
+
+        private void OpenNotificationSettingsAction()
+        {
+            CloseVpnAcceleratorReconnectionPopupAction();
+            _settingsModalViewModel.OpenGeneralTab();
+            _modals.Show<SettingsModalViewModel>();
         }
     }
 }

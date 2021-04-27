@@ -160,6 +160,7 @@
     <Compile Include="Notifications\NotificationSender.cs" />
     <Compile Include="Notifications\NotificationUserAction.cs" />
     <Compile Include="Notifications\NotificationUserActionHandler.cs" />
+    <Compile Include="Sidebar\PopupBase.cs" />
     <Compile Include="Views\Icons\UpsellTunnel.xaml.cs">
       <DependentUpon>UpsellTunnel.xaml</DependentUpon>
     </Compile>

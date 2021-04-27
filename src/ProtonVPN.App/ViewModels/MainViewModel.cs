@@ -242,6 +242,12 @@ namespace ProtonVPN.ViewModels
 
         private void DeveloperToolsAction()
         {
+            ShowDeveloperTools();
+        }
+
+        [Conditional("DEBUG")]
+        private void ShowDeveloperTools()
+        {
             _popups.Show<DeveloperToolsPopupViewModel>();
         }
 

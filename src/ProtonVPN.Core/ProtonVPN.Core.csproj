@@ -176,6 +176,8 @@
     <Compile Include="Modals\IDialogSettings.cs" />
     <Compile Include="Modals\IModal.cs" />
     <Compile Include="Modals\IModals.cs" />
+    <Compile Include="Native\WindowPosition.cs" />
+    <Compile Include="Native\WindowPositionExtensions.cs" />
     <Compile Include="Native\WindowStates.cs" />
     <Compile Include="Servers\Specs\ExactTierServer.cs" />
     <Compile Include="Servers\Specs\ExitCityServer.cs" />

@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Modals;
@@ -28,31 +29,36 @@ using ProtonVPN.Core.Vpn;
 using ProtonVPN.Modals.Protocols;
 using ProtonVPN.Modals.Reconnections;
 using ProtonVPN.Notifications;
+using ProtonVPN.Sidebar;
 using ProtonVPN.Translations;
 
 namespace ProtonVPN.Core.Service.Vpn
 {
-    public class VpnReconnector : IVpnReconnector
+    public class VpnReconnector : IVpnReconnector, IVpnStateAware
     {
         private readonly IAppSettings _appSettings;
         private readonly ISimilarServerCandidatesGenerator _similarServerCandidatesGenerator;
         private readonly IModals _modals;
         private readonly IVpnConnector _vpnConnector;
         private readonly INotificationSender _notificationSender;
+        private readonly Lazy<ConnectionStatusViewModel> _connectionStatusViewModel;
 
         private VpnReconnectionSteps _reconnectionStep;
+        private Server _lastConnectedServer;
 
         public VpnReconnector(IAppSettings appSettings,
             ISimilarServerCandidatesGenerator similarServerCandidatesGenerator,
             IModals modals,
             IVpnConnector vpnConnector, 
-            INotificationSender notificationSender)
+            INotificationSender notificationSender,
+            Lazy<ConnectionStatusViewModel> connectionStatusViewModel)
         {
             _appSettings = appSettings;
             _similarServerCandidatesGenerator = similarServerCandidatesGenerator;
             _modals = modals;
             _vpnConnector = vpnConnector;
             _notificationSender = notificationSender;
+            _connectionStatusViewModel = connectionStatusViewModel;
         }
 
         public async Task ReconnectAsync(Server lastServer, Profile lastProfile, VpnReconnectionSettings settings = null)
@@ -266,12 +272,35 @@ namespace ProtonVPN.Core.Service.Vpn
             }
         }
 
-        public void OnVpnStateChanged(VpnStateChangedEventArgs e)
+        public async Task OnVpnStateChanged(VpnStateChangedEventArgs e)
         {
             if (e.State.Status == VpnStatus.Connected)
             {
+                Server currentServer = e.State.Server;
+                ShowVpnAcceleratorReconnectionPopupIfPossible(currentServer);
                 ResetReconnectionStep();
+                _lastConnectedServer = currentServer;
             }
+        }
+
+        private void ShowVpnAcceleratorReconnectionPopupIfPossible(Server currentServer)
+        {
+            Server previousServer = _lastConnectedServer;
+
+            if (IsToShowVpnAcceleratorReconnectionPopup(previousServer: previousServer, currentServer: currentServer))
+            {
+                _connectionStatusViewModel.Value.ShowVpnAcceleratorReconnectionPopup(
+                    previousServer: previousServer, currentServer: currentServer);
+            }
+        }
+
+        private bool IsToShowVpnAcceleratorReconnectionPopup(Server previousServer, Server currentServer)
+        {
+            return _appSettings.IsSmartReconnectNotificationsEnabled() &&
+                   _reconnectionStep > VpnReconnectionSteps.UserChoice &&
+                   !previousServer.IsNullOrEmpty() && 
+                   !currentServer.IsNullOrEmpty() &&
+                   !previousServer.Equals(currentServer);
         }
 
         public void ResetReconnectionStep()
@@ -282,6 +311,7 @@ namespace ProtonVPN.Core.Service.Vpn
         public void OnDisconnectionRequest()
         {
             ResetReconnectionStep();
+            _lastConnectedServer = null;
         }
     }
 }

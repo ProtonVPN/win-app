@@ -17,15 +17,14 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Threading.Tasks;
-using ProtonVPN.Core.Profiles;
-using ProtonVPN.Core.Servers.Models;
-
-namespace ProtonVPN.Core.Service.Vpn
+namespace ProtonVPN.Core.Native
 {
-    public interface IVpnReconnector
+    public class WindowPosition
     {
-        Task ReconnectAsync(Server lastServer, Profile lastProfile, VpnReconnectionSettings settings = null);
-        void OnDisconnectionRequest();
+        public bool IsForegroundWindow { get; set; }
+        public int X { get; set; }
+        public int Y { get; set; }
+        public int Width { get; set; }
+        public int Height { get; set; }
     }
 }
