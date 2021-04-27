@@ -19,16 +19,21 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
+using Windows.UI.WindowManagement;
 using GalaSoft.MvvmLight.CommandWpf;
 using Microsoft.Toolkit.Uwp.Notifications;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Modals;
+using ProtonVPN.Core.Servers.Models;
 using ProtonVPN.Core.Window.Popups;
 using ProtonVPN.Modals.SessionLimits;
 using ProtonVPN.Notifications;
+using ProtonVPN.Sidebar;
 using ProtonVPN.Translations;
 using ProtonVPN.Windows.Popups.Delinquency;
 using ProtonVPN.Windows.Popups.SubscriptionExpiration;
@@ -41,22 +46,32 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
         private readonly IPopupWindows _popups;
         private readonly IModals _modals;
         private readonly INotificationSender _notificationSender;
+        private readonly ConnectionStatusViewModel _connectionStatusViewModel;
 
         public DeveloperToolsPopupViewModel(AppWindow appWindow,
-            UserAuth userAuth, 
-            IPopupWindows popups, 
-            IModals modals, 
-            INotificationSender notificationSender)
+            UserAuth userAuth,
+            IPopupWindows popups,
+            IModals modals,
+            INotificationSender notificationSender,
+            ConnectionStatusViewModel connectionStatusViewModel)
             : base(appWindow)
         {
             _userAuth = userAuth;
             _popups = popups;
             _modals = modals;
             _notificationSender = notificationSender;
+            _connectionStatusViewModel = connectionStatusViewModel;
 
+            InitializeCommands();
+        }
+
+        [Conditional("DEBUG")]
+        private void InitializeCommands()
+        {
             ShowModalCommand = new RelayCommand(ShowModalAction);
             ShowPopupWindowCommand = new RelayCommand(ShowPopupWindowAction);
             RefreshVpnInfoCommand = new RelayCommand(RefreshVpnInfoAction);
+            ShowReconnectionTooltipCommand = new RelayCommand(ShowReconnectionTooltipAction);
             FullToastCommand = new RelayCommand(FullToastAction);
             BasicToastCommand = new RelayCommand(BasicToastAction);
             ClearToastNotificationLogsCommand = new RelayCommand(ClearToastNotificationLogsAction);
@@ -65,6 +80,7 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
         public ICommand ShowModalCommand { get; set; }
         public ICommand ShowPopupWindowCommand { get; set; }
         public ICommand RefreshVpnInfoCommand { get; set; }
+        public ICommand ShowReconnectionTooltipCommand { get; set; }
         public ICommand FullToastCommand { get; set; }
         public ICommand BasicToastCommand { get; set; }
         public ICommand ClearToastNotificationLogsCommand { get; set; }
@@ -111,6 +127,16 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
             await _userAuth.RefreshVpnInfo();
         }
 
+        private async void ShowReconnectionTooltipAction()
+        {
+            await Task.Delay(TimeSpan.FromSeconds(10));
+            Server previousServer = new Server(Guid.NewGuid().ToString(), "CH-PT#20", "Porto", 
+                "CH", "PT", "protonvpn.com", 0, 2, 1, 50, 1, null, null, "192.168.123.124");
+            Server currentServer = new Server(Guid.NewGuid().ToString(), "SE-PT#23", "Porto", 
+                "SE", "PT", "protonvpn.com", 1, 2, 1, 30, 1, null, null, "192.168.123.125");
+            _connectionStatusViewModel.ShowVpnAcceleratorReconnectionPopup(previousServer: previousServer, currentServer: currentServer);
+        }
+
         private void FullToastAction()
         {
             new ToastContentBuilder()
@@ -135,7 +161,7 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
         private void BasicToastAction()
         {
             _notificationSender.Send(
-                Translation.Get("Dialogs_Delinquency_Title"), 
+                Translation.Get("Dialogs_Delinquency_Title"),
                 Translation.Get("Dialogs_Delinquency_Subtitle"));
         }
 

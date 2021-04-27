@@ -3119,4 +3119,16 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>ProtonVPN detected that your current network is preventing a connection to the VPN. Enabling Smart Protocol might bypass these limitations.</value>
     <comment>The message displayed in the Enable Smart Protocol notification.</comment>
   </data>
+  <data name="Tooltips_VpnAcceleratorReconnection_Title" xml:space="preserve">
+    <value>VPN Accelerator</value>
+    <comment>The title of the VPN Accelerator reconnection tooltip</comment>
+  </data>
+  <data name="Tooltips_VpnAcceleratorReconnection_Description" xml:space="preserve">
+    <value>You have been switched to a faster server that is similar to the one you selected.</value>
+    <comment>The description of the VPN Accelerator reconnection tooltip</comment>
+  </data>
+  <data name="Tooltips_VpnAcceleratorReconnection_btn_NotificationSettings" xml:space="preserve">
+    <value>Notification Settings</value>
+    <comment>The text button of the VPN Accelerator reconnection tooltip that opens the Notification Settings</comment>
+  </data>
 </root>

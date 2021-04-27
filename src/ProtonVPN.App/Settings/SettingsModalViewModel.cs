@@ -55,7 +55,7 @@ namespace ProtonVPN.Settings
         private IReadOnlyList<ProfileViewModel> _quickConnectProfiles;
         private VpnStatus _vpnStatus;
 
-        private ProfileViewModel _profileDisabledOption => new(new Profile
+        private readonly ProfileViewModel _profileDisabledOption = new(new Profile
         {
             Id = "", Name = Translation.Get("Settings_val_Disabled"), ColorCode = "#777783"
         });
@@ -345,6 +345,11 @@ namespace ProtonVPN.Settings
             SetDisconnected();
 
             return Task.CompletedTask;
+        }
+
+        public void OpenGeneralTab()
+        {
+            SelectedTabIndex = 0;
         }
 
         public void OpenAdvancedTab()

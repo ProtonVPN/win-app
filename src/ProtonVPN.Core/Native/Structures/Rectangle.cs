@@ -24,7 +24,7 @@ namespace ProtonVPN.Core.Native.Structures
 {
     [Serializable]
     [StructLayout(LayoutKind.Sequential)]
-    public class Rectangle
+    public struct Rectangle
     {
         public int Left;
         public int Top;

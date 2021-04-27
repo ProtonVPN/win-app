@@ -20,14 +20,12 @@
 using System.Threading.Tasks;
 using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Servers.Models;
-using ProtonVPN.Core.Vpn;
 
 namespace ProtonVPN.Core.Service.Vpn
 {
     public interface IVpnReconnector
     {
         Task ReconnectAsync(Server lastServer, Profile lastProfile, VpnReconnectionSettings settings = null);
-        void OnVpnStateChanged(VpnStateChangedEventArgs e);
         void OnDisconnectionRequest();
     }
 }

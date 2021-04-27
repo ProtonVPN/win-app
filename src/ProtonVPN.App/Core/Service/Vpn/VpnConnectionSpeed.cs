@@ -27,7 +27,7 @@ using ProtonVPN.Core.Vpn;
 
 namespace ProtonVPN.Core.Service.Vpn
 {
-    internal class VpnConnectionSpeed: IVpnStateAware
+    public class VpnConnectionSpeed: IVpnStateAware
     {
         private readonly SerialTaskQueue _lock = new SerialTaskQueue();
         private readonly IVpnServiceManager _vpnServiceManager;

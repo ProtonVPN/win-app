@@ -6475,6 +6475,33 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Notification Settings.
+        /// </summary>
+        public static string Tooltips_VpnAcceleratorReconnection_btn_NotificationSettings {
+            get {
+                return ResourceManager.GetString("Tooltips_VpnAcceleratorReconnection_btn_NotificationSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have been switched to a faster server that is similar to the one you selected..
+        /// </summary>
+        public static string Tooltips_VpnAcceleratorReconnection_Description {
+            get {
+                return ResourceManager.GetString("Tooltips_VpnAcceleratorReconnection_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to VPN Accelerator.
+        /// </summary>
+        public static string Tooltips_VpnAcceleratorReconnection_Title {
+            get {
+                return ResourceManager.GetString("Tooltips_VpnAcceleratorReconnection_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Maybe Later.
         /// </summary>
         public static string Trial_Expiring_btn_Close {

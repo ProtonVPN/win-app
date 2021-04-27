@@ -23,18 +23,34 @@ namespace ProtonVPN.Resource
 {
     public class BasePopupWindow : WindowBase
     {
+        private bool _isStartupPositionSet;
+
         public BasePopupWindow()
         {
-            WindowStartupLocation = WindowStartupLocation.CenterOwner;
             DataContextChanged += OnDataContextChanged;
         }
 
         private void OnDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            dynamic dataContext = DataContext;
-            if (dataContext != null)
+            SetStartupPosition();
+        }
+
+        protected override void OnRenderSizeChanged(SizeChangedInfo sizeInfo)
+        {
+            base.OnRenderSizeChanged(sizeInfo);
+            SetStartupPosition();
+        }
+
+        private void SetStartupPosition()
+        {
+            object dataContext = DataContext;
+            if (!_isStartupPositionSet && dataContext != null && ActualWidth > 0 && ActualHeight > 0)
             {
-                Owner = dataContext.Owner;
+                Window owner = ((dynamic)dataContext).Owner;
+                WindowStartupLocation = WindowStartupLocation.Manual;
+                Left = owner.Left + ((owner.ActualWidth - ActualWidth) / 2);
+                Top = owner.Top + ((owner.ActualHeight - ActualHeight) / 2);
+                _isStartupPositionSet = true;
             }
         }
     }

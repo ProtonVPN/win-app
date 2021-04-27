@@ -53,7 +53,6 @@ namespace ProtonVPN.Core.Service.Vpn
 
         public void OnVpnStateChanged(VpnStateChangedEventArgs e)
         {
-            _vpnReconnector.OnVpnStateChanged(e);
             _vpnConnector.OnVpnStateChanged(e);
         }
 
