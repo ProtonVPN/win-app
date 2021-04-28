@@ -17,13 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Windows.Popups.Welcome
+namespace ProtonVPN.Modals.Welcome
 {
-    public partial class NonTrialWelcomePopupView
+    public class TrialWelcomeModalViewModel : BaseWelcomeModalViewModel
     {
-        public NonTrialWelcomePopupView()
+        public TrialWelcomeModalViewModel(Onboarding.Onboarding onboarding) 
+            : base(onboarding)
         {
-            InitializeComponent();
         }
     }
 }

@@ -17,13 +17,33 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Windows.Popups.Welcome
+using System.Windows.Input;
+using GalaSoft.MvvmLight.CommandWpf;
+
+namespace ProtonVPN.Modals.Welcome
 {
-    public partial class TrialWelcomePopupView
+    public abstract class BaseWelcomeModalViewModel : BaseModalViewModel
     {
-        public TrialWelcomePopupView()
+        private readonly Onboarding.Onboarding _onboarding;
+
+        protected BaseWelcomeModalViewModel(Onboarding.Onboarding onboarding)
         {
-            InitializeComponent();
+            _onboarding = onboarding;
+
+            TakeATourCommand = new RelayCommand(TakeATourAction);
+        }
+
+        public ICommand TakeATourCommand { get; set; }
+
+        public override void CloseAction()
+        {
+            TryClose();
+        }
+
+        private void TakeATourAction()
+        {
+            _onboarding.Start();
+            TryClose();
         }
     }
 }
