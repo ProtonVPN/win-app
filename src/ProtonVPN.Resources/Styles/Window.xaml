@@ -53,6 +53,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     </Style>
     <Style x:Key="BaseWindowStyle" TargetType="{x:Type resource:WindowBase}" BasedOn="{StaticResource {x:Type Window}}">
         <Setter Property="WindowStyle" Value="None"/>
+        <Setter Property="ResizeMode" Value="NoResize"/>
         <Setter Property="WindowChrome.WindowChrome">
             <Setter.Value>
                 <WindowChrome CaptionHeight="36"/>
@@ -60,6 +61,30 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Setter>
         <Setter Property="WindowState" Value="{Binding WindowState}"/>
         <Setter Property="FlowDirection" Value="{Binding FlowDirection}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type resource:WindowBase}">
+                    <Border BorderBrush="{StaticResource SecondaryColor}" BorderThickness="1">
+                        <Grid>
+                            <DockPanel Style="{StaticResource TitleDock}" VerticalAlignment="Top">
+                                <Path Margin="7,0" Fill="{StaticResource PrimaryColor}" Style="{StaticResource ProtonIcon}"/>
+                                <Label VerticalAlignment="Center" Foreground="White" FontSize="14" Content="{TemplateBinding Title}"/>
+                                <StackPanel Style="{StaticResource WindowControlsPanel}">
+                                    <Button Style="{StaticResource WindowsCloseButton}"
+                                            AutomationProperties.AutomationId="{StaticResource ModalCloseButton}"
+                                            Command="{Binding DataContext.CloseCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type resource:WindowBase}}}"/>
+                                </StackPanel>
+                            </DockPanel>
+                            <Grid Margin="0,36,0,0" Background="{StaticResource ModalColor}">
+                                <ContentPresenter/>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="BasePopupWindowStyle" TargetType="{x:Type resource:BasePopupWindow}" BasedOn="{StaticResource BaseWindowStyle}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type resource:WindowBase}">
@@ -85,8 +110,5 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-    </Style>
-    <Style x:Key="BasePopupWindowStyle" TargetType="{x:Type resource:BasePopupWindow}" BasedOn="{StaticResource BaseWindowStyle}">
-        <Setter Property="ResizeMode" Value="NoResize"/>
     </Style>
 </ResourceDictionary>

@@ -25,7 +25,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                           xmlns:local="clr-namespace:ProtonVPN.Windows.Popups.DeveloperTools"
                           xmlns:resource="clr-namespace:ProtonVPN.Resource;assembly=ProtonVPN.Resource"
-                          Style="{StaticResource BaseWindowStyle}"
+                          Style="{StaticResource BasePopupWindowStyle}"
                           SizeToContent="Height"
                           Title="Developer Tools"
                           Height="Auto"

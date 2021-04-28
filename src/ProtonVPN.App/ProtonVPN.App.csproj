@@ -388,13 +388,13 @@
       <DependentUpon>TunFallbackPopupView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\Popups\TunFallbackPpupViewModel.cs" />
-    <Compile Include="Windows\Popups\Welcome\BaseWelcomePopupViewModel.cs" />
-    <Compile Include="Windows\Popups\Welcome\NonTrialWelcomePopupView.xaml.cs">
-      <DependentUpon>NonTrialWelcomePopupView.xaml</DependentUpon>
+    <Compile Include="Modals\Welcome\BaseWelcomeModalViewModel.cs" />
+    <Compile Include="Modals\Welcome\NonTrialWelcomeModalView.xaml.cs">
+      <DependentUpon>NonTrialWelcomeModalView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Settings\Migrations\v1_7_2\ProfileV1.cs" />
-    <Compile Include="Windows\Popups\Welcome\NonTrialWelcomePopupViewModel.cs" />
-    <Compile Include="Windows\Popups\Welcome\TrialWelcomePopupViewModel.cs" />
+    <Compile Include="Modals\Welcome\NonTrialWelcomeModalViewModel.cs" />
+    <Compile Include="Modals\Welcome\TrialWelcomeModalViewModel.cs" />
     <Compile Include="Notifications\ISystemNotification.cs" />
     <Compile Include="Notifications\SystemNotification.cs" />
     <Compile Include="P2PDetection\Blocked\BlockedTraffic.cs" />
@@ -779,8 +779,8 @@
     <Compile Include="Windows\Popups\Trials\TrialPopupView.xaml.cs">
       <DependentUpon>TrialPopupView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\Popups\Welcome\TrialWelcomePopupView.xaml.cs">
-      <DependentUpon>TrialWelcomePopupView.xaml</DependentUpon>
+    <Compile Include="Modals\Welcome\TrialWelcomeModalView.xaml.cs">
+      <DependentUpon>TrialWelcomeModalView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modals\Upsell\UpsellModalView.xaml.cs">
       <DependentUpon>UpsellModalView.xaml</DependentUpon>
@@ -971,7 +971,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\Popups\Welcome\NonTrialWelcomePopupView.xaml">
+    <Page Include="Modals\Welcome\NonTrialWelcomeModalView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1380,7 +1380,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\Popups\Welcome\TrialWelcomePopupView.xaml">
+    <Page Include="Modals\Welcome\TrialWelcomeModalView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
