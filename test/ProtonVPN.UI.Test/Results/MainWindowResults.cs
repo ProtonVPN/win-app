@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ProtonVPN.UI.Test.ApiClient;
@@ -42,6 +43,13 @@ namespace ProtonVPN.UI.Test.Results
             string ipAddress = await _client.GetIpAddress();
             string textBlockIpAddress = Session.FindElementByAccessibilityId("IPAddressTextBlock").Text.RemoveExtraText();
             Assert.IsTrue(ipAddress.Equals(textBlockIpAddress), "Incorrect IP address is displayed. API returned IP: " + ipAddress + " App IP addres: " + textBlockIpAddress);
+            return this;
+        }
+
+        public async Task<MainWindowResults> CheckIfIpAddressIsExcluded(string ipAddress)
+        {
+            string ipAddressAPI = await _client.GetIpAddress();
+            Assert.IsTrue(ipAddress.Equals(ipAddressAPI), "IP address was not excluded. API returned IP: " + ipAddressAPI + " Home IP addres: " + ipAddress);
             return this;
         }
         
@@ -86,6 +94,18 @@ namespace ProtonVPN.UI.Test.Results
         public MainWindowResults CheckIfNetshieldIsDisabled()
         {
             CheckIfObjectWithClassNameIsDisplayed("ShieldEmpty", "Netshield was not disabled.");
+            return this;
+        }
+
+        public MainWindowResults CheckIfConnectButtonIsNotDisplayed()
+        {
+            Assert.IsFalse(CheckIfElementExistsByName("CONNECT"));
+            return this;
+        }
+
+        public MainWindowResults CheckIfUpgradeRequiredModalIsShown(string serverName)
+        {
+            CheckIfObjectWithNameIsDisplayed("Upgrade Required", "Free User is able to connect to " + serverName + " server");
             return this;
         }
     }
