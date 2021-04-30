@@ -18,10 +18,12 @@
     <ROW Property="ARPPRODUCTICON" Value="protonvpn.exe" Type="8"/>
     <ROW Property="ARPSYSTEMCOMPONENT" Value="1"/>
     <ROW Property="ARPURLINFOABOUT" Value="https://www.protonvpn.com"/>
+    <ROW Property="BannerBitmap" Value="banner" MultiBuildValue="DefaultBuild:BannerBitmap.bmp" Type="1" MsiKey="BannerBitmap"/>
     <ROW Property="CalloutDriverFile" Value="This will be set by custom action" Comments="Full path to driver file. Used by custom action InstallCalloutDriver."/>
     <ROW Property="CalloutServiceDisplayName" Value="ProtonVPN Callout" Comments="Display name of the Callout driver service. Used by custom action InstallCalloutDriver."/>
     <ROW Property="CalloutServiceName" Value="ProtonVPNCallout" Comments="Name of the Callout driver service. Used by custom actions InstallCalloutDiver and UninstallCalloutDriver."/>
     <ROW Property="CommitHash" Value="REPLACE_ME"/>
+    <ROW Property="DialogBitmap" Value="dialog" MultiBuildValue="DefaultBuild:DialogBitmap.bmp" Type="1" MsiKey="DialogBitmap"/>
     <ROW Property="Manufacturer" Value="Proton Technologies AG"/>
     <ROW Property="MsiLogging" MultiBuildValue="DefaultBuild:vp"/>
     <ROW Property="PENDING_REBOOT" Value="0"/>
@@ -340,6 +342,8 @@
     <ROW Property="AI_SETUPEXEPATH" Signature_="AI_EXE_PATH_LM" Builds="DefaultBuild"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiBinaryComponent">
+    <ROW Name="BannerBitmap.bmp" SourcePath="Images\BannerBitmap.bmp"/>
+    <ROW Name="DialogBitmap.bmp" SourcePath="Images\DialogBitmap.bmp"/>
     <ROW Name="Prereq.dll" SourcePath="&lt;AI_CUSTACTS&gt;Prereq.dll"/>
     <ROW Name="ProtonVPN.InstallActions.dll" SourcePath="..\src\bin\ProtonVPN.InstallActions.dll"/>
     <ROW Name="ResourceCleaner.dll" SourcePath="&lt;AI_CUSTACTS&gt;ResourceCleaner.dll"/>
