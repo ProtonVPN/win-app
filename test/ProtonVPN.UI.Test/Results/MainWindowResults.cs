@@ -82,5 +82,11 @@ namespace ProtonVPN.UI.Test.Results
             Assert.AreEqual(ipAddress, _mainWindow.GetTextBlockIpAddress(), "User was not connected to the same server.");
             return this;
         }
+
+        public MainWindowResults CheckIfNetshieldIsDisabled()
+        {
+            CheckIfObjectWithClassNameIsDisplayed("ShieldEmpty", "Netshield was not disabled.");
+            return this;
+        }
     }
 }

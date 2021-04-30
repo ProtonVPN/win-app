@@ -43,6 +43,16 @@ namespace ProtonVPN.UI.Test.Tests
             _accountResult.VerifyLoggedInAsTextIs(TestUserData.GetPlusUser().Username);
         }
 
+        [Test]
+        public void CheckRestrictedAccountConnections()
+        {
+            TestCaseId = 262;
+
+            _loginActions.LoginWithFreeUser();
+
+            //TODO Expand test case to verify
+        }
+
         [SetUp]
         public void SetUp()
         {

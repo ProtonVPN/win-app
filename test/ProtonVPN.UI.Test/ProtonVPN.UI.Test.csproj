@@ -107,6 +107,7 @@
   <ItemGroup>
     <Compile Include="ApiClient\CommonAPI.cs" />
     <Compile Include="ApiClient\TestRailAPI.cs" />
+    <Compile Include="Results\ConnectionResult.cs" />
     <Compile Include="TestsHelper\TestEnvironment.cs" />
     <Compile Include="Tests\SetUpTests.cs" />
     <Compile Include="Windows\BugReportWindow.cs" />

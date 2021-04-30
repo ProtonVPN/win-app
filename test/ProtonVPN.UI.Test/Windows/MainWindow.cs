@@ -116,6 +116,25 @@ namespace ProtonVPN.UI.Test.Windows
             return this;
         }
 
+        public MainWindow EnableKillSwitch()
+        {
+            ClickOnObjectWithId("KillSwitchToggle");
+            ClickOnObjectWithClassName("SwitchOn");
+            return this;
+        }
+
+        public MainWindow ConfirmAppExit()
+        {
+            ClickOnObjectWithName("Exit");
+            return this;
+        }
+
+        public MainWindow ConfirmLogout()
+        {
+            ClickOnObjectWithName("Continue");
+            return this;
+        }
+
         public string GetTextBlockIpAddress()
         {
             var textBlockIpAddress = Session.FindElementByAccessibilityId("IPAddressTextBlock").Text.RemoveExtraText();

@@ -33,6 +33,7 @@ namespace ProtonVPN.UI.Test.Tests
         private readonly MainWindowResults _mainWindowResults = new MainWindowResults();
         private readonly SettingsWindow _settingsWindow = new SettingsWindow();
         private readonly SettingsResult _settingsResult = new SettingsResult();
+        private readonly ConnectionResult _connectionResult = new ConnectionResult();
 
         [Test]
         public async Task ConnectUsingQuickConnectFreeUser()
@@ -124,19 +125,36 @@ namespace ProtonVPN.UI.Test.Tests
         }
 
         [Test]
-        public void CheckIfCustomDnsAddressIsSet()
+        public void CheckCustomDnsManipulation()
         {
-            TestCaseId = 4579;
+            TestCaseId = 4578;
 
             _loginWindow.LoginWithPlusUser();
-            _mainWindow.ClickHamburgerMenu().HamburgerMenu.ClickSettings();
+            _mainWindow.ClickHamburgerMenu()
+                .HamburgerMenu.ClickSettings();
             _settingsWindow.ClickConnectionTab();
             _settingsWindow.EnableCustomDnsServers();
             _settingsWindow.DisableNetshieldForCustomDns();
+            _settingsWindow.CloseSettings();
+            _mainWindowResults.CheckIfNetshieldIsDisabled();
+
+            TestCaseId = 4579;
+
+            _mainWindow.ClickHamburgerMenu()
+                .HamburgerMenu.ClickSettings();
             _settingsWindow.EnterCustomIpv4Address("8.8.8.8");
             _settingsWindow.CloseSettings();
             _mainWindow.QuickConnect();
             _settingsResult.CheckIfDnsAddressMatches("8.8.8.8");
+
+            TestCaseId = 4581;
+
+            _mainWindow.ClickHamburgerMenu()
+                .HamburgerMenu.ClickSettings();
+            _settingsWindow.RemoveDnsAddress();
+            _settingsWindow.PressReconnect();
+            _settingsResult.CheckIfDnsAddressDoesNotMatch("8.8.8.8");
+
         }
 
         [Test]
@@ -145,7 +163,8 @@ namespace ProtonVPN.UI.Test.Tests
             TestCaseId = 4580;
 
             _loginWindow.LoginWithPlusUser();
-            _mainWindow.ClickHamburgerMenu().HamburgerMenu.ClickSettings();
+            _mainWindow.ClickHamburgerMenu()
+                .HamburgerMenu.ClickSettings();
             _settingsWindow.ClickConnectionTab();
             _settingsWindow.EnableCustomDnsServers();
             _settingsWindow.DisableNetshieldForCustomDns();
@@ -162,6 +181,22 @@ namespace ProtonVPN.UI.Test.Tests
             _mainWindow.QuickConnect();
             _mainWindowResults.CheckIfSameServerIsKeptAfterKillingApp();
         }
+
+        [Test]
+        public void CheckIfKillSwitchIsNotActiveOnAppExit()
+        {
+            TestCaseId = 216;
+
+            _loginWindow.LoginWithPlusUser();
+            _mainWindow.EnableKillSwitch();
+            _mainWindow.QuickConnect();
+            _mainWindow.ClickHamburgerMenu()
+                .HamburgerMenu.ClickExit();
+            _mainWindow.ConfirmAppExit();
+            _connectionResult.CheckIfDnsIsResolved();
+        }
+
+       
 
         [SetUp]
         public void TestInitialize()
