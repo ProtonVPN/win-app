@@ -36,6 +36,12 @@ namespace ProtonVPN.UI.Test.Windows
             return this;
         }
 
+        public SettingsWindow ClickAdvancedTab()
+        {
+            ClickOnObjectWithName("Advanced");
+            return this;
+        }
+
         public SettingsWindow EnableCustomDnsServers()
         {
             ClickOnObjectWithId("CheckBoxCustomDnsServers");
@@ -82,6 +88,26 @@ namespace ProtonVPN.UI.Test.Windows
         public SettingsWindow PressReconnect()
         {
             ClickOnObjectWithName("Reconnect");
+            return this;
+        }
+
+        public SettingsWindow EnableSplitTunneling()
+        {
+            ClickOnObjectWithId("SplitTunnelingToggle");
+            return this;
+        }
+
+        public SettingsWindow AddIpAddressSplitTunneling(string ipv4Address)
+        {
+            
+            InsertTextIntoFieldWithId("SplitTunnelTextBlock", ipv4Address);
+            ClickOnObjectWithId("AddIpAddressButton");
+            return this;
+        }
+
+        public SettingsWindow EnableIncludeMode()
+        {
+            ClickOnObjectWithId("IncludeModeRadioButton");
             return this;
         }
 

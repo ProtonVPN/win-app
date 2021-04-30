@@ -79,4 +79,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <system:String x:Key="SecureCoreOffButton">SecureCoreOffButton</system:String>
     <system:String x:Key="VpnAcceleratorCheckbox">VpnAcceleratorCheckbox</system:String>
     <system:String x:Key="VpnAcceleratorNotificationsCheckbox">VpnAcceleratorNotificationsCheckbox</system:String>
+    <system:String x:Key="SplitTunnelingToggle">SplitTunnelingToggle</system:String>
+    <system:String x:Key="IncludeModeRadioButton">IncludeModeRadioButton</system:String>
+    <system:String x:Key="SplitTunnelTextBlock">SplitTunnelTextBlock</system:String>
+    <system:String x:Key="AddIpAddressButton">AddIpAddressButton</system:String>
 </ResourceDictionary>

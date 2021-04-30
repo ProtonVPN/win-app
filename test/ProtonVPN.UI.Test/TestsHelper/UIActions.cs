@@ -18,6 +18,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Windows;
@@ -85,6 +86,13 @@ namespace ProtonVPN.UI.Test.TestsHelper
         {
             bool isDisplayed = Session.FindElementByName(objectName).Displayed;
             Assert.IsFalse(isDisplayed, errorMessage);
+        }
+
+        public static bool CheckIfElementExistsByName(string elementName)
+        {
+            List<IWebElement> elementList = new List<IWebElement>();
+            elementList.AddRange(Session.FindElementsByName(elementName));
+            return CheckIfExists(elementList);
         }
 
         public static void WaitUntilElementIsNotVisible(By locator, int timeInSeconds)
@@ -166,5 +174,16 @@ namespace ProtonVPN.UI.Test.TestsHelper
                 SetImplicitWait(ImplicitWaitTimeInSeconds);
             }
         }
+
+        private static bool CheckIfExists(List<IWebElement> elementList)
+        {
+            bool isExists = false;
+            if (elementList.Count > 0)
+            {
+                isExists = true;
+            }
+            return isExists;
+        }
+
     }
 }

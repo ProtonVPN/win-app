@@ -270,12 +270,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 <DataTemplate DataType="{x:Type pins:PinViewModel}">
                                     <views:Pin
                                         Width="{Binding Width}"
-                                        Height="{Binding Height}"/>
+                                        Height="{Binding Height}"
+                                        AutomationProperties.AutomationId="{Binding CountryCode}"/>
                                 </DataTemplate>
                                 <DataTemplate DataType="{x:Type pins:ExitNodePinViewModel}">
                                     <views:ExitPin
                                         Width="{Binding Width}"
-                                        Height="{Binding Height}"/>
+                                        Height="{Binding Height}"
+                                        AutomationProperties.AutomationId="{Binding CountryCode}"/>
                                 </DataTemplate>
                                 <DataTemplate DataType="{x:Type pins:SecureCorePinViewModel}">
                                     <views:SecureCorePin

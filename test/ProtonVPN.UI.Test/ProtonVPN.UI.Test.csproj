@@ -113,8 +113,8 @@
     <Compile Include="Windows\BugReportWindow.cs" />
     <Compile Include="Windows\HamburgerMenu.cs" />
     <Compile Include="Windows\LoginWindow.cs" />
-    <Compile Include="Windows\LogoutConfirmationPopup.cs" />
     <Compile Include="Windows\MainWindow.cs" />
+    <Compile Include="Windows\ModalWindow.cs" />
     <Compile Include="Windows\ProfileWindow.cs" />
     <Compile Include="Windows\SettingsWindow.cs" />
     <Compile Include="Results\MainWindowResults.cs" />

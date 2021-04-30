@@ -33,7 +33,8 @@ namespace ProtonVPN.UI.Test.Results
                 Assert.IsTrue(ipAddressCount > 0);
             }catch(SocketException ex)
             {
-                Assert.IsTrue(false, "DNS was not resolved");
+                //Intentionally fail assertion if DNS was not resolved
+                Assert.IsTrue(false, "DNS was not resolved. \n" + ex.Message);
             }
         }
     }

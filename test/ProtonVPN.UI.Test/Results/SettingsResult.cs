@@ -35,7 +35,7 @@ namespace ProtonVPN.UI.Test.Results
         public SettingsResult CheckIfDnsAddressDoesNotMatch(string dnsAddress)
         {
             Assert.AreNotEqual(dnsAddress, GetDnsAddressForAdapter());
-            Assert.IsTrue(GetDnsAddressForAdapter().StartsWith("10.0"));
+            Assert.IsTrue(GetDnsAddressForAdapter().StartsWith("10."), "DNS address does not start from 10, instead the value is: " + GetDnsAddressForAdapter());
             return this;
         }
 

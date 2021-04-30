@@ -17,21 +17,37 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 using ProtonVPN.UI.Test.TestsHelper;
 
 namespace ProtonVPN.UI.Test.Windows
 {
-    public class LogoutConfirmationPopup : UIActions
+    class ModalWindow : UIActions
     {
-        public LogoutConfirmationPopup ClickContinueButton()
+        public ModalWindow ClickContinueButton()
         {
             ClickOnObjectWithId("ContinueButton");
             return this;
         }
 
-        public LogoutConfirmationPopup ClickCancelButton()
+        public ModalWindow ClickCancelButton()
         {
             ClickOnObjectWithName("Cancel");
+            return this;
+        }
+
+        public ModalWindow MoveModalUp()
+        {
+            Actions builder = new Actions(Session);
+            builder.SendKeys(Keys.Alt).SendKeys(Keys.Space).SendKeys("m");
+            builder.Build().Perform();
+
+            builder.SendKeys(Keys.ArrowUp);
+            builder.SendKeys(Keys.ArrowUp);
+            builder.SendKeys(Keys.ArrowUp);
+            builder.SendKeys(Keys.Enter);
+            builder.Build().Perform();
             return this;
         }
     }

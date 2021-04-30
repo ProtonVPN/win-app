@@ -455,7 +455,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             </StackPanel>
                             <CheckBox Style="{StaticResource ToggleSwitch}"
                                       HorizontalAlignment="Right"
-                                      IsChecked="{Binding SplitTunnelingViewModel.Enabled}"/>
+                                      IsChecked="{Binding SplitTunnelingViewModel.Enabled}"
+                                      AutomationProperties.AutomationId="{StaticResource SplitTunnelingToggle}"/>
                         </DockPanel>
                     </Border>
 
