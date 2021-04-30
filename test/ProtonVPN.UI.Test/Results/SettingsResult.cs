@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Net;
 using System.Net.NetworkInformation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ProtonVPN.UI.Test.TestsHelper;
@@ -27,23 +28,14 @@ namespace ProtonVPN.UI.Test.Results
     {
         public SettingsResult CheckIfDnsAddressMatches(string dnsAddress)
         {
-            var adapters = NetworkInterface.GetAllNetworkInterfaces();
-            foreach (var adapter in adapters)
-            {
-                var adapterProperties = adapter.GetIPProperties();
-                var dnsServers = adapterProperties.DnsAddresses;
-                if (dnsServers.Count > 0)
-                {
-                    if (adapter.Description.Contains("ProtonVPN"))
-                    {
-                        foreach (var dns in dnsServers)
-                        {
-                            Assert.AreEqual(dnsAddress, dns.ToString(), "Desired dns address " + dnsAddress + " does not match Windows dns address " + dns.ToString());
-                        }
-                    }
-                }
-            }
+            Assert.AreEqual(dnsAddress, GetDnsAddressForAdapter(), "Desired dns address " + dnsAddress + " does not match Windows dns address " + GetDnsAddressForAdapter());
+            return this;
+        }
 
+        public SettingsResult CheckIfDnsAddressDoesNotMatch(string dnsAddress)
+        {
+            Assert.AreNotEqual(dnsAddress, GetDnsAddressForAdapter());
+            Assert.IsTrue(GetDnsAddressForAdapter().StartsWith("10.0"));
             return this;
         }
 
@@ -60,6 +52,25 @@ namespace ProtonVPN.UI.Test.Results
         {
             CheckIfObjectWithAutomationIdDoesNotExist("DeleteButton", "Expected dns address not to be added.");
             return this;
+        }
+
+        private string GetDnsAddressForAdapter()
+        {
+            string dnsAddress = null;
+            NetworkInterface[] adapters = NetworkInterface.GetAllNetworkInterfaces();
+            foreach (NetworkInterface adapter in adapters)
+            {
+                IPInterfaceProperties adapterProperties = adapter.GetIPProperties();
+                IPAddressCollection dnsServers = adapterProperties.DnsAddresses;
+                if (dnsServers.Count > 0 && adapter.Description.Contains("ProtonVPN"))
+                {
+                    foreach (IPAddress dns in dnsServers)
+                    {
+                        dnsAddress = dns.ToString();
+                    }
+                }
+            }
+            return dnsAddress;
         }
     }
 }

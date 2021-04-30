@@ -73,6 +73,18 @@ namespace ProtonVPN.UI.Test.Windows
             return this;
         }
 
+        public SettingsWindow RemoveDnsAddress()
+        {
+            ClickOnObjectWithId("DeleteButton");
+            return this;
+        }
+
+        public SettingsWindow PressReconnect()
+        {
+            ClickOnObjectWithName("Reconnect");
+            return this;
+        }
+
         private SettingsWindow SelectAutoConnectProfile(string autoConnectProfile)
         {
             ClickOnObjectWithId("AutoConnectComboBox");

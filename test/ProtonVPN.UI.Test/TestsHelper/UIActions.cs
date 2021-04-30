@@ -63,16 +63,28 @@ namespace ProtonVPN.UI.Test.TestsHelper
             button[0].Click();
         }
 
+        public static void ClickOnObjectWithClassName(string className)
+        {
+            var button = Session.FindElementByClassName(className);
+            button.Click();
+        }
+
         public static void CheckIfObjectWithIdIsDisplayed(string objectId, string errorMessage)
         {
-            var content = Session.FindElementByAccessibilityId(objectId).Displayed;
-            Assert.IsTrue(content, errorMessage);
+            bool isDisplayed = Session.FindElementByAccessibilityId(objectId).Displayed;
+            Assert.IsTrue(isDisplayed, errorMessage);
         }
 
         public static void CheckIfObjectIsNotDisplayed(string objectId, string errorMessage)
         {
-            var content = Session.FindElementByAccessibilityId(objectId).Displayed;
-            Assert.IsFalse(content, errorMessage);
+            bool isDisplayed = Session.FindElementByAccessibilityId(objectId).Displayed;
+            Assert.IsFalse(isDisplayed, errorMessage);
+        }
+
+        public static void CheckIfObjectIsNotDisplayedByName(string objectName, string errorMessage)
+        {
+            bool isDisplayed = Session.FindElementByName(objectName).Displayed;
+            Assert.IsFalse(isDisplayed, errorMessage);
         }
 
         public static void WaitUntilElementIsNotVisible(By locator, int timeInSeconds)
