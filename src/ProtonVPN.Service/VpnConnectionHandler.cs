@@ -85,7 +85,7 @@ namespace ProtonVPN.Service
             VpnCredentials credentials = Map(connectionRequest.Credentials);
             VpnConfig config = Map(connectionRequest.VpnConfig);
 
-            if (_networkSettings.ApplyNetworkSettings())
+            if (_networkSettings.IsNetworkAdapterAvailable())
             {
                 _vpnConnection.Connect(
                     endpoints,
