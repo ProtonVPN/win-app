@@ -144,10 +144,13 @@ namespace ProtonVPN.Service.Firewall
 
             if (firewallParams.SessionType != _lastParams.SessionType)
             {
-                _serverAddressFilters.Clear();
-                List<Guid> previousGuids = GetFirewallGuidsByType(FirewallItemType.VariableFilter);
+                List<Guid> previousVariableFilters = GetFirewallGuidsByType(FirewallItemType.VariableFilter);
+                List<Guid> previousInterfaceFilters = GetFirewallGuidsByType(FirewallItemType.PermitInterfaceFilter);
+
                 ApplyFilters(firewallParams);
-                RemoveItems(previousGuids, _lastParams.SessionType);
+
+                RemoveItems(previousVariableFilters, _lastParams.SessionType);
+                RemoveItems(previousInterfaceFilters, _lastParams.SessionType);
             }
 
             if (firewallParams.InterfaceIndex != _lastParams.InterfaceIndex)
@@ -322,68 +325,90 @@ namespace ProtonVPN.Service.Firewall
 
         private void PermitFromNetworkInterface(uint weight, FirewallParams firewallParams)
         {
+            //Create the following filters dynamically on permanent or dynamic sublayer,
+            //but prevent keeping them after reboot, as interface index might be changed.
             _ipLayer.ApplyToIpv4(layer =>
             {
-                Guid guid = _ipFilter.DynamicSublayer.CreateNetInterfaceFilter(
+                Guid guid = _ipFilter.GetSublayer(firewallParams.SessionType).CreateNetInterfaceFilter(
                     new DisplayData("ProtonVPN permit VPN tunnel", "Permit TAP adapter traffic"),
-                    Action.HardPermit,
+                    Action.SoftPermit,
                     layer,
                     firewallParams.InterfaceIndex,
-                    weight);
+                    weight,
+                    persistent: false);
                 _firewallItems.Add(new FirewallItem(FirewallItemType.PermitInterfaceFilter, guid));
             });
 
             _ipLayer.ApplyToIpv6(layer =>
             {
-                Guid guid = _ipFilter.DynamicSublayer.CreateNetInterfaceFilter(
+                Guid guid = _ipFilter.GetSublayer(firewallParams.SessionType).CreateNetInterfaceFilter(
                     new DisplayData("ProtonVPN permit VPN tunnel", "Permit TAP adapter traffic"),
-                    Action.HardPermit,
+                    Action.SoftPermit,
                     layer,
                     firewallParams.InterfaceIndex,
-                    weight);
+                    weight,
+                    persistent: false);
                 _firewallItems.Add(new FirewallItem(FirewallItemType.PermitInterfaceFilter, guid));
             });
         }
 
-        private void PermitOpenVpnServerAddress(FirewallParams firewallParams, SessionType? sessionType = null)
+        private void PermitOpenVpnServerAddress(FirewallParams firewallParams)
         {
             if (string.IsNullOrEmpty(firewallParams.ServerIp))
             {
                 return;
             }
 
-            (string ip, List<Guid> guids) = _serverAddressFilters.FirstOrDefault();
-            if (ip != null && ip == firewallParams.ServerIp)
-            {
-                _serverAddressFilters.RemoveAt(0);
-                _serverAddressFilters.Add((ip, guids));
-                return;
-            }
+            ReorderServerPermitFilters(firewallParams.ServerIp);
 
             var filterGuids = new List<Guid>();
 
             _ipLayer.ApplyToIpv4(layer =>
             {
-                filterGuids.Add(_ipFilter.DynamicSublayer.CreateRemoteIPv4Filter(
+                filterGuids.Add(_ipFilter.GetSublayer(firewallParams.SessionType).CreateRemoteIPv4Filter(
                     new DisplayData("ProtonVPN permit OpenVPN server", "Permit server ip"),
                     Action.HardPermit,
                     layer,
                     1,
-                    firewallParams.ServerIp));
+                    firewallParams.ServerIp,
+                    persistent: false));
             });
 
             _serverAddressFilters.Add((firewallParams.ServerIp, filterGuids));
 
-            DeletePreviousFilters(sessionType);
+            DeletePreviousServerPermitFilters();
         }
 
-        private void DeletePreviousFilters(SessionType? sessionType = null)
+        private void ReorderServerPermitFilters(string serverIp)
         {
-            if (sessionType == null)
+            if (_serverAddressFilters.Count == 0)
             {
                 return;
             }
 
+            int index = 0;
+            (string, List<Guid>)? item = null;
+
+            foreach ((string, List<Guid>) filter in _serverAddressFilters)
+            {
+                if (filter.Item1 == serverIp)
+                {
+                    item = filter;
+                    break;
+                }
+
+                index++;
+            }
+
+            if (item != null)
+            {
+                _serverAddressFilters.RemoveAt(index);
+                _serverAddressFilters.Add(item.Value);
+            }
+        }
+
+        private void DeletePreviousServerPermitFilters()
+        {
             if (_serverAddressFilters.Count >= 3)
             {
                 (string oldAddress, List<Guid> guids) = _serverAddressFilters.FirstOrDefault();
@@ -392,7 +417,9 @@ namespace ProtonVPN.Service.Firewall
                     return;
                 }
 
-                DeleteIpFilters(guids, sessionType.Value);
+                //Use permanent session here to be able to remove filters created
+                //on both dynamic and permanent sublayers.
+                DeleteIpFilters(guids, SessionType.Permanent);
                 _serverAddressFilters.RemoveAll(tuple => tuple.Item1 == oldAddress);
             }
         }
