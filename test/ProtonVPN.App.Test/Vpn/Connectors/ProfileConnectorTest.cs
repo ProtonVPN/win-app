@@ -75,7 +75,7 @@ namespace ProtonVPN.App.Test.Vpn.Connectors
         private void InitializeDependencies()
         {
             _serverManager = Substitute.For<ServerManager>(_userStorage);
-            _serverCandidatesFactory = Substitute.For<ServerCandidatesFactory>(_serverManager, _userStorage);
+            _serverCandidatesFactory = Substitute.For<ServerCandidatesFactory>(_serverManager);
             _vpnCredentialProvider = Substitute.For<VpnCredentialProvider>(_config, _appSettings, _userStorage);
 
             _profileConnector = new ProfileConnector(_logger, _userStorage, _appSettings,
@@ -111,7 +111,7 @@ namespace ProtonVPN.App.Test.Vpn.Connectors
                 _p2pServer,
                 _torServer
             };
-            _candidates = new ServerCandidates(_serverManager, _userStorage, _servers);
+            _candidates = new ServerCandidates(_serverManager, _servers);
             _profile = new Profile()
             {
                 ProfileType = ProfileType.Fastest,
