@@ -24,18 +24,22 @@ namespace ProtonVPN.Vpn.Common
     public class VpnState
     {
         public VpnState(VpnStatus status) : this(status, VpnError.None, string.Empty, string.Empty)
-        { }
+        {
+        }
 
         public VpnState(VpnStatus status, VpnError error) : this(status, error, string.Empty, string.Empty)
-        { }
+        {
+        }
 
-        public VpnState(VpnStatus status, VpnError error, string localIp, string remoteIp, VpnProtocol protocol = VpnProtocol.Auto)
+        public VpnState(VpnStatus status, VpnError error, string localIp, string remoteIp,
+            VpnProtocol protocol = VpnProtocol.Auto, string label = "")
         {
             Status = status;
             Error = error;
             LocalIp = localIp;
             RemoteIp = remoteIp;
             Protocol = protocol;
+            Label = label;
         }
 
         public VpnStatus Status { get; }
@@ -47,5 +51,7 @@ namespace ProtonVPN.Vpn.Common
         public string RemoteIp { get; }
 
         public VpnProtocol Protocol { get; }
+
+        public string Label { get; }
     }
 }

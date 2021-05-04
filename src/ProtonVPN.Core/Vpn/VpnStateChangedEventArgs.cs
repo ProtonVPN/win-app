@@ -30,8 +30,8 @@ namespace ProtonVPN.Core.Vpn
         public bool NetworkBlocked { get; }
         public VpnProtocol Protocol { get; }
 
-        public VpnStateChangedEventArgs(VpnStatus status, VpnError error, string endpointIp, bool networkBlocked, VpnProtocol protocol)
-            : this(new VpnState(status, endpointIp, protocol), error, networkBlocked, protocol)
+        public VpnStateChangedEventArgs(VpnStatus status, VpnError error, string endpointIp, bool networkBlocked, VpnProtocol protocol, string label = "")
+            : this(new VpnState(status, endpointIp, protocol, label), error, networkBlocked, protocol)
         {
         }
 

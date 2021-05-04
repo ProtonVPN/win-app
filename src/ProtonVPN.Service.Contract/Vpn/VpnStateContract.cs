@@ -29,28 +29,27 @@ namespace ProtonVPN.Service.Contract.Vpn
             VpnErrorTypeContract error,
             string endpointIp,
             bool networkBlocked,
-            VpnProtocolContract protocol)
+            VpnProtocolContract protocol,
+            string label)
         {
             Status = status;
             Error = error;
             EndpointIp = endpointIp;
             NetworkBlocked = networkBlocked;
             Protocol = protocol;
+            Label = label;
         }
 
-        [DataMember]
-        public VpnStatusContract Status { get; private set; }
+        [DataMember] public VpnStatusContract Status { get; private set; }
 
-        [DataMember]
-        public VpnErrorTypeContract Error { get; private set; }
+        [DataMember] public VpnErrorTypeContract Error { get; private set; }
 
-        [DataMember]
-        public bool NetworkBlocked { get; private set; }
+        [DataMember] public bool NetworkBlocked { get; private set; }
 
-        [DataMember]
-        public string EndpointIp { get; private set; }
+        [DataMember] public string EndpointIp { get; private set; }
 
-        [DataMember]
-        public VpnProtocolContract Protocol { get; private set; }
+        [DataMember] public VpnProtocolContract Protocol { get; private set; }
+
+        [DataMember] public string Label { get; private set; }
     }
 }

@@ -144,7 +144,7 @@ namespace ProtonVPN.Core.Service.Vpn
             VpnError error = Map(contract.Error);
             VpnProtocol protocol = Map(contract.Protocol);
 
-            return new VpnStateChangedEventArgs(status, error, contract.EndpointIp, contract.NetworkBlocked, protocol);
+            return new VpnStateChangedEventArgs(status, error, contract.EndpointIp, contract.NetworkBlocked, protocol, contract.Label);
         }
 
         private static InOutBytes Map(InOutBytesContract bytes)
