@@ -81,14 +81,9 @@ namespace ProtonVPN.Servers
 
         public bool IsMarkedForRemoval { get; set; } = false;
 
-        public abstract void LoadServers();
+        public abstract void LoadServers(string searchQuery = "");
 
         public abstract void OnVpnStateChanged(VpnState state);
-
-        public bool MatchesQuery(string query = null)
-        {
-            return !string.IsNullOrEmpty(query) && Name.ToLower().Contains(query);
-        }
 
         public abstract bool HasAvailableServers();
 

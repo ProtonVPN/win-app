@@ -169,6 +169,10 @@
     <Compile Include="Notifications\NotificationSender.cs" />
     <Compile Include="Notifications\NotificationUserAction.cs" />
     <Compile Include="Notifications\NotificationUserActionHandler.cs" />
+    <Compile Include="Sidebar\CountryFeatures\CountryFeaturesPopup.cs" />
+    <Compile Include="Sidebar\CountryFeatures\CountryFeaturesPopupView.xaml.cs">
+      <DependentUpon>CountryFeaturesPopupView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Sidebar\PopupBase.cs" />
     <Compile Include="Views\Icons\UpsellTunnel.xaml.cs">
       <DependentUpon>UpsellTunnel.xaml</DependentUpon>
@@ -221,8 +225,39 @@
     </Compile>
     <Compile Include="Modals\VpnAcceleration\NonVpnAccelerationFailedModalViewModel.cs" />
     <Compile Include="Modals\ExitModalViewModel.cs" />
+    <Compile Include="Servers\StreamingFeature.cs" />
+    <Compile Include="Servers\ServerTierSeparatorViewModel.cs" />
     <Compile Include="Settings\Migrations\v1_20_0\AppSettingsMigration.cs" />
     <Compile Include="PlanDowngrading\PlanDowngradeHandler.cs" />
+    <Compile Include="Sidebar\CountryFeatures\CountryFeature.xaml.cs">
+      <DependentUpon>CountryFeature.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Sidebar\CountryFeatures\CountryFeaturesPopupViewModel.cs" />
+    <Compile Include="Streaming\IStreamingServices.cs" />
+    <Compile Include="Streaming\StreamingInfoPopup.xaml.cs">
+      <DependentUpon>StreamingInfoPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Streaming\StreamingInfoPopupViewModel.cs" />
+    <Compile Include="Streaming\StreamingService.cs" />
+    <Compile Include="Streaming\StreamingServices.cs" />
+    <Compile Include="Streaming\StreamingServicesStorage.cs" />
+    <Compile Include="Streaming\StreamingServicesUpdater.cs" />
+    <Compile Include="Streaming\StreamingServiceViewModel.cs" />
+    <Compile Include="Views\Controls\AltImage.xaml.cs">
+      <DependentUpon>AltImage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Icons\Times.xaml.cs">
+      <DependentUpon>Times.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Icons\Globe.xaml.cs">
+      <DependentUpon>Globe.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Icons\Streaming.xaml.cs">
+      <DependentUpon>Streaming.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Icons\P2P.xaml.cs">
+      <DependentUpon>P2P.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\BaseWindowViewModel.cs" />
     <Compile Include="Windows\Popups\BaseUpgradePlanPopupViewModel.cs" />
     <Compile Include="Windows\Popups\PopupWindows.cs" />
@@ -416,7 +451,6 @@
     <Compile Include="Profiles\ProfileSyncViewModel.cs" />
     <Compile Include="Servers\Countries.cs" />
     <Compile Include="Servers\ServerListFactory.cs" />
-    <Compile Include="Servers\SortedCountries.cs" />
     <Compile Include="Settings\LanguageViewModel.cs" />
     <Compile Include="Settings\ReconnectNotification\CompoundSetting.cs" />
     <Compile Include="Settings\CustomDnsListViewModel.cs" />
@@ -610,7 +644,6 @@
     <Compile Include="Servers\IServerFeature.cs" />
     <Compile Include="Servers\IServerListItem.cs" />
     <Compile Include="Servers\P2PFeature.cs" />
-    <Compile Include="Servers\PlusFeature.cs" />
     <Compile Include="Servers\SecureCoreItemViewModel.cs" />
     <Compile Include="Servers\ServerItemViewModel.cs" />
     <Compile Include="Servers\ServersByCountryViewModel.cs" />
@@ -847,6 +880,10 @@
     <Compile Include="ViewModels\AppLoadingViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Map\ViewModels\MapViewModel.cs" />
+    <Page Include="Sidebar\CountryFeatures\CountryFeaturesPopupView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Icons\UpsellTunnel.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -950,6 +987,34 @@
     <Page Include="Windows\Popups\SubscriptionExpiration\SubscriptionExpiredPopupView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Sidebar\CountryFeatures\CountryFeature.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Streaming\StreamingInfoPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\AltImage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Icons\Times.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Icons\Globe.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Icons\Streaming.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Icons\P2P.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\Popups\TunFallbackPopupView.xaml">
       <Generator>MSBuild:Compile</Generator>

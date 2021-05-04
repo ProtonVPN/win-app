@@ -69,6 +69,9 @@ namespace ProtonVPN.Common.Configuration
         public string GuestHoleServersJsonFilePath { get; internal set; }
 
         [Required]
+        public string StreamingServicesFilePath { get; internal set; }
+
+        [Required]
         public string ServiceLogFolder { get; internal set; }
 
         [Required]
@@ -142,6 +145,9 @@ namespace ProtonVPN.Common.Configuration
 
         [Range(typeof(TimeSpan), "00:00:10", "23:59:59")]
         public TimeSpan ServerUpdateInterval { get; internal set; }
+
+        [Range(typeof(TimeSpan), "00:00:10", "23:59:59")]
+        public TimeSpan StreamingServicesUpdateInterval { get; internal set; }
 
         [Range(typeof(TimeSpan), "00:00:10", "23:59:59")]
         public TimeSpan AnnouncementUpdateInterval { get; internal set; }

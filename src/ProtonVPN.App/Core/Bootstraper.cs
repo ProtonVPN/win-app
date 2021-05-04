@@ -75,6 +75,7 @@ using ProtonVPN.Settings;
 using ProtonVPN.Settings.Migrations;
 using ProtonVPN.Sidebar;
 using ProtonVPN.Sidebar.Announcements;
+using ProtonVPN.Streaming;
 using ProtonVPN.Translations;
 using ProtonVPN.Trial;
 using ProtonVPN.ViewModels;
@@ -511,6 +512,9 @@ namespace ProtonVPN.Core
 
             Resolve<PinFactory>().BuildPins();
 
+            await Resolve<IClientConfig>().Update();
+            await Resolve<StreamingServicesUpdater>().Update();
+
             LoadViewModels();
             Resolve<P2PDetector>();
             Resolve<VpnInfoChecker>();
@@ -528,7 +532,6 @@ namespace ProtonVPN.Core
             Resolve<PlanDowngradeHandler>();
             await Resolve<Trial.Trial>().Load();
             await Resolve<IUserLocationService>().Update();
-            await Resolve<IClientConfig>().Update();
             await Resolve<IAnnouncements>().Update();
             await Resolve<AutoConnect>().Load(autoLogin);
             Resolve<SyncProfiles>().Sync();

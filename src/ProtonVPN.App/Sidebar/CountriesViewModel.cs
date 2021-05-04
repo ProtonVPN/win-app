@@ -56,7 +56,7 @@ namespace ProtonVPN.Sidebar
         private readonly CountryConnector _countryConnector;
         private readonly IVpnManager _vpnManager;
 
-        private VpnStateChangedEventArgs _vpnState = new VpnStateChangedEventArgs(new VpnState(VpnStatus.Disconnected), VpnError.None, false);
+        private VpnStateChangedEventArgs _vpnState = new(new VpnState(VpnStatus.Disconnected), VpnError.None, false);
 
         public CountriesViewModel(
             IAppSettings appSettings,
@@ -124,7 +124,7 @@ namespace ProtonVPN.Sidebar
             set { }
         }
 
-        private ObservableCollection<IServerListItem> _items = new ObservableCollection<IServerListItem>();
+        private ObservableCollection<IServerListItem> _items = new();
         public ObservableCollection<IServerListItem> Items
         {
             get => _items;
@@ -133,7 +133,7 @@ namespace ProtonVPN.Sidebar
 
         public void ExpandCollection(IServerCollection serverCollection)
         {
-            if (serverCollection.Expanded || !serverCollection.HasAvailableServers())
+            if (serverCollection.Expanded)
             {
                 return;
             }
@@ -147,10 +147,7 @@ namespace ProtonVPN.Sidebar
                     new ObservableCollection<IServerListItem>(serverCollection.Servers.Reverse());
                 foreach (IServerListItem serverListItem in collection)
                 {
-                    if (serverListItem is ServerItemViewModel server)
-                    {
-                        _items.Insert(index, server);
-                    }
+                    _items.Insert(index, serverListItem);
                 }
             });
         }
@@ -165,10 +162,7 @@ namespace ProtonVPN.Sidebar
 
             foreach (IServerListItem item in serverCollection.Servers)
             {
-                if (item is ServerItemViewModel server)
-                {
-                    _items.Remove(server);
-                }
+                _items.Remove(item);
             }
         }
 

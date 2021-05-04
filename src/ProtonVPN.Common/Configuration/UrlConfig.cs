@@ -102,6 +102,18 @@ namespace ProtonVPN.Common.Configuration
         public string InvoicesUrl { get; internal set; }
 
         [Required]
+        public string StreamingUrl { get; internal set; }
+
+        [Required]
+        public string P2PUrl { get; internal set; }
+
+        [Required]
+        public string SmartRoutingUrl { get; internal set; }
+
+        [Required]
+        public string TorUrl { get; internal set; }
+
+        [Required]
         public string CaptchaUrl { get; internal set; }
 
         [Required]

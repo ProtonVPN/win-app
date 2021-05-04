@@ -98,13 +98,19 @@ namespace ProtonVPN.Servers
         {
             var list = new List<IServerFeature>();
             if (ServerFeatures.SupportsP2P(server.Features))
+            {
                 list.Add(new P2PFeature());
+            }
 
             if (ServerFeatures.SupportsTor(server.Features))
+            {
                 list.Add(new TorFeature());
+            }
 
-            if (server.Tier.Equals(ServerTiers.Plus))
-                list.Add(new PlusFeature());
+            if (ServerFeatures.SupportsStreaming(server.Features))
+            {
+                list.Add(new StreamingFeature());
+            }
 
             Features = list;
         }
@@ -135,11 +141,6 @@ namespace ProtonVPN.Servers
         public void SetConnectedToCountry(bool connected)
         {
             ConnectedToCountry = connected;
-        }
-
-        public bool MatchesQuery(string query = null)
-        {
-            return !string.IsNullOrEmpty(query) && Name.ToLower().Contains(query);
         }
 
         private void AssignServer(Server server)

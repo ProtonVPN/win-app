@@ -61,5 +61,7 @@ namespace ProtonVPN.Core.Api.Contracts
 
         [JsonProperty(PropertyName = "PollNotificationAPI")]
         public bool? PollNotificationApi { get; set; }
+
+        public bool? StreamingServicesLogos { get; set; }
     }
 }

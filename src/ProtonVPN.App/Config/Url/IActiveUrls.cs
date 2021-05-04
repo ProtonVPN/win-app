@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -47,6 +47,10 @@ namespace ProtonVPN.Config.Url
         IActiveUrl PortForwardingRisksUrl { get; }
         IActiveUrl AboutDelinquencyUrl { get; }
         IActiveUrl InvoicesUrl { get; }
+        IActiveUrl SmartRoutingUrl { get; }
+        IActiveUrl StreamingUrl { get; }
+        IActiveUrl P2PUrl { get; }
+        IActiveUrl TorUrl { get; }
         IActiveUrl AboutSmartProtocolUrl { get; }
-}
+    }
 }

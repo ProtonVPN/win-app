@@ -105,18 +105,58 @@ namespace ProtonVPN.Core.Servers
             return _countries;
         }
 
-        public virtual IReadOnlyCollection<string> GetCountriesWithFreeServers()
+        public IList<string> GetCountriesByTier(params sbyte[] tiers)
         {
-            List<string> result = new();
+            IList<string> result = new List<string>();
+
             foreach (LogicalServerContract server in _servers)
             {
-                if (server.Tier.Equals(ServerTiers.Free) && !result.Contains(server.EntryCountry))
+                if (tiers.Contains(server.Tier) &&
+                    !ServerFeatures.IsSecureCore(server.Features) &&
+                    !result.Contains(server.EntryCountry))
                 {
                     result.Add(server.EntryCountry);
                 }
             }
 
             return result;
+        }
+
+        public IList<string> GetEntryCountriesBySpec(Specification<LogicalServerContract> specification)
+        {
+            IList<string> list = new List<string>();
+            IReadOnlyCollection<Server> servers = GetServers(specification);
+
+            foreach (Server server in servers)
+            {
+                if (!list.Contains(server.EntryCountry))
+                {
+                    list.Add(server.EntryCountry);
+                }
+            }
+
+            return list;
+        }
+
+        public IList<string> GetSecureCoreCountries()
+        {
+            IList<string> list = new List<string>();
+            IReadOnlyCollection<Server> servers = GetServers(new SecureCoreServer());
+
+            foreach (Server server in servers)
+            {
+                if (!list.Contains(server.ExitCountry))
+                {
+                    list.Add(server.ExitCountry);
+                }
+            }
+
+            return list;
+        }
+
+        public bool IsCountryVirtual(string countryCode)
+        {
+            return _servers.Any(server => server.ExitCountry == countryCode && !string.IsNullOrEmpty(server.HostCountry));
         }
 
         public bool CountryHasAvailableServers(string country, sbyte userTier)
@@ -147,6 +187,7 @@ namespace ProtonVPN.Core.Servers
         private void SaveCountries(IEnumerable<LogicalServerContract> servers)
         {
             List<string> countryCodes = new();
+
             foreach (LogicalServerContract server in servers)
             {
                 if (server == null)

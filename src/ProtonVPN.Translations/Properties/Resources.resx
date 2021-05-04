@@ -743,7 +743,7 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <comment>The label for server IP address in Server Load popup. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
   </data>
   <data name="Servers_Feature_val_Plus" xml:space="preserve">
-    <value>Plus Server</value>
+    <value>PLUS Server</value>
     <comment>The name of Plus server feature</comment>
   </data>
   <data name="Servers_Feature_val_P2P" xml:space="preserve">
@@ -2406,14 +2406,6 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <value>Upgrade</value>
     <comment>The text on Upgrade button in Connection tab of Settings window</comment>
   </data>
-  <data name="Sidebar_Countries_info_P2P" xml:space="preserve">
-    <value>Supports P2P traffic</value>
-    <comment>The description displayed in a tooltip of P2P icon on a sidebar countries list</comment>
-  </data>
-  <data name="Sidebar_Countries_info_Tor" xml:space="preserve">
-    <value>Connects to TOR network</value>
-    <comment>The description displayed in a tooltip of Tor icon on a sidebar countries list</comment>
-  </data>
   <data name="Sidebar_Servers_info_plus" xml:space="preserve">
     <value>Plus Server</value>
     <comment>The description displayed in a tooltip of P icon on a sidebar server item</comment>
@@ -2954,6 +2946,87 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Check invoices</value>
     <comment>The text on invoices button in the Delinquency message on the sidebar (opens web page for invoice payment)</comment>
   </data>
+  <data name="Sidebar_Countries_AllLocationCount" xml:space="preserve">
+    <value>Locations ({0})</value>
+  </data>
+  <data name="Sidebar_Countries_ServerCountByTier0" xml:space="preserve">
+    <value>FREE Servers ({0})</value>
+  </data>
+  <data name="Sidebar_Countries_ServerCountByTier1" xml:space="preserve">
+    <value>BASIC Servers ({0})</value>
+  </data>
+  <data name="Sidebar_Countries_ServerCountByTier2" xml:space="preserve">
+    <value>PLUS Servers ({0})</value>
+  </data>
+  <data name="Servers_Feature_val_Streaming" xml:space="preserve">
+    <value>Streaming</value>
+  </data>
+  <data name="Sidebar_Streaming_Country" xml:space="preserve">
+    <value>Streaming - {0}</value>
+  </data>
+  <data name="Sidebar_Streaming_Features" xml:space="preserve">
+    <value>Features</value>
+  </data>
+  <data name="Sidebar_Streaming_Info" xml:space="preserve">
+    <value>Connect to a Plus server in this country to start streaming.</value>
+  </data>
+  <data name="Sidebar_Streaming_InfoNote" xml:space="preserve">
+    <value>Note: Use a new browser tab and/or clear the cache to ensure new content appears.</value>
+  </data>
+  <data name="Sidebar_Streaming_More" xml:space="preserve">
+    <value>and more</value>
+  </data>
+  <data name="Sidebar_Countries_ServerCountByTier3" xml:space="preserve">
+    <value>INTERNAL Servers</value>
+  </data>
+  <data name="Sidebar_Countries_BasicAndPlusLocationCount" xml:space="preserve">
+    <value>BASIC &amp; PLUS Locations ({0})</value>
+  </data>
+  <data name="Sidebar_Countries_BasicLocationCount" xml:space="preserve">
+    <value>BASIC Locations ({0})</value>
+  </data>
+  <data name="Sidebar_Countries_FreeLocationCount" xml:space="preserve">
+    <value>FREE Locations ({0})</value>
+  </data>
+  <data name="Sidebar_Countries_PlusLocationCount" xml:space="preserve">
+    <value>PLUS Locations ({0})</value>
+  </data>
+  <data name="Sidebar_FeaturesPopup_BasicAndPlus" xml:space="preserve">
+    <value>BASIC &amp; PLUS</value>
+  </data>
+  <data name="Sidebar_FeaturesPopup_LearnMore" xml:space="preserve">
+    <value>Learn more</value>
+  </data>
+  <data name="Sidebar_FeaturesPopup_P2P" xml:space="preserve">
+    <value>P2P/BitTorrent</value>
+  </data>
+  <data name="Sidebar_FeaturesPopup_P2P_Desc" xml:space="preserve">
+    <value>These servers give the best performance for BitTorrent and file sharing.</value>
+  </data>
+  <data name="Sidebar_FeaturesPopup_Plus" xml:space="preserve">
+    <value>PLUS</value>
+  </data>
+  <data name="Sidebar_FeaturesPopup_SmartRouting" xml:space="preserve">
+    <value>Smart Routing</value>
+  </data>
+  <data name="Sidebar_FeaturesPopup_SmartRouting_Desc" xml:space="preserve">
+    <value>This technology allows ProtonVPN to provide higher speed and security in difficult-to-serve countries.</value>
+  </data>
+  <data name="Sidebar_FeaturesPopup_Streaming" xml:space="preserve">
+    <value>Streaming</value>
+  </data>
+  <data name="Sidebar_FeaturesPopup_Streaming_Desc" xml:space="preserve">
+    <value>PLUS servers support streaming (Netflix, Disney+, etc) from anywhere in the world.</value>
+  </data>
+  <data name="Sidebar_FeaturesPopup_Title" xml:space="preserve">
+    <value>Features</value>
+  </data>
+  <data name="Sidebar_FeaturesPopup_Tor" xml:space="preserve">
+    <value>Tor</value>
+  </data>
+  <data name="Sidebar_FeaturesPopup_Tor_Desc" xml:space="preserve">
+    <value>Route your Internet traffic through the Tor network. Slower, but more private.</value>
+  </data>
   <data name="Dialogs_EnableSmartProtocol_ttl" xml:space="preserve">
     <value>Smart Protocol is currently disabled</value>
     <comment>The title of the Enable Smart Protocol window</comment>
@@ -3132,5 +3205,8 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   </data>
   <data name="Dialogs_HumanVerification_ttl" xml:space="preserve">
     <value>Human verification</value>
+  </data>
+  <data name="Sidebar_Countries_info_SmartRouting" xml:space="preserve">
+    <value>Smart Routing</value>
   </data>
 </root>

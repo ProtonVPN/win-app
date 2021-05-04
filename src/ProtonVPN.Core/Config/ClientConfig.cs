@@ -106,6 +106,7 @@ namespace ProtonVPN.Core.Config
                     }
 
                     _appSettings.FeatureVpnAcceleratorEnabled = response.Value.FeatureFlags.VpnAccelerator ?? true;
+                    _appSettings.FeatureStreamingServicesLogosEnabled = response.Value.FeatureFlags.StreamingServicesLogos ?? true;
                 }
             }
             catch (HttpRequestException)
