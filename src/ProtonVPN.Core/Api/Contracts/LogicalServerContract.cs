@@ -37,6 +37,7 @@ namespace ProtonVPN.Core.Api.Contracts
         public sbyte Status { get; set; }
         public sbyte Load { get; set; }
         public float Score { get; set; }
+        public string HostCountry { get; set; }
         public List<PhysicalServerContract> Servers { get; set; }
 
         public static LogicalServerContract Empty => new LogicalServerContract

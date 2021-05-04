@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,9 +17,17 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Servers
+namespace ProtonVPN.Streaming
 {
-    internal class PlusFeature : IServerFeature
+    public class StreamingService
     {
+        public StreamingService(string name, string iconUrl)
+        {
+            Name = name;
+            IconUrl = iconUrl;
+        }
+
+        public string Name { get; }
+        public string IconUrl { get; }
     }
 }

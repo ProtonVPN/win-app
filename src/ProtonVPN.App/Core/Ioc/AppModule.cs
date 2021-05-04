@@ -26,7 +26,6 @@ using ProtonVPN.Account;
 using ProtonVPN.BugReporting;
 using ProtonVPN.BugReporting.Diagnostic;
 using ProtonVPN.Common.Configuration;
-using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.OS.Processes;
 using ProtonVPN.Common.OS.Services;
@@ -62,6 +61,7 @@ using ProtonVPN.Settings.Migrations;
 using ProtonVPN.Settings.ReconnectNotification;
 using ProtonVPN.Settings.SplitTunneling;
 using ProtonVPN.Sidebar;
+using ProtonVPN.Streaming;
 using ProtonVPN.Vpn;
 using ProtonVPN.Vpn.Connectors;
 using ProtonVPN.Windows.Popups.Delinquency;
@@ -112,8 +112,6 @@ namespace ProtonVPN.Core.Ioc
                 .AsImplementedInterfaces()
                 .AsSelf()
                 .SingleInstance();
-
-            builder.RegisterType<SortedCountries>().As<ISortedCountries>().SingleInstance();
             builder.RegisterType<UserStorage>().As<IUserStorage>().SingleInstance();
             builder.RegisterType<TruncatedLocation>().SingleInstance();
 
@@ -123,7 +121,6 @@ namespace ProtonVPN.Core.Ioc
                 .AsSelf()
                 .SingleInstance();
 
-            builder.RegisterType<SortedCountries>().SingleInstance();
             builder.RegisterType<ServerListFactory>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterInstance((App)Application.Current).SingleInstance();
             builder.RegisterType<VpnService>().AsSelf().AsImplementedInterfaces().SingleInstance();
@@ -286,6 +283,9 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<VpnReconnector>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<ReportFieldProvider>().As<IReportFieldProvider>().SingleInstance();
             builder.RegisterType<PlanDowngradeHandler>().AsImplementedInterfaces().AsSelf().SingleInstance();
+            builder.RegisterType<StreamingServicesUpdater>().AsImplementedInterfaces().AsSelf().SingleInstance();
+            builder.RegisterType<StreamingServices>().As<IStreamingServices>().SingleInstance();
+            builder.RegisterType<StreamingServicesStorage>().SingleInstance();
             builder.RegisterType<NotificationSender>().As<INotificationSender>().SingleInstance();
             builder.RegisterType<NotificationUserActionHandler>().As<INotificationUserActionHandler>().SingleInstance();
             builder.RegisterType<DelinquencyPopupViewModel>().AsImplementedInterfaces().SingleInstance();

@@ -152,6 +152,8 @@ namespace TestTools.ApiClient
 
         public Task<ApiResponseResult<AnnouncementsResponse>> GetAnnouncementsAsync() => throw new NotImplementedException();
 
+        public Task<ApiResponseResult<StreamingServicesResponse>> GetStreamingServicesAsync() => throw new NotImplementedException();
+
         public Task<ApiResponseResult<BaseResponse>> CheckAuthenticationServerStatusAsync() => throw new NotImplementedException();
     }
 }

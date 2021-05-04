@@ -27,12 +27,15 @@ namespace ProtonVPN.Core.Servers
         public const int SecureCore = 1;
         public const int Tor = 2;
         public const int P2P = 4;
-        public const int Xor = 8;
+        public const int Streaming = 8;
         public const int IpV6 = 16;
 
         private readonly int _value;
 
-        public ServerFeatures(int value) => _value = value;
+        public ServerFeatures(int value)
+        {
+            _value = value;
+        }
 
         public static implicit operator int(ServerFeatures item) => item._value;
 
@@ -43,7 +46,7 @@ namespace ProtonVPN.Core.Servers
         public static bool IsSecureCore(int value) => (value & SecureCore) != 0;
         public static bool SupportsTor(int value) => (value & Tor) != 0;
         public static bool SupportsP2P(int value) => (value & P2P) != 0;
-        public static bool SupportsXor(int value) => (value & Xor) != 0;
+        public static bool SupportsStreaming(int value) => (value & Streaming) != 0;
         public static bool SupportsIpV6(int value) => (value & IpV6) != 0;
     }
 

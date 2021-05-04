@@ -1336,5 +1336,17 @@ namespace ProtonVPN.Properties {
                 this["FeatureVpnAcceleratorEnabled"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool FeatureStreamingServicesLogosEnabled {
+            get {
+                return ((bool)(this["FeatureStreamingServicesLogosEnabled"]));
+            }
+            set {
+                this["FeatureStreamingServicesLogosEnabled"] = value;
+            }
+        }
     }
 }

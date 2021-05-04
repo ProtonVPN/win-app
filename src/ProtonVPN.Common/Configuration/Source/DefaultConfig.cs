@@ -71,6 +71,8 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 GuestHoleServersJsonFilePath = Path.Combine(localAppDataFolder, "GuestHoleServers.json"),
 
+                StreamingServicesFilePath = Path.Combine(localAppDataFolder, "StreamingServices.json"),
+
                 ServiceLogFolder = Path.Combine(commonAppDataFolder, "Logs"),
 
                 UpdateServiceName = "ProtonVPN Update Service",
@@ -120,6 +122,8 @@ namespace ProtonVPN.Common.Configuration.Source
                 UpdateRemindInterval = TimeSpan.FromHours(24),
 
                 ServerUpdateInterval = TimeSpan.FromHours(3),
+
+                StreamingServicesUpdateInterval = TimeSpan.FromHours(3),
 
                 AnnouncementUpdateInterval = TimeSpan.FromHours(12),
 
@@ -186,6 +190,10 @@ namespace ProtonVPN.Common.Configuration.Source
                     AboutPortForwardingUrl = "https://protonvpn.com/support/port-forwarding",
                     PortForwardingRisksUrl = "https://protonvpn.com/support/port-forwarding-risks",
                     AboutDelinquencyUrl = "https://protonvpn.com/support/delinquency",
+                    StreamingUrl = "https://protonvpn.com/support/streaming-guide/",
+                    SmartRoutingUrl = "https://protonvpn.com/support/smart-routing",
+                    P2PUrl = "https://protonvpn.com/support/bittorrent-vpn/",
+                    TorUrl = "https://protonvpn.com/support/tor-vpn/",
                     CaptchaUrl = "https://api.protonvpn.ch/core/v4/captcha?Token={0}",
                     InvoicesUrl = "https://account.protonvpn.com/payments#invoices",
                     AboutSmartProtocolUrl = "https://protonvpn.com/support/how-to-change-vpn-protocols"

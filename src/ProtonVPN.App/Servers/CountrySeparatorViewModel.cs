@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,23 +17,27 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Config.Url;
 using ProtonVPN.Core.MVVM;
 using ProtonVPN.Core.Vpn;
+using ProtonVPN.Sidebar.CountryFeatures;
 
 namespace ProtonVPN.Servers
 {
     public class CountrySeparatorViewModel : ViewModel, IServerListItem
     {
+        public CountrySeparatorViewModel(IActiveUrls urls)
+        {
+            CountryFeaturesPopupViewModel = new CountryFeaturesPopupViewModel(urls);
+        }
+
+        public CountryFeaturesPopupViewModel CountryFeaturesPopupViewModel { get; }
         public string Name { get; set; }
         public bool Maintenance { get; } = false;
+        public bool Connected { get; } = false;
 
         public void OnVpnStateChanged(VpnState state)
         {
-        }
-
-        public bool MatchesQuery(string query)
-        {
-            return true;
         }
     }
 }

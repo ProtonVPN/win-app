@@ -37,5 +37,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <SolidColorBrush x:Key="RedColor" Color="#f73737"/>
     <SolidColorBrush x:Key="WarningColor" Color="#ffcc00"/>
     <SolidColorBrush x:Key="GrayColor" Color="#80808d"/>
+    <SolidColorBrush x:Key="GrayIconColor" Color="#727680"/>
     <Color x:Key="PrimaryColorPlain">#59b369</Color>
 </ResourceDictionary>

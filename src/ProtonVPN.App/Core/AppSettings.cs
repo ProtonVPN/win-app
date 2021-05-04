@@ -420,6 +420,12 @@ namespace ProtonVPN.Core
             set => Set(value);
         }
 
+        public bool FeatureStreamingServicesLogosEnabled
+        {
+            get => Get<bool>();
+            set => Set(value);
+        }
+
         public TimeSpan MaintenanceCheckInterval
         {
             get

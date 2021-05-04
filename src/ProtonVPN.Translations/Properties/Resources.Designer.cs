@@ -5494,7 +5494,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Plus Server.
+        ///   Looks up a localized string similar to PLUS Server.
         /// </summary>
         public static string Servers_Feature_val_Plus {
             get {
@@ -5508,6 +5508,15 @@ namespace ProtonVPN.Translations.Properties {
         public static string Servers_Feature_val_SecureCore {
             get {
                 return ResourceManager.GetString("Servers_Feature_val_SecureCore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Streaming.
+        /// </summary>
+        public static string Servers_Feature_val_Streaming {
+            get {
+                return ResourceManager.GetString("Servers_Feature_val_Streaming", resourceCulture);
             }
         }
         
@@ -6187,20 +6196,47 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Supports P2P traffic.
+        ///   Looks up a localized string similar to Locations ({0}).
         /// </summary>
-        public static string Sidebar_Countries_info_P2P {
+        public static string Sidebar_Countries_AllLocationCount {
             get {
-                return ResourceManager.GetString("Sidebar_Countries_info_P2P", resourceCulture);
+                return ResourceManager.GetString("Sidebar_Countries_AllLocationCount", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Connects to TOR network.
+        ///   Looks up a localized string similar to BASIC &amp; PLUS Locations ({0}).
         /// </summary>
-        public static string Sidebar_Countries_info_Tor {
+        public static string Sidebar_Countries_BasicAndPlusLocationCount {
             get {
-                return ResourceManager.GetString("Sidebar_Countries_info_Tor", resourceCulture);
+                return ResourceManager.GetString("Sidebar_Countries_BasicAndPlusLocationCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BASIC Locations ({0}).
+        /// </summary>
+        public static string Sidebar_Countries_BasicLocationCount {
+            get {
+                return ResourceManager.GetString("Sidebar_Countries_BasicLocationCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FREE Locations ({0}).
+        /// </summary>
+        public static string Sidebar_Countries_FreeLocationCount {
+            get {
+                return ResourceManager.GetString("Sidebar_Countries_FreeLocationCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Smart Routing.
+        /// </summary>
+        public static string Sidebar_Countries_info_SmartRouting {
+            get {
+                return ResourceManager.GetString("Sidebar_Countries_info_SmartRouting", resourceCulture);
             }
         }
         
@@ -6259,11 +6295,164 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to PLUS Locations ({0}).
+        /// </summary>
+        public static string Sidebar_Countries_PlusLocationCount {
+            get {
+                return ResourceManager.GetString("Sidebar_Countries_PlusLocationCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FREE Servers ({0}).
+        /// </summary>
+        public static string Sidebar_Countries_ServerCountByTier0 {
+            get {
+                return ResourceManager.GetString("Sidebar_Countries_ServerCountByTier0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BASIC Servers ({0}).
+        /// </summary>
+        public static string Sidebar_Countries_ServerCountByTier1 {
+            get {
+                return ResourceManager.GetString("Sidebar_Countries_ServerCountByTier1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PLUS Servers ({0}).
+        /// </summary>
+        public static string Sidebar_Countries_ServerCountByTier2 {
+            get {
+                return ResourceManager.GetString("Sidebar_Countries_ServerCountByTier2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to INTERNAL Servers.
+        /// </summary>
+        public static string Sidebar_Countries_ServerCountByTier3 {
+            get {
+                return ResourceManager.GetString("Sidebar_Countries_ServerCountByTier3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Countries.
         /// </summary>
         public static string Sidebar_Countries_ttl {
             get {
                 return ResourceManager.GetString("Sidebar_Countries_ttl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BASIC &amp; PLUS.
+        /// </summary>
+        public static string Sidebar_FeaturesPopup_BasicAndPlus {
+            get {
+                return ResourceManager.GetString("Sidebar_FeaturesPopup_BasicAndPlus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Learn more.
+        /// </summary>
+        public static string Sidebar_FeaturesPopup_LearnMore {
+            get {
+                return ResourceManager.GetString("Sidebar_FeaturesPopup_LearnMore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to P2P/BitTorrent.
+        /// </summary>
+        public static string Sidebar_FeaturesPopup_P2P {
+            get {
+                return ResourceManager.GetString("Sidebar_FeaturesPopup_P2P", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to These servers give the best performance for BitTorrent and file sharing..
+        /// </summary>
+        public static string Sidebar_FeaturesPopup_P2P_Desc {
+            get {
+                return ResourceManager.GetString("Sidebar_FeaturesPopup_P2P_Desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PLUS.
+        /// </summary>
+        public static string Sidebar_FeaturesPopup_Plus {
+            get {
+                return ResourceManager.GetString("Sidebar_FeaturesPopup_Plus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Smart Routing.
+        /// </summary>
+        public static string Sidebar_FeaturesPopup_SmartRouting {
+            get {
+                return ResourceManager.GetString("Sidebar_FeaturesPopup_SmartRouting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This technology allows ProtonVPN to provide higher speed and security in difficult-to-serve countries..
+        /// </summary>
+        public static string Sidebar_FeaturesPopup_SmartRouting_Desc {
+            get {
+                return ResourceManager.GetString("Sidebar_FeaturesPopup_SmartRouting_Desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Streaming.
+        /// </summary>
+        public static string Sidebar_FeaturesPopup_Streaming {
+            get {
+                return ResourceManager.GetString("Sidebar_FeaturesPopup_Streaming", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PLUS servers support streaming (Netflix, Disney+, etc) from anywhere in the world..
+        /// </summary>
+        public static string Sidebar_FeaturesPopup_Streaming_Desc {
+            get {
+                return ResourceManager.GetString("Sidebar_FeaturesPopup_Streaming_Desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Features.
+        /// </summary>
+        public static string Sidebar_FeaturesPopup_Title {
+            get {
+                return ResourceManager.GetString("Sidebar_FeaturesPopup_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tor.
+        /// </summary>
+        public static string Sidebar_FeaturesPopup_Tor {
+            get {
+                return ResourceManager.GetString("Sidebar_FeaturesPopup_Tor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Route your Internet traffic through the Tor network. Slower, but more private..
+        /// </summary>
+        public static string Sidebar_FeaturesPopup_Tor_Desc {
+            get {
+                return ResourceManager.GetString("Sidebar_FeaturesPopup_Tor_Desc", resourceCulture);
             }
         }
         
@@ -6309,6 +6498,51 @@ namespace ProtonVPN.Translations.Properties {
         public static string Sidebar_Servers_info_plus {
             get {
                 return ResourceManager.GetString("Sidebar_Servers_info_plus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Streaming - {0}.
+        /// </summary>
+        public static string Sidebar_Streaming_Country {
+            get {
+                return ResourceManager.GetString("Sidebar_Streaming_Country", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Features.
+        /// </summary>
+        public static string Sidebar_Streaming_Features {
+            get {
+                return ResourceManager.GetString("Sidebar_Streaming_Features", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Connect to a Plus server in this country to start streaming..
+        /// </summary>
+        public static string Sidebar_Streaming_Info {
+            get {
+                return ResourceManager.GetString("Sidebar_Streaming_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Note: Use a new browser tab and/or clear the cache to ensure new content appears..
+        /// </summary>
+        public static string Sidebar_Streaming_InfoNote {
+            get {
+                return ResourceManager.GetString("Sidebar_Streaming_InfoNote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to and more.
+        /// </summary>
+        public static string Sidebar_Streaming_More {
+            get {
+                return ResourceManager.GetString("Sidebar_Streaming_More", resourceCulture);
             }
         }
         

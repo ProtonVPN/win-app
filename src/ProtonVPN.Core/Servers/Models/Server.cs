@@ -104,10 +104,16 @@ namespace ProtonVPN.Core.Servers.Models
 
         public bool IsPhysicalFree()
         {
-            var number = Name.Substring(Name.IndexOf('#') + 1);
+            string number = Name.Substring(Name.IndexOf('#') + 1);
             number = Regex.Match(number, @"\d+").Value;
 
             return Tier == ServerTiers.Free || !string.IsNullOrEmpty(number) && int.Parse(number) >= 100;
+        }
+
+        public bool MatchesSearchCriteria(string query)
+        {
+            query = query.ToLower();
+            return Name.ToLower().Contains(query) || (!string.IsNullOrEmpty(City) && City.ToLower().Contains(query));
         }
 
         public Server Clone()

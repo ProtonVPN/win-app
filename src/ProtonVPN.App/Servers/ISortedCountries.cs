@@ -23,6 +23,6 @@ namespace ProtonVPN.Servers
 {
     public interface ISortedCountries
     {
-        List<string> List();
+        List<string> List(sbyte tier);
     }
 }

@@ -1,5 +1,5 @@
 ﻿<!--
-Copyright (c) 2020 Proton Technologies AG
+Copyright (c) 2021 Proton Technologies AG
 
 This file is part of ProtonVPN.
 
@@ -30,47 +30,44 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
     <UserControl.Resources>
         <Style x:Key="ServerFeature" TargetType="Border">
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Background" Value="Transparent" />
+        </Style>
+        <Style x:Key="Icon" TargetType="Control">
+            <Setter Property="Foreground" Value="{StaticResource GrayIconColor}" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="Width" Value="16" />
+            <Setter Property="Height" Value="16" />
         </Style>
     </UserControl.Resources>
     <ItemsControl ItemsSource="{Binding Features}">
         <ItemsControl.ItemContainerStyle>
             <Style>
-                <Setter Property="Control.Margin" Value="6,0,0,0"/>
+                <Setter Property="Control.Margin" Value="6,0,0,0" />
             </Style>
         </ItemsControl.ItemContainerStyle>
         <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>
-                <VirtualizingStackPanel Orientation="Horizontal"/>
+                <VirtualizingStackPanel Orientation="Horizontal" />
             </ItemsPanelTemplate>
         </ItemsControl.ItemsPanel>
         <ItemsControl.Resources>
             <DataTemplate DataType="{x:Type servers:P2PFeature}">
                 <Border Style="{StaticResource ServerFeature}" ToolTip="{translations:Loc Servers_Feature_val_P2P}">
-                    <icons:Exchange
-                        Foreground="#98989d"
-                        VerticalAlignment="Center"
-                        HorizontalAlignment="Center"
-                        Width="18"
-                        Height="14"/>
+                    <icons:Exchange Style="{StaticResource Icon}" />
                 </Border>
             </DataTemplate>
             <DataTemplate DataType="{x:Type servers:TorFeature}">
                 <Border Style="{StaticResource ServerFeature}" ToolTip="{translations:Loc Servers_Feature_val_Tor}">
-                    <icons:Tor
-                        Foreground="#98989d"
-                        VerticalAlignment="Center"
-                        HorizontalAlignment="Center"
-                        Width="12"
-                        Height="18"/>
+                    <icons:Tor Style="{StaticResource Icon}" />
                 </Border>
             </DataTemplate>
-            <DataTemplate DataType="{x:Type servers:PlusFeature}">
-                <Grid ToolTip="{translations:Loc Sidebar_Servers_info_plus}">
-                    <Border Style="{StaticResource PlusIconBorder}" Width="17" Height="17"/>
-                    <Label Style="{StaticResource PlusIconLetter}" FontSize="14">P</Label>
-                </Grid>
+            <DataTemplate DataType="{x:Type servers:StreamingFeature}">
+                <Border Style="{StaticResource ServerFeature}"
+                        ToolTip="{translations:Loc Servers_Feature_val_Streaming}">
+                    <icons:Streaming Style="{StaticResource Icon}" />
+                </Border>
             </DataTemplate>
         </ItemsControl.Resources>
     </ItemsControl>
