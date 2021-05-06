@@ -40,16 +40,6 @@ namespace ProtonVPN.Vpn.OpenVpn.Arguments
                     yield return "--pull-filter ignore \"redirect-gateway\"";
                     yield return "--route 0.0.0.0 0.0.0.0 vpn_gateway 32000";
                     break;
-                case SplitTunnelMode.Block:
-                    yield return "--pull-filter ignore \"redirect-gateway\"";
-                    yield return "--route 0.0.0.0 0.0.0.0 net_gateway 32000";
-                    yield return "--route 0.0.0.0 0.0.0.0 vpn_gateway";
-                    break;
-                default:
-                    yield return "--pull-filter ignore \"redirect-gateway def1\"";
-                    yield return "--redirect-gateway";
-                    yield return "--route 0.0.0.0 0.0.0.0 net_gateway";
-                    break;
             }
         }
 

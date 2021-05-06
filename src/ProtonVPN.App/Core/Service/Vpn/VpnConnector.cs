@@ -239,7 +239,7 @@ namespace ProtonVPN.Core.Service.Vpn
         {
             if (!string.IsNullOrEmpty(e.State.EntryIp))
             {
-                LastServer = LastServerCandidates.ServerByEntryIp(e.State.EntryIp);
+                LastServer = LastServerCandidates.ServerByEntryIpAndLabel(e.State.EntryIp, e.State.Label);
             }
 
             State = new VpnState(e.State.Status, LastServer);
