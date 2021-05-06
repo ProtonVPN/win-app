@@ -134,7 +134,9 @@ namespace ProtonVPN.Vpn.Connection
             _state = e.Data;
 
             if (_reconnecting && !Reconnecting(_state))
+            {
                 _reconnecting = false;
+            }
 
             if (ReconnectRequired(_state))
             {
@@ -194,14 +196,21 @@ namespace ProtonVPN.Vpn.Connection
 
             if (ShouldBeReconnecting(state))
             {
-                return new VpnState(
-                    VpnStatus.Reconnecting,
-                    state.Error,
-                    state.LocalIp,
-                    state.RemoteIp);
+                return CreateVpnState(state, VpnStatus.Reconnecting, VpnProtocol.Auto);
             }
 
-            return state;
+            return CreateVpnState(state);
+        }
+
+        private VpnState CreateVpnState(VpnState state, VpnStatus? status = null, VpnProtocol? protocol = null)
+        {
+            return new(
+                status ?? state.Status,
+                state.Error,
+                state.LocalIp,
+                state.RemoteIp,
+                protocol ?? state.Protocol,
+                _endpoint?.Server.Label ?? string.Empty);
         }
 
         private bool ShouldSuppress(VpnState state)

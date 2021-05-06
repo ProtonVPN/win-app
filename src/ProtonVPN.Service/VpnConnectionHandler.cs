@@ -231,7 +231,8 @@ namespace ProtonVPN.Service
                 Map(state.Error),
                 state.RemoteIp,
                 killSwitchEnabled,
-                Map(state.Protocol));
+                Map(state.Protocol),
+                state.Label);
         }
 
         private static VpnStatusContract Map(VpnStatus vpnStatus)
