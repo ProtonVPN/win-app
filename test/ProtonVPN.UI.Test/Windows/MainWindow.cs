@@ -91,7 +91,7 @@ namespace ProtonVPN.UI.Test.Windows
         {
             ClickQuickConnectButton();
             var quickConnectButton = Session.FindElementByAccessibilityId("SidebarQuickConnectButton");
-            WaitUntilTextMatches(quickConnectButton, "Quick Connect", 20);
+            WaitUntilTextMatches(quickConnectButton, "Quick Connect", seconds: 20);
             return this;
         }
 
@@ -111,7 +111,7 @@ namespace ProtonVPN.UI.Test.Windows
         public MainWindow WaitUntilConnected()
         {
             WindowsElement quickConnectButton = Session.FindElementByAccessibilityId("SidebarQuickConnectButton");
-            WaitUntilTextMatches(quickConnectButton, "Disconnect", 20);
+            WaitUntilTextMatches(quickConnectButton, "Disconnect", seconds: 20);
             return this;
         }
 
@@ -124,7 +124,7 @@ namespace ProtonVPN.UI.Test.Windows
 
         public MainWindow ConfirmAppExit()
         {
-            WaitUntilDisplayed(By.Name("Exit"),5);
+            WaitUntilDisplayed(By.Name("Exit"), seconds: 5);
             ClickOnObjectWithName("Exit");
             return this;
         }
@@ -141,6 +141,7 @@ namespace ProtonVPN.UI.Test.Windows
         public MainWindow ConnectToCountryViaPin(string countryCode)
         {
             MoveMouseToCountryPin(countryCode);
+            WaitUntilElementExistsByAutomationId(countryCode, timeoutInSeconds: 3);
             ClickOnObjectWithId(countryCode);
             return this;
         }
@@ -156,25 +157,17 @@ namespace ProtonVPN.UI.Test.Windows
             MoveMouseToCountryPin(countryCode);
             RefreshSession();
             Actions actions = new Actions(Session);
-            actions.MoveToElement(Session.FindElementByAccessibilityId(countryCode)).MoveByOffset(0, -25).Click().Perform();
+            WindowsElement countryCodeElement = Session.FindElementByAccessibilityId(countryCode);
+            actions.MoveToElement(countryCodeElement)
+                .MoveByOffset(0, -25)
+                .Click()
+                .Perform();
             return this;
         }
 
         public MainWindow DisconnectFromCountryViaPinSecureCore(string countryCode)
         {
             ConnectToCountryViaPinSecureCore(countryCode);
-            return this;
-        }
-
-        public MainWindow ZoomIn(int amountOfClicks)
-        {
-            IncreaseOrDecreaseMapFocus(amountOfClicks,"ZoomInButton");
-            return this;
-        }
-
-        public MainWindow ZoomOut(int amountOfClicks)
-        {
-            IncreaseOrDecreaseMapFocus(amountOfClicks, "ZoomOutButton");
             return this;
         }
 
@@ -188,15 +181,9 @@ namespace ProtonVPN.UI.Test.Windows
         {
             WindowsElement countryPin = Session.FindElementByAccessibilityId(countryCode);
             Actions actions = new Actions(Session);
-            actions.MoveToElement(countryPin).MoveByOffset(0, 20).Perform();
-        }
-
-        private void IncreaseOrDecreaseMapFocus(int amountOfClicks, string zoomButtonTypeId)
-        {
-            for (int i = 0; i < amountOfClicks; i++)
-            {
-                ClickOnObjectWithId(zoomButtonTypeId);
-            }
+            actions.MoveToElement(countryPin)
+                .MoveByOffset(0, 25)
+                .Perform();
         }
     }
 }

@@ -29,9 +29,10 @@ namespace ProtonVPN.UI.Test.Results
         {
             try
             {
-                int ipAddressCount = Dns.GetHostByName("www.ip.me").AddressList.Length;
+                int ipAddressCount = Dns.GetHostEntry("www.ip.me").AddressList.Length;
                 Assert.IsTrue(ipAddressCount > 0);
-            }catch(SocketException ex)
+            }
+            catch(SocketException ex)
             {
                 //Intentionally fail assertion if DNS was not resolved
                 Assert.IsTrue(false, "DNS was not resolved. \n" + ex.Message);

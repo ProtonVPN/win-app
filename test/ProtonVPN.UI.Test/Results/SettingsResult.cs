@@ -56,7 +56,6 @@ namespace ProtonVPN.UI.Test.Results
 
         private string GetDnsAddressForAdapter()
         {
-            string dnsAddress = null;
             NetworkInterface[] adapters = NetworkInterface.GetAllNetworkInterfaces();
             foreach (NetworkInterface adapter in adapters)
             {
@@ -66,11 +65,11 @@ namespace ProtonVPN.UI.Test.Results
                 {
                     foreach (IPAddress dns in dnsServers)
                     {
-                        dnsAddress = dns.ToString();
+                        return dns.ToString();
                     }
                 }
             }
-            return dnsAddress;
+            return null;
         }
     }
 }
