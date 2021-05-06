@@ -232,7 +232,7 @@ namespace ProtonVPN.UI.Test.Tests
             string homeIpAddress = await _client.GetIpAddress();
             _mainWindow.ClickHamburgerMenu()
                 .HamburgerMenu.ClickSettings();
-            _modalWindow.MoveModalUp();
+            _modalWindow.MoveModalUp(amountOfTimes: 8);
             _settingsWindow.ClickAdvancedTab();
             _settingsWindow.EnableSplitTunneling();
             _settingsWindow.AddIpAddressSplitTunneling("208.95.112.1");
@@ -248,7 +248,7 @@ namespace ProtonVPN.UI.Test.Tests
             _loginWindow.LoginWithPlusUser();
             _mainWindow.ClickHamburgerMenu()
                .HamburgerMenu.ClickSettings();
-            _modalWindow.MoveModalUp();
+            _modalWindow.MoveModalUp(amountOfTimes: 8);
             _settingsWindow.ClickAdvancedTab();
             _settingsWindow.EnableSplitTunneling();
             _settingsWindow.EnableIncludeMode();
@@ -256,7 +256,7 @@ namespace ProtonVPN.UI.Test.Tests
             _settingsWindow.CloseSettings();
             _mainWindow.QuickConnect();
             //Delay to get correct IP address
-            Thread.Sleep(1500);
+            Thread.Sleep(3000);
             await _mainWindowResults.CheckIfCorrectIPAddressIsShownAsync();
         }
 

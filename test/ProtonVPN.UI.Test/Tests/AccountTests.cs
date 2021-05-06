@@ -54,7 +54,6 @@ namespace ProtonVPN.UI.Test.Tests
             _mainWindow.MoveMouseToCountryByName("Canada");
             _mainWindowResults.CheckIfConnectButtonIsNotDisplayed();
 
-
             _mainWindow.ClickProfilesButton();
             _mainWindow.ConnectToAProfileByName("SecureCore");
             _mainWindowResults.CheckIfUpgradeRequiredModalIsShown("Secure Core");

@@ -37,15 +37,16 @@ namespace ProtonVPN.UI.Test.Windows
             return this;
         }
 
-        public ModalWindow MoveModalUp()
+        public ModalWindow MoveModalUp(int amountOfTimes)
         {
             Actions builder = new Actions(Session);
             builder.SendKeys(Keys.Alt).SendKeys(Keys.Space).SendKeys("m");
             builder.Build().Perform();
 
-            builder.SendKeys(Keys.ArrowUp);
-            builder.SendKeys(Keys.ArrowUp);
-            builder.SendKeys(Keys.ArrowUp);
+            for (int i = 0; i < amountOfTimes; i++)
+            {
+                builder.SendKeys(Keys.ArrowUp);
+            }
             builder.SendKeys(Keys.Enter);
             builder.Build().Perform();
             return this;
