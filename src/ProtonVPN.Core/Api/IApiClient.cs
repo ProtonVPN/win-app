@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -44,5 +44,6 @@ namespace ProtonVPN.Core.Api
         Task<ApiResponseResult<ProfileResponse>> DeleteProfile(string id);
         Task<ApiResponseResult<VpnConfig>> GetVpnConfig();
         Task<ApiResponseResult<AnnouncementsResponse>> GetAnnouncementsAsync();
+        Task<ApiResponseResult<BaseResponse>> CheckAuthenticationServerStatusAsync();
     }
 }
