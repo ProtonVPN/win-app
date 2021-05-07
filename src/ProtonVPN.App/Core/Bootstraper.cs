@@ -309,7 +309,7 @@ namespace ProtonVPN.Core
             userAuth.UserLoggedOut += (sender, e) =>
             {
                 Resolve<IModals>().CloseAll();
-                SwitchToLoginWindow();
+                ShowLoginForm();
                 Resolve<AppWindow>().Hide();
                 IEnumerable<ILogoutAware> instances = Resolve<IEnumerable<ILogoutAware>>();
                 foreach (ILogoutAware instance in instances)
@@ -481,6 +481,18 @@ namespace ProtonVPN.Core
         private void ShowLoginForm()
         {
             SwitchToLoginWindow();
+            CheckAuthenticationServerStatus();
+        }
+
+        private void CheckAuthenticationServerStatus()
+        {
+            try
+            {
+                Resolve<IApiClient>().CheckAuthenticationServerStatusAsync();
+            }
+            catch (HttpRequestException)
+            {
+            }
         }
 
         private async Task SwitchToAppWindow(bool autoLogin)
