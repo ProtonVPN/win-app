@@ -24,7 +24,6 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
-using Windows.UI.WindowManagement;
 using GalaSoft.MvvmLight.CommandWpf;
 using Microsoft.Toolkit.Uwp.Notifications;
 using ProtonVPN.Core.Auth;
@@ -35,7 +34,6 @@ using ProtonVPN.Modals.SessionLimits;
 using ProtonVPN.Notifications;
 using ProtonVPN.Sidebar;
 using ProtonVPN.Translations;
-using ProtonVPN.Windows.Popups.Delinquency;
 using ProtonVPN.Windows.Popups.SubscriptionExpiration;
 
 namespace ProtonVPN.Windows.Popups.DeveloperTools
@@ -111,15 +109,17 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
             RenderOptions.ProcessRenderMode = isToEnableHardwareAcceleration ? RenderMode.Default : RenderMode.SoftwareOnly;
         }
 
-        private void ShowModalAction()
+        private async void ShowModalAction()
         {
+            await Task.Delay(TimeSpan.FromSeconds(5));
             _modals.Show<MaximumDeviceLimitModalViewModel>();
         }
 
-        private void ShowPopupWindowAction()
+        private async void ShowPopupWindowAction()
         {
+            await Task.Delay(TimeSpan.FromSeconds(5));
             _popups.Show<SubscriptionExpiredPopupViewModel>();
-            _popups.Show<DelinquencyPopupViewModel>();
+            //_popups.Show<DelinquencyPopupViewModel>();
         }
 
         private async void RefreshVpnInfoAction()
@@ -129,7 +129,7 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
 
         private async void ShowReconnectionTooltipAction()
         {
-            await Task.Delay(TimeSpan.FromSeconds(7));
+            await Task.Delay(TimeSpan.FromSeconds(5));
             Server previousServer = new Server(Guid.NewGuid().ToString(), "CH-PT#20", "Porto", 
                 "CH", "PT", "protonvpn.com", 0, 2, 1, 50, 1, null, null, "192.168.123.124");
             Server currentServer = new Server(Guid.NewGuid().ToString(), "SE-PT#23", "Porto", 
