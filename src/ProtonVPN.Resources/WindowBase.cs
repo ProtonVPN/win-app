@@ -43,15 +43,6 @@ namespace ProtonVPN.Resource
             }
         }
 
-        protected override void OnActivated(EventArgs e)
-        {
-            base.OnActivated(e);
-            if (WindowState == WindowState.Minimized)
-            {
-                WindowState = WindowState.Normal;
-            }
-        }
-
         protected override void OnSourceInitialized(EventArgs e)
         {
             base.OnSourceInitialized(e);

@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.Windows;
 
 namespace ProtonVPN.Resource
@@ -24,6 +25,7 @@ namespace ProtonVPN.Resource
     public class BasePopupWindow : WindowBase
     {
         private bool _isStartupPositionSet;
+        private Window _owner;
 
         public BasePopupWindow()
         {
@@ -46,11 +48,76 @@ namespace ProtonVPN.Resource
             object dataContext = DataContext;
             if (!_isStartupPositionSet && dataContext != null && ActualWidth > 0 && ActualHeight > 0)
             {
-                Window owner = ((dynamic)dataContext).Owner;
+                SetOwner(dataContext);
                 WindowStartupLocation = WindowStartupLocation.Manual;
-                Left = owner.Left + ((owner.ActualWidth - ActualWidth) / 2);
-                Top = owner.Top + ((owner.ActualHeight - ActualHeight) / 2);
+                Left = _owner.Left + ((_owner.ActualWidth - ActualWidth) / 2);
+                Top = _owner.Top + ((_owner.ActualHeight - ActualHeight) / 2);
                 _isStartupPositionSet = true;
+            }
+        }
+
+        private void SetOwner(dynamic dataContext)
+        {
+            _owner = dataContext.Owner;
+            SetInitialWindowState();
+            _owner.StateChanged += OnParentWindowStateChanged;
+            _owner.IsVisibleChanged += OnParentWindowIsVisibleChanged;
+        }
+
+        protected override void OnSourceInitialized(EventArgs e)
+        {
+            base.OnSourceInitialized(e);
+            SetInitialWindowState();
+        }
+
+        private void SetInitialWindowState()
+        {
+            if (_owner != null)
+            {
+                if (_owner.IsVisible &&
+                    _owner.WindowState != WindowState.Minimized)
+                {
+                    OpenAndBringToFront();
+                }
+                else
+                {
+                    WindowState = WindowState.Minimized;
+                    Topmost = false;
+                }
+            }
+        }
+
+        private void OpenAndBringToFront()
+        {
+            if (WindowState == WindowState.Minimized)
+            {
+                WindowState = WindowState.Normal;
+            }
+            ResetZOrderAndSetAsTopmost();
+        }
+
+        private void ResetZOrderAndSetAsTopmost()
+        {
+            Topmost = false;
+            Topmost = true;
+        }
+
+        private void OnParentWindowStateChanged(object sender, EventArgs e)
+        {
+            SetWindowState();
+        }
+
+        private void OnParentWindowIsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            SetWindowState();
+        }
+
+        private void SetWindowState()
+        {
+            if (_owner.IsVisible &&
+                _owner.WindowState != WindowState.Minimized)
+            {
+                OpenAndBringToFront();
             }
         }
     }
