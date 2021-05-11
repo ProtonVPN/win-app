@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -19,24 +19,21 @@
 
 using System.Collections.Generic;
 using ProtonVPN.Core.Servers.Models;
-using ProtonVPN.Core.Settings;
 
 namespace ProtonVPN.Core.Servers
 {
     public class ServerCandidatesFactory
     {
         private readonly ServerManager _serverManager;
-        private readonly IUserStorage _userStorage;
 
-        public ServerCandidatesFactory(ServerManager serverManager, IUserStorage userStorage)
+        public ServerCandidatesFactory(ServerManager serverManager)
         {
             _serverManager = serverManager;
-            _userStorage = userStorage;
         }
 
         public ServerCandidates ServerCandidates(IReadOnlyCollection<Server> servers)
         {
-            return new ServerCandidates(_serverManager, _userStorage, servers);
+            return new(_serverManager, servers);
         }
     }
 }

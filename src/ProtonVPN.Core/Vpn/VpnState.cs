@@ -28,12 +28,14 @@ namespace ProtonVPN.Core.Vpn
         public string EntryIp { get; }
         public Server Server { get; }
         public VpnProtocol Protocol { get; }
+        public string Label { get; }
 
-        public VpnState(VpnStatus status, string entryIp, VpnProtocol protocol)
+        public VpnState(VpnStatus status, string entryIp, VpnProtocol protocol, string label = "")
         {
             Status = status;
             EntryIp = entryIp;
             Protocol = protocol;
+            Label = label;
         }
 
         public VpnState(VpnStatus status, Server server = null)
