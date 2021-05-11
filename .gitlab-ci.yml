@@ -119,19 +119,31 @@ ui-test:
   stage: ui-test
   tags:
     - windows
+  when: manual
   script:
     - powershell -File ci\uninstall-app.ps1
     - powershell -Command "Start-Sleep -s 25"
     - powershell -File ci\launch-installer.ps1
     - powershell -Command "Start-Sleep -s 20"
     - VSTest.Console.exe src\bin\ProtonVPN.UI.Test.dll
-  rules:
-    - if: "$CI_MERGE_REQUEST_IID"
-      when: never
-    - if: '$CI_COMMIT_REF_NAME == "develop"'
-      when: always
-    - if: '$CI_COMMIT_REF_NAME != "develop"'
-      when: manual
+  only:
+    - branches
+  except:
+    - develop
+  
+ui-test-mandatory:
+  stage: ui-test
+  tags:
+    - windows
+  when: always
+  script:
+    - powershell -File ci\uninstall-app.ps1
+    - powershell -Command "Start-Sleep -s 25"
+    - powershell -File ci\launch-installer.ps1
+    - powershell -Command "Start-Sleep -s 20"
+    - VSTest.Console.exe src\bin\ProtonVPN.UI.Test.dll
+  only:
+    - develop
     
 installation-test:
   stage: ui-test
