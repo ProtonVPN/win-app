@@ -22,6 +22,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Security;
 using System.Text;
+using ProtonVPN.Common.Go;
 
 namespace ProtonVPN.Core.Srp
 {
@@ -46,67 +47,6 @@ namespace ProtonVPN.Core.Srp
         [DllImport("Kernel32.dll")]
         private static extern IntPtr LoadLibrary(string path);
 
-        [DllImport("Kernel32.dll", EntryPoint = "RtlZeroMemory", SetLastError = false)]
-        public static extern void ZeroMemory(IntPtr dest, int size);
-
-        public struct GoBytes : IDisposable
-        {
-            // Pointer to the UTF-8 encoded string buffer
-            public IntPtr P;
-
-            // Length of the string buffer in bytes
-            public IntPtr N;
-
-            // Total size of the buffer in bytes
-            public IntPtr C;
-
-            public void Dispose()
-            {
-                ZeroMemory(P, C.ToInt32());
-                Marshal.FreeHGlobal(P);
-            }
-        }
-
-        public struct GoSlice
-        {
-            public IntPtr Data;
-            public int Len;
-            public int Cap;
-        }
-
-        public static byte[] ConvertToBytes(this GoSlice goBytes)
-        {
-            byte[] bytes = new byte[goBytes.Len];
-            for (int i = 0; i < goBytes.Len; i++)
-            {
-                bytes[i] = Marshal.ReadByte(goBytes.Data, i);
-            }
-
-            return bytes;
-        }
-
-        public static GoBytes ToGoBytes(this string str)
-        {
-            byte[] buffer = Encoding.UTF8.GetBytes(str);
-            IntPtr nativeUtf8 = Marshal.AllocHGlobal(buffer.Length);
-            Marshal.Copy(buffer, 0, nativeUtf8, buffer.Length);
-            return new GoBytes {P = nativeUtf8, N = (IntPtr)buffer.Length, C = (IntPtr)buffer.Length};
-        }
-
-        public static unsafe GoBytes ToGoBytes(this SecureString str)
-        {
-            IntPtr nativeUnicode = Marshal.SecureStringToGlobalAllocUnicode(str);
-            int maxLength = Encoding.UTF8.GetMaxByteCount(str.Length);
-            IntPtr nativeUtf8 = Marshal.AllocHGlobal(Encoding.UTF8.GetMaxByteCount(str.Length));
-            int nativeUtf8Length = Encoding.UTF8.GetBytes(
-                (char*)nativeUnicode.ToPointer(),
-                str.Length,
-                (byte*)nativeUtf8.ToPointer(),
-                maxLength);
-            Marshal.ZeroFreeGlobalAllocUnicode(nativeUnicode);
-            return new GoBytes {P = nativeUtf8, N = (IntPtr)nativeUtf8Length, C = (IntPtr)nativeUtf8Length};
-        }
-
         public class GoProofs
         {
             public byte[] ClientProof;
@@ -119,11 +59,11 @@ namespace ProtonVPN.Core.Srp
         {
             byte[] bytes;
 
-            using (var goUsername = username.ToGoBytes())
-            using (var goPassword = password.ToGoBytes())
-            using (var goSalt = salt.ToGoBytes())
-            using (var goModulus = signedModulus.ToGoBytes())
-            using (var goEphemeral = serverEphemeral.ToGoBytes())
+            using (GoString goUsername = username.ToGoString())
+            using (DisposableGoBytes goPassword = password.ToDisposableGoBytes())
+            using (GoString goSalt = salt.ToGoString())
+            using (GoString goModulus = signedModulus.ToGoString())
+            using (GoString goEphemeral = serverEphemeral.ToGoString())
             {
                 bytes = NativeGenerateProofs(version, goUsername, goPassword, goSalt, goModulus, goEphemeral, bitLength)
                     .ConvertToBytes();
@@ -164,7 +104,7 @@ namespace ProtonVPN.Core.Srp
         }
 
         [DllImport("GoSrp", EntryPoint = "GenerateProofs", CallingConvention = CallingConvention.Cdecl)]
-        private static extern GoSlice NativeGenerateProofs(int version, GoBytes username, GoBytes password,
-            GoBytes salt, GoBytes signedModulus, GoBytes serverEphemeral, int bits);
+        private static extern GoBytes NativeGenerateProofs(int version, GoString username, DisposableGoBytes password,
+            GoString salt, GoString signedModulus, GoString serverEphemeral, int bits);
     }
 }
