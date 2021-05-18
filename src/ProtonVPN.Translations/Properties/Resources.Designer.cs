@@ -637,7 +637,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to To complete the update process, ProtonVPN will temporary disconnect and deactivate Permanent Kill Switch if any of these are active. Do you want to continue?.
+        ///   Looks up a localized string similar to To complete the update process, ProtonVPN will temporarily disconnect and deactivate Permanent Kill Switch if any of these are active. Do you want to continue?.
         /// </summary>
         public static string App_msg_UpdateConnectedConfirm {
             get {
