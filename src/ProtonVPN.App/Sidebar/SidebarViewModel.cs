@@ -38,11 +38,8 @@ namespace ProtonVPN.Sidebar
         ITrialStateAware
     {
         public CountriesViewModel Countries { get; }
-
         public SidebarProfilesViewModel Profiles { get; }
-
         public ConnectionStatusViewModel ConnectionStatus { get; }
-
         public FlashNotificationViewModel FlashNotification { get; }
 
         private readonly IAppSettings _appSettings;
@@ -50,10 +47,10 @@ namespace ProtonVPN.Sidebar
         private const int CountriesTab = 0;
         private const int ProfilesTab = 1;
 
-        private Screen _tab;
         private bool _showTrialView;
         private bool _showSecondOnboardingStep;
         private bool _showThirdOnboardingStep;
+        private bool _isCountriesTabEnabled;
 
         public SidebarViewModel(
             IAppSettings appSettings,
@@ -67,12 +64,13 @@ namespace ProtonVPN.Sidebar
             CountriesTabCommand = new RelayCommand(OpenCountriesTabAction);
             ProfilesTabCommand = new RelayCommand(OpenProfilesTabAction);
 
-            Tab = countriesViewModel;
             TrialViewModel = trialViewModel;
             Countries = countriesViewModel;
             Profiles = sidebarProfilesViewModel;
             ConnectionStatus = connectionStatusViewModel;
             FlashNotification = flashNotificationsViewModel;
+            
+            IsCountriesTabEnabled = true;
         }
 
         public ICommand CountriesTabCommand { get; }
@@ -80,11 +78,17 @@ namespace ProtonVPN.Sidebar
 
         public TrialViewModel TrialViewModel { get; set; }
 
-        public Screen Tab
+        public bool IsCountriesTabEnabled
         {
-            get => _tab;
-            set => Set(ref _tab, value);
+            get => _isCountriesTabEnabled;
+            set
+            { 
+                Set(ref _isCountriesTabEnabled, value);
+                NotifyOfPropertyChange(() => IsProfilesTabEnabled);
+            }
         }
+
+        public bool IsProfilesTabEnabled => !_isCountriesTabEnabled;
 
         public bool ShowTrialView
         {
@@ -121,13 +125,13 @@ namespace ProtonVPN.Sidebar
 
         private void OpenProfilesTabAction()
         {
-            Tab = Profiles;
+            IsCountriesTabEnabled = false;
             _appSettings.SidebarTab = ProfilesTab;
         }
 
         private void OpenCountriesTabAction()
         {
-            Tab = Countries;
+            IsCountriesTabEnabled = true;
             _appSettings.SidebarTab = CountriesTab;
         }
 
@@ -141,7 +145,9 @@ namespace ProtonVPN.Sidebar
         public void OnUserLoggedIn()
         {
             if (_appSettings.SidebarTab == ProfilesTab)
+            {
                 OpenProfilesTabAction();
+            }
         }
     }
 }
