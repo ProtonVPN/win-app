@@ -5971,7 +5971,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Automatically connect to a similar server if the one you selected is inaccessible..
+        ///   Looks up a localized string similar to VPN Accelerator enables a set of unique performance enhancing technologies which can increase VPN speeds by up to 200%..
         /// </summary>
         public static string Settings_Connection_lbl_VpnAccelerator_Info {
             get {
