@@ -3044,7 +3044,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <comment>The label for VPN Accelerator toggle switch in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_VpnAccelerator_Info" xml:space="preserve">
-    <value>Automatically connect to a similar server if the one you selected is inaccessible.</value>
+    <value>VPN Accelerator enables a set of unique performance enhancing technologies which can increase VPN speeds by up to 200%.</value>
     <comment>The description of VPN Accelerator setting displayed in the tooltip of the ( i ) image next to the label for VPN Accelerator toggle switch in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_VpnAcceleratorNotifications" xml:space="preserve">
