@@ -344,5 +344,26 @@
         <Setting Name="SmartReconnectNotificationsEnabled" Type="System.Boolean" Scope="User">
             <Value Profile="(Default)">False</Value>
         </Setting>
+        <Setting Name="UserAuthenticationPublicKey" Type="System.String" Scope="User">
+            <Value Profile="(Default)" />
+        </Setting>
+        <Setting Name="UserAuthenticationSecretKey" Type="System.String" Scope="User">
+            <Value Profile="(Default)" />
+        </Setting>
+        <Setting Name="UserAuthenticationCertificatePem" Type="System.String" Scope="User">
+            <Value Profile="(Default)" />
+        </Setting>
+        <Setting Name="UserAuthenticationCertificateExpirationUtcDate" Type="System.String" Scope="User">
+            <Value Profile="(Default)" />
+        </Setting>
+        <Setting Name="UserAuthenticationCertificateRefreshUtcDate" Type="System.String" Scope="User">
+            <Value Profile="(Default)" />
+        </Setting>
+        <Setting Name="UserAuthenticationCertificateRequestUtcDate" Type="System.String" Scope="User">
+            <Value Profile="(Default)" />
+        </Setting>
+        <Setting Name="UserCertificationServerPublicKey" Type="System.String" Scope="User">
+            <Value Profile="(Default)" />
+        </Setting>
     </Settings>
 </SettingsFile>

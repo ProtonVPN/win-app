@@ -27,6 +27,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Effects;
 using Caliburn.Micro;
 using ProtonVPN.Core;
+using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Events;
 using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Native;
@@ -45,9 +46,9 @@ namespace ProtonVPN.Windows
     {
         private const int SidebarWidth = 336;
         private const int DefaultWidth = 800;
-
-        private readonly IAppSettings _appSettings;
+        
         private readonly IEventAggregator _eventAggregator;
+        private readonly IAppSettings _appSettings;
         private readonly QuickLaunchWindow _quickLaunchWindow;
         private readonly TrayContextMenu _trayContextMenu;
 
@@ -66,10 +67,10 @@ namespace ProtonVPN.Windows
             TrayContextMenu trayContextMenu,
             TrayIcon trayIcon)
         {
-            _trayContextMenu = trayContextMenu;
-            _quickLaunchWindow = quickLaunchWindow;
-            _appSettings = appSettings;
             _eventAggregator = eventAggregator;
+            _appSettings = appSettings;
+            _quickLaunchWindow = quickLaunchWindow;
+            _trayContextMenu = trayContextMenu;
 
             trayIcon.OnMouseEvent += TrayIconClick;
 
@@ -147,7 +148,7 @@ namespace ProtonVPN.Windows
             ResizeMode = step > 0 ? ResizeMode.NoResize : ResizeMode.CanResize;
         }
 
-        protected override void OnStateChanged(EventArgs e)
+        protected override async void OnStateChanged(EventArgs e)
         {
             base.OnStateChanged(e);
 
@@ -155,13 +156,8 @@ namespace ProtonVPN.Windows
             {
                 _appSettings.SidebarMode = false;
             }
-            else
+            else if (!WindowState.Equals(WindowState.Minimized))
             {
-                if (WindowState.Equals(WindowState.Minimized))
-                {
-                    return;
-                }
-
                 _appSettings.SidebarMode = _sidebarModeBeforeMaximize;
                 if (_appSettings.SidebarMode)
                 {

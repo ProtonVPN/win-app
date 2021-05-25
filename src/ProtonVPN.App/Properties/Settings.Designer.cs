@@ -1384,5 +1384,89 @@ namespace ProtonVPN.Properties {
                 this["SmartReconnectNotificationsEnabled"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string UserAuthenticationPublicKey {
+            get {
+                return ((string)(this["UserAuthenticationPublicKey"]));
+            }
+            set {
+                this["UserAuthenticationPublicKey"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string UserAuthenticationSecretKey {
+            get {
+                return ((string)(this["UserAuthenticationSecretKey"]));
+            }
+            set {
+                this["UserAuthenticationSecretKey"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string UserAuthenticationCertificatePem {
+            get {
+                return ((string)(this["UserAuthenticationCertificatePem"]));
+            }
+            set {
+                this["UserAuthenticationCertificatePem"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string UserAuthenticationCertificateExpirationUtcDate {
+            get {
+                return ((string)(this["UserAuthenticationCertificateExpirationUtcDate"]));
+            }
+            set {
+                this["UserAuthenticationCertificateExpirationUtcDate"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string UserAuthenticationCertificateRefreshUtcDate {
+            get {
+                return ((string)(this["UserAuthenticationCertificateRefreshUtcDate"]));
+            }
+            set {
+                this["UserAuthenticationCertificateRefreshUtcDate"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string UserAuthenticationCertificateRequestUtcDate {
+            get {
+                return ((string)(this["UserAuthenticationCertificateRequestUtcDate"]));
+            }
+            set {
+                this["UserAuthenticationCertificateRequestUtcDate"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string UserCertificationServerPublicKey {
+            get {
+                return ((string)(this["UserCertificationServerPublicKey"]));
+            }
+            set {
+                this["UserCertificationServerPublicKey"] = value;
+            }
+        }
     }
 }

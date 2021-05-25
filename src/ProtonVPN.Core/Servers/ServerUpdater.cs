@@ -84,14 +84,14 @@ namespace ProtonVPN.Core.Servers
 
         private async Task UpdateServers()
         {
-            var servers = await GetServers();
+            IReadOnlyCollection<LogicalServerContract> servers = await GetServers();
 
-            if (!servers.Any())
-                return;
-
-            _serverManager.Load(servers);
-            InvokeServersUpdated();
-            _serverCache.SetAll(servers);
+            if (servers.Any())
+            {
+                _serverManager.Load(servers);
+                InvokeServersUpdated();
+                _serverCache.SetAll(servers);
+            }
         }
 
         private async Task<IReadOnlyCollection<LogicalServerContract>> GetServers()

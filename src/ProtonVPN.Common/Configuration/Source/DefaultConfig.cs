@@ -164,6 +164,12 @@ namespace ProtonVPN.Common.Configuration.Source
                 DefaultLocale = "en",
 
                 MaintenanceCheckInterval = TimeSpan.FromMinutes(30),
+                
+                AuthCertificateUpdateInterval = TimeSpan.FromHours(1),
+        
+                AuthCertificateFirstRetryInterval = TimeSpan.FromSeconds(1),
+
+                AuthCertificateMaxNumOfRetries = 2,
 
                 MaxQuickConnectServersOnReconnection = MAX_QUICK_CONNECT_SERVERS_ON_RECONNECTION,
 

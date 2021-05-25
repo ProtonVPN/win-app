@@ -23,6 +23,7 @@ using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using Newtonsoft.Json;
 using ProtonVPN.Common;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.KillSwitch;
@@ -30,6 +31,7 @@ using ProtonVPN.Core.Announcements;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Native.Structures;
+using ProtonVPN.Core.OS.Crypto;
 using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Profiles.Cached;
 using ProtonVPN.Core.Settings;
@@ -353,7 +355,7 @@ namespace ProtonVPN.Core
         {
             get
             {
-                var list = Get<StringCollection>();
+                StringCollection list = Get<StringCollection>();
                 if (list == null)
                 {
                     list = new StringCollection();
@@ -450,11 +452,53 @@ namespace ProtonVPN.Core
             set => Set(value);
         }
 
+        public string AuthenticationPublicKey
+        {
+            get => GetPerUser<string>()?.Decrypt();
+            set => SetPerUser(value?.Encrypt());
+        }
+
+        public string AuthenticationSecretKey
+        {
+            get => GetPerUser<string>()?.Decrypt();
+            set => SetPerUser(value?.Encrypt());
+        }
+
+        public string AuthenticationCertificatePem
+        {
+            get => GetPerUser<string>()?.Decrypt();
+            set => SetPerUser(value?.Encrypt());
+        }
+
+        public DateTimeOffset? AuthenticationCertificateExpirationUtcDate
+        {
+            get => GetPerUser<string>().FromJsonDateTimeOffset();
+            set => SetPerUser(value.ToJsonDateTimeOffset());
+        }
+
+        public DateTimeOffset? AuthenticationCertificateRefreshUtcDate
+        {
+            get => GetPerUser<string>().FromJsonDateTimeOffset();
+            set => SetPerUser(value.ToJsonDateTimeOffset());
+        }
+
+        public DateTimeOffset? AuthenticationCertificateRequestUtcDate
+        {
+            get => GetPerUser<string>().FromJsonDateTimeOffset();
+            set => SetPerUser(value.ToJsonDateTimeOffset());
+        }
+
+        public string CertificationServerPublicKey
+        {
+            get => GetPerUser<string>()?.Decrypt();
+            set => SetPerUser(value?.Encrypt());
+        }
+
         public TimeSpan MaintenanceCheckInterval
         {
             get
             {
-                var value = Get<TimeSpan>();
+                TimeSpan value = Get<TimeSpan>();
                 if (value == TimeSpan.Zero)
                 {
                     value = _config.MaintenanceCheckInterval;
@@ -467,7 +511,7 @@ namespace ProtonVPN.Core
 
         public void OnUserLoggedIn()
         {
-            var properties = _accessedPerUserProperties.ToList();
+            List<string> properties = _accessedPerUserProperties.ToList();
             _accessedPerUserProperties.Clear();
             OnPropertiesChanged(properties);
         }
@@ -535,12 +579,14 @@ namespace ProtonVPN.Core
 
         private void Set<T>(T value, [CallerMemberName] string propertyName = null)
         {
-            var toType = UnwrapNullable(typeof(T));
+            Type toType = UnwrapNullable(typeof(T));
             if (toType.IsValueType || toType == typeof(string))
             {
-                var oldValue = _storage.Get<T>(propertyName);
+                T oldValue = _storage.Get<T>(propertyName);
                 if (EqualityComparer<T>.Default.Equals(oldValue, value))
+                {
                     return;
+                }
             }
 
             _storage.Set(propertyName, value);
@@ -558,12 +604,14 @@ namespace ProtonVPN.Core
         {
             _accessedPerUserProperties.Add(propertyName);
 
-            var toType = UnwrapNullable(typeof(T));
+            Type toType = UnwrapNullable(typeof(T));
             if (toType.IsValueType || toType == typeof(string))
             {
-                var oldValue = _userSettings.Get<T>(propertyName);
+                T oldValue = _userSettings.Get<T>(propertyName);
                 if (EqualityComparer<T>.Default.Equals(oldValue, value))
+                {
                     return;
+                }
             }
 
             _userSettings.Set(propertyName, value);
@@ -572,10 +620,7 @@ namespace ProtonVPN.Core
 
         private Type UnwrapNullable(Type type)
         {
-            if (IsNullableType(type))
-                return Nullable.GetUnderlyingType(type);
-
-            return type;
+            return IsNullableType(type) ? Nullable.GetUnderlyingType(type) : type;
         }
 
         private bool IsNullableType(Type type)
@@ -585,7 +630,7 @@ namespace ProtonVPN.Core
 
         private void OnPropertiesChanged(IEnumerable<string> properties)
         {
-            foreach (var property in properties)
+            foreach (string property in properties)
             {
                 OnPropertyChanged(property);
             }
@@ -593,13 +638,13 @@ namespace ProtonVPN.Core
 
         private string[] GetApps(SplitTunnelingApp[] apps)
         {
-            if (apps == null)
-                return new string[0];
-
-            return apps.Where(a => a.Enabled).Select(a => a.Path)
-                .Union(apps.Where(a => a.Enabled)
-                    .SelectMany(a => a.AdditionalPaths ?? new string[0]))
-                .ToArray();
+            return apps == null
+                ? new string[0]
+                : apps.Where(a => a.Enabled)
+                      .Select(a => a.Path)
+                      .Union(apps.Where(a => a.Enabled)
+                      .SelectMany(a => a.AdditionalPaths ?? new string[0]))
+                      .ToArray();
         }
     }
 }

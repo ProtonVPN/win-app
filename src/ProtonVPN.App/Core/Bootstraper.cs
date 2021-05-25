@@ -148,7 +148,7 @@ namespace ProtonVPN.Core
                 return;
             }
 
-            Resolve<UserAuth>().InvokeAutoLoginEvent();
+            await Resolve<UserAuth>().InvokeAutoLoginEventAsync();
         }
 
         public void OnExit()
@@ -304,7 +304,7 @@ namespace ProtonVPN.Core
                     instance.OnUserLoggedIn();
                 }
 
-                await SwitchToAppWindow(e.AutoLogin);
+                await SwitchToAppWindow(e.IsAutoLogin);
             };
 
             userAuth.UserLoggedOut += (sender, e) =>
@@ -470,6 +470,7 @@ namespace ProtonVPN.Core
             Resolve<IModals>();
             Resolve<InsecureNetworkNotification>();
             Resolve<ActionableFailureApiResultEventHandler>();
+            Resolve<IAuthCertificateUpdater>();
         }
 
         private void OnUserLoggingIn()

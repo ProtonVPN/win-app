@@ -46,13 +46,14 @@ namespace TestTools.ApiClient
             TokenStorage tokenStorage = new();
             IUserStorage userStorage = Substitute.For<IUserStorage>();
             ILogger logger = Substitute.For<ILogger>();
+            IAuthCertificateManager authCertificateManager = Substitute.For<IAuthCertificateManager>();
 
             _api = new Client(logger, new HttpClient
             {
                 BaseAddress = new Uri("https://api.protonvpn.ch")
             }, tokenStorage);
 
-            _auth = new UserAuth(_api, null, userStorage, tokenStorage);
+            _auth = new UserAuth(_api, null, userStorage, tokenStorage, authCertificateManager);
         }
 
         public async Task<bool> Login()

@@ -29,6 +29,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>8</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -37,6 +38,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>8</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Caliburn.Micro, Version=3.2.0.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
@@ -96,6 +98,8 @@
     <Compile Include="Api\Handlers\CertificateHandlerTest.cs" />
     <Compile Include="Api\Handlers\TlsPinning\PublicKeyInfoHashTest.cs" />
     <Compile Include="Api\SleepDurationProviderTest.cs" />
+    <Compile Include="Auth\AuthCertificateManagerTest.cs" />
+    <Compile Include="Auth\MockOfAuthKeyManager.cs" />
     <Compile Include="OS\Net\Dns\DnsClientExtensionsTest.cs" />
     <Compile Include="OS\Net\Dns\SafeDnsClientTest.cs" />
     <Compile Include="Api\Handlers\RetryingHandlerTest.cs" />
@@ -143,6 +147,10 @@
     <ProjectReference Include="..\..\src\ProtonVPN.Core\ProtonVPN.Core.csproj">
       <Project>{ca44b51d-7645-413a-818f-2c5b57db67dd}</Project>
       <Name>ProtonVPN.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\ProtonVPN.Crypto\ProtonVPN.Crypto.csproj">
+      <Project>{BA2D505E-CED3-4FCB-A463-DAF6B77C18DE}</Project>
+      <Name>ProtonVPN.Crypto</Name>
     </ProjectReference>
     <ProjectReference Include="..\ProtonVPN.Test.Common\ProtonVPN.Test.Common.csproj">
       <Project>{A0DA4200-6643-4F2C-8450-65B8CE8A5576}</Project>

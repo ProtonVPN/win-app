@@ -209,7 +209,8 @@ namespace ProtonVPN.Core.Ioc
                 c.Resolve<IApiClient>(),
                 c.Resolve<ILogger>(),
                 c.Resolve<IUserStorage>(),
-                c.Resolve<ITokenStorage>())).SingleInstance();
+                c.Resolve<ITokenStorage>(),
+                c.Resolve<IAuthCertificateManager>())).SingleInstance();
 
             builder.RegisterType<NetworkClient>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<DnsClients>().As<IDnsClients>().SingleInstance();
