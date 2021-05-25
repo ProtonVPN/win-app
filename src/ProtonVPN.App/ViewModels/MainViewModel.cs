@@ -264,7 +264,7 @@ namespace ProtonVPN.ViewModels
             }
             
             await _vpnManager.DisconnectAsync();
-            _userAuth.Logout();
+            await _userAuth.LogoutAsync();
         }
 
         private void ExitAction()

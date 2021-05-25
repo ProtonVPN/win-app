@@ -22,7 +22,6 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Caliburn.Micro;
 using GalaSoft.MvvmLight.CommandWpf;
-using ProtonVPN.Common;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Config.Url;
 using ProtonVPN.Core.Modals;

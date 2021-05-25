@@ -105,6 +105,7 @@
     <Compile Include="CrashReporting\CrashReports.cs" />
     <Compile Include="Extensions\CollectionExtensions.cs" />
     <Compile Include="Extensions\ListExtensions.cs" />
+    <Compile Include="Extensions\DateTimeOffsetExtensions.cs" />
     <Compile Include="Go\GoExtensions.cs" />
     <Compile Include="Go\GoString.cs" />
     <Compile Include="Go\GoBytes.cs" />
