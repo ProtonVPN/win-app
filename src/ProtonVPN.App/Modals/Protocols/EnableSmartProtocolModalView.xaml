@@ -38,10 +38,21 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <StackPanel>
             <TextBlock TextWrapping="Wrap" FontSize="16" Foreground="White" Padding="15,40" 
                        behavior:TextStyleBehavior.FormattedText="{translations:Loc Dialogs_EnableSmartProtocol_msg}"/>
+
+            <DockPanel Margin="20,0,20,30">
+                <CheckBox Style="{StaticResource Checkbox}"
+                          IsChecked="{Binding IsToNotShowThisMessageAgain}">
+                    <Label FontSize="14"
+                           Foreground="White"
+                           VerticalAlignment="Center"
+                           Content="{translations:Loc Dialogs_DoNotShowThisMessageAgain}"/>
+                </CheckBox>
+            </DockPanel>
+
             <DockPanel Background="{StaticResource ModalBarColor}" Height="66">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <Button Style="{StaticResource SecondaryButton}"
-                            Content="{translations:Loc Dialogs_btn_Cancel}"
+                            Content="{translations:Loc Dialogs_EnableSmartProtocol_btn_KeepDisabled}"
                             Command="{Binding CloseCommand}"/>
                     <Button Style="{StaticResource PrimaryButton}"
                             Content="{translations:Loc Dialogs_EnableSmartProtocol_btn_Enable}"

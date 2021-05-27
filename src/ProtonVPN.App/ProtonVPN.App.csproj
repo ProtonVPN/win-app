@@ -220,10 +220,6 @@
       <DependentUpon>RebootModalView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modals\RebootModalViewModel.cs" />
-    <Compile Include="Modals\VpnAcceleration\NonVpnAccelerationFailedModalView.xaml.cs">
-      <DependentUpon>NonVpnAccelerationFailedModalView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Modals\VpnAcceleration\NonVpnAccelerationFailedModalViewModel.cs" />
     <Compile Include="Modals\ExitModalViewModel.cs" />
     <Compile Include="Servers\StreamingFeature.cs" />
     <Compile Include="Servers\ServerTierSeparatorViewModel.cs" />
@@ -957,10 +953,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Modals\RebootModalView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Modals\VpnAcceleration\NonVpnAccelerationFailedModalView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

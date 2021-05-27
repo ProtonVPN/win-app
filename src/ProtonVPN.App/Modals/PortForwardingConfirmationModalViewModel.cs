@@ -31,8 +31,7 @@ namespace ProtonVPN.Modals
 
         private bool _isToNotShowThisMessageAgain;
 
-        public PortForwardingConfirmationModalViewModel(IActiveUrls urls, 
-            IAppSettings appSettings)
+        public PortForwardingConfirmationModalViewModel(IActiveUrls urls, IAppSettings appSettings)
         {
             _urls = urls;
             _appSettings = appSettings;

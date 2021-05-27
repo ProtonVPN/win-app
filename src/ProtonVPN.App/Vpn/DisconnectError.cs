@@ -140,8 +140,7 @@ namespace ProtonVPN.Vpn
         {
             VpnReconnectionSettings reconnectionSettings = new()
             {
-                IsToReconnectIfDisconnected = true, 
-                IsToForceVpnAccelerator = true
+                IsToReconnectIfDisconnected = true
             };
             await _vpnManager.ReconnectAsync(reconnectionSettings);
         }

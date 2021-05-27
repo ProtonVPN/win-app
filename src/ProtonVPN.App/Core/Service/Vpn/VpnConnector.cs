@@ -78,9 +78,21 @@ namespace ProtonVPN.Core.Service.Vpn
             LastServerCandidates = _profileConnector.ServerCandidates(null);
         }
 
-        public async Task QuickConnectAsync()
+        public async Task QuickConnectAsync(int? maxServers = null)
         {
-            await ValidateConnectionAsync(ExecuteQuickConnectAsync);
+            Profile profile = await GetQuickConnectProfileAsync();
+            await ConnectToBestProfileAsync(profile, maxServers: maxServers);
+        }
+
+        private async Task<Profile> GetQuickConnectProfileAsync()
+        {
+            return await _profileManager.GetProfileById(_appSettings.QuickConnect) ??
+                   await _profileManager.GetFastestProfile();
+        }
+
+        public async Task ConnectToBestProfileAsync(Profile profile, Profile fallbackProfile = null, int? maxServers = null)
+        {
+            await ValidateConnectionAsync(() => ExecuteConnectToBestProfileAsync(profile, fallbackProfile, maxServers));
         }
 
         private async Task ValidateConnectionAsync(Func<Task> connectionFunction)
@@ -103,28 +115,11 @@ namespace ProtonVPN.Core.Service.Vpn
             await connectionFunction();
         }
 
-        private async Task ExecuteQuickConnectAsync()
-        {
-            Profile profile = await GetQuickConnectProfileAsync();
-            await ConnectToBestProfileAsync(profile);
-        }
-
-        private async Task<Profile> GetQuickConnectProfileAsync()
-        {
-            return await _profileManager.GetProfileById(_appSettings.QuickConnect) ??
-                   await _profileManager.GetFastestProfile();
-        }
-
-        public async Task ConnectToBestProfileAsync(Profile profile, Profile fallbackProfile = null)
-        {
-            await ValidateConnectionAsync(() => ExecuteConnectToBestProfileAsync(profile, fallbackProfile));
-        }
-
-        private async Task ExecuteConnectToBestProfileAsync(Profile profile, Profile fallbackProfile = null)
+        private async Task ExecuteConnectToBestProfileAsync(Profile profile, Profile fallbackProfile = null, int? maxServers = null)
         {
             IList<Profile> profiles = CreateProfilePreferenceList(profile, fallbackProfile);
             VpnManagerProfileCandidates profileCandidates = GetBestProfileCandidates(profiles);
-            await ConnectToProfileCandidatesAsync(profileCandidates);
+            await ConnectToProfileCandidatesAsync(profileCandidates, maxServers: maxServers);
         }
 
         private IList<Profile> CreateProfilePreferenceList(Profile profile, Profile fallbackProfile = null)
@@ -177,11 +172,11 @@ namespace ProtonVPN.Core.Service.Vpn
             return profileCandidates;
         }
 
-        private async Task ConnectToProfileCandidatesAsync(VpnManagerProfileCandidates profileCandidates, Protocol? protocol = null)
+        private async Task ConnectToProfileCandidatesAsync(VpnManagerProfileCandidates profileCandidates, Protocol? protocol = null, int? maxServers = null)
         {
             if (profileCandidates.CanConnect)
             {
-                await ConnectAsync(profileCandidates.Profile, profileCandidates.Candidates, protocol);
+                await ConnectAsync(profileCandidates.Profile, profileCandidates.Candidates, protocol, maxServers);
             }
             else
             {
@@ -189,7 +184,7 @@ namespace ProtonVPN.Core.Service.Vpn
             }
         }
 
-        private async Task ConnectAsync(Profile profile, ServerCandidates candidates, Protocol? protocol = null)
+        private async Task ConnectAsync(Profile profile, ServerCandidates candidates, Protocol? protocol = null, int? maxServers = null)
         {
             if (profile.IsPredefined || profile.IsTemporary)
             {
@@ -198,7 +193,7 @@ namespace ProtonVPN.Core.Service.Vpn
 
             LastProfile = profile;
             LastServerCandidates = candidates;
-            await _profileConnector.Connect(candidates, profile, protocol);
+            await _profileConnector.Connect(candidates, profile, protocol, maxServers);
         }
 
         public async Task ConnectToPreSortedCandidatesAsync(ServerCandidates sortedCandidates, Protocol protocol)

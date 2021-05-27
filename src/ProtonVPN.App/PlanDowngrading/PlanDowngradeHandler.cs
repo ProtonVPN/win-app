@@ -83,7 +83,7 @@ namespace ProtonVPN.PlanDowngrading
 
             NotifyUserOfDowngrade(user);
 
-            await _vpnManager.ReconnectAsync(new VpnReconnectionSettings() { IsToForceVpnAccelerator = true });
+            await _vpnManager.ReconnectAsync(new VpnReconnectionSettings());
         }
 
         private void DisablePaidFeatures(User user)

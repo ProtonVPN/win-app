@@ -25,6 +25,7 @@ namespace ProtonVPN.Core.Service.Vpn
         SimilarOnSameProtocol = 1,
         SimilarOnAutoProtocol = 2,
         QuickConnect = 3,
-        Disconnect = 4
+        RestartReconnectionSteps = 4,
+        Disconnect = 5
     }
 }

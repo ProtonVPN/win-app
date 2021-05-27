@@ -81,10 +81,7 @@ namespace ProtonVPN.Core.Service.Vpn
 
             _serverManager.MarkServerUnderMaintenance(_state.Server.ExitIp);
             await _serverUpdater.Update();
-            if (_appSettings.IsVpnAcceleratorEnabled())
-            {
-                await _vpnManager.ReconnectAsync(new VpnReconnectionSettings { IsToReconnectIfDisconnected = true, IsToExcludeLastServer = true });
-            }
+            await _vpnManager.ReconnectAsync(new VpnReconnectionSettings { IsToReconnectIfDisconnected = true, IsToExcludeLastServer = true });
         }
 
         private async Task<bool> ServerOffline()

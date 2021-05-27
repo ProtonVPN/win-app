@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using ProtonVPN.Common.Configuration.Api.Handlers.TlsPinning;
+using ProtonVPN.Common.Configuration.Source;
 
 namespace ProtonVPN.Common.Configuration
 {
@@ -212,5 +213,7 @@ namespace ProtonVPN.Common.Configuration
 
         [Range(typeof(TimeSpan), "00:00:00", "23:59:59")]
         public TimeSpan MaintenanceCheckInterval { get; internal set; }
+
+        public int? MaxQuickConnectServersOnReconnection { get; internal set; } = DefaultConfig.MAX_QUICK_CONNECT_SERVERS_ON_RECONNECTION;
     }
 }

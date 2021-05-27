@@ -29,6 +29,7 @@ using Microsoft.Toolkit.Uwp.Notifications;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Servers.Models;
+using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Window.Popups;
 using ProtonVPN.Modals.SessionLimits;
 using ProtonVPN.Notifications;
@@ -45,13 +46,15 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
         private readonly IModals _modals;
         private readonly INotificationSender _notificationSender;
         private readonly ConnectionStatusViewModel _connectionStatusViewModel;
+        private readonly IAppSettings _appSettings;
 
         public DeveloperToolsPopupViewModel(AppWindow appWindow,
             UserAuth userAuth,
             IPopupWindows popups,
             IModals modals,
             INotificationSender notificationSender,
-            ConnectionStatusViewModel connectionStatusViewModel)
+            ConnectionStatusViewModel connectionStatusViewModel,
+            IAppSettings appSettings)
             : base(appWindow)
         {
             _userAuth = userAuth;
@@ -59,6 +62,7 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
             _modals = modals;
             _notificationSender = notificationSender;
             _connectionStatusViewModel = connectionStatusViewModel;
+            _appSettings = appSettings;
 
             InitializeCommands();
         }
@@ -70,6 +74,7 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
             ShowPopupWindowCommand = new RelayCommand(ShowPopupWindowAction);
             RefreshVpnInfoCommand = new RelayCommand(RefreshVpnInfoAction);
             ShowReconnectionTooltipCommand = new RelayCommand(ShowReconnectionTooltipAction);
+            ResetDoNotShowAgainCommand = new RelayCommand(ResetDoNotShowAgainAction);
             FullToastCommand = new RelayCommand(FullToastAction);
             BasicToastCommand = new RelayCommand(BasicToastAction);
             ClearToastNotificationLogsCommand = new RelayCommand(ClearToastNotificationLogsAction);
@@ -79,6 +84,7 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
         public ICommand ShowPopupWindowCommand { get; set; }
         public ICommand RefreshVpnInfoCommand { get; set; }
         public ICommand ShowReconnectionTooltipCommand { get; set; }
+        public ICommand ResetDoNotShowAgainCommand { get; set; }
         public ICommand FullToastCommand { get; set; }
         public ICommand BasicToastCommand { get; set; }
         public ICommand ClearToastNotificationLogsCommand { get; set; }
@@ -135,6 +141,13 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
             Server currentServer = new Server(Guid.NewGuid().ToString(), "SE-PT#23", "Porto", 
                 "SE", "PT", "protonvpn.com", 1, 2, 1, 30, 1, null, null, "192.168.123.125");
             _connectionStatusViewModel.ShowVpnAcceleratorReconnectionPopup(previousServer: previousServer, currentServer: currentServer);
+        }
+
+        private void ResetDoNotShowAgainAction()
+        {
+            _appSettings.DoNotShowEnableSmartProtocolDialog = false;
+            _appSettings.DoNotShowKillSwitchConfirmationDialog = false;
+            _appSettings.DoNotShowPortForwardingConfirmationDialog = false;
         }
 
         private void FullToastAction()

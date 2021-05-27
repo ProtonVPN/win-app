@@ -17,9 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.ComponentModel;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
 using ProtonVPN.Config.Url;
+using ProtonVPN.Core.Settings;
 using ProtonVPN.Modals.Dialogs;
 
 namespace ProtonVPN.Modals.Protocols
@@ -27,19 +29,66 @@ namespace ProtonVPN.Modals.Protocols
     public class EnableSmartProtocolModalViewModel : QuestionModalViewModel
     {
         protected readonly IActiveUrls Urls;
+        private readonly IAppSettings _appSettings;
 
-        public EnableSmartProtocolModalViewModel(IActiveUrls urls)
+        private bool? _isToNotShowThisMessageAgain;
+
+        public EnableSmartProtocolModalViewModel(IActiveUrls urls, IAppSettings appSettings)
         {
             Urls = urls;
+            _appSettings = appSettings;
 
             ReadAboutSmartProtocolCommand = new RelayCommand(ReadAboutSmartProtocolAction);
         }
 
         public ICommand ReadAboutSmartProtocolCommand { get; }
+        
+        public bool IsToNotShowThisMessageAgain
+        {
+            get => GetIsToNotShowThisMessageAgain();
+            set => Set(ref _isToNotShowThisMessageAgain, value);
+        }
+
+        private bool GetIsToNotShowThisMessageAgain()
+        {
+            _isToNotShowThisMessageAgain ??= _appSettings.DoNotShowEnableSmartProtocolDialog;
+            return _isToNotShowThisMessageAgain.Value;
+        }
 
         private void ReadAboutSmartProtocolAction()
         {
             Urls.AboutSmartProtocolUrl.Open();
+        }
+
+        public override void CloseAction()
+        {
+            SaveDoNotShowEnableSmartProtocolDialogSetting();
+            _isToNotShowThisMessageAgain = null;
+            TryClose(false);
+        }
+
+        private void SaveDoNotShowEnableSmartProtocolDialogSetting()
+        {
+            if (IsToNotShowThisMessageAgain)
+            {
+                _appSettings.DoNotShowEnableSmartProtocolDialog = true;
+            }
+        }
+
+        protected override void ContinueAction()
+        {
+            SaveDoNotShowEnableSmartProtocolDialogSetting();
+            _isToNotShowThisMessageAgain = null;
+            TryClose(true);
+        }
+        
+        public override void OnAppSettingsChanged(PropertyChangedEventArgs e)
+        {
+            base.OnAppSettingsChanged(e);
+            if (e.PropertyName.Equals(nameof(IAppSettings.OvpnProtocol)))
+            {
+                _appSettings.DoNotShowEnableSmartProtocolDialog = false;
+            }
         }
     }
 }

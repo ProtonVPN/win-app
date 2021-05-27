@@ -401,6 +401,12 @@ namespace ProtonVPN.Core
             get => GetPerUser<bool>();
             set => SetPerUser(value);
         }
+        
+        public bool DoNotShowEnableSmartProtocolDialog
+        {
+            get => GetPerUser<bool>();
+            set => SetPerUser(value);
+        }
 
         public bool VpnAcceleratorEnabled
         {

@@ -29,6 +29,8 @@ namespace ProtonVPN.Common.Configuration.Source
 {
     internal class DefaultConfig : IConfigSource
     {
+        public const int MAX_QUICK_CONNECT_SERVERS_ON_RECONNECTION = 50;
+
         public Config Value()
         {
             string location = Assembly.GetEntryAssembly()?.Location;
@@ -162,6 +164,8 @@ namespace ProtonVPN.Common.Configuration.Source
                 DefaultLocale = "en",
 
                 MaintenanceCheckInterval = TimeSpan.FromMinutes(30),
+
+                MaxQuickConnectServersOnReconnection = MAX_QUICK_CONNECT_SERVERS_ON_RECONNECTION,
 
                 Urls =
                 {
