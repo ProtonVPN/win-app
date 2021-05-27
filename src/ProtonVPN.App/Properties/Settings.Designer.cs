@@ -1303,6 +1303,18 @@ namespace ProtonVPN.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string UserDoNotShowEnableSmartProtocolDialog {
+            get {
+                return ((string)(this["UserDoNotShowEnableSmartProtocolDialog"]));
+            }
+            set {
+                this["UserDoNotShowEnableSmartProtocolDialog"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool VpnAcceleratorEnabled {
             get {

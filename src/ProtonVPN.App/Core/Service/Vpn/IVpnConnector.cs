@@ -34,8 +34,8 @@ namespace ProtonVPN.Core.Service.Vpn
         VpnState State { get; }
         bool NetworkBlocked { get; }
 
-        Task QuickConnectAsync();
-        Task ConnectToBestProfileAsync(Profile profile, Profile fallbackProfile = null);
+        Task QuickConnectAsync(int? maxServers = null);
+        Task ConnectToBestProfileAsync(Profile profile, Profile fallbackProfile = null, int? maxServers = null);
         Task ConnectToPreSortedCandidatesAsync(ServerCandidates sortedCandidates, Protocol protocol);
         Task ConnectToProfileAsync(Profile profile, Protocol? protocol = null);
 

@@ -3039,12 +3039,16 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Enable</value>
     <comment>The text on Enable button in the Enable Smart Protocol window</comment>
   </data>
+  <data name="Dialogs_EnableSmartProtocol_btn_KeepDisabled" xml:space="preserve">
+    <value>Keep disabled</value>
+    <comment>The text on "Keep disabled" button in the Enable Smart Protocol window</comment>
+  </data>
   <data name="Settings_Connection_lbl_VpnAccelerator" xml:space="preserve">
     <value>VPN Accelerator</value>
     <comment>The label for VPN Accelerator toggle switch in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_VpnAccelerator_Info" xml:space="preserve">
-    <value>VPN Accelerator enables a set of unique performance enhancing technologies which can increase VPN speeds by up to 200%.</value>
+    <value>VPN Accelerator enables a set of unique performance enhancing technologies which can increase VPN speeds by up to 400%.</value>
     <comment>The description of VPN Accelerator setting displayed in the tooltip of the ( i ) image next to the label for VPN Accelerator toggle switch in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_VpnAcceleratorNotifications" xml:space="preserve">
@@ -3054,18 +3058,6 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="Settings_Connection_lbl_VpnAcceleratorNotifications_Info" xml:space="preserve">
     <value>Be notified when ProtonVPN connects to a server other than the one you selected.</value>
     <comment>The description of VPN Accelerator Notifications setting displayed in the tooltip of the ( i ) image next to the label for VPN Accelerator Notifications toggle switch in Connection tab of Settings window</comment>
-  </data>
-  <data name="Dialogs_NonVpnAccelerationFailed_ttl" xml:space="preserve">
-    <value>Connection failed</value>
-    <comment>The title of the NonVpnAccelerationFailed window</comment>
-  </data>
-  <data name="Dialogs_NonVpnAccelerationFailed_msg" xml:space="preserve">
-    <value>ProtonVPN couldn't connect to the selected server.&lt;LineBreak/&gt;Please, use Quick Connect or enable VPN Accelerator in the &lt;Hyperlink Command="{Binding OpenSettingsCommand}"&gt;Settings&lt;/Hyperlink&gt;.</value>
-    <comment>The message displayed in the NonVpnAccelerationFailed window. The codes between &lt; and &gt; should be kept as is (Do not forget to translate the inner text "Settings").</comment>
-  </data>
-  <data name="Dialogs_NonVpnAccelerationFailed_btn_QuickConnect" xml:space="preserve">
-    <value>Quick Connect</value>
-    <comment>The text on Quick Connect button in the NonVpnAccelerationFailed window</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_Title" xml:space="preserve">
     <value>Your VPN subscription plan has expired</value>

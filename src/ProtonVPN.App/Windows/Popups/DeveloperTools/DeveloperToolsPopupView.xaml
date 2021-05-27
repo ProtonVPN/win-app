@@ -37,28 +37,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary>
-                    <Style x:Key="Window" TargetType="fa:ImageAwesome">
-                        <Setter Property="Icon" Value="WindowMaximize"/>
-                        <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
-                        <Setter Property="Width" Value="32"/>
-                    </Style>
-                    <Style x:Key="User" TargetType="fa:ImageAwesome">
-                        <Setter Property="Icon" Value="IdCard"/>
-                        <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
-                        <Setter Property="Width" Value="32"/>
-                    </Style>
-                    <Style x:Key="Desktop" TargetType="fa:ImageAwesome">
-                        <Setter Property="Icon" Value="Desktop"/>
-                        <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
-                        <Setter Property="Width" Value="32"/>
-                    </Style>
-                    <Style x:Key="Bell" TargetType="fa:ImageAwesome">
-                        <Setter Property="Icon" Value="Bell"/>
-                        <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
-                        <Setter Property="Width" Value="32"/>
-                    </Style>
-                    <Style x:Key="Comment" TargetType="fa:ImageAwesome">
-                        <Setter Property="Icon" Value="Comment"/>
+                    <Style x:Key="FontAwesomeIcon" TargetType="fa:ImageAwesome">
                         <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
                         <Setter Property="Width" Value="32"/>
                     </Style>
@@ -72,7 +51,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <ScrollViewer Template="{StaticResource DarkScrollViewerControlTemplate}" Height="500" PanningMode="VerticalOnly">
                 <StackPanel Margin="20">
                     <StackPanel Margin="0,0,0,20" Orientation="Horizontal" HorizontalAlignment="Left">
-                        <fa:ImageAwesome HorizontalAlignment="Left" Style="{StaticResource Window}"  />
+                        <fa:ImageAwesome HorizontalAlignment="Left" Style="{StaticResource FontAwesomeIcon}" Icon="WindowMaximize"  />
                         <StackPanel Margin="20,0,30,0" Orientation="Vertical" HorizontalAlignment="Left">
                             <Label Padding="0,0,0,0" FontSize="16" Content="Show secondary window" Foreground="White"/>
                             <Label Padding="0,0,0,0" FontSize="12" Content="Opens a modal or a popup window" Foreground="LightGray"/>
@@ -88,7 +67,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </StackPanel>
 
                     <StackPanel Margin="0,0,0,20" Orientation="Horizontal" HorizontalAlignment="Left">
-                        <fa:ImageAwesome HorizontalAlignment="Left" Style="{StaticResource User}"  />
+                        <fa:ImageAwesome HorizontalAlignment="Left" Style="{StaticResource FontAwesomeIcon}" Icon="IdCard" />
                         <StackPanel Margin="20,0,30,0" Orientation="Vertical" HorizontalAlignment="Left">
                             <Label Padding="0,0,0,0" FontSize="16" Content="Refresh user data" Foreground="White"/>
                             <Label Padding="0,0,0,0" FontSize="12" Content="Manually triggers a /vpn API request" Foreground="LightGray"/>
@@ -100,7 +79,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </StackPanel>
 
                     <StackPanel Margin="0,0,0,20" Orientation="Horizontal" HorizontalAlignment="Left">
-                        <fa:ImageAwesome HorizontalAlignment="Left" Style="{StaticResource Comment}"  />
+                        <fa:ImageAwesome HorizontalAlignment="Left" Style="{StaticResource FontAwesomeIcon}" Icon="Comment"  />
                         <StackPanel Margin="20,0,30,0" Orientation="Vertical" HorizontalAlignment="Left">
                             <Label Padding="0,0,0,0" FontSize="16" Content="Show reconnection tooltip" Foreground="White"/>
                             <Label Padding="0,0,0,0" FontSize="12" Content="Manually triggers a reconnection tooltip" Foreground="LightGray"/>
@@ -112,7 +91,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </StackPanel>
 
                     <StackPanel Margin="0,0,0,20" Orientation="Horizontal" HorizontalAlignment="Left">
-                        <fa:ImageAwesome HorizontalAlignment="Left" Style="{StaticResource Desktop}"  />
+                        <fa:ImageAwesome HorizontalAlignment="Left" Style="{StaticResource FontAwesomeIcon}" Icon="Desktop" />
                         <StackPanel Margin="20,0,30,0" Orientation="Vertical" HorizontalAlignment="Left">
                             <Label Padding="0,0,0,0" FontSize="16" Content="Hardware Acceleration" Foreground="White"/>
                             <Label Padding="0,0,0,0" FontSize="12" Content="Use the GPU to help interface rendering" Foreground="LightGray"/>
@@ -122,9 +101,21 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                   IsChecked="{Binding IsHardwareAccelerationEnabled}"/>
                     </StackPanel>
 
+                    <StackPanel Margin="0,0,0,20" Orientation="Horizontal" HorizontalAlignment="Left">
+                        <fa:ImageAwesome HorizontalAlignment="Left" Style="{StaticResource FontAwesomeIcon}" Icon="CheckSquare" />
+                        <StackPanel Margin="20,0,30,0" Orientation="Vertical" HorizontalAlignment="Left">
+                            <Label Padding="0,0,0,0" FontSize="16" Content="Reset «Do not show again»" Foreground="White"/>
+                            <Label Padding="0,0,0,0" FontSize="12" Content="Sets the «Do not show again» in dialogs back to default" Foreground="LightGray"/>
+                        </StackPanel>
+                        <Button HorizontalAlignment="Left"
+                                Style="{StaticResource PrimaryButton}"
+                                Command="{Binding ResetDoNotShowAgainCommand}"
+                                Content="Reset"/>
+                    </StackPanel>
+
                     <StackPanel Margin="0,0,0,20" Orientation="Vertical" HorizontalAlignment="Left">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                            <fa:ImageAwesome HorizontalAlignment="Left" Style="{StaticResource Bell}"  />
+                            <fa:ImageAwesome HorizontalAlignment="Left" Style="{StaticResource FontAwesomeIcon}" Icon="Bell"  />
                             <StackPanel Margin="20,0,30,0" Orientation="Vertical" HorizontalAlignment="Left">
                                 <Label Padding="0,0,0,0" FontSize="16" Content="Pop toast" Foreground="White"/>
                                 <Label Padding="0,0,0,0" FontSize="12" Content="Trigger a native Windows 10 notification" Foreground="LightGray"/>

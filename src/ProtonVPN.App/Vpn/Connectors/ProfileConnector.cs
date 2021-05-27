@@ -110,10 +110,15 @@ namespace ProtonVPN.Vpn.Connectors
             return false;
         }
 
-        public async Task Connect(ServerCandidates candidates, Profile profile, Protocol? overrideProtocol = null)
+        public async Task Connect(ServerCandidates candidates, Profile profile, Protocol? overrideProtocol = null, int? maxServers = null)
         {
             IReadOnlyList<Server> servers = Servers(candidates);
             IEnumerable<Server> sortedServers = SortServers(servers, profile.ProfileType);
+            if (maxServers.HasValue)
+            {
+                sortedServers = sortedServers.Take(maxServers.Value);
+            }
+
             Protocol protocol = overrideProtocol ?? profile.Protocol;
 
             await Connect(sortedServers, VpnProtocol(protocol));

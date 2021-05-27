@@ -3496,6 +3496,15 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Keep disabled.
+        /// </summary>
+        public static string Dialogs_EnableSmartProtocol_btn_KeepDisabled {
+            get {
+                return ResourceManager.GetString("Dialogs_EnableSmartProtocol_btn_KeepDisabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ProtonVPN detected that your current network is preventing a connection to the VPN. Enabling Smart Protocol might bypass these limitations.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command=&quot;{Binding ReadAboutSmartProtocolCommand}&quot;&gt;Read more about Smart Protocol.&lt;/Hyperlink&gt;.
         /// </summary>
         public static string Dialogs_EnableSmartProtocol_msg {
@@ -3636,33 +3645,6 @@ namespace ProtonVPN.Translations.Properties {
         public static string Dialogs_MaximumDeviceLimit_Upgrade_Subtitle {
             get {
                 return ResourceManager.GetString("Dialogs_MaximumDeviceLimit_Upgrade_Subtitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Quick Connect.
-        /// </summary>
-        public static string Dialogs_NonVpnAccelerationFailed_btn_QuickConnect {
-            get {
-                return ResourceManager.GetString("Dialogs_NonVpnAccelerationFailed_btn_QuickConnect", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ProtonVPN couldn&apos;t connect to the selected server.&lt;LineBreak/&gt;Please, use Quick Connect or enable VPN Accelerator in the &lt;Hyperlink Command=&quot;{Binding OpenSettingsCommand}&quot;&gt;Settings&lt;/Hyperlink&gt;..
-        /// </summary>
-        public static string Dialogs_NonVpnAccelerationFailed_msg {
-            get {
-                return ResourceManager.GetString("Dialogs_NonVpnAccelerationFailed_msg", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Connection failed.
-        /// </summary>
-        public static string Dialogs_NonVpnAccelerationFailed_ttl {
-            get {
-                return ResourceManager.GetString("Dialogs_NonVpnAccelerationFailed_ttl", resourceCulture);
             }
         }
         
@@ -5971,7 +5953,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to VPN Accelerator enables a set of unique performance enhancing technologies which can increase VPN speeds by up to 200%..
+        ///   Looks up a localized string similar to VPN Accelerator enables a set of unique performance enhancing technologies which can increase VPN speeds by up to 400%..
         /// </summary>
         public static string Settings_Connection_lbl_VpnAccelerator_Info {
             get {

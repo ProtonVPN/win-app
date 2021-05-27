@@ -82,6 +82,7 @@ namespace ProtonVPN.Core.Settings
         bool FeaturePortForwardingEnabled { get; set; }
         bool DoNotShowPortForwardingConfirmationDialog { get; set; }
         bool DoNotShowKillSwitchConfirmationDialog { get; set; }
+        bool DoNotShowEnableSmartProtocolDialog { get; set; }
         IReadOnlyList<AnnouncementItem> Announcements { get; set; }
         int[] OpenVpnTcpPorts { get; set; }
         int[] OpenVpnUdpPorts { get; set; }
