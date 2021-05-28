@@ -367,6 +367,24 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Adblocker (NetShield).
+        /// </summary>
+        public static string Account_lbl_NetShield {
+            get {
+                return ResourceManager.GetString("Account_lbl_NetShield", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NetShield protects your device and speeds up your browsing by blocking ads, trackers and malware..
+        /// </summary>
+        public static string Account_lbl_NetShield_Info {
+            get {
+                return ResourceManager.GetString("Account_lbl_NetShield_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No logs/No ads.
         /// </summary>
         public static string Account_lbl_NoLogs {
@@ -435,6 +453,24 @@ namespace ProtonVPN.Translations.Properties {
         public static string Account_lbl_SecureCoreVpn_Info {
             get {
                 return ResourceManager.GetString("Account_lbl_SecureCoreVpn_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Streaming service support.
+        /// </summary>
+        public static string Account_lbl_Streaming {
+            get {
+                return ResourceManager.GetString("Account_lbl_Streaming", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Access your streaming services, like Netflix, Disney+, Prime Video, and many others, no matter where you are..
+        /// </summary>
+        public static string Account_lbl_Streaming_Info {
+            get {
+                return ResourceManager.GetString("Account_lbl_Streaming_Info", resourceCulture);
             }
         }
         
@@ -3640,7 +3676,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please disconnect another device to connect this one or upgrade to PLUS to get up to 5 devices connected at the same time..
+        ///   Looks up a localized string similar to Please disconnect another device to connect this one or upgrade to PLUS to get up to 10 devices connected at the same time..
         /// </summary>
         public static string Dialogs_MaximumDeviceLimit_Upgrade_Subtitle {
             get {
@@ -3865,7 +3901,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hundreds of servers in 54 countries.
+        ///   Looks up a localized string similar to Hundreds of servers in 55 countries.
         /// </summary>
         public static string Dialogs_SubscriptionExpired_ListOption1 {
             get {
@@ -3874,7 +3910,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Connect up to 5 devices at the same time.
+        ///   Looks up a localized string similar to Connect up to 10 devices at the same time.
         /// </summary>
         public static string Dialogs_SubscriptionExpired_ListOption2 {
             get {
@@ -4531,7 +4567,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please disconnect another device to connect this one or upgrade to PLUS to get up to 5 devices connected at the same time..
+        ///   Looks up a localized string similar to Please disconnect another device to connect this one or upgrade to PLUS to get up to 10 devices connected at the same time..
         /// </summary>
         public static string Notifications_MaximumDeviceLimit_Upgrade_Description {
             get {
@@ -6781,7 +6817,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Connect up to 5 devices at the same time.
+        ///   Looks up a localized string similar to Connect up to 10 devices at the same time.
         /// </summary>
         public static string Trial_Expiring_lbl_MultipleConnections_Info {
             get {
@@ -6826,7 +6862,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 5 Connections.
+        ///   Looks up a localized string similar to 10 Connections.
         /// </summary>
         public static string Trial_Features_lbl_MultipleConnections {
             get {
@@ -6889,7 +6925,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Use Secure Core, stream your favorite TV shows, use on up to 5 different devices and more!.
+        ///   Looks up a localized string similar to Use Secure Core, stream your favorite TV shows, use on up to 10 different devices and more!.
         /// </summary>
         public static string Upsell_Enjoying_lbl_Benefits {
             get {
