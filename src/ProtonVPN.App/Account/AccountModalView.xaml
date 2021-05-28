@@ -128,6 +128,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <RowDefinition SharedSizeGroup="G"/>
                         <RowDefinition SharedSizeGroup="H"/>
                         <RowDefinition SharedSizeGroup="I"/>
+                        <RowDefinition SharedSizeGroup="J"/>
+                        <RowDefinition SharedSizeGroup="K"/>
                     </wpf:BorderGrid.RowDefinitions>
                     <wpf:BorderGrid.ColumnDefinitions>
                         <ColumnDefinition Width="210"/>
@@ -182,6 +184,36 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <DockPanel Grid.Row="6" Background="#262630">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <TextBlock Style="{StaticResource PricingText}"
+                                       Text="{translations:Loc Account_lbl_AccessContent}"
+                                       Padding="0"
+                                       Margin="15,20,10,20"
+                                       TextDecorations="StrikeThrough"/>
+                            <fa:FontAwesome Icon="InfoCircle"
+                                            VerticalAlignment="Center"
+                                            ToolTip="{translations:Loc Account_lbl_AccessContent_Info}"
+                                            Foreground="{StaticResource PrimaryColor}"
+                                            FontSize="16"/>
+                        </StackPanel>
+                    </DockPanel>
+
+                    <DockPanel Grid.Row="7" Background="#202028">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock Style="{StaticResource PricingText}"
+                                       Text="{translations:Loc Account_lbl_NetShield}"
+                                       Padding="0"
+                                       Margin="15,20,10,20"
+                                       TextDecorations="StrikeThrough"/>
+                            <fa:FontAwesome Icon="InfoCircle"
+                                            VerticalAlignment="Center"
+                                            ToolTip="{translations:Loc Account_lbl_NetShield_Info}"
+                                            Foreground="{StaticResource PrimaryColor}"
+                                            FontSize="16"/>
+                        </StackPanel>
+                    </DockPanel>
+
+                    <DockPanel Grid.Row="8" Background="#262630">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock Style="{StaticResource PricingText}"
                                        Text="{translations:Loc Account_lbl_SecureCoreVpn}"
                                        Padding="0"
                                        Margin="15,20,10,20"
@@ -194,7 +226,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </StackPanel>
                     </DockPanel>
 
-                    <DockPanel Grid.Row="7" Background="#202028">
+                    <DockPanel Grid.Row="9" Background="#202028">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <TextBlock Style="{StaticResource PricingText}"
                                        Text="{translations:Loc Account_lbl_TorOverVpn}"
@@ -209,16 +241,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </StackPanel>
                     </DockPanel>
 
-                    <DockPanel Grid.Row="8" Background="#262630">
+                    <DockPanel Grid.Row="10" Background="#262630">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <TextBlock Style="{StaticResource PricingText}"
-                                       Text="{translations:Loc Account_lbl_AccessContent}"
+                                       Text="{translations:Loc Account_lbl_Streaming}"
                                        Padding="0"
                                        Margin="15,20,10,20"
                                        TextDecorations="StrikeThrough"/>
                             <fa:FontAwesome Icon="InfoCircle"
                                             VerticalAlignment="Center"
-                                            ToolTip="{translations:Loc Account_lbl_AccessContent_Info}"
+                                            ToolTip="{translations:Loc Account_lbl_Streaming_Info}"
                                             Foreground="{StaticResource PrimaryColor}"
                                             FontSize="16"/>
                         </StackPanel>
@@ -235,6 +267,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <RowDefinition SharedSizeGroup="G"/>
                         <RowDefinition SharedSizeGroup="H"/>
                         <RowDefinition SharedSizeGroup="I"/>
+                        <RowDefinition SharedSizeGroup="J"/>
+                        <RowDefinition SharedSizeGroup="K"/>
                     </wpf:BorderGrid.RowDefinitions>
                     <wpf:BorderGrid.ColumnDefinitions>
                         <ColumnDefinition Width="210"/>
@@ -263,7 +297,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </DockPanel>
 
                     <DockPanel Grid.Row="2" Background="#262630">
-                        <TextBlock Style="{StaticResource PricingText}" behavior:TextStyleBehavior.FormattedText="{Binding TotalCountries, Converter={StaticResource PluralConverter}, ConverterParameter=50}"/>
+                        <TextBlock Style="{StaticResource PricingText}" behavior:TextStyleBehavior.FormattedText="{Binding TotalCountries, Converter={StaticResource PluralConverter}, ConverterParameter=43}"/>
                     </DockPanel>
 
                     <DockPanel Grid.Row="3" Background="#202028">
@@ -290,6 +324,35 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <DockPanel Grid.Row="6" Background="#262630">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <TextBlock Style="{StaticResource PricingText}"
+                                       Text="{translations:Loc Account_lbl_AccessContent}"
+                                       Padding="0"
+                                       Margin="15,20,10,20"/>
+                            <fa:FontAwesome Icon="InfoCircle"
+                                            VerticalAlignment="Center"
+                                            ToolTip="{translations:Loc Account_lbl_AccessContent_Info}"
+                                            Foreground="{StaticResource PrimaryColor}"
+                                            FontSize="16"/>
+                        </StackPanel>
+                    </DockPanel>
+
+                    <DockPanel Grid.Row="7" Background="#202028">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock Style="{StaticResource PricingText}"
+                                       Text="{translations:Loc Account_lbl_NetShield}"
+                                       Padding="0"
+                                       Margin="15,20,10,20"
+                                       TextDecorations="StrikeThrough"/>
+                            <fa:FontAwesome Icon="InfoCircle"
+                                            VerticalAlignment="Center"
+                                            ToolTip="{translations:Loc Account_lbl_NetShield_Info}"
+                                            Foreground="{StaticResource PrimaryColor}"
+                                            FontSize="16"/>
+                        </StackPanel>
+                    </DockPanel>
+
+                    <DockPanel Grid.Row="8" Background="#262630">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock Style="{StaticResource PricingText}"
                                        Text="{translations:Loc Account_lbl_SecureCoreVpn}"
                                        Padding="0"
                                        Margin="15,20,10,20"
@@ -302,7 +365,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </StackPanel>
                     </DockPanel>
 
-                    <DockPanel Grid.Row="7" Background="#202028">
+                    <DockPanel Grid.Row="9" Background="#202028">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <TextBlock Style="{StaticResource PricingText}"
                                        Text="{translations:Loc Account_lbl_TorOverVpn}"
@@ -317,16 +380,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </StackPanel>
                     </DockPanel>
 
-                    <DockPanel Grid.Row="8" Background="#262630">
+                    <DockPanel Grid.Row="10" Background="#262630">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <TextBlock Style="{StaticResource PricingText}"
-                                       Text="{translations:Loc Account_lbl_AccessContent}"
+                                       Text="{translations:Loc Account_lbl_Streaming}"
                                        Padding="0"
                                        Margin="15,20,10,20"
                                        TextDecorations="StrikeThrough"/>
                             <fa:FontAwesome Icon="InfoCircle"
                                             VerticalAlignment="Center"
-                                            ToolTip="{translations:Loc Account_lbl_AccessContent_Info}"
+                                            ToolTip="{translations:Loc Account_lbl_Streaming_Info}"
                                             Foreground="{StaticResource PrimaryColor}"
                                             FontSize="16"/>
                         </StackPanel>
@@ -343,6 +406,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <RowDefinition SharedSizeGroup="G"/>
                         <RowDefinition SharedSizeGroup="H"/>
                         <RowDefinition SharedSizeGroup="I"/>
+                        <RowDefinition SharedSizeGroup="J"/>
+                        <RowDefinition SharedSizeGroup="K"/>
                     </wpf:BorderGrid.RowDefinitions>
                     <wpf:BorderGrid.ColumnDefinitions>
                         <ColumnDefinition Width="210"/>
@@ -367,11 +432,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </Grid>
 
                     <DockPanel Grid.Row="1" Background="#202028">
-                        <TextBlock Style="{StaticResource PricingText}" behavior:TextStyleBehavior.FormattedText="{Binding TotalConnections, Converter={StaticResource PluralConverter}, ConverterParameter=5}"/>
+                        <TextBlock Style="{StaticResource PricingText}" behavior:TextStyleBehavior.FormattedText="{Binding TotalConnections, Converter={StaticResource PluralConverter}, ConverterParameter=10}"/>
                     </DockPanel>
 
                     <DockPanel Grid.Row="2" Background="#262630">
-                        <TextBlock Style="{StaticResource PricingText}" behavior:TextStyleBehavior.FormattedText="{Binding TotalCountries, Converter={StaticResource PluralConverter}, ConverterParameter=50}"/>
+                        <TextBlock Style="{StaticResource PricingText}" behavior:TextStyleBehavior.FormattedText="{Binding TotalCountries, Converter={StaticResource PluralConverter}, ConverterParameter=55}"/>
                     </DockPanel>
 
                     <DockPanel Grid.Row="3" Background="#202028">
@@ -398,6 +463,34 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <DockPanel Grid.Row="6" Background="#262630">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <TextBlock Style="{StaticResource PricingText}"
+                                       Text="{translations:Loc Account_lbl_AccessContent}"
+                                       Padding="0"
+                                       Margin="15,20,10,20"/>
+                            <fa:FontAwesome Icon="InfoCircle"
+                                            VerticalAlignment="Center"
+                                            ToolTip="{translations:Loc Account_lbl_AccessContent_Info}"
+                                            Foreground="{StaticResource PrimaryColor}"
+                                            FontSize="16"/>
+                        </StackPanel>
+                    </DockPanel>
+
+                    <DockPanel Grid.Row="7" Background="#202028">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock Style="{StaticResource PricingText}"
+                                       Text="{translations:Loc Account_lbl_NetShield}"
+                                       Padding="0"
+                                       Margin="15,20,10,20"/>
+                            <fa:FontAwesome Icon="InfoCircle"
+                                            VerticalAlignment="Center"
+                                            ToolTip="{translations:Loc Account_lbl_NetShield_Info}"
+                                            Foreground="{StaticResource PrimaryColor}"
+                                            FontSize="16"/>
+                        </StackPanel>
+                    </DockPanel>
+
+                    <DockPanel Grid.Row="8" Background="#262630">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock Style="{StaticResource PricingText}"
                                        Text="{translations:Loc Account_lbl_SecureCoreVpn}"
                                        Padding="0"
                                        Margin="15,20,10,20"/>
@@ -409,7 +502,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </StackPanel>
                     </DockPanel>
 
-                    <DockPanel Grid.Row="7" Background="#202028">
+                    <DockPanel Grid.Row="9" Background="#202028">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <TextBlock Style="{StaticResource PricingText}"
                                        Text="{translations:Loc Account_lbl_TorOverVpn}"
@@ -423,15 +516,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </StackPanel>
                     </DockPanel>
 
-                    <DockPanel Grid.Row="8" Background="#262630">
+                    <DockPanel Grid.Row="10" Background="#262630">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <TextBlock Style="{StaticResource PricingText}"
-                                       Text="{translations:Loc Account_lbl_AccessContent}"
+                                       Text="{translations:Loc Account_lbl_Streaming}"
                                        Padding="0"
                                        Margin="15,20,10,20"/>
                             <fa:FontAwesome Icon="InfoCircle"
                                             VerticalAlignment="Center"
-                                            ToolTip="{translations:Loc Account_lbl_AccessContent_Info}"
+                                            ToolTip="{translations:Loc Account_lbl_Streaming_Info}"
                                             Foreground="{StaticResource PrimaryColor}"
                                             FontSize="16"/>
                         </StackPanel>
@@ -442,7 +535,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <RowDefinition SharedSizeGroup="A"/>
                         <RowDefinition SharedSizeGroup="B"/>
                         <RowDefinition SharedSizeGroup="C"/>
-                        <RowDefinition SharedSizeGroup="D"/>
                     </wpf:BorderGrid.RowDefinitions>
                     <wpf:BorderGrid.ColumnDefinitions>
                         <ColumnDefinition Width="207"/>
@@ -469,9 +561,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <TextBlock Style="{StaticResource PricingText}" Text="{translations:Loc Account_lbl_AllPlusFeatures}"/>
                     </DockPanel>
                     <DockPanel Grid.Row="2" Background="#262630">
-                        <TextBlock Style="{StaticResource PricingText}" behavior:TextStyleBehavior.FormattedText="{Binding TotalConnections, Converter={StaticResource PluralConverter}, ConverterParameter=10}"/>
-                    </DockPanel>
-                    <DockPanel Grid.Row="3" Background="#202028">
                         <TextBlock Style="{StaticResource PricingText}"
                                    Padding="0"
                                    Margin="30,20">
