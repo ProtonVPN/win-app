@@ -127,17 +127,22 @@ ui-test:
     - powershell -Command "Start-Sleep -s 20"
     - VSTest.Console.exe src\bin\ProtonVPN.UI.Test.dll
     
+update-vm:
+  stage: ui-test
+  tags:
+    - installation_tests
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+  script:
+    - powershell -File ci\update-vm.ps1
+    
 installation-test:
   stage: ui-test
   tags:
-    - windows
+    - installation_tests
   when: manual
   script:
-    - powershell -File ci\uninstall-app.ps1
-    - powershell -Command "Start-Sleep -s 25"
-    - powershell -File ci\launch-installer-UI.ps1
-    - powershell -File ci\start-installer-tests.ps1
-    - TasktTestRunner.exe
+    - powershell -File ci\InstallerTestScripts\prepare-installer-tests.ps1
 
 mirror:
   stage: mirror

@@ -1,0 +1,1 @@
+$virtualMachines = @('Avast', 'Kaspersky', 'BitDefender', 'MalwareBytes', 'McAfee')
