@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Collections.Generic;
 using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Servers.Models;
@@ -26,5 +27,6 @@ namespace ProtonVPN.Core.Service.Vpn
     public interface ISimilarServerCandidatesGenerator
     {
         ServerCandidates Generate(bool isToIncludeOriginalServer, Server originalServer = null, Profile baseProfile = null);
+        IList<Server> GenerateList(bool isToIncludeOriginalServer, Server originalServer = null, Profile baseProfile = null);
     }
 }

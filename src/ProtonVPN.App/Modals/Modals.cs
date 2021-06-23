@@ -51,7 +51,7 @@ namespace ProtonVPN.Modals
         {
             return _scheduler.Schedule<bool?>(() =>
             {
-                if (ModalOpened<T>())
+                if (IsOpen<T>())
                 {
                     return false;
                 }
@@ -60,7 +60,7 @@ namespace ProtonVPN.Modals
             });
         }
 
-        private bool ModalOpened<T>()
+        public bool IsOpen<T>() where T : IModal
         {
             return _modalWindows.List().Any(x => x.DataContext.GetType() == typeof(T));
         }

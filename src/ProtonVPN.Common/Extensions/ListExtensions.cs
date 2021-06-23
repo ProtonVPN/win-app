@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,23 +17,25 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
-using ProtonVPN.Service.Start;
+using System.Collections.Generic;
 
-namespace ProtonVPN.Service
+namespace ProtonVPN.Common.Extensions
 {
-    public static class Program
+    public static class ListExtensions
     {
-        public static void Main(string[] args)
+        public static void AddRange<T>(this IList<T> list, IEnumerable<T> collection)
         {
-            if (!Environment.UserInteractive)
+            if (list is List<T> castList)
             {
-                var bootstrapper = new Bootstrapper();
-                bootstrapper.Initialize();
-                return;
+                castList.AddRange(collection);
             }
-
-            new CommandLineStartStrategy().Start(args);
+            else
+            {
+                foreach (T item in collection)
+                {
+                    list.Add(item);
+                }
+            }
         }
     }
 }

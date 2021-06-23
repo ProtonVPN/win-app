@@ -23,6 +23,8 @@ namespace ProtonVPN.Core.Modals
     {
         bool? Show<T>(dynamic options = null) where T : IModal;
 
+        bool IsOpen<T>() where T : IModal;
+
         void Close<T>(bool? dialogResult = null) where T : IModal;
 
         void CloseAll();

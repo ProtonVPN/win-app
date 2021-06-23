@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,23 +17,17 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
-using ProtonVPN.Service.Start;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
+using ProtonVPN.Common.Vpn;
+using ProtonVPN.Vpn.Common;
 
-namespace ProtonVPN.Service
+namespace ProtonVPN.Vpn.Connection
 {
-    public static class Program
+    public interface IEndpointScanner
     {
-        public static void Main(string[] args)
-        {
-            if (!Environment.UserInteractive)
-            {
-                var bootstrapper = new Bootstrapper();
-                bootstrapper.Initialize();
-                return;
-            }
-
-            new CommandLineStartStrategy().Start(args);
-        }
+        Task<VpnEndpoint> ScanForBestEndpointAsync(VpnEndpoint endpoint, 
+            IReadOnlyDictionary<VpnProtocol, IReadOnlyCollection<int>> ports, CancellationToken cancellationToken);
     }
 }

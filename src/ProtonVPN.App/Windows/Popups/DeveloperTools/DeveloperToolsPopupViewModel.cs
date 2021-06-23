@@ -29,6 +29,7 @@ using Microsoft.Toolkit.Uwp.Notifications;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Servers.Models;
+using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Window.Popups;
 using ProtonVPN.Modals.SessionLimits;
@@ -47,6 +48,7 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
         private readonly INotificationSender _notificationSender;
         private readonly ConnectionStatusViewModel _connectionStatusViewModel;
         private readonly IAppSettings _appSettings;
+        private readonly ReconnectManager _reconnectManager;
 
         public DeveloperToolsPopupViewModel(AppWindow appWindow,
             UserAuth userAuth,
@@ -54,7 +56,8 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
             IModals modals,
             INotificationSender notificationSender,
             ConnectionStatusViewModel connectionStatusViewModel,
-            IAppSettings appSettings)
+            IAppSettings appSettings,
+            ReconnectManager reconnectManager)
             : base(appWindow)
         {
             _userAuth = userAuth;
@@ -63,6 +66,7 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
             _notificationSender = notificationSender;
             _connectionStatusViewModel = connectionStatusViewModel;
             _appSettings = appSettings;
+            _reconnectManager = reconnectManager;
 
             InitializeCommands();
         }
@@ -73,6 +77,7 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
             ShowModalCommand = new RelayCommand(ShowModalAction);
             ShowPopupWindowCommand = new RelayCommand(ShowPopupWindowAction);
             RefreshVpnInfoCommand = new RelayCommand(RefreshVpnInfoAction);
+            CheckIfCurrentServerIsOnlineCommand = new RelayCommand(CheckIfCurrentServerIsOnlineAction);
             ShowReconnectionTooltipCommand = new RelayCommand(ShowReconnectionTooltipAction);
             ResetDoNotShowAgainCommand = new RelayCommand(ResetDoNotShowAgainAction);
             FullToastCommand = new RelayCommand(FullToastAction);
@@ -83,6 +88,7 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
         public ICommand ShowModalCommand { get; set; }
         public ICommand ShowPopupWindowCommand { get; set; }
         public ICommand RefreshVpnInfoCommand { get; set; }
+        public ICommand CheckIfCurrentServerIsOnlineCommand { get; set; }
         public ICommand ShowReconnectionTooltipCommand { get; set; }
         public ICommand ResetDoNotShowAgainCommand { get; set; }
         public ICommand FullToastCommand { get; set; }
@@ -131,6 +137,11 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
         private async void RefreshVpnInfoAction()
         {
             await _userAuth.RefreshVpnInfo();
+        }
+
+        private async void CheckIfCurrentServerIsOnlineAction()
+        {
+            await _reconnectManager.CheckIfCurrentServerIsOnlineAsync();
         }
 
         private async void ShowReconnectionTooltipAction()

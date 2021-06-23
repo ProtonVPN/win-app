@@ -43,6 +43,9 @@ csharp_new_line_between_query_expression_clauses=true
 # http://kent-boogaart.com/blog/editorconfig-reference-for-c-developers#csharp_prefer_simple_default_expression
 csharp_prefer_simple_default_expression=false:error
 
+# IDE0063: Use simple 'using' statement
+csharp_prefer_simple_using_statement = false
+
 # http://kent-boogaart.com/blog/editorconfig-reference-for-c-developers#csharp_preserve_single_line_blocks
 csharp_preserve_single_line_blocks=true
 
@@ -131,10 +134,10 @@ csharp_style_expression_bodied_indexers=true:error
 csharp_style_expression_bodied_methods=true
 
 # http://kent-boogaart.com/blog/editorconfig-reference-for-c-developers#csharp_style_expression_bodied_operators
-csharp_style_expression_bodied_operators=true:error
+csharp_style_expression_bodied_operators=false:suggestion
 
 # http://kent-boogaart.com/blog/editorconfig-reference-for-c-developers#csharp_style_expression_bodied_properties
-csharp_style_expression_bodied_properties=true:error
+csharp_style_expression_bodied_properties=when_on_single_line:suggestion
 
 # http://kent-boogaart.com/blog/editorconfig-reference-for-c-developers#csharp_style_inlined_variable_declaration
 csharp_style_inlined_variable_declaration=true:error

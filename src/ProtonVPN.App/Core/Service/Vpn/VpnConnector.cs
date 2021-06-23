@@ -19,6 +19,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using ProtonVPN.Common.OS.Net;
 using ProtonVPN.Common.OS.Net.NetworkInterface;
@@ -76,6 +77,23 @@ namespace ProtonVPN.Core.Service.Vpn
             _networkInterfaceLoader = networkInterfaceLoader;
             _popupWindows = popupWindows;
             LastServerCandidates = _profileConnector.ServerCandidates(null);
+        }
+
+        public async Task<IList<Server>> GetSortedAndValidQuickConnectServersAsync(int? maxServers = null)
+        {
+            Profile profile = await GetQuickConnectProfileAsync();
+            IList<Profile> profiles = CreateProfilePreferenceList(profile);
+            VpnManagerProfileCandidates profileCandidates = GetBestProfileCandidates(profiles);
+            
+            IEnumerable<Server> sortedServers = _profileConnector.SortServers(
+                _profileConnector.Servers(profileCandidates.Candidates), 
+                profileCandidates.Profile.ProfileType);
+            if (maxServers.HasValue)
+            {
+                sortedServers = sortedServers.Take(maxServers.Value);
+            }
+
+            return sortedServers.ToList();
         }
 
         public async Task QuickConnectAsync(int? maxServers = null)

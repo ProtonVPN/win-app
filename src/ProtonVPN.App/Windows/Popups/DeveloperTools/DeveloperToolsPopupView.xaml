@@ -79,6 +79,18 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </StackPanel>
 
                     <StackPanel Margin="0,0,0,20" Orientation="Horizontal" HorizontalAlignment="Left">
+                        <fa:ImageAwesome HorizontalAlignment="Left" Style="{StaticResource FontAwesomeIcon}" Icon="Wrench" />
+                        <StackPanel Margin="20,0,30,0" Orientation="Vertical" HorizontalAlignment="Left">
+                            <Label Padding="0,0,0,0" FontSize="16" Content="Check if server is online" Foreground="White"/>
+                            <Label Padding="0,0,0,0" FontSize="12" Content="Manually triggers a /servers/{id} API request" Foreground="LightGray"/>
+                        </StackPanel>
+                        <Button HorizontalAlignment="Left"
+                                Style="{StaticResource PrimaryButton}"
+                                Command="{Binding CheckIfCurrentServerIsOnlineCommand}"
+                                Content="Check"/>
+                    </StackPanel>
+
+                    <StackPanel Margin="0,0,0,20" Orientation="Horizontal" HorizontalAlignment="Left">
                         <fa:ImageAwesome HorizontalAlignment="Left" Style="{StaticResource FontAwesomeIcon}" Icon="Comment"  />
                         <StackPanel Margin="20,0,30,0" Orientation="Vertical" HorizontalAlignment="Left">
                             <Label Padding="0,0,0,0" FontSize="16" Content="Show reconnection tooltip" Foreground="White"/>

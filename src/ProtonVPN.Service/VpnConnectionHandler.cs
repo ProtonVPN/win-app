@@ -191,7 +191,7 @@ namespace ProtonVPN.Service
 
         private void CallbackStateChanged(VpnState state)
         {
-            _logger.Info($"Callbacking VPN state {state.Status}");
+            _logger.Info($"Callbacking VPN state {state.Status} (Error: {state.Error})");
             Callback(callback => callback.OnStateChanged(Map(state)));
         }
 
@@ -223,7 +223,7 @@ namespace ProtonVPN.Service
             bool killSwitchEnabled = _killSwitch.ExpectedLeakProtectionStatus(state);
             if (!killSwitchEnabled)
             {
-                _state = new VpnState(state.Status, VpnError.None);
+                _state = new VpnState(state.Status, state.Error);
             }
 
             return new VpnStateContract(

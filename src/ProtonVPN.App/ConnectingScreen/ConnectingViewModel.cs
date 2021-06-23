@@ -39,13 +39,10 @@ namespace ProtonVPN.ConnectingScreen
         private Server _failedServer;
 
         private readonly IVpnManager _vpnManager;
-        private readonly IVpnReconnector _vpnReconnector;
 
-        public ConnectingViewModel(IVpnManager vpnManager,
-            IVpnReconnector vpnReconnector)
+        public ConnectingViewModel(IVpnManager vpnManager)
         {
             _vpnManager = vpnManager;
-            _vpnReconnector = vpnReconnector;
 
             DisconnectCommand = new RelayCommand(DisconnectAction);
         }

@@ -40,6 +40,6 @@ namespace ProtonVPN.Vpn.Common
 
         public int Port { get; }
 
-        public static VpnEndpoint EmptyEndpoint { get; } = new VpnEndpoint(default, default);
+        public static VpnEndpoint EmptyEndpoint { get; } = new(default, default);
     }
 }
