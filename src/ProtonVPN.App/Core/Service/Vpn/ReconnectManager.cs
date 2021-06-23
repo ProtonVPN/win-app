@@ -87,7 +87,12 @@ namespace ProtonVPN.Core.Service.Vpn
             _serverManager.MarkServerUnderMaintenance(_state.Server.ExitIp);
             await _serverUpdater.Update();
             _logger.Info($"Reconnecting due to server {_state.Server.Name} ({_state.Server.ExitIp}) being no longer available.");
-            await _vpnManager.ReconnectAsync(new VpnReconnectionSettings { IsToReconnectIfDisconnected = true, IsToExcludeLastServer = true });
+            await _vpnManager.ReconnectAsync(new VpnReconnectionSettings
+            {
+                IsToReconnectIfDisconnected = true, 
+                IsToExcludeLastServer = true, 
+                IsToShowReconnectionPopup = true
+            });
         }
 
         private async Task<bool> ServerOffline()

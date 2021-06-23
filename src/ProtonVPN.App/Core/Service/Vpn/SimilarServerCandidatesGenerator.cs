@@ -73,18 +73,23 @@ namespace ProtonVPN.Core.Service.Vpn
                 }
             }
 
-            baseProfile = ValidateProfile(baseProfile, originalServer);
+            baseProfile = CreateProfile(originalServer);
             
             return GetSimilarServers(isToIncludeOriginalServer, originalServer, baseProfile);
         }
 
-        private Profile ValidateProfile(Profile profile, Server originalServer)
+        private Profile CreateProfile(Server originalServer)
         {
-            if (profile == null ||
-                profile.ProfileType == ProfileType.Custom)
+            Profile profile = new()
             {
-                profile = CreateProfile(originalServer);
-            }
+                Protocol = Protocol.Auto,
+                ProfileType = ProfileType.Fastest,
+                Features = (Features)(originalServer?.Features ?? (sbyte)Features.None),
+                EntryCountryCode = originalServer?.EntryCountry,
+                CountryCode = originalServer?.ExitCountry,
+                City = originalServer?.City,
+                ExactTier = originalServer == null ? null : (sbyte)originalServer.Tier
+            };
 
             if ((profile.Features & Features.SecureCore) > 0 != _appSettings.SecureCore)
             {
@@ -97,20 +102,6 @@ namespace ProtonVPN.Core.Service.Vpn
             }
 
             return profile;
-        }
-
-        private Profile CreateProfile(Server originalServer)
-        {
-            return new()
-            {
-                Protocol = Protocol.Auto,
-                ProfileType = ProfileType.Fastest,
-                Features = (Features)(originalServer?.Features ?? (sbyte)Features.None),
-                EntryCountryCode = originalServer?.EntryCountry,
-                CountryCode = originalServer?.ExitCountry,
-                City = originalServer?.City,
-                ExactTier = originalServer == null ? null : (sbyte)originalServer.Tier
-            };
         }
 
         private IList<Server> GetSimilarServers(bool isToIncludeOriginalServer, Server originalServer, Profile baseProfile)
