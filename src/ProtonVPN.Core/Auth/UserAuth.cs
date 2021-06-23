@@ -164,7 +164,9 @@ namespace ProtonVPN.Core.Auth
         public void Logout()
         {
             if (!LoggedIn)
+            {
                 return;
+            }
 
             LoggedIn = false;
             UserLoggedOut?.Invoke(this, EventArgs.Empty);

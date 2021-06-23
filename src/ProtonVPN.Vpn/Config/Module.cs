@@ -35,11 +35,13 @@ namespace ProtonVPN.Vpn.Config
     {
         public void Load(ContainerBuilder builder)
         {
+            builder.RegisterType<EndpointScanner>().As<IEndpointScanner>().SingleInstance();
+            builder.RegisterType<PingableOpenVpnPort>().SingleInstance();
             builder.RegisterType<NetworkInterfaceLoader>().As<INetworkInterfaceLoader>().SingleInstance();
             builder.Register(c =>
                 {
-                    var logger = c.Resolve<ILogger>();
-                    var config = c.Resolve<OpenVpnConfig>();
+                    ILogger logger = c.Resolve<ILogger>();
+                    OpenVpnConfig config = c.Resolve<OpenVpnConfig>();
 
                     return new OpenVpnProcess(
                         logger,
@@ -54,12 +56,15 @@ namespace ProtonVPN.Vpn.Config
 
         public IVpnConnection VpnConnection(IComponentContext c)
         {
-            var logger = c.Resolve<ILogger>();
-            var config = c.Resolve<OpenVpnConfig>();
-            var taskQueue = c.Resolve<ITaskQueue>();
-            var candidates = new VpnEndpointCandidates();
+            ILogger logger = c.Resolve<ILogger>();
+            OpenVpnConfig config = c.Resolve<OpenVpnConfig>();
+            ITaskQueue taskQueue = c.Resolve<ITaskQueue>();
+            PingableOpenVpnPort pingableOpenVpnPort = c.Resolve<PingableOpenVpnPort>();
+            pingableOpenVpnPort.Config(config.OpenVpnStaticKey);
+            IEndpointScanner endpointScanner = c.Resolve<IEndpointScanner>();
+            VpnEndpointCandidates candidates = new();
 
-            var vpnConnection = new OpenVpnConnection(
+            OpenVpnConnection vpnConnection = new(
                 logger,
                 c.Resolve<INetworkInterfaceLoader>(),
                 c.Resolve<OpenVpnProcess>(),
@@ -76,13 +81,14 @@ namespace ProtonVPN.Vpn.Config
                     logger,
                     taskQueue,
                     candidates,
+                    endpointScanner,
                     new HandlingRequestsWrapper(
                         logger,
                         taskQueue,
                         new BestPortWrapper(
                             logger,
                             taskQueue,
-                            new PingableOpenVpnPort(config.OpenVpnStaticKey),
+                            endpointScanner,
                             new QueueingEventsWrapper(
                                 taskQueue,
                                 vpnConnection)))));

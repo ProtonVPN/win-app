@@ -63,5 +63,21 @@ namespace ProtonVPN.Common.Vpn
                 throw new ArgumentException($"Invalid argument {nameof(ip)} value: {ip}");
             }
         }
+
+        public static bool operator ==(VpnHost h1, VpnHost h2)
+        {
+            return AreEqual(h1, h2);
+        }
+
+        private static bool AreEqual(VpnHost h1, VpnHost h2)
+        {
+            return h1.Ip == h2.Ip && 
+                   (h1.Label == h2.Label || (string.IsNullOrEmpty(h1.Label) && string.IsNullOrEmpty(h2.Label)));
+        }
+
+        public static bool operator !=(VpnHost h1, VpnHost h2) 
+        {
+            return !AreEqual(h1, h2);
+        }
     }
 }

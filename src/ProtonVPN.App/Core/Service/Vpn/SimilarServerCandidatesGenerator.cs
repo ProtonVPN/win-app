@@ -50,13 +50,21 @@ namespace ProtonVPN.Core.Service.Vpn
             _appSettings = appSettings;
         }
 
-        public ServerCandidates Generate(bool isToIncludeOriginalServer, Server originalServer = null, Profile baseProfile = null)
+        public ServerCandidates Generate(bool isToIncludeOriginalServer, 
+            Server originalServer = null, Profile baseProfile = null)
+        {
+            IList<Server> similarServers = GenerateList(isToIncludeOriginalServer, originalServer, baseProfile);
+            return CreateServerCandidates(similarServers);
+        }
+
+        public IList<Server> GenerateList(bool isToIncludeOriginalServer, 
+            Server originalServer = null, Profile baseProfile = null)
         {
             if (originalServer == null || originalServer.IsEmpty())
             {
                 if (baseProfile == null)
                 {
-                    return null;
+                    return new List<Server>();
                 }
 
                 if (baseProfile.ProfileType == ProfileType.Custom)
@@ -66,8 +74,8 @@ namespace ProtonVPN.Core.Service.Vpn
             }
 
             baseProfile = ValidateProfile(baseProfile, originalServer);
-
-            return GetServerCandidates(isToIncludeOriginalServer, originalServer, baseProfile);
+            
+            return GetSimilarServers(isToIncludeOriginalServer, originalServer, baseProfile);
         }
 
         private Profile ValidateProfile(Profile profile, Server originalServer)
@@ -93,7 +101,7 @@ namespace ProtonVPN.Core.Service.Vpn
 
         private Profile CreateProfile(Server originalServer)
         {
-            return new Profile()
+            return new()
             {
                 Protocol = Protocol.Auto,
                 ProfileType = ProfileType.Fastest,
@@ -105,7 +113,7 @@ namespace ProtonVPN.Core.Service.Vpn
             };
         }
 
-        private ServerCandidates GetServerCandidates(bool isToIncludeOriginalServer, Server originalServer, Profile baseProfile)
+        private IList<Server> GetSimilarServers(bool isToIncludeOriginalServer, Server originalServer, Profile baseProfile)
         {
             IList<Server> servers = new List<Server>();
             servers.AddIfNotNull(GetOriginalServerIfRequired(isToIncludeOriginalServer, originalServer));
@@ -119,24 +127,26 @@ namespace ProtonVPN.Core.Service.Vpn
             else
             {
                 servers.AddIfNotNull(GetBestServerForSameCityTierFeatures(originalServer, servers, baseProfile));
+                servers.AddIfNotNull(GetBestServerForSameCountryTierFeatures(originalServer, servers, baseProfile));
                 servers.AddIfNotNull(GetBestServerForSameCountryFeaturesAndDifferentCity(originalServer, servers, baseProfile));
                 if (baseProfile.Features > 0)
                 {
                     servers.AddIfNotNull(GetBestServerForSameFeaturesAndDifferentCountry(originalServer, servers, baseProfile));
-                    servers.AddIfNotNull(GetBestServerForSameCityAndNoFeatures(originalServer, servers, baseProfile));
-                    servers.AddIfNotNull(GetBestServerForSameCountryAndNoFeaturesAndDifferentCity(originalServer, servers, baseProfile));
                 }
+                servers.AddIfNotNull(GetBestServerForSameCityAndNoFeatures(originalServer, servers, baseProfile));
+                servers.AddIfNotNull(GetBestServerForSameCountryAndNoFeaturesAndDifferentCity(originalServer, servers, baseProfile));
                 servers.AddIfNotNull(GetBestServerForNoFeaturesAndDifferentCountry(originalServer, servers, baseProfile));
             }
 
-            return _serverCandidatesFactory.ServerCandidates((IReadOnlyCollection<Server>)servers);
+            return servers;
         }
 
         private Server GetOriginalServerIfRequired(bool isToIncludeOriginalServer, Server originalServer)
         {
             return isToIncludeOriginalServer && 
-                   originalServer != null && 
-                   originalServer.IsSecureCore() == _appSettings.SecureCore
+                   !originalServer.IsNullOrEmpty() && 
+                   originalServer.IsSecureCore() == _appSettings.SecureCore && 
+                   originalServer.Online()
                 ? originalServer 
                 : null;
         }
@@ -203,6 +213,18 @@ namespace ProtonVPN.Core.Service.Vpn
             return GetBestServer(originalServer, excludedServers, profile);
         }
 
+        private Server GetBestServerForSameCountryTierFeatures(Server originalServer, IList<Server> excludedServers, Profile baseProfile)
+        {
+            Profile profile = new()
+            {
+                ProfileType = ProfileType.Fastest,
+                Features = baseProfile.Features,
+                CountryCode = baseProfile.CountryCode,
+                ExactTier = baseProfile.ExactTier
+            };
+            return GetBestServer(originalServer, excludedServers, profile);
+        }
+
         private Server GetBestServerForSameCountryFeaturesAndDifferentCity(Server originalServer, IList<Server> excludedServers, Profile baseProfile)
         {
             Profile profile = new()
@@ -255,6 +277,11 @@ namespace ProtonVPN.Core.Service.Vpn
                 Features = Features.None
             };
             return GetBestServer(originalServer, excludedServers, profile, s => s.ExitCountry != baseProfile.CountryCode);
+        }
+
+        private ServerCandidates CreateServerCandidates(IList<Server> servers)
+        {
+            return _serverCandidatesFactory.ServerCandidates((IReadOnlyCollection<Server>)servers);
         }
     }
 }

@@ -69,9 +69,10 @@ namespace ProtonVPN.Vpn.Connection
 
         private void OnStateChanged(VpnState state)
         {
-            if (state.Status != _prevState.Status || 
+            if (state.Status != _prevState.Status ||
                 state.Error != _prevState.Error ||
-                !string.Equals(state.RemoteIp, _prevState.RemoteIp))
+                !string.Equals(state.RemoteIp, _prevState.RemoteIp) ||
+                !string.Equals(state.Label, _prevState.Label))
             {
                 StateChanged?.Invoke(this, new EventArgs<VpnState>(state));
             }

@@ -17,16 +17,19 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
 using ProtonVPN.Config.Url;
 using ProtonVPN.Core.Servers.Models;
+using ProtonVPN.Sidebar;
 
 namespace ProtonVPN.Windows.Popups.Delinquency
 {
     public class DelinquencyPopupViewModel : BasePopupViewModel, IDelinquencyPopupViewModel
     {
         private readonly IActiveUrls _urls;
+        private readonly Lazy<ConnectionStatusViewModel> _connectionStatusViewModel;
 
         public bool IsReconnection { get; private set; }
 
@@ -36,12 +39,38 @@ namespace ProtonVPN.Windows.Popups.Delinquency
         public Server ToServer { get; private set; }
         public bool IsToServerSecureCore { get; private set; }
 
-        public DelinquencyPopupViewModel(IActiveUrls urls, AppWindow appWindow)
+        public DelinquencyPopupViewModel(IActiveUrls urls, 
+            Lazy<ConnectionStatusViewModel> connectionStatusViewModel,
+            AppWindow appWindow)
             : base(appWindow)
         {
             _urls = urls;
+            _connectionStatusViewModel = connectionStatusViewModel;
 
             GoToBillingCommand = new RelayCommand(GoToBillingAction);
+        }
+
+        protected override void OnViewAttached(object view, object context)
+        {
+            CloseVpnAcceleratorReconnectionPopup();
+            base.OnViewAttached(view, context);
+        }
+
+        private void CloseVpnAcceleratorReconnectionPopup()
+        {
+            _connectionStatusViewModel.Value.CloseVpnAcceleratorReconnectionPopupAction();
+        }
+
+        protected override void OnViewReady(object view)
+        {
+            CloseVpnAcceleratorReconnectionPopup();
+            base.OnViewReady(view);
+        }
+
+        protected override void OnViewLoaded(object view)
+        {
+            CloseVpnAcceleratorReconnectionPopup();
+            base.OnViewLoaded(view);
         }
 
         public ICommand GoToBillingCommand { get; set; }

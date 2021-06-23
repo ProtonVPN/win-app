@@ -159,8 +159,7 @@ namespace ProtonVPN.Vpn.Connectors
         {
             if (profileType == ProfileType.Random)
             {
-                Random random = new Random();
-                return source.OrderBy(_ => random.NextDouble());
+                return source.OrderBy(_ => _random.NextDouble());
             }
 
             if (_appSettings.FeaturePortForwardingEnabled && _appSettings.PortForwardingEnabled)
@@ -197,7 +196,7 @@ namespace ProtonVPN.Vpn.Connectors
 
             if (profile.ExactTier.HasValue)
             {
-                spec &= new MaxTierServer(profile.ExactTier.Value);
+                spec &= new ExactTierServer(profile.ExactTier.Value);
             }
 
             return spec;
@@ -353,16 +352,21 @@ namespace ProtonVPN.Vpn.Connectors
 
         private async Task Connect(IEnumerable<Server> servers, VpnProtocol protocol)
         {
-            VpnConnectionRequest request = new VpnConnectionRequest(
-                Servers(servers),
-                protocol,
-                VpnConfig(),
-                _vpnCredentialProvider.Credentials());
+            IReadOnlyList<VpnHost> hosts = Servers(servers);
+            if (hosts.Any())
+            {
+                VpnConnectionRequest request = new(hosts, protocol, VpnConfig(),
+                    _vpnCredentialProvider.Credentials());
 
-            await _vpnServiceManager.Connect(request);
+                await _vpnServiceManager.Connect(request);
 
-            _logger.Info("Connect requested");
-            _modals.CloseAll();
+                _logger.Info("Connect requested");
+                _modals.CloseAll();
+            }
+            else
+            {
+                _logger.Info("ProfileConnector - Connect received zero valid servers");
+            }
         }
 
         private async Task UpdateServers(IEnumerable<Server> servers)
@@ -458,7 +462,7 @@ namespace ProtonVPN.Vpn.Connectors
                 .SelectMany(s => s.Servers.OrderBy(_ => _random.Next()))
                 .Where(s => s.Status != 0)
                 .Select(s => new VpnHost(s.Domain, s.EntryIp, s.Label))
-                .Distinct(s => s.Ip)
+                .Distinct(s => (s.Ip, s.Label))
                 .ToList();
         }
     }

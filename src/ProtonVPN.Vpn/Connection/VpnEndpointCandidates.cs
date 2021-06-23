@@ -27,17 +27,25 @@ namespace ProtonVPN.Vpn.Connection
 {
     internal class VpnEndpointCandidates : IVpnEndpointCandidates
     {
-        private readonly Dictionary<VpnProtocol, ICollection<string>> _skippedIps =
-            new Dictionary<VpnProtocol, ICollection<string>>();
+        private readonly IDictionary<VpnProtocol, ICollection<VpnHost>> _skippedHosts =
+            new Dictionary<VpnProtocol, ICollection<VpnHost>>();
 
         private IReadOnlyList<VpnHost> _all = new List<VpnHost>(0);
+
+        public VpnEndpoint Current { get; private set; }
 
         public VpnEndpointCandidates()
         {
             Initialize();
         }
 
-        public VpnEndpoint Current { get; private set; }
+        private void Initialize()
+        {
+            foreach (VpnProtocol protocol in (VpnProtocol[]) Enum.GetValues(typeof(VpnProtocol)))
+            {
+                _skippedHosts[protocol] = new HashSet<VpnHost>();
+            }
+        }
 
         public void Set(IReadOnlyList<VpnHost> servers)
         {
@@ -48,18 +56,25 @@ namespace ProtonVPN.Vpn.Connection
         {
             if (!string.IsNullOrEmpty(Current.Server.Ip))
             {
-                _skippedIps[protocol].Add(Current.Server.Ip);
+                _skippedHosts[protocol].Add(Current.Server);
             }
 
-            VpnHost server = _all.FirstOrDefault(i => !_skippedIps[protocol].Contains(i.Ip));
+            VpnHost server = _all.FirstOrDefault(h => _skippedHosts[protocol].All(skippedHost => h != skippedHost));
             Current = Endpoint(server, protocol);
 
             return Current;
         }
 
+        private static VpnEndpoint Endpoint(VpnHost server, VpnProtocol protocol)
+        {
+            return server.IsEmpty()
+                ? VpnEndpoint.EmptyEndpoint
+                : new VpnEndpoint(server, protocol);
+        }
+
         public void Reset()
         {
-            foreach (var skipped in _skippedIps.Values)
+            foreach (ICollection<VpnHost> skipped in _skippedHosts.Values)
             {
                 skipped.Clear();
             }
@@ -72,19 +87,9 @@ namespace ProtonVPN.Vpn.Connection
             return _all.Contains(endpoint.Server);
         }
 
-        private void Initialize()
+        public int Count()
         {
-            foreach (var protocol in (VpnProtocol[]) Enum.GetValues(typeof(VpnProtocol)))
-            {
-                _skippedIps[protocol] = new HashSet<string>();
-            }
-        }
-
-        private static VpnEndpoint Endpoint(VpnHost server, VpnProtocol protocol)
-        {
-            return server.IsEmpty()
-                ? VpnEndpoint.EmptyEndpoint
-                : new VpnEndpoint(server, protocol);
+            return _all.Count;
         }
     }
 }

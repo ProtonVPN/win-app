@@ -18,6 +18,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Servers;
@@ -33,6 +34,8 @@ namespace ProtonVPN.Core.Service.Vpn
         Server LastServer { get; }
         VpnState State { get; }
         bool NetworkBlocked { get; }
+        
+        Task<IList<Server>> GetSortedAndValidQuickConnectServersAsync(int? maxServers = null);
 
         Task QuickConnectAsync(int? maxServers = null);
         Task ConnectToBestProfileAsync(Profile profile, Profile fallbackProfile = null, int? maxServers = null);

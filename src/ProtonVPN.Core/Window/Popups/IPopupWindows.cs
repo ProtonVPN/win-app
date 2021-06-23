@@ -23,6 +23,8 @@ namespace ProtonVPN.Core.Window.Popups
     {
         void Show<T>(dynamic options = null) where T : IPopupWindow;
 
+        bool IsOpen<T>() where T : IPopupWindow;
+
         void Close<T>() where T : IPopupWindow;
 
         void CloseAll();

@@ -253,17 +253,16 @@ namespace ProtonVPN.ViewModels
 
         private async void LogoutAction()
         {
-            if (VpnStatus != VpnStatus.Disconnected)
+            if (VpnStatus != VpnStatus.Disconnected && VpnStatus != VpnStatus.Disconnecting)
             {
                 bool? result = _dialogs.ShowQuestion(Translation.Get("App_msg_LogoutConnectedConfirm"));
                 if (!result.HasValue || !result.Value)
                 {
                     return;
                 }
-
-                await _vpnManager.DisconnectAsync();
             }
-
+            
+            await _vpnManager.DisconnectAsync();
             _userAuth.Logout();
         }
 

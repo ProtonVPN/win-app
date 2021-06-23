@@ -373,7 +373,7 @@ namespace ProtonVPN.Sidebar
             OnPropertyChanged(nameof(SidebarMode));
         }
 
-        private void CloseVpnAcceleratorReconnectionPopupAction()
+        public void CloseVpnAcceleratorReconnectionPopupAction()
         {
             IsToShowVpnAcceleratorReconnectionPopup = false;
             OnPropertyChanged(nameof(IsToShowVpnAcceleratorReconnectionPopup));
