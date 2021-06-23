@@ -118,7 +118,11 @@ namespace ProtonVPN.Modals
         private async Task ReconnectAsync()
         {
             await CloseModalAsync();
-            await _vpnManager.ReconnectAsync(new VpnReconnectionSettings() { IsToReconnectIfDisconnected = true });
+            await _vpnManager.ReconnectAsync(new VpnReconnectionSettings
+            {
+                IsToReconnectIfDisconnected = true, 
+                IsToShowReconnectionPopup = true
+            });
         }
 
         private async Task CloseModalAsync()
@@ -131,7 +135,12 @@ namespace ProtonVPN.Modals
         private async Task ReconnectWithoutLastServerAsync()
         {
             await CloseModalAsync();
-            await _vpnManager.ReconnectAsync(new VpnReconnectionSettings() { IsToReconnectIfDisconnected = true, IsToExcludeLastServer = true });
+            await _vpnManager.ReconnectAsync(new VpnReconnectionSettings
+            {
+                IsToReconnectIfDisconnected = true, 
+                IsToExcludeLastServer = true, 
+                IsToShowReconnectionPopup = true
+            });
         }
 
         private void OpenHelpArticleAction()

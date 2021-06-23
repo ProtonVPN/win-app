@@ -59,6 +59,7 @@ namespace ProtonVPN.Core.Service.Vpn
         private Server _lastConnectedServer;
         private Server _targetServer;
         private Profile _targetProfile;
+        private bool _isToShowReconnectionPopup;
 
         public VpnReconnector(IAppSettings appSettings,
             ISimilarServerCandidatesGenerator similarServerCandidatesGenerator,
@@ -88,6 +89,7 @@ namespace ProtonVPN.Core.Service.Vpn
         public async Task ReconnectAsync(Server lastServer, Profile lastProfile, VpnReconnectionSettings settings = null)
         {
             settings ??= new VpnReconnectionSettings();
+            _isToShowReconnectionPopup = settings.IsToShowReconnectionPopup;
 
             if (!settings.IsToReconnectIfDisconnected && IsDisconnected())
             {
@@ -95,7 +97,7 @@ namespace ProtonVPN.Core.Service.Vpn
                 ResetReconnectionStep();
                 return;
             }
-
+            
             VpnReconnectionSteps reconnectionStep = _reconnectionStep;
             SetTargetServerAndProfile(lastServer, lastProfile, reconnectionStep);
             reconnectionStep = IncrementReconnectionStep(reconnectionStep);
@@ -290,7 +292,8 @@ namespace ProtonVPN.Core.Service.Vpn
 
         private bool IsToShowVpnAcceleratorReconnectionPopup(Server previousServer, Server currentServer)
         {
-            return _appSettings.ShowNotifications &&
+            return _isToShowReconnectionPopup &&
+                   _appSettings.ShowNotifications &&
                    _reconnectionStep > VpnReconnectionSteps.UserChoice &&
                    !previousServer.IsNullOrEmpty() && 
                    !currentServer.IsNullOrEmpty() &&
