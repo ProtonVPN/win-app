@@ -165,10 +165,10 @@ namespace ProtonVPN.Vpn.Connection
                     DisconnectDueToCancel();
                     return;
                 }
-                VpnEndpoint endpoint = _candidates.Next(_protocol);
+                VpnEndpoint endpoint = _candidates.NextIp(_protocol);
                 if (endpoint == VpnEndpoint.EmptyEndpoint)
                 {
-                    _logger.Info($"No more endpoints in the list. server {endpoint.Server.Ip} has failed to respond to the ping.");
+                    _logger.Info($"No more endpoints in the list after server {endpoint.Server.Ip} has failed to respond to the ping.");
                     break;
                 }
 
@@ -217,7 +217,7 @@ namespace ProtonVPN.Vpn.Connection
 
         private void ConnectToNextEndpoint()
         {
-            _endpoint = _candidates.Next(_protocol);
+            _endpoint = _candidates.NextHost(_protocol);
             if (_endpoint?.Server == null || _endpoint.Server.IsEmpty())
             {
                 _logger.Info("No more VPN endpoints to try, disconnecting");

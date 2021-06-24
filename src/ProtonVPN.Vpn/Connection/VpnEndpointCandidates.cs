@@ -29,6 +29,8 @@ namespace ProtonVPN.Vpn.Connection
     {
         private readonly IDictionary<VpnProtocol, ICollection<VpnHost>> _skippedHosts =
             new Dictionary<VpnProtocol, ICollection<VpnHost>>();
+        private readonly IDictionary<VpnProtocol, ICollection<string>> _skippedIps =
+            new Dictionary<VpnProtocol, ICollection<string>>();
 
         private IReadOnlyList<VpnHost> _all = new List<VpnHost>(0);
 
@@ -44,6 +46,7 @@ namespace ProtonVPN.Vpn.Connection
             foreach (VpnProtocol protocol in (VpnProtocol[]) Enum.GetValues(typeof(VpnProtocol)))
             {
                 _skippedHosts[protocol] = new HashSet<VpnHost>();
+                _skippedIps[protocol] = new HashSet<string>();
             }
         }
 
@@ -52,7 +55,7 @@ namespace ProtonVPN.Vpn.Connection
             _all = servers;
         }
 
-        public VpnEndpoint Next(VpnProtocol protocol)
+        public VpnEndpoint NextHost(VpnProtocol protocol)
         {
             if (!string.IsNullOrEmpty(Current.Server.Ip))
             {
@@ -60,6 +63,19 @@ namespace ProtonVPN.Vpn.Connection
             }
 
             VpnHost server = _all.FirstOrDefault(h => _skippedHosts[protocol].All(skippedHost => h != skippedHost));
+            Current = Endpoint(server, protocol);
+
+            return Current;
+        }
+
+        public VpnEndpoint NextIp(VpnProtocol protocol)
+        {
+            if (!string.IsNullOrEmpty(Current.Server.Ip))
+            {
+                _skippedIps[protocol].Add(Current.Server.Ip);
+            }
+
+            VpnHost server = _all.FirstOrDefault(h => _skippedIps[protocol].All(skippedIp => h.Ip != skippedIp));
             Current = Endpoint(server, protocol);
 
             return Current;
@@ -75,6 +91,11 @@ namespace ProtonVPN.Vpn.Connection
         public void Reset()
         {
             foreach (ICollection<VpnHost> skipped in _skippedHosts.Values)
+            {
+                skipped.Clear();
+            }
+
+            foreach (ICollection<string> skipped in _skippedIps.Values)
             {
                 skipped.Clear();
             }
