@@ -174,12 +174,13 @@ namespace ProtonVPN.ViewModels
 
             switch (e.State.Status)
             {
+                case VpnStatus.Pinging:
                 case VpnStatus.Connecting:
                 case VpnStatus.Reconnecting:
-                case VpnStatus.AssigningIp:
+                case VpnStatus.Waiting:
                 case VpnStatus.Authenticating:
                 case VpnStatus.RetrievingConfiguration:
-                case VpnStatus.Waiting:
+                case VpnStatus.AssigningIp:
                     Connecting = true;
                     break;
                 case VpnStatus.Connected:

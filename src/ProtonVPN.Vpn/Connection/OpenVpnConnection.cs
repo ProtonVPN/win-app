@@ -256,7 +256,7 @@ namespace ProtonVPN.Vpn.Connection
             _logger.Info($"ManagementClient: State changed to {e.Data.Status}");
 
             VpnState state = e.Data;
-            if ((state.Status == VpnStatus.Connecting || state.Status == VpnStatus.Reconnecting) &&
+            if ((state.Status == VpnStatus.Pinging || state.Status == VpnStatus.Connecting || state.Status == VpnStatus.Reconnecting) &&
                 string.IsNullOrEmpty(state.RemoteIp))
             {
                 state = new VpnState(state.Status, VpnError.None, string.Empty, _endpoint.Server.Ip,
@@ -281,6 +281,7 @@ namespace ProtonVPN.Vpn.Connection
             VpnState state;
             switch (status)
             {
+                case VpnStatus.Pinging:
                 case VpnStatus.Connecting:
                     state = new VpnState(status, VpnError.None, string.Empty, _endpoint.Server.Ip, 
                         _endpoint.Protocol, label: _endpoint.Server.Label);

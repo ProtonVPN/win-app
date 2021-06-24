@@ -34,6 +34,7 @@ namespace ProtonVPN.Vpn.Connection
         void Set(IReadOnlyList<VpnHost> servers);
         void Reset();
         bool Contains(VpnEndpoint endpoint);
-        int Count();
+        int CountHosts();
+        int CountIPs();
     }
 }

@@ -139,6 +139,7 @@ namespace ProtonVPN.Service.KillSwitch
         {
             switch (state.Status)
             {
+                case VpnStatus.Pinging:
                 case VpnStatus.Connecting:
                 case VpnStatus.Reconnecting:
                     return true;

@@ -128,6 +128,7 @@ namespace ProtonVPN.Servers
                 case VpnStatus.Connected:
                     SetConnected();
                     break;
+                case VpnStatus.Pinging:
                 case VpnStatus.Connecting:
                 case VpnStatus.Reconnecting:
                     SetConnecting();

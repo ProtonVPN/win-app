@@ -90,7 +90,8 @@ namespace ProtonVPN.Vpn
             }
             else
             {
-                if (status == VpnStatus.Connecting ||
+                if (status == VpnStatus.Pinging ||
+                    status == VpnStatus.Connecting ||
                     status == VpnStatus.Connected ||
                     (status == VpnStatus.Disconnecting ||
                      status == VpnStatus.Disconnected) &&
