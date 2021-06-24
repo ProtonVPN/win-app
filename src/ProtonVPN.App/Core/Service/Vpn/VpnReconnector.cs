@@ -36,6 +36,7 @@ using ProtonVPN.Modals.Protocols;
 using ProtonVPN.Notifications;
 using ProtonVPN.Sidebar;
 using ProtonVPN.Translations;
+using ProtonVPN.Vpn.Connectors;
 using ProtonVPN.Windows.Popups.Delinquency;
 using ProtonVPN.Windows.Popups.SubscriptionExpiration;
 
@@ -54,6 +55,7 @@ namespace ProtonVPN.Core.Service.Vpn
         private readonly Common.Configuration.Config _config;
         private readonly Lazy<ConnectionStatusViewModel> _connectionStatusViewModel;
         private readonly ServerManager _serverManager;
+        private readonly Lazy<ServerConnector> _serverConnector;
 
         private VpnReconnectionSteps _reconnectionStep;
         private Server _lastConnectedServer;
@@ -71,7 +73,8 @@ namespace ProtonVPN.Core.Service.Vpn
             ServerCandidatesFactory serverCandidatesFactory, 
             Common.Configuration.Config config,
             Lazy<ConnectionStatusViewModel> connectionStatusViewModel, 
-            ServerManager serverManager)
+            ServerManager serverManager, 
+            Lazy<ServerConnector> serverConnector)
         {
             _appSettings = appSettings;
             _similarServerCandidatesGenerator = similarServerCandidatesGenerator;
@@ -84,12 +87,12 @@ namespace ProtonVPN.Core.Service.Vpn
             _config = config;
             _connectionStatusViewModel = connectionStatusViewModel;
             _serverManager = serverManager;
+            _serverConnector = serverConnector;
         }
 
         public async Task ReconnectAsync(Server lastServer, Profile lastProfile, VpnReconnectionSettings settings = null)
         {
             settings ??= new VpnReconnectionSettings();
-            _isToShowReconnectionPopup = settings.IsToShowReconnectionPopup;
 
             if (!settings.IsToReconnectIfDisconnected && IsDisconnected())
             {
@@ -98,6 +101,39 @@ namespace ProtonVPN.Core.Service.Vpn
                 return;
             }
             
+            if (_appSettings.IsSmartReconnectEnabled() || settings.IsToForceSmartReconnect)
+            {
+                await SmartReconnectAsync(lastServer, lastProfile, settings);
+            }
+            else
+            {
+                await NonSmartReconnectAsync(lastServer, lastProfile);
+            }
+        }
+
+        private async Task NonSmartReconnectAsync(Server lastServer, Profile lastProfile)
+        {
+            if (lastProfile != null)
+            {
+                _logger.Info("Reconnecting to last profile");
+                await _vpnConnector.ConnectToProfileAsync(lastProfile);
+            }
+            else if (lastServer != null)
+            {
+                _logger.Info("Reconnecting to last server");
+                await _serverConnector.Value.Connect(lastServer);
+            }
+            else
+            {
+                _logger.Warn("Cannot reconnect because last profile and last server are empty.");
+            }
+
+            ResetReconnectionStep();
+        }
+
+        private async Task SmartReconnectAsync(Server lastServer, Profile lastProfile, VpnReconnectionSettings settings)
+        {
+            _isToShowReconnectionPopup = settings.IsToShowReconnectionPopup;
             VpnReconnectionSteps reconnectionStep = _reconnectionStep;
             SetTargetServerAndProfile(lastServer, lastProfile, reconnectionStep);
             reconnectionStep = IncrementReconnectionStep(reconnectionStep);
@@ -185,7 +221,7 @@ namespace ProtonVPN.Core.Service.Vpn
                 return VpnReconnectionSteps.QuickConnect;
             }
 
-            if (_appSettings.IsVpnAcceleratorNotificationsEnabled())
+            if (_appSettings.IsSmartReconnectNotificationsEnabled())
             {
                 _notificationSender.Send(
                     Translation.Get("Notifications_EnableSmartProtocol_ttl"),

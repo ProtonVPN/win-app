@@ -407,14 +407,11 @@ namespace ProtonVPN.Core
             get => GetPerUser<bool>();
             set => SetPerUser(value);
         }
-
+        
+        [Obsolete(
+            "Use this only for checking if the user enabled/disabled the feature." +
+            "Use IsVpnAcceleratorEnabled() for checking if VPN Accelerator is/should be enabled.")]
         public bool VpnAcceleratorEnabled
-        {
-            get => Get<bool>();
-            set => Set(value);
-        }
-
-        public bool VpnAcceleratorNotificationsEnabled
         {
             get => Get<bool>();
             set => Set(value);
@@ -427,6 +424,27 @@ namespace ProtonVPN.Core
         }
 
         public bool FeatureStreamingServicesLogosEnabled
+        {
+            get => Get<bool>();
+            set => Set(value);
+        }
+
+        public bool FeatureSmartReconnectEnabled
+        {
+            get => Get<bool>();
+            set => Set(value);
+        }
+        
+        [Obsolete(
+            "Use this only for checking if the user enabled/disabled the feature." +
+            "Use IsSmartReconnectEnabled() for checking if Smart Reconnect is/should be enabled.")]
+        public bool SmartReconnectEnabled
+        {
+            get => Get<bool>();
+            set => Set(value);
+        }
+
+        public bool SmartReconnectNotificationsEnabled
         {
             get => Get<bool>();
             set => Set(value);
@@ -485,10 +503,15 @@ namespace ProtonVPN.Core
         {
             return FeatureVpnAcceleratorEnabled && VpnAcceleratorEnabled;
         }
-
-        public bool IsVpnAcceleratorNotificationsEnabled()
+        
+        public bool IsSmartReconnectEnabled()
         {
-            return ShowNotifications && VpnAcceleratorNotificationsEnabled;
+            return FeatureSmartReconnectEnabled && SmartReconnectEnabled;
+        }
+
+        public bool IsSmartReconnectNotificationsEnabled()
+        {
+            return ShowNotifications && SmartReconnectNotificationsEnabled;
         }
 
         public Protocol GetProtocol()

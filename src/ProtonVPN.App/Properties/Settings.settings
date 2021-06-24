@@ -329,13 +329,19 @@
         <Setting Name="VpnAcceleratorEnabled" Type="System.Boolean" Scope="User">
             <Value Profile="(Default)">True</Value>
         </Setting>
-        <Setting Name="VpnAcceleratorNotificationsEnabled" Type="System.Boolean" Scope="User">
-            <Value Profile="(Default)">True</Value>
-        </Setting>
         <Setting Name="FeatureVpnAcceleratorEnabled" Type="System.Boolean" Scope="User">
             <Value Profile="(Default)">True</Value>
         </Setting>
         <Setting Name="FeatureStreamingServicesLogosEnabled" Type="System.Boolean" Scope="User">
+            <Value Profile="(Default)">False</Value>
+        </Setting>
+        <Setting Name="FeatureSmartReconnectEnabled" Type="System.Boolean" Scope="User">
+            <Value Profile="(Default)">True</Value>
+        </Setting>
+        <Setting Name="SmartReconnectEnabled" Type="System.Boolean" Scope="User">
+            <Value Profile="(Default)">True</Value>
+        </Setting>
+        <Setting Name="SmartReconnectNotificationsEnabled" Type="System.Boolean" Scope="User">
             <Value Profile="(Default)">False</Value>
         </Setting>
     </Settings>

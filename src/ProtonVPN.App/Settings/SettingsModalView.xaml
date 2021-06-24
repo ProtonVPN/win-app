@@ -68,9 +68,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <Style x:Key="BorderlessSettingContainer" TargetType="Border" BasedOn="{StaticResource BorderSettingContainer}">
                         <Setter Property="BorderThickness" Value="0,0,0,0"/>
                     </Style>
-                    <Style x:Key="DoubleBorderSettingContainer" TargetType="Border" BasedOn="{StaticResource BorderSettingContainer}">
-                        <Setter Property="BorderThickness" Value="0,1,0,1"/>
-                    </Style>
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
@@ -136,17 +133,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </DockPanel>
                     </Border>
 
-                    <Border Height="32">
-                        <Border.Style>
-                            <Style TargetType="Border" BasedOn="{StaticResource BorderlessSettingContainer}">
-                                <Setter Property="Margin" Value="0,4,0,4"/>
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding IsVpnAcceleratorFeatureEnabled}" Value="True">
-                                        <Setter Property="Margin" Value="0,4,0,0"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Border.Style>
+                    <Border Style="{StaticResource BorderSettingContainer}">
                         <DockPanel>
                             <Label VerticalAlignment="Center" Foreground="White" FontSize="16" 
                                    Content="{translations:Loc Settings_General_lbl_ShowNotifications}"/>
@@ -158,30 +145,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </DockPanel>
                     </Border>
 
-                    <Border Style="{StaticResource BorderlessSettingContainer}" Padding="0,0,0,4" 
-                            Visibility="{Binding IsVpnAcceleratorFeatureEnabled, Converter={StaticResource BoolToVis}}">
-                        <DockPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock  Foreground="#464652" FontSize="32" VerticalAlignment="Bottom" Margin="0,0,0,0" Text="└" />
-                                <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Margin="5,0,0,0" 
-                                       Content="{translations:Loc Settings_Connection_lbl_VpnAcceleratorNotifications}"/>
-                                <fa:FontAwesome Icon="InfoCircle"
-                                                VerticalAlignment="Center"
-                                                ToolTip="{translations:Loc Settings_Connection_lbl_VpnAcceleratorNotifications_Info}"
-                                                Foreground="{StaticResource PrimaryColor}"
-                                                FontSize="16"/>
-                            </StackPanel>
-
-                            <CheckBox Style="{StaticResource ToggleSwitch}"
-                                      Margin="0,0,14,0"
-                                      HorizontalAlignment="Right"
-                                      IsChecked="{Binding VpnAcceleratorNotifications}"
-                                      IsEnabled="{Binding IsVpnAcceleratorNotificationsEditable}"
-                                      AutomationProperties.AutomationId="{StaticResource VpnAcceleratorNotificationsCheckbox}"/>
-                        </DockPanel>
-                    </Border>
-
-                    <Border Style="{StaticResource DoubleBorderSettingContainer}">
+                    <Border Style="{StaticResource BorderlessSettingContainer}">
                         <DockPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label VerticalAlignment="Center" Foreground="White" FontSize="16" 
@@ -276,7 +240,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </DockPanel>
                     </Border>
 
-                    <Border Style="{StaticResource BorderSettingContainer}" 
+                    <Border Style="{StaticResource BorderlessSettingContainer}" Margin="0,4,0,0"
                             Visibility="{Binding IsVpnAcceleratorFeatureEnabled, Converter={StaticResource BoolToVis}}">
                         <DockPanel>
                             <StackPanel Orientation="Horizontal">
@@ -297,7 +261,61 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </DockPanel>
                     </Border>
 
-                    <Border Style="{StaticResource BorderlessSettingContainer}">
+                    <Border Style="{StaticResource BorderlessSettingContainer}" Padding="0,0,0,4" 
+                            Visibility="{Binding IsToShowSmartReconnect, Converter={StaticResource BoolToVis}}">
+                        <DockPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Foreground="#464652" FontSize="32" VerticalAlignment="Bottom" Margin="0,0,0,0" Text="└" />
+                                <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Margin="5,0,0,0"
+                                       Content="{translations:Loc Settings_Connection_lbl_SmartReconnect}"/>
+                                <fa:FontAwesome Icon="InfoCircle"
+                                                VerticalAlignment="Center"
+                                                ToolTip="{translations:Loc Settings_Connection_lbl_SmartReconnect_Info}"
+                                                Foreground="{StaticResource PrimaryColor}"
+                                                FontSize="16"/>
+                            </StackPanel>
+
+                            <CheckBox Style="{StaticResource ToggleSwitch}"
+                                      Margin="0,0,14,0"
+                                      HorizontalAlignment="Right"
+                                      IsChecked="{Binding SmartReconnect}"
+                                      AutomationProperties.AutomationId="{StaticResource SmartReconnectCheckbox}"/>
+                        </DockPanel>
+                    </Border>
+
+                    <Border Style="{StaticResource BorderlessSettingContainer}" Padding="0,0,0,4" 
+                            Visibility="{Binding IsToShowSmartReconnectNotifications, Converter={StaticResource BoolToVis}}">
+                        <DockPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock  Foreground="#464652" FontSize="32" VerticalAlignment="Bottom" Margin="0,0,0,0" Text="└" />
+                                <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Margin="5,0,0,0" 
+                                       Content="{translations:Loc Settings_Connection_lbl_SmartReconnectNotifications}"/>
+                                <fa:FontAwesome Icon="InfoCircle"
+                                                VerticalAlignment="Center"
+                                                ToolTip="{translations:Loc Settings_Connection_lbl_SmartReconnectNotifications_Info}"
+                                                Foreground="{StaticResource PrimaryColor}"
+                                                FontSize="16"/>
+                            </StackPanel>
+
+                            <CheckBox Style="{StaticResource ToggleSwitch}"
+                                      Margin="0,0,14,0"
+                                      HorizontalAlignment="Right"
+                                      IsChecked="{Binding SmartReconnectNotifications}"
+                                      IsEnabled="{Binding IsSmartReconnectNotificationsEditable}"
+                                      AutomationProperties.AutomationId="{StaticResource SmartReconnectNotificationsCheckbox}"/>
+                        </DockPanel>
+                    </Border>
+
+                    <Border>
+                        <Border.Style>
+                            <Style TargetType="Border" BasedOn="{StaticResource BorderlessSettingContainer}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsToShowSmartReconnectNotifications}" Value="True">
+                                        <Setter Property="BorderThickness" Value="0,1,0,0"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
                         <DockPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Foreground="White" FontSize="16" VerticalAlignment="Center" 

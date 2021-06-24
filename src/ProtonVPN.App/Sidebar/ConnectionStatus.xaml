@@ -322,7 +322,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             </Grid.ColumnDefinitions>
                             <TextBlock Grid.Column="0"
                                        Style="{StaticResource FeatureTitleText}"
-                                       Text="{translations:Loc Tooltips_VpnAcceleratorReconnection_Title}" />
+                                       Text="{translations:Loc Tooltips_SmartReconnection_Title}" />
                             <Button Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Right" Width="20" Height="20"
                                     Command="{Binding CloseVpnAcceleratorReconnectionPopupCommand}"
                                     Style="{StaticResource WindowsCloseButton}"/>
@@ -330,7 +330,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <TextBlock Style="{StaticResource FeatureInfoText}" 
                                    Margin="0,8,0,0" 
                                    Width="{Binding ActualWidth, ElementName=ReconnectionComponent}"
-                                   Text="{translations:Loc Tooltips_VpnAcceleratorReconnection_Description}" />
+                                   Text="{translations:Loc Tooltips_SmartReconnection_Description}" />
 
                         <Border x:Name="ReconnectionComponent" 
                                 HorizontalAlignment="Left" 
@@ -411,7 +411,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <Button Style="{StaticResource ClickableText}" 
                                 Margin="0,15,0,0" 
                                 Command="{Binding OpenNotificationSettingsCommand}">
-                            <Run Text="{translations:Loc Tooltips_VpnAcceleratorReconnection_btn_NotificationSettings}"/>
+                            <Run Text="{translations:Loc Tooltips_SmartReconnection_btn_NotificationSettings}"/>
                         </Button>
                     </StackPanel>
                 </Border>

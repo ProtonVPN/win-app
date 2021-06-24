@@ -221,7 +221,6 @@ namespace ProtonVPN.Core.Service.Vpn
 
         private async Task ExecuteConnectToPreSortedCandidatesAsync(ServerCandidates sortedCandidates, Protocol protocol)
         {
-            LastProfile = null;
             LastServerCandidates = sortedCandidates;
             await _profileConnector.ConnectWithPreSortedCandidates(sortedCandidates, protocol);
         }
