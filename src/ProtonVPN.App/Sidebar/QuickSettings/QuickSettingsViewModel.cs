@@ -231,7 +231,9 @@ namespace ProtonVPN.Sidebar.QuickSettings
 
         public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
         {
-            if (e.State.Status == VpnStatus.Connecting || e.State.Status == VpnStatus.Reconnecting)
+            if (e.State.Status == VpnStatus.Pinging || 
+                e.State.Status == VpnStatus.Connecting || 
+                e.State.Status == VpnStatus.Reconnecting)
             {
                 ShowSecureCorePopup = false;
                 ShowNetShieldPopup = false;

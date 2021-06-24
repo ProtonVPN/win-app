@@ -221,6 +221,10 @@
     <value>Upgrade</value>
     <comment>The text on Upgrade button in Upgrade Required Upsell window (opens web page for subscription plan upgrade)</comment>
   </data>
+  <data name="Connecting_VpnStatus_val_Pinging" xml:space="preserve">
+    <value>Waiting for a usable network...</value>
+    <comment>The VPN status displayed in Pinging overlay of main app window</comment>
+  </data>
   <data name="Connecting_VpnStatus_val_Connecting" xml:space="preserve">
     <value>Initializing Connection</value>
     <comment>The VPN status displayed in Connecting overlay of main app window</comment>

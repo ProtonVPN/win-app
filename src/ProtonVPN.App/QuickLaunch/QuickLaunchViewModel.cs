@@ -160,6 +160,7 @@ namespace ProtonVPN.QuickLaunch
                     Connecting = false;
                     Disconnected = false;
                     break;
+                case VpnStatus.Pinging:
                 case VpnStatus.Connecting:
                 case VpnStatus.Reconnecting:
                     ServerName = server.Name;

@@ -975,6 +975,15 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Waiting for a usable network....
+        /// </summary>
+        public static string Connecting_VpnStatus_val_Pinging {
+            get {
+                return ResourceManager.GetString("Connecting_VpnStatus_val_Pinging", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Establishing VPN tunnel.
         /// </summary>
         public static string Connecting_VpnStatus_val_RetrievingConfiguration {

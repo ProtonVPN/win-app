@@ -178,7 +178,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                            VerticalAlignment="Center"
                            Visibility="{c:Binding 'FailedConnectionName.IsSecureCore'}" />
             </wpf:AlignableWrapPanel>
-            <wpf:AlignableWrapPanel HorizontalAlignment="Center" Margin="0,5,0,0" HorizontalContentAlignment="Center">
+            <wpf:AlignableWrapPanel HorizontalAlignment="Center" 
+                                    Margin="0,5,0,0" 
+                                    HorizontalContentAlignment="Center"
+                                    Visibility="{Binding IsConnectionNameNotNull, Converter={StaticResource BoolToVis}}">
                 <TextBlock Padding="0"
                            TextTrimming="CharacterEllipsis"
                            Text="{translations:Loc Connecting_lbl_ConnectingTo_1}"

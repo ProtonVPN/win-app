@@ -77,7 +77,8 @@ namespace ProtonVPN.Core
             _disconnected = status == VpnStatus.Disconnected;
             _connected = status == VpnStatus.Connected;
 
-            if ((status == VpnStatus.Connecting || 
+            if ((status == VpnStatus.Pinging || 
+                 status == VpnStatus.Connecting || 
                  status == VpnStatus.Reconnecting || 
                  status == VpnStatus.Disconnected) && 
                 _networkAddressChanged)

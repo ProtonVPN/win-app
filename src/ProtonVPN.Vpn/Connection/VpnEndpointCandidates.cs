@@ -108,9 +108,14 @@ namespace ProtonVPN.Vpn.Connection
             return _all.Contains(endpoint.Server);
         }
 
-        public int Count()
+        public int CountHosts()
         {
             return _all.Count;
+        }
+
+        public int CountIPs()
+        {
+            return _all.GroupBy(h => h.Ip).Count();
         }
     }
 }

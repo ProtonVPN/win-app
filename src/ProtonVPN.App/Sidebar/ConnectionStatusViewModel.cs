@@ -227,6 +227,7 @@ namespace ProtonVPN.Sidebar
                         _timer.Start();
                     }
                     break;
+                case VpnStatus.Pinging:
                 case VpnStatus.Connecting:
                 case VpnStatus.Reconnecting:
                 case VpnStatus.Disconnected:

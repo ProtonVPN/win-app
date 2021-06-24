@@ -22,6 +22,7 @@ namespace ProtonVPN.Common.Vpn
     public enum VpnStatus
     {
         Disconnected,
+        Pinging,
         Connecting,
         Reconnecting,
         Waiting,

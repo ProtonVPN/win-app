@@ -28,6 +28,9 @@ namespace ProtonVPN.Service.Contract.Vpn
         Disconnected,
 
         [EnumMember]
+        Pinging,
+
+        [EnumMember]
         Connecting,
 
         [EnumMember]

@@ -119,17 +119,10 @@ namespace ProtonVPN.Vpn.Connection
 
         private async Task PingAndConnectAsync()
         {
-            int numOfEndpoints = _candidates.Count();
-            if (numOfEndpoints > 1)
-            {
-                _logger.Info($"Multiple VPN endpoints ({numOfEndpoints} endpoints). Scanning for availability.");
-                await PingServersBeforeAttemptingConnectionsAsync();
-            }
-            else
-            {
-                _logger.Info("Single VPN endpoint. Attempting connection.");
-                ConnectToNextEndpoint();
-            }
+            int numOfEndpoints = _candidates.CountHosts();
+            int numOfUniqueIPs = _candidates.CountIPs();
+            _logger.Info($"Scanning for availability ({numOfEndpoints} endpoints with {numOfUniqueIPs} different IP addresses).");
+            await PingServersBeforeAttemptingConnectionsAsync();
         }
 
         private void DisconnectIfNotDisconnected()
@@ -172,7 +165,7 @@ namespace ProtonVPN.Vpn.Connection
                     break;
                 }
 
-                OnStateChanged(new VpnState(VpnStatus.Reconnecting, VpnError.None, string.Empty, 
+                OnStateChanged(new VpnState(VpnStatus.Pinging, VpnError.None, string.Empty, 
                     endpoint.Server.Ip, endpoint.Protocol, endpoint.Server.Label));
                 VpnEndpoint bestEndpoint = await _endpointScanner.ScanForBestEndpointAsync(endpoint, _config.Ports, cancellationToken);
                 isResponding = bestEndpoint.Port != 0;
@@ -297,7 +290,8 @@ namespace ProtonVPN.Vpn.Connection
         private bool Reconnecting(VpnState state)
         {
             return state.Status == VpnStatus.Reconnecting ||
-                   state.Status == VpnStatus.Connecting;
+                   state.Status == VpnStatus.Connecting ||
+                   state.Status == VpnStatus.Pinging;
         }
 
         private bool IsReconnectRequired(VpnState state)

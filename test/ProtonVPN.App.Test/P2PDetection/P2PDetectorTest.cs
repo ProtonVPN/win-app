@@ -101,6 +101,7 @@ namespace ProtonVPN.App.Test.P2PDetection
 
         [DataTestMethod]
         [DataRow(VpnStatus.Disconnected)]
+        [DataRow(VpnStatus.Pinging)]
         [DataRow(VpnStatus.Connecting)]
         [DataRow(VpnStatus.Waiting)]
         [DataRow(VpnStatus.Authenticating)]

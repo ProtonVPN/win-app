@@ -114,8 +114,6 @@ namespace ProtonVPN.Service.Vpn
                 return;
             }
 
-            InvokeConnecting();
-
             await _ipv6.EnableOnVPNInterfaceAsync();
 
             if (!_serviceSettings.Ipv6LeakProtection)
@@ -151,8 +149,6 @@ namespace ProtonVPN.Service.Vpn
 
             if (_connectRequested)
             {
-                InvokeConnecting();
-
                 return;
             }
 
@@ -224,15 +220,6 @@ namespace ProtonVPN.Service.Vpn
 
             await _ipv6Task;
             Queued(NetworkChanged);
-        }
-
-        private void InvokeConnecting()
-        {
-            VpnHost server = _servers.FirstOrDefault();
-            if (!server.IsEmpty())
-            {
-                InvokeStateChanged(new VpnState(VpnStatus.Connecting, VpnError.None, string.Empty, server.Ip, _protocol, server.Label));
-            }
         }
 
         private void InvokeStateChanged(VpnState state)

@@ -77,14 +77,17 @@ namespace ProtonVPN.Windows
 
         public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
         {
-            if (e.State.Status == VpnStatus.Connecting || e.State.Status == VpnStatus.Reconnecting)
+            if (e.State.Status == VpnStatus.Pinging || 
+                e.State.Status == VpnStatus.Connecting || 
+                e.State.Status == VpnStatus.Reconnecting)
             {
                 _nIcon.Icon = _notConnected.Value();
                 _connecting = true;
                 _timer.Start();
             }
 
-            if (e.State.Status == VpnStatus.Disconnecting || e.State.Status == VpnStatus.Disconnected)
+            if (e.State.Status == VpnStatus.Disconnecting || 
+                e.State.Status == VpnStatus.Disconnected)
             {
                 _timer.Stop();
                 _nIcon.Icon = _notConnected.Value();
