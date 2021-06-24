@@ -5980,6 +5980,42 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Auto Reconnection.
+        /// </summary>
+        public static string Settings_Connection_lbl_SmartReconnect {
+            get {
+                return ResourceManager.GetString("Settings_Connection_lbl_SmartReconnect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Switch automatically to a faster server similar to the one you selected..
+        /// </summary>
+        public static string Settings_Connection_lbl_SmartReconnect_Info {
+            get {
+                return ResourceManager.GetString("Settings_Connection_lbl_SmartReconnect_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reconnection notifications.
+        /// </summary>
+        public static string Settings_Connection_lbl_SmartReconnectNotifications {
+            get {
+                return ResourceManager.GetString("Settings_Connection_lbl_SmartReconnectNotifications", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Turn this on to receive notifications when VPN Accelerator connects you to a faster server..
+        /// </summary>
+        public static string Settings_Connection_lbl_SmartReconnectNotifications_Info {
+            get {
+                return ResourceManager.GetString("Settings_Connection_lbl_SmartReconnectNotifications_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to VPN Accelerator.
         /// </summary>
         public static string Settings_Connection_lbl_VpnAccelerator {
@@ -5994,24 +6030,6 @@ namespace ProtonVPN.Translations.Properties {
         public static string Settings_Connection_lbl_VpnAccelerator_Info {
             get {
                 return ResourceManager.GetString("Settings_Connection_lbl_VpnAccelerator_Info", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to VPN Accelerator Notifications.
-        /// </summary>
-        public static string Settings_Connection_lbl_VpnAcceleratorNotifications {
-            get {
-                return ResourceManager.GetString("Settings_Connection_lbl_VpnAcceleratorNotifications", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Be notified when ProtonVPN connects to a server other than the one you selected..
-        /// </summary>
-        public static string Settings_Connection_lbl_VpnAcceleratorNotifications_Info {
-            get {
-                return ResourceManager.GetString("Settings_Connection_lbl_VpnAcceleratorNotifications_Info", resourceCulture);
             }
         }
         
@@ -6738,27 +6756,27 @@ namespace ProtonVPN.Translations.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Notification Settings.
         /// </summary>
-        public static string Tooltips_VpnAcceleratorReconnection_btn_NotificationSettings {
+        public static string Tooltips_SmartReconnection_btn_NotificationSettings {
             get {
-                return ResourceManager.GetString("Tooltips_VpnAcceleratorReconnection_btn_NotificationSettings", resourceCulture);
+                return ResourceManager.GetString("Tooltips_SmartReconnection_btn_NotificationSettings", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to You have been switched to a faster server that is similar to the one you selected..
         /// </summary>
-        public static string Tooltips_VpnAcceleratorReconnection_Description {
+        public static string Tooltips_SmartReconnection_Description {
             get {
-                return ResourceManager.GetString("Tooltips_VpnAcceleratorReconnection_Description", resourceCulture);
+                return ResourceManager.GetString("Tooltips_SmartReconnection_Description", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to VPN Accelerator.
         /// </summary>
-        public static string Tooltips_VpnAcceleratorReconnection_Title {
+        public static string Tooltips_SmartReconnection_Title {
             get {
-                return ResourceManager.GetString("Tooltips_VpnAcceleratorReconnection_Title", resourceCulture);
+                return ResourceManager.GetString("Tooltips_SmartReconnection_Title", resourceCulture);
             }
         }
         

@@ -24,5 +24,6 @@ namespace ProtonVPN.Core.Service.Vpn
         public bool IsToReconnectIfDisconnected { get; set; }
         public bool IsToExcludeLastServer { get; set; }
         public bool IsToShowReconnectionPopup { get; set; }
+        public bool IsToForceSmartReconnect { get; set; }
     }
 }

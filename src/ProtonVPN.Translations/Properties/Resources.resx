@@ -3061,19 +3061,27 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   </data>
   <data name="Settings_Connection_lbl_VpnAccelerator" xml:space="preserve">
     <value>VPN Accelerator</value>
-    <comment>The label for VPN Accelerator toggle switch in Connection tab of Settings window</comment>
+    <comment>The label for VPN Accelerator toggle switch in Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_VpnAccelerator_Info" xml:space="preserve">
     <value>VPN Accelerator enables a set of unique performance enhancing technologies which can increase VPN speeds by up to 400%.</value>
-    <comment>The description of VPN Accelerator setting displayed in the tooltip of the ( i ) image next to the label for VPN Accelerator toggle switch in Connection tab of Settings window</comment>
+    <comment>The description of VPN Accelerator setting displayed in the tooltip of the ( i ) image next to the label in Settings window</comment>
   </data>
-  <data name="Settings_Connection_lbl_VpnAcceleratorNotifications" xml:space="preserve">
-    <value>VPN Accelerator Notifications</value>
-    <comment>The label for VPN Accelerator Notifications toggle switch in Connection tab of Settings window</comment>
+  <data name="Settings_Connection_lbl_SmartReconnect" xml:space="preserve">
+    <value>Auto Reconnection</value>
+    <comment>The label for Auto Reconnect toggle switch in Settings window</comment>
   </data>
-  <data name="Settings_Connection_lbl_VpnAcceleratorNotifications_Info" xml:space="preserve">
-    <value>Be notified when ProtonVPN connects to a server other than the one you selected.</value>
-    <comment>The description of VPN Accelerator Notifications setting displayed in the tooltip of the ( i ) image next to the label for VPN Accelerator Notifications toggle switch in Connection tab of Settings window</comment>
+  <data name="Settings_Connection_lbl_SmartReconnect_Info" xml:space="preserve">
+    <value>Switch automatically to a faster server similar to the one you selected.</value>
+    <comment>The description of Auto Reconnect setting displayed in the tooltip of the ( i ) image next to the label in Settings window</comment>
+  </data>
+  <data name="Settings_Connection_lbl_SmartReconnectNotifications" xml:space="preserve">
+    <value>Reconnection notifications</value>
+    <comment>The label for Smart Reconnect notifications toggle switch in the General tab of Settings window</comment>
+  </data>
+  <data name="Settings_Connection_lbl_SmartReconnectNotifications_Info" xml:space="preserve">
+    <value>Turn this on to receive notifications when VPN Accelerator connects you to a faster server.</value>
+    <comment>The description of the Smart Reconnect notifications setting displayed in the tooltip of the ( i ) image next to the label</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_Title" xml:space="preserve">
     <value>Your VPN subscription plan has expired</value>
@@ -3199,17 +3207,17 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>ProtonVPN detected that your current network is preventing a connection to the VPN. Enabling Smart Protocol might bypass these limitations.</value>
     <comment>The message displayed in the Enable Smart Protocol notification.</comment>
   </data>
-  <data name="Tooltips_VpnAcceleratorReconnection_Title" xml:space="preserve">
+  <data name="Tooltips_SmartReconnection_Title" xml:space="preserve">
     <value>VPN Accelerator</value>
-    <comment>The title of the VPN Accelerator reconnection tooltip</comment>
+    <comment>The title of the Auto Reconnection tooltip</comment>
   </data>
-  <data name="Tooltips_VpnAcceleratorReconnection_Description" xml:space="preserve">
+  <data name="Tooltips_SmartReconnection_Description" xml:space="preserve">
     <value>You have been switched to a faster server that is similar to the one you selected.</value>
-    <comment>The description of the VPN Accelerator reconnection tooltip</comment>
+    <comment>The description of the Auto Reconnection tooltip</comment>
   </data>
-  <data name="Tooltips_VpnAcceleratorReconnection_btn_NotificationSettings" xml:space="preserve">
+  <data name="Tooltips_SmartReconnection_btn_NotificationSettings" xml:space="preserve">
     <value>Notification Settings</value>
-    <comment>The text button of the VPN Accelerator reconnection tooltip that opens the Notification Settings</comment>
+    <comment>The text button of the Auto Reconnection tooltip that opens the Notification Settings</comment>
   </data>
   <data name="Dialogs_HumanVerification_ttl" xml:space="preserve">
     <value>Human verification</value>

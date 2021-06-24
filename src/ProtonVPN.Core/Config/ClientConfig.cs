@@ -104,8 +104,13 @@ namespace ProtonVPN.Core.Config
                     {
                         _appSettings.BlackHoleIps = response.Value.HolesIps;
                     }
+                    
+                    bool vpnAcceleratorFeatureFlag = response.Value.FeatureFlags.VpnAccelerator ?? true;
+                    _appSettings.FeatureVpnAcceleratorEnabled = vpnAcceleratorFeatureFlag;
 
-                    _appSettings.FeatureVpnAcceleratorEnabled = response.Value.FeatureFlags.VpnAccelerator ?? true;
+                    bool smartReconnectFeatureFlag = response.Value.FeatureFlags.SmartReconnect ?? true;
+                    _appSettings.FeatureSmartReconnectEnabled = vpnAcceleratorFeatureFlag && smartReconnectFeatureFlag;
+
                     _appSettings.FeatureStreamingServicesLogosEnabled = response.Value.FeatureFlags.StreamingServicesLogos ?? true;
                 }
             }

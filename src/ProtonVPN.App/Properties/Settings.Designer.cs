@@ -1328,18 +1328,6 @@ namespace ProtonVPN.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool VpnAcceleratorNotificationsEnabled {
-            get {
-                return ((bool)(this["VpnAcceleratorNotificationsEnabled"]));
-            }
-            set {
-                this["VpnAcceleratorNotificationsEnabled"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool FeatureVpnAcceleratorEnabled {
             get {
                 return ((bool)(this["FeatureVpnAcceleratorEnabled"]));
@@ -1358,6 +1346,42 @@ namespace ProtonVPN.Properties {
             }
             set {
                 this["FeatureStreamingServicesLogosEnabled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool FeatureSmartReconnectEnabled {
+            get {
+                return ((bool)(this["FeatureSmartReconnectEnabled"]));
+            }
+            set {
+                this["FeatureSmartReconnectEnabled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool SmartReconnectEnabled {
+            get {
+                return ((bool)(this["SmartReconnectEnabled"]));
+            }
+            set {
+                this["SmartReconnectEnabled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool SmartReconnectNotificationsEnabled {
+            get {
+                return ((bool)(this["SmartReconnectNotificationsEnabled"]));
+            }
+            set {
+                this["SmartReconnectNotificationsEnabled"] = value;
             }
         }
     }
