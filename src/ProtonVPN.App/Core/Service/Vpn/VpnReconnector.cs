@@ -56,6 +56,7 @@ namespace ProtonVPN.Core.Service.Vpn
         private readonly Lazy<ConnectionStatusViewModel> _connectionStatusViewModel;
         private readonly ServerManager _serverManager;
         private readonly Lazy<ServerConnector> _serverConnector;
+        private readonly Lazy<ProfileConnector> _profileConnector;
 
         private VpnReconnectionSteps _reconnectionStep;
         private Server _lastConnectedServer;
@@ -74,7 +75,8 @@ namespace ProtonVPN.Core.Service.Vpn
             Common.Configuration.Config config,
             Lazy<ConnectionStatusViewModel> connectionStatusViewModel, 
             ServerManager serverManager, 
-            Lazy<ServerConnector> serverConnector)
+            Lazy<ServerConnector> serverConnector, 
+            Lazy<ProfileConnector> profileConnector)
         {
             _appSettings = appSettings;
             _similarServerCandidatesGenerator = similarServerCandidatesGenerator;
@@ -88,6 +90,7 @@ namespace ProtonVPN.Core.Service.Vpn
             _connectionStatusViewModel = connectionStatusViewModel;
             _serverManager = serverManager;
             _serverConnector = serverConnector;
+            _profileConnector = profileConnector;
         }
 
         public async Task ReconnectAsync(Server lastServer, Profile lastProfile, VpnReconnectionSettings settings = null)
@@ -334,6 +337,7 @@ namespace ProtonVPN.Core.Service.Vpn
                    !previousServer.IsNullOrEmpty() && 
                    !currentServer.IsNullOrEmpty() &&
                    !previousServer.Equals(currentServer) &&
+                   !_profileConnector.Value.IsServerFromProfile(currentServer, _vpnConnector.LastProfile) &&
                    !_popups.IsOpen<DelinquencyPopupViewModel>() &&
                    !_popups.IsOpen<SubscriptionExpiredPopupViewModel>();
         }
