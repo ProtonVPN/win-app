@@ -85,6 +85,17 @@ namespace ProtonVPN.Vpn.Connectors
             _delinquencyPopupViewModel = delinquencyPopupViewModel;
         }
 
+        public bool IsServerFromProfile(Server server, Profile profile)
+        {
+            if (server == null || profile == null)
+            {
+                return false;
+            }
+
+            Specification<LogicalServerContract> serverSpec = ProfileServerSpec(profile);
+            return _serverManager.IsServerFromSpec(server, serverSpec);
+        }
+
         public ServerCandidates ServerCandidates(Profile profile)
         {
             if (profile == null)

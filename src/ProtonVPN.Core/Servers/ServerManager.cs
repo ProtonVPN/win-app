@@ -47,6 +47,11 @@ namespace ProtonVPN.Core.Servers
             _servers = servers;
         }
 
+        public bool IsServerFromSpec(Server server, ISpecification<LogicalServerContract> spec)
+        {
+            return _servers.Where(s => s.Id == server.Id).Where(spec.IsSatisfiedBy).Any();
+        }
+
         public void Load(IReadOnlyCollection<LogicalServerContract> servers)
         {
             Ensure.NotEmpty(servers, nameof(servers));
