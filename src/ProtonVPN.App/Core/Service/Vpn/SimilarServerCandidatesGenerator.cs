@@ -51,45 +51,53 @@ namespace ProtonVPN.Core.Service.Vpn
         }
 
         public ServerCandidates Generate(bool isToIncludeOriginalServer, 
-            Server originalServer = null, Profile baseProfile = null)
+            Server originalServer = null, Profile originalProfile = null)
         {
-            IList<Server> similarServers = GenerateList(isToIncludeOriginalServer, originalServer, baseProfile);
+            IList<Server> similarServers = GenerateList(isToIncludeOriginalServer, originalServer, originalProfile);
             return CreateServerCandidates(similarServers);
         }
 
         public IList<Server> GenerateList(bool isToIncludeOriginalServer, 
-            Server originalServer = null, Profile baseProfile = null)
+            Server originalServer = null, Profile originalProfile = null)
         {
             if (originalServer == null || originalServer.IsEmpty())
             {
-                if (baseProfile == null)
+                if (originalProfile == null)
                 {
                     return new List<Server>();
                 }
 
-                if (baseProfile.ProfileType == ProfileType.Custom)
+                if (originalProfile.ProfileType == ProfileType.Custom)
                 {
-                    originalServer = _serverManager.GetServer(new ServerById(baseProfile.ServerId));
+                    originalServer = _serverManager.GetServer(new ServerById(originalProfile.ServerId));
                 }
             }
 
-            baseProfile = CreateProfile(originalServer);
-            
-            return GetSimilarServers(isToIncludeOriginalServer, originalServer, baseProfile);
+            if (originalProfile != null && string.IsNullOrEmpty(originalProfile.ServerId))
+            {
+                originalServer = null;
+            }
+
+            Profile profile = CreateProfile(originalServer, originalProfile);
+            return GetSimilarServers(isToIncludeOriginalServer, originalServer, profile);
         }
 
-        private Profile CreateProfile(Server originalServer)
+        private Profile CreateProfile(Server originalServer, Profile originalProfile)
         {
-            Profile profile = new()
+            Profile profile = originalProfile;
+            if (originalProfile == null || !string.IsNullOrEmpty(originalProfile.ServerId))
             {
-                Protocol = Protocol.Auto,
-                ProfileType = ProfileType.Fastest,
-                Features = (Features)(originalServer?.Features ?? (sbyte)Features.None),
-                EntryCountryCode = originalServer?.EntryCountry,
-                CountryCode = originalServer?.ExitCountry,
-                City = originalServer?.City,
-                ExactTier = originalServer == null ? null : (sbyte)originalServer.Tier
-            };
+                profile = new()
+                {
+                    Protocol = Protocol.Auto,
+                    ProfileType = ProfileType.Fastest,
+                    Features = (Features)(originalServer?.Features ?? (sbyte)Features.None),
+                    EntryCountryCode = originalServer?.EntryCountry,
+                    CountryCode = originalServer?.ExitCountry,
+                    City = originalServer?.City,
+                    ExactTier = originalServer == null ? null : (sbyte)originalServer.Tier
+                };
+            }
 
             if ((profile.Features & Features.SecureCore) > 0 != _appSettings.SecureCore)
             {
