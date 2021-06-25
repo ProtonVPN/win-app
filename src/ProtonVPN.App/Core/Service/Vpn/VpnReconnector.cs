@@ -332,7 +332,7 @@ namespace ProtonVPN.Core.Service.Vpn
         private bool IsToShowVpnAcceleratorReconnectionPopup(Server previousServer, Server currentServer)
         {
             return _isToShowReconnectionPopup &&
-                   _appSettings.ShowNotifications &&
+                   _appSettings.IsSmartReconnectNotificationsEnabled() &&
                    _reconnectionStep > VpnReconnectionSteps.UserChoice &&
                    !previousServer.IsNullOrEmpty() && 
                    !currentServer.IsNullOrEmpty() &&
