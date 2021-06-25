@@ -26,7 +26,7 @@ namespace ProtonVPN.Core.Service.Vpn
 {
     public interface ISimilarServerCandidatesGenerator
     {
-        ServerCandidates Generate(bool isToIncludeOriginalServer, Server originalServer = null, Profile baseProfile = null);
-        IList<Server> GenerateList(bool isToIncludeOriginalServer, Server originalServer = null, Profile baseProfile = null);
+        ServerCandidates Generate(bool isToIncludeOriginalServer, Server originalServer = null, Profile originalProfile = null);
+        IList<Server> GenerateList(bool isToIncludeOriginalServer, Server originalServer = null, Profile originalProfile = null);
     }
 }
