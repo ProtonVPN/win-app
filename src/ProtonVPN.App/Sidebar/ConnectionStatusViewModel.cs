@@ -383,7 +383,7 @@ namespace ProtonVPN.Sidebar
         private void OpenNotificationSettingsAction()
         {
             CloseVpnAcceleratorReconnectionPopupAction();
-            _settingsModalViewModel.OpenGeneralTab();
+            _settingsModalViewModel.OpenConnectionTab();
             _modals.Show<SettingsModalViewModel>();
         }
     }
