@@ -287,7 +287,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             Visibility="{Binding IsToShowSmartReconnectNotifications, Converter={StaticResource BoolToVis}}">
                         <DockPanel>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock  Foreground="#464652" FontSize="32" VerticalAlignment="Bottom" Margin="0,0,0,0" Text="└" />
+                                <TextBlock Foreground="#464652" FontSize="32" VerticalAlignment="Bottom" Margin="0,0,0,0" Text="└" />
                                 <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Margin="5,0,0,0" 
                                        Content="{translations:Loc Settings_Connection_lbl_SmartReconnectNotifications}"/>
                                 <fa:FontAwesome Icon="InfoCircle"
