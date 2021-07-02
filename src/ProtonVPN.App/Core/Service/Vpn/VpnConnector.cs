@@ -32,9 +32,7 @@ using ProtonVPN.Core.Servers.Models;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.User;
 using ProtonVPN.Core.Vpn;
-using ProtonVPN.Core.Window.Popups;
 using ProtonVPN.Vpn.Connectors;
-using ProtonVPN.Windows.Popups;
 using Sentry;
 using Sentry.Protocol;
 
@@ -47,10 +45,7 @@ namespace ProtonVPN.Core.Service.Vpn
         private readonly IAppSettings _appSettings;
         private readonly GuestHoleState _guestHoleState;
         private readonly IUserStorage _userStorage;
-        private readonly INetworkInterfaceLoader _networkInterfaceLoader; 
-        private readonly IPopupWindows _popupWindows;
-
-        private bool _tunChangedToTap;
+        private readonly INetworkInterfaceLoader _networkInterfaceLoader;
 
         public Profile LastProfile { get; private set; }
         public ServerCandidates LastServerCandidates { get; private set; }
@@ -66,8 +61,7 @@ namespace ProtonVPN.Core.Service.Vpn
             IAppSettings appSettings, 
             GuestHoleState guestHoleState, 
             IUserStorage userStorage,
-            INetworkInterfaceLoader networkInterfaceLoader, 
-            IPopupWindows popupWindows)
+            INetworkInterfaceLoader networkInterfaceLoader)
         {
             _profileConnector = profileConnector;
             _profileManager = profileManager;
@@ -75,7 +69,6 @@ namespace ProtonVPN.Core.Service.Vpn
             _guestHoleState = guestHoleState;
             _userStorage = userStorage;
             _networkInterfaceLoader = networkInterfaceLoader;
-            _popupWindows = popupWindows;
             LastServerCandidates = _profileConnector.ServerCandidates(null);
         }
 
@@ -127,10 +120,19 @@ namespace ProtonVPN.Core.Service.Vpn
             if (tunInterface == null && _appSettings.UseTunAdapter)
             {
                 _appSettings.UseTunAdapter = false;
-                _tunChangedToTap = true;
+                SendTunFallbackEvent();
             }
 
             await connectionFunction();
+        }
+
+        private void SendTunFallbackEvent()
+        {
+            SentrySdk.CaptureEvent(new SentryEvent
+            {
+                Message = "TUN adapter not found. Adapter changed to TAP.",
+                Level = SentryLevel.Info,
+            });
         }
 
         private async Task ExecuteConnectToBestProfileAsync(Profile profile, Profile fallbackProfile = null, int? maxServers = null)
@@ -244,7 +246,6 @@ namespace ProtonVPN.Core.Service.Vpn
             }
 
             SetPropertiesOnVpnStateChanged(e);
-            SetAdapterStatusOnVpnStateChanged(e);
         }
 
         private void SetPropertiesOnVpnStateChanged(VpnStateChangedEventArgs e)
@@ -258,30 +259,6 @@ namespace ProtonVPN.Core.Service.Vpn
             NetworkBlocked = e.NetworkBlocked;
 
             RaiseVpnStateChanged(new VpnStateChangedEventArgs(State, e.Error, e.NetworkBlocked, e.Protocol));
-        }
-
-        private void SetAdapterStatusOnVpnStateChanged(VpnStateChangedEventArgs e)
-        {
-            switch (e.State.Status)
-            {
-                case VpnStatus.Connected when _tunChangedToTap:
-                    _tunChangedToTap = false;
-                    SendTunFallbackEvent();
-                    _popupWindows.Show<TunFallbackPopupViewModel>();
-                    break;
-                case VpnStatus.Disconnected:
-                    _tunChangedToTap = false;
-                    break;
-            }
-        }
-
-        private void SendTunFallbackEvent()
-        {
-            SentrySdk.CaptureEvent(new SentryEvent
-            {
-                Message = "Successful TAP connection after failed with TUN.",
-                Level = SentryLevel.Info,
-            });
         }
 
         private void RaiseVpnStateChanged(VpnStateChangedEventArgs e)

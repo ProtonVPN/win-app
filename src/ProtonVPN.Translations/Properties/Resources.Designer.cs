@@ -4117,24 +4117,6 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Open Settings.
-        /// </summary>
-        public static string Dialogs_TunFallback_btn_OpenSettings {
-            get {
-                return ResourceManager.GetString("Dialogs_TunFallback_btn_OpenSettings", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ProtonVPN uses the TUN adapter by default for improved performance, but it is not responding correctly. You are therefore now using the TAP adapter. You can switch between TAP and TUN in the Advanced Settings..
-        /// </summary>
-        public static string Dialogs_TunFallback_msg {
-            get {
-                return ResourceManager.GetString("Dialogs_TunFallback_msg", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Switch to TAP.
         /// </summary>
         public static string Dialogs_TunInUse_btn_SwitchToTap {
@@ -4734,51 +4716,6 @@ namespace ProtonVPN.Translations.Properties {
         public static string Onboarding_ttl_Step_4 {
             get {
                 return ResourceManager.GetString("Onboarding_ttl_Step_4", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Report this problem.
-        /// </summary>
-        public static string Popup_TunFallback_btn_ReportProblem {
-            get {
-                return ResourceManager.GetString("Popup_TunFallback_btn_ReportProblem", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to An error occurred, please try again later..
-        /// </summary>
-        public static string Popup_TunFallback_lbl_FailedToSend {
-            get {
-                return ResourceManager.GetString("Popup_TunFallback_lbl_FailedToSend", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Sending report....
-        /// </summary>
-        public static string Popup_TunFallback_lbl_SendingReport {
-            get {
-                return ResourceManager.GetString("Popup_TunFallback_lbl_SendingReport", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Report sent successfully..
-        /// </summary>
-        public static string Popup_TunFallback_lbl_SentSuccessfully {
-            get {
-                return ResourceManager.GetString("Popup_TunFallback_lbl_SentSuccessfully", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The ProtonVPN TUN adapter provides improved performance, but it is not responding correctly.&lt;LineBreak/&gt;&lt;LineBreak/&gt;Therefore, TAP adapter is now set as default.&lt;LineBreak/&gt;&lt;LineBreak/&gt;You can switch between TAP and TUN in the &lt;Hyperlink Command=&quot;{Binding OpenAdvancedSettingsCommand}&quot;&gt;Advanced Settings.&lt;/Hyperlink&gt;.
-        /// </summary>
-        public static string Popup_TunFallback_msg {
-            get {
-                return ResourceManager.GetString("Popup_TunFallback_msg", resourceCulture);
             }
         }
         
@@ -5800,7 +5737,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TUN adapter (beta).
+        ///   Looks up a localized string similar to TUN adapter.
         /// </summary>
         public static string Settings_Advanced_lbl_Tun {
             get {
