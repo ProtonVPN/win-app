@@ -415,10 +415,6 @@
       <DependentUpon>SubscriptionExpiredPopupView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\Popups\SubscriptionExpiration\SubscriptionExpiredPopupViewModel.cs" />
-    <Compile Include="Windows\Popups\TunFallbackPopupView.xaml.cs">
-      <DependentUpon>TunFallbackPopupView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\Popups\TunFallbackPpupViewModel.cs" />
     <Compile Include="Modals\Welcome\BaseWelcomeModalViewModel.cs" />
     <Compile Include="Modals\Welcome\NonTrialWelcomeModalView.xaml.cs">
       <DependentUpon>NonTrialWelcomeModalView.xaml</DependentUpon>
@@ -1007,10 +1003,6 @@
     <Page Include="Views\Icons\P2P.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Windows\Popups\TunFallbackPopupView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Windows\Popups\Upsell\EnjoyingUpsellPopupView.xaml">
       <SubType>Designer</SubType>

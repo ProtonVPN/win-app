@@ -332,8 +332,8 @@ namespace ProtonVPN.Settings
 
         public List<KeyValuePair<NetworkAdapter, string>> NetworkDrivers => new()
         {
-            new KeyValuePair<NetworkAdapter, string>(NetworkAdapter.Tap, Translation.Get("Settings_Advanced_lbl_Tap")),
             new KeyValuePair<NetworkAdapter, string>(NetworkAdapter.Tun, Translation.Get("Settings_Advanced_lbl_Tun")),
+            new KeyValuePair<NetworkAdapter, string>(NetworkAdapter.Tap, Translation.Get("Settings_Advanced_lbl_Tap")),
         };
 
         public NetworkAdapter SelectedNetworkDriver
