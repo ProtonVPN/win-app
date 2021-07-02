@@ -104,7 +104,7 @@ namespace ProtonVPN.Core.Service.Vpn
                 return;
             }
             
-            if (_appSettings.IsSmartReconnectEnabled() || settings.IsToForceSmartReconnect)
+            if (_appSettings.IsSmartReconnectEnabled() || settings.IsToForceSmartReconnect || HasSecureCoreChanged(lastProfile, lastServer))
             {
                 await SmartReconnectAsync(lastServer, lastProfile, settings);
             }
@@ -112,6 +112,12 @@ namespace ProtonVPN.Core.Service.Vpn
             {
                 await NonSmartReconnectAsync(lastServer, lastProfile);
             }
+        }
+
+        private bool HasSecureCoreChanged(Profile lastProfile, Server lastServer)
+        {
+            return (lastProfile != null && (lastProfile.Features & Features.SecureCore) > 0 != _appSettings.SecureCore) || 
+                   (lastProfile == null && lastServer != null && lastServer.IsSecureCore() != _appSettings.SecureCore);
         }
 
         private async Task NonSmartReconnectAsync(Server lastServer, Profile lastProfile)

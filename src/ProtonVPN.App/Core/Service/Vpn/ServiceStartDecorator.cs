@@ -25,6 +25,7 @@ using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.OS.Services;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Modals;
+using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Modals;
 using TimeoutException = System.TimeoutException;
@@ -81,9 +82,14 @@ namespace ProtonVPN.Core.Service.Vpn
             }
         }
 
-        public void RegisterCallback(Action<VpnStateChangedEventArgs> onVpnStateChanged)
+        public void RegisterVpnStateCallback(Action<VpnStateChangedEventArgs> onVpnStateChanged)
         {
-            _decorated.RegisterCallback(onVpnStateChanged);
+            _decorated.RegisterVpnStateCallback(onVpnStateChanged);
+        }
+
+        public void RegisterServiceSettingsStateCallback(Action<ServiceSettingsStateChangedEventArgs> onServiceSettingsStateChanged)
+        {
+            _decorated.RegisterServiceSettingsStateCallback(onServiceSettingsStateChanged);
         }
 
         private async Task InvokeAction(Func<Task> action)

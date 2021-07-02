@@ -51,6 +51,7 @@
     <Compile Include="Vpn\InOutBytesContract.cs" />
     <Compile Include="Settings\SplitTunnelSettingsContract.cs" />
     <Compile Include="Settings\ISettingsContract.cs" />
+    <Compile Include="Settings\ServiceSettingsStateContract.cs" />
     <Compile Include="Vpn\VpnConfigContract.cs" />
     <Compile Include="Vpn\VpnConnectionRequestContract.cs" />
     <Compile Include="Vpn\IVpnEventsContract.cs" />

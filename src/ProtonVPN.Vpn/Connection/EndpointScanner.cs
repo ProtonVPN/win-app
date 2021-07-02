@@ -127,6 +127,10 @@ namespace ProtonVPN.Vpn.Connection
             _logger.Info($"Pinging VPN endpoint {endpoint.Server.Ip}:{endpoint.Port} for {endpoint.Protocol} protocol.");
             Task timeoutTask = Task.Delay(PingTimeout, cancellationToken);
             bool isAlive = await _pingableOpenVpnPort.Alive(endpoint, timeoutTask);
+            if (!isAlive)
+            {
+                await timeoutTask;
+            }
             return isAlive ? endpoint : VpnEndpoint.EmptyEndpoint;
         }
 

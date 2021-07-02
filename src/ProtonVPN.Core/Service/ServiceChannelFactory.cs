@@ -25,9 +25,9 @@ namespace ProtonVPN.Core.Service
     {
         public ServiceChannel<T> Create<T>(string endpoint, object callback)
         {
-            var context = new InstanceContext(callback);
+            InstanceContext context = new InstanceContext(callback);
 
-            var factory = new DuplexChannelFactory<T>(
+            DuplexChannelFactory<T> factory = new DuplexChannelFactory<T>(
                 context,
                 new NetNamedPipeBinding(),
                 GetEndPointAddress(endpoint));
@@ -37,7 +37,7 @@ namespace ProtonVPN.Core.Service
 
         public ServiceChannel<T> Create<T>(string endpoint)
         {
-            var factory = new ChannelFactory<T>(
+            ChannelFactory<T> factory = new ChannelFactory<T>(
                 new NetNamedPipeBinding(),
                 GetEndPointAddress(endpoint));
 
@@ -46,7 +46,7 @@ namespace ProtonVPN.Core.Service
 
         private static EndpointAddress GetEndPointAddress(string endpointName)
         {
-            return new EndpointAddress($"net.pipe://localhost/{endpointName}");
+            return new($"net.pipe://localhost/{endpointName}");
         }
     }
 }

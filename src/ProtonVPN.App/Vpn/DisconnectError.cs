@@ -51,7 +51,6 @@ namespace ProtonVPN.Vpn
         private readonly INotificationSender _notificationSender;
 
         private bool _loggedIn;
-        private bool _modalShowed;
 
         public DisconnectError(IModals modals, 
             IAppSettings appSettings,
@@ -98,7 +97,6 @@ namespace ProtonVPN.Vpn
                     e.Error == VpnError.None)
                 {
                     Post(CloseModalAsync);
-                    _modalShowed = false;
                 }
             }
         }
@@ -106,7 +104,6 @@ namespace ProtonVPN.Vpn
         private bool ModalShouldBeShown(VpnStateChangedEventArgs e)
         {
             return _loggedIn &&
-                   !_modalShowed &&
                    e.Error != VpnError.NoneKeepEnabledKillSwitch &&
                    e.State.Status == VpnStatus.Disconnected &&
                    e.UnexpectedDisconnect;
@@ -186,7 +183,6 @@ namespace ProtonVPN.Vpn
             options.Error = error;
             options.NetworkBlocked = networkBlocked;
 
-            _modalShowed = true;
             _modals.Show<DisconnectErrorModalViewModel>(options);
         }
 

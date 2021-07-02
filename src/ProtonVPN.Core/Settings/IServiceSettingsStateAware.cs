@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,12 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Service.Network
+namespace ProtonVPN.Core.Settings
 {
-    public interface ICurrentNetworkInterface
+    public interface IServiceSettingsStateAware
     {
-        uint Index { get; }
-
-        string HardwareId { get; }
+        void OnServiceSettingsStateChanged(ServiceSettingsStateChangedEventArgs e);
     }
 }

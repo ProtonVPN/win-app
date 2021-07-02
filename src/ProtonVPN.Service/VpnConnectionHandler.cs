@@ -30,7 +30,6 @@ using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Service.Contract.Settings;
 using ProtonVPN.Service.Contract.Vpn;
-using ProtonVPN.Service.Firewall;
 using ProtonVPN.Service.Settings;
 using ProtonVPN.Service.Vpn;
 using ProtonVPN.Vpn.Common;
@@ -40,7 +39,7 @@ namespace ProtonVPN.Service
     [ServiceBehavior(
         InstanceContextMode = InstanceContextMode.Single,
         ConcurrencyMode = ConcurrencyMode.Single)]
-    internal class VpnConnectionHandler : IVpnConnectionContract, IServiceSettingsAware
+    public class VpnConnectionHandler : IVpnConnectionContract, IServiceSettingsAware
     {
         private readonly object _callbackLock = new();
         private readonly List<IVpnEventsContract> _callbacks = new();
@@ -59,7 +58,6 @@ namespace ProtonVPN.Service
             NetworkSettings networkSettings,
             IVpnConnection vpnConnection,
             ILogger logger,
-            IFirewall firewall,
             IServiceSettings serviceSettings,
             ITaskQueue taskQueue)
         {
@@ -165,10 +163,13 @@ namespace ProtonVPN.Service
 
         public void OnServiceSettingsChanged(SettingsContract settings)
         {
-            if (_state.Status == VpnStatus.Disconnected)
-            {
-                CallbackStateChanged(_state);
-            }
+            _logger.Info($"Callbacking VPN service settings change. Current state: {_state.Status} (Error: {_state.Error})");
+            Callback(callback => callback.OnServiceSettingsStateChanged(CreateServiceSettingsState()));
+        }
+
+        private ServiceSettingsStateContract CreateServiceSettingsState()
+        {
+            return new(Map(_state));
         }
 
         private void HandleNoTapError()

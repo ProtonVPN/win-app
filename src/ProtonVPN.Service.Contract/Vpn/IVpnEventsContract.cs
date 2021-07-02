@@ -18,6 +18,7 @@
  */
 
 using System.ServiceModel;
+using ProtonVPN.Service.Contract.Settings;
 
 namespace ProtonVPN.Service.Contract.Vpn
 {
@@ -26,5 +27,8 @@ namespace ProtonVPN.Service.Contract.Vpn
     {
         [OperationContract(IsOneWay = true)]
         void OnStateChanged(VpnStateContract state);
+
+        [OperationContract(IsOneWay = true)]
+        void OnServiceSettingsStateChanged(ServiceSettingsStateContract state);
     }
 }

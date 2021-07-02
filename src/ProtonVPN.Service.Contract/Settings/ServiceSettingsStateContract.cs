@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,12 +17,25 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Service.Network
-{
-    public interface ICurrentNetworkInterface
-    {
-        uint Index { get; }
+using System.Runtime.Serialization;
+using ProtonVPN.Service.Contract.Vpn;
 
-        string HardwareId { get; }
+namespace ProtonVPN.Service.Contract.Settings
+{
+    [DataContract]
+    public class ServiceSettingsStateContract
+    {
+        public ServiceSettingsStateContract(
+            VpnStateContract currentState)
+        {
+            CurrentState = currentState;
+            IsNetworkBlocked = currentState.NetworkBlocked;
+        }
+
+        [DataMember] 
+        public bool IsNetworkBlocked { get; private set; }
+
+        [DataMember] 
+        public VpnStateContract CurrentState { get; private set; }
     }
 }
