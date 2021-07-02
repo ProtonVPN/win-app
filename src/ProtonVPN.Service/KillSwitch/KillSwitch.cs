@@ -30,7 +30,7 @@ using ProtonVPN.Vpn.Common;
 
 namespace ProtonVPN.Service.KillSwitch
 {
-    internal class KillSwitch : IVpnStateAware, IServiceSettingsAware, IStartable
+    public class KillSwitch : IVpnStateAware, IServiceSettingsAware, IStartable
     {
         private readonly IFirewall _firewall;
         private readonly IServiceSettings _serviceSettings;

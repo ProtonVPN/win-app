@@ -355,11 +355,20 @@ namespace ProtonVPN.Core
                 }
             };
 
-            vpnServiceManager.RegisterCallback(async(e) =>
+            vpnServiceManager.RegisterVpnStateCallback(async(e) =>
             {
                 Resolve<IVpnManager>().OnVpnStateChanged(e);
                 await Resolve<LoginViewModel>().OnVpnStateChanged(e);
                 await Resolve<GuestHoleConnector>().OnVpnStateChanged(e);
+            });
+
+            vpnServiceManager.RegisterServiceSettingsStateCallback((e) =>
+            {
+                IEnumerable<IServiceSettingsStateAware> instances = Resolve<IEnumerable<IServiceSettingsStateAware>>();
+                foreach (IServiceSettingsStateAware instance in instances)
+                {
+                    instance.OnServiceSettingsStateChanged(e);
+                }
             });
 
             Resolve<IVpnManager>().VpnStateChanged += (sender, e) =>

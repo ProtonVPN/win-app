@@ -50,6 +50,12 @@ namespace ProtonVPN.Core.Service.Vpn
             remove => _vpnEvents.VpnStateChanged -= value;
         }
 
+        public event EventHandler<ServiceSettingsStateContract> ServiceSettingsStateChanged
+        {
+            add => _vpnEvents.ServiceSettingsStateChanged += value;
+            remove => _vpnEvents.ServiceSettingsStateChanged -= value;
+        }
+
         public Task Connect(VpnConnectionRequestContract vpnConnectionRequest) =>
             Invoke(p => p.Connect(vpnConnectionRequest).Wrap());
 

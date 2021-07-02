@@ -79,7 +79,6 @@ namespace ProtonVPN.Vpn.Config
                 logger,
                 new ReconnectingWrapper(
                     logger,
-                    taskQueue,
                     candidates,
                     endpointScanner,
                     new HandlingRequestsWrapper(

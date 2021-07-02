@@ -187,6 +187,8 @@
     <Compile Include="Native\WindowStates.cs" />
     <Compile Include="Servers\Specs\ExactTierServer.cs" />
     <Compile Include="Servers\Specs\ExitCityServer.cs" />
+    <Compile Include="Settings\IServiceSettingsStateAware.cs" />
+    <Compile Include="Settings\ServiceSettingsStateChangedEventArgs.cs" />
     <Compile Include="User\VpnPlanChangedEventArgs.cs" />
     <Compile Include="Window\Popups\IPopupWindow.cs" />
     <Compile Include="Window\Popups\IPopupWindows.cs" />

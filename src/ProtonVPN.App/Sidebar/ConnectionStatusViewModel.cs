@@ -49,7 +49,8 @@ namespace ProtonVPN.Sidebar
         IServersAware,
         IUserLocationAware,
         ITrafficForwardedAware,
-        ISettingsAware
+        ISettingsAware,
+        IServiceSettingsStateAware
     {
         private readonly IAppSettings _appSettings;
         private readonly SidebarManager _sidebarManager;
@@ -241,11 +242,16 @@ namespace ProtonVPN.Sidebar
                     break;
             }
 
-            KillSwitchActivated = e.NetworkBlocked && 
-                                  (e.State.Status == VpnStatus.Disconnecting ||
-                                   e.State.Status == VpnStatus.Disconnected);
+            SetKillSwitchActivated(e.NetworkBlocked, e.State.Status);
 
             return Task.CompletedTask;
+        }
+
+        private void SetKillSwitchActivated(bool isNetworkBlocked, VpnStatus vpnStatus)
+        {
+            KillSwitchActivated = isNetworkBlocked && 
+                                  (vpnStatus == VpnStatus.Disconnecting ||
+                                   vpnStatus == VpnStatus.Disconnected);
         }
 
         public Task OnUserLocationChanged(UserLocationEventArgs e)
@@ -385,6 +391,11 @@ namespace ProtonVPN.Sidebar
             CloseVpnAcceleratorReconnectionPopupAction();
             _settingsModalViewModel.OpenConnectionTab();
             _modals.Show<SettingsModalViewModel>();
+        }
+
+        public void OnServiceSettingsStateChanged(ServiceSettingsStateChangedEventArgs e)
+        {
+            SetKillSwitchActivated(e.IsNetworkBlocked, e.CurrentState.State.Status);
         }
     }
 }

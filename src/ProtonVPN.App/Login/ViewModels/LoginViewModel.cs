@@ -41,7 +41,7 @@ using ProtonVPN.Vpn.Connectors;
 
 namespace ProtonVPN.Login.ViewModels
 {
-    public class LoginViewModel : ViewModel, ISettingsAware
+    public class LoginViewModel : ViewModel, ISettingsAware, IServiceSettingsStateAware
     {
         private string _errorText = "";
 
@@ -190,16 +190,7 @@ namespace ProtonVPN.Login.ViewModels
 
         public async Task OnVpnStateChanged(VpnStateChangedEventArgs e)
         {
-            if (e.NetworkBlocked && e.State.Status == VpnStatus.Disconnecting ||
-                e.State.Status == VpnStatus.Disconnected)
-            {
-                KillSwitchActive = true;
-            }
-
-            if (!e.NetworkBlocked)
-            {
-                KillSwitchActive = false;
-            }
+            SetKillSwitchActive(e.NetworkBlocked, e.State.Status);
 
             if (_lastVpnStatus == e.State.Status)
             {
@@ -220,6 +211,20 @@ namespace ProtonVPN.Login.ViewModels
             }
 
             _lastVpnStatus = e.State.Status;
+        }
+
+        private void SetKillSwitchActive(bool isNetworkBlocked, VpnStatus vpnStatus)
+        {
+            if (isNetworkBlocked && vpnStatus == VpnStatus.Disconnecting ||
+                vpnStatus == VpnStatus.Disconnected)
+            {
+                KillSwitchActive = true;
+            }
+
+            if (!isNetworkBlocked)
+            {
+                KillSwitchActive = false;
+            }
         }
 
         private void HelpAction()
@@ -348,6 +353,11 @@ namespace ProtonVPN.Login.ViewModels
         private void DisableKillSwitchAction()
         {
             _appSettings.KillSwitchMode = KillSwitchMode.Off;
+        }
+
+        public void OnServiceSettingsStateChanged(ServiceSettingsStateChangedEventArgs e)
+        {
+            SetKillSwitchActive(e.IsNetworkBlocked, e.CurrentState.State.Status);
         }
     }
 }

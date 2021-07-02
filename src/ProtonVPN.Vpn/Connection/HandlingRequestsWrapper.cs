@@ -90,19 +90,6 @@ namespace ProtonVPN.Vpn.Connection
             Queued(Disconnect);
         }
 
-        public void PassThroughDisconnectIfNotDisconnected(VpnError error)
-        {
-            if (!_disconnected)
-            {
-                _logger.Info("HandlingRequestsWrapper: Disconnect pass-through requested, queuing pass-through disconnect");
-                _connectRequested = false;
-                _disconnectRequested = false;
-                _disconnecting = false;
-                _connecting = false;
-                Queued(() => _origin.Disconnect(error));
-            }
-        }
-
         private void Origin_StateChanged(object sender, EventArgs<VpnState> e)
         {
             OnStateChanged(e.Data);
