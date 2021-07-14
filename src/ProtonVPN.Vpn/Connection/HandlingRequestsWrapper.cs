@@ -129,14 +129,14 @@ namespace ProtonVPN.Vpn.Connection
             {
                 // Force disconnect if disconnected while connecting
                 _disconnectRequested = true;
-                _disconnectError = state.Error == VpnError.None ? VpnError.Unknown : state.Error;
+                _disconnectError = state.Error;
                 _logger.Info("HandlingRequestsWrapper: Disconnecting unexpectedly, queuing Disconnect");
                 Queued(Disconnect);
             }
 
             if (state.Status == VpnStatus.Disconnecting || state.Status == VpnStatus.Disconnected)
             {
-                var error = state.Error == VpnError.None ? VpnError.Unknown : state.Error;
+                var error = state.Error;
 
                 if (_connecting)
                 {
@@ -152,7 +152,7 @@ namespace ProtonVPN.Vpn.Connection
                 return;
             }
 
-            InvokeStateChanged(WithFallbackRemoteIp(state, _endpoint.Server.Ip));
+            InvokeStateChanged(WithFallbackRemoteServer(state, _endpoint.Server));
         }
 
         private void Connect()
@@ -207,7 +207,8 @@ namespace ProtonVPN.Vpn.Connection
                 VpnStatus.Connecting,
                 VpnError.None,
                 string.Empty,
-                _endpoint.Server.Ip));
+                _endpoint.Server.Ip, 
+                label: _endpoint.Server.Label));
         }
 
         private void InvokeDisconnecting()
@@ -225,7 +226,7 @@ namespace ProtonVPN.Vpn.Connection
             StateChanged?.Invoke(this, new EventArgs<VpnState>(state));
         }
 
-        private VpnState WithFallbackRemoteIp(VpnState state, string remoteIp)
+        private VpnState WithFallbackRemoteServer(VpnState state, VpnHost remoteServer)
         {
             if (state.Status == VpnStatus.Disconnecting || 
                 state.Status == VpnStatus.Disconnected ||
@@ -234,7 +235,7 @@ namespace ProtonVPN.Vpn.Connection
                 return state;
             }
 
-            return state.WithRemoteIp(remoteIp);
+            return state.WithRemoteIp(remoteServer.Ip, remoteServer.Label);
         }
 
         private void Queued(Action action)

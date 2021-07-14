@@ -50,14 +50,14 @@ namespace ProtonVPN.Windows.Popups
 
             _scheduler.Schedule(() =>
             {
-                if (!ModalOpened<T>())
+                if (!IsOpen<T>())
                 {
                     _windowManager.ShowWindow(screen);
                 }
             });
         }
 
-        private bool ModalOpened<T>()
+        public bool IsOpen<T>() where T : IPopupWindow
         {
             return GetAll().Any(x => x.DataContext.GetType() == typeof(T));
         }

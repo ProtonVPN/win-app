@@ -18,8 +18,6 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.Common;
@@ -27,19 +25,17 @@ using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Vpn.Common;
-using ProtonVPN.Vpn.OpenVpn;
 
 namespace ProtonVPN.Vpn.Connection
 {
-    internal class BestPortWrapper : ISingleVpnConnection
+    public class BestPortWrapper : ISingleVpnConnection
     {
-        private static readonly TimeSpan EndpointTimeout = TimeSpan.FromSeconds(3);
         private static readonly TimeSpan DisconnectDelay = TimeSpan.FromSeconds(5);
 
-        private readonly ISingleVpnConnection _origin;
         private readonly ILogger _logger;
-        private readonly PingableOpenVpnPort _pingableOpenVpnPort;
         private readonly ITaskQueue _taskQueue;
+        private readonly IEndpointScanner _endpointScanner;
+        private readonly ISingleVpnConnection _origin;
         private readonly CancellationHandle _cancellationHandle = new();
 
         private VpnEndpoint _vpnEndpoint = VpnEndpoint.EmptyEndpoint;
@@ -50,13 +46,13 @@ namespace ProtonVPN.Vpn.Connection
         public BestPortWrapper(
             ILogger logger,
             ITaskQueue taskQueue,
-            PingableOpenVpnPort pingableOpenVpnPort,
+            IEndpointScanner endpointScanner,
             ISingleVpnConnection origin)
         {
             _logger = logger;
-            _pingableOpenVpnPort = pingableOpenVpnPort;
-            _origin = origin;
             _taskQueue = taskQueue;
+            _endpointScanner = endpointScanner;
+            _origin = origin;
             _origin.StateChanged += Origin_StateChanged;
         }
 
@@ -85,11 +81,11 @@ namespace ProtonVPN.Vpn.Connection
 
         private async void ScanPorts(CancellationToken cancellationToken)
         {
-            InvokeConnecting();
+            _logger.Info($"Starting port scanning of endpoint {_vpnEndpoint.Server.Ip} before connection.");
+            VpnEndpoint bestEndpoint = await _endpointScanner.ScanForBestEndpointAsync(
+                _vpnEndpoint, _config.Ports, _cancellationHandle.Token);
 
-            VpnEndpoint endpoint = await BestEndpoint(_vpnEndpoint.Server, _vpnEndpoint.Protocol, cancellationToken);
-
-            Queued(ct => HandleBestEndpoint(endpoint, ct), cancellationToken);
+            Queued(ct => HandleBestEndpoint(bestEndpoint, ct), cancellationToken);
         }
 
         private void HandleBestEndpoint(VpnEndpoint endpoint, CancellationToken cancellationToken)
@@ -97,10 +93,12 @@ namespace ProtonVPN.Vpn.Connection
             if (endpoint.Port != 0)
             {
                 _vpnEndpoint = endpoint;
+                _logger.Info($"Connecting to {endpoint.Server.Ip}:{endpoint.Port} as it responded fastest.");
                 _origin.Connect(endpoint, GetCredentials(endpoint), _config);
             }
             else
             {
+                _logger.Info("Disconnecting, as none of the VPN ports responded.");
                 DelayedDisconnect(cancellationToken);
             }
         }
@@ -130,17 +128,7 @@ namespace ProtonVPN.Vpn.Connection
 
             Queued(_ => InvokeDisconnected(), cancellationToken);
         }
-
-        private void InvokeConnecting()
-        {
-            StateChanged?.Invoke(this,
-                new EventArgs<VpnState>(new VpnState(
-                    VpnStatus.Connecting,
-                    VpnError.None,
-                    string.Empty,
-                    _vpnEndpoint.Server.Ip)));
-        }
-
+        
         private void InvokeDisconnected()
         {
             StateChanged?.Invoke(this,
@@ -148,7 +136,8 @@ namespace ProtonVPN.Vpn.Connection
                     VpnStatus.Disconnected,
                     VpnError.TimeoutError,
                     string.Empty,
-                    _vpnEndpoint.Server.Ip)));
+                    _vpnEndpoint.Server.Ip,
+                    label: _vpnEndpoint.Server.Label)));
         }
 
         private void Queued(Action<CancellationToken> action, CancellationToken cancellationToken)
@@ -171,62 +160,15 @@ namespace ProtonVPN.Vpn.Connection
 
         private void Origin_StateChanged(object sender, EventArgs<VpnState> e)
         {
-            var state = new VpnState(
+            VpnState state = new(
                 e.Data.Status,
                 e.Data.Error,
                 e.Data.LocalIp,
                 e.Data.RemoteIp,
-                _vpnEndpoint.Protocol);
+                _vpnEndpoint.Protocol,
+                e.Data.Label);
 
             StateChanged?.Invoke(this, new EventArgs<VpnState>(state));
-        }
-
-        private async Task<VpnEndpoint> BestEndpoint(VpnHost server, VpnProtocol protocol, CancellationToken cancellationToken)
-        {
-            switch (protocol)
-            {
-                case VpnProtocol.Auto:
-                    VpnEndpoint bestEndpoint = await BestEndpoint(EndpointCandidates(server, VpnProtocol.OpenVpnUdp));
-                    if (bestEndpoint.Port == 0 && !cancellationToken.IsCancellationRequested)
-                    {
-                        bestEndpoint = await BestEndpoint(EndpointCandidates(server, VpnProtocol.OpenVpnTcp));
-                    }
-
-                    return bestEndpoint;
-                default:
-                    return await BestEndpoint(EndpointCandidates(server, protocol));
-            }
-        }
-
-        private async Task<VpnEndpoint> BestEndpoint(IReadOnlyList<Task<VpnEndpoint>> candidates)
-        {
-            VpnEndpoint[] result = await Task.WhenAll(candidates);
-            List<VpnEndpoint> aliveCandidates = result.Where(c => c.Port > 0).ToList();
-            if (aliveCandidates.Count > 0)
-            {
-                var rnd = new Random();
-                return aliveCandidates[rnd.Next(aliveCandidates.Count)];
-            }
-
-            return VpnEndpoint.EmptyEndpoint;
-        }
-
-        private IReadOnlyList<Task<VpnEndpoint>> EndpointCandidates(VpnHost server, VpnProtocol protocol)
-        {
-            _logger.Info($"Pinging VPN server {server.Ip} for {protocol} protocol");
-
-            Task timeoutTask = Task.Delay(EndpointTimeout);
-
-            return (from pair in _config.Ports
-                where protocol == VpnProtocol.Auto || protocol == pair.Key
-                from port in pair.Value
-                select GetPortAlive(new VpnEndpoint(server, pair.Key, port), timeoutTask)).ToList();
-        }
-
-        private async Task<VpnEndpoint> GetPortAlive(VpnEndpoint endpoint, Task timeoutTask)
-        {
-            bool alive = await _pingableOpenVpnPort.Alive(endpoint, timeoutTask);
-            return alive ? endpoint : VpnEndpoint.EmptyEndpoint;
         }
     }
 }

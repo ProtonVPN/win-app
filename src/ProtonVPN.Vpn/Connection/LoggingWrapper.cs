@@ -66,8 +66,9 @@ namespace ProtonVPN.Vpn.Connection
 
         private void Origin_StateChanged(object sender, EventArgs<VpnState> e)
         {
-            var state = e.Data;
-            _logger.Info($"VPN state changed: {state.Status}, Error: {state.Error}, LocalIP: {state.LocalIp}, RemoteIP: {state.RemoteIp}");
+            VpnState state = e.Data;
+            _logger.Info($"VPN state changed: {state.Status}, Error: {state.Error}, LocalIP: {state.LocalIp}, " +
+                         $"RemoteIP: {state.RemoteIp}, Label: {state.Label}");
 
             OnStateChanged(state);
         }

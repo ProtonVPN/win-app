@@ -33,7 +33,7 @@ namespace ProtonVPN.Core.Service.Settings
 
         public void Apply(SettingsContract settings)
         {
-            using (var channel = _channelFactory.Create<ISettingsContract>(Endpoint))
+            using (ServiceChannel<ISettingsContract> channel = _channelFactory.Create<ISettingsContract>(Endpoint))
             {
                 channel.Proxy.Apply(settings);
             }

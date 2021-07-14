@@ -19,6 +19,8 @@
 
 using System;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using ProtonVPN.Common;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Threading;
@@ -43,29 +45,29 @@ namespace ProtonVPN.Vpn.Connection
     /// </remarks>
     internal class ReconnectingWrapper : IVpnConnection
     {
+        private readonly CancellationHandle _cancellationHandle = new();
         private readonly ILogger _logger;
-        private readonly ITaskQueue _taskQueue;
         private readonly IVpnEndpointCandidates _candidates;
+        private readonly IEndpointScanner _endpointScanner;
         private readonly ISingleVpnConnection _origin;
 
-        private bool _reconnectPending;
-        private bool _reconnecting;
-        private bool _disconnecting;
+        private VpnState _state;
+        private VpnConfig _config;
         private VpnProtocol _protocol;
         private VpnCredentials _credentials;
         private VpnEndpoint _endpoint;
-        private VpnConfig _config;
-        private VpnState _state = new VpnState(VpnStatus.Disconnected);
+        private bool _isToConnect;
+        private bool _isToReconnect;
 
         public ReconnectingWrapper(
             ILogger logger,
-            ITaskQueue taskQueue,
             IVpnEndpointCandidates candidates,
+            IEndpointScanner endpointScanner,
             ISingleVpnConnection origin)
         {
             _logger = logger;
-            _taskQueue = taskQueue;
             _candidates = candidates;
+            _endpointScanner = endpointScanner;
             _origin = origin;
 
             _origin.StateChanged += Origin_StateChanged;
@@ -77,149 +79,214 @@ namespace ProtonVPN.Vpn.Connection
 
         public void Connect(IReadOnlyList<VpnHost> servers, VpnConfig config, VpnProtocol protocol, VpnCredentials credentials)
         {
-            _reconnectPending = false;
-            _reconnecting = false;
-            _disconnecting = false;
-            _protocol = protocol;
-            _credentials = credentials;
-            _config = config;
-
             _candidates.Set(servers);
             _candidates.Reset();
-            _endpoint = _candidates.Next(_protocol);
+            _config = config;
+            _protocol = protocol;
+            _credentials = credentials;
+            _isToConnect = true;
+            _isToReconnect = true;
 
-            _origin.Connect(_endpoint, credentials, config);
+            _logger.Info("[ReconnectingWrapper] Requesting disconnect as first step of connection process.");
+            CancelTokenAndDisconnect(VpnError.NoneKeepEnabledKillSwitch);
         }
 
         public void Disconnect(VpnError error = VpnError.None)
         {
-            _reconnectPending = false;
-            _reconnecting = false;
-            _disconnecting = true;
-            _origin.Disconnect(error);
+            _isToConnect = false;
+            _isToReconnect = false;
+            CancelTokenAndDisconnect(error);
         }
 
-        public void UpdateServers(IReadOnlyList<VpnHost> servers, VpnConfig config)
+        private void CancelTokenAndDisconnect(VpnError error)
         {
-            _candidates.Set(servers);
-            _logger.Info("VPN endpoint candidates updated");
-
-            if (_reconnectPending ||
-                _state.Status == VpnStatus.Disconnected ||
-                _state.Status == VpnStatus.Disconnecting ||
-                _candidates.Contains(_candidates.Current))
-            {
-                return;
-            }
-
-            _logger.Info("Current VPN endpoint is not in VPN endpoint candidates, disconnecting");
-            _origin.Disconnect(VpnError.Unknown);
+            _logger.Info($"[ReconnectingWrapper] A disconnect was requested with error '{error}'.");
+            _cancellationHandle.Cancel();
+            _origin.Disconnect(error);
         }
 
         private void Origin_StateChanged(object sender, EventArgs<VpnState> e)
         {
             _state = e.Data;
 
-            if (_reconnecting && !Reconnecting(_state))
+            if (_state.Status == VpnStatus.Disconnected && _isToConnect)
             {
-                _reconnecting = false;
+                _isToConnect = false;
+                PingAndConnectAsync();
+            }
+            else if (IsToCancelReconnection())
+            {
+                _isToReconnect = false;
+            }
+            else if (IsToReconnect())
+            {
+                ConnectToNextEndpoint();
             }
 
-            if (ReconnectRequired(_state))
-            {
-                _logger.Info($"Disconnecting because of {_state.Error}, scheduling reconnect");
+            OnStateChanged(FilterVpnState(_state));
+        }
 
-                _reconnectPending = true;
-                Queued(Reconnect);
+        private async Task PingAndConnectAsync()
+        {
+            _logger.Info("[ReconnectingWrapper] A connect is pending. Starting connection after status changed to Disconnected.");
+            CancellationToken cancellationToken = _cancellationHandle.Token;
+            bool isResponding = false;
+
+            while (true)
+            {
+                if (cancellationToken.IsCancellationRequested)
+                {
+                    _logger.Info("[ReconnectingWrapper] Disconnection has been requested. Endpoint scanning stopped.");
+                    break;
+                }
+
+                VpnEndpoint endpoint = _candidates.NextIp(_protocol);
+                if (endpoint == VpnEndpoint.EmptyEndpoint)
+                {
+                    _logger.Info($"[ReconnectingWrapper] No more endpoints in the list after server {endpoint.Server.Ip} has failed to respond to the ping.");
+                    break;
+                }
+
+                isResponding = await IsEndpointRespondingAsync(endpoint, cancellationToken);
+                if (isResponding)
+                {
+                    _logger.Info($"[ReconnectingWrapper] The server {endpoint.Server.Ip} has responded to the ping.");
+                    break;
+                }
+
+                _logger.Info($"[ReconnectingWrapper] The server {endpoint.Server.Ip} has failed to respond to the ping.");
             }
 
-            if (_state.Status == VpnStatus.Reconnecting)
+            _candidates.Reset();
+            HandleEndpointResponse(isResponding, cancellationToken);
+        }
+
+        private async Task<bool> IsEndpointRespondingAsync(VpnEndpoint endpoint, CancellationToken cancellationToken)
+        {
+            OnStateChanged(new VpnState(VpnStatus.Pinging, VpnError.None, string.Empty,
+                endpoint.Server.Ip, endpoint.Protocol, endpoint.Server.Label));
+            VpnEndpoint bestEndpoint = await _endpointScanner.ScanForBestEndpointAsync(endpoint, _config.Ports, cancellationToken);
+            return bestEndpoint.Port != 0;
+        }
+
+        private void HandleEndpointResponse(bool isResponding, CancellationToken cancellationToken)
+        {
+            if (cancellationToken.IsCancellationRequested)
             {
-                _reconnecting = true;
+                _logger.Info("[ReconnectingWrapper] Disconnection has been requested. Connection canceled.");
+                return;
             }
 
-            OnStateChanged(Filtered(_state));
-        }
-
-        private bool Reconnecting(VpnState state)
-        {
-            return state.Status == VpnStatus.Reconnecting ||
-                   state.Status == VpnStatus.Connecting;
-        }
-
-        private bool ReconnectRequired(VpnState state)
-        {
-            return !_reconnectPending &&
-                   !_disconnecting &&
-                   (state.Status == VpnStatus.Disconnecting ||
-                    state.Status == VpnStatus.Disconnected) &&
-                   (state.Error == VpnError.NetshError ||
-                    state.Error == VpnError.TlsError ||
-                    state.Error == VpnError.TimeoutError ||
-                    state.Error == VpnError.Unknown);
-        }
-
-        private void Reconnect()
-        {
-            if (_reconnectPending)
+            if (isResponding)
             {
-                _reconnectPending = false;
-                _reconnecting = true;
-                _endpoint = _candidates.Next(_protocol);
+                _logger.Info("[ReconnectingWrapper] At least one server has responded to a ping. Attempting connections.");
+                ConnectToNextEndpoint();
+            }
+            else
+            {
+                _logger.Info("[ReconnectingWrapper] No server has responded to a ping. Disconnecting.");
+                Disconnect(VpnError.TimeoutError);
+            }
+        }
+
+        private void ConnectToNextEndpoint()
+        {
+            _endpoint = _candidates.NextHost(_protocol);
+            bool isEndpointAvailableToConnect = _endpoint?.Server != null && !_endpoint.Server.IsEmpty();
+            if (isEndpointAvailableToConnect)
+            {
+                _logger.Info($"[ReconnectingWrapper] Next endpoint is {_endpoint.Server.Ip}/{_endpoint.Server.Label}. Connecting.");
                 _origin.Connect(_endpoint, _credentials, _config);
             }
+            else
+            {
+                _isToReconnect = false;
+                _logger.Info("[ReconnectingWrapper] No more VPN endpoints to try. Disconnecting.");
+                Disconnect(_state.Error);
+            }
         }
 
-        private void Queued(Action action)
+        private bool IsToCancelReconnection()
         {
-            _taskQueue.Enqueue(action);
+            return !_isToConnect &&
+                   (_state.Status == VpnStatus.Disconnecting || _state.Status == VpnStatus.Disconnected) &&
+                   !IsServerError(_state.Error);
         }
 
-        private VpnState Filtered(VpnState state)
+        private bool IsServerError(VpnError error)
         {
-            if (ShouldSuppress(state))
+            return error == VpnError.NetshError ||
+                   error == VpnError.TlsError ||
+                   error == VpnError.TimeoutError ||
+                   error == VpnError.Unknown;
+        }
+
+        private bool IsToReconnect()
+        {
+            return _isToReconnect &&
+                (_state.Status == VpnStatus.Disconnecting || _state.Status == VpnStatus.Disconnected) &&
+                IsServerError(_state.Error);
+        }
+
+        private VpnState FilterVpnState(VpnState state)
+        {
+            if (IsToSuppressVpnState(state))
             {
                 return null;
             }
 
             if (ShouldBeReconnecting(state))
             {
-                return CreateVpnState(state, VpnStatus.Reconnecting, VpnProtocol.Auto);
+                return CreateReconnectingVpnState(state);
             }
 
-            return CreateVpnState(state);
+            return state;
         }
 
-        private VpnState CreateVpnState(VpnState state, VpnStatus? status = null, VpnProtocol? protocol = null)
+        private bool IsToSuppressVpnState(VpnState state)
         {
-            return new(
-                status ?? state.Status,
-                state.Error,
-                state.LocalIp,
-                state.RemoteIp,
-                protocol ?? state.Protocol,
-                _endpoint?.Server.Label ?? string.Empty);
-        }
-
-        private bool ShouldSuppress(VpnState state)
-        {
-            return _reconnectPending &&
-                   (state.Status == VpnStatus.Disconnecting ||
-                    state.Status == VpnStatus.Disconnected);
+            return _isToReconnect &&
+                   (state.Status == VpnStatus.Disconnecting || state.Status == VpnStatus.Disconnected);
         }
 
         private bool ShouldBeReconnecting(VpnState state)
         {
-            return _reconnecting && 
-                   state.Status == VpnStatus.Connecting;
+            return state.Status == VpnStatus.Connecting;
+        }
+
+        private VpnState CreateReconnectingVpnState(VpnState state)
+        {
+            return new(
+                VpnStatus.Reconnecting,
+                state.Error,
+                state.LocalIp,
+                state.RemoteIp,
+                state.Protocol,
+                state.Label);
         }
 
         private void OnStateChanged(VpnState state)
         {
-            if (state == null)
-                return;
+            if (state != null)
+            {
+                StateChanged?.Invoke(this, new EventArgs<VpnState>(state));
+            }
+        }
 
-            StateChanged?.Invoke(this, new EventArgs<VpnState>(state));
+        public void UpdateServers(IReadOnlyList<VpnHost> servers, VpnConfig config)
+        {
+            _candidates.Set(servers);
+            _logger.Info("[ReconnectingWrapper] VPN endpoint candidates updated.");
+
+            if (_state.Status == VpnStatus.Disconnected ||
+                _state.Status == VpnStatus.Disconnecting ||
+                _candidates.Contains(_candidates.Current))
+            {
+                return;
+            }
+
+            _logger.Info("[ReconnectingWrapper] Current VPN endpoint is not in VPN endpoint candidates. Disconnecting.");
+            Disconnect();
         }
     }
 }

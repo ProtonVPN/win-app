@@ -1,41 +1,43 @@
 ﻿using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Api;
-using ProtonVPN.Core.Profiles;
+using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.Servers;
+using ProtonVPN.Core.Servers.Models;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
 
 namespace ProtonVPN.Core.Service.Vpn
 {
-    internal class ReconnectManager : IVpnStateAware
+    public class ReconnectManager : IVpnStateAware
     {
         private VpnState _state;
         private readonly IApiClient _apiClient;
-        private readonly ProfileManager _profileManager;
         private readonly IVpnManager _vpnManager;
         private readonly ISchedulerTimer _timer;
         private readonly ServerManager _serverManager;
         private readonly IServerUpdater _serverUpdater;
+        private readonly ILogger _logger;
         private readonly IAppSettings _appSettings;
 
         public ReconnectManager(
             IAppSettings appSettings,
             IApiClient apiClient,
-            ProfileManager profileManager,
             ServerManager serverManager,
             IVpnManager vpnManager,
             IScheduler scheduler,
-            IServerUpdater serverUpdater)
+            IServerUpdater serverUpdater,
+            ILogger logger)
         {
             _appSettings = appSettings;
             _serverUpdater = serverUpdater;
+            _logger = logger;
             _serverManager = serverManager;
             _vpnManager = vpnManager;
-            _profileManager = profileManager;
             _apiClient = apiClient;
 
             _timer = scheduler.Timer();
@@ -72,35 +74,51 @@ namespace ProtonVPN.Core.Service.Vpn
 
         private async void OnTimerTick(object sender, EventArgs e)
         {
-            if (!await ServerOffline())
+            await CheckIfCurrentServerIsOnlineAsync();
+        }
+
+        public async Task CheckIfCurrentServerIsOnlineAsync()
+        {
+            if (!_timer.IsEnabled || !await ServerOffline())
             {
                 return;
             }
-
+            
             _serverManager.MarkServerUnderMaintenance(_state.Server.ExitIp);
             await _serverUpdater.Update();
-            var fastestProfile = await _profileManager.GetFastestProfile();
-            await _vpnManager.Connect(fastestProfile);
+            _logger.Info($"Reconnecting due to server {_state.Server.Name} ({_state.Server.ExitIp}) being no longer available.");
+            await _vpnManager.ReconnectAsync(new VpnReconnectionSettings
+            {
+                IsToReconnectIfDisconnected = true, 
+                IsToExcludeLastServer = true, 
+                IsToShowReconnectionPopup = true
+            });
         }
 
         private async Task<bool> ServerOffline()
         {
-            var server = _serverManager.GetPhysicalServerByExitIp(_state.Server.ExitIp);
+            PhysicalServer server = _serverManager.GetPhysicalServerByServer(_state.Server);
             if (server == null)
             {
-                //Server removed from api
+                _logger.Info($"The server {_state.Server.Name} ({_state.Server.ExitIp}) was removed from the API.");
                 return true;
             }
 
             try
             {
-                var result = await _apiClient.GetServerAsync(server.Id);
+                ApiResponseResult<PhysicalServerResponse> result = await _apiClient.GetServerAsync(server.Id);
                 if (!result.Success)
                 {
                     return false;
                 }
 
-                return result.Value.Server.Status == 0;
+                bool isServerUnderMaintenance = result.Value.Server.Status == 0;
+                if (isServerUnderMaintenance)
+                {
+                    _logger.Info($"The server {_state.Server.Name} ({_state.Server.ExitIp}) is under maintenance.");
+                }
+
+                return isServerUnderMaintenance;
             }
             catch (HttpRequestException)
             {

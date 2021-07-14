@@ -17,9 +17,30 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
+using System.Windows;
+
 namespace ProtonVPN.Resource
 {
     public class BaseModalWindow : WindowBase
     {
+        protected override void OnSourceInitialized(EventArgs e)
+        { 
+            base.OnSourceInitialized(e);
+            SetInitialWindowState();
+        }
+
+        private void SetInitialWindowState()
+        {
+            if (WindowState == WindowState.Minimized)
+            {
+                WindowState = WindowState.Normal;
+            }
+        }
+
+        protected override void OnActivated(EventArgs e)
+        {
+            SetInitialWindowState();
+        }
     }
 }

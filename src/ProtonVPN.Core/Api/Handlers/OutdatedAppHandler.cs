@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,12 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Newtonsoft.Json;
-using ProtonVPN.Core.Api.Contracts;
 using System;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using ProtonVPN.Core.Api.Contracts;
+using ProtonVPN.Core.Api.Extensions;
 
 namespace ProtonVPN.Core.Api.Handlers
 {
@@ -36,21 +36,16 @@ namespace ProtonVPN.Core.Api.Handlers
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request,
             CancellationToken cancellationToken)
         {
-            var response = await base.SendAsync(request, cancellationToken);
-            var content = await response.Content.ReadAsStringAsync();
-            if (string.IsNullOrEmpty(content))
+            HttpResponseMessage response = await base.SendAsync(request, cancellationToken);
+            BaseResponse baseResponse = await response.GetBaseResponseMessage();
+            if (baseResponse == null)
+            {
                 return response;
-
-            try
-            {
-                var result = JsonConvert.DeserializeObject<BaseResponse>(content);
-                if (ForceLogoutRequired(result.Code))
-                {
-                    AppOutdated?.Invoke(this, result);
-                }
             }
-            catch (JsonException)
+
+            if (ForceLogoutRequired(baseResponse.Code))
             {
+                AppOutdated?.Invoke(this, baseResponse);
             }
 
             return response;

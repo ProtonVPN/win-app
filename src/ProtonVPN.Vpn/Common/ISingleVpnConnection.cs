@@ -23,7 +23,7 @@ using ProtonVPN.Common.Vpn;
 
 namespace ProtonVPN.Vpn.Common
 {
-    internal interface ISingleVpnConnection
+    public interface ISingleVpnConnection
     {
         event EventHandler<EventArgs<VpnState>> StateChanged;
 

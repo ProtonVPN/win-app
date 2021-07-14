@@ -188,6 +188,7 @@ namespace ProtonVPN.Map.ViewModels
                     Connected = true;
                     Disconnected = false;
                     break;
+                case VpnStatus.Pinging:
                 case VpnStatus.Connecting:
                 case VpnStatus.Reconnecting:
                 case VpnStatus.Disconnecting:

@@ -65,7 +65,7 @@ namespace ProtonVPN.Core.Api.Handlers
             if (request.AuthHeadersInvalid())
             {
                 SessionExpired?.Invoke(this, EventArgs.Empty);
-                return new UnauthorizedResponse();
+                return FailResponse.UnauthorizedResponse();
             }
 
             Task<RefreshTokenStatus> refreshTask = _refreshTask;
@@ -103,9 +103,9 @@ namespace ProtonVPN.Core.Api.Handlers
                     return await base.SendAsync(request, cancellationToken);
                 case RefreshTokenStatus.Unauthorized:
                     SessionExpired?.Invoke(this, EventArgs.Empty);
-                    return new UnauthorizedResponse();
+                    return FailResponse.UnauthorizedResponse();
                 default:
-                    return new UnauthorizedResponse();
+                    return FailResponse.UnauthorizedResponse();
             }
         }
 

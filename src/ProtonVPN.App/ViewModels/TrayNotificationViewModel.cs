@@ -97,12 +97,13 @@ namespace ProtonVPN.ViewModels
         {
             switch (status)
             {
-                case VpnStatus.AssigningIp:
-                case VpnStatus.Authenticating:
-                case VpnStatus.Waiting:
-                case VpnStatus.RetrievingConfiguration:
+                case VpnStatus.Pinging:
                 case VpnStatus.Connecting:
                 case VpnStatus.Reconnecting:
+                case VpnStatus.Waiting:
+                case VpnStatus.Authenticating:
+                case VpnStatus.RetrievingConfiguration:
+                case VpnStatus.AssigningIp:
                     Connecting = true;
                     CanConnect = false;
                     CanDisconnect = true;
@@ -128,12 +129,12 @@ namespace ProtonVPN.ViewModels
 
         private async void ConnectAction()
         {
-            await _vpnManager.QuickConnect();
+            await _vpnManager.QuickConnectAsync();
         }
 
         private async void DisconnectAction()
         {
-            await _vpnManager.Disconnect();
+            await _vpnManager.DisconnectAsync();
         }
     }
 }

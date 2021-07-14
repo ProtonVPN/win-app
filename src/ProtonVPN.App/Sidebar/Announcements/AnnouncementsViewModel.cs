@@ -28,7 +28,7 @@ using ProtonVPN.Core.Auth;
 
 namespace ProtonVPN.Sidebar.Announcements
 {
-    internal class AnnouncementsViewModel : Screen, IAnnouncementsAware, ILoggedInAware
+    public class AnnouncementsViewModel : Screen, IAnnouncementsAware, ILoggedInAware
     {
         private readonly IAnnouncements _announcements;
         private readonly IOsProcesses _processes;

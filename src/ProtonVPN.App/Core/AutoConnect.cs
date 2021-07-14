@@ -64,7 +64,7 @@ namespace ProtonVPN.Core
 
                 _logger.Info("Automatically connecting to selected profile");
 
-                await _vpnManager.Connect(profile);
+                await _vpnManager.ConnectAsync(profile);
             }
             catch (OperationCanceledException ex)
             {

@@ -52,5 +52,11 @@ namespace ProtonVPN.UI.Test.Windows
             ClickOnObjectWithId("MenuProfilesButton");
             return this;
         }
+
+        public HamburgerMenu ClickExit()
+        {
+            ClickOnObjectWithName("Exit");
+            return this;
+        }
     }
 }

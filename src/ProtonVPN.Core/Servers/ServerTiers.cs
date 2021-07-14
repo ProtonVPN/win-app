@@ -24,5 +24,6 @@ namespace ProtonVPN.Core.Servers
         public const sbyte Free = 0;
         public const sbyte Basic = 1;
         public const sbyte Plus = 2;
+        public const sbyte Internal = 3;
     }
 }

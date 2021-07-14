@@ -22,7 +22,7 @@ using ProtonVPN.Service.Settings;
 
 namespace ProtonVPN.Service.Network
 {
-    internal class CurrentNetworkInterface : ICurrentNetworkInterface
+    public class CurrentNetworkInterface : ICurrentNetworkInterface
     {
         private readonly Common.Configuration.Config _config;
         private readonly IServiceSettings _serviceSettings;

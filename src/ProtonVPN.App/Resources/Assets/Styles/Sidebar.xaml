@@ -20,10 +20,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:fa="http://schemas.fontawesome.io/icons/"
-                    xmlns:sidebar="clr-namespace:ProtonVPN.Sidebar"
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
+                    xmlns:icons="clr-namespace:ProtonVPN.Views.Icons"
                     mc:Ignorable="d">
 
     <Style x:Key="ButtonGrid" TargetType="Grid">
@@ -52,6 +52,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </BeginStoryboard>
                 </DataTrigger.ExitActions>
             </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="GrayInfoIcon" TargetType="icons:Info">
+        <Setter Property="Color" Value="{StaticResource GrayIconColor}"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Color" Value="#9CA0AA"/>
+            </Trigger>
         </Style.Triggers>
     </Style>
 
@@ -218,70 +228,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </Setter>
             </DataTrigger>
         </Style.Triggers>
-    </Style>
-    <Style x:Key="SidebarTabButton" TargetType="Button" BasedOn="{StaticResource ClearStyleButton}">
-        <Setter Property="SnapsToDevicePixels" Value="True"/>
-        <Setter Property="VerticalAlignment" Value="Top"/>
-        <Setter Property="Padding" Value="0"/>
-        <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="Height" Value="49"/>
-        <Setter Property="Width" Value="185"/>
-        <Setter Property="Panel.ZIndex" Value="0"/>
-    </Style>
-    <Style x:Key="CountriesTabButton" TargetType="Button" BasedOn="{StaticResource SidebarTabButton}">
-        <Setter Property="HorizontalAlignment" Value="Left"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate>
-                    <Grid>
-                        <Path Name="Path" Fill="#24242b" HorizontalAlignment="Right" Data="M-0.000,-0.000 L7.030,-0.000 C7.030,-0.000 29.000,-0.875 33.394,15.750 C37.788,32.375 39.106,41.562 47.455,45.500 C55.803,49.437 58.000,49.000 58.000,49.000 L-127.000,49.000 L-127.000,-0.000 Z" Stretch="Fill" Width="185"/>
-                        <Label Name="Label"
-                               Foreground="#494c58"
-                               Padding="0,0,20,0"
-                               FontSize="16"
-                               VerticalAlignment="Stretch"
-                               VerticalContentAlignment="Center"
-                               HorizontalAlignment="Stretch"
-                               HorizontalContentAlignment="Center"
-                               Content="{translations:Loc Sidebar_Countries_ttl}"/>
-                    </Grid>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="Label" Property="Foreground" Value="White"/>
-                        </Trigger>
-                        <DataTrigger Binding="{Binding DataContext.Tab, RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}, Converter={StaticResource DataTypeConverter}}" Value="{x:Type sidebar:CountriesViewModel}">
-                            <Setter TargetName="Path" Property="Fill" Value="#34343d"/>
-                            <Setter TargetName="Label" Property="Foreground" Value="White"/>
-                            <Setter  Property="Panel.ZIndex" Value="1"/>
-                        </DataTrigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-    <Style x:Key="ProfilesTabButton" TargetType="Button" BasedOn="{StaticResource SidebarTabButton}">
-        <Setter Property="HorizontalAlignment" Value="Right"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate>
-                    <Grid>
-                        <Path Name="Path" Fill="#24242b" HorizontalAlignment="Left" Data="M58.000,-0.000 L50.970,-0.000 C50.970,-0.000 29.000,-0.875 24.606,15.750 C20.212,32.375 18.894,41.562 10.545,45.500 C2.197,49.437 -0.000,49.000 -0.000,49.000 L185.000,49.000 L185.000,-0.000 Z" Stretch="Fill"/>
-                        <Label Name="Label" Margin="6,0,0,0" Foreground="#494c58" HorizontalContentAlignment="Center" VerticalAlignment="Stretch" VerticalContentAlignment="Center" FontSize="16" Content="{translations:Loc Sidebar_Profiles_ttl}"/>
-                    </Grid>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="Label" Property="Foreground" Value="White"/>
-                        </Trigger>
-                        <DataTrigger Binding="{Binding DataContext.Tab, RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}, Converter={StaticResource DataTypeConverter}}" Value="{x:Type sidebar:SidebarProfilesViewModel}">
-                            <Setter TargetName="Path" Property="Fill" Value="#34343d"/>
-                            <Setter TargetName="Label" Property="Foreground" Value="White"/>
-                            <Setter Property="Panel.ZIndex" Value="1"/>
-                        </DataTrigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
     </Style>
     <Style x:Key="ServerFeature" TargetType="Border">
         <Setter Property="BorderThickness" Value="0"/>

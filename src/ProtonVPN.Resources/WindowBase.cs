@@ -21,6 +21,7 @@ using System;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Interop;
+using System.Windows.Media;
 
 namespace ProtonVPN.Resource
 {
@@ -30,6 +31,7 @@ namespace ProtonVPN.Resource
 
         public WindowBase()
         {
+            TextOptions.SetTextFormattingMode(this, TextFormattingMode.Display);
             PreviewKeyDown += HandleEsc;
         }
 
@@ -38,15 +40,6 @@ namespace ProtonVPN.Resource
             if (e.Key == Key.Escape)
             {
                 Close();
-            }
-        }
-
-        protected override void OnActivated(EventArgs e)
-        {
-            base.OnActivated(e);
-            if (WindowState == WindowState.Minimized)
-            {
-                WindowState = WindowState.Normal;
             }
         }
 

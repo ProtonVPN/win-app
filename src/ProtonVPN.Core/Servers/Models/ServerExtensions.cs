@@ -27,7 +27,7 @@ namespace ProtonVPN.Core.Servers.Models
         public static bool IsSecureCore(this Server server) => ServerFeatures.IsSecureCore(server.Features);
         public static bool SupportsTor(this Server server) => ServerFeatures.SupportsTor(server.Features);
         public static bool SupportsP2P(this Server server) => ServerFeatures.SupportsP2P(server.Features);
-        public static bool SupportsXor(this Server server) => ServerFeatures.SupportsXor(server.Features);
+        public static bool SupportsStreaming(this Server server) => ServerFeatures.SupportsStreaming(server.Features);
         public static bool SupportsIpV6(this Server server) => ServerFeatures.SupportsIpV6(server.Features);
 
         public static bool Online(this Server server) => server.Status == 1;
@@ -50,6 +50,11 @@ namespace ProtonVPN.Core.Servers.Models
         public static IEnumerable<Server> UpToTierServers(this IEnumerable<Server> servers, sbyte maxTier)
         {
             return servers.Where(s => s.Tier <= maxTier);
+        }
+
+        public static bool IsNullOrEmpty(this Server server)
+        {
+            return server == null || server.IsEmpty();
         }
     }
 }

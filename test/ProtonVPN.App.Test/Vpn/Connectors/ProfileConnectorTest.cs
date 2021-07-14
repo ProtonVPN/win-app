@@ -31,8 +31,10 @@ using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Servers.Models;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
+using ProtonVPN.Core.Window.Popups;
 using ProtonVPN.Vpn;
 using ProtonVPN.Vpn.Connectors;
+using ProtonVPN.Windows.Popups.Delinquency;
 using Profile = ProtonVPN.Core.Profiles.Profile;
 
 namespace ProtonVPN.App.Test.Vpn.Connectors
@@ -52,6 +54,8 @@ namespace ProtonVPN.App.Test.Vpn.Connectors
         private ServerManager _serverManager;
         private ServerCandidatesFactory _serverCandidatesFactory;
         private VpnCredentialProvider _vpnCredentialProvider;
+        private IPopupWindows _popupWindows;
+        private IDelinquencyPopupViewModel _delinquencyPopupViewModel;
         private ProfileConnector _profileConnector;
 
         private List<PhysicalServer> _standardPhysicalServers;
@@ -77,9 +81,11 @@ namespace ProtonVPN.App.Test.Vpn.Connectors
             _serverManager = Substitute.For<ServerManager>(_userStorage);
             _serverCandidatesFactory = Substitute.For<ServerCandidatesFactory>(_serverManager);
             _vpnCredentialProvider = Substitute.For<VpnCredentialProvider>(_config, _appSettings, _userStorage);
+            _popupWindows = Substitute.For<IPopupWindows>();
+            _delinquencyPopupViewModel = Substitute.For<IDelinquencyPopupViewModel>();
 
-            _profileConnector = new ProfileConnector(_logger, _userStorage, _appSettings,
-                _serverManager, _serverCandidatesFactory, _vpnServiceManager, _modals, _dialogs, _vpnCredentialProvider);
+            _profileConnector = new ProfileConnector(_logger, _userStorage, _appSettings, _serverManager, _serverCandidatesFactory, 
+                _vpnServiceManager, _modals, _dialogs, _vpnCredentialProvider, _popupWindows, _delinquencyPopupViewModel);
         }
 
         private void InitializeUser()

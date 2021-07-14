@@ -25,7 +25,9 @@ using ProtonVPN.Common.Helpers;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Service.Settings;
+using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
+using ProtonVPN.Service.Contract.Settings;
 using ProtonVPN.Service.Contract.Vpn;
 
 namespace ProtonVPN.Core.Service.Vpn
@@ -82,8 +84,16 @@ namespace ProtonVPN.Core.Service.Vpn
             return _vpnService.Disconnect(_settingsContractProvider.GetSettingsContract(), Map(vpnError));
         }
 
-        public void RegisterCallback(Action<VpnStateChangedEventArgs> callback)
+        public void RegisterVpnStateCallback(Action<VpnStateChangedEventArgs> callback)
             => _vpnService.VpnStateChanged += (s, e) => callback(Map(e));
+        
+        public void RegisterServiceSettingsStateCallback(Action<ServiceSettingsStateChangedEventArgs> callback)
+            => _vpnService.ServiceSettingsStateChanged += (s, e) => callback(Map(e));
+        
+        private static ServiceSettingsStateChangedEventArgs Map(ServiceSettingsStateContract contract)
+        {
+            return new(contract.IsNetworkBlocked, Map(contract.CurrentState));
+        }
 
         private VpnConnectionRequestContract Map(VpnConnectionRequest request)
         {

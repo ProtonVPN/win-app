@@ -22,6 +22,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <LangVersion>latest</LangVersion>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -31,6 +32,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <LangVersion>latest</LangVersion>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DeviceId, Version=4.5.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -101,6 +103,12 @@
     <Compile Include="Configuration\OpenVpnConfig.cs" />
     <Compile Include="Configuration\UrlConfig.cs" />
     <Compile Include="CrashReporting\CrashReports.cs" />
+    <Compile Include="Extensions\CollectionExtensions.cs" />
+    <Compile Include="Extensions\ListExtensions.cs" />
+    <Compile Include="Go\GoExtensions.cs" />
+    <Compile Include="Go\GoString.cs" />
+    <Compile Include="Go\GoBytes.cs" />
+    <Compile Include="Go\PInvoke.cs" />
     <Compile Include="KillSwitch\KillSwitchMode.cs" />
     <Compile Include="Logging\LoggerExtensions.cs" />
     <Compile Include="OS\Net\INetworkInterfaceLoader.cs" />

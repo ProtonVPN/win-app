@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -38,11 +38,11 @@ namespace ProtonVPN.Servers
             _serverManager = serverManager;
         }
 
-        public override void LoadServers()
+        public override void LoadServers(string searchQuery = "")
         {
             var list = _serverManager.GetServers(new SecureCoreServer() && new ExitCountryServer(CountryCode));
             var collection = new ObservableCollection<IServerListItem>();
-            foreach (var server in list)
+            foreach (Server server in list)
             {
                 collection.Add(new SecureCoreItemViewModel(server, _userTier));
             }
@@ -57,7 +57,7 @@ namespace ProtonVPN.Servers
                         && server.IsSecureCore()
                         && server.ExitCountry.Equals(CountryCode);
 
-            foreach (var s in Servers)
+            foreach (IServerListItem s in Servers)
             {
                 s.OnVpnStateChanged(state);
             }
@@ -74,5 +74,7 @@ namespace ProtonVPN.Servers
         }
 
         public override bool Maintenance => _serverManager.CountryUnderMaintenance(CountryCode);
+
+        public bool IsVirtual => _serverManager.IsCountryVirtual(CountryCode);
     }
 }

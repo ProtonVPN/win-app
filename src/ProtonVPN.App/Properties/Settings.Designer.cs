@@ -1231,7 +1231,7 @@ namespace ProtonVPN.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool UseTunAdapter {
             get {
                 return ((bool)(this["UseTunAdapter"]));
@@ -1298,6 +1298,90 @@ namespace ProtonVPN.Properties {
             }
             set {
                 this["UserDoNotShowKillSwitchConfirmationDialog"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string UserDoNotShowEnableSmartProtocolDialog {
+            get {
+                return ((string)(this["UserDoNotShowEnableSmartProtocolDialog"]));
+            }
+            set {
+                this["UserDoNotShowEnableSmartProtocolDialog"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool VpnAcceleratorEnabled {
+            get {
+                return ((bool)(this["VpnAcceleratorEnabled"]));
+            }
+            set {
+                this["VpnAcceleratorEnabled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool FeatureVpnAcceleratorEnabled {
+            get {
+                return ((bool)(this["FeatureVpnAcceleratorEnabled"]));
+            }
+            set {
+                this["FeatureVpnAcceleratorEnabled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool FeatureStreamingServicesLogosEnabled {
+            get {
+                return ((bool)(this["FeatureStreamingServicesLogosEnabled"]));
+            }
+            set {
+                this["FeatureStreamingServicesLogosEnabled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool FeatureSmartReconnectEnabled {
+            get {
+                return ((bool)(this["FeatureSmartReconnectEnabled"]));
+            }
+            set {
+                this["FeatureSmartReconnectEnabled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool SmartReconnectEnabled {
+            get {
+                return ((bool)(this["SmartReconnectEnabled"]));
+            }
+            set {
+                this["SmartReconnectEnabled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool SmartReconnectNotificationsEnabled {
+            get {
+                return ((bool)(this["SmartReconnectNotificationsEnabled"]));
+            }
+            set {
+                this["SmartReconnectNotificationsEnabled"] = value;
             }
         }
     }

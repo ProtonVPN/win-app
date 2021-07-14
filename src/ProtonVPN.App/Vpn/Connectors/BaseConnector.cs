@@ -33,7 +33,7 @@ namespace ProtonVPN.Vpn.Connectors
 
         public async Task Disconnect()
         {
-            await VpnManager.Disconnect();
+            await VpnManager.DisconnectAsync();
         }
     }
 }

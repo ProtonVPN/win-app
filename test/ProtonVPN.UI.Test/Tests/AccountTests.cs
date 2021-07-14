@@ -29,18 +29,51 @@ namespace ProtonVPN.UI.Test.Tests
     {
         private readonly AccountResult _accountResult = new AccountResult();
         private readonly MainWindow _mainWindow = new MainWindow();
-        private readonly LoginWindow _loginActions = new LoginWindow();
+        private readonly LoginWindow _loginWindow = new LoginWindow();
+        private readonly MainWindowResults _mainWindowResults = new MainWindowResults();
+        private readonly ModalWindow _modalWindow = new ModalWindow();
 
         [Test]
         public void CheckIfUsernameIsDisplayedInAccountSection()
         {
             TestCaseId = 199;
 
-            _loginActions.LoginWithPlusUser();
+            _loginWindow.LoginWithPlusUser();
             _mainWindow.ClickHamburgerMenu()
                 .HamburgerMenu.ClickAccount();
             RefreshSession();
             _accountResult.VerifyLoggedInAsTextIs(TestUserData.GetPlusUser().Username);
+        }
+
+        [Test]
+        public void CheckRestrictedAccountConnections()
+        {
+            TestCaseId = 262;
+
+            _loginWindow.LoginWithFreeUser();
+            _mainWindow.MoveMouseToCountryByName("Canada");
+            _mainWindowResults.CheckIfConnectButtonIsNotDisplayed();
+
+            _mainWindow.ClickProfilesButton();
+            _mainWindow.ConnectToAProfileByName("SecureCore");
+            _mainWindowResults.CheckIfUpgradeRequiredModalIsShown("Secure Core");
+            _modalWindow.ClickCancelButton();
+
+            _mainWindow.ConnectToCountryViaPin("MX");
+            _mainWindowResults.CheckIfUpgradeRequiredModalIsShown("Plus Server");
+            _modalWindow.ClickCancelButton();
+
+            _mainWindow.ConnectToAProfileByName("PaidCountry");
+            _mainWindowResults.CheckIfUpgradeRequiredModalIsShown("Plus Server");
+            _modalWindow.ClickCancelButton();
+
+            _mainWindow.ClickHamburgerMenu()
+                .HamburgerMenu.ClickLogout();
+            _loginWindow.WaitUntilLoginInputIsDisplayed();
+            _loginWindow.LoginWithBasicUser();
+            _mainWindow.ClickProfilesButton();
+            _mainWindow.ConnectToAProfileByName("SecureCore");
+            _mainWindowResults.CheckIfUpgradeRequiredModalIsShown("Secure Core");
         }
 
         [SetUp]

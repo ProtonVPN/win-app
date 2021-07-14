@@ -63,18 +63,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <Setter Property="behavior:TextStyleBehavior.FormattedText" Value="{translations:Loc Dialogs_DisconnectError_msg_OldVersion}"/>
                     <Setter Property="Visibility" Value="Visible"/>
                 </DataTrigger>
-                <DataTrigger Binding="{Binding Error}" Value="{x:Static vpn:VpnError.Unpaid}">
-                    <Setter Property="behavior:TextStyleBehavior.FormattedText" Value="{translations:Loc Dialogs_DisconnectError_msg_Unpaid}"/>
-                    <Setter Property="Visibility" Value="Visible"/>
-                </DataTrigger>
-                <DataTrigger Binding="{Binding Error}" Value="{x:Static vpn:VpnError.SessionLimitReached}">
-                    <Setter Property="behavior:TextStyleBehavior.FormattedText" Value="{Binding ErrorDescription}"/>
-                    <Setter Property="Visibility" Value="Visible"/>
-                </DataTrigger>
-                <DataTrigger Binding="{Binding Error}" Value="{x:Static vpn:VpnError.UserTierTooLowError}">
-                    <Setter Property="behavior:TextStyleBehavior.FormattedText" Value="{translations:Loc Dialogs_DisconnectError_msg_TierTooLow}"/>
-                    <Setter Property="Visibility" Value="Visible"/>
-                </DataTrigger>
                 <DataTrigger Binding="{Binding Error}" Value="{x:Static vpn:VpnError.NoServers}">
                     <Setter Property="behavior:TextStyleBehavior.FormattedText" Value="{translations:Loc Dialogs_DisconnectError_msg_NoServers}"/>
                     <Setter Property="Visibility" Value="Visible"/>

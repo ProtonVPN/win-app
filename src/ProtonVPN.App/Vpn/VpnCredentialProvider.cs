@@ -58,6 +58,11 @@ namespace ProtonVPN.Vpn
                 username += "+pmp";
             }
 
+            if (_appSettings.FeatureVpnAcceleratorEnabled && !_appSettings.VpnAcceleratorEnabled)
+            {
+                username += "+nst";
+            }
+
             return username;
         }
     }

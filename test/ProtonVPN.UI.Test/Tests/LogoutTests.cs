@@ -30,7 +30,24 @@ namespace ProtonVPN.UI.Test.Tests
         private readonly LoginResult _loginResult = new LoginResult();
         private readonly MainWindow _mainWindow = new MainWindow();
         private readonly MainWindowResults _mainWindowResults = new MainWindowResults();
-        private readonly LogoutConfirmationPopup _logoutConfirmationPopup = new LogoutConfirmationPopup();
+        private readonly ModalWindow _modalWindow = new ModalWindow();
+        private readonly ConnectionResult _connectionResult = new ConnectionResult();
+
+        [Test]
+        public void CheckIfKillSwitchIsNotActiveOnLogout()
+        {
+            TestCaseId = 215;
+
+            _loginWindow.LoginWithPlusUser();
+            _mainWindow.EnableKillSwitch();
+            _mainWindow.QuickConnect();
+            _mainWindow.ClickHamburgerMenu()
+                .HamburgerMenu.ClickLogout();
+            _modalWindow.ClickContinueButton();
+            _loginWindow.WaitUntilLoginInputIsDisplayed();
+            _loginResult.VerifyKillSwitchIsNotActive();
+            _connectionResult.CheckIfDnsIsResolved();
+        }
 
         [Test]
         public void SuccessfulLogout()
@@ -38,11 +55,9 @@ namespace ProtonVPN.UI.Test.Tests
             TestCaseId = 211;
 
             _loginWindow.LoginWithPlusUser();
-
             _mainWindow.ClickHamburgerMenu();
             _mainWindow.HamburgerMenu.ClickLogout();
-            RefreshSession();
-
+            _loginWindow.WaitUntilLoginInputIsDisplayed();
             _loginResult.VerifyUserIsOnLoginWindow();
         }
 
@@ -54,13 +69,9 @@ namespace ProtonVPN.UI.Test.Tests
             _loginWindow.LoginWithPlusUser();
             _mainWindow.QuickConnect();
             _mainWindow.ClickHamburgerMenu();
-
             _mainWindow.HamburgerMenu.ClickLogout();
-            RefreshSession();
-
-            _logoutConfirmationPopup.ClickContinueButton();
-            RefreshSession();
-
+            _modalWindow.ClickContinueButton();
+            _loginWindow.WaitUntilLoginInputIsDisplayed();
             _loginResult.VerifyUserIsOnLoginWindow();
         }
 
@@ -77,8 +88,7 @@ namespace ProtonVPN.UI.Test.Tests
                 .HamburgerMenu
                 .ClickLogout();
             
-            RefreshSession();
-            _logoutConfirmationPopup.ClickCancelButton();
+            _modalWindow.ClickCancelButton();
 
             _mainWindowResults.VerifyUserIsLoggedIn();
         }

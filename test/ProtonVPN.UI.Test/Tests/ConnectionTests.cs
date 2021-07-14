@@ -22,6 +22,7 @@ using System.Threading.Tasks;
 using ProtonVPN.UI.Test.Windows;
 using ProtonVPN.UI.Test.Results;
 using NUnit.Framework;
+using ProtonVPN.UI.Test.ApiClient;
 
 namespace ProtonVPN.UI.Test.Tests
 {
@@ -33,6 +34,9 @@ namespace ProtonVPN.UI.Test.Tests
         private readonly MainWindowResults _mainWindowResults = new MainWindowResults();
         private readonly SettingsWindow _settingsWindow = new SettingsWindow();
         private readonly SettingsResult _settingsResult = new SettingsResult();
+        private readonly ConnectionResult _connectionResult = new ConnectionResult();
+        private readonly ModalWindow _modalWindow = new ModalWindow();
+        private readonly CommonAPI _client = new CommonAPI("http://ip-api.com");
 
         [Test]
         public async Task ConnectUsingQuickConnectFreeUser()
@@ -42,9 +46,7 @@ namespace ProtonVPN.UI.Test.Tests
             _loginWindow.LoginWithFreeUser();
             _mainWindow.QuickConnect();
             _mainWindowResults.CheckIfConnected();
-            TestRailClient.MarkTestsByStatus();
-
-            TestCaseId = 229;
+            
             await _mainWindowResults.CheckIfCorrectIPAddressIsShownAsync();
             await _mainWindowResults.CheckIfCorrectCountryIsShownAsync();
         }
@@ -75,7 +77,11 @@ namespace ProtonVPN.UI.Test.Tests
             _loginWindow.LoginWithPlusUser();
             _mainWindow.ClickProfilesButton();
             _mainWindow.ConnectToAProfileByName("Fastest");
+            _mainWindow.WaitUntilConnected();
             _mainWindowResults.CheckIfConnected();
+            TestRailClient.MarkTestsByStatus();
+
+            TestCaseId = 229;
             await _mainWindowResults.CheckIfCorrectIPAddressIsShownAsync();
             await _mainWindowResults.CheckIfCorrectCountryIsShownAsync();
         }
@@ -88,6 +94,7 @@ namespace ProtonVPN.UI.Test.Tests
             _loginWindow.LoginWithPlusUser();
             _mainWindow.ClickProfilesButton();
             _mainWindow.ConnectToAProfileByName("Random");
+            _mainWindow.WaitUntilConnected();
             _mainWindowResults.CheckIfConnected();
             await _mainWindowResults.CheckIfCorrectIPAddressIsShownAsync();
         }
@@ -124,19 +131,38 @@ namespace ProtonVPN.UI.Test.Tests
         }
 
         [Test]
-        public void CheckIfCustomDnsAddressIsSet()
+        public void CheckCustomDnsManipulation()
         {
-            TestCaseId = 4579;
+            TestCaseId = 4578;
 
             _loginWindow.LoginWithPlusUser();
-            _mainWindow.ClickHamburgerMenu().HamburgerMenu.ClickSettings();
+            _mainWindow.ClickHamburgerMenu()
+                .HamburgerMenu.ClickSettings();
             _settingsWindow.ClickConnectionTab();
             _settingsWindow.EnableCustomDnsServers();
             _settingsWindow.DisableNetshieldForCustomDns();
+            _settingsWindow.CloseSettings();
+            _mainWindowResults.CheckIfNetshieldIsDisabled();
+            TestRailClient.MarkTestsByStatus();
+
+            TestCaseId = 4579;
+
+            _mainWindow.ClickHamburgerMenu()
+                .HamburgerMenu.ClickSettings();
             _settingsWindow.EnterCustomIpv4Address("8.8.8.8");
             _settingsWindow.CloseSettings();
             _mainWindow.QuickConnect();
             _settingsResult.CheckIfDnsAddressMatches("8.8.8.8");
+            TestRailClient.MarkTestsByStatus();
+
+            TestCaseId = 4581;
+
+            _mainWindow.ClickHamburgerMenu()
+                .HamburgerMenu.ClickSettings();
+            _settingsWindow.RemoveDnsAddress();
+            _settingsWindow.PressReconnect();
+            _mainWindow.WaitUntilConnected();
+            _settingsResult.CheckIfDnsAddressDoesNotMatch("8.8.8.8");
         }
 
         [Test]
@@ -145,7 +171,8 @@ namespace ProtonVPN.UI.Test.Tests
             TestCaseId = 4580;
 
             _loginWindow.LoginWithPlusUser();
-            _mainWindow.ClickHamburgerMenu().HamburgerMenu.ClickSettings();
+            _mainWindow.ClickHamburgerMenu()
+                .HamburgerMenu.ClickSettings();
             _settingsWindow.ClickConnectionTab();
             _settingsWindow.EnableCustomDnsServers();
             _settingsWindow.DisableNetshieldForCustomDns();
@@ -161,6 +188,76 @@ namespace ProtonVPN.UI.Test.Tests
             _loginWindow.LoginWithPlusUser();
             _mainWindow.QuickConnect();
             _mainWindowResults.CheckIfSameServerIsKeptAfterKillingApp();
+        }
+
+        [Test]
+        public void CheckIfKillSwitchIsNotActiveOnAppExit()
+        {
+            TestCaseId = 216;
+
+            _loginWindow.LoginWithPlusUser();
+            _mainWindow.EnableKillSwitch();
+            _mainWindow.QuickConnect();
+            _mainWindow.ClickHamburgerMenu()
+                .HamburgerMenu.ClickExit();
+            _mainWindow.ConfirmAppExit();
+            _connectionResult.CheckIfDnsIsResolved();
+        }
+
+        [Test]
+        public async Task ConnectAndDisconnectViaMap()
+        {
+            TestCaseId = 219;
+
+            _loginWindow.LoginWithPlusUser();
+            _mainWindow.ConnectToCountryViaPin("US");
+            _mainWindow.WaitUntilConnected();
+            _mainWindowResults.CheckIfConnected();
+            await _mainWindowResults.CheckIfCorrectIPAddressIsShownAsync();
+            await _mainWindowResults.CheckIfCorrectCountryIsShownAsync();
+            TestRailClient.MarkTestsByStatus();
+
+            TestCaseId = 220;
+
+            _mainWindow.DisconnectFromCountryViaPin("US");
+            _mainWindowResults.CheckIfDisconnected();
+        }
+
+        [Test]
+        public async Task CheckIfIpIsExcludedByIp()
+        {
+            TestCaseId = 7591;
+
+            _loginWindow.LoginWithPlusUser();
+            string homeIpAddress = await _client.GetIpAddress();
+            _mainWindow.ClickHamburgerMenu()
+                .HamburgerMenu.ClickSettings();
+            _modalWindow.MoveModalUp(amountOfTimes: 8);
+            _settingsWindow.ClickAdvancedTab();
+            _settingsWindow.EnableSplitTunneling();
+            _settingsWindow.AddIpAddressSplitTunneling("208.95.112.1");
+            _settingsWindow.CloseSettings();
+            _mainWindow.QuickConnect();
+            await _mainWindowResults.CheckIfIpAddressIsExcluded(homeIpAddress);
+        }
+
+        [Test]
+        public async Task CheckIfIpIsIncluded()
+        {
+            TestCaseId = 54967;
+            _loginWindow.LoginWithPlusUser();
+            _mainWindow.ClickHamburgerMenu()
+               .HamburgerMenu.ClickSettings();
+            _modalWindow.MoveModalUp(amountOfTimes: 8);
+            _settingsWindow.ClickAdvancedTab();
+            _settingsWindow.EnableSplitTunneling();
+            _settingsWindow.EnableIncludeMode();
+            _settingsWindow.AddIpAddressSplitTunneling("208.95.112.1");
+            _settingsWindow.CloseSettings();
+            _mainWindow.QuickConnect();
+            //Delay to get correct IP address
+            Thread.Sleep(3000);
+            await _mainWindowResults.CheckIfCorrectIPAddressIsShownAsync();
         }
 
         [SetUp]

@@ -148,8 +148,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
     <Style x:Key="ComboDropdown" TargetType="wpf:Combobox" BasedOn="{StaticResource Combobox}">
         <Setter Property="ItemContainerStyle" Value="{StaticResource CustomComboItem}"/>
-        <Setter Property="BorderBrush" Value="#515156"/>
-        <Setter Property="Margin" Value="0,0,15,0"/>
+        <Setter Property="BorderBrush" Value="#464652"/>
+        <Setter Property="Margin" Value="0,0,0,0"/>
         <Setter Property="Background" Value="#26262b"/>
         <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="ActiveBorderThickness" Value="0,0,0,1"/>

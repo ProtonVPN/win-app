@@ -55,7 +55,7 @@ namespace ProtonVPN.Settings
         private IReadOnlyList<ProfileViewModel> _quickConnectProfiles;
         private VpnStatus _vpnStatus;
 
-        private ProfileViewModel _profileDisabledOption => new(new Profile
+        private readonly ProfileViewModel _profileDisabledOption = new(new Profile
         {
             Id = "", Name = Translation.Get("Settings_val_Disabled"), ColorCode = "#777783"
         });
@@ -153,6 +153,68 @@ namespace ProtonVPN.Settings
             set
             {
                 _appSettings.Ipv6LeakProtection = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+        public bool VpnAccelerator
+        {
+            get => _appSettings.VpnAcceleratorEnabled;
+            set
+            {
+                _appSettings.VpnAcceleratorEnabled = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+        public bool IsVpnAcceleratorFeatureEnabled
+        {
+            get
+            {
+                return _appSettings.FeatureVpnAcceleratorEnabled;
+            }
+        }
+
+        public bool SmartReconnect
+        {
+            get => _appSettings.SmartReconnectEnabled;
+            set
+            {
+                _appSettings.SmartReconnectEnabled = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+        public bool IsToShowSmartReconnect
+        {
+            get
+            {
+                return _appSettings.FeatureVpnAcceleratorEnabled && _appSettings.FeatureSmartReconnectEnabled;
+            }
+        }
+
+        public bool IsToShowSmartReconnectNotifications
+        {
+            get
+            {
+                return _appSettings.FeatureVpnAcceleratorEnabled && _appSettings.FeatureSmartReconnectEnabled && ShowNotifications;
+            }
+        }
+
+        public bool IsSmartReconnectNotificationsEditable
+        {
+            get
+            {
+                return _appSettings.SmartReconnectEnabled;
+            }
+        }
+
+        public bool SmartReconnectNotifications
+        {
+            get => _appSettings.SmartReconnectNotificationsEnabled;
+            set
+            {
+                _appSettings.SmartReconnectNotificationsEnabled = value;
                 NotifyOfPropertyChange();
             }
         }
@@ -270,8 +332,8 @@ namespace ProtonVPN.Settings
 
         public List<KeyValuePair<NetworkAdapter, string>> NetworkDrivers => new()
         {
-            new KeyValuePair<NetworkAdapter, string>(NetworkAdapter.Tap, Translation.Get("Settings_Advanced_lbl_Tap")),
             new KeyValuePair<NetworkAdapter, string>(NetworkAdapter.Tun, Translation.Get("Settings_Advanced_lbl_Tun")),
+            new KeyValuePair<NetworkAdapter, string>(NetworkAdapter.Tap, Translation.Get("Settings_Advanced_lbl_Tap")),
         };
 
         public NetworkAdapter SelectedNetworkDriver
@@ -311,6 +373,16 @@ namespace ProtonVPN.Settings
             return Task.CompletedTask;
         }
 
+        public void OpenGeneralTab()
+        {
+            SelectedTabIndex = 0;
+        }
+
+        public void OpenConnectionTab()
+        {
+            SelectedTabIndex = 1;
+        }
+
         public void OpenAdvancedTab()
         {
             SelectedTabIndex = 2;
@@ -332,6 +404,10 @@ namespace ProtonVPN.Settings
             {
                 OnLanguageChanged();
             }
+            else if (e.PropertyName.Equals(nameof(IAppSettings.ShowNotifications)))
+            {
+                OnShowNotificationsChanged();
+            }
             else if (e.PropertyName.Equals(nameof(IAppSettings.FeatureNetShieldEnabled)) ||
                      e.PropertyName.Equals(nameof(IAppSettings.NetShieldMode)) ||
                      e.PropertyName.Equals(nameof(IAppSettings.NetShieldEnabled)))
@@ -341,8 +417,29 @@ namespace ProtonVPN.Settings
                     _appSettings.CustomDnsEnabled = false;
                 }
             }
+            else if (e.PropertyName.Equals(nameof(IAppSettings.FeatureVpnAcceleratorEnabled)))
+            {
+                NotifyOfPropertyChange(() => IsVpnAcceleratorFeatureEnabled);
+                NotifyOfPropertyChange(() => IsToShowSmartReconnect);
+                NotifyOfPropertyChange(() => IsToShowSmartReconnectNotifications);
+            }
+            else if (e.PropertyName.Equals(nameof(IAppSettings.FeatureSmartReconnectEnabled)))
+            {
+                NotifyOfPropertyChange(() => IsToShowSmartReconnect);
+                NotifyOfPropertyChange(() => IsToShowSmartReconnectNotifications);
+            }
+            else if (e.PropertyName.Equals(nameof(IAppSettings.SmartReconnectEnabled)))
+            {
+                NotifyOfPropertyChange(() => IsSmartReconnectNotificationsEditable);
+            }
 
             RefreshReconnectRequiredState(e.PropertyName);
+        }
+
+        private void OnShowNotificationsChanged()
+        {
+            NotifyOfPropertyChange(() => ShowNotifications);
+            NotifyOfPropertyChange(() => IsToShowSmartReconnectNotifications);
         }
 
         public async void OnLanguageChanged()
@@ -425,7 +522,7 @@ namespace ProtonVPN.Settings
 
         private async void ReconnectAction()
         {
-            await _vpnManager.Reconnect();
+            await _vpnManager.ReconnectAsync();
         }
 
         private void UpgradeAction()

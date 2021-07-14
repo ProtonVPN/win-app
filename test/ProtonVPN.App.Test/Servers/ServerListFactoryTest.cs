@@ -22,24 +22,29 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
+using ProtonVPN.Config.Url;
 using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Servers;
+using ProtonVPN.Streaming;
 
 namespace ProtonVPN.App.Test.Servers
 {
     [TestClass]
     public class ServerListFactoryTest
     {
+        private IStreamingServices _streamingServices;
         private IUserStorage _userStorage;
         private ServerManager _serverManager;
-        private ISortedCountries _sortedCountries;
         private ServerListFactory _serverListFactory;
+        private IActiveUrls _urls;
 
         private User _user;
         private List<string> _countries;
+
+        private readonly List<string> _countriesWithFreeServers = new List<string> {"JP", "NL", "US"};
 
         [TestInitialize]
         public void TestInitialize()
@@ -48,33 +53,43 @@ namespace ProtonVPN.App.Test.Servers
 
             List<LogicalServerContract> servers = new List<LogicalServerContract>
             {
-                CreateServer("IT#1", Features.None, "IT"),
-                CreateServer("FR#1", Features.None, "FR"),
-                CreateServer("CH#1", Features.None, "CH"),
-                CreateServer("SE#1", Features.None, "SE"),
-                CreateServer("IS#1", Features.None, "IS"),
-                CreateServer("US-TX#1", Features.None, "US"),
-                CreateServer("IT#2", Features.SecureCore, "IT", "SE"),
-                CreateServer("FR#2", Features.SecureCore, "FR", "IS"),
-                CreateServer("CH#2", Features.P2P, "CH"),
-                CreateServer("CH#3", Features.Tor, "CH"),
-                CreateServer("IS#2", Features.Tor, "IS"),
-                CreateServer("US-TX#2", Features.P2P, "US")
+                CreateServer("IT#1", Features.None, "IT", null, 1),
+                CreateServer("FR#1", Features.None, "FR", null, 1),
+                CreateServer("CH#1", Features.None, "CH", null, 1),
+                CreateServer("SE#1", Features.None, "SE", null, 1),
+                CreateServer("IS#1", Features.None, "IS", null, 1),
+                CreateServer("US-TX#1", Features.None, "US", null, 1),
+                CreateServer("IT#2", Features.SecureCore, "IT", "SE", 2),
+                CreateServer("FR#2", Features.SecureCore, "FR", "IS", 2),
+                CreateServer("CH#2", Features.P2P, "CH", null, 2),
+                CreateServer("CH#3", Features.Tor, "CH", null, 2),
+                CreateServer("IS#2", Features.Tor, "IS", null, 2),
+                CreateServer("US-TX#2", Features.P2P, "US", null, 2, "Houston")
             };
 
+            foreach (string countryCode in _countriesWithFreeServers)
+            {
+                servers.Add(CreateServer(countryCode + "-FREE#1", Features.None, countryCode, countryCode));
+            }
+
             _serverManager = Substitute.For<ServerManager>(_userStorage, servers);
+            _urls = Substitute.For<IActiveUrls>();
+
             InitializeSortedCountries();
-            _serverListFactory = new ServerListFactory(_serverManager, _userStorage, _sortedCountries);
+            _serverListFactory = new ServerListFactory(_serverManager, _userStorage, _streamingServices, _urls);
         }
 
-        private LogicalServerContract CreateServer(string name, Features features, string exitCountryCode, string entryCountryCode = null)
+        private LogicalServerContract CreateServer(string name, Features features, string exitCountryCode,
+            string entryCountryCode = null, sbyte tier = 0, string city = "")
         {
-            return new LogicalServerContract() 
-            { 
-                Name = name, 
-                EntryCountry = entryCountryCode ?? exitCountryCode, 
-                ExitCountry = exitCountryCode, 
+            return new LogicalServerContract
+            {
+                Name = name,
+                EntryCountry = entryCountryCode ?? exitCountryCode,
+                ExitCountry = exitCountryCode,
                 Features = (sbyte)features,
+                Tier = tier,
+                City = city,
                 Servers = new List<PhysicalServerContract>()
             };
         }
@@ -88,9 +103,18 @@ namespace ProtonVPN.App.Test.Servers
 
         private void InitializeSortedCountries()
         {
-            _sortedCountries = Substitute.For<ISortedCountries>();
-            _countries = new List<string> { "IT", "CH", "SE", "IS", "US", "FR" };
-            _sortedCountries.List().Returns(_countries);
+            _countries = new List<string>
+            {
+                "IT",
+                "CH",
+                "SE",
+                "IS",
+                "US",
+                "FR"
+            }.OrderBy(Countries.GetName).ToList();
+
+            _serverManager.GetCountries().Returns(_countries);
+            _streamingServices = Substitute.For<IStreamingServices>();
         }
 
         [TestCleanup]
@@ -98,7 +122,7 @@ namespace ProtonVPN.App.Test.Servers
         {
             _userStorage = null;
             _serverManager = null;
-            _sortedCountries = null;
+            _streamingServices = null;
             _serverListFactory = null;
 
             _user = null;
@@ -106,20 +130,42 @@ namespace ProtonVPN.App.Test.Servers
         }
 
         [TestMethod]
-        public void BuildServerList()
+        public void BuildServerList_ItShouldDisplayFreeCountriesForFreeUserFirst()
         {
+            // Arrange
+            _userStorage.User().Returns(new User {MaxTier = ServerTiers.Free});
+
             // Act
             ObservableCollection<IServerListItem> result = _serverListFactory.BuildServerList();
 
+            Assert.AreEqual(result[0].Name, "FREE Locations (" + _countriesWithFreeServers.Count + ")");
+
             // Assert
-            IList<string> countries = _countries.ToList();
-            Assert.AreEqual(countries.Count, result.Count);
-            foreach (IServerListItem serverListItem in result)
+            for (int i = 0; i < _countriesWithFreeServers.Count; i++)
             {
-                Assert.IsInstanceOfType(serverListItem, typeof(ServersByCountryViewModel));
-                ServersByCountryViewModel viewModel = (ServersByCountryViewModel)serverListItem;
-                Assert.IsTrue(countries.Contains(viewModel.CountryCode));
-                countries.Remove(viewModel.CountryCode);
+                Assert.AreEqual(Countries.GetName(_countriesWithFreeServers[i]), result[i + 1].Name);
+            }
+        }
+
+        [TestMethod]
+        public void BuildServerList_ItShouldGroupPlusAndBasicLocationsForFreeUsers()
+        {
+            // Arrange
+            _userStorage.User().Returns(new User {MaxTier = ServerTiers.Free});
+
+            // Act
+            int freeLocationsWithHeaderCount = _countriesWithFreeServers.Count + 1;
+            ObservableCollection<IServerListItem> serverList = _serverListFactory.BuildServerList();
+            List<IServerListItem> result = serverList.Skip(freeLocationsWithHeaderCount).ToList();
+            List<string> basicAndPlusCountries = _countries.Select(Countries.GetName)
+                .Except(serverList.Take(freeLocationsWithHeaderCount).Select(c => c.Name)).ToList();
+
+            Assert.AreEqual(result[0].Name, "BASIC & PLUS Locations (" + (result.Count - 1) + ")");
+
+            // Assert
+            for (int i = 0; i < basicAndPlusCountries.Count; i++)
+            {
+                Assert.AreEqual(basicAndPlusCountries[i], result[i + 1].Name);
             }
         }
 
@@ -133,10 +179,27 @@ namespace ProtonVPN.App.Test.Servers
             ObservableCollection<IServerListItem> result = _serverListFactory.BuildServerList(searchQuery);
 
             // Assert
-            Assert.AreEqual(1, result.Count);
-            Assert.IsInstanceOfType(result[0], typeof(ServersByCountryViewModel));
-            ServersByCountryViewModel viewModel = (ServersByCountryViewModel)result[0];
+            Assert.AreEqual(2, result.Count);
+            Assert.IsInstanceOfType(result[1], typeof(ServersByCountryViewModel));
+            ServersByCountryViewModel viewModel = (ServersByCountryViewModel)result[1];
             Assert.AreEqual("CH", viewModel.CountryCode);
+        }
+
+        [TestMethod]
+        public void BuildServerList_WithCityNameInSearchQuery()
+        {
+            // Arrange
+            string searchQuery = "hou";
+
+            // Act
+            ObservableCollection<IServerListItem> result = _serverListFactory.BuildServerList(searchQuery);
+
+            // Assert
+            Assert.AreEqual(2, result.Count);
+            ServersByCountryViewModel countryViewModel = (ServersByCountryViewModel)result[1];
+            Assert.AreEqual(2, countryViewModel.Servers.Count);
+            ServerItemViewModel serverItemViewModel = (ServerItemViewModel) countryViewModel.Servers[1];
+            Assert.AreEqual("Houston", serverItemViewModel.Server.City);
         }
 
         [TestMethod]
@@ -149,13 +212,16 @@ namespace ProtonVPN.App.Test.Servers
             ObservableCollection<IServerListItem> result = _serverListFactory.BuildServerList(searchQuery);
 
             // Assert
-            Assert.AreEqual(1, result.Count);
-            Assert.IsInstanceOfType(result[0], typeof(ServersByCountryViewModel));
-            ServersByCountryViewModel viewModel = (ServersByCountryViewModel)result[0];
+            Assert.AreEqual(2, result.Count);
+            Assert.IsInstanceOfType(result[1], typeof(ServersByCountryViewModel));
+            ServersByCountryViewModel viewModel = (ServersByCountryViewModel)result[1];
             Assert.AreEqual("US", viewModel.CountryCode);
             foreach (IServerListItem server in viewModel.Servers)
             {
-                Assert.IsTrue(server.Name.StartsWith("US-TX#"));
+                if (server is ServerItemViewModel)
+                {
+                    Assert.IsTrue(server.Name.StartsWith("US-TX#"));
+                }
             }
         }
 
@@ -166,7 +232,7 @@ namespace ProtonVPN.App.Test.Servers
             ObservableCollection<IServerListItem> result = _serverListFactory.BuildSecureCoreList();
 
             // Assert
-            IList<string> secureCoreCountries = new List<string> { "FR", "IT" };
+            IList<string> secureCoreCountries = new List<string> {"FR", "IT"};
             Assert.AreEqual(secureCoreCountries.Count, result.Count);
             foreach (IServerListItem serverListItem in result)
             {
@@ -184,14 +250,14 @@ namespace ProtonVPN.App.Test.Servers
             ObservableCollection<IServerListItem> result = _serverListFactory.BuildPortForwardingList();
 
             // Assert
-            IList<string> p2pCountries = new List<string> { "CH", "US" };
-            IList<string> nonP2Pcountries = new List<string> { "IT", "SE", "IS", "FR" };
+            IList<string> p2pCountries = new List<string> {"CH", "US"};
+            IList<string> nonP2Pcountries = new List<string> {"IT", "SE", "IS", "FR"};
             int numOfSeparators = 2;
             Assert.AreEqual(p2pCountries.Count + nonP2Pcountries.Count + numOfSeparators, result.Count);
 
             AssertCountrySeparator(result[0], "P2P");
             AssertCountries(result.Skip(1).Take(p2pCountries.Count), p2pCountries);
-            AssertCountrySeparator(result[p2pCountries.Count+1], "OTHERS");
+            AssertCountrySeparator(result[p2pCountries.Count + 1], "OTHERS");
             AssertCountries(result.Skip(p2pCountries.Count + 2).Take(nonP2Pcountries.Count), nonP2Pcountries);
         }
 
@@ -202,7 +268,8 @@ namespace ProtonVPN.App.Test.Servers
             Assert.AreEqual(expectedName, viewModel.Name);
         }
 
-        private void AssertCountries(IEnumerable<IServerListItem> serverListItems, IEnumerable<string> expectedCountriesEnum)
+        private void AssertCountries(IEnumerable<IServerListItem> serverListItems,
+            IEnumerable<string> expectedCountriesEnum)
         {
             IList<string> expectedCountries = expectedCountriesEnum.ToList();
             foreach (IServerListItem serverListItem in serverListItems)

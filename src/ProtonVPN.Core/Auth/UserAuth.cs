@@ -19,6 +19,7 @@
 
 using System;
 using System.Net.Http;
+using System.Security;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Core.Abstract;
@@ -88,7 +89,7 @@ namespace ProtonVPN.Core.Auth
             }
         }
 
-        public async Task<ApiResponseResult<AuthResponse>> LoginUserAsync(string username, string password)
+        public async Task<ApiResponseResult<AuthResponse>> LoginUserAsync(string username, SecureString password)
         {
             _logger?.Info("Trying to login user");
             UserLoggingIn?.Invoke(this, EventArgs.Empty);
@@ -107,10 +108,10 @@ namespace ProtonVPN.Core.Auth
                 return authResult;
             }
 
-            return ApiResponseResult<AuthResponse>.Fail(vpnInfo.StatusCode, vpnInfo.Error);
+            return ApiResponseResult<AuthResponse>.Fail(vpnInfo);
         }
 
-        public async Task<ApiResponseResult<AuthResponse>> AuthAsync(string username, string password)
+        public async Task<ApiResponseResult<AuthResponse>> AuthAsync(string username, SecureString password)
         {
             ApiResponseResult<AuthInfo> authInfo = await _apiClient.GetAuthInfoResponse(new AuthInfoRequestData
             {
@@ -163,7 +164,9 @@ namespace ProtonVPN.Core.Auth
         public void Logout()
         {
             if (!LoggedIn)
+            {
                 return;
+            }
 
             LoggedIn = false;
             UserLoggedOut?.Invoke(this, EventArgs.Empty);

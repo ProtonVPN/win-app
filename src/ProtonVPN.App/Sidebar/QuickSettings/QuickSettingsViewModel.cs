@@ -27,12 +27,12 @@ using ProtonVPN.Common.Vpn;
 using ProtonVPN.Config.Url;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Servers;
+using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.User;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Modals;
 using ProtonVPN.Onboarding;
-using ProtonVPN.Settings;
 
 namespace ProtonVPN.Sidebar.QuickSettings
 {
@@ -46,20 +46,20 @@ namespace ProtonVPN.Sidebar.QuickSettings
         private readonly IUserStorage _userStorage;
         private readonly IActiveUrls _urls;
         private readonly IModals _modals;
-        private readonly IVpnReconnector _vpnReconnector;
+        private readonly IVpnManager _vpnManager;
 
         public QuickSettingsViewModel(
             IAppSettings appSettings,
             IUserStorage userStorage,
             IActiveUrls urls,
             IModals modals,
-            IVpnReconnector vpnReconnector)
+            IVpnManager vpnManager)
         {
             _modals = modals;
             _urls = urls;
             _userStorage = userStorage;
             _appSettings = appSettings;
-            _vpnReconnector = vpnReconnector;
+            _vpnManager = vpnManager;
 
             SecureCoreLearnMoreCommand = new RelayCommand(OpenSecureCoreArticleAction);
             NetShieldLearnMoreCommand = new RelayCommand(OpenNetShieldArticleAction);
@@ -231,7 +231,9 @@ namespace ProtonVPN.Sidebar.QuickSettings
 
         public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
         {
-            if (e.State.Status == VpnStatus.Connecting || e.State.Status == VpnStatus.Reconnecting)
+            if (e.State.Status == VpnStatus.Pinging || 
+                e.State.Status == VpnStatus.Connecting || 
+                e.State.Status == VpnStatus.Reconnecting)
             {
                 ShowSecureCorePopup = false;
                 ShowNetShieldPopup = false;
@@ -256,7 +258,7 @@ namespace ProtonVPN.Sidebar.QuickSettings
 
         private async Task ReconnectAsync()
         {
-            await _vpnReconnector.ReconnectAsync();
+            await _vpnManager.ReconnectAsync();
         }
 
         private void HideSecureCorePopup()

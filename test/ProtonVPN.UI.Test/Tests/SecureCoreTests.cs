@@ -59,6 +59,24 @@ namespace ProtonVPN.UI.Test.Tests
             _mainWindowResults.CheckIfSameServerIsKeptAfterKillingApp();
         }
 
+        [Test]
+        public async Task ConnectAndDisconnectViaMapSecureCore()
+        {
+            TestCaseId = 253;
+
+            _loginWindow.LoginWithPlusUser();
+            _mainWindow.EnableSecureCore();
+            _mainWindow.ConnectToCountryViaPinSecureCore("US");
+            _mainWindow.WaitUntilConnected();
+            await _mainWindowResults.CheckIfCorrectIPAddressIsShownAsync();
+            TestRailClient.MarkTestsByStatus();
+
+            TestCaseId = 254;
+
+            _mainWindow.DisconnectFromCountryViaPinSecureCore("US");
+            _mainWindowResults.CheckIfDisconnected();
+        }
+
         [SetUp]
         public void TestInitialize()
         {

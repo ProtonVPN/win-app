@@ -160,6 +160,7 @@ namespace ProtonVPN.QuickLaunch
                     Connecting = false;
                     Disconnected = false;
                     break;
+                case VpnStatus.Pinging:
                 case VpnStatus.Connecting:
                 case VpnStatus.Reconnecting:
                     ServerName = server.Name;
@@ -203,11 +204,11 @@ namespace ProtonVPN.QuickLaunch
             if (_vpnStatus.Equals(VpnStatus.Disconnected) ||
                 _vpnStatus.Equals(VpnStatus.Disconnecting))
             {
-                await _vpnManager.QuickConnect();
+                await _vpnManager.QuickConnectAsync();
             }
             else
             {
-                await _vpnManager.Disconnect();
+                await _vpnManager.DisconnectAsync();
             }
         }
 
@@ -236,7 +237,7 @@ namespace ProtonVPN.QuickLaunch
             var profile = await _profileManager.GetProfileById(viewModel.Id);
             if (profile == null) return;
 
-            await _vpnManager.Connect(profile);
+            await _vpnManager.ConnectAsync(profile);
         }
 
         private void ShowAppAction()

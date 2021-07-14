@@ -137,6 +137,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                   Style="{StaticResource BlockableTopMenuItem}"
                                   Header="{translations:Loc App_mnu_ReportBug}"
                                   AutomationProperties.AutomationId="{StaticResource MenuReportBugButton}"/>
+                        <MenuItem Command="{Binding DeveloperToolsCommand}"
+                                  Style="{StaticResource SubmenuItem}"
+                                  Header="Developer Tools"
+                                  Visibility="{Binding IsToShowDeveloperTools, Converter={StaticResource BoolToVis}}"/>
                         <MenuItem Command="{Binding LogoutCommand}"
                                   Style="{StaticResource SubmenuItem}"
                                   Header="{translations:Loc App_mnu_Logout}"

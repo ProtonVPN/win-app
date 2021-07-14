@@ -21,6 +21,7 @@ using ProtonVPN.Service.Contract.Vpn;
 using System;
 using System.ServiceModel;
 using System.Windows;
+using ProtonVPN.Service.Contract.Settings;
 
 namespace ProtonVPN.Core.Service.Vpn
 {
@@ -30,10 +31,17 @@ namespace ProtonVPN.Core.Service.Vpn
     public class VpnEvents : IVpnEventsContract
     {
         public event EventHandler<VpnStateContract> VpnStateChanged;
+        public event EventHandler<ServiceSettingsStateContract> ServiceSettingsStateChanged;
 
         public void OnStateChanged(VpnStateContract e)
         {
             Action action = () => VpnStateChanged?.Invoke(this, e);
+            Application.Current?.Dispatcher?.BeginInvoke(action, null);
+        }
+
+        public void OnServiceSettingsStateChanged(ServiceSettingsStateContract e)
+        {
+            Action action = () => ServiceSettingsStateChanged?.Invoke(this, e);
             Application.Current?.Dispatcher?.BeginInvoke(action, null);
         }
     }

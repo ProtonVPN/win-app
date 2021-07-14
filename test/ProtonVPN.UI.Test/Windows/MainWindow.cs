@@ -17,6 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using OpenQA.Selenium;
+using OpenQA.Selenium.Appium.Windows;
+using OpenQA.Selenium.Interactions;
 using ProtonVPN.UI.Test.TestsHelper;
 
 namespace ProtonVPN.UI.Test.Windows
@@ -44,10 +47,7 @@ namespace ProtonVPN.UI.Test.Windows
 
         public MainWindow ConnectByCountryName(string countryName)
         {
-            var inputSearch = Session.FindElementByAccessibilityId("SearchInput");
-            inputSearch.SendKeys(countryName);
-            var countryBox = Session.FindElementByName(countryName);
-            MoveToElement(countryBox);
+            MoveMouseToCountryByName(countryName);
             ClickOnObjectWithName("CONNECT");
             WaitUntilConnected();
             return this;
@@ -81,10 +81,9 @@ namespace ProtonVPN.UI.Test.Windows
 
         public MainWindow ConnectToAProfileByName(string profileName)
         {
-            var element = Session.FindElementByName(profileName);
+            WindowsElement element = Session.FindElementByName(profileName);
             MoveToElement(element);
             ClickOnObjectWithName("CONNECT");
-            WaitUntilConnected();
             return this;
         }
 
@@ -92,7 +91,7 @@ namespace ProtonVPN.UI.Test.Windows
         {
             ClickQuickConnectButton();
             var quickConnectButton = Session.FindElementByAccessibilityId("SidebarQuickConnectButton");
-            WaitUntilTextMatches(quickConnectButton, "Quick Connect", 20);
+            WaitUntilTextMatches(quickConnectButton, "Quick Connect", seconds: 20);
             return this;
         }
 
@@ -111,15 +110,80 @@ namespace ProtonVPN.UI.Test.Windows
 
         public MainWindow WaitUntilConnected()
         {
-            var quickConnectButton = Session.FindElementByAccessibilityId("SidebarQuickConnectButton");
-            WaitUntilTextMatches(quickConnectButton, "Disconnect", 20);
+            WindowsElement quickConnectButton = Session.FindElementByAccessibilityId("SidebarQuickConnectButton");
+            WaitUntilTextMatches(quickConnectButton, "Disconnect", seconds: 20);
+            return this;
+        }
+
+        public MainWindow EnableKillSwitch()
+        {
+            ClickOnObjectWithId("KillSwitchToggle");
+            ClickOnObjectWithClassName("SwitchOn");
+            return this;
+        }
+
+        public MainWindow ConfirmAppExit()
+        {
+            WaitUntilDisplayed(By.Name("Exit"), seconds: 5);
+            ClickOnObjectWithName("Exit");
+            return this;
+        }
+
+        public MainWindow MoveMouseToCountryByName(string countryName)
+        {
+            WindowsElement inputSearch = Session.FindElementByAccessibilityId("SearchInput");
+            inputSearch.SendKeys(countryName);
+            WindowsElement countryBox = Session.FindElementByName(countryName);
+            MoveToElement(countryBox);
+            return this;
+        }
+
+        public MainWindow ConnectToCountryViaPin(string countryCode)
+        {
+            MoveMouseToCountryPin(countryCode);
+            WaitUntilElementExistsByAutomationId(countryCode, timeoutInSeconds: 3);
+            ClickOnObjectWithId(countryCode);
+            return this;
+        }
+
+        public MainWindow DisconnectFromCountryViaPin(string countryCode)
+        {
+            ConnectToCountryViaPin(countryCode);
+            return this;
+        }
+
+        public MainWindow ConnectToCountryViaPinSecureCore(string countryCode)
+        {
+            MoveMouseToCountryPin(countryCode);
+            RefreshSession();
+            Actions actions = new Actions(Session);
+            WindowsElement countryCodeElement = Session.FindElementByAccessibilityId(countryCode);
+            actions.MoveToElement(countryCodeElement)
+                .MoveByOffset(0, -25)
+                .Click()
+                .Perform();
+            return this;
+        }
+
+        public MainWindow DisconnectFromCountryViaPinSecureCore(string countryCode)
+        {
+            ConnectToCountryViaPinSecureCore(countryCode);
             return this;
         }
 
         public string GetTextBlockIpAddress()
         {
-            var textBlockIpAddress = Session.FindElementByAccessibilityId("IPAddressTextBlock").Text.RemoveExtraText();
+            string textBlockIpAddress = Session.FindElementByAccessibilityId("IPAddressTextBlock").Text.RemoveExtraText();
             return textBlockIpAddress;
+        }
+
+        private void MoveMouseToCountryPin(string countryCode)
+        {
+            WindowsElement countryPin = Session.FindElementByAccessibilityId(countryCode);
+            Actions actions = new Actions(Session);
+            actions.MoveToElement(countryPin)
+                .MoveByOffset(0, 25)
+                .Perform();
         }
     }
 }

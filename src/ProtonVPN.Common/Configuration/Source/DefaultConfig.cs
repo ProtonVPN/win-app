@@ -29,17 +29,19 @@ namespace ProtonVPN.Common.Configuration.Source
 {
     internal class DefaultConfig : IConfigSource
     {
+        public const int MAX_QUICK_CONNECT_SERVERS_ON_RECONNECTION = 50;
+
         public Config Value()
         {
-            var location = Assembly.GetEntryAssembly()?.Location;
-            var baseFolder = (location != null ? new FileInfo(location).DirectoryName : null)
-                             ?? AppDomain.CurrentDomain.BaseDirectory;
+            string location = Assembly.GetEntryAssembly()?.Location;
+            string baseFolder = (location != null ? new FileInfo(location).DirectoryName : null)
+                                ?? AppDomain.CurrentDomain.BaseDirectory;
 
-            var localAppDataFolder =
+            string localAppDataFolder =
                 Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ProtonVPN");
-            var commonAppDataFolder =
+            string commonAppDataFolder =
                 Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "ProtonVPN");
-            var osBits = Environment.Is64BitOperatingSystem ? 64 : 32;
+            int osBits = Environment.Is64BitOperatingSystem ? 64 : 32;
 
             return new Config
             {
@@ -70,6 +72,8 @@ namespace ProtonVPN.Common.Configuration.Source
                 ServersJsonCacheFilePath = Path.Combine(localAppDataFolder, "Servers.json"),
 
                 GuestHoleServersJsonFilePath = Path.Combine(localAppDataFolder, "GuestHoleServers.json"),
+
+                StreamingServicesFilePath = Path.Combine(localAppDataFolder, "StreamingServices.json"),
 
                 ServiceLogFolder = Path.Combine(commonAppDataFolder, "Logs"),
 
@@ -121,6 +125,8 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 ServerUpdateInterval = TimeSpan.FromHours(3),
 
+                StreamingServicesUpdateInterval = TimeSpan.FromHours(3),
+
                 AnnouncementUpdateInterval = TimeSpan.FromHours(12),
 
                 ServerLoadUpdateInterval = TimeSpan.FromMinutes(15),
@@ -159,6 +165,8 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 MaintenanceCheckInterval = TimeSpan.FromMinutes(30),
 
+                MaxQuickConnectServersOnReconnection = MAX_QUICK_CONNECT_SERVERS_ON_RECONNECTION,
+
                 Urls =
                 {
                     BfeArticleUrl = "https://protonvpn.com/support/how-to-enable-the-base-filtering-engine",
@@ -186,7 +194,13 @@ namespace ProtonVPN.Common.Configuration.Source
                     AboutPortForwardingUrl = "https://protonvpn.com/support/port-forwarding",
                     PortForwardingRisksUrl = "https://protonvpn.com/support/port-forwarding-risks",
                     AboutDelinquencyUrl = "https://protonvpn.com/support/delinquency",
-                    InvoicesUrl = "https://account.protonvpn.com/payments#invoices"
+                    StreamingUrl = "https://protonvpn.com/support/streaming-guide/",
+                    SmartRoutingUrl = "https://protonvpn.com/support/smart-routing",
+                    P2PUrl = "https://protonvpn.com/support/bittorrent-vpn/",
+                    TorUrl = "https://protonvpn.com/support/tor-vpn/",
+                    CaptchaUrl = "https://api.protonvpn.ch/core/v4/captcha?Token={0}",
+                    InvoicesUrl = "https://account.protonvpn.com/payments#invoices",
+                    AboutSmartProtocolUrl = "https://protonvpn.com/support/how-to-change-vpn-protocols"
                 },
 
                 OpenVpn =
