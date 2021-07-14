@@ -1,5 +1,5 @@
 ﻿<!--
-Copyright (c) 2020 Proton Technologies AG
+Copyright (c) 2021 Proton Technologies AG
 
 This file is part of ProtonVPN.
 
@@ -32,6 +32,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
              xmlns:wpf="clr-namespace:ProtonVPN.Core.Wpf"
              xmlns:quickSettings="clr-namespace:ProtonVPN.Sidebar.QuickSettings"
+             xmlns:streaming="clr-namespace:ProtonVPN.Streaming"
+             xmlns:countryFeatures="clr-namespace:ProtonVPN.Sidebar.CountryFeatures"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="300"
@@ -39,88 +41,94 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
     <UserControl.Resources>
         <Style x:Key="ServerRowItem" TargetType="Grid">
-            <Setter Property="HorizontalAlignment" Value="Stretch"/>
-            <Setter Property="MinHeight" Value="48"/>
-            <Setter Property="Background" Value="{StaticResource SidebarTabBackgroundColor}"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="MinHeight" Value="48" />
+            <Setter Property="Background" Value="#25272C" />
             <Style.Triggers>
                 <DataTrigger Binding="{Binding ConnectedToCountry}" Value="True">
-                    <Setter Property="Background" Value="#2f2f37"/>
+                    <Setter Property="Background" Value="#2f2f37" />
                 </DataTrigger>
             </Style.Triggers>
         </Style>
         <Style x:Key="ServerFlagImage" TargetType="Image">
-            <Setter Property="Width" Value="21"/>
-            <Setter Property="Height" Value="15"/>
-            <Setter Property="Visibility" Value="Collapsed"/>
+            <Setter Property="Width" Value="21" />
+            <Setter Property="Height" Value="15" />
+            <Setter Property="Visibility" Value="Collapsed" />
             <Style.Triggers>
-                <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.SecureCore}" Value="True">
-                    <Setter Property="Visibility" Value="Visible"/>
+                <DataTrigger
+                    Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.SecureCore}"
+                    Value="True">
+                    <Setter Property="Visibility" Value="Visible" />
                 </DataTrigger>
             </Style.Triggers>
         </Style>
         <Style x:Key="LoadBubbleLeft" TargetType="UserControl">
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="Margin" Value="0,0,12,0"/>
-            <Setter Property="Width" Value="21"/>
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="0,0,12,0" />
+            <Setter Property="Width" Value="21" />
         </Style>
         <Style x:Key="UpgradeRequiredLabel" TargetType="Label">
-            <Setter Property="Margin" Value="5,0,0,0"/>
-            <Setter Property="Visibility" Value="Hidden"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="HorizontalAlignment" Value="Right"/>
-            <Setter Property="Foreground" Value="#797984"/>
-            <Setter Property="FontSize" Value="16"/>
-            <Setter Property="FontWeight" Value="DemiBold"/>
-            <Setter Property="Padding" Value="0,5"/>
+            <Setter Property="Margin" Value="5,0,0,0" />
+            <Setter Property="Visibility" Value="Hidden" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="Foreground" Value="#797984" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontWeight" Value="DemiBold" />
+            <Setter Property="Padding" Value="0,5" />
             <Style.Triggers>
                 <DataTrigger Binding="{Binding UpgradeRequired}" Value="True">
-                    <Setter Property="Visibility" Value="Visible"/>
+                    <Setter Property="Visibility" Value="Visible" />
                 </DataTrigger>
-                <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListViewItem}}, Path=IsMouseOver}" Value="True">
-                    <Setter Property="Visibility" Value="Hidden"/>
+                <DataTrigger
+                    Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListViewItem}}, Path=IsMouseOver}"
+                    Value="True">
+                    <Setter Property="Visibility" Value="Hidden" />
                 </DataTrigger>
                 <DataTrigger Binding="{Binding Server.Status}" Value="0">
-                    <Setter Property="Visibility" Value="Hidden"/>
+                    <Setter Property="Visibility" Value="Hidden" />
                 </DataTrigger>
             </Style.Triggers>
         </Style>
         <Style x:Key="ServerRowStackPanel" TargetType="StackPanel">
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="Orientation" Value="Horizontal"/>
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="Orientation" Value="Horizontal" />
             <Style.Triggers>
-                <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.SecureCore}" Value="False">
-                    <Setter Property="Margin" Value="32,0,0,0"/>
+                <DataTrigger
+                    Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.SecureCore}"
+                    Value="False">
+                    <Setter Property="Margin" Value="32,0,0,0" />
                 </DataTrigger>
             </Style.Triggers>
         </Style>
         <Style x:Key="ToggleButtonArrow" TargetType="fa:FontAwesome">
-            <Setter Property="SnapsToDevicePixels" Value="True"/>
-            <Setter Property="Foreground" Value="#4B4B56"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="Icon" Value="ChevronDown"/>
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="Foreground" Value="#4B4B56" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Icon" Value="ChevronDown" />
         </Style>
         <Style x:Key="OutterToggleBorder" TargetType="Border">
-            <Setter Property="SnapsToDevicePixels" Value="True"/>
-            <Setter Property="CornerRadius" Value="13"/>
-            <Setter Property="BorderThickness" Value="2"/>
-            <Setter Property="BorderBrush" Value="#4B4B56"/>
-            <Setter Property="Width" Value="26"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="Height" Value="26"/>
-            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="CornerRadius" Value="13" />
+            <Setter Property="BorderThickness" Value="2" />
+            <Setter Property="BorderBrush" Value="#4B4B56" />
+            <Setter Property="Width" Value="26" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Height" Value="26" />
+            <Setter Property="Background" Value="Transparent" />
         </Style>
         <Style x:Key="InnerToggleBorder" TargetType="Border">
-            <Setter Property="SnapsToDevicePixels" Value="True"/>
-            <Setter Property="CornerRadius" Value="13"/>
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Margin" Value="-1"/>
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="CornerRadius" Value="13" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Margin" Value="-1" />
         </Style>
         <Style x:Key="ToggleButton" TargetType="Button">
-            <Setter Property="Padding" Value="5"/>
-            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="Padding" Value="5" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
@@ -128,31 +136,33 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="MouseLeftButtonDown">
                                     <i:InvokeCommandAction
-                                        Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}, Path=DataContext.Expand}" 
-                                        CommandParameter="{Binding}"/>
+                                        Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}, Path=DataContext.Expand}"
+                                        CommandParameter="{Binding}" />
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
                             <Border x:Name="OutterToggleBorder" Style="{StaticResource OutterToggleBorder}">
-                                <Border x:Name="InnerToggleBorder" Style="{StaticResource InnerToggleBorder}"/>
+                                <Border x:Name="InnerToggleBorder" Style="{StaticResource InnerToggleBorder}" />
                             </Border>
-                            <fa:FontAwesome x:Name="Arrow" Style="{StaticResource ToggleButtonArrow}"/>
+                            <fa:FontAwesome x:Name="Arrow" Style="{StaticResource ToggleButtonArrow}" />
                         </Grid>
 
                         <ControlTemplate.Triggers>
                             <DataTrigger Binding="{Binding Maintenance}" Value="True">
-                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Setter Property="Visibility" Value="Collapsed" />
                             </DataTrigger>
                             <DataTrigger Binding="{Binding Expanded}" Value="True">
-                                <Setter TargetName="Arrow" Property="Icon" Value="ChevronUp"/>
-                                <Setter TargetName="Arrow" Property="Margin" Value="0.5,-0.5,0,2"/>
+                                <Setter TargetName="Arrow" Property="Icon" Value="ChevronUp" />
+                                <Setter TargetName="Arrow" Property="Margin" Value="0.5,-0.5,0,2" />
                             </DataTrigger>
                             <DataTrigger Binding="{Binding Expanded}" Value="False">
-                                <Setter TargetName="Arrow" Property="Margin" Value="0.5,1,0,2"/>
+                                <Setter TargetName="Arrow" Property="Margin" Value="0.5,1,0,2" />
                             </DataTrigger>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="Arrow" Property="Foreground" Value="White"/>
-                                <Setter TargetName="InnerToggleBorder" Property="Background" Value="{StaticResource PrimaryColor}"/>
-                                <Setter TargetName="OutterToggleBorder" Property="BorderBrush" Value="{StaticResource PrimaryColor}"/>
+                                <Setter TargetName="Arrow" Property="Foreground" Value="White" />
+                                <Setter TargetName="InnerToggleBorder" Property="Background"
+                                        Value="{StaticResource PrimaryColor}" />
+                                <Setter TargetName="OutterToggleBorder" Property="BorderBrush"
+                                        Value="{StaticResource PrimaryColor}" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -160,83 +170,87 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </Setter>
         </Style>
         <Style x:Key="SearchPlaceholder" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="16"/>
-            <Setter Property="Foreground" Value="{StaticResource GrayColor}"/>
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="IsHitTestVisible" Value="False"/>
-            <Setter Property="Text" Value="{translations:Loc Sidebar_Countries_lbl_Search_Watermark}"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="Visibility" Value="Collapsed"/>
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Foreground" Value="{StaticResource GrayColor}" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="IsHitTestVisible" Value="False" />
+            <Setter Property="Text" Value="{translations:Loc Sidebar_Countries_lbl_Search_Watermark}" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Visibility" Value="Collapsed" />
             <Style.Triggers>
                 <DataTrigger Binding="{Binding Text, ElementName=SearchInput}" Value="">
-                    <Setter Property="Visibility" Value="Visible"/>
+                    <Setter Property="Visibility" Value="Visible" />
                 </DataTrigger>
                 <DataTrigger Binding="{Binding IsFocused, ElementName=SearchInput}" Value="True">
-                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Setter Property="Visibility" Value="Collapsed" />
                 </DataTrigger>
             </Style.Triggers>
         </Style>
         <Style x:Key="SearchInput" TargetType="TextBox">
-            <Setter Property="FontSize" Value="16"/>
-            <Setter Property="Foreground" Value="{StaticResource GrayColor}"/>
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="CaretBrush" Value="{StaticResource GrayColor}"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
-            <Setter Property="HorizontalAlignment" Value="Stretch"/>
-            <Setter Property="HorizontalContentAlignment" Value="Left"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Text" Value="{Binding SearchValue, UpdateSourceTrigger=PropertyChanged}"/>
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Foreground" Value="{StaticResource GrayColor}" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="CaretBrush" Value="{StaticResource GrayColor}" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Text" Value="{Binding SearchValue, UpdateSourceTrigger=PropertyChanged}" />
         </Style>
         <Style x:Key="ServerFeatures" TargetType="sidebar:ServerFeatures">
-            <Setter Property="Visibility" Value="Visible"/>
+            <Setter Property="Visibility" Value="Visible" />
             <Style.Triggers>
-                <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.SecureCore}" Value="True">
-                    <Setter Property="Visibility" Value="Hidden"/>
+                <DataTrigger
+                    Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.SecureCore}"
+                    Value="True">
+                    <Setter Property="Visibility" Value="Hidden" />
                 </DataTrigger>
             </Style.Triggers>
         </Style>
         <Style x:Key="City" TargetType="Label">
-            <Setter Property="Foreground" Value="#797984"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="HorizontalAlignment" Value="Right"/>
-            <Setter Property="Margin" Value="0,0,0,3"/>
+            <Setter Property="Foreground" Value="#797984" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="Margin" Value="0,0,0,3" />
             <Style.Triggers>
-                <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListViewItem}}, Path=IsMouseOver}" Value="True">
-                    <Setter Property="Visibility" Value="Hidden"/>
+                <DataTrigger
+                    Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListViewItem}}, Path=IsMouseOver}"
+                    Value="True">
+                    <Setter Property="Visibility" Value="Hidden" />
                 </DataTrigger>
                 <DataTrigger Binding="{Binding Connected}" Value="True">
-                    <Setter Property="Visibility" Value="Hidden"/>
+                    <Setter Property="Visibility" Value="Hidden" />
                 </DataTrigger>
                 <DataTrigger Binding="{Binding UpgradeRequired}" Value="True">
-                    <Setter Property="Visibility" Value="Hidden"/>
+                    <Setter Property="Visibility" Value="Hidden" />
                 </DataTrigger>
                 <DataTrigger Binding="{Binding Server.Status}" Value="0">
-                    <Setter Property="Visibility" Value="Hidden"/>
+                    <Setter Property="Visibility" Value="Hidden" />
                 </DataTrigger>
                 <DataTrigger Binding="{Binding ShowIp}" Value="False">
-                    <Setter Property="Visibility" Value="Hidden"/>
+                    <Setter Property="Visibility" Value="Hidden" />
                 </DataTrigger>
             </Style.Triggers>
         </Style>
         <Style x:Key="MaintenanceIcon" TargetType="fa:FontAwesome">
-            <Setter Property="Margin" Value="0,0,4,0"/>
-            <Setter Property="HorizontalAlignment" Value="Right"/>
-            <Setter Property="FontSize" Value="22"/>
-            <Setter Property="Foreground" Value="#98989d"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="Visibility" Value="Hidden"/>
-            <Setter Property="Icon" Value="Wrench"/>
-            <Setter Property="ToolTip" Value="{translations:Loc Sidebar_Countries_lbl_Maintenance}"/>
+            <Setter Property="Margin" Value="0,0,4,0" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="FontSize" Value="22" />
+            <Setter Property="Foreground" Value="#98989d" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Visibility" Value="Hidden" />
+            <Setter Property="Icon" Value="Wrench" />
+            <Setter Property="ToolTip" Value="{translations:Loc Sidebar_Countries_lbl_Maintenance}" />
             <Style.Triggers>
                 <DataTrigger Binding="{Binding Maintenance}" Value="True">
-                    <Setter Property="Visibility" Value="Visible"/>
+                    <Setter Property="Visibility" Value="Visible" />
                 </DataTrigger>
             </Style.Triggers>
         </Style>
         <Style x:Key="CountryMaintenanceIcon" BasedOn="{StaticResource MaintenanceIcon}" TargetType="fa:FontAwesome">
             <Style.Triggers>
                 <DataTrigger Binding="{Binding Maintenance}" Value="True">
-                    <Setter Property="Visibility" Value="Visible"/>
+                    <Setter Property="Visibility" Value="Visible" />
                 </DataTrigger>
             </Style.Triggers>
         </Style>
@@ -244,42 +258,43 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="ListView">
-                        <ScrollViewer PanningMode="VerticalOnly" Template="{StaticResource DarkScrollViewerControlTemplate}">
-                            <ItemsPresenter/>
+                        <ScrollViewer PanningMode="VerticalOnly"
+                                      Template="{StaticResource DarkScrollViewerControlTemplate}">
+                            <ItemsPresenter />
                         </ScrollViewer>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
         <Style x:Key="SecureCoreExitCountry" TargetType="TextBlock">
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="Padding" Value="0,0,0,2"/>
-            <Setter Property="FontSize" Value="16"/>
-            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="Padding" Value="0,0,0,2" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Foreground" Value="White" />
             <Style.Triggers>
                 <DataTrigger Binding="{Binding Dimmed}" Value="True">
-                    <Setter Property="Foreground" Value="{StaticResource GrayColor}"/>
+                    <Setter Property="Foreground" Value="{StaticResource GrayColor}" />
                 </DataTrigger>
             </Style.Triggers>
         </Style>
         <Style x:Key="CountrySeparator" TargetType="TextBlock">
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="Padding" Value="0,0,0,2"/>
-            <Setter Property="FontSize" Value="13"/>
-            <Setter Property="Foreground" Value="DarkGray"/>
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="Padding" Value="0,0,0,2" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Foreground" Value="{StaticResource GrayIconColor}" />
         </Style>
         <Style x:Key="CountryRow" TargetType="Border">
-            <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="BorderBrush" Value="{StaticResource SidebarBorderColor}"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="MinHeight" Value="48"/>
-            <Setter Property="Background" Value="{StaticResource SidebarTabBackgroundColor}"/>
-            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="BorderBrush" Value="{StaticResource SidebarBorderColor}" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="MinHeight" Value="48" />
+            <Setter Property="Background" Value="{StaticResource SidebarTabBackgroundColor}" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
             <Style.Triggers>
                 <DataTrigger Binding="{Binding Maintenance}" Value="True">
-                    <Setter Property="Cursor" Value="Arrow"/>
+                    <Setter Property="Cursor" Value="Arrow" />
                 </DataTrigger>
             </Style.Triggers>
         </Style>
@@ -287,12 +302,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <quickSettings:QuickSettingsView Grid.Row="0"
-                                         DataContext="{Binding QuickSettingsViewModel}"/>
+                                         DataContext="{Binding QuickSettingsViewModel}" />
         <Grid Grid.Row="1" Visibility="{c:Binding '!SecureCore'}">
             <Border CornerRadius="2"
                     Width="270"
@@ -307,13 +322,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     VerticalAlignment="Center"
                                     Foreground="{StaticResource GrayColor}"
                                     HorizontalAlignment="Left"
-                                    Margin="10,0,0,0"/>
+                                    Margin="10,0,0,0" />
                     <Grid Margin="10,0,0,0" VerticalAlignment="Center">
                         <TextBox Style="{StaticResource SearchInput}"
                                  x:Name="SearchInput"
                                  Foreground="White"
-                                 VerticalAlignment="Center"/>
-                        <TextBlock Style="{StaticResource SearchPlaceholder}" HorizontalAlignment="Stretch"/>
+                                 VerticalAlignment="Center" />
+                        <TextBlock Style="{StaticResource SearchPlaceholder}" HorizontalAlignment="Stretch" />
                         <Button Style="{StaticResource ClearStyleButton}"
                                 Visibility="{Binding SearchNotEmpty, Converter={StaticResource BoolToVis}}"
                                 HorizontalAlignment="Right"
@@ -327,7 +342,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                             VerticalAlignment="Center"
                                             Cursor="Hand"
                                             Padding="0"
-                                            Foreground="{StaticResource GrayColor}"/>
+                                            Foreground="{StaticResource GrayColor}" />
                         </Button>
                     </Grid>
                 </DockPanel>
@@ -335,61 +350,69 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Grid>
 
         <wpf:CustomListView x:Name="ListView"
-                  BorderThickness="0"
-                  Grid.Row="2"
-                  Background="Transparent"
-                  Padding="0"
-                  Style="{StaticResource CountriesListView}"
-                  ItemsSource="{Binding Items, UpdateSourceTrigger=PropertyChanged}"
-                  VirtualizingPanel.ScrollUnit="Pixel"
-                  VirtualizingPanel.IsVirtualizing="True"
-                  VirtualizingPanel.VirtualizationMode="Standard"
-                  ScrollViewer.CanContentScroll="True"
-                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                  ScrollViewer.PanningMode="VerticalOnly">
+                            BorderThickness="0"
+                            Grid.Row="2"
+                            Background="Transparent"
+                            Padding="0"
+                            Style="{StaticResource CountriesListView}"
+                            ItemsSource="{Binding Items, UpdateSourceTrigger=PropertyChanged}"
+                            VirtualizingPanel.ScrollUnit="Pixel"
+                            VirtualizingPanel.IsVirtualizing="True"
+                            VirtualizingPanel.VirtualizationMode="Standard"
+                            ScrollViewer.CanContentScroll="True"
+                            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                            ScrollViewer.PanningMode="VerticalOnly">
             <wpf:CustomListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="ListViewItem">
                                 <Border x:Name="Border" Style="{StaticResource CountryRow}">
-                                    <ContentPresenter/>
+                                    <ContentPresenter />
                                 </Border>
                                 <ControlTemplate.Triggers>
-                                    <DataTrigger Binding="{Binding Converter={StaticResource DataTypeConverter}}" Value="{x:Type servers:CountrySeparatorViewModel}">
-                                        <Setter TargetName="Border" Property="BorderThickness" Value="0,1,0,0"/>
-                                        <Setter TargetName="Border" Property="MinHeight" Value="12"/>
-                                        <Setter TargetName="Border" Property="Cursor" Value="Arrow"/>
+                                    <DataTrigger Binding="{Binding Converter={StaticResource DataTypeConverter}}"
+                                                 Value="{x:Type servers:CountrySeparatorViewModel}">
+                                        <Setter TargetName="Border" Property="BorderThickness" Value="0,1,0,0" />
+                                        <Setter TargetName="Border" Property="MinHeight" Value="12" />
+                                        <Setter TargetName="Border" Property="Cursor" Value="Arrow" />
                                     </DataTrigger>
-                                    <DataTrigger Binding="{Binding Converter={StaticResource DataTypeConverter}}" Value="{x:Type servers:ServersByCountryViewModel}">
-                                        <Setter TargetName="Border" Property="BorderThickness" Value="0,1,0,0"/>
+                                    <DataTrigger Binding="{Binding Converter={StaticResource DataTypeConverter}}"
+                                                 Value="{x:Type servers:ServersByCountryViewModel}">
+                                        <Setter TargetName="Border" Property="BorderThickness" Value="0,1,0,0" />
                                     </DataTrigger>
-                                    <DataTrigger Binding="{Binding Converter={StaticResource DataTypeConverter}}" Value="{x:Type servers:ServersByExitNodeViewModel}">
-                                        <Setter TargetName="Border" Property="BorderThickness" Value="0,1,0,0"/>
+                                    <DataTrigger Binding="{Binding Converter={StaticResource DataTypeConverter}}"
+                                                 Value="{x:Type servers:ServersByExitNodeViewModel}">
+                                        <Setter TargetName="Border" Property="BorderThickness" Value="0,1,0,0" />
                                     </DataTrigger>
                                     <MultiDataTrigger>
                                         <MultiDataTrigger.Conditions>
-                                            <Condition Binding="{Binding Connected}" Value="True"/>
-                                            <Condition Binding="{Binding Converter={StaticResource DataTypeConverter}}" Value="{x:Type servers:CountrySeparatorViewModel}"/>
+                                            <Condition Binding="{Binding Connected}" Value="True" />
+                                            <Condition Binding="{Binding Converter={StaticResource DataTypeConverter}}"
+                                                       Value="{x:Type servers:CountrySeparatorViewModel}" />
                                         </MultiDataTrigger.Conditions>
-                                        <Setter TargetName="Border" Property="Background" Value="#2f2f37"/>
+                                        <Setter TargetName="Border" Property="Background" Value="#2f2f37" />
                                     </MultiDataTrigger>
                                     <MultiDataTrigger>
                                         <MultiDataTrigger.Conditions>
-                                            <Condition Binding="{Binding Connected}" Value="True"/>
-                                            <Condition Binding="{Binding Converter={StaticResource DataTypeConverter}}" Value="{x:Type servers:ServersByCountryViewModel}"/>
+                                            <Condition Binding="{Binding Connected}" Value="True" />
+                                            <Condition Binding="{Binding Converter={StaticResource DataTypeConverter}}"
+                                                       Value="{x:Type servers:ServersByCountryViewModel}" />
                                         </MultiDataTrigger.Conditions>
-                                        <Setter TargetName="Border" Property="Background" Value="#2f2f37"/>
+                                        <Setter TargetName="Border" Property="Background" Value="#2f2f37" />
                                     </MultiDataTrigger>
                                     <MultiDataTrigger>
                                         <MultiDataTrigger.Conditions>
-                                            <Condition Binding="{Binding Connected}" Value="True"/>
-                                            <Condition Binding="{Binding Converter={StaticResource DataTypeConverter}}" Value="{x:Type servers:ServersByExitNodeViewModel}"/>
+                                            <Condition Binding="{Binding Connected}" Value="True" />
+                                            <Condition Binding="{Binding Converter={StaticResource DataTypeConverter}}"
+                                                       Value="{x:Type servers:ServersByExitNodeViewModel}" />
                                         </MultiDataTrigger.Conditions>
-                                        <Setter TargetName="Border" Property="Background" Value="#2f2f37"/>
+                                        <Setter TargetName="Border" Property="Background" Value="#2f2f37" />
                                     </MultiDataTrigger>
-                                    <DataTrigger Binding="{Binding Path=(wpf:CustomListView.ItemIndex), RelativeSource={RelativeSource Self}}" Value="0">
-                                        <Setter TargetName="Border" Property="BorderThickness" Value="0"/>
+                                    <DataTrigger
+                                        Binding="{Binding Path=(wpf:CustomListView.ItemIndex), RelativeSource={RelativeSource Self}}"
+                                        Value="0">
+                                        <Setter TargetName="Border" Property="BorderThickness" Value="0" />
                                     </DataTrigger>
                                 </ControlTemplate.Triggers>
                             </ControlTemplate>
@@ -399,13 +422,41 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </wpf:CustomListView.ItemContainerStyle>
             <ItemsControl.Resources>
                 <DataTemplate DataType="{x:Type servers:CountrySeparatorViewModel}">
-                    <Border x:Name="Border" Background="{StaticResource SidebarSecondaryBackgroundColor}">
-                        <Grid Width="200" Margin="27,3,0,3" HorizontalAlignment="Left">
+                    <Border x:Name="Border" Height="48">
+                        <Grid Width="310" Margin="27,3,0,3" HorizontalAlignment="Left">
                             <TextBlock x:Name="CountryLabel"
                                        Text="{Binding Name}"
                                        Style="{StaticResource CountrySeparator}"
-                                       TextTrimming="CharacterEllipsis"/>
+                                       TextTrimming="CharacterEllipsis" />
+                            <DockPanel Margin="27,0" HorizontalAlignment="Right">
+                                <countryFeatures:CountryFeaturesPopupView
+                                    DataContext="{Binding CountryFeaturesPopupViewModel}" />
+                            </DockPanel>
                         </Grid>
+                    </Border>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type servers:ServerTierSeparatorViewModel}">
+                    <Border Cursor="Arrow" Background="#25272C">
+                        <DockPanel Margin="27,0" x:Name="PopupPanel">
+                            <TextBlock x:Name="CountryLabel"
+                                       Text="{Binding Name}"
+                                       Style="{StaticResource CountrySeparator}"
+                                       TextTrimming="CharacterEllipsis" />
+                            <ToggleButton x:Name="InfoToggleButton"
+                                          DockPanel.Dock="Right"
+                                          Visibility="{Binding ShowStreamingIcon, Converter={StaticResource BoolToVis}}"
+                                          Style="{StaticResource EmptyToggleButton}"
+                                          IsChecked="{Binding ShowPopup, Mode=TwoWay}"
+                                          Background="Transparent"
+                                          BorderBrush="Transparent">
+                                <icons:Info Style="{StaticResource GrayInfoIcon}"
+                                            Width="16"
+                                            Height="16" />
+                            </ToggleButton>
+                            <streaming:StreamingInfoPopup DataContext="{Binding StreamingInfoPopupViewModel}"
+                                                          PlacementTarget="{Binding ElementName=PopupPanel}"
+                                                          ShowPopup="{Binding Path=IsChecked, ElementName=InfoToggleButton, Mode=TwoWay}" />
+                        </DockPanel>
                     </Border>
                 </DataTemplate>
                 <DataTemplate x:Key="BaseTemplate" DataType="{x:Type servers:ServersByCountryViewModel}">
@@ -413,19 +464,20 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="MouseLeftButtonDown">
                                 <i:InvokeCommandAction
-                                        Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}, Path=DataContext.Expand}" 
-                                        CommandParameter="{Binding}"/>
+                                    Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}, Path=DataContext.Expand}"
+                                    CommandParameter="{Binding}" />
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                         <Grid MinHeight="48" Margin="27,0">
                             <Image HorizontalAlignment="Left"
                                    VerticalAlignment="Center"
-                                   Source="{Binding CountryCode, Converter={StaticResource CountryToFlagConverter}}" Width="21" Height="15"/>
+                                   Source="{Binding CountryCode, Converter={StaticResource CountryToFlagConverter}}"
+                                   Width="21" Height="15" />
                             <Grid Width="220">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
 
                                 <TextBlock Grid.Column="0"
@@ -438,10 +490,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                            FontSize="16">
                                     <TextBlock.Style>
                                         <Style TargetType="TextBlock">
-                                            <Setter Property="Foreground" Value="White"/>
+                                            <Setter Property="Foreground" Value="White" />
                                             <Style.Triggers>
                                                 <DataTrigger Binding="{Binding Dimmed}" Value="True">
-                                                    <Setter Property="Foreground" Value="{StaticResource GrayColor}"/>
+                                                    <Setter Property="Foreground" Value="{StaticResource GrayColor}" />
                                                 </DataTrigger>
                                             </Style.Triggers>
                                         </Style>
@@ -449,35 +501,55 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 </TextBlock>
 
                                 <StackPanel Orientation="Horizontal" Grid.Column="1">
+                                    <StackPanel.Resources>
+                                        <Style TargetType="StackPanel">
+                                            <Setter Property="Visibility" Value="Visible" />
+                                            <Style.Triggers>
+                                                <DataTrigger
+                                                    Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListViewItem}}, Path=IsMouseOver}"
+                                                    Value="True">
+                                                    <Setter Property="Visibility" Value="Collapsed" />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Dimmed}" Value="True">
+                                                    <Setter Property="Visibility" Value="Visible" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </StackPanel.Resources>
                                     <Border Style="{StaticResource CountryFeature}"
-                                            ToolTip="{translations:Loc Sidebar_Countries_info_Tor}"
                                             Visibility="{Binding Tor, Converter={StaticResource BoolToVis}}">
-                                        <icons:Tor Foreground="#98989d"
+                                        <icons:Tor Foreground="{StaticResource GrayIconColor}"
                                                    VerticalAlignment="Center"
                                                    HorizontalAlignment="Center"
-                                                   Width="12"
-                                                   Height="18"/>
+                                                   Width="16"
+                                                   Height="16" />
                                     </Border>
 
                                     <Border Style="{StaticResource CountryFeature}"
-                                            ToolTip="{translations:Loc Sidebar_Countries_info_P2P}"
                                             Visibility="{Binding P2P, Converter={StaticResource BoolToVis}}">
-                                        <icons:Exchange Foreground="#98989d"
-                                                   VerticalAlignment="Center"
-                                                   HorizontalAlignment="Center"
-                                                   Width="18"
-                                                   Height="14"/>
+                                        <icons:Exchange Foreground="{StaticResource GrayIconColor}"
+                                                        VerticalAlignment="Center"
+                                                        HorizontalAlignment="Center"
+                                                        Width="16"
+                                                        Height="16" />
+                                    </Border>
+
+                                    <Border Style="{StaticResource CountryFeature}"
+                                            Visibility="{Binding IsVirtual, Converter={StaticResource BoolToVis}}">
+                                        <icons:Globe Foreground="{StaticResource GrayIconColor}"
+                                                     Width="16"
+                                                     Height="16" />
                                     </Border>
                                 </StackPanel>
 
                                 <Button Grid.Column="2"
                                         Style="{StaticResource SidebarCountryConnectButton}"
                                         Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}, Path=DataContext.ConnectCountry}"
-                                        CommandParameter="{Binding}"/>
+                                        CommandParameter="{Binding}" />
                             </Grid>
 
-                            <Button Style="{StaticResource ToggleButton}"/>
-                            <fa:FontAwesome Style="{StaticResource CountryMaintenanceIcon}"/>
+                            <Button Style="{StaticResource ToggleButton}" />
+                            <fa:FontAwesome Style="{StaticResource CountryMaintenanceIcon}" />
                         </Grid>
                     </Border>
                 </DataTemplate>
@@ -486,92 +558,113 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="MouseLeftButtonDown">
                                 <i:InvokeCommandAction
-                                        Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}, Path=DataContext.Expand}"
-                                        CommandParameter="{Binding}"/>
+                                    Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}, Path=DataContext.Expand}"
+                                    CommandParameter="{Binding}" />
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                         <Grid MinHeight="48" Margin="27,0">
                             <StackPanel Orientation="Horizontal">
-                                <Image HorizontalAlignment="Left" VerticalAlignment="Center" Source="{Binding CountryCode, Converter={StaticResource CountryToFlagConverter}}" Width="21" Height="15"/>
-                                <Label Content="»" Margin="5,3,0,0" FontSize="20" Foreground="{StaticResource PrimaryColor}"/>
+                                <Image HorizontalAlignment="Left" VerticalAlignment="Center"
+                                       Source="{Binding CountryCode, Converter={StaticResource CountryToFlagConverter}}"
+                                       Width="21" Height="15" />
+                                <Label Content="»" Margin="5,3,0,0" FontSize="20"
+                                       Foreground="{StaticResource PrimaryColor}" />
                             </StackPanel>
+
                             <Grid Width="200" Margin="50,0,0,0" HorizontalAlignment="Left">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Grid.Column="0"
                                            x:Name="CountryLabel"
                                            Text="{Binding Name}"
                                            Style="{StaticResource SecureCoreExitCountry}"
-                                           TextTrimming="CharacterEllipsis"/>
+                                           TextTrimming="CharacterEllipsis" />
+                                <Border Style="{StaticResource CountryFeature}" Grid.Column="1"
+                                        Visibility="{Binding IsVirtual, Converter={StaticResource BoolToVis}}">
+                                    <icons:Globe Foreground="{StaticResource GrayIconColor}"
+                                                 Width="16"
+                                                 Height="16" />
+                                </Border>
                                 <Button Grid.Column="1"
                                         Style="{StaticResource SidebarCountryConnectButton}"
                                         Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}, Path=DataContext.ConnectCountry}"
-                                        CommandParameter="{Binding}"/>
+                                        CommandParameter="{Binding}" />
                             </Grid>
-                            <Button Style="{StaticResource ToggleButton}"/>
-                            <fa:FontAwesome Style="{StaticResource CountryMaintenanceIcon}"/>
+                            <Button Style="{StaticResource ToggleButton}" />
+                            <fa:FontAwesome Style="{StaticResource CountryMaintenanceIcon}" />
                         </Grid>
                     </Border>
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type servers:ServerItemViewModel}">
                     <Grid Style="{StaticResource ServerRowItem}">
                         <Grid Margin="27,0">
-                            <controls:LoadBubble Margin="-2,0,0,0" Width="32" Height="32" DataContext="{Binding ConnectionInfoViewModel}" Style="{StaticResource LoadBubbleLeft}"/>
+                            <controls:LoadBubble Margin="-2,0,0,0" Width="32" Height="32"
+                                                 DataContext="{Binding ConnectionInfoViewModel}"
+                                                 Style="{StaticResource LoadBubbleLeft}" />
                             <StackPanel Style="{StaticResource ServerRowStackPanel}">
-                                <controls:ServerName ConnectionName="{Binding ConnectionName}" Margin="0,-3,0,0" FontSize="16"/>
-                                <sidebar:ServerFeatures Features="{Binding Features}" Style="{StaticResource ServerFeatures}"/>
+                                <controls:ServerName ConnectionName="{Binding ConnectionName}" Margin="0,-3,0,0"
+                                                     FontSize="16" />
+                                <sidebar:ServerFeatures Features="{Binding Features}"
+                                                        Style="{StaticResource ServerFeatures}" />
                             </StackPanel>
-                            <Label Style="{StaticResource City}" FontSize="14" FontWeight="Normal" Content="{Binding Server.City}"/>
-                            <Label Style="{StaticResource UpgradeRequiredLabel}" Content="{translations:Loc Servers_lbl_Upgrade}"/>
+                            <Label Style="{StaticResource City}" FontSize="14" FontWeight="Normal"
+                                   Content="{Binding Server.City}" />
+                            <Label Style="{StaticResource UpgradeRequiredLabel}"
+                                   Content="{translations:Loc Servers_lbl_Upgrade}" />
                             <Button
-                                    Margin="38,0,0,0"
-                                    Style="{StaticResource SidebarServerConnectButton}"
-                                    Command="{Binding DataContext.Connect, RelativeSource={RelativeSource AncestorType=ListView}}"
-                                    CommandParameter="{Binding}"/>
-                            <fa:FontAwesome Style="{StaticResource MaintenanceIcon}"/>
+                                Margin="38,0,0,0"
+                                Style="{StaticResource SidebarServerConnectButton}"
+                                Command="{Binding DataContext.Connect, RelativeSource={RelativeSource AncestorType=ListView}}"
+                                CommandParameter="{Binding}" />
+                            <fa:FontAwesome Style="{StaticResource MaintenanceIcon}" />
                         </Grid>
                     </Grid>
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type servers:SecureCoreItemViewModel}">
                     <Grid Style="{StaticResource ServerRowItem}">
                         <Grid Margin="27,0">
-                            <controls:LoadBubble Margin="-2,0,0,0" Width="32" Height="32" DataContext="{Binding ConnectionInfoViewModel}" Style="{StaticResource LoadBubbleLeft}"/>
+                            <controls:LoadBubble Margin="-2,0,0,0" Width="32" Height="32"
+                                                 DataContext="{Binding ConnectionInfoViewModel}"
+                                                 Style="{StaticResource LoadBubbleLeft}" />
                             <Image Margin="33,0,10,0"
                                    HorizontalAlignment="Left"
                                    Source="{Binding Path=Server.EntryCountry, Converter={StaticResource CountryToFlagConverter}, Mode=OneWay}"
-                                   Style="{StaticResource ServerFlagImage}"/>
+                                   Style="{StaticResource ServerFlagImage}" />
                             <Grid Width="220" Margin="60,0,0,0" HorizontalAlignment="Left">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
 
-                                <TextBlock Grid.Column="0" Style="{StaticResource ServerName}" Margin="0,-5,0,0" FontSize="16" TextTrimming="CharacterEllipsis">
-                                    <Run Text="{translations:Loc Servers_lbl_ViaCountry}"/>
-                                    <Run Text="{Binding Server.EntryCountry, Converter={StaticResource CountryCodeToNameConverter}, Mode=OneWay}">
+                                <TextBlock Grid.Column="0" Style="{StaticResource ServerName}" Margin="0,-5,0,0"
+                                           FontSize="16" TextTrimming="CharacterEllipsis">
+                                    <Run Text="{translations:Loc Servers_lbl_ViaCountry}" />
+                                    <Run
+                                        Text="{Binding Server.EntryCountry, Converter={StaticResource CountryCodeToNameConverter}, Mode=OneWay}">
                                         <Run.Style>
                                             <Style TargetType="Run">
-                                                <Setter Property="Foreground" Value="White"/>
+                                                <Setter Property="Foreground" Value="White" />
                                                 <Style.Triggers>
                                                     <DataTrigger Binding="{Binding UpgradeRequired}" Value="True">
-                                                        <Setter Property="Foreground" Value="Gray"/>
+                                                        <Setter Property="Foreground" Value="Gray" />
                                                     </DataTrigger>
                                                 </Style.Triggers>
                                             </Style>
                                         </Run.Style>
                                     </Run>
-                                    <Run Text="»" FontSize="20" Foreground="{StaticResource PrimaryColor}"/>
+                                    <Run Text="»" FontSize="20" Foreground="{StaticResource PrimaryColor}" />
                                 </TextBlock>
 
                                 <Button Grid.Column="1"
                                         Style="{StaticResource SidebarServerConnectButton}"
                                         Command="{Binding DataContext.Connect, RelativeSource={RelativeSource AncestorType=ListView}}"
-                                        CommandParameter="{Binding}"/>
+                                        CommandParameter="{Binding}" />
                             </Grid>
-                            <fa:FontAwesome Style="{StaticResource MaintenanceIcon}"/>
-                            <Label Style="{StaticResource UpgradeRequiredLabel}" Content="{translations:Loc Servers_lbl_Upgrade}"/>
+                            <fa:FontAwesome Style="{StaticResource MaintenanceIcon}" />
+                            <Label Style="{StaticResource UpgradeRequiredLabel}"
+                                   Content="{translations:Loc Servers_lbl_Upgrade}" />
                         </Grid>
                     </Grid>
                 </DataTemplate>

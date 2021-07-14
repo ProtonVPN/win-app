@@ -20,9 +20,11 @@
 using System.ComponentModel;
 using System.Net;
 using System.Net.Http;
+using System.Security;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
+using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.KillSwitch;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Config.Url;
@@ -39,7 +41,7 @@ using ProtonVPN.Vpn.Connectors;
 
 namespace ProtonVPN.Login.ViewModels
 {
-    public class LoginViewModel : ViewModel, ISettingsAware
+    public class LoginViewModel : ViewModel, ISettingsAware, IServiceSettingsStateAware
     {
         private string _errorText = "";
 
@@ -55,7 +57,7 @@ namespace ProtonVPN.Login.ViewModels
         public LoginErrorViewModel LoginErrorViewModel { get; }
 
         private string _loginText;
-        private string _password;
+        private SecureString _password;
         private bool _showHelpBalloon;
         private bool _autoAuthFailed;
         private bool _networkBlocked;
@@ -81,6 +83,8 @@ namespace ProtonVPN.Login.ViewModels
             _guestHoleConnector = guestHoleConnector;
             _guestHoleState = guestHoleState;
             LoginErrorViewModel = loginErrorViewModel;
+
+            LoginErrorViewModel.ClearError();
 
             LoginCommand = new RelayCommand(LoginAction);
             RegisterCommand = new RelayCommand(RegisterAction);
@@ -115,7 +119,7 @@ namespace ProtonVPN.Login.ViewModels
                 if (_loginText != null && _loginText != value && _autoAuthFailed)
                 {
                     _autoAuthFailed = false;
-                    Password = "";
+                    Password = new SecureString();
                 }
 
                 if (!Set(ref _loginText, value))
@@ -126,25 +130,24 @@ namespace ProtonVPN.Login.ViewModels
             }
         }
 
-        public string Password
+        public SecureString Password
         {
             get => _password;
             set
             {
-                if (!string.IsNullOrEmpty(value) && _password != value && _autoAuthFailed)
+                if (value != null && value.Length != 0 && _autoAuthFailed)
                 {
                     _autoAuthFailed = false;
                 }
 
-                if (!Set(ref _password, value))
-                    return;
+                Set(ref _password, value);
 
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(FieldsFilledIn));
             }
         }
 
-        public bool FieldsFilledIn => !string.IsNullOrEmpty(LoginText?.Trim()) && !string.IsNullOrEmpty(Password);
+        public bool FieldsFilledIn => !string.IsNullOrEmpty(LoginText?.Trim()) && Password != null && Password.Length != 0;
 
         public string ErrorText
         {
@@ -187,16 +190,7 @@ namespace ProtonVPN.Login.ViewModels
 
         public async Task OnVpnStateChanged(VpnStateChangedEventArgs e)
         {
-            if (e.NetworkBlocked && e.State.Status == VpnStatus.Disconnecting ||
-                e.State.Status == VpnStatus.Disconnected)
-            {
-                KillSwitchActive = true;
-            }
-
-            if (!e.NetworkBlocked)
-            {
-                KillSwitchActive = false;
-            }
+            SetKillSwitchActive(e.NetworkBlocked, e.State.Status);
 
             if (_lastVpnStatus == e.State.Status)
             {
@@ -219,6 +213,20 @@ namespace ProtonVPN.Login.ViewModels
             _lastVpnStatus = e.State.Status;
         }
 
+        private void SetKillSwitchActive(bool isNetworkBlocked, VpnStatus vpnStatus)
+        {
+            if (isNetworkBlocked && vpnStatus == VpnStatus.Disconnecting ||
+                vpnStatus == VpnStatus.Disconnected)
+            {
+                KillSwitchActive = true;
+            }
+
+            if (!isNetworkBlocked)
+            {
+                KillSwitchActive = false;
+            }
+        }
+
         private void HelpAction()
         {
             _urls.HelpUrl.Open();
@@ -229,9 +237,9 @@ namespace ProtonVPN.Login.ViewModels
             _urls.RegisterUrl.Open();
         }
 
-        private bool IsLoginDisallowed(string username, string password)
+        private bool IsLoginDisallowed(string username, SecureString password)
         {
-            return string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password);
+            return string.IsNullOrEmpty(username) || password == null || password.Length == 0;
         }
 
         private async void LoginAction()
@@ -239,32 +247,16 @@ namespace ProtonVPN.Login.ViewModels
             try
             {
                 string username = LoginText?.Trim();
-                string password = Password;
 
-                if (IsLoginDisallowed(username, password))
+                if (IsLoginDisallowed(username, Password))
                 {
                     return;
                 }
 
-                ApiResponseResult<AuthResponse> loginResult = await _userAuth.LoginUserAsync(username, password);
-                if (loginResult.Success)
-                {
-                    AfterLogin();
-                }
-                else
-                {
-                    string error = loginResult.Error;
-                    if (loginResult.StatusCode == HttpStatusCode.Unauthorized)
-                    {
-                        error = Translation.Get("Login_Error_msg_Unauthorized");
-                    }
+                LoginErrorViewModel.ClearError();
 
-                    LoginErrorViewModel.SetError(error);
-
-                    Password = "";
-                    ShowLoginForm();
-                    await DisableGuestHole();
-                }
+                ApiResponseResult<AuthResponse> loginResult = await _userAuth.LoginUserAsync(username, Password);
+                await HandleLoginResultAsync(loginResult);
             }
             catch (HttpRequestException)
             {
@@ -277,6 +269,36 @@ namespace ProtonVPN.Login.ViewModels
                 _guestHoleState.SetState(true);
                 await _guestHoleConnector.Connect();
             }
+        }
+
+        private async Task HandleLoginResultAsync(ApiResponseResult<AuthResponse> loginResult)
+        {
+            if (loginResult.Success)
+            {
+                AfterLogin();
+            }
+            else
+            {
+                await HandleLoginFailureAsync(loginResult);
+            }
+        }
+
+        private async Task HandleLoginFailureAsync(ApiResponseResult<AuthResponse> loginResult)
+        {
+            if (loginResult.Actions.IsNullOrEmpty()) // If Actions exist, it should be handled by ActionableFailureApiResultEventHandler
+            {
+                string error = loginResult.Error;
+                if (loginResult.StatusCode == HttpStatusCode.Unauthorized)
+                {
+                    error = Translation.Get("Login_Error_msg_Unauthorized");
+                }
+
+                LoginErrorViewModel.SetError(error);
+            }
+
+            Password = new SecureString();
+            ShowLoginForm();
+            await DisableGuestHole();
         }
 
         private async Task<bool> DisableGuestHole()
@@ -295,7 +317,7 @@ namespace ProtonVPN.Login.ViewModels
         private void ShowLoginScreenWithTroubleshoot()
         {
             _modals.Show<TroubleshootModalViewModel>();
-            Password = "";
+            Password = new SecureString();
             ShowLoginForm();
         }
 
@@ -307,7 +329,7 @@ namespace ProtonVPN.Login.ViewModels
         private void AfterLogin()
         {
             LoginText = "";
-            Password = "";
+            Password = new SecureString();
             ErrorText = "";
             LoginErrorViewModel.ClearError();
             _autoAuthFailed = false;
@@ -331,6 +353,11 @@ namespace ProtonVPN.Login.ViewModels
         private void DisableKillSwitchAction()
         {
             _appSettings.KillSwitchMode = KillSwitchMode.Off;
+        }
+
+        public void OnServiceSettingsStateChanged(ServiceSettingsStateChangedEventArgs e)
+        {
+            SetKillSwitchActive(e.IsNetworkBlocked, e.CurrentState.State.Status);
         }
     }
 }

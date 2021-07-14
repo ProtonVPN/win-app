@@ -27,9 +27,9 @@ using ProtonVPN.Core.Vpn;
 
 namespace ProtonVPN.Core.Service.Vpn
 {
-    internal class VpnConnectionSpeed: IVpnStateAware
+    public class VpnConnectionSpeed: IVpnStateAware
     {
-        private readonly SerialTaskQueue _lock = new SerialTaskQueue();
+        private readonly SerialTaskQueue _lock = new();
         private readonly IVpnServiceManager _vpnServiceManager;
         private readonly DispatcherTimer _timer;
 
@@ -49,7 +49,7 @@ namespace ProtonVPN.Core.Service.Vpn
 
         public VpnSpeed Speed()
         {
-            return new VpnSpeed(Math.Max(0, _speed.BytesIn), Math.Max(0, _speed.BytesOut));
+            return new(Math.Max(0, _speed.BytesIn), Math.Max(0, _speed.BytesOut));
         }
 
         public double TotalDownloaded()
@@ -64,12 +64,14 @@ namespace ProtonVPN.Core.Service.Vpn
 
         public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
         {
-            var connected = e.State.Status == VpnStatus.Connected;
-
-            if (connected)
+            if (e.State.Status == VpnStatus.Connected)
+            {
                 _timer.Start();
+            }
             else
+            {
                 _timer.Stop();
+            }
 
             return Task.CompletedTask;
         }

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -25,9 +25,25 @@ namespace ProtonVPN.Servers
     {
         public static string GetName(string code)
         {
-            return code != null 
-                ? Translation.Get($"Country_val_{code.ToUpper()}")
-                : "";
+            if (code == null)
+            {
+                return string.Empty;
+            }
+
+            string country = Translation.Get($"Country_val_{code.ToUpper()}");
+            if (string.IsNullOrEmpty(country))
+            {
+                country = Translation.Get("Country_val_ZZ");
+            }
+
+            return country;
+        }
+
+        public static bool MatchesSearch(string countryCode, string searchQuery)
+        {
+            searchQuery = searchQuery?.ToLower();
+            return !string.IsNullOrEmpty(searchQuery) &&
+                   (GetName(countryCode).ToLower().Contains(searchQuery) || countryCode.ToLower().Contains(searchQuery));
         }
     }
 }

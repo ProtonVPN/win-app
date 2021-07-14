@@ -19,6 +19,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using ProtonVPN.Common;
 using ProtonVPN.Common.Threading;
@@ -108,7 +109,10 @@ namespace ProtonVPN.Service.Vpn
 
         private async void Connect()
         {
-            if (!_connectRequested) return;
+            if (!_connectRequested)
+            {
+                return;
+            }
 
             InvokeConnecting();
 
@@ -142,13 +146,12 @@ namespace ProtonVPN.Service.Vpn
 
         private void Origin_StateChanged(object sender, EventArgs<VpnState> e)
         {
-            var state = e.Data;
+            VpnState state = e.Data;
             _vpnStatus = e.Data.Status;
 
             if (_connectRequested)
             {
                 InvokeConnecting();
-
                 return;
             }
 
@@ -190,16 +193,19 @@ namespace ProtonVPN.Service.Vpn
 
         private void NetworkInterfaces_NetworkInterfacesAdded(object sender, EventArgs e)
         {
-            if (_networkChanged) return;
-
-            _networkChanged = true;
-            Queued(NetworkChanged);
+            if (!_networkChanged)
+            {
+                _networkChanged = true;
+                Queued(NetworkChanged);
+            }
         }
 
         private async void NetworkChanged()
         {
-            if (!_networkChanged) return;
-            if (_disconnectedReceived) return;
+            if (!_networkChanged || _disconnectedReceived)
+            {
+                return;
+            }
 
             if (_ipv6Task.IsCompleted)
             {
@@ -221,7 +227,11 @@ namespace ProtonVPN.Service.Vpn
 
         private void InvokeConnecting()
         {
-            InvokeStateChanged(new VpnState(VpnStatus.Connecting, VpnError.None, string.Empty, _servers[0].Ip));
+            VpnHost server = _servers.FirstOrDefault();
+            if (!server.IsEmpty())
+            {
+                InvokeStateChanged(new VpnState(VpnStatus.Pinging, VpnError.None, string.Empty, server.Ip, _protocol, server.Label));
+            }
         }
 
         private void InvokeStateChanged(VpnState state)

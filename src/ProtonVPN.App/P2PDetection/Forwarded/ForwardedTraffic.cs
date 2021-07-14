@@ -66,7 +66,7 @@ namespace ProtonVPN.P2PDetection.Forwarded
 
         private bool IsForwarded(string ip)
         {
-            if (_server.Equals(Server.Empty()))
+            if (_server.IsEmpty())
             {
                 return false;
             }

@@ -23,7 +23,7 @@ using ProtonVPN.Core.Api.Contracts;
 
 namespace ProtonVPN.Core.Api
 {
-    public interface ITokenClient
+    public interface ITokenClient : IClientBase
     {
         Task<ApiResponseResult<RefreshTokenResponse>> RefreshTokenAsync(CancellationToken token);
     }

@@ -28,6 +28,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
              xmlns:onboarding="clr-namespace:ProtonVPN.Onboarding"
              xmlns:announcements="clr-namespace:ProtonVPN.Sidebar.Announcements"
+             xmlns:icons="clr-namespace:ProtonVPN.Views.Icons"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance sidebar:ConnectionStatusViewModel}">
 
@@ -74,9 +75,45 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </DataTrigger>
             </Style.Triggers>
         </Style>
+        <Style x:Key="PopupBorder" TargetType="Border">
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect BlurRadius="15"
+                                      Direction="0"
+                                      Color="#4E4C4C"
+                                      RenderingBias="Quality"
+                                      ShadowDepth="0" />
+                </Setter.Value>
+            </Setter>
+            <Setter Property="CornerRadius" Value="5" />
+            <Setter Property="Padding" Value="16,13" />
+            <Setter Property="Margin" Value="7" />
+            <Setter Property="Background" Value="{StaticResource SidebarTabBackgroundColor}" />
+        </Style>
+        <Style x:Key="FeatureTitleText" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+        <Style x:Key="FeatureInfoText" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="Foreground" Value="White" />
+        </Style>
+        <Style x:Key="ClickableText" TargetType="Button" BasedOn="{StaticResource ClearStyleButton}">
+            <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Command" Value="{Binding ManageProfilesCommand}"/>
+        </Style>
     </UserControl.Resources>
 
-    <Grid Height="220" Width="336">
+    <Grid Height="220" Width="336" x:Name="ConnectionStatusContainer">
         <Button Style="{StaticResource SidebarModeButton}"/>
         <Image VerticalAlignment="Top"
                Source="{Binding ServerExitCountry, Converter={StaticResource ConnectionStatusFlagConverter}}" />
@@ -268,5 +305,117 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                          HorizontalAlignment="Right"
                          Margin="0,40,-20,0"
                          Visibility="{Binding ShowFirstOnboardingStep, Converter={StaticResource BoolToVis}}" />
+
+        <sidebar:PopupBase x:Name="VpnAcceleratorReconnectionPopup"
+                         AllowsTransparency="True"
+                         StaysOpen="True"
+                         PlacementTarget="{Binding ElementName=ConnectionStatusContainer}"
+                         Placement="Right"
+                         IsRequestedToBeOpen="{Binding IsToShowVpnAcceleratorReconnectionPopup, Mode=TwoWay}">
+            <Grid UseLayoutRounding="True">
+                <Border Style="{StaticResource PopupBorder}" MaxWidth="450">
+                    <StackPanel Orientation="Vertical">
+                        <Grid HorizontalAlignment="Left" Width="{Binding ActualWidth, ElementName=ReconnectionComponent}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0"
+                                       Style="{StaticResource FeatureTitleText}"
+                                       Text="{translations:Loc Tooltips_SmartReconnection_Title}" />
+                            <Button Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Right" Width="20" Height="20"
+                                    Command="{Binding CloseVpnAcceleratorReconnectionPopupCommand}"
+                                    Style="{StaticResource WindowsCloseButton}"/>
+                        </Grid>
+                        <TextBlock Style="{StaticResource FeatureInfoText}" 
+                                   Margin="0,8,0,0" 
+                                   Width="{Binding ActualWidth, ElementName=ReconnectionComponent}"
+                                   Text="{translations:Loc Tooltips_SmartReconnection_Description}" />
+
+                        <Border x:Name="ReconnectionComponent" 
+                                HorizontalAlignment="Left" 
+                                Margin="0,20,0,0" 
+                                Background="{StaticResource ModalBarColor}" 
+                                BorderBrush="#FF000000" 
+                                BorderThickness="0" 
+                                CornerRadius="6">
+                            <Grid HorizontalAlignment="Center" Margin="25,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="50"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0" Orientation="Vertical" Margin="0,14" HorizontalAlignment="Center">
+                                    <TextBlock VerticalAlignment="Center"
+                                       FontSize="12"
+                                       Foreground="White"
+                                       Text="{translations:Loc Dialogs_reconnection_FromServer}"/>
+                                    <StackPanel Orientation="Horizontal" Height="31">
+                                        <Image VerticalAlignment="Center" Width="21" Height="15"
+                                       Source="{Binding FromServer.EntryCountry, Converter={StaticResource CountryToFlagConverter}}"
+                                       Visibility="{Binding IsFromServerSecureCore, Converter={StaticResource BoolToVis}}"/>
+                                        <TextBlock Padding="4,0,3,0"
+                                           VerticalAlignment="Center"
+                                           FontSize="20"
+                                           FontWeight="Bold"
+                                           Foreground="{StaticResource GrayColor}"
+                                           Text="»"
+                                           LineHeight="31"
+                                           Visibility="{Binding IsFromServerSecureCore, Converter={StaticResource BoolToVis}}"/>
+                                        <Image VerticalAlignment="Center" Width="21" Height="15"
+                                       Source="{Binding FromServer.ExitCountry, Converter={StaticResource CountryToFlagConverter}}"/>
+                                        <TextBlock Padding="6,0,0,0"
+                                           VerticalAlignment="Center"
+                                           FontSize="14"
+                                           Foreground="White"
+                                           Text="{Binding FromServer.Name}"/>
+                                    </StackPanel>
+                                </StackPanel>
+
+                                <icons:ArrowRight Grid.Column="1"
+                                          HorizontalAlignment="Center" 
+                                          VerticalAlignment="Center"
+                                          Foreground="White"
+                                          Width="18"/>
+
+                                <StackPanel Grid.Column="2" Orientation="Vertical" Margin="0,14" HorizontalAlignment="Center">
+                                    <TextBlock VerticalAlignment="Center"
+                                       FontSize="12"
+                                       Foreground="White"
+                                       Text="{translations:Loc Dialogs_reconnection_ToServer}"/>
+                                    <StackPanel Orientation="Horizontal" Height="31">
+                                        <Image VerticalAlignment="Center" Width="21" Height="15"
+                                       Source="{Binding ToServer.EntryCountry, Converter={StaticResource CountryToFlagConverter}}"
+                                       Visibility="{Binding IsToServerSecureCore, Converter={StaticResource BoolToVis}}"/>
+                                        <TextBlock Padding="4,0,3,0"
+                                           VerticalAlignment="Center"
+                                           FontSize="20"
+                                           FontWeight="Bold"
+                                           Foreground="{StaticResource PrimaryColor}"
+                                           Text="»"
+                                           LineHeight="31"
+                                           Visibility="{Binding IsToServerSecureCore, Converter={StaticResource BoolToVis}}"/>
+                                        <Image VerticalAlignment="Center" Width="21" Height="15"
+                                       Source="{Binding ToServer.ExitCountry, Converter={StaticResource CountryToFlagConverter}}"/>
+                                        <TextBlock Padding="6,0,0,0"
+                                           VerticalAlignment="Center"
+                                           FontSize="14"
+                                           Foreground="White"
+                                           Text="{Binding ToServer.Name}"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+
+                        <Button Style="{StaticResource ClickableText}" 
+                                Margin="0,15,0,0" 
+                                Command="{Binding OpenNotificationSettingsCommand}">
+                            <Run Text="{translations:Loc Tooltips_SmartReconnection_btn_NotificationSettings}"/>
+                        </Button>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </sidebar:PopupBase>
     </Grid>
 </UserControl>

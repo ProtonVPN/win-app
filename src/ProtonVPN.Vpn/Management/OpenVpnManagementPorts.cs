@@ -17,25 +17,23 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
+using System.Net;
+using System.Net.Sockets;
 
 namespace ProtonVPN.Vpn.Management
 {
     /// <summary>
-    /// Randomly selects IP port for OpenVPN management interface.
+    /// Gets available TCP port from network stack for OpenVPN management interface.
     /// </summary>
     internal class OpenVpnManagementPorts
     {
-        private const int MinPortValue = 54000;
-        private const int MaxPortValue = 54999;
+        private readonly IPEndPoint _loopbackEndpoint = new(IPAddress.Loopback, port: 0);
 
-        private readonly Random _random = new Random();
-
-        public int Port() => RandomPort();
-
-        private int RandomPort()
-        { 
-            return _random.Next(MinPortValue, MaxPortValue);
+        public int Port()
+        {
+            using Socket socket = new(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            socket.Bind(_loopbackEndpoint);
+            return ((IPEndPoint)socket.LocalEndPoint).Port;
         }
     }
 }

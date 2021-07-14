@@ -17,8 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Service.Start;
 using System;
+using ProtonVPN.Service.Start;
 
 namespace ProtonVPN.Service
 {

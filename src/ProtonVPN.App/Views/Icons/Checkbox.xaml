@@ -24,11 +24,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d">
     <Viewbox Stretch="Uniform">
-        <Canvas Width="95" Height="95">
-            <Ellipse Width="80" Height="80" Canvas.Left="7" Canvas.Top="7" Fill="White"/>
-            <Path Fill="#00a651" Data="M47.5,0C21.3,0,0,21.3,0,47.5C0,73.7,21.3,95,47.5,95S95,73.7,95,47.5S73.7,0,47.5,0z M75.1,37.7L44.6,68.2
-		        c-0.7,0.7-1.6,1.1-2.5,1.1s-1.8-0.4-2.5-1.1L22.8,51.4c-1.4-1.4-1.4-3.7,0-5.1c1.4-1.4,3.7-1.4,5.1,0l14.2,14.2l28-28
-		        c1.4-1.4,3.7-1.4,5.1,0C76.5,34,76.5,36.3,75.1,37.7z"/>
+        <Canvas Width="24" Height="24">
+            <Path Fill="#00a651" Data="M12,1.5C6.2,1.5,1.5,6.2,1.5,12c0,5.8,4.7,10.5,10.5,10.5c2.8,0,5.5-1.1,7.4-3.1c2-2,3.1-4.6,3.1-7.4
+	C22.5,6.2,17.8,1.5,12,1.5z M17.4,7.6l1.1,1l-8.6,8.7l-4.6-4.6l1.1-1.1l3.5,3.5L17.4,7.6z"/>
         </Canvas>
     </Viewbox>
 </UserControl>

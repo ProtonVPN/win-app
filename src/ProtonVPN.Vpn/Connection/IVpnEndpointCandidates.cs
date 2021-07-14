@@ -26,9 +26,15 @@ namespace ProtonVPN.Vpn.Connection
     internal interface IVpnEndpointCandidates
     {
         VpnEndpoint Current { get; }
-        VpnEndpoint Next(VpnProtocol protocol);
+
+        /// <summary>Excludes the last returned host [IP+Label] (if not the first call) and returns the next endpoint</summary>
+        VpnEndpoint NextHost(VpnProtocol protocol);
+        /// <summary>Excludes the last returned IP (if not the first call) and returns the next endpoint</summary>
+        VpnEndpoint NextIp(VpnProtocol protocol);
         void Set(IReadOnlyList<VpnHost> servers);
         void Reset();
         bool Contains(VpnEndpoint endpoint);
+        int CountHosts();
+        int CountIPs();
     }
 }

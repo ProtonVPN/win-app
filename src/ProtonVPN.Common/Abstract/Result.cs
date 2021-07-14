@@ -32,7 +32,7 @@ namespace ProtonVPN.Common.Abstract
 
         public bool Success { get; }
 
-        public string Error { get; }
+        public string Error { get; protected set; }
 
         public Exception Exception { get; }
 

@@ -221,6 +221,10 @@
     <value>Upgrade</value>
     <comment>The text on Upgrade button in Upgrade Required Upsell window (opens web page for subscription plan upgrade)</comment>
   </data>
+  <data name="Connecting_VpnStatus_val_Pinging" xml:space="preserve">
+    <value>Waiting for a usable network...</value>
+    <comment>The VPN status displayed in Pinging overlay of main app window</comment>
+  </data>
   <data name="Connecting_VpnStatus_val_Connecting" xml:space="preserve">
     <value>Initializing Connection</value>
     <comment>The VPN status displayed in Connecting overlay of main app window</comment>
@@ -272,14 +276,6 @@
   <data name="Dialogs_DisconnectError_msg_Identifying" xml:space="preserve">
     <value>Identifying problem...</value>
     <comment>The message displayed in Disconnect modal window while trying to identify connection problem</comment>
-  </data>
-  <data name="Dialogs_DisconnectError_msg_Unpaid" xml:space="preserve">
-    <value>Your account currently has an unpaid invoice. To keep your online browsing encrypted and secure, please pay unpaid invoices at &lt;Hyperlink Foreground="White" Command="{Binding GoToAccountCommand}"&gt;account.protonvpn.com&lt;/Hyperlink&gt;</value>
-    <comment>The error description displayed in Disconnect modal window if user has unpaid invoices</comment>
-  </data>
-  <data name="Dialogs_DisconnectError_msg_SessionLimitFreeBasic" xml:space="preserve">
-    <value>You reached the maximum number of devices that you can simultaneously connect to ProtonVPN. Upgrade to Plus to use ProtonVPN on up to 5 devices at the same time.</value>
-    <comment>The error description displayed in Disconnect modal window when maximum VPN connection limit is reached</comment>
   </data>
   <data name="Servers_msg_CantConnect_Maintenance" xml:space="preserve">
     <value>The server you are trying to connect to is currently offline for maintenance. Please select another server or profile.</value>
@@ -463,11 +459,11 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <comment>The label for list of PLUS subscription level features in Trial Expiring window</comment>
   </data>
   <data name="Trial_Features_lbl_MultipleConnections" xml:space="preserve">
-    <value>5 Connections</value>
+    <value>10 Connections</value>
     <comment>The name of multiple connections feature available to PLUS subscription plan users displayed in Trial windows</comment>
   </data>
   <data name="Trial_Expiring_lbl_MultipleConnections_Info" xml:space="preserve">
-    <value>Connect up to 5 devices at the same time</value>
+    <value>Connect up to 10 devices at the same time</value>
     <comment>The description of multiple connections feature of PLUS subscription plan displayed in Trial Expiring window</comment>
   </data>
   <data name="Trial_Expiring_lbl_SecureCore_Info" xml:space="preserve">
@@ -511,7 +507,7 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <comment>The name of multiple countries feature available to PLUS subscription plan users displayed in Trial windows</comment>
   </data>
   <data name="Upsell_Enjoying_lbl_Benefits" xml:space="preserve">
-    <value>Use Secure Core, stream your favorite TV shows, use on up to 5 different devices and more!</value>
+    <value>Use Secure Core, stream your favorite TV shows, use on up to 10 different devices and more!</value>
     <comment>The text describing PLUS subscription level benefits in Enjoying Upsell window</comment>
   </data>
   <data name="Upsell_Enjoying_btn_Upgrade" xml:space="preserve">
@@ -751,7 +747,7 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <comment>The label for server IP address in Server Load popup. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
   </data>
   <data name="Servers_Feature_val_Plus" xml:space="preserve">
-    <value>Plus Server</value>
+    <value>PLUS Server</value>
     <comment>The name of Plus server feature</comment>
   </data>
   <data name="Servers_Feature_val_P2P" xml:space="preserve">
@@ -2322,10 +2318,6 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <value>The ProtonVPN Service that is responsible for your VPN connection is not running. It will try to complete your task again shortly. If this problem persists, try restarting the ProtonVPN app. If it still persists, try restarting your PC.</value>
     <comment>The text displayed in Service Start window</comment>
   </data>
-  <data name="Dialogs_DisconnectError_msg_TierTooLow" xml:space="preserve">
-    <value>You have been disconnected because your plan was downgraded. Please upgrade your plan to access all countries and premium features.</value>
-    <comment>The error description displayed in Disconnect modal window when user subscription plan has been downgraded (not necessarily to Free). The trial period might have been ended or the user might have changed his plan.</comment>
-  </data>
   <data name="Dialogs_DisconnectError_msg_NoServers" xml:space="preserve">
     <value>There are no servers available right now for your selection. Please select a different option.</value>
     <comment>The error description displayed in Disconnect modal window if disconnected because there are no servers available to connect to</comment>
@@ -2355,7 +2347,7 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <comment>The button displayed in the sidebar connection block when Kill Switch is activated and vpn connection is dropped</comment>
   </data>
   <data name="App_msg_UpdateConnectedConfirm" xml:space="preserve">
-    <value>To complete the update process, ProtonVPN will temporary disconnect and deactivate Permanent Kill Switch if any of these are active. Do you want to continue?</value>
+    <value>To complete the update process, ProtonVPN will temporarily disconnect and deactivate Permanent Kill Switch if any of these are active. Do you want to continue?</value>
     <comment>The question displayed when trying to update the app while connected to VPN</comment>
   </data>
   <data name="Connecting_lbl_ConnectingTo_1_SecureCore" xml:space="preserve">
@@ -2417,14 +2409,6 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
   <data name="Settings_Connection_btn_Upgrade" xml:space="preserve">
     <value>Upgrade</value>
     <comment>The text on Upgrade button in Connection tab of Settings window</comment>
-  </data>
-  <data name="Sidebar_Countries_info_P2P" xml:space="preserve">
-    <value>Supports P2P traffic</value>
-    <comment>The description displayed in a tooltip of P2P icon on a sidebar countries list</comment>
-  </data>
-  <data name="Sidebar_Countries_info_Tor" xml:space="preserve">
-    <value>Connects to TOR network</value>
-    <comment>The description displayed in a tooltip of Tor icon on a sidebar countries list</comment>
   </data>
   <data name="Sidebar_Servers_info_plus" xml:space="preserve">
     <value>Plus Server</value>
@@ -2706,6 +2690,22 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <value>Route your Internet traffic through the Tor network with a single click.</value>
     <comment>Tooltip message shown in account window when hovered on TOR over VPN exclamation mark icon</comment>
   </data>
+  <data name="Account_lbl_NetShield" xml:space="preserve">
+    <value>Adblocker (NetShield)</value>
+    <comment>The text displayed in Account window for NetShield</comment>
+  </data>
+  <data name="Account_lbl_NetShield_Info" xml:space="preserve">
+    <value>NetShield protects your device and speeds up your browsing by blocking ads, trackers and malware.</value>
+    <comment>Tooltip message shown in account window when hovered on NetShield exclamation mark icon</comment>
+  </data>
+  <data name="Account_lbl_Streaming" xml:space="preserve">
+    <value>Streaming service support</value>
+    <comment>The text displayed in Account window for Streaming service support</comment>
+  </data>
+  <data name="Account_lbl_Streaming_Info" xml:space="preserve">
+    <value>Access your streaming services, like Netflix, Disney+, Prime Video, and many others, no matter where you are.</value>
+    <comment>Tooltip message shown in account window when hovered on "Streaming service support" exclamation mark icon</comment>
+  </data>
   <data name="BugReport_lbl_HowToReproduce" xml:space="preserve">
     <value>What are the exact steps you performed?</value>
     <comment>The label in Bug Report window</comment>
@@ -2734,10 +2734,6 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
   <data name="Dialogs_DisconnectError_btn_Upgrade" xml:space="preserve">
     <value>Upgrade</value>
     <comment>The text on Upgrade button in Disconnect modal window</comment>
-  </data>
-  <data name="Dialogs_DisconnectError_msg_SessionLimitPlus" xml:space="preserve">
-    <value>You can connect to ProtonVPN on a maximum of 5 devices at the same time. Please disconnect one of your other devices from ProtonVPN and try again.</value>
-    <comment>The error description displayed in Disconnect modal window when maximum VPN connection limit is reached</comment>
   </data>
   <data name="Dialogs_Bfe_msg_info" xml:space="preserve">
     <value>One of the services required by ProtonVPN (Base Filtering Engine) is not running.&lt;LineBreak/&gt;
@@ -2887,7 +2883,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>TAP adapter</value>
   </data>
   <data name="Settings_Advanced_lbl_Tun" xml:space="preserve">
-    <value>TUN adapter (beta)</value>
+    <value>TUN adapter</value>
   </data>
   <data name="QuickSettings_btn_PermanentKillSwitch" xml:space="preserve">
     <value>Permanent Kill Switch</value>
@@ -2923,48 +2919,23 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="Dialogs_SplitTunnelWarning_msg" xml:space="preserve">
     <value>For Split Tunnel to function properly, you must disable Kill Switch.</value>
   </data>
-  <data name="Dialogs_TunFallback_btn_OpenSettings" xml:space="preserve">
-    <value>Open Settings</value>
-  </data>
-  <data name="Dialogs_TunFallback_msg" xml:space="preserve">
-    <value>ProtonVPN uses the TUN adapter by default for improved performance, but it is not responding correctly. You are therefore now using the TAP adapter. You can switch between TAP and TUN in the Advanced Settings.</value>
-  </data>
   <data name="Dialogs_TunInUse_btn_SwitchToTap" xml:space="preserve">
     <value>Switch to TAP</value>
   </data>
   <data name="Dialogs_TunInUse_msg" xml:space="preserve">
     <value>ProtonVPN could not connect because the TUN network adapter is already in use. Please disconnect any active VPNs and retry. Alternatively, switch to the TAP adapter (you can change back to TUN in the Advanced Settings).</value>
   </data>
-  <data name="Popup_TunFallback_msg" xml:space="preserve">
-    <value>The ProtonVPN TUN adapter provides improved performance, but it is not responding correctly.&lt;LineBreak/&gt;&lt;LineBreak/&gt;Therefore, TAP adapter is now set as default.&lt;LineBreak/&gt;&lt;LineBreak/&gt;You can switch between TAP and TUN in the &lt;Hyperlink Command="{Binding OpenAdvancedSettingsCommand}"&gt;Advanced Settings.&lt;/Hyperlink&gt;</value>
-  </data>
-  <data name="Popup_TunFallback_btn_ReportProblem" xml:space="preserve">
-    <value>Report this problem</value>
-  </data>
-  <data name="Popup_TunFallback_lbl_SendingReport" xml:space="preserve">
-    <value>Sending report...</value>
-  </data>
-  <data name="Popup_TunFallback_lbl_FailedToSend" xml:space="preserve">
-    <value>An error occured, please try again later.</value>
-  </data>
-  <data name="Popup_TunFallback_lbl_SentSuccessfully" xml:space="preserve">
-    <value>Report sent successfully.</value>
+  <data name="Dialogs_Delinquency_btn_Invoices" xml:space="preserve">
+    <value>Check invoices</value>
+    <comment>The text on invoices button in the Delinquency window (opens web page for invoice payment)</comment>
   </data>
   <data name="Dialogs_Delinquency_ttl" xml:space="preserve">
     <value>Delinquent account</value>
     <comment>The title of the Delinquency window</comment>
   </data>
-  <data name="Dialogs_Delinquency_msg_Delinquency" xml:space="preserve">
+  <data name="Dialogs_Delinquency_msg" xml:space="preserve">
     <value>The account is flagged as delinquent due to unpaid invoices. You can continue to use ProtonVPN, but any paid features are now disabled.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadAboutDelinquencyCommand}"&gt;Read more about delinquency.&lt;/Hyperlink&gt;</value>
     <comment>The message displayed in the Delinquency window. The codes between &lt; and &gt; should be kept as is (Do not forget to translate the inner "Read more about delinquency.").</comment>
-  </data>
-  <data name="Dialogs_Delinquency_btn_Close" xml:space="preserve">
-    <value>Close</value>
-    <comment>The text on close button in the Delinquency window (closes the window)</comment>
-  </data>
-  <data name="Dialogs_Delinquency_btn_Invoices" xml:space="preserve">
-    <value>Check invoices</value>
-    <comment>The text on invoices button in the Delinquency window (opens web page for invoice payment)</comment>
   </data>
   <data name="Sidebar_Trial_lbl_Delinquency" xml:space="preserve">
     <value>Paid features are disabled due to delinquency</value>
@@ -2973,5 +2944,268 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="Sidebar_Trial_btn_Invoices" xml:space="preserve">
     <value>Check invoices</value>
     <comment>The text on invoices button in the Delinquency message on the sidebar (opens web page for invoice payment)</comment>
+  </data>
+  <data name="Sidebar_Countries_AllLocationCount" xml:space="preserve">
+    <value>Locations ({0})</value>
+  </data>
+  <data name="Sidebar_Countries_ServerCountByTier0" xml:space="preserve">
+    <value>FREE Servers ({0})</value>
+  </data>
+  <data name="Sidebar_Countries_ServerCountByTier1" xml:space="preserve">
+    <value>BASIC Servers ({0})</value>
+  </data>
+  <data name="Sidebar_Countries_ServerCountByTier2" xml:space="preserve">
+    <value>PLUS Servers ({0})</value>
+  </data>
+  <data name="Servers_Feature_val_Streaming" xml:space="preserve">
+    <value>Streaming</value>
+  </data>
+  <data name="Sidebar_Streaming_Country" xml:space="preserve">
+    <value>Streaming - {0}</value>
+  </data>
+  <data name="Sidebar_Streaming_Features" xml:space="preserve">
+    <value>Features</value>
+  </data>
+  <data name="Sidebar_Streaming_Info" xml:space="preserve">
+    <value>Connect to a Plus server in this country to start streaming.</value>
+  </data>
+  <data name="Sidebar_Streaming_InfoNote" xml:space="preserve">
+    <value>Note: Use a new browser tab and/or clear the cache to ensure new content appears.</value>
+  </data>
+  <data name="Sidebar_Streaming_More" xml:space="preserve">
+    <value>and more</value>
+  </data>
+  <data name="Sidebar_Countries_ServerCountByTier3" xml:space="preserve">
+    <value>INTERNAL Servers</value>
+  </data>
+  <data name="Sidebar_Countries_BasicAndPlusLocationCount" xml:space="preserve">
+    <value>BASIC &amp; PLUS Locations ({0})</value>
+  </data>
+  <data name="Sidebar_Countries_BasicLocationCount" xml:space="preserve">
+    <value>BASIC Locations ({0})</value>
+  </data>
+  <data name="Sidebar_Countries_FreeLocationCount" xml:space="preserve">
+    <value>FREE Locations ({0})</value>
+  </data>
+  <data name="Sidebar_Countries_PlusLocationCount" xml:space="preserve">
+    <value>PLUS Locations ({0})</value>
+  </data>
+  <data name="Sidebar_FeaturesPopup_BasicAndPlus" xml:space="preserve">
+    <value>BASIC &amp; PLUS</value>
+  </data>
+  <data name="Sidebar_FeaturesPopup_LearnMore" xml:space="preserve">
+    <value>Learn more</value>
+  </data>
+  <data name="Sidebar_FeaturesPopup_P2P" xml:space="preserve">
+    <value>P2P/BitTorrent</value>
+  </data>
+  <data name="Sidebar_FeaturesPopup_P2P_Desc" xml:space="preserve">
+    <value>These servers give the best performance for BitTorrent and file sharing.</value>
+  </data>
+  <data name="Sidebar_FeaturesPopup_Plus" xml:space="preserve">
+    <value>PLUS</value>
+  </data>
+  <data name="Sidebar_FeaturesPopup_SmartRouting" xml:space="preserve">
+    <value>Smart Routing</value>
+  </data>
+  <data name="Sidebar_FeaturesPopup_SmartRouting_Desc" xml:space="preserve">
+    <value>This technology allows ProtonVPN to provide higher speed and security in difficult-to-serve countries.</value>
+  </data>
+  <data name="Sidebar_FeaturesPopup_Streaming" xml:space="preserve">
+    <value>Streaming</value>
+  </data>
+  <data name="Sidebar_FeaturesPopup_Streaming_Desc" xml:space="preserve">
+    <value>PLUS servers support streaming (Netflix, Disney+, etc) from anywhere in the world.</value>
+  </data>
+  <data name="Sidebar_FeaturesPopup_Title" xml:space="preserve">
+    <value>Features</value>
+  </data>
+  <data name="Sidebar_FeaturesPopup_Tor" xml:space="preserve">
+    <value>Tor</value>
+  </data>
+  <data name="Sidebar_FeaturesPopup_Tor_Desc" xml:space="preserve">
+    <value>Route your Internet traffic through the Tor network. Slower, but more private.</value>
+  </data>
+  <data name="Dialogs_EnableSmartProtocol_ttl" xml:space="preserve">
+    <value>Smart Protocol is currently disabled</value>
+    <comment>The title of the Enable Smart Protocol window</comment>
+  </data>
+  <data name="Dialogs_EnableSmartProtocol_msg" xml:space="preserve">
+    <value>ProtonVPN detected that your current network is preventing a connection to the VPN. Enabling Smart Protocol might bypass these limitations.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadAboutSmartProtocolCommand}"&gt;Read more about Smart Protocol.&lt;/Hyperlink&gt;</value>
+    <comment>The message displayed in the Enable Smart Protocol window. The codes between &lt; and &gt; should be kept as is (Do not forget to translate the inner "Read more about Smart Protocol.").</comment>
+  </data>
+  <data name="Dialogs_EnableSmartProtocol_btn_Enable" xml:space="preserve">
+    <value>Enable</value>
+    <comment>The text on Enable button in the Enable Smart Protocol window</comment>
+  </data>
+  <data name="Dialogs_EnableSmartProtocol_btn_KeepDisabled" xml:space="preserve">
+    <value>Keep disabled</value>
+    <comment>The text on "Keep disabled" button in the Enable Smart Protocol window</comment>
+  </data>
+  <data name="Settings_Connection_lbl_VpnAccelerator" xml:space="preserve">
+    <value>VPN Accelerator</value>
+    <comment>The label for VPN Accelerator toggle switch in Settings window</comment>
+  </data>
+  <data name="Settings_Connection_lbl_VpnAccelerator_Info" xml:space="preserve">
+    <value>VPN Accelerator enables a set of unique performance enhancing technologies which can increase VPN speeds by up to 400%.</value>
+    <comment>The description of VPN Accelerator setting displayed in the tooltip of the ( i ) image next to the label in Settings window</comment>
+  </data>
+  <data name="Settings_Connection_lbl_SmartReconnect" xml:space="preserve">
+    <value>Auto Reconnection</value>
+    <comment>The label for Auto Reconnect toggle switch in Settings window</comment>
+  </data>
+  <data name="Settings_Connection_lbl_SmartReconnect_Info" xml:space="preserve">
+    <value>Switch automatically to a faster server similar to the one you selected.</value>
+    <comment>The description of Auto Reconnect setting displayed in the tooltip of the ( i ) image next to the label in Settings window</comment>
+  </data>
+  <data name="Settings_Connection_lbl_SmartReconnectNotifications" xml:space="preserve">
+    <value>Reconnection notifications</value>
+    <comment>The label for Smart Reconnect notifications toggle switch in the General tab of Settings window</comment>
+  </data>
+  <data name="Settings_Connection_lbl_SmartReconnectNotifications_Info" xml:space="preserve">
+    <value>Turn this on to receive notifications when VPN Accelerator connects you to a faster server.</value>
+    <comment>The description of the Smart Reconnect notifications setting displayed in the tooltip of the ( i ) image next to the label</comment>
+  </data>
+  <data name="Dialogs_SubscriptionExpired_Title" xml:space="preserve">
+    <value>Your VPN subscription plan has expired</value>
+    <comment>The title of the Subscription Expired window</comment>
+  </data>
+  <data name="Dialogs_SubscriptionExpired_Subtitle" xml:space="preserve">
+    <value>Your subscription has been downgraded.</value>
+    <comment>The subtitle of the Subscription Expired window</comment>
+  </data>
+  <data name="Dialogs_SubscriptionExpired_Reconnected_Subtitle" xml:space="preserve">
+    <value>Your subscription has been downgraded, so we are reconnecting to the fastest available server.</value>
+    <comment>The subtitle of the Subscription Expired window when the user is reconnected</comment>
+  </data>
+  <data name="Dialogs_SubscriptionExpired_ListTitle" xml:space="preserve">
+    <value>Upgrade again to enjoy all the features:</value>
+    <comment>The text right before the subscriber benefits list in the Subscription Expired window</comment>
+  </data>
+  <data name="Dialogs_SubscriptionExpired_ListOption1" xml:space="preserve">
+    <value>Hundreds of servers in 55 countries</value>
+    <comment>An option of the subscriber benefits list in the Subscription Expired window</comment>
+  </data>
+  <data name="Dialogs_SubscriptionExpired_ListOption2" xml:space="preserve">
+    <value>Connect up to 10 devices at the same time</value>
+    <comment>An option of the subscriber benefits list in the Subscription Expired window</comment>
+  </data>
+  <data name="Dialogs_SubscriptionExpired_ListOption3" xml:space="preserve">
+    <value>Advanced features: NetShield, Secure Core, Tor, P2P</value>
+    <comment>An option of the subscriber benefits list in the Subscription Expired window</comment>
+  </data>
+  <data name="Dialogs_SubscriptionExpired_Upgrade" xml:space="preserve">
+    <value>Upgrade Again</value>
+    <comment>The upgrade button text in the Subscription Expired window</comment>
+  </data>
+  <data name="Dialogs_Delinquency_Title" xml:space="preserve">
+    <value>Your VPN account has pending invoices</value>
+    <comment>The title of the Delinquency window</comment>
+  </data>
+  <data name="Dialogs_Delinquency_Subtitle" xml:space="preserve">
+    <value>You will be able to access premium features again after these are paid.</value>
+    <comment>The subtitle of the Delinquency window</comment>
+  </data>
+  <data name="Dialogs_Delinquency_Reconnected_Subtitle" xml:space="preserve">
+    <value>You will be able to access premium features again after these are paid. For now, we are reconnecting to the fastest FREE plan server available.</value>
+    <comment>The subtitle of the Delinquency window when the user is reconnected</comment>
+  </data>
+  <data name="Dialogs_Delinquency_GoToBilling" xml:space="preserve">
+    <value>Update My Billing</value>
+    <comment>The "go to billing website" button text in the Delinquency window</comment>
+  </data>
+  <data name="Dialogs_btn_NoThanks" xml:space="preserve">
+    <value>No Thanks</value>
+    <comment>The text on NoThanks button in dialog windows</comment>
+  </data>
+  <data name="Dialogs_reconnection_FromServer" xml:space="preserve">
+    <value>From server:</value>
+    <comment>The label for the previous server in dialog windows</comment>
+  </data>
+  <data name="Dialogs_reconnection_ToServer" xml:space="preserve">
+    <value>To server:</value>
+    <comment>The label for the new server in dialog windows</comment>
+  </data>
+  <data name="Dialogs_MaximumDeviceLimit_Title" xml:space="preserve">
+    <value>You have reached your maximum device limit</value>
+    <comment>The title of the Maximum Device Limit window</comment>
+  </data>
+  <data name="Dialogs_MaximumDeviceLimit_Upgrade_Subtitle" xml:space="preserve">
+    <value>Please disconnect another device to connect this one or upgrade to PLUS to get up to 10 devices connected at the same time.</value>
+    <comment>The subtitle of the Maximum Device Limit window when the user can upgrade the subscription plan</comment>
+  </data>
+  <data name="Dialogs_MaximumDeviceLimit_Upgrade" xml:space="preserve">
+    <value>Upgrade</value>
+    <comment>The upgrade button text in the Maximum Device Limit window when the user can upgrade the subscription plan</comment>
+  </data>
+  <data name="Dialogs_MaximumDeviceLimit_Disconnect_Subtitle" xml:space="preserve">
+    <value>Please disconnect another device to connect this one.</value>
+    <comment>The subtitle of the Maximum Device Limit window when the user already has the highest subscription plan</comment>
+  </data>
+  <data name="Dialogs_MaximumDeviceLimit_Disconnect_Ok" xml:space="preserve">
+    <value>Got It</value>
+    <comment>The ok button text in the Maximum Device Limit window when the user already has the highest subscription plan</comment>
+  </data>
+  <data name="Notifications_SubscriptionExpired_Title" xml:space="preserve">
+    <value>Your VPN subscription plan has expired</value>
+    <comment>The title of the Subscription Expired notification</comment>
+  </data>
+  <data name="Notifications_SubscriptionExpired_Description" xml:space="preserve">
+    <value>Your subscription has been downgraded. Upgrade again to enjoy all the features.</value>
+    <comment>The description of the Subscription Expired notification</comment>
+  </data>
+  <data name="Notifications_SubscriptionExpired_Reconnected_Description" xml:space="preserve">
+    <value>Your subscription has been downgraded, so we are reconnecting to the fastest available server. Upgrade again to enjoy all the features.</value>
+    <comment>The description of the Subscription Expired notification when the user is reconnected</comment>
+  </data>
+  <data name="Notifications_Delinquency_Title" xml:space="preserve">
+    <value>Your VPN account has pending invoices</value>
+    <comment>The title of the Delinquency notification</comment>
+  </data>
+  <data name="Notifications_Delinquency_Description" xml:space="preserve">
+    <value>You will be able to access premium features again after these are paid.</value>
+    <comment>The description of the Delinquency notification</comment>
+  </data>
+  <data name="Notifications_Delinquency_Reconnected_Description" xml:space="preserve">
+    <value>You will be able to access premium features again after these are paid. For now, we are reconnecting to the fastest FREE plan server available.</value>
+    <comment>The description of the Delinquency notification when the user is reconnected</comment>
+  </data>
+  <data name="Notifications_MaximumDeviceLimit_Title" xml:space="preserve">
+    <value>You have reached your maximum device limit</value>
+    <comment>The title of the Maximum Device Limit notification</comment>
+  </data>
+  <data name="Notifications_MaximumDeviceLimit_Upgrade_Description" xml:space="preserve">
+    <value>Please disconnect another device to connect this one or upgrade to PLUS to get up to 10 devices connected at the same time.</value>
+    <comment>The description of the Maximum Device Limit notification when the user can upgrade the subscription plan</comment>
+  </data>
+  <data name="Notifications_MaximumDeviceLimit_Disconnect_Description" xml:space="preserve">
+    <value>Please disconnect another device to connect this one.</value>
+    <comment>The description of the Maximum Device Limit notification when the user already has the highest subscription plan</comment>
+  </data>
+  <data name="Notifications_EnableSmartProtocol_ttl" xml:space="preserve">
+    <value>Smart Protocol is currently disabled</value>
+    <comment>The title of the Enable Smart Protocol notification</comment>
+  </data>
+  <data name="Notifications_EnableSmartProtocol_msg" xml:space="preserve">
+    <value>ProtonVPN detected that your current network is preventing a connection to the VPN. Enabling Smart Protocol might bypass these limitations.</value>
+    <comment>The message displayed in the Enable Smart Protocol notification.</comment>
+  </data>
+  <data name="Tooltips_SmartReconnection_Title" xml:space="preserve">
+    <value>VPN Accelerator</value>
+    <comment>The title of the Auto Reconnection tooltip</comment>
+  </data>
+  <data name="Tooltips_SmartReconnection_Description" xml:space="preserve">
+    <value>You have been switched to a faster server that is similar to the one you selected.</value>
+    <comment>The description of the Auto Reconnection tooltip</comment>
+  </data>
+  <data name="Tooltips_SmartReconnection_btn_NotificationSettings" xml:space="preserve">
+    <value>Notification Settings</value>
+    <comment>The text button of the Auto Reconnection tooltip that opens the Notification Settings</comment>
+  </data>
+  <data name="Dialogs_HumanVerification_ttl" xml:space="preserve">
+    <value>Human verification</value>
+  </data>
+  <data name="Sidebar_Countries_info_SmartRouting" xml:space="preserve">
+    <value>Smart Routing</value>
   </data>
 </root>

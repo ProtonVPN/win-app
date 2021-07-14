@@ -29,11 +29,11 @@ using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Servers.Models;
+using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.User;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Servers;
-using ProtonVPN.Settings;
 using ProtonVPN.Sidebar.QuickSettings;
 using ProtonVPN.Trial;
 using ProtonVPN.Vpn.Connectors;
@@ -54,9 +54,9 @@ namespace ProtonVPN.Sidebar
         private readonly App _app;
         private readonly ServerConnector _serverConnector;
         private readonly CountryConnector _countryConnector;
-        private readonly IVpnReconnector _vpnReconnector;
+        private readonly IVpnManager _vpnManager;
 
-        private VpnStateChangedEventArgs _vpnState = new VpnStateChangedEventArgs(new VpnState(VpnStatus.Disconnected), VpnError.None, false);
+        private VpnStateChangedEventArgs _vpnState = new(new VpnState(VpnStatus.Disconnected), VpnError.None, false);
 
         public CountriesViewModel(
             IAppSettings appSettings,
@@ -65,7 +65,7 @@ namespace ProtonVPN.Sidebar
             ServerConnector serverConnector,
             CountryConnector countryConnector,
             QuickSettingsViewModel quickSettingsViewModel,
-            IVpnReconnector vpnReconnector)
+            IVpnManager vpnManager)
         {
             _appSettings = appSettings;
             _serverListFactory = serverListFactory;
@@ -73,7 +73,7 @@ namespace ProtonVPN.Sidebar
             _serverConnector = serverConnector;
             _countryConnector = countryConnector;
             QuickSettingsViewModel = quickSettingsViewModel;
-            _vpnReconnector = vpnReconnector;
+            _vpnManager = vpnManager;
 
             Connect = new RelayCommand<ServerItemViewModel>(ConnectAction);
             ConnectCountry = new RelayCommand<IServerCollection>(ConnectCountryAction);
@@ -124,7 +124,7 @@ namespace ProtonVPN.Sidebar
             set { }
         }
 
-        private ObservableCollection<IServerListItem> _items = new ObservableCollection<IServerListItem>();
+        private ObservableCollection<IServerListItem> _items = new();
         public ObservableCollection<IServerListItem> Items
         {
             get => _items;
@@ -133,7 +133,7 @@ namespace ProtonVPN.Sidebar
 
         public void ExpandCollection(IServerCollection serverCollection)
         {
-            if (serverCollection.Expanded || !serverCollection.HasAvailableServers())
+            if (serverCollection.Expanded)
             {
                 return;
             }
@@ -147,10 +147,7 @@ namespace ProtonVPN.Sidebar
                     new ObservableCollection<IServerListItem>(serverCollection.Servers.Reverse());
                 foreach (IServerListItem serverListItem in collection)
                 {
-                    if (serverListItem is ServerItemViewModel server)
-                    {
-                        _items.Insert(index, server);
-                    }
+                    _items.Insert(index, serverListItem);
                 }
             });
         }
@@ -165,10 +162,7 @@ namespace ProtonVPN.Sidebar
 
             foreach (IServerListItem item in serverCollection.Servers)
             {
-                if (item is ServerItemViewModel server)
-                {
-                    _items.Remove(server);
-                }
+                _items.Remove(item);
             }
         }
 
@@ -268,7 +262,7 @@ namespace ProtonVPN.Sidebar
 
         private async Task ReconnectAsync()
         {
-            await _vpnReconnector.ReconnectAsync();
+            await _vpnManager.ReconnectAsync(new VpnReconnectionSettings());
         }
 
         public void OnUserLoggedOut()

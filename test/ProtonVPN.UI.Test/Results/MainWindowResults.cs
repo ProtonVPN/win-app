@@ -44,6 +44,13 @@ namespace ProtonVPN.UI.Test.Results
             Assert.IsTrue(ipAddress.Equals(textBlockIpAddress), "Incorrect IP address is displayed. API returned IP: " + ipAddress + " App IP addres: " + textBlockIpAddress);
             return this;
         }
+
+        public async Task<MainWindowResults> CheckIfIpAddressIsExcluded(string ipAddress)
+        {
+            string ipAddressAPI = await _client.GetIpAddress();
+            Assert.IsTrue(ipAddress.Equals(ipAddressAPI), "IP address was not excluded. API returned IP: " + ipAddressAPI + " Home IP addres: " + ipAddress);
+            return this;
+        }
         
         public async Task<MainWindowResults> CheckIfCorrectCountryIsShownAsync()
         {
@@ -80,6 +87,24 @@ namespace ProtonVPN.UI.Test.Results
             _loginWindow.WaitUntilLoginIsFinished();
             RefreshSession();
             Assert.AreEqual(ipAddress, _mainWindow.GetTextBlockIpAddress(), "User was not connected to the same server.");
+            return this;
+        }
+
+        public MainWindowResults CheckIfNetshieldIsDisabled()
+        {
+            CheckIfObjectWithClassNameIsDisplayed("ShieldEmpty", "Netshield was not disabled.");
+            return this;
+        }
+
+        public MainWindowResults CheckIfConnectButtonIsNotDisplayed()
+        {
+            Assert.IsFalse(CheckIfElementExistsByName("CONNECT"));
+            return this;
+        }
+
+        public MainWindowResults CheckIfUpgradeRequiredModalIsShown(string serverName)
+        {
+            CheckIfObjectWithNameIsDisplayed("Upgrade Required", "Free User is able to connect to " + serverName + " server");
             return this;
         }
     }

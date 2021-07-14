@@ -23,5 +23,6 @@ namespace ProtonVPN.Core.Api.Contracts
     {
         public int Code { get; set; }
         public string Error { get; set; }
+        public BaseResponseDetail Details { get; set; }
     }
 }

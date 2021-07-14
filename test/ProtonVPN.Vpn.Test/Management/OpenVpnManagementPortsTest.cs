@@ -32,11 +32,11 @@ namespace ProtonVPN.Vpn.Test.Management
             // Arrange
             var ports = new OpenVpnManagementPorts();
             // Act
-            var result = ports.Port();
+            int result = ports.Port();
             // Assert
             result.Should()
-                .BeGreaterOrEqualTo(54000).And
-                .BeLessOrEqualTo(54999);
+                .BeGreaterOrEqualTo(49152).And
+                .BeLessOrEqualTo(65535);
         }
     }
 }

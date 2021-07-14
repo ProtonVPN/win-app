@@ -35,9 +35,10 @@ using ProtonVPN.Core.Servers.Specs;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Settings.Contracts;
-using ProtonVPN.Modals.Delinquencies;
+using ProtonVPN.Core.Window.Popups;
 using ProtonVPN.Modals.Upsell;
 using ProtonVPN.Translations;
+using ProtonVPN.Windows.Popups.Delinquency;
 using Profile = ProtonVPN.Core.Profiles.Profile;
 
 namespace ProtonVPN.Vpn.Connectors
@@ -55,6 +56,8 @@ namespace ProtonVPN.Vpn.Connectors
         private readonly IModals _modals;
         private readonly IDialogs _dialogs;
         private readonly VpnCredentialProvider _vpnCredentialProvider;
+        private readonly IPopupWindows _popupWindows;
+        private readonly IDelinquencyPopupViewModel _delinquencyPopupViewModel;
 
         public ProfileConnector(
             ILogger logger,
@@ -65,17 +68,32 @@ namespace ProtonVPN.Vpn.Connectors
             IVpnServiceManager vpnServiceManager,
             IModals modals,
             IDialogs dialogs,
-            VpnCredentialProvider vpnCredentialProvider)
+            VpnCredentialProvider vpnCredentialProvider,
+            IPopupWindows popupWindows,
+            IDelinquencyPopupViewModel delinquencyPopupViewModel)
         {
             _logger = logger;
-            _vpnCredentialProvider = vpnCredentialProvider;
-            _modals = modals;
-            _dialogs = dialogs;
             _userStorage = userStorage;
+            _appSettings = appSettings;
             _serverManager = serverManager;
             _serverCandidatesFactory = serverCandidatesFactory;
-            _appSettings = appSettings;
             _vpnServiceManager = vpnServiceManager;
+            _modals = modals;
+            _dialogs = dialogs;
+            _vpnCredentialProvider = vpnCredentialProvider;
+            _popupWindows = popupWindows;
+            _delinquencyPopupViewModel = delinquencyPopupViewModel;
+        }
+
+        public bool IsServerFromProfile(Server server, Profile profile)
+        {
+            if (server == null || profile == null)
+            {
+                return false;
+            }
+
+            Specification<LogicalServerContract> serverSpec = ProfileServerSpec(profile);
+            return _serverManager.IsServerFromSpec(server, serverSpec);
         }
 
         public ServerCandidates ServerCandidates(Profile profile)
@@ -103,12 +121,25 @@ namespace ProtonVPN.Vpn.Connectors
             return false;
         }
 
-        public async Task Connect(ServerCandidates candidates, Profile profile)
+        public async Task Connect(ServerCandidates candidates, Profile profile, Protocol? overrideProtocol = null, int? maxServers = null)
         {
             IReadOnlyList<Server> servers = Servers(candidates);
+            IEnumerable<Server> sortedServers = SortServers(servers, profile.ProfileType);
+            if (maxServers.HasValue)
+            {
+                sortedServers = sortedServers.Take(maxServers.Value);
+            }
 
-            IEnumerable<Server> sortedServers = Sorted(servers, profile.ProfileType);
-            await Connect(sortedServers, VpnProtocol(profile.Protocol));
+            Protocol protocol = overrideProtocol ?? profile.Protocol;
+
+            await Connect(sortedServers, VpnProtocol(protocol));
+        }
+
+        public async Task ConnectWithPreSortedCandidates(ServerCandidates sortedCandidates, Protocol protocol)
+        {
+            IReadOnlyList<Server> sortedServers = Servers(sortedCandidates);
+
+            await Connect(sortedServers, VpnProtocol(protocol));
         }
 
         public async Task<bool> UpdateServers(ServerCandidates candidates, Profile profile)
@@ -119,13 +150,13 @@ namespace ProtonVPN.Vpn.Connectors
                 return false;
             }
 
-            IEnumerable<Server> sortedServers = Sorted(servers, profile.ProfileType);
+            IEnumerable<Server> sortedServers = SortServers(servers, profile.ProfileType);
             await UpdateServers(sortedServers);
 
             return true;
         }
 
-        private IReadOnlyList<Server> Servers(ServerCandidates candidates)
+        public IReadOnlyList<Server> Servers(ServerCandidates candidates)
         {
             IReadOnlyList<Server> servers = candidates.Items
                 .OnlineServers()
@@ -135,12 +166,11 @@ namespace ProtonVPN.Vpn.Connectors
             return servers;
         }
 
-        private IEnumerable<Server> Sorted(IEnumerable<Server> source, ProfileType profileType)
+        public IEnumerable<Server> SortServers(IEnumerable<Server> source, ProfileType profileType)
         {
             if (profileType == ProfileType.Random)
             {
-                Random random = new Random();
-                return source.OrderBy(_ => random.NextDouble());
+                return source.OrderBy(_ => _random.NextDouble());
             }
 
             if (_appSettings.FeaturePortForwardingEnabled && _appSettings.PortForwardingEnabled)
@@ -163,6 +193,21 @@ namespace ProtonVPN.Vpn.Connectors
             if (!string.IsNullOrEmpty(profile.CountryCode))
             {
                 spec &= new ExitCountryServer(profile.CountryCode);
+            }
+
+            if (!string.IsNullOrEmpty(profile.EntryCountryCode))
+            {
+                spec &= new EntryCountryServer(profile.EntryCountryCode);
+            }
+
+            if (!string.IsNullOrEmpty(profile.City))
+            {
+                spec &= new ExitCityServer(profile.City);
+            }
+
+            if (profile.ExactTier.HasValue)
+            {
+                spec &= new ExactTierServer(profile.ExactTier.Value);
             }
 
             return spec;
@@ -318,16 +363,21 @@ namespace ProtonVPN.Vpn.Connectors
 
         private async Task Connect(IEnumerable<Server> servers, VpnProtocol protocol)
         {
-            VpnConnectionRequest request = new VpnConnectionRequest(
-                Servers(servers),
-                protocol,
-                VpnConfig(),
-                _vpnCredentialProvider.Credentials());
+            IReadOnlyList<VpnHost> hosts = Servers(servers);
+            if (hosts.Any())
+            {
+                VpnConnectionRequest request = new(hosts, protocol, VpnConfig(),
+                    _vpnCredentialProvider.Credentials());
 
-            await _vpnServiceManager.Connect(request);
+                await _vpnServiceManager.Connect(request);
 
-            _logger.Info("Connect requested");
-            _modals.CloseAll();
+                _logger.Info("Connect requested");
+                _modals.CloseAll();
+            }
+            else
+            {
+                _logger.Info("ProfileConnector - Connect received zero valid servers");
+            }
         }
 
         private async Task UpdateServers(IEnumerable<Server> servers)
@@ -389,7 +439,8 @@ namespace ProtonVPN.Vpn.Connectors
 
         private void HandleDelinquentUser()
         {
-            _modals.Show<DelinquencyModalViewModel>();
+            _delinquencyPopupViewModel.SetNoReconnectionData();
+            _popupWindows.Show<DelinquencyPopupViewModel>();
         }
 
         private void HandleOfflineServer()
@@ -422,7 +473,7 @@ namespace ProtonVPN.Vpn.Connectors
                 .SelectMany(s => s.Servers.OrderBy(_ => _random.Next()))
                 .Where(s => s.Status != 0)
                 .Select(s => new VpnHost(s.Domain, s.EntryIp, s.Label))
-                .Distinct(s => s.Ip)
+                .Distinct(s => (s.Ip, s.Label))
                 .ToList();
         }
     }

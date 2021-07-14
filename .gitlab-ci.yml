@@ -2,6 +2,7 @@ variables:
   PUBLIC_REPO_URL: git@github.com:ProtonVPN/win-app.git
 
 stages:
+  - bot # comes from translations/generator job
   - build
   - test
   - sign
@@ -9,7 +10,6 @@ stages:
   - ui-test
   - installation-test
   - mirror
-  - bot # comes from translations/generator job
 
 sign:
   stage: sign

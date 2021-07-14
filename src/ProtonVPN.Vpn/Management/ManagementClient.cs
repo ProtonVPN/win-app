@@ -35,8 +35,10 @@ namespace ProtonVPN.Vpn.Management
     {
         private readonly ILogger _logger;
         private readonly MessagingManagementChannel _managementChannel;
-
+        
+        private VpnError _lastError;
         private VpnCredentials _credentials;
+        private VpnEndpoint _endpoint;
         private bool _sendingFailed;
         private bool _disconnectRequested;
         private bool _disconnectAccepted;
@@ -56,7 +58,6 @@ namespace ProtonVPN.Vpn.Management
 
         public event EventHandler<EventArgs<VpnState>> VpnStateChanged;
 
-        private VpnError _lastError;
 
         /// <summary>
         /// Connects to OpenVPN management interface.
@@ -74,37 +75,47 @@ namespace ProtonVPN.Vpn.Management
         /// This method will raise <see cref="TransportStatsChanged"/>, <see cref="VpnStateChanged"/>
         /// </summary>
         /// <param name="credentials"><see cref="VpnCredentials"/> (username and password) for authenticating to VPN server</param>
+        /// <param name="endpoint"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public async Task StartVpnConnection(VpnCredentials credentials, CancellationToken cancellationToken)
+        public async Task StartVpnConnection(VpnCredentials credentials, VpnEndpoint endpoint, CancellationToken cancellationToken)
         {
             _lastError = VpnError.None;
             _credentials = credentials;
+            _endpoint = endpoint;
             _sendingFailed = false;
             _disconnectRequested = false;
             _disconnectAccepted = false;
 
             while (!cancellationToken.IsCancellationRequested && !_sendingFailed)
             {
-                var message = await Receive();
+                ReceivedManagementMessage message = await Receive();
                 if (message.IsChannelDisconnected)
                 {
                     if (!_disconnectRequested && _lastError == VpnError.None)
+                    {
                         _lastError = VpnError.Unknown;
+                    }
 
                     OnVpnStateChanged(VpnStatus.Disconnecting);
                     return;
                 }
 
                 if (!cancellationToken.IsCancellationRequested)
+                {
                     HandleMessage(message);
+                }
             }
 
             if (!_sendingFailed)
+            {
                 await SendExit();
+            }
 
             if (!cancellationToken.IsCancellationRequested && _sendingFailed)
+            {
                 OnVpnStateChanged(VpnStatus.Disconnecting);
+            }
         }
 
         /// <summary>
@@ -129,7 +140,7 @@ namespace ProtonVPN.Vpn.Management
 
         private async void HandleMessage(ReceivedManagementMessage message)
         {
-            var handled = false;
+            bool handled = false;
 
             if (message.IsState)
             {
@@ -164,7 +175,9 @@ namespace ProtonVPN.Vpn.Management
             }
 
             if (handled)
+            {
                 return;
+            }
 
             if (_disconnectRequested && !_disconnectAccepted)
             {
@@ -194,7 +207,7 @@ namespace ProtonVPN.Vpn.Management
 
         private void HandleByteMessage(ReceivedManagementMessage message)
         {
-            var bandwidth = message.Bandwidth();
+            InOutBytes bandwidth = message.Bandwidth();
             OnTransportStatsChanged(bandwidth);
         }
 
@@ -205,7 +218,7 @@ namespace ProtonVPN.Vpn.Management
 
         private async Task HandleStateMessage(ReceivedManagementMessage message)
         {
-            var managementState = message.State();
+            ManagementState managementState = message.State();
 
             if (managementState.HasError)
             {
@@ -220,7 +233,8 @@ namespace ProtonVPN.Vpn.Management
             {
                 if (managementState.HasStatus)
                 {
-                    OnVpnStateChanged(new VpnState(managementState.Status, _lastError, managementState.LocalIpAddress, managementState.RemoteIpAddress));
+                    OnVpnStateChanged(new VpnState(managementState.Status, _lastError, 
+                        managementState.LocalIpAddress, managementState.RemoteIpAddress, label: _endpoint.Server.Label));
                 }
             }
         }

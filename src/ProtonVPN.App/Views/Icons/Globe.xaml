@@ -1,0 +1,29 @@
+﻿<!--
+Copyright (c) 2021 Proton Technologies AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<UserControl x:Class="ProtonVPN.Views.Icons.Globe"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             Name="UserControl">
+    <Path Fill="{Binding Foreground, ElementName=UserControl}"
+          Data="M8 16C12.4183 16 16 12.4183 16 8C16 3.58173 12.4183 0 8 0C3.58173 0 0 3.58173 0 8C0 12.4183 3.58173 16 8 16ZM4.30548 7.5188H2C2.19208 4.89404 3.94208 2.72205 6.29077 2C6.20227 2.09723 6.11298 2.20148 6.0238 2.31311C5.19513 3.35046 4.39636 5.00055 4.30548 7.5188ZM6.0238 13.6869C6.11298 13.7986 6.20227 13.9028 6.29077 14C3.94208 13.278 2.19208 11.106 2 8.48126H4.30548C4.39636 10.9995 5.19513 12.6496 6.0238 13.6869ZM5.23193 8.48126C5.32147 10.7698 6.04352 12.2052 6.73596 13.072C7.01813 13.4252 7.29895 13.6884 7.53711 13.8784V8.48126H5.23193ZM5.23193 7.5188H7.53711V2.1217C7.29895 2.31165 7.01813 2.57483 6.73596 2.92804C6.04352 3.7948 5.32153 5.23022 5.23193 7.5188ZM8.46289 8.48126V13.8784C8.70105 13.6884 8.98187 13.4252 9.26404 13.072C9.95648 12.2052 10.6785 10.7698 10.7681 8.48126H8.46289ZM8.46289 7.5188H10.7681C10.6785 5.23022 9.95648 3.7948 9.26404 2.92804C8.98187 2.57483 8.70105 2.31158 8.46289 2.1217V7.5188ZM11.6945 8.48126C11.6036 10.9995 10.8049 12.6496 9.9762 13.6869L9.93433 13.7388L9.89917 13.7814C9.87885 13.806 9.85852 13.8301 9.8382 13.8538C9.7951 13.9042 9.75208 13.9529 9.70923 14C12.0579 13.278 13.8079 11.106 14 8.48126H11.6945ZM9.70923 2C12.0579 2.72205 13.8079 4.89404 14 7.5188H11.6945C11.6036 5.00055 10.8049 3.35046 9.9762 2.31311C9.88702 2.20148 9.79767 2.09723 9.70923 2Z" />
+</UserControl>

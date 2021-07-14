@@ -19,7 +19,7 @@
 
 namespace ProtonVPN.Service.Network
 {
-    internal interface ICurrentNetworkInterface
+    public interface ICurrentNetworkInterface
     {
         uint Index { get; }
 

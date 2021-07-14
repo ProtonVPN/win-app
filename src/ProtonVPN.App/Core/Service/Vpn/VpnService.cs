@@ -50,6 +50,12 @@ namespace ProtonVPN.Core.Service.Vpn
             remove => _vpnEvents.VpnStateChanged -= value;
         }
 
+        public event EventHandler<ServiceSettingsStateContract> ServiceSettingsStateChanged
+        {
+            add => _vpnEvents.ServiceSettingsStateChanged += value;
+            remove => _vpnEvents.ServiceSettingsStateChanged -= value;
+        }
+
         public Task Connect(VpnConnectionRequestContract vpnConnectionRequest) =>
             Invoke(p => p.Connect(vpnConnectionRequest).Wrap());
 
@@ -65,24 +71,26 @@ namespace ProtonVPN.Core.Service.Vpn
         public Task<InOutBytesContract> Total() =>
             Invoke(p => p.Total());
 
-        private async Task<T> Invoke<T>(Func<IVpnConnectionContract, Task<T>> serviceCall)
+        private async Task<T> Invoke<T>(Func<IVpnConnectionContract, Task<T>> serviceCall, 
+            [System.Runtime.CompilerServices.CallerMemberName] string memberName = "")
         {
             int retryCount = 1;
             while (true)
             {
                 try
                 {
-                    var channel = GetChannel();
+                    ServiceChannel<IVpnConnectionContract> channel = GetChannel();
                     return await serviceCall(channel.Proxy);
                 }
-                catch (Exception ex) when (IsCommunicationException(ex))
+                catch (Exception exception) when (IsCommunicationException(exception))
                 {
                     CloseChannel();
                     if (retryCount <= 0)
                     {
+                        LogError(exception, memberName, isToRetry: false);
                         throw;
                     }
-                    _logger.Error("Retrying Invoke due to: " + ex.Message);
+                    LogError(exception, memberName, isToRetry: true);
                 }
 
                 retryCount--;
@@ -96,7 +104,7 @@ namespace ProtonVPN.Core.Service.Vpn
 
         private ServiceChannel<IVpnConnectionContract> NewChannel()
         {
-            var channel = _channelFactory.Create<IVpnConnectionContract>(
+            ServiceChannel<IVpnConnectionContract> channel = _channelFactory.Create<IVpnConnectionContract>(
                 "protonvpn-service/connection",
                 _vpnEvents);
 
@@ -139,5 +147,13 @@ namespace ProtonVPN.Core.Service.Vpn
             ex is CommunicationException ||
             ex is TimeoutException ||
             ex is ObjectDisposedException ode && ode.ObjectName == "System.ServiceModel.Channels.ClientFramingDuplexSessionChannel";
+
+        private void LogError(Exception exception, string callerMemberName, bool isToRetry)
+        {
+            _logger.Error(
+                $"The invocation of '{callerMemberName}' on VPN Service channel returned an exception and will " +
+                (isToRetry ? string.Empty : "not ") +
+                $"be retried. Exception message: {exception.Message}");
+        }
     }
 }

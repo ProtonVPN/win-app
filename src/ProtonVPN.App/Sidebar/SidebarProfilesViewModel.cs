@@ -101,7 +101,7 @@ namespace ProtonVPN.Sidebar
                 return;
             }
 
-            await _vpnManager.Connect(profile);
+            await _vpnManager.ConnectAsync(profile);
         }
 
         private async Task LoadProfiles()

@@ -17,13 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
+using System.ServiceModel;
+using System.Threading.Tasks;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Core.Service;
 using ProtonVPN.UpdateServiceContract;
-using System;
-using System.ServiceModel;
-using System.Threading.Tasks;
 
 namespace ProtonVPN.Core.Update
 {
@@ -51,24 +51,26 @@ namespace ProtonVPN.Core.Update
 
         public Task StartUpdating(bool auto) => Invoke(p => p.Update(auto).Wrap());
 
-        private async Task<T> Invoke<T>(Func<IUpdateContract, Task<T>> serviceCall)
+        private async Task<T> Invoke<T>(Func<IUpdateContract, Task<T>> serviceCall, 
+            [System.Runtime.CompilerServices.CallerMemberName] string memberName = "")
         {
-            var retryCount = 1;
+            int retryCount = 1;
             while (true)
             {
                 try
                 {
-                    var channel = GetChannel();
+                    ServiceChannel<IUpdateContract> channel = GetChannel();
                     return await serviceCall(channel.Proxy);
                 }
-                catch (Exception ex) when (IsCommunicationException(ex))
+                catch (Exception exception) when (IsCommunicationException(exception))
                 {
                     CloseChannel();
                     if (retryCount <= 0)
                     {
+                        LogError(exception, memberName, isToRetry: false);
                         throw;
                     }
-                    _logger.Error("Retrying Invoke due to: " + ex.Message);
+                    LogError(exception, memberName, isToRetry: true);
                 }
 
                 retryCount--;
@@ -82,7 +84,7 @@ namespace ProtonVPN.Core.Update
 
         private ServiceChannel<IUpdateContract> NewChannel()
         {
-            var channel = _channelFactory.Create<IUpdateContract>(
+            ServiceChannel<IUpdateContract> channel = _channelFactory.Create<IUpdateContract>(
                 "protonvpn-update-service/update",
                 _updateEvents);
 
@@ -114,5 +116,13 @@ namespace ProtonVPN.Core.Update
             ex is CommunicationException ||
             ex is TimeoutException ||
             ex is ObjectDisposedException ode && ode.ObjectName == "System.ServiceModel.Channels.ClientFramingDuplexSessionChannel";
+
+        private void LogError(Exception exception, string callerMemberName, bool isToRetry)
+        {
+            _logger.Error(
+                $"The invocation of '{callerMemberName}' on Update Service channel returned an exception and will " +
+                (isToRetry ? string.Empty : "not ") +
+                $"be retried. Exception message: {exception.Message}");
+        }
     }
 }

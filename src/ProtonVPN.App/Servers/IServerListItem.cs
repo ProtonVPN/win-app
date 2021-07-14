@@ -27,8 +27,6 @@ namespace ProtonVPN.Servers
 
         string Name { get; }
 
-        bool MatchesQuery(string query);
-
         bool Maintenance { get; }
     }
 }

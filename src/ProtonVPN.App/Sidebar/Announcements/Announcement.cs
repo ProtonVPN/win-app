@@ -19,7 +19,7 @@
 
 namespace ProtonVPN.Sidebar.Announcements
 {
-    internal class Announcement
+    public class Announcement
     {
         public string Id { get; set; }
 

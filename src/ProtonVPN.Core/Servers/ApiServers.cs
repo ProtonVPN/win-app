@@ -48,7 +48,7 @@ namespace ProtonVPN.Core.Servers
         {
             try
             {
-                var response = await _apiClient.GetServersAsync(_location.Ip());
+                ApiResponseResult<ServerList> response = await _apiClient.GetServersAsync(_location.Ip());
                 if (response.Success)
                 {
                     return response.Value.Servers;
@@ -66,7 +66,7 @@ namespace ProtonVPN.Core.Servers
         {
             try
             {
-                var response = await _apiClient.GetServerLoadsAsync(_location.Ip());
+                ApiResponseResult<ServerList> response = await _apiClient.GetServerLoadsAsync(_location.Ip());
                 if (response.Success)
                 {
                     return response.Value.Servers;

@@ -59,10 +59,15 @@ namespace ProtonVPN.Config.Url
         public IActiveUrl PortForwardingRisksUrl                  => Url(_config.PortForwardingRisksUrl);
         public IActiveUrl AboutDelinquencyUrl                     => Url(_config.AboutDelinquencyUrl);
         public IActiveUrl InvoicesUrl                             => Url(_config.InvoicesUrl);
+        public IActiveUrl SmartRoutingUrl                         => Url(_config.SmartRoutingUrl);
+        public IActiveUrl StreamingUrl                            => Url(_config.StreamingUrl);
+        public IActiveUrl P2PUrl                                  => Url(_config.P2PUrl);
+        public IActiveUrl TorUrl                                  => Url(_config.TorUrl);
+        public IActiveUrl AboutSmartProtocolUrl                   => Url(_config.AboutSmartProtocolUrl);
 
         private ActiveUrl Url(string url)
         {
-            return new ActiveUrl(_processes, url);
+            return new(_processes, url);
         }
     }
 }

@@ -21,36 +21,41 @@ using System;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Auth;
+using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.User;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Core.Window.Popups;
+using ProtonVPN.Modals.Welcome;
 using ProtonVPN.Windows.Popups.Trials;
 using ProtonVPN.Windows.Popups.Upsell;
-using ProtonVPN.Windows.Popups.Welcome;
 
 namespace ProtonVPN.Trial
 {
     public sealed class Trial : ITrialDurationAware, IVpnStateAware, IVpnPlanAware
     {
+        private readonly Random random = new();
         private readonly IAppSettings _appSettings;
         private readonly UserAuth _userAuth;
         private readonly IUserStorage _userStorage;
         private readonly IPopupWindows _popupWindows;
-
+        private readonly IModals _modals;
+        
         public event EventHandler<PlanStatus> StateChanged;
 
         public Trial(
             IAppSettings appSettings,
             UserAuth userAuth,
             IUserStorage userStorage,
-            IPopupWindows popupWindows)
+            IPopupWindows popupWindows, 
+            IModals modals)
         {
-            _popupWindows = popupWindows;
-            _userStorage = userStorage;
-            _userAuth = userAuth;
             _appSettings = appSettings;
+            _userAuth = userAuth;
+            _userStorage = userStorage;
+            _popupWindows = popupWindows;
+            _modals = modals;
         }
 
         public async Task Load()
@@ -144,8 +149,7 @@ namespace ProtonVPN.Trial
 
         private void ShowEnjoyModal()
         {
-            Random rand = new Random();
-            int randomNumber = rand.Next(0, 100);
+            int randomNumber = random.Next(0, 100);
             if (randomNumber >= 15)
             {
                 return;
@@ -181,11 +185,11 @@ namespace ProtonVPN.Trial
             User user = _userStorage.User();
             if (user.VpnPlan.Equals("trial"))
             {
-                _popupWindows.Show<TrialWelcomePopupViewModel>();
+                _modals.Show<TrialWelcomeModalViewModel>();
             }
             else
             {
-                _popupWindows.Show<NonTrialWelcomePopupViewModel>();
+                _modals.Show<NonTrialWelcomeModalViewModel>();
             }
 
             _appSettings.WelcomeModalShown = true;

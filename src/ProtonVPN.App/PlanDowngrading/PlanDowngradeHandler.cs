@@ -18,28 +18,54 @@
  */
 
 using System.Threading.Tasks;
+using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Servers;
+using ProtonVPN.Core.Servers.Models;
+using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.User;
-using ProtonVPN.Settings;
+using ProtonVPN.Core.Vpn;
+using ProtonVPN.Core.Window.Popups;
+using ProtonVPN.Notifications;
+using ProtonVPN.Translations;
+using ProtonVPN.Windows.Popups.Delinquency;
+using ProtonVPN.Windows.Popups.SubscriptionExpiration;
 
 namespace ProtonVPN.PlanDowngrading
 {
-    public class PlanDowngradeHandler : IVpnPlanAware
+    public class PlanDowngradeHandler : IVpnPlanAware, IVpnStateAware
     {
         private readonly IUserStorage _userStorage;
-        private readonly IVpnReconnector _vpnReconnector;
+        private readonly IVpnManager _vpnManager;
         private readonly IAppSettings _appSettings;
+        private readonly INotificationSender _notificationSender;
+        private readonly IPopupWindows _popups;
+        private readonly SubscriptionExpiredPopupViewModel _subscriptionExpiredPopupViewModel;
+        private readonly DelinquencyPopupViewModel _delinquencyPopupViewModel;
+
+        private VpnState _vpnState;
+        private bool _isAwaitingNextConnection;
+        private bool _notifyOnNextConnection;
+        private Server _lastConnectedServer;
+        private bool _isUserDelinquent;
 
         public PlanDowngradeHandler(
             IUserStorage userStorage,
-            IVpnReconnector vpnReconnector, 
-            IAppSettings appSettings)
+            IVpnManager vpnManager,
+            IAppSettings appSettings,
+            INotificationSender notificationSender,
+            IPopupWindows popups,
+            SubscriptionExpiredPopupViewModel subscriptionExpiredPopupViewModel,
+            DelinquencyPopupViewModel delinquencyPopupViewModel)
         {
             _userStorage = userStorage;
-            _vpnReconnector = vpnReconnector;
+            _vpnManager = vpnManager;
             _appSettings = appSettings;
+            _notificationSender = notificationSender;
+            _popups = popups;
+            _subscriptionExpiredPopupViewModel = subscriptionExpiredPopupViewModel;
+            _delinquencyPopupViewModel = delinquencyPopupViewModel;
         }
 
         public async Task OnVpnPlanChangedAsync(VpnPlanChangedEventArgs e)
@@ -47,14 +73,20 @@ namespace ProtonVPN.PlanDowngrading
             if (e.IsDowngrade)
             {
                 User user = _userStorage.User();
-                if (!user.IsDelinquent())
-                {
-                    await DowngradeUserAsync(e, user);
-                }
+                await DowngradeUserAsync(user);
             }
         }
 
-        private async Task DowngradeUserAsync(VpnPlanChangedEventArgs e, User user)
+        private async Task DowngradeUserAsync(User user)
+        {
+            DisablePaidFeatures(user);
+
+            NotifyUserOfDowngrade(user);
+
+            await _vpnManager.ReconnectAsync(new VpnReconnectionSettings { IsToForceSmartReconnect = true });
+        }
+
+        private void DisablePaidFeatures(User user)
         {
             if (user.MaxTier < ServerTiers.Plus)
             {
@@ -66,8 +98,144 @@ namespace ProtonVPN.PlanDowngrading
             {
                 _appSettings.NetShieldEnabled = false;
             }
+        }
 
-            await _vpnReconnector.ReconnectAsync();
+        private void NotifyUserOfDowngrade(User user)
+        {
+            if (user.IsDelinquent())
+            {
+                NotifyUserOfDelinquency();
+            }
+            else
+            {
+                NotifyUserOfSubscriptionExpiration();
+            }
+        }
+
+        private void NotifyUserOfDelinquency()
+        {
+            bool isDisconnected = _vpnState.Status == VpnStatus.Disconnected || _vpnState.Status == VpnStatus.Disconnecting;
+            if (isDisconnected || _lastConnectedServer.IsNullOrEmpty())
+            {
+                NotifyUserOfDelinquencyWithoutReconnection();
+            }
+            else
+            {
+                _isAwaitingNextConnection = _vpnState.Status == VpnStatus.Connected;
+                _notifyOnNextConnection = true;
+                _isUserDelinquent = true;
+            }
+        }
+
+        private void NotifyUserOfDelinquencyWithoutReconnection()
+        {
+            _notificationSender.Send(
+                Translation.Get("Notifications_Delinquency_Title"),
+                Translation.Get("Notifications_Delinquency_Description"));
+
+            _delinquencyPopupViewModel.SetNoReconnectionData();
+            _popups.Show<DelinquencyPopupViewModel>();
+        }
+
+        private void NotifyUserOfSubscriptionExpiration()
+        {
+            bool isDisconnected = _vpnState.Status == VpnStatus.Disconnected || _vpnState.Status == VpnStatus.Disconnecting;
+            if (isDisconnected || _lastConnectedServer.IsNullOrEmpty())
+            {
+                NotifyUserOfSubscriptionExpirationWithoutReconnection();
+            }
+            else
+            {
+                _isAwaitingNextConnection = _vpnState.Status == VpnStatus.Connected;
+                _notifyOnNextConnection = true;
+                _isUserDelinquent = false;
+            }
+        }
+
+        private void NotifyUserOfSubscriptionExpirationWithoutReconnection()
+        {
+            _notificationSender.Send(
+                Translation.Get("Notifications_SubscriptionExpired_Title"),
+                Translation.Get("Notifications_SubscriptionExpired_Description"));
+
+            _subscriptionExpiredPopupViewModel.SetNoReconnectionData();
+            _popups.Show<SubscriptionExpiredPopupViewModel>();
+        }
+
+        public async Task OnVpnStateChanged(VpnStateChangedEventArgs e)
+        {
+            if (_notifyOnNextConnection && (
+                    (e.State.Status == VpnStatus.Disconnected && !e.UnexpectedDisconnect) ||
+                    (e.State.Status == VpnStatus.Connected && !_isAwaitingNextConnection)))
+            {
+                _notifyOnNextConnection = false;
+                NotifyUserOfReconnectionDueToDowngradeToFreeTier(e.State.Server);
+            }
+            if (e.State.Status != VpnStatus.Connected && _isAwaitingNextConnection)
+            {
+                _isAwaitingNextConnection = false;
+            }
+            if (e.State.Status == VpnStatus.Connected)
+            {
+                _lastConnectedServer = e.State.Server;
+            }
+            _vpnState = e.State;
+        }
+
+        private void NotifyUserOfReconnectionDueToDowngradeToFreeTier(Server currentServer)
+        {
+            if (_isUserDelinquent)
+            {
+                NotifyUserOfDelinquency(currentServer);
+            }
+            else
+            {
+                NotifyUserOfSubscriptionExpiration(currentServer);
+            }
+        }
+
+        private void NotifyUserOfDelinquency(Server currentServer)
+        {
+            if (currentServer.IsNullOrEmpty() || _lastConnectedServer.IsNullOrEmpty() || _lastConnectedServer.Equals(currentServer))
+            {
+                NotifyUserOfDelinquencyWithoutReconnection();
+            }
+            else
+            {
+                NotifyUserOfDelinquencyWithReconnection(_lastConnectedServer, currentServer);
+            }
+        }
+
+        private void NotifyUserOfDelinquencyWithReconnection(Server previousServer, Server currentServer)
+        {
+            _notificationSender.Send(
+                Translation.Get("Notifications_Delinquency_Title"),
+                Translation.Get("Notifications_Delinquency_Reconnected_Description"));
+
+            _delinquencyPopupViewModel.SetReconnectionData(previousServer, currentServer);
+            _popups.Show<DelinquencyPopupViewModel>();
+        }
+
+        private void NotifyUserOfSubscriptionExpiration(Server currentServer)
+        {
+            if (currentServer.IsNullOrEmpty() || _lastConnectedServer.IsNullOrEmpty() || _lastConnectedServer.Equals(currentServer))
+            {
+                NotifyUserOfSubscriptionExpirationWithoutReconnection();
+            }
+            else
+            {
+                NotifyUserOfSubscriptionExpirationWithReconnection(_lastConnectedServer, currentServer);
+            }
+        }
+
+        private void NotifyUserOfSubscriptionExpirationWithReconnection(Server previousServer, Server currentServer)
+        {
+            _notificationSender.Send(
+                Translation.Get("Notifications_SubscriptionExpired_Title"),
+                Translation.Get("Notifications_SubscriptionExpired_Reconnected_Description"));
+
+            _subscriptionExpiredPopupViewModel.SetReconnectionData(previousServer, currentServer);
+            _popups.Show<SubscriptionExpiredPopupViewModel>();
         }
     }
 }

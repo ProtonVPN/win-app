@@ -19,10 +19,13 @@
 
 using System;
 using System.Net.Http;
+using System.Security;
 using System.Threading.Tasks;
 using NSubstitute;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Core.Abstract;
+using ProtonVPN.Core.Api;
+using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Settings;
 
@@ -40,9 +43,9 @@ namespace TestTools.ApiClient
             _username = username;
             _password = password;
 
-            var tokenStorage = new TokenStorage();
-            var userStorage = Substitute.For<IUserStorage>();
-            var logger = Substitute.For<ILogger>();
+            TokenStorage tokenStorage = new();
+            IUserStorage userStorage = Substitute.For<IUserStorage>();
+            ILogger logger = Substitute.For<ILogger>();
 
             _api = new Client(logger, new HttpClient
             {
@@ -54,28 +57,39 @@ namespace TestTools.ApiClient
 
         public async Task<bool> Login()
         {
-            return (await _auth.AuthAsync(_username, _password)).Success;
+            return (await _auth.AuthAsync(_username, ToSecureString(_password))).Success;
         }
 
         public async Task<string> GetCountry()
         {
-            var locationData = await _api.GetLocationDataAsync();
+            ApiResponseResult<UserLocation> locationData = await _api.GetLocationDataAsync();
             return locationData.Value.Country;
         }
 
         public async Task<string> GetIpAddress()
         {
-            var locationData = await _api.GetLocationDataAsync();
+            ApiResponseResult<UserLocation> locationData = await _api.GetLocationDataAsync();
             return locationData.Value.Ip;
         }
 
         public async Task DeleteProfiles()
         {
-            var profiles = await _api.GetProfiles();
-            foreach (var profile in profiles.Value.Profiles)
+            ApiResponseResult<ProfilesResponse> profiles = await _api.GetProfiles();
+            foreach (Profile profile in profiles.Value.Profiles)
             {
                 await _api.DeleteProfile(profile.Id);
             }
+        }
+
+        private SecureString ToSecureString(string value)
+        {
+            SecureString result = new();
+            foreach (char c in value)
+            {
+                result.AppendChar(c);
+            }
+
+            return result;
         }
     }
 

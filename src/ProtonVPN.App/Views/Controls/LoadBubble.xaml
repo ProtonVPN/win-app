@@ -165,7 +165,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             </ContentPresenter>
 
                             <WrapPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2" MaxWidth="224">
-                                <StackPanel Orientation="Horizontal" Width="110" Height="28">
+                                <StackPanel Orientation="Horizontal" Width="110">
                                     <DockPanel Margin="5,5,0,0">
                                         <Path Style="{StaticResource SecureCoreIcon}"/>
                                         <TextBlock Text="{translations:Loc Servers_Feature_val_SecureCore}" Style="{StaticResource InfoFeatureText}"/>
@@ -181,12 +181,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     </StackPanel.Style>
                                 </StackPanel>
 
-                                <StackPanel Orientation="Horizontal" Width="110" Height="28">
-                                    <DockPanel Margin="5,5,0,0">
-                                        <Grid>
-                                            <Border Style="{StaticResource PlusInfoIconBorder}"/>
-                                            <Label Style="{StaticResource PlusInfoIconLetter}">P</Label>
-                                        </Grid>
+                                <StackPanel Orientation="Horizontal" Width="110">
+                                    <DockPanel Margin="0,5,0,0">
                                         <TextBlock Text="{translations:Loc Servers_Feature_val_Plus}" Style="{StaticResource InfoFeatureText}"/>
                                     </DockPanel>
                                     <StackPanel.Style>
@@ -200,9 +196,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     </StackPanel.Style>
                                 </StackPanel>
 
-                                <StackPanel Orientation="Horizontal" Width="110" Height="28">
+                                <StackPanel Orientation="Horizontal" Width="110">
                                     <DockPanel Margin="5,5,0,5">
-                                        <icons:Exchange Style="{StaticResource P2PFeatureIcon}"/>
+                                        <icons:Exchange Style="{StaticResource P2PFeatureIcon}"
+                                                        Width="16" 
+                                                        Height="16" />
                                         <TextBlock Text="{translations:Loc Servers_Feature_val_P2P}" Style="{StaticResource InfoFeatureText}"/>
                                     </DockPanel>
                                     <StackPanel.Style>
@@ -216,9 +214,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     </StackPanel.Style>
                                 </StackPanel>
 
-                                <StackPanel Orientation="Horizontal" Width="110" Height="28">
+                                <StackPanel Orientation="Horizontal" Width="110">
                                     <DockPanel Margin="5,5,0,5">
-                                        <icons:Tor Style="{StaticResource TorFeatureIcon}"/>
+                                        <icons:Tor Style="{StaticResource TorFeatureIcon}"
+                                                   Width="16"
+                                                   Height="16" />
                                         <TextBlock Text="{translations:Loc Servers_Feature_val_Tor}" Style="{StaticResource InfoFeatureText}"/>
                                     </DockPanel>
                                     <StackPanel.Style>
@@ -235,9 +235,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </Grid>
                     </StackPanel>
                 </StackPanel>
-                <Polygon
-                    Points="0,0 0,15 10,0"
-                    StrokeThickness="0">
+                <Polygon Points="0,0 0,15 10,0" StrokeThickness="0">
                     <Polygon.Fill>
                         <SolidColorBrush Color="#2a2a33"/>
                     </Polygon.Fill>

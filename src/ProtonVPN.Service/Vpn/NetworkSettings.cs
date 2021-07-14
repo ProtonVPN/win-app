@@ -24,7 +24,7 @@ using ProtonVPN.Vpn.Common;
 
 namespace ProtonVPN.Service.Vpn
 {
-    internal class NetworkSettings : IVpnStateAware
+    public class NetworkSettings : IVpnStateAware
     {
         private readonly ICurrentNetworkInterface _currentNetworkInterface;
         private readonly ILogger _logger;

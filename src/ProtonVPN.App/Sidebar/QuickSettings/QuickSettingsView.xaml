@@ -412,7 +412,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                     IsChecked="{Binding ShowNetShieldPopup, Mode=TwoWay}"
                                                     IsEnabled="{Binding ElementName=NetShieldPopup, Path=IsOpen, Converter={StaticResource InvertedBoolConverter}}"
                                                     Enabled="{Binding IsNetShieldOn}"
-                                                    Visibility="{Binding IsNetShieldVisible, Converter={StaticResource BoolToVis}}"
+                                                    Visibility="{Binding IsNetShieldVisible, Converter={StaticResource BoolToVis}, FallbackValue=Collapsed}"
                                                     x:Name="NetShieldToggle">
                 <quickSettings:MultiValueSettingsButton.Popup>
                     <Popup x:Name="NetShieldPopup"
@@ -550,14 +550,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </Popup>
                 </quickSettings:MultiValueSettingsButton.Popup>
             </quickSettings:MultiValueSettingsButton>
-            <quickSettings:QuickSettingButton Style="{StaticResource QuickSettingsToggle}"
-                                              Number="{Binding PortForwardingButtonNumber}"
+            <quickSettings:QuickSettingButton x:Name="PortForwardingToggle"
+                                              Style="{StaticResource QuickSettingsToggle}"
                                               IsChecked="{Binding ShowPortForwardingPopup, Mode=TwoWay}"
-                                              IsEnabled="{Binding ElementName=PortForwardingPopup, Path=IsOpen, Mode=TwoWay, Converter={StaticResource InvertedBoolConverter}}"
+                                              IsEnabled="{Binding ElementName=PortForwardingPopup, Path=IsOpen, Converter={StaticResource InvertedBoolConverter}}"
                                               Active="{Binding IsPortForwardingOnButtonOn}"
+                                              Number="{Binding PortForwardingButtonNumber}"
                                               ToolTip="{translations:Loc PortForwarding}"
-                                              Visibility="{Binding IsPortForwardingVisible, Converter={StaticResource BoolToVis}}"
-                                              x:Name="PortForwardingToggle">
+                                              Visibility="{Binding IsPortForwardingVisible, Converter={StaticResource BoolToVis}, FallbackValue=Collapsed}">
                 <quickSettings:QuickSettingButton.Popup>
                     <Popup x:Name="PortForwardingPopup"
                            AllowsTransparency="True"
@@ -621,12 +621,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <icons:Reflect Style="{StaticResource Icon}"
                                    Foreground="White"
                                    Width="23"
-                                   Margin="0,0,2,0" />
+                                   Margin="0,0,2,1" />
                 </quickSettings:QuickSettingButton.Icon>
                 <quickSettings:QuickSettingButton.ActiveIcon>
                     <icons:Exchange Style="{StaticResource Icon}"
                                     Foreground="{StaticResource PrimaryColor}"
-                                    Width="23" />
+                                    Width="23"
+                                    Margin="6,2,0,0" />
                 </quickSettings:QuickSettingButton.ActiveIcon>
             </quickSettings:QuickSettingButton>
         </UniformGrid>

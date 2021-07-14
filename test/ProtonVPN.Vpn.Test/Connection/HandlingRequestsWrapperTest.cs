@@ -86,7 +86,7 @@ namespace ProtonVPN.Vpn.Test.Connection
         }
 
         [TestMethod]
-        public async Task DisconnectError_ShouldBe_Unknown_WhenUnexpectedlyDisconnected_WithoutAnError()
+        public async Task DisconnectError_ShouldBe_None_WhenUnexpectedlyDisconnected_WithoutAnError()
         {
             // Arrange
             var disconnectError = VpnError.None;
@@ -109,7 +109,7 @@ namespace ProtonVPN.Vpn.Test.Connection
             await _taskQueue.WaitForLastTask();
 
             // Assert
-            disconnectError.Should().Be(VpnError.Unknown);
+            disconnectError.Should().Be(VpnError.None);
         }
 
         #region Helpers

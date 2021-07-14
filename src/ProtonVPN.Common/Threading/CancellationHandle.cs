@@ -23,24 +23,23 @@ namespace ProtonVPN.Common.Threading
 {
     public class CancellationHandle
     {
-        private volatile CancellationTokenSource _tokenSource = new CancellationTokenSource();
+        private volatile CancellationTokenSource _tokenSource = new();
 
         public CancellationToken Token => _tokenSource.Token;
 
         public void Cancel()
         {
-            var newSource = new CancellationTokenSource();
+            CancellationTokenSource newSource = new();
             while (true)
             {
-                var source = _tokenSource;
-                var prevSource = Interlocked.CompareExchange(ref _tokenSource, newSource, source);
-                if (prevSource != source)
-                    continue;
-
-                // ReSharper disable once PossibleNullReferenceException
-                prevSource.Cancel();
-                prevSource.Dispose();
-                return;
+                CancellationTokenSource source = _tokenSource;
+                CancellationTokenSource prevSource = Interlocked.CompareExchange(ref _tokenSource, newSource, source);
+                if (prevSource == source)
+                {
+                    prevSource.Cancel();
+                    prevSource.Dispose();
+                    return;
+                }
             }
         }
     }

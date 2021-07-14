@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -22,138 +22,197 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Vpn;
+using ProtonVPN.Config.Url;
 using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Servers;
-using ProtonVPN.Core.Servers.Models;
 using ProtonVPN.Core.Servers.Specs;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
+using ProtonVPN.Streaming;
 using ProtonVPN.Translations;
 
 namespace ProtonVPN.Servers
 {
-    internal class ServerListFactory : IServersAware, IVpnStateAware
+    internal class ServerListFactory : IVpnStateAware
     {
         private readonly ServerManager _serverManager;
         private readonly IUserStorage _userStorage;
-        private readonly ISortedCountries _sortedCountries;
-
-        private ObservableCollection<IServerListItem> _countries = new ObservableCollection<IServerListItem>();
-        private VpnState _vpnState = new VpnState(VpnStatus.Disconnected);
+        private readonly IStreamingServices _streamingServices;
+        private readonly IActiveUrls _urls;
+        private VpnState _vpnState = new(VpnStatus.Disconnected);
 
         public ServerListFactory(
             ServerManager serverManager,
             IUserStorage userStorage,
-            ISortedCountries sortedCountries)
+            IStreamingServices streamingServices,
+            IActiveUrls urls)
         {
-            _sortedCountries = sortedCountries;
             _serverManager = serverManager;
             _userStorage = userStorage;
+            _streamingServices = streamingServices;
+            _urls = urls;
         }
 
         public ObservableCollection<IServerListItem> BuildServerList(string searchQuery = null)
         {
-            ObservableCollection<IServerListItem> list = new ObservableCollection<IServerListItem>();
-            searchQuery = searchQuery?.ToLower();
-            _countries = CreateCountryList();
-
-            if (string.IsNullOrEmpty(searchQuery))
+            switch (_userStorage.User().MaxTier)
             {
-                foreach (IServerListItem c in _countries)
-                {
-                    list.Add(c);
-                }
+                case ServerTiers.Internal:
+                case ServerTiers.Plus:
+                    return GetPlusUserLocations(searchQuery);
+                case ServerTiers.Basic:
+                    return GetBasicUserLocations(searchQuery);
+                case ServerTiers.Free:
+                    return GetFreeUserLocations(searchQuery);
+                default:
+                    return new ObservableCollection<IServerListItem>();
+            }
+        }
 
-                return list;
+        private ObservableCollection<IServerListItem> GetFreeUserLocations(string searchQuery)
+        {
+            var list = new ObservableCollection<IServerListItem>();
+            IList<string> freeCountries = GetCountriesByTiers(ServerTiers.Free);
+            IList<string> basicAndPlusCountries = GetCountriesByTiers(ServerTiers.Basic, ServerTiers.Plus)
+                .Except(freeCountries).ToList();
+
+            IList<IServerListItem> freeLocationViewModels =
+                CreateServersByCountryViewModels(freeCountries, searchQuery).ToList();
+
+            list = GetServerGroupViewModels(
+                list,
+                freeLocationViewModels,
+                Translation.Format("Sidebar_Countries_FreeLocationCount", freeLocationViewModels.Count));
+
+            IList<IServerListItem> basicAndPlusLocationsViewModels =
+                CreateServersByCountryViewModels(basicAndPlusCountries, searchQuery).ToList();
+
+            list = GetServerGroupViewModels(
+                list,
+                basicAndPlusLocationsViewModels,
+                Translation.Format("Sidebar_Countries_BasicAndPlusLocationCount",
+                    basicAndPlusLocationsViewModels.Count));
+
+            return list;
+        }
+
+        private ObservableCollection<IServerListItem> GetPlusUserLocations(string searchQuery)
+        {
+            IList<string> countries = _serverManager.GetEntryCountriesBySpec(new StandardServer())
+                .OrderBy(Countries.GetName)
+                .ToList();
+            IList<IServerListItem> plusLocationViewModels =
+                CreateServersByCountryViewModels(countries, searchQuery).ToList();
+
+            return GetServerGroupViewModels(
+                new ObservableCollection<IServerListItem>(),
+                plusLocationViewModels,
+                Translation.Format("Sidebar_Countries_AllLocationCount", plusLocationViewModels.Count));
+        }
+
+        private ObservableCollection<IServerListItem> GetBasicUserLocations(string searchQuery)
+        {
+            var list = new ObservableCollection<IServerListItem>();
+            IList<string> basicCountries = GetCountriesByTiers(ServerTiers.Basic);
+            IList<string> plusCountries = GetCountriesByTiers(ServerTiers.Plus).Except(basicCountries).ToList();
+
+            IList<IServerListItem> basicLocationViewModels =
+                CreateServersByCountryViewModels(basicCountries, searchQuery).ToList();
+
+            list = GetServerGroupViewModels(list, basicLocationViewModels,
+                Translation.Format("Sidebar_Countries_BasicLocationCount", basicLocationViewModels.Count));
+
+            if (plusCountries.Count > 0)
+            {
+                IList<IServerListItem> plusLocationViewModels =
+                    CreateServersByCountryViewModels(plusCountries, searchQuery).ToList();
+
+                list = GetServerGroupViewModels(list, plusLocationViewModels,
+                    Translation.Format("Sidebar_Countries_PlusLocationCount", plusLocationViewModels.Count));
             }
 
-            foreach (IServerListItem item in _countries)
+            return list;
+        }
+
+        private ObservableCollection<IServerListItem> GetServerGroupViewModels(
+            ObservableCollection<IServerListItem> list, IList<IServerListItem> viewModels, string groupName)
+        {
+            if (viewModels.Count > 0)
             {
-                if (item.MatchesQuery(searchQuery))
+                list.Add(CreateCountryListSeparator(groupName));
+
+                foreach (IServerListItem c in viewModels)
                 {
-                    list.Add(item);
-                }
-                else
-                {
-                    if (item is ServersByCountryViewModel country)
-                    {
-                        ObservableCollection<IServerListItem> servers = GetMatchedServers(country, searchQuery);
-                        if (servers.Count > 0)
-                        {
-                            list.Add(new ServersByCountryViewModel(country.CountryCode, _userStorage.User().MaxTier, _serverManager, _vpnState)
-                            {
-                                Servers = servers,
-                                Expanded = true,
-                            });
-                        }
-                    }
+                    list.Add(c);
                 }
             }
 
             return list;
         }
 
-        public ObservableCollection<IServerListItem> BuildSecureCoreList()
+        public ObservableCollection<IServerListItem> BuildSecureCoreList(string searchQuery = "")
         {
-            ObservableCollection<IServerListItem> collection = new ObservableCollection<IServerListItem>();
-            IEnumerable<string> countries = GetExitCountries();
+            ObservableCollection<IServerListItem> serverListItems = new ObservableCollection<IServerListItem>();
+            IOrderedEnumerable<string> countries = _serverManager.GetSecureCoreCountries().OrderBy(Countries.GetName);
             User user = _userStorage.User();
 
-            foreach (string country in countries)
+            foreach (string countryCode in countries)
             {
-                ServersByExitNodeViewModel row = new ServersByExitNodeViewModel(country, user.MaxTier, _serverManager);
-                row.LoadServers();
-                collection.Add(row);
+                if (string.IsNullOrEmpty(searchQuery) || Countries.MatchesSearch(countryCode, searchQuery))
+                {
+                    ServersByExitNodeViewModel row =
+                        new ServersByExitNodeViewModel(countryCode, user.MaxTier, _serverManager);
+                    row.LoadServers();
+                    serverListItems.Add(row);
+                }
             }
 
-            return collection;
+            return serverListItems;
         }
 
         public ObservableCollection<IServerListItem> BuildPortForwardingList(string searchQuery = null)
         {
-            searchQuery = searchQuery?.ToLower();
-            User user = _userStorage.User();
-            IReadOnlyCollection<Server> servers = _serverManager.GetServers(new StandardServer());
+            IList<string> p2PList = _serverManager.GetEntryCountriesBySpec(new P2PServer()).OrderBy(Countries.GetName)
+                .ToList();
+            IList<string> nonP2PList =
+                _serverManager.GetCountries().Except(p2PList).OrderBy(Countries.GetName).ToList();
 
-            IList<string> p2pList = servers
-                .Where(s => s.SupportsP2P())
-                .GroupBy(s => s.ExitCountry).Select(s => s.Key)
-                .OrderBy(Countries.GetName).ToList();
+            List<IServerListItem> serverListItems = new List<IServerListItem>();
+            List<IServerListItem> p2pViewModels = CreateServersByCountryViewModels(p2PList, searchQuery).ToList();
+            if (p2pViewModels.Count > 0)
+            {
+                serverListItems.Add(CreateCountryListSeparator(Translation.Get("ServerType_val_P2P")));
+                serverListItems.AddRange(p2pViewModels);
+            }
 
-            IList<string> nonP2PList = servers
-                .GroupBy(s => s.ExitCountry).Select(s => s.Key)
-                .Except(p2pList)
-                .OrderBy(Countries.GetName).ToList();
+            List<IServerListItem> otherViewModels = CreateServersByCountryViewModels(nonP2PList, searchQuery).ToList();
+            if (otherViewModels.Count > 0)
+            {
+                serverListItems.Add(CreateCountryListSeparator(Translation.Get("Sidebar_Separator_Others")));
+                serverListItems.AddRange(otherViewModels);
+            }
 
-            List<IServerListItem> list = new List<IServerListItem>();
-            list.Add(CreateCountryListSeparator(Translation.Get("ServerType_val_P2P")));
-            list.AddRange(CreateServersByCountryViewModels(user, p2pList, searchQuery));
-            list.Add(CreateCountryListSeparator(Translation.Get("Sidebar_Separator_Others")));
-            list.AddRange(CreateServersByCountryViewModels(user, nonP2PList, searchQuery));
-
-            return new ObservableCollection<IServerListItem>(list);
+            return new ObservableCollection<IServerListItem>(serverListItems);
         }
 
-        private IEnumerable<IServerListItem> CreateServersByCountryViewModels(User user, IList<string> countryCodes, string searchQuery)
+        private IEnumerable<IServerListItem> CreateServersByCountryViewModels(IList<string> countries,
+            string searchQuery)
         {
-            foreach (string countryCode in countryCodes)
+            foreach (string countryCode in countries)
             {
-                ServersByCountryViewModel country = new ServersByCountryViewModel(countryCode, user.MaxTier, _serverManager, _vpnState);
-                if (string.IsNullOrEmpty(searchQuery) || country.MatchesQuery(searchQuery))
+                ServersByCountryViewModel countryViewModel = new(countryCode, _userStorage.User().MaxTier,
+                    _serverManager, _vpnState, _streamingServices);
+                if (string.IsNullOrEmpty(searchQuery) || Countries.MatchesSearch(countryCode, searchQuery))
                 {
-                    country.LoadServers();
-                    yield return country;
+                    countryViewModel.LoadServers();
+                    yield return countryViewModel;
                 }
                 else if (!string.IsNullOrEmpty(searchQuery))
                 {
-                    ObservableCollection<IServerListItem> servers = GetMatchedServers(country, searchQuery);
-                    if (servers.Count > 0)
+                    countryViewModel.LoadServers(searchQuery);
+                    if (countryViewModel.Servers.Count > 0)
                     {
-                        yield return new ServersByCountryViewModel(country.CountryCode, _userStorage.User().MaxTier, _serverManager, _vpnState)
-                        {
-                            Servers = servers,
-                            Expanded = true,
-                        };
+                        yield return countryViewModel;
                     }
                 }
             }
@@ -161,15 +220,7 @@ namespace ProtonVPN.Servers
 
         private IServerListItem CreateCountryListSeparator(string name)
         {
-            return new CountrySeparatorViewModel()
-            {
-                Name = name
-            };
-        }
-
-        public void OnServersUpdated()
-        {
-            _countries = CreateCountryList();
+            return new CountrySeparatorViewModel(_urls) {Name = name};
         }
 
         public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
@@ -179,54 +230,9 @@ namespace ProtonVPN.Servers
             return Task.CompletedTask;
         }
 
-        private ObservableCollection<IServerListItem> CreateCountryList()
+        private List<string> GetCountriesByTiers(params sbyte[] tiers)
         {
-            List<string> countries = _sortedCountries.List();
-            User user = _userStorage.User();
-            ObservableCollection<IServerListItem> list = new ObservableCollection<IServerListItem>();
-
-            foreach (string country in countries)
-            {
-                string name = Countries.GetName(country);
-                if (string.IsNullOrEmpty(name))
-                {
-                    continue;
-                }
-
-                list.Add(new ServersByCountryViewModel(country, user.MaxTier, _serverManager, _vpnState));
-            }
-
-            return list;
-        }
-
-        private IEnumerable<string> GetExitCountries()
-        {
-            IList<string> list = new List<string>();
-            IReadOnlyCollection<Server> servers = _serverManager.GetServers(new SecureCoreServer());
-            foreach (Server server in servers)
-            {
-                if (!list.Contains(server.ExitCountry))
-                {
-                    list.Add(server.ExitCountry);
-                }
-            }
-
-            return list.OrderBy(Countries.GetName);
-        }
-
-        private ObservableCollection<IServerListItem> GetMatchedServers(ServersByCountryViewModel country, string searchQuery)
-        {
-            ObservableCollection<IServerListItem> servers = new ObservableCollection<IServerListItem>();
-
-            foreach (IServerListItem server in country.Servers)
-            {
-                if (server.MatchesQuery(searchQuery))
-                {
-                    servers.Add(server);
-                }
-            }
-
-            return servers;
+            return _serverManager.GetCountriesByTier(tiers).OrderBy(Countries.GetName).ToList();
         }
     }
 }

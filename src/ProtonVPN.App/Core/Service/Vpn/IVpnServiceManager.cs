@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Vpn;
+using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
 
 namespace ProtonVPN.Core.Service.Vpn
@@ -37,6 +38,8 @@ namespace ProtonVPN.Core.Service.Vpn
 
         Task RepeatState();
 
-        void RegisterCallback(Action<VpnStateChangedEventArgs> onVpnStateChanged);
+        void RegisterVpnStateCallback(Action<VpnStateChangedEventArgs> onVpnStateChanged);
+
+        void RegisterServiceSettingsStateCallback(Action<ServiceSettingsStateChangedEventArgs> onServiceSettingsStateChanged);
     }
 }

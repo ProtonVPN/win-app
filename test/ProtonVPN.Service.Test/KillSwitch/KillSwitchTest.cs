@@ -107,6 +107,7 @@ namespace ProtonVPN.Service.Test.KillSwitch
         }
 
         [DataTestMethod]
+        [DataRow(VpnStatus.Pinging)]
         [DataRow(VpnStatus.Connecting)]
         [DataRow(VpnStatus.Reconnecting)]
         public void ExpectedLeakProtectionStatus_ShouldBe_Enabled_WhenConnecting(VpnStatus status)

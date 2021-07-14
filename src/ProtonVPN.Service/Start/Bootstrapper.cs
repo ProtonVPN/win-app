@@ -94,6 +94,7 @@ namespace ProtonVPN.Service.Start
                 {
                     switch (state.Status)
                     {
+                        case VpnStatus.Pinging:
                         case VpnStatus.Connecting:
                         case VpnStatus.Reconnecting:
                             instance.OnVpnConnecting(state);

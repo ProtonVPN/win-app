@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.ComponentModel;
 using System.Windows;
 using ProtonVPN.Core;
 
@@ -33,6 +34,12 @@ namespace ProtonVPN.Login.Views
 
             CloseButton.Click += CloseButton_Click;
             MinimizeButton.Click += Minimize_Click;
+        }
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            base.OnClosing(e);
+            Application.Current.Shutdown();
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)

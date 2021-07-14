@@ -484,6 +484,8 @@ namespace ProtonVPN.Core.Test.Api.Handlers
 
             public Breakpoint Breakpoint { get; }
 
+            public event EventHandler<ActionableFailureApiResultEventArgs> OnActionableFailureResult;
+
             public async Task<ApiResponseResult<RefreshTokenResponse>> RefreshTokenAsync(CancellationToken token)
             {
                 await Breakpoint.Hit().WaitForContinue();

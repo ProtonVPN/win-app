@@ -355,5 +355,35 @@ namespace ProtonVPN.Core.Api
                 throw new HttpRequestException(e.Message, e);
             }
         }
+
+        public async Task<ApiResponseResult<StreamingServicesResponse>> GetStreamingServicesAsync()
+        {
+            try
+            {
+                HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, "vpn/streamingservices");
+                using HttpResponseMessage response = await _client.SendAsync(request).ConfigureAwait(false);
+                string body = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+                return Logged(ApiResponseResult<StreamingServicesResponse>(body, response.StatusCode), "Get streaming services");
+            }
+            catch (Exception e) when (e.IsApiCommunicationException())
+            {
+                throw new HttpRequestException(e.Message, e);
+            }
+        }
+
+        public async Task<ApiResponseResult<BaseResponse>> CheckAuthenticationServerStatusAsync()
+        {
+            try
+            {
+                HttpRequestMessage request = GetRequest(HttpMethod.Get, "domains/available?Type=login");
+                using HttpResponseMessage response = await _client.SendAsync(request).ConfigureAwait(false);
+                string body = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+                return Logged(ApiResponseResult<BaseResponse>(body, response.StatusCode), "Check authentication server status");
+            }
+            catch (Exception e) when (e.IsApiCommunicationException())
+            {
+                throw new HttpRequestException(e.Message, e);
+            }
+        }
     }
 }

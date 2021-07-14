@@ -17,6 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Threading.Tasks;
+using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.MVVM;
@@ -25,9 +27,6 @@ using ProtonVPN.Core.Servers.Name;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Translations;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using ProtonVPN.Settings;
 
 namespace ProtonVPN.ConnectingScreen
 {
@@ -40,13 +39,10 @@ namespace ProtonVPN.ConnectingScreen
         private Server _failedServer;
 
         private readonly IVpnManager _vpnManager;
-        private readonly IVpnReconnector _vpnReconnector;
 
-        public ConnectingViewModel(IVpnManager vpnManager,
-            IVpnReconnector vpnReconnector)
+        public ConnectingViewModel(IVpnManager vpnManager)
         {
             _vpnManager = vpnManager;
-            _vpnReconnector = vpnReconnector;
 
             DisconnectCommand = new RelayCommand(DisconnectAction);
         }
@@ -58,7 +54,11 @@ namespace ProtonVPN.ConnectingScreen
         public IName ConnectionName
         {
             get => _connectionName;
-            set => Set(ref _connectionName, value);
+            set
+            {
+                Set(ref _connectionName, value);
+                OnPropertyChanged(nameof(IsConnectionNameNotNull));
+            }
         }
 
         private IName _failedConnectionName;
@@ -83,14 +83,6 @@ namespace ProtonVPN.ConnectingScreen
             set => Set(ref _reconnecting, value);
         }
 
-        private bool _applyingSettings;
-
-        public bool ApplyingSettings
-        {
-            get => _applyingSettings;
-            set => Set(ref _applyingSettings, value);
-        }
-
         public int Percentage
         {
             get => _percentage;
@@ -103,14 +95,21 @@ namespace ProtonVPN.ConnectingScreen
             set => Set(ref _animatePercentage, value);
         }
 
+        public bool IsConnectionNameNotNull
+        {
+            get => ConnectionName != null;
+        }
+
         public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
         {
             switch (e.State.Status)
             {
+                case VpnStatus.Pinging:
+                    SetStartStep();
+                    SetPinging();
+                    break;
                 case VpnStatus.Connecting:
-                    _server = null;
-                    _failedServer = null;
-                    Reconnecting = false;
+                    SetStartStep();
                     SetConnecting(e.State);
                     break;
                 case VpnStatus.Reconnecting:
@@ -153,6 +152,21 @@ namespace ProtonVPN.ConnectingScreen
             return Task.CompletedTask;
         }
 
+        private void SetStartStep()
+        {
+            _server = null;
+            _failedServer = null;
+            Reconnecting = false;
+        }
+
+        private void SetPinging()
+        {
+            ConnectionName = null;
+            FailedConnectionName = null;
+            Percentage = 0;
+            SetConnectingState(0, Message = Translation.Get("Connecting_VpnStatus_val_Pinging"), null);
+        }
+
         private void SetConnecting(VpnState state)
         {
             Percentage = 0;
@@ -163,7 +177,6 @@ namespace ProtonVPN.ConnectingScreen
         {
             AnimatePercentage = percentage;
             Message = message;
-            ApplyingSettings = _vpnReconnector.IsPendingReconnect();
 
             if (server == null)
             {
@@ -192,7 +205,7 @@ namespace ProtonVPN.ConnectingScreen
 
         private async void DisconnectAction()
         {
-            await _vpnManager.Disconnect();
+            await _vpnManager.DisconnectAsync();
         }
     }
 }
