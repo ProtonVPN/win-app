@@ -148,7 +148,7 @@
     <ROW Component="ProtonVPN.UpdateService.exe" ComponentId="{F98028EA-85CC-4905-85FB-0DBD88526567}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.UpdateService.exe"/>
     <ROW Component="ProtonVPN.UpdateServiceContract.dll" ComponentId="{694AB59A-8291-429B-911A-6C52F250D6DE}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.UpdateServiceContract.dll"/>
     <ROW Component="ProtonVPN.Vpn.dll" ComponentId="{1231DE6D-B1C3-4E8A-913F-9D43769CAD37}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.Vpn.dll"/>
-    <ROW Component="ProtonVPN.WireguardService.exe" ComponentId="{DEFB403A-9543-4DE0-874D-F615F71F22FD}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.WireguardService.exe"/>
+    <ROW Component="ProtonVPN.WireGuardService.exe" ComponentId="{DEFB403A-9543-4DE0-874D-F615F71F22FD}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.WireGuardService.exe"/>
     <ROW Component="ProtonVPN.exe" ComponentId="{A6366893-9124-490B-A671-56545084D5CA}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.exe"/>
     <ROW Component="ProtonVPNService.exe" ComponentId="{FF69F947-BECA-41DA-9868-390F00B71BE1}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPNService.exe"/>
     <ROW Component="ProtonVPNTun" ComponentId="{B9C0B418-4523-47B5-8CEF-732F3AA6ED18}" Directory_="APPDIR" Attributes="4" KeyPath="ProtonVPNTun" Options="2"/>
@@ -278,7 +278,7 @@
     <ROW File="ProtonVPN.Crypto.dll" Component_="ProtonVPN.Crypto.dll" FileName="PROTO~12.DLL|ProtonVPN.Crypto.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ProtonVPN.Crypto.dll" SelfReg="false"/>
     <ROW File="tunnel.dll" Component_="tunnel.dll" FileName="tunnel.dll" Attributes="0" SourcePath="..\src\ProtonVPN.Vpn\Resources\64-bit\tunnel.dll" SelfReg="false" DigSign="true"/>
     <ROW File="wintun.dll" Component_="wintun.dll" FileName="wintun.dll" Attributes="0" SourcePath="..\src\ProtonVPN.Vpn\Resources\64-bit\wintun.dll" SelfReg="false"/>
-    <ROW File="ProtonVPN.WireguardService.exe" Component_="ProtonVPN.WireguardService.exe" FileName="PROTON~7.EXE|ProtonVPN.WireguardService.exe" Attributes="0" SourcePath="..\src\bin\ProtonVPN.WireguardService.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="ProtonVPN.WireGuardService.exe" Component_="ProtonVPN.WireGuardService.exe" FileName="PROTON~8.EXE|ProtonVPN.WireGuardService.exe" Attributes="0" SourcePath="..\src\bin\ProtonVPN.WireGuardService.exe" SelfReg="false" DigSign="true"/>
     <ROW File="tunnel.dll_2" Component_="tunnel.dll_2" FileName="tunnel.dll" Attributes="0" SourcePath="..\src\ProtonVPN.Vpn\Resources\32-bit\tunnel.dll" SelfReg="false" DigSign="true"/>
     <ROW File="wintun.dll_2" Component_="wintun.dll_2" FileName="wintun.dll" Attributes="0" SourcePath="..\src\ProtonVPN.Vpn\Resources\32-bit\wintun.dll" SelfReg="false"/>
     <ROW File="LocalAgent.dll" Component_="LocalAgent.dll" FileName="LOCALA~1.DLL|LocalAgent.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Resources\32-bit\LocalAgent.dll" SelfReg="false"/>
@@ -652,7 +652,7 @@
     <ROW Feature_="MainFeature" Component_="wintun.dll"/>
     <ROW Feature_="MainFeature" Component_="tunnel.dll_2"/>
     <ROW Feature_="MainFeature" Component_="wintun.dll_2"/>
-    <ROW Feature_="MainFeature" Component_="ProtonVPN.WireguardService.exe"/>
+    <ROW Feature_="MainFeature" Component_="ProtonVPN.WireGuardService.exe"/>
     <ROW Feature_="MainFeature" Component_="LocalAgent.dll"/>
     <ROW Feature_="MainFeature" Component_="LocalAgent.dll_1"/>
   </COMPONENT>
@@ -781,7 +781,7 @@
     <ROW MsiServiceConfigFailureActions="ServiceName_1" Name="[UpdateServiceName]" Event="5" ResetPeriod="1" RebootMessage="[~]" Actions="1[~]1[~]1" DelayActions="1[~]1[~]1" Component_="AI_ExePath"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiServCtrlComponent">
-    <ROW ServiceControl="ProtonVPN.WireguardService.exe" Name="ProtonVPN WireGuard" Event="160" Wait="1" Component_="ProtonVPN.WireguardService.exe"/>
+    <ROW ServiceControl="ProtonVPN.WireGuardService.exe" Name="ProtonVPN WireGuard" Event="160" Wait="1" Component_="ProtonVPN.WireGuardService.exe"/>
     <ROW ServiceControl="ProtonVPNService.exe" Name="[ServiceName]" Event="160" Wait="1" Component_="ProtonVPNService.exe"/>
     <ROW ServiceControl="ServiceName" Name="[UpdateServiceName]" Event="160" Wait="1" Component_="ProtonVPN.UpdateService.exe"/>
   </COMPONENT>
