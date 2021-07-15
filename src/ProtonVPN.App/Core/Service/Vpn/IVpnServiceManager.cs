@@ -30,7 +30,9 @@ namespace ProtonVPN.Core.Service.Vpn
     {
         Task Connect(VpnConnectionRequest connectionRequest);
 
-        Task UpdateServers(IReadOnlyList<VpnHost> servers, VpnConfig config);
+        Task UpdateServers(IReadOnlyList<VpnHost> servers);
+
+        Task UpdateAuthCertificate(string certificate);
 
         Task Disconnect(VpnError vpnError);
 

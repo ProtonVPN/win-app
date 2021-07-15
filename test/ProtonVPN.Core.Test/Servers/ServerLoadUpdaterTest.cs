@@ -45,8 +45,9 @@ namespace ProtonVPN.Core.Test.Servers
         [TestInitialize]
         public void Initialize()
         {
-            var userStorage = Substitute.For<IUserStorage>();
-            _serverManager = Substitute.For<ServerManager>(userStorage);
+            IUserStorage userStorage = Substitute.For<IUserStorage>();
+            IAppSettings appSettings = Substitute.For<IAppSettings>();
+            _serverManager = Substitute.For<ServerManager>(userStorage, appSettings);
             _scheduler = Substitute.For<IScheduler>();
             _eventAggregator = Substitute.For<IEventAggregator>();
             _mainWindowState = Substitute.For<IMainWindowState>();

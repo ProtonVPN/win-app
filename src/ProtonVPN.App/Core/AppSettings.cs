@@ -23,16 +23,15 @@ using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using Newtonsoft.Json;
 using ProtonVPN.Common;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.KillSwitch;
+using ProtonVPN.Common.Networking;
 using ProtonVPN.Core.Announcements;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Native.Structures;
 using ProtonVPN.Core.OS.Crypto;
-using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Profiles.Cached;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Settings.Contracts;
@@ -345,9 +344,9 @@ namespace ProtonVPN.Core
             set => Set(value);
         }
 
-        public bool UseTunAdapter
+        public OpenVpnAdapter NetworkAdapterType
         {
-            get => Get<bool>();
+            get => Get<OpenVpnAdapter>();
             set => Set(value);
         }
 
@@ -409,7 +408,7 @@ namespace ProtonVPN.Core
             get => GetPerUser<bool>();
             set => SetPerUser(value);
         }
-        
+
         [Obsolete(
             "Use this only for checking if the user enabled/disabled the feature." +
             "Use IsVpnAcceleratorEnabled() for checking if VPN Accelerator is/should be enabled.")]
@@ -436,7 +435,7 @@ namespace ProtonVPN.Core
             get => Get<bool>();
             set => Set(value);
         }
-        
+
         [Obsolete(
             "Use this only for checking if the user enabled/disabled the feature." +
             "Use IsSmartReconnectEnabled() for checking if Smart Reconnect is/should be enabled.")]
@@ -547,7 +546,7 @@ namespace ProtonVPN.Core
         {
             return FeatureVpnAcceleratorEnabled && VpnAcceleratorEnabled;
         }
-        
+
         public bool IsSmartReconnectEnabled()
         {
             return FeatureSmartReconnectEnabled && SmartReconnectEnabled;
@@ -558,13 +557,13 @@ namespace ProtonVPN.Core
             return ShowNotifications && SmartReconnectNotificationsEnabled;
         }
 
-        public Protocol GetProtocol()
+        public VpnProtocol GetProtocol()
         {
             string protocolStr = OvpnProtocol;
-            return protocolStr.EqualsIgnoringCase("auto") ? Protocol.Auto :
-                protocolStr.EqualsIgnoringCase("udp") ? Protocol.OpenVpnUdp :
-                protocolStr.EqualsIgnoringCase("tcp") ? Protocol.OpenVpnTcp :
-                throw new ArgumentException();
+            return protocolStr.EqualsIgnoringCase("udp") ? VpnProtocol.OpenVpnUdp :
+                protocolStr.EqualsIgnoringCase("tcp") ? VpnProtocol.OpenVpnTcp :
+                protocolStr.EqualsIgnoringCase("wireguard") ? VpnProtocol.WireGuard :
+                VpnProtocol.Smart;
         }
 
         private void OnPropertyChanged([CallerMemberName] string propertyName = null)

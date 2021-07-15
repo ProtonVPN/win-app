@@ -28,9 +28,14 @@ namespace ProtonVPN.Common.Helpers
         public static void NotEmpty(string arg, string argName, string message = null)
         {
             if (!string.IsNullOrEmpty(arg))
+            {
                 return;
+            }
+
             if (string.IsNullOrEmpty(message))
+            {
                 throw new ArgumentException($"ArgumentException: {argName} string not valid.");
+            }
 
             throw new ArgumentException($"{message}");
         }
@@ -38,26 +43,34 @@ namespace ProtonVPN.Common.Helpers
         public static void NotEmpty<T>(IEnumerable<T> arg, string argName)
         {
             if (arg == null || !arg.Any())
+            {
                 throw new ArgumentException($"ArgumentException: sequence {argName} is empty or null");
+            }
         }
 
         public static void NotNull<T>(T arg, string argName)
             where T : class
         {
             if (arg == null)
+            {
                 throw new ArgumentNullException($"ArgumentException: {argName} is null");
+            }
         }
 
         public static void IsTrue(bool condition, string message = "")
         {
             if (!condition)
+            {
                 throw new ArgumentException($"Condition not satisfied: {message}");
+            }
         }
 
         public static void IsFalse(bool condition, string message = "")
         {
             if (condition)
+            {
                 throw new ArgumentException($"Condition not satisfied: {message}");
+            }
         }
     }
 }

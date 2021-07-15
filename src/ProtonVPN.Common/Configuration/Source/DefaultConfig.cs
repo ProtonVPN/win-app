@@ -43,6 +43,8 @@ namespace ProtonVPN.Common.Configuration.Source
                 Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "ProtonVPN");
             int osBits = Environment.Is64BitOperatingSystem ? 64 : 32;
 
+            string wireGuardConfigFilename = "ProtonVPN";
+
             return new Config
             {
                 OsBits = osBits,
@@ -240,6 +242,25 @@ namespace ProtonVPN.Common.Configuration.Source
                     TunAdapterId = "wintun",
 
                     TunAdapterName = "ProtonVPN TUN",
+                },
+
+                WireGuard =
+                {
+                    TunAdapterHardwareId = "Wintun",
+
+                    TunAdapterGuid = "{EAB2262D-9AB1-5975-7D92-334D06F4972B}",
+
+                    TunAdapterName = "ProtonVPN",
+
+                    LogFilePath = Path.Combine(commonAppDataFolder, "WireGuard", "log.bin"),
+
+                    ConfigFilePath = Path.Combine(commonAppDataFolder, "WireGuard", $"{wireGuardConfigFilename}.conf"),
+
+                    ServiceName = "ProtonVPN WireGuard",
+
+                    ServicePath = Path.Combine(baseFolder, "ProtonVPN.WireGuardService.exe"),
+
+                    PipeName = $"ProtectedPrefix\\Administrators\\WireGuard\\{wireGuardConfigFilename}",
                 },
 
                 TlsPinningConfig =

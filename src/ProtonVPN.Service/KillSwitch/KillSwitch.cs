@@ -20,10 +20,12 @@
 using Autofac;
 using ProtonVPN.Common;
 using ProtonVPN.Common.KillSwitch;
+using ProtonVPN.Common.Networking;
+using ProtonVPN.Common.OS.Net;
+using ProtonVPN.Common.OS.Net.NetworkInterface;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Service.Contract.Settings;
 using ProtonVPN.Service.Firewall;
-using ProtonVPN.Service.Network;
 using ProtonVPN.Service.Settings;
 using ProtonVPN.Service.Vpn;
 using ProtonVPN.Vpn.Common;
@@ -34,18 +36,18 @@ namespace ProtonVPN.Service.KillSwitch
     {
         private readonly IFirewall _firewall;
         private readonly IServiceSettings _serviceSettings;
-        private readonly ICurrentNetworkInterface _currentNetworkInterface;
-        private VpnState _lastVpnState = new(VpnStatus.Disconnected);
+        private readonly INetworkInterfaceLoader _networkInterfaceLoader;
+        private VpnState _lastVpnState = new(VpnStatus.Disconnected, default);
         private KillSwitchMode _killSwitchMode;
 
         public KillSwitch(
             IFirewall firewall,
             IServiceSettings serviceSettings,
-            ICurrentNetworkInterface currentNetworkInterface)
+            INetworkInterfaceLoader networkInterfaceLoader)
         {
             _firewall = firewall;
             _serviceSettings = serviceSettings;
-            _currentNetworkInterface = currentNetworkInterface;
+            _networkInterfaceLoader = networkInterfaceLoader;
         }
 
         public void Start()
@@ -62,6 +64,11 @@ namespace ProtonVPN.Service.KillSwitch
         public void OnVpnConnected(VpnState state)
         {
             _lastVpnState = state;
+
+            if (_lastVpnState.VpnProtocol == VpnProtocol.WireGuard)
+            {
+                UpdateLeakProtectionStatus(state);
+            }
         }
 
         public void OnVpnDisconnected(VpnState state)
@@ -72,7 +79,7 @@ namespace ProtonVPN.Service.KillSwitch
 
         public bool ExpectedLeakProtectionStatus(VpnState state)
         {
-           return UpdatedLeakProtectionStatus(state) ?? _firewall.LeakProtectionEnabled;
+            return UpdatedLeakProtectionStatus(state) ?? _firewall.LeakProtectionEnabled;
         }
 
         private void UpdateLeakProtectionStatus(VpnState state)
@@ -122,6 +129,7 @@ namespace ProtonVPN.Service.KillSwitch
                     {
                         _firewall.DisableLeakProtection();
                     }
+
                     break;
             }
         }
@@ -130,8 +138,16 @@ namespace ProtonVPN.Service.KillSwitch
         {
             bool dnsLeakOnly = _serviceSettings.SplitTunnelSettings.Mode == SplitTunnelMode.Permit;
             bool persistent = _serviceSettings.KillSwitchMode == KillSwitchMode.Hard;
-            var firewallParams = new FirewallParams(_lastVpnState.RemoteIp, dnsLeakOnly, _currentNetworkInterface.Index,
-                persistent);
+            INetworkInterface networkInterface = _networkInterfaceLoader.GetByVpnProtocol(_lastVpnState.VpnProtocol, _lastVpnState.OpenVpnAdapter);
+            uint interfaceIndex = networkInterface?.Index ?? 0;
+            FirewallParams firewallParams = new()
+            {
+                ServerIp = _lastVpnState.RemoteIp,
+                DnsLeakOnly = dnsLeakOnly,
+                InterfaceIndex = interfaceIndex,
+                AddInterfaceFilters = interfaceIndex > 0,
+                Persistent = persistent
+            };
             _firewall.EnableLeakProtection(firewallParams);
         }
 
@@ -142,6 +158,7 @@ namespace ProtonVPN.Service.KillSwitch
                 case VpnStatus.Pinging:
                 case VpnStatus.Connecting:
                 case VpnStatus.Reconnecting:
+                case VpnStatus.Connected when _lastVpnState.VpnProtocol == VpnProtocol.WireGuard:
                     return true;
                 case VpnStatus.Disconnecting:
                 case VpnStatus.Disconnected:

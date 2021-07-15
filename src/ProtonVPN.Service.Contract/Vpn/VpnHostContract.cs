@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,13 +17,18 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
+using ProtonVPN.Common.Extensions;
 
 namespace ProtonVPN.Service.Contract.Vpn
 {
     [DataContract]
-    public class VpnHostContract
+    public class VpnHostContract : IValidatableObject
     {
+        private const int ServerPublicKeyLength = 44;
+
         [DataMember]
         public string Name { get; set; }
 
@@ -32,5 +37,22 @@ namespace ProtonVPN.Service.Contract.Vpn
 
         [DataMember]
         public string Label { get; set; }
+
+        [DataMember]
+        public string X25519PublicKey { get; set; }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            if (!X25519PublicKey.IsNullOrEmpty() && X25519PublicKey.Length != ServerPublicKeyLength ||
+                !X25519PublicKey.IsValidBase64Key())
+            {
+                yield return new ValidationResult($"Invalid public key {X25519PublicKey} for server {Name}");
+            }
+
+            if (!Ip.IsValidIpAddress())
+            {
+                yield return new ValidationResult($"Invalid server IP address: {Ip} for server {Name}");
+            }
+        }
     }
 }

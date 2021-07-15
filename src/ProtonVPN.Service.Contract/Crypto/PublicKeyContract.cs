@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,12 +17,29 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Service.Network
-{
-    public interface ICurrentNetworkInterface
-    {
-        uint Index { get; }
+using System.Runtime.Serialization;
+using ProtonVPN.Common.Extensions;
+using ProtonVPN.Crypto;
 
-        string HardwareId { get; }
+namespace ProtonVPN.Service.Contract.Crypto
+{
+    [DataContract]
+    public class PublicKeyContract : KeyContract
+    {
+        public PublicKeyContract()
+        {
+        }
+
+        public PublicKeyContract(PublicKey key) 
+            : base(key)
+        {
+        }
+
+        public PublicKey ConvertBack()
+        {
+            return new(Bytes, Algorithm.ToString().ToEnum<KeyAlgorithm>());
+        }
+
+        protected override int KeyLength => 60;
     }
 }

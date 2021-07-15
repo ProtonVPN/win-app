@@ -18,13 +18,15 @@
  */
 
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Net;
 using System.Runtime.Serialization;
 using ProtonVPN.Common;
 
 namespace ProtonVPN.Service.Contract.Vpn
 {
     [DataContract]
-    public class VpnConfigContract
+    public class VpnConfigContract : IValidatableObject
     {
         [DataMember(IsRequired = true)]
         public IDictionary<VpnProtocolContract, int[]> Ports { get; set; }
@@ -37,5 +39,25 @@ namespace ProtonVPN.Service.Contract.Vpn
 
         [DataMember(IsRequired = true)]
         public List<string> SplitTunnelIPs { get; set; }
+
+        [DataMember(IsRequired = true)]
+        public int NetShieldMode { get; set; }
+
+        [DataMember(IsRequired = true)]
+        public VpnProtocolContract VpnProtocol { get; set; }
+
+        [DataMember(IsRequired = true)]
+        public bool SplitTcp { get; set; }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            foreach (string address in CustomDns)
+            {
+                if (!IPAddress.TryParse(address, out _))
+                {
+                    yield return new ValidationResult("Incorrect IP address format: " + address);
+                }
+            }
+        }
     }
 }

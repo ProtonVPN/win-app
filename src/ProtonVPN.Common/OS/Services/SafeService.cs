@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -36,11 +36,46 @@ namespace ProtonVPN.Common.OS.Services
 
         public string Name => _origin.Name;
 
+        public bool Exists()
+        {
+            try
+            {
+                return _origin.Exists();
+            }
+            catch (Win32Exception)
+            {
+                return false;
+            }
+        }
+
+        public void Create(string pathAndArgs, bool unrestricted)
+        {
+            try
+            {
+                _origin.Create(pathAndArgs, unrestricted);
+            }
+            catch (Win32Exception)
+            {
+            }
+        }
+
         public bool Running()
         {
             try
             {
                 return _origin.Running();
+            }
+            catch (Win32Exception)
+            {
+                return false;
+            }
+        }
+
+        public bool IsStopped()
+        {
+            try
+            {
+                return _origin.IsStopped();
             }
             catch (Win32Exception)
             {

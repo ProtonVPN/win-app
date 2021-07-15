@@ -19,6 +19,7 @@
 
 using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Net;
 using System.Net.NetworkInformation;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -128,6 +129,8 @@ namespace ProtonVPN.Common.Test.OS.Net.NetworkInterface
             public bool IsLoopback => false;
 
             public bool IsActive => false;
+
+            public IPAddress DefaultGateway => IPAddress.None;
 
             public uint Index => 0;
         }

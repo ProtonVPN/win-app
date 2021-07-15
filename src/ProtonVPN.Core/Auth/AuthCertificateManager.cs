@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -221,7 +221,7 @@ namespace ProtonVPN.Core.Auth
             return new()
             {
                 ClientPublicKey = GetOrCreateClientPublicKeyPem(),
-                Features = features ?? new List<string>()
+                Features = features ?? new List<string>(),
             };
         }
 

@@ -40,7 +40,6 @@ namespace ProtonVPN.Service.Vpn
 
         private IReadOnlyList<VpnHost> _servers;
         private VpnConfig _config;
-        private VpnProtocol _protocol;
         private VpnCredentials _credentials;
 
         private Task _ipv6Task = Task.CompletedTask;
@@ -73,11 +72,10 @@ namespace ProtonVPN.Service.Vpn
 
         public InOutBytes Total => _origin.Total;
 
-        public void Connect(IReadOnlyList<VpnHost> servers, VpnConfig config, VpnProtocol protocol, VpnCredentials credentials)
+        public void Connect(IReadOnlyList<VpnHost> servers, VpnConfig config, VpnCredentials credentials)
         {
             _servers = servers;
             _config = config;
-            _protocol = protocol;
             _credentials = credentials;
 
             _connectRequested = true;
@@ -94,17 +92,26 @@ namespace ProtonVPN.Service.Vpn
             _origin.Disconnect(error);
         }
 
-        public void UpdateServers(IReadOnlyList<VpnHost> servers, VpnConfig config)
+        public void UpdateServers(IReadOnlyList<VpnHost> servers)
         {
             if (_connectRequested)
             {
                 _servers = servers;
-                _config = config;
             }
             else
             {
-                _origin.UpdateServers(servers, config);
+                _origin.UpdateServers(servers);
             }
+        }
+
+        public void UpdateAuthCertificate(string certificate)
+        {
+            _origin.UpdateAuthCertificate(certificate);
+        }
+
+        public void SetFeatures(VpnFeatures vpnFeatures)
+        {
+            _origin.SetFeatures(vpnFeatures);
         }
 
         private async void Connect()
@@ -121,7 +128,7 @@ namespace ProtonVPN.Service.Vpn
             if (!_serviceSettings.Ipv6LeakProtection)
             {
                 _connectRequested = false;
-                _origin.Connect(_servers, _config, _protocol, _credentials);
+                _origin.Connect(_servers, _config, _credentials);
                 return;
             }
 
@@ -135,7 +142,7 @@ namespace ProtonVPN.Service.Vpn
                 else
                 {
                     _connectRequested = false;
-                    _origin.Connect(_servers, _config, _protocol, _credentials);
+                    _origin.Connect(_servers, _config, _credentials);
                     return;
                 }
             }
@@ -193,11 +200,13 @@ namespace ProtonVPN.Service.Vpn
 
         private void NetworkInterfaces_NetworkInterfacesAdded(object sender, EventArgs e)
         {
-            if (!_networkChanged)
+            if (_networkChanged || !_connectRequested)
             {
-                _networkChanged = true;
-                Queued(NetworkChanged);
+                return;
             }
+
+            _networkChanged = true;
+            Queued(NetworkChanged);
         }
 
         private async void NetworkChanged()
@@ -230,7 +239,8 @@ namespace ProtonVPN.Service.Vpn
             VpnHost server = _servers.FirstOrDefault();
             if (!server.IsEmpty())
             {
-                InvokeStateChanged(new VpnState(VpnStatus.Pinging, VpnError.None, string.Empty, server.Ip, _protocol, server.Label));
+                InvokeStateChanged(new VpnState(VpnStatus.Pinging, VpnError.None, string.Empty, server.Ip,
+                    _config.VpnProtocol, _config.OpenVpnAdapter, server.Label));
             }
         }
 

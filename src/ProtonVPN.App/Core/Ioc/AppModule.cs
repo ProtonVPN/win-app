@@ -177,6 +177,8 @@ namespace ProtonVPN.Core.Ioc
                 .SingleInstance();
             builder.RegisterType<ProtonVPN.Settings.Migrations.v1_20_0.AppSettingsMigration>().AsImplementedInterfaces()
                 .SingleInstance();
+            builder.RegisterType<ProtonVPN.Settings.Migrations.v1_22_0.AppSettingsMigration>().AsImplementedInterfaces()
+                .SingleInstance();
 
             builder.RegisterType<MapLineManager>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterType<VpnEvents>();
@@ -293,6 +295,7 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<X25519KeyGenerator>().As<IX25519KeyGenerator>().SingleInstance();
             builder.RegisterType<AuthKeyManager>().As<IAuthKeyManager>().SingleInstance();
             builder.RegisterType<AuthCertificateManager>().As<IAuthCertificateManager>().SingleInstance();
+            builder.RegisterType<AuthCredentialManager>().As<IAuthCredentialManager>().SingleInstance();
         }
     }
 }

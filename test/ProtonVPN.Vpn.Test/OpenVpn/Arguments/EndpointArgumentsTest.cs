@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,10 +18,12 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Vpn.Common;
 using ProtonVPN.Vpn.OpenVpn.Arguments;
@@ -36,11 +38,12 @@ namespace ProtonVPN.Vpn.Test.OpenVpn.Arguments
         public void Enumerable_ShouldContain_ExpectedNumberOfOptions()
         {
             // Arrange
-            var endpoint = new VpnEndpoint(new VpnHost("abc.com", "4.5.6.7", string.Empty), VpnProtocol.OpenVpnUdp, 48965);
-            var subject = new EndpointArguments(endpoint);
+            OpenVpnEndpoint endpoint =
+                new(new VpnHost("abc.com", "4.5.6.7", string.Empty, string.Empty), VpnProtocol.OpenVpnUdp, 48965);
+            OpenVpnEndpointArguments subject = new(endpoint);
 
             // Act
-            var result = subject.ToList();
+            List<string> result = subject.ToList();
 
             // Assert
             result.Should().HaveCount(1);
@@ -50,11 +53,12 @@ namespace ProtonVPN.Vpn.Test.OpenVpn.Arguments
         public void Enumerable_ShouldContain_RemoteOption()
         {
             // Arrange
-            var endpoint = new VpnEndpoint(new VpnHost("abc.com", "11.22.33.44", string.Empty), VpnProtocol.OpenVpnUdp, 61874);
-            var subject = new EndpointArguments(endpoint);
+            OpenVpnEndpoint endpoint =
+                new(new VpnHost("abc.com", "11.22.33.44", string.Empty, string.Empty), VpnProtocol.OpenVpnUdp, 61874);
+            OpenVpnEndpointArguments subject = new(endpoint);
 
             // Act
-            var result = subject.ToList();
+            List<string> result = subject.ToList();
 
             // Assert
             result.First().Should().StartWith($"--remote {endpoint.Server.Ip} {endpoint.Port}");
@@ -66,23 +70,25 @@ namespace ProtonVPN.Vpn.Test.OpenVpn.Arguments
         public void Enumerable_ShouldMap_VpnProtocol(VpnProtocol protocol, string expected)
         {
             // Arrange
-            var endpoint = new VpnEndpoint(new VpnHost("abc.com", "7.7.7.7", string.Empty), protocol, 44444);
-            var subject = new EndpointArguments(endpoint);
+            OpenVpnEndpoint endpoint =
+                new(new VpnHost("abc.com", "7.7.7.7", string.Empty, string.Empty), protocol, 44444);
+            OpenVpnEndpointArguments subject = new(endpoint);
 
             // Act
-            var result = subject.ToList();
+            List<string> result = subject.ToList();
 
             // Assert
             result.Should().Contain($"--remote {endpoint.Server.Ip} {endpoint.Port} {expected}");
         }
 
         [DataTestMethod]
-        [DataRow(VpnProtocol.Auto)]
+        [DataRow(VpnProtocol.Smart)]
         public void Enumerable_ShouldThrow_WhenProtocolIsNotSupported(VpnProtocol protocol)
         {
             // Arrange
-            var endpoint = new VpnEndpoint(new VpnHost("abc.com", "1.2.3.4", string.Empty), protocol, 54321);
-            var subject = new EndpointArguments(endpoint);
+            OpenVpnEndpoint endpoint =
+                new(new VpnHost("abc.com", "1.2.3.4", string.Empty, string.Empty), protocol, 54321);
+            OpenVpnEndpointArguments subject = new(endpoint);
 
             // Act
             Action action = () => subject.ToList();

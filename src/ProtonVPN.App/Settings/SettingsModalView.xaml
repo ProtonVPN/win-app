@@ -31,7 +31,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
                         xmlns:resource="clr-namespace:ProtonVPN.Resource;assembly=ProtonVPN.Resource"
                         mc:Ignorable="d"
-                        ResizeMode="NoResize"
                         Style="{StaticResource BaseWindowStyle}"
                         Title="{translations:Loc Settings_ttl}"
                         SizeToContent="WidthAndHeight"
@@ -232,7 +231,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <wpf:Combobox HorizontalAlignment="Right"
                                           Style="{StaticResource ComboDropdown}"
                                           ItemsSource="{Binding Protocols}"
-                                          SelectedValue="{Binding SelectedProtocol}"
+                                          SelectedValue="{Binding SelectedProtocol, Delay=1}"
                                           SelectedValuePath="Key"
                                           DisplayMemberPath="Value"
                                           IsSynchronizedWithCurrentItem="True"
@@ -261,7 +260,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </DockPanel>
                     </Border>
 
-                    <Border Style="{StaticResource BorderlessSettingContainer}" Padding="0,0,0,4" 
+                    <Border Style="{StaticResource BorderlessSettingContainer}" Padding="0,0,0,4"
                             Visibility="{Binding IsToShowSmartReconnect, Converter={StaticResource BoolToVis}}">
                         <DockPanel>
                             <StackPanel Orientation="Horizontal">
@@ -283,12 +282,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </DockPanel>
                     </Border>
 
-                    <Border Style="{StaticResource BorderlessSettingContainer}" Padding="0,0,0,4" 
+                    <Border Style="{StaticResource BorderlessSettingContainer}" Padding="0,0,0,4"
                             Visibility="{Binding IsToShowSmartReconnectNotifications, Converter={StaticResource BoolToVis}}">
                         <DockPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Foreground="#464652" FontSize="32" VerticalAlignment="Bottom" Margin="0,0,0,0" Text="└" />
-                                <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Margin="5,0,0,0" 
+                                <Label Foreground="White" FontSize="16" VerticalAlignment="Center" Margin="5,0,0,0"
                                        Content="{translations:Loc Settings_Connection_lbl_SmartReconnectNotifications}"/>
                                 <fa:FontAwesome Icon="InfoCircle"
                                                 VerticalAlignment="Center"
@@ -376,7 +375,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </TabItem.Header>
                 <DockPanel Margin="25,20,25,20" LastChildFill="True">
 
-                    <Border DockPanel.Dock="Top" Style="{StaticResource BorderlessSettingContainer}">
+                    <Border DockPanel.Dock="Top" Style="{StaticResource BorderlessSettingContainer}"
+                            Visibility="{Binding IsToShowNetworkDriverSelection, Converter={StaticResource BoolToVis}}">
                         <DockPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Foreground="White" FontSize="16" VerticalAlignment="Center" 
@@ -392,7 +392,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <wpf:Combobox HorizontalAlignment="Right"
                                           Style="{StaticResource ComboDropdown}"
                                           ItemsSource="{Binding NetworkDrivers}"
-                                          SelectedValue="{Binding SelectedNetworkDriver}"
+                                          SelectedValue="{Binding SelectedOpenVpnAdapter}"
                                           SelectedValuePath="Key"
                                           DisplayMemberPath="Value"
                                           IsSynchronizedWithCurrentItem="True"

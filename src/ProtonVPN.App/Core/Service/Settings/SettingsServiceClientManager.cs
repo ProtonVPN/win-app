@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -79,6 +79,11 @@ namespace ProtonVPN.Core.Service.Settings
         public async void OnAppSettingsChanged(PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(IAppSettings.KillSwitchMode) ||
+                e.PropertyName == nameof(IAppSettings.VpnAcceleratorEnabled) ||
+                e.PropertyName == nameof(IAppSettings.OvpnProtocol) ||
+                e.PropertyName == nameof(IAppSettings.NetworkAdapterType) ||
+                e.PropertyName == nameof(IAppSettings.NetShieldMode) ||
+                e.PropertyName == nameof(IAppSettings.NetShieldEnabled) ||
                 e.PropertyName == nameof(IAppSettings.Ipv6LeakProtection))
             {
                 _logger.Info($"Setting \"{e.PropertyName}\" changed");

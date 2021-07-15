@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,12 +17,20 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Common.Vpn
+using System;
+using ProtonVPN.Common.Vpn;
+
+namespace ProtonVPN.Vpn.LocalAgent
 {
-    public enum VpnProtocol
+    internal class LocalAgentErrorArgs : EventArgs
     {
-        OpenVpnUdp,
-        OpenVpnTcp,
-        Auto
+        public VpnError Error { get; }
+        public string Description { get; }
+
+        public LocalAgentErrorArgs(VpnError error, string description)
+        {
+            Error = error;
+            Description = description;
+        }
     }
 }

@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.OS.Net;
 using ProtonVPN.Common.OS.Net.NetworkInterface;
 using ProtonVPN.Common.Vpn;
@@ -50,7 +51,7 @@ namespace ProtonVPN.Core.Service.Vpn
         public Profile LastProfile { get; private set; }
         public ServerCandidates LastServerCandidates { get; private set; }
         public Server LastServer { get; private set; } = Server.Empty();
-        public VpnState State { get; private set; } = new VpnState(VpnStatus.Disconnected);
+        public VpnState State { get; private set; } = new(VpnStatus.Disconnected);
         public bool NetworkBlocked { get; private set; }
 
         public event EventHandler<VpnStateChangedEventArgs> VpnStateChanged;
@@ -58,8 +59,8 @@ namespace ProtonVPN.Core.Service.Vpn
         public VpnConnector(
             ProfileConnector profileConnector,
             ProfileManager profileManager,
-            IAppSettings appSettings, 
-            GuestHoleState guestHoleState, 
+            IAppSettings appSettings,
+            GuestHoleState guestHoleState,
             IUserStorage userStorage,
             INetworkInterfaceLoader networkInterfaceLoader)
         {
@@ -77,9 +78,9 @@ namespace ProtonVPN.Core.Service.Vpn
             Profile profile = await GetQuickConnectProfileAsync();
             IList<Profile> profiles = CreateProfilePreferenceList(profile);
             VpnManagerProfileCandidates profileCandidates = GetBestProfileCandidates(profiles);
-            
+
             IEnumerable<Server> sortedServers = _profileConnector.SortServers(
-                _profileConnector.Servers(profileCandidates.Candidates), 
+                _profileConnector.Servers(profileCandidates.Candidates),
                 profileCandidates.Profile.ProfileType);
             if (maxServers.HasValue)
             {
@@ -108,18 +109,18 @@ namespace ProtonVPN.Core.Service.Vpn
 
         private async Task ValidateConnectionAsync(Func<Task> connectionFunction)
         {
-            INetworkInterface tunInterface = _networkInterfaceLoader.GetTunInterface();
-            INetworkInterface tapInterface = _networkInterfaceLoader.GetTapInterface();
-            if (tunInterface == null && tapInterface == null)
+            INetworkInterface openVpnTunInterface = _networkInterfaceLoader.GetOpenVpnTunInterface();
+            INetworkInterface openVpnTapInterface = _networkInterfaceLoader.GetOpenVpnTapInterface();
+            if (openVpnTunInterface == null && openVpnTapInterface == null)
             {
-                RaiseVpnStateChanged(new VpnStateChangedEventArgs(
-                    new VpnState(VpnStatus.Disconnected), VpnError.NoTapAdaptersError, false));
+                RaiseVpnStateChanged(new VpnStateChangedEventArgs(new VpnState(VpnStatus.Disconnected),
+                    VpnError.NoTapAdaptersError, false, _appSettings.GetProtocol()));
                 return;
             }
 
-            if (tunInterface == null && _appSettings.UseTunAdapter)
+            if (openVpnTunInterface == null && _appSettings.NetworkAdapterType == OpenVpnAdapter.Tun)
             {
-                _appSettings.UseTunAdapter = false;
+                _appSettings.NetworkAdapterType = OpenVpnAdapter.Tap;
                 SendTunFallbackEvent();
             }
 
@@ -192,11 +193,11 @@ namespace ProtonVPN.Core.Service.Vpn
             return profileCandidates;
         }
 
-        private async Task ConnectToProfileCandidatesAsync(VpnManagerProfileCandidates profileCandidates, Protocol? protocol = null, int? maxServers = null)
+        private async Task ConnectToProfileCandidatesAsync(VpnManagerProfileCandidates profileCandidates, VpnProtocol? vpnProtocol = null, int? maxServers = null)
         {
             if (profileCandidates.CanConnect)
             {
-                await ConnectAsync(profileCandidates.Profile, profileCandidates.Candidates, protocol, maxServers);
+                await ConnectAsync(profileCandidates.Profile, profileCandidates.Candidates, vpnProtocol, maxServers);
             }
             else
             {
@@ -204,38 +205,38 @@ namespace ProtonVPN.Core.Service.Vpn
             }
         }
 
-        private async Task ConnectAsync(Profile profile, ServerCandidates candidates, Protocol? protocol = null, int? maxServers = null)
+        private async Task ConnectAsync(Profile profile, ServerCandidates candidates, VpnProtocol? vpnProtocol = null, int? maxServers = null)
         {
             if (profile.IsPredefined || profile.IsTemporary)
             {
-                profile.Protocol = _appSettings.GetProtocol();
+                profile.VpnProtocol = _appSettings.GetProtocol();
             }
 
             LastProfile = profile;
             LastServerCandidates = candidates;
-            await _profileConnector.Connect(candidates, profile, protocol, maxServers);
+            await _profileConnector.Connect(candidates, profile, vpnProtocol, maxServers);
         }
 
-        public async Task ConnectToPreSortedCandidatesAsync(ServerCandidates sortedCandidates, Protocol protocol)
+        public async Task ConnectToPreSortedCandidatesAsync(ServerCandidates sortedCandidates, VpnProtocol vpnProtocol)
         {
-            await ValidateConnectionAsync(() => ExecuteConnectToPreSortedCandidatesAsync(sortedCandidates, protocol));
+            await ValidateConnectionAsync(() => ExecuteConnectToPreSortedCandidatesAsync(sortedCandidates, vpnProtocol));
         }
 
-        private async Task ExecuteConnectToPreSortedCandidatesAsync(ServerCandidates sortedCandidates, Protocol protocol)
+        private async Task ExecuteConnectToPreSortedCandidatesAsync(ServerCandidates sortedCandidates, VpnProtocol vpnProtocol)
         {
             LastServerCandidates = sortedCandidates;
-            await _profileConnector.ConnectWithPreSortedCandidates(sortedCandidates, protocol);
+            await _profileConnector.ConnectWithPreSortedCandidates(sortedCandidates, vpnProtocol);
         }
 
-        public async Task ConnectToProfileAsync(Profile profile, Protocol? protocol = null)
+        public async Task ConnectToProfileAsync(Profile profile, VpnProtocol? vpnProtocol = null)
         {
-            await ValidateConnectionAsync(() => ExecuteConnectToProfileAsync(profile, protocol));
+            await ValidateConnectionAsync(() => ExecuteConnectToProfileAsync(profile, vpnProtocol));
         }
 
-        private async Task ExecuteConnectToProfileAsync(Profile profile, Protocol? protocol = null)
+        private async Task ExecuteConnectToProfileAsync(Profile profile, VpnProtocol? vpnProtocol = null)
         {
             VpnManagerProfileCandidates profileCandidates = GetProfileCandidates(profile);
-            await ConnectToProfileCandidatesAsync(profileCandidates, protocol);
+            await ConnectToProfileCandidatesAsync(profileCandidates, vpnProtocol);
         }
 
         public void OnVpnStateChanged(VpnStateChangedEventArgs e)
@@ -258,7 +259,7 @@ namespace ProtonVPN.Core.Service.Vpn
             State = new VpnState(e.State.Status, LastServer);
             NetworkBlocked = e.NetworkBlocked;
 
-            RaiseVpnStateChanged(new VpnStateChangedEventArgs(State, e.Error, e.NetworkBlocked, e.Protocol));
+            RaiseVpnStateChanged(new VpnStateChangedEventArgs(State, e.Error, e.NetworkBlocked, e.VpnProtocol, e.NetworkAdapterType));
         }
 
         private void RaiseVpnStateChanged(VpnStateChangedEventArgs e)
@@ -269,7 +270,7 @@ namespace ProtonVPN.Core.Service.Vpn
         public void OnUserLoggedOut()
         {
             State = new VpnState(VpnStatus.Disconnected);
-            RaiseVpnStateChanged(new VpnStateChangedEventArgs(State, VpnError.None, NetworkBlocked));
+            RaiseVpnStateChanged(new VpnStateChangedEventArgs(State, VpnError.None, NetworkBlocked, _appSettings.GetProtocol()));
         }
         
         public async Task OnVpnPlanChangedAsync(VpnPlanChangedEventArgs e)

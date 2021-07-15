@@ -23,6 +23,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Caliburn.Micro;
 using GalaSoft.MvvmLight.CommandWpf;
+using ProtonVPN.Common.Networking;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Servers;
@@ -79,7 +80,7 @@ namespace ProtonVPN.Profiles.Form
             private set => Set(ref _editMode, value);
         }
 
-        public Protocol[] Protocols => new[] {Protocol.Auto, Protocol.OpenVpnUdp, Protocol.OpenVpnTcp};
+        public VpnProtocol[] Protocols => new[] { VpnProtocol.Smart, VpnProtocol.OpenVpnUdp, VpnProtocol.OpenVpnTcp, VpnProtocol.WireGuard };
 
         private string[] _colors;
         public string[] Colors => _colors ??= _colorProvider.GetColors();
@@ -129,13 +130,13 @@ namespace ProtonVPN.Profiles.Form
             }
         }
 
-        private Protocol _protocol = Protocol.Auto;
-        public Protocol Protocol
+        private VpnProtocol _openVpnProtocol = VpnProtocol.Smart;
+        public VpnProtocol VpnProtocol
         {
-            get => _protocol;
+            get => _openVpnProtocol;
             set
             {
-                Set(ref _protocol, value);
+                Set(ref _openVpnProtocol, value);
                 _unsavedChanges = true;
             }
         }
@@ -186,7 +187,7 @@ namespace ProtonVPN.Profiles.Form
         public virtual void LoadProfile(Profile profile)
         {
             ProfileName = profile.Name;
-            Protocol = profile.Protocol;
+            VpnProtocol = profile.VpnProtocol;
             ColorCode = profile.ColorCode;
 
             if (profile.Server == null)
@@ -213,7 +214,7 @@ namespace ProtonVPN.Profiles.Form
         public virtual void Clear()
         {
             ProfileName = string.Empty;
-            Protocol = Protocol.Auto;
+            VpnProtocol = VpnProtocol.Smart;
             SelectedServer = null;
             ColorCode = null;
 
@@ -229,7 +230,7 @@ namespace ProtonVPN.Profiles.Form
         {
             if (HasUnsavedChanges())
             {
-                var result = ShowDiscardModal();
+                bool? result = ShowDiscardModal();
                 if (result == false)
                 {
                     _unsavedChanges = false;
@@ -254,7 +255,7 @@ namespace ProtonVPN.Profiles.Form
 
         protected List<IServerViewModel> GetPredefinedServerViewModels()
         {
-            return new List<IServerViewModel>
+            return new()
             {
                 new PredefinedServerViewModel
                 {
@@ -323,11 +324,11 @@ namespace ProtonVPN.Profiles.Form
 
         protected virtual Profile GetProfile()
         {
-            return new Profile(_profileId)
+            return new(_profileId)
             {
                 Features = GetFeatures(),
                 Name = ProfileName,
-                Protocol = Protocol,
+                VpnProtocol = VpnProtocol,
                 ColorCode = ColorCode,
                 ProfileType = SelectedServer.Type
             };

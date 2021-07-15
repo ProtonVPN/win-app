@@ -23,10 +23,10 @@ using System.Collections.Specialized;
 using System.ComponentModel;
 using ProtonVPN.Common;
 using ProtonVPN.Common.KillSwitch;
+using ProtonVPN.Common.Networking;
 using ProtonVPN.Core.Announcements;
 using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Native.Structures;
-using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Profiles.Cached;
 using ProtonVPN.Core.Settings.Contracts;
 
@@ -91,7 +91,7 @@ namespace ProtonVPN.Core.Settings
         bool FeatureMaintenanceTrackerEnabled { get; set; }
         bool FeaturePollNotificationApiEnabled { get; set; }
         TimeSpan MaintenanceCheckInterval { get; set; }
-        bool UseTunAdapter { get; set; }
+        OpenVpnAdapter NetworkAdapterType { get; set; }
         bool VpnAcceleratorEnabled { get; set; }
         bool FeatureVpnAcceleratorEnabled { get; set; }
         bool FeatureStreamingServicesLogosEnabled { get; set; }
@@ -110,6 +110,6 @@ namespace ProtonVPN.Core.Settings
         bool IsVpnAcceleratorEnabled();
         bool IsSmartReconnectEnabled();
         bool IsSmartReconnectNotificationsEnabled();
-        Protocol GetProtocol();
+        VpnProtocol GetProtocol();
     }
 }

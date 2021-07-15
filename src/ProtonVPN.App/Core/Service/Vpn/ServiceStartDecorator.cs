@@ -59,9 +59,14 @@ namespace ProtonVPN.Core.Service.Vpn
             await InvokeAction(() => _decorated.Connect(connectionRequest));
         }
 
-        public async Task UpdateServers(IReadOnlyList<VpnHost> servers, VpnConfig config)
+        public async Task UpdateServers(IReadOnlyList<VpnHost> servers)
         {
-            await InvokeAction(() => _decorated.UpdateServers(servers, config));
+            await InvokeAction(() => _decorated.UpdateServers(servers));
+        }
+
+        public async Task UpdateAuthCertificate(string certificate)
+        {
+            await InvokeAction(() => _decorated.UpdateAuthCertificate(certificate));
         }
 
         public async Task Disconnect(VpnError error)

@@ -1,3 +1,6 @@
 [submodule "src/srp"]
 	path = src/srp
 	url = https://github.com/ProtonMail/go-srp
+[submodule "src/ProtonVPN.LocalAgent"]
+	path = src/ProtonVPN.LocalAgent
+	url = https://gitlab.protontech.ch/ProtonVPN/development/clients-shared.git

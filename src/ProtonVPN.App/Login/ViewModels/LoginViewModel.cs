@@ -258,7 +258,7 @@ namespace ProtonVPN.Login.ViewModels
                 ApiResponseResult<AuthResponse> loginResult = await _userAuth.LoginUserAsync(username, Password);
                 await HandleLoginResultAsync(loginResult);
             }
-            catch (HttpRequestException)
+            catch (HttpRequestException ex)
             {
                 if (await DisableGuestHole() || _guestHoleConnector.Servers().Count == 0)
                 {

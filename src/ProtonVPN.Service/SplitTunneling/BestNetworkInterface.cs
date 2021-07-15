@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,23 +18,26 @@
  */
 
 using System.Net;
+using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Os.Net;
-using ProtonVPN.Service.Network;
+using ProtonVPN.Service.Settings;
 
 namespace ProtonVPN.Service.SplitTunneling
 {
     internal class BestNetworkInterface
     {
-        private readonly ICurrentNetworkInterface _currentNetworkInterface;
+        private readonly Common.Configuration.Config _config;
+        private readonly IServiceSettings _serviceSettings;
 
-        public BestNetworkInterface(ICurrentNetworkInterface currentNetworkInterface)
+        public BestNetworkInterface(Common.Configuration.Config config, IServiceSettings serviceSettings)
         {
-            _currentNetworkInterface = currentNetworkInterface;
+            _config = config;
+            _serviceSettings = serviceSettings;
         }
 
         public IPAddress LocalIpAddress()
         {
-            return NetworkUtil.GetBestInterfaceIp(_currentNetworkInterface.HardwareId);
+            return NetworkUtil.GetBestInterfaceIp(_config.GetHardwareId(_serviceSettings.OpenVpnAdapter));
         }
     }
 }

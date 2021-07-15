@@ -29,6 +29,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -37,6 +38,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="FluentAssertions, Version=5.8.0.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
@@ -49,6 +51,7 @@
       <HintPath>..\..\packages\MSTest.TestFramework.2.1.1\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml" />
@@ -56,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Vpn\VpnConnectionRequestContractTest.cs" />
     <Compile Include="Vpn\VpnProtocolContractTest.cs" />
     <Compile Include="Vpn\VpnStatusContractTest.cs" />
     <Compile Include="Vpn\VpnErrorTypeContractTest.cs" />
@@ -68,6 +72,10 @@
     <ProjectReference Include="..\..\src\ProtonVPN.Common\ProtonVPN.Common.csproj">
       <Project>{03B8E43C-5680-4803-A745-0A104FE6620C}</Project>
       <Name>ProtonVPN.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\ProtonVPN.Crypto\ProtonVPN.Crypto.csproj">
+      <Project>{BA2D505E-CED3-4FCB-A463-DAF6B77C18DE}</Project>
+      <Name>ProtonVPN.Crypto</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\ProtonVPN.Service.Contract\ProtonVPN.Service.Contract.csproj">
       <Project>{96c5d688-c0f1-4a63-9e26-e485fd0e1365}</Project>

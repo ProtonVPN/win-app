@@ -231,7 +231,7 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<UserInfoHandler>().AsImplementedInterfaces().SingleInstance();
 
             builder.RegisterType<VpnProfileHandler>().AsImplementedInterfaces().SingleInstance();
-            builder.RegisterType<VpnCredentialProvider>().SingleInstance();
+            builder.RegisterType<VpnCredentialProvider>().As<IVpnCredentialProvider>().SingleInstance();
             builder.Register(c => new EventTimer(
                     c.Resolve<EventClient>(),
                     c.Resolve<Common.Configuration.Config>().EventCheckInterval.RandomizedWithDeviation(0.2))) 

@@ -25,7 +25,7 @@ namespace ProtonVPN.Common.Vpn
 {
     public struct VpnHost
     {
-        public VpnHost(string name, string ip, string label)
+        public VpnHost(string name, string ip, string label, string x25519PublicKey)
         {
             AssertHostNameIsValid(name);
             AssertIpAddressIsValid(ip);
@@ -33,6 +33,7 @@ namespace ProtonVPN.Common.Vpn
             Name = name;
             Ip = ip;
             Label = label;
+            X25519PublicKey = x25519PublicKey;
         }
 
         public string Name { get; }
@@ -40,6 +41,8 @@ namespace ProtonVPN.Common.Vpn
         public string Ip { get; }
 
         public string Label { get; }
+
+        public string X25519PublicKey { get; }
 
         public bool IsEmpty() => string.IsNullOrEmpty(Name) && string.IsNullOrEmpty(Ip);
 
@@ -71,11 +74,11 @@ namespace ProtonVPN.Common.Vpn
 
         private static bool AreEqual(VpnHost h1, VpnHost h2)
         {
-            return h1.Ip == h2.Ip && 
+            return h1.Ip == h2.Ip &&
                    (h1.Label == h2.Label || (string.IsNullOrEmpty(h1.Label) && string.IsNullOrEmpty(h2.Label)));
         }
 
-        public static bool operator !=(VpnHost h1, VpnHost h2) 
+        public static bool operator !=(VpnHost h1, VpnHost h2)
         {
             return !AreEqual(h1, h2);
         }

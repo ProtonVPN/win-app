@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -20,6 +20,7 @@
 using System;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json;
+using ProtonVPN.Common.Networking;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Servers.Models;
 
@@ -27,8 +28,8 @@ namespace ProtonVPN.Core.Profiles
 {
     public class Profile
     {
-        private static readonly Regex _hexColorRegex = new Regex("^#(?:[0-9a-fA-F]{3}){1,2}$");
-        private static readonly ColorProvider _colorProvider = new ColorProvider();
+        private static readonly Regex HexColorRegex = new Regex("^#(?:[0-9a-fA-F]{3}){1,2}$");
+        private static readonly ColorProvider ColorProvider = new();
 
         public Profile() : this(null)
         { }
@@ -63,10 +64,10 @@ namespace ProtonVPN.Core.Profiles
         public string Name { get; set; }
 
         /// <summary>
-        /// For predefined and temporary profiles the <see cref="Protocol"/> value is set to
-        /// Default Protocol from Settings right before connecting/reconnecting.
+        /// For predefined and temporary profiles the <see cref="Common.Networking.VpnProtocol"/> value is set to
+        /// Default VpnProtocol from Settings right before connecting/reconnecting.
         /// </summary>
-        public Protocol Protocol { get; set; } = Protocol.Auto;
+        public VpnProtocol VpnProtocol { get; set; } = VpnProtocol.Smart;
 
         public string CountryCode { get; set; }
 
@@ -105,12 +106,12 @@ namespace ProtonVPN.Core.Profiles
 
         private bool IsColorCodeValid(string colorCode)
         {
-            return colorCode != null && _hexColorRegex.IsMatch(colorCode);
+            return colorCode != null && HexColorRegex.IsMatch(colorCode);
         }
 
         private string GetRandomColor()
         {
-            return _colorProvider.RandomColor();
+            return ColorProvider.RandomColor();
         }
 
         public bool IsColorCodeValid()

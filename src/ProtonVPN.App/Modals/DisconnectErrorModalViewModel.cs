@@ -120,7 +120,7 @@ namespace ProtonVPN.Modals
             await CloseModalAsync();
             await _vpnManager.ReconnectAsync(new VpnReconnectionSettings
             {
-                IsToReconnectIfDisconnected = true, 
+                IsToReconnectIfDisconnected = true,
                 IsToShowReconnectionPopup = true
             });
         }
@@ -137,8 +137,8 @@ namespace ProtonVPN.Modals
             await CloseModalAsync();
             await _vpnManager.ReconnectAsync(new VpnReconnectionSettings
             {
-                IsToReconnectIfDisconnected = true, 
-                IsToExcludeLastServer = true, 
+                IsToReconnectIfDisconnected = true,
+                IsToExcludeLastServer = true,
                 IsToShowReconnectionPopup = true
             });
         }

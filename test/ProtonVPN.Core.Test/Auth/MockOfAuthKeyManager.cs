@@ -37,11 +37,11 @@ namespace ProtonVPN.Core.Test.Auth
         {
             _secretKey = null;
             _publicKey = null;
-            
+
             MethodCalls = new Dictionary<string, int>();
-            
+
             Type type = typeof(MockOfAuthKeyManager);
-            MethodInfo[] methods = type.GetMethods(BindingFlags.Public|BindingFlags.Instance|BindingFlags.DeclaredOnly);
+            MethodInfo[] methods = type.GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly);
             foreach (MethodInfo method in methods)
             {
                 MethodCalls.Add(method.Name, 0);
@@ -77,10 +77,10 @@ namespace ProtonVPN.Core.Test.Auth
             _publicKey = null;
         }
 
-        public AsymmetricKeyPair GetKeyPair()
+        public AsymmetricKeyPair GetKeyPairOrNull()
         {
             IncrementMethodCalls();
-            return new AsymmetricKeyPair(_secretKey, _publicKey);
+            return _secretKey == null || _publicKey == null ? null : new AsymmetricKeyPair(_secretKey, _publicKey);
         }
 
         public SecretKey GetSecretKey()

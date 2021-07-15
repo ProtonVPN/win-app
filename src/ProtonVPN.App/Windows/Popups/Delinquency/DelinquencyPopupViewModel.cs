@@ -39,7 +39,7 @@ namespace ProtonVPN.Windows.Popups.Delinquency
         public Server ToServer { get; private set; }
         public bool IsToServerSecureCore { get; private set; }
 
-        public DelinquencyPopupViewModel(IActiveUrls urls, 
+        public DelinquencyPopupViewModel(IActiveUrls urls,
             Lazy<ConnectionStatusViewModel> connectionStatusViewModel,
             AppWindow appWindow)
             : base(appWindow)

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -22,12 +22,17 @@ using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.OS.Net;
 using ProtonVPN.Common.OS.Processes;
+using ProtonVPN.Common.OS.Services;
 using ProtonVPN.Common.Threading;
+using ProtonVPN.Crypto;
 using ProtonVPN.Vpn.Common;
 using ProtonVPN.Vpn.Connection;
+using ProtonVPN.Vpn.LocalAgent;
 using ProtonVPN.Vpn.Management;
 using ProtonVPN.Vpn.OpenVpn;
+using ProtonVPN.Vpn.SplitTunnel;
 using ProtonVPN.Vpn.SynchronizationEvent;
+using ProtonVPN.Vpn.WireGuard;
 
 namespace ProtonVPN.Vpn.Config
 {
@@ -35,9 +40,10 @@ namespace ProtonVPN.Vpn.Config
     {
         public void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<EndpointScanner>().As<IEndpointScanner>().SingleInstance();
+            builder.RegisterType<OpenVpnEndpointScanner>().As<IEndpointScanner>().SingleInstance();
             builder.RegisterType<PingableOpenVpnPort>().SingleInstance();
             builder.RegisterType<NetworkInterfaceLoader>().As<INetworkInterfaceLoader>().SingleInstance();
+            builder.RegisterType<SplitTunnelRouting>().SingleInstance();
             builder.Register(c =>
                 {
                     ILogger logger = c.Resolve<ILogger>();
@@ -54,7 +60,7 @@ namespace ProtonVPN.Vpn.Config
             ).SingleInstance();
         }
 
-        public IVpnConnection VpnConnection(IComponentContext c)
+        public IVpnConnection GetOpenVpnConnection(IComponentContext c)
         {
             ILogger logger = c.Resolve<ILogger>();
             OpenVpnConfig config = c.Resolve<OpenVpnConfig>();
@@ -64,7 +70,7 @@ namespace ProtonVPN.Vpn.Config
             IEndpointScanner endpointScanner = c.Resolve<IEndpointScanner>();
             VpnEndpointCandidates candidates = new();
 
-            OpenVpnConnection vpnConnection = new(
+            ISingleVpnConnection openVpnConnection = new OpenVpnConnection(
                 logger,
                 c.Resolve<INetworkInterfaceLoader>(),
                 c.Resolve<OpenVpnProcess>(),
@@ -90,7 +96,31 @@ namespace ProtonVPN.Vpn.Config
                             endpointScanner,
                             new QueueingEventsWrapper(
                                 taskQueue,
-                                vpnConnection)))));
+                                openVpnConnection)))));
+        }
+
+        public IVpnConnection GetWireguardConnection(IComponentContext c)
+        {
+            ILogger logger = c.Resolve<ILogger>();
+            ITaskQueue taskQueue = c.Resolve<ITaskQueue>();
+            ProtonVPN.Common.Configuration.Config config = c.Resolve<ProtonVPN.Common.Configuration.Config>();
+
+            ISingleVpnConnection wireGuardVpnConnection = new WireGuardConnection(
+                logger,
+                config,
+                new WireGuardService(logger, config, new SafeService(
+                        new LoggingService(logger,
+                            new SystemService(config.WireGuard.ServiceName, c.Resolve<IOsProcesses>())))),
+                new TrafficManager(config.WireGuard.PipeName),
+                new StatusManager(logger, config.WireGuard.LogFilePath),
+                new X25519KeyGenerator());
+
+            return new LoggingWrapper(logger,
+                new ReconnectingWrapper(logger, new VpnEndpointCandidates(), new WireGuardEndpointScanner(),
+                    new HandlingRequestsWrapper(logger, taskQueue,
+                        new QueueingEventsWrapper(taskQueue,
+                            new LocalAgentWrapper(logger, new EventReceiver(logger), c.Resolve<SplitTunnelRouting>(),
+                                wireGuardVpnConnection)))));
         }
     }
 }

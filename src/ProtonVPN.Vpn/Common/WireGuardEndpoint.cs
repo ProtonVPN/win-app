@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -21,25 +21,18 @@ using ProtonVPN.Common.Vpn;
 
 namespace ProtonVPN.Vpn.Common
 {
-    public class VpnEndpoint
+    public class WireGuardEndpoint : VpnEndpointBase
     {
-        public VpnEndpoint(VpnHost server, VpnProtocol protocol) : this(server, protocol, 0)
+        public const int DefaultPort = 51820;
+
+        public WireGuardEndpoint(VpnHost server) 
+            : base(server, DefaultPort)
         {
         }
 
-        public VpnEndpoint(VpnHost server, VpnProtocol protocol, int port)
+        public WireGuardEndpoint(VpnHost server, int port)
+            : base(server, port)
         {
-            Server = server;
-            Protocol = protocol;
-            Port = port;
         }
-
-        public VpnHost Server { get; }
-
-        public VpnProtocol Protocol { get; }
-
-        public int Port { get; }
-
-        public static VpnEndpoint EmptyEndpoint { get; } = new(default, default);
     }
 }

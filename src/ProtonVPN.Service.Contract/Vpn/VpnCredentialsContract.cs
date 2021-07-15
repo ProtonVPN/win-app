@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,17 +17,38 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
+using ProtonVPN.Service.Contract.Crypto;
 
 namespace ProtonVPN.Service.Contract.Vpn
 {
     [DataContract]
-    public class VpnCredentialsContract
+    public class VpnCredentialsContract : IValidatableObject
     {
         [DataMember]
         public string Username { get; set; }
 
         [DataMember]
         public string Password { get; set; }
+
+        [DataMember]
+        public string ClientCertPem { get; set; }
+        
+        [DataMember]
+        public AsymmetricKeyPairContract ClientKeyPair { get; set; }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            IEnumerable<ValidationResult> result = new List<ValidationResult>();
+
+            if (ClientKeyPair != null)
+            {
+                result = ClientKeyPair.Validate(validationContext);
+            }
+
+            return result;
+        }
     }
 }

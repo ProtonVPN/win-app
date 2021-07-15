@@ -21,6 +21,7 @@ using System;
 using System.Dynamic;
 using System.Threading;
 using System.Threading.Tasks;
+using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.ConnectionInfo;
 using ProtonVPN.Core.Auth;
@@ -49,7 +50,10 @@ namespace ProtonVPN.Vpn
         private readonly DelinquencyPopupViewModel _delinquencyPopupViewModel;
         private readonly IVpnManager _vpnManager;
         private readonly INotificationSender _notificationSender;
+        private readonly IAuthCertificateManager _authCertificateManager;
+        private readonly IVpnServiceManager _vpnServiceManager;
 
+        private string _lastAuthCertificate = string.Empty;
         private bool _loggedIn;
 
         public DisconnectError(IModals modals, 
@@ -60,7 +64,9 @@ namespace ProtonVPN.Vpn
             IPopupWindows popupWindows, 
             DelinquencyPopupViewModel delinquencyPopupViewModel, 
             IVpnManager vpnManager, 
-            INotificationSender notificationSender)
+            INotificationSender notificationSender,
+            IAuthCertificateManager authCertificateManager,
+            IVpnServiceManager vpnServiceManager)
         {
             _modals = modals;
             _appSettings = appSettings;
@@ -71,17 +77,39 @@ namespace ProtonVPN.Vpn
             _delinquencyPopupViewModel = delinquencyPopupViewModel;
             _vpnManager = vpnManager;
             _notificationSender = notificationSender;
+            _authCertificateManager = authCertificateManager;
+            _vpnServiceManager = vpnServiceManager;
         }
 
         public async Task OnVpnStateChanged(VpnStateChangedEventArgs e)
         {
-            if (_appSettings.UseTunAdapter && e.Error == VpnError.TapAdapterInUseError)
+            if (_appSettings.NetworkAdapterType == OpenVpnAdapter.Tun && e.Error == VpnError.TapAdapterInUseError)
             {
                 _modals.Show<TunInUseModalViewModel>();
                 return;
             }
 
             VpnStatus status = e.State.Status;
+
+            switch (e.Error)
+            {
+                case VpnError.CertRevokedOrExpired:
+                    await _authCertificateManager.ForceRequestNewKeyPairAndCertificateAsync();
+                    await _vpnManager.ReconnectAsync(new VpnReconnectionSettings { IsToReconnectIfDisconnected = true });
+                    return;
+                case VpnError.CertificateExpired when e.State.Status == VpnStatus.ActionRequired:
+                    _lastAuthCertificate = _appSettings.AuthenticationCertificatePem;
+                    await _authCertificateManager.ForceRequestNewCertificateAsync();
+                    if (FailedToUpdateAuthCert())
+                    {
+                        await _vpnManager.DisconnectAsync(VpnError.CertificateExpired);
+                    }
+                    else
+                    {
+                        await _vpnServiceManager.UpdateAuthCertificate(_appSettings.AuthenticationCertificatePem);
+                    }
+                    return;
+            }
 
             if (ModalShouldBeShown(e))
             {
@@ -99,6 +127,11 @@ namespace ProtonVPN.Vpn
                     Post(CloseModalAsync);
                 }
             }
+        }
+
+        private bool FailedToUpdateAuthCert()
+        {
+            return _lastAuthCertificate == _appSettings.AuthenticationCertificatePem;
         }
 
         private bool ModalShouldBeShown(VpnStateChangedEventArgs e)

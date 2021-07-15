@@ -36,7 +36,7 @@ namespace ProtonVPN.Windows.Popups.SubscriptionExpiration
         public Server ToServer { get; private set; }
         public bool IsToServerSecureCore { get; private set; }
 
-        public SubscriptionExpiredPopupViewModel(IActiveUrls urls, 
+        public SubscriptionExpiredPopupViewModel(IActiveUrls urls,
             Lazy<ConnectionStatusViewModel> connectionStatusViewModel,
             AppWindow appWindow)
             : base(urls, appWindow)

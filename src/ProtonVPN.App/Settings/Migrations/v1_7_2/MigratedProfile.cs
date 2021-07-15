@@ -51,7 +51,7 @@ namespace ProtonVPN.Settings.Migrations.v1_7_2
                 return new Profile(profileId)
                 {
                     Name = _profile.Name,
-                    Protocol = new MigratedProtocol(_profile.Protocol),
+                    VpnProtocol = new MigratedProtocol(_profile.Protocol),
                     CountryCode = new MigratedCountryCode(_profile.Country, server),
                     ColorCode = new MigratedColorCode(_profile.Color),
                     ProfileType = new MigratedProfileType(_profile.ProfileType),

@@ -17,22 +17,23 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Vpn.Common;
 using System.Collections.Generic;
 using ProtonVPN.Common;
+using ProtonVPN.Common.Networking;
+using ProtonVPN.Vpn.Common;
 
 namespace ProtonVPN.Vpn.OpenVpn
 {
     public class OpenVpnProcessParams
     {
         public OpenVpnProcessParams(
-            VpnEndpoint endpoint,
+            OpenVpnEndpoint endpoint,
             int managementPort,
             string password,
             IReadOnlyCollection<string> customDns,
             SplitTunnelMode splitTunnelMode,
             IReadOnlyCollection<string> splitTunnelIPs,
-            bool useTunAdapter,
+            OpenVpnAdapter openVpnAdapter,
             string interfaceGuid)
         {
             Endpoint = endpoint;
@@ -41,11 +42,11 @@ namespace ProtonVPN.Vpn.OpenVpn
             CustomDns = customDns;
             SplitTunnelMode = splitTunnelMode;
             SplitTunnelIPs = splitTunnelIPs;
-            UseTunAdapter = useTunAdapter;
+            OpenVpnAdapter = openVpnAdapter;
             InterfaceGuid = interfaceGuid;
         }
 
-        public VpnEndpoint Endpoint { get; }
+        public OpenVpnEndpoint Endpoint { get; }
 
         public int ManagementPort { get; }
 
@@ -57,7 +58,7 @@ namespace ProtonVPN.Vpn.OpenVpn
 
         public IReadOnlyCollection<string> SplitTunnelIPs { get; }
 
-        public bool UseTunAdapter { get; }
+        public OpenVpnAdapter OpenVpnAdapter { get; }
 
         public string InterfaceGuid { get; }
     }

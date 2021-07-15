@@ -23,23 +23,22 @@ namespace ProtonVPN.Service.Firewall
 {
     public class FirewallParams
     {
-        public FirewallParams(string serverIp, bool dnsLeakOnly, uint interfaceIndex, bool persistent)
+        public static FirewallParams Empty => new()
         {
-            ServerIp = serverIp;
-            DnsLeakOnly = dnsLeakOnly;
-            InterfaceIndex = interfaceIndex;
-            Persistent = persistent;
-        }
+            ServerIp = string.Empty,
+        };
 
-        public static FirewallParams Null => new(string.Empty, false, 0, false);
+        public string ServerIp { get; set; }
 
-        public string ServerIp { get; }
+        public bool DnsLeakOnly { get; set; }
 
-        public bool DnsLeakOnly { get; }
+        public uint InterfaceIndex { get; set; }
 
-        public uint InterfaceIndex { get; }
+        public bool Persistent { get; set; }
 
-        public bool Persistent { get; }
+        public bool AddInterfaceFilters { get; set; }
+
+        public bool PermanentStateAfterReboot { get; set; }
 
         public SessionType SessionType => Persistent ? SessionType.Permanent : SessionType.Dynamic;
     }

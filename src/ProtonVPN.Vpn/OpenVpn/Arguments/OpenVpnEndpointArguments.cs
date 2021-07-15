@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -20,28 +20,28 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using ProtonVPN.Common.Vpn;
+using ProtonVPN.Common.Networking;
 using ProtonVPN.Vpn.Common;
 
 namespace ProtonVPN.Vpn.OpenVpn.Arguments
 {
-    internal class EndpointArguments : IEnumerable<string>
+    internal class OpenVpnEndpointArguments : IEnumerable<string>
     {
-        private readonly VpnEndpoint _endpoint;
+        private readonly OpenVpnEndpoint _endpoint;
 
-        public EndpointArguments(VpnEndpoint endpoint)
+        public OpenVpnEndpointArguments(OpenVpnEndpoint endpoint)
         {
             _endpoint = endpoint;
         }
 
         public IEnumerator<string> GetEnumerator()
         {
-            yield return $"--remote {_endpoint.Server.Ip} {_endpoint.Port} {OpenVpnProtocol(_endpoint.Protocol)}";
+            yield return $"--remote {_endpoint.Server.Ip} {_endpoint.Port} {VpnProtocolToString(_endpoint.VpnProtocol)}";
         }
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
-        private string OpenVpnProtocol(VpnProtocol protocol)
+        private string VpnProtocolToString(VpnProtocol protocol)
         {
             switch (protocol)
             {

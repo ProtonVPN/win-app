@@ -63,7 +63,7 @@ namespace ProtonVPN.Core.Api.Contracts
         public bool? PollNotificationApi { get; set; }
 
         public bool? StreamingServicesLogos { get; set; }
-        
+
         public bool? SmartReconnect { get; set; }
     }
 }

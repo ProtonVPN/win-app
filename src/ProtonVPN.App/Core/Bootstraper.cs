@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -131,10 +131,11 @@ namespace ProtonVPN.Core
 
             Resolve<ILogger>().Info($"= Booting ProtonVPN version: {appConfig.AppVersion} os: {Environment.OSVersion.VersionString} {appConfig.OsBits} bit =");
             Resolve<LogCleaner>().Clean(appConfig.AppLogFolder, 30);
-            LoadServersFromCache();
 
             RegisterMigrations(Resolve<AppSettingsStorage>(), Resolve<IEnumerable<IAppSettingsMigration>>());
             RegisterMigrations(Resolve<UserSettings>(), Resolve<IEnumerable<IUserSettingsMigration>>());
+
+            LoadServersFromCache();
             Resolve<SyncedAutoStartup>().Sync();
 
             IncreaseAppStartCount();

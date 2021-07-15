@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -28,7 +28,7 @@ namespace ProtonVPN.Service
         {
             if (!Environment.UserInteractive)
             {
-                var bootstrapper = new Bootstrapper();
+                Bootstrapper bootstrapper = new();
                 bootstrapper.Initialize();
                 return;
             }

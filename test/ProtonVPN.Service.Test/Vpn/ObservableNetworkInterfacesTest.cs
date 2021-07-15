@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Net;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
@@ -197,6 +198,8 @@ namespace ProtonVPN.Service.Test.Vpn
             public bool IsLoopback => false;
 
             public bool IsActive => false;
+
+            public IPAddress DefaultGateway => IPAddress.None;
 
             public uint Index => 0;
         }

@@ -69,10 +69,10 @@ namespace ProtonVPN.App.Test.Core.Service.Vpn
             var sut = new ServiceStartDecorator(_logger, _decorated, _modals, _baseFilteringEngineService, _vpnService);
 
             // Act
-            await sut.UpdateServers(default, default);
+            await sut.UpdateServers(default);
 
             // Assert
-            await _decorated.DidNotReceive().UpdateServers(default, default);
+            await _decorated.DidNotReceive().UpdateServers(default);
         }
 
         [TestMethod]

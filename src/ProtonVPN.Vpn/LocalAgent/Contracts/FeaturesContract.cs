@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,12 +17,19 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Core.Profiles
+using Newtonsoft.Json;
+
+namespace ProtonVPN.Vpn.LocalAgent.Contracts
 {
-    public enum Protocol
+    public class FeaturesContract
     {
-        OpenVpnTcp = 1,
-        OpenVpnUdp = 2,
-        Auto = 3
+        [JsonProperty(PropertyName = "bouncing")]
+        public string Bouncing { get; set; }
+
+        [JsonProperty(PropertyName = "split-tcp")]
+        public bool SplitTcp { get; set; }
+
+        [JsonProperty(PropertyName = "netshield-level")]
+        public int NetShieldLevel { get; set; }
     }
 }

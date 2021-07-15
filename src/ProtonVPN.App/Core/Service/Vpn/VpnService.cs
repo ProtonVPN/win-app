@@ -59,8 +59,11 @@ namespace ProtonVPN.Core.Service.Vpn
         public Task Connect(VpnConnectionRequestContract vpnConnectionRequest) =>
             Invoke(p => p.Connect(vpnConnectionRequest).Wrap());
 
-        public Task UpdateServers(VpnHostContract[] servers, VpnConfigContract config) =>
-            Invoke(p => p.UpdateServers(servers, config).Wrap());
+        public Task UpdateServers(VpnHostContract[] servers) =>
+            Invoke(p => p.UpdateServers(servers).Wrap());
+
+        public Task UpdateAuthCertificate(string certificate) =>
+            Invoke(p => p.UpdateAuthCertificate(certificate).Wrap());
 
         public Task Disconnect(SettingsContract settings, VpnErrorTypeContract vpnError) =>
             Invoke(p => p.Disconnect(settings, vpnError).Wrap());
@@ -71,7 +74,7 @@ namespace ProtonVPN.Core.Service.Vpn
         public Task<InOutBytesContract> Total() =>
             Invoke(p => p.Total());
 
-        private async Task<T> Invoke<T>(Func<IVpnConnectionContract, Task<T>> serviceCall, 
+        private async Task<T> Invoke<T>(Func<IVpnConnectionContract, Task<T>> serviceCall,
             [System.Runtime.CompilerServices.CallerMemberName] string memberName = "")
         {
             int retryCount = 1;

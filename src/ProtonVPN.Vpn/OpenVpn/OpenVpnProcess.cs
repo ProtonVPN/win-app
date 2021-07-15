@@ -23,6 +23,7 @@ using ProtonVPN.Common;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.OS.Processes;
 using ProtonVPN.Vpn.OpenVpn.Arguments;
 
@@ -88,16 +89,16 @@ namespace ProtonVPN.Vpn.OpenVpn
             CommandLineArguments arguments = new CommandLineArguments()
                 .Add(new BasicArguments(_config))
                 .Add(new ManagementArguments(_config, processParams.ManagementPort))
-                .Add(new EndpointArguments(processParams.Endpoint))
-                .Add(new BindArguments(new BestLocalEndpoint(processParams.Endpoint).Ip()))
+                .Add(new OpenVpnEndpointArguments(processParams.Endpoint))
+                .Add(new BindArguments(new BestLocalOpenVpnEndpoint(processParams.Endpoint).Ip()))
                 .Add(new CustomDnsArguments(processParams.CustomDns))
                 .Add(new TlsVerifyArguments(_config, processParams.Endpoint.Server.Name))
                 .Add(new BaseRouteArgument(processParams.SplitTunnelMode))
                 .Add(new SplitTunnelRoutesArgument(processParams.SplitTunnelIPs, processParams.SplitTunnelMode));
 
-            if (processParams.UseTunAdapter)
+            if (processParams.OpenVpnAdapter == OpenVpnAdapter.Tun)
             {
-                arguments.Add(new NetworkDriverArgument(processParams.InterfaceGuid, processParams.UseTunAdapter));
+                arguments.Add(new NetworkDriverArgument(processParams.InterfaceGuid, processParams.OpenVpnAdapter));
             }
 
             return arguments;

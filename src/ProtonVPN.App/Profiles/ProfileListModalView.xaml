@@ -27,6 +27,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         xmlns:coreProfiles="clr-namespace:ProtonVPN.Core.Profiles;assembly=ProtonVPN.Core"
                         xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
                         xmlns:resource="clr-namespace:ProtonVPN.Resource;assembly=ProtonVPN.Resource"
+                        xmlns:networking="clr-namespace:ProtonVPN.Common.Networking;assembly=ProtonVPN.Common"
                         Style="{StaticResource BaseWindowStyle}"
                         Title="{translations:Loc Profiles_ttl}"
                         Width="1000"
@@ -87,7 +88,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <Setter Property="Padding" Value="0"/>
                 <Setter Property="Foreground" Value="White"/>
                 <Style.Triggers>
-                    <DataTrigger Binding="{Binding Protocol}" Value="{x:Static coreProfiles:Protocol.Auto}">
+                    <DataTrigger Binding="{Binding Protocol}" Value="{x:Static networking:VpnProtocol.Smart}">
                         <Setter Property="Foreground" Value="#777783"/>
                     </DataTrigger>
                 </Style.Triggers>
@@ -115,7 +116,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto" SharedSizeGroup="Status"/>
                     <ColumnDefinition Width="Auto" SharedSizeGroup="Connection"/>
-                    <ColumnDefinition Width="Auto" SharedSizeGroup="Protocol"/>
+                    <ColumnDefinition Width="Auto" SharedSizeGroup="VpnProtocol"/>
                     <ColumnDefinition Width="Auto" SharedSizeGroup="Action"/>
                 </Grid.ColumnDefinitions>
 
@@ -137,7 +138,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="Auto" SharedSizeGroup="Status"/>
                                     <ColumnDefinition Width="Auto" SharedSizeGroup="Connection"/>
-                                    <ColumnDefinition Width="Auto" SharedSizeGroup="Protocol"/>
+                                    <ColumnDefinition Width="Auto" SharedSizeGroup="VpnProtocol"/>
                                     <ColumnDefinition Width="Auto" SharedSizeGroup="Action"/>
                                 </Grid.ColumnDefinitions>
                                 <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Stretch">
@@ -162,7 +163,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                        FontSize="16"
                                        Padding="0,5,0,5"
                                        Foreground="#777783"
-                                       Content="{Binding Protocol, Converter={StaticResource EnumToDisplayTextConverter}}"/>
+                                       Content="{Binding VpnProtocol, Converter={StaticResource EnumToDisplayTextConverter}}"/>
                                 <StackPanel Grid.Column="4" Orientation="Horizontal">
                                     <Button Style="{StaticResource RowButton}"
                                             VerticalAlignment="Center"
@@ -181,7 +182,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="Auto" SharedSizeGroup="Status"/>
                                     <ColumnDefinition Width="Auto" SharedSizeGroup="Connection"/>
-                                    <ColumnDefinition Width="Auto" SharedSizeGroup="Protocol"/>
+                                    <ColumnDefinition Width="Auto" SharedSizeGroup="VpnProtocol"/>
                                     <ColumnDefinition Width="Auto" SharedSizeGroup="Action"/>
                                 </Grid.ColumnDefinitions>
                                 <DockPanel Grid.Column="0" HorizontalAlignment="Stretch">
@@ -216,7 +217,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 <StackPanel Grid.Column="3">
                                     <Label Margin="0,5,15,5"
                                            Style="{StaticResource Protocol}"
-                                           Content="{Binding Protocol, Converter={StaticResource EnumToDisplayTextConverter}}"/>
+                                           Content="{Binding VpnProtocol, Converter={StaticResource EnumToDisplayTextConverter}}"/>
                                 </StackPanel>
 
                                 <StackPanel Grid.Column="4" Orientation="Horizontal">

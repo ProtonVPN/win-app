@@ -874,17 +874,21 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <value>Protocol:</value>
     <comment>The label for Protocol combo box in Profile window</comment>
   </data>
-  <data name="Protocol_val_Auto" xml:space="preserve">
+  <data name="VpnProtocol_val_Smart" xml:space="preserve">
     <value>Smart</value>
-    <comment>The name of VPN protocol selected for the Profile. Means that the protocol will be automatically selected when connecting.</comment>
+    <comment>The name of the VPN protocol selected for the Profile. Means that the protocol will be automatically selected when connecting.</comment>
   </data>
-  <data name="Protocol_val_OpenVpnTcp" xml:space="preserve">
+  <data name="VpnProtocol_val_OpenVpnTcp" xml:space="preserve">
     <value>OpenVPN (TCP)</value>
-    <comment>The name of VPN protocol selected for the Profile. Do not translate.</comment>
+    <comment>Protocol name displayed all over the app (do not translate)</comment>
   </data>
-  <data name="Protocol_val_OpenVpnUdp" xml:space="preserve">
+  <data name="VpnProtocol_val_OpenVpnUdp" xml:space="preserve">
     <value>OpenVPN (UDP)</value>
-    <comment>The name of VPN protocol selected for the Profile. Do not translate.</comment>
+    <comment>Protocol name displayed all over the app (do not translate)</comment>
+  </data>
+  <data name="WireGuard_lbl" xml:space="preserve">
+    <value>WireGuard®</value>
+    <comment>WireGuard client name (do not translate)</comment>
   </data>
   <data name="ProfileSyncStatus_val_Succeeded_Info_NoData" xml:space="preserve">
     <value>No profile changes to synchronize</value>
@@ -2330,7 +2334,7 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <value>has failed</value>
     <comment>The end of text for VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text after imaginary placeholder {0} in the text string "Connection to {0} has failed". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
-  <data name="Settings_Connection_DefaultProtocol_val_Auto" xml:space="preserve">
+  <data name="Settings_Connection_DefaultProtocol_val_Smart" xml:space="preserve">
     <value>Smart (default)</value>
     <comment>The protocol selection displayed in Default Protocol combo box in Connection tab of Settings window.</comment>
   </data>
@@ -2413,18 +2417,6 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
   <data name="Sidebar_Servers_info_plus" xml:space="preserve">
     <value>Plus Server</value>
     <comment>The description displayed in a tooltip of P icon on a sidebar server item</comment>
-  </data>
-  <data name="VpnProtocol_val_Auto" xml:space="preserve">
-    <value>Smart</value>
-    <comment>The name of VPN protocol selected for the Profile. Means that the protocol will be automatically selected when connecting.</comment>
-  </data>
-  <data name="VpnProtocol_val_OpenVpnTcp" xml:space="preserve">
-    <value>OpenVPN (TCP)</value>
-    <comment>Protocol name displayed all over  the app (do not translate)</comment>
-  </data>
-  <data name="VpnProtocol_val_OpenVpnUdp" xml:space="preserve">
-    <value>OpenVPN (UDP)</value>
-    <comment>Protocol name displayed all over  the app (do not translate)</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_TlsCertificateError" xml:space="preserve">
     <value>There's a problem validating the VPN server certificate, which might indicate that the network connection is being tampered with or the server you are trying to connect to has a configuration problem. Get help from our customer support by sending a &lt;Hyperlink Foreground="White" Command="{Binding ReportBugCommand}"&gt;&lt;Run Text="Bug Report"/&gt;&lt;/Hyperlink&gt;.</value>
@@ -2879,10 +2871,10 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="Settings_Advanced_lbl_NetworkDriver_info" xml:space="preserve">
     <value>Network drivers can impact your connection and speed. The new TUN adapter provides higher speed, fallback on TAP adapter if you encounter any connectivity problem.</value>
   </data>
-  <data name="Settings_Advanced_lbl_Tap" xml:space="preserve">
+  <data name="Settings_Advanced_lbl_OpenVpnTap" xml:space="preserve">
     <value>TAP adapter</value>
   </data>
-  <data name="Settings_Advanced_lbl_Tun" xml:space="preserve">
+  <data name="Settings_Advanced_lbl_OpenVpnTun" xml:space="preserve">
     <value>TUN adapter</value>
   </data>
   <data name="QuickSettings_btn_PermanentKillSwitch" xml:space="preserve">
@@ -3207,5 +3199,20 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   </data>
   <data name="Sidebar_Countries_info_SmartRouting" xml:space="preserve">
     <value>Smart Routing</value>
+  </data>
+  <data name="Servers_msg_MissingServerPublicKey" xml:space="preserve">
+    <value>Unfortunatelly, this server does not support WireGuard®.</value>
+  </data>
+  <data name="Servers_msg_CantConnect_CertificateExpired" xml:space="preserve">
+    <value>ProtonVPN was unable to refresh client authentication certificate.</value>
+  </data>
+  <data name="ProfileConnector_msg_MissingAuthCert" xml:space="preserve">
+    <value>ProtonVPN failed to fetch authentication certificate due to network issue.</value>
+  </data>
+  <data name="VpnProtocol_val_WireGuard" xml:space="preserve">
+    <value>WireGuard®</value>
+  </data>
+  <data name="Settings_Connection_DefaultProtocol_val_WireGuard" xml:space="preserve">
+    <value>WireGuard® (beta)</value>
   </data>
 </root>

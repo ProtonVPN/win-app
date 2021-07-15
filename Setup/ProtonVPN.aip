@@ -59,6 +59,7 @@
     <ROW Directory="DesktopFolder" Directory_Parent="TARGETDIR" DefaultDir="DESKTO~1|DesktopFolder" IsPseudoRoot="1"/>
     <ROW Directory="LocalAppDataFolder" Directory_Parent="TARGETDIR" DefaultDir="LOCALA~1|LocalAppDataFolder" IsPseudoRoot="1"/>
     <ROW Directory="Logs_Dir" Directory_Parent="ProtonVPN_1_Dir" DefaultDir="Logs"/>
+    <ROW Directory="NewFolder_Dir" Directory_Parent="APPDIR" DefaultDir=".:WIREGU~1|wireguard_x64"/>
     <ROW Directory="ProgramMenuFolder" Directory_Parent="TARGETDIR" DefaultDir="PROGRA~1|ProgramMenuFolder" IsPseudoRoot="1"/>
     <ROW Directory="ProtonTechnologiesAG_Dir" Directory_Parent="AppDataFolder" DefaultDir="PROTON~1|Proton Technologies AG"/>
     <ROW Directory="ProtonVPN_1_Dir" Directory_Parent="LocalAppDataFolder" DefaultDir="PROTON~1|ProtonVPN"/>
@@ -103,6 +104,8 @@
     <ROW Component="GoSrp.dll" ComponentId="{3DB767E8-ACF9-459F-A509-F57E76FBA633}" Directory_="x64_Dir" Attributes="256" KeyPath="GoSrp.dll"/>
     <ROW Component="GoSrp.dll_1" ComponentId="{89CC2AA9-0000-4E4B-9D5A-43ACC1B1D1E3}" Directory_="x86_Dir" Attributes="0" KeyPath="GoSrp.dll_1"/>
     <ROW Component="GuestHoleServers.json" ComponentId="{C5ACA4D0-1647-4D3A-B9CD-9FE054A81588}" Directory_="ProtonVPN_1_Dir" Attributes="0" KeyPath="GuestHoleServers.json" Type="0"/>
+    <ROW Component="LocalAgent.dll" ComponentId="{25183BB4-5B07-43F9-8BEB-D58230BAEB78}" Directory_="bit_Dir" Attributes="0" KeyPath="LocalAgent.dll"/>
+    <ROW Component="LocalAgent.dll_1" ComponentId="{73CCCE7C-D519-40C3-8AAA-FB879005DFA4}" Directory_="bit_1_Dir" Attributes="256" KeyPath="LocalAgent.dll_1"/>
     <ROW Component="Logs" ComponentId="{973CE498-3D38-4B1D-9790-BF0E5196A202}" Directory_="Logs_Dir" Attributes="0"/>
     <ROW Component="Microsoft.Deployment.WindowsInstaller.dll" ComponentId="{FFB7E0D6-80C7-40A9-AC9E-BFEA81253FFB}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Deployment.WindowsInstaller.dll"/>
     <ROW Component="Microsoft.Toolkit.Uwp.Notifications.dll" ComponentId="{6DE7272A-D513-4F72-9A0A-763828A16A2E}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Toolkit.Uwp.Notifications.dll"/>
@@ -145,6 +148,7 @@
     <ROW Component="ProtonVPN.UpdateService.exe" ComponentId="{F98028EA-85CC-4905-85FB-0DBD88526567}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.UpdateService.exe"/>
     <ROW Component="ProtonVPN.UpdateServiceContract.dll" ComponentId="{694AB59A-8291-429B-911A-6C52F250D6DE}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.UpdateServiceContract.dll"/>
     <ROW Component="ProtonVPN.Vpn.dll" ComponentId="{1231DE6D-B1C3-4E8A-913F-9D43769CAD37}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.Vpn.dll"/>
+    <ROW Component="ProtonVPN.WireguardService.exe" ComponentId="{DEFB403A-9543-4DE0-874D-F615F71F22FD}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.WireguardService.exe"/>
     <ROW Component="ProtonVPN.exe" ComponentId="{A6366893-9124-490B-A671-56545084D5CA}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.exe"/>
     <ROW Component="ProtonVPNService.exe" ComponentId="{FF69F947-BECA-41DA-9868-390F00B71BE1}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPNService.exe"/>
     <ROW Component="ProtonVPNTun" ComponentId="{B9C0B418-4523-47B5-8CEF-732F3AA6ED18}" Directory_="APPDIR" Attributes="4" KeyPath="ProtonVPNTun" Options="2"/>
@@ -172,6 +176,10 @@
     <ROW Component="libssl1_1x64.dll" ComponentId="{DA00F153-C64F-4284-BF30-2358FDAC3A1F}" Directory_="bit_1_Dir" Attributes="256" KeyPath="libssl1_1x64.dll"/>
     <ROW Component="openvpn.exe" ComponentId="{05F57108-546B-4950-B69C-C8E917E3E4CE}" Directory_="bit_Dir" Attributes="0" KeyPath="openvpn.exe"/>
     <ROW Component="openvpn.exe_1" ComponentId="{7BBF778D-CA8D-4F1E-BEC3-777A26A3912F}" Directory_="bit_1_Dir" Attributes="256" KeyPath="openvpn.exe_1"/>
+    <ROW Component="tunnel.dll" ComponentId="{BA10003E-AAA2-4D25-95C7-E37ECC2F0DC6}" Directory_="NewFolder_Dir" Attributes="256" Condition="(VersionNT64)" KeyPath="tunnel.dll"/>
+    <ROW Component="tunnel.dll_2" ComponentId="{904FBC6D-4E0A-45E8-86AC-09115E107B72}" Directory_="APPDIR" Attributes="0" Condition="(NOT VersionNT64)" KeyPath="tunnel.dll_2"/>
+    <ROW Component="wintun.dll" ComponentId="{757A3B70-DAD1-4034-ABC1-1EAA28A27737}" Directory_="NewFolder_Dir" Attributes="256" Condition="(VersionNT64)" KeyPath="wintun.dll"/>
+    <ROW Component="wintun.dll_2" ComponentId="{6F7B4677-0F66-446A-A72F-106F6C4CC936}" Directory_="APPDIR" Attributes="0" Condition="(NOT VersionNT64)" KeyPath="wintun.dll_2"/>
     <ROW Component="za.dll" ComponentId="{B7D45BB9-FB0D-4DB3-99CE-7815C47628ED}" Directory_="APPDIR" Attributes="0" KeyPath="za.dll"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
@@ -268,6 +276,13 @@
     <ROW File="Microsoft.Web.WebView2.Wpf.dll" Component_="Microsoft.Web.WebView2.Wpf.dll" FileName="MICROS~3.DLL|Microsoft.Web.WebView2.Wpf.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Microsoft.Web.WebView2.Wpf.dll" SelfReg="false"/>
     <ROW File="Microsoft.Web.WebView2.Core.dll" Component_="Microsoft.Web.WebView2.Core.dll" FileName="MICROS~4.DLL|Microsoft.Web.WebView2.Core.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Microsoft.Web.WebView2.Core.dll" SelfReg="false"/>
     <ROW File="ProtonVPN.Crypto.dll" Component_="ProtonVPN.Crypto.dll" FileName="PROTO~12.DLL|ProtonVPN.Crypto.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ProtonVPN.Crypto.dll" SelfReg="false"/>
+    <ROW File="tunnel.dll" Component_="tunnel.dll" FileName="tunnel.dll" Attributes="0" SourcePath="..\src\ProtonVPN.Vpn\Resources\64-bit\tunnel.dll" SelfReg="false" DigSign="true"/>
+    <ROW File="wintun.dll" Component_="wintun.dll" FileName="wintun.dll" Attributes="0" SourcePath="..\src\ProtonVPN.Vpn\Resources\64-bit\wintun.dll" SelfReg="false"/>
+    <ROW File="ProtonVPN.WireguardService.exe" Component_="ProtonVPN.WireguardService.exe" FileName="PROTON~7.EXE|ProtonVPN.WireguardService.exe" Attributes="0" SourcePath="..\src\bin\ProtonVPN.WireguardService.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="tunnel.dll_2" Component_="tunnel.dll_2" FileName="tunnel.dll" Attributes="0" SourcePath="..\src\ProtonVPN.Vpn\Resources\32-bit\tunnel.dll" SelfReg="false" DigSign="true"/>
+    <ROW File="wintun.dll_2" Component_="wintun.dll_2" FileName="wintun.dll" Attributes="0" SourcePath="..\src\ProtonVPN.Vpn\Resources\32-bit\wintun.dll" SelfReg="false"/>
+    <ROW File="LocalAgent.dll" Component_="LocalAgent.dll" FileName="LOCALA~1.DLL|LocalAgent.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Resources\32-bit\LocalAgent.dll" SelfReg="false"/>
+    <ROW File="LocalAgent.dll_1" Component_="LocalAgent.dll_1" FileName="LOCALA~1.DLL|LocalAgent.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Resources\64-bit\LocalAgent.dll" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.AiRemoveFileComponent">
     <ROW RemoveFile="_" Condition="(AI_CLEAN_RESOURCES_UNINSTALL = &quot;1&quot;) AND (NOT UPGRADINGPRODUCTCODE)" Options="3"/>
@@ -633,6 +648,13 @@
     <ROW Feature_="MainFeature" Component_="Microsoft.Web.WebView2.Wpf.dll"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.Web.WebView2.Core.dll"/>
     <ROW Feature_="MainFeature" Component_="ProtonVPN.Crypto.dll"/>
+    <ROW Feature_="MainFeature" Component_="tunnel.dll"/>
+    <ROW Feature_="MainFeature" Component_="wintun.dll"/>
+    <ROW Feature_="MainFeature" Component_="tunnel.dll_2"/>
+    <ROW Feature_="MainFeature" Component_="wintun.dll_2"/>
+    <ROW Feature_="MainFeature" Component_="ProtonVPN.WireguardService.exe"/>
+    <ROW Feature_="MainFeature" Component_="LocalAgent.dll"/>
+    <ROW Feature_="MainFeature" Component_="LocalAgent.dll_1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
     <ROW Name="protonvpn.exe" SourcePath="images\protonvpn.ico" Index="0"/>
@@ -759,6 +781,7 @@
     <ROW MsiServiceConfigFailureActions="ServiceName_1" Name="[UpdateServiceName]" Event="5" ResetPeriod="1" RebootMessage="[~]" Actions="1[~]1[~]1" DelayActions="1[~]1[~]1" Component_="AI_ExePath"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiServCtrlComponent">
+    <ROW ServiceControl="ProtonVPN.WireguardService.exe" Name="ProtonVPN WireGuard" Event="160" Wait="1" Component_="ProtonVPN.WireguardService.exe"/>
     <ROW ServiceControl="ProtonVPNService.exe" Name="[ServiceName]" Event="160" Wait="1" Component_="ProtonVPNService.exe"/>
     <ROW ServiceControl="ServiceName" Name="[UpdateServiceName]" Event="160" Wait="1" Component_="ProtonVPN.UpdateService.exe"/>
   </COMPONENT>
@@ -786,9 +809,11 @@
     <ROW PrereqKey="RequiredApplication_3" DisplayName="Windows 7 x86 security update (KB2992611)" SetupFileUrl="https://download.microsoft.com/download/F/1/9/F19ED8C4-B547-49C3-B3EA-759D3613FD75/Windows6.1-KB2992611-x86.msu" Location="1" ExactSize="0" WinNTVersions="Windows Vista RTM x86, Windows Server 2008 x86, Windows 8 x86, Windows 8.1 x86, Windows 10 x86" WinNT64Versions="Windows XP/Vista/Windows 7/Windows 8 x64/Windows 8.1 x64/Windows 10 x64" Operator="1" NoUiComLine="/quiet /norestart" Options="y" TargetName="Windows 7 x86 security update (KB2992611)"/>
     <ROW PrereqKey="Windows7x64securi" DisplayName="Windows 7 x64 security update (KB3033929)" SetupFileUrl="https://download.microsoft.com/download/C/8/7/C87AE67E-A228-48FB-8F02-B2A9A1238099/Windows6.1-KB3033929-x64.msu" Location="1" ExactSize="0" WinNTVersions="Windows 9x/ME/NT/2000/XP/Vista/Windows 7/Windows 8 x86/Windows 8.1 x86/Windows 10 x86" WinNT64Versions="Windows Vista RTM x64, Windows Server 2008 x64, Windows 8 x64, Windows Server 2012 x64, Windows 8.1 x64, Windows Server 2012 R2 x64, Windows 10 x64, Windows Server x64" Operator="1" NoUiComLine="/quiet /norestart" Options="y" TargetName="Windows 7 x64 security update (KB3033929)"/>
     <ROW PrereqKey="Windows7x64securi_1" DisplayName="Windows 7 x64 security update (KB3063858)" SetupFileUrl="https://download.microsoft.com/download/0/8/E/08E0386B-F6AF-4651-8D1B-C0A95D2731F0/Windows6.1-KB3063858-x64.msu" Location="1" ExactSize="0" WinNTVersions="Windows 9x/ME/NT/2000/XP/Vista/Windows 7/Windows 8 x86/Windows 8.1 x86/Windows 10 x86" WinNT64Versions="Windows Vista x64, Windows Server 2008 x64, Windows Server 2008 R2 x64, Windows 8 x64, Windows Server 2012 x64, Windows 8.1 x64, Windows Server 2012 R2 x64, Windows 10 x64, Windows Server x64" Operator="1" Options="yrR" TargetName="Windows 7 x86 security update (KB3063858)"/>
+    <ROW PrereqKey="Windows7x64securi_2" DisplayName="Windows 7 x64 security update (KB2921916)" SetupFileUrl="https://download.protonvpn.net/download/Windows6.1-KB2921916-x64.msu" Location="1" ExactSize="1243699" WinNTVersions="Windows 9x/ME/NT/2000/XP/Vista/Windows 7/Windows 8 x86/Windows 8.1 x86/Windows 10 x86" WinNT64Versions="Windows Vista RTM x64, Windows Server 2008 x64, Windows 8 x64, Windows Server 2012 x64, Windows 8.1 x64, Windows Server 2012 R2 x64, Windows 10 x64, Windows Server x64" Operator="1" NoUiComLine="/quiet" Options="yrR" MD5="270853eab5976c28eb71de2ffe8d7b52" TargetName="Windows 7 x64 security update (KB2921916)"/>
+    <ROW PrereqKey="Windows7x64securi_3" DisplayName="Windows 7 x86 security update (KB2921916)" SetupFileUrl="https://download.protonvpn.net/download/Windows6.1-KB2921916-x86.msu" Location="1" ExactSize="818485" WinNTVersions="Windows Vista x86, Windows Server 2008 x86, Windows 8 x86, Windows 8.1 x86, Windows 10 x86" WinNT64Versions="Windows XP/Vista/Windows 7/Windows 8 x64/Windows 8.1 x64/Windows 10 x64" Operator="1" NoUiComLine="/quiet" Options="yrR" MD5="05a178d9e1e62fdc1475800674124de9" TargetName="Windows 7 x64 security update (KB2921916)"/>
     <ROW PrereqKey="Windows7x86securi" DisplayName="Windows 7 x86 security update (KB3033929)" SetupFileUrl="https://download.microsoft.com/download/3/7/4/37473F39-5728-4153-9A25-64C09DE9ED52/Windows6.1-KB3033929-x86.msu" Location="1" ExactSize="0" WinNTVersions="Windows Vista RTM x86, Windows Server 2008 x86, Windows 8 x86, Windows 8.1 x86, Windows 10 x86" WinNT64Versions="Windows XP/Vista/Windows 7/Windows 8 x64/Windows 8.1 x64/Windows 10 x64" Operator="1" NoUiComLine="/quiet /norestart" Options="y" TargetName="Windows 7 x86 security update (KB3033929)"/>
     <ROW PrereqKey="Windows7x86securi_1" DisplayName="Windows 7 x86 security update (KB3063858)" SetupFileUrl="https://download.microsoft.com/download/C/9/6/C96CD606-3E05-4E1C-B201-51211AE80B1E/Windows6.1-KB3063858-x86.msu" Location="1" ExactSize="0" WinNTVersions="Windows Vista x86, Windows Server 2008 x86, Windows 8 x86, Windows 8.1 x86, Windows 10 x86" WinNT64Versions="Windows XP/Vista/Windows 7/Windows 8 x64/Windows 8.1 x64/Windows 10 x64" Operator="1" Options="yrR" TargetName="Windows 7 x86 security update (KB3063858)"/>
-    <ATTRIBUTE name="PrereqsOrder" value="FD92F08164915A061A35616A2E484 ProtonVPNTun RequiredApplication_2 RequiredApplication_3 Windows7x64securi Windows7x86securi Windows7x86securi_1 Windows7x64securi_1 A6D7F21EAEB4C4A901F0979CF110936 RequiredApplication"/>
+    <ATTRIBUTE name="PrereqsOrder" value="FD92F08164915A061A35616A2E484 ProtonVPNTun RequiredApplication_2 RequiredApplication_3 Windows7x64securi Windows7x86securi Windows7x86securi_1 Windows7x64securi_1 Windows7x64securi_2 Windows7x64securi_3 A6D7F21EAEB4C4A901F0979CF110936 RequiredApplication"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.PreReqSearchComponent">
     <ROW SearchKey="A6D7F21EAEB4C4A901F0979CF110936Rele" Prereq="A6D7F21EAEB4C4A901F0979CF110936" SearchType="9" SearchString="HKLM\SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full\Release" RefContent="G461807" Order="1" Property="PreReqSearch_A6D7F21EAEB4C4A901F097"/>
@@ -796,6 +821,8 @@
     <ROW SearchKey="FD92F08164915A061A35616A2E484UpgradeCode" Prereq="FD92F08164915A061A35616A2E484" SearchType="4" SearchString="{E23B9F7F-AA0A-481A-8ECA-FA69794BF50A}" VerMin="1.1.3" Order="1" Property="PreReqSearch_FD92F08164915A061A3561"/>
     <ROW SearchKey="SystemFolderfile.dll" Prereq="ProtonVPNTun" SearchType="4" SearchString="{FED0679F-A292-4507-AEF5-DD2BB8898A36}" VerMin="0.10.0" Order="1" Property="PreReqSearch_6"/>
     <ROW SearchKey="SystemFolderfile.dll_2" Prereq="RequiredApplication_2" SearchType="10" SearchString="check-KB2992611.bat" RefContent="WND_HIDE" Order="1" Property="PreReqSearch_2"/>
+    <ROW SearchKey="checkKB2921916.bat" Prereq="Windows7x64securi_3" SearchType="10" SearchString="check-KB2921916.bat" RefContent="WND_HIDE" Order="1" Property="PreReqSearch_2_2_1"/>
+    <ROW SearchKey="checkKB2992611.bat" Prereq="Windows7x64securi_2" SearchType="10" SearchString="check-KB2921916.bat" RefContent="WND_HIDE" Order="1" Property="PreReqSearch_2_2"/>
     <ROW SearchKey="checkKB3033929.bat" Prereq="RequiredApplication_3" SearchType="10" SearchString="check-KB2992611.bat" RefContent="WND_HIDE" Order="2" Property="PreReqSearch_4"/>
     <ROW SearchKey="checkKB3033929.bat_1" Prereq="Windows7x64securi" SearchType="10" SearchString="check-KB3033929.bat" RefContent="WND_HIDE" Order="1" Property="PreReqSearch_2_1"/>
     <ROW SearchKey="checkKB3033929.bat_2" Prereq="Windows7x86securi" SearchType="10" SearchString="check-KB3033929.bat" RefContent="WND_HIDE" Order="2" Property="PreReqSearch_4_1"/>

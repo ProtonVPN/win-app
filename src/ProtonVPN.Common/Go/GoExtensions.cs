@@ -46,6 +46,11 @@ namespace ProtonVPN.Common.Go
             return new GoString {Data = nativeUtf8, Length = (IntPtr)buffer.Length};
         }
 
+        public static string ConvertToString(this GoBytes bytes)
+        {
+            return Encoding.UTF8.GetString(bytes.ConvertToBytes());
+        }
+
         public static unsafe DisposableGoBytes ToDisposableGoBytes(this SecureString str)
         {
             IntPtr nativeUnicode = Marshal.SecureStringToGlobalAllocUnicode(str);
