@@ -27,6 +27,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using ProtonVPN.Common.Networking;
 
 namespace ProtonVPN.Core.Profiles
 {
@@ -106,7 +107,7 @@ namespace ProtonVPN.Core.Profiles
         {
             profile.ExternalId = apiProfile.Id;
             profile.Name = apiProfile.Name;
-            profile.Protocol = MapProtocol(apiProfile.Protocol);
+            profile.VpnProtocol = MapVpnProtocol(apiProfile.Protocol);
             profile.ColorCode = apiProfile.Color?.ToUpperInvariant();
             profile.Features = MapFeatures(apiProfile.Features);
             profile.ProfileType = MapType(apiProfile.Type);
@@ -119,7 +120,7 @@ namespace ProtonVPN.Core.Profiles
             return new BaseProfile
             {
                 Name = profile.Name,
-                Protocol = MapProtocol(profile.Protocol),
+                Protocol = MapVpnProtocol(profile.VpnProtocol),
                 Color = profile.ColorCode,
                 Features = MapFeatures(profile.Features),
                 Type = MapType(profile.ProfileType),
@@ -128,28 +129,25 @@ namespace ProtonVPN.Core.Profiles
             };
         }
 
-        private Protocol MapProtocol(int value)
+        private VpnProtocol MapVpnProtocol(int value)
         {
-            return Enum.IsDefined(typeof(Protocol), value)
-                ? (Protocol) value 
-                : Protocol.Auto;
+            return Enum.IsDefined(typeof(VpnProtocol), value)
+                ? (VpnProtocol) value 
+                : VpnProtocol.Smart;
         }
 
-        // Don't change "default(Protocol)" to "default".
+        // Don't change "default(VpnProtocol)" to "default".
         // This would change default value from 0 to null and lead to incorrect behaviour.
-        private int MapProtocol(Protocol protocol) => (int)(protocol != default(Protocol) ? protocol : Protocol.Auto);
+        private int MapVpnProtocol(VpnProtocol openVpnProtocol) => 
+            (int)(openVpnProtocol != default(VpnProtocol) ? openVpnProtocol : VpnProtocol.Smart);
 
         private Features MapFeatures(int value)
         {
-            var features = new ServerFeatures(value);
-            if (features.IsSecureCore())
-                return Features.SecureCore;
-            if (features.SupportsTor())
-                return Features.Tor;
-            if (features.SupportsP2P())
-                return Features.P2P;
-
-            return Features.None;
+            ServerFeatures features = new(value);
+            return features.IsSecureCore() ? Features.SecureCore :
+                features.SupportsTor() ? Features.Tor :
+                features.SupportsP2P() ? Features.P2P : 
+                Features.None;
         }
 
         private int MapFeatures(Features features) => (int)features;

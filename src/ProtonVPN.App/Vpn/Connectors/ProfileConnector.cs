@@ -22,8 +22,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ProtonVPN.Common;
+using ProtonVPN.Common.Abstract;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Abstract;
 using ProtonVPN.Core.Api.Contracts;
@@ -55,7 +57,7 @@ namespace ProtonVPN.Vpn.Connectors
         private readonly IVpnServiceManager _vpnServiceManager;
         private readonly IModals _modals;
         private readonly IDialogs _dialogs;
-        private readonly VpnCredentialProvider _vpnCredentialProvider;
+        private readonly IVpnCredentialProvider _vpnCredentialProvider;
         private readonly IPopupWindows _popupWindows;
         private readonly IDelinquencyPopupViewModel _delinquencyPopupViewModel;
 
@@ -68,7 +70,7 @@ namespace ProtonVPN.Vpn.Connectors
             IVpnServiceManager vpnServiceManager,
             IModals modals,
             IDialogs dialogs,
-            VpnCredentialProvider vpnCredentialProvider,
+            IVpnCredentialProvider vpnCredentialProvider,
             IPopupWindows popupWindows,
             IDelinquencyPopupViewModel delinquencyPopupViewModel)
         {
@@ -121,7 +123,7 @@ namespace ProtonVPN.Vpn.Connectors
             return false;
         }
 
-        public async Task Connect(ServerCandidates candidates, Profile profile, Protocol? overrideProtocol = null, int? maxServers = null)
+        public async Task Connect(ServerCandidates candidates, Profile profile, VpnProtocol? overrideProtocol = null, int? maxServers = null)
         {
             IReadOnlyList<Server> servers = Servers(candidates);
             IEnumerable<Server> sortedServers = SortServers(servers, profile.ProfileType);
@@ -130,16 +132,16 @@ namespace ProtonVPN.Vpn.Connectors
                 sortedServers = sortedServers.Take(maxServers.Value);
             }
 
-            Protocol protocol = overrideProtocol ?? profile.Protocol;
+            VpnProtocol protocol = overrideProtocol ?? profile.VpnProtocol;
 
-            await Connect(sortedServers, VpnProtocol(protocol));
+            await Connect(sortedServers, protocol);
         }
 
-        public async Task ConnectWithPreSortedCandidates(ServerCandidates sortedCandidates, Protocol protocol)
+        public async Task ConnectWithPreSortedCandidates(ServerCandidates sortedCandidates, VpnProtocol protocol)
         {
             IReadOnlyList<Server> sortedServers = Servers(sortedCandidates);
 
-            await Connect(sortedServers, VpnProtocol(protocol));
+            await Connect(sortedServers, protocol);
         }
 
         public async Task<bool> UpdateServers(ServerCandidates candidates, Profile profile)
@@ -316,35 +318,31 @@ namespace ProtonVPN.Vpn.Connectors
             _modals.Show<NoServerInCountryDueTierUpsellModalViewModel>();
         }
 
-        private VpnProtocol VpnProtocol(Protocol protocol)
-        {
-            switch (protocol)
-            {
-                case Protocol.OpenVpnUdp:
-                    return Common.Vpn.VpnProtocol.OpenVpnUdp;
-                case Protocol.OpenVpnTcp:
-                    return Common.Vpn.VpnProtocol.OpenVpnTcp;
-                default:
-                    return Common.Vpn.VpnProtocol.Auto;
-            }
-        }
-
-        private Common.Vpn.VpnConfig VpnConfig()
+        private Common.Vpn.VpnConfig VpnConfig(VpnProtocol protocol)
         {
             Dictionary<VpnProtocol, IReadOnlyCollection<int>> portConfig = new Dictionary<VpnProtocol, IReadOnlyCollection<int>>
             {
-                {Common.Vpn.VpnProtocol.OpenVpnUdp, _appSettings.OpenVpnUdpPorts},
-                {Common.Vpn.VpnProtocol.OpenVpnTcp, _appSettings.OpenVpnTcpPorts},
+                {VpnProtocol.OpenVpnUdp, _appSettings.OpenVpnUdpPorts},
+                {VpnProtocol.OpenVpnTcp, _appSettings.OpenVpnTcpPorts},
             };
 
             List<string> customDns = (from ip in _appSettings.CustomDnsIps where ip.Enabled select ip.Ip).ToList();
 
             return new Common.Vpn.VpnConfig(
-                portConfig,
-                _appSettings.CustomDnsEnabled ? customDns : new List<string>(),
-                _appSettings.SplitTunnelingEnabled ? _appSettings.SplitTunnelMode : SplitTunnelMode.Disabled,
-                GetSplitTunnelIPs(),
-                _appSettings.UseTunAdapter);
+                new VpnConfigParameters
+                {
+                    Ports = portConfig,
+                    CustomDns = _appSettings.CustomDnsEnabled ? customDns : new List<string>(),
+                    SplitTunnelMode =
+                        _appSettings.SplitTunnelingEnabled
+                            ? _appSettings.SplitTunnelMode
+                            : SplitTunnelMode.Disabled,
+                    SplitTunnelIPs = GetSplitTunnelIPs(),
+                    OpenVpnAdapter = _appSettings.NetworkAdapterType,
+                    VpnProtocol = protocol,
+                    NetShieldMode = _appSettings.IsNetShieldEnabled() ? _appSettings.NetShieldMode : 0,
+                    SplitTcp = _appSettings.IsVpnAcceleratorEnabled(),
+                });
         }
 
         private List<string> GetSplitTunnelIPs()
@@ -361,13 +359,19 @@ namespace ProtonVPN.Vpn.Connectors
             return list;
         }
 
-        private async Task Connect(IEnumerable<Server> servers, VpnProtocol protocol)
+        private async Task Connect(IEnumerable<Server> servers, VpnProtocol vpnProtocol)
         {
+            Result<VpnCredentials> credentialsResult = await _vpnCredentialProvider.Credentials();
+            if (credentialsResult.Failure)
+            {
+                _dialogs.ShowWarning(Translation.Get("ProfileConnector_msg_MissingAuthCert"));
+                return;
+            }
+
             IReadOnlyList<VpnHost> hosts = Servers(servers);
             if (hosts.Any())
             {
-                VpnConnectionRequest request = new(hosts, protocol, VpnConfig(),
-                    _vpnCredentialProvider.Credentials());
+                VpnConnectionRequest request = new(hosts, vpnProtocol, VpnConfig(vpnProtocol), credentialsResult.Value);
 
                 await _vpnServiceManager.Connect(request);
 
@@ -382,9 +386,7 @@ namespace ProtonVPN.Vpn.Connectors
 
         private async Task UpdateServers(IEnumerable<Server> servers)
         {
-            await _vpnServiceManager.UpdateServers(
-                Servers(servers),
-                VpnConfig());
+            await _vpnServiceManager.UpdateServers(Servers(servers));
         }
 
         private void SwitchSecureCoreMode(bool secureCore)
@@ -472,7 +474,7 @@ namespace ProtonVPN.Vpn.Connectors
             return servers
                 .SelectMany(s => s.Servers.OrderBy(_ => _random.Next()))
                 .Where(s => s.Status != 0)
-                .Select(s => new VpnHost(s.Domain, s.EntryIp, s.Label))
+                .Select(s => new VpnHost(s.Domain, s.EntryIp, s.Label, s.X25519PublicKey))
                 .Distinct(s => (s.Ip, s.Label))
                 .ToList();
         }

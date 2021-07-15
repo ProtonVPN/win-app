@@ -4729,6 +4729,15 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ProtonVPN failed to fetch authentication certificate due to network issue..
+        /// </summary>
+        public static string ProfileConnector_msg_MissingAuthCert {
+            get {
+                return ResourceManager.GetString("ProfileConnector_msg_MissingAuthCert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Close.
         /// </summary>
         public static string Profiles_btn_Close {
@@ -5170,33 +5179,6 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Smart.
-        /// </summary>
-        public static string Protocol_val_Auto {
-            get {
-                return ResourceManager.GetString("Protocol_val_Auto", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to OpenVPN (TCP).
-        /// </summary>
-        public static string Protocol_val_OpenVpnTcp {
-            get {
-                return ResourceManager.GetString("Protocol_val_OpenVpnTcp", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to OpenVPN (UDP).
-        /// </summary>
-        public static string Protocol_val_OpenVpnUdp {
-            get {
-                return ResourceManager.GetString("Protocol_val_OpenVpnUdp", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Quick Connect.
         /// </summary>
         public static string QuickLaunch_btn_Connect {
@@ -5575,6 +5557,15 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ProtonVPN was unable to refresh client authentication certificate..
+        /// </summary>
+        public static string Servers_msg_CantConnect_CertificateExpired {
+            get {
+                return ResourceManager.GetString("Servers_msg_CantConnect_CertificateExpired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The server you are trying to connect to is currently offline for maintenance. Please select another server or profile..
         /// </summary>
         public static string Servers_msg_CantConnect_Maintenance {
@@ -5589,6 +5580,15 @@ namespace ProtonVPN.Translations.Properties {
         public static string Servers_msg_CantConnect_Missing {
             get {
                 return ResourceManager.GetString("Servers_msg_CantConnect_Missing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unfortunatelly, this server does not support WireGuard®..
+        /// </summary>
+        public static string Servers_msg_MissingServerPublicKey {
+            get {
+                return ResourceManager.GetString("Servers_msg_MissingServerPublicKey", resourceCulture);
             }
         }
         
@@ -5710,6 +5710,24 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to TAP adapter.
+        /// </summary>
+        public static string Settings_Advanced_lbl_OpenVpnTap {
+            get {
+                return ResourceManager.GetString("Settings_Advanced_lbl_OpenVpnTap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TUN adapter.
+        /// </summary>
+        public static string Settings_Advanced_lbl_OpenVpnTun {
+            get {
+                return ResourceManager.GetString("Settings_Advanced_lbl_OpenVpnTun", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Split Tunneling.
         /// </summary>
         public static string Settings_Advanced_lbl_SplitTunnel {
@@ -5724,24 +5742,6 @@ namespace ProtonVPN.Translations.Properties {
         public static string Settings_Advanced_lbl_SplitTunnel_Info {
             get {
                 return ResourceManager.GetString("Settings_Advanced_lbl_SplitTunnel_Info", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to TAP adapter.
-        /// </summary>
-        public static string Settings_Advanced_lbl_Tap {
-            get {
-                return ResourceManager.GetString("Settings_Advanced_lbl_Tap", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to TUN adapter.
-        /// </summary>
-        public static string Settings_Advanced_lbl_Tun {
-            get {
-                return ResourceManager.GetString("Settings_Advanced_lbl_Tun", resourceCulture);
             }
         }
         
@@ -5829,9 +5829,9 @@ namespace ProtonVPN.Translations.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Smart (default).
         /// </summary>
-        public static string Settings_Connection_DefaultProtocol_val_Auto {
+        public static string Settings_Connection_DefaultProtocol_val_Smart {
             get {
-                return ResourceManager.GetString("Settings_Connection_DefaultProtocol_val_Auto", resourceCulture);
+                return ResourceManager.GetString("Settings_Connection_DefaultProtocol_val_Smart", resourceCulture);
             }
         }
         
@@ -5850,6 +5850,15 @@ namespace ProtonVPN.Translations.Properties {
         public static string Settings_Connection_DefaultProtocol_val_Udp {
             get {
                 return ResourceManager.GetString("Settings_Connection_DefaultProtocol_val_Udp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to WireGuard® (beta).
+        /// </summary>
+        public static string Settings_Connection_DefaultProtocol_val_WireGuard {
+            get {
+                return ResourceManager.GetString("Settings_Connection_DefaultProtocol_val_WireGuard", resourceCulture);
             }
         }
         
@@ -7069,15 +7078,6 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Smart.
-        /// </summary>
-        public static string VpnProtocol_val_Auto {
-            get {
-                return ResourceManager.GetString("VpnProtocol_val_Auto", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to OpenVPN (TCP).
         /// </summary>
         public static string VpnProtocol_val_OpenVpnTcp {
@@ -7092,6 +7092,24 @@ namespace ProtonVPN.Translations.Properties {
         public static string VpnProtocol_val_OpenVpnUdp {
             get {
                 return ResourceManager.GetString("VpnProtocol_val_OpenVpnUdp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Smart.
+        /// </summary>
+        public static string VpnProtocol_val_Smart {
+            get {
+                return ResourceManager.GetString("VpnProtocol_val_Smart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to WireGuard®.
+        /// </summary>
+        public static string VpnProtocol_val_WireGuard {
+            get {
+                return ResourceManager.GetString("VpnProtocol_val_WireGuard", resourceCulture);
             }
         }
         
@@ -7200,6 +7218,15 @@ namespace ProtonVPN.Translations.Properties {
         public static string Window_lbl_Loading {
             get {
                 return ResourceManager.GetString("Window_lbl_Loading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to WireGuard®.
+        /// </summary>
+        public static string WireGuard_lbl {
+            get {
+                return ResourceManager.GetString("WireGuard_lbl", resourceCulture);
             }
         }
     }

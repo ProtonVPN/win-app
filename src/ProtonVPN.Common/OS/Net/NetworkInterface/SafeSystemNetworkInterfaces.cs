@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,6 +18,7 @@
  */
 
 using System;
+using System.Net;
 using System.Net.NetworkInformation;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
@@ -56,9 +57,24 @@ namespace ProtonVPN.Common.OS.Net.NetworkInterface
 
         public INetworkInterface GetByDescription(string description)
         {
+            return TryGet(() => _origin.GetByDescription(description));
+        }
+
+        public INetworkInterface GetByLocalAddress(IPAddress localAddress)
+        {
+            return TryGet(() => _origin.GetByLocalAddress(localAddress));
+        }
+
+        public INetworkInterface GetBestInterface(string hardwareIdToExclude)
+        {
+            return TryGet(() => _origin.GetBestInterface(hardwareIdToExclude));
+        }
+
+        private INetworkInterface TryGet(Func<INetworkInterface> func)
+        {
             try
             {
-                return _origin.GetByDescription(description);
+                return func();
             }
             catch (NetworkInformationException ex)
             {
@@ -69,15 +85,12 @@ namespace ProtonVPN.Common.OS.Net.NetworkInterface
 
         public INetworkInterface GetByName(string name)
         {
-            try
-            {
-                return _origin.GetByName(name);
-            }
-            catch (NetworkInformationException ex)
-            {
-                _logger.Error($"Failed to retrieve a system network interface: {ex.CombinedMessage()}");
-                return new NullNetworkInterface();
-            }
+            return TryGet(() => _origin.GetByName(name));
+        }
+
+        public INetworkInterface GetById(Guid id)
+        {
+            return TryGet(() => _origin.GetById(id));
         }
     }
 }

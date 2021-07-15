@@ -200,13 +200,15 @@ namespace ProtonVPN.Common.Configuration
 
         public IReadOnlyList<string> DefaultBlackHoleIps { get; internal set; } = new List<string>();
 
-        public UrlConfig Urls { get; } = new UrlConfig();
+        public UrlConfig Urls { get; } = new();
 
-        public OpenVpnConfig OpenVpn { get; } = new OpenVpnConfig();
+        public OpenVpnConfig OpenVpn { get; } = new();
 
-        public TlsPinningConfig TlsPinningConfig { get; } = new TlsPinningConfig();
+        public WireGuardConfig WireGuard { get; } = new();
 
-        public List<string> DoHProviders { get; internal set; } = new List<string>();
+        public TlsPinningConfig TlsPinningConfig { get; } = new();
+
+        public List<string> DoHProviders { get; internal set; } = new();
 
         [Required]
         public string DefaultLocale { get; internal set; }

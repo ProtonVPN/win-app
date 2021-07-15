@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -19,9 +19,10 @@
 
 using System;
 using System.Threading.Tasks;
+using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Os.Net;
-using ProtonVPN.Service.Network;
+using ProtonVPN.Service.Settings;
 
 namespace ProtonVPN.Service.Firewall
 {
@@ -30,12 +31,14 @@ namespace ProtonVPN.Service.Firewall
         private const string AppName = "ProtonVPN";
 
         private readonly ILogger _logger;
-        private readonly ICurrentNetworkInterface _currentNetworkInterface;
+        private readonly Common.Configuration.Config _config;
+        private readonly IServiceSettings _serviceSettings;
 
-        public Ipv6(ILogger logger, ICurrentNetworkInterface currentNetworkInterface)
+        public Ipv6(ILogger logger, Common.Configuration.Config config, IServiceSettings serviceSettings)
         {
             _logger = logger;
-            _currentNetworkInterface = currentNetworkInterface;
+            _config = config;
+            _serviceSettings = serviceSettings;
         }
 
         public bool Enabled { get; private set; } = true;
@@ -77,7 +80,7 @@ namespace ProtonVPN.Service.Firewall
             try
             {
                 _logger.Info($"IPv6: {actionMessage}");
-                action(AppName, _currentNetworkInterface.HardwareId);
+                action(AppName, _config.GetHardwareId(_serviceSettings.OpenVpnAdapter));
                 _logger.Info($"IPv6: {actionMessage} succeeded");
             }
             catch (NetworkUtilException e)

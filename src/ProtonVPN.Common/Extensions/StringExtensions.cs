@@ -21,11 +21,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Text.RegularExpressions;
 
 namespace ProtonVPN.Common.Extensions
 {
     public static class StringExtensions
     {
+        private static readonly Regex Base64KeyRegex = new("^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$");
+
         public static bool IsNullOrEmpty(this string value)
         {
             return string.IsNullOrEmpty(value);
@@ -89,6 +92,21 @@ namespace ProtonVPN.Common.Extensions
         {
             return IPAddress.TryParse(ip, out var parsedIpAddress) &&
                    ip.EqualsIgnoringCase(parsedIpAddress.ToString());
+        }
+
+        public static bool IsValidBase64Key(this string key)
+        {
+            return Base64KeyRegex.IsMatch(key);
+        }
+
+        public static uint ToIPAddressBytes(this string value)
+        {
+            if (IPAddress.TryParse(value, out IPAddress address))
+            {
+                return BitConverter.ToUInt32(address.GetAddressBytes(), 0);
+            }
+
+            return 0;
         }
     }
 }

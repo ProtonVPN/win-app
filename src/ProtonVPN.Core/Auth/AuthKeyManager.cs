@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Runtime.InteropServices.ComTypes;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Core.Settings;
@@ -57,9 +58,11 @@ namespace ProtonVPN.Core.Auth
             _logger.Info("Auth key pair deleted.");
         }
 
-        public AsymmetricKeyPair GetKeyPair()
+        public AsymmetricKeyPair GetKeyPairOrNull()
         {
-            return new(GetSecretKey(), GetPublicKey());
+            SecretKey secretKey = GetSecretKey();
+            PublicKey publicKey = GetPublicKey();
+            return secretKey == null || publicKey == null ? null : new(secretKey, publicKey);
         }
 
         public SecretKey GetSecretKey()

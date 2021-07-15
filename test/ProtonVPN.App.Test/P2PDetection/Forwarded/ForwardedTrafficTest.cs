@@ -24,6 +24,7 @@ using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
+using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Api;
 using ProtonVPN.Core.Api.Contracts;
@@ -73,7 +74,8 @@ namespace ProtonVPN.App.Test.P2PDetection.Forwarded
                 VpnError.None,
                 GetConnectedServer(currentConnectedIP),
                 false,
-                VpnProtocol.Auto));
+                VpnProtocol.Smart,
+                OpenVpnAdapter.Tun));
 
             // Act
             var result = await subject.Value();

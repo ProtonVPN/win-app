@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -30,7 +30,8 @@ namespace ProtonVPN.Vpn.Common
                 state.Error,
                 state.LocalIp,
                 remoteIp,
-                state.Protocol,
+                state.VpnProtocol,
+                state.OpenVpnAdapter,
                 label);
         }
 
@@ -41,7 +42,8 @@ namespace ProtonVPN.Vpn.Common
                 error,
                 state.LocalIp,
                 state.RemoteIp,
-                state.Protocol,
+                state.VpnProtocol,
+                state.OpenVpnAdapter,
                 state.Label);
         }
     }

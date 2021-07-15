@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -30,10 +30,14 @@ namespace ProtonVPN.Vpn.Common
 
         InOutBytes Total { get; }
 
-        void Connect(IReadOnlyList<VpnHost> servers, VpnConfig config, VpnProtocol protocol, VpnCredentials credentials);
+        void Connect(IReadOnlyList<VpnHost> servers, VpnConfig config, VpnCredentials credentials);
 
         void Disconnect(VpnError error = VpnError.None);
 
-        void UpdateServers(IReadOnlyList<VpnHost> servers, VpnConfig config);
+        void UpdateServers(IReadOnlyList<VpnHost> servers);
+
+        void UpdateAuthCertificate(string certificate);
+
+        void SetFeatures(VpnFeatures vpnFeatures);
     }
 }

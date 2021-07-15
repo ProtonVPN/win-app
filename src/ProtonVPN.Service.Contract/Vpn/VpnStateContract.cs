@@ -18,6 +18,7 @@
  */
 
 using System.Runtime.Serialization;
+using ProtonVPN.Common.Networking;
 
 namespace ProtonVPN.Service.Contract.Vpn
 {
@@ -29,14 +30,16 @@ namespace ProtonVPN.Service.Contract.Vpn
             VpnErrorTypeContract error,
             string endpointIp,
             bool networkBlocked,
-            VpnProtocolContract protocol,
+            OpenVpnAdapter? openVpnAdapterType,
+            VpnProtocolContract vpnProtocol,
             string label)
         {
             Status = status;
             Error = error;
             EndpointIp = endpointIp;
             NetworkBlocked = networkBlocked;
-            Protocol = protocol;
+            OpenVpnAdapterType = openVpnAdapterType;
+            VpnProtocol = vpnProtocol;
             Label = label;
         }
 
@@ -47,8 +50,10 @@ namespace ProtonVPN.Service.Contract.Vpn
         [DataMember] public bool NetworkBlocked { get; private set; }
 
         [DataMember] public string EndpointIp { get; private set; }
+        
+        [DataMember] public OpenVpnAdapter? OpenVpnAdapterType { get; private set; }
 
-        [DataMember] public VpnProtocolContract Protocol { get; private set; }
+        [DataMember] public VpnProtocolContract VpnProtocol { get; private set; }
 
         [DataMember] public string Label { get; private set; }
     }

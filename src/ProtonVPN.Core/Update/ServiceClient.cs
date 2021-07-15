@@ -51,7 +51,7 @@ namespace ProtonVPN.Core.Update
 
         public Task StartUpdating(bool auto) => Invoke(p => p.Update(auto).Wrap());
 
-        private async Task<T> Invoke<T>(Func<IUpdateContract, Task<T>> serviceCall, 
+        private async Task<T> Invoke<T>(Func<IUpdateContract, Task<T>> serviceCall,
             [System.Runtime.CompilerServices.CallerMemberName] string memberName = "")
         {
             int retryCount = 1;

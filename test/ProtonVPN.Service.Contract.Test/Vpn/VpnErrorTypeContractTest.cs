@@ -32,8 +32,8 @@ namespace ProtonVPN.Service.Contract.Test.Vpn
         public void Enum_ShouldHaveSame_UnderlyingType_As_VpnError()
         {
             // Arrange
-            var type = Enum.GetUnderlyingType(typeof(VpnErrorTypeContract));
-            var expected = Enum.GetUnderlyingType(typeof(VpnError));
+            Type type = Enum.GetUnderlyingType(typeof(VpnErrorTypeContract));
+            Type expected = Enum.GetUnderlyingType(typeof(VpnError));
             // Assert
             type.Should().BeSameAs(expected);
         }
@@ -42,8 +42,8 @@ namespace ProtonVPN.Service.Contract.Test.Vpn
         public void Enum_ShouldHaveSame_Values_As_VpnError()
         {
             // Arrange
-            var values = (int[]) Enum.GetValues(typeof(VpnErrorTypeContract));
-            var expected = (int[]) Enum.GetValues(typeof(VpnError));
+            int[] values = (int[]) Enum.GetValues(typeof(VpnErrorTypeContract));
+            int[] expected = (int[]) Enum.GetValues(typeof(VpnError));
             // Assert
             values.Should().BeEquivalentTo(expected);
         }
@@ -52,8 +52,8 @@ namespace ProtonVPN.Service.Contract.Test.Vpn
         public void Enum_ShouldHaveSame_Names_As_VpnError()
         {
             // Arrange
-            var values = Enum.GetNames(typeof(VpnErrorTypeContract));
-            var expected = Enum.GetNames(typeof(VpnError));
+            string[] values = Enum.GetNames(typeof(VpnErrorTypeContract));
+            string[] expected = Enum.GetNames(typeof(VpnError));
             // Assert
             values.Should().BeEquivalentTo(expected);
         }

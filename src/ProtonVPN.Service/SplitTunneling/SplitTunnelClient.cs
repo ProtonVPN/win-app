@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -43,7 +43,7 @@ namespace ProtonVPN.Service.SplitTunneling
 
         public void EnableExcludeMode(string[] appPaths, string[] ips)
         {
-            var apps = GetAppPaths(appPaths);
+            string[] apps = GetAppPaths(appPaths);
             if ((apps == null || apps.Length == 0) && (ips == null || ips.Length == 0))
             {
                 return;
@@ -56,18 +56,13 @@ namespace ProtonVPN.Service.SplitTunneling
 
         public void EnableIncludeMode(string[] appPaths, string[] ips, string vpnLocalIp)
         {
-            var apps = GetAppPaths(appPaths);
+            string[] apps = GetAppPaths(appPaths);
             if ((apps == null || apps.Length == 0) && (ips == null || ips.Length == 0))
             {
                 return;
             }
 
-            EnsureSucceeded(
-                () => _filters.EnableIncludeMode(
-                    apps,
-                    ips,
-                    _bestInterface.LocalIpAddress(),
-                    IPAddress.Parse(vpnLocalIp)),
+            EnsureSucceeded(() => _filters.EnableIncludeMode(apps, IPAddress.Parse(vpnLocalIp)),
                 "SplitTunnel: Enabling include mode");
         }
 

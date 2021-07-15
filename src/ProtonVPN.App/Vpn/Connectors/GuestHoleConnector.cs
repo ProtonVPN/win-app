@@ -21,7 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ProtonVPN.Common;
+using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Storage;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Api;
@@ -36,7 +36,7 @@ namespace ProtonVPN.Vpn.Connectors
     {
         private int _reconnects;
 
-        private readonly Random _random = new Random();
+        private readonly Random _random = new();
 
         private readonly IVpnServiceManager _vpnServiceManager;
         private readonly IAppSettings _appSettings;
@@ -51,22 +51,29 @@ namespace ProtonVPN.Vpn.Connectors
             Common.Configuration.Config config,
             ICollectionStorage<GuestHoleServerContract> guestHoleServers)
         {
-            _guestHoleServers = guestHoleServers;
-            _config = config;
-            _guestHoleState = guestHoleState;
             _vpnServiceManager = vpnServiceManager;
             _appSettings = appSettings;
+            _guestHoleState = guestHoleState;
+            _config = config;
+            _guestHoleServers = guestHoleServers;
         }
 
         public async Task Connect()
         {
-            var request = new VpnConnectionRequest(
+            VpnConnectionRequest request = new(
                 Servers(),
-                VpnProtocol.Auto,
+                VpnProtocol.Smart,
                 VpnConfig(),
-                new VpnCredentials(AddSuffixToUsername(_config.GuestHoleVpnUsername), _config.GuestHoleVpnPassword));
+                CreateVpnCredentials());
 
             await _vpnServiceManager.Connect(request);
+        }
+
+        private VpnCredentials CreateVpnCredentials()
+        {
+            string username = AddSuffixToUsername(_config.GuestHoleVpnUsername);
+            string password = _config.GuestHoleVpnPassword;
+            return new(username, password);
         }
 
         private string AddSuffixToUsername(string username)
@@ -108,7 +115,7 @@ namespace ProtonVPN.Vpn.Connectors
         {
             return _guestHoleServers
                 .GetAll()
-                .Select(server => new VpnHost(server.Host, server.Ip, string.Empty))
+                .Select(server => new VpnHost(server.Host, server.Ip, string.Empty, string.Empty))
                 .OrderBy(_ => _random.Next())
                 .ToList();
         }
@@ -121,7 +128,7 @@ namespace ProtonVPN.Vpn.Connectors
                 {VpnProtocol.OpenVpnTcp, _appSettings.OpenVpnTcpPorts},
             };
 
-            return new VpnConfig(portConfig, SplitTunnelMode.Disabled, _appSettings.UseTunAdapter);
+            return new VpnConfig(new VpnConfigParameters {Ports = portConfig, OpenVpnAdapter = _appSettings.NetworkAdapterType});
         }
     }
 }

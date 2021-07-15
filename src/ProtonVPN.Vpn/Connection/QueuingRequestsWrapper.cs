@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -60,9 +60,9 @@ namespace ProtonVPN.Vpn.Connection
 
         public InOutBytes Total => _origin.Total;
 
-        public void Connect(IReadOnlyList<VpnHost> servers, VpnConfig config, VpnProtocol protocol, VpnCredentials credentials)
+        public void Connect(IReadOnlyList<VpnHost> servers, VpnConfig config, VpnCredentials credentials)
         {
-            _taskQueue.Enqueue(() => _origin.Connect(servers, config, protocol, credentials));
+            _taskQueue.Enqueue(() => _origin.Connect(servers, config, credentials));
         }
 
         public void Disconnect(VpnError error = VpnError.None)
@@ -70,9 +70,19 @@ namespace ProtonVPN.Vpn.Connection
             _taskQueue.Enqueue(() => _origin.Disconnect(error));
         }
 
-        public void UpdateServers(IReadOnlyList<VpnHost> servers, VpnConfig config)
+        public void UpdateServers(IReadOnlyList<VpnHost> servers)
         {
-            _taskQueue.Enqueue(() => _origin.UpdateServers(servers, config));
+            _taskQueue.Enqueue(() => _origin.UpdateServers(servers));
+        }
+
+        public void UpdateAuthCertificate(string certificate)
+        {
+            _taskQueue.Enqueue(() => _origin.UpdateAuthCertificate(certificate));
+        }
+
+        public void SetFeatures(VpnFeatures vpnFeatures)
+        {
+            _origin.SetFeatures(vpnFeatures);
         }
     }
 }

@@ -23,7 +23,7 @@ namespace ProtonVPN.Core.Service.Vpn
     {
         UserChoice = 0,
         SimilarOnSameProtocol = 1,
-        SimilarOnAutoProtocol = 2,
+        SimilarOnSmartProtocol = 2,
         QuickConnect = 3,
         RestartReconnectionSteps = 4,
         Disconnect = 5

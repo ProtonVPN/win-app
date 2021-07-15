@@ -37,6 +37,7 @@ namespace ProtonVPN.App.Test.Servers
     {
         private IStreamingServices _streamingServices;
         private IUserStorage _userStorage;
+        private IAppSettings _appSettings;
         private ServerManager _serverManager;
         private ServerListFactory _serverListFactory;
         private IActiveUrls _urls;
@@ -72,7 +73,8 @@ namespace ProtonVPN.App.Test.Servers
                 servers.Add(CreateServer(countryCode + "-FREE#1", Features.None, countryCode, countryCode));
             }
 
-            _serverManager = Substitute.For<ServerManager>(_userStorage, servers);
+            _appSettings = Substitute.For<IAppSettings>();
+            _serverManager = Substitute.For<ServerManager>(_userStorage, _appSettings, servers);
             _urls = Substitute.For<IActiveUrls>();
 
             InitializeSortedCountries();

@@ -171,9 +171,12 @@
     <Compile Include="Auth\AuthCertificateManager.cs" />
     <Compile Include="Auth\AuthCertificateUpdater.cs" />
     <Compile Include="Auth\AuthKeyManager.cs" />
+    <Compile Include="Auth\AuthCredential.cs" />
+    <Compile Include="Auth\AuthCredentialManager.cs" />
     <Compile Include="Auth\IAuthCertificateManager.cs" />
     <Compile Include="Auth\IAuthCertificateUpdater.cs" />
     <Compile Include="Auth\IAuthKeyManager.cs" />
+    <Compile Include="Auth\IAuthCredentialManager.cs" />
     <Compile Include="Auth\ILoggedInAware.cs" />
     <Compile Include="Auth\ILogoutAware.cs" />
     <Compile Include="Auth\UserAuth.cs" />
@@ -255,7 +258,6 @@
     <Compile Include="Profiles\ProfileSyncStatus.cs" />
     <Compile Include="Profiles\ProfileSyncStatusChangedEventArgs.cs" />
     <Compile Include="Profiles\ProfileType.cs" />
-    <Compile Include="Profiles\Protocol.cs" />
     <Compile Include="Profiles\SyncProfile.cs" />
     <Compile Include="Profiles\SyncProfiles.cs" />
     <Compile Include="Servers\BestServer.cs" />

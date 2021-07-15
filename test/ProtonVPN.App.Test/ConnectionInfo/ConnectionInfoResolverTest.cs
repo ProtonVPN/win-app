@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -42,6 +42,7 @@ namespace ProtonVPN.App.Test.ConnectionInfo
         private IUserStorage _userStorage;
         private IServerUpdater _serverUpdater;
         private ServerManager _serverManager;
+        private IAppSettings _appSettings;
 
         [TestInitialize]
         public void TestInitialize()
@@ -49,9 +50,10 @@ namespace ProtonVPN.App.Test.ConnectionInfo
             _apiClient = Substitute.For<IApiClient>();
             _userStorage = Substitute.For<IUserStorage>();
             _serverUpdater = Substitute.For<IServerUpdater>();
-            _serverManager = Substitute.For<ServerManager>(_userStorage);
+            _appSettings = Substitute.For<IAppSettings>();
+            _serverManager = Substitute.For<ServerManager>(_userStorage, _appSettings);
 
-            var result = ApiResponseResult<VpnInfoResponse>.Ok(new VpnInfoResponse
+            ApiResponseResult<VpnInfoResponse> result = ApiResponseResult<VpnInfoResponse>.Ok(new VpnInfoResponse
             {
                 Code = 1000,
                 Error = string.Empty
@@ -194,7 +196,7 @@ namespace ProtonVPN.App.Test.ConnectionInfo
         private void SetSessions(int number)
         {
             var sessions = new List<Session>();
-            for (var i = 0; i < number; i++)
+            for (int i = 0; i < number; i++)
             {
                 sessions.Add(new Session());
             }

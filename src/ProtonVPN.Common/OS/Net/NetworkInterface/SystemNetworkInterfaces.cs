@@ -19,7 +19,9 @@
 
 using System;
 using System.Linq;
+using System.Net;
 using System.Net.NetworkInformation;
+using ProtonVPN.Common.Os.Net;
 
 namespace ProtonVPN.Common.OS.Net.NetworkInterface
 {
@@ -51,9 +53,41 @@ namespace ProtonVPN.Common.OS.Net.NetworkInterface
             return GetInterfaces().FirstOrDefault(i => i.Description.Contains(description));
         }
 
+        public INetworkInterface GetByLocalAddress(IPAddress localAddress)
+        {
+            System.Net.NetworkInformation.NetworkInterface[] interfaces =
+                System.Net.NetworkInformation.NetworkInterface.GetAllNetworkInterfaces();
+
+            foreach (System.Net.NetworkInformation.NetworkInterface i in interfaces)
+            {
+                if (i.GetIPProperties().UnicastAddresses.FirstOrDefault(a => a.Address.Equals(localAddress)) !=
+                    null)
+                {
+                    return new SystemNetworkInterface(i);
+                }
+            }
+
+            return new NullNetworkInterface();
+        }
+
+        public INetworkInterface GetBestInterface(string hardwareIdToExclude)
+        {
+            return GetByLocalAddress(NetworkUtil.GetBestInterfaceIp(hardwareIdToExclude));
+        }
+
         public INetworkInterface GetByName(string name)
         {
             return GetInterfaces().FirstOrDefault(i => i.Name == name);
+        }
+
+        public INetworkInterface GetById(Guid id)
+        {
+            return GetInterfaces().FirstOrDefault(i => AreIdsEqual(i.Id, id));
+        }
+
+        private bool AreIdsEqual(string stringId, Guid id)
+        {
+            return Guid.TryParse(stringId, out Guid result) && result == id;
         }
     }
 }

@@ -262,7 +262,7 @@ namespace ProtonVPN.ViewModels
                     return;
                 }
             }
-            
+
             await _vpnManager.DisconnectAsync();
             await _userAuth.LogoutAsync();
         }

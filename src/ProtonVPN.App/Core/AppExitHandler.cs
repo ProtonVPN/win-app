@@ -31,7 +31,7 @@ namespace ProtonVPN.Core
     {
         private readonly IModals _modals;
         private readonly VpnService _vpnService;
-        private VpnStateChangedEventArgs _vpnStateChangedEventArgs = new(new VpnState(VpnStatus.Disconnected), VpnError.None, false);
+        private VpnStateChangedEventArgs _vpnStateChangedEventArgs = new(new VpnState(VpnStatus.Disconnected), VpnError.None, false, default);
 
         public AppExitHandler(IModals modals, VpnService vpnService)
         {

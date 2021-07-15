@@ -50,7 +50,7 @@ namespace ProtonVPN.Service.Start
 
         private void Configure()
         {
-            var config = new ConfigFactory().Config();
+            Common.Configuration.Config config = new ConfigFactory().Config();
             new ConfigDirectories(config).Prepare();
 
             var builder = new ContainerBuilder();
@@ -60,8 +60,8 @@ namespace ProtonVPN.Service.Start
 
         private void Start()
         {
-            var config = Resolve<Common.Configuration.Config>();
-            var logger = Resolve<ILogger>();
+            Common.Configuration.Config config = Resolve<Common.Configuration.Config>();
+            ILogger logger = Resolve<ILogger>();
 
             logger.Info($"= Booting ProtonVPN Service version: {config.AppVersion} os: {Environment.OSVersion.VersionString} {config.OsBits} bit =");
 
@@ -86,11 +86,11 @@ namespace ProtonVPN.Service.Start
 
         private void RegisterEvents()
         {
-            Resolve<ObservableConnection>().AfterStateChanged += (s, e) =>
+            Resolve<IVpnConnection>().StateChanged += (_, e) =>
             {
-                var state = e.Data;
-                var instances = Resolve<IEnumerable<IVpnStateAware>>();
-                foreach (var instance in instances)
+                VpnState state = e.Data;
+                IEnumerable<IVpnStateAware> instances = Resolve<IEnumerable<IVpnStateAware>>();
+                foreach (IVpnStateAware instance in instances)
                 {
                     switch (state.Status)
                     {
@@ -110,10 +110,10 @@ namespace ProtonVPN.Service.Start
                 }
             };
 
-            Resolve<IServiceSettings>().SettingsChanged += (s, e) =>
+            Resolve<IServiceSettings>().SettingsChanged += (_, e) =>
             {
-                var instances = Resolve<IEnumerable<IServiceSettingsAware>>();
-                foreach (var instance in instances)
+                IEnumerable<IServiceSettingsAware> instances = Resolve<IEnumerable<IServiceSettingsAware>>();
+                foreach (IServiceSettingsAware instance in instances)
                 {
                     instance.OnServiceSettingsChanged(e);
                 }

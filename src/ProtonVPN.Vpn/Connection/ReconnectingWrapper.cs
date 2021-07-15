@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -53,9 +53,8 @@ namespace ProtonVPN.Vpn.Connection
 
         private VpnState _state;
         private VpnConfig _config;
-        private VpnProtocol _protocol;
         private VpnCredentials _credentials;
-        private VpnEndpoint _endpoint;
+        private IVpnEndpoint _endpoint;
         private bool _isToConnect;
         private bool _isToReconnect;
 
@@ -77,18 +76,27 @@ namespace ProtonVPN.Vpn.Connection
 
         public InOutBytes Total => _origin.Total;
 
-        public void Connect(IReadOnlyList<VpnHost> servers, VpnConfig config, VpnProtocol protocol, VpnCredentials credentials)
+        public void Connect(IReadOnlyList<VpnHost> servers, VpnConfig config, VpnCredentials credentials)
         {
             _candidates.Set(servers);
             _candidates.Reset();
             _config = config;
-            _protocol = protocol;
             _credentials = credentials;
             _isToConnect = true;
             _isToReconnect = true;
 
             _logger.Info("[ReconnectingWrapper] Requesting disconnect as first step of connection process.");
             CancelTokenAndDisconnect(VpnError.NoneKeepEnabledKillSwitch);
+        }
+
+        public void UpdateAuthCertificate(string certificate)
+        {
+            _origin.UpdateAuthCertificate(certificate);
+        }
+
+        public void SetFeatures(VpnFeatures vpnFeatures)
+        {
+            _origin.SetFeatures(vpnFeatures);
         }
 
         public void Disconnect(VpnError error = VpnError.None)
@@ -140,8 +148,8 @@ namespace ProtonVPN.Vpn.Connection
                     break;
                 }
 
-                VpnEndpoint endpoint = _candidates.NextIp(_protocol);
-                if (endpoint == VpnEndpoint.EmptyEndpoint)
+                IVpnEndpoint endpoint = _candidates.NextIp(_config);
+                if (endpoint.IsEmpty)
                 {
                     _logger.Info($"[ReconnectingWrapper] No more endpoints in the list after server {endpoint.Server.Ip} has failed to respond to the ping.");
                     break;
@@ -161,11 +169,12 @@ namespace ProtonVPN.Vpn.Connection
             HandleEndpointResponse(isResponding, cancellationToken);
         }
 
-        private async Task<bool> IsEndpointRespondingAsync(VpnEndpoint endpoint, CancellationToken cancellationToken)
+        private async Task<bool> IsEndpointRespondingAsync(IVpnEndpoint endpoint, CancellationToken cancellationToken)
         {
             OnStateChanged(new VpnState(VpnStatus.Pinging, VpnError.None, string.Empty,
-                endpoint.Server.Ip, endpoint.Protocol, endpoint.Server.Label));
-            VpnEndpoint bestEndpoint = await _endpointScanner.ScanForBestEndpointAsync(endpoint, _config.Ports, cancellationToken);
+                endpoint.Server.Ip, _config.VpnProtocol, _config.OpenVpnAdapter, endpoint.Server.Label));
+
+            IVpnEndpoint bestEndpoint = await _endpointScanner.ScanForBestEndpointAsync(endpoint, _config.OpenVpnPorts, cancellationToken);
             return bestEndpoint.Port != 0;
         }
 
@@ -191,7 +200,7 @@ namespace ProtonVPN.Vpn.Connection
 
         private void ConnectToNextEndpoint()
         {
-            _endpoint = _candidates.NextHost(_protocol);
+            _endpoint = _candidates.NextHost(_config);
             bool isEndpointAvailableToConnect = _endpoint?.Server != null && !_endpoint.Server.IsEmpty();
             if (isEndpointAvailableToConnect)
             {
@@ -261,7 +270,8 @@ namespace ProtonVPN.Vpn.Connection
                 state.Error,
                 state.LocalIp,
                 state.RemoteIp,
-                state.Protocol,
+                state.VpnProtocol,
+                state.OpenVpnAdapter,
                 state.Label);
         }
 
@@ -273,7 +283,7 @@ namespace ProtonVPN.Vpn.Connection
             }
         }
 
-        public void UpdateServers(IReadOnlyList<VpnHost> servers, VpnConfig config)
+        public void UpdateServers(IReadOnlyList<VpnHost> servers)
         {
             _candidates.Set(servers);
             _logger.Info("[ReconnectingWrapper] VPN endpoint candidates updated.");

@@ -18,11 +18,22 @@
  */
 
 using ProtonVPN.Common.Helpers;
+using ProtonVPN.Crypto;
 
 namespace ProtonVPN.Common.Vpn
 {
-    public struct VpnCredentials
+    public readonly struct VpnCredentials
     {
+        public VpnCredentials(string username, string password, string clientCertPem, AsymmetricKeyPair clientKeyPair)
+            : this(username, password)
+        {
+            Ensure.NotEmpty(clientCertPem, nameof(clientCertPem));
+            Ensure.NotNull(clientKeyPair, nameof(clientKeyPair));
+
+            ClientCertPem = clientCertPem;
+            ClientKeyPair = clientKeyPair;
+        }
+        
         public VpnCredentials(string username, string password)
         {
             Ensure.NotEmpty(username, nameof(username));
@@ -30,9 +41,17 @@ namespace ProtonVPN.Common.Vpn
 
             Username = username;
             Password = password;
+
+            ClientCertPem = null;
+            ClientKeyPair = null;
         }
 
         public string Username { get; }
+
         public string Password { get; }
+
+        public string ClientCertPem { get; }
+
+        public AsymmetricKeyPair ClientKeyPair { get; }
     }
 }

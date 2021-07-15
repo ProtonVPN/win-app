@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,6 +18,7 @@
  */
 
 using ProtonVPN.Common.Helpers;
+using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Servers.Models;
 
@@ -28,29 +29,36 @@ namespace ProtonVPN.Core.Vpn
         public VpnState State { get; }
         public VpnError Error { get; }
         public bool NetworkBlocked { get; }
-        public VpnProtocol Protocol { get; }
+        public OpenVpnAdapter? NetworkAdapterType { get; }
+        public VpnProtocol VpnProtocol { get; }
 
-        public VpnStateChangedEventArgs(VpnStatus status, VpnError error, string endpointIp, bool networkBlocked, VpnProtocol protocol, string label = "")
-            : this(new VpnState(status, endpointIp, protocol, label), error, networkBlocked, protocol)
+        public VpnStateChangedEventArgs(VpnStatus status, VpnError error, string endpointIp,
+            bool networkBlocked, VpnProtocol vpnProtocol, OpenVpnAdapter? networkAdapterType = null,
+            string label = "")
+            : this(new VpnState(status, endpointIp, vpnProtocol, networkAdapterType, label), error, networkBlocked,
+                vpnProtocol, networkAdapterType)
         {
         }
 
-        public VpnStateChangedEventArgs(VpnStatus status, VpnError error, Server server, bool networkBlocked, VpnProtocol protocol)
-            : this(new VpnState(status, server), error, networkBlocked, protocol)
+        public VpnStateChangedEventArgs(VpnStatus status, VpnError error, Server server,
+            bool networkBlocked, VpnProtocol vpnProtocol, OpenVpnAdapter? networkAdapterType = null)
+            : this(new VpnState(status, server), error, networkBlocked, vpnProtocol, networkAdapterType)
         {
         }
 
-        public VpnStateChangedEventArgs(VpnState state, VpnError error, bool networkBlocked, VpnProtocol protocol = VpnProtocol.Auto)
+        public VpnStateChangedEventArgs(VpnState state, VpnError error, bool networkBlocked, VpnProtocol vpnProtocol, OpenVpnAdapter? networkAdapterType = null)
         {
             Ensure.NotNull(state, nameof(state));
 
             State = state;
             Error = error;
             NetworkBlocked = networkBlocked;
-            Protocol = protocol;
+            NetworkAdapterType = networkAdapterType;
+            VpnProtocol = vpnProtocol;
         }
 
-        public bool UnexpectedDisconnect => (State.Status == VpnStatus.Disconnected || State.Status == VpnStatus.Disconnecting) &&
-                                            Error != VpnError.None;
+        public bool UnexpectedDisconnect =>
+            (State.Status == VpnStatus.Disconnected || State.Status == VpnStatus.Disconnecting) &&
+            Error != VpnError.None;
     }
 }

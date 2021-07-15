@@ -22,7 +22,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.ServiceProcess;
+using System.Threading;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.OS.Processes;
+using ProtonVPN.Common.OS.Services;
 using ProtonVPN.Common.Service;
 using ProtonVPN.Common.ServiceModel.Server;
 using ProtonVPN.Service.Firewall;
@@ -35,6 +38,8 @@ namespace ProtonVPN.Service
     internal partial class VpnService : ServiceBase
     {
         private readonly ILogger _logger;
+        private readonly Common.Configuration.Config _config;
+        private readonly IOsProcesses _osProcesses;
         private readonly IVpnConnection _vpnConnection;
         private readonly List<ServiceHostFactory> _serviceHostsFactories;
         private readonly List<SafeServiceHost> _hosts;
@@ -42,14 +47,19 @@ namespace ProtonVPN.Service
 
         public VpnService(
             ILogger logger,
+            Common.Configuration.Config config,
+            IOsProcesses osProcesses,
             IEnumerable<ServiceHostFactory> serviceHostsFactories,
             IVpnConnection vpnConnection,
             Ipv6 ipv6)
         {
-            _ipv6 = ipv6;
             _logger = logger;
-            _vpnConnection = vpnConnection;
+            _config = config;
+            _osProcesses = osProcesses;
             _serviceHostsFactories = new List<ServiceHostFactory>(serviceHostsFactories);
+            _vpnConnection = vpnConnection;
+            _ipv6 = ipv6;
+
             _hosts = new List<SafeServiceHost>();
             InitializeComponent();
         }
@@ -58,9 +68,9 @@ namespace ProtonVPN.Service
         {
             try
             {
-                foreach (var factory in _serviceHostsFactories)
+                foreach (ServiceHostFactory factory in _serviceHostsFactories)
                 {
-                    var host = factory.Create();
+                    SafeServiceHost host = factory.Create();
                     host.Open();
                     _hosts.Add(host);
                 }
@@ -86,13 +96,14 @@ namespace ProtonVPN.Service
                 LogEvent("Service is stopping");
 
                 _vpnConnection.Disconnect();
+                StopWireGuardService();
 
                 if (!_ipv6.Enabled)
                 {
                     _ipv6.Enable();
                 }
 
-                foreach (var host in _hosts.ToList())
+                foreach (SafeServiceHost host in _hosts.ToList())
                 {
                     _hosts.Remove(host);
                     host.Dispose();
@@ -115,6 +126,15 @@ namespace ProtonVPN.Service
         {
             _logger.Info($"Power status changed to {powerStatus}");
             return true;
+        }
+
+        private void StopWireGuardService()
+        {
+            SystemService wireGuardService = new(_config.WireGuard.ServiceName, _osProcesses);
+            if (wireGuardService.Running())
+            {
+                wireGuardService.StopAsync(new CancellationToken()).Wait();
+            }
         }
 
         private void LogEvent(string message)

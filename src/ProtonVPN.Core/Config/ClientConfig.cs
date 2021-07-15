@@ -104,7 +104,7 @@ namespace ProtonVPN.Core.Config
                     {
                         _appSettings.BlackHoleIps = response.Value.HolesIps;
                     }
-                    
+
                     bool vpnAcceleratorFeatureFlag = response.Value.FeatureFlags.VpnAccelerator ?? true;
                     _appSettings.FeatureVpnAcceleratorEnabled = vpnAcceleratorFeatureFlag;
 

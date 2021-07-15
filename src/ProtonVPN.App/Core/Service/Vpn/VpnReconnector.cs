@@ -23,6 +23,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Profiles;
@@ -66,16 +67,16 @@ namespace ProtonVPN.Core.Service.Vpn
 
         public VpnReconnector(IAppSettings appSettings,
             ISimilarServerCandidatesGenerator similarServerCandidatesGenerator,
-            IModals modals, 
+            IModals modals,
             IPopupWindows popups,
-            IVpnConnector vpnConnector, 
-            INotificationSender notificationSender, 
-            ILogger logger, 
-            ServerCandidatesFactory serverCandidatesFactory, 
+            IVpnConnector vpnConnector,
+            INotificationSender notificationSender,
+            ILogger logger,
+            ServerCandidatesFactory serverCandidatesFactory,
             Common.Configuration.Config config,
-            Lazy<ConnectionStatusViewModel> connectionStatusViewModel, 
-            ServerManager serverManager, 
-            Lazy<ServerConnector> serverConnector, 
+            Lazy<ConnectionStatusViewModel> connectionStatusViewModel,
+            ServerManager serverManager,
+            Lazy<ServerConnector> serverConnector,
             Lazy<ProfileConnector> profileConnector)
         {
             _appSettings = appSettings;
@@ -212,7 +213,7 @@ namespace ProtonVPN.Core.Service.Vpn
 
         private VpnReconnectionSteps UpdateReconnectionStepIfSimilarOnAutoProtocol(VpnReconnectionSteps reconnectionStep)
         {
-            if (reconnectionStep == VpnReconnectionSteps.SimilarOnAutoProtocol)
+            if (reconnectionStep == VpnReconnectionSteps.SimilarOnSmartProtocol)
             {
                 reconnectionStep = CalculateSimilarOnAutoProtocolReconnectionStep();
             }
@@ -222,9 +223,9 @@ namespace ProtonVPN.Core.Service.Vpn
 
         private VpnReconnectionSteps CalculateSimilarOnAutoProtocolReconnectionStep()
         {
-            if (_appSettings.DoNotShowEnableSmartProtocolDialog || _appSettings.GetProtocol() == Protocol.Auto)
+            if (_appSettings.DoNotShowEnableSmartProtocolDialog || _appSettings.GetProtocol() == VpnProtocol.Smart)
             {
-                _logger.Info(_appSettings.GetProtocol() == Protocol.Auto
+                _logger.Info(_appSettings.GetProtocol() == VpnProtocol.Smart
                     ? "Smart protocol is already enabled. Reconnection will fast forward to quick connect."
                     : "Not asking again if the user wants to enable Smart Protocol. Reconnection will fast forward to quick connect.");
                 return VpnReconnectionSteps.QuickConnect;
@@ -240,11 +241,10 @@ namespace ProtonVPN.Core.Service.Vpn
             bool? isToChangeProtocolToAuto = _modals.Show<EnableSmartProtocolModalViewModel>();
             if (isToChangeProtocolToAuto.HasValue && isToChangeProtocolToAuto.Value)
             {
-                _logger.Info("User enabled Smart Protocol. Reconnection will now try again similar servers using Smart Protocol.");
                 _appSettings.OvpnProtocol = "auto";
-                return VpnReconnectionSteps.SimilarOnAutoProtocol;
+                return VpnReconnectionSteps.SimilarOnSmartProtocol;
             }
-            
+
             _logger.Info("User refused to enable Smart Protocol. Reconnection will fast forward to quick connect.");
             return VpnReconnectionSteps.QuickConnect;
         }
@@ -267,8 +267,8 @@ namespace ProtonVPN.Core.Service.Vpn
                 case VpnReconnectionSteps.SimilarOnSameProtocol:
                     await ConnectToSimilarServerAsync(isToTryLastServer, _appSettings.GetProtocol());
                     break;
-                case VpnReconnectionSteps.SimilarOnAutoProtocol:
-                    await ConnectToSimilarServerAsync(isToTryLastServer, Protocol.Auto);
+                case VpnReconnectionSteps.SimilarOnSmartProtocol:
+                    await ConnectToSimilarServerAsync(isToTryLastServer, VpnProtocol.Smart);
                     break;
                 case VpnReconnectionSteps.QuickConnect:
                     await ConnectToSimilarServerOrQuickConnectAsync(isToTryLastServer, _appSettings.GetProtocol());
@@ -276,7 +276,7 @@ namespace ProtonVPN.Core.Service.Vpn
             }
         }
 
-        private async Task ConnectToSimilarServerOrQuickConnectAsync(bool isToTryLastServer, Protocol protocol)
+        private async Task ConnectToSimilarServerOrQuickConnectAsync(bool isToTryLastServer, VpnProtocol vpnProtocol)
         {
             IList<Server> serverCandidates = _similarServerCandidatesGenerator
                 .GenerateList(isToTryLastServer, _targetServer, _targetProfile);
@@ -288,13 +288,13 @@ namespace ProtonVPN.Core.Service.Vpn
             {
                 serverCandidates = serverCandidates.Take(_config.MaxQuickConnectServersOnReconnection.Value).ToList();
             }
-            ServerCandidates sortedCandidates = 
+            ServerCandidates sortedCandidates =
                 _serverCandidatesFactory.ServerCandidates((IReadOnlyCollection<Server>) serverCandidates);
 
-            await ConnectToPreSortedCandidatesAsync(sortedCandidates, protocol);
+            await ConnectToPreSortedCandidatesAsync(sortedCandidates, vpnProtocol);
         }
 
-        private async Task ConnectToPreSortedCandidatesAsync(ServerCandidates serverCandidates, Protocol protocol)
+        private async Task ConnectToPreSortedCandidatesAsync(ServerCandidates serverCandidates, VpnProtocol vpnProtocol)
         {
             string firstServerMessage = string.Empty;
             if (serverCandidates.Items.Any())
@@ -303,14 +303,14 @@ namespace ProtonVPN.Core.Service.Vpn
                 firstServerMessage = $" First server is {firstServer.Name} ({firstServer.ExitIp}).";
             }
             _logger.Info($"Reconnecting to {serverCandidates.Items.Count} servers.{firstServerMessage}");
-            await _vpnConnector.ConnectToPreSortedCandidatesAsync(serverCandidates, protocol);
+            await _vpnConnector.ConnectToPreSortedCandidatesAsync(serverCandidates, vpnProtocol);
         }
 
-        private async Task ConnectToSimilarServerAsync(bool isToTryLastServer, Protocol protocol)
+        private async Task ConnectToSimilarServerAsync(bool isToTryLastServer, VpnProtocol vpnProtocol)
         {
             ServerCandidates serverCandidates = _similarServerCandidatesGenerator
                 .Generate(isToTryLastServer, _targetServer, _targetProfile);
-            await ConnectToPreSortedCandidatesAsync(serverCandidates, protocol);
+            await _vpnConnector.ConnectToPreSortedCandidatesAsync(serverCandidates, vpnProtocol);
         }
 
         public async Task OnVpnStateChanged(VpnStateChangedEventArgs e)

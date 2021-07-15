@@ -20,6 +20,7 @@
 using ProtonVPN.Service.Contract.Settings;
 using System;
 using ProtonVPN.Common.KillSwitch;
+using ProtonVPN.Common.Networking;
 
 namespace ProtonVPN.Service.Settings
 {
@@ -33,7 +34,9 @@ namespace ProtonVPN.Service.Settings
 
         bool Ipv6LeakProtection { get; }
 
-        bool UseTunAdapter { get; }
+        VpnProtocol VpnProtocol { get; }
+
+        OpenVpnAdapter OpenVpnAdapter { get; }
 
         void Apply(SettingsContract settings);
     }

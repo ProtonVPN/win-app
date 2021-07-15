@@ -21,8 +21,8 @@ using System;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading.Tasks;
+using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Threading;
-using ProtonVPN.Common.Vpn;
 using ProtonVPN.Vpn.Common;
 
 namespace ProtonVPN.Vpn.OpenVpn
@@ -36,20 +36,20 @@ namespace ProtonVPN.Vpn.OpenVpn
             _staticKey = staticKey;
         }
 
-        public async Task<bool> Alive(VpnEndpoint vpnEndpoint, Task timeoutTask)
+        public async Task<bool> Alive(OpenVpnEndpoint openVpnEndpoint, Task timeoutTask)
         {
             OpenVpnHandshake packet = new(_staticKey);
-            IPEndPoint endpoint = new(IPAddress.Parse(vpnEndpoint.Server.Ip), vpnEndpoint.Port);
+            IPEndPoint endpoint = new(IPAddress.Parse(openVpnEndpoint.Server.Ip), openVpnEndpoint.Port);
 
             using Socket socket = new(
                 AddressFamily.InterNetwork,
-                MapSocketType(vpnEndpoint.Protocol),
-                MapProtocolType(vpnEndpoint.Protocol));
+                MapSocketType(openVpnEndpoint.VpnProtocol),
+                MapProtocolType(openVpnEndpoint.VpnProtocol));
             try
             {
                 await SafeSocketAction(socket.ConnectAsync(endpoint)).WithTimeout(timeoutTask);
 
-                byte[] bytes = packet.Bytes(vpnEndpoint.Protocol == VpnProtocol.OpenVpnTcp);
+                byte[] bytes = packet.Bytes(openVpnEndpoint.VpnProtocol == VpnProtocol.OpenVpnTcp);
                 await SafeSocketAction(socket.SendAsync(new ArraySegment<byte>(bytes), SocketFlags.None)).WithTimeout(timeoutTask);
 
                 byte[] answer = new byte[1024];

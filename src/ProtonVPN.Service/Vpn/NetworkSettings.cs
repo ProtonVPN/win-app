@@ -18,31 +18,35 @@
  */
 
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Os.Net;
-using ProtonVPN.Service.Network;
+using ProtonVPN.Common.OS.Net;
 using ProtonVPN.Vpn.Common;
 
 namespace ProtonVPN.Service.Vpn
 {
     public class NetworkSettings : IVpnStateAware
     {
-        private readonly ICurrentNetworkInterface _currentNetworkInterface;
         private readonly ILogger _logger;
+        private readonly INetworkInterfaceLoader _networkInterfaceLoader;
 
-        public NetworkSettings(ILogger logger, ICurrentNetworkInterface currentNetworkInterface)
+        public NetworkSettings(ILogger logger, INetworkInterfaceLoader networkInterfaceLoader)
         {
             _logger = logger;
-            _currentNetworkInterface = currentNetworkInterface;
+            _networkInterfaceLoader = networkInterfaceLoader;
         }
 
-        public bool IsNetworkAdapterAvailable()
+        public bool IsNetworkAdapterAvailable(VpnProtocol vpnProtocol, OpenVpnAdapter? openVpnAdapter)
         {
-            return _currentNetworkInterface.Index != 0;
+            return _networkInterfaceLoader.GetByVpnProtocol(vpnProtocol, openVpnAdapter).Index != 0;
         }
 
         public void OnVpnDisconnected(VpnState state)
         {
-            RestoreNetworkSettings();
+            if (state.VpnProtocol != VpnProtocol.WireGuard)
+            {
+                RestoreNetworkSettings(state.VpnProtocol, state.OpenVpnAdapter);
+            }
         }
 
         public void OnVpnConnected(VpnState state)
@@ -51,12 +55,15 @@ namespace ProtonVPN.Service.Vpn
 
         public void OnVpnConnecting(VpnState state)
         {
-            ApplyNetworkSettings();
+            if (state.VpnProtocol != VpnProtocol.WireGuard)
+            {
+                ApplyNetworkSettings(state.VpnProtocol, state.OpenVpnAdapter);
+            }
         }
 
-        private void ApplyNetworkSettings()
+        private void ApplyNetworkSettings(VpnProtocol vpnProtocol, OpenVpnAdapter? openVpnAdapter)
         {
-            uint interfaceIndex = _currentNetworkInterface.Index;
+            uint interfaceIndex = _networkInterfaceLoader.GetByVpnProtocol(vpnProtocol, openVpnAdapter).Index;
 
             try
             {
@@ -70,9 +77,10 @@ namespace ProtonVPN.Service.Vpn
             }
         }
 
-        private void RestoreNetworkSettings()
+        private void RestoreNetworkSettings(VpnProtocol vpnProtocol, OpenVpnAdapter? openVpnAdapter)
         {
-            uint interfaceIndex = _currentNetworkInterface.Index;
+
+            uint interfaceIndex = _networkInterfaceLoader.GetByVpnProtocol(vpnProtocol, openVpnAdapter).Index;
             if (interfaceIndex == 0)
             {
                 return;

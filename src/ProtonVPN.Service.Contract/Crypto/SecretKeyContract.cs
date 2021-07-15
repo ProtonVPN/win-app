@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,25 +17,29 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Vpn;
-using ProtonVPN.Vpn.Common;
+using System.Runtime.Serialization;
+using ProtonVPN.Common.Extensions;
+using ProtonVPN.Crypto;
 
-namespace ProtonVPN.Vpn.OpenVpn
+namespace ProtonVPN.Service.Contract.Crypto
 {
-    internal class BestLocalEndpoint
+    [DataContract]
+    public class SecretKeyContract : KeyContract
     {
-        private readonly SafeBestNetworkInterface _interface;
-
-        public BestLocalEndpoint(VpnEndpoint endpoint)
+        public SecretKeyContract()
         {
-            _interface = endpoint.Protocol == VpnProtocol.OpenVpnUdp ?
-                new SafeBestNetworkInterface(new BestNetworkInterface(endpoint.Server.Ip)) :
-                null;
         }
 
-        public string Ip()
+        public SecretKeyContract(SecretKey key)
+            : base(key)
         {
-            return _interface?.Ip()?.ToString() ?? string.Empty;
         }
+
+        public SecretKey ConvertBack()
+        {
+            return new(Bytes, Algorithm.ToString().ToEnum<KeyAlgorithm>());
+        }
+
+        protected override int KeyLength => 64;
     }
 }

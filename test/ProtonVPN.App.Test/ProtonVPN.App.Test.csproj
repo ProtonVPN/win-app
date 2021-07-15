@@ -29,6 +29,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -37,6 +38,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Autofac, Version=4.9.4.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
@@ -149,6 +151,10 @@
     <ProjectReference Include="..\..\src\ProtonVPN.Core\ProtonVPN.Core.csproj">
       <Project>{ca44b51d-7645-413a-818f-2c5b57db67dd}</Project>
       <Name>ProtonVPN.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\ProtonVPN.Crypto\ProtonVPN.Crypto.csproj">
+      <Project>{BA2D505E-CED3-4FCB-A463-DAF6B77C18DE}</Project>
+      <Name>ProtonVPN.Crypto</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\ProtonVPN.Resources\ProtonVPN.Resource.csproj">
       <Project>{45A0EA81-D37E-4D7F-8CE1-CE6B6A95A9ED}</Project>

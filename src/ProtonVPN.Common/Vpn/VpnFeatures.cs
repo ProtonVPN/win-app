@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,20 +17,18 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Runtime.Serialization;
-
-namespace ProtonVPN.Service.Contract.Vpn
+namespace ProtonVPN.Common.Vpn
 {
-    [DataContract]
-    public enum VpnProtocolContract
+    public class VpnFeatures
     {
-        [EnumMember]
-        OpenVpnUdp,
+        public VpnFeatures(int netShieldMode, bool splitTcp)
+        {
+            NetShieldMode = netShieldMode;
+            SplitTcp = splitTcp;
+        }
 
-        [EnumMember]
-        OpenVpnTcp,
+        public int NetShieldMode { get; }
 
-        [EnumMember]
-        Smart
+        public bool SplitTcp { get; }
     }
 }

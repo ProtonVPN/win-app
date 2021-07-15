@@ -17,11 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ProtonVPN.Common.Vpn;
+using ProtonVPN.Common.Networking;
 using ProtonVPN.Service.Contract.Vpn;
-using System;
 
 namespace ProtonVPN.Service.Contract.Test.Vpn
 {

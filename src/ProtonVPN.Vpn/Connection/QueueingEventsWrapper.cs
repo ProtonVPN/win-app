@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -55,7 +55,7 @@ namespace ProtonVPN.Vpn.Connection
 
         public InOutBytes Total => _origin.Total;
 
-        public void Connect(VpnEndpoint endpoint, VpnCredentials credentials, VpnConfig config)
+        public void Connect(IVpnEndpoint endpoint, VpnCredentials credentials, VpnConfig config)
         {
             _origin.Connect(endpoint, credentials, config);
         }
@@ -63,6 +63,16 @@ namespace ProtonVPN.Vpn.Connection
         public void Disconnect(VpnError error)
         {
             _origin.Disconnect(error);
+        }
+
+        public void SetFeatures(VpnFeatures vpnFeatures)
+        {
+            _origin.SetFeatures(vpnFeatures);
+        }
+
+        public void UpdateAuthCertificate(string certificate)
+        {
+            _origin.UpdateAuthCertificate(certificate);
         }
 
         private void Origin_StateChanged(object sender, EventArgs<VpnState> e)

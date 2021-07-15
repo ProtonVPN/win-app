@@ -1,4 +1,23 @@
-﻿using System.Collections.Generic;
+﻿/*
+ * Copyright (c) 2021 Proton Technologies AG
+ *
+ * This file is part of ProtonVPN.
+ *
+ * ProtonVPN is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * ProtonVPN is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using ProtonVPN.Core.Settings;
 
@@ -25,7 +44,7 @@ namespace ProtonVPN.Settings.ReconnectNotification
 
         public void SetChangesReverted()
         {
-            var newValue = GetSettingValueSerialized();
+            string newValue = GetSettingValueSerialized();
             if (_appSettings.GetType().GetProperty(Name)?.PropertyType == typeof(bool))
             {
                 if (newValue == "true" && !_reverted)
@@ -51,9 +70,9 @@ namespace ProtonVPN.Settings.ReconnectNotification
 
         public virtual bool Changed()
         {
-            var childChanged = false;
+            bool childChanged = false;
 
-            foreach (var child in GetChildren())
+            foreach (Setting child in GetChildren())
             {
                 if (child.Changed())
                 {
@@ -77,7 +96,7 @@ namespace ProtonVPN.Settings.ReconnectNotification
 
         public string GetSettingValueSerialized()
         {
-            var val = _appSettings.GetType().GetProperty(Name)?.GetValue(_appSettings, null);
+            object val = _appSettings.GetType().GetProperty(Name)?.GetValue(_appSettings, null);
             return JsonConvert.SerializeObject(val);
         }
 

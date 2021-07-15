@@ -1,4 +1,25 @@
-﻿using ProtonVPN.Common.Configuration;
+﻿/*
+ * Copyright (c) 2021 Proton Technologies AG
+ *
+ * This file is part of ProtonVPN.
+ *
+ * ProtonVPN is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * ProtonVPN is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+using System;
+using ProtonVPN.Common.Configuration;
+using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.OS.Net.NetworkInterface;
 
 namespace ProtonVPN.Common.OS.Net
@@ -14,14 +35,35 @@ namespace ProtonVPN.Common.OS.Net
             _config = config;
         }
 
-        public INetworkInterface GetTapInterface()
+        public INetworkInterface GetOpenVpnTapInterface()
         {
             return _networkInterfaces.GetByDescription(_config.OpenVpn.TapAdapterDescription);
         }
 
-        public INetworkInterface GetTunInterface()
+        public INetworkInterface GetOpenVpnTunInterface()
         {
             return _networkInterfaces.GetByName(_config.OpenVpn.TunAdapterName);
+        }
+
+        public INetworkInterface GetWireGuardTunInterface()
+        {
+            INetworkInterface networkInterface = _networkInterfaces.GetById(Guid.Parse(_config.WireGuard.TunAdapterGuid));
+            return networkInterface ?? _networkInterfaces.GetByName(_config.WireGuard.TunAdapterName);
+        }
+
+        public INetworkInterface GetByVpnProtocol(VpnProtocol vpnProtocol, OpenVpnAdapter? openVpnAdapter)
+        {
+            if (vpnProtocol == VpnProtocol.WireGuard)
+            {
+                return GetWireGuardTunInterface();
+            }
+
+            return openVpnAdapter switch
+            {
+                OpenVpnAdapter.Tap => GetOpenVpnTapInterface(),
+                OpenVpnAdapter.Tun => GetOpenVpnTunInterface(),
+                _ => new NullNetworkInterface()
+            };
         }
     }
 }

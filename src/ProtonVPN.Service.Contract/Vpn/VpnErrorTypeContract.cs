@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -77,5 +77,53 @@ namespace ProtonVPN.Service.Contract.Vpn
 
         [EnumMember]
         Unknown,
+
+        [EnumMember]
+        MissingServerPublicKey,
+
+        [EnumMember]
+        IncorrectVpnConfig,
+
+        [EnumMember]
+        GuestSession = 86100,
+
+        [EnumMember]
+        CertificateExpired = 86101,
+
+        [EnumMember]
+        CertificateRevoked = 86102,
+
+        [EnumMember]
+        SessionKilledDueToMultipleKeys = 86103,
+
+        [EnumMember]
+        UnableToVerifyCert = 86104,
+
+        [EnumMember]
+        CertRevokedOrExpired = 86105,
+
+        [EnumMember]
+        CertificateNotYetProvided = 86106,
+
+        [EnumMember]
+        SessionLimitReachedFree = 86111,
+
+        [EnumMember]
+        SessionLimitReachedBasic = 86112,
+
+        [EnumMember]
+        SessionLimitReachedPlus = 86113,
+
+        [EnumMember]
+        SessionLimitReachedVisionary = 86114,
+
+        [EnumMember]
+        SessionLimitReachedPro = 86115,
+
+        [EnumMember]
+        SessionLimitReachedUnknown = 86110,
+
+        [EnumMember]
+        PlanNeedsToBeUpgraded = 86151,
     }
 }

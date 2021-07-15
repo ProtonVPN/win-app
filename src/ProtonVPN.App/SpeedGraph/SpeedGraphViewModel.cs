@@ -152,7 +152,7 @@ namespace ProtonVPN.SpeedGraph
                 _logger.Info("Session graph started.");
                 _timer.Start();
             }
-            else if (_timer.IsEnabled)
+            else if (_timer.IsEnabled && e.State.Status != VpnStatus.ActionRequired)
             {
                 _logger.Info("Session graph stopped due to VPN status change: " + e.State.Status);
                 ResetGraph();
