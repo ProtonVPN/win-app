@@ -21,13 +21,17 @@ using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
+using ProtonVPN.BugReporting;
 using ProtonVPN.Common.KillSwitch;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Config.Url;
+using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
+using Sentry;
+using Sentry.Protocol;
 
 namespace ProtonVPN.Modals
 {
@@ -38,6 +42,7 @@ namespace ProtonVPN.Modals
         private readonly IAppSettings _appSettings;
         private readonly IVpnManager _vpnManager;
         private readonly IUserStorage _userStorage;
+        private readonly IModals _modals;
 
         private VpnError _error;
         private bool _networkBlocked;
@@ -46,24 +51,28 @@ namespace ProtonVPN.Modals
         public ICommand DisableKillSwitchCommand { get; set; }
         public ICommand GoToAccountCommand { get; set; }
         public ICommand UpgradeCommand { get; set; }
+        public ICommand ReportBugCommand { get; set; }
 
         public DisconnectErrorModalViewModel(
             ILogger logger,
             IActiveUrls urlConfig,
             IAppSettings appSettings,
             IVpnManager vpnManager,
-            IUserStorage userStorage)
+            IUserStorage userStorage, 
+            IModals modals)
         {
             _logger = logger;
             _urlConfig = urlConfig;
             _appSettings = appSettings;
             _vpnManager = vpnManager;
             _userStorage = userStorage;
+            _modals = modals;
 
             OpenHelpArticleCommand = new RelayCommand(OpenHelpArticleAction);
             DisableKillSwitchCommand = new RelayCommand(DisableKillSwitch);
             GoToAccountCommand = new RelayCommand(OpenAccountPage);
             UpgradeCommand = new RelayCommand(UpgradeAction);
+            ReportBugCommand = new RelayCommand(ReportBugAction);
         }
 
         public VpnError Error
@@ -91,7 +100,23 @@ namespace ProtonVPN.Modals
             NetworkBlocked = options.NetworkBlocked;
             Error = options.Error;
 
+            HandleError(options.Error);
+
             _logger.Info($"Disconnected due to: {Error}. Network blocked: {NetworkBlocked}");
+        }
+
+        private void HandleError(VpnError error)
+        {
+            if (error == VpnError.TlsError || error == VpnError.TlsCertificateError)
+            {
+                string errorMessage = $"The error '{error}' was handled by the app.";
+                _logger.Error(errorMessage);
+                SentrySdk.CaptureEvent(new SentryEvent
+                {
+                    Message = errorMessage,
+                    Level = SentryLevel.Error,
+                });
+            }
         }
 
         protected override async void OnViewReady(object view)
@@ -100,6 +125,7 @@ namespace ProtonVPN.Modals
 
             switch (Error)
             {
+                case VpnError.TlsError:
                 case VpnError.TimeoutError:
                 case VpnError.UserTierTooLowError:
                 case VpnError.Unpaid:
@@ -163,6 +189,11 @@ namespace ProtonVPN.Modals
         {
             _urlConfig.AccountUrl.Open();
             TryClose();
+        }
+
+        private void ReportBugAction()
+        {
+            _modals.Show<ReportBugModalViewModel>();
         }
     }
 }
