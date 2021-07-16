@@ -131,15 +131,27 @@ namespace ProtonVPN.Core.Profiles
 
         private VpnProtocol MapVpnProtocol(int value)
         {
-            return Enum.IsDefined(typeof(VpnProtocol), value)
-                ? (VpnProtocol) value 
-                : VpnProtocol.Smart;
+            return value switch
+            {
+                1 => VpnProtocol.OpenVpnTcp,
+                2 => VpnProtocol.OpenVpnUdp,
+                3 => VpnProtocol.Smart,
+                4 => VpnProtocol.WireGuard,
+                _ => VpnProtocol.Smart
+            };
         }
 
-        // Don't change "default(VpnProtocol)" to "default".
-        // This would change default value from 0 to null and lead to incorrect behaviour.
-        private int MapVpnProtocol(VpnProtocol openVpnProtocol) => 
-            (int)(openVpnProtocol != default(VpnProtocol) ? openVpnProtocol : VpnProtocol.Smart);
+        private int MapVpnProtocol(VpnProtocol vpnProtocol)
+        {
+            return vpnProtocol switch
+            {
+                VpnProtocol.OpenVpnTcp => 1,
+                VpnProtocol.OpenVpnUdp => 2,
+                VpnProtocol.Smart => 3,
+                VpnProtocol.WireGuard => 4,
+                _ => throw new NotImplementedException()
+            };
+        }
 
         private Features MapFeatures(int value)
         {
