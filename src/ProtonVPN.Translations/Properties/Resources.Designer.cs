@@ -205,7 +205,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Access geo-blocked content (Netflix, Amazon Prime Video, BBC iPlayer, Wikipedia, Facebook, Youtube, etc) no matter where you are..
+        ///   Looks up a localized string similar to Access geo-blocked content (Netflix, Amazon Prime Video, BBC iPlayer, Wikipedia, Facebook, YouTube, etc) no matter where you are..
         /// </summary>
         public static string Account_lbl_AccessContent_Info {
             get {
@@ -3901,7 +3901,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to For Split Tunnel to function properly, you must disable Kill Switch..
+        ///   Looks up a localized string similar to For Split Tunneling to function properly, you must disable Kill Switch..
         /// </summary>
         public static string Dialogs_SplitTunnelWarning_msg {
             get {
@@ -4153,7 +4153,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Download ant install the latest version to fix the problem..
+        ///   Looks up a localized string similar to Download and install the latest version to fix the problem..
         /// </summary>
         public static string ErrorWindow_lbl_DownloadInfo {
             get {
@@ -6835,7 +6835,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 10 Connections.
+        ///   Looks up a localized string similar to 10 connections.
         /// </summary>
         public static string Trial_Features_lbl_MultipleConnections {
             get {
