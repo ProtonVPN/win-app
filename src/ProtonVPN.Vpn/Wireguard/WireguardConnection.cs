@@ -35,9 +35,6 @@ namespace ProtonVPN.Vpn.WireGuard
 {
     internal class WireGuardConnection : ISingleVpnConnection
     {
-        private const string DefaultDnsServer = "10.2.0.1";
-        private const string DefaultClientAddress = "10.2.0.2";
-
         private readonly ILogger _logger;
         private readonly ProtonVPN.Common.Configuration.Config _config;
         private readonly IService _wireGuardService;
@@ -229,7 +226,7 @@ namespace ProtonVPN.Vpn.WireGuard
             return
                 $"[Interface]\n" +
                 $"PrivateKey = {x25519SecretKey.Base64}\n" +
-                $"Address = {DefaultClientAddress}/32\n" +
+                $"Address = {_config.WireGuard.DefaultClientAddress}/32\n" +
                 $"DNS = {GetDnsServers()}\n" +
                 $"[Peer]\n" +
                 $"PublicKey = {_endpoint.Server.X25519PublicKey}\n" +
@@ -246,13 +243,13 @@ namespace ProtonVPN.Vpn.WireGuard
         {
             StateChanged?.Invoke(this,
                 new EventArgs<VpnState>(
-                    new VpnState(status, error, DefaultClientAddress, _endpoint?.Server.Ip ?? string.Empty,
+                    new VpnState(status, error, _config.WireGuard.DefaultClientAddress, _endpoint?.Server.Ip ?? string.Empty,
                         VpnProtocol.WireGuard, null, _endpoint?.Server.Label ?? string.Empty)));
         }
 
         private string GetDnsServers()
         {
-            return _vpnConfig.CustomDns.Count > 0 ? string.Join(",", _vpnConfig.CustomDns) : DefaultDnsServer;
+            return _vpnConfig.CustomDns.Count > 0 ? string.Join(",", _vpnConfig.CustomDns) : _config.WireGuard.DefaultDnsServer;
         }
     }
 }

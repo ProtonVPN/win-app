@@ -28,15 +28,17 @@ namespace ProtonVPN.Vpn.SplitTunnel
 {
     internal class SplitTunnelRouting
     {
+        private const int ROUTE_METRIC = 32000;
+
         private readonly ProtonVPN.Common.Configuration.Config _config;
         private readonly INetworkInterfaces _networkInterfaces;
         private readonly INetworkInterfaceLoader _networkInterfaceLoader;
 
         public SplitTunnelRouting(ProtonVPN.Common.Configuration.Config config, INetworkInterfaces networkInterfaces, INetworkInterfaceLoader networkInterfaceLoader)
         {
-            _networkInterfaceLoader = networkInterfaceLoader;
             _config = config;
             _networkInterfaces = networkInterfaces;
+            _networkInterfaceLoader = networkInterfaceLoader;
         }
 
         public void SetUpRoutingTable(VpnConfig vpnConfig, string localIp)
@@ -48,12 +50,13 @@ namespace ProtonVPN.Vpn.SplitTunnel
                     //Remove default wireguard route as it has metric 0, but instead we add the same route with low priority
                     //so that we still have the route for include mode apps to be routed through the tunnel.
                     RoutingTableHelper.DeleteRoute("0.0.0.0", "0.0.0.0", localIp);
-                    RoutingTableHelper.CreateRoute("0.0.0.0", "0.0.0.0", localIp, adapter.Index, 32000);
+                    RoutingTableHelper.CreateRoute("0.0.0.0", "0.0.0.0", localIp, adapter.Index, ROUTE_METRIC);
+                    RoutingTableHelper.CreateRoute(_config.WireGuard.DefaultDnsServer, "255.255.255.255", localIp, adapter.Index, ROUTE_METRIC);
 
                     foreach (string ip in vpnConfig.SplitTunnelIPs)
                     {
                         NetworkAddress address = new(ip);
-                        RoutingTableHelper.CreateRoute(address.Ip, address.Mask, localIp, adapter.Index, 32000);
+                        RoutingTableHelper.CreateRoute(address.Ip, address.Mask, localIp, adapter.Index, ROUTE_METRIC);
                     }
                     break;
                 case SplitTunnelMode.Block:

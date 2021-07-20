@@ -46,5 +46,11 @@ namespace ProtonVPN.Common.Configuration
 
         [Required]
         public string PipeName { get; internal set; }
+
+        [Required]
+        public string DefaultDnsServer { get; internal set; }
+
+        [Required]
+        public string DefaultClientAddress { get; internal set; }
     }
 }
