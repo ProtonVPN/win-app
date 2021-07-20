@@ -261,6 +261,10 @@ namespace ProtonVPN.Common.Configuration.Source
                     ServicePath = Path.Combine(baseFolder, "ProtonVPN.WireGuardService.exe"),
 
                     PipeName = $"ProtectedPrefix\\Administrators\\WireGuard\\{wireGuardConfigFilename}",
+
+                    DefaultDnsServer = "10.2.0.1",
+
+                    DefaultClientAddress = "10.2.0.2",
                 },
 
                 TlsPinningConfig =
