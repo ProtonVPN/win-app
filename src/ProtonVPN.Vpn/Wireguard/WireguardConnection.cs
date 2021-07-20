@@ -52,7 +52,7 @@ namespace ProtonVPN.Vpn.WireGuard
         private IVpnEndpoint _endpoint;
         private VpnConfig _vpnConfig;
         private bool _connected;
-        private bool _pendingServiceStop;
+        private bool _isServiceStopPending;
 
         public WireGuardConnection(
             ILogger logger,
@@ -136,7 +136,7 @@ namespace ProtonVPN.Vpn.WireGuard
             }
 
             StopServiceDependencies();
-            await _wireGuardService.StopAsync(cancellationToken);
+            await EnsureServiceIsStopped(cancellationToken);
             _connected = false;
         }
 
@@ -165,22 +165,24 @@ namespace ProtonVPN.Vpn.WireGuard
         {
             while (_wireGuardService.Exists() && !_wireGuardService.IsStopped())
             {
-                if (!_pendingServiceStop)
+                if (_isServiceStopPending)
                 {
-                    _logger.Info("[WireGuardConnection] service is running, trying to stop.");
-                    await _wireGuardService.StopAsync(cancellationToken);
-                    _pendingServiceStop = true;
+                    _logger.Info("[WireGuardConnection] waiting for service to stop.");
+                    await Task.Delay(500, cancellationToken);
                 }
                 else
                 {
-                    _logger.Info("[WireGuardConnection] service is stopped.");
-                    break;
+                    _logger.Info("[WireGuardConnection] service is running, trying to stop.");
+                    await _wireGuardService.StopAsync(cancellationToken);
+                    _isServiceStopPending = true;
                 }
-
-                await Task.Delay(500, cancellationToken);
             }
 
-            _pendingServiceStop = false;
+            if (_isServiceStopPending)
+            {
+                _logger.Info("[WireGuardConnection] service is stopped.");
+                _isServiceStopPending = false;
+            }
         }
 
         private void OnStateChanged(object sender, EventArgs<VpnState> state)

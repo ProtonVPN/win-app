@@ -67,14 +67,9 @@ namespace ProtonVPN.Vpn.WireGuard
             return _origin.StartAsync(cancellationToken);
         }
 
-        public Task<Result> StopAsync(CancellationToken cancellationToken)
+        public async Task<Result> StopAsync(CancellationToken cancellationToken)
         {
-            if (_origin.Running())
-            {
-                return _origin.StopAsync(cancellationToken);
-            }
-
-            return Task.Run(Result.Ok);
+            return await _origin.StopAsync(cancellationToken);
         }
     }
 }
