@@ -459,7 +459,7 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <comment>The label for list of PLUS subscription level features in Trial Expiring window</comment>
   </data>
   <data name="Trial_Features_lbl_MultipleConnections" xml:space="preserve">
-    <value>10 Connections</value>
+    <value>10 connections</value>
     <comment>The name of multiple connections feature available to PLUS subscription plan users displayed in Trial windows</comment>
   </data>
   <data name="Trial_Expiring_lbl_MultipleConnections_Info" xml:space="preserve">
@@ -2615,7 +2615,7 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_AccessContent_Info" xml:space="preserve">
-    <value>Access geo-blocked content (Netflix, Amazon Prime Video, BBC iPlayer, Wikipedia, Facebook, Youtube, etc) no matter where you are.</value>
+    <value>Access geo-blocked content (Netflix, Amazon Prime Video, BBC iPlayer, Wikipedia, Facebook, YouTube, etc) no matter where you are.</value>
     <comment>Tooltip message shown in account window when hovered on Access blocked content exclamation mark icon</comment>
   </data>
   <data name="Account_lbl_AllPlusFeatures" xml:space="preserve">
@@ -2745,7 +2745,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Some applications on your PC might have removed some files or prevented them to be installed successfully.</value>
   </data>
   <data name="ErrorWindow_lbl_DownloadInfo" xml:space="preserve">
-    <value>Download ant install the latest version to fix the problem.</value>
+    <value>Download and install the latest version to fix the problem.</value>
   </data>
   <data name="ErrorWindow_lbl_RepairInfo" xml:space="preserve">
     <value>Please repair your installation.</value>
@@ -2909,7 +2909,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Enable Permanent Kill Switch?</value>
   </data>
   <data name="Dialogs_SplitTunnelWarning_msg" xml:space="preserve">
-    <value>For Split Tunnel to function properly, you must disable Kill Switch.</value>
+    <value>For Split Tunneling to function properly, you must disable Kill Switch.</value>
   </data>
   <data name="Dialogs_TunInUse_btn_SwitchToTap" xml:space="preserve">
     <value>Switch to TAP</value>
