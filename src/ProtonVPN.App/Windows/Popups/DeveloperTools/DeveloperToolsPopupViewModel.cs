@@ -20,12 +20,14 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
 using GalaSoft.MvvmLight.CommandWpf;
 using Microsoft.Toolkit.Uwp.Notifications;
+using ProtonVPN.Common.Extensions;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Servers.Models;
@@ -136,7 +138,15 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
 
         private async void RefreshVpnInfoAction()
         {
-            await _userAuth.RefreshVpnInfo();
+            try
+            {
+                await _userAuth.RefreshVpnInfo();
+            }
+            catch (HttpRequestException ex)
+            {
+                _notificationSender.Send("Request failed",
+                    $"[{ex.GetType().Name}] Exception message: {ex.CombinedMessage()}");
+            }
         }
 
         private async void CheckIfCurrentServerIsOnlineAction()
