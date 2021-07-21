@@ -53,7 +53,7 @@ namespace ProtonVPN.Vpn.Test.Connection
             _taskQueue = new TaskQueue();
             _origin = Substitute.For<ISingleVpnConnection>();
 
-            _endpoint = new OpenVpnEndpoint(new VpnHost("proton.vpn", "135.27.46.203", string.Empty, string.Empty), VpnProtocol.OpenVpnTcp, 777);
+            _endpoint = new OpenVpnEndpoint(new VpnHost("proton.vpn", "135.27.46.203", string.Empty, null), VpnProtocol.OpenVpnTcp, 777);
             _credentials = new VpnCredentials("username", "password", "cert", 
                 new AsymmetricKeyPair(
                     new SecretKey("U2VjcmV0S2V5", KeyAlgorithm.Unknown), 

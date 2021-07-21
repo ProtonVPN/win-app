@@ -38,6 +38,7 @@ using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Settings.Contracts;
 using ProtonVPN.Core.Window.Popups;
+using ProtonVPN.Crypto;
 using ProtonVPN.Modals.Upsell;
 using ProtonVPN.Translations;
 using ProtonVPN.Windows.Popups.Delinquency;
@@ -474,9 +475,14 @@ namespace ProtonVPN.Vpn.Connectors
             return servers
                 .SelectMany(s => s.Servers.OrderBy(_ => _random.Next()))
                 .Where(s => s.Status != 0)
-                .Select(s => new VpnHost(s.Domain, s.EntryIp, s.Label, s.X25519PublicKey))
+                .Select(s => new VpnHost(s.Domain, s.EntryIp, s.Label, GetServerPublicKey(s)))
                 .Distinct(s => (s.Ip, s.Label))
                 .ToList();
+        }
+
+        private PublicKey GetServerPublicKey(PhysicalServer server)
+        {
+            return server.X25519PublicKey.IsNullOrEmpty() ? null : new PublicKey(server.X25519PublicKey, KeyAlgorithm.X25519);
         }
     }
 }

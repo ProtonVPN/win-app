@@ -78,7 +78,7 @@ namespace ProtonVPN.Vpn.WireGuard
 
         public void Connect(IVpnEndpoint endpoint, VpnCredentials credentials, VpnConfig config)
         {
-            if (endpoint.Server.X25519PublicKey.IsNullOrEmpty())
+            if (endpoint.Server.X25519PublicKey == null)
             {
                 InvokeStateChange(VpnStatus.Disconnected, VpnError.MissingServerPublicKey);
                 return;
@@ -229,7 +229,7 @@ namespace ProtonVPN.Vpn.WireGuard
                 $"Address = {_config.WireGuard.DefaultClientAddress}/32\n" +
                 $"DNS = {GetDnsServers()}\n" +
                 $"[Peer]\n" +
-                $"PublicKey = {_endpoint.Server.X25519PublicKey}\n" +
+                $"PublicKey = {_endpoint.Server.X25519PublicKey.Base64}\n" +
                 $"AllowedIPs = 0.0.0.0/0\n" +
                 $"Endpoint = {_endpoint.Server.Ip}:{_endpoint.Port}\n";
         }
