@@ -44,10 +44,10 @@ namespace ProtonVPN.Service.Contract.Test.Vpn
             IList<ValidationResult> result = contract.Validate(new ValidationContext(this)).ToList();
 
             // Assert
-            result.Should().Contain(c => c.ErrorMessage.Contains("Invalid public key"));
             result.Should().Contain(c => c.ErrorMessage.Contains("Invalid server IP address"));
             result.Should().Contain(c => c.ErrorMessage.Contains($"Incorrect key length {PublicKey.Length}"));
             result.Should().Contain(c => c.ErrorMessage.Contains($"Incorrect key length {PrivateKey.Length}"));
+            result.Should().Contain(c => c.ErrorMessage.Contains($"Incorrect key length {ServerPublicKey.Length}"));
         }
 
         private VpnConnectionRequestContract GetConnectionRequestContract()
@@ -77,7 +77,18 @@ namespace ProtonVPN.Service.Contract.Test.Vpn
                 },
                 Servers = new VpnHostContract[]
                 {
-                    new() {Ip = "127.0.0.999", Label = string.Empty, X25519PublicKey = ServerPublicKey},
+                    new()
+                    {
+                        Ip = "127.0.0.999",
+                        Label = string.Empty,
+                        X25519PublicKey = new ServerPublicKeyContract
+                        {
+                            Algorithm = KeyAlgorithmContract.X25519,
+                            Base64 = ServerPublicKey,
+                            Bytes = new byte[0],
+                            Pem = string.Empty
+                        }
+                    },
                 },
                 VpnConfig = new VpnConfigContract {CustomDns = new List<string>()}
             };

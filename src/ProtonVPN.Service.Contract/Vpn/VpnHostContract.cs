@@ -19,16 +19,16 @@
 
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Runtime.Serialization;
 using ProtonVPN.Common.Extensions;
+using ProtonVPN.Service.Contract.Crypto;
 
 namespace ProtonVPN.Service.Contract.Vpn
 {
     [DataContract]
     public class VpnHostContract : IValidatableObject
     {
-        private const int ServerPublicKeyLength = 44;
-
         [DataMember]
         public string Name { get; set; }
 
@@ -39,16 +39,15 @@ namespace ProtonVPN.Service.Contract.Vpn
         public string Label { get; set; }
 
         [DataMember]
-        public string X25519PublicKey { get; set; }
+        public ServerPublicKeyContract X25519PublicKey { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            if (!X25519PublicKey.IsNullOrEmpty() && X25519PublicKey.Length != ServerPublicKeyLength ||
-                !X25519PublicKey.IsValidBase64Key())
-            {
-                yield return new ValidationResult($"Invalid public key {X25519PublicKey} for server {Name}");
-            }
+            return X25519PublicKey == null ? ValidateIp() : ValidateIp().Concat(X25519PublicKey.Validate(validationContext));
+        }
 
+        public IEnumerable<ValidationResult> ValidateIp()
+        {
             if (!Ip.IsValidIpAddress())
             {
                 yield return new ValidationResult($"Invalid server IP address: {Ip} for server {Name}");

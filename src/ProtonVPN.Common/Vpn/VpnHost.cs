@@ -20,12 +20,13 @@
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Helpers;
 using System;
+using ProtonVPN.Crypto;
 
 namespace ProtonVPN.Common.Vpn
 {
     public struct VpnHost
     {
-        public VpnHost(string name, string ip, string label, string x25519PublicKey)
+        public VpnHost(string name, string ip, string label, PublicKey x25519PublicKey)
         {
             AssertHostNameIsValid(name);
             AssertIpAddressIsValid(ip);
@@ -42,7 +43,7 @@ namespace ProtonVPN.Common.Vpn
 
         public string Label { get; }
 
-        public string X25519PublicKey { get; }
+        public PublicKey X25519PublicKey { get; }
 
         public bool IsEmpty() => string.IsNullOrEmpty(Name) && string.IsNullOrEmpty(Ip);
 

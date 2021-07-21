@@ -50,6 +50,7 @@
     <Compile Include="Crypto\AsymmetricKeyPairContract.cs" />
     <Compile Include="Crypto\KeyAlgorithmContract.cs" />
     <Compile Include="Crypto\KeyContract.cs" />
+    <Compile Include="Crypto\ServerPublicKeyContract.cs" />
     <Compile Include="Crypto\PublicKeyContract.cs" />
     <Compile Include="Crypto\SecretKeyContract.cs" />
     <Compile Include="Servers\PhysicalServerContract.cs" />
