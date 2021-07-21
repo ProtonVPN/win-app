@@ -205,7 +205,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Access geo-blocked content (Netflix, Amazon Prime Video, BBC iPlayer, Wikipedia, Facebook, YouTube, etc) no matter where you are..
+        ///   Looks up a localized string similar to Access blocked content, like social media, news, Wikipedia, YouTube, and many others, no matter where you are..
         /// </summary>
         public static string Account_lbl_AccessContent_Info {
             get {
@@ -331,7 +331,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;Bold&gt;Highest&lt;/Bold&gt; speed (10Gbps).
+        ///   Looks up a localized string similar to &lt;Bold&gt;Highest&lt;/Bold&gt; speed (up to 10 Gbps).
         /// </summary>
         public static string Account_lbl_HighestSpeed {
             get {
@@ -376,7 +376,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to NetShield protects your device and speeds up your browsing by blocking ads, trackers and malware..
+        ///   Looks up a localized string similar to NetShield protects your device and speeds up your browsing by blocking ads, trackers, and malware..
         /// </summary>
         public static string Account_lbl_NetShield_Info {
             get {
@@ -385,7 +385,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No logs/No ads.
+        ///   Looks up a localized string similar to Strict no-logs policy.
         /// </summary>
         public static string Account_lbl_NoLogs {
             get {
@@ -394,7 +394,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to P2P filesharing/BitTorrent support.
+        ///   Looks up a localized string similar to P2P/BitTorrent support.
         /// </summary>
         public static string Account_lbl_P2P {
             get {

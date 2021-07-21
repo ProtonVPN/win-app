@@ -24,14 +24,15 @@ using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.User;
 using ProtonVPN.Modals;
+using ProtonVPN.Translations;
 
 namespace ProtonVPN.Account
 {
     public class AccountModalViewModel : BaseModalViewModel, IUserDataAware
     {
+        private readonly Common.Configuration.Config _appConfig;
         private readonly IActiveUrls _urls;
         private readonly IUserStorage _userStorage;
-        private readonly Common.Configuration.Config _appConfig;
 
         private string _username;
         private string _planName;
@@ -77,6 +78,8 @@ namespace ProtonVPN.Account
         public string TotalCountries => "Account_lbl_Countries";
 
         public string TotalConnections => "Account_lbl_Connection";
+
+        public string BasicPlanTotalCountries => string.Format(Translation.GetPlural(TotalCountries, 40), "40+");
 
         public string AccountType
         {
