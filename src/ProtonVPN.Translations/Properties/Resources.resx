@@ -2615,7 +2615,7 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_AccessContent_Info" xml:space="preserve">
-    <value>Access geo-blocked content (Netflix, Amazon Prime Video, BBC iPlayer, Wikipedia, Facebook, YouTube, etc) no matter where you are.</value>
+    <value>Access blocked content, like social media, news, Wikipedia, YouTube, and many others, no matter where you are.</value>
     <comment>Tooltip message shown in account window when hovered on Access blocked content exclamation mark icon</comment>
   </data>
   <data name="Account_lbl_AllPlusFeatures" xml:space="preserve">
@@ -2635,7 +2635,7 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_HighestSpeed" xml:space="preserve">
-    <value>&lt;Bold&gt;Highest&lt;/Bold&gt; speed (10Gbps)</value>
+    <value>&lt;Bold&gt;Highest&lt;/Bold&gt; speed (up to 10 Gbps)</value>
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_HighSpeed" xml:space="preserve">
@@ -2647,11 +2647,11 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_NoLogs" xml:space="preserve">
-    <value>No logs/No ads</value>
+    <value>Strict no-logs policy</value>
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_P2P" xml:space="preserve">
-    <value>P2P filesharing/BitTorrent support</value>
+    <value>P2P/BitTorrent support</value>
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_P2P_Info" xml:space="preserve">
@@ -2687,7 +2687,7 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <comment>The text displayed in Account window for NetShield</comment>
   </data>
   <data name="Account_lbl_NetShield_Info" xml:space="preserve">
-    <value>NetShield protects your device and speeds up your browsing by blocking ads, trackers and malware.</value>
+    <value>NetShield protects your device and speeds up your browsing by blocking ads, trackers, and malware.</value>
     <comment>Tooltip message shown in account window when hovered on NetShield exclamation mark icon</comment>
   </data>
   <data name="Account_lbl_Streaming" xml:space="preserve">
