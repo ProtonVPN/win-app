@@ -129,6 +129,7 @@ namespace ProtonVPN.Vpn.Connection
                 skipped.Clear();
             }
 
+            _skippedWireGuardIps.Clear();
             Current = new EmptyEndpoint();
         }
 
