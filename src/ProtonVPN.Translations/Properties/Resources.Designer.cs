@@ -5584,7 +5584,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unfortunatelly, this server does not support WireGuard®..
+        ///   Looks up a localized string similar to Unfortunatelly, this server does not support WireGuard..
         /// </summary>
         public static string Servers_msg_MissingServerPublicKey {
             get {
@@ -5854,7 +5854,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to WireGuard® (beta).
+        ///   Looks up a localized string similar to WireGuard (beta).
         /// </summary>
         public static string Settings_Connection_DefaultProtocol_val_WireGuard {
             get {
@@ -7105,7 +7105,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to WireGuard®.
+        ///   Looks up a localized string similar to WireGuard.
         /// </summary>
         public static string VpnProtocol_val_WireGuard {
             get {
@@ -7222,7 +7222,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to WireGuard®.
+        ///   Looks up a localized string similar to WireGuard.
         /// </summary>
         public static string WireGuard_lbl {
             get {

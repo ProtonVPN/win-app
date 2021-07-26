@@ -887,7 +887,7 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <comment>Protocol name displayed all over the app (do not translate)</comment>
   </data>
   <data name="WireGuard_lbl" xml:space="preserve">
-    <value>WireGuard®</value>
+    <value>WireGuard</value>
     <comment>WireGuard client name (do not translate)</comment>
   </data>
   <data name="ProfileSyncStatus_val_Succeeded_Info_NoData" xml:space="preserve">
@@ -3201,7 +3201,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Smart Routing</value>
   </data>
   <data name="Servers_msg_MissingServerPublicKey" xml:space="preserve">
-    <value>Unfortunatelly, this server does not support WireGuard®.</value>
+    <value>Unfortunatelly, this server does not support WireGuard.</value>
   </data>
   <data name="Servers_msg_CantConnect_CertificateExpired" xml:space="preserve">
     <value>ProtonVPN was unable to refresh client authentication certificate.</value>
@@ -3210,9 +3210,9 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>ProtonVPN failed to fetch authentication certificate due to network issue.</value>
   </data>
   <data name="VpnProtocol_val_WireGuard" xml:space="preserve">
-    <value>WireGuard®</value>
+    <value>WireGuard</value>
   </data>
   <data name="Settings_Connection_DefaultProtocol_val_WireGuard" xml:space="preserve">
-    <value>WireGuard® (beta)</value>
+    <value>WireGuard (beta)</value>
   </data>
 </root>
