@@ -82,14 +82,6 @@ namespace ProtonVPN.Service.Vpn
             }
         }
 
-        public void UpdateServers(IReadOnlyList<VpnHost> servers)
-        {
-            if (_config != null)
-            {
-                VpnConnection.UpdateServers(servers);
-            }
-        }
-
         public void UpdateAuthCertificate(string certificate)
         {
             if (_config != null)

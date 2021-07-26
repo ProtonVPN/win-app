@@ -30,9 +30,6 @@ namespace ProtonVPN.Service.Contract.Vpn
         Task Connect(VpnConnectionRequestContract connectionRequest);
 
         [OperationContract(IsOneWay = true)]
-        Task UpdateServers(VpnHostContract[] servers);
-
-        [OperationContract(IsOneWay = true)]
         Task UpdateAuthCertificate(string certificate);
 
         [OperationContract(IsOneWay = true)]

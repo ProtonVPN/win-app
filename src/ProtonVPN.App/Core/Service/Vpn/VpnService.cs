@@ -59,9 +59,6 @@ namespace ProtonVPN.Core.Service.Vpn
         public Task Connect(VpnConnectionRequestContract vpnConnectionRequest) =>
             Invoke(p => p.Connect(vpnConnectionRequest).Wrap());
 
-        public Task UpdateServers(VpnHostContract[] servers) =>
-            Invoke(p => p.UpdateServers(servers).Wrap());
-
         public Task UpdateAuthCertificate(string certificate) =>
             Invoke(p => p.UpdateAuthCertificate(certificate).Wrap());
 

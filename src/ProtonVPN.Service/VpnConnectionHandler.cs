@@ -97,17 +97,6 @@ namespace ProtonVPN.Service
             return Task.CompletedTask;
         }
 
-        public Task UpdateServers(VpnHostContract[] servers)
-        {
-            Ensure.NotNull(servers, nameof(servers));
-
-            _logger.Info("Update Servers requested");
-
-            _vpnConnection.UpdateServers(Map(servers));
-
-            return Task.CompletedTask;
-        }
-
         public Task UpdateAuthCertificate(string certificate)
         {
             _vpnConnection.UpdateAuthCertificate(certificate);

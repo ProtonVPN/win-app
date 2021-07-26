@@ -18,7 +18,6 @@
  */
 
 using System;
-using System.Collections.Generic;
 using System.ServiceModel;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Logging;
@@ -57,11 +56,6 @@ namespace ProtonVPN.Core.Service.Vpn
         public async Task Connect(VpnConnectionRequest connectionRequest)
         {
             await InvokeAction(() => _decorated.Connect(connectionRequest));
-        }
-
-        public async Task UpdateServers(IReadOnlyList<VpnHost> servers)
-        {
-            await InvokeAction(() => _decorated.UpdateServers(servers));
         }
 
         public async Task UpdateAuthCertificate(string certificate)

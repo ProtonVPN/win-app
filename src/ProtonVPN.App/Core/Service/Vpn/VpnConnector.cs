@@ -31,7 +31,6 @@ using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Servers.Models;
 using ProtonVPN.Core.Settings;
-using ProtonVPN.Core.User;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Vpn.Connectors;
 using Sentry;
@@ -39,7 +38,7 @@ using Sentry.Protocol;
 
 namespace ProtonVPN.Core.Service.Vpn
 {
-    public class VpnConnector : IVpnConnector, IVpnPlanAware, ILogoutAware
+    public class VpnConnector : IVpnConnector, ILogoutAware
     {
         private readonly ProfileConnector _profileConnector;
         private readonly ProfileManager _profileManager;
@@ -271,25 +270,6 @@ namespace ProtonVPN.Core.Service.Vpn
         {
             State = new VpnState(VpnStatus.Disconnected);
             RaiseVpnStateChanged(new VpnStateChangedEventArgs(State, VpnError.None, NetworkBlocked, _appSettings.GetProtocol()));
-        }
-        
-        public async Task OnVpnPlanChangedAsync(VpnPlanChangedEventArgs e)
-        {
-            if (LastServer != null)
-            {
-                await UpdateServers();
-            }
-        }
-
-        private async Task UpdateServers()
-        {
-            if (State.Status != VpnStatus.Disconnecting && 
-                State.Status != VpnStatus.Disconnected && 
-                LastProfile != null)
-            {
-                LastServerCandidates = _profileConnector.ServerCandidates(LastProfile);
-                await _profileConnector.UpdateServers(LastServerCandidates, LastProfile);
-            }
         }
     }
 }
