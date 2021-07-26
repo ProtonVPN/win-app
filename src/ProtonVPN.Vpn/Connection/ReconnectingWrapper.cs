@@ -282,21 +282,5 @@ namespace ProtonVPN.Vpn.Connection
                 StateChanged?.Invoke(this, new EventArgs<VpnState>(state));
             }
         }
-
-        public void UpdateServers(IReadOnlyList<VpnHost> servers)
-        {
-            _candidates.Set(servers);
-            _logger.Info("[ReconnectingWrapper] VPN endpoint candidates updated.");
-
-            if (_state.Status == VpnStatus.Disconnected ||
-                _state.Status == VpnStatus.Disconnecting ||
-                _candidates.Contains(_candidates.Current))
-            {
-                return;
-            }
-
-            _logger.Info("[ReconnectingWrapper] Current VPN endpoint is not in VPN endpoint candidates. Disconnecting.");
-            Disconnect();
-        }
     }
 }

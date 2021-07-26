@@ -145,20 +145,6 @@ namespace ProtonVPN.Vpn.Connectors
             await Connect(sortedServers, protocol);
         }
 
-        public async Task<bool> UpdateServers(ServerCandidates candidates, Profile profile)
-        {
-            IReadOnlyList<Server> servers = Servers(candidates);
-            if (!servers.Any())
-            {
-                return false;
-            }
-
-            IEnumerable<Server> sortedServers = SortServers(servers, profile.ProfileType);
-            await UpdateServers(sortedServers);
-
-            return true;
-        }
-
         public IReadOnlyList<Server> Servers(ServerCandidates candidates)
         {
             IReadOnlyList<Server> servers = candidates.Items
@@ -383,11 +369,6 @@ namespace ProtonVPN.Vpn.Connectors
             {
                 _logger.Info("ProfileConnector - Connect received zero valid servers");
             }
-        }
-
-        private async Task UpdateServers(IEnumerable<Server> servers)
-        {
-            await _vpnServiceManager.UpdateServers(Servers(servers));
         }
 
         private void SwitchSecureCoreMode(bool secureCore)

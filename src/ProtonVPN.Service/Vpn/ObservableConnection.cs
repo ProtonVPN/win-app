@@ -52,11 +52,6 @@ namespace ProtonVPN.Service.Vpn
             _origin.Disconnect(error);
         }
 
-        public void UpdateServers(IReadOnlyList<VpnHost> servers)
-        {
-            _origin.UpdateServers(servers);
-        }
-
         public void UpdateAuthCertificate(string certificate)
         {
             _origin.UpdateAuthCertificate(certificate);

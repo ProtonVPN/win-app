@@ -62,20 +62,6 @@ namespace ProtonVPN.App.Test.Core.Service.Vpn
         }
 
         [TestMethod]
-        public async Task UpdateServers_ShouldNotBeExecuted_WhenBfeIsNotRunning()
-        {
-            // Arrange
-            _baseFilteringEngineService.Running().Returns(false);
-            var sut = new ServiceStartDecorator(_logger, _decorated, _modals, _baseFilteringEngineService, _vpnService);
-
-            // Act
-            await sut.UpdateServers(default);
-
-            // Assert
-            await _decorated.DidNotReceive().UpdateServers(default);
-        }
-
-        [TestMethod]
         public async Task RepeatState_ShouldNotBeExecuted_WhenBfeIsNotRunning()
         {
             // Arrange

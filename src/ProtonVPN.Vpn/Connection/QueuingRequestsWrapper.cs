@@ -70,11 +70,6 @@ namespace ProtonVPN.Vpn.Connection
             _taskQueue.Enqueue(() => _origin.Disconnect(error));
         }
 
-        public void UpdateServers(IReadOnlyList<VpnHost> servers)
-        {
-            _taskQueue.Enqueue(() => _origin.UpdateServers(servers));
-        }
-
         public void UpdateAuthCertificate(string certificate)
         {
             _taskQueue.Enqueue(() => _origin.UpdateAuthCertificate(certificate));

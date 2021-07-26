@@ -18,7 +18,6 @@
  */
 
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Settings;
@@ -29,19 +28,11 @@ namespace ProtonVPN.Core.Service.Vpn
     public interface IVpnServiceManager
     {
         Task Connect(VpnConnectionRequest connectionRequest);
-
-        Task UpdateServers(IReadOnlyList<VpnHost> servers);
-
         Task UpdateAuthCertificate(string certificate);
-
         Task Disconnect(VpnError vpnError);
-
         Task<InOutBytes> Total();
-
         Task RepeatState();
-
         void RegisterVpnStateCallback(Action<VpnStateChangedEventArgs> onVpnStateChanged);
-
         void RegisterServiceSettingsStateCallback(Action<ServiceSettingsStateChangedEventArgs> onServiceSettingsStateChanged);
     }
 }

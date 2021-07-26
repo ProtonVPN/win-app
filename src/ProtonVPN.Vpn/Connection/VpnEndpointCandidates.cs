@@ -135,7 +135,7 @@ namespace ProtonVPN.Vpn.Connection
 
         public bool Contains(IVpnEndpoint endpoint)
         {
-            return _all.Contains(endpoint.Server);
+            return _all.Any(s => s == endpoint.Server);
         }
 
         public int CountHosts()

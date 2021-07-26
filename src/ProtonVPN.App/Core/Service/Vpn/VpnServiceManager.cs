@@ -59,15 +59,6 @@ namespace ProtonVPN.Core.Service.Vpn
             await _vpnService.Connect(contract);
         }
 
-        public async Task UpdateServers(IReadOnlyList<VpnHost> servers)
-        {
-            Ensure.NotNull(servers, nameof(servers));
-
-            VpnHostContract[] endpointIpsContract = Map(servers);
-
-            await _vpnService.UpdateServers(endpointIpsContract);
-        }
-
         public async Task UpdateAuthCertificate(string certificate)
         {
             await _vpnService.UpdateAuthCertificate(certificate);
