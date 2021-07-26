@@ -51,7 +51,6 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
         private readonly ConnectionStatusViewModel _connectionStatusViewModel;
         private readonly IAppSettings _appSettings;
         private readonly ReconnectManager _reconnectManager;
-        private readonly IVpnConnector _vpnConnector;
 
         public DeveloperToolsPopupViewModel(AppWindow appWindow,
             UserAuth userAuth,
@@ -60,8 +59,7 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
             INotificationSender notificationSender,
             ConnectionStatusViewModel connectionStatusViewModel,
             IAppSettings appSettings,
-            ReconnectManager reconnectManager, 
-            IVpnConnector vpnConnector)
+            ReconnectManager reconnectManager)
             : base(appWindow)
         {
             _userAuth = userAuth;
@@ -71,7 +69,6 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
             _connectionStatusViewModel = connectionStatusViewModel;
             _appSettings = appSettings;
             _reconnectManager = reconnectManager;
-            _vpnConnector = vpnConnector;
 
             InitializeCommands();
         }
