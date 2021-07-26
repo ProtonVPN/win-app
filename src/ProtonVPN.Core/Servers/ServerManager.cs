@@ -68,8 +68,17 @@ namespace ProtonVPN.Core.Servers
             Dictionary<string, LogicalServerContract> updatedServers = servers.ToDictionary(server => server.Id);
             foreach (LogicalServerContract server in _servers.Where(server => updatedServers.ContainsKey(server.Id)))
             {
-                server.Load = updatedServers[server.Id].Load;
-                server.Score = updatedServers[server.Id].Score;
+                LogicalServerContract updatedServer = updatedServers[server.Id];
+                server.Load = updatedServer.Load;
+                server.Score = updatedServer.Score;
+                if (updatedServer.Status == 0 || server.Servers.Count == 1)
+                {
+                    foreach (PhysicalServerContract physicalServer in server.Servers)
+                    {
+                        physicalServer.Status = updatedServer.Status;
+                    }
+                    server.Status = updatedServer.Status;
+                }
             }
         }
 
@@ -254,7 +263,7 @@ namespace ProtonVPN.Core.Servers
                 return false;
             }
 
-            string[] letters = {"M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
+            string[] letters = { "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
             if (code.StartsWith("Q") && letters.Contains(code.Substring(1, 1)))
             {
                 return false;
