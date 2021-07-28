@@ -455,6 +455,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             </ToggleButton>
                             <streaming:StreamingInfoPopup DataContext="{Binding StreamingInfoPopupViewModel}"
                                                           PlacementTarget="{Binding ElementName=PopupPanel}"
+                                                          PlacementRectangle="145,0,0,0"
                                                           ShowPopup="{Binding Path=IsChecked, ElementName=InfoToggleButton, Mode=TwoWay}" />
                         </DockPanel>
                     </Border>

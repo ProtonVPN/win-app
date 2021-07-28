@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -25,6 +25,7 @@ using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Servers.Models;
 using ProtonVPN.Core.Servers.Name;
 using ProtonVPN.Core.Vpn;
+using ProtonVPN.Streaming;
 
 namespace ProtonVPN.Servers
 {
@@ -35,7 +36,18 @@ namespace ProtonVPN.Servers
         private bool _connectedToCountry;
         private bool _showIp = true;
         private string _ip;
+
+        private readonly StreamingInfoPopupViewModel _streamingInfoPopupViewModel;
         private readonly sbyte _userTier;
+
+        public ServerItemViewModel(Server server, sbyte userTier, StreamingInfoPopupViewModel streamingInfoPopupViewModel = null)
+        {
+            _streamingInfoPopupViewModel = streamingInfoPopupViewModel;
+            _userTier = userTier;
+            AssignServer(server);
+            SetServerFeatures(server);
+            ConnectionInfoViewModel = new ConnectionInfoViewModel(server);
+        }
 
         public ConnectionInfoViewModel ConnectionInfoViewModel { get; }
 
@@ -86,14 +98,6 @@ namespace ProtonVPN.Servers
 
         public bool Maintenance => Server.Status == 0;
 
-        public ServerItemViewModel(Server server, sbyte userTier)
-        {
-            _userTier = userTier;
-            AssignServer(server);
-            SetServerFeatures(server);
-            ConnectionInfoViewModel = new ConnectionInfoViewModel(server);
-        }
-
         public void SetServerFeatures(Server server)
         {
             var list = new List<IServerFeature>();
@@ -109,7 +113,7 @@ namespace ProtonVPN.Servers
 
             if (ServerFeatures.SupportsStreaming(server.Features))
             {
-                list.Add(new StreamingFeature());
+                list.Add(new StreamingFeature(_streamingInfoPopupViewModel));
             }
 
             Features = list;

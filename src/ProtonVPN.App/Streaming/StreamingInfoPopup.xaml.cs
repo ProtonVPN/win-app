@@ -18,16 +18,20 @@
  */
 
 using System.Windows;
+using System.Windows.Controls.Primitives;
 
 namespace ProtonVPN.Streaming
 {
     public partial class StreamingInfoPopup
     {
         public static readonly DependencyProperty ShowPopupProperty = DependencyProperty.Register(
-            "ShowPopup", typeof(bool), typeof(StreamingInfoPopup), new PropertyMetadata(false));
+            nameof(ShowPopup), typeof(bool), typeof(StreamingInfoPopup), new PropertyMetadata(false));
 
         public static readonly DependencyProperty PlacementTargetProperty = DependencyProperty.Register(
-            "PlacementTarget", typeof(UIElement), typeof(StreamingInfoPopup), new PropertyMetadata(null));
+            nameof(PlacementTarget), typeof(UIElement), typeof(StreamingInfoPopup), new PropertyMetadata(null));
+
+        public static readonly DependencyProperty PlacementRectangleProperty = DependencyProperty.Register(
+            nameof(PlacementRectangle), typeof(Rect), typeof(StreamingInfoPopup), new PropertyMetadata(Rect.Empty, null));
 
         public StreamingInfoPopup()
         {
@@ -51,6 +55,12 @@ namespace ProtonVPN.Streaming
         {
             get => (UIElement)GetValue(PlacementTargetProperty);
             set => SetValue(PlacementTargetProperty, value);
+        }
+
+        public Rect PlacementRectangle
+        {
+            get => (Rect)GetValue(PlacementRectangleProperty);
+            set => SetValue(PlacementRectangleProperty, value);
         }
     }
 }
