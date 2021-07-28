@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -24,6 +24,6 @@ namespace ProtonVPN.Common.OS.Net.Http
     public interface IHttpClients
     {
         IHttpClient Client();
-        IHttpClient Client(HttpMessageHandler handler);
+        IHttpClient Client(HttpMessageHandler handler, string userAgent = "");
     }
 }

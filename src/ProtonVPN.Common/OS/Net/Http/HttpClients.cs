@@ -18,6 +18,7 @@
  */
 
 using System.Net.Http;
+using ProtonVPN.Common.Extensions;
 
 namespace ProtonVPN.Common.OS.Net.Http
 {
@@ -28,9 +29,15 @@ namespace ProtonVPN.Common.OS.Net.Http
             return Client(new HttpClient());
         }
 
-        public IHttpClient Client(HttpMessageHandler handler)
+        public IHttpClient Client(HttpMessageHandler handler, string userAgent = "")
         {
-            return Client(new HttpClient(handler));
+            HttpClient client = new(handler);
+            if (!userAgent.IsNullOrEmpty())
+            {
+                client.DefaultRequestHeaders.UserAgent.ParseAdd(userAgent);
+            }
+
+            return Client(client);
         }
 
         private IHttpClient Client(HttpClient httpClient)

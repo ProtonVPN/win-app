@@ -139,6 +139,7 @@ namespace ProtonVPN.UpdateService
             builder.RegisterType<ServicePointConfiguration>().SingleInstance();
             builder.RegisterType<SystemEventLog>().SingleInstance();
             builder.RegisterType<UnhandledExceptionLogging>().SingleInstance();
+            builder.RegisterType<ApiAppVersion>().As<IApiAppVersion>().SingleInstance();
 
             builder.Register(c =>
                     new CachingReportClient(
@@ -165,7 +166,7 @@ namespace ProtonVPN.UpdateService
 
             builder.Register(c => new DefaultAppUpdateConfig
                 {
-                    HttpClient = c.Resolve<IHttpClients>().Client(c.Resolve<RetryingHandler>()),
+                    HttpClient = c.Resolve<IHttpClients>().Client(c.Resolve<RetryingHandler>(), c.Resolve<IApiAppVersion>().UserAgent()),
                     FeedUri = new Uri(c.Resolve<Config>().Urls.UpdateUrl),
                     UpdatesPath = c.Resolve<Config>().UpdatesPath,
                     CurrentVersion = Version.Parse(c.Resolve<Config>().AppVersion),
