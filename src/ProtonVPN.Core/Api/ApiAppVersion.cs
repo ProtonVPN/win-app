@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,19 +18,16 @@
  */
 
 using System;
-using ProtonVPN.Core.Settings;
 
 namespace ProtonVPN.Core.Api
 {
     public class ApiAppVersion : IApiAppVersion
     {
-        private readonly IAppSettings _appSettings;
         private readonly Common.Configuration.Config _appConfig;
 
-        public ApiAppVersion(IAppSettings appSettings, Common.Configuration.Config appConfig)
+        public ApiAppVersion(Common.Configuration.Config appConfig)
         {
             _appConfig = appConfig;
-            _appSettings = appSettings;
         }
 
         public string Value()
@@ -45,7 +42,7 @@ namespace ProtonVPN.Core.Api
 
         private string GetVersion()
         {
-            return _appSettings.EarlyAccess ? $"{_appConfig.AppVersion}-beta" : _appConfig.AppVersion;
+            return _appConfig.AppVersion;
         }
     }
 }
