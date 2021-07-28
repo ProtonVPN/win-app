@@ -26,6 +26,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              x:ClassModifier="internal"
              xmlns:icons="clr-namespace:ProtonVPN.Views.Icons"
              xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
+             xmlns:streaming="clr-namespace:ProtonVPN.Streaming"
              mc:Ignorable="d">
 
     <UserControl.Resources>
@@ -64,10 +65,20 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </Border>
             </DataTemplate>
             <DataTemplate DataType="{x:Type servers:StreamingFeature}">
-                <Border Style="{StaticResource ServerFeature}"
-                        ToolTip="{translations:Loc Servers_Feature_val_Streaming}">
-                    <icons:Streaming Style="{StaticResource Icon}" />
-                </Border>
+                <Grid>
+                    <ToggleButton x:Name="InfoToggleButton"
+                                  ToolTip="{translations:Loc Servers_Feature_val_Streaming}"
+                                  DockPanel.Dock="Right"
+                                  Style="{StaticResource EmptyToggleButton}"
+                                  IsChecked="{Binding ShowPopup, Mode=TwoWay}"
+                                  Background="Transparent"
+                                  BorderBrush="Transparent">
+                        <icons:Streaming Style="{StaticResource Icon}" />
+                    </ToggleButton>
+                    <streaming:StreamingInfoPopup DataContext="{Binding StreamingInfoPopupViewModel}"
+                                                  PlacementTarget="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Grid, AncestorLevel=2}}"
+                                                  ShowPopup="{Binding Path=IsChecked, ElementName=InfoToggleButton, Mode=TwoWay}" />
+                </Grid>
             </DataTemplate>
         </ItemsControl.Resources>
     </ItemsControl>

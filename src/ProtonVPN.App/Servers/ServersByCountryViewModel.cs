@@ -87,7 +87,7 @@ namespace ProtonVPN.Servers
 
                 foreach (Server server in servers)
                 {
-                    var item = new ServerItemViewModel(server, _userTier);
+                    var item = new ServerItemViewModel(server, _userTier, GetStreamingInfoPopupViewModel((sbyte)server.Tier));
                     item.OnVpnStateChanged(_vpnConnectionStatus);
                     serverListItems.Add(item);
                 }

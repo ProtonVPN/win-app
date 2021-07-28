@@ -17,9 +17,26 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Core.MVVM;
+using ProtonVPN.Streaming;
+
 namespace ProtonVPN.Servers
 {
-    internal class StreamingFeature : IServerFeature
+    internal class StreamingFeature : ViewModel, IServerFeature
     {
+        private bool _showPopup;
+
+        public StreamingFeature(StreamingInfoPopupViewModel streamingInfoPopupViewModel)
+        {
+            StreamingInfoPopupViewModel = streamingInfoPopupViewModel;
+        }
+
+        public bool ShowPopup
+        {
+            get => _showPopup;
+            set => Set(ref _showPopup, value);
+        }
+
+        public StreamingInfoPopupViewModel StreamingInfoPopupViewModel { get; }
     }
 }
