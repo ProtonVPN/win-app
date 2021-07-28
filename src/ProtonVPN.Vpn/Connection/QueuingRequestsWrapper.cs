@@ -67,7 +67,7 @@ namespace ProtonVPN.Vpn.Connection
 
         public void Disconnect(VpnError error = VpnError.None)
         {
-            _taskQueue.Enqueue(() => _origin.Disconnect(error));
+            _origin.Disconnect(error);
         }
 
         public void UpdateAuthCertificate(string certificate)
