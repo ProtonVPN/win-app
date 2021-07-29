@@ -291,8 +291,11 @@ namespace ProtonVPN.Core
 
             userAuth.UserLoggedIn += async (sender, e) =>
             {
-                GuestHoleState guestHoleState = Resolve<GuestHoleState>();
                 await Resolve<IServerUpdater>().Update();
+                await Resolve<IClientConfig>().Update();
+                await Resolve<StreamingServicesUpdater>().Update();
+
+                GuestHoleState guestHoleState = Resolve<GuestHoleState>();
                 if (guestHoleState.Active)
                 {
                     await Resolve<IVpnServiceManager>().Disconnect(VpnError.NoneKeepEnabledKillSwitch);
@@ -522,10 +525,6 @@ namespace ProtonVPN.Core
             await Resolve<ISettingsServiceClientManager>().UpdateServiceSettings();
 
             Resolve<PinFactory>().BuildPins();
-
-            await Resolve<IClientConfig>().Update();
-            await Resolve<StreamingServicesUpdater>().Update();
-
             LoadViewModels();
             Resolve<P2PDetector>();
             Resolve<VpnInfoChecker>();
