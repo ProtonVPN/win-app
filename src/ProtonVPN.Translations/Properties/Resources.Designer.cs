@@ -5692,7 +5692,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Network driver.
+        ///   Looks up a localized string similar to OpenVPN Network driver.
         /// </summary>
         public static string Settings_Advanced_lbl_NetworkDriver {
             get {

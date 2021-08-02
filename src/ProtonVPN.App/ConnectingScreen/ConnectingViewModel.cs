@@ -117,7 +117,7 @@ namespace ProtonVPN.ConnectingScreen
 
         public async Task OnVpnStateChanged(VpnStateChangedEventArgs e)
         {
-            if (e.VpnProtocol == VpnProtocol.WireGuard)
+            if (e.State.VpnProtocol == VpnProtocol.WireGuard)
             {
                 SetWireguardConnectionState(e);
             }

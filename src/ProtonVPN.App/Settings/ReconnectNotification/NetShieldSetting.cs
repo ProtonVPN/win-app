@@ -24,17 +24,14 @@ namespace ProtonVPN.Settings.ReconnectNotification
 {
     public class NetShieldSetting : CompoundSetting
     {
-        private readonly IAppSettings _appSettings;
-
         public NetShieldSetting(string name, Setting parent, IAppSettings appSettings) : base(name, parent, appSettings)
         {
-            _appSettings = appSettings;
             base.Add(new SingleSetting(nameof(IAppSettings.NetShieldMode), this, appSettings));
         }
 
-        public override bool Changed()
+        public override bool Changed(VpnProtocol vpnProtocol)
         {
-            return base.Changed() && _appSettings.GetProtocol() != VpnProtocol.WireGuard;
+            return base.Changed(vpnProtocol) && vpnProtocol != VpnProtocol.WireGuard;
         }
     }
 }

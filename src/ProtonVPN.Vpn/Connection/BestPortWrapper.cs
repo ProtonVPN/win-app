@@ -23,6 +23,7 @@ using System.Threading.Tasks;
 using ProtonVPN.Common;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Vpn.Common;
@@ -39,7 +40,7 @@ namespace ProtonVPN.Vpn.Connection
         private readonly ISingleVpnConnection _origin;
         private readonly CancellationHandle _cancellationHandle = new();
 
-        private IVpnEndpoint _vpnEndpoint = new EmptyEndpoint();
+        private VpnEndpoint _vpnEndpoint = new();
         private VpnCredentials _vpnCredentials;
         private VpnConfig _config;
         private Task _disconnectDelay = Task.CompletedTask;
@@ -61,7 +62,7 @@ namespace ProtonVPN.Vpn.Connection
 
         public InOutBytes Total => _origin.Total;
 
-        public void Connect(IVpnEndpoint endpoint, VpnCredentials credentials, VpnConfig config)
+        public void Connect(VpnEndpoint endpoint, VpnCredentials credentials, VpnConfig config)
         {
             _vpnEndpoint = endpoint;
             _vpnCredentials = credentials;
@@ -93,19 +94,20 @@ namespace ProtonVPN.Vpn.Connection
         private async void ScanPorts(CancellationToken cancellationToken)
         {
             _logger.Info($"Starting port scanning of endpoint {_vpnEndpoint.Server.Ip} before connection.");
-            IVpnEndpoint bestEndpoint = await _endpointScanner.ScanForBestEndpointAsync(
-                _vpnEndpoint, _config.OpenVpnPorts, _cancellationHandle.Token);
+            VpnEndpoint bestEndpoint = await _endpointScanner.ScanForBestEndpointAsync(
+                _vpnEndpoint, _config.Ports, _cancellationHandle.Token);
 
             Queued(ct => HandleBestEndpoint(bestEndpoint, ct), cancellationToken);
         }
 
-        private void HandleBestEndpoint(IVpnEndpoint endpoint, CancellationToken cancellationToken)
+        private void HandleBestEndpoint(VpnEndpoint endpoint, CancellationToken cancellationToken)
         {
             if (endpoint.Port != 0)
             {
                 _vpnEndpoint = endpoint;
                 _logger.Info($"Connecting to {endpoint.Server.Ip}:{endpoint.Port} as it responded fastest.");
-                _origin.Connect(endpoint, GetCredentials(endpoint), _config);
+                InvokeConnecting(endpoint);
+                _origin.Connect(endpoint, GetCredentials(endpoint), GetConfig(endpoint.VpnProtocol));
             }
             else
             {
@@ -114,7 +116,22 @@ namespace ProtonVPN.Vpn.Connection
             }
         }
 
-        private VpnCredentials GetCredentials(IVpnEndpoint endpoint)
+        private VpnConfig GetConfig(VpnProtocol vpnProtocol)
+        {
+            return new(new VpnConfigParameters
+            {
+                CustomDns = _config.CustomDns,
+                NetShieldMode = _config.NetShieldMode,
+                OpenVpnAdapter = _config.OpenVpnAdapter,
+                Ports = _config.Ports,
+                SplitTcp = _config.SplitTcp,
+                SplitTunnelIPs = _config.SplitTunnelIPs,
+                SplitTunnelMode = _config.SplitTunnelMode,
+                VpnProtocol = vpnProtocol,
+            });
+        }
+
+        private VpnCredentials GetCredentials(VpnEndpoint endpoint)
         {
             if (string.IsNullOrEmpty(endpoint.Server.Label))
             {
@@ -142,6 +159,19 @@ namespace ProtonVPN.Vpn.Connection
             }
 
             Queued(_ => InvokeDisconnected(), cancellationToken);
+        }
+
+        private void InvokeConnecting(VpnEndpoint endpoint)
+        {
+            StateChanged?.Invoke(this,
+                new EventArgs<VpnState>(new VpnState(
+                    VpnStatus.Connecting,
+                    VpnError.None,
+                    string.Empty,
+                    endpoint.Server.Ip,
+                    endpoint.VpnProtocol,
+                    _config.OpenVpnAdapter,
+                    endpoint.Server.Label)));
         }
 
         private void InvokeDisconnected()
@@ -177,16 +207,7 @@ namespace ProtonVPN.Vpn.Connection
 
         private void Origin_StateChanged(object sender, EventArgs<VpnState> e)
         {
-            VpnState state = new(
-                e.Data.Status,
-                e.Data.Error,
-                e.Data.LocalIp,
-                e.Data.RemoteIp,
-                e.Data.VpnProtocol,
-                e.Data.OpenVpnAdapter,
-                e.Data.Label);
-
-            StateChanged?.Invoke(this, new EventArgs<VpnState>(state));
+            StateChanged?.Invoke(this, e);
         }
     }
 }

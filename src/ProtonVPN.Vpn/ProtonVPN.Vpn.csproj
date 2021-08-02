@@ -52,34 +52,32 @@
     <Compile Include="..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Common\EmptyEndpoint.cs" />
     <Compile Include="Common\IVpnConnection.cs" />
     <Compile Include="Common\ISingleVpnConnection.cs" />
-    <Compile Include="Common\IVpnEndpoint.cs" />
-    <Compile Include="Common\OpenVpnEndpoint.cs" />
-    <Compile Include="Common\VpnEndpointBase.cs" />
+    <Compile Include="Common\VpnEndpoint.cs" />
     <Compile Include="Common\VpnException.cs" />
     <Compile Include="Common\VpnStateExtensions.cs" />
-    <Compile Include="Common\WireGuardEndpoint.cs" />
     <Compile Include="Config\Module.cs" />
     <Compile Include="Config\VpnCertConfig.cs" />
     <Compile Include="Connection\BestPortWrapper.cs" />
     <Compile Include="Connection\IEndpointScanner.cs" />
     <Compile Include="Connection\IVpnEndpointCandidates.cs" />
     <Compile Include="Connection\LocalAgentWrapper.cs" />
-    <Compile Include="Connection\OpenVpnEndpointScanner.cs" />
+    <Compile Include="Connection\VpnEndpointScanner.cs" />
     <Compile Include="Connection\QueuingRequestsWrapper.cs" />
     <Compile Include="Connection\ReconnectingWrapper.cs" />
     <Compile Include="Connection\LoggingWrapper.cs" />
     <Compile Include="Connection\QueueingEventsWrapper.cs" />
     <Compile Include="Connection\HandlingRequestsWrapper.cs" />
     <Compile Include="Connection\VpnEndpointCandidates.cs" />
+    <Compile Include="Connection\VpnProtocolWrapper.cs" />
     <Compile Include="LocalAgent\Contracts\EventContract.cs" />
     <Compile Include="LocalAgent\Contracts\FeaturesContract.cs" />
     <Compile Include="LocalAgent\EventReceiver.cs" />
     <Compile Include="LocalAgent\LocalAgentErrorArgs.cs" />
     <Compile Include="LocalAgent\LocalAgentState.cs" />
     <Compile Include="LocalAgent\PInvoke.cs" />
+    <Compile Include="LocalAgent\WireGuardPingClient.cs" />
     <Compile Include="Management\ManagementMessage.cs" />
     <Compile Include="Management\ManagementMessages.cs" />
     <Compile Include="Management\MessagingManagementChannel.cs" />
@@ -125,7 +123,6 @@
     <Compile Include="WireGuard\StatusManager.cs" />
     <Compile Include="WireGuard\TrafficManager.cs" />
     <Compile Include="WireGuard\WireGuardConnection.cs" />
-    <Compile Include="WireGuard\WireGuardEndpointScanner.cs" />
     <Compile Include="WireGuard\WireGuardService.cs" />
   </ItemGroup>
   <ItemGroup>

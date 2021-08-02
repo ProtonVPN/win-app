@@ -2866,7 +2866,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <comment>The heading message of trial modal window</comment>
   </data>
   <data name="Settings_Advanced_lbl_NetworkDriver" xml:space="preserve">
-    <value>Network driver</value>
+    <value>OpenVPN Network driver</value>
   </data>
   <data name="Settings_Advanced_lbl_NetworkDriver_info" xml:space="preserve">
     <value>Network drivers can impact your connection and speed. The new TUN adapter provides higher speed, fallback on TAP adapter if you encounter any connectivity problem.</value>

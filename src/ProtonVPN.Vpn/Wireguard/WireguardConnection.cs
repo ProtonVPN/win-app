@@ -48,7 +48,7 @@ namespace ProtonVPN.Vpn.WireGuard
 
         private VpnError _lastVpnError;
         private VpnCredentials _credentials;
-        private IVpnEndpoint _endpoint;
+        private VpnEndpoint _endpoint;
         private VpnConfig _vpnConfig;
         private bool _connected;
         private bool _isServiceStopPending;
@@ -78,7 +78,7 @@ namespace ProtonVPN.Vpn.WireGuard
         public event EventHandler<EventArgs<VpnState>> StateChanged;
         public InOutBytes Total { get; private set; } = InOutBytes.Zero;
 
-        public void Connect(IVpnEndpoint endpoint, VpnCredentials credentials, VpnConfig config)
+        public void Connect(VpnEndpoint endpoint, VpnCredentials credentials, VpnConfig config)
         {
             if (endpoint.Server.X25519PublicKey == null)
             {
@@ -137,7 +137,7 @@ namespace ProtonVPN.Vpn.WireGuard
             Task connectTask = _connectAction.Task;
             if (!connectTask.IsCompleted)
             {
-                _connectAction.Cancel();
+                await _connectAction.Task;
             }
 
             StopServiceDependencies();

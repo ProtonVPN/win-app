@@ -55,7 +55,7 @@ namespace ProtonVPN.Vpn.Connection
 
         public InOutBytes Total => _origin.Total;
 
-        public void Connect(IVpnEndpoint endpoint, VpnCredentials credentials, VpnConfig config)
+        public void Connect(VpnEndpoint endpoint, VpnCredentials credentials, VpnConfig config)
         {
             _origin.Connect(endpoint, credentials, config);
         }

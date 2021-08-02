@@ -1,7 +1,7 @@
 pushd ..\ProtonVPN.LocalAgent\localAgentWin
 set GOOS=windows
-set GO111MODULE=auto
 set CGO_ENABLED=1
+set GO111MODULE=off
 set CGO_CFLAGS=-O3 -Wall -Wno-unused-function -Wno-switch -std=gnu11 -DWINVER=0x0601
 set CC=x86_64-w64-mingw32-gcc
 

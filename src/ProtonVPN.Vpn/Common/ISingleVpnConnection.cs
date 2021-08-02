@@ -29,7 +29,7 @@ namespace ProtonVPN.Vpn.Common
 
         InOutBytes Total { get; }
 
-        void Connect(IVpnEndpoint endpoint, VpnCredentials credentials, VpnConfig config);
+        void Connect(VpnEndpoint endpoint, VpnCredentials credentials, VpnConfig config);
 
         void Disconnect(VpnError error);
 

@@ -29,32 +29,26 @@ namespace ProtonVPN.Core.Vpn
         public VpnState State { get; }
         public VpnError Error { get; }
         public bool NetworkBlocked { get; }
-        public OpenVpnAdapter? NetworkAdapterType { get; }
-        public VpnProtocol VpnProtocol { get; }
 
         public VpnStateChangedEventArgs(VpnStatus status, VpnError error, string endpointIp,
             bool networkBlocked, VpnProtocol vpnProtocol, OpenVpnAdapter? networkAdapterType = null,
             string label = "")
-            : this(new VpnState(status, endpointIp, vpnProtocol, networkAdapterType, label), error, networkBlocked,
-                vpnProtocol, networkAdapterType)
+            : this(new VpnState(status, endpointIp, vpnProtocol, networkAdapterType, label), error, networkBlocked)
         {
         }
 
-        public VpnStateChangedEventArgs(VpnStatus status, VpnError error, Server server,
-            bool networkBlocked, VpnProtocol vpnProtocol, OpenVpnAdapter? networkAdapterType = null)
-            : this(new VpnState(status, server), error, networkBlocked, vpnProtocol, networkAdapterType)
+        public VpnStateChangedEventArgs(VpnStatus status, VpnError error, Server server, bool networkBlocked)
+            : this(new VpnState(status, server), error, networkBlocked)
         {
         }
 
-        public VpnStateChangedEventArgs(VpnState state, VpnError error, bool networkBlocked, VpnProtocol vpnProtocol, OpenVpnAdapter? networkAdapterType = null)
+        public VpnStateChangedEventArgs(VpnState state, VpnError error, bool networkBlocked)
         {
             Ensure.NotNull(state, nameof(state));
 
             State = state;
             Error = error;
             NetworkBlocked = networkBlocked;
-            NetworkAdapterType = networkAdapterType;
-            VpnProtocol = vpnProtocol;
         }
 
         public bool UnexpectedDisconnect =>

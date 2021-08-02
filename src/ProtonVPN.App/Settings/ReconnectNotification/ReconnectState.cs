@@ -19,6 +19,7 @@
 
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Vpn;
 
@@ -27,6 +28,8 @@ namespace ProtonVPN.Settings.ReconnectNotification
     public class ReconnectState : IVpnStateAware
     {
         private VpnStatus _vpnStatus;
+        private VpnProtocol _vpnProtocol = VpnProtocol.Smart;
+
         private readonly SettingsBuilder _settingsBuilder;
         private List<Setting> _reconnectRequiredSettings = new();
 
@@ -50,7 +53,7 @@ namespace ProtonVPN.Settings.ReconnectNotification
 
             foreach (Setting setting in _reconnectRequiredSettings)
             {
-                if (setting.Changed())
+                if (setting.Changed(_vpnProtocol))
                 {
                     return true;
                 }
@@ -62,6 +65,7 @@ namespace ProtonVPN.Settings.ReconnectNotification
         public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
         {
             _vpnStatus = e.State.Status;
+            _vpnProtocol = e.State.VpnProtocol;
 
             if (_vpnStatus == VpnStatus.Connected)
             {

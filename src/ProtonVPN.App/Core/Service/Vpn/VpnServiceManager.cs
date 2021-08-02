@@ -133,7 +133,7 @@ namespace ProtonVPN.Core.Service.Vpn
         private static VpnConfigContract Map(VpnConfig config)
         {
             Dictionary<VpnProtocolContract, int[]> portConfig =
-                config.OpenVpnPorts.ToDictionary(p => Map(p.Key), p => p.Value.ToArray());
+                config.Ports.ToDictionary(p => Map(p.Key), p => p.Value.ToArray());
             return new VpnConfigContract
             {
                 Ports = portConfig,

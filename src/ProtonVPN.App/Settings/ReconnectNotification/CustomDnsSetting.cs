@@ -18,6 +18,7 @@
  */
 
 using System.Collections.Generic;
+using ProtonVPN.Common.Networking;
 using ProtonVPN.Core.Settings;
 
 namespace ProtonVPN.Settings.ReconnectNotification
@@ -38,9 +39,9 @@ namespace ProtonVPN.Settings.ReconnectNotification
             return new() {_customDnsIpSetting};
         }
 
-        public override bool Changed()
+        public override bool Changed(VpnProtocol vpnProtocol)
         {
-            bool changed = base.Changed();
+            bool changed = base.Changed(vpnProtocol);
 
             if (_customDnsIpSetting.GetSettingValueSerialized() != _customDnsIpSetting.Value)
             {

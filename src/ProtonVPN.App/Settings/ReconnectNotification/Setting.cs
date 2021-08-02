@@ -19,6 +19,7 @@
 
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using ProtonVPN.Common.Networking;
 using ProtonVPN.Core.Settings;
 
 namespace ProtonVPN.Settings.ReconnectNotification
@@ -68,13 +69,13 @@ namespace ProtonVPN.Settings.ReconnectNotification
 
         public abstract List<Setting> GetChildren();
 
-        public virtual bool Changed()
+        public virtual bool Changed(VpnProtocol vpnProtocol)
         {
             bool childChanged = false;
 
             foreach (Setting child in GetChildren())
             {
-                if (child.Changed())
+                if (child.Changed(vpnProtocol))
                 {
                     childChanged = true;
                     break;

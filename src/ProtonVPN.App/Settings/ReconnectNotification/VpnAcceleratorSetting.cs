@@ -26,11 +26,9 @@ namespace ProtonVPN.Settings.ReconnectNotification
     public class VpnAcceleratorSetting : SingleSetting
     {
         private readonly SingleSetting _vpnAcceleratorSetting;
-        private readonly IAppSettings _appSettings;
 
         public VpnAcceleratorSetting(string name, Setting parent, IAppSettings appSettings) : base(name, parent, appSettings)
         {
-            _appSettings = appSettings;
             _vpnAcceleratorSetting = new SingleSetting(nameof(IAppSettings.VpnAcceleratorEnabled), this, appSettings);
         }
 
@@ -39,9 +37,9 @@ namespace ProtonVPN.Settings.ReconnectNotification
             return new() {_vpnAcceleratorSetting};
         }
 
-        public override bool Changed()
+        public override bool Changed(VpnProtocol vpnProtocol)
         {
-            return base.Changed() && _appSettings.GetProtocol() != VpnProtocol.WireGuard;
+            return base.Changed(vpnProtocol) && vpnProtocol != VpnProtocol.WireGuard;
         }
     }
 }

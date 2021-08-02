@@ -21,6 +21,7 @@ using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.OS.Services;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Crypto;
@@ -49,7 +50,7 @@ namespace ProtonVPN.Vpn.Test.WireGuard
 
             // Act
             wireGuardConnection.Connect(
-                new WireGuardEndpoint(new VpnHost("host", "127.0.0.1", "", null)),
+                new VpnEndpoint(new VpnHost("host", "127.0.0.1", "", null), VpnProtocol.WireGuard),
                 new VpnCredentials("username", "password", "cert",
                     new AsymmetricKeyPair(
                         new SecretKey("U2VjcmV0S2V5", KeyAlgorithm.Unknown),

@@ -18,20 +18,28 @@
  */
 
 using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
 using ProtonVPN.Common.Networking;
-using ProtonVPN.Vpn.Common;
-using ProtonVPN.Vpn.Connection;
+using ProtonVPN.Core.Settings;
 
-namespace ProtonVPN.Vpn.WireGuard
+namespace ProtonVPN.Settings.ReconnectNotification
 {
-    internal class WireGuardEndpointScanner : IEndpointScanner
+    public class OpenVpnDriverSetting : SingleSetting
     {
-        public Task<IVpnEndpoint> ScanForBestEndpointAsync(IVpnEndpoint endpoint,
-            IReadOnlyDictionary<VpnProtocol, IReadOnlyCollection<int>> ports, CancellationToken cancellationToken)
+        private readonly SingleSetting _setting;
+
+        public OpenVpnDriverSetting(IAppSettings appSettings) : base(nameof(IAppSettings.NetworkAdapterType), null, appSettings)
         {
-            return Task.FromResult(endpoint);
+            _setting = new SingleSetting(nameof(IAppSettings.NetworkAdapterType), this, appSettings);
+        }
+
+        public override List<Setting> GetChildren()
+        {
+            return new() { _setting };
+        }
+
+        public override bool Changed(VpnProtocol vpnProtocol)
+        {
+            return base.Changed(vpnProtocol) && vpnProtocol != VpnProtocol.WireGuard;
         }
     }
 }

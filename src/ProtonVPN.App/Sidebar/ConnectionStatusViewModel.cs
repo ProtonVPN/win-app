@@ -254,12 +254,12 @@ namespace ProtonVPN.Sidebar
 
         private string GetAdapterProtocol(VpnStateChangedEventArgs e)
         {
-            if (e.VpnProtocol == VpnProtocol.WireGuard)
+            if (e.State.VpnProtocol == VpnProtocol.WireGuard)
             {
                 return Translation.Get("WireGuard_lbl");
             }
 
-            return (string) _enumToDisplayTextConverter.Convert(e.VpnProtocol, typeof(string), null, null);
+            return (string) _enumToDisplayTextConverter.Convert(e.State.VpnProtocol, typeof(string), null, null);
         }
 
         private void SetKillSwitchActivated(bool isNetworkBlocked, VpnStatus vpnStatus)

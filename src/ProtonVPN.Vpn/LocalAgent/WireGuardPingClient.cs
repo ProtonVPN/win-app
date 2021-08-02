@@ -17,22 +17,24 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Vpn;
+using System.Threading;
+using System.Threading.Tasks;
+using ProtonVPN.Common.Go;
 
-namespace ProtonVPN.Vpn.Common
+namespace ProtonVPN.Vpn.LocalAgent
 {
-    public class WireGuardEndpoint : VpnEndpointBase
+    public class WireGuardPingClient
     {
-        public const int DefaultPort = 51820;
+        private static readonly int TimeoutInMilliseconds = 3000;
 
-        public WireGuardEndpoint(VpnHost server) 
-            : base(server, DefaultPort)
+        public Task<bool> Ping(string ip, int port, string serverKeyBase64, CancellationToken cancellationToken)
         {
-        }
-
-        public WireGuardEndpoint(VpnHost server, int port)
-            : base(server, port)
-        {
+            return Task.Run(() =>
+            {
+                using GoString ipGoString = ip.ToGoString();
+                using GoString serverKeyBase64GoString = serverKeyBase64.ToGoString();
+                return PInvoke.Ping(ipGoString, port, serverKeyBase64GoString, TimeoutInMilliseconds);
+            }, cancellationToken);
         }
     }
 }

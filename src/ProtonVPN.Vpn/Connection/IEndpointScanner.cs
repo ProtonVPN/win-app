@@ -27,7 +27,7 @@ namespace ProtonVPN.Vpn.Connection
 {
     public interface IEndpointScanner
     {
-        Task<IVpnEndpoint> ScanForBestEndpointAsync(IVpnEndpoint endpoint,
+        Task<VpnEndpoint> ScanForBestEndpointAsync(VpnEndpoint endpoint,
             IReadOnlyDictionary<VpnProtocol, IReadOnlyCollection<int>> ports, CancellationToken cancellationToken);
     }
 }

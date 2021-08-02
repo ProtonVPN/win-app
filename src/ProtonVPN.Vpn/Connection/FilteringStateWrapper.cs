@@ -77,6 +77,7 @@ namespace ProtonVPN.Vpn.Connection
             if (state.Status != _prevState.Status ||
                 state.Error != _prevState.Error ||
                 state.Status == VpnStatus.ActionRequired ||
+                (state.VpnProtocol != _prevState.VpnProtocol && state.Status == VpnStatus.Connecting) ||
                 !string.Equals(state.RemoteIp, _prevState.RemoteIp) ||
                 !string.Equals(state.Label, _prevState.Label))
             {

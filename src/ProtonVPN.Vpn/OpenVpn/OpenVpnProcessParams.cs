@@ -27,7 +27,7 @@ namespace ProtonVPN.Vpn.OpenVpn
     public class OpenVpnProcessParams
     {
         public OpenVpnProcessParams(
-            OpenVpnEndpoint endpoint,
+            VpnEndpoint endpoint,
             int managementPort,
             string password,
             IReadOnlyCollection<string> customDns,
@@ -46,7 +46,7 @@ namespace ProtonVPN.Vpn.OpenVpn
             InterfaceGuid = interfaceGuid;
         }
 
-        public OpenVpnEndpoint Endpoint { get; }
+        public VpnEndpoint Endpoint { get; }
 
         public int ManagementPort { get; }
 

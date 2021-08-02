@@ -344,6 +344,12 @@ namespace ProtonVPN.Core
             set => Set(value);
         }
 
+        public int[] WireGuardPorts
+        {
+            get => Get<int[]>() ?? _config.DefaultWireGuardPorts;
+            set => Set(value);
+        }
+
         public OpenVpnAdapter NetworkAdapterType
         {
             get => Get<OpenVpnAdapter>();
