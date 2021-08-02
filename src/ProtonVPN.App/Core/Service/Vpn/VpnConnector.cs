@@ -112,8 +112,7 @@ namespace ProtonVPN.Core.Service.Vpn
             INetworkInterface openVpnTapInterface = _networkInterfaceLoader.GetOpenVpnTapInterface();
             if (openVpnTunInterface == null && openVpnTapInterface == null)
             {
-                RaiseVpnStateChanged(new VpnStateChangedEventArgs(new VpnState(VpnStatus.Disconnected),
-                    VpnError.NoTapAdaptersError, false, _appSettings.GetProtocol()));
+                RaiseVpnStateChanged(new VpnStateChangedEventArgs(new VpnState(VpnStatus.Disconnected), VpnError.NoTapAdaptersError, false));
                 return;
             }
 
@@ -255,10 +254,10 @@ namespace ProtonVPN.Core.Service.Vpn
                 LastServer = LastServerCandidates.ServerByEntryIpAndLabel(e.State.EntryIp, e.State.Label);
             }
 
-            State = new VpnState(e.State.Status, LastServer);
+            State = new VpnState(e.State.Status, LastServer, e.State.VpnProtocol);
             NetworkBlocked = e.NetworkBlocked;
 
-            RaiseVpnStateChanged(new VpnStateChangedEventArgs(State, e.Error, e.NetworkBlocked, e.VpnProtocol, e.NetworkAdapterType));
+            RaiseVpnStateChanged(new VpnStateChangedEventArgs(State, e.Error, e.NetworkBlocked));
         }
 
         private void RaiseVpnStateChanged(VpnStateChangedEventArgs e)
@@ -269,7 +268,7 @@ namespace ProtonVPN.Core.Service.Vpn
         public void OnUserLoggedOut()
         {
             State = new VpnState(VpnStatus.Disconnected);
-            RaiseVpnStateChanged(new VpnStateChangedEventArgs(State, VpnError.None, NetworkBlocked, _appSettings.GetProtocol()));
+            RaiseVpnStateChanged(new VpnStateChangedEventArgs(State, VpnError.None, NetworkBlocked));
         }
     }
 }

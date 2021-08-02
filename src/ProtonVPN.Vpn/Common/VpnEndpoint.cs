@@ -17,26 +17,41 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
 
 namespace ProtonVPN.Vpn.Common
 {
-    public abstract class VpnEndpointBase : IVpnEndpoint
+    public class VpnEndpoint
     {
+        public VpnProtocol VpnProtocol { get; }
+
         public VpnHost Server { get; }
         public int Port { get; }
         public bool IsEmpty { get; }
 
-        protected VpnEndpointBase(VpnHost server) 
-            : this(server, 0)
+        public VpnEndpoint(VpnHost server, VpnProtocol vpnProtocol)
+            : this(server, vpnProtocol, 0)
         {
         }
 
-        protected VpnEndpointBase(VpnHost server, int port, bool isEmpty = false)
+        public VpnEndpoint(VpnHost server, int port, bool isEmpty = false)
         {
             Server = server;
             Port = port;
             IsEmpty = isEmpty;
         }
+
+        public VpnEndpoint(VpnHost server, VpnProtocol vpnProtocol, int port)
+            : this(server, port)
+        {
+            VpnProtocol = vpnProtocol;
+        }
+
+        public VpnEndpoint() : this(default, default, true)
+        {
+        }
+
+        public static VpnEndpoint Empty => new();
     }
 }

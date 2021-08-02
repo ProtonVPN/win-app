@@ -311,6 +311,7 @@ namespace ProtonVPN.Vpn.Connectors
             {
                 {VpnProtocol.OpenVpnUdp, _appSettings.OpenVpnUdpPorts},
                 {VpnProtocol.OpenVpnTcp, _appSettings.OpenVpnTcpPorts},
+                {VpnProtocol.WireGuard, _appSettings.WireGuardPorts},
             };
 
             List<string> customDns = (from ip in _appSettings.CustomDnsIps where ip.Enabled select ip.Ip).ToList();

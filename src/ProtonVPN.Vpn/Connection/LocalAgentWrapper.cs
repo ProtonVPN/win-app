@@ -43,7 +43,7 @@ namespace ProtonVPN.Vpn.Connection
         private readonly SplitTunnelRouting _splitTunnelRouting;
         private readonly ISingleVpnConnection _origin;
 
-        private IVpnEndpoint _endpoint;
+        private VpnEndpoint _endpoint;
         private VpnCredentials _credentials;
         private VpnConfig _vpnConfig;
         private bool _isTlsChannelActive;
@@ -77,7 +77,7 @@ namespace ProtonVPN.Vpn.Connection
 
         public InOutBytes Total => _origin.Total;
 
-        public void Connect(IVpnEndpoint endpoint, VpnCredentials credentials, VpnConfig config)
+        public void Connect(VpnEndpoint endpoint, VpnCredentials credentials, VpnConfig config)
         {
             _logger.Info("[LocalAgentWrapper] Connect action started");
             _isConnectRequested = true;
@@ -91,7 +91,6 @@ namespace ProtonVPN.Vpn.Connection
         public void Disconnect(VpnError error)
         {
             _logger.Info("[LocalAgentWrapper] Disconnect action started");
-            InvokeStateChange(VpnStatus.Disconnecting);
             _eventReceiver.Stop();
             CloseTlsChannel();
             _origin.Disconnect(error);

@@ -139,6 +139,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </i:Interaction.Behaviors>
             </ProgressBar>
             <Label HorizontalAlignment="Center"
+                   Visibility="{Binding HasPercentage, Converter={StaticResource BoolToVis}}"
                    Content="{Binding Message}"
                    Foreground="White"
                    Height="32" />

@@ -40,10 +40,11 @@ namespace ProtonVPN.Vpn.Config
     {
         public void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<OpenVpnEndpointScanner>().As<IEndpointScanner>().SingleInstance();
+            builder.RegisterType<VpnEndpointScanner>().SingleInstance();
             builder.RegisterType<PingableOpenVpnPort>().SingleInstance();
             builder.RegisterType<NetworkInterfaceLoader>().As<INetworkInterfaceLoader>().SingleInstance();
             builder.RegisterType<SplitTunnelRouting>().SingleInstance();
+            builder.RegisterType<WireGuardPingClient>().SingleInstance();
             builder.Register(c =>
                 {
                     ILogger logger = c.Resolve<ILogger>();
@@ -60,26 +61,15 @@ namespace ProtonVPN.Vpn.Config
             ).SingleInstance();
         }
 
-        public IVpnConnection GetOpenVpnConnection(IComponentContext c)
+        public IVpnConnection GetVpnConnection(IComponentContext c)
         {
             ILogger logger = c.Resolve<ILogger>();
             OpenVpnConfig config = c.Resolve<OpenVpnConfig>();
             ITaskQueue taskQueue = c.Resolve<ITaskQueue>();
             PingableOpenVpnPort pingableOpenVpnPort = c.Resolve<PingableOpenVpnPort>();
             pingableOpenVpnPort.Config(config.OpenVpnStaticKey);
-            IEndpointScanner endpointScanner = c.Resolve<IEndpointScanner>();
+            IEndpointScanner endpointScanner = c.Resolve<VpnEndpointScanner>();
             VpnEndpointCandidates candidates = new();
-
-            ISingleVpnConnection openVpnConnection = new OpenVpnConnection(
-                logger,
-                c.Resolve<INetworkInterfaceLoader>(),
-                c.Resolve<OpenVpnProcess>(),
-                new ManagementClient(
-                    logger,
-                    new ConcurrentManagementChannel(
-                        new TcpManagementChannel(
-                            logger,
-                            config.ManagementHost))));
 
             return new LoggingWrapper(
                 logger,
@@ -96,31 +86,39 @@ namespace ProtonVPN.Vpn.Config
                             endpointScanner,
                             new QueueingEventsWrapper(
                                 taskQueue,
-                                openVpnConnection)))));
+                                new VpnProtocolWrapper(GetOpenVpnConnection(c), GetWireguardConnection(c)))))));
         }
 
-        public IVpnConnection GetWireguardConnection(IComponentContext c)
+        private ISingleVpnConnection GetWireguardConnection(IComponentContext c)
         {
             ILogger logger = c.Resolve<ILogger>();
-            ITaskQueue taskQueue = c.Resolve<ITaskQueue>();
             ProtonVPN.Common.Configuration.Config config = c.Resolve<ProtonVPN.Common.Configuration.Config>();
 
-            ISingleVpnConnection wireGuardVpnConnection = new WireGuardConnection(
-                logger,
-                config,
-                new WireGuardService(logger, config, new SafeService(
+            return new LocalAgentWrapper(logger, new EventReceiver(logger), c.Resolve<SplitTunnelRouting>(),
+                new WireGuardConnection(logger, config,
+                    new WireGuardService(logger, config, new SafeService(
                         new LoggingService(logger,
                             new SystemService(config.WireGuard.ServiceName, c.Resolve<IOsProcesses>())))),
-                new TrafficManager(config.WireGuard.PipeName),
-                new StatusManager(logger, config.WireGuard.LogFilePath),
-                new X25519KeyGenerator());
+                    new TrafficManager(config.WireGuard.PipeName),
+                    new StatusManager(logger, config.WireGuard.LogFilePath),
+                    new X25519KeyGenerator()));
+        }
 
-            return new LoggingWrapper(logger,
-                new ReconnectingWrapper(logger, new VpnEndpointCandidates(), new WireGuardEndpointScanner(),
-                    new HandlingRequestsWrapper(logger, taskQueue,
-                        new QueueingEventsWrapper(taskQueue,
-                            new LocalAgentWrapper(logger, new EventReceiver(logger), c.Resolve<SplitTunnelRouting>(),
-                                wireGuardVpnConnection)))));
+        private ISingleVpnConnection GetOpenVpnConnection(IComponentContext c)
+        {
+            ILogger logger = c.Resolve<ILogger>();
+            OpenVpnConfig config = c.Resolve<OpenVpnConfig>();
+
+            return new OpenVpnConnection(
+                logger,
+                c.Resolve<INetworkInterfaceLoader>(),
+                c.Resolve<OpenVpnProcess>(),
+                new ManagementClient(
+                    logger,
+                    new ConcurrentManagementChannel(
+                        new TcpManagementChannel(
+                            logger,
+                            config.ManagementHost))));
         }
     }
 }

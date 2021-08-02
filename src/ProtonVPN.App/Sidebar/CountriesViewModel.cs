@@ -56,7 +56,7 @@ namespace ProtonVPN.Sidebar
         private readonly CountryConnector _countryConnector;
         private readonly IVpnManager _vpnManager;
 
-        private VpnStateChangedEventArgs _vpnState = new(new VpnState(VpnStatus.Disconnected), VpnError.None, false, default);
+        private VpnStateChangedEventArgs _vpnState = new(new VpnState(VpnStatus.Disconnected), VpnError.None, false);
 
         public CountriesViewModel(
             IAppSettings appSettings,

@@ -26,7 +26,7 @@ namespace ProtonVPN.Vpn.OpenVpn
     {
         private readonly SafeBestNetworkInterface _interface;
 
-        public BestLocalOpenVpnEndpoint(OpenVpnEndpoint endpoint)
+        public BestLocalOpenVpnEndpoint(VpnEndpoint endpoint)
         {
             _interface = endpoint.VpnProtocol == VpnProtocol.OpenVpnUdp ?
                 new SafeBestNetworkInterface(new BestNetworkInterface(endpoint.Server.Ip)) :

@@ -57,7 +57,7 @@ namespace ProtonVPN.Service.Vpn
 
         public void OnVpnConnecting(VpnState state)
         {
-            if (state.VpnProtocol != VpnProtocol.WireGuard)
+            if (state.VpnProtocol == VpnProtocol.OpenVpnTcp || state.VpnProtocol == VpnProtocol.OpenVpnUdp)
             {
                 ApplyNetworkSettings(state.VpnProtocol, state.OpenVpnAdapter);
                 _wintunRegistryFixer.EnsureTunAdapterRegistryIsCorrect();

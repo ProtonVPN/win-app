@@ -54,7 +54,7 @@ namespace ProtonVPN.Vpn.Connection
         private VpnState _state;
         private VpnConfig _config;
         private VpnCredentials _credentials;
-        private IVpnEndpoint _endpoint;
+        private VpnEndpoint _endpoint;
         private bool _isToConnect;
         private bool _isToReconnect;
 
@@ -148,7 +148,7 @@ namespace ProtonVPN.Vpn.Connection
                     break;
                 }
 
-                IVpnEndpoint endpoint = _candidates.NextIp(_config);
+                VpnEndpoint endpoint = _candidates.NextIp(_config);
                 if (endpoint.IsEmpty)
                 {
                     _logger.Info($"[ReconnectingWrapper] No more endpoints in the list after server {endpoint.Server.Ip} has failed to respond to the ping.");
@@ -169,12 +169,12 @@ namespace ProtonVPN.Vpn.Connection
             HandleEndpointResponse(isResponding, cancellationToken);
         }
 
-        private async Task<bool> IsEndpointRespondingAsync(IVpnEndpoint endpoint, CancellationToken cancellationToken)
+        private async Task<bool> IsEndpointRespondingAsync(VpnEndpoint endpoint, CancellationToken cancellationToken)
         {
             OnStateChanged(new VpnState(VpnStatus.Pinging, VpnError.None, string.Empty,
                 endpoint.Server.Ip, _config.VpnProtocol, _config.OpenVpnAdapter, endpoint.Server.Label));
 
-            IVpnEndpoint bestEndpoint = await _endpointScanner.ScanForBestEndpointAsync(endpoint, _config.OpenVpnPorts, cancellationToken);
+            VpnEndpoint bestEndpoint = await _endpointScanner.ScanForBestEndpointAsync(endpoint, _config.Ports, cancellationToken);
             return bestEndpoint.Port != 0;
         }
 

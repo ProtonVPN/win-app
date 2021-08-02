@@ -26,7 +26,7 @@ namespace ProtonVPN.Common.Vpn
 {
     public class VpnConfig
     {
-        public IReadOnlyDictionary<VpnProtocol, IReadOnlyCollection<int>> OpenVpnPorts { get; }
+        public IReadOnlyDictionary<VpnProtocol, IReadOnlyCollection<int>> Ports { get; }
 
         public IReadOnlyCollection<string> CustomDns { get; }
 
@@ -47,7 +47,7 @@ namespace ProtonVPN.Common.Vpn
             AssertPortsValid(parameters.Ports);
             AssertCustomDnsValid(parameters.CustomDns);
 
-            OpenVpnPorts = parameters.Ports;
+            Ports = parameters.Ports;
             CustomDns = parameters.CustomDns ?? new List<string>();
             SplitTunnelMode = parameters.SplitTunnelMode;
             SplitTunnelIPs = parameters.SplitTunnelIPs ?? new List<string>();

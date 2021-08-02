@@ -161,6 +161,8 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 DefaultOpenVpnTcpPorts = new[] {443, 3389, 8080, 8443},
 
+                DefaultWireGuardPorts = new[] {51820, 88, 53, 123, 49152, 1224},
+
                 DefaultBlackHoleIps = new List<string> {"62.112.9.168", "104.245.144.186"},
 
                 DefaultLocale = "en",

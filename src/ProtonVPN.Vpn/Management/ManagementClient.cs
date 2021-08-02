@@ -38,7 +38,7 @@ namespace ProtonVPN.Vpn.Management
 
         private VpnError _lastError;
         private VpnCredentials _credentials;
-        private IVpnEndpoint _endpoint;
+        private VpnEndpoint _endpoint;
         private bool _sendingFailed;
         private bool _disconnectRequested;
         private bool _disconnectAccepted;
@@ -78,7 +78,7 @@ namespace ProtonVPN.Vpn.Management
         /// <param name="endpoint"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public async Task StartVpnConnection(VpnCredentials credentials, IVpnEndpoint endpoint, CancellationToken cancellationToken)
+        public async Task StartVpnConnection(VpnCredentials credentials, VpnEndpoint endpoint, CancellationToken cancellationToken)
         {
             _lastError = VpnError.None;
             _credentials = credentials;

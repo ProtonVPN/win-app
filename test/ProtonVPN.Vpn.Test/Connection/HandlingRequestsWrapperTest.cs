@@ -42,7 +42,7 @@ namespace ProtonVPN.Vpn.Test.Connection
         private TaskQueue _taskQueue;
         private ISingleVpnConnection _origin;
 
-        private IVpnEndpoint _endpoint;
+        private VpnEndpoint _endpoint;
         private VpnCredentials _credentials;
         private VpnConfig _config;
 
@@ -53,7 +53,7 @@ namespace ProtonVPN.Vpn.Test.Connection
             _taskQueue = new TaskQueue();
             _origin = Substitute.For<ISingleVpnConnection>();
 
-            _endpoint = new OpenVpnEndpoint(new VpnHost("proton.vpn", "135.27.46.203", string.Empty, null), VpnProtocol.OpenVpnTcp, 777);
+            _endpoint = new VpnEndpoint(new VpnHost("proton.vpn", "135.27.46.203", string.Empty, null), VpnProtocol.OpenVpnTcp, 777);
             _credentials = new VpnCredentials("username", "password", "cert", 
                 new AsymmetricKeyPair(
                     new SecretKey("U2VjcmV0S2V5", KeyAlgorithm.Unknown), 
@@ -134,7 +134,7 @@ namespace ProtonVPN.Vpn.Test.Connection
         private void SetupConnect()
         {
             _origin
-                .When(x => x.Connect(Arg.Any<IVpnEndpoint>(), Arg.Any<VpnCredentials>(), Arg.Any<VpnConfig>()))
+                .When(x => x.Connect(Arg.Any<VpnEndpoint>(), Arg.Any<VpnCredentials>(), Arg.Any<VpnConfig>()))
                 .Do(x => RaiseStateChangedEvents(
                     new[] {new VpnState(VpnStatus.Connecting, default), new VpnState(VpnStatus.Connected, default)}));
         }

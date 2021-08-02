@@ -47,7 +47,7 @@ namespace ProtonVPN.Vpn.Connection
         private bool _disconnecting;
         private bool _disconnected;
         private VpnError _disconnectError;
-        private IVpnEndpoint _endpoint;
+        private VpnEndpoint _endpoint;
         private VpnCredentials _credentials;
         private VpnConfig _config;
 
@@ -67,7 +67,7 @@ namespace ProtonVPN.Vpn.Connection
 
         public InOutBytes Total => _origin.Total;
 
-        public void Connect(IVpnEndpoint endpoint, VpnCredentials credentials, VpnConfig config)
+        public void Connect(VpnEndpoint endpoint, VpnCredentials credentials, VpnConfig config)
         {
             _endpoint = endpoint;
             _credentials = credentials;
@@ -112,8 +112,6 @@ namespace ProtonVPN.Vpn.Connection
 
             if (_connectRequested)
             {
-                InvokeConnecting();
-
                 if (_disconnected)
                 {
                     _logger.Info("HandlingRequestsWrapper: Already disconnected, queuing Connect");
@@ -171,7 +169,6 @@ namespace ProtonVPN.Vpn.Connection
             if (_connectRequested)
             {
                 _disconnecting = false;
-                InvokeConnecting();
 
                 if (_disconnected)
                 {
@@ -210,18 +207,6 @@ namespace ProtonVPN.Vpn.Connection
 
                 _disconnectRequested = false;
             }
-        }
-
-        private void InvokeConnecting()
-        {
-            InvokeStateChanged(new VpnState(
-                VpnStatus.Connecting,
-                VpnError.None,
-                string.Empty,
-                _endpoint.Server.Ip,
-                _config?.VpnProtocol ?? VpnProtocol.Smart,
-                _config?.OpenVpnAdapter,
-                _endpoint.Server.Label));
         }
 
         private void InvokeDisconnecting()

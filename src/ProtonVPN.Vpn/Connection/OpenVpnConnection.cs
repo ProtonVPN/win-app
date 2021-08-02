@@ -55,7 +55,7 @@ namespace ProtonVPN.Vpn.Connection
         private readonly SingleAction _connectAction;
         private readonly SingleAction _disconnectAction;
 
-        private OpenVpnEndpoint _endpoint;
+        private VpnEndpoint _endpoint;
         private VpnCredentials _credentials;
         private VpnError _disconnectError = VpnError.Unknown;
         private VpnConfig _config;
@@ -86,24 +86,13 @@ namespace ProtonVPN.Vpn.Connection
 
         public InOutBytes Total { get; private set; } = InOutBytes.Zero;
 
-        public void Connect(IVpnEndpoint endpoint, VpnCredentials credentials, VpnConfig config)
+        public void Connect(VpnEndpoint endpoint, VpnCredentials credentials, VpnConfig config)
         {
             _config = config;
-            _endpoint = GetOpenVpnEndpoint(endpoint);
+            _endpoint = endpoint;
             _credentials = credentials;
 
             _connectAction.Run();
-        }
-
-        private OpenVpnEndpoint GetOpenVpnEndpoint(IVpnEndpoint endpoint)
-        {
-            if (endpoint is OpenVpnEndpoint openVpnEndpoint)
-            {
-                return openVpnEndpoint;
-            }
-
-            throw new ArgumentException($"The provided endpoint is not an '{nameof(OpenVpnEndpoint)}'. " +
-                                        $"The endpoint is of type '{endpoint?.GetType().Name}' instead.");
         }
 
         public void Disconnect(VpnError error)

@@ -82,10 +82,7 @@ namespace ProtonVPN.Service.Start
             ProtonVPN.Vpn.Config.Module vpnModule = new ProtonVPN.Vpn.Config.Module();
             vpnModule.Load(builder);
 
-            builder.Register(c => new VpnConnectionEntry(
-                    GetVpnConnection(c, vpnModule.GetOpenVpnConnection(c)),
-                    GetVpnConnection(c, vpnModule.GetWireguardConnection(c)))).As<IVpnConnection>().SingleInstance();
-
+            builder.Register(c => GetVpnConnection(c, vpnModule.GetVpnConnection(c))).As<IVpnConnection>().SingleInstance();
             builder.RegisterType<ServiceSettingsHostFactory>().As<ServiceHostFactory>().SingleInstance();
             builder.RegisterType<VpnConnectionHostFactory>().As<ServiceHostFactory>().SingleInstance();
             builder.Register(_ => new SerialTaskQueue()).As<ITaskQueue>().SingleInstance();

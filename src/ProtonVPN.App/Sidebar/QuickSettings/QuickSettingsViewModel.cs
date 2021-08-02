@@ -48,6 +48,8 @@ namespace ProtonVPN.Sidebar.QuickSettings
         private readonly IModals _modals;
         private readonly IVpnManager _vpnManager;
 
+        private VpnProtocol _vpnProtocol;
+
         public QuickSettingsViewModel(
             IAppSettings appSettings,
             IUserStorage userStorage,
@@ -231,6 +233,8 @@ namespace ProtonVPN.Sidebar.QuickSettings
 
         public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
         {
+            _vpnProtocol = e.State.VpnProtocol;
+
             if (e.State.Status == VpnStatus.Pinging ||
                 e.State.Status == VpnStatus.Connecting ||
                 e.State.Status == VpnStatus.Reconnecting)
@@ -400,7 +404,7 @@ namespace ProtonVPN.Sidebar.QuickSettings
         {
             HideNetShieldPopup();
             _appSettings.NetShieldEnabled = false;
-            if (_appSettings.GetProtocol() != VpnProtocol.WireGuard)
+            if (_vpnProtocol != VpnProtocol.WireGuard)
             {
                 await ReconnectAsync();
             }
@@ -429,7 +433,7 @@ namespace ProtonVPN.Sidebar.QuickSettings
                 bool isCustomDnsOn = _appSettings.CustomDnsEnabled;
                 _appSettings.NetShieldEnabled = true;
                 _appSettings.NetShieldMode = mode;
-                if (_appSettings.GetProtocol() != VpnProtocol.WireGuard || isCustomDnsOn)
+                if (_vpnProtocol != VpnProtocol.WireGuard || isCustomDnsOn)
                 {
                     await ReconnectAsync();
                 }

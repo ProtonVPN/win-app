@@ -27,9 +27,9 @@ namespace ProtonVPN.Vpn.OpenVpn.Arguments
 {
     internal class OpenVpnEndpointArguments : IEnumerable<string>
     {
-        private readonly OpenVpnEndpoint _endpoint;
+        private readonly VpnEndpoint _endpoint;
 
-        public OpenVpnEndpointArguments(OpenVpnEndpoint endpoint)
+        public OpenVpnEndpointArguments(VpnEndpoint endpoint)
         {
             _endpoint = endpoint;
         }

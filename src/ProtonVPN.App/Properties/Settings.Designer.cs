@@ -1480,5 +1480,17 @@ namespace ProtonVPN.Properties {
                 this["UseTunAdapter"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string WireGuardPorts {
+            get {
+                return ((string)(this["WireGuardPorts"]));
+            }
+            set {
+                this["WireGuardPorts"] = value;
+            }
+        }
     }
 }

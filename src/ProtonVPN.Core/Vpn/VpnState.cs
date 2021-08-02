@@ -41,10 +41,11 @@ namespace ProtonVPN.Core.Vpn
             Label = label;
         }
 
-        public VpnState(VpnStatus status, Server server = null)
+        public VpnState(VpnStatus status, Server server = null, VpnProtocol vpnProtocol = VpnProtocol.Smart)
         {
             Status = status;
             Server = server ?? Server.Empty();
+            VpnProtocol = vpnProtocol;
         }
 
         public override string ToString()

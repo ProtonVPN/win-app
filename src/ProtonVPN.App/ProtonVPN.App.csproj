@@ -175,6 +175,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Settings\Migrations\v1_22_0\AppSettingsMigration.cs" />
+    <Compile Include="Settings\ReconnectNotification\OpenVpnDriverSetting.cs" />
     <Compile Include="Settings\ReconnectNotification\NetShieldSetting.cs" />
     <Compile Include="Settings\ReconnectNotification\VpnAcceleratorSetting.cs" />
     <Compile Include="Sidebar\CountryFeatures\CountryFeaturesPopup.cs" />
