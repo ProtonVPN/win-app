@@ -169,6 +169,14 @@
     <Compile Include="Notifications\NotificationSender.cs" />
     <Compile Include="Notifications\NotificationUserAction.cs" />
     <Compile Include="Notifications\NotificationUserActionHandler.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\Migrations\v1_22_0\AppSettingsMigration.cs" />
+    <Compile Include="Settings\ReconnectNotification\NetShieldSetting.cs" />
+    <Compile Include="Settings\ReconnectNotification\VpnAcceleratorSetting.cs" />
     <Compile Include="Sidebar\CountryFeatures\CountryFeaturesPopup.cs" />
     <Compile Include="Sidebar\CountryFeatures\CountryFeaturesPopupView.xaml.cs">
       <DependentUpon>CountryFeaturesPopupView.xaml</DependentUpon>
@@ -183,6 +191,7 @@
     <Compile Include="Views\Icons\ArrowRight.xaml.cs">
       <DependentUpon>ArrowRight.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vpn\IVpnCredentialProvider.cs" />
     <Compile Include="Windows\Popups\Delinquency\DelinquencyPopupView.xaml.cs">
       <DependentUpon>DelinquencyPopupView.xaml</DependentUpon>
     </Compile>
@@ -382,7 +391,6 @@
     <Compile Include="Settings\Migrations\v1_7_2\MigratedProfileType.cs" />
     <Compile Include="Settings\Migrations\v1_7_2\MigratedServerId.cs" />
     <Compile Include="Settings\Migrations\v1_7_2\ProfileTypeV1.cs" />
-    <Compile Include="Settings\NetworkAdapter.cs" />
     <Compile Include="Settings\PerUserSettings.cs" />
     <Compile Include="Settings\UserSettings.cs" />
     <Compile Include="Core\Startup\IAutoStartup.cs" />
@@ -1482,11 +1490,6 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
     <None Include="app.manifest" />
     <None Include="gosrp.bat" />
     <None Include="..\..\COPYING.md">
@@ -1495,8 +1498,8 @@
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>PublicSettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
@@ -1793,6 +1796,10 @@
     <ProjectReference Include="..\ProtonVPN.Core\ProtonVPN.Core.csproj">
       <Project>{ca44b51d-7645-413a-818f-2c5b57db67dd}</Project>
       <Name>ProtonVPN.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProtonVPN.Crypto\ProtonVPN.Crypto.csproj">
+      <Project>{BA2D505E-CED3-4FCB-A463-DAF6B77C18DE}</Project>
+      <Name>ProtonVPN.Crypto</Name>
     </ProjectReference>
     <ProjectReference Include="..\ProtonVPN.Native\ProtonVPN.Native.csproj">
       <Project>{CB301B4C-D518-41F5-873B-9B1F145DB4AF}</Project>

@@ -20,6 +20,7 @@
 using System;
 using ProtonVPN.Common;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Vpn.Common;
@@ -46,7 +47,7 @@ namespace ProtonVPN.Vpn.Connection
         private bool _disconnecting;
         private bool _disconnected;
         private VpnError _disconnectError;
-        private VpnEndpoint _endpoint;
+        private IVpnEndpoint _endpoint;
         private VpnCredentials _credentials;
         private VpnConfig _config;
 
@@ -66,7 +67,7 @@ namespace ProtonVPN.Vpn.Connection
 
         public InOutBytes Total => _origin.Total;
 
-        public void Connect(VpnEndpoint endpoint, VpnCredentials credentials, VpnConfig config)
+        public void Connect(IVpnEndpoint endpoint, VpnCredentials credentials, VpnConfig config)
         {
             _endpoint = endpoint;
             _credentials = credentials;
@@ -88,6 +89,16 @@ namespace ProtonVPN.Vpn.Connection
 
             _logger.Info("HandlingRequestsWrapper: Disconnect requested, queuing Disconnect");
             Queued(Disconnect);
+        }
+
+        public void SetFeatures(VpnFeatures vpnFeatures)
+        {
+            _origin.SetFeatures(vpnFeatures);
+        }
+
+        public void UpdateAuthCertificate(string certificate)
+        {
+            _origin.UpdateAuthCertificate(certificate);
         }
 
         private void Origin_StateChanged(object sender, EventArgs<VpnState> e)
@@ -207,18 +218,26 @@ namespace ProtonVPN.Vpn.Connection
                 VpnStatus.Connecting,
                 VpnError.None,
                 string.Empty,
-                _endpoint.Server.Ip, 
-                label: _endpoint.Server.Label));
+                _endpoint.Server.Ip,
+                _config?.VpnProtocol ?? VpnProtocol.Smart,
+                _config?.OpenVpnAdapter,
+                _endpoint.Server.Label));
         }
 
         private void InvokeDisconnecting()
         {
-            InvokeStateChanged(new VpnState(VpnStatus.Disconnecting, _disconnectError));
+            InvokeStateChanged(new VpnState(
+                VpnStatus.Disconnecting,
+                _disconnectError,
+                _config?.VpnProtocol ?? VpnProtocol.Smart));
         }
 
         private void InvokeDisconnected()
         {
-            InvokeStateChanged(new VpnState(VpnStatus.Disconnected, _disconnectError));
+            InvokeStateChanged(new VpnState(
+                VpnStatus.Disconnected,
+                _disconnectError,
+                _config?.VpnProtocol ?? VpnProtocol.Smart));
         }
 
         private void InvokeStateChanged(VpnState state)

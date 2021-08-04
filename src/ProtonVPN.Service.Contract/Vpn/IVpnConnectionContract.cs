@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -30,7 +30,7 @@ namespace ProtonVPN.Service.Contract.Vpn
         Task Connect(VpnConnectionRequestContract connectionRequest);
 
         [OperationContract(IsOneWay = true)]
-        Task UpdateServers(VpnHostContract[] servers, VpnConfigContract config);
+        Task UpdateAuthCertificate(string certificate);
 
         [OperationContract(IsOneWay = true)]
         Task Disconnect(SettingsContract settings, VpnErrorTypeContract vpnError);

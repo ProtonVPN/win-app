@@ -24,6 +24,7 @@ using System.Threading.Tasks;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Core.Abstract;
 using ProtonVPN.Core.Api;
+using ProtonVPN.Core.Api.Certificates;
 using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.Api.Data;
 using File = ProtonVPN.Core.Api.File;
@@ -155,5 +156,7 @@ namespace TestTools.ApiClient
         public Task<ApiResponseResult<StreamingServicesResponse>> GetStreamingServicesAsync() => throw new NotImplementedException();
 
         public Task<ApiResponseResult<BaseResponse>> CheckAuthenticationServerStatusAsync() => throw new NotImplementedException();
+
+        public Task<ApiResponseResult<CertificateResponseData>> RequestAuthCertificateAsync(CertificateRequestData requestData) => throw new NotImplementedException();
     }
 }

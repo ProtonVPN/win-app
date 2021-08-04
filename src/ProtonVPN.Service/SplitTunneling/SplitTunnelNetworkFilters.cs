@@ -61,7 +61,7 @@ namespace ProtonVPN.Service.SplitTunneling
             }
         }
 
-        public void EnableIncludeMode(string[] apps, string[] ips, IPAddress internetLocalIp, IPAddress vpnLocalIp)
+        public void EnableIncludeMode(string[] apps, IPAddress vpnLocalIp)
         {
             Create();
 

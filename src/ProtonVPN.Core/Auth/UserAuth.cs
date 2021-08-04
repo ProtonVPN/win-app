@@ -37,14 +37,16 @@ namespace ProtonVPN.Core.Auth
         private readonly ILogger _logger;
         private readonly IUserStorage _userStorage;
         private readonly ITokenStorage _tokenStorage;
+        private readonly IAuthCertificateManager _authCertificateManager;
 
-        public UserAuth(
-            IApiClient apiClient,
+        public UserAuth(IApiClient apiClient,
             ILogger logger,
             IUserStorage userStorage,
-            ITokenStorage tokenStorage)
+            ITokenStorage tokenStorage, 
+            IAuthCertificateManager authCertificateManager)
         {
             _tokenStorage = tokenStorage;
+            _authCertificateManager = authCertificateManager;
             _apiClient = apiClient;
             _logger = logger;
             _userStorage = userStorage;
@@ -104,7 +106,7 @@ namespace ProtonVPN.Core.Auth
             if (vpnInfo.Success)
             {
                 _userStorage.StoreVpnInfo(vpnInfo.Value);
-                InvokeUserLoggedIn(false);
+                await InvokeUserLoggedInAsync(false);
                 return authResult;
             }
 
@@ -146,37 +148,49 @@ namespace ProtonVPN.Core.Auth
                 _tokenStorage.AccessToken = response.Value.AccessToken;
                 _tokenStorage.RefreshToken = response.Value.RefreshToken;
             }
-
+            
             return response;
         }
 
-        public void InvokeAutoLoginEvent()
+        public async Task InvokeAutoLoginEventAsync()
         {
-            InvokeUserLoggedIn(true);
+            await InvokeUserLoggedInAsync(true);
         }
 
-        private void InvokeUserLoggedIn(bool autoLogin)
+        private async Task InvokeUserLoggedInAsync(bool isAutoLogin)
         {
+            await RequestNewKeysAndCertificateOnLoginAsync(isAutoLogin);
             LoggedIn = true;
-            UserLoggedIn?.Invoke(this, new UserLoggedInEventArgs(autoLogin));
+            UserLoggedIn?.Invoke(this, new UserLoggedInEventArgs(isAutoLogin));
         }
 
-        public void Logout()
+        private async Task RequestNewKeysAndCertificateOnLoginAsync(bool isAutoLogin)
         {
-            if (!LoggedIn)
+            if (isAutoLogin)
             {
-                return;
+                await _authCertificateManager.RequestNewCertificateAsync();
             }
-
-            LoggedIn = false;
-            UserLoggedOut?.Invoke(this, EventArgs.Empty);
-
-            SendLogoutRequest();
-
-            _tokenStorage.AccessToken = string.Empty;
+            else
+            {
+                await _authCertificateManager.ForceRequestNewKeyPairAndCertificateAsync();
+            }
         }
 
-        private async void SendLogoutRequest()
+        public async Task LogoutAsync()
+        {
+            if (LoggedIn)
+            {
+                LoggedIn = false;
+                UserLoggedOut?.Invoke(this, EventArgs.Empty);
+
+                await SendLogoutRequestAsync();
+
+                _authCertificateManager.DeleteKeyPairAndCertificate();
+                _tokenStorage.AccessToken = string.Empty;
+            }
+        }
+
+        private async Task SendLogoutRequestAsync()
         {
             try
             {

@@ -73,14 +73,14 @@ namespace ProtonVPN.Core
 
         public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
         {
-            var status = e.State.Status;
+            VpnStatus status = e.State.Status;
             _disconnected = status == VpnStatus.Disconnected;
             _connected = status == VpnStatus.Connected;
 
-            if ((status == VpnStatus.Pinging || 
-                 status == VpnStatus.Connecting || 
-                 status == VpnStatus.Reconnecting || 
-                 status == VpnStatus.Disconnected) && 
+            if ((status == VpnStatus.Pinging ||
+                 status == VpnStatus.Connecting ||
+                 status == VpnStatus.Reconnecting ||
+                 status == VpnStatus.Disconnected) &&
                 _networkAddressChanged)
             {
                 _updateAction.Run();
@@ -108,7 +108,7 @@ namespace ProtonVPN.Core
                 return;
             }
 
-            var response = await LocationAsync();
+            ApiResponseResult<Api.Contracts.UserLocation> response = await LocationAsync();
 
             // Extra check in case location request took longer
             if (_connected)
@@ -125,7 +125,7 @@ namespace ProtonVPN.Core
                     return;
                 }
 
-                var location = Map(response.Value);
+                UserLocation location = Map(response.Value);
                 _userStorage.SaveLocation(location);
 
                 UserLocationChanged?.Invoke(this, new UserLocationEventArgs(UserLocationState.Success, location));
@@ -164,7 +164,7 @@ namespace ProtonVPN.Core
 
         private UserLocation Map(Api.Contracts.UserLocation contract)
         {
-            return new UserLocation(
+            return new(
                 contract.Ip,
                 contract.Lat,
                 contract.Long,

@@ -26,8 +26,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using ProtonVPN.Common;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
+using ProtonVPN.Crypto;
 using ProtonVPN.Vpn.Common;
 using ProtonVPN.Vpn.Connection;
 
@@ -40,7 +42,7 @@ namespace ProtonVPN.Vpn.Test.Connection
         private TaskQueue _taskQueue;
         private ISingleVpnConnection _origin;
 
-        private VpnEndpoint _endpoint;
+        private IVpnEndpoint _endpoint;
         private VpnCredentials _credentials;
         private VpnConfig _config;
 
@@ -51,16 +53,19 @@ namespace ProtonVPN.Vpn.Test.Connection
             _taskQueue = new TaskQueue();
             _origin = Substitute.For<ISingleVpnConnection>();
 
-            _endpoint = new VpnEndpoint(new VpnHost("proton.vpn", "135.27.46.203", string.Empty), VpnProtocol.OpenVpnTcp, 777);
-            _credentials = new VpnCredentials("username", "password");
-            _config = new VpnConfig(new Dictionary<VpnProtocol, IReadOnlyCollection<int>>(), SplitTunnelMode.Disabled, useTunAdapter: false);
+            _endpoint = new OpenVpnEndpoint(new VpnHost("proton.vpn", "135.27.46.203", string.Empty, null), VpnProtocol.OpenVpnTcp, 777);
+            _credentials = new VpnCredentials("username", "password", "cert", 
+                new AsymmetricKeyPair(
+                    new SecretKey("U2VjcmV0S2V5", KeyAlgorithm.Unknown), 
+                    new PublicKey("UHVibGljS2V5", KeyAlgorithm.Unknown)));
+            _config = new VpnConfig(new VpnConfigParameters());
         }
 
         [TestMethod]
         public async Task Connect_ShouldCall_OriginDisconnect()
         {
             // Arrange
-            var subject = new HandlingRequestsWrapper(_logger, _taskQueue, _origin);
+            HandlingRequestsWrapper subject = new(_logger, _taskQueue, _origin);
 
             // Act
             subject.Connect(_endpoint, _credentials, _config);
@@ -75,7 +80,7 @@ namespace ProtonVPN.Vpn.Test.Connection
         {
             // Arrange
             SetupDisconnect();
-            var subject = new HandlingRequestsWrapper(_logger, _taskQueue, _origin);
+            HandlingRequestsWrapper subject = new(_logger, _taskQueue, _origin);
 
             // Act
             subject.Connect(_endpoint, _credentials, _config);
@@ -89,13 +94,13 @@ namespace ProtonVPN.Vpn.Test.Connection
         public async Task DisconnectError_ShouldBe_None_WhenUnexpectedlyDisconnected_WithoutAnError()
         {
             // Arrange
-            var disconnectError = VpnError.None;
+            VpnError disconnectError = VpnError.None;
 
             SetupDisconnect();
             SetupConnect();
             SetupUnexpectedDisconnect(VpnError.None);
 
-            var subject = new HandlingRequestsWrapper(_logger, _taskQueue, _origin);
+            HandlingRequestsWrapper subject = new(_logger, _taskQueue, _origin);
             subject.StateChanged += (s, e) =>
             {
                 if (e.Data.Status == VpnStatus.Disconnected)
@@ -121,17 +126,17 @@ namespace ProtonVPN.Vpn.Test.Connection
                 .Do(x => RaiseStateChangedEvents(
                     new[]
                     {
-                        new VpnState(VpnStatus.Disconnecting, x.Arg<VpnError>()),
-                        new VpnState(VpnStatus.Disconnected, x.Arg<VpnError>())
+                        new VpnState(VpnStatus.Disconnecting, x.Arg<VpnError>(), default),
+                        new VpnState(VpnStatus.Disconnected, x.Arg<VpnError>(), default)
                     }));
         }
 
         private void SetupConnect()
         {
             _origin
-                .When(x => x.Connect(Arg.Any<VpnEndpoint>(), Arg.Any<VpnCredentials>(), Arg.Any<VpnConfig>()))
+                .When(x => x.Connect(Arg.Any<IVpnEndpoint>(), Arg.Any<VpnCredentials>(), Arg.Any<VpnConfig>()))
                 .Do(x => RaiseStateChangedEvents(
-                    new[] {new VpnState(VpnStatus.Connecting), new VpnState(VpnStatus.Connected)}));
+                    new[] {new VpnState(VpnStatus.Connecting, default), new VpnState(VpnStatus.Connected, default)}));
         }
 
         private void SetupUnexpectedDisconnect(VpnError error)
@@ -143,8 +148,8 @@ namespace ProtonVPN.Vpn.Test.Connection
                     _taskQueue.Enqueue(() => RaiseStateChangedEvents(
                         new[]
                         {
-                            new VpnState(VpnStatus.Disconnecting, error),
-                            new VpnState(VpnStatus.Disconnected, error)
+                            new VpnState(VpnStatus.Disconnecting, error, default),
+                            new VpnState(VpnStatus.Disconnected, error, default)
                         }));
                 }
             };
@@ -152,8 +157,8 @@ namespace ProtonVPN.Vpn.Test.Connection
 
         private void RaiseStateChangedEvents(IEnumerable<VpnState> states)
         {
-            var list = states.ToList();
-            var state = list.First();
+            List<VpnState> list = states.ToList();
+            VpnState state = list.First();
             _origin.StateChanged += Raise.EventWith(new object(), new EventArgs<VpnState>(state));
 
             if (list.Count > 1)
@@ -169,7 +174,7 @@ namespace ProtonVPN.Vpn.Test.Connection
 
             public Task<T> Enqueue<T>(Func<Task<T>> function)
             {
-                var task = _origin.Enqueue(function);
+                Task<T> task = _origin.Enqueue(function);
                 _lastTask = task;
                 return task;
             }

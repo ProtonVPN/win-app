@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -23,6 +23,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
+using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Config.Url;
 using ProtonVPN.Core;
@@ -110,6 +111,8 @@ namespace ProtonVPN.Settings
                 SplitTunnelingViewModel.Disconnected = value;
             }
         }
+
+        public bool IsToShowNetworkDriverSelection => _appSettings.GetProtocol() != VpnProtocol.WireGuard;
 
         public int SelectedTabIndex
         {
@@ -325,21 +328,22 @@ namespace ProtonVPN.Settings
 
         public List<KeyValuePair<string, string>> Protocols => new()
         {
-            new("auto", Translation.Get("Settings_Connection_DefaultProtocol_val_Auto")),
+            new("auto", Translation.Get("Settings_Connection_DefaultProtocol_val_Smart")),
             new("tcp", Translation.Get("Settings_Connection_DefaultProtocol_val_Tcp")),
             new("udp", Translation.Get("Settings_Connection_DefaultProtocol_val_Udp")),
+            new("wireguard", Translation.Get("Settings_Connection_DefaultProtocol_val_WireGuard")),
         };
 
-        public List<KeyValuePair<NetworkAdapter, string>> NetworkDrivers => new()
+        public List<KeyValuePair<OpenVpnAdapter, string>> NetworkDrivers => new()
         {
-            new KeyValuePair<NetworkAdapter, string>(NetworkAdapter.Tun, Translation.Get("Settings_Advanced_lbl_Tun")),
-            new KeyValuePair<NetworkAdapter, string>(NetworkAdapter.Tap, Translation.Get("Settings_Advanced_lbl_Tap")),
+            new KeyValuePair<OpenVpnAdapter, string>(OpenVpnAdapter.Tap, Translation.Get("Settings_Advanced_lbl_OpenVpnTap")),
+            new KeyValuePair<OpenVpnAdapter, string>(OpenVpnAdapter.Tun, Translation.Get("Settings_Advanced_lbl_OpenVpnTun")),
         };
 
-        public NetworkAdapter SelectedNetworkDriver
+        public OpenVpnAdapter SelectedOpenVpnAdapter
         {
-            get => _appSettings.UseTunAdapter ? NetworkAdapter.Tun : NetworkAdapter.Tap;
-            set => _appSettings.UseTunAdapter = value == NetworkAdapter.Tun;
+            get => _appSettings.NetworkAdapterType;
+            set => _appSettings.NetworkAdapterType = value;
         }
 
         public IReadOnlyList<ProfileViewModel> AutoConnectProfiles
@@ -432,6 +436,10 @@ namespace ProtonVPN.Settings
             {
                 NotifyOfPropertyChange(() => IsSmartReconnectNotificationsEditable);
             }
+            else if (e.PropertyName.Equals(nameof(IAppSettings.OvpnProtocol)))
+            {
+                NotifyOfPropertyChange(() => IsToShowNetworkDriverSelection);
+            }
 
             RefreshReconnectRequiredState(e.PropertyName);
         }
@@ -450,7 +458,7 @@ namespace ProtonVPN.Settings
             NotifyOfPropertyChange(() => SelectedProtocol);
 
             NotifyOfPropertyChange(() => NetworkDrivers);
-            NotifyOfPropertyChange(() => SelectedNetworkDriver);
+            NotifyOfPropertyChange(() => SelectedOpenVpnAdapter);
 
             NotifyOfPropertyChange(() => StartMinimizedModes);
             NotifyOfPropertyChange(() => StartMinimized);

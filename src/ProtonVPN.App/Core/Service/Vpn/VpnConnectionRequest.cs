@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,6 +18,7 @@
  */
 
 using System.Collections.Generic;
+using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
 
 namespace ProtonVPN.Core.Service.Vpn
@@ -26,18 +27,18 @@ namespace ProtonVPN.Core.Service.Vpn
     {
         public VpnConnectionRequest(
             IReadOnlyList<VpnHost> servers,
-            VpnProtocol protocol,
+            VpnProtocol vpnProtocol,
             VpnConfig config,
             VpnCredentials credentials)
         {
             Servers = servers;
-            Protocol = protocol;
+            VpnProtocol = vpnProtocol;
             Config = config;
             Credentials = credentials;
         }
 
         public IReadOnlyList<VpnHost> Servers { get; }
-        public VpnProtocol Protocol { get; }
+        public VpnProtocol VpnProtocol { get; }
         public VpnCredentials Credentials { get; }
         public VpnConfig Config { get; }
     }

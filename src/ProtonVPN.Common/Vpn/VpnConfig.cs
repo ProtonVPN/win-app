@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -20,12 +20,13 @@
 using System;
 using System.Collections.Generic;
 using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.Networking;
 
 namespace ProtonVPN.Common.Vpn
 {
     public class VpnConfig
     {
-        public IReadOnlyDictionary<VpnProtocol, IReadOnlyCollection<int>> Ports { get; }
+        public IReadOnlyDictionary<VpnProtocol, IReadOnlyCollection<int>> OpenVpnPorts { get; }
 
         public IReadOnlyCollection<string> CustomDns { get; }
 
@@ -33,41 +34,27 @@ namespace ProtonVPN.Common.Vpn
 
         public IReadOnlyCollection<string> SplitTunnelIPs { get; }
 
-        public bool UseTunAdapter { get; }
+        public OpenVpnAdapter OpenVpnAdapter { get; }
+        
+        public VpnProtocol VpnProtocol { get; }
 
-        public VpnConfig(
-            IReadOnlyDictionary<VpnProtocol, IReadOnlyCollection<int>> portConfig,
-            IReadOnlyCollection<string> customDns,
-            SplitTunnelMode splitTunnelMode,
-            IReadOnlyCollection<string> splitTunnelIPs,
-            bool useTunAdapter)
+        public int NetShieldMode { get; }
+
+        public bool SplitTcp { get; }
+
+        public VpnConfig(VpnConfigParameters parameters)
         {
-            AssertPortsValid(portConfig);
-            AssertCustomDnsValid(customDns);
+            AssertPortsValid(parameters.Ports);
+            AssertCustomDnsValid(parameters.CustomDns);
 
-            Ports = portConfig;
-            CustomDns = customDns;
-            SplitTunnelMode = splitTunnelMode;
-            SplitTunnelIPs = splitTunnelIPs;
-            UseTunAdapter = useTunAdapter;
-        }
-
-        public VpnConfig(
-            IReadOnlyDictionary<VpnProtocol, IReadOnlyCollection<int>> portConfig,
-            SplitTunnelMode splitTunnelMode, bool useTunAdapter) :
-            this(portConfig, new List<string>(), splitTunnelMode, new List<string>(), useTunAdapter)
-        {
-        }
-
-        private void AssertCustomDnsValid(IReadOnlyCollection<string> customDns)
-        {
-            foreach (string dns in customDns)
-            {
-                if (!dns.IsValidIpAddress())
-                {
-                    throw new ArgumentException($"Invalid DNS address: {dns}");
-                }
-            }
+            OpenVpnPorts = parameters.Ports;
+            CustomDns = parameters.CustomDns ?? new List<string>();
+            SplitTunnelMode = parameters.SplitTunnelMode;
+            SplitTunnelIPs = parameters.SplitTunnelIPs ?? new List<string>();
+            OpenVpnAdapter = parameters.OpenVpnAdapter;
+            VpnProtocol = parameters.VpnProtocol;
+            NetShieldMode = parameters.NetShieldMode;
+            SplitTcp = parameters.SplitTcp;
         }
 
         private void AssertPortsValid(IReadOnlyDictionary<VpnProtocol, IReadOnlyCollection<int>> ports)
@@ -80,6 +67,22 @@ namespace ProtonVPN.Common.Vpn
                     {
                         throw new ArgumentException($"Invalid OpenVPN port: {port}");
                     }
+                }
+            }
+        }
+
+        private void AssertCustomDnsValid(IReadOnlyCollection<string> customDns)
+        {
+            if (customDns == null)
+            {
+                return;
+            }
+
+            foreach (string dns in customDns)
+            {
+                if (!dns.IsValidIpAddress())
+                {
+                    throw new ArgumentException($"Invalid DNS address: {dns}");
                 }
             }
         }

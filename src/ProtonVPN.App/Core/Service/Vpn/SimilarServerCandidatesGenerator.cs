@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.Networking;
 using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Servers.Models;
@@ -50,14 +51,14 @@ namespace ProtonVPN.Core.Service.Vpn
             _appSettings = appSettings;
         }
 
-        public ServerCandidates Generate(bool isToIncludeOriginalServer, 
+        public ServerCandidates Generate(bool isToIncludeOriginalServer,
             Server originalServer = null, Profile originalProfile = null)
         {
             IList<Server> similarServers = GenerateList(isToIncludeOriginalServer, originalServer, originalProfile);
             return CreateServerCandidates(similarServers);
         }
 
-        public IList<Server> GenerateList(bool isToIncludeOriginalServer, 
+        public IList<Server> GenerateList(bool isToIncludeOriginalServer,
             Server originalServer = null, Profile originalProfile = null)
         {
             if (originalServer == null || originalServer.IsEmpty())
@@ -89,7 +90,7 @@ namespace ProtonVPN.Core.Service.Vpn
             {
                 profile = new()
                 {
-                    Protocol = Protocol.Auto,
+                    VpnProtocol = VpnProtocol.Smart,
                     ProfileType = ProfileType.Fastest,
                     Features = (Features)(originalServer?.Features ?? (sbyte)Features.None),
                     EntryCountryCode = originalServer?.EntryCountry,
@@ -142,11 +143,11 @@ namespace ProtonVPN.Core.Service.Vpn
 
         private Server GetOriginalServerIfRequired(bool isToIncludeOriginalServer, Server originalServer)
         {
-            return isToIncludeOriginalServer && 
-                   !originalServer.IsNullOrEmpty() && 
-                   originalServer.IsSecureCore() == _appSettings.SecureCore && 
+            return isToIncludeOriginalServer &&
+                   !originalServer.IsNullOrEmpty() &&
+                   originalServer.IsSecureCore() == _appSettings.SecureCore &&
                    originalServer.Online()
-                ? originalServer 
+                ? originalServer
                 : null;
         }
 

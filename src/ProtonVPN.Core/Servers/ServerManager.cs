@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -21,6 +21,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Helpers;
+using ProtonVPN.Common.Networking;
 using ProtonVPN.Core.Abstract;
 using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.Servers.Models;
@@ -31,18 +32,21 @@ namespace ProtonVPN.Core.Servers
 {
     public class ServerManager
     {
+        private readonly IUserStorage _userStorage;
+        private readonly IAppSettings _appSettings;
         private readonly ServerNameComparer _serverNameComparer;
         private List<LogicalServerContract> _servers = new();
         private List<string> _countries = new();
-        private readonly IUserStorage _userStorage;
 
-        public ServerManager(IUserStorage userStorage)
+        public ServerManager(IUserStorage userStorage, IAppSettings appSettings)
         {
             _userStorage = userStorage;
+            _appSettings = appSettings;
             _serverNameComparer = new ServerNameComparer();
         }
 
-        public ServerManager(IUserStorage userStorage, List<LogicalServerContract> servers) : this(userStorage)
+        public ServerManager(IUserStorage userStorage, IAppSettings appSettings, List<LogicalServerContract> servers) :
+            this(userStorage, appSettings)
         {
             _servers = servers;
         }
@@ -64,8 +68,17 @@ namespace ProtonVPN.Core.Servers
             Dictionary<string, LogicalServerContract> updatedServers = servers.ToDictionary(server => server.Id);
             foreach (LogicalServerContract server in _servers.Where(server => updatedServers.ContainsKey(server.Id)))
             {
-                server.Load = updatedServers[server.Id].Load;
-                server.Score = updatedServers[server.Id].Score;
+                LogicalServerContract updatedServer = updatedServers[server.Id];
+                server.Load = updatedServer.Load;
+                server.Score = updatedServer.Score;
+                if (updatedServer.Status == 0 || server.Servers.Count == 1)
+                {
+                    foreach (PhysicalServerContract physicalServer in server.Servers)
+                    {
+                        physicalServer.Status = updatedServer.Status;
+                    }
+                    server.Status = updatedServer.Status;
+                }
             }
         }
 
@@ -186,7 +199,37 @@ namespace ProtonVPN.Core.Servers
 
         private void SaveServers(IEnumerable<LogicalServerContract> servers)
         {
-            _servers = servers.Where(s => s != null).ToList();
+            if (_appSettings.GetProtocol() == VpnProtocol.WireGuard)
+            {
+                List<LogicalServerContract> filteredServers = new();
+                foreach (LogicalServerContract server in servers)
+                {
+                    if (server == null)
+                    {
+                        continue;
+                    }
+
+                    List<PhysicalServerContract> physicalServers = server.Servers.Where(ContainsPublicKey).ToList();
+                    if (physicalServers.Count == 0)
+                    {
+                        continue;
+                    }
+
+                    server.Servers = physicalServers;
+                    filteredServers.Add(server);
+                }
+
+                _servers = filteredServers;
+            }
+            else
+            {
+                _servers = servers.Where(s => s != null).ToList();
+            }
+        }
+
+        private bool ContainsPublicKey(PhysicalServerContract server)
+        {
+            return !server.X25519PublicKey.IsNullOrEmpty();
         }
 
         private void SaveCountries(IEnumerable<LogicalServerContract> servers)
@@ -195,17 +238,13 @@ namespace ProtonVPN.Core.Servers
 
             foreach (LogicalServerContract server in servers)
             {
-                if (server == null)
+                if (server == null || !IsCountry(server) || countryCodes.Contains(server.EntryCountry))
                 {
                     continue;
                 }
 
-                if (!IsCountry(server))
-                {
-                    continue;
-                }
-
-                if (countryCodes.Contains(server.EntryCountry))
+                if (_appSettings.GetProtocol() == VpnProtocol.WireGuard &&
+                    server.Servers.Count(s => !s.X25519PublicKey.IsNullOrEmpty()) == 0)
                 {
                     continue;
                 }
@@ -224,7 +263,7 @@ namespace ProtonVPN.Core.Servers
                 return false;
             }
 
-            string[] letters = {"M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
+            string[] letters = { "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
             if (code.StartsWith("Q") && letters.Contains(code.Substring(1, 1)))
             {
                 return false;
@@ -262,13 +301,14 @@ namespace ProtonVPN.Core.Servers
 
         private static PhysicalServer Map(PhysicalServerContract server)
         {
-            return new PhysicalServer(
+            return new(
                 id: server.Id,
                 entryIp: server.EntryIp,
                 exitIp: server.ExitIp,
                 domain: server.Domain,
                 label: server.Label,
-                status: server.Status);
+                status: server.Status,
+                x25519PublicKey: server.X25519PublicKey);
         }
 
         /// <summary>

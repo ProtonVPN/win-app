@@ -33,6 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
@@ -46,12 +47,19 @@
     <Compile Include="..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Crypto\AsymmetricKeyPairContract.cs" />
+    <Compile Include="Crypto\KeyAlgorithmContract.cs" />
+    <Compile Include="Crypto\KeyContract.cs" />
+    <Compile Include="Crypto\ServerPublicKeyContract.cs" />
+    <Compile Include="Crypto\PublicKeyContract.cs" />
+    <Compile Include="Crypto\SecretKeyContract.cs" />
     <Compile Include="Servers\PhysicalServerContract.cs" />
     <Compile Include="Servers\ServerContract.cs" />
     <Compile Include="Vpn\InOutBytesContract.cs" />
     <Compile Include="Settings\SplitTunnelSettingsContract.cs" />
     <Compile Include="Settings\ISettingsContract.cs" />
     <Compile Include="Settings\ServiceSettingsStateContract.cs" />
+    <Compile Include="Vpn\OpenVpnProtocolContract.cs" />
     <Compile Include="Vpn\VpnConfigContract.cs" />
     <Compile Include="Vpn\VpnConnectionRequestContract.cs" />
     <Compile Include="Vpn\IVpnEventsContract.cs" />
@@ -60,7 +68,6 @@
     <Compile Include="Settings\SettingsContract.cs" />
     <Compile Include="Vpn\VpnHostContract.cs" />
     <Compile Include="Vpn\VpnErrorTypeContract.cs" />
-    <Compile Include="Vpn\VpnProtocolContract.cs" />
     <Compile Include="Vpn\VpnCredentialsContract.cs" />
     <Compile Include="Vpn\VpnStatusContract.cs" />
     <Compile Include="Vpn\VpnStateContract.cs" />
@@ -70,9 +77,14 @@
       <Project>{03b8e43c-5680-4803-a745-0a104fe6620c}</Project>
       <Name>ProtonVPN.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ProtonVPN.Crypto\ProtonVPN.Crypto.csproj">
+      <Project>{BA2D505E-CED3-4FCB-A463-DAF6B77C18DE}</Project>
+      <Name>ProtonVPN.Crypto</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

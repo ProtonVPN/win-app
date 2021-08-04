@@ -26,9 +26,11 @@ namespace ProtonVPN.Core.Servers.Models
         public string ExitIp { get; }
         public string Domain { get; }
         public string Label { get; }
+        public string X25519PublicKey { get; }
         public sbyte Status { get; }
 
-        public PhysicalServer(string id, string entryIp, string exitIp, string domain, string label, sbyte status)
+        public PhysicalServer(string id, string entryIp, string exitIp, string domain, string label, sbyte status,
+            string x25519PublicKey)
         {
             Id = id;
             EntryIp = entryIp;
@@ -36,6 +38,7 @@ namespace ProtonVPN.Core.Servers.Models
             Domain = domain;
             Label = label;
             Status = status;
+            X25519PublicKey = x25519PublicKey;
         }
     }
 }

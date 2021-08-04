@@ -20,6 +20,7 @@
 using System.Threading.Tasks;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
+using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.MVVM;
 using ProtonVPN.Core.Servers.Models;
@@ -32,8 +33,10 @@ namespace ProtonVPN.ConnectingScreen
 {
     internal class ConnectingViewModel : ViewModel, IVpnStateAware
     {
-        private int _percentage;
-        private int _animatePercentage;
+        private bool _reconnecting;
+        private bool _hasPercentage;
+        private int? _percentage;
+        private int? _animatePercentage;
         private string _message;
         private Server _server;
         private Server _failedServer;
@@ -75,24 +78,36 @@ namespace ProtonVPN.ConnectingScreen
             set => Set(ref _message, value);
         }
 
-        private bool _reconnecting;
-
         public bool Reconnecting
         {
             get => _reconnecting;
             set => Set(ref _reconnecting, value);
         }
 
-        public int Percentage
+        public bool HasPercentage
         {
-            get => _percentage;
-            set => Set(ref _percentage, value);
+            get => _hasPercentage;
+            set => Set(ref _hasPercentage, value);
         }
 
-        public int AnimatePercentage
+        public int? Percentage
+        {
+            get => _percentage;
+            set
+            {
+                Set(ref _percentage, value);
+                HasPercentage = _percentage.HasValue;
+            } 
+        }
+
+        public int? AnimatePercentage
         {
             get => _animatePercentage;
-            set => Set(ref _animatePercentage, value);
+            set
+            {
+                Set(ref _animatePercentage, value);
+                HasPercentage = _animatePercentage.HasValue;
+            } 
         }
 
         public bool IsConnectionNameNotNull
@@ -100,7 +115,51 @@ namespace ProtonVPN.ConnectingScreen
             get => ConnectionName != null;
         }
 
-        public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
+        public async Task OnVpnStateChanged(VpnStateChangedEventArgs e)
+        {
+            if (e.VpnProtocol == VpnProtocol.WireGuard)
+            {
+                SetWireguardConnectionState(e);
+            }
+            else
+            {
+                SetOpenVpnConnectionState(e);
+            }
+        }
+
+        private void SetWireguardConnectionState(VpnStateChangedEventArgs e)
+        {
+            Percentage = null;
+            AnimatePercentage = null;
+            switch (e.State.Status)
+            {
+                case VpnStatus.Pinging:
+                case VpnStatus.Connecting:
+                    _server = null;
+                    ResetReconnectingAndFailedServer();
+                    SetConnectingState(e.State.Server,
+                        Message = Translation.Get("Connecting_VpnStatus_val_Connecting"));
+                    break;
+                case VpnStatus.Reconnecting:
+                case VpnStatus.Waiting:
+                case VpnStatus.Authenticating:
+                case VpnStatus.RetrievingConfiguration:
+                case VpnStatus.AssigningIp:
+                    SetConnectingState(e.State.Server,
+                        Message = Translation.Get("Connecting_VpnStatus_val_Connecting"));
+                    break;
+                case VpnStatus.Connected:
+                    ResetConnectingState();
+                    break;
+                case VpnStatus.Disconnecting:
+                case VpnStatus.Disconnected:
+                    ConnectionName = null;
+                    ResetConnectingState();
+                    break;
+            }
+        }
+
+        public void SetOpenVpnConnectionState(VpnStateChangedEventArgs e)
         {
             switch (e.State.Status)
             {
@@ -109,47 +168,55 @@ namespace ProtonVPN.ConnectingScreen
                     SetPinging();
                     break;
                 case VpnStatus.Connecting:
+                    _server = null;
+                    ResetReconnectingAndFailedServer();
                     SetStartStep();
                     SetConnecting(e.State);
                     break;
                 case VpnStatus.Reconnecting:
-                    SetConnecting(e.State);
+                    SetConnectingStateAndPercentage(0, e.State.Server,
+                        Message = Translation.Get("Connecting_VpnStatus_val_Connecting"));
                     break;
                 case VpnStatus.Waiting:
-                    SetConnectingState(20, Message = Translation.Get("Connecting_VpnStatus_val_Waiting"),
-                        e.State.Server);
+                    SetConnectingStateAndPercentage(20, e.State.Server,
+                        Message = Translation.Get("Connecting_VpnStatus_val_Waiting"));
                     break;
                 case VpnStatus.Authenticating:
-                    SetConnectingState(40, Message = Translation.Get("Connecting_VpnStatus_val_Authenticating"),
-                        e.State.Server);
+                    SetConnectingStateAndPercentage(40, e.State.Server,
+                        Message = Translation.Get("Connecting_VpnStatus_val_Authenticating"));
                     break;
                 case VpnStatus.RetrievingConfiguration:
-                    SetConnectingState(60,
-                        Message = Translation.Get("Connecting_VpnStatus_val_RetrievingConfiguration"), e.State.Server);
+                    SetConnectingStateAndPercentage(60, e.State.Server,
+                        Message = Translation.Get("Connecting_VpnStatus_val_RetrievingConfiguration"));
                     break;
                 case VpnStatus.AssigningIp:
-                    SetConnectingState(80, Message = Translation.Get("Connecting_VpnStatus_val_AssigningIp"),
-                        e.State.Server);
+                    SetConnectingStateAndPercentage(80, e.State.Server,
+                        Message = Translation.Get("Connecting_VpnStatus_val_AssigningIp"));
                     break;
                 case VpnStatus.Connected:
                     AnimatePercentage = 100;
-                    Reconnecting = false;
-                    Message = string.Empty;
-                    FailedConnectionName = null;
-                    _failedServer = null;
+                    ResetConnectingState();
                     break;
                 case VpnStatus.Disconnecting:
                 case VpnStatus.Disconnected:
                     Percentage = 0;
-                    Message = "";
-                    Reconnecting = false;
                     ConnectionName = null;
-                    FailedConnectionName = null;
-                    _failedServer = null;
+                    ResetConnectingState();
                     break;
             }
+        }
 
-            return Task.CompletedTask;
+        private void ResetReconnectingAndFailedServer()
+        {
+            Reconnecting = false;
+            _failedServer = null;
+        }
+
+        private void ResetConnectingState()
+        {
+            ResetReconnectingAndFailedServer();
+            Message = string.Empty;
+            FailedConnectionName = null;
         }
 
         private void SetStartStep()
@@ -164,18 +231,23 @@ namespace ProtonVPN.ConnectingScreen
             ConnectionName = null;
             FailedConnectionName = null;
             Percentage = 0;
-            SetConnectingState(0, Message = Translation.Get("Connecting_VpnStatus_val_Pinging"), null);
+            SetConnectingStateAndPercentage(0, null, Message = Translation.Get("Connecting_VpnStatus_val_Pinging"));
+        }
+
+        private void SetConnectingStateAndPercentage(int percentage, Server server, string message)
+        {
+            AnimatePercentage = percentage;
+            SetConnectingState(server, message);
         }
 
         private void SetConnecting(VpnState state)
         {
             Percentage = 0;
-            SetConnectingState(0, Message = Translation.Get("Connecting_VpnStatus_val_Connecting"), state.Server);
+            SetConnectingStateAndPercentage(0, state.Server, Message = Translation.Get("Connecting_VpnStatus_val_Connecting"));
         }
 
-        private void SetConnectingState(int percentage, string message, Server server)
+        private void SetConnectingState(Server server, string message)
         {
-            AnimatePercentage = percentage;
             Message = message;
 
             if (server == null)

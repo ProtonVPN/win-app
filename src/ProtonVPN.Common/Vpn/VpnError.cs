@@ -38,6 +38,25 @@ namespace ProtonVPN.Common.Vpn
         ServerOffline,
         ServerRemoved,
         NoServers,
-        Unknown
+        Unknown,
+        MissingServerPublicKey,
+        IncorrectVpnConfig,
+
+        GuestSession = 86100,
+        CertificateExpired = 86101,
+        CertificateRevoked = 86102,
+        SessionKilledDueToMultipleKeys = 86103,
+        UnableToVerifyCert = 86104,
+        CertRevokedOrExpired = 86105,
+        CertificateNotYetProvided = 86106,
+
+        SessionLimitReachedFree = 86111,
+        SessionLimitReachedBasic = 86112,
+        SessionLimitReachedPlus = 86113,
+        SessionLimitReachedVisionary = 86114,
+        SessionLimitReachedPro = 86115,
+        SessionLimitReachedUnknown = 86110,
+
+        PlanNeedsToBeUpgraded = 86151,
     }
 }

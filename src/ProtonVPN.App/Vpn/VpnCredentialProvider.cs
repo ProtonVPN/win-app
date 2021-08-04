@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,31 +17,50 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Threading.Tasks;
+using ProtonVPN.Common.Abstract;
+using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Vpn;
+using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Settings;
 
 namespace ProtonVPN.Vpn
 {
-    public class VpnCredentialProvider
+    public class VpnCredentialProvider : IVpnCredentialProvider
     {
         private readonly Common.Configuration.Config _config;
         private readonly IAppSettings _appSettings;
         private readonly IUserStorage _userStorage;
+        private readonly IAuthCredentialManager _authCredentialManager;
 
-        public VpnCredentialProvider(Common.Configuration.Config config, IAppSettings appSettings,
-            IUserStorage userStorage)
+        public VpnCredentialProvider(
+            Common.Configuration.Config config,
+            IAppSettings appSettings,
+            IUserStorage userStorage,
+            IAuthCredentialManager authCredentialManager)
         {
             _config = config;
             _userStorage = userStorage;
             _appSettings = appSettings;
+            _authCredentialManager = authCredentialManager;
         }
 
-        public VpnCredentials Credentials()
+        public async Task<Result<VpnCredentials>> Credentials()
         {
             User user = _userStorage.User();
 
-            return new VpnCredentials(AddSuffixToUsername(user.VpnUsername), user.VpnPassword);
+            AuthCredential authCredential = await _authCredentialManager.GenerateAsync();
+            if (authCredential.CertificatePem.IsNullOrEmpty())
+            {
+                return Result.Fail<VpnCredentials>();
+            }
+
+            return Result.Ok(new VpnCredentials(
+                AddSuffixToUsername(user.VpnUsername),
+                user.VpnPassword,
+                authCredential.CertificatePem,
+                authCredential.KeyPair));
         }
 
         private string AddSuffixToUsername(string username)

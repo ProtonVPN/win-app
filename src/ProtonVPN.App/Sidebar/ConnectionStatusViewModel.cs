@@ -24,9 +24,11 @@ using System.Windows.Input;
 using System.Windows.Threading;
 using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Common.KillSwitch;
+using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.MVVM;
+using ProtonVPN.Core.MVVM.Converters;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Servers.Models;
 using ProtonVPN.Core.Servers.Name;
@@ -39,6 +41,7 @@ using ProtonVPN.Onboarding;
 using ProtonVPN.P2PDetection;
 using ProtonVPN.Settings;
 using ProtonVPN.Sidebar.Announcements;
+using ProtonVPN.Translations;
 
 namespace ProtonVPN.Sidebar
 {
@@ -60,6 +63,7 @@ namespace ProtonVPN.Sidebar
         private readonly IUserStorage _userStorage;
         private readonly IModals _modals;
         private readonly SettingsModalViewModel _settingsModalViewModel;
+        private EnumToDisplayTextConverter _enumToDisplayTextConverter;
         private readonly DispatcherTimer _timer;
         private VpnStatus _vpnStatus;
         private bool _sidebarMode;
@@ -83,6 +87,7 @@ namespace ProtonVPN.Sidebar
             _userStorage = userStorage;
             _modals = modals;
             _settingsModalViewModel = settingsModalViewModel;
+            _enumToDisplayTextConverter = new EnumToDisplayTextConverter();
 
             QuickConnectCommand = new RelayCommand(QuickConnectAction);
             DisableKillSwitchCommand = new RelayCommand(DisableKillSwitch);
@@ -128,11 +133,11 @@ namespace ProtonVPN.Sidebar
             set => Set(ref _showFirstOnboardingStep, value);
         }
 
-        private VpnProtocol _protocol;
-        public VpnProtocol Protocol
+        private string _adapterProtocol;
+        public string AdapterProtocol
         {
-            get => _protocol;
-            set => Set(ref _protocol, value);
+            get => _adapterProtocol;
+            set => Set(ref _adapterProtocol, value);
         }
 
         private bool _connected;
@@ -224,7 +229,7 @@ namespace ProtonVPN.Sidebar
                         ConnectedServer = _serverManager.GetServer(new ServerById(server.Id)) ?? Server.Empty();
                         SetIp(server.ExitIp);
                         SetConnectionName(ConnectedServer);
-                        Protocol = e.Protocol;
+                        AdapterProtocol = GetAdapterProtocol(e);
                         _timer.Start();
                     }
                     break;
@@ -245,6 +250,16 @@ namespace ProtonVPN.Sidebar
             SetKillSwitchActivated(e.NetworkBlocked, e.State.Status);
 
             return Task.CompletedTask;
+        }
+
+        private string GetAdapterProtocol(VpnStateChangedEventArgs e)
+        {
+            if (e.VpnProtocol == VpnProtocol.WireGuard)
+            {
+                return Translation.Get("WireGuard_lbl");
+            }
+
+            return (string) _enumToDisplayTextConverter.Convert(e.VpnProtocol, typeof(string), null, null);
         }
 
         private void SetKillSwitchActivated(bool isNetworkBlocked, VpnStatus vpnStatus)
@@ -301,6 +316,7 @@ namespace ProtonVPN.Sidebar
         }
 
         private Server _connectedServer;
+
         private Server ConnectedServer
         {
             get => _connectedServer;

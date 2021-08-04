@@ -34,10 +34,10 @@ namespace ProtonVPN.Common.Test.Vpn
         {
             // Arrange
             const string expected = "server-1.protonvpn.com";
-            var host = new VpnHost(expected, "127.0.0.1", string.Empty);
+            var host = new VpnHost(expected, "127.0.0.1", string.Empty, null);
 
             // Act
-            var result = host.Name;
+            string result = host.Name;
 
             // Assert
             result.Should().Be(expected);
@@ -48,10 +48,10 @@ namespace ProtonVPN.Common.Test.Vpn
         {
             // Arrange
             const string expected = "44.55.66.77";
-            var host = new VpnHost("server-1.protonvpn.com", expected, string.Empty);
+            var host = new VpnHost("server-1.protonvpn.com", expected, string.Empty, null);
 
             // Act
-            var result = host.Ip;
+            string result = host.Ip;
 
             // Assert
             result.Should().Be(expected);
@@ -64,7 +64,7 @@ namespace ProtonVPN.Common.Test.Vpn
             VpnHost host = default;
 
             // Act
-            var result = host.IsEmpty();
+            bool result = host.IsEmpty();
 
             // Assert
             result.Should().BeTrue();
@@ -74,10 +74,10 @@ namespace ProtonVPN.Common.Test.Vpn
         public void IsEmpty_ShouldBeTrue_WhenNew()
         {
             // Arrange
-            var host = new VpnHost("name.com", "0.0.0.0", string.Empty);
+            var host = new VpnHost("name.com", "0.0.0.0", string.Empty, null);
 
             // Act
-            var result = host.IsEmpty();
+            bool result = host.IsEmpty();
 
             // Assert
             result.Should().BeFalse();
@@ -91,7 +91,7 @@ namespace ProtonVPN.Common.Test.Vpn
         public void VpnHost_ShouldThrow_WhenNameIsNotValid(string name)
         {
             // Act
-            Action action = () => new VpnHost(name, "127.0.0.1", string.Empty);
+            Action action = () => new VpnHost(name, "127.0.0.1", string.Empty, null);
 
             // Assert
             action.Should().Throw<ArgumentException>();
@@ -108,7 +108,7 @@ namespace ProtonVPN.Common.Test.Vpn
         public void VpnHost_ShouldThrow_WhenIpIsNotValid(string ip)
         {
             // Act
-            Action action = () => new VpnHost("test.server.com", ip, string.Empty);
+            Action action = () => new VpnHost("test.server.com", ip, string.Empty, null);
 
             // Assert
             action.Should().Throw<ArgumentException>();

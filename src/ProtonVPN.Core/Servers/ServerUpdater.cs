@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -19,24 +19,29 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Storage;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.Auth;
+using ProtonVPN.Core.Settings;
 
 namespace ProtonVPN.Core.Servers
 {
-    public class ServerUpdater : IServerUpdater, ILoggedInAware, ILogoutAware
+    public class ServerUpdater : IServerUpdater, ILoggedInAware, ILogoutAware, ISettingsAware
     {
         private readonly ISchedulerTimer _timer;
         private readonly ServerManager _serverManager;
         private readonly IApiServers _apiServers;
         private readonly ICollectionStorage<LogicalServerContract> _serverCache;
         private readonly SingleAction _updateAction;
+        private readonly IAppSettings _appSettings;
 
+        private VpnProtocol _lastVpnProtocol;
         private bool _firstTime = true;
 
         public ServerUpdater(
@@ -45,11 +50,13 @@ namespace ProtonVPN.Core.Servers
             ServerManager serverManager,
             IApiServers apiServers,
             ICollectionStorage<LogicalServerContract> serverCache,
-            ServerLoadUpdater serverLoadUpdater)
+            ServerLoadUpdater serverLoadUpdater,
+            IAppSettings appSettings)
         {
             _serverManager = serverManager;
             _apiServers = apiServers;
             _serverCache = serverCache;
+            _appSettings = appSettings;
 
             _timer = scheduler.Timer();
             _timer.Interval = appConfig.ServerUpdateInterval.RandomizedWithDeviation(0.2);
@@ -64,6 +71,7 @@ namespace ProtonVPN.Core.Servers
         public void OnUserLoggedIn()
         {
             _timer.Start();
+            _lastVpnProtocol = _appSettings.GetProtocol();
         }
 
         public void OnUserLoggedOut()
@@ -84,14 +92,14 @@ namespace ProtonVPN.Core.Servers
 
         private async Task UpdateServers()
         {
-            var servers = await GetServers();
+            IReadOnlyCollection<LogicalServerContract> servers = await GetServers();
 
-            if (!servers.Any())
-                return;
-
-            _serverManager.Load(servers);
-            InvokeServersUpdated();
-            _serverCache.SetAll(servers);
+            if (servers.Any())
+            {
+                _serverManager.Load(servers);
+                InvokeServersUpdated();
+                _serverCache.SetAll(servers);
+            }
         }
 
         private async Task<IReadOnlyCollection<LogicalServerContract>> GetServers()
@@ -128,6 +136,17 @@ namespace ProtonVPN.Core.Servers
         private void InvokeServersUpdated()
         {
             ServersUpdated?.Invoke(this, EventArgs.Empty);
+        }
+
+        public void OnAppSettingsChanged(PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(IAppSettings.OvpnProtocol) &&
+                _lastVpnProtocol == VpnProtocol.WireGuard && _appSettings.GetProtocol() != VpnProtocol.WireGuard ||
+                _lastVpnProtocol != VpnProtocol.WireGuard && _appSettings.GetProtocol() == VpnProtocol.WireGuard)
+            {
+                _updateAction.Run();
+                _lastVpnProtocol = _appSettings.GetProtocol();
+            }
         }
     }
 }

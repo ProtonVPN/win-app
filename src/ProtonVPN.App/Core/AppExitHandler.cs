@@ -22,16 +22,18 @@ using System.Windows;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Service.Vpn;
+using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Modals;
 
 namespace ProtonVPN.Core
 {
-    public class AppExitHandler : IVpnStateAware
+    public class AppExitHandler : IVpnStateAware, IServiceSettingsStateAware
     {
         private readonly IModals _modals;
         private readonly VpnService _vpnService;
-        private VpnStateChangedEventArgs _vpnStateChangedEventArgs = new(new VpnState(VpnStatus.Disconnected), VpnError.None, false);
+        private VpnStatus _lastVpnStatus = VpnStatus.Disconnected;
+        private bool _isNetworkBlocked;
 
         public AppExitHandler(IModals modals, VpnService vpnService)
         {
@@ -60,15 +62,21 @@ namespace ProtonVPN.Core
 
         public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
         {
-            _vpnStateChangedEventArgs = e;
+            _lastVpnStatus = e.State.Status;
+            _isNetworkBlocked = e.NetworkBlocked;
             return Task.CompletedTask;
+        }
+
+        public void OnServiceSettingsStateChanged(ServiceSettingsStateChangedEventArgs e)
+        {
+            _isNetworkBlocked = e.IsNetworkBlocked;
         }
 
         private bool ShowModal()
         {
-            return (_vpnStateChangedEventArgs.State.Status != VpnStatus.Disconnected &&
-                    _vpnStateChangedEventArgs.State.Status != VpnStatus.Disconnecting) ||
-                   _vpnStateChangedEventArgs.NetworkBlocked;
+            return (_lastVpnStatus != VpnStatus.Disconnected &&
+                    _lastVpnStatus != VpnStatus.Disconnecting) ||
+                   _isNetworkBlocked;
         }
     }
 }

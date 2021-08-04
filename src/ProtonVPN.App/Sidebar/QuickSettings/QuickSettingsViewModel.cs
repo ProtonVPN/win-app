@@ -22,7 +22,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Caliburn.Micro;
 using GalaSoft.MvvmLight.CommandWpf;
-using ProtonVPN.Common;
+using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Config.Url;
 using ProtonVPN.Core.Modals;
@@ -231,8 +231,8 @@ namespace ProtonVPN.Sidebar.QuickSettings
 
         public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
         {
-            if (e.State.Status == VpnStatus.Pinging || 
-                e.State.Status == VpnStatus.Connecting || 
+            if (e.State.Status == VpnStatus.Pinging ||
+                e.State.Status == VpnStatus.Connecting ||
                 e.State.Status == VpnStatus.Reconnecting)
             {
                 ShowSecureCorePopup = false;
@@ -400,7 +400,10 @@ namespace ProtonVPN.Sidebar.QuickSettings
         {
             HideNetShieldPopup();
             _appSettings.NetShieldEnabled = false;
-            await ReconnectAsync();
+            if (_appSettings.GetProtocol() != VpnProtocol.WireGuard)
+            {
+                await ReconnectAsync();
+            }
         }
 
         private async void TurnOnNetShieldFirstModeActionAsync()
@@ -423,9 +426,13 @@ namespace ProtonVPN.Sidebar.QuickSettings
             }
             else
             {
+                bool isCustomDnsOn = _appSettings.CustomDnsEnabled;
                 _appSettings.NetShieldEnabled = true;
                 _appSettings.NetShieldMode = mode;
-                await ReconnectAsync();
+                if (_appSettings.GetProtocol() != VpnProtocol.WireGuard || isCustomDnsOn)
+                {
+                    await ReconnectAsync();
+                }
             }
         }
 

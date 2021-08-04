@@ -18,7 +18,7 @@
  */
 
 using ProtonVPN.Common.Extensions;
-using ProtonVPN.Core.Profiles;
+using ProtonVPN.Common.Networking;
 
 namespace ProtonVPN.Settings.Migrations.v1_7_2
 {
@@ -31,13 +31,13 @@ namespace ProtonVPN.Settings.Migrations.v1_7_2
             _protocol = protocol;
         }
 
-        public static implicit operator Protocol(MigratedProtocol item) => item.Value();
+        public static implicit operator VpnProtocol(MigratedProtocol item) => item.Value();
 
-        public Protocol Value()
+        public VpnProtocol Value()
         {
-            return _protocol?.EqualsIgnoringCase("udp") == true ? Protocol.OpenVpnUdp :
-                   _protocol?.EqualsIgnoringCase("tcp") == true ? Protocol.OpenVpnTcp :
-                   Protocol.Auto;
+            return _protocol?.EqualsIgnoringCase("udp") == true ? VpnProtocol.OpenVpnUdp :
+                   _protocol?.EqualsIgnoringCase("tcp") == true ? VpnProtocol.OpenVpnTcp :
+                   VpnProtocol.Smart;
         }
     }
 }

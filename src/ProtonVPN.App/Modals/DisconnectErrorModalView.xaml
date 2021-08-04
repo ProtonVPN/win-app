@@ -75,6 +75,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <Setter Property="behavior:TextStyleBehavior.FormattedText" Value="{translations:Loc Servers_msg_CantConnect_Maintenance}"/>
                     <Setter Property="Visibility" Value="Visible"/>
                 </DataTrigger>
+                <DataTrigger Binding="{Binding Error}" Value="{x:Static vpn:VpnError.MissingServerPublicKey}">
+                    <Setter Property="behavior:TextStyleBehavior.FormattedText" Value="{translations:Loc Servers_msg_MissingServerPublicKey}"/>
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Error}" Value="{x:Static vpn:VpnError.CertificateExpired}">
+                    <Setter Property="behavior:TextStyleBehavior.FormattedText" Value="{translations:Loc Servers_msg_CantConnect_CertificateExpired}"/>
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
                 <DataTrigger Binding="{Binding Error}" Value="{x:Static vpn:VpnError.None}">
                     <Setter Property="Visibility" Value="Collapsed"/>
                 </DataTrigger>

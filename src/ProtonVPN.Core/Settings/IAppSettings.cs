@@ -23,10 +23,10 @@ using System.Collections.Specialized;
 using System.ComponentModel;
 using ProtonVPN.Common;
 using ProtonVPN.Common.KillSwitch;
+using ProtonVPN.Common.Networking;
 using ProtonVPN.Core.Announcements;
 using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Native.Structures;
-using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Profiles.Cached;
 using ProtonVPN.Core.Settings.Contracts;
 
@@ -91,19 +91,25 @@ namespace ProtonVPN.Core.Settings
         bool FeatureMaintenanceTrackerEnabled { get; set; }
         bool FeaturePollNotificationApiEnabled { get; set; }
         TimeSpan MaintenanceCheckInterval { get; set; }
-        bool UseTunAdapter { get; set; }
+        OpenVpnAdapter NetworkAdapterType { get; set; }
         bool VpnAcceleratorEnabled { get; set; }
         bool FeatureVpnAcceleratorEnabled { get; set; }
         bool FeatureStreamingServicesLogosEnabled { get; set; }
         bool FeatureSmartReconnectEnabled { get; set; }
         bool SmartReconnectEnabled { get; set; }
         bool SmartReconnectNotificationsEnabled { get; set; }
-
+        string AuthenticationPublicKey { get; set; }
+        string AuthenticationSecretKey { get; set; }
+        string AuthenticationCertificatePem { get; set; }
+        DateTimeOffset? AuthenticationCertificateExpirationUtcDate { get; set; }
+        DateTimeOffset? AuthenticationCertificateRefreshUtcDate { get; set; }
+        DateTimeOffset? AuthenticationCertificateRequestUtcDate { get; set; }
+        string CertificationServerPublicKey { get; set; }
         bool IsNetShieldEnabled();
         bool IsPortForwardingEnabled();
         bool IsVpnAcceleratorEnabled();
         bool IsSmartReconnectEnabled();
         bool IsSmartReconnectNotificationsEnabled();
-        Protocol GetProtocol();
+        VpnProtocol GetProtocol();
     }
 }

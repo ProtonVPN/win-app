@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,8 +18,10 @@
  */
 
 using System;
+using System.Collections.Generic;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Service;
+using ProtonVPN.Common.Service.Validation;
 using ProtonVPN.Common.ServiceModel.Server;
 using ProtonVPN.Service.Contract.Vpn;
 
@@ -46,6 +48,12 @@ namespace ProtonVPN.Service.ServiceHosts
                 "connection");
 
             serviceHost.Description.Behaviors.Add(new ErrorLoggingBehavior(_logger));
+            serviceHost.Description.Behaviors.Add(
+                new ParameterValidatingBehavior(
+                    new ValidatingParameterInspector(new List<IObjectValidator>
+                    {
+                        new ValidatableObjectValidator()
+                    })));
 
             return serviceHost;
         }

@@ -49,6 +49,7 @@ using ProtonVPN.Core.Storage;
 using ProtonVPN.Core.User;
 using ProtonVPN.Core.Window;
 using ProtonVPN.Core.Window.Popups;
+using ProtonVPN.Crypto;
 using ProtonVPN.FlashNotifications;
 using ProtonVPN.Map;
 using ProtonVPN.Modals;
@@ -64,7 +65,6 @@ using ProtonVPN.Sidebar;
 using ProtonVPN.Streaming;
 using ProtonVPN.Vpn;
 using ProtonVPN.Vpn.Connectors;
-using ProtonVPN.Windows.Popups.Delinquency;
 
 namespace ProtonVPN.Core.Ioc
 {
@@ -100,6 +100,7 @@ namespace ProtonVPN.Core.Ioc
 
             builder.RegisterType<ApiServers>().As<IApiServers>().SingleInstance();
             builder.RegisterType<ServerUpdater>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<AuthCertificateUpdater>().AsImplementedInterfaces().SingleInstance();
             builder.Register(c => new ServerLoadUpdater(
                     c.Resolve<Common.Configuration.Config>().ServerLoadUpdateInterval,
                     c.Resolve<ServerManager>(),
@@ -175,6 +176,8 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<ProtonVPN.Settings.Migrations.v1_18_3.AppSettingsMigration>().AsImplementedInterfaces()
                 .SingleInstance();
             builder.RegisterType<ProtonVPN.Settings.Migrations.v1_20_0.AppSettingsMigration>().AsImplementedInterfaces()
+                .SingleInstance();
+            builder.RegisterType<ProtonVPN.Settings.Migrations.v1_22_0.AppSettingsMigration>().AsImplementedInterfaces()
                 .SingleInstance();
 
             builder.RegisterType<MapLineManager>().AsImplementedInterfaces().AsSelf().SingleInstance();
@@ -287,7 +290,12 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<StreamingServicesStorage>().SingleInstance();
             builder.RegisterType<NotificationSender>().As<INotificationSender>().SingleInstance();
             builder.RegisterType<NotificationUserActionHandler>().As<INotificationUserActionHandler>().SingleInstance();
-            builder.RegisterType<DelinquencyPopupViewModel>().AsImplementedInterfaces().SingleInstance();
+
+            builder.RegisterType<Ed25519Asn1KeyGenerator>().As<IEd25519Asn1KeyGenerator>().SingleInstance();
+            builder.RegisterType<X25519KeyGenerator>().As<IX25519KeyGenerator>().SingleInstance();
+            builder.RegisterType<AuthKeyManager>().As<IAuthKeyManager>().SingleInstance();
+            builder.RegisterType<AuthCertificateManager>().As<IAuthCertificateManager>().SingleInstance();
+            builder.RegisterType<AuthCredentialManager>().As<IAuthCredentialManager>().SingleInstance();
         }
     }
 }

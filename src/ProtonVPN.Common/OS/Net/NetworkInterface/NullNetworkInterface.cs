@@ -17,6 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Net;
+
 namespace ProtonVPN.Common.OS.Net.NetworkInterface
 {
     /// <summary>
@@ -33,6 +35,8 @@ namespace ProtonVPN.Common.OS.Net.NetworkInterface
         public bool IsLoopback => false;
 
         public bool IsActive => false;
+
+        public IPAddress DefaultGateway => IPAddress.None;
 
         public uint Index => 0;
     }

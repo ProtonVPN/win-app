@@ -19,6 +19,7 @@
 
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
+using ProtonVPN.Common.Networking;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
 
@@ -41,7 +42,7 @@ namespace ProtonVPN.Modals
         private async void SwitchToTapAction()
         {
             TryClose();
-            _appSettings.UseTunAdapter = false;
+            _appSettings.NetworkAdapterType = OpenVpnAdapter.Tap;
             await _vpnManager.ReconnectAsync();
         }
     }

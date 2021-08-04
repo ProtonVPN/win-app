@@ -1,4 +1,23 @@
-﻿using System.Collections.Generic;
+﻿/*
+ * Copyright (c) 2021 Proton Technologies AG
+ *
+ * This file is part of ProtonVPN.
+ *
+ * ProtonVPN is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * ProtonVPN is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Vpn;
@@ -9,7 +28,7 @@ namespace ProtonVPN.Settings.ReconnectNotification
     {
         private VpnStatus _vpnStatus;
         private readonly SettingsBuilder _settingsBuilder;
-        private List<Setting> _reconnectRequiredSettings = new List<Setting>();
+        private List<Setting> _reconnectRequiredSettings = new();
 
         public ReconnectState(SettingsBuilder settingsBuilder)
         {
@@ -29,7 +48,7 @@ namespace ProtonVPN.Settings.ReconnectNotification
                 OnSettingChanged(settingChanged);
             }
 
-            foreach (var setting in _reconnectRequiredSettings)
+            foreach (Setting setting in _reconnectRequiredSettings)
             {
                 if (setting.Changed())
                 {
@@ -60,7 +79,7 @@ namespace ProtonVPN.Settings.ReconnectNotification
                 return;
             }
 
-            foreach (var s in setting.GetChildren())
+            foreach (Setting s in setting.GetChildren())
             {
                 if (s.Name == name)
                 {
@@ -74,7 +93,7 @@ namespace ProtonVPN.Settings.ReconnectNotification
 
         private void OnSettingChanged(string settingName)
         {
-            foreach (var setting in _reconnectRequiredSettings)
+            foreach (Setting setting in _reconnectRequiredSettings)
             {
                 RevertChanges(setting, settingName);
             }

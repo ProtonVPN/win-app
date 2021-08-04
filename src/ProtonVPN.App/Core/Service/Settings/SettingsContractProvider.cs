@@ -35,7 +35,7 @@ namespace ProtonVPN.Core.Service.Settings
 
         public SettingsContract GetSettingsContract()
         {
-            return new SettingsContract
+            return new()
             {
                 KillSwitchMode = _appSettings.KillSwitchMode,
                 SplitTunnel = new SplitTunnelSettingsContract
@@ -44,8 +44,11 @@ namespace ProtonVPN.Core.Service.Settings
                     AppPaths = _appSettings.GetSplitTunnelApps(),
                     Ips = GetSplitTunnelIps()
                 },
+                NetShieldMode = _appSettings.IsNetShieldEnabled() ? _appSettings.NetShieldMode : 0,
+                SplitTcp = _appSettings.VpnAcceleratorEnabled,
                 Ipv6LeakProtection = _appSettings.Ipv6LeakProtection,
-                UseTunAdapter = _appSettings.UseTunAdapter,
+                VpnProtocol = _appSettings.GetProtocol(),
+                OpenVpnAdapter = _appSettings.NetworkAdapterType,
             };
         }
 

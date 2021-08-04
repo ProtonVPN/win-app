@@ -27,7 +27,7 @@ using ProtonVPN.Core.Vpn;
 
 namespace ProtonVPN.Modals
 {
-    public class ExitModalViewModel : BaseModalViewModel, IVpnStateAware
+    public class ExitModalViewModel : BaseModalViewModel, IVpnStateAware, IServiceSettingsStateAware
     {
         private readonly IAppSettings _appSettings;
 
@@ -69,6 +69,11 @@ namespace ProtonVPN.Modals
             Disconnected = e.State.Status == VpnStatus.Disconnected;
 
             return Task.CompletedTask;
+        }
+
+        public void OnServiceSettingsStateChanged(ServiceSettingsStateChangedEventArgs e)
+        {
+            NetworkBlocked = e.IsNetworkBlocked;
         }
     }
 }

@@ -38,7 +38,7 @@ namespace ProtonVPN.Vpn.Connection
         private readonly ISingleVpnConnection _origin;
         private readonly CancellationHandle _cancellationHandle = new();
 
-        private VpnEndpoint _vpnEndpoint = VpnEndpoint.EmptyEndpoint;
+        private IVpnEndpoint _vpnEndpoint = new EmptyEndpoint();
         private VpnCredentials _vpnCredentials;
         private VpnConfig _config;
         private Task _disconnectDelay = Task.CompletedTask;
@@ -60,7 +60,7 @@ namespace ProtonVPN.Vpn.Connection
 
         public InOutBytes Total => _origin.Total;
 
-        public void Connect(VpnEndpoint endpoint, VpnCredentials credentials, VpnConfig config)
+        public void Connect(IVpnEndpoint endpoint, VpnCredentials credentials, VpnConfig config)
         {
             _vpnEndpoint = endpoint;
             _vpnCredentials = credentials;
@@ -79,16 +79,26 @@ namespace ProtonVPN.Vpn.Connection
             _origin.Disconnect(error);
         }
 
+        public void SetFeatures(VpnFeatures vpnFeatures)
+        {
+            _origin.SetFeatures(vpnFeatures);
+        }
+
+        public void UpdateAuthCertificate(string certificate)
+        {
+            _origin.UpdateAuthCertificate(certificate);
+        }
+
         private async void ScanPorts(CancellationToken cancellationToken)
         {
             _logger.Info($"Starting port scanning of endpoint {_vpnEndpoint.Server.Ip} before connection.");
-            VpnEndpoint bestEndpoint = await _endpointScanner.ScanForBestEndpointAsync(
-                _vpnEndpoint, _config.Ports, _cancellationHandle.Token);
+            IVpnEndpoint bestEndpoint = await _endpointScanner.ScanForBestEndpointAsync(
+                _vpnEndpoint, _config.OpenVpnPorts, _cancellationHandle.Token);
 
             Queued(ct => HandleBestEndpoint(bestEndpoint, ct), cancellationToken);
         }
 
-        private void HandleBestEndpoint(VpnEndpoint endpoint, CancellationToken cancellationToken)
+        private void HandleBestEndpoint(IVpnEndpoint endpoint, CancellationToken cancellationToken)
         {
             if (endpoint.Port != 0)
             {
@@ -103,7 +113,7 @@ namespace ProtonVPN.Vpn.Connection
             }
         }
 
-        private VpnCredentials GetCredentials(VpnEndpoint endpoint)
+        private VpnCredentials GetCredentials(IVpnEndpoint endpoint)
         {
             if (string.IsNullOrEmpty(endpoint.Server.Label))
             {
@@ -111,7 +121,8 @@ namespace ProtonVPN.Vpn.Connection
             }
 
             string username = $"{_vpnCredentials.Username}+b:{endpoint.Server.Label}";
-            return new VpnCredentials(username, _vpnCredentials.Password);
+            return new VpnCredentials(username, _vpnCredentials.Password, _vpnCredentials.ClientCertPem,
+                _vpnCredentials.ClientKeyPair);
         }
 
         private async void DelayedDisconnect(CancellationToken cancellationToken)
@@ -128,7 +139,7 @@ namespace ProtonVPN.Vpn.Connection
 
             Queued(_ => InvokeDisconnected(), cancellationToken);
         }
-        
+
         private void InvokeDisconnected()
         {
             StateChanged?.Invoke(this,
@@ -137,7 +148,9 @@ namespace ProtonVPN.Vpn.Connection
                     VpnError.TimeoutError,
                     string.Empty,
                     _vpnEndpoint.Server.Ip,
-                    label: _vpnEndpoint.Server.Label)));
+                    _config.VpnProtocol,
+                    _config.OpenVpnAdapter,
+                    _vpnEndpoint.Server.Label)));
         }
 
         private void Queued(Action<CancellationToken> action, CancellationToken cancellationToken)
@@ -165,7 +178,8 @@ namespace ProtonVPN.Vpn.Connection
                 e.Data.Error,
                 e.Data.LocalIp,
                 e.Data.RemoteIp,
-                _vpnEndpoint.Protocol,
+                e.Data.VpnProtocol,
+                e.Data.OpenVpnAdapter,
                 e.Data.Label);
 
             StateChanged?.Invoke(this, new EventArgs<VpnState>(state));

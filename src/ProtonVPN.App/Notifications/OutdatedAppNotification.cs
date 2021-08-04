@@ -56,7 +56,7 @@ namespace ProtonVPN.Notifications
             _vpnServiceManager = vpnServiceManager;
         }
 
-        public void OnAppOutdated(object sender, BaseResponse e)
+        public async void OnAppOutdated(object sender, BaseResponse e)
         {
             if (_notified)
             {
@@ -64,14 +64,14 @@ namespace ProtonVPN.Notifications
             }
 
             _notified = true;
-            _scheduler.Schedule(() =>
+            await _scheduler.Schedule(async () =>
             {
                 if (_vpnStatus != VpnStatus.Disconnected)
                 {
-                    _vpnServiceManager.Disconnect(VpnError.Unknown);
+                    await _vpnServiceManager.Disconnect(VpnError.Unknown);
                 }
 
-                _userAuth.Logout();
+                await _userAuth.LogoutAsync();
                 _loginWindow.Hide();
                 _modals.Show<OutdatedAppModalViewModel>();
             });

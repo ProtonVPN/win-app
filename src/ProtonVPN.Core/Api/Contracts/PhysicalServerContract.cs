@@ -37,5 +37,7 @@ namespace ProtonVPN.Core.Api.Contracts
         public sbyte Status;
 
         public string Label;
+
+        public string X25519PublicKey;
     }
 }

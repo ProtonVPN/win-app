@@ -168,14 +168,14 @@ namespace ProtonVPN.Profiles
         private void SelectServerTypeAction(ServerTypeViewModel item)
         {
             var previousName = Form.ProfileName;
-            var previousProtocol = Form.Protocol;
+            var previousProtocol = Form.VpnProtocol;
             var previousColor = Form.ColorCode;
 
             SetServerType(item.Features);
             Form.Error = Error.None;
             Form.ColorCode = previousColor;
             Form.ProfileName = previousName;
-            Form.Protocol = previousProtocol;
+            Form.VpnProtocol = previousProtocol;
 
             Form.Load();
         }

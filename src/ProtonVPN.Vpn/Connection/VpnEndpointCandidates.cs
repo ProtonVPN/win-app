@@ -20,6 +20,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Vpn.Common;
 
@@ -29,12 +30,13 @@ namespace ProtonVPN.Vpn.Connection
     {
         private readonly IDictionary<VpnProtocol, ICollection<VpnHost>> _skippedHosts =
             new Dictionary<VpnProtocol, ICollection<VpnHost>>();
-        private readonly IDictionary<VpnProtocol, ICollection<string>> _skippedIps =
-            new Dictionary<VpnProtocol, ICollection<string>>();
+        private readonly IList<string> _skippedWireGuardIps = new List<string>();
+        private readonly Dictionary<VpnProtocol, ICollection<string>> _skippedOpenVpnIps = new();
+
 
         private IReadOnlyList<VpnHost> _all = new List<VpnHost>(0);
 
-        public VpnEndpoint Current { get; private set; }
+        public IVpnEndpoint Current { get; private set; }
 
         public VpnEndpointCandidates()
         {
@@ -46,7 +48,7 @@ namespace ProtonVPN.Vpn.Connection
             foreach (VpnProtocol protocol in (VpnProtocol[]) Enum.GetValues(typeof(VpnProtocol)))
             {
                 _skippedHosts[protocol] = new HashSet<VpnHost>();
-                _skippedIps[protocol] = new HashSet<string>();
+                _skippedOpenVpnIps[protocol] = new HashSet<string>();
             }
         }
 
@@ -55,37 +57,64 @@ namespace ProtonVPN.Vpn.Connection
             _all = servers;
         }
 
-        public VpnEndpoint NextHost(VpnProtocol protocol)
+        public IVpnEndpoint NextHost(VpnConfig config)
         {
-            if (!string.IsNullOrEmpty(Current.Server.Ip))
+            if (config.VpnProtocol == VpnProtocol.WireGuard)
             {
-                _skippedHosts[protocol].Add(Current.Server);
+                return NextWireGuardEndpoint();
             }
 
-            VpnHost server = _all.FirstOrDefault(h => _skippedHosts[protocol].All(skippedHost => h != skippedHost));
-            Current = Endpoint(server, protocol);
+            if (!string.IsNullOrEmpty(Current.Server.Ip))
+            {
+                _skippedHosts[config.VpnProtocol].Add(Current.Server);
+            }
+
+            VpnHost server =
+                _all.FirstOrDefault(h => _skippedHosts[config.VpnProtocol].All(skippedHost => h != skippedHost));
+            Current = CreateOpenVpnEndpoint(server, config.VpnProtocol);
 
             return Current;
         }
 
-        public VpnEndpoint NextIp(VpnProtocol protocol)
+        private IVpnEndpoint NextWireGuardEndpoint()
         {
             if (!string.IsNullOrEmpty(Current.Server.Ip))
             {
-                _skippedIps[protocol].Add(Current.Server.Ip);
+                _skippedWireGuardIps.Add(Current.Server.Ip);
             }
 
-            VpnHost server = _all.FirstOrDefault(h => _skippedIps[protocol].All(skippedIp => h.Ip != skippedIp));
-            Current = Endpoint(server, protocol);
+            VpnHost server = _all.FirstOrDefault(i => !_skippedWireGuardIps.Contains(i.Ip));
+            Current = CreateWireguardEndpoint(server);
 
             return Current;
         }
 
-        private static VpnEndpoint Endpoint(VpnHost server, VpnProtocol protocol)
+        private IVpnEndpoint CreateWireguardEndpoint(VpnHost server)
         {
-            return server.IsEmpty()
-                ? VpnEndpoint.EmptyEndpoint
-                : new VpnEndpoint(server, protocol);
+            return server.IsEmpty() ? new EmptyEndpoint() : new WireGuardEndpoint(server);
+        }
+
+        public IVpnEndpoint NextIp(VpnConfig config)
+        {
+            if (config.VpnProtocol == VpnProtocol.WireGuard)
+            {
+                return NextWireGuardEndpoint();
+            }
+
+            if (!string.IsNullOrEmpty(Current.Server.Ip))
+            {
+                _skippedOpenVpnIps[config.VpnProtocol].Add(Current.Server.Ip);
+            }
+
+            VpnHost server = _all.FirstOrDefault(h => _skippedOpenVpnIps[config.VpnProtocol].All(skippedIp => h.Ip != skippedIp));
+            Current = CreateOpenVpnEndpoint(server, config.VpnProtocol);
+
+            return Current;
+        }
+
+        private static IVpnEndpoint CreateOpenVpnEndpoint(VpnHost server, VpnProtocol protocol)
+        {
+            return server.IsEmpty() ? new EmptyEndpoint() : new OpenVpnEndpoint(server, protocol);
         }
 
         public void Reset()
@@ -95,17 +124,18 @@ namespace ProtonVPN.Vpn.Connection
                 skipped.Clear();
             }
 
-            foreach (ICollection<string> skipped in _skippedIps.Values)
+            foreach (ICollection<string> skipped in _skippedOpenVpnIps.Values)
             {
                 skipped.Clear();
             }
 
-            Current = VpnEndpoint.EmptyEndpoint;
+            _skippedWireGuardIps.Clear();
+            Current = new EmptyEndpoint();
         }
 
-        public bool Contains(VpnEndpoint endpoint)
+        public bool Contains(IVpnEndpoint endpoint)
         {
-            return _all.Contains(endpoint.Server);
+            return _all.Any(s => s == endpoint.Server);
         }
 
         public int CountHosts()

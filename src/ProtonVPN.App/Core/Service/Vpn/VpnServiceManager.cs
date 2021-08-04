@@ -23,10 +23,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Helpers;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Service.Settings;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
+using ProtonVPN.Service.Contract.Crypto;
 using ProtonVPN.Service.Contract.Settings;
 using ProtonVPN.Service.Contract.Vpn;
 
@@ -57,15 +59,9 @@ namespace ProtonVPN.Core.Service.Vpn
             await _vpnService.Connect(contract);
         }
 
-        public async Task UpdateServers(IReadOnlyList<VpnHost> servers, VpnConfig config)
+        public async Task UpdateAuthCertificate(string certificate)
         {
-            Ensure.NotNull(servers, nameof(servers));
-            Ensure.NotNull(config, nameof(config));
-
-            VpnHostContract[] endpointIpsContract = Map(servers);
-            VpnConfigContract configContract = Map(config);
-
-            await _vpnService.UpdateServers(endpointIpsContract, configContract);
+            await _vpnService.UpdateAuthCertificate(certificate);
         }
 
         public async Task<InOutBytes> Total()
@@ -100,7 +96,7 @@ namespace ProtonVPN.Core.Service.Vpn
             return new()
             {
                 Servers = Map(request.Servers),
-                Protocol = Map(request.Protocol),
+                Protocol = Map(request.VpnProtocol),
                 VpnConfig = Map(request.Config),
                 Credentials = Map(request.Credentials),
                 Settings = _settingsContractProvider.GetSettingsContract()
@@ -114,37 +110,39 @@ namespace ProtonVPN.Core.Service.Vpn
 
         private static VpnHostContract Map(VpnHost host)
         {
-            return new VpnHostContract
+            return new()
             {
                 Name = host.Name, 
                 Ip = host.Ip,
                 Label = host.Label,
+                X25519PublicKey = host.X25519PublicKey != null ? new ServerPublicKeyContract(host.X25519PublicKey) : null,
             };
-        }
-
-        private static VpnProtocolContract Map(VpnProtocol protocol)
-        {
-            return (VpnProtocolContract) protocol;
         }
 
         private static VpnCredentialsContract Map(VpnCredentials credentials)
         {
-            return new VpnCredentialsContract
+            return new()
             {
                 Username = credentials.Username,
-                Password = credentials.Password
+                Password = credentials.Password,
+                ClientCertPem = credentials.ClientCertPem,
+                ClientKeyPair = credentials.ClientKeyPair == null ? null : new AsymmetricKeyPairContract(credentials.ClientKeyPair)
             };
         }
 
         private static VpnConfigContract Map(VpnConfig config)
         {
-            var portConfig = config.Ports.ToDictionary(p => Map(p.Key), p => p.Value.ToArray());
+            Dictionary<VpnProtocolContract, int[]> portConfig =
+                config.OpenVpnPorts.ToDictionary(p => Map(p.Key), p => p.Value.ToArray());
             return new VpnConfigContract
             {
                 Ports = portConfig,
                 CustomDns = config.CustomDns.ToList(),
                 SplitTunnelMode = config.SplitTunnelMode,
-                SplitTunnelIPs = config.SplitTunnelIPs.ToList()
+                SplitTunnelIPs = config.SplitTunnelIPs.ToList(),
+                NetShieldMode = config.NetShieldMode,
+                VpnProtocol = Map(config.VpnProtocol),
+                SplitTcp = config.SplitTcp,
             };
         }
 
@@ -152,29 +150,37 @@ namespace ProtonVPN.Core.Service.Vpn
         {
             VpnStatus status = Map(contract.Status);
             VpnError error = Map(contract.Error);
-            VpnProtocol protocol = Map(contract.Protocol);
+            VpnProtocol protocol = Map(contract.VpnProtocol);
 
-            return new VpnStateChangedEventArgs(status, error, contract.EndpointIp, contract.NetworkBlocked, protocol, contract.Label);
+            return new(status, error, contract.EndpointIp, contract.NetworkBlocked, protocol, contract.OpenVpnAdapterType, contract.Label);
         }
 
         private static InOutBytes Map(InOutBytesContract bytes)
         {
-            return new InOutBytes(bytes.BytesIn, bytes.BytesOut);
+            return new(bytes.BytesIn, bytes.BytesOut);
         }
+
+        private static VpnProtocolContract Map(VpnProtocol protocol)
+        {
+            return protocol switch
+            {
+                VpnProtocol.OpenVpnUdp => VpnProtocolContract.OpenVpnUdp,
+                VpnProtocol.OpenVpnTcp => VpnProtocolContract.OpenVpnTcp,
+                VpnProtocol.WireGuard => VpnProtocolContract.WireGuard,
+                VpnProtocol.Smart => VpnProtocolContract.Smart,
+            };
+        }
+
 
         private static VpnProtocol Map(VpnProtocolContract protocol)
         {
-            switch (protocol)
+            return protocol switch
             {
-                case VpnProtocolContract.Smart:
-                    return VpnProtocol.Auto;
-                case VpnProtocolContract.OpenVpnTcp:
-                    return VpnProtocol.OpenVpnTcp;
-                case VpnProtocolContract.OpenVpnUdp:
-                    return VpnProtocol.OpenVpnUdp;
-            }
-
-            return VpnProtocol.Auto;
+                VpnProtocolContract.OpenVpnUdp => VpnProtocol.OpenVpnUdp,
+                VpnProtocolContract.OpenVpnTcp => VpnProtocol.OpenVpnTcp,
+                VpnProtocolContract.WireGuard => VpnProtocol.WireGuard,
+                VpnProtocolContract.Smart => VpnProtocol.Smart,
+            };
         }
 
         private static VpnStatus Map(VpnStatusContract status)

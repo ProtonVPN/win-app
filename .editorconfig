@@ -261,3 +261,6 @@ dotnet_naming_style.pascal_case_style.capitalization=pascal_case
 
 # ReSharper inspection severities
 resharper_arrange_this_qualifier_highlighting=hint
+
+# IDE1006: Naming Styles
+dotnet_diagnostic.IDE1006.severity = warning

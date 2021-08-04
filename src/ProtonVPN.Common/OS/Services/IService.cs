@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -27,7 +27,13 @@ namespace ProtonVPN.Common.OS.Services
     {
         string Name { get; }
 
+        bool Exists();
+
+        void Create(string pathAndArgs, bool unrestricted);
+
         bool Running();
+
+        bool IsStopped();
 
         bool Enabled();
 

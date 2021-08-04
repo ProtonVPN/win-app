@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -20,6 +20,7 @@
 using System;
 using System.Globalization;
 using System.Security.Cryptography;
+using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.Models;
@@ -220,7 +221,7 @@ namespace ProtonVPN.Settings
             User previousData = User();
             SaveUserData(user);
 
-            if (previousData.VpnPlan != user.VpnPlan)
+            if (!previousData.VpnPlan.IsNullOrEmpty() && previousData.VpnPlan != user.VpnPlan)
             {
                 VpnPlanChangedEventArgs eventArgs = new VpnPlanChangedEventArgs(previousData.VpnPlan, user.VpnPlan);
                 VpnPlanChanged?.Invoke(this, eventArgs);

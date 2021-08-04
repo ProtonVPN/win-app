@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,6 +18,7 @@
  */
 
 using System;
+using System.Net;
 
 namespace ProtonVPN.Common.OS.Net.NetworkInterface
 {
@@ -28,5 +29,8 @@ namespace ProtonVPN.Common.OS.Net.NetworkInterface
         INetworkInterface[] GetInterfaces();
         INetworkInterface GetByDescription(string description);
         INetworkInterface GetByName(string name);
+        INetworkInterface GetById(Guid id);
+        INetworkInterface GetByLocalAddress(IPAddress localAddress);
+        INetworkInterface GetBestInterface(string hardwareIdToExclude);
     }
 }
