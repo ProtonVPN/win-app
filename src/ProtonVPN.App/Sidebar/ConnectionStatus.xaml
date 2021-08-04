@@ -278,7 +278,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                            FlowDirection="LeftToRight"
                            Foreground="White"
                            FontSize="14"
-                           Text="{Binding Protocol, Converter={StaticResource EnumToDisplayTextConverter}}"/>
+                           Text="{Binding AdapterProtocol}"/>
             </StackPanel>
             <StackPanel Grid.Column="0"
                         Grid.ColumnSpan="2"

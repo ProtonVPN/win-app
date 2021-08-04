@@ -20,6 +20,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using ProtonVPN.Common;
+using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Service.Contract.Settings;
 using ProtonVPN.Service.Firewall;
@@ -306,7 +307,8 @@ namespace ProtonVPN.Service.Test.SplitTunnel
                 VpnStatus.Connected,
                 VpnError.None,
                 "1.1.1.1",
-                "2.2.2.2");
+                "2.2.2.2",
+                VpnProtocol.Smart);
         }
 
         private VpnState GetDisconnectedVpnState(bool manualDisconnect = false)
@@ -315,7 +317,8 @@ namespace ProtonVPN.Service.Test.SplitTunnel
                 VpnStatus.Disconnected,
                 manualDisconnect ? VpnError.None : VpnError.Unknown,
                 "1.1.1.1",
-                "2.2.2.2");
+                "2.2.2.2",
+                VpnProtocol.Smart);
         }
 
         private VpnState GetConnectingVpnState()
@@ -324,7 +327,8 @@ namespace ProtonVPN.Service.Test.SplitTunnel
                 VpnStatus.Disconnected,
                 VpnError.None,
                 "1.1.1.1",
-                "2.2.2.2");
+                "2.2.2.2",
+                VpnProtocol.Smart);
         }
     }
 }

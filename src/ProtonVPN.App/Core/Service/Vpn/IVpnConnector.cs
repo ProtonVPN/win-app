@@ -20,6 +20,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using ProtonVPN.Common.Networking;
 using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Servers.Models;
@@ -34,14 +35,11 @@ namespace ProtonVPN.Core.Service.Vpn
         Server LastServer { get; }
         VpnState State { get; }
         bool NetworkBlocked { get; }
-        
         Task<IList<Server>> GetSortedAndValidQuickConnectServersAsync(int? maxServers = null);
-
         Task QuickConnectAsync(int? maxServers = null);
         Task ConnectToBestProfileAsync(Profile profile, Profile fallbackProfile = null, int? maxServers = null);
-        Task ConnectToPreSortedCandidatesAsync(ServerCandidates sortedCandidates, Protocol protocol);
-        Task ConnectToProfileAsync(Profile profile, Protocol? protocol = null);
-
+        Task ConnectToPreSortedCandidatesAsync(ServerCandidates sortedCandidates, VpnProtocol vpnProtocol);
+        Task ConnectToProfileAsync(Profile profile, VpnProtocol? vpnProtocol = null);
         void OnVpnStateChanged(VpnStateChangedEventArgs e);
         event EventHandler<VpnStateChangedEventArgs> VpnStateChanged;
     }

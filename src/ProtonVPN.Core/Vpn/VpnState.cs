@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Servers.Models;
 
@@ -27,14 +28,16 @@ namespace ProtonVPN.Core.Vpn
         public VpnStatus Status { get; }
         public string EntryIp { get; }
         public Server Server { get; }
-        public VpnProtocol Protocol { get; }
+        public OpenVpnAdapter? NetworkAdapterType { get; }
+        public VpnProtocol VpnProtocol { get; }
         public string Label { get; }
 
-        public VpnState(VpnStatus status, string entryIp, VpnProtocol protocol, string label = "")
+        public VpnState(VpnStatus status, string entryIp, VpnProtocol vpnProtocol, OpenVpnAdapter? networkAdapterType = null, string label = "")
         {
             Status = status;
             EntryIp = entryIp;
-            Protocol = protocol;
+            NetworkAdapterType = networkAdapterType;
+            VpnProtocol = vpnProtocol;
             Label = label;
         }
 

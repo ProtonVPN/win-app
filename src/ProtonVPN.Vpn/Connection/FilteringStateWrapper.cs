@@ -34,7 +34,7 @@ namespace ProtonVPN.Vpn.Connection
     {
         private readonly IVpnConnection _origin;
 
-        private VpnState _prevState = new VpnState(VpnStatus.Disconnected);
+        private VpnState _prevState = new(VpnStatus.Disconnected, default);
 
         public FilteringStateWrapper(IVpnConnection origin)
         {
@@ -47,9 +47,9 @@ namespace ProtonVPN.Vpn.Connection
 
         public InOutBytes Total => _origin.Total;
 
-        public void Connect(IReadOnlyList<VpnHost> servers, VpnConfig config, VpnProtocol protocol, VpnCredentials credentials)
+        public void Connect(IReadOnlyList<VpnHost> servers, VpnConfig config, VpnCredentials credentials)
         {
-            _origin.Connect(servers, config, protocol, credentials);
+            _origin.Connect(servers, config, credentials);
         }
 
         public void Disconnect(VpnError error)
@@ -57,9 +57,14 @@ namespace ProtonVPN.Vpn.Connection
             _origin.Disconnect(error);
         }
 
-        public void UpdateServers(IReadOnlyList<VpnHost> servers, VpnConfig config)
+        public void SetFeatures(VpnFeatures vpnFeatures)
         {
-            _origin.UpdateServers(servers, config);
+            _origin.SetFeatures(vpnFeatures);
+        }
+
+        public void UpdateAuthCertificate(string certificate)
+        {
+            _origin.UpdateAuthCertificate(certificate);
         }
 
         private void Origin_StateChanged(object sender, EventArgs<VpnState> e)
@@ -71,6 +76,7 @@ namespace ProtonVPN.Vpn.Connection
         {
             if (state.Status != _prevState.Status ||
                 state.Error != _prevState.Error ||
+                state.Status == VpnStatus.ActionRequired ||
                 !string.Equals(state.RemoteIp, _prevState.RemoteIp) ||
                 !string.Equals(state.Label, _prevState.Label))
             {

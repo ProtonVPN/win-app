@@ -35,7 +35,7 @@ namespace ProtonVPN.Service.Firewall
         private readonly Common.Configuration.Config _config;
         private readonly IpLayer _ipLayer;
         private readonly IpFilter _ipFilter;
-        private FirewallParams _lastParams = FirewallParams.Null;
+        private FirewallParams _lastParams = FirewallParams.Empty;
         private bool _dnsCalloutFiltersAdded;
 
         private readonly List<ValueTuple<string, List<Guid>>> _serverAddressFilters = new();
@@ -64,11 +64,11 @@ namespace ProtonVPN.Service.Firewall
         {
             if (_ipFilter.PermanentSublayer.GetFilterCount() > 0)
             {
-                _lastParams = new FirewallParams(
-                    serverIp: string.Empty,
-                    dnsLeakOnly: false,
-                    interfaceIndex: 0,
-                    persistent: true);
+                _lastParams = new() {
+                    ServerIp = string.Empty,
+                    Persistent = true,
+                    PermanentStateAfterReboot = true,
+                };
                 LeakProtectionEnabled = true;
             }
         }
@@ -100,7 +100,7 @@ namespace ProtonVPN.Service.Firewall
                 LeakProtectionEnabled = false;
                 _dnsCalloutFiltersAdded = false;
                 _calloutDriver.Stop();
-                _lastParams = FirewallParams.Null;
+                _lastParams = FirewallParams.Empty;
 
                 _logger.Info("Firewall: Internet restored");
             }
@@ -135,7 +135,7 @@ namespace ProtonVPN.Service.Firewall
 
         private void ApplyChange(FirewallParams firewallParams)
         {
-            if (_lastParams.InterfaceIndex == 0)
+            if (_lastParams.PermanentStateAfterReboot)
             {
                 HandlePermanentStateAfterReboot(firewallParams);
                 _lastParams = firewallParams;
@@ -153,7 +153,7 @@ namespace ProtonVPN.Service.Firewall
                 RemoveItems(previousInterfaceFilters, _lastParams.SessionType);
             }
 
-            if (firewallParams.InterfaceIndex != _lastParams.InterfaceIndex)
+            if (firewallParams.AddInterfaceFilters && firewallParams.InterfaceIndex != _lastParams.InterfaceIndex)
             {
                 List<Guid> previousGuids = GetFirewallGuidsByType(FirewallItemType.PermitInterfaceFilter);
                 PermitFromNetworkInterface(4, firewallParams);
@@ -281,7 +281,7 @@ namespace ProtonVPN.Service.Firewall
 
         private void CreateDnsCalloutFilter(uint weight, FirewallParams firewallParams)
         {
-            if (_dnsCalloutFiltersAdded)
+            if (_dnsCalloutFiltersAdded || !firewallParams.AddInterfaceFilters)
             {
                 return;
             }
@@ -325,6 +325,11 @@ namespace ProtonVPN.Service.Firewall
 
         private void PermitFromNetworkInterface(uint weight, FirewallParams firewallParams)
         {
+            if (!firewallParams.AddInterfaceFilters)
+            {
+                return;
+            }
+
             //Create the following filters dynamically on permanent or dynamic sublayer,
             //but prevent keeping them after reboot, as interface index might be changed.
             _ipLayer.ApplyToIpv4(layer =>
@@ -519,7 +524,10 @@ namespace ProtonVPN.Service.Firewall
         {
             List<string> processes = new List<string>
             {
-                _config.AppExePath, _config.ServiceExePath, _config.UpdateServiceExePath,
+                _config.AppExePath,
+                _config.ServiceExePath,
+                _config.UpdateServiceExePath,
+                _config.WireGuard.ServicePath,
             };
 
             foreach (string processPath in processes)

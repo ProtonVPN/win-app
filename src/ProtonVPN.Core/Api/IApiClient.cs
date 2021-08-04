@@ -19,6 +19,7 @@
 
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using ProtonVPN.Core.Api.Certificates;
 using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.Api.Data;
 using UserLocation = ProtonVPN.Core.Api.Contracts.UserLocation;
@@ -46,5 +47,6 @@ namespace ProtonVPN.Core.Api
         Task<ApiResponseResult<AnnouncementsResponse>> GetAnnouncementsAsync();
         Task<ApiResponseResult<StreamingServicesResponse>> GetStreamingServicesAsync();
         Task<ApiResponseResult<BaseResponse>> CheckAuthenticationServerStatusAsync();
+        Task<ApiResponseResult<CertificateResponseData>> RequestAuthCertificateAsync(CertificateRequestData requestData);
     }
 }

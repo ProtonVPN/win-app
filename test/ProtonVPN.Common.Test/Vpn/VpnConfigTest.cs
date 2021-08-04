@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
 
 namespace ProtonVPN.Common.Test.Vpn
@@ -42,11 +43,8 @@ namespace ProtonVPN.Common.Test.Vpn
                 9999999
             });
 
-            var customDns = new List<string> {"1.1.1.1", "8.8.8.8",};
-
             // Act
-            Action action = () => new VpnConfig(portConfig, customDns, SplitTunnelMode.Disabled, new List<string>(),
-                useTunAdapter: false);
+            Action action = () => new VpnConfig(new VpnConfigParameters {Ports = portConfig});
 
             // Assert
             action.Should().Throw<ArgumentException>();
@@ -55,13 +53,13 @@ namespace ProtonVPN.Common.Test.Vpn
         [TestMethod]
         public void VpnConfig_ShouldThrow_WhenDnsIsNotValid()
         {
-            Dictionary<VpnProtocol, IReadOnlyCollection<int>> portConfig = GetPortConfig(new List<int> {1, 2, 3,});
+            Dictionary<VpnProtocol, IReadOnlyCollection<int>> portConfig = GetPortConfig(new List<int> {1, 2, 3});
 
             var customDns = new List<string> {"1.1.1.1", "8.8.8.8", "--invalid-ip",};
 
             // Act
             Action action = () =>
-                new VpnConfig(portConfig, customDns, SplitTunnelMode.Disabled, new List<string>(), useTunAdapter: false);
+                new VpnConfig(new VpnConfigParameters {Ports = portConfig, CustomDns = customDns});
 
             // Assert
             action.Should().Throw<ArgumentException>();

@@ -200,13 +200,15 @@ namespace ProtonVPN.Common.Configuration
 
         public IReadOnlyList<string> DefaultBlackHoleIps { get; internal set; } = new List<string>();
 
-        public UrlConfig Urls { get; } = new UrlConfig();
+        public UrlConfig Urls { get; } = new();
 
-        public OpenVpnConfig OpenVpn { get; } = new OpenVpnConfig();
+        public OpenVpnConfig OpenVpn { get; } = new();
 
-        public TlsPinningConfig TlsPinningConfig { get; } = new TlsPinningConfig();
+        public WireGuardConfig WireGuard { get; } = new();
 
-        public List<string> DoHProviders { get; internal set; } = new List<string>();
+        public TlsPinningConfig TlsPinningConfig { get; } = new();
+
+        public List<string> DoHProviders { get; internal set; } = new();
 
         [Required]
         public string DefaultLocale { get; internal set; }
@@ -215,5 +217,14 @@ namespace ProtonVPN.Common.Configuration
         public TimeSpan MaintenanceCheckInterval { get; internal set; }
 
         public int? MaxQuickConnectServersOnReconnection { get; internal set; } = DefaultConfig.MAX_QUICK_CONNECT_SERVERS_ON_RECONNECTION;
+
+        [Range(typeof(TimeSpan), "00:00:10", "23:59:59")]
+        public TimeSpan AuthCertificateUpdateInterval { get; internal set; }
+        
+        [Range(typeof(TimeSpan), "00:00:01", "1.00:00:00")]
+        public TimeSpan AuthCertificateFirstRetryInterval { get; internal set; }
+        
+        [Range(0, 16)]
+        public int AuthCertificateMaxNumOfRetries { get; internal set; }
     }
 }

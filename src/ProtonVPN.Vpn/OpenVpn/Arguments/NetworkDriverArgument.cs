@@ -19,17 +19,18 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using ProtonVPN.Common.Networking;
 
 namespace ProtonVPN.Vpn.OpenVpn.Arguments
 {
     internal class NetworkDriverArgument : IEnumerable<string>
     {
         private readonly string _interfaceGuid;
-        private readonly bool _useTun;
+        private readonly OpenVpnAdapter _openVpnAdapter;
 
-        public NetworkDriverArgument(string interfaceGuid, bool useTun)
+        public NetworkDriverArgument(string interfaceGuid, OpenVpnAdapter openVpnAdapter)
         {
-            _useTun = useTun;
+            _openVpnAdapter = openVpnAdapter;
             _interfaceGuid = interfaceGuid;
         }
 
@@ -37,7 +38,7 @@ namespace ProtonVPN.Vpn.OpenVpn.Arguments
         {
             yield return $"--dev-node \"{_interfaceGuid}\"";
 
-            if (_useTun)
+            if (_openVpnAdapter == OpenVpnAdapter.Tun)
             {
                 yield return "--windows-driver wintun";
             }

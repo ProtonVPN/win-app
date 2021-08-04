@@ -131,7 +131,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                          Background="White"
                          Height="2"
                          Foreground="{StaticResource PrimaryColor}"
-                         Value="{Binding Percentage}">
+                         Value="{Binding Percentage, Mode=OneWay}"
+                         Visibility="{Binding HasPercentage, Converter={StaticResource BoolToVis}}">
                 <i:Interaction.Behaviors>
                     <behavior:AnimateBehavior ToAnimate="{x:Static ProgressBar.ValueProperty}"
                                               Value="{Binding AnimatePercentage}" Duration="0.5" />
@@ -178,8 +179,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                            VerticalAlignment="Center"
                            Visibility="{c:Binding 'FailedConnectionName.IsSecureCore'}" />
             </wpf:AlignableWrapPanel>
-            <wpf:AlignableWrapPanel HorizontalAlignment="Center" 
-                                    Margin="0,5,0,0" 
+            <wpf:AlignableWrapPanel HorizontalAlignment="Center"
+                                    Margin="0,5,0,0"
                                     HorizontalContentAlignment="Center"
                                     Visibility="{Binding IsConnectionNameNotNull, Converter={StaticResource BoolToVis}}">
                 <TextBlock Padding="0"

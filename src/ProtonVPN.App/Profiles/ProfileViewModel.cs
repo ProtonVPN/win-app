@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Common.Networking;
 using ProtonVPN.ConnectionInfo;
 using ProtonVPN.Core.MVVM;
 using ProtonVPN.Core.Profiles;
@@ -35,7 +36,7 @@ namespace ProtonVPN.Profiles
             Id = profile.Id;
             IsPredefined = profile.IsPredefined;
             Name = profile.Name;
-            Protocol = profile.Protocol;
+            VpnProtocol = profile.VpnProtocol;
             Color = profile.ColorCode;
             SecureCore = profile.Features.IsSecureCore();
             Type = profile.ProfileType;
@@ -57,7 +58,7 @@ namespace ProtonVPN.Profiles
         public string Id { get; }
         public bool IsPredefined { get; }
         public string Name { get; }
-        public Protocol Protocol { get; }
+        public VpnProtocol VpnProtocol { get; }
         public string Color { get; }
         public bool SecureCore { get; set; }
         public bool Connected { get; set; }

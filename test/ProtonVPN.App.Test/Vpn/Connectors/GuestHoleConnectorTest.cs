@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -21,6 +21,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
+using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Storage;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Api;
@@ -35,26 +36,25 @@ namespace ProtonVPN.App.Test.Vpn.Connectors
     [TestClass]
     public class GuestHoleConnectorTest
     {
-        private const int MaxRetries = 2;
+        private const int MAX_RETRIES = 2;
 
         private GuestHoleConnector _connector;
         private readonly IVpnServiceManager _serviceManager = Substitute.For<IVpnServiceManager>();
         private readonly IAppSettings _appSettings = Substitute.For<IAppSettings>();
-        private readonly Common.Configuration.Config _config = new Common.Configuration.Config
+        private readonly Common.Configuration.Config _config = new()
         {
-            MaxGuestHoleRetries = MaxRetries,
+            MaxGuestHoleRetries = MAX_RETRIES,
             GuestHoleVpnUsername = "guest",
             GuestHoleVpnPassword = "guest",
             VpnUsernameSuffix = "+pw"
         };
-
         private readonly ICollectionStorage<GuestHoleServerContract> _guestHoleServers =
             Substitute.For<ICollectionStorage<GuestHoleServerContract>>();
 
         [TestInitialize]
         public void Initialize()
         {
-            var guestHoleState = new GuestHoleState();
+            GuestHoleState guestHoleState = new();
             guestHoleState.SetState(true);
 
             _guestHoleServers.GetAll().Returns(new List<GuestHoleServerContract>());
@@ -81,18 +81,21 @@ namespace ProtonVPN.App.Test.Vpn.Connectors
         public async Task ItShouldDisconnectAfterCoupleOfRetries()
         {
             // Act
-            for (var i = 0; i < MaxRetries; i++) await _connector.OnVpnStateChanged(GetEventArgs());
+            for (int i = 0; i < MAX_RETRIES; i++)
+            {
+                await _connector.OnVpnStateChanged(GetEventArgs());
+            }
 
             // Assert
             await _serviceManager.Received(1).Disconnect(VpnError.NoneKeepEnabledKillSwitch);
         }
 
         private VpnStateChangedEventArgs GetEventArgs() =>
-            new VpnStateChangedEventArgs(
-                VpnStatus.Reconnecting,
+            new(VpnStatus.Reconnecting,
                 VpnError.None,
                 string.Empty,
                 true,
-                VpnProtocol.Auto);
+                VpnProtocol.Smart,
+                OpenVpnAdapter.Tun);
     }
 }

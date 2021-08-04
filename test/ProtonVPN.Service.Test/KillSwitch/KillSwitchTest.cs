@@ -22,10 +22,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using ProtonVPN.Common;
 using ProtonVPN.Common.KillSwitch;
+using ProtonVPN.Common.OS.Net;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Service.Contract.Settings;
 using ProtonVPN.Service.Firewall;
-using ProtonVPN.Service.Network;
 using ProtonVPN.Service.Settings;
 using ProtonVPN.Vpn.Common;
 
@@ -36,7 +36,7 @@ namespace ProtonVPN.Service.Test.KillSwitch
     {
         private IFirewall _firewall;
         private IServiceSettings _serviceSettings;
-        private ICurrentNetworkInterface _currentNetworkInterface;
+        private INetworkInterfaceLoader _networkInterfaceLoader;
         private const string RemoteIp = "2.2.2.2";
 
         [TestInitialize]
@@ -44,7 +44,7 @@ namespace ProtonVPN.Service.Test.KillSwitch
         {
             _firewall = Substitute.For<IFirewall>();
             _serviceSettings = Substitute.For<IServiceSettings>();
-            _currentNetworkInterface = Substitute.For<ICurrentNetworkInterface>();
+            _networkInterfaceLoader = Substitute.For<INetworkInterfaceLoader>();
         }
 
         [TestMethod]
@@ -75,7 +75,7 @@ namespace ProtonVPN.Service.Test.KillSwitch
 
             // Assert
             _firewall.Received(0)
-                .EnableLeakProtection(new FirewallParams("127.0.0.1", dnsLeakOnly: false, interfaceIndex: 0, persistent: false));
+                .EnableLeakProtection(new FirewallParams {ServerIp = "127.0.0.1"});
         }
 
         [TestMethod]
@@ -83,7 +83,7 @@ namespace ProtonVPN.Service.Test.KillSwitch
         {
             // Arrange
             Service.KillSwitch.KillSwitch sut =
-                new Service.KillSwitch.KillSwitch(_firewall, _serviceSettings, _currentNetworkInterface);
+                new Service.KillSwitch.KillSwitch(_firewall, _serviceSettings, _networkInterfaceLoader);
 
             // Act
             sut.OnVpnDisconnected(GetDisconnectedVpnState(manualDisconnect: true));
@@ -97,7 +97,7 @@ namespace ProtonVPN.Service.Test.KillSwitch
         {
             // Arrange
             _serviceSettings.KillSwitchMode.Returns(KillSwitchMode.Off);
-            var sut = new Service.KillSwitch.KillSwitch(_firewall, _serviceSettings, _currentNetworkInterface);
+            var sut = new Service.KillSwitch.KillSwitch(_firewall, _serviceSettings, _networkInterfaceLoader);
 
             // Act
             sut.OnVpnDisconnected(GetDisconnectedVpnState());
@@ -113,13 +113,13 @@ namespace ProtonVPN.Service.Test.KillSwitch
         public void ExpectedLeakProtectionStatus_ShouldBe_Enabled_WhenConnecting(VpnStatus status)
         {
             // Arrange
-            var state = new VpnState(status);
+            var state = new VpnState(status, default);
             _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsContract
             {
                 Mode = SplitTunnelMode.Block
             });
             Service.KillSwitch.KillSwitch killSwitch =
-                new Service.KillSwitch.KillSwitch(_firewall, _serviceSettings, _currentNetworkInterface);
+                new Service.KillSwitch.KillSwitch(_firewall, _serviceSettings, _networkInterfaceLoader);
 
             // Act
             bool result = killSwitch.ExpectedLeakProtectionStatus(state);
@@ -149,11 +149,11 @@ namespace ProtonVPN.Service.Test.KillSwitch
             KillSwitchMode killSwitchMode, bool leakProtectionEnabled, bool expected)
         {
             // Arrange
-            var state = new VpnState(status, error);
+            var state = new VpnState(status, error, default);
             _serviceSettings.KillSwitchMode.Returns(killSwitchMode);
             _firewall.LeakProtectionEnabled.Returns(leakProtectionEnabled);
             Service.KillSwitch.KillSwitch killSwitch =
-                new Service.KillSwitch.KillSwitch(_firewall, _serviceSettings, _currentNetworkInterface);
+                new Service.KillSwitch.KillSwitch(_firewall, _serviceSettings, _networkInterfaceLoader);
 
             // Act
             bool result = killSwitch.ExpectedLeakProtectionStatus(state);
@@ -177,10 +177,10 @@ namespace ProtonVPN.Service.Test.KillSwitch
             VpnStatus status, bool leakProtectionEnabled)
         {
             // Arrange
-            var state = new VpnState(status);
+            var state = new VpnState(status, default);
             _firewall.LeakProtectionEnabled.Returns(leakProtectionEnabled);
             Service.KillSwitch.KillSwitch killSwitch =
-                new Service.KillSwitch.KillSwitch(_firewall, _serviceSettings, _currentNetworkInterface);
+                new Service.KillSwitch.KillSwitch(_firewall, _serviceSettings, _networkInterfaceLoader);
 
             // Act
             bool result = killSwitch.ExpectedLeakProtectionStatus(state);
@@ -196,7 +196,7 @@ namespace ProtonVPN.Service.Test.KillSwitch
                 Mode = mode, AppPaths = new string[0], Ips = new string[0]
             });
 
-            return new Service.KillSwitch.KillSwitch(_firewall, _serviceSettings, _currentNetworkInterface);
+            return new Service.KillSwitch.KillSwitch(_firewall, _serviceSettings, _networkInterfaceLoader);
         }
 
         private VpnState GetDisconnectedVpnState(bool manualDisconnect = false)
@@ -205,7 +205,8 @@ namespace ProtonVPN.Service.Test.KillSwitch
                 VpnStatus.Disconnected,
                 manualDisconnect ? VpnError.None : VpnError.Unknown,
                 "1.1.1.1",
-                RemoteIp);
+                RemoteIp,
+                default);
         }
 
         private VpnState GetConnectedVpnState()
@@ -214,7 +215,8 @@ namespace ProtonVPN.Service.Test.KillSwitch
                 VpnStatus.Connected,
                 VpnError.None,
                 "1.1.1.1",
-                RemoteIp);
+                RemoteIp,
+                default);
         }
 
         private VpnState GetConnectingVpnState()
@@ -223,7 +225,8 @@ namespace ProtonVPN.Service.Test.KillSwitch
                 VpnStatus.Connecting,
                 VpnError.None,
                 "1.1.1.1",
-                RemoteIp);
+                RemoteIp,
+                default);
         }
     }
 }

@@ -39,7 +39,7 @@ namespace ProtonVPN.Core.MVVM
 
         public void OnPropertyChangedAsync(string name)
         {
-            PropertyChangedHandler.BeginInvoke(this, new PropertyChangedEventArgs(name), null, null);
+            PropertyChangedHandler?.BeginInvoke(this, new PropertyChangedEventArgs(name), null, null);
         }
 
         public void OnViewModelLoaded(object sender)

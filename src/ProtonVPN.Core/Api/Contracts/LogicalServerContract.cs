@@ -40,7 +40,7 @@ namespace ProtonVPN.Core.Api.Contracts
         public string HostCountry { get; set; }
         public List<PhysicalServerContract> Servers { get; set; }
 
-        public static LogicalServerContract Empty => new LogicalServerContract
+        public static LogicalServerContract Empty => new()
         {
             Id = string.Empty,
             Name = "Server removed",

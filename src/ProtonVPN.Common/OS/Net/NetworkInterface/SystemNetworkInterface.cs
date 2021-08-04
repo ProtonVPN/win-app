@@ -18,6 +18,8 @@
  */
 
 using System;
+using System.Linq;
+using System.Net;
 using ProtonVPN.Common.Helpers;
 using System.Net.NetworkInformation;
 
@@ -47,11 +49,13 @@ namespace ProtonVPN.Common.OS.Net.NetworkInterface
 
         public bool IsActive => _networkInterface.OperationalStatus == OperationalStatus.Up;
 
+        public IPAddress DefaultGateway => _networkInterface.GetIPProperties().GatewayAddresses.FirstOrDefault()?.Address;
+
         public uint Index
         {
             get
             {
-                var props = _networkInterface.GetIPProperties().GetIPv4Properties();
+                IPv4InterfaceProperties props = _networkInterface.GetIPProperties().GetIPv4Properties();
                 return props != null ? Convert.ToUInt32(props.Index) : 0;
             }
         }

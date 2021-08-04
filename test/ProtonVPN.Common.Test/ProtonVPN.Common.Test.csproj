@@ -126,6 +126,10 @@
       <Project>{03b8e43c-5680-4803-a745-0a104fe6620c}</Project>
       <Name>ProtonVPN.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\src\ProtonVPN.Crypto\ProtonVPN.Crypto.csproj">
+      <Project>{BA2D505E-CED3-4FCB-A463-DAF6B77C18DE}</Project>
+      <Name>ProtonVPN.Crypto</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ProtonVPN.Test.Common\ProtonVPN.Test.Common.csproj">
       <Project>{A0DA4200-6643-4F2C-8450-65B8CE8A5576}</Project>
       <Name>ProtonVPN.Test.Common</Name>

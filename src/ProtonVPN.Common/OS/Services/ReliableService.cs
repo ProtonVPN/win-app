@@ -36,7 +36,13 @@ namespace ProtonVPN.Common.OS.Services
 
         public string Name => _origin.Name;
 
+        public bool Exists() => _origin.Exists();
+
+        public void Create(string pathAndArgs, bool unrestricted) => _origin.Create(pathAndArgs, unrestricted);
+
         public bool Running() => _origin.Running();
+
+        public bool IsStopped() => _origin.IsStopped();
 
         public bool Enabled() => _origin.Enabled();
 

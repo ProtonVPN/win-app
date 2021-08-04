@@ -26,6 +26,7 @@ using System.Threading.Tasks;
 using ProtonVPN.Common;
 using ProtonVPN.Common.Helpers;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.OS.Net;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
@@ -54,7 +55,7 @@ namespace ProtonVPN.Vpn.Connection
         private readonly SingleAction _connectAction;
         private readonly SingleAction _disconnectAction;
 
-        private VpnEndpoint _endpoint;
+        private OpenVpnEndpoint _endpoint;
         private VpnCredentials _credentials;
         private VpnError _disconnectError = VpnError.Unknown;
         private VpnConfig _config;
@@ -85,19 +86,38 @@ namespace ProtonVPN.Vpn.Connection
 
         public InOutBytes Total { get; private set; } = InOutBytes.Zero;
 
-        public void Connect(VpnEndpoint endpoint, VpnCredentials credentials, VpnConfig config)
+        public void Connect(IVpnEndpoint endpoint, VpnCredentials credentials, VpnConfig config)
         {
             _config = config;
-            _endpoint = endpoint;
+            _endpoint = GetOpenVpnEndpoint(endpoint);
             _credentials = credentials;
 
             _connectAction.Run();
+        }
+
+        private OpenVpnEndpoint GetOpenVpnEndpoint(IVpnEndpoint endpoint)
+        {
+            if (endpoint is OpenVpnEndpoint openVpnEndpoint)
+            {
+                return openVpnEndpoint;
+            }
+
+            throw new ArgumentException($"The provided endpoint is not an '{nameof(OpenVpnEndpoint)}'. " +
+                                        $"The endpoint is of type '{endpoint?.GetType().Name}' instead.");
         }
 
         public void Disconnect(VpnError error)
         {
             _disconnectError = error;
             _disconnectAction.Run();
+        }
+
+        public void SetFeatures(VpnFeatures vpnFeatures)
+        {
+        }
+
+        public void UpdateAuthCertificate(string certificate)
+        {
         }
 
         private async Task ConnectAction(CancellationToken cancellationToken)
@@ -116,8 +136,8 @@ namespace ProtonVPN.Vpn.Connection
                 _config.CustomDns,
                 _config.SplitTunnelMode,
                 _config.SplitTunnelIPs,
-                _config.UseTunAdapter,
-                InterfaceGuid());
+                _config.OpenVpnAdapter,
+                GetNetworkInterfaceIdOrEmpty());
 
             cancellationToken.ThrowIfCancellationRequested();
 
@@ -141,14 +161,9 @@ namespace ProtonVPN.Vpn.Connection
             cancellationToken.ThrowIfCancellationRequested();
         }
 
-        private string InterfaceGuid()
+        private string GetNetworkInterfaceIdOrEmpty()
         {
-            if (_config.UseTunAdapter)
-            {
-                return _networkInterfaceLoader.GetTunInterface()?.Id ?? string.Empty;
-            }
-
-            return _networkInterfaceLoader.GetTapInterface()?.Id ?? string.Empty;
+            return _networkInterfaceLoader.GetByVpnProtocol(_config.VpnProtocol, _config.OpenVpnAdapter)?.Id ?? string.Empty;
         }
 
         private string ManagementPassword()
@@ -214,7 +229,7 @@ namespace ProtonVPN.Vpn.Connection
 
             try
             {
-                _logger.Info($"OpenVpnConnection: Waiting for Connection task to finish...");
+                _logger.Info("OpenVpnConnection: Waiting for Connection task to finish...");
                 if (await Task.WhenAny(connectTask, Task.Delay(WaitForConnectionTaskToFinishAfterClose)) != connectTask)
                 {
                     _logger.Warn(
@@ -236,10 +251,10 @@ namespace ProtonVPN.Vpn.Connection
         {
             try
             {
-                _logger.Info($"OpenVpnConnection: Cancelling Connection task");
+                _logger.Info("OpenVpnConnection: Cancelling Connection task");
                 _connectAction.Cancel();
 
-                _logger.Info($"OpenVpnConnection: Waiting for Connection task to finish...");
+                _logger.Info("OpenVpnConnection: Waiting for Connection task to finish...");
                 if (await Task.WhenAny(connectTask, Task.Delay(WaitForConnectionTaskToFinishAfterCancellation)) !=
                     connectTask)
                     _logger.Warn(
@@ -255,12 +270,26 @@ namespace ProtonVPN.Vpn.Connection
         {
             _logger.Info($"ManagementClient: State changed to {e.Data.Status}");
 
-            VpnState state = e.Data;
+            VpnState state = new(
+                e.Data.Status,
+                e.Data.Error,
+                e.Data.LocalIp,
+                e.Data.RemoteIp,
+                _endpoint.VpnProtocol,
+                _config.OpenVpnAdapter,
+                e.Data.Label);
+
             if ((state.Status == VpnStatus.Pinging || state.Status == VpnStatus.Connecting || state.Status == VpnStatus.Reconnecting) &&
                 string.IsNullOrEmpty(state.RemoteIp))
             {
-                state = new VpnState(state.Status, VpnError.None, string.Empty, _endpoint.Server.Ip,
-                    _endpoint.Protocol, _endpoint.Server.Label);
+                state = new VpnState(
+                    state.Status,
+                    VpnError.None,
+                    string.Empty,
+                    _endpoint.Server.Ip,
+                    _endpoint.VpnProtocol,
+                    state.OpenVpnAdapter,
+                    _endpoint.Server.Label);
             }
 
             if (state.Status == VpnStatus.Disconnecting && !_disconnectAction.IsRunning)
@@ -283,15 +312,15 @@ namespace ProtonVPN.Vpn.Connection
             {
                 case VpnStatus.Pinging:
                 case VpnStatus.Connecting:
-                    state = new VpnState(status, VpnError.None, string.Empty, _endpoint.Server.Ip, 
-                        _endpoint.Protocol, label: _endpoint.Server.Label);
+                    state = new VpnState(status, VpnError.None, string.Empty, _endpoint.Server.Ip,
+                        _endpoint.VpnProtocol, _config.OpenVpnAdapter, _endpoint.Server.Label);
                     break;
                 case VpnStatus.Disconnecting:
                 case VpnStatus.Disconnected:
-                    state = new VpnState(status, _disconnectError);
+                    state = new VpnState(status, _disconnectError, _config?.VpnProtocol ?? VpnProtocol.Smart);
                     break;
                 default:
-                    state = new VpnState(status);
+                    state = new VpnState(status, VpnError.None, _config?.VpnProtocol ?? VpnProtocol.Smart);
                     break;
             }
 

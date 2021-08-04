@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,13 +17,16 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Runtime.Serialization;
 using ProtonVPN.Service.Contract.Settings;
 
 namespace ProtonVPN.Service.Contract.Vpn
 {
     [DataContract]
-    public class VpnConnectionRequestContract
+    public class VpnConnectionRequestContract : IValidatableObject
     {
         [DataMember(IsRequired = true)]
         public VpnHostContract[] Servers { get; set; }
@@ -39,5 +42,24 @@ namespace ProtonVPN.Service.Contract.Vpn
 
         [DataMember(IsRequired = true)]
         public SettingsContract Settings { get; set; }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            return Credentials.Validate(validationContext)
+                .Concat(VpnConfig.Validate(validationContext))
+                .Concat(GetServerValidationResult(validationContext));
+        }
+
+        private IEnumerable<ValidationResult> GetServerValidationResult(ValidationContext validationContext)
+        {
+            IEnumerable<ValidationResult> result = new List<ValidationResult>();
+
+            foreach (VpnHostContract server in Servers)
+            {
+                result = result.Concat(server.Validate(validationContext));
+            }
+
+            return result;
+        }
     }
 }

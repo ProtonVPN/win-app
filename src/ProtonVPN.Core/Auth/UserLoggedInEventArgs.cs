@@ -23,11 +23,11 @@ namespace ProtonVPN.Core.Auth
 {
     public class UserLoggedInEventArgs : EventArgs
     {
-        public UserLoggedInEventArgs(bool autoLogin)
+        public UserLoggedInEventArgs(bool isAutoLogin)
         {
-            AutoLogin = autoLogin;
+            IsAutoLogin = isAutoLogin;
         }
 
-        public bool AutoLogin { get; }
+        public bool IsAutoLogin { get; }
     }
 }

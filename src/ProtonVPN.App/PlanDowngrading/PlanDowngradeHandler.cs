@@ -80,7 +80,6 @@ namespace ProtonVPN.PlanDowngrading
         private async Task DowngradeUserAsync(User user)
         {
             DisablePaidFeatures(user);
-
             NotifyUserOfDowngrade(user);
 
             await _vpnManager.ReconnectAsync(new VpnReconnectionSettings { IsToForceSmartReconnect = true });

@@ -57,7 +57,7 @@ namespace ProtonVPN.Core
                 }
 
                 _loginViewModel.OnSessionExpired();
-                _userAuth.Logout();
+                await _userAuth.LogoutAsync();
             });
         }
 

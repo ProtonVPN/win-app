@@ -23,6 +23,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Core.Abstract;
+using ProtonVPN.Core.Api.Certificates;
 using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.Api.Data;
 using UserLocation = ProtonVPN.Core.Api.Contracts.UserLocation;
@@ -379,6 +380,22 @@ namespace ProtonVPN.Core.Api
                 using HttpResponseMessage response = await _client.SendAsync(request).ConfigureAwait(false);
                 string body = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
                 return Logged(ApiResponseResult<BaseResponse>(body, response.StatusCode), "Check authentication server status");
+            }
+            catch (Exception e) when (e.IsApiCommunicationException())
+            {
+                throw new HttpRequestException(e.Message, e);
+            }
+        }
+
+        public async Task<ApiResponseResult<CertificateResponseData>> RequestAuthCertificateAsync(CertificateRequestData requestData)
+        {
+            try
+            {
+                HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Post, "vpn/v1/certificate");
+                request.Content = GetJsonContent(requestData);
+                using HttpResponseMessage response = await _client.SendAsync(request).ConfigureAwait(false);
+                string body = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+                return Logged(ApiResponseResult<CertificateResponseData>(body, response.StatusCode), "Create auth certificate");
             }
             catch (Exception e) when (e.IsApiCommunicationException())
             {

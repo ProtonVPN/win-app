@@ -113,7 +113,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <wpf:Combobox Margin="0"
                           Style="{StaticResource ComboDropdown}"
                           ItemsSource="{Binding Protocols}"
-                          SelectedValue="{Binding Protocol}">
+                          SelectedValue="{Binding VpnProtocol}">
                 <wpf:Combobox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding Converter={StaticResource EnumToDisplayTextConverter}}" HorizontalAlignment="Left" FlowDirection="LeftToRight"/>

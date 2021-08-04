@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,6 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Net;
+
 namespace ProtonVPN.Common.OS.Net.NetworkInterface
 {
     public interface INetworkInterface
@@ -30,6 +32,8 @@ namespace ProtonVPN.Common.OS.Net.NetworkInterface
         bool IsActive { get; }
 
         bool IsLoopback { get; }
+
+        IPAddress DefaultGateway { get; }
 
         uint Index { get; }
     }

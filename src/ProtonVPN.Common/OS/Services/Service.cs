@@ -18,7 +18,9 @@
  */
 
 using System;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.ServiceProcess;
 using System.Threading;
 using System.Threading.Tasks;
@@ -44,10 +46,79 @@ namespace ProtonVPN.Common.OS.Services
 
         public string Name { get; }
 
+        public bool Exists()
+        {
+            IntPtr serviceManager = GetServiceManager();
+            if (serviceManager == IntPtr.Zero)
+            {
+                throw new Win32Exception(Marshal.GetLastWin32Error());
+            }
+
+            try
+            {
+                IntPtr service = Win32.OpenService(serviceManager, Name, Win32.ServiceAccessRights.AllAccess);
+                return service != IntPtr.Zero;
+            }
+            catch
+            {
+                throw new Win32Exception(Marshal.GetLastWin32Error());
+            }
+            finally
+            {
+                Win32.CloseServiceHandle(serviceManager);
+            }
+        }
+
+        public void Create(string pathAndArgs, bool unrestricted)
+        {
+            IntPtr serviceManager = GetServiceManager();
+            if (serviceManager == IntPtr.Zero)
+            {
+                throw new Win32Exception(Marshal.GetLastWin32Error());
+            }
+
+            IntPtr service = Win32.CreateService(
+                serviceManager,
+                Name,
+                Name,
+                Win32.ServiceAccessRights.AllAccess,
+                Win32.ServiceType.Win32OwnProcess,
+                Win32.ServiceStartType.Demand,
+                Win32.ServiceError.Normal,
+                pathAndArgs,
+                null,
+                IntPtr.Zero,
+                "Nsi\0TcpIp",
+                null,
+                null);
+
+            if (service == IntPtr.Zero)
+            {
+                throw new Win32Exception(Marshal.GetLastWin32Error());
+            }
+
+            if (unrestricted)
+            {
+                Win32.ServiceSidType sidType = Win32.ServiceSidType.Unrestricted;
+                if (!Win32.ChangeServiceConfig2(service, Win32.ServiceConfigType.SidInfo, ref sidType))
+                {
+                    throw new Win32Exception(Marshal.GetLastWin32Error());
+                }
+            }
+        }
+
         public bool Running()
         {
             return GetServices()
                 .Where(s => s.Status == ServiceControllerStatus.Running)
+                .Select(s => s.ServiceName)
+                .ContainsIgnoringCase(Name);
+        }
+
+        public bool IsStopped()
+        {
+            return GetServices()
+                .Where(s => s.Status == ServiceControllerStatus.Stopped)
                 .Select(s => s.ServiceName)
                 .ContainsIgnoringCase(Name);
         }
@@ -63,7 +134,7 @@ namespace ProtonVPN.Common.OS.Services
 
         public void Enable()
         {
-            var process = _osProcesses.ElevatedCommandLineProcess($"/c sc config \"{Name}\" start= demand");
+            IOsProcess process = _osProcesses.ElevatedCommandLineProcess($"/c sc config \"{Name}\" start= demand");
             process.Start();
         }
 
@@ -72,7 +143,8 @@ namespace ProtonVPN.Common.OS.Services
             return ServiceControllerResult(async sc =>
             {
                 sc.Start();
-                await sc.WaitForStatusAsync(ServiceControllerStatus.Running, WaitForServiceStatusDuration, cancellationToken);
+                await sc.WaitForStatusAsync(ServiceControllerStatus.Running, WaitForServiceStatusDuration,
+                    cancellationToken);
             });
         }
 
@@ -92,6 +164,11 @@ namespace ProtonVPN.Common.OS.Services
             using var sc = new ServiceController(Name);
             await action(sc);
             return Result.Ok();
+        }
+
+        private IntPtr GetServiceManager()
+        {
+            return Win32.OpenSCManager(null, null, Win32.ScmAccessRights.AllAccess);
         }
     }
 }

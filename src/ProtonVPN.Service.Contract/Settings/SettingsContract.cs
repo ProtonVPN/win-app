@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,6 +18,7 @@
  */
 
 using ProtonVPN.Common.KillSwitch;
+using ProtonVPN.Common.Networking;
 
 namespace ProtonVPN.Service.Contract.Settings
 {
@@ -27,8 +28,14 @@ namespace ProtonVPN.Service.Contract.Settings
 
         public SplitTunnelSettingsContract SplitTunnel { get; set; }
 
+        public int NetShieldMode { get; set; }
+
+        public bool SplitTcp { get; set; }
+
         public bool Ipv6LeakProtection { get; set; }
 
-        public bool UseTunAdapter { get; set; }
+        public VpnProtocol VpnProtocol { get; set; }
+
+        public OpenVpnAdapter OpenVpnAdapter { get; set; }
     }
 }

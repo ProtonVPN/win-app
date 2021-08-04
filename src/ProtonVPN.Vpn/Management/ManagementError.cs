@@ -29,7 +29,7 @@ namespace ProtonVPN.Vpn.Management
     /// </summary>
     internal class ManagementError
     {
-        private static readonly Dictionary<VpnError, Predicate<string>> ErrorMap = new Dictionary<VpnError, Predicate<string>>
+        private static readonly Dictionary<VpnError, Predicate<string>> ErrorMap = new()
         {
             [ProtonVPN.Common.Vpn.VpnError.AuthorizationError] = ContainsAuthError,
             [ProtonVPN.Common.Vpn.VpnError.TapAdapterInUseError] = ContainsTapInUseError,
@@ -59,10 +59,12 @@ namespace ProtonVPN.Vpn.Management
 
         private VpnError GetErrorType()
         {
-            foreach (var mapItem in ErrorMap)
+            foreach (KeyValuePair<VpnError, Predicate<string>> mapItem in ErrorMap)
             {
                 if (mapItem.Value(Message))
+                {
                     return mapItem.Key;
+                }
             }
 
             return ProtonVPN.Common.Vpn.VpnError.Unknown;

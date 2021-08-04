@@ -75,6 +75,7 @@
       <HintPath>..\..\packages\System.Collections.Immutable.1.5.0\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
@@ -116,8 +117,6 @@
     <Compile Include="Firewall\AppFilter.cs" />
     <Compile Include="Firewall\FirewallItemType.cs" />
     <Compile Include="Firewall\PermittedRemoteAddress.cs" />
-    <Compile Include="Network\CurrentNetworkInterface.cs" />
-    <Compile Include="Network\ICurrentNetworkInterface.cs" />
     <Compile Include="ServiceHosts\ServiceSettingsHostFactory.cs" />
     <Compile Include="Settings\IServiceSettings.cs" />
     <Compile Include="Settings\IServiceSettingsAware.cs" />
@@ -162,6 +161,7 @@
     <Compile Include="Start\CommandLineStartStrategy.cs" />
     <Compile Include="VpnConnectionHandler.cs" />
     <Compile Include="Vpn\Ipv6HandlingWrapper.cs" />
+    <Compile Include="Vpn\VpnConnectionEntry.cs" />
     <Compile Include="Vpn\IVpnStateAware.cs" />
     <Compile Include="Vpn\NetworkSettings.cs" />
     <Compile Include="Vpn\ObservableConnection.cs" />
@@ -193,6 +193,10 @@
     <ProjectReference Include="..\ProtonVPN.Common\ProtonVPN.Common.csproj">
       <Project>{03B8E43C-5680-4803-A745-0A104FE6620C}</Project>
       <Name>ProtonVPN.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProtonVPN.Crypto\ProtonVPN.Crypto.csproj">
+      <Project>{BA2D505E-CED3-4FCB-A463-DAF6B77C18DE}</Project>
+      <Name>ProtonVPN.Crypto</Name>
     </ProjectReference>
     <ProjectReference Include="..\ProtonVPN.Native\ProtonVPN.Native.csproj">
       <Project>{CB301B4C-D518-41F5-873B-9B1F145DB4AF}</Project>

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -64,6 +64,11 @@ namespace ProtonVPN.Core.Service.Vpn
 
         public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
         {
+            if (e.State.Status == VpnStatus.ActionRequired)
+            {
+                return Task.CompletedTask;
+            }
+
             if (e.State.Status == VpnStatus.Connected)
             {
                 _timer.Start();

@@ -20,6 +20,7 @@
 using System;
 using ProtonVPN.Common.Helpers;
 using ProtonVPN.Common.KillSwitch;
+using ProtonVPN.Common.Networking;
 using ProtonVPN.Service.Contract.Settings;
 
 namespace ProtonVPN.Service.Settings
@@ -64,12 +65,21 @@ namespace ProtonVPN.Service.Settings
             }
         }
 
-        public bool UseTunAdapter
+        public VpnProtocol VpnProtocol
         {
             get
             {
                 Load();
-                return _settings.UseTunAdapter;
+                return _settings.VpnProtocol;
+            }
+        }
+
+        public OpenVpnAdapter OpenVpnAdapter
+        {
+            get
+            {
+                Load();
+                return _settings.OpenVpnAdapter;
             }
         }
 

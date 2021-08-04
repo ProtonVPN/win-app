@@ -35,10 +35,10 @@ namespace ProtonVPN.Vpn.Management
     {
         private readonly ILogger _logger;
         private readonly MessagingManagementChannel _managementChannel;
-        
+
         private VpnError _lastError;
         private VpnCredentials _credentials;
-        private VpnEndpoint _endpoint;
+        private IVpnEndpoint _endpoint;
         private bool _sendingFailed;
         private bool _disconnectRequested;
         private bool _disconnectAccepted;
@@ -78,7 +78,7 @@ namespace ProtonVPN.Vpn.Management
         /// <param name="endpoint"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public async Task StartVpnConnection(VpnCredentials credentials, VpnEndpoint endpoint, CancellationToken cancellationToken)
+        public async Task StartVpnConnection(VpnCredentials credentials, IVpnEndpoint endpoint, CancellationToken cancellationToken)
         {
             _lastError = VpnError.None;
             _credentials = credentials;
@@ -233,8 +233,8 @@ namespace ProtonVPN.Vpn.Management
             {
                 if (managementState.HasStatus)
                 {
-                    OnVpnStateChanged(new VpnState(managementState.Status, _lastError, 
-                        managementState.LocalIpAddress, managementState.RemoteIpAddress, label: _endpoint.Server.Label));
+                    OnVpnStateChanged(new VpnState(managementState.Status, _lastError,
+                        managementState.LocalIpAddress, managementState.RemoteIpAddress, default, label: _endpoint.Server.Label));
                 }
             }
         }
@@ -273,7 +273,7 @@ namespace ProtonVPN.Vpn.Management
 
         private void OnVpnStateChanged(VpnStatus status)
         {
-            OnVpnStateChanged(new VpnState(status, _lastError, string.Empty, string.Empty));
+            OnVpnStateChanged(new VpnState(status, _lastError, string.Empty, string.Empty, default));
         }
 
         private void OnVpnStateChanged(VpnState state)

@@ -35,7 +35,7 @@ namespace ProtonVPN.Core.Profiles.Comparers
 
             return x.ProfileType == y.ProfileType
                    && x.Name == y.Name
-                   && x.Protocol == y.Protocol
+                   && x.VpnProtocol == y.VpnProtocol
                    && (x.CountryCode ?? "") == (y.CountryCode ?? "")
                    && (x.ServerId ?? "") == (y.ServerId ?? "")
                    && x.Features == y.Features;
@@ -46,7 +46,7 @@ namespace ProtonVPN.Core.Profiles.Comparers
             return HashCode.Start
                 .Hash(obj.ProfileType)
                 .Hash(obj.Name)
-                .Hash(obj.Protocol)
+                .Hash(obj.VpnProtocol)
                 .Hash(obj.CountryCode ?? "")
                 .Hash(obj.ServerId ?? "")
                 .Hash(obj.Features);

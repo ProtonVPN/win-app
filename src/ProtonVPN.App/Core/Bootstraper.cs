@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -131,10 +131,11 @@ namespace ProtonVPN.Core
 
             Resolve<ILogger>().Info($"= Booting ProtonVPN version: {appConfig.AppVersion} os: {Environment.OSVersion.VersionString} {appConfig.OsBits} bit =");
             Resolve<LogCleaner>().Clean(appConfig.AppLogFolder, 30);
-            LoadServersFromCache();
 
             RegisterMigrations(Resolve<AppSettingsStorage>(), Resolve<IEnumerable<IAppSettingsMigration>>());
             RegisterMigrations(Resolve<UserSettings>(), Resolve<IEnumerable<IUserSettingsMigration>>());
+
+            LoadServersFromCache();
             Resolve<SyncedAutoStartup>().Sync();
 
             IncreaseAppStartCount();
@@ -148,7 +149,7 @@ namespace ProtonVPN.Core
                 return;
             }
 
-            Resolve<UserAuth>().InvokeAutoLoginEvent();
+            await Resolve<UserAuth>().InvokeAutoLoginEventAsync();
         }
 
         public void OnExit()
@@ -304,7 +305,7 @@ namespace ProtonVPN.Core
                     instance.OnUserLoggedIn();
                 }
 
-                await SwitchToAppWindow(e.AutoLogin);
+                await SwitchToAppWindow(e.IsAutoLogin);
             };
 
             userAuth.UserLoggedOut += (sender, e) =>
@@ -470,6 +471,7 @@ namespace ProtonVPN.Core
             Resolve<IModals>();
             Resolve<InsecureNetworkNotification>();
             Resolve<ActionableFailureApiResultEventHandler>();
+            Resolve<IAuthCertificateUpdater>();
         }
 
         private void OnUserLoggingIn()
