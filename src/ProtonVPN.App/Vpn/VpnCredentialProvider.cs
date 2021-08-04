@@ -20,6 +20,7 @@
 using System.Threading.Tasks;
 using ProtonVPN.Common.Abstract;
 using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Models;
@@ -51,7 +52,7 @@ namespace ProtonVPN.Vpn
             User user = _userStorage.User();
 
             AuthCredential authCredential = await _authCredentialManager.GenerateAsync();
-            if (authCredential.CertificatePem.IsNullOrEmpty())
+            if (_appSettings.GetProtocol() == VpnProtocol.WireGuard && authCredential.CertificatePem.IsNullOrEmpty())
             {
                 return Result.Fail<VpnCredentials>();
             }

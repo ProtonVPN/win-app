@@ -21,6 +21,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.Common;
+using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
@@ -121,8 +122,11 @@ namespace ProtonVPN.Vpn.Connection
             }
 
             string username = $"{_vpnCredentials.Username}+b:{endpoint.Server.Label}";
-            return new VpnCredentials(username, _vpnCredentials.Password, _vpnCredentials.ClientCertPem,
-                _vpnCredentials.ClientKeyPair);
+
+            return _vpnCredentials.ClientCertPem.IsNullOrEmpty() || _vpnCredentials.ClientKeyPair == null
+                ? new VpnCredentials(username, _vpnCredentials.Password)
+                : new VpnCredentials(username, _vpnCredentials.Password, _vpnCredentials.ClientCertPem,
+                    _vpnCredentials.ClientKeyPair);
         }
 
         private async void DelayedDisconnect(CancellationToken cancellationToken)
