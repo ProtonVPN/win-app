@@ -27,7 +27,6 @@ namespace ProtonVPN.Common.Vpn
         public VpnCredentials(string username, string password, string clientCertPem, AsymmetricKeyPair clientKeyPair)
             : this(username, password)
         {
-            Ensure.NotEmpty(clientCertPem, nameof(clientCertPem));
             Ensure.NotNull(clientKeyPair, nameof(clientKeyPair));
 
             ClientCertPem = clientCertPem;
