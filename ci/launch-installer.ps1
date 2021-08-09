@@ -4,4 +4,4 @@ $installerPath = $projectDir + "\Setup\ProtonVPN-SetupFiles\ProtonVPN_win_v" + $
 
 Write-Output ("Write event with installer path: " + $installerPath)
 
-Write-EventLog -LogName "Application" -Source "ProtonVPN" -EventID 2 -EntryType Information -Message $installerPath -Category 0
+Write-EventLog -LogName "Application" -Source "ProtonVPNService" -EventID 2 -EntryType Information -Message $installerPath -Category 0

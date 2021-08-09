@@ -57,6 +57,9 @@ namespace ProtonVPN.UI.Test.Tests
             _mainWindow.EnableSecureCore();
             _mainWindow.QuickConnect();
             _mainWindowResults.CheckIfSameServerIsKeptAfterKillingApp();
+
+            _mainWindow.DisconnectUsingSidebarButton();
+            _mainWindowResults.CheckIfDisconnected();
         }
 
         [Test]

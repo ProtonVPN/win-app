@@ -45,9 +45,14 @@ namespace ProtonVPN.UI.Test
         public static void CreateSession()
         {
             TestCaseId = 0;
-            if (Session != null)
+            if (Sessions.Count > 0)
             {
-                return;
+                foreach (var session in Sessions)
+                {
+                    session.Quit();
+                }
+                Session = null;
+                Sessions.Clear();
             }
 
             DeleteUserConfig();

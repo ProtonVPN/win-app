@@ -28,6 +28,9 @@ Copy-Item $installerPath -Destination $installerSharedFolderPath
 Copy-Item $testScriptsPath -Destination $testScriptsSharedPath
 
 Foreach ($name in $virtualMachines) {
+    if ($name -eq 'UI Test Runner 1') {
+        continue
+    }
     Write-Host("========================================== " + $name + " =========================================")
     $pWord = ConvertTo-SecureString -String $name -AsPlainText -Force
     $credential = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $name, $pWord

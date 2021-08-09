@@ -97,7 +97,7 @@ namespace ProtonVPN.UI.Test.Windows
                 .EnterPassword(password)
                 .ClickLoginButton();
             
-            WaitUntilElementExistsByAutomationId("WelcomeModal", 20);
+            WaitUntilElementExistsByAutomationId("WelcomeModal", 30);
             Session.FindElementByAccessibilityId("WelcomeModal").Click();
             var actions = new Actions(Session);
             actions.SendKeys(Keys.Escape).Build().Perform();

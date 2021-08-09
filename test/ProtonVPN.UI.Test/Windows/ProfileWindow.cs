@@ -103,10 +103,8 @@ namespace ProtonVPN.UI.Test.Windows
 
         public ProfileWindow ConnectToProfile(string name)
         {
-            Thread.Sleep(3000);
+            WaitUntilElementExistsByAutomationId($"Connect-{name}",10);
             ClickOnObjectWithId($"Connect-{name}");
-            var quickConnectButton = Session.FindElementByAccessibilityId("SidebarQuickConnectButton");
-            WaitUntilTextMatches(quickConnectButton, "Disconnect", 15);
             return this;
         }
 

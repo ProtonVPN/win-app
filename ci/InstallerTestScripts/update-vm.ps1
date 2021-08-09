@@ -10,9 +10,11 @@ Foreach ($name in $virtualMachines) {
     Start-Sleep -Seconds 60
     Write-Host ("Restarting virtual machine " + $name + "...")
     Restart-VM $name -Force -Wait
-    Write-Host "Waiting until Anti-Viruses updates their database (5 minutes)" 
+    Write-Host "Waiting for updates... (5 minutes)" 
     Start-Sleep -Seconds 300
-    Write-Host "Saving virtual machine"
-    Save-VM -name $name
+    if($name -ne 'UI Test Runner 1'){
+	Write-Host "Saving virtual machine"
+	Save-VM -name $name
+    }   
 }
 

@@ -1,1 +1,1 @@
-Write-EventLog -LogName "Application" -Source "ProtonVPN" -EventID 3 -EntryType Information -Message "Uninstall ProtonVPN" -Category 0
+Write-EventLog -LogName "Application" -Source "ProtonVPNService" -EventID 3 -EntryType Information -Message "Uninstall ProtonVPN" -Category 0

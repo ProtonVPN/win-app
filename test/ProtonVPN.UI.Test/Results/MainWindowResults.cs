@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ProtonVPN.UI.Test.ApiClient;
@@ -39,7 +40,17 @@ namespace ProtonVPN.UI.Test.Results
 
         public async Task<MainWindowResults> CheckIfCorrectIPAddressIsShownAsync()
         {
-            string ipAddress = await _client.GetIpAddress();
+            string ipAddress = null;
+            for (int i = 0; i < 5; i++)
+            {
+                ipAddress = await _client.GetIpAddress();
+                if (!string.IsNullOrWhiteSpace(ipAddress))
+                {
+                    break;
+                }
+                //After connecting there is a period with no connectivity, that is why we attempt to get IP address multiple times.
+                Thread.Sleep(1000);
+            }
             string textBlockIpAddress = Session.FindElementByAccessibilityId("IPAddressTextBlock").Text.RemoveExtraText();
             Assert.IsTrue(ipAddress.Equals(textBlockIpAddress), "Incorrect IP address is displayed. API returned IP: " + ipAddress + " App IP addres: " + textBlockIpAddress);
             return this;
@@ -69,6 +80,7 @@ namespace ProtonVPN.UI.Test.Results
 
         public MainWindowResults CheckIfDisconnected()
         {
+            WaitUntilTextMatches(Session.FindElementByAccessibilityId("ConnectionState"), "DISCONNECTED", 5);
             CheckIfElementWithAutomationIdTextMatches("ConnectionState", "DISCONNECTED", "User was not disconnected from VPN server");
             return this;
         }
