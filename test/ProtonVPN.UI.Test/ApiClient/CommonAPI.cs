@@ -42,8 +42,6 @@ namespace ProtonVPN.UI.Test.ApiClient
             }
             catch (HttpRequestException ex)
             {
-                Console.WriteLine("\nFailed to get connection info!");
-                Console.WriteLine(ex.Message);
                 result = string.Empty;
             }
             catch (JsonReaderException ex)

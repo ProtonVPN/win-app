@@ -20,6 +20,7 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Windows;
 using OpenQA.Selenium.Interactions;
+using ProtonVPN.UI.Test.Results;
 using ProtonVPN.UI.Test.TestsHelper;
 
 namespace ProtonVPN.UI.Test.Windows
@@ -60,12 +61,6 @@ namespace ProtonVPN.UI.Test.Windows
             return this;
         }
 
-        public MainWindow CancelConnection()
-        {
-            ClickOnObjectWithName("Cancel");
-            return this;
-        }
-
         public MainWindow QuickConnect()
         {
             ClickQuickConnectButton();
@@ -90,8 +85,6 @@ namespace ProtonVPN.UI.Test.Windows
         public MainWindow DisconnectUsingSidebarButton()
         {
             ClickQuickConnectButton();
-            var quickConnectButton = Session.FindElementByAccessibilityId("SidebarQuickConnectButton");
-            WaitUntilTextMatches(quickConnectButton, "Quick Connect", seconds: 20);
             return this;
         }
 
@@ -112,6 +105,7 @@ namespace ProtonVPN.UI.Test.Windows
         {
             WindowsElement quickConnectButton = Session.FindElementByAccessibilityId("SidebarQuickConnectButton");
             WaitUntilTextMatches(quickConnectButton, "Disconnect", seconds: 20);
+            ConnectionResult.WaitUntilInternetConnectionIsRestored();
             return this;
         }
 
@@ -141,7 +135,7 @@ namespace ProtonVPN.UI.Test.Windows
         public MainWindow ConnectToCountryViaPin(string countryCode)
         {
             MoveMouseToCountryPin(countryCode);
-            WaitUntilElementExistsByAutomationId(countryCode, timeoutInSeconds: 3);
+            WaitUntilElementExistsByAutomationId(countryCode, timeoutInSeconds: 5);
             ClickOnObjectWithId(countryCode);
             return this;
         }

@@ -58,10 +58,10 @@ namespace ProtonVPN.UI.Test.Tests
             _settingsWindow.EnableAutoConnectToFastestServer();
             KillProtonVPNProcessAndReopenIt();
             _mainWindow.WaitUntilConnected();
+            _mainWindow.DisconnectUsingSidebarButton();
             TestRailClient.MarkTestsByStatus();
 
             TestCaseId = 205;
-            _mainWindow.DisconnectUsingSidebarButton();
             _mainWindow.ClickHamburgerMenu()
                 .HamburgerMenu.ClickSettings();
             _settingsWindow.ClickConnectionTab();

@@ -222,7 +222,11 @@ namespace ProtonVPN.UI.Test.Tests
 
 
             _profileWindow.ConnectToProfile(profileName);
+            _mainWindow.WaitUntilConnected();
             _mainWindowResults.CheckIfConnected();
+
+            _mainWindow.DisconnectUsingSidebarButton();
+            _mainWindowResults.CheckIfDisconnected();
         }
 
         [Test]
@@ -252,8 +256,10 @@ namespace ProtonVPN.UI.Test.Tests
             CreateSession();
 
             var args = $"{TestUserData.GetPlusUser().Username} {TestUserData.GetPlusUser().Password}";
-            var process = new Process();
-            process.StartInfo = new ProcessStartInfo(ProfileCleaner, args);
+            Process process = new Process
+            {
+                StartInfo = new ProcessStartInfo(ProfileCleaner, args)
+            };
             process.Start();
             process.WaitForExit();
         }

@@ -19,6 +19,7 @@
 
 using System.Net;
 using System.Net.Sockets;
+using System.Threading;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ProtonVPN.UI.Test.Results
@@ -27,16 +28,34 @@ namespace ProtonVPN.UI.Test.Results
     {
         public void CheckIfDnsIsResolved()
         {
+            WaitUntilInternetConnectionIsRestored();
+            Assert.IsTrue(IsConnectedToInternet(), "User was not connected to internet.");
+        }
+
+        public static void WaitUntilInternetConnectionIsRestored()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                if (IsConnectedToInternet())
+                {
+                    break;
+                }
+                Thread.Sleep(1000);
+            }
+        }
+
+        private static bool IsConnectedToInternet()
+        {
+            bool isConnected = true;
             try
             {
-                int ipAddressCount = Dns.GetHostEntry("www.ip.me").AddressList.Length;
-                Assert.IsTrue(ipAddressCount > 0);
+                Dns.GetHostEntry("www.google.com");
             }
-            catch(SocketException ex)
+            catch (SocketException ex)
             {
-                //Intentionally fail assertion if DNS was not resolved
-                Assert.IsTrue(false, "DNS was not resolved. \n" + ex.Message);
+                isConnected = false;
             }
+            return isConnected;
         }
     }
 }

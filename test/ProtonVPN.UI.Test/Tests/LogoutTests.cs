@@ -91,6 +91,9 @@ namespace ProtonVPN.UI.Test.Tests
             _modalWindow.ClickCancelButton();
 
             _mainWindowResults.VerifyUserIsLoggedIn();
+
+            _mainWindow.DisconnectUsingSidebarButton();
+            _mainWindowResults.CheckIfDisconnected();
         }
 
 

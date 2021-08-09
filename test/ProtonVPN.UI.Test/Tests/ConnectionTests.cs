@@ -17,12 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.UI.Test.Windows;
 using ProtonVPN.UI.Test.Results;
 using NUnit.Framework;
 using ProtonVPN.UI.Test.ApiClient;
+using System.Threading;
 
 namespace ProtonVPN.UI.Test.Tests
 {
@@ -34,22 +34,9 @@ namespace ProtonVPN.UI.Test.Tests
         private readonly MainWindowResults _mainWindowResults = new MainWindowResults();
         private readonly SettingsWindow _settingsWindow = new SettingsWindow();
         private readonly SettingsResult _settingsResult = new SettingsResult();
-        private readonly ConnectionResult _connectionResult = new ConnectionResult();
         private readonly ModalWindow _modalWindow = new ModalWindow();
         private readonly CommonAPI _client = new CommonAPI("http://ip-api.com");
-
-        [Test]
-        public async Task ConnectUsingQuickConnectFreeUser()
-        {
-            TestCaseId = 225;
-
-            _loginWindow.LoginWithFreeUser();
-            _mainWindow.QuickConnect();
-            _mainWindowResults.CheckIfConnected();
-            
-            await _mainWindowResults.CheckIfCorrectIPAddressIsShownAsync();
-            await _mainWindowResults.CheckIfCorrectCountryIsShownAsync();
-        }
+        private readonly ConnectionResult _connectionResult = new ConnectionResult();
 
         [Test]
         public async Task ConnectUsingQuickConnectBasicUser()
@@ -64,7 +51,6 @@ namespace ProtonVPN.UI.Test.Tests
             TestRailClient.MarkTestsByStatus();
 
             TestCaseId = 222;
-
             _mainWindow.DisconnectUsingSidebarButton();
             _mainWindowResults.CheckIfDisconnected();
         }
@@ -84,6 +70,9 @@ namespace ProtonVPN.UI.Test.Tests
             TestCaseId = 229;
             await _mainWindowResults.CheckIfCorrectIPAddressIsShownAsync();
             await _mainWindowResults.CheckIfCorrectCountryIsShownAsync();
+
+            _mainWindow.DisconnectUsingSidebarButton();
+            _mainWindowResults.CheckIfDisconnected();
         }
 
         [Test]
@@ -97,18 +86,8 @@ namespace ProtonVPN.UI.Test.Tests
             _mainWindow.WaitUntilConnected();
             _mainWindowResults.CheckIfConnected();
             await _mainWindowResults.CheckIfCorrectIPAddressIsShownAsync();
-        }
 
-        [Test]
-        public void CancelConnectionWhileConnectingPlusUser()
-        {
-            TestCaseId = 227;
-
-            _loginWindow.LoginWithPlusUser();
-            _mainWindow.ClickQuickConnectButton();
-            //Pause imitates user delay
-            Thread.Sleep(1000);
-            _mainWindow.CancelConnection();
+            _mainWindow.DisconnectUsingSidebarButton();
             _mainWindowResults.CheckIfDisconnected();
         }
 
@@ -163,6 +142,9 @@ namespace ProtonVPN.UI.Test.Tests
             _settingsWindow.PressReconnect();
             _mainWindow.WaitUntilConnected();
             _settingsResult.CheckIfDnsAddressDoesNotMatch("8.8.8.8");
+
+            _mainWindow.DisconnectUsingSidebarButton();
+            _mainWindowResults.CheckIfDisconnected();
         }
 
         [Test]
@@ -188,20 +170,8 @@ namespace ProtonVPN.UI.Test.Tests
             _loginWindow.LoginWithPlusUser();
             _mainWindow.QuickConnect();
             _mainWindowResults.CheckIfSameServerIsKeptAfterKillingApp();
-        }
-
-        [Test]
-        public void CheckIfKillSwitchIsNotActiveOnAppExit()
-        {
-            TestCaseId = 216;
-
-            _loginWindow.LoginWithPlusUser();
-            _mainWindow.EnableKillSwitch();
-            _mainWindow.QuickConnect();
-            _mainWindow.ClickHamburgerMenu()
-                .HamburgerMenu.ClickExit();
-            _mainWindow.ConfirmAppExit();
-            _connectionResult.CheckIfDnsIsResolved();
+            _mainWindow.DisconnectUsingSidebarButton();
+            _mainWindowResults.CheckIfDisconnected();
         }
 
         [Test]
@@ -224,6 +194,20 @@ namespace ProtonVPN.UI.Test.Tests
         }
 
         [Test]
+        public void CheckIfKillSwitchIsNotActiveOnAppExit()
+        {
+            TestCaseId = 216;
+
+            _loginWindow.LoginWithPlusUser();
+            _mainWindow.EnableKillSwitch();
+            _mainWindow.QuickConnect();
+            _mainWindow.ClickHamburgerMenu()
+                .HamburgerMenu.ClickExit();
+            _mainWindow.ConfirmAppExit();
+            _connectionResult.CheckIfDnsIsResolved();
+        }
+
+        [Test]
         public async Task CheckIfIpIsExcludedByIp()
         {
             TestCaseId = 7591;
@@ -239,25 +223,9 @@ namespace ProtonVPN.UI.Test.Tests
             _settingsWindow.CloseSettings();
             _mainWindow.QuickConnect();
             await _mainWindowResults.CheckIfIpAddressIsExcluded(homeIpAddress);
-        }
 
-        [Test]
-        public async Task CheckIfIpIsIncluded()
-        {
-            TestCaseId = 54967;
-            _loginWindow.LoginWithPlusUser();
-            _mainWindow.ClickHamburgerMenu()
-               .HamburgerMenu.ClickSettings();
-            _modalWindow.MoveModalUp(amountOfTimes: 8);
-            _settingsWindow.ClickAdvancedTab();
-            _settingsWindow.EnableSplitTunneling();
-            _settingsWindow.EnableIncludeMode();
-            _settingsWindow.AddIpAddressSplitTunneling("208.95.112.1");
-            _settingsWindow.CloseSettings();
-            _mainWindow.QuickConnect();
-            //Delay to get correct IP address
-            Thread.Sleep(3000);
-            await _mainWindowResults.CheckIfCorrectIPAddressIsShownAsync();
+            _mainWindow.DisconnectUsingSidebarButton();
+            _mainWindowResults.CheckIfDisconnected();
         }
 
         [SetUp]
