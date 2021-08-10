@@ -1492,5 +1492,17 @@ namespace ProtonVPN.Properties {
                 this["WireGuardPorts"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool FeatureSmartProtocolWireGuardEnabled {
+            get {
+                return ((bool)(this["FeatureSmartProtocolWireGuardEnabled"]));
+            }
+            set {
+                this["FeatureSmartProtocolWireGuardEnabled"] = value;
+            }
+        }
     }
 }

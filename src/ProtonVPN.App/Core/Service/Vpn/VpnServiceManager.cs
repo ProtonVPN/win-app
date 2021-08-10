@@ -142,6 +142,7 @@ namespace ProtonVPN.Core.Service.Vpn
                 SplitTunnelIPs = config.SplitTunnelIPs.ToList(),
                 NetShieldMode = config.NetShieldMode,
                 VpnProtocol = Map(config.VpnProtocol),
+                PreferredProtocol = Map(config.PreferredProtocol),
                 SplitTcp = config.SplitTcp,
             };
         }

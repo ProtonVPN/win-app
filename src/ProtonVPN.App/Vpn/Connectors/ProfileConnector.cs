@@ -328,6 +328,7 @@ namespace ProtonVPN.Vpn.Connectors
                     SplitTunnelIPs = GetSplitTunnelIPs(),
                     OpenVpnAdapter = _appSettings.NetworkAdapterType,
                     VpnProtocol = protocol,
+                    PreferredProtocol = _appSettings.FeatureSmartProtocolWireGuardEnabled ? VpnProtocol.WireGuard : VpnProtocol.OpenVpnUdp,
                     NetShieldMode = _appSettings.IsNetShieldEnabled() ? _appSettings.NetShieldMode : 0,
                     SplitTcp = _appSettings.IsVpnAcceleratorEnabled(),
                 });

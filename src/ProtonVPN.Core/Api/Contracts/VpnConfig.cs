@@ -24,7 +24,7 @@ namespace ProtonVPN.Core.Api.Contracts
 {
     public class VpnConfig : BaseResponse
     {
-        public OpenVpnConfig OpenVpnConfig { get; set; }
+        public DefaultPorts DefaultPorts { get; set; }
 
         [JsonProperty(PropertyName = "HolesIPs")]
         public StringCollection HolesIps { get; set; }
@@ -32,19 +32,28 @@ namespace ProtonVPN.Core.Api.Contracts
         public int? ServerRefreshInterval { get; set; }
 
         public FeatureFlags FeatureFlags { get; set; }
+
+        public SmartProtocol SmartProtocol { get; set; }
     }
 
-    public class OpenVpnConfig
+    public class DefaultPorts
     {
-        public Ports DefaultPorts { get; set; }
+        [JsonProperty(PropertyName = "OpenVPN")]
+        public OpenVpnPorts OpenVpn { get; set; }
 
-        public Ports XorPorts { get; set; }
+        public WireGuardPorts WireGuard { get; set; }
     }
 
-    public class Ports
+    public class OpenVpnPorts
     {
-        public int[] Udp { get; set; }
-        public int[] Tcp { get; set; }
+        [JsonProperty(PropertyName = "UDP")] public int[] Udp { get; set; }
+
+        [JsonProperty(PropertyName = "TCP")] public int[] Tcp { get; set; }
+    }
+
+    public class WireGuardPorts
+    {
+        [JsonProperty(PropertyName = "UDP")] public int[] Udp { get; set; }
     }
 
     public class FeatureFlags
@@ -65,5 +74,10 @@ namespace ProtonVPN.Core.Api.Contracts
         public bool? StreamingServicesLogos { get; set; }
 
         public bool? SmartReconnect { get; set; }
+    }
+
+    public class SmartProtocol
+    {
+        public bool WireGuard { get; set; }
     }
 }

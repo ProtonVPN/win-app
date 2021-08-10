@@ -54,9 +54,9 @@ namespace ProtonVPN.Vpn.Connection
         }
 
         public async Task<VpnEndpoint> ScanForBestEndpointAsync(VpnEndpoint endpoint,
-            IReadOnlyDictionary<VpnProtocol, IReadOnlyCollection<int>> ports, CancellationToken cancellationToken)
+            IReadOnlyDictionary<VpnProtocol, IReadOnlyCollection<int>> ports, VpnProtocol preferredProtocol, CancellationToken cancellationToken)
         {
-            return await EnqueueAsync(() => ScanPortsAsync(endpoint, ports, cancellationToken), cancellationToken);
+            return await EnqueueAsync(() => ScanPortsAsync(endpoint, ports, preferredProtocol, cancellationToken), cancellationToken);
         }
 
         private async Task<VpnEndpoint> EnqueueAsync(Func<Task<VpnEndpoint>> func, CancellationToken cancellationToken)
@@ -79,14 +79,15 @@ namespace ProtonVPN.Vpn.Connection
 
         private async Task<VpnEndpoint> ScanPortsAsync(VpnEndpoint endpoint,
             IReadOnlyDictionary<VpnProtocol, IReadOnlyCollection<int>> ports,
+            VpnProtocol preferredProtocol,
             CancellationToken cancellationToken)
         {
-            VpnEndpoint bestEndpoint = await BestEndpoint(EndpointCandidates(endpoint, ports, cancellationToken), cancellationToken);
+            VpnEndpoint bestEndpoint = await BestEndpoint(EndpointCandidates(endpoint, ports, cancellationToken), preferredProtocol, cancellationToken);
 
             return HandleBestEndpoint(bestEndpoint, endpoint.Server);
         }
 
-        private async Task<VpnEndpoint> BestEndpoint(IList<Task<VpnEndpoint>> candidates, CancellationToken cancellationToken)
+        private async Task<VpnEndpoint> BestEndpoint(IList<Task<VpnEndpoint>> candidates, VpnProtocol preferredProtocol, CancellationToken cancellationToken)
         {
             VpnEndpoint firstCandidate = null;
             VpnEndpoint secondBestCandidate = null;
@@ -100,7 +101,7 @@ namespace ProtonVPN.Vpn.Connection
 
                 if (cancellationToken.IsCancellationRequested ||
                     firstCandidate == null ||
-                    (firstCandidate.VpnProtocol == VpnProtocol.WireGuard && firstCandidate.Port != 0))
+                    (firstCandidate.VpnProtocol == preferredProtocol && firstCandidate.Port != 0))
                 {
                     break;
                 }
