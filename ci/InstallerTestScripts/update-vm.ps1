@@ -1,4 +1,4 @@
-$virtualMachinesPath = Path-Join -Path $env:CI_PROJECT_DIR -ChildPath "\ci\InstallerTestScripts\virtual-machines.ps1"
+$virtualMachinesPath = Join-Path -Path $env:CI_PROJECT_DIR -ChildPath "\ci\InstallerTestScripts\virtual-machines.ps1"
 . $virtualMachinesPath
 
 Foreach ($name in $virtualMachines) {

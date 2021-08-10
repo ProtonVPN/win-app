@@ -134,7 +134,7 @@ update-vm:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
   script:
-    - powershell -File ci\update-vm.ps1
+    - powershell -File ci\InstallerTestScripts\update-vm.ps1
     
 installation-test:
   stage: ui-test
