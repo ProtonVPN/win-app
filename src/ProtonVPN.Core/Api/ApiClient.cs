@@ -316,7 +316,7 @@ namespace ProtonVPN.Core.Api
         {
             try
             {
-                HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, "vpn/clientconfig");
+                HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, "vpn/v2/clientconfig");
                 using HttpResponseMessage response = await _client.SendAsync(request).ConfigureAwait(false);
                 string body = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
                 return Logged(ApiResponseResult<VpnConfig>(body, response.StatusCode), "Get VPN config");

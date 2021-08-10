@@ -128,7 +128,7 @@ namespace ProtonVPN.Vpn.Connectors
                 {VpnProtocol.OpenVpnTcp, _appSettings.OpenVpnTcpPorts},
             };
 
-            return new VpnConfig(new VpnConfigParameters {Ports = portConfig, OpenVpnAdapter = _appSettings.NetworkAdapterType});
+            return new VpnConfig(new VpnConfigParameters {Ports = portConfig, OpenVpnAdapter = _appSettings.NetworkAdapterType, PreferredProtocol = VpnProtocol.OpenVpnUdp});
         }
     }
 }

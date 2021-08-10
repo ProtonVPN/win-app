@@ -397,6 +397,12 @@ namespace ProtonVPN.Core
             set => Set(value);
         }
 
+        public bool FeatureSmartProtocolWireGuardEnabled
+        {
+            get => Get<bool>();
+            set => Set(value);
+        }
+
         public bool DoNotShowPortForwardingConfirmationDialog
         {
             get => Get<bool>();

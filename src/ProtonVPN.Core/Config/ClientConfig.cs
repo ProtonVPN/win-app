@@ -23,6 +23,7 @@ using System.Threading.Tasks;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Core.Api;
+using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Settings;
 
@@ -73,11 +74,12 @@ namespace ProtonVPN.Core.Config
         {
             try
             {
-                var response = await _apiClient.GetVpnConfig();
+                ApiResponseResult<VpnConfig> response = await _apiClient.GetVpnConfig();
                 if (response.Success)
                 {
-                    _appSettings.OpenVpnTcpPorts = response.Value.OpenVpnConfig.DefaultPorts.Tcp;
-                    _appSettings.OpenVpnUdpPorts = response.Value.OpenVpnConfig.DefaultPorts.Udp;
+                    _appSettings.OpenVpnTcpPorts = response.Value.DefaultPorts.OpenVpn.Tcp;
+                    _appSettings.OpenVpnUdpPorts = response.Value.DefaultPorts.OpenVpn.Udp;
+                    _appSettings.WireGuardPorts = response.Value.DefaultPorts.WireGuard.Udp;
                     _appSettings.FeatureNetShieldEnabled = response.Value.FeatureFlags.NetShield;
 
                     if (response.Value.FeatureFlags.ServerRefresh.HasValue)
@@ -105,6 +107,8 @@ namespace ProtonVPN.Core.Config
                         _appSettings.BlackHoleIps = response.Value.HolesIps;
                     }
 
+                    _appSettings.FeatureSmartProtocolWireGuardEnabled = response.Value.SmartProtocol.WireGuard;
+
                     bool vpnAcceleratorFeatureFlag = response.Value.FeatureFlags.VpnAccelerator ?? true;
                     _appSettings.FeatureVpnAcceleratorEnabled = vpnAcceleratorFeatureFlag;
 
@@ -116,7 +120,6 @@ namespace ProtonVPN.Core.Config
             }
             catch (HttpRequestException)
             {
-                // ignore
             }
         }
     }
