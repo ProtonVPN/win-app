@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -24,14 +24,18 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Abstract;
+using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Threading;
+using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.OS.Net.DoH;
 using ProtonVPN.Core.Settings;
+using ProtonVPN.Core.Vpn;
 
 namespace ProtonVPN.Core.Api.Handlers
 {
-    public class AlternativeHostHandler : DelegatingHandler
+    public class AlternativeHostHandler : DelegatingHandler, IVpnStateAware
     {
+        private readonly ILogger _logger;
         private readonly DohClients _dohClients;
         private readonly MainHostname _mainHostname;
         private readonly IAppSettings _appSettings;
@@ -41,14 +45,17 @@ namespace ProtonVPN.Core.Api.Handlers
         private const int HoursToUseProxy = 24;
         private string _activeBackendHost;
         private readonly string _apiHost;
+        private bool _isDisconnected;
 
         public AlternativeHostHandler(
+            ILogger logger,
             DohClients dohClients,
             MainHostname mainHostname,
             IAppSettings appSettings,
             GuestHoleState guestHoleState,
             string apiHost)
         {
+            _logger = logger;
             _guestHoleState = guestHoleState;
             _mainHostname = mainHostname;
             _dohClients = dohClients;
@@ -56,6 +63,11 @@ namespace ProtonVPN.Core.Api.Handlers
             _apiHost = apiHost;
             _activeBackendHost = apiHost;
             _fetchProxies = new SingleAction(FetchProxies);
+        }
+
+        public async Task OnVpnStateChanged(VpnStateChangedEventArgs e)
+        {
+            _isDisconnected = e.State.Status == VpnStatus.Disconnected;
         }
 
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken token)
@@ -71,10 +83,14 @@ namespace ProtonVPN.Core.Api.Handlers
                 try
                 {
                     _activeBackendHost = _appSettings.ActiveAlternativeApiBaseUrl;
+                    _logger.Info($"[AlternativeHostHandler: sending request using {_activeBackendHost}");
+
                     return await SendInternalAsync(request, token);
                 }
                 catch (Exception e) when (e.IsPotentialBlocking())
                 {
+                    _logger.Info($"[AlternativeHostHandler] request failed while DoH active. Host: {_activeBackendHost}");
+
                     ResetBackendHost();
                     return await SendAsync(request, token);
                 }
@@ -84,8 +100,10 @@ namespace ProtonVPN.Core.Api.Handlers
             {
                 return await SendInternalAsync(request, token);
             }
-            catch (Exception e) when (e.IsPotentialBlocking())
+            catch (Exception e) when (_isDisconnected && e.IsPotentialBlocking())
             {
+                _logger.Info("[AlternativeHostHandler] request failed due to potentially not reachable api.");
+
                 await _fetchProxies.Run();
 
                 if (_appSettings.AlternativeApiBaseUrls.Count == 0)
@@ -95,6 +113,8 @@ namespace ProtonVPN.Core.Api.Handlers
 
                 if (await IsApiReachable(request, token))
                 {
+                    _logger.Info("[AlternativeHostHandler] ping success, retrying original request.");
+
                     try
                     {
                         return await SendInternalAsync(request, token);
@@ -105,7 +125,7 @@ namespace ProtonVPN.Core.Api.Handlers
                     }
                 }
 
-                var alternativeResult = await TryAlternativeHosts(request, token);
+                Result<HttpResponseMessage> alternativeResult = await TryAlternativeHosts(request, token);
                 if (alternativeResult.Success)
                 {
                     return alternativeResult.Value;
@@ -119,7 +139,7 @@ namespace ProtonVPN.Core.Api.Handlers
         {
             try
             {
-                var result = await base.SendAsync(GetPingRequest(request), token);
+                HttpResponseMessage result = await base.SendAsync(GetPingRequest(request), token);
                 return result.IsSuccessStatusCode;
             }
             catch (Exception e) when (e.IsPotentialBlocking())
@@ -130,8 +150,8 @@ namespace ProtonVPN.Core.Api.Handlers
 
         private HttpRequestMessage GetPingRequest(HttpRequestMessage request)
         {
-            var pingRequest = new HttpRequestMessage();
-            var uriBuilder = new UriBuilder(request.RequestUri)
+            HttpRequestMessage pingRequest = new();
+            UriBuilder uriBuilder = new(request.RequestUri)
             {
                 Host = _activeBackendHost,
                 Path = "tests/ping"
@@ -151,12 +171,12 @@ namespace ProtonVPN.Core.Api.Handlers
 
         private async Task<Result<HttpResponseMessage>> TryAlternativeHosts(HttpRequestMessage request, CancellationToken token)
         {
-            foreach (var host in _appSettings.AlternativeApiBaseUrls)
+            foreach (string host in _appSettings.AlternativeApiBaseUrls)
             {
                 try
                 {
                     _activeBackendHost = host;
-                    var result = await SendInternalAsync(request, token);
+                    HttpResponseMessage result = await SendInternalAsync(request, token);
                     if (result.IsSuccessStatusCode)
                     {
                         _appSettings.ActiveAlternativeApiBaseUrl = host;
@@ -183,13 +203,14 @@ namespace ProtonVPN.Core.Api.Handlers
         private bool ProxyActivated()
         {
             return _appSettings.DoHEnabled &&
+                   _isDisconnected &&
                    DateTime.Now.Subtract(_appSettings.LastPrimaryApiFail).TotalHours < HoursToUseProxy &&
                    !string.IsNullOrEmpty(_appSettings.ActiveAlternativeApiBaseUrl);
         }
 
         private HttpRequestMessage GetRequest(HttpRequestMessage request)
         {
-            var uriBuilder = new UriBuilder(request.RequestUri) { Host = _activeBackendHost };
+            UriBuilder uriBuilder = new(request.RequestUri) { Host = _activeBackendHost };
             request.Headers.Host = uriBuilder.Host;
             request.RequestUri = uriBuilder.Uri;
 
@@ -202,12 +223,12 @@ namespace ProtonVPN.Core.Api.Handlers
             _appSettings.AlternativeApiBaseUrls = new StringCollection();
             ResetBackendHost();
 
-            var clients = _dohClients.Get();
-            foreach (var dohClient in clients)
+            List<Client> clients = _dohClients.Get();
+            foreach (Client dohClient in clients)
             {
                 try
                 {
-                    var alternativeHosts = await dohClient.ResolveTxtAsync(_mainHostname.Value());
+                    List<string> alternativeHosts = await dohClient.ResolveTxtAsync(_mainHostname.Value());
                     if (alternativeHosts.Count > 0)
                     {
                         _appSettings.AlternativeApiBaseUrls = GetAlternativeApiBaseUrls(alternativeHosts);
@@ -223,8 +244,8 @@ namespace ProtonVPN.Core.Api.Handlers
 
         private StringCollection GetAlternativeApiBaseUrls(List<string> list)
         {
-            var collection = new StringCollection();
-            foreach (var element in list)
+            StringCollection collection = new StringCollection();
+            foreach (string element in list)
             {
                 collection.Add(element);
             }
