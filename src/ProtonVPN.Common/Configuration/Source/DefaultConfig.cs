@@ -107,7 +107,7 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 UserAgent = "ProtonVPN",
 
-                ApiTimeout = TimeSpan.FromSeconds(20),
+                ApiTimeout = TimeSpan.FromSeconds(10),
 
                 DohClientTimeout = TimeSpan.FromSeconds(10),
 
