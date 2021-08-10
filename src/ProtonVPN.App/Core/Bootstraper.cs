@@ -364,6 +364,7 @@ namespace ProtonVPN.Core
                 Resolve<IVpnManager>().OnVpnStateChanged(e);
                 await Resolve<LoginViewModel>().OnVpnStateChanged(e);
                 await Resolve<GuestHoleConnector>().OnVpnStateChanged(e);
+                await Resolve<AlternativeHostHandler>().OnVpnStateChanged(e);
             });
 
             vpnServiceManager.RegisterServiceSettingsStateCallback((e) =>

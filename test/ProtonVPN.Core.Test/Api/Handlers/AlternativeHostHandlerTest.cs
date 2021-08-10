@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -25,6 +25,7 @@ using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
+using ProtonVPN.Common.Logging;
 using ProtonVPN.Core.Api;
 using ProtonVPN.Core.Api.Handlers;
 using ProtonVPN.Core.OS.Net.DoH;
@@ -55,18 +56,19 @@ namespace ProtonVPN.Core.Test.Api.Handlers
             _appSettings.ActiveAlternativeApiBaseUrl = "alternative.api.url";
             _appSettings.LastPrimaryApiFail = DateTime.Now;
 
-            var handler = new AlternativeHostHandler(
+            AlternativeHostHandler handler = new(
+                Substitute.For<ILogger>(),
                 new DohClients(new List<string> {"provider1", "provider2"}, TimeSpan.FromSeconds(10)),
                 new MainHostname("https://api.protonvpn.ch"),
                 _appSettings,
                 new GuestHoleState(),
                 "api.protonvpn.ch") { InnerHandler = _innerHandler };
 
-            var client = new HttpClient(handler) { BaseAddress = _baseAddress };
+            HttpClient client = new(handler) { BaseAddress = _baseAddress };
 
             _innerHandler.Expect(HttpMethod.Get, _baseAddress.ToString()).Respond(HttpStatusCode.OK);
 
-            var result = await client.SendAsync(new HttpRequestMessage(HttpMethod.Get, _baseAddress));
+            HttpResponseMessage result = await client.SendAsync(new HttpRequestMessage(HttpMethod.Get, _baseAddress));
             result.RequestMessage.RequestUri.Should().Be(_baseAddress);
         }
     }

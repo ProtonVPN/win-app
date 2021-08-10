@@ -124,12 +124,16 @@ namespace ProtonVPN.Core.Ioc
                     {InnerHandler = c.Resolve<UnauthorizedResponseHandler>()}).SingleInstance();
 
             builder.Register(c =>
-                new AlternativeHostHandler(c.Resolve<DohClients>(),
-                        c.Resolve<MainHostname>(),
-                        c.Resolve<IAppSettings>(),
-                        c.Resolve<GuestHoleState>(),
-                        new Uri(c.Resolve<Common.Configuration.Config>().Urls.ApiUrl).Host)
-                    { InnerHandler = c.Resolve<CancellingHandler>() }).SingleInstance();
+                new AlternativeHostHandler(
+                    c.Resolve<ILogger>(),
+                    c.Resolve<DohClients>(),
+                    c.Resolve<MainHostname>(),
+                    c.Resolve<IAppSettings>(),
+                    c.Resolve<GuestHoleState>(),
+                    new Uri(c.Resolve<Common.Configuration.Config>().Urls.ApiUrl).Host)
+                {
+                    InnerHandler = c.Resolve<CancellingHandler>()
+                }).SingleInstance();
 
             builder.Register(c =>
                     new TokenClient(
@@ -165,11 +169,12 @@ namespace ProtonVPN.Core.Ioc
                         {InnerHandler = loggingHandler};
 
                     var alternativeHostHandler = new AlternativeHostHandler(
-                        c.Resolve<DohClients>(),
-                        c.Resolve<MainHostname>(),
-                        c.Resolve<IAppSettings>(),
-                        c.Resolve<GuestHoleState>(),
-                        new Uri(c.Resolve<Common.Configuration.Config>().Urls.ApiUrl).Host)
+                            c.Resolve<ILogger>(),
+                            c.Resolve<DohClients>(),
+                            c.Resolve<MainHostname>(),
+                            c.Resolve<IAppSettings>(),
+                            c.Resolve<GuestHoleState>(),
+                            new Uri(c.Resolve<Common.Configuration.Config>().Urls.ApiUrl).Host)
                     { InnerHandler = retryingHandler};
 
                     return new ApiClient(
