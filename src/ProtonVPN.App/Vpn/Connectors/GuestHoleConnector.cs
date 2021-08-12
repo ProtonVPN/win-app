@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -43,30 +43,40 @@ namespace ProtonVPN.Vpn.Connectors
         private readonly GuestHoleState _guestHoleState;
         private readonly Common.Configuration.Config _config;
         private readonly ICollectionStorage<GuestHoleServerContract> _guestHoleServers;
+        private readonly INetworkAdapterValidator _networkAdapterValidator;
 
         public GuestHoleConnector(
             IVpnServiceManager vpnServiceManager,
             IAppSettings appSettings,
             GuestHoleState guestHoleState,
             Common.Configuration.Config config,
-            ICollectionStorage<GuestHoleServerContract> guestHoleServers)
+            ICollectionStorage<GuestHoleServerContract> guestHoleServers,
+            INetworkAdapterValidator networkAdapterValidator)
         {
             _vpnServiceManager = vpnServiceManager;
             _appSettings = appSettings;
             _guestHoleState = guestHoleState;
             _config = config;
             _guestHoleServers = guestHoleServers;
+            _networkAdapterValidator = networkAdapterValidator;
         }
 
         public async Task Connect()
         {
-            VpnConnectionRequest request = new(
-                Servers(),
-                VpnProtocol.Smart,
-                VpnConfig(),
-                CreateVpnCredentials());
+            if (_networkAdapterValidator.IsAdapterAvailable())
+            {
+                VpnConnectionRequest request = new(
+                    Servers(),
+                    VpnProtocol.Smart,
+                    VpnConfig(),
+                    CreateVpnCredentials());
 
-            await _vpnServiceManager.Connect(request);
+                await _vpnServiceManager.Connect(request);
+            }
+            else
+            {
+                await Disconnect();
+            }
         }
 
         private VpnCredentials CreateVpnCredentials()
@@ -128,11 +138,16 @@ namespace ProtonVPN.Vpn.Connectors
                 {VpnProtocol.OpenVpnTcp, _appSettings.OpenVpnTcpPorts},
             };
 
-            return new VpnConfig(new VpnConfigParameters {Ports = portConfig, OpenVpnAdapter = _appSettings.NetworkAdapterType, PreferredProtocols = new List<VpnProtocol>
+            return new VpnConfig(new VpnConfigParameters
             {
-                VpnProtocol.OpenVpnUdp,
-                VpnProtocol.OpenVpnTcp,
-            }});
+                Ports = portConfig,
+                OpenVpnAdapter = _appSettings.NetworkAdapterType,
+                PreferredProtocols = new List<VpnProtocol>
+                {
+                    VpnProtocol.OpenVpnUdp,
+                    VpnProtocol.OpenVpnTcp,
+                },
+            });
         }
     }
 }

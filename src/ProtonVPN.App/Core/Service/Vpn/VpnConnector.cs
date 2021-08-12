@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -22,8 +22,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Networking;
-using ProtonVPN.Common.OS.Net;
-using ProtonVPN.Common.OS.Net.NetworkInterface;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Api;
 using ProtonVPN.Core.Auth;
@@ -33,8 +31,6 @@ using ProtonVPN.Core.Servers.Models;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Vpn.Connectors;
-using Sentry;
-using Sentry.Protocol;
 
 namespace ProtonVPN.Core.Service.Vpn
 {
@@ -45,7 +41,7 @@ namespace ProtonVPN.Core.Service.Vpn
         private readonly IAppSettings _appSettings;
         private readonly GuestHoleState _guestHoleState;
         private readonly IUserStorage _userStorage;
-        private readonly INetworkInterfaceLoader _networkInterfaceLoader;
+        private readonly INetworkAdapterValidator _networkAdapterValidator;
 
         public Profile LastProfile { get; private set; }
         public ServerCandidates LastServerCandidates { get; private set; }
@@ -61,14 +57,14 @@ namespace ProtonVPN.Core.Service.Vpn
             IAppSettings appSettings,
             GuestHoleState guestHoleState,
             IUserStorage userStorage,
-            INetworkInterfaceLoader networkInterfaceLoader)
+            INetworkAdapterValidator networkAdapterValidator)
         {
             _profileConnector = profileConnector;
             _profileManager = profileManager;
             _appSettings = appSettings;
             _guestHoleState = guestHoleState;
             _userStorage = userStorage;
-            _networkInterfaceLoader = networkInterfaceLoader;
+            _networkAdapterValidator = networkAdapterValidator;
             LastServerCandidates = _profileConnector.ServerCandidates(null);
         }
 
@@ -108,30 +104,15 @@ namespace ProtonVPN.Core.Service.Vpn
 
         private async Task ValidateConnectionAsync(Func<Task> connectionFunction)
         {
-            INetworkInterface openVpnTunInterface = _networkInterfaceLoader.GetOpenVpnTunInterface();
-            INetworkInterface openVpnTapInterface = _networkInterfaceLoader.GetOpenVpnTapInterface();
-            if (openVpnTunInterface == null && openVpnTapInterface == null)
+            if (_networkAdapterValidator.IsAdapterAvailable())
             {
-                RaiseVpnStateChanged(new VpnStateChangedEventArgs(new VpnState(VpnStatus.Disconnected), VpnError.NoTapAdaptersError, false));
-                return;
+                await connectionFunction();
             }
-
-            if (openVpnTunInterface == null && _appSettings.NetworkAdapterType == OpenVpnAdapter.Tun)
+            else
             {
-                _appSettings.NetworkAdapterType = OpenVpnAdapter.Tap;
-                SendTunFallbackEvent();
+                RaiseVpnStateChanged(new VpnStateChangedEventArgs(new VpnState(VpnStatus.Disconnected),
+                    VpnError.NoTapAdaptersError, false));
             }
-
-            await connectionFunction();
-        }
-
-        private void SendTunFallbackEvent()
-        {
-            SentrySdk.CaptureEvent(new SentryEvent
-            {
-                Message = "TUN adapter not found. Adapter changed to TAP.",
-                Level = SentryLevel.Info,
-            });
         }
 
         private async Task ExecuteConnectToBestProfileAsync(Profile profile, Profile fallbackProfile = null, int? maxServers = null)

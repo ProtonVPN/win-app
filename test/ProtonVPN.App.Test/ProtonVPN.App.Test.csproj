@@ -110,6 +110,7 @@
     <Compile Include="Core\Config\Url\ActiveUrlsTest.cs" />
     <Compile Include="Core\Config\Url\ActiveUrlTest.cs" />
     <Compile Include="Core\MVVM\Converters\BytesToSizeConverterTest.cs" />
+    <Compile Include="Core\Service\Vpn\NetworkAdapterValidatorTest.cs" />
     <Compile Include="Core\Service\Vpn\ServiceStartDecoratorTest.cs" />
     <Compile Include="Core\Settings\Migrations\v1_10_0\AppSettingsMigrationTest.cs" />
     <Compile Include="Core\Settings\Migrations\v1_7_2\MigratedColorTest.cs" />

@@ -138,6 +138,8 @@
     <Compile Include="Core\MVVM\Converters\ZeroToBoolConverter.cs" />
     <Compile Include="Core\Service\BaseFilteringEngineService.cs" />
     <Compile Include="Core\Service\Settings\ISettingsServiceClientManager.cs" />
+    <Compile Include="Core\Service\Vpn\INetworkAdapterValidator.cs" />
+    <Compile Include="Core\Service\Vpn\NetworkAdapterValidator.cs" />
     <Compile Include="Core\Service\Vpn\ISimilarServerCandidatesGenerator.cs" />
     <Compile Include="Core\Service\Vpn\IVpnConnector.cs" />
     <Compile Include="Core\Service\Vpn\IVpnReconnector.cs" />
