@@ -221,6 +221,7 @@ namespace ProtonVPN.Core.Ioc
                     c.Resolve<BaseFilteringEngineService>(),
                     c.Resolve<VpnSystemService>()))
                 .As<IVpnServiceManager>().SingleInstance();
+            builder.RegisterType<NetworkAdapterValidator>().As<INetworkAdapterValidator>().SingleInstance();
             builder.RegisterType<VpnManager>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<VpnReconnector>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<VpnConnector>().AsImplementedInterfaces().SingleInstance();
