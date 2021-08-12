@@ -120,7 +120,8 @@ namespace ProtonVPN.Service.Start
             builder.RegisterType<BestNetworkInterface>().SingleInstance();
             builder.RegisterType<SplitTunnelClient>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<UnhandledExceptionLogging>().SingleInstance();
-            builder.Register(c => new NetworkSettings(c.Resolve<ILogger>(), c.Resolve<INetworkInterfaceLoader>()))
+            builder.RegisterType<WintunRegistryFixer>().SingleInstance();
+            builder.Register(c => new NetworkSettings(c.Resolve<ILogger>(), c.Resolve<INetworkInterfaceLoader>(), c.Resolve<WintunRegistryFixer>()))
                 .AsImplementedInterfaces()
                 .AsSelf()
                 .SingleInstance();
