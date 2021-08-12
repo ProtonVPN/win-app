@@ -166,6 +166,7 @@
     <Compile Include="Vpn\NetworkSettings.cs" />
     <Compile Include="Vpn\ObservableConnection.cs" />
     <Compile Include="Vpn\ObservableNetworkInterfaces.cs" />
+    <Compile Include="Vpn\WintunRegistryFixer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

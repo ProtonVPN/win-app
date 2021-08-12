@@ -29,11 +29,13 @@ namespace ProtonVPN.Service.Vpn
     {
         private readonly ILogger _logger;
         private readonly INetworkInterfaceLoader _networkInterfaceLoader;
+        private readonly WintunRegistryFixer _wintunRegistryFixer;
 
-        public NetworkSettings(ILogger logger, INetworkInterfaceLoader networkInterfaceLoader)
+        public NetworkSettings(ILogger logger, INetworkInterfaceLoader networkInterfaceLoader, WintunRegistryFixer wintunRegistryFixer)
         {
             _logger = logger;
             _networkInterfaceLoader = networkInterfaceLoader;
+            _wintunRegistryFixer = wintunRegistryFixer;
         }
 
         public bool IsNetworkAdapterAvailable(VpnProtocol vpnProtocol, OpenVpnAdapter? openVpnAdapter)
@@ -58,6 +60,7 @@ namespace ProtonVPN.Service.Vpn
             if (state.VpnProtocol != VpnProtocol.WireGuard)
             {
                 ApplyNetworkSettings(state.VpnProtocol, state.OpenVpnAdapter);
+                _wintunRegistryFixer.EnsureTunAdapterRegistryIsCorrect();
             }
         }
 
