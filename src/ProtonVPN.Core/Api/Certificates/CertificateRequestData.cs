@@ -26,7 +26,7 @@ namespace ProtonVPN.Core.Api.Certificates
         public string ClientPublicKey { get; set; }
         public string ClientPublicKeyMode { get; set; } = "EC";
         public string DeviceName { get; set; } = string.Empty;
-        public string Duration { get; set; } = "365 days";
+        public string Duration { get; set; }
         public string Mode { get; set; } = "session";
         public IList<string> Features { get; set; }
     }
