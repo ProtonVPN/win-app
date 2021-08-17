@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -21,13 +21,12 @@ using System;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading.Tasks;
-using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Vpn.Common;
 
 namespace ProtonVPN.Vpn.OpenVpn
 {
-    public class PingableOpenVpnPort
+    public class TcpPortScanner
     {
         private byte[] _staticKey;
 
@@ -40,21 +39,17 @@ namespace ProtonVPN.Vpn.OpenVpn
         {
             OpenVpnHandshake packet = new(_staticKey);
             IPEndPoint endpoint = new(IPAddress.Parse(vpnEndpoint.Server.Ip), vpnEndpoint.Port);
+            using Socket socket = new(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
-            using Socket socket = new(
-                AddressFamily.InterNetwork,
-                MapSocketType(vpnEndpoint.VpnProtocol),
-                MapProtocolType(vpnEndpoint.VpnProtocol));
             try
             {
                 await SafeSocketAction(socket.ConnectAsync(endpoint)).WithTimeout(timeoutTask);
 
-                byte[] bytes = packet.Bytes(vpnEndpoint.VpnProtocol == VpnProtocol.OpenVpnTcp);
+                byte[] bytes = packet.Bytes(true);
                 await SafeSocketAction(socket.SendAsync(new ArraySegment<byte>(bytes), SocketFlags.None)).WithTimeout(timeoutTask);
 
                 byte[] answer = new byte[1024];
-                int received = await SafeSocketFunc(socket.ReceiveAsync(new ArraySegment<byte>(answer), SocketFlags.None))
-                    .WithTimeout(timeoutTask);
+                int received = await SafeSocketFunc(socket.ReceiveAsync(new ArraySegment<byte>(answer), SocketFlags.None)).WithTimeout(timeoutTask);
 
                 return received > 0;
             }
@@ -66,16 +61,6 @@ namespace ProtonVPN.Vpn.OpenVpn
             {
                 socket.Close();
             }
-        }
-
-        private ProtocolType MapProtocolType(VpnProtocol protocol)
-        {
-            return protocol == VpnProtocol.OpenVpnTcp ? ProtocolType.Tcp : ProtocolType.Udp;
-        }
-
-        private SocketType MapSocketType(VpnProtocol protocol)
-        {
-            return protocol == VpnProtocol.OpenVpnUdp ? SocketType.Dgram : SocketType.Stream;
         }
 
         private static Task SafeSocketAction(Task task)

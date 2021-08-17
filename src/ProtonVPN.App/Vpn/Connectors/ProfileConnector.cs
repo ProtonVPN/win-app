@@ -309,9 +309,9 @@ namespace ProtonVPN.Vpn.Connectors
         {
             Dictionary<VpnProtocol, IReadOnlyCollection<int>> portConfig = new Dictionary<VpnProtocol, IReadOnlyCollection<int>>
             {
+                {VpnProtocol.WireGuard, _appSettings.WireGuardPorts},
                 {VpnProtocol.OpenVpnUdp, _appSettings.OpenVpnUdpPorts},
                 {VpnProtocol.OpenVpnTcp, _appSettings.OpenVpnTcpPorts},
-                {VpnProtocol.WireGuard, _appSettings.WireGuardPorts},
             };
 
             List<string> customDns = (from ip in _appSettings.CustomDnsIps where ip.Enabled select ip.Ip).ToList();

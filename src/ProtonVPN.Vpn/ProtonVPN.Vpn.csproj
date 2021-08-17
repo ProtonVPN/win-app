@@ -77,7 +77,7 @@
     <Compile Include="LocalAgent\LocalAgentErrorArgs.cs" />
     <Compile Include="LocalAgent\LocalAgentState.cs" />
     <Compile Include="LocalAgent\PInvoke.cs" />
-    <Compile Include="LocalAgent\WireGuardPingClient.cs" />
+    <Compile Include="LocalAgent\UdpPingClient.cs" />
     <Compile Include="Management\ManagementMessage.cs" />
     <Compile Include="Management\ManagementMessages.cs" />
     <Compile Include="Management\MessagingManagementChannel.cs" />
@@ -100,7 +100,7 @@
     <Compile Include="OpenVpn\SafeBestNetworkInterface.cs" />
     <Compile Include="OpenVpn\BestNetworkInterface.cs" />
     <Compile Include="OpenVpn\OpenVpnHandshake.cs" />
-    <Compile Include="OpenVpn\PingableOpenVpnPort.cs" />
+    <Compile Include="OpenVpn\TcpPortScanner.cs" />
     <Compile Include="SplitTunnel\SplitTunnelRouting.cs" />
     <Compile Include="SynchronizationEvent\ISynchronizationEvents.cs" />
     <Compile Include="SynchronizationEvent\NullSynchronizationEvent.cs" />

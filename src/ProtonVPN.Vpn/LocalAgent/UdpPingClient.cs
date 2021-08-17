@@ -23,18 +23,25 @@ using ProtonVPN.Common.Go;
 
 namespace ProtonVPN.Vpn.LocalAgent
 {
-    public class WireGuardPingClient
+    public class UdpPingClient
     {
         private static readonly int TimeoutInMilliseconds = 3000;
 
-        public Task<bool> Ping(string ip, int port, string serverKeyBase64, CancellationToken cancellationToken)
+        public async Task<bool> Ping(string ip, int port, string serverKeyBase64, CancellationToken cancellationToken)
         {
-            return Task.Run(() =>
+            try
             {
-                using GoString ipGoString = ip.ToGoString();
-                using GoString serverKeyBase64GoString = serverKeyBase64.ToGoString();
-                return PInvoke.Ping(ipGoString, port, serverKeyBase64GoString, TimeoutInMilliseconds);
-            }, cancellationToken);
+                return await Task.Run(() =>
+                {
+                    using GoString ipGoString = ip.ToGoString();
+                    using GoString serverKeyBase64GoString = serverKeyBase64.ToGoString();
+                    return PInvoke.Ping(ipGoString, port, serverKeyBase64GoString, TimeoutInMilliseconds);
+                }, cancellationToken);
+            }
+            catch (TaskCanceledException)
+            {
+                return false;
+            }
         }
     }
 }

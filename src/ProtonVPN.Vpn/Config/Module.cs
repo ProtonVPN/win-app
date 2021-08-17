@@ -41,10 +41,10 @@ namespace ProtonVPN.Vpn.Config
         public void Load(ContainerBuilder builder)
         {
             builder.RegisterType<VpnEndpointScanner>().SingleInstance();
-            builder.RegisterType<PingableOpenVpnPort>().SingleInstance();
+            builder.RegisterType<TcpPortScanner>().SingleInstance();
             builder.RegisterType<NetworkInterfaceLoader>().As<INetworkInterfaceLoader>().SingleInstance();
             builder.RegisterType<SplitTunnelRouting>().SingleInstance();
-            builder.RegisterType<WireGuardPingClient>().SingleInstance();
+            builder.RegisterType<UdpPingClient>().SingleInstance();
             builder.Register(c =>
                 {
                     ILogger logger = c.Resolve<ILogger>();
@@ -66,8 +66,8 @@ namespace ProtonVPN.Vpn.Config
             ILogger logger = c.Resolve<ILogger>();
             OpenVpnConfig config = c.Resolve<OpenVpnConfig>();
             ITaskQueue taskQueue = c.Resolve<ITaskQueue>();
-            PingableOpenVpnPort pingableOpenVpnPort = c.Resolve<PingableOpenVpnPort>();
-            pingableOpenVpnPort.Config(config.OpenVpnStaticKey);
+            TcpPortScanner tcpPortScanner = c.Resolve<TcpPortScanner>();
+            tcpPortScanner.Config(config.OpenVpnStaticKey);
             IEndpointScanner endpointScanner = c.Resolve<VpnEndpointScanner>();
             VpnEndpointCandidates candidates = new();
 
