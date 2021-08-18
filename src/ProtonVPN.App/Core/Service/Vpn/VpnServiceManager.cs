@@ -142,9 +142,14 @@ namespace ProtonVPN.Core.Service.Vpn
                 SplitTunnelIPs = config.SplitTunnelIPs.ToList(),
                 NetShieldMode = config.NetShieldMode,
                 VpnProtocol = Map(config.VpnProtocol),
-                PreferredProtocol = Map(config.PreferredProtocol),
+                PreferredProtocols = Map(config.PreferredProtocols),
                 SplitTcp = config.SplitTcp,
             };
+        }
+
+        private static IList<VpnProtocolContract> Map(IList<VpnProtocol> protocols)
+        {
+            return protocols.Select(Map).ToList();
         }
 
         private static VpnStateChangedEventArgs Map(VpnStateContract contract)

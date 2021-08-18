@@ -17,9 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Threading;
+using System;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Go;
+using ProtonVPN.Common.Threading;
 
 namespace ProtonVPN.Vpn.LocalAgent
 {
@@ -27,18 +28,20 @@ namespace ProtonVPN.Vpn.LocalAgent
     {
         private static readonly int TimeoutInMilliseconds = 3000;
 
-        public async Task<bool> Ping(string ip, int port, string serverKeyBase64, CancellationToken cancellationToken)
+        public async Task<bool> Ping(string ip, int port, string serverKeyBase64, Task timeoutTask)
         {
             try
             {
-                return await Task.Run(() =>
+                bool result = await Task.Run(() =>
                 {
                     using GoString ipGoString = ip.ToGoString();
                     using GoString serverKeyBase64GoString = serverKeyBase64.ToGoString();
                     return PInvoke.Ping(ipGoString, port, serverKeyBase64GoString, TimeoutInMilliseconds);
-                }, cancellationToken);
+                }).WithTimeout(timeoutTask);
+
+                return result;
             }
-            catch (TaskCanceledException)
+            catch (Exception e) when (e is TimeoutException or TaskCanceledException)
             {
                 return false;
             }

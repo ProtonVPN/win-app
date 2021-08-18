@@ -54,9 +54,9 @@ namespace ProtonVPN.Vpn.Connection
         }
 
         public async Task<VpnEndpoint> ScanForBestEndpointAsync(VpnEndpoint endpoint,
-            IReadOnlyDictionary<VpnProtocol, IReadOnlyCollection<int>> ports, VpnProtocol preferredProtocol, CancellationToken cancellationToken)
+            IReadOnlyDictionary<VpnProtocol, IReadOnlyCollection<int>> ports, IList<VpnProtocol> preferredProtocols, CancellationToken cancellationToken)
         {
-            return await EnqueueAsync(() => ScanPortsAsync(endpoint, ports, preferredProtocol, cancellationToken), cancellationToken);
+            return await EnqueueAsync(() => ScanPortsAsync(endpoint, ports, preferredProtocols, cancellationToken), cancellationToken);
         }
 
         private async Task<VpnEndpoint> EnqueueAsync(Func<Task<VpnEndpoint>> func, CancellationToken cancellationToken)
@@ -79,73 +79,79 @@ namespace ProtonVPN.Vpn.Connection
 
         private async Task<VpnEndpoint> ScanPortsAsync(VpnEndpoint endpoint,
             IReadOnlyDictionary<VpnProtocol, IReadOnlyCollection<int>> ports,
-            VpnProtocol preferredProtocol,
+            IList<VpnProtocol> preferredProtocols,
             CancellationToken cancellationToken)
         {
-            VpnEndpoint bestEndpoint = await BestEndpoint(EndpointCandidates(endpoint, ports, cancellationToken), preferredProtocol, cancellationToken);
+            IList<Task<VpnEndpoint>> candidates = EndpointCandidates(endpoint, ports, preferredProtocols, cancellationToken);
+            VpnEndpoint bestEndpoint = await BestEndpoint(candidates, preferredProtocols, cancellationToken);
 
             return HandleBestEndpoint(bestEndpoint, endpoint.Server);
         }
 
-        private async Task<VpnEndpoint> BestEndpoint(IList<Task<VpnEndpoint>> candidates, VpnProtocol preferredProtocol, CancellationToken cancellationToken)
+        private async Task<VpnEndpoint> BestEndpoint(IList<Task<VpnEndpoint>> candidates, IList<VpnProtocol> preferredProtocols, CancellationToken cancellationToken)
         {
-            VpnEndpoint firstCandidate = null;
-            VpnEndpoint secondBestCandidate = null;
-            VpnEndpoint thirdBestCandidate = null;
+            Dictionary<VpnProtocol, VpnEndpoint> endpointsByProtocol = GetEndpointsByProtocol(preferredProtocols);
 
             while (candidates.Any())
             {
                 Task<VpnEndpoint> firstCompletedTask = await Task.WhenAny(candidates);
                 candidates.Remove(firstCompletedTask);
-                firstCandidate = await firstCompletedTask;
+                VpnEndpoint candidate = await firstCompletedTask;
 
-                if (cancellationToken.IsCancellationRequested ||
-                    firstCandidate == null ||
-                    (firstCandidate.VpnProtocol == preferredProtocol && firstCandidate.Port != 0))
+                if (cancellationToken.IsCancellationRequested || candidate == null)
                 {
                     break;
                 }
 
-                if (firstCandidate.Port != 0)
+                if (candidate.Port != 0)
                 {
-                    if (firstCandidate.VpnProtocol == VpnProtocol.OpenVpnUdp)
+                    endpointsByProtocol[candidate.VpnProtocol] = candidate;
+                    if (candidate.VpnProtocol == preferredProtocols.First())
                     {
-                        secondBestCandidate = firstCandidate;
-                    }
-                    else
-                    {
-                        thirdBestCandidate = firstCandidate;
+                        break;
                     }
                 }
             }
 
-            if (firstCandidate == null || firstCandidate.Port == 0)
+            foreach (VpnProtocol preferredProtocol in preferredProtocols)
             {
-                firstCandidate = secondBestCandidate ?? thirdBestCandidate;
+                if (endpointsByProtocol[preferredProtocol] != null)
+                {
+                    return endpointsByProtocol[preferredProtocol];
+                }
             }
 
-            return firstCandidate ?? VpnEndpoint.Empty;
+            return VpnEndpoint.Empty;
         }
 
-        private IList<Task<VpnEndpoint>> EndpointCandidates(VpnEndpoint endpoint,
-            IReadOnlyDictionary<VpnProtocol, IReadOnlyCollection<int>> ports, CancellationToken cancellationToken)
+        private Dictionary<VpnProtocol, VpnEndpoint> GetEndpointsByProtocol(IList<VpnProtocol> preferredProtocols)
+        {
+            Dictionary<VpnProtocol, VpnEndpoint> endpoints = new Dictionary<VpnProtocol, VpnEndpoint>();
+            foreach (VpnProtocol protocol in preferredProtocols)
+            {
+                endpoints.Add(protocol, null);
+            }
+
+            return endpoints;
+        }
+
+        private IList<Task<VpnEndpoint>> EndpointCandidates(
+            VpnEndpoint endpoint,
+            IReadOnlyDictionary<VpnProtocol, IReadOnlyCollection<int>> ports,
+            IList<VpnProtocol> preferredProtocols,
+            CancellationToken cancellationToken)
         {
             List<Task<VpnEndpoint>> list = new List<Task<VpnEndpoint>>();
-            foreach (KeyValuePair<VpnProtocol, IReadOnlyCollection<int>> pair in ports)
+            foreach (VpnProtocol preferredProtocol in preferredProtocols)
             {
-                if (endpoint.Server.X25519PublicKey == null && (pair.Key == VpnProtocol.WireGuard || pair.Key == VpnProtocol.OpenVpnUdp))
+                if (!ports.ContainsKey(preferredProtocol) || (endpoint.Server.X25519PublicKey == null && preferredProtocol is VpnProtocol.WireGuard or VpnProtocol.OpenVpnUdp))
                 {
                     continue;
                 }
 
-                if (endpoint.VpnProtocol != VpnProtocol.Smart && endpoint.VpnProtocol != pair.Key)
+                foreach (int port in ports[preferredProtocol])
                 {
-                    continue;
-                }
-
-                foreach (int port in pair.Value)
-                {
-                    list.Add(GetPortAlive(new VpnEndpoint(endpoint.Server, pair.Key, port), cancellationToken));
+                    list.Add(GetPortAlive(new VpnEndpoint(endpoint.Server, preferredProtocol, port), cancellationToken));
                 }
             }
 
@@ -178,11 +184,11 @@ namespace ProtonVPN.Vpn.Connection
 
         private async Task<bool> IsUdpEndpointAlive(VpnEndpoint endpoint, CancellationToken cancellationToken)
         {
-            return await IsEndpointAlive(async _ => await _udpPingClient.Ping(
+            return await IsEndpointAlive(async timeoutTask => await _udpPingClient.Ping(
                 endpoint.Server.Ip,
                 endpoint.Port,
                 endpoint.Server.X25519PublicKey.Base64,
-                cancellationToken), cancellationToken);
+                timeoutTask), cancellationToken);
         }
 
         private async Task<bool> IsEndpointAlive(Func<Task, Task<bool>> func, CancellationToken cancellationToken)

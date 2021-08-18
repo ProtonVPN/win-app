@@ -271,10 +271,15 @@ namespace ProtonVPN.Service
                     SplitTunnelIPs = config.SplitTunnelIPs,
                     OpenVpnAdapter = _serviceSettings.OpenVpnAdapter,
                     VpnProtocol = Map(config.VpnProtocol),
-                    PreferredProtocol = Map(config.PreferredProtocol),
+                    PreferredProtocols = Map(config.PreferredProtocols),
                     NetShieldMode = config.NetShieldMode,
                     SplitTcp =  config.SplitTcp,
                 });
+        }
+
+        private IList<VpnProtocol> Map(IList<VpnProtocolContract> protocols)
+        {
+            return protocols.Select(Map).ToList();
         }
 
         private VpnProtocol Map(VpnProtocolContract contract)

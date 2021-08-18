@@ -122,13 +122,17 @@ namespace ProtonVPN.Vpn.Connectors
 
         private VpnConfig VpnConfig()
         {
-            var portConfig = new Dictionary<VpnProtocol, IReadOnlyCollection<int>>
+            Dictionary<VpnProtocol, IReadOnlyCollection<int>> portConfig = new()
             {
                 {VpnProtocol.OpenVpnUdp, _appSettings.OpenVpnUdpPorts},
                 {VpnProtocol.OpenVpnTcp, _appSettings.OpenVpnTcpPorts},
             };
 
-            return new VpnConfig(new VpnConfigParameters {Ports = portConfig, OpenVpnAdapter = _appSettings.NetworkAdapterType, PreferredProtocol = VpnProtocol.OpenVpnUdp});
+            return new VpnConfig(new VpnConfigParameters {Ports = portConfig, OpenVpnAdapter = _appSettings.NetworkAdapterType, PreferredProtocols = new List<VpnProtocol>
+            {
+                VpnProtocol.OpenVpnUdp,
+                VpnProtocol.OpenVpnTcp,
+            }});
         }
     }
 }
