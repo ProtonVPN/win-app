@@ -47,7 +47,7 @@ namespace ProtonVPN.Service.Contract.Vpn
         public VpnProtocolContract VpnProtocol { get; set; }
 
         [DataMember(IsRequired = true)]
-        public VpnProtocolContract PreferredProtocol { get; set; }
+        public IList<VpnProtocolContract> PreferredProtocols { get; set; }
 
         [DataMember(IsRequired = true)]
         public bool SplitTcp { get; set; }

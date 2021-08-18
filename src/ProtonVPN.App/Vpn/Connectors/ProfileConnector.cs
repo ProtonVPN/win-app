@@ -307,19 +307,12 @@ namespace ProtonVPN.Vpn.Connectors
 
         private Common.Vpn.VpnConfig VpnConfig(VpnProtocol protocol)
         {
-            Dictionary<VpnProtocol, IReadOnlyCollection<int>> portConfig = new Dictionary<VpnProtocol, IReadOnlyCollection<int>>
-            {
-                {VpnProtocol.WireGuard, _appSettings.WireGuardPorts},
-                {VpnProtocol.OpenVpnUdp, _appSettings.OpenVpnUdpPorts},
-                {VpnProtocol.OpenVpnTcp, _appSettings.OpenVpnTcpPorts},
-            };
-
             List<string> customDns = (from ip in _appSettings.CustomDnsIps where ip.Enabled select ip.Ip).ToList();
 
             return new Common.Vpn.VpnConfig(
                 new VpnConfigParameters
                 {
-                    Ports = portConfig,
+                    Ports = GetPortConfig(),
                     CustomDns = _appSettings.CustomDnsEnabled ? customDns : new List<string>(),
                     SplitTunnelMode =
                         _appSettings.SplitTunnelingEnabled
@@ -328,10 +321,41 @@ namespace ProtonVPN.Vpn.Connectors
                     SplitTunnelIPs = GetSplitTunnelIPs(),
                     OpenVpnAdapter = _appSettings.NetworkAdapterType,
                     VpnProtocol = protocol,
-                    PreferredProtocol = _appSettings.FeatureSmartProtocolWireGuardEnabled ? VpnProtocol.WireGuard : VpnProtocol.OpenVpnUdp,
+                    PreferredProtocols = GetPreferredProtocols(protocol),
                     NetShieldMode = _appSettings.IsNetShieldEnabled() ? _appSettings.NetShieldMode : 0,
                     SplitTcp = _appSettings.IsVpnAcceleratorEnabled(),
                 });
+        }
+
+        private Dictionary<VpnProtocol, IReadOnlyCollection<int>> GetPortConfig()
+        {
+            return new Dictionary<VpnProtocol, IReadOnlyCollection<int>>
+            {
+                {VpnProtocol.WireGuard, _appSettings.WireGuardPorts},
+                {VpnProtocol.OpenVpnUdp, _appSettings.OpenVpnUdpPorts},
+                {VpnProtocol.OpenVpnTcp, _appSettings.OpenVpnTcpPorts},
+            };
+        }
+
+        private IList<VpnProtocol> GetPreferredProtocols(VpnProtocol protocol)
+        {
+            List<VpnProtocol> preferredProtocols = new List<VpnProtocol>();
+            if (protocol == VpnProtocol.Smart)
+            {
+                if (_appSettings.FeatureSmartProtocolWireGuardEnabled)
+                {
+                    preferredProtocols.Add(VpnProtocol.WireGuard);
+                }
+
+                preferredProtocols.Add(VpnProtocol.OpenVpnUdp);
+                preferredProtocols.Add(VpnProtocol.OpenVpnTcp);
+            }
+            else
+            {
+                preferredProtocols.Add(protocol);
+            }
+
+            return preferredProtocols;
         }
 
         private List<string> GetSplitTunnelIPs()

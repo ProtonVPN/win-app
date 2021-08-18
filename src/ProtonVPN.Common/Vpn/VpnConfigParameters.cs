@@ -30,7 +30,7 @@ namespace ProtonVPN.Common.Vpn
         public IReadOnlyCollection<string> SplitTunnelIPs { get; set; }
         public OpenVpnAdapter OpenVpnAdapter { get; set; }
         public VpnProtocol VpnProtocol { get; set; }
-        public VpnProtocol PreferredProtocol { get; set; }
+        public IList<VpnProtocol> PreferredProtocols { get; set; }
         public int NetShieldMode { get; set; }
         public bool SplitTcp { get; set; }
         

@@ -174,7 +174,7 @@ namespace ProtonVPN.Vpn.Connection
             OnStateChanged(new VpnState(VpnStatus.Pinging, VpnError.None, string.Empty,
                 endpoint.Server.Ip, _config.VpnProtocol, _config.OpenVpnAdapter, endpoint.Server.Label));
 
-            VpnEndpoint bestEndpoint = await _endpointScanner.ScanForBestEndpointAsync(endpoint, _config.Ports, _config.PreferredProtocol, cancellationToken);
+            VpnEndpoint bestEndpoint = await _endpointScanner.ScanForBestEndpointAsync(endpoint, _config.Ports, _config.PreferredProtocols, cancellationToken);
             return bestEndpoint.Port != 0;
         }
 

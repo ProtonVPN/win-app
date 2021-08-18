@@ -95,7 +95,7 @@ namespace ProtonVPN.Vpn.Connection
         {
             _logger.Info($"Starting port scanning of endpoint {_vpnEndpoint.Server.Ip} before connection.");
             VpnEndpoint bestEndpoint = await _endpointScanner.ScanForBestEndpointAsync(
-                _vpnEndpoint, _config.Ports, _config.PreferredProtocol, _cancellationHandle.Token);
+                _vpnEndpoint, _config.Ports, _config.PreferredProtocols, _cancellationHandle.Token);
 
             Queued(ct => HandleBestEndpoint(bestEndpoint, ct), cancellationToken);
         }

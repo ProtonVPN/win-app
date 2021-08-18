@@ -38,7 +38,7 @@ namespace ProtonVPN.Common.Vpn
         
         public VpnProtocol VpnProtocol { get; }
 
-        public VpnProtocol PreferredProtocol { get; }
+        public IList<VpnProtocol> PreferredProtocols { get; }
 
         public int NetShieldMode { get; }
 
@@ -55,7 +55,7 @@ namespace ProtonVPN.Common.Vpn
             SplitTunnelIPs = parameters.SplitTunnelIPs ?? new List<string>();
             OpenVpnAdapter = parameters.OpenVpnAdapter;
             VpnProtocol = parameters.VpnProtocol;
-            PreferredProtocol = parameters.PreferredProtocol;
+            PreferredProtocols = parameters.PreferredProtocols;
             NetShieldMode = parameters.NetShieldMode;
             SplitTcp = parameters.SplitTcp;
         }
