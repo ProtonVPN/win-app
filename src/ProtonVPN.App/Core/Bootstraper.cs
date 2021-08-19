@@ -26,6 +26,8 @@ using System.Net.Http;
 using System.ServiceModel;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Interop;
+using System.Windows.Media;
 using Autofac;
 using Caliburn.Micro;
 using ProtonVPN.Account;
@@ -121,6 +123,8 @@ namespace ProtonVPN.Core
         {
             base.OnStartup(sender, e);
 
+            DisableHardwareAcceleration();
+
             UnhandledExceptionLogging logging = Resolve<UnhandledExceptionLogging>();
             logging.CaptureUnhandledExceptions();
             logging.CaptureTaskExceptions();
@@ -150,6 +154,11 @@ namespace ProtonVPN.Core
             }
 
             await Resolve<UserAuth>().InvokeAutoLoginEventAsync();
+        }
+
+        private void DisableHardwareAcceleration()
+        {
+            RenderOptions.ProcessRenderMode = RenderMode.SoftwareOnly;
         }
 
         public void OnExit()
