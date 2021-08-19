@@ -99,7 +99,7 @@ namespace ProtonVPN.Core.Service.Vpn
                 Protocol = Map(request.VpnProtocol),
                 VpnConfig = Map(request.Config),
                 Credentials = Map(request.Credentials),
-                Settings = _settingsContractProvider.GetSettingsContract()
+                Settings = _settingsContractProvider.GetSettingsContract(request.Config.OpenVpnAdapter)
             };
         }
 
