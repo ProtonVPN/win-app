@@ -329,9 +329,9 @@ namespace ProtonVPN.Settings
         public List<KeyValuePair<string, string>> Protocols => new()
         {
             new("auto", Translation.Get("Settings_Connection_DefaultProtocol_val_Smart")),
-            new("tcp", Translation.Get("Settings_Connection_DefaultProtocol_val_Tcp")),
-            new("udp", Translation.Get("Settings_Connection_DefaultProtocol_val_Udp")),
             new("wireguard", Translation.Get("Settings_Connection_DefaultProtocol_val_WireGuard")),
+            new("udp", Translation.Get("Settings_Connection_DefaultProtocol_val_Udp")),
+            new("tcp", Translation.Get("Settings_Connection_DefaultProtocol_val_Tcp")),
         };
 
         public List<KeyValuePair<OpenVpnAdapter, string>> NetworkDrivers => new()

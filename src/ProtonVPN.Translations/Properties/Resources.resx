@@ -703,8 +703,8 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <comment>The label for Early Access toggle switch in General tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_DefaultProtocol" xml:space="preserve">
-    <value>Default Protocol</value>
-    <comment>The label for Default Protocol combo box in Connection tab of Settings window</comment>
+    <value>Protocol</value>
+    <comment>The label for Protocol combo box in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_DnsLeakProtection" xml:space="preserve">
     <value>DNS Leak Protection</value>
@@ -2283,12 +2283,12 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <comment>The tooltip text of server load image in Countries tab of Sidebar section of main app window</comment>
   </data>
   <data name="Settings_Connection_DefaultProtocol_val_Tcp" xml:space="preserve">
-    <value>OpenVPN (TCP)</value>
-    <comment>The TCP protocol name displayed in Default Protocol combo box in Connection tab of Settings window. Do not translate.</comment>
+    <value>OpenVPN - TCP</value>
+    <comment>The OpenVPN TCP protocol name displayed in Protocol combo box in Connection tab of Settings window. Do not translate.</comment>
   </data>
   <data name="Settings_Connection_DefaultProtocol_val_Udp" xml:space="preserve">
-    <value>OpenVPN (UDP)</value>
-    <comment>The UDP protocol name displayed in Default Protocol combo box in Connection tab of Settings window. Do not translate.</comment>
+    <value>OpenVPN - UDP</value>
+    <comment>The OpenVPN UDP protocol name displayed in Protocol combo box in Connection tab of Settings window. Do not translate.</comment>
   </data>
   <data name="Country_val_ZZ" xml:space="preserve">
     <value>Unknown</value>
@@ -2335,8 +2335,8 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <comment>The end of text for VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text after imaginary placeholder {0} in the text string "Connection to {0} has failed". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Settings_Connection_DefaultProtocol_val_Smart" xml:space="preserve">
-    <value>Smart (default)</value>
-    <comment>The protocol selection displayed in Default Protocol combo box in Connection tab of Settings window.</comment>
+    <value>Smart (suggested)</value>
+    <comment>The suggested Smart protocol selection displayed in Protocol combo box in Connection tab of Settings window.</comment>
   </data>
   <data name="Sidebar_Connection_lbl_KillSwitch" xml:space="preserve">
     <value>Kill Switch activated!</value>
@@ -2383,7 +2383,7 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <comment>The description of IPv6 Leak Protection setting displayed in the tooltip of the ( i ) image next to the label for IPv6 Leak Protection toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_DefaultProtocol_Info" xml:space="preserve">
-    <value>Smart protocol selection will automatically use the protocol and port that offer the best connectivity.</value>
+    <value>Enable Smart Protocol to automatically use the protocol and port that offer the best connectivity.</value>
     <comment>The description of Default Protocol settings displayed in the tooltip of ( i ) image next to the label for Default Protocol combo box in Connection tab of Settings window</comment>
   </data>
   <data name="Notifications_InsecureWiFi_LearnMore" xml:space="preserve">
@@ -3213,6 +3213,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>WireGuard</value>
   </data>
   <data name="Settings_Connection_DefaultProtocol_val_WireGuard" xml:space="preserve">
-    <value>WireGuard (beta)</value>
+    <value>WireGuard</value>
+    <comment>The WireGuard protocol name displayed in the Protocol combo box in Connection tab of Settings window. Do not translate.</comment>
   </data>
 </root>

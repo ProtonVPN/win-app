@@ -5827,7 +5827,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Smart (default).
+        ///   Looks up a localized string similar to Smart (suggested).
         /// </summary>
         public static string Settings_Connection_DefaultProtocol_val_Smart {
             get {
@@ -5836,7 +5836,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to OpenVPN (TCP).
+        ///   Looks up a localized string similar to OpenVPN - TCP.
         /// </summary>
         public static string Settings_Connection_DefaultProtocol_val_Tcp {
             get {
@@ -5845,7 +5845,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to OpenVPN (UDP).
+        ///   Looks up a localized string similar to OpenVPN - UDP.
         /// </summary>
         public static string Settings_Connection_DefaultProtocol_val_Udp {
             get {
@@ -5854,7 +5854,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to WireGuard (beta).
+        ///   Looks up a localized string similar to WireGuard.
         /// </summary>
         public static string Settings_Connection_DefaultProtocol_val_WireGuard {
             get {
@@ -5899,7 +5899,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Default Protocol.
+        ///   Looks up a localized string similar to Protocol.
         /// </summary>
         public static string Settings_Connection_lbl_DefaultProtocol {
             get {
@@ -5908,7 +5908,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Smart protocol selection will automatically use the protocol and port that offer the best connectivity..
+        ///   Looks up a localized string similar to Enable Smart Protocol to automatically use the protocol and port that offer the best connectivity..
         /// </summary>
         public static string Settings_Connection_lbl_DefaultProtocol_Info {
             get {
