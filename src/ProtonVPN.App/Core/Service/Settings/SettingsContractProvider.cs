@@ -21,6 +21,7 @@ using ProtonVPN.Common;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Service.Contract.Settings;
 using System.Linq;
+using ProtonVPN.Common.Networking;
 
 namespace ProtonVPN.Core.Service.Settings
 {
@@ -33,7 +34,7 @@ namespace ProtonVPN.Core.Service.Settings
             _appSettings = appSettings;
         }
 
-        public SettingsContract GetSettingsContract()
+        public SettingsContract GetSettingsContract(OpenVpnAdapter? openVpnAdapter = null)
         {
             return new()
             {
@@ -48,7 +49,7 @@ namespace ProtonVPN.Core.Service.Settings
                 SplitTcp = _appSettings.VpnAcceleratorEnabled,
                 Ipv6LeakProtection = _appSettings.Ipv6LeakProtection,
                 VpnProtocol = _appSettings.GetProtocol(),
-                OpenVpnAdapter = _appSettings.NetworkAdapterType,
+                OpenVpnAdapter = openVpnAdapter ?? _appSettings.NetworkAdapterType,
             };
         }
 

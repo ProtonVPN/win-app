@@ -141,7 +141,7 @@ namespace ProtonVPN.Vpn.Connectors
             return new VpnConfig(new VpnConfigParameters
             {
                 Ports = portConfig,
-                OpenVpnAdapter = _appSettings.NetworkAdapterType,
+                OpenVpnAdapter = OpenVpnAdapter.Tap,
                 PreferredProtocols = new List<VpnProtocol>
                 {
                     VpnProtocol.OpenVpnUdp,
