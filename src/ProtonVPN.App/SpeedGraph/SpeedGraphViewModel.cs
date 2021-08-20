@@ -21,10 +21,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows.Threading;
 using OxyPlot;
 using OxyPlot.Series;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.MVVM;
@@ -35,16 +35,18 @@ namespace ProtonVPN.SpeedGraph
 {
     internal class SpeedGraphViewModel : ViewModel, IVpnStateAware, ILogoutAware
     {
+        private readonly int _maxDataPoints = 60;
+
+        private readonly ILogger _logger;
+        private readonly VpnConnectionSpeed _speedTracker;
+        private readonly ISchedulerTimer _timer;
+
         private ViewResolvingPlotModel _plotModel;
         private readonly LineSeries _downloadAreaSeries = new();
         private List<DataPoint> _downloadDataPoints = new();
         private readonly LineSeries _uploadAreaSeries = new();
         private List<DataPoint> _uploadDataPoints = new();
         private int _secondsPassed;
-        private readonly int _maxDataPoints = 60;
-        private readonly VpnConnectionSpeed _speedTracker;
-        private readonly DispatcherTimer _timer;
-        private readonly ILogger _logger;
 
         private double _totalBytesDownloaded;
         private double _totalBytesUploaded;
@@ -52,7 +54,7 @@ namespace ProtonVPN.SpeedGraph
         private double _currentUploadSpeed;
         private double _maxBandwidth;
 
-        public SpeedGraphViewModel(VpnConnectionSpeed speedTracker, ILogger logger)
+        public SpeedGraphViewModel(ILogger logger, VpnConnectionSpeed speedTracker, IScheduler scheduler)
         {
             _logger = logger;
             _speedTracker = speedTracker;
@@ -62,7 +64,8 @@ namespace ProtonVPN.SpeedGraph
             InitDownloadSeries();
             InitUploadSeries();
 
-            _timer = new DispatcherTimer {Interval = TimeSpan.FromSeconds(1)};
+            _timer = scheduler.Timer();
+            _timer.Interval = TimeSpan.FromSeconds(1);
             _timer.Tick += DrawSpeedLines;
         }
 
