@@ -38,6 +38,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <system:String x:Key="StartMinimizedCombobox">StartMinimizedCombobox</system:String>
     <system:String x:Key="ProtocolCombobox">StartMinimizedCombobox</system:String>
     <system:String x:Key="Ipv6ProtectionCheckbox">Ipv6ProtectionCheckbox</system:String>
+    <system:String x:Key="HardwareAccelerationCheckbox">HardwareAccelerationCheckbox</system:String>
     <system:String x:Key="NetworkDriverCheckbox">NetworkDriverCheckbox</system:String>
     <system:String x:Key="ShowNotificationsCheckbox">ShowNotificationsCheckbox</system:String>
     <system:String x:Key="EarlyAccessCheckbox">EarlyAccessCheckbox</system:String>

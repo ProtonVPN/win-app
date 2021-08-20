@@ -107,6 +107,7 @@ namespace ProtonVPN.Core.Settings
         DateTimeOffset? AuthenticationCertificateRefreshUtcDate { get; set; }
         DateTimeOffset? AuthenticationCertificateRequestUtcDate { get; set; }
         string CertificationServerPublicKey { get; set; }
+        bool HardwareAccelerationEnabled { get; set; }
         bool IsNetShieldEnabled();
         bool IsPortForwardingEnabled();
         bool IsVpnAcceleratorEnabled();

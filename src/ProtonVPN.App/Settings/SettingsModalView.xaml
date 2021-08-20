@@ -459,6 +459,26 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </DockPanel>
                     </Border>
 
+                    <Border DockPanel.Dock="Top" Style="{StaticResource BorderSettingContainer}">
+                        <DockPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Foreground="White" FontSize="16" VerticalAlignment="Center" 
+                                       Content="{translations:Loc Settings_Advanced_lbl_HardwareAcceleration}"/>
+                                <fa:FontAwesome Icon="InfoCircle"
+                                                VerticalAlignment="Center"
+                                                HorizontalAlignment="Left"
+                                                Foreground="{StaticResource PrimaryColor}"
+                                                FontSize="16"
+                                                ToolTip="{translations:Loc Settings_Advanced_lbl_HardwareAcceleration_Info}"/>
+                            </StackPanel>
+
+                            <CheckBox HorizontalAlignment="Right"
+                                      Style="{StaticResource ToggleSwitch}"
+                                      IsChecked="{Binding HardwareAccelerationEnabled}"
+                                      AutomationProperties.AutomationId="{StaticResource HardwareAccelerationCheckbox}"/>
+                        </DockPanel>
+                    </Border>
+
                     <Border DockPanel.Dock="Top" Style="{StaticResource BorderlessSettingContainer}">
                         <DockPanel>
                             <StackPanel Orientation="Horizontal">

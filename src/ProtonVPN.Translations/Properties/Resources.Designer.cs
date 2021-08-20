@@ -5674,6 +5674,24 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hardware Acceleration.
+        /// </summary>
+        public static string Settings_Advanced_lbl_HardwareAcceleration {
+            get {
+                return ResourceManager.GetString("Settings_Advanced_lbl_HardwareAcceleration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use the GPU for a smooth and efficient interface rendering. Turn it off if you encounter any visual glitches..
+        /// </summary>
+        public static string Settings_Advanced_lbl_HardwareAcceleration_Info {
+            get {
+                return ResourceManager.GetString("Settings_Advanced_lbl_HardwareAcceleration_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to IPv6 Leak Protection.
         /// </summary>
         public static string Settings_Advanced_lbl_Ipv6Protection {

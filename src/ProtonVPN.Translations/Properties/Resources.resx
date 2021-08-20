@@ -2382,6 +2382,14 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <value>Prevent leaking IPv6 address.</value>
     <comment>The description of IPv6 Leak Protection setting displayed in the tooltip of the ( i ) image next to the label for IPv6 Leak Protection toggle switch in Advanced tab of Settings window</comment>
   </data>
+  <data name="Settings_Advanced_lbl_HardwareAcceleration" xml:space="preserve">
+    <value>Hardware Acceleration</value>
+    <comment>The label for Hardware Acceleration toggle switch in Advanced tab of Settings window</comment>
+  </data>
+  <data name="Settings_Advanced_lbl_HardwareAcceleration_Info" xml:space="preserve">
+    <value>Use the GPU for a smooth and efficient interface rendering. Turn it off if you encounter any visual glitches.</value>
+    <comment>The description of Hardware Acceleration setting displayed in the tooltip of the ( i ) image next to the label for Hardware Acceleration toggle switch in Advanced tab of Settings window</comment>
+  </data>
   <data name="Settings_Connection_lbl_DefaultProtocol_Info" xml:space="preserve">
     <value>Enable Smart Protocol to automatically use the protocol and port that offer the best connectivity.</value>
     <comment>The description of Default Protocol settings displayed in the tooltip of ( i ) image next to the label for Default Protocol combo box in Connection tab of Settings window</comment>

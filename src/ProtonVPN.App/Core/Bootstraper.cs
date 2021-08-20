@@ -123,8 +123,6 @@ namespace ProtonVPN.Core
         {
             base.OnStartup(sender, e);
 
-            DisableHardwareAcceleration();
-
             UnhandledExceptionLogging logging = Resolve<UnhandledExceptionLogging>();
             logging.CaptureUnhandledExceptions();
             logging.CaptureTaskExceptions();
@@ -143,6 +141,7 @@ namespace ProtonVPN.Core
             Resolve<SyncedAutoStartup>().Sync();
 
             IncreaseAppStartCount();
+            SetHardwareAcceleration();
             RegisterEvents();
             Resolve<Language>().Initialize(_args);
             await ShowInitialWindow();
@@ -154,11 +153,6 @@ namespace ProtonVPN.Core
             }
 
             await Resolve<UserAuth>().InvokeAutoLoginEventAsync();
-        }
-
-        private void DisableHardwareAcceleration()
-        {
-            RenderOptions.ProcessRenderMode = RenderMode.SoftwareOnly;
         }
 
         public void OnExit()
@@ -205,6 +199,11 @@ namespace ProtonVPN.Core
         private void IncreaseAppStartCount()
         {
             Resolve<IAppSettings>().AppStartCounter++;
+        }
+
+        private void SetHardwareAcceleration()
+        {
+            HardwareAccelerationManager.Set(Resolve<IAppSettings>().HardwareAccelerationEnabled);
         }
 
         private void LoadServersFromCache()
