@@ -5683,7 +5683,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Use the GPU for a smooth and efficient interface rendering. Turn it off if you encounter any visual glitches..
+        ///   Looks up a localized string similar to Provides improved system performance and a smoother experience by using the GPU for graphics rendering. Turn off in case of screen glitches..
         /// </summary>
         public static string Settings_Advanced_lbl_HardwareAcceleration_Info {
             get {
