@@ -130,6 +130,7 @@
     <Compile Include="BugReporting\IReportFieldProvider.cs" />
     <Compile Include="BugReporting\ReportFieldProvider.cs" />
     <Compile Include="Core\ExpiredSessionHandler.cs" />
+    <Compile Include="Core\HardwareAccelerationManager.cs" />
     <Compile Include="Core\ILanguageProvider.cs" />
     <Compile Include="Core\Language.cs" />
     <Compile Include="Core\LanguageProvider.cs" />

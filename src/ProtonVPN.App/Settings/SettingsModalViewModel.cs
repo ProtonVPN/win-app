@@ -22,6 +22,8 @@ using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Windows.Interop;
+using System.Windows.Media;
 using GalaSoft.MvvmLight.CommandWpf;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
@@ -285,6 +287,12 @@ namespace ProtonVPN.Settings
             set => _appSettings.StartOnStartup = value;
         }
 
+        public bool HardwareAccelerationEnabled
+        { 
+            get => _appSettings.HardwareAccelerationEnabled;
+            set => _appSettings.HardwareAccelerationEnabled = value;
+        }
+
         public string SelectedProtocol
         {
             get => _appSettings.OvpnProtocol;
@@ -439,6 +447,10 @@ namespace ProtonVPN.Settings
             else if (e.PropertyName.Equals(nameof(IAppSettings.OvpnProtocol)))
             {
                 NotifyOfPropertyChange(() => IsToShowNetworkDriverSelection);
+            }
+            else if (e.PropertyName.Equals(nameof(IAppSettings.HardwareAccelerationEnabled)))
+            {
+                HardwareAccelerationManager.Set(HardwareAccelerationEnabled);
             }
 
             RefreshReconnectRequiredState(e.PropertyName);

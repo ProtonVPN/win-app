@@ -505,6 +505,12 @@ namespace ProtonVPN.Core
             set => SetPerUser(value?.Encrypt());
         }
 
+        public bool HardwareAccelerationEnabled
+        {
+            get => Get<bool>();
+            set => Set(value);
+        }
+
         public TimeSpan MaintenanceCheckInterval
         {
             get
