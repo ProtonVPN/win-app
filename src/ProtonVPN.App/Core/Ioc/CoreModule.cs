@@ -99,6 +99,7 @@ namespace ProtonVPN.Core.Ioc
             builder.Register(c =>
                 new RetryingHandler(
                         c.Resolve<Common.Configuration.Config>().ApiTimeout,
+                        c.Resolve<Common.Configuration.Config>().ApiUploadTimeout,
                         c.Resolve<Common.Configuration.Config>().ApiRetries,
                         (retryCount, response, context) => new SleepDurationProvider(response).Value())
                     {InnerHandler = c.Resolve<LoggingHandler>()}).SingleInstance();
@@ -164,6 +165,7 @@ namespace ProtonVPN.Core.Ioc
 
                     var retryingHandler = new RetryingHandler(
                             c.Resolve<Common.Configuration.Config>().ApiTimeout,
+                            c.Resolve<Common.Configuration.Config>().ApiUploadTimeout,
                             c.Resolve<Common.Configuration.Config>().ApiRetries,
                             (retryCount, response, context) => new SleepDurationProvider(response).Value())
                         {InnerHandler = loggingHandler};

@@ -117,8 +117,11 @@ namespace ProtonVPN.Common.Configuration
         [Required]
         public string UserAgent { get; internal set; }
 
-        [Range(typeof(TimeSpan), "00:00:01", "00:01:00")]
+        [Range(typeof(TimeSpan), "00:00:01", "00:05:00")]
         public TimeSpan ApiTimeout { get; internal set; }
+
+        [Range(typeof(TimeSpan), "00:00:01", "00:05:00")]
+        public TimeSpan ApiUploadTimeout { get; internal set; }
 
         [Range(typeof(TimeSpan), "00:00:01", "00:01:00")]
         public TimeSpan DohClientTimeout { get; internal set; }

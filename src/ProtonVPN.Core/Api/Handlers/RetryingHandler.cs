@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -26,7 +26,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using Polly;
 using Polly.Contrib.WaitAndRetry;
+using Polly.Retry;
 using Polly.Timeout;
+using Polly.Wrap;
 
 namespace ProtonVPN.Core.Api.Handlers
 {
@@ -47,14 +49,15 @@ namespace ProtonVPN.Core.Api.Handlers
         };
 
         private readonly AsyncPolicy<HttpResponseMessage> _policy;
+        private readonly AsyncPolicy<HttpResponseMessage> _fileUploadPolicy;
 
-        public RetryingHandler(TimeSpan timeout, int maxRetries, Func<int, DelegateResult<HttpResponseMessage>, Context, TimeSpan> sleepDurationProvider)
+        public RetryingHandler(TimeSpan timeout, TimeSpan uploadTimeout, int maxRetries, Func<int, DelegateResult<HttpResponseMessage>, Context, TimeSpan> sleepDurationProvider)
         {
-            var retryAfterPolicy = Policy
+            AsyncRetryPolicy<HttpResponseMessage> retryAfterPolicy = Policy
                 .HandleResult<HttpResponseMessage>(ContainsRetryAfterHeader)
                 .WaitAndRetryAsync(maxRetries, sleepDurationProvider, (outcome, timespan, retryCount, context) => Task.CompletedTask);
 
-            var httpRetryPolicy =
+            AsyncRetryPolicy<HttpResponseMessage> httpRetryPolicy =
                 Policy
                     .Handle<HttpRequestException>()
                     .Or<TaskCanceledException>()
@@ -62,15 +65,18 @@ namespace ProtonVPN.Core.Api.Handlers
                     .OrResult<HttpResponseMessage>(RetryRequired)
                     .WaitAndRetryAsync(GetBackOff(maxRetries));
 
-            var timeoutPolicy = Policy.TimeoutAsync(timeout);
+            AsyncPolicyWrap<HttpResponseMessage> baseRetryPolicy = retryAfterPolicy.WrapAsync(httpRetryPolicy);
 
-            _policy = retryAfterPolicy.WrapAsync(httpRetryPolicy).WrapAsync(timeoutPolicy);
+            _policy = baseRetryPolicy.WrapAsync(Policy.TimeoutAsync(timeout));
+            _fileUploadPolicy = baseRetryPolicy.WrapAsync(Policy.TimeoutAsync(uploadTimeout));
         }
 
         protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request,
             CancellationToken cancellationToken)
         {
-            return _policy.ExecuteAsync(async ct =>
+            AsyncPolicy<HttpResponseMessage> policy = request.Content is MultipartFormDataContent ? _fileUploadPolicy : _policy;
+
+            return policy.ExecuteAsync(async ct =>
                     await base.SendAsync(request, ct),
                 cancellationToken);
         }
