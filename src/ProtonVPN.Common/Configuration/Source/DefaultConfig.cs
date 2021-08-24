@@ -109,6 +109,8 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 ApiTimeout = TimeSpan.FromSeconds(10),
 
+                ApiUploadTimeout = TimeSpan.FromSeconds(30),
+
                 DohClientTimeout = TimeSpan.FromSeconds(10),
 
                 ApiRetries = 0,

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -36,17 +36,17 @@ namespace ProtonVPN.Core.Test.Api.Handlers
         public async Task It_ShouldRetry_WhenRequestFails()
         {
             // Arrange
-            var timeout = TimeSpan.FromSeconds(5);
+            TimeSpan timeout = TimeSpan.FromSeconds(5);
             const int maxRetries = 3;
 
-            var innerHandler = new MockHttpMessageHandler();
-            var request = innerHandler.When("*").Respond(_ => new HttpResponseMessage((HttpStatusCode) 429));
+            MockHttpMessageHandler innerHandler = new();
+            MockedRequest request = innerHandler.When("*").Respond(_ => new HttpResponseMessage((HttpStatusCode) 429));
 
-            var handler = new RetryingHandler(timeout, maxRetries, (i, result, arg3) => TimeSpan.Zero)
+            RetryingHandler handler = new(timeout, timeout, maxRetries, (i, result, arg3) => TimeSpan.Zero)
             {
                 InnerHandler = innerHandler
             };
-            var httpClient = new HttpClient(handler) { BaseAddress = new Uri("http://127.0.0.1") };
+            HttpClient httpClient = new(handler) { BaseAddress = new Uri("http://127.0.0.1") };
             
             // Act
             await httpClient.SendAsync(new HttpRequestMessage());
@@ -62,14 +62,14 @@ namespace ProtonVPN.Core.Test.Api.Handlers
             var timeout = TimeSpan.FromMilliseconds(100);
             const int maxRetries = 0;
 
-            var innerHandler = new MockHttpMessageHandler {AutoFlush = false};
+            MockHttpMessageHandler innerHandler = new() {AutoFlush = false};
             innerHandler.When("*").Respond(_ => new HttpResponseMessage(HttpStatusCode.OK));
 
-            var handler = new RetryingHandler(timeout, maxRetries, (i, result, arg3) => TimeSpan.Zero)
+            RetryingHandler handler = new(timeout, timeout, maxRetries, (i, result, arg3) => TimeSpan.Zero)
             {
                 InnerHandler = innerHandler
             };
-            var httpClient = new HttpClient(handler) { BaseAddress = new Uri("http://127.0.0.1") };
+            HttpClient httpClient = new(handler) { BaseAddress = new Uri("http://127.0.0.1") };
 
             // Act
             Task.Delay(TimeSpan.FromMilliseconds(200))

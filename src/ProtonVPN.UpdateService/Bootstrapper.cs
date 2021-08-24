@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -61,7 +61,7 @@ namespace ProtonVPN.UpdateService
 
             try
             {
-                var content = System.IO.File.ReadAllText(Resolve<Config>().UpdateFilePath).Split('\n');
+                string[] content = System.IO.File.ReadAllText(Resolve<Config>().UpdateFilePath).Split('\n');
                 if (content.Length != 2)
                 {
                     return;
@@ -160,6 +160,7 @@ namespace ProtonVPN.UpdateService
             builder.Register(c =>
                 new RetryingHandler(
                         c.Resolve<Config>().ApiTimeout,
+                        c.Resolve<Config>().ApiUploadTimeout,
                         c.Resolve<Config>().ApiRetries,
                         (retryCount, response, context) => new SleepDurationProvider(response).Value())
                     { InnerHandler = c.Resolve<LoggingHandler>() }).SingleInstance();
