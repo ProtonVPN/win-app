@@ -24,6 +24,7 @@ using System.Windows.Input;
 using System.Windows.Threading;
 using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Common.KillSwitch;
+using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Modals;
@@ -62,9 +63,12 @@ namespace ProtonVPN.Sidebar
         private readonly VpnConnectionSpeed _speedTracker;
         private readonly IUserStorage _userStorage;
         private readonly IModals _modals;
+        private readonly ILogger _logger;
         private readonly SettingsModalViewModel _settingsModalViewModel;
         private EnumToDisplayTextConverter _enumToDisplayTextConverter;
+
         private readonly DispatcherTimer _timer;
+
         private VpnStatus _vpnStatus;
         private bool _sidebarMode;
 
@@ -75,7 +79,8 @@ namespace ProtonVPN.Sidebar
             IVpnManager vpnManager,
             VpnConnectionSpeed speedTracker,
             IUserStorage userStorage,
-            IModals modals,
+            IModals modals, 
+            ILogger logger,
             SettingsModalViewModel settingsModalViewModel,
             AnnouncementsViewModel announcementsViewModel)
         {
@@ -86,6 +91,7 @@ namespace ProtonVPN.Sidebar
             _speedTracker = speedTracker;
             _userStorage = userStorage;
             _modals = modals;
+            _logger = logger;
             _settingsModalViewModel = settingsModalViewModel;
             _enumToDisplayTextConverter = new EnumToDisplayTextConverter();
 
@@ -208,9 +214,33 @@ namespace ProtonVPN.Sidebar
         {
             if (ConnectedServer != null)
             {
-                // Retrieve the fresh server object to display updated server load value
-                ConnectedServer = _serverManager.GetServer(new ServerById(ConnectedServer.Id)) ?? ConnectedServer;
+                SetConnectedServerByIdOrDefault(ConnectedServer.Id);
             }
+        }
+
+        private void SetConnectedServerByIdOrDefault(string serverId, Server defaultServer = null)
+        {
+            // Retrieve the fresh server object to display updated server load value
+            Server updatedServer = _serverManager.GetServer(new ServerById(serverId));
+
+            if (updatedServer == null)
+            {
+                LogNullUpdatedServer(serverId, defaultServer);
+                if (defaultServer != null)
+                {
+                    ConnectedServer = defaultServer;
+                }
+            }
+            else
+            {
+                ConnectedServer = updatedServer;
+            }
+        }
+
+        private void LogNullUpdatedServer(string serverId, Server defaultServer)
+        {
+            string defaultServerText = defaultServer == null ? "null" : $"[Id: '{defaultServer.Id}' Name: '{defaultServer.Name}']";
+            _logger.Error($"The connected server does not exist. ServerId: '{serverId}' DefaultServer: {defaultServerText}");
         }
 
         public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
@@ -220,36 +250,57 @@ namespace ProtonVPN.Sidebar
             switch (_vpnStatus)
             {
                 case VpnStatus.Connected:
-                    Server server = e.State.Server;
-                    if (server != null)
-                    {
-                        Connected = true;
-                        Disconnected = false;
-                        // Retrieve the fresh server object to display updated server load value
-                        ConnectedServer = _serverManager.GetServer(new ServerById(server.Id)) ?? Server.Empty();
-                        SetIp(server.ExitIp);
-                        SetConnectionName(ConnectedServer);
-                        AdapterProtocol = GetAdapterProtocol(e);
-                        _timer.Start();
-                    }
+                    SetStatusAsConnected(e);
                     break;
                 case VpnStatus.Pinging:
                 case VpnStatus.Connecting:
                 case VpnStatus.Reconnecting:
                 case VpnStatus.Disconnected:
                 case VpnStatus.Disconnecting:
-                    Connected = false;
-                    Disconnected = true;
-                    ConnectedServer = null;
-                    ConnectionName = null;
-                    SetUserIp();
-                    _timer.Stop();
+                    SetStatusAsNotConnected();
                     break;
             }
 
             SetKillSwitchActivated(e.NetworkBlocked, e.State.Status);
 
             return Task.CompletedTask;
+        }
+
+        private void SetStatusAsConnected(VpnStateChangedEventArgs e)
+        {
+            Server server = e.State.Server;
+            Connected = true;
+            Disconnected = false;
+            if (server == null)
+            {
+                LogNullConnectedServer(e);
+            }
+            else
+            {
+                SetConnectedServerByIdOrDefault(server.Id, Server.Empty());
+                SetIp(server.ExitIp);
+                SetConnectionName(ConnectedServer);
+            }
+            AdapterProtocol = GetAdapterProtocol(e);
+            _timer.Start();
+        }
+
+        private void SetStatusAsNotConnected()
+        {
+            Connected = false;
+            Disconnected = true;
+            ConnectedServer = null;
+            ConnectionName = null;
+            SetUserIp();
+            _timer.Stop();
+        }
+
+        private void LogNullConnectedServer(VpnStateChangedEventArgs e)
+        {
+            _logger.Error($"The status changed to Connected but the associated Server is null. Error: '{e.Error}' " +
+                          $"NetworkBlocked: '{e.NetworkBlocked}' UnexpectedDisconnect: '{e.UnexpectedDisconnect}' " +
+                          $"[State] Status: '{e.State.Status}' EntryIp: '{e.State.EntryIp}' Label: '{e.State.Label}' " +
+                          $"NetworkAdapterType: '{e.State.NetworkAdapterType}' VpnProtocol: '{e.State.VpnProtocol}'");
         }
 
         private string GetAdapterProtocol(VpnStateChangedEventArgs e)

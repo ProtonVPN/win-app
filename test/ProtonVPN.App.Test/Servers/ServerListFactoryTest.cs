@@ -22,6 +22,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
+using ProtonVPN.Common.Logging;
 using ProtonVPN.Config.Url;
 using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.Models;
@@ -38,6 +39,7 @@ namespace ProtonVPN.App.Test.Servers
         private IStreamingServices _streamingServices;
         private IUserStorage _userStorage;
         private IAppSettings _appSettings;
+        private ILogger _logger;
         private ServerManager _serverManager;
         private ServerListFactory _serverListFactory;
         private IActiveUrls _urls;
@@ -45,7 +47,7 @@ namespace ProtonVPN.App.Test.Servers
         private User _user;
         private List<string> _countries;
 
-        private readonly List<string> _countriesWithFreeServers = new List<string> {"JP", "NL", "US"};
+        private readonly List<string> _countriesWithFreeServers = new() {"JP", "NL", "US"};
 
         [TestInitialize]
         public void TestInitialize()
@@ -74,11 +76,20 @@ namespace ProtonVPN.App.Test.Servers
             }
 
             _appSettings = Substitute.For<IAppSettings>();
-            _serverManager = Substitute.For<ServerManager>(_userStorage, _appSettings, servers);
+            _logger = Substitute.For<ILogger>();
+            _serverManager = Substitute.For<ServerManager>(_userStorage, _appSettings, _logger);
+            _serverManager.Load(servers);
             _urls = Substitute.For<IActiveUrls>();
 
             InitializeSortedCountries();
             _serverListFactory = new ServerListFactory(_serverManager, _userStorage, _streamingServices, _urls);
+        }
+
+        private void InitializeUserStorage()
+        {
+            _userStorage = Substitute.For<IUserStorage>();
+            _user = new User();
+            _userStorage.User().Returns(_user);
         }
 
         private LogicalServerContract CreateServer(string name, Features features, string exitCountryCode,
@@ -94,13 +105,6 @@ namespace ProtonVPN.App.Test.Servers
                 City = city,
                 Servers = new List<PhysicalServerContract>()
             };
-        }
-
-        private void InitializeUserStorage()
-        {
-            _userStorage = Substitute.For<IUserStorage>();
-            _user = new User();
-            _userStorage.User().Returns(_user);
         }
 
         private void InitializeSortedCountries()
@@ -122,10 +126,13 @@ namespace ProtonVPN.App.Test.Servers
         [TestCleanup]
         public void TestCleanup()
         {
-            _userStorage = null;
-            _serverManager = null;
             _streamingServices = null;
+            _userStorage = null;
+            _appSettings = null;
+            _logger = null;
+            _serverManager = null;
             _serverListFactory = null;
+            _urls = null;
 
             _user = null;
             _countries = null;

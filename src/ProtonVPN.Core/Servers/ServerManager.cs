@@ -21,6 +21,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Helpers;
+using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Core.Abstract;
 using ProtonVPN.Core.Api.Contracts;
@@ -34,21 +35,18 @@ namespace ProtonVPN.Core.Servers
     {
         private readonly IUserStorage _userStorage;
         private readonly IAppSettings _appSettings;
+        private readonly ILogger _logger;
         private readonly ServerNameComparer _serverNameComparer;
+
         private List<LogicalServerContract> _servers = new();
         private List<string> _countries = new();
 
-        public ServerManager(IUserStorage userStorage, IAppSettings appSettings)
+        public ServerManager(IUserStorage userStorage, IAppSettings appSettings, ILogger logger)
         {
             _userStorage = userStorage;
             _appSettings = appSettings;
+            _logger = logger;
             _serverNameComparer = new ServerNameComparer();
-        }
-
-        public ServerManager(IUserStorage userStorage, IAppSettings appSettings, List<LogicalServerContract> servers) :
-            this(userStorage, appSettings)
-        {
-            _servers = servers;
         }
 
         public bool IsServerFromSpec(Server server, ISpecification<LogicalServerContract> spec)
@@ -59,8 +57,27 @@ namespace ProtonVPN.Core.Servers
         public void Load(IReadOnlyCollection<LogicalServerContract> servers)
         {
             Ensure.NotEmpty(servers, nameof(servers));
+
+            int previousNumOfServers = _servers.Count;
+            int previousNumOfCountries = _countries.Count;
+
             SaveServers(servers);
             SaveCountries(servers);
+
+            LogServerListUpdate(previousNumOfServers, previousNumOfCountries);
+        }
+
+        private void LogServerListUpdate(int previousNumOfServers, int previousNumOfCountries)
+        {
+            string numOfServersText = previousNumOfServers == _servers.Count
+                ? $"{_servers.Count}"
+                : $"{previousNumOfServers} -> {_servers.Count}";
+
+            string numOfCountriesText = previousNumOfCountries == _countries.Count
+                ? $"{_countries.Count}"
+                : $"{previousNumOfCountries} -> {_countries.Count}";
+
+            _logger.Info($"Servers updated. Num of servers: {numOfServersText} Num of countries: {numOfCountriesText}");
         }
 
         public virtual void UpdateLoads(IReadOnlyCollection<LogicalServerContract> servers)
