@@ -23,6 +23,7 @@ using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using NSubstitute.ReturnsExtensions;
+using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.ConnectionInfo;
 using ProtonVPN.Core.Abstract;
@@ -43,6 +44,7 @@ namespace ProtonVPN.App.Test.ConnectionInfo
         private IServerUpdater _serverUpdater;
         private ServerManager _serverManager;
         private IAppSettings _appSettings;
+        private ILogger _logger;
 
         [TestInitialize]
         public void TestInitialize()
@@ -51,7 +53,8 @@ namespace ProtonVPN.App.Test.ConnectionInfo
             _userStorage = Substitute.For<IUserStorage>();
             _serverUpdater = Substitute.For<IServerUpdater>();
             _appSettings = Substitute.For<IAppSettings>();
-            _serverManager = Substitute.For<ServerManager>(_userStorage, _appSettings);
+            _logger = Substitute.For<ILogger>();
+            _serverManager = Substitute.For<ServerManager>(_userStorage, _appSettings, _logger);
 
             ApiResponseResult<VpnInfoResponse> result = ApiResponseResult<VpnInfoResponse>.Ok(new VpnInfoResponse
             {
@@ -59,6 +62,17 @@ namespace ProtonVPN.App.Test.ConnectionInfo
                 Error = string.Empty
             });
             _apiClient.GetVpnInfoResponse().Returns(Task.FromResult(result));
+        }
+
+        [TestCleanup]
+        public void TestCleanup()
+        {
+            _apiClient = null;
+            _userStorage = null;
+            _serverUpdater = null;
+            _appSettings = null;
+            _logger = null;
+            _serverManager = null;
         }
 
         [TestMethod]

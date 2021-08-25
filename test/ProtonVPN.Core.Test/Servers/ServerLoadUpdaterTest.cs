@@ -23,6 +23,7 @@ using Caliburn.Micro;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
+using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Settings;
@@ -40,20 +41,33 @@ namespace ProtonVPN.Core.Test.Servers
         private IApiServers _apiServers;
         private ISingleActionFactory _singleActionFactory;
         private ILastServerLoadTimeProvider _lastServerLoadTimeProvider;
-        private readonly SyncSingleTask _task = new SyncSingleTask();
+        private readonly SyncSingleTask _task = new();
 
         [TestInitialize]
         public void Initialize()
         {
             IUserStorage userStorage = Substitute.For<IUserStorage>();
             IAppSettings appSettings = Substitute.For<IAppSettings>();
-            _serverManager = Substitute.For<ServerManager>(userStorage, appSettings);
+            ILogger logger = Substitute.For<ILogger>();
+            _serverManager = Substitute.For<ServerManager>(userStorage, appSettings, logger);
             _scheduler = Substitute.For<IScheduler>();
             _eventAggregator = Substitute.For<IEventAggregator>();
             _mainWindowState = Substitute.For<IMainWindowState>();
             _apiServers = Substitute.For<IApiServers>();
             _singleActionFactory = Substitute.For<ISingleActionFactory>();
             _lastServerLoadTimeProvider = Substitute.For<ILastServerLoadTimeProvider>();
+        }
+
+        [TestCleanup]
+        public void Cleanup()
+        {
+            _serverManager = null;
+            _scheduler = null;
+            _eventAggregator = null;
+            _mainWindowState = null;
+            _apiServers = null;
+            _singleActionFactory = null;
+            _lastServerLoadTimeProvider = null;
         }
 
         [TestMethod]

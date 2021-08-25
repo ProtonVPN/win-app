@@ -87,7 +87,7 @@ namespace ProtonVPN.App.Test.Vpn.Connectors
 
         private void InitializeDependencies()
         {
-            _serverManager = Substitute.For<ServerManager>(_userStorage, _appSettings);
+            _serverManager = Substitute.For<ServerManager>(_userStorage, _appSettings, _logger);
             _serverCandidatesFactory = Substitute.For<ServerCandidatesFactory>(_serverManager);
             _vpnCredentialProvider = Substitute.For<IVpnCredentialProvider>();
             _popupWindows = Substitute.For<IPopupWindows>();

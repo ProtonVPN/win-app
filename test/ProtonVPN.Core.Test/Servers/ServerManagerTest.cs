@@ -24,6 +24,7 @@ using NSubstitute;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Core.Abstract;
 using ProtonVPN.Core.Api.Contracts;
+using ProtonVPN.Common.Logging;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Settings;
 
@@ -34,12 +35,22 @@ namespace ProtonVPN.Core.Test.Servers
     {
         private IUserStorage _userStorage;
         private IAppSettings _appSettings;
+        private ILogger _logger;
 
         [TestInitialize]
         public void Initialize()
         {
             _userStorage = Substitute.For<IUserStorage>();
             _appSettings = Substitute.For<IAppSettings>();
+            _logger = Substitute.For<ILogger>();
+        }
+
+        [TestCleanup]
+        public void Cleanup()
+        {
+            _userStorage = null;
+            _appSettings = null;
+            _logger = null;
         }
 
         [TestMethod]
@@ -48,7 +59,7 @@ namespace ProtonVPN.Core.Test.Servers
             // Arrange
             _appSettings.GetProtocol().Returns(VpnProtocol.WireGuard);
             _userStorage.User().Returns(new Core.Models.User {MaxTier = 0});
-            ServerManager serverManager = new ServerManager(_userStorage, _appSettings);
+            ServerManager serverManager = new ServerManager(_userStorage, _appSettings, _logger);
 
             // Act
             serverManager.Load(GetServerList());
@@ -62,7 +73,7 @@ namespace ProtonVPN.Core.Test.Servers
         {
             // Arrange
             _appSettings.GetProtocol().Returns(VpnProtocol.WireGuard);
-            ServerManager serverManager = new ServerManager(_userStorage, _appSettings);
+            ServerManager serverManager = new ServerManager(_userStorage, _appSettings, _logger);
 
             // Act
             serverManager.Load(GetServerList());
