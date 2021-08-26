@@ -20,7 +20,6 @@
 using System.Threading.Tasks;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
-using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.MVVM;
 using ProtonVPN.Core.Servers.Models;
@@ -116,50 +115,6 @@ namespace ProtonVPN.ConnectingScreen
         }
 
         public async Task OnVpnStateChanged(VpnStateChangedEventArgs e)
-        {
-            if (e.State.VpnProtocol == VpnProtocol.WireGuard)
-            {
-                SetWireguardConnectionState(e);
-            }
-            else
-            {
-                SetOpenVpnConnectionState(e);
-            }
-        }
-
-        private void SetWireguardConnectionState(VpnStateChangedEventArgs e)
-        {
-            Percentage = null;
-            AnimatePercentage = null;
-            switch (e.State.Status)
-            {
-                case VpnStatus.Pinging:
-                case VpnStatus.Connecting:
-                    _server = null;
-                    ResetReconnectingAndFailedServer();
-                    SetConnectingState(e.State.Server,
-                        Message = Translation.Get("Connecting_VpnStatus_val_Connecting"));
-                    break;
-                case VpnStatus.Reconnecting:
-                case VpnStatus.Waiting:
-                case VpnStatus.Authenticating:
-                case VpnStatus.RetrievingConfiguration:
-                case VpnStatus.AssigningIp:
-                    SetConnectingState(e.State.Server,
-                        Message = Translation.Get("Connecting_VpnStatus_val_Connecting"));
-                    break;
-                case VpnStatus.Connected:
-                    ResetConnectingState();
-                    break;
-                case VpnStatus.Disconnecting:
-                case VpnStatus.Disconnected:
-                    ConnectionName = null;
-                    ResetConnectingState();
-                    break;
-            }
-        }
-
-        public void SetOpenVpnConnectionState(VpnStateChangedEventArgs e)
         {
             switch (e.State.Status)
             {
