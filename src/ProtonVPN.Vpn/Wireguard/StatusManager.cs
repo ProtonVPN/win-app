@@ -73,15 +73,15 @@ namespace ProtonVPN.Vpn.WireGuard
 
                     if (line.Contains("Received handshake response"))
                     {
-                        StateChanged?.Invoke(this,
-                            new EventArgs<VpnState>(new VpnState(VpnStatus.Connected, VpnError.None,
-                                VpnProtocol.WireGuard)));
+                        InvokeStateChange(VpnStatus.Connected);
+                    }
+                    else if (line.Contains("Startup complete"))
+                    {
+                        InvokeStateChange(VpnStatus.Authenticating);
                     }
                     else if (line.Contains("Shutting down"))
                     {
-                        StateChanged?.Invoke(this,
-                            new EventArgs<VpnState>(new VpnState(VpnStatus.Disconnected, _lastError,
-                                VpnProtocol.WireGuard)));
+                        InvokeStateChange(VpnStatus.Disconnected, _lastError);
                         _lastError = VpnError.None;
                     }
                     else if (line.Contains("Could not install driver"))
@@ -101,6 +101,11 @@ namespace ProtonVPN.Vpn.WireGuard
 
                 cancellationToken.ThrowIfCancellationRequested();
             }
+        }
+
+        private void InvokeStateChange(VpnStatus status, VpnError error = VpnError.None)
+        {
+            StateChanged?.Invoke(this, new EventArgs<VpnState>(new VpnState(status, error, VpnProtocol.WireGuard)));
         }
 
         private string GetFormattedMessage(string message)

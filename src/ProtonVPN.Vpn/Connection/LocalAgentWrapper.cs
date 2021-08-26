@@ -199,6 +199,7 @@ namespace ProtonVPN.Vpn.Connection
                 switch (e.Data.Status)
                 {
                     case VpnStatus.Connected:
+                        InvokeStateChange(VpnStatus.AssigningIp);
                         ConnectToTlsChannel();
                         return;
                     case VpnStatus.Disconnected:
