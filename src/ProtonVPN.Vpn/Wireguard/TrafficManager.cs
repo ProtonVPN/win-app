@@ -22,6 +22,8 @@ using System.IO;
 using System.IO.Pipes;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
+using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
 
@@ -33,12 +35,14 @@ namespace ProtonVPN.Vpn.WireGuard
         private StreamReader _reader;
         private NamedPipeClientStream _stream;
         private readonly SingleAction _updateBytesTransferredAction;
+        private readonly ILogger _logger;
 
         public event EventHandler<InOutBytes> TrafficSent;
 
-        public TrafficManager(string pipeName)
+        public TrafficManager(string pipeName, ILogger logger)
         {
             _pipeName = pipeName;
+            _logger = logger;
             _updateBytesTransferredAction = new SingleAction(UpdateBytesTransferred);
         }
 
@@ -49,24 +53,25 @@ namespace ProtonVPN.Vpn.WireGuard
 
         public void Stop()
         {
-            _stream?.Dispose();
             _updateBytesTransferredAction.Cancel();
         }
 
-        private void UpdateBytesTransferred()
+        private async Task UpdateBytesTransferred(CancellationToken cancellationToken)
         {
-            ConnectToPipe();
+            await ConnectToPipe(cancellationToken);
 
             try
             {
                 while (_stream != null && _stream.IsConnected)
                 {
+                    cancellationToken.ThrowIfCancellationRequested();
+
                     byte[] bytes = Encoding.UTF8.GetBytes("get=1\n\n");
                     _stream.Write(bytes, 0, bytes.Length);
                     ulong rx = 0, tx = 0;
                     while (true)
                     {
-                        string line = _reader.ReadLine();
+                        string line = await _reader.ReadLineAsync();
                         if (line == null)
                         {
                             break;
@@ -90,37 +95,46 @@ namespace ProtonVPN.Vpn.WireGuard
                         TrafficSent?.Invoke(this, new InOutBytes(rx, tx));
                     }
 
-                    Thread.Sleep(1000);
+                    await Task.Delay(1000, cancellationToken);
                 }
             }
-            catch
+            catch (Exception e) when (e is not OperationCanceledException)
             {
-                // ignored
+                _logger.Error("[TrafficManager] Error receiving traffic data.", e);
+                throw;
             }
             finally
             {
-                _stream?.Dispose();
+                CloseStream();
             }
         }
 
-        private void ConnectToPipe()
+        private async Task ConnectToPipe(CancellationToken cancellationToken)
         {
             while (true)
             {
+                cancellationToken.ThrowIfCancellationRequested();
+
                 try
                 {
                     _stream = new NamedPipeClientStream(_pipeName);
-                    _stream.Connect();
+                    await _stream.ConnectAsync(cancellationToken);
                     _reader = new StreamReader(_stream);
                     break;
                 }
-                catch
+                catch (Exception e)
                 {
-                    // ignored
+                    _logger.Error("[TrafficManager] Failed to connect to a named pipe.", e);
                 }
 
-                Thread.Sleep(1000);
+                await Task.Delay(1000, cancellationToken);
             }
+        }
+
+        private void CloseStream()
+        {
+            _stream?.Dispose();
+            _stream = null;
         }
     }
 }
