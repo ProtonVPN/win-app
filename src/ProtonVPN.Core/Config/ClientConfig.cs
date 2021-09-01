@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,6 +18,8 @@
  */
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Extensions;
@@ -35,6 +37,8 @@ namespace ProtonVPN.Core.Config
         private readonly ISchedulerTimer _timer;
         private readonly SingleAction _updateAction;
         private readonly IAppSettings _appSettings;
+
+        private readonly List<int> _unsupportedWireGuardPorts = new() { 53 };
 
         public ClientConfig(
             IAppSettings appSettings,
@@ -79,7 +83,7 @@ namespace ProtonVPN.Core.Config
                 {
                     _appSettings.OpenVpnTcpPorts = response.Value.DefaultPorts.OpenVpn.Tcp;
                     _appSettings.OpenVpnUdpPorts = response.Value.DefaultPorts.OpenVpn.Udp;
-                    _appSettings.WireGuardPorts = response.Value.DefaultPorts.WireGuard.Udp;
+                    _appSettings.WireGuardPorts = response.Value.DefaultPorts.WireGuard.Udp.Where(IsWireGuardPortSupported).ToArray();
                     _appSettings.FeatureNetShieldEnabled = response.Value.FeatureFlags.NetShield;
 
                     if (response.Value.FeatureFlags.ServerRefresh.HasValue)
@@ -121,6 +125,11 @@ namespace ProtonVPN.Core.Config
             catch (HttpRequestException)
             {
             }
+        }
+
+        private bool IsWireGuardPortSupported(int port)
+        {
+            return !_unsupportedWireGuardPorts.Contains(port);
         }
     }
 }
