@@ -42,7 +42,9 @@ namespace ProtonVPN.Common.Extensions
         private static IEnumerable<Exception> ThisAndInnerExceptions(Exception e)
         {
             for (; e != null; e = e.InnerException)
+            {
                 yield return e;
+            }
         }
     }
 }

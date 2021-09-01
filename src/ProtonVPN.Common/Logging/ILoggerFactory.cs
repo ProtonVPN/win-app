@@ -21,6 +21,6 @@ namespace ProtonVPN.Common.Logging
 {
     public interface ILoggerFactory
     {
-        ILogger Logger();
+        ILogger Get(string defaultLogFilePath);
     }
 }

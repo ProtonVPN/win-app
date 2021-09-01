@@ -21,6 +21,7 @@ using System;
 using Autofac;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Log4Net;
 using ProtonVPN.Common.OS.Net;
 using ProtonVPN.Common.OS.Net.NetworkInterface;
 using ProtonVPN.Common.OS.Processes;
@@ -49,11 +50,8 @@ namespace ProtonVPN.Service.Start
             builder.Register(_ => new ConfigFactory().Config());
             builder.RegisterType<Bootstrapper>().SingleInstance();
 
-            builder.Register(c =>
-                    new NLogLoggingConfiguration(c.Resolve<Common.Configuration.Config>().ServiceLogFolder, "service"))
-                .AsSelf().SingleInstance();
-            builder.RegisterType<NLogLoggerFactory>().As<ILoggerFactory>().SingleInstance();
-            builder.Register(c => c.Resolve<ILoggerFactory>().Logger())
+            builder.RegisterType<Log4NetLoggerFactory>().As<ILoggerFactory>().SingleInstance();
+            builder.Register(c => c.Resolve<ILoggerFactory>().Get(c.Resolve<Common.Configuration.Config>().ServiceLogDefaultFullFilePath))
                 .As<ILogger>().SingleInstance();
             builder.RegisterType<LogCleaner>().SingleInstance();
 

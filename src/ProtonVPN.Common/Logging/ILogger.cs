@@ -23,20 +23,14 @@ namespace ProtonVPN.Common.Logging
 {
     public interface ILogger
     {
+        void Debug(string message);
         void Info(string message);
-
+        void Warn(string message);
         void Error(string message);
-
+        void Error(string message, Exception exception);
         void Fatal(string message);
 
-        void Debug(string message);
-
-        void Trace(string message);
-
-        void Warn(string message);
-
+        [Obsolete("This method should be deleted to force better descriptions on error logs.")]
         void Error(Exception exception);
-
-        bool IsTraceEnabled();
     }
 }

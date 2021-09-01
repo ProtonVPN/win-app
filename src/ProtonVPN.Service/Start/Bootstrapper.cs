@@ -73,7 +73,7 @@ namespace ProtonVPN.Service.Start
             InitCrashReporting();
             RegisterEvents();
 
-            Resolve<LogCleaner>().Clean(config.ServiceLogFolder, 30);
+            Resolve<LogCleaner>().Clean(config.ServiceLogFolder, 10);
             ServiceBase.Run(Resolve<VpnService>());
 
             logger.Info("= ProtonVPN Service has exited =");

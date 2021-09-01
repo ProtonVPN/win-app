@@ -56,8 +56,8 @@ ProtonVPN Windows app includes the following 3rd party software:
   | [The MIT License](https://github.com/lbugnion/mvvmlight/blob/master/LICENSE). 
 * [Newtonsoft.Json](https://www.newtonsoft.com/json) by James Newton-King
   | [The MIT License](https://licenses.nuget.org/MIT).
-* [NLog](https://nlog-project.org/) by Jarek Kowalski, Kim Christensen, Julian Verdurmen
-  | [The 3-Clause BSD License](https://github.com/NLog/NLog/blob/master/LICENSE.txt).
+* [Apache log4net](https://logging.apache.org/log4net/) by The Apache Software Foundation
+  | [Apache License 2.0](https://logging.apache.org/log4net/license.html).
 * [OxyPlot.Core](http://www.oxyplot.org/) by Oystein Bjorke
   | [The MIT License](https://raw.githubusercontent.com/oxyplot/oxyplot/master/LICENSE).
 * [OxyPlot.Wpf](http://www.oxyplot.org/) by Oystein Bjorke

@@ -25,6 +25,7 @@ using Autofac;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.CrashReporting;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Log4Net;
 using ProtonVPN.Common.OS.Event;
 using ProtonVPN.Common.OS.Net.Http;
 using ProtonVPN.Common.OS.Processes;
@@ -102,6 +103,7 @@ namespace ProtonVPN.UpdateService
             Resolve<ServicePointConfiguration>().Apply();
             CreateLogFolder();
             Resolve<IAppUpdates>().Cleanup();
+            Resolve<LogCleaner>().Clean(config.UpdateServiceLogFolder, 10);
 
             ServiceBase.Run(Resolve<UpdateService>());
 
@@ -124,12 +126,11 @@ namespace ProtonVPN.UpdateService
             builder.Register(c => new ConfigFactory().Config());
             builder.RegisterType<SystemProcesses>().As<IOsProcesses>().SingleInstance();
             builder.RegisterType<HttpClients>().As<IHttpClients>().SingleInstance();
-
-            builder.Register(c => new NLogLoggingConfiguration(c.Resolve<Config>().UpdateServiceLogFolder, "updater"))
-                .AsSelf().SingleInstance();
-            builder.RegisterType<NLogLoggerFactory>().As<ILoggerFactory>().SingleInstance();
-            builder.Register(c => c.Resolve<ILoggerFactory>().Logger())
+            
+            builder.RegisterType<Log4NetLoggerFactory>().As<ILoggerFactory>().SingleInstance();
+            builder.Register(c => c.Resolve<ILoggerFactory>().Get(c.Resolve<Common.Configuration.Config>().UpdateServiceLogDefaultFullFilePath))
                 .As<ILogger>().SingleInstance();
+            builder.RegisterType<LogCleaner>().SingleInstance();
 
             builder.Register(c => c.Resolve<UpdateServiceHostFactory>().Create()).As<ServiceHost>().SingleInstance();
             builder.RegisterType<EventBasedLaunchableFile>().AsImplementedInterfaces().SingleInstance();
