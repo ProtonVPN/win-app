@@ -111,7 +111,6 @@
     <ROW Component="Microsoft.Toolkit.Uwp.Notifications.dll" ComponentId="{6DE7272A-D513-4F72-9A0A-763828A16A2E}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Toolkit.Uwp.Notifications.dll"/>
     <ROW Component="Microsoft.Web.WebView2.Core.dll" ComponentId="{6282B095-9B93-4480-A4C0-92A979835E50}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Web.WebView2.Core.dll"/>
     <ROW Component="Microsoft.Web.WebView2.Wpf.dll" ComponentId="{5308BF6F-9BCF-424F-A63A-112AD8C2A6C8}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Web.WebView2.Wpf.dll"/>
-    <ROW Component="NLog.dll" ComponentId="{17246A16-5DDB-41C5-AD07-AD5D1B5B8121}" Directory_="APPDIR" Attributes="0" KeyPath="NLog.dll"/>
     <ROW Component="Newtonsoft.Json.dll" ComponentId="{E0A54725-459B-4F28-A4A0-7587B5B176E7}" Directory_="APPDIR" Attributes="0" KeyPath="Newtonsoft.Json.dll"/>
     <ROW Component="OxyPlot.Wpf.dll" ComponentId="{E3A7EA56-A92F-41C6-9A0A-26026B6E9B7D}" Directory_="APPDIR" Attributes="0" KeyPath="OxyPlot.Wpf.dll"/>
     <ROW Component="OxyPlot.dll" ComponentId="{B38C6968-998F-46E3-ACD3-97DC0F57A977}" Directory_="APPDIR" Attributes="0" KeyPath="OxyPlot.dll"/>
@@ -174,6 +173,7 @@
     <ROW Component="libpkcs11helper1.dll_1" ComponentId="{F234CF78-6DC4-433A-8EB5-62A9D077F281}" Directory_="bit_1_Dir" Attributes="256" KeyPath="libpkcs11helper1.dll_1"/>
     <ROW Component="libssl1_1.dll" ComponentId="{CE2AB650-B462-422E-8F6F-815F7E24C4AD}" Directory_="bit_Dir" Attributes="0" KeyPath="libssl1_1.dll"/>
     <ROW Component="libssl1_1x64.dll" ComponentId="{DA00F153-C64F-4284-BF30-2358FDAC3A1F}" Directory_="bit_1_Dir" Attributes="256" KeyPath="libssl1_1x64.dll"/>
+    <ROW Component="log4net.dll" ComponentId="{1D55A69B-2900-4147-80CC-4956FEDD1F0B}" Directory_="APPDIR" Attributes="0" KeyPath="log4net.dll"/>
     <ROW Component="openvpn.exe" ComponentId="{05F57108-546B-4950-B69C-C8E917E3E4CE}" Directory_="bit_Dir" Attributes="0" KeyPath="openvpn.exe"/>
     <ROW Component="openvpn.exe_1" ComponentId="{7BBF778D-CA8D-4F1E-BEC3-777A26A3912F}" Directory_="bit_1_Dir" Attributes="256" KeyPath="openvpn.exe_1"/>
     <ROW Component="tunnel.dll" ComponentId="{BA10003E-AAA2-4D25-95C7-E37ECC2F0DC6}" Directory_="NewFolder_Dir" Attributes="256" Condition="(VersionNT64)" KeyPath="tunnel.dll"/>
@@ -214,7 +214,6 @@
     <ROW File="GalaSoft.MvvmLight.dll" Component_="GalaSoft.MvvmLight.dll" FileName="GALASO~1.DLL|GalaSoft.MvvmLight.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\GalaSoft.MvvmLight.dll" SelfReg="false"/>
     <ROW File="GalaSoft.MvvmLight.Platform.dll" Component_="GalaSoft.MvvmLight.Platform.dll" FileName="GALASO~3.DLL|GalaSoft.MvvmLight.Platform.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\GalaSoft.MvvmLight.Platform.dll" SelfReg="false"/>
     <ROW File="Newtonsoft.Json.dll" Component_="Newtonsoft.Json.dll" FileName="NEWTON~1.DLL|Newtonsoft.Json.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Newtonsoft.Json.dll" SelfReg="false"/>
-    <ROW File="NLog.dll" Component_="NLog.dll" FileName="NLog.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\NLog.dll" SelfReg="false"/>
     <ROW File="OxyPlot.dll" Component_="OxyPlot.dll" FileName="OxyPlot.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\OxyPlot.dll" SelfReg="false"/>
     <ROW File="OxyPlot.Wpf.dll" Component_="OxyPlot.Wpf.dll" FileName="OXYPLO~1.DLL|OxyPlot.Wpf.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\OxyPlot.Wpf.dll" SelfReg="false"/>
     <ROW File="PInvoke.Kernel32.dll" Component_="PInvoke.Kernel32.dll" FileName="PINVOK~2.DLL|PInvoke.Kernel32.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\PInvoke.Kernel32.dll" SelfReg="false"/>
@@ -283,6 +282,7 @@
     <ROW File="wintun.dll_2" Component_="wintun.dll_2" FileName="wintun.dll" Attributes="0" SourcePath="..\src\ProtonVPN.Vpn\Resources\32-bit\wintun.dll" SelfReg="false"/>
     <ROW File="LocalAgent.dll" Component_="LocalAgent.dll" FileName="LOCALA~1.DLL|LocalAgent.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Resources\32-bit\LocalAgent.dll" SelfReg="false"/>
     <ROW File="LocalAgent.dll_1" Component_="LocalAgent.dll_1" FileName="LOCALA~1.DLL|LocalAgent.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Resources\64-bit\LocalAgent.dll" SelfReg="false"/>
+    <ROW File="log4net.dll" Component_="log4net.dll" FileName="log4net.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\log4net.dll" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.AiRemoveFileComponent">
     <ROW RemoveFile="_" Condition="(AI_CLEAN_RESOURCES_UNINSTALL = &quot;1&quot;) AND (NOT UPGRADINGPRODUCTCODE)" Options="3"/>
@@ -571,7 +571,6 @@
     <ROW Feature_="MainFeature" Component_="GalaSoft.MvvmLight.Platform.dll"/>
     <ROW Feature_="MainFeature" Component_="GalaSoft.MvvmLight.dll"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.Deployment.WindowsInstaller.dll"/>
-    <ROW Feature_="MainFeature" Component_="NLog.dll"/>
     <ROW Feature_="MainFeature" Component_="Newtonsoft.Json.dll"/>
     <ROW Feature_="MainFeature" Component_="OxyPlot.Wpf.dll"/>
     <ROW Feature_="MainFeature" Component_="OxyPlot.dll"/>
@@ -655,6 +654,7 @@
     <ROW Feature_="MainFeature" Component_="ProtonVPN.WireGuardService.exe"/>
     <ROW Feature_="MainFeature" Component_="LocalAgent.dll"/>
     <ROW Feature_="MainFeature" Component_="LocalAgent.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="log4net.dll"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
     <ROW Name="protonvpn.exe" SourcePath="images\protonvpn.ico" Index="0"/>

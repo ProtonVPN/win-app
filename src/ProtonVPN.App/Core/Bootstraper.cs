@@ -132,7 +132,7 @@ namespace ProtonVPN.Core
             AppConfig appConfig = Resolve<AppConfig>();
 
             Resolve<ILogger>().Info($"= Booting ProtonVPN version: {appConfig.AppVersion} os: {Environment.OSVersion.VersionString} {appConfig.OsBits} bit =");
-            Resolve<LogCleaner>().Clean(appConfig.AppLogFolder, 30);
+            Resolve<LogCleaner>().Clean(appConfig.AppLogFolder, 10);
 
             RegisterMigrations(Resolve<AppSettingsStorage>(), Resolve<IEnumerable<IAppSettingsMigration>>());
             RegisterMigrations(Resolve<UserSettings>(), Resolve<IEnumerable<IUserSettingsMigration>>());

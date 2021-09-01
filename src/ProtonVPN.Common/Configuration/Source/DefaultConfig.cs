@@ -41,6 +41,9 @@ namespace ProtonVPN.Common.Configuration.Source
                 Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ProtonVPN");
             string commonAppDataFolder =
                 Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "ProtonVPN");
+            string appLogFolder = Path.Combine(localAppDataFolder, "Logs");
+            string serviceLogFolder = Path.Combine(commonAppDataFolder, "Logs");
+            string updateServiceLogFolder  = Path.Combine(commonAppDataFolder, "UpdaterLogs");
             int osBits = Environment.Is64BitOperatingSystem ? 64 : 32;
 
             string wireGuardConfigFilename = "ProtonVPN";
@@ -55,7 +58,9 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 AppExePath = Path.Combine(baseFolder, "ProtonVPN.exe"),
 
-                AppLogFolder = Path.Combine(localAppDataFolder, "Logs"),
+                AppLogFolder = appLogFolder,
+
+                AppLogDefaultFullFilePath = Path.Combine(appLogFolder, "app-logs.txt"),
 
                 DiagnosticsLogFolder = Path.Combine(localAppDataFolder, "DiagnosticLogs"),
 
@@ -77,13 +82,17 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 StreamingServicesFilePath = Path.Combine(localAppDataFolder, "StreamingServices.json"),
 
-                ServiceLogFolder = Path.Combine(commonAppDataFolder, "Logs"),
+                ServiceLogFolder = serviceLogFolder,
+
+                ServiceLogDefaultFullFilePath = Path.Combine(serviceLogFolder, "service-logs.txt"),
 
                 UpdateServiceName = "ProtonVPN Update Service",
 
                 UpdateServiceExePath = Path.Combine(baseFolder, "ProtonVPN.UpdateService.exe"),
 
-                UpdateServiceLogFolder = Path.Combine(commonAppDataFolder, "UpdaterLogs"),
+                UpdateServiceLogFolder = updateServiceLogFolder,
+
+                UpdateServiceLogDefaultFullFilePath = Path.Combine(updateServiceLogFolder, "update-service-logs.txt"),
 
                 UpdateFilePath = Path.Combine(commonAppDataFolder, "Updates", "update.txt"),
 

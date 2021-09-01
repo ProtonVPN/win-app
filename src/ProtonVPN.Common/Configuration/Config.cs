@@ -43,6 +43,9 @@ namespace ProtonVPN.Common.Configuration
         public string AppLogFolder { get; internal set; }
 
         [Required]
+        public string AppLogDefaultFullFilePath { get; internal set; }
+
+        [Required]
         public string DiagnosticsLogFolder { get; internal set; }
 
         [Required]
@@ -76,6 +79,9 @@ namespace ProtonVPN.Common.Configuration
         public string ServiceLogFolder { get; internal set; }
 
         [Required]
+        public string ServiceLogDefaultFullFilePath { get; internal set; }
+
+        [Required]
         public string UpdateServiceName { get; internal set; }
 
         [Required]
@@ -83,6 +89,9 @@ namespace ProtonVPN.Common.Configuration
 
         [Required]
         public string UpdateServiceLogFolder { get; internal set; }
+
+        [Required]
+        public string UpdateServiceLogDefaultFullFilePath { get; internal set; }
 
         [Required]
         public string UpdateFilePath { get; internal set; }

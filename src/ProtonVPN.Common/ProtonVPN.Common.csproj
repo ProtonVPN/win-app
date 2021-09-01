@@ -38,11 +38,11 @@
     <Reference Include="DeviceId, Version=4.5.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\DeviceId.4.5.0\lib\net40\DeviceId.dll</HintPath>
     </Reference>
+    <Reference Include="log4net, Version=2.0.12.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\log4net.2.0.12\lib\net45\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="NLog, Version=4.6.8.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>..\..\CSharpLibraries\NLog_4_6_8\NLog.dll</HintPath>
     </Reference>
     <Reference Include="Polly, Version=7.0.0.0, Culture=neutral, PublicKeyToken=c8a3ffc3f8f825cc, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Polly.7.2.0\lib\net472\Polly.dll</HintPath>
@@ -106,15 +106,17 @@
     <Compile Include="Configuration\UrlConfig.cs" />
     <Compile Include="CrashReporting\CrashReports.cs" />
     <Compile Include="Extensions\CollectionExtensions.cs" />
+    <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\DateTimeOffsetExtensions.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Extensions\ListExtensions.cs" />
-    <Compile Include="Extensions\DateTimeOffsetExtensions.cs" />
     <Compile Include="Go\GoExtensions.cs" />
     <Compile Include="Go\GoString.cs" />
     <Compile Include="Go\GoBytes.cs" />
     <Compile Include="Go\PInvoke.cs" />
     <Compile Include="KillSwitch\KillSwitchMode.cs" />
+    <Compile Include="Logging\Log4Net\Log4NetLogger.cs" />
+    <Compile Include="Logging\Log4Net\Log4NetLoggerFactory.cs" />
     <Compile Include="Logging\LoggerExtensions.cs" />
     <Compile Include="Networking\OpenVpnAdapter.cs" />
     <Compile Include="Networking\VpnProtocol.cs" />
@@ -169,10 +171,6 @@
     <Compile Include="Logging\ILogger.cs" />
     <Compile Include="Logging\ILoggerFactory.cs" />
     <Compile Include="Logging\LogCleaner.cs" />
-    <Compile Include="Logging\NLogFile.cs" />
-    <Compile Include="Logging\NLogLogger.cs" />
-    <Compile Include="Logging\NLogLoggerFactory.cs" />
-    <Compile Include="Logging\NLogLoggingConfiguration.cs" />
     <Compile Include="Logging\UnhandledExceptionLogging.cs" />
     <Compile Include="OS\Event\EventLog.cs" />
     <Compile Include="OS\IEnvironment.cs" />

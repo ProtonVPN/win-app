@@ -18,11 +18,13 @@
  */
 
 using System;
+using System.IO;
 using System.Net.Http;
 using Autofac;
 using Caliburn.Micro;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Log4Net;
 using ProtonVPN.Common.OS;
 using ProtonVPN.Common.OS.Net;
 using ProtonVPN.Common.OS.Net.Http;
@@ -200,10 +202,8 @@ namespace ProtonVPN.Core.Ioc
 
             builder.RegisterType<ActionableFailureApiResultEventHandler>().SingleInstance();
 
-            builder.Register(c => new NLogLoggingConfiguration(c.Resolve<Common.Configuration.Config>().AppLogFolder, "app"))
-                .AsSelf().SingleInstance();
-            builder.RegisterType<NLogLoggerFactory>().As<ILoggerFactory>().SingleInstance();
-            builder.Register(c => c.Resolve<ILoggerFactory>().Logger())
+            builder.RegisterType<Log4NetLoggerFactory>().As<ILoggerFactory>().SingleInstance();
+            builder.Register(c => c.Resolve<ILoggerFactory>().Get(c.Resolve<Common.Configuration.Config>().AppLogDefaultFullFilePath))
                 .As<ILogger>().SingleInstance();
             builder.RegisterType<LogCleaner>().SingleInstance();
             builder.RegisterType<UpdateService>().AsSelf().AsImplementedInterfaces().SingleInstance();

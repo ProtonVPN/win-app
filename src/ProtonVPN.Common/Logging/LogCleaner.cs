@@ -36,10 +36,12 @@ namespace ProtonVPN.Common.Logging
 
         public void Clean(string logPath, int maxFiles)
         {
-            var filesToDelete = GetFiles(logPath)
-                .OrderByDescending(CreationTime)
-                .Skip(maxFiles);
+            _logger.Info($"[LogCleaner] Checking for log files to be deleted in folder '{logPath}'. The maximum number of files allowed is {maxFiles}.");
 
+            IList<FileInfo> files = GetFiles(logPath).ToList();
+            _logger.Debug($"[LogCleaner] The folder '{logPath}' has {files.Count} files.");
+
+            IList<FileInfo> filesToDelete = GetFilesToDelete(files, maxFiles);
             DeleteFiles(filesToDelete);
         }
 
@@ -52,40 +54,84 @@ namespace ProtonVPN.Common.Logging
             }
             catch (Exception e) when (e.IsFileAccessException())
             {
+                _logger.Error($"[LogCleaner] An error occurred when reading the files from the log folder '{path}'.", e);
                 return new FileInfo[0];
             }
         }
 
-        private DateTime CreationTime(FileInfo file)
+        private IList<FileInfo> GetFilesToDelete(IList<FileInfo> files, int maxFiles)
+        {
+            IList<FileInfo> filesExceedingLimit = GetFilesExceddingLimit(files, maxFiles);
+            IList<FileInfo> oldFiles = GetOldFiles(files);
+
+            IList<FileInfo> filesToDelete = filesExceedingLimit.Concat(oldFiles).Distinct().ToList();
+            string fileNamesToDelete = GetFileNames(filesToDelete);
+            _logger.Info($"[LogCleaner] The folder has {filesToDelete.Count} files to delete.{fileNamesToDelete}");
+
+            return filesToDelete;
+        }
+
+        private IList<FileInfo> GetFilesExceddingLimit(IList<FileInfo> files, int maxFiles)
+        {
+            IList<FileInfo> filesExceedingLimit = files
+                .OrderByDescending(LastWriteTime)
+                .Skip(maxFiles)
+                .ToList();
+            string fileNamesExceedingLimit = GetFileNames(filesExceedingLimit);
+            _logger.Debug($"[LogCleaner] The folder has {filesExceedingLimit.Count} files exceeding the limit of {maxFiles} files.{fileNamesExceedingLimit}");
+            return filesExceedingLimit;
+        }
+
+        private DateTime LastWriteTime(FileInfo file)
         {
             try
             {
-                return file.CreationTimeUtc;
+                return file.LastWriteTimeUtc;
             }
             catch (Exception e) when (e.IsFileAccessException() || e is ArgumentOutOfRangeException)
             {
                 _logger.Error(e.Message);
-                return DateTime.MinValue;
+                return DateTime.MaxValue;
             }
         }
 
-        private void DeleteFiles(IEnumerable<FileInfo> files)
+        private string GetFileNames(IList<FileInfo> files)
         {
-            foreach (var file in files)
+            string fileNames = string.Empty;
+            if (files.Any())
+            {
+                fileNames = $" File names: {string.Join(",", files.Select(fi => fi.Name))}";
+            }
+            return fileNames;
+        }
+
+        private IList<FileInfo> GetOldFiles(IList<FileInfo> files)
+        {
+            DateTime minimumDate = DateTime.UtcNow.AddMonths(-1);
+            IList<FileInfo> oldFiles = files.Where(t => LastWriteTime(t) < minimumDate).ToList();
+            string oldFileNames = GetFileNames(oldFiles);
+            _logger.Debug($"[LogCleaner] The folder has {oldFiles.Count} old files with a last write date before {minimumDate:O}.{oldFileNames}");
+            return oldFiles;
+        }
+
+        private void DeleteFiles(IList<FileInfo> files)
+        {
+            foreach (FileInfo file in files)
             {
                 DeleteFile(file.FullName);
             }
         }
 
-        private void DeleteFile(string filename)
+        private void DeleteFile(string fileName)
         {
             try
             {
-                File.Delete(filename);
+                File.Delete(fileName);
+                _logger.Info($"[LogCleaner] Successfully deleted the file '{fileName}'.");
             }
             catch (Exception e) when (e.IsFileAccessException())
             {
-                _logger.Error(e.Message);
+                _logger.Error($"[LogCleaner] An error occurred when deleting the file '{fileName}'.", e);
             }
         }
     }

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,10 +17,18 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Common.Logging
+using System;
+
+namespace ProtonVPN.Common.Extensions
 {
-    public interface ILoggerFactory
+    public static class DateTimeExtensions
     {
-        ILogger Get(string defaultLogFilePath);
+        /// <summary>
+        /// Returns the largest (most recent) date. In case of equality returns the first date.
+        /// </summary>
+        public static DateTime Max(DateTime dateTime1, DateTime dateTime2)
+        {
+            return (dateTime1 < dateTime2 ? dateTime2 : dateTime1);
+        }
     }
 }
