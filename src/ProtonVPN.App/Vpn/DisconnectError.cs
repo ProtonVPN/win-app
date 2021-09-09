@@ -102,7 +102,10 @@ namespace ProtonVPN.Vpn
                     await _authCertificateManager.ForceRequestNewCertificateAsync();
                     if (FailedToUpdateAuthCert())
                     {
-                        await _vpnManager.DisconnectAsync(VpnError.CertificateExpired);
+                        await _vpnManager.ReconnectAsync(new VpnReconnectionSettings
+                        {
+                            IsToReconnectIfDisconnected = true
+                        });
                     }
                     else
                     {
