@@ -105,7 +105,7 @@ namespace ProtonVPN.Service
 
         public Task Disconnect(SettingsContract settings, VpnErrorTypeContract vpnError)
         {
-            _logger.Info("Disconnect requested");
+            _logger.Info($"Disconnect requested (Error: {vpnError})");
 
             _serviceSettings.Apply(settings);
 
