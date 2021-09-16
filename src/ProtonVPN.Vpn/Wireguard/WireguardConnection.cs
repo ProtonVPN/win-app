@@ -197,12 +197,13 @@ namespace ProtonVPN.Vpn.WireGuard
                 return;
             }
 
+            _connected = state.Data.Status == VpnStatus.Connected;
+
             if (state.Data.Status == VpnStatus.Disconnected)
             {
                 StopServiceDependencies();
             }
 
-            _connected = state.Data.Status == VpnStatus.Connected;
             InvokeStateChange(state.Data.Status, state.Data.Error);
         }
 
