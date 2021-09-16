@@ -14,6 +14,9 @@ const WCHAR *AdapterPoolName = L"ProtonVPN";
 const WCHAR *AdapterName = L"ProtonVPN TUN";
 const GUID AdapterGuid = { 0xafdeecba, 0xdfba, 0xcaff, {0x50, 0x44, 0x01, 0x34, 0x12, 0xbc, 0xea, 0xcd} };
 
+static std::wstring WintunDllPath;
+static HMODULE Wintun;
+
 static void CALLBACK InstallLogger(_In_ WINTUN_LOGGER_LEVEL Level, _In_z_ const WCHAR* LogLine)
 {
     LogMessage(LogLine);
@@ -30,28 +33,36 @@ static void SetCurrentDir(const std::wstring path, size_t lastSlashPosition)
     }
 }
 
-static HMODULE InitializeWintun(LPCWSTR dllPath)
+static HMODULE InitializeWintun(const LPCWSTR dllPath)
 {
     TCHAR currentDirectory[MAX_PATH];
     GetCurrentDirectory(MAX_PATH, currentDirectory);
 
     std::wstring pathStr = static_cast<std::wstring>(dllPath);
-    const size_t lastSlashPosition = pathStr.rfind('\\');
-    if (std::string::npos != lastSlashPosition)
+    HMODULE wintun = Wintun;
+    if (WintunDllPath != pathStr || !wintun)
     {
-        SetCurrentDir(pathStr, lastSlashPosition);
+        const size_t lastSlashPosition = pathStr.rfind('\\');
+        if (std::string::npos != lastSlashPosition)
+        {
+            SetCurrentDir(pathStr, lastSlashPosition);
+        }
+
+        std::wstring wintunDll = pathStr.substr(lastSlashPosition + 1, pathStr.length());
+        wintun = LoadLibrary(wintunDll.c_str());
+
+        WintunDllPath = pathStr;
+        Wintun = wintun;
     }
 
-    std::wstring wintunDll = pathStr.substr(lastSlashPosition + 1, pathStr.length());
-    HMODULE Wintun = LoadLibrary(wintunDll.c_str());
     SetCurrentDirectory(currentDirectory);
 
-    if (!Wintun)
+    if (!wintun)
     {
         return nullptr;
     }
 
-#define X(Name, Type) (((Name) = (Type)GetProcAddress(Wintun, #Name)) == NULL)
+#define X(Name, Type) (((Name) = (Type)GetProcAddress(wintun, #Name)) == NULL)
     if (X(WintunCreateAdapter, WINTUN_CREATE_ADAPTER_FUNC) ||
         X(WintunDeletePoolDriver, WINTUN_DELETE_POOL_DRIVER_FUNC) ||
         X(WintunFreeAdapter, WINTUN_FREE_ADAPTER_FUNC) ||
@@ -59,22 +70,22 @@ static HMODULE InitializeWintun(LPCWSTR dllPath)
         X(WintunOpenAdapter, WINTUN_OPEN_ADAPTER_FUNC))
 #undef X
     {
-        DWORD LastError = GetLastError();
-        FreeLibrary(Wintun);
-        SetLastError(LastError);
+        DWORD lastError = GetLastError();
+        FreeLibrary(wintun);
+        SetLastError(lastError);
 
         return nullptr;
     }
 
-    return Wintun;
+    return wintun;
 }
 
 int InstallTunAdapter(LPCWSTR dllPath)
 {
     DWORD LastError = ERROR_SUCCESS;
-    HMODULE Wintun = InitializeWintun(dllPath);
+    HMODULE wintun = InitializeWintun(dllPath);
 
-    if (!Wintun)
+    if (!wintun)
     {
         LastError = GetLastError();
         LogMessage(L"Failed to initialize Wintun: ", LastError);
@@ -113,7 +124,7 @@ int InstallTunAdapter(LPCWSTR dllPath)
         WintunFreeAdapter(Adapter);
     }
 
-    FreeLibrary(Wintun);
+    FreeLibrary(wintun);
 
     return LastError;
 }
@@ -121,8 +132,8 @@ int InstallTunAdapter(LPCWSTR dllPath)
 int UninstallTunAdapter(LPCWSTR dllPath, BOOL* rebootRequired)
 {
     DWORD LastError = ERROR_SUCCESS;
-    HMODULE Wintun = InitializeWintun(dllPath);
-    if (!Wintun)
+    HMODULE wintun = InitializeWintun(dllPath);
+    if (!wintun)
     {
         LastError = GetLastError();
         LogMessage(L"Failed to initialize Wintun: ", LastError);
@@ -151,7 +162,7 @@ int UninstallTunAdapter(LPCWSTR dllPath, BOOL* rebootRequired)
         LogMessage(L"ProtonVPN TUN adapter is not installed. Skipping.");
     }
 
-    FreeLibrary(Wintun);
+    FreeLibrary(wintun);
 
     return LastError;
 }

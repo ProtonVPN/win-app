@@ -81,7 +81,7 @@ elif args.command == 'tap-installer':
 
 elif args.command == 'tun-installer':
     print('Building tun installer')
-    err = installer.build('0.13.0', '', 'Setup/ProtonVPNTun.aip')
+    err = installer.build('0.13.1', '', 'Setup/ProtonVPNTun.aip')
     sys.exit(err)
 
 elif args.command == 'add-commit-hash':
