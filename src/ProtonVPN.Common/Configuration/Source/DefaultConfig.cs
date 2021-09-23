@@ -273,7 +273,7 @@ namespace ProtonVPN.Common.Configuration.Source
 
                     ServicePath = Path.Combine(baseFolder, "ProtonVPN.WireGuardService.exe"),
 
-                    PipeName = $"ProtectedPrefix\\Administrators\\WireGuard\\{wireGuardConfigFilename}",
+                    ConfigFileName = wireGuardConfigFilename,
 
                     DefaultDnsServer = "10.2.0.1",
 

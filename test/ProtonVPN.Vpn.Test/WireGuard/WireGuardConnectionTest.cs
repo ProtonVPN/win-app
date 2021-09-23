@@ -68,7 +68,7 @@ namespace ProtonVPN.Vpn.Test.WireGuard
             IX25519KeyGenerator xIx25519KeyGenerator = Substitute.For<IX25519KeyGenerator>();
             WireGuardService wireGuardService =
                 new(logger, new ProtonVPN.Common.Configuration.Config(), Substitute.For<IService>());
-            TrafficManager trafficManager = new("pipe", logger);
+            TrafficManager trafficManager = new("ProtonVPN", logger);
             StatusManager statusManager = new(logger, string.Empty);
 
             return new(logger, config, wireGuardService, trafficManager, statusManager, xIx25519KeyGenerator);
