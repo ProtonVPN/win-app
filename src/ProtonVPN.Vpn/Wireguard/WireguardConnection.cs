@@ -100,7 +100,6 @@ namespace ProtonVPN.Vpn.WireGuard
             InvokeStateChange(VpnStatus.Connecting);
             await EnsureServiceIsStopped(cancellationToken);
             _statusManager.Start();
-            _trafficManager.Start();
             await StartWireGuardService(cancellationToken);
             await Task.Delay(CONNECT_TIMEOUT, cancellationToken);
             if (!_connected)
@@ -198,6 +197,7 @@ namespace ProtonVPN.Vpn.WireGuard
             }
 
             _connected = state.Data.Status == VpnStatus.Connected;
+            _trafficManager.Start();
 
             if (state.Data.Status == VpnStatus.Disconnected)
             {

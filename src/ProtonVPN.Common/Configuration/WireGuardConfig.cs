@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -45,7 +45,7 @@ namespace ProtonVPN.Common.Configuration
         public string ServicePath { get; internal set; }
 
         [Required]
-        public string PipeName { get; internal set; }
+        public string ConfigFileName { get; internal set; }
 
         [Required]
         public string DefaultDnsServer { get; internal set; }

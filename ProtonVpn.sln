@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28803.202
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31423.177
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Service", "src\ProtonVPN.Service\ProtonVPN.Service.csproj", "{25781B52-5858-4387-80A5-C9C38C32B3CC}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -107,6 +107,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Crypto.Test", "test\ProtonVPN.Crypto.Test\ProtonVPN.Crypto.Test.csproj", "{7D608265-3330-4747-B5B4-9673A119FE6C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.WireGuardService", "src\ProtonVPN.WireguardService\ProtonVPN.WireGuardService.csproj", "{A0A9C7B9-4A33-492E-BA54-8E8E600D3D66}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.WireGuardDriver", "src\ProtonVPN.WireGuardDriver\ProtonVPN.WireGuardDriver.csproj", "{7882140D-32E1-4AB5-853D-F8DED5256DC2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -534,6 +536,18 @@ Global
 		{A0A9C7B9-4A33-492E-BA54-8E8E600D3D66}.Release|x64.Build.0 = Release|Any CPU
 		{A0A9C7B9-4A33-492E-BA54-8E8E600D3D66}.Release|x86.ActiveCfg = Release|Any CPU
 		{A0A9C7B9-4A33-492E-BA54-8E8E600D3D66}.Release|x86.Build.0 = Release|Any CPU
+		{7882140D-32E1-4AB5-853D-F8DED5256DC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7882140D-32E1-4AB5-853D-F8DED5256DC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7882140D-32E1-4AB5-853D-F8DED5256DC2}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{7882140D-32E1-4AB5-853D-F8DED5256DC2}.Debug|x64.Build.0 = Debug|Any CPU
+		{7882140D-32E1-4AB5-853D-F8DED5256DC2}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7882140D-32E1-4AB5-853D-F8DED5256DC2}.Debug|x86.Build.0 = Debug|Any CPU
+		{7882140D-32E1-4AB5-853D-F8DED5256DC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7882140D-32E1-4AB5-853D-F8DED5256DC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7882140D-32E1-4AB5-853D-F8DED5256DC2}.Release|x64.ActiveCfg = Release|Any CPU
+		{7882140D-32E1-4AB5-853D-F8DED5256DC2}.Release|x64.Build.0 = Release|Any CPU
+		{7882140D-32E1-4AB5-853D-F8DED5256DC2}.Release|x86.ActiveCfg = Release|Any CPU
+		{7882140D-32E1-4AB5-853D-F8DED5256DC2}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

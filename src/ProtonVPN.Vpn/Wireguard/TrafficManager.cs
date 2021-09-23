@@ -18,30 +18,27 @@
  */
 
 using System;
-using System.IO;
-using System.IO.Pipes;
-using System.Text;
+using System.ComponentModel;
 using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
+using ProtonVPN.WireGuardDriver;
 
 namespace ProtonVPN.Vpn.WireGuard
 {
     internal class TrafficManager
     {
-        private readonly string _pipeName;
-        private StreamReader _reader;
-        private NamedPipeClientStream _stream;
+        private readonly string _adapterName;
         private readonly SingleAction _updateBytesTransferredAction;
         private readonly ILogger _logger;
 
         public event EventHandler<InOutBytes> TrafficSent;
 
-        public TrafficManager(string pipeName, ILogger logger)
+        public TrafficManager(string adapterName, ILogger logger)
         {
-            _pipeName = pipeName;
+            _adapterName = adapterName;
             _logger = logger;
             _updateBytesTransferredAction = new SingleAction(UpdateBytesTransferred);
         }
@@ -58,83 +55,40 @@ namespace ProtonVPN.Vpn.WireGuard
 
         private async Task UpdateBytesTransferred(CancellationToken cancellationToken)
         {
-            await ConnectToPipe(cancellationToken);
-
             try
             {
-                while (_stream != null && _stream.IsConnected)
+                using Adapter adapter = new(_adapterName);
+                while (!cancellationToken.IsCancellationRequested)
                 {
                     cancellationToken.ThrowIfCancellationRequested();
 
-                    byte[] bytes = Encoding.UTF8.GetBytes("get=1\n\n");
-                    _stream.Write(bytes, 0, bytes.Length);
-                    ulong rx = 0, tx = 0;
-                    while (true)
+                    double rx = 0;
+                    double tx = 0;
+
+                    try
                     {
-                        string line = await _reader.ReadLineAsync();
-                        if (line == null)
+                        Interface iface = adapter.GetConfiguration();
+                        foreach (Peer peer in iface.Peers)
                         {
-                            break;
+                            rx += peer.RxBytes;
+                            tx += peer.TxBytes;
                         }
-
-                        line = line.Trim();
-                        if (line.Length == 0)
-                        {
-                            break;
-                        }
-
-                        if (line.StartsWith("rx_bytes="))
-                        {
-                            rx += ulong.Parse(line.Substring(9));
-                        }
-                        else if (line.StartsWith("tx_bytes="))
-                        {
-                            tx += ulong.Parse(line.Substring(9));
-                        }
-
-                        TrafficSent?.Invoke(this, new InOutBytes(rx, tx));
                     }
+                    catch (Win32Exception)
+                    {
+                        //can be safely ignored as it's only thrown when WireGuard Service is stopped due to the app exit
+                        //or computer is put to sleep.
+                    }
+
+                    TrafficSent?.Invoke(this, new InOutBytes(rx, tx));
 
                     await Task.Delay(1000, cancellationToken);
                 }
             }
-            catch (Exception e) when (e is not OperationCanceledException)
+            catch (Win32Exception e)
             {
-                _logger.Error("[TrafficManager] Error receiving traffic data.", e);
-                throw;
+                _logger.Error("[TrafficManager] failed to receive interface configuration.", e);
             }
-            finally
-            {
-                CloseStream();
-            }
-        }
-
-        private async Task ConnectToPipe(CancellationToken cancellationToken)
-        {
-            while (true)
-            {
-                cancellationToken.ThrowIfCancellationRequested();
-
-                try
-                {
-                    _stream = new NamedPipeClientStream(_pipeName);
-                    await _stream.ConnectAsync(cancellationToken);
-                    _reader = new StreamReader(_stream);
-                    break;
-                }
-                catch (Exception e)
-                {
-                    _logger.Error("[TrafficManager] Failed to connect to a named pipe.", e);
-                }
-
-                await Task.Delay(1000, cancellationToken);
-            }
-        }
-
-        private void CloseStream()
-        {
-            _stream?.Dispose();
-            _stream = null;
         }
     }
 }
