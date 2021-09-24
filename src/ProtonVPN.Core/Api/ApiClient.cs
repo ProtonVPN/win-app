@@ -150,13 +150,7 @@ namespace ProtonVPN.Core.Api
         {
             try
             {
-                string uri = "vpn/logicals";
-                if (!string.IsNullOrEmpty(ip))
-                {
-                    uri += $"?IP={ip}";
-                }
-
-                HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, uri);
+                HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, "vpn/logicals", ip);
                 using HttpResponseMessage response = await _client.SendAsync(request).ConfigureAwait(false);
                 System.IO.Stream stream = await response.Content.ReadAsStreamAsync();
                 return Logged(GetResponseStreamResult<ServerList>(stream, response.StatusCode), "Get servers");
@@ -171,13 +165,7 @@ namespace ProtonVPN.Core.Api
         {
             try
             {
-                string uri = "vpn/loads";
-                if (!string.IsNullOrEmpty(ip))
-                {
-                    uri += $"?IP={ip}";
-                }
-
-                HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, uri);
+                HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, "vpn/loads", ip);
                 using HttpResponseMessage response = await _client.SendAsync(request).ConfigureAwait(false);
                 System.IO.Stream stream = await response.Content.ReadAsStreamAsync();
                 return Logged(GetResponseStreamResult<ServerList>(stream, response.StatusCode), "Get server loads");

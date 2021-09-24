@@ -133,6 +133,17 @@ namespace ProtonVPN.Core.Api
             return request;
         }
 
+        protected HttpRequestMessage GetAuthorizedRequest(HttpMethod method, string requestUri, string ip)
+        {
+            HttpRequestMessage request = GetAuthorizedRequest(method, requestUri);
+            if (!ip.IsNullOrEmpty())
+            {
+                request.Headers.Add("X-PM-NetZone", ip);
+            }
+
+            return request;
+        }
+
         protected ApiResponseResult<T> GetResponseStreamResult<T>(Stream stream, HttpStatusCode code) 
             where T : BaseResponse
         {
