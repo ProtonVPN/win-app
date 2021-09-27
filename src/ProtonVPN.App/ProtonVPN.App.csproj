@@ -1967,6 +1967,7 @@
     <Resource Include="Resources\Assets\Images\SidebarFlags\ph.jpg" />
     <Resource Include="Resources\Assets\Images\SidebarFlags\pk.jpg" />
     <Resource Include="Resources\Assets\Images\SidebarFlags\pl.jpg" />
+    <Resource Include="Resources\Assets\Images\SidebarFlags\pr.jpg" />
     <Resource Include="Resources\Assets\Images\SidebarFlags\ps.jpg" />
     <Resource Include="Resources\Assets\Images\SidebarFlags\pt.jpg" />
     <Resource Include="Resources\Assets\Images\SidebarFlags\pw.jpg" />
@@ -2071,7 +2072,6 @@
       <Version>1.2.0</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup Condition=" '$(Configuration)' == 'Debug' ">
     <Content Include="Windows\Popups\DeveloperTools\Images\computers.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
