@@ -19,11 +19,19 @@
 
 using System;
 using System.Net;
+using ProtonVPN.Common.Logging;
 
 namespace ProtonVPN.Core.OS.Net
 {
     public class ServicePointConfiguration
     {
+        private readonly ILogger _logger;
+
+        public ServicePointConfiguration(ILogger logger)
+        {
+            _logger = logger;
+        }
+
         public void Apply()
         {
             ConfigureSSlSecurity();
@@ -33,15 +41,21 @@ namespace ProtonVPN.Core.OS.Net
         /// Forces TLS 1.2 on Windows 7 SP1 and Windows Server 2008 R2.
         /// </summary>
         /// <remarks>
-        /// On Windows 7 SP1 and Windows Server 2008 R2 only TLS 1.0 is enabled by default.
+        /// On Windows 7 SP1 and Windows Server 2008 R2 only TLS 1.0 is enabled by default, unless a specific security update is installed.
         /// TLS 1.1 and 1.2 are also supported, but not enabled by default.
         /// </remarks>
-        private static void ConfigureSSlSecurity()
+        private void ConfigureSSlSecurity()
         {
-            var osVer = Environment.OSVersion.Version;
+            Version osVer = Environment.OSVersion.Version;
             if (osVer.Major == 6 && osVer.Minor == 1)
             {
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+                _logger.Info($"[ServicePointConfiguration] Security protocol set to 'TLS 1.2' due to operative system version '{osVer}'.");
+            }
+            else
+            {
+                _logger.Debug($"[ServicePointConfiguration] Security protocol kept at '{ServicePointManager.SecurityProtocol}'. " +
+                              $"Operative system version '{osVer}'.");
             }
         }
     }
