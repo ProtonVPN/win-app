@@ -98,10 +98,11 @@ namespace ProtonVPN.UpdateService
             var config = Resolve<Config>();
             var logger = Resolve<ILogger>();
 
+            CreateLogFolder();
             logger.Info($"= Booting ProtonVPN Update Service version: {config.AppVersion} os: {Environment.OSVersion.VersionString} {config.OsBits} bit =");
 
             Resolve<ServicePointConfiguration>().Apply();
-            CreateLogFolder();
+
             Resolve<IAppUpdates>().Cleanup();
             Resolve<LogCleaner>().Clean(config.UpdateServiceLogFolder, 10);
 
