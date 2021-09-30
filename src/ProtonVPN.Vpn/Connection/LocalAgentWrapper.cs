@@ -129,7 +129,8 @@ namespace ProtonVPN.Vpn.Connection
                 case LocalAgentState.ServerCertificateError:
                     _origin.Disconnect(VpnError.TlsCertificateError);
                     break;
-                case LocalAgentState.ClientCertificateError:
+                case LocalAgentState.ClientCertificateExpiredError:
+                case LocalAgentState.ClientCertificateUnknownCA:
                     InvokeStateChange(VpnStatus.ActionRequired, VpnError.CertificateExpired);
                     break;
                 case LocalAgentState.HardJailed:
