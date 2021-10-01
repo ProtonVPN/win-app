@@ -17,12 +17,27 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Collections.Generic;
+using System.Windows.Input;
+using GalaSoft.MvvmLight.CommandWpf;
+using ProtonVPN.Config.Url;
 
-namespace ProtonVPN.Core
+namespace ProtonVPN.Modals
 {
-    public interface ILanguageProvider
+    public class IncorrectSystemTimeModalViewModel : BaseModalViewModel
     {
-        List<string> GetAll();
+        private readonly IActiveUrls _urls;
+
+        public IncorrectSystemTimeModalViewModel(IActiveUrls urls)
+        {
+            _urls = urls;
+            OpenKbArticleCommand = new RelayCommand(OpenKbArticleAction);
+        }
+
+        public ICommand OpenKbArticleCommand { get; set; }
+
+        public void OpenKbArticleAction()
+        {
+            _urls.IncorrectSystemTimeArticleUrl.Open();
+        }
     }
 }

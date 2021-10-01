@@ -17,12 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Collections.Generic;
+using System;
 
-namespace ProtonVPN.Core
+namespace ProtonVPN.Core.OS
 {
-    public interface ILanguageProvider
+    public interface INtpClient
     {
-        List<string> GetAll();
+        DateTime? GetNetworkUtcTime();
     }
 }

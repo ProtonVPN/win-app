@@ -120,6 +120,7 @@
     <Compile Include="Core\Startup\AutoStartupTest.cs" />
     <Compile Include="Core\Startup\SyncableAutoStartupTest.cs" />
     <Compile Include="Core\Startup\SyncedAutoStartupTest.cs" />
+    <Compile Include="Core\SystemTimeValidatorTest.cs" />
     <Compile Include="Map\CountryLocationTest.cs" />
     <Compile Include="Modals\Dialogs\DialogSettingsTest.cs" />
     <Compile Include="Modals\Dialogs\DialogsTest.cs" />

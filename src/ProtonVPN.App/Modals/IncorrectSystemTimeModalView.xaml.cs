@@ -17,12 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Collections.Generic;
-
-namespace ProtonVPN.Core
+namespace ProtonVPN.Modals
 {
-    public interface ILanguageProvider
+    public partial class IncorrectSystemTimeModalView
     {
-        List<string> GetAll();
+        public IncorrectSystemTimeModalView()
+        {
+            InitializeComponent();
+        }
     }
 }

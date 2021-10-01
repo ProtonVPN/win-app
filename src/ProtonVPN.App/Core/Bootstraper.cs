@@ -26,8 +26,6 @@ using System.Net.Http;
 using System.ServiceModel;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Interop;
-using System.Windows.Media;
 using Autofac;
 using Caliburn.Micro;
 using ProtonVPN.Account;
@@ -552,6 +550,7 @@ namespace ProtonVPN.Core
             await Resolve<Trial.Trial>().Load();
             await Resolve<IUserLocationService>().Update();
             await Resolve<IAnnouncements>().Update();
+            await Resolve<SystemTimeValidator>().Validate();
             await Resolve<AutoConnect>().Load(autoLogin);
             Resolve<SyncProfiles>().Sync();
             Resolve<INetworkClient>().CheckForInsecureWiFi();

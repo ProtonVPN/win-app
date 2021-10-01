@@ -241,5 +241,7 @@ namespace ProtonVPN.Common.Configuration
         
         [Range(0, 16)]
         public int AuthCertificateMaxNumOfRetries { get; internal set; }
+
+        public string NtpServerUrl { get; internal set; }
     }
 }
