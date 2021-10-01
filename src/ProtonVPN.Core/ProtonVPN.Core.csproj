@@ -196,6 +196,8 @@
     <Compile Include="Native\WindowPosition.cs" />
     <Compile Include="Native\WindowPositionExtensions.cs" />
     <Compile Include="Native\WindowStates.cs" />
+    <Compile Include="OS\INtpClient.cs" />
+    <Compile Include="OS\NtpClient.cs" />
     <Compile Include="Servers\Specs\ExactTierServer.cs" />
     <Compile Include="Servers\Specs\ExitCityServer.cs" />
     <Compile Include="Settings\IServiceSettingsStateAware.cs" />

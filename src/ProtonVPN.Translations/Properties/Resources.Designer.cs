@@ -19,7 +19,7 @@ namespace ProtonVPN.Translations.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resources {
@@ -3627,6 +3627,15 @@ namespace ProtonVPN.Translations.Properties {
         public static string Dialogs_HumanVerification_ttl {
             get {
                 return ResourceManager.GetString("Dialogs_HumanVerification_ttl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your system clock seems to be out of sync, which could prevent the VPN from connecting successfully. Please see &lt;Hyperlink Command=&quot;{Binding OpenKbArticleCommand}&quot;&gt;here&lt;/Hyperlink&gt; for more information..
+        /// </summary>
+        public static string Dialogs_IncorrectSystemTime_msg {
+            get {
+                return ResourceManager.GetString("Dialogs_IncorrectSystemTime_msg", resourceCulture);
             }
         }
         

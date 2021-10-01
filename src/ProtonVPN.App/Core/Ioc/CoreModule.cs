@@ -43,6 +43,7 @@ using ProtonVPN.Core.Config;
 using ProtonVPN.Core.Events;
 using ProtonVPN.Core.HumanVerification;
 using ProtonVPN.Core.Network;
+using ProtonVPN.Core.OS;
 using ProtonVPN.Core.OS.Net;
 using ProtonVPN.Core.OS.Net.Dns;
 using ProtonVPN.Core.OS.Net.DoH;
@@ -267,6 +268,9 @@ namespace ProtonVPN.Core.Ioc
                 .AsImplementedInterfaces()
                 .SingleInstance();
             builder.RegisterType<AnnouncementCache>().As<IAnnouncementCache>().SingleInstance();
+            builder.Register(c =>
+                    new NtpClient(c.Resolve<Common.Configuration.Config>().NtpServerUrl, c.Resolve<ILogger>()))
+                .As<INtpClient>().SingleInstance();
         }
     }
 }

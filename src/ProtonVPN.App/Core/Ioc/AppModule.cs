@@ -297,6 +297,7 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<AuthKeyManager>().As<IAuthKeyManager>().SingleInstance();
             builder.RegisterType<AuthCertificateManager>().As<IAuthCertificateManager>().SingleInstance();
             builder.RegisterType<AuthCredentialManager>().As<IAuthCredentialManager>().SingleInstance();
+            builder.RegisterType<SystemTimeValidator>().SingleInstance();
         }
     }
 }
