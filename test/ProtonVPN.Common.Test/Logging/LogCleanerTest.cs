@@ -17,13 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
+using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
-using System;
-using System.IO;
-using System.Linq;
 
 namespace ProtonVPN.Common.Test.Logging
 {
@@ -43,7 +45,7 @@ namespace ProtonVPN.Common.Test.Logging
         {
             // Arrange
             const string logPath = "Folder\\Does\\Not\\Exist";
-            var cleaner = new LogCleaner(_logger);
+            LogCleaner cleaner = new(_logger);
             // Act
             Action action = () => cleaner.Clean(logPath, 0);
             //Assert
@@ -51,27 +53,45 @@ namespace ProtonVPN.Common.Test.Logging
         }
 
         [TestMethod]
-        public void Clean_ShouldDeleteOldestFiles()
+        public void Clean_ShouldDeleteOldFiles()
+        {
+            DateTime lastWriteDate = DateTime.UtcNow.Subtract(LogCleaner.MAXIMUM_FILE_AGE).AddDays(-2);
+
+            IEnumerable<string> result = ArrangeAndActByLastWriteDate(lastWriteDate);
+            
+            // Assert
+            result.Should().HaveCount(0);
+        }
+
+        private IEnumerable<string> ArrangeAndActByLastWriteDate(DateTime lastWriteDate)
         {
             // Arrange
-            const string logPath = nameof(Clean_ShouldDeleteOldestFiles);
+            const string logPath = nameof(Clean_ShouldDeleteOldFiles);
             CreateEmptyDirectory(logPath);
-            var files = new[] {"file.log", "file1.log", "file2.log", "file3.log", "file4.log"}.Select(f => Path.Combine(logPath, f)).ToList();
+            IList<string> files = new[] { "file.log", "file1.log", "file2.log", "file3.log", "file4.log" }.Select(f => Path.Combine(logPath, f)).ToList();
             files.ForEach(CreateEmptyFile);
-            File.SetCreationTimeUtc(files[0], new DateTime(2019, 03, 15, 10, 50, 0));
-            File.SetCreationTimeUtc(files[1], new DateTime(2019, 03, 15, 10, 40, 0));
-            File.SetCreationTimeUtc(files[2], new DateTime(2019, 03, 15, 10, 30, 0));
-            File.SetCreationTimeUtc(files[3], new DateTime(2019, 03, 15, 10, 20, 0));
-            File.SetCreationTimeUtc(files[4], new DateTime(2019, 03, 15, 10, 10, 0));
-            var cleaner = new LogCleaner(_logger);
+            File.SetLastWriteTimeUtc(files[0], lastWriteDate.AddMinutes(50));
+            File.SetLastWriteTimeUtc(files[1], lastWriteDate.AddMinutes(40));
+            File.SetLastWriteTimeUtc(files[2], lastWriteDate.AddMinutes(30));
+            File.SetLastWriteTimeUtc(files[3], lastWriteDate.AddMinutes(20));
+            File.SetLastWriteTimeUtc(files[4], lastWriteDate.AddMinutes(10));
+            LogCleaner cleaner = new(_logger);
 
             // Act
             cleaner.Clean(logPath, 2);
-            var result = Directory.GetFiles(logPath).Select(Path.GetFileName);
-            
+            return Directory.GetFiles(logPath).Select(Path.GetFileName);
+        }
+
+        [TestMethod]
+        public void Clean_ShouldDeleteOldestFiles()
+        {
+            DateTime lastWriteDate = DateTime.UtcNow.Subtract(LogCleaner.MAXIMUM_FILE_AGE).AddDays(2);
+
+            IEnumerable<string> result = ArrangeAndActByLastWriteDate(lastWriteDate);
+
             // Assert
             result.Should().HaveCount(2)
-                .And.Contain(new[] {"file.log", "file1.log"});
+                .And.Contain(new[] { "file.log", "file1.log" });
         }
 
         [TestMethod]
@@ -80,19 +100,19 @@ namespace ProtonVPN.Common.Test.Logging
             // Arrange
             const string logPath = nameof(Clean_ShouldSkipLockedFile);
             CreateEmptyDirectory(logPath);
-            var files = new[] { "file2.log", "file1.log", "file.log" }.Select(f => Path.Combine(logPath, f)).ToList();
+            IList<string> files = new[] { "file2.log", "file1.log", "file.log" }.Select(f => Path.Combine(logPath, f)).ToList();
             files.ForEach(CreateEmptyFile);
             File.SetCreationTimeUtc(files[0], new DateTime(2000, 01, 01, 0, 10, 0));
             File.SetCreationTimeUtc(files[1], new DateTime(2000, 01, 01, 0, 20, 0));
             File.SetCreationTimeUtc(files[2], new DateTime(2000, 01, 01, 0, 30, 0));
-            var cleaner = new LogCleaner(_logger);
+            LogCleaner cleaner = new(_logger);
 
             // Act
             using (File.OpenRead(files[1]))
             {
                 cleaner.Clean(logPath, 0);
             }
-            var result = Directory.GetFiles(logPath).Select(Path.GetFileName);
+            IEnumerable<string> result = Directory.GetFiles(logPath).Select(Path.GetFileName);
 
             // Assert
             result.Should().HaveCount(1)
@@ -104,7 +124,9 @@ namespace ProtonVPN.Common.Test.Logging
         private static void CreateEmptyDirectory(string path)
         {
             if (Directory.Exists(path))
+            {
                 Directory.Delete(path, true);
+            }
 
             Directory.CreateDirectory(path);
         }

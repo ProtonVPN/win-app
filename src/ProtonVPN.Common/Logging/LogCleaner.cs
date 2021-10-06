@@ -27,6 +27,8 @@ namespace ProtonVPN.Common.Logging
 {
     public class LogCleaner
     {
+        public static readonly TimeSpan MAXIMUM_FILE_AGE = TimeSpan.FromDays(28);
+
         private readonly ILogger _logger;
 
         public LogCleaner(ILogger logger)
@@ -107,7 +109,7 @@ namespace ProtonVPN.Common.Logging
 
         private IList<FileInfo> GetOldFiles(IList<FileInfo> files)
         {
-            DateTime minimumDate = DateTime.UtcNow.AddMonths(-1);
+            DateTime minimumDate = DateTime.UtcNow.Subtract(MAXIMUM_FILE_AGE);
             IList<FileInfo> oldFiles = files.Where(t => LastWriteTime(t) < minimumDate).ToList();
             string oldFileNames = GetFileNames(oldFiles);
             _logger.Debug($"[LogCleaner] The folder has {oldFiles.Count} old files with a last write date before {minimumDate:O}.{oldFileNames}");
