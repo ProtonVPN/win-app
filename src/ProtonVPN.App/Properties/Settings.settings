@@ -122,15 +122,6 @@
         <Setting Name="WelcomeModalShown" Type="System.Boolean" Scope="User">
             <Value Profile="(Default)">False</Value>
         </Setting>
-        <Setting Name="TrialExpirationTime" Type="System.Int64" Scope="User">
-            <Value Profile="(Default)">0</Value>
-        </Setting>
-        <Setting Name="AboutToExpireModalShown" Type="System.Boolean" Scope="User">
-            <Value Profile="(Default)">False</Value>
-        </Setting>
-        <Setting Name="ExpiredModalShown" Type="System.Boolean" Scope="User">
-            <Value Profile="(Default)">False</Value>
-        </Setting>
         <Setting Name="OnboardingStep" Type="System.Int32" Scope="User">
             <Value Profile="(Default)">0</Value>
         </Setting>
@@ -207,15 +198,6 @@
             <Value Profile="(Default)" />
         </Setting>
         <Setting Name="UserWelcomeModalShown" Type="System.String" Scope="User">
-            <Value Profile="(Default)" />
-        </Setting>
-        <Setting Name="UserTrialExpirationTime" Type="System.String" Scope="User">
-            <Value Profile="(Default)" />
-        </Setting>
-        <Setting Name="UserAboutToExpireModalShown" Type="System.String" Scope="User">
-            <Value Profile="(Default)" />
-        </Setting>
-        <Setting Name="UserExpiredModalShown" Type="System.String" Scope="User">
             <Value Profile="(Default)" />
         </Setting>
         <Setting Name="UserOnboardingStep" Type="System.String" Scope="User">

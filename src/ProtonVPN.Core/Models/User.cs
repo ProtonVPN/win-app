@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,9 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
-using ProtonVPN.Core.User;
-
 namespace ProtonVPN.Core.Models
 {
     public class User
@@ -30,7 +27,6 @@ namespace ProtonVPN.Core.Models
         public string VpnPlan { get; set; }
         public sbyte MaxTier { get; set; }
         public int Services { get; set; }
-        public int ExpirationTime { get; set; }
         public int Delinquent { get; set; }
         public int MaxConnect { get; set; }
         public string OriginalVpnPlan { get; set; }
@@ -49,36 +45,9 @@ namespace ProtonVPN.Core.Models
             }
         }
 
-        public PlanStatus TrialStatus()
-        {
-            switch (VpnPlan)
-            {
-                case null:
-                    return PlanStatus.Free;
-                case "trial" when ExpirationTime == 0:
-                    return PlanStatus.TrialNotStarted;
-                case "trial" when ExpirationTime > 0:
-                    return PlanStatus.TrialStarted;
-                default:
-                    return Paid() ? PlanStatus.Paid : PlanStatus.Free;
-            }
-        }
-
         public bool Paid()
         {
-            return VpnPlan != null && !VpnPlan.Equals("trial") && !VpnPlan.Equals("free");
-        }
-
-        public bool IsTrial()
-        {
-            return VpnPlan != null && VpnPlan.Equals("trial");
-        }
-
-        public long TrialExpirationTimeInSeconds()
-        {
-            long now = ((DateTimeOffset)DateTime.Now).ToUnixTimeSeconds();
-            long secondsLeft = ExpirationTime - now;
-            return secondsLeft < 0 ? 0 : secondsLeft;
+            return VpnPlan != null && !VpnPlan.Equals("free");
         }
 
         public bool Empty()

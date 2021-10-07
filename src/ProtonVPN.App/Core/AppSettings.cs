@@ -212,25 +212,7 @@ namespace ProtonVPN.Core
             set => SetPerUser(value);
         }
 
-        public long TrialExpirationTime
-        {
-            get => GetPerUser<long>();
-            set => SetPerUser(value);
-        }
-
-        public bool AboutToExpireModalShown
-        {
-            get => GetPerUser<bool>();
-            set => SetPerUser(value);
-        }
-
         public bool NetShieldModalShown
-        {
-            get => GetPerUser<bool>();
-            set => SetPerUser(value);
-        }
-
-        public bool ExpiredModalShown
         {
             get => GetPerUser<bool>();
             set => SetPerUser(value);

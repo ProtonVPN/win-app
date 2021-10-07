@@ -39,8 +39,6 @@ namespace ProtonVPN.Core.Api.Contracts
         // 0 = no vpn access, 1 = vpn access, 2 = vpn access requested (waitlist)
         public int Status { get; set; }
 
-        public int ExpirationTime { get; set; }
-
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public sbyte MaxTier { get; set; }
 

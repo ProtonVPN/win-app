@@ -66,6 +66,7 @@ using ProtonVPN.Login.Views;
 using ProtonVPN.Map;
 using ProtonVPN.Map.ViewModels;
 using ProtonVPN.Modals.ApiActions;
+using ProtonVPN.Modals.Welcome;
 using ProtonVPN.Notifications;
 using ProtonVPN.Onboarding;
 using ProtonVPN.P2PDetection;
@@ -77,7 +78,6 @@ using ProtonVPN.Sidebar;
 using ProtonVPN.Sidebar.Announcements;
 using ProtonVPN.Streaming;
 using ProtonVPN.Translations;
-using ProtonVPN.Trial;
 using ProtonVPN.ViewModels;
 using ProtonVPN.Vpn.Connectors;
 using ProtonVPN.Windows;
@@ -111,8 +111,7 @@ namespace ProtonVPN.Core
                 .RegisterModule<BugReportingModule>()
                 .RegisterModule<LoginModule>()
                 .RegisterModule<P2PDetectionModule>()
-                .RegisterModule<ProfilesModule>()
-                .RegisterModule<TrialModule>();
+                .RegisterModule<ProfilesModule>();
 
             _container = builder.Build();
         }
@@ -435,24 +434,6 @@ namespace ProtonVPN.Core
                 }
             };
 
-            Resolve<TrialTimer>().TrialTimerTicked += (sender, e) =>
-            {
-                IEnumerable<ITrialDurationAware> instances = Resolve<IEnumerable<ITrialDurationAware>>();
-                foreach (ITrialDurationAware instance in instances)
-                {
-                    instance.OnTrialSecondElapsed(e);
-                }
-            };
-
-            Resolve<Trial.Trial>().StateChanged += async (sender, e) =>
-            {
-                IEnumerable<ITrialStateAware> instances = Resolve<IEnumerable<ITrialStateAware>>();
-                foreach (ITrialStateAware instance in instances)
-                {
-                    await instance.OnTrialStateChangedAsync(e);
-                }
-            };
-
             Resolve<GuestHoleState>().GuestHoleStateChanged += (sender, active) =>
             {
                 IEnumerable<IGuestHoleStateAware> instances = Resolve<IEnumerable<IGuestHoleStateAware>>();
@@ -546,7 +527,7 @@ namespace ProtonVPN.Core
             Resolve<LoginWindow>().Hide();
 
             Resolve<PlanDowngradeHandler>();
-            await Resolve<Trial.Trial>().Load();
+            Resolve<WelcomeModalManager>().Load();
             await Resolve<IUserLocationService>().Update();
             await Resolve<IAnnouncements>().Update();
             await Resolve<SystemTimeValidator>().Validate();

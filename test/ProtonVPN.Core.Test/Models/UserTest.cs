@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -19,7 +19,7 @@
 
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ProtonVPN.Core.User;
+using CoreUser = ProtonVPN.Core.Models.User;
 
 namespace ProtonVPN.Core.Test.Models
 {
@@ -37,32 +37,9 @@ namespace ProtonVPN.Core.Test.Models
         public void GetAccountPlan_ShouldBe_MappedFormServices(int services, string expected)
         {
             // Arrange
-            var user = new Core.Models.User { Services = services };
+            CoreUser user = new() { Services = services };
             // Act
-            var result = user.GetAccountPlan();
-            // Assert
-            result.Should().Be(expected);
-        }
-
-        [DataTestMethod]
-        [DataRow(null, 0, PlanStatus.Free)]
-        [DataRow(null, 1, PlanStatus.Free)]
-        [DataRow("free", 0, PlanStatus.Free)]
-        [DataRow("free", 1, PlanStatus.Free)]
-        [DataRow("trial", 0, PlanStatus.TrialNotStarted)]
-        [DataRow("trial", 1, PlanStatus.TrialStarted)]
-        [DataRow("basic", 0, PlanStatus.Paid)]
-        [DataRow("basic", 1, PlanStatus.Paid)]
-        [DataRow("plus", 0, PlanStatus.Paid)]
-        [DataRow("plus", 1, PlanStatus.Paid)]
-        [DataRow("visionary", 0, PlanStatus.Paid)]
-        [DataRow("visionary", 1, PlanStatus.Paid)]
-        public void TrialStatus_ShouldBe_MappedFromVpnPlan_AndExpirationTime(string vpnPlan, int expirationTime, PlanStatus expected)
-        {
-            // Arrange
-            var user = new Core.Models.User { VpnPlan = vpnPlan, ExpirationTime = expirationTime };
-            // Act
-            var result = user.TrialStatus();
+            string result = user.GetAccountPlan();
             // Assert
             result.Should().Be(expected);
         }
@@ -70,16 +47,15 @@ namespace ProtonVPN.Core.Test.Models
         [DataTestMethod]
         [DataRow(null, false)]
         [DataRow("free", false)]
-        [DataRow("trial", false)]
         [DataRow("basic", true)]
         [DataRow("plus", true)]
         [DataRow("visionary", true)]
         public void Paid_ShouldBe_MappedFromVpnPlan(string vpnPlan, bool expected)
         {
             // Arrange
-            var user = new Core.Models.User { VpnPlan = vpnPlan };
+            CoreUser user = new() { VpnPlan = vpnPlan };
             // Act
-            var result = user.Paid();
+            bool result = user.Paid();
             // Assert
             result.Should().Be(expected);
         }
@@ -91,9 +67,9 @@ namespace ProtonVPN.Core.Test.Models
         public void Empty_ShouldBeTrue_WhenUsernameIsNullOrEmpty(string username, bool expected)
         {
             // Arrange
-            var user = new Core.Models.User {Username = username};
+            CoreUser user = new() { Username = username };
             // Act
-            var result = user.Empty();
+            bool result = user.Empty();
             // Assert
             result.Should().Be(expected);
         }
@@ -102,7 +78,7 @@ namespace ProtonVPN.Core.Test.Models
         public void EmptyUser_ShouldBe_Empty()
         {
             // Act
-            var user = Core.Models.User.EmptyUser();
+            CoreUser user = CoreUser.EmptyUser();
             // Assert
             user.Empty().Should().BeTrue();
         }
