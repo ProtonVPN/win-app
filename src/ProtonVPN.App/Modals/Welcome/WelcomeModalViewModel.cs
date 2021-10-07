@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,13 +17,33 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Windows.Input;
+using GalaSoft.MvvmLight.CommandWpf;
+
 namespace ProtonVPN.Modals.Welcome
 {
-    public class NonTrialWelcomeModalViewModel : BaseWelcomeModalViewModel
+    public class WelcomeModalViewModel : BaseModalViewModel
     {
-        public NonTrialWelcomeModalViewModel(Onboarding.Onboarding onboarding)
-            : base(onboarding)
+        private readonly Onboarding.Onboarding _onboarding;
+
+        public WelcomeModalViewModel(Onboarding.Onboarding onboarding)
         {
+            _onboarding = onboarding;
+
+            TakeATourCommand = new RelayCommand(TakeATourAction);
+        }
+
+        public ICommand TakeATourCommand { get; set; }
+
+        public override void CloseAction()
+        {
+            TryClose();
+        }
+
+        private void TakeATourAction()
+        {
+            _onboarding.Start();
+            TryClose();
         }
     }
 }

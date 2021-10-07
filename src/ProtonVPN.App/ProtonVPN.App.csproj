@@ -172,6 +172,7 @@
     <Compile Include="Modals\IncorrectSystemTimeModalView.xaml.cs">
       <DependentUpon>IncorrectSystemTimeModalView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Modals\Welcome\WelcomeModalManager.cs" />
     <Compile Include="Notifications\INotificationSender.cs" />
     <Compile Include="Notifications\INotificationUserActionHandler.cs" />
     <Compile Include="Notifications\NotificationSender.cs" />
@@ -349,7 +350,6 @@
     <Compile Include="Config\Url\IActiveUrls.cs" />
     <Compile Include="Config\Url\ActiveUrls.cs" />
     <Compile Include="Core\Ioc\LoginModule.cs" />
-    <Compile Include="Core\Ioc\TrialModule.cs" />
     <Compile Include="Modals\IModalWindows.cs" />
     <Compile Include="Core\Service\AppUpdateSystemService.cs" />
     <Compile Include="Core\Service\VpnSystemService.cs" />
@@ -432,13 +432,11 @@
       <DependentUpon>SubscriptionExpiredPopupView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\Popups\SubscriptionExpiration\SubscriptionExpiredPopupViewModel.cs" />
-    <Compile Include="Modals\Welcome\BaseWelcomeModalViewModel.cs" />
-    <Compile Include="Modals\Welcome\NonTrialWelcomeModalView.xaml.cs">
-      <DependentUpon>NonTrialWelcomeModalView.xaml</DependentUpon>
+    <Compile Include="Modals\Welcome\WelcomeModalViewModel.cs" />
+    <Compile Include="Modals\Welcome\WelcomeModalView.xaml.cs">
+      <DependentUpon>WelcomeModalView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Settings\Migrations\v1_7_2\ProfileV1.cs" />
-    <Compile Include="Modals\Welcome\NonTrialWelcomeModalViewModel.cs" />
-    <Compile Include="Modals\Welcome\TrialWelcomeModalViewModel.cs" />
     <Compile Include="Notifications\ISystemNotification.cs" />
     <Compile Include="Notifications\SystemNotification.cs" />
     <Compile Include="P2PDetection\Blocked\BlockedTraffic.cs" />
@@ -610,15 +608,6 @@
     <Compile Include="Core\Wpf\ComboBox.cs" />
     <Compile Include="Core\Wpf\PlaceholderTextBox.cs" />
     <Compile Include="Core\Wpf\Scrollviewer.cs" />
-    <Compile Include="Sidebar\Trial\TrialView.xaml.cs">
-      <DependentUpon>TrialView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Sidebar\Trial\TrialViewModel.cs" />
-    <Compile Include="Trial\ITrialDurationAware.cs" />
-    <Compile Include="Trial\ITrialStateAware.cs" />
-    <Compile Include="Trial\Trial.cs" />
-    <Compile Include="Trial\TrialTickEventArgs.cs" />
-    <Compile Include="Trial\TrialTimer.cs" />
     <Compile Include="ConnectionInfo\ConnectionInfoViewModel.cs" />
     <Compile Include="Map\ViewModels\Pins\AbstractPinViewModel.cs" />
     <Compile Include="ConnectingScreen\ConnectingViewModel.cs" />
@@ -637,7 +626,6 @@
     <Compile Include="Modals\P2PForwardModalViewModel.cs" />
     <Compile Include="Modals\Upsell\ScUpsellModalViewModel.cs" />
     <Compile Include="Modals\Upsell\PlusUpsellModalViewModel.cs" />
-    <Compile Include="Windows\Popups\Trials\TrialPopupViewModel.cs" />
     <Compile Include="Modals\Upsell\UpsellModalViewModel.cs" />
     <Compile Include="Profiles\PredefinedProfileViewModel.cs" />
     <Compile Include="Profiles\Form\CountryViewModel.cs" />
@@ -817,12 +805,6 @@
     </Compile>
     <Compile Include="Modals\Upsell\PlusUpsellModalView.xaml.cs">
       <DependentUpon>PlusUpsellModalView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\Popups\Trials\TrialPopupView.xaml.cs">
-      <DependentUpon>TrialPopupView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Modals\Welcome\TrialWelcomeModalView.xaml.cs">
-      <DependentUpon>TrialWelcomeModalView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modals\Upsell\UpsellModalView.xaml.cs">
       <DependentUpon>UpsellModalView.xaml</DependentUpon>
@@ -1041,7 +1023,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Modals\Welcome\NonTrialWelcomeModalView.xaml">
+    <Page Include="Modals\Welcome\WelcomeModalView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1098,10 +1080,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Sidebar\QuickSettings\QuickSettingsView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Sidebar\Trial\TrialView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1443,14 +1421,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Modals\Upsell\PlusUpsellModalView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Windows\Popups\Trials\TrialPopupView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Modals\Welcome\TrialWelcomeModalView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

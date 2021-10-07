@@ -29,12 +29,6 @@ namespace ProtonVPN.UI.Test.Results
             return this;
         }
 
-        public LoginResult VerifyTrialPopupIsShown()
-        {
-            CheckIfObjectWithClassNameIsDisplayed("GiftBox", "Trial popup was not displayed");
-            return this;
-        }
-
         public LoginResult VerifyUserIsOnLoginWindow()
         {
             CheckIfObjectWithNameIsDisplayed("Start with Windows", "User unsuccessfully disconnected.");

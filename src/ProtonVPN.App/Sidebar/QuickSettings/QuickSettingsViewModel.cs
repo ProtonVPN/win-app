@@ -131,7 +131,7 @@ namespace ProtonVPN.Sidebar.QuickSettings
         public bool IsKillSwitchDisabled => _appSettings.KillSwitchMode == Common.KillSwitch.KillSwitchMode.Off;
         public bool IsKillSwitchEnabled => IsSoftKillSwitchEnabled || IsHardKillSwitchEnabled;
         public int KillSwitchMode => (int)_appSettings.KillSwitchMode;
-        public bool IsFreeUser => _userStorage.User().TrialStatus() == PlanStatus.Free;
+        public bool IsFreeUser => !_userStorage.User().Paid();
 
         public bool IsUserTierPlusOrHigher => _userStorage.User().MaxTier >= ServerTiers.Plus;
 

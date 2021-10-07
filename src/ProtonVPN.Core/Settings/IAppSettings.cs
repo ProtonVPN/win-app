@@ -57,9 +57,6 @@ namespace ProtonVPN.Core.Settings
         bool CustomDnsEnabled { get; set; }
         bool SidebarMode { get; set; }
         bool WelcomeModalShown { get; set; }
-        long TrialExpirationTime { get; set; }
-        bool AboutToExpireModalShown { get; set; }
-        bool ExpiredModalShown { get; set; }
         int OnboardingStep { get; set; }
         int AppStartCounter { get; set; }
         int SidebarTab { get; set; }

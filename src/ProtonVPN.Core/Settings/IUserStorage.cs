@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -31,10 +31,8 @@ namespace ProtonVPN.Core.Settings
 
         Models.User User();
         UserLocation Location();
-        void ClearLogin();
         void StoreVpnInfo(VpnInfoResponse vpnInfo);
         void SaveLocation(UserLocation location);
         void SaveUsername(string username);
-        void SetFreePlan();
     }
 }

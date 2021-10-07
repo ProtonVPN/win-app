@@ -6565,87 +6565,6 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Check invoices.
-        /// </summary>
-        public static string Sidebar_Trial_btn_Invoices {
-            get {
-                return ResourceManager.GetString("Sidebar_Trial_btn_Invoices", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Upgrade.
-        /// </summary>
-        public static string Sidebar_Trial_btn_Upgrade {
-            get {
-                return ResourceManager.GetString("Sidebar_Trial_btn_Upgrade", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Paid features are disabled due to delinquency.
-        /// </summary>
-        public static string Sidebar_Trial_lbl_Delinquency {
-            get {
-                return ResourceManager.GetString("Sidebar_Trial_lbl_Delinquency", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Free trial expires in:.
-        /// </summary>
-        public static string Sidebar_Trial_lbl_ExpiresIn {
-            get {
-                return ResourceManager.GetString("Sidebar_Trial_lbl_ExpiresIn", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to You are currently using&lt;LineBreak/&gt;Free version.
-        /// </summary>
-        public static string Sidebar_Trial_lbl_FreeVersion {
-            get {
-                return ResourceManager.GetString("Sidebar_Trial_lbl_FreeVersion", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to days.
-        /// </summary>
-        public static string Sidebar_Trial_TimeUnit_val_Days {
-            get {
-                return ResourceManager.GetString("Sidebar_Trial_TimeUnit_val_Days", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to hrs.
-        /// </summary>
-        public static string Sidebar_Trial_TimeUnit_val_Hours {
-            get {
-                return ResourceManager.GetString("Sidebar_Trial_TimeUnit_val_Hours", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to min.
-        /// </summary>
-        public static string Sidebar_Trial_TimeUnit_val_Minutes {
-            get {
-                return ResourceManager.GetString("Sidebar_Trial_TimeUnit_val_Minutes", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to secs.
-        /// </summary>
-        public static string Sidebar_Trial_TimeUnit_val_Seconds {
-            get {
-                return ResourceManager.GetString("Sidebar_Trial_TimeUnit_val_Seconds", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Disabled.
         /// </summary>
         public static string StartMinimizedMode_val_Disabled {
@@ -6759,159 +6678,6 @@ namespace ProtonVPN.Translations.Properties {
         public static string Tooltips_SmartReconnection_Title {
             get {
                 return ResourceManager.GetString("Tooltips_SmartReconnection_Title", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Maybe Later.
-        /// </summary>
-        public static string Trial_Expiring_btn_Close {
-            get {
-                return ResourceManager.GetString("Trial_Expiring_btn_Close", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Upgrade Now.
-        /// </summary>
-        public static string Trial_Expiring_btn_Upgrade {
-            get {
-                return ResourceManager.GetString("Trial_Expiring_btn_Upgrade", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Your free trial is about to expire!.
-        /// </summary>
-        public static string Trial_Expiring_lbl_AboutToExpire {
-            get {
-                return ResourceManager.GetString("Trial_Expiring_lbl_AboutToExpire", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Your free trial EXPIRED.
-        /// </summary>
-        public static string Trial_Expiring_lbl_Expired {
-            get {
-                return ResourceManager.GetString("Trial_Expiring_lbl_Expired", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Upgrade to ProtonVPN PLUS and continue enjoying these features:.
-        /// </summary>
-        public static string Trial_Expiring_lbl_Features {
-            get {
-                return ResourceManager.GetString("Trial_Expiring_lbl_Features", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 30-day money back guarantee.
-        /// </summary>
-        public static string Trial_Expiring_lbl_MoneyBack {
-            get {
-                return ResourceManager.GetString("Trial_Expiring_lbl_MoneyBack", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Connect up to 10 devices at the same time.
-        /// </summary>
-        public static string Trial_Expiring_lbl_MultipleConnections_Info {
-            get {
-                return ResourceManager.GetString("Trial_Expiring_lbl_MultipleConnections_Info", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Hundreds of servers around the world.
-        /// </summary>
-        public static string Trial_Expiring_lbl_MultipleServers_Info {
-            get {
-                return ResourceManager.GetString("Trial_Expiring_lbl_MultipleServers_Info", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Ultra secure servers hosted by us.
-        /// </summary>
-        public static string Trial_Expiring_lbl_SecureCore_Info {
-            get {
-                return ResourceManager.GetString("Trial_Expiring_lbl_SecureCore_Info", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Secure streaming of your favorite content.
-        /// </summary>
-        public static string Trial_Expiring_lbl_Streaming_Info {
-            get {
-                return ResourceManager.GetString("Trial_Expiring_lbl_Streaming_Info", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ProtonVPN Trial.
-        /// </summary>
-        public static string Trial_Expiring_ttl {
-            get {
-                return ResourceManager.GetString("Trial_Expiring_ttl", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 10 connections.
-        /// </summary>
-        public static string Trial_Features_lbl_MultipleConnections {
-            get {
-                return ResourceManager.GetString("Trial_Features_lbl_MultipleConnections", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Multiple Countries.
-        /// </summary>
-        public static string Trial_Features_lbl_MultipleCountries {
-            get {
-                return ResourceManager.GetString("Trial_Features_lbl_MultipleCountries", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Multiple Servers.
-        /// </summary>
-        public static string Trial_Features_lbl_MultipleServers {
-            get {
-                return ResourceManager.GetString("Trial_Features_lbl_MultipleServers", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to P2P Servers.
-        /// </summary>
-        public static string Trial_Features_lbl_P2PServers {
-            get {
-                return ResourceManager.GetString("Trial_Features_lbl_P2PServers", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Secure Core.
-        /// </summary>
-        public static string Trial_Features_lbl_SecureCore {
-            get {
-                return ResourceManager.GetString("Trial_Features_lbl_SecureCore", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Secure Streaming.
-        /// </summary>
-        public static string Trial_Features_lbl_Streaming {
-            get {
-                return ResourceManager.GetString("Trial_Features_lbl_Streaming", resourceCulture);
             }
         }
         
@@ -7069,15 +6835,6 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ProtonVPN Plus Trial.
-        /// </summary>
-        public static string VpnPlan_val_Trial {
-            get {
-                return ResourceManager.GetString("VpnPlan_val_Trial", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Proton Visionary.
         /// </summary>
         public static string VpnPlan_val_Visionary {
@@ -7168,24 +6925,6 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ENJOY PLUS FOR FREE!.
-        /// </summary>
-        public static string Welcome_lbl_TrialEnjoy {
-            get {
-                return ResourceManager.GetString("Welcome_lbl_TrialEnjoy", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to As a welcome gift, you get a 7-days access to a ProtonVPN PLUS subscription with premium features including:.
-        /// </summary>
-        public static string Welcome_lbl_TrialGift {
-            get {
-                return ResourceManager.GetString("Welcome_lbl_TrialGift", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to WELCOME ON BOARD!.
         /// </summary>
         public static string Welcome_lbl_Welcome {
@@ -7200,15 +6939,6 @@ namespace ProtonVPN.Translations.Properties {
         public static string Welcome_ttl {
             get {
                 return ResourceManager.GetString("Welcome_ttl", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ProtonVPN Trial.
-        /// </summary>
-        public static string Welcome_ttl_Trial {
-            get {
-                return ResourceManager.GetString("Welcome_ttl_Trial", resourceCulture);
             }
         }
         

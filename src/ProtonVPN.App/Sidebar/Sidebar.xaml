@@ -23,7 +23,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:sidebar="clr-namespace:ProtonVPN.Sidebar"
-             xmlns:trial="clr-namespace:ProtonVPN.Sidebar.Trial"
              xmlns:onboarding="clr-namespace:ProtonVPN.Onboarding"
              xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
              mc:Ignorable="d"
@@ -118,7 +117,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Grid.RowDefinitions>
 
         <StackPanel HorizontalAlignment="Center" Grid.Row="0">
-            <trial:TrialView Visibility="{Binding ShowTrialView, Converter={StaticResource BoolToVis}}"/>
             <sidebar:ConnectionStatus DataContext="{Binding ConnectionStatus}"/>
         </StackPanel>
 

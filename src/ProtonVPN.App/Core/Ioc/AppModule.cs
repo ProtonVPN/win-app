@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -54,6 +54,7 @@ using ProtonVPN.FlashNotifications;
 using ProtonVPN.Map;
 using ProtonVPN.Modals;
 using ProtonVPN.Modals.Dialogs;
+using ProtonVPN.Modals.Welcome;
 using ProtonVPN.Notifications;
 using ProtonVPN.PlanDowngrading;
 using ProtonVPN.Servers;
@@ -298,6 +299,7 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<AuthCertificateManager>().As<IAuthCertificateManager>().SingleInstance();
             builder.RegisterType<AuthCredentialManager>().As<IAuthCredentialManager>().SingleInstance();
             builder.RegisterType<SystemTimeValidator>().SingleInstance();
+            builder.RegisterType<WelcomeModalManager>().SingleInstance();
         }
     }
 }

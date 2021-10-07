@@ -12,7 +12,7 @@ namespace ProtonVPN.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.8.1.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.0.0.0")]
     public sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -501,42 +501,6 @@ namespace ProtonVPN.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public long TrialExpirationTime {
-            get {
-                return ((long)(this["TrialExpirationTime"]));
-            }
-            set {
-                this["TrialExpirationTime"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool AboutToExpireModalShown {
-            get {
-                return ((bool)(this["AboutToExpireModalShown"]));
-            }
-            set {
-                this["AboutToExpireModalShown"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool ExpiredModalShown {
-            get {
-                return ((bool)(this["ExpiredModalShown"]));
-            }
-            set {
-                this["ExpiredModalShown"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
         public int OnboardingStep {
             get {
                 return ((int)(this["OnboardingStep"]));
@@ -843,42 +807,6 @@ namespace ProtonVPN.Properties {
             }
             set {
                 this["UserWelcomeModalShown"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string UserTrialExpirationTime {
-            get {
-                return ((string)(this["UserTrialExpirationTime"]));
-            }
-            set {
-                this["UserTrialExpirationTime"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string UserAboutToExpireModalShown {
-            get {
-                return ((string)(this["UserAboutToExpireModalShown"]));
-            }
-            set {
-                this["UserAboutToExpireModalShown"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string UserExpiredModalShown {
-            get {
-                return ((string)(this["UserExpiredModalShown"]));
-            }
-            set {
-                this["UserExpiredModalShown"] = value;
             }
         }
         

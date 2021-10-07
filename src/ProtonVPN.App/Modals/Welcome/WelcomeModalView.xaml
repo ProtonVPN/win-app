@@ -1,5 +1,5 @@
 ﻿<!--
-Copyright (c) 2020 Proton Technologies AG
+Copyright (c) 2021 Proton Technologies AG
 
 This file is part of ProtonVPN.
 
@@ -17,7 +17,7 @@ You should have received a copy of the GNU General Public License
 along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 -->
 
-<resource:BaseModalWindow x:Class="ProtonVPN.Modals.Welcome.NonTrialWelcomeModalView"
+<resource:BaseModalWindow x:Class="ProtonVPN.Modals.Welcome.WelcomeModalView"
                           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -31,7 +31,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           Height="540"
                           Width="800"
                           AutomationProperties.AutomationId="{StaticResource WelcomeModal}"
-                          d:DataContext="{d:DesignInstance welcome:NonTrialWelcomeModalViewModel}">
+                          d:DataContext="{d:DesignInstance welcome:WelcomeModalViewModel}">
     <Grid>
         <Grid.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" GradientStops="{StaticResource ModalBackground}"/>

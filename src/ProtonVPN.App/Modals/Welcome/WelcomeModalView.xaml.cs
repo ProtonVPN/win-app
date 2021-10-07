@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,13 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Threading.Tasks;
-using ProtonVPN.Core.User;
-
-namespace ProtonVPN.Trial
+namespace ProtonVPN.Modals.Welcome
 {
-    public interface ITrialStateAware
+    public partial class WelcomeModalView
     {
-        Task OnTrialStateChangedAsync(PlanStatus status);
+        public WelcomeModalView()
+        {
+            InitializeComponent();
+        }
     }
 }

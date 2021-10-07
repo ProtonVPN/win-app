@@ -62,12 +62,6 @@ namespace ProtonVPN.UI.Test.TestsHelper
             return new TestUserData(username, password);
         }
 
-        public static TestUserData GetTrialUser()
-        {
-            var (username, password) = GetUsernameAndPassword("TRIAL_USER");
-            return new TestUserData(username, password);
-        }
-
         public static TestUserData GetTestrailUser()
         {
             var (username, password) = GetUsernameAndPassword("TESTRAIL_USER");
