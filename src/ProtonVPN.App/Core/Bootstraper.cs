@@ -142,7 +142,13 @@ namespace ProtonVPN.Core
             SetHardwareAcceleration();
             RegisterEvents();
             Resolve<Language>().Initialize(_args);
-            await ShowInitialWindow();
+
+            if (Resolve<IAppSettings>().StartMinimized == StartMinimizedMode.Disabled)
+            {
+                ShowInitialWindow();
+            }
+
+            await StartAllServices();
 
             if (Resolve<IUserStorage>().User().Empty() || !await IsUserValid() || await SessionExpired())
             {
@@ -240,21 +246,14 @@ namespace ProtonVPN.Core
             await InitializeStateFromService();
         }
 
-        private async Task ShowInitialWindow()
+        private void ShowInitialWindow()
         {
-            if (Resolve<IAppSettings>().StartMinimized != StartMinimizedMode.Disabled)
-            {
-                return;
-            }
-
             LoginWindow loginWindow = Resolve<LoginWindow>();
             LoginWindowViewModel loginWindowViewModel = Resolve<LoginWindowViewModel>();
             Application.Current.MainWindow = loginWindow;
             loginWindowViewModel.CurrentPageViewModel = Resolve<LoadingViewModel>();
             loginWindow.DataContext = loginWindowViewModel;
             loginWindow.Show();
-
-            await StartAllServices();
         }
 
         private void RegisterEvents()
