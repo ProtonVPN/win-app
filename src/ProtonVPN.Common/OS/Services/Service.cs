@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -33,7 +33,9 @@ namespace ProtonVPN.Common.OS.Services
 {
     public abstract class Service : IService
     {
-        private static readonly TimeSpan WaitForServiceStatusDuration = TimeSpan.FromSeconds(30);
+        private readonly TimeSpan _waitForServiceStatusDuration = TimeSpan.FromSeconds(30);
+        private readonly TimeSpan _waitForServiceEnableDuration = TimeSpan.FromSeconds(5);
+
         private readonly IOsProcesses _osProcesses;
 
         protected Service(string serviceName, IOsProcesses osProcesses)
@@ -48,25 +50,7 @@ namespace ProtonVPN.Common.OS.Services
 
         public bool Exists()
         {
-            IntPtr serviceManager = GetServiceManager();
-            if (serviceManager == IntPtr.Zero)
-            {
-                throw new Win32Exception(Marshal.GetLastWin32Error());
-            }
-
-            try
-            {
-                IntPtr service = Win32.OpenService(serviceManager, Name, Win32.ServiceAccessRights.AllAccess);
-                return service != IntPtr.Zero;
-            }
-            catch
-            {
-                throw new Win32Exception(Marshal.GetLastWin32Error());
-            }
-            finally
-            {
-                Win32.CloseServiceHandle(serviceManager);
-            }
+            return GetServices().Select(s => s.ServiceName).ContainsIgnoringCase(Name);
         }
 
         public void Create(string pathAndArgs, bool unrestricted)
@@ -136,6 +120,7 @@ namespace ProtonVPN.Common.OS.Services
         {
             IOsProcess process = _osProcesses.ElevatedCommandLineProcess($"/c sc config \"{Name}\" start= demand");
             process.Start();
+            process.WaitForExit(_waitForServiceEnableDuration);
         }
 
         public Task<Result> StartAsync(CancellationToken cancellationToken)
@@ -143,7 +128,7 @@ namespace ProtonVPN.Common.OS.Services
             return ServiceControllerResult(async sc =>
             {
                 sc.Start();
-                await sc.WaitForStatusAsync(ServiceControllerStatus.Running, WaitForServiceStatusDuration,
+                await sc.WaitForStatusAsync(ServiceControllerStatus.Running, _waitForServiceStatusDuration,
                     cancellationToken);
             });
         }

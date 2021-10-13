@@ -49,7 +49,14 @@ namespace ProtonVPN.Common.OS.Services
 
         public bool Enabled() => _origin.Enabled();
 
-        public void Enable() => _origin.Enable();
+        public void Enable()
+        {
+            _ = Logged("Enabling", () =>
+              {
+                  _origin.Enable();
+                  return Task.FromResult(Result.Ok());
+              });
+        }
 
         public Task<Result> StartAsync(CancellationToken cancellationToken)
         {

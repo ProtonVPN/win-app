@@ -124,7 +124,7 @@ namespace ProtonVPN.Core.Ioc
 
             builder.RegisterType<ServerListFactory>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterInstance((App)Application.Current).SingleInstance();
-            builder.RegisterType<VpnService>().AsSelf().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<VpnService>().SingleInstance();
             builder.RegisterType<ModalWindows>().As<IModalWindows>().SingleInstance();
             builder.RegisterType<ProtonVPN.Modals.Modals>().As<IModals>().SingleInstance();
             builder.RegisterType<Windows.Popups.PopupWindows>().As<IPopupWindows>().SingleInstance();
@@ -199,7 +199,9 @@ namespace ProtonVPN.Core.Ioc
                                     c.Resolve<ILogger>(),
                                     new SystemService(
                                         c.Resolve<Common.Configuration.Config>().ServiceName,
-                                        c.Resolve<IOsProcesses>()))))))
+                                        c.Resolve<IOsProcesses>())))),
+                        c.Resolve<ILogger>(),
+                        c.Resolve<IServiceEnabler>()))
                 .SingleInstance();
             builder.Register(c =>
                     new AppUpdateSystemService(
@@ -210,16 +212,16 @@ namespace ProtonVPN.Core.Ioc
                                     c.Resolve<ILogger>(),
                                     new SystemService(
                                         c.Resolve<Common.Configuration.Config>().UpdateServiceName,
-                                        c.Resolve<IOsProcesses>()))))))
+                                        c.Resolve<IOsProcesses>())))), c.Resolve<ILogger>(), c.Resolve<IServiceEnabler>()))
                 .SingleInstance();
 
             builder.RegisterType<VpnServiceManager>().SingleInstance();
-            builder.Register(c => new ServiceStartDecorator(
-                    c.Resolve<ILogger>(),
+            builder.RegisterType<ServiceEnabler>().As<IServiceEnabler>().SingleInstance();
+            builder.Register(c => new VpnServiceActionDecorator(
+                    c.Resolve<VpnSystemService>(),
                     c.Resolve<VpnServiceManager>(),
                     c.Resolve<IModals>(),
-                    c.Resolve<BaseFilteringEngineService>(),
-                    c.Resolve<VpnSystemService>()))
+                    c.Resolve<BaseFilteringEngineService>()))
                 .As<IVpnServiceManager>().SingleInstance();
             builder.RegisterType<NetworkAdapterValidator>().As<INetworkAdapterValidator>().SingleInstance();
             builder.RegisterType<VpnManager>().AsImplementedInterfaces().SingleInstance();

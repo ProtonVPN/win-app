@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,13 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.OS.Services;
 
 namespace ProtonVPN.Core.Service
 {
-    public class VpnSystemService : ConcurrentService
+    public class VpnSystemService : SafeServiceAction
     {
-        public VpnSystemService(IService origin) : base(origin)
+        public VpnSystemService(IService service, ILogger logger, IServiceEnabler serviceEnabler) : base(service, logger,
+            serviceEnabler)
         {
         }
     }

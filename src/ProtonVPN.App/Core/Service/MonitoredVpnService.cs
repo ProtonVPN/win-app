@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -32,7 +32,7 @@ namespace ProtonVPN.Core.Service
     internal class MonitoredVpnService : IVpnStateAware, IConcurrentService
     {
         private VpnStatus _vpnStatus;
-        private readonly DispatcherTimer _timer = new DispatcherTimer();
+        private readonly DispatcherTimer _timer = new();
         private readonly VpnSystemService _service;
         private readonly IVpnManager _vpnManager;
         private readonly ILogger _logger;
@@ -48,12 +48,6 @@ namespace ProtonVPN.Core.Service
             _logger = logger;
             _timer.Interval = appConfig.ServiceCheckInterval;
             _timer.Tick += OnTimerTick;
-        }
-
-        public event EventHandler<string> ServiceStarted
-        {
-            add => _service.ServiceStarted += value;
-            remove => _service.ServiceStarted -= value;
         }
 
         public string Name => _service.Name;

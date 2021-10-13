@@ -2210,10 +2210,6 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <value>The network adapter version is outdated.</value>
     <comment>The error description displayed in Disconnect modal window if TAP adapter version is too low</comment>
   </data>
-  <data name="Dialogs_ServiceStart_Info" xml:space="preserve">
-    <value>The ProtonVPN Service that is responsible for your VPN connection is not running. It will try to complete your task again shortly. If this problem persists, try restarting the ProtonVPN app. If it still persists, try restarting your PC.</value>
-    <comment>The text displayed in Service Start window</comment>
-  </data>
   <data name="Dialogs_DisconnectError_msg_NoServers" xml:space="preserve">
     <value>There are no servers available right now for your selection. Please select a different option.</value>
     <comment>The error description displayed in Disconnect modal window if disconnected because there are no servers available to connect to</comment>
@@ -2293,10 +2289,6 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
   <data name="Login_Error_msg_Unauthorized" xml:space="preserve">
     <value>Invalid refresh token, please log in again.</value>
     <comment>The text displayed after failed login attempt</comment>
-  </data>
-  <data name="Dialogs_ServiceStart_msg_FailedToStart" xml:space="preserve">
-    <value>Failed to start {0}</value>
-    <comment>The message displayed in the error window when the app fails to start the service at user logon. The {0} is a placeholder for the service name which failed to start</comment>
   </data>
   <data name="Settings_Connection_lbl_CustomDnsServer" xml:space="preserve">
     <value>Custom DNS Servers</value>
@@ -2672,7 +2664,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Enable</value>
   </data>
   <data name="Dialogs_DisabledService_msg_Info" xml:space="preserve">
-    <value>The ProtonVPN service required for your VPN connection seems to be disabled. Click on Enable to fix it.&lt;LineBreak/&gt;Note that this operation requires Admin privileges.</value>
+    <value>Some ProtonVPN's components might be blocked or disabled, preventing you to connect. Click on Enable to fix it.&lt;LineBreak/&gt;Note that this operation requires Admin privileges.</value>
   </data>
   <data name="Dialogs_DisabledService_btn_LearnMore" xml:space="preserve">
     <value>Learn more</value>
@@ -2681,7 +2673,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Show less</value>
   </data>
   <data name="Dialogs_DisabledService_msg_ExtraInfo" xml:space="preserve">
-    <value>Sometimes, anti-virus software will mistakenly categorize ProtonVPN as a vulnerability and disable it. By clicking Enable, you are giving your system permission to reactivate the ProtonVPN Service.&lt;LineBreak/&gt;If the ProtonVPN Service is still disabled, try restarting your PC or reinstalling ProtonVPN.</value>
+    <value>Some applications like anti-virus or PC optimizers can interfere with the System Services that ProtonVPN requires for securing your connection. By clicking Enable, you are allowing Windows to reactivate the ProtonVPN's Services.&lt;LineBreak/&gt;If the problem persists, try restarting your PC or reinstalling ProtonVPN.</value>
   </data>
   <data name="Dialogs_PortForwardingConfirmation_ttl" xml:space="preserve">
     <value>Enable Port Forwarding?</value>

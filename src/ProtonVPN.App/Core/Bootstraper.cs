@@ -20,7 +20,6 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.ServiceModel;
@@ -33,7 +32,6 @@ using ProtonVPN.BugReporting;
 using ProtonVPN.Common.Abstract;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
-using ProtonVPN.Common.OS.Processes;
 using ProtonVPN.Common.OS.Services;
 using ProtonVPN.Common.Storage;
 using ProtonVPN.Common.Vpn;
@@ -161,24 +159,8 @@ namespace ProtonVPN.Core
         public void OnExit()
         {
             Resolve<TrayIcon>().Hide();
-            Resolve<VpnSystemService>().StopAsync();
+            Resolve<MonitoredVpnService>().StopAsync();
             Resolve<AppUpdateSystemService>().StopAsync();
-        }
-
-        private async Task StartVpnService()
-        {
-            if (!Resolve<BaseFilteringEngineService>().Running())
-            {
-                return;
-            }
-
-            MonitoredVpnService service = Resolve<MonitoredVpnService>();
-            if (!service.Enabled())
-            {
-                return;
-            }
-
-            await StartService(service);
         }
 
         private async Task<bool> SessionExpired()
@@ -240,7 +222,7 @@ namespace ProtonVPN.Core
 
         private async Task StartAllServices()
         {
-            await StartVpnService();
+            await StartService(Resolve<VpnSystemService>());
             await StartService(Resolve<AppUpdateSystemService>());
             await InitializeStateFromService();
         }
@@ -563,24 +545,10 @@ namespace ProtonVPN.Core
         private async Task StartService(IConcurrentService service)
         {
             Result result = await service.StartAsync();
-
-            if (result.Failure)
+            if (result.Failure && result.Exception != null)
             {
                 ReportException(result.Exception);
-
-                AppConfig config = Resolve<AppConfig>();
-                string filename = config.ErrorMessageExePath;
-                string error = GetServiceErrorMessage(service.Name, result.Exception);
-                try
-                {
-                    Resolve<IOsProcesses>().Process(filename, error).Start();
-                }
-                catch (Exception e)
-                {
-                    string serviceName = Path.GetFileNameWithoutExtension(filename);
-                    Resolve<ILogger>().Error($"Failed to start {serviceName} process: {e.CombinedMessage()}");
-                    ReportException(e);
-                }
+                Resolve<ILogger>().Error($"[Bootstrapper] Failed to start {service.Name} service.", result.Exception);
             }
         }
 
@@ -592,14 +560,6 @@ namespace ProtonVPN.Core
                 scope.SetTag("captured_in", "App_Bootstrapper_StartService");
                 SentrySdk.CaptureException(e);
             });
-        }
-
-        private string GetServiceErrorMessage(string serviceName, Exception e)
-        {
-            string error = e.InnerException?.Message ?? e.Message;
-            string failedToStart = string.Format(Translation.Get("Dialogs_ServiceStart_msg_FailedToStart"), serviceName);
-
-            return $"\"{failedToStart}\" \"{error}\"";
         }
 
         private void RegisterMigrations(ISupportsMigration subject, IEnumerable<IMigration> migrations)

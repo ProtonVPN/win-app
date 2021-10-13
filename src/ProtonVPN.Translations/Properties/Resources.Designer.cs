@@ -3415,7 +3415,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sometimes, anti-virus software will mistakenly categorize ProtonVPN as a vulnerability and disable it. By clicking Enable, you are giving your system permission to reactivate the ProtonVPN Service.&lt;LineBreak/&gt;If the ProtonVPN Service is still disabled, try restarting your PC or reinstalling ProtonVPN..
+        ///   Looks up a localized string similar to Some applications like anti-virus or PC optimizers can interfere with the System Services that ProtonVPN requires for securing your connection. By clicking Enable, you are allowing Windows to reactivate the ProtonVPN&apos;s Services.&lt;LineBreak/&gt;If the problem persists, try restarting your PC or reinstalling ProtonVPN..
         /// </summary>
         public static string Dialogs_DisabledService_msg_ExtraInfo {
             get {
@@ -3424,7 +3424,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The ProtonVPN service required for your VPN connection seems to be disabled. Click on Enable to fix it.&lt;LineBreak/&gt;Note that this operation requires Admin privileges..
+        ///   Looks up a localized string similar to Some ProtonVPN&apos;s components might be blocked or disabled, preventing you to connect. Click on Enable to fix it.&lt;LineBreak/&gt;Note that this operation requires Admin privileges..
         /// </summary>
         public static string Dialogs_DisabledService_msg_Info {
             get {
@@ -3888,24 +3888,6 @@ namespace ProtonVPN.Translations.Properties {
         public static string Dialogs_reconnection_ToServer {
             get {
                 return ResourceManager.GetString("Dialogs_reconnection_ToServer", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The ProtonVPN Service that is responsible for your VPN connection is not running. It will try to complete your task again shortly. If this problem persists, try restarting the ProtonVPN app. If it still persists, try restarting your PC..
-        /// </summary>
-        public static string Dialogs_ServiceStart_Info {
-            get {
-                return ResourceManager.GetString("Dialogs_ServiceStart_Info", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Failed to start {0}.
-        /// </summary>
-        public static string Dialogs_ServiceStart_msg_FailedToStart {
-            get {
-                return ResourceManager.GetString("Dialogs_ServiceStart_msg_FailedToStart", resourceCulture);
             }
         }
         

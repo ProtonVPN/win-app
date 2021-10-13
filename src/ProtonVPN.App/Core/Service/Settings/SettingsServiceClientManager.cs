@@ -21,6 +21,7 @@ using System;
 using System.ComponentModel;
 using System.ServiceModel;
 using System.Threading.Tasks;
+using ProtonVPN.Common.Abstract;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.KillSwitch;
 using ProtonVPN.Common.Logging;
@@ -34,15 +35,18 @@ namespace ProtonVPN.Core.Service.Settings
         private readonly SettingsServiceClient _client;
         private readonly ILogger _logger;
         private readonly SettingsContractProvider _settingsContractProvider;
+        private readonly VpnSystemService _service;
 
         public SettingsServiceClientManager(
             SettingsServiceClient client,
             ILogger logger,
+            VpnSystemService service,
             SettingsContractProvider settingsContractProvider)
         {
-            _settingsContractProvider = settingsContractProvider;
             _client = client;
             _logger = logger;
+            _service = service;
+            _settingsContractProvider = settingsContractProvider;
         }
 
         public async Task UpdateServiceSettings()
@@ -66,14 +70,19 @@ namespace ProtonVPN.Core.Service.Settings
 
         private async Task UpdateServiceSettingsInternal(SettingsContract settingsContract)
         {
-            try
+            await _service.InvokeServiceAction(async () =>
             {
-                await Task.Run(() => _client.Apply(settingsContract));
-            }
-            catch (Exception ex) when (ex is CommunicationException || ex is TimeoutException || ex is TaskCanceledException)
-            {
-                _logger.Error(ex.CombinedMessage());
-            }
+                try
+                {
+                    await Task.Run(() => _client.Apply(settingsContract));
+                    return Result.Ok();
+                }
+                catch (Exception ex) when (ex is CommunicationException or TimeoutException or TaskCanceledException)
+                {
+                    _logger.Error(ex.CombinedMessage());
+                    return Result.Fail();
+                }
+            });
         }
 
         public async void OnAppSettingsChanged(PropertyChangedEventArgs e)
