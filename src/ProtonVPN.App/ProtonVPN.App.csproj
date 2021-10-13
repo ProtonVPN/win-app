@@ -138,6 +138,9 @@
     <Compile Include="Core\MVVM\Converters\PluralConverter.cs" />
     <Compile Include="Core\MVVM\Converters\ZeroToBoolConverter.cs" />
     <Compile Include="Core\Service\BaseFilteringEngineService.cs" />
+    <Compile Include="Core\Service\MonitoredVpnService.cs" />
+    <Compile Include="Core\Service\SafeServiceAction.cs" />
+    <Compile Include="Core\Service\ServiceEnabler.cs" />
     <Compile Include="Core\Service\Settings\ISettingsServiceClientManager.cs" />
     <Compile Include="Core\Service\Vpn\INetworkAdapterValidator.cs" />
     <Compile Include="Core\Service\Vpn\NetworkAdapterValidator.cs" />
@@ -353,11 +356,10 @@
     <Compile Include="Modals\IModalWindows.cs" />
     <Compile Include="Core\Service\AppUpdateSystemService.cs" />
     <Compile Include="Core\Service\VpnSystemService.cs" />
-    <Compile Include="Core\Service\MonitoredVpnService.cs" />
     <Compile Include="Core\Service\Settings\SettingsContractProvider.cs" />
     <Compile Include="Core\Service\Settings\SettingsServiceClient.cs" />
     <Compile Include="Core\Service\Settings\SettingsServiceClientManager.cs" />
-    <Compile Include="Core\Service\Vpn\ServiceStartDecorator.cs" />
+    <Compile Include="Core\Service\Vpn\VpnServiceActionDecorator.cs" />
     <Compile Include="Settings\Migrations\BaseSettingsMigration.cs" />
     <Compile Include="Settings\Migrations\BaseAppSettingsMigration.cs" />
     <Compile Include="Settings\Migrations\IUserSettingsMigration.cs" />
@@ -412,10 +414,6 @@
     <Compile Include="Map\MapOffset.cs" />
     <Compile Include="Modals\Dialogs\Dialogs.cs" />
     <Compile Include="Modals\ModalWindows.cs" />
-    <Compile Include="Modals\ServiceStartModalView.xaml.cs">
-      <DependentUpon>ServiceStartModalView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Modals\ServiceStartModalViewModel.cs" />
     <Compile Include="Modals\DisconnectErrorModalView.xaml.cs">
       <DependentUpon>DisconnectErrorModalView.xaml</DependentUpon>
     </Compile>
@@ -960,10 +958,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Modals\Dialogs\QuestionModalView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Modals\ServiceStartModalView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

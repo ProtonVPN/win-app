@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,13 +17,14 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Modals
+using System;
+using System.Threading.Tasks;
+using ProtonVPN.Common.Abstract;
+
+namespace ProtonVPN.Common.OS.Services
 {
-    public partial class ServiceStartModalView
+    public interface ISafeServiceAction
     {
-        public ServiceStartModalView()
-        {
-            InitializeComponent();
-        }
+        Task<Result> InvokeServiceAction(Func<Task<Result>> action);
     }
 }

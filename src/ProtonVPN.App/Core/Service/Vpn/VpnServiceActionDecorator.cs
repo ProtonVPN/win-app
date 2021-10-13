@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,54 +18,61 @@
  */
 
 using System;
-using System.ServiceModel;
 using System.Threading.Tasks;
-using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Abstract;
 using ProtonVPN.Common.OS.Services;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Modals;
-using TimeoutException = System.TimeoutException;
 
 namespace ProtonVPN.Core.Service.Vpn
 {
-    internal class ServiceStartDecorator : IVpnServiceManager
+    internal class VpnServiceActionDecorator : IVpnServiceManager
     {
-        private readonly ILogger _logger;
+        private readonly ISafeServiceAction _safeServiceAction;
         private readonly IVpnServiceManager _decorated;
         private readonly IModals _modals;
         private readonly IService _baseFilteringEngineService;
-        private readonly VpnSystemService _vpnService;
 
-        public ServiceStartDecorator(
-            ILogger logger,
+        public VpnServiceActionDecorator(
+            ISafeServiceAction safeServiceAction,
             IVpnServiceManager decorated,
             IModals modals,
-            IService baseFilteringEngineService,
-            VpnSystemService vpnService)
+            IService baseFilteringEngineService)
         {
-            _vpnService = vpnService;
-            _baseFilteringEngineService = baseFilteringEngineService;
-            _logger = logger;
-            _modals = modals;
+            _safeServiceAction = safeServiceAction;
             _decorated = decorated;
+            _modals = modals;
+            _baseFilteringEngineService = baseFilteringEngineService;
         }
 
         public async Task Connect(VpnConnectionRequest connectionRequest)
         {
-            await InvokeAction(() => _decorated.Connect(connectionRequest));
+            await InvokeAction(async() =>
+            {
+                await _decorated.Connect(connectionRequest);
+                return Result.Ok();
+            });
         }
 
         public async Task UpdateAuthCertificate(string certificate)
         {
-            await InvokeAction(() => _decorated.UpdateAuthCertificate(certificate));
+            await InvokeAction(async() =>
+            {
+                await _decorated.UpdateAuthCertificate(certificate);
+                return Result.Ok();
+            });
         }
 
         public async Task Disconnect(VpnError error)
         {
-            await InvokeAction(() => _decorated.Disconnect(error));
+            await InvokeAction(async() =>
+            {
+                await _decorated.Disconnect(error);
+                return Result.Ok();
+            });
         }
 
         public async Task<InOutBytes> Total()
@@ -91,7 +98,7 @@ namespace ProtonVPN.Core.Service.Vpn
             _decorated.RegisterServiceSettingsStateCallback(onServiceSettingsStateChanged);
         }
 
-        private async Task InvokeAction(Func<Task> action)
+        private async Task InvokeAction(Func<Task<Result>> action)
         {
             if (!_baseFilteringEngineService.Running())
             {
@@ -99,43 +106,7 @@ namespace ProtonVPN.Core.Service.Vpn
                 return;
             }
 
-            if (!_vpnService.Enabled())
-            {
-                bool? result = _modals.Show<DisabledServiceModalViewModel>();
-                if (!result.HasValue || !result.Value)
-                {
-                    return;
-                }
-
-                _vpnService.Enable();
-                await _vpnService.StartAsync();
-            }
-
-            while (true)
-            {
-                try
-                {
-                    await action();
-
-                    break;
-                }
-                catch (EndpointNotFoundException)
-                {
-                    bool? result = _modals.Show<ServiceStartModalViewModel>();
-                    if (result == null || !result.Value)
-                    {
-                        break;
-                    }
-                }
-                catch (Exception e) when (IsConnectionException(e))
-                {
-                    _logger.Error(e);
-                }
-            }
+            await _safeServiceAction.InvokeServiceAction(action);
         }
-
-        private bool IsConnectionException(Exception ex) =>
-            ex is CommunicationException ||
-            ex is TimeoutException;
     }
 }

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -48,8 +48,6 @@ namespace ProtonVPN.Core.Update
         }
 
         public Task CheckForUpdate(bool earlyAccess) => Invoke(p => p.CheckForUpdate(earlyAccess).Wrap());
-
-        public Task StartUpdating(bool auto) => Invoke(p => p.Update(auto).Wrap());
 
         private async Task<T> Invoke<T>(Func<IUpdateContract, Task<T>> serviceCall,
             [System.Runtime.CompilerServices.CallerMemberName] string memberName = "")

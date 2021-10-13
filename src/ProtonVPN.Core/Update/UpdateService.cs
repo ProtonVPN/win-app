@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,10 +18,13 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Threading;
+using ProtonVPN.Common.Abstract;
+using ProtonVPN.Common.OS.Services;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.UpdateServiceContract;
@@ -30,8 +33,9 @@ namespace ProtonVPN.Core.Update
 {
     public class UpdateService : ISettingsAware, ILoggedInAware, ILogoutAware
     {
-        private readonly IAppSettings _appSettings;
         private readonly Common.Configuration.Config _appConfig;
+        private readonly ISafeServiceAction _service;
+        private readonly IAppSettings _appSettings;
         private readonly ServiceClient _serviceClient;
         private DateTime _lastCheckTime;
 
@@ -43,10 +47,12 @@ namespace ProtonVPN.Core.Update
 
         public UpdateService(
             Common.Configuration.Config appConfig,
+            ISafeServiceAction service,
             IAppSettings appSettings,
             ServiceClient serviceClient)
         {
             _appConfig = appConfig;
+            _service = service;
             _serviceClient = serviceClient;
             _appSettings = appSettings;
 
@@ -59,7 +65,10 @@ namespace ProtonVPN.Core.Update
 
         public event EventHandler<UpdateStateChangedEventArgs> UpdateStateChanged;
 
-        public void StartCheckingForUpdate() => StartCheckingForUpdate(true);
+        public void StartCheckingForUpdate()
+        {
+            StartCheckingForUpdate(true);
+        }
 
         public void OnAppSettingsChanged(PropertyChangedEventArgs e)
         {
@@ -83,7 +92,6 @@ namespace ProtonVPN.Core.Update
         private void StartCheckingForUpdate(bool manualCheck)
         {
             _requestedManualCheck |= manualCheck;
-
             if (!manualCheck)
             {
                 if (DateTime.UtcNow - _lastCheckTime <= _appConfig.UpdateCheckInterval)
@@ -92,13 +100,17 @@ namespace ProtonVPN.Core.Update
                 }
             }
 
-            _serviceClient.CheckForUpdate(_appSettings.EarlyAccess);
-            _lastCheckTime = DateTime.UtcNow;
+            _service.InvokeServiceAction(async () =>
+            {
+                await _serviceClient.CheckForUpdate(_appSettings.EarlyAccess);
+                _lastCheckTime = DateTime.UtcNow;
+                return Result.Ok();
+            });
         }
 
         private void OnUpdateStateChanged(object sender, UpdateStateContract e)
         {
-            var state = Map(e);
+            UpdateState state = Map(e);
             OnUpdateStateChanged(state, _manualCheck);
             HandleManualCheck(state.Status);
             HandleUpdating(state.Status);
@@ -106,7 +118,7 @@ namespace ProtonVPN.Core.Update
 
         private UpdateState Map(UpdateStateContract e)
         {
-            var releaseHistory = e.ReleaseHistory
+            List<Release> releaseHistory = e.ReleaseHistory
                 .Select(release => new Release(
                     release.Version,
                     release.EarlyAccess,
@@ -114,7 +126,7 @@ namespace ProtonVPN.Core.Update
                     release.ChangeLog.ToList()))
                 .ToList();
 
-            return new UpdateState(releaseHistory, e.Available, e.Ready, (UpdateStatus)e.Status, e.FilePath, e.FileArguments);
+            return new(releaseHistory, e.Available, e.Ready, (UpdateStatus)e.Status, e.FilePath, e.FileArguments);
         }
 
         private void HandleManualCheck(UpdateStatus status)
