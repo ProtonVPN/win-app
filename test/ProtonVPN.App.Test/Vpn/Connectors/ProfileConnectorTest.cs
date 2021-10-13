@@ -58,7 +58,6 @@ namespace ProtonVPN.App.Test.Vpn.Connectors
         private readonly IDialogs _dialogs = Substitute.For<IDialogs>();
 
         private ServerManager _serverManager;
-        private ServerCandidatesFactory _serverCandidatesFactory;
         private IVpnCredentialProvider _vpnCredentialProvider;
         private IPopupWindows _popupWindows;
         private IDelinquencyPopupViewModel _delinquencyPopupViewModel;
@@ -71,11 +70,11 @@ namespace ProtonVPN.App.Test.Vpn.Connectors
         private Server _p2pServer;
         private Server _torServer;
         private List<Server> _servers;
-        private ServerCandidates _candidates;
         private Profile _profile;
-        
-        private readonly PublicKey _publicKey = new PublicKey("cHVibGljS2V5", KeyAlgorithm.Unknown);
-        private readonly SecretKey _secretKey = new SecretKey("c2VjcmV0S2V5", KeyAlgorithm.Unknown);
+        private VpnManagerProfileCandidates _vpnManagerProfileCandidates;
+
+        private readonly PublicKey _publicKey = new("cHVibGljS2V5", KeyAlgorithm.Unknown);
+        private readonly SecretKey _secretKey = new("c2VjcmV0S2V5", KeyAlgorithm.Unknown);
 
         [TestInitialize]
         public void Initialize()
@@ -88,20 +87,18 @@ namespace ProtonVPN.App.Test.Vpn.Connectors
         private void InitializeDependencies()
         {
             _serverManager = Substitute.For<ServerManager>(_userStorage, _appSettings, _logger);
-            _serverCandidatesFactory = Substitute.For<ServerCandidatesFactory>(_serverManager);
             _vpnCredentialProvider = Substitute.For<IVpnCredentialProvider>();
             _popupWindows = Substitute.For<IPopupWindows>();
             _delinquencyPopupViewModel = Substitute.For<IDelinquencyPopupViewModel>();
             
             _vpnCredentialProvider.Credentials().Returns(GetVpnCredentials());
 
-            _profileConnector = new ProfileConnector(_logger, _userStorage, _appSettings, _serverManager, _serverCandidatesFactory, 
-                _vpnServiceManager, _modals, _dialogs, _vpnCredentialProvider, _popupWindows, _delinquencyPopupViewModel);
+            _profileConnector = new ProfileConnector(_logger, _userStorage, _appSettings, _serverManager, _vpnServiceManager, _modals, _dialogs, _vpnCredentialProvider, _popupWindows, _delinquencyPopupViewModel);
         }
 
         private void InitializeUser()
         {
-            User user = new User
+            User user = new()
             {
                 MaxTier = ServerTiers.Plus,
                 VpnUsername = VpnUsername,
@@ -119,17 +116,17 @@ namespace ProtonVPN.App.Test.Vpn.Connectors
         {
             _standardPhysicalServers = new List<PhysicalServer>
             {
-                new PhysicalServer(id: "Standard-PS", entryIp: "192.168.0.1", exitIp: "192.168.1.1",
+                new(id: "Standard-PS", entryIp: "192.168.0.1", exitIp: "192.168.1.1",
                     domain: "standard.protonvpn.ps", status: 1, label: string.Empty, x25519PublicKey: string.Empty)
             };
             _p2pPhysicalServers = new List<PhysicalServer>
             {
-                new PhysicalServer(id: "P2P-PS", entryIp: "192.168.0.2", exitIp: "192.168.1.2",
+                new(id: "P2P-PS", entryIp: "192.168.0.2", exitIp: "192.168.1.2",
                     domain: "p2p.protonvpn.ps", status: 1, label: string.Empty, x25519PublicKey: string.Empty)
             };
             _torPhysicalServers = new List<PhysicalServer>
             {
-                new PhysicalServer(id: "Tor-PS", entryIp: "192.168.0.3", exitIp: "192.168.1.3",
+                new(id: "Tor-PS", entryIp: "192.168.0.3", exitIp: "192.168.1.3",
                     domain: "tor.protonvpn.ps", status: 1, label: string.Empty, x25519PublicKey: string.Empty)
             };
 
@@ -145,11 +142,15 @@ namespace ProtonVPN.App.Test.Vpn.Connectors
                 _p2pServer,
                 _torServer
             };
-            _candidates = new ServerCandidates(_serverManager, _servers);
             _profile = new Profile()
             {
                 ProfileType = ProfileType.Fastest,
                 VpnProtocol = VpnProtocol.Smart
+            };
+            _vpnManagerProfileCandidates = new VpnManagerProfileCandidates
+            {
+                Profile = _profile,
+                Candidates = _servers
             };
         }
 
@@ -170,7 +171,7 @@ namespace ProtonVPN.App.Test.Vpn.Connectors
             _appSettings.PortForwardingEnabled = false;
 
             // Act
-            await _profileConnector.Connect(_candidates, _profile, VpnProtocol.Smart);
+            await _profileConnector.Connect(_vpnManagerProfileCandidates, VpnProtocol.Smart);
         }
 
         private async Task AssertConnectionAsync(CallInfo callInfo, IList<Server> expectedServers)
@@ -200,7 +201,7 @@ namespace ProtonVPN.App.Test.Vpn.Connectors
             _appSettings.PortForwardingEnabled = true;
 
             // Act
-            await _profileConnector.Connect(_candidates, _profile, VpnProtocol.Smart);
+            await _profileConnector.Connect(_vpnManagerProfileCandidates, VpnProtocol.Smart);
         }
     }
 }

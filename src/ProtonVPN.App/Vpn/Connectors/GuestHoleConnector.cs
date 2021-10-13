@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Storage;
 using ProtonVPN.Common.Vpn;
@@ -44,6 +45,7 @@ namespace ProtonVPN.Vpn.Connectors
         private readonly Common.Configuration.Config _config;
         private readonly ICollectionStorage<GuestHoleServerContract> _guestHoleServers;
         private readonly INetworkAdapterValidator _networkAdapterValidator;
+        private readonly ILogger _logger;
 
         public GuestHoleConnector(
             IVpnServiceManager vpnServiceManager,
@@ -51,7 +53,8 @@ namespace ProtonVPN.Vpn.Connectors
             GuestHoleState guestHoleState,
             Common.Configuration.Config config,
             ICollectionStorage<GuestHoleServerContract> guestHoleServers,
-            INetworkAdapterValidator networkAdapterValidator)
+            INetworkAdapterValidator networkAdapterValidator, 
+            ILogger logger)
         {
             _vpnServiceManager = vpnServiceManager;
             _appSettings = appSettings;
@@ -59,6 +62,7 @@ namespace ProtonVPN.Vpn.Connectors
             _config = config;
             _guestHoleServers = guestHoleServers;
             _networkAdapterValidator = networkAdapterValidator;
+            _logger = logger;
         }
 
         public async Task Connect()
@@ -71,6 +75,7 @@ namespace ProtonVPN.Vpn.Connectors
                     VpnConfig(),
                     CreateVpnCredentials());
 
+                _logger.Info("[GuestHoleConnector] Connect requested");
                 await _vpnServiceManager.Connect(request);
             }
             else

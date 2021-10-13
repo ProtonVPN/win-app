@@ -115,8 +115,7 @@ namespace ProtonVPN.Core.Ioc
                 .SingleInstance();
             builder.RegisterType<UserStorage>().As<IUserStorage>().SingleInstance();
             builder.RegisterType<TruncatedLocation>().SingleInstance();
-
-            builder.RegisterType<ServerCandidatesFactory>().SingleInstance();
+            
             builder.RegisterType<PinFactory>()
                 .AsImplementedInterfaces()
                 .AsSelf()
@@ -245,7 +244,8 @@ namespace ProtonVPN.Core.Ioc
             builder.Register(c => new MonitoredVpnService(
                     c.Resolve<Common.Configuration.Config>(),
                     c.Resolve<VpnSystemService>(),
-                    c.Resolve<IVpnManager>()))
+                    c.Resolve<IVpnManager>(),
+                    c.Resolve<ILogger>()))
                 .AsImplementedInterfaces()
                 .AsSelf()
                 .SingleInstance();

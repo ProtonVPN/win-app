@@ -126,6 +126,28 @@ namespace ProtonVPN.Core.Servers
             return Map(_servers.Find(spec.IsSatisfiedBy));
         }
 
+        public Server GetServerByEntryIpAndLabel(string entryIp, string label)
+        {
+            IReadOnlyCollection<Server> servers = GetServers(new ServerByEntryIp(entryIp));
+
+            foreach (Server server in servers)
+            {
+                foreach (PhysicalServer physicalServer in server.Servers)
+                {
+                    if (entryIp == physicalServer.EntryIp && (string.IsNullOrEmpty(label) || label == physicalServer.Label))
+                    {
+                        Server clone = server.Clone();
+                        clone.ExitIp = physicalServer.ExitIp;
+                        return clone;
+                    }
+                }
+            }
+
+            _logger.Error($"[ServerManager] Failed to find any server matching EntryIp '{entryIp}' and Label '{label}'. " +
+                          $"There are {servers.Count} server(s) matching EntryIp '{entryIp}'.");
+            return Server.Empty();
+        }
+
         public void MarkServerUnderMaintenance(string exitIp)
         {
             foreach (PhysicalServerContract server in _servers.SelectMany(logical =>

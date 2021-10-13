@@ -18,6 +18,7 @@
  */
 
 using System;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Profiles;
@@ -27,13 +28,17 @@ namespace ProtonVPN.Core.Service.Vpn
 {
     public interface IVpnManager
     {
-        Task ConnectAsync(Profile profile, Profile fallbackProfile = null);
+        Task ConnectAsync(Profile profile, Profile fallbackProfile = null,
+            [CallerMemberName] string memberName = "", [CallerFilePath] string sourceFilePath = "", [CallerLineNumber] int sourceLineNumber = 0);
 
-        Task QuickConnectAsync();
+        Task QuickConnectAsync(
+            [CallerMemberName] string memberName = "", [CallerFilePath] string sourceFilePath = "", [CallerLineNumber] int sourceLineNumber = 0);
 
-        Task ReconnectAsync(VpnReconnectionSettings settings = null);
+        Task ReconnectAsync(VpnReconnectionSettings settings = null,
+            [CallerMemberName] string memberName = "", [CallerFilePath] string sourceFilePath = "", [CallerLineNumber] int sourceLineNumber = 0);
 
-        Task DisconnectAsync(VpnError vpnError = VpnError.None);
+        Task DisconnectAsync(VpnError vpnError = VpnError.None,
+            [CallerMemberName] string memberName = "", [CallerFilePath] string sourceFilePath = "", [CallerLineNumber] int sourceLineNumber = 0);
 
         Task GetStateAsync();
 

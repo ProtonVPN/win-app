@@ -189,7 +189,8 @@ namespace ProtonVPN.Service
 
         private void CallbackStateChanged(VpnState state)
         {
-            _logger.Info($"Callbacking VPN state {state.Status} (Error: {state.Error})");
+            _logger.Info($"Callbacking VPN state '{state.Status}' [Error: '{state.Error}', LocalIp: '{state.LocalIp}', RemoteIp: '{state.RemoteIp}', " +
+                         $"Label: '{state.Label}', VpnProtocol: '{state.VpnProtocol}', OpenVpnAdapter: '{state.OpenVpnAdapter}']");
             Callback(callback => callback.OnStateChanged(Map(state)));
         }
 
