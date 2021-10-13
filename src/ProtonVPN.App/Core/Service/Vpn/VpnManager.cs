@@ -18,7 +18,10 @@
  */
 
 using System;
+using System.IO;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Profiles;
@@ -31,16 +34,19 @@ namespace ProtonVPN.Core.Service.Vpn
         private readonly ITaskQueue _taskQueue = new SerialTaskQueue();
         private readonly IVpnServiceManager _vpnServiceManager;
         private readonly IVpnReconnector _vpnReconnector;
-        private readonly IVpnConnector _vpnConnector; 
+        private readonly IVpnConnector _vpnConnector;
+        private readonly ILogger _logger;
 
         public VpnManager(
             IVpnServiceManager vpnServiceManager,
             IVpnReconnector vpnReconnector,
-            IVpnConnector vpnConnector)
+            IVpnConnector vpnConnector,
+            ILogger logger)
         {
             _vpnServiceManager = vpnServiceManager;
             _vpnReconnector = vpnReconnector;
             _vpnConnector = vpnConnector;
+            _logger = logger;
             _vpnConnector.VpnStateChanged += OnConnectorVpnStateChanged;
         }
 
@@ -56,26 +62,70 @@ namespace ProtonVPN.Core.Service.Vpn
             _vpnConnector.OnVpnStateChanged(e);
         }
 
-        public async Task ConnectAsync(Profile profile, Profile fallbackProfile = null)
+        public async Task ConnectAsync(Profile profile, Profile fallbackProfile = null,
+            [CallerMemberName] string memberName = "", [CallerFilePath] string sourceFilePath = "", [CallerLineNumber] int sourceLineNumber = 0)
         {
-            await Enqueue(() => _vpnConnector.ConnectToBestProfileAsync(profile, fallbackProfile));
+            await ExecuteAsync(memberName, sourceFilePath, sourceLineNumber, ConnectFunction(profile, fallbackProfile));
         }
 
-        public async Task QuickConnectAsync()
+        private Func<Task> ConnectFunction(Profile profile, Profile fallbackProfile)
         {
-            await Enqueue(() => _vpnConnector.QuickConnectAsync());
+            return async () => await Enqueue(() => _vpnConnector.ConnectToBestProfileAsync(profile, fallbackProfile));
         }
 
-        public async Task ReconnectAsync(VpnReconnectionSettings settings = null)
+        private async Task ExecuteAsync(string callerMemberName, string callerSourceFilePath, int callerSourceLineNumber, 
+            Func<Task> func, [CallerMemberName] string memberName = "")
         {
-            await Enqueue(() => _vpnReconnector.ReconnectAsync(
+            string callerClass;
+            try
+            {
+                callerClass = Path.GetFileNameWithoutExtension(callerSourceFilePath);
+            }
+            catch (Exception e)
+            {
+                _logger.Error($"An exception occurred when getting the file name from the path '{callerSourceFilePath}'.", e);
+                callerClass = callerSourceFilePath;
+            }
+            _logger.Info($"The '{memberName}' was called by {callerClass}.{callerMemberName}:{callerSourceLineNumber}.");
+            await func();
+        }
+
+        public async Task QuickConnectAsync(
+            [CallerMemberName] string memberName = "", [CallerFilePath] string sourceFilePath = "", [CallerLineNumber] int sourceLineNumber = 0)
+        {
+            await ExecuteAsync(memberName, sourceFilePath, sourceLineNumber, QuickConnectFunction());
+        }
+
+        private Func<Task> QuickConnectFunction()
+        {
+            return async () => await Enqueue(() => _vpnConnector.QuickConnectAsync());
+        }
+
+        public async Task ReconnectAsync(VpnReconnectionSettings settings = null,
+            [CallerMemberName] string memberName = "", [CallerFilePath] string sourceFilePath = "", [CallerLineNumber] int sourceLineNumber = 0)
+        {
+            await ExecuteAsync(memberName, sourceFilePath, sourceLineNumber, ReconnectFunction(settings));
+        }
+
+        private Func<Task> ReconnectFunction(VpnReconnectionSettings settings = null)
+        {
+            return async () => await Enqueue(() => _vpnReconnector.ReconnectAsync(
                 _vpnConnector.LastServer, _vpnConnector.LastProfile, settings));
         }
 
-        public async Task DisconnectAsync(VpnError vpnError = VpnError.None)
+        public async Task DisconnectAsync(VpnError vpnError = VpnError.None,
+            [CallerMemberName] string memberName = "", [CallerFilePath] string sourceFilePath = "", [CallerLineNumber] int sourceLineNumber = 0)
         {
-            _vpnReconnector.OnDisconnectionRequest();
-            await Enqueue(() => _vpnServiceManager.Disconnect(vpnError));
+            await ExecuteAsync(memberName, sourceFilePath, sourceLineNumber, DisconnectFunction(vpnError));
+        }
+
+        private Func<Task> DisconnectFunction(VpnError vpnError = VpnError.None)
+        {
+            return async () => 
+            {
+                _vpnReconnector.OnDisconnectionRequest();
+                await Enqueue(() => _vpnServiceManager.Disconnect(vpnError));
+            };
         }
 
         public async Task GetStateAsync()

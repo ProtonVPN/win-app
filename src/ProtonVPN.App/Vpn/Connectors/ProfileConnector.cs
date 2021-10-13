@@ -54,7 +54,6 @@ namespace ProtonVPN.Vpn.Connectors
         private readonly IUserStorage _userStorage;
         private readonly IAppSettings _appSettings;
         private readonly ServerManager _serverManager;
-        private readonly ServerCandidatesFactory _serverCandidatesFactory;
         private readonly IVpnServiceManager _vpnServiceManager;
         private readonly IModals _modals;
         private readonly IDialogs _dialogs;
@@ -67,7 +66,6 @@ namespace ProtonVPN.Vpn.Connectors
             IUserStorage userStorage,
             IAppSettings appSettings,
             ServerManager serverManager,
-            ServerCandidatesFactory serverCandidatesFactory,
             IVpnServiceManager vpnServiceManager,
             IModals modals,
             IDialogs dialogs,
@@ -79,7 +77,6 @@ namespace ProtonVPN.Vpn.Connectors
             _userStorage = userStorage;
             _appSettings = appSettings;
             _serverManager = serverManager;
-            _serverCandidatesFactory = serverCandidatesFactory;
             _vpnServiceManager = vpnServiceManager;
             _modals = modals;
             _dialogs = dialogs;
@@ -99,21 +96,21 @@ namespace ProtonVPN.Vpn.Connectors
             return _serverManager.IsServerFromSpec(server, serverSpec);
         }
 
-        public ServerCandidates ServerCandidates(Profile profile)
+        public IReadOnlyCollection<Server> ServerCandidates(Profile profile)
         {
             if (profile == null)
             {
-                return _serverCandidatesFactory.ServerCandidates(new Server[0]);
+                return new Server[0];
             }
 
             Specification<LogicalServerContract> serverSpec = ProfileServerSpec(profile);
             IReadOnlyCollection<Server> servers = _serverManager.GetServers(serverSpec);
-            return _serverCandidatesFactory.ServerCandidates(servers);
+            return servers;
         }
 
-        public bool CanConnect(ServerCandidates candidates)
+        public bool CanConnect(IReadOnlyCollection<Server> candidates)
         {
-            IReadOnlyList<Server> servers = Servers(candidates);
+            IReadOnlyList<Server> servers = GetValidServers(candidates);
 
             if (servers.Any())
             {
@@ -124,30 +121,30 @@ namespace ProtonVPN.Vpn.Connectors
             return false;
         }
 
-        public async Task Connect(ServerCandidates candidates, Profile profile, VpnProtocol? overrideProtocol = null, int? maxServers = null)
+        public async Task Connect(VpnManagerProfileCandidates profileCandidates, VpnProtocol? overrideProtocol = null, int? maxServers = null)
         {
-            IReadOnlyList<Server> servers = Servers(candidates);
-            IEnumerable<Server> sortedServers = SortServers(servers, profile.ProfileType);
+            IReadOnlyList<Server> servers = GetValidServers(profileCandidates.Candidates);
+            IEnumerable<Server> sortedServers = SortServers(servers, profileCandidates.Profile.ProfileType);
             if (maxServers.HasValue)
             {
                 sortedServers = sortedServers.Take(maxServers.Value);
             }
 
-            VpnProtocol protocol = overrideProtocol ?? profile.VpnProtocol;
+            VpnProtocol protocol = overrideProtocol ?? profileCandidates.Profile.VpnProtocol;
 
             await Connect(sortedServers, protocol);
         }
 
-        public async Task ConnectWithPreSortedCandidates(ServerCandidates sortedCandidates, VpnProtocol protocol)
+        public async Task ConnectWithPreSortedCandidates(IReadOnlyCollection<Server> sortedCandidates, VpnProtocol protocol)
         {
-            IReadOnlyList<Server> sortedServers = Servers(sortedCandidates);
+            IReadOnlyList<Server> sortedServers = GetValidServers(sortedCandidates);
 
             await Connect(sortedServers, protocol);
         }
 
-        public IReadOnlyList<Server> Servers(ServerCandidates candidates)
+        public IReadOnlyList<Server> GetValidServers(IReadOnlyCollection<Server> candidates)
         {
-            IReadOnlyList<Server> servers = candidates.Items
+            IReadOnlyList<Server> servers = candidates
                 .OnlineServers()
                 .UpToTierServers(_userStorage.User().MaxTier)
                 .ToList();
@@ -221,11 +218,11 @@ namespace ProtonVPN.Vpn.Connectors
             return profile.Features;
         }
 
-        public void HandleNoServersAvailable(IReadOnlyCollection<Server> candidates, Profile profile)
+        public void HandleNoServersAvailable(VpnManagerProfileCandidates profileCandidates)
         {
-            if (profile.ProfileType == ProfileType.Custom)
+            if (profileCandidates.Profile.ProfileType == ProfileType.Custom)
             {
-                HandleNoCustomServerAvailable(candidates.FirstOrDefault());
+                HandleNoCustomServerAvailable(profileCandidates.Candidates.FirstOrDefault());
                 return;
             }
 
@@ -235,43 +232,44 @@ namespace ProtonVPN.Vpn.Connectors
                 return;
             }
 
-            if ((profile.Features.IsSecureCore() || profile.IsPredefined && _appSettings.SecureCore) &&
+            if ((profileCandidates.Profile.Features.IsSecureCore() || 
+                (profileCandidates.Profile.IsPredefined && _appSettings.SecureCore)) &&
                 _userStorage.User().MaxTier < ServerTiers.Plus)
             {
                 _modals.Show<ScUpsellModalViewModel>();
                 return;
             }
 
-            if (!string.IsNullOrEmpty(profile.CountryCode))
+            if (!string.IsNullOrEmpty(profileCandidates.Profile.CountryCode))
             {
-                HandleNoCountryServersAvailable(candidates);
+                HandleNoCountryServersAvailable(profileCandidates.Candidates);
                 return;
             }
 
-            if (!candidates.Any())
+            if (!profileCandidates.Candidates.Any())
             {
                 _dialogs.ShowWarning(Translation.Get("Profiles_msg_NoServersAvailable"));
                 return;
             }
 
-            IEnumerable<Server> userTierServers = candidates.UpToTierServers(_userStorage.User().MaxTier);
+            IEnumerable<Server> userTierServers = profileCandidates.Candidates.UpToTierServers(_userStorage.User().MaxTier);
 
             if (!userTierServers.Any())
             {
-                if (candidates.BasicServers().Any())
+                if (profileCandidates.Candidates.BasicServers().Any())
                 {
                     _modals.Show<UpsellModalViewModel>();
                     return;
                 }
 
-                if (candidates.PlusServers().Any())
+                if (profileCandidates.Candidates.PlusServers().Any())
                 {
                     _modals.Show<PlusUpsellModalViewModel>();
                     return;
                 }
             }
 
-            if (!candidates.OnlineServers().Any())
+            if (!profileCandidates.Candidates.OnlineServers().Any())
             {
                 _dialogs.ShowWarning(Translation.Get("Profiles_msg_AllServersOffline"));
                 return;
@@ -381,14 +379,12 @@ namespace ProtonVPN.Vpn.Connectors
                 return;
             }
 
-            IReadOnlyList<VpnHost> hosts = Servers(servers);
+            IReadOnlyList<VpnHost> hosts = GetValidServers(servers);
             if (hosts.Any())
             {
                 VpnConnectionRequest request = new(hosts, vpnProtocol, VpnConfig(vpnProtocol), credentialsResult.Value);
-
+                _logger.Info("[ProfileConnector] Connect requested");
                 await _vpnServiceManager.Connect(request);
-
-                _logger.Info("Connect requested");
                 _modals.CloseAll();
             }
             else
@@ -477,7 +473,7 @@ namespace ProtonVPN.Vpn.Connectors
             }
         }
 
-        private IReadOnlyList<VpnHost> Servers(IEnumerable<Server> servers)
+        private IReadOnlyList<VpnHost> GetValidServers(IEnumerable<Server> servers)
         {
             return servers
                 .SelectMany(s => s.Servers.OrderBy(_ => _random.Next()))

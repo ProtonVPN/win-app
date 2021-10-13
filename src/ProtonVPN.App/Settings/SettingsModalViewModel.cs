@@ -22,8 +22,6 @@ using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using System.Windows.Interop;
-using System.Windows.Media;
 using GalaSoft.MvvmLight.CommandWpf;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;

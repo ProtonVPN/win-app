@@ -17,15 +17,16 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Collections.Generic;
 using ProtonVPN.Core.Profiles;
-using ProtonVPN.Core.Servers;
+using ProtonVPN.Core.Servers.Models;
 
 namespace ProtonVPN.Core.Service.Vpn
 {
     public class VpnManagerProfileCandidates
     {
         public Profile Profile { get; set; }
-        public ServerCandidates Candidates { get; set; }
+        public IReadOnlyCollection<Server> Candidates { get; set; }
         public bool CanConnect { get; set; }
     }
 }

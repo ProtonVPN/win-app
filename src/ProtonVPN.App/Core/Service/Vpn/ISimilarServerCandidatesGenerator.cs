@@ -19,14 +19,12 @@
 
 using System.Collections.Generic;
 using ProtonVPN.Core.Profiles;
-using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Servers.Models;
 
 namespace ProtonVPN.Core.Service.Vpn
 {
     public interface ISimilarServerCandidatesGenerator
     {
-        ServerCandidates Generate(bool isToIncludeOriginalServer, Server originalServer = null, Profile originalProfile = null);
-        IList<Server> GenerateList(bool isToIncludeOriginalServer, Server originalServer = null, Profile originalProfile = null);
+        IList<Server> Generate(bool isToIncludeOriginalServer, Server originalServer = null, Profile originalProfile = null);
     }
 }

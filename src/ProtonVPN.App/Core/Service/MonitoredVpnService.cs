@@ -21,6 +21,7 @@ using System;
 using System.Threading.Tasks;
 using System.Windows.Threading;
 using ProtonVPN.Common.Abstract;
+using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.OS.Services;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Service.Vpn;
@@ -34,14 +35,17 @@ namespace ProtonVPN.Core.Service
         private readonly DispatcherTimer _timer = new DispatcherTimer();
         private readonly VpnSystemService _service;
         private readonly IVpnManager _vpnManager;
+        private readonly ILogger _logger;
 
         public MonitoredVpnService(
             Common.Configuration.Config appConfig,
             VpnSystemService service,
-            IVpnManager vpnManager)
+            IVpnManager vpnManager,
+            ILogger logger)
         {
             _service = service;
             _vpnManager = vpnManager;
+            _logger = logger;
             _timer.Interval = appConfig.ServiceCheckInterval;
             _timer.Tick += OnTimerTick;
         }
@@ -91,6 +95,8 @@ namespace ProtonVPN.Core.Service
                 return;
             }
 
+            _logger.Warn($"The service is not running and the VPN status is '{_vpnStatus}'. " +
+                "Starting the service and reconnecting.");
             StartAsync();
             _vpnManager.ReconnectAsync();
         }

@@ -274,8 +274,6 @@
     <Compile Include="Servers\Models\PhysicalServer.cs" />
     <Compile Include="Servers\Models\Server.cs" />
     <Compile Include="Servers\SecureCoreCountry.cs" />
-    <Compile Include="Servers\ServerCandidates.cs" />
-    <Compile Include="Servers\ServerCandidatesFactory.cs" />
     <Compile Include="Servers\Models\ServerExtensions.cs" />
     <Compile Include="Servers\Name\CustomProfileName.cs" />
     <Compile Include="Servers\Name\IName.cs" />
