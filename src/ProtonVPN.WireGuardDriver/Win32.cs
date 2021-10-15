@@ -27,10 +27,10 @@ namespace ProtonVPN.WireGuardDriver
         private const string WireGuardDll = "wireguard.dll";
 
         [DllImport(WireGuardDll, EntryPoint = "WireGuardOpenAdapter", CallingConvention = CallingConvention.StdCall, SetLastError = true)]
-        public static extern IntPtr OpenAdapter([MarshalAs(UnmanagedType.LPWStr)] string pool, [MarshalAs(UnmanagedType.LPWStr)] string name);
+        public static extern IntPtr OpenAdapter([MarshalAs(UnmanagedType.LPWStr)] string name);
 
-        [DllImport(WireGuardDll, EntryPoint = "WireGuardFreeAdapter", CallingConvention = CallingConvention.StdCall)]
-        public static extern void FreeAdapter(IntPtr adapter);
+        [DllImport(WireGuardDll, EntryPoint = "WireGuardCloseAdapter", CallingConvention = CallingConvention.StdCall)]
+        public static extern void CloseAdapter(IntPtr adapter);
 
         [DllImport(WireGuardDll, EntryPoint = "WireGuardGetConfiguration", CallingConvention = CallingConvention.StdCall, SetLastError = true)]
         public static extern bool GetConfiguration(IntPtr adapter, byte[] iface, ref uint bytes);
