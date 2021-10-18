@@ -1869,6 +1869,7 @@
     <Resource Include="Resources\Assets\Images\SidebarFlags\gt.jpg" />
     <Resource Include="Resources\Assets\Images\SidebarFlags\gw.jpg" />
     <Resource Include="Resources\Assets\Images\SidebarFlags\gy.jpg" />
+    <Resource Include="Resources\Assets\Images\SidebarFlags\hk.jpg" />
     <Resource Include="Resources\Assets\Images\SidebarFlags\hn.jpg" />
     <Resource Include="Resources\Assets\Images\SidebarFlags\hr.jpg" />
     <Resource Include="Resources\Assets\Images\SidebarFlags\ht.jpg" />
