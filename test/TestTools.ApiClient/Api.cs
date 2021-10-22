@@ -47,11 +47,13 @@ namespace TestTools.ApiClient
             IUserStorage userStorage = Substitute.For<IUserStorage>();
             ILogger logger = Substitute.For<ILogger>();
             IAuthCertificateManager authCertificateManager = Substitute.For<IAuthCertificateManager>();
+            IAppLanguageCache appLanguageCache = Substitute.For<IAppLanguageCache>();
+            appLanguageCache.GetCurrentSelectedLanguageIetfTag().Returns("en");
 
             _api = new Client(logger, new HttpClient
             {
                 BaseAddress = new Uri("https://api.protonvpn.ch")
-            }, tokenStorage);
+            }, tokenStorage, appLanguageCache);
 
             _auth = new UserAuth(_api, null, userStorage, tokenStorage, authCertificateManager);
         }

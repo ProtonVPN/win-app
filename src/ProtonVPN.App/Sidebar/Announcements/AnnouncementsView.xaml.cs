@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -45,11 +45,13 @@ namespace ProtonVPN.Sidebar.Announcements
 
         private void OpenPopupButton_MouseEnter(object sender, MouseEventArgs e)
         {
+            Popup.IsOpen = true;
             Popup.StaysOpen = true;
         }
 
         private void OpenPopupButton_MouseLeave(object sender, MouseEventArgs e)
         {
+            Popup.IsOpen = false;
             Popup.StaysOpen = false;
         }
     }

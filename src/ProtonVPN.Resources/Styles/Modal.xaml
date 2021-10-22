@@ -1,5 +1,5 @@
 ﻿<!--
-Copyright (c) 2020 Proton Technologies AG
+Copyright (c) 2021 Proton Technologies AG
 
 This file is part of ProtonVPN.
 
@@ -105,5 +105,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <Setter Property="Background" Value="{StaticResource PrimaryColorDimmed}"/>
             </Trigger>
         </Style.Triggers>
+    </Style>
+    <Style x:Key="Pill" TargetType="Button" BasedOn="{StaticResource ModalButton}">
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Height" Value="Auto"/>
+        <Setter Property="Width" Value="Auto"/>
+        <Setter Property="Padding" Value="10,3,10,3"/>
+        <Setter Property="Margin" Value="0,0,0,0"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="FontWeight" Value="Medium"/>
+        <Setter Property="Border.CornerRadius" Value="10"/>
+        <Setter Property="Background" Value="#d53535"/>
+        <Setter Property="IsEnabled" Value="False"/>
     </Style>
 </ResourceDictionary>

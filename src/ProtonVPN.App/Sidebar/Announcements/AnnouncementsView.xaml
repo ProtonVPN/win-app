@@ -1,5 +1,5 @@
 ﻿<!--
-Copyright (c) 2020 Proton Technologies AG
+Copyright (c) 2021 Proton Technologies AG
 
 This file is part of ProtonVPN.
 
@@ -22,8 +22,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:fa="http://schemas.fontawesome.io/icons/"
              xmlns:announcements="clr-namespace:ProtonVPN.Sidebar.Announcements"
+             xmlns:icons="clr-namespace:ProtonVPN.Views.Icons"
              d:DataContext="{d:DesignInstance announcements:AnnouncementsViewModel}"
              mc:Ignorable="d">
     <UserControl.Resources>
@@ -32,6 +32,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="BorderBrush" Value="Transparent"/>
             <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Margin" Value="0,6,0,0"/>
             <Setter Property="IsChecked" Value="{Binding ShowAnnouncements, Mode=TwoWay}"/>
             <Setter Property="Cursor" Value="Hand"/>
         </Style>
@@ -48,18 +49,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <ToggleButton Style="{StaticResource ToggleButton}"
                       MouseEnter="OpenPopupButton_MouseEnter"
                       MouseLeave="OpenPopupButton_MouseLeave"
+                      Command="{Binding OpenAnnouncementCommand}"
                       x:Name="TogglePopupButton">
             <Grid>
-                <fa:FontAwesome Icon="Bell"
-                                Padding="0"
-                                Foreground="{StaticResource GrayColor}"
-                                FontSize="17"/>
-                <Ellipse Width="10"
-                         Height="10"
-                         Margin="10,-7,0,0"
-                         Stroke="#202128"
-                         StrokeThickness="1"
-                         Fill="{StaticResource PrimaryColor}">
+                <icons:GiftBox Width="23" Margin="0"
+                               Foreground="White"/>
+                <Ellipse Width="5"
+                         Height="5"
+                         Margin="19,-15,0,0"
+                         Fill="#d53535">
                     <Ellipse.Resources>
                         <Style TargetType="Ellipse">
                             <Setter Property="Visibility" Value="Collapsed"/>
@@ -75,6 +73,28 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </ToggleButton>
         <Popup Style="{StaticResource AnnouncementsPopup}" Name="Popup">
             <Grid>
+
+                <Border BorderThickness="0" 
+                        CornerRadius="3"
+                        Margin="10,8,10,10" 
+                        Padding="8,3,8,3"
+                        Background="{StaticResource SidebarTabBackgroundColor}">
+                    <Button VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            BorderThickness="0"
+                            Background="Transparent">
+                        <TextBlock Text="{Binding Announcement.Panel.Title}"
+                                   Foreground="White"
+                                   TextWrapping="Wrap"/>
+                    </Button>
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="5"
+                                          Direction="-45"
+                                          Color="#4E4C4C"
+                                          RenderingBias="Quality"
+                                          ShadowDepth="2" />
+                    </Border.Effect>
+                </Border>
                 <Polygon Points="0,0 16,0 8,8"
                          StrokeThickness="0"
                          Fill="{StaticResource SidebarTabBackgroundColor}"
@@ -85,47 +105,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <ScaleTransform ScaleY="-1"/>
                     </Polygon.RenderTransform>
                 </Polygon>
-                <ScrollViewer Template="{StaticResource DarkScrollViewerControlTemplate}"
-                              MaxHeight="160"
-                              Background="{StaticResource SidebarTabBackgroundColor}"
-                              VerticalAlignment="Top"
-                              Margin="0,8,0,0">
-                    <ItemsControl ItemsSource="{Binding Items}" Padding="0,0,10,0">
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <StackPanel Margin="15,15,15,0"/>
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate DataType="{x:Type announcements:Announcement}">
-                                <DockPanel Margin="0,0,0,10" MaxWidth="300">
-                                    <Image Source="{Binding Icon}"
-                                       ImageFailed="Image_OnImageFailed"
-                                       MaxHeight="20"/>
-                                    <Button VerticalAlignment="Center"
-                                        Margin="7,0,0,0"
-                                        HorizontalAlignment="Left"
-                                        Command="{Binding DataContext.OpenAnnouncementCommand, RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}}"
-                                        CommandParameter="{Binding}">
-                                        <TextBlock Text="{Binding Label}"
-                                               TextWrapping="Wrap"/>
-                                        <Button.Resources>
-                                            <Style TargetType="{x:Type Button}" BasedOn="{StaticResource ClearStyleButton}">
-                                                <Setter Property="BorderThickness" Value="0"/>
-                                                <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding Seen}" Value="True">
-                                                        <Setter Property="Foreground" Value="White"/>
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </Button.Resources>
-                                    </Button>
-                                </DockPanel>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                </ScrollViewer>
             </Grid>
         </Popup>
     </Grid>

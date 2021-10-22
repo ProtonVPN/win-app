@@ -56,7 +56,7 @@ namespace ProtonVPN.Settings
         private IReadOnlyList<ProfileViewModel> _quickConnectProfiles;
         private VpnStatus _vpnStatus;
 
-        private readonly ProfileViewModel _profileDisabledOption = new(new Profile
+        private readonly ProfileViewModel _profileDisabledOption = new(new()
         {
             Id = "", Name = Translation.Get("Settings_val_Disabled"), ColorCode = "#777783"
         });
@@ -342,8 +342,8 @@ namespace ProtonVPN.Settings
 
         public List<KeyValuePair<OpenVpnAdapter, string>> NetworkDrivers => new()
         {
-            new KeyValuePair<OpenVpnAdapter, string>(OpenVpnAdapter.Tap, Translation.Get("Settings_Advanced_lbl_OpenVpnTap")),
-            new KeyValuePair<OpenVpnAdapter, string>(OpenVpnAdapter.Tun, Translation.Get("Settings_Advanced_lbl_OpenVpnTun")),
+            new(OpenVpnAdapter.Tap, Translation.Get("Settings_Advanced_lbl_OpenVpnTap")),
+            new(OpenVpnAdapter.Tun, Translation.Get("Settings_Advanced_lbl_OpenVpnTun")),
         };
 
         public OpenVpnAdapter SelectedOpenVpnAdapter

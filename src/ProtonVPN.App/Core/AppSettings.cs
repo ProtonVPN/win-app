@@ -62,9 +62,9 @@ namespace ProtonVPN.Core
             set => SetPerUser(value);
         }
 
-        public IReadOnlyList<AnnouncementItem> Announcements
+        public IReadOnlyList<Announcement> Announcements
         {
-            get => GetPerUser<IReadOnlyList<AnnouncementItem>>() ?? new List<AnnouncementItem>();
+            get => GetPerUser<IReadOnlyList<Announcement>>() ?? new List<Announcement>();
             set => SetPerUser(value);
         }
 

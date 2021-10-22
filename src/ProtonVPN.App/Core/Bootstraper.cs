@@ -264,7 +264,7 @@ namespace ProtonVPN.Core
                 }
             };
 
-            Resolve<IAnnouncements>().AnnouncementsChanged += (sender, e) =>
+            Resolve<IAnnouncementService>().AnnouncementsChanged += (sender, e) =>
             {
                 IEnumerable<IAnnouncementsAware> instances = Resolve<IEnumerable<IAnnouncementsAware>>();
                 foreach (IAnnouncementsAware instance in instances)
@@ -511,7 +511,7 @@ namespace ProtonVPN.Core
             Resolve<PlanDowngradeHandler>();
             Resolve<WelcomeModalManager>().Load();
             await Resolve<IUserLocationService>().Update();
-            await Resolve<IAnnouncements>().Update();
+            await Resolve<IAnnouncementService>().Update();
             await Resolve<SystemTimeValidator>().Validate();
             await Resolve<AutoConnect>().Load(autoLogin);
             Resolve<SyncProfiles>().Sync();

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,14 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Collections.Generic;
-
 namespace ProtonVPN.Core.Announcements
 {
-    public interface IAnnouncementCache
+    public class PanelFeature
     {
-        IReadOnlyList<Announcement> Get();
-
-        void Store(IReadOnlyList<Announcement> announcements);
+        public string IconUrl { get; set; }
+        public string Text { get; set; }
     }
 }
