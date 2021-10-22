@@ -175,6 +175,10 @@
     <Compile Include="Modals\IncorrectSystemTimeModalView.xaml.cs">
       <DependentUpon>IncorrectSystemTimeModalView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Modals\Offers\OfferModalView.xaml.cs">
+      <DependentUpon>OfferModalView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modals\Offers\OfferModalViewModel.cs" />
     <Compile Include="Modals\Welcome\WelcomeModalManager.cs" />
     <Compile Include="Notifications\INotificationSender.cs" />
     <Compile Include="Notifications\INotificationUserActionHandler.cs" />
@@ -195,6 +199,9 @@
       <DependentUpon>CountryFeaturesPopupView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Sidebar\PopupBase.cs" />
+    <Compile Include="Views\Icons\GiftBox.xaml.cs">
+      <DependentUpon>GiftBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Icons\UpsellTunnel.xaml.cs">
       <DependentUpon>UpsellTunnel.xaml</DependentUpon>
     </Compile>
@@ -486,7 +493,6 @@
     <Compile Include="Core\Ioc\UiModule.cs" />
     <Compile Include="Modals\Modals.cs" />
     <Compile Include="Settings\ReconnectNotification\SplitTunnelModeSetting.cs" />
-    <Compile Include="Sidebar\Announcements\Announcement.cs" />
     <Compile Include="Sidebar\Announcements\AnnouncementsView.xaml.cs">
       <DependentUpon>AnnouncementsView.xaml</DependentUpon>
     </Compile>
@@ -720,8 +726,8 @@
     <Compile Include="Views\Icons\Failure.xaml.cs">
       <DependentUpon>Failure.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Icons\GiftBox.xaml.cs">
-      <DependentUpon>GiftBox.xaml</DependentUpon>
+    <Compile Include="Views\Icons\ColoredGiftBox.xaml.cs">
+      <DependentUpon>ColoredGiftBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Icons\Info.xaml.cs">
       <DependentUpon>Info.xaml</DependentUpon>
@@ -873,9 +879,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Modals\Offers\OfferModalView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Sidebar\CountryFeatures\CountryFeaturesPopupView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Icons\GiftBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Icons\UpsellTunnel.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -1117,7 +1131,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Icons\GiftBox.xaml">
+    <Page Include="Views\Icons\ColoredGiftBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -2051,6 +2065,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>

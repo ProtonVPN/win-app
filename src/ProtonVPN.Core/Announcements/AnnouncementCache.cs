@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,13 +18,38 @@
  */
 
 using System.Collections.Generic;
+using System.Linq;
+using ProtonVPN.Core.Settings;
 
 namespace ProtonVPN.Core.Announcements
 {
-    public interface IAnnouncementCache
+    public class AnnouncementCache : IAnnouncementCache
     {
-        IReadOnlyList<AnnouncementItem> Get();
+        private readonly IAppSettings _appSettings;
 
-        void Store(IReadOnlyList<AnnouncementItem> announcements);
+        public AnnouncementCache(IAppSettings appSettings)
+        {
+            _appSettings = appSettings;
+        }
+
+        public IReadOnlyList<Announcement> Get()
+        {
+            return _appSettings.Announcements;
+        }
+
+        public void Store(IReadOnlyList<Announcement> announcements)
+        {
+            foreach (Announcement announcement in announcements)
+            {
+                announcement.Seen = Seen(announcement.Id);
+            }
+
+            _appSettings.Announcements = announcements;
+        }
+
+        private bool Seen(string id)
+        {
+            return _appSettings.Announcements.Any(announcement => announcement.Id == id && announcement.Seen);
+        }
     }
 }

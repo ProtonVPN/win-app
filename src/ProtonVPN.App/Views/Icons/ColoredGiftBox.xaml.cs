@@ -17,18 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Sidebar.Announcements
+namespace ProtonVPN.Views.Icons
 {
-    public class Announcement
+    public partial class ColoredGiftBox
     {
-        public string Id { get; set; }
-
-        public string Label { get; set; }
-
-        public string Url { get; set; }
-
-        public string Icon { get; set; }
-
-        public bool Seen { get; set; }
+        public ColoredGiftBox()
+        {
+            InitializeComponent();
+        }
     }
 }

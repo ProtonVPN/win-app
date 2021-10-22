@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,41 +17,48 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Caliburn.Micro;
 using GalaSoft.MvvmLight.CommandWpf;
-using ProtonVPN.Common.OS.Processes;
-using ProtonVPN.Config.Url;
+using ProtonVPN.Common.Logging;
 using ProtonVPN.Core.Announcements;
 using ProtonVPN.Core.Auth;
+using ProtonVPN.Core.Modals;
+using ProtonVPN.Modals.Offers;
 
 namespace ProtonVPN.Sidebar.Announcements
 {
     public class AnnouncementsViewModel : Screen, IAnnouncementsAware, ILoggedInAware
     {
-        private readonly IAnnouncements _announcements;
-        private readonly IOsProcesses _processes;
+        private readonly IAnnouncementService _announcementService;
+        private readonly IModals _modals;
+        private readonly ILogger _logger;
+        private readonly OfferModalViewModel _offerModalViewModel;
 
-        public AnnouncementsViewModel(IAnnouncements announcements, IOsProcesses processes)
+        public AnnouncementsViewModel(IAnnouncementService announcementService,
+            IModals modals,
+            ILogger logger,
+            OfferModalViewModel offerModalViewModel)
         {
-            _processes = processes;
-            _announcements = announcements;
-            OpenAnnouncementCommand = new RelayCommand<Announcement>(OpenAnnouncement);
+            _announcementService = announcementService;
+            _modals = modals;
+            _logger = logger;
+            _offerModalViewModel = offerModalViewModel;
+            OpenAnnouncementCommand = new RelayCommand(OpenAnnouncement);
         }
 
-        private List<Announcement> _items = new List<Announcement>();
-
-        public List<Announcement> Items
+        private Announcement _announcement = new();
+        public Announcement Announcement
         {
-            get => _items;
-            private set => Set(ref _items, value);
+            get => _announcement;
+            private set => Set(ref _announcement, value);
         }
-
-        public ICommand OpenAnnouncementCommand { get; }
 
         private bool _showAnnouncements;
-
         public bool ShowAnnouncements
         {
             get => _showAnnouncements;
@@ -59,7 +66,6 @@ namespace ProtonVPN.Sidebar.Announcements
         }
 
         private bool _hasUnread;
-
         public bool HasUnread
         {
             get => _hasUnread;
@@ -67,12 +73,13 @@ namespace ProtonVPN.Sidebar.Announcements
         }
 
         private bool _hasAnnouncements;
-
         public bool HasAnnouncements
         {
             get => _hasAnnouncements;
             private set => Set(ref _hasAnnouncements, value);
         }
+
+        public ICommand OpenAnnouncementCommand { get; }
 
         public void OnAnnouncementsChanged()
         {
@@ -87,39 +94,57 @@ namespace ProtonVPN.Sidebar.Announcements
         private void Load()
         {
             HasUnread = false;
-            var items = new List<Announcement>();
-            foreach (var announcement in _announcements.Get())
+            List<Announcement> items = new();
+            DateTime currentTimeUtc = DateTime.UtcNow;
+            foreach (Announcement announcement in _announcementService.Get())
             {
+                if (currentTimeUtc >= announcement.EndDateTimeUtc)
+                {
+                    _announcementService.Delete(announcement.Id);
+                    continue;
+                }
+                if (currentTimeUtc < announcement.StartDateTimeUtc)
+                {
+                    // Schedule future announcements, but not too far in the future because Task.Delay receives milliseconds in int, hence being limited to 24.8 days
+                    if (currentTimeUtc.AddDays(3) >= announcement.StartDateTimeUtc)
+                    {
+                        ScheduleReload((announcement.StartDateTimeUtc - currentTimeUtc).Add(TimeSpan.FromSeconds(1)));
+                    }
+                    continue;
+                }
                 if (!announcement.Seen)
                 {
                     HasUnread = true;
                 }
 
-                items.Add(Map(announcement));
+                items.Add(announcement);
             }
 
-            Items = items;
+            Announcement = items.FirstOrDefault();
             HasAnnouncements = items.Count > 0;
         }
 
-        private void OpenAnnouncement(Announcement announcement)
+        private void ScheduleReload(TimeSpan nextReloadInterval)
         {
-            var url = new ActiveUrl(_processes, announcement.Url)
-                .WithQueryParams(new Dictionary<string, string> {{"utm_source", "windowsvpn"}});
-            url.Open();
-            _announcements.MarkAsSeen(announcement.Id);
+            _logger.Info($"[AnnouncementsViewModel] Announcement reload scheduled to be done in '{nextReloadInterval}'.");
+            Task waitTask = Task.Delay((int)nextReloadInterval.TotalMilliseconds);
+            waitTask.ContinueWith(_ =>
+            {
+                _logger.Info("[AnnouncementsViewModel] Triggering scheduled announcement reload.");
+                Load();
+            });
         }
 
-        private Announcement Map(AnnouncementItem item)
+        private void OpenAnnouncement()
         {
-            return new Announcement
+            Announcement announcement = Announcement;
+            if (announcement != null)
             {
-                Id = item.Id,
-                Label = item.Label,
-                Url = item.Url,
-                Icon = item.Icon,
-                Seen = item.Seen
-            };
+                _announcementService.MarkAsSeen(announcement.Id);
+                HasUnread = false;
+                _offerModalViewModel.Panel = announcement.Panel;
+                _modals.Show<OfferModalViewModel>();
+            }
         }
     }
 }

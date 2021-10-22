@@ -17,26 +17,19 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
+
 namespace ProtonVPN.Core.Announcements
 {
-    public class AnnouncementItem
+    public class Announcement
     {
-        public AnnouncementItem(string id, string label, string url, string icon, bool seen)
-        {
-            Id = id;
-            Label = label;
-            Url = url;
-            Icon = icon;
-            Seen = seen;
-        }
-
         public string Id { get; set; }
-
-        public string Label { get; set; }
-
+        public DateTime StartDateTimeUtc { get; set; }
+        public DateTime EndDateTimeUtc { get; set; }
         public string Url { get; set; }
-
         public string Icon { get; set; }
+        public string Label { get; set; }
+        public Panel Panel { get; set; }
 
         public bool Seen { get; set; }
     }

@@ -19,6 +19,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Logging;
@@ -27,6 +28,7 @@ using ProtonVPN.Core.Api;
 using ProtonVPN.Core.Api.Certificates;
 using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.Api.Data;
+using ProtonVPN.Core.Settings;
 using File = ProtonVPN.Core.Api.File;
 
 namespace TestTools.ApiClient
@@ -38,20 +40,22 @@ namespace TestTools.ApiClient
         public Client(
             ILogger logger,
             HttpClient client,
-            ITokenStorage tokenStorage) : base(logger, new ApiAppVersion(), tokenStorage, "3", "en")
+            ITokenStorage tokenStorage,
+            IAppLanguageCache appLanguageCache) 
+            : base(logger, new ApiAppVersion(), tokenStorage, appLanguageCache, "3")
         {
             _client = client;
         }
 
         public async Task<ApiResponseResult<AuthResponse>> GetAuthResponse(AuthRequestData data)
         {
-            var request = GetRequest(HttpMethod.Post, "auth");
+            HttpRequestMessage request = GetRequest(HttpMethod.Post, "auth");
             try
             {
                 request.Content = GetJsonContent(data);
 
-                using var response = await _client.SendAsync(request).ConfigureAwait(false);
-                var body = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+                using HttpResponseMessage response = await _client.SendAsync(request).ConfigureAwait(false);
+                string body = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
                 return ApiResponseResult<AuthResponse>(body, response.StatusCode);
             }
             catch (Exception e) when (e.IsApiCommunicationException())
@@ -62,14 +66,14 @@ namespace TestTools.ApiClient
 
         public async Task<ApiResponseResult<AuthInfo>> GetAuthInfoResponse(AuthInfoRequestData data)
         {
-            var request = GetRequest(HttpMethod.Post, "auth/info");
+            HttpRequestMessage request = GetRequest(HttpMethod.Post, "auth/info");
             try
             {
                 request.Content = GetJsonContent(data);
 
-                using var response = await _client.SendAsync(request).ConfigureAwait(false);
-                var body = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-                var validatedResponse = ApiResponseResult<AuthInfo>(body, response.StatusCode);
+                using HttpResponseMessage response = await _client.SendAsync(request).ConfigureAwait(false);
+                string body = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+                ApiResponseResult<AuthInfo> validatedResponse = ApiResponseResult<AuthInfo>(body, response.StatusCode);
                 if (validatedResponse.Success && string.IsNullOrEmpty(validatedResponse.Value.Salt))
                 {
                     return ProtonVPN.Core.Api.ApiResponseResult<AuthInfo>.Fail(response.StatusCode,
@@ -88,9 +92,9 @@ namespace TestTools.ApiClient
         {
             try
             {
-                var request = GetAuthorizedRequest(HttpMethod.Get, "vpn/profiles");
-                using var response = await _client.SendAsync(request).ConfigureAwait(false);
-                var stream = await response.Content.ReadAsStreamAsync();
+                HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, "vpn/profiles");
+                using HttpResponseMessage response = await _client.SendAsync(request).ConfigureAwait(false);
+                Stream stream = await response.Content.ReadAsStreamAsync();
                 return GetResponseStreamResult<ProfilesResponse>(stream, response.StatusCode);
             }
             catch (Exception e) when (e.IsApiCommunicationException())
@@ -103,9 +107,9 @@ namespace TestTools.ApiClient
         {
             try
             {
-                var request = GetAuthorizedRequest(HttpMethod.Delete, $"vpn/profiles/{id}");
-                using var response = await _client.SendAsync(request).ConfigureAwait(false);
-                var body = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+                HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Delete, $"vpn/profiles/{id}");
+                using HttpResponseMessage response = await _client.SendAsync(request).ConfigureAwait(false);
+                string body = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
                 return ApiResponseResult<ProfileResponse>(body, response.StatusCode);
             }
             catch (Exception e) when (e.IsApiCommunicationException())
@@ -128,9 +132,9 @@ namespace TestTools.ApiClient
         {
             try
             {
-                var request = GetAuthorizedRequest(HttpMethod.Get, "vpn/location");
-                using var response = await _client.SendAsync(request).ConfigureAwait(false);
-                var stream = await response.Content.ReadAsStreamAsync();
+                HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, "vpn/location");
+                using HttpResponseMessage response = await _client.SendAsync(request).ConfigureAwait(false);
+                Stream stream = await response.Content.ReadAsStreamAsync();
                 return GetResponseStreamResult<UserLocation>(stream, response.StatusCode);
             }
             catch(Exception e) when (e.IsApiCommunicationException())

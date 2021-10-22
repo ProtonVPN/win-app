@@ -17,7 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -27,6 +26,8 @@ using NSubstitute;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Core.Abstract;
 using ProtonVPN.Core.Api;
+using ProtonVPN.Core.Api.Contracts;
+using ProtonVPN.Core.Settings;
 using RichardSzalay.MockHttp;
 
 namespace ProtonVPN.Core.Test.Api
@@ -39,12 +40,14 @@ namespace ProtonVPN.Core.Test.Api
         private IApiAppVersion _appVersion;
         private HttpClient _httpClient;
         private IApiClient _apiClient;
-        private readonly MockHttpMessageHandler _fakeHttpMessageHandler = new MockHttpMessageHandler();
+        private readonly MockHttpMessageHandler _fakeHttpMessageHandler = new();
+        private IAppLanguageCache _appLanguageCache;
 
         [TestInitialize]
         public void TestInitialize()
         {
             _logger = Substitute.For<ILogger>();
+            _appLanguageCache = Substitute.For<IAppLanguageCache>();
 
             _appVersion = Substitute.For<IApiAppVersion>();
             _appVersion.Value().Returns(string.Empty);
@@ -55,25 +58,23 @@ namespace ProtonVPN.Core.Test.Api
             _tokenStorage.Uid.Returns(string.Empty);
 
             _httpClient = _fakeHttpMessageHandler.ToHttpClient();
-            _httpClient.BaseAddress = new Uri("http://127.0.0.1");
+            _httpClient.BaseAddress = new("http://127.0.0.1");
 
-            _apiClient = new ApiClient(_httpClient, _httpClient, _logger, _tokenStorage, _appVersion, null, string.Empty);
+
+            _apiClient = new ApiClient(_httpClient, _httpClient, _logger, _tokenStorage, _appVersion, _appLanguageCache, null);
         }
 
         [TestMethod]
         public async Task ServerListDownloaded()
         {
-            //arrange
-            _fakeHttpMessageHandler.When("*").Respond(req => new HttpResponseMessage
+            _fakeHttpMessageHandler.When("*").Respond(req => new()
             {
                 StatusCode = HttpStatusCode.OK,
                 Content = new StringContent("{'Code' : '1000', 'Servers': []}")
             });
 
-            //act
-            var response = await _apiClient.GetServersAsync("127.0.0.0");
+            ApiResponseResult<ServerList> response = await _apiClient.GetServersAsync("127.0.0.0");
 
-            //assert
             response.Success.Should().BeTrue();
         }
     }

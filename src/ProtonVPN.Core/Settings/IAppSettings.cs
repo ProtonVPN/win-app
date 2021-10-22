@@ -81,7 +81,7 @@ namespace ProtonVPN.Core.Settings
         bool DoNotShowKillSwitchConfirmationDialog { get; set; }
         bool DoNotShowEnableSmartProtocolDialog { get; set; }
         bool FeatureSmartProtocolWireGuardEnabled { get; set; }
-        IReadOnlyList<AnnouncementItem> Announcements { get; set; }
+        IReadOnlyList<Announcement> Announcements { get; set; }
         int[] OpenVpnTcpPorts { get; set; }
         int[] OpenVpnUdpPorts { get; set; }
         int[] WireGuardPorts { get; set; }

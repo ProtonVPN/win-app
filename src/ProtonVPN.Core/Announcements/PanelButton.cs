@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,20 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
 namespace ProtonVPN.Core.Announcements
 {
-    public interface IAnnouncements
+    public class PanelButton
     {
-        public IReadOnlyCollection<AnnouncementItem> Get();
-
-        public Task Update();
-
-        public void MarkAsSeen(string id);
-
-        public event EventHandler AnnouncementsChanged;
+        public string Url { get; set; }
+        public string Text { get; set; }
     }
 }

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -25,7 +25,7 @@ namespace ProtonVPN.Core.Api.Contracts
     public class AnnouncementsResponse : BaseResponse
     {
         [JsonProperty(PropertyName = "Notifications")]
-        public List<Announcement> Announcements { get; set; }
+        public IList<Announcement> Announcements { get; set; }
     }
 
     public class Announcement
@@ -33,16 +33,62 @@ namespace ProtonVPN.Core.Api.Contracts
         [JsonProperty(PropertyName = "NotificationID")]
         public string Id { get; set; }
 
+        [JsonProperty(PropertyName = "StartTime")]
+        public long StartTimestamp { get; set; }
+
+        [JsonProperty(PropertyName = "EndTime")]
+        public long EndTimestamp { get; set; }
+
         public Offer Offer { get; set; }
     }
 
     public class Offer
     {
-        public string Label { get; set; }
-
         [JsonProperty(PropertyName = "URL")]
         public string Url { get; set; }
 
         public string Icon { get; set; }
+
+        public string Label { get; set; }
+
+        public OfferPanel Panel { get; set; }
+    }
+
+    public class OfferPanel
+    {
+        public string Incentive { get; set; }
+
+        public string IncentivePrice { get; set; }
+
+        public string Pill { get; set; }
+
+        [JsonProperty(PropertyName = "PictureURL")]
+        public string PictureUrl { get; set; }
+
+        public string Title { get; set; }
+
+        public IList<OfferPanelFeature> Features { get; set; }
+
+        public string FeaturesFooter { get; set; }
+
+        public OfferPanelButton Button { get; set; }
+
+        public string PageFooter { get; set; }
+    }
+
+    public class OfferPanelFeature
+    {
+        [JsonProperty(PropertyName = "IconURL")]
+        public string IconUrl { get; set; }
+
+        public string Text { get; set; }
+    }
+
+    public class OfferPanelButton
+    {
+        [JsonProperty(PropertyName = "URL")]
+        public string Url { get; set; }
+
+        public string Text { get; set; }
     }
 }

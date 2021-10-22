@@ -28,17 +28,18 @@ using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.OS.Net.Http;
 using ProtonVPN.Core.Abstract;
 using ProtonVPN.Core.Api.Contracts;
+using ProtonVPN.Core.Settings;
 
 namespace ProtonVPN.Core.Api
 {
     public class BaseApiClient : IClientBase
     {
-        private readonly JsonSerializer _jsonSerializer = new JsonSerializer();
+        private readonly JsonSerializer _jsonSerializer = new();
+        private readonly ILogger _logger;
         private readonly IApiAppVersion _appVersion;
         protected readonly ITokenStorage TokenStorage;
         private readonly string _apiVersion;
-        private readonly string _locale;
-        private readonly ILogger _logger;
+        private readonly IAppLanguageCache _appLanguageCache;
 
         public event EventHandler<ActionableFailureApiResultEventArgs> OnActionableFailureResult;
 
@@ -46,23 +47,23 @@ namespace ProtonVPN.Core.Api
             ILogger logger,
             IApiAppVersion appVersion,
             ITokenStorage tokenStorage,
-            string apiVersion,
-            string locale)
+            IAppLanguageCache appLanguageCache,
+            string apiVersion)
         {
             _logger = logger;
-            _apiVersion = apiVersion;
-            TokenStorage = tokenStorage;
             _appVersion = appVersion;
-            _locale = locale;
+            TokenStorage = tokenStorage;
+            _apiVersion = apiVersion;
+            _appLanguageCache = appLanguageCache;
         }
 
         protected StringContent GetJsonContent(object data)
         {
             string json = JsonConvert.SerializeObject(data);
-            return new StringContent(json, Encoding.UTF8, "application/json");
+            return new(json, Encoding.UTF8, "application/json");
         }
 
-        protected ApiResponseResult<T> ApiResponseResult<T>(string body, HttpStatusCode code) 
+        protected ApiResponseResult<T> ApiResponseResult<T>(string body, HttpStatusCode code)
             where T : BaseResponse
         {
             try
@@ -83,7 +84,7 @@ namespace ProtonVPN.Core.Api
             }
         }
 
-        private ApiResponseResult<T> CreateApiResponseResult<T>(T response, HttpStatusCode code) 
+        private ApiResponseResult<T> CreateApiResponseResult<T>(T response, HttpStatusCode code)
             where T : BaseResponse
         {
             switch (response.Code)
@@ -95,7 +96,7 @@ namespace ProtonVPN.Core.Api
             }
         }
 
-        private void HandleResult<T>(ApiResponseResult<T> result) 
+        private void HandleResult<T>(ApiResponseResult<T> result)
             where T : BaseResponse
         {
             if (result.Failure && !result.Actions.IsNullOrEmpty())
@@ -104,10 +105,10 @@ namespace ProtonVPN.Core.Api
             }
         }
 
-        private void HandleActionableFailureResult<T>(ApiResponseResult<T> result) 
+        private void HandleActionableFailureResult<T>(ApiResponseResult<T> result)
             where T : BaseResponse
         {
-            ApiResponseResult<BaseResponse> baseResponseResult = 
+            ApiResponseResult<BaseResponse> baseResponseResult =
                 CreateApiResponseResult<BaseResponse>(result.Value, result.StatusCode);
             ActionableFailureApiResultEventArgs eventArgs = new(baseResponseResult);
             OnActionableFailureResult?.Invoke(this, eventArgs);
@@ -115,10 +116,10 @@ namespace ProtonVPN.Core.Api
 
         protected HttpRequestMessage GetRequest(HttpMethod method, string requestUri)
         {
-            HttpRequestMessage request = new HttpRequestMessage(method, requestUri);
+            HttpRequestMessage request = new(method, requestUri);
             request.Headers.Add("x-pm-apiversion", _apiVersion);
             request.Headers.Add("x-pm-appversion", _appVersion.Value());
-            request.Headers.Add("x-pm-locale", _locale);
+            request.Headers.Add("x-pm-locale", _appLanguageCache.GetCurrentSelectedLanguageIetfTag());
             request.Headers.Add("User-Agent", _appVersion.UserAgent());
 
             return request;
@@ -144,11 +145,11 @@ namespace ProtonVPN.Core.Api
             return request;
         }
 
-        protected ApiResponseResult<T> GetResponseStreamResult<T>(Stream stream, HttpStatusCode code) 
+        protected ApiResponseResult<T> GetResponseStreamResult<T>(Stream stream, HttpStatusCode code)
             where T : BaseResponse
         {
-            using StreamReader streamReader = new StreamReader(stream);
-            using JsonTextReader jsonTextReader = new JsonTextReader(streamReader);
+            using StreamReader streamReader = new(stream);
+            using JsonTextReader jsonTextReader = new(streamReader);
 
             T response = _jsonSerializer.Deserialize<T>(jsonTextReader);
             if (response == null)
