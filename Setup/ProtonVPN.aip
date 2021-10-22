@@ -282,8 +282,8 @@
     <ROW File="LocalAgent.dll" Component_="LocalAgent.dll" FileName="LOCALA~1.DLL|LocalAgent.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Resources\32-bit\LocalAgent.dll" SelfReg="false"/>
     <ROW File="LocalAgent.dll_1" Component_="LocalAgent.dll_1" FileName="LOCALA~1.DLL|LocalAgent.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Resources\64-bit\LocalAgent.dll" SelfReg="false"/>
     <ROW File="log4net.dll" Component_="log4net.dll" FileName="log4net.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\log4net.dll" SelfReg="false"/>
-    <ROW File="wireguard.dll" Component_="wireguard.dll" FileName="WIREGU~1.DLL|wireguard.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="wireguard-nt\amd64\wireguard.dll" SelfReg="false"/>
-    <ROW File="wireguard.dll_1" Component_="wireguard.dll_1" FileName="WIREGU~1.DLL|wireguard.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="wireguard-nt\x86\wireguard.dll" SelfReg="false"/>
+    <ROW File="wireguard.dll" Component_="wireguard.dll" FileName="WIREGU~1.DLL|wireguard.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\ProtonVPN.Vpn\Resources\64-bit\wireguard.dll" SelfReg="false"/>
+    <ROW File="wireguard.dll_1" Component_="wireguard.dll_1" FileName="WIREGU~1.DLL|wireguard.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\ProtonVPN.Vpn\Resources\32-bit\wireguard.dll" SelfReg="false"/>
     <ROW File="ProtonVPN.WireGuardDriver.dll" Component_="ProtonVPN.WireGuardDriver.dll" FileName="PROTO~13.DLL|ProtonVPN.WireGuardDriver.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ProtonVPN.WireGuardDriver.dll" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.AiRemoveFileComponent">

@@ -158,6 +158,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\32-bit\tunnel.dll" />
+    <Content Include="Resources\32-bit\wireguard.dll" />
     <Content Include="Resources\64-bit\libcrypto-1_1-x64.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -174,6 +175,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\64-bit\tunnel.dll" />
+    <Content Include="Resources\64-bit\wireguard.dll" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -182,6 +184,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>call "$(ProjectDir)build-local-agent.bat"</PostBuildEvent>
+    <PostBuildEvent>call "$(ProjectDir)build-local-agent.bat"
+copy $(ProjectDir)Resources\64-bit\tunnel.dll $(ProjectDir)$(OutDir)
+copy $(ProjectDir)Resources\64-bit\wireguard.dll $(ProjectDir)$(OutDir)</PostBuildEvent>
   </PropertyGroup>
 </Project>
