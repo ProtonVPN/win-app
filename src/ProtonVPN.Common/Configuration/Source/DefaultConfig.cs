@@ -221,7 +221,8 @@ namespace ProtonVPN.Common.Configuration.Source
                     TorUrl = "https://protonvpn.com/support/tor-vpn/",
                     CaptchaUrl = "https://api.protonvpn.ch/core/v4/captcha?Token={0}",
                     InvoicesUrl = "https://account.protonvpn.com/payments#invoices",
-                    AboutSmartProtocolUrl = "https://protonvpn.com/support/how-to-change-vpn-protocols"
+                    AboutSmartProtocolUrl = "https://protonvpn.com/support/how-to-change-vpn-protocols",
+                    IncorrectSystemTimeArticleUrl = "https://protonvpn.com/support/update-windows-clock",
                 },
 
                 OpenVpn =
@@ -273,7 +274,7 @@ namespace ProtonVPN.Common.Configuration.Source
 
                     ServicePath = Path.Combine(baseFolder, "ProtonVPN.WireGuardService.exe"),
 
-                    PipeName = $"ProtectedPrefix\\Administrators\\WireGuard\\{wireGuardConfigFilename}",
+                    ConfigFileName = wireGuardConfigFilename,
 
                     DefaultDnsServer = "10.2.0.1",
 
@@ -339,6 +340,8 @@ namespace ProtonVPN.Common.Configuration.Source
                     "https://dns11.quad9.net/dns-query",
                     "https://dns.google/dns-query",
                 },
+
+                NtpServerUrl = "time.windows.com",
             };
         }
     }

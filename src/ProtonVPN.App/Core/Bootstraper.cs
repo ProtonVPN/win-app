@@ -26,8 +26,6 @@ using System.Net.Http;
 using System.ServiceModel;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Interop;
-using System.Windows.Media;
 using Autofac;
 using Caliburn.Micro;
 using ProtonVPN.Account;
@@ -127,11 +125,11 @@ namespace ProtonVPN.Core
             logging.CaptureUnhandledExceptions();
             logging.CaptureTaskExceptions();
 
+            AppConfig appConfig = Resolve<AppConfig>();
+            Resolve<ILogger>().Info($"= Booting ProtonVPN version: {appConfig.AppVersion} os: {Environment.OSVersion.VersionString} {appConfig.OsBits} bit =");
+
             Resolve<ServicePointConfiguration>().Apply();
 
-            AppConfig appConfig = Resolve<AppConfig>();
-
-            Resolve<ILogger>().Info($"= Booting ProtonVPN version: {appConfig.AppVersion} os: {Environment.OSVersion.VersionString} {appConfig.OsBits} bit =");
             Resolve<LogCleaner>().Clean(appConfig.AppLogFolder, 10);
 
             RegisterMigrations(Resolve<AppSettingsStorage>(), Resolve<IEnumerable<IAppSettingsMigration>>());
@@ -552,6 +550,7 @@ namespace ProtonVPN.Core
             await Resolve<Trial.Trial>().Load();
             await Resolve<IUserLocationService>().Update();
             await Resolve<IAnnouncements>().Update();
+            await Resolve<SystemTimeValidator>().Validate();
             await Resolve<AutoConnect>().Load(autoLogin);
             Resolve<SyncProfiles>().Sync();
             Resolve<INetworkClient>().CheckForInsecureWiFi();

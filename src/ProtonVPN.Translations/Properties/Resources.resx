@@ -3224,4 +3224,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>WireGuard</value>
     <comment>The WireGuard protocol name displayed in the Protocol combo box in Connection tab of Settings window. Do not translate.</comment>
   </data>
+  <data name="Dialogs_IncorrectSystemTime_msg" xml:space="preserve">
+    <value>Your system clock seems to be out of sync, which could prevent the VPN from connecting successfully. Please see &lt;Hyperlink Command="{Binding OpenKbArticleCommand}"&gt;here&lt;/Hyperlink&gt; for more information.</value>
+  </data>
 </root>

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -64,6 +64,7 @@ namespace ProtonVPN.Config.Url
         public IActiveUrl P2PUrl                                  => Url(_config.P2PUrl);
         public IActiveUrl TorUrl                                  => Url(_config.TorUrl);
         public IActiveUrl AboutSmartProtocolUrl                   => Url(_config.AboutSmartProtocolUrl);
+        public IActiveUrl IncorrectSystemTimeArticleUrl           => Url(_config.IncorrectSystemTimeArticleUrl);
 
         private ActiveUrl Url(string url)
         {

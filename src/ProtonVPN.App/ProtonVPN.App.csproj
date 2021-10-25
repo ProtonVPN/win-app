@@ -151,6 +151,7 @@
     <Compile Include="Core\Service\Vpn\VpnReconnectionSettings.cs" />
     <Compile Include="Core\Service\Vpn\VpnReconnectionSteps.cs" />
     <Compile Include="Core\Service\Vpn\VpnReconnector.cs" />
+    <Compile Include="Core\SystemTimeValidator.cs" />
     <Compile Include="Modals\ApiActions\ActionableFailureApiResultEventHandler.cs" />
     <Compile Include="Modals\ApiActions\ApiActionModalViewModel.cs" />
     <Compile Include="Modals\ApiActions\ApiActionModalView.xaml.cs">
@@ -166,6 +167,10 @@
     <Compile Include="HumanVerification\WebViewConfig.cs" />
     <Compile Include="Modals\ExitModalView.xaml.cs">
       <DependentUpon>ExitModalView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modals\IncorrectSystemTimeModalViewModel.cs" />
+    <Compile Include="Modals\IncorrectSystemTimeModalView.xaml.cs">
+      <DependentUpon>IncorrectSystemTimeModalView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Notifications\INotificationSender.cs" />
     <Compile Include="Notifications\INotificationUserActionHandler.cs" />
@@ -884,6 +889,10 @@
     <Compile Include="ViewModels\AppLoadingViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Map\ViewModels\MapViewModel.cs" />
+    <Page Include="Modals\IncorrectSystemTimeModalView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Sidebar\CountryFeatures\CountryFeaturesPopupView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1967,6 +1976,7 @@
     <Resource Include="Resources\Assets\Images\SidebarFlags\ph.jpg" />
     <Resource Include="Resources\Assets\Images\SidebarFlags\pk.jpg" />
     <Resource Include="Resources\Assets\Images\SidebarFlags\pl.jpg" />
+    <Resource Include="Resources\Assets\Images\SidebarFlags\pr.jpg" />
     <Resource Include="Resources\Assets\Images\SidebarFlags\ps.jpg" />
     <Resource Include="Resources\Assets\Images\SidebarFlags\pt.jpg" />
     <Resource Include="Resources\Assets\Images\SidebarFlags\pw.jpg" />
@@ -2071,7 +2081,6 @@
       <Version>1.2.0</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup Condition=" '$(Configuration)' == 'Debug' ">
     <Content Include="Windows\Popups\DeveloperTools\Images\computers.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

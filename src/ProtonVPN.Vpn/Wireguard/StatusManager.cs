@@ -71,7 +71,7 @@ namespace ProtonVPN.Vpn.WireGuard
                 {
                     _logger.Info(GetFormattedMessage(line));
 
-                    if (line.Contains("PROTON VPN - First packet received after connection attempt"))
+                    if (line.Contains("Interface up"))
                     {
                         InvokeStateChange(VpnStatus.Connected);
                     }
