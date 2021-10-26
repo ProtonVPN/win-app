@@ -64,6 +64,11 @@ namespace ProtonVPN.Vpn.WireGuard
                     unrestricted: true);
             }
 
+            if (!_origin.Enabled())
+            {
+                _origin.Enable();
+            }
+
             return _origin.StartAsync(cancellationToken);
         }
 
