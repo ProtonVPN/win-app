@@ -141,11 +141,14 @@
   <data name="Language_fr" xml:space="preserve">
     <value>Français</value>
   </data>
+  <data name="Language_hr" xml:space="preserve">
+    <value>Hrvatski</value>
+  </data>
   <data name="Language_hu" xml:space="preserve">
     <value>Magyar</value>
   </data>
   <data name="Language_id" xml:space="preserve">
-    <value>Bahasa Indonesia</value>
+    <value>Bahasa, Indonesia</value>
   </data>
   <data name="Language_it" xml:space="preserve">
     <value>Italiano</value>
