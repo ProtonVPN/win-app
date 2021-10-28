@@ -133,6 +133,15 @@ namespace ProtonVPN.Resource.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hrvatski.
+        /// </summary>
+        internal static string Language_hr {
+            get {
+                return ResourceManager.GetString("Language_hr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Magyar.
         /// </summary>
         internal static string Language_hu {
@@ -142,7 +151,7 @@ namespace ProtonVPN.Resource.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bahasa Indonesia.
+        ///   Looks up a localized string similar to Bahasa, Indonesia.
         /// </summary>
         internal static string Language_id {
             get {
