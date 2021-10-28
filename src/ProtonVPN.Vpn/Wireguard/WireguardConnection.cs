@@ -21,6 +21,7 @@ using System;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Timers;
 using ProtonVPN.Common;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
@@ -30,6 +31,7 @@ using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Crypto;
 using ProtonVPN.Vpn.Common;
+using Timer = System.Timers.Timer;
 
 namespace ProtonVPN.Vpn.WireGuard
 {
@@ -39,6 +41,7 @@ namespace ProtonVPN.Vpn.WireGuard
 
         private readonly ILogger _logger;
         private readonly ProtonVPN.Common.Configuration.Config _config;
+        private readonly Timer _serviceHealthCheckTimer = new();
         private readonly IService _wireGuardService;
         private readonly TrafficManager _trafficManager;
         private readonly StatusManager _statusManager;
@@ -50,7 +53,7 @@ namespace ProtonVPN.Vpn.WireGuard
         private VpnCredentials _credentials;
         private VpnEndpoint _endpoint;
         private VpnConfig _vpnConfig;
-        private bool _connected;
+        private bool _isConnected;
         private bool _isServiceStopPending;
 
         public WireGuardConnection(
@@ -73,6 +76,8 @@ namespace ProtonVPN.Vpn.WireGuard
             _connectAction.Completed += OnConnectActionCompleted;
             _disconnectAction = new SingleAction(DisconnectAction);
             _disconnectAction.Completed += OnDisconnectActionCompleted;
+            _serviceHealthCheckTimer.Interval = config.ServiceCheckInterval.TotalMilliseconds;
+            _serviceHealthCheckTimer.Elapsed += CheckIfServiceIsRunning;
         }
 
         public event EventHandler<EventArgs<VpnState>> StateChanged;
@@ -102,7 +107,7 @@ namespace ProtonVPN.Vpn.WireGuard
             _statusManager.Start();
             await StartWireGuardService(cancellationToken);
             await Task.Delay(CONNECT_TIMEOUT, cancellationToken);
-            if (!_connected)
+            if (!_isConnected)
             {
                 _logger.Info("[WireGuardConnection] timeout reached, disconnecting.");
                 Disconnect(VpnError.TimeoutError);
@@ -139,9 +144,10 @@ namespace ProtonVPN.Vpn.WireGuard
                 await _connectAction.Task;
             }
 
+            _serviceHealthCheckTimer.Stop();
             StopServiceDependencies();
             await EnsureServiceIsStopped(cancellationToken);
-            _connected = false;
+            _isConnected = false;
         }
 
         private void OnConnectActionCompleted(object sender, TaskCompletedEventArgs e)
@@ -191,20 +197,34 @@ namespace ProtonVPN.Vpn.WireGuard
 
         private void OnStateChanged(object sender, EventArgs<VpnState> state)
         {
-            if (_connected && state.Data.Status == VpnStatus.Connected)
+            switch (state.Data.Status)
             {
-                return;
+                case VpnStatus.Connected:
+                    OnVpnConnected(state);
+                    break;
+                case VpnStatus.Disconnected:
+                    OnVpnDisconnected(state);
+                    break;
             }
+        }
 
-            _connected = state.Data.Status == VpnStatus.Connected;
-            _trafficManager.Start();
-
-            if (state.Data.Status == VpnStatus.Disconnected)
+        private void OnVpnConnected(EventArgs<VpnState> state)
+        {
+            if (!_isConnected)
             {
-                StopServiceDependencies();
+                _isConnected = true;
+                _trafficManager.Start();
+                _serviceHealthCheckTimer.Start();
+                InvokeStateChange(VpnStatus.Connected, state.Data.Error);
             }
+        }
 
-            InvokeStateChange(state.Data.Status, state.Data.Error);
+        private void OnVpnDisconnected(EventArgs<VpnState> state)
+        {
+            _isConnected = false;
+            _serviceHealthCheckTimer.Stop();
+            StopServiceDependencies();
+            InvokeStateChange(VpnStatus.Disconnected, state.Data.Error);
         }
 
         private void StopServiceDependencies()
@@ -252,13 +272,26 @@ namespace ProtonVPN.Vpn.WireGuard
         {
             StateChanged?.Invoke(this,
                 new EventArgs<VpnState>(
-                    new VpnState(status, error, _config.WireGuard.DefaultClientAddress, _endpoint?.Server.Ip ?? string.Empty,
+                    new VpnState(status, error, _config.WireGuard.DefaultClientAddress,
+                        _endpoint?.Server.Ip ?? string.Empty,
                         VpnProtocol.WireGuard, null, _endpoint?.Server.Label ?? string.Empty)));
         }
 
         private string GetDnsServers()
         {
-            return _vpnConfig.CustomDns.Count > 0 ? string.Join(",", _vpnConfig.CustomDns) : _config.WireGuard.DefaultDnsServer;
+            return _vpnConfig.CustomDns.Count > 0
+                ? string.Join(",", _vpnConfig.CustomDns)
+                : _config.WireGuard.DefaultDnsServer;
+        }
+
+        private void CheckIfServiceIsRunning(object sender, ElapsedEventArgs e)
+        {
+            if (_isConnected && !_wireGuardService.Running() && !_disconnectAction.IsRunning)
+            {
+                _logger.Info($"[WireGuardConnection] The service {_wireGuardService.Name} is not running. " +
+                             "Disconnecting with VpnError.Unknown to get reconnected.");
+                Disconnect(VpnError.Unknown);
+            }
         }
     }
 }

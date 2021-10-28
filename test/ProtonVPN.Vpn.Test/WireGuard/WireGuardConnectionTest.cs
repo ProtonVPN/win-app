@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
@@ -64,6 +65,7 @@ namespace ProtonVPN.Vpn.Test.WireGuard
         private WireGuardConnection GetWireGuardConnection()
         {
             ProtonVPN.Common.Configuration.Config config = new();
+            config.ServiceCheckInterval = TimeSpan.FromMilliseconds(1000);
             ILogger logger = Substitute.For<ILogger>();
             IX25519KeyGenerator xIx25519KeyGenerator = Substitute.For<IX25519KeyGenerator>();
             WireGuardService wireGuardService =
