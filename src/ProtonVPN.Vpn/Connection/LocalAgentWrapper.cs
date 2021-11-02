@@ -106,6 +106,7 @@ namespace ProtonVPN.Vpn.Connection
         public void UpdateAuthCertificate(string certificate)
         {
             _clientCertPem = certificate;
+            _logger.Info("[LocalAgentWrapper] Client certificate updated. Closing existing TLS channel and reconnecting.");
             _eventReceiver.Stop();
             CloseTlsChannel();
             ConnectToTlsChannel();
