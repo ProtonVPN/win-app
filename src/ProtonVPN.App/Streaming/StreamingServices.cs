@@ -26,6 +26,7 @@ namespace ProtonVPN.Streaming
 {
     internal class StreamingServices : IStreamingServices
     {
+        private const string COUNTRY_CODE_ANY = "*";
         private StreamingServicesResponse _response;
         private readonly IAppSettings _appSettings;
 
@@ -37,18 +38,52 @@ namespace ProtonVPN.Streaming
 
         public IReadOnlyList<StreamingService> GetServices(string countryCode, sbyte tier)
         {
-            if (_response == null ||
-                !_response.StreamingServices.ContainsKey(countryCode) ||
-                !_response.StreamingServices[countryCode].ContainsKey(tier))
+            if (_response == null)
             {
                 return new List<StreamingService>();
             }
 
-            IReadOnlyList<StreamingServiceResponse> services = _response.StreamingServices[countryCode][tier];
+            Dictionary<string, StreamingService> streamingServicesByName = new();
+            if (IsStreamingServicesResponseContainingCountryCodeAndTier(countryCode, tier))
+            {
+                UpsertStreamingServicesToDictionary(streamingServicesByName, _response.StreamingServices[countryCode][tier]);
+            }
+            if (IsStreamingServicesResponseContainingCountryCodeAndTier(COUNTRY_CODE_ANY, tier))
+            {
+                UpsertStreamingServicesToDictionary(streamingServicesByName, _response.StreamingServices[COUNTRY_CODE_ANY][tier]);
+            }
 
-            return services.Select(s => new StreamingService(s.Name, GetIconUrl(s.Icon)))
-                .OrderBy(s => s.Name)
-                .ToList();
+            return streamingServicesByName.Values.OrderBy(s => s.Name).ToList();
+        }
+
+        private bool IsStreamingServicesResponseContainingCountryCodeAndTier(string countryCode, sbyte tier)
+        {
+            return countryCode != null &&
+                   _response.StreamingServices.ContainsKey(countryCode) &&
+                   _response.StreamingServices[countryCode].ContainsKey(tier);
+        }
+
+        private void UpsertStreamingServicesToDictionary(Dictionary<string, StreamingService> streamingServicesByName,
+            IList<StreamingServiceResponse> streamingServiceResponses)
+        {
+            foreach (StreamingServiceResponse streamingServiceResponse in streamingServiceResponses)
+            {
+                UpsertStreamingServiceToDictionary(streamingServicesByName, streamingServiceResponse);
+            }
+        }
+
+        private void UpsertStreamingServiceToDictionary(Dictionary<string, StreamingService> streamingServicesByName,
+            StreamingServiceResponse streamingServiceResponse)
+        {
+            StreamingService streamingService = MapStreamingService(streamingServiceResponse);
+            streamingServicesByName[streamingService.Name] = streamingService;
+        }
+
+        private StreamingService MapStreamingService(StreamingServiceResponse streamingServicesResponse)
+        {
+            return new StreamingService(
+                name: streamingServicesResponse.Name,
+                iconUrl: GetIconUrl(streamingServicesResponse.Icon));
         }
 
         private string GetIconUrl(string icon)
