@@ -144,7 +144,7 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 ServerLoadUpdateInterval = TimeSpan.FromMinutes(15),
 
-                P2PCheckInterval = TimeSpan.FromSeconds(30),
+                P2PCheckInterval = TimeSpan.FromSeconds(60),
 
                 VpnInfoCheckInterval = TimeSpan.FromMinutes(3),
 
