@@ -2,6 +2,7 @@ variables:
   PUBLIC_REPO_URL: git@github.com:ProtonVPN/win-app.git
 
 stages:
+  - release
   - bot # comes from translations/generator job
   - build
   - test
@@ -179,3 +180,14 @@ i18n-manual-sync-crowdin:
   variables:
       I18N_SYNC_CROWDIN_PROJECT: 'windows-vpn'
   extends: .i18n-sync-crowdin-common
+
+create-release:
+  image: debian:stable-slim
+  stage: release
+  when: manual
+  only:
+    refs:
+      - develop
+  script:
+    - apt-get update && apt-get install -y python3 python3-pip git
+    - python3 ci/release.py
