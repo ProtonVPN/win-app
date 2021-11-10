@@ -53,5 +53,6 @@ namespace ProtonVPN.Config.Url
         IActiveUrl TorUrl { get; }
         IActiveUrl AboutSmartProtocolUrl { get; }
         IActiveUrl IncorrectSystemTimeArticleUrl { get; }
+        IActiveUrl AssignVpnConnectionsUrl { get; }
     }
 }

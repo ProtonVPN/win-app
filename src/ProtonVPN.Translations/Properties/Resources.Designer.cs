@@ -19,7 +19,7 @@ namespace ProtonVPN.Translations.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resources {
@@ -3257,6 +3257,51 @@ namespace ProtonVPN.Translations.Properties {
         public static string Country_val_ZZ {
             get {
                 return ResourceManager.GetString("Country_val_ZZ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Assign VPN connections.
+        /// </summary>
+        public static string Dialogs_AssignVpnConnections_btn_Assign {
+            get {
+                return ResourceManager.GetString("Dialogs_AssignVpnConnections_btn_Assign", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Login again.
+        /// </summary>
+        public static string Dialogs_AssignVpnConnections_btn_LoginAgain {
+            get {
+                return ResourceManager.GetString("Dialogs_AssignVpnConnections_btn_LoginAgain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To start your journey in ProtonVPN please assign VPN connections to your account or any other sub-account..
+        /// </summary>
+        public static string Dialogs_AssignVpnConnections_ttl_Info1 {
+            get {
+                return ResourceManager.GetString("Dialogs_AssignVpnConnections_ttl_Info1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This step will take just a few minutes. After that you will be able to log in and protect all your devices..
+        /// </summary>
+        public static string Dialogs_AssignVpnConnections_ttl_Info2 {
+            get {
+                return ResourceManager.GetString("Dialogs_AssignVpnConnections_ttl_Info2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thanks for upgrading to Professional/Visionary.
+        /// </summary>
+        public static string Dialogs_AssignVpnConnections_ttl_Thanks {
+            get {
+                return ResourceManager.GetString("Dialogs_AssignVpnConnections_ttl_Thanks", resourceCulture);
             }
         }
         

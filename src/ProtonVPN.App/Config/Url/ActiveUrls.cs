@@ -65,6 +65,7 @@ namespace ProtonVPN.Config.Url
         public IActiveUrl TorUrl                                  => Url(_config.TorUrl);
         public IActiveUrl AboutSmartProtocolUrl                   => Url(_config.AboutSmartProtocolUrl);
         public IActiveUrl IncorrectSystemTimeArticleUrl           => Url(_config.IncorrectSystemTimeArticleUrl);
+        public IActiveUrl AssignVpnConnectionsUrl                 => Url(_config.AssignVpnConnectionsUrl);
 
         private ActiveUrl Url(string url)
         {

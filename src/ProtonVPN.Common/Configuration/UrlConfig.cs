@@ -121,5 +121,8 @@ namespace ProtonVPN.Common.Configuration
 
         [Required]
         public string IncorrectSystemTimeArticleUrl { get; internal set; }
+
+        [Required]
+        public string AssignVpnConnectionsUrl { get; internal set; }
     }
 }

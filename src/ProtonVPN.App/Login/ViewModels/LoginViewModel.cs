@@ -18,7 +18,6 @@
  */
 
 using System.ComponentModel;
-using System.Net;
 using System.Net.Http;
 using System.Security;
 using System.Threading.Tasks;
@@ -29,7 +28,6 @@ using ProtonVPN.Common.KillSwitch;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Config.Url;
 using ProtonVPN.Core.Api;
-using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.MVVM;
@@ -255,7 +253,7 @@ namespace ProtonVPN.Login.ViewModels
 
                 LoginErrorViewModel.ClearError();
 
-                ApiResponseResult<AuthResponse> loginResult = await _userAuth.LoginUserAsync(username, Password);
+                AuthResult loginResult = await _userAuth.LoginUserAsync(username, Password);
                 await HandleLoginResultAsync(loginResult);
             }
             catch (HttpRequestException ex)
@@ -271,31 +269,34 @@ namespace ProtonVPN.Login.ViewModels
             }
         }
 
-        private async Task HandleLoginResultAsync(ApiResponseResult<AuthResponse> loginResult)
+        private async Task HandleLoginResultAsync(AuthResult result)
         {
-            if (loginResult.Success)
+            if (result.Success)
             {
                 AfterLogin();
             }
             else
             {
-                await HandleLoginFailureAsync(loginResult);
+                await HandleLoginFailureAsync(result);
             }
         }
 
-        private async Task HandleLoginFailureAsync(ApiResponseResult<AuthResponse> loginResult)
+        public void HandleAuthFailure(AuthResult result)
         {
-            if (loginResult.Actions.IsNullOrEmpty()) // If Actions exist, it should be handled by ActionableFailureApiResultEventHandler
+            if (!result.Error.IsNullOrEmpty())
             {
-                string error = loginResult.Error;
-                if (loginResult.StatusCode == HttpStatusCode.Unauthorized)
-                {
-                    error = Translation.Get("Login_Error_msg_Unauthorized");
-                }
-
-                LoginErrorViewModel.SetError(error);
+                LoginErrorViewModel.SetError(result.Error);
             }
 
+            if (result.Value == AuthError.NoVpnAccess)
+            {
+                _modals.Show<AssignVpnConnectionsModalViewModel>();
+            }
+        }
+
+        private async Task HandleLoginFailureAsync(AuthResult result)
+        {
+            HandleAuthFailure(result);
             Password = new SecureString();
             ShowLoginForm();
             await DisableGuestHole();
