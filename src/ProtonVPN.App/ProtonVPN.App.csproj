@@ -168,6 +168,7 @@
     <Compile Include="HumanVerification\HumanVerificationViewModel.cs" />
     <Compile Include="HumanVerification\HumanVerifier.cs" />
     <Compile Include="HumanVerification\WebViewConfig.cs" />
+    <Compile Include="Modals\AssignVpnConnectionsModalViewModel.cs" />
     <Compile Include="Modals\ExitModalView.xaml.cs">
       <DependentUpon>ExitModalView.xaml</DependentUpon>
     </Compile>
@@ -179,6 +180,9 @@
       <DependentUpon>OfferModalView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modals\Offers\OfferModalViewModel.cs" />
+    <Compile Include="Modals\AssignVpnConnectionsModalView.xaml.cs">
+      <DependentUpon>AssignVpnConnectionsModalView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modals\Welcome\WelcomeModalManager.cs" />
     <Compile Include="Notifications\INotificationSender.cs" />
     <Compile Include="Notifications\INotificationUserActionHandler.cs" />
@@ -880,6 +884,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Modals\Offers\OfferModalView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Modals\AssignVpnConnectionsModalView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

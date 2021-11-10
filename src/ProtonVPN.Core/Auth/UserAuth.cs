@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -42,7 +42,7 @@ namespace ProtonVPN.Core.Auth
         public UserAuth(IApiClient apiClient,
             ILogger logger,
             IUserStorage userStorage,
-            ITokenStorage tokenStorage, 
+            ITokenStorage tokenStorage,
             IAuthCertificateManager authCertificateManager)
         {
             _tokenStorage = tokenStorage;
@@ -52,104 +52,99 @@ namespace ProtonVPN.Core.Auth
             _userStorage = userStorage;
         }
 
-        public const int UserStatusVpnAccess = 1;
         public bool LoggedIn { get; private set; }
 
         public event EventHandler<EventArgs> UserLoggedOut;
         public event EventHandler<UserLoggedInEventArgs> UserLoggedIn;
         public event EventHandler<EventArgs> UserLoggingIn;
 
-        public async Task<ApiResponseResult<VpnInfoResponse>> RefreshVpnInfo()
-        {
-            ApiResponseResult<VpnInfoResponse> vpnInfo = await _apiClient.GetVpnInfoResponse();
-            if (vpnInfo.Success)
-            {
-                if (!vpnInfo.Value.Vpn.Status.Equals(UserStatusVpnAccess))
-                {
-                    return ApiResponseResult<VpnInfoResponse>.Fail(vpnInfo.StatusCode, "User has no vpn access.");
-                }
-
-                _userStorage.StoreVpnInfo(vpnInfo.Value);
-            }
-
-            return vpnInfo;
-        }
-
-        public async Task RefreshVpnInfo(Action<VpnInfoResponse> onSuccess)
-        {
-            try
-            {
-                ApiResponseResult<VpnInfoResponse> infoResult = await RefreshVpnInfo();
-                if (infoResult.Success)
-                {
-                    onSuccess(infoResult.Value);
-                }
-            }
-            catch (HttpRequestException ex)
-            {
-                _logger.Error(ex.Message);
-            }
-        }
-
-        public async Task<ApiResponseResult<AuthResponse>> LoginUserAsync(string username, SecureString password)
+        public async Task<AuthResult> LoginUserAsync(string username, SecureString password)
         {
             _logger?.Info("Trying to login user");
             UserLoggingIn?.Invoke(this, EventArgs.Empty);
 
-            ApiResponseResult<AuthResponse> authResult = await AuthAsync(username, password);
+            AuthResult authResult = await AuthAsync(username, password);
             if (authResult.Failure)
             {
                 return authResult;
             }
 
-            ApiResponseResult<VpnInfoResponse> vpnInfo = await RefreshVpnInfo();
-            if (vpnInfo.Success)
+            ApiResponseResult<VpnInfoResponse> vpnInfoResult = await RefreshVpnInfo();
+            if (vpnInfoResult.Failure)
             {
-                _userStorage.StoreVpnInfo(vpnInfo.Value);
-                await InvokeUserLoggedInAsync(false);
-                return authResult;
+                return AuthResult.Fail(vpnInfoResult);
             }
 
-            return ApiResponseResult<AuthResponse>.Fail(vpnInfo);
+            _userStorage.StoreVpnInfo(vpnInfoResult.Value);
+            await InvokeUserLoggedInAsync(false);
+            return authResult;
         }
 
-        public async Task<ApiResponseResult<AuthResponse>> AuthAsync(string username, SecureString password)
+        public async Task<AuthResult> AuthAsync(string username, SecureString password)
         {
-            ApiResponseResult<AuthInfo> authInfo = await _apiClient.GetAuthInfoResponse(new AuthInfoRequestData
+            ApiResponseResult<AuthInfo> authInfoResponse =
+                await _apiClient.GetAuthInfoResponse(new AuthInfoRequestData { Username = username });
+            if (!authInfoResponse.Success)
             {
-                Username = username
-            });
-
-            if (!authInfo.Success)
-            {
-                return ApiResponseResult<AuthResponse>.Fail(authInfo.StatusCode, authInfo.Error);
+                return AuthResult.Fail(authInfoResponse);
             }
 
-            SrpPInvoke.GoProofs proofs = SrpPInvoke.GenerateProofs(4, username, password, authInfo.Value.Salt, authInfo.Value.Modulus, authInfo.Value.ServerEphemeral);
-            AuthRequestData authData = new AuthRequestData
+            SrpPInvoke.GoProofs proofs = SrpPInvoke.GenerateProofs(4, username, password, authInfoResponse.Value.Salt,
+                authInfoResponse.Value.Modulus, authInfoResponse.Value.ServerEphemeral);
+
+            AuthRequestData authRequestData = GetAuthRequestData(proofs, authInfoResponse.Value.SrpSession, username);
+            ApiResponseResult<AuthResponse> response = await _apiClient.GetAuthResponse(authRequestData);
+            if (response.Failure)
+            {
+                return AuthResult.Fail(response);
+            }
+
+            if (!Convert.ToBase64String(proofs.ExpectedServerProof).Equals(response.Value.ServerProof))
+            {
+                return AuthResult.Fail(AuthError.InvalidServerProof);
+            }
+
+            _userStorage.SaveUsername(username);
+            _tokenStorage.Uid = response.Value.Uid;
+            _tokenStorage.AccessToken = response.Value.AccessToken;
+            _tokenStorage.RefreshToken = response.Value.RefreshToken;
+
+            return AuthResult.Ok();
+        }
+
+        private AuthRequestData GetAuthRequestData(SrpPInvoke.GoProofs proofs, string srpSession, string username)
+        {
+            return new AuthRequestData
             {
                 ClientEphemeral = Convert.ToBase64String(proofs.ClientEphemeral),
                 ClientProof = Convert.ToBase64String(proofs.ClientProof),
-                SrpSession = authInfo.Value.SrpSession,
+                SrpSession = srpSession,
                 TwoFactorCode = "",
                 Username = username
             };
+        }
 
-            ApiResponseResult<AuthResponse> response = await _apiClient.GetAuthResponse(authData);
-            if (response.Success)
+        public async Task<ApiResponseResult<VpnInfoResponse>> RefreshVpnInfo()
+        {
+            ApiResponseResult<VpnInfoResponse> vpnInfo = await _apiClient.GetVpnInfoResponse();
+            if (vpnInfo.Success)
             {
-                if (!Convert.ToBase64String(proofs.ExpectedServerProof).Equals(response.Value.ServerProof))
-                {
-                    return ApiResponseResult<AuthResponse>.Fail(0, "Invalid server proof.");
-                }
-
-                _userStorage.SaveUsername(username);
-                _tokenStorage.Uid = response.Value.Uid;
-                _tokenStorage.AccessToken = response.Value.AccessToken;
-                _tokenStorage.RefreshToken = response.Value.RefreshToken;
+                _userStorage.StoreVpnInfo(vpnInfo.Value);
             }
-            
-            return response;
+            else if (vpnInfo.Value.Code == ResponseCodes.NoVpnConnectionsAssigned)
+            {
+                ClearAuthData();
+            }
+
+            return vpnInfo;
+        }
+
+        private void ClearAuthData()
+        {
+            _tokenStorage.Uid = string.Empty;
+            _tokenStorage.AccessToken = string.Empty;
+            _tokenStorage.RefreshToken = string.Empty;
+            _userStorage.SaveUsername(string.Empty);
         }
 
         public async Task InvokeAutoLoginEventAsync()

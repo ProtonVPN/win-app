@@ -63,6 +63,9 @@
     <Compile Include="Controls\ProtonAnimation.xaml.cs">
       <DependentUpon>ProtonAnimation.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Icons\AssignVpnConnections.xaml.cs">
+      <DependentUpon>AssignVpnConnections.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Icons\WindowsClose.xaml.cs">
       <DependentUpon>WindowsClose.xaml</DependentUpon>
     </Compile>
@@ -95,6 +98,10 @@
     <Page Include="Controls\ProtonAnimation.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Icons\AssignVpnConnections.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Icons\WindowsClose.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -95,7 +95,7 @@ namespace ProtonVPN.Core.Api
 
         public async Task<ApiResponseResult<VpnInfoResponse>> GetVpnInfoResponse()
         {
-            HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, "vpn");
+            HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, "vpn/v2");
             try
             {
                 using (HttpResponseMessage response = await _client.SendAsync(request).ConfigureAwait(false))

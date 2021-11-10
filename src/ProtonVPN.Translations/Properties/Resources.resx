@@ -3099,4 +3099,19 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="Dialogs_IncorrectSystemTime_msg" xml:space="preserve">
     <value>Your system clock seems to be out of sync, which could prevent the VPN from connecting successfully. Please see &lt;Hyperlink Command="{Binding OpenKbArticleCommand}"&gt;here&lt;/Hyperlink&gt; for more information.</value>
   </data>
+  <data name="Dialogs_AssignVpnConnections_btn_Assign" xml:space="preserve">
+    <value>Assign VPN connections</value>
+  </data>
+  <data name="Dialogs_AssignVpnConnections_btn_LoginAgain" xml:space="preserve">
+    <value>Login again</value>
+  </data>
+  <data name="Dialogs_AssignVpnConnections_ttl_Info1" xml:space="preserve">
+    <value>To start your journey in ProtonVPN please assign VPN connections to your account or any other sub-account.</value>
+  </data>
+  <data name="Dialogs_AssignVpnConnections_ttl_Info2" xml:space="preserve">
+    <value>This step will take just a few minutes. After that you will be able to log in and protect all your devices.</value>
+  </data>
+  <data name="Dialogs_AssignVpnConnections_ttl_Thanks" xml:space="preserve">
+    <value>Thanks for upgrading to Professional/Visionary</value>
+  </data>
 </root>

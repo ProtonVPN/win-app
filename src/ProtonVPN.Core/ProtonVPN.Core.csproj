@@ -173,9 +173,11 @@
     <Compile Include="Api\ActionableFailureApiResultEventArgs.cs" />
     <Compile Include="Auth\AuthCertificateManager.cs" />
     <Compile Include="Auth\AuthCertificateUpdater.cs" />
+    <Compile Include="Auth\AuthError.cs" />
     <Compile Include="Auth\AuthKeyManager.cs" />
     <Compile Include="Auth\AuthCredential.cs" />
     <Compile Include="Auth\AuthCredentialManager.cs" />
+    <Compile Include="Auth\AuthResult.cs" />
     <Compile Include="Auth\IAuthCertificateManager.cs" />
     <Compile Include="Auth\IAuthCertificateUpdater.cs" />
     <Compile Include="Auth\IAuthKeyManager.cs" />
