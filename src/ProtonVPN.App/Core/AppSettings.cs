@@ -62,9 +62,9 @@ namespace ProtonVPN.Core
             set => SetPerUser(value);
         }
 
-        public IReadOnlyList<AnnouncementItem> Announcements
+        public IReadOnlyList<Announcement> Announcements
         {
-            get => GetPerUser<IReadOnlyList<AnnouncementItem>>() ?? new List<AnnouncementItem>();
+            get => GetPerUser<IReadOnlyList<Announcement>>() ?? new List<Announcement>();
             set => SetPerUser(value);
         }
 
@@ -212,25 +212,7 @@ namespace ProtonVPN.Core
             set => SetPerUser(value);
         }
 
-        public long TrialExpirationTime
-        {
-            get => GetPerUser<long>();
-            set => SetPerUser(value);
-        }
-
-        public bool AboutToExpireModalShown
-        {
-            get => GetPerUser<bool>();
-            set => SetPerUser(value);
-        }
-
         public bool NetShieldModalShown
-        {
-            get => GetPerUser<bool>();
-            set => SetPerUser(value);
-        }
-
-        public bool ExpiredModalShown
         {
             get => GetPerUser<bool>();
             set => SetPerUser(value);

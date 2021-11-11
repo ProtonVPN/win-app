@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -26,6 +26,7 @@ using ProtonVPN.Core.Abstract;
 using ProtonVPN.Core.Api.Certificates;
 using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.Api.Data;
+using ProtonVPN.Core.Settings;
 using UserLocation = ProtonVPN.Core.Api.Contracts.UserLocation;
 
 namespace ProtonVPN.Core.Api
@@ -41,8 +42,8 @@ namespace ProtonVPN.Core.Api
             ILogger logger,
             ITokenStorage tokenStorage,
             IApiAppVersion appVersion,
-            string apiVersion,
-            string locale) : base(logger, appVersion, tokenStorage, apiVersion, locale)
+            IAppLanguageCache appLanguageCache,
+            string apiVersion) : base(logger, appVersion, tokenStorage, appLanguageCache, apiVersion)
         {
             _client = client;
             _noCacheClient = noCacheClient;
@@ -337,6 +338,7 @@ namespace ProtonVPN.Core.Api
                 HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, "core/v4/notifications");
                 using HttpResponseMessage response = await _client.SendAsync(request).ConfigureAwait(false);
                 string body = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+
                 return Logged(ApiResponseResult<AnnouncementsResponse>(body, response.StatusCode), "Get announcements");
             }
             catch (Exception e) when (e.IsApiCommunicationException())

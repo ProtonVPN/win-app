@@ -88,11 +88,14 @@
     <Compile Include="..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Announcements\AnnouncementItem.cs" />
-    <Compile Include="Announcements\AnnouncementCache.cs" />
-    <Compile Include="Announcements\AnnouncementService.cs" />
+    <Compile Include="Announcements\Announcement.cs" />
     <Compile Include="Announcements\IAnnouncementCache.cs" />
-    <Compile Include="Announcements\IAnnouncements.cs" />
+    <Compile Include="Announcements\AnnouncementService.cs" />
+    <Compile Include="Announcements\AnnouncementCache.cs" />
+    <Compile Include="Announcements\IAnnouncementService.cs" />
+    <Compile Include="Announcements\Panel.cs" />
+    <Compile Include="Announcements\PanelButton.cs" />
+    <Compile Include="Announcements\PanelFeature.cs" />
     <Compile Include="Api\ApiAppVersion.cs" />
     <Compile Include="Api\Certificates\CertificateRequestData.cs" />
     <Compile Include="Api\Certificates\CertificateResponseData.cs" />
@@ -200,6 +203,8 @@
     <Compile Include="OS\NtpClient.cs" />
     <Compile Include="Servers\Specs\ExactTierServer.cs" />
     <Compile Include="Servers\Specs\ExitCityServer.cs" />
+    <Compile Include="Settings\AppLanguageCache.cs" />
+    <Compile Include="Settings\IAppLanguageCache.cs" />
     <Compile Include="Settings\IServiceSettingsStateAware.cs" />
     <Compile Include="Settings\ServiceSettingsStateChangedEventArgs.cs" />
     <Compile Include="User\VpnPlanChangedEventArgs.cs" />
@@ -274,8 +279,6 @@
     <Compile Include="Servers\Models\PhysicalServer.cs" />
     <Compile Include="Servers\Models\Server.cs" />
     <Compile Include="Servers\SecureCoreCountry.cs" />
-    <Compile Include="Servers\ServerCandidates.cs" />
-    <Compile Include="Servers\ServerCandidatesFactory.cs" />
     <Compile Include="Servers\Models\ServerExtensions.cs" />
     <Compile Include="Servers\Name\CustomProfileName.cs" />
     <Compile Include="Servers\Name\IName.cs" />

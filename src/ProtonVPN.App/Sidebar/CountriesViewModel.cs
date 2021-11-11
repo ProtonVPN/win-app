@@ -29,13 +29,11 @@ using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Servers.Models;
-using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.User;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Servers;
 using ProtonVPN.Sidebar.QuickSettings;
-using ProtonVPN.Trial;
 using ProtonVPN.Vpn.Connectors;
 
 namespace ProtonVPN.Sidebar
@@ -45,7 +43,6 @@ namespace ProtonVPN.Sidebar
         IVpnPlanAware,
         IVpnStateAware,
         ISettingsAware,
-        ITrialStateAware,
         ILogoutAware,
         IServersAware
     {
@@ -54,7 +51,6 @@ namespace ProtonVPN.Sidebar
         private readonly App _app;
         private readonly ServerConnector _serverConnector;
         private readonly CountryConnector _countryConnector;
-        private readonly IVpnManager _vpnManager;
 
         private VpnStateChangedEventArgs _vpnState = new(new VpnState(VpnStatus.Disconnected), VpnError.None, false);
 
@@ -64,8 +60,7 @@ namespace ProtonVPN.Sidebar
             App app,
             ServerConnector serverConnector,
             CountryConnector countryConnector,
-            QuickSettingsViewModel quickSettingsViewModel,
-            IVpnManager vpnManager)
+            QuickSettingsViewModel quickSettingsViewModel)
         {
             _appSettings = appSettings;
             _serverListFactory = serverListFactory;
@@ -73,7 +68,6 @@ namespace ProtonVPN.Sidebar
             _serverConnector = serverConnector;
             _countryConnector = countryConnector;
             QuickSettingsViewModel = quickSettingsViewModel;
-            _vpnManager = vpnManager;
 
             Connect = new RelayCommand<ServerItemViewModel>(ConnectAction);
             ConnectCountry = new RelayCommand<IServerCollection>(ConnectCountryAction);
@@ -249,20 +243,6 @@ namespace ProtonVPN.Sidebar
         public async Task OnVpnPlanChangedAsync(VpnPlanChangedEventArgs e)
         {
             CreateList();
-        }
-
-        public async Task OnTrialStateChangedAsync(PlanStatus status)
-        {
-            if (status == PlanStatus.Expired)
-            {
-                _appSettings.SecureCore = false;
-                await ReconnectAsync();
-            }
-        }
-
-        private async Task ReconnectAsync()
-        {
-            await _vpnManager.ReconnectAsync(new VpnReconnectionSettings());
         }
 
         public void OnUserLoggedOut()

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -19,44 +19,54 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Core.Api;
+using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Settings;
+using ProtonVPN.Core.User;
+using ApiAnnouncement = ProtonVPN.Core.Api.Contracts.Announcement;
 
 namespace ProtonVPN.Core.Announcements
 {
-    public class AnnouncementService : IAnnouncements, ILoggedInAware, ILogoutAware
+    public class AnnouncementService : IAnnouncementService, ILoggedInAware, ILogoutAware, ISettingsAware, IVpnPlanAware
     {
+        private const string INCENTIVE_PRICE_TAG = "%IncentivePrice%";
+
         private readonly IAppSettings _appSettings;
         private readonly IApiClient _apiClient;
         private readonly IAnnouncementCache _announcementCache;
         private readonly ISchedulerTimer _timer;
         private readonly SingleAction _updateAction;
+        private readonly ILogger _logger;
 
         public AnnouncementService(
             IAppSettings appSettings,
             IScheduler scheduler,
             IApiClient apiClient,
             IAnnouncementCache announcementCache,
+            ILogger logger,
             TimeSpan updateInterval)
         {
             _appSettings = appSettings;
             _announcementCache = announcementCache;
             _apiClient = apiClient;
+            _logger = logger;
             _timer = scheduler.Timer();
             _timer.Interval = updateInterval.RandomizedWithDeviation(0.2);
             _timer.Tick += Timer_OnTick;
-            _updateAction = new SingleAction(Fetch);
+            _updateAction = new(Fetch);
         }
 
         public event EventHandler AnnouncementsChanged;
 
-        public IReadOnlyCollection<AnnouncementItem> Get()
+        public IReadOnlyCollection<Announcement> Get()
         {
             return _announcementCache.Get();
         }
@@ -66,18 +76,31 @@ namespace ProtonVPN.Core.Announcements
             await _updateAction.Run();
         }
 
+        public void Delete(string id)
+        {
+            IReadOnlyList<Announcement> oldAnnouncements = _announcementCache.Get();
+            IReadOnlyList<Announcement> newAnnouncements = oldAnnouncements.Where(a => a.Id != id).ToList();
+
+            int numOfAnnouncementsToDelete = oldAnnouncements.Count - newAnnouncements.Count;
+            _logger.Info($"[AnnouncementService] Deleting {numOfAnnouncementsToDelete} announcements with ID '{id}'.");
+
+            _announcementCache.Store(newAnnouncements);
+
+            AnnouncementsChanged?.Invoke(this, EventArgs.Empty);
+        }
+
         public void MarkAsSeen(string id)
         {
-            var items = _announcementCache.Get();
-            foreach (var item in items)
+            IReadOnlyList<Announcement> announcements = _announcementCache.Get();
+            foreach (Announcement announcement in announcements)
             {
-                if (item.Id == id)
+                if (announcement.Id == id)
                 {
-                    item.Seen = true;
+                    announcement.Seen = true;
                 }
             }
 
-            _announcementCache.Store(items);
+            _announcementCache.Store(announcements);
 
             AnnouncementsChanged?.Invoke(this, EventArgs.Empty);
         }
@@ -102,17 +125,18 @@ namespace ProtonVPN.Core.Announcements
 
             try
             {
-                var response = await _apiClient.GetAnnouncementsAsync();
+                ApiResponseResult<AnnouncementsResponse> response = await _apiClient.GetAnnouncementsAsync();
                 if (response.Success)
                 {
-                    _announcementCache.Store(Map(response.Value.Announcements));
+                    IReadOnlyList<Announcement> announcements = Map(response.Value.Announcements);
+                    _announcementCache.Store(announcements);
 
                     AnnouncementsChanged?.Invoke(this, EventArgs.Empty);
                 }
             }
             catch (HttpRequestException)
             {
-                // ignored
+                // Ignored
             }
         }
 
@@ -123,7 +147,7 @@ namespace ProtonVPN.Core.Announcements
                 return;
             }
 
-            _announcementCache.Store(new List<AnnouncementItem>());
+            _announcementCache.Store(new List<Announcement>());
             AnnouncementsChanged?.Invoke(this, EventArgs.Empty);
         }
 
@@ -132,15 +156,105 @@ namespace ProtonVPN.Core.Announcements
             _updateAction.Run();
         }
 
-        private IReadOnlyList<AnnouncementItem> Map(List<Api.Contracts.Announcement> announcements)
+        private IReadOnlyList<Announcement> Map(IList<ApiAnnouncement> announcements)
         {
-            return announcements.Where(a => a.Offer != null).Select(a =>
-                    new AnnouncementItem(a.Id,
-                        a.Offer.Label,
-                        a.Offer.Url,
-                        a.Offer.Icon,
-                        false))
+            return announcements
+                .Where(apiAnnouncement => apiAnnouncement?.Offer != null)
+                .Select(MapAnnouncement)
+                .Where(announcement => announcement != null)
                 .ToList();
+        }
+
+        private Announcement MapAnnouncement(ApiAnnouncement announcement)
+        {
+            Announcement result;
+            try
+            {
+                result = new()
+                {
+                    Id = announcement.Id,
+                    StartDateTimeUtc = MapTimestampToDateTimeUtc(announcement.StartTimestamp),
+                    EndDateTimeUtc = MapTimestampToDateTimeUtc(announcement.EndTimestamp),
+                    Url = announcement.Offer.Url,
+                    Icon = announcement.Offer.Icon,
+                    Label = announcement.Offer.Label,
+                    Panel = MapPanel(announcement.Offer.Panel),
+                    Seen = false
+                };
+            }
+            catch (Exception e)
+            {
+                _logger.Error("Failed to map announcement.", e);
+                result = null;
+            }
+
+            return result;
+        }
+
+        private DateTime MapTimestampToDateTimeUtc(long timestamp)
+        {
+            return DateTimeOffset.FromUnixTimeSeconds(timestamp).UtcDateTime;
+        }
+
+        private Panel MapPanel(OfferPanel offerPanel)
+        {
+            string incentive = offerPanel.Incentive;
+            string incentiveSuffix = null;
+            int indexOfIncentivePriceTag = offerPanel.Incentive.IndexOf(INCENTIVE_PRICE_TAG, StringComparison.InvariantCulture);
+            if (indexOfIncentivePriceTag >= 0)
+            {
+                incentive = offerPanel.Incentive.Substring(0, indexOfIncentivePriceTag).TrimEnd();
+                incentiveSuffix = offerPanel.Incentive.Substring(indexOfIncentivePriceTag + INCENTIVE_PRICE_TAG.Length).TrimStart();
+            }
+            return new()
+            {
+                Incentive = incentive,
+                IncentivePrice = offerPanel.IncentivePrice,
+                IncentiveSuffix = incentiveSuffix,
+                Pill = offerPanel.Pill,
+                PictureUrl = offerPanel.PictureUrl,
+                Title = offerPanel.Title,
+                Features = MapFeatures(offerPanel.Features),
+                FeaturesFooter = offerPanel.FeaturesFooter,
+                Button = MapButton(offerPanel.Button),
+                PageFooter = offerPanel.PageFooter
+            };
+        }
+
+        private IList<PanelFeature> MapFeatures(IList<OfferPanelFeature> offerPanelFeatures)
+        {
+            return offerPanelFeatures.Select(MapFeature).ToList();
+        }
+
+        private PanelFeature MapFeature(OfferPanelFeature offerPanelFeature)
+        {
+            return new()
+            {
+                IconUrl = offerPanelFeature.IconUrl,
+                Text = offerPanelFeature.Text
+            };
+        }
+
+        private PanelButton MapButton(OfferPanelButton offerPanelButton)
+        {
+            return new()
+            {
+                Url = offerPanelButton.Url,
+                Text = offerPanelButton.Text
+            };
+        }
+
+        public async void OnAppSettingsChanged(PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName.Equals(nameof(IAppSettings.Language)))
+            {
+                await _updateAction.Run();
+            }
+        }
+
+        public async Task OnVpnPlanChangedAsync(VpnPlanChangedEventArgs e)
+        {
+            await _updateAction.Run();
         }
     }
 }

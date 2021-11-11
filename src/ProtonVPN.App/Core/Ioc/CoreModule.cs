@@ -18,7 +18,6 @@
  */
 
 using System;
-using System.IO;
 using System.Net.Http;
 using Autofac;
 using Caliburn.Micro;
@@ -31,6 +30,7 @@ using ProtonVPN.Common.OS.Net.Http;
 using ProtonVPN.Common.OS.Net.NetworkInterface;
 using ProtonVPN.Common.OS.Processes;
 using ProtonVPN.Common.OS.Registry;
+using ProtonVPN.Common.OS.Services;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Config.Url;
 using ProtonVPN.Core.Abstract;
@@ -48,6 +48,7 @@ using ProtonVPN.Core.OS.Net;
 using ProtonVPN.Core.OS.Net.Dns;
 using ProtonVPN.Core.OS.Net.DoH;
 using ProtonVPN.Core.Servers;
+using ProtonVPN.Core.Service;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Storage;
 using ProtonVPN.Core.Threading;
@@ -55,8 +56,8 @@ using ProtonVPN.Core.Update;
 using ProtonVPN.Core.Window;
 using ProtonVPN.HumanVerification;
 using ProtonVPN.Modals.ApiActions;
-using ProtonVPN.Translations;
 using ProtonVPN.Settings;
+using ProtonVPN.Translations;
 using ProtonVPN.Vpn;
 using Module = Autofac.Module;
 
@@ -139,6 +140,8 @@ namespace ProtonVPN.Core.Ioc
                     InnerHandler = c.Resolve<CancellingHandler>()
                 }).SingleInstance();
 
+            builder.RegisterType<AppLanguageCache>().AsImplementedInterfaces().SingleInstance();
+
             builder.Register(c =>
                     new TokenClient(
                         c.Resolve<ILogger>(),
@@ -146,8 +149,8 @@ namespace ProtonVPN.Core.Ioc
                             {BaseAddress = c.Resolve<IActiveUrls>().ApiUrl.Uri},
                         c.Resolve<IApiAppVersion>(),
                         c.Resolve<ITokenStorage>(),
-                        c.Resolve<Common.Configuration.Config>().ApiVersion,
-                        TranslationSource.Instance.CurrentCulture.Name))
+                        c.Resolve<IAppLanguageCache>(),
+                        c.Resolve<Common.Configuration.Config>().ApiVersion))
                 .As<ITokenClient>()
                 .SingleInstance();
 
@@ -195,8 +198,8 @@ namespace ProtonVPN.Core.Ioc
                         c.Resolve<ILogger>(),
                         c.Resolve<ITokenStorage>(),
                         c.Resolve<IApiAppVersion>(),
-                        c.Resolve<Common.Configuration.Config>().ApiVersion,
-                        TranslationSource.Instance.CurrentCulture.Name);
+                        c.Resolve<IAppLanguageCache>(),
+                        c.Resolve<Common.Configuration.Config>().ApiVersion);
                 })
                 .As<IApiClient>()
                 .SingleInstance();
@@ -207,7 +210,15 @@ namespace ProtonVPN.Core.Ioc
             builder.Register(c => c.Resolve<ILoggerFactory>().Get(c.Resolve<Common.Configuration.Config>().AppLogDefaultFullFilePath))
                 .As<ILogger>().SingleInstance();
             builder.RegisterType<LogCleaner>().SingleInstance();
-            builder.RegisterType<UpdateService>().AsSelf().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<SafeServiceAction>().As<ISafeServiceAction>().SingleInstance();
+            builder.Register(c => new UpdateService(
+                    c.Resolve<Common.Configuration.Config>(),
+                    c.Resolve<AppUpdateSystemService>(),
+                    c.Resolve<IAppSettings>(),
+                    c.Resolve<ServiceClient>()))
+                .AsSelf()
+                .AsImplementedInterfaces()
+                .SingleInstance();
             builder.RegisterType<ServiceClient>().SingleInstance();
             builder.RegisterType<UpdateEvents>().SingleInstance();
 
@@ -264,6 +275,7 @@ namespace ProtonVPN.Core.Ioc
                 c.Resolve<IScheduler>(),
                 c.Resolve<IApiClient>(),
                 c.Resolve<IAnnouncementCache>(),
+                c.Resolve<ILogger>(),
                 c.Resolve<Common.Configuration.Config>().AnnouncementUpdateInterval))
                 .AsImplementedInterfaces()
                 .SingleInstance();

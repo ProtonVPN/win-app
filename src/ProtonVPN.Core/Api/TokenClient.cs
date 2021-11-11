@@ -26,6 +26,7 @@ using ProtonVPN.Common.Logging;
 using ProtonVPN.Core.Abstract;
 using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.Api.Data;
+using ProtonVPN.Core.Settings;
 
 namespace ProtonVPN.Core.Api
 {
@@ -38,8 +39,8 @@ namespace ProtonVPN.Core.Api
             HttpClient client,
             IApiAppVersion appVersion,
             ITokenStorage tokenStorage,
-            string apiVersion,
-            string locale) : base(logger, appVersion, tokenStorage, apiVersion, locale)
+            IAppLanguageCache appLanguageCache,
+            string apiVersion) : base(logger, appVersion, tokenStorage, appLanguageCache, apiVersion)
         {
             _client = client;
         }

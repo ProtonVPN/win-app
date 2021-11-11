@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,18 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Sidebar.Announcements
+namespace ProtonVPN.Core.Announcements
 {
-    public class Announcement
+    public class PanelFeature
     {
-        public string Id { get; set; }
-
-        public string Label { get; set; }
-
-        public string Url { get; set; }
-
-        public string Icon { get; set; }
-
-        public bool Seen { get; set; }
+        public string IconUrl { get; set; }
+        public string Text { get; set; }
     }
 }

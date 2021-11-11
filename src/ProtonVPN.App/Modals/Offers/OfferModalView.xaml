@@ -1,0 +1,146 @@
+﻿<!--
+Copyright (c) 2021 Proton Technologies AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<resource:BaseModalWindow x:Class="ProtonVPN.Modals.Offers.OfferModalView"
+                          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                          xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                          xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                          xmlns:resource="clr-namespace:ProtonVPN.Resource;assembly=ProtonVPN.Resource"
+                          xmlns:offers="clr-namespace:ProtonVPN.Modals.Offers"
+                          xmlns:announcements="clr-namespace:ProtonVPN.Core.Announcements;assembly=ProtonVPN.Core"
+                          Style="{StaticResource BaseWindowStyle}"
+                          SizeToContent="Height"
+                          Title=" "
+                          mc:Ignorable="d"
+                          Height="Auto"
+                          Width="550"
+                          d:DataContext="{d:DesignInstance offers:OfferModalViewModel}">
+    <Grid>
+        <StackPanel Margin="50">
+            <TextBlock Padding="0,0,0,0"
+                       HorizontalAlignment="Center"
+                       TextAlignment="Center"
+                       FontSize="16"
+                       FontWeight="Normal"
+                       TextWrapping="Wrap"
+                       Foreground="White"
+                       Text="{Binding Panel.Incentive}" />
+
+            <Grid HorizontalAlignment="Center" Margin="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0"
+                           Padding="0,0,2,0"
+                           HorizontalAlignment="Center"
+                           TextAlignment="Center"
+                           FontSize="32"
+                           FontWeight="Medium"
+                           TextWrapping="Wrap"
+                           Foreground="White"
+                           Text="{Binding Panel.IncentivePrice}" />
+
+                <TextBlock Grid.Column="1"
+                           Padding="0,17,0,0"
+                           HorizontalAlignment="Center"
+                           TextAlignment="Center"
+                           FontSize="16"
+                           TextWrapping="Wrap"
+                           Foreground="White"
+                           Text="{Binding Panel.IncentiveSuffix}" />
+            </Grid>
+
+            <Button Style="{StaticResource Pill}"
+                    Margin="0,5,0,0"
+                    Content="{Binding Panel.Pill}" />
+
+            <Image Source="{Binding Panel.PictureUrl}"
+                   Margin="0,20,0,0"
+                   HorizontalAlignment="Stretch"
+                   VerticalAlignment="Stretch"
+                   Stretch="Uniform"
+                   MaxHeight="250"
+                   MaxWidth="250" />
+
+            <TextBlock Padding="0,20,0,0"
+                       HorizontalAlignment="Center"
+                       TextAlignment="Center"
+                       FontSize="16"
+                       FontWeight="Bold"
+                       TextWrapping="Wrap"
+                       Foreground="White"
+                       Text="{Binding Panel.Title}" />
+
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0,10,0,0">
+                <ItemsControl ItemsSource="{Binding Panel.Features}" x:Name="Features">
+                    <ItemsControl.Resources>
+                        <DataTemplate DataType="{x:Type announcements:PanelFeature}">
+                            <DockPanel>
+                                <Grid HorizontalAlignment="Left" Margin="0,10,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0"
+                                           Source="{Binding IconUrl}"
+                                           Margin="0"
+                                           HorizontalAlignment="Center" 
+                                           VerticalAlignment="Center" 
+                                           Width="24" 
+                                           Height="24" />
+                                    <TextBlock Grid.Column="1"
+                                               Padding="10,0,0,0"
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Center"
+                                               TextAlignment="Left"
+                                               FontSize="14"
+                                               TextWrapping="Wrap"
+                                               Foreground="White"
+                                               Text="{Binding Text}" />
+                                </Grid>
+                            </DockPanel>
+                        </DataTemplate>
+                    </ItemsControl.Resources>
+                </ItemsControl>
+            </StackPanel>
+
+            <Button Style="{StaticResource PrimaryVividModalButton}"
+                    HorizontalAlignment="Center"
+                    Margin="0,30,0,0"
+                    Padding="25,0,25,0"
+                    FontWeight="Bold"
+                    FontSize="16"
+                    Content="{Binding Panel.Button.Text}"
+                    Command="{Binding ButtonCommand}"/>
+
+            <TextBlock Padding="0,8,0,0"
+                       HorizontalAlignment="Center"
+                       TextAlignment="Center"
+                       FontSize="12"
+                       FontWeight="Medium"
+                       TextWrapping="Wrap"
+                       Foreground="Gray"
+                       Text="{Binding Panel.PageFooter}" />
+
+        </StackPanel>
+    </Grid>
+</resource:BaseModalWindow>

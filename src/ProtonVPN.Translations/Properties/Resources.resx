@@ -450,62 +450,6 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <value>Need Help?</value>
     <comment>The text of Need Help hyperlink of Login window (opens popup with more options)</comment>
   </data>
-  <data name="Trial_Expiring_lbl_AboutToExpire" xml:space="preserve">
-    <value>Your free trial is about to expire!</value>
-    <comment>The heading message of trial modal window</comment>
-  </data>
-  <data name="Trial_Expiring_lbl_Features" xml:space="preserve">
-    <value>Upgrade to ProtonVPN PLUS and continue enjoying these features:</value>
-    <comment>The label for list of PLUS subscription level features in Trial Expiring window</comment>
-  </data>
-  <data name="Trial_Features_lbl_MultipleConnections" xml:space="preserve">
-    <value>10 connections</value>
-    <comment>The name of multiple connections feature available to PLUS subscription plan users displayed in Trial windows</comment>
-  </data>
-  <data name="Trial_Expiring_lbl_MultipleConnections_Info" xml:space="preserve">
-    <value>Connect up to 10 devices at the same time</value>
-    <comment>The description of multiple connections feature of PLUS subscription plan displayed in Trial Expiring window</comment>
-  </data>
-  <data name="Trial_Expiring_lbl_SecureCore_Info" xml:space="preserve">
-    <value>Ultra secure servers hosted by us</value>
-    <comment>The description of Secure Core feature of PLUS subscription plan displayed in Trial Expiring window</comment>
-  </data>
-  <data name="Trial_Features_lbl_MultipleServers" xml:space="preserve">
-    <value>Multiple Servers</value>
-    <comment>The name of multiple servers feature available to PLUS subscription plan users displayed in Trial windows</comment>
-  </data>
-  <data name="Trial_Expiring_lbl_MultipleServers_Info" xml:space="preserve">
-    <value>Hundreds of servers around the world</value>
-    <comment>The description of multiple servers feature of PLUS subscription plan displayed in Trial Expiring window</comment>
-  </data>
-  <data name="Trial_Features_lbl_Streaming" xml:space="preserve">
-    <value>Secure Streaming</value>
-    <comment>The name of streaming feature available to PLUS subscription plan users displayed in Trial windows</comment>
-  </data>
-  <data name="Trial_Expiring_lbl_Streaming_Info" xml:space="preserve">
-    <value>Secure streaming of your favorite content</value>
-    <comment>The description of streaming feature of PLUS subscription plan displayed in Trial Expiring window</comment>
-  </data>
-  <data name="Trial_Expiring_btn_Close" xml:space="preserve">
-    <value>Maybe Later</value>
-    <comment>The text on close button in Trial Expiring window (closes the window)</comment>
-  </data>
-  <data name="Trial_Expiring_btn_Upgrade" xml:space="preserve">
-    <value>Upgrade Now</value>
-    <comment>The text on upgrade button in Trial Expiring window (opens user account web page)</comment>
-  </data>
-  <data name="Trial_Expiring_lbl_MoneyBack" xml:space="preserve">
-    <value>30-day money back guarantee</value>
-    <comment>The message on bottom of Trial Expiring window</comment>
-  </data>
-  <data name="Trial_Features_lbl_P2PServers" xml:space="preserve">
-    <value>P2P Servers</value>
-    <comment>The name of P2P servers feature available to PLUS subscription plan users displayed in Trial windows</comment>
-  </data>
-  <data name="Trial_Features_lbl_MultipleCountries" xml:space="preserve">
-    <value>Multiple Countries</value>
-    <comment>The name of multiple countries feature available to PLUS subscription plan users displayed in Trial windows</comment>
-  </data>
   <data name="Upsell_Enjoying_lbl_Benefits" xml:space="preserve">
     <value>Use Secure Core, stream your favorite TV shows, use on up to 10 different devices and more!</value>
     <comment>The text describing PLUS subscription level benefits in Enjoying Upsell window</comment>
@@ -524,11 +468,11 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
   </data>
   <data name="Welcome_lbl_Welcome" xml:space="preserve">
     <value>WELCOME ON BOARD!</value>
-    <comment>The text displayed in Welcome window for non trial users</comment>
+    <comment>The text displayed in Welcome window</comment>
   </data>
   <data name="Welcome_lbl_Thanks" xml:space="preserve">
     <value>Thanks for using ProtonVPN. Take a quick look at the main app features.</value>
-    <comment>The text displayed in Welcome window for non trial users</comment>
+    <comment>The text displayed in Welcome window</comment>
   </data>
   <data name="Welcome_btn_Skip" xml:space="preserve">
     <value>Skip</value>
@@ -537,14 +481,6 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
   <data name="Welcome_btn_TakeATour" xml:space="preserve">
     <value>Take a Tour</value>
     <comment>The text on Take a Tour button in Welcome window</comment>
-  </data>
-  <data name="Welcome_lbl_TrialGift" xml:space="preserve">
-    <value>As a welcome gift, you get a 7-days access to a ProtonVPN PLUS subscription with premium features including:</value>
-    <comment>The text displayed in Welcome window for trial users</comment>
-  </data>
-  <data name="Welcome_lbl_TrialEnjoy" xml:space="preserve">
-    <value>ENJOY PLUS FOR FREE!</value>
-    <comment>The text displayed in Welcome window for trial users</comment>
   </data>
   <data name="Notifications_VpnState_msg_Connected" xml:space="preserve">
     <value>CONNECTED to {0}{1}New public IP: {2}</value>
@@ -717,14 +653,6 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
   <data name="Settings_val_Disabled" xml:space="preserve">
     <value>Disabled</value>
     <comment>The Disabled value displayed in combo boxes of Settings window</comment>
-  </data>
-  <data name="Sidebar_Trial_lbl_FreeVersion" xml:space="preserve">
-    <value>You are currently using&lt;LineBreak/&gt;Free version</value>
-    <comment>The text displayed in Trial section of Sidebar section of main app window when user is using free subscription plan. The &lt;LineBreak/&gt; tag should not be translated.</comment>
-  </data>
-  <data name="Sidebar_Trial_lbl_ExpiresIn" xml:space="preserve">
-    <value>Free trial expires in:</value>
-    <comment>The label for time duration till free trial expiration in Trial section of Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_Connection_lbl_Disconnected" xml:space="preserve">
     <value>You are not protected!</value>
@@ -1006,14 +934,6 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <value>Attention</value>
     <comment>The title of warning message window</comment>
   </data>
-  <data name="Trial_Features_lbl_SecureCore" xml:space="preserve">
-    <value>Secure Core</value>
-    <comment>The name of Secure Core feature available to PLUS subscription plan users displayed in Trial windows</comment>
-  </data>
-  <data name="Welcome_ttl_Trial" xml:space="preserve">
-    <value>ProtonVPN Trial</value>
-    <comment>The title of Welcome window for trial users</comment>
-  </data>
   <data name="About_UpdateStatus_val_CheckFailed" xml:space="preserve">
     <value>Failed to check for update</value>
     <comment>The app update status in About window</comment>
@@ -1061,14 +981,6 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
   <data name="Servers_lbl_Upgrade" xml:space="preserve">
     <value>Upgrade</value>
     <comment>The label displayed next to server name in Server list in Countries tab of Sidebar in main app window</comment>
-  </data>
-  <data name="Sidebar_Trial_btn_Upgrade" xml:space="preserve">
-    <value>Upgrade</value>
-    <comment>The text on Upgrade button in Trial section of Sidebar in main app window</comment>
-  </data>
-  <data name="Trial_Expiring_ttl" xml:space="preserve">
-    <value>ProtonVPN Trial</value>
-    <comment>The title of Trial Expiring window</comment>
   </data>
   <data name="Upsell_Enjoying_lbl_MoneyBack" xml:space="preserve">
     <value>30-day money back guarantee</value>
@@ -1126,22 +1038,6 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <value>Create Profile</value>
     <comment>The text of button for creating new profile on Profiles tab of Sidebar section of main app window (opens new profile window)</comment>
   </data>
-  <data name="Sidebar_Trial_TimeUnit_val_Days" xml:space="preserve">
-    <value>days</value>
-    <comment>The time unit (days) displayed in Trial section of Sidebar section of main app window</comment>
-  </data>
-  <data name="Sidebar_Trial_TimeUnit_val_Hours" xml:space="preserve">
-    <value>hrs</value>
-    <comment>The time unit (hours) displayed in Trial section of Sidebar section of main app window</comment>
-  </data>
-  <data name="Sidebar_Trial_TimeUnit_val_Minutes" xml:space="preserve">
-    <value>min</value>
-    <comment>The time unit (minutes) displayed in Trial section of Sidebar section of main app window</comment>
-  </data>
-  <data name="Sidebar_Trial_TimeUnit_val_Seconds" xml:space="preserve">
-    <value>secs</value>
-    <comment>The time unit (seconds) displayed in Trial section of Sidebar section of main app window</comment>
-  </data>
   <data name="App_mnu_Connect" xml:space="preserve">
     <value>Connect</value>
     <comment>The header of Connect menu item in the Taskbar Notification Icon (Systray) context menu (connects to VPN using Quick Connect profile)</comment>
@@ -1192,10 +1088,6 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
   </data>
   <data name="VpnPlan_val_Free" xml:space="preserve">
     <value>ProtonVPN Free</value>
-    <comment>The name of VPN subscription plan</comment>
-  </data>
-  <data name="VpnPlan_val_Trial" xml:space="preserve">
-    <value>ProtonVPN Plus Trial</value>
     <comment>The name of VPN subscription plan</comment>
   </data>
   <data name="VpnPlan_val_Visionary" xml:space="preserve">
@@ -2236,7 +2128,7 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
   </data>
   <data name="Welcome_ttl" xml:space="preserve">
     <value>ProtonVPN</value>
-    <comment>The title of Welcome window for non trial users</comment>
+    <comment>The title of Welcome window</comment>
   </data>
   <data name="Account_lbl_Country_One" xml:space="preserve">
     <value>Country</value>
@@ -2318,10 +2210,6 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <value>The network adapter version is outdated.</value>
     <comment>The error description displayed in Disconnect modal window if TAP adapter version is too low</comment>
   </data>
-  <data name="Dialogs_ServiceStart_Info" xml:space="preserve">
-    <value>The ProtonVPN Service that is responsible for your VPN connection is not running. It will try to complete your task again shortly. If this problem persists, try restarting the ProtonVPN app. If it still persists, try restarting your PC.</value>
-    <comment>The text displayed in Service Start window</comment>
-  </data>
   <data name="Dialogs_DisconnectError_msg_NoServers" xml:space="preserve">
     <value>There are no servers available right now for your selection. Please select a different option.</value>
     <comment>The error description displayed in Disconnect modal window if disconnected because there are no servers available to connect to</comment>
@@ -2401,10 +2289,6 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
   <data name="Login_Error_msg_Unauthorized" xml:space="preserve">
     <value>Invalid refresh token, please log in again.</value>
     <comment>The text displayed after failed login attempt</comment>
-  </data>
-  <data name="Dialogs_ServiceStart_msg_FailedToStart" xml:space="preserve">
-    <value>Failed to start {0}</value>
-    <comment>The message displayed in the error window when the app fails to start the service at user logon. The {0} is a placeholder for the service name which failed to start</comment>
   </data>
   <data name="Settings_Connection_lbl_CustomDnsServer" xml:space="preserve">
     <value>Custom DNS Servers</value>
@@ -2780,7 +2664,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Enable</value>
   </data>
   <data name="Dialogs_DisabledService_msg_Info" xml:space="preserve">
-    <value>The ProtonVPN service required for your VPN connection seems to be disabled. Click on Enable to fix it.&lt;LineBreak/&gt;Note that this operation requires Admin privileges.</value>
+    <value>Some ProtonVPN's components might be blocked or disabled, preventing you to connect. Click on Enable to fix it.&lt;LineBreak/&gt;Note that this operation requires Admin privileges.</value>
   </data>
   <data name="Dialogs_DisabledService_btn_LearnMore" xml:space="preserve">
     <value>Learn more</value>
@@ -2789,7 +2673,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Show less</value>
   </data>
   <data name="Dialogs_DisabledService_msg_ExtraInfo" xml:space="preserve">
-    <value>Sometimes, anti-virus software will mistakenly categorize ProtonVPN as a vulnerability and disable it. By clicking Enable, you are giving your system permission to reactivate the ProtonVPN Service.&lt;LineBreak/&gt;If the ProtonVPN Service is still disabled, try restarting your PC or reinstalling ProtonVPN.</value>
+    <value>Some applications like anti-virus or PC optimizers can interfere with the System Services that ProtonVPN requires for securing your connection. By clicking Enable, you are allowing Windows to reactivate the ProtonVPN's Services.&lt;LineBreak/&gt;If the problem persists, try restarting your PC or reinstalling ProtonVPN.</value>
   </data>
   <data name="Dialogs_PortForwardingConfirmation_ttl" xml:space="preserve">
     <value>Enable Port Forwarding?</value>
@@ -2869,10 +2753,6 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="Settings_Advanced_lbl_btn_LearnMore" xml:space="preserve">
     <value>Learn more</value>
   </data>
-  <data name="Trial_Expiring_lbl_Expired" xml:space="preserve">
-    <value>Your free trial EXPIRED</value>
-    <comment>The heading message of trial modal window</comment>
-  </data>
   <data name="Settings_Advanced_lbl_NetworkDriver" xml:space="preserve">
     <value>OpenVPN Network driver</value>
   </data>
@@ -2936,14 +2816,6 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="Dialogs_Delinquency_msg" xml:space="preserve">
     <value>The account is flagged as delinquent due to unpaid invoices. You can continue to use ProtonVPN, but any paid features are now disabled.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadAboutDelinquencyCommand}"&gt;Read more about delinquency.&lt;/Hyperlink&gt;</value>
     <comment>The message displayed in the Delinquency window. The codes between &lt; and &gt; should be kept as is (Do not forget to translate the inner "Read more about delinquency.").</comment>
-  </data>
-  <data name="Sidebar_Trial_lbl_Delinquency" xml:space="preserve">
-    <value>Paid features are disabled due to delinquency</value>
-    <comment>The text displayed in Trial section of Sidebar section of main app window when user is flagged as delinquent.</comment>
-  </data>
-  <data name="Sidebar_Trial_btn_Invoices" xml:space="preserve">
-    <value>Check invoices</value>
-    <comment>The text on invoices button in the Delinquency message on the sidebar (opens web page for invoice payment)</comment>
   </data>
   <data name="Sidebar_Countries_AllLocationCount" xml:space="preserve">
     <value>Locations ({0})</value>

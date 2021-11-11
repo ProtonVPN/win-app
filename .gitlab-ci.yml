@@ -167,9 +167,10 @@ include:
     file: '/jobs/sync-crowdin.gitlab-ci.yml'
 
 i18n-sync-crowdin:
+  when: manual
   variables:
       I18N_SYNC_CROWDIN_PROJECT: 'windows-vpn'
-  extends: .i18n-sync-crowdin-shared-windows
+  extends: .i18n-sync-crowdin-common
 
 i18n-manual-sync-crowdin:
   when: manual
@@ -177,4 +178,4 @@ i18n-manual-sync-crowdin:
     - branches
   variables:
       I18N_SYNC_CROWDIN_PROJECT: 'windows-vpn'
-  extends: .i18n-sync-crowdin-shared-windows
+  extends: .i18n-sync-crowdin-common

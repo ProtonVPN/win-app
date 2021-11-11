@@ -23,12 +23,12 @@ using System.Security.Cryptography;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Core.Api.Contracts;
-using ProtonVPN.Core.Models;
 using ProtonVPN.Core.OS.Crypto;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Storage;
 using ProtonVPN.Core.User;
+using CoreUser = ProtonVPN.Core.Models.User;
 using UserLocation = ProtonVPN.Core.User.UserLocation;
 
 namespace ProtonVPN.Settings
@@ -59,20 +59,7 @@ namespace ProtonVPN.Settings
             _storage.Set("Username", username.Encrypt());
         }
 
-        public void SetFreePlan()
-        {
-            string oldVpnPlan = _userSettings.Get<string>("VpnPlan");
-
-            _userSettings.Set("VpnPlan", FREE_VPN_PLAN);
-            _userSettings.Set("ExpirationTime", 0);
-            _userSettings.Set("MaxTier", ServerTiers.Free);
-            
-            VpnPlanChangedEventArgs eventArgs = new VpnPlanChangedEventArgs(oldVpnPlan, FREE_VPN_PLAN);
-            VpnPlanChanged?.Invoke(this, eventArgs);
-            UserDataChanged?.Invoke(this, EventArgs.Empty);
-        }
-
-        public User User()
+        public CoreUser User()
         {
             try
             {
@@ -80,10 +67,10 @@ namespace ProtonVPN.Settings
             }
             catch (CryptographicException e)
             {
-                _logger.Error(e);
+                _logger.Error("[UserStorage] failed to get user from storage", e);
             }
 
-            return Core.Models.User.EmptyUser();
+            return CoreUser.EmptyUser();
         }
 
         public void SaveLocation(UserLocation location)
@@ -103,33 +90,25 @@ namespace ProtonVPN.Settings
             }
             catch (CryptographicException ex)
             {
-                _logger.Error(ex);
+                _logger.Error("[UserStorage] failed to get location from storage", ex);
             }
 
             return UserLocation.Empty;
         }
 
-        public void ClearLogin()
-        {
-            _storage.Set("Username", "");
-        }
-
         public void StoreVpnInfo(VpnInfoResponse vpnInfo)
         {
-            int expirationTime = vpnInfo.Vpn.ExpirationTime;
             sbyte maxTier = vpnInfo.Vpn.MaxTier;
             string vpnPlan = vpnInfo.Vpn.PlanName;
 
-            if (Core.Models.User.IsDelinquent(vpnInfo.Delinquent))
+            if (CoreUser.IsDelinquent(vpnInfo.Delinquent))
             {
-                expirationTime = 0;
                 maxTier = ServerTiers.Free;
                 vpnPlan = FREE_VPN_PLAN;
             }
 
-            CacheUser(new User
+            CacheUser(new CoreUser
             {
-                ExpirationTime = expirationTime,
                 MaxTier = maxTier,
                 Services = vpnInfo.Services,
                 VpnPlan = vpnPlan,
@@ -141,12 +120,12 @@ namespace ProtonVPN.Settings
             });
         }
 
-        private User UnsafeUser()
+        private CoreUser UnsafeUser()
         {
             string username = _storage.Get<string>("Username")?.Trim();
             if (string.IsNullOrEmpty(username))
             {
-                return Core.Models.User.EmptyUser();
+                return CoreUser.EmptyUser();
             }
 
             username = username.Decrypt();
@@ -166,18 +145,17 @@ namespace ProtonVPN.Settings
             int delinquent = _userSettings.Get<int>("Delinquent");
             string originalVpnPlan = _userSettings.Get<string>("VpnPlan");
             string vpnPlan = originalVpnPlan;
-            if (Core.Models.User.IsDelinquent(delinquent))
+            if (CoreUser.IsDelinquent(delinquent))
             {
                 vpnPlan = FREE_VPN_PLAN;
             }
 
-            return new User
+            return new CoreUser
             {
                 Username = username,
                 VpnPlan = vpnPlan,
                 MaxTier = _userSettings.Get<sbyte>("MaxTier"),
                 Delinquent = delinquent,
-                ExpirationTime = _userSettings.Get<int>("ExpirationTime"),
                 MaxConnect = _userSettings.Get<int>("MaxConnect"),
                 Services = _userSettings.Get<int>("Services"),
                 VpnUsername = vpnUsername,
@@ -204,26 +182,25 @@ namespace ProtonVPN.Settings
             return new UserLocation(ip.Decrypt(), latitudeFloat, longitudeFloat, isp.Decrypt(), country.Decrypt());
         }
 
-        private void SaveUserData(User user)
+        private void SaveUserData(CoreUser user)
         {
             _userSettings.Set("VpnPlan", user.OriginalVpnPlan);
             _userSettings.Set("MaxTier", user.MaxTier);
             _userSettings.Set("Delinquent", user.Delinquent);
-            _userSettings.Set("ExpirationTime", user.ExpirationTime);
             _userSettings.Set("MaxConnect", user.MaxConnect);
             _userSettings.Set("Services", user.Services);
             _userSettings.Set("VpnUsername", !string.IsNullOrEmpty(user.VpnUsername) ? user.VpnUsername.Encrypt() : string.Empty);
             _userSettings.Set("VpnPassword", !string.IsNullOrEmpty(user.VpnPassword) ? user.VpnPassword.Encrypt() : string.Empty);
         }
 
-        private void CacheUser(User user)
+        private void CacheUser(CoreUser user)
         {
-            User previousData = User();
+            CoreUser previousData = User();
             SaveUserData(user);
 
             if (!previousData.VpnPlan.IsNullOrEmpty() && previousData.VpnPlan != user.VpnPlan)
             {
-                VpnPlanChangedEventArgs eventArgs = new VpnPlanChangedEventArgs(previousData.VpnPlan, user.VpnPlan);
+                VpnPlanChangedEventArgs eventArgs = new(previousData.VpnPlan, user.VpnPlan);
                 VpnPlanChanged?.Invoke(this, eventArgs);
             }
 

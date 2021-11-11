@@ -52,7 +52,6 @@ namespace ProtonVPN.Core.Service.Vpn
         private readonly IVpnConnector _vpnConnector;
         private readonly INotificationSender _notificationSender;
         private readonly ILogger _logger;
-        private readonly ServerCandidatesFactory _serverCandidatesFactory;
         private readonly Common.Configuration.Config _config;
         private readonly Lazy<ConnectionStatusViewModel> _connectionStatusViewModel;
         private readonly ServerManager _serverManager;
@@ -72,7 +71,6 @@ namespace ProtonVPN.Core.Service.Vpn
             IVpnConnector vpnConnector,
             INotificationSender notificationSender,
             ILogger logger,
-            ServerCandidatesFactory serverCandidatesFactory,
             Common.Configuration.Config config,
             Lazy<ConnectionStatusViewModel> connectionStatusViewModel,
             ServerManager serverManager,
@@ -86,7 +84,6 @@ namespace ProtonVPN.Core.Service.Vpn
             _vpnConnector = vpnConnector;
             _notificationSender = notificationSender;
             _logger = logger;
-            _serverCandidatesFactory = serverCandidatesFactory;
             _config = config;
             _connectionStatusViewModel = connectionStatusViewModel;
             _serverManager = serverManager;
@@ -262,6 +259,7 @@ namespace ProtonVPN.Core.Service.Vpn
 
         private async Task ExecuteReconnectionAsync(VpnReconnectionSteps reconnectionStep, bool isToTryLastServer)
         {
+            _logger.Info($"Executing Smart Reconnect step '{reconnectionStep}' (IsToTryLastServer: '{isToTryLastServer}').");
             switch (reconnectionStep)
             {
                 case VpnReconnectionSteps.SimilarOnSameProtocol:
@@ -278,8 +276,7 @@ namespace ProtonVPN.Core.Service.Vpn
 
         private async Task ConnectToSimilarServerOrQuickConnectAsync(bool isToTryLastServer, VpnProtocol vpnProtocol)
         {
-            IList<Server> serverCandidates = _similarServerCandidatesGenerator
-                .GenerateList(isToTryLastServer, _targetServer, _targetProfile);
+            IList<Server> serverCandidates = _similarServerCandidatesGenerator.Generate(isToTryLastServer, _targetServer, _targetProfile);
             IEnumerable<Server> quickConnectServers = (await _vpnConnector.GetSortedAndValidQuickConnectServersAsync(
                 _config.MaxQuickConnectServersOnReconnection)).Except(serverCandidates);
 
@@ -288,29 +285,28 @@ namespace ProtonVPN.Core.Service.Vpn
             {
                 serverCandidates = serverCandidates.Take(_config.MaxQuickConnectServersOnReconnection.Value).ToList();
             }
-            ServerCandidates sortedCandidates =
-                _serverCandidatesFactory.ServerCandidates((IReadOnlyCollection<Server>) serverCandidates);
 
-            await ConnectToPreSortedCandidatesAsync(sortedCandidates, vpnProtocol);
+            await ConnectToPreSortedCandidatesAsync(serverCandidates, vpnProtocol);
         }
 
-        private async Task ConnectToPreSortedCandidatesAsync(ServerCandidates serverCandidates, VpnProtocol vpnProtocol)
+        private async Task ConnectToPreSortedCandidatesAsync(IList<Server> serverCandidates, VpnProtocol vpnProtocol)
         {
             string firstServerMessage = string.Empty;
-            if (serverCandidates.Items.Any())
+            if (serverCandidates.Any())
             {
-                Server firstServer = serverCandidates.Items.First();
+                Server firstServer = serverCandidates.First();
                 firstServerMessage = $" First server is {firstServer.Name} ({firstServer.ExitIp}).";
             }
-            _logger.Info($"Reconnecting to {serverCandidates.Items.Count} servers.{firstServerMessage}");
-            await _vpnConnector.ConnectToPreSortedCandidatesAsync(serverCandidates, vpnProtocol);
+            _logger.Info($"Reconnecting to {serverCandidates.Count} servers.{firstServerMessage}");
+
+            await _vpnConnector.ConnectToPreSortedCandidatesAsync((IReadOnlyCollection<Server>)serverCandidates, vpnProtocol);
         }
 
         private async Task ConnectToSimilarServerAsync(bool isToTryLastServer, VpnProtocol vpnProtocol)
         {
-            ServerCandidates serverCandidates = _similarServerCandidatesGenerator
+            IList<Server> sortedCandidates = _similarServerCandidatesGenerator
                 .Generate(isToTryLastServer, _targetServer, _targetProfile);
-            await _vpnConnector.ConnectToPreSortedCandidatesAsync(serverCandidates, vpnProtocol);
+            await ConnectToPreSortedCandidatesAsync(sortedCandidates, vpnProtocol);
         }
 
         public async Task OnVpnStateChanged(VpnStateChangedEventArgs e)

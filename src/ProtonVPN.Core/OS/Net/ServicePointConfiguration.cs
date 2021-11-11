@@ -54,8 +54,8 @@ namespace ProtonVPN.Core.OS.Net
             }
             else
             {
-                _logger.Debug($"[ServicePointConfiguration] Security protocol kept at '{ServicePointManager.SecurityProtocol}'. " +
-                              $"Operative system version '{osVer}'.");
+                _logger.Info($"[ServicePointConfiguration] Security protocol kept at '{ServicePointManager.SecurityProtocol}'. " +
+                             $"Operative system version '{osVer}'.");
             }
         }
     }

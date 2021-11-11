@@ -57,9 +57,6 @@ namespace ProtonVPN.Core.Settings
         bool CustomDnsEnabled { get; set; }
         bool SidebarMode { get; set; }
         bool WelcomeModalShown { get; set; }
-        long TrialExpirationTime { get; set; }
-        bool AboutToExpireModalShown { get; set; }
-        bool ExpiredModalShown { get; set; }
         int OnboardingStep { get; set; }
         int AppStartCounter { get; set; }
         int SidebarTab { get; set; }
@@ -84,7 +81,7 @@ namespace ProtonVPN.Core.Settings
         bool DoNotShowKillSwitchConfirmationDialog { get; set; }
         bool DoNotShowEnableSmartProtocolDialog { get; set; }
         bool FeatureSmartProtocolWireGuardEnabled { get; set; }
-        IReadOnlyList<AnnouncementItem> Announcements { get; set; }
+        IReadOnlyList<Announcement> Announcements { get; set; }
         int[] OpenVpnTcpPorts { get; set; }
         int[] OpenVpnUdpPorts { get; set; }
         int[] WireGuardPorts { get; set; }

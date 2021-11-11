@@ -17,13 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Modals.Welcome
+namespace ProtonVPN.Views.Icons
 {
-    public class TrialWelcomeModalViewModel : BaseWelcomeModalViewModel
+    public partial class ColoredGiftBox
     {
-        public TrialWelcomeModalViewModel(Onboarding.Onboarding onboarding) 
-            : base(onboarding)
+        public ColoredGiftBox()
         {
+            InitializeComponent();
         }
     }
 }

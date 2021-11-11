@@ -26,15 +26,13 @@ namespace ProtonVPN.WireGuardDriver
 {
     public class Adapter : IDisposable
     {
-        private const string DefaultPool = "WireGuard";
-
         private readonly IntPtr _handle;
         private uint _lastGetGuess;
 
         public Adapter(string name)
         {
             _lastGetGuess = 1024;
-            _handle = Win32.OpenAdapter(DefaultPool, name);
+            _handle = Win32.OpenAdapter(name);
 
             if (_handle == IntPtr.Zero)
             {
@@ -44,7 +42,7 @@ namespace ProtonVPN.WireGuardDriver
 
         public void Dispose()
         {
-            Win32.FreeAdapter(_handle);
+            Win32.CloseAdapter(_handle);
         }
 
         public unsafe Interface GetConfiguration()

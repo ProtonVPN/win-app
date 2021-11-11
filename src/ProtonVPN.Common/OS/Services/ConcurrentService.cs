@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,6 +18,7 @@
  */
 
 using System;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Abstract;
@@ -27,29 +28,26 @@ namespace ProtonVPN.Common.OS.Services
 {
     public class ConcurrentService : IConcurrentService
     {
-        private readonly IService _origin;
+        protected readonly IService Service;
+        private readonly IServiceEnabler _serviceEnabler;
 
         private readonly CoalescingTaskQueue<ServiceAction, Result> _taskQueue;
 
-        /// <summary>
-        /// Event invoked when service start action succeeds. Event is invoked on a task pool thread.
-        /// </summary>
-        public event EventHandler<string> ServiceStarted;
-
-        public ConcurrentService(IService origin)
+        public ConcurrentService(IService service, IServiceEnabler serviceEnabler)
         {
-            _origin = origin;
+            Service = service;
+            _serviceEnabler = serviceEnabler;
 
             _taskQueue = new CoalescingTaskQueue<ServiceAction, Result>(CoalesceDecisionCallback);
         }
 
-        public string Name => _origin.Name;
+        public string Name => Service.Name;
 
-        public bool Running() => _origin.Running();
+        public bool Running() => Service.Running();
 
-        public bool Enabled() => _origin.Enabled();
+        public bool Enabled() => Service.Enabled();
 
-        public void Enable() => _origin.Enable();
+        public void Enable() => Service.Enable();
 
         public async Task<Result> StartAsync()
         {
@@ -83,20 +81,23 @@ namespace ProtonVPN.Common.OS.Services
 
         private async Task<Result> StartAction(CancellationToken cancellationToken)
         {
-            var result = await _origin.StartAsync(cancellationToken);
-
-            if (result.Success)
+            if (!Service.Exists())
             {
-                ServiceStarted?.Invoke(this, _origin.Name);
+                return Result.Fail(new FileNotFoundException($"Service {Service.Name} is not installed."));
             }
 
-            return result;
-        }
+            Result result = _serviceEnabler.GetServiceEnabledResult(Service);
+            if (result.Failure)
+            {
+                return result;
+            }
 
+            return await Service.StartAsync(cancellationToken);
+        }
 
         private async Task<Result> StopAction(CancellationToken cancellationToken)
         {
-            return await _origin.StopAsync(cancellationToken);
+            return await Service.StopAsync(cancellationToken);
         }
 
         private enum ServiceAction

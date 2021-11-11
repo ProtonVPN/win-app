@@ -97,9 +97,6 @@ namespace ProtonVPN.Settings.Migrations.v1_7_2
             MigrateToPerUser<string>("VpnPassword");
 
             MigrateToPerUser<bool>("WelcomeModalShown");
-            MigrateToPerUser<long>("TrialExpirationTime");
-            MigrateToPerUser<bool>("AboutToExpireModalShown");
-            MigrateToPerUser<bool>("ExpiredModalShown");
             MigrateToPerUser<int>("OnboardingStep");
         }
 

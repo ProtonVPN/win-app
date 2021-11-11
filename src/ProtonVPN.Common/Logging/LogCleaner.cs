@@ -27,6 +27,8 @@ namespace ProtonVPN.Common.Logging
 {
     public class LogCleaner
     {
+        public static readonly TimeSpan MAXIMUM_FILE_AGE = TimeSpan.FromDays(28);
+
         private readonly ILogger _logger;
 
         public LogCleaner(ILogger logger)
@@ -39,7 +41,7 @@ namespace ProtonVPN.Common.Logging
             _logger.Info($"[LogCleaner] Checking for log files to be deleted in folder '{logPath}'. The maximum number of files allowed is {maxFiles}.");
 
             IList<FileInfo> files = GetFiles(logPath).ToList();
-            _logger.Debug($"[LogCleaner] The folder '{logPath}' has {files.Count} files.");
+            _logger.Info($"[LogCleaner] The folder '{logPath}' has {files.Count} files.");
 
             IList<FileInfo> filesToDelete = GetFilesToDelete(files, maxFiles);
             DeleteFiles(filesToDelete);
@@ -78,7 +80,7 @@ namespace ProtonVPN.Common.Logging
                 .Skip(maxFiles)
                 .ToList();
             string fileNamesExceedingLimit = GetFileNames(filesExceedingLimit);
-            _logger.Debug($"[LogCleaner] The folder has {filesExceedingLimit.Count} files exceeding the limit of {maxFiles} files.{fileNamesExceedingLimit}");
+            _logger.Info($"[LogCleaner] The folder has {filesExceedingLimit.Count} files exceeding the limit of {maxFiles} files.{fileNamesExceedingLimit}");
             return filesExceedingLimit;
         }
 
@@ -107,10 +109,10 @@ namespace ProtonVPN.Common.Logging
 
         private IList<FileInfo> GetOldFiles(IList<FileInfo> files)
         {
-            DateTime minimumDate = DateTime.UtcNow.AddMonths(-1);
+            DateTime minimumDate = DateTime.UtcNow.Subtract(MAXIMUM_FILE_AGE);
             IList<FileInfo> oldFiles = files.Where(t => LastWriteTime(t) < minimumDate).ToList();
             string oldFileNames = GetFileNames(oldFiles);
-            _logger.Debug($"[LogCleaner] The folder has {oldFiles.Count} old files with a last write date before {minimumDate:O}.{oldFileNames}");
+            _logger.Info($"[LogCleaner] The folder has {oldFiles.Count} old files with a last write date before {minimumDate:O}.{oldFileNames}");
             return oldFiles;
         }
 

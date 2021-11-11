@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -21,6 +21,7 @@ using System;
 using System.Threading.Tasks;
 using System.Windows.Threading;
 using ProtonVPN.Common.Abstract;
+using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.OS.Services;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Service.Vpn;
@@ -31,25 +32,22 @@ namespace ProtonVPN.Core.Service
     internal class MonitoredVpnService : IVpnStateAware, IConcurrentService
     {
         private VpnStatus _vpnStatus;
-        private readonly DispatcherTimer _timer = new DispatcherTimer();
+        private readonly DispatcherTimer _timer = new();
         private readonly VpnSystemService _service;
         private readonly IVpnManager _vpnManager;
+        private readonly ILogger _logger;
 
         public MonitoredVpnService(
             Common.Configuration.Config appConfig,
             VpnSystemService service,
-            IVpnManager vpnManager)
+            IVpnManager vpnManager,
+            ILogger logger)
         {
             _service = service;
             _vpnManager = vpnManager;
+            _logger = logger;
             _timer.Interval = appConfig.ServiceCheckInterval;
             _timer.Tick += OnTimerTick;
-        }
-
-        public event EventHandler<string> ServiceStarted
-        {
-            add => _service.ServiceStarted += value;
-            remove => _service.ServiceStarted -= value;
         }
 
         public string Name => _service.Name;
@@ -91,6 +89,8 @@ namespace ProtonVPN.Core.Service
                 return;
             }
 
+            _logger.Warn($"The service is not running and the VPN status is '{_vpnStatus}'. " +
+                "Starting the service and reconnecting.");
             StartAsync();
             _vpnManager.ReconnectAsync();
         }

@@ -18,38 +18,13 @@
  */
 
 using System.Collections.Generic;
-using System.Linq;
-using ProtonVPN.Core.Settings;
 
 namespace ProtonVPN.Core.Announcements
 {
-    public class AnnouncementCache : IAnnouncementCache
+    public interface IAnnouncementCache
     {
-        private readonly IAppSettings _appSettings;
+        IReadOnlyList<Announcement> Get();
 
-        public AnnouncementCache(IAppSettings appSettings)
-        {
-            _appSettings = appSettings;
-        }
-
-        public IReadOnlyList<AnnouncementItem> Get()
-        {
-            return _appSettings.Announcements;
-        }
-
-        public void Store(IReadOnlyList<AnnouncementItem> announcements)
-        {
-            foreach (var announcement in announcements)
-            {
-                announcement.Seen = Seen(announcement.Id);
-            }
-
-            _appSettings.Announcements = announcements;
-        }
-
-        private bool Seen(string id)
-        {
-            return _appSettings.Announcements.Any(announcement => announcement.Id == id && announcement.Seen);
-        }
+        void Store(IReadOnlyList<Announcement> announcements);
     }
 }

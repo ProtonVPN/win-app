@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,13 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Modals.Welcome
+namespace ProtonVPN.Core.Announcements
 {
-    public class NonTrialWelcomeModalViewModel : BaseWelcomeModalViewModel
+    public class PanelButton
     {
-        public NonTrialWelcomeModalViewModel(Onboarding.Onboarding onboarding)
-            : base(onboarding)
-        {
-        }
+        public string Url { get; set; }
+        public string Text { get; set; }
     }
 }

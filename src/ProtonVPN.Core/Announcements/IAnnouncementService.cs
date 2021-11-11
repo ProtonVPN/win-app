@@ -17,33 +17,22 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Windows.Input;
-using GalaSoft.MvvmLight.CommandWpf;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
-namespace ProtonVPN.Modals.Welcome
+namespace ProtonVPN.Core.Announcements
 {
-    public abstract class BaseWelcomeModalViewModel : BaseModalViewModel
+    public interface IAnnouncementService
     {
-        private readonly Onboarding.Onboarding _onboarding;
+        public IReadOnlyCollection<Announcement> Get();
 
-        protected BaseWelcomeModalViewModel(Onboarding.Onboarding onboarding)
-        {
-            _onboarding = onboarding;
+        public Task Update();
 
-            TakeATourCommand = new RelayCommand(TakeATourAction);
-        }
+        public void MarkAsSeen(string id);
 
-        public ICommand TakeATourCommand { get; set; }
+        public void Delete(string id);
 
-        public override void CloseAction()
-        {
-            TryClose();
-        }
-
-        private void TakeATourAction()
-        {
-            _onboarding.Start();
-            TryClose();
-        }
+        public event EventHandler AnnouncementsChanged;
     }
 }

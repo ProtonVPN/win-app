@@ -32,7 +32,6 @@ namespace ProtonVPN.Account
                 case "vpnbasic":
                 case "vpnplus":
                 case "visionary":
-                case "trial":
                     return Translation.Get($"VpnPlan_val_{vpnPlan.FirstCharToUpper()}");
                 default:
                     return "Unknown plan";
@@ -48,7 +47,6 @@ namespace ProtonVPN.Account
                 case "vpnbasic":
                     return "#fb7454";
                 case "vpnplus":
-                case "trial":
                     return "#8ec122";
                 case "visionary":
                     return "#54d8fd";

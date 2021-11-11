@@ -35,30 +35,20 @@ namespace ProtonVPN.Core.Service.Vpn
     public class SimilarServerCandidatesGenerator : ISimilarServerCandidatesGenerator
     {
         private readonly ProfileConnector _profileConnector;
-        private readonly ServerCandidatesFactory _serverCandidatesFactory;
         private readonly ServerManager _serverManager;
         private readonly IAppSettings _appSettings;
 
         public SimilarServerCandidatesGenerator(
             ProfileConnector profileConnector,
-            ServerCandidatesFactory serverCandidatesFactory,
             ServerManager serverManager, 
             IAppSettings appSettings)
         {
             _profileConnector = profileConnector;
-            _serverCandidatesFactory = serverCandidatesFactory;
             _serverManager = serverManager;
             _appSettings = appSettings;
         }
 
-        public ServerCandidates Generate(bool isToIncludeOriginalServer,
-            Server originalServer = null, Profile originalProfile = null)
-        {
-            IList<Server> similarServers = GenerateList(isToIncludeOriginalServer, originalServer, originalProfile);
-            return CreateServerCandidates(similarServers);
-        }
-
-        public IList<Server> GenerateList(bool isToIncludeOriginalServer,
+        public IList<Server> Generate(bool isToIncludeOriginalServer,
             Server originalServer = null, Profile originalProfile = null)
         {
             if (originalServer == null || originalServer.IsEmpty())
@@ -173,8 +163,8 @@ namespace ProtonVPN.Core.Service.Vpn
 
         private IEnumerable<Server> GetSortedCandidateServers(Profile profile)
         {
-            ServerCandidates candidates = _profileConnector.ServerCandidates(profile);
-            IReadOnlyList<Server> candidateServers = _profileConnector.Servers(candidates);
+            IReadOnlyCollection<Server> candidates = _profileConnector.ServerCandidates(profile);
+            IReadOnlyList<Server> candidateServers = _profileConnector.GetValidServers(candidates);
             return _profileConnector.SortServers(candidateServers, profile.ProfileType);
         }
 
@@ -277,11 +267,6 @@ namespace ProtonVPN.Core.Service.Vpn
                 Features = Features.None
             };
             return GetBestServer(originalServer, excludedServers, profile, s => s.ExitCountry != baseProfile.CountryCode);
-        }
-
-        private ServerCandidates CreateServerCandidates(IList<Server> servers)
-        {
-            return _serverCandidatesFactory.ServerCandidates((IReadOnlyCollection<Server>)servers);
         }
     }
 }

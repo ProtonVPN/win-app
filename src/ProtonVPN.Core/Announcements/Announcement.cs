@@ -17,13 +17,20 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Threading.Tasks;
-using ProtonVPN.Core.User;
+using System;
 
-namespace ProtonVPN.Trial
+namespace ProtonVPN.Core.Announcements
 {
-    public interface ITrialStateAware
+    public class Announcement
     {
-        Task OnTrialStateChangedAsync(PlanStatus status);
+        public string Id { get; set; }
+        public DateTime StartDateTimeUtc { get; set; }
+        public DateTime EndDateTimeUtc { get; set; }
+        public string Url { get; set; }
+        public string Icon { get; set; }
+        public string Label { get; set; }
+        public Panel Panel { get; set; }
+
+        public bool Seen { get; set; }
     }
 }

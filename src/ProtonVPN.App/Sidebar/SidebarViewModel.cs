@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,25 +17,19 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Threading.Tasks;
 using System.Windows.Input;
 using Caliburn.Micro;
 using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Settings;
-using ProtonVPN.Core.User;
 using ProtonVPN.FlashNotifications;
 using ProtonVPN.Onboarding;
-using ProtonVPN.Sidebar.Trial;
-using ProtonVPN.Trial;
 
 namespace ProtonVPN.Sidebar
 {
     internal class SidebarViewModel : Screen,
         IOnboardingStepAware,
-        ILogoutAware,
-        ILoggedInAware,
-        ITrialStateAware
+        ILoggedInAware
     {
         public CountriesViewModel Countries { get; }
         public SidebarProfilesViewModel Profiles { get; }
@@ -47,7 +41,6 @@ namespace ProtonVPN.Sidebar
         private const int CountriesTab = 0;
         private const int ProfilesTab = 1;
 
-        private bool _showTrialView;
         private bool _showSecondOnboardingStep;
         private bool _showThirdOnboardingStep;
         private bool _isCountriesTabEnabled;
@@ -55,7 +48,6 @@ namespace ProtonVPN.Sidebar
         public SidebarViewModel(
             IAppSettings appSettings,
             SidebarProfilesViewModel sidebarProfilesViewModel,
-            TrialViewModel trialViewModel,
             ConnectionStatusViewModel connectionStatusViewModel,
             CountriesViewModel countriesViewModel,
             FlashNotificationViewModel flashNotificationsViewModel)
@@ -64,7 +56,6 @@ namespace ProtonVPN.Sidebar
             CountriesTabCommand = new RelayCommand(OpenCountriesTabAction);
             ProfilesTabCommand = new RelayCommand(OpenProfilesTabAction);
 
-            TrialViewModel = trialViewModel;
             Countries = countriesViewModel;
             Profiles = sidebarProfilesViewModel;
             ConnectionStatus = connectionStatusViewModel;
@@ -75,8 +66,6 @@ namespace ProtonVPN.Sidebar
 
         public ICommand CountriesTabCommand { get; }
         public ICommand ProfilesTabCommand { get; }
-
-        public TrialViewModel TrialViewModel { get; set; }
 
         public bool IsCountriesTabEnabled
         {
@@ -89,12 +78,6 @@ namespace ProtonVPN.Sidebar
         }
 
         public bool IsProfilesTabEnabled => !_isCountriesTabEnabled;
-
-        public bool ShowTrialView
-        {
-            get => _showTrialView;
-            set => Set(ref _showTrialView, value);
-        }
 
         public bool ShowSecondOnboardingStep
         {
@@ -118,11 +101,6 @@ namespace ProtonVPN.Sidebar
             }
         }
 
-        public void OnUserLoggedOut()
-        {
-            ShowTrialView = false;
-        }
-
         private void OpenProfilesTabAction()
         {
             IsCountriesTabEnabled = false;
@@ -133,13 +111,6 @@ namespace ProtonVPN.Sidebar
         {
             IsCountriesTabEnabled = true;
             _appSettings.SidebarTab = CountriesTab;
-        }
-
-        public Task OnTrialStateChangedAsync(PlanStatus status)
-        {
-            ShowTrialView = status.Equals(PlanStatus.Free) || status.Equals(PlanStatus.TrialStarted);
-
-            return Task.CompletedTask;
         }
 
         public void OnUserLoggedIn()

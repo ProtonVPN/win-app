@@ -138,6 +138,9 @@
     <Compile Include="Core\MVVM\Converters\PluralConverter.cs" />
     <Compile Include="Core\MVVM\Converters\ZeroToBoolConverter.cs" />
     <Compile Include="Core\Service\BaseFilteringEngineService.cs" />
+    <Compile Include="Core\Service\MonitoredVpnService.cs" />
+    <Compile Include="Core\Service\SafeServiceAction.cs" />
+    <Compile Include="Core\Service\ServiceEnabler.cs" />
     <Compile Include="Core\Service\Settings\ISettingsServiceClientManager.cs" />
     <Compile Include="Core\Service\Vpn\INetworkAdapterValidator.cs" />
     <Compile Include="Core\Service\Vpn\NetworkAdapterValidator.cs" />
@@ -172,6 +175,11 @@
     <Compile Include="Modals\IncorrectSystemTimeModalView.xaml.cs">
       <DependentUpon>IncorrectSystemTimeModalView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Modals\Offers\OfferModalView.xaml.cs">
+      <DependentUpon>OfferModalView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modals\Offers\OfferModalViewModel.cs" />
+    <Compile Include="Modals\Welcome\WelcomeModalManager.cs" />
     <Compile Include="Notifications\INotificationSender.cs" />
     <Compile Include="Notifications\INotificationUserActionHandler.cs" />
     <Compile Include="Notifications\NotificationSender.cs" />
@@ -191,6 +199,9 @@
       <DependentUpon>CountryFeaturesPopupView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Sidebar\PopupBase.cs" />
+    <Compile Include="Views\Icons\GiftBox.xaml.cs">
+      <DependentUpon>GiftBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Icons\UpsellTunnel.xaml.cs">
       <DependentUpon>UpsellTunnel.xaml</DependentUpon>
     </Compile>
@@ -349,15 +360,13 @@
     <Compile Include="Config\Url\IActiveUrls.cs" />
     <Compile Include="Config\Url\ActiveUrls.cs" />
     <Compile Include="Core\Ioc\LoginModule.cs" />
-    <Compile Include="Core\Ioc\TrialModule.cs" />
     <Compile Include="Modals\IModalWindows.cs" />
     <Compile Include="Core\Service\AppUpdateSystemService.cs" />
     <Compile Include="Core\Service\VpnSystemService.cs" />
-    <Compile Include="Core\Service\MonitoredVpnService.cs" />
     <Compile Include="Core\Service\Settings\SettingsContractProvider.cs" />
     <Compile Include="Core\Service\Settings\SettingsServiceClient.cs" />
     <Compile Include="Core\Service\Settings\SettingsServiceClientManager.cs" />
-    <Compile Include="Core\Service\Vpn\ServiceStartDecorator.cs" />
+    <Compile Include="Core\Service\Vpn\VpnServiceActionDecorator.cs" />
     <Compile Include="Settings\Migrations\BaseSettingsMigration.cs" />
     <Compile Include="Settings\Migrations\BaseAppSettingsMigration.cs" />
     <Compile Include="Settings\Migrations\IUserSettingsMigration.cs" />
@@ -412,10 +421,6 @@
     <Compile Include="Map\MapOffset.cs" />
     <Compile Include="Modals\Dialogs\Dialogs.cs" />
     <Compile Include="Modals\ModalWindows.cs" />
-    <Compile Include="Modals\ServiceStartModalView.xaml.cs">
-      <DependentUpon>ServiceStartModalView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Modals\ServiceStartModalViewModel.cs" />
     <Compile Include="Modals\DisconnectErrorModalView.xaml.cs">
       <DependentUpon>DisconnectErrorModalView.xaml</DependentUpon>
     </Compile>
@@ -432,13 +437,11 @@
       <DependentUpon>SubscriptionExpiredPopupView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\Popups\SubscriptionExpiration\SubscriptionExpiredPopupViewModel.cs" />
-    <Compile Include="Modals\Welcome\BaseWelcomeModalViewModel.cs" />
-    <Compile Include="Modals\Welcome\NonTrialWelcomeModalView.xaml.cs">
-      <DependentUpon>NonTrialWelcomeModalView.xaml</DependentUpon>
+    <Compile Include="Modals\Welcome\WelcomeModalViewModel.cs" />
+    <Compile Include="Modals\Welcome\WelcomeModalView.xaml.cs">
+      <DependentUpon>WelcomeModalView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Settings\Migrations\v1_7_2\ProfileV1.cs" />
-    <Compile Include="Modals\Welcome\NonTrialWelcomeModalViewModel.cs" />
-    <Compile Include="Modals\Welcome\TrialWelcomeModalViewModel.cs" />
     <Compile Include="Notifications\ISystemNotification.cs" />
     <Compile Include="Notifications\SystemNotification.cs" />
     <Compile Include="P2PDetection\Blocked\BlockedTraffic.cs" />
@@ -490,7 +493,6 @@
     <Compile Include="Core\Ioc\UiModule.cs" />
     <Compile Include="Modals\Modals.cs" />
     <Compile Include="Settings\ReconnectNotification\SplitTunnelModeSetting.cs" />
-    <Compile Include="Sidebar\Announcements\Announcement.cs" />
     <Compile Include="Sidebar\Announcements\AnnouncementsView.xaml.cs">
       <DependentUpon>AnnouncementsView.xaml</DependentUpon>
     </Compile>
@@ -610,15 +612,6 @@
     <Compile Include="Core\Wpf\ComboBox.cs" />
     <Compile Include="Core\Wpf\PlaceholderTextBox.cs" />
     <Compile Include="Core\Wpf\Scrollviewer.cs" />
-    <Compile Include="Sidebar\Trial\TrialView.xaml.cs">
-      <DependentUpon>TrialView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Sidebar\Trial\TrialViewModel.cs" />
-    <Compile Include="Trial\ITrialDurationAware.cs" />
-    <Compile Include="Trial\ITrialStateAware.cs" />
-    <Compile Include="Trial\Trial.cs" />
-    <Compile Include="Trial\TrialTickEventArgs.cs" />
-    <Compile Include="Trial\TrialTimer.cs" />
     <Compile Include="ConnectionInfo\ConnectionInfoViewModel.cs" />
     <Compile Include="Map\ViewModels\Pins\AbstractPinViewModel.cs" />
     <Compile Include="ConnectingScreen\ConnectingViewModel.cs" />
@@ -637,7 +630,6 @@
     <Compile Include="Modals\P2PForwardModalViewModel.cs" />
     <Compile Include="Modals\Upsell\ScUpsellModalViewModel.cs" />
     <Compile Include="Modals\Upsell\PlusUpsellModalViewModel.cs" />
-    <Compile Include="Windows\Popups\Trials\TrialPopupViewModel.cs" />
     <Compile Include="Modals\Upsell\UpsellModalViewModel.cs" />
     <Compile Include="Profiles\PredefinedProfileViewModel.cs" />
     <Compile Include="Profiles\Form\CountryViewModel.cs" />
@@ -734,8 +726,8 @@
     <Compile Include="Views\Icons\Failure.xaml.cs">
       <DependentUpon>Failure.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Icons\GiftBox.xaml.cs">
-      <DependentUpon>GiftBox.xaml</DependentUpon>
+    <Compile Include="Views\Icons\ColoredGiftBox.xaml.cs">
+      <DependentUpon>ColoredGiftBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Icons\Info.xaml.cs">
       <DependentUpon>Info.xaml</DependentUpon>
@@ -818,12 +810,6 @@
     <Compile Include="Modals\Upsell\PlusUpsellModalView.xaml.cs">
       <DependentUpon>PlusUpsellModalView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\Popups\Trials\TrialPopupView.xaml.cs">
-      <DependentUpon>TrialPopupView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Modals\Welcome\TrialWelcomeModalView.xaml.cs">
-      <DependentUpon>TrialWelcomeModalView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Modals\Upsell\UpsellModalView.xaml.cs">
       <DependentUpon>UpsellModalView.xaml</DependentUpon>
     </Compile>
@@ -893,9 +879,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Modals\Offers\OfferModalView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Sidebar\CountryFeatures\CountryFeaturesPopupView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Icons\GiftBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Icons\UpsellTunnel.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -981,10 +975,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Modals\ServiceStartModalView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Modals\DisconnectErrorModalView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1041,7 +1031,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Modals\Welcome\NonTrialWelcomeModalView.xaml">
+    <Page Include="Modals\Welcome\WelcomeModalView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1101,10 +1091,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Sidebar\Trial\TrialView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Validation\Validation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1145,7 +1131,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Icons\GiftBox.xaml">
+    <Page Include="Views\Icons\ColoredGiftBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1443,14 +1429,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Modals\Upsell\PlusUpsellModalView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Windows\Popups\Trials\TrialPopupView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Modals\Welcome\TrialWelcomeModalView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1905,6 +1883,7 @@
     <Resource Include="Resources\Assets\Images\SidebarFlags\gt.jpg" />
     <Resource Include="Resources\Assets\Images\SidebarFlags\gw.jpg" />
     <Resource Include="Resources\Assets\Images\SidebarFlags\gy.jpg" />
+    <Resource Include="Resources\Assets\Images\SidebarFlags\hk.jpg" />
     <Resource Include="Resources\Assets\Images\SidebarFlags\hn.jpg" />
     <Resource Include="Resources\Assets\Images\SidebarFlags\hr.jpg" />
     <Resource Include="Resources\Assets\Images\SidebarFlags\ht.jpg" />
@@ -2086,6 +2065,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>

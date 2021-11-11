@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -38,19 +38,14 @@ namespace ProtonVPN.Common.Abstract
 
         public bool Failure => !Success;
 
-        public static Result Fail(string message = null)
-            => new Result(false, message);
+        public static Result Fail(string message = null) => new(false, message);
 
-        public static Result Fail(Exception exception)
-            => new Result(false, "", exception);
+        public static Result Fail(Exception exception) => new(false, "", exception);
 
-        public static Result<T> Fail<T>(string message = "")
-            => new Result<T>(default(T), false, message);
+        public static Result<T> Fail<T>(string message = "") => new(default(T), false, message);
 
-        public static Result Ok()
-            => new Result(true, "");
+        public static Result Ok() => new(true, "");
 
-        public static Result<T> Ok<T>(T value)
-            => new Result<T>(value, true, "");
+        public static Result<T> Ok<T>(T value) => new(value, true, "");
     }
 }
