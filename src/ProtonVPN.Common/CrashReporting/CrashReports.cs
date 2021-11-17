@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Diagnostics;
 using DeviceId;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Logging;
@@ -29,11 +30,12 @@ namespace ProtonVPN.Common.CrashReporting
     {
         public static void Init(Config config, ILogger logger = null)
         {
-            var options = new SentryOptions
+            SentryOptions options = new()
             {
                 Release = $"vpn.windows-{config.AppVersion}",
                 AttachStacktrace = true,
                 Dsn = !string.IsNullOrEmpty(GlobalConfig.SentryDsn) ? new Dsn(GlobalConfig.SentryDsn) : null,
+                ReportAssemblies = false,
             };
 
             if (logger != null)
@@ -44,6 +46,7 @@ namespace ProtonVPN.Common.CrashReporting
 
             options.BeforeSend = e =>
             {
+                e.SetTag("ProcessName", Process.GetCurrentProcess().ProcessName);
                 e.User.Id = new DeviceIdBuilder()
                     .AddProcessorId()
                     .AddMotherboardSerialNumber()
