@@ -18,7 +18,6 @@
  */
 
 using System.Diagnostics;
-using DeviceId;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Service;
@@ -47,10 +46,7 @@ namespace ProtonVPN.Common.CrashReporting
             options.BeforeSend = e =>
             {
                 e.SetTag("ProcessName", Process.GetCurrentProcess().ProcessName);
-                e.User.Id = new DeviceIdBuilder()
-                    .AddProcessorId()
-                    .AddMotherboardSerialNumber()
-                    .ToString();
+                e.User.Id = config.DeviceId;
 
                 return e;
             };

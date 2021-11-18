@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using DeviceId;
 using ProtonVPN.Common.Configuration.Api.Handlers.TlsPinning;
 using ProtonVPN.Common.Extensions;
 
@@ -343,7 +344,17 @@ namespace ProtonVPN.Common.Configuration.Source
                 },
 
                 NtpServerUrl = "time.windows.com",
+
+                DeviceId = GetDeviceId()
             };
+        }
+
+        private string GetDeviceId()
+        {
+            return new DeviceIdBuilder()
+                .AddProcessorId()
+                .AddMotherboardSerialNumber()
+                .ToString();
         }
     }
 }
