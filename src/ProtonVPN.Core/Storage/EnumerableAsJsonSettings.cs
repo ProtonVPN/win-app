@@ -47,7 +47,7 @@ namespace ProtonVPN.Core.Storage
         {
             if (IsEnumerableType(typeof(T)))
             {
-                var stringValue = string.Empty;
+                string stringValue = string.Empty;
                 if (value != null)
                 {
                     stringValue = JsonConvert.SerializeObject(value);

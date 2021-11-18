@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2020 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
@@ -42,8 +42,7 @@ namespace ProtonVPN.Common.OS.Registry
             }
             catch (Exception e) when (e.IsRegistryAccessException())
             {
-                _logger.Error("Can not access system proxy settings");
-                _logger.Error(e);
+                _logger.Error("Can't access system proxy settings", e);
                 return false;
             }
         }

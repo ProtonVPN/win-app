@@ -36,7 +36,7 @@ namespace ProtonVPN.Core.Storage
             if (_cache.TryGetValue(key, out object cachedValue))
                 return cachedValue is T result ? result : default;
 
-            var value = _storage.Get<T>(key);
+            T value = _storage.Get<T>(key);
             _cache[key] = value;
             return value;
         }

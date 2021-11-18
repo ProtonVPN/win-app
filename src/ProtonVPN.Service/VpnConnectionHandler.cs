@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
@@ -302,6 +302,7 @@ namespace ProtonVPN.Service
                 VpnProtocol.OpenVpnUdp => VpnProtocolContract.OpenVpnUdp,
                 VpnProtocol.WireGuard => VpnProtocolContract.WireGuard,
                 VpnProtocol.Smart => VpnProtocolContract.Smart,
+                _ => throw new NotImplementedException("VpnProtocol has an unknown value."),
             };
         }
 

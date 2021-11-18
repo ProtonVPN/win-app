@@ -174,6 +174,7 @@ namespace ProtonVPN.Core.Service.Vpn
                 VpnProtocol.OpenVpnTcp => VpnProtocolContract.OpenVpnTcp,
                 VpnProtocol.WireGuard => VpnProtocolContract.WireGuard,
                 VpnProtocol.Smart => VpnProtocolContract.Smart,
+                _ => throw new NotImplementedException("VpnProtocol has an unknown value.")
             };
         }
 
@@ -186,6 +187,7 @@ namespace ProtonVPN.Core.Service.Vpn
                 VpnProtocolContract.OpenVpnTcp => VpnProtocol.OpenVpnTcp,
                 VpnProtocolContract.WireGuard => VpnProtocol.WireGuard,
                 VpnProtocolContract.Smart => VpnProtocol.Smart,
+                _ => throw new NotImplementedException("VpnProtocol has an unknown value.")
             };
         }
 

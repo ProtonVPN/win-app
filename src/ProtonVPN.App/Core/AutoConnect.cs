@@ -54,7 +54,7 @@ namespace ProtonVPN.Core
                 return;
             try
             {
-                var profile = await _profileManager.GetProfileById(_appSettings.AutoConnect);
+                Profile profile = await _profileManager.GetProfileById(_appSettings.AutoConnect);
 
                 if (profile == null)
                 {

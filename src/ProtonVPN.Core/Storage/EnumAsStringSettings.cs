@@ -32,10 +32,10 @@ namespace ProtonVPN.Core.Storage
 
         public T Get<T>(string key)
         {
-            var toType = UnwrapNullable(typeof(T));
+            Type toType = UnwrapNullable(typeof(T));
             if (toType.IsEnum)
             {
-                var stringValue = _storage.Get<string>(key);
+                string stringValue = _storage.Get<string>(key);
                 TryParseEnum(stringValue, out T result);
                 return result;
             }
@@ -45,12 +45,12 @@ namespace ProtonVPN.Core.Storage
 
         public void Set<T>(string key, T value)
         {
-            var fromType = UnwrapNullable(typeof(T));
+            Type fromType = UnwrapNullable(typeof(T));
             if (fromType.IsEnum)
             {
                 if (value != null)
                 {
-                    var intValue = Convert.ChangeType(value, Enum.GetUnderlyingType(fromType));
+                    object intValue = Convert.ChangeType(value, Enum.GetUnderlyingType(fromType));
                     _storage.Set(key, intValue.ToString());
                     return;
                 }

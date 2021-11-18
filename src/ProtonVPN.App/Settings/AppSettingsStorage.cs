@@ -118,7 +118,7 @@ namespace ProtonVPN.Settings
 
         private void ExecuteCustomMigrations()
         {
-            foreach (var migration in _migrations.OrderBy(m => m.ToVersion))
+            foreach (IMigration migration in _migrations.OrderBy(m => m.ToVersion))
             {
                 migration.Apply();
             }
