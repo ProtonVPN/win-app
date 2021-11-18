@@ -70,18 +70,24 @@ namespace ProtonVPN.Common.Vpn
 
         public static bool operator ==(VpnHost h1, VpnHost h2)
         {
-            return AreEqual(h1, h2);
+            return h1.Equals(h2);
         }
 
-        private static bool AreEqual(VpnHost h1, VpnHost h2)
+        public override bool Equals(object o)
         {
-            return h1.Ip == h2.Ip &&
-                   (h1.Label == h2.Label || (string.IsNullOrEmpty(h1.Label) && string.IsNullOrEmpty(h2.Label)));
+            VpnHost vpnHost = (VpnHost)o;
+            return vpnHost != null && Ip == vpnHost.Ip &&
+                   (Label == vpnHost.Label || (string.IsNullOrEmpty(Label) && string.IsNullOrEmpty(vpnHost.Label)));
+        }
+
+        public override int GetHashCode() 
+        { 
+            return Tuple.Create(Ip, Label).GetHashCode(); 
         }
 
         public static bool operator !=(VpnHost h1, VpnHost h2)
         {
-            return !AreEqual(h1, h2);
+            return !h1.Equals(h2);
         }
     }
 }

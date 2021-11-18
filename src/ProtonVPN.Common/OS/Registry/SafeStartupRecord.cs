@@ -71,8 +71,7 @@ namespace ProtonVPN.Common.OS.Registry
             }
             catch (Exception ex) when (ex.IsRegistryAccessException())
             {
-                _logger.Error($"Can't {actionName} auto start record in Windows registry");
-                _logger.Error(ex);
+                _logger.Error($"Can't {actionName} auto start record in Windows registry", ex);
             }
 
             return defaultResult;
