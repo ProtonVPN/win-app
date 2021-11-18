@@ -105,6 +105,7 @@
     <Compile Include="Configuration\OpenVpnConfig.cs" />
     <Compile Include="Configuration\UrlConfig.cs" />
     <Compile Include="CrashReporting\CrashReports.cs" />
+    <Compile Include="Extensions\BoolExtensions.cs" />
     <Compile Include="Extensions\CollectionExtensions.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\DateTimeOffsetExtensions.cs" />

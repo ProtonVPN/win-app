@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using ProtonVPN.Account;
 using ProtonVPN.BugReporting.Diagnostic;
+using ProtonVPN.Common.Extensions;
 using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.User;
@@ -67,8 +68,9 @@ namespace ProtonVPN.BugReporting
 
         private string GetDescription(string description)
         {
-            return description + "\n\nAdditional info:\n" +
-                   "Pending reboot: " + (_systemState.PendingReboot() ? "true" : "false");
+            return $"{description}\n\nAdditional info:\n" +
+                   $"Pending reboot: {_systemState.PendingReboot().ToYesNoString()}\n" +
+                   $"DeviceID: {_config.DeviceId}";
         }
     }
 }

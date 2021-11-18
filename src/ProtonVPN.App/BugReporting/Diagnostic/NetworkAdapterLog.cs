@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,6 +18,7 @@
  */
 
 using System.IO;
+using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.OS.Net.NetworkInterface;
 
 namespace ProtonVPN.BugReporting.Diagnostic
@@ -40,9 +41,9 @@ namespace ProtonVPN.BugReporting.Diagnostic
         {
             get
             {
-                var str = string.Empty;
-                var interfaces = _networkInterfaces.GetInterfaces();
-                foreach (var networkInterface in interfaces)
+                string str = string.Empty;
+                INetworkInterface[] interfaces = _networkInterfaces.GetInterfaces();
+                foreach (INetworkInterface networkInterface in interfaces)
                 {
                     str += GetInterfaceDetails(networkInterface);
                 }
@@ -53,11 +54,9 @@ namespace ProtonVPN.BugReporting.Diagnostic
 
         private string GetInterfaceDetails(INetworkInterface networkInterface)
         {
-            var active = networkInterface.IsActive ? "true" : "false";
-
             return $"Name: {networkInterface.Name}\n" +
                    $"Description: {networkInterface.Description}\n" +
-                   $"Active: {active}\n\n";
+                   $"Active: {networkInterface.IsActive.ToYesNoString()}\n\n";
         }
     }
 }
