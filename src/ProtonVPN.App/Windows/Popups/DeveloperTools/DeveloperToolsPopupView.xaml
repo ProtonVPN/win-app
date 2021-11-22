@@ -114,6 +114,18 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </StackPanel>
 
                     <StackPanel Margin="0,0,0,20" Orientation="Horizontal" HorizontalAlignment="Left">
+                        <fa:ImageAwesome HorizontalAlignment="Left" Style="{StaticResource FontAwesomeIcon}" Icon="Bug" />
+                        <StackPanel Margin="20,0,30,0" Orientation="Vertical" HorizontalAlignment="Left">
+                            <Label Padding="0,0,0,0" FontSize="16" Content="Intentional app crash" Foreground="White"/>
+                            <Label Padding="0,0,0,0" FontSize="12" Content="Manually triggers app crash and sends event to sentry" Foreground="LightGray"/>
+                        </StackPanel>
+                        <Button HorizontalAlignment="Left"
+                                Style="{StaticResource PrimaryButton}"
+                                Command="{Binding TriggerIntentionalCrashCommand}"
+                                Content="Trigger"/>
+                    </StackPanel>
+
+                    <StackPanel Margin="0,0,0,20" Orientation="Horizontal" HorizontalAlignment="Left">
                         <fa:ImageAwesome HorizontalAlignment="Left" Style="{StaticResource FontAwesomeIcon}" Icon="CheckSquare" />
                         <StackPanel Margin="20,0,30,0" Orientation="Vertical" HorizontalAlignment="Left">
                             <Label Padding="0,0,0,0" FontSize="16" Content="Reset «Do not show again»" Foreground="White"/>
