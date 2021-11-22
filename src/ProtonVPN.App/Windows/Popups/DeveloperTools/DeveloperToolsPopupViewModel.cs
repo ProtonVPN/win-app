@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -23,8 +23,6 @@ using System.Diagnostics;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using System.Windows.Interop;
-using System.Windows.Media;
 using GalaSoft.MvvmLight.CommandWpf;
 using Microsoft.Toolkit.Uwp.Notifications;
 using ProtonVPN.Common.Extensions;
@@ -112,17 +110,6 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
                 _toastNotificationLog = value;
                 NotifyOfPropertyChange();
             }
-        }
-
-        public bool IsHardwareAccelerationEnabled
-        {
-            get => RenderOptions.ProcessRenderMode == RenderMode.Default;
-            set => SetHardwareAcceleration(value);
-        }
-
-        private void SetHardwareAcceleration(bool isToEnableHardwareAcceleration)
-        {
-            RenderOptions.ProcessRenderMode = isToEnableHardwareAcceleration ? RenderMode.Default : RenderMode.SoftwareOnly;
         }
 
         private async void ShowModalAction()
