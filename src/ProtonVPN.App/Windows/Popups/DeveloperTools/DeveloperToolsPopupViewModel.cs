@@ -85,6 +85,7 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
             FullToastCommand = new RelayCommand(FullToastAction);
             BasicToastCommand = new RelayCommand(BasicToastAction);
             ClearToastNotificationLogsCommand = new RelayCommand(ClearToastNotificationLogsAction);
+            TriggerIntentionalCrashCommand = new RelayCommand(TriggerIntentionalCrashAction);
         }
 
         public ICommand ShowModalCommand { get; set; }
@@ -96,6 +97,7 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
         public ICommand FullToastCommand { get; set; }
         public ICommand BasicToastCommand { get; set; }
         public ICommand ClearToastNotificationLogsCommand { get; set; }
+        public ICommand TriggerIntentionalCrashCommand { get; set; }
 
         private string _toastNotificationLog;
         public string ToastNotificationLog
@@ -220,6 +222,11 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
         private void ClearToastNotificationLogsAction()
         {
             ToastNotificationLog = string.Empty;
+        }
+
+        private void TriggerIntentionalCrashAction()
+        {
+            throw new StackOverflowException("Intentional crash test");
         }
     }
 }
