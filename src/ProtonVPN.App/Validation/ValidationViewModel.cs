@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -28,7 +28,7 @@ namespace ProtonVPN.Validation
 {
     public abstract class ValidationViewModel : ViewModel, INotifyDataErrorInfo
     {
-        private readonly Dictionary<string, string> _errors = new Dictionary<string, string>();
+        private readonly Dictionary<string, string> _errors = new();
 
         public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
 
@@ -36,18 +36,17 @@ namespace ProtonVPN.Validation
 
         public IEnumerable GetErrors(string propertyName)
         {
-            if (_errors.TryGetValue(propertyName, out var value))
-                return new[] { value };
-
-            return null;
+            return _errors.TryGetValue(propertyName, out string value) ? new[] { value } : null;
         }
 
         protected void SetError(string propertyName, string value)
         {
             if (!string.IsNullOrEmpty(value))
             {
-                if (_errors.TryGetValue(propertyName, out var oldValue) && value == oldValue)
+                if (_errors.TryGetValue(propertyName, out string oldValue) && value == oldValue)
+                {
                     return;
+                }
 
                 _errors[propertyName] = value;
                 RaiseErrorsChanged(propertyName);

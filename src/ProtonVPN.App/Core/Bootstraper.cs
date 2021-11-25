@@ -49,6 +49,7 @@ using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Network;
 using ProtonVPN.Core.OS.Net;
 using ProtonVPN.Core.Profiles;
+using ProtonVPN.Core.ReportAnIssue;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Service;
 using ProtonVPN.Core.Service.Settings;
@@ -519,6 +520,7 @@ namespace ProtonVPN.Core
             Resolve<INetworkClient>().CheckForInsecureWiFi();
             await Resolve<EventClient>().StoreLatestEvent();
             Resolve<EventTimer>().Start();
+            await Resolve<IReportAnIssueFormDataProvider>().FetchData();
         }
 
         private void LoadViewModels()

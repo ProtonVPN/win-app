@@ -362,40 +362,40 @@
     <comment>The text displayed while content is loading</comment>
   </data>
   <data name="BugReport_msg_SendingFailed" xml:space="preserve">
-    <value>Failed to send Bug Report. Please try again.</value>
-    <comment>The message displayed in Bug Report window when sending bug report fails</comment>
+    <value>Your report wasn’t sent</value>
+    <comment>The message displayed in Issue Report window when sending Issue report fails</comment>
   </data>
   <data name="BugReport_lbl_Email" xml:space="preserve">
-    <value>Email:</value>
-    <comment>The label for user e-mail address in Bug Report window</comment>
+    <value>Email</value>
+    <comment>The label for user e-mail address in Issue Report window</comment>
   </data>
   <data name="Profiles_Profile_lbl_Country" xml:space="preserve">
     <value>Country:</value>
     <comment>The label for Country combo box in Profile window</comment>
   </data>
-  <data name="BugReport_lbl_Email_Watermark" xml:space="preserve">
-    <value>Your E-mail Address</value>
-    <comment>The watermark text displayed in empty user e-mail text box in Bug Report window</comment>
+  <data name="BugReport_lbl_EmailPlaceholder" xml:space="preserve">
+    <value>This email will be used to contact you regarding this issue.</value>
+    <comment>The watermark text displayed in empty user e-mail text box in Issue Report window</comment>
   </data>
   <data name="BugReport_btn_Send" xml:space="preserve">
-    <value>Send</value>
-    <comment>The text on Send button in Bug Report window (sends the bug report)</comment>
+    <value>Send report</value>
+    <comment>The text on Send button in Issue Report window (sends the Issue report)</comment>
   </data>
   <data name="BugReport_btn_Back" xml:space="preserve">
     <value>Back</value>
-    <comment>The text on Back button in Bug Report window</comment>
+    <comment>The text on Back button in Issue Report window</comment>
   </data>
   <data name="BugReport_btn_Retry" xml:space="preserve">
     <value>Retry</value>
-    <comment>The text on Retry button in Bug Report window (retries sending after failure)</comment>
+    <comment>The text on Retry button in Issue Report window (retries sending after failure)</comment>
   </data>
   <data name="BugReport_msg_Sending" xml:space="preserve">
-    <value>Processing report...</value>
-    <comment>The message displayed in Bug Report window while sending the report</comment>
+    <value>Sending report...</value>
+    <comment>The message displayed in Issue Report window while sending the report</comment>
   </data>
   <data name="BugReport_msg_SendingSucceeded" xml:space="preserve">
-    <value>The Bug Report has been successfully sent.</value>
-    <comment>The message displayed in Bug Report window when sending completes</comment>
+    <value>Thanks for your feedback</value>
+    <comment>The message displayed in Issue Report window when sending completes</comment>
   </data>
   <data name="Servers_Load_lbl_IPAutoAssigned" xml:space="preserve">
     <value>Auto assigned</value>
@@ -772,7 +772,7 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
   </data>
   <data name="BugReport_msg_SendingInfo" xml:space="preserve">
     <value>Please wait until sending process is finished</value>
-    <comment>The message displayed in Bug Report window while sending the report</comment>
+    <comment>The message displayed in Issue Report window while sending the report</comment>
   </data>
   <data name="Connecting_btn_TryAgain" xml:space="preserve">
     <value>Try again</value>
@@ -791,8 +791,8 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <comment>The time units of Speed graph in Map of main app window</comment>
   </data>
   <data name="BugReport_ttl" xml:space="preserve">
-    <value>Bug Report</value>
-    <comment>The title of Bug Report window</comment>
+    <value>Report an issue</value>
+    <comment>The title of Issue Report window</comment>
   </data>
   <data name="Sidebar_Profiles_lnk_Manage" xml:space="preserve">
     <value>Manage Profiles</value>
@@ -904,11 +904,11 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
   </data>
   <data name="BugReport_btn_Cancel" xml:space="preserve">
     <value>Cancel</value>
-    <comment>The text on Cancel button in Bug Report window (clears data and closes the window)</comment>
+    <comment>The text on Cancel button in Issue Report window (clears data and closes the window)</comment>
   </data>
   <data name="BugReport_btn_Close" xml:space="preserve">
     <value>Close</value>
-    <comment>The text on Close button in Bug Report window (closes the window)</comment>
+    <comment>The text on Close button in Issue Report window (closes the window)</comment>
   </data>
   <data name="Dialogs_btn_Cancel" xml:space="preserve">
     <value>Cancel</value>
@@ -959,8 +959,8 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <comment>The app update status in About window</comment>
   </data>
   <data name="App_mnu_ReportBug" xml:space="preserve">
-    <value>Report a Bug</value>
-    <comment>The header of Report Bug menu item in the main app window (opens Bug Report window)</comment>
+    <value>Report an Issue</value>
+    <comment>The header of Report an Issue menu item in the main app window (opens Issue Report window)</comment>
   </data>
   <data name="Connecting_lbl_ConnectingTo_1" xml:space="preserve">
     <value>Connecting to</value>
@@ -2311,7 +2311,7 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <comment>The description displayed in a tooltip of P icon on a sidebar server item</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_TlsCertificateError" xml:space="preserve">
-    <value>There's a problem validating the VPN server certificate, which might indicate that the network connection is being tampered with or the server you are trying to connect to has a configuration problem. Get help from our customer support by sending a &lt;Hyperlink Foreground="White" Command="{Binding ReportBugCommand}"&gt;&lt;Run Text="Bug Report"/&gt;&lt;/Hyperlink&gt;.</value>
+    <value>There's a problem validating the VPN server certificate, which might indicate that the network connection is being tampered with or the server you are trying to connect to has a configuration problem. Get help from our customer support by sending a &lt;Hyperlink Foreground="White" Command="{Binding ReportBugCommand}"&gt;&lt;Run Text="Issue Report"/&gt;&lt;/Hyperlink&gt;.</value>
     <comment>The error description displayed in Disconnect modal window if VPN server certificate validation error has occurred</comment>
   </data>
   <data name="Login_lbl_KillSwitch" xml:space="preserve">
@@ -2464,7 +2464,7 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
   </data>
   <data name="BugReport_btn_Troubleshoot" xml:space="preserve">
     <value>Troubleshoot</value>
-    <comment>The text on Troubleshoot button in Bug Report window (opens troubleshooting window)</comment>
+    <comment>The text on Troubleshoot button in Issue Report window (opens troubleshooting window)</comment>
   </data>
   <data name="Profiles_btn_Troubleshoot" xml:space="preserve">
     <value>Troubleshoot</value>
@@ -2592,11 +2592,11 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
   </data>
   <data name="BugReport_lbl_HowToReproduce" xml:space="preserve">
     <value>What are the exact steps you performed?</value>
-    <comment>The label in Bug Report window</comment>
+    <comment>The label in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_IncludeLogs" xml:space="preserve">
-    <value>Include app logs and system details</value>
-    <comment>The label in Bug Report window</comment>
+    <value>Include error logs</value>
+    <comment>The label in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_IncludeLogsInfo" xml:space="preserve">
     <value>Providing the following details, our team can identify your problem and a possible solution with higher chances and shorter time:
@@ -2605,11 +2605,11 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
 • ProtonVPN app and ProtonVPN service logs
 • List of network adapters
 • Routing table information</value>
-    <comment>The text inside info tooltip in Bug Report window</comment>
+    <comment>The text inside info tooltip in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_WhatWentWrong" xml:space="preserve">
     <value>What went wrong?</value>
-    <comment>The label in Bug Report window</comment>
+    <comment>The label in Issue Report window</comment>
   </data>
   <data name="TextBoxPlaceholder" xml:space="preserve">
     <value>Start typing...</value>
@@ -3113,5 +3113,47 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Thanks" xml:space="preserve">
     <value>Thanks for upgrading to Professional/Visionary</value>
+  </data>
+  <data name="BugReport_btn_FillOutTheForm" xml:space="preserve">
+    <value>Fill out the form</value>
+  </data>
+  <data name="BugReport_btn_GetUpdates" xml:space="preserve">
+    <value>Get Updates</value>
+  </data>
+  <data name="BugReport_btn_GotIt" xml:space="preserve">
+    <value>Got it</value>
+  </data>
+  <data name="BugReport_btn_LearnMore" xml:space="preserve">
+    <value>Learn More</value>
+  </data>
+  <data name="BugReport_lbl_DidNotHelp" xml:space="preserve">
+    <value>Didn't it help?</value>
+  </data>
+  <data name="BugReport_lbl_LogsDescription" xml:space="preserve">
+    <value>We might not be able to investigate on your issue fully if you don't include error logs.</value>
+  </data>
+  <data name="BugReport_lbl_LogsTooltip" xml:space="preserve">
+    <value>We might not be able to investigate on your issue fully if you don't include error logs.</value>
+  </data>
+  <data name="BugReport_lbl_NewVersionAvailable" xml:space="preserve">
+    <value>A new version is available</value>
+  </data>
+  <data name="BugReport_lbl_NewVersionInfo" xml:space="preserve">
+    <value>This version of ProtonVPN might have already solved your problem!</value>
+  </data>
+  <data name="BugReport_lbl_QuickSolutions" xml:space="preserve">
+    <value>Quick Solutions</value>
+  </data>
+  <data name="BugReport_lbl_QuickSolutionsInfo" xml:space="preserve">
+    <value>The following tips might help you to solve the problem without contacting to us.</value>
+  </data>
+  <data name="BugReport_lbl_Step" xml:space="preserve">
+    <value>Step</value>
+  </data>
+  <data name="BugReport_lbl_WillGetBack" xml:space="preserve">
+    <value>We will get back to you shortly via email {0}</value>
+  </data>
+  <data name="BugReport_lbl_WhatIsTheIssue" xml:space="preserve">
+    <value>What is your issue?</value>
   </data>
 </root>

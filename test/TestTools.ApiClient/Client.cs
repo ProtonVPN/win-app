@@ -27,6 +27,7 @@ using ProtonVPN.Core.Abstract;
 using ProtonVPN.Core.Api;
 using ProtonVPN.Core.Api.Certificates;
 using ProtonVPN.Core.Api.Contracts;
+using ProtonVPN.Core.Api.Contracts.ReportAnIssue;
 using ProtonVPN.Core.Api.Data;
 using ProtonVPN.Core.Settings;
 using File = ProtonVPN.Core.Api.File;
@@ -119,6 +120,8 @@ namespace TestTools.ApiClient
         }
 
         public Task<ApiResponseResult<VpnInfoResponse>> GetVpnInfoResponse() => throw new NotImplementedException();
+
+        public Task<ApiResponseResult<ReportAnIssueFormData>> GetReportAnIssueFormData() => throw new NotImplementedException();
 
         public Task<ApiResponseResult<BaseResponse>> GetLogoutResponse() => throw new NotImplementedException();
 

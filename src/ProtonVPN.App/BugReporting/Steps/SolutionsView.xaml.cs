@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,11 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.BugReporting
+namespace ProtonVPN.BugReporting.Steps
 {
-    public partial class Form
+    public partial class SolutionsView
     {
-        public Form()
+        public SolutionsView()
         {
             InitializeComponent();
         }

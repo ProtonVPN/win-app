@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,37 +17,28 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Windows.Input;
-using GalaSoft.MvvmLight.Command;
-using ProtonVPN.Core.Modals;
+using ProtonVPN.Common.Extensions;
 using ProtonVPN.Core.MVVM;
-using ProtonVPN.Modals;
 
-namespace ProtonVPN.BugReporting
+namespace ProtonVPN.BugReporting.FormElements
 {
-    public class FailureViewModel : ViewModel
+    public abstract class FormElement : ViewModel
     {
-        private readonly IModals _modals;
-
-        public FailureViewModel(IModals modals)
+        private string _value;
+        public string Value
         {
-            _modals = modals;
-            TroubleshootCommand = new RelayCommand(TroubleshootAction);
+            get => _value;
+            set => Set(ref _value, value);
         }
 
-        private string _error;
+        public string Label { get; set; }
+        public string SubmitLabel { get; set; }
+        public string Placeholder { get; set; }
+        public bool IsMandatory { get; set; }
 
-        public string Error
+        public virtual bool IsValid()
         {
-            get => _error;
-            set => Set(ref _error, value);
-        }
-
-        public ICommand TroubleshootCommand { get; set; }
-
-        private void TroubleshootAction()
-        {
-            _modals.Show<TroubleshootModalViewModel>();
+            return !IsMandatory || !Value.IsNullOrEmpty() && !Value.Trim().IsNullOrEmpty();
         }
     }
 }

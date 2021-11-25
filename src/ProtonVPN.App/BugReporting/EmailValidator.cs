@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -28,7 +28,9 @@ namespace ProtonVPN.BugReporting
         public static bool IsValid(string email)
         {
             if (string.IsNullOrWhiteSpace(email))
+            {
                 return false;
+            }
 
             try
             {
@@ -37,8 +39,8 @@ namespace ProtonVPN.BugReporting
 
                 string DomainMapper(Match match)
                 {
-                    var idn = new IdnMapping();
-                    var domainName = idn.GetAscii(match.Groups[2].Value);
+                    IdnMapping idn = new();
+                    string domainName = idn.GetAscii(match.Groups[2].Value);
 
                     return match.Groups[1].Value + domainName;
                 }

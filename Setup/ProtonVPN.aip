@@ -103,6 +103,7 @@
     <ROW Component="GalaSoft.MvvmLight.dll" ComponentId="{50FA9CA8-4DD4-4068-A0D8-D2C1D9D42947}" Directory_="APPDIR" Attributes="0" KeyPath="GalaSoft.MvvmLight.dll"/>
     <ROW Component="GoSrp.dll" ComponentId="{3DB767E8-ACF9-459F-A509-F57E76FBA633}" Directory_="x64_Dir" Attributes="256" KeyPath="GoSrp.dll"/>
     <ROW Component="GoSrp.dll_1" ComponentId="{89CC2AA9-0000-4E4B-9D5A-43ACC1B1D1E3}" Directory_="x86_Dir" Attributes="0" KeyPath="GoSrp.dll_1"/>
+    <ROW Component="Gu.Wpf.Adorners.dll" ComponentId="{01DC8E24-C053-41CC-A726-5F4729DE78DD}" Directory_="APPDIR" Attributes="0" KeyPath="Gu.Wpf.Adorners.dll"/>
     <ROW Component="GuestHoleServers.json" ComponentId="{C5ACA4D0-1647-4D3A-B9CD-9FE054A81588}" Directory_="ProtonVPN_1_Dir" Attributes="0" KeyPath="GuestHoleServers.json" Type="0"/>
     <ROW Component="LocalAgent.dll" ComponentId="{25183BB4-5B07-43F9-8BEB-D58230BAEB78}" Directory_="bit_Dir" Attributes="0" KeyPath="LocalAgent.dll"/>
     <ROW Component="LocalAgent.dll_1" ComponentId="{73CCCE7C-D519-40C3-8AAA-FB879005DFA4}" Directory_="bit_1_Dir" Attributes="256" KeyPath="LocalAgent.dll_1"/>
@@ -165,6 +166,7 @@
     <ROW Component="TapInstaller.dll" ComponentId="{6C0E1AC7-D393-43D7-8842-549A396829EB}" Directory_="APPDIR" Attributes="0" KeyPath="TapInstaller.dll"/>
     <ROW Component="WebView2Loader.dll_1" ComponentId="{2EA095EA-C501-4A0B-B50D-FFF6383F6077}" Directory_="native_1_Dir" Attributes="256" KeyPath="WebView2Loader.dll_1"/>
     <ROW Component="WebView2Loader.dll_2" ComponentId="{7B52FD4C-77FC-441E-830E-31363BA5A2A6}" Directory_="native_2_Dir" Attributes="0" KeyPath="WebView2Loader.dll_2"/>
+    <ROW Component="WpfScreenHelper.dll" ComponentId="{D9BC0004-B4FA-4D5B-B94A-1F8525D2E2FA}" Directory_="APPDIR" Attributes="0" KeyPath="WpfScreenHelper.dll"/>
     <ROW Component="config.ovpn" ComponentId="{0B387BF9-0755-4C70-81A5-48180795855C}" Directory_="Binaries_Dir" Attributes="0" KeyPath="config.ovpn" Type="0"/>
     <ROW Component="libcrypto1_1.dll" ComponentId="{F5111CFC-D038-4A4A-927B-F4FA1D0463C9}" Directory_="bit_Dir" Attributes="0" KeyPath="libcrypto1_1.dll"/>
     <ROW Component="libcrypto1_1x64.dll" ComponentId="{9BA46CFB-D246-4182-9AFB-3CA5D2A29D53}" Directory_="bit_1_Dir" Attributes="256" KeyPath="libcrypto1_1x64.dll"/>
@@ -285,6 +287,8 @@
     <ROW File="wireguard.dll" Component_="wireguard.dll" FileName="WIREGU~1.DLL|wireguard.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\ProtonVPN.Vpn\Resources\64-bit\wireguard.dll" SelfReg="false"/>
     <ROW File="wireguard.dll_1" Component_="wireguard.dll_1" FileName="WIREGU~1.DLL|wireguard.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\ProtonVPN.Vpn\Resources\32-bit\wireguard.dll" SelfReg="false"/>
     <ROW File="ProtonVPN.WireGuardDriver.dll" Component_="ProtonVPN.WireGuardDriver.dll" FileName="PROTO~13.DLL|ProtonVPN.WireGuardDriver.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ProtonVPN.WireGuardDriver.dll" SelfReg="false"/>
+    <ROW File="Gu.Wpf.Adorners.dll" Component_="Gu.Wpf.Adorners.dll" FileName="GUWPFA~1.DLL|Gu.Wpf.Adorners.dll" Attributes="0" SourcePath="..\src\bin\Gu.Wpf.Adorners.dll" SelfReg="false"/>
+    <ROW File="WpfScreenHelper.dll" Component_="WpfScreenHelper.dll" FileName="WPFSCR~1.DLL|WpfScreenHelper.dll" Attributes="0" SourcePath="..\src\bin\WpfScreenHelper.dll" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.AiRemoveFileComponent">
     <ROW RemoveFile="_" Condition="(AI_CLEAN_RESOURCES_UNINSTALL = &quot;1&quot;) AND (NOT UPGRADINGPRODUCTCODE)" Options="3"/>
@@ -658,6 +662,8 @@
     <ROW Feature_="MainFeature" Component_="wireguard.dll"/>
     <ROW Feature_="MainFeature" Component_="wireguard.dll_1"/>
     <ROW Feature_="MainFeature" Component_="ProtonVPN.WireGuardDriver.dll"/>
+    <ROW Feature_="MainFeature" Component_="Gu.Wpf.Adorners.dll"/>
+    <ROW Feature_="MainFeature" Component_="WpfScreenHelper.dll"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
     <ROW Name="protonvpn.exe" SourcePath="images\protonvpn.ico" Index="0"/>

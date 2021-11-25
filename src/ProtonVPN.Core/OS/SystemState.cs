@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -21,7 +21,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Win32;
 
-namespace ProtonVPN.BugReporting.Diagnostic
+namespace ProtonVPN.Core.OS
 {
     public class SystemState : ISystemState
     {

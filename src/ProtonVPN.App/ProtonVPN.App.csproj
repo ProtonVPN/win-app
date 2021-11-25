@@ -116,18 +116,48 @@
     </Compile>
     <Compile Include="About\LicenseModalViewModel.cs" />
     <Compile Include="About\ReleaseEqualityComparer.cs" />
+    <Compile Include="BugReporting\Actions\CategoryAction.cs" />
+    <Compile Include="BugReporting\Actions\FinishReportAction.cs" />
+    <Compile Include="BugReporting\Actions\FormStateChange.cs" />
+    <Compile Include="BugReporting\Actions\GoBackAfterFailureAction.cs" />
+    <Compile Include="BugReporting\Actions\RetryAction.cs" />
+    <Compile Include="BugReporting\Actions\SelectCategoryAction.cs" />
+    <Compile Include="BugReporting\Actions\SendReportAction.cs" />
     <Compile Include="BugReporting\Diagnostic\BaseLog.cs" />
     <Compile Include="BugReporting\Diagnostic\DriverInstallLog.cs" />
     <Compile Include="BugReporting\Diagnostic\ILog.cs" />
     <Compile Include="BugReporting\Diagnostic\InstalledAppsLog.cs" />
-    <Compile Include="BugReporting\Diagnostic\ISystemState.cs" />
     <Compile Include="BugReporting\Diagnostic\NetworkAdapterLog.cs" />
     <Compile Include="BugReporting\Diagnostic\NetworkLogWriter.cs" />
-    <Compile Include="BugReporting\Diagnostic\SystemState.cs" />
     <Compile Include="BugReporting\Diagnostic\RoutingTableLog.cs" />
+    <Compile Include="BugReporting\Actions\FillTheFormAction.cs" />
+    <Compile Include="BugReporting\FormElements\EmailInput.cs" />
+    <Compile Include="BugReporting\FormElements\FormElement.cs" />
+    <Compile Include="BugReporting\FormElements\FormElementBuilder.cs" />
+    <Compile Include="BugReporting\FormElements\FormElementExtensions.cs" />
+    <Compile Include="BugReporting\FormElements\IFormElementBuilder.cs" />
+    <Compile Include="BugReporting\FormElements\MultiLineTextInput.cs" />
+    <Compile Include="BugReporting\FormElements\SingleLineTextInput.cs" />
+    <Compile Include="BugReporting\FormState.cs" />
     <Compile Include="BugReporting\IBugReport.cs" />
     <Compile Include="BugReporting\IReportFieldProvider.cs" />
     <Compile Include="BugReporting\ReportFieldProvider.cs" />
+    <Compile Include="BugReporting\Steps\FormView.xaml.cs">
+      <DependentUpon>FormView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BugReporting\Steps\SolutionsView.xaml.cs">
+      <DependentUpon>SolutionsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BugReporting\Steps\CategorySelectionView.xaml.cs">
+      <DependentUpon>CategorySelectionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BugReporting\Steps\FormViewModel.cs" />
+    <Compile Include="BugReporting\Steps\SolutionsViewModel.cs" />
+    <Compile Include="BugReporting\Steps\CategorySelectionViewModel.cs" />
+    <Compile Include="BugReporting\Steps\StepsContainerView.xaml.cs">
+      <DependentUpon>StepsContainerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BugReporting\Steps\StepsContainerViewModel.cs" />
     <Compile Include="Core\ExpiredSessionHandler.cs" />
     <Compile Include="Core\HardwareAccelerationManager.cs" />
     <Compile Include="Core\ILanguageProvider.cs" />
@@ -332,26 +362,22 @@
     <Compile Include="BugReporting\Attachments\Source\SafeFileSource.cs" />
     <Compile Include="BugReporting\BugReport.cs" />
     <Compile Include="BugReporting\EmailValidator.cs" />
-    <Compile Include="BugReporting\FailureView.xaml.cs">
+    <Compile Include="BugReporting\Screens\FailureView.xaml.cs">
       <DependentUpon>FailureView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="BugReporting\FailureViewModel.cs" />
-    <Compile Include="BugReporting\Form.xaml.cs">
-      <DependentUpon>Form.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="BugReporting\FormViewModel.cs" />
+    <Compile Include="BugReporting\Screens\FailureViewModel.cs" />
     <Compile Include="BugReporting\ReportBugModalView.xaml.cs">
       <DependentUpon>ReportBugModalView.xaml</DependentUpon>
     </Compile>
     <Compile Include="BugReporting\ReportBugModalViewModel.cs" />
-    <Compile Include="BugReporting\SendingView.xaml.cs">
+    <Compile Include="BugReporting\Screens\SendingView.xaml.cs">
       <DependentUpon>SendingView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="BugReporting\SendingViewModel.cs" />
-    <Compile Include="BugReporting\SentView.xaml.cs">
+    <Compile Include="BugReporting\Screens\SendingViewModel.cs" />
+    <Compile Include="BugReporting\Screens\SentView.xaml.cs">
       <DependentUpon>SentView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="BugReporting\SentViewModel.cs" />
+    <Compile Include="BugReporting\Screens\SentViewModel.cs" />
     <Compile Include="ConnectionInfo\ConnectionErrorResolver.cs" />
     <Compile Include="ConnectionInfo\AutoAssignedIp.cs" />
     <Compile Include="ConnectionInfo\DefaultInfo.cs" />
@@ -878,6 +904,22 @@
     <Compile Include="ViewModels\AppLoadingViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Map\ViewModels\MapViewModel.cs" />
+    <Page Include="BugReporting\Steps\FormView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="BugReporting\Steps\SolutionsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="BugReporting\Steps\CategorySelectionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BugReporting\Steps\StepsContainerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Modals\IncorrectSystemTimeModalView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -1231,11 +1273,7 @@
       <DependentUpon>AppWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="BugReporting\FailureView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="BugReporting\Form.xaml">
+    <Page Include="BugReporting\Screens\FailureView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1243,11 +1281,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="BugReporting\SendingView.xaml">
+    <Page Include="BugReporting\Screens\SendingView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="BugReporting\SentView.xaml">
+    <Page Include="BugReporting\Screens\SentView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -2039,6 +2077,9 @@
     <PackageReference Include="FontAwesome.WPF">
       <Version>4.7.0.9</Version>
     </PackageReference>
+    <PackageReference Include="Gu.Wpf.Adorners">
+      <Version>2.1.1</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp.Notifications">
       <Version>7.0.0</Version>
     </PackageReference>
@@ -2065,6 +2106,9 @@
     </PackageReference>
     <PackageReference Include="Sentry">
       <Version>1.2.0</Version>
+    </PackageReference>
+    <PackageReference Include="WpfScreenHelper">
+      <Version>1.1.0</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup Condition=" '$(Configuration)' == 'Debug' ">
