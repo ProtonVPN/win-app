@@ -47,6 +47,7 @@ using ProtonVPN.Core.OS;
 using ProtonVPN.Core.OS.Net;
 using ProtonVPN.Core.OS.Net.Dns;
 using ProtonVPN.Core.OS.Net.DoH;
+using ProtonVPN.Core.ReportAnIssue;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Service;
 using ProtonVPN.Core.Settings;
@@ -57,7 +58,6 @@ using ProtonVPN.Core.Window;
 using ProtonVPN.HumanVerification;
 using ProtonVPN.Modals.ApiActions;
 using ProtonVPN.Settings;
-using ProtonVPN.Translations;
 using ProtonVPN.Vpn;
 using Module = Autofac.Module;
 
@@ -283,6 +283,8 @@ namespace ProtonVPN.Core.Ioc
             builder.Register(c =>
                     new NtpClient(c.Resolve<Common.Configuration.Config>().NtpServerUrl, c.Resolve<ILogger>()))
                 .As<INtpClient>().SingleInstance();
+            builder.RegisterType<ReportAnIssueFormDataProvider>().As<IReportAnIssueFormDataProvider>().SingleInstance();
+            builder.RegisterType<SystemState>().As<ISystemState>().SingleInstance();
         }
     }
 }

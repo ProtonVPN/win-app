@@ -27,7 +27,7 @@ using ProtonVPN.Common;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.KillSwitch;
 using ProtonVPN.Common.Networking;
-using ProtonVPN.Core.Announcements;
+using ProtonVPN.Core.Api.Contracts.ReportAnIssue;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Native.Structures;
@@ -37,6 +37,7 @@ using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Settings.Contracts;
 using ProtonVPN.Core.Storage;
 using ProtonVPN.Settings;
+using Announcement = ProtonVPN.Core.Announcements.Announcement;
 
 namespace ProtonVPN.Core
 {
@@ -45,7 +46,7 @@ namespace ProtonVPN.Core
         private readonly ISettingsStorage _storage;
         private readonly UserSettings _userSettings;
         private readonly Common.Configuration.Config _config;
-        private readonly HashSet<string> _accessedPerUserProperties = new HashSet<string>();
+        private readonly HashSet<string> _accessedPerUserProperties = new();
 
         public AppSettings(ISettingsStorage storage, UserSettings userSettings, Common.Configuration.Config config)
         {
@@ -65,6 +66,12 @@ namespace ProtonVPN.Core
         public IReadOnlyList<Announcement> Announcements
         {
             get => GetPerUser<IReadOnlyList<Announcement>>() ?? new List<Announcement>();
+            set => SetPerUser(value);
+        }
+
+        public List<IssueCategory> ReportAnIssueFormData
+        {
+            get => GetPerUser<List<IssueCategory>>() ?? new List<IssueCategory>();
             set => SetPerUser(value);
         }
 

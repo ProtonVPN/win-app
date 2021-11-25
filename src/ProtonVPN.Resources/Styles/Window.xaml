@@ -1,5 +1,5 @@
 ﻿<!--
-Copyright (c) 2020 Proton Technologies AG
+Copyright (c) 2021 Proton Technologies AG
 
 This file is part of ProtonVPN.
 
@@ -64,22 +64,24 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type resource:WindowBase}">
-                    <Border BorderBrush="{StaticResource SecondaryColor}" BorderThickness="1">
-                        <Grid>
-                            <DockPanel Style="{StaticResource TitleDock}" VerticalAlignment="Top">
-                                <Path Margin="7,0" Fill="{StaticResource PrimaryColor}" Style="{StaticResource ProtonIcon}"/>
-                                <Label VerticalAlignment="Center" Foreground="White" FontSize="14" Content="{TemplateBinding Title}"/>
-                                <StackPanel Style="{StaticResource WindowControlsPanel}">
-                                    <Button Style="{StaticResource WindowsCloseButton}"
-                                            AutomationProperties.AutomationId="{StaticResource ModalCloseButton}"
-                                            Command="{Binding DataContext.CloseCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type resource:WindowBase}}}"/>
-                                </StackPanel>
-                            </DockPanel>
-                            <Grid Margin="0,36,0,0" Background="{StaticResource ModalColor}">
-                                <ContentPresenter/>
+                    <AdornerDecorator>
+                        <Border BorderBrush="{StaticResource SecondaryColor}" BorderThickness="1">
+                            <Grid>
+                                <DockPanel Style="{StaticResource TitleDock}" VerticalAlignment="Top">
+                                    <Path Margin="7,0" Fill="{StaticResource PrimaryColor}" Style="{StaticResource ProtonIcon}"/>
+                                    <Label VerticalAlignment="Center" Foreground="White" FontSize="14" Content="{TemplateBinding Title}"/>
+                                    <StackPanel Style="{StaticResource WindowControlsPanel}">
+                                        <Button Style="{StaticResource WindowsCloseButton}"
+                                                AutomationProperties.AutomationId="{StaticResource ModalCloseButton}"
+                                                Command="{Binding DataContext.CloseCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type resource:WindowBase}}}"/>
+                                    </StackPanel>
+                                </DockPanel>
+                                <Grid Margin="0,36,0,0" Background="{StaticResource ModalColor}">
+                                    <ContentPresenter/>
+                                </Grid>
                             </Grid>
-                        </Grid>
-                    </Border>
+                        </Border>
+                    </AdornerDecorator>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,10 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.BugReporting.Diagnostic
+namespace ProtonVPN.Core.ReportAnIssue
 {
-    public interface ISystemState
+    public class InputType
     {
-        bool PendingReboot();
+        public const string SingleLineInput = "TextSingleLine";
+        public const string MultiLineInput = "TextMultiLine";
     }
 }

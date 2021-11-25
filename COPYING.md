@@ -52,6 +52,8 @@ ProtonVPN Windows app includes the following 3rd party software:
   | [The MIT License](https://github.com/davideicardi/DynamicExpresso/blob/master/LICENSE).
 * [FontAwesome.WPF](https://github.com/charri/Font-Awesome-WPF/) by charri
   | [The MIT License](https://github.com/charri/Font-Awesome-WPF/blob/master/LICENSE).
+* [Gu.Wpf.Adorners](https://github.com/GuOrg/Gu.Wpf.Adorners) by Johan Larsson
+  | [The MIT License](https://github.com/GuOrg/Gu.Wpf.Adorners/blob/master/LICENSE).
 * [MvvmLightLibsStd10](http://www.mvvmlight.net/) by Laurent Bugnion (GalaSoft)
   | [The MIT License](https://github.com/lbugnion/mvvmlight/blob/master/LICENSE). 
 * [Newtonsoft.Json](https://www.newtonsoft.com/json) by James Newton-King
@@ -84,3 +86,5 @@ ProtonVPN Windows app includes the following 3rd party software:
   | [The MIT License](https://github.com/dotnet/corefx/blob/master/LICENSE.TXT).
 * [System.Collections.Immutable](https://dot.net) by Microsoft
   | [The MIT License](https://github.com/dotnet/corefx/blob/master/LICENSE.TXT).
+* [WpfScreenHelper](https://github.com/micdenny/WpfScreenHelper) by Michael Denny
+  | [The MIT License](https://github.com/micdenny/WpfScreenHelper/blob/master/LICENSE).

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,13 +17,20 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.BugReporting
+using System.ComponentModel;
+using Newtonsoft.Json;
+
+namespace ProtonVPN.Core.Api.Contracts.ReportAnIssue
 {
-    public partial class SendingView
+    public class IssueInput
     {
-        public SendingView()
-        {
-            InitializeComponent();
-        }
+        public string Label { get; set; }
+        public string SubmitLabel { get; set; }
+        public string Type { get; set; }
+        public string Placeholder { get; set; }
+
+        [DefaultValue(true)]
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.Populate)]
+        public bool IsMandatory { get; set; }
     }
 }

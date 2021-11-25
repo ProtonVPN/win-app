@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,11 +18,12 @@
  */
 
 using System.Collections.Generic;
+using ProtonVPN.BugReporting.FormElements;
 
 namespace ProtonVPN.BugReporting
 {
     public interface IReportFieldProvider
     {
-        KeyValuePair<string, string>[] GetFields(string description, string email);
+        KeyValuePair<string, string>[] GetFields(string category, IList<FormElement> formElements);
     }
 }

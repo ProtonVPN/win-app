@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,145 +17,132 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Windows.Input;
-using GalaSoft.MvvmLight.CommandWpf;
+using System.Collections.Generic;
+using Caliburn.Micro;
+using ProtonVPN.BugReporting.Actions;
+using ProtonVPN.BugReporting.FormElements;
+using ProtonVPN.BugReporting.Screens;
+using ProtonVPN.BugReporting.Steps;
 using ProtonVPN.Common.Abstract;
-using ProtonVPN.Core.MVVM;
 using ProtonVPN.Modals;
 
 namespace ProtonVPN.BugReporting
 {
-    public class ReportBugModalViewModel : BaseModalViewModel
+    public class ReportBugModalViewModel : BaseModalViewModel,
+        IHandle<SendReportAction>,
+        IHandle<FinishReportAction>,
+        IHandle<FormStateChange>,
+        IHandle<GoBackAfterFailureAction>
     {
         private readonly IBugReport _bugReport;
-        private readonly SentViewModel _sentViewModel;
+        private readonly StepsContainerViewModel _stepsContainerViewModel;
+        private readonly IReportFieldProvider _reportFieldProvider;
+        private readonly IEventAggregator _eventAggregator;
         private readonly SendingViewModel _sendingViewModel;
         private readonly FailureViewModel _failureViewModel;
+        private readonly SentViewModel _sentViewModel;
+        private FormState _formState = FormState.Editing;
 
-        private ViewModel _currentViewModel;
-        private bool _sending;
-        private bool _sent;
+        private Screen _screenViewModel;
 
         public ReportBugModalViewModel(
             IBugReport bugReport,
+            StepsContainerViewModel stepsContainerViewModel,
+            IReportFieldProvider reportFieldProvider,
+            IEventAggregator eventAggregator,
             SendingViewModel sendingViewModel,
-            SentViewModel sentViewModel,
-            FormViewModel formViewModel,
-            FailureViewModel failureViewModel)
+            FailureViewModel failureViewModel,
+            SentViewModel sentViewModel)
         {
+            eventAggregator.Subscribe(this);
+
             _bugReport = bugReport;
+            _stepsContainerViewModel = stepsContainerViewModel;
+            _reportFieldProvider = reportFieldProvider;
+            _eventAggregator = eventAggregator;
             _sendingViewModel = sendingViewModel;
-            _sentViewModel = sentViewModel;
-            FormViewModel = formViewModel;
             _failureViewModel = failureViewModel;
+            _sentViewModel = sentViewModel;
 
-            SendReportCommand = new RelayCommand(SendReport, CanSend);
-            BackCommand = new RelayCommand(Back);
-            RetryCommand = new RelayCommand(Retry, CanSend);
+            ScreenViewModel = stepsContainerViewModel;
         }
 
-        public ICommand SendReportCommand { get; set; }
-        public ICommand BackCommand { get; set; }
-        public RelayCommand RetryCommand { get; set; }
-        public FormViewModel FormViewModel { get; set; }
-
-        public ViewModel OverlayViewModel
+        public Screen ScreenViewModel
         {
-            get => _currentViewModel;
-            set => Set(ref _currentViewModel, value);
+            get => _screenViewModel;
+            set => Set(ref _screenViewModel, value);
         }
 
-        public bool Sending
+        public async void Handle(SendReportAction message)
         {
-            get => _sending;
-            set => Set(ref _sending, value);
-        }
+            await _eventAggregator.PublishOnUIThreadAsync(new FormStateChange(FormState.Sending));
 
-        public bool Sent
-        {
-            get => _sent;
-            set => Set(ref _sent, value);
-        }
+            ShowSendingView();
 
-        public void ShowSendingWindow()
-        {
-            OverlayViewModel = _sendingViewModel;
-        }
+            KeyValuePair<string, string>[] fields = _reportFieldProvider.GetFields(message.Category, message.FormElements);
+            Result result = message.SendErrorLogs
+                ? await _bugReport.SendWithLogsAsync(fields)
+                : await _bugReport.SendAsync(fields);
 
-        public void ShowReportSentWindow()
-        {
-            OverlayViewModel = _sentViewModel;
-        }
-
-        protected override void OnActivate()
-        {
-            base.OnActivate();
-
-            if (OverlayViewModel is SentViewModel)
+            FormState formState;
+            if (result.Success)
             {
-                ClearOverlay();
+                formState = FormState.Sent;
+                ShowSuccessView(message.FormElements.GetEmailField().Value);
+            }
+            else
+            {
+                formState = FormState.FailedToSend;
+                ShowFailureView(result.Error);
             }
 
-            FormViewModel.Load();
+            await _eventAggregator.PublishOnUIThreadAsync(new FormStateChange(formState));
         }
 
-        public override void CloseAction()
+        public void Handle(FinishReportAction message)
         {
-            base.CloseAction();
+            TryClose();
+        }
 
-            Sent = false;
-            if (OverlayViewModel is FailureViewModel)
+        public void Handle(FormStateChange message)
+        {
+            _formState = message.State;
+        }
+
+        public void Handle(GoBackAfterFailureAction message)
+        {
+            ShowStepsView();
+        }
+
+        protected override void OnDeactivate(bool close)
+        {
+            base.OnDeactivate(close);
+            if (_formState == FormState.Sent)
             {
-                ClearOverlay();
+                ShowStepsView();
             }
+        }
+
+        private void ShowStepsView()
+        {
+            ScreenViewModel = _stepsContainerViewModel;
+        }
+
+        private void ShowSendingView()
+        {
+            ScreenViewModel = _sendingViewModel;
+        }
+
+        private void ShowSuccessView(string email)
+        {
+            _sentViewModel.Email = email;
+            ScreenViewModel = _sentViewModel;
         }
 
         private void ShowFailureView(string error)
         {
             _failureViewModel.Error = error;
-            OverlayViewModel = _failureViewModel;
-            RetryCommand.RaiseCanExecuteChanged();
-        }
-
-        private async void SendReport()
-        {
-            Sending = true;
-            ShowSendingWindow();
-
-            Result result = FormViewModel.IncludeLogs
-                ? await _bugReport.SendWithLogsAsync(FormViewModel.GetFields())
-                : await _bugReport.SendAsync(FormViewModel.GetFields());
-
-            Sending = false;
-
-            if (result.Success)
-            {
-                ShowReportSentWindow();
-            }
-            else
-            {
-                ShowFailureView(result.Error);
-            }
-        }
-
-        private bool CanSend()
-        {
-            return !_sending && !FormViewModel.HasErrors;
-        }
-
-        private void Retry()
-        {
-            SendReport();
-        }
-
-        private void ClearOverlay()
-        {
-            OverlayViewModel = null;
-        }
-
-        private void Back()
-        {
-            ClearOverlay();
+            ScreenViewModel = _failureViewModel;
         }
     }
 }

@@ -21,6 +21,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using ProtonVPN.Core.Api.Certificates;
 using ProtonVPN.Core.Api.Contracts;
+using ProtonVPN.Core.Api.Contracts.ReportAnIssue;
 using ProtonVPN.Core.Api.Data;
 using UserLocation = ProtonVPN.Core.Api.Contracts.UserLocation;
 
@@ -35,6 +36,7 @@ namespace ProtonVPN.Core.Api
         Task<ApiResponseResult<BaseResponse>> GetLogoutResponse();
         Task<ApiResponseResult<EventResponse>> GetEventResponse(string lastId = default);
         Task<ApiResponseResult<ServerList>> GetServersAsync(string ip);
+        Task<ApiResponseResult<ReportAnIssueFormData>> GetReportAnIssueFormData();
         Task<ApiResponseResult<ServerList>> GetServerLoadsAsync(string ip);
         Task<ApiResponseResult<UserLocation>> GetLocationDataAsync();
         Task<ApiResponseResult<BaseResponse>> ReportBugAsync(IEnumerable<KeyValuePair<string, string>> fields, IEnumerable<File> files);

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,11 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Core.MVVM;
-
-namespace ProtonVPN.BugReporting
+namespace ProtonVPN.BugReporting.Actions
 {
-    public class SendingViewModel : ViewModel
+    public class FillTheFormAction : CategoryAction
     {
+        public FillTheFormAction(string category) : base(category)
+        {
+        }
     }
 }

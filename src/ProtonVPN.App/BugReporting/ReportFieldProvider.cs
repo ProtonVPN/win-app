@@ -19,10 +19,12 @@
 
 using System;
 using System.Collections.Generic;
+using System.Text;
 using ProtonVPN.Account;
-using ProtonVPN.BugReporting.Diagnostic;
+using ProtonVPN.BugReporting.FormElements;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Core.Models;
+using ProtonVPN.Core.OS;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.User;
 using ProtonVPN.Servers;
@@ -35,14 +37,15 @@ namespace ProtonVPN.BugReporting
         private readonly Common.Configuration.Config _config;
         private readonly ISystemState _systemState;
 
-        public ReportFieldProvider(IUserStorage userStorage, Common.Configuration.Config config, ISystemState systemState)
+        public ReportFieldProvider(IUserStorage userStorage, Common.Configuration.Config config,
+            ISystemState systemState)
         {
             _config = config;
             _userStorage = userStorage;
             _systemState = systemState;
         }
 
-        public KeyValuePair<string, string>[] GetFields(string description, string email)
+        public KeyValuePair<string, string>[] GetFields(string category, IList<FormElement> formElements)
         {
             User user = _userStorage.User();
             UserLocation location = _userStorage.Location();
@@ -56,21 +59,43 @@ namespace ProtonVPN.BugReporting
                 new KeyValuePair<string, string>("Client", "Windows app"),
                 new KeyValuePair<string, string>("ClientVersion", _config.AppVersion),
                 new KeyValuePair<string, string>("Title", "Windows app form"),
-                new KeyValuePair<string, string>("Description", GetDescription(description)),
+                new KeyValuePair<string, string>("Description", GetDescription(category, formElements)),
                 new KeyValuePair<string, string>("Username", user.Username),
                 new KeyValuePair<string, string>("Plan", VpnPlanHelper.GetPlanName(user.VpnPlan)),
-                new KeyValuePair<string, string>("Email", email),
+                new KeyValuePair<string, string>("Email", GetEmail(formElements)),
                 new KeyValuePair<string, string>("Country", string.IsNullOrEmpty(country) ? "" : country),
                 new KeyValuePair<string, string>("ISP", string.IsNullOrEmpty(isp) ? "" : isp),
                 new KeyValuePair<string, string>("ClientType", "2")
             };
         }
 
-        private string GetDescription(string description)
+        private string GetDescription(string category, IList<FormElement> formElements)
         {
-            return $"{description}\n\nAdditional info:\n" +
-                   $"Pending reboot: {_systemState.PendingReboot().ToYesNoString()}\n" +
-                   $"DeviceID: {_config.DeviceId}";
+            StringBuilder stringBuilder = new();
+            stringBuilder.AppendLine($"Category: {category}");
+            stringBuilder.AppendLine();
+
+            foreach (FormElement element in formElements)
+            {
+                if (!element.Value.IsNullOrEmpty() && !element.IsEmailField())
+                {
+                    stringBuilder.AppendLine(element.SubmitLabel);
+                    stringBuilder.AppendLine(element.Value);
+                    stringBuilder.AppendLine();
+                }
+            }
+
+            stringBuilder.AppendLine("Additional info");
+            stringBuilder.AppendLine($"Pending reboot: {_systemState.PendingReboot().ToYesNoString()}");
+            stringBuilder.AppendLine($"DeviceID: {_config.DeviceId}");
+
+            return stringBuilder.ToString();
+        }
+
+        private string GetEmail(IList<FormElement> formElements)
+        {
+            FormElement emailField = formElements.GetEmailField();
+            return emailField != null ? emailField.Value : string.Empty;
         }
     }
 }

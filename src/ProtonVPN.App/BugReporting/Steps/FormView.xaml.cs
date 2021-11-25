@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,13 +17,25 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.BugReporting
+namespace ProtonVPN.BugReporting.Steps
 {
-    public partial class SentView
+    public partial class FormView
     {
-        public SentView()
+        public FormView()
         {
             InitializeComponent();
+            Loaded += OnFormViewLoaded;
+        }
+
+        private void OnFormViewLoaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            ErrorLogsCheckBox.Checked += OnErrorLogsCheckBoxToggle;
+            ErrorLogsCheckBox.Unchecked += OnErrorLogsCheckBoxToggle;
+        }
+
+        private void OnErrorLogsCheckBoxToggle(object sender, System.Windows.RoutedEventArgs e)
+        {
+            ScrollViewer.ScrollToEnd();
         }
     }
 }
