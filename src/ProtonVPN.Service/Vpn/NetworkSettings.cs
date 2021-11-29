@@ -38,11 +38,6 @@ namespace ProtonVPN.Service.Vpn
             _wintunRegistryFixer = wintunRegistryFixer;
         }
 
-        public bool IsNetworkAdapterAvailable(VpnProtocol vpnProtocol, OpenVpnAdapter? openVpnAdapter)
-        {
-            return _networkInterfaceLoader.GetByVpnProtocol(vpnProtocol, openVpnAdapter).Index != 0;
-        }
-
         public void OnVpnDisconnected(VpnState state)
         {
             if (state.VpnProtocol != VpnProtocol.WireGuard)
@@ -82,8 +77,7 @@ namespace ProtonVPN.Service.Vpn
 
         private void RestoreNetworkSettings(VpnProtocol vpnProtocol, OpenVpnAdapter? openVpnAdapter)
         {
-
-            uint interfaceIndex = _networkInterfaceLoader.GetByVpnProtocol(vpnProtocol, openVpnAdapter).Index;
+            uint interfaceIndex = _networkInterfaceLoader.GetByVpnProtocol(vpnProtocol, openVpnAdapter)?.Index ?? 0;
             if (interfaceIndex == 0)
             {
                 return;

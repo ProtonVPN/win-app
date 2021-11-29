@@ -59,7 +59,7 @@ namespace ProtonVPN.App.Test.Vpn.Connectors
         {
             GuestHoleState guestHoleState = new();
             guestHoleState.SetState(true);
-            _networkAdapterValidator.IsAdapterAvailable().Returns(true);
+            _networkAdapterValidator.IsOpenVpnAdapterAvailable().Returns(true);
             _guestHoleServers.GetAll().Returns(new List<GuestHoleServerContract>());
             _connector = new GuestHoleConnector(_serviceManager, _appSettings, guestHoleState, 
                 _config, _guestHoleServers, _networkAdapterValidator, _logger);

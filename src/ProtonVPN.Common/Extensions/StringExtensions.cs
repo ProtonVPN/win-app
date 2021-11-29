@@ -59,6 +59,11 @@ namespace ProtonVPN.Common.Extensions
             return value != null && value.EndsWith(other, StringComparison.OrdinalIgnoreCase);
         }
 
+        public static bool IsNotNullAndContains(this string value, string other)
+        {
+            return value != null && value.Contains(other);
+        }
+
         public static string FirstCharToUpper(this string value)
         {
             if (string.IsNullOrEmpty(value))

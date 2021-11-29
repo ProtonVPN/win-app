@@ -26,11 +26,14 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
 using Microsoft.Toolkit.Uwp.Notifications;
 using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.Networking;
+using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Servers.Models;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
+using ProtonVPN.Core.Vpn;
 using ProtonVPN.Core.Window.Popups;
 using ProtonVPN.Modals.SessionLimits;
 using ProtonVPN.Notifications;
@@ -40,7 +43,7 @@ using ProtonVPN.Windows.Popups.SubscriptionExpiration;
 
 namespace ProtonVPN.Windows.Popups.DeveloperTools
 {
-    public class DeveloperToolsPopupViewModel : BasePopupViewModel
+    public class DeveloperToolsPopupViewModel : BasePopupViewModel, IVpnStateAware
     {
         private readonly UserAuth _userAuth;
         private readonly IPopupWindows _popups;
@@ -96,6 +99,29 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
         public ICommand BasicToastCommand { get; set; }
         public ICommand ClearToastNotificationLogsCommand { get; set; }
         public ICommand TriggerIntentionalCrashCommand { get; set; }
+
+        
+        private bool _isConnected;
+        public bool IsConnected
+        {
+            get => _isConnected;
+            set
+            {
+                _isConnected = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+        private string _networkInformation;
+        public string NetworkInformation
+        {
+            get => _networkInformation;
+            set
+            {
+                _networkInformation = value;
+                NotifyOfPropertyChange();
+            }
+        }
 
         private string _toastNotificationLog;
         public string ToastNotificationLog
@@ -214,6 +240,41 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
         private void TriggerIntentionalCrashAction()
         {
             throw new StackOverflowException("Intentional crash test");
+        }
+
+        public async Task OnVpnStateChanged(VpnStateChangedEventArgs e)
+        {
+            if (e.State.Status == VpnStatus.Connected)
+            {
+                IsConnected = true;
+                NetworkInformation = GenerateNetworkAdapterString(e.State);
+            }
+            else
+            {
+                IsConnected = false;
+                NetworkInformation = "Disconnected";
+            }
+        }
+
+        private string GenerateNetworkAdapterString(VpnState vpnState)
+        {
+            string result = "Connected" + Environment.NewLine + GenerateVpnProtocolString(vpnState.VpnProtocol);
+            if (vpnState.VpnProtocol == VpnProtocol.WireGuard)
+            {
+                return result;
+            }
+
+            return result + Environment.NewLine + GenerateOpenVpnAdapterString(vpnState.NetworkAdapterType);
+        }
+
+        private string GenerateVpnProtocolString(VpnProtocol vpnProtocol)
+        {
+            return $"Network protocol: {vpnProtocol}";
+        }
+
+        private string GenerateOpenVpnAdapterString(OpenVpnAdapter? networkAdapterType)
+        {
+            return $"Network adapter: {networkAdapterType}";
         }
     }
 }

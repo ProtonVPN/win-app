@@ -106,7 +106,6 @@ namespace ProtonVPN.Vpn.Connection
             {
                 _vpnEndpoint = endpoint;
                 _logger.Info($"Connecting to {endpoint.Server.Ip}:{endpoint.Port} as it responded fastest.");
-                InvokeConnecting(endpoint);
                 _origin.Connect(endpoint, GetCredentials(endpoint), GetConfig(endpoint.VpnProtocol));
             }
             else
@@ -159,19 +158,6 @@ namespace ProtonVPN.Vpn.Connection
             }
 
             Queued(_ => InvokeDisconnected(), cancellationToken);
-        }
-
-        private void InvokeConnecting(VpnEndpoint endpoint)
-        {
-            StateChanged?.Invoke(this,
-                new EventArgs<VpnState>(new VpnState(
-                    VpnStatus.Connecting,
-                    VpnError.None,
-                    string.Empty,
-                    endpoint.Server.Ip,
-                    endpoint.VpnProtocol,
-                    _config.OpenVpnAdapter,
-                    endpoint.Server.Label)));
         }
 
         private void InvokeDisconnected()

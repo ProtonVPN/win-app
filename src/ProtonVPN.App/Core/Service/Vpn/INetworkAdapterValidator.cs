@@ -21,6 +21,6 @@ namespace ProtonVPN.Core.Service.Vpn
 {
     public interface INetworkAdapterValidator
     {
-        bool IsAdapterAvailable();
+        bool IsOpenVpnAdapterAvailable();
     }
 }

@@ -67,7 +67,7 @@ namespace ProtonVPN.Vpn.Connectors
 
         public async Task Connect()
         {
-            if (_networkAdapterValidator.IsAdapterAvailable())
+            if (_networkAdapterValidator.IsOpenVpnAdapterAvailable())
             {
                 VpnConnectionRequest request = new(
                     Servers(),

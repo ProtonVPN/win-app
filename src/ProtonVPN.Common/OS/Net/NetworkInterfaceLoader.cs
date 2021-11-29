@@ -53,11 +53,13 @@ namespace ProtonVPN.Common.OS.Net
 
         public INetworkInterface GetByVpnProtocol(VpnProtocol vpnProtocol, OpenVpnAdapter? openVpnAdapter)
         {
-            if (vpnProtocol == VpnProtocol.WireGuard)
-            {
-                return GetWireGuardTunInterface();
-            }
+            return vpnProtocol == VpnProtocol.WireGuard
+                ? GetWireGuardTunInterface()
+                : GetByOpenVpnAdapter(openVpnAdapter);
+        }
 
+        public INetworkInterface GetByOpenVpnAdapter(OpenVpnAdapter? openVpnAdapter)
+        {
             return openVpnAdapter switch
             {
                 OpenVpnAdapter.Tap => GetOpenVpnTapInterface(),

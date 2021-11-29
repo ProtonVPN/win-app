@@ -36,16 +36,17 @@ namespace ProtonVPN.Core.Vpn
         {
             Status = status;
             EntryIp = entryIp;
-            NetworkAdapterType = networkAdapterType;
             VpnProtocol = vpnProtocol;
+            NetworkAdapterType = networkAdapterType;
             Label = label;
         }
 
-        public VpnState(VpnStatus status, Server server = null, VpnProtocol vpnProtocol = VpnProtocol.Smart)
+        public VpnState(VpnStatus status, Server server = null, VpnProtocol vpnProtocol = VpnProtocol.Smart, OpenVpnAdapter? networkAdapterType = null)
         {
             Status = status;
             Server = server ?? Server.Empty();
             VpnProtocol = vpnProtocol;
+            NetworkAdapterType = networkAdapterType;
         }
 
         public override string ToString()

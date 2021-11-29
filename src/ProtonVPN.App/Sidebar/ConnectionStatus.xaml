@@ -133,10 +133,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </LinearGradientBrush>
             </Grid.Background>
         </Grid>
-        <announcements:AnnouncementsView DataContext="{Binding Announcements}"
-                                         VerticalAlignment="Top"
-                                         Margin="0,15,15,0"
-                                         HorizontalAlignment="Right"/>
         <Grid Visibility="{Binding Disconnected, Converter={StaticResource BoolToVis}}" Margin="36,24">
             <StackPanel Style="{StaticResource DisconnectedPanel}">
                 <StackPanel Orientation="Horizontal" ToolTip="{translations:Loc Sidebar_Connection_lbl_Disconnected_Info}">
@@ -299,6 +295,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </TextBlock>
             </StackPanel>
         </Grid>
+        <announcements:AnnouncementsView DataContext="{Binding Announcements}"
+                                         VerticalAlignment="Top"
+                                         Margin="0,13,34,0"
+                                         HorizontalAlignment="Right"/>
         <Button Style="{StaticResource QuickConnectButton}"
                 AutomationProperties.AutomationId="{StaticResource SidebarQuickConnectButton}" />
         <onboarding:Step Number="1"

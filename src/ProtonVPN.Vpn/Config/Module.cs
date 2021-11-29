@@ -29,6 +29,7 @@ using ProtonVPN.Vpn.Common;
 using ProtonVPN.Vpn.Connection;
 using ProtonVPN.Vpn.LocalAgent;
 using ProtonVPN.Vpn.Management;
+using ProtonVPN.Vpn.Networks;
 using ProtonVPN.Vpn.OpenVpn;
 using ProtonVPN.Vpn.SplitTunnel;
 using ProtonVPN.Vpn.SynchronizationEvent;
@@ -64,6 +65,8 @@ namespace ProtonVPN.Vpn.Config
         public IVpnConnection GetVpnConnection(IComponentContext c)
         {
             ILogger logger = c.Resolve<ILogger>();
+            INetworkAdapterManager networkAdapterManager = c.Resolve<INetworkAdapterManager>();
+            INetworkInterfaceLoader networkInterfaceLoader = c.Resolve<INetworkInterfaceLoader>();
             OpenVpnConfig config = c.Resolve<OpenVpnConfig>();
             ITaskQueue taskQueue = c.Resolve<ITaskQueue>();
             TcpPortScanner tcpPortScanner = c.Resolve<TcpPortScanner>();
@@ -84,9 +87,13 @@ namespace ProtonVPN.Vpn.Config
                             logger,
                             taskQueue,
                             endpointScanner,
-                            new QueueingEventsWrapper(
-                                taskQueue,
-                                new VpnProtocolWrapper(GetOpenVpnConnection(c), GetWireguardConnection(c)))))));
+                            new NetworkAdapterStatusWrapper(
+                                logger,
+                                networkAdapterManager,
+                                networkInterfaceLoader,
+                                new QueueingEventsWrapper(
+                                    taskQueue,
+                                    new VpnProtocolWrapper(GetOpenVpnConnection(c), GetWireguardConnection(c))))))));
         }
 
         private ISingleVpnConnection GetWireguardConnection(IComponentContext c)
