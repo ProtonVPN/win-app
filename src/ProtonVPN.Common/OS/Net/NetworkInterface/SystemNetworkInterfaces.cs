@@ -60,8 +60,7 @@ namespace ProtonVPN.Common.OS.Net.NetworkInterface
 
             foreach (System.Net.NetworkInformation.NetworkInterface i in interfaces)
             {
-                if (i.GetIPProperties().UnicastAddresses.FirstOrDefault(a => a.Address.Equals(localAddress)) !=
-                    null)
+                if (i.GetIPProperties().UnicastAddresses.FirstOrDefault(a => a.Address.Equals(localAddress)) != null)
                 {
                     return new SystemNetworkInterface(i);
                 }

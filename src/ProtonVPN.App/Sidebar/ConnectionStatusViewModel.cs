@@ -310,7 +310,7 @@ namespace ProtonVPN.Sidebar
                 return Translation.Get("WireGuard_lbl");
             }
 
-            return (string) _enumToDisplayTextConverter.Convert(e.State.VpnProtocol, typeof(string), null, null);
+            return (string)_enumToDisplayTextConverter.Convert(e.State.VpnProtocol, typeof(string), null, null);
         }
 
         private void SetKillSwitchActivated(bool isNetworkBlocked, VpnStatus vpnStatus)

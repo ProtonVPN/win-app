@@ -17,18 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Networking;
-using ProtonVPN.Common.OS.Net.NetworkInterface;
+using System.Collections.Generic;
 
-namespace ProtonVPN.Common.OS.Net
+namespace ProtonVPN.Vpn.Networks.Adapters
 {
-    public interface INetworkInterfaceLoader
+    public interface INetworkAdaptersLoader
     {
-        INetworkInterface GetOpenVpnTapInterface();
-        INetworkInterface GetOpenVpnTunInterface();
-        INetworkInterface GetWireGuardTunInterface();
-
-        INetworkInterface GetByVpnProtocol(VpnProtocol vpnProtocol, OpenVpnAdapter? openVpnAdapter);
-        INetworkInterface GetByOpenVpnAdapter(OpenVpnAdapter? openVpnAdapter);
+        IList<INetworkAdapter> GetAll();
     }
 }

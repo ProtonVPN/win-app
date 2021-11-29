@@ -21,6 +21,7 @@ using System;
 using System.Dynamic;
 using System.Threading;
 using System.Threading.Tasks;
+using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.ConnectionInfo;
@@ -52,6 +53,8 @@ namespace ProtonVPN.Vpn
         private readonly INotificationSender _notificationSender;
         private readonly IAuthCertificateManager _authCertificateManager;
         private readonly IVpnServiceManager _vpnServiceManager;
+        private readonly INetworkAdapterValidator _networkAdapterValidator;
+        private readonly ILogger _logger;
 
         private string _lastAuthCertificate = string.Empty;
         private bool _loggedIn;
@@ -66,7 +69,9 @@ namespace ProtonVPN.Vpn
             IVpnManager vpnManager, 
             INotificationSender notificationSender,
             IAuthCertificateManager authCertificateManager,
-            IVpnServiceManager vpnServiceManager)
+            IVpnServiceManager vpnServiceManager,
+            INetworkAdapterValidator networkAdapterValidator,
+            ILogger logger)
         {
             _modals = modals;
             _appSettings = appSettings;
@@ -79,6 +84,8 @@ namespace ProtonVPN.Vpn
             _notificationSender = notificationSender;
             _authCertificateManager = authCertificateManager;
             _vpnServiceManager = vpnServiceManager;
+            _networkAdapterValidator = networkAdapterValidator;
+            _logger = logger;
         }
 
         public async Task OnVpnStateChanged(VpnStateChangedEventArgs e)
@@ -164,6 +171,9 @@ namespace ProtonVPN.Vpn
                 case VpnError.SessionLimitReached:
                     ShowMaximumDeviceLimitModalViewModel();
                     break;
+                case VpnError.NoTapAdaptersError:
+                    await OnNoTapAdaptersErrorAsync(error, e.NetworkBlocked);
+                    break;
                 default:
                     ShowDisconnectErrorModalViewModel(error, e.NetworkBlocked);
                     break;
@@ -210,6 +220,24 @@ namespace ProtonVPN.Vpn
                     return true;
                 default:
                     return false;
+            }
+        }
+
+        private async Task OnNoTapAdaptersErrorAsync(VpnError error, bool networkBlocked)
+        {
+            if (_networkAdapterValidator.IsOpenVpnAdapterAvailable())
+            {
+                _logger.Info("[DisconnectError] Disconnected with NoTapAdaptersError but currently an OpenVPN adapter is available. Requesting a reconnection.");
+                VpnReconnectionSettings reconnectionSettings = new()
+                {
+                    IsToReconnectIfDisconnected = true
+                };
+                await _vpnManager.ReconnectAsync(reconnectionSettings);
+            }
+            else
+            {
+                _logger.Warn("[DisconnectError] Disconnected with NoTapAdaptersError and no OpenVPN adapter is available. Showing error modal.");
+                ShowDisconnectErrorModalViewModel(error, networkBlocked);
             }
         }
 
