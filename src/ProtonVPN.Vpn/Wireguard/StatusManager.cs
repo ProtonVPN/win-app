@@ -38,6 +38,7 @@ namespace ProtonVPN.Vpn.WireGuard
         private readonly RingLogger _ringLogger;
         private readonly SingleAction _receiveLogsAction;
         private VpnError _lastError = VpnError.None;
+        private bool _isHandshakeResponseHandled;
 
         public StatusManager(ILogger logger, string logPath)
         {
@@ -51,12 +52,14 @@ namespace ProtonVPN.Vpn.WireGuard
         public void Start()
         {
             _ringLogger.Start();
+            _isHandshakeResponseHandled = false;
             _receiveLogsAction.Run();
         }
 
         public void Stop()
         {
             _receiveLogsAction.Cancel();
+            _isHandshakeResponseHandled = false;
             _ringLogger.Stop();
         }
 
@@ -71,9 +74,11 @@ namespace ProtonVPN.Vpn.WireGuard
                 {
                     _logger.Info(GetFormattedMessage(line));
 
-                    if (line.Contains("Interface up"))
+                    if (line.Contains("Receiving handshake response from peer") && !_isHandshakeResponseHandled)
                     {
+                        _logger.Info("Invoking connected state after receiving successful handshake response.");
                         InvokeStateChange(VpnStatus.Connected);
+                        _isHandshakeResponseHandled = true;
                     }
                     else if (line.Contains("Shutting down"))
                     {
