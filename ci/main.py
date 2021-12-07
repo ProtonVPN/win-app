@@ -8,7 +8,6 @@ import signing
 import tests
 import installer
 import ssh
-import os
 import guest_hole_server_loader
 from pathlib import Path
 
