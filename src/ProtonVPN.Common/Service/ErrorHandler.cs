@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -39,12 +39,11 @@ namespace ProtonVPN.Common.Service
 
         public bool HandleError(Exception e)
         {
-            if (e.GetBaseException() is PipeException pipeException && 
-                pipeException.Message.Contains("There was an error reading from the pipe: The pipe has been ended. (109, 0x6d)."))
+            if (e.GetBaseException() is PipeException pipeException && pipeException.Message.Contains("0x6d)"))
             {
-                _logger.Info("The service communication pipe has been ended, most likely because the user is exiting the app. " +
-                             "If that is the case, the following pipe exception message can be ignored: " + e.CombinedMessage());
-             
+                _logger.Info(
+                    "The service communication pipe has been ended, most likely because the service is shutting down.");
+
                 return false;
             }
 
