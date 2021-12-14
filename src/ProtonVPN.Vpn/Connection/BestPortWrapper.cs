@@ -149,7 +149,8 @@ namespace ProtonVPN.Vpn.Connection
         {
             try
             {
-                // Delay invocation of StateChanged(Disconnected) at least for DisconnectDelay duration after Connect request.
+                // Delay invocation of StateChanged(Disconnected) at least for DisconnectDelay duration after Connect
+                // request.
                 await _disconnectDelay;
             }
             catch (TaskCanceledException)
@@ -165,7 +166,7 @@ namespace ProtonVPN.Vpn.Connection
             StateChanged?.Invoke(this,
                 new EventArgs<VpnState>(new VpnState(
                     VpnStatus.Disconnected,
-                    VpnError.TimeoutError,
+                    VpnError.PingTimeoutError,
                     string.Empty,
                     _vpnEndpoint.Server.Ip,
                     _config.VpnProtocol,

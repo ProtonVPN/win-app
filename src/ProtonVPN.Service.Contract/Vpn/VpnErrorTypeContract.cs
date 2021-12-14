@@ -52,7 +52,10 @@ namespace ProtonVPN.Service.Contract.Vpn
         TlsCertificateError,
 
         [EnumMember]
-        TimeoutError,
+        PingTimeoutError,
+
+        [EnumMember]
+        AdapterTimeoutError,
 
         [EnumMember]
         UserTierTooLowError,
@@ -83,6 +86,9 @@ namespace ProtonVPN.Service.Contract.Vpn
 
         [EnumMember]
         IncorrectVpnConfig,
+
+        [EnumMember]
+        ServerUnreachable,
 
         [EnumMember]
         GuestSession = 86100,

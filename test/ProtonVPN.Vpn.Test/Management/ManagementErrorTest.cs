@@ -50,7 +50,7 @@ namespace ProtonVPN.Vpn.Test.Management
         [DataRow(VpnError.NoTapAdaptersError, ">LOG:1579682468,F,There are no TAP-Win32 adapters on this system.")]
         [DataRow(VpnError.TapRequiresUpdateError, ",,,This version of OpenVPN requires a TAP-Windows driver that is at least version XXX")]
         [DataRow(VpnError.TapRequiresUpdateError, ",,,This version of OpenVPN requires a TAP-Win32 driver that is at least version XXX")]
-        [DataRow(VpnError.TimeoutError, ",,,Timeout,,,")]
+        [DataRow(VpnError.AdapterTimeoutError, ",,,Timeout,,,")]
         [DataRow(VpnError.NetshError, ",,,NETSH: command failed,,,")]
         [DataRow(VpnError.TlsCertificateError, ">LOG:1579630832,,VERIFY SCRIPT ERROR: depth=0, CN=nl-free.proton.com")]
         [DataRow(VpnError.Unknown, ">LOG:1579630832,,VERIFY SCRIPT OK: depth=0, CN=nl-free.proton.com")]

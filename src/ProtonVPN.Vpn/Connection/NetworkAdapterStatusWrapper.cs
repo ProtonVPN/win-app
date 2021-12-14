@@ -31,10 +31,6 @@ using Sentry.Protocol;
 
 namespace ProtonVPN.Vpn.Connection
 {
-    /// <summary>
-    /// Checks if the selected network adapter is disabled, and enables it.
-    /// A wrapper around <see cref="ISingleVpnConnection"/>.
-    /// </summary>
     internal class NetworkAdapterStatusWrapper : ISingleVpnConnection
     {
         private readonly ILogger _logger;
@@ -72,7 +68,8 @@ namespace ProtonVPN.Vpn.Connection
 
             if (_endpoint.VpnProtocol == VpnProtocol.WireGuard)
             {
-                _logger.Info("[NetworkAdapterStatusWrapper] WireGuard protocol selected. No network adapters to check.");
+                _logger.Info("[NetworkAdapterStatusWrapper] WireGuard protocol selected. " +
+                             "No network adapters to check.");
                 Connect();
             }
             else if (IsOpenVpnNetworkAdapterAvailable(config.OpenVpnAdapter))
@@ -134,13 +131,15 @@ namespace ProtonVPN.Vpn.Connection
         private void EnableOpenVpnAdapters()
         {
             _logger.Warn($"[NetworkAdapterStatusWrapper] OpenVPN network adapter not found " +
-                         $"(Protocol '{_endpoint.VpnProtocol}', Adapter '{_config.OpenVpnAdapter}'). Attempting to enable them if disabled.");
+                         $"(Protocol '{_endpoint.VpnProtocol}', Adapter '{_config.OpenVpnAdapter}'). " +
+                         $"Attempting to enable them if disabled.");
             _networkAdapterManager.EnableOpenVpnAdapters();
         }
 
         private void HandleNoTunError()
         {
-            _logger.Warn("[NetworkAdapterStatusWrapper] OpenVPN TUN network adapter not found. Checking if TAP is available.");
+            _logger.Warn("[NetworkAdapterStatusWrapper] OpenVPN TUN network adapter not found. " +
+                         "Checking if TAP is available.");
             if (IsOpenVpnNetworkAdapterAvailable(OpenVpnAdapter.Tap))
             {
                 FallbackToTapAndConnect();
@@ -153,7 +152,8 @@ namespace ProtonVPN.Vpn.Connection
 
         private void FallbackToTapAndConnect()
         {
-            _logger.Info("[NetworkAdapterStatusWrapper] OpenVPN TAP network adapter found. Connecting using TAP instead of TUN.");
+            _logger.Info("[NetworkAdapterStatusWrapper] OpenVPN TAP network adapter found. " +
+                         "Connecting using TAP instead of TUN.");
             SendTunFallbackEvent();
             _config.OpenVpnAdapter = OpenVpnAdapter.Tap;
             Connect();
@@ -200,7 +200,9 @@ namespace ProtonVPN.Vpn.Connection
             {
                 HandleConnectedWithWireGuard();
             }
-            else if (e.Data.Error != VpnError.None && e.Data.Error != VpnError.NoneKeepEnabledKillSwitch)
+            else if (e.Data.Error != VpnError.None &&
+                     e.Data.Error != VpnError.NoneKeepEnabledKillSwitch &&
+                     e.Data.Status == VpnStatus.Disconnecting)
             {
                 HandleVpnError(e.Data);
             }
@@ -210,7 +212,8 @@ namespace ProtonVPN.Vpn.Connection
 
         private void HandleConnectedWithWireGuard()
         {
-            _logger.Info("[NetworkAdapterStatusWrapper] Connected with WireGuard. Disabling duplicated WireGuard adapters.");
+            _logger.Info("[NetworkAdapterStatusWrapper] Connected with WireGuard. " +
+                         "Disabling duplicated WireGuard adapters.");
             _networkAdapterManager.DisableDuplicatedWireGuardAdapters();
         }
 

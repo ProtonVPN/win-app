@@ -39,14 +39,14 @@ namespace ProtonVPN.Core.User
 
         public string Ip()
         {
-            var ip = _userStorage.Location().Ip;
+            string ip = _userStorage.Location().Ip;
 
             if (string.IsNullOrEmpty(ip))
             {
                 return string.Empty;
             }
 
-            var parts = ip.Split('.');
+            string[] parts = ip.Split('.');
             if (parts.Length >= 3)
             {
                 return string.Join(".", parts[0], parts[1], parts[2], 0);
