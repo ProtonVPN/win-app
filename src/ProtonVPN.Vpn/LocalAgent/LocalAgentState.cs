@@ -29,5 +29,6 @@ namespace ProtonVPN.Vpn.LocalAgent
         HardJailed,
         ClientCertificateExpiredError,
         ClientCertificateUnknownCA,
+        ServerUnreachable,
     }
 }

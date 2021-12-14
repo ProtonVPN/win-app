@@ -110,7 +110,7 @@ namespace ProtonVPN.Vpn.WireGuard
             if (!_isConnected)
             {
                 _logger.Info("[WireGuardConnection] timeout reached, disconnecting.");
-                Disconnect(VpnError.TimeoutError);
+                Disconnect(VpnError.AdapterTimeoutError);
             }
         }
 

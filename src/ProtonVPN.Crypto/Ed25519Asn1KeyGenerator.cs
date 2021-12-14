@@ -39,7 +39,9 @@ namespace ProtonVPN.Crypto
             byte[] asn1SecretKey = SecretKeyAsn1Header.Concat(secretKeyParams.GetEncoded()).ToArray();
             byte[] asn1PublicKey = PublicKeyAsn1Header.Concat(publicKeyParams.GetEncoded()).ToArray();
 
-            return new AsymmetricKeyPair(new SecretKey(asn1SecretKey, KeyAlgorithm.Ed25519), new PublicKey(asn1PublicKey, KeyAlgorithm.Ed25519));
+            return new AsymmetricKeyPair(
+                new SecretKey(asn1SecretKey, KeyAlgorithm.Ed25519), 
+                new PublicKey(asn1PublicKey, KeyAlgorithm.Ed25519));
         }
     }
 }

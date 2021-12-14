@@ -45,6 +45,7 @@ namespace ProtonVPN.Vpn.Networks
 
         public int DisableDuplicatedWireGuardAdapters()
         {
+            _logger.Info("[NetworkAdapterManager] Checking for duplicate WireGuard adapters.");
             int disabledAdapters = 0;
             try
             {
@@ -54,12 +55,14 @@ namespace ProtonVPN.Vpn.Networks
                     _logger.Warn($"[NetworkAdapterManager] Found {duplicatedWireGuardAdapters.Count} " +
                                  "duplicated WireGuard network adapter(s) to be disabled.");
                     disabledAdapters = DisableAdapters(duplicatedWireGuardAdapters);
-                    _logger.Info($"[NetworkAdapterManager] Disabled {disabledAdapters} duplicated WireGuard network adapter(s).");
+                    _logger.Info($"[NetworkAdapterManager] Disabled {disabledAdapters} " +
+                                 "duplicated WireGuard network adapter(s).");
                 }
             }
             catch (Exception e)
             {
-                _logger.Error("[NetworkAdapterManager] An error occurred when disabling duplicated WireGuard network adapters.", e);
+                _logger.Error("[NetworkAdapterManager] An error occurred when disabling duplicated " +
+                              "WireGuard network adapters.", e);
                 disabledAdapters = 0;
             }
 
@@ -134,12 +137,14 @@ namespace ProtonVPN.Vpn.Networks
                 }
                 catch (Exception e)
                 {
-                    _logger.Error($"[NetworkAdapterManager] Failed to disable network adapter. {adapterDescription}", e);
+                    _logger.Error($"[NetworkAdapterManager] Failed to disable network adapter. {adapterDescription}",
+                                  e);
                 }
             }
             else
             {
-                _logger.Info($"[NetworkAdapterManager] The network adapter is already Disconnected. {adapterDescription}");
+                _logger.Info("[NetworkAdapterManager] The network adapter is already Disconnected. " +
+                             $"{adapterDescription}");
             }
 
             return wasAdapterDisabled;
@@ -147,14 +152,15 @@ namespace ProtonVPN.Vpn.Networks
 
         public int EnableOpenVpnAdapters()
         {
+            _logger.Info("[NetworkAdapterManager] Checking for OpenVPN adapters.");
             int enabledAdapters = 0;
             try
             {
                 IList<INetworkAdapter> openVpnAdapters = GetOpenVpnAdapters();
                 if (openVpnAdapters.Any())
                 {
-                    _logger.Info($"[NetworkAdapterManager] Found {openVpnAdapters.Count} OpenVPN network adapter(s). " +
-                                 $"Attempting to enable the disconnected ones.");
+                    _logger.Info($"[NetworkAdapterManager] Found {openVpnAdapters.Count} " +
+                                 "OpenVPN network adapter(s). Attempting to enable the disconnected ones.");
                     enabledAdapters = EnableAdapters(openVpnAdapters);
                     _logger.Info($"[NetworkAdapterManager] Enabled {enabledAdapters} OpenVPN network adapter(s).");
                 }
@@ -230,7 +236,8 @@ namespace ProtonVPN.Vpn.Networks
                 }
                 catch (Exception e)
                 {
-                    _logger.Error($"[NetworkAdapterManager] Failed to enable network adapter. {adapterDescription}", e);
+                    _logger.Error($"[NetworkAdapterManager] Failed to enable network adapter. {adapterDescription}",
+                                  e);
                 }
             }
             else

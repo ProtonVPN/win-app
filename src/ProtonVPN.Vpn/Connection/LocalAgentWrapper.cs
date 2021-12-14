@@ -138,6 +138,9 @@ namespace ProtonVPN.Vpn.Connection
                     _isHardJailed = true;
                     InvokeStateChange(VpnStatus.Connecting);
                     break;
+                case LocalAgentState.ServerUnreachable:
+                    _origin.Disconnect(VpnError.ServerUnreachable);
+                    break;
             }
         }
 

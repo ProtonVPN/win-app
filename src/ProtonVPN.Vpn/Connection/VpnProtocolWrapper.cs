@@ -54,7 +54,7 @@ namespace ProtonVPN.Vpn.Connection
         {
             if (VpnConnection == null)
             {
-                OnStateChanged(this, new EventArgs<VpnState>(new VpnState(VpnStatus.Disconnected, VpnProtocol.Smart)));
+                OnStateChanged(this, new EventArgs<VpnState>(new VpnState(VpnStatus.Disconnected, _vpnProtocol)));
             }
             else
             {
