@@ -44,7 +44,7 @@ namespace ProtonVPN.Core.Auth
         {
             if (apiResponseResult.Actions.IsNullOrEmpty())
             {
-                return apiResponseResult.Value.Code == ResponseCodes.NoVpnConnectionsAssigned
+                return apiResponseResult.Value?.Code == ResponseCodes.NoVpnConnectionsAssigned
                     ? Fail(AuthError.NoVpnAccess)
                     : Fail(apiResponseResult.Error);
             }
