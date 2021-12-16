@@ -42,6 +42,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </DataTrigger>
             </Style.Triggers>
         </Style>
+        <Style x:Key="AdornerTextStyle" TargetType="{x:Type TextBlock}">
+            <Setter Property="Opacity" Value="0.5" />
+            <Setter Property="FontStyle" Value="Oblique" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="Margin" Value="-7,0,0,0" />
+            <Setter Property="Padding" Value="0,0,60,0" />
+            <Setter Property="MaxWidth" Value="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType=ScrollViewer}}"/>
+        </Style>
     </UserControl.Resources>
     <StackPanel>
         <ScrollViewer Name="ScrollViewer"
@@ -71,6 +79,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                          Text="{Binding Value, UpdateSourceTrigger=PropertyChanged}"
                                          Foreground="White"
                                          Padding="8"
+                                         adorners:Watermark.TextStyle="{StaticResource AdornerTextStyle}"
                                          adorners:Watermark.Text="{Binding Placeholder}">
                                     <TextBox.Style>
                                         <Style TargetType="TextBox">
@@ -101,6 +110,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                          Text="{Binding Value, UpdateSourceTrigger=PropertyChanged}"
                                          Foreground="White"
                                          Padding="8"
+                                         adorners:Watermark.TextStyle="{StaticResource AdornerTextStyle}"
                                          adorners:Watermark.Text="{Binding Placeholder}">
                                     <TextBox.Style>
                                         <Style TargetType="TextBox">
