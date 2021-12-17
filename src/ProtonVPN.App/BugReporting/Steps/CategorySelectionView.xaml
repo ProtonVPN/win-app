@@ -51,30 +51,38 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Style>
     </UserControl.Resources>
     <StackPanel>
-        <TextBlock Text="{translations:Loc BugReport_lbl_WhatIsTheIssue}" Foreground="White" FontSize="32" HorizontalAlignment="Center" />
-        <ItemsControl ItemsSource="{Binding Categories}" Margin="0,32,0,0">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <StackPanel />
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate DataType="{x:Type reportAnIssue:IssueCategory}">
-                    <Border Style="{StaticResource IssueCategoryBorder}">
-                        <Button Style="{StaticResource CategoryButton}"
-                                Command="{Binding DataContext.SelectCategoryCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
-                                CommandParameter="{Binding SubmitLabel}"
-                                HorizontalContentAlignment="Stretch">
-                            <DockPanel>
-                                <TextBlock Text="{Binding Label}" FontSize="14" />
-                                <fa:FontAwesome Icon="ChevronRight"
-                                                VerticalAlignment="Center"
-                                                HorizontalAlignment="Right" />
-                            </DockPanel>
-                        </Button>
-                    </Border>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+        <TextBlock Text="{translations:Loc BugReport_lbl_WhatIsTheIssue}"
+                   Foreground="White"
+                   FontSize="32"
+                   HorizontalAlignment="Center" />
+        <ScrollViewer VerticalAlignment="Stretch"
+                      MaxHeight="370"
+                      Margin="-15,16,-15,0"
+                      Template="{StaticResource DarkScrollViewerControlTemplate}">
+            <ItemsControl ItemsSource="{Binding Categories}" Margin="30,0">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate DataType="{x:Type reportAnIssue:IssueCategory}">
+                        <Border Style="{StaticResource IssueCategoryBorder}">
+                            <Button Style="{StaticResource CategoryButton}"
+                                    Command="{Binding DataContext.SelectCategoryCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
+                                    CommandParameter="{Binding SubmitLabel}"
+                                    HorizontalContentAlignment="Stretch">
+                                <DockPanel>
+                                    <TextBlock Text="{Binding Label}" FontSize="14" />
+                                    <fa:FontAwesome Icon="ChevronRight"
+                                                    VerticalAlignment="Center"
+                                                    HorizontalAlignment="Right" />
+                                </DockPanel>
+                            </Button>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
     </StackPanel>
 </UserControl>
