@@ -30,24 +30,24 @@ namespace ProtonVPN.Core.ReportAnIssue
             {
                 new()
                 {
-                    Label = "Slow speed",
-                    SubmitLabel = "Slow speed",
+                    Label = "Browsing speed",
+                    SubmitLabel = "Browsing speed",
                     Suggestions =
                         new List<IssueSuggestion>
                         {
                             new()
                             {
-                                Text = "Secure Core slows down your connection. Use it only when necessary.",
+                                Text = "Turn off Secure Core. It can sometimes slow down your connection.",
                                 Link = "https://protonvpn.com/support/secure-core-vpn"
                             },
                             new()
                             {
-                                Text = "Switch to another protocol from the settings.",
+                                Text = "Use another VPN protocol.",
                                 Link = "https://protonvpn.com/support/how-to-change-vpn-protocols"
                             },
                             new()
                             {
-                                Text = "Select a server closer to your location."
+                                Text = "Try a different server. Servers in nearby countries often have faster connection speeds."
                             }
                         },
                     InputFields = new List<IssueInput>
@@ -88,12 +88,12 @@ namespace ProtonVPN.Core.ReportAnIssue
                 },
                 new()
                 {
-                    Label = "Can't connect to VPN",
-                    SubmitLabel = "Can't connect to VPN",
+                    Label = "Connecting to VPN",
+                    SubmitLabel = "Connecting to VPN",
                     Suggestions =
                         new List<IssueSuggestion>
                         {
-                            new() { Text = "Try connecting to another server." },
+                            new() { Text = "Try a different server. Servers in nearby countries often have faster connection speeds." },
                             new()
                             {
                                 Text = "Switch to another protocol from the settings.",
@@ -101,7 +101,7 @@ namespace ProtonVPN.Core.ReportAnIssue
                             },
                             new()
                             {
-                                Text = "Try disabling any antivirus/firewall to avoid interference with ProtonVPN."
+                                Text = "Turn off any antivirus or firewall software. They could be interfering with your VPN connection."
                             }
                         },
                     InputFields = new List<IssueInput>
@@ -116,15 +116,15 @@ namespace ProtonVPN.Core.ReportAnIssue
                         },
                         new()
                         {
-                            Label = "What are the exact steps you performed? Include any error you experienced.",
-                            SubmitLabel = "What are the exact steps you performed? Include any error you experienced.",
+                            Label = "What steps have you taken to try to connect to VPN?",
+                            SubmitLabel = "What steps have you taken to try to connect to VPN?",
                             Type = InputType.MultiLineInput,
                             IsMandatory = true
                         },
                         new()
                         {
-                            Label = "What have you tried already from the suggestions?",
-                            SubmitLabel = "What have you tried already from the suggestions?",
+                            Label = "Have you tried any quick fixes? If so, which ones?",
+                            SubmitLabel = "Have you tried any quick fixes? If so, which ones?",
                             Type = InputType.MultiLineInput,
                             IsMandatory = true
                         }
@@ -132,20 +132,20 @@ namespace ProtonVPN.Core.ReportAnIssue
                 },
                 new()
                 {
-                    Label = "Connection not stable",
-                    SubmitLabel = "Connection not stable",
+                    Label = "Weak or unstable connection",
+                    SubmitLabel = "Weak or unstable connection",
                     Suggestions =
                         new List<IssueSuggestion>
                         {
-                            new() { Text = "Try connecting to another server." },
+                            new() { Text = "Try a different server. Servers in nearby countries often have faster connection speeds." },
                             new()
                             {
-                                Text = "Switch to another protocol from the settings.",
+                                Text = "Use another VPN protocol.",
                                 Link = "https://protonvpn.com/support/how-to-change-vpn-protocols"
                             },
                             new()
                             {
-                                Text = "Try disabling any antivirus/firewall to avoid interference with ProtonVPN."
+                                Text = "Turn off any antivirus or firewall software. They could be interfering with your VPN connection."
                             }
                         },
                     InputFields = new List<IssueInput>
@@ -160,10 +160,9 @@ namespace ProtonVPN.Core.ReportAnIssue
                         },
                         new()
                         {
-                            Label = "Are you receiving any error message?",
-                            SubmitLabel = "Are you receiving any error message?",
+                            Label = "Did you get an error message? If so, what did it say?",
+                            SubmitLabel = "Did you get an error message? If so, what did it say?",
                             Type = InputType.MultiLineInput,
-                            Placeholder = "Example: an application fails to load content",
                             IsMandatory = true
                         },
                         new()
@@ -177,13 +176,13 @@ namespace ProtonVPN.Core.ReportAnIssue
                 },
                 new()
                 {
-                    Label = "Application issue",
-                    SubmitLabel = "Application issue",
+                    Label = "Using the app",
+                    SubmitLabel = "Using the app",
                     Suggestions =
                         new List<IssueSuggestion>
                         {
-                            new() { Text = "Try logging out/logging in" },
-                            new() { Text = "Restart the app" }
+                            new() { Text = "Log out and log back in." },
+                            new() { Text = "Restart the app." }
                         },
                     InputFields = new List<IssueInput>
                     {
@@ -203,8 +202,8 @@ namespace ProtonVPN.Core.ReportAnIssue
                         },
                         new()
                         {
-                            Label = "What have you tried already from the suggestions?",
-                            SubmitLabel = "What have you tried already from the suggestions?",
+                            Label = "Have you tried any quick fixes? If so, which ones?",
+                            SubmitLabel = "Have you tried any quick fixes? If so, which ones?",
                             Type = InputType.MultiLineInput,
                             IsMandatory = true
                         }
@@ -212,17 +211,69 @@ namespace ProtonVPN.Core.ReportAnIssue
                 },
                 new()
                 {
-                    Label = "Other",
-                    SubmitLabel = "Other",
+                    Label = "Streaming",
+                    SubmitLabel = "Streaming",
+                    Suggestions =
+                        new List<IssueSuggestion>
+                        {
+                            new()
+                            {
+                                Text = "Try a different PLUS server. Just so you know, streaming is only available on a PLUS subscription."
+                            },
+                            new()
+                            {
+                                Text = "Clear your cache. You can do this in your browser settings.",
+                                Link = "https://protonvpn.com/support/clear-browser-cache-cookies"
+                            },
+                            new()
+                            {
+                                Text = "Try a different web browser."
+                            },
+                            new()
+                            {
+                                Text = "Turn off any ad blockers or proxies. If you use NetShield, set it to \"don’t block\"."
+                            },
+                        },
+                    InputFields = new List<IssueInput>
+                    {
+                        new()
+                        {
+                            Label = "Which streaming service are you trying to use?",
+                            SubmitLabel = "Which streaming service are you trying to use?",
+                            Type = InputType.MultiLineInput,
+                            IsMandatory = true,
+                            Placeholder = "Netflix, Disney+, HBO"
+                        },
+                        new()
+                        {
+                            Label = "Are you using a custom DNS, proxy, or NetShield?",
+                            SubmitLabel = "Are you using a custom DNS, proxy, or NetShield?",
+                            Type = InputType.MultiLineInput,
+                            IsMandatory = true
+                        },
+                        new()
+                        {
+                            Label = "What went wrong? Include any error messages you received.",
+                            SubmitLabel = "What went wrong? Include any error messages you received.",
+                            Type = InputType.MultiLineInput,
+                            IsMandatory = true
+                        },
+                    }
+                },
+                new()
+                {
+                    Label = "Something else",
+                    SubmitLabel = "Something else",
                     Suggestions = new List<IssueSuggestion>(),
                     InputFields = new List<IssueInput>
                     {
                         new()
                         {
-                            Label = "Describe your issue in detail and the steps you took.",
-                            SubmitLabel = "Describe your issue in detail and the steps you took.",
+                            Label = "What went wrong?",
+                            SubmitLabel = "What went wrong?",
                             Type = InputType.MultiLineInput,
-                            IsMandatory = true
+                            IsMandatory = true,
+                            Placeholder = "Please describe the problem in as much detail as you can. If there was an error message, let us know what it said."
                         }
                     }
                 }

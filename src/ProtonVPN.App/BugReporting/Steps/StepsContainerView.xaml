@@ -47,7 +47,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <TextBlock Foreground="#9CA0AA" FontSize="12" HorizontalAlignment="Center">
                         <Run Text="{translations:Loc BugReport_lbl_Step}" />
                         <Run Text="{Binding Step}" />
-                        <Run Text="of 3" />
+                        <Run Text="{translations:Loc BugReport_lbl_of}"/>
+                        <Run Text="3" />
                     </TextBlock>
                 </Grid>
                 <controls:ProgressBar Margin="0,8,0,0"
