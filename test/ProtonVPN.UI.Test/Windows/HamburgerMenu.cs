@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using OpenQA.Selenium;
 using ProtonVPN.UI.Test.TestsHelper;
 
 namespace ProtonVPN.UI.Test.Windows
@@ -37,6 +38,7 @@ namespace ProtonVPN.UI.Test.Windows
 
         public HamburgerMenu ClickReportBug()
         {
+            WaitUntilDisplayed(By.Name("Report an Issue"), 10);
             ClickOnObjectWithId("MenuReportBugButton");
             return this;
         }

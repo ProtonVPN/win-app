@@ -81,7 +81,7 @@ namespace ProtonVPN.UI.Test.Windows
 
         public LoginWindow WaitUntilLoginIsFinished()
         {
-            WaitUntilElementIsNotVisible(By.ClassName("Loading"), 15);
+            WaitUntilElementIsNotVisible(By.ClassName("Loading"), 20);
             return this;
         }
 
