@@ -30,7 +30,7 @@ namespace ProtonVPN.UI.Test.Results
     {
         private readonly MainWindow _mainWindow = new MainWindow();
         private readonly LoginWindow _loginWindow = new LoginWindow();
-        private readonly CommonAPI _client = new CommonAPI("http://ip-api.com");
+        private readonly CommonAPI _client = new CommonAPI("http://ipwhois.app");
 
         public MainWindowResults VerifyUserIsLoggedIn()
         {
@@ -66,9 +66,10 @@ namespace ProtonVPN.UI.Test.Results
         public async Task<MainWindowResults> CheckIfCorrectCountryIsShownAsync()
         {
             string region = await _client.GetCountry();
+            region = region.Replace(" ", "");
             string dashboardRegionName = Session.FindElementByAccessibilityId("EntryCountryAndServer").Text;
             dashboardRegionName = dashboardRegionName.Split('»')[0].Replace(" ", "");
-            Assert.IsTrue(dashboardRegionName.Contains(region.Replace(" ", "")), "Incorrect country name is displayed. API returned country: " + region + " App Country: " +  dashboardRegionName);
+            Assert.IsTrue(region.Contains(dashboardRegionName.Replace(" ", "")), "Incorrect country name is displayed. API returned country: " + region + " App Country: " +  dashboardRegionName);
             return this;
         }
 

@@ -17,39 +17,53 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 using ProtonVPN.UI.Test.TestsHelper;
 
 namespace ProtonVPN.UI.Test.Windows
 {
     public class BugReportWindow : UIActions
     {
-        public BugReportWindow EnterYourEmail(string text)
+
+        public BugReportWindow SelectIssue(string issueType)
         {
-            InsertTextIntoFieldWithId("ReportBugEmailTextBlock", text);
+            ClickOnObjectWithName(issueType);
             return this;
         }
 
-        public BugReportWindow EnterWhatWentWrong(string text)
+        public BugReportWindow PressContactUs()
         {
-            InsertTextIntoFieldWithId("ReportBugIssueTextBlock", text);
+            ClickOnObjectWithName("Contact us");
             return this;
         }
 
-        public BugReportWindow EnterStepsToReproduce(string text)
+        public BugReportWindow FillBugReportForm(string text, int amountOfFieldsToFill)
         {
-            InsertTextIntoFieldWithId("ReportBugStepsTextBlock", text);
+            Actions actions = new Actions(Session);
+            ClickOnObjectWithName("This email will be used to contact you regarding this issue.");
+            actions.SendKeys("test@protonmail.com");
+            for(int i = 0; i < amountOfFieldsToFill; i++)
+            {
+                actions.SendKeys(Keys.Tab);
+                actions.SendKeys(text);
+            }
+            actions.Perform();
             return this;
         }
 
         public BugReportWindow ClickSend()
         {
-            ClickOnObjectWithName("Send");
+            ClickOnObjectWithName("Send report");
             return this;
         }
 
         public BugReportWindow VerifySendingIsSuccessful()
         {
-            CheckIfObjectWithNameIsDisplayed("The Bug Report has been successfully sent.", "The Bug Report was unsuccessfully sent.");
+            WaitUntilDisplayed(By.ClassName("Thanks"), 20);
+            CheckIfObjectWithNameIsDisplayed("Thanks for your feedback", "The Bug Report was unsuccessfully sent.");
+            CheckIfObjectWithNameIsDisplayed("We’ll get back to you as soon as we can.", "The Bug Report was unsuccessfully sent.");
+            CheckIfObjectWithNameIsDisplayed("Done", "The Bug Report was unsuccessfully sent.");
             return this;
         }
     }

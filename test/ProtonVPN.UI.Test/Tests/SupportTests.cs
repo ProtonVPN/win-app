@@ -28,6 +28,7 @@ namespace ProtonVPN.UI.Test.Tests
         private readonly LoginWindow _loginWindow = new LoginWindow();
         private readonly MainWindow _mainWindow = new MainWindow();
         private readonly BugReportWindow _bugReportWindow = new BugReportWindow();
+        private readonly HamburgerMenu _hamburgerMenu = new HamburgerMenu();
 
         [Test]
         public void SendBugReport()
@@ -35,13 +36,13 @@ namespace ProtonVPN.UI.Test.Tests
             TestCaseId = 21554;
 
             _loginWindow.LoginWithFreeUser();
-            _mainWindow.ClickHamburgerMenu().HamburgerMenu.ClickReportBug();
+            _mainWindow.ClickHamburgerMenu();
+            _hamburgerMenu.ClickReportBug();
 
-            RefreshSession();
-
-            _bugReportWindow.EnterYourEmail("test@protonmail.com")
-                .EnterWhatWentWrong("Feedback")
-                .EnterStepsToReproduce("Feedback")
+            _bugReportWindow
+                .SelectIssue("Connecting to VPN")
+                .PressContactUs()
+                .FillBugReportForm("Test Feedback", 3)
                 .ClickSend();
 
             _bugReportWindow.VerifySendingIsSuccessful();

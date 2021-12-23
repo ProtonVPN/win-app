@@ -1,1 +1,1 @@
-$virtualMachines = @('UI Test Runner 1', 'Avast', 'Kaspersky', 'BitDefender', 'MalwareBytes', 'McAfee')
+$virtualMachines = @('Avast', 'Kaspersky', 'BitDefender', 'MalwareBytes', 'McAfee')

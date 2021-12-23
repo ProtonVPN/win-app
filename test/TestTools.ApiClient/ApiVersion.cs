@@ -23,7 +23,7 @@ namespace TestTools.ApiClient
 {
     internal class ApiAppVersion : IApiAppVersion
     {
-        public string Value() => "WindowsVPN_1.17.0";
-        public string UserAgent() => "WindowsVPN_1.17.0";
+        public string Value() => "WindowsVPN_1.25.0";
+        public string UserAgent() => "WindowsVPN_1.25.0";
     }
 }

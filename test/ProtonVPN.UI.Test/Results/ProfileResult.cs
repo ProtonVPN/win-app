@@ -46,6 +46,7 @@ namespace ProtonVPN.UI.Test.Results
         public ProfileResult VerifyProfileExists(string profileName)
         {
             WaitUntilDisplayed(By.Name(profileName), 5);
+            RefreshSession();
             CheckIfObjectWithNameIsDisplayed(profileName, "Profile " + profileName + " does not exist.");
             return this;
         }

@@ -55,20 +55,21 @@ namespace ProtonVPN.UI.Test.Results
 
         private string GetDnsAddressForAdapter()
         {
+            string dnsAddress = null;
             NetworkInterface[] adapters = NetworkInterface.GetAllNetworkInterfaces();
             foreach (NetworkInterface adapter in adapters)
             {
                 IPInterfaceProperties adapterProperties = adapter.GetIPProperties();
                 IPAddressCollection dnsServers = adapterProperties.DnsAddresses;
-                if (dnsServers.Count > 0 && adapter.Description.Contains("ProtonVPN Tun"))
+                if (adapter.Description.Contains("WireGuard Tunnel"))
                 {
                     foreach (IPAddress dns in dnsServers)
                     {
-                        return dns.ToString();
+                        dnsAddress = dns.ToString();
                     }
                 }
             }
-            return null;
+            return dnsAddress;
         }
     }
 }

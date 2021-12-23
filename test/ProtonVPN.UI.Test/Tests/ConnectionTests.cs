@@ -22,7 +22,6 @@ using ProtonVPN.UI.Test.Windows;
 using ProtonVPN.UI.Test.Results;
 using NUnit.Framework;
 using ProtonVPN.UI.Test.ApiClient;
-using System.Threading;
 
 namespace ProtonVPN.UI.Test.Tests
 {
@@ -35,7 +34,7 @@ namespace ProtonVPN.UI.Test.Tests
         private readonly SettingsWindow _settingsWindow = new SettingsWindow();
         private readonly SettingsResult _settingsResult = new SettingsResult();
         private readonly ModalWindow _modalWindow = new ModalWindow();
-        private readonly CommonAPI _client = new CommonAPI("http://ip-api.com");
+        private readonly CommonAPI _client = new CommonAPI("http://ipwhois.app");
         private readonly ConnectionResult _connectionResult = new ConnectionResult();
 
         [Test]
@@ -194,20 +193,6 @@ namespace ProtonVPN.UI.Test.Tests
         }
 
         [Test]
-        public void CheckIfKillSwitchIsNotActiveOnAppExit()
-        {
-            TestCaseId = 216;
-
-            _loginWindow.LoginWithPlusUser();
-            _mainWindow.EnableKillSwitch();
-            _mainWindow.QuickConnect();
-            _mainWindow.ClickHamburgerMenu()
-                .HamburgerMenu.ClickExit();
-            _mainWindow.ConfirmAppExit();
-            _connectionResult.CheckIfDnsIsResolved();
-        }
-
-        [Test]
         public async Task CheckIfIpIsExcludedByIp()
         {
             TestCaseId = 7591;
@@ -219,7 +204,7 @@ namespace ProtonVPN.UI.Test.Tests
             _modalWindow.MoveModalUp(amountOfTimes: 8);
             _settingsWindow.ClickAdvancedTab();
             _settingsWindow.EnableSplitTunneling();
-            _settingsWindow.AddIpAddressSplitTunneling("208.95.112.1");
+            _settingsWindow.AddIpAddressSplitTunneling("136.243.172.101");
             _settingsWindow.CloseSettings();
             _mainWindow.QuickConnect();
             await _mainWindowResults.CheckIfIpAddressIsExcluded(homeIpAddress);
