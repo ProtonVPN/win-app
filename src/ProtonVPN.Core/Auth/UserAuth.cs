@@ -90,27 +90,34 @@ namespace ProtonVPN.Core.Auth
                 return AuthResult.Fail(authInfoResponse);
             }
 
-            SrpPInvoke.GoProofs proofs = SrpPInvoke.GenerateProofs(4, username, password, authInfoResponse.Value.Salt,
-                authInfoResponse.Value.Modulus, authInfoResponse.Value.ServerEphemeral);
-
-            AuthRequestData authRequestData = GetAuthRequestData(proofs, authInfoResponse.Value.SrpSession, username);
-            ApiResponseResult<AuthResponse> response = await _apiClient.GetAuthResponse(authRequestData);
-            if (response.Failure)
+            try
             {
-                return AuthResult.Fail(response);
-            }
+                SrpPInvoke.GoProofs proofs = SrpPInvoke.GenerateProofs(4, username, password, authInfoResponse.Value.Salt,
+                    authInfoResponse.Value.Modulus, authInfoResponse.Value.ServerEphemeral);
 
-            if (!Convert.ToBase64String(proofs.ExpectedServerProof).Equals(response.Value.ServerProof))
+                AuthRequestData authRequestData = GetAuthRequestData(proofs, authInfoResponse.Value.SrpSession, username);
+                ApiResponseResult<AuthResponse> response = await _apiClient.GetAuthResponse(authRequestData);
+                if (response.Failure)
+                {
+                    return AuthResult.Fail(response);
+                }
+
+                if (!Convert.ToBase64String(proofs.ExpectedServerProof).Equals(response.Value.ServerProof))
+                {
+                    return AuthResult.Fail(AuthError.InvalidServerProof);
+                }
+
+                _userStorage.SaveUsername(username);
+                _tokenStorage.Uid = response.Value.Uid;
+                _tokenStorage.AccessToken = response.Value.AccessToken;
+                _tokenStorage.RefreshToken = response.Value.RefreshToken;
+
+                return AuthResult.Ok();
+            }
+            catch (TypeInitializationException e) when (e.InnerException is DllNotFoundException)
             {
-                return AuthResult.Fail(AuthError.InvalidServerProof);
+                return AuthResult.Fail(AuthError.MissingGoSrpDll);
             }
-
-            _userStorage.SaveUsername(username);
-            _tokenStorage.Uid = response.Value.Uid;
-            _tokenStorage.AccessToken = response.Value.AccessToken;
-            _tokenStorage.RefreshToken = response.Value.RefreshToken;
-
-            return AuthResult.Ok();
         }
 
         private AuthRequestData GetAuthRequestData(SrpPInvoke.GoProofs proofs, string srpSession, string username)
