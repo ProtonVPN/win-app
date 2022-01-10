@@ -24,6 +24,7 @@ using NUnit.Framework;
 namespace ProtonVPN.UI.Test.Tests
 {
     [TestFixture]
+    [Category("UI")]
     public class SettingsTests : UITestSession
     {
         private readonly LoginWindow _loginWindow = new LoginWindow();
@@ -47,27 +48,18 @@ namespace ProtonVPN.UI.Test.Tests
         }
 
         [Test]
-        public void CheckIfOpenAndCloseSavesSession()
+        public void CheckIfInvalidDnsIsNotPermitted()
         {
-            TestCaseId = 204;
+            TestCaseId = 4580;
 
             _loginWindow.LoginWithPlusUser();
             _mainWindow.ClickHamburgerMenu()
                 .HamburgerMenu.ClickSettings();
             _settingsWindow.ClickConnectionTab();
-            _settingsWindow.EnableAutoConnectToFastestServer();
-            KillProtonVPNProcessAndReopenIt();
-            _mainWindow.WaitUntilConnected();
-            _mainWindow.DisconnectUsingSidebarButton();
-            TestRailClient.MarkTestsByStatus();
-
-            TestCaseId = 205;
-            _mainWindow.ClickHamburgerMenu()
-                .HamburgerMenu.ClickSettings();
-            _settingsWindow.ClickConnectionTab();
-            _settingsWindow.DisableAutoConnect();
-            KillProtonVPNProcessAndReopenIt();
-            _mainWindowResults.CheckIfDisconnected();
+            _settingsWindow.EnableCustomDnsServers();
+            _settingsWindow.DisableNetshieldForCustomDns();
+            _settingsWindow.EnterCustomIpv4Address("1.A.B.4");
+            _settingsResult.CheckIfCustomDnsAddressWasNotAdded();
         }
 
         [SetUp]

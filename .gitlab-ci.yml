@@ -126,7 +126,19 @@ ui-test:
     - powershell -Command "Start-Sleep -s 30"
     - powershell -File ci\launch-installer.ps1
     - powershell -Command "Start-Sleep -s 30"
-    - VSTest.Console.exe src\bin\ProtonVPN.UI.Test.dll
+    - VSTest.Console.exe src\bin\ProtonVPN.UI.Test.dll /TestCaseFilter:"Category=UI"
+    
+connection-tests:
+  stage: ui-test
+  tags:
+    - connection_tests
+  when: manual
+  script:
+    - powershell -File ci\uninstall-app.ps1
+    - powershell -Command "Start-Sleep -s 30"
+    - powershell -File ci\launch-installer.ps1
+    - powershell -Command "Start-Sleep -s 30"
+    - VSTest.Console.exe src\bin\ProtonVPN.UI.Test.dll /TestCaseFilter:"Category=Connection"
     
 update-vm:
   stage: ui-test

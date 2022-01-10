@@ -25,6 +25,7 @@ using NUnit.Framework;
 namespace ProtonVPN.UI.Test.Tests
 {
     [TestFixture]
+    [Category("Connection")]
     public class SecureCoreTests : UITestSession
     {
         private readonly LoginWindow _loginWindow = new LoginWindow();

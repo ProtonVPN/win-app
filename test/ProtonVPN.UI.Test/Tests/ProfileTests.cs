@@ -17,21 +17,18 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Diagnostics;
 using NUnit.Framework;
 using ProtonVPN.UI.Test.Results;
-using ProtonVPN.UI.Test.TestsHelper;
 using ProtonVPN.UI.Test.Windows;
 
 namespace ProtonVPN.UI.Test.Tests
 {
     [TestFixture]
+    [Category("UI")]
     public class ProfileTests : UITestSession
     {
-        private const string ProfileCleaner = "TestTools.ProfileCleaner.exe";
         private readonly LoginWindow _loginWindow = new LoginWindow();
         private readonly MainWindow _mainWindow = new MainWindow();
-        private readonly MainWindowResults _mainWindowResults = new MainWindowResults();
         private readonly ProfileWindow _profileWindow = new ProfileWindow();
         private readonly ProfileResult _profileResult = new ProfileResult();
 
@@ -205,31 +202,6 @@ namespace ProtonVPN.UI.Test.Tests
         }
 
         [Test]
-        public void ConnectToCreatedProfile()
-        {
-            TestCaseId = 21551;
-
-            var profileName = "@ProfileToConnect";
-
-            _loginWindow.LoginWithPlusUser();
-            _mainWindow.ClickHamburgerMenu().HamburgerMenu.ClickProfiles();
-            
-            _profileWindow.ClickToCreateNewProfile()
-                .EnterProfileName(profileName)
-                .SelectCountryFromList("Belgium")
-                .SelectServerFromList("BE#1")
-                .ClickSaveButton();
-
-
-            _profileWindow.ConnectToProfile(profileName);
-            _mainWindow.WaitUntilConnected();
-            _mainWindowResults.CheckIfConnected();
-
-            _mainWindow.DisconnectUsingSidebarButton();
-            _mainWindowResults.CheckIfDisconnected();
-        }
-
-        [Test]
         public void DiscardNewProfile()
         {
             TestCaseId = 21550;
@@ -254,14 +226,7 @@ namespace ProtonVPN.UI.Test.Tests
         public void TestInitialize()
         {
             CreateSession();
-
-            var args = $"{TestUserData.GetPlusUser().Username} {TestUserData.GetPlusUser().Password}";
-            Process process = new Process
-            {
-                StartInfo = new ProcessStartInfo(ProfileCleaner, args)
-            };
-            process.Start();
-            process.WaitForExit();
+            DeleteProfiles();
         }
 
         [TearDown]
