@@ -25,6 +25,7 @@ using NUnit.Framework;
 namespace ProtonVPN.UI.Test.Tests
 {
     [TestFixture]
+    [Category("UI")]
     public class AccountTests : UITestSession
     {
         private readonly AccountResult _accountResult = new AccountResult();

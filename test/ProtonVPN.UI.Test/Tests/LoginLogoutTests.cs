@@ -24,18 +24,20 @@ using NUnit.Framework;
 namespace ProtonVPN.UI.Test.Tests
 {
     [TestFixture]
-    public class LoginTests : UITestSession
+    [Category("UI")]
+    public class LoginLogoutTests : UITestSession
     {
-        private readonly LoginWindow _loginActions = new LoginWindow();
+        private readonly LoginWindow _loginWindow = new LoginWindow();
         private readonly LoginResult _loginResult = new LoginResult();
         private readonly MainWindowResults _mainWindowResults = new MainWindowResults();
+        private readonly MainWindow _mainWindow = new MainWindow();
 
         [Test]
         public void LoginAsFreeUser()
         {
             TestCaseId = 231;
 
-            _loginActions.LoginWithFreeUser();
+            _loginWindow.LoginWithFreeUser();
             _mainWindowResults.VerifyUserIsLoggedIn();
             TestRailClient.MarkTestsByStatus();
 
@@ -48,7 +50,7 @@ namespace ProtonVPN.UI.Test.Tests
         {
             TestCaseId = 231;
 
-            _loginActions.LoginWithBasicUser();
+            _loginWindow.LoginWithBasicUser();
             _mainWindowResults.VerifyUserIsLoggedIn();
         }
 
@@ -57,7 +59,7 @@ namespace ProtonVPN.UI.Test.Tests
         {
             TestCaseId = 233;
 
-            _loginActions.LoginWithAccountThatHasSpecialChars();
+            _loginWindow.LoginWithAccountThatHasSpecialChars();
             _mainWindowResults.VerifyUserIsLoggedIn();
         }
 
@@ -66,7 +68,7 @@ namespace ProtonVPN.UI.Test.Tests
         {
             TestCaseId = 231;
 
-            _loginActions.LoginWithPlusUser();
+            _loginWindow.LoginWithPlusUser();
             _mainWindowResults.VerifyUserIsLoggedIn();
         }
 
@@ -75,7 +77,7 @@ namespace ProtonVPN.UI.Test.Tests
         {
             TestCaseId = 231;
 
-            _loginActions.LoginWithVisionaryUser();
+            _loginWindow.LoginWithVisionaryUser();
             _mainWindowResults.VerifyUserIsLoggedIn();
         }
 
@@ -84,8 +86,20 @@ namespace ProtonVPN.UI.Test.Tests
         {
             TestCaseId = 232;
 
-            _loginActions.LoginWithIncorrectCredentials();
+            _loginWindow.LoginWithIncorrectCredentials();
             _loginResult.VerifyLoginErrorIsShown();
+        }
+
+        [Test]
+        public void SuccessfulLogout()
+        {
+            TestCaseId = 211;
+
+            _loginWindow.LoginWithPlusUser();
+            _mainWindow.ClickHamburgerMenu();
+            _mainWindow.HamburgerMenu.ClickLogout();
+            _loginWindow.WaitUntilLoginInputIsDisplayed();
+            _loginResult.VerifyUserIsOnLoginWindow();
         }
 
         [SetUp]

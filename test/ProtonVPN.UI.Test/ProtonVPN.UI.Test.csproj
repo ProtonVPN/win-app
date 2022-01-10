@@ -109,7 +109,7 @@
     <Compile Include="ApiClient\TestRailAPI.cs" />
     <Compile Include="Results\ConnectionResult.cs" />
     <Compile Include="TestsHelper\TestEnvironment.cs" />
-    <Compile Include="Tests\SetUpTests.cs" />
+    <Compile Include="Tests\SetUp.cs" />
     <Compile Include="Windows\BugReportWindow.cs" />
     <Compile Include="Windows\HamburgerMenu.cs" />
     <Compile Include="Windows\LoginWindow.cs" />
@@ -130,8 +130,7 @@
     <Compile Include="Tests\SecureCoreTests.cs" />
     <Compile Include="Tests\SettingsTests.cs" />
     <Compile Include="Tests\AccountTests.cs" />
-    <Compile Include="Tests\LogoutTests.cs" />
-    <Compile Include="Tests\LoginTests.cs" />
+    <Compile Include="Tests\LoginLogoutTests.cs" />
     <Compile Include="Tests\ProfileTests.cs" />
     <Compile Include="Tests\WindowElementsTests.cs" />
     <Compile Include="UITestSession.cs" />

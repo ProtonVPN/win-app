@@ -24,6 +24,7 @@ using NUnit.Framework;
 namespace ProtonVPN.UI.Test.Tests
 {
     [TestFixture]
+    [Category("UI")]
     public class WindowElementsTests : UITestSession
     {
         private readonly LoginWindow _loginWindow = new LoginWindow();

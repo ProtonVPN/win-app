@@ -17,12 +17,14 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Threading;
 using NUnit.Framework;
 using ProtonVPN.UI.Test.Windows;
 
 namespace ProtonVPN.UI.Test.Tests
 {
     [TestFixture]
+    [Category("UI")]
     public class SupportTests : UITestSession
     {
         private readonly LoginWindow _loginWindow = new LoginWindow();
@@ -36,6 +38,8 @@ namespace ProtonVPN.UI.Test.Tests
             TestCaseId = 21554;
 
             _loginWindow.LoginWithFreeUser();
+            //When https://jira.protontech.ch/browse/VPNWIN-983 will be fixed, remove this timeout
+            Thread.Sleep(5000);
             _mainWindow.ClickHamburgerMenu();
             _hamburgerMenu.ClickReportBug();
 

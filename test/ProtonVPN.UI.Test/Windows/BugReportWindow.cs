@@ -61,7 +61,6 @@ namespace ProtonVPN.UI.Test.Windows
         public BugReportWindow VerifySendingIsSuccessful()
         {
             WaitUntilDisplayed(By.ClassName("Thanks"), 20);
-            CheckIfObjectWithNameIsDisplayed("Thanks for your feedback", "The Bug Report was unsuccessfully sent.");
             CheckIfObjectWithNameIsDisplayed("We’ll get back to you as soon as we can.", "The Bug Report was unsuccessfully sent.");
             CheckIfObjectWithNameIsDisplayed("Done", "The Bug Report was unsuccessfully sent.");
             return this;
