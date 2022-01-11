@@ -499,6 +499,7 @@ namespace ProtonVPN.Service.Firewall
             List<NetworkAddress> networkAddresses = new()
             {
                 new("10.0.0.0", "255.0.0.0"),
+                new("169.254.0.0", "255.255.0.0"),
                 new("172.16.0.0", "255.240.0.0"),
                 new("192.168.0.0", "255.255.0.0"),
                 new("224.0.0.0", "240.0.0.0"),
