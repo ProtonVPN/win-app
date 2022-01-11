@@ -41,15 +41,13 @@ namespace ProtonVPN.UI.Test.Tests
         private readonly ConnectionResult _connectionResult = new ConnectionResult();
 
         [Test]
-        public async Task ConnectUsingQuickConnectBasicUser()
+        public void ConnectUsingQuickConnectBasicUser()
         {
             TestCaseId = 221;
 
             _loginWindow.LoginWithBasicUser();
             _mainWindow.QuickConnect();
             _mainWindowResults.CheckIfConnected();
-            await _mainWindowResults.CheckIfCorrectIPAddressIsShownAsync();
-            await _mainWindowResults.CheckIfCorrectCountryIsShownAsync();
             TestRailClient.MarkTestsByStatus();
 
             TestCaseId = 222;
@@ -58,7 +56,7 @@ namespace ProtonVPN.UI.Test.Tests
         }
 
         [Test]
-        public async Task ConnectToFastestViaProfilePlusUser()
+        public void ConnectToFastestViaProfilePlusUser()
         {
             TestCaseId = 225;
 
@@ -70,15 +68,12 @@ namespace ProtonVPN.UI.Test.Tests
             TestRailClient.MarkTestsByStatus();
 
             TestCaseId = 229;
-            await _mainWindowResults.CheckIfCorrectIPAddressIsShownAsync();
-            await _mainWindowResults.CheckIfCorrectCountryIsShownAsync();
-
             _mainWindow.DisconnectUsingSidebarButton();
             _mainWindowResults.CheckIfDisconnected();
         }
 
         [Test]
-        public async Task ConnectToRandomServerViaProfilePlusUser()
+        public void ConnectToRandomServerViaProfilePlusUser()
         {
             TestCaseId = 225;
 
@@ -87,22 +82,19 @@ namespace ProtonVPN.UI.Test.Tests
             _mainWindow.ConnectToAProfileByName("Random");
             _mainWindow.WaitUntilConnected();
             _mainWindowResults.CheckIfConnected();
-            await _mainWindowResults.CheckIfCorrectIPAddressIsShownAsync();
 
             _mainWindow.DisconnectUsingSidebarButton();
             _mainWindowResults.CheckIfDisconnected();
         }
 
         [Test]
-        public async Task SelectConnectionByCountryVisionaryUser()
+        public void SelectConnectionByCountryVisionaryUser()
         {
             TestCaseId = 223;
 
             _loginWindow.LoginWithVisionaryUser();
             _mainWindow.ConnectByCountryName("Ukraine");
             _mainWindowResults.CheckIfConnected();
-            await _mainWindowResults.CheckIfCorrectCountryIsShownAsync();
-            await _mainWindowResults.CheckIfCorrectIPAddressIsShownAsync();
             TestRailClient.MarkTestsByStatus();
 
             TestCaseId = 224;
@@ -162,7 +154,7 @@ namespace ProtonVPN.UI.Test.Tests
         }
 
         [Test]
-        public async Task ConnectAndDisconnectViaMap()
+        public void ConnectAndDisconnectViaMap()
         {
             TestCaseId = 219;
 
@@ -170,8 +162,6 @@ namespace ProtonVPN.UI.Test.Tests
             _mainWindow.ConnectToCountryViaPin("US");
             _mainWindow.WaitUntilConnected();
             _mainWindowResults.CheckIfConnected();
-            await _mainWindowResults.CheckIfCorrectIPAddressIsShownAsync();
-            await _mainWindowResults.CheckIfCorrectCountryIsShownAsync();
             TestRailClient.MarkTestsByStatus();
 
             TestCaseId = 220;

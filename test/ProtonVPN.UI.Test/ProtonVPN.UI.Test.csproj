@@ -93,8 +93,8 @@
     </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
-    <Reference Include="TestRail, Version=2.0.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\TestRail.2.0.5\lib\net461\TestRail.dll</HintPath>
+    <Reference Include="TestRail, Version=3.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\TestRail.3.2.1\lib\net461\TestRail.dll</HintPath>
     </Reference>
     <Reference Include="WebDriver, Version=3.141.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Selenium.WebDriver.3.141.0\lib\net45\WebDriver.dll</HintPath>

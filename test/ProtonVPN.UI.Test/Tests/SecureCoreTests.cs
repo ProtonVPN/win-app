@@ -17,7 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Threading.Tasks;
 using ProtonVPN.UI.Test.Windows;
 using ProtonVPN.UI.Test.Results;
 using NUnit.Framework;
@@ -33,7 +32,7 @@ namespace ProtonVPN.UI.Test.Tests
         private readonly MainWindowResults _mainWindowResults = new MainWindowResults();
 
         [Test]
-        public async Task QuickConnectWhileSecureCoreIsEnabled()
+        public void QuickConnectWhileSecureCoreIsEnabled()
         {
             TestCaseId = 255;
 
@@ -41,7 +40,6 @@ namespace ProtonVPN.UI.Test.Tests
             _mainWindow.EnableSecureCore();
             _mainWindow.QuickConnect();
             _mainWindowResults.CheckIfConnected();
-            await _mainWindowResults.CheckIfCorrectIPAddressIsShownAsync();
             TestRailClient.MarkTestsByStatus();
 
             TestCaseId = 256;
@@ -64,7 +62,7 @@ namespace ProtonVPN.UI.Test.Tests
         }
 
         [Test]
-        public async Task ConnectAndDisconnectViaMapSecureCore()
+        public void ConnectAndDisconnectViaMapSecureCore()
         {
             TestCaseId = 253;
 
@@ -72,7 +70,6 @@ namespace ProtonVPN.UI.Test.Tests
             _mainWindow.EnableSecureCore();
             _mainWindow.ConnectToCountryViaPinSecureCore("US");
             _mainWindow.WaitUntilConnected();
-            await _mainWindowResults.CheckIfCorrectIPAddressIsShownAsync();
             TestRailClient.MarkTestsByStatus();
 
             TestCaseId = 254;

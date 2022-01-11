@@ -17,12 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Web;
+using System;
+using System.Collections.Generic;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using ProtonVPN.UI.Test.TestsHelper;
 using TestRail;
+using TestRail.Enums;
 using TestRail.Types;
+using TestRail.Utils;
 
 namespace ProtonVPN.UI.Test.ApiClient
 {
@@ -41,13 +44,8 @@ namespace ProtonVPN.UI.Test.ApiClient
 
         public void CreateTestRun(string testRunName)
         {
-            var testRun = _client.AddRun(ProjectId, TestSuiteId, testRunName, "Automated regression " + testRunName, MilestoneId);
-            if (!testRun.WasSuccessful)
-            {
-                throw new HttpException("Failed to create test run, please check your network connection");
-            }
-
-            _testRunId = testRun.Value;
+            RequestResult<Run> testRun = _client.AddRun(ProjectId, TestSuiteId, testRunName, "Automated regression " + testRunName, MilestoneId);
+            _testRunId = testRun.Payload.Id.Value;
         }
 
         public void MarkTestsByStatus()
@@ -62,7 +60,7 @@ namespace ProtonVPN.UI.Test.ApiClient
                 return;
             }
 
-            var status = TestContext.CurrentContext.Result.Outcome.Status;
+            TestStatus status = TestContext.CurrentContext.Result.Outcome.Status;
             switch (status)
             {
                 case TestStatus.Failed:
@@ -73,6 +71,21 @@ namespace ProtonVPN.UI.Test.ApiClient
                     MarkAsPassed(TestCaseId);
                     break;
             }
+        }
+
+        public bool ShouldUpdateRun()
+        {
+            string branchName = Environment.GetEnvironmentVariable("CI_COMMIT_BRANCH");
+            IList<Run> runs = _client.GetRuns(ProjectId).Payload;
+            foreach(Run run in runs)
+            {
+                if (run.Name.Contains(branchName) && run.IsCompleted != true && run.Id.HasValue)
+                {
+                    _testRunId = run.Id.Value;
+                    return true;
+                }
+            }
+            return false;
         }
 
         private void MarkAsPassed(ulong testCaseId)
