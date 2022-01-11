@@ -34,18 +34,22 @@ namespace ProtonVPN.UI.Test.Tests
         [OneTimeSetUp]
         public void TestInitialize()
         {
-            var dir = Path.GetDirectoryName(typeof(SetUp).Assembly.Location);
+            string dir = Path.GetDirectoryName(typeof(SetUp).Assembly.Location);
             Directory.SetCurrentDirectory(dir);
 
             TestRailClient = new TestRailAPIClient(_testRailUrl,
-                   TestUserData.GetTestrailUser().Username, TestUserData.GetTestrailUser().Password);
-            var asm = Assembly.GetExecutingAssembly();
-            var path = System.IO.Path.GetDirectoryName(asm.Location) + "/ProtonVpn.exe";
-            var version = Assembly.LoadFile(path).GetName().Version.ToString();
-            version = version.Substring(0, version.Length - 2);
+                    TestUserData.GetTestrailUser().Username, TestUserData.GetTestrailUser().Password);
             if (!TestEnvironment.AreTestsRunningLocally())
             {
-                TestRailClient.CreateTestRun(version + " test run " + DateTime.Now);
+                Assembly asm = Assembly.GetExecutingAssembly();
+                string path = Path.Combine(Path.GetDirectoryName(asm.Location), "ProtonVPN.exe");
+                string version = Assembly.LoadFile(path).GetName().Version.ToString();
+                string branchName = Environment.GetEnvironmentVariable("CI_COMMIT_BRANCH");
+                version = version.Substring(0, version.Length - 2);
+                if (!TestRailClient.ShouldUpdateRun())
+                {
+                    TestRailClient.CreateTestRun($"{branchName} {version} {DateTime.Now}");
+                }
             }
         }
     }

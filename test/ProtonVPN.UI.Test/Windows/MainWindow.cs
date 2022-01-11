@@ -63,6 +63,7 @@ namespace ProtonVPN.UI.Test.Windows
 
         public MainWindow QuickConnect()
         {
+            RefreshSession();
             ClickQuickConnectButton();
             WaitUntilConnected();
             return this;
