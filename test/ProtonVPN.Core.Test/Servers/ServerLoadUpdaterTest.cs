@@ -74,7 +74,7 @@ namespace ProtonVPN.Core.Test.Servers
         public void ItShouldStartUpdatingServerLoads()
         {
             // Arrange
-            var sut = GetServerLoadUpdater(DateTime.Now.Subtract(TimeSpan.FromHours(1)));
+            ServerLoadUpdater sut = GetServerLoadUpdater(DateTime.Now.Subtract(TimeSpan.FromHours(1)));
 
             // Act
             sut.Handle(new WindowStateMessage(true));
@@ -87,7 +87,7 @@ namespace ProtonVPN.Core.Test.Servers
         public void ItShouldNotStartUpdatingServerLoads()
         {
             // Arrange
-            var sut = GetServerLoadUpdater(DateTime.Now);
+            ServerLoadUpdater sut = GetServerLoadUpdater(DateTime.Now);
 
             // Act
             sut.Handle(new WindowStateMessage(true));

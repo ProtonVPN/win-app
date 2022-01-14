@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -30,5 +30,6 @@ namespace ProtonVPN.Core.Api
         public const int InvalidProfileIdOnDelete = 86063;
         public const int ProfileNameConflict = 86065;
         public const int HumanVerificationRequired = 9001;
+        public const int NoVpnConnectionsAssigned = 86300;
     }
 }

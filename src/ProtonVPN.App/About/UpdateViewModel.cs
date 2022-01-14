@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -23,14 +23,13 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
-using ProtonVPN.BugReporting.Diagnostic;
 using ProtonVPN.Common.KillSwitch;
 using ProtonVPN.Common.OS.Processes;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.MVVM;
+using ProtonVPN.Core.OS;
 using ProtonVPN.Core.Service.Settings;
-using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Update;
 using ProtonVPN.Core.Vpn;
@@ -45,7 +44,6 @@ namespace ProtonVPN.About
         private readonly IOsProcesses _osProcesses;
         private readonly IModals _modals;
         private readonly IAppSettings _appSettings;
-        private readonly IVpnServiceManager _vpnServiceManager;
         private readonly ISystemState _systemState;
         private readonly ISettingsServiceClientManager _settingsServiceClientManager;
 
@@ -57,7 +55,6 @@ namespace ProtonVPN.About
             IOsProcesses osProcesses,
             IModals modals,
             IAppSettings appSettings,
-            IVpnServiceManager vpnServiceManager,
             ISystemState systemState,
             ISettingsServiceClientManager settingsServiceClientManager)
         {
@@ -65,7 +62,6 @@ namespace ProtonVPN.About
             _osProcesses = osProcesses;
             _modals = modals;
             _appSettings = appSettings;
-            _vpnServiceManager = vpnServiceManager;
             _systemState = systemState;
             _settingsServiceClientManager = settingsServiceClientManager;
 

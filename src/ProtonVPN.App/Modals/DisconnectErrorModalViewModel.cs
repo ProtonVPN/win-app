@@ -126,7 +126,8 @@ namespace ProtonVPN.Modals
             switch (Error)
             {
                 case VpnError.TlsError:
-                case VpnError.TimeoutError:
+                case VpnError.PingTimeoutError:
+                case VpnError.AdapterTimeoutError:
                 case VpnError.UserTierTooLowError:
                 case VpnError.Unpaid:
                 case VpnError.SessionLimitReached:
@@ -153,7 +154,8 @@ namespace ProtonVPN.Modals
 
         private async Task CloseModalAsync()
         {
-            // If TryClose() is called before any await (that actually awaits), Caliburn will throw a NullReferenceException after OnViewReady() ends
+            // If TryClose() is called before any await (that actually awaits), Caliburn will throw a
+            // NullReferenceException after OnViewReady() ends.
             await Task.Delay(TimeSpan.FromMilliseconds(1));
             TryClose(true);
         }

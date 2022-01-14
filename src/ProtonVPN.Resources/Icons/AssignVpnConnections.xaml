@@ -1,0 +1,140 @@
+﻿<!--
+Copyright (c) 2021 Proton Technologies AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<UserControl x:Class="ProtonVPN.Resource.Icons.AssignVpnConnections"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d">
+    <Canvas Width="139" Height="149">
+        <Canvas.RenderTransform>
+            <TranslateTransform X="0" Y="0" />
+        </Canvas.RenderTransform>
+        <Canvas.Resources>
+            <LinearGradientBrush x:Key="Paint0Linear2036266488" MappingMode="Absolute" StartPoint="69,15"
+                                 EndPoint="69,138">
+                <LinearGradientBrush.GradientStops>
+                    <GradientStopCollection>
+                        <GradientStop Color="#E8916C" />
+                        <GradientStop Color="#CE775B" Offset="1" />
+                    </GradientStopCollection>
+                </LinearGradientBrush.GradientStops>
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="Paint1Linear2036266488" MappingMode="Absolute" StartPoint="73,125"
+                                 EndPoint="145,103">
+                <LinearGradientBrush.GradientStops>
+                    <GradientStopCollection>
+                        <GradientStop Color="#C2C0C9" />
+                        <GradientStop Color="#F9F9F9" Offset="1" />
+                    </GradientStopCollection>
+                </LinearGradientBrush.GradientStops>
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="Paint2Linear2036266488" MappingMode="Absolute" StartPoint="100,180"
+                                 EndPoint="57,32">
+                <LinearGradientBrush.GradientStops>
+                    <GradientStopCollection>
+                        <GradientStop Color="#E0DFE2" />
+                        <GradientStop Color="#F9F9F9" Offset="1" />
+                    </GradientStopCollection>
+                </LinearGradientBrush.GradientStops>
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="Paint3Linear2036266488" MappingMode="Absolute" StartPoint="104,128"
+                                 EndPoint="91,101">
+                <LinearGradientBrush.GradientStops>
+                    <GradientStopCollection>
+                        <GradientStop Color="#E0DFE2" />
+                        <GradientStop Color="#ffffff" Offset="1" />
+                    </GradientStopCollection>
+                </LinearGradientBrush.GradientStops>
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="Paint4Linear2036266488" MappingMode="Absolute" StartPoint="69,-1"
+                                 EndPoint="69,19">
+                <LinearGradientBrush.GradientStops>
+                    <GradientStopCollection>
+                        <GradientStop Color="#B5EDFF" />
+                        <GradientStop Color="#6CB0FF" Offset="1" />
+                    </GradientStopCollection>
+                </LinearGradientBrush.GradientStops>
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="Paint5Linear2036266488" MappingMode="Absolute" StartPoint="69,17"
+                                 EndPoint="69,35">
+                <LinearGradientBrush.GradientStops>
+                    <GradientStopCollection>
+                        <GradientStop Color="#D7E0E3" />
+                        <GradientStop Color="#92C3FC" Offset="1" />
+                    </GradientStopCollection>
+                </LinearGradientBrush.GradientStops>
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="Paint6Linear2036266488" MappingMode="Absolute" StartPoint="62,12"
+                                 EndPoint="69,25">
+                <LinearGradientBrush.GradientStops>
+                    <GradientStopCollection>
+                        <GradientStop Color="#ffffff" />
+                        <GradientStop Color="#00ffffff" Offset="1" />
+                    </GradientStopCollection>
+                </LinearGradientBrush.GradientStops>
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="Paint7Linear2036266488" MappingMode="Absolute" StartPoint="22,104"
+                                 EndPoint="22,149">
+                <LinearGradientBrush.GradientStops>
+                    <GradientStopCollection>
+                        <GradientStop Color="#5BCB6A" />
+                        <GradientStop Color="#1CB78F" Offset="1" />
+                    </GradientStopCollection>
+                </LinearGradientBrush.GradientStops>
+            </LinearGradientBrush>
+        </Canvas.Resources>
+        <Path Fill="{StaticResource Paint0Linear2036266488}"
+              Data="M19.3711 32.7829C19.3711 27.0222 24.041 22.3523 29.8017 22.3523H108.776C114.537 22.3523 119.207 27.0222 119.207 32.7829V127.404C119.207 133.164 114.537 137.834 108.776 137.834H29.8017C24.041 137.834 19.3711 133.164 19.3711 127.404V32.7829Z" />
+        <Canvas>
+            <Canvas>
+                <Path Fill="#FF221548"
+                      Data="M28.6843 133.232L26.8217 123.573H111.012C109.24 129.315 103.932 133.232 97.9232 133.232H28.6843Z" />
+            </Canvas>
+        </Canvas>
+        <Path Fill="{StaticResource Paint1Linear2036266488}"
+              Data="M23.8413 104.306C23.8413 100.603 26.8434 97.6009 30.5467 97.6009H114.737V125.913C114.737 130.027 111.401 133.363 107.286 133.363H31.2918C27.177 133.363 23.8413 130.027 23.8413 125.913V104.306Z" />
+        <Path Fill="{StaticResource Paint2Linear2036266488}"
+              Data="M23.8413 34.2723C23.8413 30.1576 27.177 26.8219 31.2918 26.8219H107.286C111.401 26.8219 114.737 30.1576 114.737 34.2723V97.6011L79.7196 133.363H31.2918C27.177 133.363 23.8413 130.028 23.8413 125.913V34.2723Z" />
+        <Path Fill="#FFA7A7BB"
+              Data="M52.8981 87.5437C52.8981 86.9264 53.3984 86.4261 54.0156 86.4261H83.8174C84.4346 86.4261 84.935 86.9264 84.935 87.5437C84.935 88.1609 84.4346 88.6612 83.8174 88.6612H54.0156C53.3984 88.6612 52.8981 88.1609 52.8981 87.5437Z" />
+        <Path Fill="#FFA7A7BB"
+              Data="M56.6233 93.504C56.6233 92.8868 57.1236 92.3864 57.7409 92.3864H63.3287C63.9459 92.3864 64.4463 92.8868 64.4463 93.504C64.4463 94.1212 63.9459 94.6216 63.3287 94.6216H57.7409C57.1236 94.6216 56.6233 94.1212 56.6233 93.504Z" />
+        <Path Fill="#FFA7A7BB"
+              Data="M67.0539 93.504C67.0539 92.8868 67.5543 92.3864 68.1715 92.3864H80.0922C80.7094 92.3864 81.2097 92.8868 81.2097 93.504C81.2097 94.1212 80.7094 94.6216 80.0922 94.6216H68.1715C67.5543 94.6216 67.0539 94.1212 67.0539 93.504Z" />
+        <Path Fill="{StaticResource Paint3Linear2036266488}"
+              Data="M114.737 97.6009L79.7196 133.363V102.071C79.7196 99.6023 81.721 97.6009 84.1899 97.6009L114.737 97.6009Z" />
+        <Path Fill="{StaticResource Paint4Linear2036266488}"
+              Data="M69.2785 0.000854492C63.5156 0.000854492 58.8585 4.67221 58.8585 10.4052V24.5873H79.7198V10.4052C79.7198 4.67221 75.0414 0.000854492 69.2785 0.000854492ZM69.2785 15.1828C66.7479 15.1828 64.7065 13.1444 64.7065 10.6176C64.7065 8.0908 66.7479 6.05239 69.2785 6.05239C71.8091 6.05239 73.8505 8.0908 73.8505 10.6176C73.8505 13.1444 71.8091 15.1828 69.2785 15.1828Z" />
+        <Path Fill="{StaticResource Paint5Linear2036266488}"
+              Data="M99.8143 35.018H38.7422V23.7603C38.7422 20.1098 41.6412 17.1369 45.2488 17.1369H93.3292C96.9153 17.1369 99.8358 20.0879 99.8358 23.7603V35.018H99.8143Z" />
+        <Rectangle Canvas.Left="38.7422" Canvas.Top="32.7831" Width="61.0936" Height="2.23513" Fill="#FF4A769F" />
+        <Path Fill="{StaticResource Paint6Linear2036266488}"
+              Data="M38.7638 25.3324H99.8359V23.7603C99.8359 20.1098 96.9369 17.1369 93.3293 17.1369H45.2489C41.6628 17.1369 38.7423 20.0879 38.7423 23.7603V25.3324H38.7638Z" />
+        <Path Fill="#FFA7A7BB"
+              Data="M69.0581 61.964C72.3843 61.964 75.0808 59.2676 75.0808 55.9413C75.0808 52.6151 72.3843 49.9186 69.0581 49.9186C65.7318 49.9186 63.0354 52.6151 63.0354 55.9413C63.0354 59.2676 65.7318 61.964 69.0581 61.964Z" />
+        <Path Fill="#FFA7A7BB"
+              Data="M60.7107 78.9752C57.1183 78.9752 54.688 75.0658 56.4843 72.0016C58.9145 67.5638 63.6693 64.4996 69.1636 64.4996C74.658 64.4996 79.3071 67.4582 81.843 72.0016C83.6392 75.1714 81.209 78.9752 77.6165 78.9752H60.7107Z" />
+        <Path Fill="{StaticResource Paint7Linear2036266488}"
+              Data="M44.7026 126.37C44.7026 114.026 34.6956 104.019 22.3513 104.019C10.007 104.019 -1.07917e-06 114.026 0 126.37C1.07917e-06 138.714 10.007 148.722 22.3513 148.722C34.6956 148.722 44.7026 138.714 44.7026 126.37Z" />
+        <Path Fill="#ffffff"
+              Data="M31.1951 128.036C32.018 128.036 32.6851 127.369 32.6851 126.546C32.6851 125.723 32.018 125.055 31.1951 125.055L23.7291 125.055L23.7291 117.59C23.7291 116.767 23.062 116.099 22.239 116.099C21.4161 116.099 20.7489 116.767 20.7489 117.59L20.7489 125.055L13.283 125.055C12.46 125.055 11.7929 125.723 11.7929 126.546C11.7929 127.369 12.46 128.036 13.283 128.036L20.7489 128.036L20.7489 135.502C20.7489 136.325 21.4161 136.992 22.239 136.992C23.062 136.992 23.7291 136.325 23.7291 135.502L23.7291 128.036L31.1951 128.036Z" />
+    </Canvas>
+</UserControl>

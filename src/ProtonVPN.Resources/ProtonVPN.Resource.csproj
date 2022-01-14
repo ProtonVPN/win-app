@@ -60,8 +60,29 @@
     <Compile Include="BaseModalWindow.cs" />
     <Compile Include="BasePopupWindow.cs" />
     <Compile Include="ControlExtension.cs" />
+    <Compile Include="Controls\ProgressBar.xaml.cs">
+      <DependentUpon>ProgressBar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ProtonAnimation.xaml.cs">
       <DependentUpon>ProtonAnimation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Icons\Error.xaml.cs">
+      <DependentUpon>Error.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Icons\Thanks.xaml.cs">
+      <DependentUpon>Thanks.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Icons\AssignVpnConnections.xaml.cs">
+      <DependentUpon>AssignVpnConnections.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Icons\ArrowLeft.xaml.cs">
+      <DependentUpon>ArrowLeft.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Icons\UpdateIcon.xaml.cs">
+      <DependentUpon>UpdateIcon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Icons\Bulb.xaml.cs">
+      <DependentUpon>Bulb.xaml</DependentUpon>
     </Compile>
     <Compile Include="Icons\WindowsClose.xaml.cs">
       <DependentUpon>WindowsClose.xaml</DependentUpon>
@@ -92,9 +113,37 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Controls\ProgressBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\ProtonAnimation.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Icons\Error.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Icons\Thanks.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Icons\AssignVpnConnections.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Icons\ArrowLeft.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Icons\UpdateIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Icons\Bulb.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Icons\WindowsClose.xaml">
       <Generator>MSBuild:Compile</Generator>

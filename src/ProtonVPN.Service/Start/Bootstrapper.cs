@@ -31,6 +31,7 @@ using ProtonVPN.Service.Config;
 using ProtonVPN.Service.Settings;
 using ProtonVPN.Service.Vpn;
 using ProtonVPN.Vpn.Common;
+using ProtonVPN.Vpn.Networks;
 using ProtonVPN.Vpn.OpenVpn;
 
 namespace ProtonVPN.Service.Start
@@ -74,9 +75,17 @@ namespace ProtonVPN.Service.Start
             RegisterEvents();
 
             Resolve<LogCleaner>().Clean(config.ServiceLogFolder, 10);
+            FixNetworkAdapters();
             ServiceBase.Run(Resolve<VpnService>());
 
             logger.Info("= ProtonVPN Service has exited =");
+        }
+
+        private void FixNetworkAdapters()
+        {
+            INetworkAdapterManager networkAdapterManager = Resolve<INetworkAdapterManager>();
+            networkAdapterManager.DisableDuplicatedWireGuardAdapters();
+            networkAdapterManager.EnableOpenVpnAdapters();
         }
 
         private void InitCrashReporting()
@@ -94,7 +103,6 @@ namespace ProtonVPN.Service.Start
                 {
                     switch (state.Status)
                     {
-                        case VpnStatus.Pinging:
                         case VpnStatus.Connecting:
                         case VpnStatus.Reconnecting:
                             instance.OnVpnConnecting(state);

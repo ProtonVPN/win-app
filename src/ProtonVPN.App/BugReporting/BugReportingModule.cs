@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -20,10 +20,12 @@
 using Autofac;
 using ProtonVPN.BugReporting.Attachments.Source;
 using ProtonVPN.BugReporting.Diagnostic;
+using ProtonVPN.BugReporting.FormElements;
 using ProtonVPN.Common.Helpers;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.OS.Net.NetworkInterface;
 using ProtonVPN.Common.OS.Processes;
+using ProtonVPN.Core.OS;
 
 namespace ProtonVPN.BugReporting
 {
@@ -37,8 +39,8 @@ namespace ProtonVPN.BugReporting
 
             builder.Register(c =>
             {
-                var appConfig = c.Resolve<Common.Configuration.Config>();
-                var logger = c.Resolve<ILogger>();
+                Common.Configuration.Config appConfig = c.Resolve<Common.Configuration.Config>();
+                ILogger logger = c.Resolve<ILogger>();
 
                 return new Attachments.Attachments(
                     new FilesToAttachments(
@@ -86,6 +88,8 @@ namespace ProtonVPN.BugReporting
                 .SingleInstance();
 
             builder.RegisterType<NetworkLogWriter>().SingleInstance();
+            builder.RegisterType<FormElementBuilder>().As<IFormElementBuilder>().SingleInstance();
+            builder.RegisterType<ReportFieldProvider>().As<IReportFieldProvider>().SingleInstance();
         }
     }
 }

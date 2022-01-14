@@ -17,51 +17,59 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Networking;
+using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.OS.Net;
 using ProtonVPN.Common.OS.Net.NetworkInterface;
-using ProtonVPN.Core.Settings;
-using Sentry;
-using Sentry.Protocol;
 
 namespace ProtonVPN.Core.Service.Vpn
 {
     public class NetworkAdapterValidator : INetworkAdapterValidator
     {
         private readonly INetworkInterfaceLoader _networkInterfaceLoader;
-        private readonly IAppSettings _appSettings;
+        private readonly ILogger _logger;
 
-        public NetworkAdapterValidator(INetworkInterfaceLoader networkInterfaceLoader, IAppSettings appSettings)
+        public NetworkAdapterValidator(INetworkInterfaceLoader networkInterfaceLoader, ILogger logger)
         {
             _networkInterfaceLoader = networkInterfaceLoader;
-            _appSettings = appSettings;
+            _logger = logger;
         }
 
-        public bool IsAdapterAvailable()
+        public bool IsOpenVpnAdapterAvailable()
         {
-            INetworkInterface openVpnTunInterface = _networkInterfaceLoader.GetOpenVpnTunInterface();
             INetworkInterface openVpnTapInterface = _networkInterfaceLoader.GetOpenVpnTapInterface();
-            if (openVpnTunInterface == null && openVpnTapInterface == null)
-            {
-                return false;
-            }
+            INetworkInterface openVpnTunInterface = _networkInterfaceLoader.GetOpenVpnTunInterface();
+            bool isOpenVpnAdapterAvailable = openVpnTapInterface != null || openVpnTunInterface != null;
 
-            if (openVpnTunInterface == null && _appSettings.NetworkAdapterType == OpenVpnAdapter.Tun)
-            {
-                _appSettings.NetworkAdapterType = OpenVpnAdapter.Tap;
-                SendTunFallbackEvent();
-            }
+            LogIsOpenVpnAdapterAvailable(isOpenVpnAdapterAvailable,
+                CreateInterfaceLogMessage("TAP", openVpnTapInterface),
+                CreateInterfaceLogMessage("TUN", openVpnTunInterface));
 
-            return true;
+            return isOpenVpnAdapterAvailable;
         }
 
-        private void SendTunFallbackEvent()
+        private string CreateInterfaceLogMessage(string interfaceType, INetworkInterface networkInterface)
         {
-            SentrySdk.CaptureEvent(new SentryEvent
+            if (networkInterface == null)
             {
-                Message = "TUN adapter not found. Adapter changed to TAP.",
-                Level = SentryLevel.Info,
-            });
+                return $"The {interfaceType} adapter is unavailable.";
+            }
+
+            return $"The {interfaceType} adapter is available (Index: {networkInterface.Index}, " +
+                   $"Name: '{networkInterface.Name}', Description: '{networkInterface.Description}').";
+        }
+
+        private void LogIsOpenVpnAdapterAvailable(bool isOpenVpnAdapterAvailable, params string[] openVpnInterfaces)
+        {
+            string logMessage = $"[NetworkAdapterValidator] Checking which OpenVPN adapters are available. " + 
+                                string.Join(" ", openVpnInterfaces);
+            if (isOpenVpnAdapterAvailable)
+            {
+                _logger.Info(logMessage);
+            }
+            else
+            {
+                _logger.Warn(logMessage);
+            }
         }
     }
 }

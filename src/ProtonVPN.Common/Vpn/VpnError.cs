@@ -30,7 +30,7 @@ namespace ProtonVPN.Common.Vpn
         TapRequiresUpdateError,
         TlsError,
         TlsCertificateError,
-        TimeoutError,
+        PingTimeoutError,
         UserTierTooLowError,
         Unpaid,
         SessionLimitReached,
@@ -41,6 +41,8 @@ namespace ProtonVPN.Common.Vpn
         Unknown,
         MissingServerPublicKey,
         IncorrectVpnConfig,
+        ServerUnreachable,
+        AdapterTimeoutError,
 
         GuestSession = 86100,
         CertificateExpired = 86101,

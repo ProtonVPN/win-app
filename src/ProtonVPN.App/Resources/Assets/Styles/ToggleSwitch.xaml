@@ -1,5 +1,5 @@
 ﻿<!--
-Copyright (c) 2020 Proton Technologies AG
+Copyright (c) 2021 Proton Technologies AG
 
 This file is part of ProtonVPN.
 
@@ -18,9 +18,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 -->
 
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
-                    xmlns:fa="http://schemas.fontawesome.io/icons/">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Style x:Key="ToggleSwitch" TargetType="{x:Type CheckBox}">
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="Background" Value="Black"/>

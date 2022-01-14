@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -25,7 +25,6 @@ using System.Runtime;
 using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.Toolkit.Uwp.Notifications;
-using ProtonVPN.Common.Cli;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.CrashReporting;
 using ProtonVPN.Common.Extensions;
@@ -82,8 +81,6 @@ namespace ProtonVPN
 
                 _bootstrapper = new Bootstrapper(args);
                 _bootstrapper.Initialize();
-
-                HandleIntentionalCrash(app, args);
 
                 app.Run();
             }
@@ -148,15 +145,6 @@ namespace ProtonVPN
             new ConfigDirectories(config).Prepare();
 
             return config;
-        }
-
-        private static void HandleIntentionalCrash(Application app, string[] args)
-        {
-            var option = new CommandLineOption("crash", args);
-            if (!option.Exists())
-                return;
-
-            app.Deactivated += (sender, ea) => throw new StackOverflowException("Intentional crash test");
         }
 
         private static void SetDllDirectories()

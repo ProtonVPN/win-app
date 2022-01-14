@@ -150,7 +150,7 @@
       <Name>ProtonVPN.App</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\ProtonVPN.Common\ProtonVPN.Common.csproj">
-      <Project>{03b8e43c-5680-4803-a745-0a104fe6620c}</Project>
+      <Project>{03B8E43C-5680-4803-A745-0A104FE6620C}</Project>
       <Name>ProtonVPN.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\ProtonVPN.Core\ProtonVPN.Core.csproj">

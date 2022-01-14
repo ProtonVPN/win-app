@@ -49,6 +49,7 @@ using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Network;
 using ProtonVPN.Core.OS.Net;
 using ProtonVPN.Core.Profiles;
+using ProtonVPN.Core.ReportAnIssue;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Service;
 using ProtonVPN.Core.Service.Settings;
@@ -200,19 +201,20 @@ namespace ProtonVPN.Core
 
         private async Task<bool> IsUserValid()
         {
+            LoginViewModel loginViewModel = Resolve<LoginViewModel>();
             try
             {
-                ApiResponseResult<BaseResponse> validateResult = await Resolve<UserValidator>().GetValidateResult();
-                if (validateResult.Failure)
+                AuthResult result = await Resolve<UserValidator>().GetValidateResult();
+                if (result.Failure)
                 {
-                    Resolve<LoginErrorViewModel>().SetError(validateResult.Error);
+                    loginViewModel.HandleAuthFailure(result);
                     ShowLoginForm();
                     return false;
                 }
             }
             catch (HttpRequestException ex)
             {
-                Resolve<LoginErrorViewModel>().SetError(ex.Message);
+                loginViewModel.HandleAuthFailure(AuthResult.Fail(ex.Message));
                 ShowLoginForm();
                 return false;
             }
@@ -518,6 +520,7 @@ namespace ProtonVPN.Core
             Resolve<INetworkClient>().CheckForInsecureWiFi();
             await Resolve<EventClient>().StoreLatestEvent();
             Resolve<EventTimer>().Start();
+            await Resolve<IReportAnIssueFormDataProvider>().FetchData();
         }
 
         private void LoadViewModels()

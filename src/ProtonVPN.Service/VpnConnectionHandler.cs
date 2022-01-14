@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
@@ -32,7 +32,6 @@ using ProtonVPN.Common.Vpn;
 using ProtonVPN.Service.Contract.Settings;
 using ProtonVPN.Service.Contract.Vpn;
 using ProtonVPN.Service.Settings;
-using ProtonVPN.Service.Vpn;
 using ProtonVPN.Vpn.Common;
 
 namespace ProtonVPN.Service
@@ -50,14 +49,11 @@ namespace ProtonVPN.Service
         private readonly ILogger _logger;
         private readonly IServiceSettings _serviceSettings;
         private readonly ITaskQueue _taskQueue;
-        private readonly NetworkSettings _networkSettings;
 
         private VpnState _state = new(VpnStatus.Disconnected, default);
-        private VpnProtocol _vpnProtocol;
 
         public VpnConnectionHandler(
             KillSwitch.KillSwitch killSwitch,
-            NetworkSettings networkSettings,
             IVpnConnection vpnConnection,
             ILogger logger,
             IServiceSettings serviceSettings,
@@ -68,33 +64,22 @@ namespace ProtonVPN.Service
             _logger = logger;
             _serviceSettings = serviceSettings;
             _taskQueue = taskQueue;
-            _networkSettings = networkSettings;
+
             _vpnConnection.StateChanged += VpnConnection_StateChanged;
         }
 
-        public Task Connect(VpnConnectionRequestContract connectionRequest)
+        public async Task Connect(VpnConnectionRequestContract connectionRequest)
         {
             Ensure.NotNull(connectionRequest, nameof(connectionRequest));
 
-            _logger.Info("Connect requested");
+            _logger.Info("[VpnConnectionHandler] Connect requested");
 
             _serviceSettings.Apply(connectionRequest.Settings);
 
+            VpnConfig config = Map(connectionRequest.VpnConfig);
             IReadOnlyList<VpnHost> endpoints = Map(connectionRequest.Servers);
             VpnCredentials credentials = Map(connectionRequest.Credentials);
-            VpnConfig config = Map(connectionRequest.VpnConfig);
-            _vpnProtocol = config.VpnProtocol;
-
-            if (config.VpnProtocol == VpnProtocol.WireGuard || _networkSettings.IsNetworkAdapterAvailable(config.VpnProtocol, config.OpenVpnAdapter))
-            {
-                _vpnConnection.Connect(endpoints, config, credentials);
-            }
-            else
-            {
-                HandleNoTapError();
-            }
-
-            return Task.CompletedTask;
+            _vpnConnection.Connect(endpoints, config, credentials);
         }
 
         public Task UpdateAuthCertificate(string certificate)
@@ -105,7 +90,7 @@ namespace ProtonVPN.Service
 
         public Task Disconnect(SettingsContract settings, VpnErrorTypeContract vpnError)
         {
-            _logger.Info($"Disconnect requested (Error: {vpnError})");
+            _logger.Info($"[VpnConnectionHandler] Disconnect requested (Error: {vpnError})");
 
             _serviceSettings.Apply(settings);
 
@@ -122,6 +107,37 @@ namespace ProtonVPN.Service
             });
 
             return Task.CompletedTask;
+        }
+
+        private void CallbackStateChanged(VpnState state)
+        {
+            _logger.Info($"[VpnConnectionHandler] Callbacking VPN state '{state.Status}' [Error: '{state.Error}', " +
+                         $"LocalIp: '{state.LocalIp}', RemoteIp: '{state.RemoteIp}', Label: '{state.Label}', " +
+                         $"VpnProtocol: '{state.VpnProtocol}', OpenVpnAdapter: '{state.OpenVpnAdapter}']");
+            Callback(callback => callback.OnStateChanged(Map(state)));
+        }
+
+        private void Callback(Action<IVpnEventsContract> action)
+        {
+            lock (_callbackLock)
+            {
+                foreach (IVpnEventsContract callback in _callbacks.ToList())
+                {
+                    try
+                    {
+                        action(callback);
+                    }
+                    catch (Exception ex) when (ex.IsServiceCommunicationException())
+                    {
+                        _logger.Warn($"[VpnConnectionHandler] Callback failed: {ex.Message}");
+                        _callbacks.Remove(callback);
+                    }
+                    catch (TimeoutException)
+                    {
+                        _logger.Warn("[VpnConnectionHandler] Callback timed out");
+                    }
+                }
+            }
         }
 
         public Task<InOutBytesContract> Total()
@@ -141,7 +157,7 @@ namespace ProtonVPN.Service
 
         public Task UnRegisterCallback()
         {
-            _logger.Info("Unregister callback requested");
+            _logger.Info("[VpnConnectionHandler] Unregister callback requested");
 
             lock (_callbackLock)
             {
@@ -155,7 +171,7 @@ namespace ProtonVPN.Service
         {
             if (_state.Status == VpnStatus.Disconnected)
             {
-                _logger.Info($"Callbacking VPN service settings change. Current state: {_state.Status} (Error: {_state.Error})");
+                _logger.Info($"[VpnConnectionHandler] Callbacking VPN service settings change. Current state: {_state.Status} (Error: {_state.Error})");
                 Callback(callback => callback.OnServiceSettingsStateChanged(CreateServiceSettingsState()));
             }
             else if (_state.Status == VpnStatus.Connected)
@@ -169,52 +185,10 @@ namespace ProtonVPN.Service
             return new(Map(_state));
         }
 
-        private void HandleNoTapError()
-        {
-            if (_state.Status == VpnStatus.Disconnected)
-            {
-                CallbackStateChanged(new VpnState(VpnStatus.Disconnected, VpnError.NoTapAdaptersError, _vpnProtocol));
-            }
-            else
-            {
-                _vpnConnection.Disconnect(VpnError.NoTapAdaptersError);
-            }
-        }
-
         private void VpnConnection_StateChanged(object sender, EventArgs<VpnState> e)
         {
             _state = e.Data;
             CallbackStateChanged(_state);
-        }
-
-        private void CallbackStateChanged(VpnState state)
-        {
-            _logger.Info($"Callbacking VPN state '{state.Status}' [Error: '{state.Error}', LocalIp: '{state.LocalIp}', RemoteIp: '{state.RemoteIp}', " +
-                         $"Label: '{state.Label}', VpnProtocol: '{state.VpnProtocol}', OpenVpnAdapter: '{state.OpenVpnAdapter}']");
-            Callback(callback => callback.OnStateChanged(Map(state)));
-        }
-
-        private void Callback(Action<IVpnEventsContract> action)
-        {
-            lock (_callbackLock)
-            {
-                foreach (IVpnEventsContract callback in _callbacks.ToList())
-                {
-                    try
-                    {
-                        action(callback);
-                    }
-                    catch (Exception ex) when (ex.IsServiceCommunicationException())
-                    {
-                        _logger.Warn($"Callback failed: {ex.Message}");
-                        _callbacks.Remove(callback);
-                    }
-                    catch (TimeoutException)
-                    {
-                        _logger.Warn("Callback timed out");
-                    }
-                }
-            }
         }
 
         private VpnStateContract Map(VpnState state)
@@ -302,6 +276,7 @@ namespace ProtonVPN.Service
                 VpnProtocol.OpenVpnUdp => VpnProtocolContract.OpenVpnUdp,
                 VpnProtocol.WireGuard => VpnProtocolContract.WireGuard,
                 VpnProtocol.Smart => VpnProtocolContract.Smart,
+                _ => throw new NotImplementedException("VpnProtocol has an unknown value."),
             };
         }
 

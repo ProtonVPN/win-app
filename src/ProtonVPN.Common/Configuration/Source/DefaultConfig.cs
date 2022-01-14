@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using DeviceId;
 using ProtonVPN.Common.Configuration.Api.Handlers.TlsPinning;
 using ProtonVPN.Common.Extensions;
 
@@ -223,6 +224,7 @@ namespace ProtonVPN.Common.Configuration.Source
                     InvoicesUrl = "https://account.protonvpn.com/payments#invoices",
                     AboutSmartProtocolUrl = "https://protonvpn.com/support/how-to-change-vpn-protocols",
                     IncorrectSystemTimeArticleUrl = "https://protonvpn.com/support/update-windows-clock",
+                    AssignVpnConnectionsUrl = "https://protonvpn.com/support/assign-vpn-connection"
                 },
 
                 OpenVpn =
@@ -342,7 +344,17 @@ namespace ProtonVPN.Common.Configuration.Source
                 },
 
                 NtpServerUrl = "time.windows.com",
+
+                DeviceId = GetDeviceId()
             };
+        }
+
+        private string GetDeviceId()
+        {
+            return new DeviceIdBuilder()
+                .AddProcessorId()
+                .AddMotherboardSerialNumber()
+                .ToString();
         }
     }
 }

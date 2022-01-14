@@ -41,9 +41,23 @@
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Sentry, Version=1.2.0.0, Culture=neutral, PublicKeyToken=fba2ec45388e2af0, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Sentry.1.2.0\lib\net461\Sentry.dll</HintPath>
+    </Reference>
+    <Reference Include="Sentry.PlatformAbstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=fba2ec45388e2af0, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Sentry.PlatformAbstractions.1.0.0\lib\net471\Sentry.PlatformAbstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Sentry.Protocol, Version=1.0.6.0, Culture=neutral, PublicKeyToken=fba2ec45388e2af0, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Sentry.Protocol.1.0.6\lib\net46\Sentry.Protocol.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Collections.Immutable, Version=1.2.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Collections.Immutable.1.5.0\lib\netstandard2.0\System.Collections.Immutable.dll</HintPath>
+    </Reference>
     <Reference Include="System.Core" />
     <Reference Include="System.IO" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -65,6 +79,7 @@
     <Compile Include="Connection\IEndpointScanner.cs" />
     <Compile Include="Connection\IVpnEndpointCandidates.cs" />
     <Compile Include="Connection\LocalAgentWrapper.cs" />
+    <Compile Include="Connection\NetworkAdapterStatusWrapper.cs" />
     <Compile Include="Connection\VpnEndpointScanner.cs" />
     <Compile Include="Connection\QueuingRequestsWrapper.cs" />
     <Compile Include="Connection\ReconnectingWrapper.cs" />
@@ -86,6 +101,13 @@
     <Compile Include="Management\ReceivedManagementMessage.cs" />
     <Compile Include="Common\VpnState.cs" />
     <Compile Include="Connection\FilteringStateWrapper.cs" />
+    <Compile Include="Networks\Adapters\INetworkAdapter.cs" />
+    <Compile Include="Networks\Adapters\INetworkAdaptersLoader.cs" />
+    <Compile Include="Networks\Adapters\NetConnectionStatus.cs" />
+    <Compile Include="Networks\Adapters\NetworkAdapter.cs" />
+    <Compile Include="Networks\Adapters\NetworkAdaptersLoader.cs" />
+    <Compile Include="Networks\INetworkAdapterManager.cs" />
+    <Compile Include="Networks\NetworkAdapterManager.cs" />
     <Compile Include="OpenVpn\Arguments\BasicArguments.cs" />
     <Compile Include="OpenVpn\Arguments\CustomDnsArguments.cs" />
     <Compile Include="OpenVpn\Arguments\LocalHostArguments.cs" />

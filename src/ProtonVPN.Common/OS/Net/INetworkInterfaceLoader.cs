@@ -29,5 +29,6 @@ namespace ProtonVPN.Common.OS.Net
         INetworkInterface GetWireGuardTunInterface();
 
         INetworkInterface GetByVpnProtocol(VpnProtocol vpnProtocol, OpenVpnAdapter? openVpnAdapter);
+        INetworkInterface GetByOpenVpnAdapter(OpenVpnAdapter? openVpnAdapter);
     }
 }

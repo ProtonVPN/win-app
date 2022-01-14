@@ -21,76 +21,82 @@ using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using NSubstitute.ReturnsExtensions;
-using ProtonVPN.Common.Networking;
+using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.OS.Net;
 using ProtonVPN.Common.OS.Net.NetworkInterface;
 using ProtonVPN.Core.Service.Vpn;
-using ProtonVPN.Core.Settings;
 
 namespace ProtonVPN.App.Test.Core.Service.Vpn
 {
     [TestClass]
     public class NetworkAdapterValidatorTest
     {
-        private IAppSettings _appSettings;
         private INetworkInterfaceLoader _networkInterfaceLoader;
+        private ILogger _logger;
 
         [TestInitialize]
         public void Initialize()
         {
-            _appSettings = Substitute.For<IAppSettings>();
             _networkInterfaceLoader = Substitute.For<INetworkInterfaceLoader>();
+            _logger = Substitute.For<ILogger>();
         }
 
         [TestCleanup]
         public void Cleanup()
         {
-            _appSettings = null;
             _networkInterfaceLoader = null;
         }
 
         [TestMethod]
-        public void IsAtLeastOneAdapterAvailable_ShouldReturnFalseWhenNoAdaptersAvailable()
+        public void IsOpenVpnAdapterAvailable_ShouldReturnFalseWhenNoAdaptersAvailable()
         {
-            // Arrange
-            _appSettings.NetworkAdapterType.Returns(OpenVpnAdapter.Tun);
             _networkInterfaceLoader.GetOpenVpnTunInterface().ReturnsNull();
             _networkInterfaceLoader.GetOpenVpnTapInterface().ReturnsNull();
 
-            NetworkAdapterValidator sut = new(_networkInterfaceLoader, _appSettings);
-
-            // Assert
-            sut.IsAdapterAvailable().Should().BeFalse();
+            NetworkAdapterValidator validator = new(_networkInterfaceLoader, _logger);
+            
+            validator.IsOpenVpnAdapterAvailable().Should().BeFalse();
+            _logger.Received(0).Info(Arg.Any<string>());
+            _logger.Received(1).Warn(Arg.Any<string>());
         }
 
         [TestMethod]
-        public void IsAtLeastOneAdapterAvailable_ShouldFallbackToTap()
+        public void IsOpenVpnAdapterAvailable_ShouldReturnTrueWhenTapIsAvailable()
         {
-            // Arrange
-            _appSettings.NetworkAdapterType.Returns(OpenVpnAdapter.Tun);
             _networkInterfaceLoader.GetOpenVpnTunInterface().ReturnsNull();
             _networkInterfaceLoader.GetOpenVpnTapInterface().Returns(new NullNetworkInterface());
 
-            NetworkAdapterValidator sut = new(_networkInterfaceLoader, _appSettings);
-
-            // Assert
-            sut.IsAdapterAvailable().Should().BeTrue();
-            _appSettings.NetworkAdapterType.Should().Be(OpenVpnAdapter.Tap);
+            NetworkAdapterValidator validator = new(_networkInterfaceLoader, _logger);
+            
+            validator.IsOpenVpnAdapterAvailable().Should().BeTrue();
+            _logger.Received(1).Info(Arg.Any<string>());
+            _logger.Received(0).Warn(Arg.Any<string>());
         }
 
         [TestMethod]
-        public void IsAtLeastOneAdapterAvailable_ShouldReturnTrueWhenTunAvailable()
+        public void IsOpenVpnAdapterAvailable_ShouldReturnTrueWhenTunIsAvailable()
         {
-            // Arrange
-            _appSettings.NetworkAdapterType.Returns(OpenVpnAdapter.Tun);
+            _networkInterfaceLoader.GetOpenVpnTunInterface().Returns(new NullNetworkInterface());
+            _networkInterfaceLoader.GetOpenVpnTapInterface().ReturnsNull();
+
+            NetworkAdapterValidator validator = new(_networkInterfaceLoader, _logger);
+            
+            validator.IsOpenVpnAdapterAvailable().Should().BeTrue();
+            _logger.Received(1).Info(Arg.Any<string>());
+            _logger.Received(0).Warn(Arg.Any<string>());
+        }
+
+        [TestMethod]
+        public void IsOpenVpnAdapterAvailable_ShouldReturnTrueWhenBothAreAvailable()
+        {
             _networkInterfaceLoader.GetOpenVpnTunInterface().Returns(new NullNetworkInterface());
             _networkInterfaceLoader.GetOpenVpnTapInterface().Returns(new NullNetworkInterface());
 
-            NetworkAdapterValidator sut = new(_networkInterfaceLoader, _appSettings);
-
-            // Assert
-            sut.IsAdapterAvailable().Should().BeTrue();
-            _appSettings.NetworkAdapterType.Should().Be(OpenVpnAdapter.Tun);
+            NetworkAdapterValidator validator = new(_networkInterfaceLoader, _logger);
+            
+            validator.IsOpenVpnAdapterAvailable().Should().BeTrue();
+            _logger.Received(1).Info(Arg.Any<string>());
+            _logger.Received(0).Warn(Arg.Any<string>());
         }
     }
 }

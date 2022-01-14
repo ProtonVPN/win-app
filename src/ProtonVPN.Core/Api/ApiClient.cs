@@ -25,6 +25,7 @@ using ProtonVPN.Common.Logging;
 using ProtonVPN.Core.Abstract;
 using ProtonVPN.Core.Api.Certificates;
 using ProtonVPN.Core.Api.Contracts;
+using ProtonVPN.Core.Api.Contracts.ReportAnIssue;
 using ProtonVPN.Core.Api.Data;
 using ProtonVPN.Core.Settings;
 using UserLocation = ProtonVPN.Core.Api.Contracts.UserLocation;
@@ -95,7 +96,7 @@ namespace ProtonVPN.Core.Api
 
         public async Task<ApiResponseResult<VpnInfoResponse>> GetVpnInfoResponse()
         {
-            HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, "vpn");
+            HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, "vpn/v2");
             try
             {
                 using (HttpResponseMessage response = await _client.SendAsync(request).ConfigureAwait(false))
@@ -170,6 +171,21 @@ namespace ProtonVPN.Core.Api
                 using HttpResponseMessage response = await _client.SendAsync(request).ConfigureAwait(false);
                 System.IO.Stream stream = await response.Content.ReadAsStreamAsync();
                 return Logged(GetResponseStreamResult<ServerList>(stream, response.StatusCode), "Get server loads");
+            }
+            catch (Exception e) when (e.IsApiCommunicationException())
+            {
+                throw new HttpRequestException(e.Message, e);
+            }
+        }
+
+        public async Task<ApiResponseResult<ReportAnIssueFormData>> GetReportAnIssueFormData()
+        {
+            try
+            {
+                HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, "vpn/v1/featureconfig/dynamic-bug-reports");
+                using HttpResponseMessage response = await _client.SendAsync(request).ConfigureAwait(false);
+                System.IO.Stream stream = await response.Content.ReadAsStreamAsync();
+                return Logged(GetResponseStreamResult<ReportAnIssueFormData>(stream, response.StatusCode), "Get report an issue form data");
             }
             catch (Exception e) when (e.IsApiCommunicationException())
             {

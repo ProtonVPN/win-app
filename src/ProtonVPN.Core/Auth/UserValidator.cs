@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,6 +18,7 @@
  */
 
 using System.Threading.Tasks;
+using ProtonVPN.Common.Extensions;
 using ProtonVPN.Core.Api;
 using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.Settings;
@@ -35,25 +36,21 @@ namespace ProtonVPN.Core.Auth
             _userAuth = userAuth;
         }
 
-        public async Task<ApiResponseResult<BaseResponse>> GetValidateResult()
+        public async Task<AuthResult> GetValidateResult()
         {
-            if (PlanInfoExists())
-                return ApiResponseResult<BaseResponse>.Ok(new BaseResponse());
-
-            var vpnInfoResult = await _userAuth.RefreshVpnInfo();
-            if (vpnInfoResult.Success)
+            if (!_userStorage.User().VpnPlan.IsNullOrEmpty())
             {
-                _userStorage.StoreVpnInfo(vpnInfoResult.Value);
-                return ApiResponseResult<BaseResponse>.Ok(vpnInfoResult.Value);
+                return AuthResult.Ok();
             }
 
-            return ApiResponseResult<BaseResponse>.Fail(vpnInfoResult.StatusCode, vpnInfoResult.Error);
-        }
+            ApiResponseResult<VpnInfoResponse> vpnInfoResult = await _userAuth.RefreshVpnInfo();
+            if (vpnInfoResult.Failure)
+            {
+                return AuthResult.Fail(vpnInfoResult);
+            }
 
-        private bool PlanInfoExists()
-        {
-            var user = _userStorage.User();
-            return !string.IsNullOrEmpty(user.VpnPlan);
+            _userStorage.StoreVpnInfo(vpnInfoResult.Value);
+            return AuthResult.Ok();
         }
     }
 }

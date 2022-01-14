@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using ProtonVPN.Common.Extensions;
@@ -29,7 +29,7 @@ namespace ProtonVPN.Core
             }
             catch (Exception e) when (e.IsFileAccessException())
             {
-                _logger.Error(e);
+                _logger.Error("Couldn't get language file.", e);
                 return new List<string>{ _defaultLocale };
             }
         }
@@ -37,9 +37,9 @@ namespace ProtonVPN.Core
         private List<string> InternalGetAll()
         {
             var langs = new List<string> { _defaultLocale };
-            var files = Directory.GetFiles(_translationsFolder, ResourceFile, SearchOption.AllDirectories);
+            string[] files = Directory.GetFiles(_translationsFolder, ResourceFile, SearchOption.AllDirectories);
 
-            foreach (var file in files)
+            foreach (string file in files)
             {
                 var dirInfo = new DirectoryInfo(file);
                 if (dirInfo.Parent != null)

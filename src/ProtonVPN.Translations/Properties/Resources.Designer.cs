@@ -19,7 +19,7 @@ namespace ProtonVPN.Translations.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resources {
@@ -646,7 +646,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Report a Bug.
+        ///   Looks up a localized string similar to Report an Issue.
         /// </summary>
         public static string App_mnu_ReportBug {
             get {
@@ -718,6 +718,42 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Contact us.
+        /// </summary>
+        public static string BugReport_btn_FillOutTheForm {
+            get {
+                return ResourceManager.GetString("BugReport_btn_FillOutTheForm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update.
+        /// </summary>
+        public static string BugReport_btn_GetUpdates {
+            get {
+                return ResourceManager.GetString("BugReport_btn_GetUpdates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Done.
+        /// </summary>
+        public static string BugReport_btn_GotIt {
+            get {
+                return ResourceManager.GetString("BugReport_btn_GotIt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Learn More.
+        /// </summary>
+        public static string BugReport_btn_LearnMore {
+            get {
+                return ResourceManager.GetString("BugReport_btn_LearnMore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Retry.
         /// </summary>
         public static string BugReport_btn_Retry {
@@ -727,7 +763,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Send.
+        ///   Looks up a localized string similar to Send report.
         /// </summary>
         public static string BugReport_btn_Send {
             get {
@@ -745,7 +781,16 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Email:.
+        ///   Looks up a localized string similar to Didn’t work?.
+        /// </summary>
+        public static string BugReport_lbl_DidNotHelp {
+            get {
+                return ResourceManager.GetString("BugReport_lbl_DidNotHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email.
         /// </summary>
         public static string BugReport_lbl_Email {
             get {
@@ -754,11 +799,11 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your E-mail Address.
+        ///   Looks up a localized string similar to This email will be used to contact you regarding this issue..
         /// </summary>
-        public static string BugReport_lbl_Email_Watermark {
+        public static string BugReport_lbl_EmailPlaceholder {
             get {
-                return ResourceManager.GetString("BugReport_lbl_Email_Watermark", resourceCulture);
+                return ResourceManager.GetString("BugReport_lbl_EmailPlaceholder", resourceCulture);
             }
         }
         
@@ -772,7 +817,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Include app logs and system details.
+        ///   Looks up a localized string similar to Send error logs.
         /// </summary>
         public static string BugReport_lbl_IncludeLogs {
             get {
@@ -795,11 +840,101 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error logs help us to get to the bottom of your issue. If you don’t include them, we might not be able to investigate fully..
+        /// </summary>
+        public static string BugReport_lbl_LogsDescription {
+            get {
+                return ResourceManager.GetString("BugReport_lbl_LogsDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A log is a type of file that shows us the actions you took that led to an error. We’ll only ever use them to help our engineers fix bugs..
+        /// </summary>
+        public static string BugReport_lbl_LogsTooltip {
+            get {
+                return ResourceManager.GetString("BugReport_lbl_LogsTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update ProtonVPN.
+        /// </summary>
+        public static string BugReport_lbl_NewVersionAvailable {
+            get {
+                return ResourceManager.GetString("BugReport_lbl_NewVersionAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This version of ProtonVPN might have already solved your issue!.
+        /// </summary>
+        public static string BugReport_lbl_NewVersionInfo {
+            get {
+                return ResourceManager.GetString("BugReport_lbl_NewVersionInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to of.
+        /// </summary>
+        public static string BugReport_lbl_of {
+            get {
+                return ResourceManager.GetString("BugReport_lbl_of", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quick fixes.
+        /// </summary>
+        public static string BugReport_lbl_QuickSolutions {
+            get {
+                return ResourceManager.GetString("BugReport_lbl_QuickSolutions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to These tips could help to solve your issue faster..
+        /// </summary>
+        public static string BugReport_lbl_QuickSolutionsInfo {
+            get {
+                return ResourceManager.GetString("BugReport_lbl_QuickSolutionsInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Step.
+        /// </summary>
+        public static string BugReport_lbl_Step {
+            get {
+                return ResourceManager.GetString("BugReport_lbl_Step", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What&apos;s the issue?.
+        /// </summary>
+        public static string BugReport_lbl_WhatIsTheIssue {
+            get {
+                return ResourceManager.GetString("BugReport_lbl_WhatIsTheIssue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to What went wrong?.
         /// </summary>
         public static string BugReport_lbl_WhatWentWrong {
             get {
                 return ResourceManager.GetString("BugReport_lbl_WhatWentWrong", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We’ll get back to you as soon as we can..
+        /// </summary>
+        public static string BugReport_lbl_WillGetBack {
+            get {
+                return ResourceManager.GetString("BugReport_lbl_WillGetBack", resourceCulture);
             }
         }
         
@@ -813,7 +948,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Processing report....
+        ///   Looks up a localized string similar to Sending report....
         /// </summary>
         public static string BugReport_msg_Sending {
             get {
@@ -822,7 +957,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Failed to send Bug Report. Please try again..
+        ///   Looks up a localized string similar to Your report wasn’t sent.
         /// </summary>
         public static string BugReport_msg_SendingFailed {
             get {
@@ -840,7 +975,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The Bug Report has been successfully sent..
+        ///   Looks up a localized string similar to Thanks for your feedback.
         /// </summary>
         public static string BugReport_msg_SendingSucceeded {
             get {
@@ -849,7 +984,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bug Report.
+        ///   Looks up a localized string similar to Report an issue.
         /// </summary>
         public static string BugReport_ttl {
             get {
@@ -3261,6 +3396,51 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Assign VPN connections.
+        /// </summary>
+        public static string Dialogs_AssignVpnConnections_btn_Assign {
+            get {
+                return ResourceManager.GetString("Dialogs_AssignVpnConnections_btn_Assign", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Login again.
+        /// </summary>
+        public static string Dialogs_AssignVpnConnections_btn_LoginAgain {
+            get {
+                return ResourceManager.GetString("Dialogs_AssignVpnConnections_btn_LoginAgain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To start your journey in ProtonVPN please assign VPN connections to your account or any other sub-account..
+        /// </summary>
+        public static string Dialogs_AssignVpnConnections_ttl_Info1 {
+            get {
+                return ResourceManager.GetString("Dialogs_AssignVpnConnections_ttl_Info1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This step will take just a few minutes. After that you will be able to log in and protect all your devices..
+        /// </summary>
+        public static string Dialogs_AssignVpnConnections_ttl_Info2 {
+            get {
+                return ResourceManager.GetString("Dialogs_AssignVpnConnections_ttl_Info2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thanks for upgrading to Professional/Visionary.
+        /// </summary>
+        public static string Dialogs_AssignVpnConnections_ttl_Thanks {
+            get {
+                return ResourceManager.GetString("Dialogs_AssignVpnConnections_ttl_Thanks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to One of the services required by ProtonVPN (Base Filtering Engine) is not running.&lt;LineBreak/&gt;
         ///Please follow &lt;Hyperlink Command=&quot;{Binding OpenArticleCommand}&quot;&gt;&lt;Run Text=&quot;these&quot;/&gt;&lt;/Hyperlink&gt; instructions to enable it again and retry..
         /// </summary>
@@ -3514,7 +3694,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There&apos;s a problem validating the VPN server certificate, which might indicate that the network connection is being tampered with or the server you are trying to connect to has a configuration problem. Get help from our customer support by sending a &lt;Hyperlink Foreground=&quot;White&quot; Command=&quot;{Binding ReportBugCommand}&quot;&gt;&lt;Run Text=&quot;Bug Report&quot;/&gt;&lt;/Hyperlink&gt;..
+        ///   Looks up a localized string similar to There&apos;s a problem validating the VPN server certificate, which might indicate that the network connection is being tampered with or the server you are trying to connect to has a configuration problem. Get help from our customer support by sending a &lt;Hyperlink Foreground=&quot;White&quot; Command=&quot;{Binding ReportBugCommand}&quot;&gt;&lt;Run Text=&quot;Issue Report&quot;/&gt;&lt;/Hyperlink&gt;..
         /// </summary>
         public static string Dialogs_DisconnectError_msg_TlsCertificateError {
             get {

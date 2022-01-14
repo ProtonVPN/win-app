@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2020 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
@@ -100,7 +100,7 @@ namespace ProtonVPN.Core.Profiles
         {
             // Toggle profile on QuickConnectViewModel is not checking for profile name duplicates.
             // Ensure new profile name shown to the user is initially adjusted for uniqueness.
-            var p = _syncProfile.WithUniqueName(profile);
+            Profile p = _syncProfile.WithUniqueName(profile);
 
             await _profiles.Create(p);
             Sync();
@@ -169,7 +169,7 @@ namespace ProtonVPN.Core.Profiles
 
         private bool ContainsNotSyncedData()
         {
-            using (var cached = _cachedProfiles.ProfileData())
+            using (CachedProfileData cached = _cachedProfiles.ProfileData())
             {
                 return cached.Sync.Any();
             }
@@ -180,11 +180,11 @@ namespace ProtonVPN.Core.Profiles
             if (e.Task.IsFaulted)
             {
                 OnSyncStatusChanged(ProfileSyncStatus.Failed);
-                _logger.Error(e.Task.Exception);
+                _logger.Error("Task exception after syncing profiles.", e.Task.Exception);
             }
             else
             {
-                var status =_syncAction.Running
+                ProfileSyncStatus status =_syncAction.Running
                     ? ProfileSyncStatus.InProgress
                     : _syncFailed
                         ? ProfileSyncStatus.Failed
@@ -214,24 +214,25 @@ namespace ProtonVPN.Core.Profiles
 
         private async Task MergeApiToExternal(IReadOnlyList<Profile> profiles)
         {
-            using (var cached = await _cachedProfiles.LockedProfileData())
+            using (CachedProfileData cached = await _cachedProfiles.LockedProfileData())
             {
-                var external = cached.External;
+                CachedProfileList external = cached.External;
 
-                foreach (var profile in profiles)
+                foreach (Profile profile in profiles)
                 {
-                    var candidate = profile.WithStatus(ProfileStatus.Synced);
+                    Profile candidate = profile.WithStatus(ProfileStatus.Synced);
                     candidate.ModifiedAt = DateTime.UtcNow;
 
-                    var existing = external.FirstOrDefault(p => ProfileByExternalIdEqualityComparer.Equals(p, profile));
+                    Profile existing = external.FirstOrDefault(p => ProfileByExternalIdEqualityComparer.Equals(p, profile));
                     if (existing == null)
                     {
-                        var notSynced = cached.Local.FirstOrDefault(p =>
-                                            p.Status == ProfileStatus.Created &&
-                                            ProfileByEssentialPropertiesEqualityComparer.Equals(p, profile)) ??
-                                        cached.Sync.FirstOrDefault(p =>
-                                            p.Status == ProfileStatus.Created &&
-                                            ProfileByEssentialPropertiesEqualityComparer.Equals(p, profile));
+                        Profile notSynced = 
+                            cached.Local.FirstOrDefault(p =>
+                                p.Status == ProfileStatus.Created &&
+                                ProfileByEssentialPropertiesEqualityComparer.Equals(p, profile)) ??
+                                cached.Sync.FirstOrDefault(p =>
+                                    p.Status == ProfileStatus.Created &&
+                                    ProfileByEssentialPropertiesEqualityComparer.Equals(p, profile));
 
                         if (notSynced != null)
                         {
@@ -268,16 +269,16 @@ namespace ProtonVPN.Core.Profiles
                 return;
 
             // First checking existence of local to avoid unnecessary locking of profile data
-            using (var cached = _cachedProfiles.ProfileData())
+            using (CachedProfileData cached = _cachedProfiles.ProfileData())
             {
                 if (!cached.Local.Any())
                     return;
             }
 
-            using (var cached = await _cachedProfiles.LockedProfileData())
+            using (CachedProfileData cached = await _cachedProfiles.LockedProfileData())
             {
-                var local = cached.Local;
-                var sync = cached.Sync;
+                CachedProfileList local = cached.Local;
+                CachedProfileList sync = cached.Sync;
                 local.ForEach(p => sync.AddOrReplace(p.WithStatusMergedFrom(sync.Get(p))));
                 local.Clear();
 
@@ -290,10 +291,10 @@ namespace ProtonVPN.Core.Profiles
             if (_syncFailed)
                 return;
 
-            using (var cached = _cachedProfiles.ProfileData())
+            using (CachedProfileData cached = _cachedProfiles.ProfileData())
             {
                 var profiles = cached.Sync.OrderBy(p => p.ModifiedAt).ToList();
-                foreach (var profile in profiles)
+                foreach (Profile profile in profiles)
                 {
                     await Sync(profile);
 
@@ -318,7 +319,7 @@ namespace ProtonVPN.Core.Profiles
         {
             if (numberOfRetries < 1) throw new ArgumentOutOfRangeException(nameof(numberOfRetries));
 
-            var i = numberOfRetries;
+            int i = numberOfRetries;
             do
             {
                 await action();

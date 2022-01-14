@@ -148,7 +148,7 @@ namespace ProtonVPN.Windows
             ResizeMode = step > 0 ? ResizeMode.NoResize : ResizeMode.CanResize;
         }
 
-        protected override async void OnStateChanged(EventArgs e)
+        protected override void OnStateChanged(EventArgs e)
         {
             base.OnStateChanged(e);
 

@@ -35,7 +35,7 @@ namespace ProtonVPN.Vpn.Management
             [ProtonVPN.Common.Vpn.VpnError.TapAdapterInUseError] = ContainsTapInUseError,
             [ProtonVPN.Common.Vpn.VpnError.NoTapAdaptersError] = ContainsNoTapError,
             [ProtonVPN.Common.Vpn.VpnError.TapRequiresUpdateError] = ContainsTapRequiresUpdateError,
-            [ProtonVPN.Common.Vpn.VpnError.TimeoutError] = ContainsTimeoutError,
+            [ProtonVPN.Common.Vpn.VpnError.AdapterTimeoutError] = ContainsTimeoutError,
             [ProtonVPN.Common.Vpn.VpnError.NetshError] = ContainsNetshError,
             [ProtonVPN.Common.Vpn.VpnError.TlsCertificateError] = ContainsTlsCertificateError,
         };

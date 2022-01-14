@@ -103,6 +103,10 @@
     <Compile Include="Api\Contracts\BaseResponseDetail.cs" />
     <Compile Include="Api\Contracts\BaseResponseDetailAction.cs" />
     <Compile Include="Api\Contracts\EventResponse.cs" />
+    <Compile Include="Api\Contracts\ReportAnIssue\IssueCategory.cs" />
+    <Compile Include="Api\Contracts\ReportAnIssue\IssueInput.cs" />
+    <Compile Include="Api\Contracts\ReportAnIssue\IssueSuggestion.cs" />
+    <Compile Include="Api\Contracts\ReportAnIssue\ReportAnIssueFormData.cs" />
     <Compile Include="Api\Contracts\ServerStatusResponse.cs" />
     <Compile Include="Api\Contracts\SessionsResponse.cs" />
     <Compile Include="Api\Contracts\StreamingServicesResponse.cs" />
@@ -173,9 +177,11 @@
     <Compile Include="Api\ActionableFailureApiResultEventArgs.cs" />
     <Compile Include="Auth\AuthCertificateManager.cs" />
     <Compile Include="Auth\AuthCertificateUpdater.cs" />
+    <Compile Include="Auth\AuthError.cs" />
     <Compile Include="Auth\AuthKeyManager.cs" />
     <Compile Include="Auth\AuthCredential.cs" />
     <Compile Include="Auth\AuthCredentialManager.cs" />
+    <Compile Include="Auth\AuthResult.cs" />
     <Compile Include="Auth\IAuthCertificateManager.cs" />
     <Compile Include="Auth\IAuthCertificateUpdater.cs" />
     <Compile Include="Auth\IAuthKeyManager.cs" />
@@ -200,7 +206,13 @@
     <Compile Include="Native\WindowPositionExtensions.cs" />
     <Compile Include="Native\WindowStates.cs" />
     <Compile Include="OS\INtpClient.cs" />
+    <Compile Include="OS\ISystemState.cs" />
     <Compile Include="OS\NtpClient.cs" />
+    <Compile Include="OS\SystemState.cs" />
+    <Compile Include="ReportAnIssue\DefaultDataProvider.cs" />
+    <Compile Include="ReportAnIssue\InputType.cs" />
+    <Compile Include="ReportAnIssue\IReportAnIssueFormDataProvider.cs" />
+    <Compile Include="ReportAnIssue\ReportAnIssueFormDataProvider.cs" />
     <Compile Include="Servers\Specs\ExactTierServer.cs" />
     <Compile Include="Servers\Specs\ExitCityServer.cs" />
     <Compile Include="Settings\AppLanguageCache.cs" />
