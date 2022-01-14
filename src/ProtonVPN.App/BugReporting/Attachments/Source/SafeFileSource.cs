@@ -24,6 +24,7 @@ using System.Linq;
 using System.Security;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
 
 namespace ProtonVPN.BugReporting.Attachments.Source
 {
@@ -46,7 +47,7 @@ namespace ProtonVPN.BugReporting.Attachments.Source
             }
             catch (Exception e) when (e.IsFileAccessException() || e is SecurityException)
             {
-                _logger.Warn("Failed to add attachment(s): " + e.CombinedMessage());
+                _logger.Warn<AppFileAccessFailedLog>("Failed to add attachment(s).", e);
             }
 
             return Enumerable.Empty<string>().GetEnumerator();

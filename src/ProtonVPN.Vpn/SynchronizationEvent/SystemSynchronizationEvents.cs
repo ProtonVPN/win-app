@@ -22,6 +22,7 @@ using System;
 using System.IO;
 using System.Security.AccessControl;
 using System.Threading;
+using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
 
 namespace ProtonVPN.Vpn.SynchronizationEvent
 {
@@ -41,7 +42,7 @@ namespace ProtonVPN.Vpn.SynchronizationEvent
         {
             try
             {
-                if (EventWaitHandle.TryOpenExisting(eventName, EventWaitHandleRights.Modify, out var eventWaitHandle))
+                if (EventWaitHandle.TryOpenExisting(eventName, EventWaitHandleRights.Modify, out EventWaitHandle eventWaitHandle))
                     return new SystemSynchronizationEvent(eventWaitHandle);
             }
             catch (UnauthorizedAccessException ex)
@@ -54,9 +55,9 @@ namespace ProtonVPN.Vpn.SynchronizationEvent
             }
             return new NullSynchronizationEvent(); 
 
-            void LogException(Exception ex)
+            void LogException(Exception e)
             {
-                _logger.Warn($"Synchronization: Failed to open event {eventName}. {ex.Message}");
+                _logger.Warn<AppLog>($"Synchronization: Failed to open event {eventName}.", e);
             }
         }
     }

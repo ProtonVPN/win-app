@@ -19,6 +19,9 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
+using ProtonVPN.Common.Logging.Categorization.Events.AppUpdateLogs;
 using ProtonVPN.Core.Abstract;
 using ProtonVPN.Core.Storage;
 
@@ -30,16 +33,19 @@ namespace ProtonVPN.Settings
         private const string UserSettingsMigratedKey = "UserSettingsMigrated";
 
         private readonly Common.Configuration.Config _appConfig;
-        private readonly List<IMigration> _migrations = new List<IMigration>();
+        private readonly List<IMigration> _migrations = new();
         private readonly ISettingsStorage _storage;
         private readonly ISettingsStorage _appSettings;
+        private readonly ILogger _logger;
         private bool _isMigrating;
 
-        public UserSettings(Common.Configuration.Config appConfig, PerUserSettings perUserSettings, ISettingsStorage appSettings)
+        public UserSettings(Common.Configuration.Config appConfig, PerUserSettings perUserSettings, 
+            ISettingsStorage appSettings, ILogger logger)
         {
             _appConfig = appConfig;
             _storage = perUserSettings;
             _appSettings = appSettings;
+            _logger = logger;
         }
 
         public T Get<T>(string key)
@@ -64,17 +70,25 @@ namespace ProtonVPN.Settings
         private void Migrate()
         {
             if (_isMigrating)
+            {
                 return;
+            }
 
-            var version = Version;
+            string version = Version;
             if (version == _appConfig.AppVersion)
+            {
                 return;
+            }
+
+            _logger.Info<AppUpdatedLog>("The app was updated from version " +
+                $"'{version}' to version '{_appConfig.AppVersion}'.");
 
             if (MigrationRequired(version))
             {
+                _logger.Info<AppLog>("Migrating user settings.");
                 _isMigrating = true;
 
-                foreach (var migration in _migrations.OrderBy(m => m.ToVersion))
+                foreach (IMigration migration in _migrations.OrderBy(m => m.ToVersion))
                 {
                     migration.Apply();
                 }

@@ -21,6 +21,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.ConnectionLogs;
 using ProtonVPN.NetworkFilter;
 
 namespace ProtonVPN.Service.SplitTunneling
@@ -83,11 +84,11 @@ namespace ProtonVPN.Service.SplitTunneling
             try
             {
                 action();
-                _logger.Info($"{actionMessage} succeeded");
+                _logger.Info<ConnectionLog>($"{actionMessage} succeeded");
             }
             catch (NetworkFilterException e)
             {
-                _logger.Error($"{actionMessage} failed. Error code: {e.Code}");
+                _logger.Error<ConnectionLog>($"{actionMessage} failed. Error code: {e.Code}");
             }
         }
     }

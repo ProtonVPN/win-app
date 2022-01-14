@@ -23,6 +23,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.ConnectLogs;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Modals;
@@ -97,7 +98,7 @@ namespace ProtonVPN.Core.Service.Vpn
 
             if (!settings.IsToReconnectIfDisconnected && IsDisconnected())
             {
-                _logger.Info("Reconnection refused because it is disconnected.");
+                _logger.Info<ConnectLog>("Reconnection refused because it is disconnected.");
                 ResetReconnectionStep();
                 return;
             }
@@ -122,17 +123,17 @@ namespace ProtonVPN.Core.Service.Vpn
         {
             if (lastProfile != null)
             {
-                _logger.Info("Reconnecting to last profile");
+                _logger.Info<ConnectLog>("Reconnecting to last profile");
                 await _vpnConnector.ConnectToProfileAsync(lastProfile);
             }
             else if (lastServer != null)
             {
-                _logger.Info("Reconnecting to last server");
+                _logger.Info<ConnectLog>("Reconnecting to last server");
                 await _serverConnector.Value.Connect(lastServer);
             }
             else
             {
-                _logger.Warn("Cannot reconnect because last profile and last server are empty.");
+                _logger.Warn<ConnectLog>("Cannot reconnect because last profile and last server are empty.");
             }
 
             ResetReconnectionStep();
@@ -201,7 +202,7 @@ namespace ProtonVPN.Core.Service.Vpn
                 reconnectionStep != VpnReconnectionSteps.RestartReconnectionSteps && 
                 reconnectionStep != VpnReconnectionSteps.Disconnect)
             {
-                _logger.Info("There is no last connection data, so reconnection will fast forward to quick connect.");
+                _logger.Info<ConnectLog>("There is no last connection data, so reconnection will fast forward to quick connect.");
                 return VpnReconnectionSteps.QuickConnect;
             }
 
@@ -222,7 +223,7 @@ namespace ProtonVPN.Core.Service.Vpn
         {
             if (_appSettings.DoNotShowEnableSmartProtocolDialog || _appSettings.GetProtocol() == VpnProtocol.Smart)
             {
-                _logger.Info(_appSettings.GetProtocol() == VpnProtocol.Smart
+                _logger.Info<ConnectLog>(_appSettings.GetProtocol() == VpnProtocol.Smart
                     ? "Smart protocol is already enabled. Reconnection will fast forward to quick connect."
                     : "Not asking again if the user wants to enable Smart Protocol. Reconnection will fast forward to quick connect.");
                 return VpnReconnectionSteps.QuickConnect;
@@ -242,7 +243,7 @@ namespace ProtonVPN.Core.Service.Vpn
                 return VpnReconnectionSteps.SimilarOnSmartProtocol;
             }
 
-            _logger.Info("User refused to enable Smart Protocol. Reconnection will fast forward to quick connect.");
+            _logger.Info<ConnectLog>("User refused to enable Smart Protocol. Reconnection will fast forward to quick connect.");
             return VpnReconnectionSteps.QuickConnect;
         }
 
@@ -250,7 +251,7 @@ namespace ProtonVPN.Core.Service.Vpn
         {
             if (reconnectionStep == VpnReconnectionSteps.RestartReconnectionSteps)
             {
-                _logger.Info("Restarting reconnection process from the first step.");
+                _logger.Info<ConnectLog>("Restarting reconnection process from the first step.");
                 reconnectionStep = VpnReconnectionSteps.SimilarOnSameProtocol;
             }
 
@@ -259,7 +260,7 @@ namespace ProtonVPN.Core.Service.Vpn
 
         private async Task ExecuteReconnectionAsync(VpnReconnectionSteps reconnectionStep, bool isToTryLastServer)
         {
-            _logger.Info($"Executing Smart Reconnect step '{reconnectionStep}' (IsToTryLastServer: '{isToTryLastServer}').");
+            _logger.Info<ConnectLog>($"Executing Smart Reconnect step '{reconnectionStep}' (IsToTryLastServer: '{isToTryLastServer}').");
             switch (reconnectionStep)
             {
                 case VpnReconnectionSteps.SimilarOnSameProtocol:
@@ -297,7 +298,7 @@ namespace ProtonVPN.Core.Service.Vpn
                 Server firstServer = serverCandidates.First();
                 firstServerMessage = $" First server is {firstServer.Name} ({firstServer.ExitIp}).";
             }
-            _logger.Info($"Reconnecting to {serverCandidates.Count} servers.{firstServerMessage}");
+            _logger.Info<ConnectLog>($"Reconnecting to {serverCandidates.Count} servers.{firstServerMessage}");
 
             await _vpnConnector.ConnectToPreSortedCandidatesAsync((IReadOnlyCollection<Server>)serverCandidates, vpnProtocol);
         }

@@ -22,6 +22,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using NSubstitute.ReturnsExtensions;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.NetworkLogs;
 using ProtonVPN.Common.OS.Net;
 using ProtonVPN.Common.OS.Net.NetworkInterface;
 using ProtonVPN.Core.Service.Vpn;
@@ -56,8 +57,8 @@ namespace ProtonVPN.App.Test.Core.Service.Vpn
             NetworkAdapterValidator validator = new(_networkInterfaceLoader, _logger);
             
             validator.IsOpenVpnAdapterAvailable().Should().BeFalse();
-            _logger.Received(0).Info(Arg.Any<string>());
-            _logger.Received(1).Warn(Arg.Any<string>());
+            _logger.Received(0).Info<NetworkLog>(Arg.Any<string>(), null, Arg.Any<string>(), Arg.Any<string>(), Arg.Any<int>());
+            _logger.Received(1).Warn<NetworkLog>(Arg.Any<string>(), null, Arg.Any<string>(), Arg.Any<string>(), Arg.Any<int>());
         }
 
         [TestMethod]
@@ -69,8 +70,8 @@ namespace ProtonVPN.App.Test.Core.Service.Vpn
             NetworkAdapterValidator validator = new(_networkInterfaceLoader, _logger);
             
             validator.IsOpenVpnAdapterAvailable().Should().BeTrue();
-            _logger.Received(1).Info(Arg.Any<string>());
-            _logger.Received(0).Warn(Arg.Any<string>());
+            _logger.Received(1).Info<NetworkLog>(Arg.Any<string>(), null, Arg.Any<string>(), Arg.Any<string>(), Arg.Any<int>());
+            _logger.Received(0).Warn<NetworkLog>(Arg.Any<string>(), null, Arg.Any<string>(), Arg.Any<string>(), Arg.Any<int>());
         }
 
         [TestMethod]
@@ -82,8 +83,8 @@ namespace ProtonVPN.App.Test.Core.Service.Vpn
             NetworkAdapterValidator validator = new(_networkInterfaceLoader, _logger);
             
             validator.IsOpenVpnAdapterAvailable().Should().BeTrue();
-            _logger.Received(1).Info(Arg.Any<string>());
-            _logger.Received(0).Warn(Arg.Any<string>());
+            _logger.Received(1).Info<NetworkLog>(Arg.Any<string>(), null, Arg.Any<string>(), Arg.Any<string>(), Arg.Any<int>());
+            _logger.Received(0).Warn<NetworkLog>(Arg.Any<string>(), null, Arg.Any<string>(), Arg.Any<string>(), Arg.Any<int>());
         }
 
         [TestMethod]
@@ -95,8 +96,8 @@ namespace ProtonVPN.App.Test.Core.Service.Vpn
             NetworkAdapterValidator validator = new(_networkInterfaceLoader, _logger);
             
             validator.IsOpenVpnAdapterAvailable().Should().BeTrue();
-            _logger.Received(1).Info(Arg.Any<string>());
-            _logger.Received(0).Warn(Arg.Any<string>());
+            _logger.Received(1).Info<NetworkLog>(Arg.Any<string>(), null, Arg.Any<string>(), Arg.Any<string>(), Arg.Any<int>());
+            _logger.Received(0).Warn<NetworkLog>(Arg.Any<string>(), null, Arg.Any<string>(), Arg.Any<string>(), Arg.Any<int>());
         }
     }
 }

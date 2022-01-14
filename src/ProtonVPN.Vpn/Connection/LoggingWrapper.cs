@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using ProtonVPN.Common;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.ConnectionLogs;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Vpn.Common;
 
@@ -72,8 +73,8 @@ namespace ProtonVPN.Vpn.Connection
         private void Origin_StateChanged(object sender, EventArgs<VpnState> e)
         {
             VpnState state = e.Data;
-            _logger.Info($"VPN state changed: {state.Status}, Error: {state.Error}, LocalIP: {state.LocalIp}, " +
-                         $"RemoteIP: {state.RemoteIp}, Label: {state.Label}");
+            _logger.Info<ConnectionStateChangeLog>($"VPN state changed: {state.Status}, Error: {state.Error}, " +
+                         $"LocalIP: {state.LocalIp}, RemoteIP: {state.RemoteIp}, Label: {state.Label}");
 
             OnStateChanged(state);
         }

@@ -24,6 +24,7 @@ using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.UserLogs;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Core.Abstract;
 using ProtonVPN.Core.Api.Contracts;
@@ -149,7 +150,7 @@ namespace ProtonVPN.Core.Api.Handlers
             }
             catch (ArgumentNullException e)
             {
-                _logger.Error($"An error occurred when refreshing the auth token: {e.ParamName}");
+                _logger.Error<UserLog>($"An error occurred when refreshing the auth token: {e.ParamName}");
             }
             catch (HttpRequestException)
             {

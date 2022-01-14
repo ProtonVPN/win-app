@@ -26,6 +26,9 @@ using System.Threading.Tasks;
 using ProtonVPN.Common;
 using ProtonVPN.Common.Helpers;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.ConnectionLogs;
+using ProtonVPN.Common.Logging.Categorization.Events.ConnectLogs;
+using ProtonVPN.Common.Logging.Categorization.Events.DisconnectLogs;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.OS.Net;
 using ProtonVPN.Common.Threading;
@@ -36,9 +39,6 @@ using ProtonVPN.Vpn.OpenVpn;
 
 namespace ProtonVPN.Vpn.Connection
 {
-    /// <summary>
-    /// VPN connection based on OpenVPN.
-    /// </summary>
     internal class OpenVpnConnection : ISingleVpnConnection
     {
         private static readonly TimeSpan WaitForConnectionTaskToFinishAfterClose = TimeSpan.FromSeconds(3);
@@ -111,7 +111,7 @@ namespace ProtonVPN.Vpn.Connection
 
         private async Task ConnectAction(CancellationToken cancellationToken)
         {
-            _logger.Info("OpenVpnConnection: Connect action started");
+            _logger.Info<ConnectStartLog>("Connect action started");
 
             OnStateChanged(VpnStatus.Connecting);
 
@@ -162,7 +162,7 @@ namespace ProtonVPN.Vpn.Connection
 
         private async Task DisconnectAction()
         {
-            _logger.Info("OpenVpnConnection: Disconnect action started");
+            _logger.Info<DisconnectLog>("Disconnect action started");
             OnStateChanged(VpnStatus.Disconnecting);
 
             await CloseVpnConnection();
@@ -172,9 +172,9 @@ namespace ProtonVPN.Vpn.Connection
 
         private void ConnectAction_Completed(object sender, TaskCompletedEventArgs e)
         {
-            _logger.Info("OpenVpnConnection: Connect action completed");
+            _logger.Info<ConnectLog>("Connect action completed");
 
-            HandleTaskExceptionsIfAny(e.Task, "OpenVpnConnection: Connection action failed");
+            HandleTaskExceptionsIfAny(e.Task, "Connection action failed");
 
             if (!e.Task.IsCanceled && !_disconnectAction.IsRunning)
             {
@@ -184,9 +184,9 @@ namespace ProtonVPN.Vpn.Connection
 
         private void DisconnectAction_Completed(object sender, TaskCompletedEventArgs e)
         {
-            _logger.Info("OpenVpnConnection: Disconnect action completed");
+            _logger.Info<DisconnectLog>("Disconnect action completed");
 
-            HandleTaskExceptionsIfAny(e.Task, "OpenVpnConnection: Disconnect action failed");
+            HandleTaskExceptionsIfAny(e.Task, "Disconnect action failed");
 
             OnStateChanged(VpnStatus.Disconnected);
         }
@@ -213,16 +213,16 @@ namespace ProtonVPN.Vpn.Connection
             }
             catch (Exception ex) when (IsImplementationException(ex))
             {
-                _logger.Warn($"OpenVpnConnection: Failed writing to management channel: {ex.Message}");
+                _logger.Warn<DisconnectLog>($"Failed writing to management channel: {ex.Message}");
             }
 
             try
             {
-                _logger.Info("OpenVpnConnection: Waiting for Connection task to finish...");
+                _logger.Info<DisconnectLog>("Waiting for Connection task to finish...");
                 if (await Task.WhenAny(connectTask, Task.Delay(WaitForConnectionTaskToFinishAfterClose)) != connectTask)
                 {
-                    _logger.Warn(
-                        $"OpenVpnConnection: Connection task has not finished in {WaitForConnectionTaskToFinishAfterClose}");
+                    _logger.Warn<DisconnectLog>(
+                        $"Connection task has not finished in {WaitForConnectionTaskToFinishAfterClose}");
                     return;
                 }
 
@@ -232,7 +232,7 @@ namespace ProtonVPN.Vpn.Connection
             }
             catch (Exception ex) when (IsImplementationException(ex))
             {
-                _logger.Error($"OpenVpnConnection: Connection task failed with exception: {ex}");
+                _logger.Error<DisconnectLog>($"Connection task failed with exception: {ex}");
             }
         }
 
@@ -240,24 +240,24 @@ namespace ProtonVPN.Vpn.Connection
         {
             try
             {
-                _logger.Info("OpenVpnConnection: Cancelling Connection task");
+                _logger.Info<DisconnectLog>("Cancelling Connection task");
                 _connectAction.Cancel();
 
-                _logger.Info("OpenVpnConnection: Waiting for Connection task to finish...");
+                _logger.Info<DisconnectLog>("Waiting for Connection task to finish...");
                 if (await Task.WhenAny(connectTask, Task.Delay(WaitForConnectionTaskToFinishAfterCancellation)) !=
                     connectTask)
-                    _logger.Warn(
-                        $"OpenVpnConnection: Connection task has not finished in {WaitForConnectionTaskToFinishAfterCancellation}");
+                    _logger.Warn<DisconnectLog>(
+                        $"Connection task has not finished in {WaitForConnectionTaskToFinishAfterCancellation}");
             }
             catch (Exception ex) when (IsImplementationException(ex))
             {
-                _logger.Error($"OpenVpnConnection: Connection task failed: {ex}");
+                _logger.Error<DisconnectLog>($"Connection task failed: {ex}");
             }
         }
 
         private void ManagementClient_StateChanged(object sender, EventArgs<VpnState> e)
         {
-            _logger.Info($"ManagementClient: State changed to {e.Data.Status}");
+            _logger.Info<ConnectionStateChangeLog>($"ManagementClient: State changed to {e.Data.Status}");
 
             VpnState state = new(
                 e.Data.Status,
@@ -313,7 +313,7 @@ namespace ProtonVPN.Vpn.Connection
                     break;
             }
 
-            _logger.Info($"OpenVpnConnection: State changed to {state.Status}, Error: {state.Error}");
+            _logger.Info<ConnectionStateChangeLog>($"State changed to {state.Status}, Error: {state.Error}");
             OnStateChanged(state);
         }
 
@@ -329,7 +329,7 @@ namespace ProtonVPN.Vpn.Connection
                 Exception ex = task.Exception?.InnerException;
                 if (IsImplementationException(ex))
                 {
-                    _logger.Error(ex);
+                    _logger.Error<ConnectionLog>("An OpenVpnConnection task threw an exception.", ex);
                 }
                 else
                 {

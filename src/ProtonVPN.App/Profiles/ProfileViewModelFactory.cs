@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
 using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Servers.Models;
@@ -64,14 +65,14 @@ namespace ProtonVPN.Profiles
                 return CreatePredefinedVpnProfile(profile);
             }
 
-            var viewModel = new ProfileViewModel(profile);
+            ProfileViewModel viewModel = new(profile);
 
             if (!string.IsNullOrEmpty(profile.ServerId))
             {
-                var server = GetProfileServer(profile);
+                Server server = GetProfileServer(profile);
                 if (!ServerExists(server))
                 {
-                    _logger.Warn($"Server \"{profile.ServerId}\" doesn't exist in the cache");
+                    _logger.Warn<AppLog>($"Server \"{profile.ServerId}\" doesn't exist in the cache");
                 }
 
                 if (viewModel.SecureCore)
@@ -129,13 +130,13 @@ namespace ProtonVPN.Profiles
 
         private string ServerNameAsProfile(ProfileType type)
         {
-            var profileType = Enum.GetName(typeof(ProfileType), type);
+            string profileType = Enum.GetName(typeof(ProfileType), type);
             return Translation.Get($"Profiles_Profile_Name_val_{profileType}");
         }
 
         private PredefinedProfileViewModel CreatePredefinedVpnProfile(Profile profile)
         {
-            var profileViewModel = new PredefinedProfileViewModel(profile);
+            PredefinedProfileViewModel profileViewModel = new PredefinedProfileViewModel(profile);
 
             switch (profileViewModel.Id)
             {

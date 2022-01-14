@@ -84,7 +84,7 @@ namespace ProtonVPN.Update.Updates
 
         public async Task<IAppUpdate> Latest(bool earlyAccess)
         {
-            var releases = await _state.AppUpdates.ReleaseHistory(earlyAccess);
+            IReadOnlyList<Release> releases = await _state.AppUpdates.ReleaseHistory(earlyAccess);
             return WithReleases(releases, earlyAccess);
         }
 
@@ -103,7 +103,7 @@ namespace ProtonVPN.Update.Updates
 
         public async Task<IAppUpdate> Validated()
         {
-            var valid = await _state.AppUpdates.Valid(_state.NewRelease);
+            bool valid = await _state.AppUpdates.Valid(_state.NewRelease);
             return WithReady(valid);
         }
 
@@ -121,10 +121,10 @@ namespace ProtonVPN.Update.Updates
 
         private AppUpdate WithReleases(IReadOnlyList<Release> releases, bool earlyAccess)
         {
-            var newRelease = NewRelease(releases, earlyAccess);
-            var releaseChanged = !Equals(newRelease, _state.NewRelease);
+            Release newRelease = NewRelease(releases, earlyAccess);
+            bool releaseChanged = !Equals(newRelease, _state.NewRelease);
 
-            var state = _state.Clone();
+            InternalState state = _state.Clone();
             state.EarlyAccess = earlyAccess;
             state.Releases = releases;
             state.NewRelease = newRelease;
@@ -136,7 +136,7 @@ namespace ProtonVPN.Update.Updates
 
         private AppUpdate WithReady(bool ready)
         {
-            var state = _state.Clone();
+            InternalState state = _state.Clone();
             state.Ready = ready;
             return new AppUpdate(state);
         }

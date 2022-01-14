@@ -18,6 +18,7 @@
  */
 
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.ConnectionLogs;
 using ProtonVPN.Vpn.SynchronizationEvent;
 
 namespace ProtonVPN.Vpn.OpenVpn
@@ -40,8 +41,8 @@ namespace ProtonVPN.Vpn.OpenVpn
 
         public void Signal()
         {
-            _logger.Info($"OpenVPN <- Signaling {_exitEventName}");
-            using (var exitEvent = _synchronizationEvents.SynchronizationEvent(_exitEventName))
+            _logger.Info<ConnectionLog>($"OpenVPN <- Signaling {_exitEventName}");
+            using (ISynchronizationEvent exitEvent = _synchronizationEvents.SynchronizationEvent(_exitEventName))
             {
                 exitEvent.Set();
                 exitEvent.Reset();

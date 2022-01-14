@@ -18,7 +18,9 @@
  */
 
 using System;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
 
 namespace ProtonVPN.Common.Logging
 {
@@ -43,7 +45,7 @@ namespace ProtonVPN.Common.Logging
 
         private void LogTaskException(object sender, UnobservedTaskExceptionEventArgs e)
         {
-            _logger.Error($"Unobserved exception occured: {e.Exception.Message}");
+            _logger.Error<AppLog>($"Unobserved exception occurred: {e.Exception.Message}");
             LogAggregatedException(e.Exception);
         }
 
@@ -51,20 +53,24 @@ namespace ProtonVPN.Common.Logging
         {
             if (e.ExceptionObject is AggregateException aggregateException)
             {
-                _logger.Fatal($"Aggregate exception occured: {aggregateException.Message}");
+                _logger.Fatal<AppCrashLog>($"Aggregate exception occurred: {aggregateException.Message}");
                 LogAggregatedException(aggregateException);
             }
             else
             {
-                _logger.Fatal(e.ExceptionObject.ToString());
+                _logger.Fatal<AppCrashLog>(e.ExceptionObject.ToString());
             }
         }
 
         private void LogAggregatedException(AggregateException e)
         {
-            foreach (var ex in e.Flatten().InnerExceptions)
+            ReadOnlyCollection<Exception> innerExceptions = e.Flatten().InnerExceptions;
+            int i = 1;
+            int numOfInnerExceptions = innerExceptions.Count;
+            foreach (Exception ex in innerExceptions)
             {
-                _logger.Fatal(ex.ToString());
+                _logger.Fatal<AppCrashLog>($"Exception {i} of {numOfInnerExceptions}.", ex);
+                i++;
             }
         }
     }

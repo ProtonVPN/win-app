@@ -23,6 +23,8 @@ using System.Threading.Tasks;
 using ProtonVPN.Common.Abstract;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization;
+using ProtonVPN.Common.Logging.Categorization.Events.AppServiceLogs;
 
 namespace ProtonVPN.Common.OS.Services
 {
@@ -51,7 +53,7 @@ namespace ProtonVPN.Common.OS.Services
 
         public void Enable()
         {
-            _ = Logged("Enabling", () =>
+            _ = Logged<AppServiceLog, AppServiceLog>("Enabling", () =>
               {
                   _origin.Enable();
                   return Task.FromResult(Result.Ok());
@@ -60,51 +62,58 @@ namespace ProtonVPN.Common.OS.Services
 
         public Task<Result> StartAsync(CancellationToken cancellationToken)
         {
-            return Logged(
-                "Starting", 
+            return Logged<AppServiceStartLog, AppServiceStartFailedLog>("Starting", 
                 () => _origin.StartAsync(cancellationToken));
         }
 
         public Task<Result> StopAsync(CancellationToken cancellationToken)
         {
-            return Logged(
-                "Stopping", 
+            return Logged<AppServiceStopLog, AppServiceStopFailedLog>("Stopping", 
                 () => _origin.StopAsync(cancellationToken));
         }
 
-        private async Task<Result> Logged(string actionName, Func<Task<Result>> action)
+        private async Task<Result> Logged<TEventLog, TEventFailedLog>(string actionName, Func<Task<Result>> action) 
+            where TEventLog : ILogEvent, new()
+            where TEventFailedLog : ILogEvent, new()
         {
             try
             {
-                _logger.Info($"{ActionMessage()}");
-                var result = await action();
-                _logger.Info($"{ActionMessage()} {(result.Success ? "succeeded" : "failed")}");
+                _logger.Info<TEventLog>($"{ActionMessage()}");
+                Result result = await action();
+                if (result.Success)
+                {
+                    _logger.Info<TEventLog>($"{ActionMessage()} succeeded");
+                }
+                else
+                {
+                    _logger.Warn<TEventFailedLog>($"{ActionMessage()} failed");
+                }
                 
                 return result;
             }
             catch (InvalidOperationException e) when (e.IsServiceAlreadyRunning())
             {
-                Info(": Already running");
+                Warn(": Already running");
                 throw;
             }
             catch (InvalidOperationException e) when (e.IsServiceNotRunning())
             {
-                Info(": Not running");
+                Warn(": Not running");
                 throw;
             }
             catch (OperationCanceledException)
             {
-                Info("cancelled");
+                Warn("cancelled");
                 throw;
             }
             catch (TimeoutException)
             {
-                Info("timed out");
+                Warn("timed out");
                 throw;
             }
             catch (Exception ex)
             {
-                _logger.Error($"{ActionMessage()} failed: {ex.CombinedMessage()}");
+                _logger.Error<TEventFailedLog>($"{ActionMessage()} failed: {ex.CombinedMessage()}");
                 throw;
             }
 
@@ -113,9 +122,9 @@ namespace ProtonVPN.Common.OS.Services
                 return $"{actionName} the service \"{Name}\"";
             }
 
-            void Info(string resultMessage)
+            void Warn(string resultMessage)
             {
-                _logger.Info($"{ActionMessage()} {resultMessage}");
+                _logger.Warn<TEventFailedLog>($"{ActionMessage()} {resultMessage}");
             }
         }
     }

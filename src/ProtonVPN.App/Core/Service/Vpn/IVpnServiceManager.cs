@@ -18,6 +18,7 @@
  */
 
 using System;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Settings;
@@ -29,7 +30,10 @@ namespace ProtonVPN.Core.Service.Vpn
     {
         Task Connect(VpnConnectionRequest connectionRequest);
         Task UpdateAuthCertificate(string certificate);
-        Task Disconnect(VpnError vpnError);
+        Task Disconnect(VpnError vpnError,
+            [CallerFilePath] string sourceFilePath = "",
+            [CallerMemberName] string sourceMemberName = "",
+            [CallerLineNumber] int sourceLineNumber = 0);
         Task<InOutBytes> Total();
         Task RepeatState();
         void RegisterVpnStateCallback(Action<VpnStateChangedEventArgs> onVpnStateChanged);

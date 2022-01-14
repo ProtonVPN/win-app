@@ -25,6 +25,7 @@ using System.ServiceModel;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.AppServiceLogs;
 using ProtonVPN.Update;
 
 namespace ProtonVPN.UpdateService
@@ -35,8 +36,8 @@ namespace ProtonVPN.UpdateService
     public class UpdateHandler : IUpdateContract
     {
         private readonly ILogger _logger;
-        private readonly object _callbackLock = new object();
-        private readonly List<IUpdateEventsContract> _callbacks = new List<IUpdateEventsContract>();
+        private readonly object _callbackLock = new();
+        private readonly List<IUpdateEventsContract> _callbacks = new();
         private readonly INotifyingAppUpdate _updater;
 
         public UpdateHandler(ILogger logger, INotifyingAppUpdate updater)
@@ -65,7 +66,7 @@ namespace ProtonVPN.UpdateService
 
         public Task UnRegisterCallback()
         {
-            _logger.Info("Unregister callback requested");
+            _logger.Info<AppServiceLog>("Unregister callback requested");
 
             lock (_callbackLock)
             {
@@ -84,7 +85,7 @@ namespace ProtonVPN.UpdateService
         {
             lock (_callbackLock)
             {
-                foreach (var callback in _callbacks.ToList())
+                foreach (IUpdateEventsContract callback in _callbacks.ToList())
                 {
                     try
                     {
@@ -98,12 +99,12 @@ namespace ProtonVPN.UpdateService
                     }
                     catch (Exception ex) when (ex.IsServiceCommunicationException())
                     {
-                        _logger.Warn($"Callback failed: {ex.Message}");
+                        _logger.Warn<AppServiceCommunicationFailedLog>($"Callback failed: {ex.Message}");
                         _callbacks.Remove(callback);
                     }
                     catch (TimeoutException)
                     {
-                        _logger.Warn("Callback timed out");
+                        _logger.Warn<AppServiceCommunicationFailedLog>("Callback timed out");
                     }
                 }
             }

@@ -26,17 +26,17 @@ namespace ProtonVPN.Common.Text.Serialization
 {
     public class JsonSerializer<T> : ITextSerializer<T>, IThrowsExpectedExceptions
     {
-        private readonly JsonSerializer _serializer = new JsonSerializer();
+        private readonly JsonSerializer _serializer = new();
 
         public T Deserialize(TextReader source)
         {
-            using var jsonReader = new JsonTextReader(source);
+            using JsonTextReader jsonReader = new(source);
             return _serializer.Deserialize<T>(jsonReader);
         }
 
         public void Serialize(T value, TextWriter writer)
         {
-            using var jsonWriter = new JsonTextWriter(writer);
+            using JsonTextWriter jsonWriter = new(writer);
             _serializer.Serialize(jsonWriter, value);
         }
 

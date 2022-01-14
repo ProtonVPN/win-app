@@ -91,7 +91,8 @@ namespace ProtonVPN.App.Test.Vpn.Connectors
             }
 
             // Assert
-            await _serviceManager.Received(1).Disconnect(VpnError.NoneKeepEnabledKillSwitch);
+            await _serviceManager.Received(1).Disconnect(VpnError.NoneKeepEnabledKillSwitch, 
+                Arg.Any<string>(), Arg.Any<string>(), Arg.Any<int>());
         }
 
         private VpnStateChangedEventArgs GetEventArgs() =>

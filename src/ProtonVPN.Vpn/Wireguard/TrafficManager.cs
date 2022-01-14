@@ -22,6 +22,7 @@ using System.ComponentModel;
 using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.WireGuardDriver;
@@ -87,7 +88,7 @@ namespace ProtonVPN.Vpn.WireGuard
             }
             catch (Win32Exception e)
             {
-                _logger.Error("[TrafficManager] failed to receive interface configuration.", e);
+                _logger.Error<AppLog>("Failed to receive interface configuration.", e);
             }
         }
     }

@@ -25,15 +25,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
 
 namespace ProtonVPN.Core.Profiles
 {
     public class SyncProfile
     {
-        private static readonly ProfileByIdEqualityComparer ProfileByIdEqualityComparer =
-            new ProfileByIdEqualityComparer();
-        private static readonly ProfileByNameEqualityComparer ProfileByNameEqualityComparer =
-            new ProfileByNameEqualityComparer();
+        private static readonly ProfileByIdEqualityComparer ProfileByIdEqualityComparer = new();
+        private static readonly ProfileByNameEqualityComparer ProfileByNameEqualityComparer = new();
 
         private readonly ILogger _logger;
         private readonly CachedProfiles _cachedProfiles;
@@ -86,11 +85,11 @@ namespace ProtonVPN.Core.Profiles
         {
             if (profile == null) return null;
 
-            using (var cached = _cachedProfiles.ProfileData())
+            using (CachedProfileData cached = _cachedProfiles.ProfileData())
             {
-                var local = cached.Local.Where(x => x.Status != ProfileStatus.Deleted).ToList();
-                var sync = cached.Local.Where(x => x.Status != ProfileStatus.Deleted).ToList();
-                var p = profile.WithUniqueNameCandidate(_appConfig.MaxProfileNameLength);
+                List<Profile> local = cached.Local.Where(x => x.Status != ProfileStatus.Deleted).ToList();
+                List<Profile> sync = cached.Local.Where(x => x.Status != ProfileStatus.Deleted).ToList();
+                Profile p = profile.WithUniqueNameCandidate(_appConfig.MaxProfileNameLength);
                 while (ContainsOtherWithSameName(local, p) ||
                        ContainsOtherWithSameName(sync, p) ||
                        ContainsOtherWithSameName(cached.External, p)) 
@@ -120,7 +119,7 @@ namespace ProtonVPN.Core.Profiles
 
             if (!profile.IsValid())
             {
-                _logger.Warn($"Profile \"{profile.Name}\" is not valid! Removing.");
+                _logger.Warn<AppLog>($"Profile \"{profile.Name}\" is not valid! Removing.");
                 await Skip(profile);
                 return;
             }
@@ -132,7 +131,7 @@ namespace ProtonVPN.Core.Profiles
 
         private async Task SyncUpdated(Profile profile)
         {
-            var external = External(profile);
+            Profile external = External(profile);
             if (!external.Exists())
             {
                 if (profile.HasElapsed(_appConfig.ForcedProfileSyncInterval))
@@ -145,7 +144,7 @@ namespace ProtonVPN.Core.Profiles
                 return;
             }
 
-            var p = profile.WithExternalIdFrom(external);
+            Profile p = profile.WithExternalIdFrom(external);
 
             if (p.HasElapsed(_appConfig.ForcedProfileSyncInterval) && external.ModifiedLaterThan(p))
             {
@@ -164,7 +163,7 @@ namespace ProtonVPN.Core.Profiles
 
         private async Task SyncDeleted(Profile profile)
         {
-            var external = External(profile);
+            Profile external = External(profile);
 
             if (profile.HasElapsed(_appConfig.ForcedProfileSyncInterval) && external.ModifiedLaterThan(profile))
             {
@@ -180,7 +179,7 @@ namespace ProtonVPN.Core.Profiles
 
         private Profile External(Profile profile)
         {
-            using (var cached = _cachedProfiles.ProfileData())
+            using (CachedProfileData cached = _cachedProfiles.ProfileData())
             {
                 return cached.External.Get(profile);
             }
@@ -226,7 +225,10 @@ namespace ProtonVPN.Core.Profiles
 
         private async Task DeleteInApi(Profile profile)
         {
-            if (profile == null) return;
+            if (profile == null)
+            {
+                return;
+            }
 
             try
             {
@@ -235,7 +237,7 @@ namespace ProtonVPN.Core.Profiles
             }
             catch (ProfileException ex)
             {
-                _logger.Error(ex.CombinedMessage());
+                _logger.Error<AppLog>("Error when deleting profile.", ex);
 
                 if (ex.Error != ProfileError.NotFound)
                 {
@@ -247,7 +249,7 @@ namespace ProtonVPN.Core.Profiles
 
         private async Task Skip(Profile profile)
         {
-            using (var cached = await _cachedProfiles.LockedProfileData())
+            using (CachedProfileData cached = await _cachedProfiles.LockedProfileData())
             {
                 cached.Sync.Remove(profile);
             }
@@ -257,9 +259,9 @@ namespace ProtonVPN.Core.Profiles
         {
             if (profile == null) return;
 
-            using (var cached = await _cachedProfiles.LockedProfileData())
+            using (CachedProfileData cached = await _cachedProfiles.LockedProfileData())
             {
-                var p = profile
+                Profile p = profile
                     .WithStatus(ProfileStatus.Synced)
                     .WithSyncStatus(ProfileSyncStatus.Succeeded);
 
@@ -272,9 +274,9 @@ namespace ProtonVPN.Core.Profiles
         {
             if (profile == null) return;
 
-            using (var cached = await _cachedProfiles.LockedProfileData())
+            using (CachedProfileData cached = await _cachedProfiles.LockedProfileData())
             {
-                var p = profile
+                Profile p = profile
                     .WithStatus(ProfileStatus.Synced)
                     .WithSyncStatus(ProfileSyncStatus.Succeeded);
 
@@ -287,7 +289,7 @@ namespace ProtonVPN.Core.Profiles
         {
             if (profile == null) return;
 
-            using (var cached = await _cachedProfiles.LockedProfileData())
+            using (CachedProfileData cached = await _cachedProfiles.LockedProfileData())
             {
                 cached.External.Remove(profile);
                 cached.Sync.Remove(profile);
@@ -298,13 +300,13 @@ namespace ProtonVPN.Core.Profiles
         {
             if (profile == null) return;
 
-            using (var cached = await _cachedProfiles.LockedProfileData())
+            using (CachedProfileData cached = await _cachedProfiles.LockedProfileData())
             {
-                var external = cached.External.Get(profile);
+                Profile external = cached.External.Get(profile);
                 if (external == null)
                     return;
 
-                var p = external
+                Profile p = external
                     .WithStatus(ProfileStatus.Synced)
                     .WithSyncStatus(ProfileSyncStatus.Overridden);
 
@@ -315,19 +317,17 @@ namespace ProtonVPN.Core.Profiles
 
         private async Task HandleException(ProfileException ex, Profile profile)
         {
-            _logger.Error(ex.CombinedMessage());
+            _logger.Error<AppLog>("Error when syncing profile.", ex);
 
-            if (ex.Error == ProfileError.NameConflict || ex.Error == ProfileError.Other)
+            if (ex.Error is ProfileError.NameConflict or ProfileError.Other)
             {
-                using (var cached = await _cachedProfiles.LockedProfileData())
+                using (CachedProfileData cached = await _cachedProfiles.LockedProfileData())
                 {
-                    var p = profile;
-
+                    Profile p = profile;
                     if (ex.Error == ProfileError.Other)
                     {
                         p = p.WithSyncStatus(ProfileSyncStatus.Failed);
                     }
-
                     if (ex.Error == ProfileError.NameConflict)
                     {
                         p = p.WithNextUniqueNameCandidate(_appConfig.MaxProfileNameLength);

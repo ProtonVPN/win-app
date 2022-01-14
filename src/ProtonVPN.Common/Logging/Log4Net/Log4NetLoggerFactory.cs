@@ -59,7 +59,7 @@ namespace ProtonVPN.Common.Logging.Log4Net
 
         private RollingFileAppender CreateRollingFileAppender(string defaultLogFilePath)
         {
-            PatternLayout patternLayout = new("%utcdate{O} %level %message%newline");
+            PatternLayout patternLayout = new("%utcdate{yyyy-MM-ddTHH:mm:ss.fffZ} | %-5level | %message%newline");
             patternLayout.ActivateOptions();
 
             RollingFileAppender roller = new();

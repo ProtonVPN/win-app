@@ -18,8 +18,11 @@
  */
 
 using System;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
+using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.AppUpdateLogs;
 using ProtonVPN.Common.Threading;
 
 namespace ProtonVPN.Update.Updates
@@ -33,13 +36,15 @@ namespace ProtonVPN.Update.Updates
         private readonly CoalescingAction _checkForUpdate;
 
         private IAppUpdate _update;
+        private ILogger _logger;
         private AppUpdateStatus _status = AppUpdateStatus.None;
         private bool _earlyAccess;
         private volatile bool _requestedEarlyAccess;
 
-        public NotifyingAppUpdate(IAppUpdate update)
+        public NotifyingAppUpdate(IAppUpdate update, ILogger logger)
         {
             _update = update;
+            _logger = logger;
 
             _checkForUpdate = new CoalescingAction(SafeCheckForUpdate);
         }
@@ -87,6 +92,7 @@ namespace ProtonVPN.Update.Updates
 
         private async Task UnsafeCheckForUpdate(CancellationToken cancellationToken)
         {
+            _logger.Info<AppUpdateCheckLog>("Checking for updates.");
             _earlyAccess = _requestedEarlyAccess;
             _status = AppUpdateStatus.Checking;
 
@@ -95,18 +101,28 @@ namespace ProtonVPN.Update.Updates
 
             if (_update.Available)
             {
+                string fileName = Path.GetFileNameWithoutExtension(_update.FilePath);
+                _logger.Info<AppUpdateLog>($"An update is available (File name: {fileName}).");
                 HandleSuccess(await _update.Validated(), cancellationToken);
 
                 if (!_update.Ready)
                 {
+                    _logger.Info<AppUpdateLog>($"The latest update is being downloaded (File name: {fileName}).");
                     _status = AppUpdateStatus.Downloading;
                     OnStateChanged();
 
                     HandleSuccess(await _update.Downloaded(), cancellationToken);
                     HandleSuccess(await _update.Validated(), cancellationToken);
 
-                    if (!_update.Ready)
+                    if (_update.Ready)
                     {
+                        _logger.Info<AppUpdateLog>("The latest update was successfully " +
+                            $"downloaded and validated (File name: {fileName}).");
+                    }
+                    else
+                    {
+                        _logger.Error<AppUpdateLog>("The latest update failed to download " +
+                            $"(File path: {_update.FilePath}).");
                         _status = AppUpdateStatus.DownloadFailed;
                         OnStateChanged();
 
@@ -147,6 +163,7 @@ namespace ProtonVPN.Update.Updates
                     _status = AppUpdateStatus.None;
                     break;
             }
+            _logger.Error<AppUpdateLog>($"An update failed with status '{_status}' (File path: {_update.FilePath}).");
             OnStateChanged();
         }
 

@@ -28,6 +28,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using NSubstitute.ExceptionExtensions;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.UserLogs;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Core.Abstract;
 using ProtonVPN.Core.Api;
@@ -43,7 +44,7 @@ namespace ProtonVPN.Core.Test.Api.Handlers
     public class UnauthorizedResponseHandlerTest
     {
         private static readonly TimeSpan TestTimeout = TimeSpan.FromSeconds(5);
-        private readonly Uri _baseAddress = new Uri("https://api.protonvpn.ch");
+        private readonly Uri _baseAddress = new("https://api.protonvpn.ch");
 
         private ITokenClient _tokenClient;
         private ITokenStorage _tokenStorage;
@@ -56,7 +57,7 @@ namespace ProtonVPN.Core.Test.Api.Handlers
         {
             _tokenClient = Substitute.For<ITokenClient>();
             _tokenClient.RefreshTokenAsync(Arg.Any<CancellationToken>())
-                .Returns(ApiResponseResult<RefreshTokenResponse>.Ok(new RefreshTokenResponse()));
+                .Returns(ApiResponseResult<RefreshTokenResponse>.Ok(new()));
 
             _tokenStorage = Substitute.For<ITokenStorage>();
             _tokenStorage.AccessToken.Returns("Access token");
@@ -68,21 +69,21 @@ namespace ProtonVPN.Core.Test.Api.Handlers
 
             _logger = Substitute.For<ILogger>();
 
-            _innerHandler = new MockHttpMessageHandler();
+            _innerHandler = new();
         }
 
         [TestMethod]
         public async Task SendAsync_ShouldBe_InnerHandlerSendAsync()
         {
             // Arrange
-            UnauthorizedResponseHandler handler = new UnauthorizedResponseHandler(_tokenClient, _tokenStorage, _userStorage, _logger) { InnerHandler = _innerHandler };
-            HttpClient client = new HttpClient(handler) { BaseAddress = _baseAddress };
+            UnauthorizedResponseHandler handler = new(_tokenClient, _tokenStorage, _userStorage, _logger) { InnerHandler = _innerHandler };
+            HttpClient client = new(handler) { BaseAddress = _baseAddress };
 
-            HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.OK);
+            HttpResponseMessage response = new(HttpStatusCode.OK);
             _innerHandler.Expect(HttpMethod.Get, "https://api.protonvpn.ch/logicals")
                 .Respond(req => response);
 
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, "/logicals");
+            HttpRequestMessage request = new(HttpMethod.Get, "/logicals");
 
             // Act
             HttpResponseMessage result = await client.SendAsync(request);
@@ -96,14 +97,14 @@ namespace ProtonVPN.Core.Test.Api.Handlers
         public async Task SendAsync_ShouldCall_TokenClient_RefreshTokenAsync_WhenUnauthorized()
         {
             // Arrange
-            UnauthorizedResponseHandler handler = new UnauthorizedResponseHandler(_tokenClient, _tokenStorage, _userStorage, _logger) { InnerHandler = _innerHandler };
-            HttpClient client = new HttpClient(handler) { BaseAddress = _baseAddress };
+            UnauthorizedResponseHandler handler = new(_tokenClient, _tokenStorage, _userStorage, _logger) { InnerHandler = _innerHandler };
+            HttpClient client = new(handler) { BaseAddress = _baseAddress };
 
             _innerHandler.Expect(HttpMethod.Get, "https://api.protonvpn.ch/logicals")
                 .Respond(HttpStatusCode.Unauthorized);
 
             // Act
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, "/logicals");
+            HttpRequestMessage request = new(HttpMethod.Get, "/logicals");
             await client.SendAsync(request);
 
             // Assert
@@ -121,14 +122,14 @@ namespace ProtonVPN.Core.Test.Api.Handlers
         private async Task SendAsync_ShouldNotCall_TokenClient_RefreshTokenAsync_WhenCurrentTokenIsInvalid()
         {
             // Arrange
-            UnauthorizedResponseHandler handler = new UnauthorizedResponseHandler(_tokenClient, _tokenStorage, _userStorage, _logger) { InnerHandler = _innerHandler };
-            HttpClient client = new HttpClient(handler) { BaseAddress = _baseAddress };
+            UnauthorizedResponseHandler handler = new(_tokenClient, _tokenStorage, _userStorage, _logger) { InnerHandler = _innerHandler };
+            HttpClient client = new(handler) { BaseAddress = _baseAddress };
 
             _innerHandler.Expect(HttpMethod.Get, "https://api.protonvpn.ch/logicals")
                 .Respond(HttpStatusCode.Unauthorized);
 
             // Act
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, "/logicals");
+            HttpRequestMessage request = new(HttpMethod.Get, "/logicals");
             await client.SendAsync(request);
 
             // Assert
@@ -164,23 +165,24 @@ namespace ProtonVPN.Core.Test.Api.Handlers
         {
             // Arrange
             string exceptionMessage = "The RefreshToken in RefreshTokenData can't be null.";
-            ArgumentNullException exception = new ArgumentNullException(exceptionMessage);
+            ArgumentNullException exception = new(exceptionMessage);
             _tokenClient.RefreshTokenAsync(Arg.Any<CancellationToken>())
                 .Throws(exception);
 
-            UnauthorizedResponseHandler handler = new UnauthorizedResponseHandler(_tokenClient, _tokenStorage, _userStorage, _logger) { InnerHandler = _innerHandler };
-            HttpClient client = new HttpClient(handler) { BaseAddress = _baseAddress };
+            UnauthorizedResponseHandler handler = new(_tokenClient, _tokenStorage, _userStorage, _logger) { InnerHandler = _innerHandler };
+            HttpClient client = new(handler) { BaseAddress = _baseAddress };
 
             _innerHandler.Expect(HttpMethod.Get, "https://api.protonvpn.ch/logicals")
                 .Respond(HttpStatusCode.Unauthorized);
 
             // Act
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, "/logicals");
+            HttpRequestMessage request = new(HttpMethod.Get, "/logicals");
             await client.SendAsync(request);
 
             // Assert
             await _tokenClient.Received(1).RefreshTokenAsync(Arg.Any<CancellationToken>());
-            _logger.Received(1).Error($"An error occurred when refreshing the auth token: {exceptionMessage}");
+            _logger.Received(1).Error<UserLog>($"An error occurred when refreshing the auth token: {exceptionMessage}", 
+                null, Arg.Any<string>(), Arg.Any<string>(), Arg.Any<int>());
         }
 
         [TestMethod]
@@ -189,9 +191,9 @@ namespace ProtonVPN.Core.Test.Api.Handlers
             // Arrange
             _tokenClient.RefreshTokenAsync(Arg.Any<CancellationToken>())
                 .Returns(ApiResponseResult<RefreshTokenResponse>.Ok(
-                    new RefreshTokenResponse { AccessToken = "New access token", RefreshToken = "New refresh token" }));
-            UnauthorizedResponseHandler handler = new UnauthorizedResponseHandler(_tokenClient, _tokenStorage, _userStorage, _logger) { InnerHandler = _innerHandler };
-            HttpClient client = new HttpClient(handler) { BaseAddress = _baseAddress };
+                    new() { AccessToken = "New access token", RefreshToken = "New refresh token" }));
+            UnauthorizedResponseHandler handler = new(_tokenClient, _tokenStorage, _userStorage, _logger) { InnerHandler = _innerHandler };
+            HttpClient client = new(handler) { BaseAddress = _baseAddress };
 
             _innerHandler.Expect(HttpMethod.Get, "https://api.protonvpn.ch/logicals")
                 .Respond(HttpStatusCode.Unauthorized);
@@ -200,7 +202,7 @@ namespace ProtonVPN.Core.Test.Api.Handlers
                 .Respond(HttpStatusCode.OK);
 
             // Act
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, "/logicals");
+            HttpRequestMessage request = new(HttpMethod.Get, "/logicals");
             await client.SendAsync(request);
 
             // Assert
@@ -213,15 +215,15 @@ namespace ProtonVPN.Core.Test.Api.Handlers
             // Arrange
             _tokenClient.RefreshTokenAsync(Arg.Any<CancellationToken>())
                 .Returns(ApiResponseResult<RefreshTokenResponse>.Ok(
-                    new RefreshTokenResponse { AccessToken = "New access token", RefreshToken = "New refresh token" }));
-            UnauthorizedResponseHandler handler = new UnauthorizedResponseHandler(_tokenClient, _tokenStorage, _userStorage, _logger) { InnerHandler = _innerHandler };
-            HttpClient client = new HttpClient(handler) { BaseAddress = _baseAddress };
+                    new() { AccessToken = "New access token", RefreshToken = "New refresh token" }));
+            UnauthorizedResponseHandler handler = new(_tokenClient, _tokenStorage, _userStorage, _logger) { InnerHandler = _innerHandler };
+            HttpClient client = new(handler) { BaseAddress = _baseAddress };
 
             _innerHandler.Expect(HttpMethod.Get, "https://api.protonvpn.ch/logicals")
                 .Respond(HttpStatusCode.Unauthorized);
 
             // Act
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, "/logicals");
+            HttpRequestMessage request = new(HttpMethod.Get, "/logicals");
             await client.SendAsync(request);
 
             // Assert
@@ -233,17 +235,17 @@ namespace ProtonVPN.Core.Test.Api.Handlers
         public async Task SendAsync_ShouldBe_InnerHandlerSendAsync_WhenRepeatedRequest()
         {
             // Arrange
-            UnauthorizedResponseHandler handler = new UnauthorizedResponseHandler(_tokenClient, _tokenStorage, _userStorage, _logger) { InnerHandler = _innerHandler };
-            HttpClient client = new HttpClient(handler) { BaseAddress = _baseAddress };
+            UnauthorizedResponseHandler handler = new(_tokenClient, _tokenStorage, _userStorage, _logger) { InnerHandler = _innerHandler };
+            HttpClient client = new(handler) { BaseAddress = _baseAddress };
 
-            HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.OK);
+            HttpResponseMessage response = new(HttpStatusCode.OK);
             _innerHandler.Expect(HttpMethod.Get, "https://api.protonvpn.ch/logicals")
                 .Respond(HttpStatusCode.Unauthorized);
             _innerHandler.Expect(HttpMethod.Get, "https://api.protonvpn.ch/logicals")
                 .Respond(req => response);
 
             // Act
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, "/logicals");
+            HttpRequestMessage request = new(HttpMethod.Get, "/logicals");
             HttpResponseMessage result = await client.SendAsync(request);
 
             // Assert
@@ -256,8 +258,8 @@ namespace ProtonVPN.Core.Test.Api.Handlers
             // Arrange
             _tokenClient.RefreshTokenAsync(Arg.Any<CancellationToken>())
                 .Returns(ApiResponseResult<RefreshTokenResponse>.Fail(HttpStatusCode.BadRequest, "Refresh failed"));
-            UnauthorizedResponseHandler handler = new UnauthorizedResponseHandler(_tokenClient, _tokenStorage, _userStorage, _logger) { InnerHandler = _innerHandler };
-            HttpClient client = new HttpClient(handler) { BaseAddress = _baseAddress };
+            UnauthorizedResponseHandler handler = new(_tokenClient, _tokenStorage, _userStorage, _logger) { InnerHandler = _innerHandler };
+            HttpClient client = new(handler) { BaseAddress = _baseAddress };
 
             _innerHandler.Expect(HttpMethod.Get, "https://api.protonvpn.ch/logicals")
                 .Respond(HttpStatusCode.Unauthorized);
@@ -265,7 +267,7 @@ namespace ProtonVPN.Core.Test.Api.Handlers
             using (IMonitor<UnauthorizedResponseHandler> monitoredSubject = handler.Monitor())
             {
                 // Act
-                HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, "/logicals");
+                HttpRequestMessage request = new(HttpMethod.Get, "/logicals");
                 await client.SendAsync(request);
 
                 // Assert
@@ -278,18 +280,18 @@ namespace ProtonVPN.Core.Test.Api.Handlers
         public async Task SendAsync_ShouldLimit_RefreshRequests_ToOne()
         {
             // Arrange
-            BreakpointHandler breakpointHandler = new BreakpointHandler { InnerHandler = _innerHandler};
+            BreakpointHandler breakpointHandler = new() { InnerHandler = _innerHandler};
             Breakpoint requestBreakpoint = breakpointHandler.Breakpoint;
-            BreakpointTokenClient breakpointTokenClient = new BreakpointTokenClient(_tokenClient);
+            BreakpointTokenClient breakpointTokenClient = new(_tokenClient);
             Breakpoint tokenClientBreakpoint = breakpointTokenClient.Breakpoint;
-            UnauthorizedResponseHandler handler = new UnauthorizedResponseHandler(breakpointTokenClient, _tokenStorage, _userStorage, _logger) { InnerHandler = breakpointHandler };
-            HttpClient client = new HttpClient(handler) { BaseAddress = _baseAddress };
+            UnauthorizedResponseHandler handler = new(breakpointTokenClient, _tokenStorage, _userStorage, _logger) { InnerHandler = breakpointHandler };
+            HttpClient client = new(handler) { BaseAddress = _baseAddress };
             
             _tokenClient.RefreshTokenAsync(Arg.Any<CancellationToken>())
                 .Returns(ApiResponseResult<RefreshTokenResponse>.Ok(
-                    new RefreshTokenResponse { AccessToken = "New access token", RefreshToken = "New refresh token" }));
+                    new() { AccessToken = "New access token", RefreshToken = "New refresh token" }));
 
-            HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.OK);
+            HttpResponseMessage response = new(HttpStatusCode.OK);
 
             // Act
             Task task1 = Task.CompletedTask;
@@ -297,12 +299,12 @@ namespace ProtonVPN.Core.Test.Api.Handlers
             try
             {
                 // Sending first request and pause it
-                HttpRequestMessage request1 = new HttpRequestMessage(HttpMethod.Get, "/vpn");
+                HttpRequestMessage request1 = new(HttpMethod.Get, "/vpn");
                 task1 = client.SendAsync(request1);
                 BreakpointHit request1Hit = await requestBreakpoint.WaitForHit().TimeoutAfter(TestTimeout);
 
                 // Sending second request and pause it
-                HttpRequestMessage request2 = new HttpRequestMessage(HttpMethod.Get, "/vpn");
+                HttpRequestMessage request2 = new(HttpMethod.Get, "/vpn");
                 task2 = client.SendAsync(request2);
                 BreakpointHit request2Hit = await requestBreakpoint.WaitForHit().TimeoutAfter(TestTimeout);
 
@@ -342,18 +344,18 @@ namespace ProtonVPN.Core.Test.Api.Handlers
         public async Task SendAsync_ShouldSuppressRequest_WhenRefreshingTokens()
         {
             // Arrange
-            BreakpointHandler breakpointHandler = new BreakpointHandler { InnerHandler = _innerHandler };
+            BreakpointHandler breakpointHandler = new() { InnerHandler = _innerHandler };
             Breakpoint requestBreakpoint = breakpointHandler.Breakpoint;
-            BreakpointTokenClient breakpointTokenClient = new BreakpointTokenClient(_tokenClient);
+            BreakpointTokenClient breakpointTokenClient = new(_tokenClient);
             Breakpoint tokenClientBreakpoint = breakpointTokenClient.Breakpoint;
-            UnauthorizedResponseHandler handler = new UnauthorizedResponseHandler(breakpointTokenClient, _tokenStorage, _userStorage, _logger) { InnerHandler = breakpointHandler };
-            HttpClient client = new HttpClient(handler) { BaseAddress = _baseAddress };
+            UnauthorizedResponseHandler handler = new(breakpointTokenClient, _tokenStorage, _userStorage, _logger) { InnerHandler = breakpointHandler };
+            HttpClient client = new(handler) { BaseAddress = _baseAddress };
 
             _tokenClient.RefreshTokenAsync(Arg.Any<CancellationToken>())
                 .Returns(ApiResponseResult<RefreshTokenResponse>.Ok(
-                    new RefreshTokenResponse { AccessToken = "New access token", RefreshToken = "New refresh token" }));
+                    new() { AccessToken = "New access token", RefreshToken = "New refresh token" }));
 
-            HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.OK);
+            HttpResponseMessage response = new(HttpStatusCode.OK);
 
             // Act
             Task task1 = Task.CompletedTask;
@@ -361,7 +363,7 @@ namespace ProtonVPN.Core.Test.Api.Handlers
             try
             {
                 // Sending first request
-                HttpRequestMessage request1 = new HttpRequestMessage(HttpMethod.Get, "/vpn");
+                HttpRequestMessage request1 = new(HttpMethod.Get, "/vpn");
                 task1 = client.SendAsync(request1);
 
                 // First request continues and gets Unauthorized
@@ -373,7 +375,7 @@ namespace ProtonVPN.Core.Test.Api.Handlers
                 BreakpointHit tokenClientHit = await tokenClientBreakpoint.WaitForHit().TimeoutAfter(TestTimeout);
 
                 // Sending second request, it is waiting for token refresh to finish
-                HttpRequestMessage request2 = new HttpRequestMessage(HttpMethod.Get, "/vpn");
+                HttpRequestMessage request2 = new(HttpMethod.Get, "/vpn");
                 task2 = client.SendAsync(request2);
 
                 // Continue token refresh
@@ -404,18 +406,18 @@ namespace ProtonVPN.Core.Test.Api.Handlers
         public async Task SendAsync_ShouldRetryWithNewToken_WhenRefreshedWhileRequesting()
         {
             // Arrange
-            BreakpointHandler breakpointHandler = new BreakpointHandler { InnerHandler = _innerHandler };
+            BreakpointHandler breakpointHandler = new() { InnerHandler = _innerHandler };
             Breakpoint requestBreakpoint = breakpointHandler.Breakpoint;
-            BreakpointTokenClient breakpointTokenClient = new BreakpointTokenClient(_tokenClient);
+            BreakpointTokenClient breakpointTokenClient = new(_tokenClient);
             Breakpoint tokenClientBreakpoint = breakpointTokenClient.Breakpoint;
-            UnauthorizedResponseHandler handler = new UnauthorizedResponseHandler(breakpointTokenClient, _tokenStorage, _userStorage, _logger) { InnerHandler = breakpointHandler };
-            HttpClient client = new HttpClient(handler) { BaseAddress = _baseAddress };
+            UnauthorizedResponseHandler handler = new(breakpointTokenClient, _tokenStorage, _userStorage, _logger) { InnerHandler = breakpointHandler };
+            HttpClient client = new(handler) { BaseAddress = _baseAddress };
 
             _tokenClient.RefreshTokenAsync(Arg.Any<CancellationToken>())
                 .Returns(ApiResponseResult<RefreshTokenResponse>.Ok(
-                    new RefreshTokenResponse { AccessToken = "New access token", RefreshToken = "New refresh token" }));
+                    new() { AccessToken = "New access token", RefreshToken = "New refresh token" }));
 
-            HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.OK);
+            HttpResponseMessage response = new(HttpStatusCode.OK);
 
             // Act
             Task task1 = Task.CompletedTask;
@@ -423,12 +425,12 @@ namespace ProtonVPN.Core.Test.Api.Handlers
             try
             {
                 // Sending first request and pausing it
-                HttpRequestMessage request1 = new HttpRequestMessage(HttpMethod.Get, "/vpn");
+                HttpRequestMessage request1 = new(HttpMethod.Get, "/vpn");
                 task1 = client.SendAsync(request1);
                 BreakpointHit request1Hit = await requestBreakpoint.WaitForHit().TimeoutAfter(TestTimeout);
 
                 // Sending second request and pausing it
-                HttpRequestMessage request2 = new HttpRequestMessage(HttpMethod.Get, "/profiles");
+                HttpRequestMessage request2 = new(HttpMethod.Get, "/profiles");
                 task2 = client.SendAsync(request2);
                 BreakpointHit request2Hit = await requestBreakpoint.WaitForHit().TimeoutAfter(TestTimeout);
 
@@ -479,7 +481,7 @@ namespace ProtonVPN.Core.Test.Api.Handlers
             public BreakpointTokenClient(ITokenClient origin)
             {
                 _origin = origin;
-                Breakpoint = new Breakpoint();
+                Breakpoint = new();
             }
 
             public Breakpoint Breakpoint { get; }
@@ -497,7 +499,7 @@ namespace ProtonVPN.Core.Test.Api.Handlers
         {
             public BreakpointHandler()
             {
-                Breakpoint = new Breakpoint();
+                Breakpoint = new();
             }
 
             public Breakpoint Breakpoint { get; }

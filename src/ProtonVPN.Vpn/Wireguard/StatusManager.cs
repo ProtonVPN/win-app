@@ -23,6 +23,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.Common;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.ConnectLogs;
+using ProtonVPN.Common.Logging.Categorization.Events.ProtocolLogs;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
@@ -72,11 +74,11 @@ namespace ProtonVPN.Vpn.WireGuard
                 List<string> lines = _ringLogger.FollowFromCursor(ref cursor);
                 foreach (string line in lines)
                 {
-                    _logger.Info(GetFormattedMessage(line));
+                    _logger.Info<ProtocolLog>(GetFormattedMessage(line));
 
                     if (line.Contains("Receiving handshake response from peer") && !_isHandshakeResponseHandled)
                     {
-                        _logger.Info("Invoking connected state after receiving successful handshake response.");
+                        _logger.Info<ConnectConnectedLog>("Invoking connected state after receiving successful handshake response.");
                         InvokeStateChange(VpnStatus.Connected);
                         _isHandshakeResponseHandled = true;
                     }

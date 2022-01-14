@@ -25,6 +25,7 @@ using ProtonVPN.Common;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Go;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.LocalAgentLogs;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Vpn.LocalAgent.Contracts;
 
@@ -89,7 +90,7 @@ namespace ProtonVPN.Vpn.LocalAgent
             switch (e.EventType)
             {
                 case "log":
-                    _logger.Info(e.Log);
+                    _logger.Info<LocalAgentLog>(e.Log);
                     break;
                 case "state":
                     HandleStateMessage(e.State);
@@ -108,7 +109,7 @@ namespace ProtonVPN.Vpn.LocalAgent
 
         private void HandleStateMessage(string message)
         {
-            _logger.Info("Local agent: state changed to " + message);
+            _logger.Info<LocalAgentStateChangeLog>("Local agent: state changed to " + message);
 
             LocalAgentState? state = message.ToEnumOrNull<LocalAgentState>();
             if (state.HasValue)
@@ -117,7 +118,7 @@ namespace ProtonVPN.Vpn.LocalAgent
             }
             else
             {
-                _logger.Error("Local agent: unknown state " + message);
+                _logger.Error<LocalAgentStateChangeLog>("Local agent: unknown state " + message);
             }
         }
 

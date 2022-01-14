@@ -24,6 +24,8 @@ using System.Linq;
 using System.ServiceProcess;
 using System.Threading;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.AppServiceLogs;
+using ProtonVPN.Common.Logging.Categorization.Events.OperatingSystemLogs;
 using ProtonVPN.Common.OS.Processes;
 using ProtonVPN.Common.OS.Services;
 using ProtonVPN.Common.Service;
@@ -56,11 +58,11 @@ namespace ProtonVPN.Service
             _logger = logger;
             _config = config;
             _osProcesses = osProcesses;
-            _serviceHostsFactories = new List<ServiceHostFactory>(serviceHostsFactories);
+            _serviceHostsFactories = new(serviceHostsFactories);
             _vpnConnection = vpnConnection;
             _ipv6 = ipv6;
 
-            _hosts = new List<SafeServiceHost>();
+            _hosts = new();
             InitializeComponent();
         }
 
@@ -77,7 +79,7 @@ namespace ProtonVPN.Service
             }
             catch (Exception ex)
             {
-                _logger.Error(ex);
+                _logger.Error<AppServiceStartFailedLog>("An error occurred when starting VPN Service.", ex);
                 LogEvent($"OnStart: {ex}");
                 SentrySdk.WithScope(scope =>
                 {
@@ -92,7 +94,7 @@ namespace ProtonVPN.Service
         {
             try
             {
-                _logger.Info("Service is stopping");
+                _logger.Info<AppServiceStopLog>("Service is stopping");
                 LogEvent("Service is stopping");
 
                 _vpnConnection.Disconnect();
@@ -111,7 +113,7 @@ namespace ProtonVPN.Service
             }
             catch (Exception ex)
             {
-                _logger.Error(ex);
+                _logger.Error<AppServiceStopFailedLog>("An error occurred when stopping VPN Service.", ex);
                 LogEvent($"OnStop: {ex}");
                 SentrySdk.WithScope(scope =>
                 {
@@ -124,7 +126,7 @@ namespace ProtonVPN.Service
 
         protected override bool OnPowerEvent(PowerBroadcastStatus powerStatus)
         {
-            _logger.Info($"Power status changed to {powerStatus}");
+            _logger.Info<OperatingSystemLog>($"Power status changed to {powerStatus}");
             return true;
         }
 
@@ -143,7 +145,7 @@ namespace ProtonVPN.Service
             {
                 EventLog.WriteEntry(message.Replace('%', '_'));
             }
-            catch (Exception e) when (e is InvalidOperationException || e is Win32Exception)
+            catch (Exception e) when (e is InvalidOperationException or Win32Exception)
             {
             }
         }

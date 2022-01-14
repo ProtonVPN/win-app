@@ -25,6 +25,7 @@ using System.Threading.Tasks;
 using Caliburn.Micro;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.UserCertificateLogs;
 using ProtonVPN.Core.Api;
 using ProtonVPN.Core.Api.Certificates;
 using ProtonVPN.Core.Settings;
@@ -82,7 +83,7 @@ namespace ProtonVPN.Core.Auth
             _appSettings.AuthenticationCertificateExpirationUtcDate = null;
             _appSettings.AuthenticationCertificateRefreshUtcDate = null;
             _appSettings.CertificationServerPublicKey = null;
-            _logger.Info("Auth certificate deleted.");
+            _logger.Info<UserCertificateRevokedLog>("Auth certificate deleted.");
         }
 
         private enum NewCertificateRequestParameter
@@ -133,13 +134,13 @@ namespace ProtonVPN.Core.Auth
             switch (parameter)
             {
                 case NewCertificateRequestParameter.NewCertificateIfCurrentIsOld:
-                    _logger.Info("Requesting a new auth certificate since the current one is considered old.");
+                    _logger.Info<UserCertificateRefreshLog>("Requesting a new auth certificate since the current one is considered old.");
                     break;
                 case NewCertificateRequestParameter.ForceNewCertificate:
-                    _logger.Info("Forcing a new auth certificate request.");
+                    _logger.Info<UserCertificateRefreshLog>("Forcing a new auth certificate request.");
                     break;
                 case NewCertificateRequestParameter.ForceNewKeyPairAndCertificate:
-                    _logger.Info("Generating new auth key pair and forcing a new auth certificate request.");
+                    _logger.Info<UserCertificateRefreshLog>("Generating new auth key pair and forcing a new auth certificate request.");
                     break;
             }
         }
@@ -166,8 +167,11 @@ namespace ProtonVPN.Core.Auth
             {
                 if (i > 0)
                 {
-                    await Task.Delay(retryInterval.RandomizedWithDeviation(0.2));
+                    TimeSpan delay = retryInterval.RandomizedWithDeviation(0.2);
+                    _logger.Info<UserCertificateLog>($"Retrying auth certificate request in {delay}.");
+                    await Task.Delay(delay);
                     retryInterval = TimeSpan.FromTicks(retryInterval.Ticks * 2);
+                    _logger.Info<UserCertificateLog>("Retrying auth certificate request.");
                 }
 
                 ApiResponseResult<CertificateResponseData> certificateResponseData = await RequestAsync(features);
@@ -176,6 +180,11 @@ namespace ProtonVPN.Core.Auth
                 {
                     break;
                 }
+
+                _logger.Error<UserCertificateRefreshErrorLog>("Auth certificate request failed with " +
+                    $"Status Code {certificateResponseData.StatusCode}, " +
+                    $"Internal Code {certificateResponseData.Value.Code}, " +
+                    $"Error '{certificateResponseData.Value.Error}'.");
             }
         }
 
@@ -186,8 +195,8 @@ namespace ProtonVPN.Core.Auth
 
             if (certificateResponseData.Failure && certificateResponseData.Value.Code == ResponseCodes.ClientPublicKeyConflict)
             {
-                _logger.Info("New auth certificate failed because the client public key is already in use. " +
-                             "Generating a new key pair and retrying.");
+                _logger.Warn<UserCertificateRefreshErrorLog>("New auth certificate failed because the " +
+                    "client public key is already in use. Generating a new key pair and retrying.");
                 _authKeyManager.RegenerateKeyPair();
                 certificateResponseData = await RequestAuthCertificateAsync(features);
             }
@@ -210,7 +219,8 @@ namespace ProtonVPN.Core.Auth
                 _appSettings.AuthenticationCertificateRefreshUtcDate =
                     DateTimeOffset.FromUnixTimeSeconds(certificateResponseData.Value.RefreshTime);
                 _appSettings.CertificationServerPublicKey = certificateResponseData.Value.ServerPublicKey;
-                _logger.Info("New auth certificate successfully saved.");
+                _logger.Info<UserCertificateNewLog>("New auth certificate successfully saved. " +
+                    $"Expires at {_appSettings.AuthenticationCertificateExpirationUtcDate}.");
             }
 
             return certificateResponseData;

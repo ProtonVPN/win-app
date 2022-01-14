@@ -19,6 +19,8 @@
 
 using System;
 using Microsoft.Win32;
+using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.OperatingSystemLogs;
 
 namespace ProtonVPN.Common.OS.Registry
 {
@@ -26,11 +28,13 @@ namespace ProtonVPN.Common.OS.Registry
     {
         private const string RunKey = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run";
 
+        private readonly ILogger _logger;
         private readonly string _name;
         private readonly string _command;
 
-        public CurrentUserStartupRecord(string name, string command)
+        public CurrentUserStartupRecord(ILogger logger, string name, string command)
         {
+            _logger = logger;
             _name = name;
             _command = command;
         }
@@ -49,19 +53,21 @@ namespace ProtonVPN.Common.OS.Registry
                     return;
 
                 key.DeleteValue(_name);
+                _logger.Info<OperatingSystemRegistryChangedLog>($"Deleted registry key '{_name}'.");
             });
         }
 
         private T Execute<T>(Func<RegistryKey, T> function)
         {
-            using var registryKey = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(RunKey, false);
+            using RegistryKey registryKey = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(RunKey, false);
             return function(registryKey);
         }
 
         private void Execute(Action<RegistryKey> action)
         {
-            using var registryKey = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(RunKey, true);
+            using RegistryKey registryKey = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(RunKey, true);
             action(registryKey);
+            _logger.Info<OperatingSystemRegistryChangedLog>($"Written registry key '{_name}':'{_command}'.");
         }
     }
 }

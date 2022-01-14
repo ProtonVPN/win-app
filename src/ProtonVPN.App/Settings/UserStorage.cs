@@ -22,6 +22,8 @@ using System.Globalization;
 using System.Security.Cryptography;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.UserLogs;
+using ProtonVPN.Common.Logging.Categorization.Events.UserPlanLogs;
 using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.OS.Crypto;
 using ProtonVPN.Core.Servers;
@@ -67,7 +69,7 @@ namespace ProtonVPN.Settings
             }
             catch (CryptographicException e)
             {
-                _logger.Error("[UserStorage] failed to get user from storage", e);
+                _logger.Error<UserLog>("Failed to get user from storage", e);
             }
 
             return CoreUser.EmptyUser();
@@ -90,7 +92,7 @@ namespace ProtonVPN.Settings
             }
             catch (CryptographicException ex)
             {
-                _logger.Error("[UserStorage] failed to get location from storage", ex);
+                _logger.Error<UserLog>("Failed to get location from storage", ex);
             }
 
             return UserLocation.Empty;
@@ -189,8 +191,10 @@ namespace ProtonVPN.Settings
             _userSettings.Set("Delinquent", user.Delinquent);
             _userSettings.Set("MaxConnect", user.MaxConnect);
             _userSettings.Set("Services", user.Services);
-            _userSettings.Set("VpnUsername", !string.IsNullOrEmpty(user.VpnUsername) ? user.VpnUsername.Encrypt() : string.Empty);
-            _userSettings.Set("VpnPassword", !string.IsNullOrEmpty(user.VpnPassword) ? user.VpnPassword.Encrypt() : string.Empty);
+            _userSettings.Set("VpnUsername", 
+                !string.IsNullOrEmpty(user.VpnUsername) ? user.VpnUsername.Encrypt() : string.Empty);
+            _userSettings.Set("VpnPassword", 
+                !string.IsNullOrEmpty(user.VpnPassword) ? user.VpnPassword.Encrypt() : string.Empty);
         }
 
         private void CacheUser(CoreUser user)
@@ -200,6 +204,7 @@ namespace ProtonVPN.Settings
 
             if (!previousData.VpnPlan.IsNullOrEmpty() && previousData.VpnPlan != user.VpnPlan)
             {
+                _logger.Info<UserPlanChangeLog>($"User plan changed from '{previousData.VpnPlan}' to '{user.VpnPlan}'.");
                 VpnPlanChangedEventArgs eventArgs = new(previousData.VpnPlan, user.VpnPlan);
                 VpnPlanChanged?.Invoke(this, eventArgs);
             }

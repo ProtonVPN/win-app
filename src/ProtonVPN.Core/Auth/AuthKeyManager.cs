@@ -19,6 +19,7 @@
 
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Crypto;
 
@@ -47,14 +48,14 @@ namespace ProtonVPN.Core.Auth
 
             _appSettings.AuthenticationPublicKey = asymmetricKeyPair.PublicKey.Base64;
             _appSettings.AuthenticationSecretKey = asymmetricKeyPair.SecretKey.Base64;
-            _logger.Info("New auth key pair successfully generated and saved.");
+            _logger.Info<AppLog>("New auth key pair successfully generated and saved.");
         }
 
         public void DeleteKeyPair()
         {
             _appSettings.AuthenticationPublicKey = null;
             _appSettings.AuthenticationSecretKey = null;
-            _logger.Info("Auth key pair deleted.");
+            _logger.Info<AppLog>("Auth key pair deleted.");
         }
 
         public AsymmetricKeyPair GetKeyPairOrNull()

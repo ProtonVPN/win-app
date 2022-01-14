@@ -26,6 +26,9 @@ using ProtonVPN.Common;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Helpers;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.ConnectionLogs;
+using ProtonVPN.Common.Logging.Categorization.Events.ConnectLogs;
+using ProtonVPN.Common.Logging.Categorization.Events.DisconnectLogs;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
@@ -72,7 +75,7 @@ namespace ProtonVPN.Service
         {
             Ensure.NotNull(connectionRequest, nameof(connectionRequest));
 
-            _logger.Info("[VpnConnectionHandler] Connect requested");
+            _logger.Info<ConnectLog>("Connect requested");
 
             _serviceSettings.Apply(connectionRequest.Settings);
 
@@ -90,7 +93,7 @@ namespace ProtonVPN.Service
 
         public Task Disconnect(SettingsContract settings, VpnErrorTypeContract vpnError)
         {
-            _logger.Info($"[VpnConnectionHandler] Disconnect requested (Error: {vpnError})");
+            _logger.Info<DisconnectLog>($"Disconnect requested (Error: {vpnError})");
 
             _serviceSettings.Apply(settings);
 
@@ -111,9 +114,9 @@ namespace ProtonVPN.Service
 
         private void CallbackStateChanged(VpnState state)
         {
-            _logger.Info($"[VpnConnectionHandler] Callbacking VPN state '{state.Status}' [Error: '{state.Error}', " +
-                         $"LocalIp: '{state.LocalIp}', RemoteIp: '{state.RemoteIp}', Label: '{state.Label}', " +
-                         $"VpnProtocol: '{state.VpnProtocol}', OpenVpnAdapter: '{state.OpenVpnAdapter}']");
+            _logger.Info<ConnectionStateChangeLog>($"Callbacking VPN state '{state.Status}' [Error: '{state.Error}', " +
+                $"LocalIp: '{state.LocalIp}', RemoteIp: '{state.RemoteIp}', Label: '{state.Label}', " +
+                $"VpnProtocol: '{state.VpnProtocol}', OpenVpnAdapter: '{state.OpenVpnAdapter}']");
             Callback(callback => callback.OnStateChanged(Map(state)));
         }
 
@@ -129,12 +132,12 @@ namespace ProtonVPN.Service
                     }
                     catch (Exception ex) when (ex.IsServiceCommunicationException())
                     {
-                        _logger.Warn($"[VpnConnectionHandler] Callback failed: {ex.Message}");
+                        _logger.Warn<ConnectionLog>($"Callback failed: {ex.Message}");
                         _callbacks.Remove(callback);
                     }
                     catch (TimeoutException)
                     {
-                        _logger.Warn("[VpnConnectionHandler] Callback timed out");
+                        _logger.Warn<ConnectionLog>("Callback timed out");
                     }
                 }
             }
@@ -157,7 +160,7 @@ namespace ProtonVPN.Service
 
         public Task UnRegisterCallback()
         {
-            _logger.Info("[VpnConnectionHandler] Unregister callback requested");
+            _logger.Info<ConnectionLog>("Unregister callback requested");
 
             lock (_callbackLock)
             {
@@ -171,7 +174,7 @@ namespace ProtonVPN.Service
         {
             if (_state.Status == VpnStatus.Disconnected)
             {
-                _logger.Info($"[VpnConnectionHandler] Callbacking VPN service settings change. Current state: {_state.Status} (Error: {_state.Error})");
+                _logger.Info<ConnectionLog>($"Callbacking VPN service settings change. Current state: {_state.Status} (Error: {_state.Error})");
                 Callback(callback => callback.OnServiceSettingsStateChanged(CreateServiceSettingsState()));
             }
             else if (_state.Status == VpnStatus.Connected)

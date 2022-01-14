@@ -23,6 +23,7 @@ using System.ServiceModel.Channels;
 using System.ServiceModel.Dispatcher;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.AppServiceLogs;
 using Sentry;
 using Sentry.Protocol;
 
@@ -41,13 +42,13 @@ namespace ProtonVPN.Common.Service
         {
             if (e.GetBaseException() is PipeException pipeException && pipeException.Message.Contains("0x6d)"))
             {
-                _logger.Info(
-                    "The service communication pipe has been ended, most likely because the service is shutting down.");
+                _logger.Info<AppServiceCommunicationFailedLog>("The service communication " + 
+                    "pipe has been ended, most likely because the service is shutting down.");
 
                 return false;
             }
 
-            _logger.Error(e.CombinedMessage());
+            _logger.Error<AppServiceCommunicationFailedLog>(e.CombinedMessage());
 
             SentrySdk.WithScope(scope =>
             {

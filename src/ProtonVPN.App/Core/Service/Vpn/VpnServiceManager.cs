@@ -20,9 +20,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Helpers;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.DisconnectLogs;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Service.Settings;
@@ -74,9 +76,13 @@ namespace ProtonVPN.Core.Service.Vpn
             await _vpnService.RepeatState();
         }
 
-        public Task Disconnect(VpnError vpnError = VpnError.None)
+        public Task Disconnect(VpnError vpnError = VpnError.None,
+            [CallerFilePath] string sourceFilePath = "",
+            [CallerMemberName] string sourceMemberName = "",
+            [CallerLineNumber] int sourceLineNumber = 0)
         {
-            _logger.Info($"Disconnect requested (Error: {vpnError})");
+            _logger.Info<DisconnectTriggerLog>($"Disconnect requested (Error: {vpnError})", 
+                sourceFilePath: sourceFilePath, sourceMemberName: sourceMemberName, sourceLineNumber: sourceLineNumber);
             return _vpnService.Disconnect(_settingsContractProvider.GetSettingsContract(), Map(vpnError));
         }
 

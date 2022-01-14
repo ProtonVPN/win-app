@@ -23,6 +23,7 @@ using System.IO;
 using System.IO.Compression;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
 
 namespace ProtonVPN.BugReporting.Diagnostic
 {
@@ -59,7 +60,7 @@ namespace ProtonVPN.BugReporting.Diagnostic
                     }
                     catch (Exception e)
                     {
-                        _logger.Error($"Failed to create log file {log.Path}: " + e);
+                        _logger.Error<AppFileAccessFailedLog>($"Failed to create log file '{log.Path}'.", e);
                     }
                 }
             });

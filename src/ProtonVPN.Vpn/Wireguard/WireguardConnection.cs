@@ -23,8 +23,10 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Timers;
 using ProtonVPN.Common;
-using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.AppServiceLogs;
+using ProtonVPN.Common.Logging.Categorization.Events.ConnectLogs;
+using ProtonVPN.Common.Logging.Categorization.Events.DisconnectLogs;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.OS.Services;
 using ProtonVPN.Common.Threading;
@@ -100,7 +102,7 @@ namespace ProtonVPN.Vpn.WireGuard
 
         private async Task ConnectAction(CancellationToken cancellationToken)
         {
-            _logger.Info("[WireGuardConnection] connect action started.");
+            _logger.Info<ConnectStartLog>("Connect action started.");
             WriteConfig();
             InvokeStateChange(VpnStatus.Connecting);
             await EnsureServiceIsStopped(cancellationToken);
@@ -109,7 +111,7 @@ namespace ProtonVPN.Vpn.WireGuard
             await Task.Delay(CONNECT_TIMEOUT, cancellationToken);
             if (!_isConnected)
             {
-                _logger.Info("[WireGuardConnection] timeout reached, disconnecting.");
+                _logger.Warn<ConnectLog>("Timeout reached, disconnecting.");
                 Disconnect(VpnError.AdapterTimeoutError);
             }
         }
@@ -122,20 +124,20 @@ namespace ProtonVPN.Vpn.WireGuard
 
         private async Task StartWireGuardService(CancellationToken cancellationToken)
         {
-            _logger.Info("[WireGuardConnection] starting service.");
+            _logger.Info<AppServiceStartLog>("Starting service.");
             try
             {
                 await _wireGuardService.StartAsync(cancellationToken);
             }
             catch (InvalidOperationException e)
             {
-                _logger.Info("[WireGuardConnection] Failed to start WireGuard service: " + e.CombinedMessage());
+                _logger.Error<AppServiceStartFailedLog>("Failed to start WireGuard service: ", e);
             }
         }
 
         private async Task DisconnectAction(CancellationToken cancellationToken)
         {
-            _logger.Info("[WireGuardConnection] Disconnect action started");
+            _logger.Info<DisconnectLog>("Disconnect action started.");
             InvokeStateChange(VpnStatus.Disconnecting, _lastVpnError);
 
             Task connectTask = _connectAction.Task;
@@ -152,12 +154,12 @@ namespace ProtonVPN.Vpn.WireGuard
 
         private void OnConnectActionCompleted(object sender, TaskCompletedEventArgs e)
         {
-            _logger.Info("[WireGuardConnection] Connect action completed");
+            _logger.Info<ConnectLog>("Connect action completed.");
         }
 
         private void OnDisconnectActionCompleted(object sender, TaskCompletedEventArgs e)
         {
-            _logger.Info("[WireGuardConnection] Disconnect action completed");
+            _logger.Info<DisconnectLog>("Disconnect action completed.");
             InvokeStateChange(VpnStatus.Disconnected, _lastVpnError);
             _lastVpnError = VpnError.None;
         }
@@ -177,12 +179,12 @@ namespace ProtonVPN.Vpn.WireGuard
             {
                 if (_isServiceStopPending)
                 {
-                    _logger.Info("[WireGuardConnection] waiting for service to stop.");
+                    _logger.Info<AppServiceStopLog>("Waiting for service to stop.");
                     await Task.Delay(500, cancellationToken);
                 }
                 else
                 {
-                    _logger.Info("[WireGuardConnection] service is running, trying to stop.");
+                    _logger.Info<AppServiceStopLog>("Service is running, trying to stop.");
                     await _wireGuardService.StopAsync(cancellationToken);
                     _isServiceStopPending = true;
                 }
@@ -190,7 +192,7 @@ namespace ProtonVPN.Vpn.WireGuard
 
             if (_isServiceStopPending)
             {
-                _logger.Info("[WireGuardConnection] service is stopped.");
+                _logger.Info<AppServiceStopLog>("Service is stopped.");
                 _isServiceStopPending = false;
             }
         }
@@ -215,6 +217,7 @@ namespace ProtonVPN.Vpn.WireGuard
                 _isConnected = true;
                 _trafficManager.Start();
                 _serviceHealthCheckTimer.Start();
+                _logger.Info<ConnectConnectedLog>("Connected state received and decorated by WireGuard.");
                 InvokeStateChange(VpnStatus.Connected, state.Data.Error);
             }
         }
@@ -288,7 +291,7 @@ namespace ProtonVPN.Vpn.WireGuard
         {
             if (_isConnected && !_wireGuardService.Running() && !_disconnectAction.IsRunning)
             {
-                _logger.Info($"[WireGuardConnection] The service {_wireGuardService.Name} is not running. " +
+                _logger.Info<DisconnectTriggerLog>($"The service {_wireGuardService.Name} is not running. " +
                              "Disconnecting with VpnError.Unknown to get reconnected.");
                 Disconnect(VpnError.Unknown);
             }

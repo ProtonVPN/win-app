@@ -21,7 +21,12 @@ using System;
 using System.Dynamic;
 using System.Threading;
 using System.Threading.Tasks;
+using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.ConnectLogs;
+using ProtonVPN.Common.Logging.Categorization.Events.DisconnectLogs;
+using ProtonVPN.Common.Logging.Categorization.Events.NetworkLogs;
+using ProtonVPN.Common.Logging.Categorization.Events.UserPlanLogs;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.ConnectionInfo;
@@ -210,6 +215,9 @@ namespace ProtonVPN.Vpn
             _notificationSender.Send(Translation.Get("Notifications_MaximumDeviceLimit_Title"),
                 notificationDescription);
 
+            _logger.Info<UserPlanMaxSessionsReachedLog>("The user has reached the maximum device limit. " + 
+                $"Has VPN Plus or Visionary? {hasMaxTierPlan.ToYesNoString()}.");
+            
             _maximumDeviceLimitModalViewModel.SetPlan(hasMaxTierPlan);
             _modals.Show<MaximumDeviceLimitModalViewModel>();
         }
@@ -231,7 +239,8 @@ namespace ProtonVPN.Vpn
         {
             if (_networkAdapterValidator.IsOpenVpnAdapterAvailable())
             {
-                _logger.Info("[DisconnectError] Disconnected with NoTapAdaptersError but currently an OpenVPN adapter is available. Requesting a reconnection.");
+                _logger.Info<ConnectTriggerLog>("Disconnected with NoTapAdaptersError " +
+                    "but currently an OpenVPN adapter is available. Requesting a reconnection.");
                 VpnReconnectionSettings reconnectionSettings = new()
                 {
                     IsToReconnectIfDisconnected = true
@@ -240,7 +249,7 @@ namespace ProtonVPN.Vpn
             }
             else
             {
-                _logger.Warn("[DisconnectError] Disconnected with NoTapAdaptersError and no OpenVPN adapter is available. Showing error modal.");
+                _logger.Warn<DisconnectLog>("Disconnected with NoTapAdaptersError and no OpenVPN adapter is available. Showing error modal.");
                 ShowDisconnectErrorModalViewModel(error, networkBlocked);
             }
         }

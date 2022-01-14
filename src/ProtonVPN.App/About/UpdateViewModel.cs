@@ -17,13 +17,17 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.Dynamic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Common.KillSwitch;
+using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.AppUpdateLogs;
 using ProtonVPN.Common.OS.Processes;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Modals;
@@ -35,35 +39,42 @@ using ProtonVPN.Core.Update;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Modals;
 using ProtonVPN.Translations;
+using AppConfig = ProtonVPN.Common.Configuration.Config;
 
 namespace ProtonVPN.About
 {
     public class UpdateViewModel : ViewModel, IUpdateStateAware, IVpnStateAware
     {
+        private readonly ILogger _logger;
         private readonly IDialogs _dialogs;
         private readonly IOsProcesses _osProcesses;
         private readonly IModals _modals;
         private readonly IAppSettings _appSettings;
         private readonly ISystemState _systemState;
         private readonly ISettingsServiceClientManager _settingsServiceClientManager;
+        private readonly AppConfig _appConfig;
 
         private UpdateStateChangedEventArgs _updateStateChangedEventArgs;
         private VpnStatus _vpnStatus;
 
         public UpdateViewModel(
+            ILogger logger,
             IDialogs dialogs,
             IOsProcesses osProcesses,
             IModals modals,
             IAppSettings appSettings,
             ISystemState systemState,
-            ISettingsServiceClientManager settingsServiceClientManager)
+            ISettingsServiceClientManager settingsServiceClientManager,
+            AppConfig appConfig)
         {
+            _logger = logger;
             _dialogs = dialogs;
             _osProcesses = osProcesses;
             _modals = modals;
             _appSettings = appSettings;
             _systemState = systemState;
             _settingsServiceClientManager = settingsServiceClientManager;
+            _appConfig = appConfig;
 
             OpenAboutCommand = new RelayCommand(OpenAbout);
         }
@@ -159,6 +170,10 @@ namespace ProtonVPN.About
 
         private async Task UpdateInternal()
         {
+            string fileName = GetUpdateFileName();
+            _logger.Info<AppUpdateStartLog>(
+                $"Closing the app and starting installer '{fileName}'. " +
+                $"Current app version: {_appConfig.AppVersion}, OS: {Environment.OSVersion.VersionString} { _appConfig.OsBits} bit");
             Updating = true;
 
             if (_appSettings.KillSwitchMode == KillSwitchMode.Hard)
@@ -184,6 +199,23 @@ namespace ProtonVPN.About
                 // Privileges were not granted
                 Updating = false;
             }
+        }
+
+        private string GetUpdateFileName()
+        {
+            string fileName;
+            string filePath = _updateStateChangedEventArgs.FilePath;
+            try
+            {
+                fileName = Path.GetFileNameWithoutExtension(filePath);
+            }
+            catch (Exception e)
+            {
+                _logger.Error<AppUpdateLog>($"Failed to parse file name of path '{filePath}'.", e);
+                fileName = filePath;
+            }
+
+            return fileName;
         }
 
         private bool CanUpdate() => !Updating && Ready;

@@ -19,6 +19,7 @@
 
 using System;
 using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
 
 namespace ProtonVPN.Common.Logging
 {
@@ -53,7 +54,7 @@ namespace ProtonVPN.Common.Logging
             }
             catch (Exception ex)
             {
-                logger.Error($"{message()}: {ex.CombinedMessage()}");
+                logger.Error<AppLog>($"{message()}: {ex.CombinedMessage()}");
                 throw;
             }
         }

@@ -23,6 +23,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.Common;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.ConnectionLogs;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Vpn.Common;
 
@@ -247,7 +248,7 @@ namespace ProtonVPN.Vpn.Management
             }
             catch (IOException ex)
             {
-                _logger.Warn($"Failed to read message from OpenVPN management interface: {ex.Message}");
+                _logger.Warn<ConnectionErrorLog>($"Failed to read message from OpenVPN management interface: {ex.Message}");
                 return _managementChannel.Messages.ReceivedMessage("");
             }
         }
@@ -267,7 +268,7 @@ namespace ProtonVPN.Vpn.Management
             catch (IOException ex)
             {
                 _sendingFailed = true;
-                _logger.Warn($"Sending message \"{message.LogText}\" to OpenVPN management interface failed: {ex.Message}");
+                _logger.Warn<ConnectionErrorLog>($"Sending message \"{message.LogText}\" to OpenVPN management interface failed: {ex.Message}");
             }
         }
 

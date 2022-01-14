@@ -24,6 +24,7 @@ using GalaSoft.MvvmLight.CommandWpf;
 using ProtonVPN.BugReporting;
 using ProtonVPN.Common.KillSwitch;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.DisconnectLogs;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Config.Url;
 using ProtonVPN.Core.Modals;
@@ -102,7 +103,7 @@ namespace ProtonVPN.Modals
 
             HandleError(options.Error);
 
-            _logger.Info($"Disconnected due to: {Error}. Network blocked: {NetworkBlocked}");
+            _logger.Info<DisconnectLog>($"Disconnected due to: {Error}. Network blocked: {NetworkBlocked}");
         }
 
         private void HandleError(VpnError error)
@@ -110,7 +111,7 @@ namespace ProtonVPN.Modals
             if (error == VpnError.TlsError || error == VpnError.TlsCertificateError)
             {
                 string errorMessage = $"The error '{error}' was handled by the app.";
-                _logger.Error(errorMessage);
+                _logger.Error<DisconnectLog>(errorMessage);
                 SentrySdk.CaptureEvent(new SentryEvent
                 {
                     Message = errorMessage,

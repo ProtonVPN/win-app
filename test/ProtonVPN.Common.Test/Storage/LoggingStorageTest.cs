@@ -24,6 +24,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
 using ProtonVPN.Common.Storage;
 
 namespace ProtonVPN.Common.Test.Storage
@@ -85,7 +86,7 @@ namespace ProtonVPN.Common.Test.Storage
             var storage = new LoggingStorage<string>(_logger, _origin);
 
             // Act
-            var value = storage.Get();
+            string value = storage.Get();
             
             // Assert
             value.Should().Be(expected);
@@ -111,7 +112,7 @@ namespace ProtonVPN.Common.Test.Storage
             }
             
             // Assert
-            _logger.Received().Error(Arg.Any<string>());
+            _logger.Received().Error<AppLog>(Arg.Any<string>(), null, Arg.Any<string>(), Arg.Any<string>(), Arg.Any<int>());
         }
 
         [TestMethod]
@@ -178,7 +179,7 @@ namespace ProtonVPN.Common.Test.Storage
             }
 
             // Assert
-            _logger.Received().Error(Arg.Any<string>());
+            _logger.Received().Error<AppLog>(Arg.Any<string>(), null, Arg.Any<string>(), Arg.Any<string>(), Arg.Any<int>());
         }
 
         [TestMethod]
@@ -225,7 +226,7 @@ namespace ProtonVPN.Common.Test.Storage
             var storage = new LoggingStorage<string>(_logger, _origin);
 
             // Act
-            var result = storage.IsExpectedException(exception);
+            bool result = storage.IsExpectedException(exception);
 
             // Assert
             result.Should().Be(expected);

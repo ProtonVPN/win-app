@@ -17,8 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Logging;
 using System.Threading.Tasks;
+using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.ConnectLogs;
+using ProtonVPN.Common.Logging.Categorization.Events.ProtocolLogs;
 
 namespace ProtonVPN.Vpn.Management
 {
@@ -35,7 +37,7 @@ namespace ProtonVPN.Vpn.Management
             _logger = logger;
             _managementChannel = managementChannel;
 
-            Messages = new ManagementMessages();
+            Messages = new();
         }
 
         public ManagementMessages Messages { get; }
@@ -43,14 +45,14 @@ namespace ProtonVPN.Vpn.Management
         public async Task Connect(int port, string password)
         {
             await _managementChannel.Connect(port);
-            _logger.Info("Management <- [management password]");
+            _logger.Info<ConnectLog>("Management <- [management password]");
             await _managementChannel.WriteLine(password);
         }
 
         public async Task<ReceivedManagementMessage> ReadMessage()
         {
             string messageText = await _managementChannel.ReadLine();
-            var message = Messages.ReceivedMessage(messageText ?? "");
+            ReceivedManagementMessage message = Messages.ReceivedMessage(messageText ?? "");
             Log(message);
             return message;
         }
@@ -69,12 +71,14 @@ namespace ProtonVPN.Vpn.Management
         private void Log(ReceivedManagementMessage message)
         {
             if (!message.IsByteCount)
-                _logger.Info($"Management -> {message}");
+            {
+                _logger.Info<ProtocolLog>($"Management -> {message}");
+            }
         }
 
         private void Log(ManagementMessage message)
         {
-            _logger.Info($"Management <- {message.LogText}");
+            _logger.Info<ProtocolLog>($"Management <- {message.LogText}");
         }
     }
 }

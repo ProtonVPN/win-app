@@ -21,6 +21,8 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
+using ProtonVPN.Common.Logging.Categorization.Events.ConnectLogs;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Api;
@@ -105,7 +107,7 @@ namespace ProtonVPN.Core.Service.Vpn
 
             _serverManager.MarkServerUnderMaintenance(_state.Server.ExitIp);
             await _serverUpdater.Update();
-            _logger.Info($"Reconnecting due to server {_state.Server.Name} ({_state.Server.ExitIp}) being no longer available.");
+            _logger.Info<ConnectTriggerLog>($"Reconnecting due to server {_state.Server.Name} ({_state.Server.ExitIp}) being no longer available.");
             await _vpnManager.ReconnectAsync(new VpnReconnectionSettings
             {
                 IsToReconnectIfDisconnected = true,
@@ -119,7 +121,7 @@ namespace ProtonVPN.Core.Service.Vpn
             PhysicalServer server = _serverManager.GetPhysicalServerByServer(_state.Server);
             if (server == null)
             {
-                _logger.Info($"The server {_state.Server.Name} ({_state.Server.ExitIp}) was removed from the API.");
+                _logger.Info<AppLog>($"The server {_state.Server.Name} ({_state.Server.ExitIp}) was removed from the API.");
                 return true;
             }
 
@@ -134,7 +136,7 @@ namespace ProtonVPN.Core.Service.Vpn
                 bool isServerUnderMaintenance = result.Value.Server.Status == 0;
                 if (isServerUnderMaintenance)
                 {
-                    _logger.Info($"The server {_state.Server.Name} ({_state.Server.ExitIp}) is under maintenance.");
+                    _logger.Info<AppLog>($"The server {_state.Server.Name} ({_state.Server.ExitIp}) is under maintenance.");
                 }
 
                 return isServerUnderMaintenance;

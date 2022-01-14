@@ -22,6 +22,7 @@ using System.Net.Http;
 using System.Security;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.UserLogs;
 using ProtonVPN.Core.Abstract;
 using ProtonVPN.Core.Api;
 using ProtonVPN.Core.Api.Contracts;
@@ -60,7 +61,7 @@ namespace ProtonVPN.Core.Auth
 
         public async Task<AuthResult> LoginUserAsync(string username, SecureString password)
         {
-            _logger?.Info("Trying to login user");
+            _logger?.Info<UserLog>("Trying to login user");
             UserLoggingIn?.Invoke(this, EventArgs.Empty);
 
             AuthResult authResult = await AuthAsync(username, password);
@@ -193,7 +194,7 @@ namespace ProtonVPN.Core.Auth
             }
             catch (HttpRequestException e)
             {
-                _logger.Error(e.Message);
+                _logger.Error<UserLog>("An error occurred when sending a logout request.", e);
             }
         }
     }

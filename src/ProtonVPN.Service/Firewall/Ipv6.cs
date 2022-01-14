@@ -21,6 +21,7 @@ using System;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.NetworkLogs;
 using ProtonVPN.Common.Os.Net;
 using ProtonVPN.Service.Settings;
 
@@ -79,13 +80,13 @@ namespace ProtonVPN.Service.Firewall
         {
             try
             {
-                _logger.Info($"IPv6: {actionMessage}");
+                _logger.Info<NetworkLog>($"IPv6: {actionMessage}");
                 action(AppName, _config.GetHardwareId(_serviceSettings.OpenVpnAdapter));
-                _logger.Info($"IPv6: {actionMessage} succeeded");
+                _logger.Info<NetworkLog>($"IPv6: {actionMessage} succeeded");
             }
             catch (NetworkUtilException e)
             {
-                _logger.Error($"IPV6: {actionMessage} failed, error code {e.Code}");
+                _logger.Error<NetworkLog>($"IPV6: {actionMessage} failed, error code {e.Code}");
             }
         }
     }

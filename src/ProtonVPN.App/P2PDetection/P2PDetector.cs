@@ -17,7 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
+using System.Threading.Tasks;
+using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Modals;
@@ -26,9 +30,6 @@ using ProtonVPN.Modals;
 using ProtonVPN.P2PDetection.Blocked;
 using ProtonVPN.P2PDetection.Forwarded;
 using ProtonVPN.Translations;
-using System;
-using System.Threading.Tasks;
-using ProtonVPN.Common.Extensions;
 
 namespace ProtonVPN.P2PDetection
 {
@@ -123,7 +124,7 @@ namespace ProtonVPN.P2PDetection
         {
             if (await _blockedTraffic.Detected())
             {
-                _logger.Info("Blocked traffic detected");
+                _logger.Info<AppLog>("Blocked traffic detected");
                 StopTimer();
                 ShowBlockedTrafficModal();
             }
@@ -131,7 +132,7 @@ namespace ProtonVPN.P2PDetection
 
         private async Task CheckForwardedOrBlockedTraffic()
         {
-            var value = await _forwardedTraffic.Value();
+            ForwardedTrafficResult value = await _forwardedTraffic.Value();
             if (!value.Result)
             {
                 return;
@@ -144,12 +145,12 @@ namespace ProtonVPN.P2PDetection
 
                 if (_trafficForwarded)
                 {
-                    _logger.Info("Forwarded traffic detected");
+                    _logger.Info<AppLog>("Forwarded traffic detected");
                     ShowForwardedTrafficModal();
                 }
                 else
                 {
-                    _logger.Info("Not forwarded traffic detected");
+                    _logger.Info<AppLog>("Not forwarded traffic detected");
                 }
             }
 

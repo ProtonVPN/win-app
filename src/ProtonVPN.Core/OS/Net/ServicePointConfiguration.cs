@@ -20,6 +20,7 @@
 using System;
 using System.Net;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.ApiLogs;
 
 namespace ProtonVPN.Core.OS.Net
 {
@@ -50,12 +51,12 @@ namespace ProtonVPN.Core.OS.Net
             if (osVer.Major == 6 && osVer.Minor == 1)
             {
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-                _logger.Info($"[ServicePointConfiguration] Security protocol set to 'TLS 1.2' due to operative system version '{osVer}'.");
+                _logger.Info<ApiLog>($"Security protocol set to 'TLS 1.2' due to operative system version '{osVer}'.");
             }
             else
             {
-                _logger.Info($"[ServicePointConfiguration] Security protocol kept at '{ServicePointManager.SecurityProtocol}'. " +
-                             $"Operative system version '{osVer}'.");
+                _logger.Info<ApiLog>($"Security protocol kept at '{ServicePointManager.SecurityProtocol}'. " +
+                                     $"Operative system version '{osVer}'.");
             }
         }
     }

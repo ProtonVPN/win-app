@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
 
 namespace ProtonVPN.Common.Logging
 {
@@ -38,10 +39,10 @@ namespace ProtonVPN.Common.Logging
 
         public void Clean(string logPath, int maxFiles)
         {
-            _logger.Info($"[LogCleaner] Checking for log files to be deleted in folder '{logPath}'. The maximum number of files allowed is {maxFiles}.");
+            _logger.Info<AppLog>($"Checking for files to be deleted in log folder '{logPath}'. The maximum number of files allowed is {maxFiles}.");
 
             IList<FileInfo> files = GetFiles(logPath).ToList();
-            _logger.Info($"[LogCleaner] The folder '{logPath}' has {files.Count} files.");
+            _logger.Info<AppLog>($"The folder '{logPath}' has {files.Count} files.");
 
             IList<FileInfo> filesToDelete = GetFilesToDelete(files, maxFiles);
             DeleteFiles(filesToDelete);
@@ -56,31 +57,31 @@ namespace ProtonVPN.Common.Logging
             }
             catch (Exception e) when (e.IsFileAccessException())
             {
-                _logger.Error($"[LogCleaner] An error occurred when reading the files from the log folder '{path}'.", e);
+                _logger.Error<AppLog>($"An error occurred when reading the files from the log folder '{path}'.", e);
                 return new FileInfo[0];
             }
         }
 
         private IList<FileInfo> GetFilesToDelete(IList<FileInfo> files, int maxFiles)
         {
-            IList<FileInfo> filesExceedingLimit = GetFilesExceddingLimit(files, maxFiles);
+            IList<FileInfo> filesExceedingLimit = GetFilesExceedingLimit(files, maxFiles);
             IList<FileInfo> oldFiles = GetOldFiles(files);
 
             IList<FileInfo> filesToDelete = filesExceedingLimit.Concat(oldFiles).Distinct().ToList();
             string fileNamesToDelete = GetFileNames(filesToDelete);
-            _logger.Info($"[LogCleaner] The folder has {filesToDelete.Count} files to delete.{fileNamesToDelete}");
+            _logger.Info<AppLog>($"The log folder has {filesToDelete.Count} files to delete.{fileNamesToDelete}");
 
             return filesToDelete;
         }
 
-        private IList<FileInfo> GetFilesExceddingLimit(IList<FileInfo> files, int maxFiles)
+        private IList<FileInfo> GetFilesExceedingLimit(IList<FileInfo> files, int maxFiles)
         {
             IList<FileInfo> filesExceedingLimit = files
                 .OrderByDescending(LastWriteTime)
                 .Skip(maxFiles)
                 .ToList();
             string fileNamesExceedingLimit = GetFileNames(filesExceedingLimit);
-            _logger.Info($"[LogCleaner] The folder has {filesExceedingLimit.Count} files exceeding the limit of {maxFiles} files.{fileNamesExceedingLimit}");
+            _logger.Info<AppLog>($"The log folder has {filesExceedingLimit.Count} files exceeding the limit of {maxFiles} files.{fileNamesExceedingLimit}");
             return filesExceedingLimit;
         }
 
@@ -92,7 +93,7 @@ namespace ProtonVPN.Common.Logging
             }
             catch (Exception e) when (e.IsFileAccessException() || e is ArgumentOutOfRangeException)
             {
-                _logger.Error(e.Message);
+                _logger.Error<AppLog>(e.Message);
                 return DateTime.MaxValue;
             }
         }
@@ -112,7 +113,7 @@ namespace ProtonVPN.Common.Logging
             DateTime minimumDate = DateTime.UtcNow.Subtract(MAXIMUM_FILE_AGE);
             IList<FileInfo> oldFiles = files.Where(t => LastWriteTime(t) < minimumDate).ToList();
             string oldFileNames = GetFileNames(oldFiles);
-            _logger.Info($"[LogCleaner] The folder has {oldFiles.Count} old files with a last write date before {minimumDate:O}.{oldFileNames}");
+            _logger.Info<AppLog>($"The log folder has {oldFiles.Count} old files with a last write date before {minimumDate:O}.{oldFileNames}");
             return oldFiles;
         }
 
@@ -129,11 +130,11 @@ namespace ProtonVPN.Common.Logging
             try
             {
                 File.Delete(fileName);
-                _logger.Info($"[LogCleaner] Successfully deleted the file '{fileName}'.");
+                _logger.Info<AppLog>($"Successfully deleted the file '{fileName}'.");
             }
             catch (Exception e) when (e.IsFileAccessException())
             {
-                _logger.Error($"[LogCleaner] An error occurred when deleting the file '{fileName}'.", e);
+                _logger.Error<AppLog>($"An error occurred when deleting the file '{fileName}'.", e);
             }
         }
     }

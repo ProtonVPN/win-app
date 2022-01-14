@@ -20,8 +20,8 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.ApiLogs;
 using ProtonVPN.Core.Api;
 using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.User;
@@ -56,7 +56,7 @@ namespace ProtonVPN.Core.Servers
             }
             catch (HttpRequestException ex)
             {
-                _logger.Error("API: Get servers failed: " + ex.CombinedMessage());
+                _logger.Error<ApiErrorLog>("API: Get servers failed", ex);
             }
 
             return new LogicalServerContract[0];
@@ -74,7 +74,7 @@ namespace ProtonVPN.Core.Servers
             }
             catch (HttpRequestException ex)
             {
-                _logger.Error("API: Get servers failed: " + ex.CombinedMessage());
+                _logger.Error<ApiErrorLog>("API: Get servers failed", ex);
             }
 
             return new LogicalServerContract[0];

@@ -23,6 +23,7 @@ using System.Threading.Tasks;
 using ProtonVPN.Common;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.ConnectLogs;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
@@ -93,7 +94,7 @@ namespace ProtonVPN.Vpn.Connection
 
         private async void ScanPorts(CancellationToken cancellationToken)
         {
-            _logger.Info($"Starting port scanning of endpoint {_vpnEndpoint.Server.Ip} before connection.");
+            _logger.Info<ConnectScanLog>($"Starting port scanning of endpoint {_vpnEndpoint.Server.Ip} before connection.");
             VpnEndpoint bestEndpoint = await _endpointScanner.ScanForBestEndpointAsync(
                 _vpnEndpoint, _config.Ports, _config.PreferredProtocols, _cancellationHandle.Token);
 
@@ -105,12 +106,13 @@ namespace ProtonVPN.Vpn.Connection
             if (endpoint.Port != 0)
             {
                 _vpnEndpoint = endpoint;
-                _logger.Info($"Connecting to {endpoint.Server.Ip}:{endpoint.Port} as it responded fastest.");
+                _logger.Info<ConnectScanResultLog>($"Connecting to {endpoint.Server.Ip}:{endpoint.Port} " +
+                    $"with protocol {endpoint.VpnProtocol} as it responded fastest.");
                 _origin.Connect(endpoint, GetCredentials(endpoint), GetConfig(endpoint.VpnProtocol));
             }
             else
             {
-                _logger.Info("Disconnecting, as none of the VPN ports responded.");
+                _logger.Info<ConnectScanFailLog>("Disconnecting, as none of the VPN ports responded.");
                 DelayedDisconnect(cancellationToken);
             }
         }

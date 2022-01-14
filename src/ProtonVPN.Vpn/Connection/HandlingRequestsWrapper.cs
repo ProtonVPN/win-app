@@ -20,6 +20,8 @@
 using System;
 using ProtonVPN.Common;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.ConnectLogs;
+using ProtonVPN.Common.Logging.Categorization.Events.DisconnectLogs;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
@@ -77,7 +79,7 @@ namespace ProtonVPN.Vpn.Connection
             _disconnectRequested = false;
             _disconnectError = VpnError.Unknown;
 
-            _logger.Info("HandlingRequestsWrapper: Connect requested, queuing Connect");
+            _logger.Info<ConnectLog>("HandlingRequestsWrapper: Connect requested, queuing Connect");
             Queued(Connect);
         }
 
@@ -87,7 +89,7 @@ namespace ProtonVPN.Vpn.Connection
             _disconnectRequested = true;
             _disconnectError = error;
 
-            _logger.Info("HandlingRequestsWrapper: Disconnect requested, queuing Disconnect");
+            _logger.Info<DisconnectLog>("HandlingRequestsWrapper: Disconnect requested, queuing Disconnect");
             Queued(Disconnect);
         }
 
@@ -114,7 +116,7 @@ namespace ProtonVPN.Vpn.Connection
             {
                 if (_disconnected)
                 {
-                    _logger.Info("HandlingRequestsWrapper: Already disconnected, queuing Connect");
+                    _logger.Info<ConnectLog>("HandlingRequestsWrapper: Already disconnected, queuing Connect");
                     Queued(Connect);
                 }
 
@@ -139,20 +141,20 @@ namespace ProtonVPN.Vpn.Connection
                 // Force disconnect if disconnected while connecting
                 _disconnectRequested = true;
                 _disconnectError = state.Error;
-                _logger.Info("HandlingRequestsWrapper: Disconnecting unexpectedly, queuing Disconnect");
+                _logger.Info<DisconnectLog>("HandlingRequestsWrapper: Disconnecting unexpectedly, queuing Disconnect");
                 Queued(Disconnect);
             }
 
             if (state.Status == VpnStatus.Disconnecting || state.Status == VpnStatus.Disconnected)
             {
-                var error = state.Error;
+                VpnError error = state.Error;
 
                 if (_connecting)
                 {
                     // Force disconnect if disconnected while connecting
                     _disconnectRequested = true;
                     _disconnectError = error;
-                    _logger.Info("HandlingRequestsWrapper: Disconnecting unexpectedly, queuing Disconnect");
+                    _logger.Info<DisconnectLog>("HandlingRequestsWrapper: Disconnecting unexpectedly, queuing Disconnect");
                     Queued(Disconnect);
                     return;
                 }
@@ -174,13 +176,13 @@ namespace ProtonVPN.Vpn.Connection
                 {
                     _connectRequested = false;
                     _connecting = true;
-                    _logger.Info("HandlingRequestsWrapper: Connecting");
+                    _logger.Info<ConnectLog>("HandlingRequestsWrapper: Connecting");
                     _origin.Connect(_endpoint, _credentials, _config);
                 }
                 else
                 {
                     _connecting = false;
-                    _logger.Info("HandlingRequestsWrapper: Not yet disconnected, Disconnecting");
+                    _logger.Info<DisconnectLog>("HandlingRequestsWrapper: Not yet disconnected, Disconnecting");
                     _origin.Disconnect(VpnError.None);
                 }
             }
@@ -201,7 +203,7 @@ namespace ProtonVPN.Vpn.Connection
                     InvokeDisconnecting();
 
                     _connecting = false;
-                    _logger.Info("HandlingRequestsWrapper: Disconnecting");
+                    _logger.Info<DisconnectLog>("HandlingRequestsWrapper: Disconnecting");
                     _origin.Disconnect(_disconnectError);
                 }
 

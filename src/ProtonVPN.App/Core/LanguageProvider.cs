@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
 
 namespace ProtonVPN.Core
 {
@@ -29,7 +30,7 @@ namespace ProtonVPN.Core
             }
             catch (Exception e) when (e.IsFileAccessException())
             {
-                _logger.Error("Couldn't get language file.", e);
+                _logger.Error<AppFileAccessFailedLog>("Couldn't get language file.", e);
                 return new List<string>{ _defaultLocale };
             }
         }
