@@ -25,6 +25,7 @@ using ProtonVPN.Common;
 using ProtonVPN.Common.Abstract;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.ConnectLogs;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Abstract;
@@ -383,13 +384,13 @@ namespace ProtonVPN.Vpn.Connectors
             if (hosts.Any())
             {
                 VpnConnectionRequest request = new(hosts, vpnProtocol, VpnConfig(vpnProtocol), credentialsResult.Value);
-                _logger.Info("[ProfileConnector] Connect requested");
+                _logger.Info<ConnectLog>("Connect requested");
                 await _vpnServiceManager.Connect(request);
                 _modals.CloseAll();
             }
             else
             {
-                _logger.Info("ProfileConnector - Connect received zero valid servers");
+                _logger.Info<ConnectLog>("Connect received zero valid servers");
             }
         }
 

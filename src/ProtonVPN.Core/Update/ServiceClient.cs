@@ -21,6 +21,7 @@ using System;
 using System.ServiceModel;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.AppServiceLogs;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Core.Service;
 using ProtonVPN.UpdateServiceContract;
@@ -117,7 +118,7 @@ namespace ProtonVPN.Core.Update
 
         private void LogError(Exception exception, string callerMemberName, bool isToRetry)
         {
-            _logger.Error(
+            _logger.Error<AppServiceCommunicationFailedLog>(
                 $"The invocation of '{callerMemberName}' on Update Service channel returned an exception and will " +
                 (isToRetry ? string.Empty : "not ") +
                 $"be retried. Exception message: {exception.Message}");

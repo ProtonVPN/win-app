@@ -20,6 +20,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
 using ProtonVPN.Core.Api.Contracts.ReportAnIssue;
 using ProtonVPN.Core.ReportAnIssue;
 using ProtonVPN.Translations;
@@ -65,7 +66,7 @@ namespace ProtonVPN.BugReporting.FormElements
                 case InputType.MultiLineInput:
                     return CreateMultiLineTextField(input);
                 default:
-                    _logger.Info($"[FormElementBuilder] Unknown input type {input.Type}. This field won't be added to the form.");
+                    _logger.Info<AppLog>($"Unknown input type {input.Type}. This field won't be added to the form.");
                     return null;
             }
         }

@@ -18,8 +18,12 @@
  */
 
 using System;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using log4net;
-using ProtonVPN.Common.Extensions;
+using Newtonsoft.Json;
+using ProtonVPN.Common.Helpers;
+using ProtonVPN.Common.Logging.Categorization;
 
 namespace ProtonVPN.Common.Logging.Log4Net
 {
@@ -32,40 +36,97 @@ namespace ProtonVPN.Common.Logging.Log4Net
             _logger = logger;
         }
 
-        public void Debug(string message)
+        public void Debug<TEvent>(string message, Exception exception = null,
+            [CallerFilePath] string sourceFilePath = "",
+            [CallerMemberName] string sourceMemberName = "", 
+            [CallerLineNumber] int sourceLineNumber = 0)
+            where TEvent : ILogEvent, new()
         {
-            _logger.Debug(message);
+            CallerProfile callerProfile = new(sourceFilePath, sourceMemberName, sourceLineNumber);
+            string fullLogMessage = CreateFullLogMessage<TEvent>(message, callerProfile);
+            if (exception == null)
+            {
+                _logger.Debug(fullLogMessage);
+            }
+            else
+            {
+                _logger.Debug(fullLogMessage, exception);
+            }
         }
 
-        public void Info(string message)
+        private string CreateFullLogMessage<TEvent>(string message, CallerProfile callerProfile) 
+            where TEvent : ILogEvent, new()
         {
-            _logger.Info(message);
+            string json = GenerateMetadataJson(callerProfile);
+            return $"{new TEvent()} | {message} | {json}";
         }
 
-        public void Warn(string message)
+        private string GenerateMetadataJson(CallerProfile callerProfile)
         {
-            _logger.Warn(message);
+            IDictionary<string, object> metadataDictionary = new Dictionary<string, object>();
+            metadataDictionary.Add("Caller", 
+                $"{callerProfile.SourceClassName}.{callerProfile.SourceMemberName}:{callerProfile.SourceLineNumber}");
+            return JsonConvert.SerializeObject(metadataDictionary);
         }
 
-        public void Error(string message)
+        public void Info<TEvent>(string message, Exception exception = null, string sourceFilePath = "", string sourceMemberName = "",
+            int sourceLineNumber = 0) where TEvent : ILogEvent, new()
         {
-            _logger.Error(message);
+            CallerProfile callerProfile = new(sourceFilePath, sourceMemberName, sourceLineNumber);
+            string fullLogMessage = CreateFullLogMessage<TEvent>(message, callerProfile);
+            if (exception == null)
+            {
+                _logger.Info(fullLogMessage);
+            }
+            else
+            {
+                _logger.Info(fullLogMessage, exception);
+            }
         }
 
-        public void Error(string message, Exception exception)
+        public void Warn<TEvent>(string message, Exception exception = null, string sourceFilePath = "", string sourceMemberName = "",
+            int sourceLineNumber = 0) where TEvent : ILogEvent, new()
         {
-            _logger.Error(message, exception);
+            CallerProfile callerProfile = new(sourceFilePath, sourceMemberName, sourceLineNumber);
+            string fullLogMessage = CreateFullLogMessage<TEvent>(message, callerProfile);
+            if (exception == null)
+            {
+                _logger.Warn(fullLogMessage);
+            }
+            else
+            {
+                _logger.Warn(fullLogMessage, exception);
+            }
         }
 
-        [Obsolete("This method should be deleted to force better descriptions on error logs.")]
-        public void Error(Exception exception)
+        public void Error<TEvent>(string message, Exception exception = null, string sourceFilePath = "", string sourceMemberName = "",
+            int sourceLineNumber = 0) where TEvent : ILogEvent, new()
         {
-            _logger.Error(exception.CombinedMessage(), exception);
+            CallerProfile callerProfile = new(sourceFilePath, sourceMemberName, sourceLineNumber);
+            string fullLogMessage = CreateFullLogMessage<TEvent>(message, callerProfile);
+            if (exception == null)
+            {
+                _logger.Error(fullLogMessage);
+            }
+            else
+            {
+                _logger.Error(fullLogMessage, exception);
+            }
         }
 
-        public void Fatal(string message)
+        public void Fatal<TEvent>(string message, Exception exception = null, string sourceFilePath = "", string sourceMemberName = "",
+            int sourceLineNumber = 0) where TEvent : ILogEvent, new()
         {
-            _logger.Fatal(message);
+            CallerProfile callerProfile = new(sourceFilePath, sourceMemberName, sourceLineNumber);
+            string fullLogMessage = CreateFullLogMessage<TEvent>(message, callerProfile);
+            if (exception == null)
+            {
+                _logger.Fatal(fullLogMessage);
+            }
+            else
+            {
+                _logger.Fatal(fullLogMessage, exception);
+            }
         }
     }
 }

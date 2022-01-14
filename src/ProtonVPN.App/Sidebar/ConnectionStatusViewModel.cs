@@ -25,6 +25,8 @@ using System.Windows.Threading;
 using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Common.KillSwitch;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
+using ProtonVPN.Common.Logging.Categorization.Events.ConnectionLogs;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Modals;
@@ -240,7 +242,7 @@ namespace ProtonVPN.Sidebar
         private void LogNullUpdatedServer(string serverId, Server defaultServer)
         {
             string defaultServerText = defaultServer == null ? "null" : $"[Id: '{defaultServer.Id}' Name: '{defaultServer.Name}']";
-            _logger.Error($"The connected server does not exist. ServerId: '{serverId}' DefaultServer: {defaultServerText}");
+            _logger.Error<AppLog>($"The connected server does not exist. ServerId: '{serverId}' DefaultServer: {defaultServerText}");
         }
 
         public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
@@ -297,10 +299,10 @@ namespace ProtonVPN.Sidebar
 
         private void LogNullConnectedServer(VpnStateChangedEventArgs e)
         {
-            _logger.Error($"The status changed to Connected but the associated Server is null. Error: '{e.Error}' " +
-                          $"NetworkBlocked: '{e.NetworkBlocked}' UnexpectedDisconnect: '{e.UnexpectedDisconnect}' " +
-                          $"[State] Status: '{e.State.Status}' EntryIp: '{e.State.EntryIp}' Label: '{e.State.Label}' " +
-                          $"NetworkAdapterType: '{e.State.NetworkAdapterType}' VpnProtocol: '{e.State.VpnProtocol}'");
+            _logger.Error<AppLog>($"The status changed to Connected but the associated Server is null. Error: '{e.Error}' " +
+                                  $"NetworkBlocked: '{e.NetworkBlocked}' UnexpectedDisconnect: '{e.UnexpectedDisconnect}' " +
+                                  $"[State] Status: '{e.State.Status}' EntryIp: '{e.State.EntryIp}' Label: '{e.State.Label}' " +
+                                  $"NetworkAdapterType: '{e.State.NetworkAdapterType}' VpnProtocol: '{e.State.VpnProtocol}'");
         }
 
         private string GetAdapterProtocol(VpnStateChangedEventArgs e)

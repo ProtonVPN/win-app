@@ -17,11 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Logging;
 using System;
 using System.IO;
 using System.Net.Sockets;
 using System.Threading.Tasks;
+using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.ConnectLogs;
+using ProtonVPN.Common.Logging.Categorization.Events.DisconnectLogs;
 
 namespace ProtonVPN.Vpn.Management
 {
@@ -46,9 +48,9 @@ namespace ProtonVPN.Vpn.Management
         {
             Disconnect();
 
-            var tcpClient = new TcpClient();
+            TcpClient tcpClient = new();
 
-            _logger.Info($"Connecting to OpenVPN management interface on {_host}:{port}");
+            _logger.Info<ConnectLog>($"Connecting to OpenVPN management interface on {_host}:{port}");
             await tcpClient.ConnectAsync(_host, port);
 
             _streamReader = new StreamReader(tcpClient.GetStream());
@@ -89,7 +91,7 @@ namespace ProtonVPN.Vpn.Management
             {
                 if (_tcpClient.Connected)
                 {
-                    _logger.Info("Disconnecting from OpenVPN management interface");
+                    _logger.Info<DisconnectLog>("Disconnecting from OpenVPN management interface");
                 }
                 _tcpClient.Close();
                 SafeDispose(ref _tcpClient);
@@ -101,23 +103,28 @@ namespace ProtonVPN.Vpn.Management
 
         private Task WriteLineInternal(string message)
         {
-            var writer = _streamWriter;
+            StreamWriter writer = _streamWriter;
             if (writer == null)
+            {
                 throw new IOException("OpenVPN management interface is not connected");
+            }
 
             return writer.WriteLineAsync(message);
         }
 
         private async Task<string> ReadLineInternal()
         {
-            var reader = _streamReader;
+            StreamReader reader = _streamReader;
             if (reader == null)
+            {
                 throw new IOException("OpenVPN management interface is not connected");
-            var message = await reader.ReadLineAsync();
+            }
+
+            string message = await reader.ReadLineAsync();
 
             if (message == null)
             {
-                _logger.Info("Disconnected from OpenVPN management interface");
+                _logger.Info<DisconnectLog>("Disconnected from OpenVPN management interface");
             }
 
             return message;
@@ -125,7 +132,7 @@ namespace ProtonVPN.Vpn.Management
 
         private void SafeDispose<T>(ref T disposable) where T: class, IDisposable
         {
-            var item = disposable;
+            T item = disposable;
             disposable = null;
             try
             {
@@ -133,7 +140,7 @@ namespace ProtonVPN.Vpn.Management
             }
             catch (InvalidOperationException ex)
             {
-                _logger.Error($"Failed to disconnect from OpenVPN management interface: {ex.Message}");
+                _logger.Error<DisconnectLog>($"Failed to disconnect from OpenVPN management interface: {ex.Message}");
             }
         }
     }

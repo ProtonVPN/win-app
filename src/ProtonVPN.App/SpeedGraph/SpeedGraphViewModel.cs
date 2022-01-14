@@ -24,6 +24,7 @@ using System.Threading.Tasks;
 using OxyPlot;
 using OxyPlot.Series;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Auth;
@@ -119,7 +120,7 @@ namespace ProtonVPN.SpeedGraph
         {
             if (_timer.IsEnabled)
             {
-                _logger.Info("Session graph stopped due to logout");
+                _logger.Info<AppLog>("Session graph stopped due to logout");
                 ResetGraph();
             }
         }
@@ -152,12 +153,12 @@ namespace ProtonVPN.SpeedGraph
 
                 PlotModel.InvalidatePlot(true);
 
-                _logger.Info("Session graph started.");
+                _logger.Info<AppLog>("Session graph started.");
                 _timer.Start();
             }
             else if (_timer.IsEnabled && e.State.Status != VpnStatus.ActionRequired)
             {
-                _logger.Info("Session graph stopped due to VPN status change: " + e.State.Status);
+                _logger.Info<AppLog>("Session graph stopped due to VPN status change: " + e.State.Status);
                 ResetGraph();
             }
 

@@ -2,6 +2,7 @@
 using System.IO;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
 using ProtonVPN.Modals;
 
 namespace ProtonVPN.About
@@ -33,7 +34,7 @@ namespace ProtonVPN.About
             }
             catch (Exception e) when (e.IsFileAccessException())
             {
-                _logger.Error(e);
+                _logger.Error<AppFileAccessFailedLog>($"Error when reading license file '{LicenseFile}'.", e);
             }
         }
     }

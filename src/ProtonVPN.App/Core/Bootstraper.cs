@@ -30,8 +30,9 @@ using Caliburn.Micro;
 using ProtonVPN.Account;
 using ProtonVPN.BugReporting;
 using ProtonVPN.Common.Abstract;
-using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
+using ProtonVPN.Common.Logging.Categorization.Events.AppServiceLogs;
 using ProtonVPN.Common.OS.Services;
 using ProtonVPN.Common.Storage;
 using ProtonVPN.Common.Vpn;
@@ -103,7 +104,7 @@ namespace ProtonVPN.Core
 
         protected override void Configure()
         {
-            ContainerBuilder builder = new ContainerBuilder();
+            ContainerBuilder builder = new();
             builder.RegisterModule<CoreModule>()
                 .RegisterModule<UiModule>()
                 .RegisterModule<AppModule>()
@@ -124,7 +125,7 @@ namespace ProtonVPN.Core
             logging.CaptureTaskExceptions();
 
             AppConfig appConfig = Resolve<AppConfig>();
-            Resolve<ILogger>().Info($"= Booting ProtonVPN version: {appConfig.AppVersion} os: {Environment.OSVersion.VersionString} {appConfig.OsBits} bit =");
+            Resolve<ILogger>().Info<AppStartLog>($"= Booting ProtonVPN version: {appConfig.AppVersion} os: {Environment.OSVersion.VersionString} {appConfig.OsBits} bit =");
 
             Resolve<ServicePointConfiguration>().Apply();
 
@@ -159,6 +160,7 @@ namespace ProtonVPN.Core
 
         public void OnExit()
         {
+            Resolve<ILogger>().Info<AppStopLog>("The app is exiting. Requesting services to stop.");
             Resolve<TrayIcon>().Hide();
             Resolve<MonitoredVpnService>().StopAsync();
             Resolve<AppUpdateSystemService>().StopAsync();
@@ -541,7 +543,7 @@ namespace ProtonVPN.Core
             }
             catch (Exception ex) when (ex is CommunicationException || ex is TimeoutException || ex is TaskCanceledException)
             {
-                Resolve<ILogger>().Error(ex.CombinedMessage());
+                Resolve<ILogger>().Error<AppServiceLog>("Failed to get initial state from VPN service.", ex);
             }
         }
 
@@ -551,7 +553,7 @@ namespace ProtonVPN.Core
             if (result.Failure && result.Exception != null)
             {
                 ReportException(result.Exception);
-                Resolve<ILogger>().Error($"[Bootstrapper] Failed to start {service.Name} service.", result.Exception);
+                Resolve<ILogger>().Error<AppServiceStartFailedLog>($"Failed to start {service.Name} service.", result.Exception);
             }
         }
 

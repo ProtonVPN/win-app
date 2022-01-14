@@ -21,6 +21,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Abstract;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.AppServiceLogs;
 using ProtonVPN.Common.OS.Services;
 
 namespace ProtonVPN.Vpn.WireGuard
@@ -59,7 +60,7 @@ namespace ProtonVPN.Vpn.WireGuard
         {
             if (!_origin.Exists())
             {
-                _logger.Info("[WireGuardService] Service is missing. Installing.");
+                _logger.Info<AppServiceLog>("WireGuard Service is missing. Installing.");
                 _origin.Create(_config.WireGuard.ServicePath + " " + _config.WireGuard.ConfigFilePath,
                     unrestricted: true);
             }

@@ -23,9 +23,12 @@ using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using Newtonsoft.Json;
 using ProtonVPN.Common;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.KillSwitch;
+using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.SettingsLogs;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Core.Api.Contracts.ReportAnIssue;
 using ProtonVPN.Core.Auth;
@@ -43,16 +46,21 @@ namespace ProtonVPN.Core
 {
     internal class AppSettings : IAppSettings, INotifyPropertyChanged, ILoggedInAware
     {
+        private readonly ILogger _logger;
         private readonly ISettingsStorage _storage;
         private readonly UserSettings _userSettings;
         private readonly Common.Configuration.Config _config;
         private readonly HashSet<string> _accessedPerUserProperties = new();
 
-        public AppSettings(ISettingsStorage storage, UserSettings userSettings, Common.Configuration.Config config)
+        public AppSettings(ILogger logger,
+            ISettingsStorage storage, 
+            UserSettings userSettings, 
+            Common.Configuration.Config config)
         {
-            _config = config;
+            _logger = logger;
             _storage = storage;
             _userSettings = userSettings;
+            _config = config;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -585,10 +593,11 @@ namespace ProtonVPN.Core
 
         private void Set<T>(T value, [CallerMemberName] string propertyName = null)
         {
+            T oldValue = default;
             Type toType = UnwrapNullable(typeof(T));
             if (toType.IsValueType || toType == typeof(string))
             {
-                T oldValue = _storage.Get<T>(propertyName);
+                oldValue = _storage.Get<T>(propertyName);
                 if (EqualityComparer<T>.Default.Equals(oldValue, value))
                 {
                     return;
@@ -597,6 +606,15 @@ namespace ProtonVPN.Core
 
             _storage.Set(propertyName, value);
             OnPropertyChanged(propertyName);
+            LogChange(propertyName, oldValue, value);
+        }
+
+        private void LogChange<T>(string propertyName, T oldValue, T newValue)
+        {
+            string oldValueJson = JsonConvert.SerializeObject(oldValue).LimitLength(64);
+            string newValueJson = JsonConvert.SerializeObject(newValue).LimitLength(64);
+            _logger.Info<SettingsChangeLog>($"Setting '{propertyName}' " +
+                $"changed from '{oldValueJson}' to '{newValueJson}'.");
         }
 
         private T GetPerUser<T>([CallerMemberName] string propertyName = null)
@@ -610,10 +628,11 @@ namespace ProtonVPN.Core
         {
             _accessedPerUserProperties.Add(propertyName);
 
+            T oldValue = default;
             Type toType = UnwrapNullable(typeof(T));
             if (toType.IsValueType || toType == typeof(string))
             {
-                T oldValue = _userSettings.Get<T>(propertyName);
+                oldValue = _userSettings.Get<T>(propertyName);
                 if (EqualityComparer<T>.Default.Equals(oldValue, value))
                 {
                     return;
@@ -622,6 +641,7 @@ namespace ProtonVPN.Core
 
             _userSettings.Set(propertyName, value);
             OnPropertyChanged(propertyName);
+            LogChange(propertyName, oldValue, value);
         }
 
         private Type UnwrapNullable(Type type)

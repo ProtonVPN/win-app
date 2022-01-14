@@ -21,6 +21,7 @@ using System.Security;
 using Microsoft.Win32;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.OperatingSystemLogs;
 using Sentry;
 
 namespace ProtonVPN.Service.Vpn
@@ -78,7 +79,8 @@ namespace ProtonVPN.Service.Vpn
                     }
                     else if (matchingDeviceId != componentId)
                     {
-                        _logger.Info($"[WintunRegistryFixer] ComponentId '{componentId}' has a value but is different from the MatchingDeviceId '{matchingDeviceId}'.");
+                        _logger.Info<OperatingSystemLog>($"WintunRegistryFixer: ComponentId '{componentId}' " +
+                            $"has a value but is different from the MatchingDeviceId '{matchingDeviceId}'.");
                     }
                 }
             }

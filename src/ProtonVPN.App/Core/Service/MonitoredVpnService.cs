@@ -22,6 +22,7 @@ using System.Threading.Tasks;
 using System.Windows.Threading;
 using ProtonVPN.Common.Abstract;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.AppServiceLogs;
 using ProtonVPN.Common.OS.Services;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Service.Vpn;
@@ -89,7 +90,7 @@ namespace ProtonVPN.Core.Service
                 return;
             }
 
-            _logger.Warn($"The service is not running and the VPN status is '{_vpnStatus}'. " +
+            _logger.Warn<AppServiceStartLog>($"The service is not running and the VPN status is '{_vpnStatus}'. " +
                 "Starting the service and reconnecting.");
             StartAsync();
             _vpnManager.ReconnectAsync();

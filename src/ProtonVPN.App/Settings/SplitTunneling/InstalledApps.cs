@@ -28,6 +28,7 @@ using System.IO;
 using System.Linq;
 using System.Security;
 using System.Text.RegularExpressions;
+using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
 
 namespace ProtonVPN.Settings.SplitTunneling
 {
@@ -61,20 +62,24 @@ namespace ProtonVPN.Settings.SplitTunneling
 
         public SplitTunnelingApp SelectApp()
         {
-            var path = SelectAppFile();
+            string path = SelectAppFile();
             if (!IsValidAppPath(path))
+            {
                 return null;
+            }
 
-            var name = AppName(path);
+            string name = AppName(path);
             if (string.IsNullOrEmpty(name))
+            {
                 return null;
+            }
 
-            return new SplitTunnelingApp { Name = name, Path = path };
+            return new() { Name = name, Path = path };
         }
 
         private IEnumerable<SplitTunnelingApp> InternetBrowsers()
         {
-            var apps = InternetExplorer()
+            IEnumerable<SplitTunnelingApp> apps = InternetExplorer()
                 .Union(MicrosoftEdge())
                 .Union(ClientApps(Registry.LocalMachine, @"SOFTWARE\Clients\StartMenuInternet"))
                 .Union(ClientApps(Registry.LocalMachine, @"SOFTWARE\WOW6432Node\Clients\StartMenuInternet"))
@@ -87,7 +92,7 @@ namespace ProtonVPN.Settings.SplitTunneling
         {
             return FailSafeRegistryAccess(() =>
             {
-                var subKey = parentKey.OpenSubKey(subKeyName);
+                RegistryKey subKey = parentKey.OpenSubKey(subKeyName);
                 return ClientApps(subKey);
             },
             Enumerable.Empty<SplitTunnelingApp>);
@@ -98,12 +103,14 @@ namespace ProtonVPN.Settings.SplitTunneling
             if (parentKey == null)
                 yield break;
 
-            var subKeys = parentKey.GetSubKeyNames();
-            foreach (var subKey in subKeys)
+            string[] subKeys = parentKey.GetSubKeyNames();
+            foreach (string subKey in subKeys)
             {
-                var app = ClientApp(parentKey, subKey);
+                SplitTunnelingApp app = ClientApp(parentKey, subKey);
                 if (app != null)
+                {
                     yield return app;
+                }
             }
         }
 
@@ -111,7 +118,7 @@ namespace ProtonVPN.Settings.SplitTunneling
         {
             return FailSafeRegistryAccess(() =>
             {
-                using (var clientKey = parentKey.OpenSubKey(subKeyName))
+                using (RegistryKey clientKey = parentKey.OpenSubKey(subKeyName))
                 {
                     return ClientApp(clientKey);
                 }
@@ -121,14 +128,16 @@ namespace ProtonVPN.Settings.SplitTunneling
         private SplitTunnelingApp ClientApp(RegistryKey key)
         {
             if (key == null)
+            {
                 return null;
+            }
 
-            var name = ClientAppName(key);
-            var path = ClientAppPath(key);
+            string name = ClientAppName(key);
+            string path = ClientAppPath(key);
 
             if (IsValidAppPath(path))
             {
-                return new SplitTunnelingApp
+                return new()
                 {
                     Name = name,
                     Path = path
@@ -145,35 +154,41 @@ namespace ProtonVPN.Settings.SplitTunneling
 
         private string ClientAppPath(RegistryKey key)
         {
-            using (var commandKey = key.OpenSubKey(@"shell\open\command"))
+            using (RegistryKey commandKey = key.OpenSubKey(@"shell\open\command"))
             {
-                var command = commandKey?.GetValue(null)?.ToString();
-                var filename = ParsedFilename(command);
+                string command = commandKey?.GetValue(null)?.ToString();
+                string filename = ParsedFilename(command);
                 return Environment.ExpandEnvironmentVariables(filename);
             }
         }
 
         private IEnumerable<SplitTunnelingApp> MicrosoftEdge()
         {
-            var path = Environment.ExpandEnvironmentVariables(Path.Combine(MicrosoftEdgeFolder, "MicrosoftEdge.exe"));
+            string path = Environment.ExpandEnvironmentVariables(Path.Combine(MicrosoftEdgeFolder, "MicrosoftEdge.exe"));
 
             if (!File.Exists(path))
+            {
                 yield break;
+            }
 
-            var app = new SplitTunnelingApp
+            SplitTunnelingApp app = new()
             {
                 Name = MicrosoftEdgeName,
                 Path = path
             };
 
-            var paths = new List<string>();
+            List<string> paths = new List<string>();
             path = Environment.ExpandEnvironmentVariables(Path.Combine(MicrosoftEdgeFolder, "MicrosoftEdgeCP.exe"));
             if (File.Exists(path))
+            {
                 paths.Add(path);
+            }
 
             path = Environment.ExpandEnvironmentVariables(@"%WinDir%\System32\MicrosoftEdgeCP.exe");
             if (File.Exists(path))
+            {
                 paths.Add(path);
+            }
 
             app.AdditionalPaths = paths.Any() ? paths.ToArray() : null;
             yield return app;
@@ -181,13 +196,15 @@ namespace ProtonVPN.Settings.SplitTunneling
 
         private IEnumerable<SplitTunnelingApp> InternetExplorer()
         {
-            var path = MachineAppPath(@"SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\IEXPLORE.EXE");
+            string path = MachineAppPath(@"SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\IEXPLORE.EXE");
             if (string.IsNullOrEmpty(path))
+            {
                 yield break;
+            }
 
-            var x86Path = MachineAppPath(@"SOFTWARE\Microsoft\Internet Explorer\Main", "x86AppPath");
+            string x86Path = MachineAppPath(@"SOFTWARE\Microsoft\Internet Explorer\Main", "x86AppPath");
 
-            var app = new SplitTunnelingApp
+            SplitTunnelingApp app = new()
             {
                 Name = InternetExplorerName,
                 Path = path,
@@ -199,7 +216,7 @@ namespace ProtonVPN.Settings.SplitTunneling
 
         private string MachineAppPath(string subKeyName, string valueName = null)
         {
-            var path = SafeRegistryValue(Registry.LocalMachine, subKeyName, valueName);
+            string path = SafeRegistryValue(Registry.LocalMachine, subKeyName, valueName);
             return File.Exists(path) ? path : "";
         }
 
@@ -210,7 +227,7 @@ namespace ProtonVPN.Settings.SplitTunneling
 
         private string RegistryValue(RegistryKey key, string subKeyName, string valueName = null)
         {
-            using (var subKey = key.OpenSubKey(subKeyName))
+            using (RegistryKey subKey = key.OpenSubKey(subKeyName))
             {
                 return subKey?.GetValue(valueName)?.ToString();
             }
@@ -219,15 +236,12 @@ namespace ProtonVPN.Settings.SplitTunneling
         private string ParsedFilename(string command)
         {
             if (string.IsNullOrEmpty(command))
-                return string.Empty;
-
-            var match = FilenameRegex.Match(command);
-            if (match.Success)
             {
-                return match.Groups[1].Value.Trim();
+                return string.Empty;
             }
 
-            return string.Empty;
+            Match match = FilenameRegex.Match(command);
+            return match.Success ? match.Groups[1].Value.Trim() : string.Empty;
         }
 
         private bool IsValidAppPath(string path)
@@ -259,7 +273,7 @@ namespace ProtonVPN.Settings.SplitTunneling
 
         private string SelectAppFile()
         {
-            var dialog = new OpenFileDialog
+            OpenFileDialog dialog = new OpenFileDialog
             {
                 Filter = "App files (*.exe)|*.exe",
                 Multiselect = false,
@@ -274,7 +288,7 @@ namespace ProtonVPN.Settings.SplitTunneling
             }
             catch (Exception ex)
             {
-                _logger.Error($"Failed to add custom app file: {ex.Message}");
+                _logger.Error<AppLog>("Failed to add custom app file", ex);
             }
 
             return string.Empty;
@@ -284,14 +298,18 @@ namespace ProtonVPN.Settings.SplitTunneling
         {
             try
             {
-                var versionInfo = FileVersionInfo.GetVersionInfo(appPath);
-                var name = versionInfo.FileDescription?.Trim();
+                FileVersionInfo versionInfo = FileVersionInfo.GetVersionInfo(appPath);
+                string name = versionInfo.FileDescription?.Trim();
 
                 if (string.IsNullOrEmpty(name))
+                {
                     name = versionInfo.ProductName?.Trim();
+                }
 
                 if (string.IsNullOrEmpty(name))
+                {
                     name = Path.GetFileNameWithoutExtension(appPath).Trim();
+                }
 
                 return name.LimitLength(200);
             }

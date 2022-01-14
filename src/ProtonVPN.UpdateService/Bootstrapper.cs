@@ -25,6 +25,8 @@ using Autofac;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.CrashReporting;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
+using ProtonVPN.Common.Logging.Categorization.Events.AppServiceLogs;
 using ProtonVPN.Common.Logging.Log4Net;
 using ProtonVPN.Common.OS.Event;
 using ProtonVPN.Common.OS.Net.Http;
@@ -88,18 +90,18 @@ namespace ProtonVPN.UpdateService
 
         private void InitCrashLogging()
         {
-            var logging = Resolve<UnhandledExceptionLogging>();
+            UnhandledExceptionLogging logging = Resolve<UnhandledExceptionLogging>();
             logging.CaptureUnhandledExceptions();
             logging.CaptureTaskExceptions();
         }
 
         private void Start()
         {
-            var config = Resolve<Config>();
-            var logger = Resolve<ILogger>();
+            Config config = Resolve<Config>();
+            ILogger logger = Resolve<ILogger>();
 
             CreateLogFolder();
-            logger.Info($"= Booting ProtonVPN Update Service version: {config.AppVersion} os: {Environment.OSVersion.VersionString} {config.OsBits} bit =");
+            logger.Info<AppServiceStartLog>($"= Booting ProtonVPN Update Service version: {config.AppVersion} os: {Environment.OSVersion.VersionString} {config.OsBits} bit =");
 
             Resolve<ServicePointConfiguration>().Apply();
 
@@ -108,7 +110,7 @@ namespace ProtonVPN.UpdateService
 
             ServiceBase.Run(Resolve<UpdateService>());
 
-            logger.Info("= ProtonVPN Update Service has exited =");
+            logger.Info<AppServiceStopLog>("= ProtonVPN Update Service has exited =");
         }
 
         private void CreateLogFolder()
@@ -123,7 +125,7 @@ namespace ProtonVPN.UpdateService
 
         private void Configure()
         {
-            var builder = new ContainerBuilder();
+            ContainerBuilder builder = new ContainerBuilder();
             builder.Register(c => new ConfigFactory().Config());
             builder.RegisterType<SystemProcesses>().As<IOsProcesses>().SingleInstance();
             builder.RegisterType<HttpClients>().As<IHttpClients>().SingleInstance();

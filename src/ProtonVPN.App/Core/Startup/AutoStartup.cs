@@ -29,7 +29,7 @@ namespace ProtonVPN.Core.Startup
         public AutoStartup(ILogger logger, Common.Configuration.Config appConfig) : this(
             new SafeStartupRecord(
                 logger,
-                new CurrentUserStartupRecord(appConfig.AppName, appConfig.AppExePath)))
+                new CurrentUserStartupRecord(logger, appConfig.AppName, appConfig.AppExePath)))
         {
         }
 

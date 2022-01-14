@@ -20,6 +20,7 @@
 using System;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.OperatingSystemLogs;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.OS;
@@ -41,7 +42,7 @@ namespace ProtonVPN.Core
             _ntpClient = ntpClient;
             _modals = modals;
             _logger = logger;
-            _validateAction = new SingleAction(ValidateTime);
+            _validateAction = new(ValidateTime);
         }
 
         public Task Validate()
@@ -54,7 +55,7 @@ namespace ProtonVPN.Core
             DateTime? networkTime = _ntpClient.GetNetworkUtcTime();
             if (networkTime.HasValue && Math.Abs((networkTime.Value - DateTime.UtcNow).TotalSeconds) > TIME_LIMIT_IN_SECONDS)
             {
-                _logger.Info("[SystemTimeValidator] incorrect system time detected.");
+                _logger.Warn<OperatingSystemLog>("Incorrect system time detected.");
                 _modals.Show<IncorrectSystemTimeModalViewModel>();
             }
         }

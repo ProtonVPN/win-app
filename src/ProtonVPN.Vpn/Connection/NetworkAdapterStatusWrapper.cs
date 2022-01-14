@@ -20,6 +20,9 @@
 using System;
 using ProtonVPN.Common;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.ConnectLogs;
+using ProtonVPN.Common.Logging.Categorization.Events.DisconnectLogs;
+using ProtonVPN.Common.Logging.Categorization.Events.NetworkLogs;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.OS.Net;
 using ProtonVPN.Common.OS.Net.NetworkInterface;
@@ -68,14 +71,13 @@ namespace ProtonVPN.Vpn.Connection
 
             if (_endpoint.VpnProtocol == VpnProtocol.WireGuard)
             {
-                _logger.Info("[NetworkAdapterStatusWrapper] WireGuard protocol selected. " +
-                             "No network adapters to check.");
+                _logger.Info<ConnectLog>("WireGuard protocol selected. No network adapters to check.");
                 Connect();
             }
             else if (IsOpenVpnNetworkAdapterAvailable(config.OpenVpnAdapter))
             {
-                _logger.Info($"[NetworkAdapterStatusWrapper] Preferred network adapter found. " +
-                             $"(Protocol: {_config.VpnProtocol}, OpenVpnAdapter: {_config.OpenVpnAdapter})");
+                _logger.Info<ConnectLog>("Preferred network adapter found. " +
+                    $"(Protocol: {_config.VpnProtocol}, OpenVpnAdapter: {_config.OpenVpnAdapter})");
                 Connect();
             }
             else
@@ -114,8 +116,8 @@ namespace ProtonVPN.Vpn.Connection
             EnableOpenVpnAdapters();
             if (IsOpenVpnNetworkAdapterAvailable(_config.OpenVpnAdapter))
             {
-                _logger.Info($"[NetworkAdapterStatusWrapper] OpenVPN network adapter successfully enabled " +
-                             $"({_endpoint.VpnProtocol} - {_config.OpenVpnAdapter}).");
+                _logger.Info<ConnectLog>("OpenVPN network adapter successfully enabled " +
+                    $"({_endpoint.VpnProtocol} - {_config.OpenVpnAdapter}).");
                 Connect();
             }
             else if (_config.OpenVpnAdapter == OpenVpnAdapter.Tun)
@@ -130,16 +132,14 @@ namespace ProtonVPN.Vpn.Connection
 
         private void EnableOpenVpnAdapters()
         {
-            _logger.Warn($"[NetworkAdapterStatusWrapper] OpenVPN network adapter not found " +
-                         $"(Protocol '{_endpoint.VpnProtocol}', Adapter '{_config.OpenVpnAdapter}'). " +
-                         $"Attempting to enable them if disabled.");
+            _logger.Warn<NetworkUnavailableLog>($"OpenVPN network adapter not found (Protocol '{_endpoint.VpnProtocol}', " +
+                $"Adapter '{_config.OpenVpnAdapter}'). Attempting to enable them if disabled.");
             _networkAdapterManager.EnableOpenVpnAdapters();
         }
 
         private void HandleNoTunError()
         {
-            _logger.Warn("[NetworkAdapterStatusWrapper] OpenVPN TUN network adapter not found. " +
-                         "Checking if TAP is available.");
+            _logger.Warn<NetworkUnavailableLog>("OpenVPN TUN network adapter not found. Checking if TAP is available.");
             if (IsOpenVpnNetworkAdapterAvailable(OpenVpnAdapter.Tap))
             {
                 FallbackToTapAndConnect();
@@ -152,8 +152,7 @@ namespace ProtonVPN.Vpn.Connection
 
         private void FallbackToTapAndConnect()
         {
-            _logger.Info("[NetworkAdapterStatusWrapper] OpenVPN TAP network adapter found. " +
-                         "Connecting using TAP instead of TUN.");
+            _logger.Info<NetworkLog>("OpenVPN TAP network adapter found. Connecting using TAP instead of TUN.");
             SendTunFallbackEvent();
             _config.OpenVpnAdapter = OpenVpnAdapter.Tap;
             Connect();
@@ -163,7 +162,6 @@ namespace ProtonVPN.Vpn.Connection
         {
             if (!_hasSentTunFallbackEventToSentry)
             {
-                _logger.Info("[NetworkAdapterStatusWrapper] [Sentry] TUN adapter not found. Adapter changed to TAP.");
                 SentrySdk.CaptureEvent(new SentryEvent
                 {
                     Message = "TUN adapter not found. Adapter changed to TAP.",
@@ -175,7 +173,7 @@ namespace ProtonVPN.Vpn.Connection
 
         private void HandleNoTapError()
         {
-            _logger.Error("[NetworkAdapterStatusWrapper] OpenVPN TAP network adapter not found. Disconnecting.");
+            _logger.Error<DisconnectTriggerLog>("OpenVPN TAP network adapter not found. Disconnecting.");
             Disconnect(VpnError.NoTapAdaptersError);
         }
 
@@ -212,8 +210,7 @@ namespace ProtonVPN.Vpn.Connection
 
         private void HandleConnectedWithWireGuard()
         {
-            _logger.Info("[NetworkAdapterStatusWrapper] Connected with WireGuard. " +
-                         "Disabling duplicated WireGuard adapters.");
+            _logger.Info<NetworkLog>("Connected with WireGuard. Disabling duplicated WireGuard adapters.");
             _networkAdapterManager.DisableDuplicatedWireGuardAdapters();
         }
 
@@ -237,15 +234,15 @@ namespace ProtonVPN.Vpn.Connection
 
         private void HandleWireGuardError(VpnState vpnState)
         {
-            _logger.Warn($"[NetworkAdapterStatusWrapper] Connection error '{vpnState.Error}' while using " +
-                         $"protocol '{vpnState.VpnProtocol}'. Disabling duplicated WireGuard adapters.");
+            _logger.Warn<NetworkLog>($"Connection error '{vpnState.Error}' while using " +
+                $"protocol '{vpnState.VpnProtocol}'. Disabling duplicated WireGuard adapters.");
             _networkAdapterManager.DisableDuplicatedWireGuardAdapters();
         }
 
         private void HandleOpenVpnError(VpnState vpnState)
         {
-            _logger.Warn($"[NetworkAdapterStatusWrapper] Connection error '{vpnState.Error}' while using " +
-                         $"protocol '{vpnState.VpnProtocol}'. Enabling disabled OpenVPN adapters.");
+            _logger.Warn<NetworkLog>($"Connection error '{vpnState.Error}' while using " +
+                $"protocol '{vpnState.VpnProtocol}'. Enabling disabled OpenVPN adapters.");
             _networkAdapterManager.EnableOpenVpnAdapters();
         }
     }

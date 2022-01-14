@@ -19,6 +19,7 @@
 
 using System.Threading.Tasks;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.UserCertificateLogs;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Crypto;
 
@@ -49,14 +50,14 @@ namespace ProtonVPN.Core.Auth
             
             if (keyPair == null)
             {
-                _logger.Info("AuthCredentialManager: Missing auth key pair, requesting new keys and certificate.");
+                _logger.Info<UserCertificateLog>("Missing auth key pair, requesting new keys and certificate.");
                 await _authCertificateManager.ForceRequestNewKeyPairAndCertificateAsync();
                 keyPair = _authKeyManager.GetKeyPairOrNull();
                 certificatePem = _appSettings.AuthenticationCertificatePem;
             }
             else if (certificatePem == null)
             {
-                _logger.Info("AuthCredentialManager: Auth keys are present but certificate is missing, requesting new certificate.");
+                _logger.Info<UserCertificateLog>("Auth keys are present but certificate is missing, requesting new certificate.");
                 await _authCertificateManager.ForceRequestNewCertificateAsync();
                 keyPair = _authKeyManager.GetKeyPairOrNull();
                 certificatePem = _appSettings.AuthenticationCertificatePem;

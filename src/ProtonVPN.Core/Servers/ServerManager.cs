@@ -22,6 +22,7 @@ using System.Linq;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Helpers;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Core.Abstract;
 using ProtonVPN.Core.Api.Contracts;
@@ -46,7 +47,7 @@ namespace ProtonVPN.Core.Servers
             _userStorage = userStorage;
             _appSettings = appSettings;
             _logger = logger;
-            _serverNameComparer = new ServerNameComparer();
+            _serverNameComparer = new();
         }
 
         public bool IsServerFromSpec(Server server, ISpecification<LogicalServerContract> spec)
@@ -77,7 +78,7 @@ namespace ProtonVPN.Core.Servers
                 ? $"{_countries.Count}"
                 : $"{previousNumOfCountries} -> {_countries.Count}";
 
-            _logger.Info($"Servers updated. Num of servers: {numOfServersText} Num of countries: {numOfCountriesText}");
+            _logger.Info<AppLog>($"Servers updated. Num of servers: {numOfServersText} Num of countries: {numOfCountriesText}");
         }
 
         public virtual void UpdateLoads(IReadOnlyCollection<LogicalServerContract> servers)
@@ -143,8 +144,8 @@ namespace ProtonVPN.Core.Servers
                 }
             }
 
-            _logger.Error($"[ServerManager] Failed to find any server matching EntryIp '{entryIp}' and Label '{label}'. " +
-                          $"There are {servers.Count} server(s) matching EntryIp '{entryIp}'.");
+            _logger.Error<AppLog>($"Failed to find any server matching EntryIp '{entryIp}' and Label '{label}'. " +
+                                  $"There are {servers.Count} server(s) matching EntryIp '{entryIp}'.");
             return Server.Empty();
         }
 

@@ -24,6 +24,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.Common;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.ConnectLogs;
+using ProtonVPN.Common.Logging.Categorization.Events.DisconnectLogs;
+using ProtonVPN.Common.Logging.Categorization.Events.ServerSwitchLogs;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Vpn.Common;
@@ -74,7 +77,7 @@ namespace ProtonVPN.Vpn.Connection
             _isToReconnect = true;
             _isToDiscardProtocol = true;
 
-            _logger.Info("[ReconnectingWrapper] Requesting disconnect as first step of connection process.");
+            _logger.Info<DisconnectTriggerLog>("Requesting disconnect as first step of connection process.");
             CancelTokenAndDisconnect(VpnError.NoneKeepEnabledKillSwitch);
         }
 
@@ -97,7 +100,7 @@ namespace ProtonVPN.Vpn.Connection
 
         private void CancelTokenAndDisconnect(VpnError error)
         {
-            _logger.Info($"[ReconnectingWrapper] A disconnect was requested with error '{error}'.");
+            _logger.Info<DisconnectLog>($"A disconnect was requested with error '{error}'.");
             _cancellationHandle.Cancel();
             _origin.Disconnect(error);
         }
@@ -118,8 +121,8 @@ namespace ProtonVPN.Vpn.Connection
             else if (_state.Status == VpnStatus.Disconnected && _isToConnect)
             {
                 _isToConnect = false;
-                _logger.Info("[ReconnectingWrapper] A connect is pending. " +
-                             "Starting connection after status changed to Disconnected.");
+                _logger.Info<ConnectLog>("A connect is pending. " +
+                    "Starting connection after status changed to Disconnected.");
                 PingAndConnectAsync();
             }
             else if (IsToCancelReconnection())
@@ -128,6 +131,8 @@ namespace ProtonVPN.Vpn.Connection
             }
             else if (IsToReconnect())
             {
+                _logger.Info<ServerSwitchTriggerLog>("Trying the next server. " +
+                    $"Status: '{_state.Status}', Error: '{_state.Error}'.");
                 ConnectToNextEndpoint();
             }
 
@@ -145,18 +150,18 @@ namespace ProtonVPN.Vpn.Connection
             _isToDiscardProtocol = false;
             if (_config.PreferredProtocols.Any())
             {
-                _logger.Info($"[ReconnectingWrapper] Discarding protocol '{_config.PreferredProtocols[0]}'.");
+                _logger.Info<ConnectLog>($"Discarding protocol '{_config.PreferredProtocols[0]}'.");
                 _config.PreferredProtocols.RemoveAt(0);
             }
 
             if (_config.PreferredProtocols.Count == 0)
             {
-                _logger.Warn("[ReconnectingWrapper] Preferred protocols list is empty. Disconnecting.");
+                _logger.Warn<DisconnectTriggerLog>("Preferred protocols list is empty. Disconnecting.");
                 CancelTokenAndDisconnect(VpnError.ServerUnreachable);
             }
             else
             {
-                _logger.Info("[ReconnectingWrapper] Preferred protocols list is not empty. " +
+                _logger.Info<ConnectLog>("Preferred protocols list is not empty. " +
                     "Reconnecting after discarding protocol.");
                 _candidates.Reset();
                 _isToConnect = true;
@@ -166,7 +171,7 @@ namespace ProtonVPN.Vpn.Connection
 
         private async Task PingAndConnectAsync()
         {
-            _logger.Info("[ReconnectingWrapper] Probing servers.");
+            _logger.Info<ConnectLog>("A connect is pending. Starting connection after status changed to Disconnected.");
             CancellationToken cancellationToken = _cancellationHandle.Token;
             bool isResponding = false;
 
@@ -174,26 +179,25 @@ namespace ProtonVPN.Vpn.Connection
             {
                 if (cancellationToken.IsCancellationRequested)
                 {
-                    _logger.Info("[ReconnectingWrapper] Disconnection has been requested. Endpoint scanning stopped.");
+                    _logger.Info<DisconnectLog>("Disconnection has been requested. Endpoint scanning stopped.");
                     break;
                 }
 
                 VpnEndpoint endpoint = _candidates.NextIp(_config);
                 if (endpoint.IsEmpty)
                 {
-                    _logger.Info($"[ReconnectingWrapper] No more endpoints in the list.");
+                    _logger.Warn<ConnectLog>($"No more endpoints in the list after server {endpoint.Server.Ip} has failed to respond to the ping.");
                     break;
                 }
 
                 isResponding = await IsEndpointRespondingAsync(endpoint, cancellationToken);
                 if (isResponding)
                 {
-                    _logger.Info($"[ReconnectingWrapper] The server {endpoint.Server.Ip} has responded to the ping.");
+                    _logger.Info<ConnectScanResultLog>($"The server {endpoint.Server.Ip} has responded to the ping.");
                     break;
                 }
 
-                _logger.Info($"[ReconnectingWrapper] The server {endpoint.Server.Ip} " +
-                             "has failed to respond to the ping.");
+                _logger.Info<ConnectScanFailLog>($"The server {endpoint.Server.Ip} has failed to respond to the ping.");
             }
 
             _candidates.Reset();
@@ -214,19 +218,19 @@ namespace ProtonVPN.Vpn.Connection
         {
             if (cancellationToken.IsCancellationRequested)
             {
-                _logger.Info("[ReconnectingWrapper] Disconnection has been requested. Connection canceled.");
+                _logger.Info<DisconnectLog>("Disconnection has been requested. Connection canceled.");
                 return;
             }
 
             if (isResponding)
             {
-                _logger.Info("[ReconnectingWrapper] At least one server has responded to a ping. " +
-                             "Attempting connections.");
+                _logger.Info<ServerSwitchTriggerLog>("At least one server has responded to a ping. Attempting connections.");
                 ConnectToNextEndpoint();
             }
             else
             {
-                _logger.Info("[ReconnectingWrapper] No server has responded to a ping. Disconnecting.");
+                _logger.Info<ConnectScanFailLog>("No server has responded to a ping.");
+                _logger.Info<DisconnectTriggerLog>("Disconnecting due to failed scan.");
                 Disconnect(VpnError.PingTimeoutError);
             }
         }
@@ -237,14 +241,14 @@ namespace ProtonVPN.Vpn.Connection
             bool isEndpointAvailableToConnect = _endpoint?.Server != null && !_endpoint.Server.IsEmpty();
             if (isEndpointAvailableToConnect)
             {
-                _logger.Info($"[ReconnectingWrapper] Next endpoint is {_endpoint.Server.Ip}/" +
-                             $"{_endpoint.Server.Label}. Connecting.");
+                _logger.Info<ServerSwitchSelectedLog>($"Next endpoint is {_endpoint.Server.Ip}/{_endpoint.Server.Label}. Connecting.");
                 _origin.Connect(_endpoint, _credentials, _config);
             }
             else
             {
                 _isToReconnect = false;
-                _logger.Info("[ReconnectingWrapper] No more VPN endpoints to try. Disconnecting.");
+                _logger.Info<ServerSwitchFailedLog>("No more VPN endpoints to try.");
+                _logger.Info<DisconnectTriggerLog>("Disconnecting since there are no more servers to connect to.");
                 Disconnect(_state.Error);
             }
         }

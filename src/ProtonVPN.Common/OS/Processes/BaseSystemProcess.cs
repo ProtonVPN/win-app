@@ -22,6 +22,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.ProcessLogs;
 
 namespace ProtonVPN.Common.OS.Processes
 {
@@ -50,8 +51,8 @@ namespace ProtonVPN.Common.OS.Processes
 
         public virtual void Start()
         {
-            var processName = GetProcessName(Process.StartInfo.FileName);
-            _logger.Info($"Process: Starting new {processName} process");
+            string processName = GetProcessName(Process.StartInfo.FileName);
+            _logger.Info<ProcessStartLog>($"Starting new process '{processName}'.");
             Process.Start();
         }
 
@@ -70,15 +71,24 @@ namespace ProtonVPN.Common.OS.Processes
         public void WaitForExit(TimeSpan duration)
         {
             if (HasExited())
+            {
                 return;
+            }
 
             try
             {
-                var processName = Process.ProcessName;
+                string processName = Process.ProcessName;
 
-                _logger.Info($"Process: Waiting for {processName} process to exit");
-                Process.WaitForExit(Convert.ToInt32(duration.TotalMilliseconds));
-                _logger.Info($"Process: Done waiting for {processName} process to exit");
+                _logger.Info<ProcessStopLog>($"Waiting for process '{processName}' to exit.");
+                bool hasExited = Process.WaitForExit(Convert.ToInt32(duration.TotalMilliseconds));
+                if (hasExited)
+                {
+                    _logger.Info<ProcessStopLog>($"The process '{processName}' has exited.");
+                }
+                else
+                {
+                    _logger.Warn<ProcessStopLog>($"The process '{processName}' has not exited in the provided time ({duration}).");
+                }
             }
             catch (SystemException) { }
         }
@@ -86,7 +96,9 @@ namespace ProtonVPN.Common.OS.Processes
         public void Kill()
         {
             if (HasExited())
+            {
                 return;
+            }
 
             int processId = 0;
             string processName = null;
@@ -95,12 +107,12 @@ namespace ProtonVPN.Common.OS.Processes
                 processId = Process.Id;
                 processName = Process.ProcessName;
 
-                _logger.Info($"Process: Killing {processName} process ID {processId}");
+                _logger.Info<ProcessStopLog>($"Killing process '{processName}' with ID '{processId}'.");
                 Process.Kill();
             }
-            catch (Exception ex) when (ex is InvalidOperationException || ex is Win32Exception)
+            catch (Exception ex) when (ex is InvalidOperationException or Win32Exception)
             {
-                _logger.Warn($"Process: Failed to kill {processName} process ID {processId}. {ex.Message}");
+                _logger.Warn<ProcessStopLog>($"Failed to kill process '{processName}' with ID '{processId}'.", ex);
             }
         }
 
@@ -126,13 +138,17 @@ namespace ProtonVPN.Common.OS.Processes
         private void Process_OutputDataReceived(object sender, DataReceivedEventArgs e)
         {
             if (e.Data != null)
+            {
                 OutputDataReceived?.Invoke(this, new EventArgs<string>(e.Data));
+            }
         }
 
         private void Process_ErrorDataReceived(object sender, DataReceivedEventArgs e)
         {
             if (e.Data != null)
+            {
                 ErrorDataReceived?.Invoke(this, new EventArgs<string>(e.Data));
+            }
         }
 
         private void Process_Exited(object sender, EventArgs e)
@@ -143,7 +159,9 @@ namespace ProtonVPN.Common.OS.Processes
         public void Dispose()
         {
             if (_isDisposed)
+            {
                 return;
+            }
 
             _logger = null;
             if (Process != null)

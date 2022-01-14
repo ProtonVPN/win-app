@@ -26,6 +26,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using NSubstitute.ExceptionExtensions;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.NetworkLogs;
 using ProtonVPN.Common.OS.Net.NetworkInterface;
 
 namespace ProtonVPN.Common.Test.OS.Net.NetworkInterface
@@ -108,7 +109,7 @@ namespace ProtonVPN.Common.Test.OS.Net.NetworkInterface
             // Act
             _ = subject.GetInterfaces();
             // Assert
-            _logger.ReceivedWithAnyArgs().Error("");
+            _logger.ReceivedWithAnyArgs().Error<NetworkUnavailableLog>("");
         }
 
         #region Helpers

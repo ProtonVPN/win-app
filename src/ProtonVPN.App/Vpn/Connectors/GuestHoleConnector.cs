@@ -22,6 +22,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.ConnectLogs;
+using ProtonVPN.Common.Logging.Categorization.Events.DisconnectLogs;
+using ProtonVPN.Common.Logging.Categorization.Events.GuestHoleLogs;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Storage;
 using ProtonVPN.Common.Vpn;
@@ -69,17 +72,21 @@ namespace ProtonVPN.Vpn.Connectors
         {
             if (_networkAdapterValidator.IsOpenVpnAdapterAvailable())
             {
+                _logger.Info<GuestHoleLog>("OpenVPN adapters are available. Proceeding with guest hole connection.");
+
                 VpnConnectionRequest request = new(
                     Servers(),
                     VpnProtocol.Smart,
                     VpnConfig(),
                     CreateVpnCredentials());
 
-                _logger.Info("[GuestHoleConnector] Connect requested");
+                _logger.Info<ConnectTriggerLog>("Guest hole connection requested.");
                 await _vpnServiceManager.Connect(request);
             }
             else
             {
+                _logger.Info<GuestHoleLog>("OpenVPN adapters are unavailable. Disconnecting.");
+                _logger.Info<DisconnectTriggerLog>("Guest hole disconnection requested.");
                 await Disconnect();
             }
         }

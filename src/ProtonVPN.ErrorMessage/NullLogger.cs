@@ -18,18 +18,37 @@
  */
 
 using System;
+using System.Runtime.CompilerServices;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization;
 
 namespace ProtonVPN.ErrorMessage
 {
     internal class NullLogger : ILogger
     {
-        public void Debug(string message) { }
-        public void Info(string message) { }
-        public void Warn(string message) { }
-        public void Error(string message) { }
-        public void Error(string message, Exception exception) { }
-        public void Error(Exception exception) { }
-        public void Fatal(string message) { }
+        public void Debug<TEvent>(string message, Exception exception = null,
+            [CallerFilePath] string sourceFilePath = "",
+            [CallerMemberName] string sourceMemberName = "",
+            [CallerLineNumber] int sourceLineNumber = 0) where TEvent : ILogEvent, new() { }
+
+        public void Info<TEvent>(string message, Exception exception = null,
+            [CallerFilePath] string sourceFilePath = "",
+            [CallerMemberName] string sourceMemberName = "",
+            [CallerLineNumber] int sourceLineNumber = 0) where TEvent : ILogEvent, new() { }
+
+        public void Warn<TEvent>(string message, Exception exception = null,
+            [CallerFilePath] string sourceFilePath = "",
+            [CallerMemberName] string sourceMemberName = "",
+            [CallerLineNumber] int sourceLineNumber = 0) where TEvent : ILogEvent, new() { }
+
+        public void Error<TEvent>(string message, Exception exception = null,
+            [CallerFilePath] string sourceFilePath = "",
+            [CallerMemberName] string sourceMemberName = "",
+            [CallerLineNumber] int sourceLineNumber = 0) where TEvent : ILogEvent, new() { }
+
+        public void Fatal<TEvent>(string message, Exception exception = null,
+            [CallerFilePath] string sourceFilePath = "",
+            [CallerMemberName] string sourceMemberName = "",
+            [CallerLineNumber] int sourceLineNumber = 0) where TEvent : ILogEvent, new() { }
     }
 }

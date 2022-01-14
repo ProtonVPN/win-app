@@ -25,6 +25,8 @@ using System.IO;
 using System.Linq;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.AppUpdateLogs;
+using ProtonVPN.Common.Logging.Categorization.Events.SettingsLogs;
 using ProtonVPN.Core.Abstract;
 using ProtonVPN.Core.Storage;
 
@@ -32,8 +34,8 @@ namespace ProtonVPN.Settings
 {
     internal class AppSettingsStorage : ISettingsStorage, ISupportsMigration
     {
-        private readonly object _saveLock = new object();
-        private readonly List<IMigration> _migrations = new List<IMigration>();
+        private readonly object _saveLock = new();
+        private readonly List<IMigration> _migrations = new();
         private readonly ILogger _logger;
 
         private bool _loaded;
@@ -62,10 +64,13 @@ namespace ProtonVPN.Settings
         public void Load()
         {
             if (_loaded)
+            {
                 return;
+            }
 
             if (Properties.Settings.Default.AppFirstRun)
             {
+                _logger.Info<AppUpdatedLog>("This is the first run of the app.");
                 Migrate();
                 ExecuteCustomMigrations();
                 Save();
@@ -84,7 +89,7 @@ namespace ProtonVPN.Settings
                 }
                 catch (Exception e) when (IsSettingsSavingException(e))
                 {
-                    _logger.Error("Failed to save app settings: " + e.Message);
+                    _logger.Error<SettingsLog>("Failed to save app settings", e);
                 }
             }
         }
