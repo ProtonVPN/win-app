@@ -309,7 +309,6 @@
   <COMPONENT cid="caphyon.advinst.msicomp.AiRemoveFileComponent">
     <ROW RemoveFile="_" Condition="(AI_CLEAN_RESOURCES_UNINSTALL = &quot;1&quot;) AND (NOT UPGRADINGPRODUCTCODE)" Options="3"/>
     <ROW RemoveFile="__1" Condition="(AI_CLEAN_RESOURCES_UNINSTALL = &quot;1&quot;) AND (NOT UPGRADINGPRODUCTCODE)" Options="3"/>
-    <ROW RemoveFile="__2" Condition="(OLDPRODUCTS)" Options="3"/>
     <ROW RemoveFile="__3" Options="3"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BootstrapperUISequenceComponent">
@@ -806,7 +805,6 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiRemoveFileComponent">
     <ROW FileKey="_" Component_="AI_ExePath" DirProperty="AppData_Dir" InstallMode="2"/>
     <ROW FileKey="__1" Component_="ProtonVPN.exe" DirProperty="ProtonVPN_1_Dir" InstallMode="2"/>
-    <ROW FileKey="__2" Component_="AI_ExePath" DirProperty="Logs_Dir" InstallMode="1"/>
     <ROW FileKey="__3" Component_="ProtonVPN" DirProperty="ProtonVPN_2_Dir" InstallMode="2"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiServConfigFailureActionsComponent">
