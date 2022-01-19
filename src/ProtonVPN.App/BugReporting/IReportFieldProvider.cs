@@ -18,12 +18,12 @@
  */
 
 using System.Collections.Generic;
-using ProtonVPN.BugReporting.FormElements;
+using ProtonVPN.BugReporting.Actions;
 
 namespace ProtonVPN.BugReporting
 {
     public interface IReportFieldProvider
     {
-        KeyValuePair<string, string>[] GetFields(string category, IList<FormElement> formElements);
+        KeyValuePair<string, string>[] GetFields(SendReportAction message);
     }
 }

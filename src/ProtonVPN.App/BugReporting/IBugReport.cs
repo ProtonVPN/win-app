@@ -17,15 +17,14 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Collections.Generic;
 using System.Threading.Tasks;
+using ProtonVPN.BugReporting.Actions;
 using ProtonVPN.Common.Abstract;
 
 namespace ProtonVPN.BugReporting
 {
     public interface IBugReport
     {
-        Task<Result> SendAsync(KeyValuePair<string, string>[] fields);
-        Task<Result> SendWithLogsAsync(KeyValuePair<string, string>[] fields);
+        Task<Result> SendAsync(SendReportAction message);
     }
 }

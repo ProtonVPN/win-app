@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using ProtonVPN.BugReporting.Actions;
 using ProtonVPN.BugReporting.Attachments;
 using ProtonVPN.BugReporting.Diagnostic;
 using ProtonVPN.Common.Abstract;
@@ -32,29 +33,36 @@ namespace ProtonVPN.BugReporting
     public class BugReport : IBugReport
     {
         private readonly IApiClient _apiClient;
+        private readonly IReportFieldProvider _reportFieldProvider;
         private readonly Attachments.Attachments _attachments;
         private readonly NetworkLogWriter _networkLogWriter;
 
-        public BugReport(IApiClient apiClient, Attachments.Attachments attachments, NetworkLogWriter networkLogWriter)
+        public BugReport(IApiClient apiClient, IReportFieldProvider reportFieldProvider,
+            Attachments.Attachments attachments, NetworkLogWriter networkLogWriter)
         {
-            _networkLogWriter = networkLogWriter;
             _apiClient = apiClient;
+            _reportFieldProvider = reportFieldProvider;
             _attachments = attachments;
+            _networkLogWriter = networkLogWriter;
         }
 
-        public async Task<Result> SendAsync(KeyValuePair<string, string>[] fields)
+        public async Task<Result> SendAsync(SendReportAction message)
         {
-            return await SendInternalAsync(fields, new List<File>());
+            KeyValuePair<string, string>[] fields = _reportFieldProvider.GetFields(message);
+            return message.SendLogs
+                ? await SendWithLogsAsync(fields)
+                : await SendAsync(fields);
         }
 
-        public async Task<Result> SendWithLogsAsync(KeyValuePair<string, string>[] fields)
+        private async Task<Result> SendWithLogsAsync(KeyValuePair<string, string>[] fields)
         {
             await _networkLogWriter.WriteAsync();
             return await SendInternalAsync(fields, new AttachmentsToApiFiles(_attachments.Get()));
         }
 
-        private async Task<Result> SendInternalAsync(KeyValuePair<string, string>[] fields, IEnumerable<File> files)
+        private async Task<Result> SendInternalAsync(KeyValuePair<string, string>[] fields, IEnumerable<File> files = null)
         {
+            files ??= new List<File>();
             try
             {
                 return await _apiClient.ReportBugAsync(fields, files);
@@ -63,6 +71,11 @@ namespace ProtonVPN.BugReporting
             {
                 return Result.Fail(e.Message);
             }
+        }
+
+        private async Task<Result> SendAsync(KeyValuePair<string, string>[] fields)
+        {
+            return await SendInternalAsync(fields);
         }
     }
 }
