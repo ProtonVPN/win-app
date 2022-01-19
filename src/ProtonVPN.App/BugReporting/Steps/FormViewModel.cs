@@ -43,7 +43,7 @@ namespace ProtonVPN.BugReporting.Steps
         private readonly IEventAggregator _eventAggregator;
         private readonly IUserStorage _userStorage;
         private readonly IFormElementBuilder _formElementBuilder;
-        private bool _isToIncludeErrorLogs = true;
+        private bool _isToIncludeLogs = true;
         private List<FormElement> _formElements = new();
         private bool _isFormBeingSent;
         private bool _hasErrors = true;
@@ -62,12 +62,12 @@ namespace ProtonVPN.BugReporting.Steps
 
         public ICommand SendReportCommand { get; }
 
-        public bool IsToIncludeErrorLogs
+        public bool IsToIncludeLogs
         {
-            get => _isToIncludeErrorLogs;
+            get => _isToIncludeLogs;
             set
             {
-                Set(ref _isToIncludeErrorLogs, value);
+                Set(ref _isToIncludeLogs, value);
                 NotifyOfPropertyChange(nameof(IsToShowLogsWarning));
             }
         }
@@ -78,7 +78,7 @@ namespace ProtonVPN.BugReporting.Steps
             set => Set(ref _isEmailValid, value);
         }
 
-        public bool IsToShowLogsWarning => !IsToIncludeErrorLogs;
+        public bool IsToShowLogsWarning => !IsToIncludeLogs;
 
         public List<FormElement> FormElements
         {
@@ -162,7 +162,7 @@ namespace ProtonVPN.BugReporting.Steps
 
         private void SendReportAction()
         {
-            _eventAggregator.PublishOnUIThread(new SendReportAction(_category, FormElements, IsToIncludeErrorLogs));
+            _eventAggregator.PublishOnUIThread(new SendReportAction(_category, FormElements, IsToIncludeLogs));
         }
 
         public void OnUserDataChanged()

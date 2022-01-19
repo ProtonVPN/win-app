@@ -24,15 +24,15 @@ namespace ProtonVPN.BugReporting.Actions
 {
     public class SendReportAction
     {
-        public SendReportAction(string category, IList<FormElement> formElements, bool sendErrorLogs)
+        public SendReportAction(string category, IList<FormElement> formElements, bool sendLogs)
         {
             Category = category;
             FormElements = formElements;
-            SendErrorLogs = sendErrorLogs;
+            SendLogs = sendLogs;
         }
 
         public string Category;
         public IList<FormElement> FormElements;
-        public bool SendErrorLogs;
+        public bool SendLogs;
     }
 }
