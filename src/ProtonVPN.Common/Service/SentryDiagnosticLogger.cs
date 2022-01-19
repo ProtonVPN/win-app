@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -21,7 +21,7 @@ using System;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
 using Sentry.Extensibility;
-using Sentry.Protocol;
+using Sentry;
 
 namespace ProtonVPN.Common.Service
 {

@@ -24,6 +24,7 @@ using Caliburn.Micro;
 using ProtonVPN.About;
 using ProtonVPN.Account;
 using ProtonVPN.Common.Configuration;
+using ProtonVPN.Common.Events;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.OS.Processes;
 using ProtonVPN.Common.OS.Services;
@@ -298,6 +299,8 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<AuthCredentialManager>().As<IAuthCredentialManager>().SingleInstance();
             builder.RegisterType<SystemTimeValidator>().SingleInstance();
             builder.RegisterType<WelcomeModalManager>().SingleInstance();
+            builder.Register(c => new EventPublisher(c.Resolve<ILogger>(), c.Resolve<Common.Configuration.Config>()))
+                .As<IEventPublisher>().SingleInstance();
         }
     }
 }

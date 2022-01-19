@@ -265,7 +265,6 @@ namespace ProtonVPN.Core.Ioc
                 c.Resolve<Common.Configuration.Config>().DoHProviders,
                 c.Resolve<Common.Configuration.Config>().DohClientTimeout))
                 .SingleInstance();
-            builder.RegisterType<UnhandledExceptionLogging>().SingleInstance();
             builder.RegisterType<MainWindowState>().As<IMainWindowState>().SingleInstance();
             builder.RegisterType<SingleActionFactory>().As<ISingleActionFactory>().SingleInstance();
             builder.RegisterType<LastServerLoadTimeProvider>().As<ILastServerLoadTimeProvider>().SingleInstance();

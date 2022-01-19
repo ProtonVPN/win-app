@@ -19,6 +19,7 @@
 
 using Autofac;
 using ProtonVPN.Common.Configuration;
+using ProtonVPN.Common.Events;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.OS.Net;
 using ProtonVPN.Common.OS.Processes;
@@ -73,6 +74,7 @@ namespace ProtonVPN.Vpn.Config
             tcpPortScanner.Config(config.OpenVpnStaticKey);
             IEndpointScanner endpointScanner = c.Resolve<VpnEndpointScanner>();
             VpnEndpointCandidates candidates = new();
+            IEventPublisher eventPublisher = c.Resolve<IEventPublisher>();
 
             return new LoggingWrapper(
                 logger,
@@ -89,6 +91,7 @@ namespace ProtonVPN.Vpn.Config
                             endpointScanner,
                             new NetworkAdapterStatusWrapper(
                                 logger,
+                                eventPublisher,
                                 networkAdapterManager,
                                 networkInterfaceLoader,
                                 new QueueingEventsWrapper(

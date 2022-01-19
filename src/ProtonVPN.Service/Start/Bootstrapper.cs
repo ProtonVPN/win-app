@@ -22,7 +22,7 @@ using System.Collections.Generic;
 using System.ServiceProcess;
 using Autofac;
 using ProtonVPN.Common.Configuration;
-using ProtonVPN.Common.CrashReporting;
+using ProtonVPN.Common.Events;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.AppServiceLogs;
 using ProtonVPN.Common.OS.Processes;
@@ -67,9 +67,6 @@ namespace ProtonVPN.Service.Start
 
             logger.Info<AppServiceStartLog>($"= Booting ProtonVPN Service version: {config.AppVersion} os: {Environment.OSVersion.VersionString} {config.OsBits} bit =");
 
-            Resolve<UnhandledExceptionLogging>().CaptureTaskExceptions();
-            Resolve<UnhandledExceptionLogging>().CaptureUnhandledExceptions();
-
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 
             InitCrashReporting();
@@ -91,7 +88,7 @@ namespace ProtonVPN.Service.Start
 
         private void InitCrashReporting()
         {
-            CrashReports.Init(Resolve<Common.Configuration.Config>(), Resolve<ILogger>());
+            Resolve<IEventPublisher>().Init();
         }
 
         private void RegisterEvents()

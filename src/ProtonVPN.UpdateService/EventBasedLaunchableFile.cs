@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2022 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -20,24 +20,26 @@
 using System;
 using System.IO;
 using ProtonVPN.Common.Configuration;
+using ProtonVPN.Common.Events;
 using ProtonVPN.Common.OS.Event;
 using ProtonVPN.Update;
 using ProtonVPN.Update.Files.Launchable;
-using Sentry;
-using Sentry.Protocol;
 
 namespace ProtonVPN.UpdateService
 {
     public class EventBasedLaunchableFile : ILaunchableFile
     {
-        private readonly SystemEventLog _systemEventLog;
         private readonly Config _config;
+        private readonly SystemEventLog _systemEventLog;
+        private readonly IEventPublisher _eventPublisher;
+
         private const int LaunchFileEventId = 1;
 
-        public EventBasedLaunchableFile(SystemEventLog systemEventLog, Config config)
+        public EventBasedLaunchableFile(Config config, SystemEventLog systemEventLog, IEventPublisher eventPublisher)
         {
             _config = config;
             _systemEventLog = systemEventLog;
+            _eventPublisher = eventPublisher;
         }
 
         public void Launch(string filename, string arguments)
@@ -50,12 +52,7 @@ namespace ProtonVPN.UpdateService
             }
             catch (Exception e)
             {
-                SentrySdk.WithScope(scope =>
-                {
-                    scope.Level = SentryLevel.Error;
-                    scope.SetTag("captured_in", "UpdateService_EventBasedLaunchableFile_Launch");
-                    SentrySdk.CaptureException(e);
-                });
+                _eventPublisher.CaptureError(e);
 
                 throw new AppUpdateException("Failed to start an update", e);
             }

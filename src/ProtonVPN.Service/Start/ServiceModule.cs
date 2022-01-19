@@ -20,6 +20,7 @@
 using System;
 using Autofac;
 using ProtonVPN.Common.Configuration;
+using ProtonVPN.Common.Events;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Log4Net;
 using ProtonVPN.Common.OS.Net;
@@ -116,7 +117,6 @@ namespace ProtonVPN.Service.Start
             builder.RegisterType<SplitTunnelNetworkFilters>().SingleInstance();
             builder.RegisterType<BestNetworkInterface>().SingleInstance();
             builder.RegisterType<SplitTunnelClient>().AsImplementedInterfaces().SingleInstance();
-            builder.RegisterType<UnhandledExceptionLogging>().SingleInstance();
             builder.RegisterType<WintunRegistryFixer>().SingleInstance();
             builder.Register(c => new NetworkSettings(c.Resolve<ILogger>(), c.Resolve<INetworkInterfaceLoader>(), c.Resolve<WintunRegistryFixer>()))
                 .AsImplementedInterfaces()
@@ -125,6 +125,8 @@ namespace ProtonVPN.Service.Start
 
             builder.RegisterType<NetworkAdaptersLoader>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<NetworkAdapterManager>().AsImplementedInterfaces().SingleInstance();
+            builder.Register(c => new EventPublisher(c.Resolve<ILogger>(), c.Resolve<Common.Configuration.Config>()))
+                .As<IEventPublisher>().SingleInstance();
         }
 
         private IVpnConnection GetVpnConnection(IComponentContext c, IVpnConnection connection)
