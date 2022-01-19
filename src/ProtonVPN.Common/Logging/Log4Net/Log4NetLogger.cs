@@ -30,10 +30,16 @@ namespace ProtonVPN.Common.Logging.Log4Net
     public class Log4NetLogger : ILogger
     {
         private readonly ILog _logger;
+        private readonly IList<string> _recentLogs = new List<string>();
 
         public Log4NetLogger(ILog logger)
         {
             _logger = logger;
+        }
+
+        public IList<string> GetRecentLogs()
+        {
+            return _recentLogs;
         }
 
         public void Debug<TEvent>(string message, Exception exception = null,
@@ -47,10 +53,12 @@ namespace ProtonVPN.Common.Logging.Log4Net
             if (exception == null)
             {
                 _logger.Debug(fullLogMessage);
+                AddMessageToRecentLogs(fullLogMessage);
             }
             else
             {
                 _logger.Debug(fullLogMessage, exception);
+                AddMessageToRecentLogs(fullLogMessage, exception);
             }
         }
 
@@ -77,10 +85,12 @@ namespace ProtonVPN.Common.Logging.Log4Net
             if (exception == null)
             {
                 _logger.Info(fullLogMessage);
+                AddMessageToRecentLogs(fullLogMessage);
             }
             else
             {
                 _logger.Info(fullLogMessage, exception);
+                AddMessageToRecentLogs(fullLogMessage, exception);
             }
         }
 
@@ -92,10 +102,12 @@ namespace ProtonVPN.Common.Logging.Log4Net
             if (exception == null)
             {
                 _logger.Warn(fullLogMessage);
+                AddMessageToRecentLogs(fullLogMessage);
             }
             else
             {
                 _logger.Warn(fullLogMessage, exception);
+                AddMessageToRecentLogs(fullLogMessage, exception);
             }
         }
 
@@ -107,10 +119,12 @@ namespace ProtonVPN.Common.Logging.Log4Net
             if (exception == null)
             {
                 _logger.Error(fullLogMessage);
+                AddMessageToRecentLogs(fullLogMessage);
             }
             else
             {
                 _logger.Error(fullLogMessage, exception);
+                AddMessageToRecentLogs(fullLogMessage, exception);
             }
         }
 
@@ -122,10 +136,27 @@ namespace ProtonVPN.Common.Logging.Log4Net
             if (exception == null)
             {
                 _logger.Fatal(fullLogMessage);
+                AddMessageToRecentLogs(fullLogMessage);
             }
             else
             {
                 _logger.Fatal(fullLogMessage, exception);
+                AddMessageToRecentLogs(fullLogMessage, exception);
+            }
+        }
+
+        private void AddMessageToRecentLogs(string message, Exception exception = null, [CallerMemberName] string level = "")
+        {
+            message = $"{DateTime.UtcNow:O} | {level.ToUpper()} | {message}";
+            if (exception != null)
+            {
+                message += $" {exception}";
+            }
+            _recentLogs.Add(message);
+
+            while (_recentLogs.Count > 100)
+            {
+                _recentLogs.RemoveAt(0);
             }
         }
     }

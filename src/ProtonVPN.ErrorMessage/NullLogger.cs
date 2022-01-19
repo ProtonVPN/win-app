@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2022 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,6 +18,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization;
@@ -26,6 +27,8 @@ namespace ProtonVPN.ErrorMessage
 {
     internal class NullLogger : ILogger
     {
+        public IList<string> GetRecentLogs() => new List<string>();
+
         public void Debug<TEvent>(string message, Exception exception = null,
             [CallerFilePath] string sourceFilePath = "",
             [CallerMemberName] string sourceMemberName = "",

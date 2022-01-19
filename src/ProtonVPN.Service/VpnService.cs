@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2022 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -23,6 +23,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.ServiceProcess;
 using System.Threading;
+using ProtonVPN.Common.Events;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.AppServiceLogs;
 using ProtonVPN.Common.Logging.Categorization.Events.OperatingSystemLogs;
@@ -32,14 +33,13 @@ using ProtonVPN.Common.Service;
 using ProtonVPN.Common.ServiceModel.Server;
 using ProtonVPN.Service.Firewall;
 using ProtonVPN.Vpn.Common;
-using Sentry;
-using Sentry.Protocol;
 
 namespace ProtonVPN.Service
 {
     internal partial class VpnService : ServiceBase
     {
         private readonly ILogger _logger;
+        private readonly IEventPublisher _eventPublisher;
         private readonly Common.Configuration.Config _config;
         private readonly IOsProcesses _osProcesses;
         private readonly IVpnConnection _vpnConnection;
@@ -49,6 +49,7 @@ namespace ProtonVPN.Service
 
         public VpnService(
             ILogger logger,
+            IEventPublisher eventPublisher,
             Common.Configuration.Config config,
             IOsProcesses osProcesses,
             IEnumerable<ServiceHostFactory> serviceHostsFactories,
@@ -56,6 +57,7 @@ namespace ProtonVPN.Service
             Ipv6 ipv6)
         {
             _logger = logger;
+            _eventPublisher = eventPublisher;
             _config = config;
             _osProcesses = osProcesses;
             _serviceHostsFactories = new(serviceHostsFactories);
@@ -81,12 +83,7 @@ namespace ProtonVPN.Service
             {
                 _logger.Error<AppServiceStartFailedLog>("An error occurred when starting VPN Service.", ex);
                 LogEvent($"OnStart: {ex}");
-                SentrySdk.WithScope(scope =>
-                {
-                    scope.Level = SentryLevel.Error;
-                    scope.SetTag("captured_in", "Service_OnStart");
-                    SentrySdk.CaptureException(ex);
-                });
+                _eventPublisher.CaptureError(ex);
             }
         }
 
@@ -115,12 +112,7 @@ namespace ProtonVPN.Service
             {
                 _logger.Error<AppServiceStopFailedLog>("An error occurred when stopping VPN Service.", ex);
                 LogEvent($"OnStop: {ex}");
-                SentrySdk.WithScope(scope =>
-                {
-                    scope.Level = SentryLevel.Error;
-                    scope.SetTag("captured_in", "Service_OnStop");
-                    SentrySdk.CaptureException(ex);
-                });
+                _eventPublisher.CaptureError(ex);
             }
         }
 

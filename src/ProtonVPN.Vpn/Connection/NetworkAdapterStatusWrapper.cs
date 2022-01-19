@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2021 Proton Technologies AG
+ * Copyright (c) 2022 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -19,6 +19,7 @@
 
 using System;
 using ProtonVPN.Common;
+using ProtonVPN.Common.Events;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.ConnectLogs;
 using ProtonVPN.Common.Logging.Categorization.Events.DisconnectLogs;
@@ -29,14 +30,13 @@ using ProtonVPN.Common.OS.Net.NetworkInterface;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Vpn.Common;
 using ProtonVPN.Vpn.Networks;
-using Sentry;
-using Sentry.Protocol;
 
 namespace ProtonVPN.Vpn.Connection
 {
     internal class NetworkAdapterStatusWrapper : ISingleVpnConnection
     {
         private readonly ILogger _logger;
+        private readonly IEventPublisher _eventPublisher;
         private readonly INetworkAdapterManager _networkAdapterManager;
         private readonly INetworkInterfaceLoader _networkInterfaceLoader;
         private readonly ISingleVpnConnection _origin;
@@ -46,12 +46,15 @@ namespace ProtonVPN.Vpn.Connection
         private VpnConfig _config;
         private bool _hasSentTunFallbackEventToSentry;
 
-        public NetworkAdapterStatusWrapper(ILogger logger, 
+        public NetworkAdapterStatusWrapper(
+            ILogger logger,
+            IEventPublisher eventPublisher,
             INetworkAdapterManager networkAdapterManager,
             INetworkInterfaceLoader networkInterfaceLoader,
             ISingleVpnConnection origin)
         {
             _logger = logger;
+            _eventPublisher = eventPublisher;
             _networkAdapterManager = networkAdapterManager;
             _networkInterfaceLoader = networkInterfaceLoader;
             _origin = origin;
@@ -162,11 +165,7 @@ namespace ProtonVPN.Vpn.Connection
         {
             if (!_hasSentTunFallbackEventToSentry)
             {
-                SentrySdk.CaptureEvent(new SentryEvent
-                {
-                    Message = "TUN adapter not found. Adapter changed to TAP.",
-                    Level = SentryLevel.Info,
-                });
+                _eventPublisher.CaptureMessage("TUN adapter not found. Adapter changed to TAP.");
                 _hasSentTunFallbackEventToSentry = true;
             }
         }
