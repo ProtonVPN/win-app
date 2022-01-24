@@ -131,6 +131,7 @@
     <Compile Include="BugReporting\Diagnostic\NetworkLogWriter.cs" />
     <Compile Include="BugReporting\Diagnostic\RoutingTableLog.cs" />
     <Compile Include="BugReporting\Actions\FillTheFormAction.cs" />
+    <Compile Include="BugReporting\Diagnostic\UserSettingsLog.cs" />
     <Compile Include="BugReporting\FormElements\EmailInput.cs" />
     <Compile Include="BugReporting\FormElements\FormElement.cs" />
     <Compile Include="BugReporting\FormElements\FormElementBuilder.cs" />

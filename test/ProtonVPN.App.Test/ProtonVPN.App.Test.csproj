@@ -102,6 +102,7 @@
     <Compile Include="BugReporting\Attachments\AttachmentsToApiFilesTest.cs" />
     <Compile Include="BugReporting\Diagnostic\BaseLogTest.cs" />
     <Compile Include="BugReporting\Diagnostic\DriverInstallLogTest.cs" />
+    <Compile Include="BugReporting\Diagnostic\UserSettingsLogTest.cs" />
     <Compile Include="BugReporting\Diagnostic\InstalledAppsLogTest.cs" />
     <Compile Include="BugReporting\Diagnostic\NetworkAdapterLogTest.cs" />
     <Compile Include="BugReporting\Diagnostic\RoutingTableLogTest.cs" />
