@@ -47,32 +47,32 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <Setter Property="behavior:TextStyleBehavior.FormattedText" Value="{translations:Loc Dialogs_DisconnectError_msg_Identifying}"/>
                     <Setter Property="Visibility" Value="Visible"/>
                 </DataTrigger>
-                <DataTrigger Binding="{Binding Error}" Value="{x:Static vpn:VpnError.TlsCertificateError}">
-                    <Setter Property="behavior:TextStyleBehavior.FormattedText" Value="{translations:Loc Dialogs_DisconnectError_msg_TlsCertificateError}"/>
+                <DataTrigger Binding="{Binding Error}" Value="{x:Static vpn:VpnError.TapAdapterInUseError}">
+                    <Setter Property="behavior:TextStyleBehavior.FormattedText" Value="{translations:Loc Dialogs_DisconnectError_msg_AllAdaptersInUse}"/>
                     <Setter Property="Visibility" Value="Visible"/>
                 </DataTrigger>
                 <DataTrigger Binding="{Binding Error}" Value="{x:Static vpn:VpnError.NoTapAdaptersError}">
                     <Setter Property="behavior:TextStyleBehavior.FormattedText" Value="{translations:Loc Dialogs_DisconnectError_msg_NoTap}"/>
                     <Setter Property="Visibility" Value="Visible"/>
                 </DataTrigger>
-                <DataTrigger Binding="{Binding Error}" Value="{x:Static vpn:VpnError.TapAdapterInUseError}">
-                    <Setter Property="behavior:TextStyleBehavior.FormattedText" Value="{translations:Loc Dialogs_DisconnectError_msg_AllAdaptersInUse}"/>
-                    <Setter Property="Visibility" Value="Visible"/>
-                </DataTrigger>
                 <DataTrigger Binding="{Binding Error}" Value="{x:Static vpn:VpnError.TapRequiresUpdateError}">
                     <Setter Property="behavior:TextStyleBehavior.FormattedText" Value="{translations:Loc Dialogs_DisconnectError_msg_OldVersion}"/>
                     <Setter Property="Visibility" Value="Visible"/>
                 </DataTrigger>
-                <DataTrigger Binding="{Binding Error}" Value="{x:Static vpn:VpnError.NoServers}">
-                    <Setter Property="behavior:TextStyleBehavior.FormattedText" Value="{translations:Loc Dialogs_DisconnectError_msg_NoServers}"/>
+                <DataTrigger Binding="{Binding Error}" Value="{x:Static vpn:VpnError.TlsCertificateError}">
+                    <Setter Property="behavior:TextStyleBehavior.FormattedText" Value="{translations:Loc Dialogs_DisconnectError_msg_TlsCertificateError}"/>
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Error}" Value="{x:Static vpn:VpnError.ServerOffline}">
+                    <Setter Property="behavior:TextStyleBehavior.FormattedText" Value="{translations:Loc Servers_msg_CantConnect_Maintenance}"/>
                     <Setter Property="Visibility" Value="Visible"/>
                 </DataTrigger>
                 <DataTrigger Binding="{Binding Error}" Value="{x:Static vpn:VpnError.ServerRemoved}">
                     <Setter Property="behavior:TextStyleBehavior.FormattedText" Value="{translations:Loc Servers_msg_CantConnect_Missing}"/>
                     <Setter Property="Visibility" Value="Visible"/>
                 </DataTrigger>
-                <DataTrigger Binding="{Binding Error}" Value="{x:Static vpn:VpnError.ServerOffline}">
-                    <Setter Property="behavior:TextStyleBehavior.FormattedText" Value="{translations:Loc Servers_msg_CantConnect_Maintenance}"/>
+                <DataTrigger Binding="{Binding Error}" Value="{x:Static vpn:VpnError.NoServers}">
+                    <Setter Property="behavior:TextStyleBehavior.FormattedText" Value="{translations:Loc Dialogs_DisconnectError_msg_NoServers}"/>
                     <Setter Property="Visibility" Value="Visible"/>
                 </DataTrigger>
                 <DataTrigger Binding="{Binding Error}" Value="{x:Static vpn:VpnError.MissingServerPublicKey}">
