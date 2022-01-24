@@ -25,7 +25,7 @@ using ProtonVPN.Common.Helpers;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.OS.Net.NetworkInterface;
 using ProtonVPN.Common.OS.Processes;
-using ProtonVPN.Core.OS;
+using ProtonVPN.Core.Settings;
 
 namespace ProtonVPN.BugReporting
 {
@@ -72,6 +72,12 @@ namespace ProtonVPN.BugReporting
                 .SingleInstance();
 
             builder.Register(c => new DriverInstallLog(c.Resolve<Common.Configuration.Config>().DiagnosticsLogFolder))
+                .As<ILog>()
+                .SingleInstance();
+
+            builder.Register(c => new UserSettingsLog(
+                    c.Resolve<IAppSettings>(),
+                    c.Resolve<Common.Configuration.Config>().DiagnosticsLogFolder))
                 .As<ILog>()
                 .SingleInstance();
 

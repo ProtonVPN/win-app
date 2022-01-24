@@ -210,7 +210,7 @@ namespace ProtonVPN.Core.Api
 
         public async Task<ApiResponseResult<BaseResponse>> ReportBugAsync(IEnumerable<KeyValuePair<string, string>> fields, IEnumerable<File> files)
         {
-            MultipartFormDataContent content = new MultipartFormDataContent();
+            MultipartFormDataContent content = new();
 
             foreach (KeyValuePair<string, string> pair in fields)
             {
