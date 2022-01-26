@@ -115,6 +115,7 @@
     <ROW Component="Microsoft.Toolkit.Uwp.Notifications.dll" ComponentId="{6DE7272A-D513-4F72-9A0A-763828A16A2E}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Toolkit.Uwp.Notifications.dll"/>
     <ROW Component="Microsoft.Web.WebView2.Core.dll" ComponentId="{6282B095-9B93-4480-A4C0-92A979835E50}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Web.WebView2.Core.dll"/>
     <ROW Component="Microsoft.Web.WebView2.Wpf.dll" ComponentId="{5308BF6F-9BCF-424F-A63A-112AD8C2A6C8}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Web.WebView2.Wpf.dll"/>
+    <ROW Component="Microsoft.Win32.Registry.dll" ComponentId="{5B88B551-AB8E-4C78-AA21-AEF1117EB2C8}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Win32.Registry.dll"/>
     <ROW Component="Newtonsoft.Json.dll" ComponentId="{E0A54725-459B-4F28-A4A0-7587B5B176E7}" Directory_="APPDIR" Attributes="0" KeyPath="Newtonsoft.Json.dll"/>
     <ROW Component="OxyPlot.Wpf.dll" ComponentId="{E3A7EA56-A92F-41C6-9A0A-26026B6E9B7D}" Directory_="APPDIR" Attributes="0" KeyPath="OxyPlot.Wpf.dll"/>
     <ROW Component="OxyPlot.dll" ComponentId="{B38C6968-998F-46E3-ACD3-97DC0F57A977}" Directory_="APPDIR" Attributes="0" KeyPath="OxyPlot.dll"/>
@@ -165,6 +166,8 @@
     <ROW Component="System.Numerics.Vectors.dll" ComponentId="{0C52E4AB-3F5C-4229-9A90-B8FE1E22B41B}" Directory_="APPDIR" Attributes="0" KeyPath="System.Numerics.Vectors.dll"/>
     <ROW Component="System.Reflection.Metadata.dll" ComponentId="{8EF00FA8-2A91-4FB9-8022-6C20030E920F}" Directory_="APPDIR" Attributes="0" KeyPath="System.Reflection.Metadata.dll"/>
     <ROW Component="System.Runtime.CompilerServices.Unsafe.dll" ComponentId="{4BA076CC-3706-42A4-A2C1-004CB5B11634}" Directory_="APPDIR" Attributes="0" KeyPath="System.Runtime.CompilerServices.Unsafe.dll"/>
+    <ROW Component="System.Security.AccessControl.dll" ComponentId="{919ACBDA-F85C-4D66-AB63-AD8E2C9B0C6A}" Directory_="APPDIR" Attributes="0" KeyPath="System.Security.AccessControl.dll"/>
+    <ROW Component="System.Security.Principal.Windows.dll" ComponentId="{D4C5294F-5156-419B-845C-E4B04886A35E}" Directory_="APPDIR" Attributes="0" KeyPath="System.Security.Principal.Windows.dll"/>
     <ROW Component="System.Text.Encodings.Web.dll" ComponentId="{898736B7-D0D5-45D9-9374-AF76C81408CB}" Directory_="APPDIR" Attributes="0" KeyPath="System.Text.Encodings.Web.dll"/>
     <ROW Component="System.Text.Json.dll" ComponentId="{27BE103A-1B44-41D4-AD2A-978E4F6CD78E}" Directory_="APPDIR" Attributes="0" KeyPath="System.Text.Json.dll"/>
     <ROW Component="System.Threading.Tasks.Extensions.dll" ComponentId="{9653096C-84BF-48EA-93A8-B988B202D74C}" Directory_="APPDIR" Attributes="0" KeyPath="System.Threading.Tasks.Extensions.dll"/>
@@ -305,6 +308,9 @@
     <ROW File="System.Text.Encodings.Web.dll" Component_="System.Text.Encodings.Web.dll" FileName="SYSTEM~8.DLL|System.Text.Encodings.Web.dll" Attributes="0" SourcePath="..\src\bin\System.Text.Encodings.Web.dll" SelfReg="false"/>
     <ROW File="System.Text.Json.dll" Component_="System.Text.Json.dll" FileName="SYSTE~10.DLL|System.Text.Json.dll" Attributes="0" SourcePath="..\src\bin\System.Text.Json.dll" SelfReg="false"/>
     <ROW File="System.Threading.Tasks.Extensions.dll" Component_="System.Threading.Tasks.Extensions.dll" FileName="SYSTE~11.DLL|System.Threading.Tasks.Extensions.dll" Attributes="0" SourcePath="..\src\bin\System.Threading.Tasks.Extensions.dll" SelfReg="false"/>
+    <ROW File="Microsoft.Win32.Registry.dll" Component_="Microsoft.Win32.Registry.dll" FileName="MICROS~6.DLL|Microsoft.Win32.Registry.dll" Attributes="0" SourcePath="..\src\bin\Microsoft.Win32.Registry.dll" SelfReg="false"/>
+    <ROW File="System.Security.AccessControl.dll" Component_="System.Security.AccessControl.dll" FileName="SYSTE~12.DLL|System.Security.AccessControl.dll" Attributes="0" SourcePath="..\src\bin\System.Security.AccessControl.dll" SelfReg="false"/>
+    <ROW File="System.Security.Principal.Windows.dll" Component_="System.Security.Principal.Windows.dll" FileName="SYSTE~13.DLL|System.Security.Principal.Windows.dll" Attributes="0" SourcePath="..\src\bin\System.Security.Principal.Windows.dll" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.AiRemoveFileComponent">
     <ROW RemoveFile="_" Condition="(AI_CLEAN_RESOURCES_UNINSTALL = &quot;1&quot;) AND (NOT UPGRADINGPRODUCTCODE)" Options="3"/>
@@ -687,6 +693,9 @@
     <ROW Feature_="MainFeature" Component_="System.Text.Encodings.Web.dll"/>
     <ROW Feature_="MainFeature" Component_="System.Text.Json.dll"/>
     <ROW Feature_="MainFeature" Component_="System.Threading.Tasks.Extensions.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.Win32.Registry.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Security.AccessControl.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Security.Principal.Windows.dll"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
     <ROW Name="protonvpn.exe" SourcePath="images\protonvpn.ico" Index="0"/>

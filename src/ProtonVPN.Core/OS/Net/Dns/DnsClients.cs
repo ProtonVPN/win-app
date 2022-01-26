@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2022 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,21 +17,18 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Reflection;
 using DnsClient;
+using ProtonVPN.Common.Extensions;
 
 namespace ProtonVPN.Core.OS.Net.Dns
 {
     public class DnsClients : IDnsClients
     {
-        public IDnsClient DnsClient()
-        {
-            return new FixedDnsClient(new LookupClient().WithDisabledSocketsReuse());
-        }
-
         public IDnsClient DnsClient(IReadOnlyCollection<IPEndPoint> nameServers)
         {
             return nameServers.Any() 
@@ -41,11 +38,12 @@ namespace ProtonVPN.Core.OS.Net.Dns
 
         public IReadOnlyCollection<IPEndPoint> NameServers()
         {
-            return NameServer.ResolveNameServers(true, false).ToArray();
+            return NameServer.ResolveNameServers(true, false)
+                .Select(server => new IPEndPoint(server.Address.ToIPAddressBytes(), server.Port))
+                .ToList();
         }
 
         public static IDnsClient NullDnsClient { get; } = new NullDnsClient();
-
     }
 
     internal static class LookupClientExtensions
@@ -54,11 +52,11 @@ namespace ProtonVPN.Core.OS.Net.Dns
         {
             obj.UseTcpOnly = true;
 
-            var lookupClientType = typeof(LookupClient);
-            var udpHandlerType = lookupClientType.Assembly.GetType("DnsClient.DnsUdpMessageHandler");
+            Type lookupClientType = typeof(LookupClient);
+            Type udpHandlerType = lookupClientType.Assembly.GetType("DnsClient.DnsUdpMessageHandler");
 
-            var field = lookupClientType.GetField("_messageHandler", BindingFlags.Instance | BindingFlags.NonPublic);
-            var udpHandler = field.GetValue(obj);
+            FieldInfo field = lookupClientType.GetField("_messageHandler", BindingFlags.Instance | BindingFlags.NonPublic);
+            object udpHandler = field.GetValue(obj);
 
             field = udpHandlerType.GetField("_enableClientQueue", BindingFlags.Instance | BindingFlags.NonPublic);
             field.SetValue(udpHandler, false);
