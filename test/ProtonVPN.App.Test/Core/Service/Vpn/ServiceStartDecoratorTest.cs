@@ -25,6 +25,7 @@ using ProtonVPN.Common.OS.Services;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Service;
 using ProtonVPN.Core.Service.Vpn;
+using ProtonVPN.Core.Vpn;
 
 namespace ProtonVPN.App.Test.Core.Service.Vpn
 {

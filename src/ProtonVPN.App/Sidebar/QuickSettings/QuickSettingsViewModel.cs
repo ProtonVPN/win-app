@@ -404,10 +404,6 @@ namespace ProtonVPN.Sidebar.QuickSettings
         {
             HideNetShieldPopup();
             _appSettings.NetShieldEnabled = false;
-            if (_vpnProtocol != VpnProtocol.WireGuard)
-            {
-                await ReconnectAsync();
-            }
         }
 
         private async void TurnOnNetShieldFirstModeActionAsync()
@@ -433,7 +429,7 @@ namespace ProtonVPN.Sidebar.QuickSettings
                 bool isCustomDnsOn = _appSettings.CustomDnsEnabled;
                 _appSettings.NetShieldEnabled = true;
                 _appSettings.NetShieldMode = mode;
-                if (_vpnProtocol != VpnProtocol.WireGuard || isCustomDnsOn)
+                if (isCustomDnsOn)
                 {
                     await ReconnectAsync();
                 }

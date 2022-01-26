@@ -17,29 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Collections.Generic;
-using ProtonVPN.Common.Networking;
-using ProtonVPN.Common.Vpn;
-
-namespace ProtonVPN.Core.Service.Vpn
+namespace ProtonVPN.Vpn.Connection
 {
-    public class VpnConnectionRequest
+    public interface IGatewayProvider
     {
-        public VpnConnectionRequest(
-            IReadOnlyList<VpnHost> servers,
-            VpnProtocol vpnProtocol,
-            VpnConfig config,
-            VpnCredentials credentials)
-        {
-            Servers = servers;
-            VpnProtocol = vpnProtocol;
-            Config = config;
-            Credentials = credentials;
-        }
-
-        public IReadOnlyList<VpnHost> Servers { get; }
-        public VpnProtocol VpnProtocol { get; }
-        public VpnCredentials Credentials { get; }
-        public VpnConfig Config { get; }
+        public string Get();
+        public void Save(string defaultGateway);
     }
 }

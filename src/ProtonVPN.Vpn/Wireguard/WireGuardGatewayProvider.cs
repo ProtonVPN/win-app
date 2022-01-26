@@ -17,21 +17,17 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Networking;
-using ProtonVPN.Core.Settings;
+using System;
+using ProtonVPN.Vpn.Connection;
 
-namespace ProtonVPN.Settings.ReconnectNotification
+namespace ProtonVPN.Vpn.WireGuard
 {
-    public class NetShieldSetting : CompoundSetting
+    public class WireGuardGatewayProvider : IGatewayProvider
     {
-        public NetShieldSetting(string name, Setting parent, IAppSettings appSettings) : base(name, parent, appSettings)
-        {
-            base.Add(new SingleSetting(nameof(IAppSettings.NetShieldMode), this, appSettings));
-        }
+        public string Get() => "10.2.0.1";
 
-        public override bool Changed(VpnProtocol vpnProtocol)
-        {
-            return base.Changed(vpnProtocol) && vpnProtocol != VpnProtocol.WireGuard;
-        }
+        public void Save(string defaultGateway) =>
+            throw new NotImplementedException(
+                "Cannot set default gateway for WireGuard because the IP Address is fixed.");
     }
 }

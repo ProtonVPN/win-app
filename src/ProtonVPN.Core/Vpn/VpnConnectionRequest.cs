@@ -19,27 +19,27 @@
 
 using System.Collections.Generic;
 using ProtonVPN.Common.Networking;
-using ProtonVPN.Core.Settings;
+using ProtonVPN.Common.Vpn;
 
-namespace ProtonVPN.Settings.ReconnectNotification
+namespace ProtonVPN.Core.Vpn
 {
-    public class VpnAcceleratorSetting : SingleSetting
+    public class VpnConnectionRequest
     {
-        private readonly SingleSetting _vpnAcceleratorSetting;
-
-        public VpnAcceleratorSetting(string name, Setting parent, IAppSettings appSettings) : base(name, parent, appSettings)
+        public VpnConnectionRequest(
+            IReadOnlyList<VpnHost> servers,
+            VpnProtocol vpnProtocol,
+            VpnConfig config,
+            VpnCredentials credentials)
         {
-            _vpnAcceleratorSetting = new SingleSetting(nameof(IAppSettings.VpnAcceleratorEnabled), this, appSettings);
+            Servers = servers;
+            VpnProtocol = vpnProtocol;
+            Config = config;
+            Credentials = credentials;
         }
 
-        public override List<Setting> GetChildren()
-        {
-            return new() {_vpnAcceleratorSetting};
-        }
-
-        public override bool Changed(VpnProtocol vpnProtocol)
-        {
-            return base.Changed(vpnProtocol) && vpnProtocol != VpnProtocol.WireGuard;
-        }
+        public IReadOnlyList<VpnHost> Servers { get; }
+        public VpnProtocol VpnProtocol { get; }
+        public VpnCredentials Credentials { get; }
+        public VpnConfig Config { get; }
     }
 }

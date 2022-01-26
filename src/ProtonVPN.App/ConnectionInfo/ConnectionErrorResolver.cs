@@ -19,6 +19,7 @@
 
 using System.Net.Http;
 using System.Threading.Tasks;
+using ProtonVPN.Account;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Api;
 using ProtonVPN.Core.Api.Contracts;
@@ -37,16 +38,19 @@ namespace ProtonVPN.ConnectionInfo
         private readonly IApiClient _api;
         private readonly ServerManager _serverManager;
         private readonly IServerUpdater _serverUpdater;
+        private readonly IVpnInfoUpdater _vpnInfoUpdater;
         private Server _server = Server.Empty();
 
         public ConnectionErrorResolver(
             IUserStorage userStorage,
             IApiClient api,
             ServerManager serverManager,
+            IVpnInfoUpdater vpnInfoUpdater,
             IServerUpdater serverUpdater)
         {
             _serverUpdater = serverUpdater;
             _serverManager = serverManager;
+            _vpnInfoUpdater = vpnInfoUpdater;
             _userStorage = userStorage;
             _api = api;
         }
@@ -65,7 +69,7 @@ namespace ProtonVPN.ConnectionInfo
                 return VpnError.SessionLimitReached;
             }
 
-            await UpdateUserInfo();
+            await _vpnInfoUpdater.Update();
             User newUserInfo = _userStorage.User();
 
             if (oldUserInfo.VpnPassword != newUserInfo.VpnPassword)
@@ -116,21 +120,6 @@ namespace ProtonVPN.ConnectionInfo
             }
 
             return 0;
-        }
-
-        private async Task UpdateUserInfo()
-        {
-            try
-            {
-                ApiResponseResult<VpnInfoResponse> result = await _api.GetVpnInfoResponse();
-                if (result.Success)
-                {
-                    _userStorage.StoreVpnInfo(result.Value);
-                }
-            }
-            catch (HttpRequestException)
-            {
-            }
         }
     }
 }

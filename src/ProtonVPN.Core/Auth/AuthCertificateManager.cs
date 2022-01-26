@@ -20,6 +20,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Caliburn.Micro;
@@ -174,17 +175,23 @@ namespace ProtonVPN.Core.Auth
                     _logger.Info<UserCertificateLog>("Retrying auth certificate request.");
                 }
 
-                ApiResponseResult<CertificateResponseData> certificateResponseData = await RequestAsync(features);
-
-                if (certificateResponseData.Success)
+                try
                 {
-                    break;
-                }
+                    ApiResponseResult<CertificateResponseData> certificateResponseData = await RequestAsync(features);
+                    if (certificateResponseData.Success)
+                    {
+                        break;
+                    }
 
-                _logger.Error<UserCertificateRefreshErrorLog>("Auth certificate request failed with " +
-                    $"Status Code {certificateResponseData.StatusCode}, " +
-                    $"Internal Code {certificateResponseData.Value.Code}, " +
-                    $"Error '{certificateResponseData.Value.Error}'.");
+                    _logger.Error<UserCertificateRefreshErrorLog>("Auth certificate request failed with " +
+                                                                  $"Status Code {certificateResponseData.StatusCode}, " +
+                                                                  $"Internal Code {certificateResponseData.Value.Code}, " +
+                                                                  $"Error '{certificateResponseData.Value.Error}'.");
+                }
+                catch (HttpRequestException)
+                {
+                    _logger.Error<UserCertificateRefreshErrorLog>("Auth certificate request failed due http request exception");
+                }
             }
         }
 

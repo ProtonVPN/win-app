@@ -229,6 +229,9 @@
     <Compile Include="Settings\IServiceSettingsStateAware.cs" />
     <Compile Include="Settings\ServiceSettingsStateChangedEventArgs.cs" />
     <Compile Include="User\VpnPlanChangedEventArgs.cs" />
+    <Compile Include="Vpn\AuthCertificateUpdater.cs" />
+    <Compile Include="Vpn\IVpnServiceManager.cs" />
+    <Compile Include="Vpn\VpnConnectionRequest.cs" />
     <Compile Include="Window\Popups\IPopupWindow.cs" />
     <Compile Include="Window\Popups\IPopupWindows.cs" />
     <Compile Include="Models\User.cs" />

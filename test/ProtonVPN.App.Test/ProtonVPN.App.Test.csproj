@@ -139,7 +139,6 @@
     <Compile Include="Settings\ReconnectStateTest.cs" />
     <Compile Include="Vpn\Connectors\GuestHoleConnectorTest.cs" />
     <Compile Include="Vpn\Connectors\ProfileConnectorTest.cs" />
-    <Compile Include="Vpn\VpnCredentialProviderTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

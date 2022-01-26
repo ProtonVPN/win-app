@@ -60,6 +60,8 @@ namespace ProtonVPN.Vpn.Management
 
         public bool IsDisconnectReceived => _messageText.StartsWithIgnoringCase("SUCCESS: signal SIGTERM thrown");
 
+        public bool IsControlMessage => _messageText.ContainsIgnoringCase("PUSH: Received control message");
+
         public InOutBytes Bandwidth()
         {
             string[] byteCountArr = _messageText.Split(':')[1].Split(',');

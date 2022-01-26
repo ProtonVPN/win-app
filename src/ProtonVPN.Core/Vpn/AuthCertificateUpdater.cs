@@ -17,37 +17,37 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Collections.Generic;
+using System.ComponentModel;
+using System.Threading.Tasks;
+using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Settings;
 
-namespace ProtonVPN.Settings.ReconnectNotification
+namespace ProtonVPN.Core.Vpn
 {
-    public class SettingsBuilder
+    public class VpnAuthCertificateUpdater : ISettingsAware, IVpnStateAware
     {
-        private List<Setting> _settings;
         private readonly IAppSettings _appSettings;
+        private readonly IVpnServiceManager _vpnServiceManager;
 
-        public SettingsBuilder(IAppSettings appSettings)
+        private VpnStatus _vpnStatus;
+
+        public VpnAuthCertificateUpdater(IAppSettings appSettings, IVpnServiceManager vpnServiceManager)
         {
             _appSettings = appSettings;
+            _vpnServiceManager = vpnServiceManager;
         }
 
-        public List<Setting> Build()
+        public async void OnAppSettingsChanged(PropertyChangedEventArgs e)
         {
-            _settings = new List<Setting>
+            if (e.PropertyName == nameof(IAppSettings.AuthenticationCertificatePem) && _vpnStatus == VpnStatus.Connected)
             {
-                new SingleSetting(nameof(IAppSettings.OvpnProtocol), null, _appSettings),
-                new OpenVpnDriverSetting(_appSettings),
-                new SingleSetting(nameof(IAppSettings.PortForwardingEnabled), null, _appSettings),
-                new CustomDnsSetting(nameof(IAppSettings.CustomDnsEnabled), null, _appSettings),
-            };
+                await _vpnServiceManager.UpdateAuthCertificate(_appSettings.AuthenticationCertificatePem);
+            }
+        }
 
-            CompoundSetting st = new(nameof(IAppSettings.SplitTunnelingEnabled), null, _appSettings);
-            st.Add(new SplitTunnelModeSetting(nameof(IAppSettings.SplitTunnelMode), st, _appSettings));
-
-            _settings.Add(st);
-
-            return _settings;
+        public async Task OnVpnStateChanged(VpnStateChangedEventArgs e)
+        {
+            _vpnStatus = e.State.Status;
         }
     }
 }
