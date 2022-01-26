@@ -52,9 +52,9 @@ namespace ProtonVPN.Core.Test.Auth
         private CertificateResponseData _certificateResponseData;
         private IList<string> _usedClientPublicKeys = new List<string>();
 
-        [TestInitialize]  
-        public void Initialize()  
-        {  
+        [TestInitialize]
+        public void Initialize()
+        {
             _certificateExpirationTime = DateTimeOffset.UtcNow.AddHours(24).TruncateToSeconds();
             _certificateRefreshTime = DateTimeOffset.UtcNow.AddHours(18).TruncateToSeconds();
             _testStartTime = DateTimeOffset.UtcNow;
@@ -95,15 +95,15 @@ namespace ProtonVPN.Core.Test.Auth
 
         private CertificateResponseData CreateClientPublicKeyConflictCertificateResponseData()
         {
-            return new CertificateResponseData()
+            return new CertificateResponseData
             {
                 Code = ResponseCodes.ClientPublicKeyConflict
             };
         }
 
-        [TestCleanup]  
-        public void Cleanup()  
-        {  
+        [TestCleanup]
+        public void Cleanup()
+        {
             _config = null;
             _authKeyManager = null;
             _apiClient = null;
@@ -125,7 +125,7 @@ namespace ProtonVPN.Core.Test.Auth
         {
             _authKeyManager.InitializeTestKeyPair();
             await ForceRequestNewCertificateAsync();
-            
+
             ValidateAppSettings();
             await _apiClient.Received(1).RequestAuthCertificateAsync(Arg.Any<CertificateRequestData>());
             AssertNumOfCallsToRecreateKeys(0);
@@ -156,7 +156,7 @@ namespace ProtonVPN.Core.Test.Auth
         public async Task TestForceRequestNewCertificateAsync_WhenNoClientPublicKeyExists()
         {
             await ForceRequestNewCertificateAsync();
-            
+
             ValidateAppSettings();
             await _apiClient.Received(1).RequestAuthCertificateAsync(Arg.Any<CertificateRequestData>());
             AssertNumOfCallsToRecreateKeys(1);
@@ -183,7 +183,7 @@ namespace ProtonVPN.Core.Test.Auth
             await ForceRequestNewCertificateAsync();
             await ForceRequestNewCertificateAsync();
             await ForceRequestNewCertificateAsync();
-            
+
             ValidateAppSettings();
             await _apiClient.Received(5).RequestAuthCertificateAsync(Arg.Any<CertificateRequestData>());
             AssertNumOfCallsToRecreateKeys(2);
@@ -195,7 +195,7 @@ namespace ProtonVPN.Core.Test.Auth
             _authKeyManager.InitializeTestKeyPair();
 
             await RequestNewCertificateAsync();
-            
+
             ValidateAppSettings();
             await _apiClient.Received(1).RequestAuthCertificateAsync(Arg.Any<CertificateRequestData>());
             AssertNumOfCallsToRecreateKeys(0);
@@ -211,7 +211,7 @@ namespace ProtonVPN.Core.Test.Auth
         public async Task TestRequestNewCertificateAsync_WhenNoClientPublicKeyExists()
         {
             await RequestNewCertificateAsync();
-            
+
             ValidateAppSettings();
             await _apiClient.Received(1).RequestAuthCertificateAsync(Arg.Any<CertificateRequestData>());
             AssertNumOfCallsToRecreateKeys(1);
@@ -238,7 +238,7 @@ namespace ProtonVPN.Core.Test.Auth
             await RequestNewCertificateAsync();
             await RequestNewCertificateAsync();
             await RequestNewCertificateAsync();
-            
+
             ValidateAppSettings();
             await _apiClient.Received(1).RequestAuthCertificateAsync(Arg.Any<CertificateRequestData>());
             AssertNumOfCallsToRecreateKeys(0);

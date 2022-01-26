@@ -30,6 +30,7 @@ using System.Linq;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
+using ProtonVPN.Common.Logging;
 
 namespace ProtonVPN.Core.Test.OS.Net.Dns
 {
@@ -60,9 +61,9 @@ namespace ProtonVPN.Core.Test.OS.Net.Dns
         {
             // Arrange
             const string ip = "134.27.41.216";
-            var client = new FixedDnsClient(_lookupClient);
+            FixedDnsClient client = new(_lookupClient);
             // Act
-            var result = await client.Resolve(ip, CancellationToken.None);
+            string result = await client.Resolve(ip, CancellationToken.None);
             // Assert
             result.Should().Be(ip);
         }
@@ -73,7 +74,7 @@ namespace ProtonVPN.Core.Test.OS.Net.Dns
             // Arrange
             const string host = "some.host.com";
             const string ip = "134.27.41.216";
-            var token = new CancellationToken();
+            CancellationToken token = new();
             _lookupClient.QueryAsync(host, QueryType.A, cancellationToken: token)
                 .Returns(new DnsQueryResponse
                 {
@@ -85,9 +86,9 @@ namespace ProtonVPN.Core.Test.OS.Net.Dns
                             IPAddress.Parse(ip))
                     }
                 });
-            var client = new FixedDnsClient(_lookupClient);
+            FixedDnsClient client = new FixedDnsClient(_lookupClient);
             // Act
-            var result = await client.Resolve(ip, token);
+            string result = await client.Resolve(ip, token);
             // Assert
             result.Should().Be(ip);
         }
@@ -96,18 +97,24 @@ namespace ProtonVPN.Core.Test.OS.Net.Dns
         public void NameServers_ShouldBe_LookupClientNameServers()
         {
             // Arrange
-            var nameServers = new []
+            IPEndPoint[] nameServers = new []
             {
                 new IPEndPoint(IPAddress.Parse("15.46.251.79"), 53),
                 new IPEndPoint(IPAddress.Parse("8.8.8.8"), 53),
                 new IPEndPoint(IPAddress.Parse("10.3.15.47"), 66)
             };
             _lookupClient.NameServers.Returns(nameServers.Select(s => new NameServer(s)).ToList());
-            var client = new FixedDnsClient(_lookupClient);
+            FixedDnsClient client = new FixedDnsClient(_lookupClient);
             // Act
-            var result = client.NameServers;
+            IReadOnlyCollection<IPEndPoint> result = client.NameServers;
             // Assert
             result.Should().BeEquivalentTo(nameServers);
+        }
+
+        [TestCleanup]
+        public void Cleanup()
+        {
+            _lookupClient = null;
         }
 
         #region Helpers
@@ -125,6 +132,7 @@ namespace ProtonVPN.Core.Test.OS.Net.Dns
             public DnsResponseHeader Header { get; set; }
             public int MessageSize { get; set; }
             public NameServer NameServer { get; set; }
+            public DnsQuerySettings Settings { get; set; }
         }
 
         #endregion
