@@ -22,9 +22,8 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Settings;
-using ProtonVPN.Core.Vpn;
 
-namespace ProtonVPN.Core.Service.Vpn
+namespace ProtonVPN.Core.Vpn
 {
     public interface IVpnServiceManager
     {

@@ -19,13 +19,18 @@
 
 using System;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 using ProtonVPN.Common;
+using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Go;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.ConnectionLogs;
 using ProtonVPN.Common.Logging.Categorization.Events.ConnectLogs;
 using ProtonVPN.Common.Logging.Categorization.Events.LocalAgentLogs;
 using ProtonVPN.Common.Networking;
+using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Vpn.Common;
 using ProtonVPN.Vpn.Config;
@@ -38,11 +43,13 @@ namespace ProtonVPN.Vpn.Connection
 {
     internal class LocalAgentWrapper : ISingleVpnConnection
     {
-        private const string LocalAgentHost = "10.2.0.1:65432";
+        private const int DEFAULT_PORT = 65432;
+        private const int CONNECT_TIMEOUT = 10000;
 
         private readonly ILogger _logger;
         private readonly EventReceiver _eventReceiver;
         private readonly SplitTunnelRouting _splitTunnelRouting;
+        private readonly IGatewayProvider _gatewayProvider;
         private readonly ISingleVpnConnection _origin;
 
         private VpnEndpoint _endpoint;
@@ -50,10 +57,11 @@ namespace ProtonVPN.Vpn.Connection
         private VpnConfig _vpnConfig;
         private bool _isTlsChannelActive;
         private bool _isConnectRequested;
-        private bool _isHardJailed;
+        private bool _tlsConnected;
         private EventArgs<VpnState> _vpnState;
         private string _clientCertPem = string.Empty;
-
+        private string _localIp = string.Empty;
+        private readonly ISingleAction _timeoutAction;
         private readonly List<VpnError> _avoidDisconnectOnErrors = new()
         {
             VpnError.UnableToVerifyCert,
@@ -64,15 +72,19 @@ namespace ProtonVPN.Vpn.Connection
             ILogger logger,
             EventReceiver eventReceiver,
             SplitTunnelRouting splitTunnelRouting,
+            IGatewayProvider gatewayProvider,
             ISingleVpnConnection origin)
         {
             _logger = logger;
             _eventReceiver = eventReceiver;
             _splitTunnelRouting = splitTunnelRouting;
+            _gatewayProvider = gatewayProvider;
             _origin = origin;
             origin.StateChanged += OnVpnStateChanged;
             eventReceiver.StateChanged += OnLocalAgentStateChanged;
             eventReceiver.ErrorOccurred += OnLocalAgentErrorOccurred;
+            _timeoutAction = new SingleAction(TimeoutAction);
+            _timeoutAction.Completed += OnTimeoutActionCompleted;
         }
 
         public event EventHandler<EventArgs<VpnState>> StateChanged;
@@ -93,14 +105,19 @@ namespace ProtonVPN.Vpn.Connection
         public void Disconnect(VpnError error)
         {
             _logger.Info<LocalAgentLog>("Disconnect action started");
+            StopTimeoutAction();
             _eventReceiver.Stop();
             CloseTlsChannel();
             _origin.Disconnect(error);
-            _isHardJailed = false;
         }
 
         public void SetFeatures(VpnFeatures vpnFeatures)
         {
+            if (!_isTlsChannelActive)
+            {
+                return;
+            }
+
             using GoString goFeatures = GetFeatures(vpnFeatures).ToGoString();
             PInvoke.SetFeatures(goFeatures);
         }
@@ -114,19 +131,38 @@ namespace ProtonVPN.Vpn.Connection
             ConnectToTlsChannel();
         }
 
+        private async Task TimeoutAction(CancellationToken cancellationToken)
+        {
+            await Task.Delay(CONNECT_TIMEOUT, cancellationToken);
+
+            if (!_tlsConnected)
+            {
+                _logger.Info<LocalAgentLog>(
+                    $"Failed to connect to TLS channel in {TimeSpan.FromMilliseconds(CONNECT_TIMEOUT).Seconds} seconds. " +
+                    "Disconnecting with ServerUnreachable error.");
+                _origin.Disconnect(VpnError.ServerUnreachable);
+            }
+        }
+
+        private void OnTimeoutActionCompleted(object sender, TaskCompletedEventArgs e)
+        {
+            _logger.Info<LocalAgentLog>("Timeout action completed.");
+        }
+
         private void OnLocalAgentStateChanged(object sender, EventArgs<LocalAgentState> e)
         {
             _logger.Info<LocalAgentStateChangeLog>($"State changed to {e.Data}");
 
             switch (e.Data)
             {
-                case LocalAgentState.Connected when _vpnState.Data.Status != VpnStatus.Connected:
+                case LocalAgentState.Connected when !_tlsConnected:
+                    _tlsConnected = true;
                     if (_vpnConfig.VpnProtocol == VpnProtocol.WireGuard)
                     {
                         _splitTunnelRouting.SetUpRoutingTable(_vpnConfig, _vpnState.Data.LocalIp);
                     }
 
-                    _isHardJailed = false;
+                    StopTimeoutAction();
                     _logger.Info<ConnectConnectedLog>("Connected state triggered by Local Agent.");
                     InvokeStateChange(VpnStatus.Connected);
                     break;
@@ -137,13 +173,14 @@ namespace ProtonVPN.Vpn.Connection
                 case LocalAgentState.ClientCertificateUnknownCA:
                     InvokeStateChange(VpnStatus.ActionRequired, VpnError.CertificateExpired);
                     break;
-                case LocalAgentState.HardJailed:
-                    _isHardJailed = true;
-                    InvokeStateChange(VpnStatus.Connecting);
-                    break;
-                case LocalAgentState.ServerUnreachable:
-                    _origin.Disconnect(VpnError.ServerUnreachable);
-                    break;
+            }
+        }
+
+        private void StopTimeoutAction()
+        {
+            if (_timeoutAction.IsRunning)
+            {
+                _timeoutAction.Cancel();
             }
         }
 
@@ -151,12 +188,13 @@ namespace ProtonVPN.Vpn.Connection
         {
             _logger.Info<LocalAgentErrorLog>($"Error event received {e.Error} {e.Description}");
 
-            if (_isHardJailed && !_avoidDisconnectOnErrors.Contains(e.Error))
+            if (!_avoidDisconnectOnErrors.Contains(e.Error))
             {
                 switch (e.Error)
                 {
                     case VpnError.CertificateRevoked:
                     case VpnError.CertRevokedOrExpired:
+                    case VpnError.PlanNeedsToBeUpgraded:
                         _origin.Disconnect(e.Error);
                         break;
                     case VpnError.CertificateExpired:
@@ -207,17 +245,11 @@ namespace ProtonVPN.Vpn.Connection
                 switch (e.Data.Status)
                 {
                     case VpnStatus.Connected:
-                        InvokeStateChange(VpnStatus.AssigningIp);
-                        ConnectToTlsChannel();
+                        _localIp = e.Data.LocalIp;
+                        HandleVpnConnectedState();
                         return;
                     case VpnStatus.Disconnected:
-                        CloseTlsChannel();
-                        _eventReceiver.Stop();
-                        if (_vpnConfig.VpnProtocol == VpnProtocol.WireGuard)
-                        {
-                            _splitTunnelRouting.DeleteRoutes(_vpnConfig);
-                        }
-
+                        HandleVpnDisconnectedState();
                         break;
                 }
             }
@@ -226,21 +258,58 @@ namespace ProtonVPN.Vpn.Connection
             InvokeStateChange(e);
         }
 
+        private void HandleVpnConnectedState()
+        {
+            if (_credentials.ClientCertPem.IsNullOrEmpty())
+            {
+                InvokeStateChange(VpnStatus.Connected);
+            }
+            else
+            {
+                InvokeStateChange(VpnStatus.AssigningIp);
+                ConnectToTlsChannel();
+                _timeoutAction.Run();
+            }
+        }
+
+        private void HandleVpnDisconnectedState()
+        {
+            if (_credentials.ClientCertPem.IsNullOrEmpty())
+            {
+                return;
+            }
+
+            CloseTlsChannel();
+            _eventReceiver.Stop();
+            if (_vpnConfig.VpnProtocol == VpnProtocol.WireGuard)
+            {
+                _splitTunnelRouting.DeleteRoutes(_vpnConfig);
+            }
+        }
+
         private void CloseTlsChannel()
         {
             if (_isTlsChannelActive)
             {
                 _isTlsChannelActive = false;
+                _tlsConnected = false;
                 PInvoke.Close();
             }
         }
 
         private void ConnectToTlsChannel()
         {
+            if (_gatewayProvider.Get().IsNullOrEmpty())
+            {
+                _logger.Error<ConnectionErrorLog>("Default gateway is missing. Disconnecting.");
+                _origin.Disconnect(VpnError.Unknown);
+                return;
+            }
+
             using GoString clientCertPem = _clientCertPem.ToGoString();
             using GoString clientKeyPem = _credentials.ClientKeyPair.SecretKey.Pem.ToGoString();
             using GoString serverCaPem = VpnCertConfig.RootCa.ToGoString();
-            using GoString host = LocalAgentHost.ToGoString();
+            using GoString host = $"{_gatewayProvider.Get()}:{DEFAULT_PORT}".ToGoString();
             using GoString featuresJson = GetFeatures().ToGoString();
             using GoString certServerName = _endpoint.Server.Name.ToGoString();
             string result = PInvoke
@@ -263,7 +332,7 @@ namespace ProtonVPN.Vpn.Connection
             InvokeStateChange(new EventArgs<VpnState>(new VpnState(
                 status,
                 error ?? _vpnState?.Data.Error ?? VpnError.None,
-                _vpnState?.Data.LocalIp ?? string.Empty,
+                _localIp,
                 _vpnState?.Data.RemoteIp ?? string.Empty,
                 _vpnConfig?.VpnProtocol ?? VpnProtocol.Smart,
                 _vpnConfig?.OpenVpnAdapter,

@@ -52,7 +52,7 @@ namespace ProtonVPN.Vpn.Test.WireGuard
             // Act
             wireGuardConnection.Connect(
                 new VpnEndpoint(new VpnHost("host", "127.0.0.1", "", null), VpnProtocol.WireGuard),
-                new VpnCredentials("username", "password", "cert",
+                new VpnCredentials("cert",
                     new AsymmetricKeyPair(
                         new SecretKey("U2VjcmV0S2V5", KeyAlgorithm.Unknown),
                         new PublicKey("UHVibGljS2V5", KeyAlgorithm.Unknown))),

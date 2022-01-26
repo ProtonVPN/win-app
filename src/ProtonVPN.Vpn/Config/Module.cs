@@ -105,6 +105,7 @@ namespace ProtonVPN.Vpn.Config
             ProtonVPN.Common.Configuration.Config config = c.Resolve<ProtonVPN.Common.Configuration.Config>();
 
             return new LocalAgentWrapper(logger, new EventReceiver(logger), c.Resolve<SplitTunnelRouting>(),
+                new WireGuardGatewayProvider(),
                 new WireGuardConnection(logger, config,
                     new WireGuardService(logger, config, new SafeService(
                         new LoggingService(logger,
@@ -118,17 +119,22 @@ namespace ProtonVPN.Vpn.Config
         {
             ILogger logger = c.Resolve<ILogger>();
             OpenVpnConfig config = c.Resolve<OpenVpnConfig>();
+            IGatewayProvider gatewayProvider = new OpenVpnGatewayProvider();
 
-            return new OpenVpnConnection(
-                logger,
-                c.Resolve<INetworkInterfaceLoader>(),
-                c.Resolve<OpenVpnProcess>(),
-                new ManagementClient(
+            return new LocalAgentWrapper(logger, new EventReceiver(logger), c.Resolve<SplitTunnelRouting>(),
+                gatewayProvider,
+                new OpenVpnConnection(
                     logger,
-                    new ConcurrentManagementChannel(
-                        new TcpManagementChannel(
-                            logger,
-                            config.ManagementHost))));
+                    c.Resolve<ProtonVPN.Common.Configuration.Config>(),
+                    c.Resolve<INetworkInterfaceLoader>(),
+                    c.Resolve<OpenVpnProcess>(),
+                    new ManagementClient(
+                        logger,
+                        gatewayProvider,
+                        new ConcurrentManagementChannel(
+                            new TcpManagementChannel(
+                                logger,
+                                config.ManagementHost)))));
         }
     }
 }

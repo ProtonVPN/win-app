@@ -31,18 +31,18 @@ using ProtonVPN.Core.Window;
 
 namespace ProtonVPN.Account
 {
-    public class VpnInfoChecker : IHandle<WindowStateMessage>
+    public class VpnInfoUpdater : IHandle<WindowStateMessage>, IVpnInfoUpdater
     {
         private readonly TimeSpan _checkInterval;
         private readonly IApiClient _api;
         private readonly IUserStorage _userStorage;
-        private static readonly SemaphoreSlim Semaphore = new SemaphoreSlim(1, 1);
+        private static readonly SemaphoreSlim Semaphore = new(1, 1);
         private DateTime _lastCheck = DateTime.Now;
         private readonly ISchedulerTimer _timer;
 
-        public VpnInfoChecker(Common.Configuration.Config appConfig,
-            IEventAggregator eventAggregator, 
-            IApiClient api, 
+        public VpnInfoUpdater(Common.Configuration.Config appConfig,
+            IEventAggregator eventAggregator,
+            IApiClient api,
             IUserStorage userStorage,
             IScheduler scheduler)
         {
@@ -51,7 +51,7 @@ namespace ProtonVPN.Account
             _checkInterval = appConfig.VpnInfoCheckInterval.RandomizedWithDeviation(0.2);
             _api = api;
             _userStorage = userStorage;
-            
+
             _timer = scheduler.Timer();
             _timer.Interval = appConfig.ServerUpdateInterval.RandomizedWithDeviation(0.2);
             _timer.Tick += OnTimerTick;
@@ -81,6 +81,11 @@ namespace ProtonVPN.Account
             }
 
             _lastCheck = DateTime.Now;
+            await Update();
+        }
+
+        public async Task Update()
+        {
             await Semaphore.WaitAsync();
 
             try

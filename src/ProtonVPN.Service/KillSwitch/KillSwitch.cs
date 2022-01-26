@@ -162,14 +162,14 @@ namespace ProtonVPN.Service.KillSwitch
                     return true;
                 case VpnStatus.Disconnecting:
                 case VpnStatus.Disconnected:
-                    if (state.Error == VpnError.None)
+                    return state.Error switch
                     {
-                        return _serviceSettings.KillSwitchMode == KillSwitchMode.Hard;
-                    }
-                    else
-                    {
-                        return _serviceSettings.KillSwitchMode != KillSwitchMode.Off;
-                    }
+                        // Since PlanNeedsToBeUpgraded is received only when connected, we don't want to
+                        // disable firewall while reconnecting, so keep the current firewall state.
+                        VpnError.PlanNeedsToBeUpgraded => null,
+                        VpnError.None => _serviceSettings.KillSwitchMode == KillSwitchMode.Hard,
+                        _ => _serviceSettings.KillSwitchMode != KillSwitchMode.Off
+                    };
             }
 
             return null;

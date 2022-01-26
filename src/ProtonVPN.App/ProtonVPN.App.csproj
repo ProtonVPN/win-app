@@ -116,6 +116,7 @@
     </Compile>
     <Compile Include="About\LicenseModalViewModel.cs" />
     <Compile Include="About\ReleaseEqualityComparer.cs" />
+    <Compile Include="Account\IVpnInfoUpdater.cs" />
     <Compile Include="BugReporting\Actions\CategoryAction.cs" />
     <Compile Include="BugReporting\Actions\FinishReportAction.cs" />
     <Compile Include="BugReporting\Actions\FormStateChange.cs" />
@@ -226,8 +227,6 @@
     </Compile>
     <Compile Include="Settings\Migrations\v1_22_0\AppSettingsMigration.cs" />
     <Compile Include="Settings\ReconnectNotification\OpenVpnDriverSetting.cs" />
-    <Compile Include="Settings\ReconnectNotification\NetShieldSetting.cs" />
-    <Compile Include="Settings\ReconnectNotification\VpnAcceleratorSetting.cs" />
     <Compile Include="Sidebar\CountryFeatures\CountryFeaturesPopup.cs" />
     <Compile Include="Sidebar\CountryFeatures\CountryFeaturesPopupView.xaml.cs">
       <DependentUpon>CountryFeaturesPopupView.xaml</DependentUpon>
@@ -353,7 +352,7 @@
     <Compile Include="Notifications\UpdateNotification.cs" />
     <Compile Include="Core\Startup\ElevatedApplication.cs" />
     <Compile Include="About\UpdateViewModel.cs" />
-    <Compile Include="Account\VpnInfoChecker.cs" />
+    <Compile Include="Account\VpnInfoUpdater.cs" />
     <Compile Include="Account\VpnPlanHelper.cs" />
     <Compile Include="BugReporting\Attachments\Attachment.cs" />
     <Compile Include="BugReporting\Attachments\Attachments.cs" />
@@ -422,8 +421,6 @@
     <Compile Include="Core\MVVM\Converters\TabIndexToFirstLastConverter.cs" />
     <Compile Include="Core\AppExitHandler.cs" />
     <Compile Include="Core\UserLocationService.cs" />
-    <Compile Include="Core\Service\Vpn\IVpnServiceManager.cs" />
-    <Compile Include="Core\Service\Vpn\VpnConnectionRequest.cs" />
     <Compile Include="Core\Service\Vpn\VpnConnectionSpeed.cs" />
     <Compile Include="Core\Service\Vpn\VpnEvents.cs" />
     <Compile Include="Core\Service\Vpn\VpnManager.cs" />

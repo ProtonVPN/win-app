@@ -81,6 +81,7 @@
     <Compile Include="Config\VpnCertConfig.cs" />
     <Compile Include="Connection\BestPortWrapper.cs" />
     <Compile Include="Connection\IEndpointScanner.cs" />
+    <Compile Include="Connection\IGatewayProvider.cs" />
     <Compile Include="Connection\IVpnEndpointCandidates.cs" />
     <Compile Include="Connection\LocalAgentWrapper.cs" />
     <Compile Include="Connection\NetworkAdapterStatusWrapper.cs" />
@@ -124,6 +125,8 @@
     <Compile Include="OpenVpn\Arguments\NoBindArguments.cs" />
     <Compile Include="OpenVpn\Arguments\NetworkDriverArgument.cs" />
     <Compile Include="OpenVpn\BestLocalOpenVpnEndpoint.cs" />
+    <Compile Include="OpenVpn\ConfigTemplate.cs" />
+    <Compile Include="OpenVpn\OpenVpnGatewayProvider.cs" />
     <Compile Include="OpenVpn\OpenVpnProcessParams.cs" />
     <Compile Include="OpenVpn\SafeBestNetworkInterface.cs" />
     <Compile Include="OpenVpn\BestNetworkInterface.cs" />
@@ -151,6 +154,7 @@
     <Compile Include="WireGuard\StatusManager.cs" />
     <Compile Include="WireGuard\TrafficManager.cs" />
     <Compile Include="WireGuard\WireGuardConnection.cs" />
+    <Compile Include="WireGuard\WireGuardGatewayProvider.cs" />
     <Compile Include="WireGuard\WireGuardService.cs" />
   </ItemGroup>
   <ItemGroup>

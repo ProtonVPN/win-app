@@ -23,6 +23,7 @@ using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using NSubstitute.ReturnsExtensions;
+using ProtonVPN.Account;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.ConnectionInfo;
@@ -42,6 +43,7 @@ namespace ProtonVPN.App.Test.ConnectionInfo
         private IApiClient _apiClient;
         private IUserStorage _userStorage;
         private IServerUpdater _serverUpdater;
+        private IVpnInfoUpdater _vpnInfoUpdater;
         private ServerManager _serverManager;
         private IAppSettings _appSettings;
         private ILogger _logger;
@@ -52,6 +54,7 @@ namespace ProtonVPN.App.Test.ConnectionInfo
             _apiClient = Substitute.For<IApiClient>();
             _userStorage = Substitute.For<IUserStorage>();
             _serverUpdater = Substitute.For<IServerUpdater>();
+            _vpnInfoUpdater = Substitute.For<IVpnInfoUpdater>();
             _appSettings = Substitute.For<IAppSettings>();
             _logger = Substitute.For<ILogger>();
             _serverManager = Substitute.For<ServerManager>(_userStorage, _appSettings, _logger);
@@ -85,7 +88,7 @@ namespace ProtonVPN.App.Test.ConnectionInfo
             });
             SetSessions(3);
 
-            var sut = new ConnectionErrorResolver(_userStorage, _apiClient, _serverManager, _serverUpdater);
+            var sut = new ConnectionErrorResolver(_userStorage, _apiClient, _serverManager, _vpnInfoUpdater, _serverUpdater);
 
             // Assert
             sut.ResolveError().Result.Should().Be(VpnError.SessionLimitReached);
@@ -111,7 +114,7 @@ namespace ProtonVPN.App.Test.ConnectionInfo
 
             SetSessions(0);
 
-            var sut = new ConnectionErrorResolver(_userStorage, _apiClient, _serverManager, _serverUpdater);
+            var sut = new ConnectionErrorResolver(_userStorage, _apiClient, _serverManager, _vpnInfoUpdater, _serverUpdater);
 
             // Assert
             sut.ResolveError().Result.Should().Be(VpnError.PasswordChanged);
@@ -139,7 +142,7 @@ namespace ProtonVPN.App.Test.ConnectionInfo
 
             SetSessions(0);
 
-            var sut = new ConnectionErrorResolver(_userStorage, _apiClient, _serverManager, _serverUpdater);
+            var sut = new ConnectionErrorResolver(_userStorage, _apiClient, _serverManager, _vpnInfoUpdater, _serverUpdater);
 
             // Assert
             sut.ResolveError().Result.Should().Be(VpnError.UserTierTooLowError);
@@ -154,7 +157,7 @@ namespace ProtonVPN.App.Test.ConnectionInfo
                 Delinquent = 3
             });
 
-            var sut = new ConnectionErrorResolver(_userStorage, _apiClient, _serverManager, _serverUpdater);
+            var sut = new ConnectionErrorResolver(_userStorage, _apiClient, _serverManager, _vpnInfoUpdater, _serverUpdater);
 
             // Assert
             sut.ResolveError().Result.Should().Be(VpnError.Unpaid);
@@ -167,7 +170,7 @@ namespace ProtonVPN.App.Test.ConnectionInfo
             _userStorage.User().Returns(new User {MaxConnect = 3});
             _serverManager.GetServer(Arg.Any<ISpecification<LogicalServerContract>>()).ReturnsNull();
 
-            var sut = new ConnectionErrorResolver(_userStorage, _apiClient, _serverManager, _serverUpdater);
+            var sut = new ConnectionErrorResolver(_userStorage, _apiClient, _serverManager, _vpnInfoUpdater, _serverUpdater);
             SetSessions(0);
 
             // Assert
@@ -181,7 +184,7 @@ namespace ProtonVPN.App.Test.ConnectionInfo
             _userStorage.User().Returns(new User { MaxConnect = 3 });
             _serverManager.GetServer(Arg.Any<ISpecification<LogicalServerContract>>()).Returns(Server.Empty());
 
-            var sut = new ConnectionErrorResolver(_userStorage, _apiClient, _serverManager, _serverUpdater);
+            var sut = new ConnectionErrorResolver(_userStorage, _apiClient, _serverManager, _vpnInfoUpdater, _serverUpdater);
             SetSessions(0);
 
             // Assert
@@ -200,7 +203,7 @@ namespace ProtonVPN.App.Test.ConnectionInfo
             });
             _serverManager.GetServer(Arg.Any<ISpecification<LogicalServerContract>>()).Returns(GetOnlineServer());
 
-            var sut = new ConnectionErrorResolver(_userStorage, _apiClient, _serverManager, _serverUpdater);
+            var sut = new ConnectionErrorResolver(_userStorage, _apiClient, _serverManager, _vpnInfoUpdater, _serverUpdater);
             SetSessions(0);
 
             // Assert

@@ -219,11 +219,9 @@ namespace ProtonVPN.Service
 
         private static VpnCredentials Map(VpnCredentialsContract credentials)
         {
-            if (credentials.ClientCertPem.IsNullOrEmpty() || credentials.ClientKeyPair == null)
-            {
-                return new(credentials.Username, credentials.Password);
-            }
-            return new(credentials.Username, credentials.Password, credentials.ClientCertPem, credentials.ClientKeyPair.ConvertBack());
+            return credentials.ClientCertPem.IsNullOrEmpty() || credentials.ClientKeyPair == null
+                ? new(credentials.Username, credentials.Password)
+                : new(credentials.ClientCertPem, credentials.ClientKeyPair.ConvertBack());
         }
 
         private static IReadOnlyList<VpnHost> Map(IEnumerable<VpnHostContract> servers)

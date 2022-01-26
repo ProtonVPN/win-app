@@ -446,6 +446,7 @@ namespace ProtonVPN.Core
             Resolve<InsecureNetworkNotification>();
             Resolve<ActionableFailureApiResultEventHandler>();
             Resolve<IAuthCertificateUpdater>();
+            Resolve<VpnAuthCertificateUpdater>();
         }
 
         private void OnUserLoggingIn()
@@ -498,7 +499,7 @@ namespace ProtonVPN.Core
             Resolve<PinFactory>().BuildPins();
             LoadViewModels();
             Resolve<P2PDetector>();
-            Resolve<VpnInfoChecker>();
+            Resolve<IVpnInfoUpdater>();
 
             AppWindow appWindow = Resolve<AppWindow>();
             appWindow.DataContext = Resolve<MainViewModel>();

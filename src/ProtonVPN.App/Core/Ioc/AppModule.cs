@@ -46,6 +46,7 @@ using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Startup;
 using ProtonVPN.Core.Storage;
 using ProtonVPN.Core.User;
+using ProtonVPN.Core.Vpn;
 using ProtonVPN.Core.Window;
 using ProtonVPN.Core.Window.Popups;
 using ProtonVPN.Crypto;
@@ -279,12 +280,12 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<ReconnectState>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterType<SettingsBuilder>().SingleInstance();
             builder.RegisterType<ReconnectManager>().AsImplementedInterfaces().AsSelf().SingleInstance();
-            builder.Register(c => new VpnInfoChecker(
+            builder.Register(c => new VpnInfoUpdater(
                 c.Resolve<Common.Configuration.Config>(),
                 c.Resolve<IEventAggregator>(),
                 c.Resolve<IApiClient>(),
                 c.Resolve<IUserStorage>(),
-                c.Resolve<IScheduler>())).SingleInstance();
+                c.Resolve<IScheduler>())).As<IVpnInfoUpdater>().SingleInstance();
             builder.RegisterType<PlanDowngradeHandler>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterType<StreamingServicesUpdater>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterType<StreamingServices>().As<IStreamingServices>().SingleInstance();

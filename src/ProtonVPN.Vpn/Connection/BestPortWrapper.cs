@@ -143,8 +143,7 @@ namespace ProtonVPN.Vpn.Connection
 
             return _vpnCredentials.ClientCertPem.IsNullOrEmpty() || _vpnCredentials.ClientKeyPair == null
                 ? new VpnCredentials(username, _vpnCredentials.Password)
-                : new VpnCredentials(username, _vpnCredentials.Password, _vpnCredentials.ClientCertPem,
-                    _vpnCredentials.ClientKeyPair);
+                : new VpnCredentials(_vpnCredentials.ClientCertPem, _vpnCredentials.ClientKeyPair);
         }
 
         private async void DelayedDisconnect(CancellationToken cancellationToken)

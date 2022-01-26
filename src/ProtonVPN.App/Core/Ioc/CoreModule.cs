@@ -54,6 +54,7 @@ using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Storage;
 using ProtonVPN.Core.Threading;
 using ProtonVPN.Core.Update;
+using ProtonVPN.Core.Vpn;
 using ProtonVPN.Core.Window;
 using ProtonVPN.HumanVerification;
 using ProtonVPN.Modals.ApiActions;
@@ -284,6 +285,7 @@ namespace ProtonVPN.Core.Ioc
                 .As<INtpClient>().SingleInstance();
             builder.RegisterType<ReportAnIssueFormDataProvider>().As<IReportAnIssueFormDataProvider>().SingleInstance();
             builder.RegisterType<SystemState>().As<ISystemState>().SingleInstance();
+            builder.RegisterType<VpnAuthCertificateUpdater>().AsImplementedInterfaces().AsSelf().SingleInstance();
         }
     }
 }
