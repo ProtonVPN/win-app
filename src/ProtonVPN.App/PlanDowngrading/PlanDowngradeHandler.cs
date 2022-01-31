@@ -101,6 +101,7 @@ namespace ProtonVPN.PlanDowngrading
             if (user.MaxTier < ServerTiers.Basic)
             {
                 _appSettings.NetShieldEnabled = false;
+                _appSettings.AllowNonStandardPorts = false;
             }
         }
 

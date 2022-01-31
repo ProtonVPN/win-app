@@ -44,6 +44,8 @@ namespace ProtonVPN.Common.Vpn
 
         public bool SplitTcp { get; }
 
+        public bool? AllowNonStandardPorts { get; }
+
         public VpnConfig(VpnConfigParameters parameters)
         {
             AssertPortsValid(parameters.Ports);
@@ -58,6 +60,7 @@ namespace ProtonVPN.Common.Vpn
             PreferredProtocols = parameters.PreferredProtocols;
             NetShieldMode = parameters.NetShieldMode;
             SplitTcp = parameters.SplitTcp;
+            AllowNonStandardPorts = parameters.AllowNonStandardPorts;
         }
 
         private void AssertPortsValid(IReadOnlyDictionary<VpnProtocol, IReadOnlyCollection<int>> ports)

@@ -144,6 +144,7 @@ namespace ProtonVPN.Core.Service.Vpn
             {
                 Ports = portConfig,
                 CustomDns = config.CustomDns.ToList(),
+                AllowNonStandardPorts = config.AllowNonStandardPorts,
                 SplitTunnelMode = config.SplitTunnelMode,
                 SplitTunnelIPs = config.SplitTunnelIPs.ToList(),
                 NetShieldMode = config.NetShieldMode,

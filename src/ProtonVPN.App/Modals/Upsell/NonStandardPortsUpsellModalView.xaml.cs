@@ -17,22 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Newtonsoft.Json;
-
-namespace ProtonVPN.Vpn.LocalAgent.Contracts
+namespace ProtonVPN.Modals.Upsell
 {
-    public class FeaturesContract
+    public partial class NonStandardPortsUpsellModalView
     {
-        [JsonProperty(PropertyName = "bouncing")]
-        public string Bouncing { get; set; }
-
-        [JsonProperty(PropertyName = "split-tcp")]
-        public bool SplitTcp { get; set; }
-
-        [JsonProperty(PropertyName = "netshield-level")]
-        public int NetShieldLevel { get; set; }
-
-        [JsonProperty(PropertyName = "safe-mode", NullValueHandling = NullValueHandling.Ignore)]
-        public bool? SafeMode { get; set; }
+        public NonStandardPortsUpsellModalView()
+        {
+            InitializeComponent();
+        }
     }
 }

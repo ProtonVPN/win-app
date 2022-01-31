@@ -247,10 +247,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\NonStandardPorts.png" />
     <Resource Include="Images\PlusCountries.png" />
     <Resource Include="Images\Netshield.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\SecureCore.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

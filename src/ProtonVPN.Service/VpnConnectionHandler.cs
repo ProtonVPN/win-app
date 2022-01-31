@@ -179,7 +179,7 @@ namespace ProtonVPN.Service
             }
             else if (_state.Status == VpnStatus.Connected)
             {
-                _vpnConnection.SetFeatures(new VpnFeatures(settings.NetShieldMode, settings.SplitTcp));
+                _vpnConnection.SetFeatures(new VpnFeatures(settings.NetShieldMode, settings.SplitTcp, settings.AllowNonStandardPorts));
             }
         }
 
@@ -250,6 +250,7 @@ namespace ProtonVPN.Service
                     PreferredProtocols = Map(config.PreferredProtocols),
                     NetShieldMode = config.NetShieldMode,
                     SplitTcp =  config.SplitTcp,
+                    AllowNonStandardPorts = config.AllowNonStandardPorts,
                 });
         }
 

@@ -216,6 +216,10 @@
     <Compile Include="Modals\AssignVpnConnectionsModalView.xaml.cs">
       <DependentUpon>AssignVpnConnectionsModalView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Modals\Upsell\NonStandardPortsUpsellModalViewModel.cs" />
+    <Compile Include="Modals\Upsell\NonStandardPortsUpsellModalView.xaml.cs">
+      <DependentUpon>NonStandardPortsUpsellModalView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modals\Welcome\WelcomeModalManager.cs" />
     <Compile Include="Notifications\INotificationSender.cs" />
     <Compile Include="Notifications\INotificationUserActionHandler.cs" />
@@ -921,6 +925,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Modals\AssignVpnConnectionsModalView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Modals\Upsell\NonStandardPortsUpsellModalView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

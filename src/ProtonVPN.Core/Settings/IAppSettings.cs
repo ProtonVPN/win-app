@@ -97,8 +97,10 @@ namespace ProtonVPN.Core.Settings
         bool FeatureVpnAcceleratorEnabled { get; set; }
         bool FeatureStreamingServicesLogosEnabled { get; set; }
         bool FeatureSmartReconnectEnabled { get; set; }
+        bool ShowNonStandardPortsToFreeUsers { get; set; }
         bool SmartReconnectEnabled { get; set; }
         bool SmartReconnectNotificationsEnabled { get; set; }
+        bool AllowNonStandardPorts { get; set; }
         string AuthenticationPublicKey { get; set; }
         string AuthenticationSecretKey { get; set; }
         string AuthenticationCertificatePem { get; set; }

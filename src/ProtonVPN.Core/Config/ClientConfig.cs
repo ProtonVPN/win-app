@@ -119,6 +119,7 @@ namespace ProtonVPN.Core.Config
                     bool smartReconnectFeatureFlag = response.Value.FeatureFlags.SmartReconnect ?? true;
                     _appSettings.FeatureSmartReconnectEnabled = vpnAcceleratorFeatureFlag && smartReconnectFeatureFlag;
 
+                    _appSettings.ShowNonStandardPortsToFreeUsers = response.Value.FeatureFlags.SafeMode ?? false;
                     _appSettings.FeatureStreamingServicesLogosEnabled = response.Value.FeatureFlags.StreamingServicesLogos ?? true;
                 }
             }
