@@ -124,5 +124,8 @@ namespace ProtonVPN.Common.Configuration
 
         [Required]
         public string AssignVpnConnectionsUrl { get; internal set; }
+
+        [Required]
+        public string NonStandardPortsUrl { get; internal set; }
     }
 }

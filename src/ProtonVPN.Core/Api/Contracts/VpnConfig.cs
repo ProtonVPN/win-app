@@ -74,6 +74,8 @@ namespace ProtonVPN.Core.Api.Contracts
         public bool? StreamingServicesLogos { get; set; }
 
         public bool? SmartReconnect { get; set; }
+
+        public bool? SafeMode { get; set; }
     }
 
     public class SmartProtocol

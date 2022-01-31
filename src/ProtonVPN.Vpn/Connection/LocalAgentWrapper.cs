@@ -221,6 +221,7 @@ namespace ProtonVPN.Vpn.Connection
                 NetShieldLevel = _vpnConfig.NetShieldMode,
                 SplitTcp = _vpnConfig.SplitTcp,
                 Bouncing = _endpoint.Server.Label,
+                SafeMode = !_vpnConfig.AllowNonStandardPorts,
             });
         }
 
@@ -228,7 +229,9 @@ namespace ProtonVPN.Vpn.Connection
         {
             return GetFeaturesJson(new FeaturesContract
             {
-                NetShieldLevel = vpnFeatures.NetShieldMode, SplitTcp = vpnFeatures.SplitTcp,
+                NetShieldLevel = vpnFeatures.NetShieldMode,
+                SplitTcp = vpnFeatures.SplitTcp,
+                SafeMode = !vpnFeatures.AllowNonStandardPorts,
             });
         }
 

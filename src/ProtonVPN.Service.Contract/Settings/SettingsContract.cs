@@ -32,6 +32,8 @@ namespace ProtonVPN.Service.Contract.Settings
 
         public bool SplitTcp { get; set; }
 
+        public bool AllowNonStandardPorts { get; set; }
+
         public bool Ipv6LeakProtection { get; set; }
 
         public VpnProtocol VpnProtocol { get; set; }

@@ -90,7 +90,6 @@ namespace ProtonVPN.Settings.Migrations.v1_7_2
             MigrateToPerUser<string>("VpnPlan");
             MigrateToPerUser<sbyte>("MaxTier");
             MigrateToPerUser<int>("Delinquent");
-            MigrateToPerUser<int>("ExpirationTime");
             MigrateToPerUser<int>("MaxConnect");
             MigrateToPerUser<int>("Services");
             MigrateToPerUser<string>("VpnUsername");

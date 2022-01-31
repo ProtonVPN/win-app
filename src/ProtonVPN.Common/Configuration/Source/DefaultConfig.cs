@@ -224,7 +224,8 @@ namespace ProtonVPN.Common.Configuration.Source
                     InvoicesUrl = "https://account.protonvpn.com/payments#invoices",
                     AboutSmartProtocolUrl = "https://protonvpn.com/support/how-to-change-vpn-protocols",
                     IncorrectSystemTimeArticleUrl = "https://protonvpn.com/support/update-windows-clock",
-                    AssignVpnConnectionsUrl = "https://protonvpn.com/support/assign-vpn-connection"
+                    AssignVpnConnectionsUrl = "https://protonvpn.com/support/assign-vpn-connection",
+                    NonStandardPortsUrl = "https://protonvpn.com/support/non-standard-ports",
                 },
 
                 OpenVpn =

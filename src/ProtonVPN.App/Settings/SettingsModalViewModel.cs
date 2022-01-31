@@ -29,11 +29,11 @@ using ProtonVPN.Config.Url;
 using ProtonVPN.Core;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Models;
-using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Modals;
+using ProtonVPN.Modals.Upsell;
 using ProtonVPN.Profiles;
 using ProtonVPN.Resource;
 using ProtonVPN.Settings.ReconnectNotification;
@@ -44,13 +44,15 @@ namespace ProtonVPN.Settings
 {
     public class SettingsModalViewModel : BaseModalViewModel, IVpnStateAware
     {
+        private readonly IUserStorage _userStorage;
         private readonly IAppSettings _appSettings;
         private readonly IVpnManager _vpnManager;
-        private readonly ProfileViewModelFactory _profileViewModelFactory;
         private readonly IDialogs _dialogs;
+        private readonly IModals _modals;
         private readonly IActiveUrls _urls;
         private readonly ILanguageProvider _languageProvider;
         private readonly ReconnectState _reconnectState;
+        private readonly ProfileViewModelFactory _profileViewModelFactory;
 
         private IReadOnlyList<ProfileViewModel> _autoConnectProfiles;
         private IReadOnlyList<ProfileViewModel> _quickConnectProfiles;
@@ -62,9 +64,11 @@ namespace ProtonVPN.Settings
         });
 
         public SettingsModalViewModel(
+            IUserStorage userStorage,
             IAppSettings appSettings,
             IVpnManager vpnManager,
             IDialogs dialogs,
+            IModals modals,
             IActiveUrls urls,
             ILanguageProvider languageProvider,
             ReconnectState reconnectState,
@@ -72,14 +76,15 @@ namespace ProtonVPN.Settings
             SplitTunnelingViewModel splitTunnelingViewModel,
             CustomDnsListViewModel customDnsListViewModel)
         {
-            _dialogs = dialogs;
+            _userStorage = userStorage;
             _appSettings = appSettings;
             _vpnManager = vpnManager;
-            _profileViewModelFactory = profileViewModelFactory;
+            _dialogs = dialogs;
+            _modals = modals;
             _urls = urls;
             _languageProvider = languageProvider;
             _reconnectState = reconnectState;
-
+            _profileViewModelFactory = profileViewModelFactory;
             SplitTunnelingViewModel = splitTunnelingViewModel;
             Ips = customDnsListViewModel;
 
@@ -159,6 +164,24 @@ namespace ProtonVPN.Settings
                 NotifyOfPropertyChange();
             }
         }
+
+        public bool AllowNonStandardPorts
+        {
+            get => _appSettings.AllowNonStandardPorts;
+            set
+            {
+                if (value && !_userStorage.User().Paid())
+                {
+                    _modals.Show<NonStandardPortsUpsellModalViewModel>();
+                    return;
+                }
+
+                _appSettings.AllowNonStandardPorts = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+        public bool ShowAllowNonStandardPorts => _appSettings.ShowNonStandardPortsToFreeUsers;
 
         public bool VpnAccelerator
         {
