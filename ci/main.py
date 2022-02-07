@@ -1,5 +1,6 @@
 import sys
 import re
+import os
 import argparse
 import win32api
 import localization
@@ -10,7 +11,19 @@ import installer
 import ssh
 import guest_hole_server_loader
 import slack
+import hashlib
 from pathlib import Path
+
+def get_sha256(file_path):
+    sha256_hash = hashlib.sha256()
+    with open(file_path, "rb") as f:
+        for byte_block in iter(lambda: f.read(4096), b""):
+            sha256_hash.update(byte_block)
+    return sha256_hash.hexdigest()
+
+def print_sha256(file_path):
+    sha256 = get_sha256(file_path)
+    print(os.path.basename(file_path) + ' SHA256: ' + sha256)
 
 parser = argparse.ArgumentParser(description='ProtonVPN CI')
 subparsers = parser.add_subparsers(help='sub-command help', dest='command')
@@ -73,16 +86,21 @@ elif args.command == 'app-installer':
 
     print('Building app installer')
     err = installer.build(semVersion, args.hash, 'Setup/ProtonVPN.aip', params)
+    print_sha256('.\Setup\ProtonVPN-SetupFiles\ProtonVPN_win_v{semVersion}.exe'.format(semVersion=semVersion))
     sys.exit(err)
 
 elif args.command == 'tap-installer':
     print('Building tap installer')
-    err = installer.build('1.1.3', '', 'Setup/ProtonVPNTap.aip')
+    version = '1.1.3'
+    err = installer.build(version, '', 'Setup/ProtonVPNTap.aip')
+    print_sha256('.\Setup\ProtonVPNTap-SetupFiles\ProtonVPNTap_{version}.exe'.format(version=version))
     sys.exit(err)
 
 elif args.command == 'tun-installer':
     print('Building tun installer')
-    err = installer.build('0.13.0', '', 'Setup/ProtonVPNTun.aip')
+    version = '0.13.0'
+    err = installer.build(version, '', 'Setup/ProtonVPNTun.aip')
+    print_sha256('.\Setup\ProtonVPNTun-SetupFiles\ProtonVPNTun_{version}.exe'.format(version=version))
     sys.exit(err)
 
 elif args.command == 'add-commit-hash':
