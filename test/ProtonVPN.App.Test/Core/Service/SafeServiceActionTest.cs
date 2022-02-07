@@ -1,4 +1,4 @@
-﻿/* Copyright (c) 2021 Proton Technologies AG
+﻿/* Copyright (c) 2022 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
