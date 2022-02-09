@@ -155,6 +155,19 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 Content="Reset"/>
                     </StackPanel>
 
+                    <StackPanel Margin="0,0,0,20" Orientation="Horizontal" HorizontalAlignment="Left">
+                        <fa:ImageAwesome HorizontalAlignment="Left" Style="{StaticResource FontAwesomeIcon}" Icon="Lock" />
+                        <StackPanel Margin="20,0,30,0" Orientation="Vertical" HorizontalAlignment="Left">
+                            <Label Padding="0,0,0,0" FontSize="16" Content="Disable TLS pinning" Foreground="White"/>
+                            <Label Padding="0,0,0,0" FontSize="12" Content="Writes current app config to ProtonVPN.config file with TLS pinning disabled" Foreground="LightGray"/>
+                            <Label Padding="0,0,0,0" FontSize="12" Content="(App has to be launched as admin before)" Foreground="LightGray"/>
+                        </StackPanel>
+                        <Button HorizontalAlignment="Left"
+                                Style="{StaticResource PrimaryButton}"
+                                Command="{Binding DisableTlsPinningCommand}"
+                                Content="Disable"/>
+                    </StackPanel>
+
                     <StackPanel Margin="0,0,0,20" Orientation="Vertical" HorizontalAlignment="Left">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                             <fa:ImageAwesome HorizontalAlignment="Left" Style="{StaticResource FontAwesomeIcon}" Icon="Bell"  />

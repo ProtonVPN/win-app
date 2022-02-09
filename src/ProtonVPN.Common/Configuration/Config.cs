@@ -221,7 +221,7 @@ namespace ProtonVPN.Common.Configuration
 
         public WireGuardConfig WireGuard { get; } = new();
 
-        public TlsPinningConfig TlsPinningConfig { get; } = new();
+        public TlsPinningConfig TlsPinningConfig { get; internal set; } = new();
 
         public List<string> DoHProviders { get; internal set; } = new();
 

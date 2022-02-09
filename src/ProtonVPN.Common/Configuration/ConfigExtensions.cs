@@ -32,5 +32,11 @@ namespace ProtonVPN.Common.Configuration
                 _ => config.WireGuard.TunAdapterHardwareId
             };
         }
+
+        public static Config WithTlsPinningDisabled(this Config config)
+        {
+            config.TlsPinningConfig = new();
+            return config;
+        }
     }
 }

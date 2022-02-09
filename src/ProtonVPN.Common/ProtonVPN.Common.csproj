@@ -126,6 +126,8 @@
     <Compile Include="Configuration\Config.cs" />
     <Compile Include="Configuration\ConfigExtensions.cs" />
     <Compile Include="Configuration\ConfigFactory.cs" />
+    <Compile Include="Configuration\ConfigWriter.cs" />
+    <Compile Include="Configuration\IConfigWriter.cs" />
     <Compile Include="Configuration\WireGuardConfig.cs" />
     <Compile Include="Configuration\Source\ConfigMode.cs" />
     <Compile Include="Configuration\Source\CustomConfig.cs" />
