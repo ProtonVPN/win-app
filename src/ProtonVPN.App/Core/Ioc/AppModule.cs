@@ -76,6 +76,7 @@ namespace ProtonVPN.Core.Ioc
             base.Load(builder);
 
             builder.Register(c => new ConfigFactory().Config());
+            builder.RegisterType<ConfigWriter>().As<IConfigWriter>().SingleInstance();
 
             builder.RegisterType<Bootstrapper>().SingleInstance();
             builder.RegisterType<EventAggregator>().As<IEventAggregator>().SingleInstance();

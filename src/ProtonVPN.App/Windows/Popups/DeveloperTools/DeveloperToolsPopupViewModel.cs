@@ -25,6 +25,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
 using Microsoft.Toolkit.Uwp.Notifications;
+using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
@@ -45,6 +46,8 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
 {
     public class DeveloperToolsPopupViewModel : BasePopupViewModel, IVpnStateAware
     {
+        private readonly Common.Configuration.Config _config;
+        private readonly IConfigWriter _configWriter;
         private readonly UserAuth _userAuth;
         private readonly IPopupWindows _popups;
         private readonly IModals _modals;
@@ -54,6 +57,8 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
         private readonly ReconnectManager _reconnectManager;
 
         public DeveloperToolsPopupViewModel(AppWindow appWindow,
+            Common.Configuration.Config config,
+            IConfigWriter configWriter,
             UserAuth userAuth,
             IPopupWindows popups,
             IModals modals,
@@ -63,6 +68,8 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
             ReconnectManager reconnectManager)
             : base(appWindow)
         {
+            _config = config;
+            _configWriter = configWriter;
             _userAuth = userAuth;
             _popups = popups;
             _modals = modals;
@@ -87,8 +94,10 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
             BasicToastCommand = new RelayCommand(BasicToastAction);
             ClearToastNotificationLogsCommand = new RelayCommand(ClearToastNotificationLogsAction);
             TriggerIntentionalCrashCommand = new RelayCommand(TriggerIntentionalCrashAction);
+            DisableTlsPinningCommand = new RelayCommand(DisableTlsPinningAction);
         }
 
+        public ICommand DisableTlsPinningCommand { get; set; }
         public ICommand ShowModalCommand { get; set; }
         public ICommand ShowPopupWindowCommand { get; set; }
         public ICommand RefreshVpnInfoCommand { get; set; }
@@ -275,6 +284,12 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
         private string GenerateOpenVpnAdapterString(OpenVpnAdapter? networkAdapterType)
         {
             return $"Network adapter: {networkAdapterType}";
+        }
+
+        private void DisableTlsPinningAction()
+        {
+            _configWriter.Write(_config.WithTlsPinningDisabled());
+            Environment.Exit(0);
         }
     }
 }

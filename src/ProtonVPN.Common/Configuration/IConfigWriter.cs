@@ -17,26 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Networking;
-
 namespace ProtonVPN.Common.Configuration
 {
-    public static class ConfigExtensions
+    public interface IConfigWriter
     {
-        public static string GetHardwareId(this Config config, OpenVpnAdapter openVpnAdapter)
-        {
-            return openVpnAdapter switch
-            {
-                OpenVpnAdapter.Tap => config.OpenVpn.TapAdapterId,
-                OpenVpnAdapter.Tun => config.OpenVpn.TunAdapterId,
-                _ => config.WireGuard.TunAdapterHardwareId
-            };
-        }
-
-        public static Config WithTlsPinningDisabled(this Config config)
-        {
-            config.TlsPinningConfig = new();
-            return config;
-        }
+        void Write(Config config);
     }
 }
