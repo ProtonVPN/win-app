@@ -9,6 +9,7 @@ import tests
 import installer
 import ssh
 import guest_hole_server_loader
+import slack
 from pathlib import Path
 
 parser = argparse.ArgumentParser(description='ProtonVPN CI')
@@ -37,6 +38,7 @@ custom_parser = subparsers.add_parser('prepare-ssh')
 custom_parser.add_argument('key', type=str, help='Private ssh key as a string')
 
 subparsers.add_parser('update-gh-list')
+subparsers.add_parser('send-slack-notification')
 
 if len(sys.argv) < 2:
     parser.print_usage()
@@ -99,3 +101,7 @@ elif args.command == 'prepare-ssh':
 elif args.command == 'update-gh-list':
     print('Executing guest hole server loader')
     guest_hole_server_loader.load()
+
+elif args.command == 'send-slack-notification':
+    print('Sending installer file to slack')
+    slack.send()
