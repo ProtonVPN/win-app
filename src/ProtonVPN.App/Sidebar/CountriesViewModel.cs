@@ -321,9 +321,9 @@ namespace ProtonVPN.Sidebar
                 return;
             }
 
-            foreach (IServerListItem item in Items)
+            foreach (IServerListItem item in Items.ToList())
             {
-                if (item is ServersByCountryViewModel || item is ServersByExitNodeViewModel || item is CountrySeparatorViewModel)
+                if (item is ServersByCountryViewModel or ServersByExitNodeViewModel or CountrySeparatorViewModel)
                 {
                     item.OnVpnStateChanged(state);
                 }
