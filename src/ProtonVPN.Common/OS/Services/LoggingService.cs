@@ -53,11 +53,11 @@ namespace ProtonVPN.Common.OS.Services
 
         public void Enable()
         {
-            _ = Logged<AppServiceLog, AppServiceLog>("Enabling", () =>
-              {
-                  _origin.Enable();
-                  return Task.FromResult(Result.Ok());
-              });
+            Logged<AppServiceLog, AppServiceLog>("Enabling", () =>
+            {
+                _origin.Enable();
+                return Task.FromResult(Result.Ok());
+            }).Wait();
         }
 
         public Task<Result> StartAsync(CancellationToken cancellationToken)
