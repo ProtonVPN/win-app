@@ -58,6 +58,7 @@ namespace ProtonVPN.Common.Events
                 Dsn = GlobalConfig.SentryDsn,
                 ReportAssembliesMode = ReportAssembliesMode.None,
                 CreateHttpClientHandler = () => new SentryHttpClientHandler(),
+                AutoSessionTracking = false,
             };
 
             if (_logger != null)
