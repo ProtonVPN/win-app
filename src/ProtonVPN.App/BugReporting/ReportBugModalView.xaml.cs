@@ -17,8 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using WpfScreenHelper;
-
 namespace ProtonVPN.BugReporting
 {
     public partial class ReportBugModalView
@@ -26,21 +24,6 @@ namespace ProtonVPN.BugReporting
         public ReportBugModalView()
         {
             InitializeComponent();
-            SizeChanged += ReportBugModalView_SizeChanged;
-        }
-
-        private void ReportBugModalView_SizeChanged(object sender, System.Windows.SizeChangedEventArgs e)
-        {
-            if (e.PreviousSize == e.NewSize)
-            {
-                return;
-            }
-
-            Screen screen = Screen.FromWindow(this);
-            if (screen != null)
-            {
-                Top = screen.WorkingArea.Top + (screen.WorkingArea.Height - ActualHeight) / 2;
-            }
         }
     }
 }
