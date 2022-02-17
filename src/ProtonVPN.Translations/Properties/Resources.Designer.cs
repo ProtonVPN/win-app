@@ -6844,6 +6844,78 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Upgrade.
+        /// </summary>
+        public static string Upsell_btn_Upgrade {
+            get {
+                return ResourceManager.GetString("Upsell_btn_Upgrade", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Block ads and malware with Netshield.
+        /// </summary>
+        public static string Upsell_Countries_BlockAds {
+            get {
+                return ResourceManager.GetString("Upsell_Countries_BlockAds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Browse at the highest speeds (10 Gbps).
+        /// </summary>
+        public static string Upsell_Countries_BrowseFast {
+            get {
+                return ResourceManager.GetString("Upsell_Countries_BrowseFast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Access global streaming services.
+        /// </summary>
+        public static string Upsell_Countries_GlobalStreamingServices {
+            get {
+                return ResourceManager.GetString("Upsell_Countries_GlobalStreamingServices", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to And many more premium features.
+        /// </summary>
+        public static string Upsell_Countries_MoreFeatures {
+            get {
+                return ResourceManager.GetString("Upsell_Countries_MoreFeatures", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Connect up to 10 devices at once.
+        /// </summary>
+        public static string Upsell_Countries_SimultaneousDevices {
+            get {
+                return ResourceManager.GetString("Upsell_Countries_SimultaneousDevices", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When you upgrade to Plus.
+        /// </summary>
+        public static string Upsell_Countries_Subtitle {
+            get {
+                return ResourceManager.GetString("Upsell_Countries_Subtitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Access over 1200 secure servers in 63 countries.
+        /// </summary>
+        public static string Upsell_Countries_Title {
+            get {
+                return ResourceManager.GetString("Upsell_Countries_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Upgrade My Plan.
         /// </summary>
         public static string Upsell_Enjoying_btn_Upgrade {
@@ -6889,101 +6961,92 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cancel.
+        ///   Looks up a localized string similar to Block ads and trackers.
         /// </summary>
-        public static string Upsell_UpgradeRequired_btn_Close {
+        public static string Upsell_Netshield_BlockAds {
             get {
-                return ResourceManager.GetString("Upsell_UpgradeRequired_btn_Close", resourceCulture);
+                return ResourceManager.GetString("Upsell_Netshield_BlockAds", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Upgrade.
+        ///   Looks up a localized string similar to Browse at the highest speeds.
         /// </summary>
-        public static string Upsell_UpgradeRequired_btn_Upgrade {
+        public static string Upsell_Netshield_BrowseFast {
             get {
-                return ResourceManager.GetString("Upsell_UpgradeRequired_btn_Upgrade", resourceCulture);
+                return ResourceManager.GetString("Upsell_Netshield_BrowseFast", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sorry, no servers available for your subscription tier right now. If you would like to access more servers, consider upgrading your subscription..
+        ///   Looks up a localized string similar to Protect your device from malware.
         /// </summary>
-        public static string Upsell_UpgradeRequired_msg_NoServer {
+        public static string Upsell_Netshield_ProtectFromMalware {
             get {
-                return ResourceManager.GetString("Upsell_UpgradeRequired_msg_NoServer", resourceCulture);
+                return ResourceManager.GetString("Upsell_Netshield_ProtectFromMalware", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your subscription does not cover servers in this country at the moment. If you would like to access more servers, please upgrade your subscription..
+        ///   Looks up a localized string similar to When you upgrade to Plus.
         /// </summary>
-        public static string Upsell_UpgradeRequired_msg_NoServerInCountry {
+        public static string Upsell_Netshield_Subtitle {
             get {
-                return ResourceManager.GetString("Upsell_UpgradeRequired_msg_NoServerInCountry", resourceCulture);
+                return ResourceManager.GetString("Upsell_Netshield_Subtitle", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You&apos;re trying to connect to a server which requires a ProtonVPN Plus subscription or higher..
+        ///   Looks up a localized string similar to Enjoy ad-free browsing with NetShield.
         /// </summary>
-        public static string Upsell_UpgradeRequired_msg_Plus {
+        public static string Upsell_Netshield_Title {
             get {
-                return ResourceManager.GetString("Upsell_UpgradeRequired_msg_Plus", resourceCulture);
+                return ResourceManager.GetString("Upsell_Netshield_Title", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Secure Core is a premium feature which requires ProtonVPN Plus or higher..
+        ///   Looks up a localized string similar to Add another layer of encryption to your VPN connection.
         /// </summary>
-        public static string Upsell_UpgradeRequired_msg_SecureCore_1 {
+        public static string Upsell_SecureCore_ExtraEncryption {
             get {
-                return ResourceManager.GetString("Upsell_UpgradeRequired_msg_SecureCore_1", resourceCulture);
+                return ResourceManager.GetString("Upsell_SecureCore_ExtraEncryption", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Secure Core adds advanced protection against VPN server monitoring. To learn more about Secure Core, click &lt;Hyperlink Command=&quot;{Binding AboutSecureCoreCommand}&quot;&gt;here&lt;/Hyperlink&gt;..
+        ///   Looks up a localized string similar to Protect yourself from network attacks.
         /// </summary>
-        public static string Upsell_UpgradeRequired_msg_SecureCore_2 {
+        public static string Upsell_SecureCore_NetworkAttacks {
             get {
-                return ResourceManager.GetString("Upsell_UpgradeRequired_msg_SecureCore_2", resourceCulture);
+                return ResourceManager.GetString("Upsell_SecureCore_NetworkAttacks", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to To access Secure Core, check out our other subscription plans which include this feature..
+        ///   Looks up a localized string similar to Route through ultra secure servers in Switzerland, Sweden, and Iceland.
         /// </summary>
-        public static string Upsell_UpgradeRequired_msg_SecureCore_Upgrade {
+        public static string Upsell_SecureCore_RouteThrough {
             get {
-                return ResourceManager.GetString("Upsell_UpgradeRequired_msg_SecureCore_Upgrade", resourceCulture);
+                return ResourceManager.GetString("Upsell_SecureCore_RouteThrough", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to To access more servers in all countries, please upgrade your subscription..
+        ///   Looks up a localized string similar to When you upgrade to Plus.
         /// </summary>
-        public static string Upsell_UpgradeRequired_msg_Upgrade {
+        public static string Upsell_SecureCore_Subtitle {
             get {
-                return ResourceManager.GetString("Upsell_UpgradeRequired_msg_Upgrade", resourceCulture);
+                return ResourceManager.GetString("Upsell_SecureCore_Subtitle", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sorry, this server is not available for your subscription tier. If you would like to access more servers, consider upgrading your subscription..
+        ///   Looks up a localized string similar to Double the encryption with Secure Core.
         /// </summary>
-        public static string Upsell_UpgradeRequired_msg_Upsell {
+        public static string Upsell_SecureCore_Title {
             get {
-                return ResourceManager.GetString("Upsell_UpgradeRequired_msg_Upsell", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Upgrade Required.
-        /// </summary>
-        public static string Upsell_UpgradeRequired_ttl {
-            get {
-                return ResourceManager.GetString("Upsell_UpgradeRequired_ttl", resourceCulture);
+                return ResourceManager.GetString("Upsell_SecureCore_Title", resourceCulture);
             }
         }
         

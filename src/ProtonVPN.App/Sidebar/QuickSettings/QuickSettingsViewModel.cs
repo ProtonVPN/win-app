@@ -22,7 +22,6 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Caliburn.Micro;
 using GalaSoft.MvvmLight.CommandWpf;
-using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Config.Url;
 using ProtonVPN.Core.Modals;
@@ -32,6 +31,7 @@ using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.User;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Modals;
+using ProtonVPN.Modals.Upsell;
 using ProtonVPN.Onboarding;
 
 namespace ProtonVPN.Sidebar.QuickSettings
@@ -47,8 +47,6 @@ namespace ProtonVPN.Sidebar.QuickSettings
         private readonly IActiveUrls _urls;
         private readonly IModals _modals;
         private readonly IVpnManager _vpnManager;
-
-        private VpnProtocol _vpnProtocol;
 
         public QuickSettingsViewModel(
             IAppSettings appSettings,
@@ -83,6 +81,8 @@ namespace ProtonVPN.Sidebar.QuickSettings
             PortForwardingOnCommand = new RelayCommand(TurnOnPortForwardingActionAsync);
 
             GetPlusCommand = new RelayCommand(GetPlusAction);
+            ShowSecureCoreUpsellModalCommand = new RelayCommand(ShowSecureCoreUpsellModalAction);
+            ShowNetshieldUpsellModalCommand = new RelayCommand(ShowNetshieldUpsellModalAction);
         }
 
         public ICommand SecureCoreOffCommand { get; }
@@ -105,6 +105,8 @@ namespace ProtonVPN.Sidebar.QuickSettings
         public ICommand PortForwardingOffCommand { get; }
 
         public ICommand GetPlusCommand { get; }
+        public ICommand ShowSecureCoreUpsellModalCommand { get; }
+        public ICommand ShowNetshieldUpsellModalCommand { get; }
 
         public bool IsSecureCoreOnButtonOn => _appSettings.SecureCore;
         public bool IsSecureCoreOffButtonOn => !_appSettings.SecureCore;
@@ -233,8 +235,6 @@ namespace ProtonVPN.Sidebar.QuickSettings
 
         public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
         {
-            _vpnProtocol = e.State.VpnProtocol;
-
             if (e.State.Status == VpnStatus.Pinging ||
                 e.State.Status == VpnStatus.Connecting ||
                 e.State.Status == VpnStatus.Reconnecting)
@@ -282,7 +282,7 @@ namespace ProtonVPN.Sidebar.QuickSettings
             }
             else
             {
-                _urls.AccountUrl.Open();
+                ShowSecureCoreUpsellModalAction();
             }
         }
 
@@ -422,7 +422,7 @@ namespace ProtonVPN.Sidebar.QuickSettings
         {
             if (IsFreeUser)
             {
-                _urls.AccountUrl.Open();
+                ShowNetshieldUpsellModalAction();
             }
             else
             {
@@ -459,6 +459,16 @@ namespace ProtonVPN.Sidebar.QuickSettings
         private void GetPlusAction()
         {
             _urls.AccountUrl.Open();
+        }
+
+        private void ShowSecureCoreUpsellModalAction()
+        {
+            _modals.Show<ScUpsellModalViewModel>();
+        }
+
+        private void ShowNetshieldUpsellModalAction()
+        {
+            _modals.Show<NetshieldUpsellModalViewModel>();
         }
     }
 }

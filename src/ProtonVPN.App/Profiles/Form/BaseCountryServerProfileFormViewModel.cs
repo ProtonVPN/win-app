@@ -65,7 +65,7 @@ namespace ProtonVPN.Profiles.Form
                 {
                     if (ShowUpgradeModal(value))
                     {
-                        _modals.Show<NoServerInCountryDueTierUpsellModalViewModel>();
+                        _modals.Show<UpsellModalViewModel>();
                     }
 
                     if (EditMode && _selectedCountry != null)

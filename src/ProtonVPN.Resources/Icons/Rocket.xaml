@@ -1,0 +1,39 @@
+﻿<!--
+Copyright (c) 2022 Proton Technologies AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<UserControl x:Class="ProtonVPN.Resource.Icons.Rocket"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             Name="UserControl"
+             mc:Ignorable="d">
+    <Canvas Width="17" Height="22">
+        <Path Fill="{Binding ElementName=UserControl, Path=Foreground}"
+              Data="M13.615 10.655V10.01C13.1164 6.60584 11.5392 3.45134 9.115 1.01L8.5 0.5L7.975 1.01C5.55081 3.45134 3.97356 6.60584 3.475 10.01V10.655C1.61694 10.9938 0.262622 12.6064 0.25 14.495C0.254675 15.6742 0.80942 16.7837 1.75 17.495L2.665 18.245L2.95 17.09C3.15109 16.2304 3.80785 15.5506 4.66 15.32L5.245 15.155L4.945 10.82V10.13C5.34832 7.31593 6.58671 4.68761 8.5 2.585C10.4161 4.67159 11.6646 7.28345 12.085 10.085V10.76L11.785 15.095L12.37 15.26C13.2222 15.4906 13.8789 16.1704 14.08 17.03L14.365 18.185L15.28 17.435C16.1924 16.7084 16.7183 15.6013 16.705 14.435C16.6775 12.6104 15.3977 11.0448 13.615 10.655ZM1.96 15.5C1.82297 15.1879 1.75149 14.8509 1.75 14.51C1.74374 13.4599 2.4168 12.5261 3.415 12.2V12.98L3.505 14.09C2.87294 14.413 2.33932 14.9 1.96 15.5ZM13.42 14.105C14.0777 14.4127 14.6381 14.8953 15.04 15.5C15.177 15.1879 15.2485 14.8509 15.25 14.51C15.2494 13.4574 14.5712 12.5249 13.57 12.2C13.495 12.59 13.495 12.905 13.495 13.205L13.42 14.105Z" />
+        <Path Fill="{Binding ElementName=UserControl, Path=Foreground}"
+              Data="M9.25 10.7V14.45H7.75V10.7H9.25Z" />
+        <Path Fill="{Binding ElementName=UserControl, Path=Foreground}"
+              Data="M7 17H5.5V20H7V17Z" />
+        <Path Fill="{Binding ElementName=UserControl, Path=Foreground}"
+              Data="M9.25 17V21.5H7.75V17H9.25Z" />
+        <Path Fill="{Binding ElementName=UserControl, Path=Foreground}"
+              Data="M11.5 17H10V20H11.5V17Z" />
+    </Canvas>
+</UserControl>

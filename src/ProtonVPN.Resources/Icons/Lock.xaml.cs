@@ -17,14 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Config.Url;
-
-namespace ProtonVPN.Modals.Upsell
+namespace ProtonVPN.Resource.Icons
 {
-    public class NoServerDueTierUpsellModalViewModel : UpsellModalViewModel
+    public partial class Lock
     {
-        public NoServerDueTierUpsellModalViewModel(IActiveUrls urls) : base(urls)
+        public Lock()
         {
+            InitializeComponent();
         }
     }
 }

@@ -37,16 +37,6 @@ namespace ProtonVPN.Core.Servers.Models
             return servers.Where(s => s.Online());
         }
 
-        public static IEnumerable<Server> BasicServers(this IEnumerable<Server> servers)
-        {
-            return servers.Where(s => s.Tier == ServerTiers.Basic);
-        }
-
-        public static IEnumerable<Server> PlusServers(this IEnumerable<Server> servers)
-        {
-            return servers.Where(s => s.Tier == ServerTiers.Plus);
-        }
-
         public static IEnumerable<Server> UpToTierServers(this IEnumerable<Server> servers, sbyte maxTier)
         {
             return servers.Where(s => s.Tier <= maxTier);

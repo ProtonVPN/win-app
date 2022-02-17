@@ -17,7 +17,7 @@ You should have received a copy of the GNU General Public License
 along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 -->
 
-<resource:BaseModalWindow x:Class="ProtonVPN.Modals.Upsell.UpsellModalView"
+<resource:BaseModalWindow x:Class="ProtonVPN.Modals.Upsell.NetshieldUpsellModalView"
                           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -32,10 +32,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           mc:Ignorable="d"
                           Height="Auto"
                           Width="567"
-                          d:DataContext="{d:DesignInstance upsell:UpsellModalViewModel}">
+                          d:DataContext="{d:DesignInstance upsell:NetshieldUpsellModalViewModel}">
     <Grid>
-        <StackPanel Margin="90,64">
-            <Image Source="pack://application:,,,/ProtonVPN.Resource;component/Images/PlusCountries.png"
+        <StackPanel Margin="80,64">
+            <Image Source="pack://application:,,,/ProtonVPN.Resource;component/Images/Netshield.png"
                    Width="350" />
             <TextBlock TextWrapping="Wrap"
                        FontSize="24"
@@ -43,26 +43,26 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        Padding="15,0"
                        TextAlignment="Center"
                        HorizontalAlignment="Center"
-                       Text="{translations:Loc Upsell_Countries_Title}" />
+                       Text="{translations:Loc Upsell_Netshield_Title}" />
             <TextBlock TextWrapping="Wrap"
                        FontSize="16"
                        Foreground="White"
                        Padding="0,8,0,32"
                        TextAlignment="Center"
                        HorizontalAlignment="Center"
-                       Text="{translations:Loc Upsell_Countries_Subtitle}" />
+                       Text="{translations:Loc Upsell_Netshield_Subtitle}" />
             <StackPanel Margin="60,0,0,0">
                 <DockPanel Margin="0,0,0,14">
-                    <icons:TriangleRight Foreground="{StaticResource PrimaryColor}" />
-                    <TextBlock Text="{translations:Loc Upsell_Countries_GlobalStreamingServices}"
+                    <icons:Lock Foreground="{StaticResource PrimaryColor}" />
+                    <TextBlock Text="{translations:Loc Upsell_Netshield_BlockAds}"
                                Padding="10,0,0,0"
                                TextWrapping="Wrap"
                                Foreground="White"
                                FontSize="14" />
                 </DockPanel>
                 <DockPanel Margin="0,0,0,14">
-                    <icons:DevicePlus Foreground="{StaticResource PrimaryColor}" />
-                    <TextBlock Text="{translations:Loc Upsell_Countries_SimultaneousDevices}"
+                    <icons:TriangleRight Foreground="{StaticResource PrimaryColor}" />
+                    <TextBlock Text="{translations:Loc Upsell_Netshield_ProtectFromMalware}"
                                Padding="10,0,0,0"
                                TextWrapping="Wrap"
                                Foreground="White"
@@ -70,31 +70,18 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </DockPanel>
                 <DockPanel Margin="0,0,0,14">
                     <icons:ShieldSplit Foreground="{StaticResource PrimaryColor}" />
-                    <TextBlock Text="{translations:Loc Upsell_Countries_BlockAds}"
-                               Padding="10,0,0,0"
-                               TextWrapping="Wrap"
-                               Foreground="White"
-                               FontSize="14" />
-                </DockPanel>
-                <DockPanel Margin="0,0,0,14">
-                    <icons:Rocket Foreground="{StaticResource PrimaryColor}" />
-                    <TextBlock Text="{translations:Loc Upsell_Countries_BrowseFast}"
+                    <TextBlock Text="{translations:Loc Upsell_Netshield_BrowseFast}"
                                Padding="10,0,0,0"
                                TextWrapping="Wrap"
                                Foreground="White"
                                FontSize="14" />
                 </DockPanel>
             </StackPanel>
-            <TextBlock Text="{translations:Loc Upsell_Countries_MoreFeatures}"
-                       Foreground="#9CA0AA"
-                       HorizontalAlignment="Center"
-                       TextWrapping="Wrap"
-                       FontSize="12"/>
-                <Button Style="{StaticResource PrimaryButton}"
-                        HorizontalAlignment="Center"
-                        Margin="0,40,0,0"
-                        Content="{translations:Loc Upsell_btn_Upgrade}"
-                        Command="{Binding ContinueCommand}" />
+            <Button Style="{StaticResource PrimaryModalButton}"
+                    HorizontalAlignment="Center"
+                    Margin="0,25,0,0"
+                    Content="{translations:Loc Upsell_btn_Upgrade}"
+                    Command="{Binding ContinueCommand}" />
         </StackPanel>
     </Grid>
 </resource:BaseModalWindow>

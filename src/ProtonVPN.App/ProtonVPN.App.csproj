@@ -452,10 +452,6 @@
       <DependentUpon>DisconnectErrorModalView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modals\DisconnectErrorModalViewModel.cs" />
-    <Compile Include="Modals\Upsell\NoServerDueTierUpsellModalViewModel.cs" />
-    <Compile Include="Modals\Upsell\NoServerDueTierUpsellModalView.xaml.cs">
-      <DependentUpon>NoServerDueTierUpsellModalView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Modals\SessionLimits\MaximumDeviceLimitModalView.xaml.cs">
       <DependentUpon>MaximumDeviceLimitModalView.xaml</DependentUpon>
     </Compile>
@@ -567,10 +563,6 @@
       <DependentUpon>EnjoyingUpsellPopupView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\Popups\Upsell\EnjoyingUpsellPopupViewModel.cs" />
-    <Compile Include="Modals\Upsell\NoServerInCountryDueTierUpsellModalView.xaml.cs">
-      <DependentUpon>NoServerInCountryDueTierUpsellModalView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Modals\Upsell\NoServerInCountryDueTierUpsellModalViewModel.cs" />
     <Compile Include="Modals\Dialogs\WarningModalView.xaml.cs">
       <DependentUpon>WarningModalView.xaml</DependentUpon>
     </Compile>
@@ -656,7 +648,7 @@
     <Compile Include="Map\MapStateHolder.cs" />
     <Compile Include="Modals\P2PForwardModalViewModel.cs" />
     <Compile Include="Modals\Upsell\ScUpsellModalViewModel.cs" />
-    <Compile Include="Modals\Upsell\PlusUpsellModalViewModel.cs" />
+    <Compile Include="Modals\Upsell\NetshieldUpsellModalViewModel.cs" />
     <Compile Include="Modals\Upsell\UpsellModalViewModel.cs" />
     <Compile Include="Profiles\PredefinedProfileViewModel.cs" />
     <Compile Include="Profiles\Form\CountryViewModel.cs" />
@@ -834,8 +826,8 @@
     <Compile Include="Modals\Upsell\ScUpsellModalView.xaml.cs">
       <DependentUpon>ScUpsellModalView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Modals\Upsell\PlusUpsellModalView.xaml.cs">
-      <DependentUpon>PlusUpsellModalView.xaml</DependentUpon>
+    <Compile Include="Modals\Upsell\NetshieldUpsellModalView.xaml.cs">
+      <DependentUpon>NetshieldUpsellModalView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modals\Upsell\UpsellModalView.xaml.cs">
       <DependentUpon>UpsellModalView.xaml</DependentUpon>
@@ -1063,14 +1055,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\Popups\Upsell\EnjoyingUpsellPopupView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Modals\Upsell\NoServerDueTierUpsellModalView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Modals\Upsell\NoServerInCountryDueTierUpsellModalView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1471,7 +1455,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Modals\Upsell\PlusUpsellModalView.xaml">
+    <Page Include="Modals\Upsell\NetshieldUpsellModalView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

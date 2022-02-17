@@ -17,11 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Modals.Upsell
+namespace ProtonVPN.Resource.Icons
 {
-    public partial class PlusUpsellModalView
+    public partial class DevicePlus
     {
-        public PlusUpsellModalView()
+        public DevicePlus()
         {
             InitializeComponent();
         }
