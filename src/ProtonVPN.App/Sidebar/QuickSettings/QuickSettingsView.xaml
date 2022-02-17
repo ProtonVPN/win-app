@@ -291,14 +291,22 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Setter Property="Width" Value="18" />
             <Setter Property="Height" Value="18" />
         </Style>
-        <Style x:Key="PlusButton" TargetType="Button" BasedOn="{StaticResource PrimaryModalButton}">
+        <Style x:Key="UpgradeButton" TargetType="Button" BasedOn="{StaticResource PrimaryModalButton}">
             <Setter Property="Content" Value="{translations:Loc QuickSettings_btn_Upgrade}" />
             <Setter Property="Visibility" Value="Collapsed" />
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="Margin" Value="0,10,0,0" />
             <Setter Property="Padding" Value="25,0" />
-            <Setter Property="Command" Value="{Binding GetPlusCommand}" />
             <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="SecureCoreUpgradeButton" TargetType="Button" BasedOn="{StaticResource UpgradeButton}">
+            <Setter Property="Command" Value="{Binding ShowSecureCoreUpsellModalCommand}" />
+        </Style>
+        <Style x:Key="PlusButton" TargetType="Button" BasedOn="{StaticResource UpgradeButton}">
+            <Setter Property="Command" Value="{Binding GetPlusCommand}" />
+        </Style>
+        <Style x:Key="NetshieldUpgradeButton" TargetType="Button" BasedOn="{StaticResource UpgradeButton}">
+            <Setter Property="Command" Value="{Binding ShowNetshieldUpsellModalCommand}" />
         </Style>
         <Style x:Key="FeatureWarningText" TargetType="TextBlock">
             <Setter Property="FontStyle" Value="Italic" />
@@ -380,7 +388,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     </quickSettings:SettingButton>
                                     <Button>
                                         <Button.Style>
-                                            <Style TargetType="Button" BasedOn="{StaticResource PlusButton}">
+                                            <Style TargetType="Button" BasedOn="{StaticResource SecureCoreUpgradeButton}">
                                                 <Style.Triggers>
                                                     <DataTrigger Binding="{Binding IsUserTierPlusOrHigher}"
                                                                  Value="False">
@@ -468,7 +476,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     </quickSettings:SettingButton>
                                     <Button>
                                         <Button.Style>
-                                            <Style TargetType="Button" BasedOn="{StaticResource PlusButton}">
+                                            <Style TargetType="Button" BasedOn="{StaticResource NetshieldUpgradeButton}">
                                                 <Style.Triggers>
                                                     <DataTrigger Binding="{Binding IsFreeUser}" Value="True">
                                                         <Setter Property="Visibility" Value="Visible" />

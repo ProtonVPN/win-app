@@ -153,22 +153,6 @@
     <value>Provides additional protection against VPN server compromise by routing through our secure network</value>
     <comment>The description of Secure Core feature displayed in a tooltip of ( i ) image next to Secure Core toggle switch label on Countries tab in Sidebar section of main app window</comment>
   </data>
-  <data name="Upsell_UpgradeRequired_msg_SecureCore_Upgrade" xml:space="preserve">
-    <value>To access Secure Core, check out our other subscription plans which include this feature.</value>
-    <comment>The message displayed in Upgrade Required Upsell window</comment>
-  </data>
-  <data name="Upsell_UpgradeRequired_msg_SecureCore_1" xml:space="preserve">
-    <value>Secure Core is a premium feature which requires ProtonVPN Plus or higher.</value>
-    <comment>The message displayed in Upgrade Required Upsell window</comment>
-  </data>
-  <data name="Upsell_UpgradeRequired_msg_SecureCore_2" xml:space="preserve">
-    <value>Secure Core adds advanced protection against VPN server monitoring. To learn more about Secure Core, click &lt;Hyperlink Command="{Binding AboutSecureCoreCommand}"&gt;here&lt;/Hyperlink&gt;.</value>
-    <comment>The message displayed in Upgrade Required Upsell window</comment>
-  </data>
-  <data name="Upsell_UpgradeRequired_ttl" xml:space="preserve">
-    <value>Upgrade Required</value>
-    <comment>The title of Upgrade Required Upsell window</comment>
-  </data>
   <data name="Profiles_Profile_btn_KeepEditing" xml:space="preserve">
     <value>Keep editing</value>
     <comment>The text on Keep Editing button of discard changes Question dialog opened from Profile window</comment>
@@ -176,10 +160,6 @@
   <data name="Profiles_Profile_btn_Discard" xml:space="preserve">
     <value>Discard</value>
     <comment>The text on Discard button of discard changes Question dialog opened from Profile window</comment>
-  </data>
-  <data name="Upsell_UpgradeRequired_msg_Upsell" xml:space="preserve">
-    <value>Sorry, this server is not available for your subscription tier. If you would like to access more servers, consider upgrading your subscription.</value>
-    <comment>The message displayed in Upgrade Required Upsell window</comment>
   </data>
   <data name="Profiles_msg_NoServersAvailable" xml:space="preserve">
     <value>There are no servers available right now for your selection. Please select a different option.</value>
@@ -217,7 +197,7 @@
     <value>Connecting to</value>
     <comment>The label for VPN server name in Quick Launch window. Part of the sentence "Connecting to {server name}".</comment>
   </data>
-  <data name="Upsell_UpgradeRequired_btn_Upgrade" xml:space="preserve">
+  <data name="Upsell_btn_Upgrade" xml:space="preserve">
     <value>Upgrade</value>
     <comment>The text on Upgrade button in Upgrade Required Upsell window (opens web page for subscription plan upgrade)</comment>
   </data>
@@ -260,10 +240,6 @@
   <data name="Profiles_msg_AllServersOffline" xml:space="preserve">
     <value>Servers are currently offline for maintenance.</value>
     <comment>The warning message displayed when trying to connect to profile with all servers offline</comment>
-  </data>
-  <data name="Upsell_UpgradeRequired_msg_NoServerInCountry" xml:space="preserve">
-    <value>Your subscription does not cover servers in this country at the moment. If you would like to access more servers, please upgrade your subscription.</value>
-    <comment>The message displayed in Upgrade Required Upsell window</comment>
   </data>
   <data name="About_lnk_Update" xml:space="preserve">
     <value>Update</value>
@@ -457,14 +433,6 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
   <data name="Upsell_Enjoying_btn_Upgrade" xml:space="preserve">
     <value>Upgrade My Plan</value>
     <comment>The text on subscription plan upgrade button in Enjoying Upsell window (opens web page for subscription plan upgrade)</comment>
-  </data>
-  <data name="Upsell_UpgradeRequired_msg_Upgrade" xml:space="preserve">
-    <value>To access more servers in all countries, please upgrade your subscription.</value>
-    <comment>The message displayed in Upgrade Required Upsell window</comment>
-  </data>
-  <data name="Upsell_UpgradeRequired_msg_Plus" xml:space="preserve">
-    <value>You're trying to connect to a server which requires a ProtonVPN Plus subscription or higher.</value>
-    <comment>The message displayed in Upgrade Required Upsell window</comment>
   </data>
   <data name="Welcome_lbl_Welcome" xml:space="preserve">
     <value>WELCOME ON BOARD!</value>
@@ -990,10 +958,6 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <value>ProtonVPN</value>
     <comment>The title of Enjoying Upsell window</comment>
   </data>
-  <data name="Upsell_UpgradeRequired_btn_Close" xml:space="preserve">
-    <value>Cancel</value>
-    <comment>The text on close button in Upgrade Required Upsell window (closes the window)</comment>
-  </data>
   <data name="Dialogs_P2PForward_btn_Close" xml:space="preserve">
     <value>Close</value>
     <comment>The text on Close button in Forwarded P2P window</comment>
@@ -1017,10 +981,6 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
   <data name="Sidebar_Countries_ttl" xml:space="preserve">
     <value>Countries</value>
     <comment>The title of Countries tab in Sidebar section of main app window</comment>
-  </data>
-  <data name="Upsell_UpgradeRequired_msg_NoServer" xml:space="preserve">
-    <value>Sorry, no servers available for your subscription tier right now. If you would like to access more servers, consider upgrading your subscription.</value>
-    <comment>The message displayed in Upgrade Required Upsell window</comment>
   </data>
   <data name="Sidebar_Countries_msg_SecureCoreEnableConfirm" xml:space="preserve">
     <value>Switching to Secure Core mode will disconnect the active VPN connection. Do you want to continue?</value>
@@ -3159,5 +3119,58 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="BugReport_lbl_of" xml:space="preserve">
     <value>of</value>
     <comment>The text displayed in report an issue form. For example: Step 1 of 3.</comment>
+  </data>
+  <data name="Upsell_Countries_Subtitle" xml:space="preserve">
+    <value>When you upgrade to Plus</value>
+    <comment>The message disaplyed in plus upgrade modal window</comment>
+  </data>
+  <data name="Upsell_Countries_Title" xml:space="preserve">
+    <value>Access over 1200 secure servers in 63 countries</value>
+    <comment>The message disaplyed in plus upgrade modal window</comment>
+  </data>
+  <data name="Upsell_Countries_BlockAds" xml:space="preserve">
+    <value>Block ads and malware with Netshield</value>
+  </data>
+  <data name="Upsell_Countries_BrowseFast" xml:space="preserve">
+    <value>Browse at the highest speeds (10 Gbps)</value>
+  </data>
+  <data name="Upsell_Countries_GlobalStreamingServices" xml:space="preserve">
+    <value>Access global streaming services</value>
+  </data>
+  <data name="Upsell_Countries_MoreFeatures" xml:space="preserve">
+    <value>And many more premium features</value>
+  </data>
+  <data name="Upsell_Countries_SimultaneousDevices" xml:space="preserve">
+    <value>Connect up to 10 devices at once</value>
+  </data>
+  <data name="Upsell_Netshield_BlockAds" xml:space="preserve">
+    <value>Block ads and trackers</value>
+  </data>
+  <data name="Upsell_Netshield_BrowseFast" xml:space="preserve">
+    <value>Browse at the highest speeds</value>
+  </data>
+  <data name="Upsell_Netshield_ProtectFromMalware" xml:space="preserve">
+    <value>Protect your device from malware</value>
+  </data>
+  <data name="Upsell_Netshield_Subtitle" xml:space="preserve">
+    <value>When you upgrade to Plus</value>
+  </data>
+  <data name="Upsell_Netshield_Title" xml:space="preserve">
+    <value>Enjoy ad-free browsing with NetShield</value>
+  </data>
+  <data name="Upsell_SecureCore_ExtraEncryption" xml:space="preserve">
+    <value>Add another layer of encryption to your VPN connection</value>
+  </data>
+  <data name="Upsell_SecureCore_NetworkAttacks" xml:space="preserve">
+    <value>Protect yourself from network attacks</value>
+  </data>
+  <data name="Upsell_SecureCore_RouteThrough" xml:space="preserve">
+    <value>Route through ultra secure servers in Switzerland, Sweden, and Iceland</value>
+  </data>
+  <data name="Upsell_SecureCore_Subtitle" xml:space="preserve">
+    <value>When you upgrade to Plus</value>
+  </data>
+  <data name="Upsell_SecureCore_Title" xml:space="preserve">
+    <value>Double the encryption with Secure Core</value>
   </data>
 </root>

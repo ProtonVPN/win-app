@@ -21,9 +21,9 @@ using ProtonVPN.Config.Url;
 
 namespace ProtonVPN.Modals.Upsell
 {
-    public class PlusUpsellModalViewModel : UpsellModalViewModel
+    public class NetshieldUpsellModalViewModel : UpsellModalViewModel
     {
-        public PlusUpsellModalViewModel(IActiveUrls urls) : base(urls)
+        public NetshieldUpsellModalViewModel(IActiveUrls urls) : base(urls)
         {
         }
     }

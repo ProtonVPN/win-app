@@ -258,17 +258,8 @@ namespace ProtonVPN.Vpn.Connectors
 
             if (!userTierServers.Any())
             {
-                if (profileCandidates.Candidates.BasicServers().Any())
-                {
-                    _modals.Show<UpsellModalViewModel>();
-                    return;
-                }
-
-                if (profileCandidates.Candidates.PlusServers().Any())
-                {
-                    _modals.Show<PlusUpsellModalViewModel>();
-                    return;
-                }
+                _modals.Show<UpsellModalViewModel>();
+                return;
             }
 
             if (!profileCandidates.Candidates.OnlineServers().Any())
@@ -277,7 +268,7 @@ namespace ProtonVPN.Vpn.Connectors
                 return;
             }
 
-            _modals.Show<NoServerDueTierUpsellModalViewModel>();
+            _modals.Show<UpsellModalViewModel>();
         }
 
         private void HandleNoCountryServersAvailable(IReadOnlyCollection<Server> candidates)
@@ -292,7 +283,7 @@ namespace ProtonVPN.Vpn.Connectors
 
             if (!userTierServers.Any())
             {
-                _modals.Show<NoServerInCountryDueTierUpsellModalViewModel>();
+                _modals.Show<UpsellModalViewModel>();
                 return;
             }
 
@@ -302,7 +293,7 @@ namespace ProtonVPN.Vpn.Connectors
                 return;
             }
 
-            _modals.Show<NoServerInCountryDueTierUpsellModalViewModel>();
+            _modals.Show<UpsellModalViewModel>();
         }
 
         private Common.Vpn.VpnConfig VpnConfig(VpnProtocol protocol)
@@ -464,15 +455,7 @@ namespace ProtonVPN.Vpn.Connectors
                 return;
             }
 
-            switch (server.Tier)
-            {
-                case ServerTiers.Basic:
-                    _modals.Show<UpsellModalViewModel>();
-                    break;
-                case ServerTiers.Plus:
-                    _modals.Show<PlusUpsellModalViewModel>();
-                    break;
-            }
+            _modals.Show<UpsellModalViewModel>();
         }
 
         private IReadOnlyList<VpnHost> GetValidServers(IEnumerable<Server> servers)

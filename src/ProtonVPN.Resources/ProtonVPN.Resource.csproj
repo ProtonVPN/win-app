@@ -66,8 +66,29 @@
     <Compile Include="Controls\ProtonAnimation.xaml.cs">
       <DependentUpon>ProtonAnimation.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Icons\ImapSmtp.xaml.cs">
+      <DependentUpon>ImapSmtp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Icons\Alias.xaml.cs">
+      <DependentUpon>Alias.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Icons\Lock.xaml.cs">
+      <DependentUpon>Lock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Icons\Rocket.xaml.cs">
+      <DependentUpon>Rocket.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Icons\ShieldSplit.xaml.cs">
+      <DependentUpon>ShieldSplit.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Icons\Error.xaml.cs">
       <DependentUpon>Error.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Icons\DevicePlus.xaml.cs">
+      <DependentUpon>DevicePlus.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Icons\TriangleRight.xaml.cs">
+      <DependentUpon>TriangleRight.xaml</DependentUpon>
     </Compile>
     <Compile Include="Icons\Thanks.xaml.cs">
       <DependentUpon>Thanks.xaml</DependentUpon>
@@ -121,7 +142,35 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Icons\ImapSmtp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Icons\Alias.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Icons\Lock.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Icons\Rocket.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Icons\ShieldSplit.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Icons\Error.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Icons\DevicePlus.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Icons\TriangleRight.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -196,6 +245,13 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\PlusCountries.png" />
+    <Resource Include="Images\Netshield.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\SecureCore.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

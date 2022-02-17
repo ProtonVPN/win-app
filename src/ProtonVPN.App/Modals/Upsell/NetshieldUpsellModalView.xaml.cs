@@ -19,9 +19,9 @@
 
 namespace ProtonVPN.Modals.Upsell
 {
-    public partial class NoServerInCountryDueTierUpsellModalView
+    public partial class NetshieldUpsellModalView
     {
-        public NoServerInCountryDueTierUpsellModalView()
+        public NetshieldUpsellModalView()
         {
             InitializeComponent();
         }
