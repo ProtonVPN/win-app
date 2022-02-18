@@ -25,6 +25,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Abstract;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.ApiLogs;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.OS.Net.DoH;
@@ -83,13 +84,13 @@ namespace ProtonVPN.Core.Api.Handlers
                 try
                 {
                     _activeBackendHost = _appSettings.ActiveAlternativeApiBaseUrl;
-                    _logger.Info($"[AlternativeHostHandler: sending request using {_activeBackendHost}");
+                    _logger.Info<ApiLog>($"Sending request using {_activeBackendHost}");
 
                     return await SendInternalAsync(request, token);
                 }
                 catch (Exception e) when (e.IsPotentialBlocking())
                 {
-                    _logger.Info($"[AlternativeHostHandler] request failed while DoH active. Host: {_activeBackendHost}");
+                    _logger.Info<ApiErrorLog>($"Request failed while DoH active. Host: {_activeBackendHost}");
 
                     ResetBackendHost();
                     return await SendAsync(request, token);
@@ -102,7 +103,7 @@ namespace ProtonVPN.Core.Api.Handlers
             }
             catch (Exception e) when (_isDisconnected && e.IsPotentialBlocking())
             {
-                _logger.Info("[AlternativeHostHandler] request failed due to potentially not reachable api.");
+                _logger.Info<ApiErrorLog>("Request failed due to potentially not reachable api.");
 
                 await _fetchProxies.Run();
 
@@ -113,7 +114,7 @@ namespace ProtonVPN.Core.Api.Handlers
 
                 if (await IsApiReachable(request, token))
                 {
-                    _logger.Info("[AlternativeHostHandler] ping success, retrying original request.");
+                    _logger.Info<ApiLog>("Ping success, retrying original request.");
 
                     try
                     {

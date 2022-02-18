@@ -94,6 +94,8 @@
     <ROW Component="Caliburn.Micro.Platform.Core.dll" ComponentId="{294B2C0A-8A71-4EC6-A139-18AB3AAEEE33}" Directory_="APPDIR" Attributes="0" KeyPath="Caliburn.Micro.Platform.Core.dll"/>
     <ROW Component="Caliburn.Micro.Platform.dll" ComponentId="{A764037B-6C8D-4AA7-AFFD-AEB8EC5CD828}" Directory_="APPDIR" Attributes="0" KeyPath="Caliburn.Micro.Platform.dll"/>
     <ROW Component="Caliburn.Micro.dll" ComponentId="{B21823B7-0296-45CA-884A-C0B7C95D6133}" Directory_="APPDIR" Attributes="0" KeyPath="Caliburn.Micro.dll"/>
+    <ROW Component="DeviceId.Windows.Wmi.dll" ComponentId="{1CC700FE-8077-4EC6-8F4B-B62BBD36C1D2}" Directory_="APPDIR" Attributes="0" KeyPath="DeviceId.Windows.Wmi.dll"/>
+    <ROW Component="DeviceId.Windows.dll" ComponentId="{E331AC82-0861-4ED1-B827-C309C71B0DE8}" Directory_="APPDIR" Attributes="0" KeyPath="DeviceId.Windows.dll"/>
     <ROW Component="DeviceId.dll" ComponentId="{24425D97-6949-4584-B580-9FC07DA07749}" Directory_="APPDIR" Attributes="0" KeyPath="DeviceId.dll"/>
     <ROW Component="DnsClient.dll" ComponentId="{34E2A2F6-8615-4B5A-82CC-94F43F1B97EA}" Directory_="APPDIR" Attributes="0" KeyPath="DnsClient.dll"/>
     <ROW Component="DynamicExpresso.Core.dll" ComponentId="{3CC4F9B3-E8E9-4261-A6F7-896541F64FBC}" Directory_="APPDIR" Attributes="0" KeyPath="DynamicExpresso.Core.dll"/>
@@ -108,10 +110,12 @@
     <ROW Component="LocalAgent.dll" ComponentId="{25183BB4-5B07-43F9-8BEB-D58230BAEB78}" Directory_="bit_Dir" Attributes="0" KeyPath="LocalAgent.dll"/>
     <ROW Component="LocalAgent.dll_1" ComponentId="{73CCCE7C-D519-40C3-8AAA-FB879005DFA4}" Directory_="bit_1_Dir" Attributes="256" KeyPath="LocalAgent.dll_1"/>
     <ROW Component="Logs" ComponentId="{973CE498-3D38-4B1D-9790-BF0E5196A202}" Directory_="Logs_Dir" Attributes="0"/>
+    <ROW Component="Microsoft.Bcl.AsyncInterfaces.dll" ComponentId="{AEEA0C2B-E753-4ADF-B018-7D86744FD612}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Bcl.AsyncInterfaces.dll"/>
     <ROW Component="Microsoft.Deployment.WindowsInstaller.dll" ComponentId="{FFB7E0D6-80C7-40A9-AC9E-BFEA81253FFB}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Deployment.WindowsInstaller.dll"/>
     <ROW Component="Microsoft.Toolkit.Uwp.Notifications.dll" ComponentId="{6DE7272A-D513-4F72-9A0A-763828A16A2E}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Toolkit.Uwp.Notifications.dll"/>
     <ROW Component="Microsoft.Web.WebView2.Core.dll" ComponentId="{6282B095-9B93-4480-A4C0-92A979835E50}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Web.WebView2.Core.dll"/>
     <ROW Component="Microsoft.Web.WebView2.Wpf.dll" ComponentId="{5308BF6F-9BCF-424F-A63A-112AD8C2A6C8}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Web.WebView2.Wpf.dll"/>
+    <ROW Component="Microsoft.Win32.Registry.dll" ComponentId="{5B88B551-AB8E-4C78-AA21-AEF1117EB2C8}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Win32.Registry.dll"/>
     <ROW Component="Newtonsoft.Json.dll" ComponentId="{E0A54725-459B-4F28-A4A0-7587B5B176E7}" Directory_="APPDIR" Attributes="0" KeyPath="Newtonsoft.Json.dll"/>
     <ROW Component="OxyPlot.Wpf.dll" ComponentId="{E3A7EA56-A92F-41C6-9A0A-26026B6E9B7D}" Directory_="APPDIR" Attributes="0" KeyPath="OxyPlot.Wpf.dll"/>
     <ROW Component="OxyPlot.dll" ComponentId="{B38C6968-998F-46E3-ACD3-97DC0F57A977}" Directory_="APPDIR" Attributes="0" KeyPath="OxyPlot.dll"/>
@@ -155,11 +159,18 @@
     <ROW Component="ProtonVPNTun" ComponentId="{B9C0B418-4523-47B5-8CEF-732F3AA6ED18}" Directory_="APPDIR" Attributes="4" KeyPath="ProtonVPNTun" Options="2"/>
     <ROW Component="ProtonVPN_1" ComponentId="{ACB3B68A-E766-4500-839B-16BFD1B73654}" Directory_="APPDIR" Attributes="4" KeyPath="ProtonVPN"/>
     <ROW Component="ProtonVPN_3" ComponentId="{4FF5EBF7-6718-4D88-87DF-A8A87B8603A3}" Directory_="ProtonVPN_2_Dir" Attributes="0"/>
-    <ROW Component="Sentry.PlatformAbstractions.dll" ComponentId="{426B912C-30F2-441C-9C0A-B82E729946F0}" Directory_="APPDIR" Attributes="0" KeyPath="Sentry.PlatformAbstractions.dll"/>
-    <ROW Component="Sentry.Protocol.dll" ComponentId="{FAB7F502-0A1C-4B84-BDB7-0217C098C4D4}" Directory_="APPDIR" Attributes="0" KeyPath="Sentry.Protocol.dll"/>
     <ROW Component="Sentry.dll" ComponentId="{AA57D927-5AD1-4BC0-AE4F-5CD31F6D87DF}" Directory_="APPDIR" Attributes="0" KeyPath="Sentry.dll"/>
     <ROW Component="System.Buffers.dll" ComponentId="{D6DD1AE0-5E93-42A7-B5E2-296BFC7074CD}" Directory_="APPDIR" Attributes="0" KeyPath="System.Buffers.dll"/>
     <ROW Component="System.Collections.Immutable.dll" ComponentId="{F0B8D2D3-7CCB-401B-BBA4-263FB479A4B8}" Directory_="APPDIR" Attributes="0" KeyPath="System.Collections.Immutable.dll"/>
+    <ROW Component="System.Memory.dll" ComponentId="{6E0D8BD9-A5D4-4B49-BD13-8B9B481A1B62}" Directory_="APPDIR" Attributes="0" KeyPath="System.Memory.dll"/>
+    <ROW Component="System.Numerics.Vectors.dll" ComponentId="{0C52E4AB-3F5C-4229-9A90-B8FE1E22B41B}" Directory_="APPDIR" Attributes="0" KeyPath="System.Numerics.Vectors.dll"/>
+    <ROW Component="System.Reflection.Metadata.dll" ComponentId="{8EF00FA8-2A91-4FB9-8022-6C20030E920F}" Directory_="APPDIR" Attributes="0" KeyPath="System.Reflection.Metadata.dll"/>
+    <ROW Component="System.Runtime.CompilerServices.Unsafe.dll" ComponentId="{4BA076CC-3706-42A4-A2C1-004CB5B11634}" Directory_="APPDIR" Attributes="0" KeyPath="System.Runtime.CompilerServices.Unsafe.dll"/>
+    <ROW Component="System.Security.AccessControl.dll" ComponentId="{919ACBDA-F85C-4D66-AB63-AD8E2C9B0C6A}" Directory_="APPDIR" Attributes="0" KeyPath="System.Security.AccessControl.dll"/>
+    <ROW Component="System.Security.Principal.Windows.dll" ComponentId="{D4C5294F-5156-419B-845C-E4B04886A35E}" Directory_="APPDIR" Attributes="0" KeyPath="System.Security.Principal.Windows.dll"/>
+    <ROW Component="System.Text.Encodings.Web.dll" ComponentId="{898736B7-D0D5-45D9-9374-AF76C81408CB}" Directory_="APPDIR" Attributes="0" KeyPath="System.Text.Encodings.Web.dll"/>
+    <ROW Component="System.Text.Json.dll" ComponentId="{27BE103A-1B44-41D4-AD2A-978E4F6CD78E}" Directory_="APPDIR" Attributes="0" KeyPath="System.Text.Json.dll"/>
+    <ROW Component="System.Threading.Tasks.Extensions.dll" ComponentId="{9653096C-84BF-48EA-93A8-B988B202D74C}" Directory_="APPDIR" Attributes="0" KeyPath="System.Threading.Tasks.Extensions.dll"/>
     <ROW Component="System.ValueTuple.dll" ComponentId="{C85E70A5-9B52-4455-ACA1-877E27AA6212}" Directory_="APPDIR" Attributes="0" KeyPath="System.ValueTuple.dll"/>
     <ROW Component="System.Windows.Interactivity.dll" ComponentId="{8862DADA-0116-4219-8641-D0B85AB74B27}" Directory_="APPDIR" Attributes="0" KeyPath="System.Windows.Interactivity.dll"/>
     <ROW Component="TapInstaller.CA.dll" ComponentId="{3CD5546F-9BFE-4EF9-A535-F2E3320E76D8}" Directory_="APPDIR" Attributes="0" KeyPath="TapInstaller.CA.dll"/>
@@ -229,8 +240,6 @@
     <ROW File="ProtonVPN.Update.dll" Component_="ProtonVPN.Update.dll" FileName="PROTON~4.DLL|ProtonVPN.Update.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ProtonVPN.Update.dll" SelfReg="false"/>
     <ROW File="ProtonVPN.Vpn.dll" Component_="ProtonVPN.Vpn.dll" FileName="PROTON~5.DLL|ProtonVPN.Vpn.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ProtonVPN.Vpn.dll" SelfReg="false"/>
     <ROW File="Sentry.dll" Component_="Sentry.dll" FileName="Sentry.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Sentry.dll" SelfReg="false"/>
-    <ROW File="Sentry.PlatformAbstractions.dll" Component_="Sentry.PlatformAbstractions.dll" FileName="SENTRY~1.DLL|Sentry.PlatformAbstractions.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Sentry.PlatformAbstractions.dll" SelfReg="false"/>
-    <ROW File="Sentry.Protocol.dll" Component_="Sentry.Protocol.dll" FileName="SENTRY~2.DLL|Sentry.Protocol.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Sentry.Protocol.dll" SelfReg="false"/>
     <ROW File="System.Collections.Immutable.dll" Component_="System.Collections.Immutable.dll" FileName="SYSTEM~1.DLL|System.Collections.Immutable.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\System.Collections.Immutable.dll" SelfReg="false"/>
     <ROW File="System.Windows.Interactivity.dll" Component_="System.Windows.Interactivity.dll" FileName="SYSTEM~9.DLL|System.Windows.Interactivity.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\System.Windows.Interactivity.dll" SelfReg="false"/>
     <ROW File="TapInstaller.CA.dll" Component_="TapInstaller.CA.dll" FileName="TAPINS~1.DLL|TapInstaller.CA.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\TapInstaller.CA.dll" SelfReg="false"/>
@@ -289,11 +298,23 @@
     <ROW File="ProtonVPN.WireGuardDriver.dll" Component_="ProtonVPN.WireGuardDriver.dll" FileName="PROTO~13.DLL|ProtonVPN.WireGuardDriver.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ProtonVPN.WireGuardDriver.dll" SelfReg="false"/>
     <ROW File="Gu.Wpf.Adorners.dll" Component_="Gu.Wpf.Adorners.dll" FileName="GUWPFA~1.DLL|Gu.Wpf.Adorners.dll" Attributes="0" SourcePath="..\src\bin\Gu.Wpf.Adorners.dll" SelfReg="false"/>
     <ROW File="WpfScreenHelper.dll" Component_="WpfScreenHelper.dll" FileName="WPFSCR~1.DLL|WpfScreenHelper.dll" Attributes="0" SourcePath="..\src\bin\WpfScreenHelper.dll" SelfReg="false"/>
+    <ROW File="DeviceId.Windows.Wmi.dll" Component_="DeviceId.Windows.Wmi.dll" FileName="DEVICE~1.DLL|DeviceId.Windows.Wmi.dll" Attributes="0" SourcePath="..\src\bin\DeviceId.Windows.Wmi.dll" SelfReg="false"/>
+    <ROW File="DeviceId.Windows.dll" Component_="DeviceId.Windows.dll" FileName="DEVICE~2.DLL|DeviceId.Windows.dll" Attributes="0" SourcePath="..\src\bin\DeviceId.Windows.dll" SelfReg="false"/>
+    <ROW File="Microsoft.Bcl.AsyncInterfaces.dll" Component_="Microsoft.Bcl.AsyncInterfaces.dll" FileName="MICROS~5.DLL|Microsoft.Bcl.AsyncInterfaces.dll" Attributes="0" SourcePath="..\src\bin\Microsoft.Bcl.AsyncInterfaces.dll" SelfReg="false"/>
+    <ROW File="System.Memory.dll" Component_="System.Memory.dll" FileName="SYSTEM~4.DLL|System.Memory.dll" Attributes="0" SourcePath="..\src\bin\System.Memory.dll" SelfReg="false"/>
+    <ROW File="System.Numerics.Vectors.dll" Component_="System.Numerics.Vectors.dll" FileName="SYSTEM~5.DLL|System.Numerics.Vectors.dll" Attributes="0" SourcePath="..\src\bin\System.Numerics.Vectors.dll" SelfReg="false"/>
+    <ROW File="System.Reflection.Metadata.dll" Component_="System.Reflection.Metadata.dll" FileName="SYSTEM~6.DLL|System.Reflection.Metadata.dll" Attributes="0" SourcePath="..\src\bin\System.Reflection.Metadata.dll" SelfReg="false"/>
+    <ROW File="System.Runtime.CompilerServices.Unsafe.dll" Component_="System.Runtime.CompilerServices.Unsafe.dll" FileName="SYSTEM~7.DLL|System.Runtime.CompilerServices.Unsafe.dll" Attributes="0" SourcePath="..\src\bin\System.Runtime.CompilerServices.Unsafe.dll" SelfReg="false"/>
+    <ROW File="System.Text.Encodings.Web.dll" Component_="System.Text.Encodings.Web.dll" FileName="SYSTEM~8.DLL|System.Text.Encodings.Web.dll" Attributes="0" SourcePath="..\src\bin\System.Text.Encodings.Web.dll" SelfReg="false"/>
+    <ROW File="System.Text.Json.dll" Component_="System.Text.Json.dll" FileName="SYSTE~10.DLL|System.Text.Json.dll" Attributes="0" SourcePath="..\src\bin\System.Text.Json.dll" SelfReg="false"/>
+    <ROW File="System.Threading.Tasks.Extensions.dll" Component_="System.Threading.Tasks.Extensions.dll" FileName="SYSTE~11.DLL|System.Threading.Tasks.Extensions.dll" Attributes="0" SourcePath="..\src\bin\System.Threading.Tasks.Extensions.dll" SelfReg="false"/>
+    <ROW File="Microsoft.Win32.Registry.dll" Component_="Microsoft.Win32.Registry.dll" FileName="MICROS~6.DLL|Microsoft.Win32.Registry.dll" Attributes="0" SourcePath="..\src\bin\Microsoft.Win32.Registry.dll" SelfReg="false"/>
+    <ROW File="System.Security.AccessControl.dll" Component_="System.Security.AccessControl.dll" FileName="SYSTE~12.DLL|System.Security.AccessControl.dll" Attributes="0" SourcePath="..\src\bin\System.Security.AccessControl.dll" SelfReg="false"/>
+    <ROW File="System.Security.Principal.Windows.dll" Component_="System.Security.Principal.Windows.dll" FileName="SYSTE~13.DLL|System.Security.Principal.Windows.dll" Attributes="0" SourcePath="..\src\bin\System.Security.Principal.Windows.dll" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.AiRemoveFileComponent">
     <ROW RemoveFile="_" Condition="(AI_CLEAN_RESOURCES_UNINSTALL = &quot;1&quot;) AND (NOT UPGRADINGPRODUCTCODE)" Options="3"/>
     <ROW RemoveFile="__1" Condition="(AI_CLEAN_RESOURCES_UNINSTALL = &quot;1&quot;) AND (NOT UPGRADINGPRODUCTCODE)" Options="3"/>
-    <ROW RemoveFile="__2" Condition="(OLDPRODUCTS)" Options="3"/>
     <ROW RemoveFile="__3" Options="3"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BootstrapperUISequenceComponent">
@@ -597,8 +618,6 @@
     <ROW Feature_="MainFeature" Component_="ProtonVPN.exe"/>
     <ROW Feature_="MainFeature" Component_="ProtonVPNService.exe"/>
     <ROW Feature_="MainFeature" Component_="ProtonVPN_1"/>
-    <ROW Feature_="MainFeature" Component_="Sentry.PlatformAbstractions.dll"/>
-    <ROW Feature_="MainFeature" Component_="Sentry.Protocol.dll"/>
     <ROW Feature_="MainFeature" Component_="Sentry.dll"/>
     <ROW Feature_="MainFeature" Component_="System.Buffers.dll"/>
     <ROW Feature_="MainFeature" Component_="System.Collections.Immutable.dll"/>
@@ -664,6 +683,19 @@
     <ROW Feature_="MainFeature" Component_="ProtonVPN.WireGuardDriver.dll"/>
     <ROW Feature_="MainFeature" Component_="Gu.Wpf.Adorners.dll"/>
     <ROW Feature_="MainFeature" Component_="WpfScreenHelper.dll"/>
+    <ROW Feature_="MainFeature" Component_="DeviceId.Windows.Wmi.dll"/>
+    <ROW Feature_="MainFeature" Component_="DeviceId.Windows.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.Bcl.AsyncInterfaces.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Memory.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Numerics.Vectors.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Reflection.Metadata.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Runtime.CompilerServices.Unsafe.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Text.Encodings.Web.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Text.Json.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Threading.Tasks.Extensions.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.Win32.Registry.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Security.AccessControl.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Security.Principal.Windows.dll"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
     <ROW Name="protonvpn.exe" SourcePath="images\protonvpn.ico" Index="0"/>
@@ -782,7 +814,6 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiRemoveFileComponent">
     <ROW FileKey="_" Component_="AI_ExePath" DirProperty="AppData_Dir" InstallMode="2"/>
     <ROW FileKey="__1" Component_="ProtonVPN.exe" DirProperty="ProtonVPN_1_Dir" InstallMode="2"/>
-    <ROW FileKey="__2" Component_="AI_ExePath" DirProperty="Logs_Dir" InstallMode="1"/>
     <ROW FileKey="__3" Component_="ProtonVPN" DirProperty="ProtonVPN_2_Dir" InstallMode="2"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiServConfigFailureActionsComponent">

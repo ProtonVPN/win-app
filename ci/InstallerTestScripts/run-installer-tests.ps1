@@ -1,4 +1,4 @@
-$installerAbstractPath = "\\DESKTOP-RP7799P\Shared\Installers\" + $args[0] + "\*.exe"
+$installerAbstractPath = "\\DESKTOP-48DK8LA\Shared\Installers\" + $args[0] + "\*.exe"
 $installerPath = Get-ChildItem $installerAbstractPath
 $tasktLogsDir = $env:TASKT_LOG_PATH
 
@@ -48,7 +48,7 @@ Get-ChildItem -Path $tasktLogsDir -Include *.* -File -Recurse | foreach { $_.Del
 Log-Message 'Starting installation tests...'
 Write-EventLog -LogName Application -Source "ProtonVPNService" -EventId 6 -EntryType Information -Message "Installer script" -Category 0
 
-\\DESKTOP-RP7799P\Shared\TasktTestRunner.exe 
+\\DESKTOP-48DK8LA\Shared\TasktTestRunner.exe 
 Log-Message 'Reading tests output...'
 
 return $LASTEXITCODE

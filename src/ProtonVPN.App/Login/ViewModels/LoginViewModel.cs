@@ -17,7 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Security;
 using System.Threading.Tasks;
@@ -25,6 +27,8 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.KillSwitch;
+using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Config.Url;
 using ProtonVPN.Core.Api;
@@ -43,6 +47,7 @@ namespace ProtonVPN.Login.ViewModels
     {
         private string _errorText = "";
 
+        private readonly ILogger _logger;
         private readonly Common.Configuration.Config _appConfig;
         private readonly IAppSettings _appSettings;
         private readonly LoginWindowViewModel _loginWindowViewModel;
@@ -62,6 +67,7 @@ namespace ProtonVPN.Login.ViewModels
         private VpnStatus _lastVpnStatus = VpnStatus.Disconnected;
 
         public LoginViewModel(
+            ILogger logger,
             Common.Configuration.Config appConfig,
             LoginWindowViewModel loginWindowViewModel,
             IActiveUrls urls,
@@ -72,6 +78,7 @@ namespace ProtonVPN.Login.ViewModels
             GuestHoleConnector guestHoleConnector,
             GuestHoleState guestHoleState)
         {
+            _logger = logger;
             _appConfig = appConfig;
             _userAuth = userAuth;
             _appSettings = appSettings;
@@ -288,9 +295,21 @@ namespace ProtonVPN.Login.ViewModels
                 LoginErrorViewModel.SetError(result.Error);
             }
 
-            if (result.Value == AuthError.NoVpnAccess)
+            HandleAuthError(result.Value);
+        }
+
+        private void HandleAuthError(AuthError error)
+        {
+            switch (error)
             {
-                _modals.Show<AssignVpnConnectionsModalViewModel>();
+                case AuthError.NoVpnAccess:
+                    _modals.Show<AssignVpnConnectionsModalViewModel>();
+                    break;
+                case AuthError.MissingGoSrpDll:
+                    _logger.Fatal<AppCrashLog>("The app is missing GoSrp.dll");
+                    Process.Start("ProtonVPN.ErrorMessage.exe");
+                    Environment.Exit(0);
+                    break;
             }
         }
 

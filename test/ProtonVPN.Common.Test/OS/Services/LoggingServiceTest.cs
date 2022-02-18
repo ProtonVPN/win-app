@@ -27,6 +27,7 @@ using NSubstitute;
 using NSubstitute.ExceptionExtensions;
 using ProtonVPN.Common.Abstract;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.AppServiceLogs;
 using ProtonVPN.Common.OS.Services;
 
 namespace ProtonVPN.Common.Test.OS.Services
@@ -50,10 +51,10 @@ namespace ProtonVPN.Common.Test.OS.Services
             // Arrange
             const string name = "Our service";
             _origin.Name.Returns(name);
-            var subject = new LoggingService(_logger, _origin);
+            LoggingService subject = new(_logger, _origin);
 
             // Act
-            var result = subject.Name;
+            string result = subject.Name;
 
             // Assert
             result.Should().Be(name);
@@ -66,10 +67,10 @@ namespace ProtonVPN.Common.Test.OS.Services
         {
             // Arrange
             _origin.Running().Returns(value);
-            var subject = new LoggingService(_logger, _origin);
+            LoggingService subject = new(_logger, _origin);
 
             // Act
-            var result = subject.Running();
+            bool result = subject.Running();
 
             // Assert
             result.Should().Be(value);
@@ -79,13 +80,13 @@ namespace ProtonVPN.Common.Test.OS.Services
         public async Task StartAsync_ShouldBe_Origin_StartAsync()
         {
             // Arrange
-            var expected = Result.Ok();
-            var cancellationToken = new CancellationToken();
+            Result expected = Result.Ok();
+            CancellationToken cancellationToken = new();
             _origin.StartAsync(cancellationToken).Returns(expected);
-            var subject = new LoggingService(_logger, _origin);
+            LoggingService subject = new(_logger, _origin);
 
             // Act
-            var result = await subject.StartAsync(cancellationToken);
+            Result result = await subject.StartAsync(cancellationToken);
             
             // Assert
             result.Should().BeSameAs(expected);
@@ -95,10 +96,10 @@ namespace ProtonVPN.Common.Test.OS.Services
         public async Task StartAsync_ShouldPass_Exception()
         {
             // Arrange
-            var exception = new InvalidOperationException();
-            var cancellationToken = CancellationToken.None;
+            InvalidOperationException exception = new();
+            CancellationToken cancellationToken = CancellationToken.None;
             _origin.StartAsync(cancellationToken).Throws(exception);
-            var subject = new LoggingService(_logger, _origin);
+            LoggingService subject = new(_logger, _origin);
 
             // Act
             Func<Task> action = async () => await subject.StartAsync(cancellationToken);
@@ -111,16 +112,16 @@ namespace ProtonVPN.Common.Test.OS.Services
         public async Task StartAsync_ShouldLog()
         {
             // Arrange
-            var expected = Result.Ok();
-            var cancellationToken = new CancellationToken();
+            Result expected = Result.Ok();
+            CancellationToken cancellationToken = new();
             _origin.StartAsync(cancellationToken).Returns(expected);
-            var subject = new LoggingService(_logger, _origin);
+            LoggingService subject = new(_logger, _origin);
 
             // Act
             await subject.StartAsync(cancellationToken);
 
             // Assert
-            _logger.Received(2).Info(Arg.Any<string>());
+            _logger.Received(2).Info<AppServiceStartLog>(Arg.Any<string>(), null, Arg.Any<string>(), Arg.Any<string>(), Arg.Any<int>());
         }
 
         [DataTestMethod]
@@ -131,12 +132,12 @@ namespace ProtonVPN.Common.Test.OS.Services
         public async Task StartAsync_ShouldLog_ExpectedException(Type exceptionType, int errorCode)
         {
             // Arrange
-            var exception = exceptionType == typeof(InvalidOperationException)
+            Exception exception = exceptionType == typeof(InvalidOperationException)
                 ? new InvalidOperationException("", new Win32Exception(errorCode))
                 : (Exception)Activator.CreateInstance(exceptionType);
-            var cancellationToken = CancellationToken.None;
+            CancellationToken cancellationToken = CancellationToken.None;
             _origin.StartAsync(cancellationToken).Throws(exception);
-            var subject = new LoggingService(_logger, _origin);
+            LoggingService subject = new(_logger, _origin);
 
             // Act
             try
@@ -148,17 +149,18 @@ namespace ProtonVPN.Common.Test.OS.Services
             { }
 
             // Assert
-            _logger.Received(2).Info(Arg.Any<string>());
+            _logger.Received(1).Info<AppServiceStartLog>(Arg.Any<string>(), null, Arg.Any<string>(), Arg.Any<string>(), Arg.Any<int>());
+            _logger.Received(1).Warn<AppServiceStartFailedLog>(Arg.Any<string>(), null, Arg.Any<string>(), Arg.Any<string>(), Arg.Any<int>());
         }
 
         [TestMethod]
         public async Task StartAsync_ShouldLog_UnexpectedException()
         {
             // Arrange
-            var exception = new InvalidOperationException("");
-            var cancellationToken = CancellationToken.None;
+            InvalidOperationException exception = new("");
+            CancellationToken cancellationToken = CancellationToken.None;
             _origin.StartAsync(cancellationToken).Throws(exception);
-            var subject = new LoggingService(_logger, _origin);
+            LoggingService subject = new(_logger, _origin);
 
             // Act
             try
@@ -170,21 +172,21 @@ namespace ProtonVPN.Common.Test.OS.Services
             { }
 
             // Assert
-            _logger.Received(1).Info(Arg.Any<string>());
-            _logger.Received(1).Error(Arg.Any<string>());
+            _logger.Received(1).Info<AppServiceStartLog>(Arg.Any<string>(), null, Arg.Any<string>(), Arg.Any<string>(), Arg.Any<int>());
+            _logger.Received(1).Error<AppServiceStartFailedLog>(Arg.Any<string>(), null, Arg.Any<string>(), Arg.Any<string>(), Arg.Any<int>());
         }
 
         [TestMethod]
         public async Task StopAsync_ShouldBe_Origin_StopAsync()
         {
             // Arrange
-            var expected = Result.Fail();
-            var cancellationToken = new CancellationToken();
+            Result expected = Result.Fail();
+            CancellationToken cancellationToken = new();
             _origin.StopAsync(cancellationToken).Returns(expected);
-            var subject = new LoggingService(_logger, _origin);
+            LoggingService subject = new(_logger, _origin);
 
             // Act
-            var result = await subject.StopAsync(cancellationToken);
+            Result result = await subject.StopAsync(cancellationToken);
 
             // Assert
             result.Should().BeSameAs(expected);
@@ -194,10 +196,10 @@ namespace ProtonVPN.Common.Test.OS.Services
         public async Task StopAsync_ShouldPass_Exception()
         {
             // Arrange
-            var exception = new Win32Exception();
-            var cancellationToken = CancellationToken.None;
+            Win32Exception exception = new();
+            CancellationToken cancellationToken = CancellationToken.None;
             _origin.StopAsync(cancellationToken).Throws(exception);
-            var subject = new LoggingService(_logger, _origin);
+            LoggingService subject = new(_logger, _origin);
 
             // Act
             Func<Task> action = async () => await subject.StopAsync(cancellationToken);
@@ -210,16 +212,17 @@ namespace ProtonVPN.Common.Test.OS.Services
         public async Task StopAsync_ShouldLog()
         {
             // Arrange
-            var expected = Result.Fail();
-            var cancellationToken = new CancellationToken();
+            Result expected = Result.Fail();
+            CancellationToken cancellationToken = new();
             _origin.StopAsync(cancellationToken).Returns(expected);
-            var subject = new LoggingService(_logger, _origin);
+            LoggingService subject = new(_logger, _origin);
 
             // Act
             await subject.StopAsync(cancellationToken);
 
             // Assert
-            _logger.Received(2).Info(Arg.Any<string>());
+            _logger.Received(1).Info<AppServiceStopLog>(Arg.Any<string>(), null, Arg.Any<string>(), Arg.Any<string>(), Arg.Any<int>());
+            _logger.Received(1).Warn<AppServiceStopFailedLog>(Arg.Any<string>(), null, Arg.Any<string>(), Arg.Any<string>(), Arg.Any<int>());
         }
 
         [DataTestMethod]
@@ -230,12 +233,12 @@ namespace ProtonVPN.Common.Test.OS.Services
         public async Task StopAsync_ShouldLog_ExpectedException(Type exceptionType, int errorCode)
         {
             // Arrange
-            var exception = exceptionType == typeof(InvalidOperationException) 
+            Exception exception = exceptionType == typeof(InvalidOperationException) 
                 ? new InvalidOperationException("", new Win32Exception(errorCode))
                 : (Exception)Activator.CreateInstance(exceptionType);
-            var cancellationToken = CancellationToken.None;
+            CancellationToken cancellationToken = CancellationToken.None;
             _origin.StopAsync(cancellationToken).Throws(exception);
-            var subject = new LoggingService(_logger, _origin);
+            LoggingService subject = new(_logger, _origin);
 
             // Act
             try
@@ -247,17 +250,18 @@ namespace ProtonVPN.Common.Test.OS.Services
             { }
 
             // Assert
-            _logger.Received(2).Info(Arg.Any<string>());
+            _logger.Received(1).Info<AppServiceStopLog>(Arg.Any<string>(), null, Arg.Any<string>(), Arg.Any<string>(), Arg.Any<int>());
+            _logger.Received(1).Warn<AppServiceStopFailedLog>(Arg.Any<string>(), null, Arg.Any<string>(), Arg.Any<string>(), Arg.Any<int>());
         }
 
         [TestMethod]
         public async Task StopAsync_ShouldLog_UnexpectedException()
         {
             // Arrange
-            var exception = new InvalidOperationException("");
-            var cancellationToken = CancellationToken.None;
+            InvalidOperationException exception = new("");
+            CancellationToken cancellationToken = CancellationToken.None;
             _origin.StopAsync(cancellationToken).Throws(exception);
-            var subject = new LoggingService(_logger, _origin);
+            LoggingService subject = new(_logger, _origin);
 
             // Act
             try
@@ -269,8 +273,8 @@ namespace ProtonVPN.Common.Test.OS.Services
             { }
 
             // Assert
-            _logger.Received(1).Info(Arg.Any<string>());
-            _logger.Received(1).Error(Arg.Any<string>());
+            _logger.Received(1).Info<AppServiceStopLog>(Arg.Any<string>(), null, Arg.Any<string>(), Arg.Any<string>(), Arg.Any<int>());
+            _logger.Received(1).Error<AppServiceStopFailedLog>(Arg.Any<string>(), null, Arg.Any<string>(), Arg.Any<string>(), Arg.Any<int>());
         }
     }
 }

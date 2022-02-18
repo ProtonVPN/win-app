@@ -18,6 +18,7 @@
  */
 
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.NetworkLogs;
 using ProtonVPN.Common.OS.Net;
 using ProtonVPN.Common.OS.Net.NetworkInterface;
 
@@ -60,15 +61,14 @@ namespace ProtonVPN.Core.Service.Vpn
 
         private void LogIsOpenVpnAdapterAvailable(bool isOpenVpnAdapterAvailable, params string[] openVpnInterfaces)
         {
-            string logMessage = $"[NetworkAdapterValidator] Checking which OpenVPN adapters are available. " + 
-                                string.Join(" ", openVpnInterfaces);
+            string logMessage = "Checking which OpenVPN adapters are available. " + string.Join(" ", openVpnInterfaces);
             if (isOpenVpnAdapterAvailable)
             {
-                _logger.Info(logMessage);
+                _logger.Info<NetworkLog>(logMessage);
             }
             else
             {
-                _logger.Warn(logMessage);
+                _logger.Warn<NetworkLog>(logMessage);
             }
         }
     }

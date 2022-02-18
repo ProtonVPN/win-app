@@ -20,6 +20,8 @@
 using System;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
+using ProtonVPN.Common.Logging.Categorization.Events.ConnectLogs;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Service.Vpn;
@@ -58,17 +60,16 @@ namespace ProtonVPN.Core
 
                 if (profile == null)
                 {
-                    _logger.Warn("Profile configured for auto connect is missing!");
+                    _logger.Warn<AppLog>("Profile configured for auto connect is missing!");
                     return;
                 }
 
-                _logger.Info("Automatically connecting to selected profile");
-
+                _logger.Info<ConnectTriggerLog>("Automatically connecting to selected profile");
                 await _vpnManager.ConnectAsync(profile);
             }
             catch (OperationCanceledException ex)
             {
-                _logger.Error(ex);
+                _logger.Error<AppLog>("An error occurred when connecting automatically to a profile.", ex);
             }
         }
 

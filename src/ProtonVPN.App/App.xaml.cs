@@ -26,7 +26,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.Toolkit.Uwp.Notifications;
 using ProtonVPN.Common.Configuration;
-using ProtonVPN.Common.CrashReporting;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Config;
 using ProtonVPN.Core;
@@ -57,7 +56,7 @@ namespace ProtonVPN
             //
             // If the app detects it is started under local SYSTEM account, it
             // tries to restart itself under current user account. 
-            var shouldRestartAsUser = ElevatedApplication.RunningAsSystem();
+            bool shouldRestartAsUser = ElevatedApplication.RunningAsSystem();
             if (shouldRestartAsUser)
             {
                 await Task.Delay(2000);
@@ -71,12 +70,10 @@ namespace ProtonVPN
 
                 SetDllDirectories();
 
-                var config = GetConfig();
-
-                InitCrashReporting(config);
+                Common.Configuration.Config config = GetConfig();
                 CreateProfileOptimization(config);
 
-                var app = new App();
+                App app = new();
                 app.InitializeComponent();
 
                 _bootstrapper = new Bootstrapper(args);
@@ -86,11 +83,6 @@ namespace ProtonVPN
             }
         }
 
-        private static void InitCrashReporting(Common.Configuration.Config config)
-        {
-            CrashReports.Init(config);
-        }
-
         private static Assembly OnAssemblyLoadFailed(object sender, ResolveEventArgs args)
         {
             if (_failedToLoadAssembly)
@@ -98,7 +90,7 @@ namespace ProtonVPN
                 return null;
             }
 
-            var name = new AssemblyName(args.Name).Name;
+            string name = new AssemblyName(args.Name).Name;
             if (name.ContainsIgnoringCase(".resources") ||
                 name.EndsWithIgnoringCase("XmlSerializers") ||
                 name.StartsWithIgnoringCase("PresentationFramework.")

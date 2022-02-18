@@ -25,6 +25,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Core.Api;
 using ProtonVPN.Core.Api.Contracts;
@@ -82,7 +83,7 @@ namespace ProtonVPN.Core.Announcements
             IReadOnlyList<Announcement> newAnnouncements = oldAnnouncements.Where(a => a.Id != id).ToList();
 
             int numOfAnnouncementsToDelete = oldAnnouncements.Count - newAnnouncements.Count;
-            _logger.Info($"[AnnouncementService] Deleting {numOfAnnouncementsToDelete} announcements with ID '{id}'.");
+            _logger.Info<AppLog>($"Deleting {numOfAnnouncementsToDelete} announcements with ID '{id}'.");
 
             _announcementCache.Store(newAnnouncements);
 
@@ -184,7 +185,7 @@ namespace ProtonVPN.Core.Announcements
             }
             catch (Exception e)
             {
-                _logger.Error("Failed to map announcement.", e);
+                _logger.Error<AppLog>("Failed to map announcement.", e);
                 result = null;
             }
 

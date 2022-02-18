@@ -23,6 +23,7 @@ using System;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using ProtonVPN.Common.Logging.Categorization.Events.ApiLogs;
 
 namespace ProtonVPN.Core.Api.Handlers
 {
@@ -42,17 +43,17 @@ namespace ProtonVPN.Core.Api.Handlers
             HttpRequestMessage request,
             CancellationToken cancellationToken)
         {
-            var req = $"{request.Method.Method} \"{request.RequestUri.LocalPath}\"";
+            string req = $"{request.Method.Method} \"{request.RequestUri.LocalPath}\"";
             try
             {
-                _logger.Info(req);
-                var result = await base.SendAsync(request, cancellationToken);
-                _logger.Info($"{req}: {(int)result.StatusCode} {result.StatusCode}");
+                _logger.Info<ApiRequestLog>(req);
+                HttpResponseMessage result = await base.SendAsync(request, cancellationToken);
+                _logger.Info<ApiResponseLog>($"{req}: {(int)result.StatusCode} {result.StatusCode}");
                 return result;
             }
             catch (Exception ex)
             {
-                _logger.Error($"{req} failed: {ex.CombinedMessage()}");
+                _logger.Error<ApiErrorLog>($"{req} failed: {ex.CombinedMessage()}");
                 throw;
             }
         }

@@ -18,10 +18,10 @@
 
 using System;
 using System.ServiceModel;
-using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Abstract;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.AppServiceLogs;
 using ProtonVPN.Common.OS.Services;
 
 namespace ProtonVPN.Core.Service
@@ -42,7 +42,7 @@ namespace ProtonVPN.Core.Service
         {
             if (!Service.Exists())
             {
-                _logger.Info($"[SafeServiceAction] Failed to execute action on nonexistent service {Service.Name}.");
+                _logger.Info<AppServiceLog>($"Failed to execute action on nonexistent service {Service.Name}.");
                 return Result.Fail();
             }
 
@@ -63,12 +63,11 @@ namespace ProtonVPN.Core.Service
             }
             catch (EndpointNotFoundException)
             {
-                _logger.Info($"[SafeServiceAction] Service {Service.Name} is not running. Trying to start it.");
-                Result serviceStartResult = await Service.StartAsync(new CancellationToken());
+                _logger.Info<AppServiceStartLog>($"Service {Service.Name} is not running. Trying to start it.");
+                Result serviceStartResult = await Service.StartAsync(new());
                 if (serviceStartResult.Failure)
                 {
-                    _logger.Info(
-                        $"[SafeServiceAction] Failed to start service ${Service.Name} after EndpointNotFoundException.");
+                    _logger.Info<AppServiceStartFailedLog>($"Failed to start service ${Service.Name} after EndpointNotFoundException.");
                     return serviceStartResult;
                 }
 
@@ -76,7 +75,7 @@ namespace ProtonVPN.Core.Service
             }
             catch (Exception e) when (IsConnectionException(e))
             {
-                _logger.Error("[SafeServiceAction] failed to execute service action.", e);
+                _logger.Error<AppServiceLog>("Failed to execute service action.", e);
                 return Result.Fail(e);
             }
         }

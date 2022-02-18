@@ -43,7 +43,7 @@ namespace ProtonVPN.Update.Config
                 new SafeAppUpdate(c.Resolve<ILogger>(),
                     new ExtendedProgressAppUpdate(c.Resolve<IAppUpdateConfig>().MinProgressDuration,
                         new NotifyingAppUpdate(
-                            new AppUpdate(c.Resolve<AppUpdates>())
+                            new AppUpdate(c.Resolve<AppUpdates>()), c.Resolve<ILogger>()
                 )))).As<INotifyingAppUpdate>().SingleInstance();
         }
     }

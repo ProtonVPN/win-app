@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Autofac;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.FirewallLogs;
 using ProtonVPN.NetworkFilter;
 using ProtonVPN.Service.Driver;
 using Action = ProtonVPN.NetworkFilter.Action;
@@ -91,7 +92,7 @@ namespace ProtonVPN.Service.Firewall
         {
             try
             {
-                _logger.Info("Firewall: Restoring internet");
+                _logger.Info<FirewallLog>("Restoring internet");
 
                 _ipFilter.DynamicSublayer.DestroyAllFilters();
                 _ipFilter.PermanentSublayer.DestroyAllFilters();
@@ -102,11 +103,11 @@ namespace ProtonVPN.Service.Firewall
                 _calloutDriver.Stop();
                 _lastParams = FirewallParams.Empty;
 
-                _logger.Info("Firewall: Internet restored");
+                _logger.Info<FirewallLog>("Internet restored");
             }
             catch (NetworkFilterException ex)
             {
-                _logger.Error(ex);
+                _logger.Error<FirewallLog>("An error occurred when deleting the network filters.", ex);
             }
         }
 
@@ -114,7 +115,7 @@ namespace ProtonVPN.Service.Firewall
         {
             try
             {
-                _logger.Info("Firewall: Blocking internet");
+                _logger.Info<FirewallLog>("Blocking internet");
 
                 EnableDnsLeakProtection(firewallParams);
 
@@ -125,11 +126,11 @@ namespace ProtonVPN.Service.Firewall
 
                 LeakProtectionEnabled = true;
 
-                _logger.Info("Firewall: Internet blocked");
+                _logger.Info<FirewallLog>("Internet blocked");
             }
             catch (NetworkFilterException ex)
             {
-                _logger.Error(ex);
+                _logger.Error<FirewallLog>("An error occurred when applying the network filters.", ex);
             }
         }
 
@@ -497,11 +498,12 @@ namespace ProtonVPN.Service.Firewall
         {
             List<NetworkAddress> networkAddresses = new()
             {
-                new NetworkAddress("10.0.0.0", "255.0.0.0"),
-                new NetworkAddress("172.16.0.0", "255.240.0.0"),
-                new NetworkAddress("192.168.0.0", "255.255.0.0"),
-                new NetworkAddress("224.0.0.0", "240.0.0.0"),
-                new NetworkAddress("255.255.255.255", "255.255.255.255")
+                new("10.0.0.0", "255.0.0.0"),
+                new("169.254.0.0", "255.255.0.0"),
+                new("172.16.0.0", "255.240.0.0"),
+                new("192.168.0.0", "255.255.0.0"),
+                new("224.0.0.0", "240.0.0.0"),
+                new("255.255.255.255", "255.255.255.255")
             };
 
             foreach (NetworkAddress networkAddress in networkAddresses)

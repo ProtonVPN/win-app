@@ -18,6 +18,7 @@
  */
 
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.NetworkLogs;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Os.Net;
 using ProtonVPN.Common.OS.Net;
@@ -65,13 +66,13 @@ namespace ProtonVPN.Service.Vpn
 
             try
             {
-                _logger.Info("Setting interface metric...");
+                _logger.Info<NetworkLog>("Setting interface metric...");
                 NetworkUtil.SetLowestTapMetric(interfaceIndex);
-                _logger.Info("Interface metric set.");
+                _logger.Info<NetworkLog>("Interface metric set.");
             }
             catch (NetworkUtilException e)
             {
-                _logger.Error("Failed to apply network settings. Error code: " + e.Code);
+                _logger.Error<NetworkLog>("Failed to apply network settings. Error code: " + e.Code);
             }
         }
 
@@ -85,13 +86,13 @@ namespace ProtonVPN.Service.Vpn
 
             try
             {
-                _logger.Info("Restoring interface metric...");
+                _logger.Info<NetworkLog>("Restoring interface metric...");
                 NetworkUtil.RestoreDefaultTapMetric(interfaceIndex);
-                _logger.Info("Interface metric restored.");
+                _logger.Info<NetworkLog>("Interface metric restored.");
             }
             catch (NetworkUtilException e)
             {
-                _logger.Error("Failed restore network settings. Error code: " + e.Code);
+                _logger.Error<NetworkLog>("Failed restore network settings. Error code: " + e.Code);
             }
         }
     }

@@ -20,6 +20,7 @@
 using System;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.NetworkLogs;
 
 namespace ProtonVPN.Common.OS.Registry
 {
@@ -42,7 +43,7 @@ namespace ProtonVPN.Common.OS.Registry
             }
             catch (Exception e) when (e.IsRegistryAccessException())
             {
-                _logger.Error("Can't access system proxy settings", e);
+                _logger.Error<NetworkLog>("Can't access system proxy settings", e);
                 return false;
             }
         }

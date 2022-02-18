@@ -20,6 +20,8 @@
 using System;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.UserCertificateLogs;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Core.User;
 
@@ -29,14 +31,17 @@ namespace ProtonVPN.Core.Auth
     {
         private readonly Common.Configuration.Config _appConfig;
         private readonly IAuthCertificateManager _authCertificateManager;
+        private readonly ILogger _logger;
         private readonly ISchedulerTimer _timer;
 
         public AuthCertificateUpdater(IScheduler scheduler,
             Common.Configuration.Config appConfig,
-            IAuthCertificateManager authCertificateManager)
+            IAuthCertificateManager authCertificateManager,
+            ILogger logger)
         {
             _appConfig = appConfig;
             _authCertificateManager = authCertificateManager;
+            _logger = logger;
 
             _timer = scheduler.Timer();
             _timer.Tick += Timer_OnTick;
@@ -51,6 +56,8 @@ namespace ProtonVPN.Core.Auth
         {
             _timer.Interval = _appConfig.AuthCertificateUpdateInterval.RandomizedWithDeviation(0.2);
             _timer.Start();
+            _logger.Info<UserCertificateScheduleRefreshLog>(
+                $"User certificate refresh scheduled for every '{_timer.Interval}'.");
         }
 
         public void OnUserLoggedOut()

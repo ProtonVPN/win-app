@@ -21,6 +21,7 @@ using System;
 using System.Net;
 using System.Net.Sockets;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.NetworkLogs;
 
 namespace ProtonVPN.Core.OS
 {
@@ -73,7 +74,7 @@ namespace ProtonVPN.Core.OS
             }
             catch (SocketException e)
             {
-                _logger.Error("[NtpClient] failed to get network time", e);
+                _logger.Error<NetworkLog>("Failed to get network time", e);
                 return null;
             }
         }

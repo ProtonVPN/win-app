@@ -82,7 +82,7 @@ namespace ProtonVPN.Update.Updates
 
         internal async Task<IReadOnlyList<Release>> ReleaseHistory(bool earlyAccess)
         {
-            var releases = await _releaseStorage.Releases();
+            IEnumerable<Release> releases = await _releaseStorage.Releases();
             return releases.ToList();
         }
 

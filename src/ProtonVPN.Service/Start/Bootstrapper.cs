@@ -22,8 +22,9 @@ using System.Collections.Generic;
 using System.ServiceProcess;
 using Autofac;
 using ProtonVPN.Common.Configuration;
-using ProtonVPN.Common.CrashReporting;
+using ProtonVPN.Common.Events;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.AppServiceLogs;
 using ProtonVPN.Common.OS.Processes;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Native.PInvoke;
@@ -54,7 +55,7 @@ namespace ProtonVPN.Service.Start
             Common.Configuration.Config config = new ConfigFactory().Config();
             new ConfigDirectories(config).Prepare();
 
-            var builder = new ContainerBuilder();
+            ContainerBuilder builder = new ContainerBuilder();
             builder.RegisterModule<ServiceModule>();
             _container = builder.Build();
         }
@@ -64,10 +65,7 @@ namespace ProtonVPN.Service.Start
             Common.Configuration.Config config = Resolve<Common.Configuration.Config>();
             ILogger logger = Resolve<ILogger>();
 
-            logger.Info($"= Booting ProtonVPN Service version: {config.AppVersion} os: {Environment.OSVersion.VersionString} {config.OsBits} bit =");
-
-            Resolve<UnhandledExceptionLogging>().CaptureTaskExceptions();
-            Resolve<UnhandledExceptionLogging>().CaptureUnhandledExceptions();
+            logger.Info<AppServiceStartLog>($"= Booting ProtonVPN Service version: {config.AppVersion} os: {Environment.OSVersion.VersionString} {config.OsBits} bit =");
 
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 
@@ -78,7 +76,7 @@ namespace ProtonVPN.Service.Start
             FixNetworkAdapters();
             ServiceBase.Run(Resolve<VpnService>());
 
-            logger.Info("= ProtonVPN Service has exited =");
+            logger.Info<AppServiceStopLog>("= ProtonVPN Service has exited =");
         }
 
         private void FixNetworkAdapters()
@@ -90,7 +88,7 @@ namespace ProtonVPN.Service.Start
 
         private void InitCrashReporting()
         {
-            CrashReports.Init(Resolve<Common.Configuration.Config>(), Resolve<ILogger>());
+            Resolve<IEventPublisher>().Init();
         }
 
         private void RegisterEvents()
@@ -130,8 +128,8 @@ namespace ProtonVPN.Service.Start
 
         private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
-            var config = Resolve<Common.Configuration.Config>();
-            var processes = Resolve<IOsProcesses>();
+            Common.Configuration.Config config = Resolve<Common.Configuration.Config>();
+            IOsProcesses processes = Resolve<IOsProcesses>();
             Resolve<IVpnConnection>().Disconnect();
             Resolve<OpenVpnProcess>().Stop();
             processes.KillProcesses(config.AppName);

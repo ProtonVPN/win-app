@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2022 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -23,6 +23,8 @@ using System.Linq;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
+using DnsClient.Protocol;
+using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Helpers;
 
 namespace ProtonVPN.Core.OS.Net.Dns
@@ -45,18 +47,22 @@ namespace ProtonVPN.Core.OS.Net.Dns
         public async Task<string> Resolve(string host, CancellationToken token)
         {
             if (IPAddress.TryParse(host, out _))
+            {
                 return host;
+            }
 
-            var result = await _lookupClient.QueryAsync(host, QueryType.A, cancellationToken: token);
+            IDnsQueryResponse result = await _lookupClient.QueryAsync(host, QueryType.A, cancellationToken: token);
             if (result.HasError)
+            {
                 return null;
+            }
 
-            var record = result.Answers.ARecords().FirstOrDefault();
+            ARecord record = result.Answers.ARecords().FirstOrDefault();
 
             return record?.Address.MapToIPv4().ToString();
         }
 
         public IReadOnlyCollection<IPEndPoint> NameServers =>
-            _lookupClient.NameServers.Select(s => s.Endpoint).ToArray();
+            _lookupClient.NameServers.Select(s => new IPEndPoint(s.Address.ToIPAddressBytes(), s.Port)).ToArray();
     }
 }

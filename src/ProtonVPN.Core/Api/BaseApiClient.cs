@@ -25,6 +25,7 @@ using System.Text;
 using Newtonsoft.Json;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.ApiLogs;
 using ProtonVPN.Common.OS.Net.Http;
 using ProtonVPN.Core.Abstract;
 using ProtonVPN.Core.Api.Contracts;
@@ -169,7 +170,7 @@ namespace ProtonVPN.Core.Api
         {
             if (result.Failure)
             {
-                _logger.Error($"API: {(!string.IsNullOrEmpty(message) ? message : "Request")} failed: {result.Error}");
+                _logger.Error<ApiErrorLog>($"API: {(!string.IsNullOrEmpty(message) ? message : "Request")} failed: {result.Error}");
             }
 
             return result;

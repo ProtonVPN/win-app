@@ -17,10 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Logging;
 using System;
 using System.Threading.Tasks;
-using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.AppUpdateLogs;
 
 namespace ProtonVPN.Update.Updates
 {
@@ -54,7 +54,7 @@ namespace ProtonVPN.Update.Updates
             }
             catch (AppUpdateException e)
             {
-                _logger.Error(e.CombinedMessage());
+                _logger.Error<AppUpdateLog>("Error when starting update.", e);
             }
         }
     }

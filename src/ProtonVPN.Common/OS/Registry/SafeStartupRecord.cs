@@ -20,6 +20,7 @@
 using System;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.OperatingSystemLogs;
 
 namespace ProtonVPN.Common.OS.Registry
 {
@@ -71,7 +72,8 @@ namespace ProtonVPN.Common.OS.Registry
             }
             catch (Exception ex) when (ex.IsRegistryAccessException())
             {
-                _logger.Error($"Can't {actionName} auto start record in Windows registry", ex);
+                _logger.Error<OperatingSystemRegistryAccessFailedLog>(
+                    $"Can't {actionName} auto start record in Windows registry", ex);
             }
 
             return defaultResult;

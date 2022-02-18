@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -19,8 +19,9 @@
 
 using System;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
 using Sentry.Extensibility;
-using Sentry.Protocol;
+using Sentry;
 
 namespace ProtonVPN.Common.Service
 {
@@ -40,24 +41,23 @@ namespace ProtonVPN.Common.Service
 
         public void Log(SentryLevel logLevel, string message, Exception exception = null, params object[] args)
         {
-            var logMessage = $"SENTRY: {string.Format(message, args)}";
-
+            string logMessage = $"SENTRY: {string.Format(message, args)}";
             switch (logLevel)
             {
                 case SentryLevel.Debug:
-                    _logger.Debug(logMessage);
+                    _logger.Debug<AppLog>(logMessage, exception);
                     break;
                 case SentryLevel.Info:
-                    _logger.Info(logMessage);
+                    _logger.Info<AppLog>(logMessage);
                     break;
                 case SentryLevel.Warning:
-                    _logger.Warn(logMessage);
+                    _logger.Warn<AppLog>(logMessage);
                     break;
                 case SentryLevel.Error:
-                    _logger.Error(logMessage);
+                    _logger.Error<AppLog>(logMessage);
                     break;
                 case SentryLevel.Fatal:
-                    _logger.Fatal(logMessage);
+                    _logger.Fatal<AppCrashLog>(logMessage);
                     break;
             }
         }

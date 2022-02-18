@@ -96,6 +96,17 @@ namespace ProtonVPN.UI.Test
             Session.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(timeInSeconds);
         }
 
+        protected static void DeleteProfiles()
+        {
+            string args = $"{TestUserData.GetPlusUser().Username} {TestUserData.GetPlusUser().Password}";
+            Process process = new Process
+            {
+                StartInfo = new ProcessStartInfo("TestTools.ProfileCleaner.exe", args)
+            };
+            process.Start();
+            process.WaitForExit();
+        }
+
         private static void CreateSessionInner()
         {
             try

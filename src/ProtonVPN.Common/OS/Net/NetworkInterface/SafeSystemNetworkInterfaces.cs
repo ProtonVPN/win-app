@@ -22,6 +22,7 @@ using System.Net;
 using System.Net.NetworkInformation;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.NetworkLogs;
 
 namespace ProtonVPN.Common.OS.Net.NetworkInterface
 {
@@ -50,7 +51,7 @@ namespace ProtonVPN.Common.OS.Net.NetworkInterface
             }
             catch (NetworkInformationException ex)
             {
-                _logger.Error($"Failed to retrieve a list of system network interfaces: {ex.CombinedMessage()}");
+                _logger.Error<NetworkUnavailableLog>($"Failed to retrieve a list of system network interfaces: {ex.CombinedMessage()}");
                 return new INetworkInterface[0];
             }
         }
@@ -78,7 +79,7 @@ namespace ProtonVPN.Common.OS.Net.NetworkInterface
             }
             catch (NetworkInformationException ex)
             {
-                _logger.Error($"Failed to retrieve a system network interface: {ex.CombinedMessage()}");
+                _logger.Error<NetworkLog>($"Failed to retrieve a system network interface: {ex.CombinedMessage()}");
                 return new NullNetworkInterface();
             }
         }

@@ -22,9 +22,9 @@ using System.ComponentModel;
 using System.ServiceModel;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Abstract;
-using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.KillSwitch;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.AppServiceLogs;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Service.Contract.Settings;
 
@@ -79,7 +79,7 @@ namespace ProtonVPN.Core.Service.Settings
                 }
                 catch (Exception ex) when (ex is CommunicationException or TimeoutException or TaskCanceledException)
                 {
-                    _logger.Error(ex.CombinedMessage());
+                    _logger.Error<AppServiceCommunicationFailedLog>("The request to update service settings failed.", ex);
                     return Result.Fail();
                 }
             });
@@ -95,7 +95,7 @@ namespace ProtonVPN.Core.Service.Settings
                 e.PropertyName == nameof(IAppSettings.NetShieldEnabled) ||
                 e.PropertyName == nameof(IAppSettings.Ipv6LeakProtection))
             {
-                _logger.Info($"Setting \"{e.PropertyName}\" changed");
+                _logger.Info<AppServiceLog>($"Setting \"{e.PropertyName}\" changed, updating service settings.");
                 await UpdateServiceSettings();
             }
         }

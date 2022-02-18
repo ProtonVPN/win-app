@@ -24,6 +24,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Profiles.Cached;
@@ -145,7 +146,7 @@ namespace ProtonVPN.Core.Profiles
 
         private async Task SyncAction(CancellationToken cancellationToken)
         {
-            _logger.Info("Sync profiles requested");
+            _logger.Info<AppLog>("Sync profiles requested");
             _cancellationToken = cancellationToken;
 
             await Retry(async () =>
@@ -180,7 +181,7 @@ namespace ProtonVPN.Core.Profiles
             if (e.Task.IsFaulted)
             {
                 OnSyncStatusChanged(ProfileSyncStatus.Failed);
-                _logger.Error("Task exception after syncing profiles.", e.Task.Exception);
+                _logger.Error<AppLog>("Task exception after syncing profiles.", e.Task.Exception);
             }
             else
             {

@@ -23,6 +23,7 @@ using Microsoft.Web.WebView2.Core;
 using Microsoft.Web.WebView2.Wpf;
 using Newtonsoft.Json;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
 using ProtonVPN.Modals;
 
 namespace ProtonVPN.HumanVerification
@@ -82,7 +83,7 @@ namespace ProtonVPN.HumanVerification
             }
             catch (JsonException ex)
             {
-                _logger.Error("Failed to deserialize webview message: " + ex.Message);
+                _logger.Error<AppLog>("Failed to deserialize webview message.", ex);
             }
         }
     }

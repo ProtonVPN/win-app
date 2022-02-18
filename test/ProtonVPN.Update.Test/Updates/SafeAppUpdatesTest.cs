@@ -23,6 +23,7 @@ using NSubstitute;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Update.Updates;
 using System;
+using ProtonVPN.Common.Logging.Categorization.Events.AppUpdateLogs;
 
 // ReSharper disable ObjectCreationAsStatement
 
@@ -97,7 +98,7 @@ namespace ProtonVPN.Update.Test.Updates
 
             updates.Cleanup();
 
-            _logger.ReceivedWithAnyArgs().Error("");
+            _logger.ReceivedWithAnyArgs().Error<AppUpdateLog>("");
         }
 
         [TestMethod]

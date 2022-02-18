@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2021 Proton Technologies AG
+ * Copyright (c) 2022 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -23,8 +23,9 @@ using System.ServiceModel;
 using System.ServiceProcess;
 using Autofac;
 using ProtonVPN.Common.Configuration;
-using ProtonVPN.Common.CrashReporting;
+using ProtonVPN.Common.Events;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.AppServiceLogs;
 using ProtonVPN.Common.Logging.Log4Net;
 using ProtonVPN.Common.OS.Event;
 using ProtonVPN.Common.OS.Net.Http;
@@ -35,8 +36,6 @@ using ProtonVPN.Core.Api.Handlers.TlsPinning;
 using ProtonVPN.Core.OS.Net;
 using ProtonVPN.Update;
 using ProtonVPN.Update.Config;
-using Sentry;
-using Sentry.Protocol;
 
 namespace ProtonVPN.UpdateService
 {
@@ -49,7 +48,6 @@ namespace ProtonVPN.UpdateService
         public void Initialize()
         {
             Configure();
-            InitCrashLogging();
             InitCrashReporting();
             Start();
         }
@@ -57,7 +55,6 @@ namespace ProtonVPN.UpdateService
         public void StartUpdate()
         {
             Configure();
-            InitCrashLogging();
             InitCrashReporting();
 
             try
@@ -72,12 +69,7 @@ namespace ProtonVPN.UpdateService
             }
             catch (Exception e)
             {
-                SentrySdk.WithScope(scope =>
-                {
-                     scope.Level = SentryLevel.Error;
-                     scope.SetTag("captured_in", "UpdateService_Bootstrapper_StartUpdate");
-                     SentrySdk.CaptureException(e);
-                });
+                Resolve<IEventPublisher>().CaptureError(e);
             }
         }
 
@@ -86,20 +78,13 @@ namespace ProtonVPN.UpdateService
             Resolve<IOsProcesses>().ElevatedProcess(path, arguments).Start();
         }
 
-        private void InitCrashLogging()
-        {
-            var logging = Resolve<UnhandledExceptionLogging>();
-            logging.CaptureUnhandledExceptions();
-            logging.CaptureTaskExceptions();
-        }
-
         private void Start()
         {
-            var config = Resolve<Config>();
-            var logger = Resolve<ILogger>();
+            Config config = Resolve<Config>();
+            ILogger logger = Resolve<ILogger>();
 
             CreateLogFolder();
-            logger.Info($"= Booting ProtonVPN Update Service version: {config.AppVersion} os: {Environment.OSVersion.VersionString} {config.OsBits} bit =");
+            logger.Info<AppServiceStartLog>($"= Booting ProtonVPN Update Service version: {config.AppVersion} os: {Environment.OSVersion.VersionString} {config.OsBits} bit =");
 
             Resolve<ServicePointConfiguration>().Apply();
 
@@ -108,7 +93,7 @@ namespace ProtonVPN.UpdateService
 
             ServiceBase.Run(Resolve<UpdateService>());
 
-            logger.Info("= ProtonVPN Update Service has exited =");
+            logger.Info<AppServiceStopLog>("= ProtonVPN Update Service has exited =");
         }
 
         private void CreateLogFolder()
@@ -118,18 +103,18 @@ namespace ProtonVPN.UpdateService
 
         private void InitCrashReporting()
         {
-            CrashReports.Init(Resolve<Config>(), Resolve<ILogger>());
+            Resolve<IEventPublisher>().Init();
         }
 
         private void Configure()
         {
-            var builder = new ContainerBuilder();
+            ContainerBuilder builder = new ContainerBuilder();
             builder.Register(c => new ConfigFactory().Config());
             builder.RegisterType<SystemProcesses>().As<IOsProcesses>().SingleInstance();
             builder.RegisterType<HttpClients>().As<IHttpClients>().SingleInstance();
             
             builder.RegisterType<Log4NetLoggerFactory>().As<ILoggerFactory>().SingleInstance();
-            builder.Register(c => c.Resolve<ILoggerFactory>().Get(c.Resolve<Common.Configuration.Config>().UpdateServiceLogDefaultFullFilePath))
+            builder.Register(c => c.Resolve<ILoggerFactory>().Get(c.Resolve<Config>().UpdateServiceLogDefaultFullFilePath))
                 .As<ILogger>().SingleInstance();
             builder.RegisterType<LogCleaner>().SingleInstance();
 
@@ -140,8 +125,9 @@ namespace ProtonVPN.UpdateService
             builder.RegisterType<UpdateService>().SingleInstance();
             builder.RegisterType<ServicePointConfiguration>().SingleInstance();
             builder.RegisterType<SystemEventLog>().SingleInstance();
-            builder.RegisterType<UnhandledExceptionLogging>().SingleInstance();
             builder.RegisterType<ApiAppVersion>().As<IApiAppVersion>().SingleInstance();
+            builder.Register(c => new EventPublisher(c.Resolve<ILogger>(), c.Resolve<Common.Configuration.Config>()))
+                .As<IEventPublisher>().SingleInstance();
 
             builder.Register(c =>
                     new CachingReportClient(

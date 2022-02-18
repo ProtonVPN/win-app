@@ -23,6 +23,8 @@ using Newtonsoft.Json;
 using ProtonVPN.Common;
 using ProtonVPN.Common.Go;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.ConnectLogs;
+using ProtonVPN.Common.Logging.Categorization.Events.LocalAgentLogs;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Vpn.Common;
@@ -79,7 +81,7 @@ namespace ProtonVPN.Vpn.Connection
 
         public void Connect(VpnEndpoint endpoint, VpnCredentials credentials, VpnConfig config)
         {
-            _logger.Info("[LocalAgentWrapper] Connect action started");
+            _logger.Info<LocalAgentLog>("Connect action started");
             _isConnectRequested = true;
             _endpoint = endpoint;
             _credentials = credentials;
@@ -90,7 +92,7 @@ namespace ProtonVPN.Vpn.Connection
 
         public void Disconnect(VpnError error)
         {
-            _logger.Info("[LocalAgentWrapper] Disconnect action started");
+            _logger.Info<LocalAgentLog>("Disconnect action started");
             _eventReceiver.Stop();
             CloseTlsChannel();
             _origin.Disconnect(error);
@@ -106,7 +108,7 @@ namespace ProtonVPN.Vpn.Connection
         public void UpdateAuthCertificate(string certificate)
         {
             _clientCertPem = certificate;
-            _logger.Info("[LocalAgentWrapper] Client certificate updated. Closing existing TLS channel and reconnecting.");
+            _logger.Info<LocalAgentLog>("Client certificate updated. Closing existing TLS channel and reconnecting.");
             _eventReceiver.Stop();
             CloseTlsChannel();
             ConnectToTlsChannel();
@@ -114,7 +116,7 @@ namespace ProtonVPN.Vpn.Connection
 
         private void OnLocalAgentStateChanged(object sender, EventArgs<LocalAgentState> e)
         {
-            _logger.Info($"[LocalAgentWrapper] state changed to {e.Data}");
+            _logger.Info<LocalAgentStateChangeLog>($"State changed to {e.Data}");
 
             switch (e.Data)
             {
@@ -125,6 +127,7 @@ namespace ProtonVPN.Vpn.Connection
                     }
 
                     _isHardJailed = false;
+                    _logger.Info<ConnectConnectedLog>("Connected state triggered by Local Agent.");
                     InvokeStateChange(VpnStatus.Connected);
                     break;
                 case LocalAgentState.ServerCertificateError:
@@ -146,7 +149,7 @@ namespace ProtonVPN.Vpn.Connection
 
         private void OnLocalAgentErrorOccurred(object sender, LocalAgentErrorArgs e)
         {
-            _logger.Info($"[LocalAgentWrapper] error event received {e.Error} {e.Description}");
+            _logger.Info<LocalAgentErrorLog>($"Error event received {e.Error} {e.Description}");
 
             if (_isHardJailed && !_avoidDisconnectOnErrors.Contains(e.Error))
             {
@@ -250,7 +253,7 @@ namespace ProtonVPN.Vpn.Connection
             }
             else
             {
-                _logger.Error("[LocalAgentWrapper] Failed to connect to TLS channel: " + result);
+                _logger.Error<LocalAgentLog>("Failed to connect to TLS channel: " + result);
                 _origin.Disconnect(VpnError.Unknown);
             }
         }

@@ -25,6 +25,7 @@ using System.Windows.Input;
 using Caliburn.Micro;
 using GalaSoft.MvvmLight.CommandWpf;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
 using ProtonVPN.Core.Announcements;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Modals;
@@ -126,11 +127,11 @@ namespace ProtonVPN.Sidebar.Announcements
 
         private void ScheduleReload(TimeSpan nextReloadInterval)
         {
-            _logger.Info($"[AnnouncementsViewModel] Announcement reload scheduled to be done in '{nextReloadInterval}'.");
+            _logger.Info<AppLog>($"Announcement reload scheduled to be done in '{nextReloadInterval}'.");
             Task waitTask = Task.Delay((int)nextReloadInterval.TotalMilliseconds);
             waitTask.ContinueWith(_ =>
             {
-                _logger.Info("[AnnouncementsViewModel] Triggering scheduled announcement reload.");
+                _logger.Info<AppLog>("Triggering scheduled announcement reload.");
                 Load();
             });
         }

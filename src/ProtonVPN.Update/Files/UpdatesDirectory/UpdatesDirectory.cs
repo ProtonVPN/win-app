@@ -52,8 +52,8 @@ namespace ProtonVPN.Update.Files.UpdatesDirectory
 
         public void Cleanup()
         {
-            var dirs = Directory.GetDirectories(_path);
-            foreach (var dir in dirs)
+            string[] dirs = Directory.GetDirectories(_path);
+            foreach (string dir in dirs)
             {
                 Directory.Delete(dir, true);
             }
@@ -62,8 +62,8 @@ namespace ProtonVPN.Update.Files.UpdatesDirectory
 
         private static void DeleteOldFiles(string dir, Version currentVersion)
         {
-            var files = Directory.GetFiles(dir, "*", SearchOption.TopDirectoryOnly);
-            foreach (var file in files)
+            string[] files = Directory.GetFiles(dir, "*", SearchOption.TopDirectoryOnly);
+            foreach (string file in files)
             {
                 if (!IsExeFile(file) || FileVersion(file) < currentVersion)
                     File.Delete(file);

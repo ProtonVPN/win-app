@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2021 Proton Technologies AG
+ * Copyright (c) 2022 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -19,9 +19,10 @@
 
 using System.Security;
 using Microsoft.Win32;
+using ProtonVPN.Common.Events;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
-using Sentry;
+using ProtonVPN.Common.Logging.Categorization.Events.OperatingSystemLogs;
 
 namespace ProtonVPN.Service.Vpn
 {
@@ -34,10 +35,12 @@ namespace ProtonVPN.Service.Vpn
         // https://docs.microsoft.com/en-us/windows-hardware/drivers/install/system-defined-device-setup-classes-available-to-vendors
         private readonly string _regPath = "SYSTEM\\ControlSet001\\Control\\Class\\{4d36e972-e325-11ce-bfc1-08002be10318}";
         private readonly ILogger _logger;
+        private readonly IEventPublisher _eventPublisher;
 
-        public WintunRegistryFixer(ILogger logger)
+        public WintunRegistryFixer(ILogger logger, IEventPublisher eventPublisher)
         {
             _logger = logger;
+            _eventPublisher = eventPublisher;
         }
 
         public void EnsureTunAdapterRegistryIsCorrect()
@@ -74,11 +77,12 @@ namespace ProtonVPN.Service.Vpn
                     if (componentId.IsNullOrEmpty())
                     {
                         Registry.SetValue($"HKEY_LOCAL_MACHINE\\{_regPath}\\{folder}", "ComponentId", matchingDeviceId);
-                        SentrySdk.CaptureMessage("Fixed missing ComponentId on wintun adapter.");
+                        _eventPublisher.CaptureMessage("Fixed missing ComponentId on wintun adapter.");
                     }
                     else if (matchingDeviceId != componentId)
                     {
-                        _logger.Info($"[WintunRegistryFixer] ComponentId '{componentId}' has a value but is different from the MatchingDeviceId '{matchingDeviceId}'.");
+                        _logger.Info<OperatingSystemLog>($"WintunRegistryFixer: ComponentId '{componentId}' " +
+                            $"has a value but is different from the MatchingDeviceId '{matchingDeviceId}'.");
                     }
                 }
             }

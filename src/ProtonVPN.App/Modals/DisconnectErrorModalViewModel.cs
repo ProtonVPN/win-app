@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2022 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -24,14 +24,13 @@ using GalaSoft.MvvmLight.CommandWpf;
 using ProtonVPN.BugReporting;
 using ProtonVPN.Common.KillSwitch;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.DisconnectLogs;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Config.Url;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
-using Sentry;
-using Sentry.Protocol;
 
 namespace ProtonVPN.Modals
 {
@@ -102,20 +101,14 @@ namespace ProtonVPN.Modals
 
             HandleError(options.Error);
 
-            _logger.Info($"Disconnected due to: {Error}. Network blocked: {NetworkBlocked}");
+            _logger.Info<DisconnectLog>($"Disconnected due to: {Error}. Network blocked: {NetworkBlocked}");
         }
 
         private void HandleError(VpnError error)
         {
-            if (error == VpnError.TlsError || error == VpnError.TlsCertificateError)
+            if (error is VpnError.TlsError or VpnError.TlsCertificateError)
             {
-                string errorMessage = $"The error '{error}' was handled by the app.";
-                _logger.Error(errorMessage);
-                SentrySdk.CaptureEvent(new SentryEvent
-                {
-                    Message = errorMessage,
-                    Level = SentryLevel.Error,
-                });
+                _logger.Error<DisconnectLog>($"The error '{error}' was handled by the app.");
             }
         }
 

@@ -1,4 +1,4 @@
-﻿/* Copyright (c) 2021 Proton Technologies AG
+﻿/* Copyright (c) 2022 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -16,8 +16,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using ProtonVPN.Common.Abstract;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.AppServiceLogs;
 using ProtonVPN.Common.OS.Services;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Modals;
@@ -39,15 +41,16 @@ namespace ProtonVPN.Core.Service
         {
             if (!service.Enabled())
             {
-                _logger.Info($"Service {service.Name} is disabled. Displaying modal to enable it.");
+                _logger.Info<AppServiceLog>($"Service {service.Name} is disabled. Displaying modal to enable it.");
                 bool? result = _modals.Show<DisabledServiceModalViewModel>();
                 if (!result.HasValue || !result.Value)
                 {
-                    _logger.Info($"The user refused to enable service {service.Name}.");
+                    _logger.Info<AppServiceLog>($"The user refused to enable service {service.Name}. Shutting down the application.");
+                    Environment.Exit(0);
                     return Result.Fail();
                 }
 
-                _logger.Info($"The user requested to enable service {service.Name}");
+                _logger.Info<AppServiceLog>($"The user requested to enable service {service.Name}");
                 service.Enable();
             }
 

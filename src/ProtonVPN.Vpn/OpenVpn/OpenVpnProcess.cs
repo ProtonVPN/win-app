@@ -23,6 +23,8 @@ using ProtonVPN.Common;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.ConnectionLogs;
+using ProtonVPN.Common.Logging.Categorization.Events.ProcessLogs;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.OS.Processes;
 using ProtonVPN.Vpn.OpenVpn.Arguments;
@@ -69,7 +71,7 @@ namespace ProtonVPN.Vpn.OpenVpn
             AddEventHandlers();
             _process.Start();
 
-            _logger.Info("OpenVPN <- Management channel password");
+            _logger.Info<ConnectionLog>("OpenVPN <- Management channel password");
             _process.StandardInput.WriteLine(processParams.Password);
 
             return _startCompletionSource.Task;
@@ -123,8 +125,8 @@ namespace ProtonVPN.Vpn.OpenVpn
 
         private void KillNotExitedProcesses()
         {
-            var processes = _processes.ProcessesByPath(_config.ExePath);
-            foreach (var process in processes)
+            IOsProcess[] processes = _processes.ProcessesByPath(_config.ExePath);
+            foreach (IOsProcess process in processes)
             {
                 process.Kill();
                 process.Dispose();
@@ -133,7 +135,7 @@ namespace ProtonVPN.Vpn.OpenVpn
 
         private void Process_OutputDataReceived(object sender, EventArgs<string> e)
         {
-            _logger.Info($"OpenVPN -> {e.Data}");
+            _logger.Info<ConnectionLog>($"OpenVPN -> {e.Data}");
 
             if (e.Data.StartsWithIgnoringCase("MANAGEMENT: TCP Socket listening on"))
             {
@@ -151,17 +153,17 @@ namespace ProtonVPN.Vpn.OpenVpn
 
             if (e.Data.StartsWithIgnoringCase("Enter Management Password:"))
             {
-                _logger.Info(message);
+                _logger.Info<ConnectionLog>(message);
             }
             else
             {
-                _logger.Warn(message);
+                _logger.Warn<ConnectionLog>(message);
             }
         }
 
         private void Process_Exited(object sender, EventArgs e)
         {
-            _logger.Info("OpenVPN process exited");
+            _logger.Info<ProcessStopLog>("OpenVPN process exited");
 
             _startCompletionSource.TrySetResult(false);
         }

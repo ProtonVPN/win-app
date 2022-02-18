@@ -22,11 +22,11 @@ using ProtonVPN.UI.Test.Windows;
 using ProtonVPN.UI.Test.Results;
 using NUnit.Framework;
 using ProtonVPN.UI.Test.ApiClient;
-using System.Threading;
 
 namespace ProtonVPN.UI.Test.Tests
 {
     [TestFixture]
+    [Category("Connection")]
     public class ConnectionTests : UITestSession
     {
         private readonly LoginWindow _loginWindow = new LoginWindow();
@@ -35,19 +35,19 @@ namespace ProtonVPN.UI.Test.Tests
         private readonly SettingsWindow _settingsWindow = new SettingsWindow();
         private readonly SettingsResult _settingsResult = new SettingsResult();
         private readonly ModalWindow _modalWindow = new ModalWindow();
-        private readonly CommonAPI _client = new CommonAPI("http://ip-api.com");
+        private readonly LoginResult _loginResult = new LoginResult();
+        private readonly CommonAPI _client = new CommonAPI("http://ipwhois.app");
+        private readonly ProfileWindow _profileWindow = new ProfileWindow();
         private readonly ConnectionResult _connectionResult = new ConnectionResult();
 
         [Test]
-        public async Task ConnectUsingQuickConnectBasicUser()
+        public void ConnectUsingQuickConnectBasicUser()
         {
             TestCaseId = 221;
 
             _loginWindow.LoginWithBasicUser();
             _mainWindow.QuickConnect();
             _mainWindowResults.CheckIfConnected();
-            await _mainWindowResults.CheckIfCorrectIPAddressIsShownAsync();
-            await _mainWindowResults.CheckIfCorrectCountryIsShownAsync();
             TestRailClient.MarkTestsByStatus();
 
             TestCaseId = 222;
@@ -56,7 +56,7 @@ namespace ProtonVPN.UI.Test.Tests
         }
 
         [Test]
-        public async Task ConnectToFastestViaProfilePlusUser()
+        public void ConnectToFastestViaProfilePlusUser()
         {
             TestCaseId = 225;
 
@@ -68,15 +68,12 @@ namespace ProtonVPN.UI.Test.Tests
             TestRailClient.MarkTestsByStatus();
 
             TestCaseId = 229;
-            await _mainWindowResults.CheckIfCorrectIPAddressIsShownAsync();
-            await _mainWindowResults.CheckIfCorrectCountryIsShownAsync();
-
             _mainWindow.DisconnectUsingSidebarButton();
             _mainWindowResults.CheckIfDisconnected();
         }
 
         [Test]
-        public async Task ConnectToRandomServerViaProfilePlusUser()
+        public void ConnectToRandomServerViaProfilePlusUser()
         {
             TestCaseId = 225;
 
@@ -85,22 +82,19 @@ namespace ProtonVPN.UI.Test.Tests
             _mainWindow.ConnectToAProfileByName("Random");
             _mainWindow.WaitUntilConnected();
             _mainWindowResults.CheckIfConnected();
-            await _mainWindowResults.CheckIfCorrectIPAddressIsShownAsync();
 
             _mainWindow.DisconnectUsingSidebarButton();
             _mainWindowResults.CheckIfDisconnected();
         }
 
         [Test]
-        public async Task SelectConnectionByCountryVisionaryUser()
+        public void SelectConnectionByCountryVisionaryUser()
         {
             TestCaseId = 223;
 
             _loginWindow.LoginWithVisionaryUser();
             _mainWindow.ConnectByCountryName("Ukraine");
             _mainWindowResults.CheckIfConnected();
-            await _mainWindowResults.CheckIfCorrectCountryIsShownAsync();
-            await _mainWindowResults.CheckIfCorrectIPAddressIsShownAsync();
             TestRailClient.MarkTestsByStatus();
 
             TestCaseId = 224;
@@ -148,21 +142,6 @@ namespace ProtonVPN.UI.Test.Tests
         }
 
         [Test]
-        public void CheckIfInvalidDnsIsNotPermitted()
-        {
-            TestCaseId = 4580;
-
-            _loginWindow.LoginWithPlusUser();
-            _mainWindow.ClickHamburgerMenu()
-                .HamburgerMenu.ClickSettings();
-            _settingsWindow.ClickConnectionTab();
-            _settingsWindow.EnableCustomDnsServers();
-            _settingsWindow.DisableNetshieldForCustomDns();
-            _settingsWindow.EnterCustomIpv4Address("1.A.B.4");
-            _settingsResult.CheckIfCustomDnsAddressWasNotAdded();
-        }
-
-        [Test]
         public void CheckIfConnectionIsRestoredToSameServerAfterAppKill()
         {
             TestCaseId = 217;
@@ -175,7 +154,7 @@ namespace ProtonVPN.UI.Test.Tests
         }
 
         [Test]
-        public async Task ConnectAndDisconnectViaMap()
+        public void ConnectAndDisconnectViaMap()
         {
             TestCaseId = 219;
 
@@ -183,28 +162,12 @@ namespace ProtonVPN.UI.Test.Tests
             _mainWindow.ConnectToCountryViaPin("US");
             _mainWindow.WaitUntilConnected();
             _mainWindowResults.CheckIfConnected();
-            await _mainWindowResults.CheckIfCorrectIPAddressIsShownAsync();
-            await _mainWindowResults.CheckIfCorrectCountryIsShownAsync();
             TestRailClient.MarkTestsByStatus();
 
             TestCaseId = 220;
 
             _mainWindow.DisconnectFromCountryViaPin("US");
             _mainWindowResults.CheckIfDisconnected();
-        }
-
-        [Test]
-        public void CheckIfKillSwitchIsNotActiveOnAppExit()
-        {
-            TestCaseId = 216;
-
-            _loginWindow.LoginWithPlusUser();
-            _mainWindow.EnableKillSwitch();
-            _mainWindow.QuickConnect();
-            _mainWindow.ClickHamburgerMenu()
-                .HamburgerMenu.ClickExit();
-            _mainWindow.ConfirmAppExit();
-            _connectionResult.CheckIfDnsIsResolved();
         }
 
         [Test]
@@ -219,13 +182,116 @@ namespace ProtonVPN.UI.Test.Tests
             _modalWindow.MoveModalUp(amountOfTimes: 8);
             _settingsWindow.ClickAdvancedTab();
             _settingsWindow.EnableSplitTunneling();
-            _settingsWindow.AddIpAddressSplitTunneling("208.95.112.1");
+            _settingsWindow.AddIpAddressSplitTunneling("136.243.172.101");
             _settingsWindow.CloseSettings();
             _mainWindow.QuickConnect();
             await _mainWindowResults.CheckIfIpAddressIsExcluded(homeIpAddress);
 
             _mainWindow.DisconnectUsingSidebarButton();
             _mainWindowResults.CheckIfDisconnected();
+        }
+
+        [Test]
+        public void CheckIfAutoConnectConnectsAutomatically()
+        {
+            TestCaseId = 204;
+
+            _loginWindow.LoginWithPlusUser();
+            _mainWindow.ClickHamburgerMenu()
+                .HamburgerMenu.ClickSettings();
+            _settingsWindow.ClickConnectionTab();
+            _settingsWindow.EnableAutoConnectToFastestServer();
+            KillProtonVPNProcessAndReopenIt();
+            _mainWindow.WaitUntilConnected();
+            _mainWindow.DisconnectUsingSidebarButton();
+            TestRailClient.MarkTestsByStatus();
+
+            TestCaseId = 205;
+            _mainWindow.ClickHamburgerMenu()
+                .HamburgerMenu.ClickSettings();
+            _settingsWindow.ClickConnectionTab();
+            _settingsWindow.DisableAutoConnect();
+            KillProtonVPNProcessAndReopenIt();
+            _mainWindowResults.CheckIfDisconnected();
+        }
+
+        [Test]
+        public void ConnectToCreatedProfile()
+        {
+            TestCaseId = 21551;
+
+            DeleteProfiles();
+            string profileName = "@ProfileToConnect";
+
+            _loginWindow.LoginWithPlusUser();
+            _mainWindow.ClickHamburgerMenu().HamburgerMenu.ClickProfiles();
+
+            _profileWindow.ClickToCreateNewProfile()
+                .EnterProfileName(profileName)
+                .SelectCountryFromList("Belgium")
+                .SelectServerFromList("BE#1")
+                .ClickSaveButton();
+
+
+            _profileWindow.ConnectToProfile(profileName);
+            _mainWindow.WaitUntilConnected();
+            _mainWindowResults.CheckIfConnected();
+
+            _mainWindow.DisconnectUsingSidebarButton();
+            _mainWindowResults.CheckIfDisconnected();
+        }
+
+
+
+        [Test]
+        public void LogoutWhileConnectedToVpn()
+        {
+            TestCaseId = 212;
+
+            _loginWindow.LoginWithPlusUser();
+            _mainWindow.QuickConnect();
+            _mainWindow.ClickHamburgerMenu();
+            _mainWindow.HamburgerMenu.ClickLogout();
+            _modalWindow.ClickContinueButton();
+            _loginWindow.WaitUntilLoginInputIsDisplayed();
+            _loginResult.VerifyUserIsOnLoginWindow();
+        }
+
+        [Test]
+        public void CancelLogoutWhileConnectedToVpn()
+        {
+            TestCaseId = 21549;
+
+            _loginWindow.LoginWithPlusUser();
+
+            _mainWindow
+                .QuickConnect()
+                .ClickHamburgerMenu()
+                .HamburgerMenu
+                .ClickLogout();
+
+            _modalWindow.ClickCancelButton();
+
+            _mainWindowResults.VerifyUserIsLoggedIn();
+
+            _mainWindow.DisconnectUsingSidebarButton();
+            _mainWindowResults.CheckIfDisconnected();
+        }
+
+        [Test]
+        public void CheckIfKillSwitchIsNotActiveOnLogout()
+        {
+            TestCaseId = 215;
+
+            _loginWindow.LoginWithPlusUser();
+            _mainWindow.EnableKillSwitch();
+            _mainWindow.QuickConnect();
+            _mainWindow.ClickHamburgerMenu()
+                .HamburgerMenu.ClickLogout();
+            _modalWindow.ClickContinueButton();
+            _loginWindow.WaitUntilLoginInputIsDisplayed();
+            _loginResult.VerifyKillSwitchIsNotActive();
+            _connectionResult.CheckIfDnsIsResolved();
         }
 
         [SetUp]

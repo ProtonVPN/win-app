@@ -21,13 +21,14 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using ProtonVPN.Account;
+using ProtonVPN.BugReporting.Actions;
 using ProtonVPN.BugReporting.FormElements;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Core.Models;
 using ProtonVPN.Core.OS;
 using ProtonVPN.Core.Settings;
-using ProtonVPN.Core.User;
 using ProtonVPN.Servers;
+using UserLocation = ProtonVPN.Core.User.UserLocation;
 
 namespace ProtonVPN.BugReporting
 {
@@ -45,7 +46,7 @@ namespace ProtonVPN.BugReporting
             _systemState = systemState;
         }
 
-        public KeyValuePair<string, string>[] GetFields(string category, IList<FormElement> formElements)
+        public KeyValuePair<string, string>[] GetFields(SendReportAction message)
         {
             User user = _userStorage.User();
             UserLocation location = _userStorage.Location();
@@ -59,37 +60,47 @@ namespace ProtonVPN.BugReporting
                 new KeyValuePair<string, string>("Client", "Windows app"),
                 new KeyValuePair<string, string>("ClientVersion", _config.AppVersion),
                 new KeyValuePair<string, string>("Title", "Windows app form"),
-                new KeyValuePair<string, string>("Description", GetDescription(category, formElements)),
+                new KeyValuePair<string, string>("Description", GetDescription(message)),
                 new KeyValuePair<string, string>("Username", user.Username),
                 new KeyValuePair<string, string>("Plan", VpnPlanHelper.GetPlanName(user.VpnPlan)),
-                new KeyValuePair<string, string>("Email", GetEmail(formElements)),
+                new KeyValuePair<string, string>("Email", GetEmail(message.FormElements)),
                 new KeyValuePair<string, string>("Country", string.IsNullOrEmpty(country) ? "" : country),
                 new KeyValuePair<string, string>("ISP", string.IsNullOrEmpty(isp) ? "" : isp),
                 new KeyValuePair<string, string>("ClientType", "2")
             };
         }
 
-        private string GetDescription(string category, IList<FormElement> formElements)
+        private string GetDescription(SendReportAction message)
         {
             StringBuilder stringBuilder = new();
-            stringBuilder.AppendLine($"Category: {category}");
-            stringBuilder.AppendLine();
+            AppendCategoryToDescription(stringBuilder, message);
+            AppendFormElementsToDescription(stringBuilder, message);
+            AppendAdditionalInformationToDescription(stringBuilder);
 
-            foreach (FormElement element in formElements)
+            return stringBuilder.ToString();
+        }
+
+        private void AppendCategoryToDescription(StringBuilder stringBuilder, SendReportAction message)
+        {
+            stringBuilder.AppendLine($"Category: {message.Category}").AppendLine();
+        }
+
+        private void AppendFormElementsToDescription(StringBuilder stringBuilder, SendReportAction message)
+        {
+            foreach (FormElement element in message.FormElements)
             {
                 if (!element.Value.IsNullOrEmpty() && !element.IsEmailField())
                 {
-                    stringBuilder.AppendLine(element.SubmitLabel);
-                    stringBuilder.AppendLine(element.Value);
-                    stringBuilder.AppendLine();
+                    stringBuilder.AppendLine(element.SubmitLabel).AppendLine(element.Value).AppendLine();
                 }
             }
+        }
 
-            stringBuilder.AppendLine("Additional info");
-            stringBuilder.AppendLine($"Pending reboot: {_systemState.PendingReboot().ToYesNoString()}");
-            stringBuilder.AppendLine($"DeviceID: {_config.DeviceId}");
-
-            return stringBuilder.ToString();
+        private void AppendAdditionalInformationToDescription(StringBuilder stringBuilder)
+        {
+            stringBuilder.AppendLine("Additional info")
+                .AppendLine($"Pending reboot: {_systemState.PendingReboot().ToYesNoString()}")
+                .AppendLine($"DeviceID: {_config.DeviceId}");
         }
 
         private string GetEmail(IList<FormElement> formElements)

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2021 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -345,15 +345,19 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 NtpServerUrl = "time.windows.com",
 
-                DeviceId = GetDeviceId()
+                DeviceId = GetDeviceId(),
             };
         }
 
-        private string GetDeviceId()
+        private static string GetDeviceId()
         {
             return new DeviceIdBuilder()
-                .AddProcessorId()
-                .AddMotherboardSerialNumber()
+                .AddMachineName()
+                .AddOsVersion()
+                .OnWindows(windows => windows
+                    .AddProcessorId()
+                    .AddMotherboardSerialNumber()
+                    .AddSystemDriveSerialNumber())
                 .ToString();
         }
     }

@@ -29,6 +29,7 @@ using NSubstitute;
 using NSubstitute.ExceptionExtensions;
 using ProtonVPN.BugReporting.Attachments.Source;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
 
 namespace ProtonVPN.App.Test.BugReporting.Attachments.Source
 {
@@ -84,7 +85,7 @@ namespace ProtonVPN.App.Test.BugReporting.Attachments.Source
             // Act
             source.ToList();
             // Assert
-            _logger.ReceivedWithAnyArgs().Warn("");
+            _logger.ReceivedWithAnyArgs().Warn<AppFileAccessFailedLog>("");
         }
 
         [TestMethod]

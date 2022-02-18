@@ -19,6 +19,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Net.Http;
@@ -30,8 +31,10 @@ using Caliburn.Micro;
 using ProtonVPN.Account;
 using ProtonVPN.BugReporting;
 using ProtonVPN.Common.Abstract;
-using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.Events;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
+using ProtonVPN.Common.Logging.Categorization.Events.AppServiceLogs;
 using ProtonVPN.Common.OS.Services;
 using ProtonVPN.Common.Storage;
 using ProtonVPN.Common.Vpn;
@@ -80,8 +83,6 @@ using ProtonVPN.Translations;
 using ProtonVPN.ViewModels;
 using ProtonVPN.Vpn.Connectors;
 using ProtonVPN.Windows;
-using Sentry;
-using Sentry.Protocol;
 using AppConfig = ProtonVPN.Common.Configuration.Config;
 
 namespace ProtonVPN.Core
@@ -103,7 +104,7 @@ namespace ProtonVPN.Core
 
         protected override void Configure()
         {
-            ContainerBuilder builder = new ContainerBuilder();
+            ContainerBuilder builder = new();
             builder.RegisterModule<CoreModule>()
                 .RegisterModule<UiModule>()
                 .RegisterModule<AppModule>()
@@ -119,12 +120,10 @@ namespace ProtonVPN.Core
         {
             base.OnStartup(sender, e);
 
-            UnhandledExceptionLogging logging = Resolve<UnhandledExceptionLogging>();
-            logging.CaptureUnhandledExceptions();
-            logging.CaptureTaskExceptions();
-
             AppConfig appConfig = Resolve<AppConfig>();
-            Resolve<ILogger>().Info($"= Booting ProtonVPN version: {appConfig.AppVersion} os: {Environment.OSVersion.VersionString} {appConfig.OsBits} bit =");
+            Resolve<IEventPublisher>().Init();
+
+            Resolve<ILogger>().Info<AppStartLog>($"= Booting ProtonVPN version: {appConfig.AppVersion} os: {Environment.OSVersion.VersionString} {appConfig.OsBits} bit =");
 
             Resolve<ServicePointConfiguration>().Apply();
 
@@ -159,6 +158,7 @@ namespace ProtonVPN.Core
 
         public void OnExit()
         {
+            Resolve<ILogger>().Info<AppStopLog>("The app is exiting. Requesting services to stop.");
             Resolve<TrayIcon>().Hide();
             Resolve<MonitoredVpnService>().StopAsync();
             Resolve<AppUpdateSystemService>().StopAsync();
@@ -541,7 +541,7 @@ namespace ProtonVPN.Core
             }
             catch (Exception ex) when (ex is CommunicationException || ex is TimeoutException || ex is TaskCanceledException)
             {
-                Resolve<ILogger>().Error(ex.CombinedMessage());
+                Resolve<ILogger>().Error<AppServiceLog>("Failed to get initial state from VPN service.", ex);
             }
         }
 
@@ -550,19 +550,10 @@ namespace ProtonVPN.Core
             Result result = await service.StartAsync();
             if (result.Failure && result.Exception != null)
             {
-                ReportException(result.Exception);
-                Resolve<ILogger>().Error($"[Bootstrapper] Failed to start {service.Name} service.", result.Exception);
+                Resolve<ILogger>().Error<AppServiceStartFailedLog>($"Failed to start {service.Name} service.", result.Exception);
+                Process.Start("ProtonVPN.ErrorMessage.exe");
+                Application.Current.Shutdown();
             }
-        }
-
-        private void ReportException(Exception e)
-        {
-            SentrySdk.WithScope(scope =>
-            {
-                scope.Level = SentryLevel.Error;
-                scope.SetTag("captured_in", "App_Bootstrapper_StartService");
-                SentrySdk.CaptureException(e);
-            });
         }
 
         private void RegisterMigrations(ISupportsMigration subject, IEnumerable<IMigration> migrations)

@@ -20,6 +20,7 @@
 using System;
 using Autofac;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.FirewallLogs;
 using ProtonVPN.NetworkFilter;
 
 namespace ProtonVPN.Service.Firewall
@@ -119,7 +120,7 @@ namespace ProtonVPN.Service.Firewall
             }
             catch (NetworkFilterException e)
             {
-                _logger.Error(e);
+                _logger.Error<FirewallLog>("Error when creating permanent IP filtering.", e);
                 throw;
             }
             finally

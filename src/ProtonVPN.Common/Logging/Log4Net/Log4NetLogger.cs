@@ -18,54 +18,146 @@
  */
 
 using System;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using log4net;
-using ProtonVPN.Common.Extensions;
+using Newtonsoft.Json;
+using ProtonVPN.Common.Helpers;
+using ProtonVPN.Common.Logging.Categorization;
 
 namespace ProtonVPN.Common.Logging.Log4Net
 {
     public class Log4NetLogger : ILogger
     {
         private readonly ILog _logger;
+        private readonly IList<string> _recentLogs = new List<string>();
 
         public Log4NetLogger(ILog logger)
         {
             _logger = logger;
         }
 
-        public void Debug(string message)
+        public IList<string> GetRecentLogs()
         {
-            _logger.Debug(message);
+            return _recentLogs;
         }
 
-        public void Info(string message)
+        public void Debug<TEvent>(string message, Exception exception = null,
+            [CallerFilePath] string sourceFilePath = "",
+            [CallerMemberName] string sourceMemberName = "", 
+            [CallerLineNumber] int sourceLineNumber = 0)
+            where TEvent : ILogEvent, new()
         {
-            _logger.Info(message);
+            CallerProfile callerProfile = new(sourceFilePath, sourceMemberName, sourceLineNumber);
+            string fullLogMessage = CreateFullLogMessage<TEvent>(message, callerProfile);
+            if (exception == null)
+            {
+                _logger.Debug(fullLogMessage);
+                AddMessageToRecentLogs(fullLogMessage);
+            }
+            else
+            {
+                _logger.Debug(fullLogMessage, exception);
+                AddMessageToRecentLogs(fullLogMessage, exception);
+            }
         }
 
-        public void Warn(string message)
+        private string CreateFullLogMessage<TEvent>(string message, CallerProfile callerProfile) 
+            where TEvent : ILogEvent, new()
         {
-            _logger.Warn(message);
+            string json = GenerateMetadataJson(callerProfile);
+            return $"{new TEvent()} | {message} | {json}";
         }
 
-        public void Error(string message)
+        private string GenerateMetadataJson(CallerProfile callerProfile)
         {
-            _logger.Error(message);
+            IDictionary<string, object> metadataDictionary = new Dictionary<string, object>();
+            metadataDictionary.Add("Caller", 
+                $"{callerProfile.SourceClassName}.{callerProfile.SourceMemberName}:{callerProfile.SourceLineNumber}");
+            return JsonConvert.SerializeObject(metadataDictionary);
         }
 
-        public void Error(string message, Exception exception)
+        public void Info<TEvent>(string message, Exception exception = null, string sourceFilePath = "", string sourceMemberName = "",
+            int sourceLineNumber = 0) where TEvent : ILogEvent, new()
         {
-            _logger.Error(message, exception);
+            CallerProfile callerProfile = new(sourceFilePath, sourceMemberName, sourceLineNumber);
+            string fullLogMessage = CreateFullLogMessage<TEvent>(message, callerProfile);
+            if (exception == null)
+            {
+                _logger.Info(fullLogMessage);
+                AddMessageToRecentLogs(fullLogMessage);
+            }
+            else
+            {
+                _logger.Info(fullLogMessage, exception);
+                AddMessageToRecentLogs(fullLogMessage, exception);
+            }
         }
 
-        [Obsolete("This method should be deleted to force better descriptions on error logs.")]
-        public void Error(Exception exception)
+        public void Warn<TEvent>(string message, Exception exception = null, string sourceFilePath = "", string sourceMemberName = "",
+            int sourceLineNumber = 0) where TEvent : ILogEvent, new()
         {
-            _logger.Error(exception.CombinedMessage(), exception);
+            CallerProfile callerProfile = new(sourceFilePath, sourceMemberName, sourceLineNumber);
+            string fullLogMessage = CreateFullLogMessage<TEvent>(message, callerProfile);
+            if (exception == null)
+            {
+                _logger.Warn(fullLogMessage);
+                AddMessageToRecentLogs(fullLogMessage);
+            }
+            else
+            {
+                _logger.Warn(fullLogMessage, exception);
+                AddMessageToRecentLogs(fullLogMessage, exception);
+            }
         }
 
-        public void Fatal(string message)
+        public void Error<TEvent>(string message, Exception exception = null, string sourceFilePath = "", string sourceMemberName = "",
+            int sourceLineNumber = 0) where TEvent : ILogEvent, new()
         {
-            _logger.Fatal(message);
+            CallerProfile callerProfile = new(sourceFilePath, sourceMemberName, sourceLineNumber);
+            string fullLogMessage = CreateFullLogMessage<TEvent>(message, callerProfile);
+            if (exception == null)
+            {
+                _logger.Error(fullLogMessage);
+                AddMessageToRecentLogs(fullLogMessage);
+            }
+            else
+            {
+                _logger.Error(fullLogMessage, exception);
+                AddMessageToRecentLogs(fullLogMessage, exception);
+            }
+        }
+
+        public void Fatal<TEvent>(string message, Exception exception = null, string sourceFilePath = "", string sourceMemberName = "",
+            int sourceLineNumber = 0) where TEvent : ILogEvent, new()
+        {
+            CallerProfile callerProfile = new(sourceFilePath, sourceMemberName, sourceLineNumber);
+            string fullLogMessage = CreateFullLogMessage<TEvent>(message, callerProfile);
+            if (exception == null)
+            {
+                _logger.Fatal(fullLogMessage);
+                AddMessageToRecentLogs(fullLogMessage);
+            }
+            else
+            {
+                _logger.Fatal(fullLogMessage, exception);
+                AddMessageToRecentLogs(fullLogMessage, exception);
+            }
+        }
+
+        private void AddMessageToRecentLogs(string message, Exception exception = null, [CallerMemberName] string level = "")
+        {
+            message = $"{DateTime.UtcNow:O} | {level.ToUpper()} | {message}";
+            if (exception != null)
+            {
+                message += $" {exception}";
+            }
+            _recentLogs.Add(message);
+
+            while (_recentLogs.Count > 100)
+            {
+                _recentLogs.RemoveAt(0);
+            }
         }
     }
 }

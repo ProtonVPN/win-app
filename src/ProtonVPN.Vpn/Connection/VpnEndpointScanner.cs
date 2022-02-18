@@ -23,6 +23,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.ConnectLogs;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
@@ -160,7 +161,7 @@ namespace ProtonVPN.Vpn.Connection
 
         private async Task<VpnEndpoint> GetPortAlive(VpnEndpoint endpoint, CancellationToken cancellationToken)
         {
-            _logger.Info($"Pinging VPN endpoint {endpoint.Server.Ip}:{endpoint.Port} for {endpoint.VpnProtocol} protocol.");
+            _logger.Info<ConnectScanLog>($"Pinging VPN endpoint {endpoint.Server.Ip}:{endpoint.Port} for {endpoint.VpnProtocol} protocol.");
 
             bool isAlive = false;
             switch (endpoint.VpnProtocol)
@@ -209,11 +210,12 @@ namespace ProtonVPN.Vpn.Connection
 
             if (isResponding)
             {
-                _logger.Info($"The endpoint {bestEndpoint.Server.Ip}:{bestEndpoint.Port} was the fastest to respond.");
+                _logger.Info<ConnectScanResultLog>($"The endpoint {bestEndpoint.Server.Ip}:{bestEndpoint.Port} " +
+                    $"with protocol {bestEndpoint.VpnProtocol} was the fastest to respond.");
                 return bestEndpoint;
             }
 
-            _logger.Info($"No VPN port has responded for {server.Ip}.");
+            _logger.Info<ConnectScanFailLog>($"No VPN port has responded for {server.Ip}.");
             return VpnEndpoint.Empty;
         }
     }

@@ -17,7 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Collections.Generic;
 using Caliburn.Micro;
 using ProtonVPN.BugReporting.Actions;
 using ProtonVPN.BugReporting.FormElements;
@@ -36,7 +35,6 @@ namespace ProtonVPN.BugReporting
     {
         private readonly IBugReport _bugReport;
         private readonly StepsContainerViewModel _stepsContainerViewModel;
-        private readonly IReportFieldProvider _reportFieldProvider;
         private readonly IEventAggregator _eventAggregator;
         private readonly SendingViewModel _sendingViewModel;
         private readonly FailureViewModel _failureViewModel;
@@ -48,7 +46,6 @@ namespace ProtonVPN.BugReporting
         public ReportBugModalViewModel(
             IBugReport bugReport,
             StepsContainerViewModel stepsContainerViewModel,
-            IReportFieldProvider reportFieldProvider,
             IEventAggregator eventAggregator,
             SendingViewModel sendingViewModel,
             FailureViewModel failureViewModel,
@@ -58,7 +55,6 @@ namespace ProtonVPN.BugReporting
 
             _bugReport = bugReport;
             _stepsContainerViewModel = stepsContainerViewModel;
-            _reportFieldProvider = reportFieldProvider;
             _eventAggregator = eventAggregator;
             _sendingViewModel = sendingViewModel;
             _failureViewModel = failureViewModel;
@@ -79,10 +75,7 @@ namespace ProtonVPN.BugReporting
 
             ShowSendingView();
 
-            KeyValuePair<string, string>[] fields = _reportFieldProvider.GetFields(message.Category, message.FormElements);
-            Result result = message.SendErrorLogs
-                ? await _bugReport.SendWithLogsAsync(fields)
-                : await _bugReport.SendAsync(fields);
+            Result result = await _bugReport.SendAsync(message);
 
             FormState formState;
             if (result.Success)

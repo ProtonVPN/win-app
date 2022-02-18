@@ -17,17 +17,20 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Threading;
 using NUnit.Framework;
 using ProtonVPN.UI.Test.Windows;
 
 namespace ProtonVPN.UI.Test.Tests
 {
     [TestFixture]
+    [Category("UI")]
     public class SupportTests : UITestSession
     {
         private readonly LoginWindow _loginWindow = new LoginWindow();
         private readonly MainWindow _mainWindow = new MainWindow();
         private readonly BugReportWindow _bugReportWindow = new BugReportWindow();
+        private readonly HamburgerMenu _hamburgerMenu = new HamburgerMenu();
 
         [Test]
         public void SendBugReport()
@@ -35,13 +38,15 @@ namespace ProtonVPN.UI.Test.Tests
             TestCaseId = 21554;
 
             _loginWindow.LoginWithFreeUser();
-            _mainWindow.ClickHamburgerMenu().HamburgerMenu.ClickReportBug();
+            //When https://jira.protontech.ch/browse/VPNWIN-983 will be fixed, remove this timeout
+            Thread.Sleep(5000);
+            _mainWindow.ClickHamburgerMenu();
+            _hamburgerMenu.ClickReportBug();
 
-            RefreshSession();
-
-            _bugReportWindow.EnterYourEmail("test@protonmail.com")
-                .EnterWhatWentWrong("Feedback")
-                .EnterStepsToReproduce("Feedback")
+            _bugReportWindow
+                .SelectIssue("Connecting to VPN")
+                .PressContactUs()
+                .FillBugReportForm("Test Feedback", 3)
                 .ClickSend();
 
             _bugReportWindow.VerifySendingIsSuccessful();
