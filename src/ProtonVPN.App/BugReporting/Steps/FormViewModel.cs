@@ -122,6 +122,7 @@ namespace ProtonVPN.BugReporting.Steps
             if (message.State == FormState.Sent)
             {
                 RemoveFormElements();
+                _hasErrors = true;
             }
         }
 

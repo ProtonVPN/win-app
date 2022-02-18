@@ -44,12 +44,6 @@ namespace ProtonVPN.Core.ReportAnIssue
 
         public async Task FetchData()
         {
-            // Handle case when the app is launched for the first time and there are no categories yet.
-            if (_appSettings.ReportAnIssueFormData.Count == 0)
-            {
-                LoadCategoriesFromCache();
-            }
-
             try
             {
                 ApiResponseResult<ReportAnIssueFormData> response = await _apiClient.GetReportAnIssueFormData();
@@ -71,6 +65,11 @@ namespace ProtonVPN.Core.ReportAnIssue
 
         public List<IssueCategory> GetCategories()
         {
+            if (_categories.Count == 0)
+            {
+                LoadCategoriesFromCache();
+            }
+
             return _categories.ToList();
         }
 
