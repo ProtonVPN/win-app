@@ -140,7 +140,8 @@ namespace ProtonVPN.Core.Ioc
                         new CachedSettings(
                             new EnumAsStringSettings(
                                 new SelfRepairingSettings(
-                                    c.Resolve<AppSettingsStorage>())))))
+                                    c.Resolve<AppSettingsStorage>(),
+                                    c.Resolve<IAppExitInvoker>())))))
                 .As<ISettingsStorage>()
                 .SingleInstance();
 
@@ -303,6 +304,7 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<WelcomeModalManager>().SingleInstance();
             builder.Register(c => new EventPublisher(c.Resolve<ILogger>(), c.Resolve<Common.Configuration.Config>()))
                 .As<IEventPublisher>().SingleInstance();
+            builder.RegisterType<AppExitInvoker>().As<IAppExitInvoker>().SingleInstance();
         }
     }
 }

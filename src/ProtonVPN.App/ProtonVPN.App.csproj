@@ -163,6 +163,7 @@
     <Compile Include="Core\ExpiredSessionHandler.cs" />
     <Compile Include="Core\HardwareAccelerationManager.cs" />
     <Compile Include="Core\ILanguageProvider.cs" />
+    <Compile Include="Core\IShutdownInvoker.cs" />
     <Compile Include="Core\Language.cs" />
     <Compile Include="Core\LanguageProvider.cs" />
     <Compile Include="Core\MVVM\Converters\InvertedBoolConverter.cs" />
@@ -185,6 +186,7 @@
     <Compile Include="Core\Service\Vpn\VpnReconnectionSettings.cs" />
     <Compile Include="Core\Service\Vpn\VpnReconnectionSteps.cs" />
     <Compile Include="Core\Service\Vpn\VpnReconnector.cs" />
+    <Compile Include="Core\ShutdownInvoker.cs" />
     <Compile Include="Core\SystemTimeValidator.cs" />
     <Compile Include="Modals\ApiActions\ActionableFailureApiResultEventHandler.cs" />
     <Compile Include="Modals\ApiActions\ApiActionModalViewModel.cs" />

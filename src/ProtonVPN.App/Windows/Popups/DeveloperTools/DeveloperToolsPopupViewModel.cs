@@ -29,6 +29,7 @@ using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
+using ProtonVPN.Core;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Servers.Models;
@@ -55,6 +56,7 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
         private readonly ConnectionStatusViewModel _connectionStatusViewModel;
         private readonly IAppSettings _appSettings;
         private readonly ReconnectManager _reconnectManager;
+        private readonly IAppExitInvoker _appExitInvoker;
 
         public DeveloperToolsPopupViewModel(AppWindow appWindow,
             Common.Configuration.Config config,
@@ -65,7 +67,8 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
             INotificationSender notificationSender,
             ConnectionStatusViewModel connectionStatusViewModel,
             IAppSettings appSettings,
-            ReconnectManager reconnectManager)
+            ReconnectManager reconnectManager,
+            IAppExitInvoker appExitInvoker)
             : base(appWindow)
         {
             _config = config;
@@ -77,6 +80,7 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
             _connectionStatusViewModel = connectionStatusViewModel;
             _appSettings = appSettings;
             _reconnectManager = reconnectManager;
+            _appExitInvoker = appExitInvoker;
 
             InitializeCommands();
         }
@@ -289,7 +293,7 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
         private void DisableTlsPinningAction()
         {
             _configWriter.Write(_config.WithTlsPinningDisabled());
-            Environment.Exit(0);
+            _appExitInvoker.Exit();
         }
     }
 }

@@ -17,7 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
 using System.Configuration;
 using System.Diagnostics;
 using ProtonVPN.Core;
@@ -29,12 +28,14 @@ namespace ProtonVPN.Settings
     internal class SelfRepairingSettings : ISettingsStorage
     {
         private readonly AppSettingsStorage _settings;
+        private readonly IAppExitInvoker _appExitInvoker;
 
         private bool _loaded;
 
-        public SelfRepairingSettings(AppSettingsStorage settings)
+        public SelfRepairingSettings(AppSettingsStorage settings, IAppExitInvoker appExitInvoker)
         {
             _settings = settings;
+            _appExitInvoker = appExitInvoker;
         }
 
         public T Get<T>(string key)
@@ -70,7 +71,7 @@ namespace ProtonVPN.Settings
                 File.Delete(configError.Filename);
                 SingleInstanceApplication.ReleaseSingleInstanceLock();
                 Process.Start(System.Windows.Application.ResourceAssembly.Location);
-                Environment.Exit(0);
+                _appExitInvoker.Exit();
             }
         }
     }
