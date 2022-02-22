@@ -6214,6 +6214,24 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Moderate NAT.
+        /// </summary>
+        public static string Settings_Connection_lbl_ModerateNat {
+            get {
+                return ResourceManager.GetString("Settings_Connection_lbl_ModerateNat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Moderate NAT disables randomization of the local addresses mapping, which can reduce slightly your security, but allows techniques such as direct connections for applications like online games..
+        /// </summary>
+        public static string Settings_Connection_lbl_ModerateNat_Info {
+            get {
+                return ResourceManager.GetString("Settings_Connection_lbl_ModerateNat_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Quick Connect.
         /// </summary>
         public static string Settings_Connection_lbl_QuickConnect {
@@ -7065,6 +7083,42 @@ namespace ProtonVPN.Translations.Properties {
         public static string Upsell_Enjoying_ttl {
             get {
                 return ResourceManager.GetString("Upsell_Enjoying_ttl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What is Moderate NAT?.
+        /// </summary>
+        public static string Upsell_ModerateNat_About {
+            get {
+                return ResourceManager.GetString("Upsell_ModerateNat_About", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Moderate NAT, also known as Nat Type 2, can improve your online experience with various applications and online video games..
+        /// </summary>
+        public static string Upsell_ModerateNat_Subtitle {
+            get {
+                return ResourceManager.GetString("Upsell_ModerateNat_Subtitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable Moderate NAT.
+        /// </summary>
+        public static string Upsell_ModerateNat_Title {
+            get {
+                return ResourceManager.GetString("Upsell_ModerateNat_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upgrade to a paid plan to unlock this and many other features..
+        /// </summary>
+        public static string Upsell_ModerateNat_Unlock {
+            get {
+                return ResourceManager.GetString("Upsell_ModerateNat_Unlock", resourceCulture);
             }
         }
         

@@ -90,6 +90,7 @@ namespace ProtonVPN.Core.Service.Settings
             if (e.PropertyName == nameof(IAppSettings.KillSwitchMode) ||
                 e.PropertyName == nameof(IAppSettings.VpnAcceleratorEnabled) ||
                 e.PropertyName == nameof(IAppSettings.FeatureVpnAcceleratorEnabled) ||
+                e.PropertyName == nameof(IAppSettings.ModerateNat) ||
                 e.PropertyName == nameof(IAppSettings.AllowNonStandardPorts) ||
                 e.PropertyName == nameof(IAppSettings.OvpnProtocol) ||
                 e.PropertyName == nameof(IAppSettings.NetworkAdapterType) ||

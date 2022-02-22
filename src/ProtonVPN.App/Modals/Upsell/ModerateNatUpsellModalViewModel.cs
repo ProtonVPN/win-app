@@ -17,14 +17,24 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Common.Vpn
+using System.Windows.Input;
+using GalaSoft.MvvmLight.CommandWpf;
+using ProtonVPN.Config.Url;
+
+namespace ProtonVPN.Modals.Upsell
 {
-    public class VpnFeatures
+    public class ModerateNatUpsellModalViewModel : UpsellModalViewModel
     {
-        public bool SplitTcp { get; set; }
-        public int NetShieldMode { get; set; }
-        public bool? AllowNonStandardPorts { get; set; }
-        public bool PortForwarding { get; set; }
-        public bool ModerateNat { get; set; }
+        public ModerateNatUpsellModalViewModel(IActiveUrls urls) : base(urls)
+        {
+            OpenModerateNatArticleCommand = new RelayCommand(OpenModerateNatArticleAction);
+        }
+
+        public ICommand OpenModerateNatArticleCommand { get; }
+
+        private void OpenModerateNatArticleAction()
+        {
+            Urls.AboutModerateNatUrl.Open();
+        }
     }
 }

@@ -221,6 +221,12 @@ namespace ProtonVPN.Core
             set => Set(value);
         }
 
+        public bool ModerateNat
+        {
+            get => GetPerUser<bool>();
+            set => SetPerUser(value);
+        }
+
         public bool WelcomeModalShown
         {
             get => GetPerUser<bool>();

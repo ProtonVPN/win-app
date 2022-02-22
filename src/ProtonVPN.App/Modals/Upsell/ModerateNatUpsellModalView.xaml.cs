@@ -17,14 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Common.Vpn
+namespace ProtonVPN.Modals.Upsell
 {
-    public class VpnFeatures
+    public partial class ModerateNatUpsellModalView
     {
-        public bool SplitTcp { get; set; }
-        public int NetShieldMode { get; set; }
-        public bool? AllowNonStandardPorts { get; set; }
-        public bool PortForwarding { get; set; }
-        public bool ModerateNat { get; set; }
+        public ModerateNatUpsellModalView()
+        {
+            InitializeComponent();
+        }
     }
 }

@@ -205,6 +205,7 @@ namespace ProtonVPN.Service
                 NetShieldMode = settings.NetShieldMode,
                 AllowNonStandardPorts = settings.AllowNonStandardPorts,
                 PortForwarding = settings.PortForwarding,
+                ModerateNat = settings.ModerateNat,
             };
         }
 
@@ -316,6 +317,7 @@ namespace ProtonVPN.Service
                     OpenVpnAdapter = _serviceSettings.OpenVpnAdapter,
                     VpnProtocol = Map(config.VpnProtocol),
                     PreferredProtocols = Map(config.PreferredProtocols),
+                    ModerateNat = config.ModerateNat,
                     NetShieldMode = config.NetShieldMode,
                     SplitTcp = config.SplitTcp,
                     AllowNonStandardPorts = config.AllowNonStandardPorts,

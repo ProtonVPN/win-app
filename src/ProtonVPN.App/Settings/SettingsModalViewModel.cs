@@ -87,6 +87,7 @@ namespace ProtonVPN.Settings
             _languageProvider = languageProvider;
             _portForwardingManager = portForwardingManager;
             _reconnectState = reconnectState;
+
             _profileViewModelFactory = profileViewModelFactory;
             SplitTunnelingViewModel = splitTunnelingViewModel;
             Ips = customDnsListViewModel;
@@ -192,6 +193,22 @@ namespace ProtonVPN.Settings
         }
 
         public bool ShowAllowNonStandardPorts => _appSettings.ShowNonStandardPortsToFreeUsers;
+
+        public bool ModerateNat
+        {
+            get => _appSettings.ModerateNat;
+            set
+            {
+                if (value && !_userStorage.User().Paid())
+                {
+                    _modals.Show<ModerateNatUpsellModalViewModel>();
+                    return;
+                }
+
+                _appSettings.ModerateNat = value;
+                NotifyOfPropertyChange();
+            }
+        }
 
         public bool VpnAccelerator
         {
