@@ -263,5 +263,8 @@
   <ItemGroup>
     <Resource Include="Images\DiscourageSecureCore.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ModerateNat.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

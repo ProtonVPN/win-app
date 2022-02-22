@@ -3157,6 +3157,24 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="Upsell_SecureCore_Title" xml:space="preserve">
     <value>Double the encryption with Secure Core</value>
   </data>
+  <data name="Upsell_ModerateNat_Title" xml:space="preserve">
+    <value>Enable Moderate NAT</value>
+  </data>
+  <data name="Settings_Connection_lbl_ModerateNat" xml:space="preserve">
+    <value>Moderate NAT</value>
+  </data>
+  <data name="Settings_Connection_lbl_ModerateNat_Info" xml:space="preserve">
+    <value>Moderate NAT disables randomization of the local addresses mapping, which can reduce slightly your security, but allows techniques such as direct connections for applications like online games.</value>
+  </data>
+  <data name="Upsell_ModerateNat_Subtitle" xml:space="preserve">
+    <value>Moderate NAT, also known as Nat Type 2, can improve your online experience with various applications and online video games.</value>
+  </data>
+  <data name="Upsell_ModerateNat_About" xml:space="preserve">
+    <value>What is Moderate NAT?</value>
+  </data>
+  <data name="Upsell_ModerateNat_Unlock" xml:space="preserve">
+    <value>Upgrade to a paid plan to unlock this and many other features.</value>
+  </data>
   <data name="Upsell_NonStandardPorts_btn_LearnMore" xml:space="preserve">
     <value>Learn More</value>
     <comment>The button label in "allow non-standard ports" modal</comment>

@@ -307,16 +307,36 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </DockPanel>
                     </Border>
 
-                    <Border>
+                    <Border DockPanel.Dock="Top">
                         <Border.Style>
                             <Style TargetType="Border" BasedOn="{StaticResource BorderlessSettingContainer}">
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding IsToShowSmartReconnectNotifications}" Value="True">
-                                        <Setter Property="BorderThickness" Value="0,1,0,0"/>
+                                        <Setter Property="BorderThickness" Value="0,1,0,1"/>
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
                         </Border.Style>
+                        <DockPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Foreground="White" FontSize="16" VerticalAlignment="Center"
+                                       Content="{translations:Loc Settings_Connection_lbl_ModerateNat}"/>
+                                <fa:FontAwesome Icon="InfoCircle"
+                                                VerticalAlignment="Center"
+                                                ToolTip="{translations:Loc Settings_Connection_lbl_ModerateNat_Info}"
+                                                Foreground="{StaticResource PrimaryColor}"
+                                                FontSize="16"/>
+                            </StackPanel>
+
+                            <CheckBox Style="{StaticResource ToggleSwitch}"
+                                      Margin="0,0,14,0"
+                                      HorizontalAlignment="Right"
+                                      IsChecked="{Binding ModerateNat}"
+                                      AutomationProperties.AutomationId="{StaticResource ModerateNatCheckbox}"/>
+                        </DockPanel>
+                    </Border>
+
+                    <Border>
                         <DockPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Foreground="White" FontSize="16" VerticalAlignment="Center" 

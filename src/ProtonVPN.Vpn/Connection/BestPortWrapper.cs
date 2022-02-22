@@ -124,6 +124,7 @@ namespace ProtonVPN.Vpn.Connection
                 CustomDns = _config.CustomDns,
                 NetShieldMode = _config.NetShieldMode,
                 OpenVpnAdapter = _config.OpenVpnAdapter,
+                ModerateNat = _config.ModerateNat,
                 Ports = _config.Ports,
                 SplitTcp = _config.SplitTcp,
                 SplitTunnelIPs = _config.SplitTunnelIPs,

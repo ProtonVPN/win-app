@@ -33,6 +33,7 @@ namespace ProtonVPN.Common.Vpn
         public IList<VpnProtocol> PreferredProtocols { get; set; }
         public int NetShieldMode { get; set; }
         public bool SplitTcp { get; set; }
+        public bool ModerateNat { get; set; }
         public bool? AllowNonStandardPorts { get; set; }
         public bool PortForwarding { get; set; }
 

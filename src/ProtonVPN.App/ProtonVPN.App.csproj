@@ -233,6 +233,10 @@
     <Compile Include="Modals\Upsell\NonStandardPortsUpsellModalView.xaml.cs">
       <DependentUpon>NonStandardPortsUpsellModalView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Modals\Upsell\ModerateNatUpsellModalViewModel.cs" />
+    <Compile Include="Modals\Upsell\ModerateNatUpsellModalView.xaml.cs">
+      <DependentUpon>ModerateNatUpsellModalView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modals\Upsell\PortForwardingUpsellModalView.xaml.cs">
       <DependentUpon>PortForwardingUpsellModalView.xaml</DependentUpon>
     </Compile>
@@ -961,6 +965,10 @@
     <Page Include="PortForwarding\ActivePorts\PortForwardingActivePortView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modals\Upsell\ModerateNatUpsellModalView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Modals\Upsell\NonStandardPortsUpsellModalView.xaml">
       <Generator>MSBuild:Compile</Generator>

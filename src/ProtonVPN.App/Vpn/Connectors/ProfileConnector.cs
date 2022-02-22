@@ -320,6 +320,7 @@ namespace ProtonVPN.Vpn.Connectors
                     SplitTunnelIPs = GetSplitTunnelIPs(),
                     OpenVpnAdapter = _appSettings.NetworkAdapterType,
                     VpnProtocol = protocol,
+                    ModerateNat = _appSettings.ModerateNat,
                     PreferredProtocols = GetPreferredProtocols(protocol),
                     NetShieldMode = _appSettings.IsNetShieldEnabled() ? _appSettings.NetShieldMode : 0,
                     SplitTcp = _appSettings.IsVpnAcceleratorEnabled(),

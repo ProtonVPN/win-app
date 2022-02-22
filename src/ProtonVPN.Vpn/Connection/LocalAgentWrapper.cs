@@ -265,6 +265,7 @@ namespace ProtonVPN.Vpn.Connection
                 NetShieldLevel = _vpnConfig.NetShieldMode,
                 SafeMode = !_vpnConfig.AllowNonStandardPorts,
                 PortForwarding = _vpnConfig.PortForwarding,
+                RandomizedNat = !_vpnConfig.ModerateNat,
             });
         }
 
@@ -276,6 +277,7 @@ namespace ProtonVPN.Vpn.Connection
                 NetShieldLevel = vpnFeatures.NetShieldMode,
                 SafeMode = !vpnFeatures.AllowNonStandardPorts,
                 PortForwarding = vpnFeatures.PortForwarding,
+                RandomizedNat = !vpnFeatures.ModerateNat,
             });
         }
 

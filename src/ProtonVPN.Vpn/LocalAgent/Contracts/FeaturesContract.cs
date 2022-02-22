@@ -23,6 +23,9 @@ namespace ProtonVPN.Vpn.LocalAgent.Contracts
 {
     public class FeaturesContract
     {
+        [JsonProperty(PropertyName = "randomized-nat")]
+        public bool RandomizedNat { get; set; }
+
         [JsonProperty(PropertyName = "bouncing")]
         public string Bouncing { get; set; }
 

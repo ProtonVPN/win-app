@@ -211,7 +211,7 @@ namespace ProtonVPN.Common.Configuration.Source
                     AboutNetShieldUrl = "https://protonvpn.com/support/netshield",
                     AboutPortForwardingUrl = "https://protonvpn.com/support/port-forwarding",
                     PortForwardingRisksUrl = "https://protonvpn.com/support/port-forwarding-risks",
-                    AboutDelinquencyUrl = "https://protonvpn.com/support/delinquency",
+                    AboutModerateNatUrl = "https://protonvpn.com/support/moderate-nat",
                     StreamingUrl = "https://protonvpn.com/support/streaming-guide/",
                     SmartRoutingUrl = "https://protonvpn.com/support/smart-routing",
                     P2PUrl = "https://protonvpn.com/support/bittorrent-vpn/",

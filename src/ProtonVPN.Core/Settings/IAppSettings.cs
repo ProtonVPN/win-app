@@ -58,6 +58,7 @@ namespace ProtonVPN.Core.Settings
         bool CustomDnsEnabled { get; set; }
         bool SidebarMode { get; set; }
         bool WelcomeModalShown { get; set; }
+        bool ModerateNat { get; set; }
         int OnboardingStep { get; set; }
         int AppStartCounter { get; set; }
         int SidebarTab { get; set; }

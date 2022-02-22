@@ -50,6 +50,9 @@ namespace ProtonVPN.Service.Contract.Vpn
         public IList<VpnProtocolContract> PreferredProtocols { get; set; }
 
         [DataMember(IsRequired = true)]
+        public bool ModerateNat { get; set; }
+
+        [DataMember(IsRequired = true)]
         public bool SplitTcp { get; set; }
 
         [DataMember(IsRequired = true)]

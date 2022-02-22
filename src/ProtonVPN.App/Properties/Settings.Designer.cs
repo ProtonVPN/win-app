@@ -1492,5 +1492,17 @@ namespace ProtonVPN.Properties {
                 this["ShowNonStandardPortsToFreeUsers"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string UserModerateNat {
+            get {
+                return ((string)(this["UserModerateNat"]));
+            }
+            set {
+                this["UserModerateNat"] = value;
+            }
+        }
     }
 }
