@@ -430,6 +430,12 @@ namespace ProtonVPN.Core
             set => SetPerUser(value);
         }
 
+        public bool DoNotShowDiscourageSecureCoreDialog
+        {
+            get => GetPerUser<bool>();
+            set => SetPerUser(value);
+        }
+
         [Obsolete(
             "Use this only for checking if the user enabled/disabled the feature." +
             "Use IsVpnAcceleratorEnabled() for checking if VPN Accelerator is/should be enabled.")]

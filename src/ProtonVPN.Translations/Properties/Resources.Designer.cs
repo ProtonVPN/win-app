@@ -4639,6 +4639,51 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Activate Secure Core.
+        /// </summary>
+        public static string Modal_DiscourageSecureCore_ActivateSecureCore {
+            get {
+                return ResourceManager.GetString("Modal_DiscourageSecureCore_ActivateSecureCore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Don’t show again.
+        /// </summary>
+        public static string Modal_DiscourageSecureCore_DoNotShowItAgain {
+            get {
+                return ResourceManager.GetString("Modal_DiscourageSecureCore_DoNotShowItAgain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Learn More.
+        /// </summary>
+        public static string Modal_DiscourageSecureCore_LearnMore {
+            get {
+                return ResourceManager.GetString("Modal_DiscourageSecureCore_LearnMore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Secure Core offers the highest level of security and privacy, but it may reduce your internet speed. If you need more performance, you can disable Secure Core..
+        /// </summary>
+        public static string Modal_DiscourageSecureCore_Subtitle {
+            get {
+                return ResourceManager.GetString("Modal_DiscourageSecureCore_Subtitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A note about speed....
+        /// </summary>
+        public static string Modal_DiscourageSecureCore_Title {
+            get {
+                return ResourceManager.GetString("Modal_DiscourageSecureCore_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to NetShield.
         /// </summary>
         public static string NetShield {

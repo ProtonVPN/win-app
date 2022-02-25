@@ -3234,4 +3234,19 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="Upsell_PortForwarding_About" xml:space="preserve">
     <value>What is Port Forwarding?</value>
   </data>
+  <data name="Modal_DiscourageSecureCore_ActivateSecureCore" xml:space="preserve">
+    <value>Activate Secure Core</value>
+  </data>
+  <data name="Modal_DiscourageSecureCore_DoNotShowItAgain" xml:space="preserve">
+    <value>Don’t show again</value>
+  </data>
+  <data name="Modal_DiscourageSecureCore_LearnMore" xml:space="preserve">
+    <value>Learn More</value>
+  </data>
+  <data name="Modal_DiscourageSecureCore_Subtitle" xml:space="preserve">
+    <value>Secure Core offers the highest level of security and privacy, but it may reduce your internet speed. If you need more performance, you can disable Secure Core.</value>
+  </data>
+  <data name="Modal_DiscourageSecureCore_Title" xml:space="preserve">
+    <value>A note about speed...</value>
+  </data>
 </root>

@@ -83,6 +83,7 @@ namespace ProtonVPN.Core.Settings
         bool PortForwardingInQuickSettings { get; set; }
         bool DoNotShowKillSwitchConfirmationDialog { get; set; }
         bool DoNotShowEnableSmartProtocolDialog { get; set; }
+        bool DoNotShowDiscourageSecureCoreDialog { get; set; }
         bool FeatureSmartProtocolWireGuardEnabled { get; set; }
         IReadOnlyList<Announcement> Announcements { get; set; }
         List<IssueCategory> ReportAnIssueFormData { get; set; }

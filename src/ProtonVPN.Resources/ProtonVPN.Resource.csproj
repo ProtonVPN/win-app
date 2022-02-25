@@ -260,5 +260,8 @@
     <Resource Include="Images\PortForward.png" />
     <Resource Include="Images\SecureCore.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\DiscourageSecureCore.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
