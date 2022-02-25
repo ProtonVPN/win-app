@@ -362,6 +362,9 @@
         <Setting Name="UserReportAnIssueFormData" Type="System.String" Scope="User">
             <Value Profile="(Default)" />
         </Setting>
+        <Setting Name="UserDoNotShowDiscourageSecureCoreDialog" Type="System.String" Scope="User">
+          <Value Profile="(Default)" />
+        </Setting>
         <Setting Name="UserAllowNonStandardPorts" Type="System.String" Scope="User">
             <Value Profile="(Default)" />
         </Setting>

@@ -320,6 +320,15 @@ namespace ProtonVPN.Sidebar.QuickSettings
 
             if (IsUserTierPlusOrHigher)
             {
+                if (!_appSettings.DoNotShowDiscourageSecureCoreDialog)
+                {
+                    bool? result = _modals.Show<DiscourageSecureCoreModalViewModel>();
+                    if (result.HasValue && !result.Value)
+                    {
+                        return;
+                    }
+                }
+
                 DisablePortForwarding();
                 _appSettings.SecureCore = true;
                 await ReconnectAsync();

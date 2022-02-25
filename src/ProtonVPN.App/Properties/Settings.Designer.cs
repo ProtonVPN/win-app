@@ -1460,6 +1460,18 @@ namespace ProtonVPN.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string UserDoNotShowDiscourageSecureCoreDialog {
+            get {
+                return ((string)(this["UserDoNotShowDiscourageSecureCoreDialog"]));
+            }
+            set {
+                this["UserDoNotShowDiscourageSecureCoreDialog"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string UserAllowNonStandardPorts {
             get {
                 return ((string)(this["UserAllowNonStandardPorts"]));
