@@ -6871,7 +6871,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Block ads and malware with Netshield.
+        ///   Looks up a localized string similar to Block ads and malware with NetShield.
         /// </summary>
         public static string Upsell_Countries_BlockAds {
             get {

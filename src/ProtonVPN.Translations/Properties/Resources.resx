@@ -3129,7 +3129,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <comment>The message disaplyed in plus upgrade modal window</comment>
   </data>
   <data name="Upsell_Countries_BlockAds" xml:space="preserve">
-    <value>Block ads and malware with Netshield</value>
+    <value>Block ads and malware with NetShield</value>
   </data>
   <data name="Upsell_Countries_BrowseFast" xml:space="preserve">
     <value>Browse at the highest speeds (10 Gbps)</value>
