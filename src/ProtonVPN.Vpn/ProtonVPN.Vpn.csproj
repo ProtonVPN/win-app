@@ -81,10 +81,11 @@
     <Compile Include="Config\VpnCertConfig.cs" />
     <Compile Include="Connection\BestPortWrapper.cs" />
     <Compile Include="Connection\IEndpointScanner.cs" />
-    <Compile Include="Connection\IGatewayProvider.cs" />
+    <Compile Include="Gateways\IGatewayCache.cs" />
     <Compile Include="Connection\IVpnEndpointCandidates.cs" />
     <Compile Include="Connection\LocalAgentWrapper.cs" />
     <Compile Include="Connection\NetworkAdapterStatusWrapper.cs" />
+    <Compile Include="Connection\PortForwardingWrapper.cs" />
     <Compile Include="Connection\VpnEndpointScanner.cs" />
     <Compile Include="Connection\QueuingRequestsWrapper.cs" />
     <Compile Include="Connection\ReconnectingWrapper.cs" />
@@ -126,12 +127,34 @@
     <Compile Include="OpenVpn\Arguments\NetworkDriverArgument.cs" />
     <Compile Include="OpenVpn\BestLocalOpenVpnEndpoint.cs" />
     <Compile Include="OpenVpn\ConfigTemplate.cs" />
-    <Compile Include="OpenVpn\OpenVpnGatewayProvider.cs" />
+    <Compile Include="Gateways\GatewayCache.cs" />
     <Compile Include="OpenVpn\OpenVpnProcessParams.cs" />
     <Compile Include="OpenVpn\SafeBestNetworkInterface.cs" />
     <Compile Include="OpenVpn\BestNetworkInterface.cs" />
     <Compile Include="OpenVpn\OpenVpnHandshake.cs" />
     <Compile Include="OpenVpn\TcpPortScanner.cs" />
+    <Compile Include="PortMapping\IPortMappingProtocolClient.cs" />
+    <Compile Include="PortMapping\Messages\HelloQueryMessage.cs" />
+    <Compile Include="PortMapping\Messages\HelloReplyMessage.cs" />
+    <Compile Include="PortMapping\Messages\Common\MessageBase.cs" />
+    <Compile Include="PortMapping\Messages\PortMappingQueryMessage.cs" />
+    <Compile Include="PortMapping\Messages\PortMappingReplyMessage.cs" />
+    <Compile Include="PortMapping\Messages\Common\ReplyMessageBase.cs" />
+    <Compile Include="PortMapping\PortMappingProtocolClient.cs" />
+    <Compile Include="PortMapping\Serializers\Common\IMessageSerializerOfType.cs" />
+    <Compile Include="PortMapping\Serializers\Common\IMessageSerializerProxy.cs" />
+    <Compile Include="PortMapping\Serializers\Common\MessageSerializerProxy.cs" />
+    <Compile Include="PortMapping\Serializers\HelloQueryMessageSerializer.cs" />
+    <Compile Include="PortMapping\Serializers\HelloReplyMessageSerializer.cs" />
+    <Compile Include="PortMapping\Serializers\Common\IMessageSerializer.cs" />
+    <Compile Include="PortMapping\Serializers\Common\IMessageSerializerFactory.cs" />
+    <Compile Include="PortMapping\Serializers\PortMappingQueryMessageSerializer.cs" />
+    <Compile Include="PortMapping\Serializers\PortMappingReplyMessageSerializer.cs" />
+    <Compile Include="PortMapping\Serializers\Common\MessageSerializerBase.cs" />
+    <Compile Include="PortMapping\Serializers\Common\MessageSerializerFactory.cs" />
+    <Compile Include="PortMapping\TransportProtocol.cs" />
+    <Compile Include="PortMapping\UdpClients\IUdpClientWrapper.cs" />
+    <Compile Include="PortMapping\UdpClients\UdpClientWrapper.cs" />
     <Compile Include="SplitTunnel\SplitTunnelRouting.cs" />
     <Compile Include="SynchronizationEvent\ISynchronizationEvents.cs" />
     <Compile Include="SynchronizationEvent\NullSynchronizationEvent.cs" />
@@ -154,7 +177,6 @@
     <Compile Include="WireGuard\StatusManager.cs" />
     <Compile Include="WireGuard\TrafficManager.cs" />
     <Compile Include="WireGuard\WireGuardConnection.cs" />
-    <Compile Include="WireGuard\WireGuardGatewayProvider.cs" />
     <Compile Include="WireGuard\WireGuardService.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -212,6 +234,7 @@
     <None Include="build-local-agent.bat" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>call "$(ProjectDir)build-local-agent.bat"

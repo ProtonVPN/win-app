@@ -100,7 +100,8 @@ namespace ProtonVPN.Core.Servers
             }
         }
 
-        public IReadOnlyCollection<Server> GetServers(ISpecification<LogicalServerContract> spec)
+        public IReadOnlyCollection<Server> GetServers(ISpecification<LogicalServerContract> spec, 
+            Features orderBy = Features.None)
         {
             sbyte userTier = _userStorage.User().MaxTier;
 
@@ -109,6 +110,7 @@ namespace ProtonVPN.Core.Servers
                 .Select(Map)
                 .OrderBy(s => s.Name.ContainsIgnoringCase("free") ? 0 : 1)
                 .ThenBy(s => userTier < s.Tier)
+                .ThenByDescending(s => s.IsFeatureSupported(orderBy))
                 .ThenBy(s => s.Name, _serverNameComparer)
                 .ToList();
         }

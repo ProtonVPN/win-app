@@ -17,11 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Vpn.Connection
+namespace ProtonVPN.PortForwarding
 {
-    public interface IGatewayProvider
+    public static class PortForwardingColorPalette
     {
-        public string Get();
-        public void Save(string defaultGateway);
+        public const string DEFAULT = "White";
+        public const string HIGHLIGHT = "#59b369";
     }
 }

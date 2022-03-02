@@ -284,14 +284,20 @@
         <Setting Name="NetworkAdapterType" Type="System.String" Scope="User">
             <Value Profile="(Default)" />
         </Setting>
-        <Setting Name="PortForwardingEnabled" Type="System.Boolean" Scope="User">
-            <Value Profile="(Default)">False</Value>
+        <Setting Name="UserPortForwardingEnabled" Type="System.String" Scope="User">
+            <Value Profile="(Default)" />
         </Setting>
         <Setting Name="FeaturePortForwardingEnabled" Type="System.Boolean" Scope="User">
             <Value Profile="(Default)">False</Value>
         </Setting>
         <Setting Name="DoNotShowPortForwardingConfirmationDialog" Type="System.Boolean" Scope="User">
             <Value Profile="(Default)">False</Value>
+        </Setting>
+        <Setting Name="PortForwardingNotificationsEnabled" Type="System.Boolean" Scope="User">
+            <Value Profile="(Default)">True</Value>
+        </Setting>
+        <Setting Name="PortForwardingInQuickSettings" Type="System.Boolean" Scope="User">
+            <Value Profile="(Default)">True</Value>
         </Setting>
         <Setting Name="KillSwitchMode" Type="System.String" Scope="User">
             <Value Profile="(Default)" />

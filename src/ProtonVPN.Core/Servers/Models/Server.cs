@@ -125,6 +125,21 @@ namespace ProtonVPN.Core.Servers.Models
         {
             return Equals(Empty());
         }
+        
+        public bool IsFeatureSupported(Features feature)
+        {
+            switch (feature)
+            {
+                case Core.Servers.Features.SecureCore:
+                    return ServerFeatures.IsSecureCore(Features);
+                case Core.Servers.Features.Tor:
+                    return ServerFeatures.SupportsTor(Features);
+                case Core.Servers.Features.P2P:
+                    return ServerFeatures.SupportsP2P(Features);
+                default:
+                    return true;
+            }
+        }
 
         public static Server Empty() =>
             new Server(

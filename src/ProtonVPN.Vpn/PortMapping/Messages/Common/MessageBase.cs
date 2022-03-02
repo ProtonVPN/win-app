@@ -17,19 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Vpn.Connection;
-
-namespace ProtonVPN.Vpn.OpenVpn
+namespace ProtonVPN.Vpn.PortMapping.Messages.Common
 {
-    public class OpenVpnGatewayProvider : IGatewayProvider
+    public abstract class MessageBase
     {
-        private string _defaultGateway;
-
-        public string Get() => _defaultGateway;
-
-        public void Save(string defaultGateway)
-        {
-            _defaultGateway = defaultGateway;
-        }
+        public byte Version { get; set; }
+        public byte Operation { get; set; }
     }
 }

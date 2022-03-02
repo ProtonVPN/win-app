@@ -30,11 +30,8 @@ namespace ProtonVPN.Vpn.Common
         InOutBytes Total { get; }
 
         void Connect(VpnEndpoint endpoint, VpnCredentials credentials, VpnConfig config);
-
         void Disconnect(VpnError error);
-
         void SetFeatures(VpnFeatures vpnFeatures);
-
         void UpdateAuthCertificate(string certificate);
     }
 }

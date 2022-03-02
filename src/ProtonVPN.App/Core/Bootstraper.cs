@@ -51,6 +51,7 @@ using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Network;
 using ProtonVPN.Core.OS.Net;
+using ProtonVPN.Core.PortForwarding;
 using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.ReportAnIssue;
 using ProtonVPN.Core.Servers;
@@ -361,6 +362,15 @@ namespace ProtonVPN.Core
                 foreach (IServiceSettingsStateAware instance in instances)
                 {
                     instance.OnServiceSettingsStateChanged(e);
+                }
+            });
+
+            vpnServiceManager.RegisterPortForwardingStateCallback((state) =>
+            {
+                IEnumerable<IPortForwardingStateAware> instances = Resolve<IEnumerable<IPortForwardingStateAware>>();
+                foreach (IPortForwardingStateAware instance in instances)
+                {
+                    instance.OnPortForwardingStateChanged(state);
                 }
             });
 

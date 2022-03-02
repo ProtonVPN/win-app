@@ -34,7 +34,8 @@ namespace ProtonVPN.Common.Vpn
         public int NetShieldMode { get; set; }
         public bool SplitTcp { get; set; }
         public bool? AllowNonStandardPorts { get; set; }
-        
+        public bool PortForwarding { get; set; }
+
         public VpnConfigParameters()
         {
             Ports = new Dictionary<VpnProtocol, IReadOnlyCollection<int>>();

@@ -28,10 +28,14 @@ using ProtonVPN.Common.Threading;
 using ProtonVPN.Crypto;
 using ProtonVPN.Vpn.Common;
 using ProtonVPN.Vpn.Connection;
+using ProtonVPN.Vpn.Gateways;
 using ProtonVPN.Vpn.LocalAgent;
 using ProtonVPN.Vpn.Management;
 using ProtonVPN.Vpn.Networks;
 using ProtonVPN.Vpn.OpenVpn;
+using ProtonVPN.Vpn.PortMapping;
+using ProtonVPN.Vpn.PortMapping.Serializers.Common;
+using ProtonVPN.Vpn.PortMapping.UdpClients;
 using ProtonVPN.Vpn.SplitTunnel;
 using ProtonVPN.Vpn.SynchronizationEvent;
 using ProtonVPN.Vpn.WireGuard;
@@ -42,6 +46,7 @@ namespace ProtonVPN.Vpn.Config
     {
         public void Load(ContainerBuilder builder)
         {
+            builder.RegisterType<GatewayCache>().As<IGatewayCache>().SingleInstance();
             builder.RegisterType<VpnEndpointScanner>().SingleInstance();
             builder.RegisterType<TcpPortScanner>().SingleInstance();
             builder.RegisterType<NetworkInterfaceLoader>().As<INetworkInterfaceLoader>().SingleInstance();
@@ -61,6 +66,20 @@ namespace ProtonVPN.Vpn.Config
                         config);
                 }
             ).SingleInstance();
+
+            RegisterPortMapping(builder);
+        }
+
+        private void RegisterPortMapping(ContainerBuilder builder)
+        {
+            builder.RegisterAssemblyTypes(typeof(IMessageSerializer).Assembly)
+                .Where(t => typeof(IMessageSerializer).IsAssignableFrom(t))
+                .AsImplementedInterfaces()
+                .SingleInstance();
+            builder.RegisterType<MessageSerializerFactory>().As<IMessageSerializerFactory>().SingleInstance();
+            builder.RegisterType<MessageSerializerProxy>().As<IMessageSerializerProxy>().SingleInstance();
+            builder.RegisterType<UdpClientWrapper>().As<IUdpClientWrapper>().SingleInstance();
+            builder.RegisterType<PortMappingProtocolClient>().As<IPortMappingProtocolClient>().SingleInstance();
         }
 
         public IVpnConnection GetVpnConnection(IComponentContext c)
@@ -75,38 +94,43 @@ namespace ProtonVPN.Vpn.Config
             IEndpointScanner endpointScanner = c.Resolve<VpnEndpointScanner>();
             VpnEndpointCandidates candidates = new();
             IEventPublisher eventPublisher = c.Resolve<IEventPublisher>();
+            IPortMappingProtocolClient portMappingProtocolClient = c.Resolve<IPortMappingProtocolClient>();
 
             return new LoggingWrapper(
                 logger,
-                new ReconnectingWrapper(
-                    logger,
-                    candidates,
-                    endpointScanner,
-                    new HandlingRequestsWrapper(
+                    new ReconnectingWrapper(
                         logger,
-                        taskQueue,
-                        new BestPortWrapper(
+                        candidates,
+                        endpointScanner,
+                        new HandlingRequestsWrapper(
                             logger,
                             taskQueue,
-                            endpointScanner,
-                            new NetworkAdapterStatusWrapper(
+                            new BestPortWrapper(
                                 logger,
-                                eventPublisher,
-                                networkAdapterManager,
-                                networkInterfaceLoader,
-                                new QueueingEventsWrapper(
-                                    taskQueue,
-                                    new VpnProtocolWrapper(GetOpenVpnConnection(c), GetWireguardConnection(c))))))));
+                                taskQueue,
+                                endpointScanner,
+                                new NetworkAdapterStatusWrapper(
+                                    logger,
+                                    eventPublisher,
+                                    networkAdapterManager,
+                                    networkInterfaceLoader,
+                                    new QueueingEventsWrapper(
+                                        taskQueue,
+                                        new PortForwardingWrapper(
+                                            logger,
+                                            portMappingProtocolClient,
+                                            new VpnProtocolWrapper(GetOpenVpnConnection(c), GetWireguardConnection(c)))))))));
         }
 
         private ISingleVpnConnection GetWireguardConnection(IComponentContext c)
         {
             ILogger logger = c.Resolve<ILogger>();
             ProtonVPN.Common.Configuration.Config config = c.Resolve<ProtonVPN.Common.Configuration.Config>();
+            IGatewayCache gatewayCache = c.Resolve<IGatewayCache>();
 
             return new LocalAgentWrapper(logger, new EventReceiver(logger), c.Resolve<SplitTunnelRouting>(),
-                new WireGuardGatewayProvider(),
-                new WireGuardConnection(logger, config,
+                gatewayCache,
+                new WireGuardConnection(logger, config, gatewayCache,
                     new WireGuardService(logger, config, new SafeService(
                         new LoggingService(logger,
                             new SystemService(config.WireGuard.ServiceName, c.Resolve<IOsProcesses>())))),
@@ -119,10 +143,10 @@ namespace ProtonVPN.Vpn.Config
         {
             ILogger logger = c.Resolve<ILogger>();
             OpenVpnConfig config = c.Resolve<OpenVpnConfig>();
-            IGatewayProvider gatewayProvider = new OpenVpnGatewayProvider();
+            IGatewayCache gatewayCache = c.Resolve<IGatewayCache>();
 
             return new LocalAgentWrapper(logger, new EventReceiver(logger), c.Resolve<SplitTunnelRouting>(),
-                gatewayProvider,
+                gatewayCache,
                 new OpenVpnConnection(
                     logger,
                     c.Resolve<ProtonVPN.Common.Configuration.Config>(),
@@ -130,7 +154,7 @@ namespace ProtonVPN.Vpn.Config
                     c.Resolve<OpenVpnProcess>(),
                     new ManagementClient(
                         logger,
-                        gatewayProvider,
+                        gatewayCache,
                         new ConcurrentManagementChannel(
                             new TcpManagementChannel(
                                 logger,

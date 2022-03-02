@@ -130,6 +130,7 @@ namespace ProtonVPN.Vpn.Connection
                 SplitTunnelMode = _config.SplitTunnelMode,
                 VpnProtocol = vpnProtocol,
                 AllowNonStandardPorts = _config.AllowNonStandardPorts,
+                PortForwarding = _config.PortForwarding,
             });
         }
 
@@ -172,6 +173,7 @@ namespace ProtonVPN.Vpn.Connection
                     string.Empty,
                     _vpnEndpoint.Server.Ip,
                     _config.VpnProtocol,
+                    portForwarding: false,
                     _config.OpenVpnAdapter,
                     _vpnEndpoint.Server.Label)));
         }

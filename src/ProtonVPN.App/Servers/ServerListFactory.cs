@@ -178,7 +178,7 @@ namespace ProtonVPN.Servers
                 _serverManager.GetCountries().Except(p2PList).OrderBy(Countries.GetName).ToList();
 
             List<IServerListItem> serverListItems = new List<IServerListItem>();
-            List<IServerListItem> p2pViewModels = CreateServersByCountryViewModels(p2PList, searchQuery).ToList();
+            List<IServerListItem> p2pViewModels = CreateServersByCountryViewModels(p2PList, searchQuery, Features.P2P).ToList();
             if (p2pViewModels.Count > 0)
             {
                 serverListItems.Add(CreateCountryListSeparator(Translation.Get("ServerType_val_P2P")));
@@ -196,7 +196,7 @@ namespace ProtonVPN.Servers
         }
 
         private IEnumerable<IServerListItem> CreateServersByCountryViewModels(IList<string> countries,
-            string searchQuery)
+            string searchQuery, Features orderBy = Features.None)
         {
             foreach (string countryCode in countries)
             {
@@ -204,12 +204,12 @@ namespace ProtonVPN.Servers
                     _serverManager, _vpnState, _streamingServices);
                 if (string.IsNullOrEmpty(searchQuery) || Countries.MatchesSearch(countryCode, searchQuery))
                 {
-                    countryViewModel.LoadServers();
+                    countryViewModel.LoadServers(orderBy: orderBy);
                     yield return countryViewModel;
                 }
                 else if (!string.IsNullOrEmpty(searchQuery))
                 {
-                    countryViewModel.LoadServers(searchQuery);
+                    countryViewModel.LoadServers(searchQuery, orderBy);
                     if (countryViewModel.Servers.Count > 0)
                     {
                         yield return countryViewModel;

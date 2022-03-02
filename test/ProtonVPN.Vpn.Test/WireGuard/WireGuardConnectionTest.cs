@@ -27,6 +27,7 @@ using ProtonVPN.Common.OS.Services;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Crypto;
 using ProtonVPN.Vpn.Common;
+using ProtonVPN.Vpn.Gateways;
 using ProtonVPN.Vpn.WireGuard;
 
 namespace ProtonVPN.Vpn.Test.WireGuard
@@ -67,13 +68,14 @@ namespace ProtonVPN.Vpn.Test.WireGuard
             ProtonVPN.Common.Configuration.Config config = new();
             config.ServiceCheckInterval = TimeSpan.FromMilliseconds(1000);
             ILogger logger = Substitute.For<ILogger>();
+            IGatewayCache gatewayCache = Substitute.For<IGatewayCache>();
             IX25519KeyGenerator xIx25519KeyGenerator = Substitute.For<IX25519KeyGenerator>();
             WireGuardService wireGuardService =
                 new(logger, new ProtonVPN.Common.Configuration.Config(), Substitute.For<IService>());
             TrafficManager trafficManager = new("ProtonVPN", logger);
             StatusManager statusManager = new(logger, string.Empty);
 
-            return new(logger, config, wireGuardService, trafficManager, statusManager, xIx25519KeyGenerator);
+            return new(logger, config, gatewayCache, wireGuardService, trafficManager, statusManager, xIx25519KeyGenerator);
         }
     }
 }

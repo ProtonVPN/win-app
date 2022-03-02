@@ -23,6 +23,7 @@ using System.Threading.Tasks;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.AppServiceLogs;
 using ProtonVPN.Common.Threading;
+using ProtonVPN.Service.Contract.PortForwarding;
 using ProtonVPN.Service.Contract.Settings;
 using ProtonVPN.Service.Contract.Vpn;
 
@@ -55,6 +56,12 @@ namespace ProtonVPN.Core.Service.Vpn
         {
             add => _vpnEvents.ServiceSettingsStateChanged += value;
             remove => _vpnEvents.ServiceSettingsStateChanged -= value;
+        }
+
+        public event EventHandler<PortForwardingStateContract> PortForwardingStateChanged
+        {
+            add => _vpnEvents.PortForwardingStateChanged += value;
+            remove => _vpnEvents.PortForwardingStateChanged -= value;
         }
 
         public Task Connect(VpnConnectionRequestContract vpnConnectionRequest) =>

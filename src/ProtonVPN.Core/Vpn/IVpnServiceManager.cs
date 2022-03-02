@@ -20,6 +20,7 @@
 using System;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using ProtonVPN.Common.PortForwarding;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Settings;
 
@@ -37,5 +38,6 @@ namespace ProtonVPN.Core.Vpn
         Task RepeatState();
         void RegisterVpnStateCallback(Action<VpnStateChangedEventArgs> onVpnStateChanged);
         void RegisterServiceSettingsStateCallback(Action<ServiceSettingsStateChangedEventArgs> onServiceSettingsStateChanged);
+        void RegisterPortForwardingStateCallback(Action<PortForwardingState> callback);
     }
 }

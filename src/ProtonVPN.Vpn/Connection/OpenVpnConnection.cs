@@ -289,6 +289,7 @@ namespace ProtonVPN.Vpn.Connection
                 e.Data.LocalIp,
                 e.Data.RemoteIp,
                 _endpoint.VpnProtocol,
+                _vpnConfig.PortForwarding,
                 _vpnConfig.OpenVpnAdapter,
                 e.Data.Label);
 
@@ -301,6 +302,7 @@ namespace ProtonVPN.Vpn.Connection
                     string.Empty,
                     _endpoint.Server.Ip,
                     _endpoint.VpnProtocol,
+                    _vpnConfig.PortForwarding,
                     state.OpenVpnAdapter,
                     _endpoint.Server.Label);
             }
@@ -326,7 +328,7 @@ namespace ProtonVPN.Vpn.Connection
                 case VpnStatus.Pinging:
                 case VpnStatus.Connecting:
                     state = new VpnState(status, VpnError.None, string.Empty, _endpoint.Server.Ip,
-                        _endpoint.VpnProtocol, _vpnConfig.OpenVpnAdapter, _endpoint.Server.Label);
+                        _endpoint.VpnProtocol, _vpnConfig.PortForwarding, _vpnConfig.OpenVpnAdapter, _endpoint.Server.Label);
                     break;
                 case VpnStatus.Disconnecting:
                 case VpnStatus.Disconnected:

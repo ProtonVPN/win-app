@@ -19,6 +19,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -34,6 +35,7 @@ using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Vpn.Common;
 using ProtonVPN.Vpn.Config;
+using ProtonVPN.Vpn.Gateways;
 using ProtonVPN.Vpn.LocalAgent;
 using ProtonVPN.Vpn.LocalAgent.Contracts;
 using ProtonVPN.Vpn.SplitTunnel;
@@ -49,9 +51,10 @@ namespace ProtonVPN.Vpn.Connection
         private readonly ILogger _logger;
         private readonly EventReceiver _eventReceiver;
         private readonly SplitTunnelRouting _splitTunnelRouting;
-        private readonly IGatewayProvider _gatewayProvider;
+        private readonly IGatewayCache _gatewayCache;
         private readonly ISingleVpnConnection _origin;
 
+        private VpnStatus _currentStatus;
         private VpnEndpoint _endpoint;
         private VpnCredentials _credentials;
         private VpnConfig _vpnConfig;
@@ -68,17 +71,18 @@ namespace ProtonVPN.Vpn.Connection
             VpnError.CertificateNotYetProvided,
         };
 
+
         public LocalAgentWrapper(
             ILogger logger,
             EventReceiver eventReceiver,
             SplitTunnelRouting splitTunnelRouting,
-            IGatewayProvider gatewayProvider,
+            IGatewayCache gatewayCache,
             ISingleVpnConnection origin)
         {
             _logger = logger;
             _eventReceiver = eventReceiver;
             _splitTunnelRouting = splitTunnelRouting;
-            _gatewayProvider = gatewayProvider;
+            _gatewayCache = gatewayCache;
             _origin = origin;
             origin.StateChanged += OnVpnStateChanged;
             eventReceiver.StateChanged += OnLocalAgentStateChanged;
@@ -118,8 +122,34 @@ namespace ProtonVPN.Vpn.Connection
                 return;
             }
 
+            UpdateVpnConfig(vpnFeatures);
             using GoString goFeatures = GetFeatures(vpnFeatures).ToGoString();
             PInvoke.SetFeatures(goFeatures);
+        }
+
+        private void UpdateVpnConfig(VpnFeatures vpnFeatures)
+        {
+            if (_vpnConfig != null)
+            {
+                _vpnConfig = new VpnConfig(CreateVpnConfigParameters(vpnFeatures));
+            }
+        }
+
+        private VpnConfigParameters CreateVpnConfigParameters(VpnFeatures vpnFeatures)
+        {
+            return new()
+            {
+                Ports = _vpnConfig.Ports,
+                CustomDns = _vpnConfig.CustomDns,
+                SplitTunnelMode = _vpnConfig.SplitTunnelMode,
+                SplitTunnelIPs = _vpnConfig.SplitTunnelIPs,
+                OpenVpnAdapter = _vpnConfig.OpenVpnAdapter,
+                VpnProtocol = _vpnConfig.VpnProtocol,
+                PreferredProtocols = _vpnConfig.PreferredProtocols,
+                NetShieldMode = vpnFeatures.NetShieldMode,
+                SplitTcp = vpnFeatures.SplitTcp,
+                PortForwarding = vpnFeatures.PortForwarding
+            };
         }
 
         public void UpdateAuthCertificate(string certificate)
@@ -155,16 +185,8 @@ namespace ProtonVPN.Vpn.Connection
 
             switch (e.Data)
             {
-                case LocalAgentState.Connected when !_tlsConnected:
-                    _tlsConnected = true;
-                    if (_vpnConfig.VpnProtocol == VpnProtocol.WireGuard)
-                    {
-                        _splitTunnelRouting.SetUpRoutingTable(_vpnConfig, _vpnState.Data.LocalIp);
-                    }
-
-                    StopTimeoutAction();
-                    _logger.Info<ConnectConnectedLog>("Connected state triggered by Local Agent.");
-                    InvokeStateChange(VpnStatus.Connected);
+                case LocalAgentState.Connected:
+                    OnLocalAgentStateChangedToConnected();
                     break;
                 case LocalAgentState.ServerCertificateError:
                     _origin.Disconnect(VpnError.TlsCertificateError);
@@ -173,6 +195,26 @@ namespace ProtonVPN.Vpn.Connection
                 case LocalAgentState.ClientCertificateUnknownCA:
                     InvokeStateChange(VpnStatus.ActionRequired, VpnError.CertificateExpired);
                     break;
+            }
+        }
+
+        private void OnLocalAgentStateChangedToConnected()
+        {
+            if (_tlsConnected)
+            {
+                InvokeStateChange();
+            }
+            else
+            {
+                _tlsConnected = true;
+                if (_vpnConfig.VpnProtocol == VpnProtocol.WireGuard)
+                {
+                    _splitTunnelRouting.SetUpRoutingTable(_vpnConfig, _vpnState.Data.LocalIp);
+                }
+
+                StopTimeoutAction();
+                _logger.Info<ConnectConnectedLog>("Connected state triggered by Local Agent.");
+                InvokeStateChange(VpnStatus.Connected);
             }
         }
 
@@ -218,10 +260,11 @@ namespace ProtonVPN.Vpn.Connection
         {
             return GetFeaturesJson(new FeaturesContract
             {
-                NetShieldLevel = _vpnConfig.NetShieldMode,
-                SplitTcp = _vpnConfig.SplitTcp,
                 Bouncing = _endpoint.Server.Label,
+                SplitTcp = _vpnConfig.SplitTcp,
+                NetShieldLevel = _vpnConfig.NetShieldMode,
                 SafeMode = !_vpnConfig.AllowNonStandardPorts,
+                PortForwarding = _vpnConfig.PortForwarding,
             });
         }
 
@@ -229,16 +272,17 @@ namespace ProtonVPN.Vpn.Connection
         {
             return GetFeaturesJson(new FeaturesContract
             {
-                NetShieldLevel = vpnFeatures.NetShieldMode,
                 SplitTcp = vpnFeatures.SplitTcp,
+                NetShieldLevel = vpnFeatures.NetShieldMode,
                 SafeMode = !vpnFeatures.AllowNonStandardPorts,
+                PortForwarding = vpnFeatures.PortForwarding,
             });
         }
 
         private string GetFeaturesJson(FeaturesContract contract)
         {
             return JsonConvert.SerializeObject(contract, Formatting.None,
-                new JsonSerializerSettings {NullValueHandling = NullValueHandling.Ignore});
+                new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
         }
 
         private void OnVpnStateChanged(object sender, EventArgs<VpnState> e)
@@ -302,7 +346,8 @@ namespace ProtonVPN.Vpn.Connection
 
         private void ConnectToTlsChannel()
         {
-            if (_gatewayProvider.Get().IsNullOrEmpty())
+            IPAddress gatewayIPAddress = _gatewayCache.Get();
+            if (gatewayIPAddress == null)
             {
                 _logger.Error<ConnectionErrorLog>("Default gateway is missing. Disconnecting.");
                 _origin.Disconnect(VpnError.Unknown);
@@ -312,7 +357,7 @@ namespace ProtonVPN.Vpn.Connection
             using GoString clientCertPem = _clientCertPem.ToGoString();
             using GoString clientKeyPem = _credentials.ClientKeyPair.SecretKey.Pem.ToGoString();
             using GoString serverCaPem = VpnCertConfig.RootCa.ToGoString();
-            using GoString host = $"{_gatewayProvider.Get()}:{DEFAULT_PORT}".ToGoString();
+            using GoString host = $"{gatewayIPAddress}:{DEFAULT_PORT}".ToGoString();
             using GoString featuresJson = GetFeatures().ToGoString();
             using GoString certServerName = _endpoint.Server.Name.ToGoString();
             string result = PInvoke
@@ -330,14 +375,21 @@ namespace ProtonVPN.Vpn.Connection
             }
         }
 
+        private void InvokeStateChange()
+        {
+            InvokeStateChange(_currentStatus);
+        }
+
         private void InvokeStateChange(VpnStatus status, VpnError? error = null)
         {
+            _currentStatus = status;
             InvokeStateChange(new EventArgs<VpnState>(new VpnState(
                 status,
                 error ?? _vpnState?.Data.Error ?? VpnError.None,
                 _localIp,
                 _vpnState?.Data.RemoteIp ?? string.Empty,
                 _vpnConfig?.VpnProtocol ?? VpnProtocol.Smart,
+                _vpnConfig?.PortForwarding ?? false,
                 _vpnConfig?.OpenVpnAdapter,
                 _vpnState?.Data.Label ?? string.Empty)));
         }

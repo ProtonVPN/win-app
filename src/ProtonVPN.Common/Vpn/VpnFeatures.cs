@@ -21,17 +21,9 @@ namespace ProtonVPN.Common.Vpn
 {
     public class VpnFeatures
     {
-        public VpnFeatures(int netShieldMode, bool splitTcp, bool allowNonStandardPorts)
-        {
-            NetShieldMode = netShieldMode;
-            SplitTcp = splitTcp;
-            AllowNonStandardPorts = allowNonStandardPorts;
-        }
-
-        public int NetShieldMode { get; }
-
-        public bool SplitTcp { get; }
-
-        public bool AllowNonStandardPorts { get; }
+        public bool SplitTcp { get; set; }
+        public int NetShieldMode { get; set; }
+        public bool AllowNonStandardPorts { get; set; }
+        public bool PortForwarding { get; set; }
     }
 }

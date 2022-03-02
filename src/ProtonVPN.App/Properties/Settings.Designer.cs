@@ -1147,13 +1147,13 @@ namespace ProtonVPN.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool PortForwardingEnabled {
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string UserPortForwardingEnabled {
             get {
-                return ((bool)(this["PortForwardingEnabled"]));
+                return ((string)(this["UserPortForwardingEnabled"]));
             }
             set {
-                this["PortForwardingEnabled"] = value;
+                this["UserPortForwardingEnabled"] = value;
             }
         }
         
@@ -1178,6 +1178,30 @@ namespace ProtonVPN.Properties {
             }
             set {
                 this["DoNotShowPortForwardingConfirmationDialog"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool PortForwardingNotificationsEnabled {
+            get {
+                return ((bool)(this["PortForwardingNotificationsEnabled"]));
+            }
+            set {
+                this["PortForwardingNotificationsEnabled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool PortForwardingInQuickSettings {
+            get {
+                return ((bool)(this["PortForwardingInQuickSettings"]));
+            }
+            set {
+                this["PortForwardingInQuickSettings"] = value;
             }
         }
         

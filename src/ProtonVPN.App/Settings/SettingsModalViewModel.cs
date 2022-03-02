@@ -34,6 +34,8 @@ using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Modals;
 using ProtonVPN.Modals.Upsell;
+using ProtonVPN.PortForwarding;
+using ProtonVPN.PortForwarding.ActivePorts;
 using ProtonVPN.Profiles;
 using ProtonVPN.Resource;
 using ProtonVPN.Settings.ReconnectNotification;
@@ -51,6 +53,7 @@ namespace ProtonVPN.Settings
         private readonly IModals _modals;
         private readonly IActiveUrls _urls;
         private readonly ILanguageProvider _languageProvider;
+        private readonly IPortForwardingManager _portForwardingManager;
         private readonly ReconnectState _reconnectState;
         private readonly ProfileViewModelFactory _profileViewModelFactory;
 
@@ -71,10 +74,12 @@ namespace ProtonVPN.Settings
             IModals modals,
             IActiveUrls urls,
             ILanguageProvider languageProvider,
+            IPortForwardingManager portForwardingManager,
             ReconnectState reconnectState,
             ProfileViewModelFactory profileViewModelFactory,
             SplitTunnelingViewModel splitTunnelingViewModel,
-            CustomDnsListViewModel customDnsListViewModel)
+            CustomDnsListViewModel customDnsListViewModel,
+            PortForwardingActivePortViewModel activePortViewModel)
         {
             _userStorage = userStorage;
             _appSettings = appSettings;
@@ -83,17 +88,25 @@ namespace ProtonVPN.Settings
             _modals = modals;
             _urls = urls;
             _languageProvider = languageProvider;
+            _portForwardingManager = portForwardingManager;
             _reconnectState = reconnectState;
             _profileViewModelFactory = profileViewModelFactory;
             SplitTunnelingViewModel = splitTunnelingViewModel;
             Ips = customDnsListViewModel;
 
+            ActivePortViewModel = activePortViewModel;
+            ActivePortViewModel.PropertyChanged += OnActivePortViewModelPropertyChanged;
+
             ReconnectCommand = new RelayCommand(ReconnectAction);
             UpgradeCommand = new RelayCommand(UpgradeAction);
+            LearnMoreAboutPortForwardingCommand = new RelayCommand(LearnMoreAboutPortForwardingAction);
         }
+
+        public PortForwardingActivePortViewModel ActivePortViewModel { get; }
 
         public ICommand ReconnectCommand { get; set; }
         public ICommand UpgradeCommand { get; set; }
+        public ICommand LearnMoreAboutPortForwardingCommand { get; set; }
 
         public IpListViewModel Ips { get; }
 
@@ -245,6 +258,61 @@ namespace ProtonVPN.Settings
             }
         }
 
+        public bool PortForwarding
+        {
+            get => _appSettings.PortForwardingEnabled;
+            set
+            {
+                if (_appSettings.PortForwardingEnabled != value)
+                {
+                    if (value)
+                    {
+                        _portForwardingManager.EnableAsync().Wait();
+                    }
+                    else
+                    {
+                        _portForwardingManager.DisableAsync().Wait();
+                    }
+                    NotifyOfPropertyChange();
+                }
+            }
+        }
+
+        public bool IsToShowPortForwarding
+        {
+            get => _appSettings.FeaturePortForwardingEnabled;
+        }
+
+        public bool PortForwardingInQuickSettings
+        {
+            get => _appSettings.PortForwardingInQuickSettings;
+            set
+            {
+                _appSettings.PortForwardingInQuickSettings = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+        public bool IsToShowPortForwardingNotifications
+        {
+            get
+            {
+                return _appSettings.FeaturePortForwardingEnabled && ShowNotifications;
+            }
+        }
+
+        public bool PortForwardingNotifications
+        {
+            get => _appSettings.PortForwardingNotificationsEnabled;
+            set
+            {
+                _appSettings.PortForwardingNotificationsEnabled = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+        public bool HasPortForwardingValue => ActivePortViewModel.HasPortForwardingValue;
+
         public bool DoHEnabled
         {
             get => _appSettings.DoHEnabled;
@@ -299,7 +367,11 @@ namespace ProtonVPN.Settings
         public bool ShowNotifications
         {
             get => _appSettings.ShowNotifications;
-            set => _appSettings.ShowNotifications = value;
+            set
+            {
+                _appSettings.ShowNotifications = value;
+                NotifyOfPropertyChange();
+            }
         }
 
         public bool StartOnStartup
@@ -461,6 +533,11 @@ namespace ProtonVPN.Settings
                 NotifyOfPropertyChange(() => IsToShowSmartReconnect);
                 NotifyOfPropertyChange(() => IsToShowSmartReconnectNotifications);
             }
+            else if (e.PropertyName.Equals(nameof(IAppSettings.FeaturePortForwardingEnabled)))
+            {
+                NotifyOfPropertyChange(() => IsToShowPortForwarding);
+                NotifyOfPropertyChange(() => IsToShowPortForwardingNotifications);
+            }
             else if (e.PropertyName.Equals(nameof(IAppSettings.SmartReconnectEnabled)))
             {
                 NotifyOfPropertyChange(() => IsSmartReconnectNotificationsEditable);
@@ -481,6 +558,7 @@ namespace ProtonVPN.Settings
         {
             NotifyOfPropertyChange(() => ShowNotifications);
             NotifyOfPropertyChange(() => IsToShowSmartReconnectNotifications);
+            NotifyOfPropertyChange(() => IsToShowPortForwardingNotifications);
         }
 
         public async void OnLanguageChanged()
@@ -571,9 +649,19 @@ namespace ProtonVPN.Settings
             _urls.AccountUrl.Open();
         }
 
+        private void LearnMoreAboutPortForwardingAction()
+        {
+            _urls.AboutPortForwardingUrl.Open();
+        }
+
         private List<LanguageViewModel> GetSorted(List<LanguageViewModel> collection)
         {
             return collection.OrderBy(l => l.Code).ToList();
+        }
+
+        private void OnActivePortViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            NotifyOfPropertyChange(e.PropertyName);
         }
     }
 }

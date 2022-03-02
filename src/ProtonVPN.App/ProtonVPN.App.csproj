@@ -220,12 +220,25 @@
     <Compile Include="Modals\Upsell\NonStandardPortsUpsellModalView.xaml.cs">
       <DependentUpon>NonStandardPortsUpsellModalView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Modals\Upsell\PortForwardingUpsellModalView.xaml.cs">
+      <DependentUpon>PortForwardingUpsellModalView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modals\Upsell\PortForwardingUpsellModalViewModel.cs" />
     <Compile Include="Modals\Welcome\WelcomeModalManager.cs" />
     <Compile Include="Notifications\INotificationSender.cs" />
     <Compile Include="Notifications\INotificationUserActionHandler.cs" />
     <Compile Include="Notifications\NotificationSender.cs" />
     <Compile Include="Notifications\NotificationUserAction.cs" />
     <Compile Include="Notifications\NotificationUserActionHandler.cs" />
+    <Compile Include="PortForwarding\ActivePorts\PortForwardingActivePortView.xaml.cs">
+      <DependentUpon>PortForwardingActivePortView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PortForwarding\ActivePorts\PortForwardingActivePortViewModel.cs" />
+    <Compile Include="PortForwarding\IPortForwardingManager.cs" />
+    <Compile Include="PortForwarding\IPortForwardingNotifier.cs" />
+    <Compile Include="PortForwarding\PortForwardingManager.cs" />
+    <Compile Include="PortForwarding\PortForwardingNotifier.cs" />
+    <Compile Include="PortForwarding\PortForwardingColorPalette.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -653,7 +666,7 @@
     <Compile Include="Login\ViewModels\MainViewModel.cs" />
     <Compile Include="Map\MapStateHolder.cs" />
     <Compile Include="Modals\P2PForwardModalViewModel.cs" />
-    <Compile Include="Modals\Upsell\ScUpsellModalViewModel.cs" />
+    <Compile Include="Modals\Upsell\SecureCoreUpsellModalViewModel.cs" />
     <Compile Include="Modals\Upsell\NetshieldUpsellModalViewModel.cs" />
     <Compile Include="Modals\Upsell\UpsellModalViewModel.cs" />
     <Compile Include="Profiles\PredefinedProfileViewModel.cs" />
@@ -829,8 +842,8 @@
     <Compile Include="Modals\P2PForwardModalView.xaml.cs">
       <DependentUpon>P2PForwardModalView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Modals\Upsell\ScUpsellModalView.xaml.cs">
-      <DependentUpon>ScUpsellModalView.xaml</DependentUpon>
+    <Compile Include="Modals\Upsell\SecureCoreUpsellModalView.xaml.cs">
+      <DependentUpon>SecureCoreUpsellModalView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modals\Upsell\NetshieldUpsellModalView.xaml.cs">
       <DependentUpon>NetshieldUpsellModalView.xaml</DependentUpon>
@@ -927,6 +940,14 @@
     <Page Include="Modals\AssignVpnConnectionsModalView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Modals\Upsell\PortForwardingUpsellModalView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PortForwarding\ActivePorts\PortForwardingActivePortView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Modals\Upsell\NonStandardPortsUpsellModalView.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -1461,7 +1482,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Modals\Upsell\ScUpsellModalView.xaml">
+    <Page Include="Modals\Upsell\SecureCoreUpsellModalView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

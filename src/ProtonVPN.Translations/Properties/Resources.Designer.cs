@@ -4900,6 +4900,33 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Active port:.
+        /// </summary>
+        public static string PortForwarding_lbl_ActivePort {
+            get {
+                return ResourceManager.GetString("PortForwarding_lbl_ActivePort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click to copy this port number..
+        /// </summary>
+        public static string PortForwarding_lbl_CopyValue {
+            get {
+                return ResourceManager.GetString("PortForwarding_lbl_CopyValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set this number in your BitTorrent app for greater speed..
+        /// </summary>
+        public static string PortForwarding_lbl_Info {
+            get {
+                return ResourceManager.GetString("PortForwarding_lbl_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ProtonVPN failed to fetch authentication certificate due to network issue..
         /// </summary>
         public static string ProfileConnector_msg_MissingAuthCert {
@@ -5931,6 +5958,60 @@ namespace ProtonVPN.Translations.Properties {
         public static string Settings_Advanced_lbl_OpenVpnTun {
             get {
                 return ResourceManager.GetString("Settings_Advanced_lbl_OpenVpnTun", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Port Forwarding.
+        /// </summary>
+        public static string Settings_Advanced_lbl_PortForwarding {
+            get {
+                return ResourceManager.GetString("Settings_Advanced_lbl_PortForwarding", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Speed up your torrenting and online gaming by allowing supported local apps to be reachable from the internet. &lt;Hyperlink Command=&quot;{Binding LearnMoreAboutPortForwardingCommand}&quot;&gt;Learn more&lt;/Hyperlink&gt;.
+        /// </summary>
+        public static string Settings_Advanced_lbl_PortForwarding_Info {
+            get {
+                return ResourceManager.GetString("Settings_Advanced_lbl_PortForwarding_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Port Forwarding shortcut.
+        /// </summary>
+        public static string Settings_Advanced_lbl_PortForwardingInQuickSettings {
+            get {
+                return ResourceManager.GetString("Settings_Advanced_lbl_PortForwardingInQuickSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Access Port Forwarding settings from the Quick Settings.
+        /// </summary>
+        public static string Settings_Advanced_lbl_PortForwardingInQuickSettings_Info {
+            get {
+                return ResourceManager.GetString("Settings_Advanced_lbl_PortForwardingInQuickSettings_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Port Forwarding notifications.
+        /// </summary>
+        public static string Settings_Advanced_lbl_PortForwardingNotifications {
+            get {
+                return ResourceManager.GetString("Settings_Advanced_lbl_PortForwardingNotifications", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Get notified when the Port Forwarding number changes.
+        /// </summary>
+        public static string Settings_Advanced_lbl_PortForwardingNotifications_Info {
+            get {
+                return ResourceManager.GetString("Settings_Advanced_lbl_PortForwardingNotifications_Info", resourceCulture);
             }
         }
         
@@ -7056,6 +7137,33 @@ namespace ProtonVPN.Translations.Properties {
         public static string Upsell_NonStandardPorts_ttl {
             get {
                 return ResourceManager.GetString("Upsell_NonStandardPorts_ttl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What is Port Forwarding?.
+        /// </summary>
+        public static string Upsell_PortForwarding_About {
+            get {
+                return ResourceManager.GetString("Upsell_PortForwarding_About", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Speed up your torrenting and online gaming by allowing compatible local apps to be reachable from the internet.&lt;LineBreak/&gt;&lt;LineBreak/&gt;Upgrade to Plus to unblock this and many other features..
+        /// </summary>
+        public static string Upsell_PortForwarding_Subtitle {
+            get {
+                return ResourceManager.GetString("Upsell_PortForwarding_Subtitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable Port Forwarding.
+        /// </summary>
+        public static string Upsell_PortForwarding_Title {
+            get {
+                return ResourceManager.GetString("Upsell_PortForwarding_Title", resourceCulture);
             }
         }
         

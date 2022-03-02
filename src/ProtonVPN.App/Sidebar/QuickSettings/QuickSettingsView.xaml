@@ -27,6 +27,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:icons="clr-namespace:ProtonVPN.Views.Icons"
              xmlns:behavior="clr-namespace:ProtonVPN.Core.Wpf.Behavior"
              xmlns:onboarding="clr-namespace:ProtonVPN.Onboarding"
+             xmlns:activePorts="clr-namespace:ProtonVPN.PortForwarding.ActivePorts"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance quickSettings:QuickSettingsViewModel}">
     <UserControl.Resources>
@@ -302,11 +303,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Style x:Key="SecureCoreUpgradeButton" TargetType="Button" BasedOn="{StaticResource UpgradeButton}">
             <Setter Property="Command" Value="{Binding ShowSecureCoreUpsellModalCommand}" />
         </Style>
-        <Style x:Key="PlusButton" TargetType="Button" BasedOn="{StaticResource UpgradeButton}">
-            <Setter Property="Command" Value="{Binding GetPlusCommand}" />
-        </Style>
         <Style x:Key="NetshieldUpgradeButton" TargetType="Button" BasedOn="{StaticResource UpgradeButton}">
             <Setter Property="Command" Value="{Binding ShowNetshieldUpsellModalCommand}" />
+        </Style>
+        <Style x:Key="PortForwardingUpgradeButton" TargetType="Button" BasedOn="{StaticResource UpgradeButton}">
+            <Setter Property="Command" Value="{Binding ShowPortForwardingUpsellModalCommand}" />
         </Style>
         <Style x:Key="FeatureWarningText" TargetType="TextBlock">
             <Setter Property="FontStyle" Value="Italic" />
@@ -564,6 +565,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                               IsEnabled="{Binding ElementName=PortForwardingPopup, Path=IsOpen, Converter={StaticResource InvertedBoolConverter}}"
                                               Active="{Binding IsPortForwardingOnButtonOn}"
                                               Number="{Binding PortForwardingButtonNumber}"
+                                              AutomationProperties.AutomationId="{StaticResource PortForwardingButton}"
                                               ToolTip="{translations:Loc PortForwarding}"
                                               Visibility="{Binding IsPortForwardingVisible, Converter={StaticResource BoolToVis}, FallbackValue=Collapsed}">
                 <quickSettings:QuickSettingButton.Popup>
@@ -593,6 +595,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     <quickSettings:SettingButton Style="{StaticResource FeatureOnOffButton}"
                                                                  Command="{Binding PortForwardingOffCommand}"
                                                                  Active="{Binding IsPortForwardingOffButtonOn}"
+                                                                 AutomationProperties.AutomationId="{StaticResource PortForwardingOffButton}"
                                                                  Title="{translations:Loc QuickSettings_btn_PortForwardingOff}">
                                         <quickSettings:SettingButton.Icon>
                                             <icons:Reflect Width="18" Height="18" />
@@ -602,15 +605,33 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                                  Command="{Binding PortForwardingOnCommand}"
                                                                  Active="{Binding IsPortForwardingOnButtonOn}"
                                                                  IsTurnOnButton="True"
+                                                                 AutomationProperties.AutomationId="{StaticResource PortForwardingOnButton}"
                                                                  Disabled="{Binding IsUserTierPlusOrHigher, Converter={StaticResource InvertedBoolConverter}}"
                                                                  Title="{translations:Loc QuickSettings_btn_PortForwardingOn}">
                                         <quickSettings:SettingButton.Icon>
                                             <icons:Exchange Style="{StaticResource Icon}" />
                                         </quickSettings:SettingButton.Icon>
                                     </quickSettings:SettingButton>
+                                    <StackPanel Orientation="Horizontal" 
+                                                Margin="0,10,0,0" 
+                                                Visibility="{Binding HasPortForwardingValue, Converter={StaticResource BoolToVis}}">
+                                        <Ellipse Width="10"
+                                                 Height="10"
+                                                 Margin="0,2,5,0"
+                                                 VerticalAlignment="Top"
+                                                 Fill="{StaticResource PrimaryColor}" />
+                                        <TextBlock
+                                            Margin="0,0,5,0"
+                                            TextWrapping="Wrap"
+                                            FontSize="12"
+                                            Foreground="White"
+                                            Text="{translations:Loc PortForwarding_lbl_ActivePort}" />
+                                        <activePorts:PortForwardingActivePortView DataContext="{Binding ActivePortViewModel}"
+                                            FontWeight="Bold"/>
+                                    </StackPanel>
                                     <Button>
                                         <Button.Style>
-                                            <Style TargetType="Button" BasedOn="{StaticResource PlusButton}">
+                                            <Style TargetType="Button" BasedOn="{StaticResource PortForwardingUpgradeButton}">
                                                 <Style.Triggers>
                                                     <DataTrigger Binding="{Binding IsUserTierPlusOrHigher}"
                                                                  Value="False">
@@ -620,6 +641,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                             </Style>
                                         </Button.Style>
                                     </Button>
+                                    <TextBlock Style="{StaticResource FeatureWarningText}" Margin="0,10,0,0"
+                                               Text="{translations:Loc PortForwarding_lbl_Info}"
+                                               Visibility="{Binding HasPortForwardingValue, Converter={StaticResource BoolToVis}}" />
                                 </StackPanel>
                             </Border>
                         </Grid>

@@ -3197,4 +3197,41 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Use ProtonVPN for any special need by allowing traffic to non-standard ports through the VPN network.</value>
     <comment>The description of Non-standard ports setting displayed in the tooltip of ( i ) image next to the label for Allow non-standard ports toggle switch in Advanced tab of Settings window</comment>
   </data>
+  <data name="Settings_Advanced_lbl_PortForwarding" xml:space="preserve">
+    <value>Port Forwarding</value>
+  </data>
+  <data name="Settings_Advanced_lbl_PortForwarding_Info" xml:space="preserve">
+    <value>Speed up your torrenting and online gaming by allowing supported local apps to be reachable from the internet. &lt;Hyperlink Command="{Binding LearnMoreAboutPortForwardingCommand}"&gt;Learn more&lt;/Hyperlink&gt;</value>
+    <comment>Do not translate whatever is between &lt; and &gt;. Do not forget to translate the "Learn more".</comment>
+  </data>
+  <data name="Settings_Advanced_lbl_PortForwardingInQuickSettings" xml:space="preserve">
+    <value>Port Forwarding shortcut</value>
+  </data>
+  <data name="Settings_Advanced_lbl_PortForwardingInQuickSettings_Info" xml:space="preserve">
+    <value>Access Port Forwarding settings from the Quick Settings</value>
+  </data>
+  <data name="Settings_Advanced_lbl_PortForwardingNotifications" xml:space="preserve">
+    <value>Port Forwarding notifications</value>
+  </data>
+  <data name="Settings_Advanced_lbl_PortForwardingNotifications_Info" xml:space="preserve">
+    <value>Get notified when the Port Forwarding number changes</value>
+  </data>
+  <data name="PortForwarding_lbl_ActivePort" xml:space="preserve">
+    <value>Active port:</value>
+  </data>
+  <data name="PortForwarding_lbl_Info" xml:space="preserve">
+    <value>Set this number in your BitTorrent app for greater speed.</value>
+  </data>
+  <data name="PortForwarding_lbl_CopyValue" xml:space="preserve">
+    <value>Click to copy this port number.</value>
+  </data>
+  <data name="Upsell_PortForwarding_Title" xml:space="preserve">
+    <value>Enable Port Forwarding</value>
+  </data>
+  <data name="Upsell_PortForwarding_Subtitle" xml:space="preserve">
+    <value>Speed up your torrenting and online gaming by allowing compatible local apps to be reachable from the internet.&lt;LineBreak/&gt;&lt;LineBreak/&gt;Upgrade to Plus to unblock this and many other features.</value>
+  </data>
+  <data name="Upsell_PortForwarding_About" xml:space="preserve">
+    <value>What is Port Forwarding?</value>
+  </data>
 </root>
