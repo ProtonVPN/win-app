@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Collections.Generic;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Servers.Models;
@@ -38,10 +39,11 @@ namespace ProtonVPN.Servers
             _serverManager = serverManager;
         }
 
-        public override void LoadServers(string searchQuery = "")
+        public override void LoadServers(string searchQuery = "", Features orderBy = Features.None)
         {
-            var list = _serverManager.GetServers(new SecureCoreServer() && new ExitCountryServer(CountryCode));
-            var collection = new ObservableCollection<IServerListItem>();
+            IReadOnlyCollection<Server> list = _serverManager.GetServers(
+                new SecureCoreServer() && new ExitCountryServer(CountryCode), orderBy);
+            ObservableCollection<IServerListItem> collection = new ObservableCollection<IServerListItem>();
             foreach (Server server in list)
             {
                 collection.Add(new SecureCoreItemViewModel(server, _userTier));

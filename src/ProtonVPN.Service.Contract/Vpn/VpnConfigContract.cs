@@ -55,6 +55,9 @@ namespace ProtonVPN.Service.Contract.Vpn
         [DataMember(IsRequired = true)]
         public bool? AllowNonStandardPorts { get; set; }
 
+        [DataMember(IsRequired = true)]
+        public bool PortForwarding { get; set; }
+
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             foreach (string address in CustomDns)

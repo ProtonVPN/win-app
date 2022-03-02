@@ -17,6 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Core.Servers;
+
 namespace ProtonVPN.Core.Models
 {
     public class User
@@ -68,6 +70,11 @@ namespace ProtonVPN.Core.Models
         public static User EmptyUser()
         {
             return new User();
+        }
+
+        public bool IsTierPlusOrHigher()
+        {
+            return MaxTier >= ServerTiers.Plus;
         }
     }
 }

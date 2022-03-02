@@ -19,6 +19,7 @@
 
 using System;
 using System.IO;
+using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Timers;
@@ -33,6 +34,7 @@ using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Crypto;
 using ProtonVPN.Vpn.Common;
+using ProtonVPN.Vpn.Gateways;
 using Timer = System.Timers.Timer;
 
 namespace ProtonVPN.Vpn.WireGuard
@@ -43,6 +45,7 @@ namespace ProtonVPN.Vpn.WireGuard
 
         private readonly ILogger _logger;
         private readonly ProtonVPN.Common.Configuration.Config _config;
+        private readonly IGatewayCache _gatewayCache;
         private readonly Timer _serviceHealthCheckTimer = new();
         private readonly IService _wireGuardService;
         private readonly TrafficManager _trafficManager;
@@ -61,6 +64,7 @@ namespace ProtonVPN.Vpn.WireGuard
         public WireGuardConnection(
             ILogger logger,
             ProtonVPN.Common.Configuration.Config config,
+            IGatewayCache gatewayCache,
             IService wireGuardService,
             TrafficManager trafficManager,
             StatusManager statusManager,
@@ -68,10 +72,12 @@ namespace ProtonVPN.Vpn.WireGuard
         {
             _logger = logger;
             _config = config;
+            _gatewayCache = gatewayCache;
             _wireGuardService = wireGuardService;
             _trafficManager = trafficManager;
             _statusManager = statusManager;
             _x25519KeyGenerator = x25519KeyGenerator;
+
             _trafficManager.TrafficSent += OnTrafficSent;
             _statusManager.StateChanged += OnStateChanged;
             _connectAction = new SingleAction(ConnectAction);
@@ -104,6 +110,7 @@ namespace ProtonVPN.Vpn.WireGuard
         {
             _logger.Info<ConnectStartLog>("Connect action started.");
             WriteConfig();
+            UpdateGatewayCache();
             InvokeStateChange(VpnStatus.Connecting);
             await EnsureServiceIsStopped(cancellationToken);
             _statusManager.Start();
@@ -114,6 +121,11 @@ namespace ProtonVPN.Vpn.WireGuard
                 _logger.Warn<ConnectLog>("Timeout reached, disconnecting.");
                 Disconnect(VpnError.AdapterTimeoutError);
             }
+        }
+
+        private void UpdateGatewayCache()
+        {
+            _gatewayCache.Save(IPAddress.Parse("10.2.0.1"));
         }
 
         public void Disconnect(VpnError error)
@@ -217,6 +229,7 @@ namespace ProtonVPN.Vpn.WireGuard
                 _isConnected = true;
                 _trafficManager.Start();
                 _serviceHealthCheckTimer.Start();
+                UpdateGatewayCache();
                 _logger.Info<ConnectConnectedLog>("Connected state received and decorated by WireGuard.");
                 InvokeStateChange(VpnStatus.Connected, state.Data.Error);
             }
@@ -273,11 +286,22 @@ namespace ProtonVPN.Vpn.WireGuard
 
         private void InvokeStateChange(VpnStatus status, VpnError error = VpnError.None)
         {
-            StateChanged?.Invoke(this,
-                new EventArgs<VpnState>(
-                    new VpnState(status, error, _config.WireGuard.DefaultClientAddress,
-                        _endpoint?.Server.Ip ?? string.Empty,
-                        VpnProtocol.WireGuard, null, _endpoint?.Server.Label ?? string.Empty)));
+            VpnState vpnState = CreateVpnState(status, error);
+            StateChanged?.Invoke(this, new EventArgs<VpnState>(vpnState));
+        }
+
+        private VpnState CreateVpnState(VpnStatus status, VpnError error)
+        {
+            if (_vpnConfig is null)
+            {
+                return new VpnState(status, error, _config.WireGuard.DefaultClientAddress,
+                    _endpoint?.Server.Ip ?? string.Empty, VpnProtocol.WireGuard, 
+                    openVpnAdapter: null, label: _endpoint?.Server.Label ?? string.Empty);
+            }
+
+            return new VpnState(status, error, _config.WireGuard.DefaultClientAddress,
+                _endpoint?.Server.Ip ?? string.Empty, VpnProtocol.WireGuard,
+                _vpnConfig.PortForwarding, null, _endpoint?.Server.Label ?? string.Empty);
         }
 
         private string GetDnsServers()

@@ -46,5 +46,8 @@ namespace ProtonVPN.Service.Contract.Vpn
 
         [OperationContract(IsOneWay = false)]
         Task<InOutBytesContract> Total();
+
+        [OperationContract(IsOneWay = true)]
+        Task RepeatPortForwardingState();
     }
 }

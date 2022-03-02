@@ -79,6 +79,8 @@ namespace ProtonVPN.Core.Settings
         bool PortForwardingEnabled { get; set; }
         bool FeaturePortForwardingEnabled { get; set; }
         bool DoNotShowPortForwardingConfirmationDialog { get; set; }
+        bool PortForwardingNotificationsEnabled { get; set; }
+        bool PortForwardingInQuickSettings { get; set; }
         bool DoNotShowKillSwitchConfirmationDialog { get; set; }
         bool DoNotShowEnableSmartProtocolDialog { get; set; }
         bool FeatureSmartProtocolWireGuardEnabled { get; set; }

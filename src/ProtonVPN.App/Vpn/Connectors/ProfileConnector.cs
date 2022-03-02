@@ -238,7 +238,15 @@ namespace ProtonVPN.Vpn.Connectors
                 (profileCandidates.Profile.IsPredefined && _appSettings.SecureCore)) &&
                 _userStorage.User().MaxTier < ServerTiers.Plus)
             {
-                _modals.Show<ScUpsellModalViewModel>();
+                _modals.Show<SecureCoreUpsellModalViewModel>();
+                return;
+            }
+
+            if ((profileCandidates.Profile.Features.SupportsP2P() ||
+                 (profileCandidates.Profile.IsPredefined && _appSettings.IsPortForwardingEnabled())) &&
+                _userStorage.User().MaxTier < ServerTiers.Plus)
+            {
+                _modals.Show<PortForwardingUpsellModalViewModel>();
                 return;
             }
 
@@ -316,6 +324,7 @@ namespace ProtonVPN.Vpn.Connectors
                     NetShieldMode = _appSettings.IsNetShieldEnabled() ? _appSettings.NetShieldMode : 0,
                     SplitTcp = _appSettings.IsVpnAcceleratorEnabled(),
                     AllowNonStandardPorts = _appSettings.ShowNonStandardPortsToFreeUsers ? _appSettings.AllowNonStandardPorts : null,
+                    PortForwarding = _appSettings.IsPortForwardingEnabled(),
                 });
         }
 
@@ -452,7 +461,7 @@ namespace ProtonVPN.Vpn.Connectors
         {
             if (server.IsSecureCore())
             {
-                _modals.Show<ScUpsellModalViewModel>();
+                _modals.Show<SecureCoreUpsellModalViewModel>();
                 return;
             }
 

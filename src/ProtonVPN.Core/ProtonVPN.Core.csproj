@@ -218,6 +218,7 @@
     <Compile Include="OS\ISystemState.cs" />
     <Compile Include="OS\NtpClient.cs" />
     <Compile Include="OS\SystemState.cs" />
+    <Compile Include="PortForwarding\IPortForwardingStateAware.cs" />
     <Compile Include="ReportAnIssue\DefaultDataProvider.cs" />
     <Compile Include="ReportAnIssue\InputType.cs" />
     <Compile Include="ReportAnIssue\IReportAnIssueFormDataProvider.cs" />

@@ -17,13 +17,24 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Windows.Input;
+using GalaSoft.MvvmLight.CommandWpf;
+using ProtonVPN.Config.Url;
+
 namespace ProtonVPN.Modals.Upsell
 {
-    public partial class ScUpsellModalView
+    public class PortForwardingUpsellModalViewModel : UpsellModalViewModel
     {
-        public ScUpsellModalView()
+        public ICommand OpenAboutPageCommand { get; set; }
+
+        public PortForwardingUpsellModalViewModel(IActiveUrls urls) : base(urls)
         {
-            InitializeComponent();
+            OpenAboutPageCommand = new RelayCommand(OpenAboutPage);
+        }
+
+        private void OpenAboutPage()
+        {
+            Urls.AboutPortForwardingUrl.Open();
         }
     }
 }

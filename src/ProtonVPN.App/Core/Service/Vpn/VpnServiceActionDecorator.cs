@@ -22,6 +22,7 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Abstract;
 using ProtonVPN.Common.OS.Services;
+using ProtonVPN.Common.PortForwarding;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Settings;
@@ -100,6 +101,11 @@ namespace ProtonVPN.Core.Service.Vpn
         public void RegisterServiceSettingsStateCallback(Action<ServiceSettingsStateChangedEventArgs> onServiceSettingsStateChanged)
         {
             _decorated.RegisterServiceSettingsStateCallback(onServiceSettingsStateChanged);
+        }
+
+        public void RegisterPortForwardingStateCallback(Action<PortForwardingState> onPortForwardingStateChanged)
+        {
+            _decorated.RegisterPortForwardingStateCallback(onPortForwardingStateChanged);
         }
 
         private async Task InvokeAction(Func<Task<Result>> action)

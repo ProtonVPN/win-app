@@ -83,4 +83,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <system:String x:Key="IncludeModeRadioButton">IncludeModeRadioButton</system:String>
     <system:String x:Key="SplitTunnelTextBlock">SplitTunnelTextBlock</system:String>
     <system:String x:Key="AddIpAddressButton">AddIpAddressButton</system:String>
+    <system:String x:Key="PortForwardingCheckbox">PortForwardingCheckbox</system:String>
+    <system:String x:Key="PortForwardingInQuickSettingsCheckbox">PortForwardingInQuickSettingsCheckbox</system:String>
+    <system:String x:Key="PortForwardingNotificationsCheckbox">PortForwardingNotificationsCheckbox</system:String>
+    <system:String x:Key="PortForwardingButton">PortForwardingButton</system:String>
+    <system:String x:Key="PortForwardingOnButton">PortForwardingOnButton</system:String>
+    <system:String x:Key="PortForwardingOffButton">PortForwardingOffButton</system:String>
 </ResourceDictionary>

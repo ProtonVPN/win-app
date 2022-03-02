@@ -19,6 +19,7 @@
 
 using System;
 using System.IO;
+using System.Net;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
@@ -27,7 +28,7 @@ using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.ConnectionLogs;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Vpn.Common;
-using ProtonVPN.Vpn.Connection;
+using ProtonVPN.Vpn.Gateways;
 
 namespace ProtonVPN.Vpn.Management
 {
@@ -38,7 +39,7 @@ namespace ProtonVPN.Vpn.Management
     {
         private readonly ILogger _logger;
         private readonly MessagingManagementChannel _managementChannel;
-        private readonly IGatewayProvider _gatewayProvider;
+        private readonly IGatewayCache _gatewayCache;
 
         private VpnError _lastError;
         private VpnCredentials _credentials;
@@ -47,15 +48,15 @@ namespace ProtonVPN.Vpn.Management
         private bool _disconnectRequested;
         private bool _disconnectAccepted;
 
-        public ManagementClient(ILogger logger, IGatewayProvider gatewayProvider, IManagementChannel managementChannel)
-            : this(logger, gatewayProvider, new MessagingManagementChannel(logger, managementChannel))
+        public ManagementClient(ILogger logger, IGatewayCache gatewayCache, IManagementChannel managementChannel)
+            : this(logger, gatewayCache, new MessagingManagementChannel(logger, managementChannel))
         {
         }
 
-        internal ManagementClient(ILogger logger,  IGatewayProvider gatewayProvider, MessagingManagementChannel managementChannel)
+        internal ManagementClient(ILogger logger, IGatewayCache gatewayCache, MessagingManagementChannel managementChannel)
         {
             _logger = logger;
-            _gatewayProvider = gatewayProvider;
+            _gatewayCache = gatewayCache;
             _managementChannel = managementChannel;
         }
 
@@ -220,7 +221,8 @@ namespace ProtonVPN.Vpn.Management
             MatchCollection regex = Regex.Matches(message.ToString(), @"route-gateway ([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)");
             if (regex.Count > 0 && regex[0].Groups.Count >= 2)
             {
-                _gatewayProvider.Save(regex[0].Groups[1].Value);
+                IPAddress gatewayIPAddress = IPAddress.Parse(regex[0].Groups[1].Value);
+                _gatewayCache.Save(gatewayIPAddress);
             }
         }
 

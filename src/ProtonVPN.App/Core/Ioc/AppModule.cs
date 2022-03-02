@@ -57,6 +57,7 @@ using ProtonVPN.Modals.Dialogs;
 using ProtonVPN.Modals.Welcome;
 using ProtonVPN.Notifications;
 using ProtonVPN.PlanDowngrading;
+using ProtonVPN.PortForwarding;
 using ProtonVPN.Servers;
 using ProtonVPN.Settings;
 using ProtonVPN.Settings.Migrations;
@@ -305,6 +306,8 @@ namespace ProtonVPN.Core.Ioc
             builder.Register(c => new EventPublisher(c.Resolve<ILogger>(), c.Resolve<Common.Configuration.Config>()))
                 .As<IEventPublisher>().SingleInstance();
             builder.RegisterType<AppExitInvoker>().As<IAppExitInvoker>().SingleInstance();
+            builder.RegisterType<PortForwardingManager>().As<IPortForwardingManager>().SingleInstance();
+            builder.RegisterType<PortForwardingNotifier>().AsImplementedInterfaces().SingleInstance();
         }
     }
 }

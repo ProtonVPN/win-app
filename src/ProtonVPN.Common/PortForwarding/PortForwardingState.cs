@@ -18,16 +18,13 @@
  */
 
 using System;
-using ProtonVPN.Vpn.Connection;
 
-namespace ProtonVPN.Vpn.WireGuard
+namespace ProtonVPN.Common.PortForwarding
 {
-    public class WireGuardGatewayProvider : IGatewayProvider
+    public class PortForwardingState
     {
-        public string Get() => "10.2.0.1";
-
-        public void Save(string defaultGateway) =>
-            throw new NotImplementedException(
-                "Cannot set default gateway for WireGuard because the IP Address is fixed.");
+        public TemporaryMappedPort MappedPort { get; set; }
+        public PortMappingStatus Status { get; set; }
+        public DateTime TimestampUtc { get; set; } = DateTime.UtcNow;
     }
 }

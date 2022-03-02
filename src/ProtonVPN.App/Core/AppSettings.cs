@@ -205,8 +205,8 @@ namespace ProtonVPN.Core
             "Use IsPortForwardingEnabled() for checking if Port Forwarding is/should be enabled.")]
         public bool PortForwardingEnabled
         {
-            get => Get<bool>();
-            set => Set(value);
+            get => GetPerUser<bool>();
+            set => SetPerUser(value);
         }
 
         public int NetShieldMode
@@ -401,6 +401,18 @@ namespace ProtonVPN.Core
         }
 
         public bool DoNotShowPortForwardingConfirmationDialog
+        {
+            get => Get<bool>();
+            set => Set(value);
+        }
+
+        public bool PortForwardingNotificationsEnabled
+        {
+            get => Get<bool>();
+            set => Set(value);
+        }
+
+        public bool PortForwardingInQuickSettings
         {
             get => Get<bool>();
             set => Set(value);

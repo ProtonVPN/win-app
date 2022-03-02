@@ -53,6 +53,9 @@
     <Compile Include="Crypto\ServerPublicKeyContract.cs" />
     <Compile Include="Crypto\PublicKeyContract.cs" />
     <Compile Include="Crypto\SecretKeyContract.cs" />
+    <Compile Include="PortForwarding\PortForwardingStateContract.cs" />
+    <Compile Include="PortForwarding\PortMappingStatusContract.cs" />
+    <Compile Include="PortForwarding\TemporaryMappedPortContract.cs" />
     <Compile Include="Servers\PhysicalServerContract.cs" />
     <Compile Include="Servers\ServerContract.cs" />
     <Compile Include="Vpn\InOutBytesContract.cs" />

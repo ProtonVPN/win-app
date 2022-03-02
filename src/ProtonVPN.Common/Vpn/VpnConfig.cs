@@ -27,22 +27,15 @@ namespace ProtonVPN.Common.Vpn
     public class VpnConfig
     {
         public IReadOnlyDictionary<VpnProtocol, IReadOnlyCollection<int>> Ports { get; }
-
         public IReadOnlyCollection<string> CustomDns { get; }
-
         public SplitTunnelMode SplitTunnelMode { get; }
-
         public IReadOnlyCollection<string> SplitTunnelIPs { get; }
-
         public OpenVpnAdapter OpenVpnAdapter { get; set; }
-        
         public VpnProtocol VpnProtocol { get; }
-
         public IList<VpnProtocol> PreferredProtocols { get; }
-
         public int NetShieldMode { get; }
-
         public bool SplitTcp { get; }
+        public bool PortForwarding { get; }
 
         public bool? AllowNonStandardPorts { get; }
 
@@ -61,6 +54,7 @@ namespace ProtonVPN.Common.Vpn
             NetShieldMode = parameters.NetShieldMode;
             SplitTcp = parameters.SplitTcp;
             AllowNonStandardPorts = parameters.AllowNonStandardPorts;
+            PortForwarding = parameters.PortForwarding;
         }
 
         private void AssertPortsValid(IReadOnlyDictionary<VpnProtocol, IReadOnlyCollection<int>> ports)

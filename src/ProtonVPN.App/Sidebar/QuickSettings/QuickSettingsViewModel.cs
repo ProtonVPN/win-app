@@ -25,7 +25,6 @@ using GalaSoft.MvvmLight.CommandWpf;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Config.Url;
 using ProtonVPN.Core.Modals;
-using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.User;
@@ -33,6 +32,8 @@ using ProtonVPN.Core.Vpn;
 using ProtonVPN.Modals;
 using ProtonVPN.Modals.Upsell;
 using ProtonVPN.Onboarding;
+using ProtonVPN.PortForwarding;
+using ProtonVPN.PortForwarding.ActivePorts;
 
 namespace ProtonVPN.Sidebar.QuickSettings
 {
@@ -47,19 +48,26 @@ namespace ProtonVPN.Sidebar.QuickSettings
         private readonly IActiveUrls _urls;
         private readonly IModals _modals;
         private readonly IVpnManager _vpnManager;
+        private readonly IPortForwardingManager _portForwardingManager;
 
         public QuickSettingsViewModel(
             IAppSettings appSettings,
             IUserStorage userStorage,
             IActiveUrls urls,
             IModals modals,
-            IVpnManager vpnManager)
+            IVpnManager vpnManager,
+            IPortForwardingManager portForwardingManager,
+            PortForwardingActivePortViewModel activePortViewModel)
         {
             _modals = modals;
             _urls = urls;
             _userStorage = userStorage;
             _appSettings = appSettings;
             _vpnManager = vpnManager;
+            _portForwardingManager = portForwardingManager;
+
+            ActivePortViewModel = activePortViewModel;
+            ActivePortViewModel.PropertyChanged += OnActivePortViewModelPropertyChanged;
 
             SecureCoreLearnMoreCommand = new RelayCommand(OpenSecureCoreArticleAction);
             NetShieldLearnMoreCommand = new RelayCommand(OpenNetShieldArticleAction);
@@ -80,10 +88,12 @@ namespace ProtonVPN.Sidebar.QuickSettings
             PortForwardingOffCommand = new RelayCommand(TurnOffPortForwardingActionAsync);
             PortForwardingOnCommand = new RelayCommand(TurnOnPortForwardingActionAsync);
 
-            GetPlusCommand = new RelayCommand(GetPlusAction);
             ShowSecureCoreUpsellModalCommand = new RelayCommand(ShowSecureCoreUpsellModalAction);
             ShowNetshieldUpsellModalCommand = new RelayCommand(ShowNetshieldUpsellModalAction);
+            ShowPortForwardingUpsellModalCommand = new RelayCommand(ShowPortForwardingUpsellModalAction);
         }
+
+        public PortForwardingActivePortViewModel ActivePortViewModel { get; }
 
         public ICommand SecureCoreOffCommand { get; }
         public ICommand SecureCoreOnCommand { get; }
@@ -104,9 +114,9 @@ namespace ProtonVPN.Sidebar.QuickSettings
         public ICommand PortForwardingOnCommand { get; }
         public ICommand PortForwardingOffCommand { get; }
 
-        public ICommand GetPlusCommand { get; }
         public ICommand ShowSecureCoreUpsellModalCommand { get; }
         public ICommand ShowNetshieldUpsellModalCommand { get; }
+        public ICommand ShowPortForwardingUpsellModalCommand { get; }
 
         public bool IsSecureCoreOnButtonOn => _appSettings.SecureCore;
         public bool IsSecureCoreOffButtonOn => !_appSettings.SecureCore;
@@ -118,24 +128,23 @@ namespace ProtonVPN.Sidebar.QuickSettings
         public bool IsNetShieldOn => _appSettings.NetShieldEnabled;
         public bool IsNetShieldVisible => _appSettings.FeatureNetShieldEnabled;
 
-        public bool IsPortForwardingOnButtonOn => _appSettings.PortForwardingEnabled;
-        public bool IsPortForwardingOffButtonOn => !_appSettings.PortForwardingEnabled;
-        public bool IsPortForwardingVisible => _appSettings.FeaturePortForwardingEnabled;
-
-        public int KillSwitchButtonNumber => _appSettings.FeatureNetShieldEnabled ? 2 : 1;
-        public int PortForwardingButtonNumber => KillSwitchButtonNumber + 1;
-
-        public int TotalButtons => 2 + (_appSettings.FeatureNetShieldEnabled ? 1 : 0) +
-                                   (_appSettings.FeaturePortForwardingEnabled ? 1 : 0);
-
         public bool IsSoftKillSwitchEnabled => _appSettings.KillSwitchMode == Common.KillSwitch.KillSwitchMode.Soft;
         public bool IsHardKillSwitchEnabled => _appSettings.KillSwitchMode == Common.KillSwitch.KillSwitchMode.Hard;
         public bool IsKillSwitchDisabled => _appSettings.KillSwitchMode == Common.KillSwitch.KillSwitchMode.Off;
         public bool IsKillSwitchEnabled => IsSoftKillSwitchEnabled || IsHardKillSwitchEnabled;
         public int KillSwitchMode => (int)_appSettings.KillSwitchMode;
-        public bool IsFreeUser => !_userStorage.User().Paid();
 
-        public bool IsUserTierPlusOrHigher => _userStorage.User().MaxTier >= ServerTiers.Plus;
+        public bool IsPortForwardingOnButtonOn => _appSettings.PortForwardingEnabled;
+        public bool IsPortForwardingOffButtonOn => !_appSettings.PortForwardingEnabled;
+        public bool IsPortForwardingVisible => _appSettings.PortForwardingInQuickSettings && _appSettings.FeaturePortForwardingEnabled;
+
+        public int KillSwitchButtonNumber => _appSettings.FeatureNetShieldEnabled ? 2 : 1;
+        public int PortForwardingButtonNumber => KillSwitchButtonNumber + 1;
+
+        public int TotalButtons => 2 + (IsNetShieldVisible ? 1 : 0) + (IsPortForwardingVisible ? 1 : 0);
+
+        public bool IsFreeUser => !_userStorage.User().Paid();
+        public bool IsUserTierPlusOrHigher => _userStorage.User().IsTierPlusOrHigher();
 
         private bool _showSecureCorePopup;
 
@@ -169,6 +178,8 @@ namespace ProtonVPN.Sidebar.QuickSettings
             set => Set(ref _showPortForwardingPopup, value);
         }
 
+        public bool HasPortForwardingValue => ActivePortViewModel.HasPortForwardingValue;
+
         private bool _showOnboardingStep;
 
         public bool ShowOnboardingStep
@@ -179,18 +190,50 @@ namespace ProtonVPN.Sidebar.QuickSettings
 
         public void OnUserDataChanged()
         {
+            if (!IsUserTierPlusOrHigher)
+            {
+                if (_appSettings.SecureCore)
+                {
+                    DisableSecureCore();
+                }
+                if (_appSettings.PortForwardingEnabled)
+                {
+                    DisablePortForwarding();
+                }
+            }
             if (IsFreeUser && _appSettings.NetShieldEnabled)
             {
-                _appSettings.NetShieldEnabled = false;
-
-                NotifyOfPropertyChange(nameof(IsNetShieldOn));
-                NotifyOfPropertyChange(nameof(IsNetShieldOffButtonOn));
-                NotifyOfPropertyChange(nameof(IsNetShieldFirstButtonOn));
-                NotifyOfPropertyChange(nameof(IsNetShieldSecondButtonOn));
+                DisableNetShield();
             }
 
             NotifyOfPropertyChange(nameof(IsFreeUser));
             NotifyOfPropertyChange(nameof(IsUserTierPlusOrHigher));
+        }
+
+        private void DisableSecureCore()
+        {
+            _appSettings.SecureCore = false;
+
+            NotifyOfPropertyChange(nameof(IsSecureCoreOnButtonOn));
+            NotifyOfPropertyChange(nameof(IsSecureCoreOffButtonOn));
+        }
+
+        private void DisablePortForwarding()
+        {
+            _appSettings.PortForwardingEnabled = false;
+
+            NotifyOfPropertyChange(nameof(IsPortForwardingOnButtonOn));
+            NotifyOfPropertyChange(nameof(IsPortForwardingOffButtonOn));
+        }
+
+        private void DisableNetShield()
+        {
+            _appSettings.NetShieldEnabled = false;
+
+            NotifyOfPropertyChange(nameof(IsNetShieldOn));
+            NotifyOfPropertyChange(nameof(IsNetShieldOffButtonOn));
+            NotifyOfPropertyChange(nameof(IsNetShieldFirstButtonOn));
+            NotifyOfPropertyChange(nameof(IsNetShieldSecondButtonOn));
         }
 
         public void OnAppSettingsChanged(PropertyChangedEventArgs e)
@@ -223,6 +266,7 @@ namespace ProtonVPN.Sidebar.QuickSettings
                     NotifyOfPropertyChange(nameof(TotalButtons));
                     break;
                 case nameof(IAppSettings.FeaturePortForwardingEnabled):
+                case nameof(IAppSettings.PortForwardingInQuickSettings):
                     NotifyOfPropertyChange(nameof(IsPortForwardingVisible));
                     NotifyOfPropertyChange(nameof(TotalButtons));
                     break;
@@ -256,7 +300,7 @@ namespace ProtonVPN.Sidebar.QuickSettings
         private async void TurnOffSecureCoreActionAsync()
         {
             HideSecureCorePopup();
-            _appSettings.SecureCore = false;
+            DisableSecureCore();
             await ReconnectAsync();
         }
 
@@ -276,7 +320,7 @@ namespace ProtonVPN.Sidebar.QuickSettings
 
             if (IsUserTierPlusOrHigher)
             {
-                _appSettings.PortForwardingEnabled = false;
+                DisablePortForwarding();
                 _appSettings.SecureCore = true;
                 await ReconnectAsync();
             }
@@ -340,59 +384,21 @@ namespace ProtonVPN.Sidebar.QuickSettings
             }
         }
 
+        private async void TurnOnPortForwardingActionAsync()
+        {
+            HidePortForwardingPopup();
+            await _portForwardingManager.EnableAsync();
+        }
+
         private void HidePortForwardingPopup()
         {
             ShowPortForwardingPopup = false;
         }
 
-        private async void TurnOnPortForwardingActionAsync()
-        {
-            HidePortForwardingPopup();
-
-            if (IsUserTierPlusOrHigher)
-            {
-                await TurnOnPortForwardingAsync();
-            }
-            else
-            {
-                _urls.AccountUrl.Open();
-            }
-        }
-
-        private async Task TurnOnPortForwardingAsync()
-        {
-            if (_appSettings.PortForwardingEnabled)
-            {
-                return;
-            }
-
-            if (_appSettings.DoNotShowPortForwardingConfirmationDialog)
-            {
-                await EnablePortForwardingAsync();
-            }
-            else
-            {
-                bool? result = _modals.Show<PortForwardingConfirmationModalViewModel>();
-
-                if (result.HasValue && result.Value)
-                {
-                    await EnablePortForwardingAsync();
-                }
-            }
-        }
-
-        private async Task EnablePortForwardingAsync()
-        {
-            _appSettings.SecureCore = false;
-            _appSettings.PortForwardingEnabled = true;
-            await ReconnectAsync();
-        }
-
         private async void TurnOffPortForwardingActionAsync()
         {
             HidePortForwardingPopup();
-            _appSettings.PortForwardingEnabled = false;
-            await ReconnectAsync();
+            await _portForwardingManager.DisableAsync();
         }
 
         private void HideNetShieldPopup()
@@ -403,7 +409,7 @@ namespace ProtonVPN.Sidebar.QuickSettings
         private async void TurnOffNetShieldActionAsync()
         {
             HideNetShieldPopup();
-            _appSettings.NetShieldEnabled = false;
+            DisableNetShield();
         }
 
         private async void TurnOnNetShieldFirstModeActionAsync()
@@ -463,12 +469,22 @@ namespace ProtonVPN.Sidebar.QuickSettings
 
         private void ShowSecureCoreUpsellModalAction()
         {
-            _modals.Show<ScUpsellModalViewModel>();
+            _modals.Show<SecureCoreUpsellModalViewModel>();
         }
 
         private void ShowNetshieldUpsellModalAction()
         {
             _modals.Show<NetshieldUpsellModalViewModel>();
+        }
+
+        private void ShowPortForwardingUpsellModalAction()
+        {
+            _modals.Show<PortForwardingUpsellModalViewModel>();
+        }
+
+        private void OnActivePortViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            NotifyOfPropertyChange(e.PropertyName);
         }
     }
 }

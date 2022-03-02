@@ -17,24 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using GalaSoft.MvvmLight.CommandWpf;
-using ProtonVPN.Config.Url;
-using System.Windows.Input;
+using System.Net;
 
-namespace ProtonVPN.Modals.Upsell
+namespace ProtonVPN.Vpn.Gateways
 {
-    public class ScUpsellModalViewModel : UpsellModalViewModel
+    public interface IGatewayCache
     {
-        public ScUpsellModalViewModel(IActiveUrls urls): base(urls)
-        {
-            AboutSecureCoreCommand = new RelayCommand(OpenAboutSecureCorePage);
-        }
-
-        public ICommand AboutSecureCoreCommand { get; set; }
-
-        private void OpenAboutSecureCorePage()
-        {
-            Urls.AboutSecureCoreUrl.Open();
-        }
+        public IPAddress Get();
+        public void Save(IPAddress defaultGateway);
     }
 }

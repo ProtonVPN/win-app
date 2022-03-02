@@ -31,6 +31,7 @@ namespace ProtonVPN.Vpn.Common
                 state.LocalIp,
                 remoteIp,
                 state.VpnProtocol,
+                state.PortForwarding,
                 state.OpenVpnAdapter,
                 label);
         }
@@ -43,6 +44,7 @@ namespace ProtonVPN.Vpn.Common
                 state.LocalIp,
                 state.RemoteIp,
                 state.VpnProtocol,
+                state.PortForwarding,
                 state.OpenVpnAdapter,
                 state.Label);
         }
