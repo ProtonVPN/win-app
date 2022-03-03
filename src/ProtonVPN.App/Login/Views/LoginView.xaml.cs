@@ -44,18 +44,12 @@ namespace ProtonVPN.Login.Views
                 ? Visibility.Visible : Visibility.Hidden;
         }
 
-        private void PasswordInput_KeyDown(object sender, KeyEventArgs e)
+        private void OnInputKeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key != Key.Enter) return;
-
-            ExecuteLoginCommand();
-        }
-
-        private void UsernameInput_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key != Key.Enter) return;
-
-            ExecuteLoginCommand();
+            if (e.Key == Key.Enter)
+            {
+                ExecuteLoginCommand();
+            }
         }
 
         private void ExecuteLoginCommand()

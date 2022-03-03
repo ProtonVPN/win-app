@@ -94,6 +94,23 @@ namespace ProtonVPN.Core.Api
             }
         }
 
+        public async Task<ApiResponseResult<BaseResponse>> GetTwoFactorAuthResponse(TwoFactorRequestData data, string accessToken, string uid)
+        {
+            HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Post, "auth/2fa", accessToken, uid);
+            
+            try
+            {
+                request.Content = GetJsonContent(data);
+                using HttpResponseMessage response = await _client.SendAsync(request).ConfigureAwait(false);
+                string body = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+                return Logged(ApiResponseResult<BaseResponse>(body, response.StatusCode));
+            }
+            catch (Exception e) when (e.IsApiCommunicationException())
+            {
+                throw new HttpRequestException(e.Message, e);
+            }
+        }
+
         public async Task<ApiResponseResult<VpnInfoResponse>> GetVpnInfoResponse()
         {
             HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, "vpn/v2");

@@ -29,6 +29,5 @@ namespace ProtonVPN.Core.Api.Contracts
         public string Salt { get; set; }
         [JsonProperty(PropertyName = "SRPSession")]
         public string SrpSession { get; set; }
-        public int TwoFactor { get; set; }
     }
 }

@@ -44,8 +44,6 @@ namespace ProtonVPN.Login.ViewModels
 {
     public class LoginViewModel : ViewModel, ISettingsAware, IServiceSettingsStateAware
     {
-        private string _errorText = "";
-
         private readonly ILogger _logger;
         private readonly Common.Configuration.Config _appConfig;
         private readonly IAppSettings _appSettings;
@@ -64,6 +62,21 @@ namespace ProtonVPN.Login.ViewModels
         private bool _autoAuthFailed;
         private bool _networkBlocked;
         private VpnStatus _lastVpnStatus = VpnStatus.Disconnected;
+        private bool _isToShowUsernameAndPassword = true;
+        private bool _isToShowTwoFactorAuth;
+        private string _twoFactorAuthCode;
+
+        public bool IsToShowUsernameAndPassword
+        {
+            get => _isToShowUsernameAndPassword;
+            set => Set(ref _isToShowUsernameAndPassword, value);
+        }
+
+        public bool IsToShowTwoFactorAuth
+        {
+            get => _isToShowTwoFactorAuth;
+            set => Set(ref _isToShowTwoFactorAuth, value);
+        }
 
         public LoginViewModel(
             ILogger logger,
@@ -127,7 +140,9 @@ namespace ProtonVPN.Login.ViewModels
                 }
 
                 if (!Set(ref _loginText, value))
+                {
                     return;
+                }
 
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(FieldsFilledIn));
@@ -151,19 +166,13 @@ namespace ProtonVPN.Login.ViewModels
             }
         }
 
-        public bool FieldsFilledIn => !string.IsNullOrEmpty(LoginText?.Trim()) && Password != null && Password.Length != 0;
-
-        public string ErrorText
+        public string TwoFactorAuthCode
         {
-            get => _errorText;
-            set
-            {
-                if (value == _errorText) return;
-                _errorText = value;
-                OnPropertyChanged();
-                OnPropertyChanged(nameof(FieldsFilledIn));
-            }
+            get => _twoFactorAuthCode;
+            set => Set(ref _twoFactorAuthCode, value);
         }
+
+        public bool FieldsFilledIn => !string.IsNullOrEmpty(LoginText?.Trim()) && Password != null && Password.Length != 0;
 
         public bool StartOnStartup
         {
@@ -248,6 +257,12 @@ namespace ProtonVPN.Login.ViewModels
 
         private async void LoginAction()
         {
+            if (IsToShowTwoFactorAuth)
+            {
+                await HandleTwoFactorAuthAsync();
+                return;
+            }
+
             try
             {
                 string username = LoginText?.Trim();
@@ -272,6 +287,57 @@ namespace ProtonVPN.Login.ViewModels
 
                 _guestHoleState.SetState(true);
                 await _guestHoleConnector.Connect();
+            }
+        }
+
+        private async Task HandleTwoFactorAuthAsync()
+        {
+            AuthResult result = await SendTwoFactorAuthRequestAsync();
+            if (result.Failure)
+            {
+                HandleTwoFactorAuthFailure(result);
+            }
+            else
+            {
+                AfterLogin();
+            }
+        }
+
+        private void HandleTwoFactorAuthFailure(AuthResult result)
+        {
+            string error = result.Error;
+            TwoFactorAuthCode = string.Empty;
+
+            switch (result.Value)
+            {
+                case AuthError.IncorrectTwoFactorCode:
+                    error = Translation.Get("Login_msg_IncorrectTwoFactorCode");
+                    break;
+                case AuthError.TwoFactorAuthFailed:
+                    error = Translation.Get("Login_msg_TwoFactorAuthFailed");
+                    IsToShowTwoFactorAuth = false;
+                    IsToShowUsernameAndPassword = true;
+                    break;
+                case AuthError.Unknown:
+                    _modals.Show<TroubleshootModalViewModel>();
+                    ShowLoginForm();
+                    return;
+            }
+
+            LoginErrorViewModel.SetError(error);
+            ShowLoginForm();
+        }
+
+        private async Task<AuthResult> SendTwoFactorAuthRequestAsync()
+        {
+            try
+            {
+                return await _userAuth.SendTwoFactorCodeAsync(TwoFactorAuthCode);
+            }
+            catch (HttpRequestException e)
+            {
+                _logger.Error<AppLog>("Failed to send two factor auth code.", e);
+                return AuthResult.Fail(AuthError.Unknown);
             }
         }
 
@@ -314,6 +380,14 @@ namespace ProtonVPN.Login.ViewModels
 
         private async Task HandleLoginFailureAsync(AuthResult result)
         {
+            if (result.Value == AuthError.TwoFactorRequired)
+            {
+                IsToShowUsernameAndPassword = false;
+                IsToShowTwoFactorAuth = true;
+                ShowLoginForm();
+                return;
+            }
+
             HandleAuthFailure(result);
             Password = new SecureString();
             ShowLoginForm();
@@ -349,9 +423,11 @@ namespace ProtonVPN.Login.ViewModels
         {
             LoginText = "";
             Password = new SecureString();
-            ErrorText = "";
             LoginErrorViewModel.ClearError();
             _autoAuthFailed = false;
+            IsToShowUsernameAndPassword = true;
+            IsToShowTwoFactorAuth = false;
+            TwoFactorAuthCode = string.Empty;
         }
 
         private void ToggleBalloonAction()

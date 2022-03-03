@@ -121,6 +121,8 @@ namespace TestTools.ApiClient
 
         public Task<ApiResponseResult<VpnInfoResponse>> GetVpnInfoResponse() => throw new NotImplementedException();
 
+        public Task<ApiResponseResult<BaseResponse>> GetTwoFactorAuthResponse(TwoFactorRequestData data, string accessToken, string uid) => throw new NotImplementedException();
+
         public Task<ApiResponseResult<ReportAnIssueFormData>> GetReportAnIssueFormData() => throw new NotImplementedException();
 
         public Task<ApiResponseResult<BaseResponse>> GetLogoutResponse() => throw new NotImplementedException();

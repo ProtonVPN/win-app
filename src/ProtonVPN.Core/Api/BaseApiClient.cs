@@ -128,9 +128,14 @@ namespace ProtonVPN.Core.Api
 
         protected HttpRequestMessage GetAuthorizedRequest(HttpMethod method, string requestUri)
         {
+            return GetAuthorizedRequest(method, requestUri, TokenStorage.AccessToken, TokenStorage.Uid);
+        }
+
+        protected HttpRequestMessage GetAuthorizedRequest(HttpMethod method, string requestUri, string accessToken, string uid)
+        {
             HttpRequestMessage request = GetRequest(method, requestUri);
-            request.Headers.Add("x-pm-uid", TokenStorage.Uid);
-            request.Headers.Add("Authorization", $"Bearer {TokenStorage.AccessToken}");
+            request.Headers.Add("x-pm-uid", uid);
+            request.Headers.Add("Authorization", $"Bearer {accessToken}");
 
             return request;
         }

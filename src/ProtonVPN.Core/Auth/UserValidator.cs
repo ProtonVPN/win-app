@@ -43,7 +43,7 @@ namespace ProtonVPN.Core.Auth
                 return AuthResult.Ok();
             }
 
-            ApiResponseResult<VpnInfoResponse> vpnInfoResult = await _userAuth.RefreshVpnInfo();
+            ApiResponseResult<VpnInfoResponse> vpnInfoResult = await _userAuth.RefreshVpnInfoAsync();
             if (vpnInfoResult.Failure)
             {
                 return AuthResult.Fail(vpnInfoResult);
