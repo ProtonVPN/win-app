@@ -567,7 +567,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                               Number="{Binding PortForwardingButtonNumber}"
                                               AutomationProperties.AutomationId="{StaticResource PortForwardingButton}"
                                               ToolTip="{translations:Loc PortForwarding}"
-                                              Visibility="{Binding IsPortForwardingVisible, Converter={StaticResource BoolToVis}, FallbackValue=Collapsed}">
+                                              Visibility="{Binding IsPortForwardingVisible, Converter={StaticResource BoolToVis}}">
                 <quickSettings:QuickSettingButton.Popup>
                     <Popup x:Name="PortForwardingPopup"
                            AllowsTransparency="True"

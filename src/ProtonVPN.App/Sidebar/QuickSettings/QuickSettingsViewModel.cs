@@ -471,11 +471,6 @@ namespace ProtonVPN.Sidebar.QuickSettings
             _urls.AboutPortForwardingUrl.Open();
         }
 
-        private void GetPlusAction()
-        {
-            _urls.AccountUrl.Open();
-        }
-
         private void ShowSecureCoreUpsellModalAction()
         {
             _modals.Show<SecureCoreUpsellModalViewModel>();
