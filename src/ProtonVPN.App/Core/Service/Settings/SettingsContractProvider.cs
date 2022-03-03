@@ -47,7 +47,7 @@ namespace ProtonVPN.Core.Service.Settings
                 },
                 NetShieldMode = _appSettings.IsNetShieldEnabled() ? _appSettings.NetShieldMode : 0,
                 SplitTcp = _appSettings.IsVpnAcceleratorEnabled(),
-                AllowNonStandardPorts = _appSettings.AllowNonStandardPorts,
+                AllowNonStandardPorts = _appSettings.ShowNonStandardPortsToFreeUsers ? _appSettings.AllowNonStandardPorts : null,
                 Ipv6LeakProtection = _appSettings.Ipv6LeakProtection,
                 VpnProtocol = _appSettings.GetProtocol(),
                 OpenVpnAdapter = openVpnAdapter ?? _appSettings.NetworkAdapterType,
