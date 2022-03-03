@@ -28,7 +28,7 @@ namespace ProtonVPN.Service.Contract.Settings
         public SplitTunnelSettingsContract SplitTunnel { get; set; }
         public int NetShieldMode { get; set; }
         public bool SplitTcp { get; set; }
-        public bool AllowNonStandardPorts { get; set; }
+        public bool? AllowNonStandardPorts { get; set; }
         public bool Ipv6LeakProtection { get; set; }
         public VpnProtocol VpnProtocol { get; set; }
         public OpenVpnAdapter OpenVpnAdapter { get; set; }
