@@ -27,7 +27,6 @@ namespace ProtonVPN.Core.Api.Data
         public string ClientProof { get; set; }
         [JsonProperty(PropertyName = "SRPSession")]
         public string SrpSession { get; set; }
-        public string TwoFactorCode { get; set; }
         public string Username { get; set; }
     }
 }

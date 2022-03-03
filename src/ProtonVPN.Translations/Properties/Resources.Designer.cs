@@ -4351,6 +4351,15 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Authenticate.
+        /// </summary>
+        public static string Login_btn_Authenticate {
+            get {
+                return ResourceManager.GetString("Login_btn_Authenticate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Login.
         /// </summary>
         public static string Login_btn_Login {
@@ -4432,6 +4441,15 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Two-factor authentication code.
+        /// </summary>
+        public static string Login_lbl_TwoFactorAuthCode {
+            get {
+                return ResourceManager.GetString("Login_lbl_TwoFactorAuthCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Username.
         /// </summary>
         public static string Login_lbl_Username {
@@ -4473,6 +4491,24 @@ namespace ProtonVPN.Translations.Properties {
         public static string Login_lnk_ResetPassword {
             get {
                 return ResourceManager.GetString("Login_lnk_ResetPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Incorrect two-factor authentication code.
+        /// </summary>
+        public static string Login_msg_IncorrectTwoFactorCode {
+            get {
+                return ResourceManager.GetString("Login_msg_IncorrectTwoFactorCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Incorrect login credentials. Please try again..
+        /// </summary>
+        public static string Login_msg_TwoFactorAuthFailed {
+            get {
+                return ResourceManager.GetString("Login_msg_TwoFactorAuthFailed", resourceCulture);
             }
         }
         

@@ -174,7 +174,7 @@ namespace ProtonVPN.Core
 
             try
             {
-                ApiResponseResult<VpnInfoResponse> result = await Resolve<UserAuth>().RefreshVpnInfo();
+                ApiResponseResult<VpnInfoResponse> result = await Resolve<UserAuth>().RefreshVpnInfoAsync();
                 return result.Failure;
             }
             catch (HttpRequestException)

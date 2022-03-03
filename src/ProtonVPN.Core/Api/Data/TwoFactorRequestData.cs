@@ -17,17 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Core.Auth
+namespace ProtonVPN.Core.Api.Data
 {
-    public enum AuthError
+    public class TwoFactorRequestData
     {
-        None,
-        NoVpnAccess,
-        InvalidServerProof,
-        MissingGoSrpDll,
-        TwoFactorRequired,
-        IncorrectTwoFactorCode,
-        TwoFactorAuthFailed,
-        Unknown,
+        public string TwoFactorCode { get; set; }
     }
 }
