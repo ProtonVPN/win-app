@@ -296,6 +296,7 @@ namespace ProtonVPN.Vpn.Connection
                         HandleVpnConnectedState();
                         return;
                     case VpnStatus.Disconnected:
+                    case VpnStatus.Reconnecting:
                         HandleVpnDisconnectedState();
                         break;
                 }
