@@ -241,6 +241,15 @@ namespace ProtonVPN.Resource.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Украї́нська.
+        /// </summary>
+        internal static string Language_uk {
+            get {
+                return ResourceManager.GetString("Language_uk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 简体中文.
         /// </summary>
         internal static string Language_zh_CN {

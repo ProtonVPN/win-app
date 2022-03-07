@@ -27,7 +27,7 @@
     <ROW Property="Manufacturer" Value="Proton Technologies AG"/>
     <ROW Property="MsiLogging" MultiBuildValue="DefaultBuild:vp"/>
     <ROW Property="PENDING_REBOOT" Value="0"/>
-    <ROW Property="ProductCode" Value="1031:{57C4E518-CE13-4F6B-BA1C-647667ECACFE} 1033:{57C4E518-CE13-4F6B-BA1C-647667ECACFE} 1036:{57C4E518-CE13-4F6B-BA1C-647667ECACFE} 1040:{57C4E518-CE13-4F6B-BA1C-647667ECACFE} 1043:{57C4E518-CE13-4F6B-BA1C-647667ECACFE} 1045:{57C4E518-CE13-4F6B-BA1C-647667ECACFE} 1046:{57C4E518-CE13-4F6B-BA1C-647667ECACFE} 1049:{57C4E518-CE13-4F6B-BA1C-647667ECACFE} 1065:{57C4E518-CE13-4F6B-BA1C-647667ECACFE} 2070:{57C4E518-CE13-4F6B-BA1C-647667ECACFE} 3082:{57C4E518-CE13-4F6B-BA1C-647667ECACFE} " Type="16"/>
+    <ROW Property="ProductCode" Value="1031:{57C4E518-CE13-4F6B-BA1C-647667ECACFE} 1033:{57C4E518-CE13-4F6B-BA1C-647667ECACFE} 1036:{57C4E518-CE13-4F6B-BA1C-647667ECACFE} 1040:{57C4E518-CE13-4F6B-BA1C-647667ECACFE} 1043:{57C4E518-CE13-4F6B-BA1C-647667ECACFE} 1045:{57C4E518-CE13-4F6B-BA1C-647667ECACFE} 1046:{57C4E518-CE13-4F6B-BA1C-647667ECACFE} 1049:{57C4E518-CE13-4F6B-BA1C-647667ECACFE} 1058:{57C4E518-CE13-4F6B-BA1C-647667ECACFE} 1065:{57C4E518-CE13-4F6B-BA1C-647667ECACFE} 2070:{57C4E518-CE13-4F6B-BA1C-647667ECACFE} 3082:{57C4E518-CE13-4F6B-BA1C-647667ECACFE} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="ProtonVPN"/>
     <ROW Property="ProductVersion" Value="1.24.1" Type="32"/>
@@ -317,7 +317,7 @@
     <ROW Action="AI_DetectSoftware" Sequence="101"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BuildComponent">
-    <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="1" PackageFolder="ProtonVPN-SetupFiles" PackageFileName="ProtonVPN_win_v[|ProductVersion]" Languages="en;de;fr;fa;nl;it;pl;pt;ru;es;pt_BR" LangOpt="1" InstallationType="2" CabsLocation="1" UseLzma="true" LzmaMethod="2" LzmaCompressionLevel="2" PackageType="1" FilesInsideExe="true" ExeIconPath="images\protonvpn.ico" ExeMetadata="FileDescription:[|ProductName] Installer [|CommitHash]" ExtUI="true" Options="4" LangsDialog="true" UseLargeSchema="true" Unicode="true" ExeName="ProtonVPN_win_v[|ProductVersion]" UACExecutionLevel="2"/>
+    <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="1" PackageFolder="ProtonVPN-SetupFiles" PackageFileName="ProtonVPN_win_v[|ProductVersion]" Languages="en;de;fr;fa;nl;it;pl;pt;ru;es;pt_BR;uk" LangOpt="1" InstallationType="2" CabsLocation="1" UseLzma="true" LzmaMethod="2" LzmaCompressionLevel="2" PackageType="1" FilesInsideExe="true" ExeIconPath="images\protonvpn.ico" ExeMetadata="FileDescription:[|ProductName] Installer [|CommitHash]" ExtUI="true" Options="4" LangsDialog="true" UseLargeSchema="true" Unicode="true" ExeName="ProtonVPN_win_v[|ProductVersion]" UACExecutionLevel="2"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.CacheComponent">
     <ATTRIBUTE name="Enable" value="false"/>
@@ -335,6 +335,7 @@
     <ROW Path="&lt;AI_DICTS&gt;ui_ru.ail"/>
     <ROW Path="&lt;AI_DICTS&gt;ui_es.ail"/>
     <ROW Path="&lt;AI_DICTS&gt;ui_pt_BR.ail"/>
+    <ROW Path="&lt;AI_DICTS&gt;ui_uk.ail"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.DigCertStoreComponent">
     <ROW TimeStampUrl="http://timestamp.digicert.com" SignerDescription="[|ProductName]" SignOptions="7" SignTool="0" UseSha256="1" Thumbprint="44054e4d961e4efd5d3d90dec1444b26373d4a08 Subject: Proton Technologies AG&#10;Issuer: GlobalSign Extended Validation CodeSigning CA - SHA256 - G3&#10;Valid from 10/29/2020 to 10/30/2023&#10;User\MY"/>

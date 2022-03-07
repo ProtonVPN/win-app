@@ -227,6 +227,7 @@ extern "C" EXPORT long SetLanguageISOCode(MSIHANDLE hInstall)
         case 1045: language = L"pl"; break;
         case 1046: language = L"pt-BR"; break;
         case 1049: language = L"ru"; break;
+        case 1058: language = L"uk"; break;
         case 1065: language = L"fa"; break;
         case 2070: language = L"pt-PT"; break;
         case 3082: language = L"es-ES"; break;

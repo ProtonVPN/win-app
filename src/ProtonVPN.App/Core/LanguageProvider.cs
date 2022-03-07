@@ -50,25 +50,25 @@ namespace ProtonVPN.Core
             catch (Exception e) when (e.IsFileAccessException())
             {
                 _logger.Error<AppFileAccessFailedLog>("Couldn't get language file.", e);
-                return new List<string>{ _defaultLocale };
+                return new() { _defaultLocale };
             }
         }
 
         private List<string> InternalGetAll()
         {
-            var langs = new List<string> { _defaultLocale };
+            List<string> languageCodes = new() { _defaultLocale };
             string[] files = Directory.GetFiles(_translationsFolder, ResourceFile, SearchOption.AllDirectories);
 
             foreach (string file in files)
             {
-                var dirInfo = new DirectoryInfo(file);
+                DirectoryInfo dirInfo = new(file);
                 if (dirInfo.Parent != null)
                 {
-                    langs.Add(dirInfo.Parent.Name);
+                    languageCodes.Add(dirInfo.Parent.Name);
                 }
             }
 
-            return langs;
+            return languageCodes;
         }
     }
 }
