@@ -39,7 +39,9 @@ namespace ProtonVPN.Profiles
         private readonly ServerManager _serverManager;
         private readonly ProfileManager _profileManager;
 
-        public ProfileViewModelFactory(ILogger logger, ServerManager serverManager, ProfileManager profileManager)
+        public ProfileViewModelFactory(ILogger logger, 
+            ServerManager serverManager, 
+            ProfileManager profileManager)
         {
             _logger = logger;
             _serverManager = serverManager;
@@ -136,7 +138,7 @@ namespace ProtonVPN.Profiles
 
         private PredefinedProfileViewModel CreatePredefinedVpnProfile(Profile profile)
         {
-            PredefinedProfileViewModel profileViewModel = new PredefinedProfileViewModel(profile);
+            PredefinedProfileViewModel profileViewModel = new(profile);
 
             switch (profileViewModel.Id)
             {

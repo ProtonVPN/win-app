@@ -23,12 +23,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
+using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Config.Url;
 using ProtonVPN.Core;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Models;
+using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
@@ -60,11 +62,6 @@ namespace ProtonVPN.Settings
         private IReadOnlyList<ProfileViewModel> _autoConnectProfiles;
         private IReadOnlyList<ProfileViewModel> _quickConnectProfiles;
         private VpnStatus _vpnStatus;
-
-        private readonly ProfileViewModel _profileDisabledOption = new(new()
-        {
-            Id = "", Name = Translation.Get("Settings_val_Disabled"), ColorCode = "#777783"
-        });
 
         public SettingsModalViewModel(
             IUserStorage userStorage,
@@ -381,7 +378,7 @@ namespace ProtonVPN.Settings
         }
 
         public bool HardwareAccelerationEnabled
-        { 
+        {
             get => _appSettings.HardwareAccelerationEnabled;
             set => _appSettings.HardwareAccelerationEnabled = value;
         }
@@ -400,17 +397,22 @@ namespace ProtonVPN.Settings
             }
         }
 
-        public List<LanguageViewModel> Languages
-        {
-            get
-            {
-                var languages = _languageProvider
-                    .GetAll()
-                    .Select(lang => new LanguageViewModel {Code = lang, Title = StringResource.Get($"Language_{lang}")})
-                    .ToList();
+        public List<LanguageViewModel> Languages => GetLanguages();
 
-                return GetSorted(languages);
+        private List<LanguageViewModel> GetLanguages()
+        {
+            List<string> languageCodes = _languageProvider.GetAll();
+            List<LanguageViewModel> languageViewModels = new();
+            foreach (string languageCode in languageCodes)
+            {
+                string title = StringResource.Get($"Language_{languageCode}");
+                if (!title.IsNullOrEmpty())
+                {
+                    languageViewModels.Add(new() { Code = languageCode, Title = title });
+                }
             }
+
+            return languageViewModels.OrderBy(l => l.Code).ToList();
         }
 
         public string SelectedLanguage
@@ -573,7 +575,7 @@ namespace ProtonVPN.Settings
 
             NotifyOfPropertyChange(() => StartMinimizedModes);
             NotifyOfPropertyChange(() => StartMinimized);
-
+            
             await LoadProfiles();
         }
 
@@ -592,21 +594,37 @@ namespace ProtonVPN.Settings
         {
             await LoadAutoConnectProfiles();
             await LoadQuickConnectProfiles();
+
             AutoConnect = GetSelectedAutoConnectProfile();
+            NotifyOfPropertyChange(() => AutoConnect);
+
             QuickConnect = GetSelectedQuickConnectProfile();
+            NotifyOfPropertyChange(() => QuickConnect);
         }
 
         private async Task LoadAutoConnectProfiles()
         {
-            List<ProfileViewModel> profiles = new() {_profileDisabledOption};
+            List<ProfileViewModel> profiles = new() { CreateDisabledProfileViewModel() };
             profiles.AddRange(await GetProfiles());
 
             AutoConnectProfiles = profiles;
+            NotifyOfPropertyChange(() => AutoConnectProfiles);
+        }
+
+        private ProfileViewModel CreateDisabledProfileViewModel()
+        {
+            return new(CreateDisabledProfile());
+        }
+
+        private Profile CreateDisabledProfile()
+        {
+            return new() { Id = "", Name = Translation.Get("Settings_val_Disabled"), ColorCode = "#777783" };
         }
 
         private async Task LoadQuickConnectProfiles()
         {
             QuickConnectProfiles = await GetProfiles();
+            NotifyOfPropertyChange(() => QuickConnectProfiles);
         }
 
         private async Task<List<ProfileViewModel>> GetProfiles()
@@ -622,7 +640,7 @@ namespace ProtonVPN.Settings
             ProfileViewModel profile = AutoConnectProfiles.FirstOrDefault(p => p.Id == _appSettings.AutoConnect);
             if (profile == null)
             {
-                return _profileDisabledOption;
+                return CreateDisabledProfileViewModel();
             }
 
             return profile;
@@ -652,11 +670,6 @@ namespace ProtonVPN.Settings
         private void LearnMoreAboutPortForwardingAction()
         {
             _urls.AboutPortForwardingUrl.Open();
-        }
-
-        private List<LanguageViewModel> GetSorted(List<LanguageViewModel> collection)
-        {
-            return collection.OrderBy(l => l.Code).ToList();
         }
 
         private void OnActivePortViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)

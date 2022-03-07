@@ -772,7 +772,7 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
   </data>
   <data name="VpnProtocol_val_Smart" xml:space="preserve">
     <value>Smart</value>
-    <comment>The name of the VPN protocol selected for the Profile. Means that the protocol will be automatically selected when connecting.</comment>
+    <comment>The name of the VPN protocol. Means that the protocol will be automatically selected when connecting.</comment>
   </data>
   <data name="VpnProtocol_val_OpenVpnTcp" xml:space="preserve">
     <value>OpenVPN (TCP)</value>
