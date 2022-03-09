@@ -30,7 +30,6 @@ using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
-using ProtonVPN.P2PDetection;
 using ProtonVPN.Profiles;
 using ProtonVPN.ViewModels;
 using ProtonVPN.Windows;
@@ -39,8 +38,7 @@ namespace ProtonVPN.QuickLaunch
 {
     internal class QuickLaunchViewModel :
         LanguageAwareViewModel,
-        IVpnStateAware,
-        ITrafficForwardedAware
+        IVpnStateAware
     {
         private ViewModel _selectedProfile;
         private string _vpnStateText;
@@ -215,11 +213,6 @@ namespace ProtonVPN.QuickLaunch
         public async void Load()
         {
             await LoadProfiles();
-        }
-
-        public void OnTrafficForwarded(string ip)
-        {
-            Ip = ip;
         }
 
         private async Task LoadProfiles()

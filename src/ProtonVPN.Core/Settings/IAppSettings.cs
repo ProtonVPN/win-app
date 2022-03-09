@@ -90,7 +90,6 @@ namespace ProtonVPN.Core.Settings
         int[] OpenVpnTcpPorts { get; set; }
         int[] OpenVpnUdpPorts { get; set; }
         int[] WireGuardPorts { get; set; }
-        StringCollection BlackHoleIps { get; set; }
         bool FeatureNetShieldEnabled { get; set; }
         bool FeatureMaintenanceTrackerEnabled { get; set; }
         bool FeaturePollNotificationApiEnabled { get; set; }

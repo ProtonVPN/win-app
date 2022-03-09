@@ -353,23 +353,6 @@ namespace ProtonVPN.Core
             set => Set(value);
         }
 
-        public StringCollection BlackHoleIps
-        {
-            get
-            {
-                StringCollection list = Get<StringCollection>();
-                if (list == null)
-                {
-                    list = new StringCollection();
-                    list.AddRange(_config.DefaultBlackHoleIps.ToArray());
-                }
-
-                return list;
-            }
-
-            set => Set(value);
-        }
-
         public bool FeatureNetShieldEnabled
         {
             get => Get<bool>();
