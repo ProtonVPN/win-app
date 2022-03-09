@@ -175,8 +175,6 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 DefaultWireGuardPorts = new[] {51820, 88, 123, 49152, 1224},
 
-                DefaultBlackHoleIps = new List<string> {"62.112.9.168", "104.245.144.186"},
-
                 DefaultLocale = "en",
 
                 MaintenanceCheckInterval = TimeSpan.FromMinutes(30),

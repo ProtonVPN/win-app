@@ -26,60 +26,39 @@ using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Vpn;
-using ProtonVPN.Modals;
 using ProtonVPN.P2PDetection.Blocked;
-using ProtonVPN.P2PDetection.Forwarded;
 using ProtonVPN.Translations;
 
 namespace ProtonVPN.P2PDetection
 {
-    /// <summary>
-    /// While connected to VPN periodically checks if P2P activity is detected on VPN server.
-    /// </summary>
-    /// <remarks>
-    /// If P2P traffic is detected, traffic is blocked on free VPN servers or might be blocked
-    /// or forwarded on not free VPN server. Displays modal dialog with corresponding message
-    /// if P2P activity is detected.
-    /// </remarks>
     public class P2PDetector : IVpnStateAware
     {
         private readonly ILogger _logger;
-        private readonly IModals _modals;
         private readonly IDialogs _dialogs;
         private readonly IBlockedTraffic _blockedTraffic;
-        private readonly IForwardedTraffic _forwardedTraffic;
         private readonly ISchedulerTimer _timer;
 
         private VpnState _vpnState;
-        private bool _trafficForwarded;
 
         public P2PDetector(
             ILogger logger,
             Common.Configuration.Config appConfig,
             IBlockedTraffic blockedTraffic,
-            IForwardedTraffic forwardedTraffic,
             IScheduler scheduler,
-            IModals modals,
             IDialogs dialogs) :
-            this(logger, blockedTraffic, forwardedTraffic, scheduler.Timer(), modals, dialogs, appConfig.P2PCheckInterval.RandomizedWithDeviation(0.2))
+            this(logger, blockedTraffic, scheduler.Timer(), dialogs, appConfig.P2PCheckInterval.RandomizedWithDeviation(0.2))
         { }
-
-        public event EventHandler<string> TrafficForwarded;
 
         private P2PDetector(
             ILogger logger,
             IBlockedTraffic blockedTraffic,
-            IForwardedTraffic forwardedTraffic,
             ISchedulerTimer timer,
-            IModals modals,
             IDialogs dialogs,
             TimeSpan checkInterval)
         {
             _logger = logger;
             _blockedTraffic = blockedTraffic;
-            _forwardedTraffic = forwardedTraffic;
             _timer = timer;
-            _modals = modals;
             _dialogs = dialogs;
 
             _timer.Interval = checkInterval;
@@ -97,7 +76,6 @@ namespace ProtonVPN.P2PDetection
             else
             {
                 StopTimer();
-                _trafficForwarded = false;
             }
 
             return Task.CompletedTask;
@@ -105,18 +83,9 @@ namespace ProtonVPN.P2PDetection
 
         private async void OnTimerTick(object sender, EventArgs e)
         {
-            if (_vpnState.Server == null || !_vpnState.Status.Equals(VpnStatus.Connected))
-            {
-                return;
-            }
-
-            if (_vpnState.Server.IsPhysicalFree())
+            if (_vpnState.Server != null && _vpnState.Status == VpnStatus.Connected)
             {
                 await CheckBlockedTraffic();
-            }
-            else
-            {
-                await CheckForwardedOrBlockedTraffic();
             }
         }
 
@@ -130,44 +99,9 @@ namespace ProtonVPN.P2PDetection
             }
         }
 
-        private async Task CheckForwardedOrBlockedTraffic()
-        {
-            ForwardedTrafficResult value = await _forwardedTraffic.Value();
-            if (!value.Result)
-            {
-                return;
-            }
-
-            if (_trafficForwarded != value.Forwarded)
-            {
-                _trafficForwarded = value.Forwarded;
-                TrafficForwarded?.Invoke(this, value.Ip);
-
-                if (_trafficForwarded)
-                {
-                    _logger.Info<AppLog>("Forwarded traffic detected");
-                    ShowForwardedTrafficModal();
-                }
-                else
-                {
-                    _logger.Info<AppLog>("Not forwarded traffic detected");
-                }
-            }
-
-            if (!value.Forwarded)
-            {
-                await CheckBlockedTraffic();
-            }
-        }
-
         private void ShowBlockedTrafficModal()
         {
             _dialogs.ShowWarning(Translation.Get("Dialogs_P2PBlocked_msg_Blocked"));
-        }
-
-        private void ShowForwardedTrafficModal()
-        {
-            _modals.Show<P2PForwardModalViewModel>();
         }
 
         private void StartTimer()

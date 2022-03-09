@@ -31,10 +31,8 @@ using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Vpn;
-using ProtonVPN.Modals;
 using ProtonVPN.P2PDetection;
 using ProtonVPN.P2PDetection.Blocked;
-using ProtonVPN.P2PDetection.Forwarded;
 using PhysicalServer = ProtonVPN.Core.Servers.Models.PhysicalServer;
 using Server = ProtonVPN.Core.Servers.Models.Server;
 
@@ -47,9 +45,7 @@ namespace ProtonVPN.App.Test.P2PDetection
         private ILogger _logger;
         private Common.Configuration.Config _appConfig;
         private IBlockedTraffic _blockedTraffic;
-        private IForwardedTraffic _forwardedTraffic;
         private IScheduler _scheduler;
-        private IModals _modals;
         private IDialogs _dialogs;
 
         private ISchedulerTimer _timer;
@@ -61,16 +57,14 @@ namespace ProtonVPN.App.Test.P2PDetection
             _logger = Substitute.For<ILogger>();
             _appConfig = new Common.Configuration.Config();
             _blockedTraffic = Substitute.For<IBlockedTraffic>();
-            _forwardedTraffic = Substitute.For<IForwardedTraffic>();
             _scheduler = Substitute.For<IScheduler>();
-            _modals = Substitute.For<IModals>();
             _dialogs = Substitute.For<IDialogs>();
 
             _appConfig.P2PCheckInterval = TimeSpan.FromSeconds(10);
 
             _timer = Substitute.For<ISchedulerTimer>();
-            _timer.When(x => x.Start()).Do(x => _timerIsEnabled = true);
-            _timer.When(x => x.Stop()).Do(x => _timerIsEnabled = false);
+            _timer.When(x => x.Start()).Do(_ => _timerIsEnabled = true);
+            _timer.When(x => x.Stop()).Do(_ => _timerIsEnabled = false);
             _timer.When(x => x.IsEnabled = Arg.Do<bool>(value => _timerIsEnabled = value));
             _timer.IsEnabled.Returns(_ => _timerIsEnabled);
             _scheduler.Timer().Returns(_timer);
@@ -83,7 +77,7 @@ namespace ProtonVPN.App.Test.P2PDetection
             TimeSpan checkInterval = TimeSpan.FromSeconds(30);
             _appConfig.P2PCheckInterval = checkInterval;
             // Act
-            new P2PDetector(_logger, _appConfig, _blockedTraffic, _forwardedTraffic, _scheduler, _modals, _dialogs);
+            new P2PDetector(_logger, _appConfig, _blockedTraffic, _scheduler, _dialogs);
             // Assert
             _scheduler.Timer().Received(1);
             _timer.Received(1).Tick += Arg.Any<EventHandler>();
@@ -93,7 +87,7 @@ namespace ProtonVPN.App.Test.P2PDetection
         public async Task OnVpnStateChanged_ShouldStartTimer_WhenVpnStatus_IsConnected()
         {
             // Arrange
-            P2PDetector detector = new P2PDetector(_logger, _appConfig, _blockedTraffic, _forwardedTraffic, _scheduler, _modals, _dialogs);
+            P2PDetector detector = new P2PDetector(_logger, _appConfig, _blockedTraffic, _scheduler, _dialogs);
             // Act
             await detector.OnVpnStateChanged(new VpnStateChangedEventArgs(VpnStatus.Connected, VpnError.None, "", false, 
                 VpnProtocol.Smart));
@@ -113,7 +107,7 @@ namespace ProtonVPN.App.Test.P2PDetection
         public async Task OnVpnStateChanged_ShouldStopTimer_WhenVpnStatus_IsNotConnected(VpnStatus status)
         {
             // Arrange
-            P2PDetector detector = new P2PDetector(_logger, _appConfig, _blockedTraffic, _forwardedTraffic, _scheduler, _modals, _dialogs);
+            P2PDetector detector = new P2PDetector(_logger, _appConfig, _blockedTraffic, _scheduler, _dialogs);
             await detector.OnVpnStateChanged(new VpnStateChangedEventArgs(VpnStatus.Connected, VpnError.None, "", false, 
                 VpnProtocol.Smart));
             // Act
@@ -127,13 +121,12 @@ namespace ProtonVPN.App.Test.P2PDetection
         public async Task OnTimerTick_ShouldCheck_BlockedTraffic_WhenFreeServer()
         {
             // Arrange
-            P2PDetector detector = new P2PDetector(_logger, _appConfig, _blockedTraffic, _forwardedTraffic, _scheduler, _modals, _dialogs);
+            P2PDetector detector = new P2PDetector(_logger, _appConfig, _blockedTraffic, _scheduler, _dialogs);
             await detector.OnVpnStateChanged(new VpnStateChangedEventArgs(VpnStatus.Connected, VpnError.None, FreeServer(), false));
             // Act
             _timer.Tick += Raise.Event();
             // Assert
             await _blockedTraffic.Received(1).Detected();
-            await _forwardedTraffic.DidNotReceive().Value();
         }
 
         [TestMethod]
@@ -141,7 +134,7 @@ namespace ProtonVPN.App.Test.P2PDetection
         {
             // Arrange
             _blockedTraffic.Detected().Returns(true);
-            P2PDetector detector = new P2PDetector(_logger, _appConfig, _blockedTraffic, _forwardedTraffic, _scheduler, _modals, _dialogs);
+            P2PDetector detector = new P2PDetector(_logger, _appConfig, _blockedTraffic, _scheduler, _dialogs);
             await detector.OnVpnStateChanged(new VpnStateChangedEventArgs(VpnStatus.Connected, VpnError.None, FreeServer(), false));
             // Act
             _timer.Tick += Raise.Event();
@@ -154,7 +147,7 @@ namespace ProtonVPN.App.Test.P2PDetection
         {
             // Arrange
             _blockedTraffic.Detected().Returns(true);
-            P2PDetector detector = new P2PDetector(_logger, _appConfig, _blockedTraffic, _forwardedTraffic, _scheduler, _modals, _dialogs);
+            P2PDetector detector = new P2PDetector(_logger, _appConfig, _blockedTraffic, _scheduler, _dialogs);
             await detector.OnVpnStateChanged(new VpnStateChangedEventArgs(VpnStatus.Connected, VpnError.None, FreeServer(), false));
             // Act
             _timer.Tick += Raise.Event();
@@ -163,43 +156,14 @@ namespace ProtonVPN.App.Test.P2PDetection
         }
 
         [TestMethod]
-        public async Task OnTimerTick_ShouldCheck_ForwardedTraffic_WhenPaidServer()
-        {
-            // Arrange
-            _forwardedTraffic.Value().Returns(new ForwardedTrafficResult(true, true, string.Empty));
-            P2PDetector detector = new P2PDetector(_logger, _appConfig, _blockedTraffic, _forwardedTraffic, _scheduler, _modals, _dialogs);
-            await detector.OnVpnStateChanged(new VpnStateChangedEventArgs(VpnStatus.Connected, VpnError.None, PaidServer(), false));
-            // Act
-            _timer.Tick += Raise.Event();
-            // Assert
-            await _forwardedTraffic.Received(1).Value();
-            await _blockedTraffic.DidNotReceive().Detected();
-        }
-
-        [TestMethod]
-        public async Task OnTimerTick_ShouldShow_ForwardedTrafficModal_WhenPaidServer()
-        {
-            // Arrange
-            _forwardedTraffic.Value().Returns(new ForwardedTrafficResult(true, true, string.Empty));
-            P2PDetector detector = new P2PDetector(_logger, _appConfig, _blockedTraffic, _forwardedTraffic, _scheduler, _modals, _dialogs);
-            await detector.OnVpnStateChanged(new VpnStateChangedEventArgs(VpnStatus.Connected, VpnError.None, PaidServer(), false));
-            // Act
-            _timer.Tick += Raise.Event();
-            // Assert
-            _modals.Received(1).Show<P2PForwardModalViewModel>();
-        }
-
-        [TestMethod]
         public async Task OnTimerTick_ShouldCheck_BlockedTraffic_WhenPaidServer()
         {
             // Arrange
-            _forwardedTraffic.Value().Returns(new ForwardedTrafficResult(true, false, string.Empty));
-            P2PDetector detector = new P2PDetector(_logger, _appConfig, _blockedTraffic, _forwardedTraffic, _scheduler, _modals, _dialogs);
+            P2PDetector detector = new P2PDetector(_logger, _appConfig, _blockedTraffic, _scheduler, _dialogs);
             await detector.OnVpnStateChanged(new VpnStateChangedEventArgs(VpnStatus.Connected, VpnError.None, PaidServer(), false));
             // Act
             _timer.Tick += Raise.Event();
             // Assert
-            await _forwardedTraffic.Received(1).Value();
             await _blockedTraffic.Received(1).Detected();
         }
 
@@ -208,8 +172,7 @@ namespace ProtonVPN.App.Test.P2PDetection
         {
             // Arrange
             _blockedTraffic.Detected().Returns(true);
-            _forwardedTraffic.Value().Returns(new ForwardedTrafficResult(true, false, string.Empty));
-            P2PDetector detector = new P2PDetector(_logger, _appConfig, _blockedTraffic, _forwardedTraffic, _scheduler, _modals, _dialogs);
+            P2PDetector detector = new P2PDetector(_logger, _appConfig, _blockedTraffic, _scheduler, _dialogs);
             await detector.OnVpnStateChanged(new VpnStateChangedEventArgs(VpnStatus.Connected, VpnError.None, PaidServer(), false));
             // Act
             _timer.Tick += Raise.Event();
@@ -222,8 +185,7 @@ namespace ProtonVPN.App.Test.P2PDetection
         {
             // Arrange
             _blockedTraffic.Detected().Returns(true);
-            _forwardedTraffic.Value().Returns(new ForwardedTrafficResult(true, false, string.Empty));
-            P2PDetector detector = new P2PDetector(_logger, _appConfig, _blockedTraffic, _forwardedTraffic, _scheduler, _modals, _dialogs);
+            P2PDetector detector = new P2PDetector(_logger, _appConfig, _blockedTraffic, _scheduler, _dialogs);
             await detector.OnVpnStateChanged(new VpnStateChangedEventArgs(VpnStatus.Connected, VpnError.None, PaidServer(), false));
             // Act
             _timer.Tick += Raise.Event();

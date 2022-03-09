@@ -213,8 +213,6 @@ namespace ProtonVPN.Common.Configuration
         [Required]
         public int[] DefaultWireGuardPorts { get; internal set; }
 
-        public IReadOnlyList<string> DefaultBlackHoleIps { get; internal set; } = new List<string>();
-
         public UrlConfig Urls { get; } = new();
 
         public OpenVpnConfig OpenVpn { get; } = new();

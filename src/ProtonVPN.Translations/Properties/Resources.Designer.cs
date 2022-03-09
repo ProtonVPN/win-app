@@ -3955,42 +3955,6 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Close.
-        /// </summary>
-        public static string Dialogs_P2PForward_btn_Close {
-            get {
-                return ResourceManager.GetString("Dialogs_P2PForward_btn_Close", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Your connection has been automatically rerouted through another server because certain servers do not support file sharing (P2P) traffic. This may reduce your connection speed. Please use servers with the P2P icon.
-        /// </summary>
-        public static string Dialogs_P2PForward_msg_Warning_1 {
-            get {
-                return ResourceManager.GetString("Dialogs_P2PForward_msg_Warning_1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to to avoid traffic rerouting..
-        /// </summary>
-        public static string Dialogs_P2PForward_msg_Warning_2 {
-            get {
-                return ResourceManager.GetString("Dialogs_P2PForward_msg_Warning_2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Attention.
-        /// </summary>
-        public static string Dialogs_P2PForward_ttl {
-            get {
-                return ResourceManager.GetString("Dialogs_P2PForward_ttl", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Enable Port Forwarding only when you need it to ensure the strongest privacy and security protection.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command=&quot;{Binding ReadPortForwardingRisksCommand}&quot;&gt;Do I need Port Forwarding?&lt;/Hyperlink&gt;.
         /// </summary>
         public static string Dialogs_PortForwardingConfirmation_msg {

@@ -102,7 +102,6 @@ namespace ProtonVPN.BugReporting.Diagnostic
             yield return new(nameof(IAppSettings.OpenVpnTcpPorts), JsonConvert.SerializeObject(_appSettings.OpenVpnTcpPorts));
             yield return new(nameof(IAppSettings.OpenVpnUdpPorts), JsonConvert.SerializeObject(_appSettings.OpenVpnUdpPorts));
             yield return new(nameof(IAppSettings.WireGuardPorts), JsonConvert.SerializeObject(_appSettings.WireGuardPorts));
-            yield return new(nameof(IAppSettings.BlackHoleIps), JsonConvert.SerializeObject(_appSettings.BlackHoleIps));
             yield return new(nameof(IAppSettings.FeatureNetShieldEnabled), _appSettings.FeatureNetShieldEnabled);
             yield return new(nameof(IAppSettings.FeatureMaintenanceTrackerEnabled), _appSettings.FeatureMaintenanceTrackerEnabled);
             yield return new(nameof(IAppSettings.FeaturePollNotificationApiEnabled), _appSettings.FeaturePollNotificationApiEnabled);

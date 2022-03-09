@@ -260,9 +260,6 @@
         <Setting Name="OpenVpnUdpPorts" Type="System.String" Scope="User">
             <Value Profile="(Default)" />
         </Setting>
-        <Setting Name="BlackHoleIps" Type="System.String" Scope="User">
-            <Value Profile="(Default)" />
-        </Setting>
         <Setting Name="FeatureNetShieldEnabled" Type="System.Boolean" Scope="User">
             <Value Profile="(Default)">False</Value>
         </Setting>

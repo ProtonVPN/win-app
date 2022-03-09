@@ -106,11 +106,6 @@ namespace ProtonVPN.Core.Config
                         _appSettings.FeaturePortForwardingEnabled = response.Value.FeatureFlags.PortForwarding.Value;
                     }
 
-                    if (response.Value.HolesIps != null)
-                    {
-                        _appSettings.BlackHoleIps = response.Value.HolesIps;
-                    }
-
                     _appSettings.FeatureSmartProtocolWireGuardEnabled = response.Value.SmartProtocol.WireGuard;
 
                     bool vpnAcceleratorFeatureFlag = response.Value.FeatureFlags.VpnAccelerator ?? true;

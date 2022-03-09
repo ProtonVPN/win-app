@@ -273,14 +273,6 @@
     <value>On app start, you are connected to the selected profile.</value>
     <comment>The description of Auto Connect setting displayed in the tooltip of ( i ) image next to the label for Auto Connect combo box in Connection tab of Settings window</comment>
   </data>
-  <data name="Dialogs_P2PForward_msg_Warning_1" xml:space="preserve">
-    <value>Your connection has been automatically rerouted through another server because certain servers do not support file sharing (P2P) traffic. This may reduce your connection speed. Please use servers with the P2P icon</value>
-    <comment>The left part of the warning message in Forwarded P2P window. It shall be translated in pair with the resource "Dialogs_P2PForward_msg_Warning_2" as if they combine one text string including imaginary placeholder {0} between them. If translated text suppose to not include any text before the imaginary placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
-  </data>
-  <data name="Dialogs_P2PForward_msg_Warning_2" xml:space="preserve">
-    <value>to avoid traffic rerouting.</value>
-    <comment>The right part of the warning message in Forwarded P2P window. It shall be translated in pair with the resource "Dialogs_P2PForward_msg_Warning_1" as if they combine one text string including imaginary placeholder {0} between them. If translated text suppose to not include any text after the imaginary placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
-  </data>
   <data name="StartMinimizedMode_val_Disabled" xml:space="preserve">
     <value>Disabled</value>
     <comment>The name of start minimized mode displayed in Start Minimized combo box in General tab of Settings window</comment>
@@ -890,10 +882,6 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <value>Continue</value>
     <comment>The text on Continue button in dialog windows</comment>
   </data>
-  <data name="Dialogs_P2PForward_ttl" xml:space="preserve">
-    <value>Attention</value>
-    <comment>The title of Forwarded P2P window</comment>
-  </data>
   <data name="Dialogs_ttl_Question" xml:space="preserve">
     <value>Attention</value>
     <comment>The title of question message window</comment>
@@ -957,10 +945,6 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
   <data name="Upsell_Enjoying_ttl" xml:space="preserve">
     <value>ProtonVPN</value>
     <comment>The title of Enjoying Upsell window</comment>
-  </data>
-  <data name="Dialogs_P2PForward_btn_Close" xml:space="preserve">
-    <value>Close</value>
-    <comment>The text on Close button in Forwarded P2P window</comment>
   </data>
   <data name="Map_VpnStatus_val_Connected" xml:space="preserve">
     <value>CONNECTED</value>

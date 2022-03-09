@@ -394,15 +394,6 @@ namespace ProtonVPN.Core
                 }
             };
 
-            Resolve<P2PDetector>().TrafficForwarded += (sender, ip) =>
-            {
-                IEnumerable<ITrafficForwardedAware> instances = Resolve<IEnumerable<ITrafficForwardedAware>>();
-                foreach (ITrafficForwardedAware instance in instances)
-                {
-                    instance.OnTrafficForwarded(ip);
-                }
-            };
-
             Resolve<SidebarManager>().ManualSidebarModeChangeRequested += appWindow.OnManualSidebarModeChangeRequested;
 
             appSettings.PropertyChanged += (sender, e) =>

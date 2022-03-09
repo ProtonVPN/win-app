@@ -20,11 +20,8 @@
 using Autofac;
 using ProtonVPN.Common.OS.Net.Http;
 using ProtonVPN.Config.Url;
-using ProtonVPN.Core.Settings;
-using ProtonVPN.Core.User;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.P2PDetection.Blocked;
-using ProtonVPN.P2PDetection.Forwarded;
 using Module = Autofac.Module;
 
 namespace ProtonVPN.P2PDetection
@@ -42,13 +39,6 @@ namespace ProtonVPN.P2PDetection
                             c.Resolve<IActiveUrls>().P2PStatusUrl.Uri,
                             new P2PDetectionTimeout(c.Resolve<Common.Configuration.Config>().P2PCheckInterval))))
                 .As<IBlockedTraffic>()
-                .SingleInstance();
-
-            builder.Register(c => 
-                    new ForwardedTraffic(
-                        c.Resolve<IUserLocationService>(),
-                        c.Resolve<IAppSettings>()))
-                .AsImplementedInterfaces()
                 .SingleInstance();
 
             builder.RegisterType<P2PDetector>()
