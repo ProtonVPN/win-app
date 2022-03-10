@@ -17,24 +17,26 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.OS.Processes;
+using ProtonVPN.Core;
 
-namespace ProtonVPN.ErrorMessage
+namespace ProtonVPN.ErrorHandling
 {
-    internal class RepairLauncher
+    public class FatalErrorHandler
     {
-        private readonly IOsProcesses _osProcesses;
-        private readonly string _productCode;
+        private readonly IAppExitInvoker _appExitInvoker;
+        private readonly FatalErrorWindow _errorWindow;
 
-        public RepairLauncher(IOsProcesses osProcesses, string productCode)
+        public FatalErrorHandler()
         {
-            _productCode = productCode;
-            _osProcesses = osProcesses;
+            _appExitInvoker = new AppExitInvoker();
+            ErrorWindowViewModel errorWindowViewModel = new();
+            _errorWindow = new FatalErrorWindow(errorWindowViewModel);
         }
 
-        public void Repair()
+        public void Exit()
         {
-            _osProcesses.ElevatedCommandLineProcess($"/c msiexec /fa \"{_productCode}\"").Start();
+            _errorWindow.ShowDialog();
+            _appExitInvoker.Exit();
         }
     }
 }

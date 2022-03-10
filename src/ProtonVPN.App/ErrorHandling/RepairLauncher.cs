@@ -17,35 +17,22 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Windows;
+using ProtonVPN.Common.OS.Processes;
 
-namespace ProtonVPN.ErrorMessage
+namespace ProtonVPN.ErrorHandling
 {
-    public partial class MainWindow
+    public class RepairLauncher
     {
-        private readonly MainWindowViewModel _vm;
+        private readonly IOsProcesses _osProcesses;
 
-        internal MainWindow(MainWindowViewModel vm)
+        public RepairLauncher(IOsProcesses osProcesses)
         {
-            _vm = vm;
-            InitializeComponent();
-
-            DataContext = vm;
+            _osProcesses = osProcesses;
         }
 
-        private void Repair(object sender, RoutedEventArgs e)
+        public void Repair(string productCode)
         {
-            _vm.Repair();
-        }
-
-        private void Download(object sender, RoutedEventArgs e)
-        {
-            _vm.Download();
-        }
-
-        private void Close(object sender, RoutedEventArgs e)
-        {
-            Close();
+            _osProcesses.ElevatedCommandLineProcess($"/c msiexec /fa \"{productCode}\"").Start();
         }
     }
 }

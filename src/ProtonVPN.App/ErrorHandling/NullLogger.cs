@@ -23,7 +23,7 @@ using System.Runtime.CompilerServices;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization;
 
-namespace ProtonVPN.ErrorMessage
+namespace ProtonVPN.ErrorHandling
 {
     internal class NullLogger : ILogger
     {

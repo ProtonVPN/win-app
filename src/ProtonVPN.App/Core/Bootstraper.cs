@@ -19,7 +19,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Net.Http;
@@ -63,6 +62,7 @@ using ProtonVPN.Core.Startup;
 using ProtonVPN.Core.Update;
 using ProtonVPN.Core.User;
 using ProtonVPN.Core.Vpn;
+using ProtonVPN.ErrorHandling;
 using ProtonVPN.Login;
 using ProtonVPN.Login.ViewModels;
 using ProtonVPN.Login.Views;
@@ -553,8 +553,8 @@ namespace ProtonVPN.Core
             if (result.Failure && result.Exception != null)
             {
                 Resolve<ILogger>().Error<AppServiceStartFailedLog>($"Failed to start {service.Name} service.", result.Exception);
-                Process.Start("ProtonVPN.ErrorMessage.exe");
-                Application.Current.Shutdown();
+                FatalErrorHandler fatalErrorHandler = new();
+                fatalErrorHandler.Exit();
             }
         }
 

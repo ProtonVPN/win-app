@@ -20,47 +20,41 @@
 using System;
 using Microsoft.Win32;
 
-namespace ProtonVPN.ErrorMessage
+namespace ProtonVPN.ErrorHandling
 {
-    internal class ProductCode
+    public class InstalledAppRegistry
     {
-        private readonly string _name;
         private string _value = string.Empty;
 
-        public ProductCode(string name)
-        {
-            _name = name;
-        }
-
-        public string Value()
+        public string GetAppProductCode(string appName)
         {
             if (!string.IsNullOrEmpty(_value))
             {
                 return _value;
             }
 
-            _value = GetValueFromRegistry();
+            _value = GetValueFromRegistry(appName);
 
             return _value;
         }
 
-        private string GetValueFromRegistry()
+        private string GetValueFromRegistry(string appName)
         {
-            var val = string.Empty;
+            string val = string.Empty;
 
             try
             {
-                var path = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Installer\\UserData\\S-1-5-18\\Products";
-                var key = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64).OpenSubKey(path);
+                string path = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Installer\\UserData\\S-1-5-18\\Products";
+                RegistryKey key = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64).OpenSubKey(path);
                 if (key == null)
                 {
                     return val;
                 }
 
-                foreach (var tempKeyName in key.GetSubKeyNames())
+                foreach (string tempKeyName in key.GetSubKeyNames())
                 {
-                    var tempKey = key.OpenSubKey(tempKeyName + "\\InstallProperties");
-                    if (tempKey == null || !string.Equals(Convert.ToString(tempKey.GetValue("DisplayName")), _name))
+                    RegistryKey tempKey = key.OpenSubKey(tempKeyName + "\\InstallProperties");
+                    if (tempKey == null || !string.Equals(Convert.ToString(tempKey.GetValue("DisplayName")), appName))
                     {
                         continue;
                     }

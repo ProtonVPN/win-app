@@ -55,9 +55,6 @@ namespace ProtonVPN.Common.Configuration
         public string TranslationsFolder { get; internal set; }
 
         [Required]
-        public string ErrorMessageExePath { get; internal set; }
-
-        [Required]
         public string ServiceName { get; internal set; }
 
         [Required]

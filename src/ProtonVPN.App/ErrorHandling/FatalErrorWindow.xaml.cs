@@ -17,30 +17,36 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
-using System.Windows.Input;
+using System.Windows;
 
-namespace ProtonVPN.ErrorMessage
+namespace ProtonVPN.ErrorHandling
 {
-    internal class GenericCommand : ICommand
+    public partial class FatalErrorWindow
     {
-        private readonly Action _action;
+        private readonly ErrorWindowViewModel _errorWindowViewModel;
 
-        public GenericCommand(Action action)
+        internal FatalErrorWindow(ErrorWindowViewModel errorWindowViewModel)
         {
-            _action = action;
+            _errorWindowViewModel = errorWindowViewModel;
+            InitializeComponent();
+
+            DataContext = errorWindowViewModel;
         }
 
-        public bool CanExecute(object parameter)
+        private void OpenDownloadUrl(object sender, RoutedEventArgs e)
         {
-            return true;
+            _errorWindowViewModel.OpenDownloadUrlAction();
+            Close();
         }
 
-        public void Execute(object parameter)
+        private void StartAppRepair(object sender, RoutedEventArgs e)
         {
-            _action.Invoke();
+            _errorWindowViewModel.Repair();
         }
 
-        public event EventHandler CanExecuteChanged;
+        private void CloseWindow(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

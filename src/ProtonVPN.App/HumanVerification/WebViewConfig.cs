@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using Microsoft.Web.WebView2.Core;
 
 namespace ProtonVPN.HumanVerification
@@ -29,7 +30,7 @@ namespace ProtonVPN.HumanVerification
             {
                 return !string.IsNullOrEmpty(CoreWebView2Environment.GetAvailableBrowserVersionString());
             }
-            catch (WebView2RuntimeNotFoundException)
+            catch (Exception e) when (e is WebView2RuntimeNotFoundException or DllNotFoundException)
             {
                 return false;
             }

@@ -69,8 +69,6 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 TranslationsFolder = baseFolder,
 
-                ErrorMessageExePath = Path.Combine(baseFolder, "ProtonVPN.ErrorMessage.exe"),
-
                 ServiceName = "ProtonVPN Service",
 
                 ServiceExePath = Path.Combine(baseFolder, "ProtonVPNService.exe"),
