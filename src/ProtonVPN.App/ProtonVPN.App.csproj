@@ -188,6 +188,15 @@
     <Compile Include="Core\Service\Vpn\VpnReconnector.cs" />
     <Compile Include="Core\ShutdownInvoker.cs" />
     <Compile Include="Core\SystemTimeValidator.cs" />
+    <Compile Include="ErrorHandling\FatalErrorHandler.cs" />
+    <Compile Include="ErrorHandling\FatalErrorWindow.xaml.cs">
+      <DependentUpon>FatalErrorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ErrorHandling\ErrorWindowViewModel.cs" />
+    <Compile Include="ErrorHandling\InstallerPath.cs" />
+    <Compile Include="ErrorHandling\NullLogger.cs" />
+    <Compile Include="ErrorHandling\InstalledAppRegistry.cs" />
+    <Compile Include="ErrorHandling\RepairLauncher.cs" />
     <Compile Include="Modals\ApiActions\ActionableFailureApiResultEventHandler.cs" />
     <Compile Include="Modals\ApiActions\ApiActionModalViewModel.cs" />
     <Compile Include="Modals\ApiActions\ApiActionModalView.xaml.cs">
@@ -924,6 +933,10 @@
     <Page Include="BugReporting\Steps\StepsContainerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ErrorHandling\FatalErrorWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Modals\DiscourageSecureCoreModalView.xaml">
       <Generator>MSBuild:Compile</Generator>

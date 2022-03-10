@@ -20,40 +20,37 @@
 using System;
 using System.IO;
 using Microsoft.Win32;
-using ProtonVPN.Common.Configuration;
 
-namespace ProtonVPN.ErrorMessage
+namespace ProtonVPN.ErrorHandling
 {
-    internal class InstallerPath
+    public class InstallerPath
     {
-        private readonly string _productCode;
-        private readonly Config _config;
+        private readonly Common.Configuration.Config _config;
 
-        public InstallerPath(string productCode, Config config)
+        public InstallerPath(Common.Configuration.Config config)
         {
             _config = config;
-            _productCode = productCode;
         }
 
-        public bool Exists()
+        public bool Exists(string productCode)
         {
-            var regPath = "SOFTWARE\\";
+            string regPath = "SOFTWARE\\";
             if (Environment.Is64BitOperatingSystem)
             {
                 regPath += "WOW6432Node";
             }
 
             regPath += "\\Caphyon\\Advanced Installer\\LZMA\\";
-            regPath += $"{_productCode}\\";
+            regPath += $"{productCode}\\";
             regPath += _config.AppVersion;
 
-            var key = Registry.LocalMachine.OpenSubKey(regPath, false);
+            RegistryKey key = Registry.LocalMachine.OpenSubKey(regPath, false);
             if (key == null)
             {
                 return false;
             }
 
-            var path = key.GetValue("AI_ExePath") as string;
+            string path = key.GetValue("AI_ExePath") as string;
 
             return !string.IsNullOrEmpty(path) && File.Exists(path);
         }

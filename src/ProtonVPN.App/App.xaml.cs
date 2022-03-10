@@ -18,7 +18,6 @@
  */
 
 using System;
-using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Runtime;
@@ -30,6 +29,7 @@ using ProtonVPN.Common.Extensions;
 using ProtonVPN.Config;
 using ProtonVPN.Core;
 using ProtonVPN.Core.Startup;
+using ProtonVPN.ErrorHandling;
 using ProtonVPN.Native.PInvoke;
 using ProtonVPN.Notifications;
 
@@ -91,10 +91,10 @@ namespace ProtonVPN
             }
 
             string name = new AssemblyName(args.Name).Name;
+
             if (name.ContainsIgnoringCase(".resources") ||
                 name.EndsWithIgnoringCase("XmlSerializers") ||
-                name.StartsWithIgnoringCase("PresentationFramework.")
-                )
+                name.StartsWithIgnoringCase("PresentationFramework."))
             {
                 return null;
             }
@@ -108,9 +108,8 @@ namespace ProtonVPN
 
             _failedToLoadAssembly = true;
 
-            Process.Start("ProtonVPN.ErrorMessage.exe");
-            AppExitInvoker appExitInvoker = new();
-            appExitInvoker.Exit();
+            FatalErrorHandler fatalErrorHandler = new();
+            fatalErrorHandler.Exit();
 
             return null;
         }

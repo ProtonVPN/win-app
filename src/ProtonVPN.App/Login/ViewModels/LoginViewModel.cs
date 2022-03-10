@@ -17,9 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Net.Http;
 using System.Security;
 using System.Threading.Tasks;
@@ -31,13 +29,13 @@ using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Config.Url;
-using ProtonVPN.Core;
 using ProtonVPN.Core.Api;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.MVVM;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
+using ProtonVPN.ErrorHandling;
 using ProtonVPN.Modals;
 using ProtonVPN.Translations;
 using ProtonVPN.Vpn.Connectors;
@@ -57,7 +55,6 @@ namespace ProtonVPN.Login.ViewModels
         private readonly IModals _modals;
         private readonly GuestHoleConnector _guestHoleConnector;
         private readonly GuestHoleState _guestHoleState;
-        private readonly IAppExitInvoker _appExitInvoker;
 
         public LoginErrorViewModel LoginErrorViewModel { get; }
 
@@ -78,8 +75,7 @@ namespace ProtonVPN.Login.ViewModels
             UserAuth userAuth,
             IModals modals,
             GuestHoleConnector guestHoleConnector,
-            GuestHoleState guestHoleState,
-            IAppExitInvoker appExitInvoker)
+            GuestHoleState guestHoleState)
         {
             _logger = logger;
             _appConfig = appConfig;
@@ -90,7 +86,6 @@ namespace ProtonVPN.Login.ViewModels
             _loginWindowViewModel = loginWindowViewModel;
             _guestHoleConnector = guestHoleConnector;
             _guestHoleState = guestHoleState;
-            _appExitInvoker = appExitInvoker;
             LoginErrorViewModel = loginErrorViewModel;
 
             LoginErrorViewModel.ClearError();
@@ -311,8 +306,8 @@ namespace ProtonVPN.Login.ViewModels
                     break;
                 case AuthError.MissingGoSrpDll:
                     _logger.Fatal<AppCrashLog>("The app is missing GoSrp.dll");
-                    Process.Start("ProtonVPN.ErrorMessage.exe");
-                    _appExitInvoker.Exit();
+                    FatalErrorHandler fatalErrorHandler = new();
+                    fatalErrorHandler.Exit();
                     break;
             }
         }

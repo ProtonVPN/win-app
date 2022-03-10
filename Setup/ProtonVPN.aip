@@ -129,8 +129,7 @@
     <ROW Component="ProtonVPN.Common.dll" ComponentId="{C093858F-892E-42B9-9BC5-FB577FCDD1FC}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.Common.dll"/>
     <ROW Component="ProtonVPN.Core.dll" ComponentId="{013523A0-681E-4750-84F0-28055A0D3577}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.Core.dll"/>
     <ROW Component="ProtonVPN.Crypto.dll" ComponentId="{4E0A829D-DA19-40C1-9720-F653D48739B4}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.Crypto.dll"/>
-    <ROW Component="ProtonVPN.ErrorMessage.exe" ComponentId="{7D400777-A405-4B27-A033-3D04B9C6EFA3}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.ErrorMessage.exe"/>
-    <ROW Component="ProtonVPN.ErrorMessage.exe.config" ComponentId="{238C676F-3CA2-4456-B0B6-0E2D2000E7C8}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.ErrorMessage.exe.config" Type="0"/>
+    <ROW Component="ProtonVPN.ErrorMessage.exe.config" ComponentId="{238C676F-3CA2-4456-B0B6-0E2D2000E7C8}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.exe.config" Type="0"/>
     <ROW Component="ProtonVPN.InstallActions.dll" ComponentId="{763A499C-00AE-4F4B-BD7F-57E8ECBD669B}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.InstallActions.dll"/>
     <ROW Component="ProtonVPN.IpFilter.dll" ComponentId="{14CAACAC-C59B-4E4B-AB4A-F84256D6288A}" Directory_="x86_Dir" Attributes="0" KeyPath="ProtonVPN.IpFilter.dll"/>
     <ROW Component="ProtonVPN.IpFilter.dll_1" ComponentId="{A193C29E-DB67-48B2-8886-F17AA59402D0}" Directory_="x64_Dir" Attributes="256" KeyPath="ProtonVPN.IpFilter.dll_1"/>
@@ -213,7 +212,6 @@
     <ROW File="libssl1_1x64.dll" Component_="libssl1_1x64.dll" FileName="LIBSSL~1.DLL|libssl-1_1-x64.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Resources\64-bit\libssl-1_1-x64.dll" SelfReg="false"/>
     <ROW File="openvpn.exe_1" Component_="openvpn.exe_1" FileName="openvpn.exe" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Resources\64-bit\openvpn.exe" SelfReg="false"/>
     <ROW File="config.ovpn" Component_="config.ovpn" FileName="CONFIG~1.OVP|config.ovpn" Attributes="0" SourcePath="..\src\bin\Resources\config.ovpn" SelfReg="false"/>
-    <ROW File="ProtonVPN.ErrorMessage.exe" Component_="ProtonVPN.ErrorMessage.exe" FileName="PROTON~2.EXE|ProtonVPN.ErrorMessage.exe" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ProtonVPN.ErrorMessage.exe" SelfReg="false"/>
     <ROW File="ProtonVPNService.exe" Component_="ProtonVPNService.exe" FileName="PROTON~3.EXE|ProtonVPNService.exe" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ProtonVPNService.exe" SelfReg="false"/>
     <ROW File="Autofac.dll" Component_="Autofac.dll" FileName="Autofac.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Autofac.dll" SelfReg="false"/>
     <ROW File="ByteSize.dll" Component_="ByteSize.dll" FileName="ByteSize.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ByteSize.dll" SelfReg="false"/>
@@ -242,7 +240,6 @@
     <ROW File="System.Windows.Interactivity.dll" Component_="System.Windows.Interactivity.dll" FileName="SYSTEM~9.DLL|System.Windows.Interactivity.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\System.Windows.Interactivity.dll" SelfReg="false"/>
     <ROW File="TapInstaller.CA.dll" Component_="TapInstaller.CA.dll" FileName="TAPINS~1.DLL|TapInstaller.CA.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\TapInstaller.CA.dll" SelfReg="false"/>
     <ROW File="TapInstaller.dll" Component_="TapInstaller.dll" FileName="TAPINS~2.DLL|TapInstaller.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\TapInstaller.dll" SelfReg="false"/>
-    <ROW File="ProtonVPN.ErrorMessage.exe.config" Component_="ProtonVPN.ErrorMessage.exe.config" FileName="PROTON~1.CON|ProtonVPN.ErrorMessage.exe.config" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ProtonVPN.ErrorMessage.exe.config" SelfReg="false"/>
     <ROW File="ProtonVPN.exe.config" Component_="ProtonVPN.ErrorMessage.exe.config" FileName="PROTON~2.CON|ProtonVPN.exe.config" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ProtonVPN.exe.config" SelfReg="false"/>
     <ROW File="ProtonVPNService.exe.config" Component_="ProtonVPN.ErrorMessage.exe.config" FileName="PROTON~4.CON|ProtonVPNService.exe.config" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ProtonVPNService.exe.config" SelfReg="false"/>
     <ROW File="Microsoft.Deployment.WindowsInstaller.dll" Component_="Microsoft.Deployment.WindowsInstaller.dll" FileName="MICROS~1.DLL|Microsoft.Deployment.WindowsInstaller.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Microsoft.Deployment.WindowsInstaller.dll" SelfReg="false"/>
@@ -606,7 +603,6 @@
     <ROW Feature_="MainFeature" Component_="ProtonVPN"/>
     <ROW Feature_="MainFeature" Component_="ProtonVPN.Common.dll"/>
     <ROW Feature_="MainFeature" Component_="ProtonVPN.Core.dll"/>
-    <ROW Feature_="MainFeature" Component_="ProtonVPN.ErrorMessage.exe"/>
     <ROW Feature_="MainFeature" Component_="ProtonVPN.ErrorMessage.exe.config"/>
     <ROW Feature_="MainFeature" Component_="ProtonVPN.Resource.dll"/>
     <ROW Feature_="MainFeature" Component_="ProtonVPN.Service.Contract.dll"/>
