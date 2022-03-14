@@ -222,6 +222,7 @@ namespace ProtonVPN.Common.Configuration.Source
                     IncorrectSystemTimeArticleUrl = "https://protonvpn.com/support/update-windows-clock",
                     AssignVpnConnectionsUrl = "https://protonvpn.com/support/assign-vpn-connection",
                     NonStandardPortsUrl = "https://protonvpn.com/support/non-standard-ports",
+                    LoginProblemsUrl = "https://protonvpn.com/support/login-problems",
                 },
 
                 OpenVpn =

@@ -25,16 +25,18 @@ using System.Threading.Tasks;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Core.Api;
 using ProtonVPN.Core.Api.Contracts.ReportAnIssue;
+using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Settings;
 
 namespace ProtonVPN.Core.ReportAnIssue
 {
-    public class ReportAnIssueFormDataProvider : IReportAnIssueFormDataProvider, ISettingsAware
+    public class ReportAnIssueFormDataProvider : IReportAnIssueFormDataProvider, ISettingsAware, ILoggedInAware, ILogoutAware
     {
         private readonly IApiClient _apiClient;
         private readonly IAppSettings _appSettings;
         private readonly List<string> _validInputTypes = new() { InputType.SingleLineInput, InputType.MultiLineInput };
         private List<IssueCategory> _categories = new();
+        private bool _isUserLoggedIn;
 
         public ReportAnIssueFormDataProvider(IApiClient apiClient, IAppSettings appSettings)
         {
@@ -50,7 +52,10 @@ namespace ProtonVPN.Core.ReportAnIssue
                 if (response.Success && IsDataValid(response.Value.Categories))
                 {
                     _categories = response.Value.Categories;
-                    _appSettings.ReportAnIssueFormData = response.Value.Categories;
+                    if (_isUserLoggedIn)
+                    {
+                        _appSettings.ReportAnIssueFormData = response.Value.Categories;
+                    }
                 }
                 else
                 {
@@ -105,9 +110,19 @@ namespace ProtonVPN.Core.ReportAnIssue
 
         private void LoadCategoriesFromCache()
         {
-            _categories = _appSettings.ReportAnIssueFormData.Count > 0
+            _categories = _isUserLoggedIn && _appSettings.ReportAnIssueFormData.Count > 0
                 ? _appSettings.ReportAnIssueFormData
                 : DefaultCategoryProvider.GetCategories();
+        }
+
+        public void OnUserLoggedIn()
+        {
+            _isUserLoggedIn = true;
+        }
+
+        public void OnUserLoggedOut()
+        {
+            _isUserLoggedIn = false;
         }
     }
 }

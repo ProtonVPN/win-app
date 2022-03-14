@@ -146,6 +146,7 @@ namespace ProtonVPN.Core
                 ShowInitialWindow();
             }
 
+            await Resolve<IReportAnIssueFormDataProvider>().FetchData();
             await StartAllServices();
 
             if (Resolve<IUserStorage>().User().Empty() || !await IsUserValid() || await SessionExpired())
@@ -522,7 +523,6 @@ namespace ProtonVPN.Core
             Resolve<INetworkClient>().CheckForInsecureWiFi();
             await Resolve<EventClient>().StoreLatestEvent();
             Resolve<EventTimer>().Start();
-            await Resolve<IReportAnIssueFormDataProvider>().FetchData();
         }
 
         private void LoadViewModels()

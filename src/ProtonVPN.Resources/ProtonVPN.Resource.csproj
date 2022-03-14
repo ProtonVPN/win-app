@@ -66,6 +66,18 @@
     <Compile Include="Controls\ProtonAnimation.xaml.cs">
       <DependentUpon>ProtonAnimation.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Icons\ExclamationCircle.xaml.cs">
+      <DependentUpon>ExclamationCircle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Icons\Bug.xaml.cs">
+      <DependentUpon>Bug.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Icons\User.xaml.cs">
+      <DependentUpon>User.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Icons\Key.xaml.cs">
+      <DependentUpon>Key.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Icons\ImapSmtp.xaml.cs">
       <DependentUpon>ImapSmtp.xaml</DependentUpon>
     </Compile>
@@ -142,6 +154,22 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\ProtonAnimation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Icons\ExclamationCircle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Icons\Bug.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Icons\User.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Icons\Key.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

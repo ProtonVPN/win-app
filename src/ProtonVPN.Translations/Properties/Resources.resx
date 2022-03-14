@@ -3251,6 +3251,14 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="Modal_DiscourageSecureCore_Title" xml:space="preserve">
     <value>A note about speed...</value>
   </data>
+  <data name="Login_lnk_ReportAnIssue" xml:space="preserve">
+    <value>Report an issue</value>
+    <comment>The text of hyperlink in Need Help popup of Login window (opens report an issue modal window)</comment>
+  </data>
+  <data name="Login_lnk_CommonSignInIssues" xml:space="preserve">
+    <value>Common sign in issues</value>
+    <comment>The text of hyperlink in Need Help popup of Login window (opens web page with information regarding login issues)</comment>
+  </data>
   <data name="Login_lbl_TwoFactorAuthCode" xml:space="preserve">
     <value>Two-factor authentication code</value>
   </data>

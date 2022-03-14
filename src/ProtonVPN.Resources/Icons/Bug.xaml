@@ -1,0 +1,31 @@
+﻿<!--
+Copyright (c) 2022 Proton Technologies AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<UserControl x:Class="ProtonVPN.Resource.Icons.Bug"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             Name="UserControl"
+             mc:Ignorable="d">
+    <Canvas Width="16" Height="16">
+        <Path Fill="{Binding ElementName=UserControl, Path=Foreground}"
+              Data="M10.4454 3.26188C10.6056 3.4869 10.7356 3.73497 10.8293 4.00015H11.5H12.5V5.00015V6.00015C13.3284 6.00015 14 5.32858 14 4.50015C14 4.22401 14.2239 4.00015 14.5 4.00015C14.7761 4.00015 15 4.22401 15 4.50015C15 5.88086 13.8807 7.00015 12.5 7.00015V8.50015H14.5C14.7761 8.50015 15 8.72401 15 9.00015C15 9.27629 14.7761 9.50015 14.5 9.50015H12.5V10.5002C12.5 10.8438 12.4615 11.1785 12.3885 11.5002H12.5C13.8807 11.5002 15 12.6194 15 14.0002C15 14.2763 14.7761 14.5002 14.5 14.5002C14.2239 14.5002 14 14.2763 14 14.0002C14 13.1717 13.3284 12.5002 12.5 12.5002H12.0322C11.2959 13.9819 9.76686 15.0002 8 15.0002C6.23314 15.0002 4.70411 13.9819 3.96776 12.5002H3.5C2.67157 12.5002 2 13.1717 2 14.0002C2 14.2763 1.77614 14.5002 1.5 14.5002C1.22386 14.5002 1 14.2763 1 14.0002C1 12.6194 2.11929 11.5002 3.5 11.5002H3.61151C3.53853 11.1785 3.5 10.8438 3.5 10.5002V9.50015H1.5C1.22386 9.50015 1 9.27629 1 9.00015C1 8.72401 1.22386 8.50015 1.5 8.50015H3.5V7.00015C2.11929 7.00015 1 5.88086 1 4.50015C1 4.22401 1.22386 4.00015 1.5 4.00015C1.77614 4.00015 2 4.22401 2 4.50015C2 5.32858 2.67157 6.00015 3.5 6.00015V5.00015V4.00015H4.5L5.17071 4.00015C5.26443 3.73497 5.39439 3.4869 5.55463 3.26188L4.23238 1.93964C4.03712 1.74438 4.03712 1.4278 4.23238 1.23254C4.42765 1.03727 4.74423 1.03727 4.93949 1.23254L6.26173 2.55478C6.75214 2.20555 7.35209 2.00015 8 2.00015C8.64792 2.00015 9.24786 2.20555 9.73827 2.55478L11.0607 1.23238C11.2559 1.03712 11.5725 1.03712 11.7678 1.23238C11.963 1.42765 11.963 1.74423 11.7678 1.93949L10.4454 3.26188ZM11 5.00015H10H4.5V10.5002C4.5 12.4331 6.067 14.0002 8 14.0002C9.933 14.0002 11.5 12.4331 11.5 10.5002V5.00015H11ZM9.73244 4.00015C9.38663 3.40235 8.74028 3.00015 8 3.00015C7.25972 3.00015 6.61337 3.40235 6.26756 4.00015L9.73244 4.00015Z" />
+    </Canvas>
+</UserControl>

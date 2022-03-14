@@ -30,12 +30,6 @@ namespace ProtonVPN.Login.Views
         public LoginView()
         {
             InitializeComponent();
-            HelpPopup.Opened += OnHelpPopupOpened;
-        }
-
-        private void OnHelpPopupOpened(object sender, System.EventArgs e)
-        {
-            HelpPopup.HorizontalOffset = -(HelpButton.ActualWidth - HelpPopup.ActualWidth) / 2;
         }
 
         private void PasswordInput_PasswordChanged(object sender, RoutedEventArgs e)
