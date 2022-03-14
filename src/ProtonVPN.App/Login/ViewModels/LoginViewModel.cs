@@ -182,18 +182,23 @@ namespace ProtonVPN.Login.ViewModels
             }
         }
 
+        public bool FieldsFilledIn => !string.IsNullOrEmpty(LoginText?.Trim()) && Password != null && Password.Length != 0;
+
         public string TwoFactorAuthCode
         {
             get => _twoFactorAuthCode;
             set => Set(ref _twoFactorAuthCode, value);
         }
 
-        public bool FieldsFilledIn => !string.IsNullOrEmpty(LoginText?.Trim()) && Password != null && Password.Length != 0;
-
-        public bool StartOnStartup
+        public bool StartAndConnectOnBoot
         {
-            get => _appSettings.StartOnStartup;
-            set => _appSettings.StartOnStartup = value;
+            get => _appSettings.ConnectOnAppStart && _appSettings.StartOnBoot;
+            set
+            {
+                _appSettings.ConnectOnAppStart = value;
+                _appSettings.StartOnBoot = value;
+                OnPropertyChanged();
+            }
         }
 
         public bool KillSwitchActive
@@ -211,9 +216,9 @@ namespace ProtonVPN.Login.ViewModels
 
         public void OnAppSettingsChanged(PropertyChangedEventArgs e)
         {
-            if (e.PropertyName.Equals(nameof(IAppSettings.StartOnStartup)))
+            if (e.PropertyName is nameof(IAppSettings.StartOnBoot) or nameof(IAppSettings.ConnectOnAppStart))
             {
-                OnPropertyChanged(nameof(StartOnStartup));
+                OnPropertyChanged(nameof(StartAndConnectOnBoot));
             }
         }
 

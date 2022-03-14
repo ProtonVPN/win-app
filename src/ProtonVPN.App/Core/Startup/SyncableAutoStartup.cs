@@ -53,19 +53,19 @@ namespace ProtonVPN.Core.Startup
 
         private void SyncForward()
         {
-            _autoStartup.Enabled = _appSettings.StartOnStartup;
+            _autoStartup.Enabled = _appSettings.StartOnBoot;
         }
 
         private bool SyncBackRequired()
         {
-            return _autoStartup.Enabled != _appSettings.StartOnStartup;
+            return _autoStartup.Enabled != _appSettings.StartOnBoot;
         }
 
         private void SyncBack()
         {
             _syncing = true;
 
-            _appSettings.StartOnStartup = _autoStartup.Enabled;
+            _appSettings.StartOnBoot = _autoStartup.Enabled;
 
             _syncing = false;
         }

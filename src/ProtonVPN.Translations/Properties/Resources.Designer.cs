@@ -4423,6 +4423,15 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Start and connect on boot.
+        /// </summary>
+        public static string Login_lbl_StartAndConnectOnBoot {
+            get {
+                return ResourceManager.GetString("Login_lbl_StartAndConnectOnBoot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Start with Windows.
         /// </summary>
         public static string Login_lbl_StartWithWindows {
@@ -6214,24 +6223,6 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Auto Connect.
-        /// </summary>
-        public static string Settings_Connection_lbl_AutoConnect {
-            get {
-                return ResourceManager.GetString("Settings_Connection_lbl_AutoConnect", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to On app start, you are connected to the selected profile..
-        /// </summary>
-        public static string Settings_Connection_lbl_AutoConnect_Info {
-            get {
-                return ResourceManager.GetString("Settings_Connection_lbl_AutoConnect_Info", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Custom DNS Servers.
         /// </summary>
         public static string Settings_Connection_lbl_CustomDnsServer {
@@ -6376,6 +6367,24 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Connect on app start.
+        /// </summary>
+        public static string Settings_General_lbl_ConnectOnAppStart {
+            get {
+                return ResourceManager.GetString("Settings_General_lbl_ConnectOnAppStart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Automatically connect to the Quick Connect profile when ProtonVPN starts..
+        /// </summary>
+        public static string Settings_General_lbl_ConnectOnAppStart_Info {
+            get {
+                return ResourceManager.GetString("Settings_General_lbl_ConnectOnAppStart_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Early Access.
         /// </summary>
         public static string Settings_General_lbl_EarlyAccess {
@@ -6421,11 +6430,11 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Start with Windows.
+        ///   Looks up a localized string similar to Start on boot.
         /// </summary>
-        public static string Settings_General_lbl_StartWithWindows {
+        public static string Settings_General_lbl_StartOnBoot {
             get {
-                return ResourceManager.GetString("Settings_General_lbl_StartWithWindows", resourceCulture);
+                return ResourceManager.GetString("Settings_General_lbl_StartOnBoot", resourceCulture);
             }
         }
         
@@ -6462,15 +6471,6 @@ namespace ProtonVPN.Translations.Properties {
         public static string Settings_ttl {
             get {
                 return ResourceManager.GetString("Settings_ttl", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Disabled.
-        /// </summary>
-        public static string Settings_val_Disabled {
-            get {
-                return ResourceManager.GetString("Settings_val_Disabled", resourceCulture);
             }
         }
         

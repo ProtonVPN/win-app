@@ -267,11 +267,11 @@
   </data>
   <data name="Settings_Connection_lbl_QuickConnect_Info" xml:space="preserve">
     <value>The Quick Connect button connects you to the selected profile.</value>
-    <comment>The description of Quick Connect settings displayed in the tooltip of ( i ) image next to the label for Quick Connect combo box in Connection tab of Settings window</comment>
+    <comment>The description of Quick Connect settings displayed in the tooltip of ( i ) image next to the label for Quick Connect combo box in General tab of Settings window</comment>
   </data>
-  <data name="Settings_Connection_lbl_AutoConnect_Info" xml:space="preserve">
-    <value>On app start, you are connected to the selected profile.</value>
-    <comment>The description of Auto Connect setting displayed in the tooltip of ( i ) image next to the label for Auto Connect combo box in Connection tab of Settings window</comment>
+  <data name="Settings_General_lbl_ConnectOnAppStart_Info" xml:space="preserve">
+    <value>Automatically connect to the Quick Connect profile when ProtonVPN starts.</value>
+    <comment>The description of Connect on boot setting displayed in the tooltip of ( i ) image next to the label for Connect on boot combo box in General tab of Settings window</comment>
   </data>
   <data name="StartMinimizedMode_val_Disabled" xml:space="preserve">
     <value>Disabled</value>
@@ -393,9 +393,9 @@
     <value>Password</value>
     <comment>The label for Password text box in Login window</comment>
   </data>
-  <data name="Settings_General_lbl_StartWithWindows" xml:space="preserve">
-    <value>Start with Windows</value>
-    <comment>The label for Start with Windows toggle switch in General tab of Settings window.
+  <data name="Settings_General_lbl_StartOnBoot" xml:space="preserve">
+    <value>Start on boot</value>
+    <comment>The label for Start on boot toggle switch in General tab of Settings window.
 This setting instructs the ProtonVPN to start automatically when the user logs in to the computer.</comment>
   </data>
   <data name="Login_btn_Login" xml:space="preserve">
@@ -452,7 +452,7 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
   </data>
   <data name="Settings_Connection_lbl_QuickConnect" xml:space="preserve">
     <value>Quick Connect</value>
-    <comment>The label for Quick Connect combo box in Connection tab of Settings window</comment>
+    <comment>The label for Quick Connect combo box in General tab of Settings window</comment>
   </data>
   <data name="QuickLaunch_lbl_Profiles" xml:space="preserve">
     <value>Profiles</value>
@@ -610,10 +610,6 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <value>Split Tunneling</value>
     <comment>The label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
   </data>
-  <data name="Settings_val_Disabled" xml:space="preserve">
-    <value>Disabled</value>
-    <comment>The Disabled value displayed in combo boxes of Settings window</comment>
-  </data>
   <data name="Sidebar_Connection_lbl_Disconnected" xml:space="preserve">
     <value>You are not protected!</value>
     <comment>The text displayed on Connection section of Sidebar section of main app window</comment>
@@ -706,9 +702,9 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <value>Advanced</value>
     <comment>The header of Advanced tab in Settings window</comment>
   </data>
-  <data name="Settings_Connection_lbl_AutoConnect" xml:space="preserve">
-    <value>Auto Connect</value>
-    <comment>The label for Auto Connect combo box in Connection tab of Settings window</comment>
+  <data name="Settings_General_lbl_ConnectOnAppStart" xml:space="preserve">
+    <value>Connect on app start</value>
+    <comment>The label for Connect on boot combo box in General tab of Settings window</comment>
   </data>
   <data name="About_lbl_ChangelogVersion" xml:space="preserve">
     <value>Changelog of v.{0}</value>
@@ -3270,5 +3266,8 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   </data>
   <data name="Login_msg_TwoFactorAuthFailed" xml:space="preserve">
     <value>Incorrect login credentials. Please try again.</value>
+  </data>
+  <data name="Login_lbl_StartAndConnectOnBoot" xml:space="preserve">
+    <value>Start and connect on boot</value>
   </data>
 </root>

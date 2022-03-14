@@ -231,8 +231,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <Label Foreground="White"
                            FontSize="14"
                            Padding="0"
-                           Content="{translations:Loc Login_lbl_StartWithWindows}" />
-                    <CheckBox IsChecked="{Binding StartOnStartup, Mode=TwoWay}"
+                           Content="{translations:Loc Login_lbl_StartAndConnectOnBoot}" />
+                    <CheckBox IsChecked="{Binding StartAndConnectOnBoot, Mode=TwoWay}"
                               FocusVisualStyle="{x:Null}"
                               HorizontalAlignment="Right"
                               Style="{StaticResource ToggleSwitch}" />

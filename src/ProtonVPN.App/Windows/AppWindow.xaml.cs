@@ -20,19 +20,21 @@
 using System;
 using System.ComponentModel;
 using System.Reflection;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Interop;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Effects;
 using Caliburn.Micro;
+using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core;
-using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Events;
 using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Native;
 using ProtonVPN.Core.Native.Structures;
 using ProtonVPN.Core.Settings;
+using ProtonVPN.Core.Vpn;
 using ProtonVPN.Core.Window;
 using ProtonVPN.Onboarding;
 using ProtonVPN.QuickLaunch;
@@ -42,7 +44,8 @@ namespace ProtonVPN.Windows
 {
     public partial class AppWindow :
         IHandle<ToggleOverlay>,
-        IOnboardingStepAware
+        IOnboardingStepAware,
+        IVpnStateAware
     {
         private const int SidebarWidth = 336;
         private const int DefaultWidth = 800;
@@ -56,9 +59,12 @@ namespace ProtonVPN.Windows
         private bool _sidebarModeBeforeMaximize;
         private bool _blurInProgress;
         private bool _blurOutInProgress;
+        private bool _isConnecting;
 
-        private readonly DoubleAnimation _blurInAnimation = new DoubleAnimation(10, TimeSpan.FromMilliseconds(200));
-        private readonly DoubleAnimation _blurOutAnimation = new DoubleAnimation(0, TimeSpan.FromMilliseconds(200));
+        private readonly DoubleAnimation _blurInAnimation = new(10, TimeSpan.FromMilliseconds(200));
+        private readonly DoubleAnimation _blurOutAnimation = new(0, TimeSpan.FromMilliseconds(200));
+
+        public bool AllowWindowHiding;
 
         public AppWindow(
             IEventAggregator eventAggregator,
@@ -148,6 +154,14 @@ namespace ProtonVPN.Windows
             ResizeMode = step > 0 ? ResizeMode.NoResize : ResizeMode.CanResize;
         }
 
+        public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
+        {
+            _isConnecting = e.State.Status != VpnStatus.Disconnecting &&
+                            e.State.Status != VpnStatus.Disconnected &&
+                            e.State.Status != VpnStatus.Connected;
+            return Task.CompletedTask;
+        }
+
         protected override void OnStateChanged(EventArgs e)
         {
             base.OnStateChanged(e);
@@ -185,17 +199,20 @@ namespace ProtonVPN.Windows
             HwndSource source = PresentationSource.FromVisual(this) as HwndSource;
             source?.AddHook(WndProc);
 
-            if (_appSettings.StartMinimized == StartMinimizedMode.ToSystray)
+            if (AllowWindowHiding)
             {
-                SetWindowPlacement(WindowStates.Hidden);
-                return;
-            }
+                if (_appSettings.StartMinimized == StartMinimizedMode.ToSystray)
+                {
+                    SetWindowPlacement(WindowStates.Hidden);
+                    return;
+                }
 
-            if (_appSettings.StartMinimized == StartMinimizedMode.ToTaskbar)
-            {
-                WindowState = WindowState.Minimized;
-                SetWindowPlacement(WindowStates.Minimized);
-                return;
+                if (_appSettings.StartMinimized == StartMinimizedMode.ToTaskbar)
+                {
+                    WindowState = WindowState.Minimized;
+                    SetWindowPlacement(WindowStates.Minimized);
+                    return;
+                }
             }
 
             if (!_appSettings.SidebarMode || _appSettings.SidebarWindowPlacement != null)
@@ -220,6 +237,10 @@ namespace ProtonVPN.Windows
                 {
                     Show();
                     Activate();
+                    if (_isConnecting)
+                    {
+                        Handle(new ToggleOverlay(true));
+                    }
                 }
             }
             else if(e.Button == MouseButtons.Right)

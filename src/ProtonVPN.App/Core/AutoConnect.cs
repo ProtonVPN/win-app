@@ -23,7 +23,6 @@ using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
 using ProtonVPN.Common.Logging.Categorization.Events.ConnectLogs;
 using ProtonVPN.Common.Vpn;
-using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
@@ -35,47 +34,39 @@ namespace ProtonVPN.Core
         private readonly IAppSettings _appSettings;
         private readonly IVpnManager _vpnManager;
         private readonly ILogger _logger;
-        private readonly ProfileManager _profileManager;
         private VpnStatus _vpnStatus;
 
         public AutoConnect(
             IAppSettings appSettings,
             IVpnManager vpnManager,
-            ILogger logger,
-            ProfileManager profileManager)
+            ILogger logger)
         {
             _appSettings = appSettings;
             _vpnManager = vpnManager;
             _logger = logger;
-            _profileManager = profileManager;
         }
 
-        public async Task Load(bool autoLogin)
+        public async Task LoadAsync(bool autoLogin)
         {
             if (!AutoConnectRequired(autoLogin))
+            {
                 return;
+            }
+
             try
             {
-                Profile profile = await _profileManager.GetProfileById(_appSettings.AutoConnect);
-
-                if (profile == null)
-                {
-                    _logger.Warn<AppLog>("Profile configured for auto connect is missing!");
-                    return;
-                }
-
-                _logger.Info<ConnectTriggerLog>("Automatically connecting to selected profile");
-                await _vpnManager.ConnectAsync(profile);
+                _logger.Info<ConnectTriggerLog>("Automatically connecting on app start");
+                await _vpnManager.QuickConnectAsync();
             }
             catch (OperationCanceledException ex)
             {
-                _logger.Error<AppLog>("An error occurred when connecting automatically to a profile.", ex);
+                _logger.Error<AppLog>("An error occurred when connecting automatically on app start.", ex);
             }
         }
 
         private bool AutoConnectRequired(bool autoLogin)
         {
-            return autoLogin && _vpnStatus.Equals(VpnStatus.Disconnected) && !string.IsNullOrEmpty(_appSettings.AutoConnect);
+            return autoLogin && _vpnStatus.Equals(VpnStatus.Disconnected) && _appSettings.ConnectOnAppStart;
         }
 
         public Task OnVpnStateChanged(VpnStateChangedEventArgs e)

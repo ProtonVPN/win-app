@@ -72,7 +72,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <system:String x:Key="ResetPasswordButton">ResetPasswordButton</system:String>
     <system:String x:Key="ForgotUsernameButton">ForgotUsernameButton</system:String>
     <system:String x:Key="CreateAccountButton">CreateAccountButton</system:String>
-    <system:String x:Key="AutoConnectComboBox">AutoConnectComboBox</system:String>
     <system:String x:Key="ReportBugEmailTextBlock">ReportBugEmailTextBlock</system:String>
     <system:String x:Key="SecureCoreButton">SecureCoreButton</system:String>
     <system:String x:Key="SecureCoreOnButton">SecureCoreOnButton</system:String>
@@ -91,4 +90,5 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <system:String x:Key="PortForwardingButton">PortForwardingButton</system:String>
     <system:String x:Key="PortForwardingOnButton">PortForwardingOnButton</system:String>
     <system:String x:Key="PortForwardingOffButton">PortForwardingOffButton</system:String>
+    <system:String x:Key="ConnectOnBootCheckbox">ConnectOnBootCheckbox</system:String>
 </ResourceDictionary>
