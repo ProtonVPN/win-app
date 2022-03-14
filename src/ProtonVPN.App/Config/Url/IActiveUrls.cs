@@ -55,5 +55,6 @@ namespace ProtonVPN.Config.Url
         IActiveUrl IncorrectSystemTimeArticleUrl { get; }
         IActiveUrl AssignVpnConnectionsUrl { get; }
         IActiveUrl NonStandardPortsUrl { get; }
+        IActiveUrl LoginProblemsUrl { get; }
     }
 }

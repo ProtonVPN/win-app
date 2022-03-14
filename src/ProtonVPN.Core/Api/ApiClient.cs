@@ -214,7 +214,7 @@ namespace ProtonVPN.Core.Api
         {
             try
             {
-                HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, "vpn/v1/featureconfig/dynamic-bug-reports");
+                HttpRequestMessage request = GetRequest(HttpMethod.Get, "vpn/v1/featureconfig/dynamic-bug-reports");
                 using HttpResponseMessage response = await _client.SendAsync(request).ConfigureAwait(false);
                 System.IO.Stream stream = await response.Content.ReadAsStreamAsync();
                 return Logged(GetResponseStreamResult<ReportAnIssueFormData>(stream, response.StatusCode), "Get report an issue form data");
@@ -246,7 +246,7 @@ namespace ProtonVPN.Core.Api
 
             foreach (KeyValuePair<string, string> pair in fields)
             {
-                content.Add(new StringContent(pair.Value), $"\"{pair.Key}\"");
+                content.Add(new StringContent(pair.Value ?? "undefined"), $"\"{pair.Key}\"");
             }
 
             int fileCount = 0;
@@ -260,7 +260,7 @@ namespace ProtonVPN.Core.Api
 
             try
             {
-                HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Post, "reports/bug");
+                HttpRequestMessage request = GetRequest(HttpMethod.Post, "reports/bug");
                 request.Content = content;
                 using HttpResponseMessage response = await _client.SendAsync(request);
                 string body = await response.Content.ReadAsStringAsync().ConfigureAwait(false);

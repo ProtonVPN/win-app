@@ -23,13 +23,15 @@ using System.IO;
 using System.Text;
 using Newtonsoft.Json;
 using ProtonVPN.Common.Extensions;
+using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Settings;
 
 namespace ProtonVPN.BugReporting.Diagnostic
 {
-    internal class UserSettingsLog : BaseLog
+    internal class UserSettingsLog : BaseLog, ILoggedInAware, ILogoutAware
     {
         private readonly IAppSettings _appSettings;
+        private bool _isUserLoggedIn;
 
         public UserSettingsLog(IAppSettings appSettings, string path)
             : base(path, "Settings.txt")
@@ -44,6 +46,11 @@ namespace ProtonVPN.BugReporting.Diagnostic
 
         private string GenerateContent()
         {
+            if (!_isUserLoggedIn)
+            {
+                return "The user is not logged in.";
+            }
+
             StringBuilder stringBuilder = new();
             stringBuilder.AppendLine("Settings").AppendLine();
             IEnumerable<KeyValuePair<string, dynamic>> properties = GetProperties();
@@ -133,6 +140,16 @@ namespace ProtonVPN.BugReporting.Diagnostic
             }
 
             return value is string result ? result : value.ToString();
+        }
+
+        public void OnUserLoggedIn()
+        {
+            _isUserLoggedIn = true;
+        }
+
+        public void OnUserLoggedOut()
+        {
+            _isUserLoggedIn = false;
         }
     }
 }

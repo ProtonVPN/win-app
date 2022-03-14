@@ -4459,6 +4459,15 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Common sign in issues.
+        /// </summary>
+        public static string Login_lnk_CommonSignInIssues {
+            get {
+                return ResourceManager.GetString("Login_lnk_CommonSignInIssues", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create Account.
         /// </summary>
         public static string Login_lnk_CreateAccount {
@@ -4482,6 +4491,15 @@ namespace ProtonVPN.Translations.Properties {
         public static string Login_lnk_NeedHelp {
             get {
                 return ResourceManager.GetString("Login_lnk_NeedHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Report an issue.
+        /// </summary>
+        public static string Login_lnk_ReportAnIssue {
+            get {
+                return ResourceManager.GetString("Login_lnk_ReportAnIssue", resourceCulture);
             }
         }
         

@@ -23,6 +23,7 @@ using System.Security;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
+using ProtonVPN.BugReporting;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.KillSwitch;
 using ProtonVPN.Common.Logging;
@@ -120,6 +121,8 @@ namespace ProtonVPN.Login.ViewModels
             ToggleHelpBalloon = new RelayCommand(ToggleBalloonAction);
             ResetPasswordCommand = new RelayCommand(ResetPasswordAction);
             ForgotUsernameCommand = new RelayCommand(ForgotUsernameAction);
+            ReportAnIssueCommand = new RelayCommand(ReportAnIssueAction);
+            OpenSignInIssuesWebPageCommand = new RelayCommand(OpenSignInIssuesWebPageAction);
             DisableKillSwitchCommand = new RelayCommand(DisableKillSwitchAction);
         }
 
@@ -129,6 +132,8 @@ namespace ProtonVPN.Login.ViewModels
         public ICommand ToggleHelpBalloon { get; }
         public ICommand ResetPasswordCommand { get; }
         public ICommand ForgotUsernameCommand { get; }
+        public ICommand ReportAnIssueCommand { get; }
+        public ICommand OpenSignInIssuesWebPageCommand { get; }
         public ICommand DisableKillSwitchCommand { get; }
 
         public string AppVersion => $"v.{_appConfig.AppVersion}";
@@ -475,6 +480,16 @@ namespace ProtonVPN.Login.ViewModels
         private void ForgotUsernameAction()
         {
             _urls.ForgetUsernameUrl.Open();
+        }
+
+        private void ReportAnIssueAction()
+        {
+            _modals.Show<ReportBugModalViewModel>();
+        }
+
+        private void OpenSignInIssuesWebPageAction()
+        {
+            _urls.LoginProblemsUrl.Open();
         }
 
         private void DisableKillSwitchAction()
