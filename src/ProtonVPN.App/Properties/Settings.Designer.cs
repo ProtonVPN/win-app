@@ -61,7 +61,7 @@ namespace ProtonVPN.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
         public string StartMinimized {
             get {
                 return ((string)(this["StartMinimized"]));
@@ -1502,6 +1502,30 @@ namespace ProtonVPN.Properties {
             }
             set {
                 this["UserModerateNat"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ConnectOnAppStart {
+            get {
+                return ((bool)(this["ConnectOnAppStart"]));
+            }
+            set {
+                this["ConnectOnAppStart"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool StartOnBoot {
+            get {
+                return ((bool)(this["StartOnBoot"]));
+            }
+            set {
+                this["StartOnBoot"] = value;
             }
         }
     }

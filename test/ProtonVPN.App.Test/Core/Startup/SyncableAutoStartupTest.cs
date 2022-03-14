@@ -46,7 +46,7 @@ namespace ProtonVPN.App.Test.Core.Startup
         [DataRow(true)]
         public void Sync_ShouldSet_AutoStartup_Enabled(bool value)
         {
-            _appSettings.StartOnStartup.Returns(value);
+            _appSettings.StartOnBoot.Returns(value);
             _autoStartup.Enabled.Returns(value);
             var startup = new SyncableAutoStartup(_appSettings, _scheduler, _autoStartup);
 
@@ -58,22 +58,22 @@ namespace ProtonVPN.App.Test.Core.Startup
         [TestMethod]
         public void Sync_ShouldSchedule_SyncBack_WhenSyncFails()
         {
-            _appSettings.StartOnStartup.Returns(true);
+            _appSettings.StartOnBoot.Returns(true);
             _autoStartup.Enabled.Returns(false);
             _autoStartup.When(x => x.Enabled = Arg.Any<bool>()).Do(x => { _autoStartup.Enabled.Returns(false); });
             var startup = new SyncableAutoStartup(_appSettings, _scheduler, _autoStartup);
 
             startup.Sync();
 
-            _appSettings.DidNotReceive().StartOnStartup = Arg.Any<bool>();
+            _appSettings.DidNotReceive().StartOnBoot = Arg.Any<bool>();
             _scheduler.Received(1).Schedule(Arg.Any<Action>());
         }
 
         [TestMethod]
-        public void Sync_ShouldSet_AllSettings_StartOnStartup_WhenSyncFailed()
+        public void Sync_ShouldSet_AllSettings_StartOnBoot_WhenSyncFailed()
         {
             Action syncBack = null;
-            _appSettings.StartOnStartup.Returns(true);
+            _appSettings.StartOnBoot.Returns(true);
             _autoStartup.Enabled.Returns(false);
             _autoStartup.When(x => x.Enabled = Arg.Any<bool>()).Do(x => { _autoStartup.Enabled.Returns(false); });
             _scheduler.When(x => x.Schedule(Arg.Any<Action>())).Do(x => syncBack = x.Arg<Action>());
@@ -82,25 +82,25 @@ namespace ProtonVPN.App.Test.Core.Startup
             startup.Sync();
             syncBack();
 
-            _appSettings.Received(1).StartOnStartup = false;
+            _appSettings.Received(1).StartOnBoot = false;
         }
 
         [TestMethod]
         public void Sync_ShouldPrevent_Recursion()
         {
             Action syncBack = null;
-            _appSettings.StartOnStartup.Returns(true);
+            _appSettings.StartOnBoot.Returns(true);
             _autoStartup.Enabled.Returns(false);
             _autoStartup.When(x => x.Enabled = Arg.Any<bool>()).Do(x => { _autoStartup.Enabled.Returns(!x.Arg<bool>()); });
             _scheduler.When(x => x.Schedule(Arg.Any<Action>())).Do(x => syncBack = x.Arg<Action>());
             var startup = new SyncableAutoStartup(_appSettings, _scheduler, _autoStartup);
-            _appSettings.When(x => x.StartOnStartup = Arg.Any<bool>()).Do(x => startup.Sync());
+            _appSettings.When(x => x.StartOnBoot = Arg.Any<bool>()).Do(x => startup.Sync());
 
             startup.Sync();
             syncBack();
 
             _autoStartup.Received(1).Enabled = true;
-            _appSettings.Received(1).StartOnStartup = false;
+            _appSettings.Received(1).StartOnBoot = false;
         }
     }
 }

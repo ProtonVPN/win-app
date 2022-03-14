@@ -506,8 +506,9 @@ namespace ProtonVPN.Core
             AppWindow appWindow = Resolve<AppWindow>();
             appWindow.DataContext = Resolve<MainViewModel>();
             Application.Current.MainWindow = appWindow;
-            if (Resolve<IAppSettings>().StartMinimized != StartMinimizedMode.ToSystray)
+            if (!autoLogin || Resolve<IAppSettings>().StartMinimized != StartMinimizedMode.ToSystray)
             {
+                appWindow.AllowWindowHiding = autoLogin;
                 appWindow.Show();
             }
 
@@ -518,7 +519,7 @@ namespace ProtonVPN.Core
             await Resolve<IUserLocationService>().Update();
             await Resolve<IAnnouncementService>().Update();
             await Resolve<SystemTimeValidator>().Validate();
-            await Resolve<AutoConnect>().Load(autoLogin);
+            await Resolve<AutoConnect>().LoadAsync(autoLogin);
             Resolve<SyncProfiles>().Sync();
             Resolve<INetworkClient>().CheckForInsecureWiFi();
             await Resolve<EventClient>().StoreLatestEvent();

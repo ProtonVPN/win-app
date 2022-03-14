@@ -28,9 +28,9 @@ using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Config.Url;
 using ProtonVPN.Core;
+using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Models;
-using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
@@ -134,21 +134,6 @@ namespace ProtonVPN.Settings
         {
             get => _appSettings.SettingsSelectedTabIndex;
             set => _appSettings.SettingsSelectedTabIndex = value;
-        }
-
-        private ProfileViewModel _autoConnect;
-
-        public ProfileViewModel AutoConnect
-        {
-            get => _autoConnect;
-            set
-            {
-                if (value == null)
-                    return;
-
-                Set(ref _autoConnect, value);
-                _appSettings.AutoConnect = value.Id;
-            }
         }
 
         private ProfileViewModel _quickConnect;
@@ -378,6 +363,12 @@ namespace ProtonVPN.Settings
             set => _appSettings.EarlyAccess = value;
         }
 
+        public bool ConnectOnAppStart
+        {
+            get => _appSettings.ConnectOnAppStart;
+            set => _appSettings.ConnectOnAppStart = value;
+        }
+
         public bool ShowNotifications
         {
             get => _appSettings.ShowNotifications;
@@ -388,10 +379,10 @@ namespace ProtonVPN.Settings
             }
         }
 
-        public bool StartOnStartup
+        public bool StartOnBoot
         {
-            get => _appSettings.StartOnStartup;
-            set => _appSettings.StartOnStartup = value;
+            get => _appSettings.StartOnBoot;
+            set => _appSettings.StartOnBoot = value;
         }
 
         public bool HardwareAccelerationEnabled
@@ -497,28 +488,18 @@ namespace ProtonVPN.Settings
             return Task.CompletedTask;
         }
 
-        public void OpenGeneralTab()
-        {
-            SelectedTabIndex = 0;
-        }
-
         public void OpenConnectionTab()
         {
             SelectedTabIndex = 1;
-        }
-
-        public void OpenAdvancedTab()
-        {
-            SelectedTabIndex = 2;
         }
 
         public override async void OnAppSettingsChanged(PropertyChangedEventArgs e)
         {
             base.OnAppSettingsChanged(e);
 
-            if (e.PropertyName.Equals(nameof(IAppSettings.StartOnStartup)))
+            if (e.PropertyName.Equals(nameof(IAppSettings.StartOnBoot)))
             {
-                NotifyOfPropertyChange(nameof(StartOnStartup));
+                NotifyOfPropertyChange(nameof(StartOnBoot));
             }
             else if (e.PropertyName.Equals(nameof(IAppSettings.Profiles)))
             {
@@ -617,33 +598,10 @@ namespace ProtonVPN.Settings
 
         private async Task LoadProfiles()
         {
-            await LoadAutoConnectProfiles();
             await LoadQuickConnectProfiles();
-
-            AutoConnect = GetSelectedAutoConnectProfile();
-            NotifyOfPropertyChange(() => AutoConnect);
 
             QuickConnect = GetSelectedQuickConnectProfile();
             NotifyOfPropertyChange(() => QuickConnect);
-        }
-
-        private async Task LoadAutoConnectProfiles()
-        {
-            List<ProfileViewModel> profiles = new() { CreateDisabledProfileViewModel() };
-            profiles.AddRange(await GetProfiles());
-
-            AutoConnectProfiles = profiles;
-            NotifyOfPropertyChange(() => AutoConnectProfiles);
-        }
-
-        private ProfileViewModel CreateDisabledProfileViewModel()
-        {
-            return new(CreateDisabledProfile());
-        }
-
-        private Profile CreateDisabledProfile()
-        {
-            return new() { Id = "", Name = Translation.Get("Settings_val_Disabled"), ColorCode = "#777783" };
         }
 
         private async Task LoadQuickConnectProfiles()
@@ -658,17 +616,6 @@ namespace ProtonVPN.Settings
                 .OrderByDescending(p => p.IsPredefined)
                 .ThenBy(p => p.Name)
                 .ToList();
-        }
-
-        private ProfileViewModel GetSelectedAutoConnectProfile()
-        {
-            ProfileViewModel profile = AutoConnectProfiles.FirstOrDefault(p => p.Id == _appSettings.AutoConnect);
-            if (profile == null)
-            {
-                return CreateDisabledProfileViewModel();
-            }
-
-            return profile;
         }
 
         private ProfileViewModel GetSelectedQuickConnectProfile()

@@ -137,7 +137,7 @@ namespace ProtonVPN.Core
             set => SetPerUser(value);
         }
 
-        public bool StartOnStartup
+        public bool StartOnBoot
         {
             get => Get<bool>();
             set => Set(value);
@@ -453,6 +453,12 @@ namespace ProtonVPN.Core
         }
 
         public bool ShowNonStandardPortsToFreeUsers
+        {
+            get => Get<bool>();
+            set => Set(value);
+        }
+
+        public bool ConnectOnAppStart
         {
             get => Get<bool>();
             set => Set(value);

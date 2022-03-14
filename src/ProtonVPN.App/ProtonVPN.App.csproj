@@ -263,7 +263,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Settings\Migrations\InitialAppSettingsMigration.cs" />
     <Compile Include="Settings\Migrations\v1_22_0\AppSettingsMigration.cs" />
+    <Compile Include="Settings\Migrations\v1_27_1\AppSettingsMigration.cs" />
     <Compile Include="Settings\ReconnectNotification\OpenVpnDriverSetting.cs" />
     <Compile Include="Sidebar\CountryFeatures\CountryFeaturesPopup.cs" />
     <Compile Include="Sidebar\CountryFeatures\CountryFeaturesPopupView.xaml.cs">

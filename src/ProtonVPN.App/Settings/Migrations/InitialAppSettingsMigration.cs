@@ -17,31 +17,21 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Core.Settings;
-using System.ComponentModel;
+using ProtonVPN.Core.Storage;
 
-namespace ProtonVPN.Core.Startup
+namespace ProtonVPN.Settings.Migrations
 {
-    internal class SyncedAutoStartup : ISyncableAutoStartup, ISettingsAware
+    internal class InitialAppSettingsMigration : BaseAppSettingsMigration
     {
-        private readonly ISyncableAutoStartup _origin;
+        public bool IsCleanInstall;
 
-        public SyncedAutoStartup(ISyncableAutoStartup origin)
+        public InitialAppSettingsMigration(ISettingsStorage appSettings) : base(appSettings, "0.0.0")
         {
-            _origin = origin;
         }
 
-        public void Sync()
+        protected override void Migrate()
         {
-            _origin.Sync();
-        }
-
-        public void OnAppSettingsChanged(PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == nameof(IAppSettings.StartOnBoot))
-            {
-                Sync();
-            }
+            IsCleanInstall = SettingsVersion.Minor + SettingsVersion.Major == 0;
         }
     }
 }

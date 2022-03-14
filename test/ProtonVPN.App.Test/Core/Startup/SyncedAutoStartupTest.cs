@@ -39,7 +39,7 @@ namespace ProtonVPN.App.Test.Core.Startup
         [TestMethod]
         public void Sync_ShouldCall_OriginSync()
         {
-            var startup = new SyncedAutoStartup(_origin);
+            SyncedAutoStartup startup = new SyncedAutoStartup(_origin);
 
             startup.Sync();
 
@@ -47,19 +47,19 @@ namespace ProtonVPN.App.Test.Core.Startup
         }
 
         [TestMethod]
-        public void OnAppSettingsChanged_ShouldCall_OriginSync_WhenPropertyNameIs_StartOnStartup()
+        public void OnAppSettingsChanged_ShouldCall_OriginSync_WhenPropertyNameIs_StartOnBoot()
         {
-            var startup = new SyncedAutoStartup(_origin);
+            SyncedAutoStartup startup = new SyncedAutoStartup(_origin);
 
-            startup.OnAppSettingsChanged(new PropertyChangedEventArgs(nameof(IAppSettings.StartOnStartup)));
+            startup.OnAppSettingsChanged(new PropertyChangedEventArgs(nameof(IAppSettings.StartOnBoot)));
 
             _origin.Received(1).Sync();
         }
 
         [TestMethod]
-        public void OnAppSettingsChanged_ShouldNotCall_OriginSync_WhenPropertyNameIsNot_StartOnStartup()
+        public void OnAppSettingsChanged_ShouldNotCall_OriginSync_WhenPropertyNameIsNot_StartOnBoot()
         {
-            var startup = new SyncedAutoStartup(_origin);
+            SyncedAutoStartup startup = new SyncedAutoStartup(_origin);
 
             startup.OnAppSettingsChanged(new PropertyChangedEventArgs("SomePropertyName"));
 
