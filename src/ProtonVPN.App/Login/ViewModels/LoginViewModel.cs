@@ -17,7 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
 using System.ComponentModel;
 using System.Net.Http;
 using System.Security;
@@ -54,6 +53,7 @@ namespace ProtonVPN.Login.ViewModels
         private readonly IModals _modals;
         private readonly GuestHoleConnector _guestHoleConnector;
         private readonly GuestHoleState _guestHoleState;
+        private readonly ISignUpAvailabilityProvider _signUpAvailabilityProvider;
 
         public LoginErrorViewModel LoginErrorViewModel { get; }
 
@@ -62,7 +62,6 @@ namespace ProtonVPN.Login.ViewModels
         private bool _showHelpBalloon;
         private bool _autoAuthFailed;
         private bool _networkBlocked;
-        private bool _isSignUpPageOpenPending;
 
         private VpnStatus _lastVpnStatus = VpnStatus.Disconnected;
         private bool _isToShowUsernameAndPassword = true;
@@ -98,7 +97,8 @@ namespace ProtonVPN.Login.ViewModels
             UserAuth userAuth,
             IModals modals,
             GuestHoleConnector guestHoleConnector,
-            GuestHoleState guestHoleState)
+            GuestHoleState guestHoleState,
+            ISignUpAvailabilityProvider signUpAvailabilityProvider)
         {
             _logger = logger;
             _appConfig = appConfig;
@@ -109,8 +109,9 @@ namespace ProtonVPN.Login.ViewModels
             _loginWindowViewModel = loginWindowViewModel;
             _guestHoleConnector = guestHoleConnector;
             _guestHoleState = guestHoleState;
-            LoginErrorViewModel = loginErrorViewModel;
+            _signUpAvailabilityProvider = signUpAvailabilityProvider;
 
+            LoginErrorViewModel = loginErrorViewModel;
             LoginErrorViewModel.ClearError();
 
             LoginCommand = new RelayCommand(LoginAction);
@@ -224,7 +225,7 @@ namespace ProtonVPN.Login.ViewModels
             {
                 switch (e.State.Status)
                 {
-                    case VpnStatus.Connected when _isSignUpPageOpenPending:
+                    case VpnStatus.Connected when IsToShowSignUpSpinner:
                         IsToShowSignUpSpinner = false;
                         _urls.RegisterUrl.Open();
                         break;
@@ -264,41 +265,22 @@ namespace ProtonVPN.Login.ViewModels
         private async void RegisterAction()
         {
             IsToShowSignUpSpinner = true;
-            bool isProtonReachable = await IsProtonReachableAsync();
-            if (isProtonReachable)
+            bool isSignUpPageAccessible = await _signUpAvailabilityProvider.IsSignUpPageAccessibleAsync();
+            if (isSignUpPageAccessible)
             {
                 IsToShowSignUpSpinner = false;
                 _urls.RegisterUrl.Open();
             }
             else
             {
-                _isSignUpPageOpenPending = true;
-                _guestHoleState.SetState(true);
-                await _guestHoleConnector.Connect();
+                await ConnectToGuestHoleAsync();
             }
         }
 
-        private async Task<bool> IsProtonReachableAsync()
+        private async Task ConnectToGuestHoleAsync()
         {
-            try
-            {
-                HttpClient client = new();
-                HttpRequestMessage request = new()
-                {
-                    Method = HttpMethod.Head,
-                    RequestUri = new Uri("https://protonvpn.com")
-                };
-                HttpResponseMessage response = await client.SendAsync(request);
-                if (response.IsSuccessStatusCode)
-                {
-                    return true;
-                }
-            }
-            catch (HttpRequestException)
-            {
-            }
-
-            return false;
+            _guestHoleState.SetState(true);
+            await _guestHoleConnector.Connect();
         }
 
         private bool IsLoginDisallowed(string username, SecureString password)
@@ -336,8 +318,7 @@ namespace ProtonVPN.Login.ViewModels
                     return;
                 }
 
-                _guestHoleState.SetState(true);
-                await _guestHoleConnector.Connect();
+                await ConnectToGuestHoleAsync();
             }
         }
 

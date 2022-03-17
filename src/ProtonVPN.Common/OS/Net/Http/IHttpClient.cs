@@ -18,18 +18,15 @@
  */
 
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ProtonVPN.Common.OS.Net.Http
 {
     public interface IHttpClient : IDisposable
     {
-        Uri BaseAddress { get; set; }
-
         TimeSpan Timeout { get; set; }
-
-        Task<IHttpResponseMessage> GetAsync(string requestUri);
-
+        Task<IHttpResponseMessage> GetAsync(string requestUri, CancellationToken ct = default);
         Task<IHttpResponseMessage> GetAsync(Uri requestUri);
     }
 }

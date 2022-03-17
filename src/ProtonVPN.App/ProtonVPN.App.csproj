@@ -197,6 +197,8 @@
     <Compile Include="ErrorHandling\NullLogger.cs" />
     <Compile Include="ErrorHandling\InstalledAppRegistry.cs" />
     <Compile Include="ErrorHandling\RepairLauncher.cs" />
+    <Compile Include="Login\ISignUpAvailabilityProvider.cs" />
+    <Compile Include="Login\SignUpAvailabilityProvider.cs" />
     <Compile Include="Modals\ApiActions\ActionableFailureApiResultEventHandler.cs" />
     <Compile Include="Modals\ApiActions\ApiActionModalViewModel.cs" />
     <Compile Include="Modals\ApiActions\ApiActionModalView.xaml.cs">
