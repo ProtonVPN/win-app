@@ -30,6 +30,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
              xmlns:icons="clr-namespace:ProtonVPN.Views.Icons"
              xmlns:killSwitch="clr-namespace:ProtonVPN.Common.KillSwitch;assembly=ProtonVPN.Common"
+             xmlns:resource="clr-namespace:ProtonVPN.Resource;assembly=ProtonVPN.Resource"
              mc:Ignorable="d"
              d:DesignWidth="440"
              d:DesignHeight="570"
@@ -262,12 +263,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </StackPanel>
         </StackPanel>
         <DockPanel Style="{StaticResource Footer}">
-            <Button Style="{StaticResource FooterButton}" Command="{Binding RegisterCommand}"
-                    AutomationProperties.AutomationId="{StaticResource CreateAccountButton}">
-                <Underline>
-                    <Run Text="{translations:Loc Login_lnk_CreateAccount}" />
-                </Underline>
-            </Button>
+            <DockPanel>
+                <Button Style="{StaticResource FooterButton}" Command="{Binding RegisterCommand}"
+                        AutomationProperties.AutomationId="{StaticResource CreateAccountButton}">
+                    <Underline>
+                        <Run Text="{translations:Loc Login_lnk_CreateAccount}" />
+                    </Underline>
+                </Button>
+                <Image Style="{StaticResource Spinner}"
+                       resource:ControlExtension.Spin="{Binding IsToShowSignUpSpinner}"
+                       Visibility="{Binding IsToShowSignUpSpinner, Converter={StaticResource BoolToVis}}" />
+            </DockPanel>
             <Grid HorizontalAlignment="Right">
                 <Popup Name="HelpPopup"
                        AllowsTransparency="True"

@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.ComponentModel;
 using System.Net.Http;
 using System.Security;
@@ -61,6 +62,8 @@ namespace ProtonVPN.Login.ViewModels
         private bool _showHelpBalloon;
         private bool _autoAuthFailed;
         private bool _networkBlocked;
+        private bool _isSignUpPageOpenPending;
+
         private VpnStatus _lastVpnStatus = VpnStatus.Disconnected;
         private bool _isToShowUsernameAndPassword = true;
         private bool _isToShowTwoFactorAuth;
@@ -76,6 +79,13 @@ namespace ProtonVPN.Login.ViewModels
         {
             get => _isToShowTwoFactorAuth;
             set => Set(ref _isToShowTwoFactorAuth, value);
+        }
+
+        private bool _isToShowSignUpSpinner;
+        public bool IsToShowSignUpSpinner
+        {
+            get => _isToShowSignUpSpinner;
+            set => Set(ref _isToShowSignUpSpinner, value);
         }
 
         public LoginViewModel(
@@ -212,14 +222,20 @@ namespace ProtonVPN.Login.ViewModels
 
             if (_guestHoleState.Active)
             {
-                if (e.State.Status == VpnStatus.Connected)
+                switch (e.State.Status)
                 {
-                    LoginAction();
-                }
-                else if (e.State.Status == VpnStatus.Disconnected)
-                {
-                    _guestHoleState.SetState(false);
-                    ShowLoginScreenWithTroubleshoot();
+                    case VpnStatus.Connected when _isSignUpPageOpenPending:
+                        IsToShowSignUpSpinner = false;
+                        _urls.RegisterUrl.Open();
+                        break;
+                    case VpnStatus.Connected:
+                        LoginAction();
+                        break;
+                    case VpnStatus.Disconnected:
+                        _guestHoleState.SetState(false);
+                        ShowLoginScreenWithTroubleshoot();
+                        IsToShowSignUpSpinner = false;
+                        break;
                 }
             }
 
@@ -245,9 +261,44 @@ namespace ProtonVPN.Login.ViewModels
             _urls.HelpUrl.Open();
         }
 
-        private void RegisterAction()
+        private async void RegisterAction()
         {
-            _urls.RegisterUrl.Open();
+            IsToShowSignUpSpinner = true;
+            bool isProtonReachable = await IsProtonReachableAsync();
+            if (isProtonReachable)
+            {
+                IsToShowSignUpSpinner = false;
+                _urls.RegisterUrl.Open();
+            }
+            else
+            {
+                _isSignUpPageOpenPending = true;
+                _guestHoleState.SetState(true);
+                await _guestHoleConnector.Connect();
+            }
+        }
+
+        private async Task<bool> IsProtonReachableAsync()
+        {
+            try
+            {
+                HttpClient client = new();
+                HttpRequestMessage request = new()
+                {
+                    Method = HttpMethod.Head,
+                    RequestUri = new Uri("https://protonvpn.com")
+                };
+                HttpResponseMessage response = await client.SendAsync(request);
+                if (response.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+            }
+            catch (HttpRequestException)
+            {
+            }
+
+            return false;
         }
 
         private bool IsLoginDisallowed(string username, SecureString password)
