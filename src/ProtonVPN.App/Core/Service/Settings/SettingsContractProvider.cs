@@ -28,10 +28,12 @@ namespace ProtonVPN.Core.Service.Settings
     public class SettingsContractProvider
     {
         private readonly IAppSettings _appSettings;
+        private readonly IUserStorage _userStorage;
 
-        public SettingsContractProvider(IAppSettings appSettings)
+        public SettingsContractProvider(IAppSettings appSettings, IUserStorage userStorage)
         {
             _appSettings = appSettings;
+            _userStorage = userStorage;
         }
 
         public SettingsContract GetSettingsContract(OpenVpnAdapter? openVpnAdapter = null)
@@ -45,7 +47,7 @@ namespace ProtonVPN.Core.Service.Settings
                     AppPaths = _appSettings.GetSplitTunnelApps(),
                     Ips = GetSplitTunnelIps()
                 },
-                ModerateNat = _appSettings.ModerateNat,
+                ModerateNat = !_userStorage.User().Empty() && _appSettings.ModerateNat,
                 NetShieldMode = _appSettings.IsNetShieldEnabled() ? _appSettings.NetShieldMode : 0,
                 SplitTcp = _appSettings.IsVpnAcceleratorEnabled(),
                 AllowNonStandardPorts = _appSettings.ShowNonStandardPortsToFreeUsers ? _appSettings.AllowNonStandardPorts : null,

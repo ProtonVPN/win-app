@@ -19,6 +19,7 @@
 
 using System;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ProtonVPN.Common.OS.Net.Http
@@ -32,20 +33,14 @@ namespace ProtonVPN.Common.OS.Net.Http
             _httpClient = httpClient;
         }
 
-        public Uri BaseAddress
-        {
-            get => _httpClient.BaseAddress;
-            set => _httpClient.BaseAddress = value;
-        }
-
         public TimeSpan Timeout
         {
             get => _httpClient.Timeout;
             set => _httpClient.Timeout = value;
         }
 
-        public async Task<IHttpResponseMessage> GetAsync(string requestUri) => 
-            new WrappedHttpResponseMessage(await _httpClient.GetAsync(requestUri));
+        public async Task<IHttpResponseMessage> GetAsync(string requestUri, CancellationToken ct) =>
+            new WrappedHttpResponseMessage(await _httpClient.GetAsync(requestUri, ct));
 
         public async Task<IHttpResponseMessage> GetAsync(Uri requestUri) =>
             new WrappedHttpResponseMessage(await _httpClient.GetAsync(requestUri));

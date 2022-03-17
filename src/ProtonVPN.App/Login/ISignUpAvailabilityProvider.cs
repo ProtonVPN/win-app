@@ -17,16 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
-using System.Threading;
 using System.Threading.Tasks;
 
-namespace ProtonVPN.Common.OS.Net.Http
+namespace ProtonVPN.Login
 {
-    public interface IHttpClient : IDisposable
+    public interface ISignUpAvailabilityProvider
     {
-        TimeSpan Timeout { get; set; }
-        Task<IHttpResponseMessage> GetAsync(string requestUri, CancellationToken ct = default);
-        Task<IHttpResponseMessage> GetAsync(Uri requestUri);
+        Task<bool> IsSignUpPageAccessibleAsync();
     }
 }

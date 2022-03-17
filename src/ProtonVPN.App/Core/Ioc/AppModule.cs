@@ -51,6 +51,7 @@ using ProtonVPN.Core.Window;
 using ProtonVPN.Core.Window.Popups;
 using ProtonVPN.Crypto;
 using ProtonVPN.FlashNotifications;
+using ProtonVPN.Login;
 using ProtonVPN.Map;
 using ProtonVPN.Modals;
 using ProtonVPN.Modals.Dialogs;
@@ -308,6 +309,7 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<AppExitInvoker>().As<IAppExitInvoker>().SingleInstance();
             builder.RegisterType<PortForwardingManager>().As<IPortForwardingManager>().SingleInstance();
             builder.RegisterType<PortForwardingNotifier>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<SignUpAvailabilityProvider>().As<ISignUpAvailabilityProvider>().SingleInstance();
         }
     }
 }

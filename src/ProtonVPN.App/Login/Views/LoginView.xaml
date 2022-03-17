@@ -271,6 +271,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </Underline>
                 </Button>
                 <Image Style="{StaticResource Spinner}"
+                       Margin="5,0,0,0"
                        resource:ControlExtension.Spin="{Binding IsToShowSignUpSpinner}"
                        Visibility="{Binding IsToShowSignUpSpinner, Converter={StaticResource BoolToVis}}" />
             </DockPanel>
