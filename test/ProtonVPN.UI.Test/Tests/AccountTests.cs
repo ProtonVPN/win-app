@@ -58,15 +58,15 @@ namespace ProtonVPN.UI.Test.Tests
             _mainWindow.ClickProfilesButton();
             _mainWindow.ConnectToAProfileByName("SecureCore");
             _mainWindowResults.CheckIfUpgradeRequiredModalIsShown("Secure Core");
-            _modalWindow.ClickCancelButton();
+            _modalWindow.ClickWindowsCloseButton();
 
             _mainWindow.ConnectToCountryViaPin("MX");
             _mainWindowResults.CheckIfUpgradeRequiredModalIsShown("Plus Server");
-            _modalWindow.ClickCancelButton();
+            _modalWindow.ClickWindowsCloseButton();
 
             _mainWindow.ConnectToAProfileByName("PaidCountry");
             _mainWindowResults.CheckIfUpgradeRequiredModalIsShown("Plus Server");
-            _modalWindow.ClickCancelButton();
+            _modalWindow.ClickWindowsCloseButton();
 
             _mainWindow.ClickHamburgerMenu()
                 .HamburgerMenu.ClickLogout();

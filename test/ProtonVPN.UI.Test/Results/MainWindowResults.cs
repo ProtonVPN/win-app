@@ -117,7 +117,8 @@ namespace ProtonVPN.UI.Test.Results
 
         public MainWindowResults CheckIfUpgradeRequiredModalIsShown(string serverName)
         {
-            CheckIfObjectWithNameIsDisplayed("Upgrade Required", "Free User is able to connect to " + serverName + " server");
+            CheckIfObjectWithNameIsDisplayed("When you upgrade to Plus", "Free User is able to connect to " + serverName + " server");
+            CheckIfObjectWithNameIsDisplayed("Upgrade", "Free User is able to connect to " + serverName + " server");
             return this;
         }
     }

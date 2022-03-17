@@ -166,6 +166,12 @@ namespace ProtonVPN.UI.Test.Windows
             return this;
         }
 
+        public MainWindow CloseSecureCoreWarningModal()
+        {
+            ClickOnObjectWithName("Activate Secure Core");
+            return this;
+        }
+
         public string GetTextBlockIpAddress()
         {
             string textBlockIpAddress = Session.FindElementByAccessibilityId("IPAddressTextBlock").Text.RemoveExtraText();
