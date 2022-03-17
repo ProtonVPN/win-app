@@ -37,6 +37,12 @@ namespace ProtonVPN.UI.Test.Windows
             return this;
         }
 
+        public ModalWindow ClickWindowsCloseButton()
+        {
+            ClickOnObjectWithId("ModalCloseButton");
+            return this;
+        }
+
         public ModalWindow MoveModalUp(int amountOfTimes)
         {
             Actions builder = new Actions(Session);
