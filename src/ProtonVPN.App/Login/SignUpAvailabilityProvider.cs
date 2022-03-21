@@ -21,20 +21,17 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using ProtonVPN.Common.OS.Net.Http;
-using ProtonVPN.Core.Api;
-using ProtonVPN.Core.Api.Contracts;
 
 namespace ProtonVPN.Login
 {
     public class SignUpAvailabilityProvider : ISignUpAvailabilityProvider
     {
         private const string PROTON_WEBSITE_URL = "https://protonvpn.com";
-        private readonly IApiClient _apiClient;
+        private const string PROTON_API_PING_URL = "https://account.protonvpn.com/api/tests/ping";
         private readonly IHttpClient _httpClient;
 
-        public SignUpAvailabilityProvider(IApiClient apiClient, IHttpClients httpClients)
+        public SignUpAvailabilityProvider(IHttpClients httpClients)
         {
-            _apiClient = apiClient;
             _httpClient = httpClients.Client();
             _httpClient.Timeout = TimeSpan.FromSeconds(3);
         }
@@ -48,10 +45,10 @@ namespace ProtonVPN.Login
         {
             try
             {
-                ApiResponseResult<BaseResponse> response = await _apiClient.GetPingResponseAsync();
-                return response.Success;
+                IHttpResponseMessage response = await _httpClient.GetAsync(PROTON_API_PING_URL);
+                return response.IsSuccessStatusCode;
             }
-            catch (HttpRequestException)
+            catch (Exception e) when (IsToHandleRequestException(e))
             {
                 return false;
             }
@@ -64,10 +61,15 @@ namespace ProtonVPN.Login
                 IHttpResponseMessage response = await _httpClient.GetAsync(PROTON_WEBSITE_URL);
                 return response.IsSuccessStatusCode;
             }
-            catch (Exception e) when (e is TimeoutException or TaskCanceledException)
+            catch (Exception e) when (IsToHandleRequestException(e))
             {
                 return false;
             }
+        }
+
+        private bool IsToHandleRequestException(Exception e)
+        {
+            return e is HttpRequestException or TimeoutException or TaskCanceledException;
         }
     }
 }
