@@ -50,21 +50,6 @@ namespace ProtonVPN.Core.Api
             _noCacheClient = noCacheClient;
         }
 
-        public async Task<ApiResponseResult<BaseResponse>> GetPingResponseAsync()
-        {
-            HttpRequestMessage request = GetRequest(HttpMethod.Get, "tests/ping");
-            try
-            {
-                using HttpResponseMessage response = await _client.SendAsync(request).ConfigureAwait(false);
-                string body = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-                return Logged(ApiResponseResult<BaseResponse>(body, response.StatusCode));
-            }
-            catch (Exception e) when (e.IsApiCommunicationException())
-            {
-                throw new HttpRequestException(e.Message, e);
-            }
-        }
-
         public async Task<ApiResponseResult<AuthResponse>> GetAuthResponse(AuthRequestData data)
         {
             HttpRequestMessage request = GetRequest(HttpMethod.Post, "auth");

@@ -48,8 +48,6 @@ namespace TestTools.ApiClient
             _client = client;
         }
 
-        public Task<ApiResponseResult<BaseResponse>> GetPingResponseAsync() => throw new NotImplementedException();
-
         public async Task<ApiResponseResult<AuthResponse>> GetAuthResponse(AuthRequestData data)
         {
             HttpRequestMessage request = GetRequest(HttpMethod.Post, "auth");
