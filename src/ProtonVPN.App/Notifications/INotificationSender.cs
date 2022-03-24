@@ -17,10 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Runtime.CompilerServices;
+
 namespace ProtonVPN.Notifications
 {
     public interface INotificationSender
     {
-        void Send(string title, string description);
+        void Send(string title, string description, [CallerFilePath] string sourceFilePath = "",
+            [CallerMemberName] string sourceMemberName = "", [CallerLineNumber] int sourceLineNumber = 0);
     }
 }
