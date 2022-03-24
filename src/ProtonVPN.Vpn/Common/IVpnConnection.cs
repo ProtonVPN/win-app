@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2021 Proton Technologies AG
+ * Copyright (c) 2022 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -32,7 +32,7 @@ namespace ProtonVPN.Vpn.Common
 
         void Connect(IReadOnlyList<VpnHost> servers, VpnConfig config, VpnCredentials credentials);
         void Disconnect(VpnError error = VpnError.None);
-        void UpdateAuthCertificate(string certificate);
         void SetFeatures(VpnFeatures vpnFeatures);
+        void UpdateAuthCertificate(string certificate);
     }
 }

@@ -1,5 +1,5 @@
 ﻿<!--
-Copyright (c) 2021 Proton Technologies AG
+Copyright (c) 2022 Proton Technologies AG
 
 This file is part of ProtonVPN.
 
@@ -24,7 +24,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:formElements="clr-namespace:ProtonVPN.BugReporting.FormElements"
              xmlns:steps="clr-namespace:ProtonVPN.BugReporting.Steps"
-             xmlns:adorners="http://gu.se/Adorners"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
              d:DataContext="{d:DesignInstance steps:FormViewModel}"
@@ -43,12 +42,20 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </Style.Triggers>
         </Style>
         <Style x:Key="AdornerTextStyle" TargetType="{x:Type TextBlock}">
+            <Setter Property="Foreground" Value="White"/>
             <Setter Property="Opacity" Value="0.5" />
             <Setter Property="FontStyle" Value="Oblique" />
             <Setter Property="TextWrapping" Value="Wrap" />
-            <Setter Property="Margin" Value="-7,0,0,0" />
-            <Setter Property="Padding" Value="0,0,60,0" />
-            <Setter Property="MaxWidth" Value="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType=ScrollViewer}}"/>
+            <Setter Property="Margin" Value="10,10,0,0" />
+            <Setter Property="IsHitTestVisible" Value="False" />
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Visibility" Value="Collapsed" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Text, ElementName=AdornedTextBox}" Value="">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+            </Style.Triggers>
         </Style>
     </UserControl.Resources>
     <StackPanel>
@@ -73,31 +80,33 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     <Run Text="{Binding Label}" Foreground="White" />
                                     <Run Style="{StaticResource Asterisk}" />
                                 </TextBlock>
-                                <TextBox BorderBrush="Transparent"
-                                         Background="#25272C"
-                                         TextWrapping="Wrap"
-                                         Text="{Binding Value, UpdateSourceTrigger=PropertyChanged}"
-                                         Foreground="White"
-                                         Padding="8"
-                                         adorners:Watermark.TextStyle="{StaticResource AdornerTextStyle}"
-                                         adorners:Watermark.Text="{Binding Placeholder}">
-                                    <TextBox.Style>
-                                        <Style TargetType="TextBox">
-                                            <Style.Triggers>
-                                                <DataTrigger
-                                                    Binding="{Binding Converter={StaticResource DataTypeConverter}}"
-                                                    Value="{x:Type formElements:MultiLineTextInput}">
-                                                    <Setter Property="Height" Value="100" />
-                                                </DataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </TextBox.Style>
-                                    <TextBox.Resources>
-                                        <Style TargetType="{x:Type Border}">
-                                            <Setter Property="CornerRadius" Value="3" />
-                                        </Style>
-                                    </TextBox.Resources>
-                                </TextBox>
+
+                                <Grid>
+                                    <TextBox BorderBrush="Transparent"
+                                             x:Name="AdornedTextBox"
+                                             Background="#25272C"
+                                             TextWrapping="Wrap"
+                                             Text="{Binding Value, UpdateSourceTrigger=PropertyChanged}"
+                                             Foreground="White"
+                                             Padding="8">
+                                        <TextBox.Style>
+                                            <Style TargetType="TextBox">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Converter={StaticResource DataTypeConverter}}" Value="{x:Type formElements:MultiLineTextInput}">
+                                                        <Setter Property="Height" Value="100" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBox.Style>
+                                        <TextBox.Resources>
+                                            <Style TargetType="{x:Type Border}">
+                                                <Setter Property="CornerRadius" Value="3" />
+                                            </Style>
+                                        </TextBox.Resources>
+                                    </TextBox>
+                                    <TextBlock Style="{StaticResource AdornerTextStyle}"
+                                               Text="{Binding Placeholder}" />
+                                </Grid>
                             </StackPanel>
                         </DataTemplate>
                         <DataTemplate DataType="{x:Type formElements:EmailInput}">
@@ -106,30 +115,32 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     <Run Foreground="White" Text="{Binding Label}" />
                                     <Run Foreground="Red" Text="*" />
                                 </TextBlock>
-                                <TextBox Background="#25272C"
-                                         Text="{Binding Value, UpdateSourceTrigger=PropertyChanged}"
-                                         Foreground="White"
-                                         Padding="8"
-                                         adorners:Watermark.TextStyle="{StaticResource AdornerTextStyle}"
-                                         adorners:Watermark.Text="{Binding Placeholder}">
-                                    <TextBox.Style>
-                                        <Style TargetType="TextBox">
-                                            <Setter Property="BorderBrush" Value="Transparent" />
-                                            <Style.Triggers>
-                                                <DataTrigger
-                                                    Binding="{Binding DataContext.IsEmailValid, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
-                                                    Value="False">
-                                                    <Setter Property="BorderBrush" Value="Red" />
-                                                </DataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </TextBox.Style>
-                                    <TextBox.Resources>
-                                        <Style TargetType="{x:Type Border}">
-                                            <Setter Property="CornerRadius" Value="3" />
-                                        </Style>
-                                    </TextBox.Resources>
-                                </TextBox>
+
+                                <Grid>
+                                    <TextBox Background="#25272C"
+                                             x:Name="AdornedTextBox"
+                                             Text="{Binding Value, UpdateSourceTrigger=PropertyChanged}"
+                                             Foreground="White"
+                                             Padding="8">
+                                        <TextBox.Style>
+                                            <Style TargetType="TextBox">
+                                                <Setter Property="BorderBrush" Value="Transparent" />
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding DataContext.IsEmailValid, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}" Value="False">
+                                                        <Setter Property="BorderBrush" Value="Red" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBox.Style>
+                                        <TextBox.Resources>
+                                            <Style TargetType="{x:Type Border}">
+                                                <Setter Property="CornerRadius" Value="3" />
+                                            </Style>
+                                        </TextBox.Resources>
+                                    </TextBox>
+                                    <TextBlock Style="{StaticResource AdornerTextStyle}"
+                                               Text="{Binding Placeholder}" />
+                                </Grid>
                             </StackPanel>
                         </DataTemplate>
                         <DataTemplate DataType="{x:Type formElements:SingleLineTextInput}">

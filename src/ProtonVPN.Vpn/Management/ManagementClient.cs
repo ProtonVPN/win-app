@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2022 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -19,6 +19,8 @@
 
 using System;
 using System.IO;
+using System.Net;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.Common;
@@ -26,6 +28,7 @@ using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.ConnectionLogs;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Vpn.Common;
+using ProtonVPN.Vpn.Gateways;
 
 namespace ProtonVPN.Vpn.Management
 {
@@ -36,6 +39,7 @@ namespace ProtonVPN.Vpn.Management
     {
         private readonly ILogger _logger;
         private readonly MessagingManagementChannel _managementChannel;
+        private readonly IGatewayCache _gatewayCache;
 
         private VpnError _lastError;
         private VpnCredentials _credentials;
@@ -44,14 +48,15 @@ namespace ProtonVPN.Vpn.Management
         private bool _disconnectRequested;
         private bool _disconnectAccepted;
 
-        public ManagementClient(ILogger logger, IManagementChannel managementChannel)
-            : this(logger, new MessagingManagementChannel(logger, managementChannel))
+        public ManagementClient(ILogger logger, IGatewayCache gatewayCache, IManagementChannel managementChannel)
+            : this(logger, gatewayCache, new MessagingManagementChannel(logger, managementChannel))
         {
         }
 
-        internal ManagementClient(ILogger logger, MessagingManagementChannel managementChannel)
+        internal ManagementClient(ILogger logger, IGatewayCache gatewayCache, MessagingManagementChannel managementChannel)
         {
             _logger = logger;
+            _gatewayCache = gatewayCache;
             _managementChannel = managementChannel;
         }
 
@@ -174,6 +179,11 @@ namespace ProtonVPN.Vpn.Management
                 await TrySend(_managementChannel.Messages.Password(_credentials.Password));
                 handled = true;
             }
+            else if (message.IsControlMessage)
+            {
+                HandleControlMessage(message);
+                handled = true;
+            }
 
             if (handled)
             {
@@ -203,6 +213,16 @@ namespace ProtonVPN.Vpn.Management
             else if (message.IsLogSet)
             {
                 await TrySend(_managementChannel.Messages.HoldRelease());
+            }
+        }
+
+        private void HandleControlMessage(ReceivedManagementMessage message)
+        {
+            MatchCollection regex = Regex.Matches(message.ToString(), @"route-gateway ([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)");
+            if (regex.Count > 0 && regex[0].Groups.Count >= 2)
+            {
+                IPAddress gatewayIPAddress = IPAddress.Parse(regex[0].Groups[1].Value);
+                _gatewayCache.Save(gatewayIPAddress);
             }
         }
 

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2021 Proton Technologies AG
+ * Copyright (c) 2022 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -206,8 +206,8 @@ namespace ProtonVPN.Vpn.Connection
 
         private async Task<bool> IsEndpointRespondingAsync(VpnEndpoint endpoint, CancellationToken cancellationToken)
         {
-            OnStateChanged(new VpnState(VpnStatus.Pinging, VpnError.None, string.Empty,
-                endpoint.Server.Ip, _config.VpnProtocol, _config.OpenVpnAdapter, endpoint.Server.Label));
+            OnStateChanged(new VpnState(VpnStatus.Pinging, VpnError.None, string.Empty, endpoint.Server.Ip, 
+                _config.VpnProtocol, openVpnAdapter: _config.OpenVpnAdapter, label: endpoint.Server.Label));
 
             VpnEndpoint bestEndpoint = await _endpointScanner.ScanForBestEndpointAsync(
                 endpoint, _config.Ports, _config.PreferredProtocols, cancellationToken);
@@ -314,8 +314,8 @@ namespace ProtonVPN.Vpn.Connection
                 state.LocalIp,
                 state.RemoteIp,
                 state.VpnProtocol,
-                state.OpenVpnAdapter,
-                state.Label);
+                openVpnAdapter: state.OpenVpnAdapter,
+                label: state.Label);
         }
 
         private void OnStateChanged(VpnState state)

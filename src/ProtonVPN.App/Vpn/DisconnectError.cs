@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2022 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -21,6 +21,7 @@ using System;
 using System.Dynamic;
 using System.Threading;
 using System.Threading.Tasks;
+using ProtonVPN.Account;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.ConnectLogs;
@@ -59,6 +60,7 @@ namespace ProtonVPN.Vpn
         private readonly IAuthCertificateManager _authCertificateManager;
         private readonly IVpnServiceManager _vpnServiceManager;
         private readonly INetworkAdapterValidator _networkAdapterValidator;
+        private readonly IVpnInfoUpdater _vpnInfoUpdater;
         private readonly ILogger _logger;
 
         private string _lastAuthCertificate = string.Empty;
@@ -76,6 +78,7 @@ namespace ProtonVPN.Vpn
             IAuthCertificateManager authCertificateManager,
             IVpnServiceManager vpnServiceManager,
             INetworkAdapterValidator networkAdapterValidator,
+            IVpnInfoUpdater vpnInfoUpdater,
             ILogger logger)
         {
             _modals = modals;
@@ -90,6 +93,7 @@ namespace ProtonVPN.Vpn
             _authCertificateManager = authCertificateManager;
             _vpnServiceManager = vpnServiceManager;
             _networkAdapterValidator = networkAdapterValidator;
+            _vpnInfoUpdater = vpnInfoUpdater;
             _logger = logger;
         }
 
@@ -183,6 +187,9 @@ namespace ProtonVPN.Vpn
                     break;
                 case VpnError.ServerUnreachable:
                     await OnServerUnreachableError();
+                    break;
+                case VpnError.PlanNeedsToBeUpgraded:
+                    await _vpnInfoUpdater.Update();
                     break;
                 default:
                     ShowDisconnectErrorModalViewModel(error, e.NetworkBlocked);

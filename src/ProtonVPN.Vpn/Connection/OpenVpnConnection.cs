@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2022 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -46,6 +46,7 @@ namespace ProtonVPN.Vpn.Connection
         private const int ManagementPasswordLength = 16;
 
         private readonly ILogger _logger;
+        private readonly ProtonVPN.Common.Configuration.Config _config;
         private readonly INetworkInterfaceLoader _networkInterfaceLoader;
         private readonly OpenVpnProcess _process;
         private readonly ManagementClient _managementClient;
@@ -58,15 +59,17 @@ namespace ProtonVPN.Vpn.Connection
         private VpnEndpoint _endpoint;
         private VpnCredentials _credentials;
         private VpnError _disconnectError = VpnError.Unknown;
-        private VpnConfig _config;
+        private VpnConfig _vpnConfig;
 
         public OpenVpnConnection(
             ILogger logger,
+            ProtonVPN.Common.Configuration.Config config,
             INetworkInterfaceLoader networkInterfaceLoader,
             OpenVpnProcess process,
             ManagementClient managementClient)
         {
             _logger = logger;
+            _config = config;
             _networkInterfaceLoader = networkInterfaceLoader;
             _process = process;
             _managementClient = managementClient;
@@ -86,9 +89,9 @@ namespace ProtonVPN.Vpn.Connection
 
         public InOutBytes Total { get; private set; } = InOutBytes.Zero;
 
-        public void Connect(VpnEndpoint endpoint, VpnCredentials credentials, VpnConfig config)
+        public void Connect(VpnEndpoint endpoint, VpnCredentials credentials, VpnConfig vpnConfig)
         {
-            _config = config;
+            _vpnConfig = vpnConfig;
             _endpoint = endpoint;
             _credentials = credentials;
 
@@ -114,6 +117,11 @@ namespace ProtonVPN.Vpn.Connection
             _logger.Info<ConnectStartLog>("Connect action started");
 
             OnStateChanged(VpnStatus.Connecting);
+            if (!WriteConfig())
+            {
+                Disconnect(VpnError.Unknown);
+                return;
+            }
 
             int port = _managementPorts.Port();
             string password = ManagementPassword();
@@ -122,10 +130,10 @@ namespace ProtonVPN.Vpn.Connection
                 _endpoint,
                 port,
                 password,
-                _config.CustomDns,
-                _config.SplitTunnelMode,
-                _config.SplitTunnelIPs,
-                _config.OpenVpnAdapter,
+                _vpnConfig.CustomDns,
+                _vpnConfig.SplitTunnelMode,
+                _vpnConfig.SplitTunnelIPs,
+                _vpnConfig.OpenVpnAdapter,
                 GetNetworkInterfaceIdOrEmpty());
 
             cancellationToken.ThrowIfCancellationRequested();
@@ -150,9 +158,25 @@ namespace ProtonVPN.Vpn.Connection
             cancellationToken.ThrowIfCancellationRequested();
         }
 
+        private bool WriteConfig()
+        {
+            try
+            {
+                ConfigTemplate template = new();
+                string content = template.GetConfig(_credentials);
+                File.WriteAllText(_config.OpenVpn.ConfigPath, content);
+                return true;
+            }
+            catch (Exception e)
+            {
+                _logger.Error<ConnectionErrorLog>("Failed to update OpenVPN config file.", e);
+                return false;
+            }
+        }
+
         private string GetNetworkInterfaceIdOrEmpty()
         {
-            return _networkInterfaceLoader.GetByVpnProtocol(_config.VpnProtocol, _config.OpenVpnAdapter)?.Id ?? string.Empty;
+            return _networkInterfaceLoader.GetByVpnProtocol(_vpnConfig.VpnProtocol, _vpnConfig.OpenVpnAdapter)?.Id ?? string.Empty;
         }
 
         private string ManagementPassword()
@@ -265,7 +289,8 @@ namespace ProtonVPN.Vpn.Connection
                 e.Data.LocalIp,
                 e.Data.RemoteIp,
                 _endpoint.VpnProtocol,
-                _config.OpenVpnAdapter,
+                _vpnConfig.PortForwarding,
+                _vpnConfig.OpenVpnAdapter,
                 e.Data.Label);
 
             if ((state.Status == VpnStatus.Pinging || state.Status == VpnStatus.Connecting || state.Status == VpnStatus.Reconnecting) &&
@@ -277,6 +302,7 @@ namespace ProtonVPN.Vpn.Connection
                     string.Empty,
                     _endpoint.Server.Ip,
                     _endpoint.VpnProtocol,
+                    _vpnConfig.PortForwarding,
                     state.OpenVpnAdapter,
                     _endpoint.Server.Label);
             }
@@ -302,14 +328,14 @@ namespace ProtonVPN.Vpn.Connection
                 case VpnStatus.Pinging:
                 case VpnStatus.Connecting:
                     state = new VpnState(status, VpnError.None, string.Empty, _endpoint.Server.Ip,
-                        _endpoint.VpnProtocol, _config.OpenVpnAdapter, _endpoint.Server.Label);
+                        _endpoint.VpnProtocol, _vpnConfig.PortForwarding, _vpnConfig.OpenVpnAdapter, _endpoint.Server.Label);
                     break;
                 case VpnStatus.Disconnecting:
                 case VpnStatus.Disconnected:
-                    state = new VpnState(status, _disconnectError, _config?.VpnProtocol ?? VpnProtocol.Smart);
+                    state = new VpnState(status, _disconnectError, _vpnConfig?.VpnProtocol ?? VpnProtocol.Smart);
                     break;
                 default:
-                    state = new VpnState(status, VpnError.None, _config?.VpnProtocol ?? VpnProtocol.Smart);
+                    state = new VpnState(status, VpnError.None, _vpnConfig?.VpnProtocol ?? VpnProtocol.Smart);
                     break;
             }
 

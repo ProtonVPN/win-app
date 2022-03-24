@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Proton Technologies AG
+ * Copyright (c) 2022 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -23,6 +23,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
+using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Config.Url;
@@ -34,6 +35,9 @@ using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Modals;
+using ProtonVPN.Modals.Upsell;
+using ProtonVPN.PortForwarding;
+using ProtonVPN.PortForwarding.ActivePorts;
 using ProtonVPN.Profiles;
 using ProtonVPN.Resource;
 using ProtonVPN.Settings.ReconnectNotification;
@@ -44,51 +48,62 @@ namespace ProtonVPN.Settings
 {
     public class SettingsModalViewModel : BaseModalViewModel, IVpnStateAware
     {
+        private readonly IUserStorage _userStorage;
         private readonly IAppSettings _appSettings;
         private readonly IVpnManager _vpnManager;
-        private readonly ProfileViewModelFactory _profileViewModelFactory;
         private readonly IDialogs _dialogs;
+        private readonly IModals _modals;
         private readonly IActiveUrls _urls;
         private readonly ILanguageProvider _languageProvider;
+        private readonly IPortForwardingManager _portForwardingManager;
         private readonly ReconnectState _reconnectState;
+        private readonly ProfileViewModelFactory _profileViewModelFactory;
 
         private IReadOnlyList<ProfileViewModel> _autoConnectProfiles;
         private IReadOnlyList<ProfileViewModel> _quickConnectProfiles;
         private VpnStatus _vpnStatus;
 
-        private readonly ProfileViewModel _profileDisabledOption = new(new()
-        {
-            Id = "", Name = Translation.Get("Settings_val_Disabled"), ColorCode = "#777783"
-        });
-
         public SettingsModalViewModel(
+            IUserStorage userStorage,
             IAppSettings appSettings,
             IVpnManager vpnManager,
             IDialogs dialogs,
+            IModals modals,
             IActiveUrls urls,
             ILanguageProvider languageProvider,
+            IPortForwardingManager portForwardingManager,
             ReconnectState reconnectState,
             ProfileViewModelFactory profileViewModelFactory,
             SplitTunnelingViewModel splitTunnelingViewModel,
-            CustomDnsListViewModel customDnsListViewModel)
+            CustomDnsListViewModel customDnsListViewModel,
+            PortForwardingActivePortViewModel activePortViewModel)
         {
-            _dialogs = dialogs;
+            _userStorage = userStorage;
             _appSettings = appSettings;
             _vpnManager = vpnManager;
-            _profileViewModelFactory = profileViewModelFactory;
+            _dialogs = dialogs;
+            _modals = modals;
             _urls = urls;
             _languageProvider = languageProvider;
+            _portForwardingManager = portForwardingManager;
             _reconnectState = reconnectState;
-
+            _profileViewModelFactory = profileViewModelFactory;
             SplitTunnelingViewModel = splitTunnelingViewModel;
             Ips = customDnsListViewModel;
 
+            ActivePortViewModel = activePortViewModel;
+            ActivePortViewModel.PropertyChanged += OnActivePortViewModelPropertyChanged;
+
             ReconnectCommand = new RelayCommand(ReconnectAction);
             UpgradeCommand = new RelayCommand(UpgradeAction);
+            LearnMoreAboutPortForwardingCommand = new RelayCommand(LearnMoreAboutPortForwardingAction);
         }
+
+        public PortForwardingActivePortViewModel ActivePortViewModel { get; }
 
         public ICommand ReconnectCommand { get; set; }
         public ICommand UpgradeCommand { get; set; }
+        public ICommand LearnMoreAboutPortForwardingCommand { get; set; }
 
         public IpListViewModel Ips { get; }
 
@@ -160,6 +175,24 @@ namespace ProtonVPN.Settings
             }
         }
 
+        public bool AllowNonStandardPorts
+        {
+            get => _appSettings.AllowNonStandardPorts;
+            set
+            {
+                if (value && !_userStorage.User().Paid())
+                {
+                    _modals.Show<NonStandardPortsUpsellModalViewModel>();
+                    return;
+                }
+
+                _appSettings.AllowNonStandardPorts = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+        public bool ShowAllowNonStandardPorts => _appSettings.ShowNonStandardPortsToFreeUsers;
+
         public bool VpnAccelerator
         {
             get => _appSettings.VpnAcceleratorEnabled;
@@ -222,6 +255,61 @@ namespace ProtonVPN.Settings
             }
         }
 
+        public bool PortForwarding
+        {
+            get => _appSettings.PortForwardingEnabled;
+            set
+            {
+                if (_appSettings.PortForwardingEnabled != value)
+                {
+                    if (value)
+                    {
+                        _portForwardingManager.EnableAsync().Wait();
+                    }
+                    else
+                    {
+                        _portForwardingManager.DisableAsync().Wait();
+                    }
+                    NotifyOfPropertyChange();
+                }
+            }
+        }
+
+        public bool IsToShowPortForwarding
+        {
+            get => _appSettings.FeaturePortForwardingEnabled;
+        }
+
+        public bool PortForwardingInQuickSettings
+        {
+            get => _appSettings.PortForwardingInQuickSettings;
+            set
+            {
+                _appSettings.PortForwardingInQuickSettings = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+        public bool IsToShowPortForwardingNotifications
+        {
+            get
+            {
+                return _appSettings.FeaturePortForwardingEnabled && ShowNotifications;
+            }
+        }
+
+        public bool PortForwardingNotifications
+        {
+            get => _appSettings.PortForwardingNotificationsEnabled;
+            set
+            {
+                _appSettings.PortForwardingNotificationsEnabled = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+        public bool HasPortForwardingValue => ActivePortViewModel.HasPortForwardingValue;
+
         public bool DoHEnabled
         {
             get => _appSettings.DoHEnabled;
@@ -276,7 +364,11 @@ namespace ProtonVPN.Settings
         public bool ShowNotifications
         {
             get => _appSettings.ShowNotifications;
-            set => _appSettings.ShowNotifications = value;
+            set
+            {
+                _appSettings.ShowNotifications = value;
+                NotifyOfPropertyChange();
+            }
         }
 
         public bool StartOnStartup
@@ -286,7 +378,7 @@ namespace ProtonVPN.Settings
         }
 
         public bool HardwareAccelerationEnabled
-        { 
+        {
             get => _appSettings.HardwareAccelerationEnabled;
             set => _appSettings.HardwareAccelerationEnabled = value;
         }
@@ -305,17 +397,22 @@ namespace ProtonVPN.Settings
             }
         }
 
-        public List<LanguageViewModel> Languages
-        {
-            get
-            {
-                var languages = _languageProvider
-                    .GetAll()
-                    .Select(lang => new LanguageViewModel {Code = lang, Title = StringResource.Get($"Language_{lang}")})
-                    .ToList();
+        public List<LanguageViewModel> Languages => GetLanguages();
 
-                return GetSorted(languages);
+        private List<LanguageViewModel> GetLanguages()
+        {
+            List<string> languageCodes = _languageProvider.GetAll();
+            List<LanguageViewModel> languageViewModels = new();
+            foreach (string languageCode in languageCodes)
+            {
+                string title = StringResource.Get($"Language_{languageCode}");
+                if (!title.IsNullOrEmpty())
+                {
+                    languageViewModels.Add(new() { Code = languageCode, Title = title });
+                }
             }
+
+            return languageViewModels.OrderBy(l => l.Code).ToList();
         }
 
         public string SelectedLanguage
@@ -438,6 +535,11 @@ namespace ProtonVPN.Settings
                 NotifyOfPropertyChange(() => IsToShowSmartReconnect);
                 NotifyOfPropertyChange(() => IsToShowSmartReconnectNotifications);
             }
+            else if (e.PropertyName.Equals(nameof(IAppSettings.FeaturePortForwardingEnabled)))
+            {
+                NotifyOfPropertyChange(() => IsToShowPortForwarding);
+                NotifyOfPropertyChange(() => IsToShowPortForwardingNotifications);
+            }
             else if (e.PropertyName.Equals(nameof(IAppSettings.SmartReconnectEnabled)))
             {
                 NotifyOfPropertyChange(() => IsSmartReconnectNotificationsEditable);
@@ -458,6 +560,7 @@ namespace ProtonVPN.Settings
         {
             NotifyOfPropertyChange(() => ShowNotifications);
             NotifyOfPropertyChange(() => IsToShowSmartReconnectNotifications);
+            NotifyOfPropertyChange(() => IsToShowPortForwardingNotifications);
         }
 
         public async void OnLanguageChanged()
@@ -472,7 +575,7 @@ namespace ProtonVPN.Settings
 
             NotifyOfPropertyChange(() => StartMinimizedModes);
             NotifyOfPropertyChange(() => StartMinimized);
-
+            
             await LoadProfiles();
         }
 
@@ -491,21 +594,37 @@ namespace ProtonVPN.Settings
         {
             await LoadAutoConnectProfiles();
             await LoadQuickConnectProfiles();
+
             AutoConnect = GetSelectedAutoConnectProfile();
+            NotifyOfPropertyChange(() => AutoConnect);
+
             QuickConnect = GetSelectedQuickConnectProfile();
+            NotifyOfPropertyChange(() => QuickConnect);
         }
 
         private async Task LoadAutoConnectProfiles()
         {
-            List<ProfileViewModel> profiles = new() {_profileDisabledOption};
+            List<ProfileViewModel> profiles = new() { CreateDisabledProfileViewModel() };
             profiles.AddRange(await GetProfiles());
 
             AutoConnectProfiles = profiles;
+            NotifyOfPropertyChange(() => AutoConnectProfiles);
+        }
+
+        private ProfileViewModel CreateDisabledProfileViewModel()
+        {
+            return new(CreateDisabledProfile());
+        }
+
+        private Profile CreateDisabledProfile()
+        {
+            return new() { Id = "", Name = Translation.Get("Settings_val_Disabled"), ColorCode = "#777783" };
         }
 
         private async Task LoadQuickConnectProfiles()
         {
             QuickConnectProfiles = await GetProfiles();
+            NotifyOfPropertyChange(() => QuickConnectProfiles);
         }
 
         private async Task<List<ProfileViewModel>> GetProfiles()
@@ -521,7 +640,7 @@ namespace ProtonVPN.Settings
             ProfileViewModel profile = AutoConnectProfiles.FirstOrDefault(p => p.Id == _appSettings.AutoConnect);
             if (profile == null)
             {
-                return _profileDisabledOption;
+                return CreateDisabledProfileViewModel();
             }
 
             return profile;
@@ -548,9 +667,14 @@ namespace ProtonVPN.Settings
             _urls.AccountUrl.Open();
         }
 
-        private List<LanguageViewModel> GetSorted(List<LanguageViewModel> collection)
+        private void LearnMoreAboutPortForwardingAction()
         {
-            return collection.OrderBy(l => l.Code).ToList();
+            _urls.AboutPortForwardingUrl.Open();
+        }
+
+        private void OnActivePortViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            NotifyOfPropertyChange(e.PropertyName);
         }
     }
 }

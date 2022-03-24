@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2022 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -70,13 +70,13 @@ namespace ProtonVPN.Servers
             _streamingServices = streamingServices;
         }
 
-        public override void LoadServers(string searchQuery = "")
+        public override void LoadServers(string searchQuery = "", Features orderBy = Features.None)
         {
             var serverListItems = new ObservableCollection<IServerListItem>();
 
             foreach (sbyte tier in GetTierOrderByUserTier())
             {
-                IReadOnlyCollection<Server> servers = GetServersByTierAndSearchQuery(tier, searchQuery);
+                IReadOnlyCollection<Server> servers = GetServersByTierAndSearchQuery(tier, searchQuery, orderBy);
                 if (servers.Count == 0)
                 {
                     continue;
@@ -114,9 +114,9 @@ namespace ProtonVPN.Servers
             }
         }
 
-        private IReadOnlyCollection<Server> GetServersByTierAndSearchQuery(sbyte tier, string searchQuery)
+        private IReadOnlyCollection<Server> GetServersByTierAndSearchQuery(sbyte tier, string searchQuery, Features orderBy)
         {
-            IReadOnlyCollection<Server> list = _serverManager.GetServers(GetServerSpec(tier));
+            IReadOnlyCollection<Server> list = _serverManager.GetServers(GetServerSpec(tier), orderBy);
             if (!string.IsNullOrEmpty(searchQuery))
             {
                 list = list.Where(s => s.MatchesSearchCriteria(searchQuery)).ToList();

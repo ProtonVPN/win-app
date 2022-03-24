@@ -8,6 +8,7 @@ stages:
   - test
   - sign
   - build-installer
+  - publish-to-slack
   - ui-test
   - installation-test
   - mirror
@@ -203,3 +204,13 @@ create-release:
   script:
     - apt-get update && apt-get install -y python3 python3-pip git
     - python3 ci/release.py
+    
+send-slack-notification:
+  tags:
+    - windows
+  only:
+    refs:
+      - develop
+  stage: publish-to-slack
+  script:
+    - python ci\main.py send-slack-notification

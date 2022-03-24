@@ -1,5 +1,5 @@
 ﻿<!--
-Copyright (c) 2020 Proton Technologies AG
+Copyright (c) 2022 Proton Technologies AG
 
 This file is part of ProtonVPN.
 
@@ -38,6 +38,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <system:String x:Key="StartMinimizedCombobox">StartMinimizedCombobox</system:String>
     <system:String x:Key="ProtocolCombobox">StartMinimizedCombobox</system:String>
     <system:String x:Key="Ipv6ProtectionCheckbox">Ipv6ProtectionCheckbox</system:String>
+    <system:String x:Key="AllowNonStandardPortsCheckbox">AllowNonStandardPortsCheckbox</system:String>
     <system:String x:Key="HardwareAccelerationCheckbox">HardwareAccelerationCheckbox</system:String>
     <system:String x:Key="NetworkDriverCheckbox">NetworkDriverCheckbox</system:String>
     <system:String x:Key="ShowNotificationsCheckbox">ShowNotificationsCheckbox</system:String>
@@ -82,4 +83,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <system:String x:Key="IncludeModeRadioButton">IncludeModeRadioButton</system:String>
     <system:String x:Key="SplitTunnelTextBlock">SplitTunnelTextBlock</system:String>
     <system:String x:Key="AddIpAddressButton">AddIpAddressButton</system:String>
+    <system:String x:Key="PortForwardingCheckbox">PortForwardingCheckbox</system:String>
+    <system:String x:Key="PortForwardingInQuickSettingsCheckbox">PortForwardingInQuickSettingsCheckbox</system:String>
+    <system:String x:Key="PortForwardingNotificationsCheckbox">PortForwardingNotificationsCheckbox</system:String>
+    <system:String x:Key="PortForwardingButton">PortForwardingButton</system:String>
+    <system:String x:Key="PortForwardingOnButton">PortForwardingOnButton</system:String>
+    <system:String x:Key="PortForwardingOffButton">PortForwardingOffButton</system:String>
 </ResourceDictionary>

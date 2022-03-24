@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2022 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -59,6 +59,8 @@ namespace ProtonVPN.Vpn.Management
         public bool IsError => ManagementError.ContainsError(_messageText);
 
         public bool IsDisconnectReceived => _messageText.StartsWithIgnoringCase("SUCCESS: signal SIGTERM thrown");
+
+        public bool IsControlMessage => _messageText.ContainsIgnoringCase("PUSH: Received control message");
 
         public InOutBytes Bandwidth()
         {

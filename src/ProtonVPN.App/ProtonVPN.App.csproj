@@ -116,6 +116,7 @@
     </Compile>
     <Compile Include="About\LicenseModalViewModel.cs" />
     <Compile Include="About\ReleaseEqualityComparer.cs" />
+    <Compile Include="Account\IVpnInfoUpdater.cs" />
     <Compile Include="BugReporting\Actions\CategoryAction.cs" />
     <Compile Include="BugReporting\Actions\FinishReportAction.cs" />
     <Compile Include="BugReporting\Actions\FormStateChange.cs" />
@@ -162,6 +163,7 @@
     <Compile Include="Core\ExpiredSessionHandler.cs" />
     <Compile Include="Core\HardwareAccelerationManager.cs" />
     <Compile Include="Core\ILanguageProvider.cs" />
+    <Compile Include="Core\IShutdownInvoker.cs" />
     <Compile Include="Core\Language.cs" />
     <Compile Include="Core\LanguageProvider.cs" />
     <Compile Include="Core\MVVM\Converters\InvertedBoolConverter.cs" />
@@ -184,6 +186,7 @@
     <Compile Include="Core\Service\Vpn\VpnReconnectionSettings.cs" />
     <Compile Include="Core\Service\Vpn\VpnReconnectionSteps.cs" />
     <Compile Include="Core\Service\Vpn\VpnReconnector.cs" />
+    <Compile Include="Core\ShutdownInvoker.cs" />
     <Compile Include="Core\SystemTimeValidator.cs" />
     <Compile Include="Modals\ApiActions\ActionableFailureApiResultEventHandler.cs" />
     <Compile Include="Modals\ApiActions\ApiActionModalViewModel.cs" />
@@ -198,6 +201,10 @@
     <Compile Include="HumanVerification\HumanVerificationViewModel.cs" />
     <Compile Include="HumanVerification\HumanVerifier.cs" />
     <Compile Include="HumanVerification\WebViewConfig.cs" />
+    <Compile Include="Modals\DiscourageSecureCoreModalView.xaml.cs">
+      <DependentUpon>DiscourageSecureCoreModalView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modals\DiscourageSecureCoreModalViewModel.cs" />
     <Compile Include="Modals\AssignVpnConnectionsModalViewModel.cs" />
     <Compile Include="Modals\ExitModalView.xaml.cs">
       <DependentUpon>ExitModalView.xaml</DependentUpon>
@@ -213,12 +220,29 @@
     <Compile Include="Modals\AssignVpnConnectionsModalView.xaml.cs">
       <DependentUpon>AssignVpnConnectionsModalView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Modals\Upsell\NonStandardPortsUpsellModalViewModel.cs" />
+    <Compile Include="Modals\Upsell\NonStandardPortsUpsellModalView.xaml.cs">
+      <DependentUpon>NonStandardPortsUpsellModalView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modals\Upsell\PortForwardingUpsellModalView.xaml.cs">
+      <DependentUpon>PortForwardingUpsellModalView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modals\Upsell\PortForwardingUpsellModalViewModel.cs" />
     <Compile Include="Modals\Welcome\WelcomeModalManager.cs" />
     <Compile Include="Notifications\INotificationSender.cs" />
     <Compile Include="Notifications\INotificationUserActionHandler.cs" />
     <Compile Include="Notifications\NotificationSender.cs" />
     <Compile Include="Notifications\NotificationUserAction.cs" />
     <Compile Include="Notifications\NotificationUserActionHandler.cs" />
+    <Compile Include="PortForwarding\ActivePorts\PortForwardingActivePortView.xaml.cs">
+      <DependentUpon>PortForwardingActivePortView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PortForwarding\ActivePorts\PortForwardingActivePortViewModel.cs" />
+    <Compile Include="PortForwarding\IPortForwardingManager.cs" />
+    <Compile Include="PortForwarding\IPortForwardingNotifier.cs" />
+    <Compile Include="PortForwarding\PortForwardingManager.cs" />
+    <Compile Include="PortForwarding\PortForwardingNotifier.cs" />
+    <Compile Include="PortForwarding\PortForwardingColorPalette.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -226,8 +250,6 @@
     </Compile>
     <Compile Include="Settings\Migrations\v1_22_0\AppSettingsMigration.cs" />
     <Compile Include="Settings\ReconnectNotification\OpenVpnDriverSetting.cs" />
-    <Compile Include="Settings\ReconnectNotification\NetShieldSetting.cs" />
-    <Compile Include="Settings\ReconnectNotification\VpnAcceleratorSetting.cs" />
     <Compile Include="Sidebar\CountryFeatures\CountryFeaturesPopup.cs" />
     <Compile Include="Sidebar\CountryFeatures\CountryFeaturesPopupView.xaml.cs">
       <DependentUpon>CountryFeaturesPopupView.xaml</DependentUpon>
@@ -353,7 +375,7 @@
     <Compile Include="Notifications\UpdateNotification.cs" />
     <Compile Include="Core\Startup\ElevatedApplication.cs" />
     <Compile Include="About\UpdateViewModel.cs" />
-    <Compile Include="Account\VpnInfoChecker.cs" />
+    <Compile Include="Account\VpnInfoUpdater.cs" />
     <Compile Include="Account\VpnPlanHelper.cs" />
     <Compile Include="BugReporting\Attachments\Attachment.cs" />
     <Compile Include="BugReporting\Attachments\Attachments.cs" />
@@ -422,8 +444,6 @@
     <Compile Include="Core\MVVM\Converters\TabIndexToFirstLastConverter.cs" />
     <Compile Include="Core\AppExitHandler.cs" />
     <Compile Include="Core\UserLocationService.cs" />
-    <Compile Include="Core\Service\Vpn\IVpnServiceManager.cs" />
-    <Compile Include="Core\Service\Vpn\VpnConnectionRequest.cs" />
     <Compile Include="Core\Service\Vpn\VpnConnectionSpeed.cs" />
     <Compile Include="Core\Service\Vpn\VpnEvents.cs" />
     <Compile Include="Core\Service\Vpn\VpnManager.cs" />
@@ -455,10 +475,6 @@
       <DependentUpon>DisconnectErrorModalView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modals\DisconnectErrorModalViewModel.cs" />
-    <Compile Include="Modals\Upsell\NoServerDueTierUpsellModalViewModel.cs" />
-    <Compile Include="Modals\Upsell\NoServerDueTierUpsellModalView.xaml.cs">
-      <DependentUpon>NoServerDueTierUpsellModalView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Modals\SessionLimits\MaximumDeviceLimitModalView.xaml.cs">
       <DependentUpon>MaximumDeviceLimitModalView.xaml</DependentUpon>
     </Compile>
@@ -570,10 +586,6 @@
       <DependentUpon>EnjoyingUpsellPopupView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\Popups\Upsell\EnjoyingUpsellPopupViewModel.cs" />
-    <Compile Include="Modals\Upsell\NoServerInCountryDueTierUpsellModalView.xaml.cs">
-      <DependentUpon>NoServerInCountryDueTierUpsellModalView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Modals\Upsell\NoServerInCountryDueTierUpsellModalViewModel.cs" />
     <Compile Include="Modals\Dialogs\WarningModalView.xaml.cs">
       <DependentUpon>WarningModalView.xaml</DependentUpon>
     </Compile>
@@ -658,8 +670,8 @@
     <Compile Include="Login\ViewModels\MainViewModel.cs" />
     <Compile Include="Map\MapStateHolder.cs" />
     <Compile Include="Modals\P2PForwardModalViewModel.cs" />
-    <Compile Include="Modals\Upsell\ScUpsellModalViewModel.cs" />
-    <Compile Include="Modals\Upsell\PlusUpsellModalViewModel.cs" />
+    <Compile Include="Modals\Upsell\SecureCoreUpsellModalViewModel.cs" />
+    <Compile Include="Modals\Upsell\NetshieldUpsellModalViewModel.cs" />
     <Compile Include="Modals\Upsell\UpsellModalViewModel.cs" />
     <Compile Include="Profiles\PredefinedProfileViewModel.cs" />
     <Compile Include="Profiles\Form\CountryViewModel.cs" />
@@ -834,11 +846,11 @@
     <Compile Include="Modals\P2PForwardModalView.xaml.cs">
       <DependentUpon>P2PForwardModalView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Modals\Upsell\ScUpsellModalView.xaml.cs">
-      <DependentUpon>ScUpsellModalView.xaml</DependentUpon>
+    <Compile Include="Modals\Upsell\SecureCoreUpsellModalView.xaml.cs">
+      <DependentUpon>SecureCoreUpsellModalView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Modals\Upsell\PlusUpsellModalView.xaml.cs">
-      <DependentUpon>PlusUpsellModalView.xaml</DependentUpon>
+    <Compile Include="Modals\Upsell\NetshieldUpsellModalView.xaml.cs">
+      <DependentUpon>NetshieldUpsellModalView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modals\Upsell\UpsellModalView.xaml.cs">
       <DependentUpon>UpsellModalView.xaml</DependentUpon>
@@ -921,6 +933,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Modals\DiscourageSecureCoreModalView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Modals\IncorrectSystemTimeModalView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -930,6 +946,18 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Modals\AssignVpnConnectionsModalView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Modals\Upsell\PortForwardingUpsellModalView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PortForwarding\ActivePorts\PortForwardingActivePortView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modals\Upsell\NonStandardPortsUpsellModalView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -1066,14 +1094,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\Popups\Upsell\EnjoyingUpsellPopupView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Modals\Upsell\NoServerDueTierUpsellModalView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Modals\Upsell\NoServerInCountryDueTierUpsellModalView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1470,11 +1490,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Modals\Upsell\ScUpsellModalView.xaml">
+    <Page Include="Modals\Upsell\SecureCoreUpsellModalView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Modals\Upsell\PlusUpsellModalView.xaml">
+    <Page Include="Modals\Upsell\NetshieldUpsellModalView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -2078,9 +2098,6 @@
     <PackageReference Include="FontAwesome.WPF">
       <Version>4.7.0.9</Version>
     </PackageReference>
-    <PackageReference Include="Gu.Wpf.Adorners">
-      <Version>2.1.1</Version>
-    </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp.Notifications">
       <Version>7.0.0</Version>
     </PackageReference>
@@ -2104,9 +2121,6 @@
     </PackageReference>
     <PackageReference Include="Polly">
       <Version>7.2.0</Version>
-    </PackageReference>
-    <PackageReference Include="WpfScreenHelper">
-      <Version>1.1.0</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup Condition=" '$(Configuration)' == 'Debug' ">

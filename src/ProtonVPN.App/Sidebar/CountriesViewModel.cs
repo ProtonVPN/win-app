@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2022 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -162,8 +162,8 @@ namespace ProtonVPN.Sidebar
 
         public void Load()
         {
-            SetSecureCore(_appSettings.SecureCore);
-            SetPortForwarding(_appSettings);
+            SetSecureCore();
+            SetPortForwarding();
             CreateList();
         }
 
@@ -194,13 +194,13 @@ namespace ProtonVPN.Sidebar
             switch (e.PropertyName)
             {
                 case nameof(IAppSettings.SecureCore):
-                    SetSecureCore(_appSettings.SecureCore);
+                    SetSecureCore();
                     CreateList();
                     break;
 
                 case nameof(IAppSettings.PortForwardingEnabled):
                 case nameof(IAppSettings.FeaturePortForwardingEnabled):
-                    SetPortForwarding(_appSettings);
+                    SetPortForwarding();
                     CreateList();
                     break;
 
@@ -251,15 +251,14 @@ namespace ProtonVPN.Sidebar
             NotifyOfPropertyChange(nameof(SearchValue));
         }
 
-        private void SetSecureCore(bool value)
+        private void SetSecureCore()
         {
-            Set(ref _secureCore, value, nameof(SecureCore));
+            Set(ref _secureCore, _appSettings.SecureCore, nameof(SecureCore));
         }
 
-        private void SetPortForwarding(IAppSettings appSettings)
+        private void SetPortForwarding()
         {
-            bool isPortForwardingEnabled = appSettings.PortForwardingEnabled && appSettings.FeaturePortForwardingEnabled;
-            Set(ref _portForwarding, isPortForwardingEnabled, nameof(PortForwarding));
+            Set(ref _portForwarding, _appSettings.IsPortForwardingEnabled(), nameof(PortForwarding));
         }
 
         private void CreateList()
@@ -321,9 +320,9 @@ namespace ProtonVPN.Sidebar
                 return;
             }
 
-            foreach (IServerListItem item in Items)
+            foreach (IServerListItem item in Items.ToList())
             {
-                if (item is ServersByCountryViewModel || item is ServersByExitNodeViewModel || item is CountrySeparatorViewModel)
+                if (item is ServersByCountryViewModel or ServersByExitNodeViewModel or CountrySeparatorViewModel)
                 {
                     item.OnVpnStateChanged(state);
                 }

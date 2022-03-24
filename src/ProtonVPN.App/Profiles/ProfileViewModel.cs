@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2022 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -57,7 +57,7 @@ namespace ProtonVPN.Profiles
 
         public string Id { get; }
         public bool IsPredefined { get; }
-        public string Name { get; }
+        public string Name { get; set; }
         public VpnProtocol VpnProtocol { get; }
         public string Color { get; }
         public bool SecureCore { get; set; }

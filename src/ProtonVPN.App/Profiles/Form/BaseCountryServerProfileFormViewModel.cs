@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2022 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -65,7 +65,7 @@ namespace ProtonVPN.Profiles.Form
                 {
                     if (ShowUpgradeModal(value))
                     {
-                        _modals.Show<NoServerInCountryDueTierUpsellModalViewModel>();
+                        _modals.Show<UpsellModalViewModel>();
                     }
 
                     if (EditMode && _selectedCountry != null)

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2021 Proton Technologies AG
+ * Copyright (c) 2022 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -31,6 +31,12 @@ namespace ProtonVPN.Common.Configuration
                 OpenVpnAdapter.Tun => config.OpenVpn.TunAdapterId,
                 _ => config.WireGuard.TunAdapterHardwareId
             };
+        }
+
+        public static Config WithTlsPinningDisabled(this Config config)
+        {
+            config.TlsPinningConfig = new();
+            return config;
         }
     }
 }

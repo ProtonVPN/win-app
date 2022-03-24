@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2022 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -35,16 +35,6 @@ namespace ProtonVPN.Core.Servers.Models
         public static IEnumerable<Server> OnlineServers(this IEnumerable<Server> servers)
         {
             return servers.Where(s => s.Online());
-        }
-
-        public static IEnumerable<Server> BasicServers(this IEnumerable<Server> servers)
-        {
-            return servers.Where(s => s.Tier == ServerTiers.Basic);
-        }
-
-        public static IEnumerable<Server> PlusServers(this IEnumerable<Server> servers)
-        {
-            return servers.Where(s => s.Tier == ServerTiers.Plus);
         }
 
         public static IEnumerable<Server> UpToTierServers(this IEnumerable<Server> servers, sbyte maxTier)

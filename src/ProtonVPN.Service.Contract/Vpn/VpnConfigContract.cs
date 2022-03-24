@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2022 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -51,6 +51,12 @@ namespace ProtonVPN.Service.Contract.Vpn
 
         [DataMember(IsRequired = true)]
         public bool SplitTcp { get; set; }
+
+        [DataMember(IsRequired = true)]
+        public bool? AllowNonStandardPorts { get; set; }
+
+        [DataMember(IsRequired = true)]
+        public bool PortForwarding { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {

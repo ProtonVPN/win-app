@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2022 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -49,6 +49,7 @@ namespace ProtonVPN.PlanDowngrading
         private bool _notifyOnNextConnection;
         private Server _lastConnectedServer;
         private bool _isUserDelinquent;
+        private bool _isDisconnectedDueToPlanDowngrade;
 
         public PlanDowngradeHandler(
             IUserStorage userStorage,
@@ -82,7 +83,11 @@ namespace ProtonVPN.PlanDowngrading
             DisablePaidFeatures(user);
             NotifyUserOfDowngrade(user);
 
-            await _vpnManager.ReconnectAsync(new VpnReconnectionSettings { IsToForceSmartReconnect = true });
+            await _vpnManager.ReconnectAsync(new VpnReconnectionSettings
+            {
+                IsToForceSmartReconnect = true,
+                IsToReconnectIfDisconnected = _isDisconnectedDueToPlanDowngrade
+            });
         }
 
         private void DisablePaidFeatures(User user)
@@ -96,6 +101,7 @@ namespace ProtonVPN.PlanDowngrading
             if (user.MaxTier < ServerTiers.Basic)
             {
                 _appSettings.NetShieldEnabled = false;
+                _appSettings.AllowNonStandardPorts = false;
             }
         }
 
@@ -170,14 +176,24 @@ namespace ProtonVPN.PlanDowngrading
                 _notifyOnNextConnection = false;
                 NotifyUserOfReconnectionDueToDowngradeToFreeTier(e.State.Server);
             }
+
             if (e.State.Status != VpnStatus.Connected && _isAwaitingNextConnection)
             {
                 _isAwaitingNextConnection = false;
             }
+
+            bool isDisconnected = _vpnState?.Status is VpnStatus.Disconnected or VpnStatus.Disconnecting;
+            if (!isDisconnected && e.Error == VpnError.PlanNeedsToBeUpgraded)
+            {
+                _isDisconnectedDueToPlanDowngrade = true;
+            }
+
             if (e.State.Status == VpnStatus.Connected)
             {
                 _lastConnectedServer = e.State.Server;
+                _isDisconnectedDueToPlanDowngrade = false;
             }
+
             _vpnState = e.State;
         }
 

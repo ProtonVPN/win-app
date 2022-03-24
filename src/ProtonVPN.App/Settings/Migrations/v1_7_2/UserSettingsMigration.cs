@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2022 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -90,7 +90,6 @@ namespace ProtonVPN.Settings.Migrations.v1_7_2
             MigrateToPerUser<string>("VpnPlan");
             MigrateToPerUser<sbyte>("MaxTier");
             MigrateToPerUser<int>("Delinquent");
-            MigrateToPerUser<int>("ExpirationTime");
             MigrateToPerUser<int>("MaxConnect");
             MigrateToPerUser<int>("Services");
             MigrateToPerUser<string>("VpnUsername");

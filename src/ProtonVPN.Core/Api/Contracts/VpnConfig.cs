@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2022 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -74,6 +74,8 @@ namespace ProtonVPN.Core.Api.Contracts
         public bool? StreamingServicesLogos { get; set; }
 
         public bool? SmartReconnect { get; set; }
+
+        public bool? SafeMode { get; set; }
     }
 
     public class SmartProtocol

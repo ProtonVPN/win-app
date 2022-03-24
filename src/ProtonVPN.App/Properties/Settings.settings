@@ -104,9 +104,6 @@
         <Setting Name="Delinquent" Type="System.Int32" Scope="User">
             <Value Profile="(Default)">0</Value>
         </Setting>
-        <Setting Name="ExpirationTime" Type="System.Int32" Scope="User">
-            <Value Profile="(Default)">0</Value>
-        </Setting>
         <Setting Name="MaxConnect" Type="System.Int32" Scope="User">
             <Value Profile="(Default)">0</Value>
         </Setting>
@@ -180,9 +177,6 @@
             <Value Profile="(Default)" />
         </Setting>
         <Setting Name="UserDelinquent" Type="System.String" Scope="User">
-            <Value Profile="(Default)" />
-        </Setting>
-        <Setting Name="UserExpirationTime" Type="System.String" Scope="User">
             <Value Profile="(Default)" />
         </Setting>
         <Setting Name="UserMaxConnect" Type="System.String" Scope="User">
@@ -290,14 +284,20 @@
         <Setting Name="NetworkAdapterType" Type="System.String" Scope="User">
             <Value Profile="(Default)" />
         </Setting>
-        <Setting Name="PortForwardingEnabled" Type="System.Boolean" Scope="User">
-            <Value Profile="(Default)">False</Value>
+        <Setting Name="UserPortForwardingEnabled" Type="System.String" Scope="User">
+            <Value Profile="(Default)" />
         </Setting>
         <Setting Name="FeaturePortForwardingEnabled" Type="System.Boolean" Scope="User">
             <Value Profile="(Default)">False</Value>
         </Setting>
         <Setting Name="DoNotShowPortForwardingConfirmationDialog" Type="System.Boolean" Scope="User">
             <Value Profile="(Default)">False</Value>
+        </Setting>
+        <Setting Name="PortForwardingNotificationsEnabled" Type="System.Boolean" Scope="User">
+            <Value Profile="(Default)">True</Value>
+        </Setting>
+        <Setting Name="PortForwardingInQuickSettings" Type="System.Boolean" Scope="User">
+            <Value Profile="(Default)">True</Value>
         </Setting>
         <Setting Name="KillSwitchMode" Type="System.String" Scope="User">
             <Value Profile="(Default)" />
@@ -361,6 +361,18 @@
         </Setting>
         <Setting Name="UserReportAnIssueFormData" Type="System.String" Scope="User">
             <Value Profile="(Default)" />
+        </Setting>
+        <Setting Name="UserDoNotShowDiscourageSecureCoreDialog" Type="System.String" Scope="User">
+          <Value Profile="(Default)" />
+        </Setting>
+        <Setting Name="UserAllowNonStandardPorts" Type="System.String" Scope="User">
+            <Value Profile="(Default)" />
+        </Setting>
+        <Setting Name="UserAllowNonStandardPortsDefault" Type="System.Boolean" Scope="User">
+            <Value Profile="(Default)">False</Value>
+        </Setting>
+        <Setting Name="ShowNonStandardPortsToFreeUsers" Type="System.Boolean" Scope="User">
+            <Value Profile="(Default)">False</Value>
         </Setting>
     </Settings>
 </SettingsFile>

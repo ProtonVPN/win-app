@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2021 Proton Technologies AG
+ * Copyright (c) 2022 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -26,7 +26,6 @@ using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Common.KillSwitch;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
-using ProtonVPN.Common.Logging.Categorization.Events.ConnectionLogs;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Modals;
@@ -42,6 +41,7 @@ using ProtonVPN.Core.User;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Onboarding;
 using ProtonVPN.P2PDetection;
+using ProtonVPN.PortForwarding.ActivePorts;
 using ProtonVPN.Settings;
 using ProtonVPN.Sidebar.Announcements;
 using ProtonVPN.Translations;
@@ -67,7 +67,7 @@ namespace ProtonVPN.Sidebar
         private readonly IModals _modals;
         private readonly ILogger _logger;
         private readonly SettingsModalViewModel _settingsModalViewModel;
-        private EnumToDisplayTextConverter _enumToDisplayTextConverter;
+        private readonly EnumToDisplayTextConverter _enumToDisplayTextConverter;
 
         private readonly DispatcherTimer _timer;
 
@@ -84,7 +84,8 @@ namespace ProtonVPN.Sidebar
             IModals modals, 
             ILogger logger,
             SettingsModalViewModel settingsModalViewModel,
-            AnnouncementsViewModel announcementsViewModel)
+            AnnouncementsViewModel announcementsViewModel,
+            PortForwardingActivePortViewModel activePortViewModel)
         {
             _appSettings = appSettings;
             _sidebarManager = sidebarManager;
@@ -102,13 +103,22 @@ namespace ProtonVPN.Sidebar
             ToggleSidebarModeCommand = new RelayCommand(ToggleSidebarModeAction);
             CloseVpnAcceleratorReconnectionPopupCommand = new RelayCommand(CloseVpnAcceleratorReconnectionPopupAction);
             OpenNotificationSettingsCommand = new RelayCommand(OpenNotificationSettingsAction);
+
             Announcements = announcementsViewModel;
+            ActivePortViewModel = activePortViewModel;
+            ActivePortViewModel.PropertyChanged += OnActivePortViewModelPropertyChanged;
 
             _timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
             _timer.Tick += OnSecondPassed;
         }
 
+        private void OnActivePortViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            RaisePropertyChanged(e.PropertyName);
+        }
+
         public AnnouncementsViewModel Announcements { get; }
+        public PortForwardingActivePortViewModel ActivePortViewModel { get; }
 
         public ICommand QuickConnectCommand { get; set; }
         public ICommand DisableKillSwitchCommand { get; set; }
@@ -182,6 +192,8 @@ namespace ProtonVPN.Sidebar
             get => _currentUploadSpeed;
             set => Set(ref _currentUploadSpeed, value);
         }
+        
+        public bool HasPortForwardingValue => ActivePortViewModel.HasPortForwardingValue;
 
         public bool SidebarMode
         {

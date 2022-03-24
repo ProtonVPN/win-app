@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2021 Proton Technologies AG
+ * Copyright (c) 2022 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -89,11 +89,16 @@ namespace ProtonVPN.Core.Service.Settings
         {
             if (e.PropertyName == nameof(IAppSettings.KillSwitchMode) ||
                 e.PropertyName == nameof(IAppSettings.VpnAcceleratorEnabled) ||
+                e.PropertyName == nameof(IAppSettings.FeatureVpnAcceleratorEnabled) ||
+                e.PropertyName == nameof(IAppSettings.AllowNonStandardPorts) ||
                 e.PropertyName == nameof(IAppSettings.OvpnProtocol) ||
                 e.PropertyName == nameof(IAppSettings.NetworkAdapterType) ||
                 e.PropertyName == nameof(IAppSettings.NetShieldMode) ||
                 e.PropertyName == nameof(IAppSettings.NetShieldEnabled) ||
-                e.PropertyName == nameof(IAppSettings.Ipv6LeakProtection))
+                e.PropertyName == nameof(IAppSettings.FeatureNetShieldEnabled) ||
+                e.PropertyName == nameof(IAppSettings.Ipv6LeakProtection) ||
+                e.PropertyName == nameof(IAppSettings.PortForwardingEnabled) ||
+                e.PropertyName == nameof(IAppSettings.FeaturePortForwardingEnabled))
             {
                 _logger.Info<AppServiceLog>($"Setting \"{e.PropertyName}\" changed, updating service settings.");
                 await UpdateServiceSettings();

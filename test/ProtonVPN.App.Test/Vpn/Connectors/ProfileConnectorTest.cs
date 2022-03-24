@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2021 Proton Technologies AG
+ * Copyright (c) 2022 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -34,6 +34,7 @@ using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Servers.Models;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
+using ProtonVPN.Core.Vpn;
 using ProtonVPN.Core.Window.Popups;
 using ProtonVPN.Crypto;
 using ProtonVPN.Vpn;
@@ -109,7 +110,7 @@ namespace ProtonVPN.App.Test.Vpn.Connectors
 
         private Result<VpnCredentials> GetVpnCredentials()
         {
-            return Result.Ok(new VpnCredentials(VpnUsername, VpnPassword, AuthenticationCertificatePem, new AsymmetricKeyPair(_secretKey, _publicKey)));
+            return Result.Ok(new VpnCredentials(AuthenticationCertificatePem, new AsymmetricKeyPair(_secretKey, _publicKey)));
         }
 
         private void InitializeArrangeVariables()

@@ -16,7 +16,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
 using ProtonVPN.Common.Abstract;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.AppServiceLogs;
@@ -30,11 +29,13 @@ namespace ProtonVPN.Core.Service
     {
         private readonly ILogger _logger;
         private readonly IModals _modals;
+        private readonly IAppExitInvoker _appExitInvoker;
 
-        public ServiceEnabler(ILogger logger, IModals modals)
+        public ServiceEnabler(ILogger logger, IModals modals, IAppExitInvoker appExitInvoker)
         {
             _logger = logger;
             _modals = modals;
+            _appExitInvoker = appExitInvoker;
         }
 
         public Result GetServiceEnabledResult(IService service)
@@ -46,7 +47,7 @@ namespace ProtonVPN.Core.Service
                 if (!result.HasValue || !result.Value)
                 {
                     _logger.Info<AppServiceLog>($"The user refused to enable service {service.Name}. Shutting down the application.");
-                    Environment.Exit(0);
+                    _appExitInvoker.Exit();
                     return Result.Fail();
                 }
 

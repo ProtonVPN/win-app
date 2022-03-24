@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2022 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -205,8 +205,8 @@ namespace ProtonVPN.Core
             "Use IsPortForwardingEnabled() for checking if Port Forwarding is/should be enabled.")]
         public bool PortForwardingEnabled
         {
-            get => Get<bool>();
-            set => Set(value);
+            get => GetPerUser<bool>();
+            set => SetPerUser(value);
         }
 
         public int NetShieldMode
@@ -406,6 +406,18 @@ namespace ProtonVPN.Core
             set => Set(value);
         }
 
+        public bool PortForwardingNotificationsEnabled
+        {
+            get => Get<bool>();
+            set => Set(value);
+        }
+
+        public bool PortForwardingInQuickSettings
+        {
+            get => Get<bool>();
+            set => Set(value);
+        }
+
         public bool DoNotShowKillSwitchConfirmationDialog
         {
             get => GetPerUser<bool>();
@@ -413,6 +425,12 @@ namespace ProtonVPN.Core
         }
         
         public bool DoNotShowEnableSmartProtocolDialog
+        {
+            get => GetPerUser<bool>();
+            set => SetPerUser(value);
+        }
+
+        public bool DoNotShowDiscourageSecureCoreDialog
         {
             get => GetPerUser<bool>();
             set => SetPerUser(value);
@@ -445,6 +463,12 @@ namespace ProtonVPN.Core
             set => Set(value);
         }
 
+        public bool ShowNonStandardPortsToFreeUsers
+        {
+            get => Get<bool>();
+            set => Set(value);
+        }
+
         [Obsolete(
             "Use this only for checking if the user enabled/disabled the feature." +
             "Use IsSmartReconnectEnabled() for checking if Smart Reconnect is/should be enabled.")]
@@ -458,6 +482,12 @@ namespace ProtonVPN.Core
         {
             get => Get<bool>();
             set => Set(value);
+        }
+
+        public bool AllowNonStandardPorts
+        {
+            get => GetPerUser<bool>();
+            set => SetPerUser(value);
         }
 
         public string AuthenticationPublicKey

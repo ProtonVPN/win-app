@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2021 Proton Technologies AG
+ * Copyright (c) 2022 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -51,6 +51,7 @@ using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Network;
 using ProtonVPN.Core.OS.Net;
+using ProtonVPN.Core.PortForwarding;
 using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.ReportAnIssue;
 using ProtonVPN.Core.Servers;
@@ -364,6 +365,15 @@ namespace ProtonVPN.Core
                 }
             });
 
+            vpnServiceManager.RegisterPortForwardingStateCallback((state) =>
+            {
+                IEnumerable<IPortForwardingStateAware> instances = Resolve<IEnumerable<IPortForwardingStateAware>>();
+                foreach (IPortForwardingStateAware instance in instances)
+                {
+                    instance.OnPortForwardingStateChanged(state);
+                }
+            });
+
             Resolve<IVpnManager>().VpnStateChanged += (sender, e) =>
             {
                 IEnumerable<IVpnStateAware> instances = Resolve<IEnumerable<IVpnStateAware>>();
@@ -446,6 +456,7 @@ namespace ProtonVPN.Core
             Resolve<InsecureNetworkNotification>();
             Resolve<ActionableFailureApiResultEventHandler>();
             Resolve<IAuthCertificateUpdater>();
+            Resolve<VpnAuthCertificateUpdater>();
         }
 
         private void OnUserLoggingIn()
@@ -498,7 +509,7 @@ namespace ProtonVPN.Core
             Resolve<PinFactory>().BuildPins();
             LoadViewModels();
             Resolve<P2PDetector>();
-            Resolve<VpnInfoChecker>();
+            Resolve<IVpnInfoUpdater>();
 
             AppWindow appWindow = Resolve<AppWindow>();
             appWindow.DataContext = Resolve<MainViewModel>();

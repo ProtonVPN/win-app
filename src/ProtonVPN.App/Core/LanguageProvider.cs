@@ -1,3 +1,22 @@
+/*
+ * Copyright (c) 2022 Proton Technologies AG
+ *
+ * This file is part of ProtonVPN.
+ *
+ * ProtonVPN is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * ProtonVPN is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -31,25 +50,25 @@ namespace ProtonVPN.Core
             catch (Exception e) when (e.IsFileAccessException())
             {
                 _logger.Error<AppFileAccessFailedLog>("Couldn't get language file.", e);
-                return new List<string>{ _defaultLocale };
+                return new() { _defaultLocale };
             }
         }
 
         private List<string> InternalGetAll()
         {
-            var langs = new List<string> { _defaultLocale };
+            List<string> languageCodes = new() { _defaultLocale };
             string[] files = Directory.GetFiles(_translationsFolder, ResourceFile, SearchOption.AllDirectories);
 
             foreach (string file in files)
             {
-                var dirInfo = new DirectoryInfo(file);
+                DirectoryInfo dirInfo = new(file);
                 if (dirInfo.Parent != null)
                 {
-                    langs.Add(dirInfo.Parent.Name);
+                    languageCodes.Add(dirInfo.Parent.Name);
                 }
             }
 
-            return langs;
+            return languageCodes;
         }
     }
 }

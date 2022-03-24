@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2022 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -26,11 +26,13 @@ using ProtonVPN.Common.Helpers;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.DisconnectLogs;
 using ProtonVPN.Common.Networking;
+using ProtonVPN.Common.PortForwarding;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Service.Settings;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Service.Contract.Crypto;
+using ProtonVPN.Service.Contract.PortForwarding;
 using ProtonVPN.Service.Contract.Settings;
 using ProtonVPN.Service.Contract.Vpn;
 
@@ -81,17 +83,44 @@ namespace ProtonVPN.Core.Service.Vpn
             [CallerMemberName] string sourceMemberName = "",
             [CallerLineNumber] int sourceLineNumber = 0)
         {
-            _logger.Info<DisconnectTriggerLog>($"Disconnect requested (Error: {vpnError})", 
+            _logger.Info<DisconnectTriggerLog>($"Disconnect requested (Error: {vpnError})",
                 sourceFilePath: sourceFilePath, sourceMemberName: sourceMemberName, sourceLineNumber: sourceLineNumber);
             return _vpnService.Disconnect(_settingsContractProvider.GetSettingsContract(), Map(vpnError));
         }
 
         public void RegisterVpnStateCallback(Action<VpnStateChangedEventArgs> callback)
             => _vpnService.VpnStateChanged += (s, e) => callback(Map(e));
-        
+
         public void RegisterServiceSettingsStateCallback(Action<ServiceSettingsStateChangedEventArgs> callback)
             => _vpnService.ServiceSettingsStateChanged += (s, e) => callback(Map(e));
-        
+
+        public void RegisterPortForwardingStateCallback(Action<PortForwardingState> callback)
+            => _vpnService.PortForwardingStateChanged += (s, e) => callback(Map(e));
+
+        private static PortForwardingState Map(PortForwardingStateContract contract)
+        {
+            return new()
+            {
+                MappedPort = CreateTemporaryMappedPort(contract.MappedPort),
+                Status = (PortMappingStatus)contract.Status,
+                TimestampUtc = contract.TimestampUtc
+            };
+        }
+
+        private static TemporaryMappedPort CreateTemporaryMappedPort(TemporaryMappedPortContract contract)
+        {
+            if (contract is null)
+            {
+                return null;
+            }
+            return new()
+            {
+                MappedPort = new(internalPort: contract.InternalPort, externalPort: contract.ExternalPort),
+                Lifetime = contract.Lifetime,
+                ExpirationDateUtc = contract.ExpirationDateUtc
+            };
+        }
+
         private static ServiceSettingsStateChangedEventArgs Map(ServiceSettingsStateContract contract)
         {
             return new(contract.IsNetworkBlocked, Map(contract.CurrentState));
@@ -118,7 +147,7 @@ namespace ProtonVPN.Core.Service.Vpn
         {
             return new()
             {
-                Name = host.Name, 
+                Name = host.Name,
                 Ip = host.Ip,
                 Label = host.Label,
                 X25519PublicKey = host.X25519PublicKey != null ? new ServerPublicKeyContract(host.X25519PublicKey) : null,
@@ -144,12 +173,14 @@ namespace ProtonVPN.Core.Service.Vpn
             {
                 Ports = portConfig,
                 CustomDns = config.CustomDns.ToList(),
+                AllowNonStandardPorts = config.AllowNonStandardPorts,
                 SplitTunnelMode = config.SplitTunnelMode,
                 SplitTunnelIPs = config.SplitTunnelIPs.ToList(),
                 NetShieldMode = config.NetShieldMode,
                 VpnProtocol = Map(config.VpnProtocol),
                 PreferredProtocols = Map(config.PreferredProtocols),
                 SplitTcp = config.SplitTcp,
+                PortForwarding = config.PortForwarding,
             };
         }
 
@@ -199,7 +230,7 @@ namespace ProtonVPN.Core.Service.Vpn
 
         private static VpnStatus Map(VpnStatusContract status)
         {
-            return (VpnStatus) status;
+            return (VpnStatus)status;
         }
 
         private static VpnErrorTypeContract Map(VpnError vpnError)

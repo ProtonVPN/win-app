@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2021 Proton Technologies AG
+ * Copyright (c) 2022 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -25,9 +25,11 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
 using Microsoft.Toolkit.Uwp.Notifications;
+using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
+using ProtonVPN.Core;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Servers.Models;
@@ -45,6 +47,8 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
 {
     public class DeveloperToolsPopupViewModel : BasePopupViewModel, IVpnStateAware
     {
+        private readonly Common.Configuration.Config _config;
+        private readonly IConfigWriter _configWriter;
         private readonly UserAuth _userAuth;
         private readonly IPopupWindows _popups;
         private readonly IModals _modals;
@@ -52,17 +56,23 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
         private readonly ConnectionStatusViewModel _connectionStatusViewModel;
         private readonly IAppSettings _appSettings;
         private readonly ReconnectManager _reconnectManager;
+        private readonly IAppExitInvoker _appExitInvoker;
 
         public DeveloperToolsPopupViewModel(AppWindow appWindow,
+            Common.Configuration.Config config,
+            IConfigWriter configWriter,
             UserAuth userAuth,
             IPopupWindows popups,
             IModals modals,
             INotificationSender notificationSender,
             ConnectionStatusViewModel connectionStatusViewModel,
             IAppSettings appSettings,
-            ReconnectManager reconnectManager)
+            ReconnectManager reconnectManager,
+            IAppExitInvoker appExitInvoker)
             : base(appWindow)
         {
+            _config = config;
+            _configWriter = configWriter;
             _userAuth = userAuth;
             _popups = popups;
             _modals = modals;
@@ -70,6 +80,7 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
             _connectionStatusViewModel = connectionStatusViewModel;
             _appSettings = appSettings;
             _reconnectManager = reconnectManager;
+            _appExitInvoker = appExitInvoker;
 
             InitializeCommands();
         }
@@ -87,8 +98,10 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
             BasicToastCommand = new RelayCommand(BasicToastAction);
             ClearToastNotificationLogsCommand = new RelayCommand(ClearToastNotificationLogsAction);
             TriggerIntentionalCrashCommand = new RelayCommand(TriggerIntentionalCrashAction);
+            DisableTlsPinningCommand = new RelayCommand(DisableTlsPinningAction);
         }
 
+        public ICommand DisableTlsPinningCommand { get; set; }
         public ICommand ShowModalCommand { get; set; }
         public ICommand ShowPopupWindowCommand { get; set; }
         public ICommand RefreshVpnInfoCommand { get; set; }
@@ -275,6 +288,12 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
         private string GenerateOpenVpnAdapterString(OpenVpnAdapter? networkAdapterType)
         {
             return $"Network adapter: {networkAdapterType}";
+        }
+
+        private void DisableTlsPinningAction()
+        {
+            _configWriter.Write(_config.WithTlsPinningDisabled());
+            _appExitInvoker.Exit();
         }
     }
 }

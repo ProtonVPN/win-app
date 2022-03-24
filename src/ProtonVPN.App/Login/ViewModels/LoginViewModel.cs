@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2022 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -31,6 +31,7 @@ using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Config.Url;
+using ProtonVPN.Core;
 using ProtonVPN.Core.Api;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Modals;
@@ -56,6 +57,7 @@ namespace ProtonVPN.Login.ViewModels
         private readonly IModals _modals;
         private readonly GuestHoleConnector _guestHoleConnector;
         private readonly GuestHoleState _guestHoleState;
+        private readonly IAppExitInvoker _appExitInvoker;
 
         public LoginErrorViewModel LoginErrorViewModel { get; }
 
@@ -76,7 +78,8 @@ namespace ProtonVPN.Login.ViewModels
             UserAuth userAuth,
             IModals modals,
             GuestHoleConnector guestHoleConnector,
-            GuestHoleState guestHoleState)
+            GuestHoleState guestHoleState,
+            IAppExitInvoker appExitInvoker)
         {
             _logger = logger;
             _appConfig = appConfig;
@@ -87,6 +90,7 @@ namespace ProtonVPN.Login.ViewModels
             _loginWindowViewModel = loginWindowViewModel;
             _guestHoleConnector = guestHoleConnector;
             _guestHoleState = guestHoleState;
+            _appExitInvoker = appExitInvoker;
             LoginErrorViewModel = loginErrorViewModel;
 
             LoginErrorViewModel.ClearError();
@@ -308,7 +312,7 @@ namespace ProtonVPN.Login.ViewModels
                 case AuthError.MissingGoSrpDll:
                     _logger.Fatal<AppCrashLog>("The app is missing GoSrp.dll");
                     Process.Start("ProtonVPN.ErrorMessage.exe");
-                    Environment.Exit(0);
+                    _appExitInvoker.Exit();
                     break;
             }
         }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Proton Technologies AG
+ * Copyright (c) 2022 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
+using System.Text;
 using System.Threading.Tasks;
 using ProtonVPN.Common;
 using ProtonVPN.Common.Extensions;
@@ -30,12 +31,15 @@ using ProtonVPN.Common.Logging.Categorization.Events.ConnectionLogs;
 using ProtonVPN.Common.Logging.Categorization.Events.ConnectLogs;
 using ProtonVPN.Common.Logging.Categorization.Events.DisconnectLogs;
 using ProtonVPN.Common.Networking;
+using ProtonVPN.Common.PortForwarding;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
+using ProtonVPN.Service.Contract.PortForwarding;
 using ProtonVPN.Service.Contract.Settings;
 using ProtonVPN.Service.Contract.Vpn;
 using ProtonVPN.Service.Settings;
 using ProtonVPN.Vpn.Common;
+using ProtonVPN.Vpn.PortMapping;
 
 namespace ProtonVPN.Service
 {
@@ -52,6 +56,7 @@ namespace ProtonVPN.Service
         private readonly ILogger _logger;
         private readonly IServiceSettings _serviceSettings;
         private readonly ITaskQueue _taskQueue;
+        private readonly IPortMappingProtocolClient _portMappingProtocolClient;
 
         private VpnState _state = new(VpnStatus.Disconnected, default);
 
@@ -60,15 +65,18 @@ namespace ProtonVPN.Service
             IVpnConnection vpnConnection,
             ILogger logger,
             IServiceSettings serviceSettings,
-            ITaskQueue taskQueue)
+            ITaskQueue taskQueue,
+            IPortMappingProtocolClient portMappingProtocolClient)
         {
             _killSwitch = killSwitch;
             _vpnConnection = vpnConnection;
             _logger = logger;
             _serviceSettings = serviceSettings;
             _taskQueue = taskQueue;
+            _portMappingProtocolClient = portMappingProtocolClient;
 
             _vpnConnection.StateChanged += VpnConnection_StateChanged;
+            _portMappingProtocolClient.StateChanged += PortForwarding_StateChanged;
         }
 
         public async Task Connect(VpnConnectionRequestContract connectionRequest)
@@ -148,6 +156,12 @@ namespace ProtonVPN.Service
             return Map(_vpnConnection.Total).AsTask();
         }
 
+        public Task RepeatPortForwardingState()
+        {
+            _portMappingProtocolClient.RepeatState();
+            return Task.CompletedTask;
+        }
+
         public Task RegisterCallback()
         {
             lock (_callbackLock)
@@ -179,8 +193,19 @@ namespace ProtonVPN.Service
             }
             else if (_state.Status == VpnStatus.Connected)
             {
-                _vpnConnection.SetFeatures(new VpnFeatures(settings.NetShieldMode, settings.SplitTcp));
+                _vpnConnection.SetFeatures(CreateVpnFeatures(settings));
             }
+        }
+
+        private VpnFeatures CreateVpnFeatures(SettingsContract settings)
+        {
+            return new()
+            {
+                SplitTcp = settings.SplitTcp,
+                NetShieldMode = settings.NetShieldMode,
+                AllowNonStandardPorts = settings.AllowNonStandardPorts,
+                PortForwarding = settings.PortForwarding,
+            };
         }
 
         private ServiceSettingsStateContract CreateServiceSettingsState()
@@ -192,6 +217,49 @@ namespace ProtonVPN.Service
         {
             _state = e.Data;
             CallbackStateChanged(_state);
+        }
+
+        private void PortForwarding_StateChanged(object sender, EventArgs<PortForwardingState> e)
+        {
+            PortForwardingState state = e.Data;
+
+            StringBuilder logMessage = new StringBuilder().Append("Callbacking PortForwarding " +
+                $"state '{state.Status}' triggered at '{state.TimestampUtc}'");
+            if (state.MappedPort?.MappedPort is not null)
+            {
+                TemporaryMappedPort mappedPort = state.MappedPort;
+                logMessage.Append($", Port pair {mappedPort.MappedPort}, expiring in " +
+                                  $"{mappedPort.Lifetime} around {mappedPort.ExpirationDateUtc}");
+            }
+            _logger.Info<ConnectionLog>(logMessage.ToString());
+
+            Callback(callback => callback.OnPortForwardingStateChanged(Map(state)));
+        }
+
+        private PortForwardingStateContract Map(PortForwardingState state)
+        {
+            return new()
+            {
+                MappedPort = CreateTemporaryMappedPortContract(state.MappedPort),
+                Status = (PortMappingStatusContract)state.Status,
+                TimestampUtc = state.TimestampUtc
+            };
+        }
+
+        private TemporaryMappedPortContract CreateTemporaryMappedPortContract(TemporaryMappedPort mappedPort)
+        {
+            if (mappedPort?.MappedPort is null)
+            {
+                return null;
+            }
+
+            return new()
+            {
+                InternalPort = mappedPort.MappedPort.InternalPort,
+                ExternalPort = mappedPort.MappedPort.ExternalPort,
+                Lifetime = mappedPort.Lifetime,
+                ExpirationDateUtc = mappedPort.ExpirationDateUtc
+            };
         }
 
         private VpnStateContract Map(VpnState state)
@@ -219,11 +287,9 @@ namespace ProtonVPN.Service
 
         private static VpnCredentials Map(VpnCredentialsContract credentials)
         {
-            if (credentials.ClientCertPem.IsNullOrEmpty() || credentials.ClientKeyPair == null)
-            {
-                return new(credentials.Username, credentials.Password);
-            }
-            return new(credentials.Username, credentials.Password, credentials.ClientCertPem, credentials.ClientKeyPair.ConvertBack());
+            return credentials.ClientCertPem.IsNullOrEmpty() || credentials.ClientKeyPair == null
+                ? new(credentials.Username, credentials.Password)
+                : new(credentials.ClientCertPem, credentials.ClientKeyPair.ConvertBack());
         }
 
         private static IReadOnlyList<VpnHost> Map(IEnumerable<VpnHostContract> servers)
@@ -251,7 +317,9 @@ namespace ProtonVPN.Service
                     VpnProtocol = Map(config.VpnProtocol),
                     PreferredProtocols = Map(config.PreferredProtocols),
                     NetShieldMode = config.NetShieldMode,
-                    SplitTcp =  config.SplitTcp,
+                    SplitTcp = config.SplitTcp,
+                    AllowNonStandardPorts = config.AllowNonStandardPorts,
+                    PortForwarding = config.PortForwarding,
                 });
         }
 

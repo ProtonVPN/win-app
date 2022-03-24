@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2022 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -46,10 +46,12 @@ namespace ProtonVPN.Core.Service.Settings
                     Ips = GetSplitTunnelIps()
                 },
                 NetShieldMode = _appSettings.IsNetShieldEnabled() ? _appSettings.NetShieldMode : 0,
-                SplitTcp = _appSettings.VpnAcceleratorEnabled,
+                SplitTcp = _appSettings.IsVpnAcceleratorEnabled(),
+                AllowNonStandardPorts = _appSettings.ShowNonStandardPortsToFreeUsers ? _appSettings.AllowNonStandardPorts : null,
                 Ipv6LeakProtection = _appSettings.Ipv6LeakProtection,
                 VpnProtocol = _appSettings.GetProtocol(),
                 OpenVpnAdapter = openVpnAdapter ?? _appSettings.NetworkAdapterType,
+                PortForwarding = _appSettings.IsPortForwardingEnabled()
             };
         }
 

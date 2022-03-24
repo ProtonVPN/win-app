@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2022 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -124,6 +124,21 @@ namespace ProtonVPN.Core.Servers.Models
         public bool IsEmpty()
         {
             return Equals(Empty());
+        }
+        
+        public bool IsFeatureSupported(Features feature)
+        {
+            switch (feature)
+            {
+                case Core.Servers.Features.SecureCore:
+                    return ServerFeatures.IsSecureCore(Features);
+                case Core.Servers.Features.Tor:
+                    return ServerFeatures.SupportsTor(Features);
+                case Core.Servers.Features.P2P:
+                    return ServerFeatures.SupportsP2P(Features);
+                default:
+                    return true;
+            }
         }
 
         public static Server Empty() =>

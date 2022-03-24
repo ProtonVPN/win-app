@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2022 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -221,7 +221,7 @@ namespace ProtonVPN.Common.Configuration
 
         public WireGuardConfig WireGuard { get; } = new();
 
-        public TlsPinningConfig TlsPinningConfig { get; } = new();
+        public TlsPinningConfig TlsPinningConfig { get; internal set; } = new();
 
         public List<string> DoHProviders { get; internal set; } = new();
 

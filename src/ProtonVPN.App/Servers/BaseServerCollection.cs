@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2022 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -20,6 +20,7 @@
 using ProtonVPN.Core.MVVM;
 using ProtonVPN.Core.Vpn;
 using System.Collections.ObjectModel;
+using ProtonVPN.Core.Servers;
 
 namespace ProtonVPN.Servers
 {
@@ -81,7 +82,7 @@ namespace ProtonVPN.Servers
 
         public bool IsMarkedForRemoval { get; set; } = false;
 
-        public abstract void LoadServers(string searchQuery = "");
+        public abstract void LoadServers(string searchQuery = "", Features orderBy = Features.None);
 
         public abstract void OnVpnStateChanged(VpnState state);
 

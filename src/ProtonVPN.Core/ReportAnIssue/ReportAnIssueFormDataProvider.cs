@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2021 Proton Technologies AG
+ * Copyright (c) 2022 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -65,6 +65,11 @@ namespace ProtonVPN.Core.ReportAnIssue
 
         public List<IssueCategory> GetCategories()
         {
+            if (_categories.Count == 0)
+            {
+                LoadCategoriesFromCache();
+            }
+
             return _categories.ToList();
         }
 

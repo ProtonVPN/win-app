@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2021 Proton Technologies AG
+ * Copyright (c) 2022 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -124,5 +124,8 @@ namespace ProtonVPN.Common.Configuration
 
         [Required]
         public string AssignVpnConnectionsUrl { get; internal set; }
+
+        [Required]
+        public string NonStandardPortsUrl { get; internal set; }
     }
 }

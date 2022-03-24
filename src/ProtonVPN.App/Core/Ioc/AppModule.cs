@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2021 Proton Technologies AG
+ * Copyright (c) 2022 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -46,6 +46,7 @@ using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Startup;
 using ProtonVPN.Core.Storage;
 using ProtonVPN.Core.User;
+using ProtonVPN.Core.Vpn;
 using ProtonVPN.Core.Window;
 using ProtonVPN.Core.Window.Popups;
 using ProtonVPN.Crypto;
@@ -56,6 +57,7 @@ using ProtonVPN.Modals.Dialogs;
 using ProtonVPN.Modals.Welcome;
 using ProtonVPN.Notifications;
 using ProtonVPN.PlanDowngrading;
+using ProtonVPN.PortForwarding;
 using ProtonVPN.Servers;
 using ProtonVPN.Settings;
 using ProtonVPN.Settings.Migrations;
@@ -75,6 +77,7 @@ namespace ProtonVPN.Core.Ioc
             base.Load(builder);
 
             builder.Register(c => new ConfigFactory().Config());
+            builder.RegisterType<ConfigWriter>().As<IConfigWriter>().SingleInstance();
 
             builder.RegisterType<Bootstrapper>().SingleInstance();
             builder.RegisterType<EventAggregator>().As<IEventAggregator>().SingleInstance();
@@ -115,7 +118,7 @@ namespace ProtonVPN.Core.Ioc
                 .SingleInstance();
             builder.RegisterType<UserStorage>().As<IUserStorage>().SingleInstance();
             builder.RegisterType<TruncatedLocation>().SingleInstance();
-            
+
             builder.RegisterType<PinFactory>()
                 .AsImplementedInterfaces()
                 .AsSelf()
@@ -138,7 +141,8 @@ namespace ProtonVPN.Core.Ioc
                         new CachedSettings(
                             new EnumAsStringSettings(
                                 new SelfRepairingSettings(
-                                    c.Resolve<AppSettingsStorage>())))))
+                                    c.Resolve<AppSettingsStorage>(),
+                                    c.Resolve<IAppExitInvoker>())))))
                 .As<ISettingsStorage>()
                 .SingleInstance();
 
@@ -279,12 +283,12 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<ReconnectState>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterType<SettingsBuilder>().SingleInstance();
             builder.RegisterType<ReconnectManager>().AsImplementedInterfaces().AsSelf().SingleInstance();
-            builder.Register(c => new VpnInfoChecker(
+            builder.Register(c => new VpnInfoUpdater(
                 c.Resolve<Common.Configuration.Config>(),
                 c.Resolve<IEventAggregator>(),
                 c.Resolve<IApiClient>(),
                 c.Resolve<IUserStorage>(),
-                c.Resolve<IScheduler>())).SingleInstance();
+                c.Resolve<IScheduler>())).As<IVpnInfoUpdater>().SingleInstance();
             builder.RegisterType<PlanDowngradeHandler>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterType<StreamingServicesUpdater>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterType<StreamingServices>().As<IStreamingServices>().SingleInstance();
@@ -301,6 +305,9 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<WelcomeModalManager>().SingleInstance();
             builder.Register(c => new EventPublisher(c.Resolve<ILogger>(), c.Resolve<Common.Configuration.Config>()))
                 .As<IEventPublisher>().SingleInstance();
+            builder.RegisterType<AppExitInvoker>().As<IAppExitInvoker>().SingleInstance();
+            builder.RegisterType<PortForwardingManager>().As<IPortForwardingManager>().SingleInstance();
+            builder.RegisterType<PortForwardingNotifier>().AsImplementedInterfaces().SingleInstance();
         }
     }
 }

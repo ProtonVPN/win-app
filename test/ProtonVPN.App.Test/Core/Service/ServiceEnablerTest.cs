@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2021 Proton Technologies AG
+ * Copyright (c) 2022 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -21,6 +21,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.OS.Services;
+using ProtonVPN.Core;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Service;
 
@@ -31,12 +32,14 @@ namespace ProtonVPN.App.Test.Core.Service
     {
         private ILogger _logger;
         private IModals _modals;
+        private IAppExitInvoker _appExitInvoker;
 
         [TestInitialize]
         public void Initialize()
         {
             _logger = Substitute.For<ILogger>();
             _modals = Substitute.For<IModals>();
+            _appExitInvoker = Substitute.For<IAppExitInvoker>();
         }
 
         [TestCleanup]
@@ -55,7 +58,7 @@ namespace ProtonVPN.App.Test.Core.Service
             _modals.Show<IModal>().Returns(true);
 
             // Act
-            ServiceEnabler sut = new(_logger, _modals);
+            ServiceEnabler sut = new(_logger, _modals, _appExitInvoker);
             sut.GetServiceEnabledResult(service);
 
             // Assert
@@ -70,7 +73,7 @@ namespace ProtonVPN.App.Test.Core.Service
             service.Enabled().Returns(true);
 
             // Act
-            ServiceEnabler sut = new(_logger, _modals);
+            ServiceEnabler sut = new(_logger, _modals, _appExitInvoker);
             sut.GetServiceEnabledResult(service);
 
             // Assert
@@ -86,7 +89,7 @@ namespace ProtonVPN.App.Test.Core.Service
             _modals.Show<IModal>().Returns(false);
 
             // Act
-            ServiceEnabler sut = new(_logger, _modals);
+            ServiceEnabler sut = new(_logger, _modals, _appExitInvoker);
             sut.GetServiceEnabledResult(service);
 
             // Assert

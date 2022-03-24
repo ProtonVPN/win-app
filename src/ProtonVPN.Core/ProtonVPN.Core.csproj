@@ -218,6 +218,7 @@
     <Compile Include="OS\ISystemState.cs" />
     <Compile Include="OS\NtpClient.cs" />
     <Compile Include="OS\SystemState.cs" />
+    <Compile Include="PortForwarding\IPortForwardingStateAware.cs" />
     <Compile Include="ReportAnIssue\DefaultDataProvider.cs" />
     <Compile Include="ReportAnIssue\InputType.cs" />
     <Compile Include="ReportAnIssue\IReportAnIssueFormDataProvider.cs" />
@@ -229,6 +230,9 @@
     <Compile Include="Settings\IServiceSettingsStateAware.cs" />
     <Compile Include="Settings\ServiceSettingsStateChangedEventArgs.cs" />
     <Compile Include="User\VpnPlanChangedEventArgs.cs" />
+    <Compile Include="Vpn\AuthCertificateUpdater.cs" />
+    <Compile Include="Vpn\IVpnServiceManager.cs" />
+    <Compile Include="Vpn\VpnConnectionRequest.cs" />
     <Compile Include="Window\Popups\IPopupWindow.cs" />
     <Compile Include="Window\Popups\IPopupWindows.cs" />
     <Compile Include="Models\User.cs" />

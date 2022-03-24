@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2021 Proton Technologies AG
+ * Copyright (c) 2022 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -46,5 +46,8 @@ namespace ProtonVPN.Service.Contract.Vpn
 
         [OperationContract(IsOneWay = false)]
         Task<InOutBytesContract> Total();
+
+        [OperationContract(IsOneWay = true)]
+        Task RepeatPortForwardingState();
     }
 }

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2022 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -33,7 +33,9 @@ namespace ProtonVPN.Common.Vpn
         public IList<VpnProtocol> PreferredProtocols { get; set; }
         public int NetShieldMode { get; set; }
         public bool SplitTcp { get; set; }
-        
+        public bool? AllowNonStandardPorts { get; set; }
+        public bool PortForwarding { get; set; }
+
         public VpnConfigParameters()
         {
             Ports = new Dictionary<VpnProtocol, IReadOnlyCollection<int>>();

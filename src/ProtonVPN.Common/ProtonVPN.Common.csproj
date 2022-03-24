@@ -126,6 +126,8 @@
     <Compile Include="Configuration\Config.cs" />
     <Compile Include="Configuration\ConfigExtensions.cs" />
     <Compile Include="Configuration\ConfigFactory.cs" />
+    <Compile Include="Configuration\ConfigWriter.cs" />
+    <Compile Include="Configuration\IConfigWriter.cs" />
     <Compile Include="Configuration\WireGuardConfig.cs" />
     <Compile Include="Configuration\Source\ConfigMode.cs" />
     <Compile Include="Configuration\Source\CustomConfig.cs" />
@@ -276,6 +278,10 @@
     <Compile Include="OS\Services\ServiceRetryPolicy.cs" />
     <Compile Include="OS\Services\SystemService.cs" />
     <Compile Include="OS\Services\Win32.cs" />
+    <Compile Include="PortForwarding\MappedPort.cs" />
+    <Compile Include="PortForwarding\PortForwardingState.cs" />
+    <Compile Include="PortForwarding\PortMappingStatus.cs" />
+    <Compile Include="PortForwarding\TemporaryMappedPort.cs" />
     <Compile Include="Service\Validation\IObjectValidator.cs" />
     <Compile Include="Service\Validation\ParameterValidatingBehavior.cs" />
     <Compile Include="Service\Validation\ValidatableObjectValidator.cs" />

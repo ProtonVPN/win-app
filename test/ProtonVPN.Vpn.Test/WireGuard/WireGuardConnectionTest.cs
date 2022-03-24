@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2021 Proton Technologies AG
+ * Copyright (c) 2022 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -27,6 +27,7 @@ using ProtonVPN.Common.OS.Services;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Crypto;
 using ProtonVPN.Vpn.Common;
+using ProtonVPN.Vpn.Gateways;
 using ProtonVPN.Vpn.WireGuard;
 
 namespace ProtonVPN.Vpn.Test.WireGuard
@@ -52,7 +53,7 @@ namespace ProtonVPN.Vpn.Test.WireGuard
             // Act
             wireGuardConnection.Connect(
                 new VpnEndpoint(new VpnHost("host", "127.0.0.1", "", null), VpnProtocol.WireGuard),
-                new VpnCredentials("username", "password", "cert",
+                new VpnCredentials("cert",
                     new AsymmetricKeyPair(
                         new SecretKey("U2VjcmV0S2V5", KeyAlgorithm.Unknown),
                         new PublicKey("UHVibGljS2V5", KeyAlgorithm.Unknown))),
@@ -67,13 +68,14 @@ namespace ProtonVPN.Vpn.Test.WireGuard
             ProtonVPN.Common.Configuration.Config config = new();
             config.ServiceCheckInterval = TimeSpan.FromMilliseconds(1000);
             ILogger logger = Substitute.For<ILogger>();
+            IGatewayCache gatewayCache = Substitute.For<IGatewayCache>();
             IX25519KeyGenerator xIx25519KeyGenerator = Substitute.For<IX25519KeyGenerator>();
             WireGuardService wireGuardService =
                 new(logger, new ProtonVPN.Common.Configuration.Config(), Substitute.For<IService>());
             TrafficManager trafficManager = new("ProtonVPN", logger);
             StatusManager statusManager = new(logger, string.Empty);
 
-            return new(logger, config, wireGuardService, trafficManager, statusManager, xIx25519KeyGenerator);
+            return new(logger, config, gatewayCache, wireGuardService, trafficManager, statusManager, xIx25519KeyGenerator);
         }
     }
 }

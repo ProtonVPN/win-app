@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2022 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -54,7 +54,7 @@ namespace ProtonVPN.Vpn.Test.Connection
             _origin = Substitute.For<ISingleVpnConnection>();
 
             _endpoint = new VpnEndpoint(new VpnHost("proton.vpn", "135.27.46.203", string.Empty, null), VpnProtocol.OpenVpnTcp, 777);
-            _credentials = new VpnCredentials("username", "password", "cert", 
+            _credentials = new VpnCredentials("cert",
                 new AsymmetricKeyPair(
                     new SecretKey("U2VjcmV0S2V5", KeyAlgorithm.Unknown), 
                     new PublicKey("UHVibGljS2V5", KeyAlgorithm.Unknown)));

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2022 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,6 +18,7 @@
  */
 
 using System.ServiceModel;
+using ProtonVPN.Service.Contract.PortForwarding;
 using ProtonVPN.Service.Contract.Settings;
 
 namespace ProtonVPN.Service.Contract.Vpn
@@ -30,5 +31,8 @@ namespace ProtonVPN.Service.Contract.Vpn
 
         [OperationContract(IsOneWay = true)]
         void OnServiceSettingsStateChanged(ServiceSettingsStateContract state);
+
+        [OperationContract(IsOneWay = true)]
+        void OnPortForwardingStateChanged(PortForwardingStateContract state);
     }
 }

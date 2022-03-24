@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2022 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -21,6 +21,7 @@ using ProtonVPN.Service.Contract.Vpn;
 using System;
 using System.ServiceModel;
 using System.Windows;
+using ProtonVPN.Service.Contract.PortForwarding;
 using ProtonVPN.Service.Contract.Settings;
 
 namespace ProtonVPN.Core.Service.Vpn
@@ -32,6 +33,7 @@ namespace ProtonVPN.Core.Service.Vpn
     {
         public event EventHandler<VpnStateContract> VpnStateChanged;
         public event EventHandler<ServiceSettingsStateContract> ServiceSettingsStateChanged;
+        public event EventHandler<PortForwardingStateContract> PortForwardingStateChanged;
 
         public void OnStateChanged(VpnStateContract e)
         {
@@ -42,6 +44,12 @@ namespace ProtonVPN.Core.Service.Vpn
         public void OnServiceSettingsStateChanged(ServiceSettingsStateContract e)
         {
             Action action = () => ServiceSettingsStateChanged?.Invoke(this, e);
+            Application.Current?.Dispatcher?.BeginInvoke(action, null);
+        }
+
+        public void OnPortForwardingStateChanged(PortForwardingStateContract e)
+        {
+            Action action = () => PortForwardingStateChanged?.Invoke(this, e);
             Application.Current?.Dispatcher?.BeginInvoke(action, null);
         }
     }

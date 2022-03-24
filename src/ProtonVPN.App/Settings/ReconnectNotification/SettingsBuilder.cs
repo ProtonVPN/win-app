@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2021 Proton Technologies AG
+ * Copyright (c) 2022 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -38,10 +38,7 @@ namespace ProtonVPN.Settings.ReconnectNotification
             {
                 new SingleSetting(nameof(IAppSettings.OvpnProtocol), null, _appSettings),
                 new OpenVpnDriverSetting(_appSettings),
-                new SingleSetting(nameof(IAppSettings.PortForwardingEnabled), null, _appSettings),
-                new VpnAcceleratorSetting(nameof(IAppSettings.VpnAcceleratorEnabled), null, _appSettings),
                 new CustomDnsSetting(nameof(IAppSettings.CustomDnsEnabled), null, _appSettings),
-                new NetShieldSetting(nameof(IAppSettings.NetShieldEnabled), null, _appSettings),
             };
 
             CompoundSetting st = new(nameof(IAppSettings.SplitTunnelingEnabled), null, _appSettings);

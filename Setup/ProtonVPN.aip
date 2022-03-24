@@ -27,7 +27,7 @@
     <ROW Property="Manufacturer" Value="Proton Technologies AG"/>
     <ROW Property="MsiLogging" MultiBuildValue="DefaultBuild:vp"/>
     <ROW Property="PENDING_REBOOT" Value="0"/>
-    <ROW Property="ProductCode" Value="1031:{57C4E518-CE13-4F6B-BA1C-647667ECACFE} 1033:{57C4E518-CE13-4F6B-BA1C-647667ECACFE} 1036:{57C4E518-CE13-4F6B-BA1C-647667ECACFE} 1040:{57C4E518-CE13-4F6B-BA1C-647667ECACFE} 1043:{57C4E518-CE13-4F6B-BA1C-647667ECACFE} 1045:{57C4E518-CE13-4F6B-BA1C-647667ECACFE} 1046:{57C4E518-CE13-4F6B-BA1C-647667ECACFE} 1049:{57C4E518-CE13-4F6B-BA1C-647667ECACFE} 1065:{57C4E518-CE13-4F6B-BA1C-647667ECACFE} 2070:{57C4E518-CE13-4F6B-BA1C-647667ECACFE} 3082:{57C4E518-CE13-4F6B-BA1C-647667ECACFE} " Type="16"/>
+    <ROW Property="ProductCode" Value="1031:{57C4E518-CE13-4F6B-BA1C-647667ECACFE} 1033:{57C4E518-CE13-4F6B-BA1C-647667ECACFE} 1036:{57C4E518-CE13-4F6B-BA1C-647667ECACFE} 1040:{57C4E518-CE13-4F6B-BA1C-647667ECACFE} 1043:{57C4E518-CE13-4F6B-BA1C-647667ECACFE} 1045:{57C4E518-CE13-4F6B-BA1C-647667ECACFE} 1046:{57C4E518-CE13-4F6B-BA1C-647667ECACFE} 1049:{57C4E518-CE13-4F6B-BA1C-647667ECACFE} 1058:{57C4E518-CE13-4F6B-BA1C-647667ECACFE} 1065:{57C4E518-CE13-4F6B-BA1C-647667ECACFE} 2070:{57C4E518-CE13-4F6B-BA1C-647667ECACFE} 3082:{57C4E518-CE13-4F6B-BA1C-647667ECACFE} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="ProtonVPN"/>
     <ROW Property="ProductVersion" Value="1.24.1" Type="32"/>
@@ -105,7 +105,6 @@
     <ROW Component="GalaSoft.MvvmLight.dll" ComponentId="{50FA9CA8-4DD4-4068-A0D8-D2C1D9D42947}" Directory_="APPDIR" Attributes="0" KeyPath="GalaSoft.MvvmLight.dll"/>
     <ROW Component="GoSrp.dll" ComponentId="{3DB767E8-ACF9-459F-A509-F57E76FBA633}" Directory_="x64_Dir" Attributes="256" KeyPath="GoSrp.dll"/>
     <ROW Component="GoSrp.dll_1" ComponentId="{89CC2AA9-0000-4E4B-9D5A-43ACC1B1D1E3}" Directory_="x86_Dir" Attributes="0" KeyPath="GoSrp.dll_1"/>
-    <ROW Component="Gu.Wpf.Adorners.dll" ComponentId="{01DC8E24-C053-41CC-A726-5F4729DE78DD}" Directory_="APPDIR" Attributes="0" KeyPath="Gu.Wpf.Adorners.dll"/>
     <ROW Component="GuestHoleServers.json" ComponentId="{C5ACA4D0-1647-4D3A-B9CD-9FE054A81588}" Directory_="ProtonVPN_1_Dir" Attributes="0" KeyPath="GuestHoleServers.json" Type="0"/>
     <ROW Component="LocalAgent.dll" ComponentId="{25183BB4-5B07-43F9-8BEB-D58230BAEB78}" Directory_="bit_Dir" Attributes="0" KeyPath="LocalAgent.dll"/>
     <ROW Component="LocalAgent.dll_1" ComponentId="{73CCCE7C-D519-40C3-8AAA-FB879005DFA4}" Directory_="bit_1_Dir" Attributes="256" KeyPath="LocalAgent.dll_1"/>
@@ -177,7 +176,6 @@
     <ROW Component="TapInstaller.dll" ComponentId="{6C0E1AC7-D393-43D7-8842-549A396829EB}" Directory_="APPDIR" Attributes="0" KeyPath="TapInstaller.dll"/>
     <ROW Component="WebView2Loader.dll_1" ComponentId="{2EA095EA-C501-4A0B-B50D-FFF6383F6077}" Directory_="native_1_Dir" Attributes="256" KeyPath="WebView2Loader.dll_1"/>
     <ROW Component="WebView2Loader.dll_2" ComponentId="{7B52FD4C-77FC-441E-830E-31363BA5A2A6}" Directory_="native_2_Dir" Attributes="0" KeyPath="WebView2Loader.dll_2"/>
-    <ROW Component="WpfScreenHelper.dll" ComponentId="{D9BC0004-B4FA-4D5B-B94A-1F8525D2E2FA}" Directory_="APPDIR" Attributes="0" KeyPath="WpfScreenHelper.dll"/>
     <ROW Component="config.ovpn" ComponentId="{0B387BF9-0755-4C70-81A5-48180795855C}" Directory_="Binaries_Dir" Attributes="0" KeyPath="config.ovpn" Type="0"/>
     <ROW Component="libcrypto1_1.dll" ComponentId="{F5111CFC-D038-4A4A-927B-F4FA1D0463C9}" Directory_="bit_Dir" Attributes="0" KeyPath="libcrypto1_1.dll"/>
     <ROW Component="libcrypto1_1x64.dll" ComponentId="{9BA46CFB-D246-4182-9AFB-3CA5D2A29D53}" Directory_="bit_1_Dir" Attributes="256" KeyPath="libcrypto1_1x64.dll"/>
@@ -296,8 +294,6 @@
     <ROW File="wireguard.dll" Component_="wireguard.dll" FileName="WIREGU~1.DLL|wireguard.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\ProtonVPN.Vpn\Resources\64-bit\wireguard.dll" SelfReg="false"/>
     <ROW File="wireguard.dll_1" Component_="wireguard.dll_1" FileName="WIREGU~1.DLL|wireguard.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\ProtonVPN.Vpn\Resources\32-bit\wireguard.dll" SelfReg="false"/>
     <ROW File="ProtonVPN.WireGuardDriver.dll" Component_="ProtonVPN.WireGuardDriver.dll" FileName="PROTO~13.DLL|ProtonVPN.WireGuardDriver.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ProtonVPN.WireGuardDriver.dll" SelfReg="false"/>
-    <ROW File="Gu.Wpf.Adorners.dll" Component_="Gu.Wpf.Adorners.dll" FileName="GUWPFA~1.DLL|Gu.Wpf.Adorners.dll" Attributes="0" SourcePath="..\src\bin\Gu.Wpf.Adorners.dll" SelfReg="false"/>
-    <ROW File="WpfScreenHelper.dll" Component_="WpfScreenHelper.dll" FileName="WPFSCR~1.DLL|WpfScreenHelper.dll" Attributes="0" SourcePath="..\src\bin\WpfScreenHelper.dll" SelfReg="false"/>
     <ROW File="DeviceId.Windows.Wmi.dll" Component_="DeviceId.Windows.Wmi.dll" FileName="DEVICE~1.DLL|DeviceId.Windows.Wmi.dll" Attributes="0" SourcePath="..\src\bin\DeviceId.Windows.Wmi.dll" SelfReg="false"/>
     <ROW File="DeviceId.Windows.dll" Component_="DeviceId.Windows.dll" FileName="DEVICE~2.DLL|DeviceId.Windows.dll" Attributes="0" SourcePath="..\src\bin\DeviceId.Windows.dll" SelfReg="false"/>
     <ROW File="Microsoft.Bcl.AsyncInterfaces.dll" Component_="Microsoft.Bcl.AsyncInterfaces.dll" FileName="MICROS~5.DLL|Microsoft.Bcl.AsyncInterfaces.dll" Attributes="0" SourcePath="..\src\bin\Microsoft.Bcl.AsyncInterfaces.dll" SelfReg="false"/>
@@ -321,7 +317,7 @@
     <ROW Action="AI_DetectSoftware" Sequence="101"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BuildComponent">
-    <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="1" PackageFolder="ProtonVPN-SetupFiles" PackageFileName="ProtonVPN_win_v[|ProductVersion]" Languages="en;de;fr;fa;nl;it;pl;pt;ru;es;pt_BR" LangOpt="1" InstallationType="2" CabsLocation="1" UseLzma="true" LzmaMethod="2" LzmaCompressionLevel="2" PackageType="1" FilesInsideExe="true" ExeIconPath="images\protonvpn.ico" ExeMetadata="FileDescription:[|ProductName] Installer [|CommitHash]" ExtUI="true" Options="4" LangsDialog="true" UseLargeSchema="true" Unicode="true" ExeName="ProtonVPN_win_v[|ProductVersion]" UACExecutionLevel="2"/>
+    <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="1" PackageFolder="ProtonVPN-SetupFiles" PackageFileName="ProtonVPN_win_v[|ProductVersion]" Languages="en;de;fr;fa;nl;it;pl;pt;ru;es;pt_BR;uk" LangOpt="1" InstallationType="2" CabsLocation="1" UseLzma="true" LzmaMethod="2" LzmaCompressionLevel="2" PackageType="1" FilesInsideExe="true" ExeIconPath="images\protonvpn.ico" ExeMetadata="FileDescription:[|ProductName] Installer [|CommitHash]" ExtUI="true" Options="4" LangsDialog="true" UseLargeSchema="true" Unicode="true" ExeName="ProtonVPN_win_v[|ProductVersion]" UACExecutionLevel="2"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.CacheComponent">
     <ATTRIBUTE name="Enable" value="false"/>
@@ -339,6 +335,7 @@
     <ROW Path="&lt;AI_DICTS&gt;ui_ru.ail"/>
     <ROW Path="&lt;AI_DICTS&gt;ui_es.ail"/>
     <ROW Path="&lt;AI_DICTS&gt;ui_pt_BR.ail"/>
+    <ROW Path="&lt;AI_DICTS&gt;ui_uk.ail"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.DigCertStoreComponent">
     <ROW TimeStampUrl="http://timestamp.digicert.com" SignerDescription="[|ProductName]" SignOptions="7" SignTool="0" UseSha256="1" Thumbprint="44054e4d961e4efd5d3d90dec1444b26373d4a08 Subject: Proton Technologies AG&#10;Issuer: GlobalSign Extended Validation CodeSigning CA - SHA256 - G3&#10;Valid from 10/29/2020 to 10/30/2023&#10;User\MY"/>
@@ -681,8 +678,6 @@
     <ROW Feature_="MainFeature" Component_="wireguard.dll"/>
     <ROW Feature_="MainFeature" Component_="wireguard.dll_1"/>
     <ROW Feature_="MainFeature" Component_="ProtonVPN.WireGuardDriver.dll"/>
-    <ROW Feature_="MainFeature" Component_="Gu.Wpf.Adorners.dll"/>
-    <ROW Feature_="MainFeature" Component_="WpfScreenHelper.dll"/>
     <ROW Feature_="MainFeature" Component_="DeviceId.Windows.Wmi.dll"/>
     <ROW Feature_="MainFeature" Component_="DeviceId.Windows.dll"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.Bcl.AsyncInterfaces.dll"/>

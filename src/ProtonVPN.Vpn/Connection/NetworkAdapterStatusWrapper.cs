@@ -104,8 +104,8 @@ namespace ProtonVPN.Vpn.Connection
                     string.Empty,
                     _endpoint.Server.Ip,
                     _endpoint.VpnProtocol,
-                    _config.OpenVpnAdapter,
-                    _endpoint.Server.Label)));
+                    openVpnAdapter: _config.OpenVpnAdapter,
+                    label: _endpoint.Server.Label)));
         }
 
         private bool IsOpenVpnNetworkAdapterAvailable(OpenVpnAdapter? openVpnAdapter)

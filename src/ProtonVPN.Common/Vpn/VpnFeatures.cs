@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2021 Proton Technologies AG
+ * Copyright (c) 2022 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -21,14 +21,9 @@ namespace ProtonVPN.Common.Vpn
 {
     public class VpnFeatures
     {
-        public VpnFeatures(int netShieldMode, bool splitTcp)
-        {
-            NetShieldMode = netShieldMode;
-            SplitTcp = splitTcp;
-        }
-
-        public int NetShieldMode { get; }
-
-        public bool SplitTcp { get; }
+        public bool SplitTcp { get; set; }
+        public int NetShieldMode { get; set; }
+        public bool? AllowNonStandardPorts { get; set; }
+        public bool PortForwarding { get; set; }
     }
 }

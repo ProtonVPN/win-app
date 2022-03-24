@@ -429,18 +429,6 @@ namespace ProtonVPN.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int ExpirationTime {
-            get {
-                return ((int)(this["ExpirationTime"]));
-            }
-            set {
-                this["ExpirationTime"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
         public int MaxConnect {
             get {
                 return ((int)(this["MaxConnect"]));
@@ -735,18 +723,6 @@ namespace ProtonVPN.Properties {
             }
             set {
                 this["UserDelinquent"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string UserExpirationTime {
-            get {
-                return ((string)(this["UserExpirationTime"]));
-            }
-            set {
-                this["UserExpirationTime"] = value;
             }
         }
         
@@ -1171,13 +1147,13 @@ namespace ProtonVPN.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool PortForwardingEnabled {
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string UserPortForwardingEnabled {
             get {
-                return ((bool)(this["PortForwardingEnabled"]));
+                return ((string)(this["UserPortForwardingEnabled"]));
             }
             set {
-                this["PortForwardingEnabled"] = value;
+                this["UserPortForwardingEnabled"] = value;
             }
         }
         
@@ -1202,6 +1178,30 @@ namespace ProtonVPN.Properties {
             }
             set {
                 this["DoNotShowPortForwardingConfirmationDialog"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool PortForwardingNotificationsEnabled {
+            get {
+                return ((bool)(this["PortForwardingNotificationsEnabled"]));
+            }
+            set {
+                this["PortForwardingNotificationsEnabled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool PortForwardingInQuickSettings {
+            get {
+                return ((bool)(this["PortForwardingInQuickSettings"]));
+            }
+            set {
+                this["PortForwardingInQuickSettings"] = value;
             }
         }
         
@@ -1454,6 +1454,54 @@ namespace ProtonVPN.Properties {
             }
             set {
                 this["UserReportAnIssueFormData"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string UserDoNotShowDiscourageSecureCoreDialog {
+            get {
+                return ((string)(this["UserDoNotShowDiscourageSecureCoreDialog"]));
+            }
+            set {
+                this["UserDoNotShowDiscourageSecureCoreDialog"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string UserAllowNonStandardPorts {
+            get {
+                return ((string)(this["UserAllowNonStandardPorts"]));
+            }
+            set {
+                this["UserAllowNonStandardPorts"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool UserAllowNonStandardPortsDefault {
+            get {
+                return ((bool)(this["UserAllowNonStandardPortsDefault"]));
+            }
+            set {
+                this["UserAllowNonStandardPortsDefault"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ShowNonStandardPortsToFreeUsers {
+            get {
+                return ((bool)(this["ShowNonStandardPortsToFreeUsers"]));
+            }
+            set {
+                this["ShowNonStandardPortsToFreeUsers"] = value;
             }
         }
     }

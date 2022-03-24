@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2022 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -31,6 +31,7 @@ namespace ProtonVPN.Vpn.Common
         public OpenVpnAdapter? OpenVpnAdapter { get; }
         public VpnProtocol VpnProtocol { get; }
         public string Label { get; }
+        public bool PortForwarding { get; }
 
         public VpnState(VpnStatus status, VpnProtocol vpnProtocol) 
             : this(status, VpnError.None, string.Empty, string.Empty, vpnProtocol)
@@ -42,14 +43,16 @@ namespace ProtonVPN.Vpn.Common
         {
         }
 
-        public VpnState(VpnStatus status, VpnError error, string localIp, string remoteIp, VpnProtocol vpnProtocol, OpenVpnAdapter? openVpnAdapter = null, string label = "")
+        public VpnState(VpnStatus status, VpnError error, string localIp, string remoteIp, VpnProtocol vpnProtocol,
+            bool portForwarding = false, OpenVpnAdapter? openVpnAdapter = null, string label = "")
         {
             Status = status;
             Error = error;
             LocalIp = localIp;
             RemoteIp = remoteIp;
-            OpenVpnAdapter = openVpnAdapter;
             VpnProtocol = vpnProtocol;
+            PortForwarding = portForwarding;
+            OpenVpnAdapter = openVpnAdapter;
             Label = label;
         }
     }

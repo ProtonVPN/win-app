@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2022 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -228,7 +228,7 @@ namespace ProtonVPN.Service.Vpn
             if (!server.IsEmpty())
             {
                 InvokeStateChanged(new VpnState(VpnStatus.Pinging, VpnError.None, string.Empty, server.Ip,
-                    _config.VpnProtocol, _config.OpenVpnAdapter, server.Label));
+                    _config.VpnProtocol, openVpnAdapter: _config.OpenVpnAdapter, label: server.Label));
             }
         }
 

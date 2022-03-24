@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2022 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -24,13 +24,15 @@ namespace ProtonVPN.Common.Vpn
 {
     public readonly struct VpnCredentials
     {
-        public VpnCredentials(string username, string password, string clientCertPem, AsymmetricKeyPair clientKeyPair)
-            : this(username, password)
+        public VpnCredentials(string clientCertPem, AsymmetricKeyPair clientKeyPair)
         {
             Ensure.NotNull(clientKeyPair, nameof(clientKeyPair));
 
             ClientCertPem = clientCertPem;
             ClientKeyPair = clientKeyPair;
+
+            Username = null;
+            Password = null;
         }
         
         public VpnCredentials(string username, string password)

@@ -4639,6 +4639,51 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Activate Secure Core.
+        /// </summary>
+        public static string Modal_DiscourageSecureCore_ActivateSecureCore {
+            get {
+                return ResourceManager.GetString("Modal_DiscourageSecureCore_ActivateSecureCore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Don’t show again.
+        /// </summary>
+        public static string Modal_DiscourageSecureCore_DoNotShowItAgain {
+            get {
+                return ResourceManager.GetString("Modal_DiscourageSecureCore_DoNotShowItAgain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Learn More.
+        /// </summary>
+        public static string Modal_DiscourageSecureCore_LearnMore {
+            get {
+                return ResourceManager.GetString("Modal_DiscourageSecureCore_LearnMore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Secure Core offers the highest level of security and privacy, but it may reduce your internet speed. If you need more performance, you can disable Secure Core..
+        /// </summary>
+        public static string Modal_DiscourageSecureCore_Subtitle {
+            get {
+                return ResourceManager.GetString("Modal_DiscourageSecureCore_Subtitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A note about speed....
+        /// </summary>
+        public static string Modal_DiscourageSecureCore_Title {
+            get {
+                return ResourceManager.GetString("Modal_DiscourageSecureCore_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to NetShield.
         /// </summary>
         public static string NetShield {
@@ -4896,6 +4941,33 @@ namespace ProtonVPN.Translations.Properties {
         public static string PortForwarding {
             get {
                 return ResourceManager.GetString("PortForwarding", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Active port:.
+        /// </summary>
+        public static string PortForwarding_lbl_ActivePort {
+            get {
+                return ResourceManager.GetString("PortForwarding_lbl_ActivePort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click to copy this port number..
+        /// </summary>
+        public static string PortForwarding_lbl_CopyValue {
+            get {
+                return ResourceManager.GetString("PortForwarding_lbl_CopyValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set this number in your BitTorrent app for greater speed..
+        /// </summary>
+        public static string PortForwarding_lbl_Info {
+            get {
+                return ResourceManager.GetString("PortForwarding_lbl_Info", resourceCulture);
             }
         }
         
@@ -5899,6 +5971,24 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Non-standard ports.
+        /// </summary>
+        public static string Settings_Advanced_lbl_NonStandardPorts {
+            get {
+                return ResourceManager.GetString("Settings_Advanced_lbl_NonStandardPorts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use ProtonVPN for any special need by allowing traffic to non-standard ports through the VPN network..
+        /// </summary>
+        public static string Settings_Advanced_lbl_NonStandardPorts_Info {
+            get {
+                return ResourceManager.GetString("Settings_Advanced_lbl_NonStandardPorts_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to TAP adapter.
         /// </summary>
         public static string Settings_Advanced_lbl_OpenVpnTap {
@@ -5913,6 +6003,60 @@ namespace ProtonVPN.Translations.Properties {
         public static string Settings_Advanced_lbl_OpenVpnTun {
             get {
                 return ResourceManager.GetString("Settings_Advanced_lbl_OpenVpnTun", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Port Forwarding.
+        /// </summary>
+        public static string Settings_Advanced_lbl_PortForwarding {
+            get {
+                return ResourceManager.GetString("Settings_Advanced_lbl_PortForwarding", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Speed up your torrenting and online gaming by allowing supported local apps to be reachable from the internet. &lt;Hyperlink Command=&quot;{Binding LearnMoreAboutPortForwardingCommand}&quot;&gt;Learn more&lt;/Hyperlink&gt;.
+        /// </summary>
+        public static string Settings_Advanced_lbl_PortForwarding_Info {
+            get {
+                return ResourceManager.GetString("Settings_Advanced_lbl_PortForwarding_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Port Forwarding shortcut.
+        /// </summary>
+        public static string Settings_Advanced_lbl_PortForwardingInQuickSettings {
+            get {
+                return ResourceManager.GetString("Settings_Advanced_lbl_PortForwardingInQuickSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Access Port Forwarding settings from the Quick Settings.
+        /// </summary>
+        public static string Settings_Advanced_lbl_PortForwardingInQuickSettings_Info {
+            get {
+                return ResourceManager.GetString("Settings_Advanced_lbl_PortForwardingInQuickSettings_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Port Forwarding notifications.
+        /// </summary>
+        public static string Settings_Advanced_lbl_PortForwardingNotifications {
+            get {
+                return ResourceManager.GetString("Settings_Advanced_lbl_PortForwardingNotifications", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Get notified when the Port Forwarding number changes.
+        /// </summary>
+        public static string Settings_Advanced_lbl_PortForwardingNotifications_Info {
+            get {
+                return ResourceManager.GetString("Settings_Advanced_lbl_PortForwardingNotifications_Info", resourceCulture);
             }
         }
         
@@ -6844,6 +6988,78 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Upgrade.
+        /// </summary>
+        public static string Upsell_btn_Upgrade {
+            get {
+                return ResourceManager.GetString("Upsell_btn_Upgrade", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Block ads and malware with NetShield.
+        /// </summary>
+        public static string Upsell_Countries_BlockAds {
+            get {
+                return ResourceManager.GetString("Upsell_Countries_BlockAds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Browse at the highest speeds (10 Gbps).
+        /// </summary>
+        public static string Upsell_Countries_BrowseFast {
+            get {
+                return ResourceManager.GetString("Upsell_Countries_BrowseFast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Access global streaming services.
+        /// </summary>
+        public static string Upsell_Countries_GlobalStreamingServices {
+            get {
+                return ResourceManager.GetString("Upsell_Countries_GlobalStreamingServices", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to And many more premium features.
+        /// </summary>
+        public static string Upsell_Countries_MoreFeatures {
+            get {
+                return ResourceManager.GetString("Upsell_Countries_MoreFeatures", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Connect up to 10 devices at once.
+        /// </summary>
+        public static string Upsell_Countries_SimultaneousDevices {
+            get {
+                return ResourceManager.GetString("Upsell_Countries_SimultaneousDevices", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When you upgrade to Plus.
+        /// </summary>
+        public static string Upsell_Countries_Subtitle {
+            get {
+                return ResourceManager.GetString("Upsell_Countries_Subtitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Access over 1200 secure servers in 63 countries.
+        /// </summary>
+        public static string Upsell_Countries_Title {
+            get {
+                return ResourceManager.GetString("Upsell_Countries_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Upgrade My Plan.
         /// </summary>
         public static string Upsell_Enjoying_btn_Upgrade {
@@ -6889,101 +7105,155 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cancel.
+        ///   Looks up a localized string similar to Block ads and trackers.
         /// </summary>
-        public static string Upsell_UpgradeRequired_btn_Close {
+        public static string Upsell_Netshield_BlockAds {
             get {
-                return ResourceManager.GetString("Upsell_UpgradeRequired_btn_Close", resourceCulture);
+                return ResourceManager.GetString("Upsell_Netshield_BlockAds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Browse at the highest speeds.
+        /// </summary>
+        public static string Upsell_Netshield_BrowseFast {
+            get {
+                return ResourceManager.GetString("Upsell_Netshield_BrowseFast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Protect your device from malware.
+        /// </summary>
+        public static string Upsell_Netshield_ProtectFromMalware {
+            get {
+                return ResourceManager.GetString("Upsell_Netshield_ProtectFromMalware", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When you upgrade to Plus.
+        /// </summary>
+        public static string Upsell_Netshield_Subtitle {
+            get {
+                return ResourceManager.GetString("Upsell_Netshield_Subtitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enjoy ad-free browsing with NetShield.
+        /// </summary>
+        public static string Upsell_Netshield_Title {
+            get {
+                return ResourceManager.GetString("Upsell_Netshield_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Learn More.
+        /// </summary>
+        public static string Upsell_NonStandardPorts_btn_LearnMore {
+            get {
+                return ResourceManager.GetString("Upsell_NonStandardPorts_btn_LearnMore", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Upgrade.
         /// </summary>
-        public static string Upsell_UpgradeRequired_btn_Upgrade {
+        public static string Upsell_NonStandardPorts_btn_Upgrade {
             get {
-                return ResourceManager.GetString("Upsell_UpgradeRequired_btn_Upgrade", resourceCulture);
+                return ResourceManager.GetString("Upsell_NonStandardPorts_btn_Upgrade", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sorry, no servers available for your subscription tier right now. If you would like to access more servers, consider upgrading your subscription..
+        ///   Looks up a localized string similar to Use ProtonVPN for any special need by allowing traffic to non-standard ports through the VPN network. Upgrade to a paid plan to unlock this and many other features..
         /// </summary>
-        public static string Upsell_UpgradeRequired_msg_NoServer {
+        public static string Upsell_NonStandardPorts_msg {
             get {
-                return ResourceManager.GetString("Upsell_UpgradeRequired_msg_NoServer", resourceCulture);
+                return ResourceManager.GetString("Upsell_NonStandardPorts_msg", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your subscription does not cover servers in this country at the moment. If you would like to access more servers, please upgrade your subscription..
+        ///   Looks up a localized string similar to Allow traffic to non-standard ports.
         /// </summary>
-        public static string Upsell_UpgradeRequired_msg_NoServerInCountry {
+        public static string Upsell_NonStandardPorts_ttl {
             get {
-                return ResourceManager.GetString("Upsell_UpgradeRequired_msg_NoServerInCountry", resourceCulture);
+                return ResourceManager.GetString("Upsell_NonStandardPorts_ttl", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You&apos;re trying to connect to a server which requires a ProtonVPN Plus subscription or higher..
+        ///   Looks up a localized string similar to What is Port Forwarding?.
         /// </summary>
-        public static string Upsell_UpgradeRequired_msg_Plus {
+        public static string Upsell_PortForwarding_About {
             get {
-                return ResourceManager.GetString("Upsell_UpgradeRequired_msg_Plus", resourceCulture);
+                return ResourceManager.GetString("Upsell_PortForwarding_About", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Secure Core is a premium feature which requires ProtonVPN Plus or higher..
+        ///   Looks up a localized string similar to Speed up your torrenting and online gaming by allowing compatible local apps to be reachable from the internet.&lt;LineBreak/&gt;&lt;LineBreak/&gt;Upgrade to Plus to unblock this and many other features..
         /// </summary>
-        public static string Upsell_UpgradeRequired_msg_SecureCore_1 {
+        public static string Upsell_PortForwarding_Subtitle {
             get {
-                return ResourceManager.GetString("Upsell_UpgradeRequired_msg_SecureCore_1", resourceCulture);
+                return ResourceManager.GetString("Upsell_PortForwarding_Subtitle", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Secure Core adds advanced protection against VPN server monitoring. To learn more about Secure Core, click &lt;Hyperlink Command=&quot;{Binding AboutSecureCoreCommand}&quot;&gt;here&lt;/Hyperlink&gt;..
+        ///   Looks up a localized string similar to Enable Port Forwarding.
         /// </summary>
-        public static string Upsell_UpgradeRequired_msg_SecureCore_2 {
+        public static string Upsell_PortForwarding_Title {
             get {
-                return ResourceManager.GetString("Upsell_UpgradeRequired_msg_SecureCore_2", resourceCulture);
+                return ResourceManager.GetString("Upsell_PortForwarding_Title", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to To access Secure Core, check out our other subscription plans which include this feature..
+        ///   Looks up a localized string similar to Add another layer of encryption to your VPN connection.
         /// </summary>
-        public static string Upsell_UpgradeRequired_msg_SecureCore_Upgrade {
+        public static string Upsell_SecureCore_ExtraEncryption {
             get {
-                return ResourceManager.GetString("Upsell_UpgradeRequired_msg_SecureCore_Upgrade", resourceCulture);
+                return ResourceManager.GetString("Upsell_SecureCore_ExtraEncryption", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to To access more servers in all countries, please upgrade your subscription..
+        ///   Looks up a localized string similar to Protect yourself from network attacks.
         /// </summary>
-        public static string Upsell_UpgradeRequired_msg_Upgrade {
+        public static string Upsell_SecureCore_NetworkAttacks {
             get {
-                return ResourceManager.GetString("Upsell_UpgradeRequired_msg_Upgrade", resourceCulture);
+                return ResourceManager.GetString("Upsell_SecureCore_NetworkAttacks", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sorry, this server is not available for your subscription tier. If you would like to access more servers, consider upgrading your subscription..
+        ///   Looks up a localized string similar to Route through ultra secure servers in Switzerland, Sweden, and Iceland.
         /// </summary>
-        public static string Upsell_UpgradeRequired_msg_Upsell {
+        public static string Upsell_SecureCore_RouteThrough {
             get {
-                return ResourceManager.GetString("Upsell_UpgradeRequired_msg_Upsell", resourceCulture);
+                return ResourceManager.GetString("Upsell_SecureCore_RouteThrough", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Upgrade Required.
+        ///   Looks up a localized string similar to When you upgrade to Plus.
         /// </summary>
-        public static string Upsell_UpgradeRequired_ttl {
+        public static string Upsell_SecureCore_Subtitle {
             get {
-                return ResourceManager.GetString("Upsell_UpgradeRequired_ttl", resourceCulture);
+                return ResourceManager.GetString("Upsell_SecureCore_Subtitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Double the encryption with Secure Core.
+        /// </summary>
+        public static string Upsell_SecureCore_Title {
+            get {
+                return ResourceManager.GetString("Upsell_SecureCore_Title", resourceCulture);
             }
         }
         

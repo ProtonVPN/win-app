@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2022 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -38,6 +38,7 @@ using ProtonVPN.Core.Servers.Specs;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Settings.Contracts;
+using ProtonVPN.Core.Vpn;
 using ProtonVPN.Core.Window.Popups;
 using ProtonVPN.Crypto;
 using ProtonVPN.Modals.Upsell;
@@ -237,7 +238,15 @@ namespace ProtonVPN.Vpn.Connectors
                 (profileCandidates.Profile.IsPredefined && _appSettings.SecureCore)) &&
                 _userStorage.User().MaxTier < ServerTiers.Plus)
             {
-                _modals.Show<ScUpsellModalViewModel>();
+                _modals.Show<SecureCoreUpsellModalViewModel>();
+                return;
+            }
+
+            if ((profileCandidates.Profile.Features.SupportsP2P() ||
+                 (profileCandidates.Profile.IsPredefined && _appSettings.IsPortForwardingEnabled())) &&
+                _userStorage.User().MaxTier < ServerTiers.Plus)
+            {
+                _modals.Show<PortForwardingUpsellModalViewModel>();
                 return;
             }
 
@@ -257,17 +266,8 @@ namespace ProtonVPN.Vpn.Connectors
 
             if (!userTierServers.Any())
             {
-                if (profileCandidates.Candidates.BasicServers().Any())
-                {
-                    _modals.Show<UpsellModalViewModel>();
-                    return;
-                }
-
-                if (profileCandidates.Candidates.PlusServers().Any())
-                {
-                    _modals.Show<PlusUpsellModalViewModel>();
-                    return;
-                }
+                _modals.Show<UpsellModalViewModel>();
+                return;
             }
 
             if (!profileCandidates.Candidates.OnlineServers().Any())
@@ -276,7 +276,7 @@ namespace ProtonVPN.Vpn.Connectors
                 return;
             }
 
-            _modals.Show<NoServerDueTierUpsellModalViewModel>();
+            _modals.Show<UpsellModalViewModel>();
         }
 
         private void HandleNoCountryServersAvailable(IReadOnlyCollection<Server> candidates)
@@ -291,7 +291,7 @@ namespace ProtonVPN.Vpn.Connectors
 
             if (!userTierServers.Any())
             {
-                _modals.Show<NoServerInCountryDueTierUpsellModalViewModel>();
+                _modals.Show<UpsellModalViewModel>();
                 return;
             }
 
@@ -301,7 +301,7 @@ namespace ProtonVPN.Vpn.Connectors
                 return;
             }
 
-            _modals.Show<NoServerInCountryDueTierUpsellModalViewModel>();
+            _modals.Show<UpsellModalViewModel>();
         }
 
         private Common.Vpn.VpnConfig VpnConfig(VpnProtocol protocol)
@@ -323,6 +323,8 @@ namespace ProtonVPN.Vpn.Connectors
                     PreferredProtocols = GetPreferredProtocols(protocol),
                     NetShieldMode = _appSettings.IsNetShieldEnabled() ? _appSettings.NetShieldMode : 0,
                     SplitTcp = _appSettings.IsVpnAcceleratorEnabled(),
+                    AllowNonStandardPorts = _appSettings.ShowNonStandardPortsToFreeUsers ? _appSettings.AllowNonStandardPorts : null,
+                    PortForwarding = _appSettings.IsPortForwardingEnabled(),
                 });
         }
 
@@ -459,19 +461,11 @@ namespace ProtonVPN.Vpn.Connectors
         {
             if (server.IsSecureCore())
             {
-                _modals.Show<ScUpsellModalViewModel>();
+                _modals.Show<SecureCoreUpsellModalViewModel>();
                 return;
             }
 
-            switch (server.Tier)
-            {
-                case ServerTiers.Basic:
-                    _modals.Show<UpsellModalViewModel>();
-                    break;
-                case ServerTiers.Plus:
-                    _modals.Show<PlusUpsellModalViewModel>();
-                    break;
-            }
+            _modals.Show<UpsellModalViewModel>();
         }
 
         private IReadOnlyList<VpnHost> GetValidServers(IEnumerable<Server> servers)
