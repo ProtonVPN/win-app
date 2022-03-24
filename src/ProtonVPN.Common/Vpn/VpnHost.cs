@@ -26,7 +26,7 @@ namespace ProtonVPN.Common.Vpn
 {
     public struct VpnHost
     {
-        public VpnHost(string name, string ip, string label, PublicKey x25519PublicKey)
+        public VpnHost(string name, string ip, string label, PublicKey x25519PublicKey, string signature)
         {
             AssertHostNameIsValid(name);
             AssertIpAddressIsValid(ip);
@@ -35,6 +35,7 @@ namespace ProtonVPN.Common.Vpn
             Ip = ip;
             Label = label;
             X25519PublicKey = x25519PublicKey;
+            Signature = signature;
         }
 
         public string Name { get; }
@@ -44,6 +45,8 @@ namespace ProtonVPN.Common.Vpn
         public string Label { get; }
 
         public PublicKey X25519PublicKey { get; }
+
+        public string Signature { get; }
 
         public bool IsEmpty() => string.IsNullOrEmpty(Name) && string.IsNullOrEmpty(Ip);
 

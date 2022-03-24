@@ -118,17 +118,17 @@ namespace ProtonVPN.App.Test.Vpn.Connectors
             _standardPhysicalServers = new List<PhysicalServer>
             {
                 new(id: "Standard-PS", entryIp: "192.168.0.1", exitIp: "192.168.1.1",
-                    domain: "standard.protonvpn.ps", status: 1, label: string.Empty, x25519PublicKey: string.Empty)
+                    domain: "standard.protonvpn.ps", status: 1, label: string.Empty, x25519PublicKey: string.Empty, signature: string.Empty)
             };
             _p2pPhysicalServers = new List<PhysicalServer>
             {
                 new(id: "P2P-PS", entryIp: "192.168.0.2", exitIp: "192.168.1.2",
-                    domain: "p2p.protonvpn.ps", status: 1, label: string.Empty, x25519PublicKey: string.Empty)
+                    domain: "p2p.protonvpn.ps", status: 1, label: string.Empty, x25519PublicKey: string.Empty, signature: string.Empty)
             };
             _torPhysicalServers = new List<PhysicalServer>
             {
                 new(id: "Tor-PS", entryIp: "192.168.0.3", exitIp: "192.168.1.3",
-                    domain: "tor.protonvpn.ps", status: 1, label: string.Empty, x25519PublicKey: string.Empty)
+                    domain: "tor.protonvpn.ps", status: 1, label: string.Empty, x25519PublicKey: string.Empty, signature: string.Empty)
             };
 
             _standardServer = new Server(id: "Standard-S", name: "Standard", city: "City", entryCountry: "CH", exitCountry: "CH", domain: "standard.protonvpn.s", status: 1, tier: ServerTiers.Basic,

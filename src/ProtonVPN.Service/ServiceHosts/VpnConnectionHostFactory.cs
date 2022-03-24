@@ -31,16 +31,19 @@ namespace ProtonVPN.Service.ServiceHosts
     {
         private readonly ILogger _logger;
         private readonly VpnConnectionHandler _proxy;
+        private readonly Common.Configuration.Config _config;
 
-        public VpnConnectionHostFactory(ILogger logger, VpnConnectionHandler proxy)
+        public VpnConnectionHostFactory(ILogger logger, VpnConnectionHandler proxy, Common.Configuration.Config config)
         {
             _logger = logger;
             _proxy = proxy;
+            _config = config;
         }
 
         public override SafeServiceHost Create()
         {
-            var serviceHost = new SafeServiceHost(_proxy, new Uri("net.pipe://localhost/protonvpn-service"));
+            SafeServiceHost serviceHost =
+                new SafeServiceHost(_proxy, new Uri("net.pipe://localhost/protonvpn-service"));
 
             serviceHost.AddServiceEndpoint(
                 typeof(IVpnConnectionContract),
@@ -52,7 +55,7 @@ namespace ProtonVPN.Service.ServiceHosts
                 new ParameterValidatingBehavior(
                     new ValidatingParameterInspector(new List<IObjectValidator>
                     {
-                        new ValidatableObjectValidator()
+                        new ValidatableObjectValidator(_config)
                     })));
 
             return serviceHost;

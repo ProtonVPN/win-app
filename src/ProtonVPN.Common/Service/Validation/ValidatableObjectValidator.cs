@@ -20,16 +20,30 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using ProtonVPN.Common.Configuration;
 
 namespace ProtonVPN.Common.Service.Validation
 {
     public class ValidatableObjectValidator : IObjectValidator
     {
+        public const string ServerValidationPublicKeyValue = "ServerValidationPublicKey";
+
+        private readonly Config _config;
+
+        public ValidatableObjectValidator(Config config)
+        {
+            _config = config;
+        }
+
         public IEnumerable<ValidationResult> Validate(object input)
         {
             if (input is IValidatableObject validatableInput)
             {
-                return validatableInput.Validate(new ValidationContext(input, null, null));
+                Dictionary<object, object> items = new Dictionary<object, object>
+                {
+                    { ServerValidationPublicKeyValue, _config.ServerValidationPublicKey }
+                };
+                return validatableInput.Validate(new ValidationContext(input, null, items));
             }
 
             return Enumerable.Empty<ValidationResult>();

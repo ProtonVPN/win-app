@@ -474,7 +474,7 @@ namespace ProtonVPN.Vpn.Connectors
             return servers
                 .SelectMany(s => s.Servers.OrderBy(_ => _random.Next()))
                 .Where(s => s.Status != 0)
-                .Select(s => new VpnHost(s.Domain, s.EntryIp, s.Label, GetServerPublicKey(s)))
+                .Select(s => new VpnHost(s.Domain, s.EntryIp, s.Label, GetServerPublicKey(s), s.Signature))
                 .Distinct(s => (s.Ip, s.Label))
                 .ToList();
         }

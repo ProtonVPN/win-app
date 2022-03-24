@@ -169,7 +169,7 @@ namespace ProtonVPN.Core.Api
         {
             try
             {
-                HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, "vpn/logicals", ip);
+                HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, "vpn/logicals?SignServer=Server.EntryIP,Server.Label", ip);
                 using HttpResponseMessage response = await _client.SendAsync(request).ConfigureAwait(false);
                 System.IO.Stream stream = await response.Content.ReadAsStreamAsync();
                 return Logged(GetResponseStreamResult<ServerList>(stream, response.StatusCode), "Get servers");

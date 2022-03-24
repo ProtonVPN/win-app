@@ -9,5 +9,11 @@ namespace ProtonVPN.Core.Servers.Contracts
 
         [JsonProperty("ip")]
         public string Ip { get; set; }
+
+        [JsonProperty("label")]
+        public string Label { get; set; }
+
+        [JsonProperty("signature")]
+        public string Signature { get; set; }
     }
 }

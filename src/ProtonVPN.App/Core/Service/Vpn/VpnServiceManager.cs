@@ -151,6 +151,7 @@ namespace ProtonVPN.Core.Service.Vpn
                 Ip = host.Ip,
                 Label = host.Label,
                 X25519PublicKey = host.X25519PublicKey != null ? new ServerPublicKeyContract(host.X25519PublicKey) : null,
+                Signature = host.Signature,
             };
         }
 

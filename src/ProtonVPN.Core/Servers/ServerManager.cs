@@ -350,7 +350,8 @@ namespace ProtonVPN.Core.Servers
                 domain: server.Domain,
                 label: server.Label,
                 status: server.Status,
-                x25519PublicKey: server.X25519PublicKey);
+                x25519PublicKey: server.X25519PublicKey,
+                signature: server.Signature);
         }
 
         /// <summary>
