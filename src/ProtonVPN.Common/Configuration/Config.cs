@@ -240,5 +240,7 @@ namespace ProtonVPN.Common.Configuration
         public string NtpServerUrl { get; internal set; }
 
         public string DeviceId { get; internal set; }
+
+        public string ServerValidationPublicKey { get; internal set; }
     }
 }

@@ -300,7 +300,7 @@ namespace ProtonVPN.Service
 
         private static VpnHost Map(VpnHostContract server)
         {
-            return new(server.Name, server.Ip, server.Label, server.X25519PublicKey?.ConvertBack());
+            return new(server.Name, server.Ip, server.Label, server.X25519PublicKey?.ConvertBack(), server.Signature);
         }
 
         private VpnConfig Map(VpnConfigContract config)

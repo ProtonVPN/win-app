@@ -17,29 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Newtonsoft.Json;
-
-namespace ProtonVPN.Core.Api.Contracts
+namespace ProtonVPN.Crypto
 {
-    public class PhysicalServerContract
+    public interface IEd25519SignatureValidator
     {
-        [JsonProperty("ID")]
-        public string Id;
-
-        [JsonProperty("EntryIP")]
-        public string EntryIp;
-
-        [JsonProperty("ExitIP")]
-        public string ExitIp;
-
-        public string Domain;
-
-        public sbyte Status;
-
-        public string Label;
-
-        public string X25519PublicKey;
-
-        public string Signature;
+        bool IsValid(string data, string base64Signature, string base64PublicKey);
     }
 }

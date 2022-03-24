@@ -344,6 +344,8 @@ namespace ProtonVPN.Common.Configuration.Source
                 NtpServerUrl = "time.windows.com",
 
                 DeviceId = GetDeviceId(),
+
+                ServerValidationPublicKey = "MCowBQYDK2VwAyEANpYpt/FlSRwEuGLMoNAGOjy1BTyEJPJvKe00oln7LZk=",
             };
         }
 
