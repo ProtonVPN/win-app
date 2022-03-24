@@ -18,7 +18,11 @@
  */
 
 using System;
+using System.Runtime.CompilerServices;
 using Microsoft.Toolkit.Uwp.Notifications;
+using ProtonVPN.Common.Helpers;
+using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
 using ProtonVPN.Core.Settings;
 
 namespace ProtonVPN.Notifications
@@ -30,12 +34,14 @@ namespace ProtonVPN.Notifications
 
         private readonly ISystemNotification _systemNotification;
         private readonly IAppSettings _appSettings;
+        private readonly ILogger _logger;
         private readonly bool _isNativeWindows10Notification;
 
-        public NotificationSender(ISystemNotification systemNotification, IAppSettings appSettings)
+        public NotificationSender(ISystemNotification systemNotification, IAppSettings appSettings, ILogger logger)
         {
             _systemNotification = systemNotification;
             _appSettings = appSettings;
+            _logger = logger;
             _isNativeWindows10Notification = IsNativeWindow10Notification();
         }
 
@@ -47,13 +53,17 @@ namespace ProtonVPN.Notifications
             return osVersion.Version.Major == 10 && osVersion.Version.Build >= 14393;
         }
 
-        public void Send(string title, string description)
+        public void Send(string title, string description,
+            [CallerFilePath] string sourceFilePath = "",
+            [CallerMemberName] string sourceMemberName = "",
+            [CallerLineNumber] int sourceLineNumber = 0)
         {
             if (_appSettings.ShowNotifications)
             {
                 if (_isNativeWindows10Notification)
                 {
-                    SendNativeWindows10Notification(title, description);
+                    CallerProfile callerProfile = new(sourceFilePath, sourceMemberName, sourceLineNumber);
+                    SendNativeWindows10Notification(title, description, callerProfile);
                 }
                 else
                 {
@@ -62,13 +72,23 @@ namespace ProtonVPN.Notifications
             }
         }
 
-        private void SendNativeWindows10Notification(string title, string description)
+        private void SendNativeWindows10Notification(string title, string description, CallerProfile callerProfile)
         {
-            new ToastContentBuilder()
-                .AddText(title)
-                .AddText(description)
-                .AddArgument(ACTION_KEY, OPEN_MAIN_WINDOW_ACTION_KEY)
-                .Show();
+            try
+            {
+                new ToastContentBuilder()
+                    .AddText(title)
+                    .AddText(description)
+                    .AddArgument(ACTION_KEY, OPEN_MAIN_WINDOW_ACTION_KEY)
+                    .Show();
+            }
+            // For some users the exception of "The notification platform is unavailable." is thrown.
+            catch (Exception e)
+            {
+                _logger.Fatal<AppLog>(
+                    $"The app failed to show native notification with title \"{title}\" and description \"{description}\".",
+                    e, callerProfile.SourceClassName, callerProfile.SourceMemberName, callerProfile.SourceLineNumber);
+            }
         }
     }
 }
