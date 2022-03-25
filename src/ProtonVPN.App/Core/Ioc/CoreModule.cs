@@ -66,6 +66,8 @@ namespace ProtonVPN.Core.Ioc
 {
     public class CoreModule : Module
     {
+        private const string NoCacheAlternativeHostHandlerKey = "NoCacheAlternativeHostHandler";
+
         protected override void Load(ContainerBuilder builder)
         {
             base.Load(builder);
@@ -136,10 +138,11 @@ namespace ProtonVPN.Core.Ioc
                     c.Resolve<MainHostname>(),
                     c.Resolve<IAppSettings>(),
                     c.Resolve<GuestHoleState>(),
+                    c.Resolve<ITokenStorage>(),
                     new Uri(c.Resolve<Common.Configuration.Config>().Urls.ApiUrl).Host)
                 {
                     InnerHandler = c.Resolve<CancellingHandler>()
-                }).SingleInstance();
+                }).As<ILoggedInAware>().As<ILogoutAware>().AsSelf().SingleInstance();
 
             builder.RegisterType<AppLanguageCache>().AsImplementedInterfaces().SingleInstance();
 
@@ -157,51 +160,57 @@ namespace ProtonVPN.Core.Ioc
 
             builder.Register(c =>
                 {
-                    var certificateHandler = new CertificateHandler(
+                    CertificateHandler certificateHandler = new(
                         c.Resolve<Common.Configuration.Config>().TlsPinningConfig,
                         c.Resolve<IReportClient>());
 
-                    var safeDnsHandler = new SafeDnsHandler(
-                            c.Resolve<IEventAggregator>(),
-                            c.Resolve<IDnsClient>())
-                        {InnerHandler = certificateHandler};
+                    SafeDnsHandler safeDnsHandler = new(
+                        c.Resolve<IEventAggregator>(),
+                        c.Resolve<IDnsClient>()) { InnerHandler = certificateHandler };
 
-                    var loggingHandler = new LoggingHandler(
-                            c.Resolve<ILogger>())
-                        {InnerHandler = safeDnsHandler};
+                    LoggingHandler loggingHandler = new(
+                        c.Resolve<ILogger>()) { InnerHandler = safeDnsHandler };
 
-                    var retryingHandler = new RetryingHandler(
-                            c.Resolve<Common.Configuration.Config>().ApiTimeout,
-                            c.Resolve<Common.Configuration.Config>().ApiUploadTimeout,
-                            c.Resolve<Common.Configuration.Config>().ApiRetries,
-                            (retryCount, response, context) => new SleepDurationProvider(response).Value())
-                        {InnerHandler = loggingHandler};
+                    RetryingHandler retryingHandler = new(
+                        c.Resolve<Common.Configuration.Config>().ApiTimeout,
+                        c.Resolve<Common.Configuration.Config>().ApiUploadTimeout,
+                        c.Resolve<Common.Configuration.Config>().ApiRetries,
+                        (retryCount, response, context) => new SleepDurationProvider(response).Value())
+                    {
+                        InnerHandler = loggingHandler
+                    };
 
-                    var alternativeHostHandler = new AlternativeHostHandler(
-                            c.Resolve<ILogger>(),
-                            c.Resolve<DohClients>(),
-                            c.Resolve<MainHostname>(),
-                            c.Resolve<IAppSettings>(),
-                            c.Resolve<GuestHoleState>(),
-                            new Uri(c.Resolve<Common.Configuration.Config>().Urls.ApiUrl).Host)
-                    { InnerHandler = retryingHandler};
-
-                    return new ApiClient(
-                        new HttpClient(c.Resolve<AlternativeHostHandler>())
-                        {
-                            BaseAddress = c.Resolve<IActiveUrls>().ApiUrl.Uri
-                        },
-                        new HttpClient(alternativeHostHandler)
-                        {
-                            BaseAddress = c.Resolve<IActiveUrls>().ApiUrl.Uri,
-                            DefaultRequestHeaders = { ConnectionClose = true }
-                        },
+                    return new AlternativeHostHandler(
                         c.Resolve<ILogger>(),
+                        c.Resolve<DohClients>(),
+                        c.Resolve<MainHostname>(),
+                        c.Resolve<IAppSettings>(),
+                        c.Resolve<GuestHoleState>(),
                         c.Resolve<ITokenStorage>(),
-                        c.Resolve<IApiAppVersion>(),
-                        c.Resolve<IAppLanguageCache>(),
-                        c.Resolve<Common.Configuration.Config>().ApiVersion);
-                })
+                        new Uri(c.Resolve<Common.Configuration.Config>().Urls.ApiUrl).Host)
+                    {
+                        InnerHandler = retryingHandler
+                    };
+                }).Named<AlternativeHostHandler>(NoCacheAlternativeHostHandlerKey)
+                .As<ILoggedInAware>()
+                .As<ILogoutAware>()
+                .SingleInstance();
+
+            builder.Register(c => new ApiClient(
+                    new HttpClient(c.Resolve<AlternativeHostHandler>())
+                    {
+                        BaseAddress = c.Resolve<IActiveUrls>().ApiUrl.Uri
+                    },
+                    new HttpClient(c.ResolveNamed<AlternativeHostHandler>(NoCacheAlternativeHostHandlerKey))
+                    {
+                        BaseAddress = c.Resolve<IActiveUrls>().ApiUrl.Uri,
+                        DefaultRequestHeaders = { ConnectionClose = true }
+                    },
+                    c.Resolve<ILogger>(),
+                    c.Resolve<ITokenStorage>(),
+                    c.Resolve<IApiAppVersion>(),
+                    c.Resolve<IAppLanguageCache>(),
+                    c.Resolve<Common.Configuration.Config>().ApiVersion))
                 .As<IApiClient>()
                 .SingleInstance();
 
