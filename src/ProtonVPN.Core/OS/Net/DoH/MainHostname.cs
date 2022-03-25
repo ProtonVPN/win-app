@@ -20,6 +20,7 @@
 using System;
 using System.Text;
 using Albireo.Base32;
+using ProtonVPN.Common.Extensions;
 
 namespace ProtonVPN.Core.OS.Net.DoH
 {
@@ -34,14 +35,20 @@ namespace ProtonVPN.Core.OS.Net.DoH
             _apiUrl = apiUrl;
         }
 
-        public string Value()
+        public string Value(string uid)
         {
-            return string.Format(_hostFormat, GetBase32Host());
+            string result = string.Format(_hostFormat, GetBase32Host());
+            if (!uid.IsNullOrEmpty())
+            {
+                result = $"{uid}.{result}";
+            }
+
+            return result;
         }
 
         private string GetBase32Host()
         {
-            var apiUri = new Uri(_apiUrl);
+            Uri apiUri = new Uri(_apiUrl);
             return Base32.Encode(Encoding.UTF8.GetBytes(apiUri.Host)).TrimEnd('=');
         }
     }

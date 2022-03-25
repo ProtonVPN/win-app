@@ -30,9 +30,19 @@ namespace ProtonVPN.Core.Test.OS.Net.DoH
         public void Value_ShouldReturnCorrectHost()
         {
             new MainHostname("https://api.protonvpn.ch")
-                .Value()
+                .Value(string.Empty)
                 .Should()
                 .Be("dMFYGSLTQOJXXI33OOZYG4LTDNA.protonpro.xyz");
+        }
+
+        [TestMethod]
+        public void Value_ShouldReturnCorrectHostWithUid()
+        {
+            string uid = "test-uid";
+            new MainHostname("https://api.protonvpn.ch")
+                .Value(uid)
+                .Should()
+                .Be($"{uid}.dMFYGSLTQOJXXI33OOZYG4LTDNA.protonpro.xyz");
         }
     }
 }
