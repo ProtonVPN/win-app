@@ -7267,7 +7267,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Speed up your torrenting and online gaming by allowing compatible local apps to be reachable from the internet.&lt;LineBreak/&gt;&lt;LineBreak/&gt;Upgrade to Plus to unblock this and many other features..
+        ///   Looks up a localized string similar to Get faster P2P downloads and enhance your online gaming experience with Port Forwarding. &lt;LineBreak/&gt;&lt;LineBreak/&gt;Unlock this feature and many more with VPN Plus..
         /// </summary>
         public static string Upsell_PortForwarding_Subtitle {
             get {
