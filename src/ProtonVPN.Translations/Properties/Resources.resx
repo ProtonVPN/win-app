@@ -3227,7 +3227,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Enable Port Forwarding</value>
   </data>
   <data name="Upsell_PortForwarding_Subtitle" xml:space="preserve">
-    <value>Speed up your torrenting and online gaming by allowing compatible local apps to be reachable from the internet.&lt;LineBreak/&gt;&lt;LineBreak/&gt;Upgrade to Plus to unblock this and many other features.</value>
+    <value>Get faster P2P downloads and enhance your online gaming experience with Port Forwarding. &lt;LineBreak/&gt;&lt;LineBreak/&gt;Unlock this feature and many more with VPN Plus.</value>
   </data>
   <data name="Upsell_PortForwarding_About" xml:space="preserve">
     <value>What is Port Forwarding?</value>
