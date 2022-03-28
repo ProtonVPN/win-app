@@ -416,11 +416,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <Border DockPanel.Dock="Top" Style="{StaticResource BorderlessSettingContainer}" Padding="5,0,75,0"
                             Visibility="{Binding IsToShowPortForwarding, Converter={StaticResource BoolToVis}}">
                         <DockPanel>
-                            <TextBlock
-                                TextWrapping="Wrap"
-                                FontSize="12"
-                                behavior:TextStyleBehavior.FormattedText="{translations:Loc Settings_Advanced_lbl_PortForwarding_Info}" />
-                        </DockPanel>
+                                <TextBlock
+                                    TextWrapping="Wrap"
+                                    FontSize="12"
+                                    behavior:TextStyleBehavior.FormattedText="{translations:Loc Settings_Advanced_lbl_PortForwarding_Info}" />
+                            </DockPanel>
+                    </Border>
+
+                    <Border DockPanel.Dock="Top" Style="{StaticResource BorderlessSettingContainer}" Padding="5,0,75,0"
+                            Visibility="{Binding IsToShowPortForwardingWarningLabel, Converter={StaticResource BoolToVis}}">
+                        <settings:PortForwardingWarningView DataContext="{Binding PortForwardingWarningViewModel}" />
                     </Border>
 
                     <Border DockPanel.Dock="Top" Style="{StaticResource BorderlessSettingContainer}" Padding="5,0,75,0" Height="20" Margin="0,3,0,3"

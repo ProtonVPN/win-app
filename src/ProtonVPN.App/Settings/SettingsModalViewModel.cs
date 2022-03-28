@@ -76,7 +76,8 @@ namespace ProtonVPN.Settings
             ProfileViewModelFactory profileViewModelFactory,
             SplitTunnelingViewModel splitTunnelingViewModel,
             CustomDnsListViewModel customDnsListViewModel,
-            PortForwardingActivePortViewModel activePortViewModel)
+            PortForwardingActivePortViewModel activePortViewModel,
+            PortForwardingWarningViewModel portForwardingWarningViewModel)
         {
             _userStorage = userStorage;
             _appSettings = appSettings;
@@ -94,6 +95,7 @@ namespace ProtonVPN.Settings
 
             ActivePortViewModel = activePortViewModel;
             ActivePortViewModel.PropertyChanged += OnActivePortViewModelPropertyChanged;
+            PortForwardingWarningViewModel = portForwardingWarningViewModel;
 
             ReconnectCommand = new RelayCommand(ReconnectAction);
             UpgradeCommand = new RelayCommand(UpgradeAction);
@@ -101,6 +103,7 @@ namespace ProtonVPN.Settings
         }
 
         public PortForwardingActivePortViewModel ActivePortViewModel { get; }
+        public PortForwardingWarningViewModel PortForwardingWarningViewModel { get; }
 
         public ICommand ReconnectCommand { get; set; }
         public ICommand UpgradeCommand { get; set; }
@@ -129,6 +132,8 @@ namespace ProtonVPN.Settings
         }
 
         public bool IsToShowNetworkDriverSelection => _appSettings.GetProtocol() != VpnProtocol.WireGuard;
+
+        public bool IsToShowPortForwardingWarningLabel => PortForwardingWarningViewModel.IsToShowPortForwardingWarningLabel;
 
         public int SelectedTabIndex
         {
@@ -537,6 +542,11 @@ namespace ProtonVPN.Settings
             {
                 NotifyOfPropertyChange(() => IsToShowPortForwarding);
                 NotifyOfPropertyChange(() => IsToShowPortForwardingNotifications);
+                NotifyOfPropertyChange(() => IsToShowPortForwardingWarningLabel);
+            }
+            else if (e.PropertyName.Equals(nameof(IAppSettings.PortForwardingEnabled)))
+            {
+                NotifyOfPropertyChange(() => IsToShowPortForwardingWarningLabel);
             }
             else if (e.PropertyName.Equals(nameof(IAppSettings.SmartReconnectEnabled)))
             {

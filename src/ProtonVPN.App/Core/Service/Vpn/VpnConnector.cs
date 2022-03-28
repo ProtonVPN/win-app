@@ -21,7 +21,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Api;
@@ -43,7 +42,6 @@ namespace ProtonVPN.Core.Service.Vpn
         private readonly GuestHoleState _guestHoleState;
         private readonly IUserStorage _userStorage;
         private readonly ServerManager _serverManager;
-        private readonly ILogger _logger;
 
         public Profile LastProfile { get; private set; }
         public Server LastServer { get; private set; } = Server.Empty();
@@ -58,8 +56,7 @@ namespace ProtonVPN.Core.Service.Vpn
             IAppSettings appSettings,
             GuestHoleState guestHoleState,
             IUserStorage userStorage,
-            ServerManager serverManager, 
-            ILogger logger)
+            ServerManager serverManager)
         {
             _profileConnector = profileConnector;
             _profileManager = profileManager;
@@ -67,7 +64,6 @@ namespace ProtonVPN.Core.Service.Vpn
             _guestHoleState = guestHoleState;
             _userStorage = userStorage;
             _serverManager = serverManager;
-            _logger = logger;
         }
 
         public async Task<IList<Server>> GetSortedAndValidQuickConnectServersAsync(int? maxServers = null)

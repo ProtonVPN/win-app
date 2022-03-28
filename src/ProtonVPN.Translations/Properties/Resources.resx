@@ -3270,4 +3270,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="Login_lbl_StartAndConnectOnBoot" xml:space="preserve">
     <value>Start and connect on boot</value>
   </data>
+  <data name="PortForwarding_lbl_ServerWarning" xml:space="preserve">
+    <value>To use Port Forwarding, please &lt;Hyperlink Command="{Binding ConnectToBestP2PServerCommand}"&gt;connect&lt;/Hyperlink&gt; to a server that supports P2P.</value>
+  </data>
 </root>

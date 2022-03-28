@@ -4999,6 +4999,15 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to To use Port Forwarding, please &lt;Hyperlink Command=&quot;{Binding ConnectToBestP2PServerCommand}&quot;&gt;connect&lt;/Hyperlink&gt; to a server that supports P2P..
+        /// </summary>
+        public static string PortForwarding_lbl_ServerWarning {
+            get {
+                return ResourceManager.GetString("PortForwarding_lbl_ServerWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ProtonVPN failed to fetch authentication certificate due to network issue..
         /// </summary>
         public static string ProfileConnector_msg_MissingAuthCert {
