@@ -28,6 +28,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:behavior="clr-namespace:ProtonVPN.Core.Wpf.Behavior"
              xmlns:onboarding="clr-namespace:ProtonVPN.Onboarding"
              xmlns:activePorts="clr-namespace:ProtonVPN.PortForwarding.ActivePorts"
+             xmlns:settings="clr-namespace:ProtonVPN.Settings"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance quickSettings:QuickSettingsViewModel}">
     <UserControl.Resources>
@@ -287,6 +288,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Style TargetType="Hyperlink">
             <Setter Property="Foreground" Value="{StaticResource PrimaryColor}" />
             <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontWeight" Value="Bold" />
         </Style>
         <Style x:Key="Icon" TargetType="Control">
             <Setter Property="Width" Value="18" />
@@ -629,6 +631,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         <activePorts:PortForwardingActivePortView DataContext="{Binding ActivePortViewModel}"
                                             FontWeight="Bold"/>
                                     </StackPanel>
+                                    <settings:PortForwardingWarningView DataContext="{Binding PortForwardingWarningViewModel}" />
                                     <Button>
                                         <Button.Style>
                                             <Style TargetType="Button" BasedOn="{StaticResource PortForwardingUpgradeButton}">

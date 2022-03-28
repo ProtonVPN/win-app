@@ -266,6 +266,10 @@
     <Compile Include="Settings\Migrations\InitialAppSettingsMigration.cs" />
     <Compile Include="Settings\Migrations\v1_22_0\AppSettingsMigration.cs" />
     <Compile Include="Settings\Migrations\v1_27_1\AppSettingsMigration.cs" />
+    <Compile Include="Settings\PortForwardingWarningView.xaml.cs">
+      <DependentUpon>PortForwardingWarningView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\PortForwardingWarningViewModel.cs" />
     <Compile Include="Settings\ReconnectNotification\OpenVpnDriverSetting.cs" />
     <Compile Include="Sidebar\CountryFeatures\CountryFeaturesPopup.cs" />
     <Compile Include="Sidebar\CountryFeatures\CountryFeaturesPopupView.xaml.cs">
@@ -977,6 +981,10 @@
     <Page Include="Modals\Upsell\NonStandardPortsUpsellModalView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Settings\PortForwardingWarningView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Sidebar\CountryFeatures\CountryFeaturesPopupView.xaml">
       <SubType>Designer</SubType>
