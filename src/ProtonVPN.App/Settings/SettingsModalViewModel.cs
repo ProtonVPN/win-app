@@ -565,6 +565,14 @@ namespace ProtonVPN.Settings
             {
                 NotifyOfPropertyChange(() => IsToShowNetworkDriverSelection);
             }
+            else if (e.PropertyName.Equals(nameof(IAppSettings.ModerateNat)))
+            {
+                NotifyOfPropertyChange(() => ModerateNat);
+            }
+            else if (e.PropertyName.Equals(nameof(IAppSettings.AllowNonStandardPorts)))
+            {
+                NotifyOfPropertyChange(() => AllowNonStandardPorts);
+            }
             else if (e.PropertyName.Equals(nameof(IAppSettings.HardwareAccelerationEnabled)))
             {
                 HardwareAccelerationManager.Set(HardwareAccelerationEnabled);
