@@ -149,6 +149,7 @@ namespace ProtonVPN.Sidebar.QuickSettings
 
         public bool IsFreeUser => !_userStorage.User().Paid();
         public bool IsUserTierPlusOrHigher => _userStorage.User().IsTierPlusOrHigher();
+        public bool IsPaidUser => _userStorage.User().Paid();
 
         private bool _showSecureCorePopup;
 
@@ -213,6 +214,7 @@ namespace ProtonVPN.Sidebar.QuickSettings
             }
 
             NotifyOfPropertyChange(nameof(IsFreeUser));
+            NotifyOfPropertyChange(nameof(IsPaidUser));
             NotifyOfPropertyChange(nameof(IsUserTierPlusOrHigher));
         }
 
