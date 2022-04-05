@@ -129,6 +129,9 @@
   <data name="Language_en" xml:space="preserve">
     <value>English</value>
   </data>
+  <data name="Language_es-419" xml:space="preserve">
+    <value>Latinoamérica</value>
+  </data>
   <data name="Language_es-ES" xml:space="preserve">
     <value>Español, España</value>
   </data>

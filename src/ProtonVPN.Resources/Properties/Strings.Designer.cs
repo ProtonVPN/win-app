@@ -97,6 +97,15 @@ namespace ProtonVPN.Resource.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Latinoamérica.
+        /// </summary>
+        internal static string Language_es_419 {
+            get {
+                return ResourceManager.GetString("Language_es-419", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Español, España.
         /// </summary>
         internal static string Language_es_ES {
