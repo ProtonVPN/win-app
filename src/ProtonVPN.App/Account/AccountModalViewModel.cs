@@ -18,6 +18,7 @@
  */
 
 using System.Windows.Input;
+using Caliburn.Micro;
 using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Config.Url;
 using ProtonVPN.Core.Models;
@@ -28,9 +29,8 @@ using ProtonVPN.Translations;
 
 namespace ProtonVPN.Account
 {
-    public class AccountModalViewModel : BaseModalViewModel, IUserDataAware
+    public class AccountModalViewModel : BaseModalViewModel, IUserDataAware, IHandle<AccountActionMessage>
     {
-        private readonly Common.Configuration.Config _appConfig;
         private readonly IActiveUrls _urls;
         private readonly IUserStorage _userStorage;
 
@@ -38,24 +38,37 @@ namespace ProtonVPN.Account
         private string _planName;
         private string _accountType;
         private string _planColor;
+        private string _actionMessage = string.Empty;
+
+        public string ActionMessage
+        {
+            get => _actionMessage;
+            set => Set(ref _actionMessage, value);
+        }
+
+        public PromoCodeViewModel PromoCodeViewModel { get; }
+
+        public bool IsToShowUseCoupon => _userStorage.User().CanUsePromoCode();
 
         public AccountModalViewModel(
-            Common.Configuration.Config appConfig,
+            IEventAggregator eventAggregator,
             IActiveUrls urls,
-            IUserStorage userStorage)
+            IUserStorage userStorage,
+            PromoCodeViewModel promoCodeViewModel)
         {
-            _appConfig = appConfig;
+            eventAggregator.Subscribe(this);
             _urls = urls;
             _userStorage = userStorage;
+            PromoCodeViewModel = promoCodeViewModel;
 
             ManageAccountCommand = new RelayCommand(ManageAccountAction);
             ProtonMailPricingCommand = new RelayCommand(ShowProtonMailPricing);
+            CloseActionMessageCommand = new RelayCommand(CloseActionMessageAction);
         }
 
         public ICommand ManageAccountCommand { get; set; }
         public ICommand ProtonMailPricingCommand { get; set; }
-
-        public string AppVersion => _appConfig.AppVersion;
+        public ICommand CloseActionMessageCommand { get; set; }
 
         public string Username
         {
@@ -92,9 +105,21 @@ namespace ProtonVPN.Account
             SetUserDetails();
         }
 
+        protected override void OnDeactivate(bool close)
+        {
+            base.OnDeactivate(close);
+            CloseActionMessageAction();
+        }
+
         public void OnUserDataChanged()
         {
             SetUserDetails();
+            NotifyOfPropertyChange(nameof(IsToShowUseCoupon));
+        }
+
+        public void Handle(AccountActionMessage message)
+        {
+            ActionMessage = message.Message;
         }
 
         private void SetUserDetails()
@@ -114,6 +139,11 @@ namespace ProtonVPN.Account
         private void ShowProtonMailPricing()
         {
             _urls.ProtonMailPricingUrl.Open();
+        }
+
+        private void CloseActionMessageAction()
+        {
+            ActionMessage = string.Empty;
         }
     }
 }

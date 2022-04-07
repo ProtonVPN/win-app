@@ -31,6 +31,9 @@ namespace ProtonVPN.Core.Models
         public int Services { get; set; }
         public int Delinquent { get; set; }
         public int MaxConnect { get; set; }
+        public int Subscribed { get; set; }
+        public int HasPaymentMethod { get; set; }
+        public int Credit { get; set; }
         public string OriginalVpnPlan { get; set; }
 
         public string GetAccountPlan()
@@ -75,6 +78,11 @@ namespace ProtonVPN.Core.Models
         public bool IsTierPlusOrHigher()
         {
             return MaxTier >= ServerTiers.Plus;
+        }
+
+        public bool CanUsePromoCode()
+        {
+            return Subscribed == 0 && Delinquent == 0 && HasPaymentMethod == 0 && Credit == 0;
         }
     }
 }

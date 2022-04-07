@@ -142,7 +142,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        Text="{translations:Loc Dialogs_SubscriptionExpired_ListTitle}"/>
 
             <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
-                <icons:Checkbox Width="24"/>
+                <icons:Checkbox Width="24" Foreground="{StaticResource PrimaryColor}" />
                 <TextBlock Padding="8,0,0,0" 
                            VerticalAlignment="Center"
                            FontSize="15"
@@ -150,7 +150,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                            Text="{translations:Loc Dialogs_SubscriptionExpired_ListOption1}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                <icons:Checkbox Width="24"/>
+                <icons:Checkbox Width="24" Foreground="{StaticResource PrimaryColor}" />
                 <TextBlock Padding="8,0,0,0" 
                            VerticalAlignment="Center"
                            FontSize="15"
@@ -158,7 +158,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                            Text="{translations:Loc Dialogs_SubscriptionExpired_ListOption2}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                <icons:Checkbox Width="24"/>
+                <icons:Checkbox Width="24" Foreground="{StaticResource PrimaryColor}" />
                 <TextBlock Padding="8,0,0,0" 
                            VerticalAlignment="Center"
                            FontSize="15"

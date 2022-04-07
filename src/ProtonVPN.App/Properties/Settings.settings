@@ -380,5 +380,14 @@
         <Setting Name="StartOnBoot" Type="System.Boolean" Scope="User">
             <Value Profile="(Default)">True</Value>
         </Setting>
+        <Setting Name="UserCredit" Type="System.String" Scope="User">
+            <Value Profile="(Default)" />
+        </Setting>
+        <Setting Name="UserSubscribed" Type="System.String" Scope="User">
+            <Value Profile="(Default)" />
+        </Setting>
+        <Setting Name="UserHasPaymentMethod" Type="System.String" Scope="User">
+            <Value Profile="(Default)" />
+        </Setting>
     </Settings>
 </SettingsFile>

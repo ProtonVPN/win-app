@@ -5458,6 +5458,42 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Apply.
+        /// </summary>
+        public static string PromoCode_btn_Apply {
+            get {
+                return ResourceManager.GetString("PromoCode_btn_Apply", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Coupon code.
+        /// </summary>
+        public static string PromoCode_lbl_CouponCode {
+            get {
+                return ResourceManager.GetString("PromoCode_lbl_CouponCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Coupon has been applied successfully..
+        /// </summary>
+        public static string PromoCode_lbl_Success {
+            get {
+                return ResourceManager.GetString("PromoCode_lbl_Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use coupon.
+        /// </summary>
+        public static string PromoCode_lbl_UseCoupon {
+            get {
+                return ResourceManager.GetString("PromoCode_lbl_UseCoupon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Quick Connect.
         /// </summary>
         public static string QuickLaunch_btn_Connect {

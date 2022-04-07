@@ -313,6 +313,7 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<PortForwardingManager>().As<IPortForwardingManager>().SingleInstance();
             builder.RegisterType<PortForwardingNotifier>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<SignUpAvailabilityProvider>().As<ISignUpAvailabilityProvider>().SingleInstance();
+            builder.RegisterType<PromoCodeManager>().As<IPromoCodeManager>().SingleInstance();
         }
     }
 }

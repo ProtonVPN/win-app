@@ -121,6 +121,7 @@
     <Compile Include="Api\Contracts\StreamingServicesResponse.cs" />
     <Compile Include="Api\Contracts\TwoFactorAuth.cs" />
     <Compile Include="Api\Contracts\VpnConfig.cs" />
+    <Compile Include="Api\PromoCodeRequestData.cs" />
     <Compile Include="Api\Data\TwoFactorRequestData.cs" />
     <Compile Include="Api\Extensions\HttpResponseMessageExtensions.cs" />
     <Compile Include="Api\Extensions\X509CertificateExtensions.cs" />

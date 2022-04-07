@@ -118,7 +118,10 @@ namespace ProtonVPN.Settings
                 VpnUsername = vpnInfo.Vpn.Name,
                 Delinquent = vpnInfo.Delinquent,
                 MaxConnect = vpnInfo.Vpn.MaxConnect,
-                OriginalVpnPlan = vpnInfo.Vpn.PlanName
+                OriginalVpnPlan = vpnInfo.Vpn.PlanName,
+                Subscribed = vpnInfo.Subscribed,
+                HasPaymentMethod = vpnInfo.HasPaymentMethod,
+                Credit = vpnInfo.Credit,
             });
         }
 
@@ -160,6 +163,9 @@ namespace ProtonVPN.Settings
                 Delinquent = delinquent,
                 MaxConnect = _userSettings.Get<int>("MaxConnect"),
                 Services = _userSettings.Get<int>("Services"),
+                Subscribed = _userSettings.Get<int>("Subscribed"),
+                HasPaymentMethod = _userSettings.Get<int>("HasPaymentMethod"),
+                Credit = _userSettings.Get<int>("Credit"),
                 VpnUsername = vpnUsername,
                 VpnPassword = vpnPassword,
                 OriginalVpnPlan = originalVpnPlan
@@ -189,6 +195,9 @@ namespace ProtonVPN.Settings
             _userSettings.Set("VpnPlan", user.OriginalVpnPlan);
             _userSettings.Set("MaxTier", user.MaxTier);
             _userSettings.Set("Delinquent", user.Delinquent);
+            _userSettings.Set("Subscribed", user.Subscribed);
+            _userSettings.Set("HasPaymentMethod", user.HasPaymentMethod);
+            _userSettings.Set("Credit", user.Credit);
             _userSettings.Set("MaxConnect", user.MaxConnect);
             _userSettings.Set("Services", user.Services);
             _userSettings.Set("VpnUsername", 

@@ -29,9 +29,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         xmlns:fa="http://schemas.fontawesome.io/icons/"
                         xmlns:behavior="clr-namespace:ProtonVPN.Core.Wpf.Behavior"
                         xmlns:resource="clr-namespace:ProtonVPN.Resource;assembly=ProtonVPN.Resource"
+                        xmlns:cal="http://www.caliburnproject.org"
+                        xmlns:icons="clr-namespace:ProtonVPN.Views.Icons"
                         mc:Ignorable="d"
                         Title="{translations:Loc Account_ttl}"
-                        ResizeMode="NoResize"
                         Style="{StaticResource BaseWindowStyle}"
                         Height="500"
                         Width="900"
@@ -79,72 +80,77 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Style>
     </Window.Resources>
 
-    <ScrollViewer Template="{StaticResource DarkScrollViewerControlTemplate}" Margin="0,0,0,20">
-        <StackPanel Margin="30,20">
-            <Grid Grid.IsSharedSizeScope="True">
-                <Grid VerticalAlignment="Top">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="205"/>
-                        <ColumnDefinition Width="205"/>
-                        <ColumnDefinition Width="205"/>
-                        <ColumnDefinition Width="204"/>
-                    </Grid.ColumnDefinitions>
+    <Grid>
+        <ScrollViewer Template="{StaticResource DarkScrollViewerControlTemplate}" Margin="0,0,0,20">
+            <StackPanel Margin="30,20">
+                <Grid Grid.IsSharedSizeScope="True">
+                    <Grid VerticalAlignment="Top">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="205"/>
+                            <ColumnDefinition Width="205"/>
+                            <ColumnDefinition Width="205"/>
+                            <ColumnDefinition Width="204"/>
+                        </Grid.ColumnDefinitions>
 
-                    <Border Grid.Column="0" BorderBrush="#403f4d" BorderThickness="0,0,1,0" Background="#262630">
-                        <StackPanel Margin="20,5,10,0" HorizontalAlignment="Stretch">
-                            <Label Style="{StaticResource ColumnTitle}" FontSize="14" Content="{translations:Loc Account_lbl_AccountName}"/>
-                            <TextBlock Style="{StaticResource ColumnTitleText}" Margin="0,-7,0,0" MaxHeight="70"
+                        <Border Grid.Column="0" BorderBrush="#403f4d" BorderThickness="0,0,1,0" Background="#262630">
+                            <StackPanel Margin="20,5,10,0" HorizontalAlignment="Stretch">
+                                <Label Style="{StaticResource ColumnTitle}" FontSize="14" Content="{translations:Loc Account_lbl_AccountName}"/>
+                                <TextBlock Style="{StaticResource ColumnTitleText}" Margin="0,-7,0,0" MaxHeight="70"
                                    Text="{Binding Username}"
                                    TextWrapping="Wrap"
                                    TextTrimming="CharacterEllipsis"
                                    ToolTip="{Binding Username}"/>
-                        </StackPanel>
-                    </Border>
+                            </StackPanel>
+                        </Border>
 
-                    <Border Grid.Column="1" BorderBrush="#403f4d" BorderThickness="0,0,1,0" Background="#262630">
-                        <StackPanel Margin="20,5,20,10" HorizontalAlignment="Stretch">
-                            <Label Style="{StaticResource ColumnTitle}" FontSize="14" Content="{translations:Loc Account_lbl_AccountType}"/>
-                            <TextBlock Style="{StaticResource ColumnValue}" Text="{Binding AccountType}"/>
-                        </StackPanel>
-                    </Border>
+                        <Border Grid.Column="1" BorderBrush="#403f4d" BorderThickness="0,0,1,0" Background="#262630">
+                            <StackPanel Margin="20,5,20,10" HorizontalAlignment="Stretch">
+                                <Label Style="{StaticResource ColumnTitle}" FontSize="14" Content="{translations:Loc Account_lbl_AccountType}"/>
+                                <TextBlock Style="{StaticResource ColumnValue}" Text="{Binding AccountType}"/>
+                            </StackPanel>
+                        </Border>
 
-                    <Border Grid.Column="2" BorderBrush="#403f4d" BorderThickness="0,0,1,0" Background="#262630">
-                        <StackPanel Margin="20,5,20,10" HorizontalAlignment="Stretch">
-                            <Label Style="{StaticResource ColumnTitle}" FontSize="14" Content="{translations:Loc Account_lbl_AccountPlan}"/>
-                            <TextBlock Style="{StaticResource ColumnValue}" Foreground="{Binding PlanColor}" TextWrapping="Wrap" Text="{Binding PlanName}"/>
-                        </StackPanel>
-                    </Border>
+                        <Border Grid.Column="2" BorderBrush="#403f4d" BorderThickness="0,0,1,0" Background="#262630">
+                            <StackPanel Margin="20,5,20,10" HorizontalAlignment="Stretch">
+                                <Label Style="{StaticResource ColumnTitle}" FontSize="14" Content="{translations:Loc Account_lbl_AccountPlan}"/>
+                                <TextBlock Style="{StaticResource ColumnValue}" Foreground="{Binding PlanColor}" TextWrapping="Wrap" Text="{Binding PlanName}"/>
+                            </StackPanel>
+                        </Border>
 
-                    <Grid wpf:BorderGrid.Column="3" Background="#262630">
-                        <Button HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            Command="{Binding ManageAccountCommand}"
-                            Style="{StaticResource SettingsButton}"
-                            Content="{translations:Loc Account_btn_ManageAccount}"/>
+                        <Grid wpf:BorderGrid.Column="3" Background="#262630">
+                            <StackPanel VerticalAlignment="Center">
+                                <Button HorizontalAlignment="Center"
+                                    Command="{Binding ManageAccountCommand}"
+                                    Style="{StaticResource SettingsButton}"
+                                    Content="{translations:Loc Account_btn_ManageAccount}"/>
+                                <Grid Visibility="{Binding IsToShowUseCoupon, Converter={StaticResource BoolToVis}}">
+                                    <account:PromoCodeView DataContext="{Binding PromoCodeViewModel}" />
+                                </Grid>
+                            </StackPanel>
+                        </Grid>
                     </Grid>
                 </Grid>
-            </Grid>
-            <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
-                <Border Style="{StaticResource EmptyBorderStyle}">
-                    <wpf:BorderGrid BorderBrush="#ff0000" BorderThickness="0" VerticalAlignment="Top">
-                        <wpf:BorderGrid.RowDefinitions>
-                            <RowDefinition SharedSizeGroup="A"/>
-                            <RowDefinition SharedSizeGroup="B"/>
-                            <RowDefinition SharedSizeGroup="C"/>
-                            <RowDefinition SharedSizeGroup="D"/>
-                            <RowDefinition SharedSizeGroup="E"/>
-                            <RowDefinition SharedSizeGroup="F"/>
-                            <RowDefinition SharedSizeGroup="G"/>
-                            <RowDefinition SharedSizeGroup="H"/>
-                            <RowDefinition SharedSizeGroup="I"/>
-                            <RowDefinition SharedSizeGroup="J"/>
-                            <RowDefinition SharedSizeGroup="K"/>
-                        </wpf:BorderGrid.RowDefinitions>
-                        <wpf:BorderGrid.ColumnDefinitions>
-                            <ColumnDefinition Width="204"/>
-                        </wpf:BorderGrid.ColumnDefinitions>
-                        <Grid Grid.Row="0" Background="#1c1c24">
-                            <controls:PieChart Percentage=".25"
+                <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                    <Border Style="{StaticResource EmptyBorderStyle}">
+                        <wpf:BorderGrid BorderBrush="#ff0000" BorderThickness="0" VerticalAlignment="Top">
+                            <wpf:BorderGrid.RowDefinitions>
+                                <RowDefinition SharedSizeGroup="A"/>
+                                <RowDefinition SharedSizeGroup="B"/>
+                                <RowDefinition SharedSizeGroup="C"/>
+                                <RowDefinition SharedSizeGroup="D"/>
+                                <RowDefinition SharedSizeGroup="E"/>
+                                <RowDefinition SharedSizeGroup="F"/>
+                                <RowDefinition SharedSizeGroup="G"/>
+                                <RowDefinition SharedSizeGroup="H"/>
+                                <RowDefinition SharedSizeGroup="I"/>
+                                <RowDefinition SharedSizeGroup="J"/>
+                                <RowDefinition SharedSizeGroup="K"/>
+                            </wpf:BorderGrid.RowDefinitions>
+                            <wpf:BorderGrid.ColumnDefinitions>
+                                <ColumnDefinition Width="204"/>
+                            </wpf:BorderGrid.ColumnDefinitions>
+                            <Grid Grid.Row="0" Background="#1c1c24">
+                                <controls:PieChart Percentage=".25"
                                                Size="16"
                                                InnerPieSliceFill="{StaticResource PrimaryColor}"
                                                OuterPieSliceFill="#1c1c24"
@@ -153,46 +159,46 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                BorderThickness="1"
                                                VerticalAlignment="Top"
                                                Margin="0,-8,0,0"/>
-                            <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Center">
-                                <TextBlock Style="{StaticResource PricingText}"
+                                <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                                    <TextBlock Style="{StaticResource PricingText}"
                                            FontWeight="Bold"
                                            FontSize="20"
                                            Text="{translations:Loc Account_lbl_Free}"/>
-                            </StackPanel>
-                        </Grid>
+                                </StackPanel>
+                            </Grid>
 
-                        <DockPanel Grid.Row="1" Background="#202028">
-                            <TextBlock Style="{StaticResource PricingText}" behavior:TextStyleBehavior.FormattedText="{Binding TotalConnections, Converter={StaticResource PluralConverter}, ConverterParameter=1}"/>
-                        </DockPanel>
+                            <DockPanel Grid.Row="1" Background="#202028">
+                                <TextBlock Style="{StaticResource PricingText}" behavior:TextStyleBehavior.FormattedText="{Binding TotalConnections, Converter={StaticResource PluralConverter}, ConverterParameter=1}"/>
+                            </DockPanel>
 
-                        <DockPanel Grid.Row="2" Background="#262630">
-                            <TextBlock Style="{StaticResource PricingText}" behavior:TextStyleBehavior.FormattedText="{Binding TotalCountries, Converter={StaticResource PluralConverter}, ConverterParameter=3}"/>
-                        </DockPanel>
+                            <DockPanel Grid.Row="2" Background="#262630">
+                                <TextBlock Style="{StaticResource PricingText}" behavior:TextStyleBehavior.FormattedText="{Binding TotalCountries, Converter={StaticResource PluralConverter}, ConverterParameter=3}"/>
+                            </DockPanel>
 
-                        <DockPanel Grid.Row="3" Background="#202028">
-                            <TextBlock Style="{StaticResource PricingText}" behavior:TextStyleBehavior.FormattedText="{translations:Loc Account_lbl_MediumSpeed}"/>
-                        </DockPanel>
+                            <DockPanel Grid.Row="3" Background="#202028">
+                                <TextBlock Style="{StaticResource PricingText}" behavior:TextStyleBehavior.FormattedText="{translations:Loc Account_lbl_MediumSpeed}"/>
+                            </DockPanel>
 
-                        <DockPanel Grid.Row="4" Background="#262630">
-                            <TextBlock Style="{StaticResource PricingText}" Text="{translations:Loc Account_lbl_NoLogs}"/>
-                        </DockPanel>
+                            <DockPanel Grid.Row="4" Background="#262630">
+                                <TextBlock Style="{StaticResource PricingText}" Text="{translations:Loc Account_lbl_NoLogs}"/>
+                            </DockPanel>
 
-                        <DockPanel Grid.Row="5" Background="#202028">
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                <TextBlock Style="{StaticResource PricingText}"
+                            <DockPanel Grid.Row="5" Background="#202028">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <TextBlock Style="{StaticResource PricingText}"
                                            Text="{translations:Loc Account_lbl_AccessContent}"
                                            Padding="0"
                                            Margin="15,20,10,20"/>
-                                <fa:FontAwesome Icon="InfoCircle"
+                                    <fa:FontAwesome Icon="InfoCircle"
                                                 VerticalAlignment="Center"
                                                 ToolTip="{translations:Loc Account_lbl_AccessContent_Info}"
                                                 Foreground="{StaticResource PrimaryColor}"
                                                 FontSize="16"/>
-                            </StackPanel>
-                        </DockPanel>
+                                </StackPanel>
+                            </DockPanel>
 
-                        <DockPanel Grid.Row="6" Background="#262630">
-                            <TextBlock Style="{StaticResource PricingText}"
+                            <DockPanel Grid.Row="6" Background="#262630">
+                                <TextBlock Style="{StaticResource PricingText}"
                                        Padding="0"
                                        Margin="30,20,10,20">
                                 <Run Text="{translations:Loc Account_lbl_P2P}" TextDecorations="StrikeThrough"/>
@@ -201,90 +207,90 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                 ToolTip="{translations:Loc Account_lbl_P2P_Info}"
                                                 Foreground="{StaticResource PrimaryColor}"
                                                 FontSize="16"/>
-                            </TextBlock>
-                        </DockPanel>
+                                </TextBlock>
+                            </DockPanel>
 
-                        <DockPanel Grid.Row="7" Background="#202028">
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                <TextBlock Style="{StaticResource PricingText}"
+                            <DockPanel Grid.Row="7" Background="#202028">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <TextBlock Style="{StaticResource PricingText}"
                                            Text="{translations:Loc Account_lbl_NetShield}"
                                            Padding="0"
                                            Margin="15,20,10,20"
                                            TextDecorations="StrikeThrough"/>
-                                <fa:FontAwesome Icon="InfoCircle"
+                                    <fa:FontAwesome Icon="InfoCircle"
                                                 VerticalAlignment="Center"
                                                 ToolTip="{translations:Loc Account_lbl_NetShield_Info}"
                                                 Foreground="{StaticResource PrimaryColor}"
                                                 FontSize="16"/>
-                            </StackPanel>
-                        </DockPanel>
+                                </StackPanel>
+                            </DockPanel>
 
-                        <DockPanel Grid.Row="8" Background="#262630">
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                <TextBlock Style="{StaticResource PricingText}"
+                            <DockPanel Grid.Row="8" Background="#262630">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <TextBlock Style="{StaticResource PricingText}"
                                            Text="{translations:Loc Account_lbl_Streaming}"
                                            Padding="0"
                                            Margin="15,20,10,20"
                                            TextDecorations="StrikeThrough"/>
-                                <fa:FontAwesome Icon="InfoCircle"
+                                    <fa:FontAwesome Icon="InfoCircle"
                                                 VerticalAlignment="Center"
                                                 ToolTip="{translations:Loc Account_lbl_Streaming_Info}"
                                                 Foreground="{StaticResource PrimaryColor}"
                                                 FontSize="16"/>
-                            </StackPanel>
-                        </DockPanel>
+                                </StackPanel>
+                            </DockPanel>
 
-                        <DockPanel Grid.Row="9" Background="#202028">
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                <TextBlock Style="{StaticResource PricingText}"
+                            <DockPanel Grid.Row="9" Background="#202028">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <TextBlock Style="{StaticResource PricingText}"
                                            Text="{translations:Loc Account_lbl_SecureCoreVpn}"
                                            Padding="0"
                                            Margin="15,20,10,20"
                                            TextDecorations="StrikeThrough"/>
-                                <fa:FontAwesome Icon="InfoCircle"
+                                    <fa:FontAwesome Icon="InfoCircle"
                                                 VerticalAlignment="Center"
                                                 ToolTip="{translations:Loc Account_lbl_SecureCoreVpn_Info}"
                                                 Foreground="{StaticResource PrimaryColor}"
                                                 FontSize="16"/>
-                            </StackPanel>
-                        </DockPanel>
+                                </StackPanel>
+                            </DockPanel>
 
-                        <DockPanel Grid.Row="10" Background="#262630">
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                <TextBlock Style="{StaticResource PricingText}"
+                            <DockPanel Grid.Row="10" Background="#262630">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <TextBlock Style="{StaticResource PricingText}"
                                            Text="{translations:Loc Account_lbl_TorOverVpn}"
                                            Padding="0"
                                            Margin="15,20,10,20"
                                            TextDecorations="StrikeThrough"/>
-                                <fa:FontAwesome Icon="InfoCircle"
+                                    <fa:FontAwesome Icon="InfoCircle"
                                                 VerticalAlignment="Center"
                                                 ToolTip="{translations:Loc Account_lbl_TorOverVpn_Info}"
                                                 Foreground="{StaticResource PrimaryColor}"
                                                 FontSize="16"/>
-                            </StackPanel>
-                        </DockPanel>
-                    </wpf:BorderGrid>
-                </Border>
-                <Border Style="{StaticResource BorderStyle}">
-                    <wpf:BorderGrid BorderBrush="#ff0000" BorderThickness="0" VerticalAlignment="Top">
-                        <wpf:BorderGrid.RowDefinitions>
-                            <RowDefinition SharedSizeGroup="A"/>
-                            <RowDefinition SharedSizeGroup="B"/>
-                            <RowDefinition SharedSizeGroup="C"/>
-                            <RowDefinition SharedSizeGroup="D"/>
-                            <RowDefinition SharedSizeGroup="E"/>
-                            <RowDefinition SharedSizeGroup="F"/>
-                            <RowDefinition SharedSizeGroup="G"/>
-                            <RowDefinition SharedSizeGroup="H"/>
-                            <RowDefinition SharedSizeGroup="I"/>
-                            <RowDefinition SharedSizeGroup="J"/>
-                            <RowDefinition SharedSizeGroup="K"/>
-                        </wpf:BorderGrid.RowDefinitions>
-                        <wpf:BorderGrid.ColumnDefinitions>
-                            <ColumnDefinition Width="204"/>
-                        </wpf:BorderGrid.ColumnDefinitions>
-                        <Grid Grid.Row="0" Background="#1c1c24">
-                            <controls:PieChart Percentage=".5"
+                                </StackPanel>
+                            </DockPanel>
+                        </wpf:BorderGrid>
+                    </Border>
+                    <Border Style="{StaticResource BorderStyle}">
+                        <wpf:BorderGrid BorderBrush="#ff0000" BorderThickness="0" VerticalAlignment="Top">
+                            <wpf:BorderGrid.RowDefinitions>
+                                <RowDefinition SharedSizeGroup="A"/>
+                                <RowDefinition SharedSizeGroup="B"/>
+                                <RowDefinition SharedSizeGroup="C"/>
+                                <RowDefinition SharedSizeGroup="D"/>
+                                <RowDefinition SharedSizeGroup="E"/>
+                                <RowDefinition SharedSizeGroup="F"/>
+                                <RowDefinition SharedSizeGroup="G"/>
+                                <RowDefinition SharedSizeGroup="H"/>
+                                <RowDefinition SharedSizeGroup="I"/>
+                                <RowDefinition SharedSizeGroup="J"/>
+                                <RowDefinition SharedSizeGroup="K"/>
+                            </wpf:BorderGrid.RowDefinitions>
+                            <wpf:BorderGrid.ColumnDefinitions>
+                                <ColumnDefinition Width="204"/>
+                            </wpf:BorderGrid.ColumnDefinitions>
+                            <Grid Grid.Row="0" Background="#1c1c24">
+                                <controls:PieChart Percentage=".5"
                                                Size="16"
                                                InnerPieSliceFill="{StaticResource PrimaryColor}"
                                                OuterPieSliceFill="#1c1c24"
@@ -293,47 +299,47 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                BorderThickness="1"
                                                VerticalAlignment="Top"
                                                Margin="0,-8,0,0"/>
-                            <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Center">
-                                <TextBlock Style="{StaticResource PricingText}"
+                                <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                                    <TextBlock Style="{StaticResource PricingText}"
                                            FontWeight="Bold"
                                            FontSize="20"
                                            Foreground="#fb7454"
                                            Text="{translations:Loc Account_lbl_Basic}"/>
-                            </StackPanel>
-                        </Grid>
+                                </StackPanel>
+                            </Grid>
 
-                        <DockPanel Grid.Row="1" Background="#202028">
-                            <TextBlock Style="{StaticResource PricingText}" behavior:TextStyleBehavior.FormattedText="{Binding TotalConnections, Converter={StaticResource PluralConverter}, ConverterParameter=2}"/>
-                        </DockPanel>
+                            <DockPanel Grid.Row="1" Background="#202028">
+                                <TextBlock Style="{StaticResource PricingText}" behavior:TextStyleBehavior.FormattedText="{Binding TotalConnections, Converter={StaticResource PluralConverter}, ConverterParameter=2}"/>
+                            </DockPanel>
 
-                        <DockPanel Grid.Row="2" Background="#262630">
-                            <TextBlock Style="{StaticResource PricingText}" behavior:TextStyleBehavior.FormattedText="{Binding BasicPlanTotalCountries}"/>
-                        </DockPanel>
+                            <DockPanel Grid.Row="2" Background="#262630">
+                                <TextBlock Style="{StaticResource PricingText}" behavior:TextStyleBehavior.FormattedText="{Binding BasicPlanTotalCountries}"/>
+                            </DockPanel>
 
-                        <DockPanel Grid.Row="3" Background="#202028">
-                            <TextBlock Style="{StaticResource PricingText}" behavior:TextStyleBehavior.FormattedText="{translations:Loc Account_lbl_HighSpeed}"/>
-                        </DockPanel>
+                            <DockPanel Grid.Row="3" Background="#202028">
+                                <TextBlock Style="{StaticResource PricingText}" behavior:TextStyleBehavior.FormattedText="{translations:Loc Account_lbl_HighSpeed}"/>
+                            </DockPanel>
 
-                        <DockPanel Grid.Row="4" Background="#262630">
-                            <TextBlock Style="{StaticResource PricingText}" Text="{translations:Loc Account_lbl_NoLogs}"/>
-                        </DockPanel>
+                            <DockPanel Grid.Row="4" Background="#262630">
+                                <TextBlock Style="{StaticResource PricingText}" Text="{translations:Loc Account_lbl_NoLogs}"/>
+                            </DockPanel>
 
-                        <DockPanel Grid.Row="5" Background="#202028">
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                <TextBlock Style="{StaticResource PricingText}"
+                            <DockPanel Grid.Row="5" Background="#202028">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <TextBlock Style="{StaticResource PricingText}"
                                            Text="{translations:Loc Account_lbl_AccessContent}"
                                            Padding="0"
                                            Margin="15,20,10,20"/>
-                                <fa:FontAwesome Icon="InfoCircle"
+                                    <fa:FontAwesome Icon="InfoCircle"
                                                 VerticalAlignment="Center"
                                                 ToolTip="{translations:Loc Account_lbl_AccessContent_Info}"
                                                 Foreground="{StaticResource PrimaryColor}"
                                                 FontSize="16"/>
-                            </StackPanel>
-                        </DockPanel>
+                                </StackPanel>
+                            </DockPanel>
 
-                        <DockPanel Grid.Row="6" Background="#262630">
-                            <TextBlock Style="{StaticResource PricingText}"
+                            <DockPanel Grid.Row="6" Background="#262630">
+                                <TextBlock Style="{StaticResource PricingText}"
                                        Padding="0"
                                        Margin="30,20,10,20">
                                 <Run Text="{translations:Loc Account_lbl_P2P}"/>
@@ -342,89 +348,89 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                 ToolTip="{translations:Loc Account_lbl_P2P_Info}"
                                                 Foreground="{StaticResource PrimaryColor}"
                                                 FontSize="16"/>
-                            </TextBlock>
-                        </DockPanel>
+                                </TextBlock>
+                            </DockPanel>
 
-                        <DockPanel Grid.Row="7" Background="#202028">
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                <TextBlock Style="{StaticResource PricingText}"
+                            <DockPanel Grid.Row="7" Background="#202028">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <TextBlock Style="{StaticResource PricingText}"
                                            Text="{translations:Loc Account_lbl_NetShield}"
                                            Padding="0"
                                            Margin="15,20,10,20"/>
-                                <fa:FontAwesome Icon="InfoCircle"
+                                    <fa:FontAwesome Icon="InfoCircle"
                                                 VerticalAlignment="Center"
                                                 ToolTip="{translations:Loc Account_lbl_NetShield_Info}"
                                                 Foreground="{StaticResource PrimaryColor}"
                                                 FontSize="16"/>
-                            </StackPanel>
-                        </DockPanel>
+                                </StackPanel>
+                            </DockPanel>
 
-                        <DockPanel Grid.Row="8" Background="#262630">
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                <TextBlock Style="{StaticResource PricingText}"
+                            <DockPanel Grid.Row="8" Background="#262630">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <TextBlock Style="{StaticResource PricingText}"
                                            Text="{translations:Loc Account_lbl_Streaming}"
                                            Padding="0"
                                            Margin="15,20,10,20"
                                            TextDecorations="StrikeThrough"/>
-                                <fa:FontAwesome Icon="InfoCircle"
+                                    <fa:FontAwesome Icon="InfoCircle"
                                                 VerticalAlignment="Center"
                                                 ToolTip="{translations:Loc Account_lbl_Streaming_Info}"
                                                 Foreground="{StaticResource PrimaryColor}"
                                                 FontSize="16"/>
-                            </StackPanel>
-                        </DockPanel>
+                                </StackPanel>
+                            </DockPanel>
 
-                        <DockPanel Grid.Row="9" Background="#202028">
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                <TextBlock Style="{StaticResource PricingText}"
+                            <DockPanel Grid.Row="9" Background="#202028">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <TextBlock Style="{StaticResource PricingText}"
                                            Text="{translations:Loc Account_lbl_SecureCoreVpn}"
                                            Padding="0"
                                            Margin="15,20,10,20"
                                            TextDecorations="StrikeThrough"/>
-                                <fa:FontAwesome Icon="InfoCircle"
+                                    <fa:FontAwesome Icon="InfoCircle"
                                                 VerticalAlignment="Center"
                                                 ToolTip="{translations:Loc Account_lbl_SecureCoreVpn_Info}"
                                                 Foreground="{StaticResource PrimaryColor}"
                                                 FontSize="16"/>
-                            </StackPanel>
-                        </DockPanel>
+                                </StackPanel>
+                            </DockPanel>
 
-                        <DockPanel Grid.Row="10" Background="#262630">
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                <TextBlock Style="{StaticResource PricingText}"
+                            <DockPanel Grid.Row="10" Background="#262630">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <TextBlock Style="{StaticResource PricingText}"
                                            Text="{translations:Loc Account_lbl_TorOverVpn}"
                                            Padding="0"
                                            Margin="15,20,10,20"
                                            TextDecorations="StrikeThrough"/>
-                                <fa:FontAwesome Icon="InfoCircle"
+                                    <fa:FontAwesome Icon="InfoCircle"
                                                 VerticalAlignment="Center"
                                                 ToolTip="{translations:Loc Account_lbl_TorOverVpn_Info}"
                                                 Foreground="{StaticResource PrimaryColor}"
                                                 FontSize="16"/>
-                            </StackPanel>
-                        </DockPanel>
-                    </wpf:BorderGrid>
-                </Border>
-                <Border Style="{StaticResource BorderStyle}">
-                    <wpf:BorderGrid VerticalAlignment="Top">
-                        <wpf:BorderGrid.RowDefinitions>
-                            <RowDefinition SharedSizeGroup="A"/>
-                            <RowDefinition SharedSizeGroup="B"/>
-                            <RowDefinition SharedSizeGroup="C"/>
-                            <RowDefinition SharedSizeGroup="D"/>
-                            <RowDefinition SharedSizeGroup="E"/>
-                            <RowDefinition SharedSizeGroup="F"/>
-                            <RowDefinition SharedSizeGroup="G"/>
-                            <RowDefinition SharedSizeGroup="H"/>
-                            <RowDefinition SharedSizeGroup="I"/>
-                            <RowDefinition SharedSizeGroup="J"/>
-                            <RowDefinition SharedSizeGroup="K"/>
-                        </wpf:BorderGrid.RowDefinitions>
-                        <wpf:BorderGrid.ColumnDefinitions>
-                            <ColumnDefinition Width="204"/>
-                        </wpf:BorderGrid.ColumnDefinitions>
-                        <Grid Grid.Row="0" Background="#1c1c24">
-                            <controls:PieChart Percentage=".75"
+                                </StackPanel>
+                            </DockPanel>
+                        </wpf:BorderGrid>
+                    </Border>
+                    <Border Style="{StaticResource BorderStyle}">
+                        <wpf:BorderGrid VerticalAlignment="Top">
+                            <wpf:BorderGrid.RowDefinitions>
+                                <RowDefinition SharedSizeGroup="A"/>
+                                <RowDefinition SharedSizeGroup="B"/>
+                                <RowDefinition SharedSizeGroup="C"/>
+                                <RowDefinition SharedSizeGroup="D"/>
+                                <RowDefinition SharedSizeGroup="E"/>
+                                <RowDefinition SharedSizeGroup="F"/>
+                                <RowDefinition SharedSizeGroup="G"/>
+                                <RowDefinition SharedSizeGroup="H"/>
+                                <RowDefinition SharedSizeGroup="I"/>
+                                <RowDefinition SharedSizeGroup="J"/>
+                                <RowDefinition SharedSizeGroup="K"/>
+                            </wpf:BorderGrid.RowDefinitions>
+                            <wpf:BorderGrid.ColumnDefinitions>
+                                <ColumnDefinition Width="204"/>
+                            </wpf:BorderGrid.ColumnDefinitions>
+                            <Grid Grid.Row="0" Background="#1c1c24">
+                                <controls:PieChart Percentage=".75"
                                                Size="16"
                                                InnerPieSliceFill="{StaticResource PrimaryColor}"
                                                OuterPieSliceFill="#1c1c24"
@@ -433,47 +439,47 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                BorderThickness="1"
                                                VerticalAlignment="Top"
                                                Margin="0,-8,0,0"/>
-                            <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Center">
-                                <TextBlock Style="{StaticResource PricingText}"
+                                <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                                    <TextBlock Style="{StaticResource PricingText}"
                                            FontWeight="Bold"
                                            FontSize="20"
                                            Foreground="#8ec122"
                                            Text="{translations:Loc Account_lbl_Plus}"/>
-                            </StackPanel>
-                        </Grid>
+                                </StackPanel>
+                            </Grid>
 
-                        <DockPanel Grid.Row="1" Background="#202028">
-                            <TextBlock Style="{StaticResource PricingText}" behavior:TextStyleBehavior.FormattedText="{Binding TotalConnections, Converter={StaticResource PluralConverter}, ConverterParameter=10}"/>
-                        </DockPanel>
+                            <DockPanel Grid.Row="1" Background="#202028">
+                                <TextBlock Style="{StaticResource PricingText}" behavior:TextStyleBehavior.FormattedText="{Binding TotalConnections, Converter={StaticResource PluralConverter}, ConverterParameter=10}"/>
+                            </DockPanel>
 
-                        <DockPanel Grid.Row="2" Background="#262630">
-                            <TextBlock Style="{StaticResource PricingText}" behavior:TextStyleBehavior.FormattedText="{Binding TotalCountries, Converter={StaticResource PluralConverter}, ConverterParameter=55}"/>
-                        </DockPanel>
+                            <DockPanel Grid.Row="2" Background="#262630">
+                                <TextBlock Style="{StaticResource PricingText}" behavior:TextStyleBehavior.FormattedText="{Binding TotalCountries, Converter={StaticResource PluralConverter}, ConverterParameter=55}"/>
+                            </DockPanel>
 
-                        <DockPanel Grid.Row="3" Background="#202028">
-                            <TextBlock Style="{StaticResource PricingText}" behavior:TextStyleBehavior.FormattedText="{translations:Loc Account_lbl_HighestSpeed}"/>
-                        </DockPanel>
+                            <DockPanel Grid.Row="3" Background="#202028">
+                                <TextBlock Style="{StaticResource PricingText}" behavior:TextStyleBehavior.FormattedText="{translations:Loc Account_lbl_HighestSpeed}"/>
+                            </DockPanel>
 
-                        <DockPanel Grid.Row="4" Background="#262630">
-                            <TextBlock Style="{StaticResource PricingText}" Text="{translations:Loc Account_lbl_NoLogs}"/>
-                        </DockPanel>
+                            <DockPanel Grid.Row="4" Background="#262630">
+                                <TextBlock Style="{StaticResource PricingText}" Text="{translations:Loc Account_lbl_NoLogs}"/>
+                            </DockPanel>
 
-                        <DockPanel Grid.Row="5" Background="#202028">
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                <TextBlock Style="{StaticResource PricingText}"
+                            <DockPanel Grid.Row="5" Background="#202028">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <TextBlock Style="{StaticResource PricingText}"
                                            Text="{translations:Loc Account_lbl_AccessContent}"
                                            Padding="0"
                                            Margin="15,20,10,20"/>
-                                <fa:FontAwesome Icon="InfoCircle"
+                                    <fa:FontAwesome Icon="InfoCircle"
                                                 VerticalAlignment="Center"
                                                 ToolTip="{translations:Loc Account_lbl_AccessContent_Info}"
                                                 Foreground="{StaticResource PrimaryColor}"
                                                 FontSize="16"/>
-                            </StackPanel>
-                        </DockPanel>
+                                </StackPanel>
+                            </DockPanel>
 
-                        <DockPanel Grid.Row="6" Background="#262630">
-                            <TextBlock Style="{StaticResource PricingText}"
+                            <DockPanel Grid.Row="6" Background="#262630">
+                                <TextBlock Style="{StaticResource PricingText}"
                                        Padding="0"
                                        Margin="30,20,10,20">
                                 <Run Text="{translations:Loc Account_lbl_P2P}"/>
@@ -482,78 +488,78 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                 ToolTip="{translations:Loc Account_lbl_P2P_Info}"
                                                 Foreground="{StaticResource PrimaryColor}"
                                                 FontSize="16"/>
-                            </TextBlock>
-                        </DockPanel>
+                                </TextBlock>
+                            </DockPanel>
 
-                        <DockPanel Grid.Row="7" Background="#202028">
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                <TextBlock Style="{StaticResource PricingText}"
+                            <DockPanel Grid.Row="7" Background="#202028">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <TextBlock Style="{StaticResource PricingText}"
                                            Text="{translations:Loc Account_lbl_NetShield}"
                                            Padding="0"
                                            Margin="15,20,10,20"/>
-                                <fa:FontAwesome Icon="InfoCircle"
+                                    <fa:FontAwesome Icon="InfoCircle"
                                                 VerticalAlignment="Center"
                                                 ToolTip="{translations:Loc Account_lbl_NetShield_Info}"
                                                 Foreground="{StaticResource PrimaryColor}"
                                                 FontSize="16"/>
-                            </StackPanel>
-                        </DockPanel>
+                                </StackPanel>
+                            </DockPanel>
 
-                        <DockPanel Grid.Row="8" Background="#262630">
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                <TextBlock Style="{StaticResource PricingText}"
+                            <DockPanel Grid.Row="8" Background="#262630">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <TextBlock Style="{StaticResource PricingText}"
                                            Text="{translations:Loc Account_lbl_Streaming}"
                                            Padding="0"
                                            Margin="15,20,10,20"/>
-                                <fa:FontAwesome Icon="InfoCircle"
+                                    <fa:FontAwesome Icon="InfoCircle"
                                                 VerticalAlignment="Center"
                                                 ToolTip="{translations:Loc Account_lbl_Streaming_Info}"
                                                 Foreground="{StaticResource PrimaryColor}"
                                                 FontSize="16"/>
-                            </StackPanel>
-                        </DockPanel>
+                                </StackPanel>
+                            </DockPanel>
 
-                        <DockPanel Grid.Row="9" Background="#202028">
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                <TextBlock Style="{StaticResource PricingText}"
+                            <DockPanel Grid.Row="9" Background="#202028">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <TextBlock Style="{StaticResource PricingText}"
                                            Text="{translations:Loc Account_lbl_SecureCoreVpn}"
                                            Padding="0"
                                            Margin="15,20,10,20"/>
-                                <fa:FontAwesome Icon="InfoCircle"
+                                    <fa:FontAwesome Icon="InfoCircle"
                                                 VerticalAlignment="Center"
                                                 ToolTip="{translations:Loc Account_lbl_SecureCoreVpn_Info}"
                                                 Foreground="{StaticResource PrimaryColor}"
                                                 FontSize="16"/>
-                            </StackPanel>
-                        </DockPanel>
+                                </StackPanel>
+                            </DockPanel>
 
-                        <DockPanel Grid.Row="10" Background="#262630">
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                <TextBlock Style="{StaticResource PricingText}"
+                            <DockPanel Grid.Row="10" Background="#262630">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <TextBlock Style="{StaticResource PricingText}"
                                            Text="{translations:Loc Account_lbl_TorOverVpn}"
                                            Padding="0"
                                            Margin="15,20,10,20"/>
-                                <fa:FontAwesome Icon="InfoCircle"
+                                    <fa:FontAwesome Icon="InfoCircle"
                                                 VerticalAlignment="Center"
                                                 ToolTip="{translations:Loc Account_lbl_TorOverVpn_Info}"
                                                 Foreground="{StaticResource PrimaryColor}"
                                                 FontSize="16"/>
-                            </StackPanel>
-                        </DockPanel>
-                    </wpf:BorderGrid>
-                </Border>
-                <Border Style="{StaticResource BorderStyle}">
-                    <wpf:BorderGrid VerticalAlignment="Top">
-                        <wpf:BorderGrid.RowDefinitions>
-                            <RowDefinition SharedSizeGroup="A"/>
-                            <RowDefinition SharedSizeGroup="B"/>
-                            <RowDefinition SharedSizeGroup="C"/>
-                        </wpf:BorderGrid.RowDefinitions>
-                        <wpf:BorderGrid.ColumnDefinitions>
-                            <ColumnDefinition Width="204"/>
-                        </wpf:BorderGrid.ColumnDefinitions>
-                        <Grid Grid.Row="0" Background="#1c1c24">
-                            <controls:PieChart Percentage="1"
+                                </StackPanel>
+                            </DockPanel>
+                        </wpf:BorderGrid>
+                    </Border>
+                    <Border Style="{StaticResource BorderStyle}">
+                        <wpf:BorderGrid VerticalAlignment="Top">
+                            <wpf:BorderGrid.RowDefinitions>
+                                <RowDefinition SharedSizeGroup="A"/>
+                                <RowDefinition SharedSizeGroup="B"/>
+                                <RowDefinition SharedSizeGroup="C"/>
+                            </wpf:BorderGrid.RowDefinitions>
+                            <wpf:BorderGrid.ColumnDefinitions>
+                                <ColumnDefinition Width="204"/>
+                            </wpf:BorderGrid.ColumnDefinitions>
+                            <Grid Grid.Row="0" Background="#1c1c24">
+                                <controls:PieChart Percentage="1"
                                                Size="16"
                                                InnerPieSliceFill="{StaticResource PrimaryColor}"
                                                OuterPieSliceFill="#1c1c24"
@@ -562,19 +568,19 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                BorderThickness="1"
                                                VerticalAlignment="Top"
                                                Margin="0,-8,0,0"/>
-                            <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Center">
-                                <TextBlock Style="{StaticResource PricingText}"
+                                <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                                    <TextBlock Style="{StaticResource PricingText}"
                                            FontWeight="Bold"
                                            FontSize="20"
                                            Foreground="#54d8fd"
                                            Text="{translations:Loc Account_lbl_Visionary}"/>
-                            </StackPanel>
-                        </Grid>
-                        <DockPanel Grid.Row="1" Background="#202028">
-                            <TextBlock Style="{StaticResource PricingText}" Text="{translations:Loc Account_lbl_AllPlusFeatures}"/>
-                        </DockPanel>
-                        <DockPanel Grid.Row="2" Background="#262630">
-                            <TextBlock Style="{StaticResource PricingText}"
+                                </StackPanel>
+                            </Grid>
+                            <DockPanel Grid.Row="1" Background="#202028">
+                                <TextBlock Style="{StaticResource PricingText}" Text="{translations:Loc Account_lbl_AllPlusFeatures}"/>
+                            </DockPanel>
+                            <DockPanel Grid.Row="2" Background="#262630">
+                                <TextBlock Style="{StaticResource PricingText}"
                                        Padding="0"
                                        Margin="10,19,10,19">
                                 <Run Text="{translations:Loc Account_lbl_ProtonmailVisionaryAccount}"/>
@@ -583,11 +589,43 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                 ToolTip="{translations:Loc Account_lbl_ProtonmailVisionaryAccount_Info}"
                                                 Foreground="{StaticResource PrimaryColor}"
                                                 FontSize="16"/>
-                            </TextBlock>
-                        </DockPanel>
-                    </wpf:BorderGrid>
-                </Border>
+                                </TextBlock>
+                            </DockPanel>
+                        </wpf:BorderGrid>
+                    </Border>
+                </StackPanel>
             </StackPanel>
-        </StackPanel>
-    </ScrollViewer>
+        </ScrollViewer>
+        <DockPanel>
+            <DockPanel.Style>
+                <Style TargetType="DockPanel">
+                    <Setter Property="VerticalAlignment" Value="Bottom" />
+                    <Setter Property="Visibility" Value="Visible" />
+                    <Setter Property="Background" Value="{StaticResource PrimaryColor}" />
+                    <Setter Property="Height" Value="40" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ActionMessage}" Value="">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DockPanel.Style>
+            <icons:Checkbox Foreground="White" Width="20" Height="20" HorizontalAlignment="Left" Margin="26,0,0,0" />
+            <TextBlock Text="{Binding ActionMessage}"
+                       VerticalAlignment="Center"
+                       TextWrapping="Wrap"
+                       HorizontalAlignment="Left"
+                       Margin="10,0,0,0"
+                       FontSize="16"
+                       Foreground="White" />
+            <Button Style="{StaticResource ClearStyleButton}"
+                    Command="{Binding CloseActionMessageCommand}"
+                    HorizontalAlignment="Right"
+                    Margin="0,0,26,0"
+                    Background="Transparent"
+                    BorderBrush="Transparent">
+                <icons:Times Foreground="White" Margin="4,5,0,0" />
+            </Button>
+        </DockPanel>
+    </Grid>
 </resource:BaseModalWindow>

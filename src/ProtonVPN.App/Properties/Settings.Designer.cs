@@ -1528,5 +1528,41 @@ namespace ProtonVPN.Properties {
                 this["StartOnBoot"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string UserCredit {
+            get {
+                return ((string)(this["UserCredit"]));
+            }
+            set {
+                this["UserCredit"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string UserSubscribed {
+            get {
+                return ((string)(this["UserSubscribed"]));
+            }
+            set {
+                this["UserSubscribed"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string UserHasPaymentMethod {
+            get {
+                return ((string)(this["UserHasPaymentMethod"]));
+            }
+            set {
+                this["UserHasPaymentMethod"] = value;
+            }
+        }
     }
 }
