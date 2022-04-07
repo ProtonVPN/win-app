@@ -17,13 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Views.Icons
+using System.Threading.Tasks;
+using ProtonVPN.Common.Abstract;
+
+namespace ProtonVPN.Account
 {
-    public partial class Checkbox
+    public interface IPromoCodeManager
     {
-        public Checkbox()
-        {
-            InitializeComponent();
-        }
+        Task<Result> ApplyPromoCodeAsync(string code);
     }
 }

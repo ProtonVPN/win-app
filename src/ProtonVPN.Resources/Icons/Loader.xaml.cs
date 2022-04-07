@@ -17,11 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Views.Icons
+namespace ProtonVPN.Resource.Icons
 {
-    public partial class Checkbox
+    public partial class Loader
     {
-        public Checkbox()
+        public Loader()
         {
             InitializeComponent();
         }

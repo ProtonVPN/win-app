@@ -17,11 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Views.Icons
+
+namespace ProtonVPN.Account
 {
-    public partial class Checkbox
+    public partial class PromoCodeView
     {
-        public Checkbox()
+        public PromoCodeView()
         {
             InitializeComponent();
         }

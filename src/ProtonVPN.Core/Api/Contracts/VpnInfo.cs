@@ -24,8 +24,10 @@ namespace ProtonVPN.Core.Api.Contracts
     public class VpnInfoResponse : BaseResponse
     {
         public int Services { get; set; }
-
         public int Delinquent { get; set; }
+        public int Subscribed { get; set; }
+        public int HasPaymentMethod { get; set; }
+        public int Credit { get; set; }
 
         public VpnInfo Vpn { get; set; }
     }

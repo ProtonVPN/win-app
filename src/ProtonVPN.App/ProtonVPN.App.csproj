@@ -116,7 +116,14 @@
     </Compile>
     <Compile Include="About\LicenseModalViewModel.cs" />
     <Compile Include="About\ReleaseEqualityComparer.cs" />
+    <Compile Include="Account\AccountActionMessage.cs" />
+    <Compile Include="Account\IPromoCodeManager.cs" />
     <Compile Include="Account\IVpnInfoUpdater.cs" />
+    <Compile Include="Account\PromoCodeManager.cs" />
+    <Compile Include="Account\PromoCodeView.xaml.cs">
+      <DependentUpon>PromoCodeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Account\PromoCodeViewModel.cs" />
     <Compile Include="BugReporting\Actions\CategoryAction.cs" />
     <Compile Include="BugReporting\Actions\FinishReportAction.cs" />
     <Compile Include="BugReporting\Actions\FormStateChange.cs" />
@@ -917,6 +924,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="About\Style.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Account\PromoCodeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

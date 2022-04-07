@@ -51,4 +51,22 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </Trigger>
         </Style.Triggers>
     </Style>
+    <Style x:Key="Loader" TargetType="UserControl">
+        <Setter Property="Visibility" Value="Collapsed"/>
+        <Setter Property="RenderTransform">
+            <Setter.Value>
+                <RotateTransform CenterX="9" CenterY="9"/>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="resource:ControlExtension.Spin" Value="True">
+                <Trigger.EnterActions>
+                    <BeginStoryboard Name="LoaderAnimation" Storyboard="{StaticResource SpinStoryboard}"/>
+                </Trigger.EnterActions>
+                <Trigger.ExitActions>
+                    <StopStoryboard BeginStoryboardName="LoaderAnimation"/>
+                </Trigger.ExitActions>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
 </ResourceDictionary>

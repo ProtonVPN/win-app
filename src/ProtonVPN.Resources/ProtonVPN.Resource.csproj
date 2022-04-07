@@ -66,6 +66,9 @@
     <Compile Include="Controls\ProtonAnimation.xaml.cs">
       <DependentUpon>ProtonAnimation.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Icons\Loader.xaml.cs">
+      <DependentUpon>Loader.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Icons\ExclamationCircle.xaml.cs">
       <DependentUpon>ExclamationCircle.xaml</DependentUpon>
     </Compile>
@@ -154,6 +157,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\ProtonAnimation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Icons\Loader.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

@@ -3273,4 +3273,16 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="PortForwarding_lbl_ServerWarning" xml:space="preserve">
     <value>To use Port Forwarding, please &lt;Hyperlink Command="{Binding ConnectToBestP2PServerCommand}"&gt;connect&lt;/Hyperlink&gt; to a server that supports P2P.</value>
   </data>
+  <data name="PromoCode_lbl_UseCoupon" xml:space="preserve">
+    <value>Use coupon</value>
+  </data>
+  <data name="PromoCode_btn_Apply" xml:space="preserve">
+    <value>Apply</value>
+  </data>
+  <data name="PromoCode_lbl_CouponCode" xml:space="preserve">
+    <value>Coupon code</value>
+  </data>
+  <data name="PromoCode_lbl_Success" xml:space="preserve">
+    <value>Coupon has been applied successfully.</value>
+  </data>
 </root>

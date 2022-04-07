@@ -51,5 +51,6 @@ namespace ProtonVPN.Core.Api
         Task<ApiResponseResult<StreamingServicesResponse>> GetStreamingServicesAsync();
         Task<ApiResponseResult<BaseResponse>> CheckAuthenticationServerStatusAsync();
         Task<ApiResponseResult<CertificateResponseData>> RequestAuthCertificateAsync(CertificateRequestData requestData);
+        Task<ApiResponseResult<BaseResponse>> ApplyPromoCodeAsync(PromoCodeRequestData requestData);
     }
 }
