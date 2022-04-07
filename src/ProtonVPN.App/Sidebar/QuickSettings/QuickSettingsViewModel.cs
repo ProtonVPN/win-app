@@ -197,17 +197,16 @@ namespace ProtonVPN.Sidebar.QuickSettings
 
         public void OnUserDataChanged()
         {
-            if (!IsUserTierPlusOrHigher)
+            if (!IsUserTierPlusOrHigher && _appSettings.SecureCore)
             {
-                if (_appSettings.SecureCore)
-                {
-                    DisableSecureCore();
-                }
-                if (_appSettings.PortForwardingEnabled)
-                {
-                    DisablePortForwarding();
-                }
+                DisableSecureCore();
             }
+
+            if (!IsPaidUser && _appSettings.PortForwardingEnabled)
+            {
+                DisablePortForwarding();
+            }
+
             if (IsFreeUser && _appSettings.NetShieldEnabled)
             {
                 DisableNetShield();
