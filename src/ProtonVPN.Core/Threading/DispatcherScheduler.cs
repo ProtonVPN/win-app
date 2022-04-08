@@ -17,9 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Threading;
 using System;
 using System.Windows.Threading;
+using ProtonVPN.Common.Threading;
 
 namespace ProtonVPN.Core.Threading
 {

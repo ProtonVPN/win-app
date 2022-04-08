@@ -23,7 +23,6 @@ using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Modals;
-using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Login.Views;
 using ProtonVPN.Modals;

@@ -151,6 +151,7 @@
     <Compile Include="Extensions\DateTimeOffsetExtensions.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Extensions\ListExtensions.cs" />
+    <Compile Include="Extensions\TaskExtensions.cs" />
     <Compile Include="Go\GoExtensions.cs" />
     <Compile Include="Go\GoString.cs" />
     <Compile Include="Go\GoBytes.cs" />
@@ -370,7 +371,6 @@
     <Compile Include="Threading\SingleActionFactory.cs" />
     <Compile Include="Threading\TaskCompletedEventArgs.cs" />
     <Compile Include="Threading\TaskCompletionSourceExtensions.cs" />
-    <Compile Include="Threading\TaskExtensions.cs" />
     <Compile Include="Threading\TaskQueueing\CoalescingTaskQueueData.cs" />
     <Compile Include="Threading\TaskQueueing\QueuedTask.cs" />
     <Compile Include="Vpn\VpnFeatures.cs" />

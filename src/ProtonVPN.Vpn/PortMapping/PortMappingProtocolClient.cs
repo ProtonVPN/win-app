@@ -23,6 +23,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.Common;
+using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.ConnectionLogs;
 using ProtonVPN.Common.PortForwarding;
@@ -196,6 +197,7 @@ namespace ProtonVPN.Vpn.PortMapping
                 ThrowIfReplyAwaitWasCancelled(cancellationToken);
                 return await task;
             }
+            task.IgnoreExceptions();
             ThrowIfReplyAwaitWasCancelled(cancellationToken);
             throw new TimeoutException($"The remote endpoint '{_endpoint}' did not reply to the query in time ({timeoutInMilliseconds}ms).");
         }

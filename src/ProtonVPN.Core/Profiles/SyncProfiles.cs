@@ -37,12 +37,9 @@ namespace ProtonVPN.Core.Profiles
     {
         private const int NumberOfSyncRetries = 3; 
 
-        private static readonly ProfileByExternalIdEqualityComparer ProfileByExternalIdEqualityComparer =
-            new ProfileByExternalIdEqualityComparer();
-        private static readonly ProfileByEssentialPropertiesEqualityComparer ProfileByEssentialPropertiesEqualityComparer =
-            new ProfileByEssentialPropertiesEqualityComparer();
-        private static readonly ProfileByPropertiesEqualityComparer ProfileByPropertiesEqualityComparer =
-            new ProfileByPropertiesEqualityComparer();
+        private static readonly ProfileByExternalIdEqualityComparer ProfileByExternalIdEqualityComparer = new();
+        private static readonly ProfileByEssentialPropertiesEqualityComparer ProfileByEssentialPropertiesEqualityComparer = new();
+        private static readonly ProfileByPropertiesEqualityComparer ProfileByPropertiesEqualityComparer = new();
 
         private readonly ILogger _logger;
         private readonly IAppSettings _appSettings;
@@ -81,10 +78,10 @@ namespace ProtonVPN.Core.Profiles
             _apiProfiles = apiProfiles;
             _syncProfile = syncProfile;
 
-            _syncAction = new CoalescingAction(SyncAction);
+            _syncAction = new(SyncAction);
             _syncAction.Completed += OnSyncCompleted;
 
-            _timer = new System.Timers.Timer
+            _timer = new()
             {
                 Interval = _appConfig.ProfileSyncTimerPeriod.RandomizedWithDeviation(0.2).TotalMilliseconds,
                 AutoReset = true
@@ -350,7 +347,7 @@ namespace ProtonVPN.Core.Profiles
                 return;
 
             _syncStatus = status;
-            SyncStatusChanged?.Invoke(this, new ProfileSyncStatusChangedEventArgs(status, errorMessage, ChangesSyncedAt));
+            SyncStatusChanged?.Invoke(this, new(status, errorMessage, ChangesSyncedAt));
         }
 
         private void OnTimerElapsed()
@@ -363,7 +360,7 @@ namespace ProtonVPN.Core.Profiles
             else
             {
                 if (_syncStatus == ProfileSyncStatus.Succeeded)
-                    SyncStatusChanged?.Invoke(this, new ProfileSyncStatusChangedEventArgs(_syncStatus, "", ChangesSyncedAt));
+                    SyncStatusChanged?.Invoke(this, new(_syncStatus, "", ChangesSyncedAt));
             }
         }
     }

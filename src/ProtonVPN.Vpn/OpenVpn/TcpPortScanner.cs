@@ -21,7 +21,7 @@ using System;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading.Tasks;
-using ProtonVPN.Common.Threading;
+using ProtonVPN.Common.Extensions;
 using ProtonVPN.Vpn.Common;
 
 namespace ProtonVPN.Vpn.OpenVpn

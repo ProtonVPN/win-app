@@ -22,7 +22,7 @@ using System.ServiceModel;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.AppServiceLogs;
-using ProtonVPN.Common.Threading;
+using ProtonVPN.Common.Extensions;
 using ProtonVPN.Service.Contract.PortForwarding;
 using ProtonVPN.Service.Contract.Settings;
 using ProtonVPN.Service.Contract.Vpn;

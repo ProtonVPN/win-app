@@ -21,7 +21,6 @@ using System.Threading.Tasks;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Auth;
-using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Login.ViewModels;
 

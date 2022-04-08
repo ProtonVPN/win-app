@@ -29,7 +29,7 @@ using NSubstitute;
 using NSubstitute.ExceptionExtensions;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.UserLogs;
-using ProtonVPN.Common.Threading;
+using ProtonVPN.Common.Extensions;
 using ProtonVPN.Core.Abstract;
 using ProtonVPN.Core.Api;
 using ProtonVPN.Core.Api.Contracts;

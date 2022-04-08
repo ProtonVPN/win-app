@@ -20,7 +20,7 @@
 using System;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Go;
-using ProtonVPN.Common.Threading;
+using ProtonVPN.Common.Extensions;
 
 namespace ProtonVPN.Vpn.LocalAgent
 {
