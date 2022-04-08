@@ -23,19 +23,18 @@ using System.Linq;
 using System.ServiceProcess;
 using System.Threading;
 using System.Threading.Tasks;
-using TaskExtensions = ProtonVPN.Common.Threading.TaskExtensions;
+using TaskExtensions = ProtonVPN.Common.Extensions.TaskExtensions;
 
 namespace ProtonVPN.Common.OS.Services
 {
     public static class ServiceControllerExtensions
     {
-        private static readonly Dictionary<ServiceControllerStatus, ServiceControllerStatus[]> PendingStatuses =
-            new Dictionary<ServiceControllerStatus, ServiceControllerStatus[]>
-            {
-                { ServiceControllerStatus.Running, new [] { ServiceControllerStatus.StartPending, ServiceControllerStatus.ContinuePending } },
-                { ServiceControllerStatus.Stopped, new [] { ServiceControllerStatus.StopPending } },
-                { ServiceControllerStatus.Paused, new [] { ServiceControllerStatus.PausePending } },
-            };
+        private static readonly Dictionary<ServiceControllerStatus, ServiceControllerStatus[]> PendingStatuses = new()
+        {
+            { ServiceControllerStatus.Running, new[] { ServiceControllerStatus.StartPending, ServiceControllerStatus.ContinuePending } },
+            { ServiceControllerStatus.Stopped, new[] { ServiceControllerStatus.StopPending } },
+            { ServiceControllerStatus.Paused, new[] { ServiceControllerStatus.PausePending } },
+        };
 
         public static async Task WaitForStatusAsync(this ServiceController controller, ServiceControllerStatus desiredStatus, TimeSpan timeout, CancellationToken cancellationToken)
         {

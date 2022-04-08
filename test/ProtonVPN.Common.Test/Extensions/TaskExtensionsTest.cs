@@ -22,11 +22,11 @@ using System.Threading;
 using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ProtonVPN.Common.Threading;
+using ProtonVPN.Common.Extensions;
 using ProtonVPN.Test.Common.Breakpoints;
-using TaskExtensions = ProtonVPN.Common.Threading.TaskExtensions;
+using TaskExtensions = ProtonVPN.Common.Extensions.TaskExtensions;
 
-namespace ProtonVPN.Common.Test.Threading
+namespace ProtonVPN.Common.Test.Extensions
 {
     [TestClass]
     public class TaskExtensionsTest
@@ -54,8 +54,8 @@ namespace ProtonVPN.Common.Test.Threading
         public async Task TimeoutAfter_ShouldThrow_TaskCanceledException_WhenActionCancelled()
         {
             // Arrange
-            var breakpoint = new Breakpoint();
-            var cancellationSource = new CancellationTokenSource();
+            Breakpoint breakpoint = new Breakpoint();
+            CancellationTokenSource cancellationSource = new CancellationTokenSource();
             async Task Action(CancellationToken ct)
             {
                 await breakpoint.Hit().WaitForContinue();
@@ -63,8 +63,8 @@ namespace ProtonVPN.Common.Test.Threading
             }
 
             // Act
-            var task = TaskExtensions.TimeoutAfter(Action, TimeSpan.Zero, cancellationSource.Token);
-            var hit = await breakpoint.WaitForHit().TimeoutAfter(TestTimeout);
+            Task task = TaskExtensions.TimeoutAfter(Action, TimeSpan.Zero, cancellationSource.Token);
+            BreakpointHit hit = await breakpoint.WaitForHit().TimeoutAfter(TestTimeout);
 
             cancellationSource.Cancel();
             hit.Continue();
@@ -78,7 +78,7 @@ namespace ProtonVPN.Common.Test.Threading
         public async Task TimeoutAfter_ShouldThrow_TimeoutException_WhenActionTimedOut()
         {
             // Arrange
-            var breakpoint = new Breakpoint();
+            Breakpoint breakpoint = new Breakpoint();
             async Task Action(CancellationToken ct)
             {
                 await breakpoint.Hit().WaitForContinue();
@@ -86,8 +86,8 @@ namespace ProtonVPN.Common.Test.Threading
             }
 
             // Act
-            var task = TaskExtensions.TimeoutAfter(Action, TimeSpan.Zero, CancellationToken.None);
-            var hit = await breakpoint.WaitForHit().TimeoutAfter(TestTimeout);
+            Task task = TaskExtensions.TimeoutAfter(Action, TimeSpan.Zero, CancellationToken.None);
+            BreakpointHit hit = await breakpoint.WaitForHit().TimeoutAfter(TestTimeout);
 
             await Task.Delay(TimeSpan.FromMilliseconds(100));
             hit.Continue();
