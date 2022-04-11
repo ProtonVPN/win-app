@@ -17,9 +17,14 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
+using Polly;
+using Polly.Contrib.WaitAndRetry;
+using Polly.Retry;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.ApiLogs;
 using ProtonVPN.Core.Api;
@@ -30,6 +35,9 @@ namespace ProtonVPN.Core.Servers
 {
     public class ApiServers : IApiServers
     {
+        private const int RetryCount = 3;
+        private const int RetryDelayInSeconds = 2;
+
         private readonly ILogger _logger;
         private readonly IApiClient _apiClient;
         private readonly TruncatedLocation _location;
@@ -48,18 +56,32 @@ namespace ProtonVPN.Core.Servers
         {
             try
             {
-                ApiResponseResult<ServerList> response = await _apiClient.GetServersAsync(_location.Ip());
-                if (response.Success)
-                {
-                    return response.Value.Servers;
-                }
+                return await GetServersWithRetryAsync();
             }
             catch (HttpRequestException ex)
             {
                 _logger.Error<ApiErrorLog>("API: Get servers failed", ex);
             }
 
-            return new LogicalServerContract[0];
+            return Array.Empty<LogicalServerContract>();
+        }
+
+        private async Task<IReadOnlyCollection<LogicalServerContract>> GetServersWithRetryAsync()
+        {
+            AsyncRetryPolicy policy = Policy
+                .Handle<HttpRequestException>()
+                .WaitAndRetryAsync(GetRetryPolicy());
+
+            return await policy.ExecuteAsync<IReadOnlyCollection<LogicalServerContract>>(async _ =>
+            {
+                ApiResponseResult<ServerList> response = await _apiClient.GetServersAsync(_location.Ip());
+                return response.Success ? response.Value.Servers : Array.Empty<LogicalServerContract>();
+            }, CancellationToken.None);
+        }
+
+        private IEnumerable<TimeSpan> GetRetryPolicy()
+        {
+            return Backoff.ExponentialBackoff(TimeSpan.FromSeconds(RetryDelayInSeconds), RetryCount);
         }
 
         public async Task<IReadOnlyCollection<LogicalServerContract>> GetLoadsAsync()
@@ -77,7 +99,7 @@ namespace ProtonVPN.Core.Servers
                 _logger.Error<ApiErrorLog>("API: Get servers failed", ex);
             }
 
-            return new LogicalServerContract[0];
+            return Array.Empty<LogicalServerContract>();
         }
     }
 }
