@@ -162,7 +162,8 @@ namespace ProtonVPN.Core.Api.Handlers
             UriBuilder uriBuilder = new(request.RequestUri)
             {
                 Host = _activeBackendHost,
-                Path = "tests/ping"
+                Path = "tests/ping",
+                Query = string.Empty,
             };
             pingRequest.Headers.Host = uriBuilder.Host;
             pingRequest.RequestUri = uriBuilder.Uri;

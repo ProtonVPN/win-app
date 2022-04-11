@@ -28,7 +28,6 @@ using Polly;
 using Polly.Contrib.WaitAndRetry;
 using Polly.Retry;
 using Polly.Timeout;
-using Polly.Wrap;
 
 namespace ProtonVPN.Core.Api.Handlers
 {
@@ -37,6 +36,8 @@ namespace ProtonVPN.Core.Api.Handlers
     /// </summary>
     public class RetryingHandler : DelegatingHandler
     {
+        private const int ServersTimeoutInSeconds = 30;
+
         private static readonly HttpStatusCode[] HttpStatusCodesWorthRetrying =
         {
             HttpStatusCode.RequestTimeout,
@@ -48,11 +49,15 @@ namespace ProtonVPN.Core.Api.Handlers
             (HttpStatusCode) 429
         };
 
-        private readonly AsyncPolicy<HttpResponseMessage> _policy;
-        private readonly AsyncPolicy<HttpResponseMessage> _fileUploadPolicy;
+        private readonly AsyncPolicy<HttpResponseMessage> _basePolicy;
+        private readonly TimeSpan _timeout;
+        private readonly TimeSpan _uploadTimeout;
 
         public RetryingHandler(TimeSpan timeout, TimeSpan uploadTimeout, int maxRetries, Func<int, DelegateResult<HttpResponseMessage>, Context, TimeSpan> sleepDurationProvider)
         {
+            _timeout = timeout;
+            _uploadTimeout = uploadTimeout;
+
             AsyncRetryPolicy<HttpResponseMessage> retryAfterPolicy = Policy
                 .HandleResult<HttpResponseMessage>(ContainsRetryAfterHeader)
                 .WaitAndRetryAsync(maxRetries, sleepDurationProvider, (outcome, timespan, retryCount, context) => Task.CompletedTask);
@@ -65,20 +70,31 @@ namespace ProtonVPN.Core.Api.Handlers
                     .OrResult<HttpResponseMessage>(RetryRequired)
                     .WaitAndRetryAsync(GetBackOff(maxRetries));
 
-            AsyncPolicyWrap<HttpResponseMessage> baseRetryPolicy = retryAfterPolicy.WrapAsync(httpRetryPolicy);
-
-            _policy = baseRetryPolicy.WrapAsync(Policy.TimeoutAsync(timeout));
-            _fileUploadPolicy = baseRetryPolicy.WrapAsync(Policy.TimeoutAsync(uploadTimeout));
+            _basePolicy = retryAfterPolicy.WrapAsync(httpRetryPolicy);
         }
 
         protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request,
             CancellationToken cancellationToken)
         {
-            AsyncPolicy<HttpResponseMessage> policy = request.Content is MultipartFormDataContent ? _fileUploadPolicy : _policy;
+            return GetRetryPolicy(request)
+                .ExecuteAsync(async ct => await base.SendAsync(request, ct), cancellationToken);
+        }
 
-            return policy.ExecuteAsync(async ct =>
-                    await base.SendAsync(request, ct),
-                cancellationToken);
+        private AsyncPolicy<HttpResponseMessage> GetRetryPolicy(HttpRequestMessage request)
+        {
+            AsyncPolicy<HttpResponseMessage> policy = _basePolicy;
+            if (request.RequestUri.AbsolutePath == "/vpn/logicals")
+            {
+                policy = policy.WrapAsync(Policy.TimeoutAsync(ServersTimeoutInSeconds));
+            }
+            else
+            {
+                policy = request.Content is MultipartFormDataContent
+                    ? policy.WrapAsync(Policy.TimeoutAsync(_uploadTimeout))
+                    : policy.WrapAsync(Policy.TimeoutAsync(_timeout));
+            }
+
+            return policy;
         }
 
         private bool RetryRequired(HttpResponseMessage response)
