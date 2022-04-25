@@ -38,6 +38,7 @@ namespace ProtonVPN.UI.Test.Tests
 
             _loginWindow.LoginWithPlusUser();
             _mainWindow.EnableSecureCore();
+            _mainWindow.CloseSecureCoreWarningModal();
             _mainWindow.QuickConnect();
             _mainWindowResults.CheckIfConnected();
             TestRailClient.MarkTestsByStatus();
@@ -54,6 +55,7 @@ namespace ProtonVPN.UI.Test.Tests
 
             _loginWindow.LoginWithPlusUser();
             _mainWindow.EnableSecureCore();
+            _mainWindow.CloseSecureCoreWarningModal();
             _mainWindow.QuickConnect();
             _mainWindowResults.CheckIfSameServerIsKeptAfterKillingApp();
 
@@ -68,6 +70,7 @@ namespace ProtonVPN.UI.Test.Tests
 
             _loginWindow.LoginWithPlusUser();
             _mainWindow.EnableSecureCore();
+            _mainWindow.CloseSecureCoreWarningModal();
             _mainWindow.ConnectToCountryViaPinSecureCore("US");
             _mainWindow.WaitUntilConnected();
             TestRailClient.MarkTestsByStatus();

@@ -45,10 +45,9 @@ namespace ProtonVPN.Core.Settings
         WindowPlacement WindowPlacement { get; set; }
         WindowPlacement SidebarWindowPlacement { get; set; }
         double Width { get; set; }
-        string AutoConnect { get; set; }
         string QuickConnect { get; set; }
         string LastEventId { get; set; }
-        bool StartOnStartup { get; set; }
+        bool StartOnBoot { get; set; }
         StartMinimizedMode StartMinimized { get; set; }
         bool EarlyAccess { get; set; }
         bool SecureCore { get; set; }
@@ -58,6 +57,7 @@ namespace ProtonVPN.Core.Settings
         bool CustomDnsEnabled { get; set; }
         bool SidebarMode { get; set; }
         bool WelcomeModalShown { get; set; }
+        bool ModerateNat { get; set; }
         int OnboardingStep { get; set; }
         int AppStartCounter { get; set; }
         int SidebarTab { get; set; }
@@ -90,7 +90,6 @@ namespace ProtonVPN.Core.Settings
         int[] OpenVpnTcpPorts { get; set; }
         int[] OpenVpnUdpPorts { get; set; }
         int[] WireGuardPorts { get; set; }
-        StringCollection BlackHoleIps { get; set; }
         bool FeatureNetShieldEnabled { get; set; }
         bool FeatureMaintenanceTrackerEnabled { get; set; }
         bool FeaturePollNotificationApiEnabled { get; set; }
@@ -99,6 +98,7 @@ namespace ProtonVPN.Core.Settings
         bool VpnAcceleratorEnabled { get; set; }
         bool FeatureVpnAcceleratorEnabled { get; set; }
         bool FeatureStreamingServicesLogosEnabled { get; set; }
+        bool ConnectOnAppStart { get; set; }
         bool FeatureSmartReconnectEnabled { get; set; }
         bool ShowNonStandardPortsToFreeUsers { get; set; }
         bool SmartReconnectEnabled { get; set; }

@@ -25,12 +25,13 @@ using System.Windows;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Common.Vpn;
+using ProtonVPN.Core.Events;
 using ProtonVPN.Core.MVVM;
 using ProtonVPN.Core.Profiles;
+using ProtonVPN.Core.Servers.Models;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
-using ProtonVPN.P2PDetection;
 using ProtonVPN.Profiles;
 using ProtonVPN.ViewModels;
 using ProtonVPN.Windows;
@@ -39,11 +40,9 @@ namespace ProtonVPN.QuickLaunch
 {
     internal class QuickLaunchViewModel :
         LanguageAwareViewModel,
-        IVpnStateAware,
-        ITrafficForwardedAware
+        IVpnStateAware
     {
         private ViewModel _selectedProfile;
-        private string _vpnStateText;
         private VpnStatus _vpnStatus;
 
         private readonly ProfileManager _profileManager;
@@ -106,12 +105,6 @@ namespace ProtonVPN.QuickLaunch
             set => Set(ref _showQuickConnectPopup, value);
         }
 
-        public string VpnStateText
-        {
-            get => _vpnStateText;
-            set => Set(ref _vpnStateText, value);
-        }
-
         public IReadOnlyList<ProfileViewModel> Profiles
         {
             get => _profiles;
@@ -134,19 +127,19 @@ namespace ProtonVPN.QuickLaunch
             IVpnManager vpnManager,
             AppWindow appWindow)
         {
-            _appWindow = appWindow;
             ShowAppCommand = new RelayCommand(ShowAppAction);
             QuickConnectCommand = new RelayCommand(QuickConnectAction);
             ProfileConnectCommand = new RelayCommand<ProfileViewModel>(ProfileConnectAction);
 
-            _profileHelper = profileHelper;
             _profileManager = profileManager;
+            _profileHelper = profileHelper;
             _vpnManager = vpnManager;
+            _appWindow = appWindow;
         }
 
         public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
         {
-            var server = e.State.Server;
+            Server server = e.State.Server;
 
             _vpnStatus = e.State.Status;
 
@@ -217,11 +210,6 @@ namespace ProtonVPN.QuickLaunch
             await LoadProfiles();
         }
 
-        public void OnTrafficForwarded(string ip)
-        {
-            Ip = ip;
-        }
-
         private async Task LoadProfiles()
         {
             Profiles = (await _profileHelper.GetProfiles())
@@ -233,11 +221,16 @@ namespace ProtonVPN.QuickLaunch
         private async void ProfileConnectAction(ProfileViewModel viewModel)
         {
             ShowQuickConnectPopup = false;
-            if (viewModel == null) return;
-            var profile = await _profileManager.GetProfileById(viewModel.Id);
-            if (profile == null) return;
+            if (viewModel == null)
+            {
+                return;
+            }
 
-            await _vpnManager.ConnectAsync(profile);
+            Profile profile = await _profileManager.GetProfileById(viewModel.Id);
+            if (profile != null)
+            {
+                await _vpnManager.ConnectAsync(profile);
+            }
         }
 
         private void ShowAppAction()
@@ -249,6 +242,10 @@ namespace ProtonVPN.QuickLaunch
             }
 
             _appWindow.Activate();
+            if (Connecting)
+            {
+                _appWindow.Handle(new ToggleOverlay(true));
+            }
         }
     }
 }

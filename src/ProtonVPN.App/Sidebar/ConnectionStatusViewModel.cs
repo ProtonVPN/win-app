@@ -40,7 +40,6 @@ using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.User;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Onboarding;
-using ProtonVPN.P2PDetection;
 using ProtonVPN.PortForwarding.ActivePorts;
 using ProtonVPN.Settings;
 using ProtonVPN.Sidebar.Announcements;
@@ -54,7 +53,6 @@ namespace ProtonVPN.Sidebar
         IOnboardingStepAware,
         IServersAware,
         IUserLocationAware,
-        ITrafficForwardedAware,
         ISettingsAware,
         IServiceSettingsStateAware
     {
@@ -344,11 +342,6 @@ namespace ProtonVPN.Sidebar
             SetIp(e.Location.Ip);
 
             return Task.CompletedTask;
-        }
-
-        public void OnTrafficForwarded(string ip)
-        {
-            SetIp(ip);
         }
 
         public void Load()

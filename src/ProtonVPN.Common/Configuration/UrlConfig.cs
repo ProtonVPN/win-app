@@ -96,7 +96,7 @@ namespace ProtonVPN.Common.Configuration
         public string PortForwardingRisksUrl { get; internal set; }
 
         [Required]
-        public string AboutDelinquencyUrl { get; internal set; }
+        public string AboutModerateNatUrl { get; internal set; }
 
         [Required]
         public string InvoicesUrl { get; internal set; }
@@ -127,5 +127,8 @@ namespace ProtonVPN.Common.Configuration
 
         [Required]
         public string NonStandardPortsUrl { get; internal set; }
+
+        [Required]
+        public string LoginProblemsUrl { get; internal set; }
     }
 }

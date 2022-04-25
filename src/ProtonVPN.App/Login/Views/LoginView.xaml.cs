@@ -30,12 +30,6 @@ namespace ProtonVPN.Login.Views
         public LoginView()
         {
             InitializeComponent();
-            HelpPopup.Opened += OnHelpPopupOpened;
-        }
-
-        private void OnHelpPopupOpened(object sender, System.EventArgs e)
-        {
-            HelpPopup.HorizontalOffset = -(HelpButton.ActualWidth - HelpPopup.ActualWidth) / 2;
         }
 
         private void PasswordInput_PasswordChanged(object sender, RoutedEventArgs e)
@@ -44,18 +38,12 @@ namespace ProtonVPN.Login.Views
                 ? Visibility.Visible : Visibility.Hidden;
         }
 
-        private void PasswordInput_KeyDown(object sender, KeyEventArgs e)
+        private void OnInputKeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key != Key.Enter) return;
-
-            ExecuteLoginCommand();
-        }
-
-        private void UsernameInput_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key != Key.Enter) return;
-
-            ExecuteLoginCommand();
+            if (e.Key == Key.Enter)
+            {
+                ExecuteLoginCommand();
+            }
         }
 
         private void ExecuteLoginCommand()

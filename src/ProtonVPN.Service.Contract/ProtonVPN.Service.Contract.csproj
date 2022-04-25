@@ -32,6 +32,9 @@
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -63,6 +66,8 @@
     <Compile Include="Settings\ISettingsContract.cs" />
     <Compile Include="Settings\ServiceSettingsStateContract.cs" />
     <Compile Include="Vpn\OpenVpnProtocolContract.cs" />
+    <Compile Include="Vpn\PhysicalServer.cs" />
+    <Compile Include="Vpn\ServerValidationObject.cs" />
     <Compile Include="Vpn\VpnConfigContract.cs" />
     <Compile Include="Vpn\VpnConnectionRequestContract.cs" />
     <Compile Include="Vpn\IVpnEventsContract.cs" />
@@ -87,6 +92,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

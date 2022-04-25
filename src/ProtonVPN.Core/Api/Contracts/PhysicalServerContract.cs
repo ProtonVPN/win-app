@@ -39,5 +39,7 @@ namespace ProtonVPN.Core.Api.Contracts
         public string Label;
 
         public string X25519PublicKey;
+
+        public string Signature;
     }
 }

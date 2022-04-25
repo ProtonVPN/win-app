@@ -151,6 +151,7 @@ namespace ProtonVPN.Core.Service.Vpn
                 Ip = host.Ip,
                 Label = host.Label,
                 X25519PublicKey = host.X25519PublicKey != null ? new ServerPublicKeyContract(host.X25519PublicKey) : null,
+                Signature = host.Signature,
             };
         }
 
@@ -178,6 +179,7 @@ namespace ProtonVPN.Core.Service.Vpn
                 SplitTunnelIPs = config.SplitTunnelIPs.ToList(),
                 NetShieldMode = config.NetShieldMode,
                 VpnProtocol = Map(config.VpnProtocol),
+                ModerateNat = config.ModerateNat,
                 PreferredProtocols = Map(config.PreferredProtocols),
                 SplitTcp = config.SplitTcp,
                 PortForwarding = config.PortForwarding,

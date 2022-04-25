@@ -34,6 +34,7 @@ using ProtonVPN.Modals.Upsell;
 using ProtonVPN.Onboarding;
 using ProtonVPN.PortForwarding;
 using ProtonVPN.PortForwarding.ActivePorts;
+using ProtonVPN.Settings;
 
 namespace ProtonVPN.Sidebar.QuickSettings
 {
@@ -57,7 +58,8 @@ namespace ProtonVPN.Sidebar.QuickSettings
             IModals modals,
             IVpnManager vpnManager,
             IPortForwardingManager portForwardingManager,
-            PortForwardingActivePortViewModel activePortViewModel)
+            PortForwardingActivePortViewModel activePortViewModel,
+            PortForwardingWarningViewModel portForwardingWarningViewModel)
         {
             _modals = modals;
             _urls = urls;
@@ -68,6 +70,7 @@ namespace ProtonVPN.Sidebar.QuickSettings
 
             ActivePortViewModel = activePortViewModel;
             ActivePortViewModel.PropertyChanged += OnActivePortViewModelPropertyChanged;
+            PortForwardingWarningViewModel = portForwardingWarningViewModel;
 
             SecureCoreLearnMoreCommand = new RelayCommand(OpenSecureCoreArticleAction);
             NetShieldLearnMoreCommand = new RelayCommand(OpenNetShieldArticleAction);
@@ -77,7 +80,7 @@ namespace ProtonVPN.Sidebar.QuickSettings
             SecureCoreOffCommand = new RelayCommand(TurnOffSecureCoreActionAsync);
             SecureCoreOnCommand = new RelayCommand(TurnOnSecureCoreActionAsync);
 
-            NetShieldOffCommand = new RelayCommand(TurnOffNetShieldActionAsync);
+            NetShieldOffCommand = new RelayCommand(TurnOffNetShieldAction);
             NetShieldOnFirstCommand = new RelayCommand(TurnOnNetShieldFirstModeActionAsync);
             NetShieldOnSecondCommand = new RelayCommand(TurnOnNetShieldSecondModeActionAsync);
 
@@ -94,6 +97,7 @@ namespace ProtonVPN.Sidebar.QuickSettings
         }
 
         public PortForwardingActivePortViewModel ActivePortViewModel { get; }
+        public PortForwardingWarningViewModel PortForwardingWarningViewModel { get; }
 
         public ICommand SecureCoreOffCommand { get; }
         public ICommand SecureCoreOnCommand { get; }
@@ -145,6 +149,7 @@ namespace ProtonVPN.Sidebar.QuickSettings
 
         public bool IsFreeUser => !_userStorage.User().Paid();
         public bool IsUserTierPlusOrHigher => _userStorage.User().IsTierPlusOrHigher();
+        public bool IsPaidUser => _userStorage.User().Paid();
 
         private bool _showSecureCorePopup;
 
@@ -188,25 +193,27 @@ namespace ProtonVPN.Sidebar.QuickSettings
             set => Set(ref _showOnboardingStep, value);
         }
 
+        public bool ShowPortForwardingWarningLabel => PortForwardingWarningViewModel.IsToShowPortForwardingWarningLabel;
+
         public void OnUserDataChanged()
         {
-            if (!IsUserTierPlusOrHigher)
+            if (!IsUserTierPlusOrHigher && _appSettings.SecureCore)
             {
-                if (_appSettings.SecureCore)
-                {
-                    DisableSecureCore();
-                }
-                if (_appSettings.PortForwardingEnabled)
-                {
-                    DisablePortForwarding();
-                }
+                DisableSecureCore();
             }
+
+            if (!IsPaidUser && _appSettings.PortForwardingEnabled)
+            {
+                DisablePortForwarding();
+            }
+
             if (IsFreeUser && _appSettings.NetShieldEnabled)
             {
                 DisableNetShield();
             }
 
             NotifyOfPropertyChange(nameof(IsFreeUser));
+            NotifyOfPropertyChange(nameof(IsPaidUser));
             NotifyOfPropertyChange(nameof(IsUserTierPlusOrHigher));
         }
 
@@ -273,12 +280,15 @@ namespace ProtonVPN.Sidebar.QuickSettings
                 case nameof(IAppSettings.PortForwardingEnabled):
                     NotifyOfPropertyChange(nameof(IsPortForwardingOnButtonOn));
                     NotifyOfPropertyChange(nameof(IsPortForwardingOffButtonOn));
+                    NotifyOfPropertyChange(nameof(ShowPortForwardingWarningLabel));
                     break;
             }
         }
 
         public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
         {
+            NotifyOfPropertyChange(nameof(ShowPortForwardingWarningLabel));
+
             if (e.State.Status == VpnStatus.Pinging ||
                 e.State.Status == VpnStatus.Connecting ||
                 e.State.Status == VpnStatus.Reconnecting)
@@ -415,7 +425,7 @@ namespace ProtonVPN.Sidebar.QuickSettings
             ShowNetShieldPopup = false;
         }
 
-        private async void TurnOffNetShieldActionAsync()
+        private void TurnOffNetShieldAction()
         {
             HideNetShieldPopup();
             DisableNetShield();

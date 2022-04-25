@@ -51,6 +51,7 @@ using ProtonVPN.Core.Window;
 using ProtonVPN.Core.Window.Popups;
 using ProtonVPN.Crypto;
 using ProtonVPN.FlashNotifications;
+using ProtonVPN.Login;
 using ProtonVPN.Map;
 using ProtonVPN.Modals;
 using ProtonVPN.Modals.Dialogs;
@@ -161,6 +162,7 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<SyncProfile>().SingleInstance();
 
             builder.RegisterType<AppSettings>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<InitialAppSettingsMigration>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterType<ProtonVPN.Settings.Migrations.v1_7_2.AppSettingsMigration>().AsImplementedInterfaces()
                 .SingleInstance();
             builder.RegisterType<ProtonVPN.Settings.Migrations.v1_7_2.UserSettingsMigration>().AsImplementedInterfaces()
@@ -181,6 +183,8 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<ProtonVPN.Settings.Migrations.v1_20_0.AppSettingsMigration>().AsImplementedInterfaces()
                 .SingleInstance();
             builder.RegisterType<ProtonVPN.Settings.Migrations.v1_22_0.AppSettingsMigration>().AsImplementedInterfaces()
+                .SingleInstance();
+            builder.RegisterType<ProtonVPN.Settings.Migrations.v1_27_1.AppSettingsMigration>().AsImplementedInterfaces()
                 .SingleInstance();
 
             builder.RegisterType<MapLineManager>().AsImplementedInterfaces().AsSelf().SingleInstance();
@@ -308,6 +312,7 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<AppExitInvoker>().As<IAppExitInvoker>().SingleInstance();
             builder.RegisterType<PortForwardingManager>().As<IPortForwardingManager>().SingleInstance();
             builder.RegisterType<PortForwardingNotifier>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<SignUpAvailabilityProvider>().As<ISignUpAvailabilityProvider>().SingleInstance();
         }
     }
 }

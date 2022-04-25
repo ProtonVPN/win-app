@@ -168,7 +168,7 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
         {
             try
             {
-                await _userAuth.RefreshVpnInfo();
+                await _userAuth.RefreshVpnInfoAsync();
             }
             catch (HttpRequestException ex)
             {

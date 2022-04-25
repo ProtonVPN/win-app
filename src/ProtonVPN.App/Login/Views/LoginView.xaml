@@ -29,8 +29,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:viewModels="clr-namespace:ProtonVPN.Login.ViewModels"
              xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
              xmlns:icons="clr-namespace:ProtonVPN.Views.Icons"
-             xmlns:connectionInfo="clr-namespace:ProtonVPN.ConnectionInfo"
+             xmlns:resourceIcons="clr-namespace:ProtonVPN.Resource.Icons;assembly=ProtonVPN.Resource"
              xmlns:killSwitch="clr-namespace:ProtonVPN.Common.KillSwitch;assembly=ProtonVPN.Common"
+             xmlns:resource="clr-namespace:ProtonVPN.Resource;assembly=ProtonVPN.Resource"
              mc:Ignorable="d"
              d:DesignWidth="440"
              d:DesignHeight="570"
@@ -38,7 +39,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
     <UserControl.Resources>
         <ResourceDictionary>
-            <Style x:Key="EmailInput" TargetType="wpf:PlaceholderTextBox" BasedOn="{StaticResource placeHolder}">
+            <Style x:Key="LoginWindowInput" TargetType="wpf:PlaceholderTextBox" BasedOn="{StaticResource placeHolder}">
                 <Setter Property="Foreground" Value="White" />
                 <Setter Property="Height" Value="36" />
                 <Setter Property="VerticalContentAlignment" Value="Center" />
@@ -48,6 +49,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <Setter Property="FontSize" Value="14" />
                 <Setter Property="Margin" Value="0,0,0,40" />
             </Style>
+            <Style x:Key="TwoFactorInput" TargetType="wpf:PlaceholderTextBox" BasedOn="{StaticResource LoginWindowInput}">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding IsToShowTwoFactorAuth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Value="True">
+                        <Setter Property="FocusManager.FocusedElement" Value="{Binding RelativeSource={RelativeSource Self}}" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
             <Style x:Key="LoginButton" TargetType="Button" BasedOn="{StaticResource ClearStyleButton}">
                 <Setter Property="BorderBrush" Value="#4e505d" />
                 <Setter Property="Border.CornerRadius" Value="19" />
@@ -56,7 +64,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <Setter Property="Margin" Value="0,30,0,0" />
                 <Setter Property="Foreground" Value="#424450" />
                 <Setter Property="Background" Value="Transparent" />
+                <Setter Property="Content" Value="{translations:Loc Login_btn_Login}" />
                 <Style.Triggers>
+                    <DataTrigger Binding="{Binding IsToShowTwoFactorAuth}" Value="True">
+                        <Setter Property="Content" Value="{translations:Loc Login_btn_Authenticate}" />
+                    </DataTrigger>
                     <DataTrigger Binding="{Binding FieldsFilledIn}" Value="True">
                         <Setter Property="Background" Value="{StaticResource PrimaryColor}" />
                         <Setter Property="Foreground" Value="White" />
@@ -155,27 +167,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <Setter Property="Margin" Value="10,3" />
                 <Setter Property="BorderBrush" Value="Transparent" />
                 <Setter Property="BorderThickness" Value="0" />
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type Button}">
-                            <Border SnapsToDevicePixels="True"
-                                    Background="{TemplateBinding Background}"
-                                    BorderBrush="{TemplateBinding BorderBrush}"
-                                    BorderThickness="{TemplateBinding BorderThickness}"
-                                    CornerRadius="{TemplateBinding Border.CornerRadius}"
-                                    Padding="{TemplateBinding Padding}">
-                                <StackPanel Orientation="Horizontal">
-                                    <fa:FontAwesome Margin="0,4,10,0"
-                                                    Icon="HandOutlineRight"
-                                                    FontSize="14"
-                                                    Foreground="#505158" />
-                                    <ContentPresenter HorizontalAlignment="Right"
-                                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
-                                </StackPanel>
-                            </Border>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
+                <Setter Property="HorizontalAlignment" Value="Left" />
             </Style>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -191,41 +183,56 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </TextBlock>
             </DockPanel>
             <StackPanel Style="{StaticResource LoginForm}">
-                <Label Content="{translations:Loc Login_lbl_Username}"
-                       Style="{StaticResource FormLabel}"
-                       Visibility="{Binding LoginText, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}" />
-                <wpf:PlaceholderTextBox x:Name="LoginInput"
-                                        KeyDown="UsernameInput_KeyDown"
-                                        Text="{Binding LoginText, UpdateSourceTrigger=PropertyChanged}"
-                                        Style="{StaticResource EmailInput}"
-                                        Tag="{translations:Loc Login_lbl_Username}"
-                                        AutomationProperties.AutomationId="{StaticResource LoginUsernameInput}" />
-                <Label Style="{StaticResource FormLabel}"
-                       Content="{translations:Loc Login_lbl_Password}"
-                       Visibility="{Binding Password, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}" />
-                <Grid Name="PasswordContainer" Height="36">
-                    <TextBox Name="PasswordText" Text="{Binding Password}" Style="{StaticResource PasswordInputHidden}" />
-                    <PasswordBox Name="PasswordInput"
-                                 input:PasswordBoxAssistant.BindPassword="true"
-                                 input:PasswordBoxAssistant.BoundPassword="{Binding Path=Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                 Style="{StaticResource PasswordInput}"
-                                 Tag="{translations:Loc Login_lbl_Password}"
-                                 FontFamily="Segoe UI"
-                                 PasswordChanged="PasswordInput_PasswordChanged"
-                                 KeyDown="PasswordInput_KeyDown"
-                                 AutomationProperties.AutomationId="{StaticResource LoginPasswordInput}" />
-                    <fa:FontAwesome Name="ImgShowHide"
-                                    Style="{StaticResource PasswordEye}"
-                                    MouseLeave="ImgShowHide_MouseLeave"
-                                    PreviewMouseDown="ImgShowHide_PreviewMouseDown"
-                                    PreviewMouseUp="ImgShowHide_PreviewMouseUp" />
-                </Grid>
+                <StackPanel Visibility="{Binding IsToShowUsernameAndPassword, Converter={StaticResource BoolToVis}}">
+                    <Label Content="{translations:Loc Login_lbl_Username}"
+                           Style="{StaticResource FormLabel}"
+                           Visibility="{Binding LoginText, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}" />
+                    <wpf:PlaceholderTextBox x:Name="LoginInput"
+                                            KeyDown="OnInputKeyDown"
+                                            Text="{Binding LoginText, UpdateSourceTrigger=PropertyChanged}"
+                                            Style="{StaticResource LoginWindowInput}"
+                                            Tag="{translations:Loc Login_lbl_Username}"
+                                            AutomationProperties.AutomationId="{StaticResource LoginUsernameInput}" />
+                    <Label Style="{StaticResource FormLabel}"
+                           Content="{translations:Loc Login_lbl_Password}"
+                           Visibility="{Binding Password, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}" />
+                    <Grid Name="PasswordContainer" Height="36">
+                        <TextBox Name="PasswordText" Text="{Binding Password}"
+                                 Style="{StaticResource PasswordInputHidden}" />
+                        <PasswordBox Name="PasswordInput"
+                                     input:PasswordBoxAssistant.BindPassword="true"
+                                     input:PasswordBoxAssistant.BoundPassword="{Binding Path=Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                     Style="{StaticResource PasswordInput}"
+                                     Tag="{translations:Loc Login_lbl_Password}"
+                                     FontFamily="Segoe UI"
+                                     PasswordChanged="PasswordInput_PasswordChanged"
+                                     KeyDown="OnInputKeyDown"
+                                     AutomationProperties.AutomationId="{StaticResource LoginPasswordInput}" />
+                        <fa:FontAwesome Name="ImgShowHide"
+                                        Style="{StaticResource PasswordEye}"
+                                        MouseLeave="ImgShowHide_MouseLeave"
+                                        PreviewMouseDown="ImgShowHide_PreviewMouseDown"
+                                        PreviewMouseUp="ImgShowHide_PreviewMouseUp" />
+                    </Grid>
+                </StackPanel>
+                <StackPanel Visibility="{Binding IsToShowTwoFactorAuth, Converter={StaticResource BoolToVis}}" x:Name="TwoFactorPanel">
+                    <Label Content="{translations:Loc Login_lbl_TwoFactorAuth}"
+                           Style="{StaticResource FormLabel}"
+                           Visibility="{Binding TwoFactorAuthCode, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}" />
+                    <wpf:PlaceholderTextBox x:Name="TwoFactorAuthInput"
+                                            KeyDown="OnInputKeyDown"
+                                            Text="{Binding TwoFactorAuthCode, UpdateSourceTrigger=PropertyChanged}"
+                                            Style="{StaticResource TwoFactorInput}"
+                                            Tag="{translations:Loc Login_lbl_TwoFactorAuthCode}"
+                                            AutomationProperties.AutomationId="{StaticResource TwoFactorAuthInput}">
+                    </wpf:PlaceholderTextBox>
+                </StackPanel>
                 <DockPanel Margin="0,20,0,0">
                     <Label Foreground="White"
                            FontSize="14"
                            Padding="0"
-                           Content="{translations:Loc Login_lbl_StartWithWindows}" />
-                    <CheckBox IsChecked="{Binding StartOnStartup, Mode=TwoWay}"
+                           Content="{translations:Loc Login_lbl_StartAndConnectOnBoot}" />
+                    <CheckBox IsChecked="{Binding StartAndConnectOnBoot, Mode=TwoWay}"
                               FocusVisualStyle="{x:Null}"
                               HorizontalAlignment="Right"
                               Style="{StaticResource ToggleSwitch}" />
@@ -233,39 +240,81 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <Button Style="{StaticResource LoginButton}"
                         Command="{Binding LoginCommand}"
                         CommandParameter="{Binding ElementName=PasswordInput}"
-                        Content="{translations:Loc Login_btn_Login}"
                         AutomationProperties.AutomationId="{StaticResource LoginButtonId}" />
             </StackPanel>
         </StackPanel>
         <DockPanel Style="{StaticResource Footer}">
-            <Button Style="{StaticResource FooterButton}" Command="{Binding RegisterCommand}"
-                    AutomationProperties.AutomationId="{StaticResource CreateAccountButton}">
-                <Underline>
-                    <Run Text="{translations:Loc Login_lnk_CreateAccount}" />
-                </Underline>
-            </Button>
+            <DockPanel>
+                <Button Style="{StaticResource FooterButton}"
+                        Command="{Binding RegisterCommand}"
+                        Content="{translations:Loc Login_lnk_CreateAccount}"
+                        AutomationProperties.AutomationId="{StaticResource CreateAccountButton}" />
+                <Image Style="{StaticResource Spinner}"
+                       Margin="5,0,0,0"
+                       resource:ControlExtension.Spin="{Binding IsToShowSignUpSpinner}"
+                       Visibility="{Binding IsToShowSignUpSpinner, Converter={StaticResource BoolToVis}}" />
+            </DockPanel>
             <Grid HorizontalAlignment="Right">
-                <Popup Name="HelpPopup"
-                       AllowsTransparency="True"
+                <Popup AllowsTransparency="True"
                        HorizontalAlignment="Center"
-                       PlacementTarget="{Binding ElementName=HelpButton}"
-                       VerticalOffset="-120"
+                       Placement="Center"
+                       VerticalOffset="-85"
                        StaysOpen="False"
                        IsOpen="{Binding ShowHelpBalloon}">
                     <StackPanel HorizontalAlignment="Center">
                         <StackPanel Background="#2b2c34" SnapsToDevicePixels="True">
-                            <StackPanel Margin="5,12">
-                                <Button Style="{StaticResource PopupButton}" Command="{Binding ResetPasswordCommand}"
+                            <StackPanel Margin="5,12" Grid.IsSharedSizeScope="True">
+                                <Button Style="{StaticResource PopupButton}"
+                                        Command="{Binding ResetPasswordCommand}"
                                         AutomationProperties.AutomationId="{StaticResource ResetPasswordButton}">
-                                    <Underline>
-                                        <Run Text="{translations:Loc Login_lnk_ResetPassword}" />
-                                    </Underline>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition SharedSizeGroup="HelpIconColumn" />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <resourceIcons:Key Grid.Column="0" Foreground="{StaticResource PrimaryColor}"
+                                                           Margin="0,0,10,0" />
+                                        <TextBlock Grid.Column="1" Text="{translations:Loc Login_lnk_ResetPassword}" />
+                                    </Grid>
                                 </Button>
-                                <Button Style="{StaticResource PopupButton}" Command="{Binding ForgotUsernameCommand}"
+                                <Button Style="{StaticResource PopupButton}"
+                                        Command="{Binding ForgotUsernameCommand}"
                                         AutomationProperties.AutomationId="{StaticResource ForgotUsernameButton}">
-                                    <Underline>
-                                        <Run Text="{translations:Loc Login_lnk_ForgotUsername}" />
-                                    </Underline>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition SharedSizeGroup="HelpIconColumn" />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <resourceIcons:User Foreground="{StaticResource PrimaryColor}"
+                                                            Margin="0,0,10,0" />
+                                        <TextBlock Grid.Column="1" Text="{translations:Loc Login_lnk_ForgotUsername}" />
+                                    </Grid>
+                                </Button>
+                                <Button Style="{StaticResource PopupButton}"
+                                        Command="{Binding OpenSignInIssuesWebPageCommand}"
+                                        AutomationProperties.AutomationId="{StaticResource ForgotUsernameButton}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition SharedSizeGroup="HelpIconColumn" />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <resourceIcons:ExclamationCircle Foreground="{StaticResource PrimaryColor}"
+                                                                         Margin="0,0,10,0" />
+                                        <TextBlock Grid.Column="1"
+                                                   Text="{translations:Loc Login_lnk_CommonSignInIssues}" />
+                                    </Grid>
+                                </Button>
+                                <Button Style="{StaticResource PopupButton}"
+                                        Command="{Binding ReportAnIssueCommand}"
+                                        AutomationProperties.AutomationId="{StaticResource ForgotUsernameButton}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition SharedSizeGroup="HelpIconColumn" />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <resourceIcons:Bug Foreground="{StaticResource PrimaryColor}" Margin="0,0,10,0" />
+                                        <TextBlock Grid.Column="1" Text="{translations:Loc Login_lnk_ReportAnIssue}" />
+                                    </Grid>
                                 </Button>
                             </StackPanel>
                         </StackPanel>
@@ -273,11 +322,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                  Height="10" Points="0,0 12,10,24,0" />
                     </StackPanel>
                 </Popup>
-                <Button Style="{StaticResource HelpButton}" Name="HelpButton" HorizontalAlignment="Right">
-                    <Underline>
-                        <Run Text="{translations:Loc Login_lnk_NeedHelp}" />
-                    </Underline>
-                </Button>
+                <Button Style="{StaticResource HelpButton}"
+                        Name="HelpButton"
+                        HorizontalAlignment="Right"
+                        Content="{translations:Loc Login_lnk_NeedHelp}" />
             </Grid>
         </DockPanel>
         <Label Content="{Binding AppVersion}"

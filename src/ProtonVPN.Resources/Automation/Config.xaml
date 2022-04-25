@@ -21,6 +21,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
     <system:String x:Key="LoginUsernameInput">LoginUsernameInput</system:String>
+    <system:String x:Key="TwoFactorAuthInput">TwoFactorAuthInput</system:String>
     <system:String x:Key="LoginPasswordInput">LoginPasswordInput</system:String>
     <system:String x:Key="LoginButtonId">LoginButton</system:String>
     <system:String x:Key="MenuHamburgerButton">MenuHamburgerButton</system:String>
@@ -71,13 +72,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <system:String x:Key="ResetPasswordButton">ResetPasswordButton</system:String>
     <system:String x:Key="ForgotUsernameButton">ForgotUsernameButton</system:String>
     <system:String x:Key="CreateAccountButton">CreateAccountButton</system:String>
-    <system:String x:Key="AutoConnectComboBox">AutoConnectComboBox</system:String>
     <system:String x:Key="ReportBugEmailTextBlock">ReportBugEmailTextBlock</system:String>
     <system:String x:Key="SecureCoreButton">SecureCoreButton</system:String>
     <system:String x:Key="SecureCoreOnButton">SecureCoreOnButton</system:String>
     <system:String x:Key="SecureCoreOffButton">SecureCoreOffButton</system:String>
     <system:String x:Key="VpnAcceleratorCheckbox">VpnAcceleratorCheckbox</system:String>
     <system:String x:Key="SmartReconnectCheckbox">SmartReconnectCheckbox</system:String>
+    <system:String x:Key="ModerateNatCheckbox">ModerateNatCheckbox</system:String>
     <system:String x:Key="SmartReconnectNotificationsCheckbox">SmartReconnectNotificationsCheckbox</system:String>
     <system:String x:Key="SplitTunnelingToggle">SplitTunnelingToggle</system:String>
     <system:String x:Key="IncludeModeRadioButton">IncludeModeRadioButton</system:String>
@@ -89,4 +90,5 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <system:String x:Key="PortForwardingButton">PortForwardingButton</system:String>
     <system:String x:Key="PortForwardingOnButton">PortForwardingOnButton</system:String>
     <system:String x:Key="PortForwardingOffButton">PortForwardingOffButton</system:String>
+    <system:String x:Key="ConnectOnBootCheckbox">ConnectOnBootCheckbox</system:String>
 </ResourceDictionary>

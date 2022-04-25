@@ -26,27 +26,32 @@ using System.Threading.Tasks;
 using ProtonVPN.Common.Abstract;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.ApiLogs;
+using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
+using ProtonVPN.Core.Abstract;
+using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.OS.Net.DoH;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
 
 namespace ProtonVPN.Core.Api.Handlers
 {
-    public class AlternativeHostHandler : DelegatingHandler, IVpnStateAware
+    public class AlternativeHostHandler : DelegatingHandler, IVpnStateAware, ILoggedInAware, ILogoutAware
     {
         private readonly ILogger _logger;
         private readonly DohClients _dohClients;
         private readonly MainHostname _mainHostname;
         private readonly IAppSettings _appSettings;
-        private readonly SingleAction _fetchProxies;
         private readonly GuestHoleState _guestHoleState;
+        private readonly ITokenStorage _tokenStorage;
+        private readonly SingleAction _fetchProxies;
 
         private const int HoursToUseProxy = 24;
         private string _activeBackendHost;
         private readonly string _apiHost;
         private bool _isDisconnected;
+        private bool _isUserLoggedIn;
 
         public AlternativeHostHandler(
             ILogger logger,
@@ -54,15 +59,17 @@ namespace ProtonVPN.Core.Api.Handlers
             MainHostname mainHostname,
             IAppSettings appSettings,
             GuestHoleState guestHoleState,
+            ITokenStorage tokenStorage,
             string apiHost)
         {
             _logger = logger;
-            _guestHoleState = guestHoleState;
-            _mainHostname = mainHostname;
             _dohClients = dohClients;
+            _mainHostname = mainHostname;
             _appSettings = appSettings;
-            _apiHost = apiHost;
+            _guestHoleState = guestHoleState;
+            _tokenStorage = tokenStorage;
             _activeBackendHost = apiHost;
+            _apiHost = apiHost;
             _fetchProxies = new SingleAction(FetchProxies);
         }
 
@@ -155,7 +162,8 @@ namespace ProtonVPN.Core.Api.Handlers
             UriBuilder uriBuilder = new(request.RequestUri)
             {
                 Host = _activeBackendHost,
-                Path = "tests/ping"
+                Path = "tests/ping",
+                Query = string.Empty,
             };
             pingRequest.Headers.Host = uriBuilder.Host;
             pingRequest.RequestUri = uriBuilder.Uri;
@@ -229,7 +237,9 @@ namespace ProtonVPN.Core.Api.Handlers
             {
                 try
                 {
-                    List<string> alternativeHosts = await dohClient.ResolveTxtAsync(_mainHostname.Value());
+                    string host = _mainHostname.Value(_isUserLoggedIn ? _tokenStorage.Uid : string.Empty);
+                    _logger.Info<AppLog>($"Resolving alternative hosts from {host}");
+                    List<string> alternativeHosts = await dohClient.ResolveTxtAsync(host);
                     if (alternativeHosts.Count > 0)
                     {
                         _appSettings.AlternativeApiBaseUrls = GetAlternativeApiBaseUrls(alternativeHosts);
@@ -252,6 +262,16 @@ namespace ProtonVPN.Core.Api.Handlers
             }
 
             return collection;
+        }
+
+        public void OnUserLoggedIn()
+        {
+            _isUserLoggedIn = true;
+        }
+
+        public void OnUserLoggedOut()
+        {
+            _isUserLoggedIn = false;
         }
     }
 }

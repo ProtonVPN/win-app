@@ -35,5 +35,5 @@ class Localization:
         os.replace(str(src), dest)
 
     def getLanguageCode(self, path):
-        match = re.match('.+\.([A-Za-zl-]+)\.', str(path))
+        match = re.match('.+ProtonVPN Windows app\.(.+)\.resx', str(path))
         return match.group(1)

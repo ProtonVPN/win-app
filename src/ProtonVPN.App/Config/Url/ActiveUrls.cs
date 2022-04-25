@@ -57,7 +57,7 @@ namespace ProtonVPN.Config.Url
         public IActiveUrl AboutKillSwitchUrl                      => Url(_config.AboutKillSwitchUrl);
         public IActiveUrl AboutPortForwardingUrl                  => Url(_config.AboutPortForwardingUrl);
         public IActiveUrl PortForwardingRisksUrl                  => Url(_config.PortForwardingRisksUrl);
-        public IActiveUrl AboutDelinquencyUrl                     => Url(_config.AboutDelinquencyUrl);
+        public IActiveUrl AboutModerateNatUrl                     => Url(_config.AboutModerateNatUrl);
         public IActiveUrl InvoicesUrl                             => Url(_config.InvoicesUrl);
         public IActiveUrl SmartRoutingUrl                         => Url(_config.SmartRoutingUrl);
         public IActiveUrl StreamingUrl                            => Url(_config.StreamingUrl);
@@ -67,6 +67,7 @@ namespace ProtonVPN.Config.Url
         public IActiveUrl IncorrectSystemTimeArticleUrl           => Url(_config.IncorrectSystemTimeArticleUrl);
         public IActiveUrl AssignVpnConnectionsUrl                 => Url(_config.AssignVpnConnectionsUrl);
         public IActiveUrl NonStandardPortsUrl                     => Url(_config.NonStandardPortsUrl);
+        public IActiveUrl LoginProblemsUrl                        => Url(_config.LoginProblemsUrl);
 
         private ActiveUrl Url(string url)
         {

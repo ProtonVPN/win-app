@@ -69,8 +69,6 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 TranslationsFolder = baseFolder,
 
-                ErrorMessageExePath = Path.Combine(baseFolder, "ProtonVPN.ErrorMessage.exe"),
-
                 ServiceName = "ProtonVPN Service",
 
                 ServiceExePath = Path.Combine(baseFolder, "ProtonVPNService.exe"),
@@ -175,8 +173,6 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 DefaultWireGuardPorts = new[] {51820, 88, 123, 49152, 1224},
 
-                DefaultBlackHoleIps = new List<string> {"62.112.9.168", "104.245.144.186"},
-
                 DefaultLocale = "en",
 
                 MaintenanceCheckInterval = TimeSpan.FromMinutes(30),
@@ -215,7 +211,7 @@ namespace ProtonVPN.Common.Configuration.Source
                     AboutNetShieldUrl = "https://protonvpn.com/support/netshield",
                     AboutPortForwardingUrl = "https://protonvpn.com/support/port-forwarding",
                     PortForwardingRisksUrl = "https://protonvpn.com/support/port-forwarding-risks",
-                    AboutDelinquencyUrl = "https://protonvpn.com/support/delinquency",
+                    AboutModerateNatUrl = "https://protonvpn.com/support/moderate-nat",
                     StreamingUrl = "https://protonvpn.com/support/streaming-guide/",
                     SmartRoutingUrl = "https://protonvpn.com/support/smart-routing",
                     P2PUrl = "https://protonvpn.com/support/bittorrent-vpn/",
@@ -226,6 +222,7 @@ namespace ProtonVPN.Common.Configuration.Source
                     IncorrectSystemTimeArticleUrl = "https://protonvpn.com/support/update-windows-clock",
                     AssignVpnConnectionsUrl = "https://protonvpn.com/support/assign-vpn-connection",
                     NonStandardPortsUrl = "https://protonvpn.com/support/non-standard-ports",
+                    LoginProblemsUrl = "https://protonvpn.com/support/login-problems",
                 },
 
                 OpenVpn =
@@ -347,6 +344,8 @@ namespace ProtonVPN.Common.Configuration.Source
                 NtpServerUrl = "time.windows.com",
 
                 DeviceId = GetDeviceId(),
+
+                ServerValidationPublicKey = "MCowBQYDK2VwAyEANpYpt/FlSRwEuGLMoNAGOjy1BTyEJPJvKe00oln7LZk=",
             };
         }
 

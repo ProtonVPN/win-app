@@ -188,6 +188,17 @@
     <Compile Include="Core\Service\Vpn\VpnReconnector.cs" />
     <Compile Include="Core\ShutdownInvoker.cs" />
     <Compile Include="Core\SystemTimeValidator.cs" />
+    <Compile Include="ErrorHandling\FatalErrorHandler.cs" />
+    <Compile Include="ErrorHandling\FatalErrorWindow.xaml.cs">
+      <DependentUpon>FatalErrorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ErrorHandling\ErrorWindowViewModel.cs" />
+    <Compile Include="ErrorHandling\InstallerPath.cs" />
+    <Compile Include="ErrorHandling\NullLogger.cs" />
+    <Compile Include="ErrorHandling\InstalledAppRegistry.cs" />
+    <Compile Include="ErrorHandling\RepairLauncher.cs" />
+    <Compile Include="Login\ISignUpAvailabilityProvider.cs" />
+    <Compile Include="Login\SignUpAvailabilityProvider.cs" />
     <Compile Include="Modals\ApiActions\ActionableFailureApiResultEventHandler.cs" />
     <Compile Include="Modals\ApiActions\ApiActionModalViewModel.cs" />
     <Compile Include="Modals\ApiActions\ApiActionModalView.xaml.cs">
@@ -224,6 +235,10 @@
     <Compile Include="Modals\Upsell\NonStandardPortsUpsellModalView.xaml.cs">
       <DependentUpon>NonStandardPortsUpsellModalView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Modals\Upsell\ModerateNatUpsellModalViewModel.cs" />
+    <Compile Include="Modals\Upsell\ModerateNatUpsellModalView.xaml.cs">
+      <DependentUpon>ModerateNatUpsellModalView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modals\Upsell\PortForwardingUpsellModalView.xaml.cs">
       <DependentUpon>PortForwardingUpsellModalView.xaml</DependentUpon>
     </Compile>
@@ -248,7 +263,13 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Settings\Migrations\InitialAppSettingsMigration.cs" />
     <Compile Include="Settings\Migrations\v1_22_0\AppSettingsMigration.cs" />
+    <Compile Include="Settings\Migrations\v1_27_1\AppSettingsMigration.cs" />
+    <Compile Include="Settings\PortForwardingWarningView.xaml.cs">
+      <DependentUpon>PortForwardingWarningView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\PortForwardingWarningViewModel.cs" />
     <Compile Include="Settings\ReconnectNotification\OpenVpnDriverSetting.cs" />
     <Compile Include="Sidebar\CountryFeatures\CountryFeaturesPopup.cs" />
     <Compile Include="Sidebar\CountryFeatures\CountryFeaturesPopupView.xaml.cs">
@@ -492,11 +513,7 @@
     <Compile Include="Notifications\SystemNotification.cs" />
     <Compile Include="P2PDetection\Blocked\BlockedTraffic.cs" />
     <Compile Include="P2PDetection\Blocked\IBlockedTraffic.cs" />
-    <Compile Include="P2PDetection\Forwarded\ForwardedTraffic.cs" />
-    <Compile Include="P2PDetection\Forwarded\ForwardedTrafficResult.cs" />
-    <Compile Include="P2PDetection\Forwarded\IForwardedTraffic.cs" />
     <Compile Include="P2PDetection\Blocked\SafeBlockedTraffic.cs" />
-    <Compile Include="P2PDetection\ITrafficForwardedAware.cs" />
     <Compile Include="P2PDetection\P2PDetectionTimeout.cs" />
     <Compile Include="Profiles\Form\Error.cs" />
     <Compile Include="Profiles\Form\SecureCoreProfileFormView.xaml.cs">
@@ -669,7 +686,6 @@
     <Compile Include="Login\ViewModels\LoginViewModel.cs" />
     <Compile Include="Login\ViewModels\MainViewModel.cs" />
     <Compile Include="Map\MapStateHolder.cs" />
-    <Compile Include="Modals\P2PForwardModalViewModel.cs" />
     <Compile Include="Modals\Upsell\SecureCoreUpsellModalViewModel.cs" />
     <Compile Include="Modals\Upsell\NetshieldUpsellModalViewModel.cs" />
     <Compile Include="Modals\Upsell\UpsellModalViewModel.cs" />
@@ -843,9 +859,6 @@
     <Compile Include="Login\Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Modals\P2PForwardModalView.xaml.cs">
-      <DependentUpon>P2PForwardModalView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Modals\Upsell\SecureCoreUpsellModalView.xaml.cs">
       <DependentUpon>SecureCoreUpsellModalView.xaml</DependentUpon>
     </Compile>
@@ -933,6 +946,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ErrorHandling\FatalErrorWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Modals\DiscourageSecureCoreModalView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -957,9 +974,17 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Modals\Upsell\ModerateNatUpsellModalView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Modals\Upsell\NonStandardPortsUpsellModalView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Settings\PortForwardingWarningView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Sidebar\CountryFeatures\CountryFeaturesPopupView.xaml">
       <SubType>Designer</SubType>
@@ -1485,10 +1510,6 @@
     <Page Include="Login\Views\LoginView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Modals\P2PForwardModalView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Modals\Upsell\SecureCoreUpsellModalView.xaml">
       <SubType>Designer</SubType>

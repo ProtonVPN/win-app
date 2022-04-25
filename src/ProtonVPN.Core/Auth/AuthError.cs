@@ -25,6 +25,9 @@ namespace ProtonVPN.Core.Auth
         NoVpnAccess,
         InvalidServerProof,
         MissingGoSrpDll,
+        TwoFactorRequired,
+        IncorrectTwoFactorCode,
+        TwoFactorAuthFailed,
         Unknown,
     }
 }

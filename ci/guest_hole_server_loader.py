@@ -5,7 +5,7 @@ from urllib.request import urlopen
 def load():
     # Constants
 
-    server_list_api_url: str = 'https://api.protonvpn.ch/vpn/logicals'
+    server_list_api_url: str = 'https://api.protonvpn.ch/vpn/logicals?SignServer=Server.EntryIP,Server.Label'
     num_guest_hole_servers: int = 10
     secure_core_flag: int = 1
 
@@ -32,7 +32,7 @@ def load():
         if server['EntryIP'] in unique_entries:
             continue
 
-        server_json_object = "".join(['{"host":"', server['Domain'], '","ip":"', server['EntryIP'], '"}'])
+        server_json_object = "".join(['{"host":"', server['Domain'], '","ip":"', server['EntryIP'], '","signature":"', server['Signature'], '","label":"', server['Label'], '"}'])
         servers_str = ",".join([servers_str, server_json_object])
         unique_entries.append(server['EntryIP'])
 

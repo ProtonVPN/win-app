@@ -13,7 +13,7 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
-You should have received a copy of the GNU General Public License
+You should have received a copy of the GNU General Public Licenseconnectn
 along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 -->
 
@@ -122,15 +122,57 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </DockPanel>
                     </Border>
 
+                    <Border Style="{StaticResource BorderlessSettingContainer}">
+                        <DockPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label FontSize="16"
+                                       VerticalAlignment="Center"
+                                       Foreground="White"
+                                       Content="{translations:Loc Settings_Connection_lbl_QuickConnect}" />
+                                <fa:FontAwesome Icon="InfoCircle"
+                                                VerticalAlignment="Center"
+                                                ToolTip="{translations:Loc Settings_Connection_lbl_QuickConnect_Info}"
+                                                Foreground="{StaticResource PrimaryColor}"
+                                                FontSize="16" />
+                            </StackPanel>
+                            <wpf:Combobox HorizontalAlignment="Right"
+                                          Style="{StaticResource ComboDropdown}"
+                                          ItemsSource="{Binding QuickConnectProfiles}"
+                                          SelectedValue="{Binding QuickConnect}">
+                            </wpf:Combobox>
+                        </DockPanel>
+                    </Border>
+
                     <Border Style="{StaticResource BorderSettingContainer}">
                         <DockPanel>
                             <Label Foreground="White" FontSize="16" VerticalAlignment="Center" 
-                                   Content="{translations:Loc Settings_General_lbl_StartWithWindows}"/>
+                                   Content="{translations:Loc Settings_General_lbl_StartOnBoot}"/>
                             <CheckBox Margin="0,0,14,0"
                                       HorizontalAlignment="Right"
                                       Style="{StaticResource ToggleSwitch}"
-                                      IsChecked="{Binding StartOnStartup}"
+                                      IsChecked="{Binding StartOnBoot}"
                                       AutomationProperties.AutomationId="{StaticResource StartWithWindowsCheckbox}"/>
+                        </DockPanel>
+                    </Border>
+
+                    <Border Style="{StaticResource BorderSettingContainer}">
+                        <DockPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label FontSize="16"
+                                       Foreground="White"
+                                       VerticalAlignment="Center"
+                                       Content="{translations:Loc Settings_General_lbl_ConnectOnAppStart}" />
+                                <fa:FontAwesome Icon="InfoCircle"
+                                                VerticalAlignment="Center"
+                                                ToolTip="{translations:Loc Settings_General_lbl_ConnectOnAppStart_Info}"
+                                                Foreground="{StaticResource PrimaryColor}"
+                                                FontSize="16" />
+                            </StackPanel>
+                            <CheckBox Margin="0,0,14,0"
+                                      HorizontalAlignment="Right"
+                                      Style="{StaticResource ToggleSwitch}"
+                                      IsChecked="{Binding ConnectOnAppStart}"
+                                      AutomationProperties.AutomationId="{StaticResource ConnectOnBootCheckbox}" />
                         </DockPanel>
                     </Border>
 
@@ -175,49 +217,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                TextTrimming="CharacterEllipsis"/>
                 </TabItem.Header>
                 <StackPanel Margin="25,20,25,40">
-                    <Border Style="{StaticResource BorderlessSettingContainer}">
-                        <DockPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <Label FontSize="16"
-                                       Foreground="White"
-                                       VerticalAlignment="Center"
-                                       Content="{translations:Loc Settings_Connection_lbl_AutoConnect}"/>
-                                <fa:FontAwesome Icon="InfoCircle"
-                                                VerticalAlignment="Center"
-                                                ToolTip="{translations:Loc Settings_Connection_lbl_AutoConnect_Info}"
-                                                Foreground="{StaticResource PrimaryColor}"
-                                                FontSize="16"/>
-                            </StackPanel>
-                            <wpf:Combobox HorizontalAlignment="Right"
-                                          Style="{StaticResource ComboDropdown}"
-                                          ItemsSource="{Binding AutoConnectProfiles}"
-                                          SelectedValue="{Binding AutoConnect}"
-                                          AutomationProperties.AutomationId="{StaticResource AutoConnectComboBox}">
-                            </wpf:Combobox>
-                        </DockPanel>
-                    </Border>
-
-                    <Border Style="{StaticResource BorderlessSettingContainer}">
-                        <DockPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <Label FontSize="16"
-                                       VerticalAlignment="Center"
-                                       Foreground="White"
-                                       Content="{translations:Loc Settings_Connection_lbl_QuickConnect}"/>
-                                <fa:FontAwesome Icon="InfoCircle"
-                                        VerticalAlignment="Center"
-                                        ToolTip="{translations:Loc Settings_Connection_lbl_QuickConnect_Info}"
-                                        Foreground="{StaticResource PrimaryColor}"
-                                        FontSize="16"/>
-                            </StackPanel>
-                            <wpf:Combobox HorizontalAlignment="Right"
-                                          Style="{StaticResource ComboDropdown}"
-                                          ItemsSource="{Binding QuickConnectProfiles}"
-                                          SelectedValue="{Binding QuickConnect}">
-                            </wpf:Combobox>
-                        </DockPanel>
-                    </Border>
-
                     <Border Style="{StaticResource BorderlessSettingContainer}">
                         <DockPanel>
                             <StackPanel Orientation="Horizontal">
@@ -307,16 +306,36 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </DockPanel>
                     </Border>
 
-                    <Border>
+                    <Border DockPanel.Dock="Top">
                         <Border.Style>
                             <Style TargetType="Border" BasedOn="{StaticResource BorderlessSettingContainer}">
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding IsToShowSmartReconnectNotifications}" Value="True">
-                                        <Setter Property="BorderThickness" Value="0,1,0,0"/>
+                                        <Setter Property="BorderThickness" Value="0,1,0,1"/>
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
                         </Border.Style>
+                        <DockPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Foreground="White" FontSize="16" VerticalAlignment="Center"
+                                       Content="{translations:Loc Settings_Connection_lbl_ModerateNat}"/>
+                                <fa:FontAwesome Icon="InfoCircle"
+                                                VerticalAlignment="Center"
+                                                ToolTip="{translations:Loc Settings_Connection_lbl_ModerateNat_Info}"
+                                                Foreground="{StaticResource PrimaryColor}"
+                                                FontSize="16"/>
+                            </StackPanel>
+
+                            <CheckBox Style="{StaticResource ToggleSwitch}"
+                                      Margin="0,0,14,0"
+                                      HorizontalAlignment="Right"
+                                      IsChecked="{Binding ModerateNat}"
+                                      AutomationProperties.AutomationId="{StaticResource ModerateNatCheckbox}"/>
+                        </DockPanel>
+                    </Border>
+
+                    <Border>
                         <DockPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Foreground="White" FontSize="16" VerticalAlignment="Center" 
@@ -397,11 +416,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <Border DockPanel.Dock="Top" Style="{StaticResource BorderlessSettingContainer}" Padding="5,0,75,0"
                             Visibility="{Binding IsToShowPortForwarding, Converter={StaticResource BoolToVis}}">
                         <DockPanel>
-                            <TextBlock
-                                TextWrapping="Wrap"
-                                FontSize="12"
-                                behavior:TextStyleBehavior.FormattedText="{translations:Loc Settings_Advanced_lbl_PortForwarding_Info}" />
-                        </DockPanel>
+                                <TextBlock
+                                    TextWrapping="Wrap"
+                                    FontSize="12"
+                                    behavior:TextStyleBehavior.FormattedText="{translations:Loc Settings_Advanced_lbl_PortForwarding_Info}" />
+                            </DockPanel>
+                    </Border>
+
+                    <Border DockPanel.Dock="Top" Style="{StaticResource BorderlessSettingContainer}" Padding="5,0,75,0"
+                            Visibility="{Binding IsToShowPortForwardingWarningLabel, Converter={StaticResource BoolToVis}}">
+                        <settings:PortForwardingWarningView DataContext="{Binding PortForwardingWarningViewModel}" />
                     </Border>
 
                     <Border DockPanel.Dock="Top" Style="{StaticResource BorderlessSettingContainer}" Padding="5,0,75,0" Height="20" Margin="0,3,0,3"

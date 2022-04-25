@@ -40,6 +40,9 @@ namespace ProtonVPN.Core.Auth
         private readonly ITokenStorage _tokenStorage;
         private readonly IAuthCertificateManager _authCertificateManager;
 
+        private string _username;
+        private AuthResponse _authResponse;
+
         public UserAuth(IApiClient apiClient,
             ILogger logger,
             IUserStorage userStorage,
@@ -62,15 +65,15 @@ namespace ProtonVPN.Core.Auth
         public async Task<AuthResult> LoginUserAsync(string username, SecureString password)
         {
             _logger?.Info<UserLog>("Trying to login user");
-            UserLoggingIn?.Invoke(this, EventArgs.Empty);
+            InvokeLoggingInEvent();
 
             AuthResult authResult = await AuthAsync(username, password);
-            if (authResult.Failure)
-            {
-                return authResult;
-            }
+            return authResult.Failure ? authResult : await RefreshVpnInfoAndInvokeLoginAsync();
+        }
 
-            ApiResponseResult<VpnInfoResponse> vpnInfoResult = await RefreshVpnInfo();
+        private async Task<AuthResult> RefreshVpnInfoAndInvokeLoginAsync()
+        {
+            ApiResponseResult<VpnInfoResponse> vpnInfoResult = await RefreshVpnInfoAsync();
             if (vpnInfoResult.Failure)
             {
                 return AuthResult.Fail(vpnInfoResult);
@@ -78,7 +81,8 @@ namespace ProtonVPN.Core.Auth
 
             _userStorage.StoreVpnInfo(vpnInfoResult.Value);
             await InvokeUserLoggedInAsync(false);
-            return authResult;
+
+            return AuthResult.Ok();
         }
 
         public async Task<AuthResult> AuthAsync(string username, SecureString password)
@@ -107,17 +111,48 @@ namespace ProtonVPN.Core.Auth
                     return AuthResult.Fail(AuthError.InvalidServerProof);
                 }
 
-                _userStorage.SaveUsername(username);
-                _tokenStorage.Uid = response.Value.Uid;
-                _tokenStorage.AccessToken = response.Value.AccessToken;
-                _tokenStorage.RefreshToken = response.Value.RefreshToken;
+                if ((response.Value.TwoFactor.Enabled & 1) != 0)
+                {
+                    _username = username;
+                    _authResponse = response.Value;
+                    return AuthResult.Fail(AuthError.TwoFactorRequired);
+                }
 
+                StoreUserDetails(username, response.Value);
                 return AuthResult.Ok();
             }
             catch (TypeInitializationException e) when (e.InnerException is DllNotFoundException)
             {
                 return AuthResult.Fail(AuthError.MissingGoSrpDll);
             }
+        }
+
+        public async Task<AuthResult> SendTwoFactorCodeAsync(string code)
+        {
+            InvokeLoggingInEvent();
+
+            TwoFactorRequestData requestData = new() { TwoFactorCode = code };
+            ApiResponseResult<BaseResponse> response =
+                await _apiClient.GetTwoFactorAuthResponse(requestData, _authResponse.AccessToken, _authResponse.Uid);
+
+            if (response.Failure)
+            {
+                return AuthResult.Fail(response.Value.Code == ResponseCodes.IncorrectLoginCredentials
+                    ? AuthError.IncorrectTwoFactorCode
+                    : AuthError.TwoFactorAuthFailed);
+            }
+
+            StoreUserDetails(_username, _authResponse);
+
+            return await RefreshVpnInfoAndInvokeLoginAsync();
+        }
+
+        private void StoreUserDetails(string username, AuthResponse authResponse)
+        {
+            _userStorage.SaveUsername(username);
+            _tokenStorage.Uid = authResponse.Uid;
+            _tokenStorage.AccessToken = authResponse.AccessToken;
+            _tokenStorage.RefreshToken = authResponse.RefreshToken;
         }
 
         private AuthRequestData GetAuthRequestData(SrpPInvoke.GoProofs proofs, string srpSession, string username)
@@ -127,12 +162,16 @@ namespace ProtonVPN.Core.Auth
                 ClientEphemeral = Convert.ToBase64String(proofs.ClientEphemeral),
                 ClientProof = Convert.ToBase64String(proofs.ClientProof),
                 SrpSession = srpSession,
-                TwoFactorCode = "",
                 Username = username
             };
         }
 
-        public async Task<ApiResponseResult<VpnInfoResponse>> RefreshVpnInfo()
+        private void InvokeLoggingInEvent()
+        {
+            UserLoggingIn?.Invoke(this, EventArgs.Empty);
+        }
+
+        public async Task<ApiResponseResult<VpnInfoResponse>> RefreshVpnInfoAsync()
         {
             ApiResponseResult<VpnInfoResponse> vpnInfo = await _apiClient.GetVpnInfoResponse();
             if (vpnInfo.Success)

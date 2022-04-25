@@ -137,7 +137,7 @@ namespace ProtonVPN.Core
             set => SetPerUser(value);
         }
 
-        public bool StartOnStartup
+        public bool StartOnBoot
         {
             get => Get<bool>();
             set => Set(value);
@@ -219,6 +219,12 @@ namespace ProtonVPN.Core
         {
             get => Get<bool>();
             set => Set(value);
+        }
+
+        public bool ModerateNat
+        {
+            get => GetPerUser<bool>();
+            set => SetPerUser(value);
         }
 
         public bool WelcomeModalShown
@@ -353,23 +359,6 @@ namespace ProtonVPN.Core
             set => Set(value);
         }
 
-        public StringCollection BlackHoleIps
-        {
-            get
-            {
-                StringCollection list = Get<StringCollection>();
-                if (list == null)
-                {
-                    list = new StringCollection();
-                    list.AddRange(_config.DefaultBlackHoleIps.ToArray());
-                }
-
-                return list;
-            }
-
-            set => Set(value);
-        }
-
         public bool FeatureNetShieldEnabled
         {
             get => Get<bool>();
@@ -464,6 +453,12 @@ namespace ProtonVPN.Core
         }
 
         public bool ShowNonStandardPortsToFreeUsers
+        {
+            get => Get<bool>();
+            set => Set(value);
+        }
+
+        public bool ConnectOnAppStart
         {
             get => Get<bool>();
             set => Set(value);

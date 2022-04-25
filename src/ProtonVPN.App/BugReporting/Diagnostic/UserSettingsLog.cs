@@ -23,13 +23,15 @@ using System.IO;
 using System.Text;
 using Newtonsoft.Json;
 using ProtonVPN.Common.Extensions;
+using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Settings;
 
 namespace ProtonVPN.BugReporting.Diagnostic
 {
-    internal class UserSettingsLog : BaseLog
+    internal class UserSettingsLog : BaseLog, ILoggedInAware, ILogoutAware
     {
         private readonly IAppSettings _appSettings;
+        private bool _isUserLoggedIn;
 
         public UserSettingsLog(IAppSettings appSettings, string path)
             : base(path, "Settings.txt")
@@ -44,6 +46,11 @@ namespace ProtonVPN.BugReporting.Diagnostic
 
         private string GenerateContent()
         {
+            if (!_isUserLoggedIn)
+            {
+                return "The user is not logged in.";
+            }
+
             StringBuilder stringBuilder = new();
             stringBuilder.AppendLine("Settings").AppendLine();
             IEnumerable<KeyValuePair<string, dynamic>> properties = GetProperties();
@@ -62,9 +69,9 @@ namespace ProtonVPN.BugReporting.Diagnostic
             yield return new(nameof(IAppSettings.Language), _appSettings.Language);
             yield return new(nameof(IAppSettings.AppFirstRun), _appSettings.AppFirstRun);
             yield return new(nameof(IAppSettings.ShowNotifications), _appSettings.ShowNotifications);
-            yield return new(nameof(IAppSettings.AutoConnect) + "Enabled", !_appSettings.AutoConnect.IsNullOrEmpty());
+            yield return new(nameof(IAppSettings.ConnectOnAppStart), _appSettings.ConnectOnAppStart);
             yield return new(nameof(IAppSettings.QuickConnect), _appSettings.QuickConnect);
-            yield return new(nameof(IAppSettings.StartOnStartup), _appSettings.StartOnStartup);
+            yield return new(nameof(IAppSettings.StartOnBoot), _appSettings.StartOnBoot);
             yield return new(nameof(IAppSettings.StartMinimized), _appSettings.StartMinimized);
             yield return new(nameof(IAppSettings.EarlyAccess), _appSettings.EarlyAccess);
             yield return new(nameof(IAppSettings.SecureCore), _appSettings.SecureCore);
@@ -102,7 +109,6 @@ namespace ProtonVPN.BugReporting.Diagnostic
             yield return new(nameof(IAppSettings.OpenVpnTcpPorts), JsonConvert.SerializeObject(_appSettings.OpenVpnTcpPorts));
             yield return new(nameof(IAppSettings.OpenVpnUdpPorts), JsonConvert.SerializeObject(_appSettings.OpenVpnUdpPorts));
             yield return new(nameof(IAppSettings.WireGuardPorts), JsonConvert.SerializeObject(_appSettings.WireGuardPorts));
-            yield return new(nameof(IAppSettings.BlackHoleIps), JsonConvert.SerializeObject(_appSettings.BlackHoleIps));
             yield return new(nameof(IAppSettings.FeatureNetShieldEnabled), _appSettings.FeatureNetShieldEnabled);
             yield return new(nameof(IAppSettings.FeatureMaintenanceTrackerEnabled), _appSettings.FeatureMaintenanceTrackerEnabled);
             yield return new(nameof(IAppSettings.FeaturePollNotificationApiEnabled), _appSettings.FeaturePollNotificationApiEnabled);
@@ -134,6 +140,16 @@ namespace ProtonVPN.BugReporting.Diagnostic
             }
 
             return value is string result ? result : value.ToString();
+        }
+
+        public void OnUserLoggedIn()
+        {
+            _isUserLoggedIn = true;
+        }
+
+        public void OnUserLoggedOut()
+        {
+            _isUserLoggedIn = false;
         }
     }
 }

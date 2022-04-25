@@ -31,5 +31,6 @@ namespace ProtonVPN.Core.Api
         public const int ProfileNameConflict = 86065;
         public const int HumanVerificationRequired = 9001;
         public const int NoVpnConnectionsAssigned = 86300;
+        public const int IncorrectLoginCredentials = 8002;
     }
 }

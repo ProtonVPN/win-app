@@ -28,9 +28,9 @@ using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Config.Url;
 using ProtonVPN.Core;
+using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Models;
-using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
@@ -76,7 +76,8 @@ namespace ProtonVPN.Settings
             ProfileViewModelFactory profileViewModelFactory,
             SplitTunnelingViewModel splitTunnelingViewModel,
             CustomDnsListViewModel customDnsListViewModel,
-            PortForwardingActivePortViewModel activePortViewModel)
+            PortForwardingActivePortViewModel activePortViewModel,
+            PortForwardingWarningViewModel portForwardingWarningViewModel)
         {
             _userStorage = userStorage;
             _appSettings = appSettings;
@@ -87,12 +88,14 @@ namespace ProtonVPN.Settings
             _languageProvider = languageProvider;
             _portForwardingManager = portForwardingManager;
             _reconnectState = reconnectState;
+
             _profileViewModelFactory = profileViewModelFactory;
             SplitTunnelingViewModel = splitTunnelingViewModel;
             Ips = customDnsListViewModel;
 
             ActivePortViewModel = activePortViewModel;
             ActivePortViewModel.PropertyChanged += OnActivePortViewModelPropertyChanged;
+            PortForwardingWarningViewModel = portForwardingWarningViewModel;
 
             ReconnectCommand = new RelayCommand(ReconnectAction);
             UpgradeCommand = new RelayCommand(UpgradeAction);
@@ -100,6 +103,7 @@ namespace ProtonVPN.Settings
         }
 
         public PortForwardingActivePortViewModel ActivePortViewModel { get; }
+        public PortForwardingWarningViewModel PortForwardingWarningViewModel { get; }
 
         public ICommand ReconnectCommand { get; set; }
         public ICommand UpgradeCommand { get; set; }
@@ -129,25 +133,12 @@ namespace ProtonVPN.Settings
 
         public bool IsToShowNetworkDriverSelection => _appSettings.GetProtocol() != VpnProtocol.WireGuard;
 
+        public bool IsToShowPortForwardingWarningLabel => PortForwardingWarningViewModel.IsToShowPortForwardingWarningLabel;
+
         public int SelectedTabIndex
         {
             get => _appSettings.SettingsSelectedTabIndex;
             set => _appSettings.SettingsSelectedTabIndex = value;
-        }
-
-        private ProfileViewModel _autoConnect;
-
-        public ProfileViewModel AutoConnect
-        {
-            get => _autoConnect;
-            set
-            {
-                if (value == null)
-                    return;
-
-                Set(ref _autoConnect, value);
-                _appSettings.AutoConnect = value.Id;
-            }
         }
 
         private ProfileViewModel _quickConnect;
@@ -192,6 +183,22 @@ namespace ProtonVPN.Settings
         }
 
         public bool ShowAllowNonStandardPorts => _appSettings.ShowNonStandardPortsToFreeUsers;
+
+        public bool ModerateNat
+        {
+            get => _appSettings.ModerateNat;
+            set
+            {
+                if (value && !_userStorage.User().Paid())
+                {
+                    _modals.Show<ModerateNatUpsellModalViewModel>();
+                    return;
+                }
+
+                _appSettings.ModerateNat = value;
+                NotifyOfPropertyChange();
+            }
+        }
 
         public bool VpnAccelerator
         {
@@ -361,6 +368,12 @@ namespace ProtonVPN.Settings
             set => _appSettings.EarlyAccess = value;
         }
 
+        public bool ConnectOnAppStart
+        {
+            get => _appSettings.ConnectOnAppStart;
+            set => _appSettings.ConnectOnAppStart = value;
+        }
+
         public bool ShowNotifications
         {
             get => _appSettings.ShowNotifications;
@@ -371,10 +384,10 @@ namespace ProtonVPN.Settings
             }
         }
 
-        public bool StartOnStartup
+        public bool StartOnBoot
         {
-            get => _appSettings.StartOnStartup;
-            set => _appSettings.StartOnStartup = value;
+            get => _appSettings.StartOnBoot;
+            set => _appSettings.StartOnBoot = value;
         }
 
         public bool HardwareAccelerationEnabled
@@ -480,28 +493,18 @@ namespace ProtonVPN.Settings
             return Task.CompletedTask;
         }
 
-        public void OpenGeneralTab()
-        {
-            SelectedTabIndex = 0;
-        }
-
         public void OpenConnectionTab()
         {
             SelectedTabIndex = 1;
-        }
-
-        public void OpenAdvancedTab()
-        {
-            SelectedTabIndex = 2;
         }
 
         public override async void OnAppSettingsChanged(PropertyChangedEventArgs e)
         {
             base.OnAppSettingsChanged(e);
 
-            if (e.PropertyName.Equals(nameof(IAppSettings.StartOnStartup)))
+            if (e.PropertyName.Equals(nameof(IAppSettings.StartOnBoot)))
             {
-                NotifyOfPropertyChange(nameof(StartOnStartup));
+                NotifyOfPropertyChange(nameof(StartOnBoot));
             }
             else if (e.PropertyName.Equals(nameof(IAppSettings.Profiles)))
             {
@@ -539,6 +542,11 @@ namespace ProtonVPN.Settings
             {
                 NotifyOfPropertyChange(() => IsToShowPortForwarding);
                 NotifyOfPropertyChange(() => IsToShowPortForwardingNotifications);
+                NotifyOfPropertyChange(() => IsToShowPortForwardingWarningLabel);
+            }
+            else if (e.PropertyName.Equals(nameof(IAppSettings.PortForwardingEnabled)))
+            {
+                NotifyOfPropertyChange(() => IsToShowPortForwardingWarningLabel);
             }
             else if (e.PropertyName.Equals(nameof(IAppSettings.SmartReconnectEnabled)))
             {
@@ -547,6 +555,14 @@ namespace ProtonVPN.Settings
             else if (e.PropertyName.Equals(nameof(IAppSettings.OvpnProtocol)))
             {
                 NotifyOfPropertyChange(() => IsToShowNetworkDriverSelection);
+            }
+            else if (e.PropertyName.Equals(nameof(IAppSettings.ModerateNat)))
+            {
+                NotifyOfPropertyChange(() => ModerateNat);
+            }
+            else if (e.PropertyName.Equals(nameof(IAppSettings.AllowNonStandardPorts)))
+            {
+                NotifyOfPropertyChange(() => AllowNonStandardPorts);
             }
             else if (e.PropertyName.Equals(nameof(IAppSettings.HardwareAccelerationEnabled)))
             {
@@ -592,33 +608,10 @@ namespace ProtonVPN.Settings
 
         private async Task LoadProfiles()
         {
-            await LoadAutoConnectProfiles();
             await LoadQuickConnectProfiles();
-
-            AutoConnect = GetSelectedAutoConnectProfile();
-            NotifyOfPropertyChange(() => AutoConnect);
 
             QuickConnect = GetSelectedQuickConnectProfile();
             NotifyOfPropertyChange(() => QuickConnect);
-        }
-
-        private async Task LoadAutoConnectProfiles()
-        {
-            List<ProfileViewModel> profiles = new() { CreateDisabledProfileViewModel() };
-            profiles.AddRange(await GetProfiles());
-
-            AutoConnectProfiles = profiles;
-            NotifyOfPropertyChange(() => AutoConnectProfiles);
-        }
-
-        private ProfileViewModel CreateDisabledProfileViewModel()
-        {
-            return new(CreateDisabledProfile());
-        }
-
-        private Profile CreateDisabledProfile()
-        {
-            return new() { Id = "", Name = Translation.Get("Settings_val_Disabled"), ColorCode = "#777783" };
         }
 
         private async Task LoadQuickConnectProfiles()
@@ -633,17 +626,6 @@ namespace ProtonVPN.Settings
                 .OrderByDescending(p => p.IsPredefined)
                 .ThenBy(p => p.Name)
                 .ToList();
-        }
-
-        private ProfileViewModel GetSelectedAutoConnectProfile()
-        {
-            ProfileViewModel profile = AutoConnectProfiles.FirstOrDefault(p => p.Id == _appSettings.AutoConnect);
-            if (profile == null)
-            {
-                return CreateDisabledProfileViewModel();
-            }
-
-            return profile;
         }
 
         private ProfileViewModel GetSelectedQuickConnectProfile()

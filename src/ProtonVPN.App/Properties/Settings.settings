@@ -12,7 +12,7 @@
             <Value Profile="(Default)">False</Value>
         </Setting>
         <Setting Name="StartMinimized" Type="System.String" Scope="User">
-            <Value Profile="(Default)">0</Value>
+            <Value Profile="(Default)">2</Value>
         </Setting>
         <Setting Name="UseDnsLeakProtection" Type="System.Boolean" Scope="User">
             <Value Profile="(Default)">True</Value>
@@ -260,9 +260,6 @@
         <Setting Name="OpenVpnUdpPorts" Type="System.String" Scope="User">
             <Value Profile="(Default)" />
         </Setting>
-        <Setting Name="BlackHoleIps" Type="System.String" Scope="User">
-            <Value Profile="(Default)" />
-        </Setting>
         <Setting Name="FeatureNetShieldEnabled" Type="System.Boolean" Scope="User">
             <Value Profile="(Default)">False</Value>
         </Setting>
@@ -363,7 +360,7 @@
             <Value Profile="(Default)" />
         </Setting>
         <Setting Name="UserDoNotShowDiscourageSecureCoreDialog" Type="System.String" Scope="User">
-          <Value Profile="(Default)" />
+            <Value Profile="(Default)" />
         </Setting>
         <Setting Name="UserAllowNonStandardPorts" Type="System.String" Scope="User">
             <Value Profile="(Default)" />
@@ -373,6 +370,15 @@
         </Setting>
         <Setting Name="ShowNonStandardPortsToFreeUsers" Type="System.Boolean" Scope="User">
             <Value Profile="(Default)">False</Value>
+        </Setting>
+        <Setting Name="UserModerateNat" Type="System.String" Scope="User">
+            <Value Profile="(Default)" />
+        </Setting>
+        <Setting Name="ConnectOnAppStart" Type="System.Boolean" Scope="User">
+            <Value Profile="(Default)">True</Value>
+        </Setting>
+        <Setting Name="StartOnBoot" Type="System.Boolean" Scope="User">
+            <Value Profile="(Default)">True</Value>
         </Setting>
     </Settings>
 </SettingsFile>

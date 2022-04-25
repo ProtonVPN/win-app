@@ -19,7 +19,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Net.Http;
@@ -63,6 +62,7 @@ using ProtonVPN.Core.Startup;
 using ProtonVPN.Core.Update;
 using ProtonVPN.Core.User;
 using ProtonVPN.Core.Vpn;
+using ProtonVPN.ErrorHandling;
 using ProtonVPN.Login;
 using ProtonVPN.Login.ViewModels;
 using ProtonVPN.Login.Views;
@@ -146,6 +146,7 @@ namespace ProtonVPN.Core
                 ShowInitialWindow();
             }
 
+            await Resolve<IReportAnIssueFormDataProvider>().FetchData();
             await StartAllServices();
 
             if (Resolve<IUserStorage>().User().Empty() || !await IsUserValid() || await SessionExpired())
@@ -174,7 +175,7 @@ namespace ProtonVPN.Core
 
             try
             {
-                ApiResponseResult<VpnInfoResponse> result = await Resolve<UserAuth>().RefreshVpnInfo();
+                ApiResponseResult<VpnInfoResponse> result = await Resolve<UserAuth>().RefreshVpnInfoAsync();
                 return result.Failure;
             }
             catch (HttpRequestException)
@@ -394,15 +395,6 @@ namespace ProtonVPN.Core
                 }
             };
 
-            Resolve<P2PDetector>().TrafficForwarded += (sender, ip) =>
-            {
-                IEnumerable<ITrafficForwardedAware> instances = Resolve<IEnumerable<ITrafficForwardedAware>>();
-                foreach (ITrafficForwardedAware instance in instances)
-                {
-                    instance.OnTrafficForwarded(ip);
-                }
-            };
-
             Resolve<SidebarManager>().ManualSidebarModeChangeRequested += appWindow.OnManualSidebarModeChangeRequested;
 
             appSettings.PropertyChanged += (sender, e) =>
@@ -514,8 +506,9 @@ namespace ProtonVPN.Core
             AppWindow appWindow = Resolve<AppWindow>();
             appWindow.DataContext = Resolve<MainViewModel>();
             Application.Current.MainWindow = appWindow;
-            if (Resolve<IAppSettings>().StartMinimized != StartMinimizedMode.ToSystray)
+            if (!autoLogin || Resolve<IAppSettings>().StartMinimized != StartMinimizedMode.ToSystray)
             {
+                appWindow.AllowWindowHiding = autoLogin;
                 appWindow.Show();
             }
 
@@ -526,12 +519,11 @@ namespace ProtonVPN.Core
             await Resolve<IUserLocationService>().Update();
             await Resolve<IAnnouncementService>().Update();
             await Resolve<SystemTimeValidator>().Validate();
-            await Resolve<AutoConnect>().Load(autoLogin);
+            await Resolve<AutoConnect>().LoadAsync(autoLogin);
             Resolve<SyncProfiles>().Sync();
             Resolve<INetworkClient>().CheckForInsecureWiFi();
             await Resolve<EventClient>().StoreLatestEvent();
             Resolve<EventTimer>().Start();
-            await Resolve<IReportAnIssueFormDataProvider>().FetchData();
         }
 
         private void LoadViewModels()
@@ -562,8 +554,8 @@ namespace ProtonVPN.Core
             if (result.Failure && result.Exception != null)
             {
                 Resolve<ILogger>().Error<AppServiceStartFailedLog>($"Failed to start {service.Name} service.", result.Exception);
-                Process.Start("ProtonVPN.ErrorMessage.exe");
-                Application.Current.Shutdown();
+                FatalErrorHandler fatalErrorHandler = new();
+                fatalErrorHandler.Exit();
             }
         }
 

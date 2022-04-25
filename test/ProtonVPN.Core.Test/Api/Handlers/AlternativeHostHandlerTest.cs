@@ -26,6 +26,7 @@ using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Core.Abstract;
 using ProtonVPN.Core.Api;
 using ProtonVPN.Core.Api.Handlers;
 using ProtonVPN.Core.OS.Net.DoH;
@@ -39,6 +40,7 @@ namespace ProtonVPN.Core.Test.Api.Handlers
     {
         private MockHttpMessageHandler _innerHandler;
         private IAppSettings _appSettings;
+        private ITokenStorage _tokenStorage;
         private readonly Uri _baseAddress = new Uri("https://api.protonvpn.ch");
 
         [TestInitialize]
@@ -46,6 +48,7 @@ namespace ProtonVPN.Core.Test.Api.Handlers
         {
             _innerHandler = new MockHttpMessageHandler();
             _appSettings = Substitute.For<IAppSettings>();
+            _tokenStorage = Substitute.For<ITokenStorage>();
         }
 
         [TestMethod]
@@ -62,6 +65,7 @@ namespace ProtonVPN.Core.Test.Api.Handlers
                 new MainHostname("https://api.protonvpn.ch"),
                 _appSettings,
                 new GuestHoleState(),
+                _tokenStorage,
                 "api.protonvpn.ch") { InnerHandler = _innerHandler };
 
             HttpClient client = new(handler) { BaseAddress = _baseAddress };

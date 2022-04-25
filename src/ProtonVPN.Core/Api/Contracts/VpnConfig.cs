@@ -17,7 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Collections.Specialized;
 using Newtonsoft.Json;
 
 namespace ProtonVPN.Core.Api.Contracts
@@ -25,9 +24,6 @@ namespace ProtonVPN.Core.Api.Contracts
     public class VpnConfig : BaseResponse
     {
         public DefaultPorts DefaultPorts { get; set; }
-
-        [JsonProperty(PropertyName = "HolesIPs")]
-        public StringCollection HolesIps { get; set; }
 
         public int? ServerRefreshInterval { get; set; }
 

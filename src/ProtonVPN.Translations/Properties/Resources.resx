@@ -267,19 +267,11 @@
   </data>
   <data name="Settings_Connection_lbl_QuickConnect_Info" xml:space="preserve">
     <value>The Quick Connect button connects you to the selected profile.</value>
-    <comment>The description of Quick Connect settings displayed in the tooltip of ( i ) image next to the label for Quick Connect combo box in Connection tab of Settings window</comment>
+    <comment>The description of Quick Connect settings displayed in the tooltip of ( i ) image next to the label for Quick Connect combo box in General tab of Settings window</comment>
   </data>
-  <data name="Settings_Connection_lbl_AutoConnect_Info" xml:space="preserve">
-    <value>On app start, you are connected to the selected profile.</value>
-    <comment>The description of Auto Connect setting displayed in the tooltip of ( i ) image next to the label for Auto Connect combo box in Connection tab of Settings window</comment>
-  </data>
-  <data name="Dialogs_P2PForward_msg_Warning_1" xml:space="preserve">
-    <value>Your connection has been automatically rerouted through another server because certain servers do not support file sharing (P2P) traffic. This may reduce your connection speed. Please use servers with the P2P icon</value>
-    <comment>The left part of the warning message in Forwarded P2P window. It shall be translated in pair with the resource "Dialogs_P2PForward_msg_Warning_2" as if they combine one text string including imaginary placeholder {0} between them. If translated text suppose to not include any text before the imaginary placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
-  </data>
-  <data name="Dialogs_P2PForward_msg_Warning_2" xml:space="preserve">
-    <value>to avoid traffic rerouting.</value>
-    <comment>The right part of the warning message in Forwarded P2P window. It shall be translated in pair with the resource "Dialogs_P2PForward_msg_Warning_1" as if they combine one text string including imaginary placeholder {0} between them. If translated text suppose to not include any text after the imaginary placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
+  <data name="Settings_General_lbl_ConnectOnAppStart_Info" xml:space="preserve">
+    <value>Automatically connect to the Quick Connect profile when ProtonVPN starts.</value>
+    <comment>The description of Connect on boot setting displayed in the tooltip of ( i ) image next to the label for Connect on boot combo box in General tab of Settings window</comment>
   </data>
   <data name="StartMinimizedMode_val_Disabled" xml:space="preserve">
     <value>Disabled</value>
@@ -401,9 +393,9 @@
     <value>Password</value>
     <comment>The label for Password text box in Login window</comment>
   </data>
-  <data name="Settings_General_lbl_StartWithWindows" xml:space="preserve">
-    <value>Start with Windows</value>
-    <comment>The label for Start with Windows toggle switch in General tab of Settings window.
+  <data name="Settings_General_lbl_StartOnBoot" xml:space="preserve">
+    <value>Start on boot</value>
+    <comment>The label for Start on boot toggle switch in General tab of Settings window.
 This setting instructs the ProtonVPN to start automatically when the user logs in to the computer.</comment>
   </data>
   <data name="Login_btn_Login" xml:space="preserve">
@@ -460,7 +452,7 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
   </data>
   <data name="Settings_Connection_lbl_QuickConnect" xml:space="preserve">
     <value>Quick Connect</value>
-    <comment>The label for Quick Connect combo box in Connection tab of Settings window</comment>
+    <comment>The label for Quick Connect combo box in General tab of Settings window</comment>
   </data>
   <data name="QuickLaunch_lbl_Profiles" xml:space="preserve">
     <value>Profiles</value>
@@ -618,10 +610,6 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <value>Split Tunneling</value>
     <comment>The label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
   </data>
-  <data name="Settings_val_Disabled" xml:space="preserve">
-    <value>Disabled</value>
-    <comment>The Disabled value displayed in combo boxes of Settings window</comment>
-  </data>
   <data name="Sidebar_Connection_lbl_Disconnected" xml:space="preserve">
     <value>You are not protected!</value>
     <comment>The text displayed on Connection section of Sidebar section of main app window</comment>
@@ -714,9 +702,9 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <value>Advanced</value>
     <comment>The header of Advanced tab in Settings window</comment>
   </data>
-  <data name="Settings_Connection_lbl_AutoConnect" xml:space="preserve">
-    <value>Auto Connect</value>
-    <comment>The label for Auto Connect combo box in Connection tab of Settings window</comment>
+  <data name="Settings_General_lbl_ConnectOnAppStart" xml:space="preserve">
+    <value>Connect on app start</value>
+    <comment>The label for Connect on boot combo box in General tab of Settings window</comment>
   </data>
   <data name="About_lbl_ChangelogVersion" xml:space="preserve">
     <value>Changelog of v.{0}</value>
@@ -890,10 +878,6 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <value>Continue</value>
     <comment>The text on Continue button in dialog windows</comment>
   </data>
-  <data name="Dialogs_P2PForward_ttl" xml:space="preserve">
-    <value>Attention</value>
-    <comment>The title of Forwarded P2P window</comment>
-  </data>
   <data name="Dialogs_ttl_Question" xml:space="preserve">
     <value>Attention</value>
     <comment>The title of question message window</comment>
@@ -957,10 +941,6 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
   <data name="Upsell_Enjoying_ttl" xml:space="preserve">
     <value>ProtonVPN</value>
     <comment>The title of Enjoying Upsell window</comment>
-  </data>
-  <data name="Dialogs_P2PForward_btn_Close" xml:space="preserve">
-    <value>Close</value>
-    <comment>The text on Close button in Forwarded P2P window</comment>
   </data>
   <data name="Map_VpnStatus_val_Connected" xml:space="preserve">
     <value>CONNECTED</value>
@@ -3173,6 +3153,24 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="Upsell_SecureCore_Title" xml:space="preserve">
     <value>Double the encryption with Secure Core</value>
   </data>
+  <data name="Upsell_ModerateNat_Title" xml:space="preserve">
+    <value>Enable Moderate NAT</value>
+  </data>
+  <data name="Settings_Connection_lbl_ModerateNat" xml:space="preserve">
+    <value>Moderate NAT</value>
+  </data>
+  <data name="Settings_Connection_lbl_ModerateNat_Info" xml:space="preserve">
+    <value>Moderate NAT disables randomization of the local addresses mapping, which can reduce slightly your security, but allows techniques such as direct connections for applications like online games.</value>
+  </data>
+  <data name="Upsell_ModerateNat_Subtitle" xml:space="preserve">
+    <value>Moderate NAT, also known as Nat Type 2, can improve your online experience with various applications and online video games.</value>
+  </data>
+  <data name="Upsell_ModerateNat_About" xml:space="preserve">
+    <value>What is Moderate NAT?</value>
+  </data>
+  <data name="Upsell_ModerateNat_Unlock" xml:space="preserve">
+    <value>Upgrade to a paid plan to unlock this and many other features.</value>
+  </data>
   <data name="Upsell_NonStandardPorts_btn_LearnMore" xml:space="preserve">
     <value>Learn More</value>
     <comment>The button label in "allow non-standard ports" modal</comment>
@@ -3229,7 +3227,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Enable Port Forwarding</value>
   </data>
   <data name="Upsell_PortForwarding_Subtitle" xml:space="preserve">
-    <value>Speed up your torrenting and online gaming by allowing compatible local apps to be reachable from the internet.&lt;LineBreak/&gt;&lt;LineBreak/&gt;Upgrade to Plus to unblock this and many other features.</value>
+    <value>Get faster P2P downloads and enhance your online gaming experience with Port Forwarding. &lt;LineBreak/&gt;&lt;LineBreak/&gt;Unlock this feature and many more with VPN Plus.</value>
   </data>
   <data name="Upsell_PortForwarding_About" xml:space="preserve">
     <value>What is Port Forwarding?</value>
@@ -3248,5 +3246,31 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   </data>
   <data name="Modal_DiscourageSecureCore_Title" xml:space="preserve">
     <value>A note about speed...</value>
+  </data>
+  <data name="Login_lnk_ReportAnIssue" xml:space="preserve">
+    <value>Report an issue</value>
+    <comment>The text of hyperlink in Need Help popup of Login window (opens report an issue modal window)</comment>
+  </data>
+  <data name="Login_lnk_CommonSignInIssues" xml:space="preserve">
+    <value>Common sign in issues</value>
+    <comment>The text of hyperlink in Need Help popup of Login window (opens web page with information regarding login issues)</comment>
+  </data>
+  <data name="Login_lbl_TwoFactorAuthCode" xml:space="preserve">
+    <value>Two-factor authentication code</value>
+  </data>
+  <data name="Login_msg_IncorrectTwoFactorCode" xml:space="preserve">
+    <value>Incorrect two-factor authentication code</value>
+  </data>
+  <data name="Login_btn_Authenticate" xml:space="preserve">
+    <value>Authenticate</value>
+  </data>
+  <data name="Login_msg_TwoFactorAuthFailed" xml:space="preserve">
+    <value>Incorrect login credentials. Please try again.</value>
+  </data>
+  <data name="Login_lbl_StartAndConnectOnBoot" xml:space="preserve">
+    <value>Start and connect on boot</value>
+  </data>
+  <data name="PortForwarding_lbl_ServerWarning" xml:space="preserve">
+    <value>To use Port Forwarding, please &lt;Hyperlink Command="{Binding ConnectToBestP2PServerCommand}"&gt;connect&lt;/Hyperlink&gt; to a server that supports P2P.</value>
   </data>
 </root>

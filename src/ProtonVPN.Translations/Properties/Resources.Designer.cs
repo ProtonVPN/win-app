@@ -3955,42 +3955,6 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Close.
-        /// </summary>
-        public static string Dialogs_P2PForward_btn_Close {
-            get {
-                return ResourceManager.GetString("Dialogs_P2PForward_btn_Close", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Your connection has been automatically rerouted through another server because certain servers do not support file sharing (P2P) traffic. This may reduce your connection speed. Please use servers with the P2P icon.
-        /// </summary>
-        public static string Dialogs_P2PForward_msg_Warning_1 {
-            get {
-                return ResourceManager.GetString("Dialogs_P2PForward_msg_Warning_1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to to avoid traffic rerouting..
-        /// </summary>
-        public static string Dialogs_P2PForward_msg_Warning_2 {
-            get {
-                return ResourceManager.GetString("Dialogs_P2PForward_msg_Warning_2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Attention.
-        /// </summary>
-        public static string Dialogs_P2PForward_ttl {
-            get {
-                return ResourceManager.GetString("Dialogs_P2PForward_ttl", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Enable Port Forwarding only when you need it to ensure the strongest privacy and security protection.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command=&quot;{Binding ReadPortForwardingRisksCommand}&quot;&gt;Do I need Port Forwarding?&lt;/Hyperlink&gt;.
         /// </summary>
         public static string Dialogs_PortForwardingConfirmation_msg {
@@ -4387,6 +4351,15 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Authenticate.
+        /// </summary>
+        public static string Login_btn_Authenticate {
+            get {
+                return ResourceManager.GetString("Login_btn_Authenticate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Login.
         /// </summary>
         public static string Login_btn_Login {
@@ -4450,6 +4423,15 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Start and connect on boot.
+        /// </summary>
+        public static string Login_lbl_StartAndConnectOnBoot {
+            get {
+                return ResourceManager.GetString("Login_lbl_StartAndConnectOnBoot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Start with Windows.
         /// </summary>
         public static string Login_lbl_StartWithWindows {
@@ -4468,11 +4450,29 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Two-factor authentication code.
+        /// </summary>
+        public static string Login_lbl_TwoFactorAuthCode {
+            get {
+                return ResourceManager.GetString("Login_lbl_TwoFactorAuthCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Username.
         /// </summary>
         public static string Login_lbl_Username {
             get {
                 return ResourceManager.GetString("Login_lbl_Username", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Common sign in issues.
+        /// </summary>
+        public static string Login_lnk_CommonSignInIssues {
+            get {
+                return ResourceManager.GetString("Login_lnk_CommonSignInIssues", resourceCulture);
             }
         }
         
@@ -4504,11 +4504,38 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Report an issue.
+        /// </summary>
+        public static string Login_lnk_ReportAnIssue {
+            get {
+                return ResourceManager.GetString("Login_lnk_ReportAnIssue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reset Password.
         /// </summary>
         public static string Login_lnk_ResetPassword {
             get {
                 return ResourceManager.GetString("Login_lnk_ResetPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Incorrect two-factor authentication code.
+        /// </summary>
+        public static string Login_msg_IncorrectTwoFactorCode {
+            get {
+                return ResourceManager.GetString("Login_msg_IncorrectTwoFactorCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Incorrect login credentials. Please try again..
+        /// </summary>
+        public static string Login_msg_TwoFactorAuthFailed {
+            get {
+                return ResourceManager.GetString("Login_msg_TwoFactorAuthFailed", resourceCulture);
             }
         }
         
@@ -4968,6 +4995,15 @@ namespace ProtonVPN.Translations.Properties {
         public static string PortForwarding_lbl_Info {
             get {
                 return ResourceManager.GetString("PortForwarding_lbl_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To use Port Forwarding, please &lt;Hyperlink Command=&quot;{Binding ConnectToBestP2PServerCommand}&quot;&gt;connect&lt;/Hyperlink&gt; to a server that supports P2P..
+        /// </summary>
+        public static string PortForwarding_lbl_ServerWarning {
+            get {
+                return ResourceManager.GetString("PortForwarding_lbl_ServerWarning", resourceCulture);
             }
         }
         
@@ -6196,24 +6232,6 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Auto Connect.
-        /// </summary>
-        public static string Settings_Connection_lbl_AutoConnect {
-            get {
-                return ResourceManager.GetString("Settings_Connection_lbl_AutoConnect", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to On app start, you are connected to the selected profile..
-        /// </summary>
-        public static string Settings_Connection_lbl_AutoConnect_Info {
-            get {
-                return ResourceManager.GetString("Settings_Connection_lbl_AutoConnect_Info", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Custom DNS Servers.
         /// </summary>
         public static string Settings_Connection_lbl_CustomDnsServer {
@@ -6246,6 +6264,24 @@ namespace ProtonVPN.Translations.Properties {
         public static string Settings_Connection_lbl_DefaultProtocol_Info {
             get {
                 return ResourceManager.GetString("Settings_Connection_lbl_DefaultProtocol_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Moderate NAT.
+        /// </summary>
+        public static string Settings_Connection_lbl_ModerateNat {
+            get {
+                return ResourceManager.GetString("Settings_Connection_lbl_ModerateNat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Moderate NAT disables randomization of the local addresses mapping, which can reduce slightly your security, but allows techniques such as direct connections for applications like online games..
+        /// </summary>
+        public static string Settings_Connection_lbl_ModerateNat_Info {
+            get {
+                return ResourceManager.GetString("Settings_Connection_lbl_ModerateNat_Info", resourceCulture);
             }
         }
         
@@ -6340,6 +6376,24 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Connect on app start.
+        /// </summary>
+        public static string Settings_General_lbl_ConnectOnAppStart {
+            get {
+                return ResourceManager.GetString("Settings_General_lbl_ConnectOnAppStart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Automatically connect to the Quick Connect profile when ProtonVPN starts..
+        /// </summary>
+        public static string Settings_General_lbl_ConnectOnAppStart_Info {
+            get {
+                return ResourceManager.GetString("Settings_General_lbl_ConnectOnAppStart_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Early Access.
         /// </summary>
         public static string Settings_General_lbl_EarlyAccess {
@@ -6385,11 +6439,11 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Start with Windows.
+        ///   Looks up a localized string similar to Start on boot.
         /// </summary>
-        public static string Settings_General_lbl_StartWithWindows {
+        public static string Settings_General_lbl_StartOnBoot {
             get {
-                return ResourceManager.GetString("Settings_General_lbl_StartWithWindows", resourceCulture);
+                return ResourceManager.GetString("Settings_General_lbl_StartOnBoot", resourceCulture);
             }
         }
         
@@ -6426,15 +6480,6 @@ namespace ProtonVPN.Translations.Properties {
         public static string Settings_ttl {
             get {
                 return ResourceManager.GetString("Settings_ttl", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Disabled.
-        /// </summary>
-        public static string Settings_val_Disabled {
-            get {
-                return ResourceManager.GetString("Settings_val_Disabled", resourceCulture);
             }
         }
         
@@ -7105,6 +7150,42 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to What is Moderate NAT?.
+        /// </summary>
+        public static string Upsell_ModerateNat_About {
+            get {
+                return ResourceManager.GetString("Upsell_ModerateNat_About", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Moderate NAT, also known as Nat Type 2, can improve your online experience with various applications and online video games..
+        /// </summary>
+        public static string Upsell_ModerateNat_Subtitle {
+            get {
+                return ResourceManager.GetString("Upsell_ModerateNat_Subtitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable Moderate NAT.
+        /// </summary>
+        public static string Upsell_ModerateNat_Title {
+            get {
+                return ResourceManager.GetString("Upsell_ModerateNat_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upgrade to a paid plan to unlock this and many other features..
+        /// </summary>
+        public static string Upsell_ModerateNat_Unlock {
+            get {
+                return ResourceManager.GetString("Upsell_ModerateNat_Unlock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Block ads and trackers.
         /// </summary>
         public static string Upsell_Netshield_BlockAds {
@@ -7195,7 +7276,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Speed up your torrenting and online gaming by allowing compatible local apps to be reachable from the internet.&lt;LineBreak/&gt;&lt;LineBreak/&gt;Upgrade to Plus to unblock this and many other features..
+        ///   Looks up a localized string similar to Get faster P2P downloads and enhance your online gaming experience with Port Forwarding. &lt;LineBreak/&gt;&lt;LineBreak/&gt;Unlock this feature and many more with VPN Plus..
         /// </summary>
         public static string Upsell_PortForwarding_Subtitle {
             get {

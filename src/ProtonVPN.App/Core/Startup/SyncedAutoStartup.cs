@@ -38,7 +38,7 @@ namespace ProtonVPN.Core.Startup
 
         public void OnAppSettingsChanged(PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(IAppSettings.StartOnStartup))
+            if (e.PropertyName == nameof(IAppSettings.StartOnBoot))
             {
                 Sync();
             }

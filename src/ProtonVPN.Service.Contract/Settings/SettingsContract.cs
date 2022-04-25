@@ -27,6 +27,9 @@ namespace ProtonVPN.Service.Contract.Settings
         public KillSwitchMode KillSwitchMode { get; set; }
         public SplitTunnelSettingsContract SplitTunnel { get; set; }
         public int NetShieldMode { get; set; }
+
+        public bool ModerateNat { get; set; }
+
         public bool SplitTcp { get; set; }
         public bool? AllowNonStandardPorts { get; set; }
         public bool Ipv6LeakProtection { get; set; }

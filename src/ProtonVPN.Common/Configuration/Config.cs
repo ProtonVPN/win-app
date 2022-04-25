@@ -55,9 +55,6 @@ namespace ProtonVPN.Common.Configuration
         public string TranslationsFolder { get; internal set; }
 
         [Required]
-        public string ErrorMessageExePath { get; internal set; }
-
-        [Required]
         public string ServiceName { get; internal set; }
 
         [Required]
@@ -213,8 +210,6 @@ namespace ProtonVPN.Common.Configuration
         [Required]
         public int[] DefaultWireGuardPorts { get; internal set; }
 
-        public IReadOnlyList<string> DefaultBlackHoleIps { get; internal set; } = new List<string>();
-
         public UrlConfig Urls { get; } = new();
 
         public OpenVpnConfig OpenVpn { get; } = new();
@@ -245,5 +240,7 @@ namespace ProtonVPN.Common.Configuration
         public string NtpServerUrl { get; internal set; }
 
         public string DeviceId { get; internal set; }
+
+        public string ServerValidationPublicKey { get; internal set; }
     }
 }

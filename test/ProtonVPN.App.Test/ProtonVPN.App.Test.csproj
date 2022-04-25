@@ -131,7 +131,6 @@
     <Compile Include="Modals\ModalsTest.cs" />
     <Compile Include="P2PDetection\Blocked\BlockedTrafficTest.cs" />
     <Compile Include="P2PDetection\Blocked\SafeBlockedTrafficTest.cs" />
-    <Compile Include="P2PDetection\Forwarded\ForwardedTrafficTest.cs" />
     <Compile Include="P2PDetection\P2PDetectionTimeoutTest.cs" />
     <Compile Include="P2PDetection\P2PDetectorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

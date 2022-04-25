@@ -8,6 +8,7 @@ stages:
   - test
   - sign
   - build-installer
+  - internal-beta
   - publish-to-slack
   - ui-test
   - installation-test
@@ -96,6 +97,18 @@ build-installer-for-release:
       - Setup/ProtonVPNTun-SetupFiles/
       - Setup/ProtonVPNTap-SetupFiles/
     expire_in: 4 weeks
+  only:
+    - master
+    - /^release.*$/
+    
+prepare-internal-beta-release:
+  stage: internal-beta
+  tags:
+    - windows
+  when: manual
+  script:
+    - python -m pip install -r ci\python-libs.txt
+    - python ci\prepare-internal-beta.py
   only:
     - master
     - /^release.*$/
@@ -213,4 +226,5 @@ send-slack-notification:
       - develop
   stage: publish-to-slack
   script:
+    - python -m pip install -r ci\python-libs.txt
     - python ci\main.py send-slack-notification

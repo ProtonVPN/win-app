@@ -31,6 +31,7 @@ namespace ProtonVPN.Core.Api
     {
         Task<ApiResponseResult<AuthResponse>> GetAuthResponse(AuthRequestData data);
         Task<ApiResponseResult<AuthInfo>> GetAuthInfoResponse(AuthInfoRequestData data);
+        Task<ApiResponseResult<BaseResponse>> GetTwoFactorAuthResponse(TwoFactorRequestData data, string accessToken, string uid);
         Task<ApiResponseResult<PhysicalServerResponse>> GetServerAsync(string serverId);
         Task<ApiResponseResult<VpnInfoResponse>> GetVpnInfoResponse();
         Task<ApiResponseResult<BaseResponse>> GetLogoutResponse();
