@@ -3096,7 +3096,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <comment>The button label in "allow non-standard ports" modal</comment>
   </data>
   <data name="Upsell_NonStandardPorts_msg" xml:space="preserve">
-    <value>Use Proton VPN for any special need by allowing traffic to non-standard ports through the VPN network. Upgrade to a paid plan to unlock this and many other features.</value>
+    <value>Have advanced or professional computing needs that require non-standard ports? Upgrade to VPN Plus to access this and other premium features.</value>
     <comment>The text in "allow non-standard ports" modal</comment>
   </data>
   <data name="Upsell_NonStandardPorts_ttl" xml:space="preserve">
