@@ -31,6 +31,7 @@ namespace ProtonVPN.Account
 {
     public class AccountModalViewModel : BaseModalViewModel, IUserDataAware, IHandle<AccountActionMessage>
     {
+        private readonly IAppSettings _appSettings;
         private readonly IActiveUrls _urls;
         private readonly IUserStorage _userStorage;
 
@@ -48,15 +49,17 @@ namespace ProtonVPN.Account
 
         public PromoCodeViewModel PromoCodeViewModel { get; }
 
-        public bool IsToShowUseCoupon => _userStorage.User().CanUsePromoCode();
+        public bool IsToShowUseCoupon => _appSettings.FeaturePromoCodeEnabled && _userStorage.User().CanUsePromoCode();
 
         public AccountModalViewModel(
+            IAppSettings appSettings,
             IEventAggregator eventAggregator,
             IActiveUrls urls,
             IUserStorage userStorage,
             PromoCodeViewModel promoCodeViewModel)
         {
             eventAggregator.Subscribe(this);
+            _appSettings = appSettings;
             _urls = urls;
             _userStorage = userStorage;
             PromoCodeViewModel = promoCodeViewModel;

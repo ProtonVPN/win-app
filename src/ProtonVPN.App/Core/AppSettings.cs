@@ -446,6 +446,12 @@ namespace ProtonVPN.Core
             set => Set(value);
         }
 
+        public bool FeaturePromoCodeEnabled
+        {
+            get => Get<bool>();
+            set => Set(value);
+        }
+
         public bool FeatureSmartReconnectEnabled
         {
             get => Get<bool>();
