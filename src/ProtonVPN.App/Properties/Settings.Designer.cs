@@ -1564,5 +1564,17 @@ namespace ProtonVPN.Properties {
                 this["UserHasPaymentMethod"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool FeaturePromoCodeEnabled {
+            get {
+                return ((bool)(this["FeaturePromoCodeEnabled"]));
+            }
+            set {
+                this["FeaturePromoCodeEnabled"] = value;
+            }
+        }
     }
 }

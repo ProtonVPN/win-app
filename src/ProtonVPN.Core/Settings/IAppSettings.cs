@@ -98,6 +98,7 @@ namespace ProtonVPN.Core.Settings
         bool VpnAcceleratorEnabled { get; set; }
         bool FeatureVpnAcceleratorEnabled { get; set; }
         bool FeatureStreamingServicesLogosEnabled { get; set; }
+        bool FeaturePromoCodeEnabled { get; set; }
         bool ConnectOnAppStart { get; set; }
         bool FeatureSmartReconnectEnabled { get; set; }
         bool ShowNonStandardPortsToFreeUsers { get; set; }
