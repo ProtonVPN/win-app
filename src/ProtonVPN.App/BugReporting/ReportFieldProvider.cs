@@ -24,6 +24,7 @@ using ProtonVPN.Account;
 using ProtonVPN.BugReporting.Actions;
 using ProtonVPN.BugReporting.FormElements;
 using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.OS;
 using ProtonVPN.Core.Models;
 using ProtonVPN.Core.OS;
 using ProtonVPN.Core.Settings;
@@ -37,13 +38,15 @@ namespace ProtonVPN.BugReporting
         private readonly IUserStorage _userStorage;
         private readonly Common.Configuration.Config _config;
         private readonly ISystemState _systemState;
+        private readonly IDeviceInfoProvider _deviceInfoProvider;
 
         public ReportFieldProvider(IUserStorage userStorage, Common.Configuration.Config config,
-            ISystemState systemState)
+            ISystemState systemState, IDeviceInfoProvider deviceInfoProvider)
         {
             _config = config;
             _userStorage = userStorage;
             _systemState = systemState;
+            _deviceInfoProvider = deviceInfoProvider;
         }
 
         public KeyValuePair<string, string>[] GetFields(SendReportAction message)
@@ -100,7 +103,7 @@ namespace ProtonVPN.BugReporting
         {
             stringBuilder.AppendLine("Additional info")
                 .AppendLine($"Pending reboot: {_systemState.PendingReboot().ToYesNoString()}")
-                .AppendLine($"DeviceID: {_config.DeviceId}");
+                .AppendLine($"DeviceID: {_deviceInfoProvider.GetDeviceId()}");
         }
 
         private string GetEmail(IList<FormElement> formElements)
