@@ -19,8 +19,8 @@
 
 namespace ProtonVPN.Common.OS
 {
-    public interface IEnvironment
+    public interface IDeviceInfoProvider
     {
-        string[] CommandLineArgs();
+        string GetDeviceId();
     }
 }

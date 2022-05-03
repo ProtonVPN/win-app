@@ -27,6 +27,7 @@ using ProtonVPN.Common.Events;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.AppServiceLogs;
 using ProtonVPN.Common.Logging.Log4Net;
+using ProtonVPN.Common.OS;
 using ProtonVPN.Common.OS.Event;
 using ProtonVPN.Common.OS.Net.Http;
 using ProtonVPN.Common.OS.Processes;
@@ -126,8 +127,8 @@ namespace ProtonVPN.UpdateService
             builder.RegisterType<ServicePointConfiguration>().SingleInstance();
             builder.RegisterType<SystemEventLog>().SingleInstance();
             builder.RegisterType<ApiAppVersion>().As<IApiAppVersion>().SingleInstance();
-            builder.Register(c => new EventPublisher(c.Resolve<ILogger>(), c.Resolve<Common.Configuration.Config>()))
-                .As<IEventPublisher>().SingleInstance();
+            builder.RegisterType<EventPublisher>().As<IEventPublisher>().SingleInstance();
+            builder.RegisterType<DeviceInfoProvider>().As<IDeviceInfoProvider>().SingleInstance();
 
             builder.Register(c =>
                     new CachingReportClient(

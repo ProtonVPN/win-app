@@ -26,6 +26,7 @@ using ProtonVPN.Account;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Events;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.OS;
 using ProtonVPN.Common.OS.Processes;
 using ProtonVPN.Common.OS.Services;
 using ProtonVPN.Common.Storage;
@@ -307,13 +308,13 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<AuthCredentialManager>().As<IAuthCredentialManager>().SingleInstance();
             builder.RegisterType<SystemTimeValidator>().SingleInstance();
             builder.RegisterType<WelcomeModalManager>().SingleInstance();
-            builder.Register(c => new EventPublisher(c.Resolve<ILogger>(), c.Resolve<Common.Configuration.Config>()))
-                .As<IEventPublisher>().SingleInstance();
+            builder.RegisterType<EventPublisher>().As<IEventPublisher>().SingleInstance();
             builder.RegisterType<AppExitInvoker>().As<IAppExitInvoker>().SingleInstance();
             builder.RegisterType<PortForwardingManager>().As<IPortForwardingManager>().SingleInstance();
             builder.RegisterType<PortForwardingNotifier>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<SignUpAvailabilityProvider>().As<ISignUpAvailabilityProvider>().SingleInstance();
             builder.RegisterType<PromoCodeManager>().As<IPromoCodeManager>().SingleInstance();
+            builder.RegisterType<DeviceInfoProvider>().As<IDeviceInfoProvider>().SingleInstance();
         }
     }
 }
