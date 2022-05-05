@@ -17,10 +17,14 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using Caliburn.Micro;
 using GalaSoft.MvvmLight.CommandWpf;
+using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.OperatingSystemLogs;
 using ProtonVPN.Common.PortForwarding;
 using ProtonVPN.Core.PortForwarding;
 
@@ -28,9 +32,15 @@ namespace ProtonVPN.PortForwarding.ActivePorts
 {
     public class PortForwardingActivePortViewModel : Screen, IPortForwardingStateAware
     {
+        private const int MAX_CLIPBOARD_TRIES = 4;
+        private const int BASE_CLIPBOARD_RETRY_TIME_IN_MILLISECONDS = 100;
+        private const bool LEAVE_CLIPBOARD_VALUE_AFTER_APP_EXIT = true;
+
         public ICommand PortForwardingValueCopyCommand { get; set; }
         public ICommand PortForwardingValueDefaultColorCommand { get; set; }
         public ICommand PortForwardingValueHighlightColorCommand { get; set; }
+        
+        private readonly ILogger _logger;
 
         private string _portForwardingValue = string.Empty;
         public string PortForwardingValue
@@ -61,16 +71,38 @@ namespace ProtonVPN.PortForwarding.ActivePorts
             set => Set(ref _portForwardingValueColor, value);
         }
 
-        public PortForwardingActivePortViewModel()
+        public PortForwardingActivePortViewModel(ILogger logger)
         {
-            PortForwardingValueCopyCommand = new RelayCommand(PortForwardingValueCopyAction);
+            _logger = logger;
+
+            PortForwardingValueCopyCommand = new RelayCommand(PortForwardingValueCopyActionAsync);
             PortForwardingValueDefaultColorCommand = new RelayCommand(PortForwardingValueDefaultColorAction);
             PortForwardingValueHighlightColorCommand = new RelayCommand(PortForwardingValueHighlightColorAction);
         }
-
-        private void PortForwardingValueCopyAction()
+        
+        private async void PortForwardingValueCopyActionAsync()
         {
-            Clipboard.SetText(PortForwardingValue);
+            int retryTimeInMilliseconds = BASE_CLIPBOARD_RETRY_TIME_IN_MILLISECONDS;
+            for (int i = 1; i <= MAX_CLIPBOARD_TRIES; i++)
+            {
+                try
+                {
+                    Clipboard.SetDataObject(PortForwardingValue, LEAVE_CLIPBOARD_VALUE_AFTER_APP_EXIT);
+                    break;
+                }
+                catch (Exception exception)
+                {
+                    string logMessage = $"Error when copying port number to clipboard. Try {i} of {MAX_CLIPBOARD_TRIES}.";
+                    if (i == MAX_CLIPBOARD_TRIES)
+                    {
+                        _logger.Error<OperatingSystemLog>(logMessage, exception);
+                        break;
+                    }
+                    _logger.Warn<OperatingSystemLog>(logMessage + $" Waiting {retryTimeInMilliseconds}ms.", exception);
+                    await Task.Delay(TimeSpan.FromMilliseconds(retryTimeInMilliseconds));
+                    retryTimeInMilliseconds *= 2;
+                }
+            }
         }
 
         private void PortForwardingValueDefaultColorAction()
