@@ -18,22 +18,41 @@
  */
 
 using System;
+using System.Globalization;
+using System.Security;
 using System.Windows;
 using System.Windows.Data;
+using System.Windows.Markup;
+using ProtonVPN.Common.Extensions;
 
 namespace ProtonVPN.Core.MVVM.Converters
 {
-    public class StringNullOrEmptyToVisibilityConverter : System.Windows.Markup.MarkupExtension, IValueConverter
+    public class StringNullOrEmptyToVisibilityConverter : MarkupExtension, IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return string.IsNullOrEmpty(value as string)
-                ? Visibility.Hidden : Visibility.Visible;
+            Visibility targetVisibility = Visibility.Hidden;
+            if (parameter is Visibility parameterVisibility)
+            {
+                targetVisibility = parameterVisibility;
+            }
+            return IsStringNullOrEmpty(value)
+                ? targetVisibility
+                : Visibility.Visible;
         }
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+
+        private bool IsStringNullOrEmpty(object value)
+        {
+            return value is SecureString secureString
+                ? secureString.IsNullOrEmpty()
+                : string.IsNullOrEmpty(value as string);
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return null;
         }
+
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
             return this;

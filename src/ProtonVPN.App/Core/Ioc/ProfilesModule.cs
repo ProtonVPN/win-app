@@ -31,6 +31,7 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<ProfileViewModelFactory>().SingleInstance();
             builder.RegisterType<ProfileManager>().SingleInstance();
             builder.RegisterType<ColorProvider>().SingleInstance();
+            builder.RegisterType<ProfileFactory>().AsImplementedInterfaces().SingleInstance();
         }
     }
 }

@@ -33,8 +33,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         FlowDirection="{Binding FlowDirection}"
         WindowStartupLocation="CenterScreen"
         Title="{translations:Loc Login_ttl}"
-        Width="440"
-        Height="550">
+        Width="600"
+        Height="600">
     <Window.Resources>
         <ResourceDictionary>
             <DataTemplate DataType="{x:Type viewModels:LoginViewModel}">
@@ -50,12 +50,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <WindowChrome CaptionHeight="{Binding ActualHeight, ElementName=Titlebar}" GlassFrameThickness="0" CornerRadius="0"/>
     </WindowChrome.WindowChrome>
 
-    <Grid Background="#2b2c34">
+    <Grid Background="{StaticResource BackgroundWeakBrushColor}">
         <DockPanel DockPanel.Dock="Top" HorizontalAlignment="Right" Height="36" VerticalAlignment="Top" x:Name="Titlebar">
             <Button Style="{StaticResource WindowsMinimizeButton}" Name="MinimizeButton"/>
             <Button Style="{StaticResource WindowsCloseButton}" Name="CloseButton"/>
         </DockPanel>
         <ContentControl VerticalAlignment="Stretch" Margin="0,36,0,0" Content="{Binding CurrentPageViewModel}" />
-        <Border BorderThickness="1" BorderBrush="{StaticResource SecondaryColor}"/>
+        <Border BorderThickness="1" BorderBrush="{StaticResource BorderWeakBrushColor}"/>
     </Grid>
 </resource:WindowBase>

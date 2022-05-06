@@ -20,8 +20,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Style x:Key="ToggleSwitch" TargetType="{x:Type CheckBox}">
-        <Setter Property="Foreground" Value="White"/>
-        <Setter Property="Background" Value="Black"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -30,7 +28,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <Storyboard x:Key="OnChecking">
                             <DoubleAnimation
                                 From="0"
-                                To="14"
+                                To="20"
                                 BeginTime="00:00:00"
                                 Duration="00:00:00.3"
                                 Storyboard.TargetProperty="(RenderTransform).(TranslateTransform.X)"
@@ -38,7 +36,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </Storyboard>
                         <Storyboard x:Key="OnUnchecking">
                             <DoubleAnimation
-                                From="14"
+                                From="20"
                                 To="0"
                                 BeginTime="00:00:00"
                                 Duration="00:00:00.3"
@@ -47,10 +45,30 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </Storyboard>
                     </ControlTemplate.Resources>
                     <DockPanel x:Name="dockPanel" Cursor="Hand">
-                        <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" ContentTemplate="{TemplateBinding ContentTemplate}" RecognizesAccessKey="True" VerticalAlignment="Center"/>
+                        <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                                          Content="{TemplateBinding Content}" 
+                                          ContentStringFormat="{TemplateBinding ContentStringFormat}" 
+                                          ContentTemplate="{TemplateBinding ContentTemplate}" 
+                                          RecognizesAccessKey="True" 
+                                          VerticalAlignment="Center"/>
                         <Grid>
-                            <Border x:Name="OutterBorder" BorderThickness="0" Background="Black" BorderBrush="Black" Width="34" Height="20" CornerRadius="10" Cursor="Hand">
-                                <Border HorizontalAlignment="Left" x:Name="slider" Width="18" Height="18" BorderThickness="1" Background="{StaticResource PrimaryColorLight}" CornerRadius="9" RenderTransformOrigin="0.5,0.5" Margin="1,1,1,1">
+                            <Border x:Name="OuterBorder" 
+                                    BorderThickness="1" 
+                                    Background="Transparent" 
+                                    BorderBrush="{StaticResource TextNormBrushColor}" 
+                                    Width="40" 
+                                    Height="20" 
+                                    CornerRadius="10" 
+                                    Cursor="Hand">
+                                <Border HorizontalAlignment="Left" 
+                                        x:Name="slider" 
+                                        Width="12" 
+                                        Height="12" 
+                                        BorderThickness="1" 
+                                        Background="{StaticResource TextNormBrushColor}" 
+                                        CornerRadius="9" 
+                                        RenderTransformOrigin="0.5,0.5" 
+                                        Margin="3,1,3,1">
                                     <Border.RenderTransform>
                                         <TranslateTransform />
                                     </Border.RenderTransform>
@@ -59,55 +77,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </Grid>
                     </DockPanel>
                     <ControlTemplate.Triggers>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="IsVisible" Value="True" />
-                                <Condition Property="IsChecked" Value="True" />
-                                <Condition Property="IsEnabled" Value="False" />
-                            </MultiTrigger.Conditions>
-                            <Setter TargetName="dockPanel" Property="TextElement.Foreground" Value="Gray"/>
-                            <Setter TargetName="OutterBorder" Property="Background" Value="#61616B"/>
-                            <Setter TargetName="slider" Property="Background" Value="#98989D"/>
-                            <Setter Property="RenderTransform" TargetName="slider">
-                                <Setter.Value>
-                                    <TranslateTransform X="14" />
-                                </Setter.Value>
-                            </Setter>
-                        </MultiTrigger>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="IsVisible" Value="True"/>
-                                <Condition Property="IsChecked" Value="False"/>
-                                <Condition Property="IsEnabled" Value="False"/>
-                            </MultiTrigger.Conditions>
-                            <Setter TargetName="dockPanel" Property="TextElement.Foreground" Value="Gray"/>
-                            <Setter TargetName="OutterBorder" Property="Background" Value="#41414B"/>
-                            <Setter TargetName="slider" Property="Background" Value="#78787D"/>
-                            <Setter Property="RenderTransform" TargetName="slider">
-                                <Setter.Value>
-                                    <TranslateTransform X="0" />
-                                </Setter.Value>
-                            </Setter>
-                        </MultiTrigger>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="IsVisible" Value="True" />
-                                <Condition Property="IsEnabled" Value="True" />
-                                <Condition Property="IsChecked" Value="True" />
-                            </MultiTrigger.Conditions>
-                            <Setter TargetName="OutterBorder" Property="Background" Value="{StaticResource PrimaryColor}" />
-                            <Setter TargetName="OutterBorder" Property="BorderBrush" Value="{StaticResource PrimaryColor}" />
-                            <Setter TargetName="OutterBorder" Property="BorderThickness" Value="0" />
-                            <Setter TargetName="slider" Property="Background" Value="White" />
-                            <Setter Property="RenderTransform" TargetName="slider">
-                                <Setter.Value>
-                                    <TranslateTransform X="14" />
-                                </Setter.Value>
-                            </Setter>
-                            <MultiTrigger.EnterActions>
-                                <BeginStoryboard Storyboard="{StaticResource OnChecking}"/>
-                            </MultiTrigger.EnterActions>
-                        </MultiTrigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition Property="IsVisible" Value="True"/>
@@ -122,6 +91,52 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <MultiTrigger.EnterActions>
                                 <BeginStoryboard Storyboard="{StaticResource OnUnchecking}"/>
                             </MultiTrigger.EnterActions>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsVisible" Value="True" />
+                                <Condition Property="IsEnabled" Value="True" />
+                                <Condition Property="IsChecked" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="OuterBorder" Property="Background" Value="{StaticResource InteractionNormBrushColor}" />
+                            <Setter TargetName="OuterBorder" Property="BorderThickness" Value="0" />
+                            <Setter Property="RenderTransform" TargetName="slider">
+                                <Setter.Value>
+                                    <TranslateTransform X="20" />
+                                </Setter.Value>
+                            </Setter>
+                            <MultiTrigger.EnterActions>
+                                <BeginStoryboard Storyboard="{StaticResource OnChecking}"/>
+                            </MultiTrigger.EnterActions>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsVisible" Value="True"/>
+                                <Condition Property="IsEnabled" Value="False"/>
+                                <Condition Property="IsChecked" Value="False"/>
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="OuterBorder" Property="BorderBrush" Value="{StaticResource TextDisabledBrushColor}"/>
+                            <Setter TargetName="slider" Property="Background" Value="{StaticResource TextDisabledBrushColor}"/>
+                            <Setter Property="RenderTransform" TargetName="slider">
+                                <Setter.Value>
+                                    <TranslateTransform X="0" />
+                                </Setter.Value>
+                            </Setter>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsVisible" Value="True" />
+                                <Condition Property="IsEnabled" Value="False" />
+                                <Condition Property="IsChecked" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="OuterBorder" Property="Background" Value="{StaticResource TextDisabledBrushColor}" />
+                            <Setter TargetName="OuterBorder" Property="BorderThickness" Value="0" />
+                            <Setter TargetName="slider" Property="Background" Value="{StaticResource TextNormBrushColor}"/>
+                            <Setter Property="RenderTransform" TargetName="slider">
+                                <Setter.Value>
+                                    <TranslateTransform X="20" />
+                                </Setter.Value>
+                            </Setter>
                         </MultiTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

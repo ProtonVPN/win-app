@@ -20,18 +20,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <SolidColorBrush x:Key="DisabledForegroundBrush" Color="White" />
-    <SolidColorBrush x:Key="WindowBackgroundBrush" Color="#34343c" />
-    <SolidColorBrush x:Key="SelectedBackgroundBrush" Color="#34343c" />
-    <SolidColorBrush x:Key="GlyphBrush" Color="#444" />
-
     <ControlTemplate x:Key="TopLevelHeaderTemplate" TargetType="MenuItem">
         <Border Name="Border">
             <Grid>
                 <StackPanel VerticalAlignment="Center" Width="40" Background="Transparent" Cursor="Hand">
-                    <Border Width="16" Height="2" Background="White"/>
-                    <Border Width="16" Height="2" Margin="0,4" Background="White"/>
-                    <Border Width="16" Height="2" Background="White"/>
+                    <Border Width="16" Height="2" Background="{StaticResource TextNormBrushColor}"/>
+                    <Border Width="16" Height="2" Margin="0,4" Background="{StaticResource TextNormBrushColor}"/>
+                    <Border Width="16" Height="2" Background="{StaticResource TextNormBrushColor}"/>
                 </StackPanel>
                 <Popup
                     Name="Popup"
@@ -40,9 +35,21 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     AllowsTransparency="True"
                     Focusable="False"
                     PopupAnimation="Fade">
-                    <Border HorizontalAlignment="Left" Background="#34343c" BorderBrush="#34343c" Padding="5,5,5,0"  Margin="0,0,15,15" Name="SubmenuBorder" BorderThickness="1" SnapsToDevicePixels="True">
+                    <Border HorizontalAlignment="Left" 
+                            Background="{StaticResource BackgroundWeakBrushColor}" 
+                            Padding="0"
+                            Margin="8,0,8,12"
+                            Name="SubmenuBorder" 
+                            BorderThickness="0" 
+                            BorderBrush="{StaticResource BorderWeakBrushColor}"
+                            SnapsToDevicePixels="True">
                         <Border.Effect>
-                            <DropShadowEffect BlurRadius="7" Opacity="0.5"/>
+                            <DropShadowEffect ShadowDepth="4"
+                                              Direction="270"
+                                              BlurRadius="8"
+                                              Opacity="0.40"
+                                              RenderingBias="Quality"
+                                              Color="{StaticResource ShadowNormColor}"/>
                         </Border.Effect>
                         <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Cycle"/>
                     </Border>
@@ -51,7 +58,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Border>
         <ControlTemplate.Triggers>
             <Trigger Property="IsHighlighted" Value="true">
-                <Setter TargetName="Border" Property="Background" Value="#34343c" />
+                <Setter TargetName="Border" Property="Background" Value="{StaticResource BackgroundStrongBrushColor}" />
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
@@ -115,7 +122,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     Data="M 0 0 L 0 7 L 4 3.5 Z"
-                    Fill="{StaticResource GlyphBrush}"/>
+                    Fill="{StaticResource TextHintBrushColor}"/>
                 <Popup
                     Grid.Column="0" Name="Popup"
                     Placement="Right"
@@ -127,7 +134,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <Border
                         Name="SubmenuBorder"
                         SnapsToDevicePixels="True"
-                        Background="{StaticResource WindowBackgroundBrush}"
+                        Background="{StaticResource BackgroundStrongBrushColor}"
                         BorderThickness="0">
                         <StackPanel
                             IsItemsHost="True"
@@ -142,20 +149,22 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </Trigger>
             <Trigger Property="IsHighlighted" Value="true">
                 <Setter TargetName="Border" Property="Background"
-                        Value="{StaticResource SelectedBackgroundBrush}" />
+                        Value="{StaticResource BackgroundStrongBrushColor}" />
             </Trigger>
             <Trigger SourceName="Popup" Property="Popup.AllowsTransparency" Value="True">
                 <Setter TargetName="SubmenuBorder" Property="CornerRadius" Value="4" />
                 <Setter TargetName="SubmenuBorder" Property="Padding" Value="0,3,0,3" />
             </Trigger>
             <Trigger Property="IsEnabled" Value="false">
-                <Setter Property="Foreground" Value="{StaticResource DisabledForegroundBrush}"/>
+                <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}"/>
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
     <!-- MenuItem Style -->
     <Style x:Key="CustomMenuItem" TargetType="MenuItem">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="OverridesDefaultStyle" Value="True"/>
         <Style.Triggers>
             <Trigger Property="Role" Value="TopLevelHeader">

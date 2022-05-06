@@ -122,6 +122,7 @@ namespace ProtonVPN.Settings
                 Subscribed = vpnInfo.Subscribed,
                 HasPaymentMethod = vpnInfo.HasPaymentMethod,
                 Credit = vpnInfo.Credit,
+                VpnPlanName = vpnInfo.Vpn.PlanTitle,
             });
         }
 
@@ -168,7 +169,8 @@ namespace ProtonVPN.Settings
                 Credit = _userSettings.Get<int>("Credit"),
                 VpnUsername = vpnUsername,
                 VpnPassword = vpnPassword,
-                OriginalVpnPlan = originalVpnPlan
+                OriginalVpnPlan = originalVpnPlan,
+                VpnPlanName = _userSettings.Get<string>("VpnPlanName")
             };
         }
 
@@ -190,22 +192,6 @@ namespace ProtonVPN.Settings
             return new UserLocation(ip.Decrypt(), latitudeFloat, longitudeFloat, isp.Decrypt(), country.Decrypt());
         }
 
-        private void SaveUserData(CoreUser user)
-        {
-            _userSettings.Set("VpnPlan", user.OriginalVpnPlan);
-            _userSettings.Set("MaxTier", user.MaxTier);
-            _userSettings.Set("Delinquent", user.Delinquent);
-            _userSettings.Set("Subscribed", user.Subscribed);
-            _userSettings.Set("HasPaymentMethod", user.HasPaymentMethod);
-            _userSettings.Set("Credit", user.Credit);
-            _userSettings.Set("MaxConnect", user.MaxConnect);
-            _userSettings.Set("Services", user.Services);
-            _userSettings.Set("VpnUsername", 
-                !string.IsNullOrEmpty(user.VpnUsername) ? user.VpnUsername.Encrypt() : string.Empty);
-            _userSettings.Set("VpnPassword", 
-                !string.IsNullOrEmpty(user.VpnPassword) ? user.VpnPassword.Encrypt() : string.Empty);
-        }
-
         private void CacheUser(CoreUser user)
         {
             CoreUser previousData = User();
@@ -219,6 +205,23 @@ namespace ProtonVPN.Settings
             }
 
             UserDataChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void SaveUserData(CoreUser user)
+        {
+            _userSettings.Set("VpnPlan", user.OriginalVpnPlan);
+            _userSettings.Set("MaxTier", user.MaxTier);
+            _userSettings.Set("Delinquent", user.Delinquent);
+            _userSettings.Set("Subscribed", user.Subscribed);
+            _userSettings.Set("HasPaymentMethod", user.HasPaymentMethod);
+            _userSettings.Set("Credit", user.Credit);
+            _userSettings.Set("MaxConnect", user.MaxConnect);
+            _userSettings.Set("Services", user.Services);
+            _userSettings.Set("VpnUsername",
+                !string.IsNullOrEmpty(user.VpnUsername) ? user.VpnUsername.Encrypt() : string.Empty);
+            _userSettings.Set("VpnPassword",
+                !string.IsNullOrEmpty(user.VpnPassword) ? user.VpnPassword.Encrypt() : string.Empty);
+            _userSettings.Set("VpnPlanName", user.VpnPlanName);
         }
     }
 }

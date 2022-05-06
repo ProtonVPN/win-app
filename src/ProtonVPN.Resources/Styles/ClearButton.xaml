@@ -22,9 +22,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <Style TargetType="Button" x:Key="ClearStyleButton" BasedOn="{StaticResource Fade}">
         <Setter Property="OverridesDefaultStyle" Value="True"/>
         <Setter Property="Cursor" Value="Hand"/>
-        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="Border.CornerRadius" Value="8"/>
+        <Setter Property="FontWeight" Value="DemiBold" />
+        <Setter Property="Foreground" Value="{StaticResource InteractionNormAccentBrushColor}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
@@ -42,5 +45,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="{StaticResource TextDisabledBrushColor}"/>
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="{StaticResource InteractionNormAccentHoverBrushColor}"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 </ResourceDictionary>

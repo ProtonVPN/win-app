@@ -36,15 +36,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <resource:BaseModalWindow.Resources>
         <Style x:Key="TextBlock" TargetType="TextBlock">
             <Setter Property="TextWrapping" Value="Wrap" />
-            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Foreground" Value="{StaticResource OldTextBrushColor}" />
             <Setter Property="Padding" Value="0,5" />
             <Setter Property="Visibility" Value="Collapsed" />
-            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontSize" Value="16" />
         </Style>
     </resource:BaseModalWindow.Resources>
     <Grid>
-        <StackPanel>
-            <StackPanel Margin="15,40">
+        <StackPanel Margin="30,40">
+            <StackPanel Margin="0,0,0,25">
                 <TextBlock behavior:TextStyleBehavior.FormattedText="{translations:Loc Dialogs_Exit_msg_Connected}">
                     <TextBlock.Style>
                         <Style TargetType="TextBlock" BasedOn="{StaticResource TextBlock}">
@@ -64,7 +64,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     <MultiDataTrigger.Conditions>
                                         <Condition Binding="{Binding NetworkBlocked}" Value="True" />
                                         <Condition Binding="{Binding KillSwitchMode}"
-                                               Value="{x:Static killSwitch:KillSwitchMode.Soft}" />
+                                                   Value="{x:Static killSwitch:KillSwitchMode.Soft}" />
                                     </MultiDataTrigger.Conditions>
                                     <Setter Property="Visibility" Value="Visible" />
                                 </MultiDataTrigger>
@@ -72,14 +72,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </Style>
                     </TextBlock.Style>
                 </TextBlock>
-                <TextBlock behavior:TextStyleBehavior.FormattedText="{translations:Loc Dialogs_Exit_msg_PermanentKillSwitch}">
+                <TextBlock
+                    behavior:TextStyleBehavior.FormattedText="{translations:Loc Dialogs_Exit_msg_PermanentKillSwitch}">
                     <TextBlock.Style>
                         <Style TargetType="TextBlock" BasedOn="{StaticResource TextBlock}">
                             <Style.Triggers>
                                 <MultiDataTrigger>
                                     <MultiDataTrigger.Conditions>
                                         <Condition Binding="{Binding KillSwitchMode}"
-                                               Value="{x:Static killSwitch:KillSwitchMode.Hard}" />
+                                                   Value="{x:Static killSwitch:KillSwitchMode.Hard}" />
                                     </MultiDataTrigger.Conditions>
                                     <Setter Property="Visibility" Value="Visible" />
                                 </MultiDataTrigger>
@@ -88,18 +89,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </TextBlock.Style>
                 </TextBlock>
             </StackPanel>
-            <DockPanel Background="{StaticResource ModalBarColor}" Height="66">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Button Style="{StaticResource SecondaryModalButton}"
-                            AutomationProperties.AutomationId="{StaticResource CancelButtonId}"
-                            Content="{translations:Loc Dialogs_Exit_btn_Cancel}"
-                            Command="{Binding CancelCommand}" />
-                    <Button Style="{StaticResource PrimaryModalButton}"
-                            AutomationProperties.AutomationId="{StaticResource CloseButtonId}"
-                            Content="{translations:Loc Dialogs_Exit_btn_Exit}"
-                            Command="{Binding CloseCommand}" />
-                </StackPanel>
-            </DockPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Style="{StaticResource SecondaryModalButton}"
+                        Margin="0,0,16,0"
+                        AutomationProperties.AutomationId="{StaticResource CancelButtonId}"
+                        Content="{translations:Loc Dialogs_Exit_btn_Cancel}"
+                        Command="{Binding CancelCommand}" />
+                <Button Style="{StaticResource PrimaryModalButton}"
+                        AutomationProperties.AutomationId="{StaticResource CloseButtonId}"
+                        Content="{translations:Loc Dialogs_Exit_btn_Exit}"
+                        Command="{Binding CloseCommand}" />
+            </StackPanel>
         </StackPanel>
     </Grid>
 </resource:BaseModalWindow>

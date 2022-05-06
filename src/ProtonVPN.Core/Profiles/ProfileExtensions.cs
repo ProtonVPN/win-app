@@ -18,6 +18,7 @@
  */
 
 using System;
+using ProtonVPN.Common.Extensions;
 
 namespace ProtonVPN.Core.Profiles
 {
@@ -41,7 +42,7 @@ namespace ProtonVPN.Core.Profiles
                 return false;
             }
 
-            return profile.IsColorCodeValid();
+            return profile.ColorCode.IsColorCodeValid();
         }
 
         public static bool HasElapsed(this Profile profile, TimeSpan timeSpan)
@@ -93,7 +94,7 @@ namespace ProtonVPN.Core.Profiles
 
         public static Profile WithStatus(this Profile profile, ProfileStatus value)
         {
-            var p = profile.Clone();
+            Profile p = profile.Clone();
             p.Status = value;
 
             if (value == ProfileStatus.Synced)
@@ -122,7 +123,7 @@ namespace ProtonVPN.Core.Profiles
 
         public static Profile WithUniqueNameCandidate(this Profile profile, int maxLength)
         {
-            var p = profile.Clone();
+            Profile p = profile.Clone();
 
             if (string.IsNullOrEmpty(p.OriginalName))
             {
@@ -143,8 +144,8 @@ namespace ProtonVPN.Core.Profiles
 
         private static string NameCandidate(string originalName, int index, int maxLength)
         {
-            var suffix = index == 0 ? "" : $" ({index})";
-            var excess = originalName.Length + suffix.Length - maxLength;
+            string suffix = index == 0 ? "" : $" ({index})";
+            int excess = originalName.Length + suffix.Length - maxLength;
             return (excess > 0 ? originalName.Remove(originalName.Length - excess) : originalName) + suffix;
         }
     }

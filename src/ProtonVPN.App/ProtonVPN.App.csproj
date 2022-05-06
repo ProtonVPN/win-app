@@ -167,6 +167,7 @@
       <DependentUpon>StepsContainerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="BugReporting\Steps\StepsContainerViewModel.cs" />
+    <Compile Include="ConnectionInfo\ConnectionInfoViewModel.cs" />
     <Compile Include="Core\ExpiredSessionHandler.cs" />
     <Compile Include="Core\HardwareAccelerationManager.cs" />
     <Compile Include="Core\ILanguageProvider.cs" />
@@ -224,6 +225,9 @@
     </Compile>
     <Compile Include="Modals\DiscourageSecureCoreModalViewModel.cs" />
     <Compile Include="Modals\AssignVpnConnectionsModalViewModel.cs" />
+    <Compile Include="Modals\RebrandingModalView.xaml.cs">
+      <DependentUpon>RebrandingModalView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modals\ExitModalView.xaml.cs">
       <DependentUpon>ExitModalView.xaml</DependentUpon>
     </Compile>
@@ -238,6 +242,7 @@
     <Compile Include="Modals\AssignVpnConnectionsModalView.xaml.cs">
       <DependentUpon>AssignVpnConnectionsModalView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Modals\RebrandingModalViewModel.cs" />
     <Compile Include="Modals\Upsell\NonStandardPortsUpsellModalViewModel.cs" />
     <Compile Include="Modals\Upsell\NonStandardPortsUpsellModalView.xaml.cs">
       <DependentUpon>NonStandardPortsUpsellModalView.xaml</DependentUpon>
@@ -264,15 +269,16 @@
     <Compile Include="PortForwarding\IPortForwardingNotifier.cs" />
     <Compile Include="PortForwarding\PortForwardingManager.cs" />
     <Compile Include="PortForwarding\PortForwardingNotifier.cs" />
-    <Compile Include="PortForwarding\PortForwardingColorPalette.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Colors\ColorPaletteFactory.cs" />
     <Compile Include="Settings\Migrations\InitialAppSettingsMigration.cs" />
     <Compile Include="Settings\Migrations\v1_22_0\AppSettingsMigration.cs" />
     <Compile Include="Settings\Migrations\v1_27_1\AppSettingsMigration.cs" />
+    <Compile Include="Settings\Migrations\v2_0_0\AppSettingsMigration.cs" />
     <Compile Include="Settings\PortForwardingWarningView.xaml.cs">
       <DependentUpon>PortForwardingWarningView.xaml</DependentUpon>
     </Compile>
@@ -282,12 +288,12 @@
     <Compile Include="Sidebar\CountryFeatures\CountryFeaturesPopupView.xaml.cs">
       <DependentUpon>CountryFeaturesPopupView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Sidebar\DisconnectedConnectionDetails.xaml.cs">
+      <DependentUpon>DisconnectedConnectionDetails.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Sidebar\PopupBase.cs" />
     <Compile Include="Views\Icons\GiftBox.xaml.cs">
       <DependentUpon>GiftBox.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Icons\UpsellTunnel.xaml.cs">
-      <DependentUpon>UpsellTunnel.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Icons\ExclamationTunnel.xaml.cs">
       <DependentUpon>ExclamationTunnel.xaml</DependentUpon>
@@ -404,7 +410,6 @@
     <Compile Include="Core\Startup\ElevatedApplication.cs" />
     <Compile Include="About\UpdateViewModel.cs" />
     <Compile Include="Account\VpnInfoUpdater.cs" />
-    <Compile Include="Account\VpnPlanHelper.cs" />
     <Compile Include="BugReporting\Attachments\Attachment.cs" />
     <Compile Include="BugReporting\Attachments\Attachments.cs" />
     <Compile Include="BugReporting\Attachments\AttachmentsToApiFiles.cs" />
@@ -606,10 +611,6 @@
     </Compile>
     <Compile Include="Modals\Dialogs\QuestionModalViewModel.cs" />
     <Compile Include="Windows\Popups\BasePopupViewModel.cs" />
-    <Compile Include="Windows\Popups\Upsell\EnjoyingUpsellPopupView.xaml.cs">
-      <DependentUpon>EnjoyingUpsellPopupView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\Popups\Upsell\EnjoyingUpsellPopupViewModel.cs" />
     <Compile Include="Modals\Dialogs\WarningModalView.xaml.cs">
       <DependentUpon>WarningModalView.xaml</DependentUpon>
     </Compile>
@@ -678,7 +679,6 @@
     <Compile Include="Core\Wpf\ComboBox.cs" />
     <Compile Include="Core\Wpf\PlaceholderTextBox.cs" />
     <Compile Include="Core\Wpf\Scrollviewer.cs" />
-    <Compile Include="ConnectionInfo\ConnectionInfoViewModel.cs" />
     <Compile Include="Map\ViewModels\Pins\AbstractPinViewModel.cs" />
     <Compile Include="ConnectingScreen\ConnectingViewModel.cs" />
     <Compile Include="Map\ViewModels\Pins\ExitNodePinViewModel.cs" />
@@ -736,26 +736,17 @@
     <Compile Include="Map\Views\ExitPin.xaml.cs">
       <DependentUpon>ExitPin.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\ConnectButton.xaml.cs">
-      <DependentUpon>ConnectButton.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Controls\LoadBubble.xaml.cs">
       <DependentUpon>LoadBubble.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Controls\LoadingText.xaml.cs">
       <DependentUpon>LoadingText.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\LogoWhite.xaml.cs">
-      <DependentUpon>LogoWhite.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Map\Views\MapCanvas.xaml.cs">
       <DependentUpon>MapCanvas.xaml</DependentUpon>
     </Compile>
     <Compile Include="Map\Views\MapLoad.xaml.cs">
       <DependentUpon>MapLoad.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Controls\PieChart.xaml.cs">
-      <DependentUpon>PieChart.xaml</DependentUpon>
     </Compile>
     <Compile Include="Map\Views\Pin.xaml.cs">
       <DependentUpon>Pin.xaml</DependentUpon>
@@ -785,9 +776,6 @@
     <Compile Include="Views\Icons\ArrowDown.xaml.cs">
       <DependentUpon>ArrowDown.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Icons\Checkbox.xaml.cs">
-      <DependentUpon>Checkbox.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Icons\Failure.xaml.cs">
       <DependentUpon>Failure.xaml</DependentUpon>
     </Compile>
@@ -811,9 +799,6 @@
     </Compile>
     <Compile Include="Views\Icons\Plus.xaml.cs">
       <DependentUpon>Plus.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Icons\ProtonVpnSign.xaml.cs">
-      <DependentUpon>ProtonVpnSign.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Icons\SecureCore.xaml.cs">
       <DependentUpon>SecureCore.xaml</DependentUpon>
@@ -965,6 +950,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Modals\RebrandingModalView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Modals\IncorrectSystemTimeModalView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -997,15 +986,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Resources\Assets\Styles\SidebarConnectButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Sidebar\CountryFeatures\CountryFeaturesPopupView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Icons\GiftBox.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="Sidebar\DisconnectedConnectionDetails.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Icons\UpsellTunnel.xaml">
+    <Page Include="Views\Icons\GiftBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -1129,10 +1122,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\Popups\Upsell\EnjoyingUpsellPopupView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Modals\Dialogs\WarningModalView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1201,10 +1190,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Controls\ConnectButton.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\Controls\LoadingText.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -1230,10 +1215,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Icons\ArrowDown.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Icons\Checkbox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1343,10 +1324,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="BugReporting\Screens\SentView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ConnectionInfo\ConnectionInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1462,19 +1439,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Controls\LogoWhite.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Map\Views\MapCanvas.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Map\Views\MapLoad.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Controls\PieChart.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1499,10 +1468,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Icons\Exchange.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Icons\ProtonVpnSign.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1596,9 +1561,6 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Assets\Images\green-spinner.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Assets\Images\Icons\systray-connected.ico" />
@@ -2159,6 +2121,9 @@
     <Content Include="Windows\Popups\DeveloperTools\Images\computers.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Assets\Images\brand-spinner.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

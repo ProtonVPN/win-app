@@ -24,14 +24,40 @@ namespace ProtonVPN.Core.Profiles
 {
     public class PredefinedProfiles : IProfileSource
     {
+        private readonly IProfileFactory _profileFactory;
+
+        public PredefinedProfiles(IProfileFactory profileFactory)
+        {
+            _profileFactory = profileFactory;
+        }
+
         public IReadOnlyList<Profile> GetAll()
         {
-            var profiles = new List<Profile>
+            return new List<Profile>
             {
-                new Profile("Fastest") { IsPredefined = true, Name = "Fastest", ProfileType = ProfileType.Fastest, Features = Features.None },
-                new Profile("Random") { IsPredefined = true, Name = "Random", ProfileType = ProfileType.Random, Features = Features.None }
+                CreateFastestProfile(),
+                CreateRandomProfile()
             };
-            return profiles;
+        }
+
+        private Profile CreateFastestProfile()
+        {
+            Profile profile = _profileFactory.Create("Fastest");
+            profile.IsPredefined = true;
+            profile.Name = "Fastest";
+            profile.ProfileType = ProfileType.Fastest;
+            profile.Features = Features.None;
+            return profile;
+        }
+
+        private Profile CreateRandomProfile()
+        {
+            Profile profile = _profileFactory.Create("Random");
+            profile.IsPredefined = true;
+            profile.Name = "Random";
+            profile.ProfileType = ProfileType.Random;
+            profile.Features = Features.None;
+            return profile;
         }
     }
 }

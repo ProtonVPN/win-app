@@ -20,8 +20,11 @@
 using System.Windows.Input;
 using Caliburn.Micro;
 using GalaSoft.MvvmLight.Command;
+using ProtonVPN.Common.Extensions;
 using ProtonVPN.Config.Url;
 using ProtonVPN.Core.Models;
+using ProtonVPN.Core.Servers;
+using ProtonVPN.Core.Servers.Specs;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.User;
 using ProtonVPN.Modals;
@@ -32,13 +35,13 @@ namespace ProtonVPN.Account
     public class AccountModalViewModel : BaseModalViewModel, IUserDataAware, IHandle<AccountActionMessage>
     {
         private readonly IAppSettings _appSettings;
+        private readonly ServerManager _serverManager;
         private readonly IActiveUrls _urls;
         private readonly IUserStorage _userStorage;
 
         private string _username;
         private string _planName;
         private string _accountType;
-        private string _planColor;
         private string _actionMessage = string.Empty;
 
         public string ActionMessage
@@ -53,6 +56,7 @@ namespace ProtonVPN.Account
 
         public AccountModalViewModel(
             IAppSettings appSettings,
+            ServerManager serverManager,
             IEventAggregator eventAggregator,
             IActiveUrls urls,
             IUserStorage userStorage,
@@ -60,6 +64,7 @@ namespace ProtonVPN.Account
         {
             eventAggregator.Subscribe(this);
             _appSettings = appSettings;
+            _serverManager = serverManager;
             _urls = urls;
             _userStorage = userStorage;
             PromoCodeViewModel = promoCodeViewModel;
@@ -73,6 +78,50 @@ namespace ProtonVPN.Account
         public ICommand ProtonMailPricingCommand { get; set; }
         public ICommand CloseActionMessageCommand { get; set; }
 
+        public string TotalCountries => "Account_lbl_Countries";
+        public string TotalServers => "Account_lbl_Servers";
+        public string TotalConnections => "Account_lbl_Connection";
+
+        public string FreePlanServers
+        {
+            get
+            {
+                int freeServerCount = _serverManager.GetServers(new FreeServer()).Count;
+                return string.Format(Translation.GetPlural(TotalServers, freeServerCount), freeServerCount);
+            }
+        }
+
+        public string FreePlanCountries
+        {
+            get
+            {
+                int totalFreePlanCountries = _serverManager.GetCountriesByTier(ServerTiers.Free).Count;
+                return string.Format(Translation.GetPlural(TotalCountries, totalFreePlanCountries),
+                    totalFreePlanCountries);
+            }
+        }
+
+        public string PlusPlanServers
+        {
+            get
+            {
+                int plusServersCount = _serverManager.GetServers(new MaxTierServer(ServerTiers.Plus)).Count;
+                return string.Format(Translation.GetPlural(TotalServers, plusServersCount), plusServersCount);
+            }
+        }
+
+        public string PlusPlanCountries
+        {
+            get
+            {
+                int totalCountries = _serverManager.GetCountries().Count;
+                return string.Format(Translation.GetPlural(TotalCountries, totalCountries), totalCountries);
+            }
+        }
+
+        public bool IsFreePlan => !_userStorage.User().Paid();
+        public bool IsPlusPlan => _userStorage.User().IsPlusPlan();
+
         public string Username
         {
             get => _username;
@@ -84,18 +133,6 @@ namespace ProtonVPN.Account
             get => _planName;
             set => Set(ref _planName, value);
         }
-
-        public string PlanColor
-        {
-            get => _planColor;
-            set => Set(ref _planColor, value);
-        }
-
-        public string TotalCountries => "Account_lbl_Countries";
-
-        public string TotalConnections => "Account_lbl_Connection";
-
-        public string BasicPlanTotalCountries => string.Format(Translation.GetPlural(TotalCountries, 40), "40+");
 
         public string AccountType
         {
@@ -128,10 +165,9 @@ namespace ProtonVPN.Account
         private void SetUserDetails()
         {
             User user = _userStorage.User();
-            PlanName = VpnPlanHelper.GetPlanName(user.OriginalVpnPlan);
+            PlanName = user.VpnPlanName.IsNullOrEmpty() ? Translation.Get("Account_lbl_Free") : user.VpnPlanName;
             Username = user.Username;
             AccountType = user.GetAccountPlan();
-            PlanColor = VpnPlanHelper.GetPlanColor(user.OriginalVpnPlan);
         }
 
         private void ManageAccountAction()

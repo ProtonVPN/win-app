@@ -53,11 +53,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                       x:Name="TogglePopupButton">
             <Grid>
                 <icons:GiftBox Width="23" Margin="0"
-                               Foreground="White"/>
+                               Foreground="{StaticResource TextNormBrushColor}"/>
                 <Ellipse Width="5"
                          Height="5"
                          Margin="19,-15,0,0"
-                         Fill="#d53535">
+                         Fill="{StaticResource NotificationErrorBrushColor}">
                     <Ellipse.Resources>
                         <Style TargetType="Ellipse">
                             <Setter Property="Visibility" Value="Collapsed"/>
@@ -73,31 +73,31 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </ToggleButton>
         <Popup Style="{StaticResource AnnouncementsPopup}" Name="Popup">
             <Grid>
-
                 <Border BorderThickness="0" 
                         CornerRadius="3"
                         Margin="10,8,10,10" 
                         Padding="8,3,8,3"
-                        Background="{StaticResource SidebarTabBackgroundColor}">
+                        Background="{StaticResource BackgroundWeakBrushColor}">
                     <Button VerticalAlignment="Center"
                             HorizontalAlignment="Center"
                             BorderThickness="0"
                             Background="Transparent">
                         <TextBlock Text="{Binding Announcement.Panel.Title}"
-                                   Foreground="White"
+                                   Foreground="{StaticResource TextNormBrushColor}"
                                    TextWrapping="Wrap"/>
                     </Button>
                     <Border.Effect>
                         <DropShadowEffect BlurRadius="5"
                                           Direction="-45"
-                                          Color="#4E4C4C"
+                                          Opacity="0.8"
+                                          Color="{StaticResource ShadowNormColor}"
                                           RenderingBias="Quality"
                                           ShadowDepth="2" />
                     </Border.Effect>
                 </Border>
                 <Polygon Points="0,0 16,0 8,8"
                          StrokeThickness="0"
-                         Fill="{StaticResource SidebarTabBackgroundColor}"
+                         Fill="{StaticResource BackgroundWeakBrushColor}"
                          VerticalAlignment="Top"
                          RenderTransformOrigin="0.5,0.5"
                          HorizontalAlignment="Center">

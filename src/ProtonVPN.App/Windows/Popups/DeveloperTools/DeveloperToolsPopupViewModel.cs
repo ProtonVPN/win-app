@@ -18,8 +18,10 @@
  */
 
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -37,7 +39,6 @@ using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Core.Window.Popups;
-using ProtonVPN.Modals.SessionLimits;
 using ProtonVPN.Notifications;
 using ProtonVPN.Sidebar;
 using ProtonVPN.Translations;
@@ -50,46 +51,54 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
         private readonly Common.Configuration.Config _config;
         private readonly IConfigWriter _configWriter;
         private readonly UserAuth _userAuth;
-        private readonly IPopupWindows _popups;
-        private readonly IModals _modals;
+        private readonly IPopupWindows _popupWindowOpener;
+        private readonly IModals _modalOpener;
         private readonly INotificationSender _notificationSender;
         private readonly ConnectionStatusViewModel _connectionStatusViewModel;
         private readonly IAppSettings _appSettings;
         private readonly ReconnectManager _reconnectManager;
         private readonly IAppExitInvoker _appExitInvoker;
+        private readonly SubscriptionExpiredPopupViewModel _subscriptionExpiredPopupViewModel;
 
         public DeveloperToolsPopupViewModel(AppWindow appWindow,
             Common.Configuration.Config config,
             IConfigWriter configWriter,
             UserAuth userAuth,
-            IPopupWindows popups,
-            IModals modals,
+            IPopupWindows popupWindowOpener,
+            IModals modalOpener,
             INotificationSender notificationSender,
             ConnectionStatusViewModel connectionStatusViewModel,
             IAppSettings appSettings,
             ReconnectManager reconnectManager,
-            IAppExitInvoker appExitInvoker)
+            IAppExitInvoker appExitInvoker,
+            SubscriptionExpiredPopupViewModel subscriptionExpiredPopupViewModel,
+            IEnumerable<IModal> modals,
+            IEnumerable<IPopupWindow> popupWindows)
             : base(appWindow)
         {
             _config = config;
             _configWriter = configWriter;
             _userAuth = userAuth;
-            _popups = popups;
-            _modals = modals;
+            _popupWindowOpener = popupWindowOpener;
+            _modalOpener = modalOpener;
             _notificationSender = notificationSender;
             _connectionStatusViewModel = connectionStatusViewModel;
             _appSettings = appSettings;
             _reconnectManager = reconnectManager;
             _appExitInvoker = appExitInvoker;
-
+            _subscriptionExpiredPopupViewModel = subscriptionExpiredPopupViewModel;
+            LoadModals(modals);
+            LoadPopupWindows(popupWindows);
             InitializeCommands();
         }
 
         [Conditional("DEBUG")]
         private void InitializeCommands()
         {
-            ShowModalCommand = new RelayCommand(ShowModalAction);
-            ShowPopupWindowCommand = new RelayCommand(ShowPopupWindowAction);
+            OpenModalCommand = new RelayCommand(OpenModalAction);
+            OpenAllModalsCommand = new RelayCommand(OpenAllModalsAction);
+            OpenPopupWindowCommand = new RelayCommand(OpenPopupWindowAction);
+            OpenAllPopupWindowsCommand = new RelayCommand(OpenAllPopupWindowsAction);
             RefreshVpnInfoCommand = new RelayCommand(RefreshVpnInfoAction);
             CheckIfCurrentServerIsOnlineCommand = new RelayCommand(CheckIfCurrentServerIsOnlineAction);
             ShowReconnectionTooltipCommand = new RelayCommand(ShowReconnectionTooltipAction);
@@ -101,9 +110,34 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
             DisableTlsPinningCommand = new RelayCommand(DisableTlsPinningAction);
         }
 
-        public ICommand DisableTlsPinningCommand { get; set; }
-        public ICommand ShowModalCommand { get; set; }
-        public ICommand ShowPopupWindowCommand { get; set; }
+        private void LoadModals(IEnumerable<IModal> modals)
+        {
+            ModalsByName = new ConcurrentDictionary<string, IModal>();
+            foreach (IModal modal in modals)
+            {
+                Type type = modal.GetType();
+                string modalName = $"{type.Name} ({type.Namespace})";
+                ModalsByName.Add(modalName, modal);
+            }
+            SelectedModalName = ModalsByName.Keys.FirstOrDefault();
+        }
+        
+        private void LoadPopupWindows(IEnumerable<IPopupWindow> popupWindows)
+        {
+            PopupWindowsByName = new ConcurrentDictionary<string, IPopupWindow>();
+            foreach (IPopupWindow popupWindow in popupWindows)
+            {
+                Type type = popupWindow.GetType();
+                string popupWindowName = $"{type.Name} ({type.Namespace})";
+                PopupWindowsByName.Add(popupWindowName, popupWindow);
+            }
+            SelectedPopupWindowName = PopupWindowsByName.Keys.FirstOrDefault();
+        }
+
+        public ICommand OpenModalCommand { get; set; }
+        public ICommand OpenAllModalsCommand { get; set; }
+        public ICommand OpenPopupWindowCommand { get; set; }
+        public ICommand OpenAllPopupWindowsCommand { get; set; }
         public ICommand RefreshVpnInfoCommand { get; set; }
         public ICommand CheckIfCurrentServerIsOnlineCommand { get; set; }
         public ICommand ShowReconnectionTooltipCommand { get; set; }
@@ -112,8 +146,51 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
         public ICommand BasicToastCommand { get; set; }
         public ICommand ClearToastNotificationLogsCommand { get; set; }
         public ICommand TriggerIntentionalCrashCommand { get; set; }
+        public ICommand DisableTlsPinningCommand { get; set; }
 
-        
+        private IDictionary<string, IModal> _modalsByName;
+        public IDictionary<string, IModal> ModalsByName
+        {
+            get => _modalsByName;
+            set
+            {
+                _modalsByName = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+        private string _selectedModalName;
+        public string SelectedModalName
+        {
+            get => _selectedModalName;
+            set
+            {
+                _selectedModalName = value;
+                NotifyOfPropertyChange();
+            }
+        }
+        private IDictionary<string, IPopupWindow> _popupWindowsByName;
+        public IDictionary<string, IPopupWindow> PopupWindowsByName
+        {
+            get => _popupWindowsByName;
+            set
+            {
+                _popupWindowsByName = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+        private string _selectedPopupWindowName;
+        public string SelectedPopupWindowName
+        {
+            get => _selectedPopupWindowName;
+            set
+            {
+                _selectedPopupWindowName = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
         private bool _isConnected;
         public bool IsConnected
         {
@@ -151,17 +228,50 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
             }
         }
 
-        private async void ShowModalAction()
+        private void OpenModalAction()
         {
-            await Task.Delay(TimeSpan.FromSeconds(5));
-            _modals.Show<MaximumDeviceLimitModalViewModel>();
+            if (ModalsByName.TryGetValue(SelectedModalName, out IModal modal))
+            {
+                _modalOpener.Show(type: modal.GetType());
+            }
         }
 
-        private async void ShowPopupWindowAction()
+        private void OpenAllModalsAction()
         {
-            await Task.Delay(TimeSpan.FromSeconds(5));
-            _popups.Show<SubscriptionExpiredPopupViewModel>();
-            //_popups.Show<DelinquencyPopupViewModel>();
+            foreach (KeyValuePair<string, IModal> modalByName in ModalsByName)
+            {
+                _modalOpener.Show(type: modalByName.Value.GetType());
+            }
+        }
+
+        private void OpenPopupWindowAction()
+        {
+            if (PopupWindowsByName.TryGetValue(SelectedPopupWindowName, out IPopupWindow popupWindow))
+            {
+                SetSubscriptionExpiredPopupIfNeeded(popupWindow);
+                _popupWindowOpener.Show(type: popupWindow.GetType());
+            }
+        }
+
+        private void SetSubscriptionExpiredPopupIfNeeded(IPopupWindow popupWindow)
+        {
+            if (popupWindow is SubscriptionExpiredPopupViewModel)
+            {
+                Server previousServer = new Server(Guid.NewGuid().ToString(), "CH-PT#20", "Porto",
+                    "CH", "PT", "protonvpn.com", 0, 2, 1, 50, 1, null, null, "192.168.123.124");
+                Server currentServer = new Server(Guid.NewGuid().ToString(), "SE-PT#23", "Porto",
+                    "SE", "PT", "protonvpn.com", 1, 2, 1, 30, 1, null, null, "192.168.123.125");
+                _subscriptionExpiredPopupViewModel.SetReconnectionData(previousServer, currentServer);
+            }
+        }
+
+        private void OpenAllPopupWindowsAction()
+        {
+            foreach (KeyValuePair<string, IPopupWindow> popupWindowByName in PopupWindowsByName)
+            {
+                SetSubscriptionExpiredPopupIfNeeded(popupWindowByName.Value);
+                _popupWindowOpener.Show(type: popupWindowByName.Value.GetType());
+            }
         }
 
         private async void RefreshVpnInfoAction()
@@ -185,9 +295,9 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
         private async void ShowReconnectionTooltipAction()
         {
             await Task.Delay(TimeSpan.FromSeconds(5));
-            Server previousServer = new Server(Guid.NewGuid().ToString(), "CH-PT#20", "Porto", 
+            Server previousServer = new Server(Guid.NewGuid().ToString(), "CH-PT#20", "Porto",
                 "CH", "PT", "protonvpn.com", 0, 2, 1, 50, 1, null, null, "192.168.123.124");
-            Server currentServer = new Server(Guid.NewGuid().ToString(), "SE-PT#23", "Porto", 
+            Server currentServer = new Server(Guid.NewGuid().ToString(), "SE-PT#23", "Porto",
                 "SE", "PT", "protonvpn.com", 1, 2, 1, 30, 1, null, null, "192.168.123.125");
             _connectionStatusViewModel.ShowVpnAcceleratorReconnectionPopup(previousServer: previousServer, currentServer: currentServer);
         }

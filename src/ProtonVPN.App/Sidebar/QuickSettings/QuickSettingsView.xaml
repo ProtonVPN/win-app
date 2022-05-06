@@ -24,27 +24,24 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
              xmlns:quickSettings="clr-namespace:ProtonVPN.Sidebar.QuickSettings"
-             xmlns:icons="clr-namespace:ProtonVPN.Views.Icons"
-             xmlns:behavior="clr-namespace:ProtonVPN.Core.Wpf.Behavior"
              xmlns:onboarding="clr-namespace:ProtonVPN.Onboarding"
              xmlns:activePorts="clr-namespace:ProtonVPN.PortForwarding.ActivePorts"
              xmlns:settings="clr-namespace:ProtonVPN.Settings"
+             xmlns:icons="clr-namespace:ProtonVPN.Resource.Graphics.Icons;assembly=ProtonVPN.Resource"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance quickSettings:QuickSettingsViewModel}">
     <UserControl.Resources>
-        <Style x:Key="ShadowBorder" TargetType="Border">
-            <Setter Property="CornerRadius" Value="2" />
-            <Setter Property="Background" Value="#3c3c46" />
+        <Style x:Key="MainButtonBorder" TargetType="Border">
+            <Setter Property="CornerRadius" Value="8" />
+            <Setter Property="Background" Value="{StaticResource BackgroundNormBrushColor}" />
             <Setter Property="MinHeight" Value="36" />
-            <Setter Property="Effect">
-                <Setter.Value>
-                    <DropShadowEffect BlurRadius="5"
-                                      Direction="-45"
-                                      Color="#4E4C4C"
-                                      RenderingBias="Quality"
-                                      ShadowDepth="2" />
-                </Setter.Value>
-            </Setter>
+        </Style>
+        <Style x:Key="PopupButtonBorder" TargetType="Border">
+            <Setter Property="CornerRadius" Value="8" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="MinHeight" Value="52" />
         </Style>
         <Style x:Key="NetShieldToggle" TargetType="{x:Type quickSettings:MultiValueSettingsButton}">
             <Setter Property="Template">
@@ -52,29 +49,27 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <ControlTemplate TargetType="{x:Type quickSettings:MultiValueSettingsButton}">
                         <Grid Margin="5,0" Cursor="Hand">
                             <Border x:Name="Border"
-                                    Style="{StaticResource ShadowBorder}" />
-                            <icons:ShieldEmpty x:Name="OffIcon"
-                                               Foreground="White"
-                                               Width="18"
-                                               Height="18"
-                                               Visibility="Collapsed" />
-                            <icons:ShieldHalf x:Name="OnIcon1"
-                                              Foreground="{StaticResource PrimaryColor}"
-                                              Width="18"
-                                              Height="18"
-                                              Visibility="Collapsed" />
-                            <icons:ShieldFull x:Name="OnIcon2"
-                                              Foreground="{StaticResource PrimaryColor}"
-                                              Width="18"
-                                              Height="18"
-                                              Visibility="Collapsed" />
+                                    Style="{StaticResource MainButtonBorder}" />
+                            <icons:Shield x:Name="OffIcon"
+                                          Foreground="{StaticResource TextNormBrushColor}"
+                                          Width="20"
+                                          Height="20"
+                                          Visibility="Collapsed" />
+                            <icons:ShieldHalfFilled x:Name="OnIcon1"
+                                          Foreground="{StaticResource InteractionNormAccentBrushColor}"
+                                          Width="20"
+                                          Height="20"
+                                          Visibility="Collapsed" />
+                            <icons:ShieldFilled x:Name="OnIcon2"
+                                          Foreground="{StaticResource InteractionNormAccentBrushColor}"
+                                          Width="20"
+                                          Height="20"
+                                          Visibility="Collapsed" />
                             <ContentPresenter Content="{TemplateBinding Popup}" />
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsEnabled" Value="False">
-                                <Setter TargetName="Border" Property="BorderBrush" Value="#121215" />
-                                <Setter TargetName="Border" Property="BorderThickness" Value="0 1 0 0" />
-                                <Setter TargetName="Border" Property="Background" Value="#27272d" />
+                                <Setter TargetName="Border" Property="Background" Value="{StaticResource InteractionDefaultActiveBrushColor}" />
                                 <Setter TargetName="Border" Property="Effect" Value="{x:Null}" />
                             </Trigger>
                             <MultiTrigger>
@@ -105,29 +100,27 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <ControlTemplate TargetType="{x:Type quickSettings:MultiValueSettingsButton}">
                         <Grid Margin="5,0" Cursor="Hand">
                             <Border x:Name="Border"
-                                    Style="{StaticResource ShadowBorder}" />
+                                    Style="{StaticResource MainButtonBorder}" />
                             <icons:SwitchOff x:Name="KillSwitchOffIcon"
-                                             Foreground="White"
-                                             Width="18"
-                                             Height="18"
+                                             Foreground="{StaticResource TextNormBrushColor}"
+                                             Width="20"
+                                             Height="20"
                                              Visibility="Collapsed" />
                             <icons:SwitchOn x:Name="KillSwitchOnIcon"
-                                            Foreground="{StaticResource PrimaryColor}"
-                                            Width="18"
-                                            Height="18"
+                                            Foreground="{StaticResource InteractionNormAccentBrushColor}"
+                                            Width="20"
+                                            Height="20"
                                             Visibility="Collapsed" />
-                            <icons:SwitchLock x:Name="KillSwitchAlwaysOnIcon"
-                                              Foreground="{StaticResource PrimaryColor}"
-                                              Width="18"
-                                              Height="18"
-                                              Visibility="Collapsed" />
+                            <icons:SwitchOnLock x:Name="KillSwitchAlwaysOnIcon"
+                                                Foreground="{StaticResource InteractionNormAccentBrushColor}"
+                                                Width="20"
+                                                Height="20"
+                                                Visibility="Collapsed" />
                             <ContentPresenter Content="{TemplateBinding Popup}" />
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsEnabled" Value="False">
-                                <Setter TargetName="Border" Property="BorderBrush" Value="#121215" />
-                                <Setter TargetName="Border" Property="BorderThickness" Value="0 1 0 0" />
-                                <Setter TargetName="Border" Property="Background" Value="#27272d" />
+                                <Setter TargetName="Border" Property="Background" Value="{StaticResource InteractionDefaultActiveBrushColor}" />
                                 <Setter TargetName="Border" Property="Effect" Value="{x:Null}" />
                             </Trigger>
                             <MultiTrigger>
@@ -158,7 +151,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <ControlTemplate TargetType="{x:Type quickSettings:QuickSettingButton}">
                         <Grid Margin="5,0" Cursor="Hand">
                             <Border x:Name="Border"
-                                    Style="{StaticResource ShadowBorder}" />
+                                    Style="{StaticResource MainButtonBorder}" />
                             <ContentPresenter x:Name="Icon" Content="{TemplateBinding Icon}" Visibility="Visible" />
                             <ContentPresenter x:Name="ActiveIcon" Content="{TemplateBinding ActiveIcon}"
                                               Visibility="Collapsed" />
@@ -170,9 +163,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 <Setter TargetName="ActiveIcon" Property="Visibility" Value="Visible" />
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="False">
-                                <Setter TargetName="Border" Property="BorderBrush" Value="#121215" />
-                                <Setter TargetName="Border" Property="BorderThickness" Value="0 1 0 0" />
-                                <Setter TargetName="Border" Property="Background" Value="#27272d" />
+                                <Setter TargetName="Border" Property="Background" Value="{StaticResource InteractionDefaultActiveBrushColor}" />
                                 <Setter TargetName="Border" Property="Effect" Value="{x:Null}" />
                             </Trigger>
                         </ControlTemplate.Triggers>
@@ -183,31 +174,32 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Style x:Key="FeatureOnOffButton" TargetType="quickSettings:SettingButton">
             <Setter Property="HorizontalAlignment" Value="Stretch" />
             <Setter Property="FontSize" Value="16" />
-            <Setter Property="Margin" Value="0,7" />
+            <Setter Property="Margin" Value="0,5" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="quickSettings:SettingButton">
                         <Border x:Name="Border"
-                                Style="{StaticResource ShadowBorder}"
-                                Padding="7"
+                                Style="{StaticResource PopupButtonBorder}"
+                                BorderBrush="{StaticResource BorderWeakBrushColor}"
+                                Padding="15,10"
                                 Cursor="Hand">
                             <DockPanel>
                                 <ContentControl x:Name="Icon"
                                                 Content="{TemplateBinding Icon}"
-                                                Foreground="White" />
+                                                Foreground="{StaticResource TextNormBrushColor}" />
                                 <Border x:Name="Plus"
                                         DockPanel.Dock="Right"
                                         Visibility="Collapsed"
-                                        BorderThickness="1"
-                                        Height="18"
-                                        BorderBrush="White"
-                                        CornerRadius="9">
+                                        BorderThickness="2"
+                                        Height="20"
+                                        BorderBrush="{StaticResource InteractionWeakBrushColor}"
+                                        CornerRadius="6">
                                     <Label x:Name="PlusLabel"
-                                           Content="PLUS"
-                                           Padding="8,0"
+                                           Content="Plus"
+                                           Padding="8,2"
                                            VerticalAlignment="Center"
                                            FontWeight="Bold"
-                                           Foreground="White"
+                                           Foreground="{StaticResource TextNormBrushColor}"
                                            FontSize="10" />
                                 </Border>
                                 <TextBlock Text="{TemplateBinding Title}"
@@ -215,30 +207,24 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                            Margin="10,0,0,0"
                                            FontSize="14"
                                            VerticalAlignment="Center"
-                                           Foreground="White"
+                                           Foreground="{StaticResource TextNormBrushColor}"
                                            TextWrapping="Wrap" />
                             </DockPanel>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="Active" Value="True">
-                                <Setter TargetName="Border" Property="Effect" Value="{x:Null}" />
-                                <Setter TargetName="Border" Property="Background" Value="#27272d" />
-                                <Setter TargetName="Border" Property="BorderThickness" Value="0 1 0 0" />
-                                <Setter TargetName="Border" Property="BorderBrush" Value="#121215" />
-                                <Setter TargetName="Title" Property="Foreground" Value="{StaticResource PrimaryColor}" />
-                                <Setter TargetName="Icon" Property="Foreground" Value="{StaticResource PrimaryColor}" />
+                                <Setter TargetName="Icon" Property="Foreground" Value="{StaticResource InteractionNormAccentBrushColor}" />
+                                <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource InteractionNormAccentBrushColor}" />
+                                <Setter TargetName="Title" Property="Foreground" Value="{StaticResource InteractionNormAccentBrushColor}" />
                                 <Setter TargetName="Title" Property="FontWeight" Value="Bold" />
                             </Trigger>
-                            <Trigger Property="IsTurnOnButton" Value="False">
-                                <Setter TargetName="Title" Property="Foreground" Value="White" />
-                                <Setter TargetName="Icon" Property="Foreground" Value="White" />
-                            </Trigger>
                             <Trigger Property="Disabled" Value="True">
-                                <Setter TargetName="Title" Property="Foreground" Value="#6e6e75" />
-                                <Setter TargetName="Icon" Property="Foreground" Value="#6e6e75" />
+                                <Setter TargetName="Icon" Property="Foreground" Value="{StaticResource TextDisabledBrushColor}" />
+                                <Setter TargetName="Border" Property="BorderBrush" Value="Transparent" />
+                                <Setter TargetName="Title" Property="Foreground" Value="{StaticResource TextDisabledBrushColor}" />
                                 <Setter TargetName="Plus" Property="Visibility" Value="Visible" />
-                                <Setter TargetName="Plus" Property="BorderBrush" Value="#6e6e75" />
-                                <Setter TargetName="PlusLabel" Property="Foreground" Value="#6e6e75" />
+                                <Setter TargetName="Plus" Property="BorderBrush" Value="{StaticResource BorderNormBrushColor}" />
+                                <Setter TargetName="PlusLabel" Property="Foreground" Value="{StaticResource TextNormBrushColor}" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -246,77 +232,65 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </Setter>
         </Style>
         <Style x:Key="Triangle" TargetType="Polygon">
-            <Setter Property="Points" Value="0,0 20,0 10,10" />
-            <Setter Property="StrokeThickness" Value="0" />
-            <Setter Property="Fill" Value="{StaticResource SidebarTabBackgroundColor}" />
+            <Setter Property="Points" Value="0,10 10,0 20,10" />
+            <Setter Property="StrokeThickness" Value="1" />
+            <Setter Property="Stroke" Value="{StaticResource BorderWeakBrushColor}" />
+            <Setter Property="Fill" Value="{StaticResource BackgroundNormBrushColor}" />
             <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="VerticalAlignment" Value="Top" />
             <Setter Property="Panel.ZIndex" Value="1" />
-            <Setter Property="RenderTransformOrigin" Value="0.5,0.5" />
-            <Setter Property="RenderTransform">
-                <Setter.Value>
-                    <ScaleTransform ScaleY="-1" />
-                </Setter.Value>
-            </Setter>
+        </Style>
+        <Style x:Key="BorderCover" TargetType="Polygon">
+            <Setter Property="Points" Value="-2,11 22,11 22,9 -2,9" />
+            <Setter Property="Fill" Value="{StaticResource BackgroundNormBrushColor}" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="Panel.ZIndex" Value="2" />
         </Style>
         <Style x:Key="PopupBorder" TargetType="Border">
             <Setter Property="Effect">
                 <Setter.Value>
-                    <DropShadowEffect BlurRadius="15"
-                                      Direction="0"
-                                      Color="#4E4C4C"
-                                      RenderingBias="Quality"
-                                      ShadowDepth="0" />
+                    <DropShadowEffect ShadowDepth="8" 
+                                      Direction="270" 
+                                      BlurRadius="8" 
+                                      Opacity="0.3"
+                                      RenderingBias="Quality" 
+                                      Color="{StaticResource ShadowNormColor}"/>
                 </Setter.Value>
             </Setter>
-            <Setter Property="Width" Value="270" />
-            <Setter Property="CornerRadius" Value="2" />
-            <Setter Property="Padding" Value="20" />
+            <Setter Property="Width" Value="290" />
+            <Setter Property="CornerRadius" Value="8" />
+            <Setter Property="Padding" Value="18,22" />
             <Setter Property="Margin" Value="10" />
-            <Setter Property="Background" Value="{StaticResource SidebarTabBackgroundColor}" />
-        </Style>
-        <Style x:Key="FeatureInfoText" TargetType="TextBlock">
-            <Setter Property="Margin" Value="0,20,0,15" />
-            <Setter Property="FontSize" Value="12" />
-            <Setter Property="TextWrapping" Value="Wrap" />
-            <Setter Property="Foreground" Value="White" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="BorderBrush" Value="{StaticResource BorderWeakBrushColor}" />
+            <Setter Property="Background" Value="{StaticResource BackgroundNormBrushColor}" />
         </Style>
         <Style x:Key="FeatureTitleText" TargetType="TextBlock">
-            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}" />
             <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Margin" Value="0,0,0,12" />
         </Style>
-        <Style TargetType="Hyperlink">
-            <Setter Property="Foreground" Value="{StaticResource PrimaryColor}" />
+        <Style x:Key="FeatureInfoText" TargetType="TextBlock">
             <Setter Property="FontSize" Value="12" />
-            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}" />
+            <Setter Property="Margin" Value="0,0,0,5" />
         </Style>
-        <Style x:Key="Icon" TargetType="Control">
-            <Setter Property="Width" Value="18" />
-            <Setter Property="Height" Value="18" />
+        <Style x:Key="ReadMoreText" TargetType="TextBlock">
+            <Setter Property="Margin" Value="0,0,0,10" />
         </Style>
-        <Style x:Key="UpgradeButton" TargetType="Button" BasedOn="{StaticResource PrimaryModalButton}">
-            <Setter Property="Content" Value="{translations:Loc QuickSettings_btn_Upgrade}" />
-            <Setter Property="Visibility" Value="Collapsed" />
-            <Setter Property="FontWeight" Value="Bold" />
-            <Setter Property="Margin" Value="0,10,0,0" />
-            <Setter Property="Padding" Value="25,0" />
-            <Setter Property="HorizontalAlignment" Value="Center" />
-        </Style>
-        <Style x:Key="SecureCoreUpgradeButton" TargetType="Button" BasedOn="{StaticResource UpgradeButton}">
-            <Setter Property="Command" Value="{Binding ShowSecureCoreUpsellModalCommand}" />
-        </Style>
-        <Style x:Key="NetshieldUpgradeButton" TargetType="Button" BasedOn="{StaticResource UpgradeButton}">
-            <Setter Property="Command" Value="{Binding ShowNetshieldUpsellModalCommand}" />
-        </Style>
-        <Style x:Key="PortForwardingUpgradeButton" TargetType="Button" BasedOn="{StaticResource UpgradeButton}">
-            <Setter Property="Command" Value="{Binding ShowPortForwardingUpsellModalCommand}" />
+        <Style x:Key="Icon" TargetType="UserControl">
+            <Setter Property="Width" Value="20" />
+            <Setter Property="Height" Value="20" />
         </Style>
         <Style x:Key="FeatureWarningText" TargetType="TextBlock">
             <Setter Property="FontStyle" Value="Italic" />
             <Setter Property="FontSize" Value="12" />
-            <Setter Property="Margin" Value="0,20,0,0" />
+            <Setter Property="Margin" Value="0,8,0,0" />
             <Setter Property="TextWrapping" Value="Wrap" />
-            <Setter Property="Foreground" Value="#b3b3b6" />
+            <Setter Property="Foreground" Value="{StaticResource TextHintBrushColor}" />
         </Style>
     </UserControl.Resources>
     <Grid>
@@ -336,7 +310,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </Style>
             </onboarding:Step.Style>
         </onboarding:Step>
-        <UniformGrid Margin="0,15" Width="280" Rows="1" x:Name="QuickMenuContainer">
+        <UniformGrid Margin="0,15" Width="300" Rows="1" x:Name="QuickMenuContainer">
             <quickSettings:QuickSettingButton Style="{StaticResource QuickSettingsToggle}"
                                               IsChecked="{Binding ShowSecureCorePopup, Mode=TwoWay}"
                                               IsEnabled="{Binding ElementName=SecureCorePopup, Path=IsOpen, Converter={StaticResource InvertedBoolConverter}}"
@@ -363,19 +337,33 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     </MultiBinding>
                                 </Polygon.Margin>
                             </Polygon>
+                            <Polygon Style="{StaticResource BorderCover}">
+                                <Polygon.Margin>
+                                    <MultiBinding Converter="{StaticResource PopupArrowPositionConverter}">
+                                        <Binding Path="TotalButtons" />
+                                        <Binding Source="0" />
+                                        <Binding ElementName="QuickMenuContainer" Path="Width" />
+                                    </MultiBinding>
+                                </Polygon.Margin>
+                            </Polygon>
                             <Border Style="{StaticResource PopupBorder}">
                                 <StackPanel>
                                     <TextBlock Style="{StaticResource FeatureTitleText}"
                                                Text="{translations:Loc SecureCore}" />
                                     <TextBlock Style="{StaticResource FeatureInfoText}"
-                                               behavior:TextStyleBehavior.FormattedText="{translations:Loc QuickSettings_lbl_SecureCoreInfo}" />
+                                               Text="{translations:Loc QuickSettings_lbl_SecureCoreInfo}" />
+                                    <TextBlock Style="{StaticResource ReadMoreText}">
+                                        <Hyperlink Command="{Binding SecureCoreLearnMoreCommand}">
+                                            <Run Text="{translations:Loc QuickSettings_btn_LearnMore}" />
+                                        </Hyperlink>
+                                    </TextBlock>
                                     <quickSettings:SettingButton Style="{StaticResource FeatureOnOffButton}"
                                                                  Command="{Binding SecureCoreOffCommand}"
                                                                  Active="{Binding IsSecureCoreOffButtonOn}"
                                                                  AutomationProperties.AutomationId="{StaticResource SecureCoreOffButton}"
                                                                  Title="{translations:Loc QuickSettings_btn_SecureCoreOff}">
                                         <quickSettings:SettingButton.Icon>
-                                            <icons:SingleLock Style="{StaticResource Icon}" />
+                                            <icons:Lock Style="{StaticResource Icon}" />
                                         </quickSettings:SettingButton.Icon>
                                     </quickSettings:SettingButton>
                                     <quickSettings:SettingButton Style="{StaticResource FeatureOnOffButton}"
@@ -386,21 +374,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                                  Disabled="{Binding IsUserTierPlusOrHigher, Converter={StaticResource InvertedBoolConverter}}"
                                                                  Title="{translations:Loc QuickSettings_btn_SecureCoreOn}">
                                         <quickSettings:SettingButton.Icon>
-                                            <icons:MultipleLocks Style="{StaticResource Icon}" />
+                                            <icons:Locks Style="{StaticResource Icon}" />
                                         </quickSettings:SettingButton.Icon>
                                     </quickSettings:SettingButton>
-                                    <Button>
-                                        <Button.Style>
-                                            <Style TargetType="Button" BasedOn="{StaticResource SecureCoreUpgradeButton}">
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding IsUserTierPlusOrHigher}"
-                                                                 Value="False">
-                                                        <Setter Property="Visibility" Value="Visible" />
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </Button.Style>
-                                    </Button>
                                     <TextBlock Style="{StaticResource FeatureWarningText}"
                                                Text="{translations:Loc QuickSettings_lbl_SecureCoreWarning}" />
                                 </StackPanel>
@@ -409,12 +385,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </Popup>
                 </quickSettings:QuickSettingButton.Popup>
                 <quickSettings:QuickSettingButton.Icon>
-                    <icons:SingleLock Style="{StaticResource Icon}"
-                                      Foreground="White" />
+                    <icons:Lock Style="{StaticResource Icon}" Foreground="{StaticResource TextNormBrushColor}" />
                 </quickSettings:QuickSettingButton.Icon>
                 <quickSettings:QuickSettingButton.ActiveIcon>
-                    <icons:MultipleLocks Style="{StaticResource Icon}"
-                                         Foreground="{StaticResource PrimaryColor}" />
+                    <icons:Locks Style="{StaticResource Icon}" Foreground="{StaticResource InteractionNormAccentBrushColor}" />
                 </quickSettings:QuickSettingButton.ActiveIcon>
             </quickSettings:QuickSettingButton>
             <quickSettings:MultiValueSettingsButton Style="{StaticResource NetShieldToggle}"
@@ -443,18 +417,32 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     </MultiBinding>
                                 </Polygon.Margin>
                             </Polygon>
+                            <Polygon Style="{StaticResource BorderCover}">
+                                <Polygon.Margin>
+                                    <MultiBinding Converter="{StaticResource PopupArrowPositionConverter}">
+                                        <Binding Path="TotalButtons" />
+                                        <Binding Source="1" />
+                                        <Binding ElementName="QuickMenuContainer" Path="Width" />
+                                    </MultiBinding>
+                                </Polygon.Margin>
+                            </Polygon>
                             <Border Style="{StaticResource PopupBorder}">
                                 <StackPanel>
                                     <TextBlock Style="{StaticResource FeatureTitleText}"
                                                Text="{translations:Loc NetShield}" />
                                     <TextBlock Style="{StaticResource FeatureInfoText}"
-                                               behavior:TextStyleBehavior.FormattedText="{translations:Loc QuickSettings_lbl_NetShieldInfo}" />
+                                               Text="{translations:Loc QuickSettings_lbl_NetShieldInfo}" />
+                                    <TextBlock Style="{StaticResource ReadMoreText}">
+                                        <Hyperlink Command="{Binding NetShieldLearnMoreCommand}">
+                                            <Run Text="{translations:Loc QuickSettings_btn_LearnMore}" />
+                                        </Hyperlink>
+                                    </TextBlock>
                                     <quickSettings:SettingButton Style="{StaticResource FeatureOnOffButton}"
                                                                  Command="{Binding NetShieldOffCommand}"
                                                                  Active="{Binding IsNetShieldOffButtonOn}"
                                                                  Title="{translations:Loc QuickSettings_btn_NetshieldOff}">
                                         <quickSettings:SettingButton.Icon>
-                                            <icons:ShieldEmpty Style="{StaticResource Icon}" />
+                                            <icons:Shield Style="{StaticResource Icon}" />
                                         </quickSettings:SettingButton.Icon>
                                     </quickSettings:SettingButton>
                                     <quickSettings:SettingButton Style="{StaticResource FeatureOnOffButton}"
@@ -464,7 +452,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                                  Disabled="{Binding IsFreeUser}"
                                                                  Title="{translations:Loc QuickSettings_btn_NetshieldOnFirst}">
                                         <quickSettings:SettingButton.Icon>
-                                            <icons:ShieldHalf Style="{StaticResource Icon}" />
+                                            <icons:ShieldHalfFilled Style="{StaticResource Icon}" />
                                         </quickSettings:SettingButton.Icon>
                                     </quickSettings:SettingButton>
                                     <quickSettings:SettingButton Style="{StaticResource FeatureOnOffButton}"
@@ -474,20 +462,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                                  Disabled="{Binding IsFreeUser}"
                                                                  Title="{translations:Loc QuickSettings_btn_NetshieldOnSecond}">
                                         <quickSettings:SettingButton.Icon>
-                                            <icons:ShieldFull Style="{StaticResource Icon}" />
+                                            <icons:ShieldFilled Style="{StaticResource Icon}" />
                                         </quickSettings:SettingButton.Icon>
                                     </quickSettings:SettingButton>
-                                    <Button>
-                                        <Button.Style>
-                                            <Style TargetType="Button" BasedOn="{StaticResource NetshieldUpgradeButton}">
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding IsFreeUser}" Value="True">
-                                                        <Setter Property="Visibility" Value="Visible" />
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </Button.Style>
-                                    </Button>
                                     <TextBlock Style="{StaticResource FeatureWarningText}"
                                                Text="{translations:Loc QuickSettings_lbl_NetShieldWarning}" />
                                 </StackPanel>
@@ -522,19 +499,32 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     </MultiBinding>
                                 </Polygon.Margin>
                             </Polygon>
+                            <Polygon Style="{StaticResource BorderCover}">
+                                <Polygon.Margin>
+                                    <MultiBinding Converter="{StaticResource PopupArrowPositionConverter}">
+                                        <Binding Path="TotalButtons" />
+                                        <Binding Path="KillSwitchButtonNumber" />
+                                        <Binding ElementName="QuickMenuContainer" Path="Width" />
+                                    </MultiBinding>
+                                </Polygon.Margin>
+                            </Polygon>
                             <Border Style="{StaticResource PopupBorder}">
                                 <StackPanel>
                                     <TextBlock Style="{StaticResource FeatureTitleText}"
                                                Text="{translations:Loc KillSwitch}" />
                                     <TextBlock Style="{StaticResource FeatureInfoText}"
-                                               behavior:TextStyleBehavior.FormattedText="{translations:Loc QuickSettings_lbl_KillSwitchInfo}" />
+                                               Text="{translations:Loc QuickSettings_lbl_KillSwitchInfo}" />
+                                    <TextBlock Style="{StaticResource ReadMoreText}">
+                                        <Hyperlink Command="{Binding KillSwitchLearnMoreCommand}">
+                                            <Run Text="{translations:Loc QuickSettings_btn_LearnMore}" />
+                                        </Hyperlink>
+                                    </TextBlock>
                                     <quickSettings:SettingButton Style="{StaticResource FeatureOnOffButton}"
                                                                  Command="{Binding DisableKillSwitchCommand}"
                                                                  Active="{Binding IsKillSwitchDisabled}"
                                                                  Title="{translations:Loc QuickSettings_btn_KillSwitchOff}">
                                         <quickSettings:SettingButton.Icon>
-                                            <icons:SwitchOff Width="18"
-                                                             Height="18" />
+                                            <icons:SwitchOff Style="{StaticResource Icon}" />
                                         </quickSettings:SettingButton.Icon>
                                     </quickSettings:SettingButton>
                                     <quickSettings:SettingButton Style="{StaticResource FeatureOnOffButton}"
@@ -552,7 +542,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                                  IsTurnOnButton="True"
                                                                  Title="{translations:Loc QuickSettings_btn_PermanentKillSwitch}">
                                         <quickSettings:SettingButton.Icon>
-                                            <icons:SwitchLock Width="18" Height="18" Margin="5,0,0,0" />
+                                            <icons:SwitchOnLock Style="{StaticResource Icon}" />
                                         </quickSettings:SettingButton.Icon>
                                     </quickSettings:SettingButton>
                                 </StackPanel>
@@ -588,19 +578,33 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     </MultiBinding>
                                 </Polygon.Margin>
                             </Polygon>
+                            <Polygon Style="{StaticResource BorderCover}">
+                                <Polygon.Margin>
+                                    <MultiBinding Converter="{StaticResource PopupArrowPositionConverter}">
+                                        <Binding Path="TotalButtons" />
+                                        <Binding Path="PortForwardingButtonNumber" />
+                                        <Binding ElementName="QuickMenuContainer" Path="Width" />
+                                    </MultiBinding>
+                                </Polygon.Margin>
+                            </Polygon>
                             <Border Style="{StaticResource PopupBorder}">
                                 <StackPanel>
                                     <TextBlock Style="{StaticResource FeatureTitleText}"
                                                Text="{translations:Loc PortForwarding}" />
                                     <TextBlock Style="{StaticResource FeatureInfoText}"
-                                               behavior:TextStyleBehavior.FormattedText="{translations:Loc QuickSettings_lbl_PortForwardingInfo}" />
+                                               Text="{translations:Loc QuickSettings_lbl_PortForwardingInfo}" />
+                                    <TextBlock Style="{StaticResource ReadMoreText}">
+                                        <Hyperlink Command="{Binding PortForwardingLearnMoreCommand}">
+                                            <Run Text="{translations:Loc QuickSettings_btn_LearnMore}" />
+                                        </Hyperlink>
+                                    </TextBlock>
                                     <quickSettings:SettingButton Style="{StaticResource FeatureOnOffButton}"
                                                                  Command="{Binding PortForwardingOffCommand}"
                                                                  Active="{Binding IsPortForwardingOffButtonOn}"
                                                                  AutomationProperties.AutomationId="{StaticResource PortForwardingOffButton}"
                                                                  Title="{translations:Loc QuickSettings_btn_PortForwardingOff}">
                                         <quickSettings:SettingButton.Icon>
-                                            <icons:Reflect Width="18" Height="18" />
+                                            <icons:ArrowAngleLeftUpLineVertical Style="{StaticResource Icon}" />
                                         </quickSettings:SettingButton.Icon>
                                     </quickSettings:SettingButton>
                                     <quickSettings:SettingButton Style="{StaticResource FeatureOnOffButton}"
@@ -611,7 +615,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                                  Disabled="{Binding IsPaidUser, Converter={StaticResource InvertedBoolConverter}}"
                                                                  Title="{translations:Loc QuickSettings_btn_PortForwardingOn}">
                                         <quickSettings:SettingButton.Icon>
-                                            <icons:Exchange Style="{StaticResource Icon}" />
+                                            <icons:ArrowsSwitch Style="{StaticResource Icon}" />
                                         </quickSettings:SettingButton.Icon>
                                     </quickSettings:SettingButton>
                                     <StackPanel Orientation="Horizontal" 
@@ -621,29 +625,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                  Height="10"
                                                  Margin="0,2,5,0"
                                                  VerticalAlignment="Top"
-                                                 Fill="{StaticResource PrimaryColor}" />
+                                                 Fill="{StaticResource PrimaryBrushColor}" />
                                         <TextBlock
                                             Margin="0,0,5,0"
                                             TextWrapping="Wrap"
                                             FontSize="12"
-                                            Foreground="White"
+                                            Foreground="{StaticResource TextNormBrushColor}"
                                             Text="{translations:Loc PortForwarding_lbl_ActivePort}" />
                                         <activePorts:PortForwardingActivePortView DataContext="{Binding ActivePortViewModel}"
-                                            FontWeight="Bold"/>
-                                    </StackPanel>
+                                                                                  FontWeight="Bold"/>
+                                        </StackPanel>
                                     <settings:PortForwardingWarningView DataContext="{Binding PortForwardingWarningViewModel}" />
-                                    <Button>
-                                        <Button.Style>
-                                            <Style TargetType="Button" BasedOn="{StaticResource PortForwardingUpgradeButton}">
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding IsPaidUser}"
-                                                                 Value="False">
-                                                        <Setter Property="Visibility" Value="Visible" />
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </Button.Style>
-                                    </Button>
                                     <TextBlock Style="{StaticResource FeatureWarningText}" Margin="0,10,0,0"
                                                Text="{translations:Loc PortForwarding_lbl_Info}"
                                                Visibility="{Binding HasPortForwardingValue, Converter={StaticResource BoolToVis}}" />
@@ -653,16 +645,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </Popup>
                 </quickSettings:QuickSettingButton.Popup>
                 <quickSettings:QuickSettingButton.Icon>
-                    <icons:Reflect Style="{StaticResource Icon}"
-                                   Foreground="White"
-                                   Width="23"
-                                   Margin="0,0,2,1" />
+                    <icons:ArrowAngleLeftUpLineVertical Style="{StaticResource Icon}" Foreground="{StaticResource TextNormBrushColor}" />
                 </quickSettings:QuickSettingButton.Icon>
                 <quickSettings:QuickSettingButton.ActiveIcon>
-                    <icons:Exchange Style="{StaticResource Icon}"
-                                    Foreground="{StaticResource PrimaryColor}"
-                                    Width="23"
-                                    Margin="6,2,0,0" />
+                    <icons:ArrowsSwitch Style="{StaticResource Icon}" Foreground="{StaticResource InteractionNormAccentBrushColor}" />
                 </quickSettings:QuickSettingButton.ActiveIcon>
             </quickSettings:QuickSettingButton>
         </UniformGrid>

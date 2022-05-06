@@ -23,24 +23,21 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:controls="clr-namespace:ProtonVPN.Views.Controls"
-             xmlns:fa="http://schemas.fontawesome.io/icons/"
              xmlns:sidebar="clr-namespace:ProtonVPN.Sidebar"
              xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
              xmlns:onboarding="clr-namespace:ProtonVPN.Onboarding"
              xmlns:announcements="clr-namespace:ProtonVPN.Sidebar.Announcements"
-             xmlns:icons="clr-namespace:ProtonVPN.Views.Icons"
              xmlns:activePorts="clr-namespace:ProtonVPN.PortForwarding.ActivePorts"
+             xmlns:icons="clr-namespace:ProtonVPN.Resource.Graphics.Icons;assembly=ProtonVPN.Resource"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance sidebar:ConnectionStatusViewModel}">
 
     <UserControl.Resources>
         <Style TargetType="Button" x:Key="QuickConnectButton" BasedOn="{StaticResource ClearStyleButton}">
             <Setter Property="Content" Value="{translations:Loc Sidebar_Connection_btn_Connect}" />
-            <Setter Property="Background" Value="Transparent" />
-            <Setter Property="BorderThickness" Value="2" />
-            <Setter Property="BorderBrush" Value="White" />
-            <Setter Property="Foreground" Value="White" />
-            <Setter Property="Border.CornerRadius" Value="20" />
+            <Setter Property="Background" Value="{StaticResource InteractionNormBrushColor}" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}" />
             <Setter Property="HorizontalAlignment" Value="Stretch" />
             <Setter Property="Padding" Value="0,0,0,1" />
             <Setter Property="Margin" Value="0,0,0,63" />
@@ -50,25 +47,38 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Setter Property="Height" Value="40" />
             <Setter Property="Command" Value="{Binding QuickConnectCommand}" />
             <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="{StaticResource PrimaryColor}" />
-                    <Setter Property="BorderBrush" Value="Transparent" />
-                </Trigger>
                 <DataTrigger Binding="{Binding Connected}" Value="True">
                     <Setter Property="Content" Value="{translations:Loc Sidebar_Connection_btn_Disconnect}" />
                 </DataTrigger>
                 <MultiDataTrigger>
                     <MultiDataTrigger.Conditions>
-                        <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Mode=Self}}"
-                                   Value="True" />
+                        <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Mode=Self}}" Value="True" />
+                        <Condition Binding="{Binding Connected}" Value="False" />
+                    </MultiDataTrigger.Conditions>
+                    <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}" />
+                    <Setter Property="Background" Value="{StaticResource InteractionNormHoverBrushColor}" />
+                </MultiDataTrigger>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Mode=Self}}" Value="False" />
                         <Condition Binding="{Binding Connected}" Value="True" />
                     </MultiDataTrigger.Conditions>
-                    <Setter Property="Background" Value="White" />
-                    <Setter Property="Foreground" Value="{StaticResource SecondaryColorDark}" />
+                    <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}" />
+                    <Setter Property="Background" Value="Transparent" />
+                    <Setter Property="BorderThickness" Value="2" />
+                    <Setter Property="BorderBrush" Value="{StaticResource BorderNormBrushColor}" />
+                </MultiDataTrigger>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Mode=Self}}" Value="True" />
+                        <Condition Binding="{Binding Connected}" Value="True" />
+                    </MultiDataTrigger.Conditions>
+                    <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}" />
+                    <Setter Property="Background" Value="{StaticResource SignalDangerHoverBrushColor}" />
                 </MultiDataTrigger>
             </Style.Triggers>
         </Style>
-        <Style x:Key="DisconnectedPanel" TargetType="StackPanel">
+        <Style x:Key="DisconnectedPanel" TargetType="Grid">
             <Setter Property="Visibility" Value="Visible" />
             <Style.Triggers>
                 <DataTrigger Binding="{Binding KillSwitchActivated}" Value="True">
@@ -79,21 +89,24 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Style x:Key="PopupBorder" TargetType="Border">
             <Setter Property="Effect">
                 <Setter.Value>
-                    <DropShadowEffect BlurRadius="15"
-                                      Direction="0"
-                                      Color="#4E4C4C"
-                                      RenderingBias="Quality"
-                                      ShadowDepth="0" />
+                    <DropShadowEffect ShadowDepth="8" 
+                                      Direction="270" 
+                                      BlurRadius="8" 
+                                      Opacity="0.30"
+                                      RenderingBias="Quality" 
+                                      Color="{StaticResource ShadowNormColor}"/>
                 </Setter.Value>
             </Setter>
-            <Setter Property="CornerRadius" Value="5" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="BorderBrush" Value="{StaticResource BorderWeakBrushColor}" />
+            <Setter Property="CornerRadius" Value="8" />
             <Setter Property="Padding" Value="16,13" />
-            <Setter Property="Margin" Value="7" />
-            <Setter Property="Background" Value="{StaticResource SidebarTabBackgroundColor}" />
+            <Setter Property="Margin" Value="8,8,8,16" />
+            <Setter Property="Background" Value="{StaticResource BackgroundWeakBrushColor}" />
         </Style>
         <Style x:Key="FeatureTitleText" TargetType="TextBlock">
             <Setter Property="HorizontalAlignment" Value="Left" />
-            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}" />
             <Setter Property="FontSize" Value="16" />
             <Setter Property="FontWeight" Value="Bold" />
         </Style>
@@ -101,16 +114,33 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="FontSize" Value="12" />
             <Setter Property="TextWrapping" Value="Wrap" />
-            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Foreground" Value="{StaticResource TextWeakBrushColor}" />
         </Style>
-        <Style x:Key="ClickableText" TargetType="Button" BasedOn="{StaticResource ClearStyleButton}">
-            <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
-            <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Style x:Key="VpnAcceleratorCloseButton" TargetType="Button">
+            <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="FontSize" Value="12"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Command" Value="{Binding ManageProfilesCommand}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Name="CloseButtonBorder" Background="Transparent">
+                            <icons:CrossBig Width="16" Height="16">
+                                <icons:CrossBig.Style>
+                                    <Style TargetType="icons:CrossBig">
+                                        <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}, Path=IsMouseOver}" Value="True">
+                                                <Setter Property="Foreground" Value="{StaticResource InteractionNormAccentHoverBrushColor}" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </icons:CrossBig.Style>
+                            </icons:CrossBig>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
     </UserControl.Resources>
 
@@ -120,100 +150,39 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                Source="{Binding ServerExitCountry, Converter={StaticResource ConnectionStatusFlagConverter}}" />
         <Grid>
             <Grid.Background>
-                <LinearGradientBrush StartPoint="1,0" EndPoint="-1,2">
-                    <GradientStop Color="#1b1b20" Offset="0" />
-                    <GradientStop Color="#001b1b20" Offset="1" />
-                </LinearGradientBrush>
-            </Grid.Background>
-        </Grid>
-        <Grid>
-            <Grid.Background>
                 <LinearGradientBrush StartPoint="0,1" EndPoint="0,0">
-                    <GradientStop Color="#1b1b20" Offset="0.2" />
-                    <GradientStop Color="#001b1b20" Offset="1" />
+                    <GradientStop Color="{StaticResource Shade0Color}" Offset="0.2" />
+                    <GradientStop Color="{StaticResource SemiTransparentConnectionStatusGradientColor}"  Offset="1" />
                 </LinearGradientBrush>
             </Grid.Background>
         </Grid>
         <Grid Visibility="{Binding Disconnected, Converter={StaticResource BoolToVis}}" Margin="36,24">
-            <StackPanel Style="{StaticResource DisconnectedPanel}">
-                <StackPanel Orientation="Horizontal" ToolTip="{translations:Loc Sidebar_Connection_lbl_Disconnected_Info}">
-                    <fa:FontAwesome Foreground="#d53535"
-                                    FontSize="16"
-                                    Icon="ExclamationTriangle"
-                                    Padding="0,3"
-                                    VerticalAlignment="Top" />
-                    <Label Padding="5,0,0,0"
-                           Foreground="#d53535"
-                           FontWeight="Bold"
-                           FontSize="16" Content="{translations:Loc Sidebar_Connection_lbl_Disconnected}"/>
-                </StackPanel>
-                <TextBlock Foreground="White" FontSize="14" Margin="0,10,0,0" AutomationProperties.AutomationId="{StaticResource IPAddressTextBlock}">
-                    <Run Text="IP:"/>
-                    <Run FontWeight="Bold">
-                        <Run.Style>
-                            <Style TargetType="Run">
-                                <Setter Property="Text" Value="{Binding Ip, Mode=OneWay}"/>
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Ip, Converter={StaticResource EmptyStringToBoolConverter}}" Value="True">
-                                        <Setter Property="Text" Value="{translations:Loc Sidebar_Connection_lbl_IP_Unknown}"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Run.Style>
-                    </Run>
-                    <fa:FontAwesome Icon="InfoCircle" Foreground="{StaticResource PrimaryColor}">
-                        <fa:FontAwesome.Style>
-                            <Style TargetType="fa:FontAwesome">
-                                <Setter Property="ToolTip" Value="{translations:Loc Sidebar_Connection_lbl_IP_Unknown_Info}"/>
-                                <Setter Property="Visibility" Value="Collapsed"/>
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Ip, Converter={StaticResource EmptyStringToBoolConverter}}" Value="True">
-                                        <Setter Property="Visibility" Value="Visible"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </fa:FontAwesome.Style>
-                    </fa:FontAwesome>
-                </TextBlock>
-            </StackPanel>
+            <Grid Style="{StaticResource DisconnectedPanel}">
+                <sidebar:DisconnectedConnectionDetails DataContext="{Binding Ip, Mode=OneWay}" />
+            </Grid>
             <StackPanel Visibility="{Binding KillSwitchActivated, Converter={StaticResource BoolToVis}}">
-                <Grid ToolTip="{translations:Loc Sidebar_Connection_lbl_KillSwitch_Info}">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <fa:FontAwesome Grid.Column="0"
-                                    Grid.Row="0"
-                                    Foreground="{StaticResource WarningColor}"
-                                    FontSize="16"
-                                    Icon="ExclamationTriangle"
-                                    Padding="0,3"
-                                    VerticalAlignment="Top" />
-                    <TextBlock Padding="5,0,0,0"
-                               Grid.Column="1"
-                               Grid.Row="0"
-                               Foreground="{StaticResource WarningColor}"
+                <StackPanel Orientation="Horizontal"
+                            Background="Transparent"
+                            ToolTip="{translations:Loc Sidebar_Connection_lbl_KillSwitch_Info}">
+                    <icons:ExclamationCircle Margin="0,1,5,0"
+                                             Width="20"
+                                             VerticalAlignment="Top"
+                                             Foreground="{StaticResource SignalWarningBrushColor}"
+                                             ToolTip="{translations:Loc Sidebar_Connection_lbl_KillSwitch_Info}" />
+                    <TextBlock Padding="0,0,0,0"
                                FontWeight="Bold"
                                FontSize="16"
                                TextWrapping="Wrap"
-                               Text="{translations:Loc Sidebar_Connection_lbl_KillSwitch}"/>
-                    <Button Style="{StaticResource ClearStyleButton}"
-                            Grid.Column="1"
-                            Grid.Row="1"
-                            HorizontalAlignment="Left"
-                            Margin="0,5,0,0"
-                            Command="{Binding DisableKillSwitchCommand}">
-                        <TextBlock TextDecorations="Underline"
-                                   FontWeight="Bold"
-                                   Foreground="White"
-                                   Text="{translations:Loc Sidebar_Connection_btn_Disable}"
-                                   FontSize="14"/>
-                    </Button>
-                </Grid>
+                               Foreground="{StaticResource SignalWarningBrushColor}"
+                               Text="{translations:Loc Sidebar_Connection_lbl_KillSwitch}"
+                               ToolTip="{translations:Loc Sidebar_Connection_lbl_KillSwitch_Info}" />
+                </StackPanel>
+                <TextBlock HorizontalAlignment="Left"
+                           Margin="25,12,0,0">
+                    <Hyperlink Command="{Binding DisableKillSwitchCommand}">
+                        <Run Text="{translations:Loc Window_btn_Disable}" FontSize="14" FontWeight="Bold" />
+                    </Hyperlink>
+                </TextBlock>
             </StackPanel>
         </Grid>
         <Grid Visibility="{Binding Connected, Converter={StaticResource BoolToVis}}" Margin="30,18">
@@ -240,11 +209,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         Margin="0,3"
                         FlowDirection="LeftToRight"
                         HorizontalAlignment="Left">
-                <Label Foreground="White"
+                <Label Foreground="{StaticResource TextNormBrushColor}"
                        Padding="0"
                        FontSize="14"
                        Content="IP:"/>
-                <Label Foreground="White"
+                <Label Foreground="{StaticResource TextNormBrushColor}"
                        Padding="3,0,0,0"
                        FontWeight="Bold"
                        FontSize="14"
@@ -256,10 +225,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         HorizontalAlignment="Right"
                         VerticalAlignment="Center"
                         Orientation="Horizontal">
-                <TextBlock Foreground="White"
+                <TextBlock Foreground="{StaticResource TextNormBrushColor}"
                            Text="{Binding ServerLoad, Converter={StaticResource LoadToTextConverter}}"/>
-                <Grid Margin="3,1,0,0">
-                    <Ellipse Stroke="#4c4c59"
+                <Grid Margin="5,0,0,0">
+                    <Ellipse Stroke="{StaticResource TextHintBrushColor}"
                              StrokeThickness="1"
                              Width="13"
                              Height="13" />
@@ -274,7 +243,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,2">
                 <TextBlock Padding="0"
                            FlowDirection="LeftToRight"
-                           Foreground="White"
+                           Foreground="{StaticResource TextNormBrushColor}"
                            FontSize="14"
                            Text="{Binding AdapterProtocol}"/>
             </StackPanel>
@@ -285,13 +254,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         HorizontalAlignment="Right"
                         Orientation="Horizontal"
                         FlowDirection="LeftToRight">
-                <fa:FontAwesome Icon="ArrowDown" Foreground="White" FontSize="12" Padding="0,4,4,0" />
-                <TextBlock FontSize="12" Foreground="White" Padding="0,2,5,0">
+                <icons:ArrowDown Foreground="{StaticResource TextNormBrushColor}" Height="15" Margin="5,0,3,0" />
+                <TextBlock FontSize="12" Foreground="{StaticResource TextNormBrushColor}" Padding="0,2,5,0">
                     <Run Text="{Binding CurrentDownloadSpeed, Converter={StaticResource BytesToSizeConverter}, Mode=OneWay}" />
                     <Run Text="{Binding CurrentDownloadSpeed, Converter={StaticResource BytesToUnitsConverter}, Mode=OneWay}" /><Run Text="/s" />
                 </TextBlock>
-                <fa:FontAwesome Icon="ArrowUp" Foreground="White" FontSize="12" Padding="0,4,4,0" />
-                <TextBlock FontSize="12" Foreground="White" Padding="0,1,5,0">
+                <icons:ArrowUp Foreground="{StaticResource TextNormBrushColor}" Height="15" Margin="5,0,3,0" />
+                <TextBlock FontSize="12" Foreground="{StaticResource TextNormBrushColor}" Padding="0,1,5,0">
                     <Run Text="{Binding CurrentUploadSpeed, Converter={StaticResource BytesToSizeConverter}, Mode=OneWay}" />
                     <Run Text="{Binding CurrentUploadSpeed, Converter={StaticResource BytesToUnitsConverter}, Mode=OneWay}" /><Run Text="/s" />
                 </TextBlock>
@@ -305,10 +274,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         FlowDirection="LeftToRight"
                         Margin="0,5,0,0"
                         Visibility="{Binding HasPortForwardingValue, Converter={StaticResource BoolToVis}}">
-                <icons:Exchange Width="20" 
-                                Margin="0,1,3,0"
-                                Foreground="White"
-                                ToolTip="{translations:Loc PortForwarding_lbl_Info}" />
+                <icons:ArrowsSwitch Width="17" 
+                                    Margin="0,1,6,0"
+                                    VerticalAlignment="Center"
+                                    Foreground="{StaticResource TextNormBrushColor}"
+                                    ToolTip="{translations:Loc PortForwarding_lbl_Info}" />
                 <activePorts:PortForwardingActivePortView DataContext="{Binding ActivePortViewModel}"
                                                           Padding="0,2,5,0"/>
             </StackPanel>
@@ -341,9 +311,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <TextBlock Grid.Column="0"
                                        Style="{StaticResource FeatureTitleText}"
                                        Text="{translations:Loc Tooltips_SmartReconnection_Title}" />
-                            <Button Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Right" Width="20" Height="20"
+                            <Button Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Right"
                                     Command="{Binding CloseVpnAcceleratorReconnectionPopupCommand}"
-                                    Style="{StaticResource WindowsCloseButton}"/>
+                                    Style="{StaticResource VpnAcceleratorCloseButton}" />
                         </Grid>
                         <TextBlock Style="{StaticResource FeatureInfoText}" 
                                    Margin="0,8,0,0" 
@@ -353,8 +323,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <Border x:Name="ReconnectionComponent" 
                                 HorizontalAlignment="Left" 
                                 Margin="0,20,0,0" 
-                                Background="{StaticResource ModalBarColor}" 
-                                BorderBrush="#FF000000" 
+                                Background="{StaticResource BackgroundNormBrushColor}"
                                 BorderThickness="0" 
                                 CornerRadius="6">
                             <Grid HorizontalAlignment="Center" Margin="25,0">
@@ -367,26 +336,23 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 <StackPanel Grid.Column="0" Orientation="Vertical" Margin="0,14" HorizontalAlignment="Center">
                                     <TextBlock VerticalAlignment="Center"
                                        FontSize="12"
-                                       Foreground="White"
+                                       Foreground="{StaticResource TextNormBrushColor}"
                                        Text="{translations:Loc Dialogs_reconnection_FromServer}"/>
                                     <StackPanel Orientation="Horizontal" Height="31">
                                         <Image VerticalAlignment="Center" Width="21" Height="15"
                                        Source="{Binding FromServer.EntryCountry, Converter={StaticResource CountryToFlagConverter}}"
                                        Visibility="{Binding IsFromServerSecureCore, Converter={StaticResource BoolToVis}}"/>
-                                        <TextBlock Padding="4,0,3,0"
-                                           VerticalAlignment="Center"
-                                           FontSize="20"
-                                           FontWeight="Bold"
-                                           Foreground="{StaticResource GrayColor}"
-                                           Text="»"
-                                           LineHeight="31"
-                                           Visibility="{Binding IsFromServerSecureCore, Converter={StaticResource BoolToVis}}"/>
+                                        <icons:ChevronsRight Width="16" 
+                                                             Margin="3,0,2,1"
+                                                             Foreground="{StaticResource TextHintBrushColor}"
+                                                             VerticalAlignment="Center"
+                                                             Visibility="{Binding IsFromServerSecureCore, Converter={StaticResource BoolToVis}}" />
                                         <Image VerticalAlignment="Center" Width="21" Height="15"
                                        Source="{Binding FromServer.ExitCountry, Converter={StaticResource CountryToFlagConverter}}"/>
                                         <TextBlock Padding="6,0,0,0"
                                            VerticalAlignment="Center"
                                            FontSize="14"
-                                           Foreground="White"
+                                           Foreground="{StaticResource TextNormBrushColor}"
                                            Text="{Binding FromServer.Name}"/>
                                     </StackPanel>
                                 </StackPanel>
@@ -394,43 +360,40 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 <icons:ArrowRight Grid.Column="1"
                                           HorizontalAlignment="Center" 
                                           VerticalAlignment="Center"
-                                          Foreground="White"
+                                          Foreground="{StaticResource TextNormBrushColor}"
                                           Width="18"/>
 
                                 <StackPanel Grid.Column="2" Orientation="Vertical" Margin="0,14" HorizontalAlignment="Center">
                                     <TextBlock VerticalAlignment="Center"
                                        FontSize="12"
-                                       Foreground="White"
+                                       Foreground="{StaticResource TextNormBrushColor}"
                                        Text="{translations:Loc Dialogs_reconnection_ToServer}"/>
                                     <StackPanel Orientation="Horizontal" Height="31">
                                         <Image VerticalAlignment="Center" Width="21" Height="15"
                                        Source="{Binding ToServer.EntryCountry, Converter={StaticResource CountryToFlagConverter}}"
                                        Visibility="{Binding IsToServerSecureCore, Converter={StaticResource BoolToVis}}"/>
-                                        <TextBlock Padding="4,0,3,0"
-                                           VerticalAlignment="Center"
-                                           FontSize="20"
-                                           FontWeight="Bold"
-                                           Foreground="{StaticResource PrimaryColor}"
-                                           Text="»"
-                                           LineHeight="31"
-                                           Visibility="{Binding IsToServerSecureCore, Converter={StaticResource BoolToVis}}"/>
+                                        <icons:ChevronsRight Width="16" 
+                                                             Margin="3,0,2,1"
+                                                             Foreground="{StaticResource PrimaryBrushColor}"
+                                                             VerticalAlignment="Center"
+                                                             Visibility="{Binding IsToServerSecureCore, Converter={StaticResource BoolToVis}}"/>
                                         <Image VerticalAlignment="Center" Width="21" Height="15"
                                        Source="{Binding ToServer.ExitCountry, Converter={StaticResource CountryToFlagConverter}}"/>
                                         <TextBlock Padding="6,0,0,0"
                                            VerticalAlignment="Center"
                                            FontSize="14"
-                                           Foreground="White"
+                                           Foreground="{StaticResource TextNormBrushColor}"
                                            Text="{Binding ToServer.Name}"/>
                                     </StackPanel>
                                 </StackPanel>
                             </Grid>
                         </Border>
 
-                        <Button Style="{StaticResource ClickableText}" 
-                                Margin="0,15,0,0" 
-                                Command="{Binding OpenNotificationSettingsCommand}">
-                            <Run Text="{translations:Loc Tooltips_SmartReconnection_btn_NotificationSettings}"/>
-                        </Button>
+                        <TextBlock Margin="0,15,0,0" HorizontalAlignment="Left">
+                            <Hyperlink Command="{Binding OpenNotificationSettingsCommand}">
+                                <Run Text="{translations:Loc Tooltips_SmartReconnection_btn_NotificationSettings}" />
+                            </Hyperlink>
+                        </TextBlock>
                     </StackPanel>
                 </Border>
             </Grid>

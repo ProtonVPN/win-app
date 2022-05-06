@@ -25,7 +25,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           xmlns:upsell="clr-namespace:ProtonVPN.Modals.Upsell"
                           xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
                           xmlns:resource="clr-namespace:ProtonVPN.Resource;assembly=ProtonVPN.Resource"
-                          xmlns:icons="clr-namespace:ProtonVPN.Resource.Icons;assembly=ProtonVPN.Resource"
+                          xmlns:vectorImages="clr-namespace:ProtonVPN.Resource.Graphics.VectorImages;assembly=ProtonVPN.Resource"
+                          xmlns:icons="clr-namespace:ProtonVPN.Resource.Graphics.Icons;assembly=ProtonVPN.Resource"
                           Style="{StaticResource BaseWindowStyle}"
                           Title=" "
                           SizeToContent="Height"
@@ -33,51 +34,56 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           Height="Auto"
                           Width="567"
                           d:DataContext="{d:DesignInstance upsell:SecureCoreUpsellModalViewModel}">
+    <resource:BaseModalWindow.Resources>
+        <Style x:Key="Icon" TargetType="UserControl">
+            <Setter Property="Width" Value="20" />
+            <Setter Property="Foreground" Value="{StaticResource PrimaryBrushColor}" />
+        </Style>
+    </resource:BaseModalWindow.Resources>
     <Grid>
         <StackPanel Margin="90,64">
-            <Image Source="pack://application:,,,/ProtonVPN.Resource;component/Images/SecureCore.png"
-                   Width="350" />
+            <vectorImages:SecureCore />
             <TextBlock TextWrapping="Wrap"
                        FontSize="24"
-                       Foreground="White"
+                       Foreground="{StaticResource OldTextBrushColor}"
                        Padding="15,0"
                        TextAlignment="Center"
                        HorizontalAlignment="Center"
                        Text="{translations:Loc Upsell_SecureCore_Title}" />
             <TextBlock TextWrapping="Wrap"
                        FontSize="16"
-                       Foreground="White"
+                       Foreground="{StaticResource OldTextBrushColor}"
                        Padding="0,8,0,32"
                        TextAlignment="Center"
                        HorizontalAlignment="Center"
                        Text="{translations:Loc Upsell_SecureCore_Subtitle}" />
             <StackPanel Margin="60,0,0,0">
                 <DockPanel Margin="0,0,0,14">
-                    <icons:ImapSmtp Foreground="{StaticResource PrimaryColor}" />
+                    <icons:Servers Style="{StaticResource Icon}" />
                     <TextBlock Text="{translations:Loc Upsell_SecureCore_RouteThrough}"
                                Padding="10,0,0,0"
                                TextWrapping="Wrap"
-                               Foreground="White"
+                               Foreground="{StaticResource OldTextBrushColor}"
                                FontSize="14" />
                 </DockPanel>
                 <DockPanel Margin="0,0,0,14">
-                    <icons:Lock Foreground="{StaticResource PrimaryColor}" />
+                    <icons:Lock Style="{StaticResource Icon}" />
                     <TextBlock Text="{translations:Loc Upsell_SecureCore_ExtraEncryption}"
                                Padding="10,0,0,0"
                                TextWrapping="Wrap"
-                               Foreground="White"
+                               Foreground="{StaticResource OldTextBrushColor}"
                                FontSize="14" />
                 </DockPanel>
                 <DockPanel Margin="0,0,0,14">
-                    <icons:Alias Foreground="{StaticResource PrimaryColor}" />
+                    <icons:Alias Style="{StaticResource Icon}" />
                     <TextBlock Text="{translations:Loc Upsell_SecureCore_NetworkAttacks}"
                                Padding="10,0,0,0"
                                TextWrapping="Wrap"
-                               Foreground="White"
+                               Foreground="{StaticResource OldTextBrushColor}"
                                FontSize="14" />
                 </DockPanel>
             </StackPanel>
-            <Button Style="{StaticResource PrimaryButton}"
+            <Button Style="{StaticResource PrimaryModalButton}"
                     HorizontalAlignment="Center"
                     Margin="0,35,0,0"
                     Content="{translations:Loc Upsell_btn_Upgrade}"

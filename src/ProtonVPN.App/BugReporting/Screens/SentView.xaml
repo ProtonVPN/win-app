@@ -22,22 +22,22 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:icons="clr-namespace:ProtonVPN.Resource.Icons;assembly=ProtonVPN.Resource"
              xmlns:screens="clr-namespace:ProtonVPN.BugReporting.Screens"
              xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
+             xmlns:vectorImages="clr-namespace:ProtonVPN.Resource.Graphics.VectorImages;assembly=ProtonVPN.Resource"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance screens:SentViewModel}">
-    <Grid Background="{StaticResource ModalContentColor}">
+    <Grid>
         <StackPanel VerticalAlignment="Center" Margin="0,80">
-            <icons:Thanks/>
-            <TextBlock Foreground="White"
+            <vectorImages:Thanks />
+            <TextBlock Foreground="{StaticResource TextNormBrushColor}"
                    FontSize="32"
                    Margin="0,20,0,0"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
                    TextWrapping="Wrap"
                    Text="{translations:Loc BugReport_msg_SendingSucceeded}" />
-            <TextBlock Foreground="White"
+            <TextBlock Foreground="{StaticResource TextNormBrushColor}"
                        FontSize="16"
                        Margin="0,20,0,0"
                        HorizontalAlignment="Center"

@@ -40,6 +40,31 @@ namespace ProtonVPN.Sidebar
         private readonly IVpnManager _vpnManager;
         private readonly IModals _modals;
 
+        public ICommand ConnectCommand { get; set; }
+        public ICommand CreateProfileCommand { get; set; }
+        public ICommand ManageProfilesCommand { get; set; }
+
+        private IReadOnlyList<PredefinedProfileViewModel> _predefinedProfiles;
+        public IReadOnlyList<PredefinedProfileViewModel> PredefinedProfiles
+        {
+            get => _predefinedProfiles;
+            set => Set(ref _predefinedProfiles, value);
+        }
+
+        private IReadOnlyList<ProfileViewModel> _customProfiles;
+        public IReadOnlyList<ProfileViewModel> CustomProfiles
+        {
+            get => _customProfiles;
+            set => Set(ref _customProfiles, value);
+        }
+        
+        private string _numOfProfilesText;
+        public string NumOfProfilesText
+        {
+            get => _numOfProfilesText;
+            set => Set(ref _numOfProfilesText, value);
+        }
+
         public SidebarProfilesViewModel(
             ProfileManager profileManager,
             ProfileViewModelFactory profileHelper,
@@ -54,17 +79,6 @@ namespace ProtonVPN.Sidebar
             CreateProfileCommand = new RelayCommand(CreateProfileAction);
             ManageProfilesCommand = new RelayCommand(ManageProfilesAction);
             ConnectCommand = new RelayCommand<ProfileViewModel>(ConnectAction);
-        }
-
-        public ICommand ConnectCommand { get; set; }
-        public ICommand CreateProfileCommand { get; set; }
-        public ICommand ManageProfilesCommand { get; set; }
-
-        private IReadOnlyList<ProfileViewModel> _profiles;
-        public IReadOnlyList<ProfileViewModel> Profiles
-        {
-            get => _profiles;
-            set => Set(ref _profiles, value);
         }
 
         public async void Load()
@@ -106,10 +120,29 @@ namespace ProtonVPN.Sidebar
 
         private async Task LoadProfiles()
         {
-            Profiles = (await _profileHelper.GetProfiles())
+            IList<ProfileViewModel> profiles = (await _profileHelper.GetProfiles())
                 .OrderByDescending(p => p.IsPredefined)
                 .ThenBy(p => p.Name)
                 .ToList();
+            
+            List<PredefinedProfileViewModel> predefinedProfiles = new();
+            List<ProfileViewModel> customProfiles = new();
+
+            foreach (ProfileViewModel profile in profiles)
+            {
+                if (profile is PredefinedProfileViewModel predefinedProfile)
+                {
+                    predefinedProfiles.Add(predefinedProfile);
+                }
+                else
+                {
+                    customProfiles.Add(profile);
+                }
+            }
+
+            PredefinedProfiles = predefinedProfiles;
+            CustomProfiles = customProfiles;
+            NumOfProfilesText = $"({customProfiles.Count})";
         }
 
         private void CreateProfileAction()

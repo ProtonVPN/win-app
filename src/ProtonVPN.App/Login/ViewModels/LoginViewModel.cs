@@ -152,7 +152,7 @@ namespace ProtonVPN.Login.ViewModels
                 if (_loginText != null && _loginText != value && _autoAuthFailed)
                 {
                     _autoAuthFailed = false;
-                    Password = new SecureString();
+                    ClearPasswordField();
                 }
 
                 if (!Set(ref _loginText, value))
@@ -161,7 +161,7 @@ namespace ProtonVPN.Login.ViewModels
                 }
 
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(FieldsFilledIn));
+                OnPropertyChanged(nameof(IsLoginAllowed));
             }
         }
 
@@ -178,11 +178,11 @@ namespace ProtonVPN.Login.ViewModels
                 Set(ref _password, value);
 
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(FieldsFilledIn));
+                OnPropertyChanged(nameof(IsLoginAllowed));
             }
         }
 
-        public bool FieldsFilledIn => !string.IsNullOrEmpty(LoginText?.Trim()) && Password != null && Password.Length != 0;
+        public bool IsLoginAllowed => !string.IsNullOrEmpty(LoginText?.Trim()) && Password != null && Password.Length != 0;
 
         public string TwoFactorAuthCode
         {
@@ -367,6 +367,7 @@ namespace ProtonVPN.Login.ViewModels
             }
 
             LoginErrorViewModel.SetError(error);
+            ClearPasswordField();
             ShowLoginForm();
         }
 
@@ -431,7 +432,7 @@ namespace ProtonVPN.Login.ViewModels
             }
 
             HandleAuthFailure(result);
-            Password = new SecureString();
+            ClearPasswordField();
             ShowLoginForm();
             await DisableGuestHole();
         }
@@ -452,8 +453,13 @@ namespace ProtonVPN.Login.ViewModels
         private void ShowLoginScreenWithTroubleshoot()
         {
             _modals.Show<TroubleshootModalViewModel>();
-            Password = new SecureString();
+            ClearPasswordField();
             ShowLoginForm();
+        }
+
+        private void ClearPasswordField()
+        {
+            Password = new SecureString();
         }
 
         private void ShowLoginForm()
@@ -464,7 +470,7 @@ namespace ProtonVPN.Login.ViewModels
         private void AfterLogin()
         {
             LoginText = "";
-            Password = new SecureString();
+            ClearPasswordField();
             LoginErrorViewModel.ClearError();
             _autoAuthFailed = false;
             IsToShowUsernameAndPassword = true;

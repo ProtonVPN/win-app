@@ -24,24 +24,35 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
              xmlns:cal="http://www.caliburnproject.org"
-             xmlns:icons="clr-namespace:ProtonVPN.Views.Icons"
              xmlns:account="clr-namespace:ProtonVPN.Account"
+             xmlns:icons="clr-namespace:ProtonVPN.Resource.Graphics.Icons;assembly=ProtonVPN.Resource"
              xmlns:resource="clr-namespace:ProtonVPN.Resource;assembly=ProtonVPN.Resource"
-             xmlns:resourceIcons="clr-namespace:ProtonVPN.Resource.Icons;assembly=ProtonVPN.Resource"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance account:PromoCodeViewModel}">
     <StackPanel>
         <ToggleButton x:Name="CouponToggleButton"
-                      Style="{StaticResource EmptyToggleButton}"
                       Cursor="Hand"
                       IsChecked="{Binding IsPromoPopupVisible, Mode=TwoWay}"
-                      Background="Transparent"
-                      BorderBrush="Transparent"
-                      Foreground="{StaticResource PrimaryColor}"
-                      HorizontalAlignment="Center"
-                      Margin="0,5,0,0"
+                      BorderBrush="{StaticResource BorderNormBrushColor}"
+                      Foreground="{StaticResource TextNormBrushColor}"
+                      HorizontalAlignment="Stretch"
+                      Margin="0"
+                      Height="40"
+                      FontSize="16"
+                      BorderThickness="2"
                       FontWeight="SemiBold"
-                      Content="{translations:Loc PromoCode_lbl_UseCoupon}" />
+                      Content="{translations:Loc PromoCode_lbl_UseCoupon}">
+            <ToggleButton.Style>
+                <Style TargetType="ToggleButton" BasedOn="{StaticResource EmptyToggleButton}">
+                    <Setter Property="Background" Value="{StaticResource InteractionDefaultHoverBrushColor}" />
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{StaticResource InteractionDefaultActiveBrushColor}" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ToggleButton.Style>
+        </ToggleButton>
         <Popup IsOpen="{Binding Path=IsChecked, ElementName=CouponToggleButton, Mode=TwoWay}"
                AllowsTransparency="True"
                Placement="Bottom"
@@ -55,8 +66,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                       RenderingBias="Quality"
                                       ShadowDepth="0" />
                 </Grid.Effect>
-                <Border Background="{StaticResource ModalBarColor}"
-                        BorderBrush="#343140"
+                <Border Background="{StaticResource BackgroundNormBrushColor}"
+                        BorderBrush="{StaticResource BorderWeakBrushColor}"
                         BorderThickness="1"
                         Width="250"
                         CornerRadius="2">
@@ -66,15 +77,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 HorizontalAlignment="Right"
                                 Background="Transparent"
                                 BorderBrush="Transparent">
-                            <icons:Times UseLayoutRounding="True"
-                                         Foreground="White" Margin="4,5,0,0" />
+                            <icons:CrossBig Width="11"
+                                            Foreground="{StaticResource TextNormBrushColor}"
+                                            Margin="4,5,0,0" />
                         </Button>
                         <TextBlock Text="{translations:Loc PromoCode_lbl_CouponCode}"
                                    Margin="0,0,0,8"
                                    FontSize="14"
-                                   Background="Transparent"
-                                   Foreground="White" />
-                        <Border BorderBrush="#5B576B" BorderThickness="1" CornerRadius="2">
+                                   Foreground="{StaticResource TextNormBrushColor}" />
+                        <Border BorderBrush="{StaticResource FieldNormBrushColor}" BorderThickness="1" CornerRadius="2">
                             <TextBox Height="40"
                                      Text="{Binding PromoCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                      VerticalContentAlignment="Center"
@@ -90,7 +101,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </Border>
                         <TextBlock Text="{Binding Error}"
                                    TextWrapping="Wrap"
-                                   Foreground="Red"
+                                   Foreground="{StaticResource SignalDangerBrushColor}"
                                    Margin="0,8,0,0">
                             <TextBlock.Style>
                                 <Style TargetType="TextBlock">
@@ -108,13 +119,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     Margin="0"
                                     Command="{Binding ApplyCouponCodeCommand}"
                                     Content="{translations:Loc PromoCode_btn_Apply}" />
-                            <resourceIcons:Loader Style="{StaticResource Loader}"
-                                                  HorizontalAlignment="Right"
-                                                  VerticalAlignment="Center"
-                                                  Foreground="White"
-                                                  Margin="0,0,16,0"
-                                                  resource:ControlExtension.Spin="{Binding Sending}"
-                                                  Visibility="{Binding Sending, Converter={StaticResource BoolToVis}}" />
+                            <icons:Loader Style="{StaticResource Loader}"
+                                          HorizontalAlignment="Right"
+                                          VerticalAlignment="Center"
+                                          Foreground="{StaticResource TextNormBrushColor}"
+                                          Margin="0,0,16,0"
+                                          resource:ControlExtension.Spin="{Binding Sending}"
+                                          Visibility="{Binding Sending, Converter={StaticResource BoolToVis}}" />
                         </Grid>
                     </StackPanel>
                 </Border>

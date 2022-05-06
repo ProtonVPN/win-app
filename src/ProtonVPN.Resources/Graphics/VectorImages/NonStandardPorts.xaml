@@ -1,0 +1,213 @@
+﻿<!--
+Copyright (c) 2022 Proton Technologies AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<UserControl x:Class="ProtonVPN.Resource.Graphics.VectorImages.NonStandardPorts"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             x:Name="UserControl">
+    <Viewbox Stretch="Uniform">
+        <Canvas Width="328" Height="127">
+            <Canvas.Resources>
+                <LinearGradientBrush x:Key="Paint0Linear4665406881" MappingMode="Absolute" StartPoint="21,-10" EndPoint="62,49">
+                    <LinearGradientBrush.GradientStops>
+                        <GradientStopCollection>
+                            <GradientStop Color="#EEBEFF"/>
+                            <GradientStop Color="#6D4AFF" Offset="1"/>
+                        </GradientStopCollection>
+                    </LinearGradientBrush.GradientStops>
+                </LinearGradientBrush>
+                <LinearGradientBrush x:Key="Paint1Linear4665406881" MappingMode="Absolute" StartPoint="211,37" EndPoint="211,89">
+                    <LinearGradientBrush.GradientStops>
+                        <GradientStopCollection>
+                            <GradientStop Color="#BEA4FF"/>
+                            <GradientStop Color="#6D4AFF" Offset="1"/>
+                        </GradientStopCollection>
+                    </LinearGradientBrush.GradientStops>
+                </LinearGradientBrush>
+                <LinearGradientBrush x:Key="Paint2Linear4665406881" MappingMode="Absolute" StartPoint="126,36" EndPoint="146,43">
+                    <LinearGradientBrush.GradientStops>
+                        <GradientStopCollection>
+                            <GradientStop Color="#8772A6"/>
+                            <GradientStop Color="#3B2C65" Offset="1"/>
+                        </GradientStopCollection>
+                    </LinearGradientBrush.GradientStops>
+                </LinearGradientBrush>
+                <LinearGradientBrush x:Key="Paint3Linear4665406881" MappingMode="Absolute" StartPoint="165,45" EndPoint="189,65">
+                    <LinearGradientBrush.GradientStops>
+                        <GradientStopCollection>
+                            <GradientStop Color="#8772A6"/>
+                            <GradientStop Color="#3B2C65" Offset="1"/>
+                        </GradientStopCollection>
+                    </LinearGradientBrush.GradientStops>
+                </LinearGradientBrush>
+                <LinearGradientBrush x:Key="Paint4Linear4665406881" MappingMode="Absolute" StartPoint="57,28" EndPoint="41,74">
+                    <LinearGradientBrush.GradientStops>
+                        <GradientStopCollection>
+                            <GradientStop Color="#A7A4B5"/>
+                            <GradientStop Color="#4A4658" Offset="1"/>
+                        </GradientStopCollection>
+                    </LinearGradientBrush.GradientStops>
+                </LinearGradientBrush>
+                <LinearGradientBrush x:Key="Paint5Linear4665406881" MappingMode="Absolute" StartPoint="278,28" EndPoint="293,75">
+                    <LinearGradientBrush.GradientStops>
+                        <GradientStopCollection>
+                            <GradientStop Color="#A7A4B5"/>
+                            <GradientStop Color="#4A4658" Offset="1"/>
+                        </GradientStopCollection>
+                    </LinearGradientBrush.GradientStops>
+                </LinearGradientBrush>
+                <LinearGradientBrush x:Key="Paint6Linear4665406881" MappingMode="Absolute" StartPoint="248,46" EndPoint="248,52">
+                    <LinearGradientBrush.GradientStops>
+                        <GradientStopCollection>
+                            <GradientStop Color="#FF7171"/>
+                            <GradientStop Color="#E63757" Offset="1"/>
+                        </GradientStopCollection>
+                    </LinearGradientBrush.GradientStops>
+                </LinearGradientBrush>
+                <LinearGradientBrush x:Key="Paint7Linear4665406881" MappingMode="Absolute" StartPoint="111,42" EndPoint="111,48">
+                    <LinearGradientBrush.GradientStops>
+                        <GradientStopCollection>
+                            <GradientStop Color="#FF7171"/>
+                            <GradientStop Color="#E63757" Offset="1"/>
+                        </GradientStopCollection>
+                    </LinearGradientBrush.GradientStops>
+                </LinearGradientBrush>
+                <LinearGradientBrush x:Key="Paint8Linear4665406881" MappingMode="Absolute" StartPoint="130,43" EndPoint="129,49">
+                    <LinearGradientBrush.GradientStops>
+                        <GradientStopCollection>
+                            <GradientStop Color="#4CFED3"/>
+                            <GradientStop Color="#00C1FE" Offset="1"/>
+                        </GradientStopCollection>
+                    </LinearGradientBrush.GradientStops>
+                </LinearGradientBrush>
+                <LinearGradientBrush x:Key="Paint9Linear4665406881" MappingMode="Absolute" StartPoint="132,78" EndPoint="129,83">
+                    <LinearGradientBrush.GradientStops>
+                        <GradientStopCollection>
+                            <GradientStop Color="#FFD66C"/>
+                            <GradientStop Color="#FF8E4F" Offset="1"/>
+                        </GradientStopCollection>
+                    </LinearGradientBrush.GradientStops>
+                </LinearGradientBrush>
+                <LinearGradientBrush x:Key="Paint10Linear4665406881" MappingMode="Absolute" StartPoint="125,59" EndPoint="125,66">
+                    <LinearGradientBrush.GradientStops>
+                        <GradientStopCollection>
+                            <GradientStop Color="#FF7171"/>
+                            <GradientStop Color="#E63757" Offset="1"/>
+                        </GradientStopCollection>
+                    </LinearGradientBrush.GradientStops>
+                </LinearGradientBrush>
+                <LinearGradientBrush x:Key="Paint11Linear4665406881" MappingMode="Absolute" StartPoint="116,77" EndPoint="114,83">
+                    <LinearGradientBrush.GradientStops>
+                        <GradientStopCollection>
+                            <GradientStop Color="#4CFED3"/>
+                            <GradientStop Color="#00C1FE" Offset="1"/>
+                        </GradientStopCollection>
+                    </LinearGradientBrush.GradientStops>
+                </LinearGradientBrush>
+                <LinearGradientBrush x:Key="Paint12Linear4665406881" MappingMode="Absolute" StartPoint="247,77" EndPoint="248,83">
+                    <LinearGradientBrush.GradientStops>
+                        <GradientStopCollection>
+                            <GradientStop Color="#ECAAFF"/>
+                            <GradientStop Color="#6A48F6" Offset="1"/>
+                        </GradientStopCollection>
+                    </LinearGradientBrush.GradientStops>
+                </LinearGradientBrush>
+                <LinearGradientBrush x:Key="Paint13Linear4665406881" MappingMode="Absolute" StartPoint="259,63" EndPoint="256,68">
+                    <LinearGradientBrush.GradientStops>
+                        <GradientStopCollection>
+                            <GradientStop Color="#FFD66C"/>
+                            <GradientStop Color="#FF8E4F" Offset="1"/>
+                        </GradientStopCollection>
+                    </LinearGradientBrush.GradientStops>
+                </LinearGradientBrush>
+                <LinearGradientBrush x:Key="Paint14Linear4665406881" MappingMode="Absolute" StartPoint="69,55" EndPoint="69,74">
+                    <LinearGradientBrush.GradientStops>
+                        <GradientStopCollection>
+                            <GradientStop Color="#FF7171"/>
+                            <GradientStop Color="#E63757" Offset="1"/>
+                        </GradientStopCollection>
+                    </LinearGradientBrush.GradientStops>
+                </LinearGradientBrush>
+                <LinearGradientBrush x:Key="Paint15Linear4665406881" MappingMode="Absolute" StartPoint="95,71" EndPoint="82,88">
+                    <LinearGradientBrush.GradientStops>
+                        <GradientStopCollection>
+                            <GradientStop Color="#FFD66C"/>
+                            <GradientStop Color="#FF8E4F" Offset="1"/>
+                        </GradientStopCollection>
+                    </LinearGradientBrush.GradientStops>
+                </LinearGradientBrush>
+                <LinearGradientBrush x:Key="Paint16Linear4665406881" MappingMode="Absolute" StartPoint="98,30" EndPoint="91,55">
+                    <LinearGradientBrush.GradientStops>
+                        <GradientStopCollection>
+                            <GradientStop Color="#4CFED3"/>
+                            <GradientStop Color="#00C1FE" Offset="1"/>
+                        </GradientStopCollection>
+                    </LinearGradientBrush.GradientStops>
+                </LinearGradientBrush>
+            </Canvas.Resources>
+            <Path Fill="#ffffff" Data="M237.781 60.782C237.458 60.0278 238.326 59.3224 238.998 59.793L243.853 63.1913C244.317 63.5159 244.317 64.2026 243.853 64.5272L238.998 67.9256C238.326 68.3961 237.458 67.6907 237.781 66.9365L238.751 64.6748H220.348V63.0442H238.751L237.781 60.782Z"/>
+            <Path Fill="#ffffff" Data="M232.423 49.2676C231.766 48.776 232.165 47.7311 232.982 47.8025L238.886 48.3182C239.45 48.3674 239.793 48.9621 239.554 49.4751L237.049 54.8456C236.702 55.5892 235.597 55.4123 235.5 54.5975L235.2 52.0815C234.378 52.6884 233.383 53.1899 232.313 53.6064C230.852 54.1753 229.196 54.6073 227.535 54.9275C224.216 55.5671 220.792 55.7762 218.69 55.7061L218.745 54.0764C220.72 54.1423 224.023 53.9437 227.226 53.3264C228.825 53.0181 230.38 52.6093 231.721 52.0869C232.772 51.6778 233.658 51.2119 234.331 50.695L232.423 49.2676Z"/>
+            <Path Fill="#ffffff" Data="M232.423 78.5529C231.766 79.0445 232.165 80.0894 232.982 80.018L238.886 79.5023C239.45 79.4531 239.793 78.8584 239.554 78.3454L237.049 72.9749C236.702 72.2313 235.597 72.4082 235.5 73.223L235.2 75.7379C234.38 75.1298 233.386 74.6234 232.318 74.2001C230.858 73.6216 229.202 73.1767 227.541 72.8436C224.223 72.1784 220.796 71.9429 218.691 72.0131L218.745 73.6428C220.716 73.5771 224.016 73.8 227.22 74.4424C228.82 74.763 230.375 75.1842 231.717 75.7161C232.769 76.1329 233.658 76.6049 234.332 77.1251L232.423 78.5529Z"/>
+            <Rectangle Canvas.Left="128.219" Canvas.Top="36.9546" Width="83.1609" Height="52.1794" Fill="{StaticResource Paint0Linear4665406881}"/>
+            <Ellipse Canvas.Left="202.4" Width="17.9" Canvas.Top="37" Height="52.2" Fill="{StaticResource Paint1Linear4665406881}"/>
+            <Ellipse Canvas.Left="119.3" Width="17.9" Canvas.Top="37" Height="52.2" Fill="{StaticResource Paint2Linear4665406881}"/>
+            <Path Fill="{StaticResource Paint3Linear4665406881}" Data="M184.646 50.2614L171.743 46.1797C170.657 45.8373 169.491 45.8373 168.405 46.1797L155.502 50.2614C154.84 50.4721 154.363 51.0778 154.336 51.7888C154.151 56.7132 154.469 75.8053 169.809 80.8351C169.995 80.8877 170.18 80.8877 170.339 80.8351C185.679 75.8053 185.997 56.7132 185.812 51.7888C185.785 51.0778 185.308 50.4721 184.646 50.2614Z"/>
+            <Path Fill="#ffffff" Data="M161.266 58.1152C160.445 56.6223 161.636 54.8123 163.306 55.0158L177.186 56.7079C178.691 56.8913 179.49 58.6113 178.675 59.9111L171.66 71.0937C170.876 72.344 169.064 72.2906 168.352 70.9963L161.266 58.1152ZM163.153 56.3143C162.527 56.238 162.08 56.9167 162.388 57.4766L162.739 58.1147L173.814 59.6286C174.525 59.7257 174.893 60.544 174.5 61.1545L169.062 69.6101L169.473 70.3577C169.711 70.7891 170.315 70.8069 170.576 70.3901L177.591 59.2076C177.897 58.7201 177.597 58.0751 177.033 58.0063L163.153 56.3143Z"/>
+            <Path Fill="#FF6D697D" Data="M91.8823 90.3403H11.2787C10.5614 90.3403 10 89.7812 10 89.0668V88.3525C10 87.6381 10.5614 87.079 11.2787 87.079H91.8823C92.5996 87.079 93.1609 87.6381 93.1609 88.3525V89.0668C93.1609 89.7812 92.5684 90.3403 91.8823 90.3403Z"/>
+            <Path Fill="#FF3B3747" Data="M55.354 88.687H47.6063C46.6066 88.687 45.8256 87.8747 45.8256 86.9062H57.1347C57.1347 87.8747 56.3537 88.687 55.354 88.687Z"/>
+            <Path Fill="#FF3B3747" Data="M85.8233 87.079H17.3378V41.1029C17.3378 39.0363 19.0205 37.3455 21.0772 37.3455H82.0838C84.1405 37.3455 85.8233 39.0363 85.8233 41.1029V87.079Z"/>
+            <Path Fill="{StaticResource Paint4Linear4665406881}" Data="M82.5621 87.079H19.7837V41.5183C19.7837 41.0153 20.1914 40.6067 20.6932 40.6067H81.6212C82.123 40.6067 82.5307 41.0153 82.5307 41.5183V87.079H82.5621Z"/>
+            <Path Fill="{StaticResource Paint5Linear4665406881}" Data="M274.951 84.2085C277.855 86.283 281.41 87.5034 285.249 87.5034C291.043 87.5034 296.188 84.7235 299.429 80.4227C301.467 81.9257 303.984 82.8137 306.709 82.8137C313.497 82.8137 319 77.3022 319 70.5033C319 64.3015 314.421 59.1708 308.465 58.3175C308.427 51.5513 302.938 46.0779 296.174 46.0779C293.798 46.0779 291.58 46.753 289.7 47.922C287.081 43.3192 282.137 40.2158 276.469 40.2158C269.529 40.2158 263.673 44.8699 261.844 51.2321C254.708 53.5376 249.546 60.2443 249.546 68.1585C249.546 77.979 257.495 85.9402 267.3 85.9402C270.04 85.9402 272.634 85.3186 274.951 84.2085Z"/>
+            <Path Fill="#ffffff" Data="M268.424 69.5667H267.254V62.7162H268.424V69.5667Z"/>
+            <Path Fill="#ffffff" Data="M274.348 69.5667H273.239V66.8103C273.239 65.8962 272.916 65.4392 272.27 65.4392C271.932 65.4392 271.653 65.5666 271.434 65.8214C271.214 66.073 271.104 66.3915 271.104 66.7768V69.5667H269.991V64.6749H271.104V65.487H271.123C271.489 64.8692 272.018 64.5602 272.709 64.5602C273.241 64.5602 273.647 64.7338 273.927 65.0809C274.208 65.4249 274.348 65.9233 274.348 66.5762V69.5667Z"/>
+            <Path Fill="#ffffff" Data="M278.284 69.5142C278.068 69.6224 277.783 69.6766 277.429 69.6766C276.48 69.6766 276.005 69.2212 276.005 68.3103V65.5443H275.189V64.6749H276.005V63.5427L277.114 63.2274V64.6749H278.284V65.5443H277.114V67.9902C277.114 68.2801 277.166 68.4871 277.271 68.6113C277.376 68.7355 277.552 68.7976 277.797 68.7976C277.985 68.7976 278.147 68.7434 278.284 68.6352V69.5142Z"/>
+            <Path Fill="#ffffff" Data="M283.324 67.4218H279.99C280.002 67.874 280.141 68.2227 280.405 68.468C280.673 68.7132 281.039 68.8358 281.504 68.8358C282.026 68.8358 282.506 68.6797 282.942 68.3676V69.261C282.496 69.5412 281.907 69.6814 281.174 69.6814C280.455 69.6814 279.889 69.46 279.478 69.0173C279.071 68.5715 278.867 67.9457 278.867 67.1399C278.867 66.3787 279.091 65.7593 279.541 65.2816C279.993 64.8007 280.553 64.5602 281.222 64.5602C281.891 64.5602 282.408 64.7752 282.775 65.2052C283.141 65.6351 283.324 66.2322 283.324 66.9966V67.4218ZM282.254 66.6383C282.251 66.2402 282.157 65.9313 281.972 65.7115C281.787 65.4886 281.533 65.3771 281.208 65.3771C280.889 65.3771 280.619 65.4934 280.396 65.7259C280.176 65.9584 280.041 66.2625 279.99 66.6383H282.254Z"/>
+            <Path Fill="#ffffff" Data="M287.217 65.7306C287.084 65.6255 286.891 65.573 286.639 65.573C286.311 65.573 286.037 65.7211 285.818 66.0173C285.598 66.3135 285.488 66.7163 285.488 67.2259V69.5667H284.38V64.6749H285.488V65.6829H285.507C285.616 65.3389 285.781 65.0714 286.004 64.8803C286.23 64.686 286.482 64.5889 286.759 64.5889C286.959 64.5889 287.112 64.6192 287.217 64.6797V65.7306Z"/>
+            <Path Fill="#ffffff" Data="M292.358 69.5667H291.249V66.8103C291.249 65.8962 290.926 65.4392 290.28 65.4392C289.942 65.4392 289.663 65.5666 289.444 65.8214C289.224 66.073 289.114 66.3915 289.114 66.7768V69.5667H288.001V64.6749H289.114V65.487H289.133C289.499 64.8692 290.028 64.5602 290.719 64.5602C291.251 64.5602 291.657 64.7338 291.937 65.0809C292.218 65.4249 292.358 65.9233 292.358 66.5762V69.5667Z"/>
+            <Path Fill="#ffffff" Data="M297.856 67.4218H294.522C294.534 67.874 294.673 68.2227 294.937 68.468C295.205 68.7132 295.571 68.8358 296.036 68.8358C296.558 68.8358 297.038 68.6797 297.474 68.3676V69.261C297.028 69.5412 296.439 69.6814 295.706 69.6814C294.987 69.6814 294.421 69.46 294.011 69.0173C293.603 68.5715 293.399 67.9457 293.399 67.1399C293.399 66.3787 293.624 65.7593 294.073 65.2816C294.525 64.8007 295.085 64.5602 295.754 64.5602C296.423 64.5602 296.941 64.7752 297.307 65.2052C297.673 65.6351 297.856 66.2322 297.856 66.9966V67.4218ZM296.786 66.6383C296.783 66.2402 296.689 65.9313 296.504 65.7115C296.32 65.4886 296.065 65.3771 295.74 65.3771C295.421 65.3771 295.151 65.4934 294.928 65.7259C294.708 65.9584 294.573 66.2625 294.522 66.6383H296.786Z"/>
+            <Path Fill="#ffffff" Data="M301.492 69.5142C301.275 69.6224 300.99 69.6766 300.637 69.6766C299.687 69.6766 299.213 69.2212 299.213 68.3103V65.5443H298.396V64.6749H299.213V63.5427L300.321 63.2274V64.6749H301.492V65.5443H300.321V67.9902C300.321 68.2801 300.374 68.4871 300.479 68.6113C300.584 68.7355 300.759 68.7976 301.004 68.7976C301.192 68.7976 301.355 68.7434 301.492 68.6352V69.5142Z"/>
+            <Path Fill="#ffffff" Data="M137.187 64.6749H85.8232V63.0312H137.187V64.6749Z"/>
+            <Path Fill="#ffffff" Data="M137 73.6432L96.4222 73.6432L96.4222 72.0126L137 72.0126L137 73.6432Z"/>
+            <Path Fill="#ffffff" Data="M137 55.7065L94.7916 55.7065L94.7916 53.8702L137 53.8702L137 55.7065Z"/>
+            <Ellipse Canvas.Left="245.6" Canvas.Top="45.1" Width="4.9" Height="4.9" Fill="{StaticResource Paint6Linear4665406881}"/>
+            <Ellipse Canvas.Left="108.7" Canvas.Top="41" Width="4.9" Height="4.9" Fill="{StaticResource Paint7Linear4665406881}"/>
+            <Ellipse Canvas.Left="125.8" Canvas.Top="44.3" Width="4.9" Height="4.9" Fill="{StaticResource Paint8Linear4665406881}"/>
+            <Ellipse Canvas.Left="128.2" Canvas.Top="76.9" Width="4.9" Height="4.9" Fill="{StaticResource Paint9Linear4665406881}"/>
+            <Ellipse Canvas.Left="122.5" Canvas.Top="59" Width="4.9" Height="4.9" Fill="{StaticResource Paint10Linear4665406881}"/>
+            <Ellipse Canvas.Left="111.1" Canvas.Top="78.5" Width="4.9" Height="4.9" Fill="{StaticResource Paint11Linear4665406881}"/>
+            <Ellipse Canvas.Left="244" Canvas.Top="78.5" Width="4.9" Height="4.9" Fill="{StaticResource Paint12Linear4665406881}"/>
+            <Ellipse Canvas.Left="255.4" Canvas.Top="62.2" Width="4.9" Height="4.9" Fill="{StaticResource Paint13Linear4665406881}"/>
+            <Canvas>
+                <Ellipse Canvas.Left="62" Canvas.Top="54" Width="14" Height="14" Fill="{StaticResource Paint14Linear4665406881}"/>
+            </Canvas>
+            <Path Fill="#ffffff" Data="M69 58.1252C69.4153 58.1252 69.7365 58.4891 69.685 58.9011L69.3722 61.4038C69.3487 61.5915 69.1892 61.7323 69 61.7323C68.8109 61.7323 68.6514 61.5915 68.6279 61.4038L68.3151 58.9011C68.2636 58.4891 68.5848 58.1252 69 58.1252Z"/>
+            <Path Fill="#ffffff" Data="M69.0001 63.4289C69.2763 63.4289 69.5001 63.205 69.5001 62.9289C69.5001 62.6527 69.2763 62.4289 69.0001 62.4289C68.724 62.4289 68.5001 62.6527 68.5001 62.9289C68.5001 63.205 68.724 63.4289 69.0001 63.4289Z"/>
+            <Path Fill="#ffffff" Data="M69.0001 65.9998C71.7615 65.9998 74.0001 63.7613 74.0001 60.9998C74.0001 58.2384 71.7615 55.9998 69.0001 55.9998C66.2387 55.9998 64.0001 58.2384 64.0001 60.9998C64.0001 63.7613 66.2387 65.9998 69.0001 65.9998ZM69.0001 65.2498C71.3473 65.2498 73.2501 63.3471 73.2501 60.9998C73.2501 58.6526 71.3473 56.7498 69.0001 56.7498C66.6529 56.7498 64.7501 58.6526 64.7501 60.9998C64.7501 63.3471 66.6529 65.2498 69.0001 65.2498Z"/>
+            <Path Fill="{StaticResource Paint15Linear4665406881}" Data="M98.0528 76.0894C98.0528 81.0425 94.0375 85.0578 89.0844 85.0578C84.1314 85.0578 80.1161 81.0425 80.1161 76.0894C80.1161 71.1364 84.1314 67.1211 89.0844 67.1211C94.0375 67.1211 98.0528 71.1364 98.0528 76.0894Z"/>
+            <Path Fill="#ffffff" Data="M93.4112 76.8721C93.2823 77.5033 93.0116 78.1009 92.6149 78.6178C92.0426 79.3636 91.2402 79.8998 90.3321 80.1431C89.4241 80.3864 88.4611 80.3233 87.5925 79.9635C86.724 79.6038 85.9984 78.9675 85.5283 78.1533C85.0583 77.3391 84.87 76.3926 84.9927 75.4606C85.1154 74.5285 85.5423 73.663 86.207 72.9982C86.8718 72.3334 87.7373 71.9066 88.6694 71.7839C89.3154 71.6988 89.9683 71.7632 90.5793 71.9672L88.9201 74.8409C88.3989 75.7437 89.0504 76.8721 90.0928 76.8721H93.4112ZM94.3272 76.5172C94.3541 76.2424 94.1277 76.018 93.8516 76.018H90.0928C89.7079 76.018 89.4674 75.6013 89.6598 75.268L91.5392 72.0128C91.6773 71.7737 91.5961 71.4654 91.3447 71.3513C90.4757 70.9569 89.5105 70.8117 88.5579 70.9371C87.4394 71.0843 86.4008 71.5965 85.6031 72.3942C84.8054 73.1919 84.2932 74.2306 84.1459 75.3491C83.9986 76.4676 84.2246 77.6034 84.7886 78.5804C85.3527 79.5574 86.2234 80.3209 87.2657 80.7527C88.3079 81.1844 89.4635 81.2601 90.5532 80.9681C91.6429 80.6762 92.6058 80.0328 93.2926 79.1377C93.8775 78.3755 94.2343 77.4669 94.3272 76.5172Z"/>
+            <Path Fill="#ffffff" Data="M95.1192 74.3098C95.0277 73.8611 94.8642 73.4283 94.6334 73.0286C94.4026 72.6288 94.1095 72.2708 93.7668 71.9672L92.4143 74.3098H95.1192ZM96.0353 74.6647C96.0622 74.9395 95.8358 75.1639 95.5597 75.1639H91.8009C91.416 75.1639 91.1755 74.7472 91.3679 74.4139L93.2473 71.1587C93.3853 70.9196 93.6929 70.8357 93.9174 70.9964C94.5099 71.4205 95.0068 71.9672 95.3731 72.6015C95.7393 73.2358 95.9643 73.9395 96.0353 74.6647Z"/>
+            <Path Fill="{StaticResource Paint16Linear4665406881}" Data="M99.6834 46.7383C99.6834 52.5919 94.9381 57.3372 89.0844 57.3372C83.2308 57.3372 78.4855 52.5919 78.4855 46.7383C78.4855 40.8847 83.2308 36.1393 89.0844 36.1393C94.9381 36.1393 99.6834 40.8847 99.6834 46.7383Z"/>
+            <Path Fill="#ffffff" Data="M86.6385 45.1075C86.6385 44.6573 87.0036 44.2922 87.4538 44.2922H90.715C91.1653 44.2922 91.5303 44.6573 91.5303 45.1075V48.3688C91.5303 48.819 91.1653 49.1841 90.715 49.1841H87.4538C87.0036 49.1841 86.6385 48.819 86.6385 48.3688V45.1075ZM87.4538 45.1075H90.715V48.3688H87.4538V45.1075Z"/>
+            <Path Fill="#ffffff" Data="M85.8232 40.2157V41.8463H87.4538V40.2157H88.2691V41.8463H89.8997V40.2157H90.715V41.8463H92.3457V40.2157H93.161V41.8463C93.6112 41.8463 93.9763 42.2114 93.9763 42.6616H95.6069V43.4769H93.9763V45.1075H95.6069V45.9229H93.9763V47.5535H95.6069V48.3688H93.9763V49.9994H95.6069V50.8147H93.9763C93.9763 51.265 93.6112 51.63 93.161 51.63V53.2606H92.3457V51.63H90.715V53.2606H89.8997V51.63H88.2691V53.2606H87.4538V51.63H85.8232V53.2606H85.0079L85.0079 51.63C84.5576 51.63 84.1926 51.265 84.1926 50.8147H82.562V49.9994H84.1926V48.3688H82.562V47.5535H84.1926V45.9229H82.562V45.1075H84.1926V43.4769H82.562V42.6616L84.1926 42.6616C84.1926 42.2114 84.5576 41.8463 85.0079 41.8463V40.2157H85.8232ZM85.0079 42.6616H93.161V50.8147H85.0079L85.0079 42.6616Z"/>
+        </Canvas>
+    </Viewbox>
+</UserControl>

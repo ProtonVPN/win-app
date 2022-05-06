@@ -24,9 +24,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:servers="clr-namespace:ProtonVPN.Servers"
              x:ClassModifier="internal"
-             xmlns:icons="clr-namespace:ProtonVPN.Views.Icons"
              xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
              xmlns:streaming="clr-namespace:ProtonVPN.Streaming"
+             xmlns:icons="clr-namespace:ProtonVPN.Resource.Graphics.Icons;assembly=ProtonVPN.Resource"
              mc:Ignorable="d">
 
     <UserControl.Resources>
@@ -34,15 +34,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Setter Property="BorderThickness" Value="0" />
             <Setter Property="Background" Value="Transparent" />
         </Style>
-        <Style x:Key="Icon" TargetType="Control">
-            <Setter Property="Foreground" Value="{StaticResource GrayIconColor}" />
+        <Style x:Key="Icon" TargetType="UserControl">
+            <Setter Property="Foreground" Value="{StaticResource TextWeakBrushColor}" />
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="HorizontalAlignment" Value="Center" />
             <Setter Property="Width" Value="16" />
             <Setter Property="Height" Value="16" />
         </Style>
     </UserControl.Resources>
-    <ItemsControl ItemsSource="{Binding Features}">
+    <ItemsControl ItemsSource="{Binding Features}" Margin="3,0,0,0">
         <ItemsControl.ItemContainerStyle>
             <Style>
                 <Setter Property="Control.Margin" Value="6,0,0,0" />
@@ -56,12 +56,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <ItemsControl.Resources>
             <DataTemplate DataType="{x:Type servers:P2PFeature}">
                 <Border Style="{StaticResource ServerFeature}" ToolTip="{translations:Loc Servers_Feature_val_P2P}">
-                    <icons:Exchange Style="{StaticResource Icon}" />
+                    <icons:ArrowsSwitch Style="{StaticResource Icon}" />
                 </Border>
             </DataTemplate>
             <DataTemplate DataType="{x:Type servers:TorFeature}">
                 <Border Style="{StaticResource ServerFeature}" ToolTip="{translations:Loc Servers_Feature_val_Tor}">
-                    <icons:Tor Style="{StaticResource Icon}" />
+                    <icons:BrandTor Style="{StaticResource Icon}" />
                 </Border>
             </DataTemplate>
             <DataTemplate DataType="{x:Type servers:StreamingFeature}">
@@ -69,11 +69,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <ToggleButton x:Name="InfoToggleButton"
                                   ToolTip="{translations:Loc Servers_Feature_val_Streaming}"
                                   DockPanel.Dock="Right"
+                                  Width="14"
                                   Style="{StaticResource EmptyToggleButton}"
                                   IsChecked="{Binding ShowPopup, Mode=TwoWay}"
                                   Background="Transparent"
                                   BorderBrush="Transparent">
-                        <icons:Streaming Style="{StaticResource Icon}" />
+                        <icons:Play Style="{StaticResource Icon}" Width="20" Height="20" />
                     </ToggleButton>
                     <streaming:StreamingInfoPopup DataContext="{Binding StreamingInfoPopupViewModel}"
                                                   PlacementTarget="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Grid, AncestorLevel=2}}"

@@ -25,22 +25,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     xmlns:splittunneling="clr-namespace:ProtonVPN.Settings.SplitTunneling"
                     xmlns:fa="http://schemas.fontawesome.io/icons/"
                     xmlns:icons="clr-namespace:ProtonVPN.Views.Icons"
-                    xmlns:common="clr-namespace:ProtonVPN.Common;assembly=ProtonVPN.Common"
                     xmlns:settings="clr-namespace:ProtonVPN.Settings">
-    <SolidColorBrush x:Key="Button.Static.Background" Color="Transparent"/>
-    <SolidColorBrush x:Key="Button.Static.Border" Color="#4B4B56"/>
-    <SolidColorBrush x:Key="Button.Static.Foreground" Color="White"/>
-    <SolidColorBrush x:Key="Button.MouseOver.Background" Color="Transparent"/>
-    <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#4B4B56"/>
-    <SolidColorBrush x:Key="Button.MouseOver.Foreground" Color="White"/>
-    <SolidColorBrush x:Key="Button.Disabled.Background" Color="Transparent"/>
-    <SolidColorBrush x:Key="Button.Disabled.Border" Color="#4B4B56"/>
-    <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="Gray"/>
 
     <Style x:Key="SettingsAddButton" TargetType="Button" BasedOn="{StaticResource ClearStyleButton}">
-        <Setter Property="Foreground" Value="{StaticResource Button.Static.Foreground}"/>
-        <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
-        <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="Border.CornerRadius" Value="16"/>
         <Setter Property="Height" Value="32"/>
         <Setter Property="FontSize" Value="14"/>
@@ -71,17 +60,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </StackPanel>
                     </Border>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
-                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
-                            <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.MouseOver.Foreground}"/>
-                            <Setter Property="Foreground" TargetName="icon" Value="{StaticResource Button.MouseOver.Foreground}"/>
-                        </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
-                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
-                            <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
-                            <Setter Property="Foreground" TargetName="icon" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource TextDisabledBrushColor}"/>
+                            <Setter Property="Foreground" TargetName="icon" Value="{StaticResource TextDisabledBrushColor}"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource InteractionNormAccentHoverBrushColor}"/>
+                            <Setter Property="Foreground" TargetName="icon" Value="{StaticResource InteractionNormAccentHoverBrushColor}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -90,12 +75,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     </Style>
     
     <Style x:Key="SettingsRemoveButton" TargetType="Button" BasedOn="{StaticResource ClearStyleButton}">
-        <Setter Property="Foreground" Value="#464652"/>
+        <Setter Property="Foreground" Value="{StaticResource TextHintBrushColor}"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <fa:FontAwesome x:Name="Icon" Icon="TimesCircle" FontSize="16" FontWeight="Bold" 
+                    <fa:FontAwesome x:Name="Icon" 
+                                    FontSize="16"
+                                    FontWeight="Bold" 
+                                    Icon="TimesCircle" 
                                     Foreground="{TemplateBinding Foreground}"
                                     VerticalAlignment="{TemplateBinding VerticalAlignment}"
                                     HorizontalAlignment="{TemplateBinding HorizontalAlignment}"/>
@@ -103,18 +91,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </Setter.Value>
         </Setter>
         <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="{StaticResource TextDisabledBrushColor}"/>
+            </Trigger>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Foreground" Value="Red"/>
+                <Setter Property="Foreground" Value="{StaticResource SignalDangerBrushColor}"/>
             </Trigger>
         </Style.Triggers>
-    </Style>
-    
-    <Style x:Key="SettingsCheckbox" TargetType="CheckBox" BasedOn="{StaticResource Checkbox}">
-        <Setter Property="Foreground" Value="White"/>
-        <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="FontSize" Value="16"/>
-        <Setter Property="FontWeight" Value="Bold"/>
-        <Setter Property="Padding" Value="0,4"/>
     </Style>
 
     <Style x:Key="PlaceholderTextBox" TargetType="TextBox">
@@ -126,7 +109,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
         <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
-        <Setter Property="CaretBrush" Value="White"/>
+        <Setter Property="CaretBrush" Value="{StaticResource TextNormBrushColor}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBox}">
@@ -145,7 +128,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                     HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                     Margin="{TemplateBinding Padding}"
-                                    Foreground="Silver"
+                                    Foreground="{StaticResource TextHintBrushColor}"
                                     Content="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
                                 <Label.Style>
                                     <Style TargetType="Label">
@@ -166,23 +149,24 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     </Style>
 
     <Style x:Key="SettingsPlaceholderTextBox" TargetType="TextBox" BasedOn="{StaticResource PlaceholderTextBox}">
-        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}"/>
         <Setter Property="Height" Value="36"/>
         <Setter Property="Padding" Value="0,0,0,0"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="BorderBrush" Value="#515156"/>
+        <Setter Property="BorderBrush" Value="{StaticResource BorderWeakBrushColor}"/>
         <Setter Property="BorderThickness" Value="0,0,0,1"/>
         <Setter Property="FontSize" Value="16"/>
     </Style>
 
     <DataTemplate DataType="{x:Type splittunneling:AppViewModel}">
         <DockPanel Margin="0,0,0,0">
-            <Image Width="24" Height="24"
+            <Image Width="24" 
+                   Height="24"
                    Margin="0,0,10,0"
                    VerticalAlignment="Center"
                    Visibility="{Binding FileExists, Converter={StaticResource BoolToVis}}"
                    Source="{Binding Path, Converter={StaticResource FilePathToImageSourceConverter}}"/>
-            <fa:FontAwesome Icon="Times" Foreground="{StaticResource RedColor}" FontSize="26" Margin="3,0,10,0">
+            <fa:FontAwesome Icon="Times" Foreground="{StaticResource SignalDangerBrushColor}" FontSize="26" Margin="3,0,10,0">
                 <fa:FontAwesome.Style>
                     <Style TargetType="fa:FontAwesome">
                         <Setter Property="Visibility" Value="Collapsed"/>
@@ -194,7 +178,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </Style>
                 </fa:FontAwesome.Style>
             </fa:FontAwesome>
-            <TextBlock Padding="0,0,0,3" FontSize="16" Foreground="White" VerticalAlignment="Center" 
+            <TextBlock Padding="0,0,0,3" FontSize="16" Foreground="{StaticResource TextNormBrushColor}" VerticalAlignment="Center" 
                        Text="{Binding Name}"
                        TextTrimming="CharacterEllipsis">
                 <i:Interaction.Behaviors>
@@ -206,7 +190,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     
     <DataTemplate DataType="{x:Type settings:IpViewModel}">
         <DockPanel>
-            <TextBlock Padding="0,0,0,3" FontSize="16" Foreground="White" VerticalAlignment="Center"
+            <TextBlock Padding="0,0,0,3" FontSize="16" Foreground="{StaticResource TextNormBrushColor}" VerticalAlignment="Center"
                        Text="{Binding Ip}"/>
         </DockPanel>
     </DataTemplate>
@@ -267,57 +251,69 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <ControlTemplate TargetType="{x:Type RadioButton}">
                     <BulletDecorator Background="Transparent">
                         <BulletDecorator.Bullet>
-                            <Grid Width="13" Height="13">
-                                <Ellipse x:Name="Border" StrokeThickness="1" Stroke="White">
-                                </Ellipse>
-                                <Ellipse x:Name="CheckMark" Margin="4" Visibility="Collapsed">
-                                    <Ellipse.Fill>
-                                        <SolidColorBrush Color="White"/>
-                                    </Ellipse.Fill>
-                                </Ellipse>
+                            <Grid Width="20" Height="20">
+                                <Ellipse x:Name="Border" StrokeThickness="1" Stroke="Transparent" />
+                                <Ellipse x:Name="CheckMark" Margin="5" Visibility="Collapsed" Fill="{StaticResource TextNormBrushColor}" />
                             </Grid>
                         </BulletDecorator.Bullet>
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="CommonStates">
-                                <VisualState x:Name="Normal"/>
-                                    <VisualState x:Name="MouseOver"/>
-                                <VisualState x:Name="Pressed"/>
-                                <VisualState x:Name="Disabled">
-                                    <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Stroke" Storyboard.TargetName="Border">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource InactivePinStrokeColor}"/>
-                                        </ObjectAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                            </VisualStateGroup>
-                            <VisualStateGroup x:Name="CheckStates">
-                                <VisualState x:Name="Checked">
-                                    <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="CheckMark">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Stroke" Storyboard.TargetName="Border">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PrimaryColor}"/>
-                                        </ObjectAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="Unchecked"/>
-                                <VisualState x:Name="Indeterminate"/>
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
                         <ContentPresenter Margin="{TemplateBinding Padding}"
                                           VerticalAlignment="Center"
                                           HorizontalAlignment="Left"
                                           RecognizesAccessKey="True"/>
                     </BulletDecorator>
                     <ControlTemplate.Triggers>
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding IsEnabled, ElementName=Border}" Value="True"/>
-                                <Condition Binding="{Binding IsChecked, RelativeSource={RelativeSource Self}}" Value="True"/>
-                            </MultiDataTrigger.Conditions>
-                            <Setter Property="Stroke" TargetName="Border" Value="{StaticResource PrimaryColor}"/>
-                        </MultiDataTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsEnabled" Value="True" />
+                                <Condition Property="IsChecked" Value="False" />
+                                <Condition Property="IsMouseOver" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Stroke" TargetName="Border" Value="{StaticResource TextNormBrushColor}"/>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsEnabled" Value="True" />
+                                <Condition Property="IsChecked" Value="True" />
+                                <Condition Property="IsMouseOver" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Stroke" TargetName="Border" Value="{StaticResource InteractionNormHoverBrushColor}"/>
+                            <Setter Property="Fill" TargetName="Border" Value="{StaticResource InteractionNormHoverBrushColor}"/>
+                            <Setter Property="Visibility" TargetName="CheckMark" Value="Visible"/>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsEnabled" Value="False" />
+                                <Condition Property="IsChecked" Value="False" />
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Stroke" TargetName="Border" Value="{StaticResource TextDisabledBrushColor}"/>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsEnabled" Value="False" />
+                                <Condition Property="IsChecked" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Stroke" TargetName="Border" Value="{StaticResource TextDisabledBrushColor}"/>
+                            <Setter Property="Fill" TargetName="Border" Value="{StaticResource TextDisabledBrushColor}"/>
+                            <Setter Property="Visibility" TargetName="CheckMark" Value="Visible"/>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsEnabled" Value="True" />
+                                <Condition Property="IsChecked" Value="False" />
+                                <Condition Property="IsMouseOver" Value="False" />
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Stroke" TargetName="Border" Value="{StaticResource TextWeakBrushColor}"/>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsEnabled" Value="True" />
+                                <Condition Property="IsChecked" Value="True" />
+                                <Condition Property="IsMouseOver" Value="False" />
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Stroke" TargetName="Border" Value="{StaticResource InteractionNormBrushColor}"/>
+                            <Setter Property="Fill" TargetName="Border" Value="{StaticResource InteractionNormBrushColor}"/>
+                            <Setter Property="Visibility" TargetName="CheckMark" Value="Visible"/>
+                        </MultiTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

@@ -456,6 +456,12 @@ namespace ProtonVPN.Core
             Resolve<LoginWindowViewModel>().CurrentPageViewModel = Resolve<LoadingViewModel>();
         }
 
+        private void ShowLoginForm()
+        {
+            SwitchToLoginWindow();
+            CheckAuthenticationServerStatus();
+        }
+
         private void SwitchToLoginWindow()
         {
             LoginWindowViewModel loginWindowViewModel = Resolve<LoginWindowViewModel>();
@@ -465,12 +471,6 @@ namespace ProtonVPN.Core
             Application.Current.MainWindow = loginWindow;
             loginWindow.Show();
             loginWindow.Activate();
-        }
-
-        private void ShowLoginForm()
-        {
-            SwitchToLoginWindow();
-            CheckAuthenticationServerStatus();
         }
 
         private void CheckAuthenticationServerStatus()

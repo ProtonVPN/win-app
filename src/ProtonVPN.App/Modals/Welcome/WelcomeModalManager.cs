@@ -21,8 +21,7 @@ using System;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Settings;
-using ProtonVPN.Core.Window.Popups;
-using ProtonVPN.Windows.Popups.Upsell;
+using ProtonVPN.Modals.Upsell;
 
 namespace ProtonVPN.Modals.Welcome
 {
@@ -31,18 +30,15 @@ namespace ProtonVPN.Modals.Welcome
         private readonly Random _random = new();
         private readonly IAppSettings _appSettings;
         private readonly IUserStorage _userStorage;
-        private readonly IPopupWindows _popupWindows;
         private readonly IModals _modals;
 
         public WelcomeModalManager(
             IAppSettings appSettings,
             IUserStorage userStorage,
-            IPopupWindows popupWindows,
             IModals modals)
         {
             _appSettings = appSettings;
             _userStorage = userStorage;
-            _popupWindows = popupWindows;
             _modals = modals;
         }
 
@@ -53,13 +49,17 @@ namespace ProtonVPN.Modals.Welcome
             {
                 ShowWelcomeModal();
             }
+            else if (_appSettings.IsToShowRebrandingModal)
+            {
+                ShowRebrandingModal();
+            }
             else if (!user.Paid() && !_userStorage.User().IsDelinquent())
             {
-                ShowEnjoyModal();
+                ShowUpsellModal();
             }
         }
 
-        private void ShowEnjoyModal()
+        private void ShowUpsellModal()
         {
             int randomNumber = _random.Next(0, 100);
             if (randomNumber >= 15)
@@ -67,13 +67,19 @@ namespace ProtonVPN.Modals.Welcome
                 return;
             }
 
-            _popupWindows.Show<EnjoyingUpsellPopupViewModel>();
+            _modals.Show<UpsellModalViewModel>();
         }
 
         private void ShowWelcomeModal()
         {
             _modals.Show<WelcomeModalViewModel>();
             _appSettings.WelcomeModalShown = true;
+        }
+
+        private void ShowRebrandingModal()
+        {
+            _modals.Show<RebrandingModalViewModel>();
+            _appSettings.IsToShowRebrandingModal = false;
         }
 
         private bool WelcomeModalHasToBeShown()

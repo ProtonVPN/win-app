@@ -31,7 +31,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     </Storyboard>
 
     <Style x:Key="Spinner" TargetType="Image">
-        <Setter Property="Source" Value="../Images/green-spinner.png"/>
+        <Setter Property="Source" Value="../Images/brand-spinner.png"/>
         <Setter Property="Width" Value="21"/>
         <Setter Property="Height" Value="21"/>
         <Setter Property="Visibility" Value="Collapsed"/>

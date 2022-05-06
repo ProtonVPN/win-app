@@ -19,24 +19,27 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:fa="http://schemas.fontawesome.io/icons/">
+                    xmlns:icons="clr-namespace:ProtonVPN.Resource.Graphics.Icons;assembly=ProtonVPN.Resource">
 
     <Style x:Key="FormErrorsPanelCloseButton" TargetType="Button" BasedOn="{StaticResource ClearStyleButton}">
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="HorizontalAlignment" Value="Right"/>
         <Setter Property="Height" Value="55"/>
         <Setter Property="Width" Value="55"/>
-        <Setter Property="Background" Value="#9d9d9d"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="Background" Value="{StaticResource NotificationErrorBrushColor}"/>
         <Setter Property="Command" Value="{Binding CloseCommand}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border BorderThickness="0" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}" Background="{TemplateBinding Background}">
-                        <fa:FontAwesome x:Name="Icon" VerticalAlignment="Center" FontSize="14" Icon="Close" Foreground="White"/>
-                    </Border>
+                    <icons:CrossBig x:Name="CloseIcon"
+                                    Width="20" 
+                                    Height="20"
+                                    Background="Transparent"
+                                    Foreground="{StaticResource TextNormBrushColor}" />
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="Icon" Property="Foreground" Value="White"/>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter TargetName="CloseIcon" Property="Foreground" Value="{StaticResource TextInvertBrushColor}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

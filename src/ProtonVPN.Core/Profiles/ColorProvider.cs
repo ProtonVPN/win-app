@@ -18,22 +18,50 @@
  */
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using ProtonVPN.Common.Extensions;
+using ProtonVPN.Resource.Colors;
 
 namespace ProtonVPN.Core.Profiles
 {
     public class ColorProvider
     {
-        private static readonly Random Random = new Random();
-
-        private static readonly string[] ColorCodes = {
-            "#F44236", "#E91D62", "#9C27B0", "#6739B6", "#3E50B4", "#2195F2", "#01BBD4",
-            "#029587", "#8BC24A", "#CCDB38", "#FFE93B", "#FF7044", "#FF9700", "#607C8A",
+        private static readonly Random Random = new();
+        private static readonly string[] ColorResourceKeys =
+        {
+            "ProfileColorRed", "ProfileColorMagenta", "ProfileColorViolet", "ProfileColorPurple",
+            "ProfileColorNavy", "ProfileColorBlue", "ProfileColorCyan", "ProfileColorTeal",
+            "ProfileColorGreen", "ProfileColorLime", "ProfileColorYellow", "ProfileColorOrange",
+            "ProfileColorGold", "ProfileColorGray",
         };
 
-        public string RandomColor() => ColorCodes[Random.Next(TotalColors)];
+        private readonly Lazy<string[]> _colorCodes;
+        private readonly IColorPalette _colorPalette;
 
-        public int TotalColors => ColorCodes.Length;
+        public ColorProvider(IColorPalette colorPalette)
+        {
+            _colorPalette = colorPalette;
+            _colorCodes = new(() => CreateColorEnumerable().ToArray());
+        }
 
-        public string[] GetColors() => ColorCodes;
+        private IEnumerable<string> CreateColorEnumerable()
+        {
+            foreach (string colorResourceKey in ColorResourceKeys)
+            {
+                yield return _colorPalette.GetStringByResourceName(colorResourceKey);
+            }
+        }
+
+        public string GetRandomColor() => _colorCodes.Value[Random.Next(GetNumOfColors)];
+
+        public int GetNumOfColors => _colorCodes.Value.Length;
+
+        public string[] GetColors() => _colorCodes.Value;
+        
+        public string GetRandomColorIfInvalid(string colorCode)
+        {
+            return colorCode.IsColorCodeValid() ? colorCode : GetRandomColor();
+        }
     }
 }

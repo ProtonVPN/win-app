@@ -22,9 +22,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations">
 
+    <UserControl.Resources>
+        <Style x:Key="ButtonsContainer" TargetType="DockPanel">
+            <Setter Property="Height" Value="66"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="VerticalAlignment" Value="Bottom"/>
+        </Style>
+    </UserControl.Resources>
     <DockPanel Style="{StaticResource ButtonsContainer}">
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="30,0,30,0">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10,0">
             <Button Style="{StaticResource SecondaryModalButton}"
+                    Margin="0,0,20,0"
                     Command="{Binding CancelCommand}"
                     Content="{translations:Loc Window_btn_Cancel}"/>
             <Button Style="{StaticResource PrimaryModalButton}"

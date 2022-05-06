@@ -70,10 +70,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <Run Text="{Binding EntryCountryCode, Converter={StaticResource CountryCodeToNameConverter}, Mode=OneWay}">
                     <Run.Style>
                         <Style TargetType="Run">
-                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="Foreground" Value="{StaticResource OldTextBrushColor}"/>
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding UpgradeRequired}" Value="True">
-                                    <Setter Property="Foreground" Value="Gray"/>
+                                    <Setter Property="Foreground" Value="{StaticResource OldSecondaryTextBrushColor}"/>
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>

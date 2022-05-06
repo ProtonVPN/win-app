@@ -17,16 +17,17 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Windows;
-using System.Windows.Media;
+using System;
 using ProtonVPN.Core.MVVM;
+using ProtonVPN.Resource.Colors;
+using ProtonVPN.Resources.Colors;
 
 namespace ProtonVPN.Map.ViewModels.MapLine
 {
     public abstract class MapLine : ViewModel
     {
         public double HScale { get; set; } = 1;
-
+        
         private double _x1;
         private double _y1;
         private double _x2;
@@ -93,29 +94,29 @@ namespace ProtonVPN.Map.ViewModels.MapLine
             set => Set(ref _visible, value);
         }
 
-        public string Color
+        private static readonly IColorPalette _colorPalette = ColorPaletteFactory.Create();
+        private readonly Lazy<string> _primaryColor = new(() => _colorPalette.GetStringByResourceName("InteractionNormAccentBrushColor"));
+        private readonly Lazy<string> _secondaryColor = new(() => _colorPalette.GetStringByResourceName("InteractionNormAccentHoverBrushColor"));
+        private readonly Lazy<string> _mapHighlightColor = new(() => _colorPalette.GetStringByResourceName("InteractionNormAccentActiveBrushColor"));
+
+        public string Color => GetColor();
+
+        private string GetColor()
         {
-            get
+            if (this is SecureCoreLine)
             {
-                var findResource = (Brush)Application.Current.FindResource("PrimaryColor");
-                var primaryColor = findResource?.ToString();
-                if (this is SecureCoreLine)
-                {
-                    return primaryColor;
-                }
-
-                if (Active)
-                {
-                    return "#767682";
-                }
-
-                if (Connected)
-                {
-                    return primaryColor;
-                }
-
-                return "#55565c";
+                return _primaryColor.Value;
             }
+            if (Active)
+            {
+                return _mapHighlightColor.Value;
+            }
+            if (Connected)
+            {
+                return _primaryColor.Value;
+            }
+
+            return _secondaryColor.Value;
         }
 
         public abstract void ApplyMapScale(double scale);

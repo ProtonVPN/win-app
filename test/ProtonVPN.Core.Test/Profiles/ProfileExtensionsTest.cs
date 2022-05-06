@@ -18,6 +18,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using FluentAssertions;
@@ -33,7 +34,7 @@ namespace ProtonVPN.Core.Test.Profiles
         public void Exists_ShouldBe_False_WhenProfileIsNull()
         {
             // Act
-            var result = ((Profile) null).Exists();
+            bool result = ((Profile) null).Exists();
             // Assert
             result.Should().BeFalse();
         }
@@ -42,9 +43,9 @@ namespace ProtonVPN.Core.Test.Profiles
         public void Exists_ShouldBe_True_WhenProfileIsNotNull()
         {
             // Arrange
-            var profile = new Profile();
+            Profile profile = new Profile(null);
             // Act
-            var result = profile.Exists();
+            bool result = profile.Exists();
             // Assert
             result.Should().BeTrue();
         }
@@ -53,7 +54,7 @@ namespace ProtonVPN.Core.Test.Profiles
         public void IsValid_ShouldBe_False_WhenProfileIsNull()
         {
             // Act
-            var result = ((Profile) null).IsValid();
+            bool result = ((Profile) null).IsValid();
             // Assert
             result.Should().BeFalse();
         }
@@ -66,9 +67,9 @@ namespace ProtonVPN.Core.Test.Profiles
         public void IsValid_ShouldBe_WhenServerId_Is(bool expected, string serverId)
         {
             // Arrange
-            var profile = new Profile { ServerId = serverId };
+            Profile profile = new(null) { ServerId = serverId, ColorCode = "#FFFFFF" };
             // Act
-            var result = profile.IsValid();
+            bool result = profile.IsValid();
             // Assert
             result.Should().Be(expected);
         }
@@ -77,9 +78,9 @@ namespace ProtonVPN.Core.Test.Profiles
         public void ModifiedLaterThan_ShouldBe_False_WhenProfile_IsNull()
         {
             // Arrange
-            var another = new Profile { ModifiedAt = DateTime.MinValue };
+            Profile another = new Profile(null) { ModifiedAt = DateTime.MinValue };
             // Act
-            var result = ((Profile) null).ModifiedLaterThan(another);
+            bool result = ((Profile) null).ModifiedLaterThan(another);
             // Assert
             result.Should().BeFalse();
         }
@@ -88,9 +89,9 @@ namespace ProtonVPN.Core.Test.Profiles
         public void ModifiedLaterThan_ShouldBe_False_WhenAnother_IsNull()
         {
             // Arrange
-            var profile = new Profile { ModifiedAt = DateTime.MaxValue };
+            Profile profile = new Profile(null) { ModifiedAt = DateTime.MaxValue };
             // Act
-            var result = profile.ModifiedLaterThan(null);
+            bool result = profile.ModifiedLaterThan(null);
             // Assert
             result.Should().BeFalse();
         }
@@ -102,10 +103,10 @@ namespace ProtonVPN.Core.Test.Profiles
         public void ModifiedLaterThan_ShouldBe_WhenProfile_ModifiedAt_AndAnother_ModifiedAt_Are(bool expected, string profileModifiedAt, string anotherModifiedAt)
         {
             // Arrange
-            var profile = new Profile { ModifiedAt = DateTime.Parse(profileModifiedAt, CultureInfo.InvariantCulture.DateTimeFormat) };
-            var another = new Profile { ModifiedAt = DateTime.Parse(anotherModifiedAt, CultureInfo.InvariantCulture.DateTimeFormat) };
+            Profile profile = new Profile(null) { ModifiedAt = DateTime.Parse(profileModifiedAt, CultureInfo.InvariantCulture.DateTimeFormat) };
+            Profile another = new Profile(null) { ModifiedAt = DateTime.Parse(anotherModifiedAt, CultureInfo.InvariantCulture.DateTimeFormat) };
             // Act
-            var result = profile.ModifiedLaterThan(another);
+            bool result = profile.ModifiedLaterThan(another);
             // Assert
             result.Should().Be(expected);
         }
@@ -114,9 +115,9 @@ namespace ProtonVPN.Core.Test.Profiles
         public void WithIdFrom_ShouldBe_Null_WhenProfile_IsNull()
         {
             // Arrange
-            var another = new Profile { Id = "def" };
+            Profile another = new Profile(null) { Id = "def" };
             // Act
-            var profile = ((Profile) null).WithIdFrom(another);
+            Profile profile = ((Profile) null).WithIdFrom(another);
             // Assert
             profile.Should().BeNull();
         }
@@ -125,8 +126,8 @@ namespace ProtonVPN.Core.Test.Profiles
         public void WithIdFrom_Id_ShouldBe_Another_Id()
         {
             // Arrange
-            var profile = new Profile { Id = "abc" };
-            var another = new Profile { Id = "def" };
+            Profile profile = new Profile(null) { Id = "abc" };
+            Profile another = new Profile(null) { Id = "def" };
             // Act
             profile = profile.WithIdFrom(another);
             // Assert
@@ -137,7 +138,7 @@ namespace ProtonVPN.Core.Test.Profiles
         public void WithIdFrom_Id_ShouldBeSame_WhenAnother_IsNull()
         {
             // Arrange
-            var profile = new Profile { Id = "abc" };
+            Profile profile = new Profile(null) { Id = "abc" };
             // Act
             profile = profile.WithIdFrom(null);
             // Assert
@@ -148,9 +149,9 @@ namespace ProtonVPN.Core.Test.Profiles
         public void WithExternalIdFrom_ShouldBeNull_WhenProfile_IsNull()
         {
             // Arrange
-            var another = new Profile { ExternalId = "def" };
+            Profile another = new Profile(null) { ExternalId = "def" };
             // Act
-            var profile = ((Profile)null).WithExternalIdFrom(another);
+            Profile profile = ((Profile)null).WithExternalIdFrom(another);
             // Assert
             profile.Should().BeNull();
         }
@@ -159,8 +160,8 @@ namespace ProtonVPN.Core.Test.Profiles
         public void WithExternalIdFrom_ExternalId_ShouldBe_Another_ExternalId()
         {
             // Arrange
-            var profile = new Profile { ExternalId = "abc" };
-            var another = new Profile { ExternalId = "def" };
+            Profile profile = new Profile(null) { ExternalId = "abc" };
+            Profile another = new Profile(null) { ExternalId = "def" };
             // Act
             profile = profile.WithExternalIdFrom(another);
             // Assert
@@ -171,7 +172,7 @@ namespace ProtonVPN.Core.Test.Profiles
         public void WithExternalIdFrom_ExternalId_ShouldBeSame_WhenAnother_IsNull()
         {
             // Arrange
-            var profile = new Profile { ExternalId = "abc" };
+            Profile profile = new Profile(null) { ExternalId = "abc" };
             // Act
             profile = profile.WithExternalIdFrom(null);
             // Assert
@@ -182,8 +183,8 @@ namespace ProtonVPN.Core.Test.Profiles
         public void WithModifiedAt_ModifiedAt_ShouldBe_Value()
         {
             // Arrange
-            var profile = new Profile { ModifiedAt = DateTime.Parse("2020-01-02 03:04:05") };
-            var value = DateTime.Parse("2019-10-11 12:13:14");
+            Profile profile = new Profile(null) { ModifiedAt = DateTime.Parse("2020-01-02 03:04:05") };
+            DateTime value = DateTime.Parse("2019-10-11 12:13:14");
             // Act
             profile = profile.WithModifiedAt(value);
             // Assert
@@ -194,7 +195,7 @@ namespace ProtonVPN.Core.Test.Profiles
         public void WithStatus_Status_ShouldBe_Value()
         {
             // Arrange
-            var profile = new Profile { Status = ProfileStatus.Created };
+            Profile profile = new Profile(null) { Status = ProfileStatus.Created };
             const ProfileStatus value = ProfileStatus.Synced;
             // Act
             profile = profile.WithStatus(value);
@@ -206,7 +207,7 @@ namespace ProtonVPN.Core.Test.Profiles
         public void WithStatus_OriginalName_ShouldBe_Null_WhenValueIs_Synced()
         {
             // Arrange
-            var profile = new Profile { OriginalName = "Profile name" };
+            Profile profile = new Profile(null) { OriginalName = "Profile name" };
             const ProfileStatus value = ProfileStatus.Synced;
             // Act
             profile = profile.WithStatus(value);
@@ -218,7 +219,7 @@ namespace ProtonVPN.Core.Test.Profiles
         public void WithStatus_UniqueNameIndex_ShouldBe_Zero_WhenValueIs_Synced()
         {
             // Arrange
-            var profile = new Profile { UniqueNameIndex = 5 };
+            Profile profile = new Profile(null) { UniqueNameIndex = 5 };
             const ProfileStatus value = ProfileStatus.Synced;
             // Act
             profile = profile.WithStatus(value);
@@ -230,7 +231,7 @@ namespace ProtonVPN.Core.Test.Profiles
         public void WithSyncStatus_SyncStatus_ShouldBe_Value()
         {
             // Arrange
-            var profile = new Profile { SyncStatus = ProfileSyncStatus.InProgress };
+            Profile profile = new Profile(null) { SyncStatus = ProfileSyncStatus.InProgress };
             const ProfileSyncStatus value = ProfileSyncStatus.Succeeded;
             // Act
             profile = profile.WithSyncStatus(value);
@@ -242,8 +243,8 @@ namespace ProtonVPN.Core.Test.Profiles
         public void WithStatusMergedFrom_Status_ShouldBe_Another_Status_When_StatusIs_Updated()
         {
             // Arrange
-            var profile = new Profile { Status = ProfileStatus.Updated };
-            var another = new Profile { Status = ProfileStatus.Deleted };
+            Profile profile = new Profile(null) { Status = ProfileStatus.Updated };
+            Profile another = new Profile(null) { Status = ProfileStatus.Deleted };
             // Act
             profile = profile.WithStatusMergedFrom(another);
             // Assert
@@ -254,7 +255,7 @@ namespace ProtonVPN.Core.Test.Profiles
         public void WithStatusMergedFrom_Status_ShouldBeSame_WhenAnother_IsNull()
         {
             // Arrange
-            var profile = new Profile { Status = ProfileStatus.Created };
+            Profile profile = new Profile(null) { Status = ProfileStatus.Created };
             // Act
             profile = profile.WithStatusMergedFrom(null);
             // Assert
@@ -267,8 +268,8 @@ namespace ProtonVPN.Core.Test.Profiles
         public void WithStatusMergedFrom_Status_ShouldBeSame_When_StatusIsNot_Updated(ProfileStatus status)
         {
             // Arrange
-            var profile = new Profile { Status = status };
-            var another = new Profile { Status = ProfileStatus.Updated };
+            Profile profile = new Profile(null) { Status = status };
+            Profile another = new Profile(null) { Status = ProfileStatus.Updated };
             // Act
             profile = profile.WithStatusMergedFrom(another);
             // Assert
@@ -279,9 +280,9 @@ namespace ProtonVPN.Core.Test.Profiles
         public void WithUniqueNameCandidate_Name_ShouldBeSame()
         {
             // Arrange
-            var profile = new Profile { Name = "Buggy" };
+            Profile profile = new Profile(null) { Name = "Buggy" };
             // Act
-            var result = profile.WithUniqueNameCandidate(25);
+            Profile result = profile.WithUniqueNameCandidate(25);
             // Assert
             result.Name.Should().Be("Buggy");
         }
@@ -290,10 +291,10 @@ namespace ProtonVPN.Core.Test.Profiles
         public void WithNextUniqueNameCandidate_Name_ShouldBeUnique_InASequence()
         {
             // Arrange
-            var profile = new Profile { Name = "Buggy" }.WithUniqueNameCandidate(25);
-            var expected = new[] { "Buggy (1)", "Buggy (2)", "Buggy (3)", "Buggy (4)" };
+            Profile profile = new Profile(null) { Name = "Buggy" }.WithUniqueNameCandidate(25);
+            string[] expected = new[] { "Buggy (1)", "Buggy (2)", "Buggy (3)", "Buggy (4)" };
             // Act
-            var result = Enumerable.Range(1, expected.Length)
+            IEnumerable<string> result = Enumerable.Range(1, expected.Length)
                 .Select(_ => profile = profile.WithNextUniqueNameCandidate(25))
                 .Select(p => p.Name);
             // Assert
@@ -304,10 +305,10 @@ namespace ProtonVPN.Core.Test.Profiles
         public void WithNextUniqueNameCandidate_Name_ShouldBeTrimmed_ToMaxLength()
         {
             // Arrange
-            var profile = new Profile { Name = "Buggy" }.WithUniqueNameCandidate(7);
-            var expected = new[] { "Bug (1)", "Bug (2)", "Bug (3)", "Bug (4)" };
+            Profile profile = new Profile(null) { Name = "Buggy" }.WithUniqueNameCandidate(7);
+            string[] expected = new[] { "Bug (1)", "Bug (2)", "Bug (3)", "Bug (4)" };
             // Act
-            var result = Enumerable.Range(1, expected.Length)
+            IEnumerable<string> result = Enumerable.Range(1, expected.Length)
                 .Select(_ => profile = profile.WithNextUniqueNameCandidate(7))
                 .Select(p => p.Name);
             // Assert

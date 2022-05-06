@@ -23,33 +23,32 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
-             xmlns:icons="clr-namespace:ProtonVPN.Resource.Icons;assembly=ProtonVPN.Resource"
+             xmlns:vectorImages="clr-namespace:ProtonVPN.Resource.Graphics.VectorImages;assembly=ProtonVPN.Resource"
              mc:Ignorable="d">
     <UserControl.Resources>
         <Style x:Key="TroubleshootButton" TargetType="Button" BasedOn="{StaticResource ClearStyleButton}">
             <Setter Property="FontSize" Value="14" />
             <Setter Property="Margin" Value="0,10,0,0" />
             <Setter Property="HorizontalAlignment" Value="Center" />
-            <Setter Property="Foreground" Value="{StaticResource PrimaryColor}" />
             <Setter Property="Command" Value="{Binding TroubleshootCommand}" />
         </Style>
     </UserControl.Resources>
-    <Grid Background="{StaticResource ModalContentColor}">
+    <Grid>
         <StackPanel VerticalAlignment="Center" Margin="108,80">
-            <icons:Error HorizontalAlignment="Center" />
+            <vectorImages:Error HorizontalAlignment="Center" />
             <TextBlock Text="{translations:Loc BugReport_msg_SendingFailed}"
                        FontSize="32"
                        TextAlignment="Center"
                        TextWrapping="Wrap"
                        Margin="0,20,0,0"
                        HorizontalAlignment="Center"
-                       Foreground="White" />
+                       Foreground="{StaticResource OldTextBrushColor}" />
             <TextBlock Text="{Binding Error}"
                        FontSize="16"
                        HorizontalAlignment="Center"
                        TextAlignment="Center"
                        TextWrapping="Wrap"
-                       Foreground="White"
+                       Foreground="{StaticResource OldTextBrushColor}"
                        Margin="0,10,0,0" />
             <StackPanel Margin="0,32,0,0" Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button Style="{StaticResource SecondaryModalButton}"

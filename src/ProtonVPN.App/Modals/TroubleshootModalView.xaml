@@ -38,7 +38,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="Margin" Value="30,5"/>
             <Setter Property="TextWrapping" Value="Wrap"/>
-            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}"/>
             <Setter Property="FontSize" Value="14"/>
         </Style>
         <Style x:Key="BlockedByGovText" BasedOn="{StaticResource SolutionText}" TargetType="TextBlock">
@@ -54,14 +54,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     </resource:BaseModalWindow.Resources>
     <StackPanel>
         <TextBlock VerticalAlignment="Top"
-                   Margin="30,20,30,5"
+                   Margin="30"
                    HorizontalAlignment="Center"
                    TextAlignment="Center"
                    TextWrapping="Wrap"
-                   Foreground="White"
+                   Foreground="{StaticResource TextNormBrushColor}"
                    FontSize="16"
                    behavior:TextStyleBehavior.FormattedText="{translations:Loc Dialogs_Troubleshooting_msg_Title}"/>
-        <ScrollViewer Height="400" Template="{StaticResource DarkScrollViewerControlTemplate}">
+        <ScrollViewer Height="400" Margin="0,0,0,30" Template="{StaticResource DarkScrollViewerControlTemplate}">
             <StackPanel>
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -95,12 +95,5 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                    behavior:TextStyleBehavior.FormattedText="{translations:Loc Dialogs_Troubleshooting_msg_Unknown}"/>
             </StackPanel>
         </ScrollViewer>
-        <DockPanel Background="{StaticResource ModalBarColor}" Height="66">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Style="{StaticResource PrimaryModalButton}"
-                        Command="{Binding CloseCommand}"
-                        Content="{translations:Loc Dialogs_Troubleshooting_btn_Close}"/>
-            </StackPanel>
-        </DockPanel>
     </StackPanel>
 </resource:BaseModalWindow>

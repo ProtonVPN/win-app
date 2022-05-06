@@ -20,10 +20,13 @@
 using Autofac;
 using Caliburn.Micro;
 using ProtonVPN.ConnectionInfo;
+using ProtonVPN.Core.Settings;
+using ProtonVPN.Core.Vpn;
 using ProtonVPN.Login.Views;
 using ProtonVPN.QuickLaunch;
 using ProtonVPN.ViewModels;
 using ProtonVPN.Windows;
+using ProtonVPN.Windows.Popups.DeveloperTools;
 using QuickLaunchWindow = ProtonVPN.QuickLaunch.QuickLaunchWindow;
 
 namespace ProtonVPN.Core.Ioc
@@ -59,8 +62,14 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<ConnectionErrorResolver>().AsImplementedInterfaces().AsSelf().SingleInstance();
 
             builder.RegisterAssemblyTypes(typeof(App).Assembly)
-                .Where(t => t.Name.EndsWith("ViewModel"))
+                .Where(t => t.Name.EndsWith("ViewModel") && t.Name != nameof(DeveloperToolsPopupViewModel))
                 .AsImplementedInterfaces()
+                .AsSelf()
+                .SingleInstance();
+
+            builder.RegisterType<DeveloperToolsPopupViewModel>()
+                .As<IVpnStateAware>()
+                .As<ISettingsAware>()
                 .AsSelf()
                 .SingleInstance();
 

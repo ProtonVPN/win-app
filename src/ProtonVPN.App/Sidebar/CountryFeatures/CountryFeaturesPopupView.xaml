@@ -23,52 +23,83 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
-             xmlns:icons="clr-namespace:ProtonVPN.Views.Icons"
              xmlns:cal="http://www.caliburnproject.org"
              xmlns:countryFeatures="clr-namespace:ProtonVPN.Sidebar.CountryFeatures"
+             xmlns:icons="clr-namespace:ProtonVPN.Resource.Graphics.Icons;assembly=ProtonVPN.Resource"
              d:DataContext="{d:DesignInstance countryFeatures:CountryFeaturesPopupViewModel}"
              mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <Style x:Key="GrayInfoIcon" TargetType="UserControl" BasedOn="{StaticResource InfoCircle}">
+            <Setter Property="Width" Value="20"/>
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+        <Style x:Key="FeatureIcon" TargetType="UserControl">
+            <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}"/>
+            <Setter Property="Width" Value="20"/>
+            <Setter Property="Height" Value="20"/>
+        </Style>
+    </UserControl.Resources>
+
     <Grid>
         <ToggleButton x:Name="InfoToggleButton"
                       IsChecked="{Binding IsPopupOpen, Mode=TwoWay}"
                       Style="{StaticResource EmptyToggleButton}"
                       Background="Transparent"
                       BorderBrush="Transparent">
-            <icons:Info Style="{StaticResource GrayInfoIcon}"
-                        Width="16"
-                        Height="16" />
+            <icons:InfoCircleFilled Style="{StaticResource GrayInfoIcon}" />
         </ToggleButton>
         <countryFeatures:CountryFeaturesPopup AllowsTransparency="True"
-                                              Width="300"
-                                              PlacementRectangle="-120, 0, 0, 0"
-                                              Placement="Center"
+                                              Width="332"
+                                              Placement="Relative"
+                                              PlacementRectangle="-284,-24,0,0"
                                               StaysOpen="False"
                                               IsOpen="{Binding Path=IsChecked, ElementName=InfoToggleButton, Mode=TwoWay}">
             <Grid>
                 <Grid.Effect>
-                    <DropShadowEffect BlurRadius="20"
-                                      Color="Black"
+                    <DropShadowEffect ShadowDepth="0" 
+                                      Direction="270" 
+                                      BlurRadius="20" 
+                                      Opacity="1" 
                                       RenderingBias="Quality"
-                                      ShadowDepth="0" />
+                                      Color="{StaticResource ShadowNormColor}"/>
                 </Grid.Effect>
-                <Border Margin="10"
+                <Border Margin="20"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
-                        Background="#25272C"
-                        BorderBrush="#494D55" BorderThickness="1" CornerRadius="3">
+                        Background="{StaticResource BackgroundNormBrushColor}"
+                        BorderBrush="{StaticResource BorderWeakBrushColor}" 
+                        BorderThickness="1" 
+                        CornerRadius="4">
                     <StackPanel Margin="10">
-                        <DockPanel Margin="0,0,0,7">
-                            <Label Foreground="#9CA0AA"
+                        <DockPanel Margin="0,0,0,10">
+                            <Label Foreground="{StaticResource TextHintBrushColor}"
                                    FontSize="14"
                                    VerticalAlignment="Center"
                                    Content="{translations:Loc Sidebar_FeaturesPopup_Title}" />
                             <Button Style="{StaticResource ClearStyleButton}"
                                     cal:Message.Attach="ClosePopup"
                                     HorizontalAlignment="Right"
+                                    VerticalAlignment="Top"
+                                    Margin="0,6,6,0"
+                                    Width="16"
+                                    Height="16"
                                     Background="Transparent"
                                     BorderBrush="Transparent">
-                                <icons:Times UseLayoutRounding="True"
-                                             Foreground="White" Margin="4,5,0,0" />
+                                <icons:CrossBig UseLayoutRounding="True"
+                                                Width="16"
+                                                Height="16">
+                                    <icons:CrossBig.Style>
+                                        <Style TargetType="UserControl" BasedOn="{StaticResource FeatureIcon}">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=IsMouseOver}" Value="True">
+                                                    <Setter Property="Foreground" Value="{StaticResource InteractionNormHoverBrushColor}"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </icons:CrossBig.Style>
+                                </icons:CrossBig>
                             </Button>
                         </DockPanel>
                         <countryFeatures:CountryFeature Action="OpenP2PUrl"
@@ -76,9 +107,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                         Description="{translations:Loc Sidebar_FeaturesPopup_P2P_Desc}"
                                                         Plan="{translations:Loc Sidebar_FeaturesPopup_BasicAndPlus}">
                             <countryFeatures:CountryFeature.Icon>
-                                <icons:P2P Foreground="White"
-                                           Width="16"
-                                           Height="16" />
+                                <icons:ArrowsSwitch Style="{StaticResource FeatureIcon}" />
                             </countryFeatures:CountryFeature.Icon>
                         </countryFeatures:CountryFeature>
                         <countryFeatures:CountryFeature Action="OpenStreamingUrl"
@@ -86,9 +115,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                         Description="{translations:Loc Sidebar_FeaturesPopup_Streaming_Desc}"
                                                         Plan="{translations:Loc Sidebar_FeaturesPopup_Plus}">
                             <countryFeatures:CountryFeature.Icon>
-                                <icons:Streaming Foreground="White"
-                                                 Width="16"
-                                                 Height="16" />
+                                <icons:Play Style="{StaticResource FeatureIcon}" />
                             </countryFeatures:CountryFeature.Icon>
                         </countryFeatures:CountryFeature>
                         <countryFeatures:CountryFeature Action="OpenSmartRoutingUrl"
@@ -96,9 +123,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                         Description="{translations:Loc Sidebar_FeaturesPopup_SmartRouting_Desc}"
                                                         Plan="{translations:Loc Sidebar_FeaturesPopup_Plus}">
                             <countryFeatures:CountryFeature.Icon>
-                                <icons:Globe Foreground="White"
-                                             Width="16"
-                                             Height="16"/>
+                                <icons:Globe Style="{StaticResource FeatureIcon}" />
                             </countryFeatures:CountryFeature.Icon>
                         </countryFeatures:CountryFeature>
                         <countryFeatures:CountryFeature Action="OpenTorUrl"
@@ -106,9 +131,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                         Description="{translations:Loc Sidebar_FeaturesPopup_Tor_Desc}"
                                                         Plan="{translations:Loc Sidebar_FeaturesPopup_Plus}">
                             <countryFeatures:CountryFeature.Icon>
-                                <icons:Tor Foreground="White"
-                                           Width="16"
-                                           Height="16" />
+                                <icons:BrandTor Style="{StaticResource FeatureIcon}" />
                             </countryFeatures:CountryFeature.Icon>
                         </countryFeatures:CountryFeature>
                     </StackPanel>

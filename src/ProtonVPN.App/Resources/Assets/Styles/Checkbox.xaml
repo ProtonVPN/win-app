@@ -39,8 +39,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <Border Name="Border" Style="{StaticResource CheckboxBorder}">
-                            <Path Name="Path" Fill="White" Stretch="Fill"/>
+                        <Border Name="Border" Style="{StaticResource CheckboxBorder}" CornerRadius="2">
+                            <Path Name="Path" Fill="{StaticResource TextNormBrushColor}" Visibility="Collapsed" Stretch="Fill" 
+                                  Data="M 5,10 4,11 8,15 17,7 16,6 8,13 Z" />
                         </Border>
                         <Label
                             Name="Label"
@@ -52,25 +53,60 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </Grid>
 
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsChecked" Value="True">
-                            <Setter TargetName="Border" Property="Border.BorderBrush" Value="{StaticResource PrimaryColor}"/>
-                            <Setter TargetName="Path" Property="Data" Value="
-                                M 12.4227,0.00012207C 12.4867,0.126587 12.5333,0.274536 
-                                12.6787,0.321411C 9.49199,3.24792 6.704,6.57336 
-                                4.69865,10.6827C 4.04399,11.08 3.47066,11.5573 2.83199,
-                                11.9706C 2.09467,10.2198 1.692,8.13196 3.8147e-006,
-                                7.33606C 0.500004,6.79871 1.31733,6.05994 1.93067,6.2428C 
-                                2.85999,6.51868 3.14,7.9054 3.60399,8.81604C 5.80133,
-                                5.5387 8.53734,2.19202 12.4227,0.00012207 Z"/>
-                        </Trigger>
-                        <Trigger Property="IsChecked" Value="False">
-                            <Setter TargetName="Border" Property="Border.BorderBrush" Value="White"/>
-                        </Trigger>
-                        <Trigger Property="IsEnabled" Value="False">
-                            <Setter TargetName="Border" Property="Border.BorderBrush" Value="Gray"/>
-                            <Setter TargetName="Label" Property="Foreground" Value="Gray"/>
-                            <Setter TargetName="Path" Property="Fill" Value="Gray"/>
-                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsEnabled" Value="True" />
+                                <Condition Property="IsChecked" Value="False" />
+                                <Condition Property="IsMouseOver" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Border" Property="Border.BorderBrush" Value="{StaticResource TextNormBrushColor}"/>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsEnabled" Value="True" />
+                                <Condition Property="IsChecked" Value="True" />
+                                <Condition Property="IsMouseOver" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Border" Property="Border.BorderBrush" Value="{StaticResource InteractionNormHoverBrushColor}"/>
+                            <Setter TargetName="Border" Property="Border.Background" Value="{StaticResource InteractionNormHoverBrushColor}"/>
+                            <Setter TargetName="Path" Property="Visibility" Value="Visible"/>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsEnabled" Value="False" />
+                                <Condition Property="IsChecked" Value="False" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Border" Property="Border.BorderBrush" Value="{StaticResource TextDisabledBrushColor}"/>
+                            <Setter TargetName="Label" Property="Foreground" Value="{StaticResource TextDisabledBrushColor}"/>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsEnabled" Value="False" />
+                                <Condition Property="IsChecked" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Border" Property="Border.BorderBrush" Value="{StaticResource TextDisabledBrushColor}"/>
+                            <Setter TargetName="Border" Property="Border.Background" Value="{StaticResource TextDisabledBrushColor}"/>
+                            <Setter TargetName="Label" Property="Foreground" Value="{StaticResource TextDisabledBrushColor}"/>
+                            <Setter TargetName="Path" Property="Visibility" Value="Visible"/>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsEnabled" Value="True" />
+                                <Condition Property="IsChecked" Value="False" />
+                                <Condition Property="IsMouseOver" Value="False" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Border" Property="Border.BorderBrush" Value="{StaticResource TextWeakBrushColor}"/>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsEnabled" Value="True" />
+                                <Condition Property="IsChecked" Value="True" />
+                                <Condition Property="IsMouseOver" Value="False" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Border" Property="Border.BorderBrush" Value="{StaticResource InteractionNormBrushColor}"/>
+                            <Setter TargetName="Border" Property="Border.Background" Value="{StaticResource InteractionNormBrushColor}"/>
+                            <Setter TargetName="Path" Property="Visibility" Value="Visible"/>
+                        </MultiTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

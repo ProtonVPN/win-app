@@ -34,20 +34,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           Width="500"
                           d:DataContext="{d:DesignInstance modals:IncorrectSystemTimeModalViewModel}">
     <Grid>
-        <StackPanel>
+        <StackPanel Margin="30,40">
             <TextBlock TextWrapping="Wrap"
-                       Padding="20,50"
+                       Padding="0,0,0,30"
                        FontSize="16"
-                       Foreground="White"
+                       Foreground="{StaticResource OldTextBrushColor}"
                        behavior:TextStyleBehavior.FormattedText="{translations:Loc Dialogs_IncorrectSystemTime_msg}" />
-
-            <DockPanel Background="{StaticResource ModalBarColor}" Height="66">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Button Style="{StaticResource PrimaryModalButton}"
-                            Command="{Binding CloseCommand}"
-                            Content="{translations:Loc Dialogs_btn_Ok}" />
-                </StackPanel>
-            </DockPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Style="{StaticResource PrimaryModalButton}"
+                        Command="{Binding CloseCommand}"
+                        Content="{translations:Loc Dialogs_btn_Ok}" />
+            </StackPanel>
         </StackPanel>
     </Grid>
 </resource:BaseModalWindow>

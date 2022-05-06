@@ -44,7 +44,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Path
                 x:Name="Arrow"
                 Grid.Column="1"     
-                Fill="#7f7f7f"
+                Fill="{StaticResource OldFormBorderColor}"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 Data="M0,0 L0,2 L4,6 L8,2 L8,0 L4,4 z"/>
@@ -84,7 +84,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="FontSize" Value="16"/>
         <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}"/>
         <Setter Property="SnapsToDevicePixels" Value="true"/>
         <Setter Property="OverridesDefaultStyle" Value="true"/>
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
@@ -105,7 +105,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                         <Grid Margin="0">
                             <ContentPresenter
-                                TextBlock.Foreground="White"
+                                TextBlock.Foreground="{StaticResource OldTextBrushColor}"
                                 TextBlock.FontSize="16"
                                 Name="ContentSite"
                                 IsHitTestVisible="False"
@@ -118,7 +118,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </Grid>
 
                         <Popup 
-                            Name="Popup"    
+                            Name="Popup"
                             Placement="{Binding Path=PopupPlacement, RelativeSource={RelativeSource TemplatedParent}}"
                             IsOpen="{TemplateBinding IsDropDownOpen}"
                             AllowsTransparency="True" 
@@ -148,9 +148,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
     <Style x:Key="ComboDropdown" TargetType="wpf:Combobox" BasedOn="{StaticResource Combobox}">
         <Setter Property="ItemContainerStyle" Value="{StaticResource CustomComboItem}"/>
-        <Setter Property="BorderBrush" Value="#464652"/>
+        <Setter Property="BorderBrush" Value="{StaticResource BorderWeakBrushColor}"/>
         <Setter Property="Margin" Value="0,0,0,0"/>
-        <Setter Property="Background" Value="#26262b"/>
+        <Setter Property="Background" Value="{StaticResource BackgroundStrongBrushColor}"/>
         <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="ActiveBorderThickness" Value="0,0,0,1"/>
     </Style>

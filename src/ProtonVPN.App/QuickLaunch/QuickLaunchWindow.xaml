@@ -23,12 +23,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:calcBinding="clr-namespace:CalcBinding;assembly=CalcBinding"
-        xmlns:fa="http://schemas.fontawesome.io/icons/"
-        xmlns:controls1="clr-namespace:ProtonVPN.Views.Controls"
         xmlns:profiles="clr-namespace:ProtonVPN.Profiles"
         xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
         xmlns:quickLaunch="clr-namespace:ProtonVPN.QuickLaunch"
         xmlns:resource="clr-namespace:ProtonVPN.Resource;assembly=ProtonVPN.Resource"
+        xmlns:logos="clr-namespace:ProtonVPN.Resource.Graphics.Logos;assembly=ProtonVPN.Resource"
+        xmlns:icons="clr-namespace:ProtonVPN.Resource.Graphics.Icons;assembly=ProtonVPN.Resource"
+        xmlns:sidebar="clr-namespace:ProtonVPN.Sidebar"
         WindowStyle="None"
         ShowInTaskbar="False"
         ResizeMode="CanMinimize"
@@ -43,209 +44,318 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Style BasedOn="{StaticResource ClearStyleButton}" x:Key="OpenAppButton" TargetType="Button">
                 <Setter Property="Background" Value="Transparent"/>
                 <Setter Property="FontSize" Value="14"/>
-                <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
-                <Setter Property="BorderThickness" Value="0"/>
-                <Setter Property="FontWeight" Value="Bold"/>
-                <Setter Property="VerticalAlignment" Value="Bottom"/>
-                <Setter Property="Margin" Value="0,10,0,0"/>
-            </Style>
-            <Style TargetType="Label" x:Key="NotConnectedLabel">
-                <Setter Property="Margin" Value="0,15"/>
-                <Setter Property="FontSize" Value="14"/>
-                <Setter Property="FontWeight" Value="Bold"/>
-                <Setter Property="Foreground" Value="{StaticResource RedColor}"/>
-                <Setter Property="HorizontalAlignment" Value="Center"/>
-                <Setter Property="Content" Value="{translations:Loc QuickLaunch_lbl_Disconnected}"/>
-                <Setter Property="Visibility" Value="{Binding Disconnected, Converter={StaticResource BoolToVis}}"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="HorizontalAlignment" Value="Right"/>
+                <Setter Property="Margin" Value="20,11"/>
             </Style>
             <Style x:Key="QuickConnectButton" TargetType="Button" BasedOn="{StaticResource ClearStyleButton}">
-                <Setter Property="BorderBrush" Value="#222329"/>
-                <Setter Property="Border.CornerRadius" Value="22"/>
-                <Setter Property="Background" Value="{StaticResource PrimaryColor}"/>
-                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="BorderBrush" Value="Transparent"/>
+                <Setter Property="Background" Value="{StaticResource InteractionNormBrushColor}"/>
+                <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}"/>
                 <Setter Property="FontSize" Value="16"/>
-                <Setter Property="FontWeight" Value="Bold"/>
-                <Setter Property="Height" Value="44"/>
+                <Setter Property="FontWeight" Value="Normal"/>
+                <Setter Property="Height" Value="48"/>
                 <Setter Property="Content" Value="{translations:Loc QuickLaunch_btn_Connect}"/>
-                <Setter Property="Padding" Value="0,0,33,1"/>
+                <Setter Property="Padding" Value="10,0,10,1"/>
+                <Setter Property="Width" Value="250"/>
                 <Setter Property="Command" Value="{Binding QuickConnectCommand}"/>
                 <Style.Triggers>
-                    <DataTrigger Binding="{Binding ElementName=Popup, Path=IsOpen}" Value="True">
-                        <Setter Property="Border.CornerRadius" Value="0,0,18,18"/>
-                        <Setter Property="BorderBrush" Value="{StaticResource PrimaryColor}"/>
-                    </DataTrigger>
-                    <DataTrigger Binding="{Binding Connected}" Value="True">
-                        <Setter Property="BorderBrush" Value="White"/>
-                        <Setter Property="Background" Value="Transparent"/>
+                    <DataTrigger Binding="{Binding Disconnected}" Value="False">
                         <Setter Property="Content" Value="{translations:Loc QuickLaunch_btn_Disconnect}"/>
                     </DataTrigger>
-                    <DataTrigger Binding="{Binding Connecting}" Value="True">
-                        <Setter Property="BorderBrush" Value="White"/>
+                    <MultiDataTrigger>
+                        <MultiDataTrigger.Conditions>
+                            <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Mode=Self}}" Value="False" />
+                            <Condition Binding="{Binding Disconnected}" Value="False"/>
+                        </MultiDataTrigger.Conditions>
                         <Setter Property="Background" Value="Transparent"/>
-                        <Setter Property="Content" Value="{translations:Loc QuickLaunch_btn_Disconnect}"/>
-                    </DataTrigger>
-                </Style.Triggers>
-            </Style>
-            <Style x:Key="QuickConnectBorder" TargetType="Border">
-                <Setter Property="HorizontalAlignment" Value="Right"/>
-                <Setter Property="BorderBrush" Value="#222329"/>
-                <Setter Property="BorderThickness" Value="1,0,0,0"/>
-                <Setter Property="Width" Value="44"/>
-                <Setter Property="Height" Value="44"/>
-                <Style.Triggers>
-                    <DataTrigger Binding="{Binding Connected}" Value="True">
-                        <Setter Property="BorderBrush" Value="White"/>
-                    </DataTrigger>
-                    <DataTrigger Binding="{Binding Connecting}" Value="True">
-                        <Setter Property="BorderBrush" Value="White"/>
-                    </DataTrigger>
+                        <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}"/>
+                        <Setter Property="BorderBrush" Value="{StaticResource BorderNormBrushColor}"/>
+                        <Setter Property="BorderThickness" Value="2"/>
+                    </MultiDataTrigger>
+                    <MultiDataTrigger>
+                        <MultiDataTrigger.Conditions>
+                            <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Mode=Self}}" Value="True" />
+                            <Condition Binding="{Binding Disconnected}" Value="False"/>
+                        </MultiDataTrigger.Conditions>
+                        <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}"/>
+                        <Setter Property="Background" Value="{StaticResource SignalDangerBrushColor}"/>
+                    </MultiDataTrigger>
+                    <MultiDataTrigger>
+                        <MultiDataTrigger.Conditions>
+                            <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Mode=Self}}" Value="True" />
+                            <Condition Binding="{Binding Disconnected}" Value="True"/>
+                        </MultiDataTrigger.Conditions>
+                        <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}"/>
+                        <Setter Property="Background" Value="{StaticResource InteractionNormHoverBrushColor}"/>
+                    </MultiDataTrigger>
                 </Style.Triggers>
             </Style>
             <Style x:Key="QuickConnectDropdown" TargetType="Border">
-                <Setter Property="Background" Value="White"/>
-                <Setter Property="BorderBrush" Value="White"/>
-                <Setter Property="BorderThickness" Value="1,0,1,1"/>
-                <Setter Property="CornerRadius" Value="22,22,0,0"/>
-                <Setter Property="Padding" Value="15,10,15,20"/>
+                <Setter Property="Width" Value="308"/>
+                <Setter Property="Background" Value="{StaticResource BackgroundWeakBrushColor}"/>
+                <Setter Property="BorderBrush" Value="{StaticResource BorderWeakBrushColor}"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="CornerRadius" Value="8"/>
+                <Setter Property="Padding" Value="0,10,0,20"/>
                 <Setter Property="UseLayoutRounding" Value="True"/>
             </Style>
-            <Style x:Key="QuickConnectArrow" TargetType="fa:FontAwesome">
-                <Setter Property="Icon" Value="ChevronUp"/>
-                <Setter Property="FontSize" Value="14"/>
-                <Setter Property="Foreground" Value="White"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
+            <Style x:Key="QuickToggleButton" TargetType="ToggleButton" BasedOn="{StaticResource EmptyToggleButton}">
                 <Setter Property="HorizontalAlignment" Value="Right"/>
-                <Setter Property="Margin" Value="0,0,8,0"/>
                 <Setter Property="Cursor" Value="Hand"/>
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="Height" Value="48"/>
+                <Setter Property="Width" Value="48"/>
+                <Setter Property="Margin" Value="10,0,0,0"/>
+                <Setter Property="BorderBrush" Value="{StaticResource BorderNormBrushColor}"/>
+                <Setter Property="BorderThickness" Value="2"/>
+                <Setter Property="IsEnabled" Value="{calcBinding:Binding ElementName=Popup, Path='!IsOpen'}"/>
+                <Setter Property="IsChecked" Value="{Binding ShowQuickConnectPopup, Mode=TwoWay}"/>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Background" Value="{StaticResource InteractionDefaultHoverBrushColor}"/>
+                    </Trigger>
+                    <DataTrigger Binding="{Binding IsOpen, ElementName=Popup}" Value="True">
+                        <Setter Property="Background" Value="{StaticResource InteractionDefaultActiveBrushColor}"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="QuickConnectChevron" TargetType="UserControl">
+                <Setter Property="Width" Value="20"/>
+                <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
                 <Style.Triggers>
                     <DataTrigger Binding="{Binding IsOpen, ElementName=Popup}" Value="True">
-                        <Setter Property="Icon" Value="ChevronDown"/>
+                        <Setter Property="RenderTransformOrigin" Value="0,0.55"/>
+                        <Setter Property="RenderTransform">
+                            <Setter.Value>
+                                <ScaleTransform ScaleY="-1" />
+                            </Setter.Value>
+                        </Setter>
                     </DataTrigger>
                 </Style.Triggers>
             </Style>
             <Style x:Key="QuickConnectPopup" TargetType="Popup">
-                <Setter Property="Placement" Value="Top"/>
                 <Setter Property="IsOpen" Value="{Binding IsChecked, ElementName=TogglePopupButton, Mode=TwoWay}"/>
                 <Setter Property="StaysOpen" Value="False"/>
                 <Setter Property="AllowsTransparency" Value="True"/>
+                <Setter Property="Placement" Value="Top"/>
                 <Setter Property="PlacementTarget" Value="{Binding ElementName=QuickConnect}"/>
+                <Setter Property="PlacementRectangle" Value="0,-10,0,0"/>
             </Style>
             <Style x:Key="QuickConnectLabel" TargetType="Label">
-                <Setter Property="FontSize" Value="14"/>
-                <Setter Property="Foreground" Value="#65656f"/>
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="Foreground" Value="{StaticResource TextHintBrushColor}"/>
+                <Setter Property="Margin" Value="15,0,0,10"/>
             </Style>
             <Style x:Key="ProfileButton" TargetType="Button" BasedOn="{StaticResource ClearStyleButton}">
                 <Setter Property="Background" Value="Transparent"/>
-                <Setter Property="BorderThickness" Value="0"/>
                 <Setter Property="HorizontalAlignment" Value="Stretch"/>
                 <Setter Property="HorizontalContentAlignment" Value="Left"/>
                 <Setter Property="Command" Value="{Binding Path=DataContext.ProfileConnectCommand, RelativeSource={RelativeSource AncestorType=Window}}"/>
                 <Setter Property="CommandParameter" Value="{Binding}"/>
+                <Setter Property="Padding" Value="15,0"/>
+                <Setter Property="Height" Value="40"/>
+                <Setter Property="Border.CornerRadius" Value="0"/>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Background" Value="{StaticResource InteractionDefaultHoverBrushColor}"/>
+                    </Trigger>
+                </Style.Triggers>
             </Style>
-            <Style x:Key="QuickToggleButton" TargetType="ToggleButton" BasedOn="{StaticResource EmptyToggleButton}">
-                <Setter Property="HorizontalAlignment" Value="Right"/>
-                <Setter Property="Background" Value="Transparent"/>
-                <Setter Property="Width" Value="43"/>
-                <Setter Property="BorderBrush" Value="Transparent"/>
-                <Setter Property="BorderThickness" Value="0"/>
-                <Setter Property="IsEnabled" Value="{calcBinding:Binding ElementName=Popup, Path='!IsOpen'}"/>
-                <Setter Property="IsChecked" Value="{Binding ShowQuickConnectPopup, Mode=TwoWay}"/>
+            <Style x:Key="ProfileName" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="FontWeight" Value="Normal"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Padding" Value="5,0,0,1"/>
+                <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+                <Setter Property="Width" Value="240"/>
             </Style>
         </ResourceDictionary>
     </Window.Resources>
-    <StackPanel Width="296" Background="#222329">
-        <DockPanel Background="#2b2c34" Height="58" VerticalAlignment="Top">
-            <controls1:LogoWhite HorizontalAlignment="Left"
-                                 VerticalAlignment="Center"
-                                 Margin="15,0,0,0"
-                                 FlowDirection="LeftToRight"/>
-            <Button Margin="0,0,10,0" HorizontalAlignment="Right" Style="{StaticResource WindowsCloseButton}" PreviewMouseLeftButtonDown="UIElement_OnMouseLeftButtonDown"/>
-        </DockPanel>
+    <Border BorderThickness="1" BorderBrush="{StaticResource BorderWeakBrushColor}">
+        <StackPanel Width="350" Background="{StaticResource BackgroundNormBrushColor}">
+            <DockPanel Background="{StaticResource BackgroundWeakBrushColor}" Height="58" VerticalAlignment="Top">
+                <Button Command="{Binding ShowAppCommand}" 
+                        Style="{StaticResource ClearStyleButton}"
+                        Margin="15,0,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center">
+                    <logos:ProtonVpnLogo Width="120"
+                                         VerticalAlignment="Center"
+                                         FlowDirection="LeftToRight"
+                                         Background="Transparent" />
+                </Button>
+                <Button HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        Padding="21"
+                        BorderBrush="Transparent"
+                        PreviewMouseLeftButtonDown="UIElement_OnMouseLeftButtonDown">
+                    <icons:CrossBig UseLayoutRounding="True"
+                                    Width="16"
+                                    Height="16"
+                                    Foreground="{StaticResource TextNormBrushColor}" />
+                    <Button.Style>
+                        <Style TargetType="Button" BasedOn="{StaticResource ClearStyleButton}">
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="Border.CornerRadius" Value="0"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="{StaticResource BackgroundStrongBrushColor}"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </DockPanel>
 
-        <Grid Margin="0,15" HorizontalAlignment="Center" Height="50">
-            <StackPanel VerticalAlignment="Center">
-                <StackPanel Visibility="{Binding Connecting, Converter={StaticResource BoolToVis}}" Orientation="Horizontal">
-                    <Image Name="Spinner" Style="{StaticResource Spinner}" resource:ControlExtension.Spin="{Binding Connecting}" Visibility="{Binding Connecting, Converter={StaticResource BoolToVis}}"/>
-                    <TextBlock Foreground="White" FontSize="14" Padding="10,0,0,0">
-                        <Run Text="{translations:Loc QuickLaunch_lbl_Connecting}"/><Run Text=" "/>
-                        <Run Text="{Binding ServerName, Mode=OneWay}"/>
-                    </TextBlock>
-                </StackPanel>
-                <StackPanel Visibility="{Binding Connected, Converter={StaticResource BoolToVis}}">
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <Image VerticalAlignment="Center" Margin="0,0,5,0" Source="{Binding CountryCode, Converter={StaticResource CountryToFlagConverter}}" Width="21" Height="15"/>
-                        <Label VerticalAlignment="Center" Foreground="White" Padding="0" FontSize="16" Content="{Binding ServerName}" HorizontalAlignment="Center"/>
+            <Grid Height="80" Margin="20,10" HorizontalAlignment="Left">
+                <StackPanel VerticalAlignment="Center">
+                    <StackPanel Visibility="{Binding Connected, Converter={StaticResource BoolToVis}}">
+                        <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                            <Image VerticalAlignment="Center" 
+                                   Width="21" 
+                                   Height="15"
+                                   Source="{Binding CountryCode, Converter={StaticResource CountryToFlagConverter}}" />
+                            <TextBlock Width="280"
+                                       FontSize="16" 
+                                       FontWeight="Bold"
+                                       Padding="10,0,0,0" 
+                                       VerticalAlignment="Center"
+                                       Margin="0,0,0,1"
+                                       TextTrimming="CharacterEllipsis"
+                                       Foreground="{StaticResource TextNormBrushColor}">
+                                <Run Text="{Binding CountryCode, Converter={StaticResource CountryCodeToNameConverter}, Mode=OneWay}" />
+                                <Run Text="-"/>
+                                <Run Text="{Binding ServerName, Mode=OneWay}"/>
+                            </TextBlock>
+                        </StackPanel>
+                        
+                        <StackPanel Orientation="Horizontal" Margin="0,8" FlowDirection="LeftToRight" HorizontalAlignment="Left">
+                            <Label Foreground="{StaticResource TextNormBrushColor}"
+                                   Padding="0"
+                                   FontSize="14"
+                                   Content="IP:"/>
+                            <Label Foreground="{StaticResource TextNormBrushColor}"
+                                   Padding="3,0,0,0"
+                                   FontWeight="Bold"
+                                   FontSize="14"
+                                   AutomationProperties.AutomationId="{StaticResource IPAddressTextBlock}"
+                                   Content="{Binding Ip}" />
+                        </StackPanel>
                     </StackPanel>
 
-                    <TextBlock Foreground="White" HorizontalAlignment="Center" FontSize="14" Padding="0">
-                        <Run Text="IP:"/><Run Text=" "/>
-                        <Run Text="{Binding Ip, Mode=OneWay}"/>
-                    </TextBlock>
+                    <StackPanel Visibility="{Binding Connecting, Converter={StaticResource BoolToVis}}" 
+                                Orientation="Vertical"
+                                Margin="0,15">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Name="Spinner" 
+                                   Style="{StaticResource Spinner}" 
+                                   resource:ControlExtension.Spin="{Binding Connecting}" 
+                                   Visibility="{Binding Connecting, Converter={StaticResource BoolToVis}}"/>
+                            <TextBlock FontSize="14" 
+                                       Padding="10,0,0,0" 
+                                       VerticalAlignment="Center"
+                                       Foreground="{StaticResource TextNormBrushColor}" 
+                                       Text="{translations:Loc QuickLaunch_lbl_Connecting}" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                            <Image VerticalAlignment="Center" 
+                                   Width="21" 
+                                   Height="15"
+                                   Source="{Binding CountryCode, Converter={StaticResource CountryToFlagConverter}}" />
+                            <TextBlock Width="280"
+                                       FontSize="16" 
+                                       FontWeight="Bold"
+                                       Padding="10,0,0,0" 
+                                       VerticalAlignment="Center"
+                                       Margin="0,0,0,1"
+                                       TextTrimming="CharacterEllipsis"
+                                       Foreground="{StaticResource TextNormBrushColor}">
+                                <Run Text="{Binding CountryCode, Converter={StaticResource CountryCodeToNameConverter}, Mode=OneWay}" />
+                                <Run Text="-"/>
+                                <Run Text="{Binding ServerName, Mode=OneWay}"/>
+                            </TextBlock>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <StackPanel Visibility="{Binding Disconnected, Converter={StaticResource BoolToVis}}"
+                                Margin="0,15">
+                        <sidebar:DisconnectedConnectionDetails DataContext="{Binding Ip, Mode=OneWay}"/>
+                    </StackPanel>
+
                 </StackPanel>
-                <Label Style="{StaticResource NotConnectedLabel}"/>
-            </StackPanel>
-        </Grid>
+            </Grid>
 
-        <Grid Margin="30,0,30,25">
-            <Button Name="QuickConnect" Style="{StaticResource QuickConnectButton}"/>
-            <ToggleButton Style="{StaticResource QuickToggleButton}" x:Name="TogglePopupButton">
-                <fa:FontAwesome Style="{StaticResource QuickConnectArrow}"/>
-            </ToggleButton>
+            <Grid Margin="20,0,20,25">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button Name="QuickConnect" Style="{StaticResource QuickConnectButton}"/>
+                    <ToggleButton Style="{StaticResource QuickToggleButton}" x:Name="TogglePopupButton">
+                        <icons:ChevronUp Style="{StaticResource QuickConnectChevron}" />
+                    </ToggleButton>
+                </StackPanel>
 
-            <Border Style="{StaticResource QuickConnectBorder}" Name="QuickConnectBorder"/>
-            <Popup Name="Popup" Style="{StaticResource QuickConnectPopup}">
-                <Border Width="{Binding Path=ActualWidth, ElementName=QuickConnect}" Style="{StaticResource QuickConnectDropdown}">
-                    <StackPanel>
-                        <Label Style="{StaticResource QuickConnectLabel}" Content="{translations:Loc QuickLaunch_lbl_Profiles}"/>
-                        <ScrollViewer Template="{StaticResource LightScrollViewerControlTemplate}" PanningMode="VerticalOnly" MaxHeight="250">
-                            <ItemsControl ItemsSource="{Binding Profiles}">
-                                <ItemsControl.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <VirtualizingStackPanel/>
-                                    </ItemsPanelTemplate>
-                                </ItemsControl.ItemsPanel>
-                                <ItemsControl.ItemContainerStyle>
-                                    <Style TargetType="ContentPresenter">
-                                        <Setter Property="ContentTemplate">
-                                            <Setter.Value>
-                                                <DataTemplate>
-                                                    <Border BorderBrush="#e8e8e8" BorderThickness="0,0,0,1">
-                                                        <ContentPresenter Content="{Binding}"/>
-                                                    </Border>
-                                                </DataTemplate>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </Style>
-                                </ItemsControl.ItemContainerStyle>
-                                <ItemsControl.Resources>
-                                    <DataTemplate DataType="{x:Type profiles:PredefinedProfileViewModel}">
-                                        <Button Style="{StaticResource ProfileButton}">
-                                            <StackPanel Orientation="Horizontal">
-                                                <fa:FontAwesome Icon="{Binding Icon}" Foreground="#3e3e49" FontWeight="Medium" Width="25" VerticalAlignment="Center" />
-                                                <TextBlock FontSize="14" Foreground="#3e3e49" FontWeight="Medium" Text="{Binding Text}" Padding="5"/>
-                                            </StackPanel>
-                                        </Button>
-                                    </DataTemplate>
-                                    <DataTemplate DataType="{x:Type profiles:ProfileViewModel}">
-                                        <Button Style="{StaticResource ProfileButton}">
-                                            <StackPanel Orientation="Horizontal">
-                                                <StackPanel Width="25" VerticalAlignment="Center">
-                                                    <Border Background="{Binding Color}" Width="13" Height="13" CornerRadius="7.5"/>
+                <Popup Name="Popup" Style="{StaticResource QuickConnectPopup}">
+                    <Border Style="{StaticResource QuickConnectDropdown}">
+                        <StackPanel>
+                            <Label Style="{StaticResource QuickConnectLabel}" Content="{translations:Loc QuickLaunch_lbl_Profiles}"/>
+                            <ScrollViewer Template="{StaticResource DarkScrollViewerControlTemplate}" PanningMode="VerticalOnly" MaxHeight="250">
+                                <ItemsControl ItemsSource="{Binding Profiles}">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <VirtualizingStackPanel/>
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemContainerStyle>
+                                        <Style TargetType="ContentPresenter">
+                                            <Setter Property="ContentTemplate">
+                                                <Setter.Value>
+                                                    <DataTemplate>
+                                                        <Border BorderBrush="{StaticResource BorderWeakBrushColor}" BorderThickness="0,0,0,1">
+                                                            <ContentPresenter Content="{Binding}"/>
+                                                        </Border>
+                                                    </DataTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </ItemsControl.ItemContainerStyle>
+                                    <ItemsControl.Resources>
+                                        <DataTemplate DataType="{x:Type profiles:PredefinedProfileViewModel}">
+                                            <Button Style="{StaticResource ProfileButton}">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <ContentPresenter Content="{Binding}" 
+                                                                      ContentTemplate="{StaticResource ProfileIconDataTemplate}"
+                                                                      Width="25"
+                                                                      Height="20"
+                                                                      VerticalAlignment="Center"/>
+                                                    <TextBlock Text="{Binding Text}" Style="{StaticResource ProfileName}" />
                                                 </StackPanel>
-                                                <TextBlock Text="{Binding Name}" Foreground="#3e3e49" FontWeight="Medium" FontSize="14" Padding="5" VerticalAlignment="Center"/>
-                                            </StackPanel>
-                                        </Button>
-                                    </DataTemplate>
-                                </ItemsControl.Resources>
-                            </ItemsControl>
-                        </ScrollViewer>
-                    </StackPanel>
-                </Border>
-            </Popup>
-        </Grid>
+                                            </Button>
+                                        </DataTemplate>
+                                        <DataTemplate DataType="{x:Type profiles:ProfileViewModel}">
+                                            <Button Style="{StaticResource ProfileButton}">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <StackPanel Width="25" VerticalAlignment="Center">
+                                                        <Border Background="{Binding Color}" Width="13" Height="13" CornerRadius="7.5"/>
+                                                    </StackPanel>
+                                                    <TextBlock Text="{Binding Name}" Style="{StaticResource ProfileName}" />
+                                                </StackPanel>
+                                            </Button>
+                                        </DataTemplate>
+                                    </ItemsControl.Resources>
+                                </ItemsControl>
+                            </ScrollViewer>
+                        </StackPanel>
+                    </Border>
+                </Popup>
+            </Grid>
 
-        <StackPanel Height="42" Background="#2b2c34">
-            <Button Command="{Binding ShowAppCommand}" Style="{StaticResource OpenAppButton}" Content="{translations:Loc QuickLaunch_btn_OpenApp}"/>
+            <StackPanel Height="42" Background="{StaticResource BackgroundWeakBrushColor}">
+                <Button Command="{Binding ShowAppCommand}" Style="{StaticResource OpenAppButton}" Content="{translations:Loc QuickLaunch_btn_OpenApp}"/>
+            </StackPanel>
         </StackPanel>
-    </StackPanel>
+    </Border>
 </Window>

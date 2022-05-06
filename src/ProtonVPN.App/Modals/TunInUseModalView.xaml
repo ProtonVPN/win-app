@@ -34,11 +34,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           SizeToContent="Height"
                           Style="{StaticResource BaseWindowStyle}">
     <Grid>
-        <StackPanel>
+        <StackPanel Margin="0,40">
             <TextBlock TextWrapping="Wrap"
                        FontSize="16"
-                       Foreground="White"
-                       Padding="15,40"
+                       Foreground="{StaticResource OldTextBrushColor}"
+                       Padding="30,0,30,30"
                        behavior:TextStyleBehavior.FormattedText="{translations:Loc Dialogs_TunInUse_msg}">
                 <TextBlock.Resources>
                     <Style TargetType="Run">
@@ -46,18 +46,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </Style>
                 </TextBlock.Resources>
             </TextBlock>
-            <DockPanel Background="{StaticResource ModalBarColor}" Height="66">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Button Style="{StaticResource SecondaryModalButton}"
-                            AutomationProperties.AutomationId="{StaticResource SwitchToTapButtonId}"
-                            Content="{translations:Loc Dialogs_TunInUse_btn_SwitchToTap}"
-                            Command="{Binding SwitchToTapCommand}" />
-                    <Button Style="{StaticResource PrimaryModalButton}"
-                            AutomationProperties.AutomationId="{StaticResource CloseButtonId}"
-                            Content="{translations:Loc Dialogs_btn_Close}"
-                            Command="{Binding CloseCommand}" />
-                </StackPanel>
-            </DockPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Style="{StaticResource SecondaryModalButton}"
+                        Margin="0,0,16,0"
+                        AutomationProperties.AutomationId="{StaticResource SwitchToTapButtonId}"
+                        Content="{translations:Loc Dialogs_TunInUse_btn_SwitchToTap}"
+                        Command="{Binding SwitchToTapCommand}" />
+                <Button Style="{StaticResource PrimaryModalButton}"
+                        AutomationProperties.AutomationId="{StaticResource CloseButtonId}"
+                        Content="{translations:Loc Dialogs_btn_Close}"
+                        Command="{Binding CloseCommand}" />
+            </StackPanel>
         </StackPanel>
     </Grid>
 </resource:BaseModalWindow>

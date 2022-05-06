@@ -25,6 +25,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           xmlns:modals="clr-namespace:ProtonVPN.Modals"
                           xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
                           xmlns:resource="clr-namespace:ProtonVPN.Resource;assembly=ProtonVPN.Resource"
+                          xmlns:vectorImages="clr-namespace:ProtonVPN.Resource.Graphics.VectorImages;assembly=ProtonVPN.Resource"
                           Style="{StaticResource BaseWindowStyle}"
                           SizeToContent="Height"
                           Title=" "
@@ -33,39 +34,39 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           Width="567"
                           d:DataContext="{d:DesignInstance modals:DiscourageSecureCoreModalViewModel}">
     <Grid>
-        <StackPanel HorizontalAlignment="Center" Margin="64,72">
-            <Image Source="pack://application:,,,/ProtonVPN.Resource;component/Images/DiscourageSecureCore.png"
-                   Width="350" />
+        <StackPanel HorizontalAlignment="Center"
+                    Margin="64,50">
+            <vectorImages:DiscourageSecureCore />
             <TextBlock TextWrapping="Wrap"
                        TextAlignment="Center"
                        HorizontalAlignment="Center"
-                       Padding="20,30,20,5"
+                       Padding="20,10,20,5"
                        FontSize="24"
-                       Foreground="White"
+                       Foreground="{StaticResource OldTextBrushColor}"
                        Text="{translations:Loc Modal_DiscourageSecureCore_Title}" />
             <TextBlock TextWrapping="Wrap"
                        TextAlignment="Center"
                        HorizontalAlignment="Center"
                        FontSize="16"
                        Margin="0,8,0,0"
-                       Foreground="White"
+                       Foreground="{StaticResource OldTextBrushColor}"
                        Text="{translations:Loc Modal_DiscourageSecureCore_Subtitle}" />
-            <DockPanel Margin="0,32,0,0" HorizontalAlignment="Center">
+            <DockPanel Margin="0,20,0,0" HorizontalAlignment="Center">
                 <CheckBox Style="{StaticResource Checkbox}"
                           IsChecked="{Binding IsToNotShowThisMessageAgain}">
                     <Label FontSize="14"
-                           Foreground="White"
+                           Foreground="{StaticResource OldTextBrushColor}"
                            VerticalAlignment="Center"
                            Content="{translations:Loc Modal_DiscourageSecureCore_DoNotShowItAgain}" />
                 </CheckBox>
             </DockPanel>
             <Button Style="{StaticResource PrimaryModalButton}"
                     HorizontalAlignment="Center"
-                    Margin="0,34,0,24"
+                    Margin="0,20,0,24"
                     Command="{Binding ActivateSecureCoreCommand}"
                     Content="{translations:Loc Modal_DiscourageSecureCore_ActivateSecureCore}" />
             <Button Style="{StaticResource ClearStyleButton}"
-                    Foreground="{StaticResource PrimaryColor}"
+                    Foreground="{StaticResource OldPrimaryBrushColor}"
                     FontWeight="Bold"
                     HorizontalAlignment="Center"
                     Command="{Binding OpenSecureCoreArticlePageCommand}"

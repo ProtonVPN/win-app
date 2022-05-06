@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
@@ -47,7 +48,6 @@ namespace ProtonVPN.Windows.Popups
         public void Show<T>(dynamic options = null) where T : IPopupWindow
         {
             T screen = _container.Resolve<T>();
-
             _scheduler.Schedule(() =>
             {
                 if (!IsOpen<T>())
@@ -59,7 +59,12 @@ namespace ProtonVPN.Windows.Popups
 
         public bool IsOpen<T>() where T : IPopupWindow
         {
-            return GetAll().Any(x => x.DataContext.GetType() == typeof(T));
+            return IsOpen(typeof(T));
+        }
+
+        private bool IsOpen(Type type)
+        {
+            return GetAll().Any(x => x.DataContext.GetType() == type);
         }
 
         private IEnumerable<BasePopupWindow> GetAll()
@@ -79,6 +84,18 @@ namespace ProtonVPN.Windows.Popups
             {
                 window.TryClose();
             }
+        }
+
+        public void Show(Type type, dynamic options = null)
+        {
+            IPopupWindow screen = (IPopupWindow)_container.Resolve(type);
+            _scheduler.Schedule(() =>
+            {
+                if (!IsOpen(type))
+                {
+                    _windowManager.ShowWindow(screen);
+                }
+            });
         }
     }
 }

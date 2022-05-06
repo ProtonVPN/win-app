@@ -26,7 +26,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <ControlTemplate TargetType="ToggleButton">
                     <Border Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="8">
                         <ContentPresenter x:Name="contentPresenter"
                                           Content="{TemplateBinding Content}"
                                           ContentTemplate="{TemplateBinding ContentTemplate}"

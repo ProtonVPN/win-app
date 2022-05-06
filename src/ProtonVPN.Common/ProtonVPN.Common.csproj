@@ -147,10 +147,12 @@
     <Compile Include="Events\SentryHttpClientHandler.cs" />
     <Compile Include="Extensions\BoolExtensions.cs" />
     <Compile Include="Extensions\CollectionExtensions.cs" />
+    <Compile Include="Extensions\ColorExtensions.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\DateTimeOffsetExtensions.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Extensions\ListExtensions.cs" />
+    <Compile Include="Extensions\SecureStringExtensions.cs" />
     <Compile Include="Extensions\TaskExtensions.cs" />
     <Compile Include="Go\GoExtensions.cs" />
     <Compile Include="Go\GoString.cs" />

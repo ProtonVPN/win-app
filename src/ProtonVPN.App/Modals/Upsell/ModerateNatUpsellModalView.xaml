@@ -25,6 +25,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           xmlns:upsell="clr-namespace:ProtonVPN.Modals.Upsell"
                           xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
                           xmlns:resource="clr-namespace:ProtonVPN.Resource;assembly=ProtonVPN.Resource"
+                          xmlns:vectorImages="clr-namespace:ProtonVPN.Resource.Graphics.VectorImages;assembly=ProtonVPN.Resource"
                           Style="{StaticResource BaseWindowStyle}"
                           SizeToContent="Height"
                           Title=" "
@@ -33,11 +34,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           Width="567"
                           d:DataContext="{d:DesignInstance upsell:ModerateNatUpsellModalViewModel}">
     <Grid>
-        <StackPanel Margin="80,64">
-            <Image Source="pack://application:,,,/ProtonVPN.Resource;component/Images/ModerateNat.png"
-                   SnapsToDevicePixels="True"
-                   UseLayoutRounding="True"
-                   Width="350" />
+        <StackPanel Margin="80,50">
+            <vectorImages:ModerateNat />
             <TextBlock TextWrapping="Wrap"
                        FontSize="24"
                        Foreground="White"
@@ -66,7 +64,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     Command="{Binding ContinueCommand}" />
             <Button Style="{StaticResource ClearStyleButton}"
                     HorizontalAlignment="Center"
-                    Foreground="{StaticResource PrimaryColor}"
+                    Foreground="{StaticResource OldPrimaryBrushColor}"
                     FontWeight="Bold"
                     Margin="0,24,0,0"
                     Content="{translations:Loc Upsell_ModerateNat_About}"

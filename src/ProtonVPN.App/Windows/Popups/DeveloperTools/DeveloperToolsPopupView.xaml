@@ -25,6 +25,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                           xmlns:local="clr-namespace:ProtonVPN.Windows.Popups.DeveloperTools"
                           xmlns:resource="clr-namespace:ProtonVPN.Resource;assembly=ProtonVPN.Resource"
+                          xmlns:wpf="clr-namespace:ProtonVPN.Core.Wpf"
                           Style="{StaticResource BasePopupWindowStyle}"
                           SizeToContent="Height"
                           Title="Developer Tools"
@@ -38,7 +39,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary>
                     <Style x:Key="FontAwesomeIcon" TargetType="fa:ImageAwesome">
-                        <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
+                        <Setter Property="Foreground" Value="{StaticResource OldPrimaryBrushColor}"/>
                         <Setter Property="Width" Value="32"/>
                     </Style>
                 </ResourceDictionary>
@@ -46,7 +47,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </ResourceDictionary>
     </resource:BasePopupWindow.Resources>
 
-    <Grid Background="{StaticResource ModalColor}">
+    <Grid Background="{StaticResource OldModalBrushColor}">
         <StackPanel>
             <ScrollViewer Template="{StaticResource DarkScrollViewerControlTemplate}" Height="500" PanningMode="VerticalOnly">
                 <StackPanel Margin="20">
@@ -54,10 +55,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <fa:ImageAwesome HorizontalAlignment="Left" Icon="Exchange">
                             <fa:ImageAwesome.Style>
                                 <Style TargetType="fa:ImageAwesome" BasedOn="{StaticResource FontAwesomeIcon}">
-                                    <Setter Property="Foreground" Value="OrangeRed"/>
+                                    <Setter Property="Foreground" Value="{StaticResource OldRedBrushColor}"/>
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding IsConnected}" Value="True">
-                                            <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
+                                            <Setter Property="Foreground" Value="{StaticResource OldPrimaryBrushColor}"/>
                                         </DataTrigger>
                                     </Style.Triggers>
                                 </Style>
@@ -67,10 +68,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <TextBlock Padding="0,0,0,0" FontSize="12" Text="{Binding NetworkInformation}">
                                 <TextBlock.Style>
                                     <Style TargetType="TextBlock">
-                                        <Setter Property="Foreground" Value="OrangeRed"/>
+                                        <Setter Property="Foreground" Value="{StaticResource OldRedBrushColor}"/>
                                         <Style.Triggers>
                                             <DataTrigger Binding="{Binding IsConnected}" Value="True">
-                                                <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
+                                                <Setter Property="Foreground" Value="{StaticResource OldPrimaryBrushColor}"/>
                                             </DataTrigger>
                                         </Style.Triggers>
                                     </Style>
@@ -80,29 +81,77 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </StackPanel>
 
                     <StackPanel Margin="0,0,0,20" Orientation="Horizontal" HorizontalAlignment="Left">
-                        <fa:ImageAwesome HorizontalAlignment="Left" Style="{StaticResource FontAwesomeIcon}" Icon="WindowMaximize"  />
+                        <fa:ImageAwesome HorizontalAlignment="Left" 
+                                         Margin="0,5,0,0" 
+                                         VerticalAlignment="Top" 
+                                         Style="{StaticResource FontAwesomeIcon}" 
+                                         Icon="WindowMaximize"  />
                         <StackPanel Margin="20,0,30,0" Orientation="Vertical" HorizontalAlignment="Left">
-                            <Label Padding="0,0,0,0" FontSize="16" Content="Show secondary window" Foreground="White"/>
-                            <Label Padding="0,0,0,0" FontSize="12" Content="Opens a modal or a popup window" Foreground="LightGray"/>
+                            <Label Padding="0,0,0,0" FontSize="16" Content="Show modal window" Foreground="{StaticResource OldTextBrushColor}"/>
+                            <Label Padding="0,0,0,0" FontSize="12" Content="Opens a modal window" Foreground="{StaticResource OldSecondaryTextBrushColor}"/>
                         </StackPanel>
-                        <Button HorizontalAlignment="Left"
-                                Style="{StaticResource PrimaryButton}"
-                                Command="{Binding ShowModalCommand}"
-                                Content="Modal"/>
-                        <Button HorizontalAlignment="Left"
-                                Style="{StaticResource PrimaryButton}"
-                                Command="{Binding ShowPopupWindowCommand}"
-                                Content="Popup"/>
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
+                            <wpf:Combobox HorizontalAlignment="Left"
+                                          Style="{StaticResource ComboDropdown}"
+                                          ItemsSource="{Binding ModalsByName.Keys}"
+                                          SelectedValue="{Binding SelectedModalName}">
+                            </wpf:Combobox>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,10,0,0">
+                                <Button HorizontalAlignment="Left"
+                                        Height="30"
+                                        Style="{StaticResource PrimaryModalButton}"
+                                        Command="{Binding OpenModalCommand}"
+                                        Content="Open Modal"/>
+                                <Button HorizontalAlignment="Left"
+                                        Margin="10,0,0,0"
+                                        Height="30"
+                                        Style="{StaticResource PrimaryModalButton}"
+                                        Command="{Binding OpenAllModalsCommand}"
+                                        Content="Open All Modals"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                    
+                    <StackPanel Margin="0,0,0,20" Orientation="Horizontal" HorizontalAlignment="Left">
+                        <fa:ImageAwesome HorizontalAlignment="Left" 
+                                         Margin="0,5,0,0" 
+                                         VerticalAlignment="Top" 
+                                         Style="{StaticResource FontAwesomeIcon}" 
+                                         Icon="WindowMaximize"  />
+                        <StackPanel Margin="20,0,30,0" Orientation="Vertical" HorizontalAlignment="Left">
+                            <Label Padding="0,0,0,0" FontSize="16" Content="Show popup window" Foreground="{StaticResource OldTextBrushColor}"/>
+                            <Label Padding="0,0,0,0" FontSize="12" Content="Opens a popup window" Foreground="{StaticResource OldSecondaryTextBrushColor}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
+                            <wpf:Combobox HorizontalAlignment="Left"
+                                          Style="{StaticResource ComboDropdown}"
+                                          ItemsSource="{Binding PopupWindowsByName.Keys}"
+                                          SelectedValue="{Binding SelectedPopupWindowName}">
+                            </wpf:Combobox>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,10,0,0">
+                                <Button HorizontalAlignment="Left"
+                                        Height="30"
+                                        Style="{StaticResource PrimaryModalButton}"
+                                        Command="{Binding OpenPopupWindowCommand}"
+                                        Content="Open Popup"/>
+                                <Button HorizontalAlignment="Left"
+                                        Margin="10,0,0,0"
+                                        Height="30"
+                                        Style="{StaticResource PrimaryModalButton}"
+                                        Command="{Binding OpenAllPopupWindowsCommand}"
+                                        Content="Open All Popups"/>
+                            </StackPanel>
+                        </StackPanel>
                     </StackPanel>
 
                     <StackPanel Margin="0,0,0,20" Orientation="Horizontal" HorizontalAlignment="Left">
                         <fa:ImageAwesome HorizontalAlignment="Left" Style="{StaticResource FontAwesomeIcon}" Icon="IdCard" />
                         <StackPanel Margin="20,0,30,0" Orientation="Vertical" HorizontalAlignment="Left">
-                            <Label Padding="0,0,0,0" FontSize="16" Content="Refresh user data" Foreground="White"/>
-                            <Label Padding="0,0,0,0" FontSize="12" Content="Manually triggers a /vpn API request" Foreground="LightGray"/>
+                            <Label Padding="0,0,0,0" FontSize="16" Content="Refresh user data" Foreground="{StaticResource OldTextBrushColor}"/>
+                            <Label Padding="0,0,0,0" FontSize="12" Content="Manually triggers a /vpn API request" Foreground="{StaticResource OldSecondaryTextBrushColor}"/>
                         </StackPanel>
                         <Button HorizontalAlignment="Left"
-                                Style="{StaticResource PrimaryButton}"
+                                Style="{StaticResource PrimaryModalButton}"
                                 Command="{Binding RefreshVpnInfoCommand}"
                                 Content="Refresh"/>
                     </StackPanel>
@@ -110,11 +159,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <StackPanel Margin="0,0,0,20" Orientation="Horizontal" HorizontalAlignment="Left">
                         <fa:ImageAwesome HorizontalAlignment="Left" Style="{StaticResource FontAwesomeIcon}" Icon="Wrench" />
                         <StackPanel Margin="20,0,30,0" Orientation="Vertical" HorizontalAlignment="Left">
-                            <Label Padding="0,0,0,0" FontSize="16" Content="Check if server is online" Foreground="White"/>
-                            <Label Padding="0,0,0,0" FontSize="12" Content="Manually triggers a /servers/{id} API request" Foreground="LightGray"/>
+                            <Label Padding="0,0,0,0" FontSize="16" Content="Check if server is online" Foreground="{StaticResource OldTextBrushColor}"/>
+                            <Label Padding="0,0,0,0" FontSize="12" Content="Manually triggers a /servers/{id} API request" Foreground="{StaticResource OldSecondaryTextBrushColor}"/>
                         </StackPanel>
                         <Button HorizontalAlignment="Left"
-                                Style="{StaticResource PrimaryButton}"
+                                Style="{StaticResource PrimaryModalButton}"
                                 Command="{Binding CheckIfCurrentServerIsOnlineCommand}"
                                 Content="Check"/>
                     </StackPanel>
@@ -122,11 +171,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <StackPanel Margin="0,0,0,20" Orientation="Horizontal" HorizontalAlignment="Left">
                         <fa:ImageAwesome HorizontalAlignment="Left" Style="{StaticResource FontAwesomeIcon}" Icon="Comment"  />
                         <StackPanel Margin="20,0,30,0" Orientation="Vertical" HorizontalAlignment="Left">
-                            <Label Padding="0,0,0,0" FontSize="16" Content="Show reconnection tooltip" Foreground="White"/>
-                            <Label Padding="0,0,0,0" FontSize="12" Content="Manually triggers a reconnection tooltip" Foreground="LightGray"/>
+                            <Label Padding="0,0,0,0" FontSize="16" Content="Show reconnection tooltip" Foreground="{StaticResource OldTextBrushColor}"/>
+                            <Label Padding="0,0,0,0" FontSize="12" Content="Manually triggers a reconnection tooltip" Foreground="{StaticResource OldSecondaryTextBrushColor}"/>
                         </StackPanel>
                         <Button HorizontalAlignment="Left"
-                                Style="{StaticResource PrimaryButton}"
+                                Style="{StaticResource PrimaryModalButton}"
                                 Command="{Binding ShowReconnectionTooltipCommand}"
                                 Content="Show"/>
                     </StackPanel>
@@ -134,11 +183,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <StackPanel Margin="0,0,0,20" Orientation="Horizontal" HorizontalAlignment="Left">
                         <fa:ImageAwesome HorizontalAlignment="Left" Style="{StaticResource FontAwesomeIcon}" Icon="Bug" />
                         <StackPanel Margin="20,0,30,0" Orientation="Vertical" HorizontalAlignment="Left">
-                            <Label Padding="0,0,0,0" FontSize="16" Content="Intentional app crash" Foreground="White"/>
-                            <Label Padding="0,0,0,0" FontSize="12" Content="Manually triggers app crash and sends event to sentry" Foreground="LightGray"/>
+                            <Label Padding="0,0,0,0" FontSize="16" Content="Intentional app crash" Foreground="{StaticResource OldTextBrushColor}"/>
+                            <Label Padding="0,0,0,0" FontSize="12" Content="Manually triggers app crash and sends event to sentry" Foreground="{StaticResource OldSecondaryTextBrushColor}"/>
                         </StackPanel>
                         <Button HorizontalAlignment="Left"
-                                Style="{StaticResource PrimaryButton}"
+                                Style="{StaticResource PrimaryModalButton}"
                                 Command="{Binding TriggerIntentionalCrashCommand}"
                                 Content="Trigger"/>
                     </StackPanel>
@@ -146,11 +195,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <StackPanel Margin="0,0,0,20" Orientation="Horizontal" HorizontalAlignment="Left">
                         <fa:ImageAwesome HorizontalAlignment="Left" Style="{StaticResource FontAwesomeIcon}" Icon="CheckSquare" />
                         <StackPanel Margin="20,0,30,0" Orientation="Vertical" HorizontalAlignment="Left">
-                            <Label Padding="0,0,0,0" FontSize="16" Content="Reset «Do not show again»" Foreground="White"/>
-                            <Label Padding="0,0,0,0" FontSize="12" Content="Sets the «Do not show again» in dialogs back to default" Foreground="LightGray"/>
+                            <Label Padding="0,0,0,0" FontSize="16" Content="Reset «Do not show again»" Foreground="{StaticResource OldTextBrushColor}"/>
+                            <Label Padding="0,0,0,0" FontSize="12" Content="Sets the «Do not show again» in dialogs back to default" Foreground="{StaticResource OldSecondaryTextBrushColor}"/>
                         </StackPanel>
                         <Button HorizontalAlignment="Left"
-                                Style="{StaticResource PrimaryButton}"
+                                Style="{StaticResource PrimaryModalButton}"
                                 Command="{Binding ResetDoNotShowAgainCommand}"
                                 Content="Reset"/>
                     </StackPanel>
@@ -158,12 +207,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <StackPanel Margin="0,0,0,20" Orientation="Horizontal" HorizontalAlignment="Left">
                         <fa:ImageAwesome HorizontalAlignment="Left" Style="{StaticResource FontAwesomeIcon}" Icon="Lock" />
                         <StackPanel Margin="20,0,30,0" Orientation="Vertical" HorizontalAlignment="Left">
-                            <Label Padding="0,0,0,0" FontSize="16" Content="Disable TLS pinning" Foreground="White"/>
-                            <Label Padding="0,0,0,0" FontSize="12" Content="Writes current app config to ProtonVPN.config file with TLS pinning disabled" Foreground="LightGray"/>
-                            <Label Padding="0,0,0,0" FontSize="12" Content="(App has to be launched as admin before)" Foreground="LightGray"/>
+                            <Label Padding="0,0,0,0" FontSize="16" Content="Disable TLS pinning" Foreground="{StaticResource OldTextBrushColor}"/>
+                            <Label Padding="0,0,0,0" FontSize="12" Content="Writes current app config to ProtonVPN.config file with TLS pinning disabled" Foreground="{StaticResource OldSecondaryTextBrushColor}"/>
+                            <Label Padding="0,0,0,0" FontSize="12" Content="(App has to be launched as admin before)" Foreground="{StaticResource OldSecondaryTextBrushColor}"/>
                         </StackPanel>
                         <Button HorizontalAlignment="Left"
-                                Style="{StaticResource PrimaryButton}"
+                                Style="{StaticResource PrimaryModalButton}"
                                 Command="{Binding DisableTlsPinningCommand}"
                                 Content="Disable"/>
                     </StackPanel>
@@ -172,24 +221,24 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                             <fa:ImageAwesome HorizontalAlignment="Left" Style="{StaticResource FontAwesomeIcon}" Icon="Bell"  />
                             <StackPanel Margin="20,0,30,0" Orientation="Vertical" HorizontalAlignment="Left">
-                                <Label Padding="0,0,0,0" FontSize="16" Content="Pop toast" Foreground="White"/>
-                                <Label Padding="0,0,0,0" FontSize="12" Content="Trigger a native Windows 10 notification" Foreground="LightGray"/>
+                                <Label Padding="0,0,0,0" FontSize="16" Content="Pop toast" Foreground="{StaticResource OldTextBrushColor}"/>
+                                <Label Padding="0,0,0,0" FontSize="12" Content="Trigger a native Windows 10 notification" Foreground="{StaticResource OldSecondaryTextBrushColor}"/>
                             </StackPanel>
                             <Button HorizontalAlignment="Left"
-                                    Style="{StaticResource PrimaryButton}"
+                                    Style="{StaticResource PrimaryModalButton}"
                                     Command="{Binding FullToastCommand}"
                                     Content="Full"/>
                             <Button HorizontalAlignment="Left"
-                                    Style="{StaticResource PrimaryButton}"
+                                    Style="{StaticResource PrimaryModalButton}"
                                     Command="{Binding BasicToastCommand}"
                                     Content="Basic"/>
                             <Button HorizontalAlignment="Left"
-                                    Style="{StaticResource PrimaryButton}"
+                                    Style="{StaticResource PrimaryModalButton}"
                                     Command="{Binding ClearToastNotificationLogsCommand}"
                                     Content="Clear logs"/>
                         </StackPanel>
-                        <ScrollViewer Background="#121319" Margin="0,20,0,0" Padding="10" CanContentScroll="True" VerticalScrollBarVisibility="Visible" Height="200">
-                            <TextBlock FontSize="12" Foreground="#AAA" 
+                        <ScrollViewer Background="{StaticResource OldTableHeaderBackgroundColor}" Margin="0,20,0,0" Padding="10" CanContentScroll="True" VerticalScrollBarVisibility="Visible" Height="200">
+                            <TextBlock FontSize="12" Foreground="{StaticResource OldPrimaryBrushColor}" 
                                        Text="{Binding ToastNotificationLog}" />
                         </ScrollViewer>
                     </StackPanel>

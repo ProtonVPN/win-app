@@ -19,6 +19,7 @@
 
 using System;
 using System.Linq;
+using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Profiles.Cached;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Storage;
@@ -33,15 +34,21 @@ namespace ProtonVPN.Settings.Migrations.v1_7_2
         private readonly ServerManager _serverManager;
         private readonly ISettingsStorage _appSettings;
         private readonly ISettingsStorage _userSettings;
+        private readonly IProfileFactory _profileFactory;
+        private readonly ColorProvider _colorProvider;
 
         public UserSettingsMigration(
             ServerManager serverManager,
             ISettingsStorage appSettings,
-            UserSettings userSettings)
+            UserSettings userSettings, 
+            IProfileFactory profileFactory, 
+            ColorProvider colorProvider)
         {
             _serverManager = serverManager;
             _appSettings = appSettings;
             _userSettings = userSettings;
+            _profileFactory = profileFactory;
+            _colorProvider = colorProvider;
         }
 
         public Version ToVersion => new Version(1, 7, 2);
@@ -68,7 +75,7 @@ namespace ProtonVPN.Settings.Migrations.v1_7_2
             var cachedProfileData = new CachedProfileDataContract
             {
                 Local = appProfiles
-                    .Select(p => new MigratedProfile(p, _serverManager))
+                    .Select(p => new MigratedProfile(p, _serverManager, _profileFactory, _colorProvider))
                     .Where(p => p.HasValue)
                     .Select(p => p.Value)
                     .ToList()

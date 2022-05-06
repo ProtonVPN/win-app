@@ -22,12 +22,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:command="http://www.galasoft.ch/mvvmlight"
-                    xmlns:c="clr-namespace:CalcBinding;assembly=CalcBinding"
                     xmlns:pins="clr-namespace:ProtonVPN.Map.ViewModels.Pins"
                     xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations">
 
     <Style x:Key="TooltipText" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Foreground" Value="{StaticResource OldTextBrushColor}"/>
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="Margin" Value="15,0"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
@@ -40,35 +39,34 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="FontWeight" Value="Medium"/>
         <Style.Triggers>
             <DataTrigger Binding="{Binding Highlighted}" Value="False">
-                <Setter Property="Foreground" Value="{StaticResource InactivePinStrokeColor}"/>
+                <Setter Property="Foreground" Value="{StaticResource OldInactivePinStrokeColor}"/>
             </DataTrigger>
         </Style.Triggers>
     </Style>
 
     <Style x:Key="TooltipBorder" TargetType="Border">
-        <Setter Property="Background" Value="{StaticResource PrimaryColor}"/>
-        <Setter Property="BorderBrush" Value="{StaticResource PrimaryColor}"/>
+        <Setter Property="Background" Value="{StaticResource OldPrimaryBrushColor}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource OldPrimaryBrushColor}"/>
         <Setter Property="BorderThickness" Value="2"/>
         <Setter Property="CornerRadius" Value="15"/>
         <Setter Property="Height" Value="30"/>
         <Setter Property="UseLayoutRounding" Value="True"/>
         <Style.Triggers>
             <DataTrigger Binding="{Binding State, Converter={StaticResource PinStateToBoolConverter}, ConverterParameter={x:Static pins:PinStates.Connected}}" Value="True">
-                <Setter Property="Background" Value="{StaticResource PrimaryColor}"/>
-                <Setter Property="BorderBrush" Value="{StaticResource PrimaryColor}"/>
+                <Setter Property="Background" Value="{StaticResource OldPrimaryBrushColor}"/>
+                <Setter Property="BorderBrush" Value="{StaticResource OldPrimaryBrushColor}"/>
             </DataTrigger>
         </Style.Triggers>
     </Style>
 
     <Style x:Key="ExitNodeName" TargetType="Button" BasedOn="{StaticResource ClearStyleButton}">
         <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
         <Setter Property="Padding" Value="0,5"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
-                    <TextBlock Name="NodeName" HorizontalAlignment="Center" Padding="0,3" Foreground="White">
+                    <TextBlock Name="NodeName" HorizontalAlignment="Center" Padding="0,3" Foreground="{StaticResource OldTextBrushColor}">
                         <Run Text="{Binding Server.Name, StringFormat='» {0}', Mode=OneWay}" Name="ServerName"/>
                     </TextBlock>
                     <ControlTemplate.Triggers>
@@ -91,7 +89,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <Setter TargetName="NodeName" Property="Padding" Value="20,3"/>
                         </MultiDataTrigger>
                         <DataTrigger Binding="{Binding Highlighted, RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}}" Value="False">
-                            <Setter TargetName="NodeName" Property="Foreground" Value="{StaticResource InactivePinStrokeColor}"/>
+                            <Setter TargetName="NodeName" Property="Foreground" Value="{StaticResource OldInactivePinStrokeColor}"/>
                         </DataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -102,13 +100,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <Style x:Key="TooltipArrow" TargetType="fa:FontAwesome">
         <Setter Property="Padding" Value="7"/>
         <Setter Property="Icon" Value="ChevronUp"/>
-        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Foreground" Value="{StaticResource OldTextBrushColor}"/>
         <Style.Triggers>
             <DataTrigger Binding="{Binding ShowServers}" Value="True">
                 <Setter Property="Icon" Value="ChevronDown"/>
             </DataTrigger>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="#4c4c55"/>
+                <Setter Property="Background" Value="{StaticResource OldSidebarIconColor}"/>
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -174,32 +172,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </TextBlock>
         </StackPanel>
     </ControlTemplate>
-
-    <Style x:Key="PinTooltip" TargetType="Button">
-        <Setter Property="HorizontalAlignment" Value="Center"/>
-        <Setter Property="Padding" Value="30,0"/>
-        <Setter Property="Background" Value="{StaticResource SecondaryColorDark}"/>
-        <Setter Property="Visibility" Value="Hidden"/>
-        <Setter Property="Panel.ZIndex" Value="2"/>
-        <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="BorderBrush" Value="Transparent"/>
-        <Setter Property="SnapsToDevicePixels" Value="True"/>
-        <Setter Property="Canvas.Bottom" Value="{c:Binding 'ActualHeight - 2.5', ElementName=PinTriangleButton}"/>
-        <Setter Property="Canvas.Left">
-            <Setter.Value>
-                <MultiBinding Converter="{StaticResource ControlToCanvasCenterConverter}">
-                    <Binding Path="ActualWidth" ElementName="PinCanvas"/>
-                    <Binding Path="ActualWidth" ElementName="Tooltip"/>
-                </MultiBinding>
-            </Setter.Value>
-        </Setter>
-        <Setter Property="Template" Value="{StaticResource TooltipButton}"/>
-        <Style.Triggers>
-            <DataTrigger Binding="{Binding ShowTooltip}" Value="True">
-                <Setter Property="Visibility" Value="Visible"/>
-            </DataTrigger>
-        </Style.Triggers>
-    </Style>
 
     <Style x:Key="ExitPinTooltip" TargetType="Button">
         <Setter Property="HorizontalAlignment" Value="Center"/>

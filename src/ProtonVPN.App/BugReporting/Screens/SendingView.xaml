@@ -25,10 +25,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
              xmlns:controls="clr-namespace:ProtonVPN.Resource.Controls;assembly=ProtonVPN.Resource"
              mc:Ignorable="d">
-    <Grid Background="{StaticResource ModalContentColor}">
+    <Grid>
         <StackPanel VerticalAlignment="Center" Margin="0,80">
             <controls:ProtonAnimation Width="100" Height="100" HorizontalAlignment="Center" />
-            <TextBlock Foreground="White"
+            <TextBlock Foreground="{StaticResource TextNormBrushColor}"
                        Margin="0,20,0,0"
                        FontSize="16"
                        HorizontalAlignment="Center"

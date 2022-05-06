@@ -33,7 +33,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           Height="Auto"
                           Width="650"
                           d:DataContext="{d:DesignInstance delinquency:DelinquencyPopupViewModel}">
-
     <Grid>
         <StackPanel Margin="127,75,127,63">
             <TextBlock Padding="15,0,15,0"
@@ -42,110 +41,112 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        FontSize="32"
                        FontWeight="Medium"
                        TextWrapping="Wrap"
-                       Foreground="White"
-                       Text="{translations:Loc Dialogs_Delinquency_Title}"/>
+                       Foreground="{StaticResource TextNormBrushColor}"
+                       Text="{translations:Loc Dialogs_Delinquency_Title}" />
 
             <TextBlock Padding="0,15,0,0"
                        HorizontalAlignment="Center"
                        TextAlignment="Center"
                        FontSize="16"
                        TextWrapping="Wrap"
-                       Foreground="White">
+                       Foreground="{StaticResource TextNormBrushColor}">
                 <TextBlock.Style>
                     <Style TargetType="{x:Type TextBlock}">
-                        <Setter Property="Text" Value="{translations:Loc Dialogs_Delinquency_Subtitle}"/>
+                        <Setter Property="Text" Value="{translations:Loc Dialogs_Delinquency_Subtitle}" />
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding IsReconnection}" Value="True">
-                                <Setter Property="Text" Value="{translations:Loc Dialogs_Delinquency_Reconnected_Subtitle}"/>
+                                <Setter Property="Text"
+                                        Value="{translations:Loc Dialogs_Delinquency_Reconnected_Subtitle}" />
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
                 </TextBlock.Style>
             </TextBlock>
 
-            <Border HorizontalAlignment="Center" Margin="0,20,0,0" Background="{StaticResource ModalBarColor}" 
-                BorderBrush="#FF000000" BorderThickness="0" CornerRadius="6"
-                Visibility="{Binding IsReconnection, Converter={StaticResource BoolToVis}}">
+            <Border HorizontalAlignment="Center"
+                    Margin="0,20,0,0"
+                    BorderThickness="0" CornerRadius="6"
+                    Visibility="{Binding IsReconnection, Converter={StaticResource BoolToVis}}">
                 <Grid HorizontalAlignment="Center" Margin="25,0">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="50"/>
-                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="50" />
+                        <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
 
                     <StackPanel Grid.Column="0" Orientation="Vertical" Margin="0,14" HorizontalAlignment="Center">
                         <TextBlock VerticalAlignment="Center"
                                    FontSize="12"
-                                   Foreground="White"
-                                   Text="{translations:Loc Dialogs_reconnection_FromServer}"/>
+                                   Foreground="{StaticResource TextNormBrushColor}"
+                                   Text="{translations:Loc Dialogs_reconnection_FromServer}" />
                         <StackPanel Orientation="Horizontal" Height="31">
                             <Image VerticalAlignment="Center" Width="21" Height="15"
                                    Source="{Binding FromServer.EntryCountry, Converter={StaticResource CountryToFlagConverter}}"
-                                   Visibility="{Binding IsFromServerSecureCore, Converter={StaticResource BoolToVis}}"/>
+                                   Visibility="{Binding IsFromServerSecureCore, Converter={StaticResource BoolToVis}}" />
                             <TextBlock Padding="4,0,3,0"
                                        VerticalAlignment="Center"
                                        FontSize="20"
                                        FontWeight="Bold"
-                                       Foreground="{StaticResource GrayColor}"
+                                       Foreground="{StaticResource OldGrayColor}"
                                        Text="»"
                                        LineHeight="31"
-                                       Visibility="{Binding IsFromServerSecureCore, Converter={StaticResource BoolToVis}}"/>
+                                       Visibility="{Binding IsFromServerSecureCore, Converter={StaticResource BoolToVis}}" />
                             <Image VerticalAlignment="Center" Width="21" Height="15"
-                                   Source="{Binding FromServer.ExitCountry, Converter={StaticResource CountryToFlagConverter}}"/>
+                                   Source="{Binding FromServer.ExitCountry, Converter={StaticResource CountryToFlagConverter}}" />
                             <TextBlock Padding="6,0,0,0"
                                        VerticalAlignment="Center"
                                        FontSize="14"
-                                       Foreground="White"
-                                       Text="{Binding FromServer.Name}"/>
+                                       Foreground="{StaticResource TextNormBrushColor}"
+                                       Text="{Binding FromServer.Name}" />
                         </StackPanel>
                     </StackPanel>
 
                     <icons:ArrowRight Grid.Column="1"
-                                      HorizontalAlignment="Center" 
+                                      HorizontalAlignment="Center"
                                       VerticalAlignment="Center"
-                                      Foreground="White"
-                                      Width="18"/>
+                                      Foreground="{StaticResource TextNormBrushColor}"
+                                      Width="18" />
 
                     <StackPanel Grid.Column="2" Orientation="Vertical" Margin="0,14" HorizontalAlignment="Center">
                         <TextBlock VerticalAlignment="Center"
                                    FontSize="12"
-                                   Foreground="White"
-                                   Text="{translations:Loc Dialogs_reconnection_ToServer}"/>
+                                   Foreground="{StaticResource TextNormBrushColor}"
+                                   Text="{translations:Loc Dialogs_reconnection_ToServer}" />
                         <StackPanel Orientation="Horizontal" Height="31">
                             <Image VerticalAlignment="Center" Width="21" Height="15"
                                    Source="{Binding ToServer.EntryCountry, Converter={StaticResource CountryToFlagConverter}}"
-                                   Visibility="{Binding IsToServerSecureCore, Converter={StaticResource BoolToVis}}"/>
+                                   Visibility="{Binding IsToServerSecureCore, Converter={StaticResource BoolToVis}}" />
                             <TextBlock Padding="4,0,3,0"
                                        VerticalAlignment="Center"
                                        FontSize="20"
                                        FontWeight="Bold"
-                                       Foreground="{StaticResource PrimaryColor}"
+                                       Foreground="{StaticResource OldPrimaryBrushColor}"
                                        Text="»"
                                        LineHeight="31"
-                                       Visibility="{Binding IsToServerSecureCore, Converter={StaticResource BoolToVis}}"/>
+                                       Visibility="{Binding IsToServerSecureCore, Converter={StaticResource BoolToVis}}" />
                             <Image VerticalAlignment="Center" Width="21" Height="15"
-                                   Source="{Binding ToServer.ExitCountry, Converter={StaticResource CountryToFlagConverter}}"/>
+                                   Source="{Binding ToServer.ExitCountry, Converter={StaticResource CountryToFlagConverter}}" />
                             <TextBlock Padding="6,0,0,0"
                                        VerticalAlignment="Center"
                                        FontSize="14"
-                                       Foreground="White"
-                                       Text="{Binding ToServer.Name}"/>
+                                       Foreground="{StaticResource TextNormBrushColor}"
+                                       Text="{Binding ToServer.Name}" />
                         </StackPanel>
                     </StackPanel>
                 </Grid>
             </Border>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,30,0,0">
-                <Button Style="{StaticResource SecondaryVividModalButton}"
+                <Button Style="{StaticResource SecondaryModalButton}"
                         Content="{translations:Loc Dialogs_btn_NoThanks}"
                         Padding="20,0"
                         Margin="0,0,30,0"
-                        Command="{Binding CloseCommand}"/>
-                <Button Style="{StaticResource PrimaryVividModalButton}"
+                        Command="{Binding CloseCommand}" />
+                <Button Style="{StaticResource PrimaryModalButton}"
                         Padding="20,0"
                         FontWeight="Medium"
                         Content="{translations:Loc Dialogs_Delinquency_GoToBilling}"
-                        Command="{Binding GoToBillingCommand}"/>
+                        Command="{Binding GoToBillingCommand}" />
             </StackPanel>
         </StackPanel>
     </Grid>

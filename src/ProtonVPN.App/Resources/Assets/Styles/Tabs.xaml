@@ -20,22 +20,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <SolidColorBrush x:Key="TabControlBackground" Color="#34343d"/>
-    <SolidColorBrush x:Key="TabItemBackground" Color="#24242b"/>
-    <SolidColorBrush x:Key="TabItemForeground" Color="Gray"/>
-    <SolidColorBrush x:Key="SelectedTabItemBackground" Color="#34343d"/>
-    <SolidColorBrush x:Key="SelectedTabItemForeground" Color="White"/>
-
-    <LinearGradientBrush x:Key="TabOpacityMaskStart" StartPoint="1,0" EndPoint="0,0">
-        <GradientStop Color="#FFFFFFFF" Offset="0"/>
-        <GradientStop Color="#FFFFFFFF" Offset="0.5"/>
-        <GradientStop Color="#00FFFFFF" Offset="1"/>
-    </LinearGradientBrush>
-    <LinearGradientBrush x:Key="TabOpacityMaskEnd" StartPoint="0,0" EndPoint="1,0">
-        <GradientStop Color="#FFFFFFFF" Offset="0"/>
-        <GradientStop Color="#FFFFFFFF" Offset="0.5"/>
-        <GradientStop Color="#00FFFFFF" Offset="1"/>
-    </LinearGradientBrush>
     <Style x:Key="TabItemPath" TargetType="{x:Type Path}">
         <Style.Setters>
             <Setter Property="Data" Value="M0,0 C0,0 17.926,0 23.5,20.4 C28.8,39 40,40 45.7,40 C50,40 0,40 0,40 L0,0 Z"/>
@@ -49,7 +33,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     </TransformGroup>
 
     <Style TargetType="{x:Type TabControl}">
-        <Setter Property="Background" Value="{StaticResource TabControlBackground}"/>
+        <Setter Property="Background" Value="{StaticResource BackgroundWeakBrushColor}"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -86,15 +70,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     </Style>
     
     <Style TargetType="{x:Type TabItem}">
-        <Setter Property="Foreground" Value="{StaticResource TabItemForeground}"/>
-        <Setter Property="Background" Value="{StaticResource TabItemBackground}"/>
+        <Setter Property="Foreground" Value="{StaticResource TextWeakBrushColor}"/>
+        <Setter Property="Background" Value="Transparent"/>
         <Setter Property="FontSize" Value="16"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TabItem}">
                     <Grid Margin="{TemplateBinding Margin}">
-                        <Border Name="LeftShadow" Background="{TemplateBinding Background}" HorizontalAlignment="Left" Width="0" OpacityMask="{StaticResource TabOpacityMaskStart}"></Border>
+                        <Border Name="LeftShadow" Background="{TemplateBinding Background}" HorizontalAlignment="Left" Width="0"></Border>
                         <Grid Cursor="Hand">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
@@ -119,18 +103,18 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                   Style="{StaticResource TabItemPath}"
                                   Fill="{TemplateBinding Background}"/>
                         </Grid>
-                        <Border Name="RightShadow" Background="{TemplateBinding Background}" HorizontalAlignment="Right" Width="0" OpacityMask="{StaticResource TabOpacityMaskEnd}"></Border>
+                        <Border Name="RightShadow" Background="{TemplateBinding Background}" HorizontalAlignment="Right" Width="0"></Border>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="Label" Property="Foreground" Value="{StaticResource SelectedTabItemForeground}"/>
+                            <Setter TargetName="Label" Property="Foreground" Value="{StaticResource TextNormBrushColor}"/>
                         </Trigger>
                         <Trigger Property="IsSelected" Value="True">
                             <Setter TargetName="LeftShadow" Property="Visibility" Value="Visible"/>
-                            <Setter TargetName="LeftPath" Property="Fill" Value="{StaticResource SelectedTabItemBackground}"/>
-                            <Setter TargetName="Border" Property="Background" Value="{StaticResource SelectedTabItemBackground}"/>
-                            <Setter TargetName="Label" Property="Foreground" Value="{StaticResource SelectedTabItemForeground}"/>
-                            <Setter TargetName="RightPath" Property="Fill" Value="{StaticResource SelectedTabItemBackground}"/>
+                            <Setter TargetName="LeftPath" Property="Fill" Value="{StaticResource BackgroundWeakBrushColor}"/>
+                            <Setter TargetName="Border" Property="Background" Value="{StaticResource BackgroundWeakBrushColor}"/>
+                            <Setter TargetName="Label" Property="Foreground" Value="{StaticResource TextNormBrushColor}"/>
+                            <Setter TargetName="RightPath" Property="Fill" Value="{StaticResource BackgroundWeakBrushColor}"/>
                             <Setter TargetName="RightShadow" Property="Visibility" Value="Visible"/>
                             <Setter Property="Panel.ZIndex" Value="1"/>
                         </Trigger>

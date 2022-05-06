@@ -27,6 +27,8 @@ namespace ProtonVPN.Login.Views
 {
     public partial class LoginView
     {
+        private LoginViewModel ViewModel => (LoginViewModel)DataContext;
+
         public LoginView()
         {
             InitializeComponent();
@@ -48,10 +50,9 @@ namespace ProtonVPN.Login.Views
 
         private void ExecuteLoginCommand()
         {
-            var context = (LoginViewModel)DataContext;
-            if (context.LoginCommand.CanExecute(PasswordInput))
+            if (ViewModel.LoginCommand.CanExecute(PasswordInput))
             {
-                context.LoginCommand.Execute(PasswordInput);
+                ViewModel.LoginCommand.Execute(PasswordInput);
             }
         }
 

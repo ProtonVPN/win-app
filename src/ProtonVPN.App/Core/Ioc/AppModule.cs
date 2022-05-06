@@ -60,6 +60,7 @@ using ProtonVPN.Modals.Welcome;
 using ProtonVPN.Notifications;
 using ProtonVPN.PlanDowngrading;
 using ProtonVPN.PortForwarding;
+using ProtonVPN.Resource.Colors;
 using ProtonVPN.Servers;
 using ProtonVPN.Settings;
 using ProtonVPN.Settings.Migrations;
@@ -186,6 +187,8 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<ProtonVPN.Settings.Migrations.v1_22_0.AppSettingsMigration>().AsImplementedInterfaces()
                 .SingleInstance();
             builder.RegisterType<ProtonVPN.Settings.Migrations.v1_27_1.AppSettingsMigration>().AsImplementedInterfaces()
+                .SingleInstance();
+            builder.RegisterType<ProtonVPN.Settings.Migrations.v2_0_0.AppSettingsMigration>().AsImplementedInterfaces()
                 .SingleInstance();
 
             builder.RegisterType<MapLineManager>().AsImplementedInterfaces().AsSelf().SingleInstance();
@@ -315,6 +318,9 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<SignUpAvailabilityProvider>().As<ISignUpAvailabilityProvider>().SingleInstance();
             builder.RegisterType<PromoCodeManager>().As<IPromoCodeManager>().SingleInstance();
             builder.RegisterType<DeviceInfoProvider>().As<IDeviceInfoProvider>().SingleInstance();
+            
+            builder.RegisterType<ApplicationResourcesLoader>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<ColorPalette>().AsImplementedInterfaces().SingleInstance();
         }
     }
 }

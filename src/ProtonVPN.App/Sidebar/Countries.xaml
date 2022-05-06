@@ -26,14 +26,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:servers="clr-namespace:ProtonVPN.Servers"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:c="clr-namespace:CalcBinding;assembly=CalcBinding"
-             xmlns:fa="http://schemas.fontawesome.io/icons/"
-             xmlns:icons="clr-namespace:ProtonVPN.Views.Icons"
              xmlns:sidebar="clr-namespace:ProtonVPN.Sidebar"
              xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
              xmlns:wpf="clr-namespace:ProtonVPN.Core.Wpf"
              xmlns:quickSettings="clr-namespace:ProtonVPN.Sidebar.QuickSettings"
              xmlns:streaming="clr-namespace:ProtonVPN.Streaming"
              xmlns:countryFeatures="clr-namespace:ProtonVPN.Sidebar.CountryFeatures"
+             xmlns:icons="clr-namespace:ProtonVPN.Resource.Graphics.Icons;assembly=ProtonVPN.Resource"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="300"
@@ -42,13 +41,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <UserControl.Resources>
         <Style x:Key="ServerRowItem" TargetType="Grid">
             <Setter Property="HorizontalAlignment" Value="Stretch" />
-            <Setter Property="MinHeight" Value="48" />
-            <Setter Property="Background" Value="#25272C" />
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding ConnectedToCountry}" Value="True">
-                    <Setter Property="Background" Value="#2f2f37" />
-                </DataTrigger>
-            </Style.Triggers>
+            <Setter Property="MinHeight" Value="40" />
+            <Setter Property="Background" Value="{StaticResource BackgroundNormBrushColor}" />
         </Style>
         <Style x:Key="ServerFlagImage" TargetType="Image">
             <Setter Property="Width" Value="21" />
@@ -73,8 +67,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Setter Property="Visibility" Value="Hidden" />
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="HorizontalAlignment" Value="Right" />
-            <Setter Property="Foreground" Value="#797984" />
-            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Foreground" Value="{StaticResource TextHintBrushColor}" />
+            <Setter Property="FontSize" Value="14" />
             <Setter Property="FontWeight" Value="DemiBold" />
             <Setter Property="Padding" Value="0,5" />
             <Style.Triggers>
@@ -102,22 +96,22 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </DataTrigger>
             </Style.Triggers>
         </Style>
-        <Style x:Key="ToggleButtonArrow" TargetType="fa:FontAwesome">
+        <Style x:Key="ToggleButtonArrow" TargetType="UserControl">
             <Setter Property="SnapsToDevicePixels" Value="True" />
-            <Setter Property="Foreground" Value="#4B4B56" />
+            <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}" />
             <Setter Property="HorizontalAlignment" Value="Center" />
             <Setter Property="VerticalAlignment" Value="Center" />
-            <Setter Property="Icon" Value="ChevronDown" />
+            <Setter Property="Width" Value="23" />
         </Style>
         <Style x:Key="OutterToggleBorder" TargetType="Border">
             <Setter Property="SnapsToDevicePixels" Value="True" />
-            <Setter Property="CornerRadius" Value="13" />
+            <Setter Property="CornerRadius" Value="16" />
             <Setter Property="BorderThickness" Value="2" />
-            <Setter Property="BorderBrush" Value="#4B4B56" />
-            <Setter Property="Width" Value="26" />
+            <Setter Property="BorderBrush" Value="{StaticResource BorderWeakBrushColor}" />
+            <Setter Property="Width" Value="32" />
             <Setter Property="HorizontalAlignment" Value="Center" />
             <Setter Property="VerticalAlignment" Value="Center" />
-            <Setter Property="Height" Value="26" />
+            <Setter Property="Height" Value="32" />
             <Setter Property="Background" Value="Transparent" />
         </Style>
         <Style x:Key="InnerToggleBorder" TargetType="Border">
@@ -127,7 +121,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Setter Property="Margin" Value="-1" />
         </Style>
         <Style x:Key="ToggleButton" TargetType="Button">
-            <Setter Property="Padding" Value="5" />
+            <Setter Property="Padding" Value="0" />
             <Setter Property="HorizontalAlignment" Value="Right" />
             <Setter Property="Template">
                 <Setter.Value>
@@ -143,26 +137,22 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <Border x:Name="OutterToggleBorder" Style="{StaticResource OutterToggleBorder}">
                                 <Border x:Name="InnerToggleBorder" Style="{StaticResource InnerToggleBorder}" />
                             </Border>
-                            <fa:FontAwesome x:Name="Arrow" Style="{StaticResource ToggleButtonArrow}" />
+                            <StackPanel VerticalAlignment="Center">
+                                <icons:ChevronDown x:Name="ArrowDown" Style="{StaticResource ToggleButtonArrow}" />
+                                <icons:ChevronUp x:Name="ArrowUp" Visibility="Collapsed" Style="{StaticResource ToggleButtonArrow}" />
+                            </StackPanel>
                         </Grid>
-
                         <ControlTemplate.Triggers>
                             <DataTrigger Binding="{Binding Maintenance}" Value="True">
                                 <Setter Property="Visibility" Value="Collapsed" />
                             </DataTrigger>
                             <DataTrigger Binding="{Binding Expanded}" Value="True">
-                                <Setter TargetName="Arrow" Property="Icon" Value="ChevronUp" />
-                                <Setter TargetName="Arrow" Property="Margin" Value="0.5,-0.5,0,2" />
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Expanded}" Value="False">
-                                <Setter TargetName="Arrow" Property="Margin" Value="0.5,1,0,2" />
+                                <Setter TargetName="ArrowDown" Property="Visibility" Value="Collapsed" />
+                                <Setter TargetName="ArrowUp" Property="Visibility" Value="Visible" />
                             </DataTrigger>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="Arrow" Property="Foreground" Value="White" />
-                                <Setter TargetName="InnerToggleBorder" Property="Background"
-                                        Value="{StaticResource PrimaryColor}" />
-                                <Setter TargetName="OutterToggleBorder" Property="BorderBrush"
-                                        Value="{StaticResource PrimaryColor}" />
+                                <Setter TargetName="InnerToggleBorder" Property="Background" Value="{StaticResource InteractionNormHoverBrushColor}" />
+                                <Setter TargetName="OutterToggleBorder" Property="BorderBrush" Value="{StaticResource InteractionNormHoverBrushColor}" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -171,7 +161,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Style>
         <Style x:Key="SearchPlaceholder" TargetType="TextBlock">
             <Setter Property="FontSize" Value="16" />
-            <Setter Property="Foreground" Value="{StaticResource GrayColor}" />
+            <Setter Property="Padding" Value="0,0,0,2" />
+            <Setter Property="Foreground" Value="{StaticResource TextHintBrushColor}" />
             <Setter Property="Background" Value="Transparent" />
             <Setter Property="IsHitTestVisible" Value="False" />
             <Setter Property="Text" Value="{translations:Loc Sidebar_Countries_lbl_Search_Watermark}" />
@@ -186,11 +177,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </DataTrigger>
             </Style.Triggers>
         </Style>
-        <Style x:Key="SearchInput" TargetType="TextBox">
+        <Style x:Key="SearchInputStyle" TargetType="TextBox">
             <Setter Property="FontSize" Value="16" />
-            <Setter Property="Foreground" Value="{StaticResource GrayColor}" />
+            <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}" />
             <Setter Property="Background" Value="Transparent" />
-            <Setter Property="CaretBrush" Value="{StaticResource GrayColor}" />
+            <Setter Property="CaretBrush" Value="{StaticResource TextNormBrushColor}" />
             <Setter Property="VerticalContentAlignment" Value="Center" />
             <Setter Property="HorizontalAlignment" Value="Stretch" />
             <Setter Property="HorizontalContentAlignment" Value="Left" />
@@ -208,7 +199,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </Style.Triggers>
         </Style>
         <Style x:Key="City" TargetType="Label">
-            <Setter Property="Foreground" Value="#797984" />
+            <Setter Property="Foreground" Value="{StaticResource TextWeakBrushColor}" />
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="HorizontalAlignment" Value="Right" />
             <Setter Property="Margin" Value="0,0,0,3" />
@@ -232,14 +223,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </DataTrigger>
             </Style.Triggers>
         </Style>
-        <Style x:Key="MaintenanceIcon" TargetType="fa:FontAwesome">
+        <Style x:Key="MaintenanceIcon" TargetType="UserControl">
             <Setter Property="Margin" Value="0,0,4,0" />
             <Setter Property="HorizontalAlignment" Value="Right" />
-            <Setter Property="FontSize" Value="22" />
-            <Setter Property="Foreground" Value="#98989d" />
+            <Setter Property="Width" Value="22" />
+            <Setter Property="Foreground" Value="{StaticResource TextWeakBrushColor}" />
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="Visibility" Value="Hidden" />
-            <Setter Property="Icon" Value="Wrench" />
             <Setter Property="ToolTip" Value="{translations:Loc Sidebar_Countries_lbl_Maintenance}" />
             <Style.Triggers>
                 <DataTrigger Binding="{Binding Maintenance}" Value="True">
@@ -247,7 +237,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </DataTrigger>
             </Style.Triggers>
         </Style>
-        <Style x:Key="CountryMaintenanceIcon" BasedOn="{StaticResource MaintenanceIcon}" TargetType="fa:FontAwesome">
+        <Style x:Key="CountryMaintenanceIcon" BasedOn="{StaticResource MaintenanceIcon}" TargetType="UserControl">
             <Style.Triggers>
                 <DataTrigger Binding="{Binding Maintenance}" Value="True">
                     <Setter Property="Visibility" Value="Visible" />
@@ -271,10 +261,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="Padding" Value="0,0,0,2" />
             <Setter Property="FontSize" Value="16" />
-            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}" />
             <Style.Triggers>
                 <DataTrigger Binding="{Binding Dimmed}" Value="True">
-                    <Setter Property="Foreground" Value="{StaticResource GrayColor}" />
+                    <Setter Property="Foreground" Value="{StaticResource TextDisabledBrushColor}" />
                 </DataTrigger>
             </Style.Triggers>
         </Style>
@@ -283,20 +273,33 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="Padding" Value="0,0,0,2" />
             <Setter Property="FontSize" Value="12" />
-            <Setter Property="Foreground" Value="{StaticResource GrayIconColor}" />
+            <Setter Property="Foreground" Value="{StaticResource TextHintBrushColor}" />
         </Style>
         <Style x:Key="CountryRow" TargetType="Border">
             <Setter Property="Cursor" Value="Hand" />
-            <Setter Property="BorderBrush" Value="{StaticResource SidebarBorderColor}" />
+            <Setter Property="BorderBrush" Value="{StaticResource BorderWeakBrushColor}" />
             <Setter Property="BorderThickness" Value="0" />
-            <Setter Property="MinHeight" Value="48" />
-            <Setter Property="Background" Value="{StaticResource SidebarTabBackgroundColor}" />
+            <Setter Property="MinHeight" Value="40" />
+            <Setter Property="Background" Value="{StaticResource BackgroundWeakBrushColor}" />
             <Setter Property="HorizontalAlignment" Value="Stretch" />
             <Style.Triggers>
                 <DataTrigger Binding="{Binding Maintenance}" Value="True">
                     <Setter Property="Cursor" Value="Arrow" />
                 </DataTrigger>
             </Style.Triggers>
+        </Style>
+        <Style x:Key="CountryFeatureIcon" TargetType="UserControl">
+            <Setter Property="Foreground" Value="{StaticResource TextWeakBrushColor}" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="Width" Value="18" />
+            <Setter Property="Height" Value="18" />
+            <Setter Property="Margin" Value="0,0,7,0" />
+        </Style>
+        <Style x:Key="GrayInfoIcon" TargetType="UserControl" BasedOn="{StaticResource InfoCircle}">
+            <Setter Property="Width" Value="20"/>
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="Cursor" Value="Hand"/>
         </Style>
     </UserControl.Resources>
 
@@ -309,44 +312,82 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <quickSettings:QuickSettingsView Grid.Row="0"
                                          DataContext="{Binding QuickSettingsViewModel}" />
         <Grid Grid.Row="1" Visibility="{c:Binding '!SecureCore'}">
-            <Border CornerRadius="2"
-                    Width="270"
-                    Background="{StaticResource SidebarSecondaryBackgroundColor}"
-                    BorderBrush="#484850"
+            <Border x:Name="SearchBoxBorder"
+                    CornerRadius="8"
+                    Width="290"
+                    Background="Transparent"
                     BorderThickness="1"
                     Margin="0,0,0,10"
                     Height="40">
                 <DockPanel>
-                    <fa:FontAwesome Icon="Search"
-                                    FontSize="16"
-                                    VerticalAlignment="Center"
-                                    Foreground="{StaticResource GrayColor}"
-                                    HorizontalAlignment="Left"
-                                    Margin="10,0,0,0" />
+                    <icons:Magnifier Width="20"
+                                     Height="20"
+                                     Margin="10,0,0,0"
+                                     VerticalAlignment="Center"
+                                     HorizontalAlignment="Left">
+                        <icons:Magnifier.Style>
+                            <Style TargetType="icons:Magnifier">
+                                <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Text, ElementName=SearchInput}" Value="">
+                                        <Setter Property="Foreground" Value="{StaticResource TextHintBrushColor}" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding IsFocused, ElementName=SearchInput}" Value="True">
+                                        <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </icons:Magnifier.Style>
+                    </icons:Magnifier>
                     <Grid Margin="10,0,0,0" VerticalAlignment="Center">
-                        <TextBox Style="{StaticResource SearchInput}"
-                                 x:Name="SearchInput"
-                                 Foreground="White"
+                        <TextBox x:Name="SearchInput"
+                                 Style="{StaticResource SearchInputStyle}"
+                                 Padding="0,0,0,2"
                                  VerticalAlignment="Center" />
                         <TextBlock Style="{StaticResource SearchPlaceholder}" HorizontalAlignment="Stretch" />
-                        <Button Style="{StaticResource ClearStyleButton}"
+                        <Button Name="ClearSearchButton"
                                 Visibility="{Binding SearchNotEmpty, Converter={StaticResource BoolToVis}}"
                                 HorizontalAlignment="Right"
                                 Background="Transparent"
-                                BorderThickness="0"
                                 Margin="0,0,10,0"
                                 Command="{Binding ClearSearchCommand}"
                                 VerticalAlignment="Center">
-                            <fa:FontAwesome Icon="TimesCircle"
-                                            FontSize="18"
-                                            VerticalAlignment="Center"
-                                            Cursor="Hand"
-                                            Padding="0"
-                                            Foreground="{StaticResource GrayColor}" />
+                            <Button.Style>
+                                <Style TargetType="{x:Type Button}" BasedOn="{StaticResource ClearStyleButton}">
+                                    <Setter Property="Foreground" Value="{StaticResource TextHintBrushColor}"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type Button}">
+                                                <icons:CrossCircleFilled Foreground="{TemplateBinding Foreground}"
+                                                                         Background="Transparent"
+                                                                         VerticalAlignment="Center"
+                                                                         Cursor="Hand"
+                                                                         Width="20"
+                                                                         Height="20" />
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="{StaticResource InteractionNormHoverBrushColor}"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
                         </Button>
                     </Grid>
                 </DockPanel>
-            </Border>
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Setter Property="BorderBrush" Value="{StaticResource BorderNormBrushColor}" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsFocused, ElementName=SearchInput}" Value="True">
+                                <Setter Property="BorderBrush" Value="{StaticResource InteractionNormActiveBrushColor}" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+            </Border>          
         </Grid>
 
         <wpf:CustomListView x:Name="ListView"
@@ -391,7 +432,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                             <Condition Binding="{Binding Converter={StaticResource DataTypeConverter}}"
                                                        Value="{x:Type servers:CountrySeparatorViewModel}" />
                                         </MultiDataTrigger.Conditions>
-                                        <Setter TargetName="Border" Property="Background" Value="#2f2f37" />
+                                        <Setter TargetName="Border" Property="Background" Value="{StaticResource BackgroundStrongBrushColor}" />
                                     </MultiDataTrigger>
                                     <MultiDataTrigger>
                                         <MultiDataTrigger.Conditions>
@@ -399,7 +440,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                             <Condition Binding="{Binding Converter={StaticResource DataTypeConverter}}"
                                                        Value="{x:Type servers:ServersByCountryViewModel}" />
                                         </MultiDataTrigger.Conditions>
-                                        <Setter TargetName="Border" Property="Background" Value="#2f2f37" />
+                                        <Setter TargetName="Border" Property="Background" Value="{StaticResource BackgroundStrongBrushColor}" />
                                     </MultiDataTrigger>
                                     <MultiDataTrigger>
                                         <MultiDataTrigger.Conditions>
@@ -407,7 +448,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                             <Condition Binding="{Binding Converter={StaticResource DataTypeConverter}}"
                                                        Value="{x:Type servers:ServersByExitNodeViewModel}" />
                                         </MultiDataTrigger.Conditions>
-                                        <Setter TargetName="Border" Property="Background" Value="#2f2f37" />
+                                        <Setter TargetName="Border" Property="Background" Value="{StaticResource BackgroundStrongBrushColor}" />
                                     </MultiDataTrigger>
                                     <DataTrigger
                                         Binding="{Binding Path=(wpf:CustomListView.ItemIndex), RelativeSource={RelativeSource Self}}"
@@ -436,7 +477,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </Border>
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type servers:ServerTierSeparatorViewModel}">
-                    <Border Cursor="Arrow" Background="#25272C">
+                    <Border Cursor="Arrow" Background="{StaticResource BackgroundNormBrushColor}">
                         <DockPanel Margin="27,0" x:Name="PopupPanel">
                             <TextBlock x:Name="CountryLabel"
                                        Text="{Binding Name}"
@@ -449,9 +490,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                           IsChecked="{Binding ShowPopup, Mode=TwoWay}"
                                           Background="Transparent"
                                           BorderBrush="Transparent">
-                                <icons:Info Style="{StaticResource GrayInfoIcon}"
-                                            Width="16"
-                                            Height="16" />
+                                <icons:InfoCircleFilled Style="{StaticResource GrayInfoIcon}" />
                             </ToggleButton>
                             <streaming:StreamingInfoPopup DataContext="{Binding StreamingInfoPopupViewModel}"
                                                           PlacementTarget="{Binding ElementName=PopupPanel}"
@@ -491,17 +530,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                            FontSize="16">
                                     <TextBlock.Style>
                                         <Style TargetType="TextBlock">
-                                            <Setter Property="Foreground" Value="White" />
+                                            <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}" />
                                             <Style.Triggers>
                                                 <DataTrigger Binding="{Binding Dimmed}" Value="True">
-                                                    <Setter Property="Foreground" Value="{StaticResource GrayColor}" />
+                                                    <Setter Property="Foreground" Value="{StaticResource TextDisabledBrushColor}" />
                                                 </DataTrigger>
                                             </Style.Triggers>
                                         </Style>
                                     </TextBlock.Style>
                                 </TextBlock>
 
-                                <StackPanel Orientation="Horizontal" Grid.Column="1">
+                                <StackPanel Orientation="Horizontal" Grid.Column="1" Margin="0,0,5,0">
                                     <StackPanel.Resources>
                                         <Style TargetType="StackPanel">
                                             <Setter Property="Visibility" Value="Visible" />
@@ -517,30 +556,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                             </Style.Triggers>
                                         </Style>
                                     </StackPanel.Resources>
-                                    <Border Style="{StaticResource CountryFeature}"
-                                            Visibility="{Binding Tor, Converter={StaticResource BoolToVis}}">
-                                        <icons:Tor Foreground="{StaticResource GrayIconColor}"
-                                                   VerticalAlignment="Center"
-                                                   HorizontalAlignment="Center"
-                                                   Width="16"
-                                                   Height="16" />
-                                    </Border>
-
-                                    <Border Style="{StaticResource CountryFeature}"
-                                            Visibility="{Binding P2P, Converter={StaticResource BoolToVis}}">
-                                        <icons:Exchange Foreground="{StaticResource GrayIconColor}"
-                                                        VerticalAlignment="Center"
-                                                        HorizontalAlignment="Center"
-                                                        Width="16"
-                                                        Height="16" />
-                                    </Border>
-
-                                    <Border Style="{StaticResource CountryFeature}"
-                                            Visibility="{Binding IsVirtual, Converter={StaticResource BoolToVis}}">
-                                        <icons:Globe Foreground="{StaticResource GrayIconColor}"
-                                                     Width="16"
-                                                     Height="16" />
-                                    </Border>
+                                    <icons:BrandTor Style="{StaticResource CountryFeatureIcon}"
+                                                    Visibility="{Binding Tor, Converter={StaticResource BoolToVis}}" />
+                                    <icons:ArrowsSwitch Style="{StaticResource CountryFeatureIcon}"
+                                                        Visibility="{Binding P2P, Converter={StaticResource BoolToVis}}" />
+                                    <icons:Globe Style="{StaticResource CountryFeatureIcon}"
+                                                 Visibility="{Binding IsVirtual, Converter={StaticResource BoolToVis}}" />
                                 </StackPanel>
 
                                 <Button Grid.Column="2"
@@ -550,7 +571,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             </Grid>
 
                             <Button Style="{StaticResource ToggleButton}" />
-                            <fa:FontAwesome Style="{StaticResource CountryMaintenanceIcon}" />
+                            <icons:Wrench Style="{StaticResource CountryMaintenanceIcon}" />
                         </Grid>
                     </Border>
                 </DataTemplate>
@@ -568,8 +589,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 <Image HorizontalAlignment="Left" VerticalAlignment="Center"
                                        Source="{Binding CountryCode, Converter={StaticResource CountryToFlagConverter}}"
                                        Width="21" Height="15" />
-                                <Label Content="»" Margin="5,3,0,0" FontSize="20"
-                                       Foreground="{StaticResource PrimaryColor}" />
+                                <icons:ChevronsRight Width="18" 
+                                                     Margin="6,0,0,0"
+                                                     Foreground="{StaticResource PrimaryBrushColor}"
+                                                     VerticalAlignment="Center"/>
                             </StackPanel>
 
                             <Grid Width="200" Margin="50,0,0,0" HorizontalAlignment="Left">
@@ -582,19 +605,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                            Text="{Binding Name}"
                                            Style="{StaticResource SecureCoreExitCountry}"
                                            TextTrimming="CharacterEllipsis" />
-                                <Border Style="{StaticResource CountryFeature}" Grid.Column="1"
-                                        Visibility="{Binding IsVirtual, Converter={StaticResource BoolToVis}}">
-                                    <icons:Globe Foreground="{StaticResource GrayIconColor}"
-                                                 Width="16"
-                                                 Height="16" />
-                                </Border>
+                                <icons:Globe Grid.Column="1"
+                                             Style="{StaticResource CountryFeatureIcon}"
+                                             Visibility="{Binding IsVirtual, Converter={StaticResource BoolToVis}}" />
                                 <Button Grid.Column="1"
                                         Style="{StaticResource SidebarCountryConnectButton}"
                                         Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}, Path=DataContext.ConnectCountry}"
                                         CommandParameter="{Binding}" />
                             </Grid>
                             <Button Style="{StaticResource ToggleButton}" />
-                            <fa:FontAwesome Style="{StaticResource CountryMaintenanceIcon}" />
+                            <icons:Wrench Style="{StaticResource CountryMaintenanceIcon}" />
                         </Grid>
                     </Border>
                 </DataTemplate>
@@ -610,16 +630,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 <sidebar:ServerFeatures Features="{Binding Features}"
                                                         Style="{StaticResource ServerFeatures}" />
                             </StackPanel>
-                            <Label Style="{StaticResource City}" FontSize="14" FontWeight="Normal"
+                            <Label Style="{StaticResource City}" 
+                                   FontSize="14" 
+                                   FontWeight="Normal"
                                    Content="{Binding Server.City}" />
                             <Label Style="{StaticResource UpgradeRequiredLabel}"
                                    Content="{translations:Loc Servers_lbl_Upgrade}" />
-                            <Button
-                                Margin="38,0,0,0"
+                            <Button Margin="38,0,0,0"
                                 Style="{StaticResource SidebarServerConnectButton}"
                                 Command="{Binding DataContext.Connect, RelativeSource={RelativeSource AncestorType=ListView}}"
                                 CommandParameter="{Binding}" />
-                            <fa:FontAwesome Style="{StaticResource MaintenanceIcon}" />
+                            <icons:Wrench Style="{StaticResource MaintenanceIcon}" />
                         </Grid>
                     </Grid>
                 </DataTemplate>
@@ -639,23 +660,30 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
 
-                                <TextBlock Grid.Column="0" Style="{StaticResource ServerName}" Margin="0,-5,0,0"
+                                <TextBlock Grid.Column="0" Style="{StaticResource ServerName}" Margin="0,-2,0,0"
                                            FontSize="16" TextTrimming="CharacterEllipsis">
-                                    <Run Text="{translations:Loc Servers_lbl_ViaCountry}" />
-                                    <Run
-                                        Text="{Binding Server.EntryCountry, Converter={StaticResource CountryCodeToNameConverter}, Mode=OneWay}">
-                                        <Run.Style>
-                                            <Style TargetType="Run">
-                                                <Setter Property="Foreground" Value="White" />
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding UpgradeRequired}" Value="True">
-                                                        <Setter Property="Foreground" Value="Gray" />
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </Run.Style>
-                                    </Run>
-                                    <Run Text="»" FontSize="20" Foreground="{StaticResource PrimaryColor}" />
+                                    <StackPanel>
+                                        <TextBlock>
+                                            <Run Text="{translations:Loc Servers_lbl_ViaCountry}" />
+                                            <Run
+                                                Text="{Binding Server.EntryCountry, Converter={StaticResource CountryCodeToNameConverter}, Mode=OneWay}">
+                                                <Run.Style>
+                                                    <Style TargetType="Run">
+                                                        <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}" />
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding UpgradeRequired}" Value="True">
+                                                                <Setter Property="Foreground" Value="{StaticResource TextDisabledBrushColor}" />
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Run.Style>
+                                            </Run>
+                                        </TextBlock>
+                                    </StackPanel>
+                                    <icons:ChevronsRight Width="18" 
+                                                         Margin="3,0,0,0"
+                                                         Foreground="{StaticResource PrimaryBrushColor}"
+                                                         VerticalAlignment="Center"/>
                                 </TextBlock>
 
                                 <Button Grid.Column="1"
@@ -663,7 +691,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         Command="{Binding DataContext.Connect, RelativeSource={RelativeSource AncestorType=ListView}}"
                                         CommandParameter="{Binding}" />
                             </Grid>
-                            <fa:FontAwesome Style="{StaticResource MaintenanceIcon}" />
+                            <icons:Wrench Style="{StaticResource MaintenanceIcon}" />
                             <Label Style="{StaticResource UpgradeRequiredLabel}"
                                    Content="{translations:Loc Servers_lbl_Upgrade}" />
                         </Grid>

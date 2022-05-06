@@ -157,28 +157,6 @@ namespace ProtonVPN.App.Test.Servers
         }
 
         [TestMethod]
-        public void BuildServerList_ItShouldGroupPlusAndBasicLocationsForFreeUsers()
-        {
-            // Arrange
-            _userStorage.User().Returns(new User {MaxTier = ServerTiers.Free});
-
-            // Act
-            int freeLocationsWithHeaderCount = _countriesWithFreeServers.Count + 1;
-            ObservableCollection<IServerListItem> serverList = _serverListFactory.BuildServerList();
-            List<IServerListItem> result = serverList.Skip(freeLocationsWithHeaderCount).ToList();
-            List<string> basicAndPlusCountries = _countries.Select(Countries.GetName)
-                .Except(serverList.Take(freeLocationsWithHeaderCount).Select(c => c.Name)).ToList();
-
-            Assert.AreEqual(result[0].Name, "BASIC & PLUS Locations (" + (result.Count - 1) + ")");
-
-            // Assert
-            for (int i = 0; i < basicAndPlusCountries.Count; i++)
-            {
-                Assert.AreEqual(basicAndPlusCountries[i], result[i + 1].Name);
-            }
-        }
-
-        [TestMethod]
         public void BuildServerList_WithCountryNameInSearchQuery()
         {
             // Arrange

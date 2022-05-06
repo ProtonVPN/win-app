@@ -17,17 +17,18 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Helpers;
-using ProtonVPN.Core.Api;
-using ProtonVPN.Core.Api.Contracts;
-using ProtonVPN.Core.Servers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.Helpers;
 using ProtonVPN.Common.Networking;
+using ProtonVPN.Core.Api;
+using ProtonVPN.Core.Api.Contracts;
+using ProtonVPN.Core.Servers;
 
 namespace ProtonVPN.Core.Profiles
 {
@@ -46,15 +47,21 @@ namespace ProtonVPN.Core.Profiles
         };
 
         private readonly IApiClient _apiClient;
+        private readonly IProfileFactory _profileFactory;
+        private readonly ColorProvider _colorProvider;
 
-        public ApiProfiles(IApiClient apiClient)
+        public ApiProfiles(IApiClient apiClient, 
+            IProfileFactory profileFactory, 
+            ColorProvider colorProvider)
         {
             _apiClient = apiClient;
+            _profileFactory = profileFactory;
+            _colorProvider = colorProvider;
         }
 
         public async Task<IReadOnlyList<Profile>> GetAll()
         {
-            var response = await HandleErrors(() => _apiClient.GetProfiles());
+            ApiResponseResult<ProfilesResponse> response = await HandleErrors(() => _apiClient.GetProfiles());
 
             return ToProfiles(response.Value.Profiles);
         }
@@ -63,7 +70,7 @@ namespace ProtonVPN.Core.Profiles
         {
             Ensure.NotNull(profile, nameof(profile));
             Ensure.IsTrue(!profile.IsPredefined, "Can't create predefined profile");
-            Ensure.IsTrue(profile.IsColorCodeValid());
+            Ensure.IsTrue(profile.ColorCode.IsColorCodeValid());
 
             ApiResponseResult<ProfileResponse> response = await HandleErrors(
                 () => _apiClient.CreateProfile(ToApiProfile(profile)));
@@ -75,7 +82,7 @@ namespace ProtonVPN.Core.Profiles
         {
             Ensure.NotNull(profile, nameof(profile));
             Ensure.IsTrue(!profile.IsPredefined, "Can't update predefined profile");
-            Ensure.IsTrue(profile.IsColorCodeValid());
+            Ensure.IsTrue(profile.ColorCode.IsColorCodeValid());
 
             ApiResponseResult<ProfileResponse> response = await HandleErrors(
                 () => _apiClient.UpdateProfile(profile.ExternalId, ToApiProfile(profile)));
@@ -98,7 +105,8 @@ namespace ProtonVPN.Core.Profiles
 
         private Profile ToProfile(Api.Contracts.Profile apiProfile)
         {
-            var profile = new Profile { IsPredefined = false };
+            Profile profile = _profileFactory.Create();
+            profile.IsPredefined = false;
             UpdatePropertiesFromApiProfile(profile, apiProfile);
             return profile;
         }
@@ -108,7 +116,7 @@ namespace ProtonVPN.Core.Profiles
             profile.ExternalId = apiProfile.Id;
             profile.Name = apiProfile.Name;
             profile.VpnProtocol = MapVpnProtocol(apiProfile.Protocol);
-            profile.ColorCode = apiProfile.Color?.ToUpperInvariant();
+            profile.ColorCode = _colorProvider.GetRandomColorIfInvalid(apiProfile.Color?.ToUpperInvariant());
             profile.Features = MapFeatures(apiProfile.Features);
             profile.ProfileType = MapType(apiProfile.Type);
             profile.CountryCode = apiProfile.Country;
@@ -172,10 +180,12 @@ namespace ProtonVPN.Core.Profiles
         {
             try
             {
-                var response = await function();
+                ApiResponseResult<T> response = await function();
 
                 if (!response.Success)
+                {
                     throw new ProfileException(ToError(response), response.Error);
+                }
 
                 return response;
             }
@@ -190,13 +200,17 @@ namespace ProtonVPN.Core.Profiles
             if (response.Value != null)
             {
                 if (ResponseCodeToProfileError.ContainsKey(response.Value.Code))
+                {
                     return ResponseCodeToProfileError[response.Value.Code];
+                }
 
                 return ProfileError.Other;
             }
 
             if (HttpStatusCodeToProfileError.ContainsKey(response.StatusCode))
+            {
                 return HttpStatusCodeToProfileError[response.StatusCode];
+            }
 
             return ProfileError.Failure;
         }

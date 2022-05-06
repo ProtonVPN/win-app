@@ -33,7 +33,9 @@ namespace ProtonVPN.Profiles.Form
             ProfileManager profileManager,
             IDialogs dialogs,
             IModals modals,
-            ServerManager serverManager) : base(appConfig, colorProvider, userStorage, profileManager, dialogs, modals, serverManager)
+            ServerManager serverManager,
+            IProfileFactory profileFactory) 
+            : base(appConfig, colorProvider, userStorage, profileManager, dialogs, modals, serverManager, profileFactory)
         {
         }
 

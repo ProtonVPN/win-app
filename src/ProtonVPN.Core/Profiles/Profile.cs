@@ -18,7 +18,6 @@
  */
 
 using System;
-using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Core.Servers;
@@ -28,18 +27,6 @@ namespace ProtonVPN.Core.Profiles
 {
     public class Profile
     {
-        private static readonly Regex HexColorRegex = new Regex("^#(?:[0-9a-fA-F]{3}){1,2}$");
-        private static readonly ColorProvider ColorProvider = new();
-
-        public Profile() : this(null)
-        { }
-
-        public Profile(string id)
-        {
-            Id = !string.IsNullOrEmpty(id) ? id : Guid.NewGuid().ToString();
-            _colorCode = GetRandomColor();
-        }
-
         public string Id { get; set; }
 
         public string ExternalId { get; set; }
@@ -54,12 +41,7 @@ namespace ProtonVPN.Core.Profiles
 
         public Features Features { get; set; }
 
-        private string _colorCode;
-        public string ColorCode
-        {
-            get => _colorCode;
-            set => _colorCode = GetValidColorCode(value);
-        }
+        public string ColorCode { get; set; }
 
         public string Name { get; set; }
 
@@ -92,31 +74,16 @@ namespace ProtonVPN.Core.Profiles
         [JsonIgnore]
         public Server Server;
 
+        public Profile(string id)
+        {
+            Id = !string.IsNullOrEmpty(id) ? id : Guid.NewGuid().ToString();
+        }
+
         public Profile Clone()
         {
             var clone = (Profile)MemberwiseClone();
             clone.Server = null;
             return clone;
-        }
-
-        private string GetValidColorCode(string colorCode)
-        {
-            return IsColorCodeValid(colorCode) ? colorCode : GetRandomColor();
-        }
-
-        private bool IsColorCodeValid(string colorCode)
-        {
-            return colorCode != null && HexColorRegex.IsMatch(colorCode);
-        }
-
-        private string GetRandomColor()
-        {
-            return ColorProvider.RandomColor();
-        }
-
-        public bool IsColorCodeValid()
-        {
-            return IsColorCodeValid(ColorCode);
         }
     }
 }

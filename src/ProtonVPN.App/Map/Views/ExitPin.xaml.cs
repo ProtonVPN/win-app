@@ -17,18 +17,29 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using ProtonVPN.Resource.Colors;
+using ProtonVPN.Resources.Colors;
 
 namespace ProtonVPN.Map.Views
 {
     public partial class ExitPin
     {
-        private const double TriangleWidth = 17;
-        private readonly NumberFormatInfo _nfi = new NumberFormatInfo { NumberDecimalSeparator = "." };
+        private const double TRIANGLE_HALF_WIDTH = 1.7383;
+        private const double ANGLE_HALF_WIDTH = 0.9354;
+        private const double JOINT_DISTANCE = 5.5;
+        private const double CORNER_RADIUS = 8;
+        private const double EXTRA_TOOLTIP_WIDTH = 50;
+        private const double EXTRA_TOOLTIP_HEIGHT = 8;
+        private const double TRIANGLE_POINT_HEIGHT = 9;
+        private const double TRIANGLE_ANGLE_HEIGHT = 10.2845;
+
+        private readonly NumberFormatInfo _nfi = new() { NumberDecimalSeparator = "." };
 
         public bool Connected
         {
@@ -66,6 +77,10 @@ namespace ProtonVPN.Map.Views
             typeof(ExitPin),
             new PropertyMetadata(false));
 
+        private static readonly IColorPalette _colorPalette = ColorPaletteFactory.Create();
+        private readonly Lazy<SolidColorBrush> _fillColorBrush = new(() => _colorPalette.GetSolidColorBrushByResourceName("BackgroundNormBrushColor"));
+        private readonly Lazy<SolidColorBrush> _interactionColorBrush = new(() => _colorPalette.GetSolidColorBrushByResourceName("InteractionNormBrushColor"));
+
         public ExitPin()
         {
             InitializeComponent();
@@ -77,7 +92,7 @@ namespace ProtonVPN.Map.Views
             Tooltip.LayoutUpdated += Tooltip_LayoutUpdated;
         }
 
-        private void Tooltip_LayoutUpdated(object sender, System.EventArgs e)
+        private void Tooltip_LayoutUpdated(object sender, EventArgs e)
         {
             CenterPin();
         }
@@ -117,10 +132,10 @@ namespace ProtonVPN.Map.Views
 
         private void HideTooltip()
         {
-            if (Tooltip.IsMouseOver)
-                return;
-
-            ForceHideTooltip();
+            if (!Tooltip.IsMouseOver)
+            {
+                ForceHideTooltip();
+            }
         }
 
         private void ForceHideTooltip()
@@ -133,50 +148,57 @@ namespace ProtonVPN.Map.Views
 
         private void SetInitialStyle()
         {
-            var center = TriangleWidth / 2;
-            PinPath.Data = Geometry.Parse($"M0,0 L{TriangleWidth.ToString(_nfi)},0 L{center.ToString(_nfi)},14 L0,0Z");
+            PinPath.Data = Geometry.Parse("M 3.4758 1.3586 H 15.8761 C 17.4862 1.3586 18.4677 3.1296 17.6144 4.4949 L 11.4143 14.4152 C 10.6114 15.6997 8.7406 15.6997 7.9377 14.4152 L 1.7376 4.4949 C 0.8842 3.1296 1.8659 1.3586 3.4758 1.3586 Z");
             PinPath.Width = PinPath.Data.Bounds.Width;
             PinPath.Height = PinPath.Data.Bounds.Height;
+            PinPath.StrokeThickness = 2;
             SetPinColors();
         }
 
         private void ShowTooltipAction()
         {
             if (ShowTooltip)
+            {
                 return;
+            }
 
             Tooltip.Visibility = Visibility.Visible;
             UpdateLayout();
-            var pathWidth = Tooltip.ActualWidth;
-            var height = Tooltip.ActualHeight - 45;
-            if (height < 0) height = 0;
-            var triangleCenter = pathWidth / 2;
-            var triangleLeft = triangleCenter - TriangleWidth / 2;
-            var triangleRight = triangleCenter + TriangleWidth / 2;
-
-            PinPath.Data = Geometry.Parse($"M{pathWidth.ToString(_nfi)},30" +
-                                          $"L{triangleRight.ToString(_nfi)},30" +
-                                          $"L{triangleCenter.ToString(_nfi)},43" +
-                                          $"L{triangleLeft.ToString(_nfi)},30" +
-                                          "L0,30" +
-                                          "A15,15,90,0,1,-15,15" +
-                                          $"L-15,-{height.ToString(_nfi)}" +
-                                          $"A15,15,90,0,1,0,-{(height + 15).ToString(_nfi)}" +
-                                          $"L{pathWidth.ToString(_nfi)},-{(height + 15).ToString(_nfi)}" +
-                                          $"A15,15,90,0,1,{(pathWidth + 15).ToString(_nfi)},-{height.ToString(_nfi)}" +
-                                          $"L{(pathWidth + 15).ToString(_nfi)},15" +
-                                          $"A15,15,90,0,1,{pathWidth.ToString(_nfi)},30Z");
+            
+            double pathWidth = Tooltip.ActualWidth + EXTRA_TOOLTIP_WIDTH;
+            double height = Tooltip.ActualHeight + EXTRA_TOOLTIP_HEIGHT;
+            double center = pathWidth / 2;
+            double triangleRight = center + TRIANGLE_HALF_WIDTH;
+            double triangleAngleRight = center + ANGLE_HALF_WIDTH;
+            double triangleAngleLeft = center - ANGLE_HALF_WIDTH;
+            double triangleLeft = center - TRIANGLE_HALF_WIDTH;
+            double jointRight = triangleRight + JOINT_DISTANCE;
+            double jointLeft = triangleLeft - JOINT_DISTANCE;
+            double rightBorderX = pathWidth + CORNER_RADIUS;
+            double lowerCornersY = height - CORNER_RADIUS;
+            double triangleY = height + TRIANGLE_POINT_HEIGHT;
+            double triangleAngleY = height + TRIANGLE_ANGLE_HEIGHT;
+            
+            string data = $"M{pathWidth.ToString(_nfi)},{height.ToString(_nfi)}" +
+                          $"L{jointRight.ToString(_nfi)},{height.ToString(_nfi)}" +
+                          $"L{triangleRight.ToString(_nfi)},{triangleY.ToString(_nfi)}" +
+                          $"C{triangleAngleRight.ToString(_nfi)},{triangleAngleY.ToString(_nfi)} {triangleAngleLeft.ToString(_nfi)},{triangleAngleY.ToString(_nfi)} {triangleLeft.ToString(_nfi)},{triangleY.ToString(_nfi)}" +
+                          $"L{jointLeft.ToString(_nfi)},{height.ToString(_nfi)}" +
+                          $"L0,{height.ToString(_nfi)}" +
+                          $"C0,{height.ToString(_nfi)} -{CORNER_RADIUS.ToString(_nfi)},{height.ToString(_nfi)} -{CORNER_RADIUS.ToString(_nfi)},{lowerCornersY.ToString(_nfi)}" +
+                          $"L-{CORNER_RADIUS.ToString(_nfi)},{CORNER_RADIUS.ToString(_nfi)}" +
+                          $"C-{CORNER_RADIUS.ToString(_nfi)},{CORNER_RADIUS.ToString(_nfi)} -{CORNER_RADIUS.ToString(_nfi)},0 0,0" +
+                          $"L{pathWidth.ToString(_nfi)},0" +
+                          $"C{pathWidth.ToString(_nfi)},0 {rightBorderX.ToString(_nfi)},0 {rightBorderX.ToString(_nfi)},{CORNER_RADIUS.ToString(_nfi)}" +
+                          $"L{rightBorderX.ToString(_nfi)},{lowerCornersY.ToString(_nfi)}" +
+                          $"C{rightBorderX.ToString(_nfi)},{lowerCornersY.ToString(_nfi)} {rightBorderX.ToString(_nfi)},{height.ToString(_nfi)} {pathWidth.ToString(_nfi)},{height.ToString(_nfi)}" +
+                          $"Z";
+            PinPath.Data = Geometry.Parse(data);
 
             PinPath.Width = PinPath.Data.Bounds.Width;
             PinPath.Height = PinPath.Data.Bounds.Height;
-            if (Highlighted)
-            {
-                PinPath.Stroke = Brushes.White;
-            }
-            else
-            {
-                PinPath.Stroke = (Brush)Application.Current.MainWindow?.FindResource("InactivePinStrokeColor");
-            }
+            
+            PinPath.Fill = _interactionColorBrush.Value;
 
             CenterPin();
             ShowTooltip = true;
@@ -193,34 +215,19 @@ namespace ProtonVPN.Map.Views
 
         private void SetPinColors()
         {
-            if (Connected)
-            {
-                PinPath.Fill = (Brush) Application.Current.MainWindow?.FindResource("PrimaryColor");
-            }
-            else
-            {
-                PinPath.Fill = (Brush) Application.Current.MainWindow?.FindResource("PinFillColor");
-            }
-
-            if (Highlighted)
-            {
-                PinPath.Stroke = (Brush)Application.Current.MainWindow?.FindResource("PrimaryColor");
-            }
-            else
-            {
-                PinPath.Stroke = (Brush)Application.Current.MainWindow?.FindResource("InactivePinStrokeColor");
-            }
+            PinPath.Fill = Connected ? _interactionColorBrush.Value : _fillColorBrush.Value;
+            PinPath.Stroke = _interactionColorBrush.Value;
         }
 
         private static void ConnectedChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var pin = (ExitPin) d;
+            ExitPin pin = (ExitPin) d;
             pin.SetPinColors();
         }
 
         private static void HighlightedChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var pin = (ExitPin)d;
+            ExitPin pin = (ExitPin)d;
             pin.SetPinColors();
         }
     }

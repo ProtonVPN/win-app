@@ -17,9 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using ProtonVPN.Resource.Colors;
+using ProtonVPN.Resources.Colors;
 
 namespace ProtonVPN.SpeedGraph
 {
@@ -27,6 +30,9 @@ namespace ProtonVPN.SpeedGraph
     {
         private int _columnCount = 35;
         private int _rowCount = 5;
+        
+        private static readonly IColorPalette _colorPalette = ColorPaletteFactory.Create();
+        private readonly Lazy<SolidColorBrush> _graphStrokeColorBrush = new(() => _colorPalette.GetSolidColorBrushByResourceName("BorderWeakBrushColor"));
 
         public SpeedGraph()
         {
@@ -37,7 +43,7 @@ namespace ProtonVPN.SpeedGraph
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs e)
         {
-            SessionStats.Visibility = e.NewSize.Width > 160 ? Visibility.Visible : Visibility.Hidden;
+            SessionStats.Visibility = e.NewSize.Width > 200 ? Visibility.Visible : Visibility.Hidden;
             Graph.Visibility = e.NewSize.Width > 350 ? Visibility.Visible : Visibility.Hidden;
             TopLabels.Visibility = Graph.Visibility;
             BottomLabels.Visibility = Graph.Visibility;
@@ -45,33 +51,37 @@ namespace ProtonVPN.SpeedGraph
 
         private void DrawGrid()
         {
-            for (var i = 0; i < _columnCount; i++)
+            for (int i = 0; i < _columnCount; i++)
             {
                 Grid.ColumnDefinitions.Add(new ColumnDefinition());
             }
 
-            for (var i = 0; i < _rowCount; i++)
+            for (int i = 0; i < _rowCount; i++)
             {
                 Grid.RowDefinitions.Add(new RowDefinition());
             }
 
-            for (var i = 0; i < _columnCount; i++)
+            for (int i = 0; i < _columnCount; i++)
             {
-                for (var j = 0; j < _rowCount; j++)
+                for (int j = 0; j < _rowCount; j++)
                 {
-                    var border = new Border();
-                    var left = 0;
-                    var top = 1;
-                    var right = 1;
-                    var bottom = 0;
+                    Border border = new();
+                    int left = 0;
+                    int top = 1;
+                    int right = 1;
+                    int bottom = 0;
 
-                    if (i == 0) left = 1;
-                    if (j + 1 == _rowCount) bottom = 1;
+                    if (i == 0)
+                    {
+                        left = 1;
+                    }
 
-                    var brush = (SolidColorBrush)Application.Current.Resources["PrimaryColor"];
-                    var transparentColor = Color.FromArgb(26, brush.Color.R, brush.Color.G, brush.Color.B);
+                    if (j + 1 == _rowCount)
+                    {
+                        bottom = 1;
+                    }
 
-                    border.BorderBrush = new SolidColorBrush(transparentColor);
+                    border.BorderBrush = _graphStrokeColorBrush.Value;
                     border.BorderThickness = new Thickness(left, top, right, bottom);
 
                     Grid.Children.Add(border);

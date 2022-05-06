@@ -21,7 +21,7 @@ using ProtonVPN.Core.Storage;
 
 namespace ProtonVPN.Settings.Migrations
 {
-    internal class InitialAppSettingsMigration : BaseAppSettingsMigration
+    public class InitialAppSettingsMigration : BaseAppSettingsMigration
     {
         public bool IsCleanInstall;
 

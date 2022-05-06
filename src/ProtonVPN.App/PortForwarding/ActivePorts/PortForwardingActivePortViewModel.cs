@@ -27,6 +27,7 @@ using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.OperatingSystemLogs;
 using ProtonVPN.Common.PortForwarding;
 using ProtonVPN.Core.PortForwarding;
+using ProtonVPN.Resource.Colors;
 
 namespace ProtonVPN.PortForwarding.ActivePorts
 {
@@ -64,17 +65,23 @@ namespace ProtonVPN.PortForwarding.ActivePorts
             }
         }
 
-        private string _portForwardingValueColor = PortForwardingColorPalette.DEFAULT;
+        private string _portForwardingValueColor;
         public string PortForwardingValueColor
         {
             get => _portForwardingValueColor;
             set => Set(ref _portForwardingValueColor, value);
         }
 
-        public PortForwardingActivePortViewModel(ILogger logger)
+        private readonly Lazy<string> _highlightColor;
+        private readonly Lazy<string> _defaultColor;
+
+        public PortForwardingActivePortViewModel(IColorPalette colorPalette, ILogger logger)
         {
             _logger = logger;
+            _highlightColor = new(() => colorPalette.GetStringByResourceName("OldPrimaryBrushColor"));
+            _defaultColor = new(() => colorPalette.GetStringByResourceName("OldTextColor"));
 
+            PortForwardingValueColor = _defaultColor.Value;
             PortForwardingValueCopyCommand = new RelayCommand(PortForwardingValueCopyActionAsync);
             PortForwardingValueDefaultColorCommand = new RelayCommand(PortForwardingValueDefaultColorAction);
             PortForwardingValueHighlightColorCommand = new RelayCommand(PortForwardingValueHighlightColorAction);
@@ -107,12 +114,12 @@ namespace ProtonVPN.PortForwarding.ActivePorts
 
         private void PortForwardingValueDefaultColorAction()
         {
-            PortForwardingValueColor = PortForwardingColorPalette.DEFAULT;
+            PortForwardingValueColor = _defaultColor.Value;
         }
 
         private void PortForwardingValueHighlightColorAction()
         {
-            PortForwardingValueColor = PortForwardingColorPalette.HIGHLIGHT;
+            PortForwardingValueColor = _highlightColor.Value;
         }
 
         public void OnPortForwardingStateChanged(PortForwardingState state)

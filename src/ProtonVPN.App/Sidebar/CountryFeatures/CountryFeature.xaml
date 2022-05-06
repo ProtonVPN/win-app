@@ -28,7 +28,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              d:DataContext="{d:DesignInstance countryFeatures:CountryFeaturesPopupViewModel}"
              Name="UserControl"
              mc:Ignorable="d">
-    <DockPanel Margin="0,5">
+    <DockPanel Margin="0,0,0,15">
         <ContentPresenter VerticalAlignment="Top"
                           Margin="5,3,5,0"
                           Content="{Binding ElementName=UserControl, Path=Icon}" />
@@ -39,31 +39,22 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0" Text="{Binding ElementName=UserControl, Path=Title}"
-                           FontSize="12"
+                           FontSize="13"
                            FontWeight="SemiBold"
-                           Margin="0,3"
+                           Margin="0,4,0,0"
                            TextWrapping="Wrap"
-                           Foreground="White" />
-                <Border Grid.Column="1" CornerRadius="4" Background="#494D55" HorizontalAlignment="Right"
-                        VerticalAlignment="Top">
-                    <Label Foreground="White"
-                           FontWeight="SemiBold"
-                           VerticalContentAlignment="Center"
-                           FontSize="8"
-                           Content="{Binding ElementName=UserControl, Path=Plan}"
-                           Padding="8,4" />
-                </Border>
+                           Foreground="{StaticResource TextNormBrushColor}" />
             </Grid>
-            <TextBlock Foreground="#9CA0AA"
+            <TextBlock Foreground="{StaticResource TextWeakBrushColor}"
                        TextWrapping="Wrap"
                        FontSize="12"
-                       Margin="0,5,0,0"
+                       Margin="0,8,0,0"
                        Text="{Binding ElementName=UserControl, Path=Description}" />
             <Button Style="{StaticResource ClearStyleButton}"
                     Background="Transparent"
                     HorizontalAlignment="Left"
                     BorderBrush="Transparent"
-                    Margin="0,4,0,0"
+                    Margin="0,5,0,0"
                     cal:Message.Attach="{Binding ElementName=UserControl, Path=Action}">
                 <Hyperlink>
                     <TextBlock FontSize="12"

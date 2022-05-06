@@ -22,6 +22,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     xmlns:mwt="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero"
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
+    <SolidColorBrush x:Key="ScrollbarForegroundColor" Color="{StaticResource Shade60Color}"/>
+    <SolidColorBrush x:Key="ScrollbarBackgroundColor" Color="{StaticResource BorderWeakColor}"/>
+
     <Style x:Key="DarkVerticalThumb" TargetType="{x:Type Thumb}">
         <Setter Property="Template">
             <Setter.Value>
@@ -34,9 +37,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <RowDefinition Height="4" />
                             <RowDefinition Height="4" />
                         </Grid.RowDefinitions>
-                        <Ellipse Grid.Row="0" Grid.RowSpan="2" Fill="#4a4d58"/>
-                        <Rectangle Grid.Row="1" Grid.RowSpan="3" Fill="#4a4d58"/>
-                        <Ellipse Grid.Row="3" Grid.RowSpan="2" Fill="#4a4d58"/>
+                        <Ellipse Grid.Row="0" Grid.RowSpan="2" Fill="{StaticResource ScrollbarForegroundColor}"/>
+                        <Rectangle Grid.Row="1" Grid.RowSpan="3" Fill="{StaticResource ScrollbarForegroundColor}"/>
+                        <Ellipse Grid.Row="3" Grid.RowSpan="2" Fill="{StaticResource ScrollbarForegroundColor}"/>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
@@ -55,9 +58,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <RowDefinition Height="4" />
                             <RowDefinition Height="4" />
                         </Grid.RowDefinitions>
-                        <Ellipse Grid.Row="0" Grid.RowSpan="2" Fill="#b1b1b1"/>
-                        <Rectangle Grid.Row="1" Grid.RowSpan="3" Fill="#b1b1b1"/>
-                        <Ellipse Grid.Row="3" Grid.RowSpan="2" Fill="#b1b1b1"/>
+                        <Ellipse Grid.Row="0" Grid.RowSpan="2" Fill="{StaticResource OldQuickLaunchWindowDropdownScrollbarPrimaryColor}"/>
+                        <Rectangle Grid.Row="1" Grid.RowSpan="3" Fill="{StaticResource OldQuickLaunchWindowDropdownScrollbarPrimaryColor}"/>
+                        <Ellipse Grid.Row="3" Grid.RowSpan="2" Fill="{StaticResource OldQuickLaunchWindowDropdownScrollbarPrimaryColor}"/>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
@@ -85,7 +88,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <Grid.RowDefinitions>
                             <RowDefinition Height="0.00001*"/>
                         </Grid.RowDefinitions>
-                        <Border x:Name="Border" Background="#1b1b20" Width="10" CornerRadius="5">
+                        <Border x:Name="Border" Background="{StaticResource ScrollbarBackgroundColor}" Width="10" CornerRadius="5">
                             <Border.Style>
                                 <Style TargetType="Border">
                                     <Setter Property="Visibility" Value="Hidden"/>
@@ -176,7 +179,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <Grid.RowDefinitions>
                             <RowDefinition Height="0.00001*"/>
                         </Grid.RowDefinitions>
-                        <Border x:Name="Border" Background="#ededed" Width="10" CornerRadius="5">
+                        <Border x:Name="Border" Background="{StaticResource OldQuickLaunchWindowDropdownScrollbarSecondaryColor}" Width="10" CornerRadius="5">
                             <Border.Style>
                                 <Style TargetType="Border">
                                     <Setter Property="Visibility" Value="Hidden"/>
@@ -227,37 +230,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </Trigger>
         </Style.Triggers>
     </Style>
-
-    <ControlTemplate x:Key="LightScrollViewerControlTemplate" TargetType="{x:Type ScrollViewer}">
-        <Grid x:Name="Grid" Background="{TemplateBinding Background}">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            <Rectangle x:Name="Corner" Grid.Column="1" Fill="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" Grid.Row="1"/>
-            <ScrollContentPresenter
-                x:Name="PART_ScrollContentPresenter"
-                CanContentScroll="{TemplateBinding CanContentScroll}"
-                CanHorizontallyScroll="False"
-                CanVerticallyScroll="False"
-                ContentTemplate="{TemplateBinding ContentTemplate}"
-                Content="{TemplateBinding Content}"
-                Grid.RowSpan="2"
-                Margin="{TemplateBinding Padding}"
-                Grid.ColumnSpan="2"/>
-            <ScrollBar
-                Style="{StaticResource LightScrollbar}"
-                x:Name="PART_VerticalScrollBar"
-                Maximum="{TemplateBinding ScrollableHeight}"
-                Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"
-                Value="{Binding VerticalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
-                ViewportSize="{TemplateBinding ViewportHeight}"/>
-        </Grid>
-    </ControlTemplate>
 
     <Style x:Key="ScrollBarPageButton" TargetType="{x:Type RepeatButton}">
         <Setter Property="OverridesDefaultStyle" Value="true"/>

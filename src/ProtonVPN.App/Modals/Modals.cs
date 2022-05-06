@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
@@ -62,7 +63,12 @@ namespace ProtonVPN.Modals
 
         public bool IsOpen<T>() where T : IModal
         {
-            return _modalWindows.List().Any(x => x.DataContext.GetType() == typeof(T));
+            return IsOpen(typeof(T));
+        }
+
+        private bool IsOpen(Type type)
+        {
+            return _modalWindows.List().Any(x => x.DataContext.GetType() == type);
         }
 
         private dynamic Settings()
@@ -93,6 +99,26 @@ namespace ProtonVPN.Modals
             {
                 dialog.TryClose(false);
             }
+        }
+
+        public bool? Show(Type type, dynamic options = null)
+        {
+            return _scheduler.Schedule<bool?>(() =>
+            {
+                if (IsOpen(type))
+                {
+                    return false;
+                }
+
+                return _windowManager.ShowDialog(Screen(type, options), null, Settings());
+            });
+        }
+
+        private IModal Screen(Type type, dynamic options = null)
+        {
+            IModal screen = (IModal)_container.Resolve(type);
+            screen.BeforeOpenModal(options);
+            return screen;
         }
     }
 }

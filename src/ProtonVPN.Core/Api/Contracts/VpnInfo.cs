@@ -35,6 +35,8 @@ namespace ProtonVPN.Core.Api.Contracts
     public class VpnInfo
     {
         public string PlanName { get; set; }
+        
+        public string PlanTitle { get; set; }
 
         public string Name { get; set; }
 

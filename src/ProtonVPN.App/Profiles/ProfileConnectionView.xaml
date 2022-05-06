@@ -21,7 +21,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:c="clr-namespace:CalcBinding;assembly=CalcBinding"
-             xmlns:icons="clr-namespace:ProtonVPN.Views.Icons"
              xmlns:name="clr-namespace:ProtonVPN.Core.Servers.Name;assembly=ProtonVPN.Core"
              x:Name="ProfileConnectionControl">
 
@@ -29,7 +28,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <DataTemplate DataType="{x:Type name:StandardProfileName}">
             <TextBlock Style="{StaticResource ServerName}" FontSize="{Binding FontSize, ElementName=ProfileConnectionControl}">
                 <Run Text="{Binding CountryCode, Converter={StaticResource CountryCodeToNameConverter}, Mode=OneWay}"/>
-                <Run Text="»"/>
+                <Run Text="-"/>
                 <Run Text="{Binding Server, Mode=OneWay}"/>
             </TextBlock>
         </DataTemplate>
@@ -37,17 +36,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <DataTemplate DataType="{x:Type name:CustomProfileName}">
             <TextBlock Style="{StaticResource ServerName}" FontSize="{Binding FontSize, ElementName=ProfileConnectionControl}">
                 <Run Text="{Binding Name, Mode=OneWay}"/>
-                <Run Text="»"/>
+                <Run Text="-"/>
                 <Run Text="{Binding Server, Mode=OneWay}"/>
             </TextBlock>
         </DataTemplate>
 
         <DataTemplate DataType="{x:Type name:SecureCoreProfileName}">
             <StackPanel Orientation="Horizontal">
-                <icons:ProtonVpnSign Width="13" Height="15" Margin="0,0,10,0" Color="{StaticResource PrimaryColor}"/>
                 <TextBlock x:Name="EntryAndExitCountry" Style="{StaticResource ServerName}" 
                            FontSize="{Binding FontSize, ElementName=ProfileConnectionControl}">
-                    <Run Foreground="White" Text="{Binding EntryCountry, Converter={StaticResource CountryCodeToNameConverter}, Mode=OneWay}"/>
+                    <Run Foreground="{StaticResource OldTextBrushColor}" Text="{Binding EntryCountry, Converter={StaticResource CountryCodeToNameConverter}, Mode=OneWay}"/>
                     <Run Text="»"/>
                     <Run Text="{Binding ExitCountry, Converter={StaticResource CountryCodeToNameConverter}, Mode=OneWay}"/>
                 </TextBlock>
@@ -55,11 +53,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                            FontSize="{Binding FontSize, ElementName=ProfileConnectionControl}">
                     <Run Text="{Binding ExitCountry, Converter={StaticResource CountryCodeToNameConverter}}"/>
                     <Run Text="»"/>
-                    <Run Foreground="White" Text="{Binding Server, Mode=OneWay}"/>
+                    <Run Foreground="{StaticResource OldTextBrushColor}" Text="{Binding Server, Mode=OneWay}"/>
                 </TextBlock>
                 <TextBlock x:Name="ServerOnly" Style="{StaticResource ServerName}" 
                            FontSize="{Binding FontSize, ElementName=ProfileConnectionControl}">
-                    <Run Foreground="White" Text="{Binding Server, Mode=OneWay}"/>
+                    <Run Foreground="{StaticResource OldTextBrushColor}" Text="{Binding Server, Mode=OneWay}"/>
                 </TextBlock>
             </StackPanel>
             <DataTemplate.Triggers>

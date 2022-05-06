@@ -21,6 +21,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:oxy="http://oxyplot.org/wpf">
 
+    <SolidColorBrush x:Key="ZoomRectangleBackgroundColor" Color="#40FFFF00"/>
+    <SolidColorBrush x:Key="ZoomRectangleStrokeColor" Color="Black"/>
+
     <oxy:ThicknessConverter x:Key="ThicknessConverter"/>
 
     <Style TargetType="{x:Type oxy:TrackerControl}">
@@ -57,7 +60,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     </Style>
 
     <Style TargetType="{x:Type oxy:PlotView}">
-        <Setter Property="Background" Value="White"/>
+        <Setter Property="Background" Value="{StaticResource OldTextBrushColor}"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="DefaultTrackerTemplate">
             <Setter.Value>
@@ -73,7 +76,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="ZoomRectangleTemplate">
             <Setter.Value>
                 <ControlTemplate>
-                    <Rectangle Fill="#40FFFF00" Stroke="Black" StrokeDashArray="3,1"/>
+                    <Rectangle Fill="{StaticResource ZoomRectangleBackgroundColor}" 
+                               Stroke="{StaticResource ZoomRectangleStrokeColor}" 
+                               StrokeDashArray="3,1"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -90,7 +95,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     </Style>
 
     <Style TargetType="{x:Type oxy:Plot}">
-        <Setter Property="Background" Value="White"/>
+        <Setter Property="Background" Value="{StaticResource OldTextBrushColor}"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="DefaultTrackerTemplate">
             <Setter.Value>
@@ -106,7 +111,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="ZoomRectangleTemplate">
             <Setter.Value>
                 <ControlTemplate>
-                    <Rectangle Fill="#40FFFF00" Stroke="Black" StrokeDashArray="3,1"/>
+                    <Rectangle Fill="{StaticResource ZoomRectangleBackgroundColor}" 
+                               Stroke="{StaticResource ZoomRectangleStrokeColor}" 
+                               StrokeDashArray="3,1"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

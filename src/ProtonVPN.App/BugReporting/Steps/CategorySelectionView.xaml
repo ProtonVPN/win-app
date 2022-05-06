@@ -22,38 +22,39 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:fa="http://schemas.fontawesome.io/icons/"
              xmlns:steps="clr-namespace:ProtonVPN.BugReporting.Steps"
              xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
              xmlns:reportAnIssue="clr-namespace:ProtonVPN.Core.Api.Contracts.ReportAnIssue;assembly=ProtonVPN.Core"
+             xmlns:icons="clr-namespace:ProtonVPN.Resource.Graphics.Icons;assembly=ProtonVPN.Resource"
              d:DataContext="{d:DesignInstance steps:CategorySelectionViewModel}"
              mc:Ignorable="d">
     <UserControl.Resources>
         <Style x:Key="CategoryButton" TargetType="Button" BasedOn="{StaticResource ClearStyleButton}">
             <Setter Property="Background" Value="Transparent" />
-            <Setter Property="Padding" Value="32,16" />
-            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Padding" Value="32,10" />
+            <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}" />
             <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}" />
+                </Trigger>
+            </Style.Triggers>
         </Style>
         <Style x:Key="IssueCategoryBorder" TargetType="Border">
-            <Setter Property="Background" Value="{StaticResource SidebarTabBackgroundColor}" />
+            <Setter Property="Background" Value="{StaticResource BackgroundWeakBrushColor}" />
             <Setter Property="CornerRadius" Value="8" />
             <Setter Property="Margin" Value="0,8,0,0" />
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background">
-                        <Setter.Value>
-                            <SolidColorBrush Opacity="0.1" Color="White" />
-                        </Setter.Value>
-                    </Setter>
+                    <Setter Property="Background" Value="{StaticResource BackgroundStrongBrushColor}" />
                 </Trigger>
             </Style.Triggers>
         </Style>
     </UserControl.Resources>
     <StackPanel>
         <TextBlock Text="{translations:Loc BugReport_lbl_WhatIsTheIssue}"
-                   Foreground="White"
-                   FontSize="32"
+                   Foreground="{StaticResource TextNormBrushColor}"
+                   FontSize="26"
                    HorizontalAlignment="Center" />
         <ScrollViewer VerticalAlignment="Stretch"
                       MaxHeight="370"
@@ -74,9 +75,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     HorizontalContentAlignment="Stretch">
                                 <DockPanel>
                                     <TextBlock Text="{Binding Label}" FontSize="14" />
-                                    <fa:FontAwesome Icon="ChevronRight"
-                                                    VerticalAlignment="Center"
-                                                    HorizontalAlignment="Right" />
+                                    <icons:ChevronRight Width="19" Margin="0"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Right" />
                                 </DockPanel>
                             </Button>
                         </Border>

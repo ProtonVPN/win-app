@@ -28,7 +28,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              mc:Ignorable="d"
              Visibility="{c:Binding Visible, FalseToVisibility=Collapsed}"
              MinHeight="55"
-             Background="#9d9d9d"
+             Background="{StaticResource OldGrayColor}"
              d:DesignWidth="300"
              d:DataContext="{d:DesignData forms:FormErrorsPanelViewModel}">
 
@@ -37,10 +37,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <WrapPanel VerticalAlignment="Center" Margin="0">
             <fa:FontAwesome Margin="0,0,15,0"
                             Icon="ExclamationTriangle"
-                            Foreground="White"
+                            Foreground="{StaticResource OldTextBrushColor}"
                             FontSize="16"
                             VerticalAlignment="Center"/>
-            <Label Foreground="White"
+            <Label Foreground="{StaticResource OldTextBrushColor}"
                    FontSize="16"
                    VerticalAlignment="Center" Content="{translations:Loc Window_lbl_Error}"/>
             <ItemsControl ItemsSource="{Binding Errors}" VerticalAlignment="Top">
@@ -53,7 +53,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <DataTemplate>
                         <TextBlock FontWeight="Bold"
                                    FontSize="16"
-                                   Foreground="White"
+                                   Foreground="{StaticResource OldTextBrushColor}"
                                    Text="{Binding}"
                                    TextWrapping="Wrap"/>
                     </DataTemplate>

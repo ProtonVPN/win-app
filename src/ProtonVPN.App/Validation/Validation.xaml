@@ -21,11 +21,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ControlTemplate x:Key="RedBorderWithErrorMessageTemplate">
         <StackPanel>
-            <Border BorderBrush="#D65151" BorderThickness="0 0 0 1">
+            <Border BorderBrush="{StaticResource OldRedBrushColor}" BorderThickness="0 0 0 1">
                 <AdornedElementPlaceholder Name="ErrorAdorner"/>
             </Border>
             <TextBlock HorizontalAlignment="Right"
-                       Foreground="#D65151"
+                       Foreground="{StaticResource OldRedBrushColor}"
                        FontSize="12"
                        Text="{Binding ElementName=ErrorAdorner, Path=AdornedElement.(Validation.Errors)/ErrorContent}">
             </TextBlock>

@@ -49,18 +49,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <StackPanel Grid.Row="0" Margin="0,0,0,10">
             <RadioButton GroupName="Type"
                          IsChecked="{Binding SplitTunnelMode, Converter={StaticResource ComparisonConverter}, ConverterParameter={x:Static common:SplitTunnelMode.Block}}"
-                         BorderBrush="{StaticResource PrimaryColor}"
-                         BorderThickness="2"
                          Padding="10,0,0,0"
                          Margin="0,5"
-                         Foreground="White">
+                         Foreground="{StaticResource TextNormBrushColor}">
                 <TextBlock Text="{translations:Loc Settings_Advanced_SplitTunnel_lbl_Exclude}" TextWrapping="Wrap"/>
             </RadioButton>
             <RadioButton GroupName="Type"
                          IsChecked="{Binding SplitTunnelMode, Converter={StaticResource ComparisonConverter}, ConverterParameter={x:Static common:SplitTunnelMode.Permit}}"
                          Padding="10,0,0,0"
                          Margin="0,5"
-                         Foreground="White"
+                         Foreground="{StaticResource TextNormBrushColor}"
                          AutomationProperties.AutomationId="{StaticResource IncludeModeRadioButton}">
                 <TextBlock Text="{translations:Loc Settings_Advanced_SplitTunnel_lbl_Include}" TextWrapping="Wrap"/>
             </RadioButton>
@@ -71,11 +69,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto" SharedSizeGroup="Column2"/>
             </Grid.ColumnDefinitions>
-            <Border Grid.Column="0" Padding="0,0,0,5" Margin="0,0,15,0" BorderBrush="#464652" BorderThickness="0,0,1,0">
-                <Label Content="{translations:Loc Settings_Advanced_SplitTunnel_lbl_Apps}" Padding="0" Foreground="White"/>
+            <Border Grid.Column="0" Padding="0,0,0,5" Margin="0,0,15,0" BorderBrush="{StaticResource BorderWeakBrushColor}" BorderThickness="0,0,1,0">
+                <Label Content="{translations:Loc Settings_Advanced_SplitTunnel_lbl_Apps}" Padding="0" Foreground="{StaticResource TextNormBrushColor}"/>
             </Border>
             <Border Grid.Column="1" Padding="5,0,0,5" BorderThickness="0">
-                <Label Content="{translations:Loc Settings_Advanced_SplitTunnel_lbl_Ip}" Padding="0" Foreground="White"/>
+                <Label Content="{translations:Loc Settings_Advanced_SplitTunnel_lbl_Ip}" Padding="0" Foreground="{StaticResource TextNormBrushColor}"/>
             </Border>
         </Grid>
 
@@ -86,7 +84,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto" SharedSizeGroup="Column2"/>
                 </Grid.ColumnDefinitions>
-                <Border Grid.Column="0" Padding="0,0,12,0" BorderBrush="#464652" BorderThickness="0,0,1,0">
+                <Border Grid.Column="0" Padding="0,0,12,0" BorderBrush="{StaticResource BorderWeakBrushColor}" BorderThickness="0,0,1,0">
                     <ItemsControl x:Name="AppsItemsControl" ItemTemplate="{StaticResource SelectableDeletableWrappedApp}"
                                   DataContext="{Binding Apps}" 
                                   ItemsSource="{Binding Items}"/>
@@ -104,7 +102,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto" SharedSizeGroup="Column2"/>
             </Grid.ColumnDefinitions>
-            <Border Grid.Column="0" Padding="0,0,0,5" Margin="0,0,15,-23" BorderBrush="#464652" BorderThickness="0,0,1,0">
+            <Border Grid.Column="0" Padding="0,0,0,5" Margin="0,0,15,-23">
                 <Button Style="{StaticResource SettingsAddButton}"
                         HorizontalAlignment="Left"
                         Content="{translations:Loc Settings_Advanced_SplitTunnel_btn_AddApp}"

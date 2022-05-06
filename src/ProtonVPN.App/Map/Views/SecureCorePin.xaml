@@ -47,15 +47,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Setter Property="Height" Value="{Binding PinHeight}"/>
             <Setter Property="Canvas.Bottom" Value="0"/>
             <Setter Property="Stretch" Value="Fill"/>
-            <Setter Property="Fill" Value="#222329"/>
-            <Setter Property="Stroke" Value="{StaticResource PrimaryColor}"/>
+            <Setter Property="Fill" Value="{StaticResource BackgroundNormBrushColor}"/>
+            <Setter Property="Stroke" Value="{StaticResource InteractionNormBrushColor}"/>
             <Setter Property="StrokeThickness" Value="2"/>
             <Style.Triggers>
                 <DataTrigger Binding="{Binding ShowTooltip}" Value="True">
-                    <Setter Property="Fill" Value="White"/>
+                    <Setter Property="Stroke" Value="{StaticResource InteractionNormBrushColor}"/>
+                    <Setter Property="Fill" Value="{StaticResource InteractionNormBrushColor}"/>
                 </DataTrigger>
                 <DataTrigger Binding="{Binding Connected}" Value="True">
-                    <Setter Property="Fill" Value="White"/>
+                    <Setter Property="Stroke" Value="{StaticResource InteractionNormBrushColor}"/>
+                    <Setter Property="Fill" Value="{StaticResource InteractionNormBrushColor}"/>
                 </DataTrigger>
             </Style.Triggers>
         </Style>
@@ -73,7 +75,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     Name="PinCanvas">
                     <Grid Name="Tooltip">
                         <Path x:Name="PinPath" VerticalAlignment="Bottom" Margin="0,0,0,1" SnapsToDevicePixels="True" Stretch="Uniform" UseLayoutRounding="True"/>
-                        <TextBlock Name="SecureCoreText"  Foreground="White" HorizontalAlignment="Center" Margin="0,0,0,9" FontSize="14" Padding="10,10" >
+                        <TextBlock Name="SecureCoreText"  Foreground="{StaticResource TextNormBrushColor}" HorizontalAlignment="Center" Margin="0,0,0,9" FontSize="14" Padding="10,10" >
                             <Run Text="{translations:Loc Map_lbl_SecureCore}"/>
                             <Run Text="{Binding CountryCode, Converter={StaticResource CountryCodeToNameConverter}, Mode=OneWay}"/>
                         </TextBlock>

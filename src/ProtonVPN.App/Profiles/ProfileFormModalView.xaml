@@ -30,7 +30,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         xmlns:resource="clr-namespace:ProtonVPN.Resource;assembly=ProtonVPN.Resource"
                         mc:Ignorable="d"
                         Width="600"
-                        Height="530"
+                        Height="550"
                         d:DataContext="{d:DesignInstance profiles:ProfileFormModalViewModel}">
     <resource:BaseModalWindow.Style>
         <Style TargetType="resource:BaseModalWindow" BasedOn="{StaticResource BaseWindowStyle}">
@@ -82,19 +82,22 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </ContentPresenter.Resources>
             </ContentPresenter>
         </StackPanel>
-
-        <form:FormErrorsPanel>
-            <form:FormErrorsPanel.Resources>
-                <Style TargetType="form:FormErrorsPanel">
-                    <Setter Property="Visibility" Value="Visible"/>
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding Form.Error}" Value="{x:Static form:Error.None}">
-                            <Setter Property="Visibility" Value="Collapsed"/>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </form:FormErrorsPanel.Resources>
-        </form:FormErrorsPanel>
-        <forms:FormButtons/>
+        <StackPanel Margin="0,0,0,20" VerticalAlignment="Bottom">
+            <form:FormErrorsPanel>
+                <form:FormErrorsPanel.Resources>
+                    <Style TargetType="form:FormErrorsPanel">
+                        <Setter Property="Visibility" Value="Visible"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Form.Error}" Value="{x:Static form:Error.None}">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </form:FormErrorsPanel.Resources>
+            </form:FormErrorsPanel>
+        </StackPanel>
+        <StackPanel Margin="0,0,0,20" VerticalAlignment="Bottom">
+            <forms:FormButtons />
+        </StackPanel>
     </Grid>
 </resource:BaseModalWindow>

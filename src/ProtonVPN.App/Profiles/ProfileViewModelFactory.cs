@@ -53,8 +53,7 @@ namespace ProtonVPN.Profiles
             return (await _profileManager.GetProfiles())
                 .Where(profile => profile.IsPredefined ||
                                   profile.Server != null ||
-                                  profile.ProfileType == ProfileType.Fastest||
-                                  profile.ProfileType == ProfileType.Random)
+                                  profile.ProfileType is ProfileType.Fastest or ProfileType.Random)
                 .Select(GetProfileViewModel)
                 .Where(viewModel => viewModel != null)
                 .ToList();
@@ -139,16 +138,16 @@ namespace ProtonVPN.Profiles
         private PredefinedProfileViewModel CreatePredefinedVpnProfile(Profile profile)
         {
             PredefinedProfileViewModel profileViewModel = new(profile);
-
+            
             switch (profileViewModel.Id)
             {
                 case "Fastest":
-                    profileViewModel.Icon = "Signal";
+                    profileViewModel.Icon = "Bolt";
                     profileViewModel.Text = Translation.Get("Profiles_Profile_Name_val_Fastest");
                     profileViewModel.Description = Translation.Get("Profiles_Profile_Description_val_Fastest");
                     break;
                 case "Random":
-                    profileViewModel.Icon = "Random";
+                    profileViewModel.Icon = "ArrowsSwapRight";
                     profileViewModel.Text = Translation.Get("Profiles_Profile_Name_val_Random");
                     profileViewModel.Description = Translation.Get("Profiles_Profile_Description_val_Random");
                     break;

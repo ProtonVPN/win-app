@@ -22,16 +22,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:controls="clr-namespace:ProtonVPN.Views.Controls"
     xmlns:sidebarView="clr-namespace:ProtonVPN.Sidebar"
     xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
     xmlns:command="http://www.galasoft.ch/mvvmlight"
     xmlns:wpf="clr-namespace:ProtonVPN.Core.Wpf"
-    xmlns:fa="http://schemas.fontawesome.io/icons/"
     xmlns:views="clr-namespace:ProtonVPN.Map.Views"
     xmlns:mapLine="clr-namespace:ProtonVPN.Map.ViewModels.MapLine"
     xmlns:pins="clr-namespace:ProtonVPN.Map.ViewModels.Pins"
     xmlns:speedGraph="clr-namespace:ProtonVPN.SpeedGraph"
+    xmlns:logos="clr-namespace:ProtonVPN.Resource.Graphics.Logos;assembly=ProtonVPN.Resource"
+    xmlns:icons="clr-namespace:ProtonVPN.Resource.Graphics.Icons;assembly=ProtonVPN.Resource"
     x:Class="ProtonVPN.Map.Views.Map"
     mc:Ignorable="d"
     d:DesignHeight="800">
@@ -41,6 +41,20 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Setter Property="Connected" Value="{Binding Connected, Mode=TwoWay}"/>
             <Setter Property="SecureCore" Value="{Binding SecureCore, Mode=OneWay}"/>
         </Style>
+        <Style x:Key="ZoomButtonBorder" TargetType="Border">
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="BorderBrush" Value="{StaticResource BorderNormBrushColor}"/>
+            <Setter Property="Width" Value="24"/>
+            <Setter Property="Height" Value="24"/>
+            <Setter Property="CornerRadius" Value="4"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="BorderBrush" Value="Transparent"/>
+                    <Setter Property="Background" Value="{StaticResource InteractionNormHoverBrushColor}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </UserControl.Resources>
 
     <Grid x:Name="MainGrid">
@@ -48,7 +62,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <ColumnDefinition Width="336"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Grid Name="Sidebar" Grid.Column="0" Background="#202128" Panel.ZIndex="2" HorizontalAlignment="Left" Width="336">
+        <Grid Name="Sidebar" Grid.Column="0" Panel.ZIndex="2" HorizontalAlignment="Left" Width="336">
             <sidebarView:Sidebar DataContext="{Binding SidebarViewModel}"/>
         </Grid>
 
@@ -60,16 +74,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <StackPanel Orientation="Horizontal" Height="57">
                     <Path Data="M 65.005858,0 H 0 c 0,0 15.666998,6.3327028 23.999998,24.845704 8.209037,18.237597 17.780151,31.682176 41.00586,32.080078 v -0.03711 z"
                           Margin="0,0,-1,0"
-                          Fill="#2b2c34"/>
-                    <DockPanel Background="#2b2c34">
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,8,0,0">
-                            <fa:FontAwesome Style="{StaticResource ConnectionLock}"/>
+                          Fill="{StaticResource BackgroundWeakBrushColor}"/>
+                    <DockPanel Background="{StaticResource BackgroundWeakBrushColor}">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,4,0,0">
                             <Label Style="{StaticResource ConnectionHomeLabel}"
                                    AutomationProperties.AutomationId="{StaticResource ConnectionState}"/>
                         </StackPanel>
                     </DockPanel>
                     <Path Data="M 65.005858,0 H 0 c 0,0 15.666998,6.3327028 23.999998,24.845704 8.209037,18.237597 17.780151,31.682176 41.00586,32.080078 v -0.03711 z"
-                          Fill="#2b2c34"
+                          Fill="{StaticResource BackgroundWeakBrushColor}"
                           Margin="-1,0,0,0"
                           RenderTransformOrigin="0.5,0.5">
                         <Path.RenderTransform>
@@ -78,15 +91,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </Path>
                 </StackPanel>
 
-                <Grid Margin="0,0,0,-20" VerticalAlignment="Bottom">
-                    <Ellipse Style="{StaticResource HomeEllipse}"/>
-                    <fa:FontAwesome
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        Icon="Home"
-                        x:Name="HomeIcon"
-                        Foreground="White"
-                        FontSize="22"/>
+                <Grid Margin="0,0,0,-24" VerticalAlignment="Bottom">
+                    <Ellipse Style="{StaticResource HomeEllipse}" />
+                    <icons:HouseFilled x:Name="HomeIcon"
+                                       Width="16"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center" 
+                                       Foreground="{StaticResource TextNormBrushColor}"  />
                 </Grid>
             </Grid>
 
@@ -99,26 +110,28 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <Label Grid.Row="0" Grid.Column="0" Content="X:" Foreground="White"/>
-                <Label Grid.Row="0" Grid.Column="1" Name="XCoordinate" Foreground="White"/>
-                <Label Grid.Row="1" Grid.Column="0" Content="Y:" Foreground="White"/>
-                <Label Grid.Row="1" Grid.Column="1" Name="YCoordinate" Foreground="White"/>
+                <Label Grid.Row="0" Grid.Column="0" Content="X:" Foreground="{StaticResource TextNormBrushColor}"/>
+                <Label Grid.Row="0" Grid.Column="1" Name="XCoordinate" Foreground="{StaticResource TextNormBrushColor}"/>
+                <Label Grid.Row="1" Grid.Column="0" Content="Y:" Foreground="{StaticResource TextNormBrushColor}"/>
+                <Label Grid.Row="1" Grid.Column="1" Name="YCoordinate" Foreground="{StaticResource TextNormBrushColor}"/>
             </Grid>
 
-            <controls:LogoWhite Width="120"
-                                Height="20"
-                                FlowDirection="LeftToRight"
-                                Margin="0,40,47,0"
-                                VerticalAlignment="Top"
-                                HorizontalAlignment="Right"
-                                x:Name="Logo"
-                                Panel.ZIndex="1"/>
+            <logos:ProtonVpnLogo Width="133"
+                                 FlowDirection="LeftToRight"
+                                 Margin="0,30,40,0"
+                                 VerticalAlignment="Top"
+                                 HorizontalAlignment="Right"
+                                 x:Name="Logo"
+                                 Panel.ZIndex="1"/>
 
             <StackPanel Margin="0,70,40,0" VerticalAlignment="Top" HorizontalAlignment="Right" Panel.ZIndex="1" x:Name="VerticalZoomPanel" RenderTransformOrigin="0.5,0.5">
                 <Grid>
-                    <Border BorderThickness="1" VerticalAlignment="Center" BorderBrush="#494955" Width="21" Height="21">
-                        <Button Style="{StaticResource ClearStyleButton}" Background="Transparent" BorderThickness="0" PreviewMouseLeftButtonUp="ZoomIn">
-                            <TextBlock FontSize="20" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1,-4,0,0"><Run Text="+"/></TextBlock>
+                    <Border Style="{StaticResource ZoomButtonBorder}">
+                        <Button Style="{StaticResource ClearStyleButton}" Background="Transparent" PreviewMouseLeftButtonUp="ZoomIn">
+                            <icons:ZoomPlus Width="12" 
+                                            HorizontalAlignment="Center" 
+                                            VerticalAlignment="Center" 
+                                            Foreground="{StaticResource TextNormBrushColor}" />
                         </Button>
                     </Border>
                 </Grid>
@@ -134,14 +147,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <Border Margin="0,5">
                                 <Border.Style>
                                     <Style TargetType="{x:Type Border}">
-                                        <Setter Property="Background" Value="#494955"/>
+                                        <Setter Property="Background" Value="{StaticResource BorderWeakBrushColor}"/>
                                         <Setter Property="Height" Value="1"/>
                                         <Setter Property="Width" Value="5"/>
                                         <Style.Triggers>
                                             <DataTrigger Binding="{Binding}" Value="True">
                                                 <Setter Property="Height" Value="2"/>
                                                 <Setter Property="Width" Value="10"/>
-                                                <Setter Property="Background" Value="White"/>
+                                                <Setter Property="Background" Value="{StaticResource TextNormBrushColor}"/>
                                             </DataTrigger>
                                         </Style.Triggers>
                                     </Style>
@@ -152,9 +165,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </ItemsControl>
 
                 <Grid>
-                    <Border BorderThickness="1" VerticalAlignment="Center" BorderBrush="#494955" Width="21" Height="21">
-                        <Button Style="{StaticResource ClearStyleButton}" Background="Transparent" BorderThickness="0" PreviewMouseLeftButtonUp="ZoomOut" RenderTransformOrigin="0.5,0.5">
-                            <TextBlock FontSize="20" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-4,0,0"><Run Text="-"/></TextBlock>
+                    <Border Style="{StaticResource ZoomButtonBorder}">
+                        <Button Style="{StaticResource ClearStyleButton}" Background="Transparent" PreviewMouseLeftButtonUp="ZoomOut">
+                            <icons:ZoomMinus Width="12" 
+                                             HorizontalAlignment="Center" 
+                                             VerticalAlignment="Center" 
+                                             Foreground="{StaticResource TextNormBrushColor}" />
                         </Button>
                     </Border>
                 </Grid>
@@ -162,9 +178,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
             <StackPanel Orientation="Horizontal" Margin="0,70,40,0" VerticalAlignment="Top" HorizontalAlignment="Right" Panel.ZIndex="1" x:Name="HorizontalZoomPanel" RenderTransformOrigin="0.5,0.5">
                 <Grid>
-                    <Border BorderThickness="1" VerticalAlignment="Center" BorderBrush="#494955" Width="21" Height="21">
-                        <Button Style="{StaticResource ClearStyleButton}" Background="Transparent" BorderThickness="0" PreviewMouseLeftButtonUp="ZoomOut" RenderTransformOrigin="0.5,0.5">
-                            <TextBlock FontSize="20" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-4,0,0"><Run Text="-"/></TextBlock>
+                    <Border Style="{StaticResource ZoomButtonBorder}">
+                        <Button Style="{StaticResource ClearStyleButton}" Background="Transparent" PreviewMouseLeftButtonUp="ZoomOut">
+                            <icons:ZoomMinus Width="12" 
+                                            HorizontalAlignment="Center" 
+                                            VerticalAlignment="Center" 
+                                            Foreground="{StaticResource TextNormBrushColor}" />
                         </Button>
                     </Border>
                 </Grid>
@@ -180,14 +199,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <Border Margin="5,0">
                                 <Border.Style>
                                     <Style TargetType="{x:Type Border}">
-                                        <Setter Property="Background" Value="#494955"/>
+                                        <Setter Property="Background" Value="{StaticResource BorderWeakBrushColor}"/>
                                         <Setter Property="Width" Value="1"/>
                                         <Setter Property="Height" Value="5"/>
                                         <Style.Triggers>
                                             <DataTrigger Binding="{Binding}" Value="True">
                                                 <Setter Property="Width" Value="2"/>
                                                 <Setter Property="Height" Value="10"/>
-                                                <Setter Property="Background" Value="White"/>
+                                                <Setter Property="Background" Value="{StaticResource TextNormBrushColor}"/>
                                             </DataTrigger>
                                         </Style.Triggers>
                                     </Style>
@@ -198,9 +217,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </ItemsControl>
 
                 <Grid>
-                    <Border BorderThickness="1" VerticalAlignment="Center" BorderBrush="#494955" Width="21" Height="21">
-                        <Button Style="{StaticResource ClearStyleButton}" Background="Transparent" BorderThickness="0" PreviewMouseLeftButtonUp="ZoomIn">
-                            <TextBlock FontSize="20" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1,-4,0,0"><Run Text="+"/></TextBlock>
+                    <Border Style="{StaticResource ZoomButtonBorder}">
+                        <Button Style="{StaticResource ClearStyleButton}" Background="Transparent" PreviewMouseLeftButtonUp="ZoomIn">
+                            <icons:ZoomPlus Width="12" 
+                                        HorizontalAlignment="Center" 
+                                        VerticalAlignment="Center" 
+                                        Foreground="{StaticResource TextNormBrushColor}" />
                         </Button>
                     </Border>
                 </Grid>
@@ -215,7 +237,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                               HorizontalScrollBarVisibility="Hidden"
                               VerticalScrollBarVisibility="Hidden"
                               IsManipulationEnabled="True"
-                              Background="#1e1e24">
+                              Background="{StaticResource BackgroundNormBrushColor}">
                 <Viewbox x:Name="MapViewBox" MinWidth="850" MinHeight="400" Margin="0,0,0,350" Width="{Binding Width, Mode=TwoWay}">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="SizeChanged">
@@ -292,7 +314,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <speedGraph:SpeedGraph x:Name="SpeedGraph"
                                  DataContext="{Binding SpeedGraphViewModel}"
                                  VerticalAlignment="Bottom"
-                                 Margin="10,15,10,25"
+                                 Margin="10,15,10,35"
                                  Height="145"/>
         </Grid>
     </Grid>
