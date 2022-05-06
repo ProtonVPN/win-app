@@ -25,6 +25,7 @@ using ProtonVPN.Core.Servers.Specs;
 using ProtonVPN.Core.Settings;
 using System.Collections.Generic;
 using System.Linq;
+using ProtonVPN.Profiles.Servers;
 
 namespace ProtonVPN.Profiles.Form
 {
@@ -37,7 +38,9 @@ namespace ProtonVPN.Profiles.Form
             ProfileManager profileManager,
             IDialogs dialogs,
             IModals modals,
-            ServerManager serverManager) : base(appConfig, colorProvider, userStorage, profileManager, dialogs, modals, serverManager)
+            ServerManager serverManager,
+            IProfileFactory profileFactory) 
+            : base(appConfig, colorProvider, userStorage, profileManager, dialogs, modals, serverManager, profileFactory)
         {
         }
 
@@ -63,9 +66,9 @@ namespace ProtonVPN.Profiles.Form
             SelectedServer = null;
         }
 
-        protected override Profile GetProfile()
+        protected override Profile CreateProfile()
         {
-            var profile = base.GetProfile();
+            Profile profile = base.CreateProfile();
             profile.ServerId = SelectedServer?.Id;
             return profile;
         }
@@ -77,7 +80,7 @@ namespace ProtonVPN.Profiles.Form
 
         private void LoadServers()
         {
-            var servers = GetPredefinedServerViewModels();
+            List<IServerViewModel> servers = GetPredefinedServerViewModels();
             servers.AddRange(GetServerViewModels(GetServerList()));
             Servers = servers;
         }

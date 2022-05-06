@@ -17,18 +17,27 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using ProtonVPN.Resource.Colors;
+using ProtonVPN.Resources.Colors;
 
 namespace ProtonVPN.Map.Views
 {
     public partial class Pin
     {
-        private const double TriangleWidth = 17;
+        private const double TRIANGLE_HALF_WIDTH = 1.7383;
+        private const double ANGLE_HALF_WIDTH = 0.9354;
+        private const double JOINT_DISTANCE = 5.5;
+        private const double CORNER_RADIUS = 8;
+        private const double HEIGHT = 30;
+        private const double EXTRA_TOOLTIP_WIDTH = 50;
+
         private bool _tooltipVisible;
-        private readonly NumberFormatInfo _nfi = new NumberFormatInfo { NumberDecimalSeparator = "." };
+        private readonly NumberFormatInfo _nfi = new() { NumberDecimalSeparator = "." };
 
         public bool Highlighted
         {
@@ -54,6 +63,11 @@ namespace ProtonVPN.Map.Views
             typeof(Pin),
             new PropertyMetadata(false, ConnectedChanged));
 
+        private static readonly IColorPalette _colorPalette = ColorPaletteFactory.Create();
+        private readonly Lazy<SolidColorBrush> _fillColorBrush = new(() => _colorPalette.GetSolidColorBrushByResourceName("BackgroundNormBrushColor"));
+        private readonly Lazy<SolidColorBrush> _inactiveBrushColor = new(() => _colorPalette.GetSolidColorBrushByResourceName("BorderWeakBrushColor"));
+        private readonly Lazy<SolidColorBrush> _interactionColorBrush = new(() => _colorPalette.GetSolidColorBrushByResourceName("InteractionNormBrushColor"));
+
         public Pin()
         {
             InitializeComponent();
@@ -72,13 +86,11 @@ namespace ProtonVPN.Map.Views
 
         private void CountryButton_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            CountryButton.FontWeight = FontWeights.Bold;
             CenterPin();
         }
 
         private void CountryButton_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            CountryButton.FontWeight = FontWeights.Normal;
             CenterPin();
             if (!PinPath.IsMouseDirectlyOver)
             {
@@ -107,10 +119,7 @@ namespace ProtonVPN.Map.Views
 
         private void HideTooltip()
         {
-            if (!_tooltipVisible)
-                return;
-
-            if (CountryButton.IsMouseOver)
+            if (!_tooltipVisible || CountryButton.IsMouseOver)
             {
                 return;
             }
@@ -123,46 +132,53 @@ namespace ProtonVPN.Map.Views
 
         private void SetInitialStyle()
         {
-            var center = TriangleWidth / 2;
-            PinPath.Data = Geometry.Parse($"M0,0 L{TriangleWidth.ToString(_nfi)},0 L{center.ToString(_nfi)},14 L0,0Z");
+            PinPath.Data = Geometry.Parse("M 3.4758 1.3586 H 15.8761 C 17.4862 1.3586 18.4677 3.1296 17.6144 4.4949 L 11.4143 14.4152 C 10.6114 15.6997 8.7406 15.6997 7.9377 14.4152 L 1.7376 4.4949 C 0.8842 3.1296 1.8659 1.3586 3.4758 1.3586 Z");
             PinPath.Width = PinPath.Data.Bounds.Width;
             PinPath.Height = PinPath.Data.Bounds.Height;
-            CountryButton.FontSize = 12;
+            PinPath.StrokeThickness = 2;
             SetPinColors();
         }
 
         private void ShowTooltip()
         {
             if (_tooltipVisible)
+            {
                 return;
+            }
 
             CountryButton.Visibility = Visibility.Visible;
             UpdateLayout();
 
-            var pathWidth = CountryButton.ActualWidth + 60;
-            var triangleCenter = pathWidth / 2;
-            var triangleLeft = triangleCenter - TriangleWidth / 2;
-            var triangleRight = triangleCenter + TriangleWidth / 2;
-
-            PinPath.Data = Geometry.Parse($"M{pathWidth.ToString(_nfi)},30" +
-                                          $"L{triangleRight.ToString(_nfi)},30" +
-                                          $"L{triangleCenter.ToString(_nfi)},43" +
-                                          $"L{triangleLeft.ToString(_nfi)},30" +
-                                          "L0,30" +
-                                          "A 15,15 180 1 1 0,0" +
-                                          $"L{pathWidth.ToString(_nfi)},0" +
-                                          $"A 15,15 180 1 1 {pathWidth.ToString(_nfi)},30 Z");
+            double pathWidth = CountryButton.ActualWidth + EXTRA_TOOLTIP_WIDTH;
+            double center = pathWidth / 2;
+            double triangleRight = center + TRIANGLE_HALF_WIDTH;
+            double triangleAngleRight = center + ANGLE_HALF_WIDTH;
+            double triangleAngleLeft = center - ANGLE_HALF_WIDTH;
+            double triangleLeft = center - TRIANGLE_HALF_WIDTH;
+            double jointRight = triangleRight + JOINT_DISTANCE;
+            double jointLeft = triangleLeft - JOINT_DISTANCE;
+            double rightBorderX = pathWidth + CORNER_RADIUS;
+            double lowerCornersY = HEIGHT - CORNER_RADIUS;
+            
+            string data = $"M{pathWidth.ToString(_nfi)},{HEIGHT.ToString(_nfi)}" +
+                          $"L{jointRight.ToString(_nfi)},{HEIGHT.ToString(_nfi)}" +
+                          $"L{triangleRight.ToString(_nfi)},39" +
+                          $"C{triangleAngleRight.ToString(_nfi)},40.2845 {triangleAngleLeft.ToString(_nfi)},40.2845 {triangleLeft.ToString(_nfi)},39" +
+                          $"L{jointLeft.ToString(_nfi)},{HEIGHT.ToString(_nfi)}" +
+                          $"L0,{HEIGHT.ToString(_nfi)}" +
+                          $"C0,{HEIGHT.ToString(_nfi)} -{CORNER_RADIUS.ToString(_nfi)},{HEIGHT.ToString(_nfi)} -{CORNER_RADIUS.ToString(_nfi)},{lowerCornersY.ToString(_nfi)}" +
+                          $"L-{CORNER_RADIUS.ToString(_nfi)},{CORNER_RADIUS.ToString(_nfi)}" +
+                          $"C-{CORNER_RADIUS.ToString(_nfi)},{CORNER_RADIUS.ToString(_nfi)} -{CORNER_RADIUS.ToString(_nfi)},0 0,0" +
+                          $"L{pathWidth.ToString(_nfi)},0" +
+                          $"C{pathWidth.ToString(_nfi)},0 {rightBorderX.ToString(_nfi)},0 {rightBorderX.ToString(_nfi)},{CORNER_RADIUS.ToString(_nfi)}" +
+                          $"L{rightBorderX.ToString(_nfi)},{lowerCornersY.ToString(_nfi)}" +
+                          $"C{rightBorderX.ToString(_nfi)},{lowerCornersY.ToString(_nfi)} {rightBorderX.ToString(_nfi)},{HEIGHT.ToString(_nfi)} {pathWidth.ToString(_nfi)},{HEIGHT.ToString(_nfi)}" +
+                          $"Z";
+            PinPath.Data = Geometry.Parse(data);
 
             PinPath.Width = PinPath.Data.Bounds.Width;
             PinPath.Height = PinPath.Data.Bounds.Height;
-            if (Highlighted)
-            {
-                PinPath.Stroke = Brushes.White;
-            }
-            else
-            {
-                PinPath.Stroke = (Brush)Application.Current.MainWindow?.FindResource("InactivePinStrokeColor");
-            }
+            PinPath.Fill = Highlighted ? _interactionColorBrush.Value : _inactiveBrushColor.Value;
 
             SetHoverStyle();
             CenterPin();
@@ -180,43 +196,27 @@ namespace ProtonVPN.Map.Views
 
         private static void HighlightedChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var pin = (Pin) d;
+            Pin pin = (Pin) d;
             pin.SetPinColors();
         }
 
         private void SetPinColors()
         {
-            if (Connected)
-            {
-                PinPath.Fill = (Brush)Application.Current.MainWindow?.FindResource("PrimaryColor");
-            }
-            else
-            {
-                PinPath.Fill = (Brush)Application.Current.MainWindow?.FindResource("PinFillColor");
-            }
-
-            if (Highlighted)
-            {
-                PinPath.Stroke = (Brush)Application.Current.MainWindow?.FindResource("PrimaryColor");
-            }
-            else
-            {
-                PinPath.Stroke = (Brush)Application.Current.MainWindow?.FindResource("InactivePinStrokeColor");
-            }
+            PinPath.Fill = Connected ? _interactionColorBrush.Value : _fillColorBrush.Value;
+            PinPath.Stroke = Highlighted ? _interactionColorBrush.Value : _inactiveBrushColor.Value;
         }
 
         private void SetHoverStyle()
         {
             if (Highlighted && !Connected)
             {
-                PinPath.Stroke = Brushes.White;
-                CountryButton.FontWeight = FontWeights.Bold;
+                PinPath.Fill = _interactionColorBrush.Value;
             }
         }
 
         private static void ConnectedChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var pin = (Pin)d;
+            Pin pin = (Pin)d;
             pin.SetPinColors();
         }
     }

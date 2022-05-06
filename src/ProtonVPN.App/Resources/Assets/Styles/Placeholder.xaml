@@ -91,7 +91,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                 <ScrollViewer x:Name="PART_ContentHost"/>
                                                 <ControlTemplate.Triggers>
                                                     <DataTrigger Binding="{Binding Path=Text, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Value="">
-                                                        <Setter Property="Foreground" Value="#5f6172"/>
+                                                        <Setter Property="Foreground" Value="{StaticResource TextHintBrushColor}"/>
                                                     </DataTrigger>
                                                 </ControlTemplate.Triggers>
                                             </ControlTemplate>

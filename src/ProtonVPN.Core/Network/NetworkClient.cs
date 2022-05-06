@@ -44,19 +44,22 @@ namespace ProtonVPN.Core.Network
 
         private void NetworkAddressChanged(object sender, EventArgs e)
         {
-            foreach (var connection in _client.GetActiveWifiConnections())
+            foreach (WifiConnection connection in _client.GetActiveWifiConnections())
             {
                 if (_ssid == connection.Name)
+                {
                     continue;
+                }
 
                 _ssid = connection.Name;
-
                 WifiChangeDetected?.Invoke(this, new WifiChangeEventArgs(connection.Name, connection.Secure));
             }
 
-            var insecureWifi = _client.GetActiveWifiConnections().Any(i => !i.Secure);
+            bool insecureWifi = _client.GetActiveWifiConnections().Any(i => !i.Secure);
             if (!insecureWifi)
+            {
                 _ssid = string.Empty;
+            }
         }
     }
 }

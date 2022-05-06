@@ -313,17 +313,9 @@
     <value>Account Plan:</value>
     <comment>The label for account plan name in Account window</comment>
   </data>
-  <data name="Account_btn_ManageAccount" xml:space="preserve">
-    <value>Manage Account</value>
-    <comment>The text on Manage Account button in Account window (opens account management web page)</comment>
-  </data>
-  <data name="Account_msg_FailedToLoadPricing" xml:space="preserve">
-    <value>Failed to load pricing. There might be issues with the network.</value>
-    <comment>The message displayed in Account window if account pricing data loading has failed</comment>
-  </data>
-  <data name="Account_lnk_ProtonMailVisionaryIncluded" xml:space="preserve">
-    <value>ProtonMail included</value>
-    <comment>The hyperlink text displayed in Visionary account plan header in Account window</comment>
+  <data name="Account_btn_ManageSubscription" xml:space="preserve">
+    <value>Manage subscription</value>
+    <comment>The text on Manage subscription button in Account window (opens account management web page)</comment>
   </data>
   <data name="Window_lbl_Loading" xml:space="preserve">
     <value>Loading</value>
@@ -407,24 +399,24 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <comment>The text of hyperlink for creating account in Login window</comment>
   </data>
   <data name="Login_lnk_ResetPassword" xml:space="preserve">
-    <value>Reset Password</value>
+    <value>Reset password</value>
     <comment>The text of hyperlink in Need Help popup of Login window (opens web page for resetting user password)</comment>
   </data>
   <data name="Login_lnk_ForgotUsername" xml:space="preserve">
-    <value>Forgot Username</value>
+    <value>Forgot username</value>
     <comment>The text of hyperlink in Need Help popup of Login window (opens web page for users that forgot username)</comment>
+  </data>
+  <data name="Login_lnk_LoginProblems" xml:space="preserve">
+    <value>Common login issues</value>
+    <comment>The text of hyperlink in Need Help popup of Login window (opens web page with potential solutions for common login problems)</comment>
+  </data>
+  <data name="Login_lnk_ReportIssue" xml:space="preserve">
+    <value>Report an issue</value>
+    <comment>The text of hyperlink in Need Help popup of Login window (opens a modal to report a potential bug)</comment>
   </data>
   <data name="Login_lnk_NeedHelp" xml:space="preserve">
     <value>Need Help?</value>
     <comment>The text of Need Help hyperlink of Login window (opens popup with more options)</comment>
-  </data>
-  <data name="Upsell_Enjoying_lbl_Benefits" xml:space="preserve">
-    <value>Use Secure Core, stream your favorite TV shows, use on up to 10 different devices and more!</value>
-    <comment>The text describing PLUS subscription level benefits in Enjoying Upsell window</comment>
-  </data>
-  <data name="Upsell_Enjoying_btn_Upgrade" xml:space="preserve">
-    <value>Upgrade My Plan</value>
-    <comment>The text on subscription plan upgrade button in Enjoying Upsell window (opens web page for subscription plan upgrade)</comment>
   </data>
   <data name="Welcome_lbl_Welcome" xml:space="preserve">
     <value>WELCOME ON BOARD!</value>
@@ -530,20 +522,28 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <value>Save</value>
     <comment>The text on Save button in data entry windows</comment>
   </data>
+  <data name="Window_btn_Disable" xml:space="preserve">
+    <value>Disable</value>
+    <comment>The button displayed when Kill Switch is enabled and in the login window or in the connection status in the sidebar when disconnected</comment>
+  </data>
   <data name="Profiles_col_Profile" xml:space="preserve">
-    <value>PROFILE</value>
+    <value>Profile</value>
     <comment>The title of profile name column in Profiles window</comment>
   </data>
   <data name="Profiles_col_Status" xml:space="preserve">
-    <value>STATUS</value>
+    <value>Status</value>
     <comment>The title of profile synchronization status column in Profiles window</comment>
   </data>
   <data name="Profiles_col_Connection" xml:space="preserve">
-    <value>CONNECTION</value>
+    <value>Connection</value>
     <comment>The title of VPN connection description column in Profiles window</comment>
   </data>
+  <data name="Profiles_col_Protocol" xml:space="preserve">
+    <value>Protocol</value>
+    <comment>The title of VPN protocol column in Profiles window</comment>
+  </data>
   <data name="Profiles_col_Action" xml:space="preserve">
-    <value>ACTION</value>
+    <value>Action</value>
     <comment>The title of actions column in Profiles window</comment>
   </data>
   <data name="Map_btn_Connect" xml:space="preserve">
@@ -751,7 +751,7 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <comment>The title of Issue Report window</comment>
   </data>
   <data name="Sidebar_Profiles_lnk_Manage" xml:space="preserve">
-    <value>Manage Profiles</value>
+    <value>Manage</value>
     <comment>The text of hyperlink on Profiles tab of Sidebar section of main app window (opens Profiles window)</comment>
   </data>
   <data name="Profiles_Profile_lbl_Protocol" xml:space="preserve">
@@ -806,8 +806,8 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <value>About</value>
     <comment>The title of About window</comment>
   </data>
-  <data name="Account_lbl_AccountName" xml:space="preserve">
-    <value>Logged in as:</value>
+  <data name="Account_lbl_Username" xml:space="preserve">
+    <value>Username:</value>
     <comment>The label for user login name in Account window</comment>
   </data>
   <data name="Account_ttl" xml:space="preserve">
@@ -934,14 +934,6 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <value>Upgrade</value>
     <comment>The label displayed next to server name in Server list in Countries tab of Sidebar in main app window</comment>
   </data>
-  <data name="Upsell_Enjoying_lbl_MoneyBack" xml:space="preserve">
-    <value>30-day money back guarantee</value>
-    <comment>The text on bottom of Enjoying Upsell window</comment>
-  </data>
-  <data name="Upsell_Enjoying_ttl" xml:space="preserve">
-    <value>ProtonVPN</value>
-    <comment>The title of Enjoying Upsell window</comment>
-  </data>
   <data name="Map_VpnStatus_val_Connected" xml:space="preserve">
     <value>CONNECTED</value>
     <comment>The connection status displayed in the Home section of the Map in main app window when not connected to VPN</comment>
@@ -990,20 +982,16 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <value>Disconnect</value>
     <comment>The text on Disconnect button in Quick Launch window (disconnects from VPN)</comment>
   </data>
-  <data name="QuickLaunch_lbl_Disconnected" xml:space="preserve">
-    <value>Not connected</value>
-    <comment>The VPN connection status in Quick Launch window.</comment>
-  </data>
   <data name="Servers_btn_Connect" xml:space="preserve">
-    <value>CONNECT</value>
+    <value>Connect</value>
     <comment>The text on Connect button in Server list in Countries tab of Sidebar in main app window (connects to the VPN server)</comment>
   </data>
   <data name="Servers_btn_Disconnect" xml:space="preserve">
-    <value>DISCONNECT</value>
+    <value>Disconnect</value>
     <comment>The text on Disconnect button in Server list in Countries tab of Sidebar in main app window (disconnects from the VPN server)</comment>
   </data>
   <data name="Servers_btn_Upgrade" xml:space="preserve">
-    <value>UPGRADE</value>
+    <value>Upgrade</value>
     <comment>The text on Upgrade button in Server list in Countries tab of Sidebar in main app window (opens Upgrade Required Upsell window)</comment>
   </data>
   <data name="Sidebar_Connection_btn_Connect" xml:space="preserve">
@@ -1021,10 +1009,6 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
   <data name="Sidebar_Countries_lbl_Search_Watermark" xml:space="preserve">
     <value>Search</value>
     <comment>The watermark text displayed in Search text box in Countries tab of Sidebar section of main app window</comment>
-  </data>
-  <data name="Profiles_col_Protocol" xml:space="preserve">
-    <value>PROTOCOL</value>
-    <comment>The title of VPN protocol column in Profiles window</comment>
   </data>
   <data name="VpnPlan_val_Free" xml:space="preserve">
     <value>ProtonVPN Free</value>
@@ -2062,10 +2046,6 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <value>Zimbabwe</value>
     <comment>The name of ZW country</comment>
   </data>
-  <data name="Upsell_Enjoying_lbl_Heading" xml:space="preserve">
-    <value>Enjoying ProtonVPN?&lt;LineBreak/&gt;Get Plus for only $8/mo</value>
-    <comment>The heading text in Enjoying Upsell window</comment>
-  </data>
   <data name="Welcome_ttl" xml:space="preserve">
     <value>ProtonVPN</value>
     <comment>The title of Welcome window</comment>
@@ -2077,30 +2057,6 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
   <data name="Account_lbl_Device_One" xml:space="preserve">
     <value>Device</value>
     <comment>The supported number of devices in Account window.</comment>
-  </data>
-  <data name="Account_lbl_MonthlyPriceZero" xml:space="preserve">
-    <value>Free</value>
-    <comment>The text of zero monthly price in Account window</comment>
-  </data>
-  <data name="Account_lbl_YearlyPrice" xml:space="preserve">
-    <value>({0}{1} per year)</value>
-    <comment>The annual subscription price in Account window. The {0} is a placeholder for a number of dollars. The {1} is a placeholder for currency symbol (in this case - dollar).</comment>
-  </data>
-  <data name="Account_ServerAccess_val_Free" xml:space="preserve">
-    <value>Only Free Server Access</value>
-    <comment>The description of access to servers for VPN subscription plan displayed in Account window</comment>
-  </data>
-  <data name="Account_ServerAccess_val_Visionary" xml:space="preserve">
-    <value>All Servers Access</value>
-    <comment>The description of access to servers for VPN subscription plan displayed in Account window</comment>
-  </data>
-  <data name="Account_ServerAccess_val_Vpnbasic" xml:space="preserve">
-    <value>Limited Server Access</value>
-    <comment>The description of access to servers for VPN subscription plan displayed in Account window</comment>
-  </data>
-  <data name="Account_ServerAccess_val_Vpnplus" xml:space="preserve">
-    <value>All Servers Access</value>
-    <comment>The description of access to servers for VPN subscription plan displayed in Account window</comment>
   </data>
   <data name="Connecting_btn_Cancel" xml:space="preserve">
     <value>Cancel</value>
@@ -2173,10 +2129,6 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
   <data name="Sidebar_Connection_lbl_KillSwitch_Info" xml:space="preserve">
     <value>Kill Switch is blocking all connections to avoid leaking your data.</value>
     <comment>Tooltip message shown in sidebar connection status box when hovered on exclamation mark icon</comment>
-  </data>
-  <data name="Sidebar_Connection_btn_Disable" xml:space="preserve">
-    <value>DISABLE</value>
-    <comment>The button displayed in the sidebar connection block when Kill Switch is activated and vpn connection is dropped</comment>
   </data>
   <data name="App_msg_UpdateConnectedConfirm" xml:space="preserve">
     <value>To complete the update process, ProtonVPN will temporarily disconnect and deactivate Permanent Kill Switch if any of these are active. Do you want to continue?</value>
@@ -2251,7 +2203,7 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <comment>The description displayed in a tooltip of P icon on a sidebar server item</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_TlsCertificateError" xml:space="preserve">
-    <value>There's a problem validating the VPN server certificate, which might indicate that the network connection is being tampered with or the server you are trying to connect to has a configuration problem. Get help from our customer support by sending a &lt;Hyperlink Foreground="White" Command="{Binding ReportBugCommand}"&gt;&lt;Run Text="Issue Report"/&gt;&lt;/Hyperlink&gt;.</value>
+    <value>There's a problem validating the VPN server certificate, which might indicate that the network connection is being tampered with or the server you are trying to connect to has a configuration problem. Get help from our customer support by sending a &lt;Hyperlink Foreground="{StaticResource OldTextBrushColor}" Command="{Binding ReportBugCommand}"&gt;&lt;Run Text="Issue Report"/&gt;&lt;/Hyperlink&gt;.</value>
     <comment>The error description displayed in Disconnect modal window if VPN server certificate validation error has occurred</comment>
   </data>
   <data name="Login_lbl_KillSwitch" xml:space="preserve">
@@ -2426,29 +2378,17 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <value>Licensing information:</value>
     <comment>The label for licensing information in About window</comment>
   </data>
-  <data name="Account_lbl_Basic" xml:space="preserve">
-    <value>Basic</value>
-    <comment>The name of VPN subscription plan</comment>
-  </data>
   <data name="Account_lbl_Free" xml:space="preserve">
-    <value>Free</value>
+    <value>ProtonVPN Free</value>
     <comment>The name of VPN subscription plan</comment>
   </data>
   <data name="Account_lbl_Plus" xml:space="preserve">
-    <value>Plus</value>
-    <comment>The name of VPN subscription plan</comment>
-  </data>
-  <data name="Account_lbl_Visionary" xml:space="preserve">
-    <value>Visionary</value>
+    <value>ProtonVPN Plus</value>
     <comment>The name of VPN subscription plan</comment>
   </data>
   <data name="Account_lbl_AccessContent" xml:space="preserve">
     <value>Access blocked content</value>
     <comment>The text displayed in Account window</comment>
-  </data>
-  <data name="Account_lbl_AccessContent_Info" xml:space="preserve">
-    <value>Access blocked content, like social media, news, Wikipedia, YouTube, and many others, no matter where you are.</value>
-    <comment>Tooltip message shown in account window when hovered on Access blocked content exclamation mark icon</comment>
   </data>
   <data name="Account_lbl_AllPlusFeatures" xml:space="preserve">
     <value>All Plus plan features</value>
@@ -2463,7 +2403,7 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_Countries_Other" xml:space="preserve">
-    <value>Servers in &lt;Bold&gt;{0}&lt;/Bold&gt; countries</value>
+    <value>in &lt;Bold&gt;{0}&lt;/Bold&gt; countries</value>
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_HighestSpeed" xml:space="preserve">
@@ -2490,45 +2430,21 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <value>Support for file sharing protocols such as BitTorrent.</value>
     <comment>Tooltip message shown in account window when hovered on P2P exclamation mark icon</comment>
   </data>
-  <data name="Account_lbl_ProtonmailVisionaryAccount" xml:space="preserve">
-    <value>ProtonMail Visionary account</value>
-    <comment>The text displayed in Account window</comment>
-  </data>
-  <data name="Account_lbl_ProtonmailVisionaryAccount_Info" xml:space="preserve">
-    <value>Get access to all the paid features for both ProtonVPN and ProtonMail (the encrypted email service that millions use to protect their data) with one plan.</value>
-    <comment>The text displayed in Account window</comment>
-  </data>
   <data name="Account_lbl_SecureCoreVpn" xml:space="preserve">
     <value>Secure Core VPN</value>
     <comment>The text displayed in Account window</comment>
-  </data>
-  <data name="Account_lbl_SecureCoreVpn_Info" xml:space="preserve">
-    <value>Defends against threats to VPN privacy by passing your Internet traffic through multiple servers.</value>
-    <comment>Tooltip message shown in account window when hovered on Secure Core VPN exclamation mark icon</comment>
   </data>
   <data name="Account_lbl_TorOverVpn" xml:space="preserve">
     <value>TOR over VPN</value>
     <comment>The text displayed in Account window</comment>
   </data>
-  <data name="Account_lbl_TorOverVpn_Info" xml:space="preserve">
-    <value>Route your Internet traffic through the Tor network with a single click.</value>
-    <comment>Tooltip message shown in account window when hovered on TOR over VPN exclamation mark icon</comment>
-  </data>
   <data name="Account_lbl_NetShield" xml:space="preserve">
     <value>Adblocker (NetShield)</value>
     <comment>The text displayed in Account window for NetShield</comment>
   </data>
-  <data name="Account_lbl_NetShield_Info" xml:space="preserve">
-    <value>NetShield protects your device and speeds up your browsing by blocking ads, trackers, and malware.</value>
-    <comment>Tooltip message shown in account window when hovered on NetShield exclamation mark icon</comment>
-  </data>
   <data name="Account_lbl_Streaming" xml:space="preserve">
     <value>Streaming service support</value>
     <comment>The text displayed in Account window for Streaming service support</comment>
-  </data>
-  <data name="Account_lbl_Streaming_Info" xml:space="preserve">
-    <value>Access your streaming services, like Netflix, Disney+, Prime Video, and many others, no matter where you are.</value>
-    <comment>Tooltip message shown in account window when hovered on "Streaming service support" exclamation mark icon</comment>
   </data>
   <data name="BugReport_lbl_HowToReproduce" xml:space="preserve">
     <value>What are the exact steps you performed?</value>
@@ -2658,19 +2574,19 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Secure Core On</value>
   </data>
   <data name="QuickSettings_lbl_PortForwardingInfo" xml:space="preserve">
-    <value>Speed up your torrenting and online gaming by allowing supported local apps to be reachable from the Internet. &lt;Hyperlink Command="{Binding PortForwardingLearnMoreCommand}"&gt;Learn more.&lt;/Hyperlink&gt;</value>
+    <value>Speed up your torrenting and online gaming by allowing supported local apps to be reachable from the Internet.</value>
   </data>
   <data name="QuickSettings_lbl_KillSwitchInfo" xml:space="preserve">
-    <value>Disables Internet if the VPN connection drops to prevent accidental IP leak. &lt;Hyperlink Command="{Binding KillSwitchLearnMoreCommand}"&gt;Learn more.&lt;/Hyperlink&gt;</value>
+    <value>Disables Internet if the VPN connection drops to prevent accidental IP leak.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldInfo" xml:space="preserve">
-    <value>Browse the Internet without ads and malware. &lt;Hyperlink Command="{Binding NetShieldLearnMoreCommand}"&gt;Learn more.&lt;/Hyperlink&gt;</value>
+    <value>Browse the Internet without ads and malware.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldWarning" xml:space="preserve">
     <value>If websites don't load, try disabling NetShield</value>
   </data>
   <data name="QuickSettings_lbl_SecureCoreInfo" xml:space="preserve">
-    <value>Route your most sensitive data through our safest servers in privacy-friendly countries. &lt;Hyperlink Command="{Binding SecureCoreLearnMoreCommand}"&gt;Learn more.&lt;/Hyperlink&gt;</value>
+    <value>Route your most sensitive data through our safest servers in privacy-friendly countries.</value>
   </data>
   <data name="QuickSettings_lbl_SecureCoreWarning" xml:space="preserve">
     <value>Secure Core may reduce VPN speed</value>
@@ -3273,6 +3189,18 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="PortForwarding_lbl_ServerWarning" xml:space="preserve">
     <value>To use Port Forwarding, please &lt;Hyperlink Command="{Binding ConnectToBestP2PServerCommand}"&gt;connect&lt;/Hyperlink&gt; to a server that supports P2P.</value>
   </data>
+  <data name="About_lnk_ReadLicense" xml:space="preserve">
+    <value>Read here</value>
+    <comment>The text of "Read here" hyperlink in About window to read the licensing information</comment>
+  </data>
+  <data name="SidebarProfiles_lbl_Recommended" xml:space="preserve">
+    <value>Recommended</value>
+    <comment>The text of "Recommended" category text in the Profile sidebar, that has the predefined profiles below</comment>
+  </data>
+  <data name="SidebarProfiles_lbl_MyProfiles" xml:space="preserve">
+    <value>My Profiles</value>
+    <comment>The text of "My Profiles" category text in the Profile sidebar, that has the custom created profiles below</comment>
+  </data>
   <data name="PromoCode_lbl_UseCoupon" xml:space="preserve">
     <value>Use coupon</value>
   </data>
@@ -3284,5 +3212,29 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   </data>
   <data name="PromoCode_lbl_Success" xml:space="preserve">
     <value>Coupon has been applied successfully.</value>
+  </data>
+  <data name="Dialogs_Rebranding_btn_GotIt_new_plans" xml:space="preserve">
+    <value>Got it</value>
+  </data>
+  <data name="Dialogs_Rebranding_Subtitle_new_plans" xml:space="preserve">
+    <value>Introducing Proton’s refreshed look. Many services, one mission. Welcome to an internet where privacy is the default.  &lt;Hyperlink Command="{Binding LearnMoreCommand}"&gt;Learn more&lt;/Hyperlink&gt;</value>
+  </data>
+  <data name="Dialogs_Rebranding_Title_new_plans" xml:space="preserve">
+    <value>Updated Proton, unified protection</value>
+  </data>
+  <data name="Account_lbl_CurrentPlan" xml:space="preserve">
+    <value>Current plan</value>
+  </data>
+  <data name="Account_lbl_Countries_One" xml:space="preserve">
+    <value>in &lt;Bold&gt;{0}&lt;/Bold&gt; country</value>
+    <comment>The text displayed in Account window</comment>
+  </data>
+  <data name="Account_lbl_Servers_One" xml:space="preserve">
+    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; server</value>
+    <comment>The text displayed in Account window</comment>
+  </data>
+  <data name="Account_lbl_Servers_Other" xml:space="preserve">
+    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; servers</value>
+    <comment>The text displayed in Account window</comment>
   </data>
 </root>

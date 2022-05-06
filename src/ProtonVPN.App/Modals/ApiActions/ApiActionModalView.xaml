@@ -28,39 +28,42 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         xmlns:behavior="clr-namespace:ProtonVPN.Core.Wpf.Behavior"
                         Style="{StaticResource BaseWindowStyle}"
                         SizeToContent="Height"
-                        ResizeMode="NoResize"
                         Title=" "
                         mc:Ignorable="d"
                         Height="Auto"
                         Width="500"
                         d:DataContext="{d:DesignInstance apiActions:ApiActionModalViewModel}">
     <Grid>
-        <StackPanel>
-            <TextBlock TextWrapping="Wrap" FontSize="16" Foreground="White" Padding="15,40" 
+        <StackPanel Margin="30,40">
+            <TextBlock TextWrapping="Wrap"
+                       FontSize="16"
+                       Foreground="{StaticResource TextNormBrushColor}"
+                       Padding="0,0,0,30"
                        behavior:TextStyleBehavior.FormattedText="{Binding Message}"/>
-            <DockPanel Background="{StaticResource ModalBarColor}" Height="66">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Button Style="{StaticResource SecondaryButton}"
-                            Content="{translations:Loc Dialogs_btn_Close}"
-                            Command="{Binding CloseCommand}"
-                            Visibility="{Binding IsToShowSecondaryCloseButton, Converter={StaticResource BoolToVis}}" />
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Style="{StaticResource SecondaryModalButton}"
+                        Margin="0,0,16,0"
+                        Content="{translations:Loc Dialogs_btn_Close}"
+                        Command="{Binding CloseCommand}"
+                        Visibility="{Binding IsToShowSecondaryCloseButton, Converter={StaticResource BoolToVis}}" />
 
-                    <Button Style="{StaticResource SecondaryButton}"
-                            Content="{Binding SecondaryDetailAction.Name}"
-                            Command="{Binding SecondaryActionCommand}"
-                            Visibility="{Binding IsToShowSecondaryActionButton, Converter={StaticResource BoolToVis}}" />
+                <Button Style="{StaticResource SecondaryModalButton}"
+                        Margin="0,0,16,0"
+                        Content="{Binding SecondaryDetailAction.Name}"
+                        Command="{Binding SecondaryActionCommand}"
+                        Visibility="{Binding IsToShowSecondaryActionButton, Converter={StaticResource BoolToVis}}" />
 
-                    <Button Style="{StaticResource PrimaryButton}"
-                            Content="{translations:Loc Dialogs_btn_Close}"
-                            Command="{Binding CloseCommand}"
-                            Visibility="{Binding IsToShowMainCloseButton, Converter={StaticResource BoolToVis}}" />
+                <Button Style="{StaticResource PrimaryModalButton}"
+                        Margin="0,0,16,0"
+                        Content="{translations:Loc Dialogs_btn_Close}"
+                        Command="{Binding CloseCommand}"
+                        Visibility="{Binding IsToShowMainCloseButton, Converter={StaticResource BoolToVis}}" />
 
-                    <Button Style="{StaticResource PrimaryButton}"
-                            Content="{Binding MainDetailAction.Name}"
-                            Command="{Binding MainActionCommand}"
-                            Visibility="{Binding IsToShowMainActionButton, Converter={StaticResource BoolToVis}}" />
-                </StackPanel>
-            </DockPanel>
+                <Button Style="{StaticResource PrimaryModalButton}"
+                        Content="{Binding MainDetailAction.Name}"
+                        Command="{Binding MainActionCommand}"
+                        Visibility="{Binding IsToShowMainActionButton, Converter={StaticResource BoolToVis}}" />
+            </StackPanel>
         </StackPanel>
     </Grid>
 </resource:BaseModalWindow>

@@ -20,7 +20,6 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using ProtonVPN.Account;
 using ProtonVPN.BugReporting.Actions;
 using ProtonVPN.BugReporting.FormElements;
 using ProtonVPN.Common.Extensions;
@@ -65,7 +64,7 @@ namespace ProtonVPN.BugReporting
                 new KeyValuePair<string, string>("Title", "Windows app form"),
                 new KeyValuePair<string, string>("Description", GetDescription(message)),
                 new KeyValuePair<string, string>("Username", user.Username),
-                new KeyValuePair<string, string>("Plan", VpnPlanHelper.GetPlanName(user.VpnPlan)),
+                new KeyValuePair<string, string>("Plan", user.VpnPlanName),
                 new KeyValuePair<string, string>("Email", GetEmail(message.FormElements)),
                 new KeyValuePair<string, string>("Country", string.IsNullOrEmpty(country) ? "" : country),
                 new KeyValuePair<string, string>("ISP", string.IsNullOrEmpty(isp) ? "" : isp),

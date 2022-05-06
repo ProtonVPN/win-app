@@ -17,8 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
-
 namespace ProtonVPN.Views.Controls
 {
     public partial class LoadBubble
@@ -26,13 +24,6 @@ namespace ProtonVPN.Views.Controls
         public LoadBubble()
         {
             InitializeComponent();
-            InfoTooltip.Opened += InfoTooltip_Opened;
-        }
-
-        private void InfoTooltip_Opened(object sender, EventArgs e)
-        {
-            InfoTooltip.HorizontalOffset = LoadCircle.ActualWidth / 2;
-            InfoTooltip.VerticalOffset = -1 * TootlipContent.ActualHeight - 2 - LoadCircle.ActualHeight;
         }
     }
 }

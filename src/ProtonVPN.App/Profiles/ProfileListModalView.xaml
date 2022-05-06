@@ -22,12 +22,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                        xmlns:fa="http://schemas.fontawesome.io/icons/"
                         xmlns:profiles="clr-namespace:ProtonVPN.Profiles"
                         xmlns:coreProfiles="clr-namespace:ProtonVPN.Core.Profiles;assembly=ProtonVPN.Core"
                         xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
                         xmlns:resource="clr-namespace:ProtonVPN.Resource;assembly=ProtonVPN.Resource"
                         xmlns:networking="clr-namespace:ProtonVPN.Common.Networking;assembly=ProtonVPN.Common"
+                        xmlns:icons="clr-namespace:ProtonVPN.Resource.Graphics.Icons;assembly=ProtonVPN.Resource"
                         Style="{StaticResource BaseWindowStyle}"
                         Title="{translations:Loc Profiles_ttl}"
                         Width="1000"
@@ -36,32 +36,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         d:DataContext="{d:DesignInstance profiles:ProfileListModalViewModel}">
     <resource:BaseModalWindow.Resources>
         <ResourceDictionary>
-            <Style TargetType="{x:Type DataGridColumnHeader}">
-                <Setter Property="SeparatorBrush" Value="Transparent"/>
-                <Setter Property="Background" Value="Transparent"/>
-                <Setter Property="Foreground" Value="#777783"/>
-                <Setter Property="FontSize" Value="12"/>
-                <Setter Property="FontWeight" Value="Bold"/>
-            </Style>
             <Style x:Key="RowButton" TargetType="Button" BasedOn="{StaticResource ClearStyleButton}">
-                <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
                 <Setter Property="Background" Value="Transparent"/>
-                <Setter Property="BorderThickness" Value="0"/>
-                <Setter Property="Padding" Value="7,0"/>
-                <Setter Property="FontSize" Value="16"/>
-            </Style>
-            <Style x:Key="RowButtonWithSeparator" TargetType="Button" BasedOn="{StaticResource RowButton}">
-                <Setter Property="BorderThickness" Value="0,0,1,0"/>
-                <Setter Property="BorderBrush" Value="#464652"/>
-            </Style>
-            <Style x:Key="FirstRowButton" TargetType="Button" BasedOn="{StaticResource RowButtonWithSeparator}">
-                <Setter Property="Padding" Value="0,0,7,0"/>
+                <Setter Property="Margin" Value="0,0,15,0"/>
             </Style>
             <Style x:Key="HeadingLabel" TargetType="TextBlock">
-                <Setter Property="FontSize" Value="12"/>
-                <Setter Property="Foreground" Value="#777783"/>
-                <Setter Property="FontWeight" Value="ExtraBold"/>
-                <Setter Property="Padding" Value="0,0,15,0"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="Foreground" Value="{StaticResource TextHintBrushColor}"/>
+                <Setter Property="FontWeight" Value="DemiBold"/>
             </Style>
             <Style x:Key="Scroller" TargetType="ScrollViewer">
                 <Setter Property="Template" Value="{StaticResource DarkScrollViewerControlTemplate}"/>
@@ -77,7 +59,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Style x:Key="ListHeadingHolder" TargetType="DockPanel">
                 <Setter Property="ZIndex" Value="2"/>
                 <Setter Property="Height" Value="70"/>
-                <Setter Property="Background" Value="{StaticResource ModalContentColor}"/>
                 <Setter Property="VerticalAlignment" Value="Top"/>
             </Style>
             <Style x:Key="Protocol" TargetType="Label">
@@ -86,17 +67,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <Setter Property="HorizontalAlignment" Value="Left"/>
                 <Setter Property="FontSize" Value="16"/>
                 <Setter Property="Padding" Value="0"/>
-                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}"/>
                 <Style.Triggers>
                     <DataTrigger Binding="{Binding Protocol}" Value="{x:Static networking:VpnProtocol.Smart}">
-                        <Setter Property="Foreground" Value="#777783"/>
+                        <Setter Property="Foreground" Value="{StaticResource TextHintBrushColor}"/>
                     </DataTrigger>
                 </Style.Triggers>
             </Style>
             <Style x:Key="TroubleshootButton" TargetType="Button" BasedOn="{StaticResource ClearStyleButton}">
-                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="FontSize" Value="16" />
                 <Setter Property="HorizontalAlignment" Value="Left"/>
-                <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
                 <Setter Property="Margin" Value="10,0,0,0"/>
                 <Setter Property="Visibility" Value="Collapsed"/>
                 <Setter Property="Command" Value="{Binding TroubleshootCommand}"/>
@@ -104,6 +84,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <DataTrigger Binding="{Binding ProfileSync.SyncStatus}" Value="{x:Static coreProfiles:ProfileSyncStatus.Failed}">
                         <Setter Property="Visibility" Value="Visible"/>
                     </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="LineBorder" TargetType="Border">
+                <Setter Property="Padding" Value="20,10"/>
+                <Setter Property="Background" Value="Transparent"/>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Background" Value="{StaticResource InteractionDefaultHoverBrushColor}"/>
+                    </Trigger>
                 </Style.Triggers>
             </Style>
         </ResourceDictionary>
@@ -120,19 +109,19 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <ColumnDefinition Width="Auto" SharedSizeGroup="Action"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Column="0" Style="{StaticResource HeadingLabel}" Text="{translations:Loc Profiles_col_Profile}"/>
-                <TextBlock Grid.Column="1" Style="{StaticResource HeadingLabel}" Text="{translations:Loc Profiles_col_Status}"/>
-                <TextBlock Grid.Column="2" Style="{StaticResource HeadingLabel}" Text="{translations:Loc Profiles_col_Connection}"/>
-                <TextBlock Grid.Column="3" Style="{StaticResource HeadingLabel}" Text="{translations:Loc Profiles_col_Protocol}"/>
-                <TextBlock Grid.Column="4" Style="{StaticResource HeadingLabel}" Text="{translations:Loc Profiles_col_Action}"/>
+                <TextBlock Grid.Column="0" Style="{StaticResource HeadingLabel}" Padding="25,0,0,0" Text="{translations:Loc Profiles_col_Profile}"/>
+                <TextBlock Grid.Column="1" Style="{StaticResource HeadingLabel}" Padding="30,0,0,0" Text="{translations:Loc Profiles_col_Status}"/>
+                <TextBlock Grid.Column="2" Style="{StaticResource HeadingLabel}" Padding="30,0,0,0" Text="{translations:Loc Profiles_col_Connection}"/>
+                <TextBlock Grid.Column="3" Style="{StaticResource HeadingLabel}" Padding="30,0,0,0" Text="{translations:Loc Profiles_col_Protocol}"/>
+                <TextBlock Grid.Column="4" Style="{StaticResource HeadingLabel}" Padding="30,0,0,0" Text="{translations:Loc Profiles_col_Action}"/>
             </Grid>
         </DockPanel>
 
-        <ScrollViewer Style="{StaticResource Scroller}" PanningMode="VerticalOnly" Padding="30,0">
+        <ScrollViewer Style="{StaticResource Scroller}" PanningMode="VerticalOnly">
             <ItemsControl ItemsSource="{Binding Profiles}" BorderThickness="0">
                 <ItemsControl.Resources>
                     <DataTemplate DataType="{x:Type profiles:PredefinedProfileViewModel}">
-                        <Border BorderBrush="#464652" BorderThickness="0,0,0,1" Margin="0,0,0,5" Padding="0,10">
+                        <Border Style="{StaticResource LineBorder}">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -142,41 +131,45 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     <ColumnDefinition Width="Auto" SharedSizeGroup="Action"/>
                                 </Grid.ColumnDefinitions>
                                 <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Stretch">
-                                    <fa:FontAwesome Icon="{Binding Icon}" Foreground="White" FontWeight="Medium" Width="25" VerticalAlignment="Center"/>
-                                    <Label Padding="10,0,10,0"
+                                    <ContentPresenter Content="{Binding}" 
+                                                      ContentTemplate="{StaticResource ProfileIconDataTemplate}"
+                                                      Width="25"
+                                                      Height="20"
+                                                      HorizontalAlignment="Center"
+                                                      VerticalAlignment="Center"/>
+                                    <Label Padding="10,0,0,2"
                                            VerticalAlignment="Center"
                                            HorizontalAlignment="Stretch"
                                            FontSize="16"
-                                           Foreground="White"
+                                           Foreground="{StaticResource TextNormBrushColor}"
                                            Content="{Binding Text}"/>
                                 </StackPanel>
                                 <Label Grid.Column="2"
-                                       Padding="0,0,10,0"
+                                       Padding="20,0"
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Stretch"
                                        FontSize="16"
-                                       Foreground="White"
+                                       Foreground="{StaticResource TextNormBrushColor}"
                                        Content="{Binding Description}"/>
                                 <Label Grid.Column="3"
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Left"
                                        FontSize="16"
-                                       Padding="0,5,0,5"
-                                       Foreground="#777783"
+                                       Padding="20,5"
+                                       Foreground="{StaticResource TextHintBrushColor}"
                                        Content="{Binding VpnProtocol, Converter={StaticResource EnumToDisplayTextConverter}}"/>
-                                <StackPanel Grid.Column="4" Orientation="Horizontal">
+                                <StackPanel Grid.Column="4" Orientation="Horizontal" Margin="20,0,5,0">
                                     <Button Style="{StaticResource RowButton}"
                                             VerticalAlignment="Center"
-                                            Padding="0"
                                             Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.ConnectCommand}" CommandParameter="{Binding}">
-                                        <fa:FontAwesome Icon="PowerOff"/>
+                                        <icons:PowerOff />
                                     </Button>
                                 </StackPanel>
                             </Grid>
                         </Border>
                     </DataTemplate>
                     <DataTemplate DataType="{x:Type profiles:ProfileViewModel}">
-                        <Border BorderBrush="#464652" BorderThickness="0,0,0,1" Margin="0,0,0,5" Padding="0,10">
+                        <Border Style="{StaticResource LineBorder}">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -192,49 +185,76 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     <TextBlock Padding="10,5,15,5"
                                            VerticalAlignment="Center"
                                            HorizontalAlignment="Stretch"
-                                           Foreground="White"
+                                           Foreground="{StaticResource TextNormBrushColor}"
                                            FontSize="16"
                                            TextTrimming="CharacterEllipsis"
                                            Text="{Binding Name}"/>
                                 </DockPanel>
-                                <DockPanel Grid.Column="1" HorizontalAlignment="Stretch">
+                                <DockPanel Grid.Column="1" HorizontalAlignment="Stretch" Margin="20,0">
                                     <ContentPresenter Margin="0,0,5,0" HorizontalAlignment="Center" VerticalAlignment="Center"
                                                       Content="{Binding SyncStatus}"
                                                       ContentTemplate="{StaticResource ProfileSyncStatusImage}"/>
                                     <Label VerticalAlignment="Center"
                                            HorizontalAlignment="Stretch"
                                            FontSize="16"
-                                           Padding="15,5"
-                                           Foreground="#777783"
+                                           Foreground="{StaticResource TextHintBrushColor}"
                                            Content="{Binding SyncStatus, Converter={StaticResource EnumToDisplayTextConverter}}"/>
                                 </DockPanel>
                                 <profiles:ProfileConnectionView Grid.Column="2"
-                                                                Margin="0,0,10,0"
+                                                                Margin="20,0"
                                                                 VerticalAlignment="Center"
                                                                 HorizontalAlignment="Stretch"
                                                                 DataContext="{Binding ConnectionName}"
                                                                 FontSize="16"/>
-                                <StackPanel Grid.Column="3">
-                                    <Label Margin="0,5,15,5"
+                                <StackPanel Grid.Column="3" VerticalAlignment="Center">
+                                    <Label Margin="20,0"
                                            Style="{StaticResource Protocol}"
                                            Content="{Binding VpnProtocol, Converter={StaticResource EnumToDisplayTextConverter}}"/>
                                 </StackPanel>
 
-                                <StackPanel Grid.Column="4" Orientation="Horizontal">
-                                    <Button Style="{StaticResource FirstRowButton}"
+                                <StackPanel Grid.Column="4" Orientation="Horizontal" Margin="20,0,5,0">
+                                    <Button Style="{StaticResource RowButton}"
                                             AutomationProperties.AutomationId="{Binding ConnectAutomationId}"
                                             Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type resource:BaseModalWindow}}, Path=DataContext.ConnectCommand}" CommandParameter="{Binding}">
-                                        <fa:FontAwesome Icon="PowerOff"/>
+                                        <icons:PowerOff />
                                     </Button>
-                                    <Button Style="{StaticResource RowButtonWithSeparator}"
+                                    <Button Style="{StaticResource RowButton}"
                                             AutomationProperties.AutomationId="{Binding EditAutomationId}"
                                             Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type resource:BaseModalWindow}}, Path=DataContext.EditCommand}" CommandParameter="{Binding}">
-                                        <fa:FontAwesome Icon="Pencil"/>
+                                        <icons:Pencil Background="Transparent">
+                                            <icons:Pencil.Style>
+                                                <Style TargetType="UserControl">
+                                                    <Setter Property="Foreground" Value="{StaticResource TextHintBrushColor}" />
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsEnabled" Value="False">
+                                                            <Setter Property="Foreground" Value="{StaticResource TextDisabledBrushColor}"/>
+                                                        </Trigger>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Foreground" Value="{StaticResource InteractionNormAccentHoverBrushColor}"/>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </icons:Pencil.Style>
+                                        </icons:Pencil>
                                     </Button>
                                     <Button Style="{StaticResource RowButton}"
                                             AutomationProperties.AutomationId="{Binding DeleteAutomationId}"
                                             Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type resource:BaseModalWindow}}, Path=DataContext.RemoveCommand}" CommandParameter="{Binding}">
-                                        <fa:FontAwesome Icon="Remove"/>
+                                        <icons:Trash Background="Transparent">
+                                            <icons:Trash.Style>
+                                                <Style TargetType="UserControl">
+                                                    <Setter Property="Foreground" Value="{StaticResource TextHintBrushColor}" />
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsEnabled" Value="False">
+                                                            <Setter Property="Foreground" Value="{StaticResource TextDisabledBrushColor}"/>
+                                                        </Trigger>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Foreground" Value="{StaticResource SignalDangerHoverBrushColor}"/>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </icons:Trash.Style>
+                                        </icons:Trash>
                                     </Button>
                                 </StackPanel>
                             </Grid>
@@ -244,36 +264,33 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </ItemsControl>
         </ScrollViewer>
 
-        <DockPanel Height="66" Background="{StaticResource ModalBarColor}" VerticalAlignment="Bottom">
+        <DockPanel Background="{StaticResource BackgroundWeakBrushColor}" VerticalAlignment="Bottom">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <DockPanel Grid.Row="0" Grid.Column="0" Margin="35,0,20,0" VerticalAlignment="Center">
+                <DockPanel Grid.Row="0" Grid.Column="0" Margin="25,0,0,0" VerticalAlignment="Center">
                     <ContentPresenter Name="SyncStatus"
                                       Content="{Binding ProfileSync.SyncStatus}" 
                                       ContentTemplate="{StaticResource ProfileSyncStatusImage}"/>
-                    <TextBlock Margin="10,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Stretch" MaxHeight="70"
-                               FontSize="16" Foreground="#777783"
+                    <TextBlock Margin="15,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Stretch" MaxHeight="50"
+                               FontSize="16" Foreground="{StaticResource TextHintBrushColor}"
                                Text="{Binding ProfileSync.SyncStatusMessage}"
                                ToolTip="{Binding ProfileSync.SyncStatusMessage}"
                                TextTrimming="CharacterEllipsis"/>
-                    <Button Style="{StaticResource TroubleshootButton}">
-                        <Underline><TextBlock Text="{translations:Loc Profiles_btn_Troubleshoot}"/></Underline>
-                    </Button>
+                    <Button Style="{StaticResource TroubleshootButton}" Content="{translations:Loc Profiles_btn_Troubleshoot}" />
                 </DockPanel>
                 <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
                     <Button Style="{StaticResource SecondaryModalButton}"
+                            Margin="0,10,10,10"
                             Command="{Binding ProfileSync.SyncCommand}"
                             Content="{translations:Loc Profiles_btn_Sync}"/>
                     <Button x:Name="NewProfileButton"
-                            Style="{StaticResource SecondaryModalButton}"
+                            Margin="0,10,10,10"
+                            Style="{StaticResource PrimaryModalButton}"
                             Command="{Binding CreateProfileCommand}"
                             Content="{translations:Loc Profiles_btn_Create}"/>
-                    <Button Style="{StaticResource PrimaryModalButton}"
-                            Command="{Binding CloseCommand}"
-                            Content="{translations:Loc Profiles_btn_Close}"/>
                 </StackPanel>
             </Grid>
         </DockPanel>

@@ -24,8 +24,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                           xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
                           xmlns:resource="clr-namespace:ProtonVPN.Resource;assembly=ProtonVPN.Resource"
-                          xmlns:icons="clr-namespace:ProtonVPN.Views.Icons"
                           xmlns:sessionLimits="clr-namespace:ProtonVPN.Modals.SessionLimits"
+                          xmlns:vectorImages="clr-namespace:ProtonVPN.Resource.Graphics.VectorImages;assembly=ProtonVPN.Resource"
                           Style="{StaticResource BaseWindowStyle}"
                           SizeToContent="Height"
                           Title=" "
@@ -35,11 +35,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           d:DataContext="{d:DesignInstance sessionLimits:MaximumDeviceLimitModalViewModel}">
 
     <Grid>
-        <StackPanel Margin="127,75,127,63">
-            <icons:ExclamationTunnel HorizontalAlignment="Center" Width="200"
-                                     Visibility="{Binding HasMaxTierPlan, Converter={StaticResource BoolToVis}}" />
-            <icons:UpsellTunnel HorizontalAlignment="Center" Width="200"
-                                Visibility="{Binding NotHasMaxTierPlan, Converter={StaticResource BoolToVis}}" />
+        <StackPanel Margin="100,35,100,63">
+            <vectorImages:DeviceLimit HorizontalAlignment="Center"
+                                      Width="328"
+                                      Visibility="{Binding HasMaxTierPlan, Converter={StaticResource BoolToVis}}" />
+            <vectorImages:DeviceLimitExclamation HorizontalAlignment="Center"
+                                                 Width="328"
+                                                 Visibility="{Binding NotHasMaxTierPlan, Converter={StaticResource BoolToVis}}" />
 
             <TextBlock Padding="15,25,15,0"
                        HorizontalAlignment="Center"
@@ -47,21 +49,23 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        FontSize="32"
                        FontWeight="Medium"
                        TextWrapping="Wrap"
-                       Foreground="White"
-                       Text="{translations:Loc Dialogs_MaximumDeviceLimit_Title}"/>
+                       Foreground="{StaticResource OldTextBrushColor}"
+                       Text="{translations:Loc Dialogs_MaximumDeviceLimit_Title}" />
 
             <TextBlock Padding="0,15,0,0"
                        HorizontalAlignment="Center"
                        TextAlignment="Center"
                        FontSize="16"
                        TextWrapping="Wrap"
-                       Foreground="White">
+                       Foreground="{StaticResource OldTextBrushColor}">
                 <TextBlock.Style>
                     <Style TargetType="{x:Type TextBlock}">
-                        <Setter Property="Text" Value="{translations:Loc Dialogs_MaximumDeviceLimit_Disconnect_Subtitle}"/>
+                        <Setter Property="Text"
+                                Value="{translations:Loc Dialogs_MaximumDeviceLimit_Disconnect_Subtitle}" />
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding HasMaxTierPlan}" Value="False">
-                                <Setter Property="Text" Value="{translations:Loc Dialogs_MaximumDeviceLimit_Upgrade_Subtitle}"/>
+                                <Setter Property="Text"
+                                        Value="{translations:Loc Dialogs_MaximumDeviceLimit_Upgrade_Subtitle}" />
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
@@ -70,25 +74,25 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,30,0,0"
                         Visibility="{Binding NotHasMaxTierPlan, Converter={StaticResource BoolToVis}}">
-                <Button Style="{StaticResource SecondaryVividModalButton}"
+                <Button Style="{StaticResource SecondaryModalButton}"
                         Content="{translations:Loc Dialogs_btn_NoThanks}"
                         Padding="20,0"
                         Margin="0,0,30,0"
-                        Command="{Binding CloseCommand}"/>
-                <Button Style="{StaticResource PrimaryVividModalButton}"
+                        Command="{Binding CloseCommand}" />
+                <Button Style="{StaticResource PrimaryModalButton}"
                         Padding="20,0"
                         FontWeight="Medium"
                         Content="{translations:Loc Dialogs_MaximumDeviceLimit_Upgrade}"
-                        Command="{Binding UpgradeCommand}"/>
+                        Command="{Binding UpgradeCommand}" />
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,30,0,0" 
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,30,0,0"
                         Visibility="{Binding HasMaxTierPlan, Converter={StaticResource BoolToVis}}">
-                <Button Style="{StaticResource PrimaryVividModalButton}"
+                <Button Style="{StaticResource PrimaryModalButton}"
                         Padding="20,0"
                         FontWeight="Medium"
                         Content="{translations:Loc Dialogs_MaximumDeviceLimit_Disconnect_Ok}"
-                        Command="{Binding CloseCommand}"/>
+                        Command="{Binding CloseCommand}" />
             </StackPanel>
         </StackPanel>
     </Grid>

@@ -17,11 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using GalaSoft.MvvmLight.Command;
-using ProtonVPN.Core.MVVM;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
+using GalaSoft.MvvmLight.Command;
+using ProtonVPN.Core.MVVM;
 
 namespace ProtonVPN.Views.Forms
 {

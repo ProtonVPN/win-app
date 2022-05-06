@@ -25,6 +25,7 @@ using Caliburn.Micro;
 using GalaSoft.MvvmLight.CommandWpf;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Core.Modals;
+using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Servers.Models;
@@ -46,6 +47,7 @@ namespace ProtonVPN.Profiles.Form
         private readonly Common.Configuration.Config _appConfig;
         private readonly IModals _modals;
         protected readonly ServerManager ServerManager;
+        private readonly IProfileFactory _profileFactory;
 
         private bool _unsavedChanges;
 
@@ -58,7 +60,8 @@ namespace ProtonVPN.Profiles.Form
             ProfileManager profileManager,
             IDialogs dialogs,
             IModals modals,
-            ServerManager serverManager)
+            ServerManager serverManager,
+            IProfileFactory profileFactory)
         {
             _appConfig = appConfig;
             _profileManager = profileManager;
@@ -67,6 +70,7 @@ namespace ProtonVPN.Profiles.Form
             _dialogs = dialogs;
             _modals = modals;
             ServerManager = serverManager;
+            _profileFactory = profileFactory;
 
             SelectColorCommand = new RelayCommand<string>(SelectColorAction);
         }
@@ -158,7 +162,7 @@ namespace ProtonVPN.Profiles.Form
 
         public async Task<bool> Save()
         {
-            var error = await GetFormError();
+            Error error = await GetFormError();
             if (error != Error.None)
             {
                 Error = error;
@@ -167,11 +171,11 @@ namespace ProtonVPN.Profiles.Form
 
             if (EditMode)
             {
-                await _profileManager.UpdateProfile(GetProfile());
+                await _profileManager.UpdateProfile(CreateProfile());
             }
             else
             {
-                await _profileManager.AddProfile(GetProfile());
+                await _profileManager.AddProfile(CreateProfile());
             }
 
             Clear();
@@ -260,13 +264,13 @@ namespace ProtonVPN.Profiles.Form
                 new PredefinedServerViewModel
                 {
                     Name = Translation.Get("Profiles_Profile_Name_val_Fastest"),
-                    Icon = "Signal",
+                    Icon = "Bolt",
                     Type = ProfileType.Fastest
                 },
                 new PredefinedServerViewModel
                 {
                     Name = Translation.Get("Profiles_Profile_Name_val_Random"),
-                    Icon = "Random",
+                    Icon = "ArrowsSwapRight",
                     Type = ProfileType.Random
                 }
             };
@@ -274,7 +278,7 @@ namespace ProtonVPN.Profiles.Form
 
         protected List<IServerViewModel> GetServerViewModels(IReadOnlyCollection<Server> serverList)
         {
-            var result = serverList.Select(s => new ServerViewModel
+            List<IServerViewModel> result = serverList.Select(s => new ServerViewModel
                 {
                     Id = s.Id,
                     Name = s.Name,
@@ -312,7 +316,7 @@ namespace ProtonVPN.Profiles.Form
                 return Error.EmptyServer;
             }
 
-            var profile = GetProfile();
+            Profile profile = CreateProfile();
             if (EditMode && await _profileManager.OtherProfileWithNameExists(profile) ||
                 !EditMode && await _profileManager.ProfileWithNameExists(profile))
             {
@@ -322,23 +326,22 @@ namespace ProtonVPN.Profiles.Form
             return Error.None;
         }
 
-        protected virtual Profile GetProfile()
+        protected virtual Profile CreateProfile()
         {
-            return new(_profileId)
-            {
-                Features = GetFeatures(),
-                Name = ProfileName,
-                VpnProtocol = VpnProtocol,
-                ColorCode = ColorCode,
-                ProfileType = SelectedServer.Type
-            };
+            Profile profile = _profileFactory.Create(_profileId);
+            profile.Features = GetFeatures();
+            profile.Name = ProfileName;
+            profile.VpnProtocol = VpnProtocol;
+            profile.ColorCode = _colorProvider.GetRandomColorIfInvalid(ColorCode);
+            profile.ProfileType = SelectedServer.Type;
+            return profile;
         }
 
         protected abstract Features GetFeatures();
 
         private bool ShowUpgradeMessageForServer(Server server)
         {
-            var user = UserStorage.User();
+            User user = UserStorage.User();
             return user.MaxTier < server.Tier;
         }
 
@@ -356,7 +359,7 @@ namespace ProtonVPN.Profiles.Form
         {
             if (string.IsNullOrEmpty(ColorCode))
             {
-                ColorCode = _colorProvider.RandomColor();
+                ColorCode = _colorProvider.GetRandomColor();
             }
         }
 
@@ -382,7 +385,7 @@ namespace ProtonVPN.Profiles.Form
 
         private bool? ShowDiscardModal()
         {
-            var settings = DialogSettings
+            DialogSettings settings = DialogSettings
                 .FromMessage(Translation.Get("Profiles_Profile_msg_DiscardChangesConfirm"))
                 .WithPrimaryButtonText(Translation.Get("Profiles_Profile_btn_KeepEditing"))
                 .WithSecondaryButtonText(Translation.Get("Profiles_Profile_btn_Discard"));

@@ -35,7 +35,9 @@ namespace ProtonVPN.Profiles.Form
             ServerManager serverManager,
             ProfileManager profileManager,
             IModals modals,
-            IDialogs dialogs) : base(appConfig, colorProvider, userStorage, profileManager, dialogs, modals, serverManager)
+            IDialogs dialogs,
+            IProfileFactory profileFactory) 
+            : base(appConfig, colorProvider, userStorage, profileManager, dialogs, modals, serverManager, profileFactory)
         {
         }
 
@@ -46,10 +48,9 @@ namespace ProtonVPN.Profiles.Form
 
         protected override List<IServerViewModel> GetServersByCountry(string countryCode)
         {
-            if (string.IsNullOrEmpty(countryCode))
-                return new List<IServerViewModel>();
-
-            return base.GetServersByCountry(countryCode);
+            return string.IsNullOrEmpty(countryCode) 
+                ? new List<IServerViewModel>() 
+                : base.GetServersByCountry(countryCode);
         }
     }
 }

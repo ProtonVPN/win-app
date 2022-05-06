@@ -19,7 +19,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
 <resource:BaseModalWindow x:Class="ProtonVPN.About.AboutModalView"
                         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                        xmlns:fa="http://schemas.fontawesome.io/icons/"
                         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -27,6 +26,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         xmlns:local="clr-namespace:ProtonVPN.About"
                         xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
                         xmlns:resource="clr-namespace:ProtonVPN.Resource;assembly=ProtonVPN.Resource"
+                        xmlns:icons="clr-namespace:ProtonVPN.Resource.Graphics.Icons;assembly=ProtonVPN.Resource"
                         Style="{StaticResource BaseWindowStyle}"
                         SizeToContent="Height"
                         Title="{translations:Loc About_ttl}"
@@ -39,13 +39,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Style.xaml"/>
                 <ResourceDictionary>
-                    <Style TargetType="Label" BasedOn="{StaticResource {x:Type Label}}">
-                        <Setter Property="Foreground" Value="White"/>
+                    <Style x:Key="TextButton" TargetType="Button" BasedOn="{StaticResource ClearStyleButton}">
                         <Setter Property="FontSize" Value="16"/>
                     </Style>
-                    <Style x:Key="EarlyAccessStyle" TargetType="Label" BasedOn="{StaticResource {x:Type Label}}">
+                    <Style x:Key="Label" TargetType="Label" BasedOn="{StaticResource {x:Type Label}}">
+                        <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}"/>
                         <Setter Property="FontSize" Value="16"/>
-                        <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
+                    </Style>
+                    <Style x:Key="EarlyAccessStyle" TargetType="Label" BasedOn="{StaticResource Label}">
+                        <Setter Property="Foreground" Value="{StaticResource TextHintBrushColor}"/>
                         <Setter Property="Visibility" Value="Hidden"/>
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding EarlyAccess}" Value="True">
@@ -58,9 +60,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </ResourceDictionary>
     </resource:BaseModalWindow.Resources>
 
-    <Grid Background="{StaticResource ModalColor}">
+    <Grid Background="{StaticResource BackgroundNormBrushColor}">
         <StackPanel>
-            <ScrollViewer Template="{StaticResource DarkScrollViewerControlTemplate}" Height="360" PanningMode="VerticalOnly">
+            <ScrollViewer Template="{StaticResource DarkScrollViewerControlTemplate}" Height="500" PanningMode="VerticalOnly">
                 <StackPanel>
                     <Grid Margin="20">
                         <Grid.ColumnDefinitions>
@@ -73,40 +75,42 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <RowDefinition/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
-                        <Label Grid.Row="0" Grid.Column="0" Padding="0,5" FontSize="16" Content="{translations:Loc About_lbl_CurrentVersion}" Foreground="White"/>
+                        <Label Grid.Row="0" Grid.Column="0"
+                               Content="{translations:Loc About_lbl_CurrentVersion}" 
+                               Style="{StaticResource Label}"/>
                         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
-                            <Label Padding="10,5,5,5" FontWeight="Bold" FontSize="16" Content="{Binding AppVersion}" Foreground="White"/>
-                            <Label Padding="0,5" Style="{StaticResource EarlyAccessStyle}" Content="{translations:Loc About_lbl_CurrentVersion_EarlyAccess}"/>
+                            <Label FontWeight="Bold" 
+                                   Content="{Binding AppVersion}"
+                                   Style="{StaticResource Label}"/>
+                            <Label Style="{StaticResource EarlyAccessStyle}" 
+                                   Content="{translations:Loc About_lbl_CurrentVersion_EarlyAccess}"/>
                         </StackPanel>
-                        <Label Grid.Row="1" Grid.Column="0" Padding="0,5" FontSize="16" Content="{translations:Loc About_lbl_LastUpdate}" Foreground="White"/>
-                        <Label Grid.Row="1" Grid.Column="1" Padding="10,5" FontWeight="Bold" FontSize="16" Content="{Binding LastUpdate}" Foreground="White"/>
+                        <Label Grid.Row="1" Grid.Column="0" 
+                               Content="{translations:Loc About_lbl_LastUpdate}"
+                               Style="{StaticResource Label}"/>
+                        <Label Grid.Row="1" Grid.Column="1" 
+                               FontWeight="Bold" 
+                               Content="{Binding LastUpdate}" 
+                               Style="{StaticResource Label}"/>
 
-                        <Label Foreground="White"
-                                   FontSize="16"
-                                   Padding="0,5"
-                                   Grid.Row="2"
-                                   Grid.Column="0"
-                                   Content="{translations:Loc About_lbl_LicensingInformation}"/>
-                        <Button Grid.Row="2"
-                                Grid.Column="1"
-                                Padding="10,0,0,0"
+                        <Label Grid.Row="2" Grid.Column="0"
+                               Content="{translations:Loc About_lbl_LicensingInformation}" 
+                               Style="{StaticResource Label}"/>
+                        <Button Grid.Row="2" Grid.Column="1"
                                 HorizontalAlignment="Left"
+                                Margin="5,0,0,0"
                                 Command="{Binding LicenseCommand}"
-                                Style="{StaticResource ClearStyleButton}">
-                            <TextBlock Foreground="{StaticResource PrimaryColor}"
-                                       FontSize="16"
-                                       HorizontalAlignment="Left"
-                                       FontWeight="Bold"
-                                       Text="Read here"
-                                       TextDecorations="Underline"/>
-                        </Button>
-                        <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal"
+                                Style="{StaticResource TextButton}"
+                                Content="{translations:Loc About_lnk_ReadLicense}" />
+                        <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" 
+                                    Orientation="Horizontal"
                                     DataContext="{Binding Update}">
-                            <fa:ImageAwesome Margin ="0,0,10,0"
-                                             VerticalAlignment="Center"
-                                             Style="{StaticResource UpdateSpinner}"/>
-                            <Label Padding="0,5" Style="{StaticResource UpdateStatus}"/>
-                            <Button Margin="5,0,0,0" Style="{StaticResource UpdateButton}"/>
+                            <icons:ArrowsRotate Width="20" 
+                                                Margin="4,0" 
+                                                Foreground="{StaticResource TextNormBrushColor}" 
+                                                Style="{StaticResource UpdateStatusSpinner}" />
+                            <Label Style="{StaticResource UpdateStatus}"/>
+                            <Button Style="{StaticResource UpdateButton}"/>
                         </StackPanel>
                     </Grid>
 
@@ -116,7 +120,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 <StackPanel Margin="0,20,0,0">
                                     <DockPanel Margin="0,0,0,10">
                                         <TextBlock Text="{translations:Loc About_lbl_ChangelogVersion}" Name="StringFormat" Visibility="Collapsed"/>
-                                        <TextBlock FontSize="20" FontWeight="Bold" Foreground="White">
+                                        <TextBlock FontSize="20" FontWeight="Bold" Foreground="{StaticResource TextNormBrushColor}">
                                             <TextBlock.Text>
                                                 <MultiBinding Converter="{StaticResource StringFormatMultiValueConverter}">
                                                     <Binding ElementName="StringFormat" Path="Text"/>
@@ -124,15 +128,19 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                 </MultiBinding>
                                             </TextBlock.Text>
                                         </TextBlock>
-                                        <TextBlock Margin="5,0,0,0" VerticalAlignment="Top"
-                                                   FontSize="12" FontWeight="Bold" Foreground="{StaticResource PrimaryColor}" Text="{translations:Loc About_lbl_ChangelogVersion_New}"
+                                        <TextBlock Margin="5,0,0,0" 
+                                                   VerticalAlignment="Top"
+                                                   FontSize="12" 
+                                                   FontWeight="Bold" 
+                                                   Foreground="{StaticResource PrimaryBrushColor}" 
+                                                   Text="{translations:Loc About_lbl_ChangelogVersion_New}"
                                                    Visibility="{c:Binding New, FalseToVisibility=Collapsed}"/>
-                                        <Separator Margin="10,0" Background="#333439" Height="2"/>
+                                        <Separator Margin="10,0" Background="{StaticResource BorderWeakBrushColor}" Height="2"/>
                                     </DockPanel>
-                                    <ItemsControl ItemsSource="{Binding ChangeLog}">
+                                    <ItemsControl ItemsSource="{Binding ChangeLog}" Margin="0,0,30,0">
                                         <ItemsControl.ItemTemplate>
                                             <DataTemplate>
-                                                <TextBlock TextWrapping="Wrap" FontSize="14" Foreground="White">
+                                                <TextBlock TextWrapping="Wrap" FontSize="14" Foreground="{StaticResource TextNormBrushColor}">
                                                     <Run Text="- "/>
                                                     <Run Text="{Binding Mode=OneWay}"/>
                                                 </TextBlock>
@@ -145,13 +153,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </ItemsControl>
                 </StackPanel>
             </ScrollViewer>
-            <DockPanel Background="{StaticResource ModalBarColor}" Height="66">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Button Style="{StaticResource PrimaryButton}"
-                            Command="{Binding CloseCommand}"
-                            Content="{translations:Loc Dialogs_btn_Close}"/>
-                </StackPanel>
-            </DockPanel>
         </StackPanel>
     </Grid>
 </resource:BaseModalWindow>

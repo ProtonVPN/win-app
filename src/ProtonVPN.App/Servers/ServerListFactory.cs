@@ -59,9 +59,8 @@ namespace ProtonVPN.Servers
             {
                 case ServerTiers.Internal:
                 case ServerTiers.Plus:
-                    return GetPlusUserLocations(searchQuery);
                 case ServerTiers.Basic:
-                    return GetBasicUserLocations(searchQuery);
+                    return GetPlusUserLocations(searchQuery);
                 case ServerTiers.Free:
                     return GetFreeUserLocations(searchQuery);
                 default:
@@ -71,10 +70,9 @@ namespace ProtonVPN.Servers
 
         private ObservableCollection<IServerListItem> GetFreeUserLocations(string searchQuery)
         {
-            var list = new ObservableCollection<IServerListItem>();
+            ObservableCollection<IServerListItem> list = new();
             IList<string> freeCountries = GetCountriesByTiers(ServerTiers.Free);
-            IList<string> basicAndPlusCountries = GetCountriesByTiers(ServerTiers.Basic, ServerTiers.Plus)
-                .Except(freeCountries).ToList();
+            IList<string> plusCountries = GetCountriesByTiers(ServerTiers.Plus).Except(freeCountries).ToList();
 
             IList<IServerListItem> freeLocationViewModels =
                 CreateServersByCountryViewModels(freeCountries, searchQuery).ToList();
@@ -84,14 +82,14 @@ namespace ProtonVPN.Servers
                 freeLocationViewModels,
                 Translation.Format("Sidebar_Countries_FreeLocationCount", freeLocationViewModels.Count));
 
-            IList<IServerListItem> basicAndPlusLocationsViewModels =
-                CreateServersByCountryViewModels(basicAndPlusCountries, searchQuery).ToList();
+            IList<IServerListItem> plusLocationsViewModels =
+                CreateServersByCountryViewModels(plusCountries, searchQuery).ToList();
 
             list = GetServerGroupViewModels(
                 list,
-                basicAndPlusLocationsViewModels,
-                Translation.Format("Sidebar_Countries_BasicAndPlusLocationCount",
-                    basicAndPlusLocationsViewModels.Count));
+                plusLocationsViewModels,
+                Translation.Format("Sidebar_Countries_PlusLocationCount",
+                    plusLocationsViewModels.Count));
 
             return list;
         }
@@ -108,30 +106,6 @@ namespace ProtonVPN.Servers
                 new ObservableCollection<IServerListItem>(),
                 plusLocationViewModels,
                 Translation.Format("Sidebar_Countries_AllLocationCount", plusLocationViewModels.Count));
-        }
-
-        private ObservableCollection<IServerListItem> GetBasicUserLocations(string searchQuery)
-        {
-            var list = new ObservableCollection<IServerListItem>();
-            IList<string> basicCountries = GetCountriesByTiers(ServerTiers.Basic);
-            IList<string> plusCountries = GetCountriesByTiers(ServerTiers.Plus).Except(basicCountries).ToList();
-
-            IList<IServerListItem> basicLocationViewModels =
-                CreateServersByCountryViewModels(basicCountries, searchQuery).ToList();
-
-            list = GetServerGroupViewModels(list, basicLocationViewModels,
-                Translation.Format("Sidebar_Countries_BasicLocationCount", basicLocationViewModels.Count));
-
-            if (plusCountries.Count > 0)
-            {
-                IList<IServerListItem> plusLocationViewModels =
-                    CreateServersByCountryViewModels(plusCountries, searchQuery).ToList();
-
-                list = GetServerGroupViewModels(list, plusLocationViewModels,
-                    Translation.Format("Sidebar_Countries_PlusLocationCount", plusLocationViewModels.Count));
-            }
-
-            return list;
         }
 
         private ObservableCollection<IServerListItem> GetServerGroupViewModels(

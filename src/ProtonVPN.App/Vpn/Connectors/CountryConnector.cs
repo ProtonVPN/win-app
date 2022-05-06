@@ -28,27 +28,32 @@ namespace ProtonVPN.Vpn.Connectors
     public class CountryConnector : BaseConnector
     {
         private readonly IAppSettings _appSettings;
+        private readonly IProfileFactory _profileFactory;
 
         public CountryConnector(
             IAppSettings appSettings,
-            IVpnManager vpnManager) :
+            IVpnManager vpnManager,
+            IProfileFactory profileFactory) :
             base(vpnManager)
         {
             _appSettings = appSettings;
+            _profileFactory = profileFactory;
         }
 
         public async Task Connect(string countryCode)
         {
-            var features = _appSettings.SecureCore ? Features.SecureCore : Features.None;
-            var profile = new Profile
-            {
-                IsTemporary = true,
-                ProfileType = ProfileType.Fastest,
-                Features = features,
-                CountryCode = countryCode,
-            };
-
+            Profile profile = CreateProfile(countryCode); 
             await VpnManager.ConnectAsync(profile);
+        }
+
+        private Profile CreateProfile(string countryCode)
+        {
+            Profile profile = _profileFactory.Create();
+            profile.IsTemporary = true;
+            profile.ProfileType = ProfileType.Fastest;
+            profile.Features = _appSettings.SecureCore ? Features.SecureCore : Features.None;
+            profile.CountryCode = countryCode;
+            return profile;
         }
     }
 }

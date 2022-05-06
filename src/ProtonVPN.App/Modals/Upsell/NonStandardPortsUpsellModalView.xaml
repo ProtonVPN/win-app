@@ -25,6 +25,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           xmlns:upsell="clr-namespace:ProtonVPN.Modals.Upsell"
                           xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
                           xmlns:resource="clr-namespace:ProtonVPN.Resource;assembly=ProtonVPN.Resource"
+                          xmlns:vectorImages="clr-namespace:ProtonVPN.Resource.Graphics.VectorImages;assembly=ProtonVPN.Resource"
                           Style="{StaticResource BaseWindowStyle}"
                           Title=" "
                           SizeToContent="Height"
@@ -34,20 +35,20 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           d:DataContext="{d:DesignInstance upsell:NonStandardPortsUpsellModalViewModel}">
     <Grid>
         <StackPanel Margin="50,64">
-            <Image Source="pack://application:,,,/ProtonVPN.Resource;component/Images/NonStandardPorts.png" />
+            <vectorImages:NonStandardPorts />
             <TextBlock Text="{translations:Loc Upsell_NonStandardPorts_ttl}"
                        TextWrapping="Wrap"
                        FontSize="24"
                        HorizontalAlignment="Center"
-                       Foreground="White"
-                       Padding="15,30,10,0" />
+                       Foreground="{StaticResource OldTextBrushColor}"
+                       Padding="15,20,10,0" />
             <TextBlock FontSize="16"
-                       Foreground="White"
+                       Foreground="{StaticResource OldTextBrushColor}"
                        TextWrapping="Wrap"
                        TextAlignment="Center"
                        Padding="15,8,10,32"
                        Text="{translations:Loc Upsell_NonStandardPorts_msg}" />
-            <Button Style="{StaticResource PrimaryButton}"
+            <Button Style="{StaticResource PrimaryModalButton}"
                     HorizontalAlignment="Center"
                     Content="{translations:Loc Upsell_NonStandardPorts_btn_Upgrade}"
                     Command="{Binding ContinueCommand}" />
@@ -55,7 +56,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     HorizontalAlignment="Center"
                     FontWeight="Bold"
                     Margin="0,24,0,0"
-                    Foreground="{StaticResource PrimaryColor}"
+                    Foreground="{StaticResource OldPrimaryBrushColor}"
                     Content="{translations:Loc Upsell_NonStandardPorts_btn_LearnMore}"
                     Command="{Binding LearnMoreCommand}" />
         </StackPanel>

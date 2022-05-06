@@ -20,6 +20,7 @@
 using System;
 using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Servers;
+using ProtonVPN.Core.Servers.Models;
 using ProtonVPN.Core.Servers.Specs;
 
 namespace ProtonVPN.Settings.Migrations.v1_7_2
@@ -28,11 +29,18 @@ namespace ProtonVPN.Settings.Migrations.v1_7_2
     {
         private readonly ProfileV1 _profile;
         private readonly ServerManager _serverManager;
+        private readonly IProfileFactory _profileFactory;
+        private readonly ColorProvider _colorProvider;
 
-        public MigratedProfile(ProfileV1 profile, ServerManager serverManager)
+        public MigratedProfile(ProfileV1 profile,
+            ServerManager serverManager,
+            IProfileFactory profileFactory, 
+            ColorProvider colorProvider)
         {
             _profile = profile;
             _serverManager = serverManager;
+            _profileFactory = profileFactory;
+            _colorProvider = colorProvider;
         }
 
         public bool HasValue => !_profile.Predefined;
@@ -42,25 +50,26 @@ namespace ProtonVPN.Settings.Migrations.v1_7_2
             get
             {
                 if (!HasValue)
-                    throw new InvalidOperationException();
-
-                var profileId = !string.IsNullOrEmpty(_profile.Hash) ? _profile.Hash : _profile.Id;
-                var serverId = new MigratedServerId(_profile.ServerId).Value();
-                var server = _serverManager.GetServer(new ServerById(serverId));
-
-                return new Profile(profileId)
                 {
-                    Name = _profile.Name,
-                    VpnProtocol = new MigratedProtocol(_profile.Protocol),
-                    CountryCode = new MigratedCountryCode(_profile.Country, server),
-                    ColorCode = new MigratedColorCode(_profile.Color),
-                    ProfileType = new MigratedProfileType(_profile.ProfileType),
-                    ServerId = serverId,
-                    Features = new MigratedFeatures(_profile.ServerType, server),
-                    Status = ProfileStatus.Created,
-                    SyncStatus = ProfileSyncStatus.InProgress,
-                    ModifiedAt = DateTime.MinValue
-                };
+                    throw new InvalidOperationException();
+                }
+
+                string profileId = !string.IsNullOrEmpty(_profile.Hash) ? _profile.Hash : _profile.Id;
+                string serverId = new MigratedServerId(_profile.ServerId).Value();
+                Server server = _serverManager.GetServer(new ServerById(serverId));
+
+                Profile profile = _profileFactory.Create(profileId);
+                profile.Name = _profile.Name;
+                profile.VpnProtocol = new MigratedProtocol(_profile.Protocol);
+                profile.CountryCode = new MigratedCountryCode(_profile.Country, server);
+                profile.ColorCode = _colorProvider.GetRandomColorIfInvalid(new MigratedColorCode(_profile.Color));
+                profile.ProfileType = new MigratedProfileType(_profile.ProfileType);
+                profile.ServerId = serverId;
+                profile.Features = new MigratedFeatures(_profile.ServerType, server);
+                profile.Status = ProfileStatus.Created;
+                profile.SyncStatus = ProfileSyncStatus.InProgress;
+                profile.ModifiedAt = DateTime.MinValue;
+                return profile;
             }
         }
 

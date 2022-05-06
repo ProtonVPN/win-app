@@ -22,14 +22,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
     <Style x:Key="ColumnHeading" TargetType="Label">
         <Setter Property="Padding" Value="0,12,0,10"/>
-        <Setter Property="Foreground" Value="#777783"/>
+        <Setter Property="Foreground" Value="{StaticResource OldTableTextColor}"/>
         <Setter Property="FontWeight" Value="ExtraBold"/>
         <Setter Property="FontSize" Value="12"/>
     </Style>
 
     <Style x:Key="ColumnTitle" TargetType="Label">
         <Setter Property="Padding" Value="0,10"/>
-        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Foreground" Value="{StaticResource OldTextBrushColor}"/>
         <Setter Property="FontSize" Value="16"/>
         <Setter Property="FontWeight" Value="Normal"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
@@ -42,7 +42,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
     <Style x:Key="ColumnValue" TargetType="TextBlock">
         <Setter Property="Padding" Value="0,2"/>
-        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Foreground" Value="{StaticResource OldTextBrushColor}"/>
         <Setter Property="FontSize" Value="16"/>
         <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="VerticalAlignment" Value="Top"/>
@@ -59,8 +59,20 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     </Style>
 
     <Style TargetType="Hyperlink">
-        <Setter Property="FontWeight" Value="Bold"/>
-        <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="Foreground" Value="{StaticResource InteractionNormAccentBrushColor}"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="TextDecorations" Value="None"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="{StaticResource InteractionNormAccentHoverBrushColor}"/>
+                <Setter Property="TextDecorations" Value="Underline"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
 </ResourceDictionary>
+    
+    
+    
+    

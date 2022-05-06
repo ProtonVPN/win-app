@@ -28,30 +28,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <DataTrigger Binding="{Binding VpnStatus}" Value="{x:Static vpn:VpnStatus.Connected}">
                 <Setter Property="Icon" Value="../Images/Icons/systray-connected.ico"/>
             </DataTrigger>
-            <DataTrigger Binding="{Binding VpnStatus}" Value="{x:Static vpn:VpnStatus.Connecting}">
-                <DataTrigger.EnterActions>
-                    <BeginStoryboard Storyboard="{StaticResource ConnectingIconAnimation}" Name="ConnectingIconAnimation"/>
-                </DataTrigger.EnterActions>
-                <DataTrigger.ExitActions>
-                    <RemoveStoryboard BeginStoryboardName="ConnectingIconAnimation"/>
-                </DataTrigger.ExitActions>
-            </DataTrigger>
-            <DataTrigger Binding="{Binding VpnStatus}" Value="{x:Static vpn:VpnStatus.Reconnecting}">
-                <DataTrigger.EnterActions>
-                    <BeginStoryboard Storyboard="{StaticResource ConnectingIconAnimation}" Name="ConnectingIconAnimation"/>
-                </DataTrigger.EnterActions>
-                <DataTrigger.ExitActions>
-                    <RemoveStoryboard BeginStoryboardName="ConnectingIconAnimation"/>
-                </DataTrigger.ExitActions>
-            </DataTrigger>
-            <DataTrigger Binding="{Binding VpnStatus}" Value="{x:Static vpn:VpnStatus.Disconnecting}">
-                <DataTrigger.EnterActions>
-                    <BeginStoryboard Storyboard="{StaticResource DisconnectingIconAnimation}" Name="DisconnectingIconAnimation"/>
-                </DataTrigger.EnterActions>
-                <DataTrigger.ExitActions>
-                    <RemoveStoryboard BeginStoryboardName="DisconnectingIconAnimation"/>
-                </DataTrigger.ExitActions>
-            </DataTrigger>
         </Style.Triggers>
     </Style>
 </ResourceDictionary>

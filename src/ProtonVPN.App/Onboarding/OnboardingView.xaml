@@ -30,7 +30,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              d:DataContext="{d:DesignInstance onboarding:OnboardingViewModel}">
     <UserControl.Resources>
         <Style x:Key="NextButton" TargetType="Label">
-            <Setter Property="Foreground" Value="{StaticResource PrimaryColor}" />
+            <Setter Property="Foreground" Value="{StaticResource OldPrimaryBrushColor}" />
             <Setter Property="Content" Value="{translations:Loc Onboarding_btn_NextStep}" />
             <Style.Triggers>
                 <DataTrigger Binding="{Binding IsLastStep}" Value="True">
@@ -60,7 +60,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="Icon" Value="ArrowRight" />
             <Setter Property="Margin" Value="10,3,0,0" />
-            <Setter Property="Foreground" Value="{StaticResource PrimaryColor}" />
+            <Setter Property="Foreground" Value="{StaticResource OldPrimaryBrushColor}" />
             <Setter Property="Visibility" Value="Visible" />
             <Style.Triggers>
                 <DataTrigger Binding="{Binding IsLastStep}" Value="True">
@@ -69,7 +69,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </Style.Triggers>
         </Style>
         <Style x:Key="StepDetailsText" TargetType="TextBlock">
-            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Foreground" Value="{StaticResource OldTextBrushColor}" />
             <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="FontSize" Value="14" />
             <Setter Property="TextWrapping" Value="Wrap" />
@@ -78,22 +78,22 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <Grid>
         <Border CornerRadius="20,0,0,20"
                 MinWidth="250"
-                Background="{StaticResource PrimaryColor}" />
+                Background="{StaticResource OldPrimaryBrushColor}" />
         <Border VerticalAlignment="Top"
                 HorizontalAlignment="Left"
                 Margin="20,20,0,0"
                 Width="40"
                 Height="40"
                 CornerRadius="20"
-                BorderBrush="White"
+                BorderBrush="{StaticResource OldTextBrushColor}"
                 BorderThickness="1">
-            <Label Foreground="White"
+            <Label Foreground="{StaticResource OldTextBrushColor}"
                    HorizontalAlignment="Center"
                    FontSize="16"
                    VerticalAlignment="Center"
                    Content="{Binding Number}" />
         </Border>
-        <Label Foreground="White"
+        <Label Foreground="{StaticResource OldTextBrushColor}"
                HorizontalAlignment="Left"
                FontSize="16"
                Margin="70,25,0,0"
@@ -173,13 +173,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <DockPanel>
             <Button Style="{StaticResource PrevButton}" Command="{Binding PrevTipCommand}">
                 <Grid Width="30" Height="30">
-                    <Border BorderBrush="#4f8d59"
+                    <Border BorderBrush="{StaticResource OldPrimaryDimmedBrushColor}"
                             Width="30"
                             Height="30"
                             CornerRadius="15"
                             BorderThickness="1" />
                     <fa:FontAwesome Icon="ArrowLeft"
-                                    Foreground="#4f8d59"
+                                    Foreground="{StaticResource OldPrimaryDimmedBrushColor}"
                                     VerticalAlignment="Center"
                                     HorizontalAlignment="Center" />
                 </Grid>
@@ -187,9 +187,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Button Style="{StaticResource ModalButton}"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Bottom"
-                    Background="White"
+                    Background="{StaticResource OldOnboardingButtonBackgroundColor}"
                     BorderThickness="0"
-                    Foreground="{StaticResource PrimaryColor}"
+                    Foreground="{StaticResource OldPrimaryBrushColor}"
                     Padding="20,0"
                     Command="{Binding NextTipCommand}"
                     Margin="0,0,10,10">

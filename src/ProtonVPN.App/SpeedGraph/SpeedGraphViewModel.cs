@@ -31,6 +31,7 @@ using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.MVVM;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Vpn;
+using ProtonVPN.Resource.Colors;
 
 namespace ProtonVPN.SpeedGraph
 {
@@ -55,10 +56,18 @@ namespace ProtonVPN.SpeedGraph
         private double _currentUploadSpeed;
         private double _maxBandwidth;
 
-        public SpeedGraphViewModel(ILogger logger, VpnConnectionSpeed speedTracker, IScheduler scheduler)
+        private readonly Lazy<string> _uploadColor;
+        private readonly Lazy<string> _downloadColor;
+
+        public SpeedGraphViewModel(ILogger logger, 
+            VpnConnectionSpeed speedTracker, 
+            IScheduler scheduler, 
+            IColorPalette colorPalette)
         {
             _logger = logger;
             _speedTracker = speedTracker;
+            _uploadColor = new(() => colorPalette.GetStringByResourceName("UploadSpeedBrushColor"));
+            _downloadColor = new(() => colorPalette.GetStringByResourceName("DownloadSpeedBrushColor"));
 
             InitPlotModel();
             InitPlotController();
@@ -128,7 +137,7 @@ namespace ProtonVPN.SpeedGraph
         public void InitDownloadSeries()
         {
             _downloadAreaSeries.ItemsSource = _downloadDataPoints;
-            _downloadAreaSeries.Color = OxyColor.Parse("#369d5b");
+            _downloadAreaSeries.Color = OxyColor.Parse(_downloadColor.Value);
             _downloadAreaSeries.CanTrackerInterpolatePoints = false;
             PlotModel.Series.Add(_downloadAreaSeries);
         }
@@ -136,7 +145,7 @@ namespace ProtonVPN.SpeedGraph
         public void InitUploadSeries()
         {
             _uploadAreaSeries.ItemsSource = _uploadDataPoints;
-            _uploadAreaSeries.Color = OxyColor.Parse("#56b39c");
+            _uploadAreaSeries.Color = OxyColor.Parse(_uploadColor.Value);
             _uploadAreaSeries.CanTrackerInterpolatePoints = false;
             PlotModel.Series.Add(_uploadAreaSeries);
         }

@@ -23,33 +23,33 @@
 
         <Style x:Key="H1Style" TargetType="Paragraph">
             <Setter Property="FontSize" Value="42" />
-            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}" />
             <Setter Property="FontWeight" Value="Light" />
         </Style>
 
         <Style x:Key="H2Style"
                TargetType="Paragraph">
             <Setter Property="FontSize" Value="20" />
-            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}" />
             <Setter Property="FontWeight" Value="Light" />
         </Style>
 
         <Style x:Key="H3Style" TargetType="Paragraph">
             <Setter Property="FontSize" Value="20" />
-            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}" />
             <Setter Property="FontWeight" Value="Light" />
         </Style>
 
         <Style x:Key="H4Style" TargetType="Paragraph">
             <Setter Property="FontSize" Value="14" />
-            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}" />
             <Setter Property="FontWeight" Value="Light" />
         </Style>
 
         <Style x:Key="LinkStyle" TargetType="Hyperlink" BasedOn="{StaticResource {x:Type Hyperlink}}">
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Foreground" Value="White" />
+                    <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}" />
                     <Setter Property="TextBlock.TextDecorations" Value="Underline" />
                 </Trigger>
             </Style.Triggers>
@@ -67,20 +67,20 @@
         <Style x:Key="TableStyle" TargetType="Table">
             <Setter Property="CellSpacing" Value="0"/>
             <Setter Property="BorderThickness" Value="0.5"/>
-            <Setter Property="BorderBrush" Value="Gray"/>
-            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="{StaticResource BorderWeakBrushColor}"/>
+            <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}"/>
             <Style.Resources>
                 <Style TargetType="TableCell">
                     <Setter Property="BorderThickness" Value="0.5"/>
-                    <Setter Property="BorderBrush" Value="Gray"/>
+                    <Setter Property="BorderBrush" Value="{StaticResource BorderWeakBrushColor}"/>
                     <Setter Property="Padding" Value="2"/>
                 </Style>
             </Style.Resources>
         </Style>
         <Style x:Key="TableHeaderStyle" TargetType="TableRowGroup">
             <Setter Property="FontWeight" Value="DemiBold"/>
-            <Setter Property="Background" Value="LightGray"/>
-            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="{StaticResource Shade10Color}"/>
+            <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}"/>
         </Style>
         <markdown:Markdown x:Key="Markdown"
                            DocumentStyle="{StaticResource DocumentStyle}"
@@ -101,16 +101,9 @@
     </resource:BaseModalWindow.Resources>
 
     <StackPanel>
-        <FlowDocumentScrollViewer Foreground="White"
+        <FlowDocumentScrollViewer Foreground="{StaticResource TextNormBrushColor}"
                                   Height="500"
                                   Document="{Binding License, Converter={StaticResource TextToFlowDocumentConverter}}"/>
-        <DockPanel Background="{StaticResource ModalBarColor}" Height="66">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Style="{StaticResource PrimaryButton}"
-                        Command="{Binding CloseCommand}"
-                        Content="{translations:Loc Dialogs_btn_Close}"/>
-            </StackPanel>
-        </DockPanel>
     </StackPanel>
 
 </resource:BaseModalWindow>

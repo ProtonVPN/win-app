@@ -35,24 +35,21 @@ namespace ProtonVPN.Core.Models
         public int HasPaymentMethod { get; set; }
         public int Credit { get; set; }
         public string OriginalVpnPlan { get; set; }
+        public string VpnPlanName { get; set; }
 
         public string GetAccountPlan()
         {
-            switch (Services)
-            {
-                case 1:
-                case 5:
-                    return "ProtonMail Account";
-                case 4:
-                    return "ProtonVPN Account";
-                default:
-                    return "?";
-            }
+            return (Services & 1) == 0 && (Services & 4) != 0 ? "ProtonVPN Account" : "ProtonMail Account";
         }
 
         public bool Paid()
         {
             return VpnPlan != null && !VpnPlan.Equals("free");
+        }
+
+        public bool IsPlusPlan()
+        {
+            return VpnPlan is "vpnplus" or "vpn2022";
         }
 
         public bool Empty()

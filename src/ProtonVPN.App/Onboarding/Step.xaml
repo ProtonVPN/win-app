@@ -27,10 +27,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <Border Width="40"
             Height="40"
             CornerRadius="20"
-            Background="{StaticResource PrimaryColor}">
+            Background="{StaticResource OldPrimaryBrushColor}">
         <Label HorizontalAlignment="Center"
                VerticalAlignment="Center"
-               Foreground="White"
+               Foreground="{StaticResource OldTextBrushColor}"
                Content="{Binding Number, ElementName=StepControl}"/>
     </Border>
 </UserControl>

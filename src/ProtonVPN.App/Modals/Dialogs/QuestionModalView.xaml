@@ -29,28 +29,26 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        Style="{StaticResource BaseWindowStyle}"
                        mc:Ignorable="d"
                        Title="{translations:Loc Dialogs_ttl_Question}"
-                       ResizeMode="NoResize"
                        SizeToContent="Height"
                        Height="Auto"
                        Width="500"
                        d:DataContext="{d:DesignInstance dialogs:QuestionModalViewModel}">
     <Grid>
-        <StackPanel>
+        <StackPanel Margin="0,40">
             <TextBlock TextWrapping="Wrap"
                        behavior:TextStyleBehavior.FormattedText="{Binding Message}"
-                       Padding="20,50"
+                       Padding="20,0,20,25"
                        FontSize="16"
-                       Foreground="White"/>
-            <DockPanel Background="{StaticResource ModalBarColor}" Height="66">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Button Style="{StaticResource SecondaryModalButton}"
-                            Command="{Binding CloseCommand}"/>
-                    <Button Style="{StaticResource PrimaryModalButton}"
-                            Command="{Binding ContinueCommand}"
-                            AutomationProperties.AutomationId="{StaticResource ContinueButtonId}"
-                            Content="{Binding PrimaryButtonText}"/>
-                </StackPanel>
-            </DockPanel>
+                       Foreground="{StaticResource TextNormBrushColor}"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Margin="0,0,20,0"
+                        Style="{StaticResource SecondaryModalButton}"
+                        Command="{Binding CloseCommand}" />
+                <Button Style="{StaticResource PrimaryModalButton}"
+                        Command="{Binding ContinueCommand}"
+                        AutomationProperties.AutomationId="{StaticResource ContinueButtonId}"
+                        Content="{Binding PrimaryButtonText}" />
+            </StackPanel>
         </StackPanel>
     </Grid>
 </resource:BaseModalWindow>

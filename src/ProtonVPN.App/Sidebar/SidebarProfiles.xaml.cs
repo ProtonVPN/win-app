@@ -27,7 +27,8 @@ namespace ProtonVPN.Sidebar
         {
             InitializeComponent();
 
-            Profiles.Loaded += OnProfilesLoaded;
+            PredefinedProfiles.Loaded += OnProfilesLoaded;
+            CustomProfiles.Loaded += OnProfilesLoaded;
         }
 
         private void OnProfilesLoaded(object sender, RoutedEventArgs e)

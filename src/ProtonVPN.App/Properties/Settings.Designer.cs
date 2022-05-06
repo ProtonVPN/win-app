@@ -369,6 +369,18 @@ namespace ProtonVPN.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string VpnPlanName {
+            get {
+                return ((string)(this["VpnPlanName"]));
+            }
+            set {
+                this["VpnPlanName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string VpnUsername {
             get {
                 return ((string)(this["VpnUsername"]));
@@ -747,6 +759,18 @@ namespace ProtonVPN.Properties {
             }
             set {
                 this["UserServices"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string UserVpnPlanName {
+            get {
+                return ((string)(this["UserVpnPlanName"]));
+            }
+            set {
+                this["UserVpnPlanName"] = value;
             }
         }
         
@@ -1574,6 +1598,18 @@ namespace ProtonVPN.Properties {
             }
             set {
                 this["FeaturePromoCodeEnabled"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool IsToShowRebrandingModal {
+            get {
+                return ((bool)(this["IsToShowRebrandingModal"]));
+            }
+            set {
+                this["IsToShowRebrandingModal"] = value;
             }
         }
     }

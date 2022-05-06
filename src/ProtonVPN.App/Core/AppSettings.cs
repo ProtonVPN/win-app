@@ -539,6 +539,12 @@ namespace ProtonVPN.Core
             set => Set(value);
         }
 
+        public bool IsToShowRebrandingModal
+        {
+            get => Get<bool>();
+            set => Set(value);
+        }
+
         public TimeSpan MaintenanceCheckInterval
         {
             get

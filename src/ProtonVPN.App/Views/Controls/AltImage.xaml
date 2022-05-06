@@ -12,7 +12,7 @@
                ToolTip="{Binding Alt, ElementName=UserControl}"
                Margin="3, 10" />
         <TextBlock Text="{Binding Alt, ElementName=UserControl}"
-                   Foreground="White"
+                   Foreground="{StaticResource OldTextBrushColor}"
                    VerticalAlignment="Center"
                    Padding="3,15"
                    TextAlignment="Center"

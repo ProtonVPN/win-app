@@ -65,12 +65,11 @@ namespace ProtonVPN.About
             get => _releases;
             private set
             {
-                if (_releases?.SequenceEqual(value, ReleaseComparer) == true)
-                    return;
-
-                Set(ref _releases, value);
-
-                NotifyOfPropertyChange(nameof(EarlyAccess));
+                if (_releases?.SequenceEqual(value, ReleaseComparer) != true)
+                {
+                    Set(ref _releases, value);
+                    NotifyOfPropertyChange(nameof(EarlyAccess));
+                }
             }
         }
 
@@ -80,8 +79,8 @@ namespace ProtonVPN.About
         {
             get
             {
-                var appVersion = Version.Parse(AppVersion);
-                var release = Releases?.FirstOrDefault(r => appVersion == r.Version);
+                Version appVersion = Version.Parse(AppVersion);
+                Release release = Releases?.FirstOrDefault(r => appVersion == r.Version);
                 return release?.EarlyAccess;
             }
         }

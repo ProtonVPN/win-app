@@ -89,6 +89,9 @@
         <Setting Name="LastUpdate" Type="System.String" Scope="User">
             <Value Profile="(Default)" />
         </Setting>
+        <Setting Name="VpnPlanName" Type="System.String" Scope="User">
+            <Value Profile="(Default)" />
+        </Setting>
         <Setting Name="VpnUsername" Type="System.String" Scope="User">
             <Value Profile="(Default)" />
         </Setting>
@@ -183,6 +186,9 @@
             <Value Profile="(Default)" />
         </Setting>
         <Setting Name="UserServices" Type="System.String" Scope="User">
+            <Value Profile="(Default)" />
+        </Setting>
+        <Setting Name="UserVpnPlanName" Type="System.String" Scope="User">
             <Value Profile="(Default)" />
         </Setting>
         <Setting Name="UserVpnUsername" Type="System.String" Scope="User">
@@ -390,6 +396,9 @@
             <Value Profile="(Default)" />
         </Setting>
         <Setting Name="FeaturePromoCodeEnabled" Type="System.Boolean" Scope="User">
+            <Value Profile="(Default)">False</Value>
+        </Setting>
+        <Setting Name="IsToShowRebrandingModal" Type="System.Boolean" Scope="User">
             <Value Profile="(Default)">False</Value>
         </Setting>
     </Settings>

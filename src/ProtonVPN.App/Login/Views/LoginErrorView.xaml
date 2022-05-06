@@ -27,6 +27,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
     <UserControl.Resources>
         <Style x:Key="ErrorPanel" TargetType="Grid">
+            <Setter Property="Background" Value="{StaticResource NotificationErrorBrushColor}"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
             <Style.Triggers>
                 <DataTrigger Binding="{Binding Error, Converter={StaticResource EmptyStringToBoolConverter}}" Value="True">
                     <Setter Property="Visibility" Value="Collapsed"/>
@@ -35,16 +37,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Style>
     </UserControl.Resources>
 
-    <Grid Style="{StaticResource ErrorPanel}" Background="#f05152" VerticalAlignment="Top">
+    <Grid Style="{StaticResource ErrorPanel}">
         <DockPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <fa:FontAwesome Icon="ExclamationTriangle"
-                            Foreground="White"
+                            Foreground="{StaticResource TextNormBrushColor}"
                             VerticalAlignment="Center"
                             Padding="5,0,0,0"
                             FontSize="14"/>
             <TextBlock FontSize="14"
                        Padding="10"
-                       Foreground="White"
+                       Foreground="{StaticResource TextNormBrushColor}"
                        TextWrapping="Wrap"
                        Text="{Binding Error}"/>
         </DockPanel>

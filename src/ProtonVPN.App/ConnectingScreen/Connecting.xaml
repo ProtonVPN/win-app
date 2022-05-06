@@ -30,107 +30,40 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:wpf="clr-namespace:ProtonVPN.Core.Wpf"
              xmlns:connectingScreen="clr-namespace:ProtonVPN.ConnectingScreen"
              xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
+             xmlns:resourceControls="clr-namespace:ProtonVPN.Resource.Controls;assembly=ProtonVPN.Resource"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="300"
              AutomationProperties.AutomationId="{StaticResource ConnectingScreenId}"
              d:DataContext="{d:DesignInstance connectingScreen:ConnectingViewModel}">
     <UserControl.Resources>
-        <Style x:Key="ControlButton" TargetType="Button" BasedOn="{StaticResource ClearStyleButton}">
+        <Style x:Key="CancelButton" TargetType="Button" BasedOn="{StaticResource SecondaryModalButton}">
             <Setter Property="Margin" Value="0,30,0,0" />
-            <Setter Property="Width" Value="120" />
-            <Setter Property="FontSize" Value="16" />
-            <Setter Property="Height" Value="40" />
-            <Setter Property="Foreground" Value="White" />
-            <Setter Property="Background" Value="Transparent" />
-            <Setter Property="Border.CornerRadius" Value="20" />
-            <Setter Property="BorderBrush" Value="White" />
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="White" />
-                    <Setter Property="Foreground" Value="Black" />
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-        <Style x:Key="CancelButton" TargetType="Button" BasedOn="{StaticResource ControlButton}">
+            <Setter Property="HorizontalAlignment" Value="Center" />
             <Setter Property="Content" Value="{translations:Loc Connecting_btn_Cancel}" />
             <Setter Property="AutomationProperties.AutomationId" Value="{StaticResource CancelButtonId}" />
         </Style>
-        <ControlTemplate x:Key="EllipseAnimationContent">
-            <Grid>
-                <Ellipse
-                    x:Name="Ellipse1"
-                    Height="100"
-                    Width="100"
-                    StrokeThickness="3"
-                    Stroke="White" RenderTransformOrigin="0.5,0.5">
-                    <Ellipse.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform x:Name="ScaleTransform1" />
-                            <RotateTransform Angle="-45" />
-                        </TransformGroup>
-                    </Ellipse.RenderTransform>
-                </Ellipse>
-                <Ellipse
-                    x:Name="Ellipse2"
-                    Height="100"
-                    Width="100"
-                    StrokeThickness="3"
-                    Stroke="White" RenderTransformOrigin="0.5,0.5">
-                    <Ellipse.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform x:Name="ScaleTransform2" />
-                            <RotateTransform Angle="45" />
-                        </TransformGroup>
-                    </Ellipse.RenderTransform>
-                </Ellipse>
-            </Grid>
-            <ControlTemplate.Triggers>
-                <Trigger Property="Visibility" Value="Visible">
-                    <Trigger.EnterActions>
-                        <BeginStoryboard Name="EllipseStoryboard1">
-                            <Storyboard>
-                                <DoubleAnimation
-                                    Storyboard.TargetName="ScaleTransform1"
-                                    Storyboard.TargetProperty="ScaleX"
-                                    From="1"
-                                    To="0"
-                                    Duration="0:0:1"
-                                    AutoReverse="True"
-                                    RepeatBehavior="Forever" />
-                            </Storyboard>
-                        </BeginStoryboard>
-                        <BeginStoryboard Name="EllipseStoryboard2">
-                            <Storyboard>
-                                <DoubleAnimation
-                                    Storyboard.TargetName="ScaleTransform2"
-                                    Storyboard.TargetProperty="ScaleX"
-                                    From="1"
-                                    To="0"
-                                    Duration="0:0:1"
-                                    AutoReverse="True"
-                                    RepeatBehavior="Forever" />
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </Trigger.EnterActions>
-                    <Trigger.ExitActions>
-                        <RemoveStoryboard BeginStoryboardName="EllipseStoryboard1" />
-                        <RemoveStoryboard BeginStoryboardName="EllipseStoryboard2" />
-                    </Trigger.ExitActions>
-                </Trigger>
-            </ControlTemplate.Triggers>
-        </ControlTemplate>
+        <Style x:Key="ConnectingText" TargetType="TextBlock">
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="ReconnectingText" TargetType="TextBlock" BasedOn="{StaticResource ConnectingText}">
+            <Setter Property="FontSize" Value="15" />
+        </Style>
     </UserControl.Resources>
     <Grid>
         <StackPanel VerticalAlignment="Center">
-            <ContentControl Template="{StaticResource EllipseAnimationContent}" />
-            <ProgressBar Margin="0,40,0,0" Width="300"
+            <resourceControls:ProtonAnimation Width="100" />
+            <ProgressBar Margin="0,20,0,5" Width="300"
                          SnapsToDevicePixels="True"
                          Minimum="0"
                          Maximum="100"
-                         Background="White"
+                         Background="{StaticResource BorderNormBrushColor}"
                          Height="2"
-                         Foreground="{StaticResource PrimaryColor}"
+                         Foreground="{StaticResource InteractionNormBrushColor}"
                          Value="{Binding Percentage, Mode=OneWay}"
                          Visibility="{Binding HasPercentage, Converter={StaticResource BoolToVis}}">
                 <i:Interaction.Behaviors>
@@ -141,83 +74,56 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Label HorizontalAlignment="Center"
                    Visibility="{Binding HasPercentage, Converter={StaticResource BoolToVis}}"
                    Content="{Binding Message}"
-                   Foreground="White"
+                   Foreground="{StaticResource TextNormBrushColor}"
                    Height="32" />
             <wpf:AlignableWrapPanel HorizontalAlignment="Center"
-                                    Margin="0,20,0,0"
+                                    Margin="0,30,0,0"
                                     HorizontalContentAlignment="Center"
                                     Visibility="{Binding Reconnecting, Converter={StaticResource BoolToVis}}">
-                <TextBlock Padding="0"
+                <TextBlock Style="{StaticResource ReconnectingText}"
                            Text="{translations:Loc Connecting_lbl_FailedConnection_1}"
-                           FontSize="16"
-                           Foreground="White"
-                           VerticalAlignment="Center"
                            Visibility="{c:Binding '!FailedConnectionName.IsSecureCore'}" />
-                <TextBlock Padding="0"
+                <TextBlock Style="{StaticResource ReconnectingText}"
                            Text="{translations:Loc Connecting_lbl_FailedConnection_1_SecureCore}"
-                           FontSize="16"
-                           Foreground="White"
-                           VerticalAlignment="Center"
                            Visibility="{c:Binding 'FailedConnectionName.IsSecureCore'}" />
                 <controls:ServerName FontWeight="Bold"
-                                     FontSize="16"
-                                     Margin="5,3"
+                                     FontSize="15"
+                                     Margin="5,5"
                                      HorizontalAlignment="Center"
                                      VerticalAlignment="Center"
                                      WrapElements="True"
                                      AlignCenter="True"
                                      ConnectionName="{Binding FailedConnectionName}" />
-                <TextBlock Padding="0"
+                <TextBlock Style="{StaticResource ReconnectingText}"
                            Text="{translations:Loc Connecting_lbl_FailedConnection_2}"
-                           FontSize="16"
-                           Foreground="White"
-                           VerticalAlignment="Center"
                            Visibility="{c:Binding '!FailedConnectionName.IsSecureCore'}" />
-                <TextBlock Padding="0"
+                <TextBlock Style="{StaticResource ConnectingText}"
                            Text="{translations:Loc Connecting_lbl_FailedConnection_2_SecureCore}"
-                           FontSize="16"
-                           Foreground="White"
-                           VerticalAlignment="Center"
                            Visibility="{c:Binding 'FailedConnectionName.IsSecureCore'}" />
             </wpf:AlignableWrapPanel>
             <wpf:AlignableWrapPanel HorizontalAlignment="Center"
-                                    Margin="0,5,0,0"
+                                    Margin="0,15,0,0"
                                     HorizontalContentAlignment="Center"
                                     Visibility="{Binding IsConnectionNameNotNull, Converter={StaticResource BoolToVis}}">
-                <TextBlock Padding="0"
-                           TextTrimming="CharacterEllipsis"
+                <TextBlock Style="{StaticResource ConnectingText}"
                            Text="{translations:Loc Connecting_lbl_ConnectingTo_1}"
-                           FontSize="20"
-                           Foreground="White"
-                           VerticalAlignment="Center"
                            Visibility="{c:Binding '!ConnectionName.IsSecureCore'}" />
-                <TextBlock Padding="0"
-                           TextTrimming="CharacterEllipsis"
+                <TextBlock Style="{StaticResource ConnectingText}"
                            Text="{translations:Loc Connecting_lbl_ConnectingTo_1_SecureCore}"
-                           FontSize="20"
-                           Foreground="White"
-                           VerticalAlignment="Center"
                            Visibility="{c:Binding 'ConnectionName.IsSecureCore'}" />
                 <controls:ServerName FontWeight="Bold"
-                                     FontSize="20" Margin="7,5"
+                                     FontSize="18" 
+                                     Margin="5,5"
                                      HorizontalAlignment="Center"
                                      VerticalAlignment="Center"
                                      WrapElements="True"
                                      AlignCenter="True"
                                      ConnectionName="{Binding ConnectionName}" />
-                <TextBlock Padding="0"
-                           TextTrimming="CharacterEllipsis"
+                <TextBlock Style="{StaticResource ConnectingText}"
                            Text="{translations:Loc Connecting_lbl_ConnectingTo_2}"
-                           FontSize="20"
-                           Foreground="White"
-                           VerticalAlignment="Center"
                            Visibility="{c:Binding '!ConnectionName.IsSecureCore'}" />
-                <TextBlock Padding="0"
-                           TextTrimming="CharacterEllipsis"
+                <TextBlock Style="{StaticResource ConnectingText}"
                            Text="{translations:Loc Connecting_lbl_ConnectingTo_2_SecureCore}"
-                           FontSize="20"
-                           Foreground="White"
-                           VerticalAlignment="Center"
                            Visibility="{c:Binding 'ConnectionName.IsSecureCore'}" />
             </wpf:AlignableWrapPanel>
             <Button Style="{StaticResource CancelButton}" Command="{Binding DisconnectCommand}" />

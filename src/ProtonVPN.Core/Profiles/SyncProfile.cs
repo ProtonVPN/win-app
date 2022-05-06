@@ -17,15 +17,14 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Extensions;
-using ProtonVPN.Common.Logging;
-using ProtonVPN.Core.Profiles.Cached;
-using ProtonVPN.Core.Profiles.Comparers;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
+using ProtonVPN.Core.Profiles.Cached;
+using ProtonVPN.Core.Profiles.Comparers;
 
 namespace ProtonVPN.Core.Profiles
 {

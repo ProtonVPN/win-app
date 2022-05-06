@@ -33,6 +33,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                      xmlns:viewModel="clr-namespace:ProtonVPN.ViewModels"
                      xmlns:view="clr-namespace:ProtonVPN.Views"
                      xmlns:flashNotifications="clr-namespace:ProtonVPN.FlashNotifications"
+                     xmlns:logos="clr-namespace:ProtonVPN.Resource.Graphics.Logos;assembly=ProtonVPN.Resource"
                      mc:Ignorable="d"
                      x:Name="Window"
                      FontFamily="Segoe UI Symbol"
@@ -64,26 +65,19 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         <Style x:Key="SubmenuItem" TargetType="MenuItem" BasedOn="{StaticResource CustomMenuItem}">
             <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
-            <Setter Property="Background" Value="#34343c"/>
-            <Setter Property="BorderBrush" Value="#43434d"/>
-            <Setter Property="BorderThickness" Value="0,0,0,1"/>
-            <Setter Property="Padding" Value="0,4,50,5"/>
-            <Setter Property="Margin" Value="10,0,10,0"/>
-            <Setter Property="Foreground" Value="#cacad5"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="20,10,70,10"/>
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}"/>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="Background" Value="{StaticResource InteractionDefaultHoverBrushColor}"/>
                 </Trigger>
             </Style.Triggers>
-        </Style>
-        <Style x:Key="SubmenuItemLast" TargetType="MenuItem" BasedOn="{StaticResource SubmenuItem}">
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Margin" Value="10,0,10,5"/>
         </Style>
         <Style x:Key="TopMenuItem" TargetType="MenuItem" BasedOn="{StaticResource CustomMenuItem}">
             <Setter Property="Height" Value="36"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
-            <Setter Property="Foreground" Value="{StaticResource GrayColor}"/>
             <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
         </Style>
         <Style x:Key="BlockableTopMenuItem" TargetType="MenuItem" BasedOn="{StaticResource SubmenuItem}">
@@ -94,11 +88,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </Style.Triggers>
         </Style>
         <Style x:Key="BlurBorder" TargetType="Border">
-            <Setter Property="Background" Value="#2a2a30"/>
-            <Setter Property="Margin" Value="-10"/>
+            <Setter Property="Background" Value="{StaticResource BackgroundNormBrushColor}"/>
+            <Setter Property="Margin" Value="-20"/>
             <Style.Triggers>
                 <DataTrigger Binding="{Binding Connecting}" Value="True">
-                    <Setter Property="Background" Value="#2a2a30"/>
+                    <Setter Property="Background" Value="{StaticResource BackgroundNormBrushColor}"/>
                 </DataTrigger>
             </Style.Triggers>
         </Style>
@@ -107,15 +101,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <Grid>
         <StackPanel Style="{StaticResource Titlebar}" x:Name="Titlebar" VerticalAlignment="Top" Panel.ZIndex="1">
             <DockPanel Style="{StaticResource TitleDock}">
-                <Path Margin="7,0" Fill="{StaticResource PrimaryColor}" Style="{StaticResource ProtonIcon}"/>
-                <Menu Foreground="{StaticResource GrayColor}"
-                      Background="Transparent"
+                <logos:ProtonVpnIcon Margin="16,0,16,0" Width="20" />
+                <Menu Background="Transparent"
                       FontSize="14"
                       AutomationProperties.AutomationId="{StaticResource MenuHamburgerButton}">
                     <MenuItem Style="{StaticResource TopMenuItem}">
                         <MenuItem Command="{Binding AboutCommand}"
                                   Style="{StaticResource BlockableTopMenuItem}"
-                                  Margin="10,5,10,0"
+                                  Margin="0,5,0,0"
                                   Header="{translations:Loc App_mnu_About}"/>
                         <MenuItem Command="{Binding AccountCommand}"
                                   Header="{translations:Loc App_mnu_Account}"
@@ -146,7 +139,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                   Header="{translations:Loc App_mnu_Logout}"
                                   AutomationProperties.AutomationId="{StaticResource MenuLogoutButton}"/>
                         <MenuItem Command="{Binding ExitCommand}"
-                                  Style="{StaticResource SubmenuItemLast}"
+                                  Style="{StaticResource SubmenuItem}"
+                                  Margin="0,0,0,5"
                                   Header="{translations:Loc App_mnu_Exit}"
                                   AutomationProperties.AutomationId="{StaticResource MenuExitButton}"/>
                     </MenuItem>
@@ -161,7 +155,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         <Grid VerticalAlignment="Top" Margin="0,36,0,0">
             <Border x:Name="BlurBorder" Style="{StaticResource BlurBorder}">
-                <Grid Margin="10">
+                <Grid Margin="20">
                     <ContentControl Content="{Binding Map}"/>
                     <flashNotifications:FlashNotifications VerticalAlignment="Bottom"
                                                            MinHeight="40"
@@ -180,6 +174,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <onboarding:OnboardingView DataContext="{Binding Onboarding}"/>
             </StackPanel>
         </Grid>
-        <Border BorderBrush="{StaticResource SecondaryColor}" BorderThickness="1" Panel.ZIndex="1"/>
+        <Border BorderBrush="{StaticResource BorderWeakBrushColor}" BorderThickness="1" Panel.ZIndex="1"/>
     </Grid>
 </resource:WindowBase>
