@@ -59,18 +59,30 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
     <Grid x:Name="MainGrid">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="336"/>
+            <ColumnDefinition Width="337"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Grid Name="Sidebar" Grid.Column="0" Panel.ZIndex="2" HorizontalAlignment="Left" Width="336">
-            <sidebarView:Sidebar DataContext="{Binding SidebarViewModel}"/>
-        </Grid>
+        <Border Grid.Column="0"
+                BorderBrush="{StaticResource BorderWeakBrushColor}"
+                BorderThickness="0,0,1,0"
+                Panel.ZIndex="2">
+            <Grid Name="Sidebar" HorizontalAlignment="Left" Width="336">
+                <sidebarView:Sidebar DataContext="{Binding SidebarViewModel}" />
+            </Grid>
+        </Border>
 
         <Grid x:Name="ScrollviewerWrapper" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid Style="{StaticResource ConnectionStatusBoxHolder}" x:Name="ConnectionStatus">
+                <Grid.Effect>
+                    <DropShadowEffect BlurRadius="24"
+                                      Opacity="0.5"
+                                      Color="{StaticResource Shade0Color}"
+                                      RenderingBias="Quality"
+                                      ShadowDepth="0" />
+                </Grid.Effect>
                 <StackPanel Orientation="Horizontal" Height="57">
                     <Path Data="M 65.005858,0 H 0 c 0,0 15.666998,6.3327028 23.999998,24.845704 8.209037,18.237597 17.780151,31.682176 41.00586,32.080078 v -0.03711 z"
                           Margin="0,0,-1,0"
@@ -311,6 +323,22 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </Canvas>
                 </Viewbox>
             </wpf:Scrollviewer>
+
+            <Grid Height="40" VerticalAlignment="Top">
+                <Grid Height="10"
+                      Margin="0,-10,0,0"
+                      Background="{StaticResource BackgroundNormBrushColor}"
+                      VerticalAlignment="Top">
+                    <Grid.Effect>
+                        <DropShadowEffect BlurRadius="24"
+                                          Opacity="0.5"
+                                          Color="{StaticResource Shade0Color}"
+                                          RenderingBias="Quality"
+                                          ShadowDepth="0" />
+                    </Grid.Effect>
+                </Grid>
+            </Grid>
+
             <speedGraph:SpeedGraph x:Name="SpeedGraph"
                                  DataContext="{Binding SpeedGraphViewModel}"
                                  VerticalAlignment="Bottom"
