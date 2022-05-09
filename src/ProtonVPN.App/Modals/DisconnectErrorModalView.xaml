@@ -37,7 +37,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           d:DataContext="{d:DesignInstance modals:DisconnectErrorModalViewModel}">
     <resource:BaseModalWindow.Resources>
         <Style x:Key="BaseErrorText" TargetType="TextBlock">
-            <Setter Property="Foreground" Value="{StaticResource OldTextBrushColor}" />
+            <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}" />
             <Setter Property="FontSize" Value="14" />
             <Setter Property="TextWrapping" Value="Wrap" />
         </Style>

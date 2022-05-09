@@ -2203,7 +2203,7 @@ This setting instructs the ProtonVPN to start automatically when the user logs i
     <comment>The description displayed in a tooltip of P icon on a sidebar server item</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_TlsCertificateError" xml:space="preserve">
-    <value>There's a problem validating the VPN server certificate, which might indicate that the network connection is being tampered with or the server you are trying to connect to has a configuration problem. Get help from our customer support by sending a &lt;Hyperlink Foreground="{StaticResource OldTextBrushColor}" Command="{Binding ReportBugCommand}"&gt;&lt;Run Text="Issue Report"/&gt;&lt;/Hyperlink&gt;.</value>
+    <value>There's a problem validating the VPN server certificate, which might indicate that the network connection is being tampered with or the server you are trying to connect to has a configuration problem. Get help from our customer support by sending a &lt;Hyperlink Command="{Binding ReportBugCommand}"&gt;&lt;Run Text="Issue Report"/&gt;&lt;/Hyperlink&gt;.</value>
     <comment>The error description displayed in Disconnect modal window if VPN server certificate validation error has occurred</comment>
   </data>
   <data name="Login_lbl_KillSwitch" xml:space="preserve">

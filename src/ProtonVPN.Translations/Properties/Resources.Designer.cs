@@ -3586,7 +3586,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There&apos;s a problem validating the VPN server certificate, which might indicate that the network connection is being tampered with or the server you are trying to connect to has a configuration problem. Get help from our customer support by sending a &lt;Hyperlink Foreground=&quot;{StaticResource OldTextBrushColor}&quot; Command=&quot;{Binding ReportBugCommand}&quot;&gt;&lt;Run Text=&quot;Issue Report&quot;/&gt;&lt;/Hyperlink&gt;..
+        ///   Looks up a localized string similar to There&apos;s a problem validating the VPN server certificate, which might indicate that the network connection is being tampered with or the server you are trying to connect to has a configuration problem. Get help from our customer support by sending a &lt;Hyperlink Command=&quot;{Binding ReportBugCommand}&quot;&gt;&lt;Run Text=&quot;Issue Report&quot;/&gt;&lt;/Hyperlink&gt;..
         /// </summary>
         public static string Dialogs_DisconnectError_msg_TlsCertificateError {
             get {
