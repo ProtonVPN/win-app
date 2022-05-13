@@ -7,9 +7,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Proton VPN")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Proton AG")]
 [assembly: AssemblyProduct("Proton VPN")]
-[assembly: AssemblyCopyright("Copyright Â© 2022 Proton AG")]
+[assembly: AssemblyCopyright("Copyright © 2022 Proton AG")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
