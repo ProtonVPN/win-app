@@ -22,6 +22,7 @@ using System.ComponentModel;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Interop;
 using System.Windows.Media.Animation;
@@ -89,6 +90,7 @@ namespace ProtonVPN.Windows
 
             _menuDropAlignmentField = typeof(SystemParameters).GetField("_menuDropAlignment", BindingFlags.NonPublic | BindingFlags.Static);
 
+            SetGenericTooltipBehaviour();
             EnsureStandardPopupAlignment();
             SystemParameters.StaticPropertyChanged += SystemParameters_StaticPropertyChanged;
 
@@ -98,6 +100,12 @@ namespace ProtonVPN.Windows
 
             Deactivated += PublishWindowState;
             Activated += PublishWindowState;
+        }
+
+        private void SetGenericTooltipBehaviour()
+        {
+            ToolTipService.ShowDurationProperty.OverrideMetadata(typeof(DependencyObject), new FrameworkPropertyMetadata(int.MaxValue));
+            ToolTipService.InitialShowDelayProperty.OverrideMetadata(typeof(DependencyObject), new FrameworkPropertyMetadata(0));
         }
 
         public void Handle(ToggleOverlay message)
