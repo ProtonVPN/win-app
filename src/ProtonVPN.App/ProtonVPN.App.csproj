@@ -303,6 +303,7 @@
       <DependentUpon>ArrowRight.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vpn\IVpnCredentialProvider.cs" />
+    <Compile Include="Windows\IWindowPositionSetter.cs" />
     <Compile Include="Windows\Popups\Delinquency\DelinquencyPopupView.xaml.cs">
       <DependentUpon>DelinquencyPopupView.xaml</DependentUpon>
     </Compile>
@@ -901,6 +902,7 @@
     </Compile>
     <Compile Include="Windows\TrayIcon.cs" />
     <Compile Include="Windows\TrayIconMouse.cs" />
+    <Compile Include="Windows\WindowPositionSetter.cs" />
     <Page Include="About\AboutModalView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
