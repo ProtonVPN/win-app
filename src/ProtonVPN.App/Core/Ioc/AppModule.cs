@@ -70,6 +70,7 @@ using ProtonVPN.Sidebar;
 using ProtonVPN.Streaming;
 using ProtonVPN.Vpn;
 using ProtonVPN.Vpn.Connectors;
+using ProtonVPN.Windows;
 
 namespace ProtonVPN.Core.Ioc
 {
@@ -307,9 +308,9 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<SignUpAvailabilityProvider>().As<ISignUpAvailabilityProvider>().SingleInstance();
             builder.RegisterType<PromoCodeManager>().As<IPromoCodeManager>().SingleInstance();
             builder.RegisterType<DeviceInfoProvider>().As<IDeviceInfoProvider>().SingleInstance();
-
             builder.RegisterType<ApplicationResourcesLoader>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<ColorPalette>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<WindowPositionSetter>().As<IWindowPositionSetter>().SingleInstance();
         }
     }
 }
