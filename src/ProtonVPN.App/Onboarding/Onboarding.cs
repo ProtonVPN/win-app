@@ -38,18 +38,18 @@ namespace ProtonVPN.Onboarding
 
         public void GoToNextStep()
         {
-            if (_appSettings.OnboardingStep >= StepCount)
-                return;
-
-            InvokeStep(++_appSettings.OnboardingStep);
+            if (_appSettings.OnboardingStep < StepCount)
+            {
+                InvokeStep(++_appSettings.OnboardingStep);
+            }
         }
 
         public void GoToPreviousStep()
         {
-            if (_appSettings.OnboardingStep <= 0)
-                return;
-
-            InvokeStep(--_appSettings.OnboardingStep);
+            if (_appSettings.OnboardingStep > 0)
+            {
+                InvokeStep(--_appSettings.OnboardingStep);
+            }
         }
 
         public void Start()
@@ -75,7 +75,7 @@ namespace ProtonVPN.Onboarding
 
         public void OnUserLoggedIn()
         {
-            var step = _appSettings.OnboardingStep;
+            int step = _appSettings.OnboardingStep;
             StepChanged?.Invoke(this, step >= 0 ? step : 0);
         }
 

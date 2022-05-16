@@ -104,9 +104,13 @@ namespace ProtonVPN.Onboarding
         private void NextTipAction()
         {
             if (_onboarding.IsLastStep())
+            {
                 _onboarding.Finish();
+            }
             else
+            {
                 _onboarding.GoToNextStep();
+            }
         }
 
         private void PrevTipAction()

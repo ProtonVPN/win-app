@@ -152,7 +152,14 @@ namespace ProtonVPN.Windows
                 Width = min;
             }
 
-            ResizeMode = step > 0 ? ResizeMode.NoResize : ResizeMode.CanResize;
+            if (step <= 0)
+            {
+                MinWidth = SIDEBAR_WIDTH;
+            }
+            else if (step > 0 && MinWidth < DEFAULT_WIDTH)
+            {
+                MinWidth = DEFAULT_WIDTH;
+            }
         }
 
         public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
