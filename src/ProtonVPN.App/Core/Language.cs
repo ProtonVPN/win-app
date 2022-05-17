@@ -43,7 +43,7 @@ namespace ProtonVPN.Core
 
         public void Initialize(string[] args)
         {
-            var lang = GetCommandLineLanguage(args);
+            string lang = GetCommandLineLanguage(args);
             if (_languageProvider.GetAll().Contains(lang))
             {
                 _startupLanguage = lang;
@@ -58,19 +58,17 @@ namespace ProtonVPN.Core
 
         public void OnUserLoggedIn()
         {
-            if (!string.IsNullOrEmpty(_startupLanguage))
+            if (string.IsNullOrEmpty(_appSettings.Language))
             {
-                _appSettings.Language = _startupLanguage;
-            }
-            else if (string.IsNullOrEmpty(_appSettings.Language))
-            {
-                _appSettings.Language = GetCurrentLanguage();
+                _appSettings.Language = !string.IsNullOrEmpty(_startupLanguage)
+                    ? _startupLanguage
+                    : GetCurrentLanguage();
             }
         }
 
         private string GetCommandLineLanguage(string[] args)
         {
-            var option = new CommandLineOption("lang", args);
+            CommandLineOption option = new("lang", args);
             return option.Params().FirstOrDefault();
         }
 
@@ -81,7 +79,7 @@ namespace ProtonVPN.Core
 
         private string GetCurrentLanguage()
         {
-            var osLanguage = Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName;
+            string osLanguage = Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName;
             return _languageProvider.GetAll().Contains(osLanguage) ? osLanguage : _defaultLocale;
         }
     }
