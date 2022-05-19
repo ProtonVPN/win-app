@@ -1,11 +1,11 @@
-# Building ProtonVPN Windows app
+# Building Proton VPN Windows app
 
-Building guide of the ProtonVPN Windows app. ProtonVPN Windows app is .NET Framework
+Building guide of the Proton VPN Windows app. Proton VPN Windows app is .NET Framework
 application created using C# and C++ programming languages.
 
 ## Prerequisites
 
-To build ProtonVPN the following tools have to be installed:
+To build Proton VPN the following tools have to be installed:
 
 - Visual Studio Community 2019
 - Windows Driver Kit (WDK) for Windows 10, version 1903
@@ -55,7 +55,7 @@ This creates TAP setup file "ProtonVPNTap.exe" in "Setup\ProtonVPNTap-SetupFiles
 folder. Otherwise, keep the previously built file. The code signing USB key must be
 provided during build.
 - Build the "Setup\ProtonVPN.aip" project using Advanced Installer. This creates 
-ProtonVPN setup file "ProtonVPN_win_x.x.x.exe" in "Setup\ProtonVPN-SetupFiles" folder,
+Proton VPN setup file "ProtonVPN_win_x.x.x.exe" in "Setup\ProtonVPN-SetupFiles" folder,
 where "x.x.x" is the application version number. The code signing USB key must be
 provided during build.
 

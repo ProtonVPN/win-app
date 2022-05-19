@@ -398,7 +398,7 @@
         <Setting Name="FeaturePromoCodeEnabled" Type="System.Boolean" Scope="User">
             <Value Profile="(Default)">False</Value>
         </Setting>
-        <Setting Name="IsToShowRebrandingModal" Type="System.Boolean" Scope="User">
+        <Setting Name="IsToShowRebrandingPopup" Type="System.Boolean" Scope="User">
             <Value Profile="(Default)">False</Value>
         </Setting>
     </Settings>

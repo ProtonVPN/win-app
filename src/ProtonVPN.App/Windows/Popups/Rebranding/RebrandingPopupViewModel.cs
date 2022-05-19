@@ -21,15 +21,15 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
 using ProtonVPN.Config.Url;
 
-namespace ProtonVPN.Modals
+namespace ProtonVPN.Windows.Popups.Rebranding
 {
-    public class RebrandingModalViewModel : BaseModalViewModel
+    public class RebrandingPopupViewModel : BasePopupViewModel
     {
         private readonly IActiveUrls _urls;
 
         public ICommand LearnMoreCommand { get; }
 
-        public RebrandingModalViewModel(IActiveUrls urls)
+        public RebrandingPopupViewModel(IActiveUrls urls, AppWindow appWindow) : base(appWindow)
         {
             _urls = urls;
             LearnMoreCommand = new RelayCommand(OpenRebrandingInfoPage);
