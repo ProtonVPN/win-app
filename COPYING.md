@@ -2,27 +2,27 @@
 
 Copyright (c) 2022 Proton Technologies AG
 
-ProtonVPN is free software: you can redistribute it and/or modify
+Proton VPN is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
 
-ProtonVPN is distributed in the hope that it will be useful,
+Proton VPN is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with ProtonVPN. If not, see [https://www.gnu.org/licenses](https://www.gnu.org/licenses/).
+along with Proton VPN. If not, see [https://www.gnu.org/licenses](https://www.gnu.org/licenses/).
 
 ## Dependencies
 
-ProtonVPN Windows app includes the following libraries:
+Proton VPN Windows app includes the following libraries:
 
 * [ProtonMail SRP library](https://github.com/ProtonMail/go-srp) by Proton Technologies AG
   | [The MIT License](https://github.com/ProtonMail/go-srp/blob/master/LICENSE.txt).
 
-ProtonVPN Windows app includes the following 3rd party software:
+Proton VPN Windows app includes the following 3rd party software:
 
 * [OpenVPN client](https://github.com/OpenVPN/openvpn) by OpenVPN Inc.
   | [The GPL v2](https://github.com/OpenVPN/openvpn/blob/master/COPYRIGHT.GPL)

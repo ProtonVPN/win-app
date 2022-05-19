@@ -19,7 +19,7 @@ namespace ProtonVPN.Translations.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resources {
@@ -178,7 +178,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ProtonVPN is up to date.
+        ///   Looks up a localized string similar to Proton VPN is up to date.
         /// </summary>
         public static string About_UpdateStatus_val_None {
             get {
@@ -322,7 +322,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ProtonVPN Free.
+        ///   Looks up a localized string similar to Proton VPN Free.
         /// </summary>
         public static string Account_lbl_Free {
             get {
@@ -394,7 +394,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ProtonVPN Plus.
+        ///   Looks up a localized string similar to Proton VPN Plus.
         /// </summary>
         public static string Account_lbl_Plus {
             get {
@@ -565,7 +565,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to To complete the update process, ProtonVPN will temporarily disconnect and deactivate Permanent Kill Switch if any of these are active. Do you want to continue?.
+        ///   Looks up a localized string similar to To complete the update process, Proton VPN will temporarily disconnect and deactivate Permanent Kill Switch if any of these are active. Do you want to continue?.
         /// </summary>
         public static string App_msg_UpdateConnectedConfirm {
             get {
@@ -574,7 +574,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ProtonVPN.
+        ///   Looks up a localized string similar to Proton VPN.
         /// </summary>
         public static string App_ttl {
             get {
@@ -721,7 +721,7 @@ namespace ProtonVPN.Translations.Properties {
         ///   Looks up a localized string similar to Providing the following details, our team can identify your problem and a possible solution with higher chances and shorter time:
         ///• Drivers installation log
         ///• List of installed applications
-        ///• ProtonVPN app and ProtonVPN service logs
+        ///• Proton VPN app and Proton VPN service logs
         ///• List of network adapters
         ///• Routing table information.
         /// </summary>
@@ -750,7 +750,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Update ProtonVPN.
+        ///   Looks up a localized string similar to Update Proton VPN.
         /// </summary>
         public static string BugReport_lbl_NewVersionAvailable {
             get {
@@ -759,7 +759,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This version of ProtonVPN might have already solved your issue!.
+        ///   Looks up a localized string similar to This version of Proton VPN might have already solved your issue!.
         /// </summary>
         public static string BugReport_lbl_NewVersionInfo {
             get {
@@ -3306,7 +3306,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to To start your journey in ProtonVPN please assign VPN connections to your account or any other sub-account..
+        ///   Looks up a localized string similar to To start your journey in Proton VPN please assign VPN connections to your account or any other sub-account..
         /// </summary>
         public static string Dialogs_AssignVpnConnections_ttl_Info1 {
             get {
@@ -3333,7 +3333,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to One of the services required by ProtonVPN (Base Filtering Engine) is not running.&lt;LineBreak/&gt;
+        ///   Looks up a localized string similar to One of the services required by Proton VPN (Base Filtering Engine) is not running.&lt;LineBreak/&gt;
         ///Please follow &lt;Hyperlink Command=&quot;{Binding OpenArticleCommand}&quot;&gt;&lt;Run Text=&quot;these&quot;/&gt;&lt;/Hyperlink&gt; instructions to enable it again and retry..
         /// </summary>
         public static string Dialogs_Bfe_msg_info {
@@ -3415,7 +3415,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The account is flagged as delinquent due to unpaid invoices. You can continue to use ProtonVPN, but any paid features are now disabled.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command=&quot;{Binding ReadAboutDelinquencyCommand}&quot;&gt;Read more about delinquency.&lt;/Hyperlink&gt;.
+        ///   Looks up a localized string similar to The account is flagged as delinquent due to unpaid invoices. You can continue to use Proton VPN, but any paid features are now disabled.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command=&quot;{Binding ReadAboutDelinquencyCommand}&quot;&gt;Read more about delinquency.&lt;/Hyperlink&gt;.
         /// </summary>
         public static string Dialogs_Delinquency_msg {
             get {
@@ -3487,7 +3487,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Some applications like anti-virus or PC optimizers can interfere with the System Services that ProtonVPN requires for securing your connection. By clicking Enable, you are allowing Windows to reactivate the ProtonVPN&apos;s Services.&lt;LineBreak/&gt;If the problem persists, try restarting your PC or reinstalling ProtonVPN..
+        ///   Looks up a localized string similar to Some applications like anti-virus or PC optimizers can interfere with the System Services that Proton VPN requires for securing your connection. By clicking Enable, you are allowing Windows to reactivate the Proton VPN&apos;s Services.&lt;LineBreak/&gt;If the problem persists, try restarting your PC or reinstalling Proton VPN..
         /// </summary>
         public static string Dialogs_DisabledService_msg_ExtraInfo {
             get {
@@ -3496,7 +3496,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Some ProtonVPN&apos;s components might be blocked or disabled, preventing you to connect. Click on Enable to fix it.&lt;LineBreak/&gt;Note that this operation requires Admin privileges..
+        ///   Looks up a localized string similar to Some Proton VPN&apos;s components might be blocked or disabled, preventing you to connect. Click on Enable to fix it.&lt;LineBreak/&gt;Note that this operation requires Admin privileges..
         /// </summary>
         public static string Dialogs_DisabledService_msg_Info {
             get {
@@ -3622,7 +3622,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ProtonVPN detected that your current network is preventing a connection to the VPN. Enabling Smart Protocol might bypass these limitations.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command=&quot;{Binding ReadAboutSmartProtocolCommand}&quot;&gt;Read more about Smart Protocol.&lt;/Hyperlink&gt;.
+        ///   Looks up a localized string similar to Proton VPN detected that your current network is preventing a connection to the VPN. Enabling Smart Protocol might bypass these limitations.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command=&quot;{Binding ReadAboutSmartProtocolCommand}&quot;&gt;Read more about Smart Protocol.&lt;/Hyperlink&gt;.
         /// </summary>
         public static string Dialogs_EnableSmartProtocol_msg {
             get {
@@ -3685,7 +3685,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Permanent Kill Switch is enabled. Exiting the application will block all the outgoing connections until ProtonVPN is connected again..
+        ///   Looks up a localized string similar to Permanent Kill Switch is enabled. Exiting the application will block all the outgoing connections until Proton VPN is connected again..
         /// </summary>
         public static string Dialogs_Exit_msg_PermanentKillSwitch {
             get {
@@ -3865,7 +3865,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ProtonVPN has detected a proxy server configured on your local network. The ProtonVPN app cannot protect the traffic that passes through this proxy. This means your connection will not be completely protected as expected..
+        ///   Looks up a localized string similar to Proton VPN has detected a proxy server configured on your local network. The Proton VPN app cannot protect the traffic that passes through this proxy. This means your connection will not be completely protected as expected..
         /// </summary>
         public static string Dialogs_Proxy_msg_ProxyDetected {
             get {
@@ -3892,7 +3892,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to To avoid any ProtonVPN errors, we strongly recommend restarting your computer to update other applications first. ProtonVPN will automatically resume installation afterward. Restart now?.
+        ///   Looks up a localized string similar to To avoid any Proton VPN errors, we strongly recommend restarting your computer to update other applications first. Proton VPN will automatically resume installation afterward. Restart now?.
         /// </summary>
         public static string Dialogs_Reboot_msg {
             get {
@@ -4036,7 +4036,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ProtonVPN Troubleshoot.
+        ///   Looks up a localized string similar to Proton VPN Troubleshoot.
         /// </summary>
         public static string Dialogs_Troubleshoot_ttl {
             get {
@@ -4180,7 +4180,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ProtonVPN could not connect because the TUN network adapter is already in use. Please disconnect any active VPNs and retry. Alternatively, switch to the TAP adapter (you can change back to TUN in the Advanced Settings)..
+        ///   Looks up a localized string similar to Proton VPN could not connect because the TUN network adapter is already in use. Please disconnect any active VPNs and retry. Alternatively, switch to the TAP adapter (you can change back to TUN in the Advanced Settings)..
         /// </summary>
         public static string Dialogs_TunInUse_msg {
             get {
@@ -4360,7 +4360,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Connection to ProtonVPN in progress....
+        ///   Looks up a localized string similar to Connection to Proton VPN in progress....
         /// </summary>
         public static string Login_lbl_TakingLongerThanExpected {
             get {
@@ -4477,7 +4477,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ProtonVPN.
+        ///   Looks up a localized string similar to Proton VPN.
         /// </summary>
         public static string Login_ttl {
             get {
@@ -4684,7 +4684,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ProtonVPN detected that your current network is preventing a connection to the VPN. Enabling Smart Protocol might bypass these limitations..
+        ///   Looks up a localized string similar to Proton VPN detected that your current network is preventing a connection to the VPN. Enabling Smart Protocol might bypass these limitations..
         /// </summary>
         public static string Notifications_EnableSmartProtocol_msg {
             get {
@@ -4855,7 +4855,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Adapt your VPN connection to your online activity with ProtonVPN&apos;s special features for optimal speed and privacy protection..
+        ///   Looks up a localized string similar to Adapt your VPN connection to your online activity with Proton VPN&apos;s special features for optimal speed and privacy protection..
         /// </summary>
         public static string Onboarding_msg_Step_4 {
             get {
@@ -4945,7 +4945,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ProtonVPN failed to fetch authentication certificate due to network issue..
+        ///   Looks up a localized string similar to Proton VPN failed to fetch authentication certificate due to network issue..
         /// </summary>
         public static string ProfileConnector_msg_MissingAuthCert {
             get {
@@ -5449,7 +5449,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Open ProtonVPN.
+        ///   Looks up a localized string similar to Open Proton VPN.
         /// </summary>
         public static string QuickLaunch_btn_OpenApp {
             get {
@@ -5800,7 +5800,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ProtonVPN was unable to refresh client authentication certificate..
+        ///   Looks up a localized string similar to Proton VPN was unable to refresh client authentication certificate..
         /// </summary>
         public static string Servers_msg_CantConnect_CertificateExpired {
             get {
@@ -5980,7 +5980,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Use ProtonVPN for any special need by allowing traffic to non-standard ports through the VPN network..
+        ///   Looks up a localized string similar to Use Proton VPN for any special need by allowing traffic to non-standard ports through the VPN network..
         /// </summary>
         public static string Settings_Advanced_lbl_NonStandardPorts_Info {
             get {
@@ -6349,7 +6349,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Automatically connect to the Quick Connect profile when ProtonVPN starts..
+        ///   Looks up a localized string similar to Automatically connect to the Quick Connect profile when Proton VPN starts..
         /// </summary>
         public static string Settings_General_lbl_ConnectOnAppStart_Info {
             get {
@@ -6727,7 +6727,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This technology allows ProtonVPN to provide higher speed and security in difficult-to-serve countries..
+        ///   Looks up a localized string similar to This technology allows Proton VPN to provide higher speed and security in difficult-to-serve countries..
         /// </summary>
         public static string Sidebar_FeaturesPopup_SmartRouting_Desc {
             get {
@@ -7177,7 +7177,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Use ProtonVPN for any special need by allowing traffic to non-standard ports through the VPN network. Upgrade to a paid plan to unlock this and many other features..
+        ///   Looks up a localized string similar to Use Proton VPN for any special need by allowing traffic to non-standard ports through the VPN network. Upgrade to a paid plan to unlock this and many other features..
         /// </summary>
         public static string Upsell_NonStandardPorts_msg {
             get {
@@ -7267,7 +7267,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ProtonVPN Free.
+        ///   Looks up a localized string similar to Proton VPN Free.
         /// </summary>
         public static string VpnPlan_val_Free {
             get {
@@ -7285,7 +7285,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ProtonVPN Basic.
+        ///   Looks up a localized string similar to Proton VPN Basic.
         /// </summary>
         public static string VpnPlan_val_Vpnbasic {
             get {
@@ -7294,7 +7294,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ProtonVPN Plus.
+        ///   Looks up a localized string similar to Proton VPN Plus.
         /// </summary>
         public static string VpnPlan_val_Vpnplus {
             get {
@@ -7357,7 +7357,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Thanks for using ProtonVPN. Take a quick look at the main app features..
+        ///   Looks up a localized string similar to Thanks for using Proton VPN. Take a quick look at the main app features..
         /// </summary>
         public static string Welcome_lbl_Thanks {
             get {
@@ -7375,7 +7375,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ProtonVPN.
+        ///   Looks up a localized string similar to Proton VPN.
         /// </summary>
         public static string Welcome_ttl {
             get {

@@ -17,11 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Modals
+namespace ProtonVPN.Windows.Popups.Rebranding
 {
-    public partial class RebrandingModalView
+    public partial class RebrandingPopupView
     {
-        public RebrandingModalView()
+        public RebrandingPopupView()
         {
             InitializeComponent();
         }

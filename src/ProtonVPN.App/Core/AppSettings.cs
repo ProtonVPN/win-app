@@ -539,7 +539,7 @@ namespace ProtonVPN.Core
             set => Set(value);
         }
 
-        public bool IsToShowRebrandingModal
+        public bool IsToShowRebrandingPopup
         {
             get => Get<bool>();
             set => Set(value);

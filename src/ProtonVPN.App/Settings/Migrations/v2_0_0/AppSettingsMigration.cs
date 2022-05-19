@@ -38,7 +38,7 @@ namespace ProtonVPN.Settings.Migrations.v2_0_0
             if (!_initialAppSettingsMigration.IsCleanInstall)
             {
                 ClearWindowsIconCache();
-                Settings.Set(nameof(IAppSettings.IsToShowRebrandingModal), true);
+                Settings.Set(nameof(IAppSettings.IsToShowRebrandingPopup), true);
             }
         }
 

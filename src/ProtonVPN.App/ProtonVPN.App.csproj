@@ -225,8 +225,8 @@
     </Compile>
     <Compile Include="Modals\DiscourageSecureCoreModalViewModel.cs" />
     <Compile Include="Modals\AssignVpnConnectionsModalViewModel.cs" />
-    <Compile Include="Modals\RebrandingModalView.xaml.cs">
-      <DependentUpon>RebrandingModalView.xaml</DependentUpon>
+    <Compile Include="Windows\Popups\Rebranding\RebrandingPopupView.xaml.cs">
+      <DependentUpon>RebrandingPopupView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modals\ExitModalView.xaml.cs">
       <DependentUpon>ExitModalView.xaml</DependentUpon>
@@ -242,7 +242,7 @@
     <Compile Include="Modals\AssignVpnConnectionsModalView.xaml.cs">
       <DependentUpon>AssignVpnConnectionsModalView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Modals\RebrandingModalViewModel.cs" />
+    <Compile Include="Windows\Popups\Rebranding\RebrandingPopupViewModel.cs" />
     <Compile Include="Modals\Upsell\NonStandardPortsUpsellModalViewModel.cs" />
     <Compile Include="Modals\Upsell\NonStandardPortsUpsellModalView.xaml.cs">
       <DependentUpon>NonStandardPortsUpsellModalView.xaml</DependentUpon>
@@ -950,7 +950,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Modals\RebrandingModalView.xaml">
+    <Page Include="Windows\Popups\Rebranding\RebrandingPopupView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

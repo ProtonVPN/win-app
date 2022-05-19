@@ -21,7 +21,9 @@ using System;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Settings;
+using ProtonVPN.Core.Window.Popups;
 using ProtonVPN.Modals.Upsell;
+using ProtonVPN.Windows.Popups.Rebranding;
 
 namespace ProtonVPN.Modals.Welcome
 {
@@ -30,15 +32,18 @@ namespace ProtonVPN.Modals.Welcome
         private readonly Random _random = new();
         private readonly IAppSettings _appSettings;
         private readonly IUserStorage _userStorage;
+        private readonly IPopupWindows _popupWindows;
         private readonly IModals _modals;
 
         public WelcomeModalManager(
             IAppSettings appSettings,
             IUserStorage userStorage,
+            IPopupWindows popupWindows,
             IModals modals)
         {
             _appSettings = appSettings;
             _userStorage = userStorage;
+            _popupWindows = popupWindows;
             _modals = modals;
         }
 
@@ -49,9 +54,9 @@ namespace ProtonVPN.Modals.Welcome
             {
                 ShowWelcomeModal();
             }
-            else if (_appSettings.IsToShowRebrandingModal)
+            else if (_appSettings.IsToShowRebrandingPopup)
             {
-                ShowRebrandingModal();
+                ShowRebrandingPopup();
             }
             else if (!user.Paid() && !_userStorage.User().IsDelinquent())
             {
@@ -76,10 +81,10 @@ namespace ProtonVPN.Modals.Welcome
             _appSettings.WelcomeModalShown = true;
         }
 
-        private void ShowRebrandingModal()
+        private void ShowRebrandingPopup()
         {
-            _modals.Show<RebrandingModalViewModel>();
-            _appSettings.IsToShowRebrandingModal = false;
+            _popupWindows.Show<RebrandingPopupViewModel>();
+            _appSettings.IsToShowRebrandingPopup = false;
         }
 
         private bool WelcomeModalHasToBeShown()
