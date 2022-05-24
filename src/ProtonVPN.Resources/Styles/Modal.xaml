@@ -55,17 +55,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </Trigger>
         </Style.Triggers>
     </Style>
-    <Style x:Key="Pill" TargetType="Button" BasedOn="{StaticResource ModalButton}">
-        <Setter Property="HorizontalAlignment" Value="Center"/>
-        <Setter Property="Height" Value="Auto"/>
-        <Setter Property="Width" Value="Auto"/>
-        <Setter Property="Padding" Value="10,3,10,3"/>
-        <Setter Property="FontSize" Value="12"/>
-        <Setter Property="FontWeight" Value="Medium"/>
-        <Setter Property="Border.CornerRadius" Value="10"/>
-        <Setter Property="Background" Value="{StaticResource OldRedBrushColor}"/>
-        <Setter Property="IsEnabled" Value="False"/>
-    </Style>
     <Style x:Key="InfoCircle" TargetType="UserControl">
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="HorizontalAlignment" Value="Left"/>
