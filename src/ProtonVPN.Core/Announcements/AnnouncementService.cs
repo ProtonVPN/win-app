@@ -199,26 +199,26 @@ namespace ProtonVPN.Core.Announcements
 
         private Panel MapPanel(OfferPanel offerPanel)
         {
-            string incentive = offerPanel.Incentive;
+            string incentive = offerPanel?.Incentive;
             string incentiveSuffix = null;
-            int indexOfIncentivePriceTag = offerPanel.Incentive.IndexOf(INCENTIVE_PRICE_TAG, StringComparison.InvariantCulture);
-            if (indexOfIncentivePriceTag >= 0)
+            int? indexOfIncentivePriceTag = offerPanel?.Incentive?.IndexOf(INCENTIVE_PRICE_TAG, StringComparison.InvariantCulture);
+            if (indexOfIncentivePriceTag is >= 0)
             {
-                incentive = offerPanel.Incentive.Substring(0, indexOfIncentivePriceTag).TrimEnd();
-                incentiveSuffix = offerPanel.Incentive.Substring(indexOfIncentivePriceTag + INCENTIVE_PRICE_TAG.Length).TrimStart();
+                incentive = offerPanel.Incentive.Substring(0, indexOfIncentivePriceTag.Value).TrimEnd();
+                incentiveSuffix = offerPanel.Incentive.Substring(indexOfIncentivePriceTag.Value + INCENTIVE_PRICE_TAG.Length).TrimStart();
             }
             return new()
             {
                 Incentive = incentive,
-                IncentivePrice = offerPanel.IncentivePrice,
+                IncentivePrice = offerPanel?.IncentivePrice,
                 IncentiveSuffix = incentiveSuffix,
-                Pill = offerPanel.Pill,
-                PictureUrl = offerPanel.PictureUrl,
-                Title = offerPanel.Title,
-                Features = MapFeatures(offerPanel.Features),
-                FeaturesFooter = offerPanel.FeaturesFooter,
-                Button = MapButton(offerPanel.Button),
-                PageFooter = offerPanel.PageFooter
+                Pill = offerPanel?.Pill,
+                PictureUrl = offerPanel?.PictureUrl,
+                Title = offerPanel?.Title,
+                Features = MapFeatures(offerPanel?.Features),
+                FeaturesFooter = offerPanel?.FeaturesFooter,
+                Button = MapButton(offerPanel?.Button),
+                PageFooter = offerPanel?.PageFooter
             };
         }
 
