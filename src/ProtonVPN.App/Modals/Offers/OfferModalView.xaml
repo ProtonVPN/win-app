@@ -69,9 +69,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                            Text="{Binding Panel.IncentiveSuffix}" />
             </Grid>
 
-            <Button Style="{StaticResource Pill}"
+            <Border CornerRadius="8"
                     Margin="0,5,0,0"
-                    Content="{Binding Panel.Pill}" />
+                    Background="{StaticResource NotificationErrorBrushColor}"
+                    BorderThickness="0"
+                    HorizontalAlignment="Center"
+                    Padding="10,3,10,3">
+                <TextBlock Text="{Binding Panel.Pill}"
+                           Foreground="{StaticResource TextNormBrushColor}"
+                           FontSize="12"
+                           FontWeight="Medium"/>
+            </Border>
 
             <Image Source="{Binding Panel.PictureUrl}"
                    Margin="0,20,0,0"
