@@ -234,6 +234,7 @@
     <Compile Include="Settings\IAppLanguageCache.cs" />
     <Compile Include="Settings\IServiceSettingsStateAware.cs" />
     <Compile Include="Settings\ServiceSettingsStateChangedEventArgs.cs" />
+    <Compile Include="Update\FeedUrlProvider.cs" />
     <Compile Include="User\VpnPlanChangedEventArgs.cs" />
     <Compile Include="Vpn\AuthCertificateUpdater.cs" />
     <Compile Include="Vpn\IVpnServiceManager.cs" />
@@ -361,8 +362,6 @@
     <Compile Include="Threading\DispatcherTimer.cs" />
     <Compile Include="Update\IUpdateStateAware.cs" />
     <Compile Include="Update\Release.cs" />
-    <Compile Include="Update\ServiceClient.cs" />
-    <Compile Include="Update\UpdateEvents.cs" />
     <Compile Include="Update\UpdateService.cs" />
     <Compile Include="Update\UpdateState.cs" />
     <Compile Include="Update\UpdateStateChangedEventArgs.cs" />
@@ -402,9 +401,9 @@
       <Project>{45a0ea81-d37e-4d7f-8ce1-ce6b6a95a9ed}</Project>
       <Name>ProtonVPN.Resource</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ProtonVPN.UpdateServiceContract\ProtonVPN.UpdateServiceContract.csproj">
-      <Project>{BB748EA2-EA18-4E6C-AB22-CCC1D91E8844}</Project>
-      <Name>ProtonVPN.UpdateServiceContract</Name>
+    <ProjectReference Include="..\ProtonVPN.Update\ProtonVPN.Update.csproj">
+      <Project>{90FDF2B3-25C9-428D-B264-5A5FAEB2D988}</Project>
+      <Name>ProtonVPN.Update</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -214,17 +214,6 @@ namespace ProtonVPN.Core.Ioc
                         c.Resolve<ILogger>(),
                         c.Resolve<IServiceEnabler>()))
                 .SingleInstance();
-            builder.Register(c =>
-                    new AppUpdateSystemService(
-                        new ReliableService(
-                            c.Resolve<ServiceRetryPolicy>(),
-                            new SafeService(
-                                new LoggingService(
-                                    c.Resolve<ILogger>(),
-                                    new SystemService(
-                                        c.Resolve<Common.Configuration.Config>().UpdateServiceName,
-                                        c.Resolve<IOsProcesses>())))), c.Resolve<ILogger>(), c.Resolve<IServiceEnabler>()))
-                .SingleInstance();
 
             builder.RegisterType<VpnServiceManager>().SingleInstance();
             builder.RegisterType<ServiceEnabler>().As<IServiceEnabler>().SingleInstance();
@@ -318,7 +307,7 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<SignUpAvailabilityProvider>().As<ISignUpAvailabilityProvider>().SingleInstance();
             builder.RegisterType<PromoCodeManager>().As<IPromoCodeManager>().SingleInstance();
             builder.RegisterType<DeviceInfoProvider>().As<IDeviceInfoProvider>().SingleInstance();
-            
+
             builder.RegisterType<ApplicationResourcesLoader>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<ColorPalette>().AsImplementedInterfaces().SingleInstance();
         }

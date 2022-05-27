@@ -24,7 +24,6 @@ using Caliburn.Micro;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Log4Net;
-using ProtonVPN.Common.OS;
 using ProtonVPN.Common.OS.Net;
 using ProtonVPN.Common.OS.Net.Http;
 using ProtonVPN.Common.OS.Net.NetworkInterface;
@@ -78,7 +77,7 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<ActiveUrls>().As<IActiveUrls>().SingleInstance();
             builder.RegisterType<ApiAppVersion>().As<IApiAppVersion>().SingleInstance();
             builder.RegisterType<SystemProcesses>().As<IOsProcesses>().SingleInstance();
-            builder.Register(c => 
+            builder.Register(c =>
                     new SafeSystemNetworkInterfaces(c.Resolve<ILogger>(), new SystemNetworkInterfaces()))
                 .As<INetworkInterfaces>().SingleInstance();
             builder.RegisterType<NetworkInterfaceLoader>().As<INetworkInterfaceLoader>().SingleInstance();
@@ -91,16 +90,16 @@ namespace ProtonVPN.Core.Ioc
                     c.Resolve<Common.Configuration.Config>().TlsPinningConfig,
                     c.Resolve<IReportClient>())).SingleInstance();
 
-            builder.Register(c => 
+            builder.Register(c =>
                 new SafeDnsHandler(
                         c.Resolve<IEventAggregator>(),
                         c.Resolve<IDnsClient>())
-                    { InnerHandler = c.Resolve<CertificateHandler>() }).SingleInstance();
+                { InnerHandler = c.Resolve<CertificateHandler>() }).SingleInstance();
 
             builder.Register(c =>
                 new LoggingHandler(
                         c.Resolve<ILogger>())
-                    {InnerHandler = c.Resolve<SafeDnsHandler>()});
+                { InnerHandler = c.Resolve<SafeDnsHandler>() });
 
             builder.Register(c =>
                 new RetryingHandler(
@@ -108,15 +107,15 @@ namespace ProtonVPN.Core.Ioc
                         c.Resolve<Common.Configuration.Config>().ApiUploadTimeout,
                         c.Resolve<Common.Configuration.Config>().ApiRetries,
                         (retryCount, response, context) => new SleepDurationProvider(response).Value())
-                    {InnerHandler = c.Resolve<LoggingHandler>()}).SingleInstance();
+                { InnerHandler = c.Resolve<LoggingHandler>() }).SingleInstance();
 
             builder.Register(c =>
                 new OutdatedAppHandler
-                    {InnerHandler = c.Resolve<RetryingHandler>()}).SingleInstance();
+                { InnerHandler = c.Resolve<RetryingHandler>() }).SingleInstance();
 
             builder.Register(c =>
                 new HumanVerificationHandler(c.Resolve<IHumanVerifier>(), WebViewConfig.IsWebViewSupported())
-                    {InnerHandler = c.Resolve<OutdatedAppHandler>()}).SingleInstance();
+                { InnerHandler = c.Resolve<OutdatedAppHandler>() }).SingleInstance();
 
             builder.Register(c =>
                 new UnauthorizedResponseHandler(
@@ -124,11 +123,11 @@ namespace ProtonVPN.Core.Ioc
                         c.Resolve<ITokenStorage>(),
                         c.Resolve<IUserStorage>(),
                         c.Resolve<ILogger>())
-                    {InnerHandler = c.Resolve<HumanVerificationHandler>()}).SingleInstance();
+                { InnerHandler = c.Resolve<HumanVerificationHandler>() }).SingleInstance();
 
             builder.Register(c =>
                 new CancellingHandler
-                    {InnerHandler = c.Resolve<UnauthorizedResponseHandler>()}).SingleInstance();
+                { InnerHandler = c.Resolve<UnauthorizedResponseHandler>() }).SingleInstance();
 
             builder.Register(c =>
                 new AlternativeHostHandler(
@@ -149,7 +148,7 @@ namespace ProtonVPN.Core.Ioc
                     new TokenClient(
                         c.Resolve<ILogger>(),
                         new HttpClient(c.Resolve<RetryingHandler>())
-                            {BaseAddress = c.Resolve<IActiveUrls>().ApiUrl.Uri},
+                        { BaseAddress = c.Resolve<IActiveUrls>().ApiUrl.Uri },
                         c.Resolve<IApiAppVersion>(),
                         c.Resolve<ITokenStorage>(),
                         c.Resolve<IAppLanguageCache>(),
@@ -165,10 +164,12 @@ namespace ProtonVPN.Core.Ioc
 
                     SafeDnsHandler safeDnsHandler = new(
                         c.Resolve<IEventAggregator>(),
-                        c.Resolve<IDnsClient>()) { InnerHandler = certificateHandler };
+                        c.Resolve<IDnsClient>())
+                    { InnerHandler = certificateHandler };
 
                     LoggingHandler loggingHandler = new(
-                        c.Resolve<ILogger>()) { InnerHandler = safeDnsHandler };
+                        c.Resolve<ILogger>())
+                    { InnerHandler = safeDnsHandler };
 
                     RetryingHandler retryingHandler = new(
                         c.Resolve<Common.Configuration.Config>().ApiTimeout,
@@ -220,17 +221,7 @@ namespace ProtonVPN.Core.Ioc
                 .As<ILogger>().SingleInstance();
             builder.RegisterType<LogCleaner>().SingleInstance();
             builder.RegisterType<SafeServiceAction>().As<ISafeServiceAction>().SingleInstance();
-            builder.Register(c => new UpdateService(
-                    c.Resolve<Common.Configuration.Config>(),
-                    c.Resolve<AppUpdateSystemService>(),
-                    c.Resolve<IAppSettings>(),
-                    c.Resolve<ServiceClient>()))
-                .AsSelf()
-                .AsImplementedInterfaces()
-                .SingleInstance();
-            builder.RegisterType<ServiceClient>().SingleInstance();
-            builder.RegisterType<UpdateEvents>().SingleInstance();
-
+            builder.RegisterType<UpdateService>().AsSelf().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<UserValidator>().SingleInstance();
 
             builder.Register(c => new UserAuth(
@@ -262,7 +253,7 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<VpnCredentialProvider>().As<IVpnCredentialProvider>().SingleInstance();
             builder.Register(c => new EventTimer(
                     c.Resolve<EventClient>(),
-                    c.Resolve<Common.Configuration.Config>().EventCheckInterval.RandomizedWithDeviation(0.2))) 
+                    c.Resolve<Common.Configuration.Config>().EventCheckInterval.RandomizedWithDeviation(0.2)))
                 .AsSelf()
                 .AsImplementedInterfaces()
                 .SingleInstance();

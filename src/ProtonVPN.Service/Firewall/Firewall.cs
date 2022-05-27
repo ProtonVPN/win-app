@@ -65,7 +65,8 @@ namespace ProtonVPN.Service.Firewall
         {
             if (_ipFilter.PermanentSublayer.GetFilterCount() > 0)
             {
-                _lastParams = new() {
+                _lastParams = new()
+                {
                     ServerIp = string.Empty,
                     Persistent = true,
                     PermanentStateAfterReboot = true,
@@ -528,7 +529,6 @@ namespace ProtonVPN.Service.Firewall
             {
                 _config.AppExePath,
                 _config.ServiceExePath,
-                _config.UpdateServiceExePath,
                 _config.WireGuard.ServicePath,
             };
 

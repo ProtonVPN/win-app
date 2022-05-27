@@ -19,6 +19,7 @@
 
 using Autofac;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Update.Files.Launchable;
 using ProtonVPN.Update.Updates;
 
 namespace ProtonVPN.Update.Config
@@ -31,20 +32,21 @@ namespace ProtonVPN.Update.Config
         public void Load(ContainerBuilder builder)
         {
             builder.RegisterType<AppUpdates>().SingleInstance();
+            builder.RegisterType<LaunchableFile>().As<ILaunchableFile>().SingleInstance();
 
-            builder.Register(c => 
+            builder.Register(c =>
                 new CleanableOnceAppUpdates(
                     new AsyncAppUpdates(
                         new SafeAppUpdates(c.Resolve<ILogger>(),
                             c.Resolve<AppUpdates>())
-                ))).As<IAppUpdates>().SingleInstance();
+                    ))).As<IAppUpdates>().SingleInstance();
 
             builder.Register(c =>
                 new SafeAppUpdate(c.Resolve<ILogger>(),
                     new ExtendedProgressAppUpdate(c.Resolve<IAppUpdateConfig>().MinProgressDuration,
                         new NotifyingAppUpdate(
                             new AppUpdate(c.Resolve<AppUpdates>()), c.Resolve<ILogger>()
-                )))).As<INotifyingAppUpdate>().SingleInstance();
+                        )))).As<INotifyingAppUpdate>().SingleInstance();
         }
     }
 }

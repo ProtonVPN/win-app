@@ -25,6 +25,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
+using ProtonVPN.Common.OS.Net.Http;
 
 namespace ProtonVPN.Update.Storage
 {
@@ -33,7 +34,7 @@ namespace ProtonVPN.Update.Storage
     /// </summary>
     internal class WebReleaseStorage : IReleaseStorage
     {
-        private static readonly JsonSerializer JsonSerializer = new JsonSerializer();
+        private static readonly JsonSerializer JsonSerializer = new();
 
         private readonly IAppUpdateConfig _config;
 
@@ -44,34 +45,34 @@ namespace ProtonVPN.Update.Storage
 
         public async Task<IEnumerable<Release>> Releases()
         {
-            var categories = await Categories();
-            var releases = new Releases.Releases(categories.Categories, _config.CurrentVersion, _config.EarlyAccessCategoryName);
+            CategoriesContract categories = await Categories();
+            Releases.Releases releases = new Releases.Releases(categories.Categories, _config.CurrentVersion, _config.EarlyAccessCategoryName);
             return releases;
         }
 
         private async Task<CategoriesContract> Categories()
         {
-            using var response = await _config.HttpClient.GetAsync(_config.FeedUri);
+            using IHttpResponseMessage response = await _config.HttpClient.GetAsync(_config.FeedUriProvider.GetFeedUrl());
             if (!response.IsSuccessStatusCode)
             {
                 throw new HttpRequestException("Response status code is not success");
             }
 
-            using var stream = await response.Content.ReadAsStreamAsync();
+            using Stream stream = await response.Content.ReadAsStreamAsync();
             return ResponseStreamResult<CategoriesContract>(stream);
         }
 
         private static T ResponseStreamResult<T>(Stream stream)
         {
-            using (var streamReader = new StreamReader(stream))
-            using (var jsonTextReader = new JsonTextReader(streamReader))
+            using StreamReader streamReader = new(stream);
+            using JsonTextReader jsonTextReader = new(streamReader);
+            T result = JsonSerializer.Deserialize<T>(jsonTextReader);
+            if (result == null)
             {
-                var result = JsonSerializer.Deserialize<T>(jsonTextReader);
-                if (result == null)
-                    throw new JsonException();
-
-                return result;
+                throw new JsonException();
             }
+
+            return result;
         }
     }
 }
