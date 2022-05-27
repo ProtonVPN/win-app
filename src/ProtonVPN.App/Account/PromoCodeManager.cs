@@ -17,11 +17,14 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Polly.Timeout;
 using ProtonVPN.Common.Abstract;
 using ProtonVPN.Core.Api;
 using ProtonVPN.Core.Api.Contracts;
+using ProtonVPN.Translations;
 
 namespace ProtonVPN.Account
 {
@@ -41,6 +44,10 @@ namespace ProtonVPN.Account
                 PromoCodeRequestData requestData = new() { Codes = new[] { code } };
                 ApiResponseResult<BaseResponse> response = await _apiClient.ApplyPromoCodeAsync(requestData);
                 return response.Success ? Result.Ok() : Result.Fail(response.Error);
+            }
+            catch (Exception e) when (e.InnerException is TimeoutRejectedException)
+            {
+                return Result.Fail(Translation.Get("Api_error_Timeout"));
             }
             catch (HttpRequestException e)
             {

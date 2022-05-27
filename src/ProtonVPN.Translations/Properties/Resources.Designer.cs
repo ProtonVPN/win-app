@@ -466,6 +466,15 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your request has failed. Please try again..
+        /// </summary>
+        public static string Api_error_Timeout {
+            get {
+                return ResourceManager.GetString("Api_error_Timeout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to About.
         /// </summary>
         public static string App_mnu_About {

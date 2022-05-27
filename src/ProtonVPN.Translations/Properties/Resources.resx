@@ -3237,4 +3237,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>&lt;Bold&gt;{0}&lt;/Bold&gt; servers</value>
     <comment>The text displayed in Account window</comment>
   </data>
+  <data name="Api_error_Timeout" xml:space="preserve">
+    <value>Your request has failed. Please try again.</value>
+  </data>
 </root>
