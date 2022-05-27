@@ -133,5 +133,8 @@ namespace ProtonVPN.Common.Configuration
 
         [Required]
         public string RebrandingUrl { get; internal set; }
+
+        [Required]
+        public string RpcServerProblemUrl { get; internal set; }
     }
 }

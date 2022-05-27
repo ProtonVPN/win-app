@@ -93,6 +93,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             Value="{translations:Loc Servers_msg_CantConnect_CertificateExpired}" />
                     <Setter Property="Visibility" Value="Visible" />
                 </DataTrigger>
+                <DataTrigger Binding="{Binding Error}" Value="{x:Static vpn:VpnError.RpcServerUnavailable}">
+                    <Setter Property="behavior:TextStyleBehavior.FormattedText"
+                            Value="{translations:Loc Servers_msg_CantConnect_RpcServerUnavailable}" />
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
                 <DataTrigger Binding="{Binding Error}" Value="{x:Static vpn:VpnError.None}">
                     <Setter Property="Visibility" Value="Collapsed" />
                 </DataTrigger>

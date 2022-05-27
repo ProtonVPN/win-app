@@ -51,6 +51,7 @@ namespace ProtonVPN.Modals
         public ICommand GoToAccountCommand { get; set; }
         public ICommand UpgradeCommand { get; set; }
         public ICommand ReportBugCommand { get; set; }
+        public ICommand OpenRpcServerUrlCommand { get; }
 
         public DisconnectErrorModalViewModel(
             ILogger logger,
@@ -72,6 +73,7 @@ namespace ProtonVPN.Modals
             GoToAccountCommand = new RelayCommand(OpenAccountPage);
             UpgradeCommand = new RelayCommand(UpgradeAction);
             ReportBugCommand = new RelayCommand(ReportBugAction);
+            OpenRpcServerUrlCommand = new RelayCommand(OpenRpcServerProblemUrl);
         }
 
         public VpnError Error
@@ -189,6 +191,11 @@ namespace ProtonVPN.Modals
         private void ReportBugAction()
         {
             _modals.Show<ReportBugModalViewModel>();
+        }
+
+        private void OpenRpcServerProblemUrl()
+        {
+            _urlConfig.RpcServerProblemUrl.Open();
         }
     }
 }
