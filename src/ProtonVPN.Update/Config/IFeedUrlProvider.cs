@@ -18,26 +18,13 @@
  */
 
 using System;
-using System.Collections.Generic;
+using ProtonVPN.Update.Feed;
 
-namespace ProtonVPN.Core.Update
+namespace ProtonVPN.Update.Config
 {
-    public class Release
+    public interface IFeedUrlProvider
     {
-        public Release(Version version, bool earlyAccess, bool isNew, IReadOnlyList<string> changeLog)
-        {
-            Version = version;
-            EarlyAccess = earlyAccess;
-            New = isNew;
-            ChangeLog = changeLog;
-        }
-
-        public Version Version { get; }
-
-        public bool EarlyAccess { get; }
-
-        public bool New { get; }
-
-        public IReadOnlyList<string> ChangeLog { get; }
+        event EventHandler<FeedUrlChangeEventArgs> FeedUrlChanged;
+        Uri GetFeedUrl();
     }
 }

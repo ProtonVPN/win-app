@@ -39,8 +39,6 @@
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;AI_SETUPEXEPATH;SETUPEXEDIR"/>
     <ROW Property="SelectedLanguage" Value="This will be set by custom action"/>
     <ROW Property="ServiceName" Value="ProtonVPN Service" Comments="Used by Services and custom action ModifyServicePermissions"/>
-    <ROW Property="UpdateServiceName" Value="ProtonVPN Update Service" Comments="Used by Services and custom action ModifyServicePermissions"/>
-    <ROW Property="UpdateServicePath" Value="This will be set by custom action"/>
     <ROW Property="UpgradeCode" Value="{2B10124D-2F81-4BB1-9165-4F9B1B1BA0F9}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
     <ROW Property="WindowsType9XDisplay" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
@@ -151,8 +149,6 @@
     <ROW Component="ProtonVPN.TlsVerify.exe" ComponentId="{506832CF-F805-46DC-B246-022014A9B263}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.TlsVerify.exe"/>
     <ROW Component="ProtonVPN.Translations.dll" ComponentId="{E059058A-E73E-443C-B23F-62091B63FE11}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.Translations.dll"/>
     <ROW Component="ProtonVPN.Update.dll" ComponentId="{FE3166FE-8A51-44AF-9ADC-BE4B5AFBA5FE}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.Update.dll"/>
-    <ROW Component="ProtonVPN.UpdateService.exe" ComponentId="{F98028EA-85CC-4905-85FB-0DBD88526567}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.UpdateService.exe"/>
-    <ROW Component="ProtonVPN.UpdateServiceContract.dll" ComponentId="{694AB59A-8291-429B-911A-6C52F250D6DE}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.UpdateServiceContract.dll"/>
     <ROW Component="ProtonVPN.Vpn.dll" ComponentId="{1231DE6D-B1C3-4E8A-913F-9D43769CAD37}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.Vpn.dll"/>
     <ROW Component="ProtonVPN.WireGuardDriver.dll" ComponentId="{8CA10AB0-2309-4F93-BD5C-C3E69CB9573E}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.WireGuardDriver.dll"/>
     <ROW Component="ProtonVPN.WireGuardService.exe" ComponentId="{DEFB403A-9543-4DE0-874D-F615F71F22FD}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.WireGuardService.exe"/>
@@ -259,8 +255,6 @@
     <ROW File="ProtonVPN.IpFilter.dll" Component_="ProtonVPN.IpFilter.dll" FileName="PROTON~2.DLL|ProtonVPN.IpFilter.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\x86\ProtonVPN.IpFilter.dll" SelfReg="false"/>
     <ROW File="ProtonVPN.IpFilter.dll_1" Component_="ProtonVPN.IpFilter.dll_1" FileName="PROTON~2.DLL|ProtonVPN.IpFilter.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\x64\ProtonVPN.IpFilter.dll" SelfReg="false"/>
     <ROW File="ProtonVPN.NetworkFilter.dll" Component_="ProtonVPN.NetworkFilter.dll" FileName="PROTON~8.DLL|ProtonVPN.NetworkFilter.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ProtonVPN.NetworkFilter.dll" SelfReg="false"/>
-    <ROW File="ProtonVPN.UpdateService.exe" Component_="ProtonVPN.UpdateService.exe" FileName="PROTON~4.EXE|ProtonVPN.UpdateService.exe" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ProtonVPN.UpdateService.exe" SelfReg="false"/>
-    <ROW File="ProtonVPN.UpdateServiceContract.dll" Component_="ProtonVPN.UpdateServiceContract.dll" FileName="PROTON~9.DLL|ProtonVPN.UpdateServiceContract.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ProtonVPN.UpdateServiceContract.dll" SelfReg="false"/>
     <ROW File="ProtonVPN.TlsVerify.exe" Component_="ProtonVPN.TlsVerify.exe" FileName="PROTON~5.EXE|ProtonVPN.TlsVerify.exe" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ProtonVPN.TlsVerify.exe" SelfReg="false"/>
     <ROW File="COPYING.md" Component_="ProtonVPN.ErrorMessage.exe.config" FileName="COPYING.md" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\COPYING.md" SelfReg="false"/>
     <ROW File="LICENSE" Component_="ProtonVPN.ErrorMessage.exe.config" FileName="LICENSE" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\LICENSE" SelfReg="false"/>
@@ -529,11 +523,9 @@
     <ROW Action="AI_ConfigFailActions" Type="11265" Source="aicustact.dll" Target="ConfigureServFailActions" WithoutSeq="true"/>
     <ROW Action="AI_ConfigureChainer" Type="1" Source="Prereq.dll" Target="ConfigurePrereqLauncher"/>
     <ROW Action="AI_DATA_SETTER" Type="51" Source="CustomActionData" Target="[AI_SETUPEXEPATH]"/>
-    <ROW Action="AI_DATA_SETTER_1" Type="51" Source="CustomActionData" Target="ProtonVPN Update Service"/>
     <ROW Action="AI_DATA_SETTER_10" Type="51" Source="CustomActionData" Target="Windows is currently pending a reboot operation. ProtonVPN installation might be affected by this. Do you want to reboot? Click No to skip reboot and proceed with the installation. Click Yes to reboot and automatically resume the installation process. |ProtonVPN |MB_YESNO,MB_ICONINFORMATION,MB_DEFBUTTON1|REBOOT_WINDOW_BTN_PRESSED|[CLIENTPROCESSID]"/>
     <ROW Action="AI_DATA_SETTER_2" Type="51" Source="CustomActionData" Target="ProtonVPN Service"/>
     <ROW Action="AI_DATA_SETTER_3" Type="51" Source="CustomActionData" Target="ProtonVPN.exe"/>
-    <ROW Action="AI_DATA_SETTER_6" Type="51" Source="CustomActionData" Target="ProtonVPN.ErrorMessage.exe"/>
     <ROW Action="AI_DOWNGRADE" Type="19" Target="4010"/>
     <ROW Action="AI_DeleteCadLzma" Type="51" Source="AI_DeleteLzma" Target="[AI_SETUPEXEPATH]"/>
     <ROW Action="AI_DeleteLzma" Type="1025" Source="lzmaextractor.dll" Target="DeleteLZMAFiles"/>
@@ -583,11 +575,8 @@
     <ROW Action="SetLanguageISOCode" Type="65" Source="ProtonVPN.InstallActions.dll" Target="SetLanguageISOCode"/>
     <ROW Action="SetTapUpgradeCode" Type="51" Source="ProductUpgradeCode" Target="{E23B9F7F-AA0A-481A-8ECA-FA69794BF50A}"/>
     <ROW Action="SetTunUpgradeCode" Type="51" Source="ProductUpgradeCode" Target="{FED0679F-A292-4507-AEF5-DD2BB8898A36}"/>
-    <ROW Action="SetUpdateServicePath" Type="51" Source="UpdateServicePath" Target="[#ProtonVPN.UpdateService.exe]"/>
-    <ROW Action="StopErrorMessageProcess" Type="1" Source="aicustact.dll" Target="StopProcess" Options="1" AdditionalSeq="AI_DATA_SETTER_6"/>
     <ROW Action="StopProcess" Type="1" Source="aicustact.dll" Target="StopProcess" Options="1" AdditionalSeq="AI_DATA_SETTER_3"/>
     <ROW Action="StopService" Type="1" Source="aicustact.dll" Target="StopWinService" Options="1" AdditionalSeq="AI_DATA_SETTER_2"/>
-    <ROW Action="StopUpdateService" Type="1" Source="aicustact.dll" Target="StopWinService" Options="1" AdditionalSeq="AI_DATA_SETTER_1"/>
     <ROW Action="UninstallCalloutDriver" Type="1" Source="ProtonVPN.InstallActions.dll" Target="UninstallCalloutDriver"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatCompsComponent">
@@ -655,8 +644,6 @@
     <ROW Feature_="MainFeature" Component_="ProtonVPN.SplitTunnelDriver.sys_1"/>
     <ROW Feature_="MainFeature" Component_="ProtonVPN.SplitTunnelDriver.sys_2"/>
     <ROW Feature_="MainFeature" Component_="ProtonVPN.SplitTunnelDriver.sys_3"/>
-    <ROW Feature_="MainFeature" Component_="ProtonVPN.UpdateService.exe"/>
-    <ROW Feature_="MainFeature" Component_="ProtonVPN.UpdateServiceContract.dll"/>
     <ROW Feature_="MainFeature" Component_="ProtonVPN.TlsVerify.exe"/>
     <ROW Feature_="MainFeature" Component_="Polly.Contrib.WaitAndRetry.dll"/>
     <ROW Feature_="MainFeature" Component_="DeviceId.dll"/>
@@ -729,30 +716,25 @@
     <ROW Action="AI_VerifyPrereq" Sequence="1101"/>
     <ROW Action="AI_ConfigureChainer" Condition="((UILevel = 2) OR (UILevel = 3)) AND (NOT UPGRADINGPRODUCTCODE)" Sequence="6598"/>
     <ROW Action="AI_LaunchChainer" Condition="AI_PREREQ_CHAINER AND (NOT UPGRADINGPRODUCTCODE)" Sequence="6599"/>
-    <ROW Action="AI_DETECT_MODERNWIN" Condition="(VersionNT &gt;= 603)" Sequence="59" MsiKey="AI_DETECT_MODERNWIN"/>
+    <ROW Action="AI_DETECT_MODERNWIN" Condition="(VersionNT &gt;= 603)" Sequence="55" MsiKey="AI_DETECT_MODERNWIN"/>
     <ROW Action="LaunchAppAfterInstall" Condition="( ( NOT Installed AND NOT OLDPRODUCTS ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( REBOOT &lt;&gt; &quot;Force&quot; )" Sequence="6612"/>
-    <ROW Action="ModifyServicePermissions" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) )" Sequence="6602"/>
+    <ROW Action="ModifyServicePermissions" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) )" Sequence="6601"/>
     <ROW Action="UninstallCalloutDriver" Condition="( ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) OR ( Installed AND ( REMOVE = &quot;ALL&quot; OR AI_INSTALL_MODE = &quot;Remove&quot; ) ) )" Sequence="6402"/>
-    <ROW Action="SetCalloutDriverFileWin10x64" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( (VersionNT64) AND (VersionNT64 = 1000 OR VersionNT64 = 1100) )" Sequence="6603"/>
-    <ROW Action="SetCalloutDriverFileWin10x86" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( (NOT VersionNT64) AND (VersionNT = 1000) )" Sequence="6604"/>
-    <ROW Action="SetCalloutDriverFileWin7x64" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( (VersionNT64) AND (VersionNT64 &lt; 1000) )" Sequence="6605"/>
-    <ROW Action="SetCalloutDriverFileWin7x86" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( (NOT VersionNT64) AND (VersionNT &lt; 1000) )" Sequence="6606"/>
-    <ROW Action="SetUpdateServicePath" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) )" Sequence="6601"/>
+    <ROW Action="SetCalloutDriverFileWin10x64" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( (VersionNT64) AND (VersionNT64 = 1000 OR VersionNT64 = 1100) )" Sequence="6602"/>
+    <ROW Action="SetCalloutDriverFileWin10x86" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( (NOT VersionNT64) AND (VersionNT = 1000) )" Sequence="6603"/>
+    <ROW Action="SetCalloutDriverFileWin7x64" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( (VersionNT64) AND (VersionNT64 &lt; 1000) )" Sequence="6604"/>
+    <ROW Action="SetCalloutDriverFileWin7x86" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( (NOT VersionNT64) AND (VersionNT &lt; 1000) )" Sequence="6605"/>
     <ROW Action="CopyInstallLog" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) )" Sequence="6614"/>
     <ROW Action="LaunchAppAfterUpdate" Condition="( NOT Installed AND OLDPRODUCTS ) AND ( REBOOT &lt;&gt; &quot;Force&quot; )" Sequence="6613"/>
     <ROW Action="AI_ExtractFiles" Sequence="1399" Builds="DefaultBuild"/>
     <ROW Action="AI_DATA_SETTER" Sequence="1398"/>
     <ROW Action="RemoveProgramData" Condition="( Installed AND ( REMOVE = &quot;ALL&quot; OR AI_INSTALL_MODE = &quot;Remove&quot; ) AND NOT UPGRADINGPRODUCTCODE )" Sequence="6401"/>
-    <ROW Action="StopProcess" Sequence="54"/>
-    <ROW Action="AI_DATA_SETTER_3" Sequence="53"/>
-    <ROW Action="StopErrorMessageProcess" Sequence="52"/>
-    <ROW Action="AI_DATA_SETTER_6" Sequence="51"/>
-    <ROW Action="StopService" Sequence="56"/>
-    <ROW Action="AI_DATA_SETTER_2" Sequence="55"/>
-    <ROW Action="StopUpdateService" Sequence="58"/>
-    <ROW Action="AI_DATA_SETTER_1" Sequence="57"/>
-    <ROW Action="SetLanguageISOCode" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) )" Sequence="6608"/>
-    <ROW Action="InstallCalloutDriver" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) )" Sequence="6607"/>
+    <ROW Action="StopProcess" Sequence="52"/>
+    <ROW Action="AI_DATA_SETTER_3" Sequence="51"/>
+    <ROW Action="StopService" Sequence="54"/>
+    <ROW Action="AI_DATA_SETTER_2" Sequence="53"/>
+    <ROW Action="SetLanguageISOCode" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) )" Sequence="6607"/>
+    <ROW Action="InstallCalloutDriver" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) )" Sequence="6606"/>
     <ROW Action="RemoveWfpObjects" Condition="( ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) OR ( Installed AND ( REMOVE = &quot;ALL&quot; OR AI_INSTALL_MODE = &quot;Remove&quot; ) ) )" Sequence="6403"/>
     <ROW Action="AI_AiRemoveFilesImmediate" Sequence="3499"/>
   </COMPONENT>
@@ -842,16 +824,13 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiServConfigFailureActionsComponent">
     <ROW MsiServiceConfigFailureActions="ServiceName" Name="[ServiceName]" Event="5" ResetPeriod="1" RebootMessage="[~]" Actions="1[~]1[~]1" DelayActions="1[~]1[~]1" Component_="AI_ExePath"/>
-    <ROW MsiServiceConfigFailureActions="ServiceName_1" Name="[UpdateServiceName]" Event="5" ResetPeriod="1" RebootMessage="[~]" Actions="1[~]1[~]1" DelayActions="1[~]1[~]1" Component_="AI_ExePath"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiServCtrlComponent">
     <ROW ServiceControl="ProtonVPN.WireGuardService.exe" Name="ProtonVPN WireGuard" Event="160" Wait="1" Component_="ProtonVPN.WireGuardService.exe"/>
     <ROW ServiceControl="ProtonVPNService.exe" Name="[ServiceName]" Event="160" Wait="1" Component_="ProtonVPNService.exe"/>
-    <ROW ServiceControl="ServiceName" Name="[UpdateServiceName]" Event="160" Wait="1" Component_="ProtonVPN.UpdateService.exe"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiServInstComponent">
     <ROW ServiceInstall="ProtonVPNService.exe" Name="[ServiceName]" DisplayName="[ServiceName]" ServiceType="16" StartType="3" ErrorControl="32769" Component_="ProtonVPNService.exe"/>
-    <ROW ServiceInstall="ServiceName" Name="[UpdateServiceName]" DisplayName="[UpdateServiceName]" ServiceType="16" StartType="3" ErrorControl="32769" Component_="ProtonVPN.UpdateService.exe"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiShortsComponent">
     <ROW Shortcut="ProtonVPN" Directory_="ProtonVPN_Dir" Name="PROTON~1|ProtonVPN" Component_="ProtonVPN.exe" Target="[#ProtonVPN.exe]" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>

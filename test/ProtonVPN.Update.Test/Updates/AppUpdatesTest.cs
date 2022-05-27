@@ -39,6 +39,7 @@ namespace ProtonVPN.Update.Test.Updates
     {
         private ILaunchableFile _launchableFile;
         private IHttpClient _httpClient;
+        private IFeedUrlProvider _feedUrlProvider;
         private DefaultAppUpdateConfig _config;
 
         #region Initialization
@@ -48,10 +49,12 @@ namespace ProtonVPN.Update.Test.Updates
         {
             _launchableFile = Substitute.For<ILaunchableFile>();
             _httpClient = Substitute.For<IHttpClient>();
+            _feedUrlProvider = Substitute.For<IFeedUrlProvider>();
+            _feedUrlProvider.GetFeedUrl().Returns(new Uri("http://127.0.0.1/win-update.json"));
             _config = new DefaultAppUpdateConfig
             {
                 HttpClient = _httpClient,
-                FeedUri = new Uri("http://127.0.0.1/win-update.json"),
+                FeedUriProvider = _feedUrlProvider,
                 UpdatesPath = "Updates",
                 CurrentVersion = new Version(),
                 EarlyAccessCategoryName = "EarlyAccess"
@@ -111,7 +114,7 @@ namespace ProtonVPN.Update.Test.Updates
         [TestMethod]
         public void AppUpdates_ShouldTrow_WhenFeedUri_IsNull()
         {
-            _config.FeedUri = null;
+            _config.FeedUriProvider = null;
             Action f = () => new AppUpdates(_config, _launchableFile);
 
             f.Should().Throw<ArgumentException>();
@@ -148,7 +151,7 @@ namespace ProtonVPN.Update.Test.Updates
             CopyFile("Empty file.txt", updatesPath);
             CopyFile("Empty file.txt", Path.Combine(updatesPath, "Some", "2nd"));
 
-            var updater = AppUpdates(new Version(1, 2, 0), updatesPath);
+            IAppUpdates updater = AppUpdates(new Version(1, 2, 0), updatesPath);
 
             updater.Cleanup();
 
@@ -164,7 +167,7 @@ namespace ProtonVPN.Update.Test.Updates
             CopyFile("ProtonVPN_win_v1.0.0.exe", updatesPath, "Some.1");
             CopyFile("ProtonVPN_win_v2.0.0.exe", updatesPath, "Later version not exe.dll");
 
-            var updater = AppUpdates(new Version(1, 2, 0), updatesPath);
+            IAppUpdates updater = AppUpdates(new Version(1, 2, 0), updatesPath);
 
             updater.Cleanup();
 
@@ -181,11 +184,11 @@ namespace ProtonVPN.Update.Test.Updates
             CopyFile("ProtonVPN_win_v1.5.0.exe", updatesPath);
             CopyFile("ProtonVPN_win_v1.5.1.exe", updatesPath);
 
-            var updater = AppUpdates(new Version(1, 5, 1), updatesPath);
+            IAppUpdates updater = AppUpdates(new Version(1, 5, 1), updatesPath);
 
             updater.Cleanup();
 
-            var files = Directory.GetFiles(updatesPath, "*", SearchOption.AllDirectories);
+            string[] files = Directory.GetFiles(updatesPath, "*", SearchOption.AllDirectories);
             files.Should()
                 .HaveCount(1)
                 .And.Match(f => Path.GetFileName(f.First()) == "ProtonVPN_win_v1.5.1.exe");
@@ -200,8 +203,8 @@ namespace ProtonVPN.Update.Test.Updates
             if (!string.IsNullOrEmpty(destPath))
                 Directory.CreateDirectory(destPath);
 
-            var filename = !string.IsNullOrEmpty(newFilename) ? newFilename : Path.GetFileName(sourcePath);
-            var destFullPath = Path.Combine(destPath ?? "", filename ?? "");
+            string filename = !string.IsNullOrEmpty(newFilename) ? newFilename : Path.GetFileName(sourcePath);
+            string destFullPath = Path.Combine(destPath ?? "", filename ?? "");
 
             File.Copy(Path.Combine("TestData", sourcePath), destFullPath);
         }

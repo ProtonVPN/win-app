@@ -53,7 +53,10 @@
     <Compile Include="..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Config\IFeedUrlProvider.cs" />
     <Compile Include="Config\Module.cs" />
+    <Compile Include="Feed\FeedType.cs" />
+    <Compile Include="Feed\FeedUrlChangeEventArgs.cs" />
     <Compile Include="Files\Validatable\CachingValidatableFile.cs" />
     <Compile Include="Files\Downloadable\IDownloadableFile.cs" />
     <Compile Include="Files\Launchable\ILaunchableFile.cs" />

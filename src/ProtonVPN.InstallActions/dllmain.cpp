@@ -23,7 +23,6 @@
 using namespace std;
 
 const auto ServiceNameProperty = L"ServiceName";
-const auto UpdateServiceNameProperty = L"UpdateServiceName";
 const auto CalloutServiceNameProperty = L"CalloutServiceName";
 const auto CalloutServiceDisplayNameProperty = L"CalloutServiceDisplayName";
 const auto CalloutDriverFileProperty = L"CalloutDriverFile";
@@ -118,10 +117,6 @@ extern "C" EXPORT long ModifyServicePermissions(MSIHANDLE hInstall)
     auto result = ModifyServicePermissions(serviceName);
     LogMessage(L"ModifyServicePermissions returned: ", result);
 
-    serviceName = GetProperty(UpdateServiceNameProperty);
-    result = ModifyServicePermissions(serviceName);
-    LogMessage(L"ModifyServicePermissions returned: ", result);
-
     return result;
 }
 
@@ -157,10 +152,10 @@ extern "C" EXPORT long PendingReboot(MSIHANDLE hInstall)
 {
     SetMsiHandle(hInstall);
     const auto result = pending_reboot();
-	if (result)
-	{
+    if (result)
+    {
         SetProperty(L"PENDING_REBOOT", L"1");
-	}
+    }
 
     LogMessage(L"Pending reboot value is: ", result);
 
@@ -206,7 +201,7 @@ extern "C" EXPORT long RemoveProgramData(MSIHANDLE hInstall)
     }
     const std::filesystem::path path(programDataPath + "\\ProtonVPN");
     std::filesystem::remove_all(path);
-    
+
     return 0;
 }
 
@@ -245,7 +240,7 @@ void AddFileToZip(const std::wstring& zipFileName, const std::wstring& fileName)
     std::wstring installDirectory = GetProperty(ApplicationDirectoryProperty);
     const std::wstring sevenZipDllPath = AddEndingSlashIfNotExists(installDirectory) + L"7za.dll";
 
-    try 
+    try
     {
         bit7z::Bit7zLibrary lib{ sevenZipDllPath };
         bit7z::BitCompressor compressor{ lib, bit7z::BitFormat::SevenZip };
@@ -255,7 +250,7 @@ void AddFileToZip(const std::wstring& zipFileName, const std::wstring& fileName)
         compressor.setUpdateMode(true);
         compressor.compressFiles(files, zipFileName);
     }
-    catch (const bit7z::BitException& ex) 
+    catch (const bit7z::BitException& ex)
     {
         LogMessage(L"Error when compressing file to zip: " + Utf8StringToWstring(ex.what()));
     }
@@ -279,6 +274,6 @@ extern "C" EXPORT long CopyInstallLog(MSIHANDLE hInstall)
 
     AddFileToZip(zipFileName, tmpLogFile);
     std::filesystem::remove(tmpLogFile);
-    
+
     return 0;
 }

@@ -112,7 +112,10 @@ namespace ProtonVPN.Core
                 .RegisterModule<BugReportingModule>()
                 .RegisterModule<LoginModule>()
                 .RegisterModule<P2PDetectionModule>()
-                .RegisterModule<ProfilesModule>();
+                .RegisterModule<ProfilesModule>()
+                .RegisterModule<UpdateModule>();
+
+            new ProtonVPN.Update.Config.Module().Load(builder);
 
             _container = builder.Build();
         }
@@ -147,7 +150,7 @@ namespace ProtonVPN.Core
             }
 
             await Resolve<IReportAnIssueFormDataProvider>().FetchData();
-            await StartAllServices();
+            await StartVpnService();
 
             if (Resolve<IUserStorage>().User().Empty() || !await IsUserValid() || await SessionExpired())
             {
@@ -163,7 +166,6 @@ namespace ProtonVPN.Core
             Resolve<ILogger>().Info<AppStopLog>("The app is exiting. Requesting services to stop.");
             Resolve<TrayIcon>().Hide();
             Resolve<MonitoredVpnService>().StopAsync();
-            Resolve<AppUpdateSystemService>().StopAsync();
         }
 
         private async Task<bool> SessionExpired()
@@ -224,10 +226,9 @@ namespace ProtonVPN.Core
             return true;
         }
 
-        private async Task StartAllServices()
+        private async Task StartVpnService()
         {
             await StartService(Resolve<VpnSystemService>());
-            await StartService(Resolve<AppUpdateSystemService>());
             await InitializeStateFromService();
         }
 
@@ -349,7 +350,7 @@ namespace ProtonVPN.Core
                 }
             };
 
-            vpnServiceManager.RegisterVpnStateCallback(async(e) =>
+            vpnServiceManager.RegisterVpnStateCallback(async (e) =>
             {
                 Resolve<IVpnManager>().OnVpnStateChanged(e);
                 await Resolve<LoginViewModel>().OnVpnStateChanged(e);
@@ -493,7 +494,7 @@ namespace ProtonVPN.Core
 
             if (Resolve<IAppSettings>().StartMinimized != StartMinimizedMode.Disabled)
             {
-                await StartAllServices();
+                await StartVpnService();
             }
 
             await Resolve<ISettingsServiceClientManager>().UpdateServiceSettings();

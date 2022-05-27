@@ -17,24 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
-using ProtonVPN.UpdateServiceContract;
-using System.ServiceModel;
-using System.Windows;
-
-namespace ProtonVPN.Core.Update
+namespace ProtonVPN.Update.Feed
 {
-    [CallbackBehavior(
-        ConcurrencyMode = ConcurrencyMode.Single,
-        UseSynchronizationContext = false)]
-    public class UpdateEvents : IUpdateEventsContract
+    public enum FeedType
     {
-        public event EventHandler<UpdateStateContract> UpdateStateChanged;
-
-        public void OnStateChanged(UpdateStateContract e)
-        {
-            Action action = () => UpdateStateChanged?.Invoke(this, e);
-            Application.Current?.Dispatcher?.BeginInvoke(action, null);
-        }
+        Public,
+        Internal,
     }
 }

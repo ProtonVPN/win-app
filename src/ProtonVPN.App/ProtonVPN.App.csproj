@@ -171,6 +171,7 @@
     <Compile Include="Core\ExpiredSessionHandler.cs" />
     <Compile Include="Core\HardwareAccelerationManager.cs" />
     <Compile Include="Core\ILanguageProvider.cs" />
+    <Compile Include="Core\Ioc\UpdateModule.cs" />
     <Compile Include="Core\IShutdownInvoker.cs" />
     <Compile Include="Core\Language.cs" />
     <Compile Include="Core\LanguageProvider.cs" />
@@ -1867,6 +1868,10 @@
     <ProjectReference Include="..\ProtonVPN.Translations\ProtonVPN.Translations.csproj">
       <Project>{2a00c747-8bc0-4ef1-a53e-37a7e156d910}</Project>
       <Name>ProtonVPN.Translations</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProtonVPN.Update\ProtonVPN.Update.csproj">
+      <Project>{90FDF2B3-25C9-428D-B264-5A5FAEB2D988}</Project>
+      <Name>ProtonVPN.Update</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
