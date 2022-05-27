@@ -1,0 +1,57 @@
+﻿<!--
+Copyright (c) 2022 Proton Technologies AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<UserControl x:Class="ProtonVPN.Resource.Graphics.Logos.ProtonDriveSquareLogo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d">
+    <Viewbox Stretch="Uniform">
+        <Canvas Width="33" Height="32">
+            <Canvas.Resources>
+                <LinearGradientBrush x:Key="Paint0Linear4807406321" MappingMode="Absolute" StartPoint="6,25"
+                                     EndPoint="16,14">
+                    <LinearGradientBrush.GradientStops>
+                        <GradientStopCollection>
+                            <GradientStop Color="#ED5FC8" />
+                            <GradientStop Color="#6D4AFF" Offset="0.988738" />
+                        </GradientStopCollection>
+                    </LinearGradientBrush.GradientStops>
+                </LinearGradientBrush>
+                <LinearGradientBrush x:Key="Paint1Linear4807406321" MappingMode="Absolute" StartPoint="0,5"
+                                     EndPoint="25,33">
+                    <LinearGradientBrush.GradientStops>
+                        <GradientStopCollection>
+                            <GradientStop Color="#6D4AFF" />
+                            <GradientStop Color="#AE8CFF" Offset="0.35934" />
+                            <GradientStop Color="#F8CCFF" Offset="1" />
+                        </GradientStopCollection>
+                    </LinearGradientBrush.GradientStops>
+                </LinearGradientBrush>
+            </Canvas.Resources>
+            <Path Fill="#ffffff"
+                  Data="M0.5 7.53623C0.5 3.37409 3.87409 0 8.03623 0H24.9638C29.1259 0 32.5 3.37409 32.5 7.53623V24.4638C32.5 28.6259 29.1259 32 24.9638 32H8.03623C3.87409 32 0.5 28.6259 0.5 24.4638V7.53623Z" />
+            <Path Fill="{StaticResource Paint0Linear4807406321}"
+                  Data="M6.41406 22.2609V9.73913C6.41406 8.58654 7.34842 7.65218 8.50102 7.65218H12.4149C12.8098 7.65218 13.1944 7.7782 13.5127 8.01191L14.8226 8.9736C15.141 9.20731 15.5256 9.33334 15.9205 9.33334H24.501C25.6536 9.33334 26.588 10.2677 26.588 11.4203V22.2609C26.588 23.4135 25.6536 24.3478 24.501 24.3478H8.50102C7.34842 24.3478 6.41406 23.4135 6.41406 22.2609Z" />
+            <Path Fill="{StaticResource Paint1Linear4807406321}"
+                  Data="M15.9205 9.33334H17.2546H22.4141H24.501C25.6536 9.33334 26.588 10.2677 26.588 11.4203V22.2609C26.588 23.4135 25.6536 24.3478 24.501 24.3478H22.2981V13.4587C22.2981 12.5585 21.5657 11.8303 20.6656 11.8355L12.7636 11.881C12.4233 11.883 12.0909 11.778 11.8136 11.5807L10.0538 10.3294C9.77908 10.1339 9.4503 10.029 9.11316 10.029H6.41406V9.73913C6.41406 8.58651 7.34843 7.65218 8.50102 7.65218H12.4149C12.8098 7.65218 13.1944 7.77819 13.5127 8.01189L14.8226 8.97362C15.141 9.20732 15.5256 9.33334 15.9205 9.33334Z" />
+        </Canvas>
+    </Viewbox>
+</UserControl>

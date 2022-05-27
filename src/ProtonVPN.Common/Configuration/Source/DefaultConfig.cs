@@ -223,6 +223,7 @@ namespace ProtonVPN.Common.Configuration.Source
                     AssignVpnConnectionsUrl = "https://protonvpn.com/support/assign-vpn-connection",
                     NonStandardPortsUrl = "https://protonvpn.com/support/non-standard-ports",
                     LoginProblemsUrl = "https://protonvpn.com/support/login-problems",
+                    RebrandingUrl = "https://protonvpn.com/blog/updated-proton-vpn",
                 },
 
                 OpenVpn =
@@ -343,22 +344,8 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 NtpServerUrl = "time.windows.com",
 
-                DeviceId = GetDeviceId(),
-
                 ServerValidationPublicKey = "MCowBQYDK2VwAyEANpYpt/FlSRwEuGLMoNAGOjy1BTyEJPJvKe00oln7LZk=",
             };
-        }
-
-        private static string GetDeviceId()
-        {
-            return new DeviceIdBuilder()
-                .AddMachineName()
-                .AddOsVersion()
-                .OnWindows(windows => windows
-                    .AddProcessorId()
-                    .AddMotherboardSerialNumber()
-                    .AddSystemDriveSerialNumber())
-                .ToString();
         }
     }
 }

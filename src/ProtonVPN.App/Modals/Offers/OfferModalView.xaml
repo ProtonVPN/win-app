@@ -40,7 +40,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        FontSize="16"
                        FontWeight="Normal"
                        TextWrapping="Wrap"
-                       Foreground="White"
+                       Foreground="{StaticResource TextNormBrushColor}"
                        Text="{Binding Panel.Incentive}" />
 
             <Grid HorizontalAlignment="Center" Margin="0">
@@ -56,7 +56,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                            FontSize="32"
                            FontWeight="Medium"
                            TextWrapping="Wrap"
-                           Foreground="White"
+                           Foreground="{StaticResource TextNormBrushColor}"
                            Text="{Binding Panel.IncentivePrice}" />
 
                 <TextBlock Grid.Column="1"
@@ -65,13 +65,21 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                            TextAlignment="Center"
                            FontSize="16"
                            TextWrapping="Wrap"
-                           Foreground="White"
+                           Foreground="{StaticResource TextNormBrushColor}"
                            Text="{Binding Panel.IncentiveSuffix}" />
             </Grid>
 
-            <Button Style="{StaticResource Pill}"
+            <Border CornerRadius="8"
                     Margin="0,5,0,0"
-                    Content="{Binding Panel.Pill}" />
+                    Background="{StaticResource NotificationErrorBrushColor}"
+                    BorderThickness="0"
+                    HorizontalAlignment="Center"
+                    Padding="10,3,10,3">
+                <TextBlock Text="{Binding Panel.Pill}"
+                           Foreground="{StaticResource TextNormBrushColor}"
+                           FontSize="12"
+                           FontWeight="Medium"/>
+            </Border>
 
             <Image Source="{Binding Panel.PictureUrl}"
                    Margin="0,20,0,0"
@@ -87,7 +95,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        FontSize="16"
                        FontWeight="Bold"
                        TextWrapping="Wrap"
-                       Foreground="White"
+                       Foreground="{StaticResource TextNormBrushColor}"
                        Text="{Binding Panel.Title}" />
 
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0,10,0,0">
@@ -114,7 +122,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                TextAlignment="Left"
                                                FontSize="14"
                                                TextWrapping="Wrap"
-                                               Foreground="White"
+                                               Foreground="{StaticResource TextNormBrushColor}"
                                                Text="{Binding Text}" />
                                 </Grid>
                             </DockPanel>
@@ -123,12 +131,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </ItemsControl>
             </StackPanel>
 
-            <Button Style="{StaticResource PrimaryVividModalButton}"
+            <Button Style="{StaticResource PrimaryModalButton}"
                     HorizontalAlignment="Center"
                     Margin="0,30,0,0"
                     Padding="25,0,25,0"
                     FontWeight="Bold"
-                    FontSize="16"
                     Content="{Binding Panel.Button.Text}"
                     Command="{Binding ButtonCommand}"/>
 
@@ -138,7 +145,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        FontSize="12"
                        FontWeight="Medium"
                        TextWrapping="Wrap"
-                       Foreground="Gray"
+                       Foreground="{StaticResource TextWeakBrushColor}"
                        Text="{Binding Panel.PageFooter}" />
 
         </StackPanel>

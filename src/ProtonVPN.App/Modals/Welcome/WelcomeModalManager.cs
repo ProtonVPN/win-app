@@ -22,7 +22,8 @@ using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Window.Popups;
-using ProtonVPN.Windows.Popups.Upsell;
+using ProtonVPN.Modals.Upsell;
+using ProtonVPN.Windows.Popups.Rebranding;
 
 namespace ProtonVPN.Modals.Welcome
 {
@@ -53,13 +54,17 @@ namespace ProtonVPN.Modals.Welcome
             {
                 ShowWelcomeModal();
             }
+            else if (_appSettings.IsToShowRebrandingPopup)
+            {
+                ShowRebrandingPopup();
+            }
             else if (!user.Paid() && !_userStorage.User().IsDelinquent())
             {
-                ShowEnjoyModal();
+                ShowUpsellModal();
             }
         }
 
-        private void ShowEnjoyModal()
+        private void ShowUpsellModal()
         {
             int randomNumber = _random.Next(0, 100);
             if (randomNumber >= 15)
@@ -67,13 +72,19 @@ namespace ProtonVPN.Modals.Welcome
                 return;
             }
 
-            _popupWindows.Show<EnjoyingUpsellPopupViewModel>();
+            _modals.Show<UpsellModalViewModel>();
         }
 
         private void ShowWelcomeModal()
         {
             _modals.Show<WelcomeModalViewModel>();
             _appSettings.WelcomeModalShown = true;
+        }
+
+        private void ShowRebrandingPopup()
+        {
+            _popupWindows.Show<RebrandingPopupViewModel>();
+            _appSettings.IsToShowRebrandingPopup = false;
         }
 
         private bool WelcomeModalHasToBeShown()

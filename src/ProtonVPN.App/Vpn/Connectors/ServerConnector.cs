@@ -27,19 +27,22 @@ namespace ProtonVPN.Vpn.Connectors
 {
     public class ServerConnector : BaseConnector
     {
-        public ServerConnector(IVpnManager vpnManager) : base(vpnManager)
+        private readonly IProfileFactory _profileFactory;
+
+        public ServerConnector(IVpnManager vpnManager,
+            IProfileFactory profileFactory)
+            : base(vpnManager)
         {
+            _profileFactory = profileFactory;
         }
 
         public async Task Connect(Server server)
         {
-            var profile = new Profile
-            {
-                IsTemporary = true,
-                ProfileType = ProfileType.Custom,
-                Features = (Features)server.Features,
-                ServerId = server.Id
-            };
+            Profile profile = _profileFactory.Create();
+            profile.IsTemporary = true;
+            profile.ProfileType = ProfileType.Custom;
+            profile.Features = (Features)server.Features;
+            profile.ServerId = server.Id;
 
             await VpnManager.ConnectAsync(profile);
         }

@@ -446,6 +446,12 @@ namespace ProtonVPN.Core
             set => Set(value);
         }
 
+        public bool FeaturePromoCodeEnabled
+        {
+            get => Get<bool>();
+            set => Set(value);
+        }
+
         public bool FeatureSmartReconnectEnabled
         {
             get => Get<bool>();
@@ -528,6 +534,12 @@ namespace ProtonVPN.Core
         }
 
         public bool HardwareAccelerationEnabled
+        {
+            get => Get<bool>();
+            set => Set(value);
+        }
+
+        public bool IsToShowRebrandingPopup
         {
             get => Get<bool>();
             set => Set(value);

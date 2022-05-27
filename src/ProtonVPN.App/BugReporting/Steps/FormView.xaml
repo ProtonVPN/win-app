@@ -24,8 +24,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:formElements="clr-namespace:ProtonVPN.BugReporting.FormElements"
              xmlns:steps="clr-namespace:ProtonVPN.BugReporting.Steps"
-             xmlns:fa="http://schemas.fontawesome.io/icons/"
              xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
+             xmlns:icons="clr-namespace:ProtonVPN.Resource.Graphics.Icons;assembly=ProtonVPN.Resource"
              d:DataContext="{d:DesignInstance steps:FormViewModel}"
              mc:Ignorable="d">
     <UserControl.Resources>
@@ -33,7 +33,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <d:Style.DataContext>
                 <x:Type Type="formElements:FormElement" />
             </d:Style.DataContext>
-            <Setter Property="Foreground" Value="Red" />
+            <Setter Property="Foreground" Value="{StaticResource NotificationErrorBrushColor}" />
             <Setter Property="Text" Value="*" />
             <Style.Triggers>
                 <DataTrigger Binding="{Binding IsMandatory}" Value="False">
@@ -42,9 +42,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </Style.Triggers>
         </Style>
         <Style x:Key="AdornerTextStyle" TargetType="{x:Type TextBlock}">
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="Opacity" Value="0.5" />
-            <Setter Property="FontStyle" Value="Oblique" />
+            <Setter Property="Foreground" Value="{StaticResource TextHintBrushColor }"/>
             <Setter Property="TextWrapping" Value="Wrap" />
             <Setter Property="Margin" Value="10,10,0,0" />
             <Setter Property="IsHitTestVisible" Value="False" />
@@ -53,6 +51,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Setter Property="Visibility" Value="Collapsed" />
             <Style.Triggers>
                 <DataTrigger Binding="{Binding Text, ElementName=AdornedTextBox}" Value="">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Text, ElementName=AdornedTextBox}" Value="{x:Null}">
                     <Setter Property="Visibility" Value="Visible" />
                 </DataTrigger>
             </Style.Triggers>
@@ -77,20 +78,42 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 <TextBlock FontSize="14"
                                            Margin="0,0,0,8"
                                            TextWrapping="Wrap">
-                                    <Run Text="{Binding Label}" Foreground="White" />
+                                    <Run Text="{Binding Label}" Foreground="{StaticResource TextNormBrushColor}" />
                                     <Run Style="{StaticResource Asterisk}" />
                                 </TextBlock>
 
                                 <Grid>
-                                    <TextBox BorderBrush="Transparent"
-                                             x:Name="AdornedTextBox"
-                                             Background="#25272C"
+                                    <TextBox x:Name="AdornedTextBox"
+                                             Background="Transparent"
+                                             BorderThickness="1"
+                                             CaretBrush="{StaticResource TextNormBrushColor}"
+                                             BorderBrush="{StaticResource BorderNormBrushColor}"
                                              TextWrapping="Wrap"
                                              Text="{Binding Value, UpdateSourceTrigger=PropertyChanged}"
-                                             Foreground="White"
+                                             Foreground="{StaticResource TextNormBrushColor}"
                                              Padding="8">
                                         <TextBox.Style>
                                             <Style TargetType="TextBox">
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="{x:Type TextBox}">
+                                                            <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                                                                <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                                                            </Border>
+                                                            <ControlTemplate.Triggers>
+                                                                <Trigger Property="IsEnabled" Value="false">
+                                                                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource BorderWeakBrushColor}"/>
+                                                                </Trigger>
+                                                                <Trigger Property="IsMouseOver" Value="true">
+                                                                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource InteractionNormHoverBrushColor}"/>
+                                                                </Trigger>
+                                                                <Trigger Property="IsFocused" Value="true">
+                                                                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource InteractionNormActiveBrushColor}"/>
+                                                                </Trigger>
+                                                            </ControlTemplate.Triggers>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
                                                 <Style.Triggers>
                                                     <DataTrigger Binding="{Binding Converter={StaticResource DataTypeConverter}}" Value="{x:Type formElements:MultiLineTextInput}">
                                                         <Setter Property="Height" Value="100" />
@@ -100,7 +123,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         </TextBox.Style>
                                         <TextBox.Resources>
                                             <Style TargetType="{x:Type Border}">
-                                                <Setter Property="CornerRadius" Value="3" />
+                                                <Setter Property="CornerRadius" Value="4" />
                                             </Style>
                                         </TextBox.Resources>
                                     </TextBox>
@@ -112,24 +135,45 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <DataTemplate DataType="{x:Type formElements:EmailInput}">
                             <StackPanel Margin="0,0,0,16">
                                 <TextBlock FontSize="14" Margin="0,0,0,8">
-                                    <Run Foreground="White" Text="{Binding Label}" />
-                                    <Run Foreground="Red" Text="*" />
+                                    <Run Foreground="{StaticResource TextNormBrushColor}" Text="{Binding Label}" />
+                                    <Run Foreground="{StaticResource NotificationErrorBrushColor}" Text="*" />
                                 </TextBlock>
 
                                 <Grid>
-                                    <TextBox Background="#25272C"
-                                             x:Name="AdornedTextBox"
+                                    <TextBox x:Name="AdornedTextBox"
+                                             Background="Transparent"
+                                             BorderThickness="1"
+                                             CaretBrush="{StaticResource TextNormBrushColor}"
+                                             BorderBrush="{StaticResource BorderNormBrushColor}"
                                              Text="{Binding Value, UpdateSourceTrigger=PropertyChanged}"
-                                             Foreground="White"
+                                             Foreground="{StaticResource TextNormBrushColor}"
                                              Padding="8">
                                         <TextBox.Style>
                                             <Style TargetType="TextBox">
                                                 <Setter Property="BorderBrush" Value="Transparent" />
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding DataContext.IsEmailValid, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}" Value="False">
-                                                        <Setter Property="BorderBrush" Value="Red" />
-                                                    </DataTrigger>
-                                                </Style.Triggers>
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="{x:Type TextBox}">
+                                                            <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                                                                <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                                                            </Border>
+                                                            <ControlTemplate.Triggers>
+                                                                <Trigger Property="IsEnabled" Value="false">
+                                                                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource BorderWeakBrushColor}"/>
+                                                                </Trigger>
+                                                                <Trigger Property="IsMouseOver" Value="true">
+                                                                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource InteractionNormHoverBrushColor}"/>
+                                                                </Trigger>
+                                                                <Trigger Property="IsFocused" Value="true">
+                                                                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource InteractionNormActiveBrushColor}"/>
+                                                                </Trigger>
+                                                                <DataTrigger Binding="{Binding DataContext.IsEmailValid, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}" Value="False">
+                                                                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource NotificationErrorBrushColor}" />
+                                                                </DataTrigger>
+                                                            </ControlTemplate.Triggers>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
                                             </Style>
                                         </TextBox.Style>
                                         <TextBox.Resources>
@@ -155,19 +199,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <CheckBox Style="{StaticResource Checkbox}"
                               Name="ErrorLogsCheckBox"
                               IsChecked="{Binding IsToIncludeLogs}" />
-                    <TextBlock Foreground="White"
+                    <TextBlock Foreground="{StaticResource TextNormBrushColor}"
                                Margin="10,0,0,0"
                                FontSize="14"
                                Text="{translations:Loc BugReport_lbl_IncludeLogs}" />
-                    <fa:FontAwesome ToolTip="{translations:Loc BugReport_lbl_LogsTooltip}"
-                                    Icon="InfoCircle"
-                                    Margin="8,0,0,0"
-                                    VerticalAlignment="Center"
-                                    HorizontalAlignment="Left"
-                                    Foreground="{StaticResource PrimaryColor}"
-                                    FontSize="16" />
+                    <icons:InfoCircleFilled Style="{StaticResource InfoCircle}"
+                                            ToolTip="{translations:Loc BugReport_lbl_LogsTooltip}"
+                                            Margin="8,0,0,0" />
                 </DockPanel>
-                <TextBlock Foreground="#9CA0AA"
+                <TextBlock Foreground="{StaticResource TextWeakBrushColor}"
                            Visibility="{Binding IsToShowLogsWarning, Converter={StaticResource BoolToVis}}"
                            FontSize="12"
                            TextWrapping="Wrap"

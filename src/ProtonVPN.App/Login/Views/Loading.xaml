@@ -23,7 +23,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
-             xmlns:icons="clr-namespace:ProtonVPN.Views.Icons"
              xmlns:viewModels="clr-namespace:ProtonVPN.Login.ViewModels"
              xmlns:controls="clr-namespace:ProtonVPN.Resource.Controls;assembly=ProtonVPN.Resource"
              mc:Ignorable="d"
@@ -32,35 +31,28 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <UserControl.Resources>
         <ResourceDictionary>
             <Style x:Key="MainStackPanel" TargetType="StackPanel">
-                <Setter Property="Width" Value="330"/>
-                <Setter Property="HorizontalAlignment" Value="Center"/>
-                <Setter Property="Margin" Value="0,40,0,0"/>
+                <Setter Property="Width" Value="330" />
+                <Setter Property="HorizontalAlignment" Value="Center" />
+                <Setter Property="VerticalAlignment" Value="Center" />
             </Style>
             <Style x:Key="LoadingLabel" TargetType="Label">
-                <Setter Property="FontStyle" Value="Italic"/>
-                <Setter Property="FontWeight" Value="Light"/>
-                <Setter Property="FontSize" Value="18"/>
-                <Setter Property="Foreground" Value="White"/>
-                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}" />
+                <Setter Property="HorizontalAlignment" Value="Center" />
             </Style>
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <Grid Background="#222329">
+    <Grid Background="{StaticResource BackgroundNormBrushColor}">
         <StackPanel Style="{StaticResource MainStackPanel}">
-            <DockPanel VerticalAlignment="Top" Margin="0,30,0,0" HorizontalAlignment="Center">
-                <icons:ProtonVpnSign HorizontalAlignment="Left" Color="White" Width="34"/>
-                <TextBlock Foreground="White" FontSize="32" Margin="5,0,0,0">
-                    <Run Text="Proton"/><Run Text="VPN" FontWeight="Bold"/>
-                </TextBlock>
-            </DockPanel>
-            <controls:ProtonAnimation Width="100" Height="100" Margin="0,110,0,0"/>
+            <controls:ProtonAnimation Width="100" />
             <Label Style="{StaticResource LoadingLabel}"
-                   Margin="0,100,0,0" Content="{translations:Loc Login_lbl_SecureInternetAnywhere}"/>
+                   Margin="0,50,0,0"
+                   Content="{translations:Loc Login_lbl_SecureInternetAnywhere}" />
             <Label Style="{StaticResource LoadingLabel}"
                    Margin="0,10,0,0"
                    Content="{translations:Loc Login_lbl_TakingLongerThanExpected}"
-                   Visibility="{Binding LongLogin, Converter={StaticResource BoolToVis}}"/>
+                   Visibility="{Binding LongLogin, Converter={StaticResource BoolToVis}}" />
         </StackPanel>
     </Grid>
 </UserControl>

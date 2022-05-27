@@ -31,6 +31,7 @@ using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Servers.Models;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
+using ProtonVPN.Core.User;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Profiles;
 using ProtonVPN.ViewModels;
@@ -40,38 +41,36 @@ namespace ProtonVPN.QuickLaunch
 {
     internal class QuickLaunchViewModel :
         LanguageAwareViewModel,
-        IVpnStateAware
+        IVpnStateAware,
+        IUserLocationAware
     {
-        private ViewModel _selectedProfile;
-        private VpnStatus _vpnStatus;
-
         private readonly ProfileManager _profileManager;
         private readonly ProfileViewModelFactory _profileHelper;
         private readonly IVpnManager _vpnManager;
         private readonly AppWindow _appWindow;
-
-        private IReadOnlyList<ProfileViewModel> _profiles;
-        private bool _showQuickConnectPopup;
-        private string _ip;
-        private string _serverName;
-        private string _countryCode;
-
+        private readonly IUserStorage _userStorage;
+        
         public ICommand ShowAppCommand { get; set; }
         public ICommand QuickConnectCommand { get; set; }
         public ICommand ProfileConnectCommand { get; set; }
 
+        private VpnStatus _vpnStatus;
+
+        private string _ip;
         public string Ip
         {
             get => _ip;
             set => Set(ref _ip, value);
         }
-
+        
+        private string _serverName;
         public string ServerName
         {
             get => _serverName;
             set => Set(ref _serverName, value);
         }
-
+        
+        private string _countryCode;
         public string CountryCode
         {
             get => _countryCode;
@@ -98,19 +97,22 @@ namespace ProtonVPN.QuickLaunch
             get => _disconnected;
             set => Set(ref _disconnected, value);
         }
-
+        
+        private bool _showQuickConnectPopup;
         public bool ShowQuickConnectPopup
         {
             get => _showQuickConnectPopup;
             set => Set(ref _showQuickConnectPopup, value);
         }
-
+        
+        private IReadOnlyList<ProfileViewModel> _profiles;
         public IReadOnlyList<ProfileViewModel> Profiles
         {
             get => _profiles;
             set => Set(ref _profiles, value);
         }
-
+        
+        private ViewModel _selectedProfile;
         public ViewModel SelectedProfile
         {
             get => _selectedProfile;
@@ -125,7 +127,8 @@ namespace ProtonVPN.QuickLaunch
             ProfileManager profileManager,
             ProfileViewModelFactory profileHelper,
             IVpnManager vpnManager,
-            AppWindow appWindow)
+            AppWindow appWindow, 
+            IUserStorage userStorage)
         {
             ShowAppCommand = new RelayCommand(ShowAppAction);
             QuickConnectCommand = new RelayCommand(QuickConnectAction);
@@ -135,6 +138,7 @@ namespace ProtonVPN.QuickLaunch
             _profileHelper = profileHelper;
             _vpnManager = vpnManager;
             _appWindow = appWindow;
+            _userStorage = userStorage;
         }
 
         public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
@@ -148,7 +152,7 @@ namespace ProtonVPN.QuickLaunch
                 case VpnStatus.Connected:
                     ServerName = server.Name;
                     CountryCode = server.EntryCountry;
-                    Ip = server.ExitIp;
+                    SetIp(server.ExitIp);
                     Connected = true;
                     Connecting = false;
                     Disconnected = false;
@@ -158,6 +162,7 @@ namespace ProtonVPN.QuickLaunch
                 case VpnStatus.Reconnecting:
                     ServerName = server.Name;
                     CountryCode = server.EntryCountry;
+                    SetUserIp();
                     Connected = false;
                     Connecting = true;
                     Disconnected = false;
@@ -166,7 +171,7 @@ namespace ProtonVPN.QuickLaunch
                 case VpnStatus.Disconnecting:
                     ServerName = "";
                     CountryCode = "";
-                    Ip = "";
+                    SetUserIp();
                     Connected = false;
                     Connecting = false;
                     Disconnected = true;
@@ -174,6 +179,29 @@ namespace ProtonVPN.QuickLaunch
             }
 
             return Task.CompletedTask;
+        }
+
+        private void SetUserIp()
+        {
+            if (_connected)
+            {
+                return;
+            }
+
+            SetIp(_userStorage.Location().Ip);
+        }
+
+        private void SetIp(string ip)
+        {
+            Ip = ip;
+        }
+
+        public async Task OnUserLocationChanged(UserLocationEventArgs e)
+        {
+            if (_vpnStatus == VpnStatus.Disconnected)
+            {
+                SetIp(e.Location.Ip);
+            }
         }
 
         public override async void OnAppSettingsChanged(PropertyChangedEventArgs e)
@@ -207,6 +235,7 @@ namespace ProtonVPN.QuickLaunch
 
         public async void Load()
         {
+            SetUserIp();
             await LoadProfiles();
         }
 

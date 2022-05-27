@@ -20,14 +20,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ProtonVPN.Core.Abstract;
+using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Servers;
+using ProtonVPN.Core.Servers.Models;
 using ProtonVPN.Core.Servers.Specs;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.User;
 using ProtonVPN.Modals.Upsell;
 using ProtonVPN.Profiles.Servers;
+using Profile = ProtonVPN.Core.Profiles.Profile;
 
 namespace ProtonVPN.Profiles.Form
 {
@@ -45,7 +49,9 @@ namespace ProtonVPN.Profiles.Form
             ProfileManager profileManager,
             IDialogs dialogs,
             IModals modals,
-            ServerManager serverManager) : base(appConfig, colorProvider, userStorage, profileManager, dialogs, modals, serverManager)
+            ServerManager serverManager,
+            IProfileFactory profileFactory)
+            : base(appConfig, colorProvider, userStorage, profileManager, dialogs, modals, serverManager, profileFactory)
         {
             _modals = modals;
         }
@@ -96,11 +102,11 @@ namespace ProtonVPN.Profiles.Form
         public override void Load()
         {
             base.Load();
-            if (EditMode)
-                return;
-
-            LoadCountries();
-            LoadServers();
+            if (!EditMode)
+            {
+                LoadCountries();
+                LoadServers();
+            }
         }
 
         public override void LoadProfile(Profile profile)
@@ -118,9 +124,9 @@ namespace ProtonVPN.Profiles.Form
             _unsavedChanges = false;
         }
 
-        protected override Profile GetProfile()
+        protected override Profile CreateProfile()
         {
-            var profile = base.GetProfile();
+            Profile profile = base.CreateProfile();
             profile.CountryCode = SelectedCountry?.CountryCode;
             profile.ServerId = SelectedServer?.Id;
             return profile;
@@ -128,7 +134,7 @@ namespace ProtonVPN.Profiles.Form
 
         protected override async Task<Error> GetFormError()
         {
-            var error = await base.GetFormError();
+            Error error = await base.GetFormError();
             if (error != Error.None)
             {
                 if (error == Error.EmptyServer && SelectedCountry == null)
@@ -149,11 +155,11 @@ namespace ProtonVPN.Profiles.Form
 
         protected virtual List<IServerViewModel> GetServersByCountry(string countryCode)
         {
-            var spec = new ServerByFeatures(GetFeatures()) &&
-                       new ExitCountryServer(countryCode);
-            var countryServers = ServerManager.GetServers(spec);
+            Specification<LogicalServerContract> spec = new ServerByFeatures(GetFeatures()) &&
+                                                        new ExitCountryServer(countryCode);
+            IReadOnlyCollection<Server> countryServers = ServerManager.GetServers(spec);
 
-            var servers = GetPredefinedServerViewModels()
+            List<IServerViewModel> servers = GetPredefinedServerViewModels()
                 .Union(GetServerViewModels(countryServers))
                 .ToList();
 
@@ -169,9 +175,9 @@ namespace ProtonVPN.Profiles.Form
 
         private bool IsUpgradeRequiredForCountry(string countryCode)
         {
-            var spec = new ServerByFeatures(GetFeatures()) &&
-                       new ExitCountryServer(countryCode) &&
-                       new MaxTierServer(UserStorage.User().MaxTier);
+            Specification<LogicalServerContract> spec = new ServerByFeatures(GetFeatures()) &&
+                                                        new ExitCountryServer(countryCode) &&
+                                                        new MaxTierServer(UserStorage.User().MaxTier);
 
             return !ServerManager.GetServers(spec).Any();
         }

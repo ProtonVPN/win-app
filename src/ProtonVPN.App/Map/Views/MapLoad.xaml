@@ -28,12 +28,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <Grid>
         <Label Content="{Binding Load, ElementName=MapLoadControl}"
                FontSize="7"
-               Foreground="White"
+               Foreground="{StaticResource OldTextBrushColor}"
                Padding="0"
                Margin="1,-2,0,0"
                VerticalAlignment="Center"
                HorizontalAlignment="Center"/>
-        <Ellipse Stroke="White"
+        <Ellipse Stroke="{StaticResource OldTextBrushColor}"
                  StrokeThickness="1"
                  Width="16"
                  Height="16"/>
@@ -42,6 +42,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                    Radius="8"
                                    Percentage="{Binding Load, ElementName=MapLoadControl}"
                                    StrokeThickness="2"
-                                   SegmentColor="White"/>
+                                   SegmentColor="{StaticResource OldTextBrushColor}"/>
     </Grid>
 </UserControl>

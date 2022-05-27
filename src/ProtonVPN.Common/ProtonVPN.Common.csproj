@@ -147,10 +147,12 @@
     <Compile Include="Events\SentryHttpClientHandler.cs" />
     <Compile Include="Extensions\BoolExtensions.cs" />
     <Compile Include="Extensions\CollectionExtensions.cs" />
+    <Compile Include="Extensions\ColorExtensions.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\DateTimeOffsetExtensions.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Extensions\ListExtensions.cs" />
+    <Compile Include="Extensions\SecureStringExtensions.cs" />
     <Compile Include="Extensions\TaskExtensions.cs" />
     <Compile Include="Go\GoExtensions.cs" />
     <Compile Include="Go\GoString.cs" />
@@ -250,6 +252,8 @@
     <Compile Include="Logging\LoggerExtensions.cs" />
     <Compile Include="Networking\OpenVpnAdapter.cs" />
     <Compile Include="Networking\VpnProtocol.cs" />
+    <Compile Include="OS\DeviceInfoProvider.cs" />
+    <Compile Include="OS\IDeviceInfoProvider.cs" />
     <Compile Include="OS\Net\INetworkInterfaceLoader.cs" />
     <Compile Include="OS\Net\NetworkInterfaceLoader.cs" />
     <Compile Include="OS\Net\NetworkAddress.cs" />
@@ -308,7 +312,6 @@
     <Compile Include="Logging\ILoggerFactory.cs" />
     <Compile Include="Logging\LogCleaner.cs" />
     <Compile Include="OS\Event\EventLog.cs" />
-    <Compile Include="OS\IEnvironment.cs" />
     <Compile Include="OS\Net\Http\HttpClients.cs" />
     <Compile Include="OS\Net\Http\HttpStatusCodeExtensions.cs" />
     <Compile Include="OS\Net\Http\IHttpClient.cs" />
@@ -324,7 +327,6 @@
     <Compile Include="OS\Net\NetworkInterface\SystemNetworkInterface.cs" />
     <Compile Include="OS\Net\NetworkInterface\SafeSystemNetworkInterfaces.cs" />
     <Compile Include="OS\Net\NetworkInterface\SystemNetworkInterfaces.cs" />
-    <Compile Include="OS\OsEnvironment.cs" />
     <Compile Include="OS\Processes\IOsProcess.cs" />
     <Compile Include="OS\Processes\IOsProcesses.cs" />
     <Compile Include="OS\Processes\NullOsProcess.cs" />

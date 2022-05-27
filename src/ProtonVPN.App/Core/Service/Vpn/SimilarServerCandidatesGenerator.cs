@@ -37,15 +37,18 @@ namespace ProtonVPN.Core.Service.Vpn
         private readonly ProfileConnector _profileConnector;
         private readonly ServerManager _serverManager;
         private readonly IAppSettings _appSettings;
+        private readonly IProfileFactory _profileFactory;
 
         public SimilarServerCandidatesGenerator(
             ProfileConnector profileConnector,
-            ServerManager serverManager, 
-            IAppSettings appSettings)
+            ServerManager serverManager,
+            IAppSettings appSettings,
+            IProfileFactory profileFactory)
         {
             _profileConnector = profileConnector;
             _serverManager = serverManager;
             _appSettings = appSettings;
+            _profileFactory = profileFactory;
         }
 
         public IList<Server> Generate(bool isToIncludeOriginalServer,
@@ -78,16 +81,14 @@ namespace ProtonVPN.Core.Service.Vpn
             Profile profile = originalProfile;
             if (originalProfile == null || !string.IsNullOrEmpty(originalProfile.ServerId))
             {
-                profile = new()
-                {
-                    VpnProtocol = VpnProtocol.Smart,
-                    ProfileType = ProfileType.Fastest,
-                    Features = (Features)(originalServer?.Features ?? (sbyte)Features.None),
-                    EntryCountryCode = originalServer?.EntryCountry,
-                    CountryCode = originalServer?.ExitCountry,
-                    City = originalServer?.City,
-                    ExactTier = originalServer == null ? null : (sbyte)originalServer.Tier
-                };
+                profile = _profileFactory.Create();
+                profile.VpnProtocol = VpnProtocol.Smart;
+                profile.ProfileType = ProfileType.Fastest;
+                profile.Features = (Features)(originalServer?.Features ?? (sbyte)Features.None);
+                profile.EntryCountryCode = originalServer?.EntryCountry;
+                profile.CountryCode = originalServer?.ExitCountry;
+                profile.City = originalServer?.City;
+                profile.ExactTier = originalServer == null ? null : (sbyte)originalServer.Tier;
             }
 
             if ((profile.Features & Features.SecureCore) > 0 != _appSettings.SecureCore)
@@ -143,12 +144,10 @@ namespace ProtonVPN.Core.Service.Vpn
 
         private Server GetBestServerForSameExitCountryAndDifferentEntryCountry(Server originalServer, IList<Server> excludedServers, Profile baseProfile)
         {
-            Profile profile = new()
-            {
-                ProfileType = ProfileType.Fastest,
-                Features = baseProfile.Features,
-                CountryCode = baseProfile.CountryCode
-            };
+            Profile profile = _profileFactory.Create();
+            profile.ProfileType = ProfileType.Fastest;
+            profile.Features = baseProfile.Features;
+            profile.CountryCode = baseProfile.CountryCode;
             return GetBestServer(originalServer, excludedServers, profile, s => s.EntryCountry != baseProfile.EntryCountryCode);
         }
 
@@ -170,102 +169,84 @@ namespace ProtonVPN.Core.Service.Vpn
 
         private Server GetBestServerForSameEntryCountryAndDifferentExitCountry(Server originalServer, IList<Server> excludedServers, Profile baseProfile)
         {
-            Profile profile = new()
-            {
-                ProfileType = ProfileType.Fastest,
-                Features = baseProfile.Features,
-                EntryCountryCode = baseProfile.EntryCountryCode
-            };
+            Profile profile = _profileFactory.Create();
+            profile.ProfileType = ProfileType.Fastest;
+            profile.Features = baseProfile.Features;
+            profile.EntryCountryCode = baseProfile.EntryCountryCode;
             return GetBestServer(originalServer, excludedServers, profile, s => s.ExitCountry != baseProfile.CountryCode);
         }
 
         private Server GetBestServerForDifferentEntryAndExitCountries(Server originalServer, IList<Server> excludedServers, Profile baseProfile)
         {
-            Profile profile = new()
-            {
-                ProfileType = ProfileType.Fastest,
-                Features = baseProfile.Features
-            };
+            Profile profile = _profileFactory.Create();
+            profile.ProfileType = ProfileType.Fastest;
+            profile.Features = baseProfile.Features;
             return GetBestServer(originalServer, excludedServers, profile,
                 s => s.EntryCountry != baseProfile.EntryCountryCode && s.ExitCountry != baseProfile.CountryCode);
         }
 
         private Server GetBestServerForSameCityTierFeatures(Server originalServer, IList<Server> excludedServers, Profile baseProfile)
         {
-            Profile profile = new()
-            {
-                ProfileType = ProfileType.Fastest,
-                Features = baseProfile.Features,
-                CountryCode = baseProfile.CountryCode,
-                City = baseProfile.City,
-                ExactTier = baseProfile.ExactTier
-            };
+            Profile profile = _profileFactory.Create();
+            profile.ProfileType = ProfileType.Fastest;
+            profile.Features = baseProfile.Features;
+            profile.CountryCode = baseProfile.CountryCode;
+            profile.City = baseProfile.City;
+            profile.ExactTier = baseProfile.ExactTier;
             return GetBestServer(originalServer, excludedServers, profile);
         }
 
         private Server GetBestServerForSameCountryTierFeatures(Server originalServer, IList<Server> excludedServers, Profile baseProfile)
         {
-            Profile profile = new()
-            {
-                ProfileType = ProfileType.Fastest,
-                Features = baseProfile.Features,
-                CountryCode = baseProfile.CountryCode,
-                ExactTier = baseProfile.ExactTier
-            };
+            Profile profile = _profileFactory.Create();
+            profile.ProfileType = ProfileType.Fastest;
+            profile.Features = baseProfile.Features;
+            profile.CountryCode = baseProfile.CountryCode;
+            profile.ExactTier = baseProfile.ExactTier;
             return GetBestServer(originalServer, excludedServers, profile);
         }
 
         private Server GetBestServerForSameCountryFeaturesAndDifferentCity(Server originalServer, IList<Server> excludedServers, Profile baseProfile)
         {
-            Profile profile = new()
-            {
-                ProfileType = ProfileType.Fastest,
-                Features = baseProfile.Features,
-                CountryCode = baseProfile.CountryCode
-            };
+            Profile profile = _profileFactory.Create();
+            profile.ProfileType = ProfileType.Fastest;
+            profile.Features = baseProfile.Features;
+            profile.CountryCode = baseProfile.CountryCode;
             return GetBestServer(originalServer, excludedServers, profile, s => s.City != baseProfile.City);
         }
 
         private Server GetBestServerForSameFeaturesAndDifferentCountry(Server originalServer, IList<Server> excludedServers, Profile baseProfile)
         {
-            Profile profile = new()
-            {
-                ProfileType = ProfileType.Fastest,
-                Features = baseProfile.Features
-            };
+            Profile profile = _profileFactory.Create();
+            profile.ProfileType = ProfileType.Fastest;
+            profile.Features = baseProfile.Features;
             return GetBestServer(originalServer, excludedServers, profile, s => s.ExitCountry != baseProfile.CountryCode);
         }
 
         private Server GetBestServerForSameCityAndNoFeatures(Server originalServer, IList<Server> excludedServers, Profile baseProfile)
         {
-            Profile profile = new()
-            {
-                ProfileType = ProfileType.Fastest,
-                Features = Features.None,
-                CountryCode = baseProfile.CountryCode,
-                City = baseProfile.City
-            };
+            Profile profile = _profileFactory.Create();
+            profile.ProfileType = ProfileType.Fastest;
+            profile.Features = Features.None;
+            profile.CountryCode = baseProfile.CountryCode;
+            profile.City = baseProfile.City;
             return GetBestServer(originalServer, excludedServers, profile);
         }
 
         private Server GetBestServerForSameCountryAndNoFeaturesAndDifferentCity(Server originalServer, IList<Server> excludedServers, Profile baseProfile)
         {
-            Profile profile = new()
-            {
-                ProfileType = ProfileType.Fastest,
-                Features = Features.None,
-                CountryCode = baseProfile.CountryCode
-            };
+            Profile profile = _profileFactory.Create();
+            profile.ProfileType = ProfileType.Fastest;
+            profile.Features = Features.None;
+            profile.CountryCode = baseProfile.CountryCode;
             return GetBestServer(originalServer, excludedServers, profile, s => s.City != baseProfile.City);
         }
 
         private Server GetBestServerForNoFeaturesAndDifferentCountry(Server originalServer, IList<Server> excludedServers, Profile baseProfile)
         {
-            Profile profile = new()
-            {
-                ProfileType = ProfileType.Fastest,
-                Features = Features.None
-            };
+            Profile profile = _profileFactory.Create();
+            profile.ProfileType = ProfileType.Fastest;
+            profile.Features = Features.None;
             return GetBestServer(originalServer, excludedServers, profile, s => s.ExitCountry != baseProfile.CountryCode);
         }
     }

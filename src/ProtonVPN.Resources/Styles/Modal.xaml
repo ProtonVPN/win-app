@@ -19,103 +19,53 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
     <Style x:Key="ModalButton" TargetType="Button" BasedOn="{StaticResource ClearStyleButton}">
         <Setter Property="Height" Value="40"/>
-        <Setter Property="Padding" Value="30,0,30,1"/>
+        <Setter Property="Padding" Value="24,0,24,1"/>
         <Setter Property="FontSize" Value="16"/>
-        <Setter Property="Margin" Value="0,0,10,0"/>
-        <Setter Property="Border.CornerRadius" Value="20"/>
-        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Margin" Value="0,0,0,0"/>
+        <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}"/>
     </Style>
     <Style x:Key="PrimaryModalButton" TargetType="Button" BasedOn="{StaticResource ModalButton}">
-        <Setter Property="Background" Value="{StaticResource PrimaryColor}"/>
-        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="Background" Value="{StaticResource InteractionNormBrushColor}"/>
         <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="{StaticResource PrimaryColorDimmed}"/>
-            </Trigger>
             <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Background" Value="#71C191"/>
-                <Setter Property="Foreground" Value="#E6E1E1"/>
+                <Setter Property="Background" Value="{StaticResource InteractionWeakBrushColor}"/>
+                <Setter Property="Foreground" Value="{StaticResource TextWeakBrushColor}"/>
             </Trigger>
-        </Style.Triggers>
-    </Style>
-    <Style x:Key="PrimaryVividModalButton" TargetType="Button" BasedOn="{StaticResource PrimaryModalButton}">
-        <Setter Property="Background" Value="#00a651"/>
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="#00d065"/>
-            </Trigger>
-        </Style.Triggers>
-    </Style>
-    <Style x:Key="PinkModalButton" TargetType="Button" BasedOn="{StaticResource PrimaryModalButton}">
-        <Setter Property="Background" Value="#eb3c4b"/>
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="#f96571"/>
-            </Trigger>
-        </Style.Triggers>
-    </Style>
-    <Style x:Key="SecondaryVividModalButton" TargetType="Button" BasedOn="{StaticResource PrimaryModalButton}">
-        <Setter Property="Background" Value="#26272d"/>
-        <Setter Property="BorderThickness" Value="2"/>
-        <Setter Property="BorderBrush" Value="White"/>
-        <Setter Property="Height" Value="38"/>
-        <Setter Property="Border.CornerRadius" Value="19"/>
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="#67686d"/>
-            </Trigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="True"/>
+                    <Condition Property="IsEnabled" Value="True"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="Background" Value="{StaticResource InteractionNormHoverBrushColor}"/>
+                <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}"/>
+            </MultiTrigger>
         </Style.Triggers>
     </Style>
     <Style x:Key="SecondaryModalButton" TargetType="Button" BasedOn="{StaticResource ModalButton}">
         <Setter Property="Content" Value="{Binding SecondaryButtonText}"/>
+        <Setter Property="Border.BorderThickness" Value="2"/>
+        <Setter Property="BorderBrush" Value="{StaticResource BorderNormBrushColor}"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource InteractionDefaultHoverBrushColor}"/>
+                <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="InfoCircle" TargetType="UserControl">
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="BorderBrush" Value="White"/>
+        <Setter Property="Foreground" Value="{StaticResource TextHintBrushColor}"/>
+        <Setter Property="Height" Value="16"/>
+        <Setter Property="Width" Value="16"/>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Border.BorderBrush" Value="Transparent"/>
-                <Setter Property="Background" Value="White"/>
-                <Setter Property="Foreground" Value="#222328"/>
+                <Setter Property="Foreground" Value="{StaticResource TextWeakBrushColor}"/>
             </Trigger>
         </Style.Triggers>
-    </Style>
-    <Style x:Key="SecondaryButton" TargetType="Button" BasedOn="{StaticResource ModalButton}">
-        <Setter Property="Content" Value="{Binding SecondaryButtonText}"/>
-        <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="BorderBrush" Value="White"/>
-        <Setter Property="Visibility" Value="{Binding ShowSecondaryButton, Converter={StaticResource BoolToVis}}"/>
-        <Setter Property="Command" Value="{Binding SecondaryCommand}"/>
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Border.BorderBrush" Value="Transparent"/>
-                <Setter Property="Background" Value="White"/>
-                <Setter Property="Foreground" Value="#222328"/>
-            </Trigger>
-        </Style.Triggers>
-    </Style>
-    <Style x:Key="PrimaryButton" TargetType="Button" BasedOn="{StaticResource ModalButton}">
-        <Setter Property="Content" Value="{Binding PrimaryButtonText}"/>
-        <Setter Property="Background" Value="{StaticResource PrimaryColor}"/>
-        <Setter Property="BorderBrush" Value="Transparent"/>
-        <Setter Property="Visibility" Value="{Binding ShowPrimaryButton, Converter={StaticResource BoolToVis}}"/>
-        <Setter Property="Command" Value="{Binding PrimaryCommand}"/>
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="{StaticResource PrimaryColorDimmed}"/>
-            </Trigger>
-        </Style.Triggers>
-    </Style>
-    <Style x:Key="Pill" TargetType="Button" BasedOn="{StaticResource ModalButton}">
-        <Setter Property="HorizontalAlignment" Value="Center"/>
-        <Setter Property="Height" Value="Auto"/>
-        <Setter Property="Width" Value="Auto"/>
-        <Setter Property="Padding" Value="10,3,10,3"/>
-        <Setter Property="Margin" Value="0,0,0,0"/>
-        <Setter Property="FontSize" Value="12"/>
-        <Setter Property="FontWeight" Value="Medium"/>
-        <Setter Property="Border.CornerRadius" Value="10"/>
-        <Setter Property="Background" Value="#d53535"/>
-        <Setter Property="IsEnabled" Value="False"/>
     </Style>
 </ResourceDictionary>

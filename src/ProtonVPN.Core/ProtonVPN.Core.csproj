@@ -121,6 +121,7 @@
     <Compile Include="Api\Contracts\StreamingServicesResponse.cs" />
     <Compile Include="Api\Contracts\TwoFactorAuth.cs" />
     <Compile Include="Api\Contracts\VpnConfig.cs" />
+    <Compile Include="Api\PromoCodeRequestData.cs" />
     <Compile Include="Api\Data\TwoFactorRequestData.cs" />
     <Compile Include="Api\Extensions\HttpResponseMessageExtensions.cs" />
     <Compile Include="Api\Extensions\X509CertificateExtensions.cs" />
@@ -221,6 +222,8 @@
     <Compile Include="OS\NtpClient.cs" />
     <Compile Include="OS\SystemState.cs" />
     <Compile Include="PortForwarding\IPortForwardingStateAware.cs" />
+    <Compile Include="Profiles\IProfileFactory.cs" />
+    <Compile Include="Profiles\ProfileFactory.cs" />
     <Compile Include="ReportAnIssue\DefaultDataProvider.cs" />
     <Compile Include="ReportAnIssue\InputType.cs" />
     <Compile Include="ReportAnIssue\IReportAnIssueFormDataProvider.cs" />
@@ -394,6 +397,10 @@
     <ProjectReference Include="..\ProtonVPN.Crypto\ProtonVPN.Crypto.csproj">
       <Project>{BA2D505E-CED3-4FCB-A463-DAF6B77C18DE}</Project>
       <Name>ProtonVPN.Crypto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProtonVPN.Resources\ProtonVPN.Resource.csproj">
+      <Project>{45a0ea81-d37e-4d7f-8ce1-ce6b6a95a9ed}</Project>
+      <Name>ProtonVPN.Resource</Name>
     </ProjectReference>
     <ProjectReference Include="..\ProtonVPN.UpdateServiceContract\ProtonVPN.UpdateServiceContract.csproj">
       <Project>{BB748EA2-EA18-4E6C-AB22-CCC1D91E8844}</Project>

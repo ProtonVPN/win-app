@@ -425,5 +425,21 @@ namespace ProtonVPN.Core.Api
                 throw new HttpRequestException(e.Message, e);
             }
         }
+
+        public async Task<ApiResponseResult<BaseResponse>> ApplyPromoCodeAsync(PromoCodeRequestData requestData)
+        {
+            try
+            {
+                HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Post, "payments/v4/promocode");
+                request.Content = GetJsonContent(requestData);
+                using HttpResponseMessage response = await _client.SendAsync(request).ConfigureAwait(false);
+                string body = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+                return Logged(ApiResponseResult<BaseResponse>(body, response.StatusCode), "Apply promo code");
+            }
+            catch (Exception e) when (e.IsApiCommunicationException())
+            {
+                throw new HttpRequestException(e.Message, e);
+            }
+        }
     }
 }

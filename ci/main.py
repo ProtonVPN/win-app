@@ -91,14 +91,14 @@ elif args.command == 'app-installer':
 
 elif args.command == 'tap-installer':
     print('Building tap installer')
-    version = '1.1.3'
+    version = '1.1.4'
     err = installer.build(version, '', 'Setup/ProtonVPNTap.aip')
     print_sha256('.\Setup\ProtonVPNTap-SetupFiles\ProtonVPNTap_{version}.exe'.format(version=version))
     sys.exit(err)
 
 elif args.command == 'tun-installer':
     print('Building tun installer')
-    version = '0.13.0'
+    version = '0.13.1'
     err = installer.build(version, '', 'Setup/ProtonVPNTun.aip')
     print_sha256('.\Setup\ProtonVPNTun-SetupFiles\ProtonVPNTun_{version}.exe'.format(version=version))
     sys.exit(err)

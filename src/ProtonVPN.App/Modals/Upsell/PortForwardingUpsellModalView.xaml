@@ -26,7 +26,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
                           xmlns:resource="clr-namespace:ProtonVPN.Resource;assembly=ProtonVPN.Resource"
                           xmlns:behavior="clr-namespace:ProtonVPN.Core.Wpf.Behavior"
-                          xmlns:images="clr-namespace:ProtonVPN.Resource.Images;assembly=ProtonVPN.Resource"
+                          xmlns:vectorImages="clr-namespace:ProtonVPN.Resource.Graphics.VectorImages;assembly=ProtonVPN.Resource"
                           Style="{StaticResource BaseWindowStyle}"
                           SizeToContent="Height"
                           Title=" "
@@ -36,10 +36,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           d:DataContext="{d:DesignInstance upsell:PortForwardingUpsellModalViewModel}">
     <Grid>
         <StackPanel Margin="80,64">
-            <images:PortForward Width="458" HorizontalAlignment="Center" />
+            <vectorImages:PortForward HorizontalAlignment="Center" />
             <TextBlock TextWrapping="Wrap"
                        FontSize="24"
-                       Foreground="White"
+                       Foreground="{StaticResource OldTextBrushColor}"
                        Padding="15,0"
                        Margin="0,30,0,0"
                        TextAlignment="Center"
@@ -47,19 +47,18 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        Text="{translations:Loc Upsell_PortForwarding_Title}" />
             <TextBlock TextWrapping="Wrap"
                        FontSize="16"
-                       Foreground="White"
+                       Foreground="{StaticResource OldTextBrushColor}"
                        Padding="0,10,0,32"
                        TextAlignment="Center"
                        HorizontalAlignment="Center"
                        behavior:TextStyleBehavior.FormattedText="{translations:Loc Upsell_PortForwarding_Subtitle}" />
             <Button Style="{StaticResource PrimaryModalButton}"
                     HorizontalAlignment="Center"
-                    Margin="0,0,0,0"
                     Content="{translations:Loc Upsell_btn_Upgrade}"
                     Command="{Binding ContinueCommand}" />
             <TextBlock TextWrapping="Wrap"
                        FontSize="13"
-                       Foreground="{StaticResource PrimaryColor}"
+                       Foreground="{StaticResource OldPrimaryBrushColor}"
                        Padding="0,20,0,0"
                        TextAlignment="Center"
                        HorizontalAlignment="Center"

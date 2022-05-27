@@ -27,6 +27,7 @@ using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Helpers;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
+using ProtonVPN.Common.OS;
 using ProtonVPN.Common.Service;
 using Sentry;
 
@@ -36,11 +37,13 @@ namespace ProtonVPN.Common.Events
     {
         private readonly ILogger _logger;
         private readonly Config _config;
+        private readonly IDeviceInfoProvider _deviceInfoProvider;
 
-        public EventPublisher(ILogger logger, Config config)
+        public EventPublisher(ILogger logger, Config config, IDeviceInfoProvider deviceInfoProvider)
         {
             _logger = logger;
             _config = config;
+            _deviceInfoProvider = deviceInfoProvider;
         }
 
         public void Init()
@@ -71,7 +74,7 @@ namespace ProtonVPN.Common.Events
             {
                 LogSentryEvent(e);
                 e.SetTag("ProcessName", Process.GetCurrentProcess().ProcessName);
-                e.User.Id = _config.DeviceId;
+                e.User.Id = _deviceInfoProvider.GetDeviceId();
                 e.SetExtra("logs", GetLogs());
 
                 return e;

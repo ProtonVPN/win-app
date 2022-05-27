@@ -34,33 +34,31 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         Width="500"
                         d:DataContext="{d:DesignInstance modals:PortForwardingConfirmationModalViewModel}">
     <Grid>
-        <StackPanel>
+        <StackPanel Margin="0,40">
             <TextBlock TextWrapping="Wrap"
-                       Padding="20,50, 20, 0"
+                       Padding="20,0, 20, 0"
                        FontSize="16"
-                       Foreground="White"
+                       Foreground="{StaticResource OldTextBrushColor}"
                        behavior:TextStyleBehavior.FormattedText="{translations:Loc Dialogs_PortForwardingConfirmation_msg}"/>
 
             <DockPanel Margin="20,30,20,50">
                 <CheckBox Style="{StaticResource Checkbox}"
                           IsChecked="{Binding IsToNotShowThisMessageAgain}">
                     <Label FontSize="14"
-                           Foreground="White"
+                           Foreground="{StaticResource OldTextBrushColor}"
                            VerticalAlignment="Center"
                            Content="{translations:Loc Dialogs_DoNotShowThisMessageAgain}"/>
                 </CheckBox>
             </DockPanel>
-
-            <DockPanel Background="{StaticResource ModalBarColor}" Height="66">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Button Style="{StaticResource SecondaryModalButton}"
-                            Command="{Binding CancelCommand}"
-                            Content="{translations:Loc Dialogs_btn_Cancel}"/>
-                    <Button Style="{StaticResource PrimaryModalButton}"
-                            Command="{Binding EnableCommand}"
-                            Content="{translations:Loc Dialogs_btn_Enable}"/>
-                </StackPanel>
-            </DockPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Style="{StaticResource SecondaryModalButton}"
+                        Margin="0,0,16,0"
+                        Command="{Binding CancelCommand}"
+                        Content="{translations:Loc Dialogs_btn_Cancel}"/>
+                <Button Style="{StaticResource PrimaryModalButton}"
+                        Command="{Binding EnableCommand}"
+                        Content="{translations:Loc Dialogs_btn_Enable}"/>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </resource:BaseModalWindow>

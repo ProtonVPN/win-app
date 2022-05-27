@@ -23,7 +23,7 @@ using ProtonVPN.Core.Storage;
 
 namespace ProtonVPN.Settings.Migrations
 {
-    internal abstract class BaseSettingsMigration : IMigration
+    public abstract class BaseSettingsMigration : IMigration
     {
         private const string SettingsVersionKey = "SettingsVersion";
 

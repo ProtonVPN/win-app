@@ -12,7 +12,7 @@ namespace ProtonVPN.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.10.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.1.0.0")]
     public sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -363,6 +363,18 @@ namespace ProtonVPN.Properties {
             }
             set {
                 this["LastUpdate"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string VpnPlanName {
+            get {
+                return ((string)(this["VpnPlanName"]));
+            }
+            set {
+                this["VpnPlanName"] = value;
             }
         }
         
@@ -747,6 +759,18 @@ namespace ProtonVPN.Properties {
             }
             set {
                 this["UserServices"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string UserVpnPlanName {
+            get {
+                return ((string)(this["UserVpnPlanName"]));
+            }
+            set {
+                this["UserVpnPlanName"] = value;
             }
         }
         
@@ -1526,6 +1550,66 @@ namespace ProtonVPN.Properties {
             }
             set {
                 this["StartOnBoot"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string UserCredit {
+            get {
+                return ((string)(this["UserCredit"]));
+            }
+            set {
+                this["UserCredit"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string UserSubscribed {
+            get {
+                return ((string)(this["UserSubscribed"]));
+            }
+            set {
+                this["UserSubscribed"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string UserHasPaymentMethod {
+            get {
+                return ((string)(this["UserHasPaymentMethod"]));
+            }
+            set {
+                this["UserHasPaymentMethod"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool FeaturePromoCodeEnabled {
+            get {
+                return ((bool)(this["FeaturePromoCodeEnabled"]));
+            }
+            set {
+                this["FeaturePromoCodeEnabled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool IsToShowRebrandingPopup {
+            get {
+                return ((bool)(this["IsToShowRebrandingPopup"]));
+            }
+            set {
+                this["IsToShowRebrandingPopup"] = value;
             }
         }
     }

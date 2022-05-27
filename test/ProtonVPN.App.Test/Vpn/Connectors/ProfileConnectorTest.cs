@@ -143,7 +143,7 @@ namespace ProtonVPN.App.Test.Vpn.Connectors
                 _p2pServer,
                 _torServer
             };
-            _profile = new Profile()
+            _profile = new Profile(null)
             {
                 ProfileType = ProfileType.Fastest,
                 VpnProtocol = VpnProtocol.Smart

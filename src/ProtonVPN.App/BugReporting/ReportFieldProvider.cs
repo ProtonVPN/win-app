@@ -20,10 +20,10 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using ProtonVPN.Account;
 using ProtonVPN.BugReporting.Actions;
 using ProtonVPN.BugReporting.FormElements;
 using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.OS;
 using ProtonVPN.Core.Models;
 using ProtonVPN.Core.OS;
 using ProtonVPN.Core.Settings;
@@ -37,13 +37,15 @@ namespace ProtonVPN.BugReporting
         private readonly IUserStorage _userStorage;
         private readonly Common.Configuration.Config _config;
         private readonly ISystemState _systemState;
+        private readonly IDeviceInfoProvider _deviceInfoProvider;
 
         public ReportFieldProvider(IUserStorage userStorage, Common.Configuration.Config config,
-            ISystemState systemState)
+            ISystemState systemState, IDeviceInfoProvider deviceInfoProvider)
         {
             _config = config;
             _userStorage = userStorage;
             _systemState = systemState;
+            _deviceInfoProvider = deviceInfoProvider;
         }
 
         public KeyValuePair<string, string>[] GetFields(SendReportAction message)
@@ -62,7 +64,7 @@ namespace ProtonVPN.BugReporting
                 new KeyValuePair<string, string>("Title", "Windows app form"),
                 new KeyValuePair<string, string>("Description", GetDescription(message)),
                 new KeyValuePair<string, string>("Username", user.Username),
-                new KeyValuePair<string, string>("Plan", VpnPlanHelper.GetPlanName(user.VpnPlan)),
+                new KeyValuePair<string, string>("Plan", user.VpnPlanName),
                 new KeyValuePair<string, string>("Email", GetEmail(message.FormElements)),
                 new KeyValuePair<string, string>("Country", string.IsNullOrEmpty(country) ? "" : country),
                 new KeyValuePair<string, string>("ISP", string.IsNullOrEmpty(isp) ? "" : isp),
@@ -100,7 +102,7 @@ namespace ProtonVPN.BugReporting
         {
             stringBuilder.AppendLine("Additional info")
                 .AppendLine($"Pending reboot: {_systemState.PendingReboot().ToYesNoString()}")
-                .AppendLine($"DeviceID: {_config.DeviceId}");
+                .AppendLine($"DeviceID: {_deviceInfoProvider.GetDeviceId()}");
         }
 
         private string GetEmail(IList<FormElement> formElements)

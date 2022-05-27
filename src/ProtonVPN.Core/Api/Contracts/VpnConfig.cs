@@ -72,6 +72,8 @@ namespace ProtonVPN.Core.Api.Contracts
         public bool? SmartReconnect { get; set; }
 
         public bool? SafeMode { get; set; }
+
+        public bool? PromoCode { get; set; }
     }
 
     public class SmartProtocol

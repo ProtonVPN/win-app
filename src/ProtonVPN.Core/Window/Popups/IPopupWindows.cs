@@ -17,16 +17,17 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
+
 namespace ProtonVPN.Core.Window.Popups
 {
     public interface IPopupWindows
     {
         void Show<T>(dynamic options = null) where T : IPopupWindow;
-
         bool IsOpen<T>() where T : IPopupWindow;
-
         void Close<T>() where T : IPopupWindow;
-
         void CloseAll();
+        
+        void Show(Type type, dynamic options = null);
     }
 }

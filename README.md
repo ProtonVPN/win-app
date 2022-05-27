@@ -1,45 +1,45 @@
-# ProtonVPN Windows app
+# Proton VPN Windows app
 
 Copyright (c) 2022 Proton Technologies AG
 
-This repository holds the ProtonVPN Windows app.
+This repository holds the Proton VPN Windows app.
 For a detailed build information see [BUILD](BUILD.md).
 For licensing information see [COPYING](COPYING.md).
 For contribution policy see [CONTRIBUTING](CONTRIBUTING.md).
 
 ## Description
 
-The [ProtonVPN](https://protonvpn.com) Windows app is intended for every ProtonVPN service user,
+The [Proton VPN](https://protonvpn.com) Windows app is intended for every Proton VPN service user,
 paid or free and supports all functionalities available to authenticated users (user signup instead happens on the web site).
 
-You can download the latest stable release, either on [ProtonVPN official website](https://protonvpn.com/download) or directly on the [official GitHub repository](https://github.com/ProtonVPN/win-app/releases/latest).
+You can download the latest stable release, either on [Proton VPN official website](https://protonvpn.com/download) or directly on the [official GitHub repository](https://github.com/ProtonVPN/win-app/releases/latest).
 
 ### The application
 
 The app consists of these interacting parts:
-- ProtonVPN GUI application
-- ProtonVPN Service
-- ProtonVPN Update Service
+- Proton VPN GUI application
+- Proton VPN Service
+- Proton VPN Update Service
 - OpenVPN
 - TAP adapter
 - Split Tunnel driver
 
 #### GUI application
 
-The ProtonVPN GUI app is installed into "C:\Program Files (x86)\Proton Technologies\ProtonVPN"
+The Proton VPN GUI app is installed into "C:\Program Files (x86)\Proton Technologies\ProtonVPN"
 directory by default. The main executable is "ProtonVPN.exe".
 
-ProtonVPN GUI app starts ProtonVPN Service and Update Service when launched and stops services
+Proton VPN GUI app starts Proton VPN Service and Update Service when launched and stops services
 when closed.
 
 App logs are saved to "%LOCALAPPDATA%\ProtonVPN\Logs" directory.
 
-The ProtonVPN build using Debug configuration optionally loads its configuration from file
+The Proton VPN build using Debug configuration optionally loads its configuration from file
 "ProtonVPN.config" in the app directory. This file is not deployed during install. If the configuration
 file doesn't exist or contains not valid values the app tries to save default configuration
 used in the app.
 
-To monitor Http traffic of ProtonVPN GUI app using Fiddler or another tool, you might need to disable
+To monitor Http traffic of Proton VPN GUI app using Fiddler or another tool, you might need to disable
 TLS certificate pinning. To disable TLS certificate pinning the configuration file with empty
 "TlsPinningConfig" value should be provided:
 ```
@@ -48,11 +48,11 @@ TLS certificate pinning. To disable TLS certificate pinning the configuration fi
     ...
 ```
 
-#### ProtonVPN Service
+#### Proton VPN Service
 
 The Windows service "ProtonVPN Service" is installed into
 "C:\Program Files (x86)\Proton Technologies\ProtonVPN" directory by default. Service
-executable is "ProtonVPNService.exe". The service is started and stopped by the ProtonVPN
+executable is "ProtonVPNService.exe". The service is started and stopped by the Proton VPN
 GUI app.
 
 During installation, the service is configured to be started and stopped by the unprivileged
@@ -67,11 +67,11 @@ driver.
 
 Service logs are saved to "%ALLUSERSPROFILE%\ProtonVPN\Logs" directory.
 
-#### ProtonVPN Update Service
+#### Proton VPN Update Service
 
 The Windows service "ProtonVPN Update Service" is installed into
 "C:\Program Files (x86)\Proton Technologies\ProtonVPN" directory by default. Service
-executable is "ProtonVPN.UpdateService.exe". The service is started and stopped by the ProtonVPN
+executable is "ProtonVPN.UpdateService.exe". The service is started and stopped by the Proton VPN
 GUI app.
 
 During installation, the service is configured to be started and stopped by the unprivileged
@@ -81,7 +81,7 @@ Service is responsible for checking, downloading and installing app updates.
 
 Service logs are saved to "%ALLUSERSPROFILE%\ProtonVPN\UpdaterLogs" directory.
 
-To monitor Http traffic of ProtonVPN update service using Fiddler or another tool, you need to disable
+To monitor Http traffic of Proton VPN update service using Fiddler or another tool, you need to disable
 TLS certificate pinning. To disable TLS certificate pinning the configuration file with empty
 "TlsPinningConfig" value should be provided:
 ```
@@ -106,19 +106,19 @@ following content or an existing file should be updated to contain the "<system.
 </configuration>
 ```
 
-This forces the ProtonVPN update service to send all Web traffic through local proxy opened
+This forces the Proton VPN update service to send all Web traffic through local proxy opened
 by the Fiddler.
 
 #### OpenVPN
 
-The ProtonVPN uses OpenVPN for maintaining a VPN tunnel. The new OpenVPN process is started on each
+The Proton VPN uses OpenVPN for maintaining a VPN tunnel. The new OpenVPN process is started on each
 connect to a VPN and closed on disconnect. Communication with the OpenVPN process is maintained through
 TCP management interface.
 
 OpenVPN is installed into "C:\Program Files (x86)\Proton Technologies\ProtonVPN\Resources\"
 directory by default. The OpenVPN config file is static, it doesn't change for each VPN server.
 
-The OpenVPN is built from official source by applying a patch to support ProtonVPN specific
+The OpenVPN is built from official source by applying a patch to support Proton VPN specific
 TAP adapter. See [win-openvpn](https://github.com/ProtonVPN/win-openvpn) repository.
 
 #### TAP adapter
@@ -128,22 +128,22 @@ TAP adapter "TAP-ProtonVPN Windows Adapter V9" is used by the OpenVPN.
 The TAP adapter is installed into "C:\Program Files (x86)\Proton Technologies\ProtonVPNTap"
 directory by default.
 
-The TAP adapter is built from official source by applying a patch to have ProtonVPN specific
+The TAP adapter is built from official source by applying a patch to have Proton VPN specific
 name and identification. See [win-tap-adapter](https://github.com/ProtonVPN/win-tap-adapter) repository.
 
 #### Callout driver
 
 The kernel-mode driver "ProtonVPN Callout Driver" is used for redirecting socket bindings when
 Split Tunnel is enabled and preventing DNS leak by sending SERVFAIL response packet for DNS
-requests which were made from other interfaces than ProtonVPN uses.
+requests which were made from other interfaces than Proton VPN uses.
 
 The driver is installed as a system service. It is started when connecting to VPN and stopped
-when disconnecting by ProtonVPN Service.
+when disconnecting by Proton VPN Service.
 
 ## Folder structure
 
 The main repository folder contains the .NET Visual Studio solution of the
-ProtonVPN Windows app named ProtonVPN.
+Proton VPN Windows app named ProtonVPN.
 
 ### Folder "ci"
 
@@ -159,9 +159,9 @@ This folder contains Advanced Installer setup project files, resources included 
 and built installer files. Subfolders contain:
 
 - "Images" - images for inclusion into the installer.
-- "ProtonVPN-SetupFiles" - built ProtonVPN installer files.
+- "ProtonVPN-SetupFiles" - built Proton VPN installer files.
 - "ProtonVPNTap-SetupFiles" - built TAP adapter installer files. The latest successfully
-  built TAP adapter installer file is required to build the ProtonVPN installer.
+  built TAP adapter installer file is required to build the Proton VPN installer.
 - "SplitTunnel" - SplitTunnel Callout driver for inclusion into the installer.
 
 ### Folder "src"
@@ -183,9 +183,9 @@ This folder contains test projects of the ProtonVPN solution.
 
 ## Solution
 
-ProtonVPN Windows app is created using C# and C++ programming languages, WPF and MVVM
+Proton VPN Windows app is created using C# and C++ programming languages, WPF and MVVM
 technologies. The Visual Studio solution consists of a series of projects:
-- **ProtonVPN.App** - the main project which builds to ProtonVPN GUI app executable.
+- **ProtonVPN.App** - the main project which builds to Proton VPN GUI app executable.
   It contains startup logic and GUI (view models and views).
 - **ProtonVPN.CalloutDriver** - the callout driver written in C++ used for split tunneling and DNS leak protection.
 - **ProtonVPN.Common** - the classes shared between projects.

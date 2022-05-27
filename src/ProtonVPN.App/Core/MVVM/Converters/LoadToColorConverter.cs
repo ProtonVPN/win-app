@@ -21,21 +21,23 @@ using System;
 using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Media;
+using ProtonVPN.Resource.Colors;
+using ProtonVPN.Resources.Colors;
 
 namespace ProtonVPN.Core.MVVM.Converters
 {
     public class LoadToColorConverter : IValueConverter
     {
-        public const string ORANGE_COLOR = "#ea4c21";
-        public const string GREEN_COLOR = "#56b366";
-        public const string YELLOW_COLOR = "#e7ca2a";
-        public const string RED_COLOR = "#d90e0e";
+        private static readonly IColorPalette _colorPalette = ColorPaletteFactory.Create();
+        private readonly Lazy<string> _serverLoadGreenColor = new(() => _colorPalette.GetStringByResourceName("SignalSuccessColor"));
+        private readonly Lazy<string> _serverLoadYellowColor = new(() => _colorPalette.GetStringByResourceName("SignalWarningColor"));
+        private readonly Lazy<string> _serverLoadRedColor = new(() => _colorPalette.GetStringByResourceName("SignalDangerColor"));
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value == null)
             {
-                return ORANGE_COLOR;
+                return _serverLoadGreenColor;
             }
 
             string rgb = ConvertLoadToRgb((int)value);
@@ -47,9 +49,9 @@ namespace ProtonVPN.Core.MVVM.Converters
         {
             return load switch
             {
-                <= 75 => GREEN_COLOR,
-                <= 90 => YELLOW_COLOR,
-                _ => RED_COLOR
+                <= 75 => _serverLoadGreenColor.Value,
+                <= 90 => _serverLoadYellowColor.Value,
+                _ => _serverLoadRedColor.Value
             };
         }
 

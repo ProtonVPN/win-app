@@ -88,32 +88,66 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <ResourceDictionary Source="Resources/Assets/Styles/Menu.xaml"/>
                 <ResourceDictionary Source="Resources/Assets/Styles/MainWindow.xaml"/>
                 <ResourceDictionary Source="Views/Forms/Style.xaml"/>
-                <ResourceDictionary Source="ConnectionInfo/ConnectionInfo.xaml"/>
                 <ResourceDictionary Source="Profiles/Style.xaml"/>
                 <ResourceDictionary Source="Resources/Assets/Styles/Sidebar.xaml"/>
+                <ResourceDictionary Source="Resources/Assets/Styles/SidebarConnectButton.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-            <Style TargetType="{x:Type Window}">
+
+            <Style x:Key="DefaultTextOptions" TargetType="{x:Type FrameworkElement}">
+                <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
+                <Setter Property="TextOptions.TextRenderingMode" Value="ClearType"/>
+            </Style>
+            <Style TargetType="{x:Type UserControl}" BasedOn="{StaticResource DefaultTextOptions}" />
+            <Style TargetType="{x:Type ContentControl}" BasedOn="{StaticResource DefaultTextOptions}" />
+            <Style TargetType="{x:Type Control}" BasedOn="{StaticResource DefaultTextOptions}" />
+            <Style TargetType="{x:Type ItemsControl}" BasedOn="{StaticResource DefaultTextOptions}" />
+            <Style TargetType="{x:Type ScrollViewer}" BasedOn="{StaticResource DefaultTextOptions}" />
+            <Style TargetType="{x:Type Button}" BasedOn="{StaticResource DefaultTextOptions}" />
+            <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource DefaultTextOptions}" />
+            <Style TargetType="{x:Type Popup}" BasedOn="{StaticResource DefaultTextOptions}" />
+            <Style x:Key="DefaultFrameworkTemplate" TargetType="{x:Type FrameworkTemplate}">
+                <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
+                <Setter Property="TextOptions.TextRenderingMode" Value="ClearType"/>
+            </Style>
+            <Style TargetType="{x:Type DataTemplate}" BasedOn="{StaticResource DefaultFrameworkTemplate}" />
+
+            <Style TargetType="{x:Type Window}" BasedOn="{StaticResource DefaultTextOptions}">
                 <Setter Property="FontFamily" Value="Segoe UI"/>
             </Style>
-            <Style TargetType="{x:Type TextBlock}">
+            <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource DefaultTextOptions}">
                 <Setter Property="FontFamily" Value="Segoe UI"/>
             </Style>
-            <Style TargetType="{x:Type PasswordBox}">
+            <Style TargetType="{x:Type PasswordBox}" BasedOn="{StaticResource DefaultTextOptions}">
                 <Setter Property="FontFamily" Value="Segoe UI"/>
             </Style>
-            <Style TargetType="{x:Type Label}">
+            <Style TargetType="{x:Type Label}" BasedOn="{StaticResource DefaultTextOptions}">
                 <Setter Property="FontFamily" Value="Segoe UI"/>
             </Style>
-            <Style TargetType="ToolTip">
+            <Style TargetType="{x:Type ToolTip}" BasedOn="{StaticResource DefaultTextOptions}">
+                <Setter Property="Placement" Value="Right" />
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="ToolTip">
-                            <TextBlock TextWrapping="Wrap"
-                                       Background="#f2f3f7"
-                                       Padding="10"
-                                       TextAlignment="Left"
-                                       MaxWidth="300"
-                                       Text="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}}"/>
+                            <Border CornerRadius="8"
+                                    Background="{StaticResource BackgroundNormBrushColor}"
+                                    MaxWidth="300"
+                                    Padding="10"
+                                    BorderThickness="1"
+                                    BorderBrush="{StaticResource BorderWeakBrushColor}"
+                                    Margin="8,0,8,16">
+                                <Border.Effect>
+                                    <DropShadowEffect ShadowDepth="8" 
+                                                      Direction="270" 
+                                                      BlurRadius="8" 
+                                                      Opacity="0.30" 
+                                                      RenderingBias="Quality"
+                                                      Color="{StaticResource ShadowNormColor}"/>
+                                </Border.Effect>
+                                <TextBlock TextWrapping="Wrap"
+                                           TextAlignment="Left"
+                                           Foreground="{StaticResource TextNormBrushColor}"
+                                           Text="{Binding Path=Content, RelativeSource={RelativeSource AncestorType={x:Type ToolTip}}}"/>
+                            </Border>
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>

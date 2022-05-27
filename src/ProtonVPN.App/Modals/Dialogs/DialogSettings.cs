@@ -24,6 +24,10 @@ namespace ProtonVPN.Modals.Dialogs
 {
     public class DialogSettings : IDialogSettings
     {
+        public string Message { get; }
+        public string PrimaryButtonText { get; }
+        public string SecondaryButtonText { get; }
+
         private DialogSettings(string message, string primaryButtonText, string secondaryButtonText)
         {
             Message = message;
@@ -45,9 +49,5 @@ namespace ProtonVPN.Modals.Dialogs
         {
             return new DialogSettings(Message, PrimaryButtonText, text);
         }
-
-        public string Message { get; }
-        public string PrimaryButtonText { get; }
-        public string SecondaryButtonText { get; }
     }
 }

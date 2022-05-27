@@ -33,11 +33,56 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         Title="TrayContextMenu"
         Topmost="True"
         d:DataContext="{d:DesignInstance viewModels:TrayNotificationViewModel}">
-    <Border BorderBrush="#959595" Background="#f5f5f5" BorderThickness="1">
-        <StackPanel Margin="2">
-            <MenuItem Padding="0" Margin="0" Command="{Binding ConnectCommand}" Header="{translations:Loc App_mnu_Connect}" Visibility="{calcBinding:Binding CanConnect}"/>
-            <MenuItem Command="{Binding DisconnectCommand}" Header="{translations:Loc App_mnu_Disconnect}" Visibility="{calcBinding:Binding CanDisconnect}"/>
-            <MenuItem Command="{Binding ExitCommand}" Header="{translations:Loc App_mnu_Exit}"/>
+
+    <Window.Resources>
+        <Style x:Key="MenuItemStyle" TargetType="MenuItem">
+            <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}"/>
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type MenuItem}">
+                        <Border x:Name="Border" 
+                                Margin="0"
+                                Padding="25,8" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                Background="{TemplateBinding Background}" 
+                                SnapsToDevicePixels="True">
+                            <ContentPresenter x:Name="ContentPresenter" 
+                                              Content="{TemplateBinding Header}"
+                                              ContentSource="Header" 
+                                              Margin="{TemplateBinding Padding}" 
+                                              RecognizesAccessKey="True" 
+                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsHighlighted" Value="True">
+                                <Setter Property="Background" TargetName="Border" Value="{StaticResource BackgroundWeakBrushColor}"/>
+                                <Setter Property="BorderBrush" TargetName="Border" Value="{StaticResource BorderNormBrushColor}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Border BorderBrush="{StaticResource BorderWeakBrushColor}" Background="{StaticResource BackgroundNormBrushColor}" BorderThickness="1">
+        <StackPanel Margin="1">
+            <MenuItem Style="{StaticResource MenuItemStyle}"
+                      Command="{Binding ConnectCommand}" 
+                      Header="{translations:Loc App_mnu_Connect}" 
+                      Visibility="{calcBinding:Binding CanConnect}"/>
+
+            <MenuItem Style="{StaticResource MenuItemStyle}"
+                      Command="{Binding DisconnectCommand}" 
+                      Header="{translations:Loc App_mnu_Disconnect}" 
+                      Visibility="{calcBinding:Binding CanDisconnect}"/>
+
+            <MenuItem Style="{StaticResource MenuItemStyle}"
+                      Command="{Binding ExitCommand}" 
+                      Header="{translations:Loc App_mnu_Exit}"/>
         </StackPanel>
     </Border>
 </Window>

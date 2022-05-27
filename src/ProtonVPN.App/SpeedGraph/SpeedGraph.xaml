@@ -25,30 +25,28 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:speedGraph="clr-namespace:ProtonVPN.SpeedGraph"
              xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
+             xmlns:icons="clr-namespace:ProtonVPN.Resource.Graphics.Icons;assembly=ProtonVPN.Resource"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance speedGraph:SpeedGraphViewModel}">
 
     <UserControl.Resources>
         <Style x:Key="DataLabel" TargetType="Label">
-            <Setter Property="Margin" Value="0,2"/>
-            <Setter Property="Padding" Value="5,0,5,0"/>
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="Padding" Value="10,0,0,0"/>
             <Setter Property="FontSize" Value="12"/>
-            <Setter Property="Width" Value="36"/>
             <Setter Property="Height" Value="16"/>
-            <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
+            <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}"/>
             <Setter Property="HorizontalContentAlignment" Value="Right"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
-        </Style>
-
-        <Style x:Key="DownloadLabel" TargetType="Label" BasedOn="{StaticResource DataLabel}">
-            <Setter Property="Foreground" Value="{StaticResource PrimaryColorDimmed}"/>
         </Style>
 
         <Style x:Key="UnitColumn" TargetType="Label">
             <Setter Property="Width" Value="36"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="Padding" Value="5,0,0,0"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Margin" Value="15,0,0,0"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}"/>
         </Style>
 
         <Style x:Key="SpeedUnitColumn" TargetType="Label" BasedOn="{StaticResource UnitColumn}">
@@ -66,23 +64,18 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </Setter>
         </Style>
 
-        <Style x:Key="UploadSpeedNumber" TargetType="Label" BasedOn="{StaticResource DataLabel}">
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="Background" Value="#56b39c"/>
-        </Style>
-
-        <Style x:Key="DownloadSpeedNumber" TargetType="Label" BasedOn="{StaticResource DataLabel}">
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="Background" Value="#369d5b"/>
-        </Style>
-
         <Style x:Key="TitleLabel" TargetType="Label">
             <Setter Property="FontSize" Value="12"/>
-            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}"/>
             <Setter Property="Padding" Value="0"/>
             <Setter Property="Margin" Value="0"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="DataDockPanel" TargetType="DockPanel">
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="Margin" Value="0,3,0,0"/>
         </Style>
     </UserControl.Resources>
 
@@ -104,54 +97,65 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </Grid.ColumnDefinitions>
             <Label Content="{translations:Loc Map_SpeedGraph_lbl_Speed}"
                    Padding="0"
-                   FontSize="10"
+                   FontSize="11"
                    Grid.Column="0"
                    HorizontalAlignment="Left"
-                   Foreground="#33FFFFFF"
+                   Foreground="{StaticResource TextHintBrushColor}"
+                   Margin="0,0,0,5"
                    VerticalAlignment="Bottom"/>
             <DockPanel HorizontalAlignment="Right" Grid.Column="1" FlowDirection="LeftToRight">
-                <Label Foreground="#33FFFFFF"
-                       Padding="0,0,5,0"
-                       FontSize="10"
+                <Label Foreground="{StaticResource TextHintBrushColor}"
+                       Padding="0"
+                       FontSize="11"
                        Content="{Binding MaxBandwidth, Converter={StaticResource BytesToSizeConverter}}"/>
                 <Label Style="{StaticResource SpeedUnitColumn}"
-                       FontSize="10"
+                       Margin="5,0,0,0"
+                       FontSize="11"
                        Width="Auto"
-                       Foreground="#33FFFFFF"
+                       Foreground="{StaticResource TextHintBrushColor}"
                        VerticalAlignment="Top"
-                       Padding="0"
                        Content="{Binding MaxBandwidth, Converter={StaticResource BytesToUnitsConverter}}"/>
             </DockPanel>
         </Grid>
 
         <Grid Grid.Row="1" Grid.Column="1" x:Name="BottomLabels">
-            <Label Content="{translations:Loc Map_SpeedGraph_lbl_TimeUnits}" Padding="0" FontSize="10" Margin="0,0,0,-10" Foreground="#33FFFFFF" VerticalAlignment="Bottom"/>
-            <Label Content="0" Padding="0" FontSize="10" Margin="0,0,0,-10" HorizontalAlignment="Right" Foreground="#33FFFFFF" VerticalAlignment="Bottom"/>
+            <Label Content="{translations:Loc Map_SpeedGraph_lbl_TimeUnits}" 
+                   Padding="0" 
+                   FontSize="11" 
+                   Margin="0,0,0,-10" 
+                   Foreground="{StaticResource TextHintBrushColor}" 
+                   VerticalAlignment="Bottom"/>
+            <Label Content="0" 
+                   Padding="0" 
+                   FontSize="11" 
+                   Margin="0,0,0,-10" 
+                   HorizontalAlignment="Right" 
+                   Foreground="{StaticResource TextHintBrushColor}" 
+                   VerticalAlignment="Bottom"/>
         </Grid>
 
-        <Grid Grid.Row="1" Grid.Column="0" x:Name="SessionStats">
+        <Grid Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" x:Name="SessionStats">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="120"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="23"/>
+                <RowDefinition Height="23"/>
+                <RowDefinition Height="23"/>
+                <RowDefinition Height="23"/>
+                <RowDefinition Height="23"/>
+                <RowDefinition Height="23"/>
             </Grid.RowDefinitions>
 
-            <Label
-                Grid.Column="0"
+            <Label Grid.Column="0"
                 Grid.Row="0"
                 Grid.ColumnSpan="2"
                 Content="{translations:Loc Map_SpeedGraph_lbl_Traffic}"
-                Padding="0,2"
+                Padding="0"
                 FontWeight="Bold"
                 FontSize="12"
-                Foreground="{StaticResource PrimaryColor}"/>
+                Foreground="{StaticResource TextHintBrushColor}"/>
 
             <Label Content="{translations:Loc Map_SpeedGraph_lbl_Session}" Grid.Column="0" Grid.Row="1" Style="{StaticResource TitleLabel}"/>
             <Label Content="{translations:Loc Map_SpeedGraph_lbl_DownVolume}" Grid.Column="0" Grid.Row="2" Style="{StaticResource TitleLabel}"/>
@@ -160,50 +164,49 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Label Content="{translations:Loc Map_SpeedGraph_lbl_UpSpeed}" Grid.Column="0" Grid.Row="5" Style="{StaticResource TitleLabel}"/>
 
             <StackPanel Grid.Column="1" Grid.Row="1" FlowDirection="LeftToRight">
-            <Label HorizontalAlignment="Right"
-                   Style="{StaticResource DataLabel}"
-                   Padding="0"
-                   Width="Auto"
-                   Margin="0,0,25,0"
-                   Content="{Binding SecondsPassed, Converter={StaticResource SecondsToTimeConverter}}"/>
+                <DockPanel Style="{StaticResource DataDockPanel}">
+                    <Label HorizontalAlignment="Right"
+                           Style="{StaticResource DataLabel}"
+                           Width="Auto"
+                           Margin="0,0,30,0"
+                           Content="{Binding SecondsPassed, Converter={StaticResource SecondsToTimeConverter}}"/>
+                </DockPanel>
             </StackPanel>
 
             <StackPanel Grid.Column="1" Grid.Row="2" FlowDirection="LeftToRight">
-                <DockPanel HorizontalAlignment="Right" Margin="0,0,0,0">
-                    <Label Style="{StaticResource DownloadLabel}"
+                <DockPanel Style="{StaticResource DataDockPanel}">
+                    <Label Style="{StaticResource DataLabel}"
                            Content="{Binding TotalBytesDownloaded, Converter={StaticResource BytesToSizeConverter}}"/>
                     <Label Style="{StaticResource UnitColumn}"
-                           Foreground="{StaticResource PrimaryColorDimmed}"
                            Content="{Binding TotalBytesDownloaded, Converter={StaticResource BytesToUnitsConverter}}"/>
                 </DockPanel>
             </StackPanel>
 
             <StackPanel Grid.Column="1" Grid.Row="3" FlowDirection="LeftToRight">
-                <DockPanel HorizontalAlignment="Right" Margin="0,0,0,0">
+                <DockPanel Style="{StaticResource DataDockPanel}">
                     <Label Style="{StaticResource DataLabel}"
                            Content="{Binding TotalBytesUploaded, Converter={StaticResource BytesToSizeConverter}}"/>
                     <Label Style="{StaticResource UnitColumn}"
-                           Foreground="{StaticResource PrimaryColor}"
                            Content="{Binding TotalBytesUploaded, Converter={StaticResource BytesToUnitsConverter}}"/>
                 </DockPanel>
             </StackPanel>
 
             <StackPanel Grid.Column="1" Grid.Row="4" FlowDirection="LeftToRight">
-                <DockPanel HorizontalAlignment="Right">
-                    <Label Style="{StaticResource DownloadSpeedNumber}"
+                <DockPanel Style="{StaticResource DataDockPanel}">
+                    <icons:ArrowDown Width="13" Margin="0,1,0,0" Foreground="{StaticResource DownloadSpeedBrushColor}" />
+                    <Label Style="{StaticResource DataLabel}"
                            Content="{Binding CurrentDownloadSpeed, Converter={StaticResource BytesToSizeConverter}}"/>
                     <Label Style="{StaticResource SpeedUnitColumn}"
-                           Foreground="{StaticResource PrimaryColorDimmed}"
                            Content="{Binding CurrentDownloadSpeed, Converter={StaticResource BytesToUnitsConverter}}"/>
                 </DockPanel>
             </StackPanel>
 
             <StackPanel Grid.Column="1" Grid.Row="5" FlowDirection="LeftToRight">
-                <DockPanel HorizontalAlignment="Right">
-                    <Label Style="{StaticResource UploadSpeedNumber}"
+                <DockPanel Style="{StaticResource DataDockPanel}">
+                    <icons:ArrowUp Width="13" Margin="0,1,0,0" Foreground="{StaticResource UploadSpeedBrushColor}" />
+                    <Label Style="{StaticResource DataLabel}"
                            Content="{Binding CurrentUploadSpeed, Converter={StaticResource BytesToSizeConverter}}"/>
                     <Label Style="{StaticResource SpeedUnitColumn}"
-                           Foreground="{StaticResource PrimaryColor}"
                            Content="{Binding CurrentUploadSpeed, Converter={StaticResource BytesToUnitsConverter}}"/>
                 </DockPanel>
             </StackPanel>

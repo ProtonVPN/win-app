@@ -77,7 +77,6 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<ServerManager>().SingleInstance();
             builder.RegisterType<ActiveUrls>().As<IActiveUrls>().SingleInstance();
             builder.RegisterType<ApiAppVersion>().As<IApiAppVersion>().SingleInstance();
-            builder.RegisterType<OsEnvironment>().As<IEnvironment>().SingleInstance();
             builder.RegisterType<SystemProcesses>().As<IOsProcesses>().SingleInstance();
             builder.Register(c => 
                     new SafeSystemNetworkInterfaces(c.Resolve<ILogger>(), new SystemNetworkInterfaces()))

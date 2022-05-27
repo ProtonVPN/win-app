@@ -167,5 +167,7 @@ namespace TestTools.ApiClient
         public Task<ApiResponseResult<BaseResponse>> CheckAuthenticationServerStatusAsync() => throw new NotImplementedException();
 
         public Task<ApiResponseResult<CertificateResponseData>> RequestAuthCertificateAsync(CertificateRequestData requestData) => throw new NotImplementedException();
+
+        public Task<ApiResponseResult<BaseResponse>> ApplyPromoCodeAsync(PromoCodeRequestData requestData) => throw new NotImplementedException();
     }
 }

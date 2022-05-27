@@ -22,21 +22,22 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:icons="clr-namespace:ProtonVPN.Resource.Icons;assembly=ProtonVPN.Resource"
              xmlns:behavior="clr-namespace:ProtonVPN.Core.Wpf.Behavior"
              xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
              xmlns:settings="clr-namespace:ProtonVPN.Settings"
+             xmlns:icons="clr-namespace:ProtonVPN.Resource.Graphics.Icons;assembly=ProtonVPN.Resource"
              d:DataContext="{d:DesignInstance settings:PortForwardingWarningViewModel}"
              mc:Ignorable="d">
     <Grid Visibility="{Binding IsToShowPortForwardingWarningLabel, Converter={StaticResource BoolToVis}}">
         <DockPanel Margin="5,10,0,0">
-            <icons:ExclamationCircle Foreground="#e7ca2a"
+            <icons:ExclamationCircle Foreground="{StaticResource NotificationWarningBrushColor}"
+                                     Width="20"
                                      VerticalAlignment="Top" />
             <TextBlock FontSize="12"
                        Margin="8,0,0,0"
                        behavior:TextStyleBehavior.FormattedText="{translations:Loc PortForwarding_lbl_ServerWarning}"
                        TextWrapping="Wrap"
-                       Foreground="#A7A4B5" />
+                       Foreground="{StaticResource TextWeakBrushColor}" />
         </DockPanel>
     </Grid>
 </UserControl>

@@ -47,8 +47,9 @@ namespace ProtonVPN.Windows
         IOnboardingStepAware,
         IVpnStateAware
     {
-        private const int SidebarWidth = 336;
-        private const int DefaultWidth = 800;
+        private const int BLUR_AMOUNT = 20;
+        private const int SIDEBAR_WIDTH = 336;
+        private const int DEFAULT_WIDTH = 800;
         
         private readonly IEventAggregator _eventAggregator;
         private readonly IAppSettings _appSettings;
@@ -61,7 +62,7 @@ namespace ProtonVPN.Windows
         private bool _blurOutInProgress;
         private bool _isConnecting;
 
-        private readonly DoubleAnimation _blurInAnimation = new(10, TimeSpan.FromMilliseconds(200));
+        private readonly DoubleAnimation _blurInAnimation = new(BLUR_AMOUNT, TimeSpan.FromMilliseconds(200));
         private readonly DoubleAnimation _blurOutAnimation = new(0, TimeSpan.FromMilliseconds(200));
 
         public bool AllowWindowHiding;
@@ -123,7 +124,7 @@ namespace ProtonVPN.Windows
                     _blurInProgress = false;
                 }
 
-                BlurBorder.Effect = new BlurEffect { Radius = 10 };
+                BlurBorder.Effect = new BlurEffect { Radius = BLUR_AMOUNT };
                 BlurBorder.Effect.BeginAnimation(BlurEffect.RadiusProperty, _blurOutAnimation);
                 _blurOutInProgress = true;
             }
@@ -145,7 +146,7 @@ namespace ProtonVPN.Windows
 
         public void OnStepChanged(int step)
         {
-            int min = DefaultWidth;
+            int min = DEFAULT_WIDTH;
             if (Width < min)
             {
                 Width = min;
@@ -252,7 +253,7 @@ namespace ProtonVPN.Windows
 
         private void SetToggleButton()
         {
-            _appSettings.SidebarMode = ActualWidth <= SidebarWidth;
+            _appSettings.SidebarMode = ActualWidth <= SIDEBAR_WIDTH;
             _sidebarModeBeforeMaximize = _appSettings.SidebarMode;
         }
 
@@ -308,7 +309,7 @@ namespace ProtonVPN.Windows
         private void TurnOnSidebarMode()
         {
             WindowState = WindowState.Normal;
-            Width = SidebarWidth;
+            Width = SIDEBAR_WIDTH;
             SaveWindowsPlacement();
         }
 
@@ -322,7 +323,7 @@ namespace ProtonVPN.Windows
             }
             else
             {
-                Width = DefaultWidth;
+                Width = DEFAULT_WIDTH;
             }
 
             SaveWindowsPlacement();
@@ -366,7 +367,7 @@ namespace ProtonVPN.Windows
                 int width = placement.NormalPosition.Right - placement.NormalPosition.Left;
                 //Prevent saving window placement when snapping window in sidebar mode
                 //to left side of the screen, because it provides wrong size.
-                if (width == SidebarWidth && !_appSettings.SidebarMode)
+                if (width == SIDEBAR_WIDTH && !_appSettings.SidebarMode)
                 {
                     return;
                 }
