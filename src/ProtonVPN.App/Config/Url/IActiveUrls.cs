@@ -57,5 +57,6 @@ namespace ProtonVPN.Config.Url
         IActiveUrl NonStandardPortsUrl { get; }
         IActiveUrl LoginProblemsUrl { get; }
         IActiveUrl RebrandingUrl { get; }
+        IActiveUrl RpcServerProblemUrl { get; }
     }
 }

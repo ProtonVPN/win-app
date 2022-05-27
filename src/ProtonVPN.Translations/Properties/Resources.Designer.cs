@@ -5836,6 +5836,15 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Proton VPN can&apos;t connect because the RPC server is unavailable on your system. &lt;Hyperlink Command=&quot;{Binding OpenRpcServerUrlCommand}&quot;&gt;View possible solutions&lt;/Hyperlink&gt;.
+        /// </summary>
+        public static string Servers_msg_CantConnect_RpcServerUnavailable {
+            get {
+                return ResourceManager.GetString("Servers_msg_CantConnect_RpcServerUnavailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unfortunatelly, this server does not support WireGuard..
         /// </summary>
         public static string Servers_msg_MissingServerPublicKey {

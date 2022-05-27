@@ -79,6 +79,9 @@ namespace ProtonVPN.Service.Contract.Vpn
         NoServers,
 
         [EnumMember]
+        RpcServerUnavailable,
+
+        [EnumMember]
         Unknown,
 
         [EnumMember]
