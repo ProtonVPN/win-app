@@ -47,9 +47,13 @@ def get_update_json(version, installer_path):
     update_json = {}
     update_json['Version'] = version
     update_json['File'] = generate_file_json(version, installer_path)
-    update_json['ChangeLog'] = ['Please visit windows internal build channel for changelog']
+    update_json['ChangeLog'] = [get_changelog()]
     update_json['DisableAutoUpdate'] = False
     return update_json
+
+def get_changelog():
+    commit_hash = os.popen('git log --grep="Increase app version to" --pretty=format:%h -1 --skip=1').read()
+    return os.popen(f'git log {commit_hash}..HEAD --pretty=format:%s').read().split('\n')
 
 def push_new_internal_beta(version):
     os.system(f'{git} add .')

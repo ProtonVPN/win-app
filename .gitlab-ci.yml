@@ -112,7 +112,6 @@ prepare-internal-beta-release:
     - python -m pip install -r ci\python-libs.txt
     - python ci\prepare-internal-beta.py
   only:
-    - master
     - /^release.*$/
 
 build-installer-for-debug:
