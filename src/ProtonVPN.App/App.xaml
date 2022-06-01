@@ -66,7 +66,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <ResourceDictionary Source="/ProtonVPN.Resource;component/Styles/Animations.xaml"/>
                 <ResourceDictionary Source="/ProtonVPN.Resource;component/Styles/ClearButton.xaml"/>
                 <ResourceDictionary Source="/ProtonVPN.Resource;component/Styles/Modal.xaml"/>
-                <ResourceDictionary Source="Views/Icons/Gradients.xaml"/>
                 <ResourceDictionary Source="Validation/Validation.xaml"/>
                 <ResourceDictionary Source="Resources/Assets/Styles/Common.xaml"/>
                 <ResourceDictionary Source="Resources/Assets/Styles/ProgressBar.xaml"/>
@@ -86,7 +85,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <ResourceDictionary Source="Resources/Assets/Styles/ToggleButton.xaml"/>
                 <ResourceDictionary Source="Resources/Assets/Styles/ToggleSwitch.xaml"/>
                 <ResourceDictionary Source="Resources/Assets/Styles/Menu.xaml"/>
-                <ResourceDictionary Source="Resources/Assets/Styles/MainWindow.xaml"/>
                 <ResourceDictionary Source="Views/Forms/Style.xaml"/>
                 <ResourceDictionary Source="Profiles/Style.xaml"/>
                 <ResourceDictionary Source="Resources/Assets/Styles/Sidebar.xaml"/>

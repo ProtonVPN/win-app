@@ -20,6 +20,7 @@
 using System;
 using System.Runtime.CompilerServices;
 using Microsoft.Toolkit.Uwp.Notifications;
+using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Helpers;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
@@ -76,9 +77,13 @@ namespace ProtonVPN.Notifications
         {
             try
             {
-                new ToastContentBuilder()
-                    .AddText(title)
-                    .AddText(description)
+                ToastContentBuilder toastContentBuilder = new ToastContentBuilder()
+                    .AddText(title);
+                if (!description.IsNullOrEmpty())
+                {
+                    toastContentBuilder = toastContentBuilder.AddText(description);
+                }
+                toastContentBuilder
                     .AddArgument(ACTION_KEY, OPEN_MAIN_WINDOW_ACTION_KEY)
                     .Show();
             }

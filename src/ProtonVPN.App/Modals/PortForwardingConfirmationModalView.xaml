@@ -38,14 +38,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <TextBlock TextWrapping="Wrap"
                        Padding="20,0, 20, 0"
                        FontSize="16"
-                       Foreground="{StaticResource OldTextBrushColor}"
+                       Foreground="{StaticResource TextNormBrushColor}"
                        behavior:TextStyleBehavior.FormattedText="{translations:Loc Dialogs_PortForwardingConfirmation_msg}"/>
 
             <DockPanel Margin="20,30,20,50">
                 <CheckBox Style="{StaticResource Checkbox}"
                           IsChecked="{Binding IsToNotShowThisMessageAgain}">
                     <Label FontSize="14"
-                           Foreground="{StaticResource OldTextBrushColor}"
+                           Foreground="{StaticResource TextNormBrushColor}"
                            VerticalAlignment="Center"
                            Content="{translations:Loc Dialogs_DoNotShowThisMessageAgain}"/>
                 </CheckBox>

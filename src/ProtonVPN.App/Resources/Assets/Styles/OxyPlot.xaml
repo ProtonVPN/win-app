@@ -22,7 +22,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     xmlns:oxy="http://oxyplot.org/wpf">
 
     <SolidColorBrush x:Key="ZoomRectangleBackgroundColor" Color="#40FFFF00"/>
-    <SolidColorBrush x:Key="ZoomRectangleStrokeColor" Color="Black"/>
+    <SolidColorBrush x:Key="ZoomRectangleStrokeColor" Color="{StaticResource Shade0Color}"/>
 
     <oxy:ThicknessConverter x:Key="ThicknessConverter"/>
 
@@ -60,7 +60,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     </Style>
 
     <Style TargetType="{x:Type oxy:PlotView}">
-        <Setter Property="Background" Value="{StaticResource OldTextBrushColor}"/>
+        <Setter Property="Background" Value="{StaticResource TextNormBrushColor}"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="DefaultTrackerTemplate">
             <Setter.Value>
@@ -95,7 +95,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     </Style>
 
     <Style TargetType="{x:Type oxy:Plot}">
-        <Setter Property="Background" Value="{StaticResource OldTextBrushColor}"/>
+        <Setter Property="Background" Value="{StaticResource TextNormBrushColor}"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="DefaultTrackerTemplate">
             <Setter.Value>

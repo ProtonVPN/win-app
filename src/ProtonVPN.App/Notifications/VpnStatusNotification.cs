@@ -20,6 +20,7 @@
 using System;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Vpn;
+using ProtonVPN.Core.Servers.Models;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Translations;
 
@@ -28,24 +29,25 @@ namespace ProtonVPN.Notifications
     public class VpnStateNotification : IVpnStateAware
     {
         private VpnStatus _lastVpnStatus;
-        private readonly ISystemNotification _systemNotification;
+        private readonly INotificationSender _notificationSender;
 
-        public VpnStateNotification(ISystemNotification systemNotification)
+        public VpnStateNotification(INotificationSender notificationSender)
         {
-            _systemNotification = systemNotification;
+            _notificationSender = notificationSender;
         }
 
         public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
         {
-            var server = e.State.Server;
+            Server server = e.State.Server;
             switch (e.State.Status)
             {
                 case VpnStatus.Connected:
-                    _systemNotification.Show(Translation.Format("Notifications_VpnState_msg_Connected", server?.Name, Environment.NewLine, server?.ExitIp));
+                    _notificationSender.Send(Translation.Format("Notifications_VpnState_msg_Connected",
+                        server?.Name, Environment.NewLine, server?.ExitIp));
                     break;
                 case VpnStatus.Disconnecting when _lastVpnStatus == VpnStatus.Connected:
                 case VpnStatus.Disconnected when _lastVpnStatus == VpnStatus.Connected:
-                    _systemNotification.Show(Translation.Get("Notifications_VpnState_msg_Disconnected"));
+                    _notificationSender.Send(Translation.Get("Notifications_VpnState_msg_Disconnected"));
                     break;
             }
 

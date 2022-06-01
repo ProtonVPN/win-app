@@ -37,7 +37,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <TextBlock TextWrapping="Wrap"
                        Padding="30,0,30,30"
                        FontSize="16"
-                       Foreground="{StaticResource OldTextBrushColor}"
+                       Foreground="{StaticResource TextNormBrushColor}"
                        Text="{translations:Loc Dialogs_Reboot_msg}" />
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button Style="{StaticResource SecondaryModalButton}"

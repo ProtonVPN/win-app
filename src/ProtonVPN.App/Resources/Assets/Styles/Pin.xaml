@@ -36,10 +36,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     </Style>
     <Style x:Key="CountryNameLabel" TargetType="Label">
         <Setter Property="FontSize" Value="12"/>
-        <Setter Property="Foreground" Value="{StaticResource OldTextBrushColor}"/>
+        <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}"/>
     </Style>
     <DataTemplate DataType="{x:Type name:StandardServerName}">
-        <TextBlock FontSize="14" Padding="0" VerticalAlignment="Center" Foreground="{StaticResource OldTextBrushColor}" HorizontalAlignment="Center" Text="{Binding Name}"/>
+        <TextBlock FontSize="14" Padding="0" VerticalAlignment="Center" Foreground="{StaticResource TextNormBrushColor}" HorizontalAlignment="Center" Text="{Binding Name}"/>
     </DataTemplate>
     <DataTemplate DataType="{x:Type name:SecureCoreName}">
         <viewControls:ServerName HorizontalAlignment="Center" FontSize="14" ConnectionName="{Binding}"/>

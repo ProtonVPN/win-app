@@ -31,6 +31,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:resource="clr-namespace:ProtonVPN.Resource;assembly=ProtonVPN.Resource"
              xmlns:logos="clr-namespace:ProtonVPN.Resource.Graphics.Logos;assembly=ProtonVPN.Resource"
              xmlns:icons="clr-namespace:ProtonVPN.Resource.Graphics.Icons;assembly=ProtonVPN.Resource"
+             xmlns:graphics="clr-namespace:ProtonVPN.Resource.Graphics;assembly=ProtonVPN.Resource"
              mc:Ignorable="d"
              d:DesignWidth="440"
              d:DesignHeight="570"
@@ -266,15 +267,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </StackPanel>
         </StackPanel>
         <DockPanel Style="{StaticResource Footer}">
-            <DockPanel>
+            <DockPanel MinHeight="21">
                 <Button Style="{StaticResource FooterButton}"
                         Command="{Binding RegisterCommand}"
                         Content="{translations:Loc Login_lnk_CreateAccount}"
                         AutomationProperties.AutomationId="{StaticResource CreateAccountButton}" />
-                <Image Style="{StaticResource Spinner}"
-                       Margin="5,0,0,0"
-                       resource:ControlExtension.Spin="{Binding IsToShowSignUpSpinner}"
-                       Visibility="{Binding IsToShowSignUpSpinner, Converter={StaticResource BoolToVis}}" />
+                <graphics:BrandLoader Style="{StaticResource Loader}"
+                                      Foreground="{StaticResource PrimaryBrushColor}"
+                                      Margin="5,0,0,0"
+                                      resource:ControlExtension.Spin="{Binding IsToShowSignUpSpinner}"
+                                      Visibility="{Binding IsToShowSignUpSpinner, Converter={StaticResource BoolToVis}}" />
             </DockPanel>
             <Grid HorizontalAlignment="Right">
                 <Popup AllowsTransparency="True"
@@ -380,7 +382,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </Style>
                     </ContentControl.Style>
                 </ContentControl>
-                <TextBlock Foreground="{StaticResource OldTextBrushColor}"
+                <TextBlock Foreground="{StaticResource TextNormBrushColor}"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Center"
                            TextAlignment="Center"

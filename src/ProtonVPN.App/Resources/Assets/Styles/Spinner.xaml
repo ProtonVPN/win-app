@@ -30,27 +30,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             RepeatBehavior="Forever"/>
     </Storyboard>
 
-    <Style x:Key="Spinner" TargetType="Image">
-        <Setter Property="Source" Value="../Images/brand-spinner.png"/>
-        <Setter Property="Width" Value="21"/>
-        <Setter Property="Height" Value="21"/>
-        <Setter Property="Visibility" Value="Collapsed"/>
-        <Setter Property="RenderTransform">
-            <Setter.Value>
-                <RotateTransform CenterX="10.5" CenterY="10.5"/>
-            </Setter.Value>
-        </Setter>
-        <Style.Triggers>
-            <Trigger Property="resource:ControlExtension.Spin" Value="True">
-                <Trigger.EnterActions>
-                    <BeginStoryboard Name="SpinnerAnimation" Storyboard="{StaticResource SpinStoryboard}"/>
-                </Trigger.EnterActions>
-                <Trigger.ExitActions>
-                    <StopStoryboard BeginStoryboardName="SpinnerAnimation"/>
-                </Trigger.ExitActions>
-            </Trigger>
-        </Style.Triggers>
-    </Style>
     <Style x:Key="Loader" TargetType="UserControl">
         <Setter Property="Visibility" Value="Collapsed"/>
         <Setter Property="RenderTransform">

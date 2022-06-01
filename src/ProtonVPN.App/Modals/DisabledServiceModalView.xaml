@@ -24,7 +24,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           xmlns:behavior="clr-namespace:ProtonVPN.Core.Wpf.Behavior"
                           xmlns:resource="clr-namespace:ProtonVPN.Resource;assembly=ProtonVPN.Resource"
                           xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
-                          xmlns:icons="clr-namespace:ProtonVPN.Views.Icons"
+                          xmlns:icons="clr-namespace:ProtonVPN.Resource.Graphics.Icons;assembly=ProtonVPN.Resource"
                           mc:Ignorable="d"
                           Title="{translations:Loc Dialogs_ttl_Warning}"
                           Width="550"
@@ -39,7 +39,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        behavior:TextStyleBehavior.FormattedText="{translations:Loc Dialogs_DisabledService_msg_Info}" />
 
             <StackPanel Orientation="Vertical">
-                <Separator Background="{StaticResource OldSeparatorColor}" Margin="0,25,0,0" />
+                <Separator Background="{StaticResource BorderWeakBrushColor}" Margin="0,25,0,0" />
                 <TextBlock TextWrapping="Wrap"
                            FontSize="16"
                            Foreground="{StaticResource TextNormBrushColor}"
@@ -67,9 +67,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     BorderBrush="Transparent">
                 <DockPanel>
                     <TextBlock Text="{Binding LearnMoreButtonText}" />
-                    <icons:ArrowDown Width="12" Height="12" Margin="5,5,0,0">
-                        <icons:ArrowDown.Resources>
-                            <Style TargetType="icons:ArrowDown">
+                    <icons:ChevronDown Width="18" Height="18" Margin="5,3,0,0">
+                        <icons:ChevronDown.Resources>
+                            <Style TargetType="icons:ChevronDown">
                                 <Setter Property="Visibility" Value="Collapsed" />
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding LearnMoreActive}" Value="False">
@@ -77,11 +77,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
-                        </icons:ArrowDown.Resources>
-                    </icons:ArrowDown>
-                    <icons:ArrowUp Width="12" Height="12" Margin="5,5,0,0">
-                        <icons:ArrowUp.Resources>
-                            <Style TargetType="icons:ArrowUp">
+                        </icons:ChevronDown.Resources>
+                    </icons:ChevronDown>
+                    <icons:ChevronUp Width="18" Height="18" Margin="5,3,0,0">
+                        <icons:ChevronUp.Resources>
+                            <Style TargetType="icons:ChevronUp">
                                 <Setter Property="Visibility" Value="Collapsed" />
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding LearnMoreActive}" Value="True">
@@ -89,8 +89,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
-                        </icons:ArrowUp.Resources>
-                    </icons:ArrowUp>
+                        </icons:ChevronUp.Resources>
+                    </icons:ChevronUp>
                 </DockPanel>
             </Button>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">

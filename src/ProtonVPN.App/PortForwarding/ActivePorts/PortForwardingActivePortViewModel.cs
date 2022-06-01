@@ -78,8 +78,8 @@ namespace ProtonVPN.PortForwarding.ActivePorts
         public PortForwardingActivePortViewModel(IColorPalette colorPalette, ILogger logger)
         {
             _logger = logger;
-            _highlightColor = new(() => colorPalette.GetStringByResourceName("OldPrimaryBrushColor"));
-            _defaultColor = new(() => colorPalette.GetStringByResourceName("OldTextColor"));
+            _highlightColor = new(() => colorPalette.GetStringByResourceName("InteractionNormAccentHoverBrushColor"));
+            _defaultColor = new(() => colorPalette.GetStringByResourceName("TextNormBrushColor"));
 
             PortForwardingValueColor = _defaultColor.Value;
             PortForwardingValueCopyCommand = new RelayCommand(PortForwardingValueCopyActionAsync);

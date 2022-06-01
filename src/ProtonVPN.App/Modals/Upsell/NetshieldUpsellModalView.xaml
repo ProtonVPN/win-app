@@ -45,14 +45,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <vectorImages:Netshield />
             <TextBlock TextWrapping="Wrap"
                        FontSize="24"
-                       Foreground="{StaticResource OldTextBrushColor}"
+                       Foreground="{StaticResource TextNormBrushColor}"
                        Padding="15,0"
                        TextAlignment="Center"
                        HorizontalAlignment="Center"
                        Text="{translations:Loc Upsell_Netshield_Title}" />
             <TextBlock TextWrapping="Wrap"
                        FontSize="16"
-                       Foreground="{StaticResource OldTextBrushColor}"
+                       Foreground="{StaticResource TextNormBrushColor}"
                        Padding="0,8,0,32"
                        TextAlignment="Center"
                        HorizontalAlignment="Center"
@@ -63,7 +63,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <TextBlock Text="{translations:Loc Upsell_Netshield_BlockAds}"
                                Padding="10,0,0,0"
                                TextWrapping="Wrap"
-                               Foreground="{StaticResource OldTextBrushColor}"
+                               Foreground="{StaticResource TextNormBrushColor}"
                                FontSize="14" />
                 </DockPanel>
                 <DockPanel Margin="0,0,0,14">
@@ -71,7 +71,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <TextBlock Text="{translations:Loc Upsell_Netshield_ProtectFromMalware}"
                                Padding="10,0,0,0"
                                TextWrapping="Wrap"
-                               Foreground="{StaticResource OldTextBrushColor}"
+                               Foreground="{StaticResource TextNormBrushColor}"
                                FontSize="14" />
                 </DockPanel>
                 <DockPanel Margin="0,0,0,14">
@@ -79,7 +79,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <TextBlock Text="{translations:Loc Upsell_Netshield_BrowseFast}"
                                Padding="10,0,0,0"
                                TextWrapping="Wrap"
-                               Foreground="{StaticResource OldTextBrushColor}"
+                               Foreground="{StaticResource TextNormBrushColor}"
                                FontSize="14" />
                 </DockPanel>
             </StackPanel>

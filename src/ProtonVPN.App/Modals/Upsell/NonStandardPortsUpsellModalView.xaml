@@ -34,29 +34,29 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           Width="567"
                           d:DataContext="{d:DesignInstance upsell:NonStandardPortsUpsellModalViewModel}">
     <Grid>
-        <StackPanel Margin="50,64">
+        <StackPanel Margin="50,30,50,64">
             <vectorImages:NonStandardPorts />
             <TextBlock Text="{translations:Loc Upsell_NonStandardPorts_ttl}"
                        TextWrapping="Wrap"
                        FontSize="24"
                        HorizontalAlignment="Center"
-                       Foreground="{StaticResource OldTextBrushColor}"
-                       Padding="15,20,10,0" />
+                       Foreground="{StaticResource TextNormBrushColor}"
+                       Padding="15,10,10,0" />
             <TextBlock FontSize="16"
-                       Foreground="{StaticResource OldTextBrushColor}"
+                       Foreground="{StaticResource TextNormBrushColor}"
                        TextWrapping="Wrap"
                        TextAlignment="Center"
-                       Padding="15,8,10,32"
+                       Padding="15,25,10,0"
                        Text="{translations:Loc Upsell_NonStandardPorts_msg}" />
             <Button Style="{StaticResource PrimaryModalButton}"
+                    Margin="0,40,0,0"
                     HorizontalAlignment="Center"
                     Content="{translations:Loc Upsell_NonStandardPorts_btn_Upgrade}"
                     Command="{Binding ContinueCommand}" />
             <Button Style="{StaticResource ClearStyleButton}"
                     HorizontalAlignment="Center"
                     FontWeight="Bold"
-                    Margin="0,24,0,0"
-                    Foreground="{StaticResource OldPrimaryBrushColor}"
+                    Margin="0,20,0,0"
                     Content="{translations:Loc Upsell_NonStandardPorts_btn_LearnMore}"
                     Command="{Binding LearnMoreCommand}" />
         </StackPanel>

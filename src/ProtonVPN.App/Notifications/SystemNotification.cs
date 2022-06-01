@@ -39,10 +39,10 @@ namespace ProtonVPN.Notifications
 
         public void Show(string message)
         {
-            if (!_appSettings.ShowNotifications || _appExitHandler.PendingExit)
-                return;
-
-            _eventAggregator.PublishOnUIThread(new ShowNotificationMessage(message));
+            if (_appSettings.ShowNotifications && !_appExitHandler.PendingExit)
+            {
+                _eventAggregator.PublishOnUIThread(new ShowNotificationMessage(message));
+            }
         }
     }
 }

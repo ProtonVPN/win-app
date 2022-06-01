@@ -61,28 +61,41 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                StaysOpen="False">
             <Grid Margin="20">
                 <Grid.Effect>
-                    <DropShadowEffect BlurRadius="20"
-                                      Color="Black"
-                                      RenderingBias="Quality"
-                                      ShadowDepth="0" />
+                    <DropShadowEffect ShadowDepth="3" 
+                                      Direction="270" 
+                                      BlurRadius="12" 
+                                      Opacity="0.7"
+                                      RenderingBias="Quality" 
+                                      Color="{StaticResource ShadowNormColor}"/>
                 </Grid.Effect>
                 <Border Background="{StaticResource BackgroundNormBrushColor}"
                         BorderBrush="{StaticResource BorderWeakBrushColor}"
                         BorderThickness="1"
                         Width="250"
-                        CornerRadius="2">
-                    <StackPanel Margin="16,24" HorizontalAlignment="Center">
+                        CornerRadius="4">
+                    <StackPanel Margin="16,16,16,24" HorizontalAlignment="Center">
                         <Button Style="{StaticResource ClearStyleButton}"
                                 cal:Message.Attach="ClosePopup"
                                 HorizontalAlignment="Right"
                                 Background="Transparent"
                                 BorderBrush="Transparent">
-                            <icons:CrossBig Width="11"
-                                            Foreground="{StaticResource TextNormBrushColor}"
-                                            Margin="4,5,0,0" />
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <icons:CrossBig x:Name="CloseIcon"
+                                                    Width="16" 
+                                                    Height="16"
+                                                    Background="Transparent"
+                                                    Foreground="{StaticResource TextNormBrushColor}" />
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="true">
+                                            <Setter TargetName="CloseIcon" Property="Foreground" Value="{StaticResource InteractionNormHoverBrushColor}" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Button.Template>
                         </Button>
                         <TextBlock Text="{translations:Loc PromoCode_lbl_CouponCode}"
-                                   Margin="0,0,0,8"
+                                   Margin="0,4,0,8"
                                    FontSize="14"
                                    Foreground="{StaticResource TextNormBrushColor}" />
                         <Border BorderBrush="{StaticResource FieldNormBrushColor}" BorderThickness="1" CornerRadius="2">
@@ -92,10 +105,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                      BorderThickness="0"
                                      HorizontalAlignment="Left"
                                      Background="Transparent"
-                                     CaretBrush="White"
+                                     CaretBrush="{StaticResource TextNormBrushColor}"
                                      CharacterCasing="Upper"
                                      Width="210"
-                                     Foreground="White"
+                                     Foreground="{StaticResource TextNormBrushColor}"
                                      Padding="12,0"
                                      FontSize="16" />
                         </Border>

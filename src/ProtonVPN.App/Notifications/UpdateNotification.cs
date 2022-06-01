@@ -22,13 +22,11 @@ using Caliburn.Micro;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Update;
 using ProtonVPN.FlashNotifications;
-using ProtonVPN.Translations;
 
 namespace ProtonVPN.Notifications
 {
     public class UpdateNotification : IUpdateStateAware
     {
-        private readonly ISystemNotification _systemNotification;
         private readonly TimeSpan _remindInterval;
         private readonly UserAuth _userAuth;
         private readonly IEventAggregator _eventAggregator;
@@ -37,12 +35,10 @@ namespace ProtonVPN.Notifications
 
         public UpdateNotification(
             TimeSpan remindInterval,
-            ISystemNotification systemNotification,
             UserAuth userAuth,
             IEventAggregator eventAggregator,
             UpdateFlashNotificationViewModel notificationViewModel)
         {
-            _systemNotification = systemNotification;
             _remindInterval = remindInterval;
             _userAuth = userAuth;
             _eventAggregator = eventAggregator;
@@ -73,7 +69,6 @@ namespace ProtonVPN.Notifications
         private void Show()
         {
             _lastNotified = DateTime.Now;
-            _systemNotification.Show(Translation.Get("Dialogs_Update_msg_NewAppVersion"));
             _eventAggregator.PublishOnUIThread(new ShowFlashMessage(_notificationViewModel));
         }
 

@@ -17,11 +17,27 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Views.Icons
+using System.Windows;
+using System.Windows.Controls;
+
+namespace ProtonVPN.Servers.Reconnections
 {
-    public partial class ColoredGiftBox
+    public partial class ReconnectionView : UserControl
     {
-        public ColoredGiftBox()
+        public static readonly DependencyProperty DataProperty =
+            DependencyProperty.Register(
+                "Data",
+                typeof(ReconnectionData),
+                typeof(ReconnectionView),
+                new FrameworkPropertyMetadata(new ReconnectionData()));
+
+        public ReconnectionData Data
+        {
+            get => (ReconnectionData)GetValue(DataProperty);
+            set => SetValue(DataProperty, value);
+        }
+
+        public ReconnectionView()
         {
             InitializeComponent();
         }

@@ -37,7 +37,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <StackPanel Margin="0,40">
             <TextBlock TextWrapping="Wrap"
                        FontSize="16"
-                       Foreground="{StaticResource OldTextBrushColor}"
+                       Foreground="{StaticResource TextNormBrushColor}"
                        Padding="30,0,30,30"
                        behavior:TextStyleBehavior.FormattedText="{translations:Loc Dialogs_TunInUse_msg}">
                 <TextBlock.Resources>

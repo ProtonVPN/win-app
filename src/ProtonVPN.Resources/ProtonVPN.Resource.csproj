@@ -38,9 +38,6 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FontAwesome.WPF, Version=4.7.0.37774, Culture=neutral, PublicKeyToken=0758b07a11a4f466, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\FontAwesome.WPF.4.7.0.9\lib\net40\FontAwesome.WPF.dll</HintPath>
-    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="PresentationFramework.Aero" />
@@ -72,6 +69,12 @@
     </Compile>
     <Compile Include="Controls\ProtonAnimation.xaml.cs">
       <DependentUpon>ProtonAnimation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Graphics\BrandLoader.xaml.cs">
+      <DependentUpon>BrandLoader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Graphics\Icons\Gift.xaml.cs">
+      <DependentUpon>Gift.xaml</DependentUpon>
     </Compile>
     <Compile Include="Graphics\Icons\Loader.xaml.cs">
       <DependentUpon>Loader.xaml</DependentUpon>
@@ -359,6 +362,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\ProtonAnimation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Graphics\BrandLoader.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Graphics\Icons\Gift.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -743,7 +754,6 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Strings.resx">

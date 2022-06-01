@@ -256,7 +256,6 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<BaseFilteringEngineService>().SingleInstance();
             builder.Register(c => new UpdateNotification(
                     c.Resolve<Common.Configuration.Config>().UpdateRemindInterval,
-                    c.Resolve<ISystemNotification>(),
                     c.Resolve<UserAuth>(),
                     c.Resolve<IEventAggregator>(),
                     c.Resolve<UpdateFlashNotificationViewModel>()))

@@ -34,11 +34,11 @@ namespace ProtonVPN.FlashNotifications
         IHandle<HideFlashMessage>,
         ILogoutAware
     {
-        private readonly ISystemNotification _systemNotification;
+        private readonly INotificationSender _notificationSender;
 
-        public FlashNotificationViewModel(IEventAggregator eventAggregator, ISystemNotification systemNotification)
+        public FlashNotificationViewModel(IEventAggregator eventAggregator, INotificationSender notificationSender)
         {
-            _systemNotification = systemNotification;
+            _notificationSender = notificationSender;
             eventAggregator.Subscribe(this);
             CloseMessageCommand = new RelayCommand<INotification>(CloseMessage);
             Notifications = new ObservableCollection<INotification>();
@@ -64,7 +64,7 @@ namespace ProtonVPN.FlashNotifications
 
         private void CloseMessage(INotification message)
         {
-            var index = Notifications.IndexOf(message);
+            int index = Notifications.IndexOf(message);
             if (index != -1)
             {
                 Application.Current.Dispatcher.Invoke(() =>
@@ -76,7 +76,7 @@ namespace ProtonVPN.FlashNotifications
 
         private void ShowMessage(INotification notification)
         {
-            var index = Notifications.IndexOf(notification);
+            int index = Notifications.IndexOf(notification);
             if (index == -1)
             {
                 Application.Current.Dispatcher.Invoke(() =>
@@ -93,7 +93,7 @@ namespace ProtonVPN.FlashNotifications
                 });
             }
 
-            _systemNotification.Show(notification.Message);
+            _notificationSender.Send(notification.Message);
         }
     }
 }

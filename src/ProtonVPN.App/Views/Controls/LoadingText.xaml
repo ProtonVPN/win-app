@@ -28,8 +28,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="70" Height="25"
                     Orientation="Horizontal">
-            <TextBlock Width="58" Foreground="{StaticResource OldTextBrushColor}" FontSize="16" Text="{translations:Loc Window_lbl_Loading}"/>
-            <TextBlock FontSize="16" Foreground="{StaticResource OldTextBrushColor}">
+            <TextBlock Width="58" Foreground="{StaticResource TextNormBrushColor}" FontSize="16" Text="{translations:Loc Window_lbl_Loading}"/>
+            <TextBlock FontSize="16" Foreground="{StaticResource TextNormBrushColor}">
                 <TextBlock.Style>
                     <Style TargetType="TextBlock">
                         <Setter Property="Opacity" Value="0" />
@@ -62,7 +62,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </TextBlock.Style>
                 <TextBlock.Text>.</TextBlock.Text>
             </TextBlock>
-            <TextBlock FontSize="16" Foreground="{StaticResource OldTextBrushColor}">
+            <TextBlock FontSize="16" Foreground="{StaticResource TextNormBrushColor}">
                 <TextBlock.Style>
                     <Style TargetType="TextBlock">
                         <Setter Property="Opacity" Value="0" />
@@ -94,7 +94,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </TextBlock.Style>
                 <TextBlock.Text>.</TextBlock.Text>
             </TextBlock>
-            <TextBlock FontSize="16" Foreground="{StaticResource OldTextBrushColor}">
+            <TextBlock FontSize="16" Foreground="{StaticResource TextNormBrushColor}">
                 <TextBlock.Style>
                     <Style TargetType="TextBlock">
                         <Setter Property="Opacity" Value="0" />

@@ -37,14 +37,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <StackPanel Margin="30,40">
             <TextBlock TextWrapping="Wrap"
                        FontSize="16"
-                       Foreground="{StaticResource OldTextBrushColor}"
+                       Foreground="{StaticResource TextNormBrushColor}"
                        Padding="0,0,0,30"
                        behavior:TextStyleBehavior.FormattedText="{translations:Loc Dialogs_EnableSmartProtocol_msg}" />
             <DockPanel Margin="0,0,0,30">
                 <CheckBox Style="{StaticResource Checkbox}"
                           IsChecked="{Binding IsToNotShowThisMessageAgain}">
                     <Label FontSize="14"
-                           Foreground="{StaticResource OldTextBrushColor}"
+                           Foreground="{StaticResource TextNormBrushColor}"
                            VerticalAlignment="Center"
                            Content="{translations:Loc Dialogs_DoNotShowThisMessageAgain}" />
                 </CheckBox>

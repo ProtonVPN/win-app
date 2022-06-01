@@ -46,27 +46,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Setter>
     </Style>
 
-    <Style x:Key="LightVerticalThumb" TargetType="{x:Type Thumb}">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type Thumb}">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="4" />
-                            <RowDefinition Height="4" />
-                            <RowDefinition />
-                            <RowDefinition Height="4" />
-                            <RowDefinition Height="4" />
-                        </Grid.RowDefinitions>
-                        <Ellipse Grid.Row="0" Grid.RowSpan="2" Fill="{StaticResource OldQuickLaunchWindowDropdownScrollbarPrimaryColor}"/>
-                        <Rectangle Grid.Row="1" Grid.RowSpan="3" Fill="{StaticResource OldQuickLaunchWindowDropdownScrollbarPrimaryColor}"/>
-                        <Ellipse Grid.Row="3" Grid.RowSpan="2" Fill="{StaticResource OldQuickLaunchWindowDropdownScrollbarPrimaryColor}"/>
-                    </Grid>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
     <Style x:Key="BaseScrollbar" TargetType="ScrollBar">
         <Setter Property="Stylus.IsPressAndHoldEnabled" Value="false"/>
         <Setter Property="Stylus.IsFlicksEnabled" Value="false"/>
@@ -170,78 +149,4 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 ViewportSize="{TemplateBinding ViewportHeight}"/>
         </Grid>
     </ControlTemplate>
-
-    <Style x:Key="LightScrollbar" TargetType="ScrollBar" BasedOn="{StaticResource BaseScrollbar}">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type ScrollBar}">
-                    <Grid x:Name="Bg" SnapsToDevicePixels="true" Width="10">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="0.00001*"/>
-                        </Grid.RowDefinitions>
-                        <Border x:Name="Border" Background="{StaticResource OldQuickLaunchWindowDropdownScrollbarSecondaryColor}" Width="10" CornerRadius="5">
-                            <Border.Style>
-                                <Style TargetType="Border">
-                                    <Setter Property="Visibility" Value="Hidden"/>
-                                </Style>
-                            </Border.Style>
-                        </Border>
-                        <Track x:Name="PART_Track" IsDirectionReversed="true" IsEnabled="{TemplateBinding IsMouseOver}" Grid.Row="1">
-                            <Track.Resources>
-                                <system:Double x:Key="{x:Static SystemParameters.VerticalScrollBarButtonHeightKey}">
-                                    35
-                                </system:Double>
-                            </Track.Resources>
-                            <Track.Thumb>
-                                <Thumb Style="{StaticResource LightVerticalThumb}" mwt:ScrollChrome.ScrollGlyph="VerticalGripper" Width="10"/>
-                            </Track.Thumb>
-                        </Track>
-                    </Grid>
-                    <ControlTemplate.Triggers>
-                        <Trigger SourceName="PART_Track" Property="Visibility" Value="Visible">
-                            <Setter TargetName="Border" Property="Visibility" Value="Visible"/>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-        <Style.Triggers>
-            <Trigger Property="Orientation" Value="Horizontal">
-                <Setter Property="Width" Value="Auto"/>
-                <Setter Property="MinWidth" Value="0"/>
-                <Setter Property="Height" Value="10"/>
-                <Setter Property="MinHeight" Value="10"/>
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type ScrollBar}">
-                            <Grid x:Name="Bg" SnapsToDevicePixels="true">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="0.00001*"/>
-                                </Grid.ColumnDefinitions>
-                                <Track x:Name="PART_Track" IsEnabled="{TemplateBinding IsMouseOver}">
-                                    <Track.Thumb>
-                                        <Thumb mwt:ScrollChrome.ScrollGlyph="HorizontalGripper" Style="{StaticResource LightVerticalThumb}" Height="8"/>
-                                    </Track.Thumb>
-                                </Track>
-                            </Grid>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Trigger>
-        </Style.Triggers>
-    </Style>
-
-    <Style x:Key="ScrollBarPageButton" TargetType="{x:Type RepeatButton}">
-        <Setter Property="OverridesDefaultStyle" Value="true"/>
-        <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="Focusable" Value="false"/>
-        <Setter Property="IsTabStop" Value="false"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type RepeatButton}">
-                    <Border Background="{TemplateBinding Background}" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}"/>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
 </ResourceDictionary>

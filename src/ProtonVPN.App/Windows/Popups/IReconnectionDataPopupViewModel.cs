@@ -17,13 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Views.Icons
+using ProtonVPN.Core.Servers.Models;
+
+namespace ProtonVPN.Windows.Popups
 {
-    public partial class Streaming
+    public interface IReconnectionDataPopupViewModel
     {
-        public Streaming()
-        {
-            InitializeComponent();
-        }
+        void SetNoReconnectionData();
+        void SetReconnectionData(Server previousServer, Server currentServer);
     }
 }

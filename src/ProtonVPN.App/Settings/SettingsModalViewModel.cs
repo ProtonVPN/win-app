@@ -17,7 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -31,7 +30,6 @@ using ProtonVPN.Config.Url;
 using ProtonVPN.Core;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Models;
-using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
@@ -41,7 +39,6 @@ using ProtonVPN.PortForwarding;
 using ProtonVPN.PortForwarding.ActivePorts;
 using ProtonVPN.Profiles;
 using ProtonVPN.Resource;
-using ProtonVPN.Resource.Colors;
 using ProtonVPN.Settings.ReconnectNotification;
 using ProtonVPN.Settings.SplitTunneling;
 using ProtonVPN.Translations;
@@ -58,15 +55,11 @@ namespace ProtonVPN.Settings
         private readonly IActiveUrls _urls;
         private readonly ILanguageProvider _languageProvider;
         private readonly IPortForwardingManager _portForwardingManager;
-        private readonly IProfileFactory _profileFactory;
         private readonly ReconnectState _reconnectState;
         private readonly ProfileViewModelFactory _profileViewModelFactory;
 
-        private IReadOnlyList<ProfileViewModel> _autoConnectProfiles;
         private IReadOnlyList<ProfileViewModel> _quickConnectProfiles;
         private VpnStatus _vpnStatus;
-
-        private readonly Lazy<string> _disabledProfileColor;
 
         public SettingsModalViewModel(
             IUserStorage userStorage,
@@ -77,8 +70,6 @@ namespace ProtonVPN.Settings
             IActiveUrls urls,
             ILanguageProvider languageProvider,
             IPortForwardingManager portForwardingManager,
-            IColorPalette colorPalette,
-            IProfileFactory profileFactory, 
             ReconnectState reconnectState,
             ProfileViewModelFactory profileViewModelFactory,
             SplitTunnelingViewModel splitTunnelingViewModel,
@@ -94,7 +85,6 @@ namespace ProtonVPN.Settings
             _urls = urls;
             _languageProvider = languageProvider;
             _portForwardingManager = portForwardingManager;
-            _profileFactory = profileFactory;
             _reconnectState = reconnectState;
 
             _profileViewModelFactory = profileViewModelFactory;
@@ -108,8 +98,6 @@ namespace ProtonVPN.Settings
             ReconnectCommand = new RelayCommand(ReconnectAction);
             UpgradeCommand = new RelayCommand(UpgradeAction);
             LearnMoreAboutPortForwardingCommand = new RelayCommand(LearnMoreAboutPortForwardingAction);
-            
-            _disabledProfileColor = new(() => colorPalette.GetStringByResourceName("OldTableTextColor"));
         }
 
         public PortForwardingActivePortViewModel ActivePortViewModel { get; }
@@ -476,12 +464,6 @@ namespace ProtonVPN.Settings
             set => _appSettings.NetworkAdapterType = value;
         }
 
-        public IReadOnlyList<ProfileViewModel> AutoConnectProfiles
-        {
-            get => _autoConnectProfiles;
-            set => Set(ref _autoConnectProfiles, value);
-        }
-
         public IReadOnlyList<ProfileViewModel> QuickConnectProfiles
         {
             get => _quickConnectProfiles;
@@ -626,28 +608,6 @@ namespace ProtonVPN.Settings
 
             QuickConnect = GetSelectedQuickConnectProfile();
             NotifyOfPropertyChange(() => QuickConnect);
-        }
-
-        private async Task LoadAutoConnectProfiles()
-        {
-            List<ProfileViewModel> profiles = new() { CreateDisabledProfileViewModel() };
-            profiles.AddRange(await GetProfiles());
-
-            AutoConnectProfiles = profiles;
-            NotifyOfPropertyChange(() => AutoConnectProfiles);
-        }
-
-        private ProfileViewModel CreateDisabledProfileViewModel()
-        {
-            return new(CreateDisabledProfile());
-        }
-
-        private Profile CreateDisabledProfile()
-        {
-            Profile profile = _profileFactory.Create("");
-            profile.Name = Translation.Get("Settings_val_Disabled");
-            profile.ColorCode = _disabledProfileColor.Value;
-            return profile;
         }
 
         private async Task LoadQuickConnectProfiles()

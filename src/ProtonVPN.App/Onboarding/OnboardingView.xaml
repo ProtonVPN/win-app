@@ -22,15 +22,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:fa="http://schemas.fontawesome.io/icons/"
              xmlns:onboarding="clr-namespace:ProtonVPN.Onboarding"
              xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
              xmlns:behavior="clr-namespace:ProtonVPN.Core.Wpf.Behavior"
+             xmlns:icons="clr-namespace:ProtonVPN.Resource.Graphics.Icons;assembly=ProtonVPN.Resource"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance onboarding:OnboardingViewModel}">
     <UserControl.Resources>
-        <Style x:Key="NextButton" TargetType="Label">
-            <Setter Property="Foreground" Value="{StaticResource OldPrimaryBrushColor}" />
+        <Style x:Key="NextButtonLabel" TargetType="Label">
+            <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}" />
             <Setter Property="Content" Value="{translations:Loc Onboarding_btn_NextStep}" />
             <Style.Triggers>
                 <DataTrigger Binding="{Binding IsLastStep}" Value="True">
@@ -56,11 +56,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </Trigger>
             </Style.Triggers>
         </Style>
-        <Style x:Key="ArrowIcon" TargetType="fa:FontAwesome">
+        <Style x:Key="ArrowIcon" TargetType="UserControl">
+            <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}" />
             <Setter Property="VerticalAlignment" Value="Center" />
-            <Setter Property="Icon" Value="ArrowRight" />
-            <Setter Property="Margin" Value="10,3,0,0" />
-            <Setter Property="Foreground" Value="{StaticResource OldPrimaryBrushColor}" />
+            <Setter Property="Width" Value="24" />
+            <Setter Property="Margin" Value="5,3,0,0" />
             <Setter Property="Visibility" Value="Visible" />
             <Style.Triggers>
                 <DataTrigger Binding="{Binding IsLastStep}" Value="True">
@@ -69,32 +69,73 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </Style.Triggers>
         </Style>
         <Style x:Key="StepDetailsText" TargetType="TextBlock">
-            <Setter Property="Foreground" Value="{StaticResource OldTextBrushColor}" />
+            <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}" />
             <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="FontSize" Value="14" />
             <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
+        <Style x:Key="PreviousButtonBorder" TargetType="Border">
+            <Setter Property="Width" Value="30" />
+            <Setter Property="Height" Value="30" />
+            <Setter Property="CornerRadius" Value="15" />
+            <Setter Property="BorderThickness" Value="2" />
+            <Setter Property="BorderBrush" Value="{StaticResource InteractionNormAccentBrushColor}" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}, Path=IsMouseOver}" Value="True">
+                    <Setter Property="BorderBrush" Value="{StaticResource InteractionNormAccentHoverBrushColor}" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="PreviousButtonIcon" TargetType="UserControl">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="Width" Value="22" />
+            <Setter Property="Margin" Value="0,0,1,0" />
+            <Setter Property="Foreground" Value="{StaticResource InteractionNormAccentBrushColor}" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}, Path=IsMouseOver}" Value="True">
+                    <Setter Property="Foreground" Value="{StaticResource InteractionNormAccentHoverBrushColor}" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="NextButton" TargetType="Button" BasedOn="{StaticResource ModalButton}">
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="VerticalAlignment" Value="Bottom" />
+            <Setter Property="Padding" Value="20,0" />
+            <Setter Property="Command" Value="{Binding NextTipCommand}" />
+            <Setter Property="Margin" Value="0,0,10,10" />
+            <Setter Property="Background" Value="{StaticResource InteractionNormBrushColor}" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{StaticResource InteractionNormHoverBrushColor}" />
+                </Trigger>
+            </Style.Triggers>
         </Style>
     </UserControl.Resources>
     <Grid>
         <Border CornerRadius="20,0,0,20"
                 MinWidth="250"
-                Background="{StaticResource OldPrimaryBrushColor}" />
+                Background="{StaticResource BackgroundNormBrushColor}"
+                BorderBrush="{StaticResource PrimaryBrushColor}"
+                BorderThickness="5,2,0,2"/>
         <Border VerticalAlignment="Top"
                 HorizontalAlignment="Left"
                 Margin="20,20,0,0"
                 Width="40"
                 Height="40"
                 CornerRadius="20"
-                BorderBrush="{StaticResource OldTextBrushColor}"
-                BorderThickness="1">
-            <Label Foreground="{StaticResource OldTextBrushColor}"
+                BorderBrush="{StaticResource TextNormBrushColor}"
+                BorderThickness="2">
+            <Label Foreground="{StaticResource TextNormBrushColor}"
                    HorizontalAlignment="Center"
+                   FontWeight="Bold"
                    FontSize="16"
                    VerticalAlignment="Center"
                    Content="{Binding Number}" />
         </Border>
-        <Label Foreground="{StaticResource OldTextBrushColor}"
+        <Label Foreground="{StaticResource TextNormBrushColor}"
                HorizontalAlignment="Left"
+               FontWeight="Bold"
                FontSize="16"
                Margin="70,25,0,0"
                VerticalAlignment="Top">
@@ -171,34 +212,19 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </ContentControl>
 
         <DockPanel>
-            <Button Style="{StaticResource PrevButton}" Command="{Binding PrevTipCommand}">
+            <Button Style="{StaticResource PrevButton}" 
+                    Command="{Binding PrevTipCommand}" >
                 <Grid Width="30" Height="30">
-                    <Border BorderBrush="{StaticResource OldPrimaryDimmedBrushColor}"
-                            Width="30"
-                            Height="30"
-                            CornerRadius="15"
-                            BorderThickness="1" />
-                    <fa:FontAwesome Icon="ArrowLeft"
-                                    Foreground="{StaticResource OldPrimaryDimmedBrushColor}"
-                                    VerticalAlignment="Center"
-                                    HorizontalAlignment="Center" />
+                    <Border Style="{StaticResource PreviousButtonBorder}" />
+                    <icons:ChevronLeft Style="{StaticResource PreviousButtonIcon}" />
                 </Grid>
             </Button>
-            <Button Style="{StaticResource ModalButton}"
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Bottom"
-                    Background="{StaticResource OldOnboardingButtonBackgroundColor}"
-                    BorderThickness="0"
-                    Foreground="{StaticResource OldPrimaryBrushColor}"
-                    Padding="20,0"
-                    Command="{Binding NextTipCommand}"
-                    Margin="0,0,10,10">
+            <Button Style="{StaticResource NextButton}">
                 <DockPanel>
-                    <Label Style="{StaticResource NextButton}" />
-                    <fa:FontAwesome Style="{StaticResource ArrowIcon}" />
+                    <Label Style="{StaticResource NextButtonLabel}" />
+                    <icons:ArrowRight Style="{StaticResource ArrowIcon}" />
                 </DockPanel>
             </Button>
         </DockPanel>
-
     </Grid>
 </UserControl>

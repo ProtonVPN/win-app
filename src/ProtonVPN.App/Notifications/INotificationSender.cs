@@ -23,7 +23,7 @@ namespace ProtonVPN.Notifications
 {
     public interface INotificationSender
     {
-        void Send(string title, string description, [CallerFilePath] string sourceFilePath = "",
+        void Send(string title, string description = null, [CallerFilePath] string sourceFilePath = "",
             [CallerMemberName] string sourceMemberName = "", [CallerLineNumber] int sourceLineNumber = 0);
     }
 }

@@ -20,21 +20,16 @@
 using System;
 using ProtonVPN.Config.Url;
 using ProtonVPN.Core.Servers.Models;
+using ProtonVPN.Servers.Reconnections;
 using ProtonVPN.Sidebar;
 
 namespace ProtonVPN.Windows.Popups.SubscriptionExpiration
 {
-    public class SubscriptionExpiredPopupViewModel : BaseUpgradePlanPopupViewModel
+    public class SubscriptionExpiredPopupViewModel : BaseUpgradePlanPopupViewModel, ISubscriptionExpiredPopupViewModel
     {
         private readonly Lazy<ConnectionStatusViewModel> _connectionStatusViewModel;
-
-        public bool IsReconnection { get; private set; }
-
-        public Server FromServer { get; private set; }
-        public bool IsFromServerSecureCore { get; private set; }
-
-        public Server ToServer { get; private set; }
-        public bool IsToServerSecureCore { get; private set; }
+        
+        public ReconnectionData ReconnectionData { get; private set; }
 
         public SubscriptionExpiredPopupViewModel(IActiveUrls urls,
             Lazy<ConnectionStatusViewModel> connectionStatusViewModel,
@@ -69,20 +64,12 @@ namespace ProtonVPN.Windows.Popups.SubscriptionExpiration
 
         public void SetNoReconnectionData()
         {
-            IsReconnection = false;
-            FromServer = null;
-            ToServer = null;
+            ReconnectionData = new ReconnectionData();
         }
 
         public void SetReconnectionData(Server previousServer, Server currentServer)
         {
-            IsReconnection = true;
-
-            FromServer = previousServer;
-            IsFromServerSecureCore = previousServer.IsSecureCore();
-
-            ToServer = currentServer;
-            IsToServerSecureCore = currentServer.IsSecureCore();
+            ReconnectionData = new ReconnectionData(previousServer, currentServer);
         }
     }
 }

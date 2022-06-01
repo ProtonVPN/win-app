@@ -23,9 +23,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
                     xmlns:behaviour="clr-namespace:ProtonVPN.Core.Wpf.Behavior"
                     xmlns:splittunneling="clr-namespace:ProtonVPN.Settings.SplitTunneling"
-                    xmlns:fa="http://schemas.fontawesome.io/icons/"
-                    xmlns:icons="clr-namespace:ProtonVPN.Views.Icons"
-                    xmlns:settings="clr-namespace:ProtonVPN.Settings">
+                    xmlns:settings="clr-namespace:ProtonVPN.Settings"
+                    xmlns:icons="clr-namespace:ProtonVPN.Resource.Graphics.Icons;assembly=ProtonVPN.Resource">
 
     <Style x:Key="SettingsAddButton" TargetType="Button" BasedOn="{StaticResource ClearStyleButton}">
         <Setter Property="Background" Value="Transparent"/>
@@ -80,13 +79,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <fa:FontAwesome x:Name="Icon" 
-                                    FontSize="16"
-                                    FontWeight="Bold" 
-                                    Icon="TimesCircle" 
-                                    Foreground="{TemplateBinding Foreground}"
-                                    VerticalAlignment="{TemplateBinding VerticalAlignment}"
-                                    HorizontalAlignment="{TemplateBinding HorizontalAlignment}"/>
+                    <icons:Trash x:Name="Icon"
+                                 Width="16"
+                                 Background="Transparent"
+                                 Foreground="{TemplateBinding Foreground}"
+                                 VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                                 HorizontalAlignment="{TemplateBinding HorizontalAlignment}" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -166,9 +164,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                    VerticalAlignment="Center"
                    Visibility="{Binding FileExists, Converter={StaticResource BoolToVis}}"
                    Source="{Binding Path, Converter={StaticResource FilePathToImageSourceConverter}}"/>
-            <fa:FontAwesome Icon="Times" Foreground="{StaticResource SignalDangerBrushColor}" FontSize="26" Margin="3,0,10,0">
-                <fa:FontAwesome.Style>
-                    <Style TargetType="fa:FontAwesome">
+
+            <icons:CrossCircleFilled Foreground="{StaticResource SignalDangerBrushColor}" Width="26" Margin="3,0,10,0">
+                <icons:CrossCircleFilled.Style>
+                    <Style TargetType="UserControl">
                         <Setter Property="Visibility" Value="Collapsed"/>
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding FileExists}" Value="False">
@@ -176,8 +175,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
-                </fa:FontAwesome.Style>
-            </fa:FontAwesome>
+                </icons:CrossCircleFilled.Style>
+            </icons:CrossCircleFilled>
+
             <TextBlock Padding="0,0,0,3" FontSize="16" Foreground="{StaticResource TextNormBrushColor}" VerticalAlignment="Center" 
                        Text="{Binding Name}"
                        TextTrimming="CharacterEllipsis">

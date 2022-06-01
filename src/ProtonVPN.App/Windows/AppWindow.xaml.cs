@@ -27,7 +27,10 @@ using System.Windows.Forms;
 using System.Windows.Interop;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Effects;
+using System.Windows.Media.Imaging;
 using Caliburn.Micro;
+using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core;
 using ProtonVPN.Core.Events;
@@ -51,30 +54,37 @@ namespace ProtonVPN.Windows
         private const int BLUR_AMOUNT = 20;
         private const int SIDEBAR_WIDTH = 336;
         private const int DEFAULT_WIDTH = 800;
-        
+        private const string ICON_PATH = "protonvpn.ico";
+        private const string CONNECTED_ICON_PATH = "Resources/Assets/Images/Icons/systray-connected.ico";
+
+        private readonly ILogger _logger;
         private readonly IEventAggregator _eventAggregator;
         private readonly IAppSettings _appSettings;
         private readonly QuickLaunchWindow _quickLaunchWindow;
         private readonly TrayContextMenu _trayContextMenu;
+        private readonly DoubleAnimation _blurInAnimation = new(BLUR_AMOUNT, TimeSpan.FromMilliseconds(200));
+        private readonly DoubleAnimation _blurOutAnimation = new(0, TimeSpan.FromMilliseconds(200));
+        private readonly ResourceIcon _icon;
+        private readonly ResourceIcon _connectedIcon;
 
         private static FieldInfo _menuDropAlignmentField;
         private bool _sidebarModeBeforeMaximize;
         private bool _blurInProgress;
         private bool _blurOutInProgress;
+        private bool _isConnected;
         private bool _isConnecting;
-
-        private readonly DoubleAnimation _blurInAnimation = new(BLUR_AMOUNT, TimeSpan.FromMilliseconds(200));
-        private readonly DoubleAnimation _blurOutAnimation = new(0, TimeSpan.FromMilliseconds(200));
-
+        
         public bool AllowWindowHiding;
 
         public AppWindow(
+            ILogger logger,
             IEventAggregator eventAggregator,
             IAppSettings appSettings,
             QuickLaunchWindow quickLaunchWindow,
             TrayContextMenu trayContextMenu,
             TrayIcon trayIcon)
         {
+            _logger = logger;
             _eventAggregator = eventAggregator;
             _appSettings = appSettings;
             _quickLaunchWindow = quickLaunchWindow;
@@ -100,6 +110,9 @@ namespace ProtonVPN.Windows
 
             Deactivated += PublishWindowState;
             Activated += PublishWindowState;
+            
+            _icon = new(ICON_PATH);
+            _connectedIcon = new(CONNECTED_ICON_PATH);
         }
 
         private void SetGenericTooltipBehaviour()
@@ -172,10 +185,31 @@ namespace ProtonVPN.Windows
 
         public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
         {
+            UpdateIcon(e.State.Status);
+            _isConnected = e.State.Status == VpnStatus.Connected;
             _isConnecting = e.State.Status != VpnStatus.Disconnecting &&
                             e.State.Status != VpnStatus.Disconnected &&
                             e.State.Status != VpnStatus.Connected;
             return Task.CompletedTask;
+        }
+
+        private void UpdateIcon(VpnStatus vpnStatus)
+        {
+            try
+            {
+                if (_isConnected && vpnStatus != VpnStatus.Connected)
+                {
+                    Icon = BitmapFrame.Create(_icon.GetIconStream());
+                }
+                else if (!_isConnected && vpnStatus == VpnStatus.Connected)
+                {
+                    Icon = BitmapFrame.Create(_connectedIcon.GetIconStream());
+                }
+            }
+            catch (Exception exception)
+            {
+                _logger.Error<AppLog>("Failed to set window icon.", exception);
+            }
         }
 
         protected override void OnStateChanged(EventArgs e)

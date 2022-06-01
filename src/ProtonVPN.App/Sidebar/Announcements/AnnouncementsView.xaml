@@ -23,7 +23,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:announcements="clr-namespace:ProtonVPN.Sidebar.Announcements"
-             xmlns:icons="clr-namespace:ProtonVPN.Views.Icons"
+             xmlns:icons="clr-namespace:ProtonVPN.Resource.Graphics.Icons;assembly=ProtonVPN.Resource"
              d:DataContext="{d:DesignInstance announcements:AnnouncementsViewModel}"
              mc:Ignorable="d">
     <UserControl.Resources>
@@ -52,11 +52,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                       Command="{Binding OpenAnnouncementCommand}"
                       x:Name="TogglePopupButton">
             <Grid>
-                <icons:GiftBox Width="23" Margin="0"
-                               Foreground="{StaticResource TextNormBrushColor}"/>
+                <icons:Gift Width="23" Margin="0"
+                            Foreground="{StaticResource TextNormBrushColor}"/>
                 <Ellipse Width="5"
                          Height="5"
-                         Margin="19,-15,0,0"
+                         Margin="19,-16,0,0"
                          Fill="{StaticResource NotificationErrorBrushColor}">
                     <Ellipse.Resources>
                         <Style TargetType="Ellipse">

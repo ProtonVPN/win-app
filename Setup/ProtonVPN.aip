@@ -102,7 +102,6 @@
     <ROW Component="DnsClient.dll" ComponentId="{34E2A2F6-8615-4B5A-82CC-94F43F1B97EA}" Directory_="APPDIR" Attributes="0" KeyPath="DnsClient.dll"/>
     <ROW Component="DynamicExpresso.Core.dll" ComponentId="{3CC4F9B3-E8E9-4261-A6F7-896541F64FBC}" Directory_="APPDIR" Attributes="0" KeyPath="DynamicExpresso.Core.dll"/>
     <ROW Component="FD92F08164915A061A35616A2E484" ComponentId="{2C2DFA76-698A-44B9-8F04-4096B39B2AD8}" Directory_="APPDIR" Attributes="4" KeyPath="FD92F08164915A061A35616A2E484" Options="2"/>
-    <ROW Component="FontAwesome.WPF.dll" ComponentId="{5A08ADDA-58F0-4EA8-AEB3-468054C5E662}" Directory_="APPDIR" Attributes="0" KeyPath="FontAwesome.WPF.dll"/>
     <ROW Component="GalaSoft.MvvmLight.Platform.dll" ComponentId="{1E9FBB65-23B0-4531-83DF-973B693FF7FB}" Directory_="APPDIR" Attributes="0" KeyPath="GalaSoft.MvvmLight.Platform.dll"/>
     <ROW Component="GalaSoft.MvvmLight.dll" ComponentId="{50FA9CA8-4DD4-4068-A0D8-D2C1D9D42947}" Directory_="APPDIR" Attributes="0" KeyPath="GalaSoft.MvvmLight.dll"/>
     <ROW Component="GoSrp.dll" ComponentId="{3DB767E8-ACF9-459F-A509-F57E76FBA633}" Directory_="x64_Dir" Attributes="256" KeyPath="GoSrp.dll"/>
@@ -220,7 +219,6 @@
     <ROW File="Caliburn.Micro.Platform.Core.dll" Component_="Caliburn.Micro.Platform.Core.dll" FileName="CALIBU~2.DLL|Caliburn.Micro.Platform.Core.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Caliburn.Micro.Platform.Core.dll" SelfReg="false"/>
     <ROW File="Caliburn.Micro.Platform.dll" Component_="Caliburn.Micro.Platform.dll" FileName="CALIBU~3.DLL|Caliburn.Micro.Platform.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Caliburn.Micro.Platform.dll" SelfReg="false"/>
     <ROW File="DynamicExpresso.Core.dll" Component_="DynamicExpresso.Core.dll" FileName="DYNAMI~1.DLL|DynamicExpresso.Core.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\DynamicExpresso.Core.dll" SelfReg="false"/>
-    <ROW File="FontAwesome.WPF.dll" Component_="FontAwesome.WPF.dll" FileName="FONTAW~1.DLL|FontAwesome.WPF.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\FontAwesome.WPF.dll" SelfReg="false"/>
     <ROW File="GalaSoft.MvvmLight.dll" Component_="GalaSoft.MvvmLight.dll" FileName="GALASO~1.DLL|GalaSoft.MvvmLight.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\GalaSoft.MvvmLight.dll" SelfReg="false"/>
     <ROW File="GalaSoft.MvvmLight.Platform.dll" Component_="GalaSoft.MvvmLight.Platform.dll" FileName="GALASO~3.DLL|GalaSoft.MvvmLight.Platform.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\GalaSoft.MvvmLight.Platform.dll" SelfReg="false"/>
     <ROW File="Newtonsoft.Json.dll" Component_="Newtonsoft.Json.dll" FileName="NEWTON~1.DLL|Newtonsoft.Json.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Newtonsoft.Json.dll" SelfReg="false"/>
@@ -591,7 +589,6 @@
     <ROW Feature_="MainFeature" Component_="Caliburn.Micro.dll"/>
     <ROW Feature_="MainFeature" Component_="DnsClient.dll"/>
     <ROW Feature_="MainFeature" Component_="DynamicExpresso.Core.dll"/>
-    <ROW Feature_="MainFeature" Component_="FontAwesome.WPF.dll"/>
     <ROW Feature_="MainFeature" Component_="GalaSoft.MvvmLight.Platform.dll"/>
     <ROW Feature_="MainFeature" Component_="GalaSoft.MvvmLight.dll"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.Deployment.WindowsInstaller.dll"/>

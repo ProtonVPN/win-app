@@ -17,11 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Views.Forms
+namespace ProtonVPN.Resource.Graphics
 {
-    public partial class FormErrorsPanelView
+    public partial class BrandLoader
     {
-        public FormErrorsPanelView()
+        public BrandLoader()
         {
             InitializeComponent();
         }

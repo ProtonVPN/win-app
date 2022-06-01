@@ -47,7 +47,7 @@ namespace ProtonVPN.Windows
             return _cachedSizedIcon ?? (_cachedSizedIcon = new Icon(GetIconStream(), size));
         }
 
-        private Stream GetIconStream()
+        public Stream GetIconStream()
         {
             return Application.GetResourceStream(new Uri(Path.Combine(BasePath, _iconPath)))?.Stream;
         }
