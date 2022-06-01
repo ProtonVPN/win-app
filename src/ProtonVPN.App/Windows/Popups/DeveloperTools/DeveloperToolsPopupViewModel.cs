@@ -18,7 +18,6 @@
  */
 
 using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -42,7 +41,6 @@ using ProtonVPN.Core.Window.Popups;
 using ProtonVPN.Notifications;
 using ProtonVPN.Sidebar;
 using ProtonVPN.Translations;
-using ProtonVPN.Windows.Popups.SubscriptionExpiration;
 
 namespace ProtonVPN.Windows.Popups.DeveloperTools
 {
@@ -58,7 +56,6 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
         private readonly IAppSettings _appSettings;
         private readonly ReconnectManager _reconnectManager;
         private readonly IAppExitInvoker _appExitInvoker;
-        private readonly SubscriptionExpiredPopupViewModel _subscriptionExpiredPopupViewModel;
 
         public DeveloperToolsPopupViewModel(AppWindow appWindow,
             Common.Configuration.Config config,
@@ -71,7 +68,6 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
             IAppSettings appSettings,
             ReconnectManager reconnectManager,
             IAppExitInvoker appExitInvoker,
-            SubscriptionExpiredPopupViewModel subscriptionExpiredPopupViewModel,
             IEnumerable<IModal> modals,
             IEnumerable<IPopupWindow> popupWindows)
             : base(appWindow)
@@ -86,10 +82,35 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
             _appSettings = appSettings;
             _reconnectManager = reconnectManager;
             _appExitInvoker = appExitInvoker;
-            _subscriptionExpiredPopupViewModel = subscriptionExpiredPopupViewModel;
             LoadModals(modals);
             LoadPopupWindows(popupWindows);
             InitializeCommands();
+        }
+
+        private void LoadModals(IEnumerable<IModal> modals)
+        {
+            SortedDictionary<string, IModal> modalsByName = new();
+            foreach (IModal modal in modals)
+            {
+                Type type = modal.GetType();
+                string modalName = $"{type.Name} ({type.Namespace})";
+                modalsByName.Add(modalName, modal);
+            }
+            SelectedModalName = modalsByName.Keys.FirstOrDefault();
+            ModalsByName = modalsByName;
+        }
+        
+        private void LoadPopupWindows(IEnumerable<IPopupWindow> popupWindows)
+        {
+            SortedDictionary<string, IPopupWindow> popupWindowsByName = new();
+            foreach (IPopupWindow popupWindow in popupWindows)
+            {
+                Type type = popupWindow.GetType();
+                string popupWindowName = $"{type.Name} ({type.Namespace})";
+                popupWindowsByName.Add(popupWindowName, popupWindow);
+            }
+            SelectedPopupWindowName = popupWindowsByName.Keys.FirstOrDefault();
+            PopupWindowsByName = popupWindowsByName;
         }
 
         [Conditional("DEBUG")]
@@ -108,30 +129,6 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
             ClearToastNotificationLogsCommand = new RelayCommand(ClearToastNotificationLogsAction);
             TriggerIntentionalCrashCommand = new RelayCommand(TriggerIntentionalCrashAction);
             DisableTlsPinningCommand = new RelayCommand(DisableTlsPinningAction);
-        }
-
-        private void LoadModals(IEnumerable<IModal> modals)
-        {
-            ModalsByName = new ConcurrentDictionary<string, IModal>();
-            foreach (IModal modal in modals)
-            {
-                Type type = modal.GetType();
-                string modalName = $"{type.Name} ({type.Namespace})";
-                ModalsByName.Add(modalName, modal);
-            }
-            SelectedModalName = ModalsByName.Keys.FirstOrDefault();
-        }
-        
-        private void LoadPopupWindows(IEnumerable<IPopupWindow> popupWindows)
-        {
-            PopupWindowsByName = new ConcurrentDictionary<string, IPopupWindow>();
-            foreach (IPopupWindow popupWindow in popupWindows)
-            {
-                Type type = popupWindow.GetType();
-                string popupWindowName = $"{type.Name} ({type.Namespace})";
-                PopupWindowsByName.Add(popupWindowName, popupWindow);
-            }
-            SelectedPopupWindowName = PopupWindowsByName.Keys.FirstOrDefault();
         }
 
         public ICommand OpenModalCommand { get; set; }
@@ -255,13 +252,13 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
 
         private void SetSubscriptionExpiredPopupIfNeeded(IPopupWindow popupWindow)
         {
-            if (popupWindow is SubscriptionExpiredPopupViewModel)
+            if (popupWindow is IReconnectionDataPopupViewModel reconnectionDataPopupViewModel)
             {
-                Server previousServer = new Server(Guid.NewGuid().ToString(), "CH-PT#20", "Porto",
+                Server previousServer = new(Guid.NewGuid().ToString(), "CH-PT#20", "Porto",
                     "CH", "PT", "protonvpn.com", 0, 2, 1, 50, 1, null, null, "192.168.123.124");
-                Server currentServer = new Server(Guid.NewGuid().ToString(), "SE-PT#23", "Porto",
+                Server currentServer = new(Guid.NewGuid().ToString(), "SE-PT#23", "Porto",
                     "SE", "PT", "protonvpn.com", 1, 2, 1, 30, 1, null, null, "192.168.123.125");
-                _subscriptionExpiredPopupViewModel.SetReconnectionData(previousServer, currentServer);
+                reconnectionDataPopupViewModel.SetReconnectionData(previousServer, currentServer);
             }
         }
 
@@ -295,9 +292,9 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
         private async void ShowReconnectionTooltipAction()
         {
             await Task.Delay(TimeSpan.FromSeconds(5));
-            Server previousServer = new Server(Guid.NewGuid().ToString(), "CH-PT#20", "Porto",
+            Server previousServer = new(Guid.NewGuid().ToString(), "CH-PT#20", "Porto",
                 "CH", "PT", "protonvpn.com", 0, 2, 1, 50, 1, null, null, "192.168.123.124");
-            Server currentServer = new Server(Guid.NewGuid().ToString(), "SE-PT#23", "Porto",
+            Server currentServer = new(Guid.NewGuid().ToString(), "SE-PT#23", "Porto",
                 "SE", "PT", "protonvpn.com", 1, 2, 1, 30, 1, null, null, "192.168.123.125");
             _connectionStatusViewModel.ShowVpnAcceleratorReconnectionPopup(previousServer: previousServer, currentServer: currentServer);
         }

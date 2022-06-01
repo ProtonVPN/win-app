@@ -17,13 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Core.Servers.Models;
-
 namespace ProtonVPN.Windows.Popups.Delinquency
 {
-    public interface IDelinquencyPopupViewModel
+    public interface IDelinquencyPopupViewModel : IReconnectionDataPopupViewModel
     {
-        void SetNoReconnectionData();
-        void SetReconnectionData(Server previousServer, Server currentServer);
     }
 }

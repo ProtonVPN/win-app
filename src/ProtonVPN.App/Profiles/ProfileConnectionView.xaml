@@ -45,7 +45,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <StackPanel Orientation="Horizontal">
                 <TextBlock x:Name="EntryAndExitCountry" Style="{StaticResource ServerName}" 
                            FontSize="{Binding FontSize, ElementName=ProfileConnectionControl}">
-                    <Run Foreground="{StaticResource OldTextBrushColor}" Text="{Binding EntryCountry, Converter={StaticResource CountryCodeToNameConverter}, Mode=OneWay}"/>
+                    <Run Foreground="{StaticResource TextNormBrushColor}" Text="{Binding EntryCountry, Converter={StaticResource CountryCodeToNameConverter}, Mode=OneWay}"/>
                     <Run Text="»"/>
                     <Run Text="{Binding ExitCountry, Converter={StaticResource CountryCodeToNameConverter}, Mode=OneWay}"/>
                 </TextBlock>
@@ -53,11 +53,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                            FontSize="{Binding FontSize, ElementName=ProfileConnectionControl}">
                     <Run Text="{Binding ExitCountry, Converter={StaticResource CountryCodeToNameConverter}}"/>
                     <Run Text="»"/>
-                    <Run Foreground="{StaticResource OldTextBrushColor}" Text="{Binding Server, Mode=OneWay}"/>
+                    <Run Foreground="{StaticResource TextNormBrushColor}" Text="{Binding Server, Mode=OneWay}"/>
                 </TextBlock>
                 <TextBlock x:Name="ServerOnly" Style="{StaticResource ServerName}" 
                            FontSize="{Binding FontSize, ElementName=ProfileConnectionControl}">
-                    <Run Foreground="{StaticResource OldTextBrushColor}" Text="{Binding Server, Mode=OneWay}"/>
+                    <Run Foreground="{StaticResource TextNormBrushColor}" Text="{Binding Server, Mode=OneWay}"/>
                 </TextBlock>
             </StackPanel>
             <DataTemplate.Triggers>

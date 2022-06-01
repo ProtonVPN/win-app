@@ -21,7 +21,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <!-- Color Palette -->
-
     <Color x:Key="BrandDarken40Color">#372580</Color>
     <Color x:Key="BrandDarken20Color">#4D34B3</Color>
     <Color x:Key="BrandNormColor">#6D4AFF</Color>
@@ -58,8 +57,24 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
     <Color x:Key="InteractionDefaultHoverColor">#335B576B</Color>
     <Color x:Key="InteractionDefaultActiveColor">#665B576B</Color>
+    
+    <!-- Profile colors -->
+    <Color x:Key="ProfileColorRed">#F44236</Color>
+    <Color x:Key="ProfileColorMagenta">#E91D62</Color>
+    <Color x:Key="ProfileColorViolet">#9C27B0</Color>
+    <Color x:Key="ProfileColorPurple">#6739B6</Color>
+    <Color x:Key="ProfileColorNavy">#3E50B4</Color>
+    <Color x:Key="ProfileColorBlue">#2195F2</Color>
+    <Color x:Key="ProfileColorCyan">#01BBD4</Color>
+    <Color x:Key="ProfileColorTeal">#029587</Color>
+    <Color x:Key="ProfileColorGreen">#8BC24A</Color>
+    <Color x:Key="ProfileColorLime">#CCDB38</Color>
+    <Color x:Key="ProfileColorYellow">#FFE93B</Color>
+    <Color x:Key="ProfileColorOrange">#FF7044</Color>
+    <Color x:Key="ProfileColorGold">#FF9700</Color>
+    <Color x:Key="ProfileColorGray">#607C8A</Color>
 
-    <!-- Elements -->
+    <!-- Brushes -->
 
     <!-- Non interactive elements that require better visibility such as "text" and "icons that don't do anything" -->
     <SolidColorBrush x:Key="PrimaryBrushColor" Color="{StaticResource BrandLighten20Color}"/>
@@ -121,49 +136,5 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <!-- Notification -->
     <SolidColorBrush x:Key="UploadSpeedBrushColor" Color="{StaticResource SignalDangerColor}"/>
     <SolidColorBrush x:Key="DownloadSpeedBrushColor" Color="{StaticResource SignalSuccessColor}"/>
-
-
-    <!-- Old colors (to be removed) -->
-    <SolidColorBrush x:Key="PinBrushColor" Color="{StaticResource BrandDarken40Color}"/>
-    <SolidColorBrush x:Key="OldPrimaryBrushColor" Color="{StaticResource BrandNormColor}"/>
-    <SolidColorBrush x:Key="OldPrimaryDimmedBrushColor" Color="{StaticResource BrandDarken20Color}"/>
-    <Color x:Key="OldTextColor">White</Color>
-    <SolidColorBrush x:Key="OldTextBrushColor" Color="{StaticResource OldTextColor}"/>
-    <SolidColorBrush x:Key="OldOnboardingButtonBackgroundColor" Color="{StaticResource OldTextColor}"/>
-    <Color x:Key="OldButtonOnMouseOverBackgroundColor">White</Color>
-    <Color x:Key="OldRedColor">#f73737</Color>
-    <Color x:Key="OldModalColor">#222328</Color>
-    <SolidColorBrush x:Key="OldModalBrushColor" Color="{StaticResource OldModalColor}"/>
-    <Color x:Key="OldSecondaryTextColor">Gray</Color>
-    <SolidColorBrush x:Key="OldSecondaryTextBrushColor" Color="{StaticResource OldSecondaryTextColor}"/>
-    <SolidColorBrush x:Key="OldInactivePinStrokeColor" Color="#8c8c8e"/>
-    <SolidColorBrush x:Key="OldRedBrushColor" Color="{StaticResource OldRedColor}"/>
-    <SolidColorBrush x:Key="OldGrayColor" Color="#80808d"/>
-    <SolidColorBrush x:Key="OldSeparatorColor" Color="#333439"/>
-    <SolidColorBrush x:Key="OldTableHeaderBackgroundColor" Color="#1c1c24"/>
-    <SolidColorBrush x:Key="OldTableTextColor" Color="#777783"/>
-    <Color x:Key="OldDisabledButtonTextColor">#4B4B56</Color>
-    <SolidColorBrush x:Key="OldDisabledButtonTextBrushColor" Color="{StaticResource OldDisabledButtonTextColor}"/>
-    <SolidColorBrush x:Key="OldFormSecondaryTextColor" Color="#9CA0AA"/>
-    <SolidColorBrush x:Key="OldFormLabelTextColor" Color="#5f6172"/>
-    <SolidColorBrush x:Key="OldFormBorderColor" Color="#505158"/>
-    <SolidColorBrush x:Key="OldQuickLaunchWindowDropdownScrollbarPrimaryColor" Color="#b1b1b1"/>
-    <SolidColorBrush x:Key="OldQuickLaunchWindowDropdownScrollbarSecondaryColor" Color="#ededed"/>
-    <SolidColorBrush x:Key="OldSidebarIconColor" Color="#4c4c59"/>
-
-    <Color x:Key="ProfileColorRed">#F44236</Color>
-    <Color x:Key="ProfileColorMagenta">#E91D62</Color>
-    <Color x:Key="ProfileColorViolet">#9C27B0</Color>
-    <Color x:Key="ProfileColorPurple">#6739B6</Color>
-    <Color x:Key="ProfileColorNavy">#3E50B4</Color>
-    <Color x:Key="ProfileColorBlue">#2195F2</Color>
-    <Color x:Key="ProfileColorCyan">#01BBD4</Color>
-    <Color x:Key="ProfileColorTeal">#029587</Color>
-    <Color x:Key="ProfileColorGreen">#8BC24A</Color>
-    <Color x:Key="ProfileColorLime">#CCDB38</Color>
-    <Color x:Key="ProfileColorYellow">#FFE93B</Color>
-    <Color x:Key="ProfileColorOrange">#FF7044</Color>
-    <Color x:Key="ProfileColorGold">#FF9700</Color>
-    <Color x:Key="ProfileColorGray">#607C8A</Color>
 
 </ResourceDictionary>

@@ -21,11 +21,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Style x:Key="ServerName" TargetType="TextBlock">
         <Setter Property="Padding" Value="0"/>
-        <Setter Property="Foreground" Value="{StaticResource OldTextBrushColor}"/>
+        <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Style.Triggers>
             <DataTrigger Binding="{Binding UpgradeRequired}" Value="True">
-                <Setter Property="Foreground" Value="{StaticResource OldSecondaryTextBrushColor}"/>
+                <Setter Property="Foreground" Value="{StaticResource TextWeakBrushColor}"/>
             </DataTrigger>
         </Style.Triggers>
     </Style>

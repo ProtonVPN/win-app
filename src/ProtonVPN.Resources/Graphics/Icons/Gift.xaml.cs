@@ -17,11 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Views.Icons
+namespace ProtonVPN.Resource.Graphics.Icons
 {
-    public partial class MultipleLocks
+    public partial class Gift
     {
-        public MultipleLocks()
+        public Gift()
         {
             InitializeComponent();
         }

@@ -25,9 +25,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         xmlns:local="clr-namespace:ProtonVPN.Modals"
                         xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
                         xmlns:update="clr-namespace:ProtonVPN.Core.Update;assembly=ProtonVPN.Core"
-                        xmlns:fa="http://schemas.fontawesome.io/icons/"
                         xmlns:resource="clr-namespace:ProtonVPN.Resource;assembly=ProtonVPN.Resource"
                         xmlns:controls="clr-namespace:ProtonVPN.Resource.Controls;assembly=ProtonVPN.Resource"
+                        xmlns:icons="clr-namespace:ProtonVPN.Resource.Graphics.Icons;assembly=ProtonVPN.Resource"
                         Style="{StaticResource BaseWindowStyle}"
                         SizeToContent="Height"
                         Title="{translations:Loc Dialogs_ttl_Warning}"
@@ -36,9 +36,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         Width="500"
                         d:DataContext="{d:DesignInstance local:OutdatedAppModalViewModel}">
     <resource:BaseModalWindow.Resources>
-        <Style x:Key="ErrorIcon" TargetType="fa:FontAwesome">
-            <Setter Property="Icon" Value="ExclamationTriangle"/>
-            <Setter Property="Foreground" Value="{StaticResource OldTextBrushColor}"/>
+        <Style x:Key="ErrorIcon" TargetType="UserControl">
+            <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}"/>
+            <Setter Property="Width" Value="16"/>
             <Setter Property="Margin" Value="0,2,0,0"/>
             <Setter Property="Visibility" Value="Collapsed"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
@@ -99,12 +99,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     </resource:BaseModalWindow.Resources>
     <StackPanel Margin="30,40">
         <StackPanel Margin="0,0,0,30">
-            <TextBlock TextWrapping="Wrap" Padding="0" FontSize="16" Foreground="{StaticResource OldTextBrushColor}" Text="{translations:Loc Dialogs_OutdatedApp_msg}"/>
+            <TextBlock TextWrapping="Wrap" Padding="0" FontSize="16" Foreground="{StaticResource TextNormBrushColor}" Text="{translations:Loc Dialogs_OutdatedApp_msg}"/>
             <TextBlock TextWrapping="Wrap"
                        Margin="0,10,0,0"
                        Padding="0"
                        FontSize="16"
-                       Foreground="{StaticResource OldTextBrushColor}"
+                       Foreground="{StaticResource TextNormBrushColor}"
                        Text="{translations:Loc Dialogs_OutdatedApp_msg_KillSwitchActive}"
                        Visibility="{Binding KillSwitchEnabled, Converter={StaticResource BoolToVis}}"/>
         </StackPanel>
@@ -134,14 +134,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             </Style>
                         </controls:ProtonAnimation.Resources>
                     </controls:ProtonAnimation>
-                    <Label Style="{StaticResource UpdateButtonLabel}" Foreground="{StaticResource OldTextBrushColor}"/>
+                    <Label Style="{StaticResource UpdateButtonLabel}" Foreground="{StaticResource TextNormBrushColor}"/>
                 </DockPanel>
             </Button>
             <Button Style="{StaticResource ManualUpdateButton}"
                     Command="{Binding UpdateManuallyCommand}">
                 <DockPanel>
-                    <fa:FontAwesome Style="{StaticResource ErrorIcon}"/>
-                    <Label Content="{translations:Loc Dialogs_OutdatedApp_lbl_UpdateManually}" Foreground="{StaticResource OldTextBrushColor}"/>
+                    <icons:ExclamationCircleFilled Style="{StaticResource ErrorIcon}" />
+                    <Label Content="{translations:Loc Dialogs_OutdatedApp_lbl_UpdateManually}" Foreground="{StaticResource TextNormBrushColor}"/>
                 </DockPanel>
             </Button>
         </StackPanel>

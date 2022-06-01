@@ -17,25 +17,31 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Windows;
-using System.Windows.Media;
+using ProtonVPN.Core.Servers.Models;
 
-namespace ProtonVPN.Views.Icons
+namespace ProtonVPN.Servers.Reconnections
 {
-    public partial class Info
+    public class ReconnectionData
     {
-        public Info()
+        public bool IsReconnection { get; }
+
+        public Server FromServer { get; }
+        public bool IsFromServerSecureCore { get; }
+
+        public Server ToServer { get; }
+        public bool IsToServerSecureCore { get; }
+
+        public ReconnectionData()
         {
-            InitializeComponent();
         }
 
-        public static readonly DependencyProperty ColorProperty =
-            DependencyProperty.Register("Color", typeof(Brush), typeof(Info));
-
-        public Brush Color
+        public ReconnectionData(Server previousServer, Server currentServer)
         {
-            get => (Brush)GetValue(ColorProperty);
-            set => SetValue(ColorProperty, value);
+            IsReconnection = previousServer != null && currentServer != null;
+            FromServer = previousServer;
+            IsFromServerSecureCore = previousServer?.IsSecureCore() ?? false;
+            ToServer = currentServer;
+            IsToServerSecureCore = currentServer?.IsSecureCore() ?? false;
         }
     }
 }

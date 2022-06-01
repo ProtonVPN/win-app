@@ -17,13 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Views.Icons
+namespace ProtonVPN.Windows.Popups.SubscriptionExpiration
 {
-    public partial class ArrowUp
+    public interface ISubscriptionExpiredPopupViewModel : IReconnectionDataPopupViewModel
     {
-        public ArrowUp()
-        {
-            InitializeComponent();
-        }
     }
 }

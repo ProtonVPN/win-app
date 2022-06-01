@@ -50,8 +50,6 @@ Proton VPN Windows app includes the following 3rd party software:
   | [Apache License 2.0](https://github.com/MichaCo/DnsClient.NET/blob/master/LICENSE).
 * [DynamicExpresso.Core](https://github.com/davideicardi/DynamicExpresso) by Davide Icardi
   | [The MIT License](https://github.com/davideicardi/DynamicExpresso/blob/master/LICENSE).
-* [FontAwesome.WPF](https://github.com/charri/Font-Awesome-WPF/) by charri
-  | [The MIT License](https://github.com/charri/Font-Awesome-WPF/blob/master/LICENSE).
 * [MvvmLightLibsStd10](http://www.mvvmlight.net/) by Laurent Bugnion (GalaSoft)
   | [The MIT License](https://github.com/lbugnion/mvvmlight/blob/master/LICENSE). 
 * [Newtonsoft.Json](https://www.newtonsoft.com/json) by James Newton-King
