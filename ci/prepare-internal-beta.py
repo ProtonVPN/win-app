@@ -47,7 +47,7 @@ def get_update_json(version, installer_path):
     update_json = {}
     update_json['Version'] = version
     update_json['File'] = generate_file_json(version, installer_path)
-    update_json['ChangeLog'] = [get_changelog()]
+    update_json['ChangeLog'] = get_changelog()
     update_json['DisableAutoUpdate'] = False
     return update_json
 
