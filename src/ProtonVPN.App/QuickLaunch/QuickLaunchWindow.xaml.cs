@@ -19,17 +19,21 @@
 
 using System;
 using System.Windows.Input;
+using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
 using ProtonVPN.Windows;
 
 namespace ProtonVPN.QuickLaunch
 {
     public partial class QuickLaunchWindow
     {
+        private readonly ILogger _logger;
         private readonly IWindowPositionSetter _windowPositionSetter;
 
-        public QuickLaunchWindow(IWindowPositionSetter windowPositionSetter)
+        public QuickLaunchWindow(IWindowPositionSetter windowPositionSetter, ILogger logger)
         {
             _windowPositionSetter = windowPositionSetter;
+            _logger = logger;
 
             InitializeComponent();
 
@@ -39,16 +43,19 @@ namespace ProtonVPN.QuickLaunch
 
         private void QuickLaunch_Activated(object sender, EventArgs e)
         {
+            _logger.Info<AppLog>("The QuickLaunchWindow is now focused, setting its position.");
             _windowPositionSetter.SetPositionToMouse(this);
         }
 
         private void QuickLaunch_Deactivated(object sender, EventArgs e)
         {
+            _logger.Info<AppLog>("The QuickLaunchWindow is no longer focused and is going to be hidden.");
             Hide();
         }
 
         private void UIElement_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            _logger.Info<AppLog>("The mouse left button was pressed, the QuickLaunchWindow is going to be hidden.");
             Hide();
         }
     }

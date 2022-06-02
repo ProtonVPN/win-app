@@ -20,7 +20,9 @@
 using System;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using ProtonVPN.Common.Events;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.ConnectionLogs;
 using ProtonVPN.Common.Logging.Categorization.Events.ConnectLogs;
 using ProtonVPN.Common.Logging.Categorization.Events.DisconnectLogs;
 using ProtonVPN.Common.Threading;
@@ -37,17 +39,20 @@ namespace ProtonVPN.Core.Service.Vpn
         private readonly IVpnReconnector _vpnReconnector;
         private readonly IVpnConnector _vpnConnector;
         private readonly ILogger _logger;
+        private readonly IEventPublisher _eventPublisher;
 
         public VpnManager(
             IVpnServiceManager vpnServiceManager,
             IVpnReconnector vpnReconnector,
             IVpnConnector vpnConnector,
-            ILogger logger)
+            ILogger logger,
+            IEventPublisher eventPublisher)
         {
             _vpnServiceManager = vpnServiceManager;
             _vpnReconnector = vpnReconnector;
             _vpnConnector = vpnConnector;
             _logger = logger;
+            _eventPublisher = eventPublisher;
             _vpnConnector.VpnStateChanged += OnConnectorVpnStateChanged;
         }
 
@@ -65,22 +70,24 @@ namespace ProtonVPN.Core.Service.Vpn
 
         public async Task ConnectAsync(Profile profile, Profile fallbackProfile = null,
             [CallerFilePath] string sourceFilePath = "",
-            [CallerMemberName] string sourceMemberName = "", 
+            [CallerMemberName] string sourceMemberName = "",
             [CallerLineNumber] int sourceLineNumber = 0)
         {
-            _logger.Info<ConnectTriggerLog>("[VpnManager] Profile connect requested.", sourceFilePath: sourceFilePath, 
+            _logger.Info<ConnectTriggerLog>("[VpnManager] Profile connect requested.", sourceFilePath: sourceFilePath,
                 sourceMemberName: sourceMemberName, sourceLineNumber: sourceLineNumber);
-            await Enqueue(() => _vpnConnector.ConnectToBestProfileAsync(profile, fallbackProfile));
+            await EnqueueAsync(() => _vpnConnector.ConnectToBestProfileAsync(profile, fallbackProfile),
+                sourceFilePath: sourceFilePath, sourceMemberName: sourceMemberName, sourceLineNumber: sourceLineNumber);
         }
 
         public async Task QuickConnectAsync(
             [CallerFilePath] string sourceFilePath = "",
-            [CallerMemberName] string sourceMemberName = "", 
+            [CallerMemberName] string sourceMemberName = "",
             [CallerLineNumber] int sourceLineNumber = 0)
         {
             _logger.Info<ConnectTriggerLog>("[VpnManager] Quick connect requested.", sourceFilePath: sourceFilePath,
                 sourceMemberName: sourceMemberName, sourceLineNumber: sourceLineNumber);
-            await Enqueue(() => _vpnConnector.QuickConnectAsync());
+            await EnqueueAsync(() => _vpnConnector.QuickConnectAsync(),
+                sourceFilePath: sourceFilePath, sourceMemberName: sourceMemberName, sourceLineNumber: sourceLineNumber);
         }
 
         public async Task ReconnectAsync(VpnReconnectionSettings settings = null,
@@ -90,8 +97,8 @@ namespace ProtonVPN.Core.Service.Vpn
         {
             _logger.Info<ConnectTriggerLog>("[VpnManager] Reconnect requested.", sourceFilePath: sourceFilePath,
                 sourceMemberName: sourceMemberName, sourceLineNumber: sourceLineNumber);
-            await Enqueue(() => _vpnReconnector.ReconnectAsync(
-                _vpnConnector.LastServer, _vpnConnector.LastProfile, settings));
+            await EnqueueAsync(() => _vpnReconnector.ReconnectAsync(_vpnConnector.LastServer, _vpnConnector.LastProfile, settings),
+                sourceFilePath: sourceFilePath, sourceMemberName: sourceMemberName, sourceLineNumber: sourceLineNumber);
         }
 
         public async Task DisconnectAsync(VpnError vpnError = VpnError.None,
@@ -102,7 +109,8 @@ namespace ProtonVPN.Core.Service.Vpn
             _logger.Info<DisconnectTriggerLog>("[VpnManager] Disconnect requested.", sourceFilePath: sourceFilePath,
                 sourceMemberName: sourceMemberName, sourceLineNumber: sourceLineNumber);
             _vpnReconnector.OnDisconnectionRequest();
-            await Enqueue(() => _vpnServiceManager.Disconnect(vpnError));
+            await EnqueueAsync(() => _vpnServiceManager.Disconnect(vpnError),
+                sourceFilePath: sourceFilePath, sourceMemberName: sourceMemberName, sourceLineNumber: sourceLineNumber);
         }
 
         public async Task GetStateAsync()
@@ -110,9 +118,27 @@ namespace ProtonVPN.Core.Service.Vpn
             await _vpnServiceManager.RepeatState();
         }
 
-        private Task Enqueue(Func<Task> function)
+        private async Task EnqueueAsync(Func<Task> function,
+            string sourceFilePath,
+            string sourceMemberName,
+            int sourceLineNumber,
+            [CallerMemberName] string requestSourceMemberName = "")
         {
-            return _taskQueue.Enqueue(function);
+            try
+            {
+                await _taskQueue.Enqueue(function);
+            }
+            catch (Exception exception)
+            {
+                _eventPublisher.CaptureError(exception,
+                    sourceFilePath: sourceFilePath,
+                    sourceMemberName: sourceMemberName,
+                    sourceLineNumber: sourceLineNumber);
+                _logger.Error<ConnectionErrorLog>($"[VpnManager] Request failed ({requestSourceMemberName}).", exception,
+                    sourceFilePath: sourceFilePath,
+                    sourceMemberName: sourceMemberName,
+                    sourceLineNumber: sourceLineNumber);
+            }
         }
     }
 }
