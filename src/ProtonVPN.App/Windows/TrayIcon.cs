@@ -24,9 +24,12 @@ using ProtonVPN.Core.Events;
 using ProtonVPN.Core.Vpn;
 using System;
 using System.Drawing;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Threading;
+using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
 
 namespace ProtonVPN.Windows
 {
@@ -36,11 +39,12 @@ namespace ProtonVPN.Windows
         ILoggedInAware,
         IHandle<ShowNotificationMessage>
     {
-        private readonly NotifyIcon _nIcon = new NotifyIcon();
         private bool _toggle;
         private bool _connecting;
+        private readonly NotifyIcon _nIcon = new NotifyIcon();
         private readonly DispatcherTimer _timer = new DispatcherTimer();
-
+        
+        private readonly ILogger _logger;
         private readonly ResourceIcon _connected;
         private readonly ResourceIcon _notConnected;
         private readonly ResourceIcon _balloonIcon;
@@ -52,10 +56,12 @@ namespace ProtonVPN.Windows
         private const string AppIconPath = "protonvpn.ico";
 
         public TrayIcon(
+            ILogger logger,
             IEventAggregator eventAggregator,
             BalloonNotification balloonNotification,
             TrayIconMouse trayIconMouse)
         {
+            _logger = logger;
             _trayIconMouse = trayIconMouse;
             _balloonNotification = balloonNotification;
             eventAggregator.Subscribe(this);
@@ -139,6 +145,7 @@ namespace ProtonVPN.Windows
 
         public void OnUserLoggedIn()
         {
+            _logger.Info<AppLog>("The user is logged in, tray icon is now visible.");
             _nIcon.Icon = _notConnected.Value();
             _nIcon.Visible = true;
         }
@@ -148,8 +155,11 @@ namespace ProtonVPN.Windows
             Hide();
         }
 
-        public void Hide()
+        public void Hide([CallerFilePath] string sourceFilePath = "", 
+            [CallerMemberName] string sourceMemberName = "", [CallerLineNumber] int sourceLineNumber = 0)
         {
+            _logger.Info<AppLog>("The tray icon is now hidden.", sourceFilePath: sourceFilePath,
+                sourceMemberName: sourceMemberName, sourceLineNumber: sourceLineNumber);
             _nIcon.Visible = false;
             _nIcon.Icon = _notConnected.Value();
         }
