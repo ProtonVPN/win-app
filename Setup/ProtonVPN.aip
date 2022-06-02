@@ -175,17 +175,15 @@
     <ROW Component="WebView2Loader.dll_1" ComponentId="{2EA095EA-C501-4A0B-B50D-FFF6383F6077}" Directory_="native_1_Dir" Attributes="256" KeyPath="WebView2Loader.dll_1"/>
     <ROW Component="WebView2Loader.dll_2" ComponentId="{7B52FD4C-77FC-441E-830E-31363BA5A2A6}" Directory_="native_2_Dir" Attributes="0" KeyPath="WebView2Loader.dll_2"/>
     <ROW Component="config.ovpn" ComponentId="{0B387BF9-0755-4C70-81A5-48180795855C}" Directory_="Binaries_Dir" Attributes="0" KeyPath="config.ovpn" Type="0"/>
-    <ROW Component="libcrypto1_1.dll" ComponentId="{F5111CFC-D038-4A4A-927B-F4FA1D0463C9}" Directory_="bit_Dir" Attributes="0" KeyPath="libcrypto1_1.dll"/>
-    <ROW Component="libcrypto1_1x64.dll" ComponentId="{9BA46CFB-D246-4182-9AFB-3CA5D2A29D53}" Directory_="bit_1_Dir" Attributes="256" KeyPath="libcrypto1_1x64.dll"/>
-    <ROW Component="liblzo22.dll" ComponentId="{455E956E-8F92-42DC-ABF9-EE1BEA6A6BF0}" Directory_="bit_Dir" Attributes="0" KeyPath="liblzo22.dll"/>
-    <ROW Component="liblzo22.dll_1" ComponentId="{11842A51-D426-400C-A29B-BB3E7D225929}" Directory_="bit_1_Dir" Attributes="256" KeyPath="liblzo22.dll_1"/>
-    <ROW Component="libpkcs11helper1.dll" ComponentId="{68281111-6479-43BF-AAA9-EC544C065850}" Directory_="bit_Dir" Attributes="0" KeyPath="libpkcs11helper1.dll"/>
-    <ROW Component="libpkcs11helper1.dll_1" ComponentId="{F234CF78-6DC4-433A-8EB5-62A9D077F281}" Directory_="bit_1_Dir" Attributes="256" KeyPath="libpkcs11helper1.dll_1"/>
-    <ROW Component="libssl1_1.dll" ComponentId="{CE2AB650-B462-422E-8F6F-815F7E24C4AD}" Directory_="bit_Dir" Attributes="0" KeyPath="libssl1_1.dll"/>
-    <ROW Component="libssl1_1x64.dll" ComponentId="{DA00F153-C64F-4284-BF30-2358FDAC3A1F}" Directory_="bit_1_Dir" Attributes="256" KeyPath="libssl1_1x64.dll"/>
+    <ROW Component="libcrypto1_1.dll" ComponentId="{1599ED97-45CB-4626-BB48-302028889B6B}" Directory_="bit_Dir" Attributes="0" KeyPath="libcrypto1_1.dll"/>
+    <ROW Component="libcrypto1_1.dll_2" ComponentId="{8A7B5580-7F60-4403-80B8-BFFEB018E3CB}" Directory_="bit_1_Dir" Attributes="0" KeyPath="libcrypto1_1.dll_2"/>
+    <ROW Component="libpkcs11helper1.dll" ComponentId="{B1428A8D-8706-4258-9F2D-C062293E11A9}" Directory_="bit_Dir" Attributes="0" KeyPath="libpkcs11helper1.dll"/>
+    <ROW Component="libpkcs11helper1.dll_1" ComponentId="{FEBBCFCB-BC92-4C10-BC24-8375ED1E37CA}" Directory_="bit_1_Dir" Attributes="0" KeyPath="libpkcs11helper1.dll_1"/>
+    <ROW Component="libssl1_1.dll" ComponentId="{651F1901-CDC0-407D-A00D-5BC9058501AA}" Directory_="bit_Dir" Attributes="0" KeyPath="libssl1_1.dll"/>
+    <ROW Component="libssl1_1.dll_2" ComponentId="{CBFDBEF0-1590-450F-9FBA-F722F88055F6}" Directory_="bit_1_Dir" Attributes="0" KeyPath="libssl1_1.dll_2"/>
     <ROW Component="log4net.dll" ComponentId="{1D55A69B-2900-4147-80CC-4956FEDD1F0B}" Directory_="APPDIR" Attributes="0" KeyPath="log4net.dll"/>
-    <ROW Component="openvpn.exe" ComponentId="{05F57108-546B-4950-B69C-C8E917E3E4CE}" Directory_="bit_Dir" Attributes="0" KeyPath="openvpn.exe"/>
-    <ROW Component="openvpn.exe_1" ComponentId="{7BBF778D-CA8D-4F1E-BEC3-777A26A3912F}" Directory_="bit_1_Dir" Attributes="256" KeyPath="openvpn.exe_1"/>
+    <ROW Component="openvpn.exe" ComponentId="{6AA7A3DB-2F41-4B19-8BAF-31472EFD7997}" Directory_="bit_Dir" Attributes="0" KeyPath="openvpn.exe"/>
+    <ROW Component="openvpn.exe_1" ComponentId="{E93C0E8A-78CC-4694-9A94-DE5C801CB106}" Directory_="bit_1_Dir" Attributes="0" KeyPath="openvpn.exe_1"/>
     <ROW Component="tunnel.dll" ComponentId="{BA10003E-AAA2-4D25-95C7-E37ECC2F0DC6}" Directory_="NewFolder_Dir" Attributes="256" Condition="(VersionNT64)" KeyPath="tunnel.dll"/>
     <ROW Component="tunnel.dll_2" ComponentId="{904FBC6D-4E0A-45E8-86AC-09115E107B72}" Directory_="APPDIR" Attributes="0" Condition="(NOT VersionNT64)" KeyPath="tunnel.dll_2"/>
     <ROW Component="wireguard.dll" ComponentId="{5851583B-E2EC-4CEB-87A4-6D711F3E2A87}" Directory_="NewFolder_Dir" Attributes="256" Condition="(VersionNT64)" KeyPath="wireguard.dll"/>
@@ -200,16 +198,6 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFilesComponent">
     <ROW File="ProtonVPN.exe" Component_="ProtonVPN.exe" FileName="PROTON~1.EXE|ProtonVPN.exe" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ProtonVPN.exe" SelfReg="false"/>
-    <ROW File="libcrypto1_1.dll" Component_="libcrypto1_1.dll" FileName="LIBCRY~1.DLL|libcrypto-1_1.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Resources\32-bit\libcrypto-1_1.dll" SelfReg="false"/>
-    <ROW File="liblzo22.dll" Component_="liblzo22.dll" FileName="LIBLZO~1.DLL|liblzo2-2.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Resources\32-bit\liblzo2-2.dll" SelfReg="false"/>
-    <ROW File="libpkcs11helper1.dll" Component_="libpkcs11helper1.dll" FileName="LIBPKC~1.DLL|libpkcs11-helper-1.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Resources\32-bit\libpkcs11-helper-1.dll" SelfReg="false"/>
-    <ROW File="libssl1_1.dll" Component_="libssl1_1.dll" FileName="LIBSSL~1.DLL|libssl-1_1.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Resources\32-bit\libssl-1_1.dll" SelfReg="false"/>
-    <ROW File="openvpn.exe" Component_="openvpn.exe" FileName="openvpn.exe" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Resources\32-bit\openvpn.exe" SelfReg="false"/>
-    <ROW File="libcrypto1_1x64.dll" Component_="libcrypto1_1x64.dll" FileName="LIBCRY~1.DLL|libcrypto-1_1-x64.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Resources\64-bit\libcrypto-1_1-x64.dll" SelfReg="false"/>
-    <ROW File="liblzo22.dll_1" Component_="liblzo22.dll_1" FileName="LIBLZO~1.DLL|liblzo2-2.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Resources\64-bit\liblzo2-2.dll" SelfReg="false"/>
-    <ROW File="libpkcs11helper1.dll_1" Component_="libpkcs11helper1.dll_1" FileName="LIBPKC~1.DLL|libpkcs11-helper-1.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Resources\64-bit\libpkcs11-helper-1.dll" SelfReg="false"/>
-    <ROW File="libssl1_1x64.dll" Component_="libssl1_1x64.dll" FileName="LIBSSL~1.DLL|libssl-1_1-x64.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Resources\64-bit\libssl-1_1-x64.dll" SelfReg="false"/>
-    <ROW File="openvpn.exe_1" Component_="openvpn.exe_1" FileName="openvpn.exe" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Resources\64-bit\openvpn.exe" SelfReg="false"/>
     <ROW File="config.ovpn" Component_="config.ovpn" FileName="CONFIG~1.OVP|config.ovpn" Attributes="0" SourcePath="..\src\bin\Resources\config.ovpn" SelfReg="false"/>
     <ROW File="ProtonVPNService.exe" Component_="ProtonVPNService.exe" FileName="PROTON~3.EXE|ProtonVPNService.exe" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ProtonVPNService.exe" SelfReg="false"/>
     <ROW File="Autofac.dll" Component_="Autofac.dll" FileName="Autofac.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Autofac.dll" SelfReg="false"/>
@@ -300,6 +288,14 @@
     <ROW File="Microsoft.Win32.Registry.dll" Component_="Microsoft.Win32.Registry.dll" FileName="MICROS~6.DLL|Microsoft.Win32.Registry.dll" Attributes="0" SourcePath="..\src\bin\Microsoft.Win32.Registry.dll" SelfReg="false"/>
     <ROW File="System.Security.AccessControl.dll" Component_="System.Security.AccessControl.dll" FileName="SYSTE~12.DLL|System.Security.AccessControl.dll" Attributes="0" SourcePath="..\src\bin\System.Security.AccessControl.dll" SelfReg="false"/>
     <ROW File="System.Security.Principal.Windows.dll" Component_="System.Security.Principal.Windows.dll" FileName="SYSTE~13.DLL|System.Security.Principal.Windows.dll" Attributes="0" SourcePath="..\src\bin\System.Security.Principal.Windows.dll" SelfReg="false"/>
+    <ROW File="libcrypto1_1.dll" Component_="libcrypto1_1.dll" FileName="LIBCRY~1.DLL|libcrypto-1_1.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Resources\32-bit\libcrypto-1_1.dll" SelfReg="false"/>
+    <ROW File="libpkcs11helper1.dll" Component_="libpkcs11helper1.dll" FileName="LIBPKC~1.DLL|libpkcs11-helper-1.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Resources\32-bit\libpkcs11-helper-1.dll" SelfReg="false"/>
+    <ROW File="libssl1_1.dll" Component_="libssl1_1.dll" FileName="LIBSSL~1.DLL|libssl-1_1.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Resources\32-bit\libssl-1_1.dll" SelfReg="false"/>
+    <ROW File="openvpn.exe" Component_="openvpn.exe" FileName="openvpn.exe" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Resources\32-bit\openvpn.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="libcrypto1_1.dll_2" Component_="libcrypto1_1.dll_2" FileName="LIBCRY~1.DLL|libcrypto-1_1.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Resources\32-bit\libcrypto-1_1.dll" SelfReg="false"/>
+    <ROW File="libpkcs11helper1.dll_1" Component_="libpkcs11helper1.dll_1" FileName="LIBPKC~1.DLL|libpkcs11-helper-1.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Resources\32-bit\libpkcs11-helper-1.dll" SelfReg="false"/>
+    <ROW File="libssl1_1.dll_2" Component_="libssl1_1.dll_2" FileName="LIBSSL~1.DLL|libssl-1_1.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Resources\32-bit\libssl-1_1.dll" SelfReg="false"/>
+    <ROW File="openvpn.exe_1" Component_="openvpn.exe_1" FileName="openvpn.exe" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Resources\32-bit\openvpn.exe" SelfReg="false" DigSign="true"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.AiRemoveFileComponent">
     <ROW RemoveFile="_" Condition="(AI_CLEAN_RESOURCES_UNINSTALL = &quot;1&quot;) AND (NOT UPGRADINGPRODUCTCODE)" Options="3"/>
@@ -618,16 +614,6 @@
     <ROW Feature_="MainFeature" Component_="TapInstaller.CA.dll"/>
     <ROW Feature_="MainFeature" Component_="TapInstaller.dll"/>
     <ROW Feature_="MainFeature" Component_="config.ovpn"/>
-    <ROW Feature_="MainFeature" Component_="libcrypto1_1.dll"/>
-    <ROW Feature_="MainFeature" Component_="libcrypto1_1x64.dll"/>
-    <ROW Feature_="MainFeature" Component_="liblzo22.dll"/>
-    <ROW Feature_="MainFeature" Component_="liblzo22.dll_1"/>
-    <ROW Feature_="MainFeature" Component_="libpkcs11helper1.dll"/>
-    <ROW Feature_="MainFeature" Component_="libpkcs11helper1.dll_1"/>
-    <ROW Feature_="MainFeature" Component_="libssl1_1.dll"/>
-    <ROW Feature_="MainFeature" Component_="libssl1_1x64.dll"/>
-    <ROW Feature_="MainFeature" Component_="openvpn.exe"/>
-    <ROW Feature_="MainFeature" Component_="openvpn.exe_1"/>
     <ROW Feature_="MainFeature" Component_="ProtonVPN.NetworkUtil.dll"/>
     <ROW Feature_="MainFeature" Component_="ProtonVPN.NetworkUtil.dll_1"/>
     <ROW Feature_="MainFeature" Component_="APPDIR"/>
@@ -685,6 +671,14 @@
     <ROW Feature_="MainFeature" Component_="Microsoft.Win32.Registry.dll"/>
     <ROW Feature_="MainFeature" Component_="System.Security.AccessControl.dll"/>
     <ROW Feature_="MainFeature" Component_="System.Security.Principal.Windows.dll"/>
+    <ROW Feature_="MainFeature" Component_="libcrypto1_1.dll"/>
+    <ROW Feature_="MainFeature" Component_="libpkcs11helper1.dll"/>
+    <ROW Feature_="MainFeature" Component_="libssl1_1.dll"/>
+    <ROW Feature_="MainFeature" Component_="openvpn.exe"/>
+    <ROW Feature_="MainFeature" Component_="libcrypto1_1.dll_2"/>
+    <ROW Feature_="MainFeature" Component_="libpkcs11helper1.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="libssl1_1.dll_2"/>
+    <ROW Feature_="MainFeature" Component_="openvpn.exe_1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
     <ROW Name="protonvpn.exe" SourcePath="images\protonvpn.ico" Index="0"/>
