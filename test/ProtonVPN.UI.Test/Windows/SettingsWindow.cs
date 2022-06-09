@@ -17,7 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using OpenQA.Selenium;
+using OpenQA.Selenium.Appium.Windows;
 using ProtonVPN.UI.Test.TestsHelper;
 
 namespace ProtonVPN.UI.Test.Windows
@@ -67,9 +67,11 @@ namespace ProtonVPN.UI.Test.Windows
             return this;
         }
 
-        public SettingsWindow EnableAutoConnectToFastestServer()
+        public SettingsWindow DisableStartToTray()
         {
-            SelectAutoConnectProfile("Fastest");
+            ClickOnObjectWithId("StartMinimizedCombobox");
+            WindowsElement disabledOption = Session.FindElementByName("Disabled");
+            MoveToElementAndClick(disabledOption);
             return this;
         }
 
@@ -113,10 +115,7 @@ namespace ProtonVPN.UI.Test.Windows
 
         private SettingsWindow SelectAutoConnectProfile(string autoConnectProfile)
         {
-            ClickOnObjectWithId("AutoConnectComboBox");
-            var autoConnectElement = Session.FindElementByXPath("//Text[@Name='"+autoConnectProfile+"']/parent::ListItem");
-            MoveToElement(autoConnectElement);
-            autoConnectElement.SendKeys(Keys.Enter);
+            ClickOnObjectWithId("ConnectOnBootCheckbox");
             return this;
         }
     }

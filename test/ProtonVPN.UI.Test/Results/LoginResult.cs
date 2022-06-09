@@ -31,7 +31,7 @@ namespace ProtonVPN.UI.Test.Results
 
         public LoginResult VerifyUserIsOnLoginWindow()
         {
-            CheckIfObjectWithNameIsDisplayed("Start with Windows", "User unsuccessfully disconnected.");
+            CheckIfObjectWithNameIsDisplayed("Start and connect on boot", "User unsuccessfully disconnected.");
             return this;
         }
 

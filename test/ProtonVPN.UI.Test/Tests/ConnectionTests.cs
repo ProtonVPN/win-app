@@ -41,11 +41,11 @@ namespace ProtonVPN.UI.Test.Tests
         private readonly ConnectionResult _connectionResult = new ConnectionResult();
 
         [Test]
-        public void ConnectUsingQuickConnectBasicUser()
+        public void ConnectUsingQuickConnect()
         {
             TestCaseId = 221;
 
-            _loginWindow.LoginWithBasicUser();
+            _loginWindow.LoginWithPlusUser();
             _mainWindow.QuickConnect();
             _mainWindowResults.CheckIfConnected();
             TestRailClient.MarkTestsByStatus();
@@ -56,7 +56,7 @@ namespace ProtonVPN.UI.Test.Tests
         }
 
         [Test]
-        public void ConnectToFastestViaProfilePlusUser()
+        public void ConnectToFastestViaProfile()
         {
             TestCaseId = 225;
 
@@ -73,7 +73,7 @@ namespace ProtonVPN.UI.Test.Tests
         }
 
         [Test]
-        public void ConnectToRandomServerViaProfilePlusUser()
+        public void ConnectToRandomServerViaProfile()
         {
             TestCaseId = 225;
 
@@ -147,6 +147,10 @@ namespace ProtonVPN.UI.Test.Tests
             TestCaseId = 217;
 
             _loginWindow.LoginWithPlusUser();
+            _mainWindow.ClickHamburgerMenu()
+                .HamburgerMenu.ClickSettings();
+            _settingsWindow.DisableStartToTray();
+            _settingsWindow.CloseSettings();
             _mainWindow.QuickConnect();
             _mainWindowResults.CheckIfSameServerIsKeptAfterKillingApp();
             _mainWindow.DisconnectUsingSidebarButton();
@@ -171,27 +175,6 @@ namespace ProtonVPN.UI.Test.Tests
         }
 
         [Test]
-        public async Task CheckIfIpIsExcludedByIp()
-        {
-            TestCaseId = 7591;
-
-            _loginWindow.LoginWithPlusUser();
-            string homeIpAddress = await _client.GetIpAddress();
-            _mainWindow.ClickHamburgerMenu()
-                .HamburgerMenu.ClickSettings();
-            _modalWindow.MoveModalUp(amountOfTimes: 8);
-            _settingsWindow.ClickAdvancedTab();
-            _settingsWindow.EnableSplitTunneling();
-            _settingsWindow.AddIpAddressSplitTunneling("136.243.172.101");
-            _settingsWindow.CloseSettings();
-            _mainWindow.QuickConnect();
-            await _mainWindowResults.CheckIfIpAddressIsExcluded(homeIpAddress);
-
-            _mainWindow.DisconnectUsingSidebarButton();
-            _mainWindowResults.CheckIfDisconnected();
-        }
-
-        [Test]
         public void CheckIfAutoConnectConnectsAutomatically()
         {
             TestCaseId = 204;
@@ -199,8 +182,7 @@ namespace ProtonVPN.UI.Test.Tests
             _loginWindow.LoginWithPlusUser();
             _mainWindow.ClickHamburgerMenu()
                 .HamburgerMenu.ClickSettings();
-            _settingsWindow.ClickConnectionTab();
-            _settingsWindow.EnableAutoConnectToFastestServer();
+            _settingsWindow.DisableStartToTray();
             KillProtonVPNProcessAndReopenIt();
             _mainWindow.WaitUntilConnected();
             _mainWindow.DisconnectUsingSidebarButton();
@@ -209,7 +191,6 @@ namespace ProtonVPN.UI.Test.Tests
             TestCaseId = 205;
             _mainWindow.ClickHamburgerMenu()
                 .HamburgerMenu.ClickSettings();
-            _settingsWindow.ClickConnectionTab();
             _settingsWindow.DisableAutoConnect();
             KillProtonVPNProcessAndReopenIt();
             _mainWindowResults.CheckIfDisconnected();

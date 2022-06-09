@@ -49,7 +49,7 @@ namespace ProtonVPN.UI.Test.Windows
         public MainWindow ConnectByCountryName(string countryName)
         {
             MoveMouseToCountryByName(countryName);
-            ClickOnObjectWithName("CONNECT");
+            ClickOnObjectWithName("Connect");
             WaitUntilConnected();
             return this;
         }
@@ -79,7 +79,7 @@ namespace ProtonVPN.UI.Test.Windows
         {
             WindowsElement element = Session.FindElementByName(profileName);
             MoveToElement(element);
-            ClickOnObjectWithName("CONNECT");
+            ClickOnObjectWithName("Connect");
             return this;
         }
 

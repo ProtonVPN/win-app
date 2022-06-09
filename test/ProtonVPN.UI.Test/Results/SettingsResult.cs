@@ -41,7 +41,8 @@ namespace ProtonVPN.UI.Test.Results
         public SettingsResult VerifySettingsAreDisplayed()
         {
             CheckIfObjectWithNameIsDisplayed("Start Minimized", "'Start minimized' option is not displayed");
-            CheckIfObjectWithNameIsDisplayed("Start with Windows", "'Start with windows' option is not displayed");
+            CheckIfObjectWithNameIsDisplayed("Start on boot", "'Start on boot' option is not displayed");
+            CheckIfObjectWithNameIsDisplayed("Connect on app start", "'Connect on app start' option is not displayed");
             CheckIfObjectWithNameIsDisplayed("Show Notifications", "'Show Notifications' option is not displayed");
             CheckIfObjectWithNameIsDisplayed("Early Access", "'Early Access' option is not displayed");
             return this;

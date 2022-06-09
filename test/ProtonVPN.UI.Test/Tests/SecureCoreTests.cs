@@ -30,6 +30,7 @@ namespace ProtonVPN.UI.Test.Tests
         private readonly LoginWindow _loginWindow = new LoginWindow();
         private readonly MainWindow _mainWindow = new MainWindow();
         private readonly MainWindowResults _mainWindowResults = new MainWindowResults();
+        private readonly SettingsWindow _settingsWindow = new SettingsWindow();
 
         [Test]
         public void QuickConnectWhileSecureCoreIsEnabled()
@@ -56,6 +57,10 @@ namespace ProtonVPN.UI.Test.Tests
             _loginWindow.LoginWithPlusUser();
             _mainWindow.EnableSecureCore();
             _mainWindow.CloseSecureCoreWarningModal();
+            _mainWindow.ClickHamburgerMenu()
+                .HamburgerMenu.ClickSettings();
+            _settingsWindow.DisableStartToTray();
+            _settingsWindow.CloseSettings();
             _mainWindow.QuickConnect();
             _mainWindowResults.CheckIfSameServerIsKeptAfterKillingApp();
 
