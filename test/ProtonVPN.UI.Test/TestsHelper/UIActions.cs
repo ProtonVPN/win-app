@@ -47,6 +47,13 @@ namespace ProtonVPN.UI.Test.TestsHelper
             actions.MoveToElement(element).Build().Perform();
         }
 
+        public static void MoveToElementAndClick(IWebElement element)
+        {
+            Actions actions = new Actions(Session);
+            MoveToElement(element);
+            actions.Click().Build().Perform();
+        }
+
         public static void ClickOnObjectWithId(string objectId)
         {
             WindowsElement button = Session.FindElementByAccessibilityId(objectId);

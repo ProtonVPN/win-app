@@ -69,11 +69,6 @@ namespace ProtonVPN.UI.Test.Windows
             return PerformLogin(TestUserData.GetUserWithSpecialChars().Username, TestUserData.GetUserWithSpecialChars().Password);
         }
 
-        public LoginWindow LoginWithBasicUser()
-        {
-            return PerformLogin(TestUserData.GetBasicUser().Username, TestUserData.GetBasicUser().Password);
-        }
-
         public LoginWindow LoginWithVisionaryUser()
         {
             return PerformLogin(TestUserData.GetVisionaryUser().Username, TestUserData.GetVisionaryUser().Password);

@@ -105,7 +105,7 @@ namespace ProtonVPN.UI.Test.Results
 
         public MainWindowResults CheckIfNetshieldIsDisabled()
         {
-            CheckIfObjectWithClassNameIsDisplayed("ShieldEmpty", "Netshield was not disabled.");
+            CheckIfObjectWithClassNameIsDisplayed("Shield", "Netshield was not disabled.");
             return this;
         }
 

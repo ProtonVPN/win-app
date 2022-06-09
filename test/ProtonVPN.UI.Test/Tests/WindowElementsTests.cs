@@ -36,7 +36,7 @@ namespace ProtonVPN.UI.Test.Tests
         {
             TestCaseId = 251;
 
-            _loginWindow.LoginWithBasicUser();
+            _loginWindow.LoginWithPlusUser();
             _mainWindow.ClickOnSidebarModeButton();
             _mainWindowResults.CheckIfSidebarModeIsEnabled();
         }
