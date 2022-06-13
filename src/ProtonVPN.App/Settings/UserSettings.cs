@@ -101,7 +101,7 @@ namespace ProtonVPN.Settings
 
         private bool MigrationRequired(string version)
         {
-            return !string.IsNullOrEmpty(version) || !UserSettingsMigrated;
+            return !string.IsNullOrEmpty(version) && !UserSettingsMigrated;
         }
 
         private string Version

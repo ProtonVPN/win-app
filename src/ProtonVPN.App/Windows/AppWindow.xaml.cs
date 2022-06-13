@@ -73,7 +73,7 @@ namespace ProtonVPN.Windows
         private bool _blurOutInProgress;
         private bool _isConnected;
         private bool _isConnecting;
-        
+
         public bool AllowWindowHiding;
 
         public AppWindow(
@@ -110,7 +110,7 @@ namespace ProtonVPN.Windows
 
             Deactivated += PublishWindowState;
             Activated += PublishWindowState;
-            
+
             _icon = new(ICON_PATH);
             _connectedIcon = new(CONNECTED_ICON_PATH);
         }
@@ -293,7 +293,7 @@ namespace ProtonVPN.Windows
                     }
                 }
             }
-            else if(e.Button == MouseButtons.Right)
+            else if (e.Button == MouseButtons.Right)
             {
                 _trayContextMenu.Show();
                 _trayContextMenu.Activate();
