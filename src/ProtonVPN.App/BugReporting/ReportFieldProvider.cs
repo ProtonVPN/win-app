@@ -24,6 +24,7 @@ using ProtonVPN.BugReporting.Actions;
 using ProtonVPN.BugReporting.FormElements;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.OS;
+using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Models;
 using ProtonVPN.Core.OS;
 using ProtonVPN.Core.Settings;
@@ -32,12 +33,18 @@ using UserLocation = ProtonVPN.Core.User.UserLocation;
 
 namespace ProtonVPN.BugReporting
 {
-    public class ReportFieldProvider : IReportFieldProvider
+    public class ReportFieldProvider : IReportFieldProvider,
+        ILoggedInAware,
+        ILogoutAware
     {
+        private const string NO_USERNAME_FIELD_VALUE = "Not provided";
+
         private readonly IUserStorage _userStorage;
         private readonly Common.Configuration.Config _config;
         private readonly ISystemState _systemState;
         private readonly IDeviceInfoProvider _deviceInfoProvider;
+
+        private bool _isLoggedIn;
 
         public ReportFieldProvider(IUserStorage userStorage, Common.Configuration.Config config,
             ISystemState systemState, IDeviceInfoProvider deviceInfoProvider)
@@ -50,7 +57,7 @@ namespace ProtonVPN.BugReporting
 
         public KeyValuePair<string, string>[] GetFields(SendReportAction message)
         {
-            User user = _userStorage.User();
+            User user = _isLoggedIn ? _userStorage.User() : null;
             UserLocation location = _userStorage.Location();
             string country = Countries.GetName(location.Country);
             string isp = location.Isp;
@@ -63,9 +70,9 @@ namespace ProtonVPN.BugReporting
                 new KeyValuePair<string, string>("ClientVersion", _config.AppVersion),
                 new KeyValuePair<string, string>("Title", "Windows app form"),
                 new KeyValuePair<string, string>("Description", GetDescription(message)),
-                new KeyValuePair<string, string>("Username", user.Username),
-                new KeyValuePair<string, string>("Plan", user.VpnPlanName),
-                new KeyValuePair<string, string>("Email", GetEmail(message.FormElements)),
+                new KeyValuePair<string, string>("Username", GetUsername(user, message.FormElements)),
+                new KeyValuePair<string, string>("Plan", user?.VpnPlanName),
+                new KeyValuePair<string, string>("Email", GetEmailFromForm(message.FormElements)),
                 new KeyValuePair<string, string>("Country", string.IsNullOrEmpty(country) ? "" : country),
                 new KeyValuePair<string, string>("ISP", string.IsNullOrEmpty(isp) ? "" : isp),
                 new KeyValuePair<string, string>("ClientType", "2")
@@ -91,7 +98,7 @@ namespace ProtonVPN.BugReporting
         {
             foreach (FormElement element in message.FormElements)
             {
-                if (!element.Value.IsNullOrEmpty() && !element.IsEmailField())
+                if (!element.Value.IsNullOrEmpty() && !element.IsEmailField() && !element.IsUsernameField())
                 {
                     stringBuilder.AppendLine(element.SubmitLabel).AppendLine(element.Value).AppendLine();
                 }
@@ -105,10 +112,36 @@ namespace ProtonVPN.BugReporting
                 .AppendLine($"DeviceID: {_deviceInfoProvider.GetDeviceId()}");
         }
 
-        private string GetEmail(IList<FormElement> formElements)
+        private string GetUsername(User user, IList<FormElement> formElements)
+        {
+            string username = _isLoggedIn && user != null && !user.Username.IsNullOrEmpty()
+                ? user.Username
+                : GetUsernameFromForm(formElements);
+            return username.IsNullOrEmpty()
+                ? NO_USERNAME_FIELD_VALUE
+                : username;
+        }
+
+        private string GetUsernameFromForm(IList<FormElement> formElements)
+        {
+            FormElement usernameField = formElements.GetUsernameField();
+            return usernameField?.Value;
+        }
+
+        private string GetEmailFromForm(IList<FormElement> formElements)
         {
             FormElement emailField = formElements.GetEmailField();
             return emailField != null ? emailField.Value : string.Empty;
+        }
+
+        public void OnUserLoggedIn()
+        {
+            _isLoggedIn = true;
+        }
+
+        public void OnUserLoggedOut()
+        {
+            _isLoggedIn = false;
         }
     }
 }

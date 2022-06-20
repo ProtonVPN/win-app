@@ -41,9 +41,20 @@ namespace ProtonVPN.BugReporting.FormElements
         public List<FormElement> GetFormElements(string categorySubmitName)
         {
             IList<IssueInputResponse> inputs = _reportAnIssueFormDataProvider.GetInputs(categorySubmitName);
-            List<FormElement> formElements = new() { GetEmailField() };
+            List<FormElement> formElements = new() { GetUsernameField(), GetEmailField() };
             formElements.AddRange(inputs.Select(MapField).Where(element => element != null));
             return formElements;
+        }
+
+        private FormElement GetUsernameField()
+        {
+            return new UsernameInput
+            {
+                SubmitLabel = "username",
+                Placeholder = Translation.Get("BugReport_lbl_UsernamePlaceholder"),
+                Label = Translation.Get("BugReport_lbl_Username"),
+                IsMandatory = false
+            };
         }
 
         private FormElement GetEmailField()

@@ -90,7 +90,7 @@ namespace ProtonVPN.BugReporting
 
             builder.RegisterType<NetworkLogWriter>().SingleInstance();
             builder.RegisterType<FormElementBuilder>().As<IFormElementBuilder>().SingleInstance();
-            builder.RegisterType<ReportFieldProvider>().As<IReportFieldProvider>().SingleInstance();
+            builder.RegisterType<ReportFieldProvider>().AsImplementedInterfaces().SingleInstance();
         }
     }
 }

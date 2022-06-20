@@ -813,6 +813,24 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Username.
+        /// </summary>
+        public static string BugReport_lbl_Username {
+            get {
+                return ResourceManager.GetString("BugReport_lbl_Username", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your Proton username, in case you already have an account..
+        /// </summary>
+        public static string BugReport_lbl_UsernamePlaceholder {
+            get {
+                return ResourceManager.GetString("BugReport_lbl_UsernamePlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to What&apos;s the issue?.
         /// </summary>
         public static string BugReport_lbl_WhatIsTheIssue {

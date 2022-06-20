@@ -33,5 +33,15 @@ namespace ProtonVPN.BugReporting.FormElements
         {
             return element is EmailInput;
         }
+
+        public static FormElement GetUsernameField(this IList<FormElement> elements)
+        {
+            return elements.FirstOrDefault(IsUsernameField);
+        }
+
+        public static bool IsUsernameField(this FormElement element)
+        {
+            return element is UsernameInput;
+        }
     }
 }
