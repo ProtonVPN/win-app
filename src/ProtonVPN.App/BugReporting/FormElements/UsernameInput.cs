@@ -17,31 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Collections.Generic;
-using System.Linq;
-
 namespace ProtonVPN.BugReporting.FormElements
 {
-    public static class FormElementExtensions
+    public class UsernameInput : SingleLineTextInput
     {
-        public static FormElement GetEmailField(this IList<FormElement> elements)
-        {
-            return elements.FirstOrDefault(IsEmailField);
-        }
-
-        public static bool IsEmailField(this FormElement element)
-        {
-            return element is EmailInput;
-        }
-
-        public static FormElement GetUsernameField(this IList<FormElement> elements)
-        {
-            return elements.FirstOrDefault(IsUsernameField);
-        }
-
-        public static bool IsUsernameField(this FormElement element)
-        {
-            return element is UsernameInput;
-        }
     }
 }

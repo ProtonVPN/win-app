@@ -325,17 +325,25 @@
     <value>Your report wasn’t sent</value>
     <comment>The message displayed in Issue Report window when sending Issue report fails</comment>
   </data>
+  <data name="BugReport_lbl_Username" xml:space="preserve">
+    <value>Username</value>
+    <comment>The label for the username in Issue Report window</comment>
+  </data>
+  <data name="BugReport_lbl_UsernamePlaceholder" xml:space="preserve">
+    <value>Your Proton username, in case you already have an account.</value>
+    <comment>The watermark text displayed in empty username text box in Issue Report window</comment>
+  </data>
   <data name="BugReport_lbl_Email" xml:space="preserve">
     <value>Email</value>
     <comment>The label for user e-mail address in Issue Report window</comment>
   </data>
-  <data name="Profiles_Profile_lbl_Country" xml:space="preserve">
-    <value>Country:</value>
-    <comment>The label for Country combo box in Profile window</comment>
-  </data>
   <data name="BugReport_lbl_EmailPlaceholder" xml:space="preserve">
     <value>This email will be used to contact you regarding this issue.</value>
     <comment>The watermark text displayed in empty user e-mail text box in Issue Report window</comment>
+  </data>
+  <data name="Profiles_Profile_lbl_Country" xml:space="preserve">
+    <value>Country:</value>
+    <comment>The label for Country combo box in Profile window</comment>
   </data>
   <data name="BugReport_btn_Send" xml:space="preserve">
     <value>Send report</value>

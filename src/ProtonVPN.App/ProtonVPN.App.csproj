@@ -147,6 +147,7 @@
     <Compile Include="BugReporting\FormElements\IFormElementBuilder.cs" />
     <Compile Include="BugReporting\FormElements\MultiLineTextInput.cs" />
     <Compile Include="BugReporting\FormElements\SingleLineTextInput.cs" />
+    <Compile Include="BugReporting\FormElements\UsernameInput.cs" />
     <Compile Include="BugReporting\FormState.cs" />
     <Compile Include="BugReporting\IBugReport.cs" />
     <Compile Include="BugReporting\IReportFieldProvider.cs" />

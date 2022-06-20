@@ -35,6 +35,7 @@ namespace ProtonVPN.BugReporting.Steps
 {
     public class FormViewModel : Screen,
         IUserDataAware,
+        ILoggedInAware,
         ILogoutAware,
         IHandle<FillTheFormAction>,
         IHandle<FormStateChange>,
@@ -49,6 +50,7 @@ namespace ProtonVPN.BugReporting.Steps
         private bool _hasErrors = true;
         private bool _isEmailValid = true;
         private string _category;
+        private bool _isLoggedIn;
 
         public FormViewModel(IEventAggregator eventAggregator, IUserStorage userStorage,
             IFormElementBuilder formElementBuilder)
@@ -86,16 +88,37 @@ namespace ProtonVPN.BugReporting.Steps
             set => Set(ref _formElements, value);
         }
 
+        public void OnUserLoggedIn()
+        {
+            _isLoggedIn = true;
+            ResetForm();
+        }
+
+        private void ResetForm()
+        {
+            foreach (FormElement element in FormElements)
+            {
+                element.PropertyChanged -= OnFormElementChanged;
+            }
+
+            FormElements.Clear();
+            IsToIncludeLogs = true;
+            _hasErrors = true;
+            _isEmailValid = true;
+            _category = null;
+        }
+
         public void OnUserLoggedOut()
         {
-            FormElements.Clear();
+            _isLoggedIn = false;
+            ResetForm();
         }
 
         public void Handle(FillTheFormAction message)
         {
             if (!_category.IsNullOrEmpty() && _category != message.Category)
             {
-                RemoveFormElements();
+                ResetForm();
             }
 
             if (FormElements.Count == 0)
@@ -114,6 +137,7 @@ namespace ProtonVPN.BugReporting.Steps
             }
 
             UpdateEmailInput();
+            UpdateUsernameInput();
         }
 
         public void Handle(FormStateChange message)
@@ -121,19 +145,9 @@ namespace ProtonVPN.BugReporting.Steps
             _isFormBeingSent = message.State == FormState.Sending;
             if (message.State == FormState.Sent)
             {
-                RemoveFormElements();
+                ResetForm();
                 _hasErrors = true;
             }
-        }
-
-        private void RemoveFormElements()
-        {
-            foreach (FormElement element in FormElements)
-            {
-                element.PropertyChanged -= OnFormElementChanged;
-            }
-
-            FormElements.Clear();
         }
 
         private void OnFormElementChanged(object sender, PropertyChangedEventArgs e)
@@ -169,6 +183,7 @@ namespace ProtonVPN.BugReporting.Steps
         public void OnUserDataChanged()
         {
             UpdateEmailInput();
+            UpdateUsernameInput();
         }
 
         private void UpdateEmailInput()
@@ -180,6 +195,18 @@ namespace ProtonVPN.BugReporting.Steps
                 if (emailField != null)
                 {
                     emailField.Value = user.Username;
+                }
+            }
+        }
+
+        private void UpdateUsernameInput()
+        {
+            if (_isLoggedIn)
+            {
+                FormElement usernameField = FormElements.GetUsernameField();
+                if (usernameField != null)
+                {
+                    FormElements.Remove(usernameField);
                 }
             }
         }

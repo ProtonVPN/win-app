@@ -29,6 +29,7 @@ using ProtonVPN.Core.ReportAnIssue;
 namespace ProtonVPN.BugReporting.Steps
 {
     public class StepsContainerViewModel : Screen,
+        ILoggedInAware,
         ILogoutAware,
         IHandle<SelectCategoryAction>,
         IHandle<FillTheFormAction>,
@@ -100,6 +101,11 @@ namespace ProtonVPN.BugReporting.Steps
                 default:
                     return _categorySelectionViewModel;
             }
+        }
+
+        public void OnUserLoggedIn()
+        {
+            ShowFirstStep();
         }
 
         public void OnUserLoggedOut()
