@@ -17,29 +17,30 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Api.Contracts;
+using ProtonVPN.Api.Contracts.Servers;
 using ProtonVPN.Core.Abstract;
-using ProtonVPN.Core.Api.Contracts;
 
 namespace ProtonVPN.Core.Servers.Specs
 {
-    public class ServerByFeatures : Specification<LogicalServerContract>
+    public class ServerByFeatures : Specification<LogicalServerResponse>
     {
-        private readonly Specification<LogicalServerContract> _spec;
+        private readonly Specification<LogicalServerResponse> _spec;
 
         public ServerByFeatures(Features features)
         {
             _spec = SpecByFeatures(features);
         }
 
-        public override bool IsSatisfiedBy(LogicalServerContract item)
+        public override bool IsSatisfiedBy(LogicalServerResponse item)
         {
             return _spec.IsSatisfiedBy(item);
         }
 
-        private static Specification<LogicalServerContract> SpecByFeatures(Features features)
+        private static Specification<LogicalServerResponse> SpecByFeatures(Features features)
         {
-            Specification<LogicalServerContract> spec = 
-                (features.IsSecureCore() ? (Specification<LogicalServerContract>) new SecureCoreServer() : new StandardServer()) &
+            Specification<LogicalServerResponse> spec = 
+                (features.IsSecureCore() ? new SecureCoreServer() : new StandardServer()) &
                 (features.SupportsTor() ? new TorServer() : !new TorServer());
 
             if (features.SupportsP2P())

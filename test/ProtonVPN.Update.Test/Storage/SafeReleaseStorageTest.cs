@@ -60,7 +60,7 @@ namespace ProtonVPN.Update.Test.Storage
 
             Func<Task> action = () => storage.Releases();
 
-            action.Should().Throw<Exception>();
+            action.Should().ThrowAsync<Exception>();
         }
 
         [TestMethod]
@@ -89,7 +89,7 @@ namespace ProtonVPN.Update.Test.Storage
 
             Func<Task> action = () => storage.Releases();
 
-            action.Should().Throw<AppUpdateException>();
+            action.Should().ThrowAsync<AppUpdateException>();
         }
 
         private void Releases_ShouldThrow_AppUpdateException_WhenOriginThrowsAsync(Exception ex)
@@ -100,7 +100,7 @@ namespace ProtonVPN.Update.Test.Storage
 
             Func<Task> action = () => storage.Releases();
 
-            action.Should().Throw<AppUpdateException>();
+            action.Should().ThrowAsync<AppUpdateException>();
         }
     }
 }

@@ -61,7 +61,7 @@ namespace ProtonVPN.Update.Test.Files.Validatable
             const string filename = "TestData\\ProtonVPN_win_v1.5.2.exe";
             _origin.Valid("", "").ReturnsForAnyArgs(Task.FromResult(value));
 
-            var result = await _validatable.Valid(filename, "checkSum");
+            bool result = await _validatable.Valid(filename, "checkSum");
 
             result.Should().Be(value);
         }
@@ -76,7 +76,7 @@ namespace ProtonVPN.Update.Test.Files.Validatable
             (await _validatable.Valid(filename, checkSum)).Should().BeTrue();
             _origin.ClearReceivedCalls();
 
-            var result = await _validatable.Valid(filename, checkSum);
+            bool result = await _validatable.Valid(filename, checkSum);
 
             result.Should().BeTrue();
         }
@@ -133,7 +133,7 @@ namespace ProtonVPN.Update.Test.Files.Validatable
         {
             const string updatesPath = nameof(Valid_ShouldCall_Origin_WenFileLastWriteTime_HasChanged);
             CopyFile("ProtonVPN_win_v1.5.1.exe", updatesPath);
-            var filename = Path.Combine(updatesPath, "ProtonVPN_win_v1.5.1.exe");
+            string filename = Path.Combine(updatesPath, "ProtonVPN_win_v1.5.1.exe");
             const string checkSum = "ba6b5ca2db65ff7817e3336a386e7525c01dc639";
 
             _origin.Valid("", "").ReturnsForAnyArgs(Task.FromResult(true));
@@ -152,14 +152,14 @@ namespace ProtonVPN.Update.Test.Files.Validatable
         {
             const string updatesPath = nameof(Valid_ShouldCall_Origin_WenFileLastWriteTime_HasChanged);
             CopyFile("ProtonVPN_win_v1.5.1.exe", updatesPath);
-            var filename = Path.Combine(updatesPath, "ProtonVPN_win_v1.5.1.exe");
+            string filename = Path.Combine(updatesPath, "ProtonVPN_win_v1.5.1.exe");
             const string checkSum = "ba6b5ca2db65ff7817e3336a386e7525c01dc639";
 
             _origin.Valid("", "").ReturnsForAnyArgs(Task.FromResult(true));
             (await _validatable.Valid(filename, checkSum)).Should().BeTrue();
 
             _origin.ClearReceivedCalls();
-            var lastWriteTime = File.GetLastWriteTimeUtc(filename);
+            DateTime lastWriteTime = File.GetLastWriteTimeUtc(filename);
             CopyFile("win-update.json", updatesPath, "ProtonVPN_win_v1.5.1.exe");
             File.SetLastWriteTimeUtc(filename, lastWriteTime);
 
@@ -173,7 +173,7 @@ namespace ProtonVPN.Update.Test.Files.Validatable
         {
             const string updatesPath = nameof(Valid_ShouldCall_Origin_WenFileLastWriteTime_HasChanged);
             CopyFile("ProtonVPN_win_v1.5.1.exe", updatesPath);
-            var filename = Path.Combine(updatesPath, "ProtonVPN_win_v1.5.1.exe");
+            string filename = Path.Combine(updatesPath, "ProtonVPN_win_v1.5.1.exe");
             const string checkSum = "ba6b5ca2db65ff7817e3336a386e7525c01dc639";
 
             _origin.Valid("", "").ReturnsForAnyArgs(Task.FromResult(true));
@@ -183,7 +183,7 @@ namespace ProtonVPN.Update.Test.Files.Validatable
             _origin.Valid("", "").ReturnsForAnyArgs(Task.FromResult(false));
             File.Delete(filename);
 
-            var result = await _validatable.Valid(filename, checkSum);
+            bool result = await _validatable.Valid(filename, checkSum);
 
             result.Should().BeFalse();
         }
@@ -196,7 +196,7 @@ namespace ProtonVPN.Update.Test.Files.Validatable
 
             Func<Task> action = () => _validatable.Valid(filename, "");
 
-            action.Should().Throw<SomeException>();
+            action.Should().ThrowAsync<SomeException>();
         }
 
         [TestMethod]
@@ -207,7 +207,7 @@ namespace ProtonVPN.Update.Test.Files.Validatable
 
             Func<Task> action = () => _validatable.Valid(filename, "");
 
-            action.Should().Throw<SomeException>();
+            action.Should().ThrowAsync<SomeException>();
         }
 
         #region Helpers
@@ -217,10 +217,12 @@ namespace ProtonVPN.Update.Test.Files.Validatable
         private static void CopyFile(string sourcePath, string destPath, string newFilename = null)
         {
             if (!string.IsNullOrEmpty(destPath))
+            {
                 Directory.CreateDirectory(destPath);
+            }
 
-            var filename = !string.IsNullOrEmpty(newFilename) ? newFilename : Path.GetFileName(sourcePath);
-            var destFullPath = Path.Combine(destPath ?? "", filename ?? "");
+            string filename = !string.IsNullOrEmpty(newFilename) ? newFilename : Path.GetFileName(sourcePath);
+            string destFullPath = Path.Combine(destPath ?? "", filename ?? "");
 
             File.Copy(Path.Combine("TestData", sourcePath), destFullPath, true);
         }

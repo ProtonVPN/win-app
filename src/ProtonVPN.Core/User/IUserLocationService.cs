@@ -19,13 +19,14 @@
 
 using System;
 using System.Threading.Tasks;
-using ProtonVPN.Core.Api;
+using ProtonVPN.Api.Contracts;
+using ProtonVPN.Api.Contracts.Geographical;
 
 namespace ProtonVPN.Core.User
 {
     public interface IUserLocationService
     {
-        Task<ApiResponseResult<Api.Contracts.UserLocation>> LocationAsync();
+        Task<ApiResponseResult<UserLocationResponse>> LocationAsync();
 
         Task Update();
 

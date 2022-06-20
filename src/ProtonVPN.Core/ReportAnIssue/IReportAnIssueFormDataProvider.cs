@@ -19,15 +19,15 @@
 
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using ProtonVPN.Core.Api.Contracts.ReportAnIssue;
+using ProtonVPN.Api.Contracts.ReportAnIssue;
 
 namespace ProtonVPN.Core.ReportAnIssue
 {
     public interface IReportAnIssueFormDataProvider
     {
         Task FetchData();
-        List<IssueCategory> GetCategories();
-        List<IssueSuggestion> GetSuggestions(string category);
-        List<IssueInput> GetInputs(string categorySubmitName);
+        List<IssueCategoryResponse> GetCategories();
+        List<IssueSuggestionResponse> GetSuggestions(string category);
+        List<IssueInputResponse> GetInputs(string categorySubmitName);
     }
 }

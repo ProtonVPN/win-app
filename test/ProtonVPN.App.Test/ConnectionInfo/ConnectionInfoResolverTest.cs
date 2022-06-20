@@ -18,18 +18,22 @@
  */
 
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using NSubstitute.ReturnsExtensions;
 using ProtonVPN.Account;
+using ProtonVPN.Api.Contracts;
+using ProtonVPN.Api.Contracts.Auth;
+using ProtonVPN.Api.Contracts.Geographical;
+using ProtonVPN.Api.Contracts.Servers;
+using ProtonVPN.Api.Contracts.VpnSessions;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.ConnectionInfo;
 using ProtonVPN.Core.Abstract;
-using ProtonVPN.Core.Api;
-using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Servers.Models;
@@ -59,7 +63,7 @@ namespace ProtonVPN.App.Test.ConnectionInfo
             _logger = Substitute.For<ILogger>();
             _serverManager = Substitute.For<ServerManager>(_userStorage, _appSettings, _logger);
 
-            ApiResponseResult<VpnInfoResponse> result = ApiResponseResult<VpnInfoResponse>.Ok(new VpnInfoResponse
+            ApiResponseResult<VpnInfoWrapperResponse> result = ApiResponseResult<VpnInfoWrapperResponse>.Ok(new HttpResponseMessage(), new VpnInfoWrapperResponse
             {
                 Code = 1000,
                 Error = string.Empty
@@ -168,7 +172,7 @@ namespace ProtonVPN.App.Test.ConnectionInfo
         {
             // Arrange
             _userStorage.User().Returns(new User {MaxConnect = 3});
-            _serverManager.GetServer(Arg.Any<ISpecification<LogicalServerContract>>()).ReturnsNull();
+            _serverManager.GetServer(Arg.Any<ISpecification<LogicalServerResponse>>()).ReturnsNull();
 
             var sut = new ConnectionErrorResolver(_userStorage, _apiClient, _serverManager, _vpnInfoUpdater, _serverUpdater);
             SetSessions(0);
@@ -182,7 +186,7 @@ namespace ProtonVPN.App.Test.ConnectionInfo
         {
             // Arrange
             _userStorage.User().Returns(new User { MaxConnect = 3 });
-            _serverManager.GetServer(Arg.Any<ISpecification<LogicalServerContract>>()).Returns(Server.Empty());
+            _serverManager.GetServer(Arg.Any<ISpecification<LogicalServerResponse>>()).Returns(Server.Empty());
 
             var sut = new ConnectionErrorResolver(_userStorage, _apiClient, _serverManager, _vpnInfoUpdater, _serverUpdater);
             SetSessions(0);
@@ -201,7 +205,7 @@ namespace ProtonVPN.App.Test.ConnectionInfo
                 MaxConnect = 3,
                 MaxTier = 2
             });
-            _serverManager.GetServer(Arg.Any<ISpecification<LogicalServerContract>>()).Returns(GetOnlineServer());
+            _serverManager.GetServer(Arg.Any<ISpecification<LogicalServerResponse>>()).Returns(GetOnlineServer());
 
             var sut = new ConnectionErrorResolver(_userStorage, _apiClient, _serverManager, _vpnInfoUpdater, _serverUpdater);
             SetSessions(0);
@@ -212,23 +216,20 @@ namespace ProtonVPN.App.Test.ConnectionInfo
 
         private void SetSessions(int number)
         {
-            var sessions = new List<Session>();
+            var sessions = new List<SessionResponse>();
             for (int i = 0; i < number; i++)
             {
-                sessions.Add(new Session());
+                sessions.Add(new SessionResponse());
             }
 
-            _apiClient.GetSessions().Returns(Task.FromResult(ApiResponseResult<SessionsResponse>.Ok(new SessionsResponse
-            {
-                Code = 1000,
-                Error = string.Empty,
-                Sessions = sessions
-            })));
+            _apiClient.GetSessions().Returns(Task.FromResult(ApiResponseResult<SessionsResponse>.Ok(
+                new HttpResponseMessage(),
+                new SessionsResponse { Code = 1000, Error = string.Empty, Sessions = sessions })));
         }
 
         private Server GetOnlineServer()
         {
-            return new Server("", "", "", "", "", "", 1, ServerTiers.Basic, 0, 0, 0, new Location(),
+            return new Server("", "", "", "", "", "", 1, ServerTiers.Basic, 0, 0, 0, new LocationResponse(),
                 new List<PhysicalServer>(), "");
         }
     }

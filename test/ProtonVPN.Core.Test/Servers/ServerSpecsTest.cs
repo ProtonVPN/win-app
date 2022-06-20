@@ -19,7 +19,7 @@
 
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ProtonVPN.Core.Api.Contracts;
+using ProtonVPN.Api.Contracts.Servers;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Servers.Specs;
 
@@ -32,7 +32,7 @@ namespace ProtonVPN.Core.Test.Servers
         public void ItShouldReturnTrueForEntryCountry()
         {
             const string country = "us";
-            var server = new LogicalServerContract {EntryCountry = country};
+            var server = new LogicalServerResponse {EntryCountry = country};
             var spec = new EntryCountryServer(country);
 
             spec.IsSatisfiedBy(server).Should().BeTrue();
@@ -42,7 +42,7 @@ namespace ProtonVPN.Core.Test.Servers
         public void ItShouldReturnTrueForExitCountry()
         {
             const string country = "us";
-            var server = new LogicalServerContract { ExitCountry = country };
+            var server = new LogicalServerResponse { ExitCountry = country };
             var spec = new ExitCountryServer(country);
 
             spec.IsSatisfiedBy(server).Should().BeTrue();
@@ -51,41 +51,41 @@ namespace ProtonVPN.Core.Test.Servers
         [TestMethod]
         public void ItShouldReturnTrueForFreeServer()
         {
-            new FreeServer().IsSatisfiedBy(new LogicalServerContract { Tier = ServerTiers.Free }).Should().BeTrue();
+            new FreeServer().IsSatisfiedBy(new LogicalServerResponse { Tier = ServerTiers.Free }).Should().BeTrue();
         }
 
         [TestMethod]
         public void ItShouldReturnTrueForMaxTierServer()
         {
-            var server = new LogicalServerContract {Tier = 0};
+            var server = new LogicalServerResponse { Tier = 0};
             new MaxTierServer(1).IsSatisfiedBy(server).Should().BeTrue();
         }
 
         [TestMethod]
         public void ItShouldReturnTrueForOnlineServer()
         {
-            var server = new LogicalServerContract { Status = 1 };
+            var server = new LogicalServerResponse { Status = 1 };
             new OnlineServer().IsSatisfiedBy(server).Should().BeTrue();
         }
 
         [TestMethod]
         public void ItShouldReturnTrueForP2PServer()
         {
-            var server = new LogicalServerContract { Features = (sbyte) Features.P2P };
+            var server = new LogicalServerResponse { Features = (sbyte) Features.P2P };
             new P2PServer().IsSatisfiedBy(server).Should().BeTrue();
         }
 
         [TestMethod]
         public void ItShouldReturnTrueForTorServer()
         {
-            var server = new LogicalServerContract { Features = (sbyte)Features.Tor };
+            var server = new LogicalServerResponse { Features = (sbyte)Features.Tor };
             new TorServer().IsSatisfiedBy(server).Should().BeTrue();
         }
 
         [TestMethod]
         public void ItShouldReturnTrueForSecureCoreServer()
         {
-            var server = new LogicalServerContract { Features = (sbyte)Features.SecureCore };
+            var server = new LogicalServerResponse { Features = (sbyte)Features.SecureCore };
             new SecureCoreServer().IsSatisfiedBy(server).Should().BeTrue();
         }
 
@@ -93,7 +93,7 @@ namespace ProtonVPN.Core.Test.Servers
         public void ItShouldReturnTrueForServerById()
         {
             const string id = "server id";
-            var server = new LogicalServerContract { Id = id };
+            var server = new LogicalServerResponse { Id = id };
             new ServerById(id).IsSatisfiedBy(server).Should().BeTrue();
         }
 
@@ -103,7 +103,7 @@ namespace ProtonVPN.Core.Test.Servers
         [DataRow((sbyte)Features.Tor)]
         public void ItShouldReturnTrueForStandardServer(sbyte feature)
         {
-            var server = new LogicalServerContract { Features = feature };
+            var server = new LogicalServerResponse { Features = feature };
             new StandardServer().IsSatisfiedBy(server).Should().BeTrue();
         }
     }

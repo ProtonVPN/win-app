@@ -82,7 +82,7 @@ elif args.command == 'add-languages':
     sys.exit(returnCode)
 
 elif args.command == 'tests':
-    tests.run('{path}*.Test.dll'.format(path=args.path))
+    tests.run('{path}\*.dll'.format(path=args.path))
 
 elif args.command == 'sign':
     signing.sign()

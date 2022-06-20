@@ -20,15 +20,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Caliburn.Micro;
+using ProtonVPN.Api.Contracts;
+using ProtonVPN.Api.Contracts.Certificates;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.UserCertificateLogs;
-using ProtonVPN.Core.Api;
-using ProtonVPN.Core.Api.Certificates;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Window;
 
@@ -40,14 +39,11 @@ namespace ProtonVPN.Core.Auth
         private readonly IApiClient _apiClient;
         private readonly IAppSettings _appSettings;
         private readonly ILogger _logger;
-
         private readonly SemaphoreSlim _semaphore = new(1, 1);
-        private readonly TimeSpan _firstRetryInterval;
-        private readonly int _numOfTries;
 
         private IList<string> _features = new List<string>();
 
-        public AuthCertificateManager(Common.Configuration.Config config,
+        public AuthCertificateManager(
             IAuthKeyManager authKeyManager,
             IApiClient apiClient,
             IAppSettings appSettings,
@@ -60,14 +56,14 @@ namespace ProtonVPN.Core.Auth
             _logger = logger;
 
             eventAggregator.Subscribe(this);
-
-            _firstRetryInterval = config.AuthCertificateFirstRetryInterval;
-            _numOfTries = 1 + config.AuthCertificateMaxNumOfRetries;
         }
 
         public async void Handle(WindowStateMessage message)
         {
-            await RequestNewCertificateAsync();
+            if (message.Active)
+            {
+                await RequestNewCertificateAsync();
+            }
         }
 
         public void SetFeatures(IList<string> features)
@@ -112,17 +108,27 @@ namespace ProtonVPN.Core.Auth
         private async Task EnqueueRequestAsync(NewCertificateRequestParameter parameter)
         {
             await _semaphore.WaitAsync();
+
             try
             {
                 if (parameter != NewCertificateRequestParameter.NewCertificateIfCurrentIsOld || IsToRequest())
                 {
                     LogNewCertificateRequest(parameter);
                     RegenerateKeyPairIfRequested(parameter);
-                    await RequestWithRetriesAsync();
+                    IList<string> features = _features.ToList();
+                    ApiResponseResult<CertificateResponse> response = await RequestAsync(features);
+                    if (response.Failure)
+                    {
+                        _logger.Error<UserCertificateRefreshErrorLog>("Auth certificate request failed with " +
+                                                                      $"Status Code {response.ResponseMessage.StatusCode}, " +
+                                                                      $"Internal Code {response.Value.Code}, " +
+                                                                      $"Error '{response.Value.Error}'.");
+                    }
                 }
             }
-            catch
+            catch (Exception e)
             {
+                _logger.Error<UserCertificateRefreshErrorLog>("Auth certificate request failed.", e);
             }
             finally
             {
@@ -160,44 +166,9 @@ namespace ProtonVPN.Core.Auth
             }
         }
 
-        private async Task RequestWithRetriesAsync()
+        private async Task<ApiResponseResult<CertificateResponse>> RequestAsync(IList<string> features)
         {
-            IList<string> features = _features.ToList();
-            TimeSpan retryInterval = _firstRetryInterval;
-            for (int i = 0; i < _numOfTries; i++)
-            {
-                if (i > 0)
-                {
-                    TimeSpan delay = retryInterval.RandomizedWithDeviation(0.2);
-                    _logger.Info<UserCertificateLog>($"Retrying auth certificate request in {delay}.");
-                    await Task.Delay(delay);
-                    retryInterval = TimeSpan.FromTicks(retryInterval.Ticks * 2);
-                    _logger.Info<UserCertificateLog>("Retrying auth certificate request.");
-                }
-
-                try
-                {
-                    ApiResponseResult<CertificateResponseData> certificateResponseData = await RequestAsync(features);
-                    if (certificateResponseData.Success)
-                    {
-                        break;
-                    }
-
-                    _logger.Error<UserCertificateRefreshErrorLog>("Auth certificate request failed with " +
-                                                                  $"Status Code {certificateResponseData.StatusCode}, " +
-                                                                  $"Internal Code {certificateResponseData.Value.Code}, " +
-                                                                  $"Error '{certificateResponseData.Value.Error}'.");
-                }
-                catch (HttpRequestException)
-                {
-                    _logger.Error<UserCertificateRefreshErrorLog>("Auth certificate request failed due http request exception");
-                }
-            }
-        }
-
-        private async Task<ApiResponseResult<CertificateResponseData>> RequestAsync(IList<string> features)
-        {
-            ApiResponseResult<CertificateResponseData> certificateResponseData =
+            ApiResponseResult<CertificateResponse> certificateResponseData =
                 await RequestAuthCertificateAsync(features);
 
             if (certificateResponseData.Failure && certificateResponseData.Value.Code == ResponseCodes.ClientPublicKeyConflict)
@@ -211,11 +182,11 @@ namespace ProtonVPN.Core.Auth
             return certificateResponseData;
         }
 
-        private async Task<ApiResponseResult<CertificateResponseData>> RequestAuthCertificateAsync(IList<string> features)
+        private async Task<ApiResponseResult<CertificateResponse>> RequestAuthCertificateAsync(IList<string> features)
         {
-            CertificateRequestData certificateRequestData = CreateCertificateRequestData(features);
-            ApiResponseResult<CertificateResponseData> certificateResponseData =
-                await _apiClient.RequestAuthCertificateAsync(certificateRequestData);
+            CertificateRequest certificateRequest = CreateCertificateRequestData(features);
+            ApiResponseResult<CertificateResponse> certificateResponseData =
+                await _apiClient.RequestAuthCertificateAsync(certificateRequest);
 
             if (certificateResponseData.Success)
             {
@@ -233,7 +204,7 @@ namespace ProtonVPN.Core.Auth
             return certificateResponseData;
         }
 
-        private CertificateRequestData CreateCertificateRequestData(IList<string> features)
+        private CertificateRequest CreateCertificateRequestData(IList<string> features)
         {
             return new()
             {

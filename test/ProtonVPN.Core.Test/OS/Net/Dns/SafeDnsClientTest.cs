@@ -121,7 +121,7 @@ namespace ProtonVPN.Core.Test.OS.Net.Dns
             // Act
             Func<Task> action = () => client.Resolve("abc.def", CancellationToken.None);
             // Assert
-            action.Should().Throw<Exception>();
+            action.Should().ThrowAsync<Exception>();
         }
 
         [TestMethod]
@@ -133,7 +133,7 @@ namespace ProtonVPN.Core.Test.OS.Net.Dns
             // Act
             Func<Task> action = async () => await client.Resolve("abc.def", CancellationToken.None);
             // Assert
-            action.Should().Throw<Exception>();
+            action.Should().ThrowAsync<Exception>();
         }
 
         [TestMethod]

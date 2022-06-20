@@ -24,13 +24,13 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Newtonsoft.Json;
+using ProtonVPN.Api.Contracts.ReportAnIssue;
 using ProtonVPN.Common;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.KillSwitch;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.SettingsLogs;
 using ProtonVPN.Common.Networking;
-using ProtonVPN.Core.Api.Contracts.ReportAnIssue;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Native.Structures;
@@ -77,9 +77,9 @@ namespace ProtonVPN.Core
             set => SetPerUser(value);
         }
 
-        public List<IssueCategory> ReportAnIssueFormData
+        public List<IssueCategoryResponse> ReportAnIssueFormData
         {
-            get => GetPerUser<List<IssueCategory>>() ?? new List<IssueCategory>();
+            get => GetPerUser<List<IssueCategoryResponse>>() ?? new List<IssueCategoryResponse>();
             set => SetPerUser(value);
         }
 

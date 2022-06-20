@@ -19,7 +19,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using ProtonVPN.Core.Api.Contracts;
+using ProtonVPN.Api.Contracts.Streaming;
 using ProtonVPN.Core.Settings;
 
 namespace ProtonVPN.Streaming

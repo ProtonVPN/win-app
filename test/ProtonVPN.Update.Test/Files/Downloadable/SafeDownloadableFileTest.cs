@@ -59,7 +59,7 @@ namespace ProtonVPN.Update.Test.Files.Downloadable
 
             Func<Task> action = () => downloadable.Download("", "");
 
-            action.Should().Throw<SomeException>();
+            action.Should().ThrowAsync<SomeException>();
         }
 
         [TestMethod]
@@ -72,7 +72,7 @@ namespace ProtonVPN.Update.Test.Files.Downloadable
                 new SocketException()
             };
 
-            foreach (var exception in exceptions)
+            foreach (Exception exception in exceptions)
             {
                 Launch_ShouldThrow_AppUpdateException_WhenOriginThrows(exception);
             }
@@ -86,7 +86,7 @@ namespace ProtonVPN.Update.Test.Files.Downloadable
 
             Func<Task> action = () => downloadable.Download("", "");
 
-            action.Should().Throw<AppUpdateException>();
+            action.Should().ThrowAsync<AppUpdateException>();
         }
 
         #region Helpers

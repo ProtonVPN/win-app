@@ -18,9 +18,9 @@
  */
 
 using System.Threading.Tasks;
+using ProtonVPN.Api.Contracts;
+using ProtonVPN.Api.Contracts.Auth;
 using ProtonVPN.Common.Extensions;
-using ProtonVPN.Core.Api;
-using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.Settings;
 
 namespace ProtonVPN.Core.Auth
@@ -43,7 +43,7 @@ namespace ProtonVPN.Core.Auth
                 return AuthResult.Ok();
             }
 
-            ApiResponseResult<VpnInfoResponse> vpnInfoResult = await _userAuth.RefreshVpnInfoAsync();
+            ApiResponseResult<VpnInfoWrapperResponse> vpnInfoResult = await _userAuth.RefreshVpnInfoAsync();
             if (vpnInfoResult.Failure)
             {
                 return AuthResult.Fail(vpnInfoResult);

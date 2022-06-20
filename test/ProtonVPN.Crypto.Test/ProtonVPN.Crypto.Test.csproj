@@ -55,13 +55,13 @@
     <Compile Include="X25519KeyGeneratorTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\src\ProtonVPN.Crypto\ProtonVPN.Crypto.csproj">
       <Project>{BA2D505E-CED3-4FCB-A463-DAF6B77C18DE}</Project>
       <Name>ProtonVPN.Crypto</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -23,9 +23,9 @@ namespace ProtonVPN.Common.Configuration.Api.Handlers.TlsPinning
 {
     public class TlsPinningConfig
     {
-        public IReadOnlyCollection<TlsPinnedDomain> PinnedDomains { get; internal set; } =
+        public IReadOnlyCollection<TlsPinnedDomain> PinnedDomains { get; set; } =
             new List<TlsPinnedDomain>();
 
-        public bool Enforce { get; internal set; }
+        public bool Enforce { get; set; }
     }
 }

@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ProtonVPN.Api.Contracts.Servers;
 using ProtonVPN.Common;
 using ProtonVPN.Common.Abstract;
 using ProtonVPN.Common.Extensions;
@@ -29,7 +30,6 @@ using ProtonVPN.Common.Logging.Categorization.Events.ConnectLogs;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Abstract;
-using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Servers;
@@ -94,7 +94,7 @@ namespace ProtonVPN.Vpn.Connectors
                 return false;
             }
 
-            Specification<LogicalServerContract> serverSpec = ProfileServerSpec(profile);
+            Specification<LogicalServerResponse> serverSpec = ProfileServerSpec(profile);
             return _serverManager.IsServerFromSpec(server, serverSpec);
         }
 
@@ -105,7 +105,7 @@ namespace ProtonVPN.Vpn.Connectors
                 return new Server[0];
             }
 
-            Specification<LogicalServerContract> serverSpec = ProfileServerSpec(profile);
+            Specification<LogicalServerResponse> serverSpec = ProfileServerSpec(profile);
             IReadOnlyCollection<Server> servers = _serverManager.GetServers(serverSpec);
             return servers;
         }
@@ -169,14 +169,14 @@ namespace ProtonVPN.Vpn.Connectors
             return source.OrderBy(s => s.Score);
         }
 
-        private Specification<LogicalServerContract> ProfileServerSpec(Profile profile)
+        private Specification<LogicalServerResponse> ProfileServerSpec(Profile profile)
         {
             if (profile.ProfileType == ProfileType.Custom)
             {
                 return new ServerById(profile.ServerId);
             }
 
-            Specification<LogicalServerContract> spec = new ServerByFeatures(ServerFeatures(profile));
+            Specification<LogicalServerResponse> spec = new ServerByFeatures(ServerFeatures(profile));
 
             if (!string.IsNullOrEmpty(profile.CountryCode))
             {
@@ -304,11 +304,11 @@ namespace ProtonVPN.Vpn.Connectors
             _modals.Show<UpsellModalViewModel>();
         }
 
-        private Common.Vpn.VpnConfig VpnConfig(VpnProtocol protocol)
+        private VpnConfig VpnConfig(VpnProtocol protocol)
         {
             List<string> customDns = (from ip in _appSettings.CustomDnsIps where ip.Enabled select ip.Ip).ToList();
 
-            return new Common.Vpn.VpnConfig(
+            return new VpnConfig(
                 new VpnConfigParameters
                 {
                     Ports = GetPortConfig(),

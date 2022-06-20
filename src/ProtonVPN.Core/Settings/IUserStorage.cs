@@ -18,7 +18,7 @@
  */
 
 using System;
-using ProtonVPN.Core.Api.Contracts;
+using ProtonVPN.Api.Contracts.Auth;
 using ProtonVPN.Core.User;
 using UserLocation = ProtonVPN.Core.User.UserLocation;
 
@@ -31,7 +31,7 @@ namespace ProtonVPN.Core.Settings
 
         Models.User User();
         UserLocation Location();
-        void StoreVpnInfo(VpnInfoResponse vpnInfo);
+        void StoreVpnInfo(VpnInfoWrapperResponse vpnInfoWrapper);
         void SaveLocation(UserLocation location);
         void SaveUsername(string username);
     }

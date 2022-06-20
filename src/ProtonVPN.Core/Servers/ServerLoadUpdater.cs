@@ -22,9 +22,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Caliburn.Micro;
+using ProtonVPN.Api.Contracts.Servers;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Threading;
-using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.User;
 using ProtonVPN.Core.Window;
@@ -123,7 +123,7 @@ namespace ProtonVPN.Core.Servers
 
         private async Task UpdateLoads()
         {
-            IReadOnlyCollection<LogicalServerContract> servers = await _apiServers.GetLoadsAsync();
+            IReadOnlyCollection<LogicalServerResponse> servers = await _apiServers.GetLoadsAsync();
 
             if (servers.Any())
             {

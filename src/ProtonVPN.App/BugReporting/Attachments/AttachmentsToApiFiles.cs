@@ -17,10 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Core.Api;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using ProtonVPN.Api.Contracts;
 
 namespace ProtonVPN.BugReporting.Attachments
 {
@@ -43,7 +43,7 @@ namespace ProtonVPN.BugReporting.Attachments
             return GetEnumerator();
         }
 
-        private File ToFile(Attachment attachment) => new File(attachment.Name, FileContent(attachment.Path));
+        private File ToFile(Attachment attachment) => new(attachment.Name, FileContent(attachment.Path));
 
         private byte[] FileContent(string filename) => new Core.OS.FileSystem.File(filename).Content();
     }

@@ -18,9 +18,9 @@
  */
 
 using System.Threading.Tasks;
+using ProtonVPN.Api.Contracts.Common;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
-using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Vpn;

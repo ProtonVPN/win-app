@@ -31,35 +31,35 @@ namespace ProtonVPN.Common.Test.Extensions
         public void RandomizedWithDeviation_ShouldBe_Value_WhenDeviation_IsZero()
         {
             // Arrange
-            var expected = TimeSpan.FromSeconds(20);
+            TimeSpan expected = TimeSpan.FromSeconds(20);
 
             // Act
-            var result = expected.RandomizedWithDeviation(0.0);
+            TimeSpan result = expected.RandomizedWithDeviation(0.0);
 
             // Assert
-            result.Should().BeCloseTo(expected);
+            result.Should().BeCloseTo(expected, TimeSpan.Zero);
         }
 
         [TestMethod]
         public void RandomizedWithDeviation_ShouldBe_WithinDeviation()
         {
             // Arrange
-            var interval = TimeSpan.FromSeconds(20);
+            TimeSpan interval = TimeSpan.FromSeconds(20);
             const double deviation = 0.2;
-            var minValue = interval;
-            var maxValue = interval;
-            var sumValue = TimeSpan.Zero;
+            TimeSpan minValue = interval;
+            TimeSpan maxValue = interval;
+            TimeSpan sumValue = TimeSpan.Zero;
 
             // Act
-            for (var i = 0; i < 1000; i++)
+            for (int i = 0; i < 1000; i++)
             {
-                var result = interval.RandomizedWithDeviation(deviation);
+                TimeSpan result = interval.RandomizedWithDeviation(deviation);
                 if (result < minValue) minValue = result;
                 if (result > maxValue) maxValue = result;
                 sumValue += result;
             }
 
-            var medianValue = TimeSpan.FromMilliseconds(sumValue.TotalMilliseconds / 1000.0);
+            TimeSpan medianValue = TimeSpan.FromMilliseconds(sumValue.TotalMilliseconds / 1000.0);
 
             // Assert
             minValue.Should().BeCloseTo(TimeSpan.FromSeconds(16), TimeSpan.FromMilliseconds(100));

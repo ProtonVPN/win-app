@@ -22,10 +22,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using ProtonVPN.Api.Contracts;
+using ProtonVPN.Api.Contracts.VpnConfig;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Threading;
-using ProtonVPN.Core.Api;
-using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Settings;
 
@@ -78,7 +78,7 @@ namespace ProtonVPN.Core.Config
         {
             try
             {
-                ApiResponseResult<VpnConfig> response = await _apiClient.GetVpnConfig();
+                ApiResponseResult<VpnConfigResponse> response = await _apiClient.GetVpnConfig();
                 if (response.Success)
                 {
                     _appSettings.OpenVpnTcpPorts = response.Value.DefaultPorts.OpenVpn.Tcp;

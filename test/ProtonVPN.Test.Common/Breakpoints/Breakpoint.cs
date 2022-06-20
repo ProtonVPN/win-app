@@ -40,20 +40,20 @@ namespace ProtonVPN.Test.Common.Breakpoints
         public async Task<BreakpointHit> WaitForHit()
         {
             await _breakSemaphore.WaitAsync();
-            _queue.TryDequeue(out var result);
+            _queue.TryDequeue(out BreakpointHit result);
             return result;
         }
 
         public async Task WaitForHitAndContinue()
         {
-            var hit = await WaitForHit();
+            BreakpointHit hit = await WaitForHit();
             hit.Continue();
         }
 
         public void Dispose()
         {
             _breakSemaphore.Dispose();
-            foreach (var hit in _queue)
+            foreach (BreakpointHit hit in _queue)
             {
                 hit.Dispose();
             }

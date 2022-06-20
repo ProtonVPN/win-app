@@ -23,6 +23,9 @@ using Autofac;
 using Caliburn.Micro;
 using ProtonVPN.About;
 using ProtonVPN.Account;
+using ProtonVPN.Api;
+using ProtonVPN.Api.Contracts;
+using ProtonVPN.Api.Contracts.Servers;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Events;
 using ProtonVPN.Common.Logging;
@@ -32,8 +35,6 @@ using ProtonVPN.Common.OS.Services;
 using ProtonVPN.Common.Storage;
 using ProtonVPN.Common.Text.Serialization;
 using ProtonVPN.Common.Threading;
-using ProtonVPN.Core.Api;
-using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Profiles;
@@ -52,6 +53,8 @@ using ProtonVPN.Core.Window;
 using ProtonVPN.Core.Window.Popups;
 using ProtonVPN.Crypto;
 using ProtonVPN.FlashNotifications;
+using ProtonVPN.HumanVerification;
+using ProtonVPN.HumanVerification.Contracts;
 using ProtonVPN.Login;
 using ProtonVPN.Map;
 using ProtonVPN.Modals;
@@ -91,11 +94,11 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<UpdateViewModel>().AsSelf().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<VpnConnectionSpeed>().AsImplementedInterfaces().AsSelf().SingleInstance();
 
-            builder.Register(c => new CollectionCache<LogicalServerContract>(
+            builder.Register(c => new CollectionCache<LogicalServerResponse>(
                     c.Resolve<ILogger>(),
                     c.Resolve<ITextSerializerFactory>(),
                     c.Resolve<Common.Configuration.Config>().ServersJsonCacheFilePath))
-                .As<ICollectionStorage<LogicalServerContract>>()
+                .As<ICollectionStorage<LogicalServerResponse>>()
                 .SingleInstance();
 
             builder.Register(c => new CollectionCache<GuestHoleServerContract>(
@@ -310,6 +313,7 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<ApplicationResourcesLoader>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<ColorPalette>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<WindowPositionSetter>().As<IWindowPositionSetter>().SingleInstance();
+            builder.RegisterType<HumanVerifier>().As<IHumanVerifier>().SingleInstance();
         }
     }
 }

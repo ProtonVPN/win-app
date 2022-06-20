@@ -24,8 +24,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:steps="clr-namespace:ProtonVPN.BugReporting.Steps"
              xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
-             xmlns:reportAnIssue="clr-namespace:ProtonVPN.Core.Api.Contracts.ReportAnIssue;assembly=ProtonVPN.Core"
              xmlns:icons="clr-namespace:ProtonVPN.Resource.Graphics.Icons;assembly=ProtonVPN.Resource"
+             xmlns:reportAnIssue="clr-namespace:ProtonVPN.Api.Contracts.ReportAnIssue;assembly=ProtonVPN.Api.Contracts"
              d:DataContext="{d:DesignInstance steps:CategorySelectionViewModel}"
              mc:Ignorable="d">
     <UserControl.Resources>
@@ -67,7 +67,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
-                    <DataTemplate DataType="{x:Type reportAnIssue:IssueCategory}">
+                    <DataTemplate DataType="{x:Type reportAnIssue:IssueCategoryResponse}">
                         <Border Style="{StaticResource IssueCategoryBorder}">
                             <Button Style="{StaticResource CategoryButton}"
                                     Command="{Binding DataContext.SelectCategoryCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"

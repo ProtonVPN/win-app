@@ -189,7 +189,7 @@ namespace ProtonVPN.Update.Test.Updates
         [DataRow(2, 0, 1, true, false)]
         public async Task Available_ShouldReflect_LatestRelease_AfterLatest(int major, int minor, int build, bool earlyAccess, bool result)
         {
-            var update = AppUpdate(new Version(major, minor, build), HttpResponseFromFile("win-update.json"));
+            IAppUpdate update = AppUpdate(new Version(major, minor, build), HttpResponseFromFile("win-update.json"));
 
             update = await update.Latest(earlyAccess);
 
@@ -206,7 +206,7 @@ namespace ProtonVPN.Update.Test.Updates
         [DataRow(2, 0, 1, true, false)]
         public async Task Available_ShouldReflect_LatestRelease_AfterCachedLatest(int major, int minor, int build, bool earlyAccess, bool result)
         {
-            var update = AppUpdate(new Version(major, minor, build), HttpResponseFromFile("win-update.json"));
+            IAppUpdate update = AppUpdate(new Version(major, minor, build), HttpResponseFromFile("win-update.json"));
             update = await update.Latest(false);
 
             update = update.CachedLatest(earlyAccess);
@@ -218,7 +218,7 @@ namespace ProtonVPN.Update.Test.Updates
         public async Task Available_ShouldBe_False_WhenLatestRelease_HasNoFile()
         {
             const string json = "{\"Categories\": [{\"Name\": \"Stable\", \"Releases\": [{\"Version\": \"2.0.0\", \"ChangeLog\": [\"line 1\"] }] }] }";
-            var update = AppUpdate(new Version(1, 0, 0), HttpResponseFromString(json));
+            IAppUpdate update = AppUpdate(new Version(1, 0, 0), HttpResponseFromString(json));
 
             update = await update.Latest(false);
 
@@ -229,7 +229,7 @@ namespace ProtonVPN.Update.Test.Updates
         public async Task Available_ShouldBe_False_WhenLatestRelease_FileHasNoUrl()
         {
             const string json = "{\"Categories\": [{\"Name\": \"Stable\", \"Releases\": [{\"Version\": \"2.0.0\", \"ChangeLog\": [\"line 1\"], \"File\": {\"Sha512CheckSum\": \"a b c d e f g h\"}} ] }] }";
-            var update = AppUpdate(new Version(1, 0, 0), HttpResponseFromString(json));
+            IAppUpdate update = AppUpdate(new Version(1, 0, 0), HttpResponseFromString(json));
 
             update = await update.Latest(false);
 
@@ -240,7 +240,7 @@ namespace ProtonVPN.Update.Test.Updates
         public async Task Available_ShouldBe_False_WhenLatestRelease_FileHasNoChecksum()
         {
             const string json = "{\"Categories\": [{\"Name\": \"Stable\", \"Releases\": [{\"Version\": \"2.0.0\", \"ChangeLog\": [\"line 1\"], \"File\": {\"Url\": \"https://protonvpn.com/download/ProtonVPN_win_v1.5.2.exe\"}} ] }] }";
-            var update = AppUpdate(new Version(1, 0, 0), HttpResponseFromString(json));
+            IAppUpdate update = AppUpdate(new Version(1, 0, 0), HttpResponseFromString(json));
 
             update = await update.Latest(false);
 
@@ -250,7 +250,7 @@ namespace ProtonVPN.Update.Test.Updates
         [TestMethod]
         public async Task Available_ShouldNotChange_AfterDownload_WhenItWasFalse()
         {
-            var update = AppUpdate(new Version(1, 5, 5), HttpResponseFromFile("win-update.json"));
+            IAppUpdate update = AppUpdate(new Version(1, 5, 5), HttpResponseFromFile("win-update.json"));
             update = await update.Latest(false);
             update.Available.Should().BeFalse();
 
@@ -263,10 +263,10 @@ namespace ProtonVPN.Update.Test.Updates
         public async Task Available_ShouldNotChange_AfterDownload_WhenItWasTrue()
         {
             const string fileUri = "https://protonvpn.com/download/ProtonVPN_win_v2.0.0.exe";
-            var httpResponse = HttpResponseFromFile("ProtonVPN_win_v2.0.0.exe");
+            IHttpResponseMessage httpResponse = HttpResponseFromFile("ProtonVPN_win_v2.0.0.exe");
             _httpClient.GetAsync(fileUri).Returns(httpResponse);
 
-            var update = AppUpdate(new Version(1, 5, 5), HttpResponseFromFile("win-update.json"));
+            IAppUpdate update = AppUpdate(new Version(1, 5, 5), HttpResponseFromFile("win-update.json"));
             update = await update.Latest(true);
             update.Available.Should().BeTrue();
 
@@ -431,7 +431,7 @@ namespace ProtonVPN.Update.Test.Updates
 
             Func<Task> action = () => update.Latest(false);
 
-            action.Should().Throw<AppUpdateException>();
+            action.Should().ThrowAsync<AppUpdateException>();
         }
 
         [TestMethod]
@@ -442,7 +442,7 @@ namespace ProtonVPN.Update.Test.Updates
 
             Func<Task> action = () => update.Latest(false);
 
-            action.Should().Throw<AppUpdateException>();
+            action.Should().ThrowAsync<AppUpdateException>();
         }
 
         [TestMethod]
@@ -467,7 +467,7 @@ namespace ProtonVPN.Update.Test.Updates
 
             Func<Task> action = () => update.Latest(false);
 
-            action.Should().Throw<AppUpdateException>();
+            action.Should().ThrowAsync<AppUpdateException>();
         }
 
         [TestMethod]
@@ -477,7 +477,7 @@ namespace ProtonVPN.Update.Test.Updates
 
             Func<Task> action = () => update.Latest(false);
 
-            action.Should().Throw<AppUpdateException>();
+            action.Should().ThrowAsync<AppUpdateException>();
         }
 
         [TestMethod]
@@ -487,7 +487,7 @@ namespace ProtonVPN.Update.Test.Updates
 
             Func<Task> action = () => update.Latest(false);
 
-            action.Should().Throw<AppUpdateException>();
+            action.Should().ThrowAsync<AppUpdateException>();
         }
 
         #endregion
@@ -538,10 +538,10 @@ namespace ProtonVPN.Update.Test.Updates
         public async Task Downloaded_ShouldDownload_FromFileUri()
         {
             const string fileUri = "https://protonvpn.com/download/ProtonVPN_win_v1.5.1.exe";
-            var httpResponse = HttpResponseFromFile("ProtonVPN_win_v1.5.1.exe");
+            IHttpResponseMessage httpResponse = HttpResponseFromFile("ProtonVPN_win_v1.5.1.exe");
             _httpClient.GetAsync(fileUri).Returns(httpResponse);
 
-            var update = AppUpdate(new Version(1, 2, 0), HttpResponseFromFile("win-update.json"));
+            IAppUpdate update = AppUpdate(new Version(1, 2, 0), HttpResponseFromFile("win-update.json"));
             update = await update.Latest(false);
             update.Available.Should().BeTrue();
 
@@ -606,7 +606,7 @@ namespace ProtonVPN.Update.Test.Updates
 
             Func<Task> action = () => update.Downloaded();
 
-            action.Should().Throw<AppUpdateException>();
+            await action.Should().ThrowAsync<AppUpdateException>();
         }
 
         [TestMethod]
@@ -619,7 +619,7 @@ namespace ProtonVPN.Update.Test.Updates
                 new SocketException()
             };
 
-            foreach (var exception in exceptions)
+            foreach (Exception exception in exceptions)
             {
                 await Downloaded_ShouldThrow_WhenHttpRequest_Throws(exception);
             }
@@ -627,7 +627,7 @@ namespace ProtonVPN.Update.Test.Updates
 
         private async Task Downloaded_ShouldThrow_WhenHttpRequest_Throws(Exception exception)
         {
-            var update = AppUpdate(new Version(1, 2, 0), HttpResponseFromFile("win-update.json"));
+            IAppUpdate update = AppUpdate(new Version(1, 2, 0), HttpResponseFromFile("win-update.json"));
             update = await update.Latest(false);
             update.Available.Should().BeTrue();
 
@@ -635,13 +635,13 @@ namespace ProtonVPN.Update.Test.Updates
 
             Func<Task> f = () => update.Downloaded();
 
-            f.Should().Throw<AppUpdateException>();
+            await f.Should().ThrowAsync<AppUpdateException>();
         }
 
         [TestMethod]
         public async Task Downloaded_ShouldThrow_WhenHttpRequest_Cancelled()
         {
-            var update = AppUpdate(new Version(1, 2, 0), HttpResponseFromFile("win-update.json"));
+            IAppUpdate update = AppUpdate(new Version(1, 2, 0), HttpResponseFromFile("win-update.json"));
             update = await update.Latest(false);
             update.Available.Should().BeTrue();
 
@@ -649,7 +649,7 @@ namespace ProtonVPN.Update.Test.Updates
 
             Func<Task> f = () => update.Downloaded();
 
-            f.Should().Throw<AppUpdateException>();
+            await f.Should().ThrowAsync<AppUpdateException>();
         }
 
         #endregion
@@ -681,7 +681,7 @@ namespace ProtonVPN.Update.Test.Updates
 
         private static IHttpResponseMessage HttpResponseFromFile(string filePath)
         {
-            var stream = new MemoryStream();
+            MemoryStream stream = new();
             using (var inputStream = new FileStream(Path.Combine("TestData", filePath), FileMode.Open))
             {
                 inputStream.CopyTo(stream);
@@ -694,8 +694,8 @@ namespace ProtonVPN.Update.Test.Updates
 
         private static IHttpResponseMessage HttpResponseFromString(string content)
         {
-            var stream = new MemoryStream();
-            var writer = new StreamWriter(stream);
+            MemoryStream stream = new();
+            StreamWriter writer = new(stream);
             writer.Write(content);
             writer.Flush();
             stream.Position = 0;
@@ -705,7 +705,7 @@ namespace ProtonVPN.Update.Test.Updates
 
         private static IHttpResponseMessage HttpResponseFromStream(Stream stream)
         {
-            var httpResponse = Substitute.For<IHttpResponseMessage>();
+            IHttpResponseMessage httpResponse = Substitute.For<IHttpResponseMessage>();
             httpResponse.IsSuccessStatusCode.Returns(true);
             httpResponse.Content.ReadAsStreamAsync().Returns(stream);
             httpResponse.When(x => x.Dispose()).Do(x => stream.Close());

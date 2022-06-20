@@ -6,10 +6,12 @@ import sys
 def run(dir):
     p = Path()
     for f in list(p.glob(dir)):
-        if "ProtonVPN.UI.Test.dll" in str(f):
+        filePath = str(f)
+        if "ProtonVPN.UI.Test.dll" in filePath or (not filePath.endswith('Test.dll') and not filePath.endswith('Tests.dll')):
             continue
 
-        runSingle(str(f))
+        print(filePath)
+        runSingle(filePath)
 
 def runSingle(file):
     print("Running tests on {file}".format(file=file))

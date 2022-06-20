@@ -21,10 +21,10 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using ProtonVPN.Api.Contracts.ReportAnIssue;
 using ProtonVPN.Common;
 using ProtonVPN.Common.KillSwitch;
 using ProtonVPN.Common.Networking;
-using ProtonVPN.Core.Api.Contracts.ReportAnIssue;
 using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Native.Structures;
 using ProtonVPN.Core.Profiles.Cached;
@@ -86,7 +86,7 @@ namespace ProtonVPN.Core.Settings
         bool DoNotShowDiscourageSecureCoreDialog { get; set; }
         bool FeatureSmartProtocolWireGuardEnabled { get; set; }
         IReadOnlyList<Announcement> Announcements { get; set; }
-        List<IssueCategory> ReportAnIssueFormData { get; set; }
+        List<IssueCategoryResponse> ReportAnIssueFormData { get; set; }
         int[] OpenVpnTcpPorts { get; set; }
         int[] OpenVpnUdpPorts { get; set; }
         int[] WireGuardPorts { get; set; }

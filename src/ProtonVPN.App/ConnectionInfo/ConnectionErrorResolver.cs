@@ -20,9 +20,9 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using ProtonVPN.Account;
+using ProtonVPN.Api.Contracts;
+using ProtonVPN.Api.Contracts.VpnSessions;
 using ProtonVPN.Common.Vpn;
-using ProtonVPN.Core.Api;
-using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Servers.Models;

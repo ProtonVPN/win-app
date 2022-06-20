@@ -18,6 +18,7 @@
  */
 
 using System;
+using System.Linq;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ProtonVPN.Common.Networking;
@@ -32,8 +33,8 @@ namespace ProtonVPN.Service.Contract.Test.Vpn
         public void Enum_ShouldHaveSame_UnderlyingType_As_VpnError()
         {
             // Arrange
-            var type = Enum.GetUnderlyingType(typeof(VpnProtocolContract));
-            var expected = Enum.GetUnderlyingType(typeof(VpnProtocol));
+            Type type = Enum.GetUnderlyingType(typeof(VpnProtocolContract));
+            Type expected = Enum.GetUnderlyingType(typeof(VpnProtocol));
             // Assert
             type.Should().BeSameAs(expected);
         }
@@ -42,8 +43,8 @@ namespace ProtonVPN.Service.Contract.Test.Vpn
         public void Enum_ShouldHaveSame_Values_As_VpnError()
         {
             // Arrange
-            var values = (int[])Enum.GetValues(typeof(VpnProtocolContract));
-            var expected = (int[])Enum.GetValues(typeof(VpnProtocol));
+            int[] values = Enum.GetValues(typeof(VpnProtocolContract)).Cast<int>().ToArray();
+            int[] expected = Enum.GetValues(typeof(VpnProtocol)).Cast<int>().ToArray();
             // Assert
             values.Should().BeEquivalentTo(expected);
         }

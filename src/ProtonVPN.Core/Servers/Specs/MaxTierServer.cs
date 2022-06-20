@@ -17,12 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Api.Contracts;
+using ProtonVPN.Api.Contracts.Servers;
 using ProtonVPN.Core.Abstract;
-using ProtonVPN.Core.Api.Contracts;
 
 namespace ProtonVPN.Core.Servers.Specs
 {
-    public class MaxTierServer : Specification<LogicalServerContract>
+    public class MaxTierServer : Specification<LogicalServerResponse>
     {
         private readonly sbyte _tier;
 
@@ -31,7 +32,7 @@ namespace ProtonVPN.Core.Servers.Specs
             _tier = tier;
         }
 
-        public override bool IsSatisfiedBy(LogicalServerContract item)
+        public override bool IsSatisfiedBy(LogicalServerResponse item)
         {
             return item.Tier <= _tier;
         }
