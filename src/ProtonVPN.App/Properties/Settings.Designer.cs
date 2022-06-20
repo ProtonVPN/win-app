@@ -381,30 +381,6 @@ namespace ProtonVPN.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string VpnUsername {
-            get {
-                return ((string)(this["VpnUsername"]));
-            }
-            set {
-                this["VpnUsername"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string VpnPassword {
-            get {
-                return ((string)(this["VpnPassword"]));
-            }
-            set {
-                this["VpnPassword"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string VpnPlan {
             get {
                 return ((string)(this["VpnPlan"]));
@@ -771,30 +747,6 @@ namespace ProtonVPN.Properties {
             }
             set {
                 this["UserVpnPlanName"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string UserVpnUsername {
-            get {
-                return ((string)(this["UserVpnUsername"]));
-            }
-            set {
-                this["UserVpnUsername"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string UserVpnPassword {
-            get {
-                return ((string)(this["UserVpnPassword"]));
-            }
-            set {
-                this["UserVpnPassword"] = value;
             }
         }
         

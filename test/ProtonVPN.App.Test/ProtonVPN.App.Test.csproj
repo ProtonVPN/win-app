@@ -105,7 +105,7 @@
     <Compile Include="BugReporting\Diagnostic\NetworkAdapterLogTest.cs" />
     <Compile Include="BugReporting\Diagnostic\RoutingTableLogTest.cs" />
     <Compile Include="BugReporting\EmailValidatorTest.cs" />
-    <Compile Include="ConnectionInfo\ConnectionInfoResolverTest.cs" />
+    <Compile Include="ConnectionInfo\ConnectionErrorResolverTest.cs" />
     <Compile Include="Core\Config\ConfigDirectoriesTest.cs" />
     <Compile Include="Core\Config\Url\ActiveUrlsTest.cs" />
     <Compile Include="Core\Config\Url\ActiveUrlTest.cs" />

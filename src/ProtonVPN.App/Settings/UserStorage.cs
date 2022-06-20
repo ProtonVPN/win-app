@@ -110,8 +110,6 @@ namespace ProtonVPN.Settings
                 MaxTier = maxTier,
                 Services = vpnInfoWrapper.Services,
                 VpnPlan = vpnPlan,
-                VpnPassword = vpnInfoWrapper.Vpn.Password,
-                VpnUsername = vpnInfoWrapper.Vpn.Name,
                 Delinquent = vpnInfoWrapper.Delinquent,
                 MaxConnect = vpnInfoWrapper.Vpn.MaxConnect,
                 OriginalVpnPlan = vpnInfoWrapper.Vpn.PlanName,
@@ -132,18 +130,6 @@ namespace ProtonVPN.Settings
 
             username = username.Decrypt();
 
-            string vpnUsername = _userSettings.Get<string>("VpnUsername");
-            if (!string.IsNullOrEmpty(vpnUsername))
-            {
-                vpnUsername = vpnUsername.Decrypt();
-            }
-
-            string vpnPassword = _userSettings.Get<string>("VpnPassword");
-            if (!string.IsNullOrEmpty(vpnPassword))
-            {
-                vpnPassword = vpnPassword.Decrypt();
-            }
-
             int delinquent = _userSettings.Get<int>("Delinquent");
             string originalVpnPlan = _userSettings.Get<string>("VpnPlan");
             string vpnPlan = originalVpnPlan;
@@ -163,8 +149,6 @@ namespace ProtonVPN.Settings
                 Subscribed = _userSettings.Get<int>("Subscribed"),
                 HasPaymentMethod = _userSettings.Get<int>("HasPaymentMethod"),
                 Credit = _userSettings.Get<int>("Credit"),
-                VpnUsername = vpnUsername,
-                VpnPassword = vpnPassword,
                 OriginalVpnPlan = originalVpnPlan,
                 VpnPlanName = _userSettings.Get<string>("VpnPlanName")
             };
@@ -209,10 +193,6 @@ namespace ProtonVPN.Settings
             _userSettings.Set("Credit", user.Credit);
             _userSettings.Set("MaxConnect", user.MaxConnect);
             _userSettings.Set("Services", user.Services);
-            _userSettings.Set("VpnUsername",
-                !string.IsNullOrEmpty(user.VpnUsername) ? user.VpnUsername.Encrypt() : string.Empty);
-            _userSettings.Set("VpnPassword",
-                !string.IsNullOrEmpty(user.VpnPassword) ? user.VpnPassword.Encrypt() : string.Empty);
             _userSettings.Set("VpnPlanName", user.VpnPlanName);
         }
     }

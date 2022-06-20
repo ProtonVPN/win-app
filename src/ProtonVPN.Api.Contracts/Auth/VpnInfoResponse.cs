@@ -27,8 +27,6 @@ namespace ProtonVPN.Api.Contracts.Auth
         
         public string PlanTitle { get; set; }
 
-        public string Name { get; set; }
-
         // 0 = no vpn access, 1 = vpn access, 2 = vpn access requested (waitlist)
         public int Status { get; set; }
 
@@ -39,7 +37,5 @@ namespace ProtonVPN.Api.Contracts.Auth
 
         [JsonProperty(PropertyName = "GroupID")]
         public string GroupId { get; set; }
-
-        public string Password { get; set; }
     }
 }

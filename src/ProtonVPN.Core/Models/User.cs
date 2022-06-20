@@ -23,9 +23,7 @@ namespace ProtonVPN.Core.Models
 {
     public class User
     {
-        public string VpnUsername { get; set; }
         public string Username { get; set; }
-        public string VpnPassword { get; set; }
         public string VpnPlan { get; set; }
         public sbyte MaxTier { get; set; }
         public int Services { get; set; }

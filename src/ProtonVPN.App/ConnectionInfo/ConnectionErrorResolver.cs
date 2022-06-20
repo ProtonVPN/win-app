@@ -72,11 +72,6 @@ namespace ProtonVPN.ConnectionInfo
             await _vpnInfoUpdater.Update();
             User newUserInfo = _userStorage.User();
 
-            if (oldUserInfo.VpnPassword != newUserInfo.VpnPassword)
-            {
-                return VpnError.PasswordChanged;
-            }
-
             if (newUserInfo.MaxTier < oldUserInfo.MaxTier)
             {
                 return VpnError.UserTierTooLowError;

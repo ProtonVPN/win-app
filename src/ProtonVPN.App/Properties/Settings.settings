@@ -92,12 +92,6 @@
         <Setting Name="VpnPlanName" Type="System.String" Scope="User">
             <Value Profile="(Default)" />
         </Setting>
-        <Setting Name="VpnUsername" Type="System.String" Scope="User">
-            <Value Profile="(Default)" />
-        </Setting>
-        <Setting Name="VpnPassword" Type="System.String" Scope="User">
-            <Value Profile="(Default)" />
-        </Setting>
         <Setting Name="VpnPlan" Type="System.String" Scope="User">
             <Value Profile="(Default)" />
         </Setting>
@@ -189,12 +183,6 @@
             <Value Profile="(Default)" />
         </Setting>
         <Setting Name="UserVpnPlanName" Type="System.String" Scope="User">
-            <Value Profile="(Default)" />
-        </Setting>
-        <Setting Name="UserVpnUsername" Type="System.String" Scope="User">
-            <Value Profile="(Default)" />
-        </Setting>
-        <Setting Name="UserVpnPassword" Type="System.String" Scope="User">
             <Value Profile="(Default)" />
         </Setting>
         <Setting Name="UserWelcomeModalShown" Type="System.String" Scope="User">
