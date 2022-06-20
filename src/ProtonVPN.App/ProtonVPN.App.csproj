@@ -224,6 +224,7 @@
     </Compile>
     <Compile Include="Modals\DiscourageSecureCoreModalViewModel.cs" />
     <Compile Include="Modals\AssignVpnConnectionsModalViewModel.cs" />
+    <Compile Include="Settings\Migrations\v2_0_2\UserSettingsMigration.cs" />
     <Compile Include="Windows\Popups\Rebranding\RebrandingPopupView.xaml.cs">
       <DependentUpon>RebrandingPopupView.xaml</DependentUpon>
     </Compile>

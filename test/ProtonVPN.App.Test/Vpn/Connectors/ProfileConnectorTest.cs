@@ -48,8 +48,6 @@ namespace ProtonVPN.App.Test.Vpn.Connectors
     public class ProfileConnectorTest
     {
         private const string AuthenticationCertificatePem = "AuthenticationCertificatePem";
-        private const string VpnUsername = "username";
-        private const string VpnPassword = "password";
 
         private readonly ILogger _logger = Substitute.For<ILogger>();
         private readonly IUserStorage _userStorage = Substitute.For<IUserStorage>();
@@ -101,9 +99,7 @@ namespace ProtonVPN.App.Test.Vpn.Connectors
         {
             User user = new()
             {
-                MaxTier = ServerTiers.Plus,
-                VpnUsername = VpnUsername,
-                VpnPassword = VpnPassword
+                MaxTier = ServerTiers.Plus
             };
             _userStorage.User().Returns(user);
         }

@@ -99,8 +99,6 @@ namespace ProtonVPN.Settings.Migrations.v1_7_2
             MigrateToPerUser<int>("Delinquent");
             MigrateToPerUser<int>("MaxConnect");
             MigrateToPerUser<int>("Services");
-            MigrateToPerUser<string>("VpnUsername");
-            MigrateToPerUser<string>("VpnPassword");
 
             MigrateToPerUser<bool>("WelcomeModalShown");
             MigrateToPerUser<int>("OnboardingStep");
