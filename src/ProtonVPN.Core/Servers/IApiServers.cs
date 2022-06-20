@@ -19,14 +19,15 @@
 
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using ProtonVPN.Core.Api.Contracts;
+using ProtonVPN.Api.Contracts;
+using ProtonVPN.Api.Contracts.Servers;
 
 namespace ProtonVPN.Core.Servers
 {
     public interface IApiServers
     {
-        Task<IReadOnlyCollection<LogicalServerContract>> GetServersAsync();
+        Task<IReadOnlyCollection<LogicalServerResponse>> GetServersAsync();
 
-        Task<IReadOnlyCollection<LogicalServerContract>> GetLoadsAsync();
+        Task<IReadOnlyCollection<LogicalServerResponse>> GetLoadsAsync();
     }
 }

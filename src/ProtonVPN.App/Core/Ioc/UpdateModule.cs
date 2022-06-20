@@ -19,9 +19,10 @@
 
 using System;
 using Autofac;
+using ProtonVPN.Api;
+using ProtonVPN.Api.Handlers;
+using ProtonVPN.Api.Handlers.Retries;
 using ProtonVPN.Common.OS.Net.Http;
-using ProtonVPN.Core.Api;
-using ProtonVPN.Core.Api.Handlers;
 using ProtonVPN.Core.Update;
 using ProtonVPN.Update.Config;
 using Module = Autofac.Module;

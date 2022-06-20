@@ -21,23 +21,17 @@ namespace ProtonVPN.Core.User
 {
     public class UserLocation
     {
-        public static UserLocation Empty { get; } = new UserLocation("", 0, 0, "", "");
+        public static UserLocation Empty { get; } = new(string.Empty, string.Empty, string.Empty);
 
         public string Ip { get; }
-
-        public float Latitude { get; }
-
-        public float Longitude { get; }
 
         public string Isp { get; }
 
         public string Country { get; }
 
-        public UserLocation(string ip, float latitude, float longitude, string isp, string country)
+        public UserLocation(string ip, string isp, string country)
         {
             Ip = ip ?? "";
-            Latitude = latitude;
-            Longitude = longitude;
             Isp = isp ?? "";
             Country = country ?? "";
         }

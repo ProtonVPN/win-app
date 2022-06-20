@@ -22,11 +22,11 @@ using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using NSubstitute.Core;
+using ProtonVPN.Api.Contracts.Geographical;
 using ProtonVPN.Common.Abstract;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
-using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Profiles;
@@ -132,11 +132,11 @@ namespace ProtonVPN.App.Test.Vpn.Connectors
             };
 
             _standardServer = new Server(id: "Standard-S", name: "Standard", city: "City", entryCountry: "CH", exitCountry: "CH", domain: "standard.protonvpn.s", status: 1, tier: ServerTiers.Basic,
-                features: (sbyte)Features.None, load: 0, score: 1, location: Substitute.For<Location>(), physicalServers: _standardPhysicalServers, exitIp: "192.168.2.1");
+                features: (sbyte)Features.None, load: 0, score: 1, locationResponse: Substitute.For<LocationResponse>(), physicalServers: _standardPhysicalServers, exitIp: "192.168.2.1");
             _p2pServer = new Server(id: "P2P-S", name: "P2P", city: "City", entryCountry: "CH", exitCountry: "CH", domain: "p2p.protonvpn.s", status: 1, tier: ServerTiers.Plus,
-                features: (sbyte)Features.P2P, load: 100, score: 999, location: Substitute.For<Location>(), physicalServers: _p2pPhysicalServers, exitIp: "192.168.2.2");
+                features: (sbyte)Features.P2P, load: 100, score: 999, locationResponse: Substitute.For<LocationResponse>(), physicalServers: _p2pPhysicalServers, exitIp: "192.168.2.2");
             _torServer = new Server(id: "Tor-S", name: "Tor", city: "City", entryCountry: "CH", exitCountry: "CH", domain: "tor.protonvpn.s", status: 1, tier: ServerTiers.Plus,
-                features: (sbyte)Features.Tor, load: 0, score: 0, location: Substitute.For<Location>(), physicalServers: _torPhysicalServers, exitIp: "192.168.2.3");
+                features: (sbyte)Features.Tor, load: 0, score: 0, locationResponse: Substitute.For<LocationResponse>(), physicalServers: _torPhysicalServers, exitIp: "192.168.2.3");
             _servers = new List<Server>
             {
                 _standardServer,

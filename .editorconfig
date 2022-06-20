@@ -38,7 +38,7 @@ csharp_new_line_before_open_brace=all
 csharp_new_line_between_query_expression_clauses=true
 
 # http://kent-boogaart.com/blog/editorconfig-reference-for-c-developers#csharp_prefer_braces
-# csharp_prefer_braces = true:error
+csharp_prefer_braces = true:error
 
 # http://kent-boogaart.com/blog/editorconfig-reference-for-c-developers#csharp_prefer_simple_default_expression
 csharp_prefer_simple_default_expression=false:error
@@ -252,9 +252,9 @@ dotnet_naming_rule.members_are_pascal_case.symbols=member_symbol
 dotnet_naming_rule.members_are_pascal_case.style=member_style
 
 # Constant Fields Should Be PascalCase
-dotnet_naming_rule.constant_fields_should_be_pascal_case.severity=warning
-dotnet_naming_rule.constant_fields_should_be_pascal_case.symbols=constant_fields
-dotnet_naming_rule.constant_fields_should_be_pascal_case.style=pascal_case_style
+dotnet_naming_rule.constant_fields_should_be_upper_case.severity=warning
+dotnet_naming_rule.constant_fields_should_be_upper_case.symbols=constant_fields
+dotnet_naming_rule.constant_fields_should_be_upper_case.style=pascal_case_style
 dotnet_naming_symbols.constant_fields.applicable_kinds=field
 dotnet_naming_symbols.constant_fields.required_modifiers=const
 dotnet_naming_style.pascal_case_style.capitalization=pascal_case

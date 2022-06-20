@@ -18,22 +18,22 @@
  */
 
 using System.Collections.Generic;
-using ProtonVPN.Core.Api.Contracts.ReportAnIssue;
+using ProtonVPN.Api.Contracts.ReportAnIssue;
 
 namespace ProtonVPN.Core.ReportAnIssue
 {
     internal class DefaultCategoryProvider
     {
-        public static List<IssueCategory> GetCategories()
+        public static List<IssueCategoryResponse> GetCategories()
         {
-            return new List<IssueCategory>
+            return new List<IssueCategoryResponse>
             {
                 new()
                 {
                     Label = "Browsing speed",
                     SubmitLabel = "Browsing speed",
                     Suggestions =
-                        new List<IssueSuggestion>
+                        new List<IssueSuggestionResponse>
                         {
                             new()
                             {
@@ -50,7 +50,7 @@ namespace ProtonVPN.Core.ReportAnIssue
                                 Text = "Try a different server. Servers in nearby countries often have faster connection speeds."
                             }
                         },
-                    InputFields = new List<IssueInput>
+                    InputFields = new List<IssueInputResponse>
                     {
                         new()
                         {
@@ -91,7 +91,7 @@ namespace ProtonVPN.Core.ReportAnIssue
                     Label = "Connecting to VPN",
                     SubmitLabel = "Connecting to VPN",
                     Suggestions =
-                        new List<IssueSuggestion>
+                        new List<IssueSuggestionResponse>
                         {
                             new() { Text = "Try a different server. Servers in nearby countries often have faster connection speeds." },
                             new()
@@ -104,7 +104,7 @@ namespace ProtonVPN.Core.ReportAnIssue
                                 Text = "Turn off any antivirus or firewall software. They could be interfering with your VPN connection."
                             }
                         },
-                    InputFields = new List<IssueInput>
+                    InputFields = new List<IssueInputResponse>
                     {
                         new()
                         {
@@ -135,7 +135,7 @@ namespace ProtonVPN.Core.ReportAnIssue
                     Label = "Weak or unstable connection",
                     SubmitLabel = "Weak or unstable connection",
                     Suggestions =
-                        new List<IssueSuggestion>
+                        new List<IssueSuggestionResponse>
                         {
                             new() { Text = "Try a different server. Servers in nearby countries often have faster connection speeds." },
                             new()
@@ -148,7 +148,7 @@ namespace ProtonVPN.Core.ReportAnIssue
                                 Text = "Turn off any antivirus or firewall software. They could be interfering with your VPN connection."
                             }
                         },
-                    InputFields = new List<IssueInput>
+                    InputFields = new List<IssueInputResponse>
                     {
                         new()
                         {
@@ -179,12 +179,12 @@ namespace ProtonVPN.Core.ReportAnIssue
                     Label = "Using the app",
                     SubmitLabel = "Using the app",
                     Suggestions =
-                        new List<IssueSuggestion>
+                        new List<IssueSuggestionResponse>
                         {
                             new() { Text = "Log out and log back in." },
                             new() { Text = "Restart the app." }
                         },
-                    InputFields = new List<IssueInput>
+                    InputFields = new List<IssueInputResponse>
                     {
                         new()
                         {
@@ -214,7 +214,7 @@ namespace ProtonVPN.Core.ReportAnIssue
                     Label = "Streaming",
                     SubmitLabel = "Streaming",
                     Suggestions =
-                        new List<IssueSuggestion>
+                        new List<IssueSuggestionResponse>
                         {
                             new()
                             {
@@ -234,7 +234,7 @@ namespace ProtonVPN.Core.ReportAnIssue
                                 Text = "Turn off any ad blockers or proxies. If you use NetShield, set it to \"don’t block\"."
                             },
                         },
-                    InputFields = new List<IssueInput>
+                    InputFields = new List<IssueInputResponse>
                     {
                         new()
                         {
@@ -264,8 +264,8 @@ namespace ProtonVPN.Core.ReportAnIssue
                 {
                     Label = "Something else",
                     SubmitLabel = "Something else",
-                    Suggestions = new List<IssueSuggestion>(),
-                    InputFields = new List<IssueInput>
+                    Suggestions = new List<IssueSuggestionResponse>(),
+                    InputFields = new List<IssueInputResponse>
                     {
                         new()
                         {

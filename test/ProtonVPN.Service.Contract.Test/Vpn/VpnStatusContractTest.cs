@@ -22,6 +22,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Service.Contract.Vpn;
 using System;
+using System.Linq;
 
 namespace ProtonVPN.Service.Contract.Test.Vpn
 {
@@ -32,8 +33,8 @@ namespace ProtonVPN.Service.Contract.Test.Vpn
         public void Enum_ShouldHaveSame_UnderlyingType_As_VpnStatus()
         {
             // Arrange
-            var type = Enum.GetUnderlyingType(typeof(VpnStatusContract));
-            var expected = Enum.GetUnderlyingType(typeof(VpnStatus));
+            Type type = Enum.GetUnderlyingType(typeof(VpnStatusContract));
+            Type expected = Enum.GetUnderlyingType(typeof(VpnStatus));
             // Assert
             type.Should().BeSameAs(expected);
         }
@@ -42,8 +43,8 @@ namespace ProtonVPN.Service.Contract.Test.Vpn
         public void Enum_ShouldHaveSame_Values_As_VpnStatus()
         {
             // Arrange
-            var values = (int[])Enum.GetValues(typeof(VpnStatusContract));
-            var expected = (int[])Enum.GetValues(typeof(VpnStatus));
+            int[] values = Enum.GetValues(typeof(VpnStatusContract)).Cast<int>().ToArray();
+            int[] expected = Enum.GetValues(typeof(VpnStatus)).Cast<int>().ToArray();
             // Assert
             values.Should().BeEquivalentTo(expected);
         }
@@ -52,8 +53,8 @@ namespace ProtonVPN.Service.Contract.Test.Vpn
         public void Enum_ShouldHaveSame_Names_As_VpnStatus()
         {
             // Arrange
-            var values = Enum.GetNames(typeof(VpnStatusContract));
-            var expected = Enum.GetNames(typeof(VpnStatus));
+            string[] values = Enum.GetNames(typeof(VpnStatusContract));
+            string[] expected = Enum.GetNames(typeof(VpnStatus));
             // Assert
             values.Should().BeEquivalentTo(expected);
         }

@@ -21,10 +21,10 @@ using System.Collections.Generic;
 using System.Windows.Input;
 using Caliburn.Micro;
 using GalaSoft.MvvmLight.CommandWpf;
+using ProtonVPN.Api.Contracts.ReportAnIssue;
 using ProtonVPN.BugReporting.Actions;
 using ProtonVPN.Common.OS.Processes;
 using ProtonVPN.Config.Url;
-using ProtonVPN.Core.Api.Contracts.ReportAnIssue;
 using ProtonVPN.Core.ReportAnIssue;
 
 namespace ProtonVPN.BugReporting.Steps
@@ -49,9 +49,9 @@ namespace ProtonVPN.BugReporting.Steps
         public ICommand FillTheFormCommand { get; }
         public ICommand LearnMoreCommand { get; }
 
-        private List<IssueSuggestion> _suggestions = new();
+        private List<IssueSuggestionResponse> _suggestions = new();
 
-        public List<IssueSuggestion> Suggestions
+        public List<IssueSuggestionResponse> Suggestions
         {
             get => _suggestions;
             set => Set(ref _suggestions, value);

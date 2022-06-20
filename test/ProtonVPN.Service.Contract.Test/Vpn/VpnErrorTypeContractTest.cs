@@ -22,6 +22,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Service.Contract.Vpn;
 using System;
+using System.Linq;
 
 namespace ProtonVPN.Service.Contract.Test.Vpn
 {
@@ -42,8 +43,8 @@ namespace ProtonVPN.Service.Contract.Test.Vpn
         public void Enum_ShouldHaveSame_Values_As_VpnError()
         {
             // Arrange
-            int[] values = (int[]) Enum.GetValues(typeof(VpnErrorTypeContract));
-            int[] expected = (int[]) Enum.GetValues(typeof(VpnError));
+            int[] values = Enum.GetValues(typeof(VpnErrorTypeContract)).Cast<int>().ToArray();
+            int[] expected = Enum.GetValues(typeof(VpnError)).Cast<int>().ToArray();
             // Assert
             values.Should().BeEquivalentTo(expected);
         }

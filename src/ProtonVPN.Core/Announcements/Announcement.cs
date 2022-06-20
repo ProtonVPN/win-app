@@ -30,7 +30,6 @@ namespace ProtonVPN.Core.Announcements
         public string Icon { get; set; }
         public string Label { get; set; }
         public Panel Panel { get; set; }
-
         public bool Seen { get; set; }
     }
 }

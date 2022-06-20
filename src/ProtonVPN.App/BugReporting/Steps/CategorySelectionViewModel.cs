@@ -21,8 +21,8 @@ using System.Collections.Generic;
 using System.Windows.Input;
 using Caliburn.Micro;
 using GalaSoft.MvvmLight.CommandWpf;
+using ProtonVPN.Api.Contracts.ReportAnIssue;
 using ProtonVPN.BugReporting.Actions;
-using ProtonVPN.Core.Api.Contracts.ReportAnIssue;
 using ProtonVPN.Core.ReportAnIssue;
 
 namespace ProtonVPN.BugReporting.Steps
@@ -39,7 +39,7 @@ namespace ProtonVPN.BugReporting.Steps
             SelectCategoryCommand = new RelayCommand<string>(SelectCategoryAction);
         }
 
-        public List<IssueCategory> Categories => _reportAnIssueFormDataProvider.GetCategories();
+        public List<IssueCategoryResponse> Categories => _reportAnIssueFormDataProvider.GetCategories();
 
         public ICommand SelectCategoryCommand { get; }
 

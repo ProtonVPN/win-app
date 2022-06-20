@@ -17,8 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Core.HumanVerification;
 using ProtonVPN.Core.Modals;
+using ProtonVPN.HumanVerification.Contracts;
 
 namespace ProtonVPN.HumanVerification
 {

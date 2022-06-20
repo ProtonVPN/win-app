@@ -20,8 +20,8 @@
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
-using ProtonVPN.Core.Api;
-using ProtonVPN.Core.Api.Contracts;
+using ProtonVPN.Api.Contracts;
+using ProtonVPN.Api.Contracts.Events;
 using ProtonVPN.Core.Settings;
 
 namespace ProtonVPN.Core.Events

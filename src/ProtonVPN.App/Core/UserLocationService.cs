@@ -20,10 +20,12 @@
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using ProtonVPN.Api;
+using ProtonVPN.Api.Contracts;
+using ProtonVPN.Api.Contracts.Geographical;
 using ProtonVPN.Common.OS.Net.NetworkInterface;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
-using ProtonVPN.Core.Api;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.User;
@@ -89,7 +91,7 @@ namespace ProtonVPN.Core
             return Task.CompletedTask;
         }
 
-        public async Task<ApiResponseResult<Api.Contracts.UserLocation>> LocationAsync()
+        public async Task<ApiResponseResult<UserLocationResponse>> LocationAsync()
         {
             try
             {
@@ -97,7 +99,7 @@ namespace ProtonVPN.Core
             }
             catch (HttpRequestException)
             {
-                return ApiResponseResult<Api.Contracts.UserLocation>.Fail(default, "");
+                return ApiResponseResult<UserLocationResponse>.Fail(default, "");
             }
         }
 
@@ -108,7 +110,7 @@ namespace ProtonVPN.Core
                 return;
             }
 
-            ApiResponseResult<Api.Contracts.UserLocation> response = await LocationAsync();
+            ApiResponseResult<UserLocationResponse> response = await LocationAsync();
 
             // Extra check in case location request took longer
             if (_connected)
@@ -162,12 +164,10 @@ namespace ProtonVPN.Core
             }
         }
 
-        private UserLocation Map(Api.Contracts.UserLocation contract)
+        private UserLocation Map(UserLocationResponse contract)
         {
             return new(
                 contract.Ip,
-                contract.Lat,
-                contract.Long,
                 contract.Isp,
                 contract.Country);
         }

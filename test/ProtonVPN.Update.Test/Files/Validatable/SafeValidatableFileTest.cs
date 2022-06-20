@@ -48,7 +48,7 @@ namespace ProtonVPN.Update.Test.Files.Validatable
         {
             _origin.Valid("", "").ReturnsForAnyArgs(Task.FromResult(value));
 
-            var result = await _validatable.Valid("filename", "checkSum");
+            bool result = await _validatable.Valid("filename", "checkSum");
 
             result.Should().Be(value);
         }
@@ -71,7 +71,7 @@ namespace ProtonVPN.Update.Test.Files.Validatable
 
             Func<Task> action = () => _validatable.Valid("", "");
 
-            action.Should().Throw<SomeException>();
+            action.Should().ThrowAsync<SomeException>();
         }
 
         [TestMethod]
@@ -83,7 +83,7 @@ namespace ProtonVPN.Update.Test.Files.Validatable
                 new UnauthorizedAccessException()
             };
 
-            foreach (var exception in exceptions)
+            foreach (Exception exception in exceptions)
             {
                 Valid_ShouldThrow_AppUpdateException_WhenOriginThrows(exception);
                 Valid_ShouldThrow_AppUpdateException_WhenOriginThrowsAsync(exception);
@@ -97,7 +97,7 @@ namespace ProtonVPN.Update.Test.Files.Validatable
 
             Func<Task> action = () => _validatable.Valid("", "");
 
-            action.Should().Throw<AppUpdateException>();
+            action.Should().ThrowAsync<AppUpdateException>();
         }
 
         private void Valid_ShouldThrow_AppUpdateException_WhenOriginThrowsAsync(Exception ex)
@@ -107,7 +107,7 @@ namespace ProtonVPN.Update.Test.Files.Validatable
 
             Func<Task> action = () => _validatable.Valid("", "");
 
-            action.Should().Throw<AppUpdateException>();
+            action.Should().ThrowAsync<AppUpdateException>();
         }
 
         #region Helpers

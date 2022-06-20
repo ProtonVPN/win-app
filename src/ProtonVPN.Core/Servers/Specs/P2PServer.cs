@@ -17,14 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Api.Contracts;
+using ProtonVPN.Api.Contracts.Servers;
 using ProtonVPN.Core.Abstract;
-using ProtonVPN.Core.Api.Contracts;
 
 namespace ProtonVPN.Core.Servers.Specs
 {
-    public class P2PServer : Specification<LogicalServerContract>
+    public class P2PServer : Specification<LogicalServerResponse>
     {
-        public override bool IsSatisfiedBy(LogicalServerContract item)
+        public override bool IsSatisfiedBy(LogicalServerResponse item)
         {
             return ServerFeatures.SupportsP2P(item.Features);
         }

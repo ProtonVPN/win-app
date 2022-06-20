@@ -19,16 +19,17 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using ProtonVPN.Api.Contracts.Servers;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Helpers;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Core.Abstract;
-using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.Servers.Models;
 using ProtonVPN.Core.Servers.Specs;
 using ProtonVPN.Core.Settings;
+using PhysicalServerResponse = ProtonVPN.Api.Contracts.Servers.PhysicalServerResponse;
 
 namespace ProtonVPN.Core.Servers
 {
@@ -39,7 +40,7 @@ namespace ProtonVPN.Core.Servers
         private readonly ILogger _logger;
         private readonly ServerNameComparer _serverNameComparer;
 
-        private List<LogicalServerContract> _servers = new();
+        private List<LogicalServerResponse> _servers = new();
         private List<string> _countries = new();
 
         public ServerManager(IUserStorage userStorage, IAppSettings appSettings, ILogger logger)
@@ -50,12 +51,12 @@ namespace ProtonVPN.Core.Servers
             _serverNameComparer = new();
         }
 
-        public bool IsServerFromSpec(Server server, ISpecification<LogicalServerContract> spec)
+        public bool IsServerFromSpec(Server server, ISpecification<LogicalServerResponse> spec)
         {
             return _servers.Where(s => s.Id == server.Id).Where(spec.IsSatisfiedBy).Any();
         }
 
-        public void Load(IReadOnlyCollection<LogicalServerContract> servers)
+        public void Load(IReadOnlyCollection<LogicalServerResponse> servers)
         {
             Ensure.NotEmpty(servers, nameof(servers));
 
@@ -81,17 +82,17 @@ namespace ProtonVPN.Core.Servers
             _logger.Info<AppLog>($"Servers updated. Num of servers: {numOfServersText} Num of countries: {numOfCountriesText}");
         }
 
-        public virtual void UpdateLoads(IReadOnlyCollection<LogicalServerContract> servers)
+        public virtual void UpdateLoads(IReadOnlyCollection<LogicalServerResponse> servers)
         {
-            Dictionary<string, LogicalServerContract> updatedServers = servers.ToDictionary(server => server.Id);
-            foreach (LogicalServerContract server in _servers.Where(server => updatedServers.ContainsKey(server.Id)))
+            Dictionary<string, LogicalServerResponse> updatedServers = servers.ToDictionary(server => server.Id);
+            foreach (LogicalServerResponse server in _servers.Where(server => updatedServers.ContainsKey(server.Id)))
             {
-                LogicalServerContract updatedServer = updatedServers[server.Id];
+                LogicalServerResponse updatedServer = updatedServers[server.Id];
                 server.Load = updatedServer.Load;
                 server.Score = updatedServer.Score;
                 if (updatedServer.Status == 0 || server.Servers.Count == 1)
                 {
-                    foreach (PhysicalServerContract physicalServer in server.Servers)
+                    foreach (PhysicalServerResponse physicalServer in server.Servers)
                     {
                         physicalServer.Status = updatedServer.Status;
                     }
@@ -100,7 +101,7 @@ namespace ProtonVPN.Core.Servers
             }
         }
 
-        public IReadOnlyCollection<Server> GetServers(ISpecification<LogicalServerContract> spec, 
+        public IReadOnlyCollection<Server> GetServers(ISpecification<LogicalServerResponse> spec, 
             Features orderBy = Features.None)
         {
             sbyte userTier = _userStorage.User().MaxTier;
@@ -124,7 +125,7 @@ namespace ProtonVPN.Core.Servers
                 .FirstOrDefault();
         }
 
-        public virtual Server GetServer(ISpecification<LogicalServerContract> spec)
+        public virtual Server GetServer(ISpecification<LogicalServerResponse> spec)
         {
             return Map(_servers.Find(spec.IsSatisfiedBy));
         }
@@ -153,7 +154,7 @@ namespace ProtonVPN.Core.Servers
 
         public void MarkServerUnderMaintenance(string exitIp)
         {
-            foreach (PhysicalServerContract server in _servers.SelectMany(logical =>
+            foreach (PhysicalServerResponse server in _servers.SelectMany(logical =>
                 logical.Servers.Where(server => server.ExitIp == exitIp)))
             {
                 server.Status = 0;
@@ -169,7 +170,7 @@ namespace ProtonVPN.Core.Servers
         {
             IList<string> result = new List<string>();
 
-            foreach (LogicalServerContract server in _servers)
+            foreach (LogicalServerResponse server in _servers)
             {
                 if (tiers.Contains(server.Tier) &&
                     !ServerFeatures.IsSecureCore(server.Features) &&
@@ -182,7 +183,7 @@ namespace ProtonVPN.Core.Servers
             return result;
         }
 
-        public IList<string> GetEntryCountriesBySpec(Specification<LogicalServerContract> specification)
+        public IList<string> GetEntryCountriesBySpec(Specification<LogicalServerResponse> specification)
         {
             IList<string> list = new List<string>();
             IReadOnlyCollection<Server> servers = GetServers(specification);
@@ -239,19 +240,19 @@ namespace ProtonVPN.Core.Servers
 
         public bool Empty() => !_servers.Any();
 
-        private void SaveServers(IEnumerable<LogicalServerContract> servers)
+        private void SaveServers(IEnumerable<LogicalServerResponse> servers)
         {
             if (_appSettings.GetProtocol() == VpnProtocol.WireGuard)
             {
-                List<LogicalServerContract> filteredServers = new();
-                foreach (LogicalServerContract server in servers)
+                List<LogicalServerResponse> filteredServers = new();
+                foreach (LogicalServerResponse server in servers)
                 {
                     if (server == null)
                     {
                         continue;
                     }
 
-                    List<PhysicalServerContract> physicalServers = server.Servers.Where(ContainsPublicKey).ToList();
+                    List<PhysicalServerResponse> physicalServers = server.Servers.Where(ContainsPublicKey).ToList();
                     if (physicalServers.Count == 0)
                     {
                         continue;
@@ -269,16 +270,16 @@ namespace ProtonVPN.Core.Servers
             }
         }
 
-        private bool ContainsPublicKey(PhysicalServerContract server)
+        private bool ContainsPublicKey(PhysicalServerResponse server)
         {
             return !server.X25519PublicKey.IsNullOrEmpty();
         }
 
-        private void SaveCountries(IEnumerable<LogicalServerContract> servers)
+        private void SaveCountries(IEnumerable<LogicalServerResponse> servers)
         {
             List<string> countryCodes = new();
 
-            foreach (LogicalServerContract server in servers)
+            foreach (LogicalServerResponse server in servers)
             {
                 if (server == null || !IsCountry(server) || countryCodes.Contains(server.EntryCountry))
                 {
@@ -297,7 +298,7 @@ namespace ProtonVPN.Core.Servers
             _countries = countryCodes;
         }
 
-        private static bool IsCountry(LogicalServerContract server)
+        private static bool IsCountry(LogicalServerResponse server)
         {
             string code = server.EntryCountry;
             if (code.Equals("AA") || code.Equals("ZZ") || code.StartsWith("X"))
@@ -314,7 +315,7 @@ namespace ProtonVPN.Core.Servers
             return true;
         }
 
-        private static Server Map(LogicalServerContract item)
+        private static Server Map(LogicalServerResponse item)
         {
             if (item == null)
             {
@@ -335,13 +336,13 @@ namespace ProtonVPN.Core.Servers
                 item.Features,
                 item.Load,
                 item.Score,
-                item.Location,
+                item.LocationResponse,
                 physicalServers,
                 ExitIp(physicalServers)
             );
         }
 
-        private static PhysicalServer Map(PhysicalServerContract server)
+        private static PhysicalServer Map(PhysicalServerResponse server)
         {
             return new(
                 id: server.Id,

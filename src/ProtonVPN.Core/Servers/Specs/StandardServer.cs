@@ -17,14 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Api.Contracts;
+using ProtonVPN.Api.Contracts.Servers;
 using ProtonVPN.Core.Abstract;
-using ProtonVPN.Core.Api.Contracts;
 
 namespace ProtonVPN.Core.Servers.Specs
 {
-    public class StandardServer : Specification<LogicalServerContract>
+    public class StandardServer : Specification<LogicalServerResponse>
     {
-        public override bool IsSatisfiedBy(LogicalServerContract item)
+        public override bool IsSatisfiedBy(LogicalServerResponse item)
         {
             return !ServerFeatures.IsSecureCore(item.Features);
         }

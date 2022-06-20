@@ -20,10 +20,10 @@
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using ProtonVPN.Api.Contracts;
+using ProtonVPN.Api.Contracts.Streaming;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Threading;
-using ProtonVPN.Core.Api;
-using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.Auth;
 
 namespace ProtonVPN.Streaming

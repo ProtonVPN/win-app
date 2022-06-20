@@ -17,12 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Api.Contracts;
+using ProtonVPN.Api.Contracts.Servers;
 using ProtonVPN.Core.Abstract;
-using ProtonVPN.Core.Api.Contracts;
 
 namespace ProtonVPN.Core.Servers.Specs
 {
-    public class ExitCityServer : Specification<LogicalServerContract>
+    public class ExitCityServer : Specification<LogicalServerResponse>
     {
         private readonly string _city;
 
@@ -31,7 +32,7 @@ namespace ProtonVPN.Core.Servers.Specs
             _city = city;
         }
 
-        public override bool IsSatisfiedBy(LogicalServerContract item)
+        public override bool IsSatisfiedBy(LogicalServerResponse item)
         {
             return item.City == _city;
         }

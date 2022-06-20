@@ -20,9 +20,9 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using ProtonVPN.Api.Contracts.Servers;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Abstract;
-using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Servers.Models;
 using ProtonVPN.Core.Servers.Specs;
@@ -142,7 +142,7 @@ namespace ProtonVPN.Servers
             return new StreamingInfoPopupViewModel(CountryCode, list);
         }
 
-        private Specification<LogicalServerContract> GetServerSpec(sbyte tier)
+        private Specification<LogicalServerResponse> GetServerSpec(sbyte tier)
         {
             return new EntryCountryServer(CountryCode) && new StandardServer() && new ExactTierServer(tier);
         }

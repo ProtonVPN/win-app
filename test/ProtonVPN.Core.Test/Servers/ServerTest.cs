@@ -20,7 +20,7 @@
 using System.Collections.Generic;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ProtonVPN.Core.Api.Contracts;
+using ProtonVPN.Api.Contracts.Geographical;
 using ProtonVPN.Core.Servers;
 using PhysicalServer = ProtonVPN.Core.Servers.Models.PhysicalServer;
 using Server = ProtonVPN.Core.Servers.Models.Server;
@@ -37,9 +37,9 @@ namespace ProtonVPN.Core.Test.Servers
         public void IsFree_ShouldBeTrue_WhenFreeTier(int tier, bool expected)
         {
             // Arrange
-            var server = GetServer(tier);
+            Server server = GetServer(tier);
             // Act
-            var result = server.IsFree();
+            bool result = server.IsFree();
             // Assert
             result.Should().Be(expected);
         }
@@ -51,9 +51,9 @@ namespace ProtonVPN.Core.Test.Servers
         public void IsPhysicalFree_ShouldBeTrue_WhenFreeTier(int tier, bool expected)
         {
             // Arrange
-            var server = GetServer(tier);
+            Server server = GetServer(tier);
             // Act
-            var result = server.IsPhysicalFree();
+            bool result = server.IsPhysicalFree();
             // Assert
             result.Should().Be(expected);
         }
@@ -70,9 +70,9 @@ namespace ProtonVPN.Core.Test.Servers
         public void IsPhysicalFree_ShouldBeTrue_WhenNameContains_NumberGreaterOrEqualTo_100(string name, bool expected)
         {
             // Arrange
-            var server = GetServer(ServerTiers.Plus, name);
+            Server server = GetServer(ServerTiers.Plus, name);
             // Act
-            var result = server.IsPhysicalFree();
+            bool result = server.IsPhysicalFree();
             // Assert
             result.Should().Be(expected);
         }
@@ -91,7 +91,7 @@ namespace ProtonVPN.Core.Test.Servers
                 0,
                 0,
                 0.0F,
-                new Location { Lat = 0f, Long = 0f },
+                new LocationResponse { Lat = 0f, Long = 0f },
                 new List<PhysicalServer>(0),
                 null);
         }

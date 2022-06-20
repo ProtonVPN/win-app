@@ -22,9 +22,9 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
+using ProtonVPN.Api.Contracts.Servers;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Config.Url;
-using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Settings;
@@ -54,7 +54,7 @@ namespace ProtonVPN.App.Test.Servers
         {
             InitializeUserStorage();
 
-            List<LogicalServerContract> servers = new List<LogicalServerContract>
+            List<LogicalServerResponse> servers = new List<LogicalServerResponse>
             {
                 CreateServer("IT#1", Features.None, "IT", null, 1),
                 CreateServer("FR#1", Features.None, "FR", null, 1),
@@ -92,10 +92,10 @@ namespace ProtonVPN.App.Test.Servers
             _userStorage.User().Returns(_user);
         }
 
-        private LogicalServerContract CreateServer(string name, Features features, string exitCountryCode,
+        private LogicalServerResponse CreateServer(string name, Features features, string exitCountryCode,
             string entryCountryCode = null, sbyte tier = 0, string city = "")
         {
-            return new LogicalServerContract
+            return new LogicalServerResponse
             {
                 Name = name,
                 EntryCountry = entryCountryCode ?? exitCountryCode,
@@ -103,7 +103,7 @@ namespace ProtonVPN.App.Test.Servers
                 Features = (sbyte)features,
                 Tier = tier,
                 City = city,
-                Servers = new List<PhysicalServerContract>()
+                Servers = new List<PhysicalServerResponse>()
             };
         }
 

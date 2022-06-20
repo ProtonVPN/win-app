@@ -22,11 +22,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
+using ProtonVPN.Api.Contracts.Servers;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Storage;
 using ProtonVPN.Common.Threading;
-using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Settings;
 
@@ -37,7 +37,7 @@ namespace ProtonVPN.Core.Servers
         private readonly ISchedulerTimer _timer;
         private readonly ServerManager _serverManager;
         private readonly IApiServers _apiServers;
-        private readonly ICollectionStorage<LogicalServerContract> _serverCache;
+        private readonly ICollectionStorage<LogicalServerResponse> _serverCache;
         private readonly SingleAction _updateAction;
         private readonly IAppSettings _appSettings;
 
@@ -49,7 +49,7 @@ namespace ProtonVPN.Core.Servers
             Common.Configuration.Config appConfig,
             ServerManager serverManager,
             IApiServers apiServers,
-            ICollectionStorage<LogicalServerContract> serverCache,
+            ICollectionStorage<LogicalServerResponse> serverCache,
             ServerLoadUpdater serverLoadUpdater,
             IAppSettings appSettings)
         {
@@ -92,7 +92,7 @@ namespace ProtonVPN.Core.Servers
 
         private async Task UpdateServers()
         {
-            IReadOnlyCollection<LogicalServerContract> servers = await GetServers();
+            IReadOnlyCollection<LogicalServerResponse> servers = await GetServers();
 
             if (servers.Any())
             {
@@ -102,7 +102,7 @@ namespace ProtonVPN.Core.Servers
             }
         }
 
-        private async Task<IReadOnlyCollection<LogicalServerContract>> GetServers()
+        private async Task<IReadOnlyCollection<LogicalServerResponse>> GetServers()
         {
             if (!_firstTime)
             {
@@ -119,7 +119,7 @@ namespace ProtonVPN.Core.Servers
             // First time after start or logoff server update is scheduled without waiting for the result
             ScheduleUpdate();
 
-            return new List<LogicalServerContract>(0);
+            return new List<LogicalServerResponse>(0);
         }
 
         private void ScheduleUpdate()

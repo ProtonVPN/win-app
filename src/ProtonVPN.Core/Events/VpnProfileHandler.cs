@@ -18,7 +18,7 @@
  */
 
 using System.Threading.Tasks;
-using ProtonVPN.Core.Api.Contracts;
+using ProtonVPN.Api.Contracts.Events;
 using ProtonVPN.Core.Profiles;
 
 namespace ProtonVPN.Core.Events

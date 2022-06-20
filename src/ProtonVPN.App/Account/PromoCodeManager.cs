@@ -21,9 +21,9 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Polly.Timeout;
+using ProtonVPN.Api.Contracts;
+using ProtonVPN.Api.Contracts.Common;
 using ProtonVPN.Common.Abstract;
-using ProtonVPN.Core.Api;
-using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Translations;
 
 namespace ProtonVPN.Account
@@ -41,8 +41,8 @@ namespace ProtonVPN.Account
         {
             try
             {
-                PromoCodeRequestData requestData = new() { Codes = new[] { code } };
-                ApiResponseResult<BaseResponse> response = await _apiClient.ApplyPromoCodeAsync(requestData);
+                PromoCodeRequest request = new() { Codes = new[] { code } };
+                ApiResponseResult<BaseResponse> response = await _apiClient.ApplyPromoCodeAsync(request);
                 return response.Success ? Result.Ok() : Result.Fail(response.Error);
             }
             catch (Exception e) when (e.InnerException is TimeoutRejectedException)

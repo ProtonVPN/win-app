@@ -24,7 +24,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:steps="clr-namespace:ProtonVPN.BugReporting.Steps"
              xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
-             xmlns:reportAnIssue="clr-namespace:ProtonVPN.Core.Api.Contracts.ReportAnIssue;assembly=ProtonVPN.Core"
+             xmlns:reportAnIssue="clr-namespace:ProtonVPN.Api.Contracts.ReportAnIssue;assembly=ProtonVPN.Api.Contracts"
              xmlns:icons="clr-namespace:ProtonVPN.Resource.Graphics.Icons;assembly=ProtonVPN.Resource"
              d:DataContext="{d:DesignInstance steps:SolutionsViewModel}"
              mc:Ignorable="d">
@@ -51,7 +51,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
-                    <DataTemplate DataType="{x:Type reportAnIssue:IssueSuggestion}">
+                    <DataTemplate DataType="{x:Type reportAnIssue:IssueSuggestionResponse}">
                         <DockPanel Margin="0,0,0,18">
                             <icons:Lightbulb Foreground="{StaticResource NotificationWarningBrushColor}" Width="24" VerticalAlignment="Top" />
                             <StackPanel Margin="12,0,0,0">

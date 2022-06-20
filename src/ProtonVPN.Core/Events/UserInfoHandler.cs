@@ -17,11 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Core.Api;
-using ProtonVPN.Core.Api.Contracts;
-using ProtonVPN.Core.Settings;
 using System.Net.Http;
 using System.Threading.Tasks;
+using ProtonVPN.Api.Contracts;
+using ProtonVPN.Api.Contracts.Events;
+using ProtonVPN.Core.Settings;
 
 namespace ProtonVPN.Core.Events
 {

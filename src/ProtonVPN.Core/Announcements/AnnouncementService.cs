@@ -23,16 +23,15 @@ using System.ComponentModel;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using ProtonVPN.Api.Contracts;
+using ProtonVPN.Api.Contracts.Announcements;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
 using ProtonVPN.Common.Threading;
-using ProtonVPN.Core.Api;
-using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.User;
-using ApiAnnouncement = ProtonVPN.Core.Api.Contracts.Announcement;
 
 namespace ProtonVPN.Core.Announcements
 {
@@ -157,29 +156,29 @@ namespace ProtonVPN.Core.Announcements
             _updateAction.Run();
         }
 
-        private IReadOnlyList<Announcement> Map(IList<ApiAnnouncement> announcements)
+        private IReadOnlyList<Announcement> Map(IList<AnnouncementResponse> announcements)
         {
             return announcements
-                .Where(apiAnnouncement => apiAnnouncement?.Offer != null)
+                .Where(apiAnnouncement => apiAnnouncement?.OfferResponse != null)
                 .Select(MapAnnouncement)
                 .Where(announcement => announcement != null)
                 .ToList();
         }
 
-        private Announcement MapAnnouncement(ApiAnnouncement announcement)
+        private Announcement MapAnnouncement(AnnouncementResponse announcementResponse)
         {
             Announcement result;
             try
             {
                 result = new()
                 {
-                    Id = announcement.Id,
-                    StartDateTimeUtc = MapTimestampToDateTimeUtc(announcement.StartTimestamp),
-                    EndDateTimeUtc = MapTimestampToDateTimeUtc(announcement.EndTimestamp),
-                    Url = announcement.Offer.Url,
-                    Icon = announcement.Offer.Icon,
-                    Label = announcement.Offer.Label,
-                    Panel = MapPanel(announcement.Offer.Panel),
+                    Id = announcementResponse.Id,
+                    StartDateTimeUtc = MapTimestampToDateTimeUtc(announcementResponse.StartTimestamp),
+                    EndDateTimeUtc = MapTimestampToDateTimeUtc(announcementResponse.EndTimestamp),
+                    Url = announcementResponse.OfferResponse.Url,
+                    Icon = announcementResponse.OfferResponse.Icon,
+                    Label = announcementResponse.OfferResponse.Label,
+                    Panel = MapPanel(announcementResponse.OfferResponse.PanelResponse),
                     Seen = false
                 };
             }
@@ -197,51 +196,51 @@ namespace ProtonVPN.Core.Announcements
             return DateTimeOffset.FromUnixTimeSeconds(timestamp).UtcDateTime;
         }
 
-        private Panel MapPanel(OfferPanel offerPanel)
+        private Panel MapPanel(OfferPanelResponse offerPanelResponse)
         {
-            string incentive = offerPanel?.Incentive;
+            string incentive = offerPanelResponse?.Incentive;
             string incentiveSuffix = null;
-            int? indexOfIncentivePriceTag = offerPanel?.Incentive?.IndexOf(INCENTIVE_PRICE_TAG, StringComparison.InvariantCulture);
+            int? indexOfIncentivePriceTag = offerPanelResponse?.Incentive?.IndexOf(INCENTIVE_PRICE_TAG, StringComparison.InvariantCulture);
             if (indexOfIncentivePriceTag is >= 0)
             {
-                incentive = offerPanel.Incentive.Substring(0, indexOfIncentivePriceTag.Value).TrimEnd();
-                incentiveSuffix = offerPanel.Incentive.Substring(indexOfIncentivePriceTag.Value + INCENTIVE_PRICE_TAG.Length).TrimStart();
+                incentive = offerPanelResponse.Incentive.Substring(0, indexOfIncentivePriceTag.Value).TrimEnd();
+                incentiveSuffix = offerPanelResponse.Incentive.Substring(indexOfIncentivePriceTag.Value + INCENTIVE_PRICE_TAG.Length).TrimStart();
             }
             return new()
             {
                 Incentive = incentive,
-                IncentivePrice = offerPanel?.IncentivePrice,
+                IncentivePrice = offerPanelResponse?.IncentivePrice,
                 IncentiveSuffix = incentiveSuffix,
-                Pill = offerPanel?.Pill,
-                PictureUrl = offerPanel?.PictureUrl,
-                Title = offerPanel?.Title,
-                Features = MapFeatures(offerPanel?.Features),
-                FeaturesFooter = offerPanel?.FeaturesFooter,
-                Button = MapButton(offerPanel?.Button),
-                PageFooter = offerPanel?.PageFooter
+                Pill = offerPanelResponse?.Pill,
+                PictureUrl = offerPanelResponse?.PictureUrl,
+                Title = offerPanelResponse?.Title,
+                Features = MapFeatures(offerPanelResponse?.Features),
+                FeaturesFooter = offerPanelResponse?.FeaturesFooter,
+                Button = MapButton(offerPanelResponse?.Button),
+                PageFooter = offerPanelResponse?.PageFooter
             };
         }
 
-        private IList<PanelFeature> MapFeatures(IList<OfferPanelFeature> offerPanelFeatures)
+        private IList<PanelFeature> MapFeatures(IList<OfferPanelFeatureResponse> offerPanelFeatures)
         {
             return offerPanelFeatures.Select(MapFeature).ToList();
         }
 
-        private PanelFeature MapFeature(OfferPanelFeature offerPanelFeature)
+        private PanelFeature MapFeature(OfferPanelFeatureResponse offerPanelFeatureResponse)
         {
             return new()
             {
-                IconUrl = offerPanelFeature.IconUrl,
-                Text = offerPanelFeature.Text
+                IconUrl = offerPanelFeatureResponse.IconUrl,
+                Text = offerPanelFeatureResponse.Text
             };
         }
 
-        private PanelButton MapButton(OfferPanelButton offerPanelButton)
+        private PanelButton MapButton(OfferPanelButtonResponse offerPanelButtonResponse)
         {
             return new()
             {
-                Url = offerPanelButton.Url,
-                Text = offerPanelButton.Text
+                Url = offerPanelButtonResponse.Url,
+                Text = offerPanelButtonResponse.Text
             };
         }
 

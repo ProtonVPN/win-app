@@ -18,7 +18,8 @@
  */
 
 using System.Net;
-using ProtonVPN.Core.Api;
+using ProtonVPN.Api;
+using ProtonVPN.Api.Contracts;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Translations;
 
@@ -31,7 +32,7 @@ namespace ProtonVPN.Modals.ApiActions
 
         public ActionableFailureApiResultEventHandler(IModals modals,
             ApiActionModalViewModel apiActionModalViewModel,
-            IApiClient apiClient, 
+            IApiClient apiClient,
             ITokenClient tokenClient)
         {
             _modals = modals;
@@ -44,7 +45,7 @@ namespace ProtonVPN.Modals.ApiActions
         private void OnActionableFailureResult(object sender, ActionableFailureApiResultEventArgs e)
         {
             string error = e.Result.Error;
-            if (e.Result.StatusCode == HttpStatusCode.Unauthorized)
+            if (e.Result.ResponseMessage.StatusCode == HttpStatusCode.Unauthorized)
             {
                 error = Translation.Get("Login_Error_msg_Unauthorized");
             }

@@ -19,18 +19,26 @@
 
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
+using ProtonVPN.Api;
+using ProtonVPN.Api.Contracts;
+using ProtonVPN.Api.Contracts.Announcements;
+using ProtonVPN.Api.Contracts.Auth;
+using ProtonVPN.Api.Contracts.Certificates;
+using ProtonVPN.Api.Contracts.Common;
+using ProtonVPN.Api.Contracts.Events;
+using ProtonVPN.Api.Contracts.Geographical;
+using ProtonVPN.Api.Contracts.Profiles;
+using ProtonVPN.Api.Contracts.ReportAnIssue;
+using ProtonVPN.Api.Contracts.Servers;
+using ProtonVPN.Api.Contracts.Streaming;
+using ProtonVPN.Api.Contracts.VpnConfig;
+using ProtonVPN.Api.Contracts.VpnSessions;
+using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Core.Abstract;
-using ProtonVPN.Core.Api;
-using ProtonVPN.Core.Api.Certificates;
-using ProtonVPN.Core.Api.Contracts;
-using ProtonVPN.Core.Api.Contracts.ReportAnIssue;
-using ProtonVPN.Core.Api.Data;
 using ProtonVPN.Core.Settings;
-using File = ProtonVPN.Core.Api.File;
 
 namespace TestTools.ApiClient
 {
@@ -39,25 +47,25 @@ namespace TestTools.ApiClient
         private readonly HttpClient _client;
 
         public Client(
+            Config config,
             ILogger logger,
             HttpClient client,
             ITokenStorage tokenStorage,
             IAppLanguageCache appLanguageCache) 
-            : base(logger, new ApiAppVersion(), tokenStorage, appLanguageCache, "3")
+            : base(logger, new ApiAppVersion(), tokenStorage, appLanguageCache, config)
         {
             _client = client;
         }
 
-        public async Task<ApiResponseResult<AuthResponse>> GetAuthResponse(AuthRequestData data)
+        public async Task<ApiResponseResult<AuthResponse>> GetAuthResponse(AuthRequest authRequest)
         {
             HttpRequestMessage request = GetRequest(HttpMethod.Post, "auth");
             try
             {
-                request.Content = GetJsonContent(data);
+                request.Content = GetJsonContent(authRequest);
 
                 using HttpResponseMessage response = await _client.SendAsync(request).ConfigureAwait(false);
-                string body = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-                return ApiResponseResult<AuthResponse>(body, response.StatusCode);
+                return await GetApiResponseResult<AuthResponse>(response);
             }
             catch (Exception e) when (e.IsApiCommunicationException())
             {
@@ -65,19 +73,18 @@ namespace TestTools.ApiClient
             }
         }
 
-        public async Task<ApiResponseResult<AuthInfo>> GetAuthInfoResponse(AuthInfoRequestData data)
+        public async Task<ApiResponseResult<AuthInfoResponse>> GetAuthInfoResponse(AuthInfoRequest authInfoRequest)
         {
             HttpRequestMessage request = GetRequest(HttpMethod.Post, "auth/info");
             try
             {
-                request.Content = GetJsonContent(data);
+                request.Content = GetJsonContent(authInfoRequest);
 
                 using HttpResponseMessage response = await _client.SendAsync(request).ConfigureAwait(false);
-                string body = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-                ApiResponseResult<AuthInfo> validatedResponse = ApiResponseResult<AuthInfo>(body, response.StatusCode);
+                ApiResponseResult<AuthInfoResponse> validatedResponse = await GetApiResponseResult<AuthInfoResponse>(response);
                 if (validatedResponse.Success && string.IsNullOrEmpty(validatedResponse.Value.Salt))
                 {
-                    return ProtonVPN.Core.Api.ApiResponseResult<AuthInfo>.Fail(response.StatusCode,
+                    return ProtonVPN.Api.Contracts.ApiResponseResult<AuthInfoResponse>.Fail(response,
                         "Incorrect login credentials. Please try again");
                 }
 
@@ -95,8 +102,7 @@ namespace TestTools.ApiClient
             {
                 HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, "vpn/profiles");
                 using HttpResponseMessage response = await _client.SendAsync(request).ConfigureAwait(false);
-                Stream stream = await response.Content.ReadAsStreamAsync();
-                return GetResponseStreamResult<ProfilesResponse>(stream, response.StatusCode);
+                return await GetResponseStreamResult<ProfilesResponse>(response);
             }
             catch (Exception e) when (e.IsApiCommunicationException())
             {
@@ -104,14 +110,13 @@ namespace TestTools.ApiClient
             }
         }
 
-        public async Task<ApiResponseResult<ProfileResponse>> DeleteProfile(string id)
+        public async Task<ApiResponseResult<ProfileWrapperResponse>> DeleteProfile(string id)
         {
             try
             {
                 HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Delete, $"vpn/profiles/{id}");
                 using HttpResponseMessage response = await _client.SendAsync(request).ConfigureAwait(false);
-                string body = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-                return ApiResponseResult<ProfileResponse>(body, response.StatusCode);
+                return await GetApiResponseResult<ProfileWrapperResponse>(response);
             }
             catch (Exception e) when (e.IsApiCommunicationException())
             {
@@ -119,30 +124,29 @@ namespace TestTools.ApiClient
             }
         }
 
-        public Task<ApiResponseResult<VpnInfoResponse>> GetVpnInfoResponse() => throw new NotImplementedException();
+        public Task<ApiResponseResult<VpnInfoWrapperResponse>> GetVpnInfoResponse() => throw new NotImplementedException();
 
-        public Task<ApiResponseResult<BaseResponse>> GetTwoFactorAuthResponse(TwoFactorRequestData data, string accessToken, string uid) => throw new NotImplementedException();
+        public Task<ApiResponseResult<BaseResponse>> GetTwoFactorAuthResponse(TwoFactorRequest twoFactorRequest, string accessToken, string uid) => throw new NotImplementedException();
 
-        public Task<ApiResponseResult<ReportAnIssueFormData>> GetReportAnIssueFormData() => throw new NotImplementedException();
+        public Task<ApiResponseResult<ReportAnIssueFormResponse>> GetReportAnIssueFormData() => throw new NotImplementedException();
 
         public Task<ApiResponseResult<BaseResponse>> GetLogoutResponse() => throw new NotImplementedException();
 
         public Task<ApiResponseResult<EventResponse>> GetEventResponse(string lastId = default) => throw new NotImplementedException();
 
-        public Task<ApiResponseResult<ServerList>> GetServersAsync(string ip) => throw new NotImplementedException();
+        public Task<ApiResponseResult<ServersResponse>> GetServersAsync(string ip) => throw new NotImplementedException();
 
-        public Task<ApiResponseResult<ServerList>> GetServerLoadsAsync(string ip) => throw new NotImplementedException();
+        public Task<ApiResponseResult<ServersResponse>> GetServerLoadsAsync(string ip) => throw new NotImplementedException();
 
-        public async Task<ApiResponseResult<UserLocation>> GetLocationDataAsync()
+        public async Task<ApiResponseResult<UserLocationResponse>> GetLocationDataAsync()
         {
             try
             {
                 HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, "vpn/location");
                 using HttpResponseMessage response = await _client.SendAsync(request).ConfigureAwait(false);
-                Stream stream = await response.Content.ReadAsStreamAsync();
-                return GetResponseStreamResult<UserLocation>(stream, response.StatusCode);
+                return await GetResponseStreamResult<UserLocationResponse>(response);
             }
-            catch(Exception e) when (e.IsApiCommunicationException())
+            catch (Exception e) when (e.IsApiCommunicationException())
             {
                 throw new HttpRequestException(e.Message, e);
             }
@@ -152,13 +156,13 @@ namespace TestTools.ApiClient
 
         public Task<ApiResponseResult<SessionsResponse>> GetSessions() => throw new NotImplementedException();
 
-        public Task<ApiResponseResult<ProfileResponse>> CreateProfile(BaseProfile profile) => throw new NotImplementedException();
+        public Task<ApiResponseResult<ProfileWrapperResponse>> CreateProfile(BaseProfileResponse profile) => throw new NotImplementedException();
 
-        public Task<ApiResponseResult<ProfileResponse>> UpdateProfile(string id, BaseProfile profile) => throw new NotImplementedException();
+        public Task<ApiResponseResult<ProfileWrapperResponse>> UpdateProfile(string id, BaseProfileResponse profile) => throw new NotImplementedException();
 
-        public Task<ApiResponseResult<VpnConfig>> GetVpnConfig() => throw new NotImplementedException();
+        public Task<ApiResponseResult<VpnConfigResponse>> GetVpnConfig() => throw new NotImplementedException();
 
-        public Task<ApiResponseResult<PhysicalServerResponse>> GetServerAsync(string serverId) => throw new NotImplementedException();
+        public Task<ApiResponseResult<PhysicalServerWrapperResponse>> GetServerAsync(string serverId) => throw new NotImplementedException();
 
         public Task<ApiResponseResult<AnnouncementsResponse>> GetAnnouncementsAsync() => throw new NotImplementedException();
 
@@ -166,8 +170,8 @@ namespace TestTools.ApiClient
 
         public Task<ApiResponseResult<BaseResponse>> CheckAuthenticationServerStatusAsync() => throw new NotImplementedException();
 
-        public Task<ApiResponseResult<CertificateResponseData>> RequestAuthCertificateAsync(CertificateRequestData requestData) => throw new NotImplementedException();
+        public Task<ApiResponseResult<CertificateResponse>> RequestAuthCertificateAsync(CertificateRequest request) => throw new NotImplementedException();
 
-        public Task<ApiResponseResult<BaseResponse>> ApplyPromoCodeAsync(PromoCodeRequestData requestData) => throw new NotImplementedException();
+        public Task<ApiResponseResult<BaseResponse>> ApplyPromoCodeAsync(PromoCodeRequest promoCodeRequest) => throw new NotImplementedException();
     }
 }

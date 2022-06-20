@@ -24,117 +24,117 @@ namespace ProtonVPN.Common.Configuration
     public class UrlConfig
     {
         [Required]
-        public string BfeArticleUrl { get; internal set; }
+        public string BfeArticleUrl { get; set; }
 
         [Required]
-        public string PasswordResetUrl { get; internal set; }
+        public string PasswordResetUrl { get; set; }
 
         [Required]
-        public string ForgetUsernameUrl { get; internal set; }
+        public string ForgetUsernameUrl { get; set; }
         
         [Required]
-        public string UpdateUrl { get; internal set; }
+        public string UpdateUrl { get; set; }
 
         [Required]
-        public string DownloadUrl { get; internal set; }
+        public string DownloadUrl { get; set; }
 
         [Required]
-        public string ApiUrl { get; internal set; }
+        public string ApiUrl { get; set; }
         
         [Required]
-        public string TlsReportUrl { get; internal set; }
+        public string TlsReportUrl { get; set; }
         
         [Required]
-        public string HelpUrl { get; internal set; }
+        public string HelpUrl { get; set; }
 
         [Required]
-        public string AccountUrl { get; internal set; }
+        public string AccountUrl { get; set; }
 
         [Required]
-        public string AboutSecureCoreUrl { get; internal set; }
+        public string AboutSecureCoreUrl { get; set; }
 
         [Required]
-        public string RegisterUrl { get; internal set; }
+        public string RegisterUrl { get; set; }
 
         [Required]
-        public string TroubleShootingUrl { get; internal set; }
+        public string TroubleShootingUrl { get; set; }
 
         [Required]
-        public string P2PStatusUrl { get; internal set; }
+        public string P2PStatusUrl { get; set; }
 
         [Required]
-        public string ProtonMailPricingUrl { get; internal set; }
+        public string ProtonMailPricingUrl { get; set; }
 
         [Required]
-        public string PublicWifiSafetyUrl { get; internal set; }
+        public string PublicWifiSafetyUrl { get; set; }
 
         [Required]
-        public string ProtonStatusUrl { get; internal set; }
+        public string ProtonStatusUrl { get; set; }
 
         [Required]
-        public string TorBrowserUrl { get; internal set; }
+        public string TorBrowserUrl { get; set; }
 
         [Required]
-        public string ProtonTwitterUrl { get; internal set; }
+        public string ProtonTwitterUrl { get; set; }
 
         [Required]
-        public string SupportFormUrl { get; internal set; }
+        public string SupportFormUrl { get; set; }
 
         [Required]
-        public string AlternativeRoutingUrl { get; internal set; }
+        public string AlternativeRoutingUrl { get; set; }
 
         [Required]
-        public string AboutNetShieldUrl { get; internal set; }
+        public string AboutNetShieldUrl { get; set; }
 
         [Required]
-        public string AboutKillSwitchUrl { get; internal set; }
+        public string AboutKillSwitchUrl { get; set; }
 
         [Required]
-        public string AboutPortForwardingUrl { get; internal set; }
+        public string AboutPortForwardingUrl { get; set; }
 
         [Required]
-        public string PortForwardingRisksUrl { get; internal set; }
+        public string PortForwardingRisksUrl { get; set; }
 
         [Required]
-        public string AboutModerateNatUrl { get; internal set; }
+        public string AboutModerateNatUrl { get; set; }
 
         [Required]
-        public string InvoicesUrl { get; internal set; }
+        public string InvoicesUrl { get; set; }
 
         [Required]
-        public string StreamingUrl { get; internal set; }
+        public string StreamingUrl { get; set; }
 
         [Required]
-        public string P2PUrl { get; internal set; }
+        public string P2PUrl { get; set; }
 
         [Required]
-        public string SmartRoutingUrl { get; internal set; }
+        public string SmartRoutingUrl { get; set; }
 
         [Required]
-        public string TorUrl { get; internal set; }
+        public string TorUrl { get; set; }
 
         [Required]
-        public string CaptchaUrl { get; internal set; }
+        public string CaptchaUrl { get; set; }
 
         [Required]
-        public string AboutSmartProtocolUrl { get; internal set; }
+        public string AboutSmartProtocolUrl { get; set; }
 
         [Required]
-        public string IncorrectSystemTimeArticleUrl { get; internal set; }
+        public string IncorrectSystemTimeArticleUrl { get; set; }
 
         [Required]
-        public string AssignVpnConnectionsUrl { get; internal set; }
+        public string AssignVpnConnectionsUrl { get; set; }
 
         [Required]
-        public string NonStandardPortsUrl { get; internal set; }
+        public string NonStandardPortsUrl { get; set; }
 
         [Required]
-        public string LoginProblemsUrl { get; internal set; }
+        public string LoginProblemsUrl { get; set; }
 
         [Required]
-        public string RebrandingUrl { get; internal set; }
+        public string RebrandingUrl { get; set; }
 
         [Required]
-        public string RpcServerProblemUrl { get; internal set; }
+        public string RpcServerProblemUrl { get; set; }
     }
 }

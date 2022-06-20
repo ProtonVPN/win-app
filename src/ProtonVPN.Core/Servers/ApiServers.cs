@@ -20,24 +20,17 @@
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
-using System.Threading;
 using System.Threading.Tasks;
-using Polly;
-using Polly.Contrib.WaitAndRetry;
-using Polly.Retry;
+using ProtonVPN.Api.Contracts;
+using ProtonVPN.Api.Contracts.Servers;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.ApiLogs;
-using ProtonVPN.Core.Api;
-using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.User;
 
 namespace ProtonVPN.Core.Servers
 {
     public class ApiServers : IApiServers
     {
-        private const int RetryCount = 3;
-        private const int RetryDelayInSeconds = 2;
-
         private readonly ILogger _logger;
         private readonly IApiClient _apiClient;
         private readonly TruncatedLocation _location;
@@ -52,43 +45,26 @@ namespace ProtonVPN.Core.Servers
             _location = location;
         }
 
-        public async Task<IReadOnlyCollection<LogicalServerContract>> GetServersAsync()
+        public async Task<IReadOnlyCollection<LogicalServerResponse>> GetServersAsync()
         {
             try
             {
-                return await GetServersWithRetryAsync();
+                ApiResponseResult<ServersResponse> response = await _apiClient.GetServersAsync(_location.Ip());
+                return response.Success ? response.Value.Servers : Array.Empty<LogicalServerResponse>();
             }
             catch (HttpRequestException ex)
             {
                 _logger.Error<ApiErrorLog>("API: Get servers failed", ex);
             }
 
-            return Array.Empty<LogicalServerContract>();
+            return Array.Empty<LogicalServerResponse>();
         }
 
-        private async Task<IReadOnlyCollection<LogicalServerContract>> GetServersWithRetryAsync()
-        {
-            AsyncRetryPolicy policy = Policy
-                .Handle<HttpRequestException>()
-                .WaitAndRetryAsync(GetRetryPolicy());
-
-            return await policy.ExecuteAsync<IReadOnlyCollection<LogicalServerContract>>(async _ =>
-            {
-                ApiResponseResult<ServerList> response = await _apiClient.GetServersAsync(_location.Ip());
-                return response.Success ? response.Value.Servers : Array.Empty<LogicalServerContract>();
-            }, CancellationToken.None);
-        }
-
-        private IEnumerable<TimeSpan> GetRetryPolicy()
-        {
-            return Backoff.ExponentialBackoff(TimeSpan.FromSeconds(RetryDelayInSeconds), RetryCount);
-        }
-
-        public async Task<IReadOnlyCollection<LogicalServerContract>> GetLoadsAsync()
+        public async Task<IReadOnlyCollection<LogicalServerResponse>> GetLoadsAsync()
         {
             try
             {
-                ApiResponseResult<ServerList> response = await _apiClient.GetServerLoadsAsync(_location.Ip());
+                ApiResponseResult<ServersResponse> response = await _apiClient.GetServerLoadsAsync(_location.Ip());
                 if (response.Success)
                 {
                     return response.Value.Servers;
@@ -99,7 +75,7 @@ namespace ProtonVPN.Core.Servers
                 _logger.Error<ApiErrorLog>("API: Get servers failed", ex);
             }
 
-            return Array.Empty<LogicalServerContract>();
+            return Array.Empty<LogicalServerResponse>();
         }
     }
 }

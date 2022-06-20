@@ -18,20 +18,18 @@
  */
 
 using System;
-using System.Globalization;
 using System.Security.Cryptography;
+using ProtonVPN.Api.Contracts.Auth;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.UserLogs;
 using ProtonVPN.Common.Logging.Categorization.Events.UserPlanLogs;
-using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.OS.Crypto;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Storage;
 using ProtonVPN.Core.User;
 using CoreUser = ProtonVPN.Core.Models.User;
-using UserLocation = ProtonVPN.Core.User.UserLocation;
 
 namespace ProtonVPN.Settings
 {
@@ -80,8 +78,6 @@ namespace ProtonVPN.Settings
             _storage.Set("Ip", location.Ip.Encrypt());
             _storage.Set("Country", location.Country.Encrypt());
             _storage.Set("Isp", location.Isp.Encrypt());
-            _storage.Set("Latitude", location.Latitude.ToString(CultureInfo.InvariantCulture).Encrypt());
-            _storage.Set("Longitude", location.Longitude.ToString(CultureInfo.InvariantCulture).Encrypt());
         }
 
         public UserLocation Location()
@@ -98,12 +94,12 @@ namespace ProtonVPN.Settings
             return UserLocation.Empty;
         }
 
-        public void StoreVpnInfo(VpnInfoResponse vpnInfo)
+        public void StoreVpnInfo(VpnInfoWrapperResponse vpnInfoWrapper)
         {
-            sbyte maxTier = vpnInfo.Vpn.MaxTier;
-            string vpnPlan = vpnInfo.Vpn.PlanName;
+            sbyte maxTier = vpnInfoWrapper.Vpn.MaxTier;
+            string vpnPlan = vpnInfoWrapper.Vpn.PlanName;
 
-            if (CoreUser.IsDelinquent(vpnInfo.Delinquent))
+            if (CoreUser.IsDelinquent(vpnInfoWrapper.Delinquent))
             {
                 maxTier = ServerTiers.Free;
                 vpnPlan = FREE_VPN_PLAN;
@@ -112,17 +108,17 @@ namespace ProtonVPN.Settings
             CacheUser(new CoreUser
             {
                 MaxTier = maxTier,
-                Services = vpnInfo.Services,
+                Services = vpnInfoWrapper.Services,
                 VpnPlan = vpnPlan,
-                VpnPassword = vpnInfo.Vpn.Password,
-                VpnUsername = vpnInfo.Vpn.Name,
-                Delinquent = vpnInfo.Delinquent,
-                MaxConnect = vpnInfo.Vpn.MaxConnect,
-                OriginalVpnPlan = vpnInfo.Vpn.PlanName,
-                Subscribed = vpnInfo.Subscribed,
-                HasPaymentMethod = vpnInfo.HasPaymentMethod,
-                Credit = vpnInfo.Credit,
-                VpnPlanName = vpnInfo.Vpn.PlanTitle,
+                VpnPassword = vpnInfoWrapper.Vpn.Password,
+                VpnUsername = vpnInfoWrapper.Vpn.Name,
+                Delinquent = vpnInfoWrapper.Delinquent,
+                MaxConnect = vpnInfoWrapper.Vpn.MaxConnect,
+                OriginalVpnPlan = vpnInfoWrapper.Vpn.PlanName,
+                Subscribed = vpnInfoWrapper.Subscribed,
+                HasPaymentMethod = vpnInfoWrapper.HasPaymentMethod,
+                Credit = vpnInfoWrapper.Credit,
+                VpnPlanName = vpnInfoWrapper.Vpn.PlanTitle,
             });
         }
 
@@ -177,19 +173,15 @@ namespace ProtonVPN.Settings
         public UserLocation UnsafeLocation()
         {
             string ip = _storage.Get<string>("Ip")?.Trim();
-            string latitude = _storage.Get<string>("Latitude")?.Trim();
-            string longitude = _storage.Get<string>("Longitude")?.Trim();
             string isp = _storage.Get<string>("Isp");
             string country = _storage.Get<string>("Country");
 
-            if (string.IsNullOrEmpty(ip) || string.IsNullOrEmpty(latitude) || string.IsNullOrEmpty(longitude))
+            if (string.IsNullOrEmpty(ip))
             {
                 return UserLocation.Empty;
             }
 
-            float latitudeFloat = float.Parse(latitude.Decrypt(), CultureInfo.InvariantCulture.NumberFormat);
-            float longitudeFloat = float.Parse(longitude.Decrypt(), CultureInfo.InvariantCulture.NumberFormat);
-            return new UserLocation(ip.Decrypt(), latitudeFloat, longitudeFloat, isp.Decrypt(), country.Decrypt());
+            return new UserLocation(ip.Decrypt(), isp.Decrypt(), country.Decrypt());
         }
 
         private void CacheUser(CoreUser user)

@@ -22,10 +22,10 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Caliburn.Micro;
+using ProtonVPN.Api.Contracts;
+using ProtonVPN.Api.Contracts.Auth;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Threading;
-using ProtonVPN.Core.Api;
-using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Window;
 
@@ -90,7 +90,7 @@ namespace ProtonVPN.Account
 
             try
             {
-                ApiResponseResult<VpnInfoResponse> response = await _api.GetVpnInfoResponse();
+                ApiResponseResult<VpnInfoWrapperResponse> response = await _api.GetVpnInfoResponse();
                 if (response.Success)
                 {
                     _userStorage.StoreVpnInfo(response.Value);

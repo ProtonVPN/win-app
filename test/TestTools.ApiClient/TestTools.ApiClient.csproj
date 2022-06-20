@@ -35,10 +35,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Castle.Core.4.4.0\lib\net45\Castle.Core.dll</HintPath>
+      <HintPath>..\..\packages\Castle.Core.4.4.1\lib\net45\Castle.Core.dll</HintPath>
     </Reference>
-    <Reference Include="NSubstitute, Version=4.2.0.0, Culture=neutral, PublicKeyToken=92dd2e9066daa5ca, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NSubstitute.4.2.2\lib\net46\NSubstitute.dll</HintPath>
+    <Reference Include="NSubstitute, Version=4.3.0.0, Culture=neutral, PublicKeyToken=92dd2e9066daa5ca, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NSubstitute.4.3.0\lib\net46\NSubstitute.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -67,6 +67,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\ProtonVPN.Api.Contracts\ProtonVPN.Api.Contracts.csproj">
+      <Project>{9E4D6072-C8DE-475A-B9A7-4B6BF6EEEAEB}</Project>
+      <Name>ProtonVPN.Api.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\ProtonVPN.Api\ProtonVPN.Api.csproj">
+      <Project>{3E905528-D87C-4552-A32D-66BF90D14DB0}</Project>
+      <Name>ProtonVPN.Api</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\ProtonVPN.Common\ProtonVPN.Common.csproj">
       <Project>{03B8E43C-5680-4803-A745-0A104FE6620C}</Project>
       <Name>ProtonVPN.Common</Name>

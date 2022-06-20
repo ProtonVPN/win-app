@@ -28,172 +28,172 @@ namespace ProtonVPN.Common.Configuration
     public class Config
     {
         [Range(32, 64)]
-        public int OsBits { get; internal set; }
+        public int OsBits { get; set; }
 
         [Required]
-        public string AppName { get; internal set; }
+        public string AppName { get; set; }
 
         [Required]
-        public string AppVersion { get; internal set; }
+        public string AppVersion { get; set; }
 
         [Required]
-        public string AppExePath { get; internal set; }
+        public string AppExePath { get; set; }
 
         [Required]
-        public string AppLogFolder { get; internal set; }
+        public string AppLogFolder { get; set; }
 
         [Required]
-        public string AppLogDefaultFullFilePath { get; internal set; }
+        public string AppLogDefaultFullFilePath { get; set; }
 
         [Required]
-        public string DiagnosticsLogFolder { get; internal set; }
+        public string DiagnosticsLogFolder { get; set; }
 
         [Required]
-        public string DiagnosticsZipPath { get; internal set; }
+        public string DiagnosticsZipPath { get; set; }
 
         [Required]
-        public string TranslationsFolder { get; internal set; }
+        public string TranslationsFolder { get; set; }
 
         [Required]
-        public string ServiceName { get; internal set; }
+        public string ServiceName { get; set; }
 
         [Required]
-        public string ServiceExePath { get; internal set; }
+        public string ServiceExePath { get; set; }
 
         [Required]
-        public string ServiceSettingsFilePath { get; internal set; }
+        public string ServiceSettingsFilePath { get; set; }
 
         [Required]
-        public string ServersJsonCacheFilePath { get; internal set; }
+        public string ServersJsonCacheFilePath { get; set; }
 
         [Required]
-        public string GuestHoleServersJsonFilePath { get; internal set; }
+        public string GuestHoleServersJsonFilePath { get; set; }
 
         [Required]
-        public string StreamingServicesFilePath { get; internal set; }
+        public string StreamingServicesFilePath { get; set; }
 
         [Required]
-        public string ServiceLogFolder { get; internal set; }
+        public string ServiceLogFolder { get; set; }
 
         [Required]
-        public string ServiceLogDefaultFullFilePath { get; internal set; }
+        public string ServiceLogDefaultFullFilePath { get; set; }
 
         [Required]
-        public string UpdateFilePath { get; internal set; }
+        public string UpdateFilePath { get; set; }
 
         [Required]
-        public string UpdatesPath { get; internal set; }
+        public string UpdatesPath { get; set; }
 
         [Required]
-        public string CalloutServiceName { get; internal set; }
+        public string CalloutServiceName { get; set; }
 
         [Required]
-        public string LocalAppDataFolder { get; internal set; }
+        public string LocalAppDataFolder { get; set; }
 
         [Range(1, 100)]
-        public int MaxAppLogsAttached { get; internal set; }
+        public int MaxAppLogsAttached { get; set; }
 
         [Range(1, 100)]
-        public int MaxDiagnosticLogsAttached { get; internal set; }
+        public int MaxDiagnosticLogsAttached { get; set; }
 
         [Range(1, 100)]
-        public int MaxServiceLogsAttached { get; internal set; }
+        public int MaxServiceLogsAttached { get; set; }
 
         [Required]
-        public string ApiClientId { get; internal set; }
+        public string ApiClientId { get; set; }
 
         [Required]
-        public string ApiVersion { get; internal set; }
+        public string ApiVersion { get; set; }
 
         [Required]
-        public string UserAgent { get; internal set; }
+        public string UserAgent { get; set; }
 
         [Range(typeof(TimeSpan), "00:00:01", "00:05:00")]
-        public TimeSpan ApiTimeout { get; internal set; }
+        public TimeSpan ApiTimeout { get; set; }
 
         [Range(typeof(TimeSpan), "00:00:01", "00:05:00")]
-        public TimeSpan ApiUploadTimeout { get; internal set; }
+        public TimeSpan ApiUploadTimeout { get; set; }
 
         [Range(typeof(TimeSpan), "00:00:01", "00:01:00")]
-        public TimeSpan DohClientTimeout { get; internal set; }
+        public TimeSpan DohClientTimeout { get; set; }
 
         [Range(0, 5)]
-        public int ApiRetries { get; internal set; }
+        public int ApiRetries { get; set; }
 
         [Required]
-        public int MaxGuestHoleRetries { get; internal set; }
+        public int MaxGuestHoleRetries { get; set; }
 
         [Required]
-        public string GuestHoleVpnUsername { get; internal set; }
+        public string GuestHoleVpnUsername { get; set; }
 
         [Required]
-        public string GuestHoleVpnPassword { get; internal set; }
+        public string GuestHoleVpnPassword { get; set; }
 
         [Required]
         public string VpnUsernameSuffix { get; set; }
 
         [Range(typeof(TimeSpan), "00:00:10", "10:00:00:00")]
-        public TimeSpan UpdateCheckInterval { get; internal set; }
+        public TimeSpan UpdateCheckInterval { get; set; }
 
         [Range(typeof(TimeSpan), "00:00:10", "10.00:00:00")]
-        public TimeSpan UpdateRemindInterval { get; internal set; }
+        public TimeSpan UpdateRemindInterval { get; set; }
 
         [Range(typeof(TimeSpan), "00:00:10", "23:59:59")]
-        public TimeSpan ServerUpdateInterval { get; internal set; }
+        public TimeSpan ServerUpdateInterval { get; set; }
 
         [Range(typeof(TimeSpan), "00:00:10", "23:59:59")]
-        public TimeSpan StreamingServicesUpdateInterval { get; internal set; }
+        public TimeSpan StreamingServicesUpdateInterval { get; set; }
 
         [Range(typeof(TimeSpan), "00:00:10", "23:59:59")]
-        public TimeSpan AnnouncementUpdateInterval { get; internal set; }
+        public TimeSpan AnnouncementUpdateInterval { get; set; }
 
         [Range(typeof(TimeSpan), "00:00:10", "23:59:59")]
-        public TimeSpan ServerLoadUpdateInterval { get; internal set; }
+        public TimeSpan ServerLoadUpdateInterval { get; set; }
 
         [Range(typeof(TimeSpan), "00:00:10", "23:59:59")]
-        public TimeSpan ClientConfigUpdateInterval { get; internal set; }
+        public TimeSpan ClientConfigUpdateInterval { get; set; }
 
         [Range(typeof(TimeSpan), "00:00:10", "23:59:59")]
-        public TimeSpan P2PCheckInterval { get; internal set; }
+        public TimeSpan P2PCheckInterval { get; set; }
 
         [Range(typeof(TimeSpan), "00:00:10", "23:59:59")]
-        public TimeSpan VpnInfoCheckInterval { get; internal set; }
+        public TimeSpan VpnInfoCheckInterval { get; set; }
 
         [Required]
-        public string DefaultCurrency { get; internal set; }
+        public string DefaultCurrency { get; set; }
 
         [Range(1, 200)]
-        public int ReportBugMaxFiles { get; internal set; }
+        public int ReportBugMaxFiles { get; set; }
 
         [Range(1, int.MaxValue)]
-        public long ReportBugMaxFileSize { get; internal set; }
+        public long ReportBugMaxFileSize { get; set; }
 
         [Range(1, 255)]
-        public int MaxProfileNameLength { get; internal set; }
+        public int MaxProfileNameLength { get; set; }
 
         [Range(typeof(TimeSpan), "00:00:10", "23:59:59")]
-        public TimeSpan ProfileSyncTimerPeriod { get; internal set; }
+        public TimeSpan ProfileSyncTimerPeriod { get; set; }
 
         [Range(typeof(TimeSpan), "00:00:10", "23:59:59")]
-        public TimeSpan ProfileSyncPeriod { get; internal set; }
+        public TimeSpan ProfileSyncPeriod { get; set; }
 
         [Range(typeof(TimeSpan), "00:00:10", "23:59:59")]
-        public TimeSpan ForcedProfileSyncInterval { get; internal set; }
+        public TimeSpan ForcedProfileSyncInterval { get; set; }
 
         [Range(typeof(TimeSpan), "00:00:10", "23:59:59")]
-        public TimeSpan EventCheckInterval { get; internal set; }
+        public TimeSpan EventCheckInterval { get; set; }
 
         [Range(typeof(TimeSpan), "00:00:10", "23:59:59")]
-        public TimeSpan ServiceCheckInterval { get; internal set; }
+        public TimeSpan ServiceCheckInterval { get; set; }
 
         [Required]
-        public int[] DefaultOpenVpnUdpPorts { get; internal set; }
+        public int[] DefaultOpenVpnUdpPorts { get; set; }
 
         [Required]
-        public int[] DefaultOpenVpnTcpPorts { get; internal set; }
+        public int[] DefaultOpenVpnTcpPorts { get; set; }
 
         [Required]
-        public int[] DefaultWireGuardPorts { get; internal set; }
+        public int[] DefaultWireGuardPorts { get; set; }
 
         public UrlConfig Urls { get; } = new();
 
@@ -201,29 +201,23 @@ namespace ProtonVPN.Common.Configuration
 
         public WireGuardConfig WireGuard { get; } = new();
 
-        public TlsPinningConfig TlsPinningConfig { get; internal set; } = new();
+        public TlsPinningConfig TlsPinningConfig { get; set; } = new();
 
-        public List<string> DoHProviders { get; internal set; } = new();
+        public List<string> DoHProviders { get; set; } = new();
 
         [Required]
-        public string DefaultLocale { get; internal set; }
+        public string DefaultLocale { get; set; }
 
         [Range(typeof(TimeSpan), "00:00:00", "23:59:59")]
-        public TimeSpan MaintenanceCheckInterval { get; internal set; }
+        public TimeSpan MaintenanceCheckInterval { get; set; }
 
-        public int? MaxQuickConnectServersOnReconnection { get; internal set; } = DefaultConfig.MAX_QUICK_CONNECT_SERVERS_ON_RECONNECTION;
+        public int? MaxQuickConnectServersOnReconnection { get; set; } = DefaultConfig.MAX_QUICK_CONNECT_SERVERS_ON_RECONNECTION;
 
         [Range(typeof(TimeSpan), "00:00:10", "23:59:59")]
-        public TimeSpan AuthCertificateUpdateInterval { get; internal set; }
+        public TimeSpan AuthCertificateUpdateInterval { get; set; }
 
-        [Range(typeof(TimeSpan), "00:00:01", "1.00:00:00")]
-        public TimeSpan AuthCertificateFirstRetryInterval { get; internal set; }
+        public string NtpServerUrl { get; set; }
 
-        [Range(0, 16)]
-        public int AuthCertificateMaxNumOfRetries { get; internal set; }
-
-        public string NtpServerUrl { get; internal set; }
-
-        public string ServerValidationPublicKey { get; internal set; }
+        public string ServerValidationPublicKey { get; set; }
     }
 }

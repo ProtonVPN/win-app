@@ -254,6 +254,7 @@
     <Compile Include="Networking\VpnProtocol.cs" />
     <Compile Include="OS\DeviceInfoProvider.cs" />
     <Compile Include="OS\IDeviceInfoProvider.cs" />
+    <Compile Include="OS\Net\Http\HttpRequestMessageExtensions.cs" />
     <Compile Include="OS\Net\INetworkInterfaceLoader.cs" />
     <Compile Include="OS\Net\NetworkInterfaceLoader.cs" />
     <Compile Include="OS\Net\NetworkAddress.cs" />

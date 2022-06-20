@@ -21,9 +21,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
+using ProtonVPN.Api.Contracts.Common;
 using ProtonVPN.Common.OS.Processes;
 using ProtonVPN.Config.Url;
-using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Modals.Dialogs;
 
 namespace ProtonVPN.Modals.ApiActions

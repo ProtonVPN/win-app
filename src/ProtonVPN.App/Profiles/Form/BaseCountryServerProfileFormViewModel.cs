@@ -20,8 +20,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ProtonVPN.Api.Contracts.Servers;
 using ProtonVPN.Core.Abstract;
-using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Servers;
@@ -155,7 +155,7 @@ namespace ProtonVPN.Profiles.Form
 
         protected virtual List<IServerViewModel> GetServersByCountry(string countryCode)
         {
-            Specification<LogicalServerContract> spec = new ServerByFeatures(GetFeatures()) &&
+            Specification<LogicalServerResponse> spec = new ServerByFeatures(GetFeatures()) &&
                                                         new ExitCountryServer(countryCode);
             IReadOnlyCollection<Server> countryServers = ServerManager.GetServers(spec);
 
@@ -175,7 +175,7 @@ namespace ProtonVPN.Profiles.Form
 
         private bool IsUpgradeRequiredForCountry(string countryCode)
         {
-            Specification<LogicalServerContract> spec = new ServerByFeatures(GetFeatures()) &&
+            Specification<LogicalServerResponse> spec = new ServerByFeatures(GetFeatures()) &&
                                                         new ExitCountryServer(countryCode) &&
                                                         new MaxTierServer(UserStorage.User().MaxTier);
 

@@ -20,15 +20,15 @@
 using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Caliburn.Micro;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
-using ProtonVPN.Common.Configuration.Source;
+using ProtonVPN.Api.Contracts;
+using ProtonVPN.Api.Contracts.Certificates;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
-using ProtonVPN.Core.Api;
-using ProtonVPN.Core.Api.Certificates;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Settings;
 
@@ -37,19 +37,18 @@ namespace ProtonVPN.Core.Test.Auth
     [TestClass]
     public class AuthCertificateManagerTest
     {
-        private Common.Configuration.Config _config;
         private MockOfAuthKeyManager _authKeyManager;
         private IApiClient _apiClient;
         private IAppSettings _appSettings;
         private IEventAggregator _eventAggregator;
         private ILogger _logger;
-        private IAuthCertificateManager _certificateManager;
+        private AuthCertificateManager _certificateManager;
 
         private DateTimeOffset? _certificateExpirationTime;
         private DateTimeOffset? _certificateRefreshTime;
         private DateTimeOffset? _testStartTime;
         private DateTimeOffset? _testEndTime;
-        private CertificateResponseData _certificateResponseData;
+        private CertificateResponse _certificateResponse;
         private IList<string> _usedClientPublicKeys = new List<string>();
 
         [TestInitialize]
@@ -58,33 +57,32 @@ namespace ProtonVPN.Core.Test.Auth
             _certificateExpirationTime = DateTimeOffset.UtcNow.AddHours(24).TruncateToSeconds();
             _certificateRefreshTime = DateTimeOffset.UtcNow.AddHours(18).TruncateToSeconds();
             _testStartTime = DateTimeOffset.UtcNow;
-            
-            _config = new DefaultConfig().Value();
+
             _authKeyManager = new MockOfAuthKeyManager();
             _apiClient = Substitute.For<IApiClient>();
-            _apiClient.RequestAuthCertificateAsync(Arg.Any<CertificateRequestData>())
-                .Returns(async (args) => await MockOfRequestAuthCertificateAsync(args.Arg<CertificateRequestData>()));
+            _apiClient.RequestAuthCertificateAsync(Arg.Any<CertificateRequest>())
+                .Returns(async (args) => await MockOfRequestAuthCertificateAsync(args.Arg<CertificateRequest>()));
             _appSettings = Substitute.For<IAppSettings>();
             _logger = Substitute.For<ILogger>();
             _eventAggregator = Substitute.For<IEventAggregator>();
-            _certificateManager = new AuthCertificateManager(_config, _authKeyManager, _apiClient, _appSettings, _logger, _eventAggregator);
+            _certificateManager = new AuthCertificateManager(_authKeyManager, _apiClient, _appSettings, _logger, _eventAggregator);
         }
 
-        private async Task<ApiResponseResult<CertificateResponseData>> MockOfRequestAuthCertificateAsync(CertificateRequestData arg)
+        private async Task<ApiResponseResult<CertificateResponse>> MockOfRequestAuthCertificateAsync(CertificateRequest arg)
         {
             if (arg.ClientPublicKey.IsNullOrEmpty() || _usedClientPublicKeys.Contains(arg.ClientPublicKey))
             {
-                return ApiResponseResult<CertificateResponseData>.Fail(CreateClientPublicKeyConflictCertificateResponseData(),
-                    HttpStatusCode.BadRequest, string.Empty);
+                return ApiResponseResult<CertificateResponse>.Fail(CreateClientPublicKeyConflictCertificateResponseData(),
+                    new HttpResponseMessage(HttpStatusCode.BadRequest), string.Empty);
             }
             _usedClientPublicKeys.Add(arg.ClientPublicKey);
-            _certificateResponseData ??= CreateCertificateResponseData();
-            return ApiResponseResult<CertificateResponseData>.Ok(_certificateResponseData);
+            _certificateResponse ??= CreateCertificateResponseData();
+            return ApiResponseResult<CertificateResponse>.Ok(new HttpResponseMessage(), _certificateResponse);
         }
 
-        private CertificateResponseData CreateCertificateResponseData()
+        private CertificateResponse CreateCertificateResponseData()
         {
-            return new CertificateResponseData()
+            return new CertificateResponse
             {
                 Certificate = "--Certificate--",
                 ExpirationTime = _certificateExpirationTime.Value.ToUnixTimeSeconds(),
@@ -93,9 +91,9 @@ namespace ProtonVPN.Core.Test.Auth
             };
         }
 
-        private CertificateResponseData CreateClientPublicKeyConflictCertificateResponseData()
+        private CertificateResponse CreateClientPublicKeyConflictCertificateResponseData()
         {
-            return new CertificateResponseData
+            return new CertificateResponse
             {
                 Code = ResponseCodes.ClientPublicKeyConflict
             };
@@ -104,7 +102,6 @@ namespace ProtonVPN.Core.Test.Auth
         [TestCleanup]
         public void Cleanup()
         {
-            _config = null;
             _authKeyManager = null;
             _apiClient = null;
             _appSettings = null;
@@ -116,7 +113,7 @@ namespace ProtonVPN.Core.Test.Auth
             _certificateRefreshTime = null;
             _testStartTime = null;
             _testEndTime = null;
-            _certificateResponseData = null;
+            _certificateResponse = null;
             _usedClientPublicKeys = null;
         }
 
@@ -127,7 +124,7 @@ namespace ProtonVPN.Core.Test.Auth
             await ForceRequestNewCertificateAsync();
 
             ValidateAppSettings();
-            await _apiClient.Received(1).RequestAuthCertificateAsync(Arg.Any<CertificateRequestData>());
+            await _apiClient.Received(1).RequestAuthCertificateAsync(Arg.Any<CertificateRequest>());
             AssertNumOfCallsToRecreateKeys(0);
         }
 
@@ -141,10 +138,10 @@ namespace ProtonVPN.Core.Test.Auth
         {
             Assert.IsTrue(_testStartTime <= _appSettings.AuthenticationCertificateRequestUtcDate);
             Assert.IsTrue(_testEndTime >= _appSettings.AuthenticationCertificateRequestUtcDate);
-            Assert.AreEqual(_certificateResponseData.Certificate, _appSettings.AuthenticationCertificatePem);
+            Assert.AreEqual(_certificateResponse.Certificate, _appSettings.AuthenticationCertificatePem);
             Assert.AreEqual(_certificateExpirationTime, _appSettings.AuthenticationCertificateExpirationUtcDate);
             Assert.AreEqual(_certificateRefreshTime, _appSettings.AuthenticationCertificateRefreshUtcDate);
-            Assert.AreEqual(_certificateResponseData.ServerPublicKey, _appSettings.CertificationServerPublicKey);
+            Assert.AreEqual(_certificateResponse.ServerPublicKey, _appSettings.CertificationServerPublicKey);
         }
 
         private void AssertNumOfCallsToRecreateKeys(int expectedNumOfCalls)
@@ -158,7 +155,7 @@ namespace ProtonVPN.Core.Test.Auth
             await ForceRequestNewCertificateAsync();
 
             ValidateAppSettings();
-            await _apiClient.Received(1).RequestAuthCertificateAsync(Arg.Any<CertificateRequestData>());
+            await _apiClient.Received(1).RequestAuthCertificateAsync(Arg.Any<CertificateRequest>());
             AssertNumOfCallsToRecreateKeys(1);
         }
 
@@ -171,10 +168,10 @@ namespace ProtonVPN.Core.Test.Auth
             await ForceRequestNewCertificateAsync();
 
             ValidateAppSettings();
-            await _apiClient.Received(2).RequestAuthCertificateAsync(Arg.Any<CertificateRequestData>());
+            await _apiClient.Received(2).RequestAuthCertificateAsync(Arg.Any<CertificateRequest>());
             AssertNumOfCallsToRecreateKeys(1);
         }
-        
+
         [TestMethod]
         public async Task TestForceRequestNewCertificateAsync_WhenCalledMultipleTimes()
         {
@@ -185,7 +182,7 @@ namespace ProtonVPN.Core.Test.Auth
             await ForceRequestNewCertificateAsync();
 
             ValidateAppSettings();
-            await _apiClient.Received(5).RequestAuthCertificateAsync(Arg.Any<CertificateRequestData>());
+            await _apiClient.Received(5).RequestAuthCertificateAsync(Arg.Any<CertificateRequest>());
             AssertNumOfCallsToRecreateKeys(2);
         }
 
@@ -197,7 +194,7 @@ namespace ProtonVPN.Core.Test.Auth
             await RequestNewCertificateAsync();
 
             ValidateAppSettings();
-            await _apiClient.Received(1).RequestAuthCertificateAsync(Arg.Any<CertificateRequestData>());
+            await _apiClient.Received(1).RequestAuthCertificateAsync(Arg.Any<CertificateRequest>());
             AssertNumOfCallsToRecreateKeys(0);
         }
 
@@ -213,7 +210,7 @@ namespace ProtonVPN.Core.Test.Auth
             await RequestNewCertificateAsync();
 
             ValidateAppSettings();
-            await _apiClient.Received(1).RequestAuthCertificateAsync(Arg.Any<CertificateRequestData>());
+            await _apiClient.Received(1).RequestAuthCertificateAsync(Arg.Any<CertificateRequest>());
             AssertNumOfCallsToRecreateKeys(1);
         }
 
@@ -226,7 +223,7 @@ namespace ProtonVPN.Core.Test.Auth
             await RequestNewCertificateAsync();
 
             ValidateAppSettings();
-            await _apiClient.Received(2).RequestAuthCertificateAsync(Arg.Any<CertificateRequestData>());
+            await _apiClient.Received(2).RequestAuthCertificateAsync(Arg.Any<CertificateRequest>());
             AssertNumOfCallsToRecreateKeys(1);
         }
 
@@ -240,7 +237,7 @@ namespace ProtonVPN.Core.Test.Auth
             await RequestNewCertificateAsync();
 
             ValidateAppSettings();
-            await _apiClient.Received(1).RequestAuthCertificateAsync(Arg.Any<CertificateRequestData>());
+            await _apiClient.Received(1).RequestAuthCertificateAsync(Arg.Any<CertificateRequest>());
             AssertNumOfCallsToRecreateKeys(0);
         }
     }

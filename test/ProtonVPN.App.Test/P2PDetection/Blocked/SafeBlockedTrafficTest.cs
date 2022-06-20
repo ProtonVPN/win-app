@@ -57,9 +57,9 @@ namespace ProtonVPN.App.Test.P2PDetection.Blocked
         {
             // Arrange
             _origin.Detected().Returns(value);
-            var subject = new SafeBlockedTraffic(_origin);
+            SafeBlockedTraffic subject = new(_origin);
             // Act
-            var result = await subject.Detected();
+            bool result = await subject.Detected();
             // Assert
             result.Should().Be(value);
         }
@@ -70,11 +70,11 @@ namespace ProtonVPN.App.Test.P2PDetection.Blocked
         public async Task Detected_ShouldSuppress_ExpectedException(Type exceptionType)
         {
             // Arrange
-            var exception = (Exception)Activator.CreateInstance(exceptionType);
+            Exception exception = (Exception)Activator.CreateInstance(exceptionType);
             _origin.Detected().Throws(exception);
-            var subject = new SafeBlockedTraffic(_origin);
+            SafeBlockedTraffic subject = new(_origin);
             // Act
-            var result = await subject.Detected();
+            bool result = await subject.Detected();
             // Assert
             result.Should().BeFalse();
         }
@@ -85,11 +85,11 @@ namespace ProtonVPN.App.Test.P2PDetection.Blocked
         public async Task Detected_ShouldSuppress_ExpectedException_Async(Type exceptionType)
         {
             // Arrange
-            var exception = (Exception)Activator.CreateInstance(exceptionType);
+            Exception exception = (Exception)Activator.CreateInstance(exceptionType);
             _origin.Detected().Returns(Task.FromException<bool>(exception));
-            var subject = new SafeBlockedTraffic(_origin);
+            SafeBlockedTraffic subject = new(_origin);
             // Act
-            var result = await subject.Detected();
+            bool result = await subject.Detected();
             // Assert
             result.Should().BeFalse();
         }
@@ -99,11 +99,11 @@ namespace ProtonVPN.App.Test.P2PDetection.Blocked
         {
             // Arrange
             _origin.Detected().Throws<Exception>();
-            var subject = new SafeBlockedTraffic(_origin);
+            SafeBlockedTraffic subject = new(_origin);
             // Act
             Func<Task> action = () => subject.Detected();
             // Assert
-            action.Should().Throw<Exception>();
+            action.Should().ThrowAsync<Exception>();
         }
 
         [TestMethod]
@@ -111,11 +111,11 @@ namespace ProtonVPN.App.Test.P2PDetection.Blocked
         {
             // Arrange
             _origin.Detected().Returns(Task.FromException<bool>(new Exception()));
-            var subject = new SafeBlockedTraffic(_origin);
+            SafeBlockedTraffic subject = new(_origin);
             // Act
             Func<Task> action = async () => await subject.Detected();
             // Assert
-            action.Should().Throw<Exception>();
+            action.Should().ThrowAsync<Exception>();
         }
     }
 }

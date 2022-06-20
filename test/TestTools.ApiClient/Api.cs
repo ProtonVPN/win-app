@@ -22,10 +22,12 @@ using System.Net.Http;
 using System.Security;
 using System.Threading.Tasks;
 using NSubstitute;
+using ProtonVPN.Api.Contracts;
+using ProtonVPN.Api.Contracts.Geographical;
+using ProtonVPN.Api.Contracts.Profiles;
+using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Core.Abstract;
-using ProtonVPN.Core.Api;
-using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Settings;
 
@@ -44,13 +46,14 @@ namespace TestTools.ApiClient
             _password = password;
 
             TokenStorage tokenStorage = new();
+            Config config = new Config { ApiVersion = "3" };
             IUserStorage userStorage = Substitute.For<IUserStorage>();
             ILogger logger = Substitute.For<ILogger>();
             IAuthCertificateManager authCertificateManager = Substitute.For<IAuthCertificateManager>();
             IAppLanguageCache appLanguageCache = Substitute.For<IAppLanguageCache>();
             appLanguageCache.GetCurrentSelectedLanguageIetfTag().Returns("en");
 
-            _api = new Client(logger, new HttpClient
+            _api = new Client(config, logger, new HttpClient
             {
                 BaseAddress = new Uri("https://api.protonvpn.ch")
             }, tokenStorage, appLanguageCache);
@@ -65,20 +68,20 @@ namespace TestTools.ApiClient
 
         public async Task<string> GetCountry()
         {
-            ApiResponseResult<UserLocation> locationData = await _api.GetLocationDataAsync();
+            ApiResponseResult<UserLocationResponse> locationData = await _api.GetLocationDataAsync();
             return locationData.Value.Country;
         }
 
         public async Task<string> GetIpAddress()
         {
-            ApiResponseResult<UserLocation> locationData = await _api.GetLocationDataAsync();
+            ApiResponseResult<UserLocationResponse> locationData = await _api.GetLocationDataAsync();
             return locationData.Value.Ip;
         }
 
         public async Task DeleteProfiles()
         {
             ApiResponseResult<ProfilesResponse> profiles = await _api.GetProfiles();
-            foreach (Profile profile in profiles.Value.Profiles)
+            foreach (ProfileResponse profile in profiles.Value.Profiles)
             {
                 await _api.DeleteProfile(profile.Id);
             }

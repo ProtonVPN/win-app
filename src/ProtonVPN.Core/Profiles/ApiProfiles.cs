@@ -23,23 +23,24 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using ProtonVPN.Api.Contracts;
+using ProtonVPN.Api.Contracts.Common;
+using ProtonVPN.Api.Contracts.Profiles;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Helpers;
 using ProtonVPN.Common.Networking;
-using ProtonVPN.Core.Api;
-using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.Servers;
 
 namespace ProtonVPN.Core.Profiles
 {
     public class ApiProfiles : IProfileStorageAsync
     {
-        private static readonly Dictionary<HttpStatusCode, ProfileError> HttpStatusCodeToProfileError = new Dictionary<HttpStatusCode, ProfileError>
+        private static readonly Dictionary<HttpStatusCode, ProfileError> HttpStatusCodeToProfileError = new()
         {
             { HttpStatusCode.NotFound, ProfileError.NotFound }
         };
 
-        private static readonly Dictionary<int, ProfileError> ResponseCodeToProfileError = new Dictionary<int, ProfileError>
+        private static readonly Dictionary<int, ProfileError> ResponseCodeToProfileError = new()
         {
             { ResponseCodes.InvalidProfileIdOnDelete, ProfileError.NotFound },
             { ResponseCodes.InvalidProfileIdOnUpdate, ProfileError.NotFound },
@@ -50,8 +51,8 @@ namespace ProtonVPN.Core.Profiles
         private readonly IProfileFactory _profileFactory;
         private readonly ColorProvider _colorProvider;
 
-        public ApiProfiles(IApiClient apiClient, 
-            IProfileFactory profileFactory, 
+        public ApiProfiles(IApiClient apiClient,
+            IProfileFactory profileFactory,
             ColorProvider colorProvider)
         {
             _apiClient = apiClient;
@@ -72,7 +73,7 @@ namespace ProtonVPN.Core.Profiles
             Ensure.IsTrue(!profile.IsPredefined, "Can't create predefined profile");
             Ensure.IsTrue(profile.ColorCode.IsColorCodeValid());
 
-            ApiResponseResult<ProfileResponse> response = await HandleErrors(
+            ApiResponseResult<ProfileWrapperResponse> response = await HandleErrors(
                 () => _apiClient.CreateProfile(ToApiProfile(profile)));
 
             UpdatePropertiesFromApiProfile(profile, response.Value.Profile);
@@ -84,7 +85,7 @@ namespace ProtonVPN.Core.Profiles
             Ensure.IsTrue(!profile.IsPredefined, "Can't update predefined profile");
             Ensure.IsTrue(profile.ColorCode.IsColorCodeValid());
 
-            ApiResponseResult<ProfileResponse> response = await HandleErrors(
+            ApiResponseResult<ProfileWrapperResponse> response = await HandleErrors(
                 () => _apiClient.UpdateProfile(profile.ExternalId, ToApiProfile(profile)));
 
             UpdatePropertiesFromApiProfile(profile, response.Value.Profile);
@@ -98,12 +99,12 @@ namespace ProtonVPN.Core.Profiles
             await HandleErrors(() => _apiClient.DeleteProfile(profile.ExternalId));
         }
 
-        private List<Profile> ToProfiles(IEnumerable<Api.Contracts.Profile> profiles)
+        private List<Profile> ToProfiles(IEnumerable<ProfileResponse> profiles)
         {
             return profiles.Select(ToProfile).ToList();
         }
 
-        private Profile ToProfile(Api.Contracts.Profile apiProfile)
+        private Profile ToProfile(ProfileResponse apiProfile)
         {
             Profile profile = _profileFactory.Create();
             profile.IsPredefined = false;
@@ -111,7 +112,7 @@ namespace ProtonVPN.Core.Profiles
             return profile;
         }
 
-        private void UpdatePropertiesFromApiProfile(Profile profile, Api.Contracts.Profile apiProfile)
+        private void UpdatePropertiesFromApiProfile(Profile profile, ProfileResponse apiProfile)
         {
             profile.ExternalId = apiProfile.Id;
             profile.Name = apiProfile.Name;
@@ -123,9 +124,9 @@ namespace ProtonVPN.Core.Profiles
             profile.ServerId = apiProfile.LogicalId;
         }
 
-        private BaseProfile ToApiProfile(Profile profile)
+        private BaseProfileResponse ToApiProfile(Profile profile)
         {
-            return new BaseProfile
+            return new BaseProfileResponse
             {
                 Name = profile.Name,
                 Protocol = MapVpnProtocol(profile.VpnProtocol),
@@ -166,17 +167,17 @@ namespace ProtonVPN.Core.Profiles
             ServerFeatures features = new(value);
             return features.IsSecureCore() ? Features.SecureCore :
                 features.SupportsTor() ? Features.Tor :
-                features.SupportsP2P() ? Features.P2P : 
+                features.SupportsP2P() ? Features.P2P :
                 Features.None;
         }
 
         private int MapFeatures(Features features) => (int)features;
 
-        private ProfileType MapType(int value) => (ProfileType) value;
+        private ProfileType MapType(int value) => (ProfileType)value;
 
         private int MapType(ProfileType type) => (int)type;
 
-        private async Task<ApiResponseResult<T>> HandleErrors<T>(Func<Task<ApiResponseResult<T>>> function) where T: BaseResponse
+        private async Task<ApiResponseResult<T>> HandleErrors<T>(Func<Task<ApiResponseResult<T>>> function) where T : BaseResponse
         {
             try
             {
@@ -195,7 +196,7 @@ namespace ProtonVPN.Core.Profiles
             }
         }
 
-        private ProfileError ToError<T>(ApiResponseResult<T> response) where T: BaseResponse
+        private ProfileError ToError<T>(ApiResponseResult<T> response) where T : BaseResponse
         {
             if (response.Value != null)
             {
@@ -207,9 +208,9 @@ namespace ProtonVPN.Core.Profiles
                 return ProfileError.Other;
             }
 
-            if (HttpStatusCodeToProfileError.ContainsKey(response.StatusCode))
+            if (HttpStatusCodeToProfileError.ContainsKey(response.ResponseMessage.StatusCode))
             {
-                return HttpStatusCodeToProfileError[response.StatusCode];
+                return HttpStatusCodeToProfileError[response.ResponseMessage.StatusCode];
             }
 
             return ProfileError.Failure;

@@ -20,13 +20,13 @@
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using ProtonVPN.Api.Contracts;
+using ProtonVPN.Api.Contracts.Servers;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
 using ProtonVPN.Common.Logging.Categorization.Events.ConnectLogs;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
-using ProtonVPN.Core.Api;
-using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Servers.Models;
 using ProtonVPN.Core.Settings;
@@ -127,7 +127,7 @@ namespace ProtonVPN.Core.Service.Vpn
 
             try
             {
-                ApiResponseResult<PhysicalServerResponse> result = await _apiClient.GetServerAsync(server.Id);
+                ApiResponseResult<PhysicalServerWrapperResponse> result = await _apiClient.GetServerAsync(server.Id);
                 if (!result.Success)
                 {
                     return false;
