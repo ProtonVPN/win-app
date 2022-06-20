@@ -65,7 +65,7 @@ namespace ProtonVPN.Core.Ioc
         protected override void Load(ContainerBuilder builder)
         {
             base.Load(builder);
-
+            
             builder.RegisterType<ServicePointConfiguration>().SingleInstance();
             builder.RegisterType<ServerManager>().SingleInstance();
             builder.RegisterType<ActiveUrls>().As<IActiveUrls>().SingleInstance();

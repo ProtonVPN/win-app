@@ -59,6 +59,10 @@
     <Compile Include="HumanVerificationConfig.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ProtonVPN.Common\ProtonVPN.Common.csproj">
+      <Project>{03B8E43C-5680-4803-A745-0A104FE6620C}</Project>
+      <Name>ProtonVPN.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ProtonVPN.HumanVerification.Contracts\ProtonVPN.HumanVerification.Contracts.csproj">
       <Project>{C0D6E7EC-29AF-4FC2-B8E0-1E5D083B55DD}</Project>
       <Name>ProtonVPN.HumanVerification.Contracts</Name>

@@ -19,20 +19,34 @@
 
 using System;
 using Microsoft.Web.WebView2.Core;
+using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
 using ProtonVPN.HumanVerification.Contracts;
 
 namespace ProtonVPN.HumanVerification
 {
     public class HumanVerificationConfig : IHumanVerificationConfig
     {
+        private readonly ILogger _logger;
+
+        public HumanVerificationConfig(ILogger logger)
+        {
+            _logger = logger;
+        }
+        
         public bool IsSupported()
         {
             try
             {
                 return !string.IsNullOrEmpty(CoreWebView2Environment.GetAvailableBrowserVersionString());
             }
-            catch (Exception e) when (e is WebView2RuntimeNotFoundException or DllNotFoundException)
+            catch (Exception e)
             {
+                if (e is not (WebView2RuntimeNotFoundException or DllNotFoundException))
+                {
+                    _logger.Error<AppLog>("Unexpected exception when checking for WebView support.", e);
+                }
+
                 return false;
             }
         }
