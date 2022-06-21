@@ -82,12 +82,18 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <Setter Property="Margin" Value="0,0,0,0"/>
                         <Setter Property="Text" Value="└"/>
                     </Style>
+                    <Style x:Key="Scroll" TargetType="ScrollViewer">
+                        <Setter Property="Template" Value="{StaticResource DarkScrollViewerControlTemplate}"/>
+                        <Setter Property="MaxHeight" Value="370"/>
+                        <Setter Property="Padding" Value="15,0,15,0"/>
+                        <Setter Property="Margin" Value="0,0,0,20"/>
+                    </Style>
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
 
-    <StackPanel Background="{StaticResource BackgroundNormBrushColor}" Width="540">
+    <StackPanel Background="{StaticResource BackgroundNormBrushColor}" Width="600">
         <TabControl Margin="0,20,0,0" SelectedIndex="{Binding SelectedTabIndex}">
             <TabItem Margin="0">
                 <TabItem.Header>
@@ -106,115 +112,117 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </TextBlock.Style>
                     </TextBlock>
                 </TabItem.Header>
-                <StackPanel Margin="25,20,25,40">
-                    <Border Style="{StaticResource BorderlessSettingContainer}">
-                        <DockPanel>
-                            <Label Style="{StaticResource SettingName}" Content="{translations:Loc Settings_General_lbl_Language}"/>
-                            <wpf:Combobox HorizontalAlignment="Right"
-                                          Style="{StaticResource ComboDropdown}"
-                                          SelectedValuePath="Code"
-                                          MaxWidth="220"
-                                          ItemsSource="{Binding Languages}"
-                                          SelectedValue="{Binding SelectedLanguage}"
-                                          AutomationProperties.AutomationId="{StaticResource LanguageCombobox}">
-                                <ComboBox.ItemTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Foreground="{StaticResource TextNormBrushColor}"
-                                                   TextTrimming="CharacterEllipsis">
-                                            <Run Text="{Binding Title}"/>
-                                        </TextBlock>
-                                    </DataTemplate>
-                                </ComboBox.ItemTemplate>
-                            </wpf:Combobox>
-                        </DockPanel>
-                    </Border>
+                <ScrollViewer Style="{StaticResource Scroll}">
+                    <StackPanel Margin="25,20,25,10">
+                        <Border Style="{StaticResource BorderlessSettingContainer}">
+                            <DockPanel>
+                                <Label Style="{StaticResource SettingName}" Content="{translations:Loc Settings_General_lbl_Language}"/>
+                                <wpf:Combobox HorizontalAlignment="Right"
+                                              Style="{StaticResource ComboDropdown}"
+                                              SelectedValuePath="Code"
+                                              MaxWidth="220"
+                                              ItemsSource="{Binding Languages}"
+                                              SelectedValue="{Binding SelectedLanguage}"
+                                              AutomationProperties.AutomationId="{StaticResource LanguageCombobox}">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Foreground="{StaticResource TextNormBrushColor}"
+                                                       TextTrimming="CharacterEllipsis">
+                                                <Run Text="{Binding Title}"/>
+                                            </TextBlock>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </wpf:Combobox>
+                            </DockPanel>
+                        </Border>
 
-                    <Border Style="{StaticResource BorderlessSettingContainer}">
-                        <DockPanel>
-                            <Label Style="{StaticResource SettingName}" Content="{translations:Loc Settings_General_lbl_StartMinimized}"/>
-                            <wpf:Combobox
-                                    HorizontalAlignment="Right"
-                                    Style="{StaticResource ComboDropdown}"
-                                    ItemsSource="{Binding StartMinimizedModes}"
-                                    SelectedValue="{Binding StartMinimized}"
-                                    SelectedValuePath="Key"
-                                    DisplayMemberPath="Value"
-                                    AutomationProperties.AutomationId="{StaticResource StartMinimizedCombobox}">
-                            </wpf:Combobox>
-                        </DockPanel>
-                    </Border>
+                        <Border Style="{StaticResource BorderlessSettingContainer}">
+                            <DockPanel>
+                                <Label Style="{StaticResource SettingName}" Content="{translations:Loc Settings_General_lbl_StartMinimized}"/>
+                                <wpf:Combobox
+                                        HorizontalAlignment="Right"
+                                        Style="{StaticResource ComboDropdown}"
+                                        ItemsSource="{Binding StartMinimizedModes}"
+                                        SelectedValue="{Binding StartMinimized}"
+                                        SelectedValuePath="Key"
+                                        DisplayMemberPath="Value"
+                                        AutomationProperties.AutomationId="{StaticResource StartMinimizedCombobox}">
+                                </wpf:Combobox>
+                            </DockPanel>
+                        </Border>
 
-                    <Border Style="{StaticResource BorderlessSettingContainer}">
-                        <DockPanel>
-                            <StackPanel Orientation="Horizontal">
+                        <Border Style="{StaticResource BorderlessSettingContainer}">
+                            <DockPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Style="{StaticResource SettingName}"
+                                           Content="{translations:Loc Settings_Connection_lbl_QuickConnect}" />
+                                    <icons:InfoCircleFilled Style="{StaticResource InfoCircle}"
+                                                            ToolTip="{translations:Loc Settings_Connection_lbl_QuickConnect_Info}"/>
+                                </StackPanel>
+                                <wpf:Combobox HorizontalAlignment="Right"
+                                              Style="{StaticResource ComboDropdown}"
+                                              ItemsSource="{Binding QuickConnectProfiles}"
+                                              SelectedValue="{Binding QuickConnect}">
+                                </wpf:Combobox>
+                            </DockPanel>
+                        </Border>
+
+                        <Border Style="{StaticResource BorderSettingContainer}">
+                            <DockPanel>
                                 <Label Style="{StaticResource SettingName}"
-                                       Content="{translations:Loc Settings_Connection_lbl_QuickConnect}" />
-                                <icons:InfoCircleFilled Style="{StaticResource InfoCircle}"
-                                                        ToolTip="{translations:Loc Settings_Connection_lbl_QuickConnect_Info}"/>
-                            </StackPanel>
-                            <wpf:Combobox HorizontalAlignment="Right"
-                                          Style="{StaticResource ComboDropdown}"
-                                          ItemsSource="{Binding QuickConnectProfiles}"
-                                          SelectedValue="{Binding QuickConnect}">
-                            </wpf:Combobox>
-                        </DockPanel>
-                    </Border>
+                                       Content="{translations:Loc Settings_General_lbl_StartOnBoot}"/>
+                                <CheckBox Margin="0,0,14,0"
+                                          HorizontalAlignment="Right"
+                                          Style="{StaticResource ToggleSwitch}"
+                                          IsChecked="{Binding StartOnBoot}"
+                                          AutomationProperties.AutomationId="{StaticResource StartWithWindowsCheckbox}"/>
+                            </DockPanel>
+                        </Border>
 
-                    <Border Style="{StaticResource BorderSettingContainer}">
-                        <DockPanel>
-                            <Label Style="{StaticResource SettingName}"
-                                   Content="{translations:Loc Settings_General_lbl_StartOnBoot}"/>
-                            <CheckBox Margin="0,0,14,0"
-                                      HorizontalAlignment="Right"
-                                      Style="{StaticResource ToggleSwitch}"
-                                      IsChecked="{Binding StartOnBoot}"
-                                      AutomationProperties.AutomationId="{StaticResource StartWithWindowsCheckbox}"/>
-                        </DockPanel>
-                    </Border>
+                        <Border Style="{StaticResource BorderSettingContainer}">
+                            <DockPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Style="{StaticResource SettingName}"
+                                           Content="{translations:Loc Settings_General_lbl_ConnectOnAppStart}" />
+                                    <icons:InfoCircleFilled Style="{StaticResource InfoCircle}"
+                                                            ToolTip="{translations:Loc Settings_General_lbl_ConnectOnAppStart_Info}"/>
+                                </StackPanel>
+                                <CheckBox Margin="0,0,14,0"
+                                          HorizontalAlignment="Right"
+                                          Style="{StaticResource ToggleSwitch}"
+                                          IsChecked="{Binding ConnectOnAppStart}"
+                                          AutomationProperties.AutomationId="{StaticResource ConnectOnBootCheckbox}" />
+                            </DockPanel>
+                        </Border>
 
-                    <Border Style="{StaticResource BorderSettingContainer}">
-                        <DockPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Style="{StaticResource SettingName}"
-                                       Content="{translations:Loc Settings_General_lbl_ConnectOnAppStart}" />
-                                <icons:InfoCircleFilled Style="{StaticResource InfoCircle}"
-                                                        ToolTip="{translations:Loc Settings_General_lbl_ConnectOnAppStart_Info}"/>
-                            </StackPanel>
-                            <CheckBox Margin="0,0,14,0"
-                                      HorizontalAlignment="Right"
-                                      Style="{StaticResource ToggleSwitch}"
-                                      IsChecked="{Binding ConnectOnAppStart}"
-                                      AutomationProperties.AutomationId="{StaticResource ConnectOnBootCheckbox}" />
-                        </DockPanel>
-                    </Border>
+                        <Border Style="{StaticResource BorderSettingContainer}">
+                            <DockPanel>
+                                <Label Style="{StaticResource SettingName}" Content="{translations:Loc Settings_General_lbl_ShowNotifications}"/>
+                                <CheckBox Margin="0,0,14,0"
+                                          HorizontalAlignment="Right"
+                                          Style="{StaticResource ToggleSwitch}"
+                                          IsChecked="{Binding ShowNotifications}"
+                                          AutomationProperties.AutomationId="{StaticResource ShowNotificationsCheckbox}"/>
+                            </DockPanel>
+                        </Border>
 
-                    <Border Style="{StaticResource BorderSettingContainer}">
-                        <DockPanel>
-                            <Label Style="{StaticResource SettingName}" Content="{translations:Loc Settings_General_lbl_ShowNotifications}"/>
-                            <CheckBox Margin="0,0,14,0"
-                                      HorizontalAlignment="Right"
-                                      Style="{StaticResource ToggleSwitch}"
-                                      IsChecked="{Binding ShowNotifications}"
-                                      AutomationProperties.AutomationId="{StaticResource ShowNotificationsCheckbox}"/>
-                        </DockPanel>
-                    </Border>
+                        <Border Style="{StaticResource BorderlessSettingContainer}">
+                            <DockPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Style="{StaticResource SettingName}" Content="{translations:Loc Settings_General_lbl_EarlyAccess}"/>
+                                    <icons:InfoCircleFilled Style="{StaticResource InfoCircle}"
+                                                            ToolTip="{translations:Loc Settings_General_lbl_EarlyAccess_Info}"/>
+                                </StackPanel>
 
-                    <Border Style="{StaticResource BorderlessSettingContainer}">
-                        <DockPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Style="{StaticResource SettingName}" Content="{translations:Loc Settings_General_lbl_EarlyAccess}"/>
-                                <icons:InfoCircleFilled Style="{StaticResource InfoCircle}"
-                                                        ToolTip="{translations:Loc Settings_General_lbl_EarlyAccess_Info}"/>
-                            </StackPanel>
-
-                            <CheckBox Margin="0,0,14,0"
-                                      HorizontalAlignment="Right"
-                                      Style="{StaticResource ToggleSwitch}"
-                                      IsChecked="{Binding EarlyAccess}"
-                                      AutomationProperties.AutomationId="{StaticResource EarlyAccessCheckbox}"/>
-                        </DockPanel>
-                    </Border>
-                </StackPanel>
+                                <CheckBox Margin="0,0,14,0"
+                                          HorizontalAlignment="Right"
+                                          Style="{StaticResource ToggleSwitch}"
+                                          IsChecked="{Binding EarlyAccess}"
+                                          AutomationProperties.AutomationId="{StaticResource EarlyAccessCheckbox}"/>
+                            </DockPanel>
+                        </Border>
+                    </StackPanel>
+                </ScrollViewer>
             </TabItem>
             <TabItem Margin="-17,0,0,0">
                 <TabItem.Header>
@@ -233,149 +241,151 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </TextBlock.Style>
                     </TextBlock>
                 </TabItem.Header>
-                <StackPanel Margin="25,20,25,40">
-                    <Border Style="{StaticResource BorderlessSettingContainer}">
-                        <DockPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Style="{StaticResource SettingName}"
-                                       Content="{translations:Loc Settings_Connection_lbl_DefaultProtocol}"/>
-                                <icons:InfoCircleFilled Style="{StaticResource InfoCircle}"
-                                                        ToolTip="{translations:Loc Settings_Connection_lbl_DefaultProtocol_Info}"/>
-                            </StackPanel>
+                <ScrollViewer Style="{StaticResource Scroll}">
+                    <StackPanel Margin="25,20,25,10">
+                        <Border Style="{StaticResource BorderlessSettingContainer}">
+                            <DockPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Style="{StaticResource SettingName}"
+                                           Content="{translations:Loc Settings_Connection_lbl_DefaultProtocol}"/>
+                                    <icons:InfoCircleFilled Style="{StaticResource InfoCircle}"
+                                                            ToolTip="{translations:Loc Settings_Connection_lbl_DefaultProtocol_Info}"/>
+                                </StackPanel>
 
-                            <wpf:Combobox HorizontalAlignment="Right"
-                                          Style="{StaticResource ComboDropdown}"
-                                          ItemsSource="{Binding Protocols}"
-                                          SelectedValue="{Binding SelectedProtocol, Delay=1}"
-                                          SelectedValuePath="Key"
-                                          DisplayMemberPath="Value"
-                                          IsSynchronizedWithCurrentItem="True"
-                                          AutomationProperties.AutomationId="{StaticResource ProtocolCombobox}"/>
-                        </DockPanel>
-                    </Border>
+                                <wpf:Combobox HorizontalAlignment="Right"
+                                              Style="{StaticResource ComboDropdown}"
+                                              ItemsSource="{Binding Protocols}"
+                                              SelectedValue="{Binding SelectedProtocol, Delay=1}"
+                                              SelectedValuePath="Key"
+                                              DisplayMemberPath="Value"
+                                              IsSynchronizedWithCurrentItem="True"
+                                              AutomationProperties.AutomationId="{StaticResource ProtocolCombobox}"/>
+                            </DockPanel>
+                        </Border>
 
-                    <Border Style="{StaticResource BorderlessSettingContainer}"
-                            Visibility="{Binding IsVpnAcceleratorFeatureEnabled, Converter={StaticResource BoolToVis}}">
-                        <DockPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Style="{StaticResource SettingName}" Content="{translations:Loc Settings_Connection_lbl_VpnAccelerator}"/>
-                                <icons:InfoCircleFilled Style="{StaticResource InfoCircle}"
-                                                        ToolTip="{translations:Loc Settings_Connection_lbl_VpnAccelerator_Info}"/>
-                            </StackPanel>
+                        <Border Style="{StaticResource BorderlessSettingContainer}"
+                                Visibility="{Binding IsVpnAcceleratorFeatureEnabled, Converter={StaticResource BoolToVis}}">
+                            <DockPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Style="{StaticResource SettingName}" Content="{translations:Loc Settings_Connection_lbl_VpnAccelerator}"/>
+                                    <icons:InfoCircleFilled Style="{StaticResource InfoCircle}"
+                                                            ToolTip="{translations:Loc Settings_Connection_lbl_VpnAccelerator_Info}"/>
+                                </StackPanel>
 
-                            <CheckBox Style="{StaticResource ToggleSwitch}"
-                                      Margin="0,0,14,0"
-                                      HorizontalAlignment="Right"
-                                      IsChecked="{Binding VpnAccelerator}"
-                                      AutomationProperties.AutomationId="{StaticResource VpnAcceleratorCheckbox}"/>
-                        </DockPanel>
-                    </Border>
+                                <CheckBox Style="{StaticResource ToggleSwitch}"
+                                          Margin="0,0,14,0"
+                                          HorizontalAlignment="Right"
+                                          IsChecked="{Binding VpnAccelerator}"
+                                          AutomationProperties.AutomationId="{StaticResource VpnAcceleratorCheckbox}"/>
+                            </DockPanel>
+                        </Border>
 
-                    <Border Style="{StaticResource BorderlessSettingContainer}"
-                            Visibility="{Binding IsToShowSmartReconnect, Converter={StaticResource BoolToVis}}">
-                        <DockPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Style="{StaticResource SubSettingIcon}" />
-                                <Label Style="{StaticResource SettingName}" Margin="5,0,0,0"
-                                       Content="{translations:Loc Settings_Connection_lbl_SmartReconnect}"/>
-                                <icons:InfoCircleFilled Style="{StaticResource InfoCircle}"
-                                                        ToolTip="{translations:Loc Settings_Connection_lbl_SmartReconnect_Info}"/>
-                            </StackPanel>
+                        <Border Style="{StaticResource BorderlessSettingContainer}"
+                                Visibility="{Binding IsToShowSmartReconnect, Converter={StaticResource BoolToVis}}">
+                            <DockPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Style="{StaticResource SubSettingIcon}" />
+                                    <Label Style="{StaticResource SettingName}" Margin="5,0,0,0"
+                                           Content="{translations:Loc Settings_Connection_lbl_SmartReconnect}"/>
+                                    <icons:InfoCircleFilled Style="{StaticResource InfoCircle}"
+                                                            ToolTip="{translations:Loc Settings_Connection_lbl_SmartReconnect_Info}"/>
+                                </StackPanel>
 
-                            <CheckBox Style="{StaticResource ToggleSwitch}"
-                                      Margin="0,0,14,0"
-                                      HorizontalAlignment="Right"
-                                      IsChecked="{Binding SmartReconnect}"
-                                      AutomationProperties.AutomationId="{StaticResource SmartReconnectCheckbox}"/>
-                        </DockPanel>
-                    </Border>
+                                <CheckBox Style="{StaticResource ToggleSwitch}"
+                                          Margin="0,0,14,0"
+                                          HorizontalAlignment="Right"
+                                          IsChecked="{Binding SmartReconnect}"
+                                          AutomationProperties.AutomationId="{StaticResource SmartReconnectCheckbox}"/>
+                            </DockPanel>
+                        </Border>
 
-                    <Border Style="{StaticResource BorderlessSettingContainer}"
-                            Visibility="{Binding IsToShowSmartReconnectNotifications, Converter={StaticResource BoolToVis}}">
-                        <DockPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Style="{StaticResource SubSettingIcon}" />
-                                <Label Style="{StaticResource SettingName}" Margin="5,0,0,0"
-                                       Content="{translations:Loc Settings_Connection_lbl_SmartReconnectNotifications}"/>
-                                <icons:InfoCircleFilled Style="{StaticResource InfoCircle}"
-                                                        ToolTip="{translations:Loc Settings_Connection_lbl_SmartReconnectNotifications_Info}"/>
-                            </StackPanel>
+                        <Border Style="{StaticResource BorderlessSettingContainer}"
+                                Visibility="{Binding IsToShowSmartReconnectNotifications, Converter={StaticResource BoolToVis}}">
+                            <DockPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Style="{StaticResource SubSettingIcon}" />
+                                    <Label Style="{StaticResource SettingName}" Margin="5,0,0,0"
+                                           Content="{translations:Loc Settings_Connection_lbl_SmartReconnectNotifications}"/>
+                                    <icons:InfoCircleFilled Style="{StaticResource InfoCircle}"
+                                                            ToolTip="{translations:Loc Settings_Connection_lbl_SmartReconnectNotifications_Info}"/>
+                                </StackPanel>
 
-                            <CheckBox Style="{StaticResource ToggleSwitch}"
-                                      Margin="0,0,14,0"
-                                      HorizontalAlignment="Right"
-                                      IsChecked="{Binding SmartReconnectNotifications}"
-                                      IsEnabled="{Binding IsSmartReconnectNotificationsEditable}"
-                                      AutomationProperties.AutomationId="{StaticResource SmartReconnectNotificationsCheckbox}"/>
-                        </DockPanel>
-                    </Border>
+                                <CheckBox Style="{StaticResource ToggleSwitch}"
+                                          Margin="0,0,14,0"
+                                          HorizontalAlignment="Right"
+                                          IsChecked="{Binding SmartReconnectNotifications}"
+                                          IsEnabled="{Binding IsSmartReconnectNotificationsEditable}"
+                                          AutomationProperties.AutomationId="{StaticResource SmartReconnectNotificationsCheckbox}"/>
+                            </DockPanel>
+                        </Border>
 
-                    <Border Style="{StaticResource BorderSettingContainer}" Height="1" />
+                        <Border Style="{StaticResource BorderSettingContainer}" Height="1" />
 
-                    <Border Style="{StaticResource BorderSettingContainer}">
-                        <DockPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Style="{StaticResource SettingName}" Content="{translations:Loc Settings_Connection_lbl_ModerateNat}"/>
-                                <icons:InfoCircleFilled Style="{StaticResource InfoCircle}"
-                                                        ToolTip="{translations:Loc Settings_Connection_lbl_ModerateNat_Info}"/>
-                            </StackPanel>
+                        <Border Style="{StaticResource BorderSettingContainer}">
+                            <DockPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Style="{StaticResource SettingName}" Content="{translations:Loc Settings_Connection_lbl_ModerateNat}"/>
+                                    <icons:InfoCircleFilled Style="{StaticResource InfoCircle}"
+                                                            ToolTip="{translations:Loc Settings_Connection_lbl_ModerateNat_Info}"/>
+                                </StackPanel>
 
-                            <CheckBox Style="{StaticResource ToggleSwitch}"
-                                      Margin="0,0,14,0"
-                                      HorizontalAlignment="Right"
-                                      IsChecked="{Binding ModerateNat}"
-                                      AutomationProperties.AutomationId="{StaticResource ModerateNatCheckbox}"/>
-                        </DockPanel>
-                    </Border>
+                                <CheckBox Style="{StaticResource ToggleSwitch}"
+                                          Margin="0,0,14,0"
+                                          HorizontalAlignment="Right"
+                                          IsChecked="{Binding ModerateNat}"
+                                          AutomationProperties.AutomationId="{StaticResource ModerateNatCheckbox}"/>
+                            </DockPanel>
+                        </Border>
 
-                    <Border Style="{StaticResource BorderlessSettingContainer}">
-                        <DockPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Style="{StaticResource SettingName}" Content="{translations:Loc Settings_Connection_lbl_CustomDnsServer}"/>
-                                <icons:InfoCircleFilled Style="{StaticResource InfoCircle}"
-                                                        ToolTip="{translations:Loc Settings_Connection_lbl_CustomDnsServer_Info}"/>
-                            </StackPanel>
-                            <CheckBox Style="{StaticResource ToggleSwitch}"
-                                      Margin="0,0,14,0"
-                                      HorizontalAlignment="Right"
-                                      IsChecked="{Binding CustomDnsEnabled}" 
-                                      AutomationProperties.AutomationId="{StaticResource CheckBoxCustomDnsServers}"/>
+                        <Border Style="{StaticResource BorderlessSettingContainer}">
+                            <DockPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Style="{StaticResource SettingName}" Content="{translations:Loc Settings_Connection_lbl_CustomDnsServer}"/>
+                                    <icons:InfoCircleFilled Style="{StaticResource InfoCircle}"
+                                                            ToolTip="{translations:Loc Settings_Connection_lbl_CustomDnsServer_Info}"/>
+                                </StackPanel>
+                                <CheckBox Style="{StaticResource ToggleSwitch}"
+                                          Margin="0,0,14,0"
+                                          HorizontalAlignment="Right"
+                                          IsChecked="{Binding CustomDnsEnabled}" 
+                                          AutomationProperties.AutomationId="{StaticResource CheckBoxCustomDnsServers}"/>
 
-                        </DockPanel>
-                    </Border>
+                            </DockPanel>
+                        </Border>
 
-                    <StackPanel Margin="12,0" HorizontalAlignment="Left" Visibility="{Binding CustomDnsEnabled, Converter={StaticResource BoolToVis}}">
-                        <ScrollViewer Template="{StaticResource DarkScrollViewerControlTemplate}"
-                                      Margin="0,-12,-15,-12"
-                                      Padding="0,12,30,12"
-                                      MaxHeight="220">
-                            <ItemsControl x:Name="IpsItemsControl"
-                                          ItemTemplate="{StaticResource SelectableDeletableWrappedItem}"
-                                          DataContext="{Binding Ips}"
-                                          ItemsSource="{Binding Items}"/>
-                        </ScrollViewer>
+                        <StackPanel Margin="12,0" HorizontalAlignment="Left" Visibility="{Binding CustomDnsEnabled, Converter={StaticResource BoolToVis}}">
+                            <ScrollViewer Template="{StaticResource DarkScrollViewerControlTemplate}"
+                                          Margin="0,-12,-15,-12"
+                                          Padding="0,12,30,12"
+                                          MaxHeight="220">
+                                <ItemsControl x:Name="IpsItemsControl"
+                                              ItemTemplate="{StaticResource SelectableDeletableWrappedItem}"
+                                              DataContext="{Binding Ips}"
+                                              ItemsSource="{Binding Items}"/>
+                            </ScrollViewer>
 
-                        <DockPanel>
-                            <Button Style="{StaticResource SettingsAddButton}"
-                                    DockPanel.Dock="Right" VerticalAlignment="Center"
-                                    Command="{Binding Ips.AddCommand}"
-                                    AutomationProperties.AutomationId="{StaticResource SettingsPlusButton}"/>
-                            <AdornerDecorator>
-                                <TextBox Style="{StaticResource SettingsPlaceholderTextBox}"
-                                         Validation.ErrorTemplate="{StaticResource RedBorderWithErrorMessageTemplate}"
-                                         Margin="0,0,10,0"
-                                         Tag="{translations:Loc Settings_Advanced_SplitTunnel_lbl_Ip_Watermark}"
-                                         Text="{Binding Ips.Ip, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}"
-                                         MaxLength="20"
-                                         AutomationProperties.AutomationId="{StaticResource InputIpv4Address}">
-                                    <TextBox.InputBindings>
-                                        <KeyBinding Key="Return" Command="{Binding Ips.AddCommand}"/>
-                                    </TextBox.InputBindings>
-                                </TextBox>
-                            </AdornerDecorator>
-                        </DockPanel>
+                            <DockPanel>
+                                <Button Style="{StaticResource SettingsAddButton}"
+                                        DockPanel.Dock="Right" VerticalAlignment="Center"
+                                        Command="{Binding Ips.AddCommand}"
+                                        AutomationProperties.AutomationId="{StaticResource SettingsPlusButton}"/>
+                                <AdornerDecorator>
+                                    <TextBox Style="{StaticResource SettingsPlaceholderTextBox}"
+                                             Validation.ErrorTemplate="{StaticResource RedBorderWithErrorMessageTemplate}"
+                                             Margin="0,0,10,0"
+                                             Tag="{translations:Loc Settings_Advanced_SplitTunnel_lbl_Ip_Watermark}"
+                                             Text="{Binding Ips.Ip, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}"
+                                             MaxLength="20"
+                                             AutomationProperties.AutomationId="{StaticResource InputIpv4Address}">
+                                        <TextBox.InputBindings>
+                                            <KeyBinding Key="Return" Command="{Binding Ips.AddCommand}"/>
+                                        </TextBox.InputBindings>
+                                    </TextBox>
+                                </AdornerDecorator>
+                            </DockPanel>
+                        </StackPanel>
                     </StackPanel>
-                </StackPanel>
+                </ScrollViewer>
             </TabItem>
             <TabItem Margin="-17,0,0,0">
                 <TabItem.Header>
@@ -394,225 +404,226 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </TextBlock.Style>
                     </TextBlock>
                 </TabItem.Header>
-                <DockPanel Margin="25,20,25,20" LastChildFill="True">
+                <ScrollViewer Style="{StaticResource Scroll}">
+                    <DockPanel Margin="25,20,25,10" LastChildFill="True">
+                        <Border DockPanel.Dock="Top" Style="{StaticResource BorderlessSettingContainer}"
+                                Visibility="{Binding IsToShowPortForwarding, Converter={StaticResource BoolToVis}}">
+                            <DockPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Style="{StaticResource SettingName}" Content="{translations:Loc Settings_Advanced_lbl_PortForwarding}"/>
+                                </StackPanel>
 
-                    <Border DockPanel.Dock="Top" Style="{StaticResource BorderlessSettingContainer}"
-                            Visibility="{Binding IsToShowPortForwarding, Converter={StaticResource BoolToVis}}">
-                        <DockPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Style="{StaticResource SettingName}" Content="{translations:Loc Settings_Advanced_lbl_PortForwarding}"/>
-                            </StackPanel>
+                                <CheckBox Style="{StaticResource ToggleSwitch}"
+                                          Margin="0,0,0,0"
+                                          HorizontalAlignment="Right"
+                                          IsChecked="{Binding PortForwarding}"
+                                          AutomationProperties.AutomationId="{StaticResource PortForwardingCheckbox}"/>
 
-                            <CheckBox Style="{StaticResource ToggleSwitch}"
-                                      Margin="0,0,14,0"
-                                      HorizontalAlignment="Right"
-                                      IsChecked="{Binding PortForwarding}"
-                                      AutomationProperties.AutomationId="{StaticResource PortForwardingCheckbox}"/>
+                            </DockPanel>
+                        </Border>
 
-                        </DockPanel>
-                    </Border>
+                        <Border DockPanel.Dock="Top" Style="{StaticResource BorderlessSettingContainer}" Padding="5,0,75,0" Height="Auto"
+                                Visibility="{Binding IsToShowPortForwarding, Converter={StaticResource BoolToVis}}">
+                            <DockPanel>
+                                <TextBlock TextWrapping="Wrap"
+                                           FontSize="12"
+                                           behavior:TextStyleBehavior.FormattedText="{translations:Loc Settings_Advanced_lbl_PortForwarding_Info}" />
+                            </DockPanel>
+                        </Border>
 
-                    <Border DockPanel.Dock="Top" Style="{StaticResource BorderlessSettingContainer}" Padding="5,0,75,0" Height="Auto"
-                            Visibility="{Binding IsToShowPortForwarding, Converter={StaticResource BoolToVis}}">
-                        <DockPanel>
-                            <TextBlock TextWrapping="Wrap"
-                                       FontSize="12"
-                                       behavior:TextStyleBehavior.FormattedText="{translations:Loc Settings_Advanced_lbl_PortForwarding_Info}" />
-                        </DockPanel>
-                    </Border>
+                        <Border DockPanel.Dock="Top" Style="{StaticResource BorderlessSettingContainer}" Padding="5,0,75,0"
+                                Visibility="{Binding IsToShowPortForwardingWarningLabel, Converter={StaticResource BoolToVis}}">
+                            <settings:PortForwardingWarningView DataContext="{Binding PortForwardingWarningViewModel}" />
+                        </Border>
 
-                    <Border DockPanel.Dock="Top" Style="{StaticResource BorderlessSettingContainer}" Padding="5,0,75,0"
-                            Visibility="{Binding IsToShowPortForwardingWarningLabel, Converter={StaticResource BoolToVis}}">
-                        <settings:PortForwardingWarningView DataContext="{Binding PortForwardingWarningViewModel}" />
-                    </Border>
+                        <Border DockPanel.Dock="Top" Style="{StaticResource BorderlessSettingContainer}" Padding="5,0,75,0" Height="20" Margin="0,10,0,5"
+                                Visibility="{Binding HasPortForwardingValue, Converter={StaticResource BoolToVis}}">
+                            <DockPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Ellipse Width="10"
+                                             Height="10"
+                                             Margin="0,2,5,0"
+                                             VerticalAlignment="Top"
+                                             Fill="{StaticResource SignalSuccessBrushColor}" />
+                                    <TextBlock
+                                        Margin="0,0,5,0"
+                                        TextWrapping="Wrap"
+                                        FontSize="12"
+                                        Foreground="{StaticResource TextNormBrushColor}"
+                                        Text="{translations:Loc PortForwarding_lbl_ActivePort}" />
+                                    <activePorts:PortForwardingActivePortView DataContext="{Binding ActivePortViewModel}"
+                                                                              FontWeight="Bold"/>
+                                </StackPanel>
+                            </DockPanel>
+                        </Border>
 
-                    <Border DockPanel.Dock="Top" Style="{StaticResource BorderlessSettingContainer}" Padding="5,0,75,0" Height="20" Margin="0,0,0,5"
-                            Visibility="{Binding HasPortForwardingValue, Converter={StaticResource BoolToVis}}">
-                        <DockPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <Ellipse Width="10"
-                                         Height="10"
-                                         Margin="0,2,5,0"
-                                         VerticalAlignment="Top"
-                                         Fill="{StaticResource SignalSuccessBrushColor}" />
-                                <TextBlock
-                                    Margin="0,0,5,0"
-                                    TextWrapping="Wrap"
-                                    FontSize="12"
-                                    Foreground="{StaticResource TextNormBrushColor}"
-                                    Text="{translations:Loc PortForwarding_lbl_ActivePort}" />
-                                <activePorts:PortForwardingActivePortView DataContext="{Binding ActivePortViewModel}"
-                                                                          FontWeight="Bold"/>
-                            </StackPanel>
-                        </DockPanel>
-                    </Border>
+                        <Border DockPanel.Dock="Top" Style="{StaticResource BorderlessSettingContainer}" Padding="0,0,0,4"
+                                Visibility="{Binding IsToShowPortForwarding, Converter={StaticResource BoolToVis}}">
+                            <DockPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Style="{StaticResource SubSettingIcon}" />
+                                    <Label Style="{StaticResource SettingName}" Margin="5,0,0,0"
+                                           Content="{translations:Loc Settings_Advanced_lbl_PortForwardingInQuickSettings}"/>
+                                    <icons:InfoCircleFilled Style="{StaticResource InfoCircle}"
+                                                            ToolTip="{translations:Loc Settings_Advanced_lbl_PortForwardingInQuickSettings_Info}"/>
+                                </StackPanel>
 
-                    <Border DockPanel.Dock="Top" Style="{StaticResource BorderlessSettingContainer}" Padding="0,0,0,4"
-                            Visibility="{Binding IsToShowPortForwarding, Converter={StaticResource BoolToVis}}">
-                        <DockPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Style="{StaticResource SubSettingIcon}" />
-                                <Label Style="{StaticResource SettingName}" Margin="5,0,0,0"
-                                       Content="{translations:Loc Settings_Advanced_lbl_PortForwardingInQuickSettings}"/>
-                                <icons:InfoCircleFilled Style="{StaticResource InfoCircle}"
-                                                        ToolTip="{translations:Loc Settings_Advanced_lbl_PortForwardingInQuickSettings_Info}"/>
-                            </StackPanel>
+                                <CheckBox Style="{StaticResource ToggleSwitch}"
+                                          Margin="0,0,0,0"
+                                          HorizontalAlignment="Right"
+                                          IsChecked="{Binding PortForwardingInQuickSettings}"
+                                          AutomationProperties.AutomationId="{StaticResource PortForwardingInQuickSettingsCheckbox}"/>
+                            </DockPanel>
+                        </Border>
 
-                            <CheckBox Style="{StaticResource ToggleSwitch}"
-                                      Margin="0,0,14,0"
-                                      HorizontalAlignment="Right"
-                                      IsChecked="{Binding PortForwardingInQuickSettings}"
-                                      AutomationProperties.AutomationId="{StaticResource PortForwardingInQuickSettingsCheckbox}"/>
-                        </DockPanel>
-                    </Border>
+                        <Border DockPanel.Dock="Top" Style="{StaticResource BorderSettingContainer}" Padding="0,0,0,4"
+                                Visibility="{Binding IsToShowPortForwardingNotifications, Converter={StaticResource BoolToVis}}">
+                            <DockPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Style="{StaticResource SubSettingIcon}" />
+                                    <Label Style="{StaticResource SettingName}" Margin="5,0,0,0"
+                                           Content="{translations:Loc Settings_Advanced_lbl_PortForwardingNotifications}"/>
+                                    <icons:InfoCircleFilled Style="{StaticResource InfoCircle}"
+                                                            ToolTip="{translations:Loc Settings_Advanced_lbl_PortForwardingNotifications_Info}"/>
+                                </StackPanel>
 
-                    <Border DockPanel.Dock="Top" Style="{StaticResource BorderSettingContainer}" Padding="0,0,0,4"
-                            Visibility="{Binding IsToShowPortForwardingNotifications, Converter={StaticResource BoolToVis}}">
-                        <DockPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Style="{StaticResource SubSettingIcon}" />
-                                <Label Style="{StaticResource SettingName}" Margin="5,0,0,0"
-                                       Content="{translations:Loc Settings_Advanced_lbl_PortForwardingNotifications}"/>
-                                <icons:InfoCircleFilled Style="{StaticResource InfoCircle}"
-                                                        ToolTip="{translations:Loc Settings_Advanced_lbl_PortForwardingNotifications_Info}"/>
-                            </StackPanel>
+                                <CheckBox Style="{StaticResource ToggleSwitch}"
+                                          Margin="0,0,0,0"
+                                          HorizontalAlignment="Right"
+                                          IsChecked="{Binding PortForwardingNotifications}"
+                                          AutomationProperties.AutomationId="{StaticResource PortForwardingNotificationsCheckbox}"/>
+                            </DockPanel>
+                        </Border>
 
-                            <CheckBox Style="{StaticResource ToggleSwitch}"
-                                      Margin="0,0,14,0"
-                                      HorizontalAlignment="Right"
-                                      IsChecked="{Binding PortForwardingNotifications}"
-                                      AutomationProperties.AutomationId="{StaticResource PortForwardingNotificationsCheckbox}"/>
-                        </DockPanel>
-                    </Border>
+                        <Border DockPanel.Dock="Top" Style="{StaticResource BorderlessSettingContainer}"
+                                Visibility="{Binding IsToShowNetworkDriverSelection, Converter={StaticResource BoolToVis}}">
+                            <DockPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Style="{StaticResource SettingName}" Content="{translations:Loc Settings_Advanced_lbl_NetworkDriver}"/>
+                                    <icons:InfoCircleFilled Style="{StaticResource InfoCircle}"
+                                                            ToolTip="{translations:Loc Settings_Advanced_lbl_NetworkDriver_info}"/>
+                                </StackPanel>
 
-                    <Border DockPanel.Dock="Top" Style="{StaticResource BorderlessSettingContainer}"
-                            Visibility="{Binding IsToShowNetworkDriverSelection, Converter={StaticResource BoolToVis}}">
-                        <DockPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Style="{StaticResource SettingName}" Content="{translations:Loc Settings_Advanced_lbl_NetworkDriver}"/>
-                                <icons:InfoCircleFilled Style="{StaticResource InfoCircle}"
-                                                        ToolTip="{translations:Loc Settings_Advanced_lbl_NetworkDriver_info}"/>
-                            </StackPanel>
+                                <wpf:Combobox HorizontalAlignment="Right"
+                                              Style="{StaticResource ComboDropdown}"
+                                              ItemsSource="{Binding NetworkDrivers}"
+                                              SelectedValue="{Binding SelectedOpenVpnAdapter}"
+                                              SelectedValuePath="Key"
+                                              DisplayMemberPath="Value"
+                                              IsSynchronizedWithCurrentItem="True"
+                                              AutomationProperties.AutomationId="{StaticResource NetworkDriverCheckbox}"/>
+                            </DockPanel>
+                        </Border>
 
-                            <wpf:Combobox HorizontalAlignment="Right"
-                                          Style="{StaticResource ComboDropdown}"
-                                          ItemsSource="{Binding NetworkDrivers}"
-                                          SelectedValue="{Binding SelectedOpenVpnAdapter}"
-                                          SelectedValuePath="Key"
-                                          DisplayMemberPath="Value"
-                                          IsSynchronizedWithCurrentItem="True"
-                                          AutomationProperties.AutomationId="{StaticResource NetworkDriverCheckbox}"/>
-                        </DockPanel>
-                    </Border>
+                        <Border DockPanel.Dock="Top" Style="{StaticResource BorderSettingContainer}">
+                            <DockPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Style="{StaticResource SettingName}" Content="{translations:Loc Settings_Advanced_lbl_DnsLeakProtection}"/>
+                                    <icons:InfoCircleFilled Style="{StaticResource InfoCircle}"
+                                                            ToolTip="{translations:Loc Settings_Advanced_lbl_DnsLeakProtection_Info}"/>
+                                </StackPanel>
 
-                    <Border DockPanel.Dock="Top" Style="{StaticResource BorderSettingContainer}">
-                        <DockPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Style="{StaticResource SettingName}" Content="{translations:Loc Settings_Advanced_lbl_DnsLeakProtection}"/>
-                                <icons:InfoCircleFilled Style="{StaticResource InfoCircle}"
-                                                        ToolTip="{translations:Loc Settings_Advanced_lbl_DnsLeakProtection_Info}"/>
-                            </StackPanel>
+                                <CheckBox HorizontalAlignment="Right"
+                                          Style="{StaticResource ToggleSwitch}"
+                                          IsChecked="True"
+                                          IsEnabled="False"/>
+                            </DockPanel>
+                        </Border>
 
-                            <CheckBox HorizontalAlignment="Right"
-                                      Style="{StaticResource ToggleSwitch}"
-                                      IsChecked="True"
-                                      IsEnabled="False"/>
-                        </DockPanel>
-                    </Border>
+                        <Border DockPanel.Dock="Top" Style="{StaticResource BorderSettingContainer}">
+                            <DockPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Style="{StaticResource SettingName}" Content="{translations:Loc Settings_Advanced_lbl_DoH}"/>
+                                    <icons:InfoCircleFilled Style="{StaticResource InfoCircle}"
+                                                            ToolTip="{translations:Loc Settings_Advanced_lbl_DoH_Info}"/>
+                                </StackPanel>
+                                <CheckBox HorizontalAlignment="Right"
+                                          Style="{StaticResource ToggleSwitch}"
+                                          IsChecked="{Binding DoHEnabled}"
+                                          AutomationProperties.AutomationId="{StaticResource DoHCheckbox}"/>
+                            </DockPanel>
+                        </Border>
 
-                    <Border DockPanel.Dock="Top" Style="{StaticResource BorderSettingContainer}">
-                        <DockPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Style="{StaticResource SettingName}" Content="{translations:Loc Settings_Advanced_lbl_DoH}"/>
-                                <icons:InfoCircleFilled Style="{StaticResource InfoCircle}"
-                                                        ToolTip="{translations:Loc Settings_Advanced_lbl_DoH_Info}"/>
-                            </StackPanel>
-                            <CheckBox HorizontalAlignment="Right"
-                                      Style="{StaticResource ToggleSwitch}"
-                                      IsChecked="{Binding DoHEnabled}"
-                                      AutomationProperties.AutomationId="{StaticResource DoHCheckbox}"/>
-                        </DockPanel>
-                    </Border>
+                        <Border DockPanel.Dock="Top" Style="{StaticResource BorderSettingContainer}">
+                            <DockPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Style="{StaticResource SettingName}" Content="{translations:Loc Settings_Advanced_lbl_Ipv6Protection}"/>
+                                    <icons:InfoCircleFilled Style="{StaticResource InfoCircle}"
+                                                            ToolTip="{translations:Loc Settings_Advanced_lbl_Ipv6Protection_Info}"/>
+                                </StackPanel>
 
-                    <Border DockPanel.Dock="Top" Style="{StaticResource BorderSettingContainer}">
-                        <DockPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Style="{StaticResource SettingName}" Content="{translations:Loc Settings_Advanced_lbl_Ipv6Protection}"/>
-                                <icons:InfoCircleFilled Style="{StaticResource InfoCircle}"
-                                                        ToolTip="{translations:Loc Settings_Advanced_lbl_Ipv6Protection_Info}"/>
-                            </StackPanel>
+                                <CheckBox HorizontalAlignment="Right"
+                                          Style="{StaticResource ToggleSwitch}"
+                                          IsChecked="{Binding Ipv6LeakProtection}"
+                                          AutomationProperties.AutomationId="{StaticResource Ipv6ProtectionCheckbox}"/>
+                            </DockPanel>
+                        </Border>
 
-                            <CheckBox HorizontalAlignment="Right"
-                                      Style="{StaticResource ToggleSwitch}"
-                                      IsChecked="{Binding Ipv6LeakProtection}"
-                                      AutomationProperties.AutomationId="{StaticResource Ipv6ProtectionCheckbox}"/>
-                        </DockPanel>
-                    </Border>
+                        <Border DockPanel.Dock="Top" Style="{StaticResource BorderSettingContainer}">
+                            <DockPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Style="{StaticResource SettingName}" Content="{translations:Loc Settings_Advanced_lbl_HardwareAcceleration}"/>
+                                    <icons:InfoCircleFilled Style="{StaticResource InfoCircle}"
+                                                            ToolTip="{translations:Loc Settings_Advanced_lbl_HardwareAcceleration_Info}"/>
+                                </StackPanel>
 
-                    <Border DockPanel.Dock="Top" Style="{StaticResource BorderSettingContainer}">
-                        <DockPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Style="{StaticResource SettingName}" Content="{translations:Loc Settings_Advanced_lbl_HardwareAcceleration}"/>
-                                <icons:InfoCircleFilled Style="{StaticResource InfoCircle}"
-                                                        ToolTip="{translations:Loc Settings_Advanced_lbl_HardwareAcceleration_Info}"/>
-                            </StackPanel>
+                                <CheckBox HorizontalAlignment="Right"
+                                          Style="{StaticResource ToggleSwitch}"
+                                          IsChecked="{Binding HardwareAccelerationEnabled}"
+                                          AutomationProperties.AutomationId="{StaticResource HardwareAccelerationCheckbox}"/>
+                            </DockPanel>
+                        </Border>
 
-                            <CheckBox HorizontalAlignment="Right"
-                                      Style="{StaticResource ToggleSwitch}"
-                                      IsChecked="{Binding HardwareAccelerationEnabled}"
-                                      AutomationProperties.AutomationId="{StaticResource HardwareAccelerationCheckbox}"/>
-                        </DockPanel>
-                    </Border>
+                        <Border DockPanel.Dock="Top"
+                                Style="{StaticResource BorderSettingContainer}"
+                                Visibility="{Binding ShowAllowNonStandardPorts, Converter={StaticResource BoolToVis}}">
+                            <DockPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Style="{StaticResource SettingName}" Content="{translations:Loc Settings_Advanced_lbl_NonStandardPorts}"/>
+                                    <icons:InfoCircleFilled Style="{StaticResource InfoCircle}"
+                                                            ToolTip="{translations:Loc Settings_Advanced_lbl_NonStandardPorts_Info}"/>
+                                </StackPanel>
 
-                    <Border DockPanel.Dock="Top"
-                            Style="{StaticResource BorderSettingContainer}"
-                            Visibility="{Binding ShowAllowNonStandardPorts, Converter={StaticResource BoolToVis}}">
-                        <DockPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Style="{StaticResource SettingName}" Content="{translations:Loc Settings_Advanced_lbl_NonStandardPorts}"/>
-                                <icons:InfoCircleFilled Style="{StaticResource InfoCircle}"
-                                                        ToolTip="{translations:Loc Settings_Advanced_lbl_NonStandardPorts_Info}"/>
-                            </StackPanel>
+                                <CheckBox HorizontalAlignment="Right"
+                                          Style="{StaticResource ToggleSwitch}"
+                                          IsChecked="{Binding AllowNonStandardPorts}"
+                                          AutomationProperties.AutomationId="{StaticResource AllowNonStandardPortsCheckbox}"/>
+                            </DockPanel>
+                        </Border>
 
-                            <CheckBox HorizontalAlignment="Right"
-                                      Style="{StaticResource ToggleSwitch}"
-                                      IsChecked="{Binding AllowNonStandardPorts}"
-                                      AutomationProperties.AutomationId="{StaticResource AllowNonStandardPortsCheckbox}"/>
-                        </DockPanel>
-                    </Border>
+                        <Border DockPanel.Dock="Top" Style="{StaticResource BorderlessSettingContainer}">
+                            <DockPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Style="{StaticResource SettingName}" Content="{translations:Loc Settings_Advanced_lbl_SplitTunnel}"/>
+                                    <icons:InfoCircleFilled Style="{StaticResource InfoCircle}"
+                                                            ToolTip="{translations:Loc Settings_Advanced_lbl_SplitTunnel_Info}"/>
+                                </StackPanel>
+                                <CheckBox Style="{StaticResource ToggleSwitch}"
+                                          HorizontalAlignment="Right"
+                                          IsChecked="{Binding SplitTunnelingViewModel.Enabled}"
+                                          AutomationProperties.AutomationId="{StaticResource SplitTunnelingToggle}"/>
+                            </DockPanel>
+                        </Border>
 
-                    <Border DockPanel.Dock="Top" Style="{StaticResource BorderlessSettingContainer}">
-                        <DockPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Style="{StaticResource SettingName}" Content="{translations:Loc Settings_Advanced_lbl_SplitTunnel}"/>
-                                <icons:InfoCircleFilled Style="{StaticResource InfoCircle}"
-                                                        ToolTip="{translations:Loc Settings_Advanced_lbl_SplitTunnel_Info}"/>
-                            </StackPanel>
-                            <CheckBox Style="{StaticResource ToggleSwitch}"
-                                      HorizontalAlignment="Right"
-                                      IsChecked="{Binding SplitTunnelingViewModel.Enabled}"
-                                      AutomationProperties.AutomationId="{StaticResource SplitTunnelingToggle}"/>
-                        </DockPanel>
-                    </Border>
-
-                    <Border BorderThickness="0" MaxHeight="274" Height="Auto">
-                        <Border.Style>
-                            <Style TargetType="Border" BasedOn="{StaticResource BorderSettingContainer}">
-                                <Setter Property="Height" 
-                                        Value="{Binding ActualHeight, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=FrameworkElement}}"/>
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Visibility, ElementName=SplitTunneling}" Value="Collapsed">
-                                        <Setter Property="Height" Value="Auto"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Border.Style>
-                        <splittunneling:SplitTunnelingView x:Name="SplitTunneling"
-                                                           Margin="6,0,0,0"
-                                                           DataContext="{Binding SplitTunnelingViewModel}"
-                                                           Visibility="{c:Binding Enabled, FalseToVisibility=Collapsed}"/>
-                    </Border>
-                </DockPanel>
+                        <Border BorderThickness="0" MaxHeight="274" Height="Auto">
+                            <Border.Style>
+                                <Style TargetType="Border" BasedOn="{StaticResource BorderSettingContainer}">
+                                    <Setter Property="Height" 
+                                            Value="{Binding ActualHeight, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=FrameworkElement}}"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Visibility, ElementName=SplitTunneling}" Value="Collapsed">
+                                            <Setter Property="Height" Value="Auto"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            <splittunneling:SplitTunnelingView x:Name="SplitTunneling"
+                                                               Margin="6,0,0,0"
+                                                               DataContext="{Binding SplitTunnelingViewModel}"
+                                                               Visibility="{c:Binding Enabled, FalseToVisibility=Collapsed}"/>
+                        </Border>
+                    </DockPanel>
+                </ScrollViewer>
             </TabItem>
         </TabControl>
 
