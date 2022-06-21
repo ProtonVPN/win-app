@@ -359,7 +359,6 @@ namespace ProtonVPN.Api.Tests.Handlers
             _innerHandler.VerifyNoOutstandingExpectation();
         }
 
-
         [TestMethod]
         public async Task SendAsync_ShouldSuppressRequest_WhenRefreshingTokens()
         {

@@ -66,6 +66,40 @@ namespace ProtonVPN.Api.Tests.Extensions
             message.IsToRetry().Should().BeTrue();
         }
 
+        [TestMethod]
+        public void IsToRetry_ShouldNotRetryOnTooManyRequestWithoutRetryAfterHeader()
+        {
+            // Arrange
+            HttpResponseMessage message = GetResponseMessage(ExpandedHttpStatusCodes.TOO_MANY_REQUESTS);
+
+            // Assert
+            message.IsToRetry().Should().BeFalse();
+        }
+
+        [TestMethod]
+        [DataRow(HttpStatusCode.RequestTimeout)]
+        [DataRow(HttpStatusCode.BadGateway)]
+        public void IsToRetryOnce_ShouldReturnTrue(HttpStatusCode httpStatusCode)
+        {
+            // Arrange
+            HttpResponseMessage message = GetResponseMessage(httpStatusCode);
+
+            // Assert
+            message.IsToRetryOnce().Should().BeTrue();
+        }
+
+        [TestMethod]
+        [DataRow(HttpStatusCode.OK)]
+        [DataRow(HttpStatusCode.InternalServerError)]
+        public void IsToRetryOnce_ShouldReturnFalse(HttpStatusCode httpStatusCode)
+        {
+            // Arrange
+            HttpResponseMessage message = GetResponseMessage(httpStatusCode);
+
+            // Assert
+            message.IsToRetryOnce().Should().BeFalse();
+        }
+
         private HttpResponseMessage GetResponseMessage(HttpStatusCode statusCode)
         {
             return new HttpResponseMessage
