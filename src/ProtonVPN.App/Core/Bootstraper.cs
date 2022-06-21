@@ -289,6 +289,7 @@ namespace ProtonVPN.Core
 
             userAuth.UserLoggedIn += async (sender, e) =>
             {
+                await Resolve<IUserLocationService>().Update();
                 await Resolve<IServerUpdater>().Update();
                 await Resolve<IClientConfig>().Update();
                 await Resolve<StreamingServicesUpdater>().Update();
@@ -508,7 +509,7 @@ namespace ProtonVPN.Core
             }
 
             await Resolve<ISettingsServiceClientManager>().UpdateServiceSettings();
-
+            
             Resolve<PinFactory>().BuildPins();
             LoadViewModels();
             Resolve<P2PDetector>();
@@ -527,7 +528,6 @@ namespace ProtonVPN.Core
 
             Resolve<PlanDowngradeHandler>();
             Resolve<WelcomeModalManager>().Load();
-            await Resolve<IUserLocationService>().Update();
             await Resolve<IAnnouncementService>().Update();
             await Resolve<SystemTimeValidator>().Validate();
             await Resolve<AutoConnect>().LoadAsync(autoLogin);

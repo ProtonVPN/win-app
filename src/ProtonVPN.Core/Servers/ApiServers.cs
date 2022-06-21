@@ -23,6 +23,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Servers;
+using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.ApiLogs;
 using ProtonVPN.Core.User;
@@ -34,22 +35,26 @@ namespace ProtonVPN.Core.Servers
         private readonly ILogger _logger;
         private readonly IApiClient _apiClient;
         private readonly TruncatedLocation _location;
+        private readonly IUserLocationService _userLocationService;
 
         public ApiServers(
             ILogger logger,
             IApiClient apiClient,
-            TruncatedLocation location)
+            TruncatedLocation location,
+            IUserLocationService userLocationService)
         {
             _logger = logger;
             _apiClient = apiClient;
             _location = location;
+            _userLocationService = userLocationService;
         }
 
         public async Task<IReadOnlyCollection<LogicalServerResponse>> GetServersAsync()
         {
             try
             {
-                ApiResponseResult<ServersResponse> response = await _apiClient.GetServersAsync(_location.Ip());
+                string ip = await GetLocationIPAsync();
+                ApiResponseResult<ServersResponse> response = await _apiClient.GetServersAsync(ip);
                 return response.Success ? response.Value.Servers : Array.Empty<LogicalServerResponse>();
             }
             catch (HttpRequestException ex)
@@ -60,11 +65,34 @@ namespace ProtonVPN.Core.Servers
             return Array.Empty<LogicalServerResponse>();
         }
 
+        private async Task<string> GetLocationIPAsync()
+        {
+            string ip = _location.Ip();
+            if (ip.IsNullOrEmpty())
+            {
+                await UpdateLocation();
+            }
+            return _location.Ip();
+        }
+
+        private async Task UpdateLocation()
+        {
+            try
+            {
+                await _userLocationService.Update();
+            }
+            catch (Exception e)
+            {
+                _logger.Error<ApiErrorLog>("Error when fetching API location.", e);
+            }
+        }
+
         public async Task<IReadOnlyCollection<LogicalServerResponse>> GetLoadsAsync()
         {
             try
             {
-                ApiResponseResult<ServersResponse> response = await _apiClient.GetServerLoadsAsync(_location.Ip());
+                string ip = await GetLocationIPAsync();
+                ApiResponseResult<ServersResponse> response = await _apiClient.GetServerLoadsAsync(ip);
                 if (response.Success)
                 {
                     return response.Value.Servers;
