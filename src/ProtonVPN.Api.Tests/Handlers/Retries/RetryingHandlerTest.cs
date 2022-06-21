@@ -36,6 +36,8 @@ namespace ProtonVPN.Api.Tests.Handlers.Retries
     [TestClass]
     public class RetryingHandlerTest
     {
+        private const string BASE_API_URL = "http://127.0.0.1";
+
         [TestMethod]
         public async Task It_ShouldRetry_WhenRequestFails()
         {
@@ -49,9 +51,64 @@ namespace ProtonVPN.Api.Tests.Handlers.Retries
                     response.Headers.RetryAfter = new RetryConditionHeaderValue(TimeSpan.FromSeconds(1));
                     return response;
                 });
-            MockOfLoggingHandler loggingHandler = new(mockHttpMessageHandler);
-            RetryingHandler handler = new(loggingHandler, GetRetryPolicyProvider(maxRetries));
-            HttpClient httpClient = new(handler) { BaseAddress = new Uri("http://127.0.0.1") };
+            HttpClient httpClient = GetHttpClient(maxRetries, mockHttpMessageHandler);
+
+            // Act
+            await httpClient.SendAsync(new HttpRequestMessage());
+
+            // Assert
+            mockHttpMessageHandler.GetMatchCount(request).Should().Be(maxRetries + 1);
+        }
+
+        [TestMethod]
+        [DataRow(HttpStatusCode.ServiceUnavailable)]
+        [DataRow(ExpandedHttpStatusCodes.TOO_MANY_REQUESTS)]
+        public async Task It_ShouldNotRetryWithoutRetryAfterHeader(HttpStatusCode httpStatusCode)
+        {
+            // Arrange
+            const int maxRetries = 3;
+            MockHttpMessageHandler mockHttpMessageHandler = new();
+            MockedRequest request = mockHttpMessageHandler.When("*").Respond(_ => new(httpStatusCode));
+            HttpClient httpClient = GetHttpClient(maxRetries, mockHttpMessageHandler);
+
+            // Act
+            await httpClient.SendAsync(new HttpRequestMessage());
+
+            // Assert
+            mockHttpMessageHandler.GetMatchCount(request).Should().Be(1);
+        }
+
+        [TestMethod]
+        [DataRow(HttpStatusCode.RequestTimeout)]
+        [DataRow(HttpStatusCode.BadGateway)]
+        public async Task It_ShouldRetryOnce(HttpStatusCode httpStatusCode)
+        {
+            // Arrange
+            const int maxRetries = 1;
+            MockHttpMessageHandler mockHttpMessageHandler = new();
+            MockedRequest request = mockHttpMessageHandler.When("*").Respond(_ => new(httpStatusCode));
+            HttpClient httpClient = GetHttpClient(maxRetries, mockHttpMessageHandler);
+
+            // Act
+            await httpClient.SendAsync(new HttpRequestMessage());
+
+            // Assert
+            mockHttpMessageHandler.GetMatchCount(request).Should().Be(maxRetries + 1);
+        }
+
+        [TestMethod]
+        [DataRow(HttpStatusCode.ServiceUnavailable)]
+        [DataRow(HttpStatusCode.BadRequest)]
+        [DataRow(HttpStatusCode.Conflict)]
+        [DataRow(HttpStatusCode.Unauthorized)]
+        [DataRow(ExpandedHttpStatusCodes.UNPROCESSABLE_ENTITY)]
+        public async Task It_ShouldNotRetry(HttpStatusCode httpStatusCode)
+        {
+            // Arrange
+            const int maxRetries = 0;
+            MockHttpMessageHandler mockHttpMessageHandler = new();
+            MockedRequest request = mockHttpMessageHandler.When("*").Respond(_ => new(httpStatusCode));
+            HttpClient httpClient = GetHttpClient(maxRetries, mockHttpMessageHandler);
 
             // Act
             await httpClient.SendAsync(new HttpRequestMessage());
@@ -66,12 +123,9 @@ namespace ProtonVPN.Api.Tests.Handlers.Retries
             // Arrange
             const int maxRetries = 0;
 
-            MockHttpMessageHandler innerHandler = new() { AutoFlush = false };
+            MockHttpMessageHandler innerHandler = new();
             innerHandler.When("*").Respond(_ => new HttpResponseMessage(HttpStatusCode.OK));
-
-            MockOfLoggingHandler loggingHandler = new(innerHandler);
-            RetryingHandler handler = new(loggingHandler, GetRetryPolicyProvider(maxRetries)) { InnerHandler = innerHandler };
-            HttpClient httpClient = new(handler) { BaseAddress = new Uri("http://127.0.0.1") };
+            HttpClient httpClient = GetHttpClient(maxRetries, innerHandler);
 
             // Act
             Task.Delay(TimeSpan.FromMilliseconds(200))
@@ -95,6 +149,13 @@ namespace ProtonVPN.Api.Tests.Handlers.Retries
 
             return new RetryPolicyProvider(logger, new SleepDurationProvider(), retryCountProvider,
                 requestTimeoutProvider);
+        }
+
+        private HttpClient GetHttpClient(int maxRetries, MockHttpMessageHandler mockHttpMessageHandler)
+        {
+            MockOfLoggingHandler loggingHandler = new(mockHttpMessageHandler);
+            RetryingHandler handler = new(loggingHandler, GetRetryPolicyProvider(maxRetries));
+            return new(handler) { BaseAddress = new Uri(BASE_API_URL) };
         }
     }
 }
