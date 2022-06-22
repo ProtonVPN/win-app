@@ -93,6 +93,7 @@
     <Compile Include="ApiAppVersion.cs" />
     <Compile Include="ApiClient.cs" />
     <Compile Include="ApiExceptionHelper.cs" />
+    <Compile Include="ApiHostProvider.cs" />
     <Compile Include="BaseApiClient.cs" />
     <Compile Include="Deserializers\BaseResponseMessageDeserializer.cs" />
     <Compile Include="Deserializers\IBaseResponseMessageDeserializer.cs" />
@@ -100,10 +101,13 @@
     <Compile Include="Extensions\X509CertificateExtensions.cs" />
     <Compile Include="GuestHoleState.cs" />
     <Compile Include="Handlers\AlternativeHostHandler.cs" />
+    <Compile Include="Handlers\TlsPinning\CertificateValidationParams.cs" />
+    <Compile Include="Handlers\TlsPinning\CertificateValidator.cs" />
     <Compile Include="Handlers\HumanVerificationHandlerBase.cs" />
+    <Compile Include="Handlers\TlsPinning\ICertificateValidator.cs" />
     <Compile Include="Handlers\LoggingHandlerBase.cs" />
     <Compile Include="Handlers\CancellingHandler.cs" />
-    <Compile Include="Handlers\CertificateHandler.cs" />
+    <Compile Include="Handlers\TlsPinning\CertificateHandler.cs" />
     <Compile Include="Handlers\DnsHandler.cs" />
     <Compile Include="Handlers\FailedDnsResponse.cs" />
     <Compile Include="Handlers\FailResponse.cs" />

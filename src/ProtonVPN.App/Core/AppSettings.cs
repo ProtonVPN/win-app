@@ -263,7 +263,7 @@ namespace ProtonVPN.Core
             set => Set(value);
         }
 
-        public DateTime LastPrimaryApiFail
+        public DateTime LastPrimaryApiFailDateUtc
         {
             get => Get<DateTime>();
             set => Set(value);

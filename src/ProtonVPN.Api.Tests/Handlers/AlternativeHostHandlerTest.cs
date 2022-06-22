@@ -25,6 +25,7 @@ using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
+using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Handlers;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Logging;
@@ -43,6 +44,7 @@ namespace ProtonVPN.Api.Tests.Handlers
         private MockHttpMessageHandler _innerHandler;
         private IAppSettings _appSettings;
         private ITokenStorage _tokenStorage;
+        private IApiHostProvider _apiHostProvider;
         private Config _config;
         private readonly Uri _baseAddress = new(BASE_API_URL);
 
@@ -52,6 +54,7 @@ namespace ProtonVPN.Api.Tests.Handlers
             _innerHandler = new MockHttpMessageHandler();
             _appSettings = Substitute.For<IAppSettings>();
             _tokenStorage = Substitute.For<ITokenStorage>();
+            _apiHostProvider = Substitute.For<IApiHostProvider>();
             _config = new Config { Urls = { ApiUrl = BASE_API_URL } };
         }
 
@@ -61,7 +64,7 @@ namespace ProtonVPN.Api.Tests.Handlers
             // Arrange
             _appSettings.DoHEnabled.Returns(false);
             _appSettings.ActiveAlternativeApiBaseUrl = "alternative.api.url";
-            _appSettings.LastPrimaryApiFail = DateTime.Now;
+            _appSettings.LastPrimaryApiFailDateUtc = DateTime.UtcNow;
 
             AlternativeHostHandler handler = new(
                 new MockOfCancellingHandler(_innerHandler),
@@ -71,6 +74,7 @@ namespace ProtonVPN.Api.Tests.Handlers
                 _appSettings,
                 new GuestHoleState(),
                 _tokenStorage,
+                _apiHostProvider,
                 _config) { InnerHandler = _innerHandler };
 
             HttpClient client = new(handler) { BaseAddress = _baseAddress };

@@ -22,6 +22,7 @@ using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Deserializers;
 using ProtonVPN.Api.Handlers;
 using ProtonVPN.Api.Handlers.Retries;
+using ProtonVPN.Api.Handlers.TlsPinning;
 
 namespace ProtonVPN.Api.Installers
 {
@@ -45,6 +46,8 @@ namespace ProtonVPN.Api.Installers
             builder.RegisterType<RequestTimeoutProvider>().As<IRequestTimeoutProvider>().SingleInstance();
             builder.RegisterType<AlternativeHostHandler>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterType<BaseResponseMessageDeserializer>().As<IBaseResponseMessageDeserializer>().SingleInstance();
+            builder.RegisterType<ApiHostProvider>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<CertificateValidator>().As<ICertificateValidator>().SingleInstance();
         }
     }
 }

@@ -17,13 +17,53 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
+using System.Security.Cryptography.X509Certificates;
+using Microsoft.Web.WebView2.Core;
+using ProtonVPN.Api.Handlers.TlsPinning;
+
 namespace ProtonVPN.HumanVerification.Gui
 {
     public partial class WebView
     {
-        public WebView()
+        private readonly ICertificateValidator _certificateValidator;
+
+        public WebView(ICertificateValidator certificateValidator)
         {
+            _certificateValidator = certificateValidator;
             InitializeComponent();
+            WebView2.CoreWebView2InitializationCompleted += OnCoreWebView2InitializationCompleted;
+        }
+
+        private async void OnCoreWebView2InitializationCompleted(object sender,
+            CoreWebView2InitializationCompletedEventArgs e)
+        {
+            await WebView2.CoreWebView2.ClearServerCertificateErrorActionsAsync();
+            WebView2.CoreWebView2.ServerCertificateErrorDetected += OnServerCertificateErrorDetected;
+        }
+
+        private void OnServerCertificateErrorDetected(object sender,
+            CoreWebView2ServerCertificateErrorDetectedEventArgs e)
+        {
+            e.Action = IsCertificateValid(e)
+                ? CoreWebView2ServerCertificateErrorAction.AlwaysAllow
+                : CoreWebView2ServerCertificateErrorAction.Cancel;
+        }
+
+        private bool IsCertificateValid(CoreWebView2ServerCertificateErrorDetectedEventArgs e)
+        {
+            X509Certificate2 certificate = e.ServerCertificate.ToX509Certificate2();
+            Uri requestUri = new Uri(e.RequestUri);
+            CertificateValidationParams validationParams = new()
+            {
+                Certificate = certificate,
+                Chain = e.ServerCertificate.PemEncodedIssuerCertificateChain,
+                HasSslError = true,
+                Host = requestUri.Host,
+                RequestUri = requestUri,
+            };
+
+            return _certificateValidator.IsValid(validationParams);
         }
     }
 }

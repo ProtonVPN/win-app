@@ -35,6 +35,7 @@ namespace ProtonVPN.HumanVerification.Gui
     {
         private readonly Config _config;
         private readonly ILogger _logger;
+        private readonly ICaptchaUrlProvider _captchaUrlProvider;
 
         private int _height;
         private string _requestToken = string.Empty;
@@ -48,14 +49,16 @@ namespace ProtonVPN.HumanVerification.Gui
             set => Set(ref _height, value);
         }
 
-        public string Url => string.Format(_config.Urls.CaptchaUrl, _requestToken);
+        public string Url => _captchaUrlProvider.GetCaptchaUrl(_requestToken);
 
         public event EventHandler<string> OnHumanVerificationTokenReceived;
 
-        public WebViewViewModel(Config config, ILogger logger)
+        public WebViewViewModel(Config config, ILogger logger, ICaptchaUrlProvider captchaUrlProvider)
         {
             _config = config;
             _logger = logger;
+            _captchaUrlProvider = captchaUrlProvider;
+
             WebView2CreationProperties = new CoreWebView2CreationProperties { UserDataFolder = config.LocalAppDataFolder };
             OnMessageReceivedCommand = new RelayCommand<CoreWebView2WebMessageReceivedEventArgs>(OnWebMessageReceived);
         }
@@ -63,6 +66,7 @@ namespace ProtonVPN.HumanVerification.Gui
         public void SetRequestToken(string token)
         {
             _requestToken = token;
+            RaisePropertyChanged(nameof(Url));
         }
 
         private void OnWebMessageReceived(CoreWebView2WebMessageReceivedEventArgs e)

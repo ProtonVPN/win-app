@@ -23,7 +23,7 @@ using ProtonVPN.Common.Configuration.Api.Handlers.TlsPinning;
 
 namespace ProtonVPN.Api.Handlers.TlsPinning
 {
-    internal class TlsPinningPolicy
+    public class TlsPinningPolicy
     {
         public bool Valid(TlsPinnedDomain domain, X509Certificate certificate)
         {

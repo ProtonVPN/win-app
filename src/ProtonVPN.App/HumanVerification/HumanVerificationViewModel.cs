@@ -18,6 +18,7 @@
  */
 
 using ProtonVPN.HumanVerification.Contracts;
+using ProtonVPN.HumanVerification.Gui;
 using ProtonVPN.Modals;
 
 namespace ProtonVPN.HumanVerification
@@ -25,10 +26,13 @@ namespace ProtonVPN.HumanVerification
     public class HumanVerificationViewModel : BaseModalViewModel
     {
         public IWebViewViewModel WebViewViewModel { get; }
+        public WebView WebView { get; }
 
-        public HumanVerificationViewModel(IWebViewViewModel webViewViewModel)
+        public HumanVerificationViewModel(IWebViewViewModel webViewViewModel, WebView webView)
         {
             WebViewViewModel = webViewViewModel;
+            WebView = webView;
+            WebView.DataContext = webViewViewModel;
             webViewViewModel.OnHumanVerificationTokenReceived += OnHumanVerificationTokenReceived;
         }
 

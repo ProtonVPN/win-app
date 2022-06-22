@@ -89,6 +89,7 @@
     </Compile>
     <Compile Include="ApiClientTest.cs" />
     <Compile Include="Deserializers\MockOfBaseResponseMessageDeserializer.cs" />
+    <Compile Include="ApiHostProviderTest.cs" />
     <Compile Include="Extensions\HttpResponseMessageExtensionsTest.cs" />
     <Compile Include="Handlers\AlternativeHostHandlerTest.cs" />
     <Compile Include="Handlers\CertificateHandlerTest.cs" />

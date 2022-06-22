@@ -53,6 +53,8 @@ using ProtonVPN.Core.Threading;
 using ProtonVPN.Core.Update;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Core.Window;
+using ProtonVPN.HumanVerification;
+using ProtonVPN.HumanVerification.Contracts;
 using ProtonVPN.Modals.ApiActions;
 using ProtonVPN.Settings;
 using ProtonVPN.Vpn;
@@ -66,6 +68,7 @@ namespace ProtonVPN.Core.Ioc
         {
             base.Load(builder);
             
+            builder.RegisterType<HumanVerifier>().As<IHumanVerifier>().SingleInstance();
             builder.RegisterType<ServicePointConfiguration>().SingleInstance();
             builder.RegisterType<ServerManager>().SingleInstance();
             builder.RegisterType<ActiveUrls>().As<IActiveUrls>().SingleInstance();
