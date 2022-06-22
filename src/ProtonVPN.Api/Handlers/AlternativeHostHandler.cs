@@ -23,6 +23,7 @@ using System.Collections.Specialized;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using ProtonVPN.Api.Contracts;
 using ProtonVPN.Common.Abstract;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Logging;
@@ -46,9 +47,9 @@ namespace ProtonVPN.Api.Handlers
         private readonly IAppSettings _appSettings;
         private readonly GuestHoleState _guestHoleState;
         private readonly ITokenStorage _tokenStorage;
+        private readonly IApiHostProvider _apiHostProvider;
         private readonly SingleAction _fetchProxies;
 
-        private const int MAX_HOURS_WITH_PROXY = 24;
         private string _activeBackendHost;
         private readonly string _apiHost;
         private bool _isDisconnected;
@@ -62,6 +63,7 @@ namespace ProtonVPN.Api.Handlers
             IAppSettings appSettings,
             GuestHoleState guestHoleState,
             ITokenStorage tokenStorage,
+            IApiHostProvider apiHostProvider,
             Config config)
         {
             _logger = logger;
@@ -70,6 +72,7 @@ namespace ProtonVPN.Api.Handlers
             _appSettings = appSettings;
             _guestHoleState = guestHoleState;
             _tokenStorage = tokenStorage;
+            _apiHostProvider = apiHostProvider;
             _apiHost = new Uri(config.Urls.ApiUrl).Host;
             _activeBackendHost = _apiHost;
             _fetchProxies = new SingleAction(FetchProxies);
@@ -90,11 +93,11 @@ namespace ProtonVPN.Api.Handlers
                 return await SendInternalAsync(request, token);
             }
 
-            if (ProxyActivated())
+            if (_apiHostProvider.IsProxyActive())
             {
                 try
                 {
-                    _activeBackendHost = _appSettings.ActiveAlternativeApiBaseUrl;
+                    _activeBackendHost = _apiHostProvider.GetHost();
                     _logger.Info<ApiLog>($"Sending request using {_activeBackendHost}");
 
                     return await SendInternalAsync(request, token);
@@ -213,14 +216,6 @@ namespace ProtonVPN.Api.Handlers
             return await base.SendAsync(GetRequest(request), token);
         }
 
-        private bool ProxyActivated()
-        {
-            return _appSettings.DoHEnabled &&
-                   _isDisconnected &&
-                   DateTime.Now.Subtract(_appSettings.LastPrimaryApiFail).TotalHours < MAX_HOURS_WITH_PROXY &&
-                   !string.IsNullOrEmpty(_appSettings.ActiveAlternativeApiBaseUrl);
-        }
-
         private HttpRequestMessage GetRequest(HttpRequestMessage request)
         {
             UriBuilder uriBuilder = new(request.RequestUri) { Host = _activeBackendHost };
@@ -232,7 +227,7 @@ namespace ProtonVPN.Api.Handlers
 
         private async Task FetchProxies()
         {
-            _appSettings.LastPrimaryApiFail = DateTime.Now;
+            _appSettings.LastPrimaryApiFailDateUtc = DateTime.UtcNow;
             _appSettings.AlternativeApiBaseUrls = new StringCollection();
             ResetBackendHost();
 

@@ -11,6 +11,7 @@
              mc:Ignorable="d">
     <wpf:WebView2 DefaultBackgroundColor="Black"
                   MinHeight="100"
+                  Name="WebView2"
                   Height="{Binding Height}">
         <wpf:WebView2.CreationProperties>
             <Binding RelativeSource="{RelativeSource Self}" Path="DataContext.WebView2CreationProperties" />

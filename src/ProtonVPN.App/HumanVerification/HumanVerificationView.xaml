@@ -25,7 +25,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           xmlns:resource="clr-namespace:ProtonVPN.Resource;assembly=ProtonVPN.Resource"
                           xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
                           xmlns:humanVerification="clr-namespace:ProtonVPN.HumanVerification"
-                          xmlns:humanVerificationGui="clr-namespace:ProtonVPN.HumanVerification.Gui;assembly=ProtonVPN.HumanVerification.Gui"
                           d:DataContext="{d:DesignInstance humanVerification:HumanVerificationViewModel}"
                           SizeToContent="WidthAndHeight"
                           WindowStartupLocation="Manual"
@@ -34,6 +33,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           x:Name="UserControl"
                           mc:Ignorable="d">
     <Grid Width="320">
-        <humanVerificationGui:WebView DataContext="{Binding WebViewViewModel}" />
+        <ContentPresenter Content="{Binding WebView}" />
     </Grid>
 </resource:BaseModalWindow>

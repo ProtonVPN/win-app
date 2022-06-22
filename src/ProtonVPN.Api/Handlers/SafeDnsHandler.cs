@@ -22,6 +22,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Caliburn.Micro;
 using DnsClient;
+using ProtonVPN.Api.Handlers.TlsPinning;
 using ProtonVPN.Core.OS.Net.Dns;
 
 namespace ProtonVPN.Api.Handlers

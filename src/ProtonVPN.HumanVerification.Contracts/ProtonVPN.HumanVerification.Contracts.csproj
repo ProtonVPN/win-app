@@ -50,6 +50,7 @@
     <Compile Include="CaptchaMessage.cs" />
     <Compile Include="CaptchaMessageType.cs" />
     <Compile Include="HumanVerificationTypes.cs" />
+    <Compile Include="ICaptchaUrlProvider.cs" />
     <Compile Include="IHumanVerificationConfig.cs" />
     <Compile Include="IHumanVerifier.cs" />
     <Compile Include="IWebViewViewModel.cs" />

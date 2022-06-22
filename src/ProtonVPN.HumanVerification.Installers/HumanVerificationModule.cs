@@ -29,6 +29,8 @@ namespace ProtonVPN.HumanVerification.Installers
         {
             builder.RegisterType<HumanVerificationConfig>().As<IHumanVerificationConfig>().SingleInstance();
             builder.RegisterType<WebViewViewModel>().As<IWebViewViewModel>().SingleInstance();
+            builder.RegisterType<CaptchaUrlProvider>().As<ICaptchaUrlProvider>().SingleInstance();
+            builder.RegisterType<WebView>().SingleInstance();
         }
     }
 }

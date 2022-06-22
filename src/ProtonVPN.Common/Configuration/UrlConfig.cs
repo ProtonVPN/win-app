@@ -114,9 +114,6 @@ namespace ProtonVPN.Common.Configuration
         public string TorUrl { get; set; }
 
         [Required]
-        public string CaptchaUrl { get; set; }
-
-        [Required]
         public string AboutSmartProtocolUrl { get; set; }
 
         [Required]

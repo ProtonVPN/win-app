@@ -17,23 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using ProtonVPN.Common.Configuration.Api.Handlers.TlsPinning;
-
-namespace ProtonVPN.Api.Handlers.TlsPinning
+namespace ProtonVPN.Api.Contracts
 {
-    public class TlsPinningPolicy
+    public interface IApiHostProvider
     {
-        public bool Valid(TlsPinnedDomain domain, X509Certificate certificate)
-        {
-            if (domain == null)
-            {
-                return true;
-            }
-
-            string hash = new PublicKeyInfoHash(certificate).Value();
-            return domain.PublicKeyHashes.Contains(hash);
-        }
+        string GetHost();
+        bool IsProxyActive();
     }
 }

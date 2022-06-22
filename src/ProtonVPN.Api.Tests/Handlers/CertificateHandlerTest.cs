@@ -25,7 +25,6 @@ using System.Security.Cryptography.X509Certificates;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
-using ProtonVPN.Api.Handlers;
 using ProtonVPN.Api.Handlers.TlsPinning;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Configuration.Api.Handlers.TlsPinning;
@@ -56,7 +55,8 @@ namespace ProtonVPN.Api.Tests.Handlers
         [TestMethod]
         public void ItShouldReturnTrue()
         {
-            TestCertificateHandler certificateHandler = new(GetApiTlsPinningConfig(false), _reportClient);
+            Config config = GetApiTlsPinningConfig(false);
+            TestCertificateHandler certificateHandler = CreateTestCertificateHandler(config);
 
             certificateHandler.GetValidationResult(_unknownHost, _apiCert, SslPolicyErrors.None).Should().BeTrue();
         }
@@ -64,7 +64,8 @@ namespace ProtonVPN.Api.Tests.Handlers
         [TestMethod]
         public void ItShouldReturnFalseWhenEnforceIsOn()
         {
-            TestCertificateHandler certificateHandler = new(GetApiTlsPinningConfig(true), _reportClient);
+            Config config = GetApiTlsPinningConfig(true);
+            TestCertificateHandler certificateHandler = CreateTestCertificateHandler(config);
 
             certificateHandler.GetValidationResult(_unknownHost, _apiCert, SslPolicyErrors.None).Should().BeFalse();
         }
@@ -72,7 +73,8 @@ namespace ProtonVPN.Api.Tests.Handlers
         [TestMethod]
         public void ItShouldReturnFalseWhenEnforceIsOnAndSslError()
         {
-            TestCertificateHandler certificateHandler = new(GetApiTlsPinningConfig(true), _reportClient);
+            Config config = GetApiTlsPinningConfig(true);
+            TestCertificateHandler certificateHandler = CreateTestCertificateHandler(config);
 
             certificateHandler.GetValidationResult(_unknownHost, _apiCert, SslPolicyErrors.RemoteCertificateNameMismatch).Should().BeFalse();
         }
@@ -85,7 +87,8 @@ namespace ProtonVPN.Api.Tests.Handlers
         [TestMethod]
         public void ItShouldReturnFalseWhenSslError()
         {
-            TestCertificateHandler certificateHandler = new(GetApiTlsPinningConfig(true), _reportClient);
+            Config config = GetApiTlsPinningConfig(true);
+            TestCertificateHandler certificateHandler = CreateTestCertificateHandler(config);
 
             certificateHandler.GetValidationResult(_apiHost, _apiCert, SslPolicyErrors.RemoteCertificateNameMismatch).Should().BeFalse();
         }
@@ -93,7 +96,8 @@ namespace ProtonVPN.Api.Tests.Handlers
         [TestMethod]
         public void ItShouldReturnTrueWhenEnforceIsOff()
         {
-            TestCertificateHandler certificateHandler = new(GetApiTlsPinningConfig(false), _reportClient);
+            Config config = GetApiTlsPinningConfig(false);
+            TestCertificateHandler certificateHandler = CreateTestCertificateHandler(config);
 
             certificateHandler.GetValidationResult(_apiHost, _apiCert, SslPolicyErrors.None).Should().BeTrue();
         }
@@ -101,7 +105,8 @@ namespace ProtonVPN.Api.Tests.Handlers
         [TestMethod]
         public void ItShouldReturnTrueWhenPinIsValid()
         {
-            TestCertificateHandler certificateHandler = new(GetApiTlsPinningConfig(true), _reportClient);
+            Config config = GetApiTlsPinningConfig(true);
+            TestCertificateHandler certificateHandler = CreateTestCertificateHandler(config);
 
             certificateHandler.GetValidationResult(_apiHost, _apiCert, SslPolicyErrors.None).Should().BeTrue();
         }
@@ -112,7 +117,7 @@ namespace ProtonVPN.Api.Tests.Handlers
             Config config = GetApiTlsPinningConfig(true);
             config.TlsPinningConfig.PinnedDomains = new List<TlsPinnedDomain>();
 
-            TestCertificateHandler certificateHandler = new(config, _reportClient);
+            TestCertificateHandler certificateHandler = CreateTestCertificateHandler(config);
 
             certificateHandler.GetValidationResult(_apiHost, _apiCert, SslPolicyErrors.None).Should().BeFalse();
         }
@@ -125,7 +130,7 @@ namespace ProtonVPN.Api.Tests.Handlers
         public void ItShouldReturnTrueWhenAlternativeHostPinIsValid()
         {
             Config config = GetAlternativeApiTlsPinningConfig(true);
-            TestCertificateHandler certificateHandler = new(config, _reportClient);
+            TestCertificateHandler certificateHandler = CreateTestCertificateHandler(config);
 
             certificateHandler.GetValidationResult(_alternativeHost, _alternativeHostCert, SslPolicyErrors.None).Should().BeTrue();
         }
@@ -135,7 +140,7 @@ namespace ProtonVPN.Api.Tests.Handlers
         {
             Config config = GetAlternativeApiTlsPinningConfig(true);
             config.TlsPinningConfig.PinnedDomains = new List<TlsPinnedDomain>();
-            TestCertificateHandler certificateHandler = new(config, _reportClient);
+            TestCertificateHandler certificateHandler = CreateTestCertificateHandler(config);
 
             certificateHandler.GetValidationResult(_alternativeHost, _alternativeHostCert, SslPolicyErrors.None).Should().BeFalse();
         }
@@ -146,7 +151,7 @@ namespace ProtonVPN.Api.Tests.Handlers
         public void ItShouldSendTlsPinReportWhenPinIsNotValid()
         {
             Config config = GetIncorrectTlsPinningConfig(true);
-            TestCertificateHandler certificateHandler = new(config, _reportClient);
+            TestCertificateHandler certificateHandler = CreateTestCertificateHandler(config);
             certificateHandler.GetValidationResult(_apiHost, _apiCert, SslPolicyErrors.None);
 
             _reportClient.ReceivedWithAnyArgs().Send(null);
@@ -200,6 +205,11 @@ namespace ProtonVPN.Api.Tests.Handlers
 
             return config;
         }
+
+        private TestCertificateHandler CreateTestCertificateHandler(Config config)
+        {
+            return new(new CertificateValidator(_reportClient, config));
+        }
     }
 
     internal class PinConfigBuilder
@@ -234,7 +244,7 @@ namespace ProtonVPN.Api.Tests.Handlers
 
     internal class TestCertificateHandler : CertificateHandler
     {
-        public TestCertificateHandler(Config config, IReportClient reportClient) : base(config, reportClient)
+        public TestCertificateHandler(ICertificateValidator certificateValidator) : base(certificateValidator)
         {
         }
 

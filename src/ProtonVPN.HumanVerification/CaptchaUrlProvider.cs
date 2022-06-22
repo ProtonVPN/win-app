@@ -17,23 +17,23 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using ProtonVPN.Common.Configuration.Api.Handlers.TlsPinning;
+using ProtonVPN.Api.Contracts;
+using ProtonVPN.HumanVerification.Contracts;
 
-namespace ProtonVPN.Api.Handlers.TlsPinning
+namespace ProtonVPN.HumanVerification
 {
-    public class TlsPinningPolicy
+    public class CaptchaUrlProvider : ICaptchaUrlProvider
     {
-        public bool Valid(TlsPinnedDomain domain, X509Certificate certificate)
-        {
-            if (domain == null)
-            {
-                return true;
-            }
+        private readonly IApiHostProvider _apiHostProvider;
 
-            string hash = new PublicKeyInfoHash(certificate).Value();
-            return domain.PublicKeyHashes.Contains(hash);
+        public CaptchaUrlProvider(IApiHostProvider apiHostProvider)
+        {
+            _apiHostProvider = apiHostProvider;
+        }
+
+        public string GetCaptchaUrl(string token)
+        {
+            return $"https://{_apiHostProvider.GetHost()}/core/v4/captcha?Token={token}";
         }
     }
 }

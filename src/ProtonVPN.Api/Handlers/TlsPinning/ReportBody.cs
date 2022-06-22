@@ -20,7 +20,6 @@
 using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using Newtonsoft.Json;
 
@@ -29,11 +28,11 @@ namespace ProtonVPN.Api.Handlers.TlsPinning
     public class ReportBody
     {
         private readonly List<string> _knownPins;
-        private readonly X509Chain _chain;
+        private readonly IReadOnlyList<string> _chain;
         private readonly Uri _uri;
         private string _hash;
 
-        public ReportBody(List<string> knownPins, Uri uri, X509Chain chain)
+        public ReportBody(List<string> knownPins, Uri uri, IReadOnlyList<string> chain)
         {
             _knownPins = knownPins;
             _uri = uri;
@@ -42,15 +41,14 @@ namespace ProtonVPN.Api.Handlers.TlsPinning
 
         public ReportBody Value()
         {
-            List<string> certChain = GetCertificateChain();
-            _hash = GetCertChainHash(certChain);
+            _hash = GetCertChainHash(_chain);
 
             return new ReportBody
             {
                 DateTime = System.DateTime.UtcNow.ToString("s", System.Globalization.CultureInfo.InvariantCulture),
                 Hostname = _uri.Host,
                 Port = _uri.Port,
-                ValidatedCertificateChain = certChain,
+                ValidatedCertificateChain = _chain,
                 KnownPins = _knownPins
             };
         }
@@ -72,23 +70,12 @@ namespace ProtonVPN.Api.Handlers.TlsPinning
         public int Port { get; private set; }
 
         [JsonProperty(PropertyName = "validated-certificate-chain")]
-        public List<string> ValidatedCertificateChain { get; private set; }
+        public IReadOnlyList<string> ValidatedCertificateChain { get; private set; }
 
         [JsonProperty(PropertyName = "known-pins")]
         public List<string> KnownPins { get; private set; }
 
-        private List<string> GetCertificateChain()
-        {
-            List<string> list = new();
-            foreach (X509ChainElement element in _chain.ChainElements)
-            {
-                list.Add(element.Certificate.ExportToPem());
-            }
-
-            return list;
-        }
-
-        private string GetCertChainHash(List<string> chain)
+        private string GetCertChainHash(IReadOnlyList<string> chain)
         {
             StringBuilder stringBuilder = new();
             foreach (string cert in chain)
