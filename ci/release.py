@@ -45,7 +45,7 @@ def create_release_and_debug_branches(version):
 def update_app_version(version):
     file_path = 'src/GlobalAssemblyInfo.cs'
     content = ''
-    with open(file_path, encoding='latin') as f:
+    with open(file_path, encoding='utf-8') as f:
         content = f.read()
         content = re.sub(r"(AssemblyVersion\(\")([0-9]+\.[0-9]+\.[0-9]+)", rf"\g<1>{version}", content)
         content = re.sub(r"(AssemblyFileVersion\(\")([0-9]+\.[0-9]+\.[0-9]+)", rf"\g<1>{version}", content)
