@@ -38,7 +38,7 @@ namespace ProtonVPN.Api.Handlers
         private readonly bool _enabled;
 
         public HumanVerificationHandler(IBaseResponseMessageDeserializer baseResponseDeserializer,
-            IHumanVerifier humanVerifier, 
+            IHumanVerifier humanVerifier,
             IHumanVerificationConfig humanVerificationConfig,
             OutdatedAppHandler outdatedAppHandler)
         {
