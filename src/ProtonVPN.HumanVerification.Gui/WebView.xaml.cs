@@ -21,6 +21,7 @@ using System;
 using System.Security.Cryptography.X509Certificates;
 using Microsoft.Web.WebView2.Core;
 using ProtonVPN.Api.Handlers.TlsPinning;
+using ProtonVPN.HumanVerification.Contracts;
 
 namespace ProtonVPN.HumanVerification.Gui
 {
@@ -28,11 +29,15 @@ namespace ProtonVPN.HumanVerification.Gui
     {
         private readonly ICertificateValidator _certificateValidator;
 
-        public WebView(ICertificateValidator certificateValidator)
+        public WebView(ICertificateValidator certificateValidator,
+            IHumanVerificationConfig humanVerificationConfig)
         {
             _certificateValidator = certificateValidator;
             InitializeComponent();
-            WebView2.CoreWebView2InitializationCompleted += OnCoreWebView2InitializationCompleted;
+            if (humanVerificationConfig.IsSupported())
+            {
+                WebView2.CoreWebView2InitializationCompleted += OnCoreWebView2InitializationCompleted;
+            }
         }
 
         private async void OnCoreWebView2InitializationCompleted(object sender,
@@ -53,7 +58,7 @@ namespace ProtonVPN.HumanVerification.Gui
         private bool IsCertificateValid(CoreWebView2ServerCertificateErrorDetectedEventArgs e)
         {
             X509Certificate2 certificate = e.ServerCertificate.ToX509Certificate2();
-            Uri requestUri = new Uri(e.RequestUri);
+            Uri requestUri = new(e.RequestUri);
             CertificateValidationParams validationParams = new()
             {
                 Certificate = certificate,
