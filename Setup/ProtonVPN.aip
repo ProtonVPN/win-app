@@ -193,6 +193,8 @@
     <ROW Component="openvpn.exe_1" ComponentId="{ED9CE289-995E-414B-9E0A-A5837B948AAB}" Directory_="bit_1_Dir" Attributes="256" KeyPath="openvpn.exe_1"/>
     <ROW Component="tunnel.dll" ComponentId="{BA10003E-AAA2-4D25-95C7-E37ECC2F0DC6}" Directory_="NewFolder_Dir" Attributes="256" Condition="(VersionNT64)" KeyPath="tunnel.dll"/>
     <ROW Component="tunnel.dll_2" ComponentId="{904FBC6D-4E0A-45E8-86AC-09115E107B72}" Directory_="APPDIR" Attributes="0" Condition="(NOT VersionNT64)" KeyPath="tunnel.dll_2"/>
+    <ROW Component="vcruntime140.dll" ComponentId="{956E969B-6864-4171-94CB-FEF852F3577D}" Directory_="bit_1_Dir" Attributes="256" KeyPath="vcruntime140.dll"/>
+    <ROW Component="vcruntime140.dll_1" ComponentId="{B59A0CF9-C9F5-473A-A70A-48BA03D9B237}" Directory_="bit_Dir" Attributes="0" KeyPath="vcruntime140.dll_1"/>
     <ROW Component="wireguard.dll" ComponentId="{5851583B-E2EC-4CEB-87A4-6D711F3E2A87}" Directory_="NewFolder_Dir" Attributes="256" Condition="(VersionNT64)" KeyPath="wireguard.dll"/>
     <ROW Component="wireguard.dll_1" ComponentId="{13974F4B-AA54-4133-9EBE-F83D340B0E06}" Directory_="APPDIR" Attributes="0" Condition="(NOT VersionNT64)" KeyPath="wireguard.dll_1"/>
     <ROW Component="za.dll" ComponentId="{B7D45BB9-FB0D-4DB3-99CE-7815C47628ED}" Directory_="APPDIR" Attributes="0" KeyPath="za.dll"/>
@@ -310,6 +312,8 @@
     <ROW File="libcrypto1_1x64.dll" Component_="libcrypto1_1x64.dll" FileName="LIBCRY~1.DLL|libcrypto-1_1-x64.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Resources\64-bit\libcrypto-1_1-x64.dll" SelfReg="false"/>
     <ROW File="libpkcs11helper1.dll_2" Component_="libpkcs11helper1.dll_2" FileName="LIBPKC~1.DLL|libpkcs11-helper-1.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Resources\64-bit\libpkcs11-helper-1.dll" SelfReg="false"/>
     <ROW File="libssl1_1x64.dll" Component_="libssl1_1x64.dll" FileName="LIBSSL~1.DLL|libssl-1_1-x64.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Resources\64-bit\libssl-1_1-x64.dll" SelfReg="false"/>
+    <ROW File="vcruntime140.dll" Component_="vcruntime140.dll" FileName="VCRUNT~1.DLL|vcruntime140.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Resources\64-bit\vcruntime140.dll" SelfReg="false"/>
+    <ROW File="vcruntime140.dll_1" Component_="vcruntime140.dll_1" FileName="VCRUNT~1.DLL|vcruntime140.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Resources\32-bit\vcruntime140.dll" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.AiRemoveFileComponent">
     <ROW RemoveFile="_" Condition="(AI_CLEAN_RESOURCES_UNINSTALL = &quot;1&quot;) AND (NOT UPGRADINGPRODUCTCODE)" Options="3"/>
@@ -700,6 +704,8 @@
     <ROW Feature_="MainFeature" Component_="libpkcs11helper1.dll_2"/>
     <ROW Feature_="MainFeature" Component_="openvpn.exe_1"/>
     <ROW Feature_="MainFeature" Component_="libssl1_1x64.dll"/>
+    <ROW Feature_="MainFeature" Component_="vcruntime140.dll"/>
+    <ROW Feature_="MainFeature" Component_="vcruntime140.dll_1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
     <ROW Name="protonvpn.exe" SourcePath="images\protonvpn.ico" Index="0"/>
