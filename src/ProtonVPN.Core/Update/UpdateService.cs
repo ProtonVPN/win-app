@@ -23,20 +23,21 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Threading;
-using ProtonVPN.Common.Abstract;
-using ProtonVPN.Common.OS.Services;
+using ProtonVPN.Common.Threading;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Settings;
-using ProtonVPN.UpdateServiceContract;
+using ProtonVPN.Update;
+using ProtonVPN.Update.Config;
+using ProtonVPN.Update.Feed;
 
 namespace ProtonVPN.Core.Update
 {
     public class UpdateService : ISettingsAware, ILoggedInAware, ILogoutAware
     {
+        private readonly IScheduler _scheduler;
         private readonly Common.Configuration.Config _appConfig;
-        private readonly ISafeServiceAction _service;
         private readonly IAppSettings _appSettings;
-        private readonly ServiceClient _serviceClient;
+        private readonly INotifyingAppUpdate _notifyingAppUpdate;
         private DateTime _lastCheckTime;
 
         private readonly DispatcherTimer _timer;
@@ -46,21 +47,23 @@ namespace ProtonVPN.Core.Update
         private UpdateStatus _status = UpdateStatus.None;
 
         public UpdateService(
+            IScheduler scheduler,
             Common.Configuration.Config appConfig,
-            ISafeServiceAction service,
             IAppSettings appSettings,
-            ServiceClient serviceClient)
+            INotifyingAppUpdate notifyingAppUpdate,
+            IFeedUrlProvider feedUrlProvider)
         {
+            _scheduler = scheduler;
             _appConfig = appConfig;
-            _service = service;
-            _serviceClient = serviceClient;
             _appSettings = appSettings;
+            _notifyingAppUpdate = notifyingAppUpdate;
 
             _timer = new DispatcherTimer();
             _timer.Tick += TimerTick;
             _timer.Interval = appConfig.UpdateCheckInterval;
 
-            _serviceClient.UpdateStateChanged += OnUpdateStateChanged;
+            _notifyingAppUpdate.StateChanged += OnUpdateStateChanged;
+            feedUrlProvider.FeedUrlChanged += OnFeedUrlChanged;
         }
 
         public event EventHandler<UpdateStateChangedEventArgs> UpdateStateChanged;
@@ -100,15 +103,11 @@ namespace ProtonVPN.Core.Update
                 }
             }
 
-            _service.InvokeServiceAction(async () =>
-            {
-                await _serviceClient.CheckForUpdate(_appSettings.EarlyAccess);
-                _lastCheckTime = DateTime.UtcNow;
-                return Result.Ok();
-            });
+            _notifyingAppUpdate.StartCheckingForUpdate(_appSettings.EarlyAccess);
+            _lastCheckTime = DateTime.UtcNow;
         }
 
-        private void OnUpdateStateChanged(object sender, UpdateStateContract e)
+        private void OnUpdateStateChanged(object sender, IAppUpdateState e)
         {
             UpdateState state = Map(e);
             OnUpdateStateChanged(state, _manualCheck);
@@ -116,7 +115,7 @@ namespace ProtonVPN.Core.Update
             HandleUpdating(state.Status);
         }
 
-        private UpdateState Map(UpdateStateContract e)
+        private UpdateState Map(IAppUpdateState e)
         {
             List<Release> releaseHistory = e.ReleaseHistory
                 .Select(release => new Release(
@@ -150,12 +149,23 @@ namespace ProtonVPN.Core.Update
 
         private void OnUpdateStateChanged(UpdateState state, bool manualCheck)
         {
-            UpdateStateChanged?.Invoke(this, new UpdateStateChangedEventArgs(state, manualCheck));
+            _scheduler.Schedule(() =>
+            {
+                UpdateStateChanged?.Invoke(this, new UpdateStateChangedEventArgs(state, manualCheck));
+            });
         }
 
         private void TimerTick(object sender, EventArgs e)
         {
             StartCheckingForUpdate(false);
+        }
+
+        private void OnFeedUrlChanged(object sender, FeedUrlChangeEventArgs e)
+        {
+            if (e.FeedType == FeedType.Internal)
+            {
+                StartCheckingForUpdate(true);
+            }
         }
     }
 }

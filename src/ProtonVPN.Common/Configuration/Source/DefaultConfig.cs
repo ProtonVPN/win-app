@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2022 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
@@ -22,7 +22,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using DeviceId;
 using ProtonVPN.Common.Configuration.Api.Handlers.TlsPinning;
 using ProtonVPN.Common.Extensions;
 
@@ -44,7 +43,6 @@ namespace ProtonVPN.Common.Configuration.Source
                 Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "ProtonVPN");
             string appLogFolder = Path.Combine(localAppDataFolder, "Logs");
             string serviceLogFolder = Path.Combine(commonAppDataFolder, "Logs");
-            string updateServiceLogFolder  = Path.Combine(commonAppDataFolder, "UpdaterLogs");
             int osBits = Environment.Is64BitOperatingSystem ? 64 : 32;
 
             string wireGuardConfigFilename = "ProtonVPN";
@@ -85,17 +83,9 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 ServiceLogDefaultFullFilePath = Path.Combine(serviceLogFolder, "service-logs.txt"),
 
-                UpdateServiceName = "ProtonVPN Update Service",
+                UpdateFilePath = Path.Combine(localAppDataFolder, "Updates", "update.txt"),
 
-                UpdateServiceExePath = Path.Combine(baseFolder, "ProtonVPN.UpdateService.exe"),
-
-                UpdateServiceLogFolder = updateServiceLogFolder,
-
-                UpdateServiceLogDefaultFullFilePath = Path.Combine(updateServiceLogFolder, "update-service-logs.txt"),
-
-                UpdateFilePath = Path.Combine(commonAppDataFolder, "Updates", "update.txt"),
-
-                UpdatesPath = Path.Combine(commonAppDataFolder, "Updates"),
+                UpdatesPath = Path.Combine(localAppDataFolder, "Updates"),
 
                 CalloutServiceName = "ProtonVPNCallout",
 
@@ -103,11 +93,9 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 MaxDiagnosticLogsAttached = 4,
 
-                MaxAppLogsAttached = 2,
+                MaxAppLogsAttached = 3,
 
-                MaxServiceLogsAttached = 2,
-
-                MaxUpdaterServiceLogsAttached = 2,
+                MaxServiceLogsAttached = 3,
 
                 ApiClientId = "WindowsVPN",
 
@@ -167,18 +155,18 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 ServiceCheckInterval = TimeSpan.FromSeconds(30),
 
-                DefaultOpenVpnUdpPorts = new[] {443, 1194, 4569, 5060, 80},
+                DefaultOpenVpnUdpPorts = new[] { 443, 1194, 4569, 5060, 80 },
 
-                DefaultOpenVpnTcpPorts = new[] {443, 3389, 8080, 8443},
+                DefaultOpenVpnTcpPorts = new[] { 443, 3389, 8080, 8443 },
 
-                DefaultWireGuardPorts = new[] {51820, 88, 123, 49152, 1224},
+                DefaultWireGuardPorts = new[] { 51820, 88, 123, 49152, 1224 },
 
                 DefaultLocale = "en",
 
                 MaintenanceCheckInterval = TimeSpan.FromMinutes(30),
-                
+
                 AuthCertificateUpdateInterval = TimeSpan.FromHours(1),
-        
+
                 AuthCertificateFirstRetryInterval = TimeSpan.FromSeconds(1),
 
                 AuthCertificateMaxNumOfRetries = 2,
@@ -224,6 +212,7 @@ namespace ProtonVPN.Common.Configuration.Source
                     NonStandardPortsUrl = "https://protonvpn.com/support/non-standard-ports",
                     LoginProblemsUrl = "https://protonvpn.com/support/login-problems",
                     RebrandingUrl = "https://protonvpn.com/blog/updated-proton-vpn",
+                    RpcServerProblemUrl = "https://proton.me/support/rpc-server-unavailable",
                 },
 
                 OpenVpn =
@@ -286,7 +275,7 @@ namespace ProtonVPN.Common.Configuration.Source
                 {
                     PinnedDomains = new List<TlsPinnedDomain>
                     {
-                        new TlsPinnedDomain
+                        new()
                         {
                             Name = "api.protonvpn.ch",
                             PublicKeyHashes = new HashSet<string>
@@ -299,7 +288,7 @@ namespace ProtonVPN.Common.Configuration.Source
                             Enforce = true,
                             SendReport = true,
                         },
-                        new TlsPinnedDomain
+                        new()
                         {
                             Name = "protonvpn.com",
                             PublicKeyHashes = new HashSet<string>
@@ -312,14 +301,21 @@ namespace ProtonVPN.Common.Configuration.Source
                             Enforce = true,
                             SendReport = true,
                         },
-                        new TlsPinnedDomain
+                        new()
                         {
                             Name = "download.protonvpn.net",
                             PublicKeyHashes = new HashSet<string>(),
                             Enforce = false,
                             SendReport = false,
                         },
-                        new TlsPinnedDomain
+                        new()
+                        {
+                            Name = "[InternalReleaseHost]", //this is replaced by CI script
+                            PublicKeyHashes = new HashSet<string>(),
+                            Enforce = false,
+                            SendReport = false,
+                        },
+                        new()
                         {
                             Name = "*",
                             PublicKeyHashes = new HashSet<string>

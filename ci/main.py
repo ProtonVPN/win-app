@@ -4,7 +4,7 @@ import os
 import argparse
 import win32api
 import localization
-import sentry
+import config
 import signing
 import tests
 import installer
@@ -30,10 +30,10 @@ subparsers = parser.add_subparsers(help='sub-command help', dest='command')
 
 subparsers.add_parser('add-languages')
 
-parser_a = subparsers.add_parser('sentry')
-parser_a.add_argument('path', type=str, help='Path to GlobalConfig file')
-parser_a.add_argument('dsn', type=str, help='Sentry dsn string', nargs='?', const='')
+parser_a = subparsers.add_parser('globalConfig')
+parser_a.add_argument('globalConfigPath', type=str, help='Path to GlobalConfig file')
 
+subparsers.add_parser('defaultConfig')
 subparsers.add_parser('tap-installer')
 subparsers.add_parser('tun-installer')
 subparsers.add_parser('sign')
@@ -59,8 +59,19 @@ if len(sys.argv) < 2:
 
 args = parser.parse_args()
 
-if args.command == 'sentry':
-    sentry.createConfig(args.path, args.dsn)
+if args.command == 'globalConfig':
+    config.createGlobalConfig(args.globalConfigPath)
+
+if args.command == 'defaultConfig':
+    configPath = "src\ProtonVPN.Common\Configuration\Source\DefaultConfig.cs"
+    f = open(configPath, "rt")
+    data = f.read()
+    data = data.replace('[InternalReleaseHost]', os.environ.get("INTERNAL_RELEASE_HOST"))
+    f.close()
+
+    f = open(configPath, "wt")
+    f.write(data)
+    f.close()
 
 elif args.command == 'add-languages':
     loc = localization.Localization(

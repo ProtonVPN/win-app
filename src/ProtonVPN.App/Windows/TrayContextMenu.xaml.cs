@@ -18,16 +18,18 @@
  */
 
 using System;
-using System.Windows.Forms;
 using System.Windows.Input;
-using ProtonVPN.Core;
 
 namespace ProtonVPN.Windows
 {
     public partial class TrayContextMenu
     {
-        public TrayContextMenu()
+        private readonly IWindowPositionSetter _windowPositionSetter;
+
+        public TrayContextMenu(IWindowPositionSetter windowPositionSetter)
         {
+            _windowPositionSetter = windowPositionSetter;
+
             InitializeComponent();
 
             Deactivated += TrayContextMenu_Deactivated;
@@ -35,18 +37,14 @@ namespace ProtonVPN.Windows
             PreviewMouseLeftButtonUp += TrayContextMenu_MouseLeftButtonUp;
         }
 
+        private void TrayContextMenu_Activated(object sender, EventArgs e)
+        {
+            _windowPositionSetter.SetPositionToMouse(this);
+        }
+
         private void TrayContextMenu_Deactivated(object sender, EventArgs e)
         {
             Hide();
-        }
-
-        private void TrayContextMenu_Activated(object sender, EventArgs e)
-        {
-            var mouseX = Control.MousePosition.X * 96 / SystemParams.GetDpiX();
-            var mouseY = Control.MousePosition.Y * 96 / SystemParams.GetDpiY();
-
-            Left = mouseX - ActualWidth < 0 ? mouseX : mouseX - ActualWidth;
-            Top = mouseY - ActualHeight < 0 ? mouseY : mouseY - ActualHeight;
         }
 
         private void TrayContextMenu_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)

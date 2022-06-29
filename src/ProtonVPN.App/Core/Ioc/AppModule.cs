@@ -70,6 +70,7 @@ using ProtonVPN.Sidebar;
 using ProtonVPN.Streaming;
 using ProtonVPN.Vpn;
 using ProtonVPN.Vpn.Connectors;
+using ProtonVPN.Windows;
 
 namespace ProtonVPN.Core.Ioc
 {
@@ -214,17 +215,6 @@ namespace ProtonVPN.Core.Ioc
                         c.Resolve<ILogger>(),
                         c.Resolve<IServiceEnabler>()))
                 .SingleInstance();
-            builder.Register(c =>
-                    new AppUpdateSystemService(
-                        new ReliableService(
-                            c.Resolve<ServiceRetryPolicy>(),
-                            new SafeService(
-                                new LoggingService(
-                                    c.Resolve<ILogger>(),
-                                    new SystemService(
-                                        c.Resolve<Common.Configuration.Config>().UpdateServiceName,
-                                        c.Resolve<IOsProcesses>())))), c.Resolve<ILogger>(), c.Resolve<IServiceEnabler>()))
-                .SingleInstance();
 
             builder.RegisterType<VpnServiceManager>().SingleInstance();
             builder.RegisterType<ServiceEnabler>().As<IServiceEnabler>().SingleInstance();
@@ -266,7 +256,6 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<BaseFilteringEngineService>().SingleInstance();
             builder.Register(c => new UpdateNotification(
                     c.Resolve<Common.Configuration.Config>().UpdateRemindInterval,
-                    c.Resolve<ISystemNotification>(),
                     c.Resolve<UserAuth>(),
                     c.Resolve<IEventAggregator>(),
                     c.Resolve<UpdateFlashNotificationViewModel>()))
@@ -318,9 +307,9 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<SignUpAvailabilityProvider>().As<ISignUpAvailabilityProvider>().SingleInstance();
             builder.RegisterType<PromoCodeManager>().As<IPromoCodeManager>().SingleInstance();
             builder.RegisterType<DeviceInfoProvider>().As<IDeviceInfoProvider>().SingleInstance();
-            
             builder.RegisterType<ApplicationResourcesLoader>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<ColorPalette>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<WindowPositionSetter>().As<IWindowPositionSetter>().SingleInstance();
         }
     }
 }

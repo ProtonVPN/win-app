@@ -36,7 +36,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <resource:BaseModalWindow.Resources>
         <Style x:Key="TextBlock" TargetType="TextBlock">
             <Setter Property="TextWrapping" Value="Wrap" />
-            <Setter Property="Foreground" Value="{StaticResource OldTextBrushColor}" />
+            <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}" />
             <Setter Property="Padding" Value="0,5" />
             <Setter Property="Visibility" Value="Collapsed" />
             <Setter Property="FontSize" Value="16" />

@@ -38,6 +38,7 @@ build-release:
     - git clone -b windows-vpn --single-branch "https://gitlab-ci-token:${CI_JOB_TOKEN}@${I18N_CACHE_REPO}" --depth 1
     - python ci\main.py add-languages
     - python ci\main.py add-commit-hash $env:CI_COMMIT_SHORT_SHA
+    - python ci\main.py defaultConfig
     - echo "Building release..."
     - MSBuild.exe /consoleloggerparameters:ErrorsOnly /maxcpucount /nologo /property:Configuration=Release /verbosity:quiet "ProtonVpn.sln"
   artifacts:
@@ -62,6 +63,7 @@ build-debug:
     - git clone -b windows-vpn --single-branch "https://gitlab-ci-token:${CI_JOB_TOKEN}@${I18N_CACHE_REPO}" --depth 1
     - python ci\main.py add-languages
     - python ci\main.py add-commit-hash $env:CI_COMMIT_SHORT_SHA
+    - python ci\main.py defaultConfig
     - echo "Building debug..."
     - MSBuild.exe /consoleloggerparameters:ErrorsOnly /maxcpucount /nologo /property:Configuration=Debug /verbosity:quiet "ProtonVpn.sln"
   artifacts:
@@ -110,7 +112,6 @@ prepare-internal-beta-release:
     - python -m pip install -r ci\python-libs.txt
     - python ci\prepare-internal-beta.py
   only:
-    - master
     - /^release.*$/
 
 build-installer-for-debug:

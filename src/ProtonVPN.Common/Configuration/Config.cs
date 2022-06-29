@@ -79,18 +79,6 @@ namespace ProtonVPN.Common.Configuration
         public string ServiceLogDefaultFullFilePath { get; internal set; }
 
         [Required]
-        public string UpdateServiceName { get; internal set; }
-
-        [Required]
-        public string UpdateServiceExePath { get; internal set; }
-
-        [Required]
-        public string UpdateServiceLogFolder { get; internal set; }
-
-        [Required]
-        public string UpdateServiceLogDefaultFullFilePath { get; internal set; }
-
-        [Required]
         public string UpdateFilePath { get; internal set; }
 
         [Required]
@@ -110,9 +98,6 @@ namespace ProtonVPN.Common.Configuration
 
         [Range(1, 100)]
         public int MaxServiceLogsAttached { get; internal set; }
-
-        [Range(1, 100)]
-        public int MaxUpdaterServiceLogsAttached { get; internal set; }
 
         [Required]
         public string ApiClientId { get; internal set; }
@@ -230,10 +215,10 @@ namespace ProtonVPN.Common.Configuration
 
         [Range(typeof(TimeSpan), "00:00:10", "23:59:59")]
         public TimeSpan AuthCertificateUpdateInterval { get; internal set; }
-        
+
         [Range(typeof(TimeSpan), "00:00:01", "1.00:00:00")]
         public TimeSpan AuthCertificateFirstRetryInterval { get; internal set; }
-        
+
         [Range(0, 16)]
         public int AuthCertificateMaxNumOfRetries { get; internal set; }
 

@@ -39,6 +39,7 @@ namespace ProtonVPN.Common.Vpn
         ServerRemoved,
         NoServers,
         Unknown,
+        RpcServerUnavailable,
         MissingServerPublicKey,
         IncorrectVpnConfig,
         ServerUnreachable,

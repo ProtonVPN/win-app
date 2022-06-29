@@ -18,10 +18,7 @@
  */
 
 using System;
-using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media.Imaging;
 
 namespace ProtonVPN.Sidebar.Announcements
 {
@@ -36,11 +33,6 @@ namespace ProtonVPN.Sidebar.Announcements
         private void Popup_Opened(object sender, EventArgs e)
         {
             Popup.HorizontalOffset = Popup.Child.RenderSize.Width  / -2 + TogglePopupButton.ActualWidth / 2;
-        }
-
-        private void Image_OnImageFailed(object sender, ExceptionRoutedEventArgs e)
-        {
-            ((Image)sender).Source = new BitmapImage(new Uri("/ProtonVPN;component/Resources/Assets/Images/bullhorn-solid.png", UriKind.Relative));
         }
 
         private void OpenPopupButton_MouseEnter(object sender, MouseEventArgs e)

@@ -35,38 +35,34 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           Width="567"
                           d:DataContext="{d:DesignInstance upsell:PortForwardingUpsellModalViewModel}">
     <Grid>
-        <StackPanel Margin="80,64">
+        <StackPanel Margin="80,20,80,64">
             <vectorImages:PortForward HorizontalAlignment="Center" />
             <TextBlock TextWrapping="Wrap"
                        FontSize="24"
-                       Foreground="{StaticResource OldTextBrushColor}"
+                       Foreground="{StaticResource TextNormBrushColor}"
                        Padding="15,0"
-                       Margin="0,30,0,0"
+                       Margin="0,10,0,0"
                        TextAlignment="Center"
                        HorizontalAlignment="Center"
                        Text="{translations:Loc Upsell_PortForwarding_Title}" />
             <TextBlock TextWrapping="Wrap"
                        FontSize="16"
-                       Foreground="{StaticResource OldTextBrushColor}"
-                       Padding="0,10,0,32"
+                       Foreground="{StaticResource TextNormBrushColor}"
+                       Padding="0,25,0,0"
                        TextAlignment="Center"
                        HorizontalAlignment="Center"
                        behavior:TextStyleBehavior.FormattedText="{translations:Loc Upsell_PortForwarding_Subtitle}" />
             <Button Style="{StaticResource PrimaryModalButton}"
+                    Margin="0,40,0,0"
                     HorizontalAlignment="Center"
                     Content="{translations:Loc Upsell_btn_Upgrade}"
                     Command="{Binding ContinueCommand}" />
-            <TextBlock TextWrapping="Wrap"
-                       FontSize="13"
-                       Foreground="{StaticResource OldPrimaryBrushColor}"
-                       Padding="0,20,0,0"
-                       TextAlignment="Center"
-                       HorizontalAlignment="Center"
-                       FontWeight="Bold">
-                <Hyperlink Command="{Binding OpenAboutPageCommand}" TextDecorations="None">
-                    <Run Text="{translations:Loc Upsell_PortForwarding_About}"></Run>
-                </Hyperlink>
-            </TextBlock>
+            <Button Style="{StaticResource ClearStyleButton}"
+                    HorizontalAlignment="Center"
+                    FontWeight="Bold"
+                    Margin="0,20,0,0"
+                    Content="{translations:Loc Upsell_PortForwarding_About}"
+                    Command="{Binding OpenAboutPageCommand}" />
         </StackPanel>
     </Grid>
 </resource:BaseModalWindow>

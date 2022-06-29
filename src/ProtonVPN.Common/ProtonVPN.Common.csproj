@@ -397,6 +397,6 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>python "$(SolutionDir)\ci\main.py" sentry "$(ProjectDir)Configuration\GlobalConfig.cs" %25SENTRY_DSN_V2%25</PreBuildEvent>
+    <PreBuildEvent>python "$(SolutionDir)\ci\main.py" globalConfig "$(ProjectDir)Configuration\GlobalConfig.cs"</PreBuildEvent>
   </PropertyGroup>
 </Project>

@@ -412,7 +412,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </DockPanel>
                     </Border>
 
-                    <Border DockPanel.Dock="Top" Style="{StaticResource BorderlessSettingContainer}" Padding="5,0,75,0"
+                    <Border DockPanel.Dock="Top" Style="{StaticResource BorderlessSettingContainer}" Padding="5,0,75,0" Height="Auto"
                             Visibility="{Binding IsToShowPortForwarding, Converter={StaticResource BoolToVis}}">
                         <DockPanel>
                             <TextBlock TextWrapping="Wrap"

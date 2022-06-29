@@ -17,17 +17,20 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Core;
 using System;
-using System.Windows.Forms;
 using System.Windows.Input;
+using ProtonVPN.Windows;
 
 namespace ProtonVPN.QuickLaunch
 {
     public partial class QuickLaunchWindow
     {
-        public QuickLaunchWindow()
+        private readonly IWindowPositionSetter _windowPositionSetter;
+
+        public QuickLaunchWindow(IWindowPositionSetter windowPositionSetter)
         {
+            _windowPositionSetter = windowPositionSetter;
+
             InitializeComponent();
 
             Deactivated += QuickLaunch_Deactivated;
@@ -36,11 +39,7 @@ namespace ProtonVPN.QuickLaunch
 
         private void QuickLaunch_Activated(object sender, EventArgs e)
         {
-            var mouseX = Control.MousePosition.X * 96 / SystemParams.GetDpiX();
-            var mouseY = Control.MousePosition.Y * 96 / SystemParams.GetDpiY();
-
-            Left = mouseX - ActualWidth < 0 ? mouseX : mouseX - ActualWidth;
-            Top = mouseY - ActualHeight < 0 ? mouseY : mouseY - ActualHeight;
+            _windowPositionSetter.SetPositionToMouse(this);
         }
 
         private void QuickLaunch_Deactivated(object sender, EventArgs e)

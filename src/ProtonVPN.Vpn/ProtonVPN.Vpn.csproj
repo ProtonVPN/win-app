@@ -197,9 +197,6 @@
     <Content Include="Resources\32-bit\libcrypto-1_1.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\32-bit\liblzo2-2.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Resources\32-bit\libpkcs11-helper-1.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -212,9 +209,6 @@
     <Content Include="Resources\32-bit\tunnel.dll" />
     <Content Include="Resources\32-bit\wireguard.dll" />
     <Content Include="Resources\64-bit\libcrypto-1_1-x64.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\64-bit\liblzo2-2.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\64-bit\libpkcs11-helper-1.dll">

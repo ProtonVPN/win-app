@@ -59,12 +59,7 @@ namespace ProtonVPN.BugReporting
                                 new LogFileSource(
                                     appConfig.ReportBugMaxFileSize,
                                     appConfig.ServiceLogFolder,
-                                    appConfig.MaxServiceLogsAttached)),
-                            new SafeFileSource(logger,
-                                new LogFileSource(
-                                    appConfig.ReportBugMaxFileSize,
-                                    appConfig.UpdateServiceLogFolder,
-                                    appConfig.MaxUpdaterServiceLogsAttached)))));
+                                    appConfig.MaxServiceLogsAttached)))));
             }).SingleInstance();
 
             builder.Register(c => new InstalledAppsLog(c.Resolve<Common.Configuration.Config>().DiagnosticsLogFolder))

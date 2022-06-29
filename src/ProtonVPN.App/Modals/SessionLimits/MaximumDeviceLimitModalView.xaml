@@ -49,7 +49,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        FontSize="32"
                        FontWeight="Medium"
                        TextWrapping="Wrap"
-                       Foreground="{StaticResource OldTextBrushColor}"
+                       Foreground="{StaticResource TextNormBrushColor}"
                        Text="{translations:Loc Dialogs_MaximumDeviceLimit_Title}" />
 
             <TextBlock Padding="0,15,0,0"
@@ -57,7 +57,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        TextAlignment="Center"
                        FontSize="16"
                        TextWrapping="Wrap"
-                       Foreground="{StaticResource OldTextBrushColor}">
+                       Foreground="{StaticResource TextNormBrushColor}">
                 <TextBlock.Style>
                     <Style TargetType="{x:Type TextBlock}">
                         <Setter Property="Text"

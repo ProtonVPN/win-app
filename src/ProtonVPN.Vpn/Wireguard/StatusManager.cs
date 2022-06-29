@@ -87,6 +87,10 @@ namespace ProtonVPN.Vpn.WireGuard
                         InvokeStateChange(VpnStatus.Disconnected, _lastError);
                         _lastError = VpnError.None;
                     }
+                    else if (line.Contains("The RPC server is unavailable"))
+                    {
+                        _lastError = VpnError.RpcServerUnavailable;
+                    }
                     else if (line.Contains("Could not install driver"))
                     {
                         _lastError = VpnError.NoTapAdaptersError;

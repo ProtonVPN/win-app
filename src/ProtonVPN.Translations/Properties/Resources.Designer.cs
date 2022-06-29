@@ -466,6 +466,15 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your request has failed. Please try again..
+        /// </summary>
+        public static string Api_error_Timeout {
+            get {
+                return ResourceManager.GetString("Api_error_Timeout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to About.
         /// </summary>
         public static string App_mnu_About {
@@ -5823,6 +5832,15 @@ namespace ProtonVPN.Translations.Properties {
         public static string Servers_msg_CantConnect_Missing {
             get {
                 return ResourceManager.GetString("Servers_msg_CantConnect_Missing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Proton VPN can&apos;t connect because the RPC server is unavailable on your system. &lt;Hyperlink Command=&quot;{Binding OpenRpcServerUrlCommand}&quot;&gt;View possible solutions&lt;/Hyperlink&gt;.
+        /// </summary>
+        public static string Servers_msg_CantConnect_RpcServerUnavailable {
+            get {
+                return ResourceManager.GetString("Servers_msg_CantConnect_RpcServerUnavailable", resourceCulture);
             }
         }
         

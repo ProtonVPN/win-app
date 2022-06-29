@@ -30,6 +30,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         xmlns:logos="clr-namespace:ProtonVPN.Resource.Graphics.Logos;assembly=ProtonVPN.Resource"
         xmlns:icons="clr-namespace:ProtonVPN.Resource.Graphics.Icons;assembly=ProtonVPN.Resource"
         xmlns:sidebar="clr-namespace:ProtonVPN.Sidebar"
+        xmlns:graphics="clr-namespace:ProtonVPN.Resource.Graphics;assembly=ProtonVPN.Resource"
         WindowStyle="None"
         ShowInTaskbar="False"
         ResizeMode="CanMinimize"
@@ -216,7 +217,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <StackPanel VerticalAlignment="Center">
                     <StackPanel Visibility="{Binding Connected, Converter={StaticResource BoolToVis}}">
                         <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                            <Image VerticalAlignment="Center" 
+                            <Image VerticalAlignment="Center"
                                    Width="21" 
                                    Height="15"
                                    Source="{Binding CountryCode, Converter={StaticResource CountryToFlagConverter}}" />
@@ -252,10 +253,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 Orientation="Vertical"
                                 Margin="0,15">
                         <StackPanel Orientation="Horizontal">
-                            <Image Name="Spinner" 
-                                   Style="{StaticResource Spinner}" 
-                                   resource:ControlExtension.Spin="{Binding Connecting}" 
-                                   Visibility="{Binding Connecting, Converter={StaticResource BoolToVis}}"/>
+                            <graphics:BrandLoader Name="Spinner" 
+                                                  Margin="1,0,1,0"
+                                                  Style="{StaticResource Loader}"
+                                                  Foreground="{StaticResource PrimaryBrushColor}"
+                                                  resource:ControlExtension.Spin="{Binding Connecting}"
+                                                  Visibility="{Binding Connecting, Converter={StaticResource BoolToVis}}" />
                             <TextBlock FontSize="14" 
                                        Padding="10,0,0,0" 
                                        VerticalAlignment="Center"

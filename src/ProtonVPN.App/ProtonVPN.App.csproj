@@ -171,6 +171,7 @@
     <Compile Include="Core\ExpiredSessionHandler.cs" />
     <Compile Include="Core\HardwareAccelerationManager.cs" />
     <Compile Include="Core\ILanguageProvider.cs" />
+    <Compile Include="Core\Ioc\UpdateModule.cs" />
     <Compile Include="Core\IShutdownInvoker.cs" />
     <Compile Include="Core\Language.cs" />
     <Compile Include="Core\LanguageProvider.cs" />
@@ -275,6 +276,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Resources\Colors\ColorPaletteFactory.cs" />
+    <Compile Include="Servers\Reconnections\ReconnectionData.cs" />
+    <Compile Include="Servers\Reconnections\ReconnectionView.xaml.cs">
+      <DependentUpon>ReconnectionView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Settings\Migrations\InitialAppSettingsMigration.cs" />
     <Compile Include="Settings\Migrations\v1_22_0\AppSettingsMigration.cs" />
     <Compile Include="Settings\Migrations\v1_27_1\AppSettingsMigration.cs" />
@@ -292,16 +297,8 @@
       <DependentUpon>DisconnectedConnectionDetails.xaml</DependentUpon>
     </Compile>
     <Compile Include="Sidebar\PopupBase.cs" />
-    <Compile Include="Views\Icons\GiftBox.xaml.cs">
-      <DependentUpon>GiftBox.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Icons\ExclamationTunnel.xaml.cs">
-      <DependentUpon>ExclamationTunnel.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Icons\ArrowRight.xaml.cs">
-      <DependentUpon>ArrowRight.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Vpn\IVpnCredentialProvider.cs" />
+    <Compile Include="Windows\IWindowPositionSetter.cs" />
     <Compile Include="Windows\Popups\Delinquency\DelinquencyPopupView.xaml.cs">
       <DependentUpon>DelinquencyPopupView.xaml</DependentUpon>
     </Compile>
@@ -361,20 +358,9 @@
     <Compile Include="Views\Controls\AltImage.xaml.cs">
       <DependentUpon>AltImage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Icons\Times.xaml.cs">
-      <DependentUpon>Times.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Icons\Globe.xaml.cs">
-      <DependentUpon>Globe.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Icons\Streaming.xaml.cs">
-      <DependentUpon>Streaming.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Icons\P2P.xaml.cs">
-      <DependentUpon>P2P.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Windows\BaseWindowViewModel.cs" />
     <Compile Include="Windows\Popups\BaseUpgradePlanPopupViewModel.cs" />
+    <Compile Include="Windows\Popups\IReconnectionDataPopupViewModel.cs" />
     <Compile Include="Windows\Popups\PopupWindows.cs" />
     <Compile Include="Servers\ISortedCountries.cs" />
     <Compile Include="Settings\Migrations\v1_17_0\AppSettingsMigration.cs" />
@@ -512,6 +498,7 @@
       <DependentUpon>MaximumDeviceLimitModalView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modals\SessionLimits\MaximumDeviceLimitModalViewModel.cs" />
+    <Compile Include="Windows\Popups\SubscriptionExpiration\ISubscriptionExpiredPopupViewModel.cs" />
     <Compile Include="Windows\Popups\SubscriptionExpiration\SubscriptionExpiredPopupView.xaml.cs">
       <DependentUpon>SubscriptionExpiredPopupView.xaml</DependentUpon>
     </Compile>
@@ -766,85 +753,6 @@
     <Compile Include="Views\Forms\FormButtons.xaml.cs">
       <DependentUpon>FormButtons.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Forms\FormErrorsPanelView.xaml.cs">
-      <DependentUpon>FormErrorsPanelView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Forms\FormErrorsPanelViewModel.cs" />
-    <Compile Include="Views\Icons\ArrowUp.xaml.cs">
-      <DependentUpon>ArrowUp.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Icons\ArrowDown.xaml.cs">
-      <DependentUpon>ArrowDown.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Icons\Failure.xaml.cs">
-      <DependentUpon>Failure.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Icons\ColoredGiftBox.xaml.cs">
-      <DependentUpon>ColoredGiftBox.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Icons\Info.xaml.cs">
-      <DependentUpon>Info.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Icons\Mountains.xaml.cs">
-      <DependentUpon>Mountains.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Icons\MultipleDevices.xaml.cs">
-      <DependentUpon>MultipleDevices.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Icons\Exchange.xaml.cs">
-      <DependentUpon>Exchange.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Icons\Phone.xaml.cs">
-      <DependentUpon>Phone.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Icons\Plus.xaml.cs">
-      <DependentUpon>Plus.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Icons\SecureCore.xaml.cs">
-      <DependentUpon>SecureCore.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Icons\SecureStreaming.xaml.cs">
-      <DependentUpon>SecureStreaming.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Icons\Shield.xaml.cs">
-      <DependentUpon>Shield.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Icons\ShieldEmpty.xaml.cs">
-      <DependentUpon>ShieldEmpty.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Icons\ShieldFull.xaml.cs">
-      <DependentUpon>ShieldFull.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Icons\ShieldHalf.xaml.cs">
-      <DependentUpon>ShieldHalf.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Icons\MultipleLocks.xaml.cs">
-      <DependentUpon>MultipleLocks.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Icons\SingleLock.xaml.cs">
-      <DependentUpon>SingleLock.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Icons\Reflect.xaml.cs">
-      <DependentUpon>Reflect.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Icons\SwitchLock.xaml.cs">
-      <DependentUpon>SwitchLock.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Icons\SwitchOn.xaml.cs">
-      <DependentUpon>SwitchOn.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Icons\SwitchOff.xaml.cs">
-      <DependentUpon>SwitchOff.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Icons\Timedout.xaml.cs">
-      <DependentUpon>Timedout.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Icons\TimesCircle.xaml.cs">
-      <DependentUpon>TimesCircle.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Icons\Tor.xaml.cs">
-      <DependentUpon>Tor.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Login\Views\Loading.xaml.cs">
       <DependentUpon>Loading.xaml</DependentUpon>
     </Compile>
@@ -900,6 +808,7 @@
     </Compile>
     <Compile Include="Windows\TrayIcon.cs" />
     <Compile Include="Windows\TrayIconMouse.cs" />
+    <Compile Include="Windows\WindowPositionSetter.cs" />
     <Page Include="About\AboutModalView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -982,6 +891,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Servers\Reconnections\ReconnectionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Settings\PortForwardingWarningView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -997,18 +910,6 @@
     <Page Include="Sidebar\DisconnectedConnectionDetails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Icons\GiftBox.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\Icons\ExclamationTunnel.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\Icons\ArrowRight.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Windows\Popups\Delinquency\DelinquencyPopupView.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -1106,22 +1007,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Icons\Times.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\Icons\Globe.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\Icons\Streaming.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\Icons\P2P.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Modals\Dialogs\WarningModalView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1202,99 +1087,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Forms\FormErrorsPanelView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Views\Forms\Style.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Icons\ArrowUp.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\Icons\ArrowDown.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Icons\ColoredGiftBox.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Icons\Gradients.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Icons\Info.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Icons\Mountains.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Icons\MultipleDevices.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Icons\Phone.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Icons\Plus.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Icons\SecureCore.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Icons\SecureStreaming.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Icons\Shield.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Icons\ShieldEmpty.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\Icons\ShieldFull.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\Icons\ShieldHalf.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\Icons\MultipleLocks.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\Icons\SingleLock.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\Icons\Reflect.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\Icons\SwitchLock.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\Icons\SwitchOn.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\Icons\SwitchOff.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Icons\TimesCircle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1340,10 +1133,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\Assets\Styles\ComboBox.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Resources\Assets\Styles\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1460,22 +1249,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SpeedGraph\SpeedGraph.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Icons\Failure.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Icons\Exchange.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Icons\Timedout.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Icons\Tor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1868,6 +1641,10 @@
       <Project>{2a00c747-8bc0-4ef1-a53e-37a7e156d910}</Project>
       <Name>ProtonVPN.Translations</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ProtonVPN.Update\ProtonVPN.Update.csproj">
+      <Project>{90FDF2B3-25C9-428D-B264-5A5FAEB2D988}</Project>
+      <Name>ProtonVPN.Update</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Assets\Images\SidebarFlags\ad.jpg" />
@@ -2074,9 +1851,6 @@
     <Resource Include="Resources\Assets\Images\SidebarFlags\zw.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Assets\Images\bullhorn-solid.png" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Autofac">
       <Version>4.9.4</Version>
     </PackageReference>
@@ -2088,9 +1862,6 @@
     </PackageReference>
     <PackageReference Include="Caliburn.Micro">
       <Version>3.2.0</Version>
-    </PackageReference>
-    <PackageReference Include="FontAwesome.WPF">
-      <Version>4.7.0.9</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp.Notifications">
       <Version>7.0.0</Version>
@@ -2122,10 +1893,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Assets\Images\brand-spinner.png" />
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>

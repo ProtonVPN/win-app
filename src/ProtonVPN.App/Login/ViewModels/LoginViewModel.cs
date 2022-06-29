@@ -352,6 +352,13 @@ namespace ProtonVPN.Login.ViewModels
 
             switch (result.Value)
             {
+                case AuthError.NoVpnAccess:
+                    _modals.Show<AssignVpnConnectionsModalViewModel>();
+                    IsToShowTwoFactorAuth = false;
+                    IsToShowUsernameAndPassword = true;
+                    ClearPasswordField();
+                    ShowLoginForm();
+                    return;
                 case AuthError.IncorrectTwoFactorCode:
                     error = Translation.Get("Login_msg_IncorrectTwoFactorCode");
                     break;

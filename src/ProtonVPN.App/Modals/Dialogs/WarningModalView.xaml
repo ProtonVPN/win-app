@@ -35,7 +35,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <StackPanel Margin="30,40">
             <TextBlock TextWrapping="Wrap"
                        FontSize="16"
-                       Foreground="{StaticResource OldTextBrushColor}"
+                       Foreground="{StaticResource TextNormBrushColor}"
                        Padding="0,0,0,30"
                        Text="{Binding Message}" />
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">

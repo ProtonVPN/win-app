@@ -3237,4 +3237,10 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>&lt;Bold&gt;{0}&lt;/Bold&gt; servers</value>
     <comment>The text displayed in Account window</comment>
   </data>
+  <data name="Api_error_Timeout" xml:space="preserve">
+    <value>Your request has failed. Please try again.</value>
+  </data>
+  <data name="Servers_msg_CantConnect_RpcServerUnavailable" xml:space="preserve">
+    <value>Proton VPN can't connect because the RPC server is unavailable on your system. &lt;Hyperlink Command="{Binding OpenRpcServerUrlCommand}"&gt;View possible solutions&lt;/Hyperlink&gt;</value>
+  </data>
 </root>
