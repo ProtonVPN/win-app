@@ -82,7 +82,16 @@ tests:
     - windows
   script:
     - echo "Running tests..."
-    - python ci\main.py tests src\bin\
+    - 'c:\nuget\nuget.exe restore ProtonVpn.sln'
+    - MSBuild.exe /consoleloggerparameters:ErrorsOnly /maxcpucount /nologo /property:Configuration=Debug /verbosity:quiet "ProtonVpn.sln"
+    - coverlet src\bin --target "vstest.console.exe" --targetargs "src/bin/ProtonVPN*Test*.dll /TestCaseFilter:TestCategory!=UI&TestCategory!=Connection /Platform:x64" --format cobertura --output .\coverage-reports --exclude "[*.Test*]*" --exclude "[ProtonVPN.MarkupValidator]*" --exclude "[TestTools*]*" --exclude "[TapInstaller]*" --exclude "[*.Installers]*"
+    - powershell -Command "(gc coverage-reports.cobertura.xml) -replace '\\', '/' | Out-File -encoding UTF8 cobertura.xml"
+    - ReportGenerator.exe "-reports:cobertura.xml" "-targetdir:.\code-coverage-report-html"
+  artifacts:
+    reports:
+      coverage_report:
+        coverage_format: cobertura
+        path: cobertura.xml
 
 build-installer-for-release:
   stage: build-installer

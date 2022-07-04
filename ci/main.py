@@ -6,7 +6,6 @@ import win32api
 import localization
 import config
 import signing
-import tests
 import installer
 import ssh
 import guest_hole_server_loader
@@ -44,9 +43,6 @@ custom_parser.add_argument('hash', type=str, help='Commit hash string')
 custom_parser = subparsers.add_parser('add-commit-hash')
 custom_parser.add_argument('hash', type=str, help='Commit hash string')
 
-parser_c = subparsers.add_parser('tests')
-parser_c.add_argument('path', type=str, help='Path for tests')
-
 custom_parser = subparsers.add_parser('prepare-ssh')
 custom_parser.add_argument('key', type=str, help='Private ssh key as a string')
 
@@ -80,9 +76,6 @@ elif args.command == 'add-languages':
         '.\\src\\bin\\ProtonVPN.MarkupValidator.exe')
     returnCode = loc.AddLanguages()
     sys.exit(returnCode)
-
-elif args.command == 'tests':
-    tests.run('{path}\*.dll'.format(path=args.path))
 
 elif args.command == 'sign':
     signing.sign()
