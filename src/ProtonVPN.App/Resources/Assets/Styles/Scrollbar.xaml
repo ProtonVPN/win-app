@@ -59,6 +59,20 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="AutomationProperties.AutomationId" Value="VerticalScrollBar"/>
     </Style>
 
+    <Style x:Key="TransparentRepeatButton" TargetType="RepeatButton">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RepeatButton}">
+                    <Border Background="{TemplateBinding Background}" BorderBrush="Transparent" BorderThickness="0">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style x:Key="DarkScrollbar" TargetType="ScrollBar" BasedOn="{StaticResource BaseScrollbar}">
         <Setter Property="Template">
             <Setter.Value>
@@ -80,9 +94,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     35
                                 </system:Double>
                             </Track.Resources>
+
+                            <Track.DecreaseRepeatButton>
+                                <RepeatButton Command="ScrollBar.PageUpCommand" Style="{StaticResource TransparentRepeatButton}" />
+                            </Track.DecreaseRepeatButton>
                             <Track.Thumb>
                                 <Thumb Style="{StaticResource DarkVerticalThumb}" mwt:ScrollChrome.ScrollGlyph="VerticalGripper" Width="10"/>
                             </Track.Thumb>
+                            <Track.IncreaseRepeatButton>
+                                <RepeatButton Command="ScrollBar.PageDownCommand" Style="{StaticResource TransparentRepeatButton}" />
+                            </Track.IncreaseRepeatButton>
                         </Track>
                     </Grid>
                     <ControlTemplate.Triggers>

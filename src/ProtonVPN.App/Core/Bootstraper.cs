@@ -207,7 +207,9 @@ namespace ProtonVPN.Core
         {
             IReadOnlyCollection<LogicalServerResponse> servers = Resolve<ICollectionStorage<LogicalServerResponse>>().GetAll();
             if (servers.Any())
+            {
                 Resolve<ServerManager>().Load(servers);
+            }
         }
 
         private async Task<bool> IsUserValid()
