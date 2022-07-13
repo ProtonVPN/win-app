@@ -146,10 +146,6 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 MaxProfileNameLength = 25,
 
-                ProfileSyncTimerPeriod = TimeSpan.FromSeconds(20),
-
-                ProfileSyncPeriod = TimeSpan.FromMinutes(5),
-
                 ForcedProfileSyncInterval = TimeSpan.FromMinutes(3),
 
                 EventCheckInterval = TimeSpan.FromMinutes(5),
