@@ -61,7 +61,7 @@ namespace ProtonVPN.Vpn.WireGuard
             if (!_origin.Exists())
             {
                 _logger.Info<AppServiceLog>("WireGuard Service is missing. Installing.");
-                _origin.Create(_config.WireGuard.ServicePath + " " + _config.WireGuard.ConfigFilePath,
+                _origin.Create($"\"{_config.WireGuard.ServicePath}\" \"{_config.WireGuard.ConfigFilePath}\"",
                     unrestricted: true);
             }
 
