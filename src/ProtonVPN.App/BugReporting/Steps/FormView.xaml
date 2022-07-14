@@ -89,6 +89,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                              CaretBrush="{StaticResource TextNormBrushColor}"
                                              BorderBrush="{StaticResource BorderNormBrushColor}"
                                              TextWrapping="Wrap"
+                                             AcceptsReturn="True"
                                              Text="{Binding Value, UpdateSourceTrigger=PropertyChanged}"
                                              Foreground="{StaticResource TextNormBrushColor}"
                                              Padding="8">
