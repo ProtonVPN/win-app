@@ -162,7 +162,7 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 MaintenanceCheckInterval = TimeSpan.FromMinutes(30),
 
-                AuthCertificateUpdateInterval = TimeSpan.FromHours(1),
+                AuthCertificateUpdateInterval = TimeSpan.FromMinutes(5),
 
                 MaxQuickConnectServersOnReconnection = MAX_QUICK_CONNECT_SERVERS_ON_RECONNECTION,
 
