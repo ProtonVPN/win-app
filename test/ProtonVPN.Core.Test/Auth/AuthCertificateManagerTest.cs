@@ -23,6 +23,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Caliburn.Micro;
+using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using ProtonVPN.Api.Contracts;
@@ -239,6 +240,31 @@ namespace ProtonVPN.Core.Test.Auth
             ValidateAppSettings();
             await _apiClient.Received(1).RequestAuthCertificateAsync(Arg.Any<CertificateRequest>());
             AssertNumOfCallsToRecreateKeys(0);
+        }
+
+        [TestMethod]
+        public async Task TestRequestNewCertificateAsync_WhenCertificateNotExpired()
+        {
+            _appSettings.AuthenticationCertificateRefreshUtcDate = DateTimeOffset.UtcNow.AddHours(10);
+            _authKeyManager.InitializeTestKeyPair();
+
+            await RequestNewCertificateAsync();
+
+            await _apiClient.Received(0).RequestAuthCertificateAsync(Arg.Any<CertificateRequest>());
+        }
+
+        [TestMethod]
+        public async Task ItShouldNotDeleteOldCertIfCertRequestFailed()
+        {
+            _appSettings.AuthenticationCertificateRefreshUtcDate = DateTimeOffset.UtcNow.Subtract(TimeSpan.FromHours(1));
+            _authKeyManager.InitializeTestKeyPair();
+
+            await RequestNewCertificateAsync();
+            ValidateAppSettings();
+            _apiClient.RequestAuthCertificateAsync(Arg.Any<CertificateRequest>())
+                .Returns((args) => Task.FromResult(ApiResponseResult<CertificateResponse>.Fail(new HttpResponseMessage(HttpStatusCode.BadGateway), string.Empty)));
+
+            _appSettings.AuthenticationCertificatePem.Should().NotBeEmpty();
         }
     }
 }

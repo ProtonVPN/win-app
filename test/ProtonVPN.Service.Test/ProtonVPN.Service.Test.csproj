@@ -29,6 +29,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -37,6 +38,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
@@ -136,6 +138,10 @@
     <ProjectReference Include="..\..\src\ProtonVPN.Vpn\ProtonVPN.Vpn.csproj">
       <Project>{4aa7ce6f-7154-49c1-b598-46055d590cad}</Project>
       <Name>ProtonVPN.Vpn</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProtonVPN.Test.Common\ProtonVPN.Test.Common.csproj">
+      <Project>{A0DA4200-6643-4F2C-8450-65B8CE8A5576}</Project>
+      <Name>ProtonVPN.Test.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

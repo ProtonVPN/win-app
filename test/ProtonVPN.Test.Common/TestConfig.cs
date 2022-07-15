@@ -18,29 +18,17 @@
  */
 
 using System.IO;
-using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
 
-namespace ProtonVPN.Update.Files.Validatable
+namespace ProtonVPN.Test.Common
 {
-    /// <summary>
-    /// Validates checksum of file.
-    /// </summary>
-    internal class ValidatableFile : IValidatableFile
+    public class TestConfig
     {
-        public async Task<bool> Valid(string filename, string checkSum)
-        {
-            return Exists(filename) && await CheckSumValid(filename, checkSum);
-        }
+        public const string TEST_DATA_FOLDER = "TestData";
 
-        private static bool Exists(string filename)
+        public static string GetFolderPath([CallerMemberName] string sourceMemberName = "")
         {
-            return !string.IsNullOrEmpty(filename) && File.Exists(filename);
-        }
-
-        private static async Task<bool> CheckSumValid(string filename, string expectedCheckSum)
-        {
-            var checkSum = await new FileCheckSum(filename).Value();
-            return checkSum == expectedCheckSum;
+            return Path.Combine(TEST_DATA_FOLDER, sourceMemberName);
         }
     }
 }

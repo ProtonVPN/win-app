@@ -26,11 +26,11 @@ using NSubstitute;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Storage;
 using ProtonVPN.Common.Text.Serialization;
+using ProtonVPN.Test.Common;
 
 namespace ProtonVPN.Common.Test.Storage
 {
     [TestClass]
-    [DeploymentItem("Storage\\TestData", "TestData")]
     [SuppressMessage("ReSharper", "ObjectCreationAsStatement")]
     public class FileStorageTest
     {
@@ -86,7 +86,7 @@ namespace ProtonVPN.Common.Test.Storage
         public void FileStorage_ShouldThrow_WhenSerializerFactory_Serializer_DoesNotImplement_IThrowsExpectedExceptions()
         {
             // Arrange
-            var serializer = Substitute.For<ITextSerializer<int>>();
+            ITextSerializer<int> serializer = Substitute.For<ITextSerializer<int>>();
             _serializerFactory.Serializer<int>().Returns(serializer);
 
             // Act
@@ -100,11 +100,11 @@ namespace ProtonVPN.Common.Test.Storage
         public void Get_ShouldBe_NotZero_WhenFileExists()
         {
             // Arrange
-            var fileName = FilePath("Test.json");
-            var storage = new FileStorage<int>(_serializerFactory, fileName);
+            string fileName = FilePath("Test.json");
+            FileStorage<int> storage = new FileStorage<int>(_serializerFactory, fileName);
 
             // Act
-            var result = storage.Get();
+            int result = storage.Get();
             
             // Assert
             result.Should().NotBe(0);
@@ -114,7 +114,7 @@ namespace ProtonVPN.Common.Test.Storage
         public void Get_ShouldThrow_FileAccessException_WhenFileDoesNotExist()
         {
             // Arrange
-            var storage = new FileStorage<int>(_serializerFactory, "Does-not-exist.json");
+            FileStorage<int> storage = new FileStorage<int>(_serializerFactory, "Does-not-exist.json");
 
             // Act
             Action action = () => storage.Get();
@@ -128,7 +128,7 @@ namespace ProtonVPN.Common.Test.Storage
         public void Get_ShouldThrow_FileAccessException_WhenFolderDoesNotExist()
         {
             // Arrange
-            var storage = new FileStorage<int>(_serializerFactory, "Does-not-exist\\Test.json");
+            FileStorage<int> storage = new FileStorage<int>(_serializerFactory, "Does-not-exist\\Test.json");
             
             // Act
             Action action = () => storage.Get();
@@ -142,9 +142,9 @@ namespace ProtonVPN.Common.Test.Storage
         public void Set_ShouldSave_ToFile()
         {
             // Arrange
-            var fileName = FilePath("Saved-data.json");
+            string fileName = FilePath("Saved-data.json");
             File.Delete(fileName);
-            var storage = new FileStorage<int>(_serializerFactory, fileName);
+            FileStorage<int> storage = new FileStorage<int>(_serializerFactory, fileName);
 
             // Act
             storage.Set(348);
@@ -157,7 +157,7 @@ namespace ProtonVPN.Common.Test.Storage
         public void Set_ShouldThrow_FileAccessException_WhenFolderDoesNotExist()
         {
             // Arrange
-            var storage = new FileStorage<int>(_serializerFactory, "Does-not-exist\\Saved.json");
+            FileStorage<int> storage = new FileStorage<int>(_serializerFactory, "Does-not-exist\\Saved.json");
 
             // Act
             Action action = () => storage.Set(7896);
@@ -173,11 +173,11 @@ namespace ProtonVPN.Common.Test.Storage
         public void IsExpectedException_ShouldBeTrue_WhenFileAccessException(Type exceptionType)
         {
             // Arrange
-            var exception = (Exception)Activator.CreateInstance(exceptionType);
-            var storage = new FileStorage<int>(_serializerFactory, "kmb");
+            Exception exception = (Exception)Activator.CreateInstance(exceptionType);
+            FileStorage<int> storage = new FileStorage<int>(_serializerFactory, "kmb");
 
             // Act
-            var result = storage.IsExpectedException(exception);
+            bool result = storage.IsExpectedException(exception);
             
             // Assert
             result.Should().BeTrue();
@@ -189,12 +189,12 @@ namespace ProtonVPN.Common.Test.Storage
         public void IsExpectedException_ShouldBe_SerializerFactory_Serializer_IsExpectedException(bool expected)
         {
             // Arrange
-            var exception = new Exception();
+            Exception exception = new();
             ((IThrowsExpectedExceptions)_serializer).IsExpectedException(exception).Returns(expected);
             var storage = new FileStorage<int>(_serializerFactory, "kmb");
 
             // Act
-            var result = storage.IsExpectedException(exception);
+            bool result = storage.IsExpectedException(exception);
 
             // Assert
             result.Should().Be(expected);
@@ -204,7 +204,7 @@ namespace ProtonVPN.Common.Test.Storage
 
         private string FilePath(string fileName)
         {
-            return Path.Combine("TestData", fileName);
+            return TestConfig.GetFolderPath(fileName);
         }
 
         #endregion

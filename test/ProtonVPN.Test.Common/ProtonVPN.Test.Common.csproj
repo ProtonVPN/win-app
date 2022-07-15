@@ -46,6 +46,7 @@
     <Compile Include="Breakpoints\Breakpoint.cs" />
     <Compile Include="Breakpoints\BreakpointHit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestConfig.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

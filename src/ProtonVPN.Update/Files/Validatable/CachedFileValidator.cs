@@ -26,16 +26,16 @@ namespace ProtonVPN.Update.Files.Validatable
     /// <summary>
     /// Caches positive file validation result while file length and modification date has not changed.
     /// </summary>
-    internal class CachingValidatableFile : IValidatableFile
+    internal class CachedFileValidator : IFileValidator
     {
-        private readonly IValidatableFile _origin;
+        private readonly IFileValidator _origin;
 
         private string _filename;
         private string _checkSum;
         private long _fileLength;
         private DateTime _modifiedAt;
 
-        public CachingValidatableFile(IValidatableFile origin)
+        public CachedFileValidator(IFileValidator origin)
         {
             _origin = origin;
         }

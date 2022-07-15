@@ -17,35 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
 using System.Threading.Tasks;
-using ProtonVPN.Common.Extensions;
-using ProtonVPN.Update.Helpers;
 
 namespace ProtonVPN.Update.Files.Validatable
 {
-    /// <summary>
-    /// Wraps known exceptions of <see cref="ValidatableFile"/> into <see cref="AppUpdateException"/>.
-    /// </summary>
-    internal class SafeValidatableFile : IValidatableFile
+    internal interface IFileValidator
     {
-        private readonly IValidatableFile _origin;
-
-        public SafeValidatableFile(IValidatableFile origin)
-        {
-            _origin = origin;
-        }
-
-        public async Task<bool> Valid(string filename, string checkSum)
-        {
-            try
-            {
-                return await _origin.Valid(filename, checkSum);
-            }
-            catch (Exception e) when (e.IsFileAccessException())
-            {
-                throw new AppUpdateException("Failed to validate downloaded file", e);
-            }
-        }
+        Task<bool> Valid(string filename, string checkSum);
     }
 }

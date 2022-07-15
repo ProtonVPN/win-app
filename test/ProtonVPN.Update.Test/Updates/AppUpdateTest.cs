@@ -33,13 +33,13 @@ using System.Net.Sockets;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
+using ProtonVPN.Test.Common;
 
 // ReSharper disable ObjectCreationAsStatement
 
 namespace ProtonVPN.Update.Test.Updates
 {
     [TestClass]
-    [DeploymentItem("TestData", "TestData")]
     public class AppUpdateTest
     {
         private ILaunchableFile _launchableFile;
@@ -74,14 +74,14 @@ namespace ProtonVPN.Update.Test.Updates
 
         private IAppUpdate AppUpdate(Task<IHttpResponseMessage> httpResponse, [CallerMemberName] string updatesPath = null)
         {
-            _config.UpdatesPath = updatesPath;
+            _config.UpdatesPath = TestConfig.GetFolderPath(updatesPath);
             _httpClient.GetAsync(_config.FeedUriProvider.GetFeedUrl()).Returns(httpResponse);
             return AppUpdate();
         }
 
         private IAppUpdate AppUpdate(IHttpResponseMessage httpResponse, [CallerMemberName] string updatesPath = null)
         {
-            _config.UpdatesPath = updatesPath;
+            _config.UpdatesPath = TestConfig.GetFolderPath(updatesPath);
             _httpClient.GetAsync(_config.FeedUriProvider.GetFeedUrl()).Returns(httpResponse);
             return AppUpdate();
         }
@@ -364,13 +364,13 @@ namespace ProtonVPN.Update.Test.Updates
         public async Task Ready_ShouldBeTrue_AfterValidated_WhenFileAlreadyExists()
         {
             const string downloadsPath = nameof(Downloaded_ShouldDownloadFile_ToDownloadsDirectory);
-            var update = AppUpdate(new Version(1, 2, 0), HttpResponseFromFile("win-update.json"), downloadsPath);
+            IAppUpdate update = AppUpdate(new Version(1, 2, 0), HttpResponseFromFile("win-update.json"), downloadsPath);
             update = await update.Latest(false);
             update.Available.Should().BeTrue();
 
-            CopyFile("ProtonVPN_win_v1.5.1.exe", downloadsPath);
-
+            CopyFile("ProtonVPN_win_v1.5.1.exe", TestConfig.GetFolderPath(downloadsPath));
             update = await update.Validated();
+            File.Delete(Path.Combine(TestConfig.GetFolderPath(downloadsPath), "ProtonVPN_win_v1.5.1.exe"));
 
             update.Ready.Should().BeTrue();
         }
@@ -561,12 +561,13 @@ namespace ProtonVPN.Update.Test.Updates
             IHttpResponseMessage httpResponse = HttpResponseFromFile("ProtonVPN_win_v2.0.0.exe");
             _httpClient.GetAsync("https://protonvpn.com/download/ProtonVPN_win_v2.0.0.exe").Returns(httpResponse);
 
-            string filename = Path.Combine(downloadsPath, "ProtonVPN_win_v2.0.0.exe");
+            string filename = Path.Combine(TestConfig.GetFolderPath(downloadsPath), "ProtonVPN_win_v2.0.0.exe");
             File.Exists(filename).Should().BeFalse();
 
             await update.Downloaded();
 
             string checkSum = await new FileCheckSum(filename).Value();
+            File.Delete(filename);
             checkSum.Should().Be("961103aaf283cd90bfacb73e6cb97e2069bfa5bd9015b8f91ffd0bc1e8c791eb089e07a7df63a7da12dbb461b0777f5106819009f7a16bfaeff45f8ca941dab5");
         }
 
@@ -666,7 +667,7 @@ namespace ProtonVPN.Update.Test.Updates
             string filename = !string.IsNullOrEmpty(newFilename) ? newFilename : Path.GetFileName(sourcePath);
             string destFullPath = Path.Combine(destPath ?? "", filename ?? "");
 
-            File.Copy(Path.Combine("TestData", sourcePath), destFullPath);
+            File.Copy(TestConfig.GetFolderPath(sourcePath), destFullPath);
         }
 
         private static Task<IHttpResponseMessage> CancelledHttpRequest()
@@ -682,7 +683,7 @@ namespace ProtonVPN.Update.Test.Updates
         private static IHttpResponseMessage HttpResponseFromFile(string filePath)
         {
             MemoryStream stream = new();
-            using (var inputStream = new FileStream(Path.Combine("TestData", filePath), FileMode.Open))
+            using (var inputStream = new FileStream(TestConfig.GetFolderPath(filePath), FileMode.Open))
             {
                 inputStream.CopyTo(stream);
                 inputStream.Flush();

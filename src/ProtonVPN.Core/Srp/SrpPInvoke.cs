@@ -106,5 +106,8 @@ namespace ProtonVPN.Core.Srp
         [DllImport("GoSrp", EntryPoint = "GenerateProofs", CallingConvention = CallingConvention.Cdecl)]
         private static extern GoBytes NativeGenerateProofs(int version, GoString username, DisposableGoBytes password,
             GoString salt, GoString signedModulus, GoString serverEphemeral, int bits);
+
+        [DllImport("GoSrp", EntryPoint = "SetTest", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void SetUnitTest();
     }
 }

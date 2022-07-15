@@ -29,16 +29,16 @@ using ProtonVPN.Update.Files.Validatable;
 namespace ProtonVPN.Update.Test.Files.Validatable
 {
     [TestClass]
-    public class SafeValidatableFileTest
+    public class SafeFileValidatorTest
     {
-        private IValidatableFile _origin;
-        private IValidatableFile _validatable;
+        private IFileValidator _origin;
+        private IFileValidator _validatable;
 
         [TestInitialize]
         public void TestInitialize()
         {
-            _origin = Substitute.For<IValidatableFile>();
-            _validatable = new SafeValidatableFile(_origin);
+            _origin = Substitute.For<IFileValidator>();
+            _validatable = new SafeFileValidator(_origin);
         }
 
         [DataTestMethod]

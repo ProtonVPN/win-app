@@ -17,25 +17,24 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.IO;
 using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using ProtonVPN.Test.Common;
 using ProtonVPN.Update.Files.Validatable;
 
 namespace ProtonVPN.Update.Test.Files.Validatable
 {
     [TestClass]
-    [DeploymentItem("TestData", "TestData")]
-    public class ValidatableFileTest
+    public class FileValidatorTest
     {
         [TestMethod]
         public async Task Valid_ShouldBeTrue_WhenValidChecksum()
         {
-            var filename = Path.Combine("TestData", "ProtonVPN_win_v1.5.2.exe");
-            var validatable = new ValidatableFile();
+            string filename = TestConfig.GetFolderPath("ProtonVPN_win_v1.5.2.exe");
+            FileValidator validatable = new();
 
-            var result = await validatable.Valid(filename, "6771cf15b98782e59716cefee4af6f5fc4d43e1a2a4fc14eb7cb80176de3210ee8342ce6fe28eb76f5a5765ac4d7efec312c1712581eaf2a1e5e8daae5c94e2a");
+            bool result = await validatable.Valid(filename, "6771cf15b98782e59716cefee4af6f5fc4d43e1a2a4fc14eb7cb80176de3210ee8342ce6fe28eb76f5a5765ac4d7efec312c1712581eaf2a1e5e8daae5c94e2a");
 
             result.Should().BeTrue();
         }
@@ -43,10 +42,10 @@ namespace ProtonVPN.Update.Test.Files.Validatable
         [TestMethod]
         public async Task Valid_ShouldBeFalse_WhenInvalidChecksum()
         {
-            var filename = Path.Combine("TestData", "ProtonVPN_win_v1.5.2.exe");
-            var validatable = new ValidatableFile();
+            string filename = TestConfig.GetFolderPath("ProtonVPN_win_v1.5.2.exe");
+            FileValidator validatable = new();
 
-            var result = await validatable.Valid(filename, "03c8fc621f9f8721b41ba4093ae7bec78956e7d8");
+            bool result = await validatable.Valid(filename, "03c8fc621f9f8721b41ba4093ae7bec78956e7d8");
 
             result.Should().BeFalse();
         }
@@ -54,10 +53,10 @@ namespace ProtonVPN.Update.Test.Files.Validatable
         [TestMethod]
         public async Task Valid_ShouldBeFalse_WhenFileNotExists()
         {
-            var filename = Path.Combine("TestData", "FileNotExists.exe");
-            var validatable = new ValidatableFile();
+            string filename = TestConfig.GetFolderPath("FileNotExists.exe");
+            FileValidator validatable = new();
 
-            var result = await validatable.Valid(filename, "Value doesn't matter");
+            bool result = await validatable.Valid(filename, "Value doesn't matter");
 
             result.Should().BeFalse();
         }

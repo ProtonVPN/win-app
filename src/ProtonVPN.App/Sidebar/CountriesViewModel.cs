@@ -25,6 +25,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Caliburn.Micro;
 using GalaSoft.MvvmLight.Command;
+using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Servers;
@@ -48,7 +49,7 @@ namespace ProtonVPN.Sidebar
     {
         private readonly IAppSettings _appSettings;
         private readonly ServerListFactory _serverListFactory;
-        private readonly App _app;
+        private readonly IScheduler _scheduler;
         private readonly ServerConnector _serverConnector;
         private readonly CountryConnector _countryConnector;
 
@@ -57,14 +58,14 @@ namespace ProtonVPN.Sidebar
         public CountriesViewModel(
             IAppSettings appSettings,
             ServerListFactory serverListFactory,
-            App app,
+            IScheduler scheduler,
             ServerConnector serverConnector,
             CountryConnector countryConnector,
             QuickSettingsViewModel quickSettingsViewModel)
         {
             _appSettings = appSettings;
             _serverListFactory = serverListFactory;
-            _app = app;
+            _scheduler = scheduler;
             _serverConnector = serverConnector;
             _countryConnector = countryConnector;
             QuickSettingsViewModel = quickSettingsViewModel;
@@ -135,7 +136,7 @@ namespace ProtonVPN.Sidebar
             serverCollection.Expanded = true;
 
             int index = _items.IndexOf(serverCollection) + 1;
-            _app.Dispatcher?.Invoke(() =>
+            _scheduler.Schedule(() =>
             {
                 ObservableCollection<IServerListItem> collection = 
                     new ObservableCollection<IServerListItem>(serverCollection.Servers.Reverse());
