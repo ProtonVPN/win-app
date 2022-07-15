@@ -29,13 +29,13 @@ using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using ProtonVPN.Common.OS.Net.Http;
+using ProtonVPN.Test.Common;
 using ProtonVPN.Update.Files.Downloadable;
 using ProtonVPN.Update.Files.Validatable;
 
 namespace ProtonVPN.Update.Test.Files.Downloadable
 {
     [TestClass]
-    [DeploymentItem("TestData", "TestData")]
     public class DownloadableFileTest
     {
         private const string APP_FILENAME = "ProtonVPN.exe";
@@ -77,6 +77,7 @@ namespace ProtonVPN.Update.Test.Files.Downloadable
             IDownloadableFile downloadable = DownloadableFile(INSTALLER_DOWNLOAD_URL, HttpResponseFromFile(INSTALLER_FILENAME));
 
             await downloadable.Download(INSTALLER_DOWNLOAD_URL, filename);
+            File.Delete(filename);
 
             await _httpClient.Received().GetAsync(INSTALLER_DOWNLOAD_URL);
         }
@@ -91,6 +92,7 @@ namespace ProtonVPN.Update.Test.Files.Downloadable
             await downloadable.Download(INSTALLER_DOWNLOAD_URL, filename);
 
             string checkSum = await new FileCheckSum(filename).Value();
+            File.Delete(filename);
             checkSum.Should().Be("c011146ae24f5a49ef86ff6199ec0bd42223b408e1dce3ffef9a2ef4b9c1806b1c823ce427d7473378b7d8c427ba6cb3701320740523ad79fc9ec8cfeb907875");
         }
 
@@ -104,6 +106,7 @@ namespace ProtonVPN.Update.Test.Files.Downloadable
             IDownloadableFile downloadable = DownloadableFile(INSTALLER_DOWNLOAD_URL, httpResponse);
 
             Func<Task> action = () => downloadable.Download(INSTALLER_DOWNLOAD_URL, filename);
+            File.Delete(filename);
 
             action.Should().ThrowAsync<AppUpdateException>();
         }
@@ -132,6 +135,7 @@ namespace ProtonVPN.Update.Test.Files.Downloadable
             IDownloadableFile downloadable = DownloadableFile(INSTALLER_DOWNLOAD_URL, FailedHttpRequest(exception));
 
             Func<Task> action = () => downloadable.Download(INSTALLER_DOWNLOAD_URL, filename);
+            File.Delete(filename);
 
             action.Should().ThrowAsync<TE>();
         }
@@ -143,6 +147,7 @@ namespace ProtonVPN.Update.Test.Files.Downloadable
             IDownloadableFile downloadable = DownloadableFile(INSTALLER_DOWNLOAD_URL, FailedHttpResponse(exception));
 
             Func<Task> action = () => downloadable.Download(INSTALLER_DOWNLOAD_URL, filename);
+            File.Delete(filename);
 
             action.Should().ThrowAsync<TE>();
         }
@@ -155,6 +160,7 @@ namespace ProtonVPN.Update.Test.Files.Downloadable
             IDownloadableFile downloadable = DownloadableFile(INSTALLER_DOWNLOAD_URL, CancelledHttpRequest());
 
             Func<Task> action = () => downloadable.Download(INSTALLER_DOWNLOAD_URL, filename);
+            File.Delete(filename);
 
             action.Should().ThrowAsync<TaskCanceledException>();
         }
@@ -167,6 +173,7 @@ namespace ProtonVPN.Update.Test.Files.Downloadable
             IDownloadableFile downloadable = DownloadableFile(INSTALLER_DOWNLOAD_URL, CancelledHttpResponse());
 
             Func<Task> action = () => downloadable.Download(INSTALLER_DOWNLOAD_URL, filename);
+            File.Delete(filename);
 
             action.Should().ThrowAsync<TaskCanceledException>();
         }
@@ -176,7 +183,7 @@ namespace ProtonVPN.Update.Test.Files.Downloadable
         private string DownloadsPath([CallerMemberName] string path = null)
         {
             Contract.Assume(path != null);
-
+            path = TestConfig.GetFolderPath(path);
             Directory.CreateDirectory(path);
             return path;
         }
@@ -212,7 +219,7 @@ namespace ProtonVPN.Update.Test.Files.Downloadable
         private static IHttpResponseMessage HttpResponseFromFile(string filePath)
         {
             MemoryStream stream = new();
-            using (FileStream inputStream = new(Path.Combine("TestData", filePath), FileMode.Open))
+            using (FileStream inputStream = new(TestConfig.GetFolderPath(filePath), FileMode.Open))
             {
                 inputStream.CopyTo(stream);
                 inputStream.Flush();

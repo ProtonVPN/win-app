@@ -60,9 +60,9 @@
     <Compile Include="Files\Launchable\SafeLaunchableFileTest.cs" />
     <Compile Include="Files\UpdatesDirectory\SafeUpdatesDirectoryTest.cs" />
     <Compile Include="Files\Validatable\FileCheckSumTest.cs" />
-    <Compile Include="Files\Validatable\SafeValidatableFileTest.cs" />
-    <Compile Include="Files\Validatable\CachingValidatableFileTest.cs" />
-    <Compile Include="Files\Validatable\ValidatableFileTest.cs" />
+    <Compile Include="Files\Validatable\SafeFileValidatorTest.cs" />
+    <Compile Include="Files\Validatable\CachedFileValidatorTest.cs" />
+    <Compile Include="Files\Validatable\FileValidatorTest.cs" />
     <Compile Include="Helpers\ExceptionExtensionsTest.cs" />
     <Compile Include="Releases\ReleasesTest.cs" />
     <Compile Include="Releases\ReleaseTest.cs" />
@@ -87,6 +87,10 @@
     <ProjectReference Include="..\..\src\ProtonVPN.Update\ProtonVPN.Update.csproj">
       <Project>{90fdf2b3-25c9-428d-b264-5a5faeb2d988}</Project>
       <Name>ProtonVPN.Update</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProtonVPN.Test.Common\ProtonVPN.Test.Common.csproj">
+      <Project>{A0DA4200-6643-4F2C-8450-65B8CE8A5576}</Project>
+      <Name>ProtonVPN.Test.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -120,7 +124,7 @@
       <Version>2.1.2</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
-      <Version>12.0.3</Version>
+      <Version>13.0.1</Version>
     </PackageReference>
     <PackageReference Include="NSubstitute">
       <Version>4.3.0</Version>

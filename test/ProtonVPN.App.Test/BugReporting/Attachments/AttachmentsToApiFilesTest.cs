@@ -27,11 +27,11 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Text;
+using File = ProtonVPN.Api.Contracts.File;
 
 namespace ProtonVPN.App.Test.BugReporting.Attachments
 {
     [TestClass]
-    [DeploymentItem("BugReporting\\Attachments\\TestData", "TestData")]
     [SuppressMessage("ReSharper", "ReturnValueOfPureMethodIsNotUsed")]
     public class AttachmentsToApiFilesTest
     {
@@ -48,9 +48,9 @@ namespace ProtonVPN.App.Test.BugReporting.Attachments
         {
             // Arrange
             _source.GetEnumerator().Returns(Enumerable.Empty<Attachment>().GetEnumerator());
-            var converter = new AttachmentsToApiFiles(_source);
+            AttachmentsToApiFiles converter = new AttachmentsToApiFiles(_source);
             // Act
-            var result = converter.ToList();
+            List<File> result = converter.ToList();
             // Assert
             result.Should().BeEmpty();
         }
@@ -59,12 +59,12 @@ namespace ProtonVPN.App.Test.BugReporting.Attachments
         public void Enumerable_ItemName_ShouldBe_SourceName()
         {
             // Arrange
-            var fileNames = new[] {"test.txt", "test-2.txt", "test-3.txt"};
-            var attachments = fileNames.Select(f => new Attachment($"TestData\\{f}"));
+            string[] fileNames = { "bug-report-test.txt", "bug-report-test-2.txt", "bug-report-test-3.txt" };
+            IEnumerable<Attachment> attachments = fileNames.Select(f => new Attachment($"TestData\\{f}"));
             _source.GetEnumerator().Returns(attachments.GetEnumerator());
-            var converter = new AttachmentsToApiFiles(_source);
+            AttachmentsToApiFiles converter = new AttachmentsToApiFiles(_source);
             // Act
-            var result = converter.ToList();
+            List<File> result = converter.ToList();
             // Assert
             result.Select(i => i.Name).Should().BeEquivalentTo(fileNames);
         }
@@ -73,12 +73,12 @@ namespace ProtonVPN.App.Test.BugReporting.Attachments
         public void Enumerable_ItemContent_ShouldBe_BinaryFileContent()
         {
             // Arrange
-            var attachments = new[] { new Attachment("TestData\\test-3.txt") };
+            Attachment[] attachments = { new("TestData\\bug-report-test-3.txt") };
             _source.GetEnumerator().Returns(attachments.Cast<Attachment>().GetEnumerator());
-            var expected = Encoding.UTF8.GetPreamble().Concat(Encoding.UTF8.GetBytes("test-3")).ToArray();
-            var converter = new AttachmentsToApiFiles(_source);
+            byte[] expected = Encoding.UTF8.GetPreamble().Concat(Encoding.UTF8.GetBytes("bug-report-test-3")).ToArray();
+            AttachmentsToApiFiles converter = new(_source);
             // Act
-            var result = converter.ToList();
+            List<File> result = converter.ToList();
             // Assert
             result.First().Content.Should().Equal(expected);
         }
@@ -87,9 +87,9 @@ namespace ProtonVPN.App.Test.BugReporting.Attachments
         public void Enumerable_ShouldThrow_WhenDirectory_NotExists()
         {
             // Arrange
-            var attachments = new[] { new Attachment("Lost folder\\test.txt") };
+            Attachment[] attachments = { new("Lost folder\\test.txt") };
             _source.GetEnumerator().Returns(attachments.Cast<Attachment>().GetEnumerator());
-            var converter = new AttachmentsToApiFiles(_source);
+            AttachmentsToApiFiles converter = new AttachmentsToApiFiles(_source);
             // Act
             Action action = () => converter.ToList();
             // Assert
@@ -100,9 +100,9 @@ namespace ProtonVPN.App.Test.BugReporting.Attachments
         public void Enumerable_ShouldThrow_WhenFile_NotExists()
         {
             // Arrange
-            var attachments = new[] { new Attachment("TestData\\not-a-test.txt") };
+            Attachment[] attachments = { new Attachment("TestData\\not-a-test.txt") };
             _source.GetEnumerator().Returns(attachments.Cast<Attachment>().GetEnumerator());
-            var converter = new AttachmentsToApiFiles(_source);
+            AttachmentsToApiFiles converter = new AttachmentsToApiFiles(_source);
             // Act
             Action action = () => converter.ToList();
             // Assert

@@ -30,7 +30,6 @@ using ProtonVPN.Common.Logging.Categorization.Events.AppUpdateLogs;
 namespace ProtonVPN.Update.Test.Updates
 {
     [TestClass]
-    [DeploymentItem("TestData", "TestData")]
     public class SafeAppUpdatesTest
     {
         private ILogger _logger;

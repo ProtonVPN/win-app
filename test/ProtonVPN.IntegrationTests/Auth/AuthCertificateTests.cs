@@ -3,7 +3,8 @@
  *
  * This file is part of ProtonVPN.
  *
- * ProtonVPN is free software: you can redistribute it and/or modify
+ * ProtonVPN is free software:
+ you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
@@ -18,11 +19,25 @@
  */
 
 using System.Threading.Tasks;
+using FluentAssertions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using ProtonVPN.Core.Settings;
+using ProtonVPN.IntegrationTests.Api.Responses;
 
-namespace ProtonVPN.Update.Files.Validatable
+namespace ProtonVPN.IntegrationTests.Auth
 {
-    internal interface IValidatableFile
+    [TestClass]
+    public class AuthCertificateTests : AuthenticatedUserTests
     {
-        Task<bool> Valid(string filename, string checkSum);
+        [TestMethod]
+        public async Task ItShouldSaveCertificateToAppSettings()
+        {
+            // Arrange
+            SetApiResponsesForAuth();
+            await MakeUserAuth(CORRECT_PASSWORD);
+
+            // Assert
+            Resolve<IAppSettings>().AuthenticationCertificatePem.Should().Be(CertificateResponseMock.CERTIFICATE);
+        }
     }
 }

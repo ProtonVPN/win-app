@@ -24,22 +24,22 @@ using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using NSubstitute.ExceptionExtensions;
+using ProtonVPN.Test.Common;
 using ProtonVPN.Update.Files.Validatable;
 
 namespace ProtonVPN.Update.Test.Files.Validatable
 {
     [TestClass]
-    [DeploymentItem("TestData", "TestData")]
-    public class CachingValidatableFileTest
+    public class CachedFileValidatorTest
     {
-        private IValidatableFile _origin;
-        private IValidatableFile _validatable;
+        private IFileValidator _origin;
+        private IFileValidator _cachedFileValidator;
 
         [TestInitialize]
         public void TestInitialize()
         {
-            _origin = Substitute.For<IValidatableFile>();
-            _validatable = new CachingValidatableFile(_origin);
+            _origin = Substitute.For<IFileValidator>();
+            _cachedFileValidator = new CachedFileValidator(_origin);
         }
 
         [TestMethod]
@@ -48,7 +48,7 @@ namespace ProtonVPN.Update.Test.Files.Validatable
             const string filename = "TestData\\ProtonVPN_win_v1.0.0.exe";
             const string checkSum = "The expected check sum";
 
-            await _validatable.Valid(filename, checkSum);
+            await _cachedFileValidator.Valid(filename, checkSum);
 
             await _origin.Received(1).Valid(filename, checkSum);
         }
@@ -61,7 +61,7 @@ namespace ProtonVPN.Update.Test.Files.Validatable
             const string filename = "TestData\\ProtonVPN_win_v1.5.2.exe";
             _origin.Valid("", "").ReturnsForAnyArgs(Task.FromResult(value));
 
-            bool result = await _validatable.Valid(filename, "checkSum");
+            bool result = await _cachedFileValidator.Valid(filename, "checkSum");
 
             result.Should().Be(value);
         }
@@ -73,10 +73,10 @@ namespace ProtonVPN.Update.Test.Files.Validatable
             const string checkSum = "b1dc9dbd738a5f98b7f5e920ffcc5ba9db42517e";
 
             _origin.Valid("", "").ReturnsForAnyArgs(Task.FromResult(true));
-            (await _validatable.Valid(filename, checkSum)).Should().BeTrue();
+            (await _cachedFileValidator.Valid(filename, checkSum)).Should().BeTrue();
             _origin.ClearReceivedCalls();
 
-            bool result = await _validatable.Valid(filename, checkSum);
+            bool result = await _cachedFileValidator.Valid(filename, checkSum);
 
             result.Should().BeTrue();
         }
@@ -88,10 +88,10 @@ namespace ProtonVPN.Update.Test.Files.Validatable
             const string checkSum = "b1dc9dbd738a5f98b7f5e920ffcc5ba9db42517e";
 
             _origin.Valid("", "").ReturnsForAnyArgs(Task.FromResult(true));
-            (await _validatable.Valid(filename, checkSum)).Should().BeTrue();
+            (await _cachedFileValidator.Valid(filename, checkSum)).Should().BeTrue();
             _origin.ClearReceivedCalls();
 
-            await _validatable.Valid(filename, checkSum);
+            await _cachedFileValidator.Valid(filename, checkSum);
 
             await _origin.DidNotReceiveWithAnyArgs().Valid("", "");
         }
@@ -104,10 +104,10 @@ namespace ProtonVPN.Update.Test.Files.Validatable
             const string changedFilename = "TestData\\ProtonVPN_win_v1.5.0.exe";
 
             _origin.Valid("", "").ReturnsForAnyArgs(Task.FromResult(true));
-            (await _validatable.Valid(filename, checkSum)).Should().BeTrue();
+            (await _cachedFileValidator.Valid(filename, checkSum)).Should().BeTrue();
             _origin.ClearReceivedCalls();
 
-            await _validatable.Valid(changedFilename, checkSum);
+            await _cachedFileValidator.Valid(changedFilename, checkSum);
 
             await _origin.Received().Valid(changedFilename, checkSum);
         }
@@ -120,10 +120,10 @@ namespace ProtonVPN.Update.Test.Files.Validatable
             const string changedCheckSum = "Changed Check Sum";
 
             _origin.Valid("", "").ReturnsForAnyArgs(Task.FromResult(true));
-            (await _validatable.Valid(filename, checkSum)).Should().BeTrue();
+            (await _cachedFileValidator.Valid(filename, checkSum)).Should().BeTrue();
             _origin.ClearReceivedCalls();
 
-            await _validatable.Valid(filename, changedCheckSum);
+            await _cachedFileValidator.Valid(filename, changedCheckSum);
 
             await _origin.Received().Valid(filename, changedCheckSum);
         }
@@ -131,18 +131,18 @@ namespace ProtonVPN.Update.Test.Files.Validatable
         [TestMethod]
         public async Task Valid_ShouldCall_Origin_WenFileLastWriteTime_HasChanged()
         {
-            const string updatesPath = nameof(Valid_ShouldCall_Origin_WenFileLastWriteTime_HasChanged);
+            string updatesPath = TestConfig.GetFolderPath();
             CopyFile("ProtonVPN_win_v1.5.1.exe", updatesPath);
             string filename = Path.Combine(updatesPath, "ProtonVPN_win_v1.5.1.exe");
             const string checkSum = "ba6b5ca2db65ff7817e3336a386e7525c01dc639";
 
             _origin.Valid("", "").ReturnsForAnyArgs(Task.FromResult(true));
-            (await _validatable.Valid(filename, checkSum)).Should().BeTrue();
+            (await _cachedFileValidator.Valid(filename, checkSum)).Should().BeTrue();
 
             _origin.ClearReceivedCalls();
             File.SetLastWriteTimeUtc(filename, new DateTime(2000, 04, 28, 12, 15, 33));
 
-            await _validatable.Valid(filename, checkSum);
+            await _cachedFileValidator.Valid(filename, checkSum);
 
             await _origin.Received().Valid(filename, checkSum);
         }
@@ -150,20 +150,20 @@ namespace ProtonVPN.Update.Test.Files.Validatable
         [TestMethod]
         public async Task Valid_ShouldCall_Origin_WenFileLength_HasChanged()
         {
-            const string updatesPath = nameof(Valid_ShouldCall_Origin_WenFileLastWriteTime_HasChanged);
+            string updatesPath = TestConfig.GetFolderPath();
             CopyFile("ProtonVPN_win_v1.5.1.exe", updatesPath);
             string filename = Path.Combine(updatesPath, "ProtonVPN_win_v1.5.1.exe");
             const string checkSum = "ba6b5ca2db65ff7817e3336a386e7525c01dc639";
 
             _origin.Valid("", "").ReturnsForAnyArgs(Task.FromResult(true));
-            (await _validatable.Valid(filename, checkSum)).Should().BeTrue();
+            (await _cachedFileValidator.Valid(filename, checkSum)).Should().BeTrue();
 
             _origin.ClearReceivedCalls();
             DateTime lastWriteTime = File.GetLastWriteTimeUtc(filename);
             CopyFile("win-update.json", updatesPath, "ProtonVPN_win_v1.5.1.exe");
             File.SetLastWriteTimeUtc(filename, lastWriteTime);
 
-            await _validatable.Valid(filename, checkSum);
+            await _cachedFileValidator.Valid(filename, checkSum);
 
             await _origin.Received().Valid(filename, checkSum);
         }
@@ -171,19 +171,19 @@ namespace ProtonVPN.Update.Test.Files.Validatable
         [TestMethod]
         public async Task Valid_ShouldBeFalse_WenFileDoesNotExist()
         {
-            const string updatesPath = nameof(Valid_ShouldCall_Origin_WenFileLastWriteTime_HasChanged);
+            string updatesPath = TestConfig.GetFolderPath();
             CopyFile("ProtonVPN_win_v1.5.1.exe", updatesPath);
             string filename = Path.Combine(updatesPath, "ProtonVPN_win_v1.5.1.exe");
             const string checkSum = "ba6b5ca2db65ff7817e3336a386e7525c01dc639";
 
             _origin.Valid("", "").ReturnsForAnyArgs(Task.FromResult(true));
-            (await _validatable.Valid(filename, checkSum)).Should().BeTrue();
+            (await _cachedFileValidator.Valid(filename, checkSum)).Should().BeTrue();
 
             _origin.ClearReceivedCalls();
             _origin.Valid("", "").ReturnsForAnyArgs(Task.FromResult(false));
             File.Delete(filename);
 
-            bool result = await _validatable.Valid(filename, checkSum);
+            bool result = await _cachedFileValidator.Valid(filename, checkSum);
 
             result.Should().BeFalse();
         }
@@ -194,7 +194,7 @@ namespace ProtonVPN.Update.Test.Files.Validatable
             const string filename = "TestData\\ProtonVPN_win_v1.0.0.exe";
             _origin.Valid("", "").ThrowsForAnyArgs<SomeException>();
 
-            Func<Task> action = () => _validatable.Valid(filename, "");
+            Func<Task> action = () => _cachedFileValidator.Valid(filename, "");
 
             action.Should().ThrowAsync<SomeException>();
         }
@@ -205,7 +205,7 @@ namespace ProtonVPN.Update.Test.Files.Validatable
             const string filename = "TestData\\ProtonVPN_win_v1.0.0.exe";
             _origin.Valid("", "").ReturnsForAnyArgs(Task.FromException<bool>(new SomeException()));
 
-            Func<Task> action = () => _validatable.Valid(filename, "");
+            Func<Task> action = () => _cachedFileValidator.Valid(filename, "");
 
             action.Should().ThrowAsync<SomeException>();
         }
@@ -224,7 +224,7 @@ namespace ProtonVPN.Update.Test.Files.Validatable
             string filename = !string.IsNullOrEmpty(newFilename) ? newFilename : Path.GetFileName(sourcePath);
             string destFullPath = Path.Combine(destPath ?? "", filename ?? "");
 
-            File.Copy(Path.Combine("TestData", sourcePath), destFullPath, true);
+            File.Copy(TestConfig.GetFolderPath(sourcePath), destFullPath, true);
         }
 
         #endregion

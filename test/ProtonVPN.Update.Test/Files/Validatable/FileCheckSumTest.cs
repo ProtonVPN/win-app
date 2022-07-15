@@ -17,25 +17,24 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.IO;
 using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using ProtonVPN.Test.Common;
 using ProtonVPN.Update.Files.Validatable;
 
 namespace ProtonVPN.Update.Test.Files.Validatable
 {
     [TestClass]
-    [DeploymentItem("TestData", "TestData")]
     public class FileCheckSumTest
     {
         [TestMethod]
         public async Task Value_ShouldBe_SHA512()
         {
-            var filename = Path.Combine("TestData", "ProtonVPN_win_v1.5.1.exe");
-            var fileCheckSum = new FileCheckSum(filename);
+            string filename = TestConfig.GetFolderPath("ProtonVPN_win_v1.5.1.exe");
+            FileCheckSum fileCheckSum = new(filename);
 
-            var result = await fileCheckSum.Value();
+            string result = await fileCheckSum.Value();
 
             result.Should().Be("c011146ae24f5a49ef86ff6199ec0bd42223b408e1dce3ffef9a2ef4b9c1806b1c823ce427d7473378b7d8c427ba6cb3701320740523ad79fc9ec8cfeb907875");
         }

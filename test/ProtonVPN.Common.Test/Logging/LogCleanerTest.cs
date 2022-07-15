@@ -26,6 +26,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Test.Common;
 
 namespace ProtonVPN.Common.Test.Logging
 {
@@ -66,7 +67,7 @@ namespace ProtonVPN.Common.Test.Logging
         private IEnumerable<string> ArrangeAndActByLastWriteDate(DateTime lastWriteDate)
         {
             // Arrange
-            const string logPath = nameof(Clean_ShouldDeleteOldFiles);
+            string logPath = TestConfig.GetFolderPath();
             CreateEmptyDirectory(logPath);
             IList<string> files = new[] { "file.log", "file1.log", "file2.log", "file3.log", "file4.log" }.Select(f => Path.Combine(logPath, f)).ToList();
             files.ForEach(CreateEmptyFile);
@@ -98,7 +99,7 @@ namespace ProtonVPN.Common.Test.Logging
         public void Clean_ShouldSkipLockedFile()
         {
             // Arrange
-            const string logPath = nameof(Clean_ShouldSkipLockedFile);
+            string logPath = TestConfig.GetFolderPath();
             CreateEmptyDirectory(logPath);
             IList<string> files = new[] { "file2.log", "file1.log", "file.log" }.Select(f => Path.Combine(logPath, f)).ToList();
             files.ForEach(CreateEmptyFile);

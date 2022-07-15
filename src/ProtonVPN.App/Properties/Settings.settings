@@ -228,7 +228,7 @@
             <Value Profile="(Default)" />
         </Setting>
         <Setting Name="LastPrimaryApiFailDateUtc" Type="System.DateTime" Scope="User">
-            <Value Profile="(Default)" />
+            <Value Profile="(Default)">01/01/1970 00:00:00</Value>
         </Setting>
         <Setting Name="AlternativeApiBaseUrls" Type="System.String" Scope="User">
             <Value Profile="(Default)" />

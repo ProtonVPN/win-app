@@ -28,6 +28,7 @@ using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using ProtonVPN.Common.OS.Net.Http;
+using ProtonVPN.Test.Common;
 using ProtonVPN.Update.Config;
 using ProtonVPN.Update.Releases;
 using ProtonVPN.Update.Storage;
@@ -200,7 +201,7 @@ namespace ProtonVPN.Update.Test.Storage
         private static IHttpResponseMessage HttpResponseFromFile(string filePath)
         {
             MemoryStream stream = new();
-            using (FileStream inputStream = new(Path.Combine("TestData", filePath), FileMode.Open))
+            using (FileStream inputStream = new(TestConfig.GetFolderPath(filePath), FileMode.Open))
             {
                 inputStream.CopyTo(stream);
                 inputStream.Flush();

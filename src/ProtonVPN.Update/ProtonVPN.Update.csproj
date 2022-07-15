@@ -36,8 +36,8 @@
     <Reference Include="Autofac, Version=4.9.4.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Autofac.4.9.4\lib\net45\Autofac.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -56,11 +56,11 @@
     <Compile Include="Config\Module.cs" />
     <Compile Include="Feed\FeedType.cs" />
     <Compile Include="Feed\FeedUrlChangeEventArgs.cs" />
-    <Compile Include="Files\Validatable\CachingValidatableFile.cs" />
+    <Compile Include="Files\Validatable\CachedFileValidator.cs" />
     <Compile Include="Files\Downloadable\IDownloadableFile.cs" />
     <Compile Include="Files\Launchable\ILaunchableFile.cs" />
     <Compile Include="Files\UpdatesDirectory\IUpdatesDirectory.cs" />
-    <Compile Include="Files\Validatable\IValidatableFile.cs" />
+    <Compile Include="Files\Validatable\IFileValidator.cs" />
     <Compile Include="Updates\AppUpdateState.cs" />
     <Compile Include="Updates\AppUpdate.cs" />
     <Compile Include="Updates\AppUpdates.cs" />
@@ -77,9 +77,9 @@
     <Compile Include="Files\Downloadable\SafeDownloadableFile.cs" />
     <Compile Include="Files\Launchable\SafeLaunchableFile.cs" />
     <Compile Include="Files\UpdatesDirectory\SafeUpdatesDirectory.cs" />
-    <Compile Include="Files\Validatable\SafeValidatableFile.cs" />
+    <Compile Include="Files\Validatable\SafeFileValidator.cs" />
     <Compile Include="Files\FileLocation.cs" />
-    <Compile Include="Files\Validatable\ValidatableFile.cs" />
+    <Compile Include="Files\Validatable\FileValidator.cs" />
     <Compile Include="Helpers\ExceptionExtensions.cs" />
     <Compile Include="Updates\IAppUpdate.cs" />
     <Compile Include="Config\IAppUpdateConfig.cs" />

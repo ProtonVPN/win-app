@@ -132,7 +132,6 @@ namespace ProtonVPN.Core.Ioc
                 .SingleInstance();
 
             builder.RegisterType<ServerListFactory>().AsImplementedInterfaces().AsSelf().SingleInstance();
-            builder.RegisterInstance((App)Application.Current).SingleInstance();
             builder.RegisterType<VpnService>().SingleInstance();
             builder.RegisterType<ModalWindows>().As<IModalWindows>().SingleInstance();
             builder.RegisterType<ProtonVPN.Modals.Modals>().As<IModals>().SingleInstance();
