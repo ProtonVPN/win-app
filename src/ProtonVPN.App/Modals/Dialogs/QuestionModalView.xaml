@@ -43,6 +43,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button Margin="0,0,20,0"
                         Style="{StaticResource SecondaryModalButton}"
+                        AutomationProperties.AutomationId="{StaticResource CancelActionButton}"
                         Command="{Binding CloseCommand}" />
                 <Button Style="{StaticResource PrimaryModalButton}"
                         Command="{Binding ContinueCommand}"

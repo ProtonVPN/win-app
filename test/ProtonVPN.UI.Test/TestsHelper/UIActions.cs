@@ -47,13 +47,6 @@ namespace ProtonVPN.UI.Test.TestsHelper
             actions.MoveToElement(element).Build().Perform();
         }
 
-        public static void MoveToElementAndClick(IWebElement element)
-        {
-            Actions actions = new Actions(Session);
-            MoveToElement(element);
-            actions.Click().Build().Perform();
-        }
-
         public static void ClickOnObjectWithId(string objectId)
         {
             WindowsElement button = Session.FindElementByAccessibilityId(objectId);
@@ -72,12 +65,6 @@ namespace ProtonVPN.UI.Test.TestsHelper
             button[0].Click();
         }
 
-        public static void ClickOnObjectWithClassName(string className)
-        {
-            WindowsElement button = Session.FindElementByClassName(className);
-            button.Click();
-        }
-
         public static void CheckIfObjectWithIdIsDisplayed(string objectId, string errorMessage)
         {
             bool isDisplayed = Session.FindElementByAccessibilityId(objectId).Displayed;
@@ -87,12 +74,6 @@ namespace ProtonVPN.UI.Test.TestsHelper
         public static void CheckIfObjectIsNotDisplayed(string objectId, string errorMessage)
         {
             bool isDisplayed = Session.FindElementByAccessibilityId(objectId).Displayed;
-            Assert.IsFalse(isDisplayed, errorMessage);
-        }
-
-        public static void CheckIfObjectIsNotDisplayedByName(string objectName, string errorMessage)
-        {
-            bool isDisplayed = Session.FindElementByName(objectName).Displayed;
             Assert.IsFalse(isDisplayed, errorMessage);
         }
 
@@ -127,12 +108,6 @@ namespace ProtonVPN.UI.Test.TestsHelper
             Assert.IsTrue(content, errorMessage);
         }
 
-        public static void WaitUntilTextMatches(IWebElement element, string text, int seconds)
-        {
-            WebDriverWait wait = new WebDriverWait(Session, TimeSpan.FromSeconds(seconds));
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.TextToBePresentInElement(element, text));
-        }
-
         public static void WaitUntilDisplayed(By selector, int seconds)
         {
             WebDriverWait wait = new WebDriverWait(Session, TimeSpan.FromSeconds(seconds));
@@ -143,12 +118,6 @@ namespace ProtonVPN.UI.Test.TestsHelper
         {
             bool content = Session.FindElementByClassName(className).Displayed;
             Assert.IsTrue(content, errorMessage);
-        }
-
-        public static void CheckIfElementWithAutomationIdTextMatches(string automationId, string valueToMatch, string errorMessage)
-        {
-            WindowsElement element = Session.FindElementByAccessibilityId(automationId);
-            Assert.IsTrue(element.Text.Equals(valueToMatch), errorMessage);
         }
 
         public static void WaitUntilElementExistsByAutomationId(string automationId,int timeoutInSeconds)

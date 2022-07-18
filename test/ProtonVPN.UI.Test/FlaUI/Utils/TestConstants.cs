@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2022 Proton Technologies AG
+ * Copyright (c) 2022 Proton
  *
  * This file is part of ProtonVPN.
  *
@@ -17,22 +17,17 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.UI.Test.TestsHelper;
+using System;
 
-namespace ProtonVPN.UI.Test.Results
+namespace ProtonVPN.UI.Test.FlaUI.Utils
 {
-    public class LoginResult : UIActions
+    public static class TestConstants
     {
-        public LoginResult VerifyLoginErrorIsShown()
-        {
-            CheckIfObjectWithClassNameIsDisplayed("LoginErrorView", "Login error is not shown.");
-            return this;
-        }
-
-        public LoginResult VerifyUserIsOnLoginWindow()
-        {
-            CheckIfObjectWithNameIsDisplayed("Start and connect on boot", "User unsuccessfully disconnected.");
-            return this;
-        }
+        public static TimeSpan ShortTimeout => TimeSpan.FromSeconds(5);
+        public static TimeSpan MediumTimeout => TimeSpan.FromSeconds(30);
+        public static TimeSpan LongTimeout => TimeSpan.FromSeconds(60);
+        public static string ProfileName => "@AutomationProfile";
+        public static TimeSpan RetryInterval => TimeSpan.FromMilliseconds(500);
+        public static string AppFolderPath => @"C:\Program Files (x86)\Proton Technologies\ProtonVPN";
     }
 }

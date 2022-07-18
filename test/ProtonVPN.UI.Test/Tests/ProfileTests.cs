@@ -31,7 +31,7 @@ namespace ProtonVPN.UI.Test.Tests
         private readonly MainWindow _mainWindow = new MainWindow();
         private readonly ProfileWindow _profileWindow = new ProfileWindow();
         private readonly ProfileResult _profileResult = new ProfileResult();
-
+        
         [Test]
         public void DefaultProfilesOptions()
         {
