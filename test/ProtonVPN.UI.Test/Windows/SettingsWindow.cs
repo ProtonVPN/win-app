@@ -17,7 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using OpenQA.Selenium.Appium.Windows;
 using ProtonVPN.UI.Test.TestsHelper;
 
 namespace ProtonVPN.UI.Test.Windows
@@ -33,12 +32,6 @@ namespace ProtonVPN.UI.Test.Windows
         public SettingsWindow ClickConnectionTab()
         {
             ClickOnObjectWithName("Connection");
-            return this;
-        }
-
-        public SettingsWindow ClickAdvancedTab()
-        {
-            ClickOnObjectWithName("Advanced");
             return this;
         }
 
@@ -58,64 +51,6 @@ namespace ProtonVPN.UI.Test.Windows
         {
             InsertTextIntoFieldWithId("InputIpv4Address", ipv4Address);
             ClickOnObjectWithId("SettingsPlusButton");
-            return this;
-        }
-
-        public SettingsWindow CloseSettings()
-        {
-            ClickOnObjectWithId("ModalCloseButton");
-            return this;
-        }
-
-        public SettingsWindow DisableStartToTray()
-        {
-            ClickOnObjectWithId("StartMinimizedCombobox");
-            WindowsElement disabledOption = Session.FindElementByName("Disabled");
-            MoveToElementAndClick(disabledOption);
-            return this;
-        }
-
-        public SettingsWindow DisableAutoConnect()
-        {
-            SelectAutoConnectProfile("Disabled");
-            return this;
-        }
-
-        public SettingsWindow RemoveDnsAddress()
-        {
-            ClickOnObjectWithId("DeleteButton");
-            return this;
-        }
-
-        public SettingsWindow PressReconnect()
-        {
-            ClickOnObjectWithName("Reconnect");
-            return this;
-        }
-
-        public SettingsWindow EnableSplitTunneling()
-        {
-            ClickOnObjectWithId("SplitTunnelingToggle");
-            return this;
-        }
-
-        public SettingsWindow AddIpAddressSplitTunneling(string ipv4Address)
-        {
-            
-            InsertTextIntoFieldWithId("SplitTunnelTextBlock", ipv4Address);
-            ClickOnObjectWithId("AddIpAddressButton");
-            return this;
-        }
-
-        public SettingsWindow EnableIncludeMode()
-        {
-            ClickOnObjectWithId("IncludeModeRadioButton");
-            return this;
-        }
-
-        private SettingsWindow SelectAutoConnectProfile(string autoConnectProfile)
-        {
-            ClickOnObjectWithId("ConnectOnBootCheckbox");
             return this;
         }
     }

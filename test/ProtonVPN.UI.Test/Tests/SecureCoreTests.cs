@@ -17,85 +17,85 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.UI.Test.Windows;
-using ProtonVPN.UI.Test.Results;
+
 using NUnit.Framework;
+using ProtonVPN.UI.Test.FlaUI;
+using ProtonVPN.UI.Test.FlaUI.Windows;
+using ProtonVPN.UI.Test.TestsHelper;
 
 namespace ProtonVPN.UI.Test.Tests
 {
     [TestFixture]
     [Category("Connection")]
-    public class SecureCoreTests : UITestSession
+    public class SecureCoreTests : TestSession
     {
         private readonly LoginWindow _loginWindow = new LoginWindow();
-        private readonly MainWindow _mainWindow = new MainWindow();
-        private readonly MainWindowResults _mainWindowResults = new MainWindowResults();
+        private readonly HomeWindow _mainWindow = new HomeWindow();
         private readonly SettingsWindow _settingsWindow = new SettingsWindow();
 
         [Test]
         public void QuickConnectWhileSecureCoreIsEnabled()
         {
-            TestCaseId = 255;
+            UITestSession.TestCaseId = 255;
 
-            _loginWindow.LoginWithPlusUser();
-            _mainWindow.EnableSecureCore();
-            _mainWindow.CloseSecureCoreWarningModal();
-            _mainWindow.QuickConnect();
-            _mainWindowResults.CheckIfConnected();
-            TestRailClient.MarkTestsByStatus();
+            _loginWindow.SignIn(TestUserData.GetPlusUser());
+            _mainWindow.EnableSecureCore()
+                .CloseSecureCoreWarningModal()
+                .PressQuickConnectButton()
+                .CheckIfConnected();
 
-            TestCaseId = 256;
-            _mainWindow.DisconnectUsingSidebarButton();
-            _mainWindowResults.CheckIfDisconnected();
+            UITestSession.TestRailClient.MarkTestsByStatus();
+            UITestSession.TestCaseId = 256;
+
+            _mainWindow.PressQuickConnectButton()
+                .CheckIfDisconnected();
         }
 
         [Test]
         public void CheckIfAfterKillingAppSecureCoreConnectionIsRestored()
         {
-            TestCaseId = 218;
+            UITestSession.TestCaseId = 218;
 
-            _loginWindow.LoginWithPlusUser();
-            _mainWindow.EnableSecureCore();
-            _mainWindow.CloseSecureCoreWarningModal();
-            _mainWindow.ClickHamburgerMenu()
-                .HamburgerMenu.ClickSettings();
-            _settingsWindow.DisableStartToTray();
-            _settingsWindow.CloseSettings();
-            _mainWindow.QuickConnect();
-            _mainWindowResults.CheckIfSameServerIsKeptAfterKillingApp();
-
-            _mainWindow.DisconnectUsingSidebarButton();
-            _mainWindowResults.CheckIfDisconnected();
+            _loginWindow.SignIn(TestUserData.GetPlusUser())
+                .EnableSecureCore()
+                .CloseSecureCoreWarningModal()
+                .NavigateToSettings();
+            _settingsWindow.DisableStartToTray()
+                .CloseSettings();
+            _mainWindow.PressQuickConnectButton()
+                .CheckIfConnected()
+                .KillClientAndCheckIfConnectionIsKept();
         }
 
         [Test]
         public void ConnectAndDisconnectViaMapSecureCore()
         {
-            TestCaseId = 253;
+            UITestSession.TestCaseId = 253;
 
-            _loginWindow.LoginWithPlusUser();
-            _mainWindow.EnableSecureCore();
-            _mainWindow.CloseSecureCoreWarningModal();
-            _mainWindow.ConnectToCountryViaPinSecureCore("US");
-            _mainWindow.WaitUntilConnected();
-            TestRailClient.MarkTestsByStatus();
+            _loginWindow.SignIn(TestUserData.GetPlusUser());
+            _mainWindow.EnableSecureCore()
+                .CloseSecureCoreWarningModal()
+                .PerformConnectionViaMapSecureCore("US")
+                .CheckIfConnected();
 
-            TestCaseId = 254;
+            UITestSession.TestRailClient.MarkTestsByStatus();
+            UITestSession.TestCaseId = 254;
 
-            _mainWindow.DisconnectFromCountryViaPinSecureCore("US");
-            _mainWindowResults.CheckIfDisconnected();
+            _mainWindow.PerformConnectionViaMapSecureCore("US")
+                .CheckIfDisconnected();
         }
 
         [SetUp]
         public void TestInitialize()
         {
-            CreateSession();
+            DeleteUserConfig();
+            LaunchApp();
         }
 
         [TearDown]
         public void TestCleanup()
         {
-            TearDown();
+            Cleanup();
         }
     }
 }

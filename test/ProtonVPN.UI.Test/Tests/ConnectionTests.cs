@@ -17,274 +17,221 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Threading.Tasks;
-using ProtonVPN.UI.Test.Windows;
-using ProtonVPN.UI.Test.Results;
 using NUnit.Framework;
-using ProtonVPN.UI.Test.ApiClient;
+using ProtonVPN.UI.Test.FlaUI;
+using ProtonVPN.UI.Test.FlaUI.Utils;
+using ProtonVPN.UI.Test.FlaUI.Windows;
+using ProtonVPN.UI.Test.TestsHelper;
 
 namespace ProtonVPN.UI.Test.Tests
 {
     [TestFixture]
     [Category("Connection")]
-    public class ConnectionTests : UITestSession
+    public class ConnectionTests : TestSession
     {
-        private readonly LoginWindow _loginWindow = new LoginWindow();
-        private readonly MainWindow _mainWindow = new MainWindow();
-        private readonly MainWindowResults _mainWindowResults = new MainWindowResults();
-        private readonly SettingsWindow _settingsWindow = new SettingsWindow();
-        private readonly SettingsResult _settingsResult = new SettingsResult();
-        private readonly ModalWindow _modalWindow = new ModalWindow();
-        private readonly LoginResult _loginResult = new LoginResult();
-        private readonly CommonAPI _client = new CommonAPI("http://ipwhois.app");
-        private readonly ProfileWindow _profileWindow = new ProfileWindow();
-        private readonly ConnectionResult _connectionResult = new ConnectionResult();
+        private LoginWindow _loginWindow = new LoginWindow();
+        private HomeWindow _homeWindow = new HomeWindow();
+        private ProfilesWindow _profilesWindow = new ProfilesWindow();
+        private SettingsWindow _settingsWindow = new SettingsWindow();
 
         [Test]
-        public void ConnectUsingQuickConnect()
+        public void QuickConnectAndDisconnect()
         {
-            TestCaseId = 221;
+            UITestSession.TestCaseId = 221;
+            _loginWindow.SignIn(TestUserData.GetPlusUser());
+            _homeWindow.PressQuickConnectButton()
+                .CheckIfConnected();
 
-            _loginWindow.LoginWithPlusUser();
-            _mainWindow.QuickConnect();
-            _mainWindowResults.CheckIfConnected();
-            TestRailClient.MarkTestsByStatus();
+            UITestSession.TestRailClient.MarkTestsByStatus();
+            UITestSession.TestCaseId = 222;
 
-            TestCaseId = 222;
-            _mainWindow.DisconnectUsingSidebarButton();
-            _mainWindowResults.CheckIfDisconnected();
+            _homeWindow.PressQuickConnectButton()
+                .CheckIfDisconnected();
         }
 
         [Test]
-        public void ConnectToFastestViaProfile()
+        public void ConnectToProfileViaProfileTab()
         {
-            TestCaseId = 225;
+            UITestSession.TestCaseId = 225;
 
-            _loginWindow.LoginWithPlusUser();
-            _mainWindow.ClickProfilesButton();
-            _mainWindow.ConnectToAProfileByName("Fastest");
-            _mainWindow.WaitUntilConnected();
-            _mainWindowResults.CheckIfConnected();
-            TestRailClient.MarkTestsByStatus();
-
-            TestCaseId = 229;
-            _mainWindow.DisconnectUsingSidebarButton();
-            _mainWindowResults.CheckIfDisconnected();
-        }
-
-        [Test]
-        public void ConnectToRandomServerViaProfile()
-        {
-            TestCaseId = 225;
-
-            _loginWindow.LoginWithPlusUser();
-            _mainWindow.ClickProfilesButton();
-            _mainWindow.ConnectToAProfileByName("Random");
-            _mainWindow.WaitUntilConnected();
-            _mainWindowResults.CheckIfConnected();
-
-            _mainWindow.DisconnectUsingSidebarButton();
-            _mainWindowResults.CheckIfDisconnected();
+            _loginWindow.SignIn(TestUserData.GetPlusUser());
+            _homeWindow.NavigateToProfilesTab()
+                .ConnectViaProfile("Fastest")
+                .CheckIfConnected();
         }
 
         [Test]
         public void SelectConnectionByCountryVisionaryUser()
         {
-            TestCaseId = 223;
+            UITestSession.TestCaseId = 223;
 
-            _loginWindow.LoginWithVisionaryUser();
-            _mainWindow.ConnectByCountryName("Ukraine");
-            _mainWindowResults.CheckIfConnected();
-            TestRailClient.MarkTestsByStatus();
+            _loginWindow.SignIn(TestUserData.GetPlusUser());
+            _homeWindow.ConnectViaCountry("Netherlands")
+                .CheckIfConnected();
 
-            TestCaseId = 224;
+            UITestSession.TestRailClient.MarkTestsByStatus();
+            UITestSession.TestCaseId = 224;
 
-            _mainWindow.DisconnectByCountryName("Ukraine");
-            _mainWindowResults.CheckIfDisconnected();
-        }
-
-        [Test]
-        public void CheckCustomDnsManipulation()
-        {
-            TestCaseId = 4578;
-
-            _loginWindow.LoginWithPlusUser();
-            _mainWindow.ClickHamburgerMenu()
-                .HamburgerMenu.ClickSettings();
-            _settingsWindow.ClickConnectionTab();
-            _settingsWindow.EnableCustomDnsServers();
-            _settingsWindow.DisableNetshieldForCustomDns();
-            _settingsWindow.CloseSettings();
-            _mainWindowResults.CheckIfNetshieldIsDisabled();
-            TestRailClient.MarkTestsByStatus();
-
-            TestCaseId = 4579;
-
-            _mainWindow.ClickHamburgerMenu()
-                .HamburgerMenu.ClickSettings();
-            _settingsWindow.EnterCustomIpv4Address("8.8.8.8");
-            _settingsWindow.CloseSettings();
-            _mainWindow.QuickConnect();
-            _settingsResult.CheckIfDnsAddressMatches("8.8.8.8");
-            TestRailClient.MarkTestsByStatus();
-
-            TestCaseId = 4581;
-
-            _mainWindow.ClickHamburgerMenu()
-                .HamburgerMenu.ClickSettings();
-            _settingsWindow.RemoveDnsAddress();
-            _settingsWindow.PressReconnect();
-            _mainWindow.WaitUntilConnected();
-            _settingsResult.CheckIfDnsAddressDoesNotMatch("8.8.8.8");
-
-            _mainWindow.DisconnectUsingSidebarButton();
-            _mainWindowResults.CheckIfDisconnected();
-        }
-
-        [Test]
-        public void CheckIfConnectionIsRestoredToSameServerAfterAppKill()
-        {
-            TestCaseId = 217;
-
-            _loginWindow.LoginWithPlusUser();
-            _mainWindow.ClickHamburgerMenu()
-                .HamburgerMenu.ClickSettings();
-            _settingsWindow.DisableStartToTray();
-            _settingsWindow.CloseSettings();
-            _mainWindow.QuickConnect();
-            _mainWindowResults.CheckIfSameServerIsKeptAfterKillingApp();
-            _mainWindow.DisconnectUsingSidebarButton();
-            _mainWindowResults.CheckIfDisconnected();
-        }
-
-        [Test]
-        public void ConnectAndDisconnectViaMap()
-        {
-            TestCaseId = 219;
-
-            _loginWindow.LoginWithPlusUser();
-            _mainWindow.ConnectToCountryViaPin("US");
-            _mainWindow.WaitUntilConnected();
-            _mainWindowResults.CheckIfConnected();
-            TestRailClient.MarkTestsByStatus();
-
-            TestCaseId = 220;
-
-            _mainWindow.DisconnectFromCountryViaPin("US");
-            _mainWindowResults.CheckIfDisconnected();
-        }
-
-        [Test]
-        public void CheckIfAutoConnectConnectsAutomatically()
-        {
-            TestCaseId = 204;
-
-            _loginWindow.LoginWithPlusUser();
-            _mainWindow.ClickHamburgerMenu()
-                .HamburgerMenu.ClickSettings();
-            _settingsWindow.DisableStartToTray();
-            KillProtonVPNProcessAndReopenIt();
-            _mainWindow.WaitUntilConnected();
-            _mainWindow.DisconnectUsingSidebarButton();
-            TestRailClient.MarkTestsByStatus();
-
-            TestCaseId = 205;
-            _mainWindow.ClickHamburgerMenu()
-                .HamburgerMenu.ClickSettings();
-            _settingsWindow.DisableAutoConnect();
-            KillProtonVPNProcessAndReopenIt();
-            _mainWindowResults.CheckIfDisconnected();
+            _homeWindow.PressDisconnectButtonInCountryList("Netherlands")
+                .CheckIfDisconnected();
         }
 
         [Test]
         public void ConnectToCreatedProfile()
         {
-            TestCaseId = 21551;
+            UITestSession.TestCaseId = 21551;
+            UITestSession.DeleteProfiles();
 
-            DeleteProfiles();
-            string profileName = "@ProfileToConnect";
-
-            _loginWindow.LoginWithPlusUser();
-            _mainWindow.ClickHamburgerMenu().HamburgerMenu.ClickProfiles();
-
-            _profileWindow.ClickToCreateNewProfile()
-                .EnterProfileName(profileName)
-                .SelectCountryFromList("Belgium")
-                .SelectServerFromList("BE#1")
-                .ClickSaveButton();
-
-
-            _profileWindow.ConnectToProfile(profileName);
-            _mainWindow.WaitUntilConnected();
-            _mainWindowResults.CheckIfConnected();
-
-            _mainWindow.DisconnectUsingSidebarButton();
-            _mainWindowResults.CheckIfDisconnected();
+            _loginWindow.SignIn(TestUserData.GetPlusUser());
+            _homeWindow.NavigateToProfiles();
+            _profilesWindow.CreateStandartProfile(TestConstants.ProfileName)
+                .ConnectToProfile(TestConstants.ProfileName);
+            _homeWindow.CheckIfConnected();
         }
-
-
 
         [Test]
         public void LogoutWhileConnectedToVpn()
         {
-            TestCaseId = 212;
+            UITestSession.TestCaseId = 212;
 
-            _loginWindow.LoginWithPlusUser();
-            _mainWindow.QuickConnect();
-            _mainWindow.ClickHamburgerMenu();
-            _mainWindow.HamburgerMenu.ClickLogout();
-            _modalWindow.ClickContinueButton();
-            _loginWindow.WaitUntilLoginInputIsDisplayed();
-            _loginResult.VerifyUserIsOnLoginWindow();
+            _loginWindow.SignIn(TestUserData.GetPlusUser());
+            _homeWindow.PressQuickConnectButton()
+                .CheckIfConnected()
+                .Logout();
+            _homeWindow.ContinueLogout()
+                .CheckIfLoginWindowIsDisplayed();
         }
 
         [Test]
         public void CancelLogoutWhileConnectedToVpn()
         {
-            TestCaseId = 21549;
+            UITestSession.TestCaseId = 21549;
 
-            _loginWindow.LoginWithPlusUser();
-
-            _mainWindow
-                .QuickConnect()
-                .ClickHamburgerMenu()
-                .HamburgerMenu
-                .ClickLogout();
-
-            _modalWindow.ClickCancelButton();
-
-            _mainWindowResults.VerifyUserIsLoggedIn();
-
-            _mainWindow.DisconnectUsingSidebarButton();
-            _mainWindowResults.CheckIfDisconnected();
+            _loginWindow.SignIn(TestUserData.GetPlusUser());
+            _homeWindow.PressQuickConnectButton()
+                .CheckIfConnected()
+                .Logout();
+            _homeWindow.CancelLogout()
+                .CheckIfLoggedIn();
         }
 
         [Test]
         public void CheckIfKillSwitchIsNotActiveOnLogout()
         {
-            TestCaseId = 215;
+            UITestSession.TestCaseId = 215;
 
-            _loginWindow.LoginWithPlusUser();
-            _mainWindow.EnableKillSwitch();
-            _mainWindow.QuickConnect();
-            _mainWindow.ClickHamburgerMenu()
-                .HamburgerMenu.ClickLogout();
-            _modalWindow.ClickContinueButton();
-            _loginWindow.WaitUntilLoginInputIsDisplayed();
-            _loginResult.VerifyKillSwitchIsNotActive();
-            _connectionResult.CheckIfDnsIsResolved();
+            _loginWindow.SignIn(TestUserData.GetPlusUser());
+            _homeWindow.EnableKillSwitch()
+                .PressQuickConnectButton()
+                .CheckIfConnected()
+                .Logout();
+            _homeWindow.ContinueLogout()
+                .CheckIfLoginWindowIsDisplayed()
+                .CheckIfKillSwitchIsNotActive();
+            _homeWindow.CheckIfDnsIsResolved();
+        }
+
+        [Test]
+        public void CheckIfConnectionIsRestoredToSameServerAfterAppKill()
+        {
+            UITestSession.TestCaseId = 217;
+
+            _loginWindow.SignIn(TestUserData.GetPlusUser());
+            _homeWindow.NavigateToSettings()
+                .DisableStartToTray()
+                .ClickOnConnectOnBoot()
+                .CloseSettings();
+            _homeWindow.PressQuickConnectButton()
+                .CheckIfConnected()
+                .KillClientAndCheckIfConnectionIsKept();
+        }
+
+        [Test]
+        public void CheckIfAutoConnectConnectsAutomatically()
+        {
+            UITestSession.TestCaseId = 204;
+
+            _loginWindow.SignIn(TestUserData.GetPlusUser());
+            _homeWindow.NavigateToSettings();
+            _settingsWindow.DisableStartToTray()
+                .CloseSettings();
+            KillProtonVpnProcess();
+            LaunchApp();
+            _homeWindow.CheckIfConnected();
+
+            UITestSession.TestRailClient.MarkTestsByStatus();
+            UITestSession.TestCaseId = 205;
+
+            _homeWindow.PressQuickConnectButton()
+                .NavigateToSettings();
+            _settingsWindow.ClickOnConnectOnBoot();
+            KillProtonVpnProcess();
+            LaunchApp();
+            _homeWindow.CheckIfDisconnected();
+        }
+
+        [Test]
+        public void ConnectAndDisconnectViaMap()
+        {
+            UITestSession.TestCaseId = 219;
+
+            _loginWindow.SignIn(TestUserData.GetPlusUser());
+            _homeWindow.PerformConnectionViaMap("US")
+                .CheckIfConnected();
+
+            UITestSession.TestRailClient.MarkTestsByStatus();
+            UITestSession.TestCaseId = 220;
+
+            _homeWindow.PerformConnectionViaMap("US")
+                .CheckIfDisconnected();
+        }
+
+        [Test]
+        public void CheckCustomDnsManipulation()
+        {
+            UITestSession.TestCaseId = 4578;
+
+            _loginWindow.SignIn(TestUserData.GetPlusUser());
+            _homeWindow.NavigateToSettings();
+            _settingsWindow.NavigateToConnectionTab()
+                .ClickOnCustomDnsCheckBox()
+                .PressContinueToDisableNetshield()
+                .CloseSettings();
+            _homeWindow.CheckIfNetshieldIsDisabled();
+
+            UITestSession.TestRailClient.MarkTestsByStatus();
+            UITestSession.TestCaseId = 4579;
+
+            _homeWindow.NavigateToSettings();
+            _settingsWindow.NavigateToConnectionTab()
+                .EnterCustomDnsAddress("8.8.8.8")
+                .CloseSettings();
+            _homeWindow.PressQuickConnectButton()
+                .CheckIfConnected();
+            _settingsWindow.CheckIfDnsAddressMatches("8.8.8.8");
+
+            UITestSession.TestRailClient.MarkTestsByStatus();
+            UITestSession.TestCaseId = 4581;
+
+            _homeWindow.NavigateToSettings();
+            _settingsWindow.NavigateToConnectionTab()
+                .RemoveCustomDns()
+                .PressReconnect()
+                .CheckIfConnected();
+            _settingsWindow.CheckIfDnsAddressDoesNotMatch("8.8.8.8");
         }
 
         [SetUp]
         public void TestInitialize()
         {
-            CreateSession();
+            DeleteUserConfig();
+            LaunchApp();
         }
 
         [TearDown]
         public void TestCleanup()
         {
-            TearDown();
+            Cleanup();
         }
     }
 }

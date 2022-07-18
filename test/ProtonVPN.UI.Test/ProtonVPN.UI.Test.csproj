@@ -45,6 +45,7 @@
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Accessibility" />
     <Reference Include="Appium.Net, Version=4.1.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Appium.WebDriver.4.1.1\lib\net45\Appium.Net.dll</HintPath>
     </Reference>
@@ -53,6 +54,16 @@
     </Reference>
     <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Castle.Core.4.4.1\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="FlaUI.Core, Version=3.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\FlaUI.Core.3.2.0\lib\net45\FlaUI.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="FlaUI.UIA3, Version=3.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\FlaUI.UIA3.3.2.0\lib\net45\FlaUI.UIA3.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.UIAutomationClient, Version=10.0.18362.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Interop.UIAutomationClient.10.18362.0\lib\net45\Interop.UIAutomationClient.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -70,6 +81,8 @@
     <Reference Include="nunit.framework, Version=3.12.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NUnit.3.12.0\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="SeleniumExtras.PageObjects, Version=3.11.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\DotNetSeleniumExtras.PageObjects.3.11.0\lib\net45\SeleniumExtras.PageObjects.dll</HintPath>
     </Reference>
@@ -81,6 +94,8 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Net.Http.WebRequest" />
     <Reference Include="System.Reflection" />
@@ -88,11 +103,14 @@
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="TestRail, Version=3.2.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\TestRail.3.2.1\lib\net461\TestRail.dll</HintPath>
     </Reference>
@@ -107,7 +125,14 @@
   <ItemGroup>
     <Compile Include="ApiClient\CommonAPI.cs" />
     <Compile Include="ApiClient\TestRailAPI.cs" />
-    <Compile Include="Results\ConnectionResult.cs" />
+    <Compile Include="FlaUI\TestSession.cs" />
+    <Compile Include="FlaUI\FlaUIActions.cs" />
+    <Compile Include="FlaUI\Utils\TestConstants.cs" />
+    <Compile Include="FlaUI\VPNServiceHelper.cs" />
+    <Compile Include="FlaUI\Windows\HomeWindow.cs" />
+    <Compile Include="FlaUI\Windows\LoginWindow.cs" />
+    <Compile Include="FlaUI\Windows\ProfilesWindow.cs" />
+    <Compile Include="FlaUI\Windows\SettingsWindow.cs" />
     <Compile Include="TestsHelper\TestEnvironment.cs" />
     <Compile Include="Tests\SetUp.cs" />
     <Compile Include="Windows\BugReportWindow.cs" />
@@ -153,6 +178,10 @@
       <Project>{CA44B51D-7645-413A-818F-2C5B57DB67DD}</Project>
       <Name>ProtonVPN.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\src\ProtonVPN.Service.Contract\ProtonVPN.Service.Contract.csproj">
+      <Project>{96C5D688-C0F1-4A63-9E26-E485FD0E1365}</Project>
+      <Name>ProtonVPN.Service.Contract</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TestTools.ApiClient\TestTools.ApiClient.csproj">
       <Project>{F059E362-20A2-472B-82CA-E727D31AC0C7}</Project>
       <Name>TestTools.ApiClient</Name>
@@ -164,10 +193,12 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\..\packages\MSTest.TestAdapter.2.1.2\build\net45\MSTest.TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\MSTest.TestAdapter.2.1.2\build\net45\MSTest.TestAdapter.props'))" />
-    <Error Condition="!Exists('..\..\packages\MSTest.TestAdapter.2.1.2\build\net45\MSTest.TestAdapter.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\MSTest.TestAdapter.2.1.2\build\net45\MSTest.TestAdapter.targets'))" />
     <Error Condition="!Exists('..\..\packages\NUnit.3.12.0\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\NUnit.3.12.0\build\NUnit.props'))" />
     <Error Condition="!Exists('..\..\packages\NUnit3TestAdapter.3.16.1\build\net35\NUnit3TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\NUnit3TestAdapter.3.16.1\build\net35\NUnit3TestAdapter.props'))" />
+    <Error Condition="!Exists('..\..\packages\MSTest.TestAdapter.2.1.2\build\net45\MSTest.TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\MSTest.TestAdapter.2.1.2\build\net45\MSTest.TestAdapter.props'))" />
+    <Error Condition="!Exists('..\..\packages\MSTest.TestAdapter.2.1.2\build\net45\MSTest.TestAdapter.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\MSTest.TestAdapter.2.1.2\build\net45\MSTest.TestAdapter.targets'))" />
+    <Error Condition="!Exists('..\..\packages\Interop.UIAutomationClient.10.18362.0\build\Interop.UIAutomationClient.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Interop.UIAutomationClient.10.18362.0\build\Interop.UIAutomationClient.targets'))" />
   </Target>
   <Import Project="..\..\packages\MSTest.TestAdapter.2.1.2\build\net45\MSTest.TestAdapter.targets" Condition="Exists('..\..\packages\MSTest.TestAdapter.2.1.2\build\net45\MSTest.TestAdapter.targets')" />
+  <Import Project="..\..\packages\Interop.UIAutomationClient.10.18362.0\build\Interop.UIAutomationClient.targets" Condition="Exists('..\..\packages\Interop.UIAutomationClient.10.18362.0\build\Interop.UIAutomationClient.targets')" />
 </Project>

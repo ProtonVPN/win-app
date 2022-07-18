@@ -74,12 +74,6 @@ namespace ProtonVPN.UI.Test.Windows
             return PerformLogin(TestUserData.GetVisionaryUser().Username, TestUserData.GetVisionaryUser().Password);
         }
 
-        public LoginWindow WaitUntilLoginIsFinished()
-        {
-            WaitUntilElementIsNotVisible(By.ClassName("Loading"), 20);
-            return this;
-        }
-
         public LoginWindow WaitUntilLoginInputIsDisplayed()
         {
             WaitUntilElementExistsByAutomationId("LoginInput", 10);

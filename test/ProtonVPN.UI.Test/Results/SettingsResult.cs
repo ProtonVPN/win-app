@@ -17,27 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Net;
-using System.Net.NetworkInformation;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ProtonVPN.UI.Test.TestsHelper;
 
 namespace ProtonVPN.UI.Test.Results
 {
     public class SettingsResult : UIActions
     {
-        public SettingsResult CheckIfDnsAddressMatches(string dnsAddress)
-        {
-            Assert.AreEqual(dnsAddress, GetDnsAddressForAdapter(), "Desired dns address " + dnsAddress + " does not match Windows dns address " + GetDnsAddressForAdapter());
-            return this;
-        }
-
-        public SettingsResult CheckIfDnsAddressDoesNotMatch(string dnsAddress)
-        {
-            Assert.AreNotEqual(dnsAddress, GetDnsAddressForAdapter());
-            return this;
-        }
-
         public SettingsResult VerifySettingsAreDisplayed()
         {
             CheckIfObjectWithNameIsDisplayed("Start Minimized", "'Start minimized' option is not displayed");
@@ -52,25 +37,6 @@ namespace ProtonVPN.UI.Test.Results
         {
             CheckIfObjectWithAutomationIdDoesNotExist("DeleteButton", "Expected dns address not to be added.");
             return this;
-        }
-
-        private string GetDnsAddressForAdapter()
-        {
-            string dnsAddress = null;
-            NetworkInterface[] adapters = NetworkInterface.GetAllNetworkInterfaces();
-            foreach (NetworkInterface adapter in adapters)
-            {
-                IPInterfaceProperties adapterProperties = adapter.GetIPProperties();
-                IPAddressCollection dnsServers = adapterProperties.DnsAddresses;
-                if (adapter.Description.Contains("WireGuard Tunnel"))
-                {
-                    foreach (IPAddress dns in dnsServers)
-                    {
-                        dnsAddress = dns.ToString();
-                    }
-                }
-            }
-            return dnsAddress;
         }
     }
 }
