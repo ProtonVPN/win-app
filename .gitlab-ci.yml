@@ -25,6 +25,10 @@ sign:
     expire_in: 1 day
     paths:
       - src/bin/
+  only:
+    - master
+    - /^release.*$/
+    - develop
 
 build-release:
   stage: build
@@ -157,6 +161,7 @@ ui-test:
     
 connection-tests:
   stage: ui-test
+  allow_failure: true
   tags:
     - connection_tests
   script:
