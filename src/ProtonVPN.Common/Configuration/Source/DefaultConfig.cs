@@ -37,6 +37,7 @@ namespace ProtonVPN.Common.Configuration.Source
             string location = Assembly.GetEntryAssembly()?.Location;
             string baseFolder = (location != null ? new FileInfo(location).DirectoryName : null)
                                 ?? AppDomain.CurrentDomain.BaseDirectory;
+            string resourcesFolder = Path.Combine(baseFolder, "Resources");
 
             string localAppDataFolder =
                 Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ProtonVPN");
@@ -76,7 +77,7 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 ServersJsonCacheFilePath = Path.Combine(localAppDataFolder, "Servers.json"),
 
-                GuestHoleServersJsonFilePath = Path.Combine(localAppDataFolder, "GuestHoleServers.json"),
+                GuestHoleServersJsonFilePath = Path.Combine(resourcesFolder, "GuestHoleServers.json"),
 
                 StreamingServicesFilePath = Path.Combine(localAppDataFolder, "StreamingServices.json"),
 
@@ -209,9 +210,9 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 OpenVpn =
                 {
-                    ExePath = Path.Combine(baseFolder, "Resources", $"{osBits}-bit", "openvpn.exe"),
+                    ExePath = Path.Combine(resourcesFolder, $"{osBits}-bit", "openvpn.exe"),
 
-                    ConfigPath = Path.Combine(baseFolder, "Resources", "config.ovpn"),
+                    ConfigPath = Path.Combine(resourcesFolder, "config.ovpn"),
 
                     ManagementHost = "127.0.0.1",
 

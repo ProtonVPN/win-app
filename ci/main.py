@@ -28,10 +28,6 @@ parser = argparse.ArgumentParser(description='ProtonVPN CI')
 subparsers = parser.add_subparsers(help='sub-command help', dest='command')
 
 subparsers.add_parser('add-languages')
-
-parser_a = subparsers.add_parser('globalConfig')
-parser_a.add_argument('globalConfigPath', type=str, help='Path to GlobalConfig file')
-
 subparsers.add_parser('defaultConfig')
 subparsers.add_parser('tap-installer')
 subparsers.add_parser('tun-installer')
@@ -54,9 +50,6 @@ if len(sys.argv) < 2:
     sys.exit(1)
 
 args = parser.parse_args()
-
-if args.command == 'globalConfig':
-    config.createGlobalConfig(args.globalConfigPath)
 
 if args.command == 'defaultConfig':
     configPath = "src\ProtonVPN.Common\Configuration\Source\DefaultConfig.cs"

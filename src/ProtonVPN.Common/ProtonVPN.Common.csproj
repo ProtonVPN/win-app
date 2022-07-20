@@ -300,7 +300,6 @@
     <Compile Include="Extensions\ExceptionMessageExtensions.cs" />
     <Compile Include="Extensions\ExceptionTypeExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
-    <Compile Include="Configuration\GlobalConfig.cs" />
     <Compile Include="Extensions\TimeSpanExtensions.cs" />
     <Compile Include="Helpers\ConcatenatedSequence.cs" />
     <Compile Include="Helpers\Ensure.cs" />
@@ -390,6 +389,12 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ProtonVPN.SourceGenerators\ProtonVPN.SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false">
+      <Project>{B7B19A7B-5A20-4690-81F4-83002CA064FB}</Project>
+      <Name>ProtonVPN.SourceGenerators</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\ProtonVPN.Crypto\ProtonVPN.Crypto.csproj">
       <Project>{BA2D505E-CED3-4FCB-A463-DAF6B77C18DE}</Project>
       <Name>ProtonVPN.Crypto</Name>
@@ -397,7 +402,4 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PreBuildEvent>python "$(SolutionDir)\ci\main.py" globalConfig "$(ProjectDir)Configuration\GlobalConfig.cs"</PreBuildEvent>
-  </PropertyGroup>
 </Project>
