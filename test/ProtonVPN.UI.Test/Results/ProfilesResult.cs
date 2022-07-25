@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2022 Proton Technologies AG
+ * Copyright (c) 2022 Proton
  *
  * This file is part of ProtonVPN.
  *
@@ -17,41 +17,36 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using OpenQA.Selenium;
 using ProtonVPN.UI.Test.TestsHelper;
 
-namespace ProtonVPN.UI.Test.Windows
+namespace ProtonVPN.UI.Test.Results
 {
-    public class HamburgerMenu : UIActions
+    public class ProfilesResult : UIActions
     {
-        public HamburgerMenu ClickAccount()
+        public ProfilesResult CheckIfProfileIsDisplayed(string profileName) => WaitUntilElementExistsByName(profileName, TestConstants.ShortTimeout);
+
+        public ProfilesResult CheckIfDefaultProfilesAreDisplayed()
         {
-            ClickOnObjectWithId("MenuAccountButton");
+            WaitUntilElementExistsByName("Fastest", TestConstants.ShortTimeout);
+            WaitUntilElementExistsByName("Random", TestConstants.ShortTimeout);
             return this;
         }
 
-        public HamburgerMenu ClickLogout()
+        public ProfilesResult CheckIfProfileNameErrorDisplayed()
         {
-            ClickOnObjectWithId("MenuLogoutButton");
+            CheckIfDisplayedByName("Please select a profile name");
             return this;
         }
 
-        public HamburgerMenu ClickReportBug()
+        public ProfilesResult CheckIfCountryErrorDisplayed()
         {
-            WaitUntilDisplayed(By.Name("Report an Issue"), 10);
-            ClickOnObjectWithId("MenuReportBugButton");
+            CheckIfDisplayedByName("Please select a country");
             return this;
         }
 
-        public HamburgerMenu ClickSettings()
+        public ProfilesResult CheckIfProfileIsNotDisplayed(string profile)
         {
-            ClickOnObjectWithId("MenuSettingsButton");
-            return this;
-        }
-
-        public HamburgerMenu ClickProfiles()
-        {
-            ClickOnObjectWithId("MenuProfilesButton");
+            CheckIfDoesNotExistsByAutomationId(profile);
             return this;
         }
     }

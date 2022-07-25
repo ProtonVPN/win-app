@@ -34,43 +34,48 @@ namespace ProtonVPN.UI.Test.TestsHelper
 
         public static TestUserData GetFreeUser()
         {
-            var (username, password) = GetUsernameAndPassword("FREE_USER");
+            (string username, string password) = GetUsernameAndPassword("FREE_USER");
             return new TestUserData(username, password);
         }
 
         public static TestUserData GetUserWithSpecialChars()
         {
-            var (username, password) = GetUsernameAndPassword("SPECIAL_CHARS_USER");
+            (string username, string password) = GetUsernameAndPassword("SPECIAL_CHARS_USER");
             return new TestUserData(username, password);
         }
 
         public static TestUserData GetPlusUser()
         {
-            var (username, password) = GetUsernameAndPassword("PLUS_USER");
+            (string username, string password) = GetUsernameAndPassword("PLUS_USER");
             return new TestUserData(username, password);
         }
 
         public static TestUserData GetVisionaryUser()
         {
-            var (username, password) = GetUsernameAndPassword("VISIONARY_USER");
+            (string username, string password) = GetUsernameAndPassword("VISIONARY_USER");
             return new TestUserData(username, password);
         }
 
         public static TestUserData GetTestrailUser()
         {
-            var (username, password) = GetUsernameAndPassword("TESTRAIL_USER");
+            (string username, string password) = GetUsernameAndPassword("TESTRAIL_USER");
             return new TestUserData(username, password);
+        }
+
+        public static TestUserData GetIncorrectCredentialsUser()
+        {
+            return new TestUserData("IncorrectUsername", "IncorrectPass");
         }
 
         private static (string, string) GetUsernameAndPassword(string userType)
         {
-            var str = Environment.GetEnvironmentVariable(userType);
+            string str = Environment.GetEnvironmentVariable(userType);
             if (string.IsNullOrEmpty(str))
             {
                 throw new Exception($"Missing environment variable: {userType}");
             }
 
-            var split = str.Split(':');
+            string[] split = str.Split(':');
             return (split[0], split[1]);
         }
     }

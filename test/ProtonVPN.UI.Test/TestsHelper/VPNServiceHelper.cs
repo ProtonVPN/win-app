@@ -27,9 +27,9 @@ using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Service.Contract.Settings;
 using ProtonVPN.Service.Contract.Vpn;
 
-namespace ProtonVPN.UI.Test.FlaUI
+namespace ProtonVPN.UI.Test.TestsHelper
 {
-    class VPNServiceHelper
+    public class VPNServiceHelper
     {
         private ServiceChannelFactory _channelFactory = new ServiceChannelFactory();
         private VpnEvents _vpnEvents = new VpnEvents();

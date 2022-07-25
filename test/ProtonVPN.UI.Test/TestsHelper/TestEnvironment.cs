@@ -22,12 +22,12 @@ using Castle.Core.Internal;
 
 namespace ProtonVPN.UI.Test.TestsHelper
 {
-    class TestEnvironment
+    public class TestEnvironment
     {
         public static bool AreTestsRunningLocally()
         {
-            var isLocalEnvironment = false;
-            var ciCommitHash = Environment.GetEnvironmentVariable("CI_COMMIT_SHA");
+            bool isLocalEnvironment = false;
+            string ciCommitHash = Environment.GetEnvironmentVariable("CI_COMMIT_SHA");
             if (ciCommitHash.IsNullOrEmpty())
             {
                 isLocalEnvironment = true;

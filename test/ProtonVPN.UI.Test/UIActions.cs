@@ -22,11 +22,11 @@ using FlaUI.Core.AutomationElements;
 using FlaUI.Core.Input;
 using FlaUI.Core.Tools;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ProtonVPN.UI.Test.FlaUI.Utils;
+using ProtonVPN.UI.Test.TestsHelper;
 
-namespace ProtonVPN.UI.Test.FlaUI
+namespace ProtonVPN.UI.Test
 {
-    public class FlaUIActions : TestSession
+    public class UIActions : TestSession
     {
         protected dynamic WaitUntilElementExistsByName(string name, TimeSpan time)
         {
@@ -50,14 +50,11 @@ namespace ProtonVPN.UI.Test.FlaUI
             RetryResult<bool> retry = Retry.WhileTrue(
                 () => {
                     RefreshWindow();
-                    if(Window.FindFirstDescendant(cf => cf.ByAutomationId(automationId)) == null)
+                    if (Window.FindFirstDescendant(cf => cf.ByAutomationId(automationId)) == null)
                     {
                         return true;
                     }
-                    else
-                    {
-                        return Window.FindFirstDescendant(cf => cf.ByAutomationId(automationId)).IsOffscreen;
-                    }
+                    return Window.FindFirstDescendant(cf => cf.ByAutomationId(automationId)).IsOffscreen;
                 },
                 time, TestConstants.RetryInterval);
 
@@ -82,6 +79,24 @@ namespace ProtonVPN.UI.Test.FlaUI
                 Assert.Fail("Failed to get " + automationId + "element within " + time.Seconds + " seconds.");
             }
             return this;
+        }
+
+        protected AutomationElement WaitUntilElementExistsByAutomationIdAndReturnTheElement(string automationId, TimeSpan time)
+        {
+            AutomationElement element = null;
+            RetryResult<AutomationElement> retry = Retry.WhileNull(
+                () => {
+                    RefreshWindow();
+                    element = Window.FindFirstDescendant(cf => cf.ByAutomationId(automationId));
+                    return element;
+                },
+                time, TestConstants.RetryInterval);
+
+            if (!retry.Success)
+            {
+                Assert.Fail("Failed to get " + automationId + "element within " + time.Seconds + " seconds.");
+            }
+            return element;
         }
 
         protected dynamic WaitUntilElementExistsByClassName(string className, TimeSpan time)
@@ -118,6 +133,13 @@ namespace ProtonVPN.UI.Test.FlaUI
             return this;
         }
 
+        protected dynamic CheckIfDisplayedByName(string name)
+        {
+            RefreshWindow();
+            Assert.IsFalse(Window.FindFirstDescendant(cf => cf.ByName(name)).IsOffscreen);
+            return this;
+        }
+
         protected dynamic CheckIfNotDisplayedByName(string name)
         {
             RefreshWindow();
@@ -125,10 +147,22 @@ namespace ProtonVPN.UI.Test.FlaUI
             return this;
         }
 
-        protected dynamic CheckIfExistsByAutomationId(string automationId)
+        protected dynamic CheckIfNotDisplayedByAutomationId(string automationId)
         {
             RefreshWindow();
-            Assert.IsNotNull(Window.FindFirstDescendant(cf => cf.ByAutomationId(automationId)));
+            Assert.IsTrue(Window.FindFirstDescendant(cf => cf.ByAutomationId(automationId)).IsOffscreen);
+            return this;
+        }
+
+        protected dynamic CheckIfDoesNotExistsByAutomationId(string automationId)
+        {
+            Assert.IsNull(Window.FindFirstDescendant(cf => cf.ByAutomationId(automationId)));
+            return this;
+        }
+
+        protected dynamic CheckIfDoesNotExistsByName(string name)
+        {
+            Assert.IsNull(Window.FindFirstDescendant(cf => cf.ByName(name)));
             return this;
         }
 
@@ -155,6 +189,21 @@ namespace ProtonVPN.UI.Test.FlaUI
         {
             WaitUntilElementExistsByName(name, TestConstants.ShortTimeout);
             return Window.FindFirstDescendant(cf => cf.ByName(name));
+        }
+
+        protected AutomationElement FirstVisibleElementByName(string name)
+        {
+            AutomationElement element = null;
+            AutomationElement[] connectButtons = Window.FindAllDescendants(cf => cf.ByName(name));
+            foreach (AutomationElement connectButton in connectButtons)
+            {
+                if (!connectButton.IsOffscreen)
+                {
+                    element = connectButton;
+                    break;
+                }
+            };
+            return element;
         }
     }
 }

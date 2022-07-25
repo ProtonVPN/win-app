@@ -1,5 +1,6 @@
 variables:
   PUBLIC_REPO_URL: git@github.com:ProtonVPN/win-app.git
+  SCREENSHOT_PATH: src/bin/TestScreenshots/
 
 stages:
   - release
@@ -150,18 +151,20 @@ ui-test:
     - ui_tests
   script:
     - powershell -File ci\uninstall-app.ps1
-    - powershell -Command "Start-Sleep -s 45"
-    - powershell -File ci\launch-installer.ps1
-    - powershell -Command "Start-Sleep -s 45"
+    - powershell -File ci\install-the-app.ps1
     - VSTest.Console.exe src\bin\ProtonVPN.UI.Test.dll /TestCaseFilter:"Category=UI"
   except:
     - /^debug.*$/
     - release/9.9.9
     - master
+  artifacts:
+    paths:
+      - $SCREENSHOT_PATH
+    expire_in: 4 weeks
+    when: always
     
 connection-tests:
   stage: ui-test
-  allow_failure: true
   tags:
     - connection_tests
   script:
@@ -172,6 +175,11 @@ connection-tests:
     - /^debug.*$/
     - release/9.9.9
     - master
+  artifacts:
+    paths:
+      - $SCREENSHOT_PATH
+    expire_in: 4 weeks
+    when: always
     
 update-vm:
   stage: ui-test

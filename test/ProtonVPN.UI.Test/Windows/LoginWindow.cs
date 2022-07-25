@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2022 Proton Technologies AG
+ * Copyright (c) 2022 Proton
  *
  * This file is part of ProtonVPN.
  *
@@ -17,80 +17,42 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using OpenQA.Selenium;
-using OpenQA.Selenium.Interactions;
+using FlaUI.Core.AutomationElements;
 using ProtonVPN.UI.Test.TestsHelper;
 
 namespace ProtonVPN.UI.Test.Windows
 {
     public class LoginWindow : UIActions
     {
-        public LoginWindow EnterUsername(string username)
+        private TextBox UsernameInput => ElementByAutomationId("LoginInput").AsTextBox();
+        private TextBox PasswordInput => ElementByAutomationId("LoginPasswordInput").AsTextBox();
+        private Button LoginButton => ElementByAutomationId("LoginButton").AsButton();
+        private Button SkipButton => ElementByName("Skip").AsButton();
+        private Button HelpButton => ElementByAutomationId("HelpButton").AsButton();
+        private Button ReportAnIssueButton => ElementByAutomationId("ReportAnIssueButton").AsButton();
+
+        public HomeWindow SignIn(TestUserData user)
         {
-            WaitUntilLoginInputIsDisplayed();
-            ClickOnObjectWithId("LoginInput");
-            InsertTextIntoFieldWithId("LoginInput", username);
+            EnterCredentials(user);
+            WaitUntilElementExistsByName("Skip", TestConstants.LongTimeout);
+            SkipButton.Invoke();
+            return new HomeWindow();
+        }
+
+        public LoginWindow EnterCredentials(TestUserData user)
+        {
+            WaitUntilElementExistsByAutomationId("LoginInput", TestConstants.MediumTimeout);
+            UsernameInput.Text = user.Username;
+            PasswordInput.Text = user.Password;
+            LoginButton.Invoke();
             return this;
         }
 
-        public LoginWindow EnterPassword(string password)
+        public BugReportWindow NavigateToBugReport()
         {
-            ClickOnObjectWithId("LoginPasswordInput");
-            InsertTextIntoFieldWithId("LoginPasswordInput", password);
-            return this;
-        }
-
-        public LoginWindow ClickLoginButton()
-        {
-            ClickOnObjectWithId("LoginButton");
-            return this;
-        }
-
-        public LoginWindow LoginWithPlusUser()
-        {
-            return PerformLogin(TestUserData.GetPlusUser().Username, TestUserData.GetPlusUser().Password);
-        }
-
-        public LoginWindow LoginWithIncorrectCredentials()
-        {
-            EnterUsername("IncorrectName")
-                .EnterPassword("IncorrectPassword")
-                .ClickLoginButton();
-            return this;
-        }
-
-        public LoginWindow LoginWithFreeUser()
-        {
-            return PerformLogin(TestUserData.GetFreeUser().Username, TestUserData.GetFreeUser().Password);
-        }
-
-        public LoginWindow LoginWithAccountThatHasSpecialChars()
-        {
-            return PerformLogin(TestUserData.GetUserWithSpecialChars().Username, TestUserData.GetUserWithSpecialChars().Password);
-        }
-
-        public LoginWindow LoginWithVisionaryUser()
-        {
-            return PerformLogin(TestUserData.GetVisionaryUser().Username, TestUserData.GetVisionaryUser().Password);
-        }
-
-        public LoginWindow WaitUntilLoginInputIsDisplayed()
-        {
-            WaitUntilElementExistsByAutomationId("LoginInput", 10);
-            return this;
-        }
-
-        private LoginWindow PerformLogin(string username, string password)
-        {
-            EnterUsername(username)
-                .EnterPassword(password)
-                .ClickLoginButton();
-            
-            WaitUntilElementExistsByAutomationId("WelcomeModal", 30);
-            Session.FindElementByAccessibilityId("WelcomeModal").Click();
-            var actions = new Actions(Session);
-            actions.SendKeys(Keys.Escape).Build().Perform();
-            return this;
+            HelpButton.Invoke();
+            ReportAnIssueButton.Invoke();
+            return new BugReportWindow();
         }
     }
 }
