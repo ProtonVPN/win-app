@@ -17,31 +17,31 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.UI.Test.Windows;
-using ProtonVPN.UI.Test.Results;
 using NUnit.Framework;
+using ProtonVPN.UI.Test.Results;
+using ProtonVPN.UI.Test.TestsHelper;
+using ProtonVPN.UI.Test.Windows;
 
 namespace ProtonVPN.UI.Test.Tests
 {
     [TestFixture]
     [Category("UI")]
-    public class LoginLogoutTests : UITestSession
+    public class LoginLogoutTests : TestSession
     {
         private readonly LoginWindow _loginWindow = new LoginWindow();
+        private readonly HomeWindow _mainWindow = new HomeWindow();
         private readonly LoginResult _loginResult = new LoginResult();
-        private readonly MainWindowResults _mainWindowResults = new MainWindowResults();
-        private readonly MainWindow _mainWindow = new MainWindow();
+        private readonly HomeResult _homeResult = new HomeResult();
 
         [Test]
         public void LoginAsFreeUser()
         {
             TestCaseId = 231;
 
-            _loginWindow.LoginWithFreeUser();
-            _mainWindowResults.VerifyUserIsLoggedIn();
-            TestRailClient.MarkTestsByStatus();
+            _loginWindow.SignIn(TestUserData.GetFreeUser());
+            _homeResult.CheckIfLoggedIn();
 
-            //In CI side, fresh installation is performed
+            TestRailClient.MarkTestsByStatus();
             TestCaseId = 197;
         }
 
@@ -50,8 +50,8 @@ namespace ProtonVPN.UI.Test.Tests
         {
             TestCaseId = 233;
 
-            _loginWindow.LoginWithAccountThatHasSpecialChars();
-            _mainWindowResults.VerifyUserIsLoggedIn();
+            _loginWindow.SignIn(TestUserData.GetUserWithSpecialChars());
+            _homeResult.CheckIfLoggedIn();
         }
 
         [Test]
@@ -59,8 +59,8 @@ namespace ProtonVPN.UI.Test.Tests
         {
             TestCaseId = 231;
 
-            _loginWindow.LoginWithPlusUser();
-            _mainWindowResults.VerifyUserIsLoggedIn();
+            _loginWindow.SignIn(TestUserData.GetPlusUser());
+            _homeResult.CheckIfLoggedIn();
         }
 
         [Test]
@@ -68,8 +68,8 @@ namespace ProtonVPN.UI.Test.Tests
         {
             TestCaseId = 231;
 
-            _loginWindow.LoginWithVisionaryUser();
-            _mainWindowResults.VerifyUserIsLoggedIn();
+            _loginWindow.SignIn(TestUserData.GetVisionaryUser());
+            _homeResult.CheckIfLoggedIn();
         }
 
         [Test]
@@ -77,8 +77,8 @@ namespace ProtonVPN.UI.Test.Tests
         {
             TestCaseId = 232;
 
-            _loginWindow.LoginWithIncorrectCredentials();
-            _loginResult.VerifyLoginErrorIsShown();
+            _loginWindow.EnterCredentials(TestUserData.GetIncorrectCredentialsUser());
+            _loginResult.CheckIfLoginErrorIsDisplayed();
         }
 
         [Test]
@@ -86,23 +86,22 @@ namespace ProtonVPN.UI.Test.Tests
         {
             TestCaseId = 211;
 
-            _loginWindow.LoginWithPlusUser();
-            _mainWindow.ClickHamburgerMenu();
-            _mainWindow.HamburgerMenu.ClickLogout();
-            _loginWindow.WaitUntilLoginInputIsDisplayed();
-            _loginResult.VerifyUserIsOnLoginWindow();
+            _loginWindow.SignIn(TestUserData.GetPlusUser());
+            _mainWindow.Logout();
+            _loginResult.CheckIfLoginWindowIsDisplayed();
         }
 
         [SetUp]
         public void TestInitialize()
         {
-            CreateSession();
+            DeleteUserConfig();
+            LaunchApp();
         }
 
         [TearDown]
         public void TestCleanup()
         {
-            TearDown();
+            Cleanup();
         }
     }
 }

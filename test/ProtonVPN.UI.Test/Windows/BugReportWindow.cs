@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2022 Proton Technologies AG
+ * Copyright (c) 2022 Proton
  *
  * This file is part of ProtonVPN.
  *
@@ -17,52 +17,38 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using OpenQA.Selenium;
-using OpenQA.Selenium.Interactions;
+
+using FlaUI.Core.AutomationElements;
 using ProtonVPN.UI.Test.TestsHelper;
 
 namespace ProtonVPN.UI.Test.Windows
 {
     public class BugReportWindow : UIActions
     {
+        private AutomationElement ContactUsButton => ElementByName("Contact us");
+        private AutomationElement SendReportButton => ElementByName("Send report");
 
-        public BugReportWindow SelectIssue(string issueType)
+        public BugReportWindow FillBugReportForm(string bugType)
         {
-            ClickOnObjectWithName(issueType);
-            return this;
-        }
-
-        public BugReportWindow PressContactUs()
-        {
-            ClickOnObjectWithName("Contact us");
-            return this;
-        }
-
-        public BugReportWindow FillBugReportForm(string text, int amountOfFieldsToFill)
-        {
-            Actions actions = new Actions(Session);
-            ClickOnObjectWithName("This email will be used to contact you regarding this issue.");
-            actions.SendKeys("test@protonmail.com");
-            for(int i = 0; i < amountOfFieldsToFill; i++)
+            WaitUntilElementExistsByName(bugType, TestConstants.ShortTimeout);
+            ElementByName(bugType).Click();
+            ContactUsButton.Click();
+            AutomationElement[] bugReportInputFields = Window.FindAllDescendants(cf => cf.ByAutomationId("AdornedTextBox"));
+            bugReportInputFields[0].AsTextBox().Text = "testing@email.com";
+            bugReportInputFields[1].AsTextBox().Text = "testing@email.com";
+            for (int i = 2; i < bugReportInputFields.Length; i++)
             {
-                actions.SendKeys(Keys.Tab);
-                actions.SendKeys(text);
+                bugReportInputFields[i].AsTextBox().Text = "Ignore report. Testing";
             }
-            actions.Perform();
-            return this;
-        }
-
-        public BugReportWindow ClickSend()
-        {
-            ClickOnObjectWithName("Send report");
+            SendReportButton.Click();
             return this;
         }
 
         public BugReportWindow VerifySendingIsSuccessful()
         {
-            WaitUntilDisplayed(By.ClassName("Thanks"), 20);
-            CheckIfObjectWithNameIsDisplayed("We’ll get back to you as soon as we can.", "The Bug Report was unsuccessfully sent.");
-            CheckIfObjectWithNameIsDisplayed("Done", "The Bug Report was unsuccessfully sent.");
+            WaitUntilElementExistsByClassName("Thanks", TestConstants.MediumTimeout);
+            CheckIfDisplayedByName("We’ll get back to you as soon as we can.");
+            CheckIfDisplayedByName("Done");
             return this;
         }
     }

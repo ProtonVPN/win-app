@@ -20,6 +20,7 @@
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.ServiceProcess;
 using System.Threading;
@@ -27,15 +28,32 @@ using FlaUI.Core;
 using FlaUI.Core.AutomationElements;
 using FlaUI.UIA3;
 using ProtonVPN.Common.Extensions;
-using ProtonVPN.UI.Test.FlaUI.Utils;
+using ProtonVPN.UI.Test.ApiClient;
+using ProtonVPN.UI.Test.TestsHelper;
 
-namespace ProtonVPN.UI.Test.FlaUI
+namespace ProtonVPN.UI.Test
 {
     public class TestSession
     {
         protected static Application App;
         protected static Application Service;
         protected static Window Window;
+        public static TestRailApiClient TestRailClient;
+        public static ulong TestCaseId { get; set; }
+        public static string ScreenshotDir;
+
+        public static void DeleteProfiles()
+        {
+            string args = $"{TestUserData.GetPlusUser().Username} {TestUserData.GetPlusUser().Password}";
+            Assembly asm = Assembly.GetExecutingAssembly();
+            string pathToProfileCleaner = Path.Combine(Path.GetDirectoryName(asm.Location), "TestTools.ProfileCleaner.exe");
+            Process process = new Process
+            {
+                StartInfo = new ProcessStartInfo(pathToProfileCleaner, args)
+            };
+            process.Start();
+            process.WaitForExit();
+        }
 
         protected static void DeleteUserConfig()
         {
@@ -57,6 +75,7 @@ namespace ProtonVPN.UI.Test.FlaUI
 
         protected static void Cleanup()
         {
+            TestRailClient.MarkTestsByStatus();
             VPNServiceHelper serviceHelper = new VPNServiceHelper();
             serviceHelper.Disconnect().GetAwaiter().GetResult();
             App.Close();
@@ -70,7 +89,6 @@ namespace ProtonVPN.UI.Test.FlaUI
             {
                 //Ignore because service might not be started.
             }
-            UITestSession.TestRailClient.MarkTestsByStatus();
         }
 
         protected static void RefreshWindow()
@@ -91,7 +109,6 @@ namespace ProtonVPN.UI.Test.FlaUI
                 throw;
             }
         }
-
 
         protected static void LaunchApp()
         {

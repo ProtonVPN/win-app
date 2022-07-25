@@ -17,16 +17,23 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Linq;
+using System.IO;
 
-namespace ProtonVPN.UI.Test.TestsHelper
+namespace ProtonVPN.Config
 {
-    public static class StringHelper
+    internal class ConfigDirectories
     {
-        public static string RemoveExtraText(this string value)
+        private readonly Common.Configuration.Config _config;
+
+        public ConfigDirectories(Common.Configuration.Config config)
         {
-            var allowedChars = "01234567890.,";
-            return new string(value.Where(c => allowedChars.Contains(c)).ToArray());
+            _config = config;
+        }
+
+        public void Prepare()
+        {
+            Directory.CreateDirectory(_config.LocalAppDataFolder);
+            Directory.CreateDirectory(_config.DiagnosticsLogFolder);
         }
     }
 }

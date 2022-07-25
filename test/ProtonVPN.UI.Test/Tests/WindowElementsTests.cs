@@ -17,40 +17,42 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.UI.Test.Windows;
-using ProtonVPN.UI.Test.Results;
 using NUnit.Framework;
+using ProtonVPN.UI.Test.Results;
+using ProtonVPN.UI.Test.TestsHelper;
+using ProtonVPN.UI.Test.Windows;
 
 namespace ProtonVPN.UI.Test.Tests
 {
     [TestFixture]
     [Category("UI")]
-    public class WindowElementsTests : UITestSession
+    public class WindowElementsTests : TestSession
     {
         private readonly LoginWindow _loginWindow = new LoginWindow();
-        private readonly MainWindow _mainWindow = new MainWindow();
-        private readonly MainWindowResults _mainWindowResults = new MainWindowResults();
+        private readonly HomeWindow _homeWindow = new HomeWindow();
+        private readonly HomeResult _mainWindowResults = new HomeResult();
 
         [Test]
         public void EnableSidebarMode()
         {
             TestCaseId = 251;
 
-            _loginWindow.LoginWithPlusUser();
-            _mainWindow.ClickOnSidebarModeButton();
+            _loginWindow.SignIn(TestUserData.GetPlusUser());
+            _homeWindow.ClickOnSidebarModeButton();
             _mainWindowResults.CheckIfSidebarModeIsEnabled();
         }
 
         [SetUp]
         public void TestInitialize()
         {
-            CreateSession();
+            DeleteUserConfig();
+            LaunchApp();
         }
 
         [TearDown]
         public void TestCleanup()
         {
-            TearDown();
+            Cleanup();
         }
     }
 }

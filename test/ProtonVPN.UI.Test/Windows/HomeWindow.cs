@@ -17,37 +17,35 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Net;
-using System.Net.Sockets;
 using System.Threading;
 using FlaUI.Core.AutomationElements;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ProtonVPN.UI.Test.FlaUI.Utils;
+using ProtonVPN.UI.Test.TestsHelper;
 
-namespace ProtonVPN.UI.Test.FlaUI.Windows
+namespace ProtonVPN.UI.Test.Windows
 {
-    public class HomeWindow : FlaUIActions
+    public class HomeWindow : UIActions
     {
         private Button QuickConnectButton => ElementByAutomationId("SidebarQuickConnectButton").AsButton();
         private AutomationElement HamburgerMenuButton => ElementByAutomationId("MenuHamburgerButton").AsMenu().FindFirstChild();
         private Button ProfilesButton => ElementByAutomationId("MenuProfilesButton").AsButton();
+        private Button BugReportButton => ElementByAutomationId("MenuReportBugButton").AsButton();
+        private Button AccountButton => ElementByAutomationId("MenuAccountButton").AsButton();
         private AutomationElement ProfilesTab => ElementByName("Profiles");
         private AutomationElement Profile(string profileName) => ElementByName(profileName);
-        private Button ConnectButton => ElementByName("Connect").AsButton();
+        private Button ConnectButton => FirstVisibleElementByName("Connect").AsButton();
         private AutomationElement Country(string countryName) => ElementByName(countryName);
         private AutomationElement CountryListDisconnectButton => ElementByAutomationId("Button");
         private TextBox SearchInput => ElementByAutomationId("SearchInput").AsTextBox();
         private Button LogoutButton => ElementByAutomationId("MenuLogoutButton").AsButton();
-        private Button ContinueButton => ElementByAutomationId("ContinueButton").AsButton();
-        private Button CancelButton => ElementByAutomationId("CancelActionButton").AsButton();
         private AutomationElement KillSwitchToggle => ElementByAutomationId("KillSwitchToggle");
         private AutomationElement KillSwitchOn => ElementByClassName("SwitchOn");
         private Button SettingsMenuButton => ElementByAutomationId("MenuSettingsButton").AsButton();
-        private Label IpAddressLabel => ElementByAutomationId("IPAddressTextBlock").AsLabel();
         private AutomationElement CountryPin(string countryCode) => ElementByAutomationId(countryCode);
         private AutomationElement SecureCorePin => ElementByAutomationId("SecureCoreButton");
         private AutomationElement SecureCoreON => ElementByAutomationId("SecureCoreOnButton");
         private AutomationElement SecureCoreWarningCloseButton => ElementByName("Activate Secure Core");
+        private AutomationElement ModalCloseButton => ElementByAutomationId("ModalCloseButton");
+        private AutomationElement SidebarModeButton => ElementByAutomationId("SidebarModeButton");
 
         public HomeWindow PressQuickConnectButton()
         {
@@ -65,7 +63,6 @@ namespace ProtonVPN.UI.Test.FlaUI.Windows
         {
             HamburgerMenuButton.Click();
             ProfilesButton.Invoke();
-            Thread.Sleep(2000);
             return new ProfilesWindow();
         }
 
@@ -73,9 +70,22 @@ namespace ProtonVPN.UI.Test.FlaUI.Windows
         {
             HamburgerMenuButton.Click();
             SettingsMenuButton.Invoke();
-            WaitUntilDisplayedByAutomationId("StartMinimizedCombobox", TestConstants.ShortTimeout);
             Thread.Sleep(2000);
             return new SettingsWindow();
+        }
+
+        public BugReportWindow NavigateToBugReport()
+        {
+            HamburgerMenuButton.Click();
+            BugReportButton.Invoke();
+            return new BugReportWindow();
+        }
+
+        public HomeWindow NavigateToAccount()
+        {
+            HamburgerMenuButton.Click();
+            AccountButton.Invoke();
+            return this;
         }
 
         public HomeWindow ConnectViaProfile(string profileName)
@@ -109,23 +119,13 @@ namespace ProtonVPN.UI.Test.FlaUI.Windows
 
         public LoginWindow ContinueLogout()
         {
-            WaitUntilElementExistsByAutomationId("ContinueButton", TestConstants.ShortTimeout);
-            Thread.Sleep(2000);
-            ContinueButton.Invoke();
+            WaitUntilElementExistsByAutomationIdAndReturnTheElement("ContinueButton", TestConstants.MediumTimeout).AsButton().Invoke();
             return new LoginWindow();
         }
 
         public HomeWindow CancelLogout()
         {
-            WaitUntilElementExistsByAutomationId("CancelActionButton", TestConstants.ShortTimeout);
-            Thread.Sleep(2000);
-            CancelButton.Invoke();
-            return this;
-        }
-
-        public HomeWindow CheckIfLoggedIn()
-        {
-            CheckIfExistsByAutomationId("MenuHamburgerButton");
+            WaitUntilElementExistsByAutomationIdAndReturnTheElement("CancelActionButton", TestConstants.MediumTimeout).AsButton().Invoke();
             return this;
         }
 
@@ -133,20 +133,6 @@ namespace ProtonVPN.UI.Test.FlaUI.Windows
         {
             KillSwitchToggle.Click();
             KillSwitchOn.Click();
-            return this;
-        }
-
-        public string GetTextBlockIpAddress()
-        {
-            return IpAddressLabel.Text;
-        }
-
-        public HomeWindow KillClientAndCheckIfConnectionIsKept()
-        {
-            string ipAddress = GetTextBlockIpAddress();
-            KillAndRestartProtonVPNClient();
-            CheckIfConnected();
-            Assert.IsTrue(ipAddress == GetTextBlockIpAddress());
             return this;
         }
 
@@ -175,45 +161,35 @@ namespace ProtonVPN.UI.Test.FlaUI.Windows
             return this;
         }
 
-        public HomeWindow CheckIfDisconnected() => WaitUntilTextMatchesByAutomationId(
-            "SidebarQuickConnectButton", 
-            TestConstants.MediumTimeout, 
-            "Quick Connect",
-            "Failed to disconnect in " + TestConstants.MediumTimeout.Seconds + " s");
-      
-        public HomeWindow CheckIfConnected() => WaitUntilTextMatchesByAutomationId(
-            "SidebarQuickConnectButton", 
-            TestConstants.MediumTimeout, 
-            "Disconnect",
-            "Failed to connect");
-
-        public HomeWindow CheckIfNetshieldIsDisabled() => CheckIfDisplayedByClassName("Shield");
-
-        public HomeWindow CheckIfDnsIsResolved()
+        public HomeWindow MoveMouseOnCountry(string countryName)
         {
-            Assert.IsTrue(IsConnectedToInternet(), "User was not connected to internet.");
+            SearchInput.Enter(countryName);
+            MoveMouseToElement(Country(countryName));
             return this;
         }
 
-        private void KillAndRestartProtonVPNClient()
+        public HomeWindow ClickWindowsCloseButton()
         {
-            KillProtonVpnProcess();
-            LaunchApp();
-            WaitUntilElementExistsByAutomationId("MenuHamburgerButton", TestConstants.LongTimeout);
+            ModalCloseButton.Click();
+            return this;
         }
 
-        private static bool IsConnectedToInternet()
+        public HomeWindow ClickOnSidebarModeButton()
         {
-            bool isConnected = true;
-            try
-            {
-                Dns.GetHostEntry("www.google.com");
-            }
-            catch (SocketException)
-            {
-                isConnected = false;
-            }
-            return isConnected;
+            SidebarModeButton.Click();
+            return this;
         }
+
+        public HomeWindow WaitUntilDisconnected() => WaitUntilTextMatchesByAutomationId(
+            "SidebarQuickConnectButton",
+            TestConstants.MediumTimeout,
+            "Quick Connect",
+            "Failed to disconnect in " + TestConstants.MediumTimeout.Seconds + " s");
+
+        public HomeWindow WaitUntilConnected() => WaitUntilTextMatchesByAutomationId(
+            "SidebarQuickConnectButton",
+            TestConstants.MediumTimeout,
+            "Disconnect",
+            "Failed to connect");
     } 
 }

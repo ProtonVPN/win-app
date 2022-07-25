@@ -19,30 +19,35 @@
 
 using NUnit.Framework;
 using ProtonVPN.UI.Test.Results;
+using ProtonVPN.UI.Test.TestsHelper;
 using ProtonVPN.UI.Test.Windows;
 
 namespace ProtonVPN.UI.Test.Tests
 {
     [TestFixture]
     [Category("UI")]
-    public class ProfileTests : UITestSession
+    public class ProfileTests : TestSession
     {
         private readonly LoginWindow _loginWindow = new LoginWindow();
-        private readonly MainWindow _mainWindow = new MainWindow();
-        private readonly ProfileWindow _profileWindow = new ProfileWindow();
-        private readonly ProfileResult _profileResult = new ProfileResult();
-        
+        private readonly HomeWindow _homeWindow = new HomeWindow();
+        private readonly ProfilesWindow _profileWindow = new ProfilesWindow();
+        private readonly ProfilesResult _profileResult = new ProfilesResult();
+
+        [Test]
+        public void TryToCreateStandardProfile()
+        {
+            TestCaseId = 235;
+            _profileWindow.PressCreateNewProfile()
+                .CreateProfile(TestConstants.ProfileName);
+            _profileResult.CheckIfProfileIsDisplayed(TestConstants.ProfileName);
+        }
+
         [Test]
         public void DefaultProfilesOptions()
         {
             TestCaseId = 234;
 
-            _loginWindow.LoginWithPlusUser();
-
-            _mainWindow.ClickHamburgerMenu()
-                .HamburgerMenu.ClickProfiles();
-
-            _profileResult.VerifyWindowIsOpened();
+            _profileResult.CheckIfDefaultProfilesAreDisplayed();
         }
 
         [Test]
@@ -50,15 +55,9 @@ namespace ProtonVPN.UI.Test.Tests
         {
             TestCaseId = 235;
 
-            _loginWindow.LoginWithPlusUser();
-
-            _mainWindow.ClickHamburgerMenu()
-                .HamburgerMenu.ClickProfiles();
-
-            _profileWindow.ClickToCreateNewProfile()
-                .EnterProfileName("")
-                .ClickSaveButton();
-            _profileResult.VerifyProfileNameErrorDisplayed();
+            _profileWindow.PressCreateNewProfile()
+                .CreateProfile("");
+            _profileResult.CheckIfProfileNameErrorDisplayed();
         }
 
         [Test]
@@ -66,34 +65,9 @@ namespace ProtonVPN.UI.Test.Tests
         {
             TestCaseId = 235;
 
-            _loginWindow.LoginWithPlusUser();
-
-            _mainWindow.ClickHamburgerMenu()
-                .HamburgerMenu.ClickProfiles();
-
-            _profileWindow.ClickToCreateNewProfile()
-                .EnterProfileName("Standard Profile")
-                .ClickSaveButton();
-            _profileResult.VerifyCountryErrorDisplayed();
-        }
-
-        [Test]
-        public void TryToCreateStandardProfile()
-        {
-            TestCaseId = 235;
-
-            _loginWindow.LoginWithPlusUser();
-
-            _mainWindow.ClickHamburgerMenu()
-                .HamburgerMenu.ClickProfiles();
-
-            _profileWindow.ClickToCreateNewProfile()
-                .EnterProfileName("@Standard Profile")
-                .SelectCountryFromList("Belgium")
-                .SelectServerFromList("BE#1")
-                .ClickSaveButton();
-
-            _profileResult.VerifyProfileExists("@Standard Profile");
+            _profileWindow.PressCreateNewProfile()
+                .CreateStandartProfileWithoutCountry(TestConstants.ProfileName);
+            _profileResult.CheckIfCountryErrorDisplayed();
         }
 
         [Test]
@@ -101,19 +75,10 @@ namespace ProtonVPN.UI.Test.Tests
         {
             TestCaseId = 236;
 
-            _loginWindow.LoginWithPlusUser();
-
-            _mainWindow.ClickHamburgerMenu()
-                .HamburgerMenu.ClickProfiles();
-
-            _profileWindow.ClickToCreateNewProfile()
-                .ClickSecureCore()
-                .EnterProfileName("@Secure Core Profile")
-                .SelectCountryFromList("Belgium")
-                .SelectServerFromList("IS-BE#1")
-                .ClickSaveButton();
-
-            _profileResult.VerifyProfileExists("@Secure Core Profile");
+            _profileWindow.PressCreateNewProfile()
+                .SelectSecureCoreOption()
+                .CreateProfile(TestConstants.ProfileName);      
+            _profileResult.CheckIfProfileIsDisplayed(TestConstants.ProfileName);
         }
 
         [Test]
@@ -121,18 +86,10 @@ namespace ProtonVPN.UI.Test.Tests
         {
             TestCaseId = 21553;
 
-            _loginWindow.LoginWithPlusUser();
-
-            _mainWindow.ClickHamburgerMenu()
-                .HamburgerMenu.ClickProfiles();
-
-            _profileWindow.ClickToCreateNewProfile()
-                .ClickP2P()
-                .EnterProfileName("@P2P Profile")
-                .SelectServerFromList("CH#5")
-                .ClickSaveButton();
-
-            _profileResult.VerifyProfileExists("@P2P Profile");
+            _profileWindow.PressCreateNewProfile()
+               .SelectP2POption()
+               .CreateProfileWithoutCountry(TestConstants.ProfileName);
+            _profileResult.CheckIfProfileIsDisplayed(TestConstants.ProfileName);
         }
 
         [Test]
@@ -140,18 +97,10 @@ namespace ProtonVPN.UI.Test.Tests
         {
             TestCaseId = 21552;
 
-            _loginWindow.LoginWithPlusUser();
-
-            _mainWindow.ClickHamburgerMenu()
-                .HamburgerMenu.ClickProfiles();
-
-            _profileWindow.ClickToCreateNewProfile()
-                .ClickTor()
-                .EnterProfileName("@Tor Profile")
-                .SelectServerFromList("CH#18-TOR")
-                .ClickSaveButton();
-
-            _profileResult.VerifyProfileExists("@Tor Profile");
+            _profileWindow.PressCreateNewProfile()
+               .SelectTorOption()
+               .CreateProfileWithoutCountry(TestConstants.ProfileName);
+            _profileResult.CheckIfProfileIsDisplayed(TestConstants.ProfileName);
         }
 
         [Test]
@@ -159,20 +108,12 @@ namespace ProtonVPN.UI.Test.Tests
         {
             TestCaseId = 239;
 
-            var profileName = "@ProfileToDelete";
-            _loginWindow.LoginWithPlusUser();
+            _profileWindow.PressCreateNewProfile()
+                .CreateProfile(TestConstants.ProfileName);
+            _profileResult.CheckIfProfileIsDisplayed(TestConstants.ProfileName);
 
-            _mainWindow.ClickHamburgerMenu().HamburgerMenu.ClickProfiles();
-
-            _profileWindow.ClickToCreateNewProfile()
-                .EnterProfileName(profileName)
-                .SelectCountryFromList("Belgium")
-                .SelectServerFromList("BE#1")
-                .ClickSaveButton();
-
-            _profileWindow.DeleteProfileByByName(profileName);
-            _profileWindow.ClickContinueDeletion();
-            _profileResult.VerifyProfileDoesNotExist(profileName);
+            _profileWindow.DeleteProfileByByName(TestConstants.ProfileName);
+            _profileResult.CheckIfProfileIsNotDisplayed(TestConstants.ProfileName);
         }
 
         [Test]
@@ -180,25 +121,15 @@ namespace ProtonVPN.UI.Test.Tests
         {
             TestCaseId = 238;
 
-            var profileName = "@ProfileToEdit";
-            var newProfileName = "@ProfileToEdit-v2";
+            string newProfileName = "@ProfileToEdit-v2";
 
-            _loginWindow.LoginWithPlusUser();
-            _mainWindow.ClickHamburgerMenu().HamburgerMenu.ClickProfiles();
-
-            _profileWindow.ClickToCreateNewProfile()
-                .EnterProfileName(profileName)
-                .SelectCountryFromList("Belgium")
-                .SelectServerFromList("BE#1")
-                .ClickSaveButton();
+            _profileWindow.PressCreateNewProfile()
+                .CreateProfile(TestConstants.ProfileName);
+            _profileResult.CheckIfProfileIsDisplayed(TestConstants.ProfileName);
 
 
-            _profileWindow.ClickEditProfile(profileName)
-                .ClearProfileName()
-                .EnterProfileName(newProfileName)
-                .ClickSaveButton();
-
-            _profileResult.VerifyProfileExists(newProfileName);
+            _profileWindow.EditProfileName(TestConstants.ProfileName, newProfileName);
+            _profileResult.CheckIfProfileIsNotDisplayed(newProfileName);
         }
 
         [Test]
@@ -206,33 +137,27 @@ namespace ProtonVPN.UI.Test.Tests
         {
             TestCaseId = 21550;
 
-            _loginWindow.LoginWithPlusUser();
+            _profileWindow.PressCreateNewProfile()
+                .EnterProfileName(TestConstants.ProfileName)
+                .DiscardProfile();
 
-            _mainWindow.ClickHamburgerMenu()
-                .HamburgerMenu.ClickProfiles();
-
-
-            _profileWindow.ClickToCreateNewProfile()
-                .EnterProfileName("@ProfileToDiscard")
-                .SelectCountryFromList("Belgium")
-                .SelectServerFromList("BE#1")
-                .ClickToCancel()
-                .ClickToDiscard();
-
-            _profileResult.VerifyProfileDoesNotExist("@ProfileToDiscard");
+            _profileResult.CheckIfProfileIsNotDisplayed(TestConstants.ProfileName);
         }
 
         [SetUp]
         public void TestInitialize()
         {
-            CreateSession();
+            DeleteUserConfig();
             DeleteProfiles();
+            LaunchApp();
+            _loginWindow.SignIn(TestUserData.GetPlusUser());
+            _homeWindow.NavigateToProfiles();
         }
 
         [TearDown]
         public void TestCleanup()
         {
-            TearDown();
+            Cleanup();
         }
     }
 }

@@ -19,6 +19,8 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
+using FlaUI.Core.Capturing;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using ProtonVPN.UI.Test.TestsHelper;
@@ -29,15 +31,15 @@ using TestRail.Utils;
 
 namespace ProtonVPN.UI.Test.ApiClient
 {
-    public class TestRailAPIClient : UITestSession
+    public class TestRailApiClient : TestSession
     {
         private readonly TestRailClient _client;
         private const int ProjectId = 5;
         private const int MilestoneId = 43;
         private const int TestSuiteId = 5;
-        private static ulong _testRunId;
+        private ulong _testRunId;
 
-        public TestRailAPIClient(string baseUrl, string username, string apiKey)
+        public TestRailApiClient(string baseUrl, string username, string apiKey)
         {
             _client = new TestRailClient(baseUrl, username, apiKey);
         }
@@ -61,10 +63,12 @@ namespace ProtonVPN.UI.Test.ApiClient
             }
 
             TestStatus status = TestContext.CurrentContext.Result.Outcome.Status;
+            string testName = TestContext.CurrentContext.Test.MethodName;
             switch (status)
             {
                 case TestStatus.Failed:
                     MarkAsRetest(TestCaseId);
+                    SaveScreenshot(testName);
                     break;
                 case TestStatus.Passed:
                 case TestStatus.Inconclusive:
@@ -96,6 +100,13 @@ namespace ProtonVPN.UI.Test.ApiClient
         private void MarkAsRetest(ulong testCaseId)
         {
             _client.AddResultForCase(_testRunId, testCaseId, ResultStatus.Retest);
+        }
+
+        private void SaveScreenshot(string testName)
+        {
+            string screenshotName = $"{testName} {DateTime.Now}.png".Replace("/","-").Replace(":", "-");
+            string pathToScreenshotFolder = Path.Combine(ScreenshotDir, screenshotName);
+            Capture.Screen().ToFile(pathToScreenshotFolder);
         }
     }
 }

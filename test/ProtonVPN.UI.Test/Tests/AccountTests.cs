@@ -17,33 +17,29 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.UI.Test.Windows;
-using ProtonVPN.UI.Test.Results;
 using ProtonVPN.UI.Test.TestsHelper;
 using NUnit.Framework;
+using ProtonVPN.UI.Test.Results;
+using ProtonVPN.UI.Test.Windows;
 
 namespace ProtonVPN.UI.Test.Tests
 {
     [TestFixture]
     [Category("UI")]
-    public class AccountTests : UITestSession
+    public class AccountTests : TestSession
     {
-        private readonly AccountResult _accountResult = new AccountResult();
-        private readonly MainWindow _mainWindow = new MainWindow();
+        private readonly HomeWindow _homeWindow = new HomeWindow();
         private readonly LoginWindow _loginWindow = new LoginWindow();
-        private readonly MainWindowResults _mainWindowResults = new MainWindowResults();
-        private readonly ModalWindow _modalWindow = new ModalWindow();
+        private readonly HomeResult _homeResult = new HomeResult();
 
         [Test]
         public void CheckIfUsernameIsDisplayedInAccountSection()
         {
             TestCaseId = 199;
 
-            _loginWindow.LoginWithPlusUser();
-            _mainWindow.ClickHamburgerMenu()
-                .HamburgerMenu.ClickAccount();
-            RefreshSession();
-            _accountResult.VerifyLoggedInAsTextIs(TestUserData.GetPlusUser().Username);
+            _loginWindow.SignIn(TestUserData.GetPlusUser());
+            _homeWindow.NavigateToAccount();
+            _homeResult.VerifyLoggedInAsTextIs(TestUserData.GetPlusUser().Username);
         }
 
         [Test]
@@ -51,33 +47,35 @@ namespace ProtonVPN.UI.Test.Tests
         {
             TestCaseId = 262;
 
-            _loginWindow.LoginWithFreeUser();
-            _mainWindow.MoveMouseToCountryByName("Canada");
-            _mainWindowResults.CheckIfConnectButtonIsNotDisplayed();
+            _loginWindow.SignIn(TestUserData.GetFreeUser());
 
-            _mainWindow.ClickProfilesButton();
-            _mainWindow.ConnectToAProfileByName("SecureCore");
-            _mainWindowResults.CheckIfUpgradeRequiredModalIsShown("Secure Core");
-            _modalWindow.ClickWindowsCloseButton();
+            _homeWindow.MoveMouseOnCountry("Canada");
+            _homeResult.CheckIfConnectButtonIsNotDisplayed();
 
-            _mainWindow.ConnectToCountryViaPin("MX");
-            _mainWindowResults.CheckIfUpgradeRequiredModalIsShown("Plus Server");
-            _modalWindow.ClickWindowsCloseButton();
+            _homeWindow.NavigateToProfilesTab()
+                .ConnectViaProfile("SecureCore");
+            _homeResult.CheckIfUpgradeRequiredModalIsShownSecureCore();
+            _homeWindow.ClickWindowsCloseButton();
 
-            _mainWindow.ConnectToAProfileByName("PaidCountry");
-            _mainWindowResults.CheckIfUpgradeRequiredModalIsShown("Plus Server");
+            _homeWindow.ConnectViaProfile("PaidCountry");
+            _homeResult.CheckIfUpgradeRequiredModalIsShown();
+            _homeWindow.ClickWindowsCloseButton();
+
+            _homeWindow.PerformConnectionViaMap("MX");
+            _homeResult.CheckIfUpgradeRequiredModalIsShown();
         }
 
         [SetUp]
         public void SetUp()
         {
-            CreateSession();
+            DeleteUserConfig();
+            LaunchApp();
         }
 
         [TearDown]
         public void CleanUp()
         {
-            TearDown();
+            Cleanup();
         }
     }
 }

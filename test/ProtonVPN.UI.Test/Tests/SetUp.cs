@@ -23,14 +23,14 @@ using NUnit.Framework;
 using ProtonVPN.UI.Test.ApiClient;
 using ProtonVPN.UI.Test.TestsHelper;
 using System.Reflection;
-using ProtonVPN.UI.Test.FlaUI.Utils;
 
 namespace ProtonVPN.UI.Test.Tests
 {
     [SetUpFixture]
-    public class SetUp : UITestSession
+    public class SetUp : TestSession
     {
         private readonly string _testRailUrl = "https://proton.testrail.io/";
+        private Assembly asm = Assembly.GetExecutingAssembly();
 
         [OneTimeSetUp]
         public void TestInitialize()
@@ -38,20 +38,39 @@ namespace ProtonVPN.UI.Test.Tests
             KillProtonVpnProcess();
             string dir = Path.GetDirectoryName(TestConstants.AppFolderPath);
             Directory.SetCurrentDirectory(dir);
-
-            TestRailClient = new TestRailAPIClient(_testRailUrl,
+            CreateScreenshotFolder();
+            TestRailClient = new TestRailApiClient(_testRailUrl,
                     TestUserData.GetTestrailUser().Username, TestUserData.GetTestrailUser().Password);
             if (!TestEnvironment.AreTestsRunningLocally())
             {
-                Assembly asm = Assembly.GetExecutingAssembly();
-                string path = Path.Combine(Path.GetDirectoryName(asm.Location), "ProtonVPN.exe");
-                string version = Assembly.LoadFile(path).GetName().Version.ToString();
-                string branchName = Environment.GetEnvironmentVariable("CI_COMMIT_BRANCH");
-                version = version.Substring(0, version.Length - 2);
-                if (!TestRailClient.ShouldUpdateRun())
-                {
-                    TestRailClient.CreateTestRun($"{branchName} {version} {DateTime.Now}");
-                }
+                CreateTestRailTestRun();
+            }
+        }
+
+        private void CreateScreenshotFolder()
+        {
+            ScreenshotDir = Path.Combine(Path.GetDirectoryName(asm.Location), "TestScreenshots");
+            try
+            {
+                Directory.Delete(ScreenshotDir, true);
+            }
+            catch (DirectoryNotFoundException)
+            {
+                //Ignore because directory could not exist
+            }
+
+            Directory.CreateDirectory(ScreenshotDir);
+        }
+
+        private void CreateTestRailTestRun()
+        {
+            string path = Path.Combine(Path.GetDirectoryName(asm.Location), "ProtonVPN.exe");
+            string version = Assembly.LoadFile(path).GetName().Version.ToString();
+            string branchName = Environment.GetEnvironmentVariable("CI_COMMIT_BRANCH");
+            version = version.Substring(0, version.Length - 2);
+            if (!TestRailClient.ShouldUpdateRun())
+            {
+                TestRailClient.CreateTestRun($"{branchName} {version} {DateTime.Now}");
             }
         }
     }

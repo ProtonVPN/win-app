@@ -17,51 +17,52 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Threading;
 using NUnit.Framework;
+using ProtonVPN.UI.Test.TestsHelper;
 using ProtonVPN.UI.Test.Windows;
 
 namespace ProtonVPN.UI.Test.Tests
 {
     [TestFixture]
     [Category("UI")]
-    public class SupportTests : UITestSession
+    public class SupportTests : TestSession
     {
         private readonly LoginWindow _loginWindow = new LoginWindow();
-        private readonly MainWindow _mainWindow = new MainWindow();
+        private readonly HomeWindow _mainWindow = new HomeWindow();
         private readonly BugReportWindow _bugReportWindow = new BugReportWindow();
-        private readonly HamburgerMenu _hamburgerMenu = new HamburgerMenu();
 
         [Test]
         public void SendBugReport()
         {
             TestCaseId = 21554;
 
-            _loginWindow.LoginWithFreeUser();
-            //When https://jira.protontech.ch/browse/VPNWIN-983 will be fixed, remove this timeout
-            Thread.Sleep(5000);
-            _mainWindow.ClickHamburgerMenu();
-            _hamburgerMenu.ClickReportBug();
+            _loginWindow.SignIn(TestUserData.GetFreeUser());
+            _mainWindow.NavigateToBugReport();
+            _bugReportWindow.FillBugReportForm("Connecting to VPN")
+                .VerifySendingIsSuccessful();
+        }
 
-            _bugReportWindow
-                .SelectIssue("Connecting to VPN")
-                .PressContactUs()
-                .FillBugReportForm("Test Feedback", 3)
-                .ClickSend();
+        [Test]
+        public void SendBugReportViaLoginScreen()
+        {
+            TestCaseId = 141591;
 
-            _bugReportWindow.VerifySendingIsSuccessful();
+            _loginWindow.NavigateToBugReport();
+            _bugReportWindow.FillBugReportForm("Connecting to VPN")
+                .VerifySendingIsSuccessful();
         }
 
         [SetUp]
         public void TestInitialize()
         {
-            CreateSession();
+            DeleteUserConfig();
+            LaunchApp();
         }
 
         [TearDown]
         public void TestCleanup()
         {
-            TearDown();
+            Cleanup();
         }
     }
 }
