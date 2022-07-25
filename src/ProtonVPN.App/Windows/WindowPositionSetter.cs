@@ -32,11 +32,14 @@ namespace ProtonVPN.Windows
             Point mousePosition = Control.MousePosition;
             Screen screen = Screen.FromPoint(mousePosition);
 
-            double mouseX = mousePosition.X * 96 / SystemParams.GetDpiX();
-            double mouseY = mousePosition.Y * 96 / SystemParams.GetDpiY();
+            double horizontalScaleFactor = 96 / SystemParams.GetDpiX();
+            double verticalScaleFactor = 96 / SystemParams.GetDpiY();
 
-            int screenVerticalCenter = screen.Bounds.Top + (int)Math.Floor(screen.Bounds.Height / 2.0);
-            int screenHorizontalCenter = screen.Bounds.Left + (int)Math.Floor(screen.Bounds.Width / 2.0);
+            double mouseX = mousePosition.X * horizontalScaleFactor;
+            double mouseY = mousePosition.Y * verticalScaleFactor;
+
+            int screenHorizontalCenter = (int)((screen.Bounds.Left + Math.Floor(screen.Bounds.Width / 2.0)) * horizontalScaleFactor);
+            int screenVerticalCenter = (int)((screen.Bounds.Top + Math.Floor(screen.Bounds.Height / 2.0)) * verticalScaleFactor);
 
             window.Left = mouseX < screenHorizontalCenter ? mouseX : mouseX - window.ActualWidth;
             window.Top = mouseY < screenVerticalCenter ? mouseY : mouseY - window.ActualHeight;
