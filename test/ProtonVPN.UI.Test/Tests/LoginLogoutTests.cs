@@ -91,6 +91,24 @@ namespace ProtonVPN.UI.Test.Tests
             _loginResult.CheckIfLoginWindowIsDisplayed();
         }
 
+        [Test]
+        public void LoginWithTwoPassUser()
+        {
+            TestCaseId = 129441;
+
+            _loginWindow.SignIn(TestUserData.GetTwoPassUser());
+            _homeResult.CheckIfLoggedIn();
+        }
+
+        [Test]
+        public void LoginWithZeroAssignedConnections()
+        {
+            TestCaseId = 146811;
+
+            _loginWindow.EnterCredentials(TestUserData.GetZeroAssignedConnectionUser());
+            _loginResult.CheckIfZeroAssignedConnectionsModalIsShown();
+        }
+
         [SetUp]
         public void TestInitialize()
         {

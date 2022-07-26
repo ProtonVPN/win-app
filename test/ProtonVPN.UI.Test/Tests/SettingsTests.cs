@@ -29,8 +29,10 @@ namespace ProtonVPN.UI.Test.Tests
     public class SettingsTests : TestSession
     {
         private readonly LoginWindow _loginWindow = new LoginWindow();
+        private readonly HomeWindow _homeWindow = new HomeWindow();
         private readonly SettingsWindow _settingsWindow = new SettingsWindow();
         private readonly SettingsResult _settingsResult = new SettingsResult();
+        private readonly HomeResult _homeResult = new HomeResult();
 
         [Test]
         public void CheckIfSettingsGeneralTabHasAllInfo()
@@ -50,6 +52,35 @@ namespace ProtonVPN.UI.Test.Tests
                 .PressContinueToDisableNetshield()
                 .EnterCustomDnsAddress("1.A.B.4");
             _settingsResult.CheckIfCustomDnsAddressWasNotAdded();
+        }
+
+        [Test]
+        public void CheckIfPortForwdingSettingGetsHidden()
+        {
+            TestCaseId = 4580;
+
+            _settingsWindow.NavigateToAdvancedTab()
+                .ClickOnPortForwardingShortcutCheckBox()
+                .CloseSettings();
+            _homeResult.CheckIfPortForwardingQuickSettingIsNotVisible();
+            _homeWindow.NavigateToSettings()
+                .NavigateToAdvancedTab()
+                .ClickOnPortForwardingShortcutCheckBox()
+                .CloseSettings();
+            _homeResult.CheckIfPortForwardingQuickSettingIsVisible();  
+        }
+
+        [Test]
+        public void CheckIfModerateNatIsEnabledWithPortForwarding()
+        {
+            TestCaseId = 132740;
+
+            _settingsWindow.NavigateToConnectionTab();
+            _settingsResult.CheckIfModerateNatIsDisabled();
+            _settingsWindow.NavigateToAdvancedTab()
+                .TogglePortForwarding()
+                .NavigateToConnectionTab();
+            _settingsResult.CheckIfModerateNatIsEnabled();
         }
 
         [SetUp]

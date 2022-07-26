@@ -19,8 +19,10 @@
 
 using System.Net;
 using System.Net.Sockets;
+using System.Threading.Tasks;
 using FlaUI.Core.AutomationElements;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using ProtonVPN.UI.Test.ApiClient;
 using ProtonVPN.UI.Test.TestsHelper;
 using ProtonVPN.UI.Test.Windows;
 
@@ -28,8 +30,8 @@ namespace ProtonVPN.UI.Test.Results
 {
     public class HomeResult : UIActions
     {
-        private Label IpAddressLabel => ElementByAutomationId("IPAddressTextBlock").AsLabel();
-
+        private Label IpAddressLabel => ElementByAutomationId("IPAddressTextBlock").FindFirstChild().AsLabel();
+        private string IpAddressLabelText => IpAddressLabel.Text.Replace("IP: ", "");
         public HomeResult CheckIfNetshieldIsDisabled() => CheckIfDisplayedByClassName("Shield");
 
         public HomeResult CheckIfDnsIsResolved()
@@ -40,11 +42,18 @@ namespace ProtonVPN.UI.Test.Results
 
         public HomeResult KillClientAndCheckIfConnectionIsKept()
         {
-            string ipAddress = IpAddressLabel.Text;
+            string ipAddress = IpAddressLabelText;
             KillAndRestartProtonVpnClient();
             new HomeWindow().WaitUntilConnected();
-            Assert.IsTrue(ipAddress == IpAddressLabel.Text);
+            Assert.IsTrue(ipAddress == IpAddressLabelText, "IP Address: " + IpAddressLabelText + " does not match previous " + ipAddress + " address");
             return new HomeResult();
+        }
+
+        public async Task CheckIfCorrectIpAddressIsDisplayed()
+        {
+            TestsApiClient client = new TestsApiClient("https://api.ipify.org/");
+            string currentIpAddress = await client.GetIpAddress();
+            Assert.IsTrue(currentIpAddress == IpAddressLabelText, $"IP Address: {IpAddressLabelText} does not match expected {currentIpAddress} address from API");
         }
 
         private static bool IsConnectedToInternet()
@@ -103,6 +112,18 @@ namespace ProtonVPN.UI.Test.Results
         public HomeResult CheckIfSidebarModeIsEnabled()
         {
             CheckIfNotDisplayedByAutomationId("Logo");
+            return this;
+        }
+
+        public HomeResult CheckIfPortForwardingQuickSettingIsNotVisible()
+        {
+            CheckIfNotDisplayedByAutomationId("PortForwardingButton");
+            return this;
+        }
+
+        public HomeResult CheckIfPortForwardingQuickSettingIsVisible()
+        {
+            WaitUntilDisplayedByAutomationId("PortForwardingButton", TestConstants.ShortTimeout);
             return this;
         }
     }

@@ -120,5 +120,16 @@ namespace ProtonVPN.UI.Test
             Process[] proc = Process.GetProcessesByName("ProtonVPN");
             proc.ForEach(p => p.Kill());
         }
+
+        protected static void RestartFileExplorer()
+        {
+            foreach (Process exe in Process.GetProcesses())
+            {
+                if (exe.ProcessName == "explorer")
+                {
+                    exe.Kill();
+                }
+            }
+        }
     }
 }
