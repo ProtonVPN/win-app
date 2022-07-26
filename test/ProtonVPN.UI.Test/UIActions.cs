@@ -65,7 +65,7 @@ namespace ProtonVPN.UI.Test
             return this;
         }
 
-        protected dynamic WaitUntilElementExistsByAutomationId(string automationId, TimeSpan time)
+        public dynamic WaitUntilElementExistsByAutomationId(string automationId, TimeSpan time)
         {
             RetryResult<AutomationElement> retry = Retry.WhileNull(
                 () => {

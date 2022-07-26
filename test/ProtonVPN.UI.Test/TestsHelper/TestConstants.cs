@@ -24,6 +24,7 @@ namespace ProtonVPN.UI.Test.TestsHelper
     public static class TestConstants
     {
         public static TimeSpan ShortTimeout => TimeSpan.FromSeconds(5);
+        public static TimeSpan TrayElementTimeout => TimeSpan.FromSeconds(10);
         public static TimeSpan MediumTimeout => TimeSpan.FromSeconds(30);
         public static TimeSpan LongTimeout => TimeSpan.FromSeconds(60);
         public static string ProfileName => "@AutomationProfile";

@@ -28,13 +28,18 @@ namespace ProtonVPN.UI.Test.Windows
         private AutomationElement SettingsCloseButton => ElementByAutomationId("ModalCloseButton");
         private CheckBox ConnectOnBootCheckBox => ElementByAutomationId("ConnectOnBootCheckbox").AsCheckBox();
         private AutomationElement ConnectionTab => ElementByName("Connection").FindFirstChild();
+        private AutomationElement AdvancedTab => ElementByName("Advanced").FindFirstChild();
         private CheckBox CustomDnsCheckBox => ElementByAutomationId("CheckBoxCustomDnsServers").AsCheckBox();
         private Button ContinueButton => ElementByAutomationId("ContinueButton").AsButton();
         private TextBox CustomDnsIPTextBox => ElementByAutomationId("InputIpv4Address").AsTextBox();
         private AutomationElement AddCustomDnsButton => ElementByAutomationId("SettingsPlusButton");
         private AutomationElement RemoveCustomDnsButton => ElementByAutomationId("DeleteButton").FindFirstChild();
         private AutomationElement ReconnectionButton => ElementByName("Reconnect");
-            
+        private CheckBox PortForawrdingShortcutCheckBox => ElementByAutomationId("PortForwardingInQuickSettingsCheckbox").AsCheckBox();
+        private CheckBox NotificationsCheckBox => ElementByAutomationId("ShowNotificationsCheckbox").AsCheckBox();
+        private CheckBox PortForwardingCheckBox => ElementByAutomationId("PortForwardingCheckbox").AsCheckBox();
+        private Button EnableButton => ElementByName("Enable").AsButton();
+
         public SettingsWindow DisableStartToTray()
         {
             OptionDisabled.Select();
@@ -56,6 +61,12 @@ namespace ProtonVPN.UI.Test.Windows
         public SettingsWindow NavigateToConnectionTab()
         {
             ConnectionTab.Click();
+            return this;
+        }
+
+        public SettingsWindow NavigateToAdvancedTab()
+        {
+            AdvancedTab.Click();
             return this;
         }
 
@@ -88,6 +99,25 @@ namespace ProtonVPN.UI.Test.Windows
         {
             ReconnectionButton.Click();
             return new HomeWindow();
+        }
+
+        public SettingsWindow ClickOnPortForwardingShortcutCheckBox()
+        {
+            PortForawrdingShortcutCheckBox.Toggle();
+            return this;
+        }
+
+        public SettingsWindow ClickOnNotificationsCheckBox()
+        {
+            NotificationsCheckBox.Click();
+            return this;
+        }
+
+        public SettingsWindow TogglePortForwarding()
+        {
+            PortForwardingCheckBox.Click();
+            EnableButton.Invoke();
+            return this;
         }
     }
 }

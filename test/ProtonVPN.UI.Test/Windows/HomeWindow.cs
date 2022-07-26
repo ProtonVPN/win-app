@@ -30,6 +30,7 @@ namespace ProtonVPN.UI.Test.Windows
         private Button ProfilesButton => ElementByAutomationId("MenuProfilesButton").AsButton();
         private Button BugReportButton => ElementByAutomationId("MenuReportBugButton").AsButton();
         private Button AccountButton => ElementByAutomationId("MenuAccountButton").AsButton();
+        private Button ExitButton => ElementByAutomationId("MenuExitButton").AsButton();
         private AutomationElement ProfilesTab => ElementByName("Profiles");
         private AutomationElement Profile(string profileName) => ElementByName(profileName);
         private Button ConnectButton => FirstVisibleElementByName("Connect").AsButton();
@@ -46,6 +47,8 @@ namespace ProtonVPN.UI.Test.Windows
         private AutomationElement SecureCoreWarningCloseButton => ElementByName("Activate Secure Core");
         private AutomationElement ModalCloseButton => ElementByAutomationId("ModalCloseButton");
         private AutomationElement SidebarModeButton => ElementByAutomationId("SidebarModeButton");
+        private Button CancelButton => ElementByAutomationId("CancelButton").AsButton();
+        private Button ClientCloseButton => ElementByAutomationId("CloseButton").AsButton();
 
         public HomeWindow PressQuickConnectButton()
         {
@@ -177,6 +180,33 @@ namespace ProtonVPN.UI.Test.Windows
         public HomeWindow ClickOnSidebarModeButton()
         {
             SidebarModeButton.Click();
+            return this;
+        }
+
+        public HomeWindow CancelConnection()
+        {
+            CancelButton.Invoke();
+            return this;
+        }
+
+        public HomeWindow ExitTheApp()
+        {
+            HamburgerMenuButton.Click();
+            ExitButton.Invoke();
+            return this;
+        }
+
+        public HomeWindow ConfirmExit()
+        {
+            WaitUntilElementExistsByAutomationIdAndReturnTheElement(
+                "CloseButton", 
+                TestConstants.ShortTimeout).AsButton().Invoke();
+            return this;
+        }
+
+        public HomeWindow CloseApp()
+        {
+            ClientCloseButton.Invoke();
             return this;
         }
 

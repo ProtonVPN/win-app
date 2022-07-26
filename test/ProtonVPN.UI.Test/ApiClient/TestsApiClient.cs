@@ -24,11 +24,11 @@ using Newtonsoft.Json.Linq;
 
 namespace ProtonVPN.UI.Test.ApiClient
 {
-    class CommonAPI
+    public class TestsApiClient
     {
         private readonly HttpClient _client;
 
-        public CommonAPI(string baseAddress)
+        public TestsApiClient(string baseAddress)
         {
             _client = new HttpClient
             {
@@ -41,14 +41,9 @@ namespace ProtonVPN.UI.Test.ApiClient
             return await GetConnectionInfo("ip");
         }
 
-        public async Task<string> GetCountry()
-        {
-            return await GetConnectionInfo("country");
-        }
-
         private async Task<string> GetConnectionInfo(string jsonKey)
         {
-            HttpResponseMessage response = await _client.GetAsync("/json/");
+            HttpResponseMessage response = await _client.GetAsync("?format=json");
             response.EnsureSuccessStatusCode();
             string responseBody = response.Content.ReadAsStringAsync().Result;
             JObject json = JObject.Parse(responseBody);

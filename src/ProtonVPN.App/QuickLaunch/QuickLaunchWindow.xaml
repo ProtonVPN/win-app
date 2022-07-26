@@ -220,7 +220,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <Image VerticalAlignment="Center"
                                    Width="21" 
                                    Height="15"
-                                   Source="{Binding CountryCode, Converter={StaticResource CountryToFlagConverter}}" />
+                                   Source="{Binding CountryCode, Converter={StaticResource CountryToFlagConverter}}"
+                                   AutomationProperties.AutomationId="{StaticResource QuickLaunchFlag}" />
                             <TextBlock Width="280"
                                        FontSize="16" 
                                        FontWeight="Bold"

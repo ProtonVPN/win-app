@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Threading.Tasks;
 using NUnit.Framework;
 using ProtonVPN.UI.Test.Results;
 using ProtonVPN.UI.Test.TestsHelper;
@@ -39,13 +40,18 @@ namespace ProtonVPN.UI.Test.Tests
         private const string DnsAddress = "8.8.8.8";
 
         [Test]
-        public void QuickConnectAndDisconnect()
+        public async Task QuickConnectAndDisconnect()
         {
             TestCaseId = 221;
 
             _loginWindow.SignIn(TestUserData.GetPlusUser());
             _homeWindow.PressQuickConnectButton()
                 .WaitUntilConnected();
+
+            TestRailClient.MarkTestsByStatus();
+            TestCaseId = 229;
+
+            await _homeResult.CheckIfCorrectIpAddressIsDisplayed();
 
             TestRailClient.MarkTestsByStatus();
             TestCaseId = 222;
@@ -225,6 +231,31 @@ namespace ProtonVPN.UI.Test.Tests
                 .PressReconnect()
                 .WaitUntilConnected();
             _settingsResult.CheckIfDnsAddressDoesNotMatch(DnsAddress);
+        }
+
+        [Test]
+        public void CancelConnectionWhileConnecting()
+        {
+            TestCaseId = 227;
+
+            _loginWindow.SignIn(TestUserData.GetPlusUser())
+                .PressQuickConnectButton()
+                .CancelConnection()
+                .WaitUntilDisconnected();
+        }
+
+        [Test]
+        public void AppExitWithKillSwitchEnabled()
+        {
+            TestCaseId = 216;
+
+            _loginWindow.SignIn(TestUserData.GetPlusUser())
+                .PressQuickConnectButton()
+                .WaitUntilConnected()
+                .EnableKillSwitch()
+                .ExitTheApp()
+                .ConfirmExit();
+            _homeResult.CheckIfDnsIsResolved();
         }
 
         [SetUp]
