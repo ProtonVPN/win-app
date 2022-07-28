@@ -58,6 +58,9 @@ namespace ProtonVPN.Service.Contract.Vpn
         AdapterTimeoutError,
 
         [EnumMember]
+        ClientKeyMismatch,
+
+        [EnumMember]
         UserTierTooLowError,
 
         [EnumMember]
