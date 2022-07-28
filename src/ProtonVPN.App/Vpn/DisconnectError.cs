@@ -105,31 +105,17 @@ namespace ProtonVPN.Vpn
                 return;
             }
 
-            VpnStatus status = e.State.Status;
-
-            switch (e.Error)
+            if (e.State.Status == VpnStatus.ActionRequired && e.Error == VpnError.CertificateExpired)
             {
-                case VpnError.CertificateRevoked:
-                case VpnError.CertRevokedOrExpired:
-                    await _authCertificateManager.ForceRequestNewKeyPairAndCertificateAsync();
-                    await _vpnManager.ReconnectAsync(new VpnReconnectionSettings { IsToReconnectIfDisconnected = true });
-                    return;
+                await HandleExpiredCertificate();
+                return;
+            }
 
-                case VpnError.CertificateExpired when e.State.Status == VpnStatus.ActionRequired:
-                    _lastAuthCertificate = _appSettings.AuthenticationCertificatePem;
-                    await _authCertificateManager.ForceRequestNewCertificateAsync();
-                    if (FailedToUpdateAuthCert())
-                    {
-                        await _vpnManager.ReconnectAsync(new VpnReconnectionSettings
-                        {
-                            IsToReconnectIfDisconnected = true
-                        });
-                    }
-                    else
-                    {
-                        await _vpnServiceManager.UpdateAuthCertificate(_appSettings.AuthenticationCertificatePem);
-                    }
-                    return;
+            if (e.State.Status == VpnStatus.Disconnected && IsToReconnect(e.Error))
+            {
+                await _authCertificateManager.ForceRequestNewKeyPairAndCertificateAsync();
+                await Reconnect();
+                return;
             }
 
             if (ModalShouldBeShown(e))
@@ -138,6 +124,7 @@ namespace ProtonVPN.Vpn
             }
             else
             {
+                VpnStatus status = e.State.Status;
                 if (status == VpnStatus.Pinging ||
                     status == VpnStatus.Connecting ||
                     status == VpnStatus.Connected ||
@@ -148,6 +135,33 @@ namespace ProtonVPN.Vpn
                     Post(CloseModalAsync);
                 }
             }
+        }
+
+        private bool IsToReconnect(VpnError error)
+        {
+            return error is VpnError.CertificateRevoked or VpnError.CertRevokedOrExpired or VpnError.ClientKeyMismatch;
+        }
+
+        private async Task HandleExpiredCertificate()
+        {
+            _lastAuthCertificate = _appSettings.AuthenticationCertificatePem;
+            await _authCertificateManager.ForceRequestNewCertificateAsync();
+            if (FailedToUpdateAuthCert())
+            {
+                await Reconnect();
+            }
+            else
+            {
+                await _vpnServiceManager.UpdateAuthCertificate(_appSettings.AuthenticationCertificatePem);
+            }
+        }
+
+        private async Task Reconnect()
+        {
+            await _vpnManager.ReconnectAsync(new VpnReconnectionSettings
+            {
+                IsToReconnectIfDisconnected = true
+            });
         }
 
         private bool FailedToUpdateAuthCert()

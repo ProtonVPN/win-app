@@ -374,8 +374,15 @@ namespace ProtonVPN.Vpn.Connection
             else
             {
                 _logger.Error<LocalAgentLog>("Failed to connect to TLS channel: " + result);
-                _origin.Disconnect(VpnError.Unknown);
+                _origin.Disconnect(GetVpnError(result));
             }
+        }
+
+        private VpnError GetVpnError(string result)
+        {
+            return result.Contains("private key does not match public key")
+                ? VpnError.ClientKeyMismatch
+                : VpnError.Unknown;
         }
 
         private void InvokeStateChange()

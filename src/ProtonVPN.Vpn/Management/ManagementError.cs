@@ -38,6 +38,7 @@ namespace ProtonVPN.Vpn.Management
             [ProtonVPN.Common.Vpn.VpnError.AdapterTimeoutError] = ContainsTimeoutError,
             [ProtonVPN.Common.Vpn.VpnError.NetshError] = ContainsNetshError,
             [ProtonVPN.Common.Vpn.VpnError.TlsCertificateError] = ContainsTlsCertificateError,
+            [ProtonVPN.Common.Vpn.VpnError.ClientKeyMismatch] = ContainsKeyVerificationError,
         };
 
         public string Message { get; }
@@ -117,6 +118,11 @@ namespace ProtonVPN.Vpn.Management
         private static bool ContainsTimeoutError(string message)
         {
             return message.ContainsIgnoringCase("Timeout");
+        }
+
+        private static bool ContainsKeyVerificationError(string message)
+        {
+            return message.ContainsIgnoringCase("private key password verification failed");
         }
     }
 }
