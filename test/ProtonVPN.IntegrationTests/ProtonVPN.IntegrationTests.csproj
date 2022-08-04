@@ -72,15 +72,15 @@
     <Compile Include="TestBase.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\ProtonVPN.Api.Contracts\ProtonVPN.Api.Contracts.csproj">
+    <ProjectReference Include="..\..\src\Api\ProtonVPN.Api.Contracts\ProtonVPN.Api.Contracts.csproj">
       <Project>{9E4D6072-C8DE-475A-B9A7-4B6BF6EEEAEB}</Project>
       <Name>ProtonVPN.Api.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\ProtonVPN.Api.Installers\ProtonVPN.Api.Installers.csproj">
+    <ProjectReference Include="..\..\src\Api\ProtonVPN.Api.Installers\ProtonVPN.Api.Installers.csproj">
       <Project>{686E902E-0C23-4396-8887-6D9219EF8D27}</Project>
       <Name>ProtonVPN.Api.Installers</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\ProtonVPN.Api\ProtonVPN.Api.csproj">
+    <ProjectReference Include="..\..\src\Api\ProtonVPN.Api\ProtonVPN.Api.csproj">
       <Project>{3E905528-D87C-4552-A32D-66BF90D14DB0}</Project>
       <Name>ProtonVPN.Api</Name>
     </ProjectReference>
@@ -100,7 +100,7 @@
       <Project>{BA2D505E-CED3-4FCB-A463-DAF6B77C18DE}</Project>
       <Name>ProtonVPN.Crypto</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\ProtonVPN.HumanVerification.Installers\ProtonVPN.HumanVerification.Installers.csproj">
+    <ProjectReference Include="..\..\src\HumanVerification\ProtonVPN.HumanVerification.Installers\ProtonVPN.HumanVerification.Installers.csproj">
       <Project>{80A71107-9C8E-47B2-B743-58D5976B38FB}</Project>
       <Name>ProtonVPN.HumanVerification.Installers</Name>
     </ProjectReference>

@@ -138,11 +138,11 @@
     <Compile Include="Vpn\Connectors\ProfileConnectorTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\ProtonVPN.Api.Contracts\ProtonVPN.Api.Contracts.csproj">
+    <ProjectReference Include="..\..\src\Api\ProtonVPN.Api.Contracts\ProtonVPN.Api.Contracts.csproj">
       <Project>{9E4D6072-C8DE-475A-B9A7-4B6BF6EEEAEB}</Project>
       <Name>ProtonVPN.Api.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\ProtonVPN.Api\ProtonVPN.Api.csproj">
+    <ProjectReference Include="..\..\src\Api\ProtonVPN.Api\ProtonVPN.Api.csproj">
       <Project>{3E905528-D87C-4552-A32D-66BF90D14DB0}</Project>
       <Name>ProtonVPN.Api</Name>
     </ProjectReference>
