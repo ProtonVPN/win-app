@@ -29,7 +29,7 @@ using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.UserCertificateLogs;
 using ProtonVPN.Core.Settings;
-using ProtonVPN.Core.Window;
+using ProtonVPN.Core.Windows;
 
 namespace ProtonVPN.Core.Auth
 {

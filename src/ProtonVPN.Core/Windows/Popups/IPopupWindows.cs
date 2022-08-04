@@ -17,22 +17,17 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Caliburn.Micro;
+using System;
 
-namespace ProtonVPN.Core.Window
+namespace ProtonVPN.Core.Windows.Popups
 {
-    public class MainWindowState : IHandle<WindowStateMessage>, IMainWindowState
+    public interface IPopupWindows
     {
-        public MainWindowState(IEventAggregator eventAggregator)
-        {
-            eventAggregator.Subscribe(this);
-        }
-
-        public bool Active { get; private set; }
-
-        public void Handle(WindowStateMessage message)
-        {
-            Active = message.Active;
-        }
+        void Show<T>(dynamic options = null) where T : IPopupWindow;
+        bool IsOpen<T>() where T : IPopupWindow;
+        void Close<T>() where T : IPopupWindow;
+        void CloseAll();
+        
+        void Show(Type type, dynamic options = null);
     }
 }

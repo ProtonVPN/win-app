@@ -17,10 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Core.Window
+namespace ProtonVPN.Core.Windows
 {
-    public interface IMainWindowState
+    public class WindowStateMessage
     {
-        bool Active { get; }
+        public WindowStateMessage(bool active)
+        {
+            Active = active;
+        }
+
+        public bool Active { get; }
     }
 }

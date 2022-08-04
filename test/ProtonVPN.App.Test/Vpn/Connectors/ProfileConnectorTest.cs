@@ -35,7 +35,7 @@ using ProtonVPN.Core.Servers.Models;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
-using ProtonVPN.Core.Window.Popups;
+using ProtonVPN.Core.Windows.Popups;
 using ProtonVPN.Crypto;
 using ProtonVPN.Vpn;
 using ProtonVPN.Vpn.Connectors;
