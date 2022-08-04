@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{80A71107-9C8E-47B2-B743-58D5976B38FB}</ProjectGuid>
+    <ProjectGuid>{C0D6E7EC-29AF-4FC2-B8E0-1E5D083B55DD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ProtonVPN.HumanVerification.Installers</RootNamespace>
-    <AssemblyName>ProtonVPN.HumanVerification.Installers</AssemblyName>
+    <RootNamespace>ProtonVPN.HumanVerification.Contracts</RootNamespace>
+    <AssemblyName>ProtonVPN.HumanVerification.Contracts</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\bin\</OutputPath>
+    <OutputPath>..\..\bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -25,7 +25,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\bin\</OutputPath>
+    <OutputPath>..\..\bin\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -36,7 +36,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Numerics" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,32 +44,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\GlobalAssemblyInfo.cs">
+    <Compile Include="..\..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="HumanVerificationModule.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ProtonVPN.HumanVerification.Contracts\ProtonVPN.HumanVerification.Contracts.csproj">
-      <Project>{C0D6E7EC-29AF-4FC2-B8E0-1E5D083B55DD}</Project>
-      <Name>ProtonVPN.HumanVerification.Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ProtonVPN.HumanVerification.Gui\ProtonVPN.HumanVerification.Gui.csproj">
-      <Project>{7318548D-B8F2-4ED3-8B3E-F61DD8B552D1}</Project>
-      <Name>ProtonVPN.HumanVerification.Gui</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ProtonVPN.HumanVerification\ProtonVPN.HumanVerification.csproj">
-      <Project>{8EE4A9C6-AA93-4A84-8EAB-4EC955DD6851}</Project>
-      <Name>ProtonVPN.HumanVerification</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Autofac">
-      <Version>4.9.4</Version>
-    </PackageReference>
-    <PackageReference Include="System.Runtime.CompilerServices.Unsafe">
-      <Version>5.0.0</Version>
-    </PackageReference>
+    <Compile Include="CaptchaMessage.cs" />
+    <Compile Include="CaptchaMessageType.cs" />
+    <Compile Include="HumanVerificationTypes.cs" />
+    <Compile Include="ICaptchaUrlProvider.cs" />
+    <Compile Include="IHumanVerificationConfig.cs" />
+    <Compile Include="IHumanVerifier.cs" />
+    <Compile Include="IWebViewViewModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

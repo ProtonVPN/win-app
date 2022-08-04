@@ -314,7 +314,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\ProtonVPN.Api.Contracts\ProtonVPN.Api.Contracts.csproj">
+    <ProjectReference Include="..\Api\ProtonVPN.Api.Contracts\ProtonVPN.Api.Contracts.csproj">
       <Project>{9e4d6072-c8de-475a-b9a7-4b6bf6eeeaeb}</Project>
       <Name>ProtonVPN.Api.Contracts</Name>
     </ProjectReference>
