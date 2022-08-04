@@ -21,7 +21,7 @@ using System;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Settings;
-using ProtonVPN.Core.Window.Popups;
+using ProtonVPN.Core.Windows.Popups;
 using ProtonVPN.Modals.Upsell;
 using ProtonVPN.Windows.Popups.Rebranding;
 

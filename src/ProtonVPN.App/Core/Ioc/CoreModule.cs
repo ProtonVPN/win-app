@@ -52,7 +52,7 @@ using ProtonVPN.Core.Storage;
 using ProtonVPN.Core.Threading;
 using ProtonVPN.Core.Update;
 using ProtonVPN.Core.Vpn;
-using ProtonVPN.Core.Window;
+using ProtonVPN.Core.Windows;
 using ProtonVPN.HumanVerification;
 using ProtonVPN.HumanVerification.Contracts;
 using ProtonVPN.Modals.ApiActions;

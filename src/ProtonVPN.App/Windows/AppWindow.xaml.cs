@@ -39,7 +39,7 @@ using ProtonVPN.Core.Native;
 using ProtonVPN.Core.Native.Structures;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
-using ProtonVPN.Core.Window;
+using ProtonVPN.Core.Windows;
 using ProtonVPN.Onboarding;
 using ProtonVPN.QuickLaunch;
 using ProtonVPN.Sidebar;

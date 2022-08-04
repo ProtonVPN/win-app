@@ -33,7 +33,7 @@ using ProtonVPN.Core.Servers.Models;
 using ProtonVPN.Core.Servers.Specs;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
-using ProtonVPN.Core.Window.Popups;
+using ProtonVPN.Core.Windows.Popups;
 using ProtonVPN.Modals.Protocols;
 using ProtonVPN.Notifications;
 using ProtonVPN.Sidebar;

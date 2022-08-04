@@ -39,7 +39,7 @@ using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Settings.Contracts;
 using ProtonVPN.Core.Vpn;
-using ProtonVPN.Core.Window.Popups;
+using ProtonVPN.Core.Windows.Popups;
 using ProtonVPN.Crypto;
 using ProtonVPN.Modals.Upsell;
 using ProtonVPN.Translations;

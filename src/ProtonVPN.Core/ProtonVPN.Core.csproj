@@ -164,8 +164,8 @@
     <Compile Include="Vpn\AuthCertificateUpdater.cs" />
     <Compile Include="Vpn\IVpnServiceManager.cs" />
     <Compile Include="Vpn\VpnConnectionRequest.cs" />
-    <Compile Include="Window\Popups\IPopupWindow.cs" />
-    <Compile Include="Window\Popups\IPopupWindows.cs" />
+    <Compile Include="Windows\Popups\IPopupWindow.cs" />
+    <Compile Include="Windows\Popups\IPopupWindows.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\StartMinimizedMode.cs" />
     <Compile Include="Network\SafeWlanClient.cs" />
@@ -303,9 +303,9 @@
     <Compile Include="Config\ClientConfig.cs" />
     <Compile Include="Vpn\VpnState.cs" />
     <Compile Include="Vpn\VpnStateChangedEventArgs.cs" />
-    <Compile Include="Window\IMainWindowState.cs" />
-    <Compile Include="Window\MainWindowState.cs" />
-    <Compile Include="Window\WindowStateMessage.cs" />
+    <Compile Include="Windows\IMainWindowState.cs" />
+    <Compile Include="Windows\MainWindowState.cs" />
+    <Compile Include="Windows\WindowStateMessage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

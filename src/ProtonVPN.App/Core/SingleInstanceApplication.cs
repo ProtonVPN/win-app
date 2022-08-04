@@ -17,14 +17,16 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.ServiceModel.Server;
-using ProtonVPN.Core.Service;
 using System;
 using System.Collections.Generic;
 using System.ServiceModel;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using ProtonVPN.Common.ServiceModel.Server;
+using ProtonVPN.Core.Service;
+using ProtonVPN.Login.Views;
+using ProtonVPN.Windows;
 using WinApplication = System.Windows.Application;
 
 namespace ProtonVPN.Core
@@ -47,7 +49,7 @@ namespace ProtonVPN.Core
                 }
                 else
                 {
-                    using var channel = new ServiceChannelFactory().Create<IApplicationProxy>("protonvpn-app/initialization");
+                    using ServiceChannel<IApplicationProxy> channel = new ServiceChannelFactory().Create<IApplicationProxy>("protonvpn-app/initialization");
                     await channel.Proxy.InvokeRunningInstance(args);
                 }
             }
@@ -83,20 +85,22 @@ namespace ProtonVPN.Core
             public async Task InvokeRunningInstance(IList<string> args)
             {
                 if (WinApplication.Current != null)
+                {
                     await WinApplication.Current.Dispatcher.InvokeAsync(() => ActivateFirstInstance(args));
+                }
             }
 
             private static void ActivateFirstInstance(IList<string> args)
             {
-                if (WinApplication.Current == null)
-                    return;
-
-                var window = ((App)WinApplication.Current).MainWindow;
-                if (window != null)
+                if (WinApplication.Current != null)
                 {
-                    window.Show();
-                    window.WindowState = WindowState.Normal;
-                    window.Activate();
+                    Window window = ((App)WinApplication.Current).MainWindow;
+                    if (window is AppWindow or LoginWindow && window.IsLoaded)
+                    {
+                        window.Show();
+                        window.WindowState = WindowState.Normal;
+                        window.Activate();
+                    }
                 }
             }
         }

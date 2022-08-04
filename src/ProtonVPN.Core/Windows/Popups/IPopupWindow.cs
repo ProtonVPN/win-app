@@ -17,15 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Core.Window
+namespace ProtonVPN.Core.Windows.Popups
 {
-    public class WindowStateMessage
+    public interface IPopupWindow
     {
-        public WindowStateMessage(bool active)
-        {
-            Active = active;
-        }
-
-        public bool Active { get; }
+        void TryClose();
     }
 }

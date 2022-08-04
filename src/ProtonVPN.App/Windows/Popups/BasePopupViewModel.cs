@@ -18,7 +18,7 @@
  */
 
 using System.Windows;
-using ProtonVPN.Core.Window.Popups;
+using ProtonVPN.Core.Windows.Popups;
 
 namespace ProtonVPN.Windows.Popups
 {
