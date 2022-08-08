@@ -22,7 +22,6 @@ using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ProtonVPN.Core.Settings;
-using ProtonVPN.IntegrationTests.Api.Responses;
 
 namespace ProtonVPN.IntegrationTests.Auth
 {
@@ -37,7 +36,7 @@ namespace ProtonVPN.IntegrationTests.Auth
             await MakeUserAuth(CORRECT_PASSWORD);
 
             // Assert
-            Resolve<IAppSettings>().AuthenticationCertificatePem.Should().Be(CertificateResponseMock.CERTIFICATE);
+            Resolve<IAppSettings>().AuthenticationCertificatePem.Should().Be(CERTIFICATE);
         }
     }
 }
