@@ -203,7 +203,7 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<SettingsServiceClient>().SingleInstance();
             builder.RegisterType<ServiceChannelFactory>().SingleInstance();
             builder.RegisterType<SettingsContractProvider>().SingleInstance();
-            builder.RegisterType<AutoConnect>().SingleInstance();
+            builder.RegisterType<AutoConnect>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterInstance(Properties.Settings.Default);
 
             builder.Register(c => new ServiceRetryPolicy(2, TimeSpan.FromSeconds(2))).SingleInstance();
