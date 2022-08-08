@@ -18,44 +18,35 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
+using System.Net.Http;
 using Autofac;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
+using ProtonVPN.Api;
 using ProtonVPN.Api.Installers;
 using ProtonVPN.BugReporting;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Core.Ioc;
 using ProtonVPN.HumanVerification.Installers;
-using ProtonVPN.IntegrationTests.Api;
 using ProtonVPN.P2PDetection;
 
 namespace ProtonVPN.IntegrationTests
 {
     public class TestBase
     {
-        private const int API_SERVER_PORT = 9876;
         private IContainer _container;
 
         public T Resolve<T>() => _container.Resolve<T>();
-        protected ApiServerMock Api;
-
-        [TestInitialize]
-        public void Initialize()
-        {
-            InitializeContainer();
-            SetConfiguration();
-            StartApiServer();
-        }
 
         [TestCleanup]
         public void Cleanup()
         {
-            Api.Stop();
             _container?.Dispose();
             _container = null;
         }
 
-        private void InitializeContainer()
+        protected void InitializeContainer(HttpClient httpClient)
         {
             ContainerBuilder builder = new();
             builder.RegisterModule<CoreModule>()
@@ -69,23 +60,21 @@ namespace ProtonVPN.IntegrationTests
                 .RegisterAssemblyModules<HumanVerificationModule>(typeof(HumanVerificationModule).Assembly)
                 .RegisterAssemblyModules<ApiModule>(typeof(ApiModule).Assembly);
 
+
             builder.Register(_ => Substitute.For<IScheduler>()).As<IScheduler>().SingleInstance();
+            builder.Register(_ =>
+            {
+                IHttpClientFactory httpClientFactory = Substitute.For<IHttpClientFactory>();
+                httpClient.BaseAddress = new Uri("http://localhost");
+                httpClientFactory.GetApiHttpClientWithCache().Returns(httpClient);
+                httpClientFactory.GetApiHttpClientWithoutCache().Returns(httpClient);
+                return httpClientFactory;
+            }).As<IHttpClientFactory>().SingleInstance();
+
 
             new Update.Config.Module().Load(builder);
 
             _container = builder.Build();
-        }
-
-        private void SetConfiguration()
-        {
-            Common.Configuration.Config config = Resolve<Common.Configuration.Config>();
-            config.Urls.ApiUrl = "http://localhost:" + API_SERVER_PORT;
-        }
-
-        private void StartApiServer()
-        {
-            Api = new();
-            Api.Start(API_SERVER_PORT);
         }
     }
 }

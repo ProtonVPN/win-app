@@ -21,7 +21,6 @@ using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ProtonVPN.Core.Auth;
-using ProtonVPN.IntegrationTests.Api.Responses;
 
 namespace ProtonVPN.IntegrationTests.Auth
 {
@@ -58,8 +57,7 @@ namespace ProtonVPN.IntegrationTests.Auth
         public async Task ItShouldFailAndAskToProvideTwoFactorCode()
         {
             // Arrange
-            Api.SetAuthInfoResponse(new AuthInfoResponseMock());
-            Api.SetAuthResponse(AuthResponseMock.WithTwoFactorEnabled());
+            SetApiResponsesForAuthWithTwoFactor();
 
             // Act
             AuthResult authResult = await MakeUserAuth(CORRECT_PASSWORD);
