@@ -97,6 +97,7 @@ tests:
       coverage_report:
         coverage_format: cobertura
         path: cobertura.xml
+  coverage: '/Total.*?([0-9]{1,3}.[0-9]{1,3})%/'
 
 build-installer-for-release:
   stage: build-installer
