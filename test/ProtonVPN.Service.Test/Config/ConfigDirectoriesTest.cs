@@ -22,6 +22,7 @@ using System.IO;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ProtonVPN.Service.Config;
+using ProtonVPN.Test.Common;
 
 namespace ProtonVPN.Service.Test.Config
 {
@@ -32,13 +33,13 @@ namespace ProtonVPN.Service.Test.Config
         public void Prepare_ShouldCreate_ServiceLogFolder()
         {
             // Arrange
-            const string path = nameof(Prepare_ShouldCreate_ServiceLogFolder);
+            string path = TestConfig.GetFolderPath();
             if (Directory.Exists(path))
             {
                 Directory.Delete(path);
             }
 
-            var config = new Common.Configuration.Config
+            Common.Configuration.Config config = new()
             {
                 ServiceLogFolder = path,
                 OpenVpn =
@@ -46,22 +47,23 @@ namespace ProtonVPN.Service.Test.Config
                     TlsExportCertFolder = $"{path}-1"
                 }
             };
-            var subject = new ConfigDirectories(config);
+            ConfigDirectories subject = new(config);
 
             // Act
             subject.Prepare();
             // Assert
             Directory.Exists(path).Should().BeTrue();
+            Directory.Delete(path, true);
         }
 
         [TestMethod]
         public void Prepare_ShouldSucceed_When_ServiceLogFolder_Exists()
         {
             // Arrange
-            const string path = nameof(Prepare_ShouldSucceed_When_ServiceLogFolder_Exists);
+            string path = TestConfig.GetFolderPath();
             Directory.CreateDirectory(path);
 
-            var config = new Common.Configuration.Config
+            Common.Configuration.Config config = new()
             {
                 ServiceLogFolder = path,
                 OpenVpn =
@@ -69,7 +71,7 @@ namespace ProtonVPN.Service.Test.Config
                     TlsExportCertFolder = $"{path}-1"
                 }
             };
-            var subject = new ConfigDirectories(config);
+            ConfigDirectories subject = new(config);
 
             // Act
             Action action = () => subject.Prepare();
@@ -81,13 +83,13 @@ namespace ProtonVPN.Service.Test.Config
         public void Prepare_ShouldCreate_TlsExportCertFolder()
         {
             // Arrange
-            const string path = nameof(Prepare_ShouldCreate_TlsExportCertFolder);
+            string path = TestConfig.GetFolderPath();
             if (Directory.Exists(path))
             {
                 Directory.Delete(path);
             }
 
-            var config = new Common.Configuration.Config
+            Common.Configuration.Config config = new()
             {
                 ServiceLogFolder = $"{path}-1",
                 OpenVpn =
@@ -95,7 +97,7 @@ namespace ProtonVPN.Service.Test.Config
                     TlsExportCertFolder = path
                 }
             };
-            var subject = new ConfigDirectories(config);
+            ConfigDirectories subject = new(config);
             
             // Act
             subject.Prepare();
@@ -107,10 +109,10 @@ namespace ProtonVPN.Service.Test.Config
         public void Prepare_ShouldSucceed_When_TlsExportCertFolder_Exists()
         {
             // Arrange
-            const string path = nameof(Prepare_ShouldSucceed_When_TlsExportCertFolder_Exists);
+            string path = TestConfig.GetFolderPath();
             Directory.CreateDirectory(path);
 
-            var config = new Common.Configuration.Config
+            Common.Configuration.Config config = new()
             {
                 ServiceLogFolder = $"{path}-1",
                 OpenVpn =
@@ -118,7 +120,7 @@ namespace ProtonVPN.Service.Test.Config
                     TlsExportCertFolder = path
                 }
             };
-            var subject = new ConfigDirectories(config);
+            ConfigDirectories subject = new(config);
 
             // Act
             Action action = () => subject.Prepare();

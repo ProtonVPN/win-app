@@ -42,12 +42,12 @@ namespace ProtonVPN.Core.Test.User
         public void Value_ShouldBe_IpWithZeroedLastOctet(string ip)
         {
             // Arrange
-            var userLocation = new UserLocation(ip, 10.0f, 10.0f, "ISP", "ZZ");
+            UserLocation userLocation = new(ip, "ISP", "ZZ");
             _userStorage.Location().Returns(userLocation);
-            var location = new TruncatedLocation(_userStorage);
+            TruncatedLocation location = new(_userStorage);
 
             // Act
-            var result = location.Ip();
+            string result = location.Ip();
 
             // Assert
             result.Split('.')[3].Should().Be("0");
@@ -57,12 +57,12 @@ namespace ProtonVPN.Core.Test.User
         public void Value_ShouldBeEmpty_WhenIpIsNull()
         {
             // Arrange
-            var userLocation = new UserLocation(null, 10.0f, 10.0f, "ISP", "ZZ");
+            UserLocation userLocation = new(null, "ISP", "ZZ");
             _userStorage.Location().Returns(userLocation);
-            var location = new TruncatedLocation(_userStorage);
+            TruncatedLocation location = new(_userStorage);
 
             // Act
-            var result = location.Ip();
+            string result = location.Ip();
 
             // Assert
             result.Should().Be(string.Empty);
@@ -72,12 +72,12 @@ namespace ProtonVPN.Core.Test.User
         public void Value_ShouldBeEmpty_WhenIpIsEmpty()
         {
             // Arrange
-            var userLocation = new UserLocation(string.Empty, 10.0f, 10.0f, "ISP", "ZZ");
+            UserLocation userLocation = new(string.Empty, "ISP", "ZZ");
             _userStorage.Location().Returns(userLocation);
-            var location = new TruncatedLocation(_userStorage);
+            TruncatedLocation location = new(_userStorage);
 
             // Act
-            var result = location.Ip();
+            string result = location.Ip();
 
             // Assert
             result.Should().Be(string.Empty);

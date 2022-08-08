@@ -12,7 +12,7 @@ namespace ProtonVPN.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.1.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.2.0.0")]
     public sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -375,30 +375,6 @@ namespace ProtonVPN.Properties {
             }
             set {
                 this["VpnPlanName"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string VpnUsername {
-            get {
-                return ((string)(this["VpnUsername"]));
-            }
-            set {
-                this["VpnUsername"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string VpnPassword {
-            get {
-                return ((string)(this["VpnPassword"]));
-            }
-            set {
-                this["VpnPassword"] = value;
             }
         }
         
@@ -777,30 +753,6 @@ namespace ProtonVPN.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string UserVpnUsername {
-            get {
-                return ((string)(this["UserVpnUsername"]));
-            }
-            set {
-                this["UserVpnUsername"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string UserVpnPassword {
-            get {
-                return ((string)(this["UserVpnPassword"]));
-            }
-            set {
-                this["UserVpnPassword"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string UserWelcomeModalShown {
             get {
                 return ((string)(this["UserWelcomeModalShown"]));
@@ -968,12 +920,13 @@ namespace ProtonVPN.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public global::System.DateTime LastPrimaryApiFail {
+        [global::System.Configuration.DefaultSettingValueAttribute("01/01/1970 00:00:00")]
+        public global::System.DateTime LastPrimaryApiFailDateUtc {
             get {
-                return ((global::System.DateTime)(this["LastPrimaryApiFail"]));
+                return ((global::System.DateTime)(this["LastPrimaryApiFailDateUtc"]));
             }
             set {
-                this["LastPrimaryApiFail"] = value;
+                this["LastPrimaryApiFailDateUtc"] = value;
             }
         }
         

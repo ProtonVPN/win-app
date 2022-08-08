@@ -17,10 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Api.Contracts.Streaming;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Storage;
 using ProtonVPN.Common.Text.Serialization;
-using ProtonVPN.Core.Api.Contracts;
 
 namespace ProtonVPN.Streaming
 {

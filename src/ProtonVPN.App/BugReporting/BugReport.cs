@@ -21,12 +21,12 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using ProtonVPN.Api.Contracts;
 using ProtonVPN.BugReporting.Actions;
 using ProtonVPN.BugReporting.Attachments;
 using ProtonVPN.BugReporting.Diagnostic;
 using ProtonVPN.Common.Abstract;
 using ProtonVPN.Common.Extensions;
-using ProtonVPN.Core.Api;
 
 namespace ProtonVPN.BugReporting
 {

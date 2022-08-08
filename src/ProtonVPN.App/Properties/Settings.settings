@@ -92,12 +92,6 @@
         <Setting Name="VpnPlanName" Type="System.String" Scope="User">
             <Value Profile="(Default)" />
         </Setting>
-        <Setting Name="VpnUsername" Type="System.String" Scope="User">
-            <Value Profile="(Default)" />
-        </Setting>
-        <Setting Name="VpnPassword" Type="System.String" Scope="User">
-            <Value Profile="(Default)" />
-        </Setting>
         <Setting Name="VpnPlan" Type="System.String" Scope="User">
             <Value Profile="(Default)" />
         </Setting>
@@ -191,12 +185,6 @@
         <Setting Name="UserVpnPlanName" Type="System.String" Scope="User">
             <Value Profile="(Default)" />
         </Setting>
-        <Setting Name="UserVpnUsername" Type="System.String" Scope="User">
-            <Value Profile="(Default)" />
-        </Setting>
-        <Setting Name="UserVpnPassword" Type="System.String" Scope="User">
-            <Value Profile="(Default)" />
-        </Setting>
         <Setting Name="UserWelcomeModalShown" Type="System.String" Scope="User">
             <Value Profile="(Default)" />
         </Setting>
@@ -239,8 +227,8 @@
         <Setting Name="SettingsVersion" Type="System.String" Scope="User">
             <Value Profile="(Default)" />
         </Setting>
-        <Setting Name="LastPrimaryApiFail" Type="System.DateTime" Scope="User">
-            <Value Profile="(Default)" />
+        <Setting Name="LastPrimaryApiFailDateUtc" Type="System.DateTime" Scope="User">
+            <Value Profile="(Default)">01/01/1970 00:00:00</Value>
         </Setting>
         <Setting Name="AlternativeApiBaseUrls" Type="System.String" Scope="User">
             <Value Profile="(Default)" />

@@ -151,7 +151,9 @@ namespace ProtonVPN.Settings
             set
             {
                 if (value == null)
+                {
                     return;
+                }
 
                 Set(ref _quickConnect, value);
                 _appSettings.QuickConnect = value.Id;

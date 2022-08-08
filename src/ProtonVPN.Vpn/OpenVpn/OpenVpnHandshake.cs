@@ -28,6 +28,7 @@ namespace ProtonVPN.Vpn.OpenVpn
     internal class OpenVpnHandshake
     {
         private readonly byte[] _key;
+        private readonly RNGCryptoServiceProvider _rngCsp = new();
 
         public OpenVpnHandshake(byte[] key)
         {
@@ -36,58 +37,52 @@ namespace ProtonVPN.Vpn.OpenVpn
 
         public byte[] Bytes(bool includeLength)
         {
-            var sid = GetRandomBytes(8);
-            var ts = (int) DateTimeOffset.UtcNow.ToUnixTimeSeconds();
-            var packet = new List<object>();
-            packet.Add(1);
-            packet.Add(ts);
-            packet.Add((byte)(7 << 3));
-            foreach (var s in sid)
+            byte[] sid = GetRandomBytes(8);
+            int ts = (int)DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+            var packet = new List<object> { 1, ts, (byte)(7 << 3) };
+            foreach (byte s in sid)
             {
                 packet.Add(s);
             }
+
             packet.Add((byte)0);
             packet.Add(0);
 
-            using (var h = new HMACSHA512(_key))
+            using var h = new HMACSHA512(_key);
+            byte[] data = StructConverter.Pack(packet.ToArray(), false);
+            byte[] hash = h.ComputeHash(data);
+
+            List<object> result = new List<object> { (byte)(7 << 3) };
+            foreach (byte s in sid)
             {
-                var data = StructConverter.Pack(packet.ToArray(), false);
-                var hash = h.ComputeHash(data);
-
-                var result = new List<object>();
-                result.Add((byte)(7 << 3));
-                foreach (var s in sid)
-                {
-                    result.Add(s);
-                }
-
-                foreach (var hs in hash)
-                {
-                    result.Add(hs);
-                }
-
-                result.Add(1);
-                result.Add(ts);
-                result.Add((byte)0);
-                result.Add(0);
-
-                var bytes = StructConverter.Pack(result.ToArray(), false);
-                if (!includeLength)
-                {
-                    return bytes;
-                }
-
-                var length = StructConverter.Pack(new object[] { (ushort)bytes.Length }, false);
-                return length.Concat(bytes).ToArray();
+                result.Add(s);
             }
+
+            foreach (byte hs in hash)
+            {
+                result.Add(hs);
+            }
+
+            result.Add(1);
+            result.Add(ts);
+            result.Add((byte)0);
+            result.Add(0);
+
+            byte[] bytes = StructConverter.Pack(result.ToArray(), false);
+            if (!includeLength)
+            {
+                return bytes;
+            }
+
+            byte[] length = StructConverter.Pack(new object[] { (ushort)bytes.Length }, false);
+            return length.Concat(bytes).ToArray();
         }
 
         private byte[] GetRandomBytes(int length)
         {
-            var rnd = new Random();
-            var b = new byte[length];
-            rnd.NextBytes(b);
-            return b;
+            byte[] bytes = new byte[length];
+            _rngCsp.GetBytes(bytes);
+            return bytes;
         }
     }
 }

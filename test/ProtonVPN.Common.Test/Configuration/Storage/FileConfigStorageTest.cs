@@ -25,11 +25,11 @@ using NSubstitute;
 using ProtonVPN.Common.Configuration.Source;
 using ProtonVPN.Common.Configuration.Storage;
 using ProtonVPN.Common.Extensions;
+using ProtonVPN.Test.Common;
 
 namespace ProtonVPN.Common.Test.Configuration.Storage
 {
     [TestClass]
-    [DeploymentItem("Configuration\\Storage\\TestData", "TestData")]
     public class FileConfigStorageTest
     {
         [TestMethod]
@@ -82,8 +82,8 @@ namespace ProtonVPN.Common.Test.Configuration.Storage
 
         private IStorageFile ConfigFile(string filename)
         {
-            var location = Substitute.For<IStorageFile>();
-            location.Path().Returns(Path.Combine("TestData", filename));
+            IStorageFile location = Substitute.For<IStorageFile>();
+            location.Path().Returns(Path.Combine(TestConfig.TEST_DATA_FOLDER, filename));
             return location;
         }
     }

@@ -813,6 +813,24 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Username.
+        /// </summary>
+        public static string BugReport_lbl_Username {
+            get {
+                return ResourceManager.GetString("BugReport_lbl_Username", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your Proton username, in case you already have an account..
+        /// </summary>
+        public static string BugReport_lbl_UsernamePlaceholder {
+            get {
+                return ResourceManager.GetString("BugReport_lbl_UsernamePlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to What&apos;s the issue?.
         /// </summary>
         public static string BugReport_lbl_WhatIsTheIssue {
@@ -7195,7 +7213,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Use Proton VPN for any special need by allowing traffic to non-standard ports through the VPN network. Upgrade to a paid plan to unlock this and many other features..
+        ///   Looks up a localized string similar to Have advanced or professional computing needs that require non-standard ports? Upgrade to VPN Plus to access this and other premium features..
         /// </summary>
         public static string Upsell_NonStandardPorts_msg {
             get {

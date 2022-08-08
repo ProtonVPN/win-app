@@ -42,7 +42,7 @@ namespace ProtonVPN.Update.Updates
         private readonly IUpdatesDirectory _updatesDirectory;
         private readonly FileLocation _fileLocation;
         private readonly IDownloadableFile _downloadable;
-        private readonly IValidatableFile _validatable;
+        private readonly IFileValidator _fileValidator;
         private readonly ILaunchableFile _launchable;
 
         public AppUpdates(IAppUpdateConfig config, ILaunchableFile launchableFile)
@@ -67,10 +67,10 @@ namespace ProtonVPN.Update.Updates
                 new SafeDownloadableFile( 
                     new DownloadableFile(config.HttpClient));
 
-            _validatable = 
-                new SafeValidatableFile(
-                    new CachingValidatableFile(
-                        new ValidatableFile()));
+            _fileValidator =
+                new SafeFileValidator(
+                    new CachedFileValidator(
+                        new FileValidator()));
 
             _launchable = new SafeLaunchableFile(launchableFile);
         }
@@ -93,7 +93,7 @@ namespace ProtonVPN.Update.Updates
 
         internal async Task<bool> Valid(Release release)
         {
-            return await _validatable.Valid(FilePath(release), release.File.Sha512CheckSum);
+            return await _fileValidator.Valid(FilePath(release), release.File.Sha512CheckSum);
         }
 
         internal Task StartUpdate(Release release)

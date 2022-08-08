@@ -28,9 +28,16 @@ using System.Windows;
 using Autofac;
 using Caliburn.Micro;
 using ProtonVPN.Account;
+using ProtonVPN.Api;
+using ProtonVPN.Api.Contracts;
+using ProtonVPN.Api.Contracts.Auth;
+using ProtonVPN.Api.Contracts.Servers;
+using ProtonVPN.Api.Handlers;
+using ProtonVPN.Api.Installers;
 using ProtonVPN.BugReporting;
 using ProtonVPN.Common.Abstract;
 using ProtonVPN.Common.Events;
+using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
 using ProtonVPN.Common.Logging.Categorization.Events.AppServiceLogs;
@@ -39,9 +46,6 @@ using ProtonVPN.Common.Storage;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Abstract;
 using ProtonVPN.Core.Announcements;
-using ProtonVPN.Core.Api;
-using ProtonVPN.Core.Api.Contracts;
-using ProtonVPN.Core.Api.Handlers;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Config;
 using ProtonVPN.Core.Events;
@@ -63,6 +67,7 @@ using ProtonVPN.Core.Update;
 using ProtonVPN.Core.User;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.ErrorHandling;
+using ProtonVPN.HumanVerification.Installers;
 using ProtonVPN.Login;
 using ProtonVPN.Login.ViewModels;
 using ProtonVPN.Login.Views;
@@ -113,7 +118,9 @@ namespace ProtonVPN.Core
                 .RegisterModule<LoginModule>()
                 .RegisterModule<P2PDetectionModule>()
                 .RegisterModule<ProfilesModule>()
-                .RegisterModule<UpdateModule>();
+                .RegisterModule<UpdateModule>()
+                .RegisterAssemblyModules<HumanVerificationModule>(typeof(HumanVerificationModule).Assembly)
+                .RegisterAssemblyModules<ApiModule>(typeof(ApiModule).Assembly);
 
             new ProtonVPN.Update.Config.Module().Load(builder);
 
@@ -177,7 +184,7 @@ namespace ProtonVPN.Core
 
             try
             {
-                ApiResponseResult<VpnInfoResponse> result = await Resolve<UserAuth>().RefreshVpnInfoAsync();
+                ApiResponseResult<VpnInfoWrapperResponse> result = await Resolve<UserAuth>().RefreshVpnInfoAsync();
                 return result.Failure;
             }
             catch (HttpRequestException)
@@ -198,9 +205,11 @@ namespace ProtonVPN.Core
 
         private void LoadServersFromCache()
         {
-            IReadOnlyCollection<LogicalServerContract> servers = Resolve<ICollectionStorage<LogicalServerContract>>().GetAll();
+            IReadOnlyCollection<LogicalServerResponse> servers = Resolve<ICollectionStorage<LogicalServerResponse>>().GetAll();
             if (servers.Any())
+            {
                 Resolve<ServerManager>().Load(servers);
+            }
         }
 
         private async Task<bool> IsUserValid()
@@ -282,6 +291,7 @@ namespace ProtonVPN.Core
 
             userAuth.UserLoggedIn += async (sender, e) =>
             {
+                await Resolve<IUserLocationService>().Update();
                 await Resolve<IServerUpdater>().Update();
                 await Resolve<IClientConfig>().Update();
                 await Resolve<StreamingServicesUpdater>().Update();
@@ -305,13 +315,15 @@ namespace ProtonVPN.Core
             userAuth.UserLoggedOut += (sender, e) =>
             {
                 Resolve<IModals>().CloseAll();
-                ShowLoginForm();
-                Resolve<AppWindow>().Hide();
+
                 IEnumerable<ILogoutAware> instances = Resolve<IEnumerable<ILogoutAware>>();
                 foreach (ILogoutAware instance in instances)
                 {
                     instance.OnUserLoggedOut();
                 }
+
+                ShowLoginForm();
+                Resolve<AppWindow>().Hide();
             };
 
             Resolve<IUserStorage>().UserDataChanged += (sender, e) =>
@@ -478,10 +490,11 @@ namespace ProtonVPN.Core
         {
             try
             {
-                Resolve<IApiClient>().CheckAuthenticationServerStatusAsync();
+                Resolve<IApiClient>().CheckAuthenticationServerStatusAsync().IgnoreExceptions();
             }
-            catch (HttpRequestException)
+            catch (HttpRequestException e)
             {
+                Resolve<ILogger>().Error<AppLog>("The app failed to check auth server status.", e);
             }
         }
 
@@ -498,7 +511,7 @@ namespace ProtonVPN.Core
             }
 
             await Resolve<ISettingsServiceClientManager>().UpdateServiceSettings();
-
+            
             Resolve<PinFactory>().BuildPins();
             LoadViewModels();
             Resolve<P2PDetector>();
@@ -517,7 +530,6 @@ namespace ProtonVPN.Core
 
             Resolve<PlanDowngradeHandler>();
             Resolve<WelcomeModalManager>().Load();
-            await Resolve<IUserLocationService>().Update();
             await Resolve<IAnnouncementService>().Update();
             await Resolve<SystemTimeValidator>().Validate();
             await Resolve<AutoConnect>().LoadAsync(autoLogin);

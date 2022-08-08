@@ -17,10 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
 using System.Net.Http;
 using Autofac;
-using Caliburn.Micro;
+using ProtonVPN.Api;
+using ProtonVPN.Api.Contracts;
+using ProtonVPN.Api.Handlers.Retries;
+using ProtonVPN.Api.Handlers.TlsPinning;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Log4Net;
@@ -34,13 +36,9 @@ using ProtonVPN.Common.Threading;
 using ProtonVPN.Config.Url;
 using ProtonVPN.Core.Abstract;
 using ProtonVPN.Core.Announcements;
-using ProtonVPN.Core.Api;
-using ProtonVPN.Core.Api.Handlers;
-using ProtonVPN.Core.Api.Handlers.TlsPinning;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Config;
 using ProtonVPN.Core.Events;
-using ProtonVPN.Core.HumanVerification;
 using ProtonVPN.Core.Network;
 using ProtonVPN.Core.OS;
 using ProtonVPN.Core.OS.Net;
@@ -56,6 +54,7 @@ using ProtonVPN.Core.Update;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Core.Window;
 using ProtonVPN.HumanVerification;
+using ProtonVPN.HumanVerification.Contracts;
 using ProtonVPN.Modals.ApiActions;
 using ProtonVPN.Settings;
 using ProtonVPN.Vpn;
@@ -65,12 +64,10 @@ namespace ProtonVPN.Core.Ioc
 {
     public class CoreModule : Module
     {
-        private const string NoCacheAlternativeHostHandlerKey = "NoCacheAlternativeHostHandler";
-
         protected override void Load(ContainerBuilder builder)
         {
             base.Load(builder);
-
+            
             builder.RegisterType<HumanVerifier>().As<IHumanVerifier>().SingleInstance();
             builder.RegisterType<ServicePointConfiguration>().SingleInstance();
             builder.RegisterType<ServerManager>().SingleInstance();
@@ -85,63 +82,6 @@ namespace ProtonVPN.Core.Ioc
             builder.Register(c => Schedulers.FromApplicationDispatcher()).As<IScheduler>().SingleInstance();
             builder.Register(c => new TokenStorage(c.Resolve<UserSettings>())).As<ITokenStorage>().SingleInstance();
 
-            builder.Register(c =>
-                new CertificateHandler(
-                    c.Resolve<Common.Configuration.Config>().TlsPinningConfig,
-                    c.Resolve<IReportClient>())).SingleInstance();
-
-            builder.Register(c =>
-                new SafeDnsHandler(
-                        c.Resolve<IEventAggregator>(),
-                        c.Resolve<IDnsClient>())
-                { InnerHandler = c.Resolve<CertificateHandler>() }).SingleInstance();
-
-            builder.Register(c =>
-                new LoggingHandler(
-                        c.Resolve<ILogger>())
-                { InnerHandler = c.Resolve<SafeDnsHandler>() });
-
-            builder.Register(c =>
-                new RetryingHandler(
-                        c.Resolve<Common.Configuration.Config>().ApiTimeout,
-                        c.Resolve<Common.Configuration.Config>().ApiUploadTimeout,
-                        c.Resolve<Common.Configuration.Config>().ApiRetries,
-                        (retryCount, response, context) => new SleepDurationProvider(response).Value())
-                { InnerHandler = c.Resolve<LoggingHandler>() }).SingleInstance();
-
-            builder.Register(c =>
-                new OutdatedAppHandler
-                { InnerHandler = c.Resolve<RetryingHandler>() }).SingleInstance();
-
-            builder.Register(c =>
-                new HumanVerificationHandler(c.Resolve<IHumanVerifier>(), WebViewConfig.IsWebViewSupported())
-                { InnerHandler = c.Resolve<OutdatedAppHandler>() }).SingleInstance();
-
-            builder.Register(c =>
-                new UnauthorizedResponseHandler(
-                        c.Resolve<ITokenClient>(),
-                        c.Resolve<ITokenStorage>(),
-                        c.Resolve<IUserStorage>(),
-                        c.Resolve<ILogger>())
-                { InnerHandler = c.Resolve<HumanVerificationHandler>() }).SingleInstance();
-
-            builder.Register(c =>
-                new CancellingHandler
-                { InnerHandler = c.Resolve<UnauthorizedResponseHandler>() }).SingleInstance();
-
-            builder.Register(c =>
-                new AlternativeHostHandler(
-                    c.Resolve<ILogger>(),
-                    c.Resolve<DohClients>(),
-                    c.Resolve<MainHostname>(),
-                    c.Resolve<IAppSettings>(),
-                    c.Resolve<GuestHoleState>(),
-                    c.Resolve<ITokenStorage>(),
-                    new Uri(c.Resolve<Common.Configuration.Config>().Urls.ApiUrl).Host)
-                {
-                    InnerHandler = c.Resolve<CancellingHandler>()
-                }).As<ILoggedInAware>().As<ILogoutAware>().AsSelf().SingleInstance();
-
             builder.RegisterType<AppLanguageCache>().AsImplementedInterfaces().SingleInstance();
 
             builder.Register(c =>
@@ -152,66 +92,8 @@ namespace ProtonVPN.Core.Ioc
                         c.Resolve<IApiAppVersion>(),
                         c.Resolve<ITokenStorage>(),
                         c.Resolve<IAppLanguageCache>(),
-                        c.Resolve<Common.Configuration.Config>().ApiVersion))
+                        c.Resolve<Common.Configuration.Config>()))
                 .As<ITokenClient>()
-                .SingleInstance();
-
-            builder.Register(c =>
-                {
-                    CertificateHandler certificateHandler = new(
-                        c.Resolve<Common.Configuration.Config>().TlsPinningConfig,
-                        c.Resolve<IReportClient>());
-
-                    SafeDnsHandler safeDnsHandler = new(
-                        c.Resolve<IEventAggregator>(),
-                        c.Resolve<IDnsClient>())
-                    { InnerHandler = certificateHandler };
-
-                    LoggingHandler loggingHandler = new(
-                        c.Resolve<ILogger>())
-                    { InnerHandler = safeDnsHandler };
-
-                    RetryingHandler retryingHandler = new(
-                        c.Resolve<Common.Configuration.Config>().ApiTimeout,
-                        c.Resolve<Common.Configuration.Config>().ApiUploadTimeout,
-                        c.Resolve<Common.Configuration.Config>().ApiRetries,
-                        (retryCount, response, context) => new SleepDurationProvider(response).Value())
-                    {
-                        InnerHandler = loggingHandler
-                    };
-
-                    return new AlternativeHostHandler(
-                        c.Resolve<ILogger>(),
-                        c.Resolve<DohClients>(),
-                        c.Resolve<MainHostname>(),
-                        c.Resolve<IAppSettings>(),
-                        c.Resolve<GuestHoleState>(),
-                        c.Resolve<ITokenStorage>(),
-                        new Uri(c.Resolve<Common.Configuration.Config>().Urls.ApiUrl).Host)
-                    {
-                        InnerHandler = retryingHandler
-                    };
-                }).Named<AlternativeHostHandler>(NoCacheAlternativeHostHandlerKey)
-                .As<ILoggedInAware>()
-                .As<ILogoutAware>()
-                .SingleInstance();
-
-            builder.Register(c => new ApiClient(
-                    new HttpClient(c.Resolve<AlternativeHostHandler>())
-                    {
-                        BaseAddress = c.Resolve<IActiveUrls>().ApiUrl.Uri
-                    },
-                    new HttpClient(c.ResolveNamed<AlternativeHostHandler>(NoCacheAlternativeHostHandlerKey))
-                    {
-                        BaseAddress = c.Resolve<IActiveUrls>().ApiUrl.Uri,
-                        DefaultRequestHeaders = { ConnectionClose = true }
-                    },
-                    c.Resolve<ILogger>(),
-                    c.Resolve<ITokenStorage>(),
-                    c.Resolve<IApiAppVersion>(),
-                    c.Resolve<IAppLanguageCache>(),
-                    c.Resolve<Common.Configuration.Config>().ApiVersion))
-                .As<IApiClient>()
                 .SingleInstance();
 
             builder.RegisterType<ActionableFailureApiResultEventHandler>().SingleInstance();

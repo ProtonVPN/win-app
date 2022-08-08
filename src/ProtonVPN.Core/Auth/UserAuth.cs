@@ -21,12 +21,13 @@ using System;
 using System.Net.Http;
 using System.Security;
 using System.Threading.Tasks;
+using ProtonVPN.Api.Contracts;
+using ProtonVPN.Api.Contracts.Auth;
+using ProtonVPN.Api.Contracts.Common;
+using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.UserLogs;
 using ProtonVPN.Core.Abstract;
-using ProtonVPN.Core.Api;
-using ProtonVPN.Core.Api.Contracts;
-using ProtonVPN.Core.Api.Data;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Srp;
 
@@ -73,7 +74,7 @@ namespace ProtonVPN.Core.Auth
 
         private async Task<AuthResult> RefreshVpnInfoAndInvokeLoginAsync()
         {
-            ApiResponseResult<VpnInfoResponse> vpnInfoResult = await RefreshVpnInfoAsync();
+            ApiResponseResult<VpnInfoWrapperResponse> vpnInfoResult = await RefreshVpnInfoAsync();
             if (vpnInfoResult.Failure)
             {
                 return AuthResult.Fail(vpnInfoResult);
@@ -87,11 +88,16 @@ namespace ProtonVPN.Core.Auth
 
         public async Task<AuthResult> AuthAsync(string username, SecureString password)
         {
-            ApiResponseResult<AuthInfo> authInfoResponse =
-                await _apiClient.GetAuthInfoResponse(new AuthInfoRequestData { Username = username });
+            ApiResponseResult<AuthInfoResponse> authInfoResponse =
+                await _apiClient.GetAuthInfoResponse(new AuthInfoRequest { Username = username });
             if (!authInfoResponse.Success)
             {
                 return AuthResult.Fail(authInfoResponse);
+            }
+
+            if (authInfoResponse.Value.Salt.IsNullOrEmpty())
+            {
+                return AuthResult.Fail("Incorrect login credentials. Please try again");
             }
 
             try
@@ -99,8 +105,8 @@ namespace ProtonVPN.Core.Auth
                 SrpPInvoke.GoProofs proofs = SrpPInvoke.GenerateProofs(4, username, password, authInfoResponse.Value.Salt,
                     authInfoResponse.Value.Modulus, authInfoResponse.Value.ServerEphemeral);
 
-                AuthRequestData authRequestData = GetAuthRequestData(proofs, authInfoResponse.Value.SrpSession, username);
-                ApiResponseResult<AuthResponse> response = await _apiClient.GetAuthResponse(authRequestData);
+                AuthRequest authRequest = GetAuthRequestData(proofs, authInfoResponse.Value.SrpSession, username);
+                ApiResponseResult<AuthResponse> response = await _apiClient.GetAuthResponse(authRequest);
                 if (response.Failure)
                 {
                     return AuthResult.Fail(response);
@@ -131,9 +137,9 @@ namespace ProtonVPN.Core.Auth
         {
             InvokeLoggingInEvent();
 
-            TwoFactorRequestData requestData = new() { TwoFactorCode = code };
+            TwoFactorRequest request = new() { TwoFactorCode = code };
             ApiResponseResult<BaseResponse> response =
-                await _apiClient.GetTwoFactorAuthResponse(requestData, _authResponse.AccessToken, _authResponse.Uid);
+                await _apiClient.GetTwoFactorAuthResponse(request, _authResponse.AccessToken, _authResponse.Uid);
 
             if (response.Failure)
             {
@@ -155,9 +161,9 @@ namespace ProtonVPN.Core.Auth
             _tokenStorage.RefreshToken = authResponse.RefreshToken;
         }
 
-        private AuthRequestData GetAuthRequestData(SrpPInvoke.GoProofs proofs, string srpSession, string username)
+        private AuthRequest GetAuthRequestData(SrpPInvoke.GoProofs proofs, string srpSession, string username)
         {
-            return new AuthRequestData
+            return new AuthRequest
             {
                 ClientEphemeral = Convert.ToBase64String(proofs.ClientEphemeral),
                 ClientProof = Convert.ToBase64String(proofs.ClientProof),
@@ -171,9 +177,9 @@ namespace ProtonVPN.Core.Auth
             UserLoggingIn?.Invoke(this, EventArgs.Empty);
         }
 
-        public async Task<ApiResponseResult<VpnInfoResponse>> RefreshVpnInfoAsync()
+        public async Task<ApiResponseResult<VpnInfoWrapperResponse>> RefreshVpnInfoAsync()
         {
-            ApiResponseResult<VpnInfoResponse> vpnInfo = await _apiClient.GetVpnInfoResponse();
+            ApiResponseResult<VpnInfoWrapperResponse> vpnInfo = await _apiClient.GetVpnInfoResponse();
             if (vpnInfo.Success)
             {
                 _userStorage.StoreVpnInfo(vpnInfo.Value);

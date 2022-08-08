@@ -28,6 +28,7 @@ using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using ProtonVPN.Common.OS.Net.Http;
+using ProtonVPN.Test.Common;
 using ProtonVPN.Update.Config;
 using ProtonVPN.Update.Releases;
 using ProtonVPN.Update.Storage;
@@ -109,7 +110,7 @@ namespace ProtonVPN.Update.Test.Storage
 
             Func<Task> action = () => storage.Releases();
 
-            action.Should().Throw<HttpRequestException>();
+            action.Should().ThrowAsync<HttpRequestException>();
         }
 
         [TestMethod]
@@ -135,7 +136,7 @@ namespace ProtonVPN.Update.Test.Storage
 
             Func<Task> action = () => storage.Releases();
 
-            action.Should().Throw<TE>();
+            action.Should().ThrowAsync<TE>();
         }
 
         private void Releases_ShouldThrow_WhenHttpResponse_Throws<TE>(TE exception) where TE : Exception
@@ -144,7 +145,7 @@ namespace ProtonVPN.Update.Test.Storage
 
             Func<Task> action = () => storage.Releases();
 
-            action.Should().Throw<TE>();
+            action.Should().ThrowAsync<TE>();
         }
 
         [TestMethod]
@@ -154,7 +155,7 @@ namespace ProtonVPN.Update.Test.Storage
 
             Func<Task> action = () => storage.Releases();
 
-            action.Should().Throw<TaskCanceledException>();
+            action.Should().ThrowAsync<TaskCanceledException>();
         }
 
         [TestMethod]
@@ -164,7 +165,7 @@ namespace ProtonVPN.Update.Test.Storage
 
             Func<Task> action = () => storage.Releases();
 
-            action.Should().Throw<TaskCanceledException>();
+            action.Should().ThrowAsync<TaskCanceledException>();
         }
 
         #region Helpers
@@ -176,7 +177,7 @@ namespace ProtonVPN.Update.Test.Storage
 
         private static Task<IHttpResponseMessage> CancelledHttpResponse()
         {
-            var httpResponse = Substitute.For<IHttpResponseMessage>();
+            IHttpResponseMessage httpResponse = Substitute.For<IHttpResponseMessage>();
             httpResponse.IsSuccessStatusCode.Returns(true);
             httpResponse.Content.ReadAsStreamAsync().Returns(Task.FromCanceled<Stream>(new CancellationToken(true)));
 
@@ -190,7 +191,7 @@ namespace ProtonVPN.Update.Test.Storage
 
         private static Task<IHttpResponseMessage> FailedHttpResponse(Exception e)
         {
-            var httpResponse = Substitute.For<IHttpResponseMessage>();
+            IHttpResponseMessage httpResponse = Substitute.For<IHttpResponseMessage>();
             httpResponse.IsSuccessStatusCode.Returns(true);
             httpResponse.Content.ReadAsStreamAsync().Returns(Task.FromException<Stream>(e));
 
@@ -199,8 +200,8 @@ namespace ProtonVPN.Update.Test.Storage
 
         private static IHttpResponseMessage HttpResponseFromFile(string filePath)
         {
-            var stream = new MemoryStream();
-            using (var inputStream = new FileStream(Path.Combine("TestData", filePath), FileMode.Open))
+            MemoryStream stream = new();
+            using (FileStream inputStream = new(TestConfig.GetFolderPath(filePath), FileMode.Open))
             {
                 inputStream.CopyTo(stream);
                 inputStream.Flush();
@@ -212,7 +213,7 @@ namespace ProtonVPN.Update.Test.Storage
 
         private static IHttpResponseMessage HttpResponseFromStream(Stream stream)
         {
-            var httpResponse = Substitute.For<IHttpResponseMessage>();
+            IHttpResponseMessage httpResponse = Substitute.For<IHttpResponseMessage>();
             httpResponse.IsSuccessStatusCode.Returns(true);
             httpResponse.Content.ReadAsStreamAsync().Returns(stream);
             httpResponse.When(x => x.Dispose()).Do(x => stream.Close());

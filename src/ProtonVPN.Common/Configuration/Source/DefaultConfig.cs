@@ -27,9 +27,10 @@ using ProtonVPN.Common.Extensions;
 
 namespace ProtonVPN.Common.Configuration.Source
 {
-    internal class DefaultConfig : IConfigSource
+    public class DefaultConfig : IConfigSource
     {
         public const int MAX_QUICK_CONNECT_SERVERS_ON_RECONNECTION = 50;
+        public const string ALTERNATIVE_ROUTING_HOSTNAME = "*";
 
         public Config Value()
         {
@@ -109,7 +110,7 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 DohClientTimeout = TimeSpan.FromSeconds(10),
 
-                ApiRetries = 0,
+                ApiRetries = 2,
 
                 MaxGuestHoleRetries = 5,
 
@@ -145,10 +146,6 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 MaxProfileNameLength = 25,
 
-                ProfileSyncTimerPeriod = TimeSpan.FromSeconds(20),
-
-                ProfileSyncPeriod = TimeSpan.FromMinutes(5),
-
                 ForcedProfileSyncInterval = TimeSpan.FromMinutes(3),
 
                 EventCheckInterval = TimeSpan.FromMinutes(5),
@@ -165,11 +162,7 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 MaintenanceCheckInterval = TimeSpan.FromMinutes(30),
 
-                AuthCertificateUpdateInterval = TimeSpan.FromHours(1),
-
-                AuthCertificateFirstRetryInterval = TimeSpan.FromSeconds(1),
-
-                AuthCertificateMaxNumOfRetries = 2,
+                AuthCertificateUpdateInterval = TimeSpan.FromMinutes(5),
 
                 MaxQuickConnectServersOnReconnection = MAX_QUICK_CONNECT_SERVERS_ON_RECONNECTION,
 
@@ -204,7 +197,6 @@ namespace ProtonVPN.Common.Configuration.Source
                     SmartRoutingUrl = "https://protonvpn.com/support/smart-routing",
                     P2PUrl = "https://protonvpn.com/support/bittorrent-vpn/",
                     TorUrl = "https://protonvpn.com/support/tor-vpn/",
-                    CaptchaUrl = "https://api.protonvpn.ch/core/v4/captcha?Token={0}",
                     InvoicesUrl = "https://account.protonvpn.com/payments#invoices",
                     AboutSmartProtocolUrl = "https://protonvpn.com/support/how-to-change-vpn-protocols",
                     IncorrectSystemTimeArticleUrl = "https://protonvpn.com/support/update-windows-clock",
@@ -317,7 +309,7 @@ namespace ProtonVPN.Common.Configuration.Source
                         },
                         new()
                         {
-                            Name = "*",
+                            Name = ALTERNATIVE_ROUTING_HOSTNAME,
                             PublicKeyHashes = new HashSet<string>
                             {
                                 "EU6TS9MO0L/GsDHvVc9D5fChYLNy5JdGYpJw0ccgetM=",

@@ -31,13 +31,7 @@ namespace ProtonVPN.UI.Test.Results
 
         public LoginResult VerifyUserIsOnLoginWindow()
         {
-            CheckIfObjectWithNameIsDisplayed("Start with Windows", "User unsuccessfully disconnected.");
-            return this;
-        }
-
-        public LoginResult VerifyKillSwitchIsNotActive()
-        {
-            CheckIfObjectIsNotDisplayedByName("Disable", "Kill Switch is active after Logout.");
+            CheckIfObjectWithNameIsDisplayed("Start and connect on boot", "User unsuccessfully disconnected.");
             return this;
         }
     }

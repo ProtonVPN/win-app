@@ -22,9 +22,9 @@ using System.ComponentModel;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using ProtonVPN.Api.Contracts;
+using ProtonVPN.Api.Contracts.ReportAnIssue;
 using ProtonVPN.Common.Extensions;
-using ProtonVPN.Core.Api;
-using ProtonVPN.Core.Api.Contracts.ReportAnIssue;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Settings;
 
@@ -35,7 +35,7 @@ namespace ProtonVPN.Core.ReportAnIssue
         private readonly IApiClient _apiClient;
         private readonly IAppSettings _appSettings;
         private readonly List<string> _validInputTypes = new() { InputType.SingleLineInput, InputType.MultiLineInput };
-        private List<IssueCategory> _categories = new();
+        private List<IssueCategoryResponse> _categories = new();
         private bool _isUserLoggedIn;
 
         public ReportAnIssueFormDataProvider(IApiClient apiClient, IAppSettings appSettings)
@@ -48,7 +48,7 @@ namespace ProtonVPN.Core.ReportAnIssue
         {
             try
             {
-                ApiResponseResult<ReportAnIssueFormData> response = await _apiClient.GetReportAnIssueFormData();
+                ApiResponseResult<ReportAnIssueFormResponse> response = await _apiClient.GetReportAnIssueFormData();
                 if (response.Success && IsDataValid(response.Value.Categories))
                 {
                     _categories = response.Value.Categories;
@@ -68,7 +68,7 @@ namespace ProtonVPN.Core.ReportAnIssue
             }
         }
 
-        public List<IssueCategory> GetCategories()
+        public List<IssueCategoryResponse> GetCategories()
         {
             if (_categories.Count == 0)
             {
@@ -78,12 +78,12 @@ namespace ProtonVPN.Core.ReportAnIssue
             return _categories.ToList();
         }
 
-        public List<IssueSuggestion> GetSuggestions(string category)
+        public List<IssueSuggestionResponse> GetSuggestions(string category)
         {
             return _categories.FirstOrDefault(c => c.SubmitLabel == category)?.Suggestions;
         }
 
-        public List<IssueInput> GetInputs(string categorySubmitName)
+        public List<IssueInputResponse> GetInputs(string categorySubmitName)
         {
             return _categories.FirstOrDefault(c => c.SubmitLabel == categorySubmitName)?.InputFields;
         }
@@ -96,7 +96,7 @@ namespace ProtonVPN.Core.ReportAnIssue
             }
         }
 
-        private bool IsDataValid(IList<IssueCategory> categories)
+        private bool IsDataValid(IList<IssueCategoryResponse> categories)
         {
             return categories.All(category =>
                 !category.Label.IsNullOrEmpty() &&

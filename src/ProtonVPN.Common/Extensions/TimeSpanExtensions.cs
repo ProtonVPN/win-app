@@ -24,12 +24,12 @@ namespace ProtonVPN.Common.Extensions
 {
     public static class TimeSpanExtensions
     {
-        private static Random Random = new Random();
+        private static readonly Random Random = new();
 
         public static TimeSpan RandomizedWithDeviation(this TimeSpan value, double deviation)
         {
             Ensure.IsTrue(value > TimeSpan.Zero, $"{nameof(value)} must be positive");
-            Ensure.IsTrue(deviation >= 0 && deviation < 1, $"{nameof(deviation)} must be between zero and one");
+            Ensure.IsTrue(deviation is >= 0 and < 1, $"{nameof(deviation)} must be between zero and one");
 
             return value + TimeSpan.FromMilliseconds(value.TotalMilliseconds * deviation * (2.0 * Random.NextDouble() - 1.0));
         }

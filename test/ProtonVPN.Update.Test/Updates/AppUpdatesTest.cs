@@ -28,13 +28,13 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using ProtonVPN.Test.Common;
 
 // ReSharper disable ObjectCreationAsStatement
 
 namespace ProtonVPN.Update.Test.Updates
 {
     [TestClass]
-    [DeploymentItem("TestData", "TestData")]
     public class AppUpdatesTest
     {
         private ILaunchableFile _launchableFile;
@@ -145,40 +145,41 @@ namespace ProtonVPN.Update.Test.Updates
         [TestMethod]
         public void Cleanup_ShouldDelete_Subdirectories_FromDownloadsDirectory()
         {
-            const string updatesPath = nameof(Cleanup_ShouldDelete_Subdirectories_FromDownloadsDirectory);
+            string updatesPath = TestConfig.GetFolderPath();
             Directory.CreateDirectory(Path.Combine(updatesPath, "2.2.2"));
             Directory.CreateDirectory(Path.Combine(updatesPath, "Some", "Another"));
             CopyFile("Empty file.txt", updatesPath);
             CopyFile("Empty file.txt", Path.Combine(updatesPath, "Some", "2nd"));
 
             IAppUpdates updater = AppUpdates(new Version(1, 2, 0), updatesPath);
-
             updater.Cleanup();
 
-            Directory.GetDirectories(updatesPath).Should().BeEmpty();
+            string[] directories = Directory.GetDirectories(updatesPath);
+            Directory.Delete(updatesPath, true);
+            directories.Should().BeEmpty();
         }
 
         [TestMethod]
         public void Cleanup_ShouldDelete_AllNotExeFiles_FromDownloadsDirectory()
         {
-            const string updatesPath = nameof(Cleanup_ShouldDelete_AllNotExeFiles_FromDownloadsDirectory);
+            string updatesPath = TestConfig.GetFolderPath();
             CopyFile("Empty file.txt", updatesPath);
             CopyFile("Empty file.txt", updatesPath, "Without extension");
             CopyFile("ProtonVPN_win_v1.0.0.exe", updatesPath, "Some.1");
             CopyFile("ProtonVPN_win_v2.0.0.exe", updatesPath, "Later version not exe.dll");
 
             IAppUpdates updater = AppUpdates(new Version(1, 2, 0), updatesPath);
-
             updater.Cleanup();
 
-            Directory.GetFiles(updatesPath, "*", SearchOption.AllDirectories)
-                .Should().BeEmpty();
+            string[] files = Directory.GetFiles(updatesPath, "*", SearchOption.AllDirectories);
+            Directory.Delete(updatesPath, true);
+            files.Should().BeEmpty();
         }
 
         [TestMethod]
         public void Cleanup_ShouldDelete_OutdatedExeFiles_FromDownloadsDirectory()
         {
-            const string updatesPath = nameof(Cleanup_ShouldDelete_OutdatedExeFiles_FromDownloadsDirectory);
+            string updatesPath = TestConfig.GetFolderPath();
             CopyFile("Empty file.txt", updatesPath, "Unknown.exe");
             CopyFile("ProtonVPN_win_v1.0.0.exe", updatesPath);
             CopyFile("ProtonVPN_win_v1.5.0.exe", updatesPath);
@@ -189,6 +190,8 @@ namespace ProtonVPN.Update.Test.Updates
             updater.Cleanup();
 
             string[] files = Directory.GetFiles(updatesPath, "*", SearchOption.AllDirectories);
+            Directory.Delete(updatesPath, true);
+
             files.Should()
                 .HaveCount(1)
                 .And.Match(f => Path.GetFileName(f.First()) == "ProtonVPN_win_v1.5.1.exe");
@@ -201,12 +204,14 @@ namespace ProtonVPN.Update.Test.Updates
         private static void CopyFile(string sourcePath, string destPath, string newFilename = null)
         {
             if (!string.IsNullOrEmpty(destPath))
+            {
                 Directory.CreateDirectory(destPath);
+            }
 
             string filename = !string.IsNullOrEmpty(newFilename) ? newFilename : Path.GetFileName(sourcePath);
             string destFullPath = Path.Combine(destPath ?? "", filename ?? "");
 
-            File.Copy(Path.Combine("TestData", sourcePath), destFullPath);
+            File.Copy(TestConfig.GetFolderPath(sourcePath), destFullPath);
         }
 
         #endregion

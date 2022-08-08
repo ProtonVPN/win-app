@@ -1,1 +1,7 @@
-Write-EventLog -LogName "Application" -Source "ProtonVPNService" -EventID 3 -EntryType Information -Message "Uninstall ProtonVPN" -Category 0
+$app = Get-WmiObject -Class Win32_Product | Where-Object {
+    $_.Name -match "ProtonVPN"   
+}
+
+if($app){
+    $output = $app.Uninstall();
+}

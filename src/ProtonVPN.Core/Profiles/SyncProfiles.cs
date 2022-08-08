@@ -35,8 +35,6 @@ namespace ProtonVPN.Core.Profiles
 {
     public class SyncProfiles : IProfileStorageAsync, ISyncProfileStorage, ILoggedInAware, ILogoutAware
     {
-        private const int NumberOfSyncRetries = 3; 
-
         private static readonly ProfileByExternalIdEqualityComparer ProfileByExternalIdEqualityComparer = new();
         private static readonly ProfileByEssentialPropertiesEqualityComparer ProfileByEssentialPropertiesEqualityComparer = new();
         private static readonly ProfileByPropertiesEqualityComparer ProfileByPropertiesEqualityComparer = new();
@@ -48,7 +46,6 @@ namespace ProtonVPN.Core.Profiles
         private readonly IProfileStorageAsync _apiProfiles;
         private readonly SyncProfile _syncProfile;
 
-        private readonly System.Timers.Timer _timer;
         private readonly CoalescingAction _syncAction;
 
         private volatile bool _loggedIn;
@@ -62,7 +59,6 @@ namespace ProtonVPN.Core.Profiles
         private ProfileSyncStatus _syncStatus = ProfileSyncStatus.Succeeded;
 
         public SyncProfiles(
-            Common.Configuration.Config appConfig,
             ILogger logger,
             IAppSettings appSettings,
             Profiles profiles,
@@ -70,7 +66,6 @@ namespace ProtonVPN.Core.Profiles
             ApiProfiles apiProfiles,
             SyncProfile syncProfile)
         {
-            _appConfig = appConfig;
             _logger = logger;
             _appSettings = appSettings;
             _profiles = profiles;
@@ -80,13 +75,6 @@ namespace ProtonVPN.Core.Profiles
 
             _syncAction = new(SyncAction);
             _syncAction.Completed += OnSyncCompleted;
-
-            _timer = new()
-            {
-                Interval = _appConfig.ProfileSyncTimerPeriod.RandomizedWithDeviation(0.2).TotalMilliseconds,
-                AutoReset = true
-            };
-            _timer.Elapsed += (s, e) => OnTimerElapsed();
         }
 
         public Task<IReadOnlyList<Profile>> GetAll()
@@ -122,20 +110,20 @@ namespace ProtonVPN.Core.Profiles
         {
             _loggedIn = true;
             _syncAction.Cancel();
-            _timer.Start();
         }
 
         public void OnUserLoggedOut()
         {
             _loggedIn = false;
-            _timer.Stop();
             _syncAction.Cancel();
         }
 
         public void Sync()
         {
             if (!_loggedIn)
+            {
                 return;
+            }
 
             OnSyncStatusChanged(ProfileSyncStatus.InProgress);
             _syncAction.Run();
@@ -146,30 +134,19 @@ namespace ProtonVPN.Core.Profiles
             _logger.Info<AppLog>("Sync profiles requested");
             _cancellationToken = cancellationToken;
 
-            await Retry(async () =>
-                {
-                    _syncFailed = false;
-                    _syncErrorMessage = null;
-                    _changesSynced = false;
+            _syncFailed = false;
+            _syncErrorMessage = null;
+            _changesSynced = false;
 
-                    await MergeApiToExternal();
-                    await MergeLocalToSync();
-                    await MergeSyncToApi();
-                },
-                () => !_syncFailed && ContainsNotSyncedData(),
-                NumberOfSyncRetries);
+            await MergeApiToExternal();
+            await MergeLocalToSync();
+            await MergeSyncToApi();
 
             _lastSyncAt = DateTime.UtcNow;
 
             if (!_syncFailed && _changesSynced)
-                ChangesSyncedAt = _lastSyncAt;
-        }
-
-        private bool ContainsNotSyncedData()
-        {
-            using (CachedProfileData cached = _cachedProfiles.ProfileData())
             {
-                return cached.Sync.Any();
+                ChangesSyncedAt = _lastSyncAt;
             }
         }
 
@@ -244,7 +221,9 @@ namespace ProtonVPN.Core.Profiles
                     }
 
                     if (ProfileByPropertiesEqualityComparer.Equals(profile, existing))
+                    {
                         continue;
+                    }
 
                     candidate = candidate
                         .WithIdFrom(existing)
@@ -264,13 +243,17 @@ namespace ProtonVPN.Core.Profiles
         private async Task MergeLocalToSync()
         {
             if (_syncFailed)
+            {
                 return;
+            }
 
             // First checking existence of local to avoid unnecessary locking of profile data
             using (CachedProfileData cached = _cachedProfiles.ProfileData())
             {
                 if (!cached.Local.Any())
+                {
                     return;
+                }
             }
 
             using (CachedProfileData cached = await _cachedProfiles.LockedProfileData())
@@ -287,17 +270,21 @@ namespace ProtonVPN.Core.Profiles
         private async Task MergeSyncToApi()
         {
             if (_syncFailed)
+            {
                 return;
+            }
 
             using (CachedProfileData cached = _cachedProfiles.ProfileData())
             {
-                var profiles = cached.Sync.OrderBy(p => p.ModifiedAt).ToList();
+                List<Profile> profiles = cached.Sync.OrderBy(p => p.ModifiedAt).ToList();
                 foreach (Profile profile in profiles)
                 {
                     await Sync(profile);
 
                     if (_syncFailed)
+                    {
                         return;
+                    }
                 }
             }
         }
@@ -313,28 +300,16 @@ namespace ProtonVPN.Core.Profiles
             }
         }
 
-        private async Task Retry(Func<Task> action, Func<bool> retryRequired, int numberOfRetries)
-        {
-            if (numberOfRetries < 1) throw new ArgumentOutOfRangeException(nameof(numberOfRetries));
-
-            int i = numberOfRetries;
-            do
-            {
-                await action();
-                i--;
-            } while (i > 0 && retryRequired());
-        }
-
         private DateTime? _changesSyncedAt;
-        private readonly Common.Configuration.Config _appConfig;
-
         private DateTime ChangesSyncedAt
         {
             get => _changesSyncedAt ?? (_changesSyncedAt = _appSettings.ProfileChangesSyncedAt).Value;
             set
             {
                 if (value == _changesSyncedAt)
+                {
                     return;
+                }
 
                 _changesSyncedAt = value;
                 _appSettings.ProfileChangesSyncedAt = value;
@@ -344,24 +319,12 @@ namespace ProtonVPN.Core.Profiles
         private void OnSyncStatusChanged(ProfileSyncStatus status, string errorMessage = null)
         {
             if (_syncStatus == status)
+            {
                 return;
+            }
 
             _syncStatus = status;
             SyncStatusChanged?.Invoke(this, new(status, errorMessage, ChangesSyncedAt));
-        }
-
-        private void OnTimerElapsed()
-        {
-            if (_syncAction.Running)
-                return;
-
-            if (DateTime.UtcNow - _lastSyncAt > _appConfig.ProfileSyncPeriod)
-                Sync();
-            else
-            {
-                if (_syncStatus == ProfileSyncStatus.Succeeded)
-                    SyncStatusChanged?.Invoke(this, new(_syncStatus, "", ChangesSyncedAt));
-            }
         }
     }
 }

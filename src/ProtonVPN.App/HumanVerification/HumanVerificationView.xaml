@@ -22,12 +22,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                          xmlns:wpf="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
-                          xmlns:humanVerification="clr-namespace:ProtonVPN.HumanVerification"
                           xmlns:resource="clr-namespace:ProtonVPN.Resource;assembly=ProtonVPN.Resource"
-                          xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-                          xmlns:command="http://www.galasoft.ch/mvvmlight"
                           xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
+                          xmlns:humanVerification="clr-namespace:ProtonVPN.HumanVerification"
                           d:DataContext="{d:DesignInstance humanVerification:HumanVerificationViewModel}"
                           SizeToContent="WidthAndHeight"
                           WindowStartupLocation="Manual"
@@ -36,22 +33,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           x:Name="UserControl"
                           mc:Ignorable="d">
     <Grid Width="320">
-        <wpf:WebView2 x:Name="WebView"
-                      DefaultBackgroundColor="Black"
-                      MinHeight="100"
-                      Height="{Binding Height}">
-            <wpf:WebView2.CreationProperties>
-                <Binding RelativeSource="{RelativeSource Self}" Path="DataContext.WebView2CreationProperties" />
-            </wpf:WebView2.CreationProperties>
-            <wpf:WebView2.Source>
-                <Binding RelativeSource="{RelativeSource Self}" Path="DataContext.Url" />
-            </wpf:WebView2.Source>
-            <i:Interaction.Triggers>
-                <i:EventTrigger EventName="WebMessageReceived">
-                    <command:EventToCommand Command="{Binding Mode=OneWay, Path=OnMessageReceivedCommand}"
-                                            PassEventArgsToCommand="True" />
-                </i:EventTrigger>
-            </i:Interaction.Triggers>
-        </wpf:WebView2>
+        <ContentPresenter Content="{Binding WebView}" />
     </Grid>
 </resource:BaseModalWindow>

@@ -24,25 +24,25 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using ProtonVPN.Test.Common;
 
 namespace ProtonVPN.App.Test.BugReporting.Attachments.Source
 {
     [TestClass]
-    [DeploymentItem("BugReporting\\Attachments\\TestData", "TestData")]
     public class LogFileSourceTest
     {
-        private const long MaxFileSize = 50 * 1024;
+        private const long MAX_FILE_SIZE = 50 * 1024;
 
         [TestMethod]
         public void Enumerable_ShouldBe_FileNamesFrom_Directory()
         {
             // Arrange
-            const string folderPath = nameof(Enumerable_ShouldBe_FileNamesFrom_Directory);
-            var fileNames = new[] { "Log 1.txt", "Log 2.txt", "Log 3.txt" };
+            string folderPath = TestConfig.GetFolderPath();
+            string[] fileNames = { "Log 1.txt", "Log 2.txt", "Log 3.txt" };
             PrepareFiles(folderPath, fileNames);
-            var fileSource = new LogFileSource(MaxFileSize, folderPath, 5);
+            LogFileSource fileSource = new(MAX_FILE_SIZE, folderPath, 5);
             // Act
-            var result = fileSource.Select(Path.GetFileName).ToList();
+            List<string> result = fileSource.Select(Path.GetFileName).ToList();
             // Assert
             result.Should().Contain(fileNames);
         }
@@ -51,12 +51,12 @@ namespace ProtonVPN.App.Test.BugReporting.Attachments.Source
         public void Enumerable_ShouldTake_OnlyCountOfFiles()
         {
             // Arrange
-            const string folderPath = nameof(Enumerable_ShouldTake_OnlyCountOfFiles);
-            var fileNames = new[] { "Log 1.txt", "Log 2.txt", "Log 3.txt" };
+            string folderPath = TestConfig.GetFolderPath();
+            string[] fileNames = { "Log 1.txt", "Log 2.txt", "Log 3.txt" };
             PrepareFiles(folderPath, fileNames);
-            var fileSource = new LogFileSource(MaxFileSize, folderPath, 2);
+            LogFileSource fileSource = new LogFileSource(MAX_FILE_SIZE, folderPath, 2);
             // Act
-            var result = fileSource.ToList();
+            List<string> result = fileSource.ToList();
             // Assert
             result.Should().HaveCount(2);
         }
@@ -65,15 +65,15 @@ namespace ProtonVPN.App.Test.BugReporting.Attachments.Source
         public void Enumerable_ShouldBe_OrderedBy_LastWriteTime()
         {
             // Arrange
-            const string folderPath = nameof(Enumerable_ShouldBe_OrderedBy_LastWriteTime);
-            var fileNames = new[] { "Log 1.txt", "Log 2.txt", "Log 3.txt" };
+            string folderPath = TestConfig.GetFolderPath();
+            string[] fileNames = { "Log 1.txt", "Log 2.txt", "Log 3.txt" };
             PrepareFiles(folderPath, fileNames);
             File.SetLastWriteTimeUtc(Path.Combine(folderPath, "Log 1.txt"), new DateTime(2020, 05, 15, 0, 3, 3));
             File.SetLastWriteTimeUtc(Path.Combine(folderPath, "Log 2.txt"), new DateTime(2020, 05, 15, 0, 1, 1));
             File.SetLastWriteTimeUtc(Path.Combine(folderPath, "Log 3.txt"), new DateTime(2020, 05, 15, 0, 2, 2));
-            var fileSource = new LogFileSource(MaxFileSize, folderPath, 3);
+            LogFileSource fileSource = new(MAX_FILE_SIZE, folderPath, 3);
             // Act
-            var result = fileSource.Select(Path.GetFileName).ToList();
+            List<string> result = fileSource.Select(Path.GetFileName).ToList();
             // Assert
             result.Should().ContainInOrder("Log 1.txt", "Log 3.txt", "Log 2.txt");
         }
@@ -82,14 +82,14 @@ namespace ProtonVPN.App.Test.BugReporting.Attachments.Source
         public void Enumerable_ShouldTake_OnlyUnderSizeLimit()
         {
             // Arrange
-            const string folderPath = nameof(Enumerable_ShouldTake_OnlyUnderSizeLimit);
-            var fileNames = new[] { "Log 1.txt", "Log 2.txt", "tooBigFile.txt", "Log 3.txt" };
+            string folderPath = TestConfig.GetFolderPath();
+            string[] fileNames = { "Log 1.txt", "Log 2.txt", "tooBigFile.txt", "Log 3.txt" };
             PrepareFiles(folderPath, fileNames);
-            File.WriteAllBytes(Path.Combine(folderPath, "tooBigFile.txt"), new byte[MaxFileSize + 1]);
-            var fileSource = new LogFileSource(MaxFileSize, folderPath, 4);
+            File.WriteAllBytes(Path.Combine(folderPath, "tooBigFile.txt"), new byte[MAX_FILE_SIZE + 1]);
+            LogFileSource fileSource = new(MAX_FILE_SIZE, folderPath, 4);
 
             // Act
-            var result = fileSource.Select(Path.GetFileName).ToList();
+            List<string> result = fileSource.Select(Path.GetFileName).ToList();
 
             // Assert
             result.Contains("tooBigFile.txt").Should().BeFalse();
@@ -100,23 +100,27 @@ namespace ProtonVPN.App.Test.BugReporting.Attachments.Source
         private static void PrepareFiles(string folderName, IEnumerable<string> fileNames)
         {
             if (Directory.Exists(folderName))
-                Directory.Delete(folderName, true);
-
-            foreach (var filename in fileNames)
             {
-                CopyFile("test.txt", folderName, filename);
+                Directory.Delete(folderName, true);
+            }
+
+            foreach (string filename in fileNames)
+            {
+                CopyFile("bug-report-test.txt", folderName, filename);
             }
         }
 
         private static void CopyFile(string sourcePath, string destPath, string newFilename = null)
         {
             if (!string.IsNullOrEmpty(destPath))
+            {
                 Directory.CreateDirectory(destPath);
+            }
 
-            var filename = !string.IsNullOrEmpty(newFilename) ? newFilename : Path.GetFileName(sourcePath);
-            var destFullPath = Path.Combine(destPath ?? "", filename ?? "");
+            string filename = !string.IsNullOrEmpty(newFilename) ? newFilename : Path.GetFileName(sourcePath);
+            string destFullPath = Path.Combine(destPath ?? "", filename ?? "");
 
-            File.Copy(Path.Combine("TestData", sourcePath), destFullPath);
+            File.Copy(TestConfig.GetFolderPath(sourcePath), destFullPath);
         }
 
         #endregion

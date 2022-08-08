@@ -20,9 +20,9 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using ProtonVPN.Account;
+using ProtonVPN.Api.Contracts;
+using ProtonVPN.Api.Contracts.VpnSessions;
 using ProtonVPN.Common.Vpn;
-using ProtonVPN.Core.Api;
-using ProtonVPN.Core.Api.Contracts;
 using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Servers.Models;
@@ -71,11 +71,6 @@ namespace ProtonVPN.ConnectionInfo
 
             await _vpnInfoUpdater.Update();
             User newUserInfo = _userStorage.User();
-
-            if (oldUserInfo.VpnPassword != newUserInfo.VpnPassword)
-            {
-                return VpnError.PasswordChanged;
-            }
 
             if (newUserInfo.MaxTier < oldUserInfo.MaxTier)
             {

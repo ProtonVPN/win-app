@@ -29,15 +29,18 @@ using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using ProtonVPN.Common.OS.Net.Http;
+using ProtonVPN.Test.Common;
 using ProtonVPN.Update.Files.Downloadable;
 using ProtonVPN.Update.Files.Validatable;
 
 namespace ProtonVPN.Update.Test.Files.Downloadable
 {
     [TestClass]
-    [DeploymentItem("TestData", "TestData")]
     public class DownloadableFileTest
     {
+        private const string APP_FILENAME = "ProtonVPN.exe";
+        private const string INSTALLER_FILENAME = "ProtonVPN_win_v1.5.1.exe";
+        private const string INSTALLER_DOWNLOAD_URL = "https://protonvpn.com/download/" + INSTALLER_FILENAME;
         private IHttpClient _httpClient;
 
         #region Initialization
@@ -70,42 +73,42 @@ namespace ProtonVPN.Update.Test.Files.Downloadable
         [TestMethod]
         public async Task Download_ShouldDownload_FromFileUri()
         {
-            var filename = Path.Combine(DownloadsPath(), "ProtonVPN.exe");
-            const string fileUri = "https://protonvpn.com/download/ProtonVPN_win_v1.5.1.exe";
-            var downloadable = DownloadableFile(fileUri, HttpResponseFromFile("ProtonVPN_win_v1.5.1.exe"));
+            string filename = Path.Combine(DownloadsPath(), APP_FILENAME);
+            IDownloadableFile downloadable = DownloadableFile(INSTALLER_DOWNLOAD_URL, HttpResponseFromFile(INSTALLER_FILENAME));
 
-            await downloadable.Download(fileUri, filename);
+            await downloadable.Download(INSTALLER_DOWNLOAD_URL, filename);
+            File.Delete(filename);
 
-            await _httpClient.Received().GetAsync(fileUri);
+            await _httpClient.Received().GetAsync(INSTALLER_DOWNLOAD_URL);
         }
 
         [TestMethod]
         public async Task Download_ShouldDownloadFile_ToFilename()
         {
-            var filename = Path.Combine(DownloadsPath(), "ProtonVPN.exe");
-            const string fileUri = "https://protonvpn.com/download/ProtonVPN_win_v1.5.1.exe";
+            string filename = Path.Combine(DownloadsPath(), APP_FILENAME);
             File.Exists(filename).Should().BeFalse();
-            var downloadable = DownloadableFile(fileUri, HttpResponseFromFile("ProtonVPN_win_v1.5.1.exe"));
+            IDownloadableFile downloadable = DownloadableFile(INSTALLER_DOWNLOAD_URL, HttpResponseFromFile(INSTALLER_FILENAME));
 
-            await downloadable.Download(fileUri, filename);
+            await downloadable.Download(INSTALLER_DOWNLOAD_URL, filename);
 
-            var checkSum = await new FileCheckSum(filename).Value();
+            string checkSum = await new FileCheckSum(filename).Value();
+            File.Delete(filename);
             checkSum.Should().Be("c011146ae24f5a49ef86ff6199ec0bd42223b408e1dce3ffef9a2ef4b9c1806b1c823ce427d7473378b7d8c427ba6cb3701320740523ad79fc9ec8cfeb907875");
         }
 
         [TestMethod]
         public void Download_ShouldThrow_WhenHttpResponse_IsNotSuccess()
         {
-            var filename = Path.Combine(DownloadsPath(), "ProtonVPN.exe");
-            const string fileUri = "https://protonvpn.com/download/ProtonVPN_win_v1.5.1.exe";
+            string filename = Path.Combine(DownloadsPath(), APP_FILENAME);
 
-            var httpResponse = Substitute.For<IHttpResponseMessage>();
+            IHttpResponseMessage httpResponse = Substitute.For<IHttpResponseMessage>();
             httpResponse.IsSuccessStatusCode.Returns(false);
-            var downloadable = DownloadableFile(fileUri, httpResponse);
+            IDownloadableFile downloadable = DownloadableFile(INSTALLER_DOWNLOAD_URL, httpResponse);
 
-            Func<Task> action = () => downloadable.Download(fileUri, filename);
+            Func<Task> action = () => downloadable.Download(INSTALLER_DOWNLOAD_URL, filename);
+            File.Delete(filename);
 
-            action.Should().Throw<AppUpdateException>();
+            action.Should().ThrowAsync<AppUpdateException>();
         }
 
         [TestMethod]
@@ -118,7 +121,7 @@ namespace ProtonVPN.Update.Test.Files.Downloadable
                 new SocketException()
             };
 
-            foreach (var exception in exceptions)
+            foreach (Exception exception in exceptions)
             {
                 Download_ShouldThrow_WhenHttpRequest_Throws(exception);
                 Download_ShouldThrow_WhenHttpResponse_Throws(exception);
@@ -127,52 +130,52 @@ namespace ProtonVPN.Update.Test.Files.Downloadable
 
         private void Download_ShouldThrow_WhenHttpRequest_Throws<TE>(TE exception) where TE: Exception
         {
-            var filename = Path.Combine(DownloadsPath(), "ProtonVPN.exe");
-            const string fileUri = "https://protonvpn.com/download/ProtonVPN_win_v1.5.1.exe";
+            string filename = Path.Combine(DownloadsPath(), APP_FILENAME);
 
-            var downloadable = DownloadableFile(fileUri, FailedHttpRequest(exception));
+            IDownloadableFile downloadable = DownloadableFile(INSTALLER_DOWNLOAD_URL, FailedHttpRequest(exception));
 
-            Func<Task> action = () => downloadable.Download(fileUri, filename);
+            Func<Task> action = () => downloadable.Download(INSTALLER_DOWNLOAD_URL, filename);
+            File.Delete(filename);
 
-            action.Should().Throw<TE>();
+            action.Should().ThrowAsync<TE>();
         }
 
         private void Download_ShouldThrow_WhenHttpResponse_Throws<TE>(TE exception) where TE : Exception
         {
-            var filename = Path.Combine(DownloadsPath(), "ProtonVPN.exe");
-            const string fileUri = "https://protonvpn.com/download/ProtonVPN_win_v1.5.1.exe";
+            string filename = Path.Combine(DownloadsPath(), APP_FILENAME);
 
-            var downloadable = DownloadableFile(fileUri, FailedHttpResponse(exception));
+            IDownloadableFile downloadable = DownloadableFile(INSTALLER_DOWNLOAD_URL, FailedHttpResponse(exception));
 
-            Func<Task> action = () => downloadable.Download(fileUri, filename);
+            Func<Task> action = () => downloadable.Download(INSTALLER_DOWNLOAD_URL, filename);
+            File.Delete(filename);
 
-            action.Should().Throw<TE>();
+            action.Should().ThrowAsync<TE>();
         }
 
         [TestMethod]
         public void Download_ShouldThrow_WhenHttpRequest_Cancelled()
         {
-            var filename = Path.Combine(DownloadsPath(), "ProtonVPN.exe");
-            const string fileUri = "https://protonvpn.com/download/ProtonVPN_win_v1.5.1.exe";
+            string filename = Path.Combine(DownloadsPath(), APP_FILENAME);
 
-            var downloadable = DownloadableFile(fileUri, CancelledHttpRequest());
+            IDownloadableFile downloadable = DownloadableFile(INSTALLER_DOWNLOAD_URL, CancelledHttpRequest());
 
-            Func<Task> action = () => downloadable.Download(fileUri, filename);
+            Func<Task> action = () => downloadable.Download(INSTALLER_DOWNLOAD_URL, filename);
+            File.Delete(filename);
 
-            action.Should().Throw<TaskCanceledException>();
+            action.Should().ThrowAsync<TaskCanceledException>();
         }
 
         [TestMethod]
         public void Download_ShouldThrow_WhenHttpResponse_Cancelled()
         {
-            var filename = Path.Combine(DownloadsPath(), "ProtonVPN.exe");
-            const string fileUri = "https://protonvpn.com/download/ProtonVPN_win_v1.5.1.exe";
+            string filename = Path.Combine(DownloadsPath(), APP_FILENAME);
 
-            var downloadable = DownloadableFile(fileUri, CancelledHttpResponse());
+            IDownloadableFile downloadable = DownloadableFile(INSTALLER_DOWNLOAD_URL, CancelledHttpResponse());
 
-            Func<Task> action = () => downloadable.Download(fileUri, filename);
+            Func<Task> action = () => downloadable.Download(INSTALLER_DOWNLOAD_URL, filename);
+            File.Delete(filename);
 
-            action.Should().Throw<TaskCanceledException>();
+            action.Should().ThrowAsync<TaskCanceledException>();
         }
 
         #region Helpers
@@ -180,7 +183,7 @@ namespace ProtonVPN.Update.Test.Files.Downloadable
         private string DownloadsPath([CallerMemberName] string path = null)
         {
             Contract.Assume(path != null);
-
+            path = TestConfig.GetFolderPath(path);
             Directory.CreateDirectory(path);
             return path;
         }
@@ -192,7 +195,7 @@ namespace ProtonVPN.Update.Test.Files.Downloadable
 
         private static Task<IHttpResponseMessage> CancelledHttpResponse()
         {
-            var httpResponse = Substitute.For<IHttpResponseMessage>();
+            IHttpResponseMessage httpResponse = Substitute.For<IHttpResponseMessage>();
             httpResponse.IsSuccessStatusCode.Returns(true);
             httpResponse.Content.ReadAsStreamAsync().Returns(Task.FromCanceled<Stream>(new CancellationToken(true)));
 
@@ -206,7 +209,7 @@ namespace ProtonVPN.Update.Test.Files.Downloadable
 
         private static Task<IHttpResponseMessage> FailedHttpResponse(Exception e)
         {
-            var httpResponse = Substitute.For<IHttpResponseMessage>();
+            IHttpResponseMessage httpResponse = Substitute.For<IHttpResponseMessage>();
             httpResponse.IsSuccessStatusCode.Returns(true);
             httpResponse.Content.ReadAsStreamAsync().Returns(Task.FromException<Stream>(e));
 
@@ -215,8 +218,8 @@ namespace ProtonVPN.Update.Test.Files.Downloadable
 
         private static IHttpResponseMessage HttpResponseFromFile(string filePath)
         {
-            var stream = new MemoryStream();
-            using (var inputStream = new FileStream(Path.Combine("TestData", filePath), FileMode.Open))
+            MemoryStream stream = new();
+            using (FileStream inputStream = new(TestConfig.GetFolderPath(filePath), FileMode.Open))
             {
                 inputStream.CopyTo(stream);
                 inputStream.Flush();
@@ -228,7 +231,7 @@ namespace ProtonVPN.Update.Test.Files.Downloadable
 
         private static IHttpResponseMessage HttpResponseFromStream(Stream stream)
         {
-            var httpResponse = Substitute.For<IHttpResponseMessage>();
+            IHttpResponseMessage httpResponse = Substitute.For<IHttpResponseMessage>();
             httpResponse.IsSuccessStatusCode.Returns(true);
             httpResponse.Content.ReadAsStreamAsync().Returns(stream);
             httpResponse.When(x => x.Dispose()).Do(x => stream.Close());

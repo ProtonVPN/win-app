@@ -17,10 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Windows;
 using OpenQA.Selenium.Interactions;
-using ProtonVPN.UI.Test.Results;
 using ProtonVPN.UI.Test.TestsHelper;
 
 namespace ProtonVPN.UI.Test.Windows
@@ -40,35 +38,6 @@ namespace ProtonVPN.UI.Test.Windows
             return this;
         }
 
-        public MainWindow ClickQuickConnectButton()
-        {
-            ClickOnObjectWithId("SidebarQuickConnectButton");
-            return this;
-        }
-
-        public MainWindow ConnectByCountryName(string countryName)
-        {
-            MoveMouseToCountryByName(countryName);
-            ClickOnObjectWithName("CONNECT");
-            WaitUntilConnected();
-            return this;
-        }
-
-        public MainWindow DisconnectByCountryName(string countryName)
-        {
-            ClickOnObjectWithName(countryName);
-            ClickOnObjectWithId("Button");
-            return this;
-        }
-
-        public MainWindow QuickConnect()
-        {
-            RefreshSession();
-            ClickQuickConnectButton();
-            WaitUntilConnected();
-            return this;
-        }
-
         public MainWindow ClickProfilesButton()
         {
             ClickOnObjectWithId("SidebarProfilesButton");
@@ -79,48 +48,13 @@ namespace ProtonVPN.UI.Test.Windows
         {
             WindowsElement element = Session.FindElementByName(profileName);
             MoveToElement(element);
-            ClickOnObjectWithName("CONNECT");
-            return this;
-        }
-
-        public MainWindow DisconnectUsingSidebarButton()
-        {
-            ClickQuickConnectButton();
-            return this;
-        }
-
-        public MainWindow EnableSecureCore()
-        {
-            ClickOnObjectWithId("SecureCoreButton");
-            ClickOnObjectWithId("SecureCoreOnButton");
+            ClickOnObjectWithName("Connect");
             return this;
         }
 
         public MainWindow ClickOnSidebarModeButton()
         {
             ClickOnObjectWithId("SidebarModeButton");
-            return this;
-        }
-
-        public MainWindow WaitUntilConnected()
-        {
-            WindowsElement quickConnectButton = Session.FindElementByAccessibilityId("SidebarQuickConnectButton");
-            WaitUntilTextMatches(quickConnectButton, "Disconnect", seconds: 20);
-            ConnectionResult.WaitUntilInternetConnectionIsRestored();
-            return this;
-        }
-
-        public MainWindow EnableKillSwitch()
-        {
-            ClickOnObjectWithId("KillSwitchToggle");
-            ClickOnObjectWithClassName("SwitchOn");
-            return this;
-        }
-
-        public MainWindow ConfirmAppExit()
-        {
-            WaitUntilDisplayed(By.Name("Exit"), seconds: 5);
-            ClickOnObjectWithName("Exit");
             return this;
         }
 
@@ -139,43 +73,6 @@ namespace ProtonVPN.UI.Test.Windows
             WaitUntilElementExistsByAutomationId(countryCode, timeoutInSeconds: 5);
             ClickOnObjectWithId(countryCode);
             return this;
-        }
-
-        public MainWindow DisconnectFromCountryViaPin(string countryCode)
-        {
-            ConnectToCountryViaPin(countryCode);
-            return this;
-        }
-
-        public MainWindow ConnectToCountryViaPinSecureCore(string countryCode)
-        {
-            MoveMouseToCountryPin(countryCode);
-            RefreshSession();
-            Actions actions = new Actions(Session);
-            WindowsElement countryCodeElement = Session.FindElementByAccessibilityId(countryCode);
-            actions.MoveToElement(countryCodeElement)
-                .MoveByOffset(0, -25)
-                .Click()
-                .Perform();
-            return this;
-        }
-
-        public MainWindow DisconnectFromCountryViaPinSecureCore(string countryCode)
-        {
-            ConnectToCountryViaPinSecureCore(countryCode);
-            return this;
-        }
-
-        public MainWindow CloseSecureCoreWarningModal()
-        {
-            ClickOnObjectWithName("Activate Secure Core");
-            return this;
-        }
-
-        public string GetTextBlockIpAddress()
-        {
-            string textBlockIpAddress = Session.FindElementByAccessibilityId("IPAddressTextBlock").Text.RemoveExtraText();
-            return textBlockIpAddress;
         }
 
         private void MoveMouseToCountryPin(string countryCode)

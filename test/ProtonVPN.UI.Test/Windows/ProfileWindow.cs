@@ -101,13 +101,6 @@ namespace ProtonVPN.UI.Test.Windows
             return this;
         }
 
-        public ProfileWindow ConnectToProfile(string name)
-        {
-            WaitUntilElementExistsByAutomationId($"Connect-{name}",10);
-            ClickOnObjectWithId($"Connect-{name}");
-            return this;
-        }
-
         public ProfileWindow ClickTor()
         {
             ClickOnObjectWithName("Tor");

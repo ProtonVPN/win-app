@@ -21,10 +21,10 @@ using System.Collections.Generic;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
+using ProtonVPN.Api.Contracts.Servers;
+using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Core.Abstract;
-using ProtonVPN.Core.Api.Contracts;
-using ProtonVPN.Common.Logging;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Settings;
 
@@ -82,7 +82,7 @@ namespace ProtonVPN.Core.Test.Servers
             serverManager.GetCountries().Should().NotContain("US");
         }
 
-        private List<LogicalServerContract> GetServerList()
+        private List<LogicalServerResponse> GetServerList()
         {
             return new()
             {
@@ -90,7 +90,7 @@ namespace ProtonVPN.Core.Test.Servers
                 {
                     Name = "US#1",
                     EntryCountry = "US",
-                    Servers = new List<PhysicalServerContract>
+                    Servers = new List<PhysicalServerResponse>
                     {
                         new() {X25519PublicKey = string.Empty},
                         new() {X25519PublicKey = string.Empty},
@@ -100,7 +100,7 @@ namespace ProtonVPN.Core.Test.Servers
                 {
                     Name = "CH#1",
                     EntryCountry = "CH",
-                    Servers = new List<PhysicalServerContract>
+                    Servers = new List<PhysicalServerResponse>
                     {
                         new() {X25519PublicKey = "key"},
                         new() {X25519PublicKey = "key"},
@@ -109,9 +109,9 @@ namespace ProtonVPN.Core.Test.Servers
             };
         }
 
-        public class AnyServer : Specification<LogicalServerContract>
+        public class AnyServer : Specification<LogicalServerResponse>
         {
-            public override bool IsSatisfiedBy(LogicalServerContract item)
+            public override bool IsSatisfiedBy(LogicalServerResponse item)
             {
                 return true;
             }

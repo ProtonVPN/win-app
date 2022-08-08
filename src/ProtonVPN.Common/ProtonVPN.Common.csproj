@@ -50,8 +50,8 @@
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Polly, Version=7.0.0.0, Culture=neutral, PublicKeyToken=c8a3ffc3f8f825cc, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Polly.7.2.0\lib\net472\Polly.dll</HintPath>
@@ -254,6 +254,7 @@
     <Compile Include="Networking\VpnProtocol.cs" />
     <Compile Include="OS\DeviceInfoProvider.cs" />
     <Compile Include="OS\IDeviceInfoProvider.cs" />
+    <Compile Include="OS\Net\Http\HttpRequestMessageExtensions.cs" />
     <Compile Include="OS\Net\INetworkInterfaceLoader.cs" />
     <Compile Include="OS\Net\NetworkInterfaceLoader.cs" />
     <Compile Include="OS\Net\NetworkAddress.cs" />

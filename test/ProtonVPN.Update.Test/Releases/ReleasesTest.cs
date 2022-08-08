@@ -30,14 +30,13 @@ using ProtonVPN.Update.Releases;
 namespace ProtonVPN.Update.Test.Releases
 {
     [TestClass]
-    [DeploymentItem(@"TestData\win-update.json", "TestData")]
     public class ReleasesTest
     {
         [TestMethod]
         public void Releases_ShouldImplement_IEnumerable()
         {
-            var categories = new CategoryContract[0];
-            var releases = new Update.Releases.Releases(categories, new Version(), "");
+            CategoryContract[] categories = new CategoryContract[0];
+            Update.Releases.Releases releases = new(categories, new Version(), "");
 
             releases.Should().BeAssignableTo<IEnumerable<Release>>();
         }
@@ -45,8 +44,8 @@ namespace ProtonVPN.Update.Test.Releases
         [TestMethod]
         public void Releases_ShouldBeEmpty_WhenCategories_AreEmpty()
         {
-            var categories = new CategoryContract[0];
-            var releases = new Update.Releases.Releases(categories, new Version(), "");
+            CategoryContract[] categories = new CategoryContract[0];
+            Update.Releases.Releases releases = new(categories, new Version(), "");
 
             releases.Should().HaveCount(0);
         }
@@ -54,8 +53,8 @@ namespace ProtonVPN.Update.Test.Releases
         [TestMethod]
         public void Releases_ShouldBeEmpty_WhenCategories_HaveNoReleases()
         {
-            var categories = new[] { new CategoryContract { Name = "Stable" } };
-            var releases = new Update.Releases.Releases(categories, new Version(), "");
+            CategoryContract[] categories = { new() { Name = "Stable" } };
+            Update.Releases.Releases releases = new(categories, new Version(), "");
 
             releases.Should().HaveCount(0);
         }
@@ -63,9 +62,9 @@ namespace ProtonVPN.Update.Test.Releases
         [TestMethod]
         public void Releases_ShouldContain_AllReleases_FromCategories()
         {
-            var json = File.ReadAllText(@"TestData\win-update.json");
-            var categories = JsonConvert.DeserializeObject<CategoriesContract>(json);
-            var releases = new Update.Releases.Releases(categories.Categories, new Version(), "");
+            string json = File.ReadAllText(@"TestData\win-update.json");
+            CategoriesContract categories = JsonConvert.DeserializeObject<CategoriesContract>(json);
+            Update.Releases.Releases releases = new(categories.Categories, new Version(), "");
 
             releases.Should().HaveCount(5);
         }
@@ -73,13 +72,13 @@ namespace ProtonVPN.Update.Test.Releases
         [TestMethod]
         public void Releases_Version_ShouldBe_FromReleases()
         {
-            var json = File.ReadAllText(@"TestData\win-update.json");
-            var categories = JsonConvert.DeserializeObject<CategoriesContract>(json);
-            var expected = categories.Categories.SelectMany(c => c.Releases).Select(r => Version.Parse(r.Version)).ToList();
+            string json = File.ReadAllText(@"TestData\win-update.json");
+            CategoriesContract categories = JsonConvert.DeserializeObject<CategoriesContract>(json);
+            List<Version> expected = categories.Categories.SelectMany(c => c.Releases).Select(r => Version.Parse(r.Version)).ToList();
 
-            var releases = new Update.Releases.Releases(categories.Categories, new Version(), "");
+            Update.Releases.Releases releases = new(categories.Categories, new Version(), "");
 
-            var result = releases.Select(r => r.Version);
+            IEnumerable<Version> result = releases.Select(r => r.Version);
 
             result.Should()
                 .OnlyHaveUniqueItems().And
@@ -89,9 +88,9 @@ namespace ProtonVPN.Update.Test.Releases
         [TestMethod]
         public void Releases_EarlyAccess_ShouldBeTrue_ForEarlyAccess()
         {
-            var json = File.ReadAllText(@"TestData\win-update.json");
-            var categories = JsonConvert.DeserializeObject<CategoriesContract>(json);
-            var releases = new Update.Releases.Releases(categories.Categories, new Version(), "EarlyAccess");
+            string json = File.ReadAllText(@"TestData\win-update.json");
+            CategoriesContract categories = JsonConvert.DeserializeObject<CategoriesContract>(json);
+            Update.Releases.Releases releases = new(categories.Categories, new Version(), "EarlyAccess");
 
             releases.Where(r => r.EarlyAccess).Should().HaveCount(2);
         }
@@ -99,9 +98,9 @@ namespace ProtonVPN.Update.Test.Releases
         [TestMethod]
         public void Releases_New_ShouldBeTrue_ForNewReleases()
         {
-            var json = File.ReadAllText(@"TestData\win-update.json");
-            var categories = JsonConvert.DeserializeObject<CategoriesContract>(json);
-            var releases = new Update.Releases.Releases(categories.Categories, Version.Parse("1.5.0"), "");
+            string json = File.ReadAllText(@"TestData\win-update.json");
+            CategoriesContract categories = JsonConvert.DeserializeObject<CategoriesContract>(json);
+            Update.Releases.Releases releases = new(categories.Categories, Version.Parse("1.5.0"), "");
 
             releases.Where(r => r.New).Should().HaveCount(3);
         }

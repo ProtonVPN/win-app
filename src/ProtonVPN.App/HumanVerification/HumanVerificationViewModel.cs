@@ -17,74 +17,36 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Windows.Input;
-using GalaSoft.MvvmLight.CommandWpf;
-using Microsoft.Web.WebView2.Core;
-using Microsoft.Web.WebView2.Wpf;
-using Newtonsoft.Json;
-using ProtonVPN.Common.Logging;
-using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
+using ProtonVPN.HumanVerification.Contracts;
+using ProtonVPN.HumanVerification.Gui;
 using ProtonVPN.Modals;
 
 namespace ProtonVPN.HumanVerification
 {
     public class HumanVerificationViewModel : BaseModalViewModel
     {
-        private readonly ILogger _logger;
-        private readonly Common.Configuration.Config _config;
-        private string _requestToken = string.Empty;
-        private int _height;
+        public IWebViewViewModel WebViewViewModel { get; }
+        public WebView WebView { get; }
 
-        public HumanVerificationViewModel(ILogger logger, Common.Configuration.Config config)
+        public HumanVerificationViewModel(IWebViewViewModel webViewViewModel, WebView webView)
         {
-            _logger = logger;
-            _config = config;
-            OnMessageReceivedCommand = new RelayCommand<CoreWebView2WebMessageReceivedEventArgs>(OnWebMessageReceived);
+            WebViewViewModel = webViewViewModel;
+            WebView = webView;
+            WebView.DataContext = webViewViewModel;
+            webViewViewModel.OnHumanVerificationTokenReceived += OnHumanVerificationTokenReceived;
         }
-
-        public ICommand OnMessageReceivedCommand { get; set; }
-
-        public string Url => string.Format(_config.Urls.CaptchaUrl, _requestToken);
-
-        public CoreWebView2CreationProperties WebView2CreationProperties => new()
-        {
-            UserDataFolder = _config.LocalAppDataFolder
-        };
 
         public string ResponseToken { get; set; }
 
-        public int Height
-        {
-            get => _height;
-            set => Set(ref _height, value);
-        }
-
         public override void BeforeOpenModal(dynamic token)
         {
-            _requestToken = token;
-            NotifyOfPropertyChange(nameof(Url));
+            WebViewViewModel.SetRequestToken(token);
         }
 
-        private void OnWebMessageReceived(CoreWebView2WebMessageReceivedEventArgs e)
+        private void OnHumanVerificationTokenReceived(object sender, string token)
         {
-            try
-            {
-                CaptchaMessage message = JsonConvert.DeserializeObject<CaptchaMessage>(e.WebMessageAsJson);
-                switch (message.Type)
-                {
-                    case CaptchaMessageTypes.Height:
-                        Height = message.Height;
-                        break;
-                    case CaptchaMessageTypes.TokenResponse:
-                        ResponseToken = message.Token;
-                        TryClose(true);
-                        break;
-                }
-            }
-            catch (JsonException ex)
-            {
-                _logger.Error<AppLog>("Failed to deserialize webview message.", ex);
-            }
+            ResponseToken = token;
+            TryClose(true);
         }
     }
 }

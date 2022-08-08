@@ -24,14 +24,9 @@ namespace ProtonVPN.Common.OS.Net.Http
 {
     public static class HttpStatusCodeExtensions
     {
-        public static bool IsSuccessStatusCode(this HttpStatusCode code)
-        {
-            return (int)code >= 200 && (int)code <= 299;
-        }
-
         public static string Description(this HttpStatusCode code)
         {
-            var description = HttpWorkerRequest.GetStatusDescription((int) code);
+            string description = HttpWorkerRequest.GetStatusDescription((int) code);
             return string.IsNullOrEmpty(description) ? $"HTTP error code: {code}." : description;
         }
     }

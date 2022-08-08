@@ -46,15 +46,6 @@ namespace ProtonVPN.UI.Test.Tests
         }
 
         [Test]
-        public void LoginAsBasicUser()
-        {
-            TestCaseId = 231;
-
-            _loginWindow.LoginWithBasicUser();
-            _mainWindowResults.VerifyUserIsLoggedIn();
-        }
-
-        [Test]
         public void LoginWithSpecialCharsUser()
         {
             TestCaseId = 233;

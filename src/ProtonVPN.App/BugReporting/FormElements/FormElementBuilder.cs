@@ -19,9 +19,9 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using ProtonVPN.Api.Contracts.ReportAnIssue;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
-using ProtonVPN.Core.Api.Contracts.ReportAnIssue;
 using ProtonVPN.Core.ReportAnIssue;
 using ProtonVPN.Translations;
 
@@ -40,10 +40,21 @@ namespace ProtonVPN.BugReporting.FormElements
 
         public List<FormElement> GetFormElements(string categorySubmitName)
         {
-            IList<IssueInput> inputs = _reportAnIssueFormDataProvider.GetInputs(categorySubmitName);
-            List<FormElement> formElements = new() { GetEmailField() };
+            IList<IssueInputResponse> inputs = _reportAnIssueFormDataProvider.GetInputs(categorySubmitName);
+            List<FormElement> formElements = new() { GetUsernameField(), GetEmailField() };
             formElements.AddRange(inputs.Select(MapField).Where(element => element != null));
             return formElements;
+        }
+
+        private FormElement GetUsernameField()
+        {
+            return new UsernameInput
+            {
+                SubmitLabel = "username",
+                Placeholder = Translation.Get("BugReport_lbl_UsernamePlaceholder"),
+                Label = Translation.Get("BugReport_lbl_Username"),
+                IsMandatory = false
+            };
         }
 
         private FormElement GetEmailField()
@@ -57,39 +68,39 @@ namespace ProtonVPN.BugReporting.FormElements
             };
         }
 
-        private FormElement MapField(IssueInput input)
+        private FormElement MapField(IssueInputResponse inputResponse)
         {
-            switch (input.Type)
+            switch (inputResponse.Type)
             {
                 case InputType.SingleLineInput:
-                    return CreateSingleLineTextField(input);
+                    return CreateSingleLineTextField(inputResponse);
                 case InputType.MultiLineInput:
-                    return CreateMultiLineTextField(input);
+                    return CreateMultiLineTextField(inputResponse);
                 default:
-                    _logger.Info<AppLog>($"Unknown input type {input.Type}. This field won't be added to the form.");
+                    _logger.Info<AppLog>($"Unknown input type {inputResponse.Type}. This field won't be added to the form.");
                     return null;
             }
         }
 
-        private FormElement CreateSingleLineTextField(IssueInput input)
+        private FormElement CreateSingleLineTextField(IssueInputResponse inputResponse)
         {
             return new SingleLineTextInput
             {
-                Label = input.Label,
-                Placeholder = input.Placeholder,
-                SubmitLabel = input.SubmitLabel,
-                IsMandatory = input.IsMandatory
+                Label = inputResponse.Label,
+                Placeholder = inputResponse.Placeholder,
+                SubmitLabel = inputResponse.SubmitLabel,
+                IsMandatory = inputResponse.IsMandatory
             };
         }
 
-        private FormElement CreateMultiLineTextField(IssueInput input)
+        private FormElement CreateMultiLineTextField(IssueInputResponse inputResponse)
         {
             return new MultiLineTextInput
             {
-                Label = input.Label,
-                Placeholder = input.Placeholder,
-                SubmitLabel = input.SubmitLabel,
-                IsMandatory = input.IsMandatory
+                Label = inputResponse.Label,
+                Placeholder = inputResponse.Placeholder,
+                SubmitLabel = inputResponse.SubmitLabel,
+                IsMandatory = inputResponse.IsMandatory
             };
         }
     }

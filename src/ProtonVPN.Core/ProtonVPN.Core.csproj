@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
+  <PropertyGroup>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Albireo.Base32, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Albireo.Base32.1.1.0\lib\net47\Albireo.Base32.dll</HintPath>
@@ -53,8 +56,8 @@
     <Reference Include="Microsoft.Win32.Registry, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Win32.Registry.5.0.0\lib\net461\Microsoft.Win32.Registry.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Polly, Version=7.0.0.0, Culture=neutral, PublicKeyToken=c8a3ffc3f8f825cc, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Polly.7.2.0\lib\net472\Polly.dll</HintPath>
@@ -105,88 +108,12 @@
     <Compile Include="Announcements\Panel.cs" />
     <Compile Include="Announcements\PanelButton.cs" />
     <Compile Include="Announcements\PanelFeature.cs" />
-    <Compile Include="Api\ApiAppVersion.cs" />
-    <Compile Include="Api\Certificates\CertificateRequestData.cs" />
-    <Compile Include="Api\Certificates\CertificateResponseData.cs" />
-    <Compile Include="Api\Contracts\AnnouncementsResponse.cs" />
-    <Compile Include="Api\Contracts\BaseResponseDetail.cs" />
-    <Compile Include="Api\Contracts\BaseResponseDetailAction.cs" />
-    <Compile Include="Api\Contracts\EventResponse.cs" />
-    <Compile Include="Api\Contracts\ReportAnIssue\IssueCategory.cs" />
-    <Compile Include="Api\Contracts\ReportAnIssue\IssueInput.cs" />
-    <Compile Include="Api\Contracts\ReportAnIssue\IssueSuggestion.cs" />
-    <Compile Include="Api\Contracts\ReportAnIssue\ReportAnIssueFormData.cs" />
-    <Compile Include="Api\Contracts\ServerStatusResponse.cs" />
-    <Compile Include="Api\Contracts\SessionsResponse.cs" />
-    <Compile Include="Api\Contracts\StreamingServicesResponse.cs" />
-    <Compile Include="Api\Contracts\TwoFactorAuth.cs" />
-    <Compile Include="Api\Contracts\VpnConfig.cs" />
-    <Compile Include="Api\PromoCodeRequestData.cs" />
-    <Compile Include="Api\Data\TwoFactorRequestData.cs" />
-    <Compile Include="Api\Extensions\HttpResponseMessageExtensions.cs" />
-    <Compile Include="Api\Extensions\X509CertificateExtensions.cs" />
-    <Compile Include="Api\File.cs" />
-    <Compile Include="Api\GuestHoleState.cs" />
-    <Compile Include="Api\Handlers\AlternativeHostHandler.cs" />
-    <Compile Include="Api\Handlers\HumanVerificationHandler.cs" />
-    <Compile Include="Api\Handlers\RefreshTokenStatus.cs" />
-    <Compile Include="Api\Handlers\TlsPinning\CertificateExtensions.cs" />
-    <Compile Include="Api\Handlers\TlsPinning\IReportClient.cs" />
-    <Compile Include="Api\Handlers\TlsPinning\PublicKeyInfoHash.cs" />
-    <Compile Include="Api\Handlers\TlsPinning\ReportBody.cs" />
-    <Compile Include="Api\Handlers\TlsPinning\ReportClient.cs" />
-    <Compile Include="Api\Handlers\TlsPinning\CachingReportClient.cs" />
-    <Compile Include="Api\Handlers\TlsPinning\TlsPinningPolicy.cs" />
-    <Compile Include="Api\Extensions\HttpRequestMessageExtensions.cs" />
-    <Compile Include="Api\IApiAppVersion.cs" />
     <Compile Include="Abstract\IMigration.cs" />
     <Compile Include="Abstract\ISpecification.cs" />
     <Compile Include="Abstract\ISupportsMigration.cs" />
     <Compile Include="Abstract\ITokenStorage.cs" />
     <Compile Include="Abstract\PredicateSpecification.cs" />
     <Compile Include="Abstract\Specification.cs" />
-    <Compile Include="Api\ApiExceptionHelper.cs" />
-    <Compile Include="Api\ApiResponseResult.cs" />
-    <Compile Include="Api\BaseApiClient.cs" />
-    <Compile Include="Api\Contracts\AuthInfo.cs" />
-    <Compile Include="Api\Contracts\AuthResponse.cs" />
-    <Compile Include="Api\Contracts\BaseResponse.cs" />
-    <Compile Include="Api\Contracts\Geographical\Coordinates.cs" />
-    <Compile Include="Api\Contracts\Geographical\CoordinatesExtensions.cs" />
-    <Compile Include="Api\Contracts\Geographical\UnitOfLength.cs" />
-    <Compile Include="Api\Contracts\Location.cs" />
-    <Compile Include="Api\Contracts\Profile.cs" />
-    <Compile Include="Api\Contracts\ProfilesResponse.cs" />
-    <Compile Include="Api\Contracts\RefreshTokenResponse.cs" />
-    <Compile Include="Api\Contracts\PhysicalServerContract.cs" />
-    <Compile Include="Api\Contracts\LogicalServerContract.cs" />
-    <Compile Include="Api\Contracts\ServersList.cs" />
-    <Compile Include="Api\Contracts\Session.cs" />
-    <Compile Include="Api\Contracts\UserLocation.cs" />
-    <Compile Include="Api\Contracts\VpnInfo.cs" />
-    <Compile Include="Api\Contracts\ProfileResponse.cs" />
-    <Compile Include="Api\Data\AuthInfoRequestData.cs" />
-    <Compile Include="Api\Data\AuthRequestData.cs" />
-    <Compile Include="Api\Contracts\BaseProfile.cs" />
-    <Compile Include="Api\Data\RefreshTokenData.cs" />
-    <Compile Include="Api\Handlers\CertificateHandler.cs" />
-    <Compile Include="Api\Handlers\DnsHandler.cs" />
-    <Compile Include="Api\Handlers\FailedDnsResponse.cs" />
-    <Compile Include="Api\Handlers\RetryingHandler.cs" />
-    <Compile Include="Api\Handlers\CancellingHandler.cs" />
-    <Compile Include="Api\Handlers\LoggingHandler.cs" />
-    <Compile Include="Api\Handlers\OutdatedAppHandler.cs" />
-    <Compile Include="Api\Handlers\SafeDnsHandler.cs" />
-    <Compile Include="Api\Handlers\FailResponse.cs" />
-    <Compile Include="Api\Handlers\UnauthorizedResponseHandler.cs" />
-    <Compile Include="Api\ApiClient.cs" />
-    <Compile Include="Api\IApiClient.cs" />
-    <Compile Include="Api\IClientBase.cs" />
-    <Compile Include="Api\ITokenClient.cs" />
-    <Compile Include="Api\ResponseCodes.cs" />
-    <Compile Include="Api\SleepDurationProvider.cs" />
-    <Compile Include="Api\TokenClient.cs" />
-    <Compile Include="Api\ActionableFailureApiResultEventArgs.cs" />
     <Compile Include="Auth\AuthCertificateManager.cs" />
     <Compile Include="Auth\AuthCertificateUpdater.cs" />
     <Compile Include="Auth\AuthError.cs" />
@@ -208,8 +135,6 @@
     <Compile Include="Events\IEventChangeAware.cs" />
     <Compile Include="Events\UserInfoHandler.cs" />
     <Compile Include="Events\VpnProfileHandler.cs" />
-    <Compile Include="HumanVerification\HumanVerificationTypes.cs" />
-    <Compile Include="HumanVerification\HumanVerifier.cs" />
     <Compile Include="Modals\IDialogs.cs" />
     <Compile Include="Modals\IDialogSettings.cs" />
     <Compile Include="Modals\IModal.cs" />
@@ -389,6 +314,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\ProtonVPN.Api.Contracts\ProtonVPN.Api.Contracts.csproj">
+      <Project>{9e4d6072-c8de-475a-b9a7-4b6bf6eeeaeb}</Project>
+      <Name>ProtonVPN.Api.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ProtonVPN.Common\ProtonVPN.Common.csproj">
       <Project>{03B8E43C-5680-4803-A745-0A104FE6620C}</Project>
       <Name>ProtonVPN.Common</Name>

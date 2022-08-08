@@ -31,11 +31,11 @@ namespace ProtonVPN.App.Test.P2PDetection
         public void Value_ShouldBe_HalfOfTheInterval()
         {
             // Arrange
-            var interval = TimeSpan.FromSeconds(30);
+            TimeSpan interval = TimeSpan.FromSeconds(30);
             // Act
-            var timeout = new P2PDetectionTimeout(interval).Value;
+            TimeSpan timeout = new P2PDetectionTimeout(interval).Value;
             // Assert
-            timeout.Should().BeCloseTo(TimeSpan.FromSeconds(15), 1000);
+            timeout.Should().BeCloseTo(TimeSpan.FromSeconds(15), TimeSpan.FromMilliseconds(1000));
         }
     }
 }

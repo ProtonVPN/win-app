@@ -25,6 +25,10 @@ sign:
     expire_in: 1 day
     paths:
       - src/bin/
+  only:
+    - master
+    - /^release.*$/
+    - develop
 
 build-release:
   stage: build
@@ -82,7 +86,16 @@ tests:
     - windows
   script:
     - echo "Running tests..."
-    - python ci\main.py tests src\bin\
+    - 'c:\nuget\nuget.exe restore ProtonVpn.sln'
+    - MSBuild.exe /consoleloggerparameters:ErrorsOnly /maxcpucount /nologo /property:Configuration=Debug /verbosity:quiet "ProtonVpn.sln"
+    - coverlet src\bin --target "vstest.console.exe" --targetargs "src/bin/ProtonVPN*Test*.dll /TestCaseFilter:TestCategory!=UI&TestCategory!=Connection /Platform:x64" --format cobertura --output .\coverage-reports --exclude "[*.Test*]*" --exclude "[ProtonVPN.MarkupValidator]*" --exclude "[TestTools*]*" --exclude "[TapInstaller]*" --exclude "[*.Installers]*"
+    - powershell -Command "(gc coverage-reports.cobertura.xml) -replace '\\', '/' | Out-File -encoding UTF8 cobertura.xml"
+    - ReportGenerator.exe "-reports:cobertura.xml" "-targetdir:.\code-coverage-report-html"
+  artifacts:
+    reports:
+      coverage_report:
+        coverage_format: cobertura
+        path: cobertura.xml
 
 build-installer-for-release:
   stage: build-installer
@@ -135,25 +148,30 @@ ui-test:
   stage: ui-test
   tags:
     - ui_tests
-  when: manual
   script:
     - powershell -File ci\uninstall-app.ps1
     - powershell -Command "Start-Sleep -s 45"
     - powershell -File ci\launch-installer.ps1
     - powershell -Command "Start-Sleep -s 45"
     - VSTest.Console.exe src\bin\ProtonVPN.UI.Test.dll /TestCaseFilter:"Category=UI"
+  except:
+    - /^debug.*$/
+    - release/9.9.9
+    - master
     
 connection-tests:
   stage: ui-test
+  allow_failure: true
   tags:
     - connection_tests
-  when: manual
   script:
     - powershell -File ci\uninstall-app.ps1
-    - powershell -Command "Start-Sleep -s 45"
-    - powershell -File ci\launch-installer.ps1
-    - powershell -Command "Start-Sleep -s 45"
+    - powershell -File ci\install-the-app.ps1
     - VSTest.Console.exe src\bin\ProtonVPN.UI.Test.dll /TestCaseFilter:"Category=Connection"
+  except:
+    - /^debug.*$/
+    - release/9.9.9
+    - master
     
 update-vm:
   stage: ui-test
@@ -171,6 +189,10 @@ installation-test:
   when: manual
   script:
     - powershell -File ci\InstallerTestScripts\prepare-installer-tests.ps1
+  except:
+    - /^debug.*$/
+    - release/9.9.9
+    - master
 
 mirror:
   stage: mirror

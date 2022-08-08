@@ -20,7 +20,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using ProtonVPN.Core.Api.Contracts;
+using ProtonVPN.Api.Contracts.Geographical;
 using ProtonVPN.Core.Servers.Name;
 
 namespace ProtonVPN.Core.Servers.Models
@@ -38,7 +38,7 @@ namespace ProtonVPN.Core.Servers.Models
         public sbyte Features { get; }
         public int Load { get; }
         public float Score { get; }
-        public Location Location { get; }
+        public LocationResponse LocationResponse { get; }
         public string ExitIp { get; set; }
         public IReadOnlyList<PhysicalServer> Servers { get; }
 
@@ -54,7 +54,7 @@ namespace ProtonVPN.Core.Servers.Models
             sbyte features,
             sbyte load,
             float score,
-            Location location,
+            LocationResponse locationResponse,
             IReadOnlyList<PhysicalServer> physicalServers,
             string exitIp)
         {
@@ -69,7 +69,7 @@ namespace ProtonVPN.Core.Servers.Models
             Features = features;
             Load = load;
             Score = score;
-            Location = location;
+            LocationResponse = locationResponse;
             Servers = physicalServers;
             ExitIp = exitIp;
         }
@@ -154,7 +154,7 @@ namespace ProtonVPN.Core.Servers.Models
                 0,
                 0,
                 0,
-                new Location { Lat = 0f, Long = 0f },
+                new LocationResponse { Lat = 0f, Long = 0f },
                 new List<PhysicalServer>(0),
                 null);
 

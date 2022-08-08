@@ -93,7 +93,7 @@ namespace ProtonVPN.BugReporting.Diagnostic
             yield return new(nameof(IAppSettings.SplitTunnelMode), _appSettings.SplitTunnelMode);
             yield return new(nameof(IAppSettings.NetShieldEnabled), _appSettings.NetShieldEnabled);
             yield return new(nameof(IAppSettings.NetShieldMode), _appSettings.NetShieldMode);
-            yield return new(nameof(IAppSettings.LastPrimaryApiFail), _appSettings.LastPrimaryApiFail);
+            yield return new(nameof(IAppSettings.LastPrimaryApiFailDateUtc), _appSettings.LastPrimaryApiFailDateUtc);
             yield return new(nameof(IAppSettings.AlternativeApiBaseUrls), _appSettings.AlternativeApiBaseUrls);
             yield return new(nameof(IAppSettings.ActiveAlternativeApiBaseUrl), _appSettings.ActiveAlternativeApiBaseUrl);
             yield return new(nameof(IAppSettings.DoHEnabled), _appSettings.DoHEnabled);

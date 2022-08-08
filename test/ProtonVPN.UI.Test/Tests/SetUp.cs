@@ -23,6 +23,7 @@ using NUnit.Framework;
 using ProtonVPN.UI.Test.ApiClient;
 using ProtonVPN.UI.Test.TestsHelper;
 using System.Reflection;
+using ProtonVPN.UI.Test.FlaUI.Utils;
 
 namespace ProtonVPN.UI.Test.Tests
 {
@@ -34,7 +35,8 @@ namespace ProtonVPN.UI.Test.Tests
         [OneTimeSetUp]
         public void TestInitialize()
         {
-            string dir = Path.GetDirectoryName(typeof(SetUp).Assembly.Location);
+            KillProtonVpnProcess();
+            string dir = Path.GetDirectoryName(TestConstants.AppFolderPath);
             Directory.SetCurrentDirectory(dir);
 
             TestRailClient = new TestRailAPIClient(_testRailUrl,

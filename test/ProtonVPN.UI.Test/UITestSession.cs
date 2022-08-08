@@ -22,12 +22,14 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Windows;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.UI.Test.ApiClient;
+using ProtonVPN.UI.Test.FlaUI.Utils;
 using ProtonVPN.UI.Test.TestsHelper;
 
 namespace ProtonVPN.UI.Test
@@ -96,12 +98,14 @@ namespace ProtonVPN.UI.Test
             Session.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(timeInSeconds);
         }
 
-        protected static void DeleteProfiles()
+        public static void DeleteProfiles()
         {
             string args = $"{TestUserData.GetPlusUser().Username} {TestUserData.GetPlusUser().Password}";
+            Assembly asm = Assembly.GetExecutingAssembly();
+            string pathToProfileCleaner = Path.Combine(Path.GetDirectoryName(asm.Location), "TestTools.ProfileCleaner.exe");
             Process process = new Process
             {
-                StartInfo = new ProcessStartInfo("TestTools.ProfileCleaner.exe", args)
+                StartInfo = new ProcessStartInfo(pathToProfileCleaner, args)
             };
             process.Start();
             process.WaitForExit();
@@ -127,7 +131,7 @@ namespace ProtonVPN.UI.Test
         private static WindowsDriver<WindowsElement> CreateNewDriver()
         {
             var options = new AppiumOptions();
-            options.AddAdditionalCapability("app", AppPath);
+            options.AddAdditionalCapability("app", TestConstants.AppFolderPath + @"\ProtonVPN.exe");
             options.AddAdditionalCapability("deviceName", "WindowsPC");
             return new WindowsDriver<WindowsElement>(new Uri(WindowsApplicationDriverUrl), options);
         }

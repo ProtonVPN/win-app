@@ -40,6 +40,9 @@
     <WarningLevel>4</WarningLevel>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
+  <PropertyGroup>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Autofac, Version=4.9.4.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Autofac.4.9.4\lib\net45\Autofac.dll</HintPath>
@@ -54,7 +57,7 @@
       <HintPath>..\..\packages\Caliburn.Micro.3.2.0\lib\net45\Caliburn.Micro.Platform.Core.dll</HintPath>
     </Reference>
     <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Castle.Core.4.4.0\lib\net45\Castle.Core.dll</HintPath>
+      <HintPath>..\..\packages\Castle.Core.4.4.1\lib\net45\Castle.Core.dll</HintPath>
     </Reference>
     <Reference Include="FluentAssertions, Version=5.8.0.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\FluentAssertions.5.8.0\lib\net47\FluentAssertions.dll</HintPath>
@@ -66,16 +69,15 @@
     <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\MSTest.TestFramework.2.1.2\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="NSubstitute, Version=4.2.0.0, Culture=neutral, PublicKeyToken=92dd2e9066daa5ca, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NSubstitute.4.2.2\lib\net46\NSubstitute.dll</HintPath>
+    <Reference Include="NSubstitute, Version=4.3.0.0, Culture=neutral, PublicKeyToken=92dd2e9066daa5ca, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NSubstitute.4.3.0\lib\net46\NSubstitute.dll</HintPath>
     </Reference>
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
@@ -83,9 +85,6 @@
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
     </Reference>
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Caliburn.Micro.3.2.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
@@ -107,7 +106,7 @@
     <Compile Include="BugReporting\Diagnostic\NetworkAdapterLogTest.cs" />
     <Compile Include="BugReporting\Diagnostic\RoutingTableLogTest.cs" />
     <Compile Include="BugReporting\EmailValidatorTest.cs" />
-    <Compile Include="ConnectionInfo\ConnectionInfoResolverTest.cs" />
+    <Compile Include="ConnectionInfo\ConnectionErrorResolverTest.cs" />
     <Compile Include="Core\Config\ConfigDirectoriesTest.cs" />
     <Compile Include="Core\Config\Url\ActiveUrlsTest.cs" />
     <Compile Include="Core\Config\Url\ActiveUrlTest.cs" />
@@ -139,10 +138,14 @@
     <Compile Include="Vpn\Connectors\ProfileConnectorTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\..\src\ProtonVPN.Api.Contracts\ProtonVPN.Api.Contracts.csproj">
+      <Project>{9E4D6072-C8DE-475A-B9A7-4B6BF6EEEAEB}</Project>
+      <Name>ProtonVPN.Api.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\ProtonVPN.Api\ProtonVPN.Api.csproj">
+      <Project>{3E905528-D87C-4552-A32D-66BF90D14DB0}</Project>
+      <Name>ProtonVPN.Api</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\ProtonVPN.App\ProtonVPN.App.csproj">
       <Project>{0CDCA012-BB2D-49B3-944E-CE80D75D651A}</Project>
       <Name>ProtonVPN.App</Name>
@@ -163,23 +166,31 @@
       <Project>{45A0EA81-D37E-4D7F-8CE1-CE6B6A95A9ED}</Project>
       <Name>ProtonVPN.Resource</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ProtonVPN.Test.Common\ProtonVPN.Test.Common.csproj">
+      <Project>{A0DA4200-6643-4F2C-8450-65B8CE8A5576}</Project>
+      <Name>ProtonVPN.Test.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="BugReporting\Attachments\TestData\test-2.txt">
+    <Content Include="TestData\bug-report-test-2.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="BugReporting\Attachments\TestData\test-4.txt">
+    <Content Include="TestData\bug-report-test-4.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="BugReporting\Attachments\TestData\test-3.txt">
+    <Content Include="TestData\bug-report-test-3.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="BugReporting\Attachments\TestData\test.txt">
+    <Content Include="TestData\bug-report-test.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="BugReporting\Diagnostic\Tmp\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

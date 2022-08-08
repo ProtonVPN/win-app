@@ -1,0 +1,66 @@
+﻿/*
+ * Copyright (c) 2022 Proton Technologies AG
+ *
+ * This file is part of ProtonVPN.
+ *
+ * ProtonVPN is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * ProtonVPN is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+using System.Net.Http;
+using System.Threading;
+using System.Threading.Tasks;
+using ProtonVPN.Common.Configuration;
+using ProtonVPN.Common.Threading;
+
+namespace ProtonVPN.Api.Handlers
+{
+    /// <summary>
+    /// Cancels all not finished requests on user logout.
+    /// </summary>
+    public class CancellingHandler : CancellingHandlerBase
+    {
+        private readonly Config _config;
+        private readonly CancellationHandle _cancellationHandle = new();
+
+        public CancellingHandler(Config config, UnauthorizedResponseHandler unauthorizedResponseHandler)
+        {
+            _config = config;
+            InnerHandler = unauthorizedResponseHandler;
+        }
+
+        protected override async Task<HttpResponseMessage> SendAsync(
+            HttpRequestMessage request,
+            CancellationToken cancellationToken)
+        {
+            if (IsLogout(request))
+            {
+                _cancellationHandle.Cancel();
+            }
+
+            return await base.SendAsync(request,
+                HasAuthorization(request) ? _cancellationHandle.Token : cancellationToken);
+        }
+
+        private bool IsLogout(HttpRequestMessage request)
+        {
+            string endpoint = request.RequestUri.AbsoluteUri.Replace(_config.Urls.ApiUrl, "");
+            return request.Method == HttpMethod.Delete && endpoint == "auth";
+        }
+
+        private static bool HasAuthorization(HttpRequestMessage request)
+        {
+            return request.Headers.Authorization?.Scheme == "Bearer" && !string.IsNullOrEmpty(request.Headers.Authorization.Parameter);
+        }
+    }
+}

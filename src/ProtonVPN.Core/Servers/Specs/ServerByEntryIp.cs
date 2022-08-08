@@ -18,12 +18,13 @@
  */
 
 using System.Linq;
+using ProtonVPN.Api.Contracts;
+using ProtonVPN.Api.Contracts.Servers;
 using ProtonVPN.Core.Abstract;
-using ProtonVPN.Core.Api.Contracts;
 
 namespace ProtonVPN.Core.Servers.Specs
 {
-    public class ServerByEntryIp : Specification<LogicalServerContract>
+    public class ServerByEntryIp : Specification<LogicalServerResponse>
     {
         private readonly string _ip;
 
@@ -32,7 +33,7 @@ namespace ProtonVPN.Core.Servers.Specs
             _ip = ip;
         }
 
-        public override bool IsSatisfiedBy(LogicalServerContract item)
+        public override bool IsSatisfiedBy(LogicalServerResponse item)
         {
             return item.Servers.Any(s => s.EntryIp == _ip);
         }
