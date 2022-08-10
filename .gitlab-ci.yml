@@ -39,9 +39,7 @@ build-release:
     - echo "Restoring NuGet Packages..."
     - 'c:\nuget\nuget.exe restore ProtonVpn.sln'
     - MSBuild.exe /consoleloggerparameters:ErrorsOnly /maxcpucount /nologo /property:Configuration=Release /verbosity:quiet "src\\ProtonVPN.MarkupValidator\\ProtonVPN.MarkupValidator.csproj"
-    - echo "Downloading translations from crowdin..."
-    - git clone -b windows-vpn --single-branch "https://gitlab-ci-token:${CI_JOB_TOKEN}@${I18N_CACHE_REPO}" --depth 1
-    - python ci\main.py add-languages
+    - python ci\main.py lint-languages
     - python ci\main.py add-commit-hash $env:CI_COMMIT_SHORT_SHA
     - python ci\main.py defaultConfig
     - echo "Building release..."
@@ -65,8 +63,7 @@ build-debug:
     - 'c:\nuget\nuget.exe restore ProtonVpn.sln'
     - MSBuild.exe /consoleloggerparameters:ErrorsOnly /maxcpucount /nologo /property:Configuration=Release /verbosity:quiet "src\\ProtonVPN.MarkupValidator\\ProtonVPN.MarkupValidator.csproj"
     - echo "Downloading translations from crowdin..."
-    - git clone -b windows-vpn --single-branch "https://gitlab-ci-token:${CI_JOB_TOKEN}@${I18N_CACHE_REPO}" --depth 1
-    - python ci\main.py add-languages
+    - python ci\main.py lint-languages
     - python ci\main.py add-commit-hash $env:CI_COMMIT_SHORT_SHA
     - python ci\main.py defaultConfig
     - echo "Building debug..."
@@ -223,6 +220,10 @@ mirror:
 include:
   - project: 'translations/generator'
     ref: master
+    file: '/jobs/commit-locales.gitlab-ci.yml'
+
+  - project: 'translations/generator'
+    ref: master
     file: '/jobs/sync-crowdin.gitlab-ci.yml'
 
 i18n-sync-crowdin:
@@ -238,6 +239,13 @@ i18n-manual-sync-crowdin:
   variables:
       I18N_SYNC_CROWDIN_PROJECT: 'windows-vpn'
   extends: .i18n-sync-crowdin-common
+
+i18n-commit-translations:
+  extends: .i18n-commit-locales-shared
+  variables:
+      I18N_COMMIT_CROWDIN_PROJECT: 'windows-vpn'
+  before_script:
+    - git config --global core.autocrlf false
 
 create-release:
   image: debian:stable-slim
