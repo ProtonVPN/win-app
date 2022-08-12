@@ -28,7 +28,7 @@ namespace ProtonVPN.Core
 {
     public class LanguageProvider : ILanguageProvider
     {
-        private const string ResourceFile = "ProtonVPN.Translations.resources.dll";
+        private const string RESOURCE_FILE = "ProtonVPN.Translations.resources.dll";
 
         private readonly ILogger _logger;
         private readonly string _translationsFolder;
@@ -56,8 +56,8 @@ namespace ProtonVPN.Core
 
         private List<string> InternalGetAll()
         {
-            List<string> languageCodes = new() { _defaultLocale };
-            string[] files = Directory.GetFiles(_translationsFolder, ResourceFile, SearchOption.AllDirectories);
+            List<string> languageCodes = new();
+            string[] files = Directory.GetFiles(_translationsFolder, RESOURCE_FILE, SearchOption.AllDirectories);
 
             foreach (string file in files)
             {
@@ -66,6 +66,11 @@ namespace ProtonVPN.Core
                 {
                     languageCodes.Add(dirInfo.Parent.Name);
                 }
+            }
+
+            if (!languageCodes.Contains(_defaultLocale))
+            {
+                languageCodes.Add(_defaultLocale);
             }
 
             return languageCodes;

@@ -159,7 +159,7 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 DefaultWireGuardPorts = new[] { 51820, 88, 123, 49152, 1224 },
 
-                DefaultLocale = "en",
+                DefaultLocale = "en-US",
 
                 MaintenanceCheckInterval = TimeSpan.FromMinutes(30),
 

@@ -19,7 +19,7 @@ namespace ProtonVPN.Resource.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Strings {
@@ -81,18 +81,18 @@ namespace ProtonVPN.Resource.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Deutsch.
         /// </summary>
-        internal static string Language_de {
+        internal static string Language_de_DE {
             get {
-                return ResourceManager.GetString("Language_de", resourceCulture);
+                return ResourceManager.GetString("Language_de-DE", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to English.
         /// </summary>
-        internal static string Language_en {
+        internal static string Language_en_US {
             get {
-                return ResourceManager.GetString("Language_en", resourceCulture);
+                return ResourceManager.GetString("Language_en-US", resourceCulture);
             }
         }
         
@@ -126,90 +126,90 @@ namespace ProtonVPN.Resource.Properties {
         /// <summary>
         ///   Looks up a localized string similar to فارسی.
         /// </summary>
-        internal static string Language_fa {
+        internal static string Language_fa_IR {
             get {
-                return ResourceManager.GetString("Language_fa", resourceCulture);
+                return ResourceManager.GetString("Language_fa-IR", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Français.
         /// </summary>
-        internal static string Language_fr {
+        internal static string Language_fr_FR {
             get {
-                return ResourceManager.GetString("Language_fr", resourceCulture);
+                return ResourceManager.GetString("Language_fr-FR", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Hrvatski.
         /// </summary>
-        internal static string Language_hr {
+        internal static string Language_hr_HR {
             get {
-                return ResourceManager.GetString("Language_hr", resourceCulture);
+                return ResourceManager.GetString("Language_hr-HR", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Magyar.
         /// </summary>
-        internal static string Language_hu {
+        internal static string Language_hu_HU {
             get {
-                return ResourceManager.GetString("Language_hu", resourceCulture);
+                return ResourceManager.GetString("Language_hu-HU", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Bahasa, Indonesia.
         /// </summary>
-        internal static string Language_id {
+        internal static string Language_id_ID {
             get {
-                return ResourceManager.GetString("Language_id", resourceCulture);
+                return ResourceManager.GetString("Language_id-ID", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Italiano.
         /// </summary>
-        internal static string Language_it {
+        internal static string Language_it_IT {
             get {
-                return ResourceManager.GetString("Language_it", resourceCulture);
+                return ResourceManager.GetString("Language_it-IT", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to 日本人.
         /// </summary>
-        internal static string Language_ja {
+        internal static string Language_ja_JP {
             get {
-                return ResourceManager.GetString("Language_ja", resourceCulture);
+                return ResourceManager.GetString("Language_ja-JP", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Lietuvių.
         /// </summary>
-        internal static string Language_lt {
+        internal static string Language_lt_LT {
             get {
-                return ResourceManager.GetString("Language_lt", resourceCulture);
+                return ResourceManager.GetString("Language_lt-LT", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Nederlands.
         /// </summary>
-        internal static string Language_nl {
+        internal static string Language_nl_NL {
             get {
-                return ResourceManager.GetString("Language_nl", resourceCulture);
+                return ResourceManager.GetString("Language_nl-NL", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Polski.
         /// </summary>
-        internal static string Language_pl {
+        internal static string Language_pl_PL {
             get {
-                return ResourceManager.GetString("Language_pl", resourceCulture);
+                return ResourceManager.GetString("Language_pl-PL", resourceCulture);
             }
         }
         
@@ -234,27 +234,27 @@ namespace ProtonVPN.Resource.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Русский.
         /// </summary>
-        internal static string Language_ru {
+        internal static string Language_ru_RU {
             get {
-                return ResourceManager.GetString("Language_ru", resourceCulture);
+                return ResourceManager.GetString("Language_ru-RU", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Türkçe.
         /// </summary>
-        internal static string Language_tr {
+        internal static string Language_tr_TR {
             get {
-                return ResourceManager.GetString("Language_tr", resourceCulture);
+                return ResourceManager.GetString("Language_tr-TR", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Украї́нська.
         /// </summary>
-        internal static string Language_uk {
+        internal static string Language_uk_UA {
             get {
-                return ResourceManager.GetString("Language_uk", resourceCulture);
+                return ResourceManager.GetString("Language_uk-UA", resourceCulture);
             }
         }
         
