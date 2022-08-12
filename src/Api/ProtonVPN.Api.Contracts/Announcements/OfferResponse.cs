@@ -30,6 +30,6 @@ namespace ProtonVPN.Api.Contracts.Announcements
 
         public string Label { get; set; }
 
-        public OfferPanelResponse PanelResponse { get; set; }
+        public OfferPanelResponse Panel { get; set; }
     }
 }

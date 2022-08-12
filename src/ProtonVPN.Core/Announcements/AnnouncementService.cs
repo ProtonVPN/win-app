@@ -159,7 +159,7 @@ namespace ProtonVPN.Core.Announcements
         private IReadOnlyList<Announcement> Map(IList<AnnouncementResponse> announcements)
         {
             return announcements
-                .Where(apiAnnouncement => apiAnnouncement?.OfferResponse != null)
+                .Where(apiAnnouncement => apiAnnouncement?.Offer != null)
                 .Select(MapAnnouncement)
                 .Where(announcement => announcement != null)
                 .ToList();
@@ -175,10 +175,10 @@ namespace ProtonVPN.Core.Announcements
                     Id = announcementResponse.Id,
                     StartDateTimeUtc = MapTimestampToDateTimeUtc(announcementResponse.StartTimestamp),
                     EndDateTimeUtc = MapTimestampToDateTimeUtc(announcementResponse.EndTimestamp),
-                    Url = announcementResponse.OfferResponse.Url,
-                    Icon = announcementResponse.OfferResponse.Icon,
-                    Label = announcementResponse.OfferResponse.Label,
-                    Panel = MapPanel(announcementResponse.OfferResponse.PanelResponse),
+                    Url = announcementResponse.Offer.Url,
+                    Icon = announcementResponse.Offer.Icon,
+                    Label = announcementResponse.Offer.Label,
+                    Panel = MapPanel(announcementResponse.Offer.Panel),
                     Seen = false
                 };
             }

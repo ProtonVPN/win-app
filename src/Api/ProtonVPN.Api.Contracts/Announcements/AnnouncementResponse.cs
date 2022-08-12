@@ -32,6 +32,6 @@ namespace ProtonVPN.Api.Contracts.Announcements
         [JsonProperty(PropertyName = "EndTime")]
         public long EndTimestamp { get; set; }
 
-        public OfferResponse OfferResponse { get; set; }
+        public OfferResponse Offer { get; set; }
     }
 }

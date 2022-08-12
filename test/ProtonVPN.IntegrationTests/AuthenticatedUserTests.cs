@@ -18,7 +18,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Security;
@@ -49,27 +48,25 @@ namespace ProtonVPN.IntegrationTests
             "aFJlft9QCg==\n" +
             "-----END CERTIFICATE-----\n";
 
-        private readonly MockHttpMessageHandler _messageHandler = new();
-
         protected void SetApiResponsesForAuth()
         {
             SetAuthInfoResponse();
             SetAuthResponse();
             SetVpnInfoResponse();
             SetAuthCertificateResponse();
-            InitializeContainer(_messageHandler.ToHttpClient());
+            InitializeContainer();
         }
 
         protected void SetApiResponsesForAuthWithTwoFactor()
         {
             SetAuthInfoResponse();
             SetAuthResponseWithTwoFactorEnabled();
-            InitializeContainer(_messageHandler.ToHttpClient());
+            InitializeContainer();
         }
 
         private void SetAuthInfoResponse()
         {
-            _messageHandler.When(HttpMethod.Post, "/auth/info").Respond(_ => new HttpResponseMessage
+            MessageHandler.When(HttpMethod.Post, "/auth/info").Respond(_ => new HttpResponseMessage
             {
                 StatusCode = HttpStatusCode.OK,
                 Content = new StringContent(GetJsonMock("AuthInfoResponseMock"))
@@ -78,7 +75,7 @@ namespace ProtonVPN.IntegrationTests
 
         private void SetAuthResponse()
         {
-            _messageHandler.When(HttpMethod.Post, "/auth").Respond(_ => new HttpResponseMessage
+            MessageHandler.When(HttpMethod.Post, "/auth").Respond(_ => new HttpResponseMessage
             {
                 StatusCode = HttpStatusCode.OK,
                 Content = new StringContent(GetJsonMock("AuthResponseMock"))
@@ -87,7 +84,7 @@ namespace ProtonVPN.IntegrationTests
 
         private void SetAuthResponseWithTwoFactorEnabled()
         {
-            _messageHandler.When(HttpMethod.Post, "/auth").Respond(_ => new HttpResponseMessage
+            MessageHandler.When(HttpMethod.Post, "/auth").Respond(_ => new HttpResponseMessage
             {
                 StatusCode = HttpStatusCode.OK,
                 Content = new StringContent(GetJsonMock("AuthResponseWithTwoFactorEnabledMock"))
@@ -96,7 +93,7 @@ namespace ProtonVPN.IntegrationTests
 
         private void SetVpnInfoResponse()
         {
-            _messageHandler.When(HttpMethod.Get, "/vpn/v2").Respond(_ => new HttpResponseMessage
+            MessageHandler.When(HttpMethod.Get, "/vpn/v2").Respond(_ => new HttpResponseMessage
             {
                 StatusCode = HttpStatusCode.OK,
                 Content = new StringContent(GetJsonMock("VpnInfoWrapperResponseMock"))
@@ -105,16 +102,11 @@ namespace ProtonVPN.IntegrationTests
 
         private void SetAuthCertificateResponse()
         {
-            _messageHandler.When(HttpMethod.Post, "/vpn/v1/certificate").Respond(_ => new HttpResponseMessage
+            MessageHandler.When(HttpMethod.Post, "/vpn/v1/certificate").Respond(_ => new HttpResponseMessage
             {
                 StatusCode = HttpStatusCode.OK,
                 Content = new StringContent(GetJsonMock("CertificateResponseMock"))
             });
-        }
-
-        private string GetJsonMock(string name)
-        {
-            return File.ReadAllText($"TestData\\{name}.json");
         }
 
         protected async Task<AuthResult> MakeUserAuth(string password)

@@ -54,6 +54,8 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Announcements\AnnouncementCacheMock.cs" />
+    <Compile Include="Announcements\AnnouncementServiceTest.cs" />
     <Compile Include="AuthenticatedUserTests.cs" />
     <Compile Include="Auth\AuthCertificateTests.cs" />
     <Compile Include="Auth\LoginTests.cs" />
@@ -118,6 +120,15 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="TestData\MissingOfferAnnouncementsResponseMock.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\InvalidDataAnnouncementsResponseMock.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\AnnouncementsResponseMock.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="TestData\AuthInfoResponseMock.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
