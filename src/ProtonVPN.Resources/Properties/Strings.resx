@@ -123,10 +123,10 @@
   <data name="Language_ca" xml:space="preserve">
     <value>Català</value>
   </data>
-  <data name="Language_de" xml:space="preserve">
+  <data name="Language_de-DE" xml:space="preserve">
     <value>Deutsch</value>
   </data>
-  <data name="Language_en" xml:space="preserve">
+  <data name="Language_en-US" xml:space="preserve">
     <value>English</value>
   </data>
   <data name="Language_es-419" xml:space="preserve">
@@ -138,34 +138,34 @@
   <data name="Language_es-MX" xml:space="preserve">
     <value>Español, México</value>
   </data>
-  <data name="Language_fa" xml:space="preserve">
+  <data name="Language_fa-IR" xml:space="preserve">
     <value>فارسی</value>
   </data>
-  <data name="Language_fr" xml:space="preserve">
+  <data name="Language_fr-FR" xml:space="preserve">
     <value>Français</value>
   </data>
-  <data name="Language_hr" xml:space="preserve">
+  <data name="Language_hr-HR" xml:space="preserve">
     <value>Hrvatski</value>
   </data>
-  <data name="Language_hu" xml:space="preserve">
+  <data name="Language_hu-HU" xml:space="preserve">
     <value>Magyar</value>
   </data>
-  <data name="Language_id" xml:space="preserve">
+  <data name="Language_id-ID" xml:space="preserve">
     <value>Bahasa, Indonesia</value>
   </data>
-  <data name="Language_it" xml:space="preserve">
+  <data name="Language_it-IT" xml:space="preserve">
     <value>Italiano</value>
   </data>
-  <data name="Language_ja" xml:space="preserve">
+  <data name="Language_ja-JP" xml:space="preserve">
     <value>日本人</value>
   </data>
-  <data name="Language_lt" xml:space="preserve">
+  <data name="Language_lt-LT" xml:space="preserve">
     <value>Lietuvių</value>
   </data>
-  <data name="Language_nl" xml:space="preserve">
+  <data name="Language_nl-NL" xml:space="preserve">
     <value>Nederlands</value>
   </data>
-  <data name="Language_pl" xml:space="preserve">
+  <data name="Language_pl-PL" xml:space="preserve">
     <value>Polski</value>
   </data>
   <data name="Language_pt-BR" xml:space="preserve">
@@ -174,13 +174,13 @@
   <data name="Language_pt-PT" xml:space="preserve">
     <value>Português, Portugal</value>
   </data>
-  <data name="Language_ru" xml:space="preserve">
+  <data name="Language_ru-RU" xml:space="preserve">
     <value>Русский</value>
   </data>
-  <data name="Language_tr" xml:space="preserve">
+  <data name="Language_tr-TR" xml:space="preserve">
     <value>Türkçe</value>
   </data>
-  <data name="Language_uk" xml:space="preserve">
+  <data name="Language_uk-UA" xml:space="preserve">
     <value>Украї́нська</value>
   </data>
   <data name="Language_zh-CN" xml:space="preserve">

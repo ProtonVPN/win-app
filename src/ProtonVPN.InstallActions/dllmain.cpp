@@ -214,18 +214,22 @@ extern "C" EXPORT long SetLanguageISOCode(MSIHANDLE hInstall)
     wstring language = L"";
     switch (value)
     {
-        case 1031: language = L"de"; break;
-        case 1033: language = L"en"; break;
-        case 1036: language = L"fr"; break;
-        case 1040: language = L"it"; break;
-        case 1043: language = L"nl"; break;
-        case 1045: language = L"pl"; break;
+        case 1031: language = L"de-DE"; break;
+        case 1033: language = L"en-US"; break;
+        case 1034: language = L"es-ES"; break;
+        case 58378: language = L"es-419"; break;
+        case 1065: language = L"fa-IR"; break;
+        case 1036: language = L"fr-FR"; break;
+        case 1040: language = L"it-IT"; break;
+        case 1043: language = L"nl-NL"; break;
+        case 1045: language = L"pl-PL"; break;
         case 1046: language = L"pt-BR"; break;
-        case 1049: language = L"ru"; break;
-        case 1058: language = L"uk"; break;
-        case 1065: language = L"fa"; break;
         case 2070: language = L"pt-PT"; break;
-        case 3082: language = L"es-ES"; break;
+        case 1049: language = L"ru-RU"; break;
+        case 1055: language = L"tr-TR"; break;
+        case 1050: language = L"hr-HR"; break;
+        case 1057: language = L"id-ID"; break;
+        case 1058: language = L"uk-UA"; break;
     }
     if (!language.empty())
     {

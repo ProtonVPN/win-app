@@ -1,0 +1,3229 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="About_lbl_ChangelogVersion">
+    <value>Changelog van v.{0}</value>
+    <comment>The title of app version in change log in About window. The {0} is a placeholder for app version number.</comment>
+  </data>
+  <data name="About_lbl_ChangelogVersion_New">
+    <value>Nieuw</value>
+    <comment>The text displayed next to app version in change log in About window. Indicates this app version is newer than current version.</comment>
+  </data>
+  <data name="About_lbl_CurrentVersion">
+    <value>Huidige Versie:</value>
+    <comment>The label for current app version number in About window</comment>
+  </data>
+  <data name="About_lbl_CurrentVersion_EarlyAccess">
+    <value>Vroegtijdige Toegang</value>
+    <comment>The label displayed next to current app version in About window. Displayed for early access app version.</comment>
+  </data>
+  <data name="About_lbl_LastUpdate">
+    <value>Laatste Update:</value>
+    <comment>The label for last update date in About window</comment>
+  </data>
+  <data name="About_lbl_LicensingInformation">
+    <value>Licentie-informatie:</value>
+    <comment>The label for licensing information in About window</comment>
+  </data>
+  <data name="About_lnk_ReadLicense">
+    <value>Lees hier</value>
+    <comment>The text of "Read here" hyperlink in About window to read the licensing information</comment>
+  </data>
+  <data name="About_lnk_Update">
+    <value>Bijwerken</value>
+    <comment>The text of Update hyperlink in About window and Update flash notification (starts app update)</comment>
+  </data>
+  <data name="About_ttl">
+    <value>Over</value>
+    <comment>The title of About window</comment>
+  </data>
+  <data name="About_UpdateStatus_val_CheckFailed">
+    <value>Updates controleren is mislukt</value>
+    <comment>The app update status in About window</comment>
+  </data>
+  <data name="About_UpdateStatus_val_Checking">
+    <value>Controleren op updates</value>
+    <comment>The app update status in About window</comment>
+  </data>
+  <data name="About_UpdateStatus_val_DownloadFailed">
+    <value>Downloaden van updates mislukt</value>
+    <comment>The app update status in About window</comment>
+  </data>
+  <data name="About_UpdateStatus_val_Downloading">
+    <value>Update downloaden</value>
+    <comment>The app update status in About window</comment>
+  </data>
+  <data name="About_UpdateStatus_val_None">
+    <value>Proton VPN is up-to-date</value>
+    <comment>The app update status in About window</comment>
+  </data>
+  <data name="About_UpdateStatus_val_Ready">
+    <value>Nieuwe versie beschikbaar!</value>
+    <comment>The app update status in About window</comment>
+  </data>
+  <data name="Account_btn_ManageSubscription">
+    <value>Abonnement beheren</value>
+    <comment>The text on Manage subscription button in Account window (opens account management web page)</comment>
+  </data>
+  <data name="Account_lbl_AccessContent">
+    <value>Toegang tot geblokkeerde inhoud</value>
+    <comment>The text displayed in Account window</comment>
+  </data>
+  <data name="Account_lbl_AccountPlan">
+    <value>Abonnement:</value>
+    <comment>The label for account plan name in Account window</comment>
+  </data>
+  <data name="Account_lbl_AccountType">
+    <value>Accounttype:</value>
+    <comment>The label for account type in Account window</comment>
+  </data>
+  <data name="Account_lbl_AllPlusFeatures">
+    <value>Alle Plus abonnementsfuncties</value>
+    <comment>The text displayed in Account window</comment>
+  </data>
+  <data name="Account_lbl_Connection_One">
+    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; VPN-verbinding</value>
+  </data>
+  <data name="Account_lbl_Connection_Other">
+    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; VPN-verbindingen</value>
+  </data>
+  <data name="Account_lbl_Countries_Other">
+    <value>in &lt;Bold&gt;{0}&lt;/Bold&gt; landen</value>
+  </data>
+  <data name="Account_lbl_Countries_One">
+    <value>in &lt;Bold&gt;{0}&lt;/Bold&gt; land</value>
+  </data>
+  <data name="Account_lbl_Country_One">
+    <value>Land</value>
+  </data>
+  <data name="Account_lbl_Country_Other">
+    <value>Landen</value>
+  </data>
+  <data name="Account_lbl_CurrentPlan">
+    <value>Huidig abonnement</value>
+  </data>
+  <data name="Account_lbl_Device_One">
+    <value>Apparaat</value>
+  </data>
+  <data name="Account_lbl_Device_Other">
+    <value>Apparaten</value>
+  </data>
+  <data name="Account_lbl_Free">
+    <value>Proton VPN Free</value>
+    <comment>The name of VPN subscription plan</comment>
+  </data>
+  <data name="Account_lbl_HighestSpeed">
+    <value>&lt;Bold&gt;Hoogste&lt;/Bold&gt; snelheid (tot 10 Gbps)</value>
+    <comment>The text displayed in Account window</comment>
+  </data>
+  <data name="Account_lbl_HighSpeed">
+    <value>&lt;Bold&gt;Hoge&lt;/Bold&gt; snelheid</value>
+    <comment>The text displayed in Account window</comment>
+  </data>
+  <data name="Account_lbl_MediumSpeed">
+    <value>&lt;Bold&gt;Gemiddelde&lt;/Bold&gt; snelheid</value>
+    <comment>The text displayed in Account window</comment>
+  </data>
+  <data name="Account_lbl_NetShield">
+    <value>Adblocker (NetShield)</value>
+    <comment>The text displayed in Account window for NetShield</comment>
+  </data>
+  <data name="Account_lbl_NoLogs">
+    <value>Strict no-logs policy</value>
+    <comment>The text displayed in Account window</comment>
+  </data>
+  <data name="Account_lbl_P2P">
+    <value>P2P/Bittorrent ondersteuning</value>
+    <comment>The text displayed in Account window</comment>
+  </data>
+  <data name="Account_lbl_P2P_Info">
+    <value>Ondersteuning voor filesharing protocollen zoals BitTorrent.</value>
+    <comment>Tooltip message shown in account window when hovered on P2P exclamation mark icon</comment>
+  </data>
+  <data name="Account_lbl_Plus">
+    <value>Proton VPN Plus</value>
+    <comment>The name of VPN subscription plan</comment>
+  </data>
+  <data name="Account_lbl_SecureCoreVpn">
+    <value>Secure Core VPN</value>
+    <comment>The text displayed in Account window</comment>
+  </data>
+  <data name="Account_lbl_Servers_One">
+    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; server</value>
+  </data>
+  <data name="Account_lbl_Servers_Other">
+    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; servers</value>
+  </data>
+  <data name="Account_lbl_Streaming">
+    <value>Streaming service support</value>
+    <comment>The text displayed in Account window for Streaming service support</comment>
+  </data>
+  <data name="Account_lbl_TorOverVpn">
+    <value>TOR via VPN</value>
+    <comment>The text displayed in Account window</comment>
+  </data>
+  <data name="Account_lbl_Username">
+    <value>Gebruikersnaam:</value>
+    <comment>The label for user login name in Account window</comment>
+  </data>
+  <data name="Account_ttl">
+    <value>Account</value>
+    <comment>The title of Account window</comment>
+  </data>
+  <data name="Api_error_Timeout">
+    <value>Uw verzoek is mislukt. Gelieve opnieuw te proberen.</value>
+  </data>
+  <data name="App_mnu_About">
+    <value>Over</value>
+    <comment>The header of About menu item in the main app window (opens About window)</comment>
+  </data>
+  <data name="App_mnu_Account">
+    <value>Account</value>
+    <comment>The header of Account menu item in the main app window (opens Account window)</comment>
+  </data>
+  <data name="App_mnu_Connect">
+    <value>Verbind</value>
+    <comment>The header of Connect menu item in the Taskbar Notification Icon (Systray) context menu (connects to VPN using Quick Connect profile)</comment>
+  </data>
+  <data name="App_mnu_Disconnect">
+    <value>Verbinding verbreken</value>
+    <comment>The header of Disconnect menu item in the Taskbar Notification Icon (Systray) context menu (disconnects from VPN profile)</comment>
+  </data>
+  <data name="App_mnu_Exit">
+    <value>Afsluiten</value>
+    <comment>The header of Exit menu item in the main app window (exits the app)</comment>
+  </data>
+  <data name="App_mnu_Help">
+    <value>Hulp</value>
+    <comment>The header of Help menu item in the main app window (opens help web page)</comment>
+  </data>
+  <data name="App_mnu_Logout">
+    <value>Afmelden</value>
+    <comment>The header of Logout menu item in the main app window (logs out current user)</comment>
+  </data>
+  <data name="App_mnu_Profiles">
+    <value>Profielen</value>
+    <comment>The header of Profiles menu item in the main app window (opens Profiles window)</comment>
+  </data>
+  <data name="App_mnu_ReportBug">
+    <value>Een probleem melden</value>
+    <comment>The header of Report an Issue menu item in the main app window (opens Issue Report window)</comment>
+  </data>
+  <data name="App_mnu_Settings">
+    <value>Instellingen</value>
+    <comment>The header of Settings menu item in the main app window (opens Settings window)</comment>
+  </data>
+  <data name="App_msg_LogoutConnectedConfirm">
+    <value>Uitloggen van de applicatie zal de actieve VPN-verbinding verbreken. Wilt u doorgaan?</value>
+    <comment>The question displayed when trying to logout while connected to VPN</comment>
+  </data>
+  <data name="App_msg_UpdateConnectedConfirm">
+    <value>Om het updateproces te voltooien, zal Proton VPN de verbinding tijdelijk verbreken en de Permanente Kill Switch uitschakelen als een van deze actief zijn. Wilt u doorgaan?</value>
+    <comment>The question displayed when trying to update the app while connected to VPN</comment>
+  </data>
+  <data name="App_ttl">
+    <value>Proton VPN</value>
+    <comment>The title of main app window. Should not be converted.</comment>
+  </data>
+  <data name="BugReport_btn_Back">
+    <value>Vorige</value>
+    <comment>The text on Back button in Issue Report window</comment>
+  </data>
+  <data name="BugReport_btn_Cancel">
+    <value>Annuleer</value>
+    <comment>The text on Cancel button in Issue Report window (clears data and closes the window)</comment>
+  </data>
+  <data name="BugReport_btn_Close">
+    <value>Sluiten</value>
+    <comment>The text on Close button in Issue Report window (closes the window)</comment>
+  </data>
+  <data name="BugReport_btn_FillOutTheForm">
+    <value>Contacteer ons</value>
+  </data>
+  <data name="BugReport_btn_GetUpdates">
+    <value>Update</value>
+  </data>
+  <data name="BugReport_btn_GotIt">
+    <value>Done</value>
+  </data>
+  <data name="BugReport_btn_LearnMore">
+    <value>Meer informatie</value>
+  </data>
+  <data name="BugReport_btn_Retry">
+    <value>Opnieuw proberen</value>
+    <comment>The text on Retry button in Issue Report window (retries sending after failure)</comment>
+  </data>
+  <data name="BugReport_btn_Send">
+    <value>Send report</value>
+    <comment>The text on Send button in Issue Report window (sends the Issue report)</comment>
+  </data>
+  <data name="BugReport_btn_Troubleshoot">
+    <value>Probleemoplossing</value>
+    <comment>The text on Troubleshoot button in Issue Report window (opens troubleshooting window)</comment>
+  </data>
+  <data name="BugReport_lbl_DidNotHelp">
+    <value>Niet gelukt?</value>
+  </data>
+  <data name="BugReport_lbl_Email">
+    <value>E-mail</value>
+    <comment>The label for user e-mail address in Issue Report window</comment>
+  </data>
+  <data name="BugReport_lbl_EmailPlaceholder">
+    <value>We gebruiken dit e-mailadres om u te contacteren in verband met uw probleem.</value>
+    <comment>The watermark text displayed in empty user e-mail text box in Issue Report window</comment>
+  </data>
+  <data name="BugReport_lbl_HowToReproduce">
+    <value>Wat zijn de exacte stappen die u hebt uitgevoerd?</value>
+    <comment>The label in Issue Report window</comment>
+  </data>
+  <data name="BugReport_lbl_IncludeLogs">
+    <value>Foutmeldingslogboeken verzenden</value>
+    <comment>The label in Issue Report window</comment>
+  </data>
+  <data name="BugReport_lbl_IncludeLogsInfo">
+    <value>Door de volgende gegevens te verstrekken kan ons team uw probleem bekijken en in korte tijd samen met u tot een oplossing komen:
+• Overzicht van onlangs geïnstalleerde drivers
+• Lijst met geïnstalleerde programma's
+• Informatie over de Proton VPN-app en de logboeken
+• Overzicht van netwerkadapters
+• Routing table</value>
+    <comment>The text inside info tooltip in Issue Report window</comment>
+  </data>
+  <data name="BugReport_lbl_LogsDescription">
+    <value>Foutmeldingslogboeken helpen ons om uw probleem tot op de bodem te onderzoeken. Als u ze niet bijvoegt, kunnen we mogelijks het probleem niet volledig onderzoeken.</value>
+  </data>
+  <data name="BugReport_lbl_LogsTooltip">
+    <value>Een logboek is een type bestand dat ons laat zien welke acties u heeft ondernomen die geleid hebben tot een fout. We gebruiken ze enkel om uw probleem te helpen oplossen.</value>
+  </data>
+  <data name="BugReport_lbl_NewVersionAvailable">
+    <value>Update Proton VPN</value>
+  </data>
+  <data name="BugReport_lbl_NewVersionInfo">
+    <value>Deze versie van Proton VPN heeft misschien uw probleem al opgelost!</value>
+  </data>
+  <data name="BugReport_lbl_of">
+    <value>of</value>
+    <comment>The text displayed in report an issue form. For example: Step 1 of 3.</comment>
+  </data>
+  <data name="BugReport_lbl_QuickSolutions">
+    <value>Snelle oplossingen</value>
+  </data>
+  <data name="BugReport_lbl_QuickSolutionsInfo">
+    <value>Deze tips kunnen helpen om uw probleem sneller op te lossen.</value>
+  </data>
+  <data name="BugReport_lbl_Step">
+    <value>Stap</value>
+  </data>
+  <data name="BugReport_lbl_WhatIsTheIssue">
+    <value>Wat is het probleem?</value>
+  </data>
+  <data name="BugReport_lbl_WhatWentWrong">
+    <value>Wat is er misgegaan?</value>
+    <comment>The label in Issue Report window</comment>
+  </data>
+  <data name="BugReport_lbl_WillGetBack">
+    <value>We laten u zo snel als het kan iets weten.</value>
+  </data>
+  <data name="BugReport_msg_EmailNotValid">
+    <value>Ongeldig e-mailadres</value>
+  </data>
+  <data name="BugReport_msg_Sending">
+    <value>Versturen van rapport...</value>
+    <comment>The message displayed in Issue Report window while sending the report</comment>
+  </data>
+  <data name="BugReport_msg_SendingFailed">
+    <value>Uw melding werd niet verzonden</value>
+    <comment>The message displayed in Issue Report window when sending Issue report fails</comment>
+  </data>
+  <data name="BugReport_msg_SendingInfo">
+    <value>Wacht tot het verzenden is voltooid</value>
+    <comment>The message displayed in Issue Report window while sending the report</comment>
+  </data>
+  <data name="BugReport_msg_SendingSucceeded">
+    <value>Bedankt voor uw feedback</value>
+    <comment>The message displayed in Issue Report window when sending completes</comment>
+  </data>
+  <data name="BugReport_ttl">
+    <value>Een probleem melden</value>
+    <comment>The title of Issue Report window</comment>
+  </data>
+  <data name="Connecting_btn_Cancel">
+    <value>Annuleer</value>
+    <comment>The text on cancel button in Connecting overlay of main app window (cancels connection attempt)</comment>
+  </data>
+  <data name="Connecting_btn_TryAgain">
+    <value>Probeer opnieuw</value>
+    <comment>The text on retry button in Connecting overlay of main app window (retries connection to VPN)</comment>
+  </data>
+  <data name="Connecting_lbl_ConnectingTo_1">
+    <value>Verbinding maken met</value>
+    <comment>The beginning of text for VPN server being connected to in Connecting overlay of main app window. It shall be translated as a text before imaginary placeholder {0} in the text string "Connecting to {0}". If translated text suppose to not include any text before the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
+  </data>
+  <data name="Connecting_lbl_ConnectingTo_1_SecureCore">
+    <value>Aanmaken</value>
+    <comment>The beginning of text for Secure Core VPN server being connected to in Connecting overlay of main app window. It shall be translated as a text before imaginary placeholder {0} in the text string "Creating {0} connection". If translated text suppose to not include any text before the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
+  </data>
+  <data name="Connecting_lbl_ConnectingTo_2">
+    <value></value>
+    <comment>The end of text for VPN server being connected to in Connecting overlay of main app window. It shall be translated as the text after imaginary placeholder {0} in the text string "Connecting to {0}". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
+  </data>
+  <data name="Connecting_lbl_ConnectingTo_2_SecureCore">
+    <value>verbinding</value>
+    <comment>The end of text for Secure Core VPN server being connected to in Connecting overlay of main app window. It shall be translated as a text after imaginary placeholder {0} in the text string "Creating {0} connection". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
+  </data>
+  <data name="Connecting_lbl_FailedConnection_1">
+    <value>Verbinding met</value>
+    <comment>The beginning of text for VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text before imaginary placeholder {0} in the text string "Connection to {0} has failed". If translated text suppose to not include any text before the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
+  </data>
+  <data name="Connecting_lbl_FailedConnection_1_SecureCore">
+    <value>De</value>
+    <comment>The beginning of text for Secure Core VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text before imaginary placeholder {0} in the text string "The {0} connection has failed". If translated text suppose to not include any text before the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
+  </data>
+  <data name="Connecting_lbl_FailedConnection_2">
+    <value>is mislukt</value>
+    <comment>The end of text for VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text after imaginary placeholder {0} in the text string "Connection to {0} has failed". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
+  </data>
+  <data name="Connecting_lbl_FailedConnection_2_SecureCore">
+    <value>verbinding maken mislukt</value>
+    <comment>The end of text for Secure Core VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text after imaginary placeholder {0} in the text string "The {0} connection has failed". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
+  </data>
+  <data name="Connecting_VpnStatus_val_AssigningIp">
+    <value>IP-adres toewijzen</value>
+    <comment>The VPN status displayed in Connecting overlay of main app window</comment>
+  </data>
+  <data name="Connecting_VpnStatus_val_Authenticating">
+    <value>Gebruiker verifiëren</value>
+    <comment>The VPN status displayed in Connecting overlay of main app window</comment>
+  </data>
+  <data name="Connecting_VpnStatus_val_Connecting">
+    <value>Verbinding initialiseren</value>
+    <comment>The VPN status displayed in Connecting overlay of main app window</comment>
+  </data>
+  <data name="Connecting_VpnStatus_val_Pinging">
+    <value>Wachten op een bruikbaar netwerk...</value>
+    <comment>The VPN status displayed in Pinging overlay of main app window</comment>
+  </data>
+  <data name="Connecting_VpnStatus_val_RetrievingConfiguration">
+    <value>VPN-tunnel tot stand brengen</value>
+    <comment>The VPN status displayed in Connecting overlay of main app window</comment>
+  </data>
+  <data name="Connecting_VpnStatus_val_Waiting">
+    <value>Verbinding initialiseren</value>
+    <comment>The VPN status displayed in Connecting overlay of main app window</comment>
+  </data>
+  <data name="Country_val_AD">
+    <value>Andorra</value>
+    <comment>The name of AD country</comment>
+  </data>
+  <data name="Country_val_AE">
+    <value>Verenigde Arabische Emiraten</value>
+    <comment>The name of AE country</comment>
+  </data>
+  <data name="Country_val_AF">
+    <value>Afghanistan</value>
+    <comment>The name of AF country</comment>
+  </data>
+  <data name="Country_val_AG">
+    <value>Antigua en Barbuda</value>
+    <comment>The name of AG country</comment>
+  </data>
+  <data name="Country_val_AI">
+    <value>Anguilla</value>
+    <comment>The name of AI country</comment>
+  </data>
+  <data name="Country_val_AL">
+    <value>Albanië</value>
+    <comment>The name of AL country</comment>
+  </data>
+  <data name="Country_val_AM">
+    <value>Armenië</value>
+    <comment>The name of AM country</comment>
+  </data>
+  <data name="Country_val_AO">
+    <value>Angola</value>
+    <comment>The name of AO country</comment>
+  </data>
+  <data name="Country_val_AQ">
+    <value>Antarctica</value>
+    <comment>The name of AQ country</comment>
+  </data>
+  <data name="Country_val_AR">
+    <value>Argentinië</value>
+    <comment>The name of AR country</comment>
+  </data>
+  <data name="Country_val_AS">
+    <value>Amerikaans Samoa</value>
+    <comment>The name of AS country</comment>
+  </data>
+  <data name="Country_val_AT">
+    <value>Oostenrijk</value>
+    <comment>The name of AT country</comment>
+  </data>
+  <data name="Country_val_AU">
+    <value>Australië</value>
+    <comment>The name of AU country</comment>
+  </data>
+  <data name="Country_val_AW">
+    <value>Aruba</value>
+    <comment>The name of AW country</comment>
+  </data>
+  <data name="Country_val_AX">
+    <value>Aland Eilanden</value>
+    <comment>The name of AX country</comment>
+  </data>
+  <data name="Country_val_AZ">
+    <value>Azerbeidzjan</value>
+    <comment>The name of AZ country</comment>
+  </data>
+  <data name="Country_val_BA">
+    <value>Bosnië en Herzegovina</value>
+    <comment>The name of BA country</comment>
+  </data>
+  <data name="Country_val_BB">
+    <value>Barbados</value>
+    <comment>The name of BB country</comment>
+  </data>
+  <data name="Country_val_BD">
+    <value>Bangladesh</value>
+    <comment>The name of BD country</comment>
+  </data>
+  <data name="Country_val_BE">
+    <value>België</value>
+    <comment>The name of BE country</comment>
+  </data>
+  <data name="Country_val_BF">
+    <value>Burkina Faso</value>
+    <comment>The name of BF country</comment>
+  </data>
+  <data name="Country_val_BG">
+    <value>Bulgarije</value>
+    <comment>The name of BG country</comment>
+  </data>
+  <data name="Country_val_BH">
+    <value>Bahrain</value>
+    <comment>The name of BH country</comment>
+  </data>
+  <data name="Country_val_BI">
+    <value>Boeroendi</value>
+    <comment>The name of BI country</comment>
+  </data>
+  <data name="Country_val_BJ">
+    <value>Benin</value>
+    <comment>The name of BJ country</comment>
+  </data>
+  <data name="Country_val_BL">
+    <value>Sint-Bartholomeus</value>
+    <comment>The name of BL country</comment>
+  </data>
+  <data name="Country_val_BM">
+    <value>Bermuda</value>
+    <comment>The name of BM country</comment>
+  </data>
+  <data name="Country_val_BN">
+    <value>Brunei Darussalam</value>
+    <comment>The name of BN country</comment>
+  </data>
+  <data name="Country_val_BO">
+    <value>Bolivia</value>
+    <comment>The name of BO country</comment>
+  </data>
+  <data name="Country_val_BQ">
+    <value>Bonaire, Sint Eustatius en Saba</value>
+    <comment>The name of BQ country</comment>
+  </data>
+  <data name="Country_val_BR">
+    <value>Brazilië</value>
+    <comment>The name of BR country</comment>
+  </data>
+  <data name="Country_val_BS">
+    <value>Bahama's</value>
+    <comment>The name of BS country</comment>
+  </data>
+  <data name="Country_val_BT">
+    <value>Bhutan</value>
+    <comment>The name of BT country</comment>
+  </data>
+  <data name="Country_val_BV">
+    <value>Bouvet Eiland</value>
+    <comment>The name of BV country</comment>
+  </data>
+  <data name="Country_val_BW">
+    <value>Botswana</value>
+    <comment>The name of BW country</comment>
+  </data>
+  <data name="Country_val_BY">
+    <value>Wit-Rusland</value>
+    <comment>The name of BY country</comment>
+  </data>
+  <data name="Country_val_BZ">
+    <value>Belize</value>
+    <comment>The name of BZ country</comment>
+  </data>
+  <data name="Country_val_CA">
+    <value>Canada</value>
+    <comment>The name of CA country</comment>
+  </data>
+  <data name="Country_val_CC">
+    <value>Cocoseilanden</value>
+    <comment>The name of CC country</comment>
+  </data>
+  <data name="Country_val_CD">
+    <value>Congo (Democratische Republiek)</value>
+    <comment>The name of CD country</comment>
+  </data>
+  <data name="Country_val_CF">
+    <value>Centraal Afrikaanse Republiek</value>
+    <comment>The name of CF country</comment>
+  </data>
+  <data name="Country_val_CG">
+    <value>Congo</value>
+    <comment>The name of CG country</comment>
+  </data>
+  <data name="Country_val_CH">
+    <value>Zwitserland</value>
+    <comment>The name of CH country</comment>
+  </data>
+  <data name="Country_val_CI">
+    <value>Ivoorkust</value>
+    <comment>The name of CI country</comment>
+  </data>
+  <data name="Country_val_CK">
+    <value>Cook Eilanden</value>
+    <comment>The name of CK country</comment>
+  </data>
+  <data name="Country_val_CL">
+    <value>Chili</value>
+    <comment>The name of CL country</comment>
+  </data>
+  <data name="Country_val_CM">
+    <value>Kameroen</value>
+    <comment>The name of CM country</comment>
+  </data>
+  <data name="Country_val_CN">
+    <value>China</value>
+    <comment>The name of CN country</comment>
+  </data>
+  <data name="Country_val_CO">
+    <value>Colombia</value>
+    <comment>The name of CO country</comment>
+  </data>
+  <data name="Country_val_CR">
+    <value>Costa Rica</value>
+    <comment>The name of CR country</comment>
+  </data>
+  <data name="Country_val_CU">
+    <value>Cuba</value>
+    <comment>The name of CU country</comment>
+  </data>
+  <data name="Country_val_CV">
+    <value>Kaapverdië</value>
+    <comment>The name of CV country</comment>
+  </data>
+  <data name="Country_val_CW">
+    <value>Curaçao</value>
+    <comment>The name of CW country</comment>
+  </data>
+  <data name="Country_val_CX">
+    <value>Kersteiland</value>
+    <comment>The name of CX country</comment>
+  </data>
+  <data name="Country_val_CY">
+    <value>Cyprus</value>
+    <comment>The name of CY country</comment>
+  </data>
+  <data name="Country_val_CZ">
+    <value>Tsjechisch</value>
+    <comment>The name of CZ country</comment>
+  </data>
+  <data name="Country_val_DE">
+    <value>Duitsland</value>
+    <comment>The name of DE country</comment>
+  </data>
+  <data name="Country_val_DJ">
+    <value>Djibouti</value>
+    <comment>The name of DJ country</comment>
+  </data>
+  <data name="Country_val_DK">
+    <value>Denemarken</value>
+    <comment>The name of DK country</comment>
+  </data>
+  <data name="Country_val_DM">
+    <value>Dominica</value>
+    <comment>The name of DM country</comment>
+  </data>
+  <data name="Country_val_DO">
+    <value>Dominicaanse Republiek</value>
+    <comment>The name of DO country</comment>
+  </data>
+  <data name="Country_val_DZ">
+    <value>Algerije</value>
+    <comment>The name of DZ country</comment>
+  </data>
+  <data name="Country_val_EC">
+    <value>Ecuador</value>
+    <comment>The name of EC country</comment>
+  </data>
+  <data name="Country_val_EE">
+    <value>Estland</value>
+    <comment>The name of EE country</comment>
+  </data>
+  <data name="Country_val_EG">
+    <value>Egypte</value>
+    <comment>The name of EG country</comment>
+  </data>
+  <data name="Country_val_EH">
+    <value>Westelijke Sahara</value>
+    <comment>The name of EH country</comment>
+  </data>
+  <data name="Country_val_ER">
+    <value>Eritrea</value>
+    <comment>The name of ER country</comment>
+  </data>
+  <data name="Country_val_ES">
+    <value>Spanje</value>
+    <comment>The name of ES country</comment>
+  </data>
+  <data name="Country_val_ET">
+    <value>Ethiopië</value>
+    <comment>The name of ET country</comment>
+  </data>
+  <data name="Country_val_FI">
+    <value>Finland</value>
+    <comment>The name of FI country</comment>
+  </data>
+  <data name="Country_val_FJ">
+    <value>Fiji</value>
+    <comment>The name of FJ country</comment>
+  </data>
+  <data name="Country_val_FK">
+    <value>Falkland Eilanden (Malvinas)</value>
+    <comment>The name of FK country</comment>
+  </data>
+  <data name="Country_val_FM">
+    <value>Micronesië</value>
+    <comment>The name of FM country</comment>
+  </data>
+  <data name="Country_val_FO">
+    <value>Faeröer Eilanden</value>
+    <comment>The name of FO country</comment>
+  </data>
+  <data name="Country_val_FR">
+    <value>Frankrijk</value>
+    <comment>The name of FR country</comment>
+  </data>
+  <data name="Country_val_GA">
+    <value>Gabon</value>
+    <comment>The name of GA country</comment>
+  </data>
+  <data name="Country_val_GB">
+    <value>Verenigd Koninkrijk</value>
+    <comment>The name of GB country</comment>
+  </data>
+  <data name="Country_val_GD">
+    <value>Grenada</value>
+    <comment>The name of GD country</comment>
+  </data>
+  <data name="Country_val_GE">
+    <value>Georgië</value>
+    <comment>The name of GE country</comment>
+  </data>
+  <data name="Country_val_GF">
+    <value>Franse Guinee</value>
+    <comment>The name of GF country</comment>
+  </data>
+  <data name="Country_val_GG">
+    <value>Guernsey</value>
+    <comment>The name of GG country</comment>
+  </data>
+  <data name="Country_val_GH">
+    <value>Ghana</value>
+    <comment>The name of GH country</comment>
+  </data>
+  <data name="Country_val_GI">
+    <value>Gibraltar</value>
+    <comment>The name of GI country</comment>
+  </data>
+  <data name="Country_val_GL">
+    <value>Groenland</value>
+    <comment>The name of GL country</comment>
+  </data>
+  <data name="Country_val_GM">
+    <value>Gambia</value>
+    <comment>The name of GM country</comment>
+  </data>
+  <data name="Country_val_GN">
+    <value>Guinee</value>
+    <comment>The name of GN country</comment>
+  </data>
+  <data name="Country_val_GP">
+    <value>Guadeloupe</value>
+    <comment>The name of GP country</comment>
+  </data>
+  <data name="Country_val_GQ">
+    <value>Equatoriaal Guinea</value>
+    <comment>The name of GQ country</comment>
+  </data>
+  <data name="Country_val_GR">
+    <value>Griekenland</value>
+    <comment>The name of GR country</comment>
+  </data>
+  <data name="Country_val_GS">
+    <value>Zuid-Georgië en de Zuidelijke Sandwicheilanden</value>
+    <comment>The name of GS country</comment>
+  </data>
+  <data name="Country_val_GT">
+    <value>Guatemala</value>
+    <comment>The name of GT country</comment>
+  </data>
+  <data name="Country_val_GU">
+    <value>Guam</value>
+    <comment>The name of GU country</comment>
+  </data>
+  <data name="Country_val_GW">
+    <value>Guinee-Bissau</value>
+    <comment>The name of GW country</comment>
+  </data>
+  <data name="Country_val_GY">
+    <value>Guyana</value>
+    <comment>The name of GY country</comment>
+  </data>
+  <data name="Country_val_HK">
+    <value>Hong Kong</value>
+    <comment>The name of HK country</comment>
+  </data>
+  <data name="Country_val_HM">
+    <value>Heard- en MacDonaldeilanden</value>
+    <comment>The name of HM country</comment>
+  </data>
+  <data name="Country_val_HN">
+    <value>Honduras</value>
+    <comment>The name of HN country</comment>
+  </data>
+  <data name="Country_val_HR">
+    <value>Kroatië</value>
+    <comment>The name of HR country</comment>
+  </data>
+  <data name="Country_val_HT">
+    <value>Haïti</value>
+    <comment>The name of HT country</comment>
+  </data>
+  <data name="Country_val_HU">
+    <value>Hongarije</value>
+    <comment>The name of HU country</comment>
+  </data>
+  <data name="Country_val_ID">
+    <value>Indonesië</value>
+    <comment>The name of ID country</comment>
+  </data>
+  <data name="Country_val_IE">
+    <value>Ierland</value>
+    <comment>The name of IE country</comment>
+  </data>
+  <data name="Country_val_IL">
+    <value>Israël</value>
+    <comment>The name of IL country</comment>
+  </data>
+  <data name="Country_val_IM">
+    <value>Isle of Man</value>
+    <comment>The name of IM country</comment>
+  </data>
+  <data name="Country_val_IN">
+    <value>India</value>
+    <comment>The name of IN country</comment>
+  </data>
+  <data name="Country_val_IO">
+    <value>Brits Indische Oceaan Territorium</value>
+    <comment>The name of IO country</comment>
+  </data>
+  <data name="Country_val_IQ">
+    <value>Irak</value>
+    <comment>The name of IQ country</comment>
+  </data>
+  <data name="Country_val_IR">
+    <value>Iran</value>
+    <comment>The name of IR country</comment>
+  </data>
+  <data name="Country_val_IS">
+    <value>IJsland</value>
+    <comment>The name of IS country</comment>
+  </data>
+  <data name="Country_val_IT">
+    <value>Italië</value>
+    <comment>The name of IT country</comment>
+  </data>
+  <data name="Country_val_JE">
+    <value>Jersey</value>
+    <comment>The name of JE country</comment>
+  </data>
+  <data name="Country_val_JM">
+    <value>Jamaica</value>
+    <comment>The name of JM country</comment>
+  </data>
+  <data name="Country_val_JO">
+    <value>Jordanië</value>
+    <comment>The name of JO country</comment>
+  </data>
+  <data name="Country_val_JP">
+    <value>Japan</value>
+    <comment>The name of JP country</comment>
+  </data>
+  <data name="Country_val_KE">
+    <value>Kenia</value>
+    <comment>The name of KE country</comment>
+  </data>
+  <data name="Country_val_KG">
+    <value>Kirgizië</value>
+    <comment>The name of KG country</comment>
+  </data>
+  <data name="Country_val_KH">
+    <value>Cambodja</value>
+    <comment>The name of KH country</comment>
+  </data>
+  <data name="Country_val_KI">
+    <value>Kiribati</value>
+    <comment>The name of KI country</comment>
+  </data>
+  <data name="Country_val_KM">
+    <value>Comoren</value>
+    <comment>The name of KM country</comment>
+  </data>
+  <data name="Country_val_KN">
+    <value>Saint Kitts en Nevis</value>
+    <comment>The name of KN country</comment>
+  </data>
+  <data name="Country_val_KP">
+    <value>Noord-Korea</value>
+    <comment>The name of KP country</comment>
+  </data>
+  <data name="Country_val_KR">
+    <value>Zuid-Korea</value>
+    <comment>The name of KR country</comment>
+  </data>
+  <data name="Country_val_KW">
+    <value>Koeweit</value>
+    <comment>The name of KW country</comment>
+  </data>
+  <data name="Country_val_KY">
+    <value>Kaaiman Eilanden</value>
+    <comment>The name of KY country</comment>
+  </data>
+  <data name="Country_val_KZ">
+    <value>Kazachstan</value>
+    <comment>The name of KZ country</comment>
+  </data>
+  <data name="Country_val_LA">
+    <value>Laos</value>
+    <comment>The name of LA country</comment>
+  </data>
+  <data name="Country_val_LB">
+    <value>Libanon</value>
+    <comment>The name of LB country</comment>
+  </data>
+  <data name="Country_val_LC">
+    <value>Saint Lucia</value>
+    <comment>The name of LC country</comment>
+  </data>
+  <data name="Country_val_LI">
+    <value>Liechtenstein</value>
+    <comment>The name of LI country</comment>
+  </data>
+  <data name="Country_val_LK">
+    <value>Sri Lanka</value>
+    <comment>The name of LK country</comment>
+  </data>
+  <data name="Country_val_LR">
+    <value>Liberia</value>
+    <comment>The name of LR country</comment>
+  </data>
+  <data name="Country_val_LS">
+    <value>Lesotho</value>
+    <comment>The name of LS country</comment>
+  </data>
+  <data name="Country_val_LT">
+    <value>Litouwen</value>
+    <comment>The name of LT country</comment>
+  </data>
+  <data name="Country_val_LU">
+    <value>Luxemburg</value>
+    <comment>The name of LU country</comment>
+  </data>
+  <data name="Country_val_LV">
+    <value>Letland</value>
+    <comment>The name of LV country</comment>
+  </data>
+  <data name="Country_val_LY">
+    <value>Libië</value>
+    <comment>The name of LY country</comment>
+  </data>
+  <data name="Country_val_MA">
+    <value>Marokko</value>
+    <comment>The name of MA country</comment>
+  </data>
+  <data name="Country_val_MC">
+    <value>Monaco</value>
+    <comment>The name of MC country</comment>
+  </data>
+  <data name="Country_val_MD">
+    <value>Moldavië</value>
+    <comment>The name of MD country</comment>
+  </data>
+  <data name="Country_val_ME">
+    <value>Montenegro</value>
+    <comment>The name of ME country</comment>
+  </data>
+  <data name="Country_val_MF">
+    <value>Sint Maarten (Frans deel)</value>
+    <comment>The name of MF country</comment>
+  </data>
+  <data name="Country_val_MG">
+    <value>Madagaskar</value>
+    <comment>The name of MG country</comment>
+  </data>
+  <data name="Country_val_MH">
+    <value>Marshall Eilanden</value>
+    <comment>The name of MH country</comment>
+  </data>
+  <data name="Country_val_MK">
+    <value>Noord-Macedonië</value>
+    <comment>The name of MK country</comment>
+  </data>
+  <data name="Country_val_ML">
+    <value>Mali</value>
+    <comment>The name of ML country</comment>
+  </data>
+  <data name="Country_val_MM">
+    <value>Myanmar</value>
+    <comment>The name of MM country</comment>
+  </data>
+  <data name="Country_val_MN">
+    <value>Mongolië</value>
+    <comment>The name of MN country</comment>
+  </data>
+  <data name="Country_val_MO">
+    <value>Macau</value>
+    <comment>The name of MO country</comment>
+  </data>
+  <data name="Country_val_MP">
+    <value>Noordelijke Marianen</value>
+    <comment>The name of MP country</comment>
+  </data>
+  <data name="Country_val_MQ">
+    <value>Martinique</value>
+    <comment>The name of MQ country</comment>
+  </data>
+  <data name="Country_val_MR">
+    <value>Mauritanië</value>
+    <comment>The name of MR country</comment>
+  </data>
+  <data name="Country_val_MS">
+    <value>Montserrat</value>
+    <comment>The name of MS country</comment>
+  </data>
+  <data name="Country_val_MT">
+    <value>Malta</value>
+    <comment>The name of MT country</comment>
+  </data>
+  <data name="Country_val_MU">
+    <value>Mauritius</value>
+    <comment>The name of MU country</comment>
+  </data>
+  <data name="Country_val_MV">
+    <value>Malediven</value>
+    <comment>The name of MV country</comment>
+  </data>
+  <data name="Country_val_MW">
+    <value>Malawi</value>
+    <comment>The name of MW country</comment>
+  </data>
+  <data name="Country_val_MX">
+    <value>Mexico</value>
+    <comment>The name of MX country</comment>
+  </data>
+  <data name="Country_val_MY">
+    <value>Maleisië</value>
+    <comment>The name of MY country</comment>
+  </data>
+  <data name="Country_val_MZ">
+    <value>Mozambique</value>
+    <comment>The name of MZ country</comment>
+  </data>
+  <data name="Country_val_NA">
+    <value>Namibië</value>
+    <comment>The name of NA country</comment>
+  </data>
+  <data name="Country_val_NC">
+    <value>Nieuw-Caledonië</value>
+    <comment>The name of NC country</comment>
+  </data>
+  <data name="Country_val_NE">
+    <value>Niger</value>
+    <comment>The name of NE country</comment>
+  </data>
+  <data name="Country_val_NF">
+    <value>Norfolk eiland</value>
+    <comment>The name of NF country</comment>
+  </data>
+  <data name="Country_val_NG">
+    <value>Nigeria</value>
+    <comment>The name of NG country</comment>
+  </data>
+  <data name="Country_val_NI">
+    <value>Nicaragua</value>
+    <comment>The name of NI country</comment>
+  </data>
+  <data name="Country_val_NL">
+    <value>Nederland</value>
+    <comment>The name of NL country</comment>
+  </data>
+  <data name="Country_val_NO">
+    <value>Noorwegen</value>
+    <comment>The name of NO country</comment>
+  </data>
+  <data name="Country_val_NP">
+    <value>Nepal</value>
+    <comment>The name of NP country</comment>
+  </data>
+  <data name="Country_val_NR">
+    <value>Nauru</value>
+    <comment>The name of NR country</comment>
+  </data>
+  <data name="Country_val_NU">
+    <value>Niue</value>
+    <comment>The name of NU country</comment>
+  </data>
+  <data name="Country_val_NZ">
+    <value>Nieuw-Zeeland</value>
+    <comment>The name of NZ country</comment>
+  </data>
+  <data name="Country_val_OM">
+    <value>Oman</value>
+    <comment>The name of OM country</comment>
+  </data>
+  <data name="Country_val_PA">
+    <value>Panama</value>
+    <comment>The name of PA country</comment>
+  </data>
+  <data name="Country_val_PE">
+    <value>Peru</value>
+    <comment>The name of PE country</comment>
+  </data>
+  <data name="Country_val_PF">
+    <value>Frans-Polynesië</value>
+    <comment>The name of PF country</comment>
+  </data>
+  <data name="Country_val_PG">
+    <value>Papoea-Nieuw-Guinea</value>
+    <comment>The name of PG country</comment>
+  </data>
+  <data name="Country_val_PH">
+    <value>Filipijnen</value>
+    <comment>The name of PH country</comment>
+  </data>
+  <data name="Country_val_PK">
+    <value>Pakistan</value>
+    <comment>The name of PK country</comment>
+  </data>
+  <data name="Country_val_PL">
+    <value>Polen</value>
+    <comment>The name of PL country</comment>
+  </data>
+  <data name="Country_val_PM">
+    <value>Saint-Pierre en Miquelon</value>
+    <comment>The name of PM country</comment>
+  </data>
+  <data name="Country_val_PN">
+    <value>Pitcairneilanden</value>
+    <comment>The name of PN country</comment>
+  </data>
+  <data name="Country_val_PR">
+    <value>Puerto Rico</value>
+    <comment>The name of PR country</comment>
+  </data>
+  <data name="Country_val_PS">
+    <value>Palestina</value>
+    <comment>The name of PS country</comment>
+  </data>
+  <data name="Country_val_PT">
+    <value>Portugal</value>
+    <comment>The name of PT country</comment>
+  </data>
+  <data name="Country_val_PW">
+    <value>Palau</value>
+    <comment>The name of PW country</comment>
+  </data>
+  <data name="Country_val_PY">
+    <value>Paraguay</value>
+    <comment>The name of PY country</comment>
+  </data>
+  <data name="Country_val_QA">
+    <value>Qatar</value>
+    <comment>The name of QA country</comment>
+  </data>
+  <data name="Country_val_RE">
+    <value>Réunion</value>
+    <comment>The name of RE country</comment>
+  </data>
+  <data name="Country_val_RO">
+    <value>Roemenië</value>
+    <comment>The name of RO country</comment>
+  </data>
+  <data name="Country_val_RS">
+    <value>Servië</value>
+    <comment>The name of RS country</comment>
+  </data>
+  <data name="Country_val_RU">
+    <value>Rusland</value>
+    <comment>The name of RU country</comment>
+  </data>
+  <data name="Country_val_RW">
+    <value>Rwanda</value>
+    <comment>The name of RW country</comment>
+  </data>
+  <data name="Country_val_SA">
+    <value>Saudi-Arabië</value>
+    <comment>The name of SA country</comment>
+  </data>
+  <data name="Country_val_SB">
+    <value>Salomonseilanden</value>
+    <comment>The name of SB country</comment>
+  </data>
+  <data name="Country_val_SC">
+    <value>Seychellen</value>
+    <comment>The name of SC country</comment>
+  </data>
+  <data name="Country_val_SD">
+    <value>Soedan</value>
+    <comment>The name of SD country</comment>
+  </data>
+  <data name="Country_val_SE">
+    <value>Zweden</value>
+    <comment>The name of SE country</comment>
+  </data>
+  <data name="Country_val_SG">
+    <value>Singapore</value>
+    <comment>The name of SG country</comment>
+  </data>
+  <data name="Country_val_SH">
+    <value>Sint-Helena, Ascension en Tristan da Cunha</value>
+    <comment>The name of SH country</comment>
+  </data>
+  <data name="Country_val_SI">
+    <value>Slovenië</value>
+    <comment>The name of SI country</comment>
+  </data>
+  <data name="Country_val_SJ">
+    <value>Spitsbergen en Jan Mayen</value>
+    <comment>The name of SJ country</comment>
+  </data>
+  <data name="Country_val_SK">
+    <value>Slowakije</value>
+    <comment>The name of SK country</comment>
+  </data>
+  <data name="Country_val_SL">
+    <value>Sierra Leone</value>
+    <comment>The name of SL country</comment>
+  </data>
+  <data name="Country_val_SM">
+    <value>San Marino</value>
+    <comment>The name of SM country</comment>
+  </data>
+  <data name="Country_val_SN">
+    <value>Senegal</value>
+    <comment>The name of SN country</comment>
+  </data>
+  <data name="Country_val_SO">
+    <value>Somalië</value>
+    <comment>The name of SO country</comment>
+  </data>
+  <data name="Country_val_SR">
+    <value>Suriname</value>
+    <comment>The name of SR country</comment>
+  </data>
+  <data name="Country_val_SS">
+    <value>Zuid-Soedan</value>
+    <comment>The name of SS country</comment>
+  </data>
+  <data name="Country_val_ST">
+    <value>Sao Tomé en Principe</value>
+    <comment>The name of ST country</comment>
+  </data>
+  <data name="Country_val_SV">
+    <value>El Salvador</value>
+    <comment>The name of SV country</comment>
+  </data>
+  <data name="Country_val_SX">
+    <value>Sint Maarten (Nederlands deel)</value>
+    <comment>The name of SX country</comment>
+  </data>
+  <data name="Country_val_SY">
+    <value>Syrische Arabische Republiek</value>
+    <comment>The name of SY country</comment>
+  </data>
+  <data name="Country_val_SZ">
+    <value>Swaziland</value>
+    <comment>The name of SZ country</comment>
+  </data>
+  <data name="Country_val_TC">
+    <value>De Turks- en Caicoseilanden</value>
+    <comment>The name of TC country</comment>
+  </data>
+  <data name="Country_val_TD">
+    <value>Tsjaad</value>
+    <comment>The name of TD country</comment>
+  </data>
+  <data name="Country_val_TF">
+    <value>Franse Zuidelijke en Antarctische Gebieden</value>
+    <comment>The name of TF country</comment>
+  </data>
+  <data name="Country_val_TG">
+    <value>Togo</value>
+    <comment>The name of TG country</comment>
+  </data>
+  <data name="Country_val_TH">
+    <value>Thailand</value>
+    <comment>The name of TH country</comment>
+  </data>
+  <data name="Country_val_TJ">
+    <value>Tadjikistan</value>
+    <comment>The name of TJ country</comment>
+  </data>
+  <data name="Country_val_TK">
+    <value>Tokelau</value>
+    <comment>The name of TK country</comment>
+  </data>
+  <data name="Country_val_TL">
+    <value>Oost-Timor</value>
+    <comment>The name of TL country</comment>
+  </data>
+  <data name="Country_val_TM">
+    <value>Turkmenistan</value>
+    <comment>The name of TM country</comment>
+  </data>
+  <data name="Country_val_TN">
+    <value>Tunesië</value>
+    <comment>The name of TN country</comment>
+  </data>
+  <data name="Country_val_TO">
+    <value>Tonga</value>
+    <comment>The name of TO country</comment>
+  </data>
+  <data name="Country_val_TR">
+    <value>Turkije</value>
+    <comment>The name of TR country</comment>
+  </data>
+  <data name="Country_val_TT">
+    <value>Trinidad en Tobago</value>
+    <comment>The name of TT country</comment>
+  </data>
+  <data name="Country_val_TV">
+    <value>Tuvalu</value>
+    <comment>The name of TV country</comment>
+  </data>
+  <data name="Country_val_TW">
+    <value>Taiwan</value>
+    <comment>The name of TW country</comment>
+  </data>
+  <data name="Country_val_TZ">
+    <value>Tanzania</value>
+    <comment>The name of TZ country</comment>
+  </data>
+  <data name="Country_val_UA">
+    <value>Oekraïne</value>
+    <comment>The name of UA country</comment>
+  </data>
+  <data name="Country_val_UG">
+    <value>Oeganda</value>
+    <comment>The name of UG country</comment>
+  </data>
+  <data name="Country_val_UK">
+    <value>Verenigd Koninkrijk</value>
+    <comment>The name of UK country</comment>
+  </data>
+  <data name="Country_val_UM">
+    <value>Amerikaanse ondergeschikte afgelegen eilanden</value>
+    <comment>The name of UM country</comment>
+  </data>
+  <data name="Country_val_US">
+    <value>Verenigde Staten</value>
+    <comment>The name of US country</comment>
+  </data>
+  <data name="Country_val_UY">
+    <value>Uruguay</value>
+    <comment>The name of UY country</comment>
+  </data>
+  <data name="Country_val_UZ">
+    <value>Oezbekistan</value>
+    <comment>The name of UZ country</comment>
+  </data>
+  <data name="Country_val_VA">
+    <value>Vaticaanstad</value>
+    <comment>The name of VA country</comment>
+  </data>
+  <data name="Country_val_VC">
+    <value>Saint Vincent en de Grenadines</value>
+    <comment>The name of VC country</comment>
+  </data>
+  <data name="Country_val_VE">
+    <value>Venezuela</value>
+    <comment>The name of VE country</comment>
+  </data>
+  <data name="Country_val_VG">
+    <value>Maagdeneilanden, Verenigd Koninkrijk</value>
+    <comment>The name of VG country</comment>
+  </data>
+  <data name="Country_val_VI">
+    <value>Maagdeneilanden, Verenigde Staten.</value>
+    <comment>The name of VI country</comment>
+  </data>
+  <data name="Country_val_VN">
+    <value>Vietnam</value>
+    <comment>The name of VN country</comment>
+  </data>
+  <data name="Country_val_VU">
+    <value>Vanuatu</value>
+    <comment>The name of VU country</comment>
+  </data>
+  <data name="Country_val_WF">
+    <value>Wallis en Futuna</value>
+    <comment>The name of WF country</comment>
+  </data>
+  <data name="Country_val_WS">
+    <value>Samoa</value>
+    <comment>The name of WS country</comment>
+  </data>
+  <data name="Country_val_YE">
+    <value>Jemen</value>
+    <comment>The name of YE country</comment>
+  </data>
+  <data name="Country_val_YT">
+    <value>Mayotte</value>
+    <comment>The name of YT country</comment>
+  </data>
+  <data name="Country_val_ZA">
+    <value>Zuid-Afrika</value>
+    <comment>The name of ZA country</comment>
+  </data>
+  <data name="Country_val_ZM">
+    <value>Zambia</value>
+    <comment>The name of ZM country</comment>
+  </data>
+  <data name="Country_val_ZW">
+    <value>Zimbabwe</value>
+    <comment>The name of ZW country</comment>
+  </data>
+  <data name="Country_val_ZZ">
+    <value>Onbekend</value>
+    <comment>The name of ZZ (unknown or not specified) country</comment>
+  </data>
+  <data name="Dialogs_AssignVpnConnections_btn_Assign">
+    <value>Assign VPN connections</value>
+  </data>
+  <data name="Dialogs_AssignVpnConnections_btn_LoginAgain">
+    <value>Opnieuw inloggen</value>
+  </data>
+  <data name="Dialogs_AssignVpnConnections_ttl_Info1">
+    <value>Om uw reis met Proton VPN te beginnen wijst u VPN-verbindingen toe aan uw account of een ander sub-account.</value>
+  </data>
+  <data name="Dialogs_AssignVpnConnections_ttl_Info2">
+    <value>Deze stap duurt slechts een paar minuten. Daarna kunt u zich aanmelden en al uw apparaten beveiligen.</value>
+  </data>
+  <data name="Dialogs_AssignVpnConnections_ttl_Thanks">
+    <value>Bedankt om te upgraden naar Professional/Visionary</value>
+  </data>
+  <data name="Dialogs_Bfe_msg_info">
+    <value>Een van de diensten die Proton VPN nodig heeft (Base Filtering Engine) is niet actief.&lt;LineBreak/&gt;
+Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these"/&gt;&lt;/Hyperlink&gt; instructies om het opnieuw te activeren en opnieuw te proberen.</value>
+    <comment>The text on Base Filtering Engine dialog window</comment>
+  </data>
+  <data name="Dialogs_btn_Cancel">
+    <value>Annuleer</value>
+    <comment>The text on Cancel button in dialog windows</comment>
+  </data>
+  <data name="Dialogs_btn_Close">
+    <value>Sluiten</value>
+    <comment>The text on Close button in dialog windows</comment>
+  </data>
+  <data name="Dialogs_btn_Continue">
+    <value>Doorgaan</value>
+    <comment>The text on Continue button in dialog windows</comment>
+  </data>
+  <data name="Dialogs_btn_Enable">
+    <value>Inschakelen</value>
+  </data>
+  <data name="Dialogs_btn_NoThanks">
+    <value>Nee, bedankt</value>
+    <comment>The text on NoThanks button in dialog windows</comment>
+  </data>
+  <data name="Dialogs_btn_Ok">
+    <value>Oké</value>
+  </data>
+  <data name="Dialogs_Delinquency_btn_Invoices">
+    <value>Facturen controleren</value>
+    <comment>The text on invoices button in the Delinquency window (opens web page for invoice payment)</comment>
+  </data>
+  <data name="Dialogs_Delinquency_GoToBilling">
+    <value>Mijn facturering bijwerken</value>
+    <comment>The "go to billing website" button text in the Delinquency window</comment>
+  </data>
+  <data name="Dialogs_Delinquency_msg">
+    <value>Het account is gemarkeerd als delinquent vanwege onbetaalde facturen. U kunt Proton VPN blijven gebruiken, maar alle betaalde functies zijn nu uitgeschakeld.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadAboutDelinquencyCommand}"&gt;Lees meer over delinquentie.&lt;/Hyperlink&gt;</value>
+    <comment>The message displayed in the Delinquency window. The codes between &lt; and &gt; should be kept as is (Do not forget to translate the inner "Read more about delinquency.").</comment>
+  </data>
+  <data name="Dialogs_Delinquency_Reconnected_Subtitle">
+    <value>U hebt weer toegang tot premium functies nadat deze zijn betaald. Op dit moment maken we opnieuw verbinding met de snelste beschikbare GRATIS abonnement-server.</value>
+    <comment>The subtitle of the Delinquency window when the user is reconnected</comment>
+  </data>
+  <data name="Dialogs_Delinquency_Subtitle">
+    <value>U hebt weer toegang tot premium functies nadat deze betaald zijn.</value>
+    <comment>The subtitle of the Delinquency window</comment>
+  </data>
+  <data name="Dialogs_Delinquency_Title">
+    <value>Uw VPN-account heeft openstaande facturen</value>
+    <comment>The title of the Delinquency window</comment>
+  </data>
+  <data name="Dialogs_Delinquency_ttl">
+    <value>Delinquent account</value>
+    <comment>The title of the Delinquency window</comment>
+  </data>
+  <data name="Dialogs_DisabledService_btn_Enable">
+    <value>Inschakelen</value>
+  </data>
+  <data name="Dialogs_DisabledService_btn_LearnMore">
+    <value>Meer informatie</value>
+  </data>
+  <data name="Dialogs_DisabledService_btn_ShowLess">
+    <value>Minder weergeven</value>
+  </data>
+  <data name="Dialogs_DisabledService_msg_ExtraInfo">
+    <value>Sommige toepassingen zoals anti-virus of PC optimizers kunnen interfereren met de Systeemservices die Proton VPN nodig heeft voor het beveiligen van uw verbinding. Door op Inschakelen te klikken, staat u Windows toe de Proton VPN's Diensten opnieuw te activeren.&lt;LineBreak/&gt;Als het probleem aanhoudt, probeer dan uw PC opnieuw op te starten of Proton VPN opnieuw te installeren.</value>
+  </data>
+  <data name="Dialogs_DisabledService_msg_Info">
+    <value>Sommige Proton VPN's componenten kunnen geblokkeerd of uitgeschakeld zijn, waardoor u geen verbinding kunt maken. Klik op Inschakelen om dit te verhelpen.&lt;LineBreak/&gt;Merk op dat deze operatie Admin rechten vereist.</value>
+  </data>
+  <data name="Dialogs_DisconnectError_btn_DisableKillSwitch">
+    <value>Schakel Kill Switch uit</value>
+    <comment>The text on Disable button in Disconnect modal window</comment>
+  </data>
+  <data name="Dialogs_DisconnectError_btn_Upgrade">
+    <value>Upgrade</value>
+    <comment>The text on Upgrade button in Disconnect modal window</comment>
+  </data>
+  <data name="Dialogs_DisconnectError_msg_AllAdaptersInUse">
+    <value>Uw netwerkadapter is momenteel in gebruik.</value>
+    <comment>The error description displayed in Disconnect modal window if all TAP adapters are in use</comment>
+  </data>
+  <data name="Dialogs_DisconnectError_msg_Identifying">
+    <value>Probleem identificeren...</value>
+    <comment>The message displayed in Disconnect modal window while trying to identify connection problem</comment>
+  </data>
+  <data name="Dialogs_DisconnectError_msg_KillSwitch">
+    <value>Kill Switch beschermt uw IP door alle verbindingen te blokkeren. In geval van problemen kunt u Kill Switch uitschakelen.</value>
+    <comment>The text displayed in Disconnect modal window ifn disconnect occurred with Kill Switch turned on.</comment>
+  </data>
+  <data name="Dialogs_DisconnectError_msg_NoServers">
+    <value>Er zijn momenteel geen servers beschikbaar voor uw selectie. Selecteer alstublieft een andere optie.</value>
+    <comment>The error description displayed in Disconnect modal window if disconnected because there are no servers available to connect to</comment>
+  </data>
+  <data name="Dialogs_DisconnectError_msg_NoTap">
+    <value>De netwerkadapter ontbreekt.</value>
+    <comment>The error description displayed in Disconnect modal window if TAP adapter is not installed</comment>
+  </data>
+  <data name="Dialogs_DisconnectError_msg_OldVersion">
+    <value>De netwerkadapter versie is verouderd.</value>
+    <comment>The error description displayed in Disconnect modal window if TAP adapter version is too low</comment>
+  </data>
+  <data name="Dialogs_DisconnectError_msg_TapErrorHelp">
+    <value>Bekijk deze support &lt;Hyperlink Command="{Binding OpenHelpArticleCommand}"&gt;artikel&lt;/Hyperlink&gt; hoe het te repareren.</value>
+    <comment>The text displayed in Disconnect modal window if TAP error is detected</comment>
+  </data>
+  <data name="Dialogs_DisconnectError_msg_TlsCertificateError">
+    <value>Er is een probleem om het certificaat van de VPN-server te verifiëren, wat een indicatie kan zijn dat de netwerkverbinding onrechtmatig bewerkt wordt of dat de server waarmee u verbinding probeert te maken een configuratieprobleem heeft. Verkrijg hulp van onze klantenondersteuning via &lt;Hyperlink Command="{Binding ReportBugCommand}"&gt;&lt;Run Text="Probleem Melden"/&gt;&lt;/Hyperlink&gt;.</value>
+    <comment>The error description displayed in Disconnect modal window if VPN server certificate validation error has occurred</comment>
+  </data>
+  <data name="Dialogs_DoNotShowThisMessageAgain">
+    <value>Dit bericht niet meer tonen</value>
+  </data>
+  <data name="Dialogs_EnableSmartProtocol_btn_Enable">
+    <value>Inschakelen</value>
+    <comment>The text on Enable button in the Enable Smart Protocol window</comment>
+  </data>
+  <data name="Dialogs_EnableSmartProtocol_btn_KeepDisabled">
+    <value>Laat uit staan</value>
+    <comment>The text on "Keep disabled" button in the Enable Smart Protocol window</comment>
+  </data>
+  <data name="Dialogs_EnableSmartProtocol_msg">
+    <value>Proton VPN heeft gedetecteerd dat uw huidige netwerk een verbinding met de VPN blokkeert. Het inschakelen van Smart Protocol kan deze beperkingen omzeilen.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadAboutSmartProtocolCommand}"&gt;Lees meer over Smart Protocol.&lt;/Hyperlink&gt;</value>
+    <comment>The message displayed in the Enable Smart Protocol window. The codes between &lt; and &gt; should be kept as is (Do not forget to translate the inner "Read more about Smart Protocol.").</comment>
+  </data>
+  <data name="Dialogs_EnableSmartProtocol_ttl">
+    <value>Smart Protocol is momenteel uitgeschakeld</value>
+    <comment>The title of the Enable Smart Protocol window</comment>
+  </data>
+  <data name="Dialogs_Exit_btn_Cancel">
+    <value>Annuleer</value>
+  </data>
+  <data name="Dialogs_Exit_btn_Exit">
+    <value>Sluiten</value>
+  </data>
+  <data name="Dialogs_Exit_msg_Confirm">
+    <value>Wilt u doorgaan?</value>
+    <comment>The text displayed in the login window modal when the user tries to close the app while Kill Switch is active or VPN is on.</comment>
+  </data>
+  <data name="Dialogs_Exit_msg_Connected">
+    <value>Afsluiten van de app zal de verbinding met de VPN verbreken.</value>
+  </data>
+  <data name="Dialogs_Exit_msg_KillSwitchOn">
+    <value>Kill Switch blokkeert alle verbindingen om te voorkomen dat uw gegevens lekken. Sluiten van de app zal de Kill Switch uitschakelen.</value>
+  </data>
+  <data name="Dialogs_Exit_msg_PermanentKillSwitch">
+    <value>Permanente Kill Switch is ingeschakeld. Afsluiten van de applicatie zal alle uitgaande verbindingen blokkeren totdat Proton VPN opnieuw is verbonden.</value>
+  </data>
+  <data name="Dialogs_HumanVerification_ttl">
+    <value>Persoonsverificatie</value>
+  </data>
+  <data name="Dialogs_IncorrectSystemTime_msg">
+    <value>Uw systeemklok lijkt niet synchroon te lopen, waardoor de VPN mogelijk geen succesvolle verbinding kan maken. Zie &lt;Hyperlink Command="{Binding OpenKbArticleCommand}"&gt;hier&lt;/Hyperlink&gt; voor meer informatie.</value>
+  </data>
+  <data name="Dialogs_KillSwitchConfirmation_msg">
+    <value>Met een permanente Kill Switch, als de VPN niet verbonden is om welke reden dan ook, kunt u geen toegang krijgen tot het internet.</value>
+  </data>
+  <data name="Dialogs_KillSwitchConfirmation_ttl">
+    <value>Permanente Kill Switch inschakelen?</value>
+  </data>
+  <data name="Dialogs_MaximumDeviceLimit_Disconnect_Ok">
+    <value>Begrepen</value>
+    <comment>The ok button text in the Maximum Device Limit window when the user already has the highest subscription plan</comment>
+  </data>
+  <data name="Dialogs_MaximumDeviceLimit_Disconnect_Subtitle">
+    <value>Verbreek een ander apparaat om deze te verbinden.</value>
+    <comment>The subtitle of the Maximum Device Limit window when the user already has the highest subscription plan</comment>
+  </data>
+  <data name="Dialogs_MaximumDeviceLimit_Title">
+    <value>U hebt uw maximum apparaat limiet bereikt</value>
+    <comment>The title of the Maximum Device Limit window</comment>
+  </data>
+  <data name="Dialogs_MaximumDeviceLimit_Upgrade">
+    <value>Upgrade</value>
+    <comment>The upgrade button text in the Maximum Device Limit window when the user can upgrade the subscription plan</comment>
+  </data>
+  <data name="Dialogs_MaximumDeviceLimit_Upgrade_Subtitle">
+    <value>Verbreek een ander apparaat om deze te verbinden of upgrade naar PLUS om tegelijkertijd 10 apparaten verbonden te krijgen.</value>
+    <comment>The subtitle of the Maximum Device Limit window when the user can upgrade the subscription plan</comment>
+  </data>
+  <data name="Dialogs_OutdatedApp_btn_Quit">
+    <value>Afsluiten</value>
+    <comment>The text on quit button in outdated app modal window</comment>
+  </data>
+  <data name="Dialogs_OutdatedApp_lbl_Downloading">
+    <value>Downloaden</value>
+    <comment>The text on download button when download is in process in outdated app modal window</comment>
+  </data>
+  <data name="Dialogs_OutdatedApp_lbl_Error">
+    <value>Er is een probleem opgetreden tijdens het downloaden van een nieuwere versie. Update handmatig om de nieuwste versie te krijgen.</value>
+    <comment>The text displayed in outdated app window when the app fails to download the latest app version</comment>
+  </data>
+  <data name="Dialogs_OutdatedApp_lbl_Update">
+    <value>Bijwerken</value>
+    <comment>The text on update button in outdated app modal window</comment>
+  </data>
+  <data name="Dialogs_OutdatedApp_lbl_UpdateManually">
+    <value>Handmatig updaten</value>
+    <comment>The text on update button in outdated app modal window</comment>
+  </data>
+  <data name="Dialogs_OutdatedApp_msg">
+    <value>De applicatie versie die u gebruikt wordt niet langer ondersteund. Zodra de update beschikbaar is, update naar de laatste versie.</value>
+    <comment>The error message displayed on the outdated app window when the app version is outdated</comment>
+  </data>
+  <data name="Dialogs_OutdatedApp_msg_KillSwitchActive">
+    <value>Merk op dat de Kill Switch is ingeschakeld. Vernieuwen of stoppen van de app zal dit uitgeschakelen.</value>
+    <comment>The error message displayed on the outdated app window when the app version is outdated and Kill Switch is enabled</comment>
+  </data>
+  <data name="Dialogs_P2PBlocked_msg_Blocked">
+    <value>Uw verbinding is uitgeschakeld omdat u gebruik maakt van een server die geen peer-to-peer (P2P) verkeer ondersteunt. P2P wordt niet ondersteund op gratis servers. Gebruik een andere server voor P2P.</value>
+    <comment>The warning message displayed when P2P traffic is detected on servers not allowing it.</comment>
+  </data>
+  <data name="Dialogs_PortForwardingConfirmation_msg">
+    <value>Schakel Port Forwarding alleen in wanneer u het nodig hebt om te zorgen voor de sterkste privacy en beveiliging&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadPortForwardingRisksCommand}"&gt;Heb ik Port Forwarding nodig?&lt;/Hyperlink&gt;</value>
+  </data>
+  <data name="Dialogs_PortForwardingConfirmation_ttl">
+    <value>Port Forwarding inschakelen?</value>
+  </data>
+  <data name="Dialogs_Proxy_msg_ProxyDetected">
+    <value>Proton VPN heeft een proxyserver gedetecteerd die is geconfigureerd op uw lokale netwerk. De Proton VPN-app kan het verkeer dat door deze proxy gaat, niet beschermen. Dit betekent dat uw verbinding niet volledig wordt beveiligd zoals verwacht.</value>
+    <comment>The text displayed in modal window when the app detects system proxy is turned on</comment>
+  </data>
+  <data name="Dialogs_Reboot_btn_Reboot">
+    <value>Opnieuw starten</value>
+  </data>
+  <data name="Dialogs_Reboot_btn_SkipReboot">
+    <value>Doorgaan zonder</value>
+  </data>
+  <data name="Dialogs_Reboot_msg">
+    <value>Om Proton VPN-fouten te voorkomen, raden we ten sterkste aan uw computer te herstarten om eerst andere applicaties bij te werken. Proton VPN zal de installatie daarna automatisch hervatten. Nu herstarten?</value>
+  </data>
+  <data name="Dialogs_Reboot_ttl">
+    <value>Uw computer moet opnieuw opstarten</value>
+  </data>
+  <data name="Dialogs_Rebranding_btn_GotIt_new_plans">
+    <value>Begrepen</value>
+  </data>
+  <data name="Dialogs_Rebranding_Subtitle_new_plans">
+    <value>Ontdek de nieuwe look van Proton. Veel diensten, één missie. Welkom in een internetomgeving waar privacy de standaard is.  &lt;Hyperlink Command="{Binding LearnMoreCommand}"&gt;Meer info&lt;/Hyperlink&gt;</value>
+  </data>
+  <data name="Dialogs_Rebranding_Title_new_plans">
+    <value>Vernieuwde Proton, uniforme beveiliging</value>
+  </data>
+  <data name="Dialogs_reconnection_FromServer">
+    <value>Van server:</value>
+    <comment>The label for the previous server in dialog windows</comment>
+  </data>
+  <data name="Dialogs_reconnection_ToServer">
+    <value>Naar server:</value>
+    <comment>The label for the new server in dialog windows</comment>
+  </data>
+  <data name="Dialogs_SplitTunnelWarning_msg">
+    <value>Om Split Tunneling goed te laten functioneren, moet u Kill Switch uitschakelen.</value>
+  </data>
+  <data name="Dialogs_SubscriptionExpired_ListOption1">
+    <value>Honderden servers in 55 landen</value>
+    <comment>An option of the subscriber benefits list in the Subscription Expired window</comment>
+  </data>
+  <data name="Dialogs_SubscriptionExpired_ListOption2">
+    <value>Verbind tot 10 apparaten op hetzelfde moment</value>
+    <comment>An option of the subscriber benefits list in the Subscription Expired window</comment>
+  </data>
+  <data name="Dialogs_SubscriptionExpired_ListOption3">
+    <value>Geavanceerde functies: NetShield, Secure Core, Tor, P2P</value>
+    <comment>An option of the subscriber benefits list in the Subscription Expired window</comment>
+  </data>
+  <data name="Dialogs_SubscriptionExpired_ListTitle">
+    <value>Upgrade opnieuw om te genieten van alle functies:</value>
+    <comment>The text right before the subscriber benefits list in the Subscription Expired window</comment>
+  </data>
+  <data name="Dialogs_SubscriptionExpired_Reconnected_Subtitle">
+    <value>Uw abonnement is gedegradeerd, dus we maken opnieuw verbinding met de snelst beschikbare server.</value>
+    <comment>The subtitle of the Subscription Expired window when the user is reconnected</comment>
+  </data>
+  <data name="Dialogs_SubscriptionExpired_Subtitle">
+    <value>Uw abonnement is gedegradeerd.</value>
+    <comment>The subtitle of the Subscription Expired window</comment>
+  </data>
+  <data name="Dialogs_SubscriptionExpired_Title">
+    <value>Uw VPN-abonnement is verlopen</value>
+    <comment>The title of the Subscription Expired window</comment>
+  </data>
+  <data name="Dialogs_SubscriptionExpired_Upgrade">
+    <value>Opnieuw upgraden</value>
+    <comment>The upgrade button text in the Subscription Expired window</comment>
+  </data>
+  <data name="Dialogs_Troubleshoot_ttl">
+    <value>Proton VPN Problemen</value>
+    <comment>The text displayed in Troubleshoot modal window title</comment>
+  </data>
+  <data name="Dialogs_Troubleshooting_btn_Close">
+    <value>Sluiten</value>
+    <comment>The button displayed in Troubleshoot modal window</comment>
+  </data>
+  <data name="Dialogs_Troubleshooting_btn_LearnMore">
+    <value>Meer informatie</value>
+    <comment>The button displayed in Troubleshooting modal window</comment>
+  </data>
+  <data name="Dialogs_Troubleshooting_msg_AlternativeRouting">
+    <value>&lt;Bold&gt;Alternative Routing&lt;/Bold&gt; - In het geval dat Proton-sites geblokkeerd zijn, staat deze instelling de app toe om alternatieve netwerkroutering te proberen om Proton te bereiken, wat nuttig kan zijn voor het omzeilen van firewalls of netwerkproblemen. We raden aan deze instelling aan te houden voor een grotere betrouwbaarheid. &lt;Hyperlink Command="{Binding AlternativeRoutingCommand}"&gt;Meer informatie&lt;/Hyperlink&gt;</value>
+    <comment>The text displayed in troubleshooting modal window</comment>
+  </data>
+  <data name="Dialogs_Troubleshooting_msg_Antivirus">
+    <value>&lt;Bold&gt;Probleem met antivirus-software&lt;/Bold&gt; - Zet de software tijdelijk uit of verwijder het.</value>
+    <comment>The text displayed in troubleshooting modal window</comment>
+  </data>
+  <data name="Dialogs_Troubleshooting_msg_Firewall">
+    <value>&lt;Bold&gt;Proxy/Firewall problemen&lt;/Bold&gt; - Schakel eventuele proxy's of firewalls uit of neem contact op met uw netwerkbeheerder.</value>
+    <comment>The text displayed in troubleshooting modal window</comment>
+  </data>
+  <data name="Dialogs_Troubleshooting_msg_GovBlock">
+    <value>&lt;Bold&gt;Blokkade door overheidsinstanties&lt;/Bold&gt; - Uw land blokkeert mogelijk de toegang tot Proton. Probeer &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor&lt;/Hyperlink&gt; te gebruiken voor toegang tot Proton.</value>
+    <comment>The text displayed in troubleshooting modal window</comment>
+  </data>
+  <data name="Dialogs_Troubleshooting_msg_GovBlockDoH">
+    <value>&lt;Bold&gt;Blokkade door overheidsinstanties&lt;/Bold&gt; - Uw land blokkeert mogelijk de toegang tot Proton. Probeer &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor&lt;/Hyperlink&gt; te gebruiken voor toegang tot Proton.</value>
+    <comment>The text displayed in troubleshooting modal window</comment>
+  </data>
+  <data name="Dialogs_Troubleshooting_msg_IspProblem">
+    <value>&lt;Bold&gt;Internet Service Provider (ISP) Probleem&lt;/Bold&gt; - Probeer verbinding te maken met Proton vanuit een ander netwerk (of gebruik &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor&lt;/Hyperlink&gt;).</value>
+    <comment>The text displayed in troubleshooting modal window</comment>
+  </data>
+  <data name="Dialogs_Troubleshooting_msg_NoInternet">
+    <value>&lt;Bold&gt;Geen internetverbinding&lt;/Bold&gt; - Controleer of uw internetverbinding werkt.</value>
+    <comment>The text displayed in troubleshooting modal window</comment>
+  </data>
+  <data name="Dialogs_Troubleshooting_msg_ProtonDown">
+    <value>&lt;Bold&gt;Proton is offline&lt;/Bold&gt; - Check &lt;Hyperlink Command="{Binding ProtonStatusCommand}"&gt;Proton Status&lt;/Hyperlink&gt; voor onze systeemstatus.</value>
+    <comment>The text displayed in troubleshooting modal window</comment>
+  </data>
+  <data name="Dialogs_Troubleshooting_msg_Title">
+    <value>Potentiële problemen die uw verbinding tot een time-out en hun oplossing kunnen maken</value>
+    <comment>The text displayed in troubleshooting modal window</comment>
+  </data>
+  <data name="Dialogs_Troubleshooting_msg_Unknown">
+    <value>&lt;Bold&gt;kan nog steeds geen oplossing vinden&lt;/Bold&gt; - Neem contact met ons op via ons &lt;Hyperlink Command="{Binding SupportFormCommand}"&gt;ondersteuningsformulier&lt;/Hyperlink&gt;, e-mail (support@protonvpn.com), of &lt;Hyperlink Command="{Binding ProtonTwitterCommand}"&gt;Twitter&lt;/Hyperlink&gt;.</value>
+    <comment>The text displayed in troubleshooting modal window</comment>
+  </data>
+  <data name="Dialogs_ttl_Question">
+    <value>Attentie</value>
+    <comment>The title of question message window</comment>
+  </data>
+  <data name="Dialogs_ttl_Warning">
+    <value>Attentie</value>
+    <comment>The title of warning message window</comment>
+  </data>
+  <data name="Dialogs_TunInUse_btn_SwitchToTap">
+    <value>Overschakelen naar TAP</value>
+  </data>
+  <data name="Dialogs_TunInUse_msg">
+    <value>Proton VPN kon geen verbinding maken omdat de TUN-netwerkadapter al in gebruik is. Verbreek alle actieve VPN's en probeer het opnieuw. Als alternatief kunt u overschakelen naar de TAP-adapter (u kunt terugschakelen naar TUN in de Geavanceerde Instellingen).</value>
+  </data>
+  <data name="ErrorWindow_lbl_Close">
+    <value>Sluiten</value>
+  </data>
+  <data name="ErrorWindow_lbl_Download">
+    <value>Downloaden</value>
+  </data>
+  <data name="ErrorWindow_lbl_DownloadInfo">
+    <value>Download en installeer de laatste versie om het probleem op te lossen.</value>
+  </data>
+  <data name="ErrorWindow_lbl_MissingHeading">
+    <value>Er ontbreekt een verplicht bestand in de applicatie</value>
+  </data>
+  <data name="ErrorWindow_lbl_MissingInfo">
+    <value>Sommige toepassingen op uw PC hebben bestanden verwijderd of voorkomen dat ze met succes geïnstalleerd konden worden.</value>
+  </data>
+  <data name="ErrorWindow_lbl_Repair">
+    <value>Herstellen</value>
+  </data>
+  <data name="ErrorWindow_lbl_RepairInfo">
+    <value>Herstel uw installatie alstublieft.</value>
+  </data>
+  <data name="KillSwitch">
+    <value>Kill Switch</value>
+  </data>
+  <data name="License_ttl">
+    <value>Licentie</value>
+    <comment>The title of License window</comment>
+  </data>
+  <data name="Login_btn_Authenticate">
+    <value>Authenticeren</value>
+  </data>
+  <data name="Login_btn_Login">
+    <value>Inloggen</value>
+    <comment>The text on Login button in Login window (logs in the user)</comment>
+  </data>
+  <data name="Login_Error_msg_SessionExpired">
+    <value>Uw sessie is verlopen. Log opnieuw in.</value>
+    <comment>The message displayed in Login window when expired session is detected</comment>
+  </data>
+  <data name="Login_Error_msg_Unauthorized">
+    <value>Ongeldige vernieuwingstoken, log opnieuw in.</value>
+    <comment>The text displayed after failed login attempt</comment>
+  </data>
+  <data name="Login_Error_msg_Unknown">
+    <value>Onbekende fout</value>
+    <comment>The description of error displayed in Login window</comment>
+  </data>
+  <data name="Login_lbl_KillSwitch">
+    <value>Kill Switch is momenteel actief</value>
+    <comment>The text displayed on the login window when user was force logged out while Kill Switch is active</comment>
+  </data>
+  <data name="Login_lbl_Password">
+    <value>Wachtwoord</value>
+    <comment>The label for Password text box in Login window</comment>
+  </data>
+  <data name="Login_lbl_SecureInternetAnywhere">
+    <value>Overal veilig internet</value>
+    <comment>The text displayed on the bottom of Login window while logging in</comment>
+  </data>
+  <data name="Login_lbl_StartAndConnectOnBoot">
+    <value>Starten en verbinden bij opstarten</value>
+  </data>
+  <data name="Login_lbl_StartWithWindows">
+    <value>Starten tijdens opstarten</value>
+    <comment>The label for Start with Windows toggle switch in Login window</comment>
+  </data>
+  <data name="Login_lbl_TakingLongerThanExpected">
+    <value>Verbinding met Proton VPN wordt opgezet...</value>
+    <comment>The text displayed in login window when login takes longer than expected</comment>
+  </data>
+  <data name="Login_lbl_TwoFactorAuthCode">
+    <value>Two-factor authentication code</value>
+  </data>
+  <data name="Login_lbl_Username">
+    <value>Gebruikersnaam</value>
+    <comment>The label for Username text box in Login window</comment>
+  </data>
+  <data name="Login_lnk_CommonSignInIssues">
+    <value>Veel voorkomende problemen bij aanmelden</value>
+    <comment>The text of hyperlink in Need Help popup of Login window (opens web page with information regarding login issues)</comment>
+  </data>
+  <data name="Login_lnk_CreateAccount">
+    <value>Account aanmaken</value>
+    <comment>The text of hyperlink for creating account in Login window</comment>
+  </data>
+  <data name="Login_lnk_ForgotUsername">
+    <value>Gebruikersnaam vergeten</value>
+    <comment>The text of hyperlink in Need Help popup of Login window (opens web page for users that forgot username)</comment>
+  </data>
+  <data name="Login_lnk_LoginProblems">
+    <value>Veel voorkomende problemen bij aanmelden</value>
+    <comment>The text of hyperlink in Need Help popup of Login window (opens web page with potential solutions for common login problems)</comment>
+  </data>
+  <data name="Login_lnk_NeedHelp">
+    <value>Hulp nodig?</value>
+    <comment>The text of Need Help hyperlink of Login window (opens popup with more options)</comment>
+  </data>
+  <data name="Login_lnk_ReportAnIssue">
+    <value>Een probleem melden</value>
+    <comment>The text of hyperlink in Need Help popup of Login window (opens report an issue modal window)</comment>
+  </data>
+  <data name="Login_lnk_ReportIssue">
+    <value>Een probleem melden</value>
+    <comment>The text of hyperlink in Need Help popup of Login window (opens a modal to report a potential bug)</comment>
+  </data>
+  <data name="Login_lnk_ResetPassword">
+    <value>Reset password</value>
+    <comment>The text of hyperlink in Need Help popup of Login window (opens web page for resetting user password)</comment>
+  </data>
+  <data name="Login_msg_IncorrectTwoFactorCode">
+    <value>Foutieve tweestapsverificatiecode</value>
+  </data>
+  <data name="Login_msg_TwoFactorAuthFailed">
+    <value>Incorrect login credentials. Please try again.</value>
+  </data>
+  <data name="Login_ttl">
+    <value>Proton VPN</value>
+    <comment>The title of Login window. Should not be converted.</comment>
+  </data>
+  <data name="Map_btn_Connect">
+    <value>Verbind</value>
+    <comment>The text of Connect command in a balloon above Pin in Map (connects to the VPN)</comment>
+  </data>
+  <data name="Map_btn_Disconnect">
+    <value>Verbreken</value>
+    <comment>The text of Disconnect command in a balloon above Pin in Map (disconnects from the VPN)</comment>
+  </data>
+  <data name="Map_lbl_SecureCore">
+    <value>Secure Core</value>
+    <comment>The part of text displayed in a balloon above Secure Core Pin in Map. The full text is "(Secure Core) country name".</comment>
+  </data>
+  <data name="Map_SpeedGraph_lbl_DownSpeed">
+    <value>Downloadsnelheid:</value>
+    <comment>The label for download speed in Speed Graph on Map in main app window</comment>
+  </data>
+  <data name="Map_SpeedGraph_lbl_DownVolume">
+    <value>Downloadvolume:</value>
+    <comment>The label for downloaded data amount in Speed Graph on Map in main app window</comment>
+  </data>
+  <data name="Map_SpeedGraph_lbl_Session">
+    <value>Sessie:</value>
+    <comment>The label for VPN connection duration in Speed Graph on Map in main app window</comment>
+  </data>
+  <data name="Map_SpeedGraph_lbl_Speed">
+    <value>Snelheid</value>
+    <comment>The label for overall data transfer speed in Speed Graph on Map in main app window</comment>
+  </data>
+  <data name="Map_SpeedGraph_lbl_TimeUnits">
+    <value>60 Seconden</value>
+    <comment>The time units of Speed graph in Map of main app window</comment>
+  </data>
+  <data name="Map_SpeedGraph_lbl_Traffic">
+    <value>Sessie verkeer</value>
+    <comment>The label for traffic data in Speed Graph on Map in main app window</comment>
+  </data>
+  <data name="Map_SpeedGraph_lbl_UpSpeed">
+    <value>Uploadsnelheid:</value>
+    <comment>The label for upload speed in Speed Graph on Map in main app window</comment>
+  </data>
+  <data name="Map_SpeedGraph_lbl_UpVolume">
+    <value>Uploadvolume:</value>
+    <comment>The label for uploaded data amount in Speed Graph on Map in main app window</comment>
+  </data>
+  <data name="Map_VpnStatus_val_Connected">
+    <value>VERBONDEN</value>
+    <comment>The connection status displayed in the Home section of the Map in main app window when not connected to VPN</comment>
+  </data>
+  <data name="Map_VpnStatus_val_Disconnected">
+    <value>VERBINDING VERBROKEN</value>
+    <comment>The connection status displayed in the Home section of the Map in main app window when connected to VPN</comment>
+  </data>
+  <data name="Modal_DiscourageSecureCore_ActivateSecureCore">
+    <value>Secure Core activeren</value>
+  </data>
+  <data name="Modal_DiscourageSecureCore_DoNotShowItAgain">
+    <value>Niet meer weergeven</value>
+  </data>
+  <data name="Modal_DiscourageSecureCore_LearnMore">
+    <value>Meer informatie</value>
+  </data>
+  <data name="Modal_DiscourageSecureCore_Subtitle">
+    <value>Secure Core biedt het hoogste niveau van beveiliging en privacy, maar het kan uw internetsnelheid verlagen. Als u hogere prestaties wilt, kan u Secure Core uitschakelen.</value>
+  </data>
+  <data name="Modal_DiscourageSecureCore_Title">
+    <value>Een opmerking over snelheid...</value>
+  </data>
+  <data name="NetShield">
+    <value>NetShield</value>
+  </data>
+  <data name="Notifications_Delinquency_Description">
+    <value>U hebt weer toegang tot premium functies nadat deze betaald zijn.</value>
+    <comment>The description of the Delinquency notification</comment>
+  </data>
+  <data name="Notifications_Delinquency_Reconnected_Description">
+    <value>U hebt weer toegang tot premium functies nadat deze zijn betaald. Op dit moment maken we opnieuw verbinding met de snelste beschikbare GRATIS abonnement-server.</value>
+    <comment>The description of the Delinquency notification when the user is reconnected</comment>
+  </data>
+  <data name="Notifications_Delinquency_Title">
+    <value>Uw VPN-account heeft openstaande facturen</value>
+    <comment>The title of the Delinquency notification</comment>
+  </data>
+  <data name="Notifications_EnableSmartProtocol_msg">
+    <value>Proton VPN heeft gedetecteerd dat uw huidige netwerk een verbinding met de VPN blokkeert. Inschakelen van Smart Protocol kan deze beperkingen omzeilen.</value>
+    <comment>The message displayed in the Enable Smart Protocol notification.</comment>
+  </data>
+  <data name="Notifications_EnableSmartProtocol_ttl">
+    <value>Smart Protocol is momenteel uitgeschakeld</value>
+    <comment>The title of the Enable Smart Protocol notification</comment>
+  </data>
+  <data name="Notifications_InsecureWiFi_LearnMore">
+    <value>Meer informatie</value>
+    <comment>Button displayed in the Insecure Wi-Fi notification when connected to insecure Wi-Fi network.</comment>
+  </data>
+  <data name="Notifications_InsecureWiFi_msg_Detected">
+    <value>Onveilige Wi-Fi verbinding gedetecteerd: {0}</value>
+    <comment>The message displayed in the Insecure Wi-Fi notification when connected to insecure Wi-Fi network. The {0} is a placeholder for Wi-Fi network name.</comment>
+  </data>
+  <data name="Notifications_MaximumDeviceLimit_Disconnect_Description">
+    <value>Verbreek een ander apparaat om deze te verbinden.</value>
+    <comment>The description of the Maximum Device Limit notification when the user already has the highest subscription plan</comment>
+  </data>
+  <data name="Notifications_MaximumDeviceLimit_Title">
+    <value>U heeft de limiet bereikt van maximum aantal apparaten</value>
+    <comment>The title of the Maximum Device Limit notification</comment>
+  </data>
+  <data name="Notifications_MaximumDeviceLimit_Upgrade_Description">
+    <value>Verbreek een ander apparaat om deze te verbinden of upgrade naar PLUS om tegelijkertijd 10 apparaten verbonden te krijgen.</value>
+    <comment>The description of the Maximum Device Limit notification when the user can upgrade the subscription plan</comment>
+  </data>
+  <data name="Notifications_SubscriptionExpired_Description">
+    <value>Uw abonnement is gedegradeerd. Upgrade opnieuw om gebruik te maken van alle functies.</value>
+    <comment>The description of the Subscription Expired notification</comment>
+  </data>
+  <data name="Notifications_SubscriptionExpired_Reconnected_Description">
+    <value>Uw abonnement is gedegradeerd, dus we maken opnieuw verbinding met de snelste beschikbare server. Upgrade opnieuw om van alle functies te genieten.</value>
+    <comment>The description of the Subscription Expired notification when the user is reconnected</comment>
+  </data>
+  <data name="Notifications_SubscriptionExpired_Title">
+    <value>Uw VPN-abonnement is verlopen</value>
+    <comment>The title of the Subscription Expired notification</comment>
+  </data>
+  <data name="Notifications_Update_lnk_WhatsNew">
+    <value>Wat is er nieuw</value>
+    <comment>The text of What's new hyperlink in Update flash notification (opens About window)</comment>
+  </data>
+  <data name="Notifications_Update_msg_NewAppVersion">
+    <value>Er is een nieuwe versie beschikbaar!</value>
+    <comment>The message displayed in the Update notification when new app version is ready to install</comment>
+  </data>
+  <data name="Notifications_VpnState_msg_Connected">
+    <value>VERBONDEN met {0}{1}Nieuw publiek IP: {2}</value>
+    <comment>The message displayed in VPN state system notification when app connects to VPN. The {0} is a placeholder for server name, {1} - move to new line, {2} - public IP address.</comment>
+  </data>
+  <data name="Notifications_VpnState_msg_Disconnected">
+    <value>NIET VERBONDEN</value>
+    <comment>The message displayed in VPN state system notification when app disconnects from VPN</comment>
+  </data>
+  <data name="Onboarding_btn_EndTour">
+    <value>Rondleiding beëindigen</value>
+    <comment>The text on End Tour button in Onboarding overlay of main app window</comment>
+  </data>
+  <data name="Onboarding_btn_NextStep">
+    <value>Volgende tip</value>
+    <comment>The text of Next Tip button on Onboarding overlay of main app window</comment>
+  </data>
+  <data name="Onboarding_msg_Step_1">
+    <value>Verbind automatisch met de server met de snelste verbinding.</value>
+    <comment>The description of onboarding step 1 in Onboarding overlay of main app window</comment>
+  </data>
+  <data name="Onboarding_msg_Step_2">
+    <value>Sla uw instellingen en servers op voor toekomstig gebruik.</value>
+    <comment>The description of onboarding step 2 in Onboarding overlay of main app window</comment>
+  </data>
+  <data name="Onboarding_msg_Step_3">
+    <value>Kies welk land en server u wilt gebruiken voor uw publieke IP adres.</value>
+    <comment>The description of onboarding step 3 in Onboarding overlay of main app window</comment>
+  </data>
+  <data name="Onboarding_msg_Step_4">
+    <value>Pas uw VPN-verbinding aan met uw online activiteit aan met de speciale functies van Proton VPN voor optimale snelheid en privacybescherming.</value>
+    <comment>The description of onboarding step 4 in Onboarding overlay of main app window</comment>
+  </data>
+  <data name="Onboarding_ttl_Step_1">
+    <value>Snel Verbinden</value>
+    <comment>The title of onboarding step 1 in Onboarding overlay of main app window</comment>
+  </data>
+  <data name="Onboarding_ttl_Step_2">
+    <value>Profielen</value>
+    <comment>The title of onboarding step 2 in Onboarding overlay of main app window</comment>
+  </data>
+  <data name="Onboarding_ttl_Step_3">
+    <value>Landen</value>
+    <comment>The title of onboarding step 3 in Onboarding overlay of main app window</comment>
+  </data>
+  <data name="Onboarding_ttl_Step_4">
+    <value>Snelle Instellingen</value>
+    <comment>The title of onboarding step 4 in Onboarding overlay of main app window</comment>
+  </data>
+  <data name="PortForwarding">
+    <value>Port forwarding</value>
+  </data>
+  <data name="PortForwarding_lbl_ActivePort">
+    <value>Actieve poort:</value>
+  </data>
+  <data name="PortForwarding_lbl_CopyValue">
+    <value>Klik om dit poortnummer te kopiëren.</value>
+  </data>
+  <data name="PortForwarding_lbl_Info">
+    <value>Stel dit nummer in uw BitTorrent app in voor hogere snelheid.</value>
+  </data>
+  <data name="PortForwarding_lbl_ServerWarning">
+    <value>Om Port Forwarding te gebruiken, &lt;Hyperlink Command="{Binding ConnectToBestP2PServerCommand}"&gt;verbind&lt;/Hyperlink&gt; met een server die ondersteuning heeft voor P2P.</value>
+  </data>
+  <data name="ProfileConnector_msg_MissingAuthCert">
+    <value>Proton VPN is er niet in geslaagd om het authenticatiecertificaat op te halen vanwege een netwerk probleem.</value>
+  </data>
+  <data name="Profiles_btn_Close">
+    <value>Sluiten</value>
+    <comment>The text on Close button in Profiles window</comment>
+  </data>
+  <data name="Profiles_btn_Create">
+    <value>Profiel aanmaken</value>
+    <comment>The text on create profile button on Profile window (opens new profile window)</comment>
+  </data>
+  <data name="Profiles_btn_Sync">
+    <value>Sync</value>
+    <comment>The text on Sync button in Profiles window (synchronizes profiles with the cloud)</comment>
+  </data>
+  <data name="Profiles_btn_Troubleshoot">
+    <value>Probleemoplossing</value>
+    <comment>The text on Troubleshoot button in Profiles window (opens troubleshooting window)</comment>
+  </data>
+  <data name="Profiles_col_Action">
+    <value>Actie</value>
+    <comment>The title of actions column in Profiles window</comment>
+  </data>
+  <data name="Profiles_col_Connection">
+    <value>Verbinding</value>
+    <comment>The title of VPN connection description column in Profiles window</comment>
+  </data>
+  <data name="Profiles_col_Profile">
+    <value>Profiel</value>
+    <comment>The title of profile name column in Profiles window</comment>
+  </data>
+  <data name="Profiles_col_Protocol">
+    <value>Protocol</value>
+    <comment>The title of VPN protocol column in Profiles window</comment>
+  </data>
+  <data name="Profiles_col_Status">
+    <value>Status</value>
+    <comment>The title of profile synchronization status column in Profiles window</comment>
+  </data>
+  <data name="Profiles_msg_AllServersOffline">
+    <value>Servers zijn momenteel offline voor onderhoud.</value>
+    <comment>The warning message displayed when trying to connect to profile with all servers offline</comment>
+  </data>
+  <data name="Profiles_msg_CountryOffline">
+    <value>Servers in dit land zijn momenteel offline voor onderhoud. Selecteer een ander land.</value>
+    <comment>The message displayed when trying to connect to country with no servers available</comment>
+  </data>
+  <data name="Profiles_msg_DeleteConfirm">
+    <value>Dit profiel wordt verwijderd. Weet u zeker dat u door wil gaan?</value>
+    <comment>The confirmation message displayed when deleting profile in Profiles window</comment>
+  </data>
+  <data name="Profiles_msg_NoServersAvailable">
+    <value>Er zijn momenteel geen servers beschikbaar voor uw selectie. Selecteer een andere optie.</value>
+    <comment>The message displayed when trying to connect to a country or profile with no servers available</comment>
+  </data>
+  <data name="Profiles_Profile_btn_Discard">
+    <value>Weggooien</value>
+    <comment>The text on Discard button of discard changes Question dialog opened from Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_btn_KeepEditing">
+    <value>Doorgaan met bewerken</value>
+    <comment>The text on Keep Editing button of discard changes Question dialog opened from Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_Description_val_Fastest">
+    <value>Snelste beschikbare server</value>
+    <comment>The description of Fastest default profile displayed in Profiles window</comment>
+  </data>
+  <data name="Profiles_Profile_Description_val_Random">
+    <value>Telkens een andere server</value>
+    <comment>The description of Random default profile displayed in Profiles window</comment>
+  </data>
+  <data name="Profiles_Profile_Error_lbl_NotValid">
+    <value>Profiel kan niet worden opgeslagen:</value>
+    <comment>The heading for list of validation errors in Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_Error_msg_ColorEmpty">
+    <value>Kies een kleur</value>
+    <comment>The error message displayed in Profile window when color is not selected</comment>
+  </data>
+  <data name="Profiles_Profile_Error_msg_CountryEmpty">
+    <value>Kies een land</value>
+    <comment>The error message displayed in Profile window when country is not selected</comment>
+  </data>
+  <data name="Profiles_Profile_Error_msg_NameEmpty">
+    <value>Selecteer een profielnaam</value>
+    <comment>The error message displayed in Profile window when profile name is empty</comment>
+  </data>
+  <data name="Profiles_Profile_Error_msg_NameExists">
+    <value>Deze naam bestaat al</value>
+    <comment>The error message displayed in Profile window when profile name is already used by another profile</comment>
+  </data>
+  <data name="Profiles_Profile_Error_msg_NameTooLong_One">
+    <value>Maximale lengte is {0} teken. Kies een kortere profielnaam.</value>
+  </data>
+  <data name="Profiles_Profile_Error_msg_NameTooLong_Other">
+    <value>Maximale lengte is {0} tekens. Kies een kortere profielnaam.</value>
+  </data>
+  <data name="Profiles_Profile_Error_msg_ServerEmpty">
+    <value>Selecteer een server</value>
+    <comment>The error message displayed in Profile window when server is not selected</comment>
+  </data>
+  <data name="Profiles_Profile_ExitCountry_Watermark">
+    <value>Selecteer het uitgaande land</value>
+    <comment>The watermark text displayed in empty Exit Country combo box in Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_lbl_Color">
+    <value>Kleur:</value>
+    <comment>The label for Color selection in Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_lbl_Country">
+    <value>Land:</value>
+    <comment>The label for Country combo box in Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_lbl_Country_Watermark">
+    <value>Selecteer land</value>
+    <comment>The watermark text displayed in empty Country combo box in Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_lbl_ExitCountry">
+    <value>Uitgaande Land:</value>
+    <comment>The label for Exit Country combo box in Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_lbl_Name">
+    <value>Naam:</value>
+    <comment>The label for Name text box in Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_lbl_Protocol">
+    <value>Protocol:</value>
+    <comment>The label for Protocol combo box in Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_lbl_Server">
+    <value>Server:</value>
+    <comment>The label for Server combo box in Profiles window</comment>
+  </data>
+  <data name="Profiles_Profile_lbl_Server_Watermark">
+    <value>Selecteer server</value>
+    <comment>The watermark text displayed in empty Server combo box in Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_msg_DiscardChangesConfirm">
+    <value>Er zijn niet opgeslagen profielwijzigingen.&lt;LineBreak/&gt;&lt;LineBreak/&gt;Weet u zeker dat u deze wilt verwijderen?</value>
+    <comment>The message displayed in Question dialog when cancelling changes in Profile window.</comment>
+  </data>
+  <data name="Profiles_Profile_Name_val_Fastest">
+    <value>Snelste</value>
+    <comment>The name of Fastest profile</comment>
+  </data>
+  <data name="Profiles_Profile_Name_val_Random">
+    <value>Willekeurig</value>
+    <comment>The name of Random profile</comment>
+  </data>
+  <data name="Profiles_Profile_Name_Watermark">
+    <value>Vul Profielnaam in</value>
+    <comment>Thw watermark text displayed in empty Name text box of Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_ttl_Create">
+    <value>Profiel aanmaken</value>
+    <comment>The title of Profile window when creating new profile</comment>
+  </data>
+  <data name="Profiles_Profile_ttl_Edit">
+    <value>Profiel Aanpassen</value>
+    <comment>The title of Profile window when editing profile</comment>
+  </data>
+  <data name="Profiles_ttl">
+    <value>Profielen</value>
+    <comment>The title of Profiles window</comment>
+  </data>
+  <data name="ProfileSyncStatus_val_Failed">
+    <value>Mislukt</value>
+    <comment>The profile synchronization status displayed in the Profiles window</comment>
+  </data>
+  <data name="ProfileSyncStatus_val_Failed_Info">
+    <value>Profielsynchronisatie is mislukt</value>
+    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
+  </data>
+  <data name="ProfileSyncStatus_val_InProgress">
+    <value>Synchroniseren</value>
+    <comment>The profile synchronization status displayed in the Profiles window</comment>
+  </data>
+  <data name="ProfileSyncStatus_val_InProgress_Info">
+    <value>Profielen synchroniseren</value>
+    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
+  </data>
+  <data name="ProfileSyncStatus_val_Overridden">
+    <value>Overschreven</value>
+    <comment>The profile synchronization status displayed in the Profiles window</comment>
+  </data>
+  <data name="ProfileSyncStatus_val_Succeeded">
+    <value>Gesynchroniseerd</value>
+    <comment>The profile synchronization status displayed in the Profiles window</comment>
+  </data>
+  <data name="ProfileSyncStatus_val_Succeeded_Info">
+    <value>Profielwijzigingen {0} {1} geleden gesynchroniseerd</value>
+    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window. The {0} is a placeholder for number of time units, {1} - time units.</comment>
+  </data>
+  <data name="ProfileSyncStatus_val_Succeeded_Info_NoData">
+    <value>Geen profielwijzigingen om te synchroniseren</value>
+    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
+  </data>
+  <data name="PromoCode_btn_Apply">
+    <value>Apply</value>
+  </data>
+  <data name="PromoCode_lbl_CouponCode">
+    <value>Kortingscode</value>
+  </data>
+  <data name="PromoCode_lbl_Success">
+    <value>Kortingscode werd succesvol toegepast.</value>
+  </data>
+  <data name="PromoCode_lbl_UseCoupon">
+    <value>Use coupon</value>
+  </data>
+  <data name="QuickLaunch_btn_Connect">
+    <value>Snel Verbinden</value>
+    <comment>The text on Connect button in Quick Launch window (connects to the VPN using Quick Connect profile)</comment>
+  </data>
+  <data name="QuickLaunch_btn_Disconnect">
+    <value>Verbinding verbreken</value>
+    <comment>The text on Disconnect button in Quick Launch window (disconnects from VPN)</comment>
+  </data>
+  <data name="QuickLaunch_btn_OpenApp">
+    <value>Open Proton VPN</value>
+    <comment>The text on button in Quick Launch window (opens app)</comment>
+  </data>
+  <data name="QuickLaunch_lbl_Connecting">
+    <value>Verbinding maken met</value>
+    <comment>The label for VPN server name in Quick Launch window. Part of the sentence "Connecting to {server name}".</comment>
+  </data>
+  <data name="QuickLaunch_lbl_Profiles">
+    <value>Profielen</value>
+    <comment>The label for Profiles list in combo box in Quick Launch window</comment>
+  </data>
+  <data name="QuickSettings_btn_KillSwitchOff">
+    <value>Kill Switch Uit</value>
+  </data>
+  <data name="QuickSettings_btn_KillSwitchOn">
+    <value>Kill Switch Aan</value>
+  </data>
+  <data name="QuickSettings_btn_LearnMore">
+    <value>Meer informatie</value>
+  </data>
+  <data name="QuickSettings_btn_NetshieldOff">
+    <value>Niet blokkeren</value>
+  </data>
+  <data name="QuickSettings_btn_NetshieldOnFirst">
+    <value>Alleen malware blokkeren</value>
+  </data>
+  <data name="QuickSettings_btn_NetshieldOnSecond">
+    <value>Blokkeer malware, advertenties &amp; trackers</value>
+  </data>
+  <data name="QuickSettings_btn_PermanentKillSwitch">
+    <value>Permanente Kill Switch</value>
+  </data>
+  <data name="QuickSettings_btn_PortForwardingOff">
+    <value>Port Forwarding Uitgeschakeld</value>
+  </data>
+  <data name="QuickSettings_btn_PortForwardingOn">
+    <value>Port forwarding Ingeschakeld</value>
+  </data>
+  <data name="QuickSettings_btn_SecureCoreOff">
+    <value>Secure Core Uit</value>
+  </data>
+  <data name="QuickSettings_btn_SecureCoreOn">
+    <value>Secure Core Aan</value>
+  </data>
+  <data name="QuickSettings_btn_Upgrade">
+    <value>UPGRADE</value>
+  </data>
+  <data name="QuickSettings_lbl_KillSwitchInfo">
+    <value>Schakelt internet uit als de VPN-verbinding wegvalt om onbedoeld IP-lekken te voorkomen.</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldInfo">
+    <value>Browse the Internet without ads and malware.</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldWarning">
+    <value>Als websites niet laden, probeer NetShield dan uit te schakelen</value>
+  </data>
+  <data name="QuickSettings_lbl_PortForwardingInfo">
+    <value>Versnel uw torrents en online gaming door ondersteunde lokale apps toe te staan bereikbaar te zijn vanaf het internet.</value>
+  </data>
+  <data name="QuickSettings_lbl_SecureCoreInfo">
+    <value>Stuur uw meest gevoelige gegevens door onze veiligste servers in privacy-vriendelijke landen.</value>
+  </data>
+  <data name="QuickSettings_lbl_SecureCoreWarning">
+    <value>Secure Core kan de VPN-snelheid verlagen</value>
+  </data>
+  <data name="SecureCore">
+    <value>Secure Core</value>
+  </data>
+  <data name="Servers_btn_Connect">
+    <value>Verbinden</value>
+    <comment>The text on Connect button in Server list in Countries tab of Sidebar in main app window (connects to the VPN server)</comment>
+  </data>
+  <data name="Servers_btn_Disconnect">
+    <value>Verbreken</value>
+    <comment>The text on Disconnect button in Server list in Countries tab of Sidebar in main app window (disconnects from the VPN server)</comment>
+  </data>
+  <data name="Servers_btn_Upgrade">
+    <value>Upgrade</value>
+    <comment>The text on Upgrade button in Server list in Countries tab of Sidebar in main app window (opens Upgrade Required Upsell window)</comment>
+  </data>
+  <data name="Servers_Feature_val_P2P">
+    <value>P2P-server</value>
+    <comment>The name of P2P server feature</comment>
+  </data>
+  <data name="Servers_Feature_val_Plus">
+    <value>Plus server</value>
+    <comment>The name of Plus server feature</comment>
+  </data>
+  <data name="Servers_Feature_val_SecureCore">
+    <value>Secure Core</value>
+    <comment>The name of Secure Core server feature</comment>
+  </data>
+  <data name="Servers_Feature_val_Streaming">
+    <value>Streamen</value>
+  </data>
+  <data name="Servers_Feature_val_Tor">
+    <value>Tor-Server</value>
+    <comment>The name of Tor server feature</comment>
+  </data>
+  <data name="Servers_lbl_Upgrade">
+    <value>Upgrade</value>
+    <comment>The label displayed next to server name in Server list in Countries tab of Sidebar in main app window</comment>
+  </data>
+  <data name="Servers_lbl_ViaCountry">
+    <value>via</value>
+    <comment>The label displayed before entry country name in Server list of Countries tab of Sidebar section of main app window when Secure Core mode is enabled</comment>
+  </data>
+  <data name="Servers_Load_lbl_IP">
+    <value>Server IP:</value>
+    <comment>The label for server IP address in Server Load popup. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
+  </data>
+  <data name="Servers_Load_lbl_IPAutoAssigned">
+    <value>Automatisch toegewezen</value>
+    <comment>The text displayed instead of server IP address in Server Load popup. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
+  </data>
+  <data name="Servers_Load_lbl_Load">
+    <value>Serverbelasting:</value>
+    <comment>The label for server load in Server Load popup. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
+  </data>
+  <data name="Servers_Load_lbl_LoadInfo">
+    <value>{0}% Belasting</value>
+    <comment>The tooltip text of server load image in Countries tab of Sidebar section of main app window, the server load in Connection section of Sidebar of main app window. The {0} is a placeholder for load percentage value.</comment>
+  </data>
+  <data name="Servers_Load_lbl_LoadInfo_NoData">
+    <value>Geen Data</value>
+    <comment>The tooltip text of server load image in Countries tab of Sidebar section of main app window</comment>
+  </data>
+  <data name="Servers_Load_lbl_Status">
+    <value>Server Status:</value>
+    <comment>The label for server status in Server Load popup. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
+  </data>
+  <data name="Servers_Load_lbl_ViaCountry">
+    <value>Via {0} naar {1}</value>
+    <comment>The heading of Secure Core server info displayed in Server Load popup. The {0} is a placeholder for entry country, {1} - exit country. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
+  </data>
+  <data name="Servers_msg_CantConnect_CertificateExpired">
+    <value>Proton VPN was niet in staat om het authenticatiecertificaat van de klant te vernieuwen.</value>
+  </data>
+  <data name="Servers_msg_CantConnect_Maintenance">
+    <value>De server waarmee u verbinding probeert te maken is momenteel offline voor onderhoud. Selecteer een andere server of profiel.</value>
+    <comment>The message displayed when connecting to server which is on maintenance</comment>
+  </data>
+  <data name="Servers_msg_CantConnect_Missing">
+    <value>De server waarmee u verbinding probeert te maken is verwijderd. Selecteer een andere server of profiel.</value>
+    <comment>The message displayed when connecting to server which was removed and doesn't exist anymore</comment>
+  </data>
+  <data name="Servers_msg_CantConnect_RpcServerUnavailable">
+    <value>Proton VPN kan geen verbinding maken omdat de RPC server niet beschikbaar is op uw systeem. &lt;Hyperlink Command="{Binding OpenRpcServerUrlCommand}"&gt;Bekijk mogelijke oplossingen&lt;/Hyperlink&gt;</value>
+  </data>
+  <data name="Servers_msg_MissingServerPublicKey">
+    <value>Helaas ondersteunt deze server WireGuard niet.</value>
+  </data>
+  <data name="ServerType_val_None">
+    <value>Standaard</value>
+    <comment>The server type in Profile window</comment>
+  </data>
+  <data name="ServerType_val_P2P">
+    <value>P2P</value>
+    <comment>The server type in Profile window</comment>
+  </data>
+  <data name="ServerType_val_SecureCore">
+    <value>Secure Core</value>
+    <comment>The server type in Profile window</comment>
+  </data>
+  <data name="ServerType_val_Tor">
+    <value>Tor</value>
+    <comment>The server type in Profile window</comment>
+  </data>
+  <data name="Settings_Advanced_lbl_btn_LearnMore">
+    <value>Meer informatie</value>
+  </data>
+  <data name="Settings_Advanced_lbl_DnsLeakProtection">
+    <value>DNS-lekbescherming</value>
+    <comment>The label for DNS Leak Protection toggle switch in Advanced tab of Settings window</comment>
+  </data>
+  <data name="Settings_Advanced_lbl_DnsLeakProtection_Info">
+    <value>Voorkomt dat er informatie vanuit uw DNS-queries naar derden lekt. Altijd actief.</value>
+    <comment>The description of DNS Leak Protection setting displayed in the tooltip of the ( i ) image next to the label for DNS Leak Protection toggle switch in Advanced tab of Settings window</comment>
+  </data>
+  <data name="Settings_Advanced_lbl_DoH">
+    <value>Alternatieve routering toestaan</value>
+    <comment>The label for Alternative Routing toggle switch in Advanced tab of Settings window</comment>
+  </data>
+  <data name="Settings_Advanced_lbl_DoH_Info">
+    <value>In het geval dat Proton-sites worden geblokkeerd, stelt deze instelling de app in staat om alternatieve netwerkroutering te proberen om Proton te bereiken, wat nuttig kan zijn voor het omzeilen van firewalls of netwerkproblemen. We raden aan deze instelling aan te houden voor een grotere betrouwbaarheid.</value>
+    <comment>The description of Allow Alternative Routing setting displayed in the tooltip of ( i ) image next to the label for Allow Alternative Routing toggle switch in Advanced tab of Settings window</comment>
+  </data>
+  <data name="Settings_Advanced_lbl_HardwareAcceleration">
+    <value>Hardwareversnelling</value>
+    <comment>The label for Hardware Acceleration toggle switch in Advanced tab of Settings window</comment>
+  </data>
+  <data name="Settings_Advanced_lbl_HardwareAcceleration_Info">
+    <value>Zorgt voor betere systeemprestaties en een vloeiendere ervaring door de GPU te gebruiken voor grafische rendering. Uit te schakelen in geval van scherm haperingen.</value>
+    <comment>The description of Hardware Acceleration setting displayed in the tooltip of the ( i ) image next to the label for Hardware Acceleration toggle switch in Advanced tab of Settings window</comment>
+  </data>
+  <data name="Settings_Advanced_lbl_Ipv6Protection">
+    <value>IPv6 Lek Bescherming</value>
+    <comment>The label for IPv6 Leak Protection toggle switch in Advanced tab of Settings window</comment>
+  </data>
+  <data name="Settings_Advanced_lbl_Ipv6Protection_Info">
+    <value>Voorkom het lekken van IPv6 adres.</value>
+    <comment>The description of IPv6 Leak Protection setting displayed in the tooltip of the ( i ) image next to the label for IPv6 Leak Protection toggle switch in Advanced tab of Settings window</comment>
+  </data>
+  <data name="Settings_Advanced_lbl_NetworkDriver">
+    <value>OpenVPN Netwerk stuurprogramma</value>
+  </data>
+  <data name="Settings_Advanced_lbl_NetworkDriver_info">
+    <value>Netwerk drivers kunnen uw verbinding en snelheid beïnvloeden. De nieuwe TUN adapter heeft een hogere snelheid, fallback op de TAP adapter als u een verbindingsprobleem ondervindt.</value>
+  </data>
+  <data name="Settings_Advanced_lbl_NonStandardPorts">
+    <value>Non-standard ports</value>
+    <comment>The label for toggle switch in Advanced tab of Settings window</comment>
+  </data>
+  <data name="Settings_Advanced_lbl_NonStandardPorts_Info">
+    <value>Gebruik Proton VPN voor elke speciale nood door verkeer naar niet-standaard poorten toe te laten via het VPN-netwerk.</value>
+    <comment>The description of Non-standard ports setting displayed in the tooltip of ( i ) image next to the label for Allow non-standard ports toggle switch in Advanced tab of Settings window</comment>
+  </data>
+  <data name="Settings_Advanced_lbl_OpenVpnTap">
+    <value>TAP adapter</value>
+  </data>
+  <data name="Settings_Advanced_lbl_OpenVpnTun">
+    <value>TUN adapter</value>
+  </data>
+  <data name="Settings_Advanced_lbl_PortForwarding">
+    <value>Port forwarding</value>
+  </data>
+  <data name="Settings_Advanced_lbl_PortForwarding_Info">
+    <value>Versnel je torrenting en online gokken door het mogelijk te maken dat ondersteunde lokale apps bereikbaar zijn vanaf internet. &lt;Hyperlink Command="{Binding LearnMoreAboutPortForwardingCommand}"&gt;Meer informatie&lt;/Hyperlink&gt;</value>
+    <comment>Do not translate whatever is between &lt; and &gt;. Do not forget to translate the "Learn more".</comment>
+  </data>
+  <data name="Settings_Advanced_lbl_PortForwardingInQuickSettings">
+    <value>Port forwarding sneltoets</value>
+  </data>
+  <data name="Settings_Advanced_lbl_PortForwardingInQuickSettings_Info">
+    <value>Toegang tot Port forwarding instellingen vanaf Snelle Instellingen</value>
+  </data>
+  <data name="Settings_Advanced_lbl_PortForwardingNotifications">
+    <value>Port forwarding meldingen</value>
+  </data>
+  <data name="Settings_Advanced_lbl_PortForwardingNotifications_Info">
+    <value>Krijg meldingen wanneer het Port forwarding nummer wijzigt</value>
+  </data>
+  <data name="Settings_Advanced_lbl_SplitTunnel">
+    <value>Split Tunneling</value>
+    <comment>The label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
+  </data>
+  <data name="Settings_Advanced_lbl_SplitTunnel_Info">
+    <value>Een applicatie of een IP-adres uit VPN-verkeer uitsluiten of alleen specifieke apps opnemen. Kan niet samen met de Kill Switch gebruikt worden.</value>
+    <comment>The description of Split Tunneling setting displayed in the tooltip of ( i ) image next to the label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
+  </data>
+  <data name="Settings_Advanced_SplitTunnel_btn_AddApp">
+    <value>App toevoegen</value>
+    <comment>The text on Add App button in Settings window Advanced tab Split Tunneling section (opens a window for selecting custom app to add)</comment>
+  </data>
+  <data name="Settings_Advanced_SplitTunnel_lbl_Apps">
+    <value>APPS:</value>
+    <comment>The label for application list in Settings window Advanced tab Split Tunneling section</comment>
+  </data>
+  <data name="Settings_Advanced_SplitTunnel_lbl_Exclude">
+    <value>Apps/IP's uitsluiten van het gebruik van de VPN</value>
+    <comment>The label of Split Tunnel mode in Split Tunneling section of Advanced tab of Settings window</comment>
+  </data>
+  <data name="Settings_Advanced_SplitTunnel_lbl_Include">
+    <value>Alleen gekozen apps/IP-adressen maken gebruik van de VPN</value>
+    <comment>The label of Split Tunnel mode in Split Tunneling section of Advanced tab of Settings window</comment>
+  </data>
+  <data name="Settings_Advanced_SplitTunnel_lbl_Ip">
+    <value>IP:</value>
+    <comment>The label for IP address list in Settings window Advanced tab Split Tunneling section</comment>
+  </data>
+  <data name="Settings_Advanced_SplitTunnel_lbl_Ip_Watermark">
+    <value>IPv4 adres toevoegen</value>
+    <comment>The watermark text of empty text box for entering IPv4 address in Split Tunneling section of Advanced tab in Settings window</comment>
+  </data>
+  <data name="Settings_Advanced_SplitTunnel_msg_IpInvalid">
+    <value>IP-adres niet geldig</value>
+    <comment>The error message displayed in a tooltip of IP text box in SplitTunneling section of Advanced tab of Settings window when IP address is not valid</comment>
+  </data>
+  <data name="Settings_Advanced_ttl">
+    <value>Geavanceerd</value>
+    <comment>The header of Advanced tab in Settings window</comment>
+  </data>
+  <data name="Settings_Connection_btn_Upgrade">
+    <value>Upgraden</value>
+    <comment>The text on Upgrade button in Connection tab of Settings window</comment>
+  </data>
+  <data name="Settings_Connection_DefaultProtocol_val_Smart">
+    <value>Smart (voorgesteld)</value>
+    <comment>The suggested Smart protocol selection displayed in Protocol combo box in Connection tab of Settings window.</comment>
+  </data>
+  <data name="Settings_Connection_DefaultProtocol_val_Tcp">
+    <value>OpenVPN - TCP</value>
+    <comment>The OpenVPN TCP protocol name displayed in Protocol combo box in Connection tab of Settings window. Do not translate.</comment>
+  </data>
+  <data name="Settings_Connection_DefaultProtocol_val_Udp">
+    <value>OpenVPN - UDP</value>
+    <comment>The OpenVPN UDP protocol name displayed in Protocol combo box in Connection tab of Settings window. Do not translate.</comment>
+  </data>
+  <data name="Settings_Connection_DefaultProtocol_val_WireGuard">
+    <value>WireGuard</value>
+    <comment>The WireGuard protocol name displayed in the Protocol combo box in Connection tab of Settings window. Do not translate.</comment>
+  </data>
+  <data name="Settings_Connection_lbl_CustomDnsServer">
+    <value>Aangepaste DNS Servers</value>
+    <comment>The label for Custom DNS Servers combo box in Connection tab of Settings window</comment>
+  </data>
+  <data name="Settings_Connection_lbl_CustomDnsServer_Info">
+    <value>Voer een privé DNS-server (zoals AdGuard DNS) in om uw DNS-verzoeken te verwerken. Gebruik van een aangepaste DNS-servers zal NetShield uitschakelen. DNS-servers zijn verantwoordelijk voor het sturen naar de juiste site, dus gebruik alleen servers die u vertrouwt.</value>
+    <comment>The description of Custom DNS Servers setting displayed in the tooltip of the ( i ) image next to the label for Custom DNS Server toggle switch in Connection tab of Settings window</comment>
+  </data>
+  <data name="Settings_Connection_lbl_DefaultProtocol">
+    <value>Protocol</value>
+    <comment>The label for Protocol combo box in Connection tab of Settings window</comment>
+  </data>
+  <data name="Settings_Connection_lbl_DefaultProtocol_Info">
+    <value>Schakel Smart Protocol in om automatisch het protocol en de poort te gebruiken die de beste connectiviteit bieden.</value>
+    <comment>The description of Default Protocol settings displayed in the tooltip of ( i ) image next to the label for Default Protocol combo box in Connection tab of Settings window</comment>
+  </data>
+  <data name="Settings_Connection_lbl_ModerateNat">
+    <value>Moderate NAT</value>
+  </data>
+  <data name="Settings_Connection_lbl_ModerateNat_Info">
+    <value>Moderate NAT schakelt de randomisatie van de lokale adressen mapping uit, wat uw veiligheid enigszins kan verminderen, maar laat technieken toe zoals rechtstreekse verbindingen voor toepassingen zoals online games.</value>
+  </data>
+  <data name="Settings_Connection_lbl_QuickConnect">
+    <value>Snel Verbinden</value>
+    <comment>The label for Quick Connect combo box in General tab of Settings window</comment>
+  </data>
+  <data name="Settings_Connection_lbl_QuickConnect_Info">
+    <value>De knop 'Snel Verbinden' verbindt u met het geselecteerde profiel.</value>
+    <comment>The description of Quick Connect settings displayed in the tooltip of ( i ) image next to the label for Quick Connect combo box in General tab of Settings window</comment>
+  </data>
+  <data name="Settings_Connection_lbl_SmartReconnect">
+    <value>Automatisch opnieuw verbinden</value>
+    <comment>The label for Auto Reconnect toggle switch in Settings window</comment>
+  </data>
+  <data name="Settings_Connection_lbl_SmartReconnect_Info">
+    <value>Automatisch overschakelen naar een snellere server vergelijkbaar met degene die u hebt geselecteerd.</value>
+    <comment>The description of Auto Reconnect setting displayed in the tooltip of the ( i ) image next to the label in Settings window</comment>
+  </data>
+  <data name="Settings_Connection_lbl_SmartReconnectNotifications">
+    <value>Melding heraansluiting</value>
+    <comment>The label for Smart Reconnect notifications toggle switch in the General tab of Settings window</comment>
+  </data>
+  <data name="Settings_Connection_lbl_SmartReconnectNotifications_Info">
+    <value>Zet dit aan om meldingen te ontvangen wanneer VPN Accelerator u met een snellere server verbindt.</value>
+    <comment>The description of the Smart Reconnect notifications setting displayed in the tooltip of the ( i ) image next to the label</comment>
+  </data>
+  <data name="Settings_Connection_lbl_VpnAccelerator">
+    <value>VPN Accelerator</value>
+    <comment>The label for VPN Accelerator toggle switch in Settings window</comment>
+  </data>
+  <data name="Settings_Connection_lbl_VpnAccelerator_Info">
+    <value>VPN Accelerator maakt een set van unieke prestaties verbetering technologieën mogelijk die VPN snelheid met tot 400% kunnen verhogen.</value>
+    <comment>The description of VPN Accelerator setting displayed in the tooltip of the ( i ) image next to the label in Settings window</comment>
+  </data>
+  <data name="Settings_Connection_ttl">
+    <value>Verbinding</value>
+    <comment>The title of Connection tab of Settings window</comment>
+  </data>
+  <data name="Settings_Connection_Warning_CustomDnsServer">
+    <value>Met behulp van aangepaste DNS-servers zal NetShield worden uitgeschakeld. DNS-servers zijn verantwoordelijk voor u te verbinden met de juiste websites. &lt;LineBreak/&gt;&lt;LineBreak/&gt;Gebruik alleen DNS-servers die je vertrouwt. Wilt u aangepaste DNS-servers inschakelen?</value>
+    <comment>The text displayed in Custom DNS Servers warning modal window when use is trying to turn the feature ON when NetShield feature is turned on as well</comment>
+  </data>
+  <data name="Settings_General_lbl_ConnectOnAppStart">
+    <value>Verbinden wanneer app start</value>
+    <comment>The label for Connect on boot combo box in General tab of Settings window</comment>
+  </data>
+  <data name="Settings_General_lbl_ConnectOnAppStart_Info">
+    <value>Automatisch verbinden met het Snel Verbinden-profiel wanneer Proton VPN start.</value>
+    <comment>The description of Connect on boot setting displayed in the tooltip of ( i ) image next to the label for Connect on boot combo box in General tab of Settings window</comment>
+  </data>
+  <data name="Settings_General_lbl_EarlyAccess">
+    <value>Vroegtijdige Toegang</value>
+    <comment>The label for Early Access toggle switch in General tab of Settings window</comment>
+  </data>
+  <data name="Settings_General_lbl_EarlyAccess_Info">
+    <value>Wees de eerste om de laatste updates te krijgen. Denk eraan dat deze versies minder stabiel kunnen zijn.</value>
+    <comment>The description of Early Access setting displayed in the tooltip of ( i ) image next to the label for Early Access toggle switch in General tab of Settings window</comment>
+  </data>
+  <data name="Settings_General_lbl_Language">
+    <value>Taal</value>
+    <comment>The label for Language combo box in General tab of Settings window</comment>
+  </data>
+  <data name="Settings_General_lbl_ShowNotifications">
+    <value>Toon Meldingen</value>
+    <comment>The label for Show Notifications toggle switch in General tab of Settings window</comment>
+  </data>
+  <data name="Settings_General_lbl_StartMinimized">
+    <value>Geminimaliseerd Starten</value>
+    <comment>The label for Start Minimized combo box in General tab of Settings window</comment>
+  </data>
+  <data name="Settings_General_lbl_StartOnBoot">
+    <value>Starten bij het opstarten</value>
+    <comment>The label for Start on boot toggle switch in General tab of Settings window.
+This setting instructs the Proton VPN to start automatically when the user logs in to the computer.</comment>
+  </data>
+  <data name="Settings_General_ttl">
+    <value>Algemeen</value>
+    <comment>The title of General tab in Settings window</comment>
+  </data>
+  <data name="Settings_lnk_Reconnect">
+    <value>Opnieuw verbinden</value>
+    <comment>The text of Reconnect hyperlink next to Reconnect Required message in Settings window (reconnects to same VPN server)</comment>
+  </data>
+  <data name="Settings_msg_ReconnectRequired">
+    <value>Sommige wijzigingen vereisen opnieuw verbinden om van kracht te worden.</value>
+    <comment>The message displayed on the bottom of Settings window if any of settings changes requires VPN to be reconnected to take effect</comment>
+  </data>
+  <data name="Settings_ttl">
+    <value>Instellingen</value>
+    <comment>The title of Settings window</comment>
+  </data>
+  <data name="Sidebar_Connection_btn_Connect">
+    <value>Snel Verbinden</value>
+    <comment>The text on Quick Connect button in Connection section of Sidebar section of main app window (connects to VPN using Quick Connect profile)</comment>
+  </data>
+  <data name="Sidebar_Connection_btn_Disconnect">
+    <value>Verbinding verbreken</value>
+    <comment>The text on Disconnect button in Connection section of Sidebar section of main app window (disconnect from VPN)</comment>
+  </data>
+  <data name="Sidebar_Connection_lbl_Disconnected">
+    <value>U bent niet beschermd!</value>
+    <comment>The text displayed on Connection section of Sidebar section of main app window</comment>
+  </data>
+  <data name="Sidebar_Connection_lbl_Disconnected_Info">
+    <value>Verbind met een VPN-server om een beveiligde verbinding te hebben.</value>
+    <comment>The text displayed in a tooltip of Connection section of Sidebar section of main app window</comment>
+  </data>
+  <data name="Sidebar_Connection_lbl_IP_Unknown">
+    <value>Onbekend</value>
+    <comment>The text displayed on Connection section of Sidebar section of main app window</comment>
+  </data>
+  <data name="Sidebar_Connection_lbl_IP_Unknown_Info">
+    <value>Het is niet mogelijk om uw IP-adres op te halen door netwerkproblemen of beperkingen van uw ISP.</value>
+    <comment>The text displayed in a tooltip of Connection section of Sidebar section of main app window</comment>
+  </data>
+  <data name="Sidebar_Connection_lbl_KillSwitch">
+    <value>Kill Switch geactiveerd!</value>
+    <comment>The text displayed in the sidebar when connection dropped and Kill Switch is turned on</comment>
+  </data>
+  <data name="Sidebar_Connection_lbl_KillSwitch_Info">
+    <value>Kill Switch blokkeert alle verbindingen om te voorkomen dat uw gegevens worden uitgelekt.</value>
+    <comment>Tooltip message shown in sidebar connection status box when hovered on exclamation mark icon</comment>
+  </data>
+  <data name="Sidebar_Countries_AllLocationCount">
+    <value>Locaties ({0})</value>
+  </data>
+  <data name="Sidebar_Countries_BasicAndPlusLocationCount">
+    <value>BASIC &amp; PLUS locaties ({0})</value>
+  </data>
+  <data name="Sidebar_Countries_BasicLocationCount">
+    <value>BASIC locaties ({0})</value>
+  </data>
+  <data name="Sidebar_Countries_FreeLocationCount">
+    <value>GRATIS locaties ({0})</value>
+  </data>
+  <data name="Sidebar_Countries_info_SmartRouting">
+    <value>Slimme routering</value>
+  </data>
+  <data name="Sidebar_Countries_lbl_Maintenance">
+    <value>In onderhoud</value>
+    <comment>The text displayed next to the country in Countries tab of Sidebar section of main app window when all servers in the country are under maintenance.</comment>
+  </data>
+  <data name="Sidebar_Countries_lbl_Search_Watermark">
+    <value>Zoek</value>
+    <comment>The watermark text displayed in Search text box in Countries tab of Sidebar section of main app window</comment>
+  </data>
+  <data name="Sidebar_Countries_lbl_SecureCore">
+    <value>Secure Core</value>
+    <comment>The label of Secure Core toggle switch on Countries tab of Sidebar section of main app window</comment>
+  </data>
+  <data name="Sidebar_Countries_lbl_SecureCore_Info">
+    <value>Biedt extra bescherming tegen serverblootstelling door alle verbindingen door ons Secure Core-netwerk te leiden</value>
+    <comment>The description of Secure Core feature displayed in a tooltip of ( i ) image next to Secure Core toggle switch label on Countries tab in Sidebar section of main app window</comment>
+  </data>
+  <data name="Sidebar_Countries_msg_SecureCoreDisableConfirm">
+    <value>Secure Core uitschakelen zal de huidige VPN-verbinding verbreken. Wilt u doorgaan?</value>
+    <comment>The confirmation message displayed when switching off Secure Core toggle switch in Countries tab of Sidebar section of main app window while connected to VPN</comment>
+  </data>
+  <data name="Sidebar_Countries_msg_SecureCoreEnableConfirm">
+    <value>Veranderen naar Secure Core modus zal de huidige VPN-verbinding verbreken. Wilt u doorgaan?</value>
+    <comment>The confirmation message displayed when switching on Secure Core toggle switch in Countries tab of Sidebar section of main app window while connected to VPN</comment>
+  </data>
+  <data name="Sidebar_Countries_PlusLocationCount">
+    <value>PLUS locaties ({0})</value>
+  </data>
+  <data name="Sidebar_Countries_ServerCountByTier0">
+    <value>GRATIS servers ({0})</value>
+  </data>
+  <data name="Sidebar_Countries_ServerCountByTier1">
+    <value>BASIC-servers ({0})</value>
+  </data>
+  <data name="Sidebar_Countries_ServerCountByTier2">
+    <value>Plus servers ({0})</value>
+  </data>
+  <data name="Sidebar_Countries_ServerCountByTier3">
+    <value>INTERNE servers</value>
+  </data>
+  <data name="Sidebar_Countries_ttl">
+    <value>Landen</value>
+    <comment>The title of Countries tab in Sidebar section of main app window</comment>
+  </data>
+  <data name="Sidebar_FeaturesPopup_BasicAndPlus">
+    <value>BASIC &amp; PLUS</value>
+  </data>
+  <data name="Sidebar_FeaturesPopup_LearnMore">
+    <value>Meer informatie</value>
+  </data>
+  <data name="Sidebar_FeaturesPopup_P2P">
+    <value>P2P/BitTorrent</value>
+  </data>
+  <data name="Sidebar_FeaturesPopup_P2P_Desc">
+    <value>Deze servers geven de beste prestaties voor BitTorrent en het delen van bestanden.</value>
+  </data>
+  <data name="Sidebar_FeaturesPopup_Plus">
+    <value>PLUS</value>
+  </data>
+  <data name="Sidebar_FeaturesPopup_SmartRouting">
+    <value>Slimme routering</value>
+  </data>
+  <data name="Sidebar_FeaturesPopup_SmartRouting_Desc">
+    <value>Met deze technologie kan Proton VPN hogere snelheid en beveiliging bieden in landen waar de toegang tot VPNs beperkt is.</value>
+  </data>
+  <data name="Sidebar_FeaturesPopup_Streaming">
+    <value>Streamen</value>
+  </data>
+  <data name="Sidebar_FeaturesPopup_Streaming_Desc">
+    <value>PLUS-servers ondersteunen streaming (Netflix, Disney+, enz.) wereldwijd.</value>
+  </data>
+  <data name="Sidebar_FeaturesPopup_Title">
+    <value>Features</value>
+  </data>
+  <data name="Sidebar_FeaturesPopup_Tor">
+    <value>Tor</value>
+  </data>
+  <data name="Sidebar_FeaturesPopup_Tor_Desc">
+    <value>Routeer uw internetverkeer via het Tor-netwerk. Langer, maar meer privé.</value>
+  </data>
+  <data name="Sidebar_Profiles_btn_Create">
+    <value>Profiel aanmaken</value>
+    <comment>The text of button for creating new profile on Profiles tab of Sidebar section of main app window (opens new profile window)</comment>
+  </data>
+  <data name="Sidebar_Profiles_lnk_Manage">
+    <value>Manage</value>
+    <comment>The text of hyperlink on Profiles tab of Sidebar section of main app window (opens Profiles window)</comment>
+  </data>
+  <data name="Sidebar_Profiles_ttl">
+    <value>Profielen</value>
+    <comment>The title of Profiles tab in the Sidebar of main app window</comment>
+  </data>
+  <data name="Sidebar_Separator_Others">
+    <value>ANDERS</value>
+    <comment>When Port Forwarding is enabled, we show the P2P servers first and only then the OTHERS.</comment>
+  </data>
+  <data name="Sidebar_Servers_info_plus">
+    <value>Plus Server</value>
+    <comment>The description displayed in a tooltip of P icon on a sidebar server item</comment>
+  </data>
+  <data name="Sidebar_Streaming_Country">
+    <value>Streaming - {0}</value>
+  </data>
+  <data name="Sidebar_Streaming_Features">
+    <value>Features</value>
+  </data>
+  <data name="Sidebar_Streaming_Info">
+    <value>Maak verbinding met een Plus server in dit land om te beginnen met streamen.</value>
+  </data>
+  <data name="Sidebar_Streaming_InfoNote">
+    <value>Opmerking: Gebruik een nieuw browsertabblad en/of wis de cache om nieuwe inhoud te laten verschijnen.</value>
+  </data>
+  <data name="Sidebar_Streaming_More">
+    <value>en meer</value>
+  </data>
+  <data name="SidebarProfiles_lbl_MyProfiles">
+    <value>My Profiles</value>
+    <comment>The text of "My Profiles" category text in the Profile sidebar, that has the custom created profiles below</comment>
+  </data>
+  <data name="SidebarProfiles_lbl_Recommended">
+    <value>Aanbevolen</value>
+    <comment>The text of "Recommended" category text in the Profile sidebar, that has the predefined profiles below</comment>
+  </data>
+  <data name="StartMinimizedMode_val_Disabled">
+    <value>Uitgeschakeld</value>
+    <comment>The name of start minimized mode displayed in Start Minimized combo box in General tab of Settings window</comment>
+  </data>
+  <data name="StartMinimizedMode_val_ToSystray">
+    <value>Naar het notificatie center</value>
+    <comment>The name of start minimized mode displayed in Start Minimized combo box in General tab of Settings window</comment>
+  </data>
+  <data name="StartMinimizedMode_val_ToTaskbar">
+    <value>Naar de taakbalk</value>
+    <comment>The name of start minimized mode displayed in Start Minimized combo box in General tab of Settings window</comment>
+  </data>
+  <data name="TextBoxPlaceholder">
+    <value>Begin met typen...</value>
+    <comment>The text displayed as a placeholder on any text box all over the application</comment>
+  </data>
+  <data name="TimeUnit_val_Day_One">
+    <value>dag</value>
+  </data>
+  <data name="TimeUnit_val_Day_Other">
+    <value>dagen</value>
+  </data>
+  <data name="TimeUnit_val_Hour_One">
+    <value>uur</value>
+  </data>
+  <data name="TimeUnit_val_Hour_Other">
+    <value>uren</value>
+  </data>
+  <data name="TimeUnit_val_Minute_One">
+    <value>minuut</value>
+  </data>
+  <data name="TimeUnit_val_Minute_Other">
+    <value>minuten</value>
+  </data>
+  <data name="Tooltips_SmartReconnection_btn_NotificationSettings">
+    <value>Notificatie Instellingen</value>
+    <comment>The text button of the Auto Reconnection tooltip that opens the Notification Settings</comment>
+  </data>
+  <data name="Tooltips_SmartReconnection_Description">
+    <value>U bent overgestapt naar een snellere server die lijkt op de server die u heeft geselecteerd.</value>
+    <comment>The description of the Auto Reconnection tooltip</comment>
+  </data>
+  <data name="Tooltips_SmartReconnection_Title">
+    <value>VPN Accelerator</value>
+    <comment>The title of the Auto Reconnection tooltip</comment>
+  </data>
+  <data name="Upsell_btn_Upgrade">
+    <value>Upgrade</value>
+    <comment>The text on Upgrade button in Upgrade Required Upsell window (opens web page for subscription plan upgrade)</comment>
+  </data>
+  <data name="Upsell_Countries_BlockAds">
+    <value>Blokkeer advertenties en malware met NetShield</value>
+  </data>
+  <data name="Upsell_Countries_BrowseFast">
+    <value>Browse at the highest speeds (10 Gbps)</value>
+  </data>
+  <data name="Upsell_Countries_GlobalStreamingServices">
+    <value>Krijg toegang tot wereldwijde streamingdiensten</value>
+  </data>
+  <data name="Upsell_Countries_MoreFeatures">
+    <value>En veel meer premium functies</value>
+  </data>
+  <data name="Upsell_Countries_SimultaneousDevices">
+    <value>Verbind tot 10 apparaten tegelijkertijd</value>
+  </data>
+  <data name="Upsell_Countries_Subtitle">
+    <value>Wanneer u upgrade naar Plus</value>
+    <comment>The message disaplyed in plus upgrade modal window</comment>
+  </data>
+  <data name="Upsell_Countries_Title">
+    <value>Toegang tot meer dan 1200 servers in 63 landen</value>
+    <comment>The message disaplyed in plus upgrade modal window</comment>
+  </data>
+  <data name="Upsell_ModerateNat_About">
+    <value>What is Moderate NAT?</value>
+  </data>
+  <data name="Upsell_ModerateNat_Subtitle">
+    <value>Gemiddelde NAT (ook gekend als NAT Type 2) kan uw online ervaring met verschillende applicaties en online videogames verbeteren.</value>
+  </data>
+  <data name="Upsell_ModerateNat_Title">
+    <value>Schakel Gemiddelde NAT in</value>
+  </data>
+  <data name="Upsell_ModerateNat_Unlock">
+    <value>Upgrade naar een betaald abonnement om deze en vele andere functies te deblokkeren.</value>
+  </data>
+  <data name="Upsell_Netshield_BlockAds">
+    <value>Block ads and trackers</value>
+  </data>
+  <data name="Upsell_Netshield_BrowseFast">
+    <value>Browse at the highest speeds</value>
+  </data>
+  <data name="Upsell_Netshield_ProtectFromMalware">
+    <value>Bescherm uw apparaat tegen malware</value>
+  </data>
+  <data name="Upsell_Netshield_Subtitle">
+    <value>When you upgrade to Plus</value>
+  </data>
+  <data name="Upsell_Netshield_Title">
+    <value>Enjoy ad-free browsing with NetShield</value>
+  </data>
+  <data name="Upsell_NonStandardPorts_btn_LearnMore">
+    <value>Meer informatie</value>
+    <comment>The button label in "allow non-standard ports" modal</comment>
+  </data>
+  <data name="Upsell_NonStandardPorts_btn_Upgrade">
+    <value>Upgrade</value>
+    <comment>The button label in "allow non-standard ports" modal</comment>
+  </data>
+  <data name="Upsell_NonStandardPorts_msg">
+    <value>Hebt u geavanceerde of professionele computereisen die niet-standaard poorten vereisen? Upgrade naar VPN Plus om toegang te krijgen tot deze en andere premium functies.</value>
+    <comment>The text in "allow non-standard ports" modal</comment>
+  </data>
+  <data name="Upsell_NonStandardPorts_ttl">
+    <value>Laat verkeer toe naar niet-standaard poorten</value>
+    <comment>The title in "allow non-standard ports" modal</comment>
+  </data>
+  <data name="Upsell_PortForwarding_About">
+    <value>Wat is Port Forwarding?</value>
+  </data>
+  <data name="Upsell_PortForwarding_Subtitle">
+    <value>Verkrijg snellere P2P-downloads en verbeter uw online game-ervaring met Port Forwarding.
+&lt;LineBreak/&gt;&lt;LineBreak/&gt;Ontgrendel deze functie en veel meer met VPN Plus.</value>
+  </data>
+  <data name="Upsell_PortForwarding_Title">
+    <value>Schakel port forwarding in</value>
+  </data>
+  <data name="Upsell_SecureCore_ExtraEncryption">
+    <value>Voeg een extra laag encryptie toe aan uw VPN-verbinding</value>
+  </data>
+  <data name="Upsell_SecureCore_NetworkAttacks">
+    <value>Bescherm uzelf van netwerkaanvallen</value>
+  </data>
+  <data name="Upsell_SecureCore_RouteThrough">
+    <value>Routeer via ultra beveiligde servers in Zwitserland, Zweden en IJsland</value>
+  </data>
+  <data name="Upsell_SecureCore_Subtitle">
+    <value>When you upgrade to Plus</value>
+  </data>
+  <data name="Upsell_SecureCore_Title">
+    <value>Verdubbel de encryptie met Secure Core</value>
+  </data>
+  <data name="VpnPlan_val_Free">
+    <value>Proton VPN Free</value>
+    <comment>The name of VPN subscription plan</comment>
+  </data>
+  <data name="VpnPlan_val_Visionary">
+    <value>Proton Visionary</value>
+    <comment>The name of VPN subscription plan</comment>
+  </data>
+  <data name="VpnPlan_val_Vpnbasic">
+    <value>Proton VPN Basic</value>
+    <comment>The name of VPN subscription plan</comment>
+  </data>
+  <data name="VpnPlan_val_Vpnplus">
+    <value>Proton VPN Plus</value>
+    <comment>The name of VPN subscription plan</comment>
+  </data>
+  <data name="VpnProtocol_val_OpenVpnTcp">
+    <value>OpenVPN (TCP)</value>
+    <comment>Protocol name displayed all over the app (do not translate)</comment>
+  </data>
+  <data name="VpnProtocol_val_OpenVpnUdp">
+    <value>OpenVPN (UDP)</value>
+    <comment>Protocol name displayed all over the app (do not translate)</comment>
+  </data>
+  <data name="VpnProtocol_val_Smart">
+    <value>Smart</value>
+    <comment>The name of the VPN protocol. Means that the protocol will be automatically selected when connecting.</comment>
+  </data>
+  <data name="VpnProtocol_val_WireGuard">
+    <value>WireGuard</value>
+  </data>
+  <data name="Welcome_btn_Skip">
+    <value>Overslaan</value>
+    <comment>The text on Skip button in Welcome window</comment>
+  </data>
+  <data name="Welcome_btn_TakeATour">
+    <value>Neem een rondleiding</value>
+    <comment>The text on Take a Tour button in Welcome window</comment>
+  </data>
+  <data name="Welcome_lbl_Thanks">
+    <value>Bedankt voor het gebruiken van Proton VPN. Bekijk snel de belangrijkste kenmerken van de app.</value>
+    <comment>The text displayed in Welcome window</comment>
+  </data>
+  <data name="Welcome_lbl_Welcome">
+    <value>WELKOM AAN BOORD!</value>
+    <comment>The text displayed in Welcome window</comment>
+  </data>
+  <data name="Welcome_ttl">
+    <value>Proton VPN</value>
+    <comment>The title of Welcome window</comment>
+  </data>
+  <data name="Window_btn_Cancel">
+    <value>Annuleren</value>
+    <comment>The text on Cancel button in data entry windows</comment>
+  </data>
+  <data name="Window_btn_Disable">
+    <value>Uitschakelen</value>
+    <comment>The button displayed when Kill Switch is enabled and in the login window or in the connection status in the sidebar when disconnected</comment>
+  </data>
+  <data name="Window_btn_Save">
+    <value>Opslaan</value>
+    <comment>The text on Save button in data entry windows</comment>
+  </data>
+  <data name="Window_lbl_Error">
+    <value>Error:</value>
+    <comment>The label for list of errors on Error Panel of data entry Window</comment>
+  </data>
+  <data name="Window_lbl_Loading">
+    <value>Laden</value>
+    <comment>The text displayed while content is loading</comment>
+  </data>
+  <data name="WireGuard_lbl">
+    <value>WireGuard</value>
+    <comment>WireGuard client name (do not translate)</comment>
+  </data>
+</root>
