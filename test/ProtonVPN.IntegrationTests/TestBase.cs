@@ -19,6 +19,7 @@
  */
 
 using System;
+using System.IO;
 using System.Net.Http;
 using Autofac;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -27,26 +28,37 @@ using ProtonVPN.Api;
 using ProtonVPN.Api.Installers;
 using ProtonVPN.BugReporting;
 using ProtonVPN.Common.Threading;
+using ProtonVPN.Core.Announcements;
 using ProtonVPN.Core.Ioc;
 using ProtonVPN.HumanVerification.Installers;
+using ProtonVPN.IntegrationTests.Announcements;
 using ProtonVPN.P2PDetection;
+using RichardSzalay.MockHttp;
 
 namespace ProtonVPN.IntegrationTests
 {
     public class TestBase
     {
         private IContainer _container;
+        protected MockHttpMessageHandler MessageHandler;
 
         public T Resolve<T>() => _container.Resolve<T>();
+
+        [TestInitialize]
+        public void Initialize()
+        {
+            MessageHandler = new();
+        }
 
         [TestCleanup]
         public void Cleanup()
         {
             _container?.Dispose();
             _container = null;
+            MessageHandler = null;
         }
 
-        protected void InitializeContainer(HttpClient httpClient)
+        protected void InitializeContainer()
         {
             ContainerBuilder builder = new();
             builder.RegisterModule<CoreModule>()
@@ -62,8 +74,10 @@ namespace ProtonVPN.IntegrationTests
 
 
             builder.Register(_ => Substitute.For<IScheduler>()).As<IScheduler>().SingleInstance();
+            builder.Register(_ => new AnnouncementCacheMock()).As<IAnnouncementCache>().SingleInstance();
             builder.Register(_ =>
             {
+                HttpClient httpClient = MessageHandler.ToHttpClient();
                 IHttpClientFactory httpClientFactory = Substitute.For<IHttpClientFactory>();
                 httpClient.BaseAddress = new Uri("http://localhost");
                 httpClientFactory.GetApiHttpClientWithCache().Returns(httpClient);
@@ -75,6 +89,11 @@ namespace ProtonVPN.IntegrationTests
             new Update.Config.Module().Load(builder);
 
             _container = builder.Build();
+        }
+
+        protected string GetJsonMock(string name)
+        {
+            return File.ReadAllText($"TestData\\{name}.json");
         }
     }
 }

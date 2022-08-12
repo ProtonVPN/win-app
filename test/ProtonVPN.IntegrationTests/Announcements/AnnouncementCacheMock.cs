@@ -17,21 +17,23 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Newtonsoft.Json;
+using System.Collections.Generic;
+using ProtonVPN.Core.Announcements;
 
-namespace ProtonVPN.Api.Contracts.Announcements
+namespace ProtonVPN.IntegrationTests.Announcements
 {
-    public class AnnouncementResponse
+    internal class AnnouncementCacheMock : IAnnouncementCache
     {
-        [JsonProperty(PropertyName = "NotificationID")]
-        public string Id { get; set; }
+        private IReadOnlyList<Announcement> _announcements;
 
-        [JsonProperty(PropertyName = "StartTime")]
-        public long StartTimestamp { get; set; }
+        public IReadOnlyList<Announcement> Get()
+        {
+            return _announcements;
+        }
 
-        [JsonProperty(PropertyName = "EndTime")]
-        public long EndTimestamp { get; set; }
-
-        public OfferResponse Offer { get; set; }
+        public void Store(IReadOnlyList<Announcement> announcements)
+        {
+            _announcements = announcements;
+        }
     }
 }
