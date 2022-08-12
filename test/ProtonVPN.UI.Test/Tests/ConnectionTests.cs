@@ -37,7 +37,8 @@ namespace ProtonVPN.UI.Test.Tests
         private SettingsResult _settingsResult = new SettingsResult();
         private LoginResult _loginResult = new LoginResult();
 
-        private const string DnsAddress = "8.8.8.8";
+        private const string DNS_ADDRESS = "8.8.8.8";
+        private const string GOOGLE_URL = "www.google.com";
 
         [Test]
         public async Task QuickConnectAndDisconnect()
@@ -140,7 +141,7 @@ namespace ProtonVPN.UI.Test.Tests
             _homeWindow.ContinueLogout();
             _loginResult.CheckIfLoginWindowIsDisplayed()
                 .CheckIfKillSwitchIsNotActive();
-            _homeResult.CheckIfDnsIsResolved();
+            _homeResult.CheckIfDnsIsResolved(GOOGLE_URL);
         }
 
         [Test]
@@ -216,11 +217,11 @@ namespace ProtonVPN.UI.Test.Tests
 
             _homeWindow.NavigateToSettings();
             _settingsWindow.NavigateToConnectionTab()
-                .EnterCustomDnsAddress(DnsAddress)
+                .EnterCustomDnsAddress(DNS_ADDRESS)
                 .CloseSettings();
             _homeWindow.PressQuickConnectButton()
                 .WaitUntilConnected();
-            _settingsResult.CheckIfDnsAddressMatches(DnsAddress);
+            _settingsResult.CheckIfDnsAddressMatches(DNS_ADDRESS);
 
             TestRailClient.MarkTestsByStatus();
             TestCaseId = 4581;
@@ -230,7 +231,7 @@ namespace ProtonVPN.UI.Test.Tests
                 .RemoveCustomDns()
                 .PressReconnect()
                 .WaitUntilConnected();
-            _settingsResult.CheckIfDnsAddressDoesNotMatch(DnsAddress);
+            _settingsResult.CheckIfDnsAddressDoesNotMatch(DNS_ADDRESS);
         }
 
         [Test]
@@ -255,7 +256,7 @@ namespace ProtonVPN.UI.Test.Tests
                 .EnableKillSwitch()
                 .ExitTheApp()
                 .ConfirmExit();
-            _homeResult.CheckIfDnsIsResolved();
+            _homeResult.CheckIfDnsIsResolved(GOOGLE_URL);
         }
 
         [SetUp]

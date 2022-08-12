@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2022 Proton Technologies AG
+ * Copyright (c) 2022 Proton
  *
  * This file is part of ProtonVPN.
  *
@@ -17,28 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
-using System.IO;
-using Castle.Core.Internal;
+using System.Runtime.InteropServices;
 
 namespace ProtonVPN.UI.Test.TestsHelper
 {
-    public class TestEnvironment : TestSession
+    public class DnsUtils
     {
-        public static bool AreTestsRunningLocally()
-        {
-            bool isLocalEnvironment = false;
-            string ciCommitHash = Environment.GetEnvironmentVariable("CI_COMMIT_SHA");
-            if (ciCommitHash.IsNullOrEmpty())
-            {
-                isLocalEnvironment = true;
-            }
-            return isLocalEnvironment;
-        }
-
-        public static bool IsVideoRecorderPresent()
-        {
-            return File.Exists(TestConstants.PathToRecorder);
-        }
+        [DllImport("dnsapi.dll", EntryPoint = "DnsFlushResolverCache")]
+        public static extern uint DnsFlushResolverCache();
     }
 }

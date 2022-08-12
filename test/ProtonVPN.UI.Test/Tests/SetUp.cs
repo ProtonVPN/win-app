@@ -38,28 +38,19 @@ namespace ProtonVPN.UI.Test.Tests
             KillProtonVpnProcess();
             string dir = Path.GetDirectoryName(TestConstants.AppFolderPath);
             Directory.SetCurrentDirectory(dir);
-            CreateScreenshotFolder();
             TestRailClient = new TestRailApiClient(_testRailUrl,
                     TestUserData.GetTestrailUser().Username, TestUserData.GetTestrailUser().Password);
             if (!TestEnvironment.AreTestsRunningLocally())
             {
                 CreateTestRailTestRun();
             }
+            TestsRecorder.StartVideoCapture();
         }
 
-        private void CreateScreenshotFolder()
+        [OneTimeTearDown]
+        public void TestFinalTearDown()
         {
-            ScreenshotDir = Path.Combine(Path.GetDirectoryName(asm.Location), "TestScreenshots");
-            try
-            {
-                Directory.Delete(ScreenshotDir, true);
-            }
-            catch (DirectoryNotFoundException)
-            {
-                //Ignore because directory could not exist
-            }
-
-            Directory.CreateDirectory(ScreenshotDir);
+            TestsRecorder.StopRecording();
         }
 
         private void CreateTestRailTestRun()

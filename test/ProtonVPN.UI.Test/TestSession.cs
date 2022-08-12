@@ -20,13 +20,16 @@
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.ServiceProcess;
 using System.Threading;
 using FlaUI.Core;
 using FlaUI.Core.AutomationElements;
+using FlaUI.Core.Capturing;
 using FlaUI.UIA3;
+using NUnit.Framework;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.UI.Test.ApiClient;
 using ProtonVPN.UI.Test.TestsHelper;
@@ -40,7 +43,6 @@ namespace ProtonVPN.UI.Test
         protected static Window Window;
         public static TestRailApiClient TestRailClient;
         public static ulong TestCaseId { get; set; }
-        public static string ScreenshotDir;
 
         public static void DeleteProfiles()
         {
@@ -57,15 +59,11 @@ namespace ProtonVPN.UI.Test
 
         protected static void DeleteUserConfig()
         {
-            string localAppDataFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ProtonVPN");
-            if (!Directory.Exists(localAppDataFolder))
-            {
-                return;
-            }
-
+            string localAppDataFolder = Path.Combine(TestConstants.AppLogsPath, @"..\..\");
             try
             {
                 Directory.Delete(localAppDataFolder, true);
+                Directory.Delete(TestConstants.ServiceLogsPath);
             }
             catch (Exception)
             {
@@ -131,5 +129,19 @@ namespace ProtonVPN.UI.Test
                 }
             }
         }
+
+        protected static void StartFileExplorer()
+        {
+            Process[] explorrerProcess = Process.GetProcessesByName("explorer");
+            if(explorrerProcess.Length == 0)
+            {
+                string explorer = string.Format("{0}\\{1}", Environment.GetEnvironmentVariable("WINDIR"), "explorer.exe");
+                Process process = new Process();
+                process.StartInfo.FileName = explorer;
+                process.StartInfo.UseShellExecute = true;
+                process.Start();
+            }
+        }
+        
     }
 }

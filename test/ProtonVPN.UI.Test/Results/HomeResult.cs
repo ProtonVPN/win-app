@@ -34,9 +34,15 @@ namespace ProtonVPN.UI.Test.Results
         private string IpAddressLabelText => IpAddressLabel.Text.Replace("IP: ", "");
         public HomeResult CheckIfNetshieldIsDisabled() => CheckIfDisplayedByClassName("Shield");
 
-        public HomeResult CheckIfDnsIsResolved()
+        public HomeResult CheckIfDnsIsResolved(string url)
         {
-            Assert.IsTrue(IsConnectedToInternet(), "User was not connected to internet.");
+            Assert.IsTrue(TryToResolveDns(url), $"Dns was not resolved for {url}.");
+            return this;
+        }
+
+        public HomeResult CheckIfDnsIsNotResolved(string url)
+        {
+            Assert.IsFalse(TryToResolveDns(url), $"DNS was resolved for {url}");
             return this;
         }
 
@@ -56,12 +62,12 @@ namespace ProtonVPN.UI.Test.Results
             Assert.IsTrue(currentIpAddress == IpAddressLabelText, $"IP Address: {IpAddressLabelText} does not match expected {currentIpAddress} address from API");
         }
 
-        private static bool IsConnectedToInternet()
+        private static bool TryToResolveDns(string url)
         {
             bool isConnected = true;
             try
             {
-                Dns.GetHostEntry("www.google.com");
+                Dns.GetHostEntry(url);
             }
             catch (SocketException)
             {
