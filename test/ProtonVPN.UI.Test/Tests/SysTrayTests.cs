@@ -86,6 +86,7 @@ namespace ProtonVPN.UI.Test.Tests
         {
             RestartFileExplorer();
             DeleteUserConfig();
+            StartFileExplorer();
             LaunchApp();
             _loginWindow.SignIn(TestUserData.GetPlusUser())
                 .NavigateToSettings()

@@ -128,6 +128,9 @@
     <Compile Include="DesktopActions.cs" />
     <Compile Include="Results\SysTrayResult.cs" />
     <Compile Include="TestSession.cs" />
+    <Compile Include="TestsHelper\DnsUtils.cs" />
+    <Compile Include="TestsHelper\TestsRecorder.cs" />
+    <Compile Include="Tests\NetshieldTests.cs" />
     <Compile Include="Tests\SysTrayTests.cs" />
     <Compile Include="UIActions.cs" />
     <Compile Include="TestsHelper\TestConstants.cs" />

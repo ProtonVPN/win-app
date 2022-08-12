@@ -68,7 +68,7 @@ namespace ProtonVPN.UI.Test.ApiClient
             {
                 case TestStatus.Failed:
                     MarkAsRetest(TestCaseId);
-                    SaveScreenshot(testName);
+                    TestsRecorder.SaveScreenshotAndLogs(testName);
                     break;
                 case TestStatus.Passed:
                 case TestStatus.Inconclusive:
@@ -100,13 +100,6 @@ namespace ProtonVPN.UI.Test.ApiClient
         private void MarkAsRetest(ulong testCaseId)
         {
             _client.AddResultForCase(_testRunId, testCaseId, ResultStatus.Retest);
-        }
-
-        private void SaveScreenshot(string testName)
-        {
-            string screenshotName = $"{testName} {DateTime.Now}.png".Replace("/","-").Replace(":", "-");
-            string pathToScreenshotFolder = Path.Combine(ScreenshotDir, screenshotName);
-            Capture.Screen().ToFile(pathToScreenshotFolder);
         }
     }
 }

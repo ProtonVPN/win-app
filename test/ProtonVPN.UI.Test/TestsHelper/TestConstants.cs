@@ -18,6 +18,7 @@
  */
 
 using System;
+using System.IO;
 
 namespace ProtonVPN.UI.Test.TestsHelper
 {
@@ -30,6 +31,9 @@ namespace ProtonVPN.UI.Test.TestsHelper
         public static string ProfileName => "@AutomationProfile";
         public static string AppFolderPath => @"C:\Program Files (x86)\Proton Technologies\ProtonVPN";
         public static TimeSpan RetryInterval => TimeSpan.FromMilliseconds(500);
-        public static string MapCountry = "US";
+        public static string MapCountry => "US";
+        public static string PathToRecorder => @"C:\TestRecorder\ffmpeg.exe";
+        public static string AppLogsPath => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"ProtonVPN\Logs\app-logs.txt");
+        public static string ServiceLogsPath => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), @"ProtonVPN\Logs\service-logs.txt");
     }
 }

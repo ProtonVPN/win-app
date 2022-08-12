@@ -18,11 +18,12 @@
  */
 
 using System;
+using System.IO;
 using Castle.Core.Internal;
 
 namespace ProtonVPN.UI.Test.TestsHelper
 {
-    public class TestEnvironment
+    public class TestEnvironment : TestSession
     {
         public static bool AreTestsRunningLocally()
         {
@@ -33,6 +34,11 @@ namespace ProtonVPN.UI.Test.TestsHelper
                 isLocalEnvironment = true;
             }
             return isLocalEnvironment;
+        }
+
+        public static bool IsVideoRecorderPresent()
+        {
+            return File.Exists(TestConstants.PathToRecorder);
         }
     }
 }

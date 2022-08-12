@@ -49,6 +49,10 @@ namespace ProtonVPN.UI.Test.Windows
         private AutomationElement SidebarModeButton => ElementByAutomationId("SidebarModeButton");
         private Button CancelButton => ElementByAutomationId("CancelButton").AsButton();
         private Button ClientCloseButton => ElementByAutomationId("CloseButton").AsButton();
+        private AutomationElement NetshieldToggle => ElementByAutomationId("NetShieldToggle");
+        private AutomationElement NetshieldOff => ElementByClassName("Shield");
+        private AutomationElement NetshieldLevelOne => ElementByClassName("ShieldHalfFilled");
+        private AutomationElement NetshieldLevelTwo => ElementByClassName("ShieldFilled");
 
         public HomeWindow PressQuickConnectButton()
         {
@@ -207,6 +211,27 @@ namespace ProtonVPN.UI.Test.Windows
         public HomeWindow CloseApp()
         {
             ClientCloseButton.Invoke();
+            return this;
+        }
+
+        public HomeWindow EnableNetshieldLevelTwo()
+        {
+            NetshieldToggle.Click();
+            NetshieldLevelTwo.Click();
+            return this;
+        }
+
+        public HomeWindow DisableNetshield()
+        {
+            NetshieldToggle.Click();
+            NetshieldOff.Click();
+            return this;
+        }
+
+        public HomeWindow EnableNetshieldLevelOne()
+        {
+            NetshieldToggle.Click();
+            NetshieldLevelOne.Click();
             return this;
         }
 
