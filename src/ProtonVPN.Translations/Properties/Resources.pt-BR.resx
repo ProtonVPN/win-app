@@ -1833,7 +1833,7 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
     <comment>The upgrade button text in the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_Troubleshoot_ttl">
-    <value>Proton VPN Troubleshoot</value>
+    <value>Solução de problemas do Proton VPN</value>
     <comment>The text displayed in Troubleshoot modal window title</comment>
   </data>
   <data name="Dialogs_Troubleshooting_btn_Close">
@@ -2485,7 +2485,7 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
     <value>Se os sites não carregarem, tente desativar o NetShield</value>
   </data>
   <data name="QuickSettings_lbl_PortForwardingInfo">
-    <value>Speed up your torrenting and online gaming by allowing supported local apps to be reachable from the Internet.</value>
+    <value>Permita que aplicativos locais suportadas sejam alcançáveis a partir da Internet, acelerando torrents e jogos online.</value>
   </data>
   <data name="QuickSettings_lbl_SecureCoreInfo">
     <value>Encaminhe os seus dados mais sensíveis através dos nossos servidores mais seguros em países amigos da privacidade.</value>
@@ -2715,7 +2715,7 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
     <comment>The text on Upgrade button in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_DefaultProtocol_val_Smart">
-    <value>Smart (suggested)</value>
+    <value>Smart (sugerido)</value>
     <comment>The suggested Smart protocol selection displayed in Protocol combo box in Connection tab of Settings window.</comment>
   </data>
   <data name="Settings_Connection_DefaultProtocol_val_Tcp">
