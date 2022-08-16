@@ -1318,7 +1318,6 @@
       <SubType>Code</SubType>
     </Compile>
     <None Include="app.manifest" />
-    <None Include="gosrp.bat" />
     <None Include="..\..\COPYING.md">
       <Link>COPYING.md</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -1918,9 +1917,6 @@
   <PropertyGroup>
     <PreBuildEvent>
     </PreBuildEvent>
-  </PropertyGroup>
-  <PropertyGroup>
-    <PostBuildEvent>call "$(ProjectDir)gosrp.bat"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
