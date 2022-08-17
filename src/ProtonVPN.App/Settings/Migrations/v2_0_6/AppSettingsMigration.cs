@@ -28,6 +28,7 @@ namespace ProtonVPN.Settings.Migrations.v2_0_6
         private const string LANGUAGE_KEY = "Language";
         private readonly List<KeyValuePair<string, string>> _languageCodeMap = new()
         {
+            new("en", "en-US"),
             new("fa", "fa-IR"),
             new("fr", "fr-FR"),
             new("hr", "hr-HR"),
