@@ -111,7 +111,6 @@
     <Compile Include="Abstract\IMigration.cs" />
     <Compile Include="Abstract\ISpecification.cs" />
     <Compile Include="Abstract\ISupportsMigration.cs" />
-    <Compile Include="Abstract\ITokenStorage.cs" />
     <Compile Include="Abstract\PredicateSpecification.cs" />
     <Compile Include="Abstract\Specification.cs" />
     <Compile Include="Auth\AuthCertificateManager.cs" />
@@ -281,7 +280,6 @@
     <Compile Include="Storage\CachedSettings.cs" />
     <Compile Include="Storage\EnumAsStringSettings.cs" />
     <Compile Include="Storage\ISettingsStorage.cs" />
-    <Compile Include="Storage\TokenStorage.cs" />
     <Compile Include="Threading\Schedulers.cs" />
     <Compile Include="Threading\DispatcherScheduler.cs" />
     <Compile Include="Threading\DispatcherTimer.cs" />

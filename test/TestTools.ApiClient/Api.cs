@@ -27,7 +27,6 @@ using ProtonVPN.Api.Contracts.Geographical;
 using ProtonVPN.Api.Contracts.Profiles;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Logging;
-using ProtonVPN.Core.Abstract;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Settings;
 
@@ -45,7 +44,7 @@ namespace TestTools.ApiClient
             _username = username;
             _password = password;
 
-            TokenStorage tokenStorage = new();
+            IAppSettings appSettings = Substitute.For<IAppSettings>();
             Config config = new Config { ApiVersion = "3" };
             IUserStorage userStorage = Substitute.For<IUserStorage>();
             ILogger logger = Substitute.For<ILogger>();
@@ -56,9 +55,9 @@ namespace TestTools.ApiClient
             _api = new Client(config, logger, new HttpClient
             {
                 BaseAddress = new Uri("https://api.protonvpn.ch")
-            }, tokenStorage, appLanguageCache);
+            }, appSettings, appLanguageCache);
 
-            _auth = new UserAuth(_api, null, userStorage, tokenStorage, authCertificateManager);
+            _auth = new UserAuth(_api, null, userStorage, appSettings, authCertificateManager);
         }
 
         public async Task<bool> Login()
@@ -97,12 +96,5 @@ namespace TestTools.ApiClient
 
             return result;
         }
-    }
-
-    internal class TokenStorage : ITokenStorage
-    {
-        public string AccessToken { get; set; }
-        public string RefreshToken { get; set; }
-        public string Uid { get; set; }
     }
 }
