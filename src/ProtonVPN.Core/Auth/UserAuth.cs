@@ -27,7 +27,6 @@ using ProtonVPN.Api.Contracts.Common;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.UserLogs;
-using ProtonVPN.Core.Abstract;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Srp;
 
@@ -38,7 +37,7 @@ namespace ProtonVPN.Core.Auth
         private readonly IApiClient _apiClient;
         private readonly ILogger _logger;
         private readonly IUserStorage _userStorage;
-        private readonly ITokenStorage _tokenStorage;
+        private readonly IAppSettings _appSettings;
         private readonly IAuthCertificateManager _authCertificateManager;
 
         private string _username;
@@ -47,10 +46,10 @@ namespace ProtonVPN.Core.Auth
         public UserAuth(IApiClient apiClient,
             ILogger logger,
             IUserStorage userStorage,
-            ITokenStorage tokenStorage,
+            IAppSettings appSettings,
             IAuthCertificateManager authCertificateManager)
         {
-            _tokenStorage = tokenStorage;
+            _appSettings = appSettings;
             _authCertificateManager = authCertificateManager;
             _apiClient = apiClient;
             _logger = logger;
@@ -156,9 +155,9 @@ namespace ProtonVPN.Core.Auth
         private void StoreUserDetails(string username, AuthResponse authResponse)
         {
             _userStorage.SaveUsername(username);
-            _tokenStorage.Uid = authResponse.Uid;
-            _tokenStorage.AccessToken = authResponse.AccessToken;
-            _tokenStorage.RefreshToken = authResponse.RefreshToken;
+            _appSettings.Uid = authResponse.Uid;
+            _appSettings.AccessToken = authResponse.AccessToken;
+            _appSettings.RefreshToken = authResponse.RefreshToken;
         }
 
         private AuthRequest GetAuthRequestData(SrpPInvoke.GoProofs proofs, string srpSession, string username)
@@ -194,9 +193,9 @@ namespace ProtonVPN.Core.Auth
 
         private void ClearAuthData()
         {
-            _tokenStorage.Uid = string.Empty;
-            _tokenStorage.AccessToken = string.Empty;
-            _tokenStorage.RefreshToken = string.Empty;
+            _appSettings.Uid = string.Empty;
+            _appSettings.AccessToken = string.Empty;
+            _appSettings.RefreshToken = string.Empty;
             _userStorage.SaveUsername(string.Empty);
         }
 
@@ -234,7 +233,7 @@ namespace ProtonVPN.Core.Auth
                 await SendLogoutRequestAsync();
 
                 _authCertificateManager.DeleteKeyPairAndCertificate();
-                _tokenStorage.AccessToken = string.Empty;
+                _appSettings.AccessToken = string.Empty;
             }
         }
 

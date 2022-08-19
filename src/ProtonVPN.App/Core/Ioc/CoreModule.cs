@@ -34,7 +34,6 @@ using ProtonVPN.Common.OS.Registry;
 using ProtonVPN.Common.OS.Services;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Config.Url;
-using ProtonVPN.Core.Abstract;
 using ProtonVPN.Core.Announcements;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Config;
@@ -48,7 +47,6 @@ using ProtonVPN.Core.ReportAnIssue;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Service;
 using ProtonVPN.Core.Settings;
-using ProtonVPN.Core.Storage;
 using ProtonVPN.Core.Threading;
 using ProtonVPN.Core.Update;
 using ProtonVPN.Core.Vpn;
@@ -56,7 +54,6 @@ using ProtonVPN.Core.Windows;
 using ProtonVPN.HumanVerification;
 using ProtonVPN.HumanVerification.Contracts;
 using ProtonVPN.Modals.ApiActions;
-using ProtonVPN.Settings;
 using ProtonVPN.Vpn;
 using Module = Autofac.Module;
 
@@ -80,7 +77,6 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<NetworkInterfaceLoader>().As<INetworkInterfaceLoader>().SingleInstance();
             builder.RegisterType<HttpClients>().As<IHttpClients>().SingleInstance();
             builder.Register(c => Schedulers.FromApplicationDispatcher()).As<IScheduler>().SingleInstance();
-            builder.Register(c => new TokenStorage(c.Resolve<UserSettings>())).As<ITokenStorage>().SingleInstance();
 
             builder.RegisterType<AppLanguageCache>().AsImplementedInterfaces().SingleInstance();
 
@@ -90,7 +86,7 @@ namespace ProtonVPN.Core.Ioc
                         new HttpClient(c.Resolve<RetryingHandler>())
                         { BaseAddress = c.Resolve<IActiveUrls>().ApiUrl.Uri },
                         c.Resolve<IApiAppVersion>(),
-                        c.Resolve<ITokenStorage>(),
+                        c.Resolve<IAppSettings>(),
                         c.Resolve<IAppLanguageCache>(),
                         c.Resolve<Common.Configuration.Config>()))
                 .As<ITokenClient>()
@@ -110,7 +106,7 @@ namespace ProtonVPN.Core.Ioc
                 c.Resolve<IApiClient>(),
                 c.Resolve<ILogger>(),
                 c.Resolve<IUserStorage>(),
-                c.Resolve<ITokenStorage>(),
+                c.Resolve<IAppSettings>(),
                 c.Resolve<IAuthCertificateManager>())).SingleInstance();
 
             builder.RegisterType<NetworkClient>().AsImplementedInterfaces().SingleInstance();

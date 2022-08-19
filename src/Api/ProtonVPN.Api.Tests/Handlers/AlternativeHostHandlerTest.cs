@@ -29,7 +29,6 @@ using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Handlers;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Logging;
-using ProtonVPN.Core.Abstract;
 using ProtonVPN.Core.OS.Net.DoH;
 using ProtonVPN.Core.Settings;
 using RichardSzalay.MockHttp;
@@ -43,7 +42,6 @@ namespace ProtonVPN.Api.Tests.Handlers
 
         private MockHttpMessageHandler _innerHandler;
         private IAppSettings _appSettings;
-        private ITokenStorage _tokenStorage;
         private IApiHostProvider _apiHostProvider;
         private Config _config;
         private readonly Uri _baseAddress = new(BASE_API_URL);
@@ -53,7 +51,6 @@ namespace ProtonVPN.Api.Tests.Handlers
         {
             _innerHandler = new MockHttpMessageHandler();
             _appSettings = Substitute.For<IAppSettings>();
-            _tokenStorage = Substitute.For<ITokenStorage>();
             _apiHostProvider = Substitute.For<IApiHostProvider>();
             _config = new Config { Urls = { ApiUrl = BASE_API_URL } };
         }
@@ -73,7 +70,6 @@ namespace ProtonVPN.Api.Tests.Handlers
                 new MainHostname(BASE_API_URL),
                 _appSettings,
                 new GuestHoleState(),
-                _tokenStorage,
                 _apiHostProvider,
                 _config) { InnerHandler = _innerHandler };
 

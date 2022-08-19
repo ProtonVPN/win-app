@@ -493,20 +493,20 @@ namespace ProtonVPN.Core
 
         public string AuthenticationPublicKey
         {
-            get => GetPerUser<string>()?.Decrypt();
-            set => SetPerUser(value?.Encrypt());
+            get => GetPerUserDecrypted();
+            set => SetPerUserEncrypted(value);
         }
 
         public string AuthenticationSecretKey
         {
-            get => GetPerUser<string>()?.Decrypt();
-            set => SetPerUser(value?.Encrypt());
+            get => GetPerUserDecrypted();
+            set => SetPerUserEncrypted(value);
         }
 
         public string AuthenticationCertificatePem
         {
-            get => GetPerUser<string>()?.Decrypt();
-            set => SetPerUser(value?.Encrypt());
+            get => GetPerUserDecrypted();
+            set => SetPerUserEncrypted(value);
         }
 
         public DateTimeOffset? AuthenticationCertificateExpirationUtcDate
@@ -529,8 +529,26 @@ namespace ProtonVPN.Core
 
         public string CertificationServerPublicKey
         {
-            get => GetPerUser<string>()?.Decrypt();
-            set => SetPerUser(value?.Encrypt());
+            get => GetPerUserDecrypted();
+            set => SetPerUserEncrypted(value);
+        }
+
+        public string AccessToken
+        {
+            get => GetPerUserDecrypted();
+            set => SetPerUserEncrypted(value);
+        }
+
+        public string RefreshToken
+        {
+            get => GetPerUserDecrypted();
+            set => SetPerUserEncrypted(value);
+        }
+
+        public string Uid
+        {
+            get => GetPerUserDecrypted();
+            set => SetPerUserEncrypted(value);
         }
 
         public bool HardwareAccelerationEnabled
@@ -648,8 +666,8 @@ namespace ProtonVPN.Core
 
         private void LogChange<T>(string propertyName, T oldValue, T newValue)
         {
-            string oldValueJson = JsonConvert.SerializeObject(oldValue).LimitLength(64);
-            string newValueJson = JsonConvert.SerializeObject(newValue).LimitLength(64);
+            string oldValueJson = JsonConvert.SerializeObject(oldValue).GetLastChars(64);
+            string newValueJson = JsonConvert.SerializeObject(newValue).GetLastChars(64);
             _logger.Info<SettingsChangeLog>($"Setting '{propertyName}' " +
                 $"changed from '{oldValueJson}' to '{newValueJson}'.");
         }
@@ -661,7 +679,14 @@ namespace ProtonVPN.Core
             return _userSettings.Get<T>(propertyName);
         }
 
-        private void SetPerUser<T>(T value, [CallerMemberName] string propertyName = null)
+        private string GetPerUserDecrypted([CallerMemberName] string propertyName = null)
+        {
+            _accessedPerUserProperties.Add(propertyName);
+
+            return _userSettings.Get<string>(propertyName)?.Decrypt();
+        }
+
+        private void SetPerUserInner<T>(T value, string propertyName)
         {
             _accessedPerUserProperties.Add(propertyName);
 
@@ -679,6 +704,16 @@ namespace ProtonVPN.Core
             _userSettings.Set(propertyName, value);
             OnPropertyChanged(propertyName);
             LogChange(propertyName, oldValue, value);
+        }
+
+        private void SetPerUser<T>(T value, [CallerMemberName] string propertyName = null)
+        {
+            SetPerUserInner(value, propertyName);
+        }
+
+        private void SetPerUserEncrypted(string value, [CallerMemberName] string propertyName = null)
+        {
+            SetPerUserInner(value?.Encrypt(), propertyName);
         }
 
         private Type UnwrapNullable(Type type)

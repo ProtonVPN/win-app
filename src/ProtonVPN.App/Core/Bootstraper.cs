@@ -177,7 +177,7 @@ namespace ProtonVPN.Core
 
         private async Task<bool> SessionExpired()
         {
-            if (string.IsNullOrEmpty(Resolve<ITokenStorage>().AccessToken))
+            if (string.IsNullOrEmpty(Resolve<IAppSettings>().AccessToken))
             {
                 return true;
             }

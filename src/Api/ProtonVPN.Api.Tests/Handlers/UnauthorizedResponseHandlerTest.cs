@@ -33,7 +33,6 @@ using ProtonVPN.Api.Handlers;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.UserLogs;
-using ProtonVPN.Core.Abstract;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Test.Common.Breakpoints;
 using RichardSzalay.MockHttp;
@@ -62,7 +61,7 @@ namespace ProtonVPN.Api.Tests.Handlers
         private readonly Uri _baseAddress = new(BASE_API_URL);
 
         private ITokenClient _tokenClient;
-        private ITokenStorage _tokenStorage;
+        private IAppSettings _appSettings;
         private IUserStorage _userStorage;
         private ILogger _logger;
         private MockHttpMessageHandler _innerHandler;
@@ -74,10 +73,10 @@ namespace ProtonVPN.Api.Tests.Handlers
             _tokenClient.RefreshTokenAsync(Arg.Any<CancellationToken>())
                 .Returns(ApiResponseResult<RefreshTokenResponse>.Ok(new HttpResponseMessage(), new()));
 
-            _tokenStorage = Substitute.For<ITokenStorage>();
-            _tokenStorage.AccessToken.Returns(ACCESS_TOKEN);
-            _tokenStorage.RefreshToken.Returns(REFRESH_TOKEN);
-            _tokenStorage.Uid.Returns("User ID");
+            _appSettings = Substitute.For<IAppSettings>();
+            _appSettings.AccessToken.Returns(ACCESS_TOKEN);
+            _appSettings.RefreshToken.Returns(REFRESH_TOKEN);
+            _appSettings.Uid.Returns("User ID");
 
             _userStorage = Substitute.For<IUserStorage>();
             _userStorage.User().Returns(new Core.Models.User { Username = "test" });
@@ -129,7 +128,7 @@ namespace ProtonVPN.Api.Tests.Handlers
         [TestMethod]
         public async Task SendAsync_ShouldNotCall_TokenClient_RefreshTokenAsync_WhenRefreshTokenIsNull()
         {
-            _tokenStorage.RefreshToken.Returns((string)null);
+            _appSettings.RefreshToken.Returns((string)null);
 
             await SendAsync_ShouldNotCall_TokenClient_RefreshTokenAsync_WhenCurrentTokenIsInvalid();
         }
@@ -154,7 +153,7 @@ namespace ProtonVPN.Api.Tests.Handlers
         [TestMethod]
         public async Task SendAsync_ShouldNotCall_TokenClient_RefreshTokenAsync_WhenRefreshTokenIsEmpty()
         {
-            _tokenStorage.RefreshToken.Returns(string.Empty);
+            _appSettings.RefreshToken.Returns(string.Empty);
 
             await SendAsync_ShouldNotCall_TokenClient_RefreshTokenAsync_WhenCurrentTokenIsInvalid();
         }
@@ -162,7 +161,7 @@ namespace ProtonVPN.Api.Tests.Handlers
         [TestMethod]
         public async Task SendAsync_ShouldNotCall_TokenClient_RefreshTokenAsync_WhenTokenUserIdIsNull()
         {
-            _tokenStorage.Uid.Returns((string)null);
+            _appSettings.Uid.Returns((string)null);
 
             await SendAsync_ShouldNotCall_TokenClient_RefreshTokenAsync_WhenCurrentTokenIsInvalid();
         }
@@ -170,7 +169,7 @@ namespace ProtonVPN.Api.Tests.Handlers
         [TestMethod]
         public async Task SendAsync_ShouldNotCall_TokenClient_RefreshTokenAsync_WhenTokenUserIdIsEmpty()
         {
-            _tokenStorage.Uid.Returns(string.Empty);
+            _appSettings.Uid.Returns(string.Empty);
 
             await SendAsync_ShouldNotCall_TokenClient_RefreshTokenAsync_WhenCurrentTokenIsInvalid();
         }
@@ -242,8 +241,8 @@ namespace ProtonVPN.Api.Tests.Handlers
             await client.SendAsync(request);
 
             // Assert
-            _tokenStorage.AccessToken.Should().Be(NEW_ACCESS_TOKEN);
-            _tokenStorage.RefreshToken.Should().Be(NEW_REFRESH_TOKEN);
+            _appSettings.AccessToken.Should().Be(NEW_ACCESS_TOKEN);
+            _appSettings.RefreshToken.Should().Be(NEW_REFRESH_TOKEN);
         }
 
         [TestMethod]
@@ -301,7 +300,7 @@ namespace ProtonVPN.Api.Tests.Handlers
             Breakpoint tokenClientBreakpoint = breakpointTokenClient.Breakpoint;
             MockOfHumanVerificationHandler humanVerificationHandler =
                 new() { InnerHandler = breakpointHandler };
-            UnauthorizedResponseHandler handler = new(humanVerificationHandler, breakpointTokenClient, _tokenStorage,
+            UnauthorizedResponseHandler handler = new(humanVerificationHandler, breakpointTokenClient, _appSettings,
                 _userStorage, _logger);
             HttpClient client = new(handler) { BaseAddress = _baseAddress };
 
@@ -498,13 +497,13 @@ namespace ProtonVPN.Api.Tests.Handlers
 
         private UnauthorizedResponseHandler GetUnauthorizedResponseHandler(HumanVerificationHandlerBase handler)
         {
-            return new(handler, _tokenClient, _tokenStorage, _userStorage, _logger);
+            return new(handler, _tokenClient, _appSettings, _userStorage, _logger);
         }
 
         private UnauthorizedResponseHandler GetUnauthorizedResponseHandlerWithBreakpoint(BreakpointHandler breakpointHandler, ITokenClient tokenClient)
         {
             MockOfHumanVerificationHandler handler = new() { InnerHandler = breakpointHandler };
-            return new(handler, tokenClient, _tokenStorage, _userStorage, _logger);
+            return new(handler, tokenClient, _appSettings, _userStorage, _logger);
         }
 
         #region Helpers

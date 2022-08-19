@@ -37,7 +37,6 @@ using ProtonVPN.Api.Contracts.VpnConfig;
 using ProtonVPN.Api.Contracts.VpnSessions;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Logging;
-using ProtonVPN.Core.Abstract;
 using ProtonVPN.Core.Settings;
 
 namespace TestTools.ApiClient
@@ -50,9 +49,9 @@ namespace TestTools.ApiClient
             Config config,
             ILogger logger,
             HttpClient client,
-            ITokenStorage tokenStorage,
+            IAppSettings appSettings,
             IAppLanguageCache appLanguageCache) 
-            : base(logger, new ApiAppVersion(), tokenStorage, appLanguageCache, config)
+            : base(logger, new ApiAppVersion(), appSettings, appLanguageCache, config)
         {
             _client = client;
         }

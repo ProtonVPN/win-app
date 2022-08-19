@@ -37,7 +37,6 @@ using ProtonVPN.Api.Contracts.VpnSessions;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.OS.Net.Http;
-using ProtonVPN.Core.Abstract;
 using ProtonVPN.Core.Settings;
 
 namespace ProtonVPN.Api
@@ -53,10 +52,10 @@ namespace ProtonVPN.Api
         public ApiClient(
             IHttpClientFactory httpClientFactory,
             ILogger logger,
-            ITokenStorage tokenStorage,
+            IAppSettings appSettings,
             IApiAppVersion appVersion,
             IAppLanguageCache appLanguageCache,
-            Config config) : base(logger, appVersion, tokenStorage, appLanguageCache, config)
+            Config config) : base(logger, appVersion, appSettings, appLanguageCache, config)
         {
             _client = httpClientFactory.GetApiHttpClientWithCache();
             _noCacheClient = httpClientFactory.GetApiHttpClientWithoutCache();

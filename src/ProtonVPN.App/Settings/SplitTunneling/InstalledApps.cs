@@ -311,7 +311,7 @@ namespace ProtonVPN.Settings.SplitTunneling
                     name = Path.GetFileNameWithoutExtension(appPath).Trim();
                 }
 
-                return name.LimitLength(200);
+                return name.GetFirstChars(200);
             }
             catch (FileNotFoundException) { }
             catch (ArgumentException) { }

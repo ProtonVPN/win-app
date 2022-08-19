@@ -67,7 +67,9 @@ namespace ProtonVPN.Common.Extensions
         public static string FirstCharToUpper(this string value)
         {
             if (string.IsNullOrEmpty(value))
+            {
                 return string.Empty;
+            }
 
             return value.First().ToString().ToUpper() + value.Substring(1);
         }
@@ -75,12 +77,19 @@ namespace ProtonVPN.Common.Extensions
         public static string TrimEnd(this string value, string ending)
         {
             if (!value.EndsWith(ending))
+            {
                 return value;
+            }
 
             return value.Remove(value.LastIndexOf(ending));
         }
 
-        public static string LimitLength(this string value, int maxLength)
+        public static string GetLastChars(this string value, int length)
+        {
+            return length >= value.Length ? value : value.Substring(value.Length - length);
+        }
+
+        public static string GetFirstChars(this string value, int maxLength)
         {
             return value?.Length > maxLength ? value.Substring(0, maxLength) : value;
         }

@@ -31,7 +31,6 @@ using ProtonVPN.Common.Logging.Categorization.Events.ApiLogs;
 using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
-using ProtonVPN.Core.Abstract;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.OS.Net.DoH;
 using ProtonVPN.Core.Settings;
@@ -46,7 +45,6 @@ namespace ProtonVPN.Api.Handlers
         private readonly MainHostname _mainHostname;
         private readonly IAppSettings _appSettings;
         private readonly GuestHoleState _guestHoleState;
-        private readonly ITokenStorage _tokenStorage;
         private readonly IApiHostProvider _apiHostProvider;
         private readonly SingleAction _fetchProxies;
 
@@ -62,7 +60,6 @@ namespace ProtonVPN.Api.Handlers
             MainHostname mainHostname,
             IAppSettings appSettings,
             GuestHoleState guestHoleState,
-            ITokenStorage tokenStorage,
             IApiHostProvider apiHostProvider,
             Config config)
         {
@@ -71,7 +68,6 @@ namespace ProtonVPN.Api.Handlers
             _mainHostname = mainHostname;
             _appSettings = appSettings;
             _guestHoleState = guestHoleState;
-            _tokenStorage = tokenStorage;
             _apiHostProvider = apiHostProvider;
             _apiHost = new Uri(config.Urls.ApiUrl).Host;
             _activeBackendHost = _apiHost;
@@ -236,7 +232,7 @@ namespace ProtonVPN.Api.Handlers
             {
                 try
                 {
-                    string host = _mainHostname.Value(_isUserLoggedIn ? _tokenStorage.Uid : string.Empty);
+                    string host = _mainHostname.Value(_isUserLoggedIn ? _appSettings.Uid : string.Empty);
                     _logger.Info<AppLog>($"Resolving alternative hosts from {host}");
                     List<string> alternativeHosts = await dohClient.ResolveTxtAsync(host);
                     if (alternativeHosts.Count > 0)
