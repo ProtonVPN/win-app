@@ -23,6 +23,7 @@ using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.ServiceProcess;
+using System.Threading;
 using FlaUI.Core;
 using FlaUI.Core.AutomationElements;
 using FlaUI.Core.Tools;
@@ -119,6 +120,8 @@ namespace ProtonVPN.UI.Test
         {
             Process[] proc = Process.GetProcessesByName("ProtonVPN");
             proc.ForEach(p => p.Kill());
+            //Give some time to properly exit the app
+            Thread.Sleep(2000);
         }
 
         protected static void RestartFileExplorer()
