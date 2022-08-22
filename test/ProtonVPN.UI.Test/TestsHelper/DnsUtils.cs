@@ -17,7 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Net;
+using System.Net.NetworkInformation;
 using System.Runtime.InteropServices;
+using FlaUI.Core.Tools;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ProtonVPN.UI.Test.TestsHelper
 {
@@ -25,5 +29,41 @@ namespace ProtonVPN.UI.Test.TestsHelper
     {
         [DllImport("dnsapi.dll", EntryPoint = "DnsFlushResolverCache")]
         public static extern uint DnsFlushResolverCache();
+
+        public static string GetDnsAddress(string adapterName)
+        {
+            string dnsAddress = null;
+            RetryResult<string> retry = Retry.WhileNull(
+                () => {
+                    dnsAddress = GetDnsAddressForAdapter(adapterName);
+                    return dnsAddress;
+                },
+                TestConstants.ShortTimeout, TestConstants.RetryInterval);
+
+            if (!retry.Success)
+            {
+                Assert.Fail($"Failed to get DNS address in {TestConstants.ShortTimeout}");
+            }
+            return dnsAddress;
+        }
+
+        private static string GetDnsAddressForAdapter(string adapterName)
+        {
+            string dnsAddress = null;
+            NetworkInterface[] adapters = NetworkInterface.GetAllNetworkInterfaces();
+            foreach (NetworkInterface adapter in adapters)
+            {
+                IPInterfaceProperties adapterProperties = adapter.GetIPProperties();
+                IPAddressCollection dnsServers = adapterProperties.DnsAddresses;
+                if (adapter.Description.Contains(adapterName))
+                {
+                    foreach (IPAddress dns in dnsServers)
+                    {
+                        dnsAddress = dns.ToString();
+                    }
+                }
+            }
+            return dnsAddress;
+        }
     }
 }

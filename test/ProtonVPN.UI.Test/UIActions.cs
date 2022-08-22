@@ -117,12 +117,26 @@ namespace ProtonVPN.UI.Test
 
         protected dynamic WaitUntilTextMatchesByAutomationId(string automationId, TimeSpan time, string text, string timeoutMessage)
         {
-            Retry.WhileFalse(
+            AutomationElement element = null;
+            string elementText = null;
+            RetryResult<bool> retry = Retry.WhileFalse(
                 () => {
                     RefreshWindow();
-                    return ElementByAutomationId(automationId).AsLabel().Text == text;
+                    element = Window.FindFirstDescendant(cf => cf.ByAutomationId(automationId));
+                    if(element != null)
+                    {
+                        elementText = element.AsLabel().Text;
+                        return elementText == text;
+                    }
+                    return false;
                 },
-                time, TestConstants.RetryInterval, true, false, timeoutMessage);
+                time, TestConstants.RetryInterval);
+
+            if (!retry.Success)
+            {
+                elementText = "ELEMENT_WAS_NOT_FOUND";
+                Assert.Fail($"Expected text: '{text}' does not match {automationId} element text {elementText}");
+            }
             return this;
         }
 

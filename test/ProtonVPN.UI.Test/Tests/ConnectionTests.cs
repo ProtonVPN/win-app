@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Threading;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using ProtonVPN.UI.Test.Results;
@@ -167,9 +168,13 @@ namespace ProtonVPN.UI.Test.Tests
             _loginWindow.SignIn(TestUserData.GetPlusUser());
             _homeWindow.NavigateToSettings();
             _settingsWindow.DisableStartToTray()
-                .CloseSettings();
-            KillProtonVpnProcess();
+                .CloseSettings()
+                .ExitTheApp();
+
+            //Delay to allow app to properly exit
+            Thread.Sleep(2000);
             LaunchApp();
+
             _homeWindow.WaitUntilConnected();
 
             TestRailClient.MarkTestsByStatus();
@@ -177,9 +182,14 @@ namespace ProtonVPN.UI.Test.Tests
 
             _homeWindow.PressQuickConnectButton()
                 .NavigateToSettings();
-            _settingsWindow.ClickOnConnectOnBoot();
-            KillProtonVpnProcess();
+            _settingsWindow.ClickOnConnectOnBoot()
+                .CloseSettings()
+                .ExitTheApp();
+
+            //Delay to allow app to properly exit
+            Thread.Sleep(2000);
             LaunchApp();
+
             _homeWindow.WaitUntilDisconnected();
         }
 

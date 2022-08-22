@@ -17,8 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Net;
-using System.Net.NetworkInformation;
 using System.Threading;
 using FlaUI.Core.AutomationElements;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -32,7 +30,7 @@ namespace ProtonVPN.UI.Test.Results
 
         public SettingsResult CheckIfDnsAddressDoesNotMatch(string dnsAddress)
         {
-            Assert.AreNotEqual(dnsAddress, GetDnsAddressForAdapter());
+            Assert.AreNotEqual(dnsAddress, DnsUtils.GetDnsAddress("WireGuard Tunnel"));
             return this;
         }
 
@@ -54,12 +52,8 @@ namespace ProtonVPN.UI.Test.Results
 
         public SettingsResult CheckIfDnsAddressMatches(string dnsAddress)
         {
-            if(GetDnsAddressForAdapter() == null)
-            {
-                //Sometimes windows does not set DNS address fast enough, so some delay might be needed.
-                Thread.Sleep(3000);
-            }
-            Assert.AreEqual(dnsAddress, GetDnsAddressForAdapter(), "Desired dns address " + dnsAddress + " does not match Windows dns address " + GetDnsAddressForAdapter());
+            string adapterDnsAddress = DnsUtils.GetDnsAddress("WireGuard Tunnel");
+            Assert.AreEqual(dnsAddress, adapterDnsAddress, $"Desired dns address {dnsAddress} does not match Windows adapter dns address {adapterDnsAddress}");
             return this;
         }
 
@@ -73,25 +67,6 @@ namespace ProtonVPN.UI.Test.Results
         {
             Assert.IsFalse(ModerateNatCheckBox.IsChecked.Value, "Moderate NAT checkbox status is: " + ModerateNatCheckBox.IsChecked.Value);
             return this;
-        }
-
-        private string GetDnsAddressForAdapter()
-        {
-            string dnsAddress = null;
-            NetworkInterface[] adapters = NetworkInterface.GetAllNetworkInterfaces();
-            foreach (NetworkInterface adapter in adapters)
-            {
-                IPInterfaceProperties adapterProperties = adapter.GetIPProperties();
-                IPAddressCollection dnsServers = adapterProperties.DnsAddresses;
-                if (adapter.Description.Contains("WireGuard Tunnel"))
-                {
-                    foreach (IPAddress dns in dnsServers)
-                    {
-                        dnsAddress = dns.ToString();
-                    }
-                }
-            }
-            return dnsAddress;
         }
     }
 }
