@@ -20,16 +20,14 @@
 using System;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.ServiceProcess;
-using System.Threading;
 using FlaUI.Core;
 using FlaUI.Core.AutomationElements;
-using FlaUI.Core.Capturing;
+using FlaUI.Core.Tools;
 using FlaUI.UIA3;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.UI.Test.ApiClient;
 using ProtonVPN.UI.Test.TestsHelper;
@@ -91,20 +89,24 @@ namespace ProtonVPN.UI.Test
 
         protected static void RefreshWindow()
         {
-            try
+            Window = null;
+            RetryResult<Window> retry = Retry.WhileNull(
+                () => {
+                    try
+                    {
+                        Window = App.GetMainWindow(new UIA3Automation(), TestConstants.MediumTimeout);
+                    }
+                    catch (System.TimeoutException)
+                    {
+                        //Ignore
+                    }
+                    return Window;
+                },
+                TestConstants.MediumTimeout, TestConstants.RetryInterval);
+
+            if (!retry.Success)
             {
-                Window = App.GetMainWindow(new UIA3Automation(), TestConstants.MediumTimeout);
-            }
-            catch (Exception ex)
-            {
-                if(ex is COMException || ex is System.TimeoutException)
-                {
-                    //Sometimes UI might be locked and framework does not know how to handle it
-                    Thread.Sleep(3000);
-                    Window = App.GetMainWindow(new UIA3Automation(), TestConstants.MediumTimeout);
-                    return;
-                }
-                throw;
+                Assert.Fail($"Failed to refresh window in {TestConstants.MediumTimeout.Seconds} seconds.");
             }
         }
 
@@ -142,6 +144,5 @@ namespace ProtonVPN.UI.Test
                 process.Start();
             }
         }
-        
     }
 }
