@@ -97,7 +97,7 @@ namespace ProtonVPN.UI.Test.Results
 
         public HomeResult CheckIfConnectButtonIsNotDisplayed()
         {
-            CheckIfDoesNotExistsByName("CONNECT");
+            CheckIfDoesNotExistsByName("Connect");
             return this;
         }
 

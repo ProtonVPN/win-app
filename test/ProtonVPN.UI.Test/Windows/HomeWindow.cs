@@ -31,7 +31,7 @@ namespace ProtonVPN.UI.Test.Windows
         private Button BugReportButton => ElementByAutomationId("MenuReportBugButton").AsButton();
         private Button AccountButton => ElementByAutomationId("MenuAccountButton").AsButton();
         private Button ExitButton => ElementByAutomationId("MenuExitButton").AsButton();
-        private AutomationElement ProfilesTab => ElementByName("Profiles");
+        private Button ProfilesTab => ElementByAutomationId("SidebarProfilesButton").AsButton();
         private AutomationElement Profile(string profileName) => ElementByName(profileName);
         private Button ConnectButton => FirstVisibleElementByName("Connect").AsButton();
         private AutomationElement Country(string countryName) => ElementByName(countryName);
@@ -53,6 +53,7 @@ namespace ProtonVPN.UI.Test.Windows
         private AutomationElement NetshieldOff => ElementByClassName("Shield");
         private AutomationElement NetshieldLevelOne => ElementByClassName("ShieldHalfFilled");
         private AutomationElement NetshieldLevelTwo => ElementByClassName("ShieldFilled");
+        private AutomationElement ChevronDown => ElementByClassName("ChevronDown");
 
         public HomeWindow PressQuickConnectButton()
         {
@@ -62,7 +63,7 @@ namespace ProtonVPN.UI.Test.Windows
 
         public HomeWindow NavigateToProfilesTab()
         {
-            ProfilesTab.Click();
+            ProfilesTab.Invoke();
             return this;
         }
 
@@ -170,8 +171,8 @@ namespace ProtonVPN.UI.Test.Windows
 
         public HomeWindow MoveMouseOnCountry(string countryName)
         {
-            SearchInput.Enter(countryName);
-            MoveMouseToElement(Country(countryName));
+            SearchInput.Text = countryName;
+            MoveMouseToElement(ChevronDown);
             return this;
         }
 
