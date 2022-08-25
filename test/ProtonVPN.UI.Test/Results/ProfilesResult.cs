@@ -23,12 +23,12 @@ namespace ProtonVPN.UI.Test.Results
 {
     public class ProfilesResult : UIActions
     {
-        public ProfilesResult CheckIfProfileIsDisplayed(string profileName) => WaitUntilElementExistsByName(profileName, TestConstants.ShortTimeout);
+        public ProfilesResult CheckIfProfileIsDisplayed(string profileName) => WaitUntilElementExistsByName(profileName, TestConstants.VeryShortTimeout);
 
         public ProfilesResult CheckIfDefaultProfilesAreDisplayed()
         {
-            WaitUntilElementExistsByName("Fastest", TestConstants.ShortTimeout);
-            WaitUntilElementExistsByName("Random", TestConstants.ShortTimeout);
+            WaitUntilElementExistsByName("Fastest", TestConstants.VeryShortTimeout);
+            WaitUntilElementExistsByName("Random", TestConstants.VeryShortTimeout);
             return this;
         }
 

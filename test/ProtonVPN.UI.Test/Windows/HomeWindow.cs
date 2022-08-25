@@ -205,7 +205,7 @@ namespace ProtonVPN.UI.Test.Windows
         {
             WaitUntilElementExistsByAutomationIdAndReturnTheElement(
                 "CloseButton", 
-                TestConstants.ShortTimeout).AsButton().Invoke();
+                TestConstants.VeryShortTimeout).AsButton().Invoke();
             return this;
         }
 
