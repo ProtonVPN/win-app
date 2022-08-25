@@ -103,14 +103,14 @@ namespace ProtonVPN.UI.Test.Results
 
         public HomeResult CheckIfUpgradeRequiredModalIsShown()
         {
-            WaitUntilElementExistsByName("Upgrade", TestConstants.ShortTimeout);
+            WaitUntilElementExistsByName("Upgrade", TestConstants.VeryShortTimeout);
             CheckIfDisplayedByClassName("PlusCountries");
             return this;
         }
 
         public HomeResult CheckIfUpgradeRequiredModalIsShownSecureCore()
         {
-            WaitUntilElementExistsByName("Upgrade", TestConstants.ShortTimeout);
+            WaitUntilElementExistsByName("Upgrade", TestConstants.VeryShortTimeout);
             CheckIfDisplayedByClassName("SecureCore");
             return this;
         }
@@ -129,7 +129,7 @@ namespace ProtonVPN.UI.Test.Results
 
         public HomeResult CheckIfPortForwardingQuickSettingIsVisible()
         {
-            WaitUntilDisplayedByAutomationId("PortForwardingButton", TestConstants.ShortTimeout);
+            WaitUntilDisplayedByAutomationId("PortForwardingButton", TestConstants.VeryShortTimeout);
             return this;
         }
     }

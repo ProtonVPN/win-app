@@ -69,7 +69,7 @@ namespace ProtonVPN.UI.Test.Windows
 
         public ProfilesWindow ConnectToProfile(string profileName)
         {
-            WaitUntilElementExistsByAutomationIdAndReturnTheElement($"Connect-{profileName}", TestConstants.ShortTimeout).AsButton().Invoke();
+            WaitUntilElementExistsByAutomationIdAndReturnTheElement($"Connect-{profileName}", TestConstants.VeryShortTimeout).AsButton().Invoke();
             return this;
         }
 
@@ -93,21 +93,21 @@ namespace ProtonVPN.UI.Test.Windows
 
         public ProfilesWindow PressCreateNewProfile()
         {
-            WaitUntilElementExistsByAutomationId("NewProfileButton", TestConstants.ShortTimeout);
+            WaitUntilElementExistsByAutomationId("NewProfileButton", TestConstants.VeryShortTimeout);
             CreateProfileButton.Invoke();
             return this;
         }
 
         public ProfilesWindow DeleteProfileByByName(string profileName)
         {
-            WaitUntilElementExistsByAutomationIdAndReturnTheElement($"Delete-{profileName}", TestConstants.ShortTimeout).AsButton().Invoke();
+            WaitUntilElementExistsByAutomationIdAndReturnTheElement($"Delete-{profileName}", TestConstants.VeryShortTimeout).AsButton().Invoke();
             ContinueButton.Invoke();
             return this;
         }
 
         public ProfilesWindow EditProfileName(string oldProfileName, string newProfileName)
         {
-            WaitUntilElementExistsByAutomationIdAndReturnTheElement($"Edit-{oldProfileName}", TestConstants.ShortTimeout).AsButton().AsButton().Invoke();
+            WaitUntilElementExistsByAutomationIdAndReturnTheElement($"Edit-{oldProfileName}", TestConstants.VeryShortTimeout).AsButton().AsButton().Invoke();
             ProfileNameInput.Enter(newProfileName);
             SaveButton.Click();
             return this;

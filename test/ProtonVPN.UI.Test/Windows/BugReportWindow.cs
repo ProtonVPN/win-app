@@ -30,7 +30,7 @@ namespace ProtonVPN.UI.Test.Windows
 
         public BugReportWindow FillBugReportForm(string bugType)
         {
-            WaitUntilElementExistsByName(bugType, TestConstants.ShortTimeout);
+            WaitUntilElementExistsByName(bugType, TestConstants.VeryShortTimeout);
             ElementByName(bugType).Click();
             ContactUsButton.Click();
             AutomationElement[] bugReportInputFields = Window.FindAllDescendants(cf => cf.ByAutomationId("AdornedTextBox"));
