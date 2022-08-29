@@ -1582,7 +1582,7 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The "go to billing website" button text in the Delinquency window</comment>
   </data>
   <data name="Dialogs_Delinquency_msg">
-    <value>Das Konto wurde aufgrund unbezahlter Rechnungen als „Säumig” gekennzeichnet. Du kannst Proton VPN weiterhin nutzen, aber alle kostenpflichtigen Funktionen sind nun deaktiviert.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadAboutDelinquencyCommand}"&gt; Erfahre mehr über Zahlungsrückstände.&lt;/Hyperlink&gt;</value>
+    <value>Das Konto wurde aufgrund unbezahlter Rechnungen als „Säumig“ gekennzeichnet. Du kannst Proton VPN weiterhin nutzen, aber alle kostenpflichtigen Funktionen sind nun deaktiviert.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadAboutDelinquencyCommand}"&gt; Erfahre mehr über Zahlungsrückstände.&lt;/Hyperlink&gt;</value>
     <comment>The message displayed in the Delinquency window. The codes between &lt; and &gt; should be kept as is (Do not forget to translate the inner "Read more about delinquency.").</comment>
   </data>
   <data name="Dialogs_Delinquency_Reconnected_Subtitle">
@@ -1611,10 +1611,10 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <value>Weniger anzeigen</value>
   </data>
   <data name="Dialogs_DisabledService_msg_ExtraInfo">
-    <value>Einige Anwendungen wie Antivirenprogramme oder PC-Optimierer können die Systemdienste stören, die Proton VPN zum Schutz deiner Verbindung benötigt. Wenn du auf „Aktivieren” klickst, ermöglicht du Windows, die Proton VPN-Dienste erneut zu aktivieren.&lt;LineBreak/&gt;Sollte das Problem weiterhin bestehen, versuche, deinen PC neu zu starten oder Proton VPN neu zu installieren.</value>
+    <value>Einige Anwendungen wie Antivirenprogramme oder PC-Optimierer können die Systemdienste stören, die Proton VPN zum Schutz deiner Verbindung benötigt. Wenn du auf „Aktivieren“ klickst, ermöglicht du Windows, die Proton VPN-Dienste erneut zu aktivieren.&lt;LineBreak/&gt;Sollte das Problem weiterhin bestehen, versuche, deinen PC neu zu starten oder Proton VPN neu zu installieren.</value>
   </data>
   <data name="Dialogs_DisabledService_msg_Info">
-    <value>Einige Komponenten von Proton VPN sind möglicherweise gesperrt oder deaktiviert, so dass du keine Verbindung herstellen kannst. Klicke auf „Aktivieren”, um dies zu beheben.&lt;LineBreak/&gt;Beachte, dass für diesen Vorgang Admin-Rechte erforderlich sind.</value>
+    <value>Einige Komponenten von Proton VPN sind möglicherweise gesperrt oder deaktiviert, sodass du keine Verbindung herstellen kannst. Klicke auf „Aktivieren“, um dies zu beheben.&lt;LineBreak/&gt;Beachte, dass für diesen Vorgang Admin-Rechte erforderlich sind.</value>
   </data>
   <data name="Dialogs_DisconnectError_btn_DisableKillSwitch">
     <value>Kill Switch (Not‐Trennung) deaktivieren</value>
@@ -1692,7 +1692,7 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <value>Kill Switch sperrt alle Verbindungen, um zu verhindern, dass deine Daten nach außen gelangen. Das Beenden der Anwendung beendet Kill Switch.</value>
   </data>
   <data name="Dialogs_Exit_msg_PermanentKillSwitch">
-    <value>„Permanent Kill Switch” ist aktiviert. Beim Beenden der Anwendung werden alle ausgehenden Verbindungen unterbunden, bis Proton VPN erneut eine Verbindung hergestellt hat.</value>
+    <value>„Permanent Kill Switch“ ist aktiviert. Beim Beenden der Anwendung werden alle ausgehenden Verbindungen unterbunden, bis Proton VPN erneut eine Verbindung hergestellt hat.</value>
   </data>
   <data name="Dialogs_HumanVerification_ttl">
     <value>Menschliche Verifizierung</value>
@@ -1701,7 +1701,7 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <value>Deine Systemuhr (Datum/Uhrzeit) scheint nicht mehr synchron zu sein, was eine erfolgreiche Verbindung mit dem VPN verhindern könnte. Bitte lies &lt;Hyperlink Command="{Binding OpenKbArticleCommand}"&gt;hier&lt;/Hyperlink&gt; für weitere Informationen.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_msg">
-    <value>Mit Permanent Kill Switch kannst du nicht auf das Internet zugreifen, wenn zum VPN aus irgendeinem Grund keine Verbindung besteht.</value>
+    <value>Mit dauerhaftem Kill Switch kannst du nicht auf das Internet zugreifen, wenn zum VPN aus irgendeinem Grund keine Verbindung besteht.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_ttl">
     <value>„Permanenten Kill Switch“ aktivieren?</value>
@@ -1751,7 +1751,7 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The error message displayed on the outdated app window when the app version is outdated</comment>
   </data>
   <data name="Dialogs_OutdatedApp_msg_KillSwitchActive">
-    <value>Beachten Sie, dass Kill Switch (Risiko-Trennung) aktiviert ist. Durch das Aktualisieren oder Beenden der Anwendung wird dieser deaktiviert.</value>
+    <value>Beachte, dass Kill Switch (Not-Trennung) aktiviert ist. Durch das Aktualisieren oder Beenden der Anwendung wird dieser deaktiviert.</value>
     <comment>The error message displayed on the outdated app window when the app version is outdated and Kill Switch is enabled</comment>
   </data>
   <data name="Dialogs_P2PBlocked_msg_Blocked">
@@ -1798,7 +1798,7 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The label for the new server in dialog windows</comment>
   </data>
   <data name="Dialogs_SplitTunnelWarning_msg">
-    <value>Damit „Split-Tunneling” richtig funktioniert, musst du „Kill Switch” deaktivieren.</value>
+    <value>Damit „Split-Tunneling“ richtig funktioniert, musst du „Kill Switch“ deaktivieren.</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListOption1">
     <value>Hunderte von Servern in 55 Ländern</value>
@@ -1896,7 +1896,7 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <value>Zu TAP wechseln</value>
   </data>
   <data name="Dialogs_TunInUse_msg">
-    <value>Proton VPN konnte keine Verbindung herstellen, da der TUN-Netzwerkadapter bereits in Verwendung ist. Bitte trenne alle aktiven VPN-Verbindungen und versuche es erneut. Wechsle alternativ auf den TAP-Adapter (Du kannst in den „Erweiterten Einstellungen” wieder auf TUN zurückwechseln).</value>
+    <value>Proton VPN konnte keine Verbindung herstellen, da der TUN-Netzwerkadapter bereits in Verwendung ist. Bitte trenne alle aktiven VPN-Verbindungen und versuche es erneut. Wechsle alternativ auf den TAP-Adapter (Du kannst in den „Erweiterten Einstellungen“ wieder auf TUN zurückwechseln).</value>
   </data>
   <data name="ErrorWindow_lbl_Close">
     <value>Schließen</value>
@@ -2076,13 +2076,13 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <value>Nicht erneut anzeigen</value>
   </data>
   <data name="Modal_DiscourageSecureCore_LearnMore">
-    <value>Mehr erfahren</value>
+    <value>Learn more</value>
   </data>
   <data name="Modal_DiscourageSecureCore_Subtitle">
     <value>Secure Core bietet ein Höchstmaß an Sicherheit und Datenschutz, kann aber deine Internetgeschwindigkeit verringern. Wenn du mehr Leistung benötigst, kannst du Secure Core deaktivieren.</value>
   </data>
   <data name="Modal_DiscourageSecureCore_Title">
-    <value>Ein Hinweis betr. Geschwindigkeit...</value>
+    <value>Ein Hinweis betr. Geschwindigkeit ...</value>
   </data>
   <data name="NetShield">
     <value>NetShield</value>
@@ -2100,7 +2100,7 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The title of the Delinquency notification</comment>
   </data>
   <data name="Notifications_EnableSmartProtocol_msg">
-    <value>Proton VPN hat festgestellt, dass dein aktuelles Netzwerk eine Verbindung zum VPN verhindert. Die Aktivierung von „Smart Protocol” kann diese Einschränkungen umgehen.</value>
+    <value>Proton VPN hat festgestellt, dass dein aktuelles Netzwerk eine Verbindung zum VPN verhindert. Die Aktivierung von „Smart Protocol“ kann diese Einschränkungen umgehen.</value>
     <comment>The message displayed in the Enable Smart Protocol notification.</comment>
   </data>
   <data name="Notifications_EnableSmartProtocol_ttl">
@@ -2773,7 +2773,7 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The label for Smart Reconnect notifications toggle switch in the General tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_SmartReconnectNotifications_Info">
-    <value>Aktivieren, um Benachrichtigungen zu erhalten, wenn dich der VPN-Beschleuniger mit einem schnelleren Server verbindet.</value>
+    <value>Aktivieren, um Benachrichtigungen zu erhalten, wenn dich der VPN Accelerator mit einem schnelleren Server verbindet.</value>
     <comment>The description of the Smart Reconnect notifications setting displayed in the tooltip of the ( i ) image next to the label</comment>
   </data>
   <data name="Settings_Connection_lbl_VpnAccelerator">
@@ -2950,7 +2950,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Smart Routing</value>
   </data>
   <data name="Sidebar_FeaturesPopup_SmartRouting_Desc">
-    <value>Diese Technologie ermöglicht es ProtonVPN, höhere Geschwindigkeit und Sicherheit in schwer zu erreichenden Ländern zu bieten.</value>
+    <value>Diese Technologie ermöglicht es Proton VPN, höhere Geschwindigkeit und Sicherheit in schwer zu erreichenden Ländern zu bieten.</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Streaming">
     <value>Streaming</value>

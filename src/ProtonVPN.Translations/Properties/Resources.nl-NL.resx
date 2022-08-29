@@ -2076,7 +2076,7 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <value>Niet meer weergeven</value>
   </data>
   <data name="Modal_DiscourageSecureCore_LearnMore">
-    <value>Meer informatie</value>
+    <value>Learn more</value>
   </data>
   <data name="Modal_DiscourageSecureCore_Subtitle">
     <value>Secure Core biedt het hoogste niveau van beveiliging en privacy, maar het kan uw internetsnelheid verlagen. Als u hogere prestaties wilt, kan u Secure Core uitschakelen.</value>

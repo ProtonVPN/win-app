@@ -2106,7 +2106,7 @@
     <value>Больше не показывать</value>
   </data>
   <data name="Modal_DiscourageSecureCore_LearnMore">
-    <value>Подробнее</value>
+    <value>Learn more</value>
   </data>
   <data name="Modal_DiscourageSecureCore_Subtitle">
     <value>Secure Core обеспечивает наивысший уровень безопасности и конфиденциальности, но может снизить скорость вашего подключения к Интернету. Если вам нужна более высокая производительность, вы можете отключить Secure Core.</value>
@@ -3138,7 +3138,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The message disaplyed in plus upgrade modal window</comment>
   </data>
   <data name="Upsell_ModerateNat_About">
-    <value>Что такое Умеренное NAT?</value>
+    <value>Включить умеренный NAT?</value>
   </data>
   <data name="Upsell_ModerateNat_Subtitle">
     <value>Умеренное NAT, также известное как Nat Type 2, может повысить удобство работы в Интернете с различными приложениями и сетевыми видеоиграми.</value>

@@ -2107,7 +2107,7 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <value>Не показувати знову</value>
   </data>
   <data name="Modal_DiscourageSecureCore_LearnMore">
-    <value>Докладніше</value>
+    <value>Learn more</value>
   </data>
   <data name="Modal_DiscourageSecureCore_Subtitle">
     <value>Secure Core пропонує найвищий рівень безпеки та приватності, але це може знизити швидкість роботи інтернету. Якщо вам потрібна додаткова швидкодія, ви можете вимкнути Secure Core.</value>
@@ -2772,7 +2772,7 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <comment>The label for Custom DNS Servers combo box in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_CustomDnsServer_Info">
-    <value>Введіть приватний сервер DNS (наприклад, AdGuard DNS) для обробки запитів DNS. Використання власних серверів DNS призведе до вимкнення NetShіeld. Сервери DNS відповідають за спрямування вас на потрібний сайт, тому використовуйте лише сервери, яким ви довіряєте.</value>
+    <value>Введіть приватний сервер DNS (наприклад, NextDNS) для обробки запитів DNS. Використання власних серверів DNS призведе до вимкнення NetShіeld. Сервери DNS відповідають за спрямування вас на потрібний сайт, тому використовуйте лише сервери, яким ви довіряєте.</value>
     <comment>The description of Custom DNS Servers setting displayed in the tooltip of the ( i ) image next to the label for Custom DNS Server toggle switch in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_DefaultProtocol">
