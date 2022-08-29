@@ -2106,7 +2106,7 @@ Postępuj zgodnie z &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;
     <value>Nie pokazuj ponownie</value>
   </data>
   <data name="Modal_DiscourageSecureCore_LearnMore">
-    <value>Dowiedz się więcej</value>
+    <value>Learn more</value>
   </data>
   <data name="Modal_DiscourageSecureCore_Subtitle">
     <value>Funkcja Secure Core oferuje najwyższy poziom bezpieczeństwa i prywatności, ale może zmniejszyć prędkość połączenia. Jeśli potrzebujesz większej wydajności, wyłącz funkcję Secure Core.</value>
@@ -3193,7 +3193,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Dodatkowa warstwa szyfrowania połączenia VPN</value>
   </data>
   <data name="Upsell_SecureCore_NetworkAttacks">
-    <value>Chroń siebie przed atakami sieciowymi</value>
+    <value>Chroń się przed atakami sieciowymi</value>
   </data>
   <data name="Upsell_SecureCore_RouteThrough">
     <value>Przekieruj ruch przez ultra bezpieczne serwery w Szwajcarii, Szwecji i Islandii</value>

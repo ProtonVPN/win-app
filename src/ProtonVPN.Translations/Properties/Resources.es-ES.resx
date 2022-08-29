@@ -2076,7 +2076,7 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <value>No volver a mostrar</value>
   </data>
   <data name="Modal_DiscourageSecureCore_LearnMore">
-    <value>Más información</value>
+    <value>Learn more</value>
   </data>
   <data name="Modal_DiscourageSecureCore_Subtitle">
     <value>Secure Core ofrece el máximo nivel de seguridad y privacidad, pero puede reducir la velocidad de Internet. Si necesitas más rendimiento, puedes desactivar Secure Core.</value>
@@ -2411,7 +2411,7 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <value>Aplicar</value>
   </data>
   <data name="PromoCode_lbl_CouponCode">
-    <value>Código de descuento</value>
+    <value>Cupón de descuento</value>
   </data>
   <data name="PromoCode_lbl_Success">
     <value>El cupón se ha aplicado con éxito.</value>
@@ -2773,7 +2773,7 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <comment>The label for Smart Reconnect notifications toggle switch in the General tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_SmartReconnectNotifications_Info">
-    <value>Active esta opción para recibir notificaciones cuando VPN Accelerator le conecte a un servidor más rápido.</value>
+    <value>Activa esta opción para recibir notificaciones cuando VPN Accelerator te conecte a un servidor más rápido.</value>
     <comment>The description of the Smart Reconnect notifications setting displayed in the tooltip of the ( i ) image next to the label</comment>
   </data>
   <data name="Settings_Connection_lbl_VpnAccelerator">

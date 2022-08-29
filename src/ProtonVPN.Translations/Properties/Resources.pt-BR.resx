@@ -2076,7 +2076,7 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
     <value>Não mostrar novamente</value>
   </data>
   <data name="Modal_DiscourageSecureCore_LearnMore">
-    <value>Saiba mais</value>
+    <value>Learn more</value>
   </data>
   <data name="Modal_DiscourageSecureCore_Subtitle">
     <value>O Secure Core oferece o mais alto nível de segurança e privacidade, mas pode reduzir a velocidade da sua internet. Se precisar de mais desempenho, você pode desabilitar o Secure Core.</value>
