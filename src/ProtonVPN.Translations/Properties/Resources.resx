@@ -2058,10 +2058,6 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Proton VPN</value>
     <comment>The title of Welcome window</comment>
   </data>
-  <data name="Account_lbl_Country_One" xml:space="preserve">
-    <value>Country</value>
-    <comment>The number of countries with available servers displayed in Account window.</comment>
-  </data>
   <data name="Account_lbl_Device_One" xml:space="preserve">
     <value>Device</value>
     <comment>The supported number of devices in Account window.</comment>
@@ -2349,10 +2345,6 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   <data name="TimeUnit_val_Minute_Other" xml:space="preserve">
     <value>minutes</value>
     <comment>The time unit: minutes</comment>
-  </data>
-  <data name="Account_lbl_Country_Other" xml:space="preserve">
-    <value>Countries</value>
-    <comment>The number of countries with available servers displayed in Account window.</comment>
   </data>
   <data name="Account_lbl_Device_Other" xml:space="preserve">
     <value>Devices</value>
