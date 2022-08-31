@@ -231,14 +231,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="build-local-agent.bat" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>call "$(ProjectDir)build-local-agent.bat"
-copy $(ProjectDir)Resources\64-bit\tunnel.dll $(ProjectDir)$(OutDir)
+    <PostBuildEvent>copy $(ProjectDir)Resources\64-bit\tunnel.dll $(ProjectDir)$(OutDir)
 copy $(ProjectDir)Resources\64-bit\wireguard.dll $(ProjectDir)$(OutDir)</PostBuildEvent>
   </PropertyGroup>
 </Project>
