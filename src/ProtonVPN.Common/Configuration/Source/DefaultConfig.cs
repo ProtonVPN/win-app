@@ -205,7 +205,7 @@ namespace ProtonVPN.Common.Configuration.Source
                     NonStandardPortsUrl = "https://protonvpn.com/support/non-standard-ports",
                     LoginProblemsUrl = "https://protonvpn.com/support/login-problems",
                     RebrandingUrl = "https://protonvpn.com/blog/updated-proton-vpn",
-                    RpcServerProblemUrl = "https://proton.me/support/rpc-server-unavailable",
+                    RpcServerProblemUrl = "https://protonvpn.com/support/rpc-server-unavailable",
                 },
 
                 OpenVpn =
