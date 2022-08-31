@@ -18,13 +18,11 @@
  */
 
 using System;
-using System.Windows;
 using Autofac;
 using Caliburn.Micro;
 using ProtonVPN.About;
 using ProtonVPN.Account;
 using ProtonVPN.Api;
-using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Servers;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Events;
@@ -287,12 +285,7 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<ReconnectState>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterType<SettingsBuilder>().SingleInstance();
             builder.RegisterType<ReconnectManager>().AsImplementedInterfaces().AsSelf().SingleInstance();
-            builder.Register(c => new VpnInfoUpdater(
-                c.Resolve<Common.Configuration.Config>(),
-                c.Resolve<IEventAggregator>(),
-                c.Resolve<IApiClient>(),
-                c.Resolve<IUserStorage>(),
-                c.Resolve<IScheduler>())).As<IVpnInfoUpdater>().SingleInstance();
+            builder.RegisterType<VpnInfoUpdater>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<PlanDowngradeHandler>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterType<StreamingServicesUpdater>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterType<StreamingServices>().As<IStreamingServices>().SingleInstance();
