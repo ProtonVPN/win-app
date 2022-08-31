@@ -20,7 +20,6 @@
 using System;
 using Autofac;
 using ProtonVPN.Api;
-using ProtonVPN.Api.Handlers;
 using ProtonVPN.Api.Handlers.Retries;
 using ProtonVPN.Common.OS.Net.Http;
 using ProtonVPN.Core.Update;

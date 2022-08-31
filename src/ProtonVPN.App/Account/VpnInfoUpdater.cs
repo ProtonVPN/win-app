@@ -96,7 +96,7 @@ namespace ProtonVPN.Account
                     _userStorage.StoreVpnInfo(response.Value);
                 }
             }
-            catch (HttpRequestException)
+            catch
             {
             }
             finally

@@ -21,7 +21,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Net.Http;
 using System.Threading.Tasks;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Announcements;
@@ -134,9 +133,8 @@ namespace ProtonVPN.Core.Announcements
                     AnnouncementsChanged?.Invoke(this, EventArgs.Empty);
                 }
             }
-            catch (HttpRequestException)
+            catch
             {
-                // Ignored
             }
         }
 

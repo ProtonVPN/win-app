@@ -49,7 +49,6 @@ namespace ProtonVPN.Api.Handlers
         public event EventHandler SessionExpired;
 
         public UnauthorizedResponseHandler(
-            HumanVerificationHandlerBase humanVerificationHandler,
             ITokenClient tokenClient,
             IAppSettings appSettings,
             IUserStorage userStorage,
@@ -59,8 +58,6 @@ namespace ProtonVPN.Api.Handlers
             _appSettings = appSettings;
             _userStorage = userStorage;
             _logger = logger;
-
-            InnerHandler = humanVerificationHandler;
         }
 
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request,
@@ -155,7 +152,7 @@ namespace ProtonVPN.Api.Handlers
             {
                 _logger.Error<UserLog>($"An error occurred when refreshing the auth token: {e.ParamName}");
             }
-            catch (HttpRequestException)
+            catch (Exception)
             {
                 return RefreshTokenStatus.Fail;
             }

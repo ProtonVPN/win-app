@@ -67,7 +67,7 @@ namespace ProtonVPN.BugReporting
             {
                 return await _apiClient.ReportBugAsync(fields, files);
             }
-            catch (Exception e) when (e is HttpRequestException || e.IsFileAccessException())
+            catch (Exception e)
             {
                 return Result.Fail(e.Message);
             }

@@ -89,7 +89,6 @@
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Windows" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Windows.Interactivity" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -1612,6 +1611,14 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Dns\ProtonVPN.Dns.Contracts\ProtonVPN.Dns.Contracts.csproj">
+      <Project>{455DA1FB-5097-47D2-8603-B0E1F9D90294}</Project>
+      <Name>ProtonVPN.Dns.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dns\ProtonVPN.Dns.Installers\ProtonVPN.Dns.Installers.csproj">
+      <Project>{e52e34fd-40ae-425b-9c1a-2cab3ee2704f}</Project>
+      <Name>ProtonVPN.Dns.Installers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Api\ProtonVPN.Api.Contracts\ProtonVPN.Api.Contracts.csproj">
       <Project>{9E4D6072-C8DE-475A-B9A7-4B6BF6EEEAEB}</Project>
       <Name>ProtonVPN.Api.Contracts</Name>

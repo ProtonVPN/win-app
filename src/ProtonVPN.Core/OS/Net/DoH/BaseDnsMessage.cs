@@ -18,7 +18,7 @@
  */
 
 using System;
-using System.Linq;
+using ProtonVPN.Common.Extensions;
 
 namespace ProtonVPN.Core.OS.Net.DoH
 {
@@ -26,8 +26,8 @@ namespace ProtonVPN.Core.OS.Net.DoH
     {
         public string ToBase64String()
         {
-            var bytes = GetBytes();
-            var cleanBytes = RemoveTrailingZeroBytes(bytes);
+            byte[] bytes = GetBytes();
+            byte[] cleanBytes = bytes.TrimTrailingZeroBytes();
 
             return Convert.ToBase64String(cleanBytes)
                 .TrimEnd('=')
@@ -36,20 +36,5 @@ namespace ProtonVPN.Core.OS.Net.DoH
         }
 
         protected abstract byte[] GetBytes();
-
-        private byte[] RemoveTrailingZeroBytes(byte[] bytes)
-        {
-            var i = bytes.Length - 1;
-            while (bytes[i] == 0)
-            {
-                --i;
-            }
-
-            var newSize = i + 1;
-            var result = new byte[newSize];
-            Array.Copy(bytes, result, newSize);
-
-            return result;
-        }
     }
 }

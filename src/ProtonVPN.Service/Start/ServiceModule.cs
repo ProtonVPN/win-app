@@ -51,7 +51,7 @@ namespace ProtonVPN.Service.Start
         {
             base.Load(builder);
 
-            builder.Register(_ => new ConfigFactory().Config());
+            builder.Register(_ => new ConfigFactory().Config()).AsSelf().As<IConfiguration>().SingleInstance(); // REMOVE AS SELF
             builder.RegisterType<Bootstrapper>().SingleInstance();
 
             builder.RegisterType<Log4NetLoggerFactory>().As<ILoggerFactory>().SingleInstance();

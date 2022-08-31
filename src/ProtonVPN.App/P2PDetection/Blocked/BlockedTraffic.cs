@@ -53,18 +53,20 @@ namespace ProtonVPN.P2PDetection.Blocked
 
         public async Task<bool> Detected()
         {
-            var response = await GetResponse();
+            string response = await GetResponse();
             return response.Contains("<!--P2P_WARNING-->");
         }
 
         private async Task<string> GetResponse()
         {
-            using (var response = await _httpClient.GetAsync(_p2PStatusUri))
+            using (IHttpResponseMessage response = await _httpClient.GetAsync(_p2PStatusUri))
             {
                 if (!response.IsSuccessStatusCode)
+                {
                     return string.Empty;
+                }
 
-                var content = await response.Content.ReadAsStringAsync();
+                string content = await response.Content.ReadAsStringAsync();
                 return content;
             }
         }

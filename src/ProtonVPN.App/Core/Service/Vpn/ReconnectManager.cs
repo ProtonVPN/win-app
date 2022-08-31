@@ -141,7 +141,7 @@ namespace ProtonVPN.Core.Service.Vpn
 
                 return isServerUnderMaintenance;
             }
-            catch (HttpRequestException)
+            catch
             {
                 return false;
             }

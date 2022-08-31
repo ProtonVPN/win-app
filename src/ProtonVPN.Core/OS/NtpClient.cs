@@ -81,7 +81,7 @@ namespace ProtonVPN.Core.OS
 
         private IPEndPoint GetNtpServerIPEndPoint()
         {
-            IPAddress[] addresses = Dns.GetHostEntry(_ntpServer).AddressList;
+            IPAddress[] addresses = System.Net.Dns.GetHostEntry(_ntpServer).AddressList;
             return new(addresses[0], UDP_PORT);
         }
 

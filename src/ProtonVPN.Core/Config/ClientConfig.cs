@@ -119,7 +119,7 @@ namespace ProtonVPN.Core.Config
                     _appSettings.FeaturePromoCodeEnabled = response.Value.FeatureFlags.PromoCode ?? false;
                 }
             }
-            catch (HttpRequestException)
+            catch
             {
             }
         }

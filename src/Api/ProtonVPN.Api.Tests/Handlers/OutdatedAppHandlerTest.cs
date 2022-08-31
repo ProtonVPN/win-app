@@ -26,6 +26,7 @@ using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Common;
 using ProtonVPN.Api.Handlers;
 using ProtonVPN.Api.Tests.Deserializers;
+using ProtonVPN.Api.Tests.Mocks;
 
 namespace ProtonVPN.Api.Tests.Handlers
 {
@@ -41,10 +42,12 @@ namespace ProtonVPN.Api.Tests.Handlers
             int called = 0;
 
             MockOfRetryingHandler mockOfRetryingHandler = new();
-            MockOfBaseResponseMessageDeserializer mockOfBaseResponseDeserializer = new();
-            mockOfBaseResponseDeserializer.ExpectedBaseResponse = new BaseResponse() { Code = code };
+            MockOfBaseResponseMessageDeserializer mockOfBaseResponseDeserializer = new()
+            {
+                ExpectedBaseResponse = new BaseResponse() { Code = code }
+            };
             mockOfRetryingHandler.SetResponseAsSuccess(code);
-            OutdatedAppHandler handler = new(mockOfBaseResponseDeserializer, mockOfRetryingHandler);
+            OutdatedAppHandler handler = new(mockOfBaseResponseDeserializer) { InnerHandler = mockOfRetryingHandler };
             handler.AppOutdated += (sender, args) => called++;
             HttpClient httpClient = new(handler) {BaseAddress = new Uri("http://127.0.0.1")};
 

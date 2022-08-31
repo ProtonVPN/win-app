@@ -35,5 +35,11 @@ namespace ProtonVPN.Common.Extensions
         public static bool IsServiceCommunicationException(this Exception ex) =>
             ex is CommunicationException ||
             ex is ObjectDisposedException odex && odex.ObjectName == "System.ServiceModel.Channels.ServiceChannel";
+
+        public static bool IsOrAnyInnerIsOfExceptionType<T>(this Exception e)
+            where T : Exception
+        {
+            return e is T || (e != null && e.InnerException.IsOrAnyInnerIsOfExceptionType<T>());
+        }
     }
 }

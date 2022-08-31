@@ -20,9 +20,9 @@
 using System;
 using System.Net.Http;
 using System.Net.Sockets;
-using System.Security.Authentication;
 using Newtonsoft.Json;
 using Polly.Timeout;
+using ProtonVPN.Dns.Contracts.Exceptions;
 
 namespace ProtonVPN.Api
 {
@@ -30,13 +30,8 @@ namespace ProtonVPN.Api
     {
         public static bool IsApiCommunicationException(this Exception ex)
         {
-            return ex is HttpRequestException or JsonException or OperationCanceledException or TimeoutRejectedException
-                or SocketException;
-        }
-
-        public static bool IsPotentialBlocking(this Exception e)
-        {
-            return e is TimeoutException or TimeoutRejectedException || e.GetBaseException() is AuthenticationException;
+            return ex is HttpRequestException or JsonException or OperationCanceledException 
+                or TimeoutRejectedException or SocketException or DnsException;
         }
     }
 }

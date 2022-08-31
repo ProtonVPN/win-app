@@ -33,10 +33,9 @@ namespace ProtonVPN.Api.Handlers
         private readonly Config _config;
         private readonly CancellationHandle _cancellationHandle = new();
 
-        public CancellingHandler(Config config, UnauthorizedResponseHandler unauthorizedResponseHandler)
+        public CancellingHandler(Config config)
         {
             _config = config;
-            InnerHandler = unauthorizedResponseHandler;
         }
 
         protected override async Task<HttpResponseMessage> SendAsync(

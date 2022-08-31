@@ -43,16 +43,15 @@ namespace ProtonVPN.Core.Events
         {
             try
             {
-                var response = await _apiClient.GetEventResponse(_appSettings.LastEventId);
+                ApiResponseResult<EventResponse> response = await _apiClient.GetEventResponse(_appSettings.LastEventId);
                 if (response.Success && _appSettings.LastEventId != response.Value.EventId)
                 {
                     _appSettings.LastEventId = response.Value.EventId;
                     ApiDataChanged?.Invoke(this, response.Value);
                 }
             }
-            catch (HttpRequestException)
+            catch
             {
-                //ignore
             }
         }
 
@@ -60,15 +59,14 @@ namespace ProtonVPN.Core.Events
         {
             try
             {
-                var response = await _apiClient.GetEventResponse();
+                ApiResponseResult<EventResponse> response = await _apiClient.GetEventResponse();
                 if (response.Success)
                 {
                     _appSettings.LastEventId = response.Value.EventId;
                 }
             }
-            catch (HttpRequestException)
+            catch
             {
-                //ignore
             }
         }
     }

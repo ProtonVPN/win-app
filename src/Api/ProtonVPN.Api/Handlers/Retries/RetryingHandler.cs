@@ -28,10 +28,9 @@ namespace ProtonVPN.Api.Handlers.Retries
     {
         private readonly IRetryPolicyProvider _retryPolicyProvider;
 
-        public RetryingHandler(LoggingHandlerBase loggingHandler, IRetryPolicyProvider retryPolicyProvider)
+        public RetryingHandler(IRetryPolicyProvider retryPolicyProvider)
         {
             _retryPolicyProvider = retryPolicyProvider;
-            InnerHandler = loggingHandler;
         }
 
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request,

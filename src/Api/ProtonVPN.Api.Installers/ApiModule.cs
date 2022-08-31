@@ -33,7 +33,7 @@ namespace ProtonVPN.Api.Installers
             builder.RegisterType<ApiClient>().As<IApiClient>().SingleInstance();
             builder.RegisterType<HttpClientFactory>().As<IHttpClientFactory>().SingleInstance();
             builder.RegisterType<CertificateHandler>().SingleInstance();
-            builder.RegisterType<SafeDnsHandler>().SingleInstance();
+            builder.RegisterType<DnsHandler>().SingleInstance();
             builder.RegisterType<LoggingHandler>().As<LoggingHandlerBase>().AsSelf().SingleInstance();
             builder.RegisterType<SleepDurationProvider>().SingleInstance();
             builder.RegisterType<RetryingHandler>().As<RetryingHandlerBase>().AsSelf().SingleInstance();

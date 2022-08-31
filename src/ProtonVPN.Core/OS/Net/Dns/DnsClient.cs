@@ -64,7 +64,9 @@ namespace ProtonVPN.Core.OS.Net.Dns
         private async Task<IDnsClient> GetDnsClient()
         {
             if (_addressChanged)
+            {
                 await _refreshDnsClient.Run();
+            }
 
             return _dnsClient;
         }
@@ -72,13 +74,17 @@ namespace ProtonVPN.Core.OS.Net.Dns
         private void RefreshDnsClient()
         {
             if (!_addressChanged)
+            {
                 return;
+            }
 
             _addressChanged = false;
 
             var dnsServers = _dnsClients.NameServers();
             if (_dnsClient.NameServers.ToHashSet().SetEquals(dnsServers))
+            {
                 return;
+            }
 
             _dnsClient = _dnsClients.DnsClient(dnsServers);
         }

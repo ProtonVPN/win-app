@@ -334,6 +334,14 @@ namespace ProtonVPN.Common.Configuration.Source
                 NtpServerUrl = "time.windows.com",
 
                 ServerValidationPublicKey = "MCowBQYDK2VwAyEANpYpt/FlSRwEuGLMoNAGOjy1BTyEJPJvKe00oln7LZk=",
+
+                FailedDnsRequestTimeout = TimeSpan.FromSeconds(5),
+                DnsResolveTimeout = TimeSpan.FromSeconds(30),
+                DnsOverHttpsPerProviderTimeout = TimeSpan.FromSeconds(20),
+                NewCacheTimeToLiveOnResolveError = TimeSpan.FromMinutes(10),
+                DefaultDnsTimeToLive = TimeSpan.FromMinutes(20),
+
+                AlternativeRoutingCheckInterval = TimeSpan.FromMinutes(30)
             };
         }
     }

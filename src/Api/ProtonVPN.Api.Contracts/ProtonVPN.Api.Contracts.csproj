@@ -60,6 +60,7 @@
     <Compile Include="Auth\AuthInfoResponse.cs" />
     <Compile Include="Auth\AuthResponse.cs" />
     <Compile Include="Auth\VpnInfoResponse.cs" />
+    <Compile Include="Exceptions\AlternativeRoutingException.cs" />
     <Compile Include="ExpandedHttpStatusCodes.cs" />
     <Compile Include="IApiHostProvider.cs" />
     <Compile Include="Profiles\BaseProfileResponse.cs" />

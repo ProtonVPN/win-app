@@ -18,63 +18,107 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using Caliburn.Micro;
-using ProtonVPN.Common.Vpn;
-using ProtonVPN.Core.OS.Net.Dns;
-using ProtonVPN.Core.Vpn;
+using ProtonVPN.Common.Configuration;
+using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.ApiLogs;
+using ProtonVPN.Common.Networking;
+using ProtonVPN.Dns.Contracts;
+using ProtonVPN.Dns.Contracts.Exceptions;
 
 namespace ProtonVPN.Api.Handlers
 {
-    /// <summary>
-    /// Replaces host with IP in Http requests if network is blocked and VPN is not connected.
-    /// </summary>
-    /// <remarks>
-    /// If an app asks Windows to resolve IP, the DNS requests are send by different process than this app.
-    /// If VPN is not connected and firewall is blocking system DNS requests, DNS should be resolved by
-    /// by the app itself to pass through firewall.
-    /// </remarks>
-    public class DnsHandler : DelegatingHandler, IHandle<VpnStateChangedEventArgs>
+    public class DnsHandler : DelegatingHandler
     {
-        private readonly IDnsClient _dnsClient;
+        private readonly ILogger _logger;
+        private readonly IDnsManager _dnsManager;
+        private readonly string _defaultApiHost;
 
-        private bool _systemDnsBlocked;
-
-        public DnsHandler(IEventAggregator eventAggregator, IDnsClient dnsClient)
+        public DnsHandler(ILogger logger, IDnsManager dnsManager,
+            IConfiguration configuration)
         {
-            _dnsClient = dnsClient;
-
-            eventAggregator.Subscribe(this);
+            _logger = logger;
+            _dnsManager = dnsManager;
+            _defaultApiHost = new Uri(configuration.Urls.ApiUrl).Host;
         }
 
-        public void Handle(VpnStateChangedEventArgs e)
+        protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request,
+            CancellationToken cancellationToken)
         {
-            _systemDnsBlocked = e.NetworkBlocked && e.State.Status != VpnStatus.Connected;
-        }
-
-        protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken token)
-        {
-            if (_systemDnsBlocked)
+            if (request.RequestUri.HostNameType == UriHostNameType.Dns)
             {
-                request = await ModifyRequest(request, token);
+                return await SendRequestToDomainAsync(request, cancellationToken);
             }
 
+            return await SendRequestAsync(request, cancellationToken);
+        }
+
+        private async Task<HttpResponseMessage> SendRequestToDomainAsync(HttpRequestMessage request,
+            CancellationToken cancellationToken)
+        {
+            IList<IpAddress> ipAddresses = await _dnsManager.GetAsync(request.RequestUri.IdnHost, cancellationToken);
+            if (!ipAddresses.IsNullOrEmpty())
+            {
+                for (int i = 0; i < ipAddresses.Count; i++)
+                {
+                    try
+                    {
+                        HttpResponseMessage httpResponseMessage = await SendRequestToIpAddressAsync(
+                            ipAddresses[i], request, cancellationToken);
+                        return httpResponseMessage;
+                    }
+                    catch
+                    {
+                        if (i + 1 == ipAddresses.Count)
+                        {
+                            throw;
+                        }
+                    }
+                }
+            }
+            throw new DnsException($"No IP addresses to make the API request to '{request.RequestUri}'.");
+        }
+
+        private async Task<HttpResponseMessage> SendRequestToIpAddressAsync(IpAddress ipAddress,
+            HttpRequestMessage request, CancellationToken token)
+        {
+            Uri oldRequestUri = request.RequestUri;
+            SetRequestHost(request, ipAddress.ToString());
+            HttpResponseMessage httpResponseMessage;
+            try
+            {
+                httpResponseMessage = await SendRequestAsync(request, token);
+            }
+            catch (Exception ex)
+            {
+                _logger.Error<ApiErrorLog>($"API request '{request.RequestUri}' failed.", ex);
+                ResetRequestUri(request, oldRequestUri);
+                throw;
+            }
+            return httpResponseMessage;
+        }
+
+        private void SetRequestHost(HttpRequestMessage request, string uriHost)
+        {
+            UriBuilder uriBuilder = new(request.RequestUri) { Host = uriHost };
+            request.Headers.Host = _defaultApiHost;
+            request.RequestUri = uriBuilder.Uri;
+        }
+
+        private void ResetRequestUri(HttpRequestMessage request, Uri uri)
+        {
+            UriBuilder uriBuilder = new(uri) { Host = uri.Host };
+            request.Headers.Host = uriBuilder.Host;
+            request.RequestUri = uriBuilder.Uri;
+        }
+
+        private async Task<HttpResponseMessage> SendRequestAsync(HttpRequestMessage request, CancellationToken token)
+        {
             return await base.SendAsync(request, token);
-        }
-
-        private async Task<HttpRequestMessage> ModifyRequest(HttpRequestMessage message, CancellationToken token)
-        {
-            string ip = await _dnsClient.Resolve(message.RequestUri.Host, token);
-            if (!string.IsNullOrEmpty(ip))
-            {
-                var uriBuilder = new UriBuilder(message.RequestUri) { Host = ip };
-                message.Headers.Host = message.RequestUri.Host;
-                message.RequestUri = uriBuilder.Uri;
-            }
-
-            return message;
         }
     }
 }

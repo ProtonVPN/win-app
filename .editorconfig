@@ -38,13 +38,13 @@ csharp_new_line_before_open_brace=all
 csharp_new_line_between_query_expression_clauses=true
 
 # http://kent-boogaart.com/blog/editorconfig-reference-for-c-developers#csharp_prefer_braces
-csharp_prefer_braces = true:error
+csharp_prefer_braces=true:error
 
 # http://kent-boogaart.com/blog/editorconfig-reference-for-c-developers#csharp_prefer_simple_default_expression
 csharp_prefer_simple_default_expression=false:error
 
 # IDE0063: Use simple 'using' statement
-csharp_prefer_simple_using_statement = false
+csharp_prefer_simple_using_statement=false
 
 # http://kent-boogaart.com/blog/editorconfig-reference-for-c-developers#csharp_preserve_single_line_blocks
 csharp_preserve_single_line_blocks=true
@@ -131,7 +131,7 @@ csharp_style_expression_bodied_constructors=false:warning
 csharp_style_expression_bodied_indexers=true:error
 
 # http://kent-boogaart.com/blog/editorconfig-reference-for-c-developers#csharp_style_expression_bodied_methods
-csharp_style_expression_bodied_methods=true
+csharp_style_expression_bodied_methods=false:warning
 
 # http://kent-boogaart.com/blog/editorconfig-reference-for-c-developers#csharp_style_expression_bodied_operators
 csharp_style_expression_bodied_operators=false:suggestion
@@ -263,4 +263,4 @@ dotnet_naming_style.pascal_case_style.capitalization=pascal_case
 resharper_arrange_this_qualifier_highlighting=hint
 
 # IDE1006: Naming Styles
-dotnet_diagnostic.IDE1006.severity = warning
+dotnet_diagnostic.ide1006.severity=warning

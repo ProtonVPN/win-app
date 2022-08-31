@@ -17,9 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Net.Http;
 using System.Threading.Tasks;
 using ProtonVPN.Api.Contracts;
+using ProtonVPN.Api.Contracts.Auth;
 using ProtonVPN.Api.Contracts.Events;
 using ProtonVPN.Core.Settings;
 
@@ -45,15 +45,14 @@ namespace ProtonVPN.Core.Events
 
             try
             {
-                var response = await _apiClient.GetVpnInfoResponse();
+                ApiResponseResult<VpnInfoWrapperResponse> response = await _apiClient.GetVpnInfoResponse();
                 if (response.Success)
                 {
                     _userStorage.StoreVpnInfo(response.Value);
                 }
             }
-            catch (HttpRequestException)
+            catch
             {
-                //ignore
             }
         }
     }

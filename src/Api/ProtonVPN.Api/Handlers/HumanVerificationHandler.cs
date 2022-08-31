@@ -39,14 +39,11 @@ namespace ProtonVPN.Api.Handlers
 
         public HumanVerificationHandler(IBaseResponseMessageDeserializer baseResponseDeserializer,
             IHumanVerifier humanVerifier,
-            IHumanVerificationConfig humanVerificationConfig,
-            OutdatedAppHandler outdatedAppHandler)
+            IHumanVerificationConfig humanVerificationConfig)
         {
             _baseResponseDeserializer = baseResponseDeserializer;
             _humanVerifier = humanVerifier;
             _enabled = humanVerificationConfig.IsSupported();
-
-            InnerHandler = outdatedAppHandler;
         }
 
         protected override async Task<HttpResponseMessage> SendAsync(

@@ -55,6 +55,7 @@ using ProtonVPN.HumanVerification;
 using ProtonVPN.HumanVerification.Contracts;
 using ProtonVPN.Modals.ApiActions;
 using ProtonVPN.Vpn;
+using CoreDnsClient = ProtonVPN.Core.OS.Net.Dns.DnsClient;
 using Module = Autofac.Module;
 
 namespace ProtonVPN.Core.Ioc
@@ -113,7 +114,7 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<DnsClients>().As<IDnsClients>().SingleInstance();
             builder.Register(c =>
                     new SafeDnsClient(
-                        new DnsClient(
+                        new CoreDnsClient(
                             c.Resolve<IDnsClients>(),
                             c.Resolve<INetworkInterfaces>())))
                 .As<IDnsClient>().SingleInstance();
@@ -138,7 +139,6 @@ namespace ProtonVPN.Core.Ioc
             builder.Register(c => new SafeSystemProxy(c.Resolve<ILogger>(), new SystemProxy()))
                 .AsImplementedInterfaces()
                 .SingleInstance();
-            builder.Register(c => new MainHostname(c.Resolve<Common.Configuration.Config>().Urls.ApiUrl)).SingleInstance();
             builder.Register(c => new DohClients(
                 c.Resolve<Common.Configuration.Config>().DoHProviders,
                 c.Resolve<Common.Configuration.Config>().DohClientTimeout))

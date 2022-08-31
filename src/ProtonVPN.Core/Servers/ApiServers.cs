@@ -57,7 +57,7 @@ namespace ProtonVPN.Core.Servers
                 ApiResponseResult<ServersResponse> response = await _apiClient.GetServersAsync(ip);
                 return response.Success ? response.Value.Servers : Array.Empty<LogicalServerResponse>();
             }
-            catch (HttpRequestException ex)
+            catch (Exception ex)
             {
                 _logger.Error<ApiErrorLog>("API: Get servers failed", ex);
             }
@@ -98,7 +98,7 @@ namespace ProtonVPN.Core.Servers
                     return response.Value.Servers;
                 }
             }
-            catch (HttpRequestException ex)
+            catch (Exception ex)
             {
                 _logger.Error<ApiErrorLog>("API: Get servers failed", ex);
             }

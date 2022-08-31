@@ -30,6 +30,7 @@ using NSubstitute.ExceptionExtensions;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Auth;
 using ProtonVPN.Api.Handlers;
+using ProtonVPN.Api.Tests.Mocks;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.UserLogs;
@@ -300,8 +301,8 @@ namespace ProtonVPN.Api.Tests.Handlers
             Breakpoint tokenClientBreakpoint = breakpointTokenClient.Breakpoint;
             MockOfHumanVerificationHandler humanVerificationHandler =
                 new() { InnerHandler = breakpointHandler };
-            UnauthorizedResponseHandler handler = new(humanVerificationHandler, breakpointTokenClient, _appSettings,
-                _userStorage, _logger);
+            UnauthorizedResponseHandler handler = new(breakpointTokenClient, _appSettings, _userStorage, _logger) 
+                { InnerHandler = humanVerificationHandler };
             HttpClient client = new(handler) { BaseAddress = _baseAddress };
 
             _tokenClient.RefreshTokenAsync(Arg.Any<CancellationToken>())
@@ -497,13 +498,13 @@ namespace ProtonVPN.Api.Tests.Handlers
 
         private UnauthorizedResponseHandler GetUnauthorizedResponseHandler(HumanVerificationHandlerBase handler)
         {
-            return new(handler, _tokenClient, _appSettings, _userStorage, _logger);
+            return new(_tokenClient, _appSettings, _userStorage, _logger) { InnerHandler = handler };
         }
 
         private UnauthorizedResponseHandler GetUnauthorizedResponseHandlerWithBreakpoint(BreakpointHandler breakpointHandler, ITokenClient tokenClient)
         {
             MockOfHumanVerificationHandler handler = new() { InnerHandler = breakpointHandler };
-            return new(handler, tokenClient, _appSettings, _userStorage, _logger);
+            return new(tokenClient, _appSettings, _userStorage, _logger) { InnerHandler = handler };
         }
 
         #region Helpers

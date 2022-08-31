@@ -62,7 +62,7 @@ namespace ProtonVPN.Core.ReportAnIssue
                     LoadCategoriesFromCache();
                 }
             }
-            catch (HttpRequestException)
+            catch
             {
                 LoadCategoriesFromCache();
             }

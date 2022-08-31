@@ -97,7 +97,7 @@ namespace ProtonVPN.Core
             {
                 return await _api.GetLocationDataAsync();
             }
-            catch (HttpRequestException)
+            catch
             {
                 return ApiResponseResult<UserLocationResponse>.Fail(default, "");
             }

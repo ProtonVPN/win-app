@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("ProtonVPN")]
 [assembly: AssemblyProduct("Proton VPN")]
-[assembly: AssemblyCopyright("Copyright Â© 2022 Proton AG")]
+[assembly: AssemblyCopyright("Copyright © 2022 Proton AG")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

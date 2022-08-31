@@ -1565,5 +1565,17 @@ namespace ProtonVPN.Properties {
                 this["IsToShowRebrandingPopup"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string DnsCache {
+            get {
+                return ((string)(this["DnsCache"]));
+            }
+            set {
+                this["DnsCache"] = value;
+            }
+        }
     }
 }

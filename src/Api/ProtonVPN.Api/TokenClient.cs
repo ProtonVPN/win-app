@@ -69,8 +69,13 @@ namespace ProtonVPN.Api
                 using HttpResponseMessage response = await _client.SendAsync(request, token);
                 return await GetApiResponseResult<RefreshTokenResponse>(response);
             }
-            catch (Exception e) when (e.IsApiCommunicationException())
+            catch (Exception e)
             {
+                if (!e.IsApiCommunicationException())
+                {
+                    Logger.Error<ApiErrorLog>("An exception occurred in an API request " +
+                        "that is not related with its communication.", e);
+                }
                 throw new HttpRequestException(e.Message);
             }
         }
