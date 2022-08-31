@@ -18,7 +18,6 @@
  */
 
 using System;
-using System.Net.Http;
 using System.Threading.Tasks;
 using ProtonVPN.Common.OS.Net.Http;
 
@@ -48,7 +47,7 @@ namespace ProtonVPN.Login
                 IHttpResponseMessage response = await _httpClient.GetAsync(PROTON_API_PING_URL);
                 return response.IsSuccessStatusCode;
             }
-            catch (Exception e) when (IsToHandleRequestException(e))
+            catch
             {
                 return false;
             }
@@ -61,15 +60,10 @@ namespace ProtonVPN.Login
                 IHttpResponseMessage response = await _httpClient.GetAsync(PROTON_WEBSITE_URL);
                 return response.IsSuccessStatusCode;
             }
-            catch (Exception e) when (IsToHandleRequestException(e))
+            catch
             {
                 return false;
             }
-        }
-
-        private bool IsToHandleRequestException(Exception e)
-        {
-            return e is HttpRequestException or TimeoutException or TaskCanceledException;
         }
     }
 }

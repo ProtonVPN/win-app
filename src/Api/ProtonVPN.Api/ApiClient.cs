@@ -36,6 +36,7 @@ using ProtonVPN.Api.Contracts.VpnConfig;
 using ProtonVPN.Api.Contracts.VpnSessions;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.ApiLogs;
 using ProtonVPN.Common.OS.Net.Http;
 using ProtonVPN.Core.Settings;
 
@@ -252,8 +253,13 @@ namespace ProtonVPN.Api
                     return Logged(await GetApiResponseResult<T>(response), logDescription);
                 }
             }
-            catch (Exception e) when (e.IsApiCommunicationException())
+            catch (Exception e)
             {
+                if (!e.IsApiCommunicationException())
+                {
+                    Logger.Error<ApiErrorLog>("An exception occurred in an API request " +
+                        "that is not related with its communication.", e);
+                }
                 throw new HttpRequestException(e.Message, e);
             }
         }

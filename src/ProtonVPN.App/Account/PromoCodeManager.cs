@@ -18,7 +18,6 @@
  */
 
 using System;
-using System.Net.Http;
 using System.Threading.Tasks;
 using Polly.Timeout;
 using ProtonVPN.Api.Contracts;
@@ -49,7 +48,7 @@ namespace ProtonVPN.Account
             {
                 return Result.Fail(Translation.Get("Api_error_Timeout"));
             }
-            catch (HttpRequestException e)
+            catch (Exception e)
             {
                 return Result.Fail(e.Message);
             }

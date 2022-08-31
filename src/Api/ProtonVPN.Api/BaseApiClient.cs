@@ -37,7 +37,7 @@ namespace ProtonVPN.Api
     public class BaseApiClient : IClientBase
     {
         protected ILogger Logger { get; }
-        protected readonly IAppSettings AppSettings;
+        protected IAppSettings AppSettings { get; }
 
         private readonly JsonSerializer _jsonSerializer = new();
         private readonly IApiAppVersion _appVersion;
@@ -54,8 +54,8 @@ namespace ProtonVPN.Api
             Config config)
         {
             Logger = logger;
-            _appVersion = appVersion;
             AppSettings = appSettings;
+            _appVersion = appVersion;
             _apiVersion = config.ApiVersion;
             _appLanguageCache = appLanguageCache;
         }

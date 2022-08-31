@@ -28,6 +28,7 @@ using NSubstitute;
 using Polly.Timeout;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Handlers.Retries;
+using ProtonVPN.Api.Tests.Mocks;
 using ProtonVPN.Common.Logging;
 using RichardSzalay.MockHttp;
 
@@ -154,7 +155,7 @@ namespace ProtonVPN.Api.Tests.Handlers.Retries
         private HttpClient GetHttpClient(int maxRetries, MockHttpMessageHandler mockHttpMessageHandler)
         {
             MockOfLoggingHandler loggingHandler = new(mockHttpMessageHandler);
-            RetryingHandler handler = new(loggingHandler, GetRetryPolicyProvider(maxRetries));
+            RetryingHandler handler = new(GetRetryPolicyProvider(maxRetries)) { InnerHandler = loggingHandler };
             return new(handler) { BaseAddress = new Uri(BASE_API_URL) };
         }
     }

@@ -17,8 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
-using System.Net.Http;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Helpers;
 
@@ -44,10 +42,9 @@ namespace ProtonVPN.P2PDetection.Blocked
             {
                 return await _origin.Detected();
             }
-            catch (HttpRequestException)
-            { }
-            catch (OperationCanceledException)
-            { }
+            catch
+            {
+            }
 
             return false;
         }

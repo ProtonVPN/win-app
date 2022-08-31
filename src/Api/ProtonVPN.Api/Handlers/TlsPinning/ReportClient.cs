@@ -46,9 +46,8 @@ namespace ProtonVPN.Api.Handlers.TlsPinning
                 {
                     _httpClient.PostAsync(_uri, content);
                 }
-                catch (HttpRequestException)
+                catch
                 {
-                    //ignore
                 }
             });
         }

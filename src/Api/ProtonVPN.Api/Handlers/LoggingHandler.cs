@@ -34,18 +34,16 @@ namespace ProtonVPN.Api.Handlers
     {
         private readonly ILogger _logger;
 
-        public LoggingHandler(SafeDnsHandler safeDnsHandler, ILogger logger)
+        public LoggingHandler(ILogger logger)
         {
             _logger = logger;
-
-            InnerHandler = safeDnsHandler;
         }
 
         protected override async Task<HttpResponseMessage> SendAsync(
             HttpRequestMessage request,
             CancellationToken cancellationToken)
         {
-            string req = $"{request.Method.Method} \"{request.RequestUri.LocalPath}\"";
+            string req = $"{request.Method.Method} \"{request.RequestUri}\"";
             try
             {
                 _logger.Info<ApiRequestLog>(req);

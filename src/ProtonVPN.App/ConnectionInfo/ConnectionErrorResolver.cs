@@ -110,7 +110,7 @@ namespace ProtonVPN.ConnectionInfo
                     return response.Value.Sessions.Count;
                 }
             }
-            catch (HttpRequestException)
+            catch
             {
             }
 

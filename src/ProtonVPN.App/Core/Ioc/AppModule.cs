@@ -84,7 +84,7 @@ namespace ProtonVPN.Core.Ioc
         {
             base.Load(builder);
 
-            builder.Register(c => new ConfigFactory().Config());
+            builder.Register(c => new ConfigFactory().Config()).AsSelf().As<IConfiguration>().SingleInstance(); // REMOVE AS SELF
             builder.RegisterType<ConfigWriter>().As<IConfigWriter>().SingleInstance();
 
             builder.RegisterType<Bootstrapper>().SingleInstance();

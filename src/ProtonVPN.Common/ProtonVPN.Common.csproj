@@ -35,77 +35,18 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DeviceId, Version=6.0.0.0, Culture=neutral, PublicKeyToken=f755c371b5c59c52, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\DeviceId.6.0.0\lib\net40\DeviceId.dll</HintPath>
-    </Reference>
-    <Reference Include="DeviceId.Windows, Version=6.0.0.0, Culture=neutral, PublicKeyToken=f755c371b5c59c52, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\DeviceId.Windows.6.0.0\lib\net40\DeviceId.Windows.dll</HintPath>
-    </Reference>
-    <Reference Include="DeviceId.Windows.Wmi, Version=6.1.0.0, Culture=neutral, PublicKeyToken=f755c371b5c59c52, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\DeviceId.Windows.Wmi.6.1.0\lib\net40\DeviceId.Windows.Wmi.dll</HintPath>
-    </Reference>
-    <Reference Include="log4net, Version=2.0.12.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\log4net.2.0.12\lib\net45\log4net.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Polly, Version=7.0.0.0, Culture=neutral, PublicKeyToken=c8a3ffc3f8f825cc, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Polly.7.2.0\lib\net472\Polly.dll</HintPath>
-    </Reference>
-    <Reference Include="Sentry, Version=3.12.3.0, Culture=neutral, PublicKeyToken=fba2ec45388e2af0, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Sentry.3.12.3\lib\net461\Sentry.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Collections.Immutable, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.Collections.Immutable.5.0.0\lib\net461\System.Collections.Immutable.dll</HintPath>
-    </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.Management" />
-    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
-    </Reference>
     <Reference Include="System.Net" />
     <Reference Include="System.Numerics" />
-    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Reflection.Metadata, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.Reflection.Metadata.5.0.0\lib\net461\System.Reflection.Metadata.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
-      <Private>True</Private>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceProcess" />
-    <Reference Include="System.Text.Encodings.Web, Version=5.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.Text.Encodings.Web.5.0.1\lib\net461\System.Text.Encodings.Web.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Text.Json, Version=5.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.Text.Json.5.0.2\lib\net461\System.Text.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
-    </Reference>
     <Reference Include="System.Transactions" />
-    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
-    </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -127,6 +68,7 @@
     <Compile Include="Configuration\ConfigExtensions.cs" />
     <Compile Include="Configuration\ConfigFactory.cs" />
     <Compile Include="Configuration\ConfigWriter.cs" />
+    <Compile Include="Configuration\IConfiguration.cs" />
     <Compile Include="Configuration\IConfigWriter.cs" />
     <Compile Include="Configuration\WireGuardConfig.cs" />
     <Compile Include="Configuration\Source\ConfigMode.cs" />
@@ -146,10 +88,12 @@
     <Compile Include="Events\IEventPublisher.cs" />
     <Compile Include="Events\SentryHttpClientHandler.cs" />
     <Compile Include="Extensions\BoolExtensions.cs" />
+    <Compile Include="Extensions\ByteExtensions.cs" />
     <Compile Include="Extensions\CollectionExtensions.cs" />
     <Compile Include="Extensions\ColorExtensions.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\DateTimeOffsetExtensions.cs" />
+    <Compile Include="Extensions\DictionaryExtensions.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Extensions\ListExtensions.cs" />
     <Compile Include="Extensions\SecureStringExtensions.cs" />
@@ -167,6 +111,7 @@
     <Compile Include="Logging\Categorization\Categories\ConnectLogCategory.cs" />
     <Compile Include="Logging\Categorization\Categories\ConnectionLogCategory.cs" />
     <Compile Include="Logging\Categorization\Categories\DisconnectLogCategory.cs" />
+    <Compile Include="Logging\Categorization\Categories\DnsLogCategory.cs" />
     <Compile Include="Logging\Categorization\Categories\FirewallLogCategory.cs" />
     <Compile Include="Logging\Categorization\Categories\GuestHoleLogCategory.cs" />
     <Compile Include="Logging\Categorization\Categories\LocalAgentLogCategory.cs" />
@@ -210,6 +155,11 @@
     <Compile Include="Logging\Categorization\Events\ConnectLogs\ConnectTriggerLog.cs" />
     <Compile Include="Logging\Categorization\Events\DisconnectLogs\DisconnectLog.cs" />
     <Compile Include="Logging\Categorization\Events\DisconnectLogs\DisconnectTriggerLog.cs" />
+    <Compile Include="Logging\Categorization\Events\DnsLogs\DnsErrorLog.cs" />
+    <Compile Include="Logging\Categorization\Events\DnsLogs\DnsLog.cs" />
+    <Compile Include="Logging\Categorization\Events\DnsLogs\DnsNameServerLog.cs" />
+    <Compile Include="Logging\Categorization\Events\DnsLogs\DnsResolveLog.cs" />
+    <Compile Include="Logging\Categorization\Events\DnsLogs\DnsResponseLog.cs" />
     <Compile Include="Logging\Categorization\Events\FirewallLogs\FirewallLog.cs" />
     <Compile Include="Logging\Categorization\Events\GuestHoleLogs\GuestHoleLog.cs" />
     <Compile Include="Logging\Categorization\Events\LocalAgentLogs\LocalAgentStateChangeLog.cs" />
@@ -250,6 +200,7 @@
     <Compile Include="Logging\Log4Net\Log4NetLogger.cs" />
     <Compile Include="Logging\Log4Net\Log4NetLoggerFactory.cs" />
     <Compile Include="Logging\LoggerExtensions.cs" />
+    <Compile Include="Networking\IpAddress.cs" />
     <Compile Include="Networking\OpenVpnAdapter.cs" />
     <Compile Include="Networking\VpnProtocol.cs" />
     <Compile Include="OS\DeviceInfoProvider.cs" />
@@ -386,7 +337,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ProtonVPN.SourceGenerators\ProtonVPN.SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false">
@@ -400,6 +350,22 @@
       <Name>ProtonVPN.Crypto</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <PackageReference Include="DeviceId.Windows.Wmi">
+      <Version>6.1.0</Version>
+    </PackageReference>
+    <PackageReference Include="log4net">
+      <Version>2.0.12</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>13.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="Polly">
+      <Version>7.2.0</Version>
+    </PackageReference>
+    <PackageReference Include="Sentry">
+      <Version>3.12.3</Version>
+    </PackageReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

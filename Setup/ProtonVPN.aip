@@ -134,6 +134,9 @@
     <ROW Component="ProtonVPN.Common.dll" ComponentId="{C093858F-892E-42B9-9BC5-FB577FCDD1FC}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.Common.dll"/>
     <ROW Component="ProtonVPN.Core.dll" ComponentId="{013523A0-681E-4750-84F0-28055A0D3577}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.Core.dll"/>
     <ROW Component="ProtonVPN.Crypto.dll" ComponentId="{4E0A829D-DA19-40C1-9720-F653D48739B4}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.Crypto.dll"/>
+    <ROW Component="ProtonVPN.Dns.Contracts.dll" ComponentId="{96377E79-56A7-4660-A4F0-0EEB85785A78}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.Dns.Contracts.dll"/>
+    <ROW Component="ProtonVPN.Dns.Installers.dll" ComponentId="{331FA7FF-F6BA-45C3-A045-03D4D089ED1F}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.Dns.Installers.dll"/>
+    <ROW Component="ProtonVPN.Dns.dll" ComponentId="{55C99F7F-D88A-4732-895E-2B6BCBF1B63E}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.Dns.dll"/>
     <ROW Component="ProtonVPN.ErrorMessage.exe.config" ComponentId="{238C676F-3CA2-4456-B0B6-0E2D2000E7C8}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.exe.config" Type="0"/>
     <ROW Component="ProtonVPN.HumanVerification.Contracts.dll" ComponentId="{D489C761-4A03-4266-BBB1-987A27CB3957}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.HumanVerification.Contracts.dll"/>
     <ROW Component="ProtonVPN.HumanVerification.Gui.dll" ComponentId="{90AF8D29-B683-4C3F-844A-E07E319BB44D}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.HumanVerification.Gui.dll"/>
@@ -330,6 +333,9 @@
     <ROW File="vcruntime140.dll" Component_="vcruntime140.dll" FileName="VCRUNT~1.DLL|vcruntime140.dll" Attributes="0" SourcePath="..\src\bin\Resources\64-bit\vcruntime140.dll" SelfReg="false"/>
     <ROW File="vcruntime140.dll_1" Component_="vcruntime140.dll_1" FileName="VCRUNT~1.DLL|vcruntime140.dll" Attributes="0" SourcePath="..\src\bin\Resources\32-bit\vcruntime140.dll" SelfReg="false"/>
     <ROW File="GuestHoleServers.json" Component_="config.ovpn" FileName="GUESTH~1.JSO|GuestHoleServers.json" Attributes="0" SourcePath="GuestHoleServers.json" SelfReg="false"/>
+    <ROW File="ProtonVPN.Dns.Installers.dll" Component_="ProtonVPN.Dns.Installers.dll" FileName="PROTO~20.DLL|ProtonVPN.Dns.Installers.dll" Attributes="0" SourcePath="..\src\bin\ProtonVPN.Dns.Installers.dll" SelfReg="false"/>
+    <ROW File="ProtonVPN.Dns.Contracts.dll" Component_="ProtonVPN.Dns.Contracts.dll" FileName="PROTO~21.DLL|ProtonVPN.Dns.Contracts.dll" Attributes="0" SourcePath="..\src\bin\ProtonVPN.Dns.Contracts.dll" SelfReg="false"/>
+    <ROW File="ProtonVPN.Dns.dll" Component_="ProtonVPN.Dns.dll" FileName="PROTO~22.DLL|ProtonVPN.Dns.dll" Attributes="0" SourcePath="..\src\bin\ProtonVPN.Dns.dll" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.AiRemoveFileComponent">
     <ROW RemoveFile="_" Condition="(AI_CLEAN_RESOURCES_UNINSTALL = &quot;1&quot;) AND (NOT UPGRADINGPRODUCTCODE)" Options="3"/>
@@ -763,6 +769,9 @@
     <ROW Feature_="MainFeature" Component_="x64"/>
     <ROW Feature_="MainFeature" Component_="Win10_1"/>
     <ROW Feature_="MainFeature" Component_="Win7_1"/>
+    <ROW Feature_="MainFeature" Component_="ProtonVPN.Dns.Installers.dll"/>
+    <ROW Feature_="MainFeature" Component_="ProtonVPN.Dns.Contracts.dll"/>
+    <ROW Feature_="MainFeature" Component_="ProtonVPN.Dns.dll"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
     <ROW Name="protonvpn.exe" SourcePath="images\protonvpn.ico" Index="0"/>

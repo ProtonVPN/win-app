@@ -243,9 +243,9 @@ namespace ProtonVPN.Core.Auth
             {
                 await _apiClient.GetLogoutResponse();
             }
-            catch (HttpRequestException e)
+            catch (Exception ex)
             {
-                _logger.Error<UserLog>("An error occurred when sending a logout request.", e);
+                _logger.Error<UserLog>("An error occurred when sending a logout request.", ex);
             }
         }
     }

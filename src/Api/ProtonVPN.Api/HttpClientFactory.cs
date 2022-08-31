@@ -20,6 +20,9 @@
 using System;
 using System.Net.Http;
 using ProtonVPN.Api.Handlers;
+using ProtonVPN.Api.Handlers.StackBuilders;
+using ProtonVPN.Api.Handlers.Retries;
+using ProtonVPN.Api.Handlers.TlsPinning;
 using ProtonVPN.Common.Configuration;
 
 namespace ProtonVPN.Api
@@ -27,12 +30,32 @@ namespace ProtonVPN.Api
     public class HttpClientFactory : IHttpClientFactory
     {
         private readonly Config _config;
-        private readonly AlternativeHostHandler _alternativeHostHandler;
+        private readonly HttpMessageHandler _innerHandler;
 
-        public HttpClientFactory(Config config, AlternativeHostHandler alternativeHostHandler)
+        public HttpClientFactory(Config config, 
+            AlternativeHostHandler alternativeHostHandler,
+            DnsHandler dnsHandler,
+            CancellingHandlerBase cancellingHandlerBase,
+            UnauthorizedResponseHandler unauthorizedResponseHandler,
+            HumanVerificationHandlerBase humanVerificationHandlerBase,
+            OutdatedAppHandler outdatedAppHandler,
+            RetryingHandlerBase retryingHandlerBase,
+            LoggingHandlerBase loggingHandlerBase,
+            CertificateHandler certificateHandler)
         {
             _config = config;
-            _alternativeHostHandler = alternativeHostHandler;
+
+            _innerHandler = new HttpMessageHandlerStackBuilder()
+                .AddDelegatingHandler(alternativeHostHandler)
+                .AddDelegatingHandler(dnsHandler)
+                .AddDelegatingHandler(cancellingHandlerBase)
+                .AddDelegatingHandler(unauthorizedResponseHandler)
+                .AddDelegatingHandler(humanVerificationHandlerBase)
+                .AddDelegatingHandler(outdatedAppHandler)
+                .AddDelegatingHandler(retryingHandlerBase)
+                .AddDelegatingHandler(loggingHandlerBase)
+                .AddLastHandler(certificateHandler)
+                .Build();
         }
 
         public HttpClient GetApiHttpClientWithoutCache()
@@ -44,7 +67,7 @@ namespace ProtonVPN.Api
 
         public HttpClient GetApiHttpClientWithCache()
         {
-            return new(_alternativeHostHandler) { BaseAddress = new Uri(_config.Urls.ApiUrl) };
+            return new(_innerHandler) { BaseAddress = new Uri(_config.Urls.ApiUrl) };
         }
     }
 }

@@ -18,6 +18,7 @@
  */
 
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
@@ -39,6 +40,7 @@ using ProtonVPN.Core.Profiles.Cached;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Settings.Contracts;
 using ProtonVPN.Core.Storage;
+using ProtonVPN.Dns.Contracts;
 using ProtonVPN.Settings;
 using Announcement = ProtonVPN.Core.Announcements.Announcement;
 
@@ -560,6 +562,12 @@ namespace ProtonVPN.Core
         public bool IsToShowRebrandingPopup
         {
             get => Get<bool>();
+            set => Set(value);
+        }
+
+        public ConcurrentDictionary<string, DnsResponse> DnsCache
+        {
+            get => Get<ConcurrentDictionary<string, DnsResponse>>();
             set => Set(value);
         }
 
