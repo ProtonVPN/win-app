@@ -33,7 +33,6 @@ namespace ProtonVPN.Servers
     {
         private bool _connecting;
         private bool _connected;
-        private bool _connectedToCountry;
         private bool _showIp = true;
         private string _ip;
 
@@ -67,12 +66,6 @@ namespace ProtonVPN.Servers
         {
             get => _connected;
             set => Set(ref _connected, value);
-        }
-
-        public bool ConnectedToCountry
-        {
-            get => _connectedToCountry;
-            set => Set(ref _connectedToCountry, value);
         }
 
         public bool ShowIp
@@ -143,11 +136,6 @@ namespace ProtonVPN.Servers
             }
         }
 
-        public void SetConnectedToCountry(bool connected)
-        {
-            ConnectedToCountry = connected;
-        }
-
         private void AssignServer(Server server)
         {
             Server = server;
@@ -168,14 +156,12 @@ namespace ProtonVPN.Servers
         {
             Connecting = false;
             Connected = false;
-            SetConnectedToCountry(false);
         }
 
         protected void SetConnecting()
         {
             Connecting = true;
             Connected = false;
-            SetConnectedToCountry(false);
         }
 
         protected void SetConnected()
