@@ -23,15 +23,16 @@ namespace ProtonVPN.UI.Test.Results
 {
     public class LoginResult : UIActions
     {
-        public LoginResult VerifyLoginErrorIsShown()
-        {
-            CheckIfObjectWithClassNameIsDisplayed("LoginErrorView", "Login error is not shown.");
-            return this;
-        }
+        public LoginResult CheckIfKillSwitchIsNotActive() => CheckIfNotDisplayedByName("Disable");
 
-        public LoginResult VerifyUserIsOnLoginWindow()
+        public LoginResult CheckIfLoginErrorIsDisplayed() => WaitUntilElementExistsByClassName("LoginErrorView", TestConstants.MediumTimeout);
+
+        public LoginResult CheckIfLoginWindowIsDisplayed() => WaitUntilElementExistsByAutomationId("LoginInput", TestConstants.ShortTimeout);
+
+        public LoginResult CheckIfZeroAssignedConnectionsModalIsShown()
         {
-            CheckIfObjectWithNameIsDisplayed("Start and connect on boot", "User unsuccessfully disconnected.");
+            WaitUntilElementExistsByClassName("AssignVpnConnections", TestConstants.MediumTimeout);
+            WaitUntilElementExistsByName("Assign VPN connections", TestConstants.MediumTimeout);
             return this;
         }
     }

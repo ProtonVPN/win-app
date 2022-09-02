@@ -18,44 +18,47 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
+using System.IO;
+using System.Net.Http;
 using Autofac;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
+using ProtonVPN.Api;
 using ProtonVPN.Api.Installers;
 using ProtonVPN.BugReporting;
 using ProtonVPN.Common.Threading;
+using ProtonVPN.Core.Announcements;
 using ProtonVPN.Core.Ioc;
 using ProtonVPN.HumanVerification.Installers;
-using ProtonVPN.IntegrationTests.Api;
+using ProtonVPN.IntegrationTests.Announcements;
 using ProtonVPN.P2PDetection;
+using RichardSzalay.MockHttp;
 
 namespace ProtonVPN.IntegrationTests
 {
     public class TestBase
     {
-        private const int API_SERVER_PORT = 9876;
         private IContainer _container;
+        protected MockHttpMessageHandler MessageHandler;
 
         public T Resolve<T>() => _container.Resolve<T>();
-        protected ApiServerMock Api;
 
         [TestInitialize]
         public void Initialize()
         {
-            InitializeContainer();
-            SetConfiguration();
-            StartApiServer();
+            MessageHandler = new();
         }
 
         [TestCleanup]
         public void Cleanup()
         {
-            Api.Stop();
             _container?.Dispose();
             _container = null;
+            MessageHandler = null;
         }
 
-        private void InitializeContainer()
+        protected void InitializeContainer()
         {
             ContainerBuilder builder = new();
             builder.RegisterModule<CoreModule>()
@@ -69,23 +72,28 @@ namespace ProtonVPN.IntegrationTests
                 .RegisterAssemblyModules<HumanVerificationModule>(typeof(HumanVerificationModule).Assembly)
                 .RegisterAssemblyModules<ApiModule>(typeof(ApiModule).Assembly);
 
+
             builder.Register(_ => Substitute.For<IScheduler>()).As<IScheduler>().SingleInstance();
+            builder.Register(_ => new AnnouncementCacheMock()).As<IAnnouncementCache>().SingleInstance();
+            builder.Register(_ =>
+            {
+                HttpClient httpClient = MessageHandler.ToHttpClient();
+                IHttpClientFactory httpClientFactory = Substitute.For<IHttpClientFactory>();
+                httpClient.BaseAddress = new Uri("http://localhost");
+                httpClientFactory.GetApiHttpClientWithCache().Returns(httpClient);
+                httpClientFactory.GetApiHttpClientWithoutCache().Returns(httpClient);
+                return httpClientFactory;
+            }).As<IHttpClientFactory>().SingleInstance();
+
 
             new Update.Config.Module().Load(builder);
 
             _container = builder.Build();
         }
 
-        private void SetConfiguration()
+        protected string GetJsonMock(string name)
         {
-            Common.Configuration.Config config = Resolve<Common.Configuration.Config>();
-            config.Urls.ApiUrl = "http://localhost:" + API_SERVER_PORT;
-        }
-
-        private void StartApiServer()
-        {
-            Api = new();
-            Api.Start(API_SERVER_PORT);
+            return File.ReadAllText($"TestData\\{name}.json");
         }
     }
 }

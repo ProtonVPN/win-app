@@ -17,34 +17,29 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.UI.Test.Windows;
-using ProtonVPN.UI.Test.Results;
 using NUnit.Framework;
+using ProtonVPN.UI.Test.Results;
+using ProtonVPN.UI.Test.TestsHelper;
+using ProtonVPN.UI.Test.Windows;
 
 namespace ProtonVPN.UI.Test.Tests
 {
     [TestFixture]
     [Category("UI")]
-    public class SettingsTests : UITestSession
+    public class SettingsTests : TestSession
     {
         private readonly LoginWindow _loginWindow = new LoginWindow();
-        private readonly MainWindow _mainWindow = new MainWindow();
-        private readonly MainWindowResults _mainWindowResults = new MainWindowResults();
+        private readonly HomeWindow _homeWindow = new HomeWindow();
         private readonly SettingsWindow _settingsWindow = new SettingsWindow();
         private readonly SettingsResult _settingsResult = new SettingsResult();
+        private readonly HomeResult _homeResult = new HomeResult();
 
         [Test]
         public void CheckIfSettingsGeneralTabHasAllInfo()
         {
             TestCaseId = 21555;
 
-            _loginWindow.LoginWithFreeUser();
-
-            _mainWindow.ClickHamburgerMenu()
-                .HamburgerMenu.ClickSettings();
-
-            _settingsWindow.ClickGeneralTab();
-            _settingsResult.VerifySettingsAreDisplayed();
+            _settingsResult.CheckIfSettingsAreDisplayed();
         }
 
         [Test]
@@ -52,26 +47,55 @@ namespace ProtonVPN.UI.Test.Tests
         {
             TestCaseId = 4580;
 
-            _loginWindow.LoginWithPlusUser();
-            _mainWindow.ClickHamburgerMenu()
-                .HamburgerMenu.ClickSettings();
-            _settingsWindow.ClickConnectionTab();
-            _settingsWindow.EnableCustomDnsServers();
-            _settingsWindow.DisableNetshieldForCustomDns();
-            _settingsWindow.EnterCustomIpv4Address("1.A.B.4");
+            _settingsWindow.NavigateToConnectionTab()
+                .ClickOnCustomDnsCheckBox()
+                .PressContinueToDisableNetshield()
+                .EnterCustomDnsAddress("1.A.B.4");
             _settingsResult.CheckIfCustomDnsAddressWasNotAdded();
+        }
+
+        [Test]
+        public void CheckIfPortForwdingSettingGetsHidden()
+        {
+            TestCaseId = 4580;
+
+            _settingsWindow.NavigateToAdvancedTab()
+                .ClickOnPortForwardingShortcutCheckBox()
+                .CloseSettings();
+            _homeResult.CheckIfPortForwardingQuickSettingIsNotVisible();
+            _homeWindow.NavigateToSettings()
+                .NavigateToAdvancedTab()
+                .ClickOnPortForwardingShortcutCheckBox()
+                .CloseSettings();
+            _homeResult.CheckIfPortForwardingQuickSettingIsVisible();  
+        }
+
+        [Test]
+        public void CheckIfModerateNatIsEnabledWithPortForwarding()
+        {
+            TestCaseId = 132740;
+
+            _settingsWindow.NavigateToConnectionTab();
+            _settingsResult.CheckIfModerateNatIsDisabled();
+            _settingsWindow.NavigateToAdvancedTab()
+                .TogglePortForwarding()
+                .NavigateToConnectionTab();
+            _settingsResult.CheckIfModerateNatIsEnabled();
         }
 
         [SetUp]
         public void TestInitialize()
         {
-            CreateSession();
+            DeleteUserConfig();
+            LaunchApp();
+            _loginWindow.SignIn(TestUserData.GetPlusUser())
+                .NavigateToSettings();
         }
 
         [TearDown]
         public void TestCleanup()
         {
-            TearDown();
+            Cleanup();
         }
     }
 }

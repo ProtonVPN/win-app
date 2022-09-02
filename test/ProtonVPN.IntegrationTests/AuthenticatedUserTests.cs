@@ -19,11 +19,12 @@
  */
 
 using System.Net;
+using System.Net.Http;
 using System.Security;
 using System.Threading.Tasks;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Srp;
-using ProtonVPN.IntegrationTests.Api.Responses;
+using RichardSzalay.MockHttp;
 
 namespace ProtonVPN.IntegrationTests
 {
@@ -31,13 +32,81 @@ namespace ProtonVPN.IntegrationTests
     {
         protected const string CORRECT_PASSWORD = "password";
         protected const string WRONG_PASSWORD = "wrong";
+        protected const string CERTIFICATE =
+            "-----BEGIN CERTIFICATE-----\n" +
+            "MIICEzCCAcWgAwIBAgICA6QwBQYDK2VwMDgxNjA0BgNVBAMMLVByb3RvblZQTiBD\n" +
+            "bGllbnQgQ2VydGlmaWNhdGUgQXV0aG9yaXR5IDE3ODYxMzAeFw0yMjA2MzAwOTIy\n" +
+            "NDZaFw0yMjA3MDEwOTIyNDdaMA4xDDAKBgNVBAMMAzkzMjAqMAUGAytlcAMhAIRl\n" +
+            "nVhh8k5SlmSWqEjvaLnghx2z01fD/jWtWikfyJ3oo4IBGzCCARcwHQYDVR0OBBYE\n" +
+            "FD2ziAiZ58wvQokqBl/YrHX3rU9gMBMGDCsGAQQBg7tpAQAAAAQDAgEAMBMGDCsG\n" +
+            "AQQBg7tpAQAAAQQDAgEAMBwGDCsGAQQBg7tpAQAAAgQMMAoECHZwbi1mcmVlMBkG\n" +
+            "DCsGAQQBg7tpAQAAAwQJBAdXaW5kb3dzMA4GA1UdDwEB/wQEAwIHgDAMBgNVHRMB\n" +
+            "Af8EAjAAMBMGA1UdJQQMMAoGCCsGAQUFBwMCMGAGA1UdIwRZMFeAFAM/RhKQDNy0\n" +
+            "eNyeSWDEioh6Rv1goTykOjA4MTYwNAYDVQQDDC1Qcm90b25WUE4gQ2xpZW50IENl\n" +
+            "cnRpZmljYXRlIEF1dGhvcml0eSAxNzg2MTOCAQIwBQYDK2VwA0EATuIkjDSzmZa5\n" +
+            "UIfgGDGcNvFTVQBxSNzmGgZ+8YS60asMpo2vlGOyuy1U8vb3PsHSRYIgnJVup0P0\n" +
+            "aFJlft9QCg==\n" +
+            "-----END CERTIFICATE-----\n";
 
         protected void SetApiResponsesForAuth()
         {
-            Api.SetAuthInfoResponse(new AuthInfoResponseMock());
-            Api.SetAuthResponse(new AuthResponseMock());
-            Api.SetVpnInfoResponse(new VpnInfoWrapperResponseMock());
-            Api.SetAuthCertificateResponse(new CertificateResponseMock());
+            SetAuthInfoResponse();
+            SetAuthResponse();
+            SetVpnInfoResponse();
+            SetAuthCertificateResponse();
+            InitializeContainer();
+        }
+
+        protected void SetApiResponsesForAuthWithTwoFactor()
+        {
+            SetAuthInfoResponse();
+            SetAuthResponseWithTwoFactorEnabled();
+            InitializeContainer();
+        }
+
+        private void SetAuthInfoResponse()
+        {
+            MessageHandler.When(HttpMethod.Post, "/auth/info").Respond(_ => new HttpResponseMessage
+            {
+                StatusCode = HttpStatusCode.OK,
+                Content = new StringContent(GetJsonMock("AuthInfoResponseMock"))
+            });
+        }
+
+        private void SetAuthResponse()
+        {
+            MessageHandler.When(HttpMethod.Post, "/auth").Respond(_ => new HttpResponseMessage
+            {
+                StatusCode = HttpStatusCode.OK,
+                Content = new StringContent(GetJsonMock("AuthResponseMock"))
+            });
+        }
+
+        private void SetAuthResponseWithTwoFactorEnabled()
+        {
+            MessageHandler.When(HttpMethod.Post, "/auth").Respond(_ => new HttpResponseMessage
+            {
+                StatusCode = HttpStatusCode.OK,
+                Content = new StringContent(GetJsonMock("AuthResponseWithTwoFactorEnabledMock"))
+            });
+        }
+
+        private void SetVpnInfoResponse()
+        {
+            MessageHandler.When(HttpMethod.Get, "/vpn/v2").Respond(_ => new HttpResponseMessage
+            {
+                StatusCode = HttpStatusCode.OK,
+                Content = new StringContent(GetJsonMock("VpnInfoWrapperResponseMock"))
+            });
+        }
+
+        private void SetAuthCertificateResponse()
+        {
+            MessageHandler.When(HttpMethod.Post, "/vpn/v1/certificate").Respond(_ => new HttpResponseMessage
+            {
+                StatusCode = HttpStatusCode.OK,
+                Content = new StringContent(GetJsonMock("CertificateResponseMock"))
+            });
         }
 
         protected async Task<AuthResult> MakeUserAuth(string password)

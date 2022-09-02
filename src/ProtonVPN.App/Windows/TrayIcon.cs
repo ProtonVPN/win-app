@@ -39,6 +39,8 @@ namespace ProtonVPN.Windows
         ILoggedInAware,
         IHandle<ShowNotificationMessage>
     {
+        public const string TRAY_ICON_NAME = "ProtonVPN Tray";
+
         private bool _toggle;
         private bool _connecting;
         private readonly NotifyIcon _nIcon = new NotifyIcon();
@@ -73,6 +75,7 @@ namespace ProtonVPN.Windows
             _connected = new ResourceIcon(ConnectedIconPath);
             _notConnected = new ResourceIcon(NotConnectedIconPath);
             _balloonIcon = new ResourceIcon(AppIconPath);
+            _nIcon.Text = TRAY_ICON_NAME;
         }
 
         public event MouseEventHandler OnMouseEvent

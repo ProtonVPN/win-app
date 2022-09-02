@@ -24,7 +24,7 @@ using System.Windows;
 using Autofac;
 using Caliburn.Micro;
 using ProtonVPN.Common.Threading;
-using ProtonVPN.Core.Window.Popups;
+using ProtonVPN.Core.Windows.Popups;
 using ProtonVPN.Resource;
 
 namespace ProtonVPN.Windows.Popups

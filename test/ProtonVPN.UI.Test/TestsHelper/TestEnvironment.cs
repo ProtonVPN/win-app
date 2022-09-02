@@ -18,21 +18,27 @@
  */
 
 using System;
+using System.IO;
 using Castle.Core.Internal;
 
 namespace ProtonVPN.UI.Test.TestsHelper
 {
-    class TestEnvironment
+    public class TestEnvironment : TestSession
     {
         public static bool AreTestsRunningLocally()
         {
-            var isLocalEnvironment = false;
-            var ciCommitHash = Environment.GetEnvironmentVariable("CI_COMMIT_SHA");
+            bool isLocalEnvironment = false;
+            string ciCommitHash = Environment.GetEnvironmentVariable("CI_COMMIT_SHA");
             if (ciCommitHash.IsNullOrEmpty())
             {
                 isLocalEnvironment = true;
             }
             return isLocalEnvironment;
+        }
+
+        public static bool IsVideoRecorderPresent()
+        {
+            return File.Exists(TestConstants.PathToRecorder);
         }
     }
 }

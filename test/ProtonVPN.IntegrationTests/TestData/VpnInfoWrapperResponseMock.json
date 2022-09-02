@@ -1,0 +1,18 @@
+{
+    "Services": 1,
+    "Delinquent": 0,
+    "Subscribed": 0,
+    "HasPaymentMethod": 0,
+    "Credit": 0,
+    "Vpn": {
+        "PlanName": "free",
+        "PlanTitle": null,
+        "Status": 1,
+        "MaxTier": 0,
+        "MaxConnect": 2,
+        "GroupID": "group"
+    },
+    "Code": 1000,
+    "Error": null,
+    "Details": null
+}

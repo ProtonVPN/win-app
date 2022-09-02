@@ -27,7 +27,7 @@ using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Settings;
-using ProtonVPN.Core.Window;
+using ProtonVPN.Core.Windows;
 
 namespace ProtonVPN.Core.Test.Servers
 {

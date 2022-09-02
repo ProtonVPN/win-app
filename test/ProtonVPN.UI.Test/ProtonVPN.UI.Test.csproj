@@ -123,33 +123,30 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApiClient\CommonAPI.cs" />
-    <Compile Include="ApiClient\TestRailAPI.cs" />
-    <Compile Include="FlaUI\TestSession.cs" />
-    <Compile Include="FlaUI\FlaUIActions.cs" />
-    <Compile Include="FlaUI\Utils\TestConstants.cs" />
-    <Compile Include="FlaUI\VPNServiceHelper.cs" />
-    <Compile Include="FlaUI\Windows\HomeWindow.cs" />
-    <Compile Include="FlaUI\Windows\LoginWindow.cs" />
-    <Compile Include="FlaUI\Windows\ProfilesWindow.cs" />
-    <Compile Include="FlaUI\Windows\SettingsWindow.cs" />
+    <Compile Include="ApiClient\TestsApiClient.cs" />
+    <Compile Include="ApiClient\TestRailApiClient.cs" />
+    <Compile Include="DesktopActions.cs" />
+    <Compile Include="Results\SysTrayResult.cs" />
+    <Compile Include="TestSession.cs" />
+    <Compile Include="TestsHelper\DnsUtils.cs" />
+    <Compile Include="TestsHelper\TestsRecorder.cs" />
+    <Compile Include="Tests\NetshieldTests.cs" />
+    <Compile Include="Tests\SysTrayTests.cs" />
+    <Compile Include="UIActions.cs" />
+    <Compile Include="TestsHelper\TestConstants.cs" />
+    <Compile Include="TestsHelper\VPNServiceHelper.cs" />
+    <Compile Include="Windows\BugReportWindow.cs" />
+    <Compile Include="Windows\HomeWindow.cs" />
+    <Compile Include="Windows\LoginWindow.cs" />
+    <Compile Include="Windows\ProfilesWindow.cs" />
+    <Compile Include="Windows\SettingsWindow.cs" />
+    <Compile Include="Results\HomeResult.cs" />
+    <Compile Include="Results\LoginResult.cs" />
+    <Compile Include="Results\ProfilesResult.cs" />
+    <Compile Include="Results\SettingsResult.cs" />
     <Compile Include="TestsHelper\TestEnvironment.cs" />
     <Compile Include="Tests\SetUp.cs" />
-    <Compile Include="Windows\BugReportWindow.cs" />
-    <Compile Include="Windows\HamburgerMenu.cs" />
-    <Compile Include="Windows\LoginWindow.cs" />
-    <Compile Include="Windows\MainWindow.cs" />
-    <Compile Include="Windows\ModalWindow.cs" />
-    <Compile Include="Windows\ProfileWindow.cs" />
-    <Compile Include="Windows\SettingsWindow.cs" />
-    <Compile Include="Results\MainWindowResults.cs" />
-    <Compile Include="Results\SettingsResult.cs" />
-    <Compile Include="Results\AccountResult.cs" />
-    <Compile Include="Results\LoginResult.cs" />
-    <Compile Include="Results\ProfileResult.cs" />
-    <Compile Include="TestsHelper\StringHelper.cs" />
     <Compile Include="TestsHelper\TestUserData.cs" />
-    <Compile Include="TestsHelper\UIActions.cs" />
     <Compile Include="Tests\ConnectionTests.cs" />
     <Compile Include="Tests\SupportTests.cs" />
     <Compile Include="Tests\SecureCoreTests.cs" />
@@ -158,8 +155,8 @@
     <Compile Include="Tests\LoginLogoutTests.cs" />
     <Compile Include="Tests\ProfileTests.cs" />
     <Compile Include="Tests\WindowElementsTests.cs" />
-    <Compile Include="UITestSession.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Windows\SysTrayWindow.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

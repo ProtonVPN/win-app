@@ -79,7 +79,7 @@ namespace ProtonVPN.Core
 
         private string GetCurrentLanguage()
         {
-            string osLanguage = Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName;
+            string osLanguage = Thread.CurrentThread.CurrentUICulture.Name;
             return _languageProvider.GetAll().Contains(osLanguage) ? osLanguage : _defaultLocale;
         }
     }

@@ -27,7 +27,7 @@ using ProtonVPN.Api.Contracts.Auth;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Core.Settings;
-using ProtonVPN.Core.Window;
+using ProtonVPN.Core.Windows;
 
 namespace ProtonVPN.Account
 {

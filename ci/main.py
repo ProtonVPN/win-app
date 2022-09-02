@@ -3,7 +3,6 @@ import re
 import os
 import argparse
 import win32api
-import localization
 import config
 import signing
 import installer
@@ -11,6 +10,7 @@ import ssh
 import guest_hole_server_loader
 import slack
 import hashlib
+import localization
 from pathlib import Path
 
 def get_sha256(file_path):
@@ -27,11 +27,7 @@ def print_sha256(file_path):
 parser = argparse.ArgumentParser(description='ProtonVPN CI')
 subparsers = parser.add_subparsers(help='sub-command help', dest='command')
 
-subparsers.add_parser('add-languages')
-
-parser_a = subparsers.add_parser('globalConfig')
-parser_a.add_argument('globalConfigPath', type=str, help='Path to GlobalConfig file')
-
+subparsers.add_parser('lint-languages')
 subparsers.add_parser('defaultConfig')
 subparsers.add_parser('tap-installer')
 subparsers.add_parser('tun-installer')
@@ -55,9 +51,6 @@ if len(sys.argv) < 2:
 
 args = parser.parse_args()
 
-if args.command == 'globalConfig':
-    config.createGlobalConfig(args.globalConfigPath)
-
 if args.command == 'defaultConfig':
     configPath = "src\ProtonVPN.Common\Configuration\Source\DefaultConfig.cs"
     f = open(configPath, "rt")
@@ -69,13 +62,19 @@ if args.command == 'defaultConfig':
     f.write(data)
     f.close()
 
-elif args.command == 'add-languages':
-    loc = localization.Localization(
-        "locales\\*.resx",
-        '.\src\\ProtonVPN.Translations\\Properties\\Resources.{lang}.resx',
-        '.\\src\\bin\\ProtonVPN.MarkupValidator.exe')
-    returnCode = loc.AddLanguages()
-    sys.exit(returnCode)
+elif args.command == 'lint-languages':
+    linter = Path('src', 'bin', 'ProtonVPN.MarkupValidator.exe')
+    sources_dir = Path('src', 'ProtonVPN.Translations', 'Properties')
+
+    (code, errors) = localization.lint(
+        linter=linter,
+        sources=sources_dir
+    )
+
+    if code > 0:
+        print('[ERROR][lint-languages] broken markup inside some files:')
+        print("\n".join([str(file) for file in errors]))
+    sys.exit(code)
 
 elif args.command == 'sign':
     signing.sign()

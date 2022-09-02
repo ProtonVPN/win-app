@@ -1,0 +1,65 @@
+{
+    "Code": 1000,
+    "Notifications": [
+        {
+            "NotificationID": "hUcV0_EeNwUmXA6EoyNrtO-ZTD8H8F6LvNaSjMaPxB5ecFkA7y-5kc3q38cGumJENGHjtSoUndkYFUx0_xlJeg==",
+            "StartTime": 1658397600,
+            "EndTime": 1660816800,
+            "Type": 0,
+            "Offer": {
+                "URL": "https://protonprivacy.typeform.com/to/x3pgDMFr",
+                "Icon": "https://protonvpn.com/download/resources/promo/ic-gift.png",
+                "Label": "VPN Summer Survey",
+                "Panel": {
+                    "IncentivePrice": " ",
+                    "Incentive": "",
+                    "PictureURL": "https://protonvpn.com/download/resources/promo/ic-gift.png",
+                    "Title": "VPN Summer Survey",
+                    "Pill": "Win a $50 gift card!",
+                    "Features": [
+                        {
+                            "IconURL": "https://api.protonvpn.ch/vpn/image/transparent-pixel.png",
+                            "Text": "At Proton, your privacy is our top priority. We will never track user activity, so hearing your voice is essential to improve our product. Take this short survey and get a chance to win a $50 Proton Gift Card!"
+                        }
+                    ],
+                    "FeaturesFooter": "",
+                    "Button": {
+                        "URL": "https://protonprivacy.typeform.com/to/x3pgDMFr",
+                        "Text": "Take the survey"
+                    },
+                    "PageFooter": ""
+                }
+            }
+        },
+        {
+            "NotificationID": "hUcV0_EeNwUmXA6EoyNrtO-ZTD8H8F6LvNaSjMaPxB5ecFkA7y-5kc3q38cGumJENGHjtSoUndkYFUx0_xlJeg==",
+            "StartTime": 9223372036854775807,
+            "EndTime": 9223372036854775807,
+            "Type": 0,
+            "Offer": {
+                "URL": "https://protonprivacy.typeform.com/to/x3pgDMFr",
+                "Icon": "https://protonvpn.com/download/resources/promo/ic-gift.png",
+                "Label": "VPN Summer Survey",
+                "Panel": {
+                    "IncentivePrice": " ",
+                    "Incentive": "",
+                    "PictureURL": "https://protonvpn.com/download/resources/promo/ic-gift.png",
+                    "Title": "VPN Summer Survey",
+                    "Pill": "Win a $50 gift card!",
+                    "Features": [
+                        {
+                            "IconURL": "https://api.protonvpn.ch/vpn/image/transparent-pixel.png",
+                            "Text": "At Proton, your privacy is our top priority. We will never track user activity, so hearing your voice is essential to improve our product. Take this short survey and get a chance to win a $50 Proton Gift Card!"
+                        }
+                    ],
+                    "FeaturesFooter": "",
+                    "Button": {
+                        "URL": "https://protonprivacy.typeform.com/to/x3pgDMFr",
+                        "Text": "Take the survey"
+                    },
+                    "PageFooter": ""
+                }
+            }
+        }
+    ]
+}

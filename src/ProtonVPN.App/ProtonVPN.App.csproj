@@ -225,6 +225,7 @@
     <Compile Include="Modals\DiscourageSecureCoreModalViewModel.cs" />
     <Compile Include="Modals\AssignVpnConnectionsModalViewModel.cs" />
     <Compile Include="Settings\Migrations\v2_0_2\UserSettingsMigration.cs" />
+    <Compile Include="Settings\Migrations\v2_0_6\AppSettingsMigration.cs" />
     <Compile Include="Windows\Popups\Rebranding\RebrandingPopupView.xaml.cs">
       <DependentUpon>RebrandingPopupView.xaml</DependentUpon>
     </Compile>
@@ -1612,15 +1613,15 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ProtonVPN.Api.Contracts\ProtonVPN.Api.Contracts.csproj">
+    <ProjectReference Include="..\Api\ProtonVPN.Api.Contracts\ProtonVPN.Api.Contracts.csproj">
       <Project>{9E4D6072-C8DE-475A-B9A7-4B6BF6EEEAEB}</Project>
       <Name>ProtonVPN.Api.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ProtonVPN.Api.Installers\ProtonVPN.Api.Installers.csproj">
+    <ProjectReference Include="..\Api\ProtonVPN.Api.Installers\ProtonVPN.Api.Installers.csproj">
       <Project>{686E902E-0C23-4396-8887-6D9219EF8D27}</Project>
       <Name>ProtonVPN.Api.Installers</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ProtonVPN.Api\ProtonVPN.Api.csproj">
+    <ProjectReference Include="..\Api\ProtonVPN.Api\ProtonVPN.Api.csproj">
       <Project>{3E905528-D87C-4552-A32D-66BF90D14DB0}</Project>
       <Name>ProtonVPN.Api</Name>
     </ProjectReference>
@@ -1636,15 +1637,15 @@
       <Project>{BA2D505E-CED3-4FCB-A463-DAF6B77C18DE}</Project>
       <Name>ProtonVPN.Crypto</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ProtonVPN.HumanVerification.Contracts\ProtonVPN.HumanVerification.Contracts.csproj">
+    <ProjectReference Include="..\HumanVerification\ProtonVPN.HumanVerification.Contracts\ProtonVPN.HumanVerification.Contracts.csproj">
       <Project>{C0D6E7EC-29AF-4FC2-B8E0-1E5D083B55DD}</Project>
       <Name>ProtonVPN.HumanVerification.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ProtonVPN.HumanVerification.Gui\ProtonVPN.HumanVerification.Gui.csproj">
+    <ProjectReference Include="..\HumanVerification\ProtonVPN.HumanVerification.Gui\ProtonVPN.HumanVerification.Gui.csproj">
       <Project>{7318548d-b8f2-4ed3-8b3e-f61dd8b552d1}</Project>
       <Name>ProtonVPN.HumanVerification.Gui</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ProtonVPN.HumanVerification.Installers\ProtonVPN.HumanVerification.Installers.csproj">
+    <ProjectReference Include="..\HumanVerification\ProtonVPN.HumanVerification.Installers\ProtonVPN.HumanVerification.Installers.csproj">
       <Project>{80a71107-9c8e-47b2-b743-58d5976b38fb}</Project>
       <Name>ProtonVPN.HumanVerification.Installers</Name>
     </ProjectReference>

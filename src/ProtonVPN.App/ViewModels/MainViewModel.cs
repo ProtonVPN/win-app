@@ -34,7 +34,7 @@ using ProtonVPN.Core.Events;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Vpn;
-using ProtonVPN.Core.Window.Popups;
+using ProtonVPN.Core.Windows.Popups;
 using ProtonVPN.FlashNotifications;
 using ProtonVPN.Map.ViewModels;
 using ProtonVPN.Onboarding;

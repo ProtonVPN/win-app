@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2022 Proton Technologies AG
+ * Copyright (c) 2022 Proton
  *
  * This file is part of ProtonVPN.
  *
@@ -17,40 +17,106 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.UI.Test.TestsHelper;
+using FlaUI.Core.AutomationElements;
 
 namespace ProtonVPN.UI.Test.Windows
 {
     public class SettingsWindow : UIActions
     {
-        public SettingsWindow ClickGeneralTab()
+        private AutomationElement StartMinimizedComboBox => ElementByAutomationId("StartMinimizedCombobox").AsComboBox();
+        private ListBoxItem OptionDisabled => StartMinimizedComboBox.FindFirstChild().AsListBoxItem();
+        private AutomationElement SettingsCloseButton => ElementByAutomationId("ModalCloseButton");
+        private CheckBox ConnectOnBootCheckBox => ElementByAutomationId("ConnectOnBootCheckbox").AsCheckBox();
+        private AutomationElement ConnectionTab => ElementByName("Connection").FindFirstChild();
+        private AutomationElement AdvancedTab => ElementByName("Advanced").FindFirstChild();
+        private CheckBox CustomDnsCheckBox => ElementByAutomationId("CheckBoxCustomDnsServers").AsCheckBox();
+        private Button ContinueButton => ElementByAutomationId("ContinueButton").AsButton();
+        private TextBox CustomDnsIPTextBox => ElementByAutomationId("InputIpv4Address").AsTextBox();
+        private AutomationElement AddCustomDnsButton => ElementByAutomationId("SettingsPlusButton");
+        private AutomationElement RemoveCustomDnsButton => ElementByAutomationId("DeleteButton").FindFirstChild();
+        private AutomationElement ReconnectionButton => ElementByName("Reconnect");
+        private CheckBox PortForawrdingShortcutCheckBox => ElementByAutomationId("PortForwardingInQuickSettingsCheckbox").AsCheckBox();
+        private CheckBox NotificationsCheckBox => ElementByAutomationId("ShowNotificationsCheckbox").AsCheckBox();
+        private CheckBox PortForwardingCheckBox => ElementByAutomationId("PortForwardingCheckbox").AsCheckBox();
+        private Button EnableButton => ElementByName("Enable").AsButton();
+
+        public SettingsWindow DisableStartToTray()
         {
-            ClickOnObjectWithName("General");
+            OptionDisabled.Select();
             return this;
         }
 
-        public SettingsWindow ClickConnectionTab()
+        public SettingsWindow ClickOnConnectOnBoot()
         {
-            ClickOnObjectWithName("Connection");
+            ConnectOnBootCheckBox.Click();
             return this;
         }
 
-        public SettingsWindow EnableCustomDnsServers()
+        public HomeWindow CloseSettings()
         {
-            ClickOnObjectWithId("CheckBoxCustomDnsServers");
+            SettingsCloseButton.Click();
+            return new HomeWindow();
+        }
+
+        public SettingsWindow NavigateToConnectionTab()
+        {
+            ConnectionTab.Click();
             return this;
         }
 
-        public SettingsWindow DisableNetshieldForCustomDns()
+        public SettingsWindow NavigateToAdvancedTab()
         {
-            ClickOnObjectWithId("ContinueButton");
+            AdvancedTab.Click();
             return this;
         }
 
-        public SettingsWindow EnterCustomIpv4Address(string ipv4Address)
+        public SettingsWindow ClickOnCustomDnsCheckBox()
         {
-            InsertTextIntoFieldWithId("InputIpv4Address", ipv4Address);
-            ClickOnObjectWithId("SettingsPlusButton");
+            CustomDnsCheckBox.Click();
+            return this;
+        }
+
+        public SettingsWindow PressContinueToDisableNetshield()
+        {
+            ContinueButton.Invoke();
+            return this;
+        }
+
+        public SettingsWindow EnterCustomDnsAddress(string ipv4Address)
+        {
+            CustomDnsIPTextBox.Enter(ipv4Address);
+            AddCustomDnsButton.Click();
+            return this;
+        }
+
+        public SettingsWindow RemoveCustomDns()
+        {
+            RemoveCustomDnsButton.Click();
+            return this;
+        }
+
+        public HomeWindow PressReconnect()
+        {
+            ReconnectionButton.Click();
+            return new HomeWindow();
+        }
+
+        public SettingsWindow ClickOnPortForwardingShortcutCheckBox()
+        {
+            PortForawrdingShortcutCheckBox.Toggle();
+            return this;
+        }
+
+        public SettingsWindow ClickOnNotificationsCheckBox()
+        {
+            NotificationsCheckBox.Click();
+            return this;
+        }
+
+        public SettingsWindow TogglePortForwarding()
+        {
+            PortForwardingCheckBox.Click();
+            EnableButton.Invoke();
             return this;
         }
     }

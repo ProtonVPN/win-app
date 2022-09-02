@@ -103,27 +103,29 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.WireGuardService"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.WireGuardDriver", "src\ProtonVPN.WireGuardDriver\ProtonVPN.WireGuardDriver.csproj", "{7882140D-32E1-4AB5-853D-F8DED5256DC2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Api", "src\ProtonVPN.Api\ProtonVPN.Api.csproj", "{3E905528-D87C-4552-A32D-66BF90D14DB0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Api", "src\Api\ProtonVPN.Api\ProtonVPN.Api.csproj", "{3E905528-D87C-4552-A32D-66BF90D14DB0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Api.Contracts", "src\ProtonVPN.Api.Contracts\ProtonVPN.Api.Contracts.csproj", "{9E4D6072-C8DE-475A-B9A7-4B6BF6EEEAEB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Api.Contracts", "src\Api\ProtonVPN.Api.Contracts\ProtonVPN.Api.Contracts.csproj", "{9E4D6072-C8DE-475A-B9A7-4B6BF6EEEAEB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{DCDB1771-1943-4459-8040-F001758E6E1E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Api.Installers", "src\ProtonVPN.Api.Installers\ProtonVPN.Api.Installers.csproj", "{686E902E-0C23-4396-8887-6D9219EF8D27}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Api.Installers", "src\Api\ProtonVPN.Api.Installers\ProtonVPN.Api.Installers.csproj", "{686E902E-0C23-4396-8887-6D9219EF8D27}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.HumanVerification", "src\ProtonVPN.HumanVerification\ProtonVPN.HumanVerification.csproj", "{8EE4A9C6-AA93-4A84-8EAB-4EC955DD6851}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.HumanVerification", "src\HumanVerification\ProtonVPN.HumanVerification\ProtonVPN.HumanVerification.csproj", "{8EE4A9C6-AA93-4A84-8EAB-4EC955DD6851}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HumanVerification", "HumanVerification", "{95E8A2C3-A9CF-4911-83AB-74498B7D1528}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.HumanVerification.Installers", "src\ProtonVPN.HumanVerification.Installers\ProtonVPN.HumanVerification.Installers.csproj", "{80A71107-9C8E-47B2-B743-58D5976B38FB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.HumanVerification.Installers", "src\HumanVerification\ProtonVPN.HumanVerification.Installers\ProtonVPN.HumanVerification.Installers.csproj", "{80A71107-9C8E-47B2-B743-58D5976B38FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.HumanVerification.Contracts", "src\ProtonVPN.HumanVerification.Contracts\ProtonVPN.HumanVerification.Contracts.csproj", "{C0D6E7EC-29AF-4FC2-B8E0-1E5D083B55DD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.HumanVerification.Contracts", "src\HumanVerification\ProtonVPN.HumanVerification.Contracts\ProtonVPN.HumanVerification.Contracts.csproj", "{C0D6E7EC-29AF-4FC2-B8E0-1E5D083B55DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Api.Tests", "src\ProtonVPN.Api.Tests\ProtonVPN.Api.Tests.csproj", "{168C5EC3-FF08-402F-8D70-F216CB04DE81}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Api.Tests", "src\Api\ProtonVPN.Api.Tests\ProtonVPN.Api.Tests.csproj", "{168C5EC3-FF08-402F-8D70-F216CB04DE81}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.HumanVerification.Gui", "src\ProtonVPN.HumanVerification.Gui\ProtonVPN.HumanVerification.Gui.csproj", "{7318548D-B8F2-4ED3-8B3E-F61DD8B552D1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.HumanVerification.Gui", "src\HumanVerification\ProtonVPN.HumanVerification.Gui\ProtonVPN.HumanVerification.Gui.csproj", "{7318548D-B8F2-4ED3-8B3E-F61DD8B552D1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.IntegrationTests", "test\ProtonVPN.IntegrationTests\ProtonVPN.IntegrationTests.csproj", "{A2B4BEC3-7430-489E-BE6B-F1E8205A7C62}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.SourceGenerators", "src\ProtonVPN.SourceGenerators\ProtonVPN.SourceGenerators.csproj", "{B7B19A7B-5A20-4690-81F4-83002CA064FB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -624,15 +626,29 @@ Global
 		{7318548D-B8F2-4ED3-8B3E-F61DD8B552D1}.Release|x86.ActiveCfg = Release|Any CPU
 		{7318548D-B8F2-4ED3-8B3E-F61DD8B552D1}.Release|x86.Build.0 = Release|Any CPU
 		{A2B4BEC3-7430-489E-BE6B-F1E8205A7C62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2B4BEC3-7430-489E-BE6B-F1E8205A7C62}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A2B4BEC3-7430-489E-BE6B-F1E8205A7C62}.Debug|x64.ActiveCfg = Debug|Any CPU
 		{A2B4BEC3-7430-489E-BE6B-F1E8205A7C62}.Debug|x64.Build.0 = Debug|Any CPU
 		{A2B4BEC3-7430-489E-BE6B-F1E8205A7C62}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{A2B4BEC3-7430-489E-BE6B-F1E8205A7C62}.Debug|x86.Build.0 = Debug|Any CPU
 		{A2B4BEC3-7430-489E-BE6B-F1E8205A7C62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2B4BEC3-7430-489E-BE6B-F1E8205A7C62}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A2B4BEC3-7430-489E-BE6B-F1E8205A7C62}.Release|x64.ActiveCfg = Release|Any CPU
 		{A2B4BEC3-7430-489E-BE6B-F1E8205A7C62}.Release|x64.Build.0 = Release|Any CPU
 		{A2B4BEC3-7430-489E-BE6B-F1E8205A7C62}.Release|x86.ActiveCfg = Release|Any CPU
 		{A2B4BEC3-7430-489E-BE6B-F1E8205A7C62}.Release|x86.Build.0 = Release|Any CPU
+		{B7B19A7B-5A20-4690-81F4-83002CA064FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7B19A7B-5A20-4690-81F4-83002CA064FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7B19A7B-5A20-4690-81F4-83002CA064FB}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B7B19A7B-5A20-4690-81F4-83002CA064FB}.Debug|x64.Build.0 = Debug|Any CPU
+		{B7B19A7B-5A20-4690-81F4-83002CA064FB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B7B19A7B-5A20-4690-81F4-83002CA064FB}.Debug|x86.Build.0 = Debug|Any CPU
+		{B7B19A7B-5A20-4690-81F4-83002CA064FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7B19A7B-5A20-4690-81F4-83002CA064FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7B19A7B-5A20-4690-81F4-83002CA064FB}.Release|x64.ActiveCfg = Release|Any CPU
+		{B7B19A7B-5A20-4690-81F4-83002CA064FB}.Release|x64.Build.0 = Release|Any CPU
+		{B7B19A7B-5A20-4690-81F4-83002CA064FB}.Release|x86.ActiveCfg = Release|Any CPU
+		{B7B19A7B-5A20-4690-81F4-83002CA064FB}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

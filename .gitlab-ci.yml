@@ -1,5 +1,6 @@
 variables:
   PUBLIC_REPO_URL: git@github.com:ProtonVPN/win-app.git
+  SCREENSHOT_PATH: src/bin/TestFailureData/
 
 stages:
   - release
@@ -38,9 +39,7 @@ build-release:
     - echo "Restoring NuGet Packages..."
     - 'c:\nuget\nuget.exe restore ProtonVpn.sln'
     - MSBuild.exe /consoleloggerparameters:ErrorsOnly /maxcpucount /nologo /property:Configuration=Release /verbosity:quiet "src\\ProtonVPN.MarkupValidator\\ProtonVPN.MarkupValidator.csproj"
-    - echo "Downloading translations from crowdin..."
-    - git clone -b windows-vpn --single-branch "https://gitlab-ci-token:${CI_JOB_TOKEN}@${I18N_CACHE_REPO}" --depth 1
-    - python ci\main.py add-languages
+    - python ci\main.py lint-languages
     - python ci\main.py add-commit-hash $env:CI_COMMIT_SHORT_SHA
     - python ci\main.py defaultConfig
     - echo "Building release..."
@@ -64,8 +63,7 @@ build-debug:
     - 'c:\nuget\nuget.exe restore ProtonVpn.sln'
     - MSBuild.exe /consoleloggerparameters:ErrorsOnly /maxcpucount /nologo /property:Configuration=Release /verbosity:quiet "src\\ProtonVPN.MarkupValidator\\ProtonVPN.MarkupValidator.csproj"
     - echo "Downloading translations from crowdin..."
-    - git clone -b windows-vpn --single-branch "https://gitlab-ci-token:${CI_JOB_TOKEN}@${I18N_CACHE_REPO}" --depth 1
-    - python ci\main.py add-languages
+    - python ci\main.py lint-languages
     - python ci\main.py add-commit-hash $env:CI_COMMIT_SHORT_SHA
     - python ci\main.py defaultConfig
     - echo "Building debug..."
@@ -96,6 +94,7 @@ tests:
       coverage_report:
         coverage_format: cobertura
         path: cobertura.xml
+  coverage: '/Total.*?([0-9]{1,3}.[0-9]{1,3})%/'
 
 build-installer-for-release:
   stage: build-installer
@@ -150,28 +149,37 @@ ui-test:
     - ui_tests
   script:
     - powershell -File ci\uninstall-app.ps1
-    - powershell -Command "Start-Sleep -s 45"
-    - powershell -File ci\launch-installer.ps1
-    - powershell -Command "Start-Sleep -s 45"
+    - powershell -File ci\install-the-app.ps1
     - VSTest.Console.exe src\bin\ProtonVPN.UI.Test.dll /TestCaseFilter:"Category=UI"
+    - powershell -File ci\uninstall-app.ps1
   except:
     - /^debug.*$/
     - release/9.9.9
     - master
+  artifacts:
+    when: on_failure
+    paths:
+      - $SCREENSHOT_PATH
+    expire_in: 2 weeks
     
 connection-tests:
   stage: ui-test
-  allow_failure: true
   tags:
     - connection_tests
   script:
     - powershell -File ci\uninstall-app.ps1
     - powershell -File ci\install-the-app.ps1
     - VSTest.Console.exe src\bin\ProtonVPN.UI.Test.dll /TestCaseFilter:"Category=Connection"
+    - powershell -File ci\uninstall-app.ps1
   except:
     - /^debug.*$/
     - release/9.9.9
     - master
+  artifacts:
+    when: on_failure
+    paths:
+      - $SCREENSHOT_PATH
+    expire_in: 2 weeks
     
 update-vm:
   stage: ui-test
@@ -214,6 +222,10 @@ mirror:
 include:
   - project: 'translations/generator'
     ref: master
+    file: '/jobs/commit-locales.gitlab-ci.yml'
+
+  - project: 'translations/generator'
+    ref: master
     file: '/jobs/sync-crowdin.gitlab-ci.yml'
 
 i18n-sync-crowdin:
@@ -229,6 +241,13 @@ i18n-manual-sync-crowdin:
   variables:
       I18N_SYNC_CROWDIN_PROJECT: 'windows-vpn'
   extends: .i18n-sync-crowdin-common
+
+i18n-commit-translations:
+  extends: .i18n-commit-locales-shared
+  variables:
+      I18N_COMMIT_CROWDIN_PROJECT: 'windows-vpn'
+  before_script:
+    - git config --global core.autocrlf false
 
 create-release:
   image: debian:stable-slim

@@ -49,8 +49,8 @@ using ProtonVPN.Core.Startup;
 using ProtonVPN.Core.Storage;
 using ProtonVPN.Core.User;
 using ProtonVPN.Core.Vpn;
-using ProtonVPN.Core.Window;
-using ProtonVPN.Core.Window.Popups;
+using ProtonVPN.Core.Windows;
+using ProtonVPN.Core.Windows.Popups;
 using ProtonVPN.Crypto;
 using ProtonVPN.FlashNotifications;
 using ProtonVPN.HumanVerification;
@@ -74,6 +74,7 @@ using ProtonVPN.Streaming;
 using ProtonVPN.Vpn;
 using ProtonVPN.Vpn.Connectors;
 using ProtonVPN.Windows;
+using ProtonVPN.Windows.Popups;
 
 namespace ProtonVPN.Core.Ioc
 {
@@ -135,7 +136,7 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<VpnService>().SingleInstance();
             builder.RegisterType<ModalWindows>().As<IModalWindows>().SingleInstance();
             builder.RegisterType<ProtonVPN.Modals.Modals>().As<IModals>().SingleInstance();
-            builder.RegisterType<Windows.Popups.PopupWindows>().As<IPopupWindows>().SingleInstance();
+            builder.RegisterType<PopupWindows>().As<IPopupWindows>().SingleInstance();
             builder.RegisterType<Dialogs>().As<IDialogs>().SingleInstance();
             builder.RegisterType<AutoStartup>().As<IAutoStartup>().SingleInstance();
             builder.RegisterType<SyncableAutoStartup>().As<ISyncableAutoStartup>().SingleInstance();
@@ -195,6 +196,8 @@ namespace ProtonVPN.Core.Ioc
                 .SingleInstance();
             builder.RegisterType<ProtonVPN.Settings.Migrations.v2_0_2.UserSettingsMigration>().AsImplementedInterfaces()
                 .SingleInstance();
+            builder.RegisterType<ProtonVPN.Settings.Migrations.v2_0_6.AppSettingsMigration>().AsImplementedInterfaces()
+                .SingleInstance();
 
             builder.RegisterType<MapLineManager>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterType<VpnEvents>();
@@ -202,7 +205,7 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<SettingsServiceClient>().SingleInstance();
             builder.RegisterType<ServiceChannelFactory>().SingleInstance();
             builder.RegisterType<SettingsContractProvider>().SingleInstance();
-            builder.RegisterType<AutoConnect>().SingleInstance();
+            builder.RegisterType<AutoConnect>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterInstance(Properties.Settings.Default);
 
             builder.Register(c => new ServiceRetryPolicy(2, TimeSpan.FromSeconds(2))).SingleInstance();
