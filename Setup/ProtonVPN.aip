@@ -975,8 +975,8 @@
     <ROW ServiceInstall="ProtonVPNService.exe" Name="[ServiceName]" DisplayName="[ServiceName]" ServiceType="16" StartType="3" ErrorControl="32769" Component_="ProtonVPNService.exe"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiShortsComponent">
-    <ROW Shortcut="ProtonVPN" Directory_="ProtonVPN_Dir" Name="PROTON~1|ProtonVPN" Component_="ProtonVPN.exe" Target="[#ProtonVPN.exe]" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
-    <ROW Shortcut="ProtonVPN_1" Directory_="DesktopFolder" Name="PROTON~1|ProtonVPN" Component_="ProtonVPN.exe" Target="[#ProtonVPN.exe]" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
+    <ROW Shortcut="ProtonVPN" Directory_="ProtonVPN_Dir" Name="PROTON~2|Proton VPN" Component_="ProtonVPN.exe" Target="[#ProtonVPN.exe]" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
+    <ROW Shortcut="ProtonVPN_1" Directory_="DesktopFolder" Name="PROTON~2|Proton VPN" Component_="ProtonVPN.exe" Target="[#ProtonVPN.exe]" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiThemeComponent">
     <ATTRIBUTE name="UsedTheme" value="classic"/>
