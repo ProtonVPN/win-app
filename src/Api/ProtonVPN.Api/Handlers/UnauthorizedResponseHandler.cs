@@ -77,7 +77,7 @@ namespace ProtonVPN.Api.Handlers
             }
 
             HttpResponseMessage response = await base.SendAsync(request, cancellationToken);
-            if (response.StatusCode == HttpStatusCode.Unauthorized && !_userStorage.User().Empty())
+            if (response.StatusCode == HttpStatusCode.Unauthorized && !_userStorage.GetUser().Empty())
             {
                 try
                 {

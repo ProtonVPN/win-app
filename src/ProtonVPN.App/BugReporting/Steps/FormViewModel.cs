@@ -29,7 +29,7 @@ using ProtonVPN.Common.Extensions;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Settings;
-using ProtonVPN.Core.User;
+using ProtonVPN.Core.Users;
 
 namespace ProtonVPN.BugReporting.Steps
 {
@@ -188,7 +188,7 @@ namespace ProtonVPN.BugReporting.Steps
 
         private void UpdateEmailInput()
         {
-            User user = _userStorage.User();
+            User user = _userStorage.GetUser();
             if (EmailValidator.IsValid(user.Username))
             {
                 FormElement emailField = FormElements.GetEmailField();

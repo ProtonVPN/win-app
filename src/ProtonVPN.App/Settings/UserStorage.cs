@@ -24,12 +24,12 @@ using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.UserLogs;
 using ProtonVPN.Common.Logging.Categorization.Events.UserPlanLogs;
+using ProtonVPN.Core.Models;
 using ProtonVPN.Core.OS.Crypto;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Storage;
-using ProtonVPN.Core.User;
-using CoreUser = ProtonVPN.Core.Models.User;
+using ProtonVPN.Core.Users;
 
 namespace ProtonVPN.Settings
 {
@@ -59,7 +59,7 @@ namespace ProtonVPN.Settings
             _storage.Set("Username", username.Encrypt());
         }
 
-        public CoreUser User()
+        public User GetUser()
         {
             try
             {
@@ -70,7 +70,7 @@ namespace ProtonVPN.Settings
                 _logger.Error<UserLog>("Failed to get user from storage", e);
             }
 
-            return CoreUser.EmptyUser();
+            return User.EmptyUser();
         }
 
         public void SaveLocation(UserLocation location)
@@ -80,7 +80,7 @@ namespace ProtonVPN.Settings
             _storage.Set("Isp", location.Isp.Encrypt());
         }
 
-        public UserLocation Location()
+        public UserLocation GetLocation()
         {
             try
             {
@@ -99,13 +99,13 @@ namespace ProtonVPN.Settings
             sbyte maxTier = vpnInfoWrapper.Vpn.MaxTier;
             string vpnPlan = vpnInfoWrapper.Vpn.PlanName;
 
-            if (CoreUser.IsDelinquent(vpnInfoWrapper.Delinquent))
+            if (User.IsDelinquent(vpnInfoWrapper.Delinquent))
             {
                 maxTier = ServerTiers.Free;
                 vpnPlan = FREE_VPN_PLAN;
             }
 
-            CacheUser(new CoreUser
+            CacheUser(new User
             {
                 MaxTier = maxTier,
                 Services = vpnInfoWrapper.Services,
@@ -120,12 +120,12 @@ namespace ProtonVPN.Settings
             });
         }
 
-        private CoreUser UnsafeUser()
+        private User UnsafeUser()
         {
             string username = _storage.Get<string>("Username")?.Trim();
             if (string.IsNullOrEmpty(username))
             {
-                return CoreUser.EmptyUser();
+                return User.EmptyUser();
             }
 
             username = username.Decrypt();
@@ -133,12 +133,12 @@ namespace ProtonVPN.Settings
             int delinquent = _userSettings.Get<int>("Delinquent");
             string originalVpnPlan = _userSettings.Get<string>("VpnPlan");
             string vpnPlan = originalVpnPlan;
-            if (CoreUser.IsDelinquent(delinquent))
+            if (User.IsDelinquent(delinquent))
             {
                 vpnPlan = FREE_VPN_PLAN;
             }
 
-            return new CoreUser
+            return new User
             {
                 Username = username,
                 VpnPlan = vpnPlan,
@@ -160,17 +160,14 @@ namespace ProtonVPN.Settings
             string isp = _storage.Get<string>("Isp");
             string country = _storage.Get<string>("Country");
 
-            if (string.IsNullOrEmpty(ip))
-            {
-                return UserLocation.Empty;
-            }
-
-            return new UserLocation(ip.Decrypt(), isp.Decrypt(), country.Decrypt());
+            return string.IsNullOrEmpty(ip) 
+                ? UserLocation.Empty 
+                : new UserLocation(ip.Decrypt(), isp.Decrypt(), country.Decrypt());
         }
 
-        private void CacheUser(CoreUser user)
+        private void CacheUser(User user)
         {
-            CoreUser previousData = User();
+            User previousData = GetUser();
             SaveUserData(user);
 
             if (!previousData.VpnPlan.IsNullOrEmpty() && previousData.VpnPlan != user.VpnPlan)
@@ -183,7 +180,7 @@ namespace ProtonVPN.Settings
             UserDataChanged?.Invoke(this, EventArgs.Empty);
         }
 
-        private void SaveUserData(CoreUser user)
+        private void SaveUserData(User user)
         {
             _userSettings.Set("VpnPlan", user.OriginalVpnPlan);
             _userSettings.Set("MaxTier", user.MaxTier);

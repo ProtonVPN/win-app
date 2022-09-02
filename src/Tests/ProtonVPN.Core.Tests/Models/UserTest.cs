@@ -19,7 +19,7 @@
 
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using CoreUser = ProtonVPN.Core.Models.User;
+using ProtonVPN.Core.Models;
 
 namespace ProtonVPN.Core.Tests.Models
 {
@@ -35,7 +35,7 @@ namespace ProtonVPN.Core.Tests.Models
         public void GetAccountPlan_ShouldBe_MappedFormServices(int services, string expected)
         {
             // Arrange
-            CoreUser user = new() { Services = services };
+            User user = new() { Services = services };
             // Act
             string result = user.GetAccountPlan();
             // Assert
@@ -51,7 +51,7 @@ namespace ProtonVPN.Core.Tests.Models
         public void Paid_ShouldBe_MappedFromVpnPlan(string vpnPlan, bool expected)
         {
             // Arrange
-            CoreUser user = new() { VpnPlan = vpnPlan };
+            User user = new() { VpnPlan = vpnPlan };
             // Act
             bool result = user.Paid();
             // Assert
@@ -65,7 +65,7 @@ namespace ProtonVPN.Core.Tests.Models
         public void Empty_ShouldBeTrue_WhenUsernameIsNullOrEmpty(string username, bool expected)
         {
             // Arrange
-            CoreUser user = new() { Username = username };
+            User user = new() { Username = username };
             // Act
             bool result = user.Empty();
             // Assert
@@ -76,7 +76,7 @@ namespace ProtonVPN.Core.Tests.Models
         public void EmptyUser_ShouldBe_Empty()
         {
             // Act
-            CoreUser user = CoreUser.EmptyUser();
+            User user = User.EmptyUser();
             // Assert
             user.Empty().Should().BeTrue();
         }

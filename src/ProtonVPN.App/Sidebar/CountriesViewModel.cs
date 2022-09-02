@@ -31,7 +31,7 @@ using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Servers.Models;
 using ProtonVPN.Core.Settings;
-using ProtonVPN.Core.User;
+using ProtonVPN.Core.Users;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Servers;
 using ProtonVPN.Sidebar.QuickSettings;

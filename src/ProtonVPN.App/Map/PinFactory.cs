@@ -26,7 +26,7 @@ using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Servers.Name;
 using ProtonVPN.Core.Servers.Specs;
 using ProtonVPN.Core.Settings;
-using ProtonVPN.Core.User;
+using ProtonVPN.Core.Users;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Map.ViewModels.Pins;
 using ProtonVPN.Servers;
@@ -204,7 +204,7 @@ namespace ProtonVPN.Map
 
         private void BuildStandardPins()
         {
-            var user = _userStorage.User();
+            var user = _userStorage.GetUser();
             var countries = _serverManager.GetCountries();
 
             _pins = countries
@@ -231,7 +231,7 @@ namespace ProtonVPN.Map
                 var pin = GetExitNodePin(server.ExitCountry);
                 if (secureCorePins.FirstOrDefault(c => c.CountryCode.Equals(server.ExitCountry)) == null)
                 {
-                    pin.Highlighted = _userStorage.User().MaxTier >= ServerTiers.Plus;
+                    pin.Highlighted = _userStorage.GetUser().MaxTier >= ServerTiers.Plus;
                     secureCorePins.Add(pin);
                 }
             }

@@ -64,7 +64,7 @@ using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Startup;
 using ProtonVPN.Core.Update;
-using ProtonVPN.Core.User;
+using ProtonVPN.Core.Users;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Dns.Installers;
 using ProtonVPN.ErrorHandling;
@@ -161,7 +161,7 @@ namespace ProtonVPN.Core
             await Resolve<IReportAnIssueFormDataProvider>().FetchData();
             await StartVpnService();
 
-            if (Resolve<IUserStorage>().User().Empty() || !await IsUserValid() || await SessionExpired())
+            if (Resolve<IUserStorage>().GetUser().Empty() || !await IsUserValid() || await SessionExpired())
             {
                 ShowLoginForm();
                 return;

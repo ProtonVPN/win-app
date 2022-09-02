@@ -27,7 +27,7 @@ using ProtonVPN.Config.Url;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
-using ProtonVPN.Core.User;
+using ProtonVPN.Core.Users;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Modals;
 using ProtonVPN.Modals.Upsell;
@@ -147,9 +147,9 @@ namespace ProtonVPN.Sidebar.QuickSettings
 
         public int TotalButtons => 2 + (IsNetShieldVisible ? 1 : 0) + (IsPortForwardingVisible ? 1 : 0);
 
-        public bool IsFreeUser => !_userStorage.User().Paid();
-        public bool IsUserTierPlusOrHigher => _userStorage.User().IsTierPlusOrHigher();
-        public bool IsPaidUser => _userStorage.User().Paid();
+        public bool IsFreeUser => !_userStorage.GetUser().Paid();
+        public bool IsUserTierPlusOrHigher => _userStorage.GetUser().IsTierPlusOrHigher();
+        public bool IsPaidUser => _userStorage.GetUser().Paid();
 
         private bool _showSecureCorePopup;
 

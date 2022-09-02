@@ -87,7 +87,7 @@ namespace ProtonVPN.App.Tests.ConnectionInfo
         public void ResolveError_ShouldReturnSessionLimitReached()
         {
             // Arrange
-            _userStorage.User().Returns(new User
+            _userStorage.GetUser().Returns(new User
             {
                 MaxConnect = 1
             });
@@ -115,7 +115,7 @@ namespace ProtonVPN.App.Tests.ConnectionInfo
                 MaxTier = 1
             };
 
-            _userStorage.User().Returns(oldUserInfo, newUserInfo);
+            _userStorage.GetUser().Returns(oldUserInfo, newUserInfo);
 
             SetSessions(0);
 
@@ -129,7 +129,7 @@ namespace ProtonVPN.App.Tests.ConnectionInfo
         public void ResolveError_ShouldReturnUnpaid()
         {
             // Arrange
-            _userStorage.User().Returns(new User
+            _userStorage.GetUser().Returns(new User
             {
                 Delinquent = 3
             });
@@ -144,7 +144,7 @@ namespace ProtonVPN.App.Tests.ConnectionInfo
         public void ResolveError_ShouldReturnServerRemoved()
         {
             // Arrange
-            _userStorage.User().Returns(new User {MaxConnect = 3});
+            _userStorage.GetUser().Returns(new User {MaxConnect = 3});
             _serverManager.GetServer(Arg.Any<ISpecification<LogicalServerResponse>>()).ReturnsNull();
 
             ConnectionErrorResolver sut = new(_userStorage, _apiClient, _serverManager, _vpnInfoUpdater, _serverUpdater);
@@ -158,7 +158,7 @@ namespace ProtonVPN.App.Tests.ConnectionInfo
         public void ResolveError_ShouldReturnServerOffline()
         {
             // Arrange
-            _userStorage.User().Returns(new User { MaxConnect = 3 });
+            _userStorage.GetUser().Returns(new User { MaxConnect = 3 });
             _serverManager.GetServer(Arg.Any<ISpecification<LogicalServerResponse>>()).Returns(Server.Empty());
 
             ConnectionErrorResolver sut = new(_userStorage, _apiClient, _serverManager, _vpnInfoUpdater, _serverUpdater);
@@ -172,7 +172,7 @@ namespace ProtonVPN.App.Tests.ConnectionInfo
         public void ResolveError_ShouldReturnUnknownError()
         {
             // Arrange
-            _userStorage.User().Returns(new User
+            _userStorage.GetUser().Returns(new User
             {
                 Delinquent = 0,
                 MaxConnect = 3,

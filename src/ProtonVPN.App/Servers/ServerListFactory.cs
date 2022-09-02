@@ -55,7 +55,7 @@ namespace ProtonVPN.Servers
 
         public ObservableCollection<IServerListItem> BuildServerList(string searchQuery = null)
         {
-            switch (_userStorage.User().MaxTier)
+            switch (_userStorage.GetUser().MaxTier)
             {
                 case ServerTiers.Internal:
                 case ServerTiers.Plus:
@@ -128,7 +128,7 @@ namespace ProtonVPN.Servers
         {
             ObservableCollection<IServerListItem> serverListItems = new ObservableCollection<IServerListItem>();
             IOrderedEnumerable<string> countries = _serverManager.GetSecureCoreCountries().OrderBy(Countries.GetName);
-            User user = _userStorage.User();
+            User user = _userStorage.GetUser();
 
             foreach (string countryCode in countries)
             {
@@ -174,7 +174,7 @@ namespace ProtonVPN.Servers
         {
             foreach (string countryCode in countries)
             {
-                ServersByCountryViewModel countryViewModel = new(countryCode, _userStorage.User().MaxTier,
+                ServersByCountryViewModel countryViewModel = new(countryCode, _userStorage.GetUser().MaxTier,
                     _serverManager, _vpnState, _streamingServices);
                 if (string.IsNullOrEmpty(searchQuery) || Countries.MatchesSearch(countryCode, searchQuery))
                 {

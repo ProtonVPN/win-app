@@ -51,7 +51,7 @@ namespace ProtonVPN.PortForwarding
             {
                 return;
             }
-            if (_userStorage.User().Paid())
+            if (_userStorage.GetUser().Paid())
             {
                 await EnablePortForwardingIfConfirmedAsync();
             }

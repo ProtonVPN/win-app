@@ -17,22 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
-using ProtonVPN.Api.Contracts.Auth;
-using ProtonVPN.Core.Models;
-using ProtonVPN.Core.Users;
-
-namespace ProtonVPN.Core.Settings
+namespace ProtonVPN.Core.Users
 {
-    public interface IUserStorage
+    public enum UserLocationState
     {
-        event EventHandler UserDataChanged;
-        event EventHandler<VpnPlanChangedEventArgs> VpnPlanChanged;
-
-        User GetUser();
-        UserLocation GetLocation();
-        void StoreVpnInfo(VpnInfoWrapperResponse vpnInfoWrapper);
-        void SaveLocation(UserLocation location);
-        void SaveUsername(string username);
+        Success,
+        Failed,
     }
 }

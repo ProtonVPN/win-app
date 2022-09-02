@@ -19,7 +19,7 @@
 
 using ProtonVPN.Core.Settings;
 
-namespace ProtonVPN.Core.User
+namespace ProtonVPN.Core.Users
 {
     // The following route is used to retrieve VPN server information,
     // including scores for the best server to connect to depending on
@@ -39,8 +39,7 @@ namespace ProtonVPN.Core.User
 
         public string Ip()
         {
-            string ip = _userStorage.Location().Ip;
-
+            string ip = _userStorage.GetLocation().Ip;
             if (string.IsNullOrEmpty(ip))
             {
                 return string.Empty;

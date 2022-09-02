@@ -148,7 +148,7 @@ namespace ProtonVPN.Vpn.Connectors
         {
             IReadOnlyList<Server> servers = candidates
                 .OnlineServers()
-                .UpToTierServers(_userStorage.User().MaxTier)
+                .UpToTierServers(_userStorage.GetUser().MaxTier)
                 .ToList();
 
             return servers;
@@ -228,7 +228,7 @@ namespace ProtonVPN.Vpn.Connectors
                 return;
             }
 
-            if (_userStorage.User().IsDelinquent())
+            if (_userStorage.GetUser().IsDelinquent())
             {
                 HandleDelinquentUser();
                 return;
@@ -236,7 +236,7 @@ namespace ProtonVPN.Vpn.Connectors
 
             if ((profileCandidates.Profile.Features.IsSecureCore() || 
                 (profileCandidates.Profile.IsPredefined && _appSettings.SecureCore)) &&
-                _userStorage.User().MaxTier < ServerTiers.Plus)
+                _userStorage.GetUser().MaxTier < ServerTiers.Plus)
             {
                 _modals.Show<SecureCoreUpsellModalViewModel>();
                 return;
@@ -244,7 +244,7 @@ namespace ProtonVPN.Vpn.Connectors
 
             if ((profileCandidates.Profile.Features.SupportsP2P() ||
                  (profileCandidates.Profile.IsPredefined && _appSettings.IsPortForwardingEnabled())) &&
-                _userStorage.User().MaxTier < ServerTiers.Plus)
+                _userStorage.GetUser().MaxTier < ServerTiers.Plus)
             {
                 _modals.Show<PortForwardingUpsellModalViewModel>();
                 return;
@@ -262,7 +262,7 @@ namespace ProtonVPN.Vpn.Connectors
                 return;
             }
 
-            IEnumerable<Server> userTierServers = profileCandidates.Candidates.UpToTierServers(_userStorage.User().MaxTier);
+            IEnumerable<Server> userTierServers = profileCandidates.Candidates.UpToTierServers(_userStorage.GetUser().MaxTier);
 
             if (!userTierServers.Any())
             {
@@ -287,7 +287,7 @@ namespace ProtonVPN.Vpn.Connectors
                 return;
             }
 
-            IEnumerable<Server> userTierServers = candidates.UpToTierServers(_userStorage.User().MaxTier);
+            IEnumerable<Server> userTierServers = candidates.UpToTierServers(_userStorage.GetUser().MaxTier);
 
             if (!userTierServers.Any())
             {
@@ -424,13 +424,13 @@ namespace ProtonVPN.Vpn.Connectors
                 return;
             }
 
-            if (_userStorage.User().IsDelinquent())
+            if (_userStorage.GetUser().IsDelinquent())
             {
                 HandleDelinquentUser();
                 return;
             }
 
-            if (_userStorage.User().MaxTier < server.Tier)
+            if (_userStorage.GetUser().MaxTier < server.Tier)
             {
                 HandleUserTierTooLow(server);
                 return;

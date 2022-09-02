@@ -24,7 +24,7 @@ using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Servers.Models;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
-using ProtonVPN.Core.User;
+using ProtonVPN.Core.Users;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Core.Windows.Popups;
 using ProtonVPN.Notifications;
@@ -73,7 +73,7 @@ namespace ProtonVPN.PlanDowngrading
         {
             if (e.IsDowngrade)
             {
-                User user = _userStorage.User();
+                User user = _userStorage.GetUser();
                 await DowngradeUserAsync(user);
             }
         }

@@ -89,7 +89,7 @@ namespace ProtonVPN.App.Tests.Servers
         {
             _userStorage = Substitute.For<IUserStorage>();
             _user = new User();
-            _userStorage.User().Returns(_user);
+            _userStorage.GetUser().Returns(_user);
         }
 
         private LogicalServerResponse CreateServer(string name, Features features, string exitCountryCode,
@@ -142,7 +142,7 @@ namespace ProtonVPN.App.Tests.Servers
         public void BuildServerList_ItShouldDisplayFreeCountriesForFreeUserFirst()
         {
             // Arrange
-            _userStorage.User().Returns(new User {MaxTier = ServerTiers.Free});
+            _userStorage.GetUser().Returns(new User {MaxTier = ServerTiers.Free});
 
             // Act
             ObservableCollection<IServerListItem> result = _serverListFactory.BuildServerList();

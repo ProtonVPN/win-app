@@ -17,23 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Core.User
+using System.Threading.Tasks;
+
+namespace ProtonVPN.Core.Users
 {
-    public class UserLocation
+    public interface IVpnPlanAware
     {
-        public static UserLocation Empty { get; } = new(string.Empty, string.Empty, string.Empty);
-
-        public string Ip { get; }
-
-        public string Isp { get; }
-
-        public string Country { get; }
-
-        public UserLocation(string ip, string isp, string country)
-        {
-            Ip = ip ?? "";
-            Isp = isp ?? "";
-            Country = country ?? "";
-        }
+        Task OnVpnPlanChangedAsync(VpnPlanChangedEventArgs e);
     }
 }

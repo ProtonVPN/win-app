@@ -22,7 +22,7 @@ using System.Threading.Tasks;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Geographical;
 
-namespace ProtonVPN.Core.User
+namespace ProtonVPN.Core.Users
 {
     public interface IUserLocationService
     {

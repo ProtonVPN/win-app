@@ -67,7 +67,7 @@
     <Compile Include="Servers\ServerManagerTest.cs" />
     <Compile Include="Servers\ServerSpecsTest.cs" />
     <Compile Include="Servers\ServerTest.cs" />
-    <Compile Include="User\TruncatedLocationTest.cs" />
+    <Compile Include="Users\TruncatedLocationTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

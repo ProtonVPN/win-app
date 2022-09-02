@@ -246,7 +246,7 @@ namespace ProtonVPN.Vpn
 
         private bool HasMaxTierPlan()
         {
-            User user = _userStorage.User();
+            User user = _userStorage.GetUser();
             switch (user.OriginalVpnPlan)
             {
                 case "vpnplus":
