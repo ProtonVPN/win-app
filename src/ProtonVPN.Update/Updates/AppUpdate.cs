@@ -28,7 +28,7 @@ namespace ProtonVPN.Update.Updates
     /// Represents app update state and an interface to update related operations.
     /// Operations are performed by <see cref="AppUpdates"/>.
     /// </summary>
-    internal class AppUpdate : IAppUpdate
+    public class AppUpdate : IAppUpdate
     {
         private readonly InternalState _state;
 

@@ -21,7 +21,7 @@ using System.Collections.Generic;
 
 namespace ProtonVPN.Update.Contracts
 {
-    internal class ReleaseContract
+    public class ReleaseContract
     {
         public string Version;
 

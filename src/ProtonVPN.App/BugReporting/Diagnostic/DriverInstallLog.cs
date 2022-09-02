@@ -23,7 +23,7 @@ using System.IO.Compression;
 
 namespace ProtonVPN.BugReporting.Diagnostic
 {
-    internal class DriverInstallLog : BaseLog
+    public class DriverInstallLog : BaseLog
     {
         private const string SetupApiLogFile = "setupapi.dev.log";
 

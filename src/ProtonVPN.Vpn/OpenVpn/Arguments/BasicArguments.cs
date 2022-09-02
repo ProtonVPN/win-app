@@ -23,7 +23,7 @@ using ProtonVPN.Common.Configuration;
 
 namespace ProtonVPN.Vpn.OpenVpn.Arguments
 {
-    internal class BasicArguments : IEnumerable<string>
+    public class BasicArguments : IEnumerable<string>
     {
         private readonly OpenVpnConfig _config;
 

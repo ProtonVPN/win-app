@@ -25,7 +25,7 @@ namespace ProtonVPN.Update.Files.UpdatesDirectory
     /// <summary>
     /// Wraps expected exceptions of <see cref="UpdatesDirectory"/> into <see cref="AppUpdateException"/>.
     /// </summary>
-    internal class SafeUpdatesDirectory : IUpdatesDirectory
+    public class SafeUpdatesDirectory : IUpdatesDirectory
     {
         private readonly IUpdatesDirectory _origin;
 

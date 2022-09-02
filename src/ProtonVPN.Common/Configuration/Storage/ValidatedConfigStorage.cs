@@ -22,7 +22,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ProtonVPN.Common.Configuration.Storage
 {
-    internal class ValidatedConfigStorage : IConfigStorage
+    public class ValidatedConfigStorage : IConfigStorage
     {
         private readonly IConfigStorage _origin;
 

@@ -27,7 +27,7 @@ namespace ProtonVPN.Update.Releases
     /// <summary>
     /// Transforms deserialized release data (stream of <see cref="CategoryContract"/>) into stream of <see cref="Release"/>.
     /// </summary>
-    internal class Releases : IEnumerable<Release>
+    public class Releases : IEnumerable<Release>
     {
         private readonly IEnumerable<CategoryContract> _categories;
         private readonly Version _currentVersion;

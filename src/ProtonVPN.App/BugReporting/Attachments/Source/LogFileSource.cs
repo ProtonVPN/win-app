@@ -24,7 +24,7 @@ using System.Linq;
 
 namespace ProtonVPN.BugReporting.Attachments.Source
 {
-    internal class LogFileSource : IEnumerable<string>
+    public class LogFileSource : IEnumerable<string>
     {
         private readonly string _path;
         private readonly int _count;

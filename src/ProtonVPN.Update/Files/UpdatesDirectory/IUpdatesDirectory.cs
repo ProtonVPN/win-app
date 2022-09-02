@@ -19,7 +19,7 @@
 
 namespace ProtonVPN.Update.Files.UpdatesDirectory
 {
-    internal interface IUpdatesDirectory
+    public interface IUpdatesDirectory
     {
         string Path { get; }
 

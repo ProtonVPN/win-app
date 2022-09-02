@@ -24,7 +24,7 @@ namespace ProtonVPN.Update.Files.Launchable
     /// <summary>
     /// Starts new process requesting elevation.
     /// </summary>
-    internal class LaunchableFile : ILaunchableFile
+    public class LaunchableFile : ILaunchableFile
     {
         private readonly IOsProcesses _processes;
 

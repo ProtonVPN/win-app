@@ -23,7 +23,7 @@ using ProtonVPN.Common.OS.Net.NetworkInterface;
 
 namespace ProtonVPN.BugReporting.Diagnostic
 {
-    internal class NetworkAdapterLog : BaseLog
+    public class NetworkAdapterLog : BaseLog
     {
         private readonly INetworkInterfaces _networkInterfaces;
 

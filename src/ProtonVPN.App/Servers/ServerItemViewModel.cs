@@ -29,7 +29,7 @@ using ProtonVPN.Streaming;
 
 namespace ProtonVPN.Servers
 {
-    internal class ServerItemViewModel : ViewModel, IServerListItem
+    public class ServerItemViewModel : ViewModel, IServerListItem
     {
         private bool _connecting;
         private bool _connected;

@@ -19,7 +19,7 @@
 
 namespace ProtonVPN.Core.Startup
 {
-    internal interface IAutoStartup
+    public interface IAutoStartup
     {
         bool Enabled { get; set; }
     }

@@ -23,7 +23,7 @@ using ProtonVPN.Common.Configuration;
 
 namespace ProtonVPN.Vpn.OpenVpn.Arguments
 {
-    internal class TlsVerifyArguments : IEnumerable<string>
+    public class TlsVerifyArguments : IEnumerable<string>
     {
         private const string ServerNameEnvironmentVariable = "peer_dns_name";
 

@@ -21,7 +21,7 @@ using ProtonVPN.Core.Vpn;
 
 namespace ProtonVPN.Servers
 {
-    internal interface IServerListItem
+    public interface IServerListItem
     {
         void OnVpnStateChanged(VpnState state);
 

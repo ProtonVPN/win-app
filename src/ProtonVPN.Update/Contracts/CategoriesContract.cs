@@ -21,7 +21,7 @@ using System.Collections.Generic;
 
 namespace ProtonVPN.Update.Contracts
 {
-    internal class CategoriesContract
+    public class CategoriesContract
     {
         public IReadOnlyList<CategoryContract> Categories;
     }

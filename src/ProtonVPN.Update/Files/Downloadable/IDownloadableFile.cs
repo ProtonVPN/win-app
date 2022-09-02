@@ -21,7 +21,7 @@ using System.Threading.Tasks;
 
 namespace ProtonVPN.Update.Files.Downloadable
 {
-    internal interface IDownloadableFile
+    public interface IDownloadableFile
     {
         Task Download(string url, string filename);
     }

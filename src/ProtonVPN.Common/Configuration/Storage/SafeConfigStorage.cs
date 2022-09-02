@@ -23,7 +23,7 @@ using ProtonVPN.Common.Extensions;
 
 namespace ProtonVPN.Common.Configuration.Storage
 {
-    internal class SafeConfigStorage : IConfigStorage
+    public class SafeConfigStorage : IConfigStorage
     {
         private readonly IConfigStorage _origin;
 

@@ -27,7 +27,7 @@ using ProtonVPN.Vpn.Common;
 
 namespace ProtonVPN.Service.SplitTunneling
 {
-    internal class SplitTunnel : IVpnStateAware
+    public class SplitTunnel : IVpnStateAware
     {
         private bool _reverseEnabled;
         private bool _enabled;
@@ -52,7 +52,7 @@ namespace ProtonVPN.Service.SplitTunneling
             _serviceSettings = serviceSettings;
         }
 
-        internal SplitTunnel(
+        public SplitTunnel(
             bool enabled,
             bool reverseEnabled,
             IServiceSettings serviceSettings,
@@ -86,7 +86,9 @@ namespace ProtonVPN.Service.SplitTunneling
         public void OnVpnConnected(VpnState state)
         {
             if (_serviceSettings.SplitTunnelSettings.Mode == SplitTunnelMode.Disabled)
+            {
                 return;
+            }
 
             switch (_serviceSettings.SplitTunnelSettings.Mode)
             {
@@ -124,23 +126,27 @@ namespace ProtonVPN.Service.SplitTunneling
                 _serviceSettings.SplitTunnelSettings.Ips);
 
             if (_serviceSettings.SplitTunnelSettings.AppPaths.Length > 0)
+            {
                 _appFilter.Add(_serviceSettings.SplitTunnelSettings.AppPaths, Action.SoftPermit);
+            }
 
             if (_serviceSettings.SplitTunnelSettings.Ips.Length > 0)
+            {
                 _permittedRemoteAddress.Add(_serviceSettings.SplitTunnelSettings.Ips, Action.SoftPermit);
+            }
 
             _enabled = true;
         }
 
         private void Disable()
         {
-            if (!_enabled)
-                return;
-
-            _splitTunnelClient.Disable();
-            _appFilter.RemoveAll();
-            _permittedRemoteAddress.RemoveAll();
-            _enabled = false;
+            if (_enabled)
+            {
+                _splitTunnelClient.Disable();
+                _appFilter.RemoveAll();
+                _permittedRemoteAddress.RemoveAll();
+                _enabled = false;
+            }
         }
 
         private void EnableReversed(VpnState state)
@@ -155,11 +161,11 @@ namespace ProtonVPN.Service.SplitTunneling
 
         private void DisableReversed()
         {
-            if (!_reverseEnabled)
-                return;
-
-            _splitTunnelClient.Disable();
-            _reverseEnabled = false;
+            if (_reverseEnabled)
+            {
+                _splitTunnelClient.Disable();
+                _reverseEnabled = false;
+            }
         }
     }
 }

@@ -32,7 +32,7 @@ namespace ProtonVPN.P2PDetection.Blocked
     /// P2P traffic is not allowed on free servers and some not free servers.
     /// All traffic gets blocked when P2P activity is detected.
     /// </remarks>
-    internal class BlockedTraffic : IBlockedTraffic
+    public class BlockedTraffic : IBlockedTraffic
     {
         private readonly Uri _p2PStatusUri;
 

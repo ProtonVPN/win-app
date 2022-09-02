@@ -25,7 +25,7 @@ namespace ProtonVPN.Vpn.OpenVpn.Arguments
     /// <summary>
     /// Command line arguments for a process.
     /// </summary>
-    internal class CommandLineArguments
+    public class CommandLineArguments
     {
         private readonly List<IEnumerable<string>> _arguments = new List<IEnumerable<string>>();
 
