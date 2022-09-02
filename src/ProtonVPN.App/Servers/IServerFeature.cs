@@ -19,7 +19,7 @@
 
 namespace ProtonVPN.Servers
 {
-    internal interface IServerFeature
+    public interface IServerFeature
     {
     }
 }

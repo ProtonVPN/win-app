@@ -31,7 +31,7 @@ using ProtonVPN.Modals;
 
 namespace ProtonVPN.Core.Service.Vpn
 {
-    internal class VpnServiceActionDecorator : IVpnServiceManager
+    public class VpnServiceActionDecorator : IVpnServiceManager
     {
         private readonly ISafeServiceAction _safeServiceAction;
         private readonly IVpnServiceManager _decorated;

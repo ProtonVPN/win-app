@@ -21,7 +21,7 @@ using ProtonVPN.Common.Configuration.Storage;
 
 namespace ProtonVPN.Common.Configuration.Source
 {
-    internal class CustomConfig : IConfigSource
+    public class CustomConfig : IConfigSource
     {
         private readonly ConfigMode _mode;
         private readonly IConfigSource _default;

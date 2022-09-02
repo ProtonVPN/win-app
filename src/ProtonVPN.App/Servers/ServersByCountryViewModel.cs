@@ -32,7 +32,7 @@ using ProtonVPN.Translations;
 
 namespace ProtonVPN.Servers
 {
-    internal class ServersByCountryViewModel : BaseServerCollection
+    public class ServersByCountryViewModel : BaseServerCollection
     {
         private readonly sbyte _userTier;
         private readonly ServerManager _serverManager;

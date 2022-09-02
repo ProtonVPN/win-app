@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.32510.428
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Service", "src\ProtonVPN.Service\ProtonVPN.Service.csproj", "{25781B52-5858-4387-80A5-C9C38C32B3CC}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -21,11 +21,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Service.Contract"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Core", "src\ProtonVPN.Core\ProtonVPN.Core.csproj", "{CA44B51D-7645-413A-818F-2C5B57DB67DD}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{A592E157-F76B-49CE-A5A4-EF130CDD757F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{A592E157-F76B-49CE-A5A4-EF130CDD757F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Core.Test", "test\ProtonVPN.Core.Test\ProtonVPN.Core.Test.csproj", "{FA0D86B4-2B86-4DFE-B7E6-7C809DB74A13}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Core.Tests", "src\Tests\ProtonVPN.Core.Tests\ProtonVPN.Core.Tests.csproj", "{FA0D86B4-2B86-4DFE-B7E6-7C809DB74A13}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.App.Test", "test\ProtonVPN.App.Test\ProtonVPN.App.Test.csproj", "{7F48FD5C-A4C6-496A-B68E-265237C22330}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.App.Tests", "src\Tests\ProtonVPN.App.Tests\ProtonVPN.App.Tests.csproj", "{7F48FD5C-A4C6-496A-B68E-265237C22330}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.TapInstaller", "src\ProtonVPN.TapInstaller\ProtonVPN.TapInstaller.csproj", "{5F6696BC-A37D-4726-82AE-95EF42C307FC}"
 EndProject
@@ -33,13 +33,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Vpn", "src\Proton
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Update", "src\ProtonVPN.Update\ProtonVPN.Update.csproj", "{90FDF2B3-25C9-428D-B264-5A5FAEB2D988}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Update.Test", "test\ProtonVPN.Update.Test\ProtonVPN.Update.Test.csproj", "{7D658974-C38C-421F-8186-B735F06CFC58}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Update.Tests", "src\Tests\ProtonVPN.Update.Tests\ProtonVPN.Update.Tests.csproj", "{7D658974-C38C-421F-8186-B735F06CFC58}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Common", "src\ProtonVPN.Common\ProtonVPN.Common.csproj", "{03B8E43C-5680-4803-A745-0A104FE6620C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Resource", "src\ProtonVPN.Resources\ProtonVPN.Resource.csproj", "{45A0EA81-D37E-4D7F-8CE1-CE6B6A95A9ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Common.Test", "test\ProtonVPN.Common.Test\ProtonVPN.Common.Test.csproj", "{5F2931B6-9A77-4F94-80CD-BC9B9A0C64BF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Common.Tests", "src\Tests\ProtonVPN.Common.Tests\ProtonVPN.Common.Tests.csproj", "{5F2931B6-9A77-4F94-80CD-BC9B9A0C64BF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DAD0837D-1F65-47C7-8FA6-D6D34D979418}"
 	ProjectSection(SolutionItems) = preProject
@@ -52,15 +52,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.UI.Test", "test\ProtonVPN.UI.Test\ProtonVPN.UI.Test.csproj", "{24E940FF-C9F3-4D5C-8FCF-CA527F055318}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.UI.Tests", "src\Tests\ProtonVPN.UI.Tests\ProtonVPN.UI.Tests.csproj", "{24E940FF-C9F3-4D5C-8FCF-CA527F055318}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Service.Test", "test\ProtonVPN.Service.Test\ProtonVPN.Service.Test.csproj", "{4290C007-2142-4AD1-8EB6-F80EF2F45AA4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Service.Tests", "src\Tests\ProtonVPN.Service.Tests\ProtonVPN.Service.Tests.csproj", "{4290C007-2142-4AD1-8EB6-F80EF2F45AA4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Vpn.Test", "test\ProtonVPN.Vpn.Test\ProtonVPN.Vpn.Test.csproj", "{A16637C2-2D91-4953-AE04-D91EC188DD7B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Vpn.Tests", "src\Tests\ProtonVPN.Vpn.Tests\ProtonVPN.Vpn.Tests.csproj", "{A16637C2-2D91-4953-AE04-D91EC188DD7B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Test.Common", "test\ProtonVPN.Test.Common\ProtonVPN.Test.Common.csproj", "{A0DA4200-6643-4F2C-8450-65B8CE8A5576}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Tests.Common", "src\Tests\ProtonVPN.Tests.Common\ProtonVPN.Tests.Common.csproj", "{A0DA4200-6643-4F2C-8450-65B8CE8A5576}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Service.Contract.Test", "test\ProtonVPN.Service.Contract.Test\ProtonVPN.Service.Contract.Test.csproj", "{C4E97B08-345A-423B-BD4C-76593D1401B6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Service.Contract.Tests", "src\Tests\ProtonVPN.Service.Contract.Tests\ProtonVPN.Service.Contract.Tests.csproj", "{C4E97B08-345A-423B-BD4C-76593D1401B6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Native", "src\ProtonVPN.Native\ProtonVPN.Native.csproj", "{CB301B4C-D518-41F5-873B-9B1F145DB4AF}"
 EndProject
@@ -70,9 +70,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.MarkupValidator",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.TlsVerify", "src\ProtonVPN.TlsVerify\ProtonVPN.TlsVerify.csproj", "{643CA26B-B80E-4E6A-AAE4-BCEC021D2AA0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestTools.ProfileCleaner", "test\TestTools.ProfileCleaner\TestTools.ProfileCleaner.csproj", "{4237AD33-596A-4B35-826A-B4E71461820F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestTools.ProfileCleaner", "src\Tests\TestTools.ProfileCleaner\TestTools.ProfileCleaner.csproj", "{4237AD33-596A-4B35-826A-B4E71461820F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestTools.ApiClient", "test\TestTools.ApiClient\TestTools.ApiClient.csproj", "{F059E362-20A2-472B-82CA-E727D31AC0C7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestTools.ApiClient", "src\Tests\TestTools.ApiClient\TestTools.ApiClient.csproj", "{F059E362-20A2-472B-82CA-E727D31AC0C7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Translations", "src\ProtonVPN.Translations\ProtonVPN.Translations.csproj", "{2A00C747-8BC0-4EF1-A53E-37A7E156D910}"
 EndProject
@@ -80,7 +80,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.RestoreInternet",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Crypto", "src\ProtonVPN.Crypto\ProtonVPN.Crypto.csproj", "{BA2D505E-CED3-4FCB-A463-DAF6B77C18DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Crypto.Test", "test\ProtonVPN.Crypto.Test\ProtonVPN.Crypto.Test.csproj", "{7D608265-3330-4747-B5B4-9673A119FE6C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Crypto.Tests", "src\Tests\ProtonVPN.Crypto.Tests\ProtonVPN.Crypto.Tests.csproj", "{7D608265-3330-4747-B5B4-9673A119FE6C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.WireGuardService", "src\ProtonVPN.WireguardService\ProtonVPN.WireGuardService.csproj", "{A0A9C7B9-4A33-492E-BA54-8E8E600D3D66}"
 EndProject
@@ -106,7 +106,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Api.Tests", "src\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.HumanVerification.Gui", "src\HumanVerification\ProtonVPN.HumanVerification.Gui\ProtonVPN.HumanVerification.Gui.csproj", "{7318548D-B8F2-4ED3-8B3E-F61DD8B552D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.IntegrationTests", "test\ProtonVPN.IntegrationTests\ProtonVPN.IntegrationTests.csproj", "{A2B4BEC3-7430-489E-BE6B-F1E8205A7C62}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.IntegrationTests", "src\Tests\ProtonVPN.IntegrationTests\ProtonVPN.IntegrationTests.csproj", "{A2B4BEC3-7430-489E-BE6B-F1E8205A7C62}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.SourceGenerators", "src\ProtonVPN.SourceGenerators\ProtonVPN.SourceGenerators.csproj", "{B7B19A7B-5A20-4690-81F4-83002CA064FB}"
 EndProject

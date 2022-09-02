@@ -22,7 +22,7 @@ using ProtonVPN.Core.Settings;
 
 namespace ProtonVPN.Core.Startup
 {
-    internal class SyncableAutoStartup : ISyncableAutoStartup
+    public class SyncableAutoStartup : ISyncableAutoStartup
     {
         private readonly IAppSettings _appSettings;
         private readonly IScheduler _scheduler;
@@ -42,13 +42,15 @@ namespace ProtonVPN.Core.Startup
 
         public void Sync()
         {
-            if (_syncing)
-                return;
+            if (!_syncing)
+            {
+                SyncForward();
 
-            SyncForward();
-
-            if (SyncBackRequired())
-                _scheduler.Schedule(SyncBack);
+                if (SyncBackRequired())
+                {
+                    _scheduler.Schedule(SyncBack);
+                }
+            }
         }
 
         private void SyncForward()

@@ -24,36 +24,36 @@ namespace ProtonVPN.Common.Configuration
     public class OpenVpnConfig
     {
         [Required]
-        public string ExePath { get; internal set; }
+        public string ExePath { get; set; }
 
         [Required]
-        public string ConfigPath { get; internal set; }
+        public string ConfigPath { get; set; }
 
         [Required]
-        public string TlsVerifyExePath { get; internal set; }
+        public string TlsVerifyExePath { get; set; }
 
         [Required]
-        public string TlsExportCertFolder { get; internal set; }
+        public string TlsExportCertFolder { get; set; }
 
         [Required]
-        public string ExitEventName { get; internal set; }
+        public string ExitEventName { get; set; }
 
         [Required]
-        public string ManagementHost { get; internal set; }
+        public string ManagementHost { get; set; }
 
         [Required]
-        public byte[] OpenVpnStaticKey { get; internal set; }
+        public byte[] OpenVpnStaticKey { get; set; }
 
         [Required]
-        public string TapAdapterId { get; internal set; }
+        public string TapAdapterId { get; set; }
 
         [Required]
-        public string TapAdapterDescription { get; internal set; }
+        public string TapAdapterDescription { get; set; }
 
         [Required]
-        public string TunAdapterId { get; internal set; }
+        public string TunAdapterId { get; set; }
 
         [Required]
-        public string TunAdapterName { get; internal set; }
+        public string TunAdapterName { get; set; }
     }
 }

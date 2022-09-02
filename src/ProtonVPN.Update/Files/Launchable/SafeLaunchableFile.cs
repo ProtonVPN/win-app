@@ -25,7 +25,7 @@ namespace ProtonVPN.Update.Files.Launchable
     /// <summary>
     /// Wraps expected exceptions of <see cref="LaunchableFile"/> into <see cref="AppUpdateException"/>.
     /// </summary>
-    internal class SafeLaunchableFile : ILaunchableFile
+    public class SafeLaunchableFile : ILaunchableFile
     {
         private readonly ILaunchableFile _origin;
 

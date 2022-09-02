@@ -22,7 +22,7 @@ using System.Collections.Generic;
 
 namespace ProtonVPN.Vpn.OpenVpn.Arguments
 {
-    internal class LocalHostArguments : IEnumerable<string>
+    public class LocalHostArguments : IEnumerable<string>
     {
         private readonly string _localIp;
 

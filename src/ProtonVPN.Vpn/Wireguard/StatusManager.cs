@@ -32,7 +32,7 @@ using ProtonVPN.Vpn.Common;
 
 namespace ProtonVPN.Vpn.WireGuard
 {
-    internal class StatusManager
+    public class StatusManager
     {
         private const int SkipLogCharacters = 27;
 

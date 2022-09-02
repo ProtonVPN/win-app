@@ -21,7 +21,7 @@ using System.Collections.Generic;
 
 namespace ProtonVPN.Update.Updates
 {
-    internal interface IBaseAppUpdateState
+    public interface IBaseAppUpdateState
     {
         IReadOnlyList<IRelease> ReleaseHistory();
         bool Available { get; }

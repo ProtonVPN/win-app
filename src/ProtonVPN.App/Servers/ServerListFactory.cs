@@ -33,7 +33,7 @@ using ProtonVPN.Translations;
 
 namespace ProtonVPN.Servers
 {
-    internal class ServerListFactory : IVpnStateAware
+    public class ServerListFactory : IVpnStateAware
     {
         private readonly ServerManager _serverManager;
         private readonly IUserStorage _userStorage;

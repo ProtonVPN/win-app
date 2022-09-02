@@ -21,7 +21,7 @@ using System;
 
 namespace ProtonVPN.Update.Contracts
 {
-    internal class FileContract : IEquatable<FileContract>
+    public class FileContract : IEquatable<FileContract>
     {
         public string Url;
 

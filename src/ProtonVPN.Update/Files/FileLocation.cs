@@ -22,7 +22,7 @@ namespace ProtonVPN.Update.Files
     /// <summary>
     /// Represents downloadable file location and translates file URL into file path on disk.
     /// </summary>
-    internal class FileLocation
+    public class FileLocation
     {
         private readonly string _folder;
 

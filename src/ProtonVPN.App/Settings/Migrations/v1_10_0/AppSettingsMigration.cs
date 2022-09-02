@@ -22,7 +22,7 @@ using ProtonVPN.Core.Storage;
 
 namespace ProtonVPN.Settings.Migrations.v1_10_0
 {
-    internal class AppSettingsMigration : BaseAppSettingsMigration
+    public class AppSettingsMigration : BaseAppSettingsMigration
     {
         private const string UserSettingsVersionKey = "UserSettingsVersion";
 
@@ -33,14 +33,15 @@ namespace ProtonVPN.Settings.Migrations.v1_10_0
 
         protected override void Migrate()
         {
-            if (!MigrationRequired()) return;
-
-            MigrateProtocol();
+            if (MigrationRequired())
+            {
+                MigrateProtocol();
+            }
         }
 
         private bool MigrationRequired()
         {
-            var userSettingsVersion = Settings.Get<string>(UserSettingsVersionKey);
+            string userSettingsVersion = Settings.Get<string>(UserSettingsVersionKey);
 
             return userSettingsVersion?.ContainsIgnoringCase("\"Value\":\"1.10.") != true;
         }

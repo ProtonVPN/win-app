@@ -21,7 +21,7 @@ using System.Reflection;
 
 namespace ProtonVPN.Common.Configuration.Storage
 {
-    internal class ConfigFile: IStorageFile
+    public class ConfigFile: IStorageFile
     {
         public string Path()
         {

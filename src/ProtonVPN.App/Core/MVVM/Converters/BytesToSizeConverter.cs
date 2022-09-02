@@ -24,14 +24,14 @@ using ByteSizeLib;
 
 namespace ProtonVPN.Core.MVVM.Converters
 {
-    internal class BytesToSizeConverter : IValueConverter
+    public class BytesToSizeConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var bytes = ByteSize.FromBytes((double?)value ?? 0.0);
-            var size = bytes.LargestWholeNumberValue;
+            ByteSize bytes = ByteSize.FromBytes((double?)value ?? 0.0);
+            double size = bytes.LargestWholeNumberValue;
 
-            var format = "0";
+            string format = "0";
             if (bytes.Bytes >= ByteSize.BytesInKiloByte)
             {
                 if (size < 10.0)

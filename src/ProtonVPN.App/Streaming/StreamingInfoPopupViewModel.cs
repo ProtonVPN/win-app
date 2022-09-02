@@ -26,7 +26,7 @@ using ProtonVPN.Translations;
 
 namespace ProtonVPN.Streaming
 {
-    internal class StreamingInfoPopupViewModel : ViewModel
+    public class StreamingInfoPopupViewModel : ViewModel
     {
         private readonly string _countryCode;
 

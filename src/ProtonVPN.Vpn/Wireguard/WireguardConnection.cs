@@ -39,7 +39,7 @@ using Timer = System.Timers.Timer;
 
 namespace ProtonVPN.Vpn.WireGuard
 {
-    internal class WireGuardConnection : ISingleVpnConnection
+    public class WireGuardConnection : ISingleVpnConnection
     {
         private const int CONNECT_TIMEOUT = 5000;
 

@@ -32,7 +32,7 @@ namespace ProtonVPN.Update.Storage
     /// <summary>
     /// Reads app release data from provided URL and converts it into sequence of app releases.
     /// </summary>
-    internal class WebReleaseStorage : IReleaseStorage
+    public class WebReleaseStorage : IReleaseStorage
     {
         private static readonly JsonSerializer JsonSerializer = new();
 
@@ -46,7 +46,7 @@ namespace ProtonVPN.Update.Storage
         public async Task<IEnumerable<Release>> Releases()
         {
             CategoriesContract categories = await Categories();
-            Releases.Releases releases = new Releases.Releases(categories.Categories, _config.CurrentVersion, _config.EarlyAccessCategoryName);
+            Releases.Releases releases = new(categories.Categories, _config.CurrentVersion, _config.EarlyAccessCategoryName);
             return releases;
         }
 

@@ -23,7 +23,7 @@ using ProtonVPN.Vpn.Common;
 
 namespace ProtonVPN.Vpn.Connection
 {
-    internal interface IVpnEndpointCandidates
+    public interface IVpnEndpointCandidates
     {
         VpnEndpoint Current { get; }
 

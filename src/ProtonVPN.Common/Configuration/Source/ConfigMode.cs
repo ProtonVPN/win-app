@@ -19,7 +19,7 @@
 
 namespace ProtonVPN.Common.Configuration.Source
 {
-    internal enum ConfigMode
+    public enum ConfigMode
     {
         /// <summary>
         /// Use default configuration.

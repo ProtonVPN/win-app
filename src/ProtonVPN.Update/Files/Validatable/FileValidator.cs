@@ -25,7 +25,7 @@ namespace ProtonVPN.Update.Files.Validatable
     /// <summary>
     /// Validates checksum of file.
     /// </summary>
-    internal class FileValidator : IFileValidator
+    public class FileValidator : IFileValidator
     {
         public async Task<bool> Valid(string filename, string checkSum)
         {
@@ -39,7 +39,7 @@ namespace ProtonVPN.Update.Files.Validatable
 
         private static async Task<bool> CheckSumValid(string filename, string expectedCheckSum)
         {
-            var checkSum = await new FileCheckSum(filename).Value();
+            string checkSum = await new FileCheckSum(filename).Value();
             return checkSum == expectedCheckSum;
         }
     }

@@ -26,7 +26,7 @@ namespace ProtonVPN.Update.Files.Validatable
     /// <summary>
     /// Wraps known exceptions of <see cref="FileValidator"/> into <see cref="AppUpdateException"/>.
     /// </summary>
-    internal class SafeFileValidator : IFileValidator
+    public class SafeFileValidator : IFileValidator
     {
         private readonly IFileValidator _origin;
 

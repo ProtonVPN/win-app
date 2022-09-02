@@ -26,7 +26,7 @@ namespace ProtonVPN.Update.Releases
     /// <summary>
     /// A release of the app in the release history.
     /// </summary>
-    internal class Release : IRelease, IComparable, IComparable<IRelease>
+    public class Release : IRelease, IComparable, IComparable<IRelease>
     {
         private readonly ReleaseContract _release;
 

@@ -22,7 +22,7 @@ using Newtonsoft.Json;
 
 namespace ProtonVPN.Common.Configuration.Storage
 {
-    internal class FileConfigStorage : IConfigStorage
+    public class FileConfigStorage : IConfigStorage
     {
         private readonly IStorageFile _file;
 

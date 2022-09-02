@@ -21,7 +21,7 @@ using System.Threading.Tasks;
 
 namespace ProtonVPN.Update.Files.Validatable
 {
-    internal interface IFileValidator
+    public interface IFileValidator
     {
         Task<bool> Valid(string filename, string checkSum);
     }

@@ -21,7 +21,7 @@ using ProtonVPN.Core.Abstract;
 
 namespace ProtonVPN.Settings.Migrations
 {
-    internal interface IUserSettingsMigration : IMigration
+    public interface IUserSettingsMigration : IMigration
     {
     }
 }

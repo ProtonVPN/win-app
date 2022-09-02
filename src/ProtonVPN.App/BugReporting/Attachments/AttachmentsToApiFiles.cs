@@ -24,7 +24,7 @@ using ProtonVPN.Api.Contracts;
 
 namespace ProtonVPN.BugReporting.Attachments
 {
-    internal class AttachmentsToApiFiles : IEnumerable<File>
+    public class AttachmentsToApiFiles : IEnumerable<File>
     {
         private readonly IEnumerable<Attachment> _source;
 

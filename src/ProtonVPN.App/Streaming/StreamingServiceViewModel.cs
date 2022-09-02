@@ -19,7 +19,7 @@
 
 namespace ProtonVPN.Streaming
 {
-    internal class StreamingServiceViewModel
+    public class StreamingServiceViewModel
     {
         public StreamingServiceViewModel(string name, string url)
         {

@@ -24,7 +24,7 @@ namespace ProtonVPN.Update.Updates
     /// <summary>
     /// Interface to the app update state plus the app update related operations.
     /// </summary>
-    internal interface IAppUpdate : IBaseAppUpdateState
+    public interface IAppUpdate : IBaseAppUpdateState
     {
         Task<IAppUpdate> Latest(bool earlyAccess);
 

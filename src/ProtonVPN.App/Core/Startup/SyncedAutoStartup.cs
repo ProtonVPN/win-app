@@ -22,7 +22,7 @@ using System.ComponentModel;
 
 namespace ProtonVPN.Core.Startup
 {
-    internal class SyncedAutoStartup : ISyncableAutoStartup, ISettingsAware
+    public class SyncedAutoStartup : ISyncableAutoStartup, ISettingsAware
     {
         private readonly ISyncableAutoStartup _origin;
 

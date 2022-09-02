@@ -27,7 +27,7 @@ namespace ProtonVPN.Update.Files.Downloadable
     /// <summary>
     /// Wraps expected exceptions of <see cref="DownloadableFile"/> into <see cref="AppUpdateException"/>.
     /// </summary>
-    internal class SafeDownloadableFile : IDownloadableFile
+    public class SafeDownloadableFile : IDownloadableFile
     {
         private readonly IDownloadableFile _origin;
 

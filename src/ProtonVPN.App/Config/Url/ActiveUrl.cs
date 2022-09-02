@@ -25,7 +25,7 @@ using System.Web;
 
 namespace ProtonVPN.Config.Url
 {
-    internal class ActiveUrl : IActiveUrl
+    public class ActiveUrl : IActiveUrl
     {
         private readonly IOsProcesses _processes;
         private string _url;

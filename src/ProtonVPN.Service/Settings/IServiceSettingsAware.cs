@@ -21,7 +21,7 @@ using ProtonVPN.Service.Contract.Settings;
 
 namespace ProtonVPN.Service.Settings
 {
-    internal interface IServiceSettingsAware
+    public interface IServiceSettingsAware
     {
         void OnServiceSettingsChanged(SettingsContract settings);
     }

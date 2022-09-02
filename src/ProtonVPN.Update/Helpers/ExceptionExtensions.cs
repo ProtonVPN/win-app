@@ -24,7 +24,7 @@ using System.Net.Sockets;
 
 namespace ProtonVPN.Update.Helpers
 {
-    internal static class ExceptionExtensions
+    public static class ExceptionExtensions
     {
         public static bool IsCommunicationException(this Exception ex)
         {

@@ -26,7 +26,7 @@ namespace ProtonVPN.Update.Updates
     /// <summary>
     /// Suppresses and logs expected exceptions of <see cref="AppUpdates"/>.
     /// </summary>
-    internal class SafeAppUpdates : IAppUpdates
+    public class SafeAppUpdates : IAppUpdates
     {
         private readonly ILogger _logger;
         private readonly IAppUpdates _origin;

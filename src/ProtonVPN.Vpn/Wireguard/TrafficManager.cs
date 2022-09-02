@@ -29,7 +29,7 @@ using ProtonVPN.WireGuardDriver;
 
 namespace ProtonVPN.Vpn.WireGuard
 {
-    internal class TrafficManager
+    public class TrafficManager
     {
         private readonly string _adapterName;
         private readonly SingleAction _updateBytesTransferredAction;

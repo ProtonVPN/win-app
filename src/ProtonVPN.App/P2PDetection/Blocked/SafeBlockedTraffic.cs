@@ -25,7 +25,7 @@ namespace ProtonVPN.P2PDetection.Blocked
     /// <summary>
     /// Suppresses exceptions specific to <see cref="BlockedTraffic"/>.
     /// </summary>
-    internal class SafeBlockedTraffic : IBlockedTraffic
+    public class SafeBlockedTraffic : IBlockedTraffic
     {
         private readonly IBlockedTraffic _origin;
 

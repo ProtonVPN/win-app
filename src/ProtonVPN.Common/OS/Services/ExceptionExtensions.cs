@@ -22,7 +22,7 @@ using System.ComponentModel;
 
 namespace ProtonVPN.Common.OS.Services
 {
-    internal static class ExceptionExtensions
+    public static class ExceptionExtensions
     {
         private const int ServiceAlreadyRunning = 1056;
         private const int ServiceNotRunning = 1062;

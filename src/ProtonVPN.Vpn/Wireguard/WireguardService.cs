@@ -26,7 +26,7 @@ using ProtonVPN.Common.OS.Services;
 
 namespace ProtonVPN.Vpn.WireGuard
 {
-    internal class WireGuardService : IService
+    public class WireGuardService : IService
     {
         private readonly ILogger _logger;
         private readonly ProtonVPN.Common.Configuration.Config _config;

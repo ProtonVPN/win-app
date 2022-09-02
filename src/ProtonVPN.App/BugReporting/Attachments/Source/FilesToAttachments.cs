@@ -23,7 +23,7 @@ using System.Linq;
 
 namespace ProtonVPN.BugReporting.Attachments.Source
 {
-    internal class FilesToAttachments : IEnumerable<Attachment>
+    public class FilesToAttachments : IEnumerable<Attachment>
     {
         private readonly IEnumerable<string> _source;
 

@@ -22,7 +22,7 @@ using ProtonVPN.Common.OS.Registry;
 
 namespace ProtonVPN.Core.Startup
 {
-    internal class AutoStartup : IAutoStartup
+    public class AutoStartup : IAutoStartup
     {
         private readonly IStartupRecord _startupRecord;
 
@@ -33,7 +33,7 @@ namespace ProtonVPN.Core.Startup
         {
         }
 
-        internal AutoStartup(IStartupRecord startupRecord)
+        public AutoStartup(IStartupRecord startupRecord)
         {
             _startupRecord = startupRecord;
         }
@@ -49,7 +49,9 @@ namespace ProtonVPN.Core.Startup
             if (value)
             {
                 if (!_startupRecord.Exists())
+                {
                     _startupRecord.Create();
+                }
                 else if (!_startupRecord.Valid())
                 {
                     _startupRecord.Remove();
@@ -59,7 +61,9 @@ namespace ProtonVPN.Core.Startup
             else
             {
                 if (_startupRecord.Exists())
+                {
                     _startupRecord.Remove();
+                }
             }
         }
     }

@@ -22,7 +22,7 @@ using ProtonVPN.Translations;
 
 namespace ProtonVPN.Modals.Dialogs
 {
-    internal class Dialogs : IDialogs
+    public class Dialogs : IDialogs
     {
         private readonly IModals _modals;
         private readonly QuestionModalViewModel _questionViewModel;

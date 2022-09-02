@@ -35,7 +35,7 @@ using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.UserLogs;
 using ProtonVPN.Core.Settings;
-using ProtonVPN.Test.Common.Breakpoints;
+using ProtonVPN.Tests.Common.Breakpoints;
 using RichardSzalay.MockHttp;
 
 namespace ProtonVPN.Api.Tests.Handlers

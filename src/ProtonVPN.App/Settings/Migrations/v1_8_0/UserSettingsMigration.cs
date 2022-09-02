@@ -21,7 +21,7 @@ using ProtonVPN.Core.Storage;
 
 namespace ProtonVPN.Settings.Migrations.v1_8_0
 {
-    internal class UserSettingsMigration : BaseUserSettingsMigration
+    public class UserSettingsMigration : BaseUserSettingsMigration
     {
         private ISettingsStorage AppSettings { get; }
 

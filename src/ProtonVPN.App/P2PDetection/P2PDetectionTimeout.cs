@@ -24,7 +24,7 @@ namespace ProtonVPN.P2PDetection
     /// <summary>
     /// Calculates P2P detection timeout value from P2P detection interval.
     /// </summary>
-    internal class P2PDetectionTimeout
+    public class P2PDetectionTimeout
     {
         private readonly TimeSpan _interval;
 

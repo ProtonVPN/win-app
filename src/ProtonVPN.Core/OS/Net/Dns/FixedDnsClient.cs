@@ -37,7 +37,7 @@ namespace ProtonVPN.Core.OS.Net.Dns
     {
         private readonly ILookupClient _lookupClient;
 
-        internal FixedDnsClient(ILookupClient lookupClient)
+        public FixedDnsClient(ILookupClient lookupClient)
         {
             Ensure.NotNull(lookupClient, nameof(lookupClient));
 

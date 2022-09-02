@@ -27,7 +27,7 @@ namespace ProtonVPN.Vpn.Management
     /// <summary>
     /// Parses an error message received from OpenVPN management interface.
     /// </summary>
-    internal class ManagementError
+    public class ManagementError
     {
         private static readonly Dictionary<VpnError, Predicate<string>> ErrorMap = new()
         {

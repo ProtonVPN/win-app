@@ -27,7 +27,7 @@ using ProtonVPN.Common.Extensions;
 
 namespace ProtonVPN.BugReporting.Diagnostic
 {
-    internal class InstalledAppsLog : BaseLog
+    public class InstalledAppsLog : BaseLog
     {
         private const string UninstallRegistryPath = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall";
         private const string WowUninstallRegistryPath = @"SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall";

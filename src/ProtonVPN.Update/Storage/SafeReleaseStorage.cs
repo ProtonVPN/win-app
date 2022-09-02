@@ -29,7 +29,7 @@ namespace ProtonVPN.Update.Storage
     /// <summary>
     /// Wraps expected exceptions of <see cref="WebReleaseStorage"/> into <see cref="AppUpdateException"/>.
     /// </summary>
-    internal class SafeReleaseStorage : IReleaseStorage
+    public class SafeReleaseStorage : IReleaseStorage
     {
         private readonly IReleaseStorage _storage;
 

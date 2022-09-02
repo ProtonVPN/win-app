@@ -23,7 +23,7 @@ using System.Text.RegularExpressions;
 
 namespace ProtonVPN.BugReporting
 {
-    internal class EmailValidator
+    public class EmailValidator
     {
         public static bool IsValid(string email)
         {

@@ -23,7 +23,7 @@ using ProtonVPN.Update.Releases;
 
 namespace ProtonVPN.Update.Storage
 {
-    internal interface IReleaseStorage
+    public interface IReleaseStorage
     {
         Task<IEnumerable<Release>> Releases();
     }

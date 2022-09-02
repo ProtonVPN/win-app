@@ -21,7 +21,7 @@ using System;
 
 namespace ProtonVPN.Vpn.SynchronizationEvent
 {
-    internal interface ISynchronizationEvent : IDisposable
+    public interface ISynchronizationEvent : IDisposable
     {
         void Set();
 

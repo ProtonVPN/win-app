@@ -95,13 +95,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\test\ProtonVPN.Test.Common\ProtonVPN.Test.Common.csproj">
-      <Project>{A0DA4200-6643-4F2C-8450-65B8CE8A5576}</Project>
-      <Name>ProtonVPN.Test.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Dns\ProtonVPN.Dns.Contracts\ProtonVPN.Dns.Contracts.csproj">
       <Project>{455DA1FB-5097-47D2-8603-B0E1F9D90294}</Project>
       <Name>ProtonVPN.Dns.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Tests\ProtonVPN.Tests.Common\ProtonVPN.Tests.Common.csproj">
+      <Project>{a0da4200-6643-4f2c-8450-65b8ce8a5576}</Project>
+      <Name>ProtonVPN.Tests.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\ProtonVPN.Api.Contracts\ProtonVPN.Api.Contracts.csproj">
       <Project>{9E4D6072-C8DE-475A-B9A7-4B6BF6EEEAEB}</Project>

@@ -25,7 +25,7 @@ namespace ProtonVPN.Vpn.Management
     /// <summary>
     /// Gets available TCP port from network stack for OpenVPN management interface.
     /// </summary>
-    internal class OpenVpnManagementPorts
+    public class OpenVpnManagementPorts
     {
         private readonly IPEndPoint _loopbackEndpoint = new(IPAddress.Loopback, port: 0);
 

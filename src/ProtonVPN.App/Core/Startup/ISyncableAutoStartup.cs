@@ -19,7 +19,7 @@
 
 namespace ProtonVPN.Core.Startup
 {
-    internal interface ISyncableAutoStartup
+    public interface ISyncableAutoStartup
     {
         void Sync();
     }

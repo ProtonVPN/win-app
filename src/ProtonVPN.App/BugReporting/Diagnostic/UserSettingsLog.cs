@@ -28,7 +28,7 @@ using ProtonVPN.Core.Settings;
 
 namespace ProtonVPN.BugReporting.Diagnostic
 {
-    internal class UserSettingsLog : BaseLog, ILoggedInAware, ILogoutAware
+    public class UserSettingsLog : BaseLog, ILoggedInAware, ILogoutAware
     {
         private readonly IAppSettings _appSettings;
         private bool _isUserLoggedIn;

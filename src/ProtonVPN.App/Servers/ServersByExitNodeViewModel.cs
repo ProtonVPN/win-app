@@ -27,7 +27,7 @@ using System.Collections.ObjectModel;
 
 namespace ProtonVPN.Servers
 {
-    internal class ServersByExitNodeViewModel : BaseServerCollection
+    public class ServersByExitNodeViewModel : BaseServerCollection
     {
         private readonly sbyte _userTier;
         private readonly ServerManager _serverManager;
