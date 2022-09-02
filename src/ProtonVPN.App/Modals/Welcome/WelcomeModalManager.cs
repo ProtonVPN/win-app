@@ -49,7 +49,7 @@ namespace ProtonVPN.Modals.Welcome
 
         public void Load()
         {
-            User user = _userStorage.User();
+            User user = _userStorage.GetUser();
             if (WelcomeModalHasToBeShown())
             {
                 ShowWelcomeModal();
@@ -58,7 +58,7 @@ namespace ProtonVPN.Modals.Welcome
             {
                 ShowRebrandingPopup();
             }
-            else if (!user.Paid() && !_userStorage.User().IsDelinquent())
+            else if (!user.Paid() && !_userStorage.GetUser().IsDelinquent())
             {
                 ShowUpsellModal();
             }

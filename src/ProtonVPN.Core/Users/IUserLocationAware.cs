@@ -17,18 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Core.User
+using System.Threading.Tasks;
+
+namespace ProtonVPN.Core.Users
 {
-    public class UserLocationEventArgs
+    public interface IUserLocationAware
     {
-        public UserLocationEventArgs(UserLocationState state, UserLocation location)
-        {
-            State = state;
-            Location = location;
-        }
-
-        public UserLocationState State { get; }
-
-        public UserLocation Location { get; }
+        Task OnUserLocationChanged(UserLocationEventArgs location);
     }
 }

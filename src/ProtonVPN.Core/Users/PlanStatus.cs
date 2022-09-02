@@ -17,10 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Core.User
+namespace ProtonVPN.Core.Users
 {
-    public interface IUserDataAware
+    public enum PlanStatus
     {
-        void OnUserDataChanged();
+        Free,
+        Paid,
     }
 }

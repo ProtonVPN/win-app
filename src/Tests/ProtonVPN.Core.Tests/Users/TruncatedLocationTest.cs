@@ -21,9 +21,9 @@ using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using ProtonVPN.Core.Settings;
-using ProtonVPN.Core.User;
+using ProtonVPN.Core.Users;
 
-namespace ProtonVPN.Core.Tests.User
+namespace ProtonVPN.Core.Tests.Users
 {
     [TestClass]
     public class TruncatedLocationTest
@@ -43,7 +43,7 @@ namespace ProtonVPN.Core.Tests.User
         {
             // Arrange
             UserLocation userLocation = new(ip, "ISP", "ZZ");
-            _userStorage.Location().Returns(userLocation);
+            _userStorage.GetLocation().Returns(userLocation);
             TruncatedLocation location = new(_userStorage);
 
             // Act
@@ -58,7 +58,7 @@ namespace ProtonVPN.Core.Tests.User
         {
             // Arrange
             UserLocation userLocation = new(null, "ISP", "ZZ");
-            _userStorage.Location().Returns(userLocation);
+            _userStorage.GetLocation().Returns(userLocation);
             TruncatedLocation location = new(_userStorage);
 
             // Act
@@ -73,7 +73,7 @@ namespace ProtonVPN.Core.Tests.User
         {
             // Arrange
             UserLocation userLocation = new(string.Empty, "ISP", "ZZ");
-            _userStorage.Location().Returns(userLocation);
+            _userStorage.GetLocation().Returns(userLocation);
             TruncatedLocation location = new(_userStorage);
 
             // Act

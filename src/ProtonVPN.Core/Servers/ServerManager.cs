@@ -104,7 +104,7 @@ namespace ProtonVPN.Core.Servers
         public IReadOnlyCollection<Server> GetServers(ISpecification<LogicalServerResponse> spec, 
             Features orderBy = Features.None)
         {
-            sbyte userTier = _userStorage.User().MaxTier;
+            sbyte userTier = _userStorage.GetUser().MaxTier;
 
             return _servers
                 .Where(spec.IsSatisfiedBy)

@@ -34,6 +34,7 @@ using ProtonVPN.Api.Tests.Mocks;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.UserLogs;
+using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Tests.Common.Breakpoints;
 using RichardSzalay.MockHttp;
@@ -80,7 +81,7 @@ namespace ProtonVPN.Api.Tests.Handlers
             _appSettings.Uid.Returns("User ID");
 
             _userStorage = Substitute.For<IUserStorage>();
-            _userStorage.User().Returns(new Core.Models.User { Username = "test" });
+            _userStorage.GetUser().Returns(new User { Username = "test" });
 
             _logger = Substitute.For<ILogger>();
 

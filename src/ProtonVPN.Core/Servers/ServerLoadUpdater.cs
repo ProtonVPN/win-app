@@ -26,7 +26,7 @@ using ProtonVPN.Api.Contracts.Servers;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Core.Auth;
-using ProtonVPN.Core.User;
+using ProtonVPN.Core.Users;
 using ProtonVPN.Core.Windows;
 
 namespace ProtonVPN.Core.Servers

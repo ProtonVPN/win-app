@@ -38,7 +38,7 @@ namespace ProtonVPN.Core.Auth
 
         public async Task<AuthResult> GetValidateResult()
         {
-            if (!_userStorage.User().VpnPlan.IsNullOrEmpty())
+            if (!_userStorage.GetUser().VpnPlan.IsNullOrEmpty())
             {
                 return AuthResult.Ok();
             }

@@ -28,7 +28,7 @@ using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Servers.Models;
 using ProtonVPN.Core.Servers.Specs;
 using ProtonVPN.Core.Settings;
-using ProtonVPN.Core.User;
+using ProtonVPN.Core.Users;
 using ProtonVPN.Modals.Upsell;
 using ProtonVPN.Profiles.Servers;
 using Profile = ProtonVPN.Core.Profiles.Profile;
@@ -177,7 +177,7 @@ namespace ProtonVPN.Profiles.Form
         {
             Specification<LogicalServerResponse> spec = new ServerByFeatures(GetFeatures()) &&
                                                         new ExitCountryServer(countryCode) &&
-                                                        new MaxTierServer(UserStorage.User().MaxTier);
+                                                        new MaxTierServer(UserStorage.GetUser().MaxTier);
 
             return !ServerManager.GetServers(spec).Any();
         }

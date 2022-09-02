@@ -175,7 +175,7 @@ namespace ProtonVPN.Settings
             get => _appSettings.AllowNonStandardPorts;
             set
             {
-                if (value && !_userStorage.User().Paid())
+                if (value && !_userStorage.GetUser().Paid())
                 {
                     _modals.Show<NonStandardPortsUpsellModalViewModel>();
                     return;
@@ -193,7 +193,7 @@ namespace ProtonVPN.Settings
             get => _appSettings.ModerateNat;
             set
             {
-                if (value && !_userStorage.User().Paid())
+                if (value && !_userStorage.GetUser().Paid())
                 {
                     _modals.Show<ModerateNatUpsellModalViewModel>();
                     return;

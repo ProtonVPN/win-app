@@ -47,7 +47,7 @@ using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Startup;
 using ProtonVPN.Core.Storage;
-using ProtonVPN.Core.User;
+using ProtonVPN.Core.Users;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Core.Windows;
 using ProtonVPN.Core.Windows.Popups;

@@ -83,7 +83,7 @@ namespace ProtonVPN.Modals
         }
 
         public bool ShowUpgrade => Error == VpnError.SessionLimitReached &&
-                                   _userStorage.User().MaxTier < ServerTiers.Plus;
+                                   _userStorage.GetUser().MaxTier < ServerTiers.Plus;
 
         public bool NetworkBlocked
         {

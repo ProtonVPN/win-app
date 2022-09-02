@@ -25,6 +25,7 @@ using ProtonVPN.Api.Contracts.Servers;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Core.Abstract;
+using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Settings;
 
@@ -58,7 +59,7 @@ namespace ProtonVPN.Core.Tests.Servers
         {
             // Arrange
             _appSettings.GetProtocol().Returns(VpnProtocol.WireGuard);
-            _userStorage.User().Returns(new Core.Models.User {MaxTier = 0});
+            _userStorage.GetUser().Returns(new User {MaxTier = 0});
             ServerManager serverManager = new ServerManager(_userStorage, _appSettings, _logger);
 
             // Act

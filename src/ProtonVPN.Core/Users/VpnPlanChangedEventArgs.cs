@@ -17,11 +17,24 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Core.User
+using ProtonVPN.Common.Extensions;
+
+namespace ProtonVPN.Core.Users
 {
-    public enum PlanStatus
+    public class VpnPlanChangedEventArgs
     {
-        Free,
-        Paid,
+        public string OldVpnPlan { get; }
+        public string NewVpnPlan { get; }
+        public bool IsDowngrade { get; }
+
+        public VpnPlanChangedEventArgs(string oldVpnPlan, string newVpnPlan)
+        {
+            OldVpnPlan = oldVpnPlan;
+            NewVpnPlan = newVpnPlan;
+            IsDowngrade = !oldVpnPlan.IsNullOrEmpty() &&
+                          oldVpnPlan != newVpnPlan && (
+                              (newVpnPlan == "free") ||
+                              (newVpnPlan == "vpnbasic" && oldVpnPlan != "free"));
+        }
     }
 }

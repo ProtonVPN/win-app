@@ -31,7 +31,7 @@ using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Servers.Models;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
-using ProtonVPN.Core.User;
+using ProtonVPN.Core.Users;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Profiles;
 using ProtonVPN.ViewModels;
@@ -188,7 +188,7 @@ namespace ProtonVPN.QuickLaunch
                 return;
             }
 
-            SetIp(_userStorage.Location().Ip);
+            SetIp(_userStorage.GetLocation().Ip);
         }
 
         private void SetIp(string ip)

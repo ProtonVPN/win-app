@@ -30,7 +30,7 @@ using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Settings;
-using ProtonVPN.Core.User;
+using ProtonVPN.Core.Users;
 
 namespace ProtonVPN.Core.Announcements
 {

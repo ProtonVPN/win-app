@@ -101,7 +101,7 @@ namespace ProtonVPN.App.Tests.Vpn.Connectors
             {
                 MaxTier = ServerTiers.Plus
             };
-            _userStorage.User().Returns(user);
+            _userStorage.GetUser().Returns(user);
         }
 
         private Result<VpnCredentials> GetVpnCredentials()

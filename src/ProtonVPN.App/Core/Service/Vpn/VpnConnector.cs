@@ -188,7 +188,7 @@ namespace ProtonVPN.Core.Service.Vpn
 
         public void OnVpnStateChanged(VpnStateChangedEventArgs e)
         {
-            if (_guestHoleState.Active || _userStorage.User().Empty())
+            if (_guestHoleState.Active || _userStorage.GetUser().Empty())
             {
                 return;
             }
