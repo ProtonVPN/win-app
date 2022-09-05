@@ -117,6 +117,30 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="About_UpdateStatus_val_CheckFailed">
+    <value>Falha ao procurar actualizações</value>
+    <comment>The app update status in About window</comment>
+  </data>
+  <data name="About_UpdateStatus_val_Checking">
+    <value>A procurar actualizações</value>
+    <comment>The app update status in About window</comment>
+  </data>
+  <data name="About_UpdateStatus_val_DownloadFailed">
+    <value>Falha ao transferir a actualização</value>
+    <comment>The app update status in About window</comment>
+  </data>
+  <data name="About_UpdateStatus_val_Downloading">
+    <value>A transferir actualização</value>
+    <comment>The app update status in About window</comment>
+  </data>
+  <data name="About_UpdateStatus_val_None">
+    <value>O Proton VPN está actualizado</value>
+    <comment>The app update status in About window</comment>
+  </data>
+  <data name="About_UpdateStatus_val_Ready">
+    <value>Nova versão disponível!</value>
+    <comment>The app update status in About window</comment>
+  </data>
   <data name="About_lbl_ChangelogVersion">
     <value>Diário de alterações da v.{0}</value>
     <comment>The title of app version in change log in About window. The {0} is a placeholder for app version number.</comment>
@@ -153,30 +177,6 @@
     <value>Acerca</value>
     <comment>The title of About window</comment>
   </data>
-  <data name="About_UpdateStatus_val_CheckFailed">
-    <value>Falha ao procurar actualizações</value>
-    <comment>The app update status in About window</comment>
-  </data>
-  <data name="About_UpdateStatus_val_Checking">
-    <value>A procurar actualizações</value>
-    <comment>The app update status in About window</comment>
-  </data>
-  <data name="About_UpdateStatus_val_DownloadFailed">
-    <value>Falha ao transferir a actualização</value>
-    <comment>The app update status in About window</comment>
-  </data>
-  <data name="About_UpdateStatus_val_Downloading">
-    <value>A transferir actualização</value>
-    <comment>The app update status in About window</comment>
-  </data>
-  <data name="About_UpdateStatus_val_None">
-    <value>O Proton VPN está actualizado</value>
-    <comment>The app update status in About window</comment>
-  </data>
-  <data name="About_UpdateStatus_val_Ready">
-    <value>Nova versão disponível!</value>
-    <comment>The app update status in About window</comment>
-  </data>
   <data name="Account_btn_ManageSubscription">
     <value>Gerir subscrição</value>
     <comment>The text on Manage subscription button in Account window (opens account management web page)</comment>
@@ -209,12 +209,6 @@
   <data name="Account_lbl_Countries_One">
     <value>em &lt;Bold&gt;{0}&lt;/Bold&gt; país</value>
   </data>
-  <data name="Account_lbl_Country_One">
-    <value>País</value>
-  </data>
-  <data name="Account_lbl_Country_Other">
-    <value>Países</value>
-  </data>
   <data name="Account_lbl_CurrentPlan">
     <value>Plano actual</value>
   </data>
@@ -228,12 +222,12 @@
     <value>Proton VPN Free</value>
     <comment>The name of VPN subscription plan</comment>
   </data>
-  <data name="Account_lbl_HighestSpeed">
-    <value>Velocidade &lt;Bold&gt;máxima&lt;/Bold&gt; (até 10 Gbps)</value>
-    <comment>The text displayed in Account window</comment>
-  </data>
   <data name="Account_lbl_HighSpeed">
     <value>&lt;Bold&gt;Alta&lt;/Bold&gt; velocidade</value>
+    <comment>The text displayed in Account window</comment>
+  </data>
+  <data name="Account_lbl_HighestSpeed">
+    <value>Velocidade &lt;Bold&gt;máxima&lt;/Bold&gt; (até 10 Gbps)</value>
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_MediumSpeed">
@@ -417,10 +411,6 @@
   <data name="BugReport_lbl_NewVersionInfo">
     <value>This version of Proton VPN might have already solved your issue!</value>
   </data>
-  <data name="BugReport_lbl_of">
-    <value>of</value>
-    <comment>The text displayed in report an issue form. For example: Step 1 of 3.</comment>
-  </data>
   <data name="BugReport_lbl_QuickSolutions">
     <value>Correcções rápidas</value>
   </data>
@@ -429,6 +419,14 @@
   </data>
   <data name="BugReport_lbl_Step">
     <value>Passo</value>
+  </data>
+  <data name="BugReport_lbl_Username">
+    <value>Username</value>
+    <comment>The label for the username in Issue Report window</comment>
+  </data>
+  <data name="BugReport_lbl_UsernamePlaceholder">
+    <value>Your Proton username, in case you already have an account.</value>
+    <comment>The watermark text displayed in empty username text box in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_WhatIsTheIssue">
     <value>Qual é o problema?</value>
@@ -439,6 +437,10 @@
   </data>
   <data name="BugReport_lbl_WillGetBack">
     <value>Contactaremos de volta o mais rapidamente possível.</value>
+  </data>
+  <data name="BugReport_lbl_of">
+    <value>of</value>
+    <comment>The text displayed in report an issue form. For example: Step 1 of 3.</comment>
   </data>
   <data name="BugReport_msg_EmailNotValid">
     <value>Email inválido</value>
@@ -462,6 +464,30 @@
   <data name="BugReport_ttl">
     <value>Reportar um problema</value>
     <comment>The title of Issue Report window</comment>
+  </data>
+  <data name="Connecting_VpnStatus_val_AssigningIp">
+    <value>A atribuir o IP</value>
+    <comment>The VPN status displayed in Connecting overlay of main app window</comment>
+  </data>
+  <data name="Connecting_VpnStatus_val_Authenticating">
+    <value>A autenticar o utilizador</value>
+    <comment>The VPN status displayed in Connecting overlay of main app window</comment>
+  </data>
+  <data name="Connecting_VpnStatus_val_Connecting">
+    <value>A inicializar ligação</value>
+    <comment>The VPN status displayed in Connecting overlay of main app window</comment>
+  </data>
+  <data name="Connecting_VpnStatus_val_Pinging">
+    <value>A aguardar por uma rede utilizável...</value>
+    <comment>The VPN status displayed in Pinging overlay of main app window</comment>
+  </data>
+  <data name="Connecting_VpnStatus_val_RetrievingConfiguration">
+    <value>A estabelecer o túnel VPN</value>
+    <comment>The VPN status displayed in Connecting overlay of main app window</comment>
+  </data>
+  <data name="Connecting_VpnStatus_val_Waiting">
+    <value>A inicializar ligação</value>
+    <comment>The VPN status displayed in Connecting overlay of main app window</comment>
   </data>
   <data name="Connecting_btn_Cancel">
     <value>Cancelar</value>
@@ -502,30 +528,6 @@
   <data name="Connecting_lbl_FailedConnection_2_SecureCore">
     <value>falhou</value>
     <comment>The end of text for Secure Core VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text after imaginary placeholder {0} in the text string "The {0} connection has failed". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
-  </data>
-  <data name="Connecting_VpnStatus_val_AssigningIp">
-    <value>A atribuir o IP</value>
-    <comment>The VPN status displayed in Connecting overlay of main app window</comment>
-  </data>
-  <data name="Connecting_VpnStatus_val_Authenticating">
-    <value>A autenticar o utilizador</value>
-    <comment>The VPN status displayed in Connecting overlay of main app window</comment>
-  </data>
-  <data name="Connecting_VpnStatus_val_Connecting">
-    <value>A inicializar ligação</value>
-    <comment>The VPN status displayed in Connecting overlay of main app window</comment>
-  </data>
-  <data name="Connecting_VpnStatus_val_Pinging">
-    <value>A aguardar por uma rede utilizável...</value>
-    <comment>The VPN status displayed in Pinging overlay of main app window</comment>
-  </data>
-  <data name="Connecting_VpnStatus_val_RetrievingConfiguration">
-    <value>A estabelecer o túnel VPN</value>
-    <comment>The VPN status displayed in Connecting overlay of main app window</comment>
-  </data>
-  <data name="Connecting_VpnStatus_val_Waiting">
-    <value>A inicializar ligação</value>
-    <comment>The VPN status displayed in Connecting overlay of main app window</comment>
   </data>
   <data name="Country_val_AD">
     <value>Andorra</value>
@@ -1551,39 +1553,9 @@
 Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these"/&gt;&lt;/Hyperlink&gt; instructions to enable it again and retry.</value>
     <comment>The text on Base Filtering Engine dialog window</comment>
   </data>
-  <data name="Dialogs_btn_Cancel">
-    <value>Cancelar</value>
-    <comment>The text on Cancel button in dialog windows</comment>
-  </data>
-  <data name="Dialogs_btn_Close">
-    <value>Fechar</value>
-    <comment>The text on Close button in dialog windows</comment>
-  </data>
-  <data name="Dialogs_btn_Continue">
-    <value>Continuar</value>
-    <comment>The text on Continue button in dialog windows</comment>
-  </data>
-  <data name="Dialogs_btn_Enable">
-    <value>Activar</value>
-  </data>
-  <data name="Dialogs_btn_NoThanks">
-    <value>Não, obrigado</value>
-    <comment>The text on NoThanks button in dialog windows</comment>
-  </data>
-  <data name="Dialogs_btn_Ok">
-    <value>Aceitar</value>
-  </data>
-  <data name="Dialogs_Delinquency_btn_Invoices">
-    <value>Verificar facturas</value>
-    <comment>The text on invoices button in the Delinquency window (opens web page for invoice payment)</comment>
-  </data>
   <data name="Dialogs_Delinquency_GoToBilling">
     <value>Actualizar a minha facturação</value>
     <comment>The "go to billing website" button text in the Delinquency window</comment>
-  </data>
-  <data name="Dialogs_Delinquency_msg">
-    <value>The account is flagged as delinquent due to unpaid invoices. You can continue to use Proton VPN, but any paid features are now disabled.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadAboutDelinquencyCommand}"&gt;Read more about delinquency.&lt;/Hyperlink&gt;</value>
-    <comment>The message displayed in the Delinquency window. The codes between &lt; and &gt; should be kept as is (Do not forget to translate the inner "Read more about delinquency.").</comment>
   </data>
   <data name="Dialogs_Delinquency_Reconnected_Subtitle">
     <value>Poderá aceder novamente a funcionalidades premium depois de estas serem pagas. Por agora, estamos de novo a ligar ao servidor de plano FREE mais rápido disponível.</value>
@@ -1596,6 +1568,14 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="Dialogs_Delinquency_Title">
     <value>A sua conta VPN tem facturas pendentes</value>
     <comment>The title of the Delinquency window</comment>
+  </data>
+  <data name="Dialogs_Delinquency_btn_Invoices">
+    <value>Verificar facturas</value>
+    <comment>The text on invoices button in the Delinquency window (opens web page for invoice payment)</comment>
+  </data>
+  <data name="Dialogs_Delinquency_msg">
+    <value>The account is flagged as delinquent due to unpaid invoices. You can continue to use Proton VPN, but any paid features are now disabled.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadAboutDelinquencyCommand}"&gt;Read more about delinquency.&lt;/Hyperlink&gt;</value>
+    <comment>The message displayed in the Delinquency window. The codes between &lt; and &gt; should be kept as is (Do not forget to translate the inner "Read more about delinquency.").</comment>
   </data>
   <data name="Dialogs_Delinquency_ttl">
     <value>Conta delinquente</value>
@@ -1780,22 +1760,14 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="Dialogs_Reboot_ttl">
     <value>O seu computador precisa de ser reiniciado</value>
   </data>
-  <data name="Dialogs_Rebranding_btn_GotIt_new_plans">
-    <value>Got it</value>
-  </data>
   <data name="Dialogs_Rebranding_Subtitle_new_plans">
     <value>Introducing Proton’s refreshed look. Many services, one mission. Welcome to an internet where privacy is the default.  &lt;Hyperlink Command="{Binding LearnMoreCommand}"&gt;Learn more&lt;/Hyperlink&gt;</value>
   </data>
   <data name="Dialogs_Rebranding_Title_new_plans">
     <value>Updated Proton, unified protection</value>
   </data>
-  <data name="Dialogs_reconnection_FromServer">
-    <value>Do servidor:</value>
-    <comment>The label for the previous server in dialog windows</comment>
-  </data>
-  <data name="Dialogs_reconnection_ToServer">
-    <value>Para o servidor:</value>
-    <comment>The label for the new server in dialog windows</comment>
+  <data name="Dialogs_Rebranding_btn_GotIt_new_plans">
+    <value>Got it</value>
   </data>
   <data name="Dialogs_SplitTunnelWarning_msg">
     <value>Para o Split Tunneling funcionar adequadamente, tem de desligar o Kill Switch.</value>
@@ -1884,6 +1856,42 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>&lt;Bold&gt;Ainda não foi possível encontrar uma solução&lt;/Bold&gt; - contacte-nos directamente através do nosso &lt;Hyperlink Command="{Binding SupportFormCommand}"&gt;formulário de suporte&lt;/Hyperlink&gt;, email (support@protonvpn.com) ou &lt;Hyperlink Command="{Binding ProtonTwitterCommand}"&gt;Twitter&lt;/Hyperlink&gt;.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
+  <data name="Dialogs_TunInUse_btn_SwitchToTap">
+    <value>Mudar para TAP</value>
+  </data>
+  <data name="Dialogs_TunInUse_msg">
+    <value>Proton VPN could not connect because the TUN network adapter is already in use. Please disconnect any active VPNs and retry. Alternatively, switch to the TAP adapter (you can change back to TUN in the Advanced Settings).</value>
+  </data>
+  <data name="Dialogs_btn_Cancel">
+    <value>Cancelar</value>
+    <comment>The text on Cancel button in dialog windows</comment>
+  </data>
+  <data name="Dialogs_btn_Close">
+    <value>Fechar</value>
+    <comment>The text on Close button in dialog windows</comment>
+  </data>
+  <data name="Dialogs_btn_Continue">
+    <value>Continuar</value>
+    <comment>The text on Continue button in dialog windows</comment>
+  </data>
+  <data name="Dialogs_btn_Enable">
+    <value>Activar</value>
+  </data>
+  <data name="Dialogs_btn_NoThanks">
+    <value>Não, obrigado</value>
+    <comment>The text on NoThanks button in dialog windows</comment>
+  </data>
+  <data name="Dialogs_btn_Ok">
+    <value>Aceitar</value>
+  </data>
+  <data name="Dialogs_reconnection_FromServer">
+    <value>Do servidor:</value>
+    <comment>The label for the previous server in dialog windows</comment>
+  </data>
+  <data name="Dialogs_reconnection_ToServer">
+    <value>Para o servidor:</value>
+    <comment>The label for the new server in dialog windows</comment>
+  </data>
   <data name="Dialogs_ttl_Question">
     <value>Atenção</value>
     <comment>The title of question message window</comment>
@@ -1891,12 +1899,6 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="Dialogs_ttl_Warning">
     <value>Atenção</value>
     <comment>The title of warning message window</comment>
-  </data>
-  <data name="Dialogs_TunInUse_btn_SwitchToTap">
-    <value>Mudar para TAP</value>
-  </data>
-  <data name="Dialogs_TunInUse_msg">
-    <value>Proton VPN could not connect because the TUN network adapter is already in use. Please disconnect any active VPNs and retry. Alternatively, switch to the TAP adapter (you can change back to TUN in the Advanced Settings).</value>
   </data>
   <data name="ErrorWindow_lbl_Close">
     <value>Fechar</value>
@@ -1926,13 +1928,6 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Licença</value>
     <comment>The title of License window</comment>
   </data>
-  <data name="Login_btn_Authenticate">
-    <value>Authenticate</value>
-  </data>
-  <data name="Login_btn_Login">
-    <value>Iniciar sessão</value>
-    <comment>The text on Login button in Login window (logs in the user)</comment>
-  </data>
   <data name="Login_Error_msg_SessionExpired">
     <value>A sua sessão expirou. Por favor reinicie-a.</value>
     <comment>The message displayed in Login window when expired session is detected</comment>
@@ -1944,6 +1939,13 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="Login_Error_msg_Unknown">
     <value>Erro desconhecido</value>
     <comment>The description of error displayed in Login window</comment>
+  </data>
+  <data name="Login_btn_Authenticate">
+    <value>Authenticate</value>
+  </data>
+  <data name="Login_btn_Login">
+    <value>Iniciar sessão</value>
+    <comment>The text on Login button in Login window (logs in the user)</comment>
   </data>
   <data name="Login_lbl_KillSwitch">
     <value>O Kill Switch está activo</value>
@@ -2017,18 +2019,6 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Proton VPN</value>
     <comment>The title of Login window. Should not be converted.</comment>
   </data>
-  <data name="Map_btn_Connect">
-    <value>Ligar</value>
-    <comment>The text of Connect command in a balloon above Pin in Map (connects to the VPN)</comment>
-  </data>
-  <data name="Map_btn_Disconnect">
-    <value>Desligar</value>
-    <comment>The text of Disconnect command in a balloon above Pin in Map (disconnects from the VPN)</comment>
-  </data>
-  <data name="Map_lbl_SecureCore">
-    <value>Secure Core</value>
-    <comment>The part of text displayed in a balloon above Secure Core Pin in Map. The full text is "(Secure Core) country name".</comment>
-  </data>
   <data name="Map_SpeedGraph_lbl_DownSpeed">
     <value>Velocidade de recepção:</value>
     <comment>The label for download speed in Speed Graph on Map in main app window</comment>
@@ -2068,6 +2058,18 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="Map_VpnStatus_val_Disconnected">
     <value>DESLIGADO</value>
     <comment>The connection status displayed in the Home section of the Map in main app window when connected to VPN</comment>
+  </data>
+  <data name="Map_btn_Connect">
+    <value>Ligar</value>
+    <comment>The text of Connect command in a balloon above Pin in Map (connects to the VPN)</comment>
+  </data>
+  <data name="Map_btn_Disconnect">
+    <value>Desligar</value>
+    <comment>The text of Disconnect command in a balloon above Pin in Map (disconnects from the VPN)</comment>
+  </data>
+  <data name="Map_lbl_SecureCore">
+    <value>Secure Core</value>
+    <comment>The part of text displayed in a balloon above Secure Core Pin in Map. The full text is "(Secure Core) country name".</comment>
   </data>
   <data name="Modal_DiscourageSecureCore_ActivateSecureCore">
     <value>Activate Secure Core</value>
@@ -2213,6 +2215,144 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="ProfileConnector_msg_MissingAuthCert">
     <value>O Proton VPN falhou ao obter o certificado de autenticação devido a problemas de rede.</value>
   </data>
+  <data name="ProfileSyncStatus_val_Failed">
+    <value>Falhou</value>
+    <comment>The profile synchronization status displayed in the Profiles window</comment>
+  </data>
+  <data name="ProfileSyncStatus_val_Failed_Info">
+    <value>Falha ao sincronizar o perfil</value>
+    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
+  </data>
+  <data name="ProfileSyncStatus_val_InProgress">
+    <value>A sincronizar</value>
+    <comment>The profile synchronization status displayed in the Profiles window</comment>
+  </data>
+  <data name="ProfileSyncStatus_val_InProgress_Info">
+    <value>A sincronizar perfis</value>
+    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
+  </data>
+  <data name="ProfileSyncStatus_val_Overridden">
+    <value>Sobreposto</value>
+    <comment>The profile synchronization status displayed in the Profiles window</comment>
+  </data>
+  <data name="ProfileSyncStatus_val_Succeeded">
+    <value>Sincronizado</value>
+    <comment>The profile synchronization status displayed in the Profiles window</comment>
+  </data>
+  <data name="ProfileSyncStatus_val_Succeeded_Info">
+    <value>Alterações de perfil sincronizadas há {0} {1}</value>
+    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window. The {0} is a placeholder for number of time units, {1} - time units.</comment>
+  </data>
+  <data name="ProfileSyncStatus_val_Succeeded_Info_NoData">
+    <value>Sem alterações de perfil a sincronizar</value>
+    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
+  </data>
+  <data name="Profiles_Profile_Description_val_Fastest">
+    <value>Servidor mais rápido disponível</value>
+    <comment>The description of Fastest default profile displayed in Profiles window</comment>
+  </data>
+  <data name="Profiles_Profile_Description_val_Random">
+    <value>Servidor diferente de cada vez</value>
+    <comment>The description of Random default profile displayed in Profiles window</comment>
+  </data>
+  <data name="Profiles_Profile_Error_lbl_NotValid">
+    <value>Impossível gravar o perfil:</value>
+    <comment>The heading for list of validation errors in Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_Error_msg_ColorEmpty">
+    <value>Por favor, seleccione uma cor</value>
+    <comment>The error message displayed in Profile window when color is not selected</comment>
+  </data>
+  <data name="Profiles_Profile_Error_msg_CountryEmpty">
+    <value>Por favor, seleccione um país</value>
+    <comment>The error message displayed in Profile window when country is not selected</comment>
+  </data>
+  <data name="Profiles_Profile_Error_msg_NameEmpty">
+    <value>Por favor, seleccione um nome de perfil</value>
+    <comment>The error message displayed in Profile window when profile name is empty</comment>
+  </data>
+  <data name="Profiles_Profile_Error_msg_NameExists">
+    <value>O nome de perfil já existe</value>
+    <comment>The error message displayed in Profile window when profile name is already used by another profile</comment>
+  </data>
+  <data name="Profiles_Profile_Error_msg_NameTooLong_One">
+    <value>O comprimento máximo do nome do perfil é de {0} símbolo. Por favor, escolha um nome de perfil menor.</value>
+  </data>
+  <data name="Profiles_Profile_Error_msg_NameTooLong_Other">
+    <value>O comprimento máximo do nome do perfil é de {0} símbolos. Por favor, escolha um nome de perfil menor.</value>
+  </data>
+  <data name="Profiles_Profile_Error_msg_ServerEmpty">
+    <value>Por favor, seleccione um servidor</value>
+    <comment>The error message displayed in Profile window when server is not selected</comment>
+  </data>
+  <data name="Profiles_Profile_ExitCountry_Watermark">
+    <value>Seleccione o país de saída</value>
+    <comment>The watermark text displayed in empty Exit Country combo box in Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_Name_Watermark">
+    <value>Insira o nome do perfil</value>
+    <comment>Thw watermark text displayed in empty Name text box of Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_Name_val_Fastest">
+    <value>Mais rápida</value>
+    <comment>The name of Fastest profile</comment>
+  </data>
+  <data name="Profiles_Profile_Name_val_Random">
+    <value>Aleatória</value>
+    <comment>The name of Random profile</comment>
+  </data>
+  <data name="Profiles_Profile_btn_Discard">
+    <value>Descartar</value>
+    <comment>The text on Discard button of discard changes Question dialog opened from Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_btn_KeepEditing">
+    <value>Continuar a editar</value>
+    <comment>The text on Keep Editing button of discard changes Question dialog opened from Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_lbl_Color">
+    <value>Cor:</value>
+    <comment>The label for Color selection in Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_lbl_Country">
+    <value>País:</value>
+    <comment>The label for Country combo box in Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_lbl_Country_Watermark">
+    <value>Seleccione o país</value>
+    <comment>The watermark text displayed in empty Country combo box in Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_lbl_ExitCountry">
+    <value>País de saída:</value>
+    <comment>The label for Exit Country combo box in Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_lbl_Name">
+    <value>Nome:</value>
+    <comment>The label for Name text box in Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_lbl_Protocol">
+    <value>Protocolo:</value>
+    <comment>The label for Protocol combo box in Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_lbl_Server">
+    <value>Servidor:</value>
+    <comment>The label for Server combo box in Profiles window</comment>
+  </data>
+  <data name="Profiles_Profile_lbl_Server_Watermark">
+    <value>Seleccione o servidor</value>
+    <comment>The watermark text displayed in empty Server combo box in Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_msg_DiscardChangesConfirm">
+    <value>Há alterações de perfil por gravar.&lt;LineBreak/&gt;&lt;LineBreak/&gt;Tem a certeza de que deseja descartá-las?</value>
+    <comment>The message displayed in Question dialog when cancelling changes in Profile window.</comment>
+  </data>
+  <data name="Profiles_Profile_ttl_Create">
+    <value>Criar perfil</value>
+    <comment>The title of Profile window when creating new profile</comment>
+  </data>
+  <data name="Profiles_Profile_ttl_Edit">
+    <value>Editar perfil</value>
+    <comment>The title of Profile window when editing profile</comment>
+  </data>
   <data name="Profiles_btn_Close">
     <value>Fechar</value>
     <comment>The text on Close button in Profiles window</comment>
@@ -2265,147 +2405,9 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>De momento não há servidores disponíveis para a sua selecção. Por favor, seleccione uma opção diferente.</value>
     <comment>The message displayed when trying to connect to a country or profile with no servers available</comment>
   </data>
-  <data name="Profiles_Profile_btn_Discard">
-    <value>Descartar</value>
-    <comment>The text on Discard button of discard changes Question dialog opened from Profile window</comment>
-  </data>
-  <data name="Profiles_Profile_btn_KeepEditing">
-    <value>Continuar a editar</value>
-    <comment>The text on Keep Editing button of discard changes Question dialog opened from Profile window</comment>
-  </data>
-  <data name="Profiles_Profile_Description_val_Fastest">
-    <value>Servidor mais rápido disponível</value>
-    <comment>The description of Fastest default profile displayed in Profiles window</comment>
-  </data>
-  <data name="Profiles_Profile_Description_val_Random">
-    <value>Servidor diferente de cada vez</value>
-    <comment>The description of Random default profile displayed in Profiles window</comment>
-  </data>
-  <data name="Profiles_Profile_Error_lbl_NotValid">
-    <value>Impossível gravar o perfil:</value>
-    <comment>The heading for list of validation errors in Profile window</comment>
-  </data>
-  <data name="Profiles_Profile_Error_msg_ColorEmpty">
-    <value>Por favor, seleccione uma cor</value>
-    <comment>The error message displayed in Profile window when color is not selected</comment>
-  </data>
-  <data name="Profiles_Profile_Error_msg_CountryEmpty">
-    <value>Por favor, seleccione um país</value>
-    <comment>The error message displayed in Profile window when country is not selected</comment>
-  </data>
-  <data name="Profiles_Profile_Error_msg_NameEmpty">
-    <value>Por favor, seleccione um nome de perfil</value>
-    <comment>The error message displayed in Profile window when profile name is empty</comment>
-  </data>
-  <data name="Profiles_Profile_Error_msg_NameExists">
-    <value>O nome de perfil já existe</value>
-    <comment>The error message displayed in Profile window when profile name is already used by another profile</comment>
-  </data>
-  <data name="Profiles_Profile_Error_msg_NameTooLong_One">
-    <value>O comprimento máximo do nome do perfil é de {0} símbolo. Por favor, escolha um nome de perfil menor.</value>
-  </data>
-  <data name="Profiles_Profile_Error_msg_NameTooLong_Other">
-    <value>O comprimento máximo do nome do perfil é de {0} símbolos. Por favor, escolha um nome de perfil menor.</value>
-  </data>
-  <data name="Profiles_Profile_Error_msg_ServerEmpty">
-    <value>Por favor, seleccione um servidor</value>
-    <comment>The error message displayed in Profile window when server is not selected</comment>
-  </data>
-  <data name="Profiles_Profile_ExitCountry_Watermark">
-    <value>Seleccione o país de saída</value>
-    <comment>The watermark text displayed in empty Exit Country combo box in Profile window</comment>
-  </data>
-  <data name="Profiles_Profile_lbl_Color">
-    <value>Cor:</value>
-    <comment>The label for Color selection in Profile window</comment>
-  </data>
-  <data name="Profiles_Profile_lbl_Country">
-    <value>País:</value>
-    <comment>The label for Country combo box in Profile window</comment>
-  </data>
-  <data name="Profiles_Profile_lbl_Country_Watermark">
-    <value>Seleccione o país</value>
-    <comment>The watermark text displayed in empty Country combo box in Profile window</comment>
-  </data>
-  <data name="Profiles_Profile_lbl_ExitCountry">
-    <value>País de saída:</value>
-    <comment>The label for Exit Country combo box in Profile window</comment>
-  </data>
-  <data name="Profiles_Profile_lbl_Name">
-    <value>Nome:</value>
-    <comment>The label for Name text box in Profile window</comment>
-  </data>
-  <data name="Profiles_Profile_lbl_Protocol">
-    <value>Protocolo:</value>
-    <comment>The label for Protocol combo box in Profile window</comment>
-  </data>
-  <data name="Profiles_Profile_lbl_Server">
-    <value>Servidor:</value>
-    <comment>The label for Server combo box in Profiles window</comment>
-  </data>
-  <data name="Profiles_Profile_lbl_Server_Watermark">
-    <value>Seleccione o servidor</value>
-    <comment>The watermark text displayed in empty Server combo box in Profile window</comment>
-  </data>
-  <data name="Profiles_Profile_msg_DiscardChangesConfirm">
-    <value>Há alterações de perfil por gravar.&lt;LineBreak/&gt;&lt;LineBreak/&gt;Tem a certeza de que deseja descartá-las?</value>
-    <comment>The message displayed in Question dialog when cancelling changes in Profile window.</comment>
-  </data>
-  <data name="Profiles_Profile_Name_val_Fastest">
-    <value>Mais rápida</value>
-    <comment>The name of Fastest profile</comment>
-  </data>
-  <data name="Profiles_Profile_Name_val_Random">
-    <value>Aleatória</value>
-    <comment>The name of Random profile</comment>
-  </data>
-  <data name="Profiles_Profile_Name_Watermark">
-    <value>Insira o nome do perfil</value>
-    <comment>Thw watermark text displayed in empty Name text box of Profile window</comment>
-  </data>
-  <data name="Profiles_Profile_ttl_Create">
-    <value>Criar perfil</value>
-    <comment>The title of Profile window when creating new profile</comment>
-  </data>
-  <data name="Profiles_Profile_ttl_Edit">
-    <value>Editar perfil</value>
-    <comment>The title of Profile window when editing profile</comment>
-  </data>
   <data name="Profiles_ttl">
     <value>Perfis</value>
     <comment>The title of Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Failed">
-    <value>Falhou</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Failed_Info">
-    <value>Falha ao sincronizar o perfil</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_InProgress">
-    <value>A sincronizar</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_InProgress_Info">
-    <value>A sincronizar perfis</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Overridden">
-    <value>Sobreposto</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded">
-    <value>Sincronizado</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded_Info">
-    <value>Alterações de perfil sincronizadas há {0} {1}</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window. The {0} is a placeholder for number of time units, {1} - time units.</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded_Info_NoData">
-    <value>Sem alterações de perfil a sincronizar</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
   </data>
   <data name="PromoCode_btn_Apply">
     <value>Apply</value>
@@ -2496,17 +2498,21 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="SecureCore">
     <value>Secure Core</value>
   </data>
-  <data name="Servers_btn_Connect">
-    <value>Connect</value>
-    <comment>The text on Connect button in Server list in Countries tab of Sidebar in main app window (connects to the VPN server)</comment>
+  <data name="ServerType_val_None">
+    <value>Padrão</value>
+    <comment>The server type in Profile window</comment>
   </data>
-  <data name="Servers_btn_Disconnect">
-    <value>Disconnect</value>
-    <comment>The text on Disconnect button in Server list in Countries tab of Sidebar in main app window (disconnects from the VPN server)</comment>
+  <data name="ServerType_val_P2P">
+    <value>P2P</value>
+    <comment>The server type in Profile window</comment>
   </data>
-  <data name="Servers_btn_Upgrade">
-    <value>Upgrade</value>
-    <comment>The text on Upgrade button in Server list in Countries tab of Sidebar in main app window (opens Upgrade Required Upsell window)</comment>
+  <data name="ServerType_val_SecureCore">
+    <value>Secure Core</value>
+    <comment>The server type in Profile window</comment>
+  </data>
+  <data name="ServerType_val_Tor">
+    <value>Tor</value>
+    <comment>The server type in Profile window</comment>
   </data>
   <data name="Servers_Feature_val_P2P">
     <value>Servidor P2P</value>
@@ -2526,14 +2532,6 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="Servers_Feature_val_Tor">
     <value>Servidor Tor</value>
     <comment>The name of Tor server feature</comment>
-  </data>
-  <data name="Servers_lbl_Upgrade">
-    <value>Actualizar</value>
-    <comment>The label displayed next to server name in Server list in Countries tab of Sidebar in main app window</comment>
-  </data>
-  <data name="Servers_lbl_ViaCountry">
-    <value>via</value>
-    <comment>The label displayed before entry country name in Server list of Countries tab of Sidebar section of main app window when Secure Core mode is enabled</comment>
   </data>
   <data name="Servers_Load_lbl_IP">
     <value>IP do servidor:</value>
@@ -2563,6 +2561,26 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Via {0} para {1}</value>
     <comment>The heading of Secure Core server info displayed in Server Load popup. The {0} is a placeholder for entry country, {1} - exit country. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
   </data>
+  <data name="Servers_btn_Connect">
+    <value>Connect</value>
+    <comment>The text on Connect button in Server list in Countries tab of Sidebar in main app window (connects to the VPN server)</comment>
+  </data>
+  <data name="Servers_btn_Disconnect">
+    <value>Disconnect</value>
+    <comment>The text on Disconnect button in Server list in Countries tab of Sidebar in main app window (disconnects from the VPN server)</comment>
+  </data>
+  <data name="Servers_btn_Upgrade">
+    <value>Upgrade</value>
+    <comment>The text on Upgrade button in Server list in Countries tab of Sidebar in main app window (opens Upgrade Required Upsell window)</comment>
+  </data>
+  <data name="Servers_lbl_Upgrade">
+    <value>Actualizar</value>
+    <comment>The label displayed next to server name in Server list in Countries tab of Sidebar in main app window</comment>
+  </data>
+  <data name="Servers_lbl_ViaCountry">
+    <value>via</value>
+    <comment>The label displayed before entry country name in Server list of Countries tab of Sidebar section of main app window when Secure Core mode is enabled</comment>
+  </data>
   <data name="Servers_msg_CantConnect_CertificateExpired">
     <value>O Proton VPN falhou ao actualizar o certificado de autenticação do cliente.</value>
   </data>
@@ -2578,26 +2596,35 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Proton VPN can't connect because the RPC server is unavailable on your system. &lt;Hyperlink Command="{Binding OpenRpcServerUrlCommand}"&gt;View possible solutions&lt;/Hyperlink&gt;</value>
   </data>
   <data name="Servers_msg_MissingServerPublicKey">
-    <value>Infelizmente, este servidor não suporta o WireGuard.</value>
+    <value>Unfortunately, this server does not support WireGuard.</value>
   </data>
-  <data name="ServerType_val_None">
-    <value>Padrão</value>
-    <comment>The server type in Profile window</comment>
+  <data name="Settings_Advanced_SplitTunnel_btn_AddApp">
+    <value>Adicionar aplicação</value>
+    <comment>The text on Add App button in Settings window Advanced tab Split Tunneling section (opens a window for selecting custom app to add)</comment>
   </data>
-  <data name="ServerType_val_P2P">
-    <value>P2P</value>
-    <comment>The server type in Profile window</comment>
+  <data name="Settings_Advanced_SplitTunnel_lbl_Apps">
+    <value>APLICAÇÕES:</value>
+    <comment>The label for application list in Settings window Advanced tab Split Tunneling section</comment>
   </data>
-  <data name="ServerType_val_SecureCore">
-    <value>Secure Core</value>
-    <comment>The server type in Profile window</comment>
+  <data name="Settings_Advanced_SplitTunnel_lbl_Exclude">
+    <value>Impedir as aplicações/IPs de usarem o túnel VPN</value>
+    <comment>The label of Split Tunnel mode in Split Tunneling section of Advanced tab of Settings window</comment>
   </data>
-  <data name="ServerType_val_Tor">
-    <value>Tor</value>
-    <comment>The server type in Profile window</comment>
+  <data name="Settings_Advanced_SplitTunnel_lbl_Include">
+    <value>Só os programas/IPs incluídos passam pelo túnel VPN</value>
+    <comment>The label of Split Tunnel mode in Split Tunneling section of Advanced tab of Settings window</comment>
   </data>
-  <data name="Settings_Advanced_lbl_btn_LearnMore">
-    <value>Saiba mais</value>
+  <data name="Settings_Advanced_SplitTunnel_lbl_Ip">
+    <value>IP:</value>
+    <comment>The label for IP address list in Settings window Advanced tab Split Tunneling section</comment>
+  </data>
+  <data name="Settings_Advanced_SplitTunnel_lbl_Ip_Watermark">
+    <value>Adicionar endereço IPv4</value>
+    <comment>The watermark text of empty text box for entering IPv4 address in Split Tunneling section of Advanced tab in Settings window</comment>
+  </data>
+  <data name="Settings_Advanced_SplitTunnel_msg_IpInvalid">
+    <value>IP inválido</value>
+    <comment>The error message displayed in a tooltip of IP text box in SplitTunneling section of Advanced tab of Settings window when IP address is not valid</comment>
   </data>
   <data name="Settings_Advanced_lbl_DnsLeakProtection">
     <value>Prevenção de fugas DNS</value>
@@ -2654,10 +2681,6 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="Settings_Advanced_lbl_PortForwarding">
     <value>Port Forwarding</value>
   </data>
-  <data name="Settings_Advanced_lbl_PortForwarding_Info">
-    <value>Permita que aplicações locais suportadas sejam alcançáveis a partir da Internet, acelerando torrents e jogos online. &lt;Hyperlink Command="{Binding LearnMoreAboutPortForwardingCommand}"&gt;Ler mais&lt;/Hyperlink&gt;</value>
-    <comment>Do not translate whatever is between &lt; and &gt;. Do not forget to translate the "Learn more".</comment>
-  </data>
   <data name="Settings_Advanced_lbl_PortForwardingInQuickSettings">
     <value>Atalho do Port Forwarding</value>
   </data>
@@ -2670,6 +2693,10 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="Settings_Advanced_lbl_PortForwardingNotifications_Info">
     <value>Seja notificado quando o número de porta muda</value>
   </data>
+  <data name="Settings_Advanced_lbl_PortForwarding_Info">
+    <value>Permita que aplicações locais suportadas sejam alcançáveis a partir da Internet, acelerando torrents e jogos online. &lt;Hyperlink Command="{Binding LearnMoreAboutPortForwardingCommand}"&gt;Ler mais&lt;/Hyperlink&gt;</value>
+    <comment>Do not translate whatever is between &lt; and &gt;. Do not forget to translate the "Learn more".</comment>
+  </data>
   <data name="Settings_Advanced_lbl_SplitTunnel">
     <value>Split Tunneling</value>
     <comment>The label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
@@ -2678,41 +2705,12 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Exclui uma aplicação ou endereço IP do tráfego da VPN ou inclui só aplicações específicas. Não pode ser ligado em conjunto com o Kill Switch.</value>
     <comment>The description of Split Tunneling setting displayed in the tooltip of ( i ) image next to the label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
   </data>
-  <data name="Settings_Advanced_SplitTunnel_btn_AddApp">
-    <value>Adicionar aplicação</value>
-    <comment>The text on Add App button in Settings window Advanced tab Split Tunneling section (opens a window for selecting custom app to add)</comment>
-  </data>
-  <data name="Settings_Advanced_SplitTunnel_lbl_Apps">
-    <value>APLICAÇÕES:</value>
-    <comment>The label for application list in Settings window Advanced tab Split Tunneling section</comment>
-  </data>
-  <data name="Settings_Advanced_SplitTunnel_lbl_Exclude">
-    <value>Impedir as aplicações/IPs de usarem o túnel VPN</value>
-    <comment>The label of Split Tunnel mode in Split Tunneling section of Advanced tab of Settings window</comment>
-  </data>
-  <data name="Settings_Advanced_SplitTunnel_lbl_Include">
-    <value>Só os programas/IPs incluídos passam pelo túnel VPN</value>
-    <comment>The label of Split Tunnel mode in Split Tunneling section of Advanced tab of Settings window</comment>
-  </data>
-  <data name="Settings_Advanced_SplitTunnel_lbl_Ip">
-    <value>IP:</value>
-    <comment>The label for IP address list in Settings window Advanced tab Split Tunneling section</comment>
-  </data>
-  <data name="Settings_Advanced_SplitTunnel_lbl_Ip_Watermark">
-    <value>Adicionar endereço IPv4</value>
-    <comment>The watermark text of empty text box for entering IPv4 address in Split Tunneling section of Advanced tab in Settings window</comment>
-  </data>
-  <data name="Settings_Advanced_SplitTunnel_msg_IpInvalid">
-    <value>IP inválido</value>
-    <comment>The error message displayed in a tooltip of IP text box in SplitTunneling section of Advanced tab of Settings window when IP address is not valid</comment>
+  <data name="Settings_Advanced_lbl_btn_LearnMore">
+    <value>Saiba mais</value>
   </data>
   <data name="Settings_Advanced_ttl">
     <value>Avançadas</value>
     <comment>The header of Advanced tab in Settings window</comment>
-  </data>
-  <data name="Settings_Connection_btn_Upgrade">
-    <value>Actualizar</value>
-    <comment>The text on Upgrade button in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_DefaultProtocol_val_Smart">
     <value>Inteligente (recomendado)</value>
@@ -2729,6 +2727,14 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="Settings_Connection_DefaultProtocol_val_WireGuard">
     <value>WireGuard</value>
     <comment>The WireGuard protocol name displayed in the Protocol combo box in Connection tab of Settings window. Do not translate.</comment>
+  </data>
+  <data name="Settings_Connection_Warning_CustomDnsServer">
+    <value>Utilizar servidores DNS personalizados desactivará o NetShield. Os servidores DNS são responsáveis por o direccionar para as páginas correctas. &lt;LineBreak/&gt;&lt;LineBreak/&gt;Utilize só servidores DNS em que confia. Deseja ligar os servidores DNS?</value>
+    <comment>The text displayed in Custom DNS Servers warning modal window when use is trying to turn the feature ON when NetShield feature is turned on as well</comment>
+  </data>
+  <data name="Settings_Connection_btn_Upgrade">
+    <value>Actualizar</value>
+    <comment>The text on Upgrade button in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_CustomDnsServer">
     <value>Servidores DNS personalizados</value>
@@ -2764,10 +2770,6 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Religação automática</value>
     <comment>The label for Auto Reconnect toggle switch in Settings window</comment>
   </data>
-  <data name="Settings_Connection_lbl_SmartReconnect_Info">
-    <value>Mudar automaticamente para um servidor mais rápido semelhante ao que seleccionou.</value>
-    <comment>The description of Auto Reconnect setting displayed in the tooltip of the ( i ) image next to the label in Settings window</comment>
-  </data>
   <data name="Settings_Connection_lbl_SmartReconnectNotifications">
     <value>Notificações de religação</value>
     <comment>The label for Smart Reconnect notifications toggle switch in the General tab of Settings window</comment>
@@ -2775,6 +2777,10 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="Settings_Connection_lbl_SmartReconnectNotifications_Info">
     <value>Active esta opção para receber notificações quando o VPN Accelerator o ligar a um servidor mais rápido.</value>
     <comment>The description of the Smart Reconnect notifications setting displayed in the tooltip of the ( i ) image next to the label</comment>
+  </data>
+  <data name="Settings_Connection_lbl_SmartReconnect_Info">
+    <value>Mudar automaticamente para um servidor mais rápido semelhante ao que seleccionou.</value>
+    <comment>The description of Auto Reconnect setting displayed in the tooltip of the ( i ) image next to the label in Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_VpnAccelerator">
     <value>VPN Accelerator</value>
@@ -2787,10 +2793,6 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="Settings_Connection_ttl">
     <value>Ligação</value>
     <comment>The title of Connection tab of Settings window</comment>
-  </data>
-  <data name="Settings_Connection_Warning_CustomDnsServer">
-    <value>Utilizar servidores DNS personalizados desactivará o NetShield. Os servidores DNS são responsáveis por o direccionar para as páginas correctas. &lt;LineBreak/&gt;&lt;LineBreak/&gt;Utilize só servidores DNS em que confia. Deseja ligar os servidores DNS?</value>
-    <comment>The text displayed in Custom DNS Servers warning modal window when use is trying to turn the feature ON when NetShield feature is turned on as well</comment>
   </data>
   <data name="Settings_General_lbl_ConnectOnAppStart">
     <value>Ligar no arranque da aplicação</value>
@@ -2841,6 +2843,14 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Definições</value>
     <comment>The title of Settings window</comment>
   </data>
+  <data name="SidebarProfiles_lbl_MyProfiles">
+    <value>My Profiles</value>
+    <comment>The text of "My Profiles" category text in the Profile sidebar, that has the custom created profiles below</comment>
+  </data>
+  <data name="SidebarProfiles_lbl_Recommended">
+    <value>Recommended</value>
+    <comment>The text of "Recommended" category text in the Profile sidebar, that has the predefined profiles below</comment>
+  </data>
   <data name="Sidebar_Connection_btn_Connect">
     <value>Ligação rápida</value>
     <comment>The text on Quick Connect button in Connection section of Sidebar section of main app window (connects to VPN using Quick Connect profile)</comment>
@@ -2885,6 +2895,21 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   <data name="Sidebar_Countries_FreeLocationCount">
     <value>Localizações FREE ({0})</value>
   </data>
+  <data name="Sidebar_Countries_PlusLocationCount">
+    <value>Localizações PLUS ({0})</value>
+  </data>
+  <data name="Sidebar_Countries_ServerCountByTier0">
+    <value>Servidores FREE ({0})</value>
+  </data>
+  <data name="Sidebar_Countries_ServerCountByTier1">
+    <value>Servidores BASIC ({0})</value>
+  </data>
+  <data name="Sidebar_Countries_ServerCountByTier2">
+    <value>Plus servers ({0})</value>
+  </data>
+  <data name="Sidebar_Countries_ServerCountByTier3">
+    <value>Servidores INTERNOS</value>
+  </data>
   <data name="Sidebar_Countries_info_SmartRouting">
     <value>Smart Routing</value>
   </data>
@@ -2911,21 +2936,6 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   <data name="Sidebar_Countries_msg_SecureCoreEnableConfirm">
     <value>Mudar para modo Secure Core desligará a ligação VPN activa. Deseja continuar?</value>
     <comment>The confirmation message displayed when switching on Secure Core toggle switch in Countries tab of Sidebar section of main app window while connected to VPN</comment>
-  </data>
-  <data name="Sidebar_Countries_PlusLocationCount">
-    <value>Localizações PLUS ({0})</value>
-  </data>
-  <data name="Sidebar_Countries_ServerCountByTier0">
-    <value>Servidores FREE ({0})</value>
-  </data>
-  <data name="Sidebar_Countries_ServerCountByTier1">
-    <value>Servidores BASIC ({0})</value>
-  </data>
-  <data name="Sidebar_Countries_ServerCountByTier2">
-    <value>Plus servers ({0})</value>
-  </data>
-  <data name="Sidebar_Countries_ServerCountByTier3">
-    <value>Servidores INTERNOS</value>
   </data>
   <data name="Sidebar_Countries_ttl">
     <value>Países</value>
@@ -3002,14 +3012,6 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   <data name="Sidebar_Streaming_More">
     <value>e mais</value>
   </data>
-  <data name="SidebarProfiles_lbl_MyProfiles">
-    <value>My Profiles</value>
-    <comment>The text of "My Profiles" category text in the Profile sidebar, that has the custom created profiles below</comment>
-  </data>
-  <data name="SidebarProfiles_lbl_Recommended">
-    <value>Recommended</value>
-    <comment>The text of "Recommended" category text in the Profile sidebar, that has the predefined profiles below</comment>
-  </data>
   <data name="StartMinimizedMode_val_Disabled">
     <value>Desactivada</value>
     <comment>The name of start minimized mode displayed in Start Minimized combo box in General tab of Settings window</comment>
@@ -3044,10 +3046,6 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   <data name="TimeUnit_val_Minute_Other">
     <value>minutos</value>
   </data>
-  <data name="Tooltips_SmartReconnection_btn_NotificationSettings">
-    <value>Definições de notificações</value>
-    <comment>The text button of the Auto Reconnection tooltip that opens the Notification Settings</comment>
-  </data>
   <data name="Tooltips_SmartReconnection_Description">
     <value>You have been switched to a faster server that is similar to the one you selected.</value>
     <comment>The description of the Auto Reconnection tooltip</comment>
@@ -3056,9 +3054,9 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>VPN Accelerator</value>
     <comment>The title of the Auto Reconnection tooltip</comment>
   </data>
-  <data name="Upsell_btn_Upgrade">
-    <value>Upgrade</value>
-    <comment>The text on Upgrade button in Upgrade Required Upsell window (opens web page for subscription plan upgrade)</comment>
+  <data name="Tooltips_SmartReconnection_btn_NotificationSettings">
+    <value>Definições de notificações</value>
+    <comment>The text button of the Auto Reconnection tooltip that opens the Notification Settings</comment>
   </data>
   <data name="Upsell_Countries_BlockAds">
     <value>Bloqueie publicidades e malware com o NetShield</value>
@@ -3149,6 +3147,10 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   </data>
   <data name="Upsell_SecureCore_Title">
     <value>Duplique a encriptação com o Secure Core</value>
+  </data>
+  <data name="Upsell_btn_Upgrade">
+    <value>Upgrade</value>
+    <comment>The text on Upgrade button in Upgrade Required Upsell window (opens web page for subscription plan upgrade)</comment>
   </data>
   <data name="VpnPlan_val_Free">
     <value>Proton VPN Free</value>
