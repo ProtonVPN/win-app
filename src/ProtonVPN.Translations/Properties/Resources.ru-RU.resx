@@ -445,7 +445,7 @@
     <value>Шаг</value>
   </data>
   <data name="BugReport_lbl_Username">
-    <value>Username</value>
+    <value>Имя пользователя</value>
     <comment>The label for the username in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_UsernamePlaceholder">
@@ -3028,7 +3028,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The description displayed in a tooltip of P icon on a sidebar server item</comment>
   </data>
   <data name="Sidebar_Streaming_Country">
-    <value>Стриминг - {0}</value>
+    <value>Просмотр трансляций - {0}</value>
   </data>
   <data name="Sidebar_Streaming_Features">
     <value>Функции</value>
