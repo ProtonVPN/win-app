@@ -425,7 +425,7 @@ Informações sobre a tabela de roteamento</value>
     <comment>The label for the username in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_UsernamePlaceholder">
-    <value>Your Proton username, in case you already have an account.</value>
+    <value>Seu nome de usuário Proton, caso você já tenha uma conta.</value>
     <comment>The watermark text displayed in empty username text box in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_WhatIsTheIssue">
@@ -1770,7 +1770,7 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
     <value>Entendi</value>
   </data>
   <data name="Dialogs_SplitTunnelWarning_msg">
-    <value>Para que o túnel dividido funcione corretamente, você deve desabilitar a chave de segurança.</value>
+    <value>Para que o tunelamento dividido funcione corretamente, você deve desabilitar a chave de segurança.</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListOption1">
     <value>Centenas de servidores em 55 países</value>
@@ -2698,7 +2698,7 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
     <comment>Do not translate whatever is between &lt; and &gt;. Do not forget to translate the "Learn more".</comment>
   </data>
   <data name="Settings_Advanced_lbl_SplitTunnel">
-    <value>Tunelamento split</value>
+    <value>Split tunneling</value>
     <comment>The label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_SplitTunnel_Info">
