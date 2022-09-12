@@ -30,6 +30,7 @@ namespace ProtonVPN.UI.Tests.Windows
         private Button SkipButton => ElementByName("Skip").AsButton();
         private Button HelpButton => ElementByAutomationId("HelpButton").AsButton();
         private Button ReportAnIssueButton => ElementByAutomationId("ReportAnIssueButton").AsButton();
+        private TextBox TwoFaInput => ElementByAutomationId("TwoFactorAuthInput").AsTextBox();
 
         public HomeWindow SignIn(TestUserData user)
         {
@@ -46,6 +47,15 @@ namespace ProtonVPN.UI.Tests.Windows
             PasswordInput.Text = user.Password;
             LoginButton.Invoke();
             return this;
+        }
+
+        public HomeWindow EnterTwoFactorCode(string twoFaCode)
+        {
+            WaitUntilDisplayedByAutomationId("TwoFactorAuthInput", TestConstants.LongTimeout);
+            TwoFaInput.Text = twoFaCode;
+            LoginButton.Invoke();
+            WaitUntilElementExistsByName("Skip", TestConstants.LongTimeout);
+            return new HomeWindow();
         }
 
         public BugReportWindow NavigateToBugReport()

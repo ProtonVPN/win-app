@@ -109,6 +109,16 @@ namespace ProtonVPN.UI.Tests.Tests
             _loginResult.CheckIfZeroAssignedConnectionsModalIsShown();
         }
 
+        [Test]
+        public void TwoFactorLogin()
+        {
+            TestCaseId = 129440;
+
+            _loginWindow.EnterCredentials(TestUserData.GetTwoFactorUser())
+                .EnterTwoFactorCode(TestUserData.GetTwoFactorCode());
+            _homeResult.CheckIfLoggedIn();
+        }
+
         [SetUp]
         public void TestInitialize()
         {

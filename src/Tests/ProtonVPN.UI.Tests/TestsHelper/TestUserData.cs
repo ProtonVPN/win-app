@@ -18,6 +18,7 @@
  */
 
 using System;
+using OtpNet;
 
 namespace ProtonVPN.UI.Tests.TestsHelper
 {
@@ -76,6 +77,19 @@ namespace ProtonVPN.UI.Tests.TestsHelper
         public static TestUserData GetIncorrectCredentialsUser()
         {
             return new TestUserData("IncorrectUsername", "IncorrectPass");
+        }
+
+        public static TestUserData GetTwoFactorUser()
+        {
+            (string username, string password) = GetUsernameAndPassword("TWO_FACTOR_AUTH_USER");
+            return new TestUserData(username, password);
+        }
+
+        public static string GetTwoFactorCode()
+        {
+            string key = Environment.GetEnvironmentVariable("TWO_FA_KEY");
+            Totp totp = new Totp(Base32Encoding.ToBytes(key));
+            return totp.ComputeTotp();
         }
 
         private static (string, string) GetUsernameAndPassword(string userType)
