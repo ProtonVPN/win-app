@@ -257,7 +257,7 @@ namespace ProtonVPN.Vpn.Connection
         {
             return !_isToConnect &&
                    (_state.Status == VpnStatus.Disconnecting || _state.Status == VpnStatus.Disconnected) &&
-                   (!IsServerError(_state.Error) || !IsAdapterError(_state.Error));
+                   (!IsServerError(_state.Error) && !IsAdapterError(_state.Error));
         }
 
         private bool IsServerError(VpnError error)
