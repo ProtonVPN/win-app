@@ -27,11 +27,8 @@ namespace ProtonVPN.UI.Tests.Results
     {
         private CheckBox ModerateNatCheckBox => ElementByAutomationId("ModerateNatCheckbox").AsCheckBox();
 
-        public SettingsResult CheckIfDnsAddressDoesNotMatch(string dnsAddress)
-        {
-            Assert.AreNotEqual(dnsAddress, DnsUtils.GetDnsAddress("WireGuard Tunnel"));
-            return this;
-        }
+        private string WireguardDnsAdress => DnsUtils.GetDnsAddress("ProtonVPN");
+        private string OpenVpnDnsAdress => DnsUtils.GetDnsAddress("ProtonVPN TUN");
 
         public SettingsResult CheckIfSettingsAreDisplayed()
         {
@@ -49,10 +46,15 @@ namespace ProtonVPN.UI.Tests.Results
             return this;
         }
 
-        public SettingsResult CheckIfDnsAddressMatches(string dnsAddress)
+        public SettingsResult CheckIfDnsAddressMatches(string expectedDnsAddress)
         {
-            string adapterDnsAddress = DnsUtils.GetDnsAddress("WireGuard Tunnel");
-            Assert.AreEqual(dnsAddress, adapterDnsAddress, $"Desired dns address {dnsAddress} does not match Windows adapter dns address {adapterDnsAddress}");
+            Assert.IsTrue(DoesContainDnsAddress(expectedDnsAddress), DnsAdressErrorMessage(expectedDnsAddress));
+            return this;
+        }
+
+        public SettingsResult CheckIfDnsAddressDoesNotMatch(string expectedDnsAddress)
+        {
+            Assert.IsFalse(DoesContainDnsAddress(expectedDnsAddress), DnsAdressErrorMessage(expectedDnsAddress));
             return this;
         }
 
@@ -66,6 +68,16 @@ namespace ProtonVPN.UI.Tests.Results
         {
             Assert.IsFalse(ModerateNatCheckBox.IsChecked.Value, "Moderate NAT checkbox status is: " + ModerateNatCheckBox.IsChecked.Value);
             return this;
+        }
+
+        private string DnsAdressErrorMessage(string expectedDnsAddress)
+        {
+            return $"Wireguard dns address: {WireguardDnsAdress}. OpenVPN dns address: {OpenVpnDnsAdress}. Expected dns value: {expectedDnsAddress}";
+        }
+
+        private bool DoesContainDnsAddress(string expectedDnsAddress)
+        {
+            return WireguardDnsAdress == expectedDnsAddress || OpenVpnDnsAdress == expectedDnsAddress;
         }
     }
 }
