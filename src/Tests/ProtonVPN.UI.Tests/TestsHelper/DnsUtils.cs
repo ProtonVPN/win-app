@@ -35,19 +35,19 @@ namespace ProtonVPN.UI.Tests.TestsHelper
             string dnsAddress = null;
             RetryResult<string> retry = Retry.WhileNull(
                 () => {
-                    dnsAddress = GetDnsAddressForAdapter(adapterName);
+                    dnsAddress = GetDnsAddressForAdapterByName(adapterName);
                     return dnsAddress;
                 },
-                TestConstants.ShortTimeout, TestConstants.RetryInterval);
+                TestConstants.VeryShortTimeout, TestConstants.RetryInterval);
 
             if (!retry.Success)
             {
-                Assert.Fail($"Failed to get DNS address in {TestConstants.ShortTimeout}");
+                dnsAddress = null;
             }
             return dnsAddress;
         }
 
-        private static string GetDnsAddressForAdapter(string adapterName)
+        private static string GetDnsAddressForAdapterByName(string adapterName)
         {
             string dnsAddress = null;
             NetworkInterface[] adapters = NetworkInterface.GetAllNetworkInterfaces();
@@ -55,7 +55,7 @@ namespace ProtonVPN.UI.Tests.TestsHelper
             {
                 IPInterfaceProperties adapterProperties = adapter.GetIPProperties();
                 IPAddressCollection dnsServers = adapterProperties.DnsAddresses;
-                if (adapter.Description.Contains(adapterName))
+                if (adapter.Name.Equals(adapterName))
                 {
                     foreach (IPAddress dns in dnsServers)
                     {
