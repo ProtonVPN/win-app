@@ -40,5 +40,10 @@ namespace ProtonVPN.UI.Tests.TestsHelper
         {
             return File.Exists(TestConstants.PathToRecorder);
         }
+
+        public static bool IsWindows11()
+        {
+            return Environment.OSVersion.Version.Build >= 22000;
+        }
     }
 }

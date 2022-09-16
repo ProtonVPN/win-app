@@ -50,7 +50,7 @@ namespace ProtonVPN.UI.Tests.ApiClient
 
         public void MarkTestsByStatus()
         {
-            if(TestEnvironment.AreTestsRunningLocally())
+            if(TestEnvironment.AreTestsRunningLocally() || TestEnvironment.IsWindows11())
             {
                 return;
             }

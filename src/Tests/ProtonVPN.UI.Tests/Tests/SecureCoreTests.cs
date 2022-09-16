@@ -35,6 +35,7 @@ namespace ProtonVPN.UI.Tests.Tests
         private readonly HomeResult _homeResult = new HomeResult();
 
         [Test]
+        [Category("Smoke")]
         public void QuickConnectWhileSecureCoreIsEnabled()
         {
             TestCaseId = 255;

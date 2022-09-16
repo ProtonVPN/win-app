@@ -40,7 +40,7 @@ namespace ProtonVPN.UI.Tests.Tests
             Directory.SetCurrentDirectory(dir);
             TestRailClient = new TestRailApiClient(_testRailUrl,
                     TestUserData.GetTestrailUser().Username, TestUserData.GetTestrailUser().Password);
-            if (!TestEnvironment.AreTestsRunningLocally())
+            if (!TestEnvironment.AreTestsRunningLocally() || !TestEnvironment.IsWindows11())
             {
                 CreateTestRailTestRun();
             }
