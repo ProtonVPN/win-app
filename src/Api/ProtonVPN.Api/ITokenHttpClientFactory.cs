@@ -21,9 +21,8 @@ using System.Net.Http;
 
 namespace ProtonVPN.Api
 {
-    public interface IHttpClientFactory
+    public interface ITokenHttpClientFactory
     {
-        HttpClient GetApiHttpClientWithCache();
-        HttpClient GetApiHttpClientWithoutCache();
+        HttpClient GetTokenHttpClient();
     }
 }

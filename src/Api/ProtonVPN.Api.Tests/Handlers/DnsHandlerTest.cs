@@ -27,7 +27,6 @@ using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using ProtonVPN.Api.Handlers;
-using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Dns.Contracts;
@@ -42,7 +41,6 @@ namespace ProtonVPN.Api.Tests.Handlers
 
         private ILogger _logger;
         private IDnsManager _dnsManager;
-        private IConfiguration _configuration;
         private MockHttpMessageHandler _mockHttpMessageHandler;
         private DnsHandler _dnsHandler;
         private HttpClient _httpClient;
@@ -54,10 +52,8 @@ namespace ProtonVPN.Api.Tests.Handlers
             _dnsManager = Substitute.For<IDnsManager>();
             _dnsManager.GetAsync(Arg.Any<string>(), Arg.Any<CancellationToken>())
                        .Returns(CreateIpAddressList());
-            _configuration = Substitute.For<IConfiguration>();
-            _configuration.Urls.Returns(new UrlConfig { ApiUrl = "https://api.protonvpn.ch/" });
             _mockHttpMessageHandler = new MockHttpMessageHandler();
-            _dnsHandler = new(_logger, _dnsManager, _configuration) { InnerHandler = _mockHttpMessageHandler };
+            _dnsHandler = new(_logger, _dnsManager) { InnerHandler = _mockHttpMessageHandler };
             _httpClient = new(_dnsHandler);
         }
 
@@ -76,7 +72,6 @@ namespace ProtonVPN.Api.Tests.Handlers
         {
             _logger = null;
             _dnsManager = null;
-            _configuration = null;
             _mockHttpMessageHandler = null;
             _dnsHandler = null;
             _httpClient = null;

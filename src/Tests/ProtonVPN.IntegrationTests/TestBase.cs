@@ -78,12 +78,12 @@ namespace ProtonVPN.IntegrationTests
             builder.Register(_ =>
             {
                 HttpClient httpClient = MessageHandler.ToHttpClient();
-                IHttpClientFactory httpClientFactory = Substitute.For<IHttpClientFactory>();
+                IApiHttpClientFactory httpClientFactory = Substitute.For<IApiHttpClientFactory>();
                 httpClient.BaseAddress = new Uri("http://localhost");
                 httpClientFactory.GetApiHttpClientWithCache().Returns(httpClient);
                 httpClientFactory.GetApiHttpClientWithoutCache().Returns(httpClient);
                 return httpClientFactory;
-            }).As<IHttpClientFactory>().SingleInstance();
+            }).As<IApiHttpClientFactory>().SingleInstance();
 
 
             new Update.Config.Module().Load(builder);

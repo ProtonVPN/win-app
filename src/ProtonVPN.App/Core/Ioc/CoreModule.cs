@@ -80,18 +80,8 @@ namespace ProtonVPN.Core.Ioc
             builder.Register(c => Schedulers.FromApplicationDispatcher()).As<IScheduler>().SingleInstance();
 
             builder.RegisterType<AppLanguageCache>().AsImplementedInterfaces().SingleInstance();
-
-            builder.Register(c =>
-                    new TokenClient(
-                        c.Resolve<ILogger>(),
-                        new HttpClient(c.Resolve<RetryingHandler>())
-                        { BaseAddress = c.Resolve<IActiveUrls>().ApiUrl.Uri },
-                        c.Resolve<IApiAppVersion>(),
-                        c.Resolve<IAppSettings>(),
-                        c.Resolve<IAppLanguageCache>(),
-                        c.Resolve<Common.Configuration.Config>()))
-                .As<ITokenClient>()
-                .SingleInstance();
+            
+            builder.RegisterType<TokenClient>().As<ITokenClient>().SingleInstance();
 
             builder.RegisterType<ActionableFailureApiResultEventHandler>().SingleInstance();
 
