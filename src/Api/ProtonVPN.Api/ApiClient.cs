@@ -51,7 +51,7 @@ namespace ProtonVPN.Api
         private readonly HttpClient _noCacheClient;
 
         public ApiClient(
-            IHttpClientFactory httpClientFactory,
+            IApiHttpClientFactory httpClientFactory,
             ILogger logger,
             IAppSettings appSettings,
             IApiAppVersion appVersion,

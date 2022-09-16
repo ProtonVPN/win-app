@@ -22,7 +22,6 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.ApiLogs;
@@ -36,14 +35,11 @@ namespace ProtonVPN.Api.Handlers
     {
         private readonly ILogger _logger;
         private readonly IDnsManager _dnsManager;
-        private readonly string _defaultApiHost;
 
-        public DnsHandler(ILogger logger, IDnsManager dnsManager,
-            IConfiguration configuration)
+        public DnsHandler(ILogger logger, IDnsManager dnsManager)
         {
             _logger = logger;
             _dnsManager = dnsManager;
-            _defaultApiHost = new Uri(configuration.Urls.ApiUrl).Host;
         }
 
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request,
@@ -87,7 +83,7 @@ namespace ProtonVPN.Api.Handlers
             HttpRequestMessage request, CancellationToken token)
         {
             Uri oldRequestUri = request.RequestUri;
-            SetRequestHost(request, ipAddress.ToString());
+            SetRequestHost(request, ipAddress.ToString(), oldRequestUri);
             HttpResponseMessage httpResponseMessage;
             try
             {
@@ -102,10 +98,10 @@ namespace ProtonVPN.Api.Handlers
             return httpResponseMessage;
         }
 
-        private void SetRequestHost(HttpRequestMessage request, string uriHost)
+        private void SetRequestHost(HttpRequestMessage request, string uriHost, Uri oldRequestUri)
         {
             UriBuilder uriBuilder = new(request.RequestUri) { Host = uriHost };
-            request.Headers.Host = _defaultApiHost;
+            request.Headers.Host = oldRequestUri.Host;
             request.RequestUri = uriBuilder.Uri;
         }
 

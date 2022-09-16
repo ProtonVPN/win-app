@@ -39,13 +39,13 @@ namespace ProtonVPN.Api
 
         public TokenClient(
             ILogger logger,
-            HttpClient client,
+            ITokenHttpClientFactory tokenHttpClientFactory,
             IApiAppVersion appVersion,
             IAppSettings appSettings,
             IAppLanguageCache appLanguageCache,
             Config config) : base(logger, appVersion, appSettings, appLanguageCache, config)
         {
-            _client = client;
+            _client = tokenHttpClientFactory.GetTokenHttpClient();
         }
 
         public async Task<ApiResponseResult<RefreshTokenResponse>> RefreshTokenAsync(CancellationToken token)

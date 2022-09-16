@@ -27,19 +27,19 @@ using ProtonVPN.Common.Configuration;
 
 namespace ProtonVPN.Api
 {
-    public class HttpClientFactory : IHttpClientFactory
+    public class ApiHttpClientFactory : IApiHttpClientFactory
     {
         private readonly Config _config;
         private readonly HttpMessageHandler _innerHandler;
 
-        public HttpClientFactory(Config config, 
+        public ApiHttpClientFactory(Config config, 
             AlternativeHostHandler alternativeHostHandler,
-            DnsHandler dnsHandler,
             CancellingHandlerBase cancellingHandlerBase,
             UnauthorizedResponseHandler unauthorizedResponseHandler,
             HumanVerificationHandlerBase humanVerificationHandlerBase,
             OutdatedAppHandler outdatedAppHandler,
             RetryingHandlerBase retryingHandlerBase,
+            DnsHandler dnsHandler,
             LoggingHandlerBase loggingHandlerBase,
             CertificateHandler certificateHandler)
         {
@@ -47,12 +47,12 @@ namespace ProtonVPN.Api
 
             _innerHandler = new HttpMessageHandlerStackBuilder()
                 .AddDelegatingHandler(alternativeHostHandler)
-                .AddDelegatingHandler(dnsHandler)
                 .AddDelegatingHandler(cancellingHandlerBase)
                 .AddDelegatingHandler(unauthorizedResponseHandler)
                 .AddDelegatingHandler(humanVerificationHandlerBase)
                 .AddDelegatingHandler(outdatedAppHandler)
                 .AddDelegatingHandler(retryingHandlerBase)
+                .AddDelegatingHandler(dnsHandler)
                 .AddDelegatingHandler(loggingHandlerBase)
                 .AddLastHandler(certificateHandler)
                 .Build();

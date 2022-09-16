@@ -99,12 +99,14 @@
     <Compile Include="Handlers\TlsPinning\ReportClient.cs" />
     <Compile Include="Handlers\TlsPinning\TlsPinningPolicy.cs" />
     <Compile Include="Handlers\UnauthorizedResponseHandler.cs" />
-    <Compile Include="HttpClientFactory.cs" />
+    <Compile Include="ApiHttpClientFactory.cs" />
     <Compile Include="IApiAppVersion.cs" />
-    <Compile Include="IHttpClientFactory.cs" />
+    <Compile Include="IApiHttpClientFactory.cs" />
     <Compile Include="ITokenClient.cs" />
     <Compile Include="Handlers\Retries\SleepDurationProvider.cs" />
+    <Compile Include="ITokenHttpClientFactory.cs" />
     <Compile Include="TokenClient.cs" />
+    <Compile Include="TokenHttpClientFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Dns\ProtonVPN.Dns.Contracts\ProtonVPN.Dns.Contracts.csproj">

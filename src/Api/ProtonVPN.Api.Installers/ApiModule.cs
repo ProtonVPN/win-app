@@ -30,24 +30,35 @@ namespace ProtonVPN.Api.Installers
     {
         protected override void Load(ContainerBuilder builder)
         {
+            builder.RegisterType<TokenHttpClientFactory>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<ApiClient>().As<IApiClient>().SingleInstance();
-            builder.RegisterType<HttpClientFactory>().As<IHttpClientFactory>().SingleInstance();
-            builder.RegisterType<CertificateHandler>().SingleInstance();
-            builder.RegisterType<DnsHandler>().SingleInstance();
-            builder.RegisterType<LoggingHandler>().As<LoggingHandlerBase>().AsSelf().SingleInstance();
+            builder.RegisterType<ApiHttpClientFactory>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<SleepDurationProvider>().SingleInstance();
-            builder.RegisterType<RetryingHandler>().As<RetryingHandlerBase>().AsSelf().SingleInstance();
-            builder.RegisterType<OutdatedAppHandler>().SingleInstance();
-            builder.RegisterType<HumanVerificationHandler>().As<HumanVerificationHandlerBase>().AsSelf().SingleInstance();
-            builder.RegisterType<UnauthorizedResponseHandler>().SingleInstance();
-            builder.RegisterType<CancellingHandler>().As<CancellingHandlerBase>().AsSelf().SingleInstance();
             builder.RegisterType<RetryPolicyProvider>().As<IRetryPolicyProvider>().SingleInstance();
             builder.RegisterType<RetryCountProvider>().As<IRetryCountProvider>().SingleInstance();
             builder.RegisterType<RequestTimeoutProvider>().As<IRequestTimeoutProvider>().SingleInstance();
-            builder.RegisterType<AlternativeHostHandler>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterType<BaseResponseMessageDeserializer>().As<IBaseResponseMessageDeserializer>().SingleInstance();
             builder.RegisterType<ApiHostProvider>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<CertificateValidator>().As<ICertificateValidator>().SingleInstance();
+
+            RegisterHandlers(builder);
+        }
+
+        // Handlers are currently being used by both ApiClient and TokenClient and we need different instances
+        // of the handlers for them since the stacks are different, hence the InstancePerDependency() usage
+        private void RegisterHandlers(ContainerBuilder builder)
+        {
+            builder.RegisterType<RetryingHandler>().As<RetryingHandlerBase>().AsSelf().InstancePerDependency();
+            builder.RegisterType<LoggingHandler>().As<LoggingHandlerBase>().AsSelf().InstancePerDependency();
+            builder.RegisterType<HumanVerificationHandler>().As<HumanVerificationHandlerBase>().AsSelf().InstancePerDependency();
+            builder.RegisterType<CancellingHandler>().As<CancellingHandlerBase>().AsSelf().InstancePerDependency();
+
+            builder.RegisterType<AlternativeHostHandler>().AsImplementedInterfaces().AsSelf().InstancePerDependency();
+            
+            builder.RegisterType<DnsHandler>().InstancePerDependency();
+            builder.RegisterType<OutdatedAppHandler>().InstancePerDependency();
+            builder.RegisterType<UnauthorizedResponseHandler>().InstancePerDependency();
+            builder.RegisterType<CertificateHandler>().InstancePerDependency();
         }
     }
 }
