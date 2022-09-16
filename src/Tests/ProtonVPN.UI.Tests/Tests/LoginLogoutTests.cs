@@ -34,6 +34,7 @@ namespace ProtonVPN.UI.Tests.Tests
         private readonly HomeResult _homeResult = new HomeResult();
 
         [Test]
+        [Category("Smoke")]
         public void LoginAsFreeUser()
         {
             TestCaseId = 231;
@@ -73,6 +74,7 @@ namespace ProtonVPN.UI.Tests.Tests
         }
 
         [Test]
+        [Category("Smoke")]
         public void LoginUsingIncorrectCredentials()
         {
             TestCaseId = 232;
@@ -82,6 +84,7 @@ namespace ProtonVPN.UI.Tests.Tests
         }
 
         [Test]
+        [Category("Smoke")]
         public void SuccessfulLogout()
         {
             TestCaseId = 211;
@@ -110,6 +113,7 @@ namespace ProtonVPN.UI.Tests.Tests
         }
 
         [Test]
+        [Category("Smoke")]
         public void TwoFactorLogin()
         {
             TestCaseId = 129440;

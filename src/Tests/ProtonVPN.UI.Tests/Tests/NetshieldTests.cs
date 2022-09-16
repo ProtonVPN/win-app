@@ -37,6 +37,7 @@ namespace ProtonVPN.UI.Tests.Tests
         private const string NETSHIELD_LEVEL_TWO = "netshield-2.protonvpn.net";
 
         [Test]
+        [Category("Smoke")]
         public void NetshieldLevelTwo()
         {
             TestCaseId = 4574;
@@ -51,6 +52,7 @@ namespace ProtonVPN.UI.Tests.Tests
         }
 
         [Test]
+        [Category("Smoke")]
         public void NetshieldLevelOne()
         {
             TestCaseId = 4573;
@@ -65,6 +67,7 @@ namespace ProtonVPN.UI.Tests.Tests
         }
 
         [Test]
+        [Category("Smoke")]
         public void NetshieldOff()
         {
             TestCaseId = 146925;

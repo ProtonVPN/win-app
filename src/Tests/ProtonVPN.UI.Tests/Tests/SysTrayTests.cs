@@ -34,6 +34,7 @@ namespace ProtonVPN.UI.Tests.Tests
         private SysTrayResult _trayResult = new SysTrayResult();
 
         [Test]
+        [Category("Smoke")]
         public void QuickConnectUsingTray()
         {
             TestCaseId = 243;

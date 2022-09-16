@@ -32,6 +32,7 @@ namespace ProtonVPN.UI.Tests.Tests
         private readonly BugReportWindow _bugReportWindow = new BugReportWindow();
 
         [Test]
+        [Category("Smoke")]
         public void SendBugReport()
         {
             TestCaseId = 21554;
@@ -43,6 +44,7 @@ namespace ProtonVPN.UI.Tests.Tests
         }
 
         [Test]
+        [Category("Smoke")]
         public void SendBugReportViaLoginScreen()
         {
             TestCaseId = 141591;

@@ -35,6 +35,7 @@ namespace ProtonVPN.UI.Tests.Tests
         private readonly HomeResult _homeResult = new HomeResult();
 
         [Test]
+        [Category("Smoke")]
         public void CheckIfSettingsGeneralTabHasAllInfo()
         {
             TestCaseId = 21555;
@@ -57,7 +58,7 @@ namespace ProtonVPN.UI.Tests.Tests
         [Test]
         public void CheckIfPortForwdingSettingGetsHidden()
         {
-            TestCaseId = 4580;
+            TestCaseId = 128748;
 
             _settingsWindow.NavigateToAdvancedTab()
                 .ClickOnPortForwardingShortcutCheckBox()

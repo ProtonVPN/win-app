@@ -82,6 +82,7 @@ namespace ProtonVPN.UI.Tests.Tests
         }
 
         [Test]
+        [Category("Smoke")]
         public void TryToCreateP2PProfile()
         {
             TestCaseId = 21553;
@@ -104,6 +105,7 @@ namespace ProtonVPN.UI.Tests.Tests
         }
 
         [Test]
+        [Category("Smoke")]
         public void DeleteProfile()
         {
             TestCaseId = 239;

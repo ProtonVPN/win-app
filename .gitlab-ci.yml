@@ -186,6 +186,26 @@ connection-tests:
     paths:
       - $SCREENSHOT_PATH
     expire_in: 2 weeks
+
+win-11-tests:
+  stage: ui-test
+  when: manual
+  tags:
+    - win11
+  script:
+    - powershell -File ci\uninstall-app.ps1
+    - powershell -File ci\install-the-app.ps1
+    - VSTest.Console.exe src\bin\ProtonVPN.UI.Tests.dll /TestCaseFilter:"Category=Smoke"
+    - powershell -File ci\uninstall-app.ps1
+  except:
+    - /^debug.*$/
+    - release/9.9.9
+    - master
+  artifacts:
+    when: on_failure
+    paths:
+      - $SCREENSHOT_PATH
+    expire_in: 2 weeks
     
 update-vm:
   stage: ui-test

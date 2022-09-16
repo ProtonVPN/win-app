@@ -42,6 +42,7 @@ namespace ProtonVPN.UI.Tests.Tests
         private const string GOOGLE_URL = "www.google.com";
 
         [Test]
+        [Category("Smoke")]
         public async Task QuickConnectAndDisconnect()
         {
             TestCaseId = 221;
@@ -90,6 +91,7 @@ namespace ProtonVPN.UI.Tests.Tests
         }
 
         [Test]
+        [Category("Smoke")]
         public void ConnectToCreatedProfile()
         {
             TestCaseId = 21551;
@@ -161,6 +163,7 @@ namespace ProtonVPN.UI.Tests.Tests
         }
 
         [Test]
+        [Category("Smoke")]
         public void CheckIfAutoConnectConnectsAutomatically()
         {
             TestCaseId = 204;
@@ -210,6 +213,7 @@ namespace ProtonVPN.UI.Tests.Tests
         }
 
         [Test]
+        [Category("Smoke")]
         public void CheckCustomDnsManipulation()
         {
             TestCaseId = 4578;
@@ -245,6 +249,7 @@ namespace ProtonVPN.UI.Tests.Tests
         }
 
         [Test]
+        [Category("Smoke")]
         public void CancelConnectionWhileConnecting()
         {
             TestCaseId = 227;
@@ -256,6 +261,7 @@ namespace ProtonVPN.UI.Tests.Tests
         }
 
         [Test]
+        [Category("Smoke")]
         public void AppExitWithKillSwitchEnabled()
         {
             TestCaseId = 216;
