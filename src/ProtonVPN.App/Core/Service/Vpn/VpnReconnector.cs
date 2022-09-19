@@ -56,7 +56,7 @@ namespace ProtonVPN.Core.Service.Vpn
         private readonly Common.Configuration.Config _config;
         private readonly Lazy<ConnectionStatusViewModel> _connectionStatusViewModel;
         private readonly ServerManager _serverManager;
-        private readonly Lazy<ServerConnector> _serverConnector;
+        private readonly IProfileFactory _profileFactory;
         private readonly Lazy<ProfileConnector> _profileConnector;
 
         private VpnReconnectionSteps _reconnectionStep;
@@ -75,7 +75,7 @@ namespace ProtonVPN.Core.Service.Vpn
             Common.Configuration.Config config,
             Lazy<ConnectionStatusViewModel> connectionStatusViewModel,
             ServerManager serverManager,
-            Lazy<ServerConnector> serverConnector,
+            IProfileFactory profileFactory,
             Lazy<ProfileConnector> profileConnector)
         {
             _appSettings = appSettings;
@@ -88,7 +88,7 @@ namespace ProtonVPN.Core.Service.Vpn
             _config = config;
             _connectionStatusViewModel = connectionStatusViewModel;
             _serverManager = serverManager;
-            _serverConnector = serverConnector;
+            _profileFactory = profileFactory;
             _profileConnector = profileConnector;
         }
 
@@ -129,7 +129,8 @@ namespace ProtonVPN.Core.Service.Vpn
             else if (lastServer != null)
             {
                 _logger.Info<ConnectLog>("Reconnecting to last server");
-                await _serverConnector.Value.Connect(lastServer);
+                Profile profile = _profileFactory.CreateFromServer(lastServer);
+                await _vpnConnector.ConnectToProfileAsync(profile);
             }
             else
             {

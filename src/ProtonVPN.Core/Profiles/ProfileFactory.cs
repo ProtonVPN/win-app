@@ -17,6 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Core.Servers;
+using ProtonVPN.Core.Servers.Models;
+
 namespace ProtonVPN.Core.Profiles
 {
     public class ProfileFactory : IProfileFactory
@@ -36,6 +39,17 @@ namespace ProtonVPN.Core.Profiles
         public Profile Create(string id)
         {
             return new(id) { ColorCode = _colorProvider.GetRandomColor() };
+        }
+
+        public Profile CreateFromServer(Server server)
+        {
+            return new(null)
+            {
+                IsTemporary = true,
+                ProfileType = ProfileType.Custom,
+                Features = (Features)server.Features,
+                ServerId = server.Id
+            };
         }
     }
 }
