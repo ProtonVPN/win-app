@@ -239,7 +239,7 @@
     <comment>The text displayed in Account window for NetShield</comment>
   </data>
   <data name="Account_lbl_NoLogs">
-    <value>Strict no-logs policy</value>
+    <value>Strikt beleid tegen logboeken</value>
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_P2P">
@@ -265,7 +265,7 @@
     <value>&lt;Bold&gt;{0}&lt;/Bold&gt; servers</value>
   </data>
   <data name="Account_lbl_Streaming">
-    <value>Streaming service support</value>
+    <value>Ondersteuning voor streamingservices</value>
     <comment>The text displayed in Account window for Streaming service support</comment>
   </data>
   <data name="Account_lbl_TorOverVpn">
@@ -354,7 +354,7 @@
     <value>Update</value>
   </data>
   <data name="BugReport_btn_GotIt">
-    <value>Done</value>
+    <value>Klaar</value>
   </data>
   <data name="BugReport_btn_LearnMore">
     <value>Meer informatie</value>
@@ -364,7 +364,7 @@
     <comment>The text on Retry button in Issue Report window (retries sending after failure)</comment>
   </data>
   <data name="BugReport_btn_Send">
-    <value>Send report</value>
+    <value>Verstuur melding</value>
     <comment>The text on Send button in Issue Report window (sends the Issue report)</comment>
   </data>
   <data name="BugReport_btn_Troubleshoot">
@@ -439,7 +439,7 @@
     <value>We laten u zo snel als het kan iets weten.</value>
   </data>
   <data name="BugReport_lbl_of">
-    <value>of</value>
+    <value>van</value>
     <comment>The text displayed in report an issue form. For example: Step 1 of 3.</comment>
   </data>
   <data name="BugReport_msg_EmailNotValid">
@@ -1534,7 +1534,7 @@
     <comment>The name of ZZ (unknown or not specified) country</comment>
   </data>
   <data name="Dialogs_AssignVpnConnections_btn_Assign">
-    <value>Assign VPN connections</value>
+    <value>VPN-verbindingen toewijzen</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_btn_LoginAgain">
     <value>Opnieuw inloggen</value>
@@ -1578,7 +1578,7 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <comment>The message displayed in the Delinquency window. The codes between &lt; and &gt; should be kept as is (Do not forget to translate the inner "Read more about delinquency.").</comment>
   </data>
   <data name="Dialogs_Delinquency_ttl">
-    <value>Delinquent account</value>
+    <value>Achterstallig account</value>
     <comment>The title of the Delinquency window</comment>
   </data>
   <data name="Dialogs_DisabledService_btn_Enable">
@@ -1691,7 +1691,7 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <comment>The ok button text in the Maximum Device Limit window when the user already has the highest subscription plan</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Disconnect_Subtitle">
-    <value>Verbreek een ander apparaat om deze te verbinden.</value>
+    <value>Verbreek verbinding met een ander apparaat om deze te verbinden.</value>
     <comment>The subtitle of the Maximum Device Limit window when the user already has the highest subscription plan</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Title">
@@ -1703,7 +1703,7 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <comment>The upgrade button text in the Maximum Device Limit window when the user can upgrade the subscription plan</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Upgrade_Subtitle">
-    <value>Verbreek een ander apparaat om deze te verbinden of upgrade naar PLUS om tegelijkertijd 10 apparaten verbonden te krijgen.</value>
+    <value>Verbreek verbinding met een ander apparaat om deze te verbinden of upgrade naar PLUS om tegelijkertijd 10 apparaten verbonden te krijgen.</value>
     <comment>The subtitle of the Maximum Device Limit window when the user can upgrade the subscription plan</comment>
   </data>
   <data name="Dialogs_OutdatedApp_btn_Quit">
@@ -1749,7 +1749,7 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <comment>The text displayed in modal window when the app detects system proxy is turned on</comment>
   </data>
   <data name="Dialogs_Reboot_btn_Reboot">
-    <value>Opnieuw starten</value>
+    <value>Herstarten</value>
   </data>
   <data name="Dialogs_Reboot_btn_SkipReboot">
     <value>Doorgaan zonder</value>
@@ -1971,7 +1971,7 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <comment>The text displayed in login window when login takes longer than expected</comment>
   </data>
   <data name="Login_lbl_TwoFactorAuthCode">
-    <value>Two-factor authentication code</value>
+    <value>Tweestapsverificatiecode</value>
   </data>
   <data name="Login_lbl_Username">
     <value>Gebruikersnaam</value>
@@ -2006,14 +2006,14 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <comment>The text of hyperlink in Need Help popup of Login window (opens a modal to report a potential bug)</comment>
   </data>
   <data name="Login_lnk_ResetPassword">
-    <value>Reset password</value>
+    <value>Wachtwoord resetten</value>
     <comment>The text of hyperlink in Need Help popup of Login window (opens web page for resetting user password)</comment>
   </data>
   <data name="Login_msg_IncorrectTwoFactorCode">
     <value>Foutieve tweestapsverificatiecode</value>
   </data>
   <data name="Login_msg_TwoFactorAuthFailed">
-    <value>Incorrect login credentials. Please try again.</value>
+    <value>Onjuiste inloggegevens. Gelieve opnieuw te proberen.</value>
   </data>
   <data name="Login_ttl">
     <value>Proton VPN</value>
@@ -2118,7 +2118,7 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <comment>The message displayed in the Insecure Wi-Fi notification when connected to insecure Wi-Fi network. The {0} is a placeholder for Wi-Fi network name.</comment>
   </data>
   <data name="Notifications_MaximumDeviceLimit_Disconnect_Description">
-    <value>Verbreek een ander apparaat om deze te verbinden.</value>
+    <value>Verbreek verbinding met een ander apparaat om deze te verbinden.</value>
     <comment>The description of the Maximum Device Limit notification when the user already has the highest subscription plan</comment>
   </data>
   <data name="Notifications_MaximumDeviceLimit_Title">
@@ -2126,7 +2126,7 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <comment>The title of the Maximum Device Limit notification</comment>
   </data>
   <data name="Notifications_MaximumDeviceLimit_Upgrade_Description">
-    <value>Verbreek een ander apparaat om deze te verbinden of upgrade naar PLUS om tegelijkertijd 10 apparaten verbonden te krijgen.</value>
+    <value>Verbreek verbinding met een ander apparaat om deze te verbinden of upgrade naar PLUS om tegelijkertijd 10 apparaten verbonden te krijgen.</value>
     <comment>The description of the Maximum Device Limit notification when the user can upgrade the subscription plan</comment>
   </data>
   <data name="Notifications_SubscriptionExpired_Description">
@@ -2410,7 +2410,7 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <comment>The title of Profiles window</comment>
   </data>
   <data name="PromoCode_btn_Apply">
-    <value>Apply</value>
+    <value>Pas toe</value>
   </data>
   <data name="PromoCode_lbl_CouponCode">
     <value>Kortingscode</value>
@@ -2419,7 +2419,7 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <value>Kortingscode werd succesvol toegepast.</value>
   </data>
   <data name="PromoCode_lbl_UseCoupon">
-    <value>Use coupon</value>
+    <value>Gebruik kortingscode</value>
   </data>
   <data name="QuickLaunch_btn_Connect">
     <value>Snel Verbinden</value>
@@ -2481,7 +2481,7 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <value>Schakelt internet uit als de VPN-verbinding wegvalt om onbedoeld IP-lekken te voorkomen.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldInfo">
-    <value>Browse the Internet without ads and malware.</value>
+    <value>Blader door internet zonder advertenties en malware.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldWarning">
     <value>Als websites niet laden, probeer NetShield dan uit te schakelen</value>
@@ -2593,7 +2593,7 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <comment>The message displayed when connecting to server which was removed and doesn't exist anymore</comment>
   </data>
   <data name="Servers_msg_CantConnect_RpcServerUnavailable">
-    <value>Proton VPN kan geen verbinding maken omdat de RPC server niet beschikbaar is op uw systeem. &lt;Hyperlink Command="{Binding OpenRpcServerUrlCommand}"&gt;Bekijk mogelijke oplossingen&lt;/Hyperlink&gt;</value>
+    <value>Proton VPN kan geen verbinding maken omdat de RPC-server niet beschikbaar is op uw systeem. &lt;Hyperlink Command="{Binding OpenRpcServerUrlCommand}"&gt;Bekijk mogelijke oplossingen&lt;/Hyperlink&gt;</value>
   </data>
   <data name="Servers_msg_MissingServerPublicKey">
     <value>Unfortunately, this server does not support WireGuard.</value>
@@ -2662,10 +2662,10 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <value>OpenVPN Netwerk stuurprogramma</value>
   </data>
   <data name="Settings_Advanced_lbl_NetworkDriver_info">
-    <value>Netwerk drivers kunnen uw verbinding en snelheid beïnvloeden. De nieuwe TUN adapter heeft een hogere snelheid, fallback op de TAP adapter als u een verbindingsprobleem ondervindt.</value>
+    <value>Netwerkstuurprogramma's kunnen uw verbinding en snelheid beïnvloeden. De nieuwe TUN-adapter heeft een hogere snelheid, fallback op de TAP-adapter als u een verbindingsprobleem ondervindt.</value>
   </data>
   <data name="Settings_Advanced_lbl_NonStandardPorts">
-    <value>Non-standard ports</value>
+    <value>Niet-standaard poorten</value>
     <comment>The label for toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_NonStandardPorts_Info">
@@ -2694,7 +2694,7 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <value>Krijg meldingen wanneer het Port forwarding nummer wijzigt</value>
   </data>
   <data name="Settings_Advanced_lbl_PortForwarding_Info">
-    <value>Versnel je torrenting en online gokken door het mogelijk te maken dat ondersteunde lokale apps bereikbaar zijn vanaf internet. &lt;Hyperlink Command="{Binding LearnMoreAboutPortForwardingCommand}"&gt;Meer informatie&lt;/Hyperlink&gt;</value>
+    <value>Versnel uw torrenting en online gaming door het mogelijk te maken dat ondersteunde lokale apps bereikbaar zijn vanaf internet. &lt;Hyperlink Command="{Binding LearnMoreAboutPortForwardingCommand}"&gt;Meer informatie&lt;/Hyperlink&gt;</value>
     <comment>Do not translate whatever is between &lt; and &gt;. Do not forget to translate the "Learn more".</comment>
   </data>
   <data name="Settings_Advanced_lbl_SplitTunnel">
@@ -2753,10 +2753,10 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <comment>The description of Default Protocol settings displayed in the tooltip of ( i ) image next to the label for Default Protocol combo box in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_ModerateNat">
-    <value>Moderate NAT</value>
+    <value>Gemiddelde NAT</value>
   </data>
   <data name="Settings_Connection_lbl_ModerateNat_Info">
-    <value>Moderate NAT schakelt de randomisatie van de lokale adressen mapping uit, wat uw veiligheid enigszins kan verminderen, maar laat technieken toe zoals rechtstreekse verbindingen voor toepassingen zoals online games.</value>
+    <value>Gemiddelde NAT schakelt de randomisatie van de lokale adressen mapping uit, wat uw veiligheid enigszins kan verminderen, maar laat technieken toe zoals rechtstreekse verbindingen voor toepassingen zoals online games.</value>
   </data>
   <data name="Settings_Connection_lbl_QuickConnect">
     <value>Snel Verbinden</value>
@@ -2844,7 +2844,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The title of Settings window</comment>
   </data>
   <data name="SidebarProfiles_lbl_MyProfiles">
-    <value>My Profiles</value>
+    <value>Mijn profielen</value>
     <comment>The text of "My Profiles" category text in the Profile sidebar, that has the custom created profiles below</comment>
   </data>
   <data name="SidebarProfiles_lbl_Recommended">
@@ -2969,7 +2969,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>PLUS-servers ondersteunen streaming (Netflix, Disney+, enz.) wereldwijd.</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Title">
-    <value>Features</value>
+    <value>Mogelijkheden</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Tor">
     <value>Tor</value>
@@ -2982,7 +2982,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The text of button for creating new profile on Profiles tab of Sidebar section of main app window (opens new profile window)</comment>
   </data>
   <data name="Sidebar_Profiles_lnk_Manage">
-    <value>Manage</value>
+    <value>Beheer</value>
     <comment>The text of hyperlink on Profiles tab of Sidebar section of main app window (opens Profiles window)</comment>
   </data>
   <data name="Sidebar_Profiles_ttl">
@@ -3001,7 +3001,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Streaming - {0}</value>
   </data>
   <data name="Sidebar_Streaming_Features">
-    <value>Features</value>
+    <value>Mogelijkheden</value>
   </data>
   <data name="Sidebar_Streaming_Info">
     <value>Maak verbinding met een Plus server in dit land om te beginnen met streamen.</value>
@@ -3062,7 +3062,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Blokkeer advertenties en malware met NetShield</value>
   </data>
   <data name="Upsell_Countries_BrowseFast">
-    <value>Browse at the highest speeds (10 Gbps)</value>
+    <value>Browse aan de hoogste snelheden (10 Gbps)</value>
   </data>
   <data name="Upsell_Countries_GlobalStreamingServices">
     <value>Krijg toegang tot wereldwijde streamingdiensten</value>
@@ -3082,7 +3082,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The message disaplyed in plus upgrade modal window</comment>
   </data>
   <data name="Upsell_ModerateNat_About">
-    <value>What is Moderate NAT?</value>
+    <value>Wat is Gemiddelde NAT?</value>
   </data>
   <data name="Upsell_ModerateNat_Subtitle">
     <value>Gemiddelde NAT (ook gekend als NAT Type 2) kan uw online ervaring met verschillende applicaties en online videogames verbeteren.</value>
@@ -3094,19 +3094,19 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Upgrade naar een betaald abonnement om deze en vele andere functies te deblokkeren.</value>
   </data>
   <data name="Upsell_Netshield_BlockAds">
-    <value>Block ads and trackers</value>
+    <value>Blokkeer advertenties en trackers</value>
   </data>
   <data name="Upsell_Netshield_BrowseFast">
-    <value>Browse at the highest speeds</value>
+    <value>Browse aan de hoogste snelheden</value>
   </data>
   <data name="Upsell_Netshield_ProtectFromMalware">
     <value>Bescherm uw apparaat tegen malware</value>
   </data>
   <data name="Upsell_Netshield_Subtitle">
-    <value>When you upgrade to Plus</value>
+    <value>Wanneer u upgrade naar Plus</value>
   </data>
   <data name="Upsell_Netshield_Title">
-    <value>Enjoy ad-free browsing with NetShield</value>
+    <value>Geniet van advertentie-vrij browsen met NetShield</value>
   </data>
   <data name="Upsell_NonStandardPorts_btn_LearnMore">
     <value>Meer informatie</value>
@@ -3144,7 +3144,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Routeer via ultra beveiligde servers in Zwitserland, Zweden en IJsland</value>
   </data>
   <data name="Upsell_SecureCore_Subtitle">
-    <value>When you upgrade to Plus</value>
+    <value>Wanneer u upgrade naar Plus</value>
   </data>
   <data name="Upsell_SecureCore_Title">
     <value>Verdubbel de encryptie met Secure Core</value>
