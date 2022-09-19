@@ -17,11 +17,14 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Core.Servers.Models;
+
 namespace ProtonVPN.Core.Profiles
 {
     public interface IProfileFactory
     {
         public Profile Create();
         public Profile Create(string id);
+        public Profile CreateFromServer(Server server);
     }
 }
