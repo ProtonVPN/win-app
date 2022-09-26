@@ -24,6 +24,8 @@ namespace ProtonVPN.UI.Tests.Windows
     public class SettingsWindow : UIActions
     {
         private AutomationElement StartMinimizedComboBox => ElementByAutomationId("StartMinimizedCombobox").AsComboBox();
+        private ListBoxItem OpenVpnUdpOption => StartMinimizedComboBox.FindChildAt(2).AsListBoxItem();
+        private ListBoxItem OpenVpnTcpOption => StartMinimizedComboBox.FindChildAt(3).AsListBoxItem();
         private ListBoxItem OptionDisabled => StartMinimizedComboBox.FindFirstChild().AsListBoxItem();
         private AutomationElement SettingsCloseButton => ElementByAutomationId("ModalCloseButton");
         private CheckBox ConnectOnBootCheckBox => ElementByAutomationId("ConnectOnBootCheckbox").AsCheckBox();
@@ -117,6 +119,18 @@ namespace ProtonVPN.UI.Tests.Windows
         {
             PortForwardingCheckBox.Click();
             EnableButton.Invoke();
+            return this;
+        }
+
+        public SettingsWindow SelectProtocolOpenVpnUdp()
+        {
+            OpenVpnUdpOption.Select();
+            return this;
+        }
+
+        public SettingsWindow SelectProtocolOpenVpnTcp()
+        {
+            OpenVpnTcpOption.Select();
             return this;
         }
     }
