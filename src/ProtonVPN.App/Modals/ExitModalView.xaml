@@ -98,7 +98,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <Button Style="{StaticResource PrimaryModalButton}"
                         AutomationProperties.AutomationId="{StaticResource CloseButtonId}"
                         Content="{translations:Loc Dialogs_Exit_btn_Exit}"
-                        Command="{Binding CloseCommand}" />
+                        Command="{Binding ExitCommand}" />
             </StackPanel>
         </StackPanel>
     </Grid>
