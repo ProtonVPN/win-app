@@ -37,6 +37,16 @@ namespace ProtonVPN.Modals
 
         public override void CloseAction()
         {
+            TryCloseWithFailure();
+        }
+
+        public void TryCloseWithSuccess()
+        {
+            TryClose(true);
+        }
+
+        public void TryCloseWithFailure()
+        {
             TryClose(false);
         }
 
