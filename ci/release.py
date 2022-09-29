@@ -19,6 +19,9 @@ def checkout_develop():
 def checkout_branch(name):
     os.system(f"git checkout -b {name}")
 
+def delete_branch(name):
+    os.system(f"git push origin --delete {name}")
+
 def push_branch(name):
     os.system(f"git push --set-upstream origin {name}")
 
@@ -61,4 +64,5 @@ if version == None:
 configure_git(os.getenv('RELEASE_GIT_EMAIL'), os.getenv('RELEASE_GIT_USERNAME'))
 
 create_release_and_debug_branches(version)
+delete_branch("release/9.9.9")
 create_release_branch('9.9.9', f"Build app version 9.9.9 to test {version} installer")
