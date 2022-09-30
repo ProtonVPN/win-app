@@ -17,23 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.IO;
+using System.Runtime.InteropServices;
 
-namespace ProtonVPN.Config
-{
-    internal class ConfigDirectories
-    {
-        private readonly Common.Configuration.Config _config;
-
-        public ConfigDirectories(Common.Configuration.Config config)
-        {
-            _config = config;
-        }
-
-        public void Prepare()
-        {
-            Directory.CreateDirectory(_config.LocalAppDataFolder);
-            Directory.CreateDirectory(_config.DiagnosticsLogFolder);
-        }
-    }
-}
+[assembly: Guid("2088b3af-f9af-45b8-b824-16749d5daf9e")]

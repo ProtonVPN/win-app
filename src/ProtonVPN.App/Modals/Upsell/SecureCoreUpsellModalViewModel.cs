@@ -17,9 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using GalaSoft.MvvmLight.CommandWpf;
-using ProtonVPN.Config.Url;
 using System.Windows.Input;
+using GalaSoft.MvvmLight.CommandWpf;
+using ProtonVPN.Account;
+using ProtonVPN.Config.Url;
 
 namespace ProtonVPN.Modals.Upsell
 {
@@ -27,7 +28,7 @@ namespace ProtonVPN.Modals.Upsell
     {
         public ICommand AboutSecureCoreCommand { get; set; }
 
-        public SecureCoreUpsellModalViewModel(IActiveUrls urls) : base(urls)
+        public SecureCoreUpsellModalViewModel(ISubscriptionManager subscriptionManager, IActiveUrls urls) : base(subscriptionManager, urls)
         {
             AboutSecureCoreCommand = new RelayCommand(OpenAboutSecureCorePage);
         }

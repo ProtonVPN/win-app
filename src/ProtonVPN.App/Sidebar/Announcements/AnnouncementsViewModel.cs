@@ -24,31 +24,31 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Caliburn.Micro;
 using GalaSoft.MvvmLight.CommandWpf;
+using ProtonVPN.Announcements.Contracts;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
-using ProtonVPN.Core.Announcements;
 using ProtonVPN.Core.Auth;
-using ProtonVPN.Core.Modals;
-using ProtonVPN.Modals.Offers;
+using ProtonVPN.Core.Windows.Popups;
+using ProtonVPN.Windows.Popups.Offers;
 
 namespace ProtonVPN.Sidebar.Announcements
 {
     public class AnnouncementsViewModel : Screen, IAnnouncementsAware, ILoggedInAware
     {
         private readonly IAnnouncementService _announcementService;
-        private readonly IModals _modals;
+        private readonly IPopupWindows _popupWindows;
         private readonly ILogger _logger;
-        private readonly OfferModalViewModel _offerModalViewModel;
+        private readonly OfferPopupViewModel _offerPopupViewModel;
 
         public AnnouncementsViewModel(IAnnouncementService announcementService,
-            IModals modals,
+            IPopupWindows popupWindows,
             ILogger logger,
-            OfferModalViewModel offerModalViewModel)
+            OfferPopupViewModel offerPopupViewModel)
         {
             _announcementService = announcementService;
-            _modals = modals;
+            _popupWindows = popupWindows;
             _logger = logger;
-            _offerModalViewModel = offerModalViewModel;
+            _offerPopupViewModel = offerPopupViewModel;
             OpenAnnouncementCommand = new RelayCommand(OpenAnnouncement);
         }
 
@@ -97,7 +97,10 @@ namespace ProtonVPN.Sidebar.Announcements
             HasUnread = false;
             List<Announcement> items = new();
             DateTime currentTimeUtc = DateTime.UtcNow;
-            foreach (Announcement announcement in _announcementService.Get())
+            IReadOnlyCollection<Announcement> announcements = _announcementService.Get()
+                .Where(a => a.Type == (int)AnnouncementType.Standard)
+                .ToList();
+            foreach (Announcement announcement in announcements)
             {
                 if (currentTimeUtc >= announcement.EndDateTimeUtc)
                 {
@@ -141,11 +144,16 @@ namespace ProtonVPN.Sidebar.Announcements
             Announcement announcement = Announcement;
             if (announcement != null)
             {
-                _announcementService.MarkAsSeen(announcement.Id);
                 HasUnread = false;
-                _offerModalViewModel.Panel = announcement.Panel;
-                _modals.Show<OfferModalViewModel>();
+                OpenAnnouncement(announcement);
             }
+        }
+
+        private void OpenAnnouncement(Announcement announcement)
+        {
+            _announcementService.MarkAsSeen(announcement.Id);
+            _offerPopupViewModel.Panel = announcement.Panel;
+            _popupWindows.Show<OfferPopupViewModel>();
         }
     }
 }

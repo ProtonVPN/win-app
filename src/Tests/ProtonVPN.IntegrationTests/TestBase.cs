@@ -19,21 +19,24 @@
  */
 
 using System;
-using System.IO;
 using System.Net.Http;
 using Autofac;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
+using ProtonVPN.Announcements.Contracts;
+using ProtonVPN.Announcements.Installers;
+using ProtonVPN.Announcements.Tests;
 using ProtonVPN.Api;
+using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Installers;
 using ProtonVPN.BugReporting;
+using ProtonVPN.Common.OS.Net.Http;
 using ProtonVPN.Common.Threading;
-using ProtonVPN.Core.Announcements;
 using ProtonVPN.Core.Ioc;
 using ProtonVPN.HumanVerification.Installers;
-using ProtonVPN.IntegrationTests.Announcements;
 using ProtonVPN.P2PDetection;
 using RichardSzalay.MockHttp;
+using File = System.IO.File;
 
 namespace ProtonVPN.IntegrationTests
 {
@@ -60,7 +63,19 @@ namespace ProtonVPN.IntegrationTests
 
         protected void InitializeContainer()
         {
+            HttpClient httpClient = MessageHandler.ToHttpClient();
+            httpClient.BaseAddress = new Uri("http://localhost");
             ContainerBuilder builder = new();
+
+            builder.RegisterAssemblyModules<ApiModule>(typeof(ApiModule).Assembly);
+            builder.Register(_ =>
+            {
+                IApiHttpClientFactory httpClientFactory = Substitute.For<IApiHttpClientFactory>();
+                httpClientFactory.GetApiHttpClientWithCache().Returns(httpClient);
+                httpClientFactory.GetApiHttpClientWithoutCache().Returns(httpClient);
+                return httpClientFactory;
+            }).As<IApiHttpClientFactory>().SingleInstance();
+
             builder.RegisterModule<CoreModule>()
                 .RegisterModule<UiModule>()
                 .RegisterModule<AppModule>()
@@ -69,22 +84,18 @@ namespace ProtonVPN.IntegrationTests
                 .RegisterModule<P2PDetectionModule>()
                 .RegisterModule<ProfilesModule>()
                 .RegisterModule<UpdateModule>()
-                .RegisterAssemblyModules<HumanVerificationModule>(typeof(HumanVerificationModule).Assembly)
-                .RegisterAssemblyModules<ApiModule>(typeof(ApiModule).Assembly);
+                .RegisterAssemblyModules<HumanVerificationModule>(typeof(HumanVerificationModule).Assembly);
 
+            builder.Register(_ =>
+            {
+                IFileDownloadHttpClientFactory httpClients = Substitute.For<IFileDownloadHttpClientFactory>();
+                httpClients.GetFileDownloadHttpClient().Returns(new WrappedHttpClient(httpClient));
+                return httpClients;
+            }).As<IFileDownloadHttpClientFactory>().SingleInstance();
+            builder.RegisterAssemblyModules<AnnouncementsModule>(typeof(AnnouncementsModule).Assembly);
 
             builder.Register(_ => Substitute.For<IScheduler>()).As<IScheduler>().SingleInstance();
             builder.Register(_ => new AnnouncementCacheMock()).As<IAnnouncementCache>().SingleInstance();
-            builder.Register(_ =>
-            {
-                HttpClient httpClient = MessageHandler.ToHttpClient();
-                IApiHttpClientFactory httpClientFactory = Substitute.For<IApiHttpClientFactory>();
-                httpClient.BaseAddress = new Uri("http://localhost");
-                httpClientFactory.GetApiHttpClientWithCache().Returns(httpClient);
-                httpClientFactory.GetApiHttpClientWithoutCache().Returns(httpClient);
-                return httpClientFactory;
-            }).As<IApiHttpClientFactory>().SingleInstance();
-
 
             new Update.Config.Module().Load(builder);
 

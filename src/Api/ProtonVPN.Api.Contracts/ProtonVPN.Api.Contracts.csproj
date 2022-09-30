@@ -51,18 +51,24 @@
     </Compile>
     <Compile Include="ActionableFailureApiResultEventArgs.cs" />
     <Compile Include="Announcements\AnnouncementResponse.cs" />
+    <Compile Include="Announcements\AnnouncementsRequest.cs" />
     <Compile Include="Announcements\AnnouncementsResponse.cs" />
+    <Compile Include="Announcements\FullScreenImageResponse.cs" />
     <Compile Include="Announcements\OfferPanelButtonResponse.cs" />
     <Compile Include="Announcements\OfferPanelFeatureResponse.cs" />
     <Compile Include="Announcements\OfferPanelResponse.cs" />
     <Compile Include="Announcements\OfferResponse.cs" />
+    <Compile Include="Announcements\SourceResponse.cs" />
     <Compile Include="ApiResponseResult.cs" />
     <Compile Include="Auth\AuthInfoResponse.cs" />
+    <Compile Include="Auth\AuthRequest.cs" />
+    <Compile Include="Auth\ForkedAuthSessionResponse.cs" />
     <Compile Include="Auth\AuthResponse.cs" />
     <Compile Include="Auth\VpnInfoResponse.cs" />
     <Compile Include="Exceptions\AlternativeRoutingException.cs" />
     <Compile Include="ExpandedHttpStatusCodes.cs" />
     <Compile Include="IApiHostProvider.cs" />
+    <Compile Include="IFileDownloadHttpClientFactory.cs" />
     <Compile Include="Profiles\BaseProfileResponse.cs" />
     <Compile Include="Common\BaseResponse.cs" />
     <Compile Include="Common\BaseResponseDetail.cs" />
@@ -70,7 +76,7 @@
     <Compile Include="Certificates\CertificateRequest.cs" />
     <Compile Include="Certificates\CertificateResponse.cs" />
     <Compile Include="Auth\AuthInfoRequest.cs" />
-    <Compile Include="Auth\AuthRequest.cs" />
+    <Compile Include="Auth\AuthForkSessionRequest.cs" />
     <Compile Include="Auth\RefreshTokenRequest.cs" />
     <Compile Include="Auth\TwoFactorRequest.cs" />
     <Compile Include="Events\EventResponse.cs" />

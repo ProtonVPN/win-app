@@ -21,6 +21,7 @@ using System;
 using System.Net.Http;
 using Autofac;
 using ProtonVPN.Api;
+using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Handlers;
 using ProtonVPN.Api.Handlers.Retries;
 using ProtonVPN.Api.Handlers.StackBuilders;
@@ -45,16 +46,9 @@ namespace ProtonVPN.Core.Ioc
         // TO DO: Refactor the code in order to delete this custom registration
         private DefaultAppUpdateConfig CreateDefaultAppUpdateConfig(IComponentContext c)
         {
-            HttpMessageHandler innerHandler = new HttpMessageHandlerStackBuilder()
-                .AddDelegatingHandler(c.Resolve<RetryingHandler>())
-                .AddDelegatingHandler(c.Resolve<DnsHandler>())
-                .AddDelegatingHandler(c.Resolve<LoggingHandlerBase>())
-                .AddLastHandler(c.Resolve<CertificateHandler>())
-                .Build();
-
             return new DefaultAppUpdateConfig
             {
-                HttpClient = c.Resolve<IHttpClients>().Client(innerHandler, c.Resolve<IApiAppVersion>().UserAgent()),
+                HttpClient = c.Resolve<IFileDownloadHttpClientFactory>().GetFileDownloadHttpClient(),
                 FeedUriProvider = c.Resolve<IFeedUrlProvider>(),
                 UpdatesPath = c.Resolve<Common.Configuration.Config>().UpdatesPath,
                 CurrentVersion = Version.Parse(c.Resolve<Common.Configuration.Config>().AppVersion),

@@ -17,23 +17,46 @@ You should have received a copy of the GNU General Public License
 along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 -->
 
-<resource:BaseModalWindow x:Class="ProtonVPN.Modals.Offers.OfferModalView"
+<resource:BasePopupWindow x:Class="ProtonVPN.Windows.Popups.Offers.OfferPopupView"
                           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                           xmlns:resource="clr-namespace:ProtonVPN.Resource;assembly=ProtonVPN.Resource"
-                          xmlns:offers="clr-namespace:ProtonVPN.Modals.Offers"
-                          xmlns:announcements="clr-namespace:ProtonVPN.Core.Announcements;assembly=ProtonVPN.Core"
-                          Style="{StaticResource BaseWindowStyle}"
-                          SizeToContent="Height"
+                          xmlns:contracts="clr-namespace:ProtonVPN.Announcements.Contracts;assembly=ProtonVPN.Announcements.Contracts"
+                          xmlns:offers="clr-namespace:ProtonVPN.Windows.Popups.Offers"
+                          Style="{StaticResource BasePopupWindowStyle}"
+                          SizeToContent="WidthAndHeight"
                           Title=" "
                           mc:Ignorable="d"
                           Height="Auto"
                           Width="550"
-                          d:DataContext="{d:DesignInstance offers:OfferModalViewModel}">
+                          d:DataContext="{d:DesignInstance offers:OfferPopupViewModel}">
     <Grid>
+        <StackPanel Visibility="{Binding IsToDisplayFullScreenImage, Converter={StaticResource BoolToVis}}">
+            <Image Name="FullscreenImage"
+                   HorizontalAlignment="Center"
+                   Source="{Binding FullScreenImageSource}" />
+            <Button Name="FullscreenImageButton"
+                    Style="{StaticResource PrimaryModalButton}"
+                    HorizontalAlignment="Center"
+                    Padding="40,0,40,1"
+                    Margin="0,0,0,30"
+                    Command="{Binding FullScreenImageButtonCommand}"
+                    Content="{Binding Panel.Button.Text}" />
+        </StackPanel>
+
         <StackPanel Margin="50">
+            <StackPanel.Style>
+                <Style TargetType="StackPanel">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsToDisplayFullScreenImage}" Value="False">
+                            <Setter Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </StackPanel.Style>
             <TextBlock Padding="0,0,0,0"
                        HorizontalAlignment="Center"
                        TextAlignment="Center"
@@ -74,6 +97,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     Background="{StaticResource NotificationErrorBrushColor}"
                     BorderThickness="0"
                     HorizontalAlignment="Center"
+                    Visibility="{Binding IsToDisplayPill, Converter={StaticResource BoolToVis}}"
                     Padding="10,3,10,3">
                 <TextBlock Text="{Binding Panel.Pill}"
                            Foreground="{StaticResource TextNormBrushColor}"
@@ -101,7 +125,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0,10,0,0">
                 <ItemsControl ItemsSource="{Binding Panel.Features}" x:Name="Features">
                     <ItemsControl.Resources>
-                        <DataTemplate DataType="{x:Type announcements:PanelFeature}">
+                        <DataTemplate DataType="{x:Type contracts:PanelFeature}">
                             <DockPanel>
                                 <Grid HorizontalAlignment="Left" Margin="0,10,0,0">
                                     <Grid.ColumnDefinitions>
@@ -111,9 +135,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     <Image Grid.Column="0"
                                            Source="{Binding IconUrl}"
                                            Margin="0"
-                                           HorizontalAlignment="Center" 
-                                           VerticalAlignment="Center" 
-                                           Width="24" 
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Width="24"
                                            Height="24" />
                                     <TextBlock Grid.Column="1"
                                                Padding="10,0,0,0"
@@ -133,6 +157,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
             <Button Style="{StaticResource PrimaryModalButton}"
                     HorizontalAlignment="Center"
+                    Visibility="{Binding IsToDisplayButton, Converter={StaticResource BoolToVis}}"
                     Margin="0,30,0,0"
                     Padding="25,0,25,0"
                     FontWeight="Bold"
@@ -150,4 +175,4 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         </StackPanel>
     </Grid>
-</resource:BaseModalWindow>
+</resource:BasePopupWindow>

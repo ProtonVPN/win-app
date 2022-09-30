@@ -128,6 +128,9 @@
     <ROW Component="Polly.dll" ComponentId="{27789B2F-8E2A-4CAC-8958-82351E3F267A}" Directory_="APPDIR" Attributes="0" KeyPath="Polly.dll"/>
     <ROW Component="ProductInformation" ComponentId="{2741B490-2DE7-46C9-8120-5FD702469FF8}" Directory_="APPDIR" Attributes="4" KeyPath="Version"/>
     <ROW Component="ProtonVPN" ComponentId="{BC778877-9316-4DE9-B81D-E112062ED357}" Directory_="ProtonVPN_Dir" Attributes="0"/>
+    <ROW Component="ProtonVPN.Announcements.Contracts.dll" ComponentId="{D55F07F7-7C8A-43DF-ACE9-2824ED30F95F}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.Announcements.Contracts.dll"/>
+    <ROW Component="ProtonVPN.Announcements.Installers.dll" ComponentId="{01A0F115-BFA4-4859-AF50-6F491535344D}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.Announcements.Installers.dll"/>
+    <ROW Component="ProtonVPN.Announcements.dll" ComponentId="{62187DB3-BD52-484E-A293-D94A99C3E096}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.Announcements.dll"/>
     <ROW Component="ProtonVPN.Api.Contracts.dll" ComponentId="{D61502F7-694C-4DBA-838D-F53769D797C6}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.Api.Contracts.dll"/>
     <ROW Component="ProtonVPN.Api.Installers.dll" ComponentId="{10AC4FFF-F9E0-4E80-92E8-98A89C9BD66A}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.Api.Installers.dll"/>
     <ROW Component="ProtonVPN.Api.dll" ComponentId="{A39268F8-9D45-41C4-9369-820A90CF6D3F}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.Api.dll"/>
@@ -184,12 +187,14 @@
     <ROW Component="System.Windows.Interactivity.dll" ComponentId="{8862DADA-0116-4219-8641-D0B85AB74B27}" Directory_="APPDIR" Attributes="0" KeyPath="System.Windows.Interactivity.dll"/>
     <ROW Component="TapInstaller.CA.dll" ComponentId="{3CD5546F-9BFE-4EF9-A535-F2E3320E76D8}" Directory_="APPDIR" Attributes="0" KeyPath="TapInstaller.CA.dll"/>
     <ROW Component="TapInstaller.dll" ComponentId="{6C0E1AC7-D393-43D7-8842-549A396829EB}" Directory_="APPDIR" Attributes="0" KeyPath="TapInstaller.dll"/>
+    <ROW Component="URLProtocol" ComponentId="{27DB7300-1FA1-4F41-B033-2A8435CEF64F}" Directory_="APPDIR" Attributes="4" KeyPath="URLProtocol"/>
     <ROW Component="WebView2Loader.dll_1" ComponentId="{2EA095EA-C501-4A0B-B50D-FFF6383F6077}" Directory_="native_1_Dir" Attributes="256" KeyPath="WebView2Loader.dll_1"/>
     <ROW Component="WebView2Loader.dll_2" ComponentId="{7B52FD4C-77FC-441E-830E-31363BA5A2A6}" Directory_="native_2_Dir" Attributes="0" KeyPath="WebView2Loader.dll_2"/>
     <ROW Component="Win10" ComponentId="{6B0F59C3-8A68-410C-8F71-09457D87920E}" Directory_="Win10_1_Dir" Attributes="0"/>
     <ROW Component="Win10_1" ComponentId="{55B105A8-3E1C-43FC-8BE0-5B595BC899AD}" Directory_="Win10_Dir" Attributes="0"/>
     <ROW Component="Win7" ComponentId="{EFB2F887-8066-4FCA-B430-40B5FB996410}" Directory_="Win7_1_Dir" Attributes="0"/>
     <ROW Component="Win7_1" ComponentId="{4FDEABE6-10AA-4321-9F93-266769F080BD}" Directory_="Win7_Dir" Attributes="0"/>
+    <ROW Component="_" ComponentId="{1527B6A7-95C2-4C38-9227-2AFA501DD525}" Directory_="APPDIR" Attributes="4" KeyPath="_"/>
     <ROW Component="bit" ComponentId="{70C7B0B5-3E87-4295-8386-D1DA17A21F6F}" Directory_="bit_Dir" Attributes="0"/>
     <ROW Component="bit_1" ComponentId="{A333B84F-5CA6-40A2-A144-7BE6867B294B}" Directory_="bit_1_Dir" Attributes="0"/>
     <ROW Component="config.ovpn" ComponentId="{0B387BF9-0755-4C70-81A5-48180795855C}" Directory_="Binaries_Dir" Attributes="0" KeyPath="config.ovpn" Type="0"/>
@@ -202,9 +207,11 @@
     <ROW Component="log4net.dll" ComponentId="{1D55A69B-2900-4147-80CC-4956FEDD1F0B}" Directory_="APPDIR" Attributes="0" KeyPath="log4net.dll"/>
     <ROW Component="native" ComponentId="{ACBE4C9D-3914-4035-B3E0-52C8E71854A8}" Directory_="native_2_Dir" Attributes="0"/>
     <ROW Component="native_1" ComponentId="{44A03566-EE9E-4189-9D26-B06208223EDD}" Directory_="native_1_Dir" Attributes="0"/>
+    <ROW Component="open" ComponentId="{615AE86C-D7D0-43DB-8075-E17C651A7126}" Directory_="APPDIR" Attributes="4" KeyPath="open"/>
     <ROW Component="openvpn.exe" ComponentId="{6AA7A3DB-2F41-4B19-8BAF-31472EFD7997}" Directory_="bit_Dir" Attributes="0" KeyPath="openvpn.exe"/>
     <ROW Component="openvpn.exe_1" ComponentId="{ED9CE289-995E-414B-9E0A-A5837B948AAB}" Directory_="bit_1_Dir" Attributes="256" KeyPath="openvpn.exe_1"/>
     <ROW Component="runtimes" ComponentId="{C72F7C81-53C6-4425-8A47-9CAE33CE0900}" Directory_="runtimes_Dir" Attributes="0"/>
+    <ROW Component="shell" ComponentId="{781AEF72-A906-4096-92BF-63FE6BC3FCFE}" Directory_="APPDIR" Attributes="4" KeyPath="shell"/>
     <ROW Component="tunnel.dll" ComponentId="{BA10003E-AAA2-4D25-95C7-E37ECC2F0DC6}" Directory_="NewFolder_Dir" Attributes="256" Condition="(VersionNT64)" KeyPath="tunnel.dll"/>
     <ROW Component="tunnel.dll_2" ComponentId="{904FBC6D-4E0A-45E8-86AC-09115E107B72}" Directory_="APPDIR" Attributes="0" Condition="(NOT VersionNT64)" KeyPath="tunnel.dll_2"/>
     <ROW Component="vcruntime140.dll" ComponentId="{956E969B-6864-4171-94CB-FEF852F3577D}" Directory_="bit_1_Dir" Attributes="256" KeyPath="vcruntime140.dll"/>
@@ -336,11 +343,17 @@
     <ROW File="ProtonVPN.Dns.Installers.dll" Component_="ProtonVPN.Dns.Installers.dll" FileName="PROTO~20.DLL|ProtonVPN.Dns.Installers.dll" Attributes="0" SourcePath="..\src\bin\ProtonVPN.Dns.Installers.dll" SelfReg="false"/>
     <ROW File="ProtonVPN.Dns.Contracts.dll" Component_="ProtonVPN.Dns.Contracts.dll" FileName="PROTO~21.DLL|ProtonVPN.Dns.Contracts.dll" Attributes="0" SourcePath="..\src\bin\ProtonVPN.Dns.Contracts.dll" SelfReg="false"/>
     <ROW File="ProtonVPN.Dns.dll" Component_="ProtonVPN.Dns.dll" FileName="PROTO~22.DLL|ProtonVPN.Dns.dll" Attributes="0" SourcePath="..\src\bin\ProtonVPN.Dns.dll" SelfReg="false"/>
+    <ROW File="ProtonVPN.Announcements.Contracts.dll" Component_="ProtonVPN.Announcements.Contracts.dll" FileName="PROTO~23.DLL|ProtonVPN.Announcements.Contracts.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ProtonVPN.Announcements.Contracts.dll" SelfReg="false"/>
+    <ROW File="ProtonVPN.Announcements.dll" Component_="ProtonVPN.Announcements.dll" FileName="PROTO~24.DLL|ProtonVPN.Announcements.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ProtonVPN.Announcements.dll" SelfReg="false"/>
+    <ROW File="ProtonVPN.Announcements.Installers.dll" Component_="ProtonVPN.Announcements.Installers.dll" FileName="PROTO~25.DLL|ProtonVPN.Announcements.Installers.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ProtonVPN.Announcements.Installers.dll" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.AiRemoveFileComponent">
     <ROW RemoveFile="_" Condition="(AI_CLEAN_RESOURCES_UNINSTALL = &quot;1&quot;) AND (NOT UPGRADINGPRODUCTCODE)" Options="3"/>
     <ROW RemoveFile="__1" Condition="(AI_CLEAN_RESOURCES_UNINSTALL = &quot;1&quot;) AND (NOT UPGRADINGPRODUCTCODE)" Options="3"/>
     <ROW RemoveFile="__3" Options="3"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.AiRemoveRegComponent">
+    <ROW RemoveReg="_" InstallMode="2"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BootstrOptComponent">
     <ROW BootstrOptKey="GlobalOptions" DownloadFolder="[WindowsFolder]\Temp\[|Manufacturer]\[|ProductName]\prerequisites"/>
@@ -402,6 +415,11 @@
     <ROW Action="AI_AiRemoveFilesImmediate" Description="Preparing files for removal" DescriptionLocId="ActionText.Description.AI_AiRemoveFilesImmediate" Template="Preparing file: [1]" TemplateLocId="ActionText.Template.AI_AiRemoveFilesImmediate"/>
     <ROW Action="AI_AiRemoveFilesRollback" Description="Restoring removed files" DescriptionLocId="ActionText.Description.AI_AiRemoveFilesRollback" Template="Restoring file: [1]" TemplateLocId="ActionText.Template.AI_AiRemoveFilesRollback"/>
     <ROW Action="AI_AiRemoveFilesRollback_Impersonate" Description="Restoring removed files" DescriptionLocId="ActionText.Description.AI_AiRemoveFilesRollback" Template="Restoring file: [1]" TemplateLocId="ActionText.Template.AI_AiRemoveFilesRollback"/>
+    <ROW Action="AI_AiRemoveRegsCommit" Description="Executing registry removal operations." DescriptionLocId="ActionText.Description.AI_AiRemoveRegsCommit" Template="Removing registry entry: [1]" TemplateLocId="ActionText.Template.AI_AiRemoveRegsCommit"/>
+    <ROW Action="AI_AiRemoveRegsCommitUser" Description="Executing registry removal operations." DescriptionLocId="ActionText.Description.AI_AiRemoveRegsCommit" Template="Removing registry entry: [1]" TemplateLocId="ActionText.Template.AI_AiRemoveRegsCommit"/>
+    <ROW Action="AI_AiRemoveRegsDeferred" Description="Executing registry removal operations." DescriptionLocId="ActionText.Description.AI_AiRemoveRegsDeferred" Template="Removing registry entry: [1]" TemplateLocId="ActionText.Template.AI_AiRemoveRegsDeferred"/>
+    <ROW Action="AI_AiRemoveRegsDeferredUser" Description="Executing registry removal operations." DescriptionLocId="ActionText.Description.AI_AiRemoveRegsDeferred" Template="Removing registry entry: [1]" TemplateLocId="ActionText.Template.AI_AiRemoveRegsDeferred"/>
+    <ROW Action="AI_AiRemoveRegsImmediate" Description="Generating actions to remove registry entries." DescriptionLocId="ActionText.Description.AI_AiRemoveRegsImmediate"/>
     <ROW Action="AI_ConfigFailActions" Description="Configure service failure actions" DescriptionLocId="ActionText.Description.AI_ConfigFailActions" Template="Service: [1]" TemplateLocId="ActionText.Template.AI_ConfigFailActions"/>
     <ROW Action="AI_ConfigureChainer" Description="Configuring prerequisites launcher" DescriptionLocId="ActionText.Description.AI_ConfigureChainer" Template="Configure Launcher" TemplateLocId="ActionText.Template.AI_ConfigureChainer"/>
     <ROW Action="AI_DeleteLzma" Description="Deleting files extracted from archive" DescriptionLocId="ActionText.Description.AI_DeleteLzma" TemplateLocId="-"/>
@@ -571,6 +589,11 @@
     <ROW Action="AI_AiRemoveFilesImmediate" Type="1" Source="ResourceCleaner.dll" Target="OnAiRemoveFilesImmediate"/>
     <ROW Action="AI_AiRemoveFilesRollback" Type="11521" Source="ResourceCleaner.dll" Target="OnAiUndoRemoveFiles" WithoutSeq="true"/>
     <ROW Action="AI_AiRemoveFilesRollback_Impersonate" Type="9473" Source="ResourceCleaner.dll" Target="OnAiUndoRemoveFilesImpersonate" WithoutSeq="true"/>
+    <ROW Action="AI_AiRemoveRegsCommit" Type="11777" Source="ResourceCleaner.dll" Target="OnAiRemoveRegs" WithoutSeq="true"/>
+    <ROW Action="AI_AiRemoveRegsCommitUser" Type="9729" Source="ResourceCleaner.dll" Target="OnAiRemoveRegs" WithoutSeq="true"/>
+    <ROW Action="AI_AiRemoveRegsDeferred" Type="11265" Source="ResourceCleaner.dll" Target="OnAiRemoveRegs" WithoutSeq="true"/>
+    <ROW Action="AI_AiRemoveRegsDeferredUser" Type="9217" Source="ResourceCleaner.dll" Target="OnAiRemoveRegs" WithoutSeq="true"/>
+    <ROW Action="AI_AiRemoveRegsImmediate" Type="1" Source="ResourceCleaner.dll" Target="OnAiRemoveRegsImmediate"/>
     <ROW Action="AI_AppSearchEx" Type="1" Source="Prereq.dll" Target="DoAppSearchEx"/>
     <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Type="51" Source="AI_SETUPEXEPATH_ORIGINAL" Target="[AI_SETUPEXEPATH]"/>
     <ROW Action="AI_CleanPrereq" Type="65" Source="Prereq.dll" Target="CleanPrereq" WithoutSeq="true"/>
@@ -772,6 +795,13 @@
     <ROW Feature_="MainFeature" Component_="ProtonVPN.Dns.Installers.dll"/>
     <ROW Feature_="MainFeature" Component_="ProtonVPN.Dns.Contracts.dll"/>
     <ROW Feature_="MainFeature" Component_="ProtonVPN.Dns.dll"/>
+    <ROW Feature_="MainFeature" Component_="shell"/>
+    <ROW Feature_="MainFeature" Component_="open"/>
+    <ROW Feature_="MainFeature" Component_="_"/>
+    <ROW Feature_="MainFeature" Component_="URLProtocol"/>
+    <ROW Feature_="MainFeature" Component_="ProtonVPN.Announcements.Contracts.dll"/>
+    <ROW Feature_="MainFeature" Component_="ProtonVPN.Announcements.dll"/>
+    <ROW Feature_="MainFeature" Component_="ProtonVPN.Announcements.Installers.dll"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
     <ROW Name="protonvpn.exe" SourcePath="images\protonvpn.ico" Index="0"/>
@@ -824,6 +854,7 @@
     <ROW Action="AI_ConfigPermissions" Condition="REMOVE &lt;&gt; &quot;ALL&quot;" Sequence="5852"/>
     <ROW Action="AI_DATA_SETTER_1" Condition="REMOVE &lt;&gt; &quot;ALL&quot;" Sequence="5851"/>
     <ROW Action="AI_PrepareRevokePermissions" Condition="REMOVE = &quot;ALL&quot;" Sequence="1699"/>
+    <ROW Action="AI_AiRemoveRegsImmediate" Sequence="2599"/>
     <ROW Action="AI_AiRemoveFilesImmediate" Sequence="3499"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstallUISequenceComponent">
@@ -945,11 +976,13 @@
     <ROW Registry="ProductVersion_1" Root="-1" Key="Software\Caphyon\Advanced Installer\Prereqs\[ProductCode]\[ProductVersion]" Name="\"/>
     <ROW Registry="ProtonVPN" Root="1" Key="Software\Run" Name="ProtonVPN" Value="[ProgramFilesFolder]Proton Technologies\ProtonVPN\ProtonVPN.exe" Component_="ProtonVPN_1"/>
     <ROW Registry="ProtonVPNTun" Root="-1" Key="Software\Caphyon\Advanced Installer\Prereqs\[ProductCode]\[ProductVersion]" Name="ProtonVPNTun" Value="1" Component_="ProtonVPNTun"/>
+    <ROW Registry="ProtonVPN_1" Root="0" Key="ProtonVPN" Name="\"/>
     <ROW Registry="Publisher" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Publisher" Value="[Manufacturer]" Component_="AI_CustomARPName"/>
     <ROW Registry="Run" Root="1" Key="Software\Run" Name="\"/>
     <ROW Registry="Software" Root="-1" Key="Software" Name="\"/>
     <ROW Registry="Software_1" Root="1" Key="Software" Name="\"/>
     <ROW Registry="URLInfoAbout" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="URLInfoAbout" Value="[ARPURLINFOABOUT]" Component_="AI_CustomARPName"/>
+    <ROW Registry="URLProtocol" Root="0" Key="ProtonVPN" Name="URL Protocol" Component_="URLProtocol"/>
     <ROW Registry="URLUpdateInfo" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="URLUpdateInfo" Value="[ARPURLUPDATEINFO]" Component_="AI_CustomARPName"/>
     <ROW Registry="Uninstall" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall" Name="\"/>
     <ROW Registry="UninstallPath" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="UninstallPath" Value="[AI_UNINSTALLER] /i [ProductCode] AI_UNINSTALLER_CTP=1" Component_="AI_CustomARPName"/>
@@ -958,11 +991,18 @@
     <ROW Registry="VersionMajor" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="VersionMajor" Value="#0" Component_="AI_CustomARPName" VirtualValue="#"/>
     <ROW Registry="VersionMinor" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="VersionMinor" Value="#9" Component_="AI_CustomARPName" VirtualValue="#"/>
     <ROW Registry="Windows" Root="-1" Key="Software\Microsoft\Windows" Name="\"/>
+    <ROW Registry="_" Root="0" Key="ProtonVPN\shell\open\command" Value="&quot;[#ProtonVPN.exe]&quot; &quot;%1&quot;" Component_="_"/>
+    <ROW Registry="command" Root="0" Key="ProtonVPN\shell\open\command" Name="\"/>
+    <ROW Registry="open" Root="0" Key="ProtonVPN\shell\open" Name="+" Component_="open"/>
+    <ROW Registry="shell" Root="0" Key="ProtonVPN\shell" Name="+" Component_="shell"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiRemoveFileComponent">
     <ROW FileKey="_" Component_="AI_ExePath" DirProperty="AppData_Dir" InstallMode="2"/>
     <ROW FileKey="__1" Component_="ProtonVPN.exe" DirProperty="ProtonVPN_1_Dir" InstallMode="2"/>
     <ROW FileKey="__3" Component_="ProtonVPN" DirProperty="ProtonVPN_2_Dir" InstallMode="2"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiRemoveRegComponent">
+    <ROW RemoveRegistry="_" Root="0" Key="ProtonVPN" Name="-" Component_="native"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiServConfigFailureActionsComponent">
     <ROW MsiServiceConfigFailureActions="ServiceName" Name="[ServiceName]" Event="5" ResetPeriod="1" RebootMessage="[~]" Actions="1[~]1[~]1" DelayActions="1[~]1[~]1" Component_="AI_ExePath"/>

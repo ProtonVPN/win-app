@@ -1,0 +1,35 @@
+{
+    "Code": 1000,
+    "Notifications": [
+        {
+            "NotificationID": "1",
+            "StartTime": 1658397600,
+            "EndTime": 1660816800,
+            "Type": 0,
+            "Offer": {
+                "URL": "https://protonvpn.com",
+                "Icon": "https://protonvpn.com",
+                "Label": "VPN Survey",
+                "Panel": {
+                    "FullScreenImage": {
+                        "Source": [
+                            {
+                                "URL": "https://protonvpn.com/full-screen-image.png",
+                                "Type": "PNG",
+                                "Width": 2000,
+                                "Height": 1000
+                            }
+                        ],
+                        "AlternativeText": "Take this short survey to help us, blah blah"
+                    },
+                    "Button": {
+                        "URL": "https://protonvpn.com",
+                        "Text": "Take the survey",
+                        "Action": "OpenURL",
+                        "With": ["AutoLogin"]
+                    }
+                }
+            }
+        }
+    ]
+}

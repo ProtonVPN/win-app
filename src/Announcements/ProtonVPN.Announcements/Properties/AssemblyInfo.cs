@@ -17,19 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
+using System.Runtime.InteropServices;
 
-namespace ProtonVPN.Core.Announcements
-{
-    public class Announcement
-    {
-        public string Id { get; set; }
-        public DateTime StartDateTimeUtc { get; set; }
-        public DateTime EndDateTimeUtc { get; set; }
-        public string Url { get; set; }
-        public string Icon { get; set; }
-        public string Label { get; set; }
-        public Panel Panel { get; set; }
-        public bool Seen { get; set; }
-    }
-}
+[assembly: Guid("45927301-6cf5-4770-888c-7b0b51ecebee")]

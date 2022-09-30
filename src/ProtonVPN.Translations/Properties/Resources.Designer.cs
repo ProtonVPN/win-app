@@ -196,7 +196,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Manage subscription.
+        ///   Looks up a localized string similar to Manage Subscription.
         /// </summary>
         public static string Account_btn_ManageSubscription {
             get {

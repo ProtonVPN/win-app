@@ -42,5 +42,7 @@ namespace ProtonVPN.Api.Contracts.Announcements
         public OfferPanelButtonResponse Button { get; set; }
 
         public string PageFooter { get; set; }
+
+        public FullScreenImageResponse FullScreenImage { get; set; }
     }
 }

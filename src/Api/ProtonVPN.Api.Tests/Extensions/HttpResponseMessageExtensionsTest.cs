@@ -30,6 +30,7 @@ namespace ProtonVPN.Api.Tests.Extensions
     public class HttpResponseMessageExtensionsTest
     {
         [TestMethod]
+        [DataRow(HttpStatusCode.NotFound)]
         [DataRow(HttpStatusCode.OK)]
         [DataRow(HttpStatusCode.BadRequest)]
         [DataRow(HttpStatusCode.Conflict)]

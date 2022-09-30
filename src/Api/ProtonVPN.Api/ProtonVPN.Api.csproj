@@ -64,6 +64,7 @@
     <Compile Include="Deserializers\IBaseResponseMessageDeserializer.cs" />
     <Compile Include="Extensions\HttpResponseMessageExtensions.cs" />
     <Compile Include="Extensions\X509CertificateExtensions.cs" />
+    <Compile Include="FileDownloadHttpClientFactory.cs" />
     <Compile Include="GuestHoleState.cs" />
     <Compile Include="Handlers\AlternativeHostHandler.cs" />
     <Compile Include="Handlers\DnsHandler.cs" />

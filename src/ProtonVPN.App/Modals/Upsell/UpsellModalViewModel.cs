@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Account;
 using ProtonVPN.Config.Url;
 using ProtonVPN.Modals.Dialogs;
 
@@ -24,16 +25,18 @@ namespace ProtonVPN.Modals.Upsell
 {
     public class UpsellModalViewModel : QuestionModalViewModel
     {
+        private readonly ISubscriptionManager _subscriptionManager;
         protected readonly IActiveUrls Urls;
 
-        public UpsellModalViewModel(IActiveUrls urls)
+        public UpsellModalViewModel(ISubscriptionManager subscriptionManager, IActiveUrls urls)
         {
+            _subscriptionManager = subscriptionManager;
             Urls = urls;
         }
 
         protected override void ContinueAction()
         {
-            Urls.AccountUrl.Open();
+            _subscriptionManager.UpgradeAccountAsync();
             TryClose(true);
         }
     }

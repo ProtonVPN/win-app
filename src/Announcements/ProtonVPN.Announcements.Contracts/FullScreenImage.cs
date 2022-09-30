@@ -17,23 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Collections.Generic;
-using ProtonVPN.Core.Announcements;
-
-namespace ProtonVPN.IntegrationTests.Announcements
+namespace ProtonVPN.Announcements.Contracts
 {
-    internal class AnnouncementCacheMock : IAnnouncementCache
+    public class FullScreenImage
     {
-        private IReadOnlyList<Announcement> _announcements;
-
-        public IReadOnlyList<Announcement> Get()
-        {
-            return _announcements;
-        }
-
-        public void Store(IReadOnlyList<Announcement> announcements)
-        {
-            _announcements = announcements;
-        }
+        public string Source { get; set; }
+        public string AlternativeText { get; set; }
     }
 }

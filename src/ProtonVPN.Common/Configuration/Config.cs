@@ -90,6 +90,9 @@ namespace ProtonVPN.Common.Configuration
         [Required]
         public string LocalAppDataFolder { get; set; }
 
+        [Required]
+        public string ImageCacheFolder { get; set; }
+
         [Range(1, 100)]
         public int MaxAppLogsAttached { get; set; }
 
@@ -231,5 +234,7 @@ namespace ProtonVPN.Common.Configuration
 
         [Range(typeof(TimeSpan), "00:00:01", "23:59:59")]
         public TimeSpan AlternativeRoutingCheckInterval { get; set; }
+
+        public string AutoLoginBaseUrl { get; set; }
     }
 }

@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace ProtonVPN.Api.Contracts.Announcements
@@ -25,7 +26,9 @@ namespace ProtonVPN.Api.Contracts.Announcements
     {
         [JsonProperty(PropertyName = "URL")]
         public string Url { get; set; }
-
         public string Text { get; set; }
+        public string Position { get; set; }
+        public string Action { get; set; }
+        public List<string> Behaviors { get; set; }
     }
 }

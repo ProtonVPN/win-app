@@ -24,7 +24,7 @@ using System.Threading.Tasks;
 
 namespace ProtonVPN.Common.OS.Net.Http
 {
-    internal class WrappedHttpClient : IHttpClient
+    public class WrappedHttpClient : IHttpClient
     {
         private readonly HttpClient _httpClient;
 

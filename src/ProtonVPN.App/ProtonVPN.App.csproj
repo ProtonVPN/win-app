@@ -117,12 +117,18 @@
     <Compile Include="About\ReleaseEqualityComparer.cs" />
     <Compile Include="Account\AccountActionMessage.cs" />
     <Compile Include="Account\IPromoCodeManager.cs" />
+    <Compile Include="Account\ISubscriptionManager.cs" />
     <Compile Include="Account\IVpnInfoUpdater.cs" />
+    <Compile Include="Account\IWebAuthenticator.cs" />
+    <Compile Include="Account\LoginUrlParams.cs" />
     <Compile Include="Account\PromoCodeManager.cs" />
     <Compile Include="Account\PromoCodeView.xaml.cs">
       <DependentUpon>PromoCodeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Account\PromoCodeViewModel.cs" />
+    <Compile Include="Account\SubscriptionManager.cs" />
+    <Compile Include="Account\UpdateVpnInfoMessage.cs" />
+    <Compile Include="Account\WebAuthenticator.cs" />
     <Compile Include="BugReporting\Actions\CategoryAction.cs" />
     <Compile Include="BugReporting\Actions\FinishReportAction.cs" />
     <Compile Include="BugReporting\Actions\FormStateChange.cs" />
@@ -235,10 +241,10 @@
     <Compile Include="Modals\IncorrectSystemTimeModalView.xaml.cs">
       <DependentUpon>IncorrectSystemTimeModalView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Modals\Offers\OfferModalView.xaml.cs">
-      <DependentUpon>OfferModalView.xaml</DependentUpon>
+    <Compile Include="Windows\Popups\Offers\OfferPopupView.xaml.cs">
+      <DependentUpon>OfferPopupView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Modals\Offers\OfferModalViewModel.cs" />
+    <Compile Include="Windows\Popups\Offers\OfferPopupViewModel.cs" />
     <Compile Include="Modals\AssignVpnConnectionsModalView.xaml.cs">
       <DependentUpon>AssignVpnConnectionsModalView.xaml</DependentUpon>
     </Compile>
@@ -870,7 +876,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Modals\Offers\OfferModalView.xaml">
+    <Page Include="Windows\Popups\Offers\OfferPopupView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -1611,6 +1617,14 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Announcements\ProtonVPN.Announcements.Contracts\ProtonVPN.Announcements.Contracts.csproj">
+      <Project>{153BD6AB-6B34-4E97-A96D-4ED5826DC037}</Project>
+      <Name>ProtonVPN.Announcements.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Announcements\ProtonVPN.Announcements.Installers\ProtonVPN.Announcements.Installers.csproj">
+      <Project>{2088B3AF-F9AF-45B8-B824-16749D5DAF9E}</Project>
+      <Name>ProtonVPN.Announcements.Installers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Dns\ProtonVPN.Dns.Contracts\ProtonVPN.Dns.Contracts.csproj">
       <Project>{455DA1FB-5097-47D2-8603-B0E1F9D90294}</Project>
       <Name>ProtonVPN.Dns.Contracts</Name>

@@ -22,6 +22,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using ProtonVPN.Announcements.Contracts;
 using ProtonVPN.Api.Contracts.ReportAnIssue;
 using ProtonVPN.Common;
 using ProtonVPN.Common.KillSwitch;
@@ -31,7 +32,6 @@ using ProtonVPN.Core.Native.Structures;
 using ProtonVPN.Core.Profiles.Cached;
 using ProtonVPN.Core.Settings.Contracts;
 using ProtonVPN.Dns.Contracts;
-using Announcement = ProtonVPN.Core.Announcements.Announcement;
 
 namespace ProtonVPN.Core.Settings
 {

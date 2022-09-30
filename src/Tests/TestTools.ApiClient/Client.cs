@@ -160,6 +160,8 @@ namespace TestTools.ApiClient
         public Task<ApiResponseResult<ProfileWrapperResponse>> UpdateProfile(string id, BaseProfileResponse profile) => throw new NotImplementedException();
 
         public Task<ApiResponseResult<VpnConfigResponse>> GetVpnConfig() => throw new NotImplementedException();
+        
+        public Task<ApiResponseResult<AnnouncementsResponse>> GetAnnouncementsAsync(AnnouncementsRequest request) => throw new NotImplementedException();
 
         public Task<ApiResponseResult<PhysicalServerWrapperResponse>> GetServerAsync(string serverId) => throw new NotImplementedException();
 
@@ -172,5 +174,7 @@ namespace TestTools.ApiClient
         public Task<ApiResponseResult<CertificateResponse>> RequestAuthCertificateAsync(CertificateRequest request) => throw new NotImplementedException();
 
         public Task<ApiResponseResult<BaseResponse>> ApplyPromoCodeAsync(PromoCodeRequest promoCodeRequest) => throw new NotImplementedException();
+
+        public Task<ApiResponseResult<ForkedAuthSessionResponse>> ForkAuthSessionAsync(AuthForkSessionRequest request) => throw new NotImplementedException();
     }
 }

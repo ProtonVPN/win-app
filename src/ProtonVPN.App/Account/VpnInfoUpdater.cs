@@ -34,7 +34,12 @@ using ProtonVPN.Core.Windows;
 
 namespace ProtonVPN.Account
 {
-    public class VpnInfoUpdater : IHandle<WindowStateMessage>, IVpnInfoUpdater, ILoggedInAware, ILogoutAware
+    public class VpnInfoUpdater :
+        IHandle<WindowStateMessage>,
+        IHandle<UpdateVpnInfoMessage>,
+        IVpnInfoUpdater,
+        ILoggedInAware,
+        ILogoutAware
     {
         private readonly IApiClient _api;
         private readonly ILogger _logger;
@@ -67,6 +72,11 @@ namespace ProtonVPN.Account
         private async void OnTimerTick(object sender, EventArgs e)
         {
             await Handle();
+        }
+
+        public async void Handle(UpdateVpnInfoMessage message)
+        {
+            await Update();
         }
 
         public async void Handle(WindowStateMessage message)

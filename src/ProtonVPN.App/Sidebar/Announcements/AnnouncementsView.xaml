@@ -52,8 +52,40 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                       Command="{Binding OpenAnnouncementCommand}"
                       x:Name="TogglePopupButton">
             <Grid>
-                <icons:Gift Width="23" Margin="0"
-                            Foreground="{StaticResource TextNormBrushColor}"/>
+                <Image Name="IconImage"
+                       Width="23"
+                       Height="23"
+                       Margin="0"
+                       ImageFailed="OnIconImageFailed"
+                       Source="{Binding Announcement.Icon}">
+                    <Image.Style>
+                        <Style TargetType="Image">
+                            <Setter Property="Visibility" Value="Visible" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Announcement.Icon}" Value="{x:Null}">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
+                <icons:Bell Name="FallbackIconImage"
+                            Width="23"
+                            Height="23"
+                            Foreground="White"
+                            Margin="0">
+                    <icons:Bell.Style>
+                        <Style TargetType="icons:Bell">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=IconImage, Path=Visibility}"
+                                             Value="Collapsed">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </icons:Bell.Style>
+                </icons:Bell>
                 <Ellipse Width="5"
                          Height="5"
                          Margin="19,-16,0,0"
@@ -82,7 +114,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             HorizontalAlignment="Center"
                             BorderThickness="0"
                             Background="Transparent">
-                        <TextBlock Text="{Binding Announcement.Panel.Title}"
+                        <TextBlock Text="{Binding Announcement.Label}"
                                    Foreground="{StaticResource TextNormBrushColor}"
                                    TextWrapping="Wrap"/>
                     </Button>

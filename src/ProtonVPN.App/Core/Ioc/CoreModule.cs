@@ -34,7 +34,6 @@ using ProtonVPN.Common.OS.Registry;
 using ProtonVPN.Common.OS.Services;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Config.Url;
-using ProtonVPN.Core.Announcements;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Config;
 using ProtonVPN.Core.Events;
@@ -137,16 +136,6 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<SingleActionFactory>().As<ISingleActionFactory>().SingleInstance();
             builder.RegisterType<LastServerLoadTimeProvider>().As<ILastServerLoadTimeProvider>().SingleInstance();
             builder.RegisterType<ClientConfig>().AsImplementedInterfaces().SingleInstance();
-            builder.Register(c => new AnnouncementService(
-                c.Resolve<IAppSettings>(),
-                c.Resolve<IScheduler>(),
-                c.Resolve<IApiClient>(),
-                c.Resolve<IAnnouncementCache>(),
-                c.Resolve<ILogger>(),
-                c.Resolve<Common.Configuration.Config>().AnnouncementUpdateInterval))
-                .AsImplementedInterfaces()
-                .SingleInstance();
-            builder.RegisterType<AnnouncementCache>().As<IAnnouncementCache>().SingleInstance();
             builder.Register(c =>
                     new NtpClient(c.Resolve<Common.Configuration.Config>().NtpServerUrl, c.Resolve<ILogger>()))
                 .As<INtpClient>().SingleInstance();

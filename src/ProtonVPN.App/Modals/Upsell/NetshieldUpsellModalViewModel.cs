@@ -17,13 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Account;
 using ProtonVPN.Config.Url;
 
 namespace ProtonVPN.Modals.Upsell
 {
     public class NetshieldUpsellModalViewModel : UpsellModalViewModel
     {
-        public NetshieldUpsellModalViewModel(IActiveUrls urls) : base(urls)
+        public NetshieldUpsellModalViewModel(ISubscriptionManager subscriptionManager, IActiveUrls urls) : base(
+            subscriptionManager, urls)
         {
         }
     }

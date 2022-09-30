@@ -19,21 +19,21 @@
 
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
-using ProtonVPN.Config.Url;
+using ProtonVPN.Account;
 using ProtonVPN.Modals.Dialogs;
 
 namespace ProtonVPN.Modals.SessionLimits
 {
     public class MaximumDeviceLimitModalViewModel : QuestionModalViewModel
     {
-        private readonly IActiveUrls _urls;
+        private readonly ISubscriptionManager _subscriptionManager;
 
         public bool HasMaxTierPlan { get; private set; } = true;
         public bool NotHasMaxTierPlan => !HasMaxTierPlan;
 
-        public MaximumDeviceLimitModalViewModel(IActiveUrls urls)
+        public MaximumDeviceLimitModalViewModel(ISubscriptionManager subscriptionManager)
         {
-            _urls = urls;
+            _subscriptionManager = subscriptionManager;
 
             UpgradeCommand = new RelayCommand(UpgradeAction);
         }
@@ -47,7 +47,7 @@ namespace ProtonVPN.Modals.SessionLimits
 
         protected virtual void UpgradeAction()
         {
-            _urls.AccountUrl.Open();
+            _subscriptionManager.UpgradeAccountAsync();
             TryClose();
         }
     }
