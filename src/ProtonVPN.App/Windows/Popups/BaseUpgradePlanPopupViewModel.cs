@@ -19,18 +19,18 @@
 
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
-using ProtonVPN.Config.Url;
+using ProtonVPN.Account;
 
 namespace ProtonVPN.Windows.Popups
 {
     public abstract class BaseUpgradePlanPopupViewModel : BasePopupViewModel
     {
-        private readonly IActiveUrls _urls;
+        private readonly ISubscriptionManager _subscriptionManager;
 
-        protected BaseUpgradePlanPopupViewModel(IActiveUrls urls, AppWindow appWindow)
+        protected BaseUpgradePlanPopupViewModel(ISubscriptionManager subscriptionManager, AppWindow appWindow)
             : base(appWindow)
         {
-            _urls = urls;
+            _subscriptionManager = subscriptionManager;
 
             UpgradeCommand = new RelayCommand(UpgradeAction);
         }
@@ -39,7 +39,7 @@ namespace ProtonVPN.Windows.Popups
 
         protected virtual void UpgradeAction()
         {
-            _urls.AccountUrl.Open();
+            _subscriptionManager.UpgradeAccountAsync();
             TryClose();
         }
     }

@@ -311,6 +311,8 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<ColorPalette>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<WindowPositionSetter>().As<IWindowPositionSetter>().SingleInstance();
             builder.RegisterType<HumanVerifier>().As<IHumanVerifier>().SingleInstance();
+            builder.RegisterType<SubscriptionManager>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<WebAuthenticator>().AsImplementedInterfaces().SingleInstance();
         }
     }
 }

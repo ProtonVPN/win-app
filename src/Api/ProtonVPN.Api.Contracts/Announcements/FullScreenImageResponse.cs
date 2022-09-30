@@ -17,22 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
-namespace ProtonVPN.Core.Announcements
+namespace ProtonVPN.Api.Contracts.Announcements
 {
-    public interface IAnnouncementService
+    public class FullScreenImageResponse
     {
-        public IReadOnlyCollection<Announcement> Get();
-
-        public Task Update();
-
-        public void MarkAsSeen(string id);
-
-        public void Delete(string id);
-
-        public event EventHandler AnnouncementsChanged;
+        public List<SourceResponse> Source { get; set; }
+        public string AlternativeText { get; set; }
     }
 }

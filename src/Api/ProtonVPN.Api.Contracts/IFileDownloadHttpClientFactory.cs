@@ -17,21 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Collections.Generic;
+using ProtonVPN.Common.OS.Net.Http;
 
-namespace ProtonVPN.Core.Announcements
+namespace ProtonVPN.Api.Contracts
 {
-    public class Panel
+    public interface IFileDownloadHttpClientFactory
     {
-        public string Incentive { get; set; }
-        public string IncentivePrice { get; set; }
-        public string IncentiveSuffix { get; set; }
-        public string Pill { get; set; }
-        public string PictureUrl { get; set; }
-        public string Title { get; set; }
-        public IList<PanelFeature> Features { get; set; }
-        public string FeaturesFooter { get; set; }
-        public PanelButton Button { get; set; }
-        public string PageFooter { get; set; }
+        IHttpClient GetFileDownloadHttpClient();
     }
 }

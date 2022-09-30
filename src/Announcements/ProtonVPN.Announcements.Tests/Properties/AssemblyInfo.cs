@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2022 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
@@ -17,11 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Core.Announcements
-{
-    public class PanelFeature
-    {
-        public string IconUrl { get; set; }
-        public string Text { get; set; }
-    }
-}
+using System.Runtime.InteropServices;
+
+[assembly: Guid("89e58a49-12c4-4c22-b646-348b6bfccb4d")]

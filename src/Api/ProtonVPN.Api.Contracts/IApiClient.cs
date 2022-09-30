@@ -53,10 +53,11 @@ namespace ProtonVPN.Api.Contracts
         Task<ApiResponseResult<ProfileWrapperResponse>> UpdateProfile(string id, BaseProfileResponse profile);
         Task<ApiResponseResult<ProfileWrapperResponse>> DeleteProfile(string id);
         Task<ApiResponseResult<VpnConfig.VpnConfigResponse>> GetVpnConfig();
-        Task<ApiResponseResult<AnnouncementsResponse>> GetAnnouncementsAsync();
+        Task<ApiResponseResult<AnnouncementsResponse>> GetAnnouncementsAsync(AnnouncementsRequest request);
         Task<ApiResponseResult<StreamingServicesResponse>> GetStreamingServicesAsync();
         Task<ApiResponseResult<BaseResponse>> CheckAuthenticationServerStatusAsync();
         Task<ApiResponseResult<CertificateResponse>> RequestAuthCertificateAsync(CertificateRequest request);
         Task<ApiResponseResult<BaseResponse>> ApplyPromoCodeAsync(PromoCodeRequest promoCodeRequest);
+        Task<ApiResponseResult<ForkedAuthSessionResponse>> ForkAuthSessionAsync(AuthForkSessionRequest request);
     }
 }

@@ -21,6 +21,7 @@ using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
+using ProtonVPN.Account;
 using ProtonVPN.BugReporting;
 using ProtonVPN.Common.KillSwitch;
 using ProtonVPN.Common.Logging;
@@ -38,6 +39,7 @@ namespace ProtonVPN.Modals
     {
         private readonly ILogger _logger;
         private readonly IActiveUrls _urlConfig;
+        private readonly ISubscriptionManager _subscriptionManager;
         private readonly IAppSettings _appSettings;
         private readonly IVpnManager _vpnManager;
         private readonly IUserStorage _userStorage;
@@ -48,7 +50,6 @@ namespace ProtonVPN.Modals
 
         public ICommand OpenHelpArticleCommand { get; set; }
         public ICommand DisableKillSwitchCommand { get; set; }
-        public ICommand GoToAccountCommand { get; set; }
         public ICommand UpgradeCommand { get; set; }
         public ICommand ReportBugCommand { get; set; }
         public ICommand OpenRpcServerUrlCommand { get; }
@@ -56,6 +57,7 @@ namespace ProtonVPN.Modals
         public DisconnectErrorModalViewModel(
             ILogger logger,
             IActiveUrls urlConfig,
+            ISubscriptionManager subscriptionManager,
             IAppSettings appSettings,
             IVpnManager vpnManager,
             IUserStorage userStorage, 
@@ -63,6 +65,7 @@ namespace ProtonVPN.Modals
         {
             _logger = logger;
             _urlConfig = urlConfig;
+            _subscriptionManager = subscriptionManager;
             _appSettings = appSettings;
             _vpnManager = vpnManager;
             _userStorage = userStorage;
@@ -70,7 +73,6 @@ namespace ProtonVPN.Modals
 
             OpenHelpArticleCommand = new RelayCommand(OpenHelpArticleAction);
             DisableKillSwitchCommand = new RelayCommand(DisableKillSwitch);
-            GoToAccountCommand = new RelayCommand(OpenAccountPage);
             UpgradeCommand = new RelayCommand(UpgradeAction);
             ReportBugCommand = new RelayCommand(ReportBugAction);
             OpenRpcServerUrlCommand = new RelayCommand(OpenRpcServerProblemUrl);
@@ -171,11 +173,6 @@ namespace ProtonVPN.Modals
             _urlConfig.TroubleShootingUrl.Open();
         }
 
-        private void OpenAccountPage()
-        {
-            _urlConfig.AccountUrl.Open();
-        }
-
         private void DisableKillSwitch()
         {
             _appSettings.KillSwitchMode = KillSwitchMode.Off;
@@ -184,7 +181,7 @@ namespace ProtonVPN.Modals
 
         private void UpgradeAction()
         {
-            _urlConfig.AccountUrl.Open();
+            _subscriptionManager.UpgradeAccountAsync();
             TryClose();
         }
 

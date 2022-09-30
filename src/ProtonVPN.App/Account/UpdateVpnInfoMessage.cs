@@ -17,13 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Modals.Offers
+namespace ProtonVPN.Account
 {
-    public partial class OfferModalView
+    public class UpdateVpnInfoMessage
     {
-        public OfferModalView()
-        {
-            InitializeComponent();
-        }
     }
 }

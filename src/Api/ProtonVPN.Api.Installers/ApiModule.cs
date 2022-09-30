@@ -40,6 +40,7 @@ namespace ProtonVPN.Api.Installers
             builder.RegisterType<BaseResponseMessageDeserializer>().As<IBaseResponseMessageDeserializer>().SingleInstance();
             builder.RegisterType<ApiHostProvider>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<CertificateValidator>().As<ICertificateValidator>().SingleInstance();
+            builder.RegisterType<FileDownloadHttpClientFactory>().AsImplementedInterfaces().SingleInstance();
 
             RegisterHandlers(builder);
         }

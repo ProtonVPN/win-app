@@ -89,6 +89,9 @@ namespace ProtonVPN.Common.Configuration
         [Required]
         string LocalAppDataFolder { get; set; }
 
+        [Required]
+        public string ImageCacheFolder { get; set; }
+
         [Range(1, 100)]
         int MaxAppLogsAttached { get; set; }
 

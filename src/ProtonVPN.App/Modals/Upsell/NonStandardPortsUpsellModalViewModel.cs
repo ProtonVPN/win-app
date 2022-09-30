@@ -19,13 +19,14 @@
 
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
+using ProtonVPN.Account;
 using ProtonVPN.Config.Url;
 
 namespace ProtonVPN.Modals.Upsell
 {
     public class NonStandardPortsUpsellModalViewModel : UpsellModalViewModel
     {
-        public NonStandardPortsUpsellModalViewModel(IActiveUrls urls) : base(urls)
+        public NonStandardPortsUpsellModalViewModel(ISubscriptionManager subscriptionManager, IActiveUrls urls) : base(subscriptionManager, urls)
         {
             LearnMoreCommand = new RelayCommand(LearnMoreAction);
         }

@@ -58,7 +58,7 @@ namespace ProtonVPN.Config.Url
             return this;
         }
 
-        public Uri Uri => new Uri(_url);
+        public Uri Uri => new(_url);
 
         public void Open()
         {

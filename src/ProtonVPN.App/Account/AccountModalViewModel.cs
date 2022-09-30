@@ -34,6 +34,7 @@ namespace ProtonVPN.Account
 {
     public class AccountModalViewModel : BaseModalViewModel, IUserDataAware, IHandle<AccountActionMessage>
     {
+        private readonly ISubscriptionManager _subscriptionManager;
         private readonly IAppSettings _appSettings;
         private readonly ServerManager _serverManager;
         private readonly IActiveUrls _urls;
@@ -55,6 +56,7 @@ namespace ProtonVPN.Account
         public bool IsToShowUseCoupon => _appSettings.FeaturePromoCodeEnabled && _userStorage.GetUser().CanUsePromoCode();
 
         public AccountModalViewModel(
+            ISubscriptionManager subscriptionManager,
             IAppSettings appSettings,
             ServerManager serverManager,
             IEventAggregator eventAggregator,
@@ -63,18 +65,19 @@ namespace ProtonVPN.Account
             PromoCodeViewModel promoCodeViewModel)
         {
             eventAggregator.Subscribe(this);
+            _subscriptionManager = subscriptionManager;
             _appSettings = appSettings;
             _serverManager = serverManager;
             _urls = urls;
             _userStorage = userStorage;
             PromoCodeViewModel = promoCodeViewModel;
 
-            ManageAccountCommand = new RelayCommand(ManageAccountAction);
+            ManageSubscriptionCommand = new RelayCommand(ManageSubscriptionAction);
             ProtonMailPricingCommand = new RelayCommand(ShowProtonMailPricing);
             CloseActionMessageCommand = new RelayCommand(CloseActionMessageAction);
         }
 
-        public ICommand ManageAccountCommand { get; set; }
+        public ICommand ManageSubscriptionCommand { get; set; }
         public ICommand ProtonMailPricingCommand { get; set; }
         public ICommand CloseActionMessageCommand { get; set; }
 
@@ -155,6 +158,8 @@ namespace ProtonVPN.Account
         {
             SetUserDetails();
             NotifyOfPropertyChange(nameof(IsToShowUseCoupon));
+            NotifyOfPropertyChange(nameof(IsFreePlan));
+            NotifyOfPropertyChange(nameof(IsPlusPlan));
         }
 
         public void Handle(AccountActionMessage message)
@@ -170,9 +175,9 @@ namespace ProtonVPN.Account
             AccountType = user.GetAccountPlan();
         }
 
-        private void ManageAccountAction()
+        private void ManageSubscriptionAction()
         {
-            _urls.AccountUrl.Open();
+            _subscriptionManager.UpgradeAccountAsync();
         }
 
         private void ShowProtonMailPricing()

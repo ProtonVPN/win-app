@@ -23,6 +23,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
+using ProtonVPN.Account;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
@@ -53,6 +54,7 @@ namespace ProtonVPN.Settings
         private readonly IDialogs _dialogs;
         private readonly IModals _modals;
         private readonly IActiveUrls _urls;
+        private readonly ISubscriptionManager _subscriptionManager;
         private readonly ILanguageProvider _languageProvider;
         private readonly IPortForwardingManager _portForwardingManager;
         private readonly ReconnectState _reconnectState;
@@ -68,6 +70,7 @@ namespace ProtonVPN.Settings
             IDialogs dialogs,
             IModals modals,
             IActiveUrls urls,
+            ISubscriptionManager subscriptionManager,
             ILanguageProvider languageProvider,
             IPortForwardingManager portForwardingManager,
             ReconnectState reconnectState,
@@ -83,6 +86,7 @@ namespace ProtonVPN.Settings
             _dialogs = dialogs;
             _modals = modals;
             _urls = urls;
+            _subscriptionManager = subscriptionManager;
             _languageProvider = languageProvider;
             _portForwardingManager = portForwardingManager;
             _reconnectState = reconnectState;
@@ -644,7 +648,7 @@ namespace ProtonVPN.Settings
 
         private void UpgradeAction()
         {
-            _urls.AccountUrl.Open();
+            _subscriptionManager.UpgradeAccountAsync();
         }
 
         private void LearnMoreAboutPortForwardingAction()

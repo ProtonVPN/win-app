@@ -19,9 +19,10 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using ProtonVPN.Announcements.Contracts;
 using ProtonVPN.Core.Settings;
 
-namespace ProtonVPN.Core.Announcements
+namespace ProtonVPN.Announcements
 {
     public class AnnouncementCache : IAnnouncementCache
     {

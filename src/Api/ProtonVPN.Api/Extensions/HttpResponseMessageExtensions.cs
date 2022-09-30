@@ -28,6 +28,7 @@ namespace ProtonVPN.Api.Extensions
     {
         private static readonly List<HttpStatusCode> SkipRetryStatusCodes = new()
         {
+            HttpStatusCode.NotFound,
             HttpStatusCode.BadRequest,
             HttpStatusCode.Conflict,
             HttpStatusCode.Unauthorized,

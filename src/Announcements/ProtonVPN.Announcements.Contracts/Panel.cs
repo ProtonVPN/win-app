@@ -17,11 +17,22 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Core.Announcements
+using System.Collections.Generic;
+
+namespace ProtonVPN.Announcements.Contracts
 {
-    public class PanelButton
+    public class Panel
     {
-        public string Url { get; set; }
-        public string Text { get; set; }
+        public string Incentive { get; set; }
+        public string IncentivePrice { get; set; }
+        public string IncentiveSuffix { get; set; }
+        public string Pill { get; set; }
+        public string PictureUrl { get; set; }
+        public string Title { get; set; }
+        public IList<PanelFeature> Features { get; set; }
+        public string FeaturesFooter { get; set; }
+        public PanelButton Button { get; set; }
+        public string PageFooter { get; set; }
+        public FullScreenImage FullScreenImage { get; set; }
     }
 }

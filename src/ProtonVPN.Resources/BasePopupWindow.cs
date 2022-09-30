@@ -43,6 +43,12 @@ namespace ProtonVPN.Resource
             SetStartupPosition();
         }
 
+        protected void ForceSetStartupPosition()
+        {
+            _isStartupPositionSet = false;
+            SetStartupPosition();
+        }
+
         private void SetStartupPosition()
         {
             object dataContext = DataContext;

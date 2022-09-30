@@ -18,11 +18,14 @@
  */
 
 using System;
+using System.Linq;
+using ProtonVPN.Announcements.Contracts;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Windows.Popups;
 using ProtonVPN.Modals.Upsell;
+using ProtonVPN.Windows.Popups.Offers;
 using ProtonVPN.Windows.Popups.Rebranding;
 
 namespace ProtonVPN.Modals.Welcome
@@ -34,17 +37,23 @@ namespace ProtonVPN.Modals.Welcome
         private readonly IUserStorage _userStorage;
         private readonly IPopupWindows _popupWindows;
         private readonly IModals _modals;
+        private readonly IAnnouncementService _announcementService;
+        private readonly OfferPopupViewModel _offerPopupViewModel;
 
         public WelcomeModalManager(
             IAppSettings appSettings,
             IUserStorage userStorage,
             IPopupWindows popupWindows,
-            IModals modals)
+            IModals modals,
+            IAnnouncementService announcementService,
+            OfferPopupViewModel offerPopupViewModel)
         {
             _appSettings = appSettings;
             _userStorage = userStorage;
             _popupWindows = popupWindows;
             _modals = modals;
+            _announcementService = announcementService;
+            _offerPopupViewModel = offerPopupViewModel;
         }
 
         public void Load()
@@ -65,6 +74,27 @@ namespace ProtonVPN.Modals.Welcome
         }
 
         private void ShowUpsellModal()
+        {
+            Announcement announcement = _announcementService.Get()
+                .FirstOrDefault(a => a.Type == (int)AnnouncementType.OneTime && !a.Seen);
+            if (announcement != null)
+            {
+                ShowUpsellOffer(announcement);
+            }
+            else
+            {
+                ShowStandardUpsellModal();
+            }
+        }
+
+        private void ShowUpsellOffer(Announcement announcement)
+        {
+            _announcementService.MarkAsSeen(announcement.Id);
+            _offerPopupViewModel.Panel = announcement.Panel;
+            _popupWindows.Show<OfferPopupViewModel>();
+        }
+
+        private void ShowStandardUpsellModal()
         {
             int randomNumber = _random.Next(0, 100);
             if (randomNumber >= 15)

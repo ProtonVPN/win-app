@@ -21,13 +21,14 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Net.Http;
 using System.ServiceModel;
 using System.Threading.Tasks;
 using System.Windows;
 using Autofac;
 using Caliburn.Micro;
 using ProtonVPN.Account;
+using ProtonVPN.Announcements.Contracts;
+using ProtonVPN.Announcements.Installers;
 using ProtonVPN.Api;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Auth;
@@ -45,7 +46,6 @@ using ProtonVPN.Common.OS.Services;
 using ProtonVPN.Common.Storage;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Abstract;
-using ProtonVPN.Core.Announcements;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Config;
 using ProtonVPN.Core.Events;
@@ -122,6 +122,7 @@ namespace ProtonVPN.Core
                 .RegisterModule<UpdateModule>()
                 .RegisterAssemblyModules<HumanVerificationModule>(typeof(HumanVerificationModule).Assembly)
                 .RegisterAssemblyModules<ApiModule>(typeof(ApiModule).Assembly)
+                .RegisterAssemblyModules<AnnouncementsModule>(typeof(AnnouncementsModule).Assembly)
                 .RegisterAssemblyModules<DnsModule>(typeof(DnsModule).Assembly);
 
             new ProtonVPN.Update.Config.Module().Load(builder);
@@ -531,8 +532,8 @@ namespace ProtonVPN.Core
             Resolve<LoginWindow>().Hide();
 
             Resolve<PlanDowngradeHandler>();
-            Resolve<WelcomeModalManager>().Load();
             await Resolve<IAnnouncementService>().Update();
+            Resolve<WelcomeModalManager>().Load();
             await Resolve<SystemTimeValidator>().Validate();
             await Resolve<AutoConnect>().LoadAsync(autoLogin);
             Resolve<SyncProfiles>().Sync();

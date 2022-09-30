@@ -25,6 +25,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Newtonsoft.Json;
+using ProtonVPN.Announcements.Contracts;
 using ProtonVPN.Api.Contracts.ReportAnIssue;
 using ProtonVPN.Common;
 using ProtonVPN.Common.Extensions;
@@ -42,7 +43,6 @@ using ProtonVPN.Core.Settings.Contracts;
 using ProtonVPN.Core.Storage;
 using ProtonVPN.Dns.Contracts;
 using ProtonVPN.Settings;
-using Announcement = ProtonVPN.Core.Announcements.Announcement;
 
 namespace ProtonVPN.Core
 {

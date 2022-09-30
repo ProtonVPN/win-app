@@ -27,7 +27,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              d:DesignHeight="450" d:DesignWidth="800">
     <StackPanel>
         <StackPanel Orientation="Horizontal"
-                    ToolTip="{translations:Loc Sidebar_Connection_lbl_Disconnected_Info}">
+                    Width="230"
+                    HorizontalAlignment="Left">
+            <StackPanel.ToolTip>
+                <ToolTip Placement="Bottom"
+                         VerticalOffset="10"
+                         Width="{Binding PlacementTarget.Width, RelativeSource={RelativeSource Self}}"
+                         Content="{translations:Loc Sidebar_Connection_lbl_Disconnected_Info}" />
+            </StackPanel.ToolTip>
             <icons:ExclamationCircle Foreground="{StaticResource SignalDangerBrushColor}" 
                                      Width="20"
                                      Margin="0,1,5,0"

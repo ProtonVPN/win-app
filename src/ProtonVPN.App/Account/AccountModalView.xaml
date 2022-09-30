@@ -133,7 +133,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Grid Grid.Column="1" HorizontalAlignment="Right">
                 <StackPanel VerticalAlignment="Center">
                     <Button HorizontalAlignment="Center"
-                            Command="{Binding ManageAccountCommand}"
+                            Command="{Binding ManageSubscriptionCommand}"
                             Style="{StaticResource PrimaryModalButton}"
                             Content="{translations:Loc Account_btn_ManageSubscription}" />
                     <Grid Visibility="{Binding IsToShowUseCoupon, Converter={StaticResource BoolToVis}}">

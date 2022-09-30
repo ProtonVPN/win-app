@@ -17,14 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Collections.Generic;
+using ProtonVPN.Api.Contracts.Common;
 
-namespace ProtonVPN.Core.Announcements
+namespace ProtonVPN.Api.Contracts.Auth
 {
-    public interface IAnnouncementCache
+    public class ForkedAuthSessionResponse : BaseResponse
     {
-        IReadOnlyList<Announcement> Get();
-
-        void Store(IReadOnlyList<Announcement> announcements);
+        public string Selector { get; set; }
     }
 }

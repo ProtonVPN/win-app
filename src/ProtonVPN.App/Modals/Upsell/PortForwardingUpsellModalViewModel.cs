@@ -19,6 +19,7 @@
 
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
+using ProtonVPN.Account;
 using ProtonVPN.Config.Url;
 
 namespace ProtonVPN.Modals.Upsell
@@ -27,7 +28,7 @@ namespace ProtonVPN.Modals.Upsell
     {
         public ICommand OpenAboutPageCommand { get; set; }
 
-        public PortForwardingUpsellModalViewModel(IActiveUrls urls) : base(urls)
+        public PortForwardingUpsellModalViewModel(ISubscriptionManager subscriptionManager, IActiveUrls urls) : base(subscriptionManager, urls)
         {
             OpenAboutPageCommand = new RelayCommand(OpenAboutPage);
         }
