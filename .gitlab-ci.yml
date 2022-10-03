@@ -206,27 +206,6 @@ win-11-tests:
     paths:
       - $SCREENSHOT_PATH
     expire_in: 2 weeks
-    
-update-vm:
-  stage: ui-test
-  tags:
-    - installation_tests
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "schedule"
-  script:
-    - powershell -File ci\InstallerTestScripts\update-vm.ps1
-    
-installation-test:
-  stage: ui-test
-  tags:
-    - installation_tests
-  when: manual
-  script:
-    - powershell -File ci\InstallerTestScripts\prepare-installer-tests.ps1
-  except:
-    - /^debug.*$/
-    - release/9.9.9
-    - master
 
 mirror:
   stage: mirror
