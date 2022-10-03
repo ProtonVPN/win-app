@@ -19,6 +19,7 @@
 
 using System;
 using System.Collections.Generic;
+using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Service;
 using ProtonVPN.Common.Service.Validation;
@@ -31,9 +32,9 @@ namespace ProtonVPN.Service.ServiceHosts
     {
         private readonly ILogger _logger;
         private readonly VpnConnectionHandler _proxy;
-        private readonly Common.Configuration.Config _config;
+        private readonly IConfiguration _config;
 
-        public VpnConnectionHostFactory(ILogger logger, VpnConnectionHandler proxy, Common.Configuration.Config config)
+        public VpnConnectionHostFactory(ILogger logger, VpnConnectionHandler proxy, IConfiguration config)
         {
             _logger = logger;
             _proxy = proxy;

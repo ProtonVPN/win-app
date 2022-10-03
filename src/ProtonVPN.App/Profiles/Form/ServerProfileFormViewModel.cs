@@ -25,6 +25,7 @@ using ProtonVPN.Core.Servers.Specs;
 using ProtonVPN.Core.Settings;
 using System.Collections.Generic;
 using System.Linq;
+using ProtonVPN.Common.Configuration;
 using ProtonVPN.Profiles.Servers;
 
 namespace ProtonVPN.Profiles.Form
@@ -32,7 +33,7 @@ namespace ProtonVPN.Profiles.Form
     public abstract class ServerProfileFormViewModel : AbstractForm
     {
         protected ServerProfileFormViewModel(
-            Common.Configuration.Config appConfig,
+            IConfiguration appConfig,
             ColorProvider colorProvider,
             IUserStorage userStorage,
             ProfileManager profileManager,

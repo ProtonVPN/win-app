@@ -31,7 +31,7 @@ namespace ProtonVPN.ErrorHandling
     {
         private const string PRODUCT_NAME = "ProtonVPN";
 
-        private readonly Common.Configuration.Config _config;
+        private readonly IConfiguration _config;
         private readonly IOsProcesses _processes;
         private readonly IAppExitInvoker _appExitInvoker;
         private readonly InstallerPath _installerPath;

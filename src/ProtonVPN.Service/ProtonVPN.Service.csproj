@@ -81,8 +81,9 @@
     <Compile Include="ServiceHosts\ServiceSettingsHostFactory.cs" />
     <Compile Include="Settings\IServiceSettings.cs" />
     <Compile Include="Settings\IServiceSettingsAware.cs" />
+    <Compile Include="Settings\ISettingsFileStorage.cs" />
+    <Compile Include="Settings\SettingsFileStorage.cs" />
     <Compile Include="Settings\SettingsHandler.cs" />
-    <Compile Include="Settings\SettingsStorage.cs" />
     <Compile Include="Settings\ServiceSettings.cs" />
     <Compile Include="Firewall\Firewall.cs" />
     <Compile Include="Firewall\FirewallException.cs" />

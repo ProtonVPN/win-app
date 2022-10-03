@@ -27,6 +27,7 @@ namespace ProtonVPN.Common.Logging
     public interface ILogger
     {
         IList<string> GetRecentLogs();
+
         void Debug<TEvent>(string message, Exception exception = null,
             [CallerFilePath] string sourceFilePath = "",
             [CallerMemberName] string sourceMemberName = "",

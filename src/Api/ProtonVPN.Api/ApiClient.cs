@@ -56,7 +56,7 @@ namespace ProtonVPN.Api
             IAppSettings appSettings,
             IApiAppVersion appVersion,
             IAppLanguageCache appLanguageCache,
-            Config config) : base(logger, appVersion, appSettings, appLanguageCache, config)
+            IConfiguration config) : base(logger, appVersion, appSettings, appLanguageCache, config)
         {
             _client = httpClientFactory.GetApiHttpClientWithCache();
             _noCacheClient = httpClientFactory.GetApiHttpClientWithoutCache();

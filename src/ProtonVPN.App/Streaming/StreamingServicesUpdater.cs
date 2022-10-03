@@ -18,10 +18,10 @@
  */
 
 using System;
-using System.Net.Http;
 using System.Threading.Tasks;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Streaming;
+using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Core.Auth;
@@ -30,18 +30,18 @@ namespace ProtonVPN.Streaming
 {
     internal class StreamingServicesUpdater : ILoggedInAware, ILogoutAware
     {
-        private readonly StreamingServicesStorage _streamingServicesStorage;
+        private readonly IStreamingServicesFileStorage _streamingServicesFileStorage;
         private readonly IApiClient _apiClient;
         private readonly ISchedulerTimer _timer;
         private readonly SingleAction _updateAction;
 
         public StreamingServicesUpdater(
-            StreamingServicesStorage streamingServicesStorage,
+            IStreamingServicesFileStorage streamingServicesFileStorage,
             IApiClient apiClient,
             IScheduler scheduler,
-            Common.Configuration.Config config)
+            IConfiguration config)
         {
-            _streamingServicesStorage = streamingServicesStorage;
+            _streamingServicesFileStorage = streamingServicesFileStorage;
             _apiClient = apiClient;
             _timer = scheduler.Timer();
             _timer.Interval = config.StreamingServicesUpdateInterval.RandomizedWithDeviation(0.2);
@@ -78,7 +78,7 @@ namespace ProtonVPN.Streaming
                 ApiResponseResult<StreamingServicesResponse> response = await _apiClient.GetStreamingServicesAsync();
                 if (response.Success)
                 {
-                    _streamingServicesStorage.Set(response.Value);
+                    _streamingServicesFileStorage.Set(response.Value);
                     NotifyStreamingServicesUpdate(response.Value);
                 }
                 else
@@ -94,7 +94,7 @@ namespace ProtonVPN.Streaming
 
         private void NotifyFromCache()
         {
-            StreamingServicesResponse cachedStreamingServicesResponse = _streamingServicesStorage.Get();
+            StreamingServicesResponse cachedStreamingServicesResponse = _streamingServicesFileStorage.Get();
             if (cachedStreamingServicesResponse != null)
             {
                 NotifyStreamingServicesUpdate(cachedStreamingServicesResponse);

@@ -25,6 +25,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Servers;
+using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Core.Settings;
 using RichardSzalay.MockHttp;
@@ -63,8 +64,9 @@ namespace ProtonVPN.Api.Tests
             _apiHttpClientFactory.GetApiHttpClientWithoutCache().Returns(httpClient);
             _apiHttpClientFactory.GetApiHttpClientWithCache().Returns(httpClient);
 
-            _apiClient = new ApiClient(_apiHttpClientFactory, _logger, _appSettings, _appVersion, _appLanguageCache,
-                new Common.Configuration.Config());
+            IConfiguration config = new Config();
+
+            _apiClient = new ApiClient(_apiHttpClientFactory, _logger, _appSettings, _appVersion, _appLanguageCache, config);
         }
 
         [TestMethod]

@@ -21,6 +21,6 @@ namespace ProtonVPN.Common.Configuration
 {
     public interface IConfigWriter
     {
-        void Write(Config config);
+        void Write(IConfiguration config);
     }
 }

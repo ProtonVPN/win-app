@@ -23,13 +23,14 @@ using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Profiles.Servers;
 using System.Collections.Generic;
+using ProtonVPN.Common.Configuration;
 
 namespace ProtonVPN.Profiles.Form
 {
     public class SecureCoreProfileFormViewModel : BaseCountryServerProfileFormViewModel
     {
         public SecureCoreProfileFormViewModel(
-            Common.Configuration.Config appConfig,
+            IConfiguration appConfig,
             ColorProvider colorProvider,
             IUserStorage userStorage,
             ServerManager serverManager,

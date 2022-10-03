@@ -24,6 +24,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Timers;
 using ProtonVPN.Common;
+using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.AppServiceLogs;
 using ProtonVPN.Common.Logging.Categorization.Events.ConnectLogs;
@@ -44,7 +45,7 @@ namespace ProtonVPN.Vpn.WireGuard
         private const int CONNECT_TIMEOUT = 5000;
 
         private readonly ILogger _logger;
-        private readonly ProtonVPN.Common.Configuration.Config _config;
+        private readonly IConfiguration _config;
         private readonly IGatewayCache _gatewayCache;
         private readonly Timer _serviceHealthCheckTimer = new();
         private readonly IService _wireGuardService;
@@ -63,7 +64,7 @@ namespace ProtonVPN.Vpn.WireGuard
 
         public WireGuardConnection(
             ILogger logger,
-            ProtonVPN.Common.Configuration.Config config,
+            IConfiguration config,
             IGatewayCache gatewayCache,
             IService wireGuardService,
             TrafficManager trafficManager,

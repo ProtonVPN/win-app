@@ -29,10 +29,10 @@ namespace ProtonVPN.Api
 {
     public class ApiHttpClientFactory : IApiHttpClientFactory
     {
-        private readonly Config _config;
+        private readonly IConfiguration _config;
         private readonly HttpMessageHandler _innerHandler;
 
-        public ApiHttpClientFactory(Config config, 
+        public ApiHttpClientFactory(IConfiguration config, 
             AlternativeHostHandler alternativeHostHandler,
             CancellingHandlerBase cancellingHandlerBase,
             UnauthorizedResponseHandler unauthorizedResponseHandler,

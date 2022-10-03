@@ -26,6 +26,7 @@ using ProtonVPN.Api.Handlers;
 using ProtonVPN.Api.Handlers.Retries;
 using ProtonVPN.Api.Handlers.StackBuilders;
 using ProtonVPN.Api.Handlers.TlsPinning;
+using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.OS.Net.Http;
 using ProtonVPN.Core.Update;
 using ProtonVPN.Update.Config;
@@ -50,8 +51,8 @@ namespace ProtonVPN.Core.Ioc
             {
                 HttpClient = c.Resolve<IFileDownloadHttpClientFactory>().GetFileDownloadHttpClient(),
                 FeedUriProvider = c.Resolve<IFeedUrlProvider>(),
-                UpdatesPath = c.Resolve<Common.Configuration.Config>().UpdatesPath,
-                CurrentVersion = Version.Parse(c.Resolve<Common.Configuration.Config>().AppVersion),
+                UpdatesPath = c.Resolve<IConfiguration>().UpdatesPath,
+                CurrentVersion = Version.Parse(c.Resolve<IConfiguration>().AppVersion),
                 EarlyAccessCategoryName = "EarlyAccess",
                 MinProgressDuration = TimeSpan.FromSeconds(1.5)
             };

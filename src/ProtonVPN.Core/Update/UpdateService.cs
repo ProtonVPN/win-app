@@ -23,6 +23,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Threading;
+using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Settings;
@@ -35,7 +36,7 @@ namespace ProtonVPN.Core.Update
     public class UpdateService : ISettingsAware, ILoggedInAware, ILogoutAware
     {
         private readonly IScheduler _scheduler;
-        private readonly Common.Configuration.Config _appConfig;
+        private readonly IConfiguration _appConfig;
         private readonly IAppSettings _appSettings;
         private readonly INotifyingAppUpdate _notifyingAppUpdate;
         private DateTime _lastCheckTime;
@@ -48,7 +49,7 @@ namespace ProtonVPN.Core.Update
 
         public UpdateService(
             IScheduler scheduler,
-            Common.Configuration.Config appConfig,
+            IConfiguration appConfig,
             IAppSettings appSettings,
             INotifyingAppUpdate notifyingAppUpdate,
             IFeedUrlProvider feedUrlProvider)
@@ -141,10 +142,10 @@ namespace ProtonVPN.Core.Update
 
         private void HandleUpdating(UpdateStatus status)
         {
-            if (status != UpdateStatus.Updating)
-                return;
-
-            Application.Current.Shutdown();
+            if (status == UpdateStatus.Updating)
+            {
+                Application.Current.Shutdown();
+            }
         }
 
         private void OnUpdateStateChanged(UpdateState state, bool manualCheck)

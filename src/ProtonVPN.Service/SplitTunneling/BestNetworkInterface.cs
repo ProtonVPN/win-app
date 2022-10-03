@@ -26,10 +26,10 @@ namespace ProtonVPN.Service.SplitTunneling
 {
     internal class BestNetworkInterface
     {
-        private readonly Common.Configuration.Config _config;
+        private readonly IConfiguration _config;
         private readonly IServiceSettings _serviceSettings;
 
-        public BestNetworkInterface(Common.Configuration.Config config, IServiceSettings serviceSettings)
+        public BestNetworkInterface(IConfiguration config, IServiceSettings serviceSettings)
         {
             _config = config;
             _serviceSettings = serviceSettings;

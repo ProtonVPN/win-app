@@ -63,25 +63,21 @@
     <Compile Include="Extensions\ByteExtensionsTest.cs" />
     <Compile Include="Extensions\ExceptionTypeExtensionsTest.cs" />
     <Compile Include="Extensions\TimeSpanExtensionsTest.cs" />
-    <Compile Include="Helpers\ConcatenatedSequenceTest.cs" />
     <Compile Include="Helpers\RandomStringsTest.cs" />
     <Compile Include="Logging\LogCleanerTest.cs" />
     <Compile Include="OS\Net\NetworkAddressTest.cs" />
     <Compile Include="OS\Net\NetworkInterface\NullNetworkInterfaceTest.cs" />
     <Compile Include="OS\Net\NetworkInterface\SafeSystemNetworkInterfacesTest.cs" />
-    <Compile Include="OS\Registry\SafeStartupRecordTest.cs" />
     <Compile Include="OS\Services\ServiceRetryPolicyTest.cs" />
     <Compile Include="OS\Services\ExceptionExtensionsTest.cs" />
     <Compile Include="OS\Services\SafeServiceTest.cs" />
     <Compile Include="OS\Services\LoggingServiceTest.cs" />
     <Compile Include="OS\Services\ReliableServiceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Storage\LoggingStorageTest.cs" />
-    <Compile Include="Storage\SafeStorageTest.cs" />
-    <Compile Include="Storage\FileStorageTest.cs" />
-    <Compile Include="Storage\CollectionStorageTest.cs" />
+    <Compile Include="Storage\FileStorageBaseTest.cs" />
     <Compile Include="Text\Serialization\JsonSerializerTest.cs" />
     <Compile Include="Text\Serialization\JsonSerializerFactoryTest.cs" />
+    <Compile Include="Text\Serialization\SampleContract.cs" />
     <Compile Include="Threading\TaskCompletionSourceExtensionsTest.cs" />
     <Compile Include="Threading\CoalescingTaskQueueTest.cs" />
     <Compile Include="Extensions\TaskExtensionsTest.cs" />
@@ -143,6 +139,7 @@
       <Version>4.5.4</Version>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

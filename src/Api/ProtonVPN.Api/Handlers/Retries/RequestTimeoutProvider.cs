@@ -26,9 +26,9 @@ namespace ProtonVPN.Api.Handlers.Retries
 {
     public class RequestTimeoutProvider : IRequestTimeoutProvider
     {
-        private readonly Config _config;
+        private readonly IConfiguration _config;
 
-        public RequestTimeoutProvider(Config config)
+        public RequestTimeoutProvider(IConfiguration config)
         {
             _config = config;
         }

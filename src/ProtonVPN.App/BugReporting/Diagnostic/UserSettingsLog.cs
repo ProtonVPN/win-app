@@ -22,6 +22,7 @@ using System.Collections.Specialized;
 using System.IO;
 using System.Text;
 using Newtonsoft.Json;
+using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Settings;
@@ -33,8 +34,8 @@ namespace ProtonVPN.BugReporting.Diagnostic
         private readonly IAppSettings _appSettings;
         private bool _isUserLoggedIn;
 
-        public UserSettingsLog(IAppSettings appSettings, string path)
-            : base(path, "Settings.txt")
+        public UserSettingsLog(IAppSettings appSettings, IConfiguration config)
+            : base(config.DiagnosticsLogFolder, "Settings.txt")
         {
             _appSettings = appSettings;
         }

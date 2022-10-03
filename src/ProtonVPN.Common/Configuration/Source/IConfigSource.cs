@@ -21,6 +21,6 @@ namespace ProtonVPN.Common.Configuration.Source
 {
     public interface IConfigSource
     {
-        Config Value();
+        IConfiguration Value();
     }
 }

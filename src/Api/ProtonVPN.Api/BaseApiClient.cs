@@ -51,7 +51,7 @@ namespace ProtonVPN.Api
             IApiAppVersion appVersion,
             IAppSettings appSettings,
             IAppLanguageCache appLanguageCache,
-            Config config)
+            IConfiguration config)
         {
             Logger = logger;
             AppSettings = appSettings;

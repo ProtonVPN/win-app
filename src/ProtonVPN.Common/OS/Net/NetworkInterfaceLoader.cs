@@ -26,10 +26,10 @@ namespace ProtonVPN.Common.OS.Net
 {
     public class NetworkInterfaceLoader : INetworkInterfaceLoader
     {
-        private readonly Config _config;
+        private readonly IConfiguration _config;
         private readonly INetworkInterfaces _networkInterfaces;
 
-        public NetworkInterfaceLoader(Config config, INetworkInterfaces networkInterfaces)
+        public NetworkInterfaceLoader(IConfiguration config, INetworkInterfaces networkInterfaces)
         {
             _networkInterfaces = networkInterfaces;
             _config = config;

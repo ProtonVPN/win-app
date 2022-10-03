@@ -17,23 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.OS.Registry;
 
 namespace ProtonVPN.Core.Startup
 {
     public class AutoStartup : IAutoStartup
     {
-        private readonly IStartupRecord _startupRecord;
+        private readonly ICurrentUserStartupRecord _startupRecord;
 
-        public AutoStartup(ILogger logger, Common.Configuration.Config appConfig) : this(
-            new SafeStartupRecord(
-                logger,
-                new CurrentUserStartupRecord(logger, appConfig.AppName, appConfig.AppExePath)))
-        {
-        }
-
-        public AutoStartup(IStartupRecord startupRecord)
+        public AutoStartup(ICurrentUserStartupRecord startupRecord)
         {
             _startupRecord = startupRecord;
         }

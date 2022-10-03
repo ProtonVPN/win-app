@@ -24,6 +24,7 @@ using System.Threading.Tasks;
 using Caliburn.Micro;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Auth;
+using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
@@ -50,10 +51,10 @@ namespace ProtonVPN.Account
         private DateTime _lastCheck = DateTime.Now;
         private readonly SemaphoreSlim _semaphore = new(1, 1);
 
-        public VpnInfoUpdater(IApiClient api,
+        public VpnInfoUpdater(IConfiguration appConfig,
             ILogger logger,
+            IApiClient api,
             IUserStorage userStorage,
-            Common.Configuration.Config appConfig,
             IEventAggregator eventAggregator,
             IScheduler scheduler)
         {

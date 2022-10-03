@@ -37,13 +37,13 @@ using ProtonVPN.Api.Handlers;
 using ProtonVPN.Api.Installers;
 using ProtonVPN.BugReporting;
 using ProtonVPN.Common.Abstract;
+using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Events;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
 using ProtonVPN.Common.Logging.Categorization.Events.AppServiceLogs;
 using ProtonVPN.Common.OS.Services;
-using ProtonVPN.Common.Storage;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Abstract;
 using ProtonVPN.Core.Auth;
@@ -58,6 +58,7 @@ using ProtonVPN.Core.PortForwarding;
 using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.ReportAnIssue;
 using ProtonVPN.Core.Servers;
+using ProtonVPN.Core.Servers.FileStoraging;
 using ProtonVPN.Core.Service;
 using ProtonVPN.Core.Service.Settings;
 using ProtonVPN.Core.Service.Vpn;
@@ -90,7 +91,6 @@ using ProtonVPN.Translations;
 using ProtonVPN.ViewModels;
 using ProtonVPN.Vpn.Connectors;
 using ProtonVPN.Windows;
-using AppConfig = ProtonVPN.Common.Configuration.Config;
 
 namespace ProtonVPN.Core
 {
@@ -134,7 +134,7 @@ namespace ProtonVPN.Core
         {
             base.OnStartup(sender, e);
 
-            AppConfig appConfig = Resolve<AppConfig>();
+            IConfiguration appConfig = Resolve<IConfiguration>();
             Resolve<IEventPublisher>().Init();
 
             Resolve<ILogger>().Info<AppStartLog>($"= Booting ProtonVPN version: {appConfig.AppVersion} os: {Environment.OSVersion.VersionString} {appConfig.OsBits} bit =");
@@ -208,8 +208,9 @@ namespace ProtonVPN.Core
 
         private void LoadServersFromCache()
         {
-            IReadOnlyCollection<LogicalServerResponse> servers = Resolve<ICollectionStorage<LogicalServerResponse>>().GetAll();
-            if (servers.Any())
+            IReadOnlyCollection<LogicalServerResponse> servers = (IReadOnlyCollection<LogicalServerResponse>)
+                Resolve<IServersFileStorage>().Get();
+            if (servers != null && servers.Any())
             {
                 Resolve<ServerManager>().Load(servers);
             }
@@ -517,7 +518,7 @@ namespace ProtonVPN.Core
             
             Resolve<PinFactory>().BuildPins();
             LoadViewModels();
-            Resolve<P2PDetector>();
+            Resolve<IP2PDetector>();
             Resolve<IVpnInfoUpdater>();
 
             AppWindow appWindow = Resolve<AppWindow>();

@@ -36,10 +36,10 @@ namespace ProtonVPN.Common.Events
     public class EventPublisher : IEventPublisher
     {
         private readonly ILogger _logger;
-        private readonly Config _config;
+        private readonly IConfiguration _config;
         private readonly IDeviceInfoProvider _deviceInfoProvider;
 
-        public EventPublisher(ILogger logger, Config config, IDeviceInfoProvider deviceInfoProvider)
+        public EventPublisher(ILogger logger, IConfiguration config, IDeviceInfoProvider deviceInfoProvider)
         {
             _logger = logger;
             _config = config;

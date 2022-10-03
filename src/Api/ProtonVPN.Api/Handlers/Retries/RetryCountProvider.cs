@@ -25,9 +25,9 @@ namespace ProtonVPN.Api.Handlers.Retries
 {
     public class RetryCountProvider : IRetryCountProvider
     {
-        private readonly Config _config;
+        private readonly IConfiguration _config;
 
-        public RetryCountProvider(Config config)
+        public RetryCountProvider(IConfiguration config)
         {
             _config = config;
         }

@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.ConnectLogs;
@@ -53,7 +54,7 @@ namespace ProtonVPN.Core.Service.Vpn
         private readonly IVpnConnector _vpnConnector;
         private readonly INotificationSender _notificationSender;
         private readonly ILogger _logger;
-        private readonly Common.Configuration.Config _config;
+        private readonly IConfiguration _config;
         private readonly Lazy<ConnectionStatusViewModel> _connectionStatusViewModel;
         private readonly ServerManager _serverManager;
         private readonly IProfileFactory _profileFactory;
@@ -72,7 +73,7 @@ namespace ProtonVPN.Core.Service.Vpn
             IVpnConnector vpnConnector,
             INotificationSender notificationSender,
             ILogger logger,
-            Common.Configuration.Config config,
+            IConfiguration config,
             Lazy<ConnectionStatusViewModel> connectionStatusViewModel,
             ServerManager serverManager,
             IProfileFactory profileFactory,

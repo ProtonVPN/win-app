@@ -18,6 +18,7 @@
  */
 
 using System.IO;
+using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.OS.Processes;
 
 namespace ProtonVPN.BugReporting.Diagnostic
@@ -26,7 +27,8 @@ namespace ProtonVPN.BugReporting.Diagnostic
     {
         private readonly IOsProcesses _osProcesses;
 
-        public RoutingTableLog(IOsProcesses osProcesses, string path) : base(path, "RoutingTable.txt")
+        public RoutingTableLog(IOsProcesses osProcesses, IConfiguration config) 
+            : base(config.DiagnosticsLogFolder, "RoutingTable.txt")
         {
             _osProcesses = osProcesses;
         }
@@ -40,7 +42,7 @@ namespace ProtonVPN.BugReporting.Diagnostic
         {
             get
             {
-                using var process = _osProcesses.CommandLineProcess("/c route print");
+                using IOsProcess process = _osProcesses.CommandLineProcess("/c route print");
                 process.Start();
                 return process.StandardOutput.ReadToEnd();
             }

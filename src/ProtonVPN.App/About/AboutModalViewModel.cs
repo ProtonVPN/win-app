@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
+using ProtonVPN.Common.Configuration;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Update;
@@ -33,13 +34,13 @@ namespace ProtonVPN.About
     {
         private static readonly ReleaseEqualityComparer ReleaseComparer = new ReleaseEqualityComparer();
 
-        private readonly Common.Configuration.Config _appConfig;
+        private readonly IConfiguration _appConfig;
         private readonly UpdateService _appUpdater;
         private readonly IAppSettings _appSettings;
         private readonly IModals _modals;
 
         public AboutModalViewModel(
-            Common.Configuration.Config appConfig,
+            IConfiguration appConfig,
             UpdateService appUpdater,
             IAppSettings appSettings,
             UpdateViewModel updateViewModel,

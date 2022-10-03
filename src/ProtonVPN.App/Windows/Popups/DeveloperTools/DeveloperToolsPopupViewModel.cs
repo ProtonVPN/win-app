@@ -46,7 +46,7 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
 {
     public class DeveloperToolsPopupViewModel : BasePopupViewModel, IVpnStateAware
     {
-        private readonly Common.Configuration.Config _config;
+        private readonly IConfiguration _config;
         private readonly IConfigWriter _configWriter;
         private readonly UserAuth _userAuth;
         private readonly IPopupWindows _popupWindowOpener;
@@ -58,7 +58,7 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
         private readonly IAppExitInvoker _appExitInvoker;
 
         public DeveloperToolsPopupViewModel(AppWindow appWindow,
-            Common.Configuration.Config config,
+            IConfiguration config,
             IConfigWriter configWriter,
             UserAuth userAuth,
             IPopupWindows popupWindowOpener,
@@ -399,7 +399,7 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
 
         private void DisableTlsPinningAction()
         {
-            _configWriter.Write(_config.WithTlsPinningDisabled());
+            _configWriter.Write(_config.DisableTlsPinning());
             _appExitInvoker.Exit();
         }
     }

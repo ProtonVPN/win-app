@@ -20,10 +20,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
 using System.Threading.Tasks;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.VpnConfig;
+using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Core.Auth;
@@ -44,7 +44,7 @@ namespace ProtonVPN.Core.Config
             IAppSettings appSettings,
             IScheduler scheduler,
             IApiClient apiClient,
-            Common.Configuration.Config config)
+            IConfiguration config)
         {
             _appSettings = appSettings;
             _apiClient = apiClient;

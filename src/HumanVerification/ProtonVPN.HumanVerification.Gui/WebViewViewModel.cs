@@ -33,7 +33,7 @@ namespace ProtonVPN.HumanVerification.Gui
 {
     public class WebViewViewModel : ViewModelBase, IWebViewViewModel
     {
-        private readonly Config _config;
+        private readonly IConfiguration _config;
         private readonly ILogger _logger;
         private readonly ICaptchaUrlProvider _captchaUrlProvider;
 
@@ -53,7 +53,7 @@ namespace ProtonVPN.HumanVerification.Gui
 
         public event EventHandler<string> OnHumanVerificationTokenReceived;
 
-        public WebViewViewModel(Config config, ILogger logger, ICaptchaUrlProvider captchaUrlProvider)
+        public WebViewViewModel(IConfiguration config, ILogger logger, ICaptchaUrlProvider captchaUrlProvider)
         {
             _config = config;
             _logger = logger;

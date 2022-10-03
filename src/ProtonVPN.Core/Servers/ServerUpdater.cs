@@ -23,11 +23,12 @@ using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using ProtonVPN.Api.Contracts.Servers;
+using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Networking;
-using ProtonVPN.Common.Storage;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Core.Auth;
+using ProtonVPN.Core.Servers.FileStoraging;
 using ProtonVPN.Core.Settings;
 
 namespace ProtonVPN.Core.Servers
@@ -37,7 +38,7 @@ namespace ProtonVPN.Core.Servers
         private readonly ISchedulerTimer _timer;
         private readonly ServerManager _serverManager;
         private readonly IApiServers _apiServers;
-        private readonly ICollectionStorage<LogicalServerResponse> _serverCache;
+        private readonly IServersFileStorage _serversFileStorage;
         private readonly SingleAction _updateAction;
         private readonly IAppSettings _appSettings;
 
@@ -46,16 +47,16 @@ namespace ProtonVPN.Core.Servers
 
         public ServerUpdater(
             IScheduler scheduler,
-            Common.Configuration.Config appConfig,
+            IConfiguration appConfig,
             ServerManager serverManager,
             IApiServers apiServers,
-            ICollectionStorage<LogicalServerResponse> serverCache,
+            IServersFileStorage serversFileStorage,
             ServerLoadUpdater serverLoadUpdater,
             IAppSettings appSettings)
         {
             _serverManager = serverManager;
             _apiServers = apiServers;
-            _serverCache = serverCache;
+            _serversFileStorage = serversFileStorage;
             _appSettings = appSettings;
 
             _timer = scheduler.Timer();
@@ -98,7 +99,7 @@ namespace ProtonVPN.Core.Servers
             {
                 _serverManager.Load(servers);
                 InvokeServersUpdated();
-                _serverCache.SetAll(servers);
+                _serversFileStorage.Set(servers);
             }
         }
 

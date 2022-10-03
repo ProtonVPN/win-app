@@ -21,6 +21,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
 using ProtonVPN.Core.Profiles.Cached;
@@ -36,21 +37,17 @@ namespace ProtonVPN.Core.Profiles
         private readonly ILogger _logger;
         private readonly CachedProfiles _cachedProfiles;
         private readonly IProfileStorageAsync _apiProfiles;
-        private readonly Common.Configuration.Config _appConfig;
+        private readonly IConfiguration _appConfig;
 
         private CancellationToken _cancellationToken;
         private bool _failed;
 
-        public SyncProfile(Common.Configuration.Config appConfig, ILogger logger, CachedProfiles cachedProfiles, ApiProfiles apiProfiles) :
-            this(appConfig, logger, cachedProfiles, new NullSafeProfileStorage(apiProfiles))
-        { }
-
-        private SyncProfile(Common.Configuration.Config appConfig, ILogger logger, CachedProfiles cachedProfiles, IProfileStorageAsync apiProfiles)
+        public SyncProfile(IConfiguration appConfig, ILogger logger, CachedProfiles cachedProfiles, ApiProfiles apiProfiles)
         {
             _appConfig = appConfig;
             _logger = logger;
             _cachedProfiles = cachedProfiles;
-            _apiProfiles = apiProfiles;
+            _apiProfiles = new NullSafeProfileStorage(apiProfiles);
         }
 
         public bool Succeeded => !_failed;
@@ -82,7 +79,10 @@ namespace ProtonVPN.Core.Profiles
 
         public Profile WithUniqueName(Profile profile)
         {
-            if (profile == null) return null;
+            if (profile == null)
+            {
+                return null;
+            }
 
             using (CachedProfileData cached = _cachedProfiles.ProfileData())
             {
@@ -134,11 +134,13 @@ namespace ProtonVPN.Core.Profiles
             if (!external.Exists())
             {
                 if (profile.HasElapsed(_appConfig.ForcedProfileSyncInterval))
-                    // First wins: Profile was deleted while editing or syncing
+                { // First wins: Profile was deleted while editing or syncing
                     await Skip(profile);
+                }
                 else
-                    // Last wins: Creating new profile
+                { // Last wins: Creating new profile
                     await SyncCreated(profile);
+                }
 
                 return;
             }
@@ -186,7 +188,10 @@ namespace ProtonVPN.Core.Profiles
 
         private async Task<Profile> CreatedInApi(Profile profile)
         {
-            if (profile == null) return null;
+            if (profile == null)
+            {
+                return null;
+            }
 
             try
             {
@@ -205,7 +210,10 @@ namespace ProtonVPN.Core.Profiles
 
         private async Task<Profile> UpdatedInApi(Profile profile)
         {
-            if (profile == null) return null;
+            if (profile == null)
+            {
+                return null;
+            }
 
             try
             {
@@ -256,61 +264,65 @@ namespace ProtonVPN.Core.Profiles
 
         private async Task FinishSyncCreated(Profile profile)
         {
-            if (profile == null) return;
-
-            using (CachedProfileData cached = await _cachedProfiles.LockedProfileData())
+            if (profile != null)
             {
-                Profile p = profile
-                    .WithStatus(ProfileStatus.Synced)
-                    .WithSyncStatus(ProfileSyncStatus.Succeeded);
+                using (CachedProfileData cached = await _cachedProfiles.LockedProfileData())
+                {
+                    Profile p = profile
+                                .WithStatus(ProfileStatus.Synced)
+                                .WithSyncStatus(ProfileSyncStatus.Succeeded);
 
-                cached.External.AddOrReplace(p);
-                cached.Sync.Remove(profile);
+                    cached.External.AddOrReplace(p);
+                    cached.Sync.Remove(profile);
+                }
             }
         }
 
         private async Task FinishSyncUpdated(Profile profile)
         {
-            if (profile == null) return;
-
-            using (CachedProfileData cached = await _cachedProfiles.LockedProfileData())
+            if (profile != null)
             {
-                Profile p = profile
-                    .WithStatus(ProfileStatus.Synced)
-                    .WithSyncStatus(ProfileSyncStatus.Succeeded);
+                using (CachedProfileData cached = await _cachedProfiles.LockedProfileData())
+                {
+                    Profile p = profile
+                                .WithStatus(ProfileStatus.Synced)
+                                .WithSyncStatus(ProfileSyncStatus.Succeeded);
 
-                cached.External.AddOrReplace(p);
-                cached.Sync.Remove(profile);
+                    cached.External.AddOrReplace(p);
+                    cached.Sync.Remove(profile);
+                }
             }
         }
 
         private async Task FinishSyncDeleted(Profile profile)
         {
-            if (profile == null) return;
-
-            using (CachedProfileData cached = await _cachedProfiles.LockedProfileData())
+            if (profile != null)
             {
-                cached.External.Remove(profile);
-                cached.Sync.Remove(profile);
+                using (CachedProfileData cached = await _cachedProfiles.LockedProfileData())
+                {
+                    cached.External.Remove(profile);
+                    cached.Sync.Remove(profile);
+                }
             }
         }
 
         private async Task FinishSyncOverridden(Profile profile)
         {
-            if (profile == null) return;
-
-            using (CachedProfileData cached = await _cachedProfiles.LockedProfileData())
+            if (profile != null)
             {
-                Profile external = cached.External.Get(profile);
-                if (external == null)
-                    return;
+                using (CachedProfileData cached = await _cachedProfiles.LockedProfileData())
+                {
+                    Profile external = cached.External.Get(profile);
+                    if (external != null)
+                    {
+                        Profile p = external
+                                    .WithStatus(ProfileStatus.Synced)
+                                    .WithSyncStatus(ProfileSyncStatus.Overridden);
 
-                Profile p = external
-                    .WithStatus(ProfileStatus.Synced)
-                    .WithSyncStatus(ProfileSyncStatus.Overridden);
-
-                cached.External.AddOrReplace(p);
-                cached.Sync.Remove(profile);
+                        cached.External.AddOrReplace(p);
+                        cached.Sync.Remove(profile);
+                    }
+                }
             }
         }
 

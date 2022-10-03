@@ -19,12 +19,14 @@
 
 using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using ProtonVPN.Common.Configuration;
 
 namespace ProtonVPN.App.Tests.BugReporting.Diagnostic
 {
     public class BaseLogTest
     {
         protected const string TmpPath = "BugReporting\\Diagnostic\\Tmp";
+        protected IConfiguration Config { get; private set; }
 
         [TestInitialize]
         public virtual void Initialize()
@@ -35,6 +37,13 @@ namespace ProtonVPN.App.Tests.BugReporting.Diagnostic
             }
 
             Directory.CreateDirectory(TmpPath);
+            Config = new Common.Configuration.Config() { DiagnosticsLogFolder = TmpPath };
+        }
+
+        [TestCleanup]
+        public virtual void Cleanup()
+        {
+            Config = null;
         }
     }
 }

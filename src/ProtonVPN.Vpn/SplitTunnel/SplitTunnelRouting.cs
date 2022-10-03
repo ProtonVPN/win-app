@@ -30,11 +30,11 @@ namespace ProtonVPN.Vpn.SplitTunnel
     {
         private const int ROUTE_METRIC = 32000;
 
-        private readonly ProtonVPN.Common.Configuration.Config _config;
+        private readonly IConfiguration _config;
         private readonly INetworkInterfaces _networkInterfaces;
         private readonly INetworkInterfaceLoader _networkInterfaceLoader;
 
-        public SplitTunnelRouting(ProtonVPN.Common.Configuration.Config config, INetworkInterfaces networkInterfaces, INetworkInterfaceLoader networkInterfaceLoader)
+        public SplitTunnelRouting(IConfiguration config, INetworkInterfaces networkInterfaces, INetworkInterfaceLoader networkInterfaceLoader)
         {
             _config = config;
             _networkInterfaces = networkInterfaces;

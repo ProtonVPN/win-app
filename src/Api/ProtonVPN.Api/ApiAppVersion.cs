@@ -24,9 +24,9 @@ namespace ProtonVPN.Api
 {
     public class ApiAppVersion : IApiAppVersion
     {
-        private readonly Config _appConfig;
+        private readonly IConfiguration _appConfig;
 
-        public ApiAppVersion(Config appConfig)
+        public ApiAppVersion(IConfiguration appConfig)
         {
             _appConfig = appConfig;
         }

@@ -30,12 +30,12 @@ namespace ProtonVPN.Core.Update
 {
     public class FeedUrlProvider : IFeedUrlProvider, IVpnStateAware
     {
-        private readonly Common.Configuration.Config _config;
+        private readonly IConfiguration _config;
         private FeedType _feedType = FeedType.Public;
 
         public event EventHandler<FeedUrlChangeEventArgs> FeedUrlChanged;
 
-        public FeedUrlProvider(Common.Configuration.Config config)
+        public FeedUrlProvider(IConfiguration config)
         {
             _config = config;
         }

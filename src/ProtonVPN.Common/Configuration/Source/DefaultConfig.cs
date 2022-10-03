@@ -32,7 +32,7 @@ namespace ProtonVPN.Common.Configuration.Source
         public const int MAX_QUICK_CONNECT_SERVERS_ON_RECONNECTION = 50;
         public const string ALTERNATIVE_ROUTING_HOSTNAME = "*";
 
-        public Config Value()
+        public IConfiguration Value()
         {
             string location = Assembly.GetEntryAssembly()?.Location;
             string baseFolder = (location != null ? new FileInfo(location).DirectoryName : null)

@@ -21,6 +21,7 @@ using System;
 using System.IO;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using ProtonVPN.Common.Configuration;
 using ProtonVPN.Config;
 
 namespace ProtonVPN.App.Tests.Core.Config
@@ -39,7 +40,7 @@ namespace ProtonVPN.App.Tests.Core.Config
             {
                 Directory.Delete(MainFolder);
             }
-            ConfigDirectories subject = new ConfigDirectories(GetConfig());
+            ConfigDirectories subject = new(GetConfig());
 
             // Act
             subject.Prepare();
@@ -53,7 +54,7 @@ namespace ProtonVPN.App.Tests.Core.Config
         public void Prepare_ShouldSucceed_When_LocalAppDataFolder_Exists()
         {
             // Arrange
-            ConfigDirectories subject = new ConfigDirectories(GetConfig());
+            ConfigDirectories subject = new(GetConfig());
 
             // Act
             Action action = () => subject.Prepare();
@@ -62,7 +63,7 @@ namespace ProtonVPN.App.Tests.Core.Config
             action.Should().NotThrow();
         }
 
-        private Common.Configuration.Config GetConfig()
+        private IConfiguration GetConfig()
         {
             return new Common.Configuration.Config
             {

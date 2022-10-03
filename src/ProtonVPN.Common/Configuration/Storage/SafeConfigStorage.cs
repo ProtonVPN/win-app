@@ -32,7 +32,7 @@ namespace ProtonVPN.Common.Configuration.Storage
             _origin = origin;
         }
 
-        public Config Value()
+        public IConfiguration Value()
         {
             try
             {
@@ -44,7 +44,7 @@ namespace ProtonVPN.Common.Configuration.Storage
             }
         }
 
-        public void Save(Config value)
+        public void Save(IConfiguration value)
         {
             try
             {

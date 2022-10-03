@@ -25,6 +25,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
+using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.KillSwitch;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.AppUpdateLogs;
@@ -39,7 +40,6 @@ using ProtonVPN.Core.Update;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Modals;
 using ProtonVPN.Translations;
-using AppConfig = ProtonVPN.Common.Configuration.Config;
 
 namespace ProtonVPN.About
 {
@@ -52,7 +52,7 @@ namespace ProtonVPN.About
         private readonly IAppSettings _appSettings;
         private readonly ISystemState _systemState;
         private readonly ISettingsServiceClientManager _settingsServiceClientManager;
-        private readonly AppConfig _appConfig;
+        private readonly IConfiguration _appConfig;
 
         private UpdateStateChangedEventArgs _updateStateChangedEventArgs;
         private VpnStatus _vpnStatus;
@@ -65,7 +65,7 @@ namespace ProtonVPN.About
             IAppSettings appSettings,
             ISystemState systemState,
             ISettingsServiceClientManager settingsServiceClientManager,
-            AppConfig appConfig)
+            IConfiguration appConfig)
         {
             _logger = logger;
             _dialogs = dialogs;

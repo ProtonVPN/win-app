@@ -233,5 +233,7 @@ namespace ProtonVPN.Common.Configuration
 
         [Range(typeof(TimeSpan), "00:00:01", "23:59:59")]
         TimeSpan AlternativeRoutingCheckInterval { get; set; }
+
+        public string AutoLoginBaseUrl { get; set; }
     }
 }

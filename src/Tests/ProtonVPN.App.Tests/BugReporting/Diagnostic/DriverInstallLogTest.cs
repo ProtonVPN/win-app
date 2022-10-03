@@ -31,7 +31,7 @@ namespace ProtonVPN.App.Tests.BugReporting.Diagnostic
         public void ItShouldCreateLogFile()
         {
             // Act
-            new DriverInstallLog(TmpPath).Write();
+            new DriverInstallLog(Config).Write();
 
             // Assert
             File.Exists(Path.Combine(TmpPath, "setupapi.dev.zip")).Should().BeTrue();

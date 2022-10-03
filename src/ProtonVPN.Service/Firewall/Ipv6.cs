@@ -32,10 +32,10 @@ namespace ProtonVPN.Service.Firewall
         private const string AppName = "ProtonVPN";
 
         private readonly ILogger _logger;
-        private readonly Common.Configuration.Config _config;
+        private readonly IConfiguration _config;
         private readonly IServiceSettings _serviceSettings;
 
-        public Ipv6(ILogger logger, Common.Configuration.Config config, IServiceSettings serviceSettings)
+        public Ipv6(ILogger logger, IConfiguration config, IServiceSettings serviceSettings)
         {
             _logger = logger;
             _config = config;

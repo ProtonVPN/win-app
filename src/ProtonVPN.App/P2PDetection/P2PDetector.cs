@@ -19,6 +19,7 @@
 
 using System;
 using System.Threading.Tasks;
+using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
@@ -31,7 +32,7 @@ using ProtonVPN.Translations;
 
 namespace ProtonVPN.P2PDetection
 {
-    public class P2PDetector : IVpnStateAware
+    public class P2PDetector : IP2PDetector, IVpnStateAware
     {
         private readonly ILogger _logger;
         private readonly IDialogs _dialogs;
@@ -40,28 +41,18 @@ namespace ProtonVPN.P2PDetection
 
         private VpnState _vpnState;
 
-        public P2PDetector(
-            ILogger logger,
-            Common.Configuration.Config appConfig,
+        public P2PDetector(ILogger logger,
+            IConfiguration appConfig,
             IBlockedTraffic blockedTraffic,
             IScheduler scheduler,
-            IDialogs dialogs) :
-            this(logger, blockedTraffic, scheduler.Timer(), dialogs, appConfig.P2PCheckInterval.RandomizedWithDeviation(0.2))
-        { }
-
-        private P2PDetector(
-            ILogger logger,
-            IBlockedTraffic blockedTraffic,
-            ISchedulerTimer timer,
-            IDialogs dialogs,
-            TimeSpan checkInterval)
+            IDialogs dialogs)
         {
             _logger = logger;
             _blockedTraffic = blockedTraffic;
-            _timer = timer;
+            _timer = scheduler.Timer();
             _dialogs = dialogs;
 
-            _timer.Interval = checkInterval;
+            _timer.Interval = appConfig.P2PCheckInterval.RandomizedWithDeviation(0.2);
             _timer.Tick += OnTimerTick;
         }
 

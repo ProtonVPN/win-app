@@ -27,7 +27,7 @@ namespace ProtonVPN.Config.Url
         private readonly UrlConfig _config;
         private readonly IOsProcesses _processes;
 
-        public ActiveUrls(Common.Configuration.Config config, IOsProcesses processes)
+        public ActiveUrls(IConfiguration config, IOsProcesses processes)
         {
             _config = config.Urls;
             _processes = processes;

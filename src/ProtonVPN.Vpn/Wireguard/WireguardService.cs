@@ -20,6 +20,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Abstract;
+using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.AppServiceLogs;
 using ProtonVPN.Common.OS.Services;
@@ -29,10 +30,10 @@ namespace ProtonVPN.Vpn.WireGuard
     public class WireGuardService : IService
     {
         private readonly ILogger _logger;
-        private readonly ProtonVPN.Common.Configuration.Config _config;
+        private readonly IConfiguration _config;
         private readonly IService _origin;
 
-        public WireGuardService(ILogger logger, ProtonVPN.Common.Configuration.Config config, IService origin)
+        public WireGuardService(ILogger logger, IConfiguration config, IService origin)
         {
             _logger = logger;
             _config = config;

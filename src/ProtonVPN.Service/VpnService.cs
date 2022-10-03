@@ -23,6 +23,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.ServiceProcess;
 using System.Threading;
+using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Events;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.AppServiceLogs;
@@ -42,7 +43,7 @@ namespace ProtonVPN.Service
     {
         private readonly ILogger _logger;
         private readonly IEventPublisher _eventPublisher;
-        private readonly Common.Configuration.Config _config;
+        private readonly IConfiguration _config;
         private readonly IOsProcesses _osProcesses;
         private readonly IVpnConnection _vpnConnection;
         private readonly List<ServiceHostFactory> _serviceHostsFactories;
@@ -53,7 +54,7 @@ namespace ProtonVPN.Service
         public VpnService(
             ILogger logger,
             IEventPublisher eventPublisher,
-            Common.Configuration.Config config,
+            IConfiguration config,
             IOsProcesses osProcesses,
             IEnumerable<ServiceHostFactory> serviceHostsFactories,
             IVpnConnection vpnConnection,

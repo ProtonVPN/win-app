@@ -35,7 +35,7 @@ namespace ProtonVPN.Api
         private readonly IAppSettings _appSettings;
         private bool _isDisconnected = true;
 
-        public ApiHostProvider(IAppSettings appSettings, Config config)
+        public ApiHostProvider(IAppSettings appSettings, IConfiguration config)
         {
             _appSettings = appSettings;
             _apiHost = new Uri(config.Urls.ApiUrl).Host;

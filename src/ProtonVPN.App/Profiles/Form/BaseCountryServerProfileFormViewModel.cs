@@ -21,6 +21,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ProtonVPN.Api.Contracts.Servers;
+using ProtonVPN.Common.Configuration;
 using ProtonVPN.Core.Abstract;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Profiles;
@@ -43,7 +44,7 @@ namespace ProtonVPN.Profiles.Form
         private bool _unsavedChanges;
 
         protected BaseCountryServerProfileFormViewModel(
-            Common.Configuration.Config appConfig,
+            IConfiguration appConfig,
             ColorProvider colorProvider,
             IUserStorage userStorage,
             ProfileManager profileManager,

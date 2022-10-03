@@ -18,6 +18,7 @@
  */
 
 using System.IO;
+using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.OS.Net.NetworkInterface;
 
@@ -27,7 +28,8 @@ namespace ProtonVPN.BugReporting.Diagnostic
     {
         private readonly INetworkInterfaces _networkInterfaces;
 
-        public NetworkAdapterLog(INetworkInterfaces networkInterfaces, string path) : base(path, "NetworkAdapters.txt")
+        public NetworkAdapterLog(INetworkInterfaces networkInterfaces, IConfiguration config) 
+            : base(config.DiagnosticsLogFolder, "NetworkAdapters.txt")
         {
             _networkInterfaces = networkInterfaces;
         }

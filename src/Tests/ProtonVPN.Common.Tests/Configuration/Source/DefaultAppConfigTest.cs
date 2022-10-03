@@ -41,7 +41,7 @@ namespace ProtonVPN.Common.Tests.Configuration.Source
         public void Value_ShouldPass_Validation()
         {
             // Arrange
-            Config config = new DefaultConfig().Value();
+            IConfiguration config = new DefaultConfig().Value();
             _storage.Value().Returns(config);
             // Act
             ValidatedConfigStorage valid = new(_storage);

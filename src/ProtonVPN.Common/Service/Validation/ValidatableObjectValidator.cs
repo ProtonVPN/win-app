@@ -28,9 +28,9 @@ namespace ProtonVPN.Common.Service.Validation
     {
         public const string ServerValidationPublicKeyValue = "ServerValidationPublicKey";
 
-        private readonly Config _config;
+        private readonly IConfiguration _config;
 
-        public ValidatableObjectValidator(Config config)
+        public ValidatableObjectValidator(IConfiguration config)
         {
             _config = config;
         }

@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Threading.Tasks;
+using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
 
@@ -31,9 +32,9 @@ namespace ProtonVPN.BugReporting.Diagnostic
     {
         private readonly IEnumerable<ILog> _networkLogs;
         private readonly ILogger _logger;
-        private readonly Common.Configuration.Config _config;
+        private readonly IConfiguration _config;
 
-        public NetworkLogWriter(Common.Configuration.Config config, IEnumerable<ILog> networkLogs, ILogger logger)
+        public NetworkLogWriter(IConfiguration config, IEnumerable<ILog> networkLogs, ILogger logger)
         {
             _config = config;
             _logger = logger;

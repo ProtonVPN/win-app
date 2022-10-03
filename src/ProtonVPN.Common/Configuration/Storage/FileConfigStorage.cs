@@ -31,21 +31,21 @@ namespace ProtonVPN.Common.Configuration.Storage
             _file = file;
         }
 
-        public Config Value()
+        public IConfiguration Value()
         {
-            var serializer = Serializer();
-            using (var stream = new StreamReader(_file.Path()))
-            using (var reader = new JsonTextReader(stream))
+            JsonSerializer serializer = Serializer();
+            using (StreamReader stream = new(_file.Path()))
+            using (JsonTextReader reader = new(stream))
             {
                 return serializer.Deserialize<Config>(reader);
             }
         }
 
-        public void Save(Config value)
+        public void Save(IConfiguration value)
         {
-            var serializer = Serializer();
-            using (var stream = new StreamWriter(_file.Path()))
-            using (var writer = new JsonTextWriter(stream))
+            JsonSerializer serializer = Serializer();
+            using (StreamWriter stream = new(_file.Path()))
+            using (JsonTextWriter writer = new(stream))
             {
                 serializer.Serialize(writer, value);
             }
@@ -53,7 +53,7 @@ namespace ProtonVPN.Common.Configuration.Storage
 
         private JsonSerializer Serializer()
         {
-            var settings = new JsonSerializerSettings { ContractResolver = new PropertiesContractResolver() };
+            JsonSerializerSettings settings = new() { ContractResolver = new PropertiesContractResolver() };
             return JsonSerializer.CreateDefault(settings);
         }
     }

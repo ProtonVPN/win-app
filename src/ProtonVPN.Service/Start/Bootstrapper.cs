@@ -52,7 +52,7 @@ namespace ProtonVPN.Service.Start
 
         private void Configure()
         {
-            Common.Configuration.Config config = new ConfigFactory().Config();
+            IConfiguration config = new ConfigFactory().Config();
             new ConfigDirectories(config).Prepare();
 
             ContainerBuilder builder = new ContainerBuilder();
@@ -62,7 +62,7 @@ namespace ProtonVPN.Service.Start
 
         private void Start()
         {
-            Common.Configuration.Config config = Resolve<Common.Configuration.Config>();
+            IConfiguration config = Resolve<IConfiguration>();
             ILogger logger = Resolve<ILogger>();
 
             logger.Info<AppServiceStartLog>($"= Booting ProtonVPN Service version: {config.AppVersion} os: {Environment.OSVersion.VersionString} {config.OsBits} bit =");
@@ -128,7 +128,7 @@ namespace ProtonVPN.Service.Start
 
         private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
-            Common.Configuration.Config config = Resolve<Common.Configuration.Config>();
+            IConfiguration config = Resolve<IConfiguration>();
             IOsProcesses processes = Resolve<IOsProcesses>();
             Resolve<IVpnConnection>().Disconnect();
             Resolve<OpenVpnProcess>().Stop();

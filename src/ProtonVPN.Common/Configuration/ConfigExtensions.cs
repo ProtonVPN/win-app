@@ -23,7 +23,7 @@ namespace ProtonVPN.Common.Configuration
 {
     public static class ConfigExtensions
     {
-        public static string GetHardwareId(this Config config, OpenVpnAdapter openVpnAdapter)
+        public static string GetHardwareId(this IConfiguration config, OpenVpnAdapter openVpnAdapter)
         {
             return openVpnAdapter switch
             {
@@ -33,7 +33,7 @@ namespace ProtonVPN.Common.Configuration
             };
         }
 
-        public static Config WithTlsPinningDisabled(this Config config)
+        public static IConfiguration DisableTlsPinning(this IConfiguration config)
         {
             config.TlsPinningConfig = new();
             return config;

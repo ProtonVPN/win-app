@@ -46,7 +46,7 @@ namespace TestTools.ApiClient
         private readonly HttpClient _client;
 
         public Client(
-            Config config,
+            IConfiguration config,
             ILogger logger,
             HttpClient client,
             IAppSettings appSettings,

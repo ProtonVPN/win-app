@@ -18,14 +18,15 @@
  */
 
 using System.IO;
+using ProtonVPN.Common.Configuration;
 
 namespace ProtonVPN.Service.Config
 {
     public class ConfigDirectories
     {
-        private readonly Common.Configuration.Config _config;
+        private readonly IConfiguration _config;
 
-        public ConfigDirectories(Common.Configuration.Config config)
+        public ConfigDirectories(IConfiguration config)
         {
             _config = config;
         }

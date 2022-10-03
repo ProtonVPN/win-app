@@ -43,7 +43,7 @@ namespace ProtonVPN.Api
             IApiAppVersion appVersion,
             IAppSettings appSettings,
             IAppLanguageCache appLanguageCache,
-            Config config) : base(logger, appVersion, appSettings, appLanguageCache, config)
+            IConfiguration config) : base(logger, appVersion, appSettings, appLanguageCache, config)
         {
             _client = tokenHttpClientFactory.GetTokenHttpClient();
         }

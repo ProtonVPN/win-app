@@ -21,6 +21,7 @@ using System;
 using System.Threading.Tasks;
 using System.Windows.Threading;
 using ProtonVPN.Common.Abstract;
+using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.AppServiceLogs;
 using ProtonVPN.Common.OS.Services;
@@ -39,7 +40,7 @@ namespace ProtonVPN.Core.Service
         private readonly ILogger _logger;
 
         public MonitoredVpnService(
-            Common.Configuration.Config appConfig,
+            IConfiguration appConfig,
             VpnSystemService service,
             IVpnManager vpnManager,
             ILogger logger)

@@ -24,12 +24,12 @@ namespace ProtonVPN.Common.Configuration
 {
     public class ConfigFactory
     {
-        private static Config _config;
+        private static IConfiguration _config;
 
-        public Config Config(bool savingAllowed = false)
+        public IConfiguration Config(bool savingAllowed = false)
         {
 #if DEBUG
-            var mode = savingAllowed ? ConfigMode.CustomOrSavedDefault : ConfigMode.CustomOrDefault;
+            ConfigMode mode = savingAllowed ? ConfigMode.CustomOrSavedDefault : ConfigMode.CustomOrDefault;
 #else
             var mode = ConfigMode.Default;
 #endif
@@ -37,9 +37,9 @@ namespace ProtonVPN.Common.Configuration
             return _config ??= InitializedConfig(mode);
         }
 
-        private static Config InitializedConfig(ConfigMode mode)
+        private static IConfiguration InitializedConfig(ConfigMode mode)
         {
-            var config =
+            CustomConfig config =
                 new CustomConfig(
                     mode,
                     new DefaultConfig(),
