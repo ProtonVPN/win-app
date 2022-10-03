@@ -21,6 +21,7 @@ using System;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
+using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.OS.Services;
@@ -65,8 +66,10 @@ namespace ProtonVPN.Vpn.Tests.WireGuard
 
         private WireGuardConnection GetWireGuardConnection()
         {
-            ProtonVPN.Common.Configuration.Config config = new();
-            config.ServiceCheckInterval = TimeSpan.FromMilliseconds(1000);
+            IConfiguration config = new ProtonVPN.Common.Configuration.Config
+            {
+                ServiceCheckInterval = TimeSpan.FromMilliseconds(1000)
+            };
             ILogger logger = Substitute.For<ILogger>();
             IGatewayCache gatewayCache = Substitute.For<IGatewayCache>();
             IX25519KeyGenerator xIx25519KeyGenerator = Substitute.For<IX25519KeyGenerator>();

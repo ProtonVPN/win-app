@@ -21,6 +21,7 @@ using System;
 using System.IO;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using ProtonVPN.Common.Configuration;
 using ProtonVPN.Service.Config;
 using ProtonVPN.Tests.Common;
 
@@ -39,7 +40,7 @@ namespace ProtonVPN.Service.Tests.Config
                 Directory.Delete(path);
             }
 
-            Common.Configuration.Config config = new()
+            IConfiguration config = new Common.Configuration.Config()
             {
                 ServiceLogFolder = path,
                 OpenVpn =
@@ -63,7 +64,7 @@ namespace ProtonVPN.Service.Tests.Config
             string path = TestConfig.GetFolderPath();
             Directory.CreateDirectory(path);
 
-            Common.Configuration.Config config = new()
+            IConfiguration config = new Common.Configuration.Config()
             {
                 ServiceLogFolder = path,
                 OpenVpn =
@@ -89,7 +90,7 @@ namespace ProtonVPN.Service.Tests.Config
                 Directory.Delete(path);
             }
 
-            Common.Configuration.Config config = new()
+            IConfiguration config = new Common.Configuration.Config()
             {
                 ServiceLogFolder = $"{path}-1",
                 OpenVpn =
@@ -112,7 +113,7 @@ namespace ProtonVPN.Service.Tests.Config
             string path = TestConfig.GetFolderPath();
             Directory.CreateDirectory(path);
 
-            Common.Configuration.Config config = new()
+            IConfiguration config = new Common.Configuration.Config()
             {
                 ServiceLogFolder = $"{path}-1",
                 OpenVpn =

@@ -59,10 +59,11 @@
   <ItemGroup>
     <Compile Include="Account\WebAuthenticatorTests.cs" />
     <Compile Include="BugReporting\Attachments\AttachmentTest.cs" />
-    <Compile Include="BugReporting\Attachments\Source\FilesToAttachmentsTest.cs" />
-    <Compile Include="BugReporting\Attachments\Source\LogFileSourceTest.cs" />
-    <Compile Include="BugReporting\Attachments\Source\SafeFileSourceTest.cs" />
+    <Compile Include="BugReporting\Attachments\Source\AppLogFileSourceTest.cs" />
+    <Compile Include="BugReporting\Attachments\Source\DiagnosticsLogFileSourceTest.cs" />
+    <Compile Include="BugReporting\Attachments\Source\LogFileSourceBaseTest.cs" />
     <Compile Include="BugReporting\Attachments\AttachmentsToApiFilesTest.cs" />
+    <Compile Include="BugReporting\Attachments\Source\ServiceLogFileSourceTest.cs" />
     <Compile Include="BugReporting\Diagnostic\BaseLogTest.cs" />
     <Compile Include="BugReporting\Diagnostic\DriverInstallLogTest.cs" />
     <Compile Include="BugReporting\Diagnostic\UserSettingsLogTest.cs" />
@@ -87,12 +88,12 @@
     <Compile Include="Core\Startup\SyncableAutoStartupTest.cs" />
     <Compile Include="Core\Startup\SyncedAutoStartupTest.cs" />
     <Compile Include="Core\SystemTimeValidatorTest.cs" />
+    <Compile Include="GuestHoles\FileStoraging\GuestHoleServersFileStorageTest.cs" />
     <Compile Include="Map\CountryLocationTest.cs" />
     <Compile Include="Modals\Dialogs\DialogSettingsTest.cs" />
     <Compile Include="Modals\Dialogs\DialogsTest.cs" />
     <Compile Include="Modals\ModalsTest.cs" />
     <Compile Include="P2PDetection\Blocked\BlockedTrafficTest.cs" />
-    <Compile Include="P2PDetection\Blocked\SafeBlockedTrafficTest.cs" />
     <Compile Include="P2PDetection\P2PDetectionTimeoutTest.cs" />
     <Compile Include="P2PDetection\P2PDetectorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -129,6 +130,10 @@
     <ProjectReference Include="..\..\ProtonVPN.Resources\ProtonVPN.Resource.csproj">
       <Project>{45A0EA81-D37E-4D7F-8CE1-CE6B6A95A9ED}</Project>
       <Name>ProtonVPN.Resource</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProtonVPN.Common.Tests\ProtonVPN.Common.Tests.csproj">
+      <Project>{5F2931B6-9A77-4F94-80CD-BC9B9A0C64BF}</Project>
+      <Name>ProtonVPN.Common.Tests</Name>
     </ProjectReference>
     <ProjectReference Include="..\ProtonVPN.Tests.Common\ProtonVPN.Tests.Common.csproj">
       <Project>{A0DA4200-6643-4F2C-8450-65B8CE8A5576}</Project>

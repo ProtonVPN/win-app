@@ -22,7 +22,6 @@ using System.IO;
 using System.ServiceModel;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NSubstitute;
 using ProtonVPN.Common.Extensions;
 
 namespace ProtonVPN.Common.Tests.Extensions
@@ -30,23 +29,6 @@ namespace ProtonVPN.Common.Tests.Extensions
     [TestClass]
     public class ExceptionTypeExtensionsTest
     {
-        [DataTestMethod]
-        [DataRow(true)]
-        [DataRow(false)]
-        public void IsExpectedExceptionOf_ShouldBe_Origin_IsExpectedException(bool expected)
-        {
-            // Arrange
-            Exception exception = new();
-            IThrowsExpectedExceptions origin = Substitute.For<IThrowsExpectedExceptions>();
-            origin.IsExpectedException(exception).Returns(expected);
-
-            // Act
-            bool result = exception.IsExpectedExceptionOf(origin);
-
-            // Assert
-            result.Should().Be(expected);
-        }
-
         [DataTestMethod]
         [DataRow(true, typeof(IOException))]
         [DataRow(true, typeof(UnauthorizedAccessException))]

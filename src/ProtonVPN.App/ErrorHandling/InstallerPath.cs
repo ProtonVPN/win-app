@@ -20,14 +20,15 @@
 using System;
 using System.IO;
 using Microsoft.Win32;
+using ProtonVPN.Common.Configuration;
 
 namespace ProtonVPN.ErrorHandling
 {
     public class InstallerPath
     {
-        private readonly Common.Configuration.Config _config;
+        private readonly IConfiguration _config;
 
-        public InstallerPath(Common.Configuration.Config config)
+        public InstallerPath(IConfiguration config)
         {
             _config = config;
         }

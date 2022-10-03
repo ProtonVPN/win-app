@@ -73,33 +73,5 @@ namespace ProtonVPN.Common.Tests.Text.Serialization
             string result = writer.GetStringBuilder().ToString();
             result.Should().Be("{\"Number\":34,\"Name\":\"ZgD\"}");
         }
-
-        [DataTestMethod]
-        [DataRow(true, typeof(JsonException))]
-        [DataRow(false, typeof(InvalidOperationException))]
-        [DataRow(false, typeof(IOException))]
-        [DataRow(false, typeof(Exception))]
-        public void IsExpectedException_ShouldBeTrue_WhenExpectedException(bool expected, Type exceptionType)
-        {
-            // Arrange
-            Exception exception = (Exception)Activator.CreateInstance(exceptionType);
-            JsonSerializer<SampleContract> serializer = new JsonSerializer<SampleContract>();
-
-            // Act
-            bool result = serializer.IsExpectedException(exception);
-
-            // Assert
-            result.Should().Be(expected);
-        }
-
-        #region Helpers
-
-        public class SampleContract
-        {
-            public int Number { get; set; }
-            public string Name{ get; set; }
-        }
-
-        #endregion
     }
 }

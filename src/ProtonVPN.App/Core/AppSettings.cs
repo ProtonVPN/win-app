@@ -28,6 +28,7 @@ using Newtonsoft.Json;
 using ProtonVPN.Announcements.Contracts;
 using ProtonVPN.Api.Contracts.ReportAnIssue;
 using ProtonVPN.Common;
+using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.KillSwitch;
 using ProtonVPN.Common.Logging;
@@ -51,13 +52,13 @@ namespace ProtonVPN.Core
         private readonly ILogger _logger;
         private readonly ISettingsStorage _storage;
         private readonly UserSettings _userSettings;
-        private readonly Common.Configuration.Config _config;
+        private readonly IConfiguration _config;
         private readonly HashSet<string> _accessedPerUserProperties = new();
 
         public AppSettings(ILogger logger,
             ISettingsStorage storage, 
             UserSettings userSettings, 
-            Common.Configuration.Config config)
+            IConfiguration config)
         {
             _logger = logger;
             _storage = storage;

@@ -55,7 +55,7 @@ namespace ProtonVPN.Service.Start
             builder.RegisterType<Bootstrapper>().SingleInstance();
 
             builder.RegisterType<Log4NetLoggerFactory>().As<ILoggerFactory>().SingleInstance();
-            builder.Register(c => c.Resolve<ILoggerFactory>().Get(c.Resolve<Common.Configuration.Config>().ServiceLogDefaultFullFilePath))
+            builder.Register(c => c.Resolve<ILoggerFactory>().Get(c.Resolve<IConfiguration>().ServiceLogDefaultFullFilePath))
                 .As<ILogger>().SingleInstance();
             builder.RegisterType<LogCleaner>().SingleInstance();
 
@@ -72,16 +72,16 @@ namespace ProtonVPN.Service.Start
                             new LoggingService(
                                 c.Resolve<ILogger>(),
                                 new DriverService(
-                                    c.Resolve<Common.Configuration.Config>().CalloutServiceName,
+                                    c.Resolve<IConfiguration>().CalloutServiceName,
                                     c.Resolve<IOsProcesses>()))))))
                 .AsImplementedInterfaces().AsSelf().SingleInstance();
 
-            builder.RegisterType<SettingsStorage>().SingleInstance();
+            builder.RegisterType<SettingsFileStorage>().AsImplementedInterfaces().SingleInstance();
 
-            builder.Register(c => c.Resolve<Common.Configuration.Config>().OpenVpn).As<OpenVpnConfig>()
+            builder.Register(c => c.Resolve<IConfiguration>().OpenVpn).As<OpenVpnConfig>()
                 .SingleInstance();
             
-            ProtonVPN.Vpn.Config.Module vpnModule = new ProtonVPN.Vpn.Config.Module();
+            ProtonVPN.Vpn.Config.Module vpnModule = new();
             vpnModule.Load(builder);
 
             builder.Register(c => GetVpnConnection(c, vpnModule.GetVpnConnection(c))).As<IVpnConnection>().SingleInstance();

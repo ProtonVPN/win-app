@@ -34,14 +34,14 @@ namespace ProtonVPN.Common.Configuration.Source
             _storage = storage;
         }
 
-        public Config Value()
+        public IConfiguration Value()
         {
             if (_mode == ConfigMode.Default)
             {
                 return _default.Value();
             }
             
-            var value = _storage.Value();
+            IConfiguration value = _storage.Value();
             if (value != null)
             {
                 return value;

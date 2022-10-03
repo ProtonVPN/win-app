@@ -23,6 +23,7 @@ using System.Linq;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
+using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.OS.Processes;
 using ProtonVPN.Config.Url;
 
@@ -58,9 +59,9 @@ namespace ProtonVPN.App.Tests.Core.Config.Url
         {
             // Arrange
             const string url = "https://proton.vpn/some";
-            Common.Configuration.Config config = new Common.Configuration.Config();
+            IConfiguration config = new Common.Configuration.Config();
             config.Urls.GetType().GetProperty(propertyName)?.SetValue(config.Urls, url);
-            ActiveUrls item = new ActiveUrls(config, _processes);
+            ActiveUrls item = new(config, _processes);
             // Act
             IActiveUrl result = item.GetType().GetProperty(propertyName).GetValue(item) as IActiveUrl;
             // Assert

@@ -23,6 +23,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using Microsoft.Win32;
+using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
 
 namespace ProtonVPN.BugReporting.Diagnostic
@@ -36,8 +37,8 @@ namespace ProtonVPN.BugReporting.Diagnostic
         private const string ProgramTag = "[Program]";
         private const string WindowsAppTag = "[WindowsApp]";
 
-        public InstalledAppsLog(string path) 
-            : base(path, "Apps.txt")
+        public InstalledAppsLog(IConfiguration configuration) 
+            : base(configuration.DiagnosticsLogFolder, "Apps.txt")
         {
         }
 

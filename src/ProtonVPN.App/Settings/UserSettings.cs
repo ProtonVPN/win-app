@@ -19,6 +19,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
 using ProtonVPN.Common.Logging.Categorization.Events.AppUpdateLogs;
@@ -32,14 +33,14 @@ namespace ProtonVPN.Settings
         private const string SettingsVersionKey = "SettingsVersion";
         private const string UserSettingsMigratedKey = "UserSettingsMigrated";
 
-        private readonly Common.Configuration.Config _appConfig;
+        private readonly IConfiguration _appConfig;
         private readonly List<IMigration> _migrations = new();
         private readonly ISettingsStorage _storage;
         private readonly ISettingsStorage _appSettings;
         private readonly ILogger _logger;
         private bool _isMigrating;
 
-        public UserSettings(Common.Configuration.Config appConfig, PerUserSettings perUserSettings, 
+        public UserSettings(IConfiguration appConfig, PerUserSettings perUserSettings, 
             ISettingsStorage appSettings, ILogger logger)
         {
             _appConfig = appConfig;

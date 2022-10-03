@@ -35,13 +35,13 @@ namespace ProtonVPN.Api.Tests
         private const string API_HOST = "api.protonvpn.ch";
         private const string API_URL = "https://" + API_HOST;
         private const string PROXY_HOST = "alternative.api.url";
-        private Config _config;
+        private IConfiguration _config;
         private IAppSettings _appSettings;
 
         [TestInitialize]
         public void Initialize()
         {
-            _config = new() { Urls = { ApiUrl = API_URL } };
+            _config = new Config() { Urls = { ApiUrl = API_URL } };
             _appSettings = Substitute.For<IAppSettings>();
         }
 

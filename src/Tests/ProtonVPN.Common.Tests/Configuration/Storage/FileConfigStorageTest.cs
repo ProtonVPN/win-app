@@ -39,7 +39,7 @@ namespace ProtonVPN.Common.Tests.Configuration.Storage
             // Arrange
             FileConfigStorage storage = new(ConfigFile("Config.json"));
             // Act
-            Config result = storage.Value();
+            IConfiguration result = storage.Value();
             // Assert
             result.Should().NotBeNull();
         }
@@ -74,7 +74,7 @@ namespace ProtonVPN.Common.Tests.Configuration.Storage
             // Arrange
             const string filename = "Saved-app-config.json";
             FileConfigStorage storage = new(ConfigFile(filename));
-            Config config = new DefaultConfig().Value();
+            IConfiguration config = new DefaultConfig().Value();
             // Act
             storage.Save(config);
             // Assert

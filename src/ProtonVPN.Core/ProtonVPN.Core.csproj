@@ -109,6 +109,8 @@
     <Compile Include="ReportAnIssue\InputType.cs" />
     <Compile Include="ReportAnIssue\IReportAnIssueFormDataProvider.cs" />
     <Compile Include="ReportAnIssue\ReportAnIssueFormDataProvider.cs" />
+    <Compile Include="Servers\FileStoraging\IServersFileStorage.cs" />
+    <Compile Include="Servers\FileStoraging\ServersFileStorage.cs" />
     <Compile Include="Servers\Specs\ExactTierServer.cs" />
     <Compile Include="Servers\Specs\ExitCityServer.cs" />
     <Compile Include="Settings\AppLanguageCache.cs" />

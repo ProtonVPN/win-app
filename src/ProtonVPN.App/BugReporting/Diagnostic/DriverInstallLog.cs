@@ -20,6 +20,7 @@
 using System;
 using System.IO;
 using System.IO.Compression;
+using ProtonVPN.Common.Configuration;
 
 namespace ProtonVPN.BugReporting.Diagnostic
 {
@@ -27,7 +28,8 @@ namespace ProtonVPN.BugReporting.Diagnostic
     {
         private const string SetupApiLogFile = "setupapi.dev.log";
 
-        public DriverInstallLog(string path) : base(path, "setupapi.dev.zip")
+        public DriverInstallLog(IConfiguration config) 
+            : base(config.DiagnosticsLogFolder, "setupapi.dev.zip")
         {
         }
 

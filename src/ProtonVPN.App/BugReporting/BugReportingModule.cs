@@ -18,14 +18,10 @@
  */
 
 using Autofac;
-using ProtonVPN.BugReporting.Attachments.Source;
+using ProtonVPN.BugReporting.Attachments;
+using ProtonVPN.BugReporting.Attachments.Sources;
 using ProtonVPN.BugReporting.Diagnostic;
 using ProtonVPN.BugReporting.FormElements;
-using ProtonVPN.Common.Helpers;
-using ProtonVPN.Common.Logging;
-using ProtonVPN.Common.OS.Net.NetworkInterface;
-using ProtonVPN.Common.OS.Processes;
-using ProtonVPN.Core.Settings;
 
 namespace ProtonVPN.BugReporting
 {
@@ -36,57 +32,17 @@ namespace ProtonVPN.BugReporting
             base.Load(builder);
 
             builder.RegisterType<BugReport>().As<IBugReport>().SingleInstance();
-
-            builder.Register(c =>
-            {
-                Common.Configuration.Config appConfig = c.Resolve<Common.Configuration.Config>();
-                ILogger logger = c.Resolve<ILogger>();
-
-                return new Attachments.Attachments(
-                    new FilesToAttachments(
-                        new ConcatenatedSequence<string>(
-                            new SafeFileSource(logger,
-                                new LogFileSource(
-                                    appConfig.ReportBugMaxFileSize,
-                                    appConfig.DiagnosticsLogFolder,
-                                    appConfig.MaxDiagnosticLogsAttached)),
-                            new SafeFileSource(logger,
-                                new LogFileSource(
-                                    appConfig.ReportBugMaxFileSize,
-                                    appConfig.AppLogFolder,
-                                    appConfig.MaxAppLogsAttached)),
-                            new SafeFileSource(logger,
-                                new LogFileSource(
-                                    appConfig.ReportBugMaxFileSize,
-                                    appConfig.ServiceLogFolder,
-                                    appConfig.MaxServiceLogsAttached)))));
-            }).SingleInstance();
-
-            builder.Register(c => new InstalledAppsLog(c.Resolve<Common.Configuration.Config>().DiagnosticsLogFolder))
-                .As<ILog>()
-                .SingleInstance();
-
-            builder.Register(c => new DriverInstallLog(c.Resolve<Common.Configuration.Config>().DiagnosticsLogFolder))
-                .As<ILog>()
-                .SingleInstance();
-
-            builder.Register(c => new UserSettingsLog(
-                    c.Resolve<IAppSettings>(),
-                    c.Resolve<Common.Configuration.Config>().DiagnosticsLogFolder))
-                .As<ILog>()
-                .SingleInstance();
-
-            builder.Register(c => new NetworkAdapterLog(
-                    c.Resolve<INetworkInterfaces>(),
-                    c.Resolve<Common.Configuration.Config>().DiagnosticsLogFolder))
-                .As<ILog>()
-                .SingleInstance();
-
-            builder.Register(c => new RoutingTableLog(
-                    c.Resolve<IOsProcesses>(),
-                    c.Resolve<Common.Configuration.Config>().DiagnosticsLogFolder))
-                .As<ILog>()
-                .SingleInstance();
+            
+            builder.RegisterType<DiagnosticsLogFileSource>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<AppLogFileSource>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<ServiceLogFileSource>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<AttachmentsLoader>().AsImplementedInterfaces().SingleInstance();
+            
+            builder.RegisterType<InstalledAppsLog>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<DriverInstallLog>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<UserSettingsLog>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<NetworkAdapterLog>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<RoutingTableLog>().AsImplementedInterfaces().SingleInstance();
 
             builder.RegisterType<NetworkLogWriter>().SingleInstance();
             builder.RegisterType<FormElementBuilder>().As<IFormElementBuilder>().SingleInstance();

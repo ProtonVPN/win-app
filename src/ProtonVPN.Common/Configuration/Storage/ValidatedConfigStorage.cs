@@ -31,18 +31,18 @@ namespace ProtonVPN.Common.Configuration.Storage
             _origin = origin;
         }
 
-        public Config Value()
+        public IConfiguration Value()
         {
-            Config value = _origin.Value();
+            IConfiguration value = _origin.Value();
             return Valid(value) ? value : null;
         }
 
-        public void Save(Config value)
+        public void Save(IConfiguration value)
         {
             _origin.Save(value);
         }
 
-        private bool Valid(Config value)
+        private bool Valid(IConfiguration value)
         {
             return Valid((object) value) &&
                    Valid(value.OpenVpn) &&

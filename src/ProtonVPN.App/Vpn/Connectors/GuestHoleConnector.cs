@@ -22,17 +22,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ProtonVPN.Api;
+using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.ConnectLogs;
 using ProtonVPN.Common.Logging.Categorization.Events.DisconnectLogs;
 using ProtonVPN.Common.Logging.Categorization.Events.GuestHoleLogs;
 using ProtonVPN.Common.Networking;
-using ProtonVPN.Common.Storage;
 using ProtonVPN.Common.Vpn;
-using ProtonVPN.Core.Servers.Contracts;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
+using ProtonVPN.GuestHoles.FileStoraging;
 
 namespace ProtonVPN.Vpn.Connectors
 {
@@ -45,8 +45,8 @@ namespace ProtonVPN.Vpn.Connectors
         private readonly IVpnServiceManager _vpnServiceManager;
         private readonly IAppSettings _appSettings;
         private readonly GuestHoleState _guestHoleState;
-        private readonly Common.Configuration.Config _config;
-        private readonly ICollectionStorage<GuestHoleServerContract> _guestHoleServers;
+        private readonly IConfiguration _config;
+        private readonly IGuestHoleServersFileStorage _guestHoleServersFileStorage;
         private readonly INetworkAdapterValidator _networkAdapterValidator;
         private readonly ILogger _logger;
 
@@ -54,8 +54,8 @@ namespace ProtonVPN.Vpn.Connectors
             IVpnServiceManager vpnServiceManager,
             IAppSettings appSettings,
             GuestHoleState guestHoleState,
-            Common.Configuration.Config config,
-            ICollectionStorage<GuestHoleServerContract> guestHoleServers,
+            IConfiguration config,
+            IGuestHoleServersFileStorage guestHoleServersFileStorage,
             INetworkAdapterValidator networkAdapterValidator, 
             ILogger logger)
         {
@@ -63,7 +63,7 @@ namespace ProtonVPN.Vpn.Connectors
             _appSettings = appSettings;
             _guestHoleState = guestHoleState;
             _config = config;
-            _guestHoleServers = guestHoleServers;
+            _guestHoleServersFileStorage = guestHoleServersFileStorage;
             _networkAdapterValidator = networkAdapterValidator;
             _logger = logger;
         }
@@ -135,11 +135,11 @@ namespace ProtonVPN.Vpn.Connectors
 
         public IReadOnlyList<VpnHost> Servers()
         {
-            return _guestHoleServers
-                .GetAll()
-                .Select(server => new VpnHost(server.Host, server.Ip, server.Label, null, server.Signature))
-                .OrderBy(_ => _random.Next())
-                .ToList();
+            return _guestHoleServersFileStorage
+                   .Get()
+                   .Select(server => new VpnHost(server.Host, server.Ip, server.Label, null, server.Signature))
+                   .OrderBy(_ => _random.Next())
+                   .ToList();
         }
 
         private VpnConfig VpnConfig()

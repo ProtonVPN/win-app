@@ -21,6 +21,7 @@ using System;
 using System.Threading.Tasks;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Auth;
+using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
@@ -32,10 +33,10 @@ namespace ProtonVPN.Account
         public const string CUSTOM_PROTOCOL_PREFIX = "protonvpn://";
 
         private readonly IApiClient _apiClient;
-        private readonly Common.Configuration.Config _config;
+        private readonly IConfiguration _config;
         private readonly ILogger _logger;
 
-        public WebAuthenticator(IApiClient apiClient, Common.Configuration.Config config, ILogger logger)
+        public WebAuthenticator(IApiClient apiClient, IConfiguration config, ILogger logger)
         {
             _apiClient = apiClient;
             _config = config;

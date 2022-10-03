@@ -23,7 +23,7 @@ namespace ProtonVPN.Common.Configuration
 {
     public class ConfigWriter : IConfigWriter
     {
-        public void Write(Config config)
+        public void Write(IConfiguration config)
         {
             IConfigStorage storage = new SafeConfigStorage(new FileConfigStorage(new ConfigFile()));
             storage.Save(config);

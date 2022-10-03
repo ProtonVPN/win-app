@@ -23,6 +23,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Caliburn.Micro;
 using GalaSoft.MvvmLight.CommandWpf;
+using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Models;
@@ -44,7 +45,7 @@ namespace ProtonVPN.Profiles.Form
         protected readonly IUserStorage UserStorage;
         private readonly ProfileManager _profileManager;
         private readonly IDialogs _dialogs;
-        private readonly Common.Configuration.Config _appConfig;
+        private readonly IConfiguration _appConfig;
         private readonly IModals _modals;
         protected readonly ServerManager ServerManager;
         private readonly IProfileFactory _profileFactory;
@@ -54,7 +55,7 @@ namespace ProtonVPN.Profiles.Form
         private string _profileId;
 
         protected AbstractForm(
-            Common.Configuration.Config appConfig,
+            IConfiguration appConfig,
             ColorProvider colorProvider,
             IUserStorage userStorage,
             ProfileManager profileManager,

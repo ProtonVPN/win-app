@@ -19,6 +19,7 @@
 
 using System;
 using System.Threading.Tasks;
+using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.UserCertificateLogs;
@@ -29,13 +30,13 @@ namespace ProtonVPN.Core.Auth
 {
     public class AuthCertificateUpdater : IAuthCertificateUpdater, ILoggedInAware, ILogoutAware, IVpnPlanAware
     {
-        private readonly Common.Configuration.Config _appConfig;
+        private readonly IConfiguration _appConfig;
         private readonly IAuthCertificateManager _authCertificateManager;
         private readonly ILogger _logger;
         private readonly ISchedulerTimer _timer;
 
         public AuthCertificateUpdater(IScheduler scheduler,
-            Common.Configuration.Config appConfig,
+            IConfiguration appConfig,
             IAuthCertificateManager authCertificateManager,
             ILogger logger)
         {

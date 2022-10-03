@@ -50,7 +50,7 @@ namespace ProtonVPN.App.Tests.BugReporting.Diagnostic
             };
             _networkInterfaces.GetInterfaces().Returns(interfaces);
 
-            NetworkAdapterLog log = new NetworkAdapterLog(_networkInterfaces, TmpPath);
+            NetworkAdapterLog log = new NetworkAdapterLog(_networkInterfaces, Config);
 
             // Act
             log.Write();

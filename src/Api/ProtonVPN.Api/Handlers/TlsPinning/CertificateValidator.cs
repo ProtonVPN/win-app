@@ -29,9 +29,9 @@ namespace ProtonVPN.Api.Handlers.TlsPinning
     {
         private readonly TlsPinningPolicy _policy;
         private readonly IReportClient _reportClient;
-        private readonly Config _config;
+        private readonly IConfiguration _config;
 
-        public CertificateValidator(IReportClient reportClient, Config config)
+        public CertificateValidator(IReportClient reportClient, IConfiguration config)
         {
             _policy = new();
             _reportClient = reportClient;

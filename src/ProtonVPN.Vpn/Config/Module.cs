@@ -125,7 +125,7 @@ namespace ProtonVPN.Vpn.Config
         private ISingleVpnConnection GetWireguardConnection(IComponentContext c)
         {
             ILogger logger = c.Resolve<ILogger>();
-            ProtonVPN.Common.Configuration.Config config = c.Resolve<ProtonVPN.Common.Configuration.Config>();
+            IConfiguration config = c.Resolve<IConfiguration>();
             IGatewayCache gatewayCache = c.Resolve<IGatewayCache>();
 
             return new LocalAgentWrapper(logger, new EventReceiver(logger), c.Resolve<SplitTunnelRouting>(),
@@ -149,7 +149,7 @@ namespace ProtonVPN.Vpn.Config
                 gatewayCache,
                 new OpenVpnConnection(
                     logger,
-                    c.Resolve<ProtonVPN.Common.Configuration.Config>(),
+                    c.Resolve<IConfiguration>(),
                     c.Resolve<INetworkInterfaceLoader>(),
                     c.Resolve<OpenVpnProcess>(),
                     new ManagementClient(

@@ -34,7 +34,7 @@ namespace ProtonVPN.Api.Tests.Handlers.Retries
         public void ItShouldUseCustomTimeout()
         {
             // Arrange
-            Config config = new Config();
+            IConfiguration config = new Config();
             RequestTimeoutProvider sut = new(config);
             HttpRequestMessage request = new();
             TimeSpan timeout = TimeSpan.FromSeconds(30);
@@ -49,7 +49,7 @@ namespace ProtonVPN.Api.Tests.Handlers.Retries
         {
             // Arrange
             TimeSpan timeout = TimeSpan.FromSeconds(60);
-            Config config = new Config { ApiTimeout = timeout };
+            IConfiguration config = new Config { ApiTimeout = timeout };
             RequestTimeoutProvider sut = new(config);
 
             // Assert
@@ -61,7 +61,7 @@ namespace ProtonVPN.Api.Tests.Handlers.Retries
         {
             // Arrange
             TimeSpan timeout = TimeSpan.FromSeconds(120);
-            Config config = new Config { ApiUploadTimeout = timeout };
+            IConfiguration config = new Config { ApiUploadTimeout = timeout };
             HttpRequestMessage request = new()
             {
                 Content = new MultipartFormDataContent()

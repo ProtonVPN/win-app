@@ -22,14 +22,15 @@ using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using ProtonVPN.Api;
+using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Networking;
-using ProtonVPN.Common.Storage;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Servers.Contracts;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
+using ProtonVPN.GuestHoles.FileStoraging;
 using ProtonVPN.Vpn.Connectors;
 
 namespace ProtonVPN.App.Tests.Vpn.Connectors
@@ -44,15 +45,14 @@ namespace ProtonVPN.App.Tests.Vpn.Connectors
         private readonly IAppSettings _appSettings = Substitute.For<IAppSettings>();
         private readonly INetworkAdapterValidator _networkAdapterValidator = Substitute.For<INetworkAdapterValidator>();
         private readonly ILogger _logger = Substitute.For<ILogger>();
-        private readonly Common.Configuration.Config _config = new()
+        private readonly IConfiguration _config = new Common.Configuration.Config()
         {
             MaxGuestHoleRetries = MAX_RETRIES,
             GuestHoleVpnUsername = "guest",
             GuestHoleVpnPassword = "guest",
             VpnUsernameSuffix = "+pw"
         };
-        private readonly ICollectionStorage<GuestHoleServerContract> _guestHoleServers =
-            Substitute.For<ICollectionStorage<GuestHoleServerContract>>();
+        private readonly IGuestHoleServersFileStorage _guestHoleServers = Substitute.For<IGuestHoleServersFileStorage>();
 
         [TestInitialize]
         public void Initialize()
@@ -60,7 +60,7 @@ namespace ProtonVPN.App.Tests.Vpn.Connectors
             GuestHoleState guestHoleState = new();
             guestHoleState.SetState(true);
             _networkAdapterValidator.IsOpenVpnAdapterAvailable().Returns(true);
-            _guestHoleServers.GetAll().Returns(new List<GuestHoleServerContract>());
+            _guestHoleServers.Get().Returns(new List<GuestHoleServerContract>());
             _connector = new GuestHoleConnector(_serviceManager, _appSettings, guestHoleState, 
                 _config, _guestHoleServers, _networkAdapterValidator, _logger);
         }
