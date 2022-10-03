@@ -26,15 +26,13 @@ namespace ProtonVPN.UI.Tests.Windows
     {
         private Button CreateProfileButton => ElementByAutomationId("NewProfileButton").AsButton();
         private TextBox ProfileNameInput => ElementByAutomationId("textSource").AsTextBox();
-        private ListBoxItem CountryFirstOption => ElementByAutomationId("CountryBox").AsComboBox().FindFirstChild().AsListBoxItem();
+        private ListBoxItem CountryFirstOption => ElementByAutomationId("CountryBox").AsComboBox().FindChildAt(1).AsListBoxItem();
         private ListBoxItem ServerFirstOption => ElementByAutomationId("ServerBox").AsComboBox().FindChildAt(2).AsListBoxItem();
         private Button SaveButton => ElementByName("Save").AsButton();
-        private Button ProfileConnectButton(string profileName) => ElementByAutomationId(profileName).AsButton();
         private AutomationElement SecureCoreButton => ElementByName("Secure Core");
         private AutomationElement P2PButton => ElementByName("P2P");
         private AutomationElement TorButton => ElementByName("Tor");
         private Button ContinueButton => ElementByAutomationId("ContinueButton").AsButton();
-        private Button EditProfileButton(string name) => ElementByAutomationId($"Edit-{name}").AsButton();
         private Button DiscardlButton => ElementByName("Discard").AsButton();
 
         public ProfilesWindow CreateProfile(string profileName)
