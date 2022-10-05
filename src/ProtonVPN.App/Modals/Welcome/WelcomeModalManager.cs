@@ -20,6 +20,7 @@
 using System;
 using System.Linq;
 using ProtonVPN.Announcements.Contracts;
+using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Settings;
@@ -30,7 +31,7 @@ using ProtonVPN.Windows.Popups.Rebranding;
 
 namespace ProtonVPN.Modals.Welcome
 {
-    public class WelcomeModalManager
+    public class WelcomeModalManager : ILogoutAware
     {
         private readonly Random _random = new();
         private readonly IAppSettings _appSettings;
@@ -120,6 +121,14 @@ namespace ProtonVPN.Modals.Welcome
         private bool WelcomeModalHasToBeShown()
         {
             return !_appSettings.WelcomeModalShown;
+        }
+
+        public void OnUserLoggedOut()
+        {
+            if (_popupWindows.IsOpen<OfferPopupViewModel>())
+            {
+                _popupWindows.Close<OfferPopupViewModel>();
+            }
         }
     }
 }
