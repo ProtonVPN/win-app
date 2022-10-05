@@ -21,7 +21,7 @@ namespace ProtonVPN.Announcements.Contracts
 {
     public enum AnnouncementType
     {
-        Standard,
-        OneTime,
+        Standard = 0,
+        OneTime = 1,
     }
 }

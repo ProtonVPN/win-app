@@ -291,7 +291,7 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<AuthCertificateManager>().As<IAuthCertificateManager>().SingleInstance();
             builder.RegisterType<AuthCredentialManager>().As<IAuthCredentialManager>().SingleInstance();
             builder.RegisterType<SystemTimeValidator>().SingleInstance();
-            builder.RegisterType<WelcomeModalManager>().SingleInstance();
+            builder.RegisterType<WelcomeModalManager>().AsSelf().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<EventPublisher>().As<IEventPublisher>().SingleInstance();
             builder.RegisterType<AppExitInvoker>().As<IAppExitInvoker>().SingleInstance();
             builder.RegisterType<PortForwardingManager>().As<IPortForwardingManager>().SingleInstance();
