@@ -19,14 +19,13 @@
 
 using System;
 using System.Collections.Generic;
-using System.Net.Http;
 using System.Threading.Tasks;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Servers;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.ApiLogs;
-using ProtonVPN.Core.User;
+using ProtonVPN.Core.Users;
 
 namespace ProtonVPN.Core.Servers
 {
@@ -57,7 +56,7 @@ namespace ProtonVPN.Core.Servers
                 ApiResponseResult<ServersResponse> response = await _apiClient.GetServersAsync(ip);
                 return response.Success ? response.Value.Servers : Array.Empty<LogicalServerResponse>();
             }
-            catch (HttpRequestException ex)
+            catch (Exception ex)
             {
                 _logger.Error<ApiErrorLog>("API: Get servers failed", ex);
             }
@@ -98,7 +97,7 @@ namespace ProtonVPN.Core.Servers
                     return response.Value.Servers;
                 }
             }
-            catch (HttpRequestException ex)
+            catch (Exception ex)
             {
                 _logger.Error<ApiErrorLog>("API: Get servers failed", ex);
             }

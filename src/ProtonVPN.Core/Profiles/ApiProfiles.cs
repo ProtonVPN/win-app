@@ -190,7 +190,7 @@ namespace ProtonVPN.Core.Profiles
 
                 return response;
             }
-            catch (HttpRequestException e)
+            catch (Exception e)
             {
                 throw new ProfileException(ProfileError.Failure, e.Message, e);
             }

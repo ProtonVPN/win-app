@@ -19,7 +19,7 @@
 
 namespace ProtonVPN.Sidebar.Announcements
 {
-    internal interface IAnnouncementsAware
+    public interface IAnnouncementsAware
     {
         void OnAnnouncementsChanged();
     }

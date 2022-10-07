@@ -26,7 +26,7 @@ namespace ProtonVPN.Update.Files.Validatable
     /// <summary>
     /// Caches positive file validation result while file length and modification date has not changed.
     /// </summary>
-    internal class CachedFileValidator : IFileValidator
+    public class CachedFileValidator : IFileValidator
     {
         private readonly IFileValidator _origin;
 
@@ -43,14 +43,18 @@ namespace ProtonVPN.Update.Files.Validatable
         public async Task<bool> Valid(string filename, string checkSum)
         {
             if (CacheContains(filename, checkSum) && !FileChanged(filename))
+            {
                 return true;
+            }
 
             ClearCache();
 
-            var valid = await _origin.Valid(filename, checkSum);
+            bool valid = await _origin.Valid(filename, checkSum);
 
             if (valid)
+            {
                 AddToCache(filename, checkSum);
+            }
 
             return valid;
         }

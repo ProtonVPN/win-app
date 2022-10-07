@@ -341,7 +341,7 @@ namespace ProtonVPN.Profiles.Form
 
         private bool ShowUpgradeMessageForServer(Server server)
         {
-            User user = UserStorage.User();
+            User user = UserStorage.GetUser();
             return user.MaxTier < server.Tier;
         }
 

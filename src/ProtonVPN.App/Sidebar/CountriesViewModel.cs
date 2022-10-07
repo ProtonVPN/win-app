@@ -17,7 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -31,7 +30,7 @@ using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Servers.Models;
 using ProtonVPN.Core.Settings;
-using ProtonVPN.Core.User;
+using ProtonVPN.Core.Users;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Servers;
 using ProtonVPN.Sidebar.QuickSettings;
@@ -171,23 +170,6 @@ namespace ProtonVPN.Sidebar
         public void OnServersUpdated()
         {
             CreateList();
-            if (!State.Status.Equals(VpnStatus.Connected) ||
-                !(State.Server is Server server))
-            {
-                return;
-            }
-
-            ExpandCountry(server.EntryCountry);
-            UpdateVpnState(State);
-
-            if (server.IsSecureCore())
-            {
-                NotifyScServerRowsOfConnectedState(server, true);
-            }
-            else
-            {
-                NotifyServerRowsOfConnectedState(server, true);
-            }
         }
 
         public void OnAppSettingsChanged(PropertyChangedEventArgs e)
@@ -226,13 +208,11 @@ namespace ProtonVPN.Sidebar
                 {
                     ExpandScCountry(server.ExitCountry);
                     UpdateVpnState(e.State);
-                    NotifyScServerRowsOfConnectedState(server, true);
                 }
                 else
                 {
                     ExpandCountry(server.EntryCountry);
                     UpdateVpnState(e.State);
-                    NotifyServerRowsOfConnectedState(server, true);
                 }
             }
             else
@@ -289,28 +269,6 @@ namespace ProtonVPN.Sidebar
             if (_vpnState != null)
             {
                 OnVpnStateChanged(_vpnState);
-            }
-        }
-
-        private void NotifyServerRowsOfConnectedState(Server server, bool connected)
-        {
-            IEnumerable<ServerItemViewModel> serverRows = Items.OfType<ServerItemViewModel>()
-                .Where(c => c.Server.EntryCountry.Equals(server.EntryCountry));
-
-            foreach (ServerItemViewModel row in serverRows)
-            {
-                row.SetConnectedToCountry(connected);
-            }
-        }
-
-        private void NotifyScServerRowsOfConnectedState(Server server, bool connected)
-        {
-            IEnumerable<SecureCoreItemViewModel> serverRows = Items.OfType<SecureCoreItemViewModel>()
-                .Where(c => c.Server.IsSecureCore() && c.Server.ExitCountry.Equals(server.ExitCountry));
-
-            foreach (SecureCoreItemViewModel row in serverRows)
-            {
-                row.SetConnectedToCountry(connected);
             }
         }
 

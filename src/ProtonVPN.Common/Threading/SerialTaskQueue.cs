@@ -29,14 +29,16 @@ namespace ProtonVPN.Common.Threading
 
         public async Task<T> Enqueue<T>(Func<Task<T>> function)
         {
-            var taskCompletion = new TaskCompletionSource<object>();
-            var newTask = taskCompletion.Task;
+            TaskCompletionSource<object> taskCompletion = new TaskCompletionSource<object>();
+            Task<object> newTask = taskCompletion.Task;
             while (true)
             {
-                var task = _currentTask;
-                var previousTask = Interlocked.CompareExchange(ref _currentTask, newTask, task);
+                Task task = _currentTask;
+                Task previousTask = Interlocked.CompareExchange(ref _currentTask, newTask, task);
                 if (previousTask != task)
+                {
                     continue;
+                }
 
                 // ReSharper disable once PossibleNullReferenceException
                 await previousTask;
@@ -53,14 +55,16 @@ namespace ProtonVPN.Common.Threading
 
         public async Task<IDisposable> Lock()
         {
-            var taskCompletion = new TaskCompletionSource<object>();
-            var newTask = taskCompletion.Task;
+            TaskCompletionSource<object> taskCompletion = new TaskCompletionSource<object>();
+            Task<object> newTask = taskCompletion.Task;
             while (true)
             {
-                var task = _currentTask;
-                var previousTask = Interlocked.CompareExchange(ref _currentTask, newTask, task);
+                Task task = _currentTask;
+                Task previousTask = Interlocked.CompareExchange(ref _currentTask, newTask, task);
                 if (previousTask != task)
+                {
                     continue;
+                }
 
                 // ReSharper disable once PossibleNullReferenceException
                 await previousTask;

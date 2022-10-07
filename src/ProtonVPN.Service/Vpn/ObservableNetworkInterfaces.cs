@@ -24,7 +24,7 @@ using ProtonVPN.Common.OS.Net.NetworkInterface;
 
 namespace ProtonVPN.Service.Vpn
 {
-    internal class ObservableNetworkInterfaces
+    public class ObservableNetworkInterfaces
     {
         private readonly INetworkInterfaces _networkInterfaces;
 

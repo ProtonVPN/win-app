@@ -89,7 +89,6 @@
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Windows" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Windows.Interactivity" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -1318,7 +1317,6 @@
       <SubType>Code</SubType>
     </Compile>
     <None Include="app.manifest" />
-    <None Include="gosrp.bat" />
     <None Include="..\..\COPYING.md">
       <Link>COPYING.md</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -1613,6 +1611,14 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Dns\ProtonVPN.Dns.Contracts\ProtonVPN.Dns.Contracts.csproj">
+      <Project>{455DA1FB-5097-47D2-8603-B0E1F9D90294}</Project>
+      <Name>ProtonVPN.Dns.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dns\ProtonVPN.Dns.Installers\ProtonVPN.Dns.Installers.csproj">
+      <Project>{e52e34fd-40ae-425b-9c1a-2cab3ee2704f}</Project>
+      <Name>ProtonVPN.Dns.Installers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Api\ProtonVPN.Api.Contracts\ProtonVPN.Api.Contracts.csproj">
       <Project>{9E4D6072-C8DE-475A-B9A7-4B6BF6EEEAEB}</Project>
       <Name>ProtonVPN.Api.Contracts</Name>
@@ -1918,9 +1924,6 @@
   <PropertyGroup>
     <PreBuildEvent>
     </PreBuildEvent>
-  </PropertyGroup>
-  <PropertyGroup>
-    <PostBuildEvent>call "$(ProjectDir)gosrp.bat"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

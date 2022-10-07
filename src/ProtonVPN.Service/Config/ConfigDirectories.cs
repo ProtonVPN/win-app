@@ -21,7 +21,7 @@ using System.IO;
 
 namespace ProtonVPN.Service.Config
 {
-    internal class ConfigDirectories
+    public class ConfigDirectories
     {
         private readonly Common.Configuration.Config _config;
 

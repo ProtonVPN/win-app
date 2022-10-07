@@ -24,7 +24,6 @@ using System.Threading.Tasks;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Common;
 using ProtonVPN.Api.Deserializers;
-using ProtonVPN.Api.Handlers.Retries;
 
 namespace ProtonVPN.Api.Handlers
 {
@@ -36,11 +35,9 @@ namespace ProtonVPN.Api.Handlers
         private readonly IBaseResponseMessageDeserializer _baseResponseDeserializer;
         public event EventHandler<BaseResponse> AppOutdated;
 
-        public OutdatedAppHandler(IBaseResponseMessageDeserializer baseResponseDeserializer,
-            RetryingHandlerBase retryingHandler)
+        public OutdatedAppHandler(IBaseResponseMessageDeserializer baseResponseDeserializer)
         {
             _baseResponseDeserializer = baseResponseDeserializer;
-            InnerHandler = retryingHandler;
         }
 
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request,

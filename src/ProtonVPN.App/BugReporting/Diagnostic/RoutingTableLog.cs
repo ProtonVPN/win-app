@@ -22,7 +22,7 @@ using ProtonVPN.Common.OS.Processes;
 
 namespace ProtonVPN.BugReporting.Diagnostic
 {
-    internal class RoutingTableLog : BaseLog
+    public class RoutingTableLog : BaseLog
     {
         private readonly IOsProcesses _osProcesses;
 

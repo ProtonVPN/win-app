@@ -28,7 +28,7 @@ using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Settings;
-using ProtonVPN.Core.User;
+using ProtonVPN.Core.Users;
 using ProtonVPN.Core.Vpn;
 
 namespace ProtonVPN.Core
@@ -97,7 +97,7 @@ namespace ProtonVPN.Core
             {
                 return await _api.GetLocationDataAsync();
             }
-            catch (HttpRequestException)
+            catch
             {
                 return ApiResponseResult<UserLocationResponse>.Fail(default, "");
             }
@@ -122,7 +122,7 @@ namespace ProtonVPN.Core
             {
                 _networkAddressChanged = false;
 
-                if (response.Value.Ip == _userStorage.Location().Ip)
+                if (response.Value.Ip == _userStorage.GetLocation().Ip)
                 {
                     return;
                 }

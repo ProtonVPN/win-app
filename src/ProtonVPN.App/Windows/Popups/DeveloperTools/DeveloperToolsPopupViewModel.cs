@@ -277,7 +277,7 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
             {
                 await _userAuth.RefreshVpnInfoAsync();
             }
-            catch (HttpRequestException ex)
+            catch (Exception ex)
             {
                 _notificationSender.Send("Request failed",
                     $"[{ex.GetType().Name}] Exception message: {ex.CombinedMessage()}");

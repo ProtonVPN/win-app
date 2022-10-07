@@ -25,25 +25,27 @@ using System.Threading.Tasks;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Auth;
 using ProtonVPN.Common.Configuration;
+using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
-using ProtonVPN.Core.Abstract;
+using ProtonVPN.Common.Logging.Categorization.Events.ApiLogs;
 using ProtonVPN.Core.Settings;
 
 namespace ProtonVPN.Api
 {
     public class TokenClient : BaseApiClient, ITokenClient
     {
+        private const int REFRESH_TOKEN_LOG_LENGTH = 5;
         private readonly HttpClient _client;
 
         public TokenClient(
             ILogger logger,
-            HttpClient client,
+            ITokenHttpClientFactory tokenHttpClientFactory,
             IApiAppVersion appVersion,
-            ITokenStorage tokenStorage,
+            IAppSettings appSettings,
             IAppLanguageCache appLanguageCache,
-            Config config) : base(logger, appVersion, tokenStorage, appLanguageCache, config)
+            Config config) : base(logger, appVersion, appSettings, appLanguageCache, config)
         {
-            _client = client;
+            _client = tokenHttpClientFactory.GetTokenHttpClient();
         }
 
         public async Task<ApiResponseResult<RefreshTokenResponse>> RefreshTokenAsync(CancellationToken token)
@@ -51,7 +53,7 @@ namespace ProtonVPN.Api
             RefreshTokenRequest refreshTokenRequest = new RefreshTokenRequest
             {
                 ResponseType = "token",
-                RefreshToken = TokenStorage.RefreshToken,
+                RefreshToken = AppSettings.RefreshToken,
                 GrantType = "refresh_token",
                 RedirectUri = "http://api.protonvpn.ch"
             };
@@ -62,14 +64,26 @@ namespace ProtonVPN.Api
                 HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Post, "auth/refresh");
                 ValidateRequestHeaders(request);
                 request.Content = GetJsonContent(refreshTokenRequest);
+                LogRefreshToken();
 
                 using HttpResponseMessage response = await _client.SendAsync(request, token);
                 return await GetApiResponseResult<RefreshTokenResponse>(response);
             }
-            catch (Exception e) when (e.IsApiCommunicationException())
+            catch (Exception e)
             {
+                if (!e.IsApiCommunicationException())
+                {
+                    Logger.Error<ApiErrorLog>("An exception occurred in an API request " +
+                        "that is not related with its communication.", e);
+                }
                 throw new HttpRequestException(e.Message);
             }
+        }
+
+        private void LogRefreshToken()
+        {
+            Logger.Info<ApiLog>($"Using refresh token value (showing only first {REFRESH_TOKEN_LOG_LENGTH} chars) " +
+                                $"{AppSettings.RefreshToken.GetFirstChars(REFRESH_TOKEN_LOG_LENGTH)}");
         }
 
         private void ValidateRefreshTokenData(RefreshTokenRequest request)

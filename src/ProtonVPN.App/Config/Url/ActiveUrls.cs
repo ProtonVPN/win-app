@@ -22,7 +22,7 @@ using ProtonVPN.Common.OS.Processes;
 
 namespace ProtonVPN.Config.Url
 {
-    internal class ActiveUrls : IActiveUrls
+    public class ActiveUrls : IActiveUrls
     {
         private readonly UrlConfig _config;
         private readonly IOsProcesses _processes;

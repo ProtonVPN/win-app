@@ -19,7 +19,6 @@
 
 using System.Threading.Tasks;
 using ProtonVPN.Core.Profiles;
-using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Servers.Models;
 using ProtonVPN.Core.Service.Vpn;
 
@@ -38,12 +37,7 @@ namespace ProtonVPN.Vpn.Connectors
 
         public async Task Connect(Server server)
         {
-            Profile profile = _profileFactory.Create();
-            profile.IsTemporary = true;
-            profile.ProfileType = ProfileType.Custom;
-            profile.Features = (Features)server.Features;
-            profile.ServerId = server.Id;
-
+            Profile profile = _profileFactory.CreateFromServer(server);
             await VpnManager.ConnectAsync(profile);
         }
     }

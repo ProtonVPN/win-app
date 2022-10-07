@@ -26,7 +26,7 @@ using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Servers.Specs;
 using ProtonVPN.Core.Settings;
-using ProtonVPN.Core.User;
+using ProtonVPN.Core.Users;
 using ProtonVPN.Modals;
 using ProtonVPN.Translations;
 
@@ -52,7 +52,7 @@ namespace ProtonVPN.Account
 
         public PromoCodeViewModel PromoCodeViewModel { get; }
 
-        public bool IsToShowUseCoupon => _appSettings.FeaturePromoCodeEnabled && _userStorage.User().CanUsePromoCode();
+        public bool IsToShowUseCoupon => _appSettings.FeaturePromoCodeEnabled && _userStorage.GetUser().CanUsePromoCode();
 
         public AccountModalViewModel(
             IAppSettings appSettings,
@@ -119,8 +119,8 @@ namespace ProtonVPN.Account
             }
         }
 
-        public bool IsFreePlan => !_userStorage.User().Paid();
-        public bool IsPlusPlan => _userStorage.User().IsPlusPlan();
+        public bool IsFreePlan => !_userStorage.GetUser().Paid();
+        public bool IsPlusPlan => _userStorage.GetUser().IsPlusPlan();
 
         public string Username
         {
@@ -164,7 +164,7 @@ namespace ProtonVPN.Account
 
         private void SetUserDetails()
         {
-            User user = _userStorage.User();
+            User user = _userStorage.GetUser();
             PlanName = user.VpnPlanName.IsNullOrEmpty() ? Translation.Get("Account_lbl_Free") : user.VpnPlanName;
             Username = user.Username;
             AccountType = user.GetAccountPlan();

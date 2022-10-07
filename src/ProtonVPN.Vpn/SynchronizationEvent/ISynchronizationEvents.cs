@@ -19,7 +19,7 @@
 
 namespace ProtonVPN.Vpn.SynchronizationEvent
 {
-    internal interface ISynchronizationEvents
+    public interface ISynchronizationEvents
     {
         ISynchronizationEvent SynchronizationEvent(string eventName);
     }

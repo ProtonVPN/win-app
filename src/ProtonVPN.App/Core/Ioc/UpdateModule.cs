@@ -18,10 +18,13 @@
  */
 
 using System;
+using System.Net.Http;
 using Autofac;
 using ProtonVPN.Api;
 using ProtonVPN.Api.Handlers;
 using ProtonVPN.Api.Handlers.Retries;
+using ProtonVPN.Api.Handlers.StackBuilders;
+using ProtonVPN.Api.Handlers.TlsPinning;
 using ProtonVPN.Common.OS.Net.Http;
 using ProtonVPN.Core.Update;
 using ProtonVPN.Update.Config;
@@ -36,18 +39,28 @@ namespace ProtonVPN.Core.Ioc
             base.Load(builder);
 
             builder.RegisterType<FeedUrlProvider>().AsImplementedInterfaces().SingleInstance();
-            builder.Register(c => new DefaultAppUpdateConfig
-                {
-                    HttpClient =
-                        c.Resolve<IHttpClients>().Client(c.Resolve<RetryingHandler>(),
-                            c.Resolve<IApiAppVersion>().UserAgent()),
-                    FeedUriProvider = c.Resolve<IFeedUrlProvider>(),
-                    UpdatesPath = c.Resolve<Common.Configuration.Config>().UpdatesPath,
-                    CurrentVersion = Version.Parse(c.Resolve<Common.Configuration.Config>().AppVersion),
-                    EarlyAccessCategoryName = "EarlyAccess",
-                    MinProgressDuration = TimeSpan.FromSeconds(1.5)
-                })
-                .As<IAppUpdateConfig>().SingleInstance();
+            builder.Register(CreateDefaultAppUpdateConfig).As<IAppUpdateConfig>().SingleInstance();
+        }
+
+        // TO DO: Refactor the code in order to delete this custom registration
+        private DefaultAppUpdateConfig CreateDefaultAppUpdateConfig(IComponentContext c)
+        {
+            HttpMessageHandler innerHandler = new HttpMessageHandlerStackBuilder()
+                .AddDelegatingHandler(c.Resolve<RetryingHandler>())
+                .AddDelegatingHandler(c.Resolve<DnsHandler>())
+                .AddDelegatingHandler(c.Resolve<LoggingHandlerBase>())
+                .AddLastHandler(c.Resolve<CertificateHandler>())
+                .Build();
+
+            return new DefaultAppUpdateConfig
+            {
+                HttpClient = c.Resolve<IHttpClients>().Client(innerHandler, c.Resolve<IApiAppVersion>().UserAgent()),
+                FeedUriProvider = c.Resolve<IFeedUrlProvider>(),
+                UpdatesPath = c.Resolve<Common.Configuration.Config>().UpdatesPath,
+                CurrentVersion = Version.Parse(c.Resolve<Common.Configuration.Config>().AppVersion),
+                EarlyAccessCategoryName = "EarlyAccess",
+                MinProgressDuration = TimeSpan.FromSeconds(1.5)
+            };
         }
     }
 }

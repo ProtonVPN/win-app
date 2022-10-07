@@ -21,7 +21,7 @@ using ProtonVPN.Common.Configuration.Source;
 
 namespace ProtonVPN.Common.Configuration.Storage
 {
-    internal interface IConfigStorage : IConfigSource
+    public interface IConfigStorage : IConfigSource
     {
         void Save(Config value);
     }

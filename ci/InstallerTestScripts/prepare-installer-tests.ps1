@@ -5,7 +5,7 @@ $testStatus = @{}
 $installerSharedFolderPath = "C:/Shared/Installers/" + $env:CI_PROJECT_ID
 $installerPath = $env:CI_PROJECT_DIR + "/setup/ProtonVPN-SetupFiles/*.exe"
 $testScriptsSharedPath = "C:/Shared/Scripts/"
-$testScriptsPath = $env:CI_PROJECT_DIR + "/test/ProtonVPN.UI.Test/InstallerScripts/FreshInstall.xml"
+$testScriptsPath = $env:CI_PROJECT_DIR + "/src/Tests/ProtonVPN.UI.Tests/InstallerScripts/FreshInstall.xml"
 $testRunnerScript = $env:CI_PROJECT_DIR + "/ci/InstallerTestScripts/run-installer-tests.ps1"
 
 function Log-Message

@@ -57,7 +57,7 @@ namespace ProtonVPN.ConnectionInfo
 
         public async Task<VpnError> ResolveError()
         {
-            User oldUserInfo = _userStorage.User();
+            User oldUserInfo = _userStorage.GetUser();
             if (oldUserInfo.IsDelinquent())
             {
                 return VpnError.Unpaid;
@@ -70,7 +70,7 @@ namespace ProtonVPN.ConnectionInfo
             }
 
             await _vpnInfoUpdater.Update();
-            User newUserInfo = _userStorage.User();
+            User newUserInfo = _userStorage.GetUser();
 
             if (newUserInfo.MaxTier < oldUserInfo.MaxTier)
             {
@@ -110,7 +110,7 @@ namespace ProtonVPN.ConnectionInfo
                     return response.Value.Sessions.Count;
                 }
             }
-            catch (HttpRequestException)
+            catch
             {
             }
 

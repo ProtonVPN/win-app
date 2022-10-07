@@ -26,7 +26,7 @@ namespace ProtonVPN.Vpn.Management
     /// <summary>
     /// Interface to OpenVPN management interface.
     /// </summary>
-    internal interface IManagementChannel
+    public interface IManagementChannel
     {
         /// <summary>
         /// Connects to OpenVPN management interface using specified TCP port.

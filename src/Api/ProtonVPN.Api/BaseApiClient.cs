@@ -30,17 +30,17 @@ using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.ApiLogs;
 using ProtonVPN.Common.OS.Net.Http;
-using ProtonVPN.Core.Abstract;
 using ProtonVPN.Core.Settings;
 
 namespace ProtonVPN.Api
 {
     public class BaseApiClient : IClientBase
     {
+        protected ILogger Logger { get; }
+        protected IAppSettings AppSettings { get; }
+
         private readonly JsonSerializer _jsonSerializer = new();
-        private readonly ILogger _logger;
         private readonly IApiAppVersion _appVersion;
-        protected readonly ITokenStorage TokenStorage;
         private readonly string _apiVersion;
         private readonly IAppLanguageCache _appLanguageCache;
 
@@ -49,13 +49,13 @@ namespace ProtonVPN.Api
         public BaseApiClient(
             ILogger logger,
             IApiAppVersion appVersion,
-            ITokenStorage tokenStorage,
+            IAppSettings appSettings,
             IAppLanguageCache appLanguageCache,
             Config config)
         {
-            _logger = logger;
+            Logger = logger;
+            AppSettings = appSettings;
             _appVersion = appVersion;
-            TokenStorage = tokenStorage;
             _apiVersion = config.ApiVersion;
             _appLanguageCache = appLanguageCache;
         }
@@ -132,7 +132,7 @@ namespace ProtonVPN.Api
 
         protected HttpRequestMessage GetAuthorizedRequest(HttpMethod method, string requestUri)
         {
-            return GetAuthorizedRequest(method, requestUri, TokenStorage.AccessToken, TokenStorage.Uid);
+            return GetAuthorizedRequest(method, requestUri, AppSettings.AccessToken, AppSettings.Uid);
         }
 
         protected HttpRequestMessage GetAuthorizedRequest(HttpMethod method, string requestUri, string accessToken, string uid)
@@ -180,7 +180,7 @@ namespace ProtonVPN.Api
         {
             if (result.Failure)
             {
-                _logger.Error<ApiErrorLog>($"API: {(!string.IsNullOrEmpty(message) ? message : "Request")} failed: {result.Error}");
+                Logger.Error<ApiErrorLog>($"API: {(message.IsNullOrEmpty() ? "Request" : message)} failed: {result.Error}");
             }
 
             return result;

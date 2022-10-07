@@ -37,7 +37,7 @@ namespace ProtonVPN.Vpn.Connection
     /// <remarks>
     /// On connect request sends queued <see cref="StateChanged"/> event containing status value <see cref="VpnStatus.Connecting"/>.
     /// </remarks>
-    internal class HandlingRequestsWrapper : ISingleVpnConnection
+    public class HandlingRequestsWrapper : ISingleVpnConnection
     {
         private readonly ISingleVpnConnection _origin;
         private readonly ILogger _logger;

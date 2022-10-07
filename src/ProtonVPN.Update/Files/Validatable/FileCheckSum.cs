@@ -27,7 +27,7 @@ namespace ProtonVPN.Update.Files.Validatable
     /// <summary>
     /// Calculates SHA512 checksum of file.
     /// </summary>
-    internal class FileCheckSum
+    public class FileCheckSum
     {
         private const int FileBufferSize = 16768;
         private readonly string _filename;

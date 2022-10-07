@@ -26,11 +26,13 @@ using System.Threading;
 using ProtonVPN.Common.Events;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.AppServiceLogs;
+using ProtonVPN.Common.Logging.Categorization.Events.ConnectionLogs;
 using ProtonVPN.Common.Logging.Categorization.Events.OperatingSystemLogs;
 using ProtonVPN.Common.OS.Processes;
 using ProtonVPN.Common.OS.Services;
 using ProtonVPN.Common.Service;
 using ProtonVPN.Common.ServiceModel.Server;
+using ProtonVPN.Common.Vpn;
 using ProtonVPN.Service.Firewall;
 using ProtonVPN.Vpn.Common;
 
@@ -46,6 +48,7 @@ namespace ProtonVPN.Service
         private readonly List<ServiceHostFactory> _serviceHostsFactories;
         private readonly List<SafeServiceHost> _hosts;
         private readonly Ipv6 _ipv6;
+        private bool _isConnected;
 
         public VpnService(
             ILogger logger,
@@ -63,6 +66,7 @@ namespace ProtonVPN.Service
             _serviceHostsFactories = new(serviceHostsFactories);
             _vpnConnection = vpnConnection;
             _ipv6 = ipv6;
+            _vpnConnection.StateChanged += OnVpnStateChanged;
 
             _hosts = new();
             InitializeComponent();
@@ -119,6 +123,12 @@ namespace ProtonVPN.Service
         protected override bool OnPowerEvent(PowerBroadcastStatus powerStatus)
         {
             _logger.Info<OperatingSystemLog>($"Power status changed to {powerStatus}");
+            if (powerStatus == PowerBroadcastStatus.ResumeSuspend && _isConnected)
+            {
+                _logger.Info<ConnectionLog>("Disconnecting due to resume from sleep.");
+                _vpnConnection.Disconnect(VpnError.Unknown);
+            }
+
             return true;
         }
 
@@ -140,6 +150,11 @@ namespace ProtonVPN.Service
             catch (Exception e) when (e is InvalidOperationException or Win32Exception)
             {
             }
+        }
+
+        private void OnVpnStateChanged(object sender, Common.EventArgs<VpnState> e)
+        {
+            _isConnected = e.Data.Status == VpnStatus.Connected;
         }
     }
 }

@@ -25,7 +25,7 @@ using ProtonVPN.Vpn.Common;
 
 namespace ProtonVPN.Vpn.OpenVpn.Arguments
 {
-    internal class OpenVpnEndpointArguments : IEnumerable<string>
+    public class OpenVpnEndpointArguments : IEnumerable<string>
     {
         private readonly VpnEndpoint _endpoint;
 

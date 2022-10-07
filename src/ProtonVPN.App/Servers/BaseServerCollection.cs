@@ -24,7 +24,7 @@ using ProtonVPN.Core.Servers;
 
 namespace ProtonVPN.Servers
 {
-    internal abstract class BaseServerCollection : ViewModel, IServerCollection
+    public abstract class BaseServerCollection : ViewModel, IServerCollection
     {
         private bool _connected;
         private bool _upgradeRequired;
@@ -60,9 +60,11 @@ namespace ProtonVPN.Servers
             get => ExpandedValue;
             set
             {
-                if (ExpandedValue == value) return;
-                ExpandedValue = value;
-                OnPropertyChanged();
+                if (ExpandedValue != value)
+                {
+                    ExpandedValue = value;
+                    OnPropertyChanged();
+                }
             }
         }
 

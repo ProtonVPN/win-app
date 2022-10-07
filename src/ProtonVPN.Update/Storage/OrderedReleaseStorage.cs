@@ -27,7 +27,7 @@ namespace ProtonVPN.Update.Storage
     /// <summary>
     /// Orders stream of app releases by version number in descending order.
     /// </summary>
-    internal class OrderedReleaseStorage : IReleaseStorage
+    public class OrderedReleaseStorage : IReleaseStorage
     {
         private readonly IReleaseStorage _storage;
 

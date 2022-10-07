@@ -18,6 +18,7 @@
  */
 
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
@@ -29,6 +30,7 @@ using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Native.Structures;
 using ProtonVPN.Core.Profiles.Cached;
 using ProtonVPN.Core.Settings.Contracts;
+using ProtonVPN.Dns.Contracts;
 using Announcement = ProtonVPN.Core.Announcements.Announcement;
 
 namespace ProtonVPN.Core.Settings
@@ -112,8 +114,12 @@ namespace ProtonVPN.Core.Settings
         DateTimeOffset? AuthenticationCertificateRefreshUtcDate { get; set; }
         DateTimeOffset? AuthenticationCertificateRequestUtcDate { get; set; }
         string CertificationServerPublicKey { get; set; }
+        string AccessToken { get; set; }
+        string RefreshToken { get; set; }
+        string Uid { get; set; }
         bool HardwareAccelerationEnabled { get; set; }
         bool IsToShowRebrandingPopup { get; set; }
+        ConcurrentDictionary<string, DnsResponse> DnsCache { get; set; }
         bool IsNetShieldEnabled();
         bool IsPortForwardingEnabled();
         bool IsVpnAcceleratorEnabled();

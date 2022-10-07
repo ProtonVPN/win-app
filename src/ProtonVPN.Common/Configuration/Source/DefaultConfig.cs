@@ -205,7 +205,7 @@ namespace ProtonVPN.Common.Configuration.Source
                     NonStandardPortsUrl = "https://protonvpn.com/support/non-standard-ports",
                     LoginProblemsUrl = "https://protonvpn.com/support/login-problems",
                     RebrandingUrl = "https://protonvpn.com/blog/updated-proton-vpn",
-                    RpcServerProblemUrl = "https://proton.me/support/rpc-server-unavailable",
+                    RpcServerProblemUrl = "https://protonvpn.com/support/rpc-server-unavailable",
                 },
 
                 OpenVpn =
@@ -334,6 +334,14 @@ namespace ProtonVPN.Common.Configuration.Source
                 NtpServerUrl = "time.windows.com",
 
                 ServerValidationPublicKey = "MCowBQYDK2VwAyEANpYpt/FlSRwEuGLMoNAGOjy1BTyEJPJvKe00oln7LZk=",
+
+                FailedDnsRequestTimeout = TimeSpan.FromSeconds(5),
+                DnsResolveTimeout = TimeSpan.FromSeconds(30),
+                DnsOverHttpsPerProviderTimeout = TimeSpan.FromSeconds(20),
+                NewCacheTimeToLiveOnResolveError = TimeSpan.FromMinutes(10),
+                DefaultDnsTimeToLive = TimeSpan.FromMinutes(20),
+
+                AlternativeRoutingCheckInterval = TimeSpan.FromMinutes(30)
             };
         }
     }

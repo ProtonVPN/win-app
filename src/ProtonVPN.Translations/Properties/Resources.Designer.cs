@@ -277,24 +277,6 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Country.
-        /// </summary>
-        public static string Account_lbl_Country_One {
-            get {
-                return ResourceManager.GetString("Account_lbl_Country_One", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Countries.
-        /// </summary>
-        public static string Account_lbl_Country_Other {
-            get {
-                return ResourceManager.GetString("Account_lbl_Country_Other", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Current plan.
         /// </summary>
         public static string Account_lbl_CurrentPlan {

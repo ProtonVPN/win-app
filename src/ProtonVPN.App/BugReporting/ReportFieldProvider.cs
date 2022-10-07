@@ -28,14 +28,12 @@ using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Models;
 using ProtonVPN.Core.OS;
 using ProtonVPN.Core.Settings;
+using ProtonVPN.Core.Users;
 using ProtonVPN.Servers;
-using UserLocation = ProtonVPN.Core.User.UserLocation;
 
 namespace ProtonVPN.BugReporting
 {
-    public class ReportFieldProvider : IReportFieldProvider,
-        ILoggedInAware,
-        ILogoutAware
+    public class ReportFieldProvider : IReportFieldProvider, ILoggedInAware, ILogoutAware
     {
         private const string NO_USERNAME_FIELD_VALUE = "Not provided";
 
@@ -57,8 +55,8 @@ namespace ProtonVPN.BugReporting
 
         public KeyValuePair<string, string>[] GetFields(SendReportAction message)
         {
-            User user = _isLoggedIn ? _userStorage.User() : null;
-            UserLocation location = _userStorage.Location();
+            User user = _isLoggedIn ? _userStorage.GetUser() : null;
+            UserLocation location = _userStorage.GetLocation();
             string country = Countries.GetName(location.Country);
             string isp = location.Isp;
 

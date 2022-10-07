@@ -19,7 +19,7 @@
 
 namespace ProtonVPN.Common.Configuration.Storage
 {
-    internal interface IStorageFile
+    public interface IStorageFile
     {
         string Path();
     }

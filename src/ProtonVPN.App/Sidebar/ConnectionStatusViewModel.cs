@@ -37,7 +37,7 @@ using ProtonVPN.Core.Servers.Name;
 using ProtonVPN.Core.Servers.Specs;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
-using ProtonVPN.Core.User;
+using ProtonVPN.Core.Users;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Onboarding;
 using ProtonVPN.PortForwarding.ActivePorts;
@@ -400,7 +400,7 @@ namespace ProtonVPN.Sidebar
                 return;
             }
 
-            Ip = _userStorage.Location().Ip;
+            Ip = _userStorage.GetLocation().Ip;
         }
 
         private void SetIp(string ip)

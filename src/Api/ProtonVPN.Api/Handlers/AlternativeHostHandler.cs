@@ -19,65 +19,65 @@
 
 using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.Net.Http;
+using System.Security.Authentication;
 using System.Threading;
 using System.Threading.Tasks;
-using ProtonVPN.Api.Contracts;
-using ProtonVPN.Common.Abstract;
+using Polly.Timeout;
+using ProtonVPN.Api.Contracts.Exceptions;
 using ProtonVPN.Common.Configuration;
+using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.ApiLogs;
-using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
-using ProtonVPN.Common.Threading;
+using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
-using ProtonVPN.Core.Abstract;
 using ProtonVPN.Core.Auth;
-using ProtonVPN.Core.OS.Net.DoH;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
+using ProtonVPN.Dns.Contracts;
+using ProtonVPN.Dns.Contracts.AlternativeRouting;
+using ProtonVPN.Dns.Contracts.Exceptions;
 
 namespace ProtonVPN.Api.Handlers
 {
     public class AlternativeHostHandler : DelegatingHandler, ILoggedInAware, ILogoutAware
     {
+        public const string API_PING_TEST_PATH = "tests/ping";
+        private const string NO_ALTERNATIVE_HOSTS_ERROR_MESSAGE = "No alternative hosts exist. Alternative routing failed.";
+        private const string ALL_ALTERNATIVE_HOSTS_FAILED_ERROR_MESSAGE = "All alternative hosts failed. Alternative routing failed.";
+
         private readonly ILogger _logger;
-        private readonly DohClients _dohClients;
-        private readonly MainHostname _mainHostname;
+        private readonly IDnsManager _dnsManager;
+        private readonly IAlternativeRoutingHostGenerator _alternativeRoutingHostGenerator;
+        private readonly IAlternativeHostsManager _alternativeHostsManager;
         private readonly IAppSettings _appSettings;
         private readonly GuestHoleState _guestHoleState;
-        private readonly ITokenStorage _tokenStorage;
-        private readonly IApiHostProvider _apiHostProvider;
-        private readonly SingleAction _fetchProxies;
+        private readonly string _defaultApiHost;
+        private readonly TimeSpan _alternativeRoutingCheckInterval;
+        private readonly SemaphoreSlim _semaphore = new(1, 1);
 
-        private string _activeBackendHost;
-        private readonly string _apiHost;
-        private bool _isDisconnected;
+        private bool _isDisconnected = true;
         private bool _isUserLoggedIn;
+        private DateTime? _lastAlternativeRoutingCheckDateUtc;
+        private string _activeAlternativeHost;
 
         public AlternativeHostHandler(
-            CancellingHandlerBase cancellingHandler,
             ILogger logger,
-            DohClients dohClients,
-            MainHostname mainHostname,
+            IDnsManager dnsManager,
+            IAlternativeRoutingHostGenerator alternativeRoutingHostGenerator,
+            IAlternativeHostsManager alternativeHostsManager,
             IAppSettings appSettings,
             GuestHoleState guestHoleState,
-            ITokenStorage tokenStorage,
-            IApiHostProvider apiHostProvider,
-            Config config)
+            IConfiguration configuration)
         {
             _logger = logger;
-            _dohClients = dohClients;
-            _mainHostname = mainHostname;
+            _dnsManager = dnsManager;
+            _alternativeRoutingHostGenerator = alternativeRoutingHostGenerator;
+            _alternativeHostsManager = alternativeHostsManager;
             _appSettings = appSettings;
             _guestHoleState = guestHoleState;
-            _tokenStorage = tokenStorage;
-            _apiHostProvider = apiHostProvider;
-            _apiHost = new Uri(config.Urls.ApiUrl).Host;
-            _activeBackendHost = _apiHost;
-            _fetchProxies = new SingleAction(FetchProxies);
-
-            InnerHandler = cancellingHandler;
+            _defaultApiHost = new Uri(configuration.Urls.ApiUrl).Host;
+            _alternativeRoutingCheckInterval = configuration.AlternativeRoutingCheckInterval;
         }
 
         public async Task OnVpnStateChanged(VpnStateChangedEventArgs e)
@@ -85,182 +85,359 @@ namespace ProtonVPN.Api.Handlers
             _isDisconnected = e.State.Status == VpnStatus.Disconnected;
         }
 
-        protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken token)
+        protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
-            if (!_appSettings.DoHEnabled || _guestHoleState.Active)
+            if (IsAlternativeRoutingEnabled())
             {
-                ResetBackendHost();
-                return await SendInternalAsync(request, token);
+                if (IsAlternativeRoutingAllowed())
+                {
+                    if (IsLastAlternativeRoutingCheckDateNullOrTooOld())
+                    {
+                        bool isApiAvailable = await IsApiAvailableAsync(request, cancellationToken);
+                        if (isApiAvailable)
+                        {
+                            await DisableAlternativeRoutingAsync();
+                        }
+                        else
+                        {
+                            return await SendRequestWithActiveAlternativeHostAsync(request, cancellationToken);
+                        }
+                    }
+                    else
+                    {
+                        return await SendRequestWithActiveAlternativeHostAsync(request, cancellationToken);
+                    }
+                }
+                else
+                {
+                    await DisableAlternativeRoutingAsync();
+                }
             }
 
-            if (_apiHostProvider.IsProxyActive())
+            return await TrySendRequestAsync(request, cancellationToken);
+        }
+
+        private bool IsAlternativeRoutingEnabled()
+        {
+            return !_activeAlternativeHost.IsNullOrEmpty();
+        }
+
+        private async Task<HttpResponseMessage> SendRequestWithActiveAlternativeHostAsync(HttpRequestMessage request,
+            CancellationToken cancellationToken)
+        {
+            string alternativeHost = _activeAlternativeHost;
+            if (!alternativeHost.IsNullOrEmpty())
             {
                 try
                 {
-                    _activeBackendHost = _apiHostProvider.GetHost();
-                    _logger.Info<ApiLog>($"Sending request using {_activeBackendHost}");
-
-                    return await SendInternalAsync(request, token);
+                    HttpResponseMessage httpResponseMessage = await SendRequestWithActiveAlternativeHostAsync(
+                        alternativeHost, request, cancellationToken);
+                    return httpResponseMessage;
                 }
-                catch (Exception e) when (e.IsPotentialBlocking())
+                catch (Exception ex)
                 {
-                    _logger.Info<ApiErrorLog>($"Request failed while DoH active. Host: {_activeBackendHost}");
-
-                    ResetBackendHost();
-                    return await SendAsync(request, token);
+                    _logger.Error<ApiErrorLog>($"Alternative host '{alternativeHost}' failed.", ex);
                 }
             }
 
+            await DisableAlternativeRoutingAsync();
+            return await TrySendRequestAsync(request, cancellationToken);
+        }
+
+        private async Task<HttpResponseMessage> SendRequestWithActiveAlternativeHostAsync(string alternativeHost,
+            HttpRequestMessage request, CancellationToken cancellationToken)
+        {
+            IList<IpAddress> alternativeHostIpAddresses = await _dnsManager.GetAsync(alternativeHost, cancellationToken);
+            ThrowIfAlternativeHostHasNoIpAddresses(alternativeHost, alternativeHostIpAddresses);
+            foreach (IpAddress alternativeHostIpAddress in alternativeHostIpAddresses)
+            {
+                try
+                {
+                    HttpResponseMessage httpResponseMessage = await SendRequestToAlternativeHostAsync(
+                        alternativeHostIpAddress, alternativeHost, request, cancellationToken);
+                    return httpResponseMessage;
+                }
+                catch (Exception ex)
+                {
+                    _logger.Error<ApiErrorLog>($"Alternative host '{alternativeHost}' with IP address " +
+                        $"'{alternativeHostIpAddress}' failed.", ex);
+                }
+            }
+            throw new AlternativeRoutingException($"Alternative host '{alternativeHost}' failed.");
+        }
+
+        private bool IsAlternativeRoutingAllowed()
+        {
+            return _isDisconnected && !_guestHoleState.Active && IsAlternativeRoutingSettingEnabled();
+        }
+
+        private bool IsAlternativeRoutingSettingEnabled()
+        {
+            return _appSettings.DoHEnabled;
+        }
+
+        private async Task<HttpResponseMessage> TrySendRequestAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+        {
+            HttpResponseMessage httpResponseMessage;
             try
             {
-                return await SendInternalAsync(request, token);
+                httpResponseMessage = await SendRequestAsync(request, cancellationToken);
             }
-            catch (Exception e) when (_isDisconnected && e.IsPotentialBlocking())
+            catch (Exception ex) when (IsAlternativeRoutingAllowed() && IsPotentialBlockingException(ex))
             {
-                _logger.Info<ApiErrorLog>("Request failed due to potentially not reachable api.");
-
-                await _fetchProxies.Run();
-
-                if (_appSettings.AlternativeApiBaseUrls.Count == 0)
+                bool isApiAvailable = await IsApiAvailableAsync(request, cancellationToken);
+                if (isApiAvailable)
                 {
-                    throw;
+                    httpResponseMessage = await SendOriginalRequestAndRetryWithAlternativeRoutingAsync(request, cancellationToken);
                 }
-
-                if (await IsApiReachable(request, token))
+                else
                 {
-                    _logger.Info<ApiLog>("Ping success, retrying original request.");
-
-                    try
-                    {
-                        return await SendInternalAsync(request, token);
-                    }
-                    catch (Exception ex) when (ex.IsPotentialBlocking())
-                    {
-                        throw;
-                    }
+                    httpResponseMessage = await SendRequestWithAlternativeRoutingAsync(request, cancellationToken);
                 }
+            }
+            return httpResponseMessage;
+        }
 
-                Result<HttpResponseMessage> alternativeResult = await TryAlternativeHosts(request, token);
-                if (alternativeResult.Success)
+        private async Task<HttpResponseMessage> SendOriginalRequestAndRetryWithAlternativeRoutingAsync(
+            HttpRequestMessage request, CancellationToken cancellationToken)
+        {
+            HttpResponseMessage httpResponseMessage;
+            try
+            {
+                httpResponseMessage = await SendRequestAsync(request, cancellationToken);
+            }
+            catch (Exception ex) when (IsAlternativeRoutingAllowed() && IsPotentialBlockingException(ex))
+            {
+                httpResponseMessage = await SendRequestWithAlternativeRoutingAsync(request, cancellationToken);
+            }
+            return httpResponseMessage;
+        }
+
+        public bool IsPotentialBlockingException(Exception ex)
+        {
+            return ex is TimeoutException or TimeoutRejectedException or DnsException
+                || ex.GetBaseException() is AuthenticationException;
+        }
+
+        private bool IsLastAlternativeRoutingCheckDateNullOrTooOld()
+        {
+            return _lastAlternativeRoutingCheckDateUtc is null ||
+                   _lastAlternativeRoutingCheckDateUtc < (DateTime.UtcNow - _alternativeRoutingCheckInterval);
+        }
+
+        private async Task<bool> IsApiAvailableAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+        {
+            _logger.Info<ApiLog>("Checking for API availability.");
+            IList<IpAddress> defaultApiIpAddresses = await _dnsManager.ResolveWithoutCacheAsync(_defaultApiHost, cancellationToken);
+            if (defaultApiIpAddresses.IsNullOrEmpty())
+            {
+                defaultApiIpAddresses = _dnsManager.GetFromCache(_defaultApiHost);
+                if (defaultApiIpAddresses.IsNullOrEmpty())
                 {
-                    return alternativeResult.Value;
+                    await UpdateLastAlternativeRoutingCheckDateAsync();
+                    _logger.Warn<ApiErrorLog>("The API is unavailable due to a failure in the DNS step. " +
+                        "No IP addresses were able to be resolved or fetched from cache.");
+                    return false;
                 }
+            }
 
-                throw;
+            bool isApiPingSuccessful = await SendApiPingRequestAsync(request, cancellationToken);
+            await UpdateLastAlternativeRoutingCheckDateAsync();
+            LogApiAvailabilityCheckResult(isApiPingSuccessful);
+            return isApiPingSuccessful;
+        }
+
+        private void LogApiAvailabilityCheckResult(bool isApiPingSuccessful)
+        {
+            if (isApiPingSuccessful)
+            {
+                _logger.Info<ApiLog>("The API availability check was successful.");
+            }
+            else
+            {
+                _logger.Warn<ApiErrorLog>("The API is unavailable due to a request failure.");
             }
         }
 
-        private async Task<bool> IsApiReachable(HttpRequestMessage request, CancellationToken token)
+        private async Task UpdateLastAlternativeRoutingCheckDateAsync()
+        {
+            await _semaphore.WaitAsync();
+            try
+            {
+                _lastAlternativeRoutingCheckDateUtc = DateTime.UtcNow;
+            }
+            finally
+            {
+                _semaphore.Release();
+            }
+        }
+
+        private async Task<bool> SendApiPingRequestAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
             try
             {
-                HttpResponseMessage result = await base.SendAsync(GetPingRequest(request), token);
+                HttpResponseMessage result = await base.SendAsync(CreateApiPingRequest(request), cancellationToken);
                 return result.IsSuccessStatusCode;
             }
-            catch (Exception e) when (e.IsPotentialBlocking())
+            catch
             {
                 return false;
             }
         }
 
-        private HttpRequestMessage GetPingRequest(HttpRequestMessage request)
+        private HttpRequestMessage CreateApiPingRequest(HttpRequestMessage request)
         {
             HttpRequestMessage pingRequest = new();
             UriBuilder uriBuilder = new(request.RequestUri)
             {
-                Host = _activeBackendHost,
-                Path = "tests/ping",
+                Host = _defaultApiHost,
+                Path = API_PING_TEST_PATH,
                 Query = string.Empty,
             };
-            pingRequest.Headers.Host = uriBuilder.Host;
+            pingRequest.Headers.Host = _defaultApiHost;
             pingRequest.RequestUri = uriBuilder.Uri;
             pingRequest.Method = HttpMethod.Get;
 
             return pingRequest;
         }
 
-        private void ResetBackendHost()
+        private async Task DisableAlternativeRoutingAsync()
         {
-            _appSettings.ActiveAlternativeApiBaseUrl = string.Empty;
-            _activeBackendHost = _apiHost;
+            await _semaphore.WaitAsync();
+            try
+            {
+                _lastAlternativeRoutingCheckDateUtc = null;
+                _activeAlternativeHost = null;
+            }
+            finally
+            {
+                _semaphore.Release();
+            }
         }
 
-        private async Task<Result<HttpResponseMessage>> TryAlternativeHosts(HttpRequestMessage request, CancellationToken token)
+        private async Task<HttpResponseMessage> SendRequestAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
-            foreach (string host in _appSettings.AlternativeApiBaseUrls)
+            return await base.SendAsync(request, cancellationToken);
+        }
+
+        private async Task<HttpResponseMessage> SendRequestWithAlternativeRoutingAsync(
+            HttpRequestMessage request, CancellationToken cancellationToken)
+        {
+            string alternativeRoutingHost = _alternativeRoutingHostGenerator.Generate(_isUserLoggedIn ? _appSettings.Uid : null);
+            IList<string> alternativeHosts = await _alternativeHostsManager.GetAsync(alternativeRoutingHost, cancellationToken);
+            ThrowIfNoAlternativeHostsExist(alternativeHosts);
+
+            HttpResponseMessage httpResponseMessage = null;
+            string chosenAlternativeHost = null;
+            foreach (string alternativeHost in alternativeHosts)
             {
                 try
                 {
-                    _activeBackendHost = host;
-                    HttpResponseMessage result = await SendInternalAsync(request, token);
-                    if (result.IsSuccessStatusCode)
-                    {
-                        _appSettings.ActiveAlternativeApiBaseUrl = host;
-                    }
-
-                    return Result.Ok(result);
+                    httpResponseMessage = await SendRequestWithAlternativeHostAsync(alternativeHost, request, cancellationToken);
+                    chosenAlternativeHost = alternativeHost;
+                    await EnableAlternativeRoutingAsync(chosenAlternativeHost);
+                    break;
                 }
-                catch (Exception ex) when (ex.IsApiCommunicationException())
+                catch (Exception ex)
                 {
-                    //Ignore
+                    _logger.Error<ApiErrorLog>($"Alternative host '{alternativeHost}' failed.", ex);
                 }
             }
 
-            ResetBackendHost();
-
-            return Result.Fail<HttpResponseMessage>();
+            ThrowIfAllAlternativeHostsFailed(chosenAlternativeHost);
+            return httpResponseMessage;
         }
 
-        private async Task<HttpResponseMessage> SendInternalAsync(HttpRequestMessage request, CancellationToken token)
+        private void ThrowIfNoAlternativeHostsExist(IList<string> alternativeHosts)
         {
-            return await base.SendAsync(GetRequest(request), token);
+            if (alternativeHosts.IsNullOrEmpty())
+            {
+                _logger.Error<ApiErrorLog>(NO_ALTERNATIVE_HOSTS_ERROR_MESSAGE);
+                throw new AlternativeRoutingException(NO_ALTERNATIVE_HOSTS_ERROR_MESSAGE);
+            }
         }
 
-        private HttpRequestMessage GetRequest(HttpRequestMessage request)
+        private void ThrowIfAllAlternativeHostsFailed(string chosenAlternativeHost)
         {
-            UriBuilder uriBuilder = new(request.RequestUri) { Host = _activeBackendHost };
-            request.Headers.Host = uriBuilder.Host;
+            if (chosenAlternativeHost.IsNullOrEmpty())
+            {
+                _logger.Error<ApiErrorLog>(ALL_ALTERNATIVE_HOSTS_FAILED_ERROR_MESSAGE);
+                throw new AlternativeRoutingException(ALL_ALTERNATIVE_HOSTS_FAILED_ERROR_MESSAGE);
+            }
+        }
+
+        private async Task<HttpResponseMessage> SendRequestWithAlternativeHostAsync(string alternativeHost,
+            HttpRequestMessage request, CancellationToken cancellationToken)
+        {
+            IList<IpAddress> alternativeHostIpAddresses = await _dnsManager.GetAsync(alternativeHost, cancellationToken);
+            ThrowIfAlternativeHostHasNoIpAddresses(alternativeHost, alternativeHostIpAddresses);
+            foreach (IpAddress alternativeHostIpAddress in alternativeHostIpAddresses)
+            {
+                try
+                {
+                    HttpResponseMessage httpResponseMessage = await SendRequestToAlternativeHostAsync(
+                        alternativeHostIpAddress, alternativeHost, request, cancellationToken);
+                    if (httpResponseMessage.IsSuccessStatusCode)
+                    {
+                        return httpResponseMessage;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    _logger.Error<ApiErrorLog>($"Alternative host '{alternativeHost}' with IP address " +
+                        $"'{alternativeHostIpAddress}' failed.", ex);
+                }
+            }
+            throw new AlternativeRoutingException($"Alternative host '{alternativeHost}' failed.");
+        }
+
+        private async Task EnableAlternativeRoutingAsync(string alternativeHost)
+        {
+            await _semaphore.WaitAsync();
+            try
+            {
+                _lastAlternativeRoutingCheckDateUtc = DateTime.UtcNow;
+                _activeAlternativeHost = alternativeHost;
+            }
+            finally
+            {
+                _semaphore.Release();
+            }
+        }
+
+        private void ThrowIfAlternativeHostHasNoIpAddresses(string alternativeHost, IList<IpAddress> alternativeHostIpAddresses)
+        {
+            if (alternativeHostIpAddresses.IsNullOrEmpty())
+            {
+                string errorMessage = $"No IP addresses were found for alternative host '{alternativeHost}'.";
+                _logger.Error<ApiErrorLog>(errorMessage);
+                throw new AlternativeRoutingException(errorMessage);
+            }
+        }
+
+        private async Task<HttpResponseMessage> SendRequestToAlternativeHostAsync(IpAddress ipAddress,
+            string alternativeHost, HttpRequestMessage request, CancellationToken cancellationToken)
+        {
+            string oldUriHost = request.RequestUri.Host;
+            string oldHeaderHost = request.Headers.Host;
+            SetRequestHost(request, uriHost: ipAddress.ToString(), headerHost: alternativeHost);
+            HttpResponseMessage httpResponseMessage;
+            try
+            {
+                httpResponseMessage = await SendRequestAsync(request, cancellationToken);
+            }
+            finally
+            {
+                SetRequestHost(request, uriHost: oldUriHost, headerHost: oldHeaderHost);
+            }
+            return httpResponseMessage;
+        }
+
+        private void SetRequestHost(HttpRequestMessage request, string uriHost, string headerHost)
+        {
+            UriBuilder uriBuilder = new(request.RequestUri) { Host = uriHost };
+            request.Headers.Host = headerHost;
             request.RequestUri = uriBuilder.Uri;
-
-            return request;
-        }
-
-        private async Task FetchProxies()
-        {
-            _appSettings.LastPrimaryApiFailDateUtc = DateTime.UtcNow;
-            _appSettings.AlternativeApiBaseUrls = new StringCollection();
-            ResetBackendHost();
-
-            List<Client> clients = _dohClients.Get();
-            foreach (Client dohClient in clients)
-            {
-                try
-                {
-                    string host = _mainHostname.Value(_isUserLoggedIn ? _tokenStorage.Uid : string.Empty);
-                    _logger.Info<AppLog>($"Resolving alternative hosts from {host}");
-                    List<string> alternativeHosts = await dohClient.ResolveTxtAsync(host);
-                    if (alternativeHosts.Count > 0)
-                    {
-                        _appSettings.AlternativeApiBaseUrls = GetAlternativeApiBaseUrls(alternativeHosts);
-                        return;
-                    }
-                }
-                catch (Exception e) when (e.IsPotentialBlocking() || e.IsApiCommunicationException())
-                {
-                    //Ignore
-                }
-            }
-        }
-
-        private StringCollection GetAlternativeApiBaseUrls(List<string> list)
-        {
-            StringCollection collection = new();
-            foreach (string element in list)
-            {
-                collection.Add(element);
-            }
-
-            return collection;
         }
 
         public void OnUserLoggedIn()

@@ -117,6 +117,30 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="About_UpdateStatus_val_CheckFailed">
+    <value>Updates controleren is mislukt</value>
+    <comment>The app update status in About window</comment>
+  </data>
+  <data name="About_UpdateStatus_val_Checking">
+    <value>Controleren op updates</value>
+    <comment>The app update status in About window</comment>
+  </data>
+  <data name="About_UpdateStatus_val_DownloadFailed">
+    <value>Downloaden van updates mislukt</value>
+    <comment>The app update status in About window</comment>
+  </data>
+  <data name="About_UpdateStatus_val_Downloading">
+    <value>Update downloaden</value>
+    <comment>The app update status in About window</comment>
+  </data>
+  <data name="About_UpdateStatus_val_None">
+    <value>Proton VPN is up-to-date</value>
+    <comment>The app update status in About window</comment>
+  </data>
+  <data name="About_UpdateStatus_val_Ready">
+    <value>Nieuwe versie beschikbaar!</value>
+    <comment>The app update status in About window</comment>
+  </data>
   <data name="About_lbl_ChangelogVersion">
     <value>Changelog van v.{0}</value>
     <comment>The title of app version in change log in About window. The {0} is a placeholder for app version number.</comment>
@@ -153,30 +177,6 @@
     <value>Over</value>
     <comment>The title of About window</comment>
   </data>
-  <data name="About_UpdateStatus_val_CheckFailed">
-    <value>Updates controleren is mislukt</value>
-    <comment>The app update status in About window</comment>
-  </data>
-  <data name="About_UpdateStatus_val_Checking">
-    <value>Controleren op updates</value>
-    <comment>The app update status in About window</comment>
-  </data>
-  <data name="About_UpdateStatus_val_DownloadFailed">
-    <value>Downloaden van updates mislukt</value>
-    <comment>The app update status in About window</comment>
-  </data>
-  <data name="About_UpdateStatus_val_Downloading">
-    <value>Update downloaden</value>
-    <comment>The app update status in About window</comment>
-  </data>
-  <data name="About_UpdateStatus_val_None">
-    <value>Proton VPN is up-to-date</value>
-    <comment>The app update status in About window</comment>
-  </data>
-  <data name="About_UpdateStatus_val_Ready">
-    <value>Nieuwe versie beschikbaar!</value>
-    <comment>The app update status in About window</comment>
-  </data>
   <data name="Account_btn_ManageSubscription">
     <value>Abonnement beheren</value>
     <comment>The text on Manage subscription button in Account window (opens account management web page)</comment>
@@ -209,12 +209,6 @@
   <data name="Account_lbl_Countries_One">
     <value>in &lt;Bold&gt;{0}&lt;/Bold&gt; land</value>
   </data>
-  <data name="Account_lbl_Country_One">
-    <value>Land</value>
-  </data>
-  <data name="Account_lbl_Country_Other">
-    <value>Landen</value>
-  </data>
   <data name="Account_lbl_CurrentPlan">
     <value>Huidig abonnement</value>
   </data>
@@ -228,12 +222,12 @@
     <value>Proton VPN Free</value>
     <comment>The name of VPN subscription plan</comment>
   </data>
-  <data name="Account_lbl_HighestSpeed">
-    <value>&lt;Bold&gt;Hoogste&lt;/Bold&gt; snelheid (tot 10 Gbps)</value>
-    <comment>The text displayed in Account window</comment>
-  </data>
   <data name="Account_lbl_HighSpeed">
     <value>&lt;Bold&gt;Hoge&lt;/Bold&gt; snelheid</value>
+    <comment>The text displayed in Account window</comment>
+  </data>
+  <data name="Account_lbl_HighestSpeed">
+    <value>&lt;Bold&gt;Hoogste&lt;/Bold&gt; snelheid (tot 10 Gbps)</value>
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_MediumSpeed">
@@ -417,10 +411,6 @@
   <data name="BugReport_lbl_NewVersionInfo">
     <value>Deze versie van Proton VPN heeft misschien uw probleem al opgelost!</value>
   </data>
-  <data name="BugReport_lbl_of">
-    <value>of</value>
-    <comment>The text displayed in report an issue form. For example: Step 1 of 3.</comment>
-  </data>
   <data name="BugReport_lbl_QuickSolutions">
     <value>Snelle oplossingen</value>
   </data>
@@ -429,6 +419,14 @@
   </data>
   <data name="BugReport_lbl_Step">
     <value>Stap</value>
+  </data>
+  <data name="BugReport_lbl_Username">
+    <value>Gebruikersnaam</value>
+    <comment>The label for the username in Issue Report window</comment>
+  </data>
+  <data name="BugReport_lbl_UsernamePlaceholder">
+    <value>Uw Proton gebruikersnaam, in geval u reeds een account heb.</value>
+    <comment>The watermark text displayed in empty username text box in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_WhatIsTheIssue">
     <value>Wat is het probleem?</value>
@@ -439,6 +437,10 @@
   </data>
   <data name="BugReport_lbl_WillGetBack">
     <value>We laten u zo snel als het kan iets weten.</value>
+  </data>
+  <data name="BugReport_lbl_of">
+    <value>of</value>
+    <comment>The text displayed in report an issue form. For example: Step 1 of 3.</comment>
   </data>
   <data name="BugReport_msg_EmailNotValid">
     <value>Ongeldig e-mailadres</value>
@@ -462,6 +464,30 @@
   <data name="BugReport_ttl">
     <value>Een probleem melden</value>
     <comment>The title of Issue Report window</comment>
+  </data>
+  <data name="Connecting_VpnStatus_val_AssigningIp">
+    <value>IP-adres toewijzen</value>
+    <comment>The VPN status displayed in Connecting overlay of main app window</comment>
+  </data>
+  <data name="Connecting_VpnStatus_val_Authenticating">
+    <value>Gebruiker verifiëren</value>
+    <comment>The VPN status displayed in Connecting overlay of main app window</comment>
+  </data>
+  <data name="Connecting_VpnStatus_val_Connecting">
+    <value>Verbinding initialiseren</value>
+    <comment>The VPN status displayed in Connecting overlay of main app window</comment>
+  </data>
+  <data name="Connecting_VpnStatus_val_Pinging">
+    <value>Wachten op een bruikbaar netwerk...</value>
+    <comment>The VPN status displayed in Pinging overlay of main app window</comment>
+  </data>
+  <data name="Connecting_VpnStatus_val_RetrievingConfiguration">
+    <value>VPN-tunnel tot stand brengen</value>
+    <comment>The VPN status displayed in Connecting overlay of main app window</comment>
+  </data>
+  <data name="Connecting_VpnStatus_val_Waiting">
+    <value>Verbinding initialiseren</value>
+    <comment>The VPN status displayed in Connecting overlay of main app window</comment>
   </data>
   <data name="Connecting_btn_Cancel">
     <value>Annuleer</value>
@@ -502,30 +528,6 @@
   <data name="Connecting_lbl_FailedConnection_2_SecureCore">
     <value>verbinding maken mislukt</value>
     <comment>The end of text for Secure Core VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text after imaginary placeholder {0} in the text string "The {0} connection has failed". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
-  </data>
-  <data name="Connecting_VpnStatus_val_AssigningIp">
-    <value>IP-adres toewijzen</value>
-    <comment>The VPN status displayed in Connecting overlay of main app window</comment>
-  </data>
-  <data name="Connecting_VpnStatus_val_Authenticating">
-    <value>Gebruiker verifiëren</value>
-    <comment>The VPN status displayed in Connecting overlay of main app window</comment>
-  </data>
-  <data name="Connecting_VpnStatus_val_Connecting">
-    <value>Verbinding initialiseren</value>
-    <comment>The VPN status displayed in Connecting overlay of main app window</comment>
-  </data>
-  <data name="Connecting_VpnStatus_val_Pinging">
-    <value>Wachten op een bruikbaar netwerk...</value>
-    <comment>The VPN status displayed in Pinging overlay of main app window</comment>
-  </data>
-  <data name="Connecting_VpnStatus_val_RetrievingConfiguration">
-    <value>VPN-tunnel tot stand brengen</value>
-    <comment>The VPN status displayed in Connecting overlay of main app window</comment>
-  </data>
-  <data name="Connecting_VpnStatus_val_Waiting">
-    <value>Verbinding initialiseren</value>
-    <comment>The VPN status displayed in Connecting overlay of main app window</comment>
   </data>
   <data name="Country_val_AD">
     <value>Andorra</value>
@@ -1551,39 +1553,9 @@
 Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these"/&gt;&lt;/Hyperlink&gt; instructies om het opnieuw te activeren en opnieuw te proberen.</value>
     <comment>The text on Base Filtering Engine dialog window</comment>
   </data>
-  <data name="Dialogs_btn_Cancel">
-    <value>Annuleer</value>
-    <comment>The text on Cancel button in dialog windows</comment>
-  </data>
-  <data name="Dialogs_btn_Close">
-    <value>Sluiten</value>
-    <comment>The text on Close button in dialog windows</comment>
-  </data>
-  <data name="Dialogs_btn_Continue">
-    <value>Doorgaan</value>
-    <comment>The text on Continue button in dialog windows</comment>
-  </data>
-  <data name="Dialogs_btn_Enable">
-    <value>Inschakelen</value>
-  </data>
-  <data name="Dialogs_btn_NoThanks">
-    <value>Nee, bedankt</value>
-    <comment>The text on NoThanks button in dialog windows</comment>
-  </data>
-  <data name="Dialogs_btn_Ok">
-    <value>Oké</value>
-  </data>
-  <data name="Dialogs_Delinquency_btn_Invoices">
-    <value>Facturen controleren</value>
-    <comment>The text on invoices button in the Delinquency window (opens web page for invoice payment)</comment>
-  </data>
   <data name="Dialogs_Delinquency_GoToBilling">
     <value>Mijn facturering bijwerken</value>
     <comment>The "go to billing website" button text in the Delinquency window</comment>
-  </data>
-  <data name="Dialogs_Delinquency_msg">
-    <value>Het account is gemarkeerd als delinquent vanwege onbetaalde facturen. U kunt Proton VPN blijven gebruiken, maar alle betaalde functies zijn nu uitgeschakeld.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadAboutDelinquencyCommand}"&gt;Lees meer over delinquentie.&lt;/Hyperlink&gt;</value>
-    <comment>The message displayed in the Delinquency window. The codes between &lt; and &gt; should be kept as is (Do not forget to translate the inner "Read more about delinquency.").</comment>
   </data>
   <data name="Dialogs_Delinquency_Reconnected_Subtitle">
     <value>U hebt weer toegang tot premium functies nadat deze zijn betaald. Op dit moment maken we opnieuw verbinding met de snelste beschikbare GRATIS abonnement-server.</value>
@@ -1596,6 +1568,14 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
   <data name="Dialogs_Delinquency_Title">
     <value>Uw VPN-account heeft openstaande facturen</value>
     <comment>The title of the Delinquency window</comment>
+  </data>
+  <data name="Dialogs_Delinquency_btn_Invoices">
+    <value>Facturen controleren</value>
+    <comment>The text on invoices button in the Delinquency window (opens web page for invoice payment)</comment>
+  </data>
+  <data name="Dialogs_Delinquency_msg">
+    <value>Het account is gemarkeerd als delinquent vanwege onbetaalde facturen. U kunt Proton VPN blijven gebruiken, maar alle betaalde functies zijn nu uitgeschakeld.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadAboutDelinquencyCommand}"&gt;Lees meer over delinquentie.&lt;/Hyperlink&gt;</value>
+    <comment>The message displayed in the Delinquency window. The codes between &lt; and &gt; should be kept as is (Do not forget to translate the inner "Read more about delinquency.").</comment>
   </data>
   <data name="Dialogs_Delinquency_ttl">
     <value>Delinquent account</value>
@@ -1780,22 +1760,14 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
   <data name="Dialogs_Reboot_ttl">
     <value>Uw computer moet opnieuw opstarten</value>
   </data>
-  <data name="Dialogs_Rebranding_btn_GotIt_new_plans">
-    <value>Begrepen</value>
-  </data>
   <data name="Dialogs_Rebranding_Subtitle_new_plans">
     <value>Ontdek de nieuwe look van Proton. Veel diensten, één missie. Welkom in een internetomgeving waar privacy de standaard is.  &lt;Hyperlink Command="{Binding LearnMoreCommand}"&gt;Meer info&lt;/Hyperlink&gt;</value>
   </data>
   <data name="Dialogs_Rebranding_Title_new_plans">
     <value>Vernieuwde Proton, uniforme beveiliging</value>
   </data>
-  <data name="Dialogs_reconnection_FromServer">
-    <value>Van server:</value>
-    <comment>The label for the previous server in dialog windows</comment>
-  </data>
-  <data name="Dialogs_reconnection_ToServer">
-    <value>Naar server:</value>
-    <comment>The label for the new server in dialog windows</comment>
+  <data name="Dialogs_Rebranding_btn_GotIt_new_plans">
+    <value>Begrepen</value>
   </data>
   <data name="Dialogs_SplitTunnelWarning_msg">
     <value>Om Split Tunneling goed te laten functioneren, moet u Kill Switch uitschakelen.</value>
@@ -1884,6 +1856,42 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <value>&lt;Bold&gt;kan nog steeds geen oplossing vinden&lt;/Bold&gt; - Neem contact met ons op via ons &lt;Hyperlink Command="{Binding SupportFormCommand}"&gt;ondersteuningsformulier&lt;/Hyperlink&gt;, e-mail (support@protonvpn.com), of &lt;Hyperlink Command="{Binding ProtonTwitterCommand}"&gt;Twitter&lt;/Hyperlink&gt;.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
+  <data name="Dialogs_TunInUse_btn_SwitchToTap">
+    <value>Overschakelen naar TAP</value>
+  </data>
+  <data name="Dialogs_TunInUse_msg">
+    <value>Proton VPN kon geen verbinding maken omdat de TUN-netwerkadapter al in gebruik is. Verbreek alle actieve VPN's en probeer het opnieuw. Als alternatief kunt u overschakelen naar de TAP-adapter (u kunt terugschakelen naar TUN in de Geavanceerde Instellingen).</value>
+  </data>
+  <data name="Dialogs_btn_Cancel">
+    <value>Annuleer</value>
+    <comment>The text on Cancel button in dialog windows</comment>
+  </data>
+  <data name="Dialogs_btn_Close">
+    <value>Sluiten</value>
+    <comment>The text on Close button in dialog windows</comment>
+  </data>
+  <data name="Dialogs_btn_Continue">
+    <value>Doorgaan</value>
+    <comment>The text on Continue button in dialog windows</comment>
+  </data>
+  <data name="Dialogs_btn_Enable">
+    <value>Inschakelen</value>
+  </data>
+  <data name="Dialogs_btn_NoThanks">
+    <value>Nee, bedankt</value>
+    <comment>The text on NoThanks button in dialog windows</comment>
+  </data>
+  <data name="Dialogs_btn_Ok">
+    <value>Oké</value>
+  </data>
+  <data name="Dialogs_reconnection_FromServer">
+    <value>Van server:</value>
+    <comment>The label for the previous server in dialog windows</comment>
+  </data>
+  <data name="Dialogs_reconnection_ToServer">
+    <value>Naar server:</value>
+    <comment>The label for the new server in dialog windows</comment>
+  </data>
   <data name="Dialogs_ttl_Question">
     <value>Attentie</value>
     <comment>The title of question message window</comment>
@@ -1891,12 +1899,6 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
   <data name="Dialogs_ttl_Warning">
     <value>Attentie</value>
     <comment>The title of warning message window</comment>
-  </data>
-  <data name="Dialogs_TunInUse_btn_SwitchToTap">
-    <value>Overschakelen naar TAP</value>
-  </data>
-  <data name="Dialogs_TunInUse_msg">
-    <value>Proton VPN kon geen verbinding maken omdat de TUN-netwerkadapter al in gebruik is. Verbreek alle actieve VPN's en probeer het opnieuw. Als alternatief kunt u overschakelen naar de TAP-adapter (u kunt terugschakelen naar TUN in de Geavanceerde Instellingen).</value>
   </data>
   <data name="ErrorWindow_lbl_Close">
     <value>Sluiten</value>
@@ -1926,13 +1928,6 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <value>Licentie</value>
     <comment>The title of License window</comment>
   </data>
-  <data name="Login_btn_Authenticate">
-    <value>Authenticeren</value>
-  </data>
-  <data name="Login_btn_Login">
-    <value>Inloggen</value>
-    <comment>The text on Login button in Login window (logs in the user)</comment>
-  </data>
   <data name="Login_Error_msg_SessionExpired">
     <value>Uw sessie is verlopen. Log opnieuw in.</value>
     <comment>The message displayed in Login window when expired session is detected</comment>
@@ -1944,6 +1939,13 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
   <data name="Login_Error_msg_Unknown">
     <value>Onbekende fout</value>
     <comment>The description of error displayed in Login window</comment>
+  </data>
+  <data name="Login_btn_Authenticate">
+    <value>Authenticeren</value>
+  </data>
+  <data name="Login_btn_Login">
+    <value>Inloggen</value>
+    <comment>The text on Login button in Login window (logs in the user)</comment>
   </data>
   <data name="Login_lbl_KillSwitch">
     <value>Kill Switch is momenteel actief</value>
@@ -2017,18 +2019,6 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <value>Proton VPN</value>
     <comment>The title of Login window. Should not be converted.</comment>
   </data>
-  <data name="Map_btn_Connect">
-    <value>Verbind</value>
-    <comment>The text of Connect command in a balloon above Pin in Map (connects to the VPN)</comment>
-  </data>
-  <data name="Map_btn_Disconnect">
-    <value>Verbreken</value>
-    <comment>The text of Disconnect command in a balloon above Pin in Map (disconnects from the VPN)</comment>
-  </data>
-  <data name="Map_lbl_SecureCore">
-    <value>Secure Core</value>
-    <comment>The part of text displayed in a balloon above Secure Core Pin in Map. The full text is "(Secure Core) country name".</comment>
-  </data>
   <data name="Map_SpeedGraph_lbl_DownSpeed">
     <value>Downloadsnelheid:</value>
     <comment>The label for download speed in Speed Graph on Map in main app window</comment>
@@ -2069,6 +2059,18 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <value>VERBINDING VERBROKEN</value>
     <comment>The connection status displayed in the Home section of the Map in main app window when connected to VPN</comment>
   </data>
+  <data name="Map_btn_Connect">
+    <value>Verbind</value>
+    <comment>The text of Connect command in a balloon above Pin in Map (connects to the VPN)</comment>
+  </data>
+  <data name="Map_btn_Disconnect">
+    <value>Verbreken</value>
+    <comment>The text of Disconnect command in a balloon above Pin in Map (disconnects from the VPN)</comment>
+  </data>
+  <data name="Map_lbl_SecureCore">
+    <value>Secure Core</value>
+    <comment>The part of text displayed in a balloon above Secure Core Pin in Map. The full text is "(Secure Core) country name".</comment>
+  </data>
   <data name="Modal_DiscourageSecureCore_ActivateSecureCore">
     <value>Secure Core activeren</value>
   </data>
@@ -2076,7 +2078,7 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <value>Niet meer weergeven</value>
   </data>
   <data name="Modal_DiscourageSecureCore_LearnMore">
-    <value>Meer informatie</value>
+    <value>Learn more</value>
   </data>
   <data name="Modal_DiscourageSecureCore_Subtitle">
     <value>Secure Core biedt het hoogste niveau van beveiliging en privacy, maar het kan uw internetsnelheid verlagen. Als u hogere prestaties wilt, kan u Secure Core uitschakelen.</value>
@@ -2213,6 +2215,144 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
   <data name="ProfileConnector_msg_MissingAuthCert">
     <value>Proton VPN is er niet in geslaagd om het authenticatiecertificaat op te halen vanwege een netwerk probleem.</value>
   </data>
+  <data name="ProfileSyncStatus_val_Failed">
+    <value>Mislukt</value>
+    <comment>The profile synchronization status displayed in the Profiles window</comment>
+  </data>
+  <data name="ProfileSyncStatus_val_Failed_Info">
+    <value>Profielsynchronisatie is mislukt</value>
+    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
+  </data>
+  <data name="ProfileSyncStatus_val_InProgress">
+    <value>Synchroniseren</value>
+    <comment>The profile synchronization status displayed in the Profiles window</comment>
+  </data>
+  <data name="ProfileSyncStatus_val_InProgress_Info">
+    <value>Profielen synchroniseren</value>
+    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
+  </data>
+  <data name="ProfileSyncStatus_val_Overridden">
+    <value>Overschreven</value>
+    <comment>The profile synchronization status displayed in the Profiles window</comment>
+  </data>
+  <data name="ProfileSyncStatus_val_Succeeded">
+    <value>Gesynchroniseerd</value>
+    <comment>The profile synchronization status displayed in the Profiles window</comment>
+  </data>
+  <data name="ProfileSyncStatus_val_Succeeded_Info">
+    <value>Profielwijzigingen {0} {1} geleden gesynchroniseerd</value>
+    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window. The {0} is a placeholder for number of time units, {1} - time units.</comment>
+  </data>
+  <data name="ProfileSyncStatus_val_Succeeded_Info_NoData">
+    <value>Geen profielwijzigingen om te synchroniseren</value>
+    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
+  </data>
+  <data name="Profiles_Profile_Description_val_Fastest">
+    <value>Snelste beschikbare server</value>
+    <comment>The description of Fastest default profile displayed in Profiles window</comment>
+  </data>
+  <data name="Profiles_Profile_Description_val_Random">
+    <value>Telkens een andere server</value>
+    <comment>The description of Random default profile displayed in Profiles window</comment>
+  </data>
+  <data name="Profiles_Profile_Error_lbl_NotValid">
+    <value>Profiel kan niet worden opgeslagen:</value>
+    <comment>The heading for list of validation errors in Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_Error_msg_ColorEmpty">
+    <value>Kies een kleur</value>
+    <comment>The error message displayed in Profile window when color is not selected</comment>
+  </data>
+  <data name="Profiles_Profile_Error_msg_CountryEmpty">
+    <value>Kies een land</value>
+    <comment>The error message displayed in Profile window when country is not selected</comment>
+  </data>
+  <data name="Profiles_Profile_Error_msg_NameEmpty">
+    <value>Selecteer een profielnaam</value>
+    <comment>The error message displayed in Profile window when profile name is empty</comment>
+  </data>
+  <data name="Profiles_Profile_Error_msg_NameExists">
+    <value>Deze naam bestaat al</value>
+    <comment>The error message displayed in Profile window when profile name is already used by another profile</comment>
+  </data>
+  <data name="Profiles_Profile_Error_msg_NameTooLong_One">
+    <value>Maximale lengte is {0} teken. Kies een kortere profielnaam.</value>
+  </data>
+  <data name="Profiles_Profile_Error_msg_NameTooLong_Other">
+    <value>Maximale lengte is {0} tekens. Kies een kortere profielnaam.</value>
+  </data>
+  <data name="Profiles_Profile_Error_msg_ServerEmpty">
+    <value>Selecteer een server</value>
+    <comment>The error message displayed in Profile window when server is not selected</comment>
+  </data>
+  <data name="Profiles_Profile_ExitCountry_Watermark">
+    <value>Selecteer het uitgaande land</value>
+    <comment>The watermark text displayed in empty Exit Country combo box in Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_Name_Watermark">
+    <value>Vul Profielnaam in</value>
+    <comment>Thw watermark text displayed in empty Name text box of Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_Name_val_Fastest">
+    <value>Snelste</value>
+    <comment>The name of Fastest profile</comment>
+  </data>
+  <data name="Profiles_Profile_Name_val_Random">
+    <value>Willekeurig</value>
+    <comment>The name of Random profile</comment>
+  </data>
+  <data name="Profiles_Profile_btn_Discard">
+    <value>Weggooien</value>
+    <comment>The text on Discard button of discard changes Question dialog opened from Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_btn_KeepEditing">
+    <value>Doorgaan met bewerken</value>
+    <comment>The text on Keep Editing button of discard changes Question dialog opened from Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_lbl_Color">
+    <value>Kleur:</value>
+    <comment>The label for Color selection in Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_lbl_Country">
+    <value>Land:</value>
+    <comment>The label for Country combo box in Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_lbl_Country_Watermark">
+    <value>Selecteer land</value>
+    <comment>The watermark text displayed in empty Country combo box in Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_lbl_ExitCountry">
+    <value>Uitgaande Land:</value>
+    <comment>The label for Exit Country combo box in Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_lbl_Name">
+    <value>Naam:</value>
+    <comment>The label for Name text box in Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_lbl_Protocol">
+    <value>Protocol:</value>
+    <comment>The label for Protocol combo box in Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_lbl_Server">
+    <value>Server:</value>
+    <comment>The label for Server combo box in Profiles window</comment>
+  </data>
+  <data name="Profiles_Profile_lbl_Server_Watermark">
+    <value>Selecteer server</value>
+    <comment>The watermark text displayed in empty Server combo box in Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_msg_DiscardChangesConfirm">
+    <value>Er zijn niet opgeslagen profielwijzigingen.&lt;LineBreak/&gt;&lt;LineBreak/&gt;Weet u zeker dat u deze wilt verwijderen?</value>
+    <comment>The message displayed in Question dialog when cancelling changes in Profile window.</comment>
+  </data>
+  <data name="Profiles_Profile_ttl_Create">
+    <value>Profiel aanmaken</value>
+    <comment>The title of Profile window when creating new profile</comment>
+  </data>
+  <data name="Profiles_Profile_ttl_Edit">
+    <value>Profiel Aanpassen</value>
+    <comment>The title of Profile window when editing profile</comment>
+  </data>
   <data name="Profiles_btn_Close">
     <value>Sluiten</value>
     <comment>The text on Close button in Profiles window</comment>
@@ -2265,147 +2405,9 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <value>Er zijn momenteel geen servers beschikbaar voor uw selectie. Selecteer een andere optie.</value>
     <comment>The message displayed when trying to connect to a country or profile with no servers available</comment>
   </data>
-  <data name="Profiles_Profile_btn_Discard">
-    <value>Weggooien</value>
-    <comment>The text on Discard button of discard changes Question dialog opened from Profile window</comment>
-  </data>
-  <data name="Profiles_Profile_btn_KeepEditing">
-    <value>Doorgaan met bewerken</value>
-    <comment>The text on Keep Editing button of discard changes Question dialog opened from Profile window</comment>
-  </data>
-  <data name="Profiles_Profile_Description_val_Fastest">
-    <value>Snelste beschikbare server</value>
-    <comment>The description of Fastest default profile displayed in Profiles window</comment>
-  </data>
-  <data name="Profiles_Profile_Description_val_Random">
-    <value>Telkens een andere server</value>
-    <comment>The description of Random default profile displayed in Profiles window</comment>
-  </data>
-  <data name="Profiles_Profile_Error_lbl_NotValid">
-    <value>Profiel kan niet worden opgeslagen:</value>
-    <comment>The heading for list of validation errors in Profile window</comment>
-  </data>
-  <data name="Profiles_Profile_Error_msg_ColorEmpty">
-    <value>Kies een kleur</value>
-    <comment>The error message displayed in Profile window when color is not selected</comment>
-  </data>
-  <data name="Profiles_Profile_Error_msg_CountryEmpty">
-    <value>Kies een land</value>
-    <comment>The error message displayed in Profile window when country is not selected</comment>
-  </data>
-  <data name="Profiles_Profile_Error_msg_NameEmpty">
-    <value>Selecteer een profielnaam</value>
-    <comment>The error message displayed in Profile window when profile name is empty</comment>
-  </data>
-  <data name="Profiles_Profile_Error_msg_NameExists">
-    <value>Deze naam bestaat al</value>
-    <comment>The error message displayed in Profile window when profile name is already used by another profile</comment>
-  </data>
-  <data name="Profiles_Profile_Error_msg_NameTooLong_One">
-    <value>Maximale lengte is {0} teken. Kies een kortere profielnaam.</value>
-  </data>
-  <data name="Profiles_Profile_Error_msg_NameTooLong_Other">
-    <value>Maximale lengte is {0} tekens. Kies een kortere profielnaam.</value>
-  </data>
-  <data name="Profiles_Profile_Error_msg_ServerEmpty">
-    <value>Selecteer een server</value>
-    <comment>The error message displayed in Profile window when server is not selected</comment>
-  </data>
-  <data name="Profiles_Profile_ExitCountry_Watermark">
-    <value>Selecteer het uitgaande land</value>
-    <comment>The watermark text displayed in empty Exit Country combo box in Profile window</comment>
-  </data>
-  <data name="Profiles_Profile_lbl_Color">
-    <value>Kleur:</value>
-    <comment>The label for Color selection in Profile window</comment>
-  </data>
-  <data name="Profiles_Profile_lbl_Country">
-    <value>Land:</value>
-    <comment>The label for Country combo box in Profile window</comment>
-  </data>
-  <data name="Profiles_Profile_lbl_Country_Watermark">
-    <value>Selecteer land</value>
-    <comment>The watermark text displayed in empty Country combo box in Profile window</comment>
-  </data>
-  <data name="Profiles_Profile_lbl_ExitCountry">
-    <value>Uitgaande Land:</value>
-    <comment>The label for Exit Country combo box in Profile window</comment>
-  </data>
-  <data name="Profiles_Profile_lbl_Name">
-    <value>Naam:</value>
-    <comment>The label for Name text box in Profile window</comment>
-  </data>
-  <data name="Profiles_Profile_lbl_Protocol">
-    <value>Protocol:</value>
-    <comment>The label for Protocol combo box in Profile window</comment>
-  </data>
-  <data name="Profiles_Profile_lbl_Server">
-    <value>Server:</value>
-    <comment>The label for Server combo box in Profiles window</comment>
-  </data>
-  <data name="Profiles_Profile_lbl_Server_Watermark">
-    <value>Selecteer server</value>
-    <comment>The watermark text displayed in empty Server combo box in Profile window</comment>
-  </data>
-  <data name="Profiles_Profile_msg_DiscardChangesConfirm">
-    <value>Er zijn niet opgeslagen profielwijzigingen.&lt;LineBreak/&gt;&lt;LineBreak/&gt;Weet u zeker dat u deze wilt verwijderen?</value>
-    <comment>The message displayed in Question dialog when cancelling changes in Profile window.</comment>
-  </data>
-  <data name="Profiles_Profile_Name_val_Fastest">
-    <value>Snelste</value>
-    <comment>The name of Fastest profile</comment>
-  </data>
-  <data name="Profiles_Profile_Name_val_Random">
-    <value>Willekeurig</value>
-    <comment>The name of Random profile</comment>
-  </data>
-  <data name="Profiles_Profile_Name_Watermark">
-    <value>Vul Profielnaam in</value>
-    <comment>Thw watermark text displayed in empty Name text box of Profile window</comment>
-  </data>
-  <data name="Profiles_Profile_ttl_Create">
-    <value>Profiel aanmaken</value>
-    <comment>The title of Profile window when creating new profile</comment>
-  </data>
-  <data name="Profiles_Profile_ttl_Edit">
-    <value>Profiel Aanpassen</value>
-    <comment>The title of Profile window when editing profile</comment>
-  </data>
   <data name="Profiles_ttl">
     <value>Profielen</value>
     <comment>The title of Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Failed">
-    <value>Mislukt</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Failed_Info">
-    <value>Profielsynchronisatie is mislukt</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_InProgress">
-    <value>Synchroniseren</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_InProgress_Info">
-    <value>Profielen synchroniseren</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Overridden">
-    <value>Overschreven</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded">
-    <value>Gesynchroniseerd</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded_Info">
-    <value>Profielwijzigingen {0} {1} geleden gesynchroniseerd</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window. The {0} is a placeholder for number of time units, {1} - time units.</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded_Info_NoData">
-    <value>Geen profielwijzigingen om te synchroniseren</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
   </data>
   <data name="PromoCode_btn_Apply">
     <value>Apply</value>
@@ -2496,17 +2498,21 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
   <data name="SecureCore">
     <value>Secure Core</value>
   </data>
-  <data name="Servers_btn_Connect">
-    <value>Verbinden</value>
-    <comment>The text on Connect button in Server list in Countries tab of Sidebar in main app window (connects to the VPN server)</comment>
+  <data name="ServerType_val_None">
+    <value>Standaard</value>
+    <comment>The server type in Profile window</comment>
   </data>
-  <data name="Servers_btn_Disconnect">
-    <value>Verbreken</value>
-    <comment>The text on Disconnect button in Server list in Countries tab of Sidebar in main app window (disconnects from the VPN server)</comment>
+  <data name="ServerType_val_P2P">
+    <value>P2P</value>
+    <comment>The server type in Profile window</comment>
   </data>
-  <data name="Servers_btn_Upgrade">
-    <value>Upgrade</value>
-    <comment>The text on Upgrade button in Server list in Countries tab of Sidebar in main app window (opens Upgrade Required Upsell window)</comment>
+  <data name="ServerType_val_SecureCore">
+    <value>Secure Core</value>
+    <comment>The server type in Profile window</comment>
+  </data>
+  <data name="ServerType_val_Tor">
+    <value>Tor</value>
+    <comment>The server type in Profile window</comment>
   </data>
   <data name="Servers_Feature_val_P2P">
     <value>P2P-server</value>
@@ -2526,14 +2532,6 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
   <data name="Servers_Feature_val_Tor">
     <value>Tor-Server</value>
     <comment>The name of Tor server feature</comment>
-  </data>
-  <data name="Servers_lbl_Upgrade">
-    <value>Upgrade</value>
-    <comment>The label displayed next to server name in Server list in Countries tab of Sidebar in main app window</comment>
-  </data>
-  <data name="Servers_lbl_ViaCountry">
-    <value>via</value>
-    <comment>The label displayed before entry country name in Server list of Countries tab of Sidebar section of main app window when Secure Core mode is enabled</comment>
   </data>
   <data name="Servers_Load_lbl_IP">
     <value>Server IP:</value>
@@ -2563,6 +2561,26 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <value>Via {0} naar {1}</value>
     <comment>The heading of Secure Core server info displayed in Server Load popup. The {0} is a placeholder for entry country, {1} - exit country. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
   </data>
+  <data name="Servers_btn_Connect">
+    <value>Verbinden</value>
+    <comment>The text on Connect button in Server list in Countries tab of Sidebar in main app window (connects to the VPN server)</comment>
+  </data>
+  <data name="Servers_btn_Disconnect">
+    <value>Verbreken</value>
+    <comment>The text on Disconnect button in Server list in Countries tab of Sidebar in main app window (disconnects from the VPN server)</comment>
+  </data>
+  <data name="Servers_btn_Upgrade">
+    <value>Upgrade</value>
+    <comment>The text on Upgrade button in Server list in Countries tab of Sidebar in main app window (opens Upgrade Required Upsell window)</comment>
+  </data>
+  <data name="Servers_lbl_Upgrade">
+    <value>Upgrade</value>
+    <comment>The label displayed next to server name in Server list in Countries tab of Sidebar in main app window</comment>
+  </data>
+  <data name="Servers_lbl_ViaCountry">
+    <value>via</value>
+    <comment>The label displayed before entry country name in Server list of Countries tab of Sidebar section of main app window when Secure Core mode is enabled</comment>
+  </data>
   <data name="Servers_msg_CantConnect_CertificateExpired">
     <value>Proton VPN was niet in staat om het authenticatiecertificaat van de klant te vernieuwen.</value>
   </data>
@@ -2578,26 +2596,35 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <value>Proton VPN kan geen verbinding maken omdat de RPC server niet beschikbaar is op uw systeem. &lt;Hyperlink Command="{Binding OpenRpcServerUrlCommand}"&gt;Bekijk mogelijke oplossingen&lt;/Hyperlink&gt;</value>
   </data>
   <data name="Servers_msg_MissingServerPublicKey">
-    <value>Helaas ondersteunt deze server WireGuard niet.</value>
+    <value>Unfortunately, this server does not support WireGuard.</value>
   </data>
-  <data name="ServerType_val_None">
-    <value>Standaard</value>
-    <comment>The server type in Profile window</comment>
+  <data name="Settings_Advanced_SplitTunnel_btn_AddApp">
+    <value>App toevoegen</value>
+    <comment>The text on Add App button in Settings window Advanced tab Split Tunneling section (opens a window for selecting custom app to add)</comment>
   </data>
-  <data name="ServerType_val_P2P">
-    <value>P2P</value>
-    <comment>The server type in Profile window</comment>
+  <data name="Settings_Advanced_SplitTunnel_lbl_Apps">
+    <value>APPS:</value>
+    <comment>The label for application list in Settings window Advanced tab Split Tunneling section</comment>
   </data>
-  <data name="ServerType_val_SecureCore">
-    <value>Secure Core</value>
-    <comment>The server type in Profile window</comment>
+  <data name="Settings_Advanced_SplitTunnel_lbl_Exclude">
+    <value>Apps/IP's uitsluiten van het gebruik van de VPN</value>
+    <comment>The label of Split Tunnel mode in Split Tunneling section of Advanced tab of Settings window</comment>
   </data>
-  <data name="ServerType_val_Tor">
-    <value>Tor</value>
-    <comment>The server type in Profile window</comment>
+  <data name="Settings_Advanced_SplitTunnel_lbl_Include">
+    <value>Alleen gekozen apps/IP-adressen maken gebruik van de VPN</value>
+    <comment>The label of Split Tunnel mode in Split Tunneling section of Advanced tab of Settings window</comment>
   </data>
-  <data name="Settings_Advanced_lbl_btn_LearnMore">
-    <value>Meer informatie</value>
+  <data name="Settings_Advanced_SplitTunnel_lbl_Ip">
+    <value>IP:</value>
+    <comment>The label for IP address list in Settings window Advanced tab Split Tunneling section</comment>
+  </data>
+  <data name="Settings_Advanced_SplitTunnel_lbl_Ip_Watermark">
+    <value>IPv4 adres toevoegen</value>
+    <comment>The watermark text of empty text box for entering IPv4 address in Split Tunneling section of Advanced tab in Settings window</comment>
+  </data>
+  <data name="Settings_Advanced_SplitTunnel_msg_IpInvalid">
+    <value>IP-adres niet geldig</value>
+    <comment>The error message displayed in a tooltip of IP text box in SplitTunneling section of Advanced tab of Settings window when IP address is not valid</comment>
   </data>
   <data name="Settings_Advanced_lbl_DnsLeakProtection">
     <value>DNS-lekbescherming</value>
@@ -2654,10 +2681,6 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
   <data name="Settings_Advanced_lbl_PortForwarding">
     <value>Port forwarding</value>
   </data>
-  <data name="Settings_Advanced_lbl_PortForwarding_Info">
-    <value>Versnel je torrenting en online gokken door het mogelijk te maken dat ondersteunde lokale apps bereikbaar zijn vanaf internet. &lt;Hyperlink Command="{Binding LearnMoreAboutPortForwardingCommand}"&gt;Meer informatie&lt;/Hyperlink&gt;</value>
-    <comment>Do not translate whatever is between &lt; and &gt;. Do not forget to translate the "Learn more".</comment>
-  </data>
   <data name="Settings_Advanced_lbl_PortForwardingInQuickSettings">
     <value>Port forwarding sneltoets</value>
   </data>
@@ -2670,6 +2693,10 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
   <data name="Settings_Advanced_lbl_PortForwardingNotifications_Info">
     <value>Krijg meldingen wanneer het Port forwarding nummer wijzigt</value>
   </data>
+  <data name="Settings_Advanced_lbl_PortForwarding_Info">
+    <value>Versnel je torrenting en online gokken door het mogelijk te maken dat ondersteunde lokale apps bereikbaar zijn vanaf internet. &lt;Hyperlink Command="{Binding LearnMoreAboutPortForwardingCommand}"&gt;Meer informatie&lt;/Hyperlink&gt;</value>
+    <comment>Do not translate whatever is between &lt; and &gt;. Do not forget to translate the "Learn more".</comment>
+  </data>
   <data name="Settings_Advanced_lbl_SplitTunnel">
     <value>Split Tunneling</value>
     <comment>The label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
@@ -2678,41 +2705,12 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <value>Een applicatie of een IP-adres uit VPN-verkeer uitsluiten of alleen specifieke apps opnemen. Kan niet samen met de Kill Switch gebruikt worden.</value>
     <comment>The description of Split Tunneling setting displayed in the tooltip of ( i ) image next to the label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
   </data>
-  <data name="Settings_Advanced_SplitTunnel_btn_AddApp">
-    <value>App toevoegen</value>
-    <comment>The text on Add App button in Settings window Advanced tab Split Tunneling section (opens a window for selecting custom app to add)</comment>
-  </data>
-  <data name="Settings_Advanced_SplitTunnel_lbl_Apps">
-    <value>APPS:</value>
-    <comment>The label for application list in Settings window Advanced tab Split Tunneling section</comment>
-  </data>
-  <data name="Settings_Advanced_SplitTunnel_lbl_Exclude">
-    <value>Apps/IP's uitsluiten van het gebruik van de VPN</value>
-    <comment>The label of Split Tunnel mode in Split Tunneling section of Advanced tab of Settings window</comment>
-  </data>
-  <data name="Settings_Advanced_SplitTunnel_lbl_Include">
-    <value>Alleen gekozen apps/IP-adressen maken gebruik van de VPN</value>
-    <comment>The label of Split Tunnel mode in Split Tunneling section of Advanced tab of Settings window</comment>
-  </data>
-  <data name="Settings_Advanced_SplitTunnel_lbl_Ip">
-    <value>IP:</value>
-    <comment>The label for IP address list in Settings window Advanced tab Split Tunneling section</comment>
-  </data>
-  <data name="Settings_Advanced_SplitTunnel_lbl_Ip_Watermark">
-    <value>IPv4 adres toevoegen</value>
-    <comment>The watermark text of empty text box for entering IPv4 address in Split Tunneling section of Advanced tab in Settings window</comment>
-  </data>
-  <data name="Settings_Advanced_SplitTunnel_msg_IpInvalid">
-    <value>IP-adres niet geldig</value>
-    <comment>The error message displayed in a tooltip of IP text box in SplitTunneling section of Advanced tab of Settings window when IP address is not valid</comment>
+  <data name="Settings_Advanced_lbl_btn_LearnMore">
+    <value>Meer informatie</value>
   </data>
   <data name="Settings_Advanced_ttl">
     <value>Geavanceerd</value>
     <comment>The header of Advanced tab in Settings window</comment>
-  </data>
-  <data name="Settings_Connection_btn_Upgrade">
-    <value>Upgraden</value>
-    <comment>The text on Upgrade button in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_DefaultProtocol_val_Smart">
     <value>Smart (voorgesteld)</value>
@@ -2729,6 +2727,14 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
   <data name="Settings_Connection_DefaultProtocol_val_WireGuard">
     <value>WireGuard</value>
     <comment>The WireGuard protocol name displayed in the Protocol combo box in Connection tab of Settings window. Do not translate.</comment>
+  </data>
+  <data name="Settings_Connection_Warning_CustomDnsServer">
+    <value>Met behulp van aangepaste DNS-servers zal NetShield worden uitgeschakeld. DNS-servers zijn verantwoordelijk voor u te verbinden met de juiste websites. &lt;LineBreak/&gt;&lt;LineBreak/&gt;Gebruik alleen DNS-servers die je vertrouwt. Wilt u aangepaste DNS-servers inschakelen?</value>
+    <comment>The text displayed in Custom DNS Servers warning modal window when use is trying to turn the feature ON when NetShield feature is turned on as well</comment>
+  </data>
+  <data name="Settings_Connection_btn_Upgrade">
+    <value>Upgraden</value>
+    <comment>The text on Upgrade button in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_CustomDnsServer">
     <value>Aangepaste DNS Servers</value>
@@ -2764,10 +2770,6 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <value>Automatisch opnieuw verbinden</value>
     <comment>The label for Auto Reconnect toggle switch in Settings window</comment>
   </data>
-  <data name="Settings_Connection_lbl_SmartReconnect_Info">
-    <value>Automatisch overschakelen naar een snellere server vergelijkbaar met degene die u hebt geselecteerd.</value>
-    <comment>The description of Auto Reconnect setting displayed in the tooltip of the ( i ) image next to the label in Settings window</comment>
-  </data>
   <data name="Settings_Connection_lbl_SmartReconnectNotifications">
     <value>Melding heraansluiting</value>
     <comment>The label for Smart Reconnect notifications toggle switch in the General tab of Settings window</comment>
@@ -2775,6 +2777,10 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
   <data name="Settings_Connection_lbl_SmartReconnectNotifications_Info">
     <value>Zet dit aan om meldingen te ontvangen wanneer VPN Accelerator u met een snellere server verbindt.</value>
     <comment>The description of the Smart Reconnect notifications setting displayed in the tooltip of the ( i ) image next to the label</comment>
+  </data>
+  <data name="Settings_Connection_lbl_SmartReconnect_Info">
+    <value>Automatisch overschakelen naar een snellere server vergelijkbaar met degene die u hebt geselecteerd.</value>
+    <comment>The description of Auto Reconnect setting displayed in the tooltip of the ( i ) image next to the label in Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_VpnAccelerator">
     <value>VPN Accelerator</value>
@@ -2787,10 +2793,6 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
   <data name="Settings_Connection_ttl">
     <value>Verbinding</value>
     <comment>The title of Connection tab of Settings window</comment>
-  </data>
-  <data name="Settings_Connection_Warning_CustomDnsServer">
-    <value>Met behulp van aangepaste DNS-servers zal NetShield worden uitgeschakeld. DNS-servers zijn verantwoordelijk voor u te verbinden met de juiste websites. &lt;LineBreak/&gt;&lt;LineBreak/&gt;Gebruik alleen DNS-servers die je vertrouwt. Wilt u aangepaste DNS-servers inschakelen?</value>
-    <comment>The text displayed in Custom DNS Servers warning modal window when use is trying to turn the feature ON when NetShield feature is turned on as well</comment>
   </data>
   <data name="Settings_General_lbl_ConnectOnAppStart">
     <value>Verbinden wanneer app start</value>
@@ -2841,6 +2843,14 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Instellingen</value>
     <comment>The title of Settings window</comment>
   </data>
+  <data name="SidebarProfiles_lbl_MyProfiles">
+    <value>My Profiles</value>
+    <comment>The text of "My Profiles" category text in the Profile sidebar, that has the custom created profiles below</comment>
+  </data>
+  <data name="SidebarProfiles_lbl_Recommended">
+    <value>Aanbevolen</value>
+    <comment>The text of "Recommended" category text in the Profile sidebar, that has the predefined profiles below</comment>
+  </data>
   <data name="Sidebar_Connection_btn_Connect">
     <value>Snel Verbinden</value>
     <comment>The text on Quick Connect button in Connection section of Sidebar section of main app window (connects to VPN using Quick Connect profile)</comment>
@@ -2885,6 +2895,21 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   <data name="Sidebar_Countries_FreeLocationCount">
     <value>GRATIS locaties ({0})</value>
   </data>
+  <data name="Sidebar_Countries_PlusLocationCount">
+    <value>PLUS locaties ({0})</value>
+  </data>
+  <data name="Sidebar_Countries_ServerCountByTier0">
+    <value>GRATIS servers ({0})</value>
+  </data>
+  <data name="Sidebar_Countries_ServerCountByTier1">
+    <value>BASIC-servers ({0})</value>
+  </data>
+  <data name="Sidebar_Countries_ServerCountByTier2">
+    <value>Plus servers ({0})</value>
+  </data>
+  <data name="Sidebar_Countries_ServerCountByTier3">
+    <value>INTERNE servers</value>
+  </data>
   <data name="Sidebar_Countries_info_SmartRouting">
     <value>Slimme routering</value>
   </data>
@@ -2911,21 +2936,6 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   <data name="Sidebar_Countries_msg_SecureCoreEnableConfirm">
     <value>Veranderen naar Secure Core modus zal de huidige VPN-verbinding verbreken. Wilt u doorgaan?</value>
     <comment>The confirmation message displayed when switching on Secure Core toggle switch in Countries tab of Sidebar section of main app window while connected to VPN</comment>
-  </data>
-  <data name="Sidebar_Countries_PlusLocationCount">
-    <value>PLUS locaties ({0})</value>
-  </data>
-  <data name="Sidebar_Countries_ServerCountByTier0">
-    <value>GRATIS servers ({0})</value>
-  </data>
-  <data name="Sidebar_Countries_ServerCountByTier1">
-    <value>BASIC-servers ({0})</value>
-  </data>
-  <data name="Sidebar_Countries_ServerCountByTier2">
-    <value>Plus servers ({0})</value>
-  </data>
-  <data name="Sidebar_Countries_ServerCountByTier3">
-    <value>INTERNE servers</value>
   </data>
   <data name="Sidebar_Countries_ttl">
     <value>Landen</value>
@@ -3002,14 +3012,6 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   <data name="Sidebar_Streaming_More">
     <value>en meer</value>
   </data>
-  <data name="SidebarProfiles_lbl_MyProfiles">
-    <value>My Profiles</value>
-    <comment>The text of "My Profiles" category text in the Profile sidebar, that has the custom created profiles below</comment>
-  </data>
-  <data name="SidebarProfiles_lbl_Recommended">
-    <value>Aanbevolen</value>
-    <comment>The text of "Recommended" category text in the Profile sidebar, that has the predefined profiles below</comment>
-  </data>
   <data name="StartMinimizedMode_val_Disabled">
     <value>Uitgeschakeld</value>
     <comment>The name of start minimized mode displayed in Start Minimized combo box in General tab of Settings window</comment>
@@ -3044,10 +3046,6 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   <data name="TimeUnit_val_Minute_Other">
     <value>minuten</value>
   </data>
-  <data name="Tooltips_SmartReconnection_btn_NotificationSettings">
-    <value>Notificatie Instellingen</value>
-    <comment>The text button of the Auto Reconnection tooltip that opens the Notification Settings</comment>
-  </data>
   <data name="Tooltips_SmartReconnection_Description">
     <value>U bent overgestapt naar een snellere server die lijkt op de server die u heeft geselecteerd.</value>
     <comment>The description of the Auto Reconnection tooltip</comment>
@@ -3056,9 +3054,9 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>VPN Accelerator</value>
     <comment>The title of the Auto Reconnection tooltip</comment>
   </data>
-  <data name="Upsell_btn_Upgrade">
-    <value>Upgrade</value>
-    <comment>The text on Upgrade button in Upgrade Required Upsell window (opens web page for subscription plan upgrade)</comment>
+  <data name="Tooltips_SmartReconnection_btn_NotificationSettings">
+    <value>Notificatie Instellingen</value>
+    <comment>The text button of the Auto Reconnection tooltip that opens the Notification Settings</comment>
   </data>
   <data name="Upsell_Countries_BlockAds">
     <value>Blokkeer advertenties en malware met NetShield</value>
@@ -3150,6 +3148,10 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   </data>
   <data name="Upsell_SecureCore_Title">
     <value>Verdubbel de encryptie met Secure Core</value>
+  </data>
+  <data name="Upsell_btn_Upgrade">
+    <value>Upgrade</value>
+    <comment>The text on Upgrade button in Upgrade Required Upsell window (opens web page for subscription plan upgrade)</comment>
   </data>
   <data name="VpnPlan_val_Free">
     <value>Proton VPN Free</value>

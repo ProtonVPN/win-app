@@ -26,7 +26,6 @@ using NSubstitute;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Servers;
 using ProtonVPN.Common.Logging;
-using ProtonVPN.Core.Abstract;
 using ProtonVPN.Core.Settings;
 using RichardSzalay.MockHttp;
 
@@ -36,9 +35,9 @@ namespace ProtonVPN.Api.Tests
     public class ApiClientTest
     {
         private ILogger _logger;
-        private ITokenStorage _tokenStorage;
+        private IAppSettings _appSettings;
         private IApiAppVersion _appVersion;
-        private IHttpClientFactory _httpClientFactory;
+        private IApiHttpClientFactory _apiHttpClientFactory;
         private IApiClient _apiClient;
         private readonly MockHttpMessageHandler _fakeHttpMessageHandler = new();
         private IAppLanguageCache _appLanguageCache;
@@ -53,18 +52,19 @@ namespace ProtonVPN.Api.Tests
             _appVersion.Value().Returns(string.Empty);
             _appVersion.UserAgent().Returns("User agent");
 
-            _tokenStorage = Substitute.For<ITokenStorage>();
-            _tokenStorage.AccessToken.Returns(string.Empty);
-            _tokenStorage.Uid.Returns(string.Empty);
+            _appSettings = Substitute.For<IAppSettings>();
+            _appSettings.AccessToken.Returns(string.Empty);
+            _appSettings.Uid.Returns(string.Empty);
 
             HttpClient httpClient = _fakeHttpMessageHandler.ToHttpClient();
             httpClient.BaseAddress = new("http://127.0.0.1");
 
-            _httpClientFactory = Substitute.For<IHttpClientFactory>();
-            _httpClientFactory.GetApiHttpClientWithoutCache().Returns(httpClient);
-            _httpClientFactory.GetApiHttpClientWithCache().Returns(httpClient);
+            _apiHttpClientFactory = Substitute.For<IApiHttpClientFactory>();
+            _apiHttpClientFactory.GetApiHttpClientWithoutCache().Returns(httpClient);
+            _apiHttpClientFactory.GetApiHttpClientWithCache().Returns(httpClient);
 
-            _apiClient = new ApiClient(_httpClientFactory, _logger, _tokenStorage, _appVersion, _appLanguageCache, new Common.Configuration.Config());
+            _apiClient = new ApiClient(_apiHttpClientFactory, _logger, _appSettings, _appVersion, _appLanguageCache,
+                new Common.Configuration.Config());
         }
 
         [TestMethod]

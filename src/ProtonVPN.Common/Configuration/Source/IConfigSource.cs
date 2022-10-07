@@ -19,7 +19,7 @@
 
 namespace ProtonVPN.Common.Configuration.Source
 {
-    internal interface IConfigSource
+    public interface IConfigSource
     {
         Config Value();
     }

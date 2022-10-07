@@ -29,7 +29,6 @@ using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.UserLogs;
 using ProtonVPN.Common.OS.Net.Http;
 using ProtonVPN.Common.Threading;
-using ProtonVPN.Core.Abstract;
 using ProtonVPN.Core.Settings;
 
 namespace ProtonVPN.Api.Handlers
@@ -41,7 +40,7 @@ namespace ProtonVPN.Api.Handlers
     public class UnauthorizedResponseHandler : DelegatingHandler
     {
         private readonly ITokenClient _tokenClient;
-        private readonly ITokenStorage _tokenStorage;
+        private readonly IAppSettings _appSettings;
         private readonly IUserStorage _userStorage;
 
         private readonly ILogger _logger;
@@ -50,18 +49,15 @@ namespace ProtonVPN.Api.Handlers
         public event EventHandler SessionExpired;
 
         public UnauthorizedResponseHandler(
-            HumanVerificationHandlerBase humanVerificationHandler,
             ITokenClient tokenClient,
-            ITokenStorage tokenStorage,
+            IAppSettings appSettings,
             IUserStorage userStorage,
             ILogger logger)
         {
             _tokenClient = tokenClient;
-            _tokenStorage = tokenStorage;
+            _appSettings = appSettings;
             _userStorage = userStorage;
             _logger = logger;
-
-            InnerHandler = humanVerificationHandler;
         }
 
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request,
@@ -81,7 +77,7 @@ namespace ProtonVPN.Api.Handlers
             }
 
             HttpResponseMessage response = await base.SendAsync(request, cancellationToken);
-            if (response.StatusCode == HttpStatusCode.Unauthorized && !_userStorage.User().Empty())
+            if (response.StatusCode == HttpStatusCode.Unauthorized && !_userStorage.GetUser().Empty())
             {
                 try
                 {
@@ -134,7 +130,7 @@ namespace ProtonVPN.Api.Handlers
 
         private async Task<RefreshTokenStatus> RefreshTokens(CancellationToken cancellationToken)
         {
-            if (string.IsNullOrEmpty(_tokenStorage.RefreshToken) || string.IsNullOrEmpty(_tokenStorage.Uid))
+            if (string.IsNullOrEmpty(_appSettings.RefreshToken) || string.IsNullOrEmpty(_appSettings.Uid))
             {
                 return RefreshTokenStatus.Unauthorized;
             }
@@ -146,8 +142,8 @@ namespace ProtonVPN.Api.Handlers
 
                 if (response.Success)
                 {
-                    _tokenStorage.AccessToken = response.Value.AccessToken;
-                    _tokenStorage.RefreshToken = response.Value.RefreshToken;
+                    _appSettings.AccessToken = response.Value.AccessToken;
+                    _appSettings.RefreshToken = response.Value.RefreshToken;
 
                     return RefreshTokenStatus.Success;
                 }
@@ -156,7 +152,7 @@ namespace ProtonVPN.Api.Handlers
             {
                 _logger.Error<UserLog>($"An error occurred when refreshing the auth token: {e.ParamName}");
             }
-            catch (HttpRequestException)
+            catch (Exception)
             {
                 return RefreshTokenStatus.Fail;
             }
@@ -166,7 +162,7 @@ namespace ProtonVPN.Api.Handlers
 
         private void PrepareRequest(HttpRequestMessage request)
         {
-            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", _tokenStorage.AccessToken);
+            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", _appSettings.AccessToken);
         }
     }
 }

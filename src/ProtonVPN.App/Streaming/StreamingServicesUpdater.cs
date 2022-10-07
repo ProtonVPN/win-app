@@ -86,7 +86,7 @@ namespace ProtonVPN.Streaming
                     NotifyFromCache();
                 }
             }
-            catch (HttpRequestException)
+            catch
             {
                 NotifyFromCache();
             }

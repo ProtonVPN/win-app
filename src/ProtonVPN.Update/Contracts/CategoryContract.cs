@@ -21,7 +21,7 @@ using System.Collections.Generic;
 
 namespace ProtonVPN.Update.Contracts
 {
-    internal class CategoryContract
+    public class CategoryContract
     {
         public string Name;
 

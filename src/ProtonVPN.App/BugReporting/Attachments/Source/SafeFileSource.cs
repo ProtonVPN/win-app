@@ -28,7 +28,7 @@ using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
 
 namespace ProtonVPN.BugReporting.Attachments.Source
 {
-    internal class SafeFileSource : IEnumerable<string>
+    public class SafeFileSource : IEnumerable<string>
     {
         private readonly ILogger _logger;
         private readonly IEnumerable<string> _origin;

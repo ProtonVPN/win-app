@@ -64,8 +64,9 @@ using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Startup;
 using ProtonVPN.Core.Update;
-using ProtonVPN.Core.User;
+using ProtonVPN.Core.Users;
 using ProtonVPN.Core.Vpn;
+using ProtonVPN.Dns.Installers;
 using ProtonVPN.ErrorHandling;
 using ProtonVPN.HumanVerification.Installers;
 using ProtonVPN.Login;
@@ -120,7 +121,8 @@ namespace ProtonVPN.Core
                 .RegisterModule<ProfilesModule>()
                 .RegisterModule<UpdateModule>()
                 .RegisterAssemblyModules<HumanVerificationModule>(typeof(HumanVerificationModule).Assembly)
-                .RegisterAssemblyModules<ApiModule>(typeof(ApiModule).Assembly);
+                .RegisterAssemblyModules<ApiModule>(typeof(ApiModule).Assembly)
+                .RegisterAssemblyModules<DnsModule>(typeof(DnsModule).Assembly);
 
             new ProtonVPN.Update.Config.Module().Load(builder);
 
@@ -159,7 +161,7 @@ namespace ProtonVPN.Core
             await Resolve<IReportAnIssueFormDataProvider>().FetchData();
             await StartVpnService();
 
-            if (Resolve<IUserStorage>().User().Empty() || !await IsUserValid() || await SessionExpired())
+            if (Resolve<IUserStorage>().GetUser().Empty() || !await IsUserValid() || await SessionExpired())
             {
                 ShowLoginForm();
                 return;
@@ -177,7 +179,7 @@ namespace ProtonVPN.Core
 
         private async Task<bool> SessionExpired()
         {
-            if (string.IsNullOrEmpty(Resolve<ITokenStorage>().AccessToken))
+            if (string.IsNullOrEmpty(Resolve<IAppSettings>().AccessToken))
             {
                 return true;
             }
@@ -187,7 +189,7 @@ namespace ProtonVPN.Core
                 ApiResponseResult<VpnInfoWrapperResponse> result = await Resolve<UserAuth>().RefreshVpnInfoAsync();
                 return result.Failure;
             }
-            catch (HttpRequestException)
+            catch
             {
                 return false;
             }
@@ -225,7 +227,7 @@ namespace ProtonVPN.Core
                     return false;
                 }
             }
-            catch (HttpRequestException ex)
+            catch (Exception ex)
             {
                 loginViewModel.HandleAuthFailure(AuthResult.Fail(ex.Message));
                 ShowLoginForm();
@@ -492,7 +494,7 @@ namespace ProtonVPN.Core
             {
                 Resolve<IApiClient>().CheckAuthenticationServerStatusAsync().IgnoreExceptions();
             }
-            catch (HttpRequestException e)
+            catch (Exception e)
             {
                 Resolve<ILogger>().Error<AppLog>("The app failed to check auth server status.", e);
             }

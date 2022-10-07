@@ -21,7 +21,7 @@ using System.Collections.ObjectModel;
 
 namespace ProtonVPN.Servers
 {
-    internal interface IServerCollection : IServerListItem
+    public interface IServerCollection : IServerListItem
     {
         bool Connected { get; }
 

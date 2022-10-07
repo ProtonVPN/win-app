@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<DOCUMENT Type="Advanced Installer" CreateVersion="13.3" version="19.3" Modules="professional" RootPath="." Language="en" Id="{C8285BB8-B654-4FB0-A58E-4B4B320D8D29}">
+<DOCUMENT Type="Advanced Installer" CreateVersion="13.3" version="19.7.1" Modules="professional" RootPath="." Language="en" Id="{C8285BB8-B654-4FB0-A58E-4B4B320D8D29}">
   <COMPONENT cid="caphyon.advinst.msicomp.ProjectOptionsComponent">
-    <ROW Name="HiddenItems" Value="ActSyncAppComponent;AutorunComponent;CPLAppletComponent;GameUxComponent;SilverlightSlnComponent;AppXAppDetailsComponent;FixupComponent;AppXCapabilitiesComponent;AppXDependenciesComponent;AppXProductDetailsComponent;AppXVisualAssetsComponent;AppXAppDeclarationsComponent;AppXUriRulesComponent;MsiXDiffComponent;MsixManifestEditorComponent"/>
+    <ROW Name="HiddenItems" Value="ActSyncAppComponent;CPLAppletComponent;AppXAppDetailsComponent;FixupComponent;AppXCapabilitiesComponent;AppXDependenciesComponent;AppXProductDetailsComponent;AppXVisualAssetsComponent;AppXAppDeclarationsComponent;AppXUriRulesComponent;MsiXDiffComponent;MsixManifestEditorComponent"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiPropsComponent">
     <ROW Property="AI_BITMAP_DISPLAY_MODE" Value="0"/>
@@ -11,6 +11,7 @@
     <ROW Property="AI_CLEAN_RESOURCES_USER_PROMPT_FULL_UI" Value="1"/>
     <ROW Property="AI_CURRENT_YEAR" Value="2022" ValueLocId="-"/>
     <ROW Property="AI_FINDEXE_TITLE" Value="Select the installation package for [|ProductName]" ValueLocId="AI.Property.FindExeTitle"/>
+    <ROW Property="AI_PACKAGING_TOOL" Value="Advanced Installer 19.7.1 build e09f3004" ValueLocId="-"/>
     <ROW Property="AI_PREDEF_LCONDS_PROPS" Value="AI_DETECTED_ALL"/>
     <ROW Property="AI_PREREQ_REPAIR_ENABLED" MultiBuildValue="DefaultBuild:1"/>
     <ROW Property="AI_PRODUCTNAME_ARP" Value="ProtonVPN"/>
@@ -133,6 +134,9 @@
     <ROW Component="ProtonVPN.Common.dll" ComponentId="{C093858F-892E-42B9-9BC5-FB577FCDD1FC}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.Common.dll"/>
     <ROW Component="ProtonVPN.Core.dll" ComponentId="{013523A0-681E-4750-84F0-28055A0D3577}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.Core.dll"/>
     <ROW Component="ProtonVPN.Crypto.dll" ComponentId="{4E0A829D-DA19-40C1-9720-F653D48739B4}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.Crypto.dll"/>
+    <ROW Component="ProtonVPN.Dns.Contracts.dll" ComponentId="{96377E79-56A7-4660-A4F0-0EEB85785A78}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.Dns.Contracts.dll"/>
+    <ROW Component="ProtonVPN.Dns.Installers.dll" ComponentId="{331FA7FF-F6BA-45C3-A045-03D4D089ED1F}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.Dns.Installers.dll"/>
+    <ROW Component="ProtonVPN.Dns.dll" ComponentId="{55C99F7F-D88A-4732-895E-2B6BCBF1B63E}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.Dns.dll"/>
     <ROW Component="ProtonVPN.ErrorMessage.exe.config" ComponentId="{238C676F-3CA2-4456-B0B6-0E2D2000E7C8}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.exe.config" Type="0"/>
     <ROW Component="ProtonVPN.HumanVerification.Contracts.dll" ComponentId="{D489C761-4A03-4266-BBB1-987A27CB3957}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.HumanVerification.Contracts.dll"/>
     <ROW Component="ProtonVPN.HumanVerification.Gui.dll" ComponentId="{90AF8D29-B683-4C3F-844A-E07E319BB44D}" Directory_="APPDIR" Attributes="0" KeyPath="ProtonVPN.HumanVerification.Gui.dll"/>
@@ -329,11 +333,17 @@
     <ROW File="vcruntime140.dll" Component_="vcruntime140.dll" FileName="VCRUNT~1.DLL|vcruntime140.dll" Attributes="0" SourcePath="..\src\bin\Resources\64-bit\vcruntime140.dll" SelfReg="false"/>
     <ROW File="vcruntime140.dll_1" Component_="vcruntime140.dll_1" FileName="VCRUNT~1.DLL|vcruntime140.dll" Attributes="0" SourcePath="..\src\bin\Resources\32-bit\vcruntime140.dll" SelfReg="false"/>
     <ROW File="GuestHoleServers.json" Component_="config.ovpn" FileName="GUESTH~1.JSO|GuestHoleServers.json" Attributes="0" SourcePath="GuestHoleServers.json" SelfReg="false"/>
+    <ROW File="ProtonVPN.Dns.Installers.dll" Component_="ProtonVPN.Dns.Installers.dll" FileName="PROTO~20.DLL|ProtonVPN.Dns.Installers.dll" Attributes="0" SourcePath="..\src\bin\ProtonVPN.Dns.Installers.dll" SelfReg="false"/>
+    <ROW File="ProtonVPN.Dns.Contracts.dll" Component_="ProtonVPN.Dns.Contracts.dll" FileName="PROTO~21.DLL|ProtonVPN.Dns.Contracts.dll" Attributes="0" SourcePath="..\src\bin\ProtonVPN.Dns.Contracts.dll" SelfReg="false"/>
+    <ROW File="ProtonVPN.Dns.dll" Component_="ProtonVPN.Dns.dll" FileName="PROTO~22.DLL|ProtonVPN.Dns.dll" Attributes="0" SourcePath="..\src\bin\ProtonVPN.Dns.dll" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.AiRemoveFileComponent">
     <ROW RemoveFile="_" Condition="(AI_CLEAN_RESOURCES_UNINSTALL = &quot;1&quot;) AND (NOT UPGRADINGPRODUCTCODE)" Options="3"/>
     <ROW RemoveFile="__1" Condition="(AI_CLEAN_RESOURCES_UNINSTALL = &quot;1&quot;) AND (NOT UPGRADINGPRODUCTCODE)" Options="3"/>
     <ROW RemoveFile="__3" Options="3"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.BootstrOptComponent">
+    <ROW BootstrOptKey="GlobalOptions" DownloadFolder="[WindowsFolder]\Temp\[|Manufacturer]\[|ProductName]\prerequisites"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BootstrapperUISequenceComponent">
     <ROW Action="AI_DetectSoftware" Sequence="101"/>
@@ -417,11 +427,11 @@
     <ROW Name="ResourceCleaner.dll" SourcePath="&lt;AI_CUSTACTS&gt;ResourceCleaner.dll"/>
     <ROW Name="SoftwareDetector.dll" SourcePath="&lt;AI_CUSTACTS&gt;SoftwareDetector.dll"/>
     <ROW Name="aicustact.dll" SourcePath="&lt;AI_CUSTACTS&gt;aicustact.dll"/>
-    <ROW Name="aipackagechainer.exe" SourcePath="&lt;AI_CUSTACTS&gt;aipackagechainer.exe"/>
+    <ROW Name="aipackagechainer.exe" SourcePath="&lt;AI_CUSTACTS&gt;aipackagechainer.exe" DigSign="true"/>
     <ROW Name="file_deleter.ps1" SourcePath="&lt;AI_SCRIPTS&gt;file_deleter.ps1"/>
     <ROW Name="lzmaextractor.dll" SourcePath="&lt;AI_CUSTACTS&gt;lzmaextractor.dll"/>
     <ROW Name="userAccounts.dll" SourcePath="&lt;AI_CUSTACTS&gt;userAccounts.dll"/>
-    <ROW Name="viewer.exe" SourcePath="&lt;AI_CUSTACTS&gt;viewer.exe"/>
+    <ROW Name="viewer.exe" SourcePath="&lt;AI_CUSTACTS&gt;viewer.exe" DigSign="true"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCheckBoxComponent">
     <ROW Property="AI_CLEAN_RESOURCES_UNINSTALL" Value="1"/>
@@ -759,6 +769,9 @@
     <ROW Feature_="MainFeature" Component_="x64"/>
     <ROW Feature_="MainFeature" Component_="Win10_1"/>
     <ROW Feature_="MainFeature" Component_="Win7_1"/>
+    <ROW Feature_="MainFeature" Component_="ProtonVPN.Dns.Installers.dll"/>
+    <ROW Feature_="MainFeature" Component_="ProtonVPN.Dns.Contracts.dll"/>
+    <ROW Feature_="MainFeature" Component_="ProtonVPN.Dns.dll"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
     <ROW Name="protonvpn.exe" SourcePath="images\protonvpn.ico" Index="0"/>
@@ -962,8 +975,8 @@
     <ROW ServiceInstall="ProtonVPNService.exe" Name="[ServiceName]" DisplayName="[ServiceName]" ServiceType="16" StartType="3" ErrorControl="32769" Component_="ProtonVPNService.exe"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiShortsComponent">
-    <ROW Shortcut="ProtonVPN" Directory_="ProtonVPN_Dir" Name="PROTON~1|ProtonVPN" Component_="ProtonVPN.exe" Target="[#ProtonVPN.exe]" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
-    <ROW Shortcut="ProtonVPN_1" Directory_="DesktopFolder" Name="PROTON~1|ProtonVPN" Component_="ProtonVPN.exe" Target="[#ProtonVPN.exe]" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
+    <ROW Shortcut="ProtonVPN" Directory_="ProtonVPN_Dir" Name="PROTON~2|Proton VPN" Component_="ProtonVPN.exe" Target="[#ProtonVPN.exe]" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
+    <ROW Shortcut="ProtonVPN_1" Directory_="DesktopFolder" Name="PROTON~2|Proton VPN" Component_="ProtonVPN.exe" Target="[#ProtonVPN.exe]" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiThemeComponent">
     <ATTRIBUTE name="UsedTheme" value="classic"/>

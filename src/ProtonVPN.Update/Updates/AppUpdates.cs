@@ -36,7 +36,7 @@ namespace ProtonVPN.Update.Updates
     /// Performs app update related operations.
     /// Provides release history, checks for update, downloads, validates and starts update.
     /// </summary>
-    internal class AppUpdates : IAppUpdates
+    public class AppUpdates : IAppUpdates
     {
         private readonly IReleaseStorage _releaseStorage;
         private readonly IUpdatesDirectory _updatesDirectory;

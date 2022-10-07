@@ -25,37 +25,43 @@ using Caliburn.Micro;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Auth;
 using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
 using ProtonVPN.Common.Threading;
+using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Windows;
 
 namespace ProtonVPN.Account
 {
-    public class VpnInfoUpdater : IHandle<WindowStateMessage>, IVpnInfoUpdater
+    public class VpnInfoUpdater : IHandle<WindowStateMessage>, IVpnInfoUpdater, ILoggedInAware, ILogoutAware
     {
-        private readonly TimeSpan _checkInterval;
         private readonly IApiClient _api;
+        private readonly ILogger _logger;
         private readonly IUserStorage _userStorage;
-        private static readonly SemaphoreSlim Semaphore = new(1, 1);
-        private DateTime _lastCheck = DateTime.Now;
-        private readonly ISchedulerTimer _timer;
 
-        public VpnInfoUpdater(Common.Configuration.Config appConfig,
-            IEventAggregator eventAggregator,
-            IApiClient api,
+        private readonly TimeSpan _checkInterval;
+        private readonly ISchedulerTimer _timer;
+        private DateTime _lastCheck = DateTime.Now;
+        private readonly SemaphoreSlim _semaphore = new(1, 1);
+
+        public VpnInfoUpdater(IApiClient api,
+            ILogger logger,
             IUserStorage userStorage,
+            Common.Configuration.Config appConfig,
+            IEventAggregator eventAggregator,
             IScheduler scheduler)
         {
             eventAggregator.Subscribe(this);
 
-            _checkInterval = appConfig.VpnInfoCheckInterval.RandomizedWithDeviation(0.2);
             _api = api;
+            _logger = logger;
             _userStorage = userStorage;
 
+            _checkInterval = appConfig.VpnInfoCheckInterval.RandomizedWithDeviation(0.2);
             _timer = scheduler.Timer();
             _timer.Interval = appConfig.ServerUpdateInterval.RandomizedWithDeviation(0.2);
             _timer.Tick += OnTimerTick;
-            _timer.Start();
         }
 
         private async void OnTimerTick(object sender, EventArgs e)
@@ -86,7 +92,7 @@ namespace ProtonVPN.Account
 
         public async Task Update()
         {
-            await Semaphore.WaitAsync();
+            await _semaphore.WaitAsync();
 
             try
             {
@@ -96,13 +102,27 @@ namespace ProtonVPN.Account
                     _userStorage.StoreVpnInfo(response.Value);
                 }
             }
-            catch (HttpRequestException)
+            catch (Exception e)
             {
+                if (e is not HttpRequestException)
+                {
+                    _logger.Error<AppLog>("An unexpected exception was thrown when updating the VPN info.", e);
+                }
             }
             finally
             {
-                Semaphore.Release();
+                _semaphore.Release();
             }
+        }
+
+        public void OnUserLoggedIn()
+        {
+            _timer.Start();
+        }
+
+        public void OnUserLoggedOut()
+        {
+            _timer.Stop();
         }
     }
 }

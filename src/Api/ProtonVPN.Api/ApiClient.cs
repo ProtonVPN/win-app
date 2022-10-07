@@ -36,8 +36,8 @@ using ProtonVPN.Api.Contracts.VpnConfig;
 using ProtonVPN.Api.Contracts.VpnSessions;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.ApiLogs;
 using ProtonVPN.Common.OS.Net.Http;
-using ProtonVPN.Core.Abstract;
 using ProtonVPN.Core.Settings;
 
 namespace ProtonVPN.Api
@@ -51,12 +51,12 @@ namespace ProtonVPN.Api
         private readonly HttpClient _noCacheClient;
 
         public ApiClient(
-            IHttpClientFactory httpClientFactory,
+            IApiHttpClientFactory httpClientFactory,
             ILogger logger,
-            ITokenStorage tokenStorage,
+            IAppSettings appSettings,
             IApiAppVersion appVersion,
             IAppLanguageCache appLanguageCache,
-            Config config) : base(logger, appVersion, tokenStorage, appLanguageCache, config)
+            Config config) : base(logger, appVersion, appSettings, appLanguageCache, config)
         {
             _client = httpClientFactory.GetApiHttpClientWithCache();
             _noCacheClient = httpClientFactory.GetApiHttpClientWithoutCache();
@@ -253,8 +253,13 @@ namespace ProtonVPN.Api
                     return Logged(await GetApiResponseResult<T>(response), logDescription);
                 }
             }
-            catch (Exception e) when (e.IsApiCommunicationException())
+            catch (Exception e)
             {
+                if (!e.IsApiCommunicationException())
+                {
+                    Logger.Error<ApiErrorLog>("An exception occurred in an API request " +
+                        "that is not related with its communication.", e);
+                }
                 throw new HttpRequestException(e.Message, e);
             }
         }

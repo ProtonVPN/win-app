@@ -21,7 +21,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Net.Http;
 using System.Threading.Tasks;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Announcements;
@@ -31,7 +30,7 @@ using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Settings;
-using ProtonVPN.Core.User;
+using ProtonVPN.Core.Users;
 
 namespace ProtonVPN.Core.Announcements
 {
@@ -134,9 +133,8 @@ namespace ProtonVPN.Core.Announcements
                     AnnouncementsChanged?.Invoke(this, EventArgs.Empty);
                 }
             }
-            catch (HttpRequestException)
+            catch
             {
-                // Ignored
             }
         }
 

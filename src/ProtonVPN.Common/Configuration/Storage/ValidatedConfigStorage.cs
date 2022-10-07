@@ -22,7 +22,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ProtonVPN.Common.Configuration.Storage
 {
-    internal class ValidatedConfigStorage : IConfigStorage
+    public class ValidatedConfigStorage : IConfigStorage
     {
         private readonly IConfigStorage _origin;
 
@@ -33,7 +33,7 @@ namespace ProtonVPN.Common.Configuration.Storage
 
         public Config Value()
         {
-            var value = _origin.Value();
+            Config value = _origin.Value();
             return Valid(value) ? value : null;
         }
 
@@ -51,10 +51,13 @@ namespace ProtonVPN.Common.Configuration.Storage
 
         private bool Valid(object value)
         {
-            if (value == null) return false;
+            if (value == null)
+            {
+                return false;
+            }
 
-            var context = new ValidationContext(value, null, null);
-            var results = new List<ValidationResult>();
+            ValidationContext context = new(value, null, null);
+            List<ValidationResult> results = new();
 
             return Validator.TryValidateObject(value, context, results, true);
         }

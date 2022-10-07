@@ -26,7 +26,7 @@ namespace ProtonVPN.Update.Files.Downloadable
     /// <summary>
     /// Downloads file from internet.
     /// </summary>
-    internal class DownloadableFile : IDownloadableFile
+    public class DownloadableFile : IDownloadableFile
     {
         private const int FileBufferSize = 16768;
 
@@ -39,14 +39,18 @@ namespace ProtonVPN.Update.Files.Downloadable
 
         public async Task Download(string url, string filename)
         {
-            using (var response = await _client.GetAsync(url))
+            using (IHttpResponseMessage response = await _client.GetAsync(url))
             {
                 if (!response.IsSuccessStatusCode)
+                {
                     throw new AppUpdateException("Failed to download file");
+                }
 
-                using (var contentStream = await response.Content.ReadAsStreamAsync())
-                using (var fileStream = new FileStream(filename, FileMode.Create, FileAccess.Write, FileShare.None, FileBufferSize, true))
+                using (Stream contentStream = await response.Content.ReadAsStreamAsync())
+                using (FileStream fileStream = new(filename, FileMode.Create, FileAccess.Write, FileShare.None, FileBufferSize, true))
+                {
                     await contentStream.CopyToAsync(fileStream);
+                }
             }
         }
     }

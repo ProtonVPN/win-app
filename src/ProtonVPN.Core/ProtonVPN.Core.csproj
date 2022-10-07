@@ -37,39 +37,9 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Albireo.Base32, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Albireo.Base32.1.1.0\lib\net47\Albireo.Base32.dll</HintPath>
-    </Reference>
-    <Reference Include="ARSoft.Tools.Net, Version=2.2.9.0, Culture=neutral, PublicKeyToken=1940454cd762ec57, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\ARSoft.Tools.Net.2.2.9\lib\net45\ARSoft.Tools.Net.dll</HintPath>
-    </Reference>
-    <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
-      <HintPath>..\..\packages\BouncyCastle.1.8.9\lib\BouncyCastle.Crypto.dll</HintPath>
-    </Reference>
-    <Reference Include="Caliburn.Micro, Version=3.2.0.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Caliburn.Micro.Core.3.2.0\lib\net45\Caliburn.Micro.dll</HintPath>
-    </Reference>
-    <Reference Include="DnsClient, Version=1.5.0.0, Culture=neutral, PublicKeyToken=4574bb5573c51424, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\DnsClient.1.5.0\lib\net471\DnsClient.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.VisualBasic" />
-    <Reference Include="Microsoft.Win32.Registry, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.Win32.Registry.5.0.0\lib\net461\Microsoft.Win32.Registry.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Polly, Version=7.0.0.0, Culture=neutral, PublicKeyToken=c8a3ffc3f8f825cc, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Polly.7.2.0\lib\net472\Polly.dll</HintPath>
-    </Reference>
-    <Reference Include="Polly.Contrib.WaitAndRetry, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Polly.Contrib.WaitAndRetry.1.1.0\lib\net472\Polly.Contrib.WaitAndRetry.dll</HintPath>
-    </Reference>
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
-    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
-    </Reference>
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.IO.Compression" />
@@ -77,12 +47,6 @@
     <Reference Include="System.Numerics" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
-    <Reference Include="System.Security.AccessControl, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.Security.AccessControl.5.0.0\lib\net461\System.Security.AccessControl.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Security.Principal.Windows, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.Security.Principal.Windows.5.0.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
-    </Reference>
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Transactions" />
@@ -111,7 +75,6 @@
     <Compile Include="Abstract\IMigration.cs" />
     <Compile Include="Abstract\ISpecification.cs" />
     <Compile Include="Abstract\ISupportsMigration.cs" />
-    <Compile Include="Abstract\ITokenStorage.cs" />
     <Compile Include="Abstract\PredicateSpecification.cs" />
     <Compile Include="Abstract\Specification.cs" />
     <Compile Include="Auth\AuthCertificateManager.cs" />
@@ -160,7 +123,7 @@
     <Compile Include="Settings\IServiceSettingsStateAware.cs" />
     <Compile Include="Settings\ServiceSettingsStateChangedEventArgs.cs" />
     <Compile Include="Update\FeedUrlProvider.cs" />
-    <Compile Include="User\VpnPlanChangedEventArgs.cs" />
+    <Compile Include="Users\VpnPlanChangedEventArgs.cs" />
     <Compile Include="Vpn\AuthCertificateUpdater.cs" />
     <Compile Include="Vpn\IVpnServiceManager.cs" />
     <Compile Include="Vpn\VpnConnectionRequest.cs" />
@@ -190,7 +153,6 @@
     <Compile Include="OS\Net\DoH\DnsMessageExtension.cs" />
     <Compile Include="OS\Net\DoH\DohClients.cs" />
     <Compile Include="OS\Net\DoH\IDnsMessage.cs" />
-    <Compile Include="OS\Net\DoH\MainHostname.cs" />
     <Compile Include="OS\Net\DoH\TxtMessage.cs" />
     <Compile Include="OS\Net\ServicePointConfiguration.cs" />
     <Compile Include="Profiles\ApiProfiles.cs" />
@@ -274,14 +236,13 @@
     <Compile Include="Servers\Specs\TorServer.cs" />
     <Compile Include="Settings\ISettingsAware.cs" />
     <Compile Include="Settings\IUserStorage.cs" />
-    <Compile Include="User\TruncatedLocation.cs" />
-    <Compile Include="User\UserLocation.cs" />
+    <Compile Include="Users\TruncatedLocation.cs" />
+    <Compile Include="Users\UserLocation.cs" />
     <Compile Include="Srp\SrpPInvoke.cs" />
     <Compile Include="Storage\EnumerableAsJsonSettings.cs" />
     <Compile Include="Storage\CachedSettings.cs" />
     <Compile Include="Storage\EnumAsStringSettings.cs" />
     <Compile Include="Storage\ISettingsStorage.cs" />
-    <Compile Include="Storage\TokenStorage.cs" />
     <Compile Include="Threading\Schedulers.cs" />
     <Compile Include="Threading\DispatcherScheduler.cs" />
     <Compile Include="Threading\DispatcherTimer.cs" />
@@ -291,13 +252,13 @@
     <Compile Include="Update\UpdateState.cs" />
     <Compile Include="Update\UpdateStateChangedEventArgs.cs" />
     <Compile Include="Update\UpdateStatus.cs" />
-    <Compile Include="User\IUserDataAware.cs" />
-    <Compile Include="User\IUserLocationAware.cs" />
-    <Compile Include="User\IUserLocationService.cs" />
-    <Compile Include="User\IVpnPlanAware.cs" />
-    <Compile Include="User\PlanStatus.cs" />
-    <Compile Include="User\UserLocationEventArgs.cs" />
-    <Compile Include="User\UserLocationState.cs" />
+    <Compile Include="Users\IUserDataAware.cs" />
+    <Compile Include="Users\IUserLocationAware.cs" />
+    <Compile Include="Users\IUserLocationService.cs" />
+    <Compile Include="Users\IVpnPlanAware.cs" />
+    <Compile Include="Users\PlanStatus.cs" />
+    <Compile Include="Users\UserLocationEventArgs.cs" />
+    <Compile Include="Users\UserLocationState.cs" />
     <Compile Include="Config\IClientConfig.cs" />
     <Compile Include="Vpn\IVpnStateAware.cs" />
     <Compile Include="Config\ClientConfig.cs" />
@@ -309,11 +270,51 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="packages.config" />
     <None Include="Profiles\README.md" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
+    <PackageReference Include="Albireo.Base32">
+      <Version>1.2.0</Version>
+    </PackageReference>
+    <PackageReference Include="ARSoft.Tools.Net">
+      <Version>2.2.9</Version>
+    </PackageReference>
+    <PackageReference Include="BouncyCastle">
+      <Version>1.8.9</Version>
+    </PackageReference>
+    <PackageReference Include="Caliburn.Micro.Core">
+      <Version>3.2.0</Version>
+    </PackageReference>
+    <PackageReference Include="DnsClient">
+      <Version>1.5.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Win32.Registry">
+      <Version>5.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>13.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="Polly">
+      <Version>7.2.0</Version>
+    </PackageReference>
+    <PackageReference Include="Polly.Contrib.WaitAndRetry">
+      <Version>1.1.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Buffers">
+      <Version>4.5.1</Version>
+    </PackageReference>
+    <PackageReference Include="System.Security.AccessControl">
+      <Version>5.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Security.Principal.Windows">
+      <Version>5.0.0</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Dns\ProtonVPN.Dns.Contracts\ProtonVPN.Dns.Contracts.csproj">
+      <Project>{455da1fb-5097-47d2-8603-b0e1f9d90294}</Project>
+      <Name>ProtonVPN.Dns.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Api\ProtonVPN.Api.Contracts\ProtonVPN.Api.Contracts.csproj">
       <Project>{9e4d6072-c8de-475a-b9a7-4b6bf6eeeaeb}</Project>
       <Name>ProtonVPN.Api.Contracts</Name>

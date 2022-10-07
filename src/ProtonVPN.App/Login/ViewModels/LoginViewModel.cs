@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.ComponentModel;
 using System.Net.Http;
 using System.Security;
@@ -320,7 +321,7 @@ namespace ProtonVPN.Login.ViewModels
                 AuthResult loginResult = await _userAuth.LoginUserAsync(username, Password);
                 await HandleLoginResultAsync(loginResult);
             }
-            catch (HttpRequestException ex)
+            catch
             {
                 if (await DisableGuestHole() || _guestHoleConnector.Servers().Count == 0)
                 {
@@ -384,9 +385,9 @@ namespace ProtonVPN.Login.ViewModels
             {
                 return await _userAuth.SendTwoFactorCodeAsync(TwoFactorAuthCode);
             }
-            catch (HttpRequestException e)
+            catch (Exception ex)
             {
-                _logger.Error<AppLog>("Failed to send two factor auth code.", e);
+                _logger.Error<AppLog>("Failed to send two factor auth code.", ex);
                 return AuthResult.Fail(AuthError.Unknown);
             }
         }

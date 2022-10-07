@@ -44,6 +44,7 @@ namespace ProtonVPN.Common.Vpn
         IncorrectVpnConfig,
         ServerUnreachable,
         AdapterTimeoutError,
+        ClientKeyMismatch,
 
         GuestSession = 86100,
         CertificateExpired = 86101,

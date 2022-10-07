@@ -39,6 +39,9 @@ build-release:
     - echo "Restoring NuGet Packages..."
     - 'c:\nuget\nuget.exe restore ProtonVpn.sln'
     - MSBuild.exe /consoleloggerparameters:ErrorsOnly /maxcpucount /nologo /property:Configuration=Release /verbosity:quiet "src\\ProtonVPN.MarkupValidator\\ProtonVPN.MarkupValidator.csproj"
+    - echo "Building native dependencies..."
+    - 'c:\nuget\nuget.exe restore ProtonVPN.InstallActions.sln'
+    - cmd.exe /c BuildDependencies.bat
     - python ci\main.py lint-languages
     - python ci\main.py add-commit-hash $env:CI_COMMIT_SHORT_SHA
     - python ci\main.py defaultConfig
@@ -62,6 +65,9 @@ build-debug:
     - echo "Restoring NuGet Packages..."
     - 'c:\nuget\nuget.exe restore ProtonVpn.sln'
     - MSBuild.exe /consoleloggerparameters:ErrorsOnly /maxcpucount /nologo /property:Configuration=Release /verbosity:quiet "src\\ProtonVPN.MarkupValidator\\ProtonVPN.MarkupValidator.csproj"
+    - echo "Building native dependencies..."
+    - 'c:\nuget\nuget.exe restore ProtonVPN.InstallActions.sln'
+    - cmd.exe /c BuildDependencies.bat
     - echo "Downloading translations from crowdin..."
     - python ci\main.py lint-languages
     - python ci\main.py add-commit-hash $env:CI_COMMIT_SHORT_SHA
@@ -86,7 +92,7 @@ tests:
     - echo "Running tests..."
     - 'c:\nuget\nuget.exe restore ProtonVpn.sln'
     - MSBuild.exe /consoleloggerparameters:ErrorsOnly /maxcpucount /nologo /property:Configuration=Debug /verbosity:quiet "ProtonVpn.sln"
-    - coverlet src\bin --target "vstest.console.exe" --targetargs "src/bin/ProtonVPN*Test*.dll /TestCaseFilter:TestCategory!=UI&TestCategory!=Connection /Platform:x64" --format cobertura --output .\coverage-reports --exclude "[*.Test*]*" --exclude "[ProtonVPN.MarkupValidator]*" --exclude "[TestTools*]*" --exclude "[TapInstaller]*" --exclude "[*.Installers]*"
+    - coverlet src\bin --target "vstest.console.exe" --targetargs "src/bin/ProtonVPN*Tests*.dll /TestCaseFilter:TestCategory!=UI&TestCategory!=Connection /Platform:x64" --format cobertura --output .\coverage-reports --exclude "[*.Tests*]*" --exclude "[ProtonVPN.MarkupValidator]*" --exclude "[TestTools*]*" --exclude "[TapInstaller]*" --exclude "[*.Installers]*"
     - powershell -Command "(gc coverage-reports.cobertura.xml) -replace '\\', '/' | Out-File -encoding UTF8 cobertura.xml"
     - ReportGenerator.exe "-reports:cobertura.xml" "-targetdir:.\code-coverage-report-html"
   artifacts:
@@ -150,7 +156,7 @@ ui-test:
   script:
     - powershell -File ci\uninstall-app.ps1
     - powershell -File ci\install-the-app.ps1
-    - VSTest.Console.exe src\bin\ProtonVPN.UI.Test.dll /TestCaseFilter:"Category=UI"
+    - VSTest.Console.exe src\bin\ProtonVPN.UI.Tests.dll /TestCaseFilter:"Category=UI"
     - powershell -File ci\uninstall-app.ps1
   except:
     - /^debug.*$/
@@ -169,7 +175,27 @@ connection-tests:
   script:
     - powershell -File ci\uninstall-app.ps1
     - powershell -File ci\install-the-app.ps1
-    - VSTest.Console.exe src\bin\ProtonVPN.UI.Test.dll /TestCaseFilter:"Category=Connection"
+    - VSTest.Console.exe src\bin\ProtonVPN.UI.Tests.dll /TestCaseFilter:"Category=Connection"
+    - powershell -File ci\uninstall-app.ps1
+  except:
+    - /^debug.*$/
+    - release/9.9.9
+    - master
+  artifacts:
+    when: on_failure
+    paths:
+      - $SCREENSHOT_PATH
+    expire_in: 2 weeks
+
+win-11-tests:
+  stage: ui-test
+  when: manual
+  tags:
+    - win11
+  script:
+    - powershell -File ci\uninstall-app.ps1
+    - powershell -File ci\install-the-app.ps1
+    - VSTest.Console.exe src\bin\ProtonVPN.UI.Tests.dll /TestCaseFilter:"Category=Smoke"
     - powershell -File ci\uninstall-app.ps1
   except:
     - /^debug.*$/

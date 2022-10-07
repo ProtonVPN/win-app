@@ -22,7 +22,7 @@ using System.Collections.Generic;
 
 namespace ProtonVPN.Vpn.OpenVpn.Arguments
 {
-    internal class NoBindArguments : IEnumerable<string>
+    public class NoBindArguments : IEnumerable<string>
     {
         public IEnumerator<string> GetEnumerator()
         {

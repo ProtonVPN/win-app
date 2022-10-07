@@ -25,7 +25,7 @@ using ProtonVPN.Common.Configuration.Source;
 
 namespace ProtonVPN.Common.Configuration
 {
-    public class Config
+    public class Config : IConfiguration
     {
         [Range(32, 64)]
         public int OsBits { get; set; }
@@ -213,5 +213,23 @@ namespace ProtonVPN.Common.Configuration
         public string NtpServerUrl { get; set; }
 
         public string ServerValidationPublicKey { get; set; }
+
+        [Range(typeof(TimeSpan), "00:00:01", "23:59:59")]
+        public TimeSpan FailedDnsRequestTimeout { get; set; }
+
+        [Range(typeof(TimeSpan), "00:00:01", "23:59:59")]
+        public TimeSpan DnsResolveTimeout { get; set; }
+
+        [Range(typeof(TimeSpan), "00:00:01", "23:59:59")]
+        public TimeSpan DnsOverHttpsPerProviderTimeout { get; set; }
+
+        [Range(typeof(TimeSpan), "00:00:01", "23:59:59")]
+        public TimeSpan NewCacheTimeToLiveOnResolveError { get; set; }
+
+        [Range(typeof(TimeSpan), "00:00:01", "23:59:59")]
+        public TimeSpan DefaultDnsTimeToLive { get; set; }
+
+        [Range(typeof(TimeSpan), "00:00:01", "23:59:59")]
+        public TimeSpan AlternativeRoutingCheckInterval { get; set; }
     }
 }
