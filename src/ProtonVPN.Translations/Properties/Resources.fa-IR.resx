@@ -1680,7 +1680,7 @@
     <value>ساعت سیستم شما ناهماهنگ است، که میتواند از اتصال موفقیت آمیز VPN جلوگیری کند. لطفا برای اطلاعات بیشتر به &lt;Hyperlink Command="{Binding OpenKbArticleCommand}"&gt;اینجا&lt;/Hyperlink&gt; مراجعه کنید.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_msg">
-    <value>با Kill Switch دائمی، اگر VPN به هر دلیلی متصل نباشد، شما قادر به دسترسی به اینترنت نخواهید بود.</value>
+    <value>With Permanent Kill Switch, if the VPN is not connected for any reason, you won't be able to access the internet.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_ttl">
     <value>فعال کردن Kill Switch دائمی؟</value>
@@ -1955,7 +1955,7 @@
     <comment>The label for Password text box in Login window</comment>
   </data>
   <data name="Login_lbl_SecureInternetAnywhere">
-    <value>اینترنت امن در همه جا</value>
+    <value>Secure internet anywhere</value>
     <comment>The text displayed on the bottom of Login window while logging in</comment>
   </data>
   <data name="Login_lbl_StartAndConnectOnBoot">
@@ -2477,16 +2477,16 @@
     <value>ارتقا</value>
   </data>
   <data name="QuickSettings_lbl_KillSwitchInfo">
-    <value>اگر ارتباط VPN قطع شد اینترنت خود را قطع کنید تا از نشتی تصادفی IP جلوگیری شود.</value>
+    <value>Disables internet if the VPN connection drops to prevent accidental IP leak.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldInfo">
-    <value>اینترنت را بدون آگهی و بدافزار مرور کنید.</value>
+    <value>Browse the internet without ads and malware.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldWarning">
     <value>اگر وبسایتها بار نمی‌شوند، غیرفعّال کردن NetShield را امتحان کنید</value>
   </data>
   <data name="QuickSettings_lbl_PortForwardingInfo">
-    <value>با اجازه دادن به دسترسی به اینترنت برنامه های پشتیبانی شده محلی سرعت تورنت و بازی آنلاین خود را افزایش دهید.</value>
+    <value>Speed up your torrenting and online gaming by allowing supported local apps to be reachable from the internet.</value>
   </data>
   <data name="QuickSettings_lbl_SecureCoreInfo">
     <value>حساس‌ترین داده‌های خود را از طریق امن‌ترین سرورهای ما در کشورهای دوستدار حریم خصوصی مسیرگذاری کنید.</value>
@@ -2974,7 +2974,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Tor</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Tor_Desc">
-    <value>ترافیک اینترنت خود را از شبکهٔ Tor عبور دهید. کندتر، اما با حریم خصوصی بالاتر.</value>
+    <value>Route your internet traffic through the Tor network. Slower, but more private.</value>
   </data>
   <data name="Sidebar_Profiles_btn_Create">
     <value>ایجاد پروفایل</value>

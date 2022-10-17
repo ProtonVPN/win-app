@@ -1680,7 +1680,7 @@
     <value>Sistem saatiniz doğru değil gibi görünüyor. Bu durum VPN bağlantısının kurulmasını engelleyebilir. Ayrıntılı bilgi almak için &lt;Hyperlink Command="{Binding OpenKbArticleCommand}"&gt;buraya&lt;/Hyperlink&gt; bakabilirsiniz.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_msg">
-    <value>Kalıcı bağlantı kesici ile VPN bağlantısı herhangi bir nedenle kesildiğinde, internete erişemezsiniz.</value>
+    <value>With Permanent Kill Switch, if the VPN is not connected for any reason, you won't be able to access the internet.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_ttl">
     <value>Kalıcı bağlantı kesici etkinleştirilsin mi?</value>
@@ -1955,7 +1955,7 @@
     <comment>The label for Password text box in Login window</comment>
   </data>
   <data name="Login_lbl_SecureInternetAnywhere">
-    <value>Her yerde güvenli internet</value>
+    <value>Secure internet anywhere</value>
     <comment>The text displayed on the bottom of Login window while logging in</comment>
   </data>
   <data name="Login_lbl_StartAndConnectOnBoot">
@@ -2477,16 +2477,16 @@
     <value>YÜKSELT</value>
   </data>
   <data name="QuickSettings_lbl_KillSwitchInfo">
-    <value>VPN bağlantısı kesildiğinde IP adresinin isteğiniz dışında sızmasını engellemek için interneti devre dışı bırakır.</value>
+    <value>Disables internet if the VPN connection drops to prevent accidental IP leak.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldInfo">
-    <value>İnternette reklamlar ve kötü amaçlı yazılımlar olmadan gezinin.</value>
+    <value>Browse the internet without ads and malware.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldWarning">
     <value>Web siteleri yüklenmiyorsa, NetShield özelliğini devre dışı bırakmayı deneyin</value>
   </data>
   <data name="QuickSettings_lbl_PortForwardingInfo">
-    <value>Desteklenen yerel uygulamalara internet üzerinden erişilebilmesine izin vererek torrent ve çevrimiçi oyun kullanımınızı hızlandırın.</value>
+    <value>Speed up your torrenting and online gaming by allowing supported local apps to be reachable from the internet.</value>
   </data>
   <data name="QuickSettings_lbl_SecureCoreInfo">
     <value>En hassas verilerinizi kişisel gizlilik dostu ülkelerdeki en güvenli sunucularımız üzerinden yöneltin.</value>
@@ -2974,7 +2974,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Tor</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Tor_Desc">
-    <value>İnternet trafiğinizi Tor ağı üzerinden yöneltin. Yavaş ama daha güvenli.</value>
+    <value>Route your internet traffic through the Tor network. Slower, but more private.</value>
   </data>
   <data name="Sidebar_Profiles_btn_Create">
     <value>Profil oluştur</value>

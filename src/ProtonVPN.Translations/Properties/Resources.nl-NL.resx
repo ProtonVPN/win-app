@@ -1681,7 +1681,7 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <value>Uw systeemklok lijkt niet synchroon te lopen, waardoor de VPN mogelijk geen succesvolle verbinding kan maken. Zie &lt;Hyperlink Command="{Binding OpenKbArticleCommand}"&gt;hier&lt;/Hyperlink&gt; voor meer informatie.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_msg">
-    <value>Met een permanente Kill Switch, als de VPN niet verbonden is om welke reden dan ook, kunt u geen toegang krijgen tot het internet.</value>
+    <value>With Permanent Kill Switch, if the VPN is not connected for any reason, you won't be able to access the internet.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_ttl">
     <value>Permanente Kill Switch inschakelen?</value>
@@ -1956,7 +1956,7 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <comment>The label for Password text box in Login window</comment>
   </data>
   <data name="Login_lbl_SecureInternetAnywhere">
-    <value>Overal veilig internet</value>
+    <value>Secure internet anywhere</value>
     <comment>The text displayed on the bottom of Login window while logging in</comment>
   </data>
   <data name="Login_lbl_StartAndConnectOnBoot">
@@ -2478,16 +2478,16 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <value>UPGRADE</value>
   </data>
   <data name="QuickSettings_lbl_KillSwitchInfo">
-    <value>Schakelt internet uit als de VPN-verbinding wegvalt om onbedoeld IP-lekken te voorkomen.</value>
+    <value>Disables internet if the VPN connection drops to prevent accidental IP leak.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldInfo">
-    <value>Blader door internet zonder advertenties en malware.</value>
+    <value>Browse the internet without ads and malware.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldWarning">
     <value>Als websites niet laden, probeer NetShield dan uit te schakelen</value>
   </data>
   <data name="QuickSettings_lbl_PortForwardingInfo">
-    <value>Versnel uw torrents en online gaming door ondersteunde lokale apps toe te staan bereikbaar te zijn vanaf het internet.</value>
+    <value>Speed up your torrenting and online gaming by allowing supported local apps to be reachable from the internet.</value>
   </data>
   <data name="QuickSettings_lbl_SecureCoreInfo">
     <value>Stuur uw meest gevoelige gegevens door onze veiligste servers in privacy-vriendelijke landen.</value>
@@ -2975,7 +2975,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Tor</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Tor_Desc">
-    <value>Routeer uw internetverkeer via het Tor-netwerk. Langer, maar meer privé.</value>
+    <value>Route your internet traffic through the Tor network. Slower, but more private.</value>
   </data>
   <data name="Sidebar_Profiles_btn_Create">
     <value>Profiel aanmaken</value>

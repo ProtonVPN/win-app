@@ -1693,7 +1693,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Your system clock seems to be out of sync, which could prevent the VPN from connecting successfully. Please see &lt;Hyperlink Command="{Binding OpenKbArticleCommand}"&gt;here&lt;/Hyperlink&gt; for more information.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_msg">
-    <value>S trajnim Kill Switchom, ako VPN nije povezan iz nekog razloga, nećete moći pristupiti internetu.</value>
+    <value>With Permanent Kill Switch, if the VPN is not connected for any reason, you won't be able to access the internet.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_ttl">
     <value>Omogući trajni Kill Switch?</value>
@@ -1968,7 +1968,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <comment>The label for Password text box in Login window</comment>
   </data>
   <data name="Login_lbl_SecureInternetAnywhere">
-    <value>Siguran internet bilo gdje</value>
+    <value>Secure internet anywhere</value>
     <comment>The text displayed on the bottom of Login window while logging in</comment>
   </data>
   <data name="Login_lbl_StartAndConnectOnBoot">
@@ -2493,16 +2493,16 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>NADOGRADI</value>
   </data>
   <data name="QuickSettings_lbl_KillSwitchInfo">
-    <value>Disables Internet if the VPN connection drops to prevent accidental IP leak.</value>
+    <value>Disables internet if the VPN connection drops to prevent accidental IP leak.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldInfo">
-    <value>Browse the Internet without ads and malware.</value>
+    <value>Browse the internet without ads and malware.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldWarning">
     <value>Ako se web stranice ne učitaju, pokušajte onemogućiti NetShield</value>
   </data>
   <data name="QuickSettings_lbl_PortForwardingInfo">
-    <value>Speed up your torrenting and online gaming by allowing supported local apps to be reachable from the Internet.</value>
+    <value>Speed up your torrenting and online gaming by allowing supported local apps to be reachable from the internet.</value>
   </data>
   <data name="QuickSettings_lbl_SecureCoreInfo">
     <value>Route your most sensitive data through our safest servers in privacy-friendly countries.</value>
@@ -2990,7 +2990,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Tor</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Tor_Desc">
-    <value>Route your Internet traffic through the Tor network. Slower, but more private.</value>
+    <value>Route your internet traffic through the Tor network. Slower, but more private.</value>
   </data>
   <data name="Sidebar_Profiles_btn_Create">
     <value>Stvori profil</value>

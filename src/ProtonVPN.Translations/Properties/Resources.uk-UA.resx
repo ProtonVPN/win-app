@@ -1706,7 +1706,7 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <value>Схоже, що ваш системний годинник не синхронізований, що може перешкоджати успішному з'єднанню з VPN. Для отримання докладнішої інформації &lt;Hyperlink Command="{Binding OpenKbArticleCommand}"&gt;дивіться тут&lt;/Hyperlink&gt;.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_msg">
-    <value>З увімкненою функцією "Постійний Kill Switch", за відсутності з'єднання з VPN з будь-якої причини, ви не зможете отримати доступ до інтернету.</value>
+    <value>With Permanent Kill Switch, if the VPN is not connected for any reason, you won't be able to access the internet.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_ttl">
     <value>Увімкнути Постійний Kill Switch?</value>
@@ -1981,7 +1981,7 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <comment>The label for Password text box in Login window</comment>
   </data>
   <data name="Login_lbl_SecureInternetAnywhere">
-    <value>Безпечний Інтернет будь-де</value>
+    <value>Secure internet anywhere</value>
     <comment>The text displayed on the bottom of Login window while logging in</comment>
   </data>
   <data name="Login_lbl_StartAndConnectOnBoot">
@@ -2509,16 +2509,16 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <value>ОНОВИТИ</value>
   </data>
   <data name="QuickSettings_lbl_KillSwitchInfo">
-    <value>Вимикає інтернет, якщо втрачається VPN-з'єднання, щоб запобігти випадковому розкриттю IP-адреси.</value>
+    <value>Disables internet if the VPN connection drops to prevent accidental IP leak.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldInfo">
-    <value>Користуйтеся інтернетом без реклами та зловмисних програм.</value>
+    <value>Browse the internet without ads and malware.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldWarning">
     <value>Якщо вебсайти не завантажуються, спробуйте вимкнути NetShіeld</value>
   </data>
   <data name="QuickSettings_lbl_PortForwardingInfo">
-    <value>Пришвидшіть роботу з торентами та онлайн-іграми, дозволивши підтримуваним локальним застосункам бути доступними з інтернету.</value>
+    <value>Speed up your torrenting and online gaming by allowing supported local apps to be reachable from the internet.</value>
   </data>
   <data name="QuickSettings_lbl_SecureCoreInfo">
     <value>Спрямовуйте свої найвразливіші дані через наші найзахищеніші сервери в країнах, що цінують приватність.</value>
@@ -3006,7 +3006,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Tor</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Tor_Desc">
-    <value>Спрямовуйте свій інтернет-трафік через мережу Tor. Повільніше, але приватніше.</value>
+    <value>Route your internet traffic through the Tor network. Slower, but more private.</value>
   </data>
   <data name="Sidebar_Profiles_btn_Create">
     <value>Створити профіль</value>
