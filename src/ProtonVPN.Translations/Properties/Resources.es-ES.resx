@@ -1681,7 +1681,7 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <value>El reloj de su sistema parece estar desincronizado, lo que podría impedir que la VPN se conecte con éxito. Por favor, consulte &lt;Hyperlink Command="{Binding OpenKbArticleCommand}"&gt;aquí&lt;/Hyperlink&gt; para más información.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_msg">
-    <value>Con Kill Switch permanente, si la VPN no está conectada por algún motivo, no podrás acceder a Internet.</value>
+    <value>With Permanent Kill Switch, if the VPN is not connected for any reason, you won't be able to access the internet.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_ttl">
     <value>¿Habilitar Kill Switch permanente?</value>
@@ -1956,7 +1956,7 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <comment>The label for Password text box in Login window</comment>
   </data>
   <data name="Login_lbl_SecureInternetAnywhere">
-    <value>Internet seguro en cualquier lugar</value>
+    <value>Secure internet anywhere</value>
     <comment>The text displayed on the bottom of Login window while logging in</comment>
   </data>
   <data name="Login_lbl_StartAndConnectOnBoot">
@@ -2478,16 +2478,16 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <value>MEJORAR</value>
   </data>
   <data name="QuickSettings_lbl_KillSwitchInfo">
-    <value>Desactiva Internet si la conexión VPN se cae para evitar una fuga accidental de IP.</value>
+    <value>Disables internet if the VPN connection drops to prevent accidental IP leak.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldInfo">
-    <value>Navegue por Internet sin anuncios ni malware.</value>
+    <value>Browse the internet without ads and malware.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldWarning">
     <value>Si las páginas web no se cargan, intenta desactivar NetShield</value>
   </data>
   <data name="QuickSettings_lbl_PortForwardingInfo">
-    <value>Acelera el uso de torrents y juegos en línea permitiendo que las aplicaciones locales compatibles sean accesibles desde Internet.</value>
+    <value>Speed up your torrenting and online gaming by allowing supported local apps to be reachable from the internet.</value>
   </data>
   <data name="QuickSettings_lbl_SecureCoreInfo">
     <value>Dirija sus datos más sensibles a través de nuestros servidores más seguros en países que respetan la privacidad.</value>
@@ -2975,7 +2975,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Tor</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Tor_Desc">
-    <value>Enruta tu tráfico de Internet a través de la red Tor. Más lento, pero más privado.</value>
+    <value>Route your internet traffic through the Tor network. Slower, but more private.</value>
   </data>
   <data name="Sidebar_Profiles_btn_Create">
     <value>Crear perfil</value>
