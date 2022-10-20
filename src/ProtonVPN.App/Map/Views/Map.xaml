@@ -129,7 +129,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </Grid>
 
             <logos:ProtonVpnLogo Width="133"
-                                 FlowDirection="LeftToRight"
                                  Margin="0,30,40,0"
                                  VerticalAlignment="Top"
                                  HorizontalAlignment="Right"

@@ -187,7 +187,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         VerticalAlignment="Center">
                     <logos:ProtonVpnLogo Width="120"
                                          VerticalAlignment="Center"
-                                         FlowDirection="LeftToRight"
                                          Background="Transparent" />
                 </Button>
                 <Button HorizontalAlignment="Right"

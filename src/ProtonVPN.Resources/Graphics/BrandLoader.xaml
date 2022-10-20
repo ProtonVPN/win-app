@@ -24,7 +24,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              Name="UserControl"
              mc:Ignorable="d"
              Width="18"
-             Height="18">
+             Height="18"
+             FlowDirection="LeftToRight">
     <Viewbox Stretch="Uniform">
         <Canvas Width="16" Height="16">
             <Path StrokeThickness="1.5" Stroke="{Binding ElementName=UserControl, Path=Foreground}" Opacity="0.2">
