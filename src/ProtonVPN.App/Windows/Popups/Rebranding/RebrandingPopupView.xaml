@@ -61,8 +61,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 Content="{translations:Loc Dialogs_Rebranding_btn_GotIt_new_plans}" />
         <StackPanel HorizontalAlignment="Center" Margin="0,32,0,0" Orientation="Horizontal">
             <logos:ProtonMailSquareLogo Style="{StaticResource BrandLogo}" Margin="0,0,12,0" />
-            <logos:ProtonCalendarSquareLogo Style="{StaticResource BrandLogo}"  Margin="0,0,12,0" />
-            <logos:ProtonDriveSquareLogo Style="{StaticResource BrandLogo}"  Margin="0,0,12,0" />
+            <logos:ProtonCalendarSquareLogo Style="{StaticResource BrandLogo}" Margin="0,0,12,0" />
+            <logos:ProtonDriveSquareLogo Style="{StaticResource BrandLogo}" Margin="0,0,12,0" />
             <logos:ProtonVpnSquareLogo Style="{StaticResource BrandLogo}" />
         </StackPanel>
     </StackPanel>
