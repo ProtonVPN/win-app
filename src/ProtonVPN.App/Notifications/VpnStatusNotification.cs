@@ -41,9 +41,9 @@ namespace ProtonVPN.Notifications
             Server server = e.State.Server;
             switch (e.State.Status)
             {
-                case VpnStatus.Connected:
+                case VpnStatus.Connected when server is not null && !server.IsEmpty():
                     _notificationSender.Send(Translation.Format("Notifications_VpnState_msg_Connected",
-                        server?.Name, Environment.NewLine, server?.ExitIp));
+                        server.Name, Environment.NewLine, server.ExitIp));
                     break;
                 case VpnStatus.Disconnecting when _lastVpnStatus == VpnStatus.Connected:
                 case VpnStatus.Disconnected when _lastVpnStatus == VpnStatus.Connected:

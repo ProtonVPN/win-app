@@ -249,10 +249,16 @@ namespace ProtonVPN.Sidebar
             }
         }
 
-        private void LogNullUpdatedServer(string serverId, Server defaultServer)
+        private async void LogNullUpdatedServer(string serverId, Server defaultServer)
         {
             string defaultServerText = defaultServer == null ? "null" : $"[Id: '{defaultServer.Id}' Name: '{defaultServer.Name}']";
-            _logger.Error<AppLog>($"The connected server does not exist. ServerId: '{serverId}' DefaultServer: {defaultServerText}");
+            _logger.Error<AppLog>($"The connected server does not exist, reconnecting. ServerId: '{serverId}' DefaultServer: {defaultServerText}");
+
+            await _vpnManager.ReconnectAsync(new VpnReconnectionSettings()
+            {
+                IsToExcludeLastServer = true,
+                IsToForceSmartReconnect = true,
+            });
         }
 
         public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
