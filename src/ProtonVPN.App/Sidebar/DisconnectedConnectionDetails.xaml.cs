@@ -17,11 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Windows.Controls;
-
 namespace ProtonVPN.Sidebar
 {
-    public partial class DisconnectedConnectionDetails : UserControl
+    public partial class DisconnectedConnectionDetails
     {
         public DisconnectedConnectionDetails()
         {

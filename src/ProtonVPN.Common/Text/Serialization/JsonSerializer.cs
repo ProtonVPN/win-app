@@ -17,14 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
 using System.IO;
 using Newtonsoft.Json;
-using ProtonVPN.Common.Extensions;
 
 namespace ProtonVPN.Common.Text.Serialization
 {
-    public class JsonSerializer<T> : ITextSerializer<T>, IThrowsExpectedExceptions
+    public class JsonSerializer<T> : ITextSerializer<T>
     {
         private readonly JsonSerializer _serializer = new();
 
@@ -38,11 +36,6 @@ namespace ProtonVPN.Common.Text.Serialization
         {
             using JsonTextWriter jsonWriter = new(writer);
             _serializer.Serialize(jsonWriter, value);
-        }
-
-        public bool IsExpectedException(Exception ex)
-        {
-            return ex is JsonException;
         }
     }
 }

@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Text;
 using ProtonVPN.BugReporting.Actions;
 using ProtonVPN.BugReporting.FormElements;
+using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.OS;
 using ProtonVPN.Core.Auth;
@@ -38,13 +39,13 @@ namespace ProtonVPN.BugReporting
         private const string NO_USERNAME_FIELD_VALUE = "Not provided";
 
         private readonly IUserStorage _userStorage;
-        private readonly Common.Configuration.Config _config;
+        private readonly IConfiguration _config;
         private readonly ISystemState _systemState;
         private readonly IDeviceInfoProvider _deviceInfoProvider;
 
         private bool _isLoggedIn;
 
-        public ReportFieldProvider(IUserStorage userStorage, Common.Configuration.Config config,
+        public ReportFieldProvider(IUserStorage userStorage, IConfiguration config,
             ISystemState systemState, IDeviceInfoProvider deviceInfoProvider)
         {
             _config = config;

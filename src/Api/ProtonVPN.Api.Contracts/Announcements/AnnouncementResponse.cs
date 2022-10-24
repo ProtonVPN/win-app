@@ -33,5 +33,7 @@ namespace ProtonVPN.Api.Contracts.Announcements
         public long EndTimestamp { get; set; }
 
         public OfferResponse Offer { get; set; }
+
+        public int Type { get; set; }
     }
 }

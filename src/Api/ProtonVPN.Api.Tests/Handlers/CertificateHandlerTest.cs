@@ -55,7 +55,7 @@ namespace ProtonVPN.Api.Tests.Handlers
         [TestMethod]
         public void ItShouldReturnTrue()
         {
-            Config config = GetApiTlsPinningConfig(false);
+            IConfiguration config = GetApiTlsPinningConfig(false);
             TestCertificateHandler certificateHandler = CreateTestCertificateHandler(config);
 
             certificateHandler.GetValidationResult(_unknownHost, _apiCert, SslPolicyErrors.None).Should().BeTrue();
@@ -64,7 +64,7 @@ namespace ProtonVPN.Api.Tests.Handlers
         [TestMethod]
         public void ItShouldReturnFalseWhenEnforceIsOn()
         {
-            Config config = GetApiTlsPinningConfig(true);
+            IConfiguration config = GetApiTlsPinningConfig(true);
             TestCertificateHandler certificateHandler = CreateTestCertificateHandler(config);
 
             certificateHandler.GetValidationResult(_unknownHost, _apiCert, SslPolicyErrors.None).Should().BeFalse();
@@ -73,7 +73,7 @@ namespace ProtonVPN.Api.Tests.Handlers
         [TestMethod]
         public void ItShouldReturnFalseWhenEnforceIsOnAndSslError()
         {
-            Config config = GetApiTlsPinningConfig(true);
+            IConfiguration config = GetApiTlsPinningConfig(true);
             TestCertificateHandler certificateHandler = CreateTestCertificateHandler(config);
 
             certificateHandler.GetValidationResult(_unknownHost, _apiCert, SslPolicyErrors.RemoteCertificateNameMismatch).Should().BeFalse();
@@ -87,7 +87,7 @@ namespace ProtonVPN.Api.Tests.Handlers
         [TestMethod]
         public void ItShouldReturnFalseWhenSslError()
         {
-            Config config = GetApiTlsPinningConfig(true);
+            IConfiguration config = GetApiTlsPinningConfig(true);
             TestCertificateHandler certificateHandler = CreateTestCertificateHandler(config);
 
             certificateHandler.GetValidationResult(_apiHost, _apiCert, SslPolicyErrors.RemoteCertificateNameMismatch).Should().BeFalse();
@@ -96,7 +96,7 @@ namespace ProtonVPN.Api.Tests.Handlers
         [TestMethod]
         public void ItShouldReturnTrueWhenEnforceIsOff()
         {
-            Config config = GetApiTlsPinningConfig(false);
+            IConfiguration config = GetApiTlsPinningConfig(false);
             TestCertificateHandler certificateHandler = CreateTestCertificateHandler(config);
 
             certificateHandler.GetValidationResult(_apiHost, _apiCert, SslPolicyErrors.None).Should().BeTrue();
@@ -105,7 +105,7 @@ namespace ProtonVPN.Api.Tests.Handlers
         [TestMethod]
         public void ItShouldReturnTrueWhenPinIsValid()
         {
-            Config config = GetApiTlsPinningConfig(true);
+            IConfiguration config = GetApiTlsPinningConfig(true);
             TestCertificateHandler certificateHandler = CreateTestCertificateHandler(config);
 
             certificateHandler.GetValidationResult(_apiHost, _apiCert, SslPolicyErrors.None).Should().BeTrue();
@@ -114,7 +114,7 @@ namespace ProtonVPN.Api.Tests.Handlers
         [TestMethod]
         public void ItShouldReturnFalseWhenPinIsNotValid()
         {
-            Config config = GetApiTlsPinningConfig(true);
+            IConfiguration config = GetApiTlsPinningConfig(true);
             config.TlsPinningConfig.PinnedDomains = new List<TlsPinnedDomain>();
 
             TestCertificateHandler certificateHandler = CreateTestCertificateHandler(config);
@@ -129,7 +129,7 @@ namespace ProtonVPN.Api.Tests.Handlers
         [TestMethod]
         public void ItShouldReturnTrueWhenAlternativeHostPinIsValid()
         {
-            Config config = GetAlternativeApiTlsPinningConfig(true);
+            IConfiguration config = GetAlternativeApiTlsPinningConfig(true);
             TestCertificateHandler certificateHandler = CreateTestCertificateHandler(config);
 
             certificateHandler.GetValidationResult(_alternativeHost, _alternativeHostCert, SslPolicyErrors.None).Should().BeTrue();
@@ -138,7 +138,7 @@ namespace ProtonVPN.Api.Tests.Handlers
         [TestMethod]
         public void ItShouldReturnFalseWhenAlternativeHostPinIsInvalid()
         {
-            Config config = GetAlternativeApiTlsPinningConfig(true);
+            IConfiguration config = GetAlternativeApiTlsPinningConfig(true);
             config.TlsPinningConfig.PinnedDomains = new List<TlsPinnedDomain>();
             TestCertificateHandler certificateHandler = CreateTestCertificateHandler(config);
 
@@ -150,16 +150,16 @@ namespace ProtonVPN.Api.Tests.Handlers
         [TestMethod]
         public void ItShouldSendTlsPinReportWhenPinIsNotValid()
         {
-            Config config = GetIncorrectTlsPinningConfig(true);
+            IConfiguration config = GetIncorrectTlsPinningConfig(true);
             TestCertificateHandler certificateHandler = CreateTestCertificateHandler(config);
             certificateHandler.GetValidationResult(_apiHost, _apiCert, SslPolicyErrors.None);
 
             _reportClient.ReceivedWithAnyArgs().Send(null);
         }
 
-        private Config GetApiTlsPinningConfig(bool enforce)
+        private IConfiguration GetApiTlsPinningConfig(bool enforce)
         {
-            Config config = new();
+            IConfiguration config = new Config();
             PinConfigBuilder builder = new(enforce);
             builder.AddDomain(_apiHost, enforce, new List<string>
             {
@@ -174,9 +174,9 @@ namespace ProtonVPN.Api.Tests.Handlers
             return config;
         }
 
-        private Config GetIncorrectTlsPinningConfig(bool enforce)
+        private IConfiguration GetIncorrectTlsPinningConfig(bool enforce)
         {
-            Config config = new();
+            IConfiguration config = new Config();
             PinConfigBuilder builder = new(enforce);
             builder.AddDomain(_apiHost, enforce, new List<string>
             {
@@ -189,9 +189,9 @@ namespace ProtonVPN.Api.Tests.Handlers
             return config;
         }
 
-        private Config GetAlternativeApiTlsPinningConfig(bool enforce)
+        private IConfiguration GetAlternativeApiTlsPinningConfig(bool enforce)
         {
-            Config config = new();
+            IConfiguration config = new Config();
             PinConfigBuilder builder = new(enforce);
             builder.AddDomain(_alternativeHost, enforce, new List<string>
             {
@@ -206,7 +206,7 @@ namespace ProtonVPN.Api.Tests.Handlers
             return config;
         }
 
-        private TestCertificateHandler CreateTestCertificateHandler(Config config)
+        private TestCertificateHandler CreateTestCertificateHandler(IConfiguration config)
         {
             return new(new CertificateValidator(_reportClient, config));
         }

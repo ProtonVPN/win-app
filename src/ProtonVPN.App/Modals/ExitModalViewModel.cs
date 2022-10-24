@@ -37,12 +37,11 @@ namespace ProtonVPN.Modals
         public ExitModalViewModel(IAppSettings appSettings)
         {
             _appSettings = appSettings;
-            CancelCommand = new RelayCommand(() =>
-            {
-                TryClose(false);
-            });
+            ExitCommand = new RelayCommand(TryCloseWithSuccess);
+            CancelCommand = new RelayCommand(TryCloseWithFailure);
         }
 
+        public ICommand ExitCommand { get; }
         public ICommand CancelCommand { get; }
 
         public KillSwitchMode KillSwitchMode => _appSettings.KillSwitchMode;
@@ -56,11 +55,6 @@ namespace ProtonVPN.Modals
         {
             get => _disconnected;
             set => Set(ref _disconnected, value);
-        }
-
-        public override void CloseAction()
-        {
-            TryClose(true);
         }
 
         public Task OnVpnStateChanged(VpnStateChangedEventArgs e)

@@ -29,6 +29,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
 using Caliburn.Micro;
+using ProtonVPN.Account;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
 using ProtonVPN.Common.Vpn;
@@ -191,6 +192,11 @@ namespace ProtonVPN.Windows
                             e.State.Status != VpnStatus.Disconnected &&
                             e.State.Status != VpnStatus.Connected;
             return Task.CompletedTask;
+        }
+
+        public void TriggerAccountInfoUpdate()
+        {
+            _eventAggregator.PublishOnUIThread(new UpdateVpnInfoMessage());
         }
 
         private void UpdateIcon(VpnStatus vpnStatus)

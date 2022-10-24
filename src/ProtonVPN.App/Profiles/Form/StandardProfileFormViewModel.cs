@@ -18,6 +18,7 @@
  */
 
 using System.Collections.Generic;
+using ProtonVPN.Common.Configuration;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Servers;
@@ -29,7 +30,7 @@ namespace ProtonVPN.Profiles.Form
     public class StandardProfileFormViewModel : BaseCountryServerProfileFormViewModel
     {
         public StandardProfileFormViewModel(
-            Common.Configuration.Config appConfig,
+            IConfiguration appConfig,
             ColorProvider colorProvider,
             IUserStorage userStorage,
             ServerManager serverManager,

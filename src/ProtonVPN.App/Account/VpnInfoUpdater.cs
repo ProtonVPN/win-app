@@ -24,6 +24,7 @@ using System.Threading.Tasks;
 using Caliburn.Micro;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Auth;
+using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
@@ -34,7 +35,12 @@ using ProtonVPN.Core.Windows;
 
 namespace ProtonVPN.Account
 {
-    public class VpnInfoUpdater : IHandle<WindowStateMessage>, IVpnInfoUpdater, ILoggedInAware, ILogoutAware
+    public class VpnInfoUpdater :
+        IHandle<WindowStateMessage>,
+        IHandle<UpdateVpnInfoMessage>,
+        IVpnInfoUpdater,
+        ILoggedInAware,
+        ILogoutAware
     {
         private readonly IApiClient _api;
         private readonly ILogger _logger;
@@ -45,10 +51,10 @@ namespace ProtonVPN.Account
         private DateTime _lastCheck = DateTime.Now;
         private readonly SemaphoreSlim _semaphore = new(1, 1);
 
-        public VpnInfoUpdater(IApiClient api,
+        public VpnInfoUpdater(IConfiguration appConfig,
             ILogger logger,
+            IApiClient api,
             IUserStorage userStorage,
-            Common.Configuration.Config appConfig,
             IEventAggregator eventAggregator,
             IScheduler scheduler)
         {
@@ -67,6 +73,11 @@ namespace ProtonVPN.Account
         private async void OnTimerTick(object sender, EventArgs e)
         {
             await Handle();
+        }
+
+        public async void Handle(UpdateVpnInfoMessage message)
+        {
+            await Update();
         }
 
         public async void Handle(WindowStateMessage message)

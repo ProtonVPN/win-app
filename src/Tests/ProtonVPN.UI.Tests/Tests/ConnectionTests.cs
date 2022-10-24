@@ -47,7 +47,6 @@ namespace ProtonVPN.UI.Tests.Tests
         {
             TestCaseId = 221;
 
-            _loginWindow.SignIn(TestUserData.GetPlusUser());
             _homeWindow.PressQuickConnectButton()
                 .WaitUntilConnected();
 
@@ -68,7 +67,6 @@ namespace ProtonVPN.UI.Tests.Tests
         {
             TestCaseId = 225;
 
-            _loginWindow.SignIn(TestUserData.GetPlusUser());
             _homeWindow.NavigateToProfilesTab()
                 .ConnectViaProfile("Fastest")
                 .WaitUntilConnected();
@@ -79,7 +77,6 @@ namespace ProtonVPN.UI.Tests.Tests
         {
             TestCaseId = 223;
 
-            _loginWindow.SignIn(TestUserData.GetPlusUser());
             _homeWindow.ConnectViaCountry("Netherlands")
                 .WaitUntilConnected();
 
@@ -97,7 +94,6 @@ namespace ProtonVPN.UI.Tests.Tests
             TestCaseId = 21551;
             DeleteProfiles();
 
-            _loginWindow.SignIn(TestUserData.GetPlusUser());
             _homeWindow.NavigateToProfiles();
             _profilesWindow.PressCreateNewProfile()
                 .CreateProfile(TestConstants.ProfileName)
@@ -110,7 +106,6 @@ namespace ProtonVPN.UI.Tests.Tests
         {
             TestCaseId = 212;
 
-            _loginWindow.SignIn(TestUserData.GetPlusUser());
             _homeWindow.PressQuickConnectButton()
                 .WaitUntilConnected()
                 .Logout();
@@ -123,7 +118,6 @@ namespace ProtonVPN.UI.Tests.Tests
         {
             TestCaseId = 21549;
 
-            _loginWindow.SignIn(TestUserData.GetPlusUser());
             _homeWindow.PressQuickConnectButton()
                 .WaitUntilConnected()
                 .Logout();
@@ -136,7 +130,6 @@ namespace ProtonVPN.UI.Tests.Tests
         {
             TestCaseId = 215;
 
-            _loginWindow.SignIn(TestUserData.GetPlusUser());
             _homeWindow.EnableKillSwitch()
                 .PressQuickConnectButton()
                 .WaitUntilConnected()
@@ -152,7 +145,6 @@ namespace ProtonVPN.UI.Tests.Tests
         {
             TestCaseId = 217;
 
-            _loginWindow.SignIn(TestUserData.GetPlusUser());
             _homeWindow.NavigateToSettings()
                 .DisableStartToTray()
                 .ClickOnConnectOnBoot()
@@ -168,7 +160,6 @@ namespace ProtonVPN.UI.Tests.Tests
         {
             TestCaseId = 204;
 
-            _loginWindow.SignIn(TestUserData.GetPlusUser());
             _homeWindow.NavigateToSettings();
             _settingsWindow.DisableStartToTray()
                 .CloseSettings()
@@ -201,7 +192,6 @@ namespace ProtonVPN.UI.Tests.Tests
         {
             TestCaseId = 219;
 
-            _loginWindow.SignIn(TestUserData.GetPlusUser());
             _homeWindow.PerformConnectionViaMap(TestConstants.MapCountry)
                 .WaitUntilConnected();
 
@@ -218,7 +208,6 @@ namespace ProtonVPN.UI.Tests.Tests
         {
             TestCaseId = 4578;
 
-            _loginWindow.SignIn(TestUserData.GetPlusUser());
             _homeWindow.NavigateToSettings();
             _settingsWindow.NavigateToConnectionTab()
                 .ClickOnCustomDnsCheckBox()
@@ -254,8 +243,7 @@ namespace ProtonVPN.UI.Tests.Tests
         {
             TestCaseId = 227;
 
-            _loginWindow.SignIn(TestUserData.GetPlusUser())
-                .PressQuickConnectButton()
+            _homeWindow.PressQuickConnectButton()
                 .CancelConnection()
                 .WaitUntilDisconnected();
         }
@@ -266,8 +254,7 @@ namespace ProtonVPN.UI.Tests.Tests
         {
             TestCaseId = 216;
 
-            _loginWindow.SignIn(TestUserData.GetPlusUser())
-                .PressQuickConnectButton()
+            _homeWindow.PressQuickConnectButton()
                 .WaitUntilConnected()
                 .EnableKillSwitch()
                 .ExitTheApp()
@@ -275,11 +262,38 @@ namespace ProtonVPN.UI.Tests.Tests
             _homeResult.CheckIfDnsIsResolved(GOOGLE_URL);
         }
 
+        [Test]
+        public void ConnectUsingOpenVpnUdp()
+        {
+            TestCaseId = 153137;
+
+            _homeWindow.NavigateToSettings()
+                .NavigateToConnectionTab()
+                .SelectProtocolOpenVpnUdp()
+                .CloseSettings();
+            _homeWindow.PressQuickConnectButton()
+                .WaitUntilConnected();
+        }
+
+        [Test]
+        public void ConnectUsingOpenVpnTcp()
+        {
+            TestCaseId = 153139;
+
+            _homeWindow.NavigateToSettings()
+                .NavigateToConnectionTab()
+                .SelectProtocolOpenVpnTcp()
+                .CloseSettings();
+            _homeWindow.PressQuickConnectButton()
+                .WaitUntilConnected();
+        }
+
         [SetUp]
         public void TestInitialize()
         {
             DeleteUserConfig();
             LaunchApp();
+            _loginWindow.SignIn(TestUserData.GetPlusUser());
         }
 
         [TearDown]

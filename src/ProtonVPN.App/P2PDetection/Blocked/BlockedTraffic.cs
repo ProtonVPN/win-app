@@ -22,6 +22,7 @@ using ProtonVPN.Common.OS.Net.Http;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using ProtonVPN.Config.Url;
 
 namespace ProtonVPN.P2PDetection.Blocked
 {
@@ -38,23 +39,32 @@ namespace ProtonVPN.P2PDetection.Blocked
 
         private readonly IHttpClient _httpClient;
 
-        public BlockedTraffic(IHttpClients httpClients, Uri p2PStatusUri, TimeSpan timeout)
+        public BlockedTraffic(IHttpClients httpClients, IActiveUrls activeUrls, 
+            IP2PDetectionTimeout p2PDetectionTimeout)
         {
             Ensure.NotNull(httpClients, nameof(httpClients));
-            Ensure.NotNull(p2PStatusUri, nameof(p2PStatusUri));
+            Ensure.NotNull(activeUrls?.P2PStatusUrl?.Uri, nameof(activeUrls));
 
-            _p2PStatusUri = p2PStatusUri;
+            _p2PStatusUri = activeUrls.P2PStatusUrl.Uri;
             _httpClient = httpClients.Client(new HttpClientHandler
             {
                 UseCookies = false
             });
-            _httpClient.Timeout = timeout;
+            _httpClient.Timeout = p2PDetectionTimeout.GetTimeoutValue();
         }
 
         public async Task<bool> Detected()
         {
-            string response = await GetResponse();
-            return response.Contains("<!--P2P_WARNING-->");
+            try
+            {
+                string response = await GetResponse();
+                return response.Contains("<!--P2P_WARNING-->");
+            }
+            catch
+            {
+            }
+
+            return false;
         }
 
         private async Task<string> GetResponse()

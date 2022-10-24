@@ -19,14 +19,12 @@
 
 using System;
 using System.Collections.Generic;
-using System.Net.Http;
 using System.Threading.Tasks;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.BugReporting.Actions;
 using ProtonVPN.BugReporting.Attachments;
 using ProtonVPN.BugReporting.Diagnostic;
 using ProtonVPN.Common.Abstract;
-using ProtonVPN.Common.Extensions;
 
 namespace ProtonVPN.BugReporting
 {
@@ -34,15 +32,15 @@ namespace ProtonVPN.BugReporting
     {
         private readonly IApiClient _apiClient;
         private readonly IReportFieldProvider _reportFieldProvider;
-        private readonly Attachments.Attachments _attachments;
+        private readonly IAttachmentsLoader _attachmentsLoader;
         private readonly NetworkLogWriter _networkLogWriter;
 
         public BugReport(IApiClient apiClient, IReportFieldProvider reportFieldProvider,
-            Attachments.Attachments attachments, NetworkLogWriter networkLogWriter)
+            IAttachmentsLoader attachmentsLoader, NetworkLogWriter networkLogWriter)
         {
             _apiClient = apiClient;
             _reportFieldProvider = reportFieldProvider;
-            _attachments = attachments;
+            _attachmentsLoader = attachmentsLoader;
             _networkLogWriter = networkLogWriter;
         }
 
@@ -57,7 +55,7 @@ namespace ProtonVPN.BugReporting
         private async Task<Result> SendWithLogsAsync(KeyValuePair<string, string>[] fields)
         {
             await _networkLogWriter.WriteAsync();
-            return await SendInternalAsync(fields, new AttachmentsToApiFiles(_attachments.Get()));
+            return await SendInternalAsync(fields, new AttachmentsToApiFiles(_attachmentsLoader.Get()));
         }
 
         private async Task<Result> SendInternalAsync(KeyValuePair<string, string>[] fields, IEnumerable<File> files = null)

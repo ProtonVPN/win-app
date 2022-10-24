@@ -42,11 +42,11 @@ namespace ProtonVPN.Common.Tests.Configuration.Storage
         public void Value_ShouldBe_OriginValue_WhenValid()
         {
             // Arrange
-            Config contract = new DefaultConfig().Value();
+            IConfiguration contract = new DefaultConfig().Value();
             _origin.Value().Returns(contract);
             ValidatedConfigStorage config = new(_origin);
             // Act
-            Config result = config.Value();
+            IConfiguration result = config.Value();
             // Assert
             result.Should().Be(contract);
         }
@@ -55,12 +55,12 @@ namespace ProtonVPN.Common.Tests.Configuration.Storage
         public void Value_ShouldBeNull_WhenNotValid()
         {
             // Arrange
-            Config contract = new DefaultConfig().Value();
+            IConfiguration contract = new DefaultConfig().Value();
             contract.ReportBugMaxFiles = -1;
             _origin.Value().Returns(contract);
             ValidatedConfigStorage config = new(_origin);
             // Act
-            Config result = config.Value();
+            IConfiguration result = config.Value();
             // Assert
             result.Should().BeNull();
         }
@@ -72,7 +72,7 @@ namespace ProtonVPN.Common.Tests.Configuration.Storage
             _origin.Value().ReturnsNull();
             ValidatedConfigStorage config = new(_origin);
             // Act
-            Config result = config.Value();
+            IConfiguration result = config.Value();
             // Assert
             result.Should().BeNull();
         }

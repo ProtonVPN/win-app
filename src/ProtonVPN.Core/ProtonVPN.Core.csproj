@@ -42,6 +42,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.Net.Http.WebRequest" />
     <Reference Include="System.Numerics" />
@@ -64,14 +65,6 @@
     <Compile Include="..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Announcements\Announcement.cs" />
-    <Compile Include="Announcements\IAnnouncementCache.cs" />
-    <Compile Include="Announcements\AnnouncementService.cs" />
-    <Compile Include="Announcements\AnnouncementCache.cs" />
-    <Compile Include="Announcements\IAnnouncementService.cs" />
-    <Compile Include="Announcements\Panel.cs" />
-    <Compile Include="Announcements\PanelButton.cs" />
-    <Compile Include="Announcements\PanelFeature.cs" />
     <Compile Include="Abstract\IMigration.cs" />
     <Compile Include="Abstract\ISpecification.cs" />
     <Compile Include="Abstract\ISupportsMigration.cs" />
@@ -116,6 +109,8 @@
     <Compile Include="ReportAnIssue\InputType.cs" />
     <Compile Include="ReportAnIssue\IReportAnIssueFormDataProvider.cs" />
     <Compile Include="ReportAnIssue\ReportAnIssueFormDataProvider.cs" />
+    <Compile Include="Servers\FileStoraging\IServersFileStorage.cs" />
+    <Compile Include="Servers\FileStoraging\ServersFileStorage.cs" />
     <Compile Include="Servers\Specs\ExactTierServer.cs" />
     <Compile Include="Servers\Specs\ExitCityServer.cs" />
     <Compile Include="Settings\AppLanguageCache.cs" />
@@ -311,6 +306,10 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Announcements\ProtonVPN.Announcements.Contracts\ProtonVPN.Announcements.Contracts.csproj">
+      <Project>{153BD6AB-6B34-4E97-A96D-4ED5826DC037}</Project>
+      <Name>ProtonVPN.Announcements.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Dns\ProtonVPN.Dns.Contracts\ProtonVPN.Dns.Contracts.csproj">
       <Project>{455da1fb-5097-47d2-8603-b0e1f9d90294}</Project>
       <Name>ProtonVPN.Dns.Contracts</Name>
@@ -336,5 +335,6 @@
       <Name>ProtonVPN.Update</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

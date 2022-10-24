@@ -18,7 +18,7 @@
  */
 
 using System;
-using ProtonVPN.Config.Url;
+using ProtonVPN.Account;
 using ProtonVPN.Core.Servers.Models;
 using ProtonVPN.Servers.Reconnections;
 using ProtonVPN.Sidebar;
@@ -31,10 +31,10 @@ namespace ProtonVPN.Windows.Popups.SubscriptionExpiration
         
         public ReconnectionData ReconnectionData { get; private set; }
 
-        public SubscriptionExpiredPopupViewModel(IActiveUrls urls,
+        public SubscriptionExpiredPopupViewModel(ISubscriptionManager subscriptionManager,
             Lazy<ConnectionStatusViewModel> connectionStatusViewModel,
             AppWindow appWindow)
-            : base(urls, appWindow)
+            : base(subscriptionManager, appWindow)
         {
             _connectionStatusViewModel = connectionStatusViewModel;
         }

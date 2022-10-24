@@ -18,27 +18,29 @@
  */
 
 using System;
+using ProtonVPN.Common.Configuration;
 
 namespace ProtonVPN.P2PDetection
 {
     /// <summary>
     /// Calculates P2P detection timeout value from P2P detection interval.
     /// </summary>
-    public class P2PDetectionTimeout
+    public class P2PDetectionTimeout : IP2PDetectionTimeout
     {
         private readonly TimeSpan _interval;
 
-        public P2PDetectionTimeout(TimeSpan interval)
+        public P2PDetectionTimeout(IConfiguration config)
         {
-            _interval = interval;
+            _interval = config.P2PCheckInterval;
         }
 
         /// <summary>
         /// P2P detection timeout value.
         /// P2P detection interval should fit two detection actions.
         /// </summary>
-        public TimeSpan Value => new TimeSpan(_interval.Ticks / 2);
-
-        public static implicit operator TimeSpan(P2PDetectionTimeout timeout) => timeout.Value;
+        public TimeSpan GetTimeoutValue()
+        {
+            return new TimeSpan(_interval.Ticks / 2);
+        }
     }
 }

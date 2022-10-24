@@ -30,10 +30,10 @@ namespace ProtonVPN.Api.Handlers
     /// </summary>
     public class CancellingHandler : CancellingHandlerBase
     {
-        private readonly Config _config;
+        private readonly IConfiguration _config;
         private readonly CancellationHandle _cancellationHandle = new();
 
-        public CancellingHandler(Config config)
+        public CancellingHandler(IConfiguration config)
         {
             _config = config;
         }

@@ -70,7 +70,7 @@ namespace ProtonVPN
 
                 SetDllDirectories();
 
-                Common.Configuration.Config config = GetConfig();
+                IConfiguration config = GetConfig();
                 CreateProfileOptimization(config);
 
                 App app = new();
@@ -114,7 +114,7 @@ namespace ProtonVPN
             return null;
         }
 
-        private static void CreateProfileOptimization(Common.Configuration.Config config)
+        private static void CreateProfileOptimization(IConfiguration config)
         {
             ProfileOptimization.SetProfileRoot(config.LocalAppDataFolder);
             ProfileOptimization.StartProfile("Startup.profile");
@@ -126,14 +126,14 @@ namespace ProtonVPN
             base.OnExit(e);
         }
 
-        private static Common.Configuration.Config GetConfig()
+        private static IConfiguration GetConfig()
         {
 #if DEBUG
             const bool savingAllowed = true;
 #else
             const bool savingAllowed = false;
 #endif
-            var config = new ConfigFactory().Config(savingAllowed);
+            IConfiguration config = new ConfigFactory().Config(savingAllowed);
             new ConfigDirectories(config).Prepare();
 
             return config;

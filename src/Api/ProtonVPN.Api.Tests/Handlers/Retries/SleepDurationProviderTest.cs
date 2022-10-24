@@ -72,9 +72,9 @@ namespace ProtonVPN.Api.Tests.Handlers.Retries
                 .BeCloseTo(expectedResult, GetPrecision(expectedResult));
         }
 
-        private int GetPrecision(TimeSpan timeSpan)
+        private TimeSpan GetPrecision(TimeSpan timeSpan)
         {
-            return (int)(timeSpan.TotalMilliseconds * 0.2);
+            return TimeSpan.FromMilliseconds(timeSpan.TotalMilliseconds * 0.2);
         }
     }
 }

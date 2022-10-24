@@ -24,6 +24,7 @@ using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.Common;
+using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Helpers;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.ConnectionLogs;
@@ -46,7 +47,7 @@ namespace ProtonVPN.Vpn.Connection
         private const int ManagementPasswordLength = 16;
 
         private readonly ILogger _logger;
-        private readonly ProtonVPN.Common.Configuration.Config _config;
+        private readonly IConfiguration _config;
         private readonly INetworkInterfaceLoader _networkInterfaceLoader;
         private readonly OpenVpnProcess _process;
         private readonly ManagementClient _managementClient;
@@ -63,7 +64,7 @@ namespace ProtonVPN.Vpn.Connection
 
         public OpenVpnConnection(
             ILogger logger,
-            ProtonVPN.Common.Configuration.Config config,
+            IConfiguration config,
             INetworkInterfaceLoader networkInterfaceLoader,
             OpenVpnProcess process,
             ManagementClient managementClient)
@@ -268,10 +269,12 @@ namespace ProtonVPN.Vpn.Connection
                 _connectAction.Cancel();
 
                 _logger.Info<DisconnectLog>("Waiting for Connection task to finish...");
-                if (await Task.WhenAny(connectTask, Task.Delay(WaitForConnectionTaskToFinishAfterCancellation)) !=
-                    connectTask)
+                if (await Task.WhenAny(connectTask, 
+                        Task.Delay(WaitForConnectionTaskToFinishAfterCancellation)) != connectTask)
+                {
                     _logger.Warn<DisconnectLog>(
                         $"Connection task has not finished in {WaitForConnectionTaskToFinishAfterCancellation}");
+                }
             }
             catch (Exception ex) when (IsImplementationException(ex))
             {

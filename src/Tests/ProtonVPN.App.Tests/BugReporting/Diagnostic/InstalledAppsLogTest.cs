@@ -31,7 +31,7 @@ namespace ProtonVPN.App.Tests.BugReporting.Diagnostic
         public void ItShouldCreateLogFile()
         {
             // Act
-            new InstalledAppsLog(TmpPath).Write();
+            new InstalledAppsLog(Config).Write();
 
             // Assert
             File.Exists(Path.Combine(TmpPath, "Apps.txt")).Should().BeTrue();

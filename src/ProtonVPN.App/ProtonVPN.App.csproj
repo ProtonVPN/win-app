@@ -117,12 +117,18 @@
     <Compile Include="About\ReleaseEqualityComparer.cs" />
     <Compile Include="Account\AccountActionMessage.cs" />
     <Compile Include="Account\IPromoCodeManager.cs" />
+    <Compile Include="Account\ISubscriptionManager.cs" />
     <Compile Include="Account\IVpnInfoUpdater.cs" />
+    <Compile Include="Account\IWebAuthenticator.cs" />
+    <Compile Include="Account\LoginUrlParams.cs" />
     <Compile Include="Account\PromoCodeManager.cs" />
     <Compile Include="Account\PromoCodeView.xaml.cs">
       <DependentUpon>PromoCodeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Account\PromoCodeViewModel.cs" />
+    <Compile Include="Account\SubscriptionManager.cs" />
+    <Compile Include="Account\UpdateVpnInfoMessage.cs" />
+    <Compile Include="Account\WebAuthenticator.cs" />
     <Compile Include="BugReporting\Actions\CategoryAction.cs" />
     <Compile Include="BugReporting\Actions\FinishReportAction.cs" />
     <Compile Include="BugReporting\Actions\FormStateChange.cs" />
@@ -130,6 +136,14 @@
     <Compile Include="BugReporting\Actions\RetryAction.cs" />
     <Compile Include="BugReporting\Actions\SelectCategoryAction.cs" />
     <Compile Include="BugReporting\Actions\SendReportAction.cs" />
+    <Compile Include="BugReporting\Attachments\IAttachmentsLoader.cs" />
+    <Compile Include="BugReporting\Attachments\Sources\AppLogFileSource.cs" />
+    <Compile Include="BugReporting\Attachments\Sources\DiagnosticsLogFileSource.cs" />
+    <Compile Include="BugReporting\Attachments\Sources\IAppLogFileSource.cs" />
+    <Compile Include="BugReporting\Attachments\Sources\IDiagnosticsLogFileSource.cs" />
+    <Compile Include="BugReporting\Attachments\Sources\ILogFileSource.cs" />
+    <Compile Include="BugReporting\Attachments\Sources\IServiceLogFileSource.cs" />
+    <Compile Include="BugReporting\Attachments\Sources\ServiceLogFileSource.cs" />
     <Compile Include="BugReporting\Diagnostic\BaseLog.cs" />
     <Compile Include="BugReporting\Diagnostic\DriverInstallLog.cs" />
     <Compile Include="BugReporting\Diagnostic\ILog.cs" />
@@ -206,6 +220,8 @@
     <Compile Include="ErrorHandling\NullLogger.cs" />
     <Compile Include="ErrorHandling\InstalledAppRegistry.cs" />
     <Compile Include="ErrorHandling\RepairLauncher.cs" />
+    <Compile Include="GuestHoles\FileStoraging\GuestHoleServersFileStorage.cs" />
+    <Compile Include="GuestHoles\FileStoraging\IGuestHoleServersFileStorage.cs" />
     <Compile Include="HumanVerification\HumanVerificationView.xaml.cs">
       <DependentUpon>HumanVerificationView.xaml</DependentUpon>
     </Compile>
@@ -223,8 +239,12 @@
     </Compile>
     <Compile Include="Modals\DiscourageSecureCoreModalViewModel.cs" />
     <Compile Include="Modals\AssignVpnConnectionsModalViewModel.cs" />
+    <Compile Include="P2PDetection\IP2PDetectionTimeout.cs" />
+    <Compile Include="P2PDetection\IP2PDetector.cs" />
     <Compile Include="Settings\Migrations\v2_0_2\UserSettingsMigration.cs" />
     <Compile Include="Settings\Migrations\v2_0_6\AppSettingsMigration.cs" />
+    <Compile Include="Streaming\IStreamingServicesFileStorage.cs" />
+    <Compile Include="Streaming\StreamingServicesFileStorage.cs" />
     <Compile Include="Windows\Popups\Rebranding\RebrandingPopupView.xaml.cs">
       <DependentUpon>RebrandingPopupView.xaml</DependentUpon>
     </Compile>
@@ -235,10 +255,10 @@
     <Compile Include="Modals\IncorrectSystemTimeModalView.xaml.cs">
       <DependentUpon>IncorrectSystemTimeModalView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Modals\Offers\OfferModalView.xaml.cs">
-      <DependentUpon>OfferModalView.xaml</DependentUpon>
+    <Compile Include="Windows\Popups\Offers\OfferPopupView.xaml.cs">
+      <DependentUpon>OfferPopupView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Modals\Offers\OfferModalViewModel.cs" />
+    <Compile Include="Windows\Popups\Offers\OfferPopupViewModel.cs" />
     <Compile Include="Modals\AssignVpnConnectionsModalView.xaml.cs">
       <DependentUpon>AssignVpnConnectionsModalView.xaml</DependentUpon>
     </Compile>
@@ -351,7 +371,6 @@
     <Compile Include="Streaming\StreamingInfoPopupViewModel.cs" />
     <Compile Include="Streaming\StreamingService.cs" />
     <Compile Include="Streaming\StreamingServices.cs" />
-    <Compile Include="Streaming\StreamingServicesStorage.cs" />
     <Compile Include="Streaming\StreamingServicesUpdater.cs" />
     <Compile Include="Streaming\StreamingServiceViewModel.cs" />
     <Compile Include="Views\Controls\AltImage.xaml.cs">
@@ -396,11 +415,9 @@
     <Compile Include="About\UpdateViewModel.cs" />
     <Compile Include="Account\VpnInfoUpdater.cs" />
     <Compile Include="BugReporting\Attachments\Attachment.cs" />
-    <Compile Include="BugReporting\Attachments\Attachments.cs" />
+    <Compile Include="BugReporting\Attachments\AttachmentsLoader.cs" />
     <Compile Include="BugReporting\Attachments\AttachmentsToApiFiles.cs" />
-    <Compile Include="BugReporting\Attachments\Source\FilesToAttachments.cs" />
-    <Compile Include="BugReporting\Attachments\Source\LogFileSource.cs" />
-    <Compile Include="BugReporting\Attachments\Source\SafeFileSource.cs" />
+    <Compile Include="BugReporting\Attachments\Sources\LogFileSourceBase.cs" />
     <Compile Include="BugReporting\BugReport.cs" />
     <Compile Include="BugReporting\EmailValidator.cs" />
     <Compile Include="BugReporting\Screens\FailureView.xaml.cs">
@@ -511,7 +528,6 @@
     <Compile Include="Notifications\SystemNotification.cs" />
     <Compile Include="P2PDetection\Blocked\BlockedTraffic.cs" />
     <Compile Include="P2PDetection\Blocked\IBlockedTraffic.cs" />
-    <Compile Include="P2PDetection\Blocked\SafeBlockedTraffic.cs" />
     <Compile Include="P2PDetection\P2PDetectionTimeout.cs" />
     <Compile Include="Profiles\Form\Error.cs" />
     <Compile Include="Profiles\Form\SecureCoreProfileFormView.xaml.cs">
@@ -870,7 +886,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Modals\Offers\OfferModalView.xaml">
+    <Page Include="Windows\Popups\Offers\OfferPopupView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -1611,6 +1627,14 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Announcements\ProtonVPN.Announcements.Contracts\ProtonVPN.Announcements.Contracts.csproj">
+      <Project>{153BD6AB-6B34-4E97-A96D-4ED5826DC037}</Project>
+      <Name>ProtonVPN.Announcements.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Announcements\ProtonVPN.Announcements.Installers\ProtonVPN.Announcements.Installers.csproj">
+      <Project>{2088B3AF-F9AF-45B8-B824-16749D5DAF9E}</Project>
+      <Name>ProtonVPN.Announcements.Installers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Dns\ProtonVPN.Dns.Contracts\ProtonVPN.Dns.Contracts.csproj">
       <Project>{455DA1FB-5097-47D2-8603-B0E1F9D90294}</Project>
       <Name>ProtonVPN.Dns.Contracts</Name>
@@ -1920,6 +1944,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>

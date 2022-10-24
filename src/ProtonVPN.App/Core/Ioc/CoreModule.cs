@@ -23,6 +23,7 @@ using ProtonVPN.Api;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Handlers.Retries;
 using ProtonVPN.Api.Handlers.TlsPinning;
+using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Log4Net;
@@ -34,7 +35,6 @@ using ProtonVPN.Common.OS.Registry;
 using ProtonVPN.Common.OS.Services;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Config.Url;
-using ProtonVPN.Core.Announcements;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Config;
 using ProtonVPN.Core.Events;
@@ -86,7 +86,7 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<ActionableFailureApiResultEventHandler>().SingleInstance();
 
             builder.RegisterType<Log4NetLoggerFactory>().As<ILoggerFactory>().SingleInstance();
-            builder.Register(c => c.Resolve<ILoggerFactory>().Get(c.Resolve<Common.Configuration.Config>().AppLogDefaultFullFilePath))
+            builder.Register(c => c.Resolve<ILoggerFactory>().Get(c.Resolve<IConfiguration>().AppLogDefaultFullFilePath))
                 .As<ILogger>().SingleInstance();
             builder.RegisterType<LogCleaner>().SingleInstance();
             builder.RegisterType<SafeServiceAction>().As<ISafeServiceAction>().SingleInstance();
@@ -122,7 +122,7 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<VpnCredentialProvider>().As<IVpnCredentialProvider>().SingleInstance();
             builder.Register(c => new EventTimer(
                     c.Resolve<EventClient>(),
-                    c.Resolve<Common.Configuration.Config>().EventCheckInterval.RandomizedWithDeviation(0.2)))
+                    c.Resolve<IConfiguration>().EventCheckInterval.RandomizedWithDeviation(0.2))) // REMOVE THIS CUSTOM REGISTRATION
                 .AsSelf()
                 .AsImplementedInterfaces()
                 .SingleInstance();
@@ -130,25 +130,15 @@ namespace ProtonVPN.Core.Ioc
                 .AsImplementedInterfaces()
                 .SingleInstance();
             builder.Register(c => new DohClients(
-                c.Resolve<Common.Configuration.Config>().DoHProviders,
-                c.Resolve<Common.Configuration.Config>().DohClientTimeout))
+                c.Resolve<IConfiguration>().DoHProviders, // REMOVE THIS CUSTOM REGISTRATION
+                c.Resolve<IConfiguration>().DohClientTimeout))
                 .SingleInstance();
             builder.RegisterType<MainWindowState>().As<IMainWindowState>().SingleInstance();
             builder.RegisterType<SingleActionFactory>().As<ISingleActionFactory>().SingleInstance();
             builder.RegisterType<LastServerLoadTimeProvider>().As<ILastServerLoadTimeProvider>().SingleInstance();
             builder.RegisterType<ClientConfig>().AsImplementedInterfaces().SingleInstance();
-            builder.Register(c => new AnnouncementService(
-                c.Resolve<IAppSettings>(),
-                c.Resolve<IScheduler>(),
-                c.Resolve<IApiClient>(),
-                c.Resolve<IAnnouncementCache>(),
-                c.Resolve<ILogger>(),
-                c.Resolve<Common.Configuration.Config>().AnnouncementUpdateInterval))
-                .AsImplementedInterfaces()
-                .SingleInstance();
-            builder.RegisterType<AnnouncementCache>().As<IAnnouncementCache>().SingleInstance();
             builder.Register(c =>
-                    new NtpClient(c.Resolve<Common.Configuration.Config>().NtpServerUrl, c.Resolve<ILogger>()))
+                    new NtpClient(c.Resolve<IConfiguration>().NtpServerUrl, c.Resolve<ILogger>())) // REMOVE THIS CUSTOM REGISTRATION
                 .As<INtpClient>().SingleInstance();
             builder.RegisterType<ReportAnIssueFormDataProvider>().As<IReportAnIssueFormDataProvider>().SingleInstance();
             builder.RegisterType<SystemState>().As<ISystemState>().SingleInstance();

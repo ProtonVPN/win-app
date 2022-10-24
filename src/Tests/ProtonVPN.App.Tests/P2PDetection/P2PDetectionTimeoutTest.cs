@@ -20,6 +20,8 @@
 using System;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NSubstitute;
+using ProtonVPN.Common.Configuration;
 using ProtonVPN.P2PDetection;
 
 namespace ProtonVPN.App.Tests.P2PDetection
@@ -32,8 +34,10 @@ namespace ProtonVPN.App.Tests.P2PDetection
         {
             // Arrange
             TimeSpan interval = TimeSpan.FromSeconds(30);
+            IConfiguration config = Substitute.For<IConfiguration>();
+            config.P2PCheckInterval.Returns(interval);
             // Act
-            TimeSpan timeout = new P2PDetectionTimeout(interval).Value;
+            TimeSpan timeout = new P2PDetectionTimeout(config).GetTimeoutValue();
             // Assert
             timeout.Should().BeCloseTo(TimeSpan.FromSeconds(15), TimeSpan.FromMilliseconds(1000));
         }

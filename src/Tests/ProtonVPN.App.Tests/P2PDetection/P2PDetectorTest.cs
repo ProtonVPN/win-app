@@ -25,6 +25,7 @@ using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using ProtonVPN.Api.Contracts.Geographical;
+using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Threading;
@@ -43,7 +44,7 @@ namespace ProtonVPN.App.Tests.P2PDetection
     public class P2PDetectorTest
     {
         private ILogger _logger;
-        private Common.Configuration.Config _appConfig;
+        private IConfiguration _appConfig;
         private IBlockedTraffic _blockedTraffic;
         private IScheduler _scheduler;
         private IDialogs _dialogs;

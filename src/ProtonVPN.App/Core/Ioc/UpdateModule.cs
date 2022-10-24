@@ -21,10 +21,12 @@ using System;
 using System.Net.Http;
 using Autofac;
 using ProtonVPN.Api;
+using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Handlers;
 using ProtonVPN.Api.Handlers.Retries;
 using ProtonVPN.Api.Handlers.StackBuilders;
 using ProtonVPN.Api.Handlers.TlsPinning;
+using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.OS.Net.Http;
 using ProtonVPN.Core.Update;
 using ProtonVPN.Update.Config;
@@ -45,19 +47,12 @@ namespace ProtonVPN.Core.Ioc
         // TO DO: Refactor the code in order to delete this custom registration
         private DefaultAppUpdateConfig CreateDefaultAppUpdateConfig(IComponentContext c)
         {
-            HttpMessageHandler innerHandler = new HttpMessageHandlerStackBuilder()
-                .AddDelegatingHandler(c.Resolve<RetryingHandler>())
-                .AddDelegatingHandler(c.Resolve<DnsHandler>())
-                .AddDelegatingHandler(c.Resolve<LoggingHandlerBase>())
-                .AddLastHandler(c.Resolve<CertificateHandler>())
-                .Build();
-
             return new DefaultAppUpdateConfig
             {
-                HttpClient = c.Resolve<IHttpClients>().Client(innerHandler, c.Resolve<IApiAppVersion>().UserAgent()),
+                HttpClient = c.Resolve<IFileDownloadHttpClientFactory>().GetFileDownloadHttpClient(),
                 FeedUriProvider = c.Resolve<IFeedUrlProvider>(),
-                UpdatesPath = c.Resolve<Common.Configuration.Config>().UpdatesPath,
-                CurrentVersion = Version.Parse(c.Resolve<Common.Configuration.Config>().AppVersion),
+                UpdatesPath = c.Resolve<IConfiguration>().UpdatesPath,
+                CurrentVersion = Version.Parse(c.Resolve<IConfiguration>().AppVersion),
                 EarlyAccessCategoryName = "EarlyAccess",
                 MinProgressDuration = TimeSpan.FromSeconds(1.5)
             };

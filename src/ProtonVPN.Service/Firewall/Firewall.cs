@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Autofac;
+using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.FirewallLogs;
 using ProtonVPN.NetworkFilter;
@@ -33,7 +34,7 @@ namespace ProtonVPN.Service.Firewall
     {
         private readonly ILogger _logger;
         private readonly IDriver _calloutDriver;
-        private readonly Common.Configuration.Config _config;
+        private readonly IConfiguration _config;
         private readonly IpLayer _ipLayer;
         private readonly IpFilter _ipFilter;
         private FirewallParams _lastParams = FirewallParams.Empty;
@@ -48,7 +49,7 @@ namespace ProtonVPN.Service.Firewall
         public Firewall(
             ILogger logger,
             IDriver calloutDriver,
-            Common.Configuration.Config config,
+            IConfiguration config,
             IpLayer ipLayer,
             IpFilter ipFilter)
         {

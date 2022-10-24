@@ -73,6 +73,9 @@
     <Compile Include="Graphics\BrandLoader.xaml.cs">
       <DependentUpon>BrandLoader.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Graphics\Icons\Bell.xaml.cs">
+      <DependentUpon>Bell.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Graphics\Icons\Gift.xaml.cs">
       <DependentUpon>Gift.xaml</DependentUpon>
     </Compile>
@@ -366,6 +369,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Graphics\BrandLoader.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Graphics\Icons\Bell.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

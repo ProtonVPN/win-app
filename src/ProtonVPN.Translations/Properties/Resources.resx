@@ -314,8 +314,8 @@
     <comment>The label for account plan name in Account window</comment>
   </data>
   <data name="Account_btn_ManageSubscription" xml:space="preserve">
-    <value>Manage subscription</value>
-    <comment>The text on Manage subscription button in Account window (opens account management web page)</comment>
+    <value>Manage Subscription</value>
+    <comment>The text on Manage subscription button in Account window (auto login to a subscription upgrade page)</comment>
   </data>
   <data name="Window_lbl_Loading" xml:space="preserve">
     <value>Loading</value>

@@ -44,11 +44,11 @@ namespace ProtonVPN.Common.Tests.Configuration.Source
         public void Value_ShouldBe_Default_WhenMode_IsDefault()
         {
             // Arrange
-            Config defaultValue = new DefaultConfig().Value();
+            IConfiguration defaultValue = new DefaultConfig().Value();
             _default.Value().Returns(defaultValue);
             CustomConfig config = new(ConfigMode.Default, _default, _storage);
             // Act
-            Config result = config.Value();
+            IConfiguration result = config.Value();
             // Assert
             result.Should().Be(defaultValue);
         }
@@ -57,12 +57,12 @@ namespace ProtonVPN.Common.Tests.Configuration.Source
         public void Value_ShouldBe_StorageValue_WhenMode_IsNotDefault()
         {
             // Arrange
-            Config value = new DefaultConfig().Value();
+            IConfiguration value = new DefaultConfig().Value();
             _default.Value().Returns(new DefaultConfig().Value());
             _storage.Value().Returns(value);
             CustomConfig config = new(ConfigMode.CustomOrDefault, _default, _storage);
             // Act
-            Config result = config.Value();
+            IConfiguration result = config.Value();
             // Assert
             result.Should().Be(value);
         }
@@ -71,12 +71,12 @@ namespace ProtonVPN.Common.Tests.Configuration.Source
         public void Value_ShouldBe_Default_WhenMode_IsNotDefault_AndStorageValue_IsNull()
         {
             // Arrange
-            Config defaultValue = new DefaultConfig().Value();
+            IConfiguration defaultValue = new DefaultConfig().Value();
             _default.Value().Returns(defaultValue);
             _storage.Value().ReturnsNull();
             CustomConfig config = new(ConfigMode.CustomOrDefault, _default, _storage);
             // Act
-            Config result = config.Value();
+            IConfiguration result = config.Value();
             // Assert
             result.Should().Be(defaultValue);
         }
@@ -85,7 +85,7 @@ namespace ProtonVPN.Common.Tests.Configuration.Source
         public void Value_ShouldCall_StorageSave_WhenMode_IsCustomOrSavedDefault_AndStorageValue_IsNull()
         {
             // Arrange
-            Config defaultValue = new DefaultConfig().Value();
+            IConfiguration defaultValue = new DefaultConfig().Value();
             _default.Value().Returns(defaultValue);
             _storage.Value().ReturnsNull();
             CustomConfig config = new(ConfigMode.CustomOrSavedDefault, _default, _storage);

@@ -45,7 +45,7 @@ namespace TestTools.ApiClient
             _password = password;
 
             IAppSettings appSettings = Substitute.For<IAppSettings>();
-            Config config = new Config { ApiVersion = "3" };
+            IConfiguration config = new Config { ApiVersion = "3" };
             IUserStorage userStorage = Substitute.For<IUserStorage>();
             ILogger logger = Substitute.For<ILogger>();
             IAuthCertificateManager authCertificateManager = Substitute.For<IAuthCertificateManager>();

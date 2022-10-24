@@ -48,7 +48,7 @@ namespace ProtonVPN.App.Tests.BugReporting.Diagnostic
         public void ItShouldCreateLogFile()
         {
             // Act
-            new RoutingTableLog(_osProcesses, TmpPath).Write();
+            new RoutingTableLog(_osProcesses, Config).Write();
 
             // Assert
             File.Exists(Path.Combine(TmpPath, "RoutingTable.txt")).Should().BeTrue();

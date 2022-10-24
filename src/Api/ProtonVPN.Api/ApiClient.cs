@@ -56,7 +56,7 @@ namespace ProtonVPN.Api
             IAppSettings appSettings,
             IApiAppVersion appVersion,
             IAppLanguageCache appLanguageCache,
-            Config config) : base(logger, appVersion, appSettings, appLanguageCache, config)
+            IConfiguration config) : base(logger, appVersion, appSettings, appLanguageCache, config)
         {
             _client = httpClientFactory.GetApiHttpClientWithCache();
             _noCacheClient = httpClientFactory.GetApiHttpClientWithoutCache();
@@ -198,9 +198,14 @@ namespace ProtonVPN.Api
             return await SendRequest<PhysicalServerWrapperResponse>(request, "Get server status");
         }
 
-        public async Task<ApiResponseResult<AnnouncementsResponse>> GetAnnouncementsAsync()
+        public async Task<ApiResponseResult<AnnouncementsResponse>> GetAnnouncementsAsync(
+            AnnouncementsRequest announcementsRequest)
         {
-            HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, "core/v4/notifications");
+            string url = "core/v4/notifications?" +
+                         $"FullScreenImageSupport={announcementsRequest.FullScreenImageSupport}&" +
+                         $"FullScreenImageWidth={announcementsRequest.FullScreenImageWidth}&" +
+                         $"FullScreenImageHeight={announcementsRequest.FullScreenImageHeight}";
+            HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, url);
             return await SendRequest<AnnouncementsResponse>(request, "Get announcements");
         }
 
@@ -229,6 +234,14 @@ namespace ProtonVPN.Api
             HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Post, "payments/v4/promocode");
             request.Content = GetJsonContent(promoCodeRequest);
             return await SendRequest<BaseResponse>(request, "Apply promo code");
+        }
+
+        public async Task<ApiResponseResult<ForkedAuthSessionResponse>> ForkAuthSessionAsync(AuthForkSessionRequest authForkSessionRequest)
+        {
+            HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Post, "auth/v4/sessions/forks");
+            request.SetCustomTimeout(TimeSpan.FromSeconds(3));
+            request.Content = GetJsonContent(authForkSessionRequest);
+            return await SendRequest<ForkedAuthSessionResponse>(request, "Fork auth session");
         }
 
         private async Task<ApiResponseResult<T>> SendRequest<T>(HttpRequestMessage request, string logDescription)

@@ -27,13 +27,13 @@ namespace ProtonVPN.Service.Settings
 {
     public class ServiceSettings : IServiceSettings
     {
-        private readonly SettingsStorage _storage;
+        private readonly ISettingsFileStorage _storage;
 
         private SettingsContract _settings;
 
         public event EventHandler<SettingsContract> SettingsChanged;
 
-        public ServiceSettings(SettingsStorage storage)
+        public ServiceSettings(ISettingsFileStorage storage)
         {
             _storage = storage;
         }
@@ -95,10 +95,10 @@ namespace ProtonVPN.Service.Settings
 
         private void Load()
         {
-            if (_settings != null)
-                return;
-
-            _settings = _storage.Get() ?? new SettingsContract();
+            if (_settings == null)
+            {
+                _settings = _storage.Get() ?? new SettingsContract();
+            }
         }
 
         private void Save()

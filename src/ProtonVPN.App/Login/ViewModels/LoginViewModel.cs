@@ -19,13 +19,13 @@
 
 using System;
 using System.ComponentModel;
-using System.Net.Http;
 using System.Security;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Api;
 using ProtonVPN.BugReporting;
+using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.KillSwitch;
 using ProtonVPN.Common.Logging;
@@ -47,7 +47,7 @@ namespace ProtonVPN.Login.ViewModels
     public class LoginViewModel : ViewModel, ISettingsAware, IServiceSettingsStateAware
     {
         private readonly ILogger _logger;
-        private readonly Common.Configuration.Config _appConfig;
+        private readonly IConfiguration _appConfig;
         private readonly IAppSettings _appSettings;
         private readonly LoginWindowViewModel _loginWindowViewModel;
         private readonly IActiveUrls _urls;
@@ -91,7 +91,7 @@ namespace ProtonVPN.Login.ViewModels
 
         public LoginViewModel(
             ILogger logger,
-            Common.Configuration.Config appConfig,
+            IConfiguration appConfig,
             LoginWindowViewModel loginWindowViewModel,
             IActiveUrls urls,
             IAppSettings appSettings,

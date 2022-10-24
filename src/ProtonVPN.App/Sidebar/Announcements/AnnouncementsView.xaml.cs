@@ -18,6 +18,7 @@
  */
 
 using System;
+using System.Windows;
 using System.Windows.Input;
 
 namespace ProtonVPN.Sidebar.Announcements
@@ -45,6 +46,11 @@ namespace ProtonVPN.Sidebar.Announcements
         {
             Popup.IsOpen = false;
             Popup.StaysOpen = false;
+        }
+
+        private void OnIconImageFailed(object sender, ExceptionRoutedEventArgs e)
+        {
+            IconImage.Visibility = Visibility.Collapsed;
         }
     }
 }

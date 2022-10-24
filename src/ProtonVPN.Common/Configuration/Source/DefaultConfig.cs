@@ -32,7 +32,7 @@ namespace ProtonVPN.Common.Configuration.Source
         public const int MAX_QUICK_CONNECT_SERVERS_ON_RECONNECTION = 50;
         public const string ALTERNATIVE_ROUTING_HOSTNAME = "*";
 
-        public Config Value()
+        public IConfiguration Value()
         {
             string location = Assembly.GetEntryAssembly()?.Location;
             string baseFolder = (location != null ? new FileInfo(location).DirectoryName : null)
@@ -93,6 +93,8 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 LocalAppDataFolder = localAppDataFolder,
 
+                ImageCacheFolder = Path.Combine(localAppDataFolder, "Images"),
+
                 MaxDiagnosticLogsAttached = 4,
 
                 MaxAppLogsAttached = 3,
@@ -129,7 +131,7 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 StreamingServicesUpdateInterval = TimeSpan.FromHours(3),
 
-                AnnouncementUpdateInterval = TimeSpan.FromHours(12),
+                AnnouncementUpdateInterval = TimeSpan.FromMinutes(150),
 
                 ServerLoadUpdateInterval = TimeSpan.FromMinutes(15),
 
@@ -341,7 +343,9 @@ namespace ProtonVPN.Common.Configuration.Source
                 NewCacheTimeToLiveOnResolveError = TimeSpan.FromMinutes(10),
                 DefaultDnsTimeToLive = TimeSpan.FromMinutes(20),
 
-                AlternativeRoutingCheckInterval = TimeSpan.FromMinutes(30)
+                AlternativeRoutingCheckInterval = TimeSpan.FromMinutes(30),
+
+                AutoLoginBaseUrl = "https://account.proton.me/lite",
             };
         }
     }

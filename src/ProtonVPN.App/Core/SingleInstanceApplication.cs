@@ -23,6 +23,8 @@ using System.ServiceModel;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using ProtonVPN.Account;
+using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.ServiceModel.Server;
 using ProtonVPN.Core.Service;
 using ProtonVPN.Login.Views;
@@ -97,9 +99,16 @@ namespace ProtonVPN.Core
                     Window window = ((App)WinApplication.Current).MainWindow;
                     if (window is AppWindow or LoginWindow && window.IsLoaded)
                     {
+                        window.WindowState = WindowState.Minimized;
                         window.Show();
                         window.WindowState = WindowState.Normal;
                         window.Activate();
+
+                        if (window is AppWindow appWindow && args.Count > 0 &&
+                            args[0].ContainsIgnoringCase(SubscriptionManager.REDIRECT_ENDPOINT))
+                        {
+                            appWindow.TriggerAccountInfoUpdate();
+                        }
                     }
                 }
             }

@@ -43,7 +43,7 @@ namespace ProtonVPN.App.Tests.BugReporting.Diagnostic
         public void ItShouldCreateLogFile()
         {
             // Act
-            new UserSettingsLog(_appSettings, TmpPath).Write();
+            new UserSettingsLog(_appSettings, Config).Write();
 
             // Assert
             File.Exists(Path.Combine(TmpPath, "Settings.txt")).Should().BeTrue();

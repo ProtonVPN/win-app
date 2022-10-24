@@ -43,11 +43,11 @@ namespace ProtonVPN.Common.Tests.Configuration.Storage
         public void Value_ShouldBe_OriginValue()
         {
             // Arrange
-            Config expected = new();
+            IConfiguration expected = new Config();
             _origin.Value().Returns(expected);
             SafeConfigStorage storage = new(_origin);
             // Act
-            Config value = storage.Value();
+            IConfiguration value = storage.Value();
             // Assert
             value.Should().Be(expected);
         }
@@ -63,7 +63,7 @@ namespace ProtonVPN.Common.Tests.Configuration.Storage
             _origin.When(x => x.Value()).Do(_ => throw exception);
             SafeConfigStorage storage = new(_origin);
             // Act
-            Config result = storage.Value();
+            IConfiguration result = storage.Value();
             // Assert
             result.Should().BeNull();
         }

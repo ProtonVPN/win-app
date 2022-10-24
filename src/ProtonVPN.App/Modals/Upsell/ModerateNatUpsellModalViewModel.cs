@@ -19,13 +19,14 @@
 
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
+using ProtonVPN.Account;
 using ProtonVPN.Config.Url;
 
 namespace ProtonVPN.Modals.Upsell
 {
     public class ModerateNatUpsellModalViewModel : UpsellModalViewModel
     {
-        public ModerateNatUpsellModalViewModel(IActiveUrls urls) : base(urls)
+        public ModerateNatUpsellModalViewModel(ISubscriptionManager subscriptionManager, IActiveUrls urls) : base(subscriptionManager, urls)
         {
             OpenModerateNatArticleCommand = new RelayCommand(OpenModerateNatArticleAction);
         }

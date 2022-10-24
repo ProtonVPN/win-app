@@ -29,12 +29,12 @@ namespace ProtonVPN.App.Tests.Core.Startup
     [TestClass]
     public class AutoStartupTest
     {
-        private IStartupRecord _startupRecord;
+        private ICurrentUserStartupRecord _startupRecord;
 
         [TestInitialize]
         public void TestInitialize()
         {
-            _startupRecord = Substitute.For<IStartupRecord>();
+            _startupRecord = Substitute.For<ICurrentUserStartupRecord>();
         }
 
         [DataTestMethod]
