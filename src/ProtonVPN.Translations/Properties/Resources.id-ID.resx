@@ -296,7 +296,7 @@
     <comment>The header of Help menu item in the main app window (opens help web page)</comment>
   </data>
   <data name="App_mnu_Logout">
-    <value>Keluar</value>
+    <value>Keluar Akun</value>
     <comment>The header of Logout menu item in the main app window (logs out current user)</comment>
   </data>
   <data name="App_mnu_Profiles">
@@ -2531,7 +2531,7 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The label for server load in Server Load popup. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
   </data>
   <data name="Servers_Load_lbl_LoadInfo">
-    <value>Memuat {0}%</value>
+    <value>Muatan {0}%</value>
     <comment>The tooltip text of server load image in Countries tab of Sidebar section of main app window, the server load in Connection section of Sidebar of main app window. The {0} is a placeholder for load percentage value.</comment>
   </data>
   <data name="Servers_Load_lbl_LoadInfo_NoData">
@@ -2616,7 +2616,7 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The label for DNS Leak Protection toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_DnsLeakProtection_Info">
-    <value>Cegah detail kebocoran kueri DNS ke pihak ke-tiga. Selalu aktif.</value>
+    <value>Mencegah kebocoran rincian kueri DNS Anda kepada ke pihak ketiga. Selalu aktif.</value>
     <comment>The description of DNS Leak Protection setting displayed in the tooltip of the ( i ) image next to the label for DNS Leak Protection toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_DoH">
@@ -2624,7 +2624,7 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The label for Alternative Routing toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_DoH_Info">
-    <value>Jika situs Proton diblokir, pengaturan ini memungkinkan aplikasi untuk mencoba perutean jaringan alternatif untuk mencapai Proton, yang mana dapat berguna untuk melewati firewall atau masalah jaringan. Kami sarankan untuk tetap mengaktifkan pengaturan ini untuk keandalan yang lebih baik.</value>
+    <value>Apabila situs Proton diblokir, pengaturan ini akan memungkinkan aplikasi kami untuk dapat terhubung dengan Proton melalui lalu lintas jaringan alternatif, yang dapat berguna untuk melewati hadangan firewall atau masalah jaringan. Kami sarankan agar pengaturan ini selalu aktif untuk koneksi yang lebih andal.</value>
     <comment>The description of Allow Alternative Routing setting displayed in the tooltip of ( i ) image next to the label for Allow Alternative Routing toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_HardwareAcceleration">
@@ -2632,7 +2632,7 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The label for Hardware Acceleration toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_HardwareAcceleration_Info">
-    <value>Mengoptimalkan kinerja sistem dengan membebankan proses rendering elemen-elemen grafis kepada GPU. Nonaktifkan opsi ini apabila tampilan layar Anda bermasalah.</value>
+    <value>Mengoptimalkan kinerja sistem dengan membebankan proses rendering elemen grafis kepada GPU. Nonaktifkan opsi ini apabila tampilan layar Anda bermasalah.</value>
     <comment>The description of Hardware Acceleration setting displayed in the tooltip of the ( i ) image next to the label for Hardware Acceleration toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_Ipv6Protection">
@@ -2784,7 +2784,7 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The label for Connect on boot combo box in General tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_ConnectOnAppStart_Info">
-    <value>Buat diri Anda langsung terhubung dengan profil Quick Connect yang tersedia pada saat Proton VPN pertama dijalankan.</value>
+    <value>Memungkinkan Proton VPN untuk dapat langsung terhubung dengan profil Quick Connect yang tersedia pada saat aplikasi pertama dijalankan.</value>
     <comment>The description of Connect on boot setting displayed in the tooltip of ( i ) image next to the label for Connect on boot combo box in General tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_EarlyAccess">
