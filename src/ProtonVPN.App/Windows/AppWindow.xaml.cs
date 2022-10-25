@@ -114,6 +114,7 @@ namespace ProtonVPN.Windows
 
             _icon = new(ICON_PATH);
             _connectedIcon = new(CONNECTED_ICON_PATH);
+            _sidebarModeBeforeMaximize = _appSettings.SidebarMode;
         }
 
         private void SetGenericTooltipBehaviour()
