@@ -291,7 +291,7 @@ namespace ProtonVPN.Vpn
             {
                 await ForceReconnectAsync();
             }
-            else
+            else if (!_appSettings.DoNotShowEnableSmartProtocolDialog)
             {
                 bool? isToChangeProtocolToAuto = _modals.Show<EnableSmartProtocolModalViewModel>();
                 if (isToChangeProtocolToAuto.HasValue && isToChangeProtocolToAuto.Value)
