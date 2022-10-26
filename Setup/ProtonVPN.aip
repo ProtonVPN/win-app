@@ -277,7 +277,6 @@
     <ROW File="ProtonVPN.IpFilter.dll_1" Component_="ProtonVPN.IpFilter.dll_1" FileName="PROTON~2.DLL|ProtonVPN.IpFilter.dll" Attributes="0" SourcePath="..\src\bin\x64\ProtonVPN.IpFilter.dll" SelfReg="false"/>
     <ROW File="ProtonVPN.NetworkFilter.dll" Component_="ProtonVPN.NetworkFilter.dll" FileName="PROTON~8.DLL|ProtonVPN.NetworkFilter.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ProtonVPN.NetworkFilter.dll" SelfReg="false"/>
     <ROW File="ProtonVPN.TlsVerify.exe" Component_="ProtonVPN.TlsVerify.exe" FileName="PROTON~5.EXE|ProtonVPN.TlsVerify.exe" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\ProtonVPN.TlsVerify.exe" SelfReg="false"/>
-    <ROW File="COPYING.md" Component_="ProtonVPN.ErrorMessage.exe.config" FileName="COPYING.md" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\COPYING.md" SelfReg="false"/>
     <ROW File="LICENSE" Component_="ProtonVPN.ErrorMessage.exe.config" FileName="LICENSE" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\LICENSE" SelfReg="false"/>
     <ROW File="Polly.Contrib.WaitAndRetry.dll" Component_="Polly.Contrib.WaitAndRetry.dll" FileName="POLLYC~1.DLL|Polly.Contrib.WaitAndRetry.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\Polly.Contrib.WaitAndRetry.dll" SelfReg="false"/>
     <ROW File="DeviceId.dll" Component_="DeviceId.dll" FileName="DeviceId.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\src\bin\DeviceId.dll" SelfReg="false"/>
