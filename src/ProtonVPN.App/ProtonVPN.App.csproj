@@ -1333,10 +1333,6 @@
       <SubType>Code</SubType>
     </Compile>
     <None Include="app.manifest" />
-    <None Include="..\..\COPYING.md">
-      <Link>COPYING.md</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>PublicSettingsSingleFileGenerator</Generator>
       <SubType>Designer</SubType>
