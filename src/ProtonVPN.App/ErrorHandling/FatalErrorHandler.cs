@@ -24,17 +24,19 @@ namespace ProtonVPN.ErrorHandling
     public class FatalErrorHandler
     {
         private readonly IAppExitInvoker _appExitInvoker;
+        private readonly ErrorWindowViewModel _errorWindowViewModel;
         private readonly FatalErrorWindow _errorWindow;
 
         public FatalErrorHandler()
         {
             _appExitInvoker = new AppExitInvoker();
-            ErrorWindowViewModel errorWindowViewModel = new();
-            _errorWindow = new FatalErrorWindow(errorWindowViewModel);
+            _errorWindowViewModel = new ErrorWindowViewModel();
+            _errorWindow = new FatalErrorWindow(_errorWindowViewModel);
         }
 
-        public void Exit()
+        public void Exit(string errorDescription)
         {
+            _errorWindowViewModel.ErrorDescription = errorDescription;
             _errorWindow.ShowDialog();
             _appExitInvoker.Exit();
         }

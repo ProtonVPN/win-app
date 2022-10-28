@@ -424,7 +424,7 @@ namespace ProtonVPN.Login.ViewModels
                 case AuthError.MissingGoSrpDll:
                     _logger.Fatal<AppCrashLog>("The app is missing GoSrp.dll");
                     FatalErrorHandler fatalErrorHandler = new();
-                    fatalErrorHandler.Exit();
+                    fatalErrorHandler.Exit("The file \"GoSrp.dll\" is missing.");
                     break;
             }
         }
