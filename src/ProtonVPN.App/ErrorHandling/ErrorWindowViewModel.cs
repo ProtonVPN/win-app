@@ -42,6 +42,17 @@ namespace ProtonVPN.ErrorHandling
         public ICommand CloseCommand { get; }
         public bool RepairAvailable => _installerPath.Exists(ProductCode);
 
+        private string _errorDescription;
+        public string ErrorDescription
+        {
+            get => _errorDescription;
+            set
+            {
+                _errorDescription = value;
+                OnPropertyChanged(nameof(ErrorDescription));
+            }
+        }
+
         public ErrorWindowViewModel()
         {
             _appExitInvoker = new AppExitInvoker();

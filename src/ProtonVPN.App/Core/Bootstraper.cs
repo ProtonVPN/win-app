@@ -572,7 +572,7 @@ namespace ProtonVPN.Core
             {
                 Resolve<ILogger>().Error<AppServiceStartFailedLog>($"Failed to start {service.Name} service.", result.Exception);
                 FatalErrorHandler fatalErrorHandler = new();
-                fatalErrorHandler.Exit();
+                fatalErrorHandler.Exit("Failed to start ProtonVPN Service.");
             }
         }
 
