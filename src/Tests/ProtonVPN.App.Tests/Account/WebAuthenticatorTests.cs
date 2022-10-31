@@ -17,7 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -28,6 +27,7 @@ using NSubstitute.ExceptionExtensions;
 using ProtonVPN.Account;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Auth;
+using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Logging;
 
 namespace ProtonVPN.App.Tests.Account
@@ -36,15 +36,14 @@ namespace ProtonVPN.App.Tests.Account
     public class WebAuthenticatorTest
     {
         private IApiClient _apiClient;
-        private Common.Configuration.Config _config;
+        private IConfiguration _config;
         private ILogger _logger;
 
         [TestInitialize]
         public void Initialize()
         {
             _apiClient = Substitute.For<IApiClient>();
-            //TODO: use IConfiguration
-            _config = new Common.Configuration.Config();
+            _config = Substitute.For<IConfiguration>();
             _logger = Substitute.For<ILogger>();
         }
 
@@ -57,10 +56,12 @@ namespace ProtonVPN.App.Tests.Account
         }
 
         [TestMethod]
-        public async Task ItShouldUseAutoLoginUrl()
+        [DataRow("manage-subscription")]
+        [DataRow("upgrade")]
+        public async Task ItShouldUseAutoLoginUrl(string type)
         {
             // Arrange
-            _config.AutoLoginBaseUrl = "http://proton.url";
+            _config.AutoLoginBaseUrl.Returns("http://proton.url");
             string selector = "selector1";
             _apiClient.ForkAuthSessionAsync(Arg.Any<AuthForkSessionRequest>()).Returns(
                 ApiResponseResult<ForkedAuthSessionResponse>.Ok(new HttpResponseMessage(),
@@ -68,13 +69,14 @@ namespace ProtonVPN.App.Tests.Account
             WebAuthenticator sut = new(_apiClient, _config, _logger);
 
             // Act
-            string url = await sut.GetLoginUrlAsync(GetLoginUrlParams());
+            string url = await sut.GetLoginUrlAsync(GetLoginUrlParams(type));
 
             // Assert
             url.Should().Be($"{_config.AutoLoginBaseUrl}?action=action&" +
                             $"fullscreen=on&" +
                             $"redirect={WebAuthenticator.CUSTOM_PROTOCOL_PREFIX}redirect&" +
-                            $"start=start" +
+                            $"start=start&" +
+                            $"type={type}" +
                             $"#selector={selector}");
         }
 
@@ -97,7 +99,7 @@ namespace ProtonVPN.App.Tests.Account
         private async Task ItShouldFallbackToAccountUrl()
         {
             // Arrange
-            _config.Urls.AccountUrl = "http://proton.account.url";
+            _config.Urls.Returns(new UrlConfig { AccountUrl = "http://proton.account.url" });
 
             WebAuthenticator sut = new(_apiClient, _config, _logger);
 
@@ -108,7 +110,7 @@ namespace ProtonVPN.App.Tests.Account
             url.Should().Be(_config.Urls.AccountUrl);
         }
 
-        private LoginUrlParams GetLoginUrlParams()
+        private LoginUrlParams GetLoginUrlParams(string type = null)
         {
             return new LoginUrlParams
             {
@@ -116,6 +118,7 @@ namespace ProtonVPN.App.Tests.Account
                 Fullscreen = "on",
                 Redirect = "redirect",
                 Start = "start",
+                Type = type,
             };
         }
     }
