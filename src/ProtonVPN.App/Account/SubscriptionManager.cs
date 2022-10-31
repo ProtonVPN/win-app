@@ -37,12 +37,23 @@ namespace ProtonVPN.Account
 
         public async Task UpgradeAccountAsync()
         {
+            await OpenLoginUrl("upgrade");
+        }
+
+        public async Task ManageSubscriptionAsync()
+        {
+            await OpenLoginUrl("manage-subscription");
+        }
+
+        private async Task OpenLoginUrl(string type)
+        {
             LoginUrlParams urlParams = new()
             {
                 Action = "subscribe-account",
                 Fullscreen = "off",
                 Redirect = REDIRECT_ENDPOINT,
                 Start = "compare",
+                Type = type,
             };
             _processes.Open(await _webAuthenticator.GetLoginUrlAsync(urlParams));
         }

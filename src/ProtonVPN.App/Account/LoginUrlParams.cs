@@ -25,5 +25,6 @@ namespace ProtonVPN.Account
         public string Fullscreen { get; set; }
         public string Redirect { get; set; }
         public string Start { get; set; }
+        public string Type { get; set; }
     }
 }

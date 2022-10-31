@@ -177,7 +177,7 @@ namespace ProtonVPN.Account
 
         private void ManageSubscriptionAction()
         {
-            _subscriptionManager.UpgradeAccountAsync();
+            _subscriptionManager.ManageSubscriptionAsync();
         }
 
         private void ShowProtonMailPricing()

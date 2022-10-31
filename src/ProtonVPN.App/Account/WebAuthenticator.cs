@@ -61,7 +61,8 @@ namespace ProtonVPN.Account
                    $"action={urlParams.Action}&" +
                    $"fullscreen={urlParams.Fullscreen}&" +
                    $"redirect={CUSTOM_PROTOCOL_PREFIX + urlParams.Redirect}&" +
-                   $"start={urlParams.Start}" +
+                   $"start={urlParams.Start}&" +
+                   $"type={urlParams.Type}" +
                    "#selector=" + selector;
         }
 
