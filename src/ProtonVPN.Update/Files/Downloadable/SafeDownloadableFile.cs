@@ -19,8 +19,6 @@
 
 using System;
 using System.Threading.Tasks;
-using ProtonVPN.Common.Extensions;
-using ProtonVPN.Update.Helpers;
 
 namespace ProtonVPN.Update.Files.Downloadable
 {
@@ -42,7 +40,7 @@ namespace ProtonVPN.Update.Files.Downloadable
             {
                 await _origin.Download(url, filename);
             }
-            catch (Exception e) when (e.IsCommunicationException() || e.IsFileAccessException())
+            catch (Exception e)
             {
                 throw new AppUpdateException("Failed to download update", e);
             }
