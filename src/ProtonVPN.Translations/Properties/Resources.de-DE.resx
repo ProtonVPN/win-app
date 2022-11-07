@@ -2741,7 +2741,7 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The label for Custom DNS Servers combo box in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_CustomDnsServer_Info">
-    <value>Geben Sie einen privaten DNS‐Server (z. B. AdGuard DNS) ein, um Ihre DNS‐Anfragen zu bearbeiten. Die Verwendung eines benutzerdefinierten DNS‐Servers deaktiviert NetShield. DNS‐Server sind dafür verantwortlich, Sie zur richtigen Website zu leiten. Verwenden Sie daher nur Server, denen Sie vertrauen.</value>
+    <value>Gib einen privaten DNS‐Server (z. B. AdGuard DNS) ein, um deine DNS‐Anfragen zu bearbeiten. Die Verwendung eines benutzerdefinierten DNS‐Servers deaktiviert NetShield. DNS‐Server sind dafür verantwortlich, dich zur richtigen Website zu leiten. Verwende daher nur Server, denen du vertraust.</value>
     <comment>The description of Custom DNS Servers setting displayed in the tooltip of the ( i ) image next to the label for Custom DNS Server toggle switch in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_DefaultProtocol">
@@ -2763,7 +2763,7 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The label for Quick Connect combo box in General tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_QuickConnect_Info">
-    <value>Die Schaltfläche „Schnellverbinden“ verbindet Sie mit dem ausgewählten Profil.</value>
+    <value>Die Schaltfläche „Schnellverbinden“ verbindet dich mit dem ausgewählten Profil.</value>
     <comment>The description of Quick Connect settings displayed in the tooltip of ( i ) image next to the label for Quick Connect combo box in General tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_SmartReconnect">
