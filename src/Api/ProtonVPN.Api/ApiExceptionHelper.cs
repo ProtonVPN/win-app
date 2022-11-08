@@ -22,6 +22,7 @@ using System.Net.Http;
 using System.Net.Sockets;
 using Newtonsoft.Json;
 using Polly.Timeout;
+using ProtonVPN.Api.Contracts.Exceptions;
 using ProtonVPN.Dns.Contracts.Exceptions;
 
 namespace ProtonVPN.Api
@@ -31,7 +32,7 @@ namespace ProtonVPN.Api
         public static bool IsApiCommunicationException(this Exception ex)
         {
             return ex is HttpRequestException or JsonException or OperationCanceledException 
-                or TimeoutRejectedException or SocketException or DnsException;
+                or TimeoutRejectedException or SocketException or DnsException or AlternativeRoutingException;
         }
     }
 }

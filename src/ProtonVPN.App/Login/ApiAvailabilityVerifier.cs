@@ -23,13 +23,13 @@ using ProtonVPN.Common.OS.Net.Http;
 
 namespace ProtonVPN.Login
 {
-    public class SignUpAvailabilityProvider : ISignUpAvailabilityProvider
+    public class ApiAvailabilityVerifier : IApiAvailabilityVerifier
     {
         private const string PROTON_WEBSITE_URL = "https://protonvpn.com";
         private const string PROTON_API_PING_URL = "https://account.protonvpn.com/api/tests/ping";
         private readonly IHttpClient _httpClient;
 
-        public SignUpAvailabilityProvider(IHttpClients httpClients)
+        public ApiAvailabilityVerifier(IHttpClients httpClients)
         {
             _httpClient = httpClients.Client();
             _httpClient.Timeout = TimeSpan.FromSeconds(3);

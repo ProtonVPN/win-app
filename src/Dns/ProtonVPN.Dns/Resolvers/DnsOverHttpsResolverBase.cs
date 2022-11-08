@@ -139,12 +139,17 @@ namespace ProtonVPN.Dns.Resolvers
                 if (e.IsOrAnyInnerIsOfExceptionType<OperationCanceledException>())
                 {
                     LogOperationCancelled($"The DNS over HTTPS provider '{config.ProviderUrl}' " +
-                                          $"was canceled when resolving host '{config.Host}'.");
+                        $"was canceled when resolving host '{config.Host}'.");
+                }
+                else if (e is DnsException)
+                {
+                    Logger.Error<DnsErrorLog>($"The DNS over HTTPS provider '{config.ProviderUrl}' " +
+                        $"failed when resolving host '{config.Host}'. Reason: {e.Message}");
                 }
                 else
                 {
                     Logger.Error<DnsErrorLog>($"The DNS over HTTPS provider '{config.ProviderUrl}' " +
-                                              $"failed when resolving host '{config.Host}'.", e);
+                        $"failed when resolving host '{config.Host}'.", e);
                 }
             }
 
