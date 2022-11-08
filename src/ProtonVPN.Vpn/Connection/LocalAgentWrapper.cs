@@ -71,7 +71,6 @@ namespace ProtonVPN.Vpn.Connection
             VpnError.CertificateNotYetProvided,
         };
 
-
         public LocalAgentWrapper(
             ILogger logger,
             EventReceiver eventReceiver,

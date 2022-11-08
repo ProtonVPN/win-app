@@ -33,6 +33,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        FontSize="16"
                        HorizontalAlignment="Center"
                        Text="{translations:Loc BugReport_msg_Sending}" />
+            <TextBlock Foreground="{StaticResource TextWeakBrushColor}"
+                       Margin="0,20,0,0"
+                       FontSize="12"
+                       HorizontalAlignment="Center"
+                       Text="{translations:Loc BugReport_msg_SendingInfo}"
+                       Visibility="{Binding HasFailedFirstAttempt, Converter={StaticResource BoolToVis}}" />
         </StackPanel>
     </Grid>
 </UserControl>

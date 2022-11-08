@@ -21,7 +21,7 @@ using System.Threading.Tasks;
 
 namespace ProtonVPN.Login
 {
-    public interface ISignUpAvailabilityProvider
+    public interface IApiAvailabilityVerifier
     {
         Task<bool> IsSignUpPageAccessibleAsync();
     }
