@@ -43,7 +43,7 @@ namespace ProtonVPN.UI.Tests.Tests
             _mainWindow.PressQuickConnectButton()
                 .WaitUntilConnected();
 
-            TestRailClient.MarkTestsByStatus();
+            ReportTestResults();
             TestCaseId = 256;
 
             _mainWindow.PressQuickConnectButton()
@@ -71,7 +71,7 @@ namespace ProtonVPN.UI.Tests.Tests
             _mainWindow.PerformConnectionViaMapSecureCore(TestConstants.MapCountry)
                 .WaitUntilConnected();
 
-            TestRailClient.MarkTestsByStatus();
+            ReportTestResults();
             TestCaseId = 254;
 
             _mainWindow.PerformConnectionViaMapSecureCore(TestConstants.MapCountry)

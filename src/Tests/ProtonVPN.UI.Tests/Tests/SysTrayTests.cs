@@ -43,7 +43,7 @@ namespace ProtonVPN.UI.Tests.Tests
                 .QuickConnect();
             _trayResult.WaitUntilConnected();
 
-            TestRailClient.MarkTestsByStatus();
+            ReportTestResults();
             TestCaseId = 245;
 
             _trayWindow.QuickConnect();

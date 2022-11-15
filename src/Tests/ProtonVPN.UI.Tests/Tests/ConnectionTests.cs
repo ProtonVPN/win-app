@@ -50,12 +50,12 @@ namespace ProtonVPN.UI.Tests.Tests
             _homeWindow.PressQuickConnectButton()
                 .WaitUntilConnected();
 
-            TestRailClient.MarkTestsByStatus();
+            ReportTestResults();
             TestCaseId = 229;
 
             await _homeResult.CheckIfCorrectIpAddressIsDisplayed();
 
-            TestRailClient.MarkTestsByStatus();
+            ReportTestResults();
             TestCaseId = 222;
 
             _homeWindow.PressQuickConnectButton()
@@ -80,7 +80,7 @@ namespace ProtonVPN.UI.Tests.Tests
             _homeWindow.ConnectViaCountry("Netherlands")
                 .WaitUntilConnected();
 
-            TestRailClient.MarkTestsByStatus();
+            ReportTestResults();
             TestCaseId = 224;
 
             _homeWindow.PressDisconnectButtonInCountryList("Netherlands")
@@ -171,7 +171,7 @@ namespace ProtonVPN.UI.Tests.Tests
 
             _homeWindow.WaitUntilConnected();
 
-            TestRailClient.MarkTestsByStatus();
+            ReportTestResults();
             TestCaseId = 205;
 
             _homeWindow.PressQuickConnectButton()
@@ -195,7 +195,7 @@ namespace ProtonVPN.UI.Tests.Tests
             _homeWindow.PerformConnectionViaMap(TestConstants.MapCountry)
                 .WaitUntilConnected();
 
-            TestRailClient.MarkTestsByStatus();
+            ReportTestResults();
             TestCaseId = 220;
 
             _homeWindow.PerformConnectionViaMap(TestConstants.MapCountry)
@@ -215,7 +215,7 @@ namespace ProtonVPN.UI.Tests.Tests
                 .CloseSettings();
             _homeResult.CheckIfNetshieldIsDisabled();
 
-            TestRailClient.MarkTestsByStatus();
+            ReportTestResults();
             TestCaseId = 4579;
 
             _homeWindow.NavigateToSettings();
@@ -226,7 +226,7 @@ namespace ProtonVPN.UI.Tests.Tests
                 .WaitUntilConnected();
             _settingsResult.CheckIfDnsAddressMatches(DNS_ADDRESS);
 
-            TestRailClient.MarkTestsByStatus();
+            ReportTestResults();
             TestCaseId = 4581;
 
             _homeWindow.NavigateToSettings();

@@ -42,7 +42,7 @@ namespace ProtonVPN.UI.Tests.Tests
             _loginWindow.SignIn(TestUserData.GetFreeUser());
             _homeResult.CheckIfLoggedIn();
 
-            TestRailClient.MarkTestsByStatus();
+            ReportTestResults();
             TestCaseId = 197;
         }
 

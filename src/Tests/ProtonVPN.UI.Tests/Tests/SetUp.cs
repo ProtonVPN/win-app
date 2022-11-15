@@ -38,10 +38,10 @@ namespace ProtonVPN.UI.Tests.Tests
             KillProtonVpnProcess();
             string dir = Path.GetDirectoryName(TestConstants.AppFolderPath);
             Directory.SetCurrentDirectory(dir);
-            TestRailClient = new TestRailApiClient(_testRailUrl,
-                    TestUserData.GetTestrailUser().Username, TestUserData.GetTestrailUser().Password);
-            if (!TestEnvironment.AreTestsRunningLocally() || !TestEnvironment.IsWindows11())
+            if (!TestEnvironment.AreTestsRunningLocally() && !TestEnvironment.IsWindows11())
             {
+                TestRailClient = new TestRailApiClient(_testRailUrl,
+                    TestUserData.GetTestrailUser().Username, TestUserData.GetTestrailUser().Password);
                 CreateTestRailTestRun();
             }
             TestsRecorder.StartVideoCapture();
