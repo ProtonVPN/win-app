@@ -18,35 +18,21 @@
  */
 
 using System.Collections.Generic;
-using System.Windows.Input;
-using GalaSoft.MvvmLight.CommandWpf;
-using ProtonVPN.Core.MVVM;
+using Caliburn.Micro;
 using ProtonVPN.Servers;
 using ProtonVPN.Translations;
 
 namespace ProtonVPN.Streaming
 {
-    public class StreamingInfoPopupViewModel : ViewModel
+    public class StreamingInfoPopupViewModel : Screen
     {
         private readonly string _countryCode;
 
-        public StreamingInfoPopupViewModel(
-            string countryCode,
+        public StreamingInfoPopupViewModel(string countryCode,
             IReadOnlyList<StreamingServiceViewModel> streamingServices)
         {
             _countryCode = countryCode;
             StreamingServices = streamingServices;
-            ClosePopupCommand = new RelayCommand(() => ShowPopup = false);
-        }
-
-        public ICommand ClosePopupCommand { get; }
-
-        private bool _showPopup;
-
-        public bool ShowPopup
-        {
-            get => _showPopup;
-            set => Set(ref _showPopup, value);
         }
 
         public string Title => Translation.Format("Sidebar_Streaming_Country", Countries.GetName(_countryCode));

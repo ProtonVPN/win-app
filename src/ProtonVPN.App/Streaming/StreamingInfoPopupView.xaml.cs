@@ -17,10 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.ConnectionInfo
+namespace ProtonVPN.Streaming
 {
-    public class Ip
+    public partial class StreamingInfoPopupView
     {
-        public string Address { get; set; }
+        public StreamingInfoPopupView()
+        {
+            InitializeComponent();
+        }
     }
 }

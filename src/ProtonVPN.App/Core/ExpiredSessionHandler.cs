@@ -32,15 +32,15 @@ namespace ProtonVPN.Core
         private readonly IScheduler _scheduler;
         private readonly IVpnServiceManager _vpnServiceManager;
         private readonly LoginViewModel _loginViewModel;
-        private readonly UserAuth _userAuth;
+        private readonly IUserAuthenticator _userAuthenticator;
 
         public ExpiredSessionHandler(
             IScheduler scheduler,
             IVpnServiceManager vpnServiceManager,
             LoginViewModel loginViewModel,
-            UserAuth userAuth)
+            IUserAuthenticator userAuthenticator)
         {
-            _userAuth = userAuth;
+            _userAuthenticator = userAuthenticator;
             _loginViewModel = loginViewModel;
             _vpnServiceManager = vpnServiceManager;
             _scheduler = scheduler;
@@ -56,7 +56,7 @@ namespace ProtonVPN.Core
                 }
 
                 _loginViewModel.OnSessionExpired();
-                await _userAuth.LogoutAsync();
+                await _userAuthenticator.LogoutAsync();
             });
         }
 

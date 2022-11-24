@@ -32,7 +32,7 @@ namespace ProtonVPN.Notifications
     internal class OutdatedAppNotification : IVpnStateAware
     {
         private readonly IModals _modals;
-        private readonly UserAuth _userAuth;
+        private readonly IUserAuthenticator _userAuthenticator;
 
         private bool _notified;
         private readonly LoginWindow _loginWindow;
@@ -43,13 +43,13 @@ namespace ProtonVPN.Notifications
 
         public OutdatedAppNotification(
             IModals modals,
-            UserAuth userAuth,
+            IUserAuthenticator userAuthenticator,
             LoginWindow loginWindow,
             IScheduler scheduler,
             IVpnServiceManager vpnServiceManager)
         {
             _modals = modals;
-            _userAuth = userAuth;
+            _userAuthenticator = userAuthenticator;
             _loginWindow = loginWindow;
             _scheduler = scheduler;
             _vpnServiceManager = vpnServiceManager;
@@ -70,7 +70,7 @@ namespace ProtonVPN.Notifications
                     await _vpnServiceManager.Disconnect(VpnError.Unknown);
                 }
 
-                await _userAuth.LogoutAsync();
+                await _userAuthenticator.LogoutAsync();
                 _loginWindow.Hide();
                 _modals.Show<OutdatedAppModalViewModel>();
             });

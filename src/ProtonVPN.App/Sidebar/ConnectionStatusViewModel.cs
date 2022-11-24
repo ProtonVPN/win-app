@@ -23,6 +23,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Threading;
 using GalaSoft.MvvmLight.Command;
+using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.KillSwitch;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
@@ -54,7 +55,8 @@ namespace ProtonVPN.Sidebar
         IServersAware,
         IUserLocationAware,
         ISettingsAware,
-        IServiceSettingsStateAware
+        IServiceSettingsStateAware,
+        IConnectionDetailsAware
     {
         private readonly IAppSettings _appSettings;
         private readonly SidebarManager _sidebarManager;
@@ -379,6 +381,19 @@ namespace ProtonVPN.Sidebar
             }
         }
 
+        public void OnServiceSettingsStateChanged(ServiceSettingsStateChangedEventArgs e)
+        {
+            SetKillSwitchActivated(e.IsNetworkBlocked, e.CurrentState.State.Status);
+        }
+
+        public async Task OnConnectionDetailsChanged(ConnectionDetails connectionDetails)
+        {
+            if (!connectionDetails.ServerIpAddress.IsNullOrEmpty())
+            {
+                SetIp(connectionDetails.ServerIpAddress);
+            }
+        }
+
         private Server _connectedServer;
 
         private Server ConnectedServer
@@ -471,11 +486,6 @@ namespace ProtonVPN.Sidebar
             CloseVpnAcceleratorReconnectionPopupAction();
             _settingsModalViewModel.OpenConnectionTab();
             _modals.Show<SettingsModalViewModel>();
-        }
-
-        public void OnServiceSettingsStateChanged(ServiceSettingsStateChangedEventArgs e)
-        {
-            SetKillSwitchActivated(e.IsNetworkBlocked, e.CurrentState.State.Status);
         }
     }
 }

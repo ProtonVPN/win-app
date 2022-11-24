@@ -18,22 +18,21 @@
  */
 
 using System.Windows;
-using System.Windows.Controls.Primitives;
 
-namespace ProtonVPN.Streaming
+namespace ProtonVPN.Servers
 {
-    public partial class StreamingInfoPopup
+    public partial class InfoPopup
     {
         public static readonly DependencyProperty ShowPopupProperty = DependencyProperty.Register(
-            nameof(ShowPopup), typeof(bool), typeof(StreamingInfoPopup), new PropertyMetadata(false));
+            nameof(ShowPopup), typeof(bool), typeof(InfoPopup), new PropertyMetadata(false));
 
         public static readonly DependencyProperty PlacementTargetProperty = DependencyProperty.Register(
-            nameof(PlacementTarget), typeof(UIElement), typeof(StreamingInfoPopup), new PropertyMetadata(null));
+            nameof(PlacementTarget), typeof(UIElement), typeof(InfoPopup), new PropertyMetadata(null));
 
-        public static readonly DependencyProperty PlacementRectangleProperty = DependencyProperty.Register(
-            nameof(PlacementRectangle), typeof(Rect), typeof(StreamingInfoPopup), new PropertyMetadata(Rect.Empty, null));
+        public static readonly DependencyProperty TitleProperty = DependencyProperty.Register(
+            nameof(Title), typeof(string), typeof(InfoPopup), new PropertyMetadata(string.Empty));
 
-        public StreamingInfoPopup()
+        public InfoPopup()
         {
             InitializeComponent();
             CloseButton.Click += CloseButton_Click;
@@ -57,10 +56,11 @@ namespace ProtonVPN.Streaming
             set => SetValue(PlacementTargetProperty, value);
         }
 
-        public Rect PlacementRectangle
+
+        public string Title
         {
-            get => (Rect)GetValue(PlacementRectangleProperty);
-            set => SetValue(PlacementRectangleProperty, value);
+            get => (string)GetValue(TitleProperty);
+            set => SetValue(TitleProperty, value);
         }
     }
 }

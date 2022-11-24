@@ -6574,11 +6574,38 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Free servers.
+        /// </summary>
+        public static string Sidebar_Countries_FreeServers {
+            get {
+                return ResourceManager.GetString("Sidebar_Countries_FreeServers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Free servers have no data limit nor network throttling. The speed might be limited only due to the high number of users connected..
+        /// </summary>
+        public static string Sidebar_Countries_FreeServersInfo {
+            get {
+                return ResourceManager.GetString("Sidebar_Countries_FreeServersInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Smart Routing.
         /// </summary>
         public static string Sidebar_Countries_info_SmartRouting {
             get {
                 return ResourceManager.GetString("Sidebar_Countries_info_SmartRouting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Information.
+        /// </summary>
+        public static string Sidebar_Countries_Information {
+            get {
+                return ResourceManager.GetString("Sidebar_Countries_Information", resourceCulture);
             }
         }
         
@@ -6633,6 +6660,15 @@ namespace ProtonVPN.Translations.Properties {
         public static string Sidebar_Countries_msg_SecureCoreEnableConfirm {
             get {
                 return ResourceManager.GetString("Sidebar_Countries_msg_SecureCoreEnableConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Our partners.
+        /// </summary>
+        public static string Sidebar_Countries_OurPartners {
+            get {
+                return ResourceManager.GetString("Sidebar_Countries_OurPartners", resourceCulture);
             }
         }
         

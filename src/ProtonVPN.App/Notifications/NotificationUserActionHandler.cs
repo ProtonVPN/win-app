@@ -28,15 +28,18 @@ namespace ProtonVPN.Notifications
 {
     public class NotificationUserActionHandler : INotificationUserActionHandler
     {
-        private readonly UserAuth _userAuth;
+        private readonly IUserAuthenticator _userAuthenticator;
         private readonly AppWindow _appWindow;
         private readonly LoginWindow _loginWindow;
         private readonly DeveloperToolsPopupViewModel _developerToolsPopupViewModel;
 
-        public NotificationUserActionHandler(UserAuth userAuth, AppWindow appWindow, LoginWindow loginWindow, 
+        public NotificationUserActionHandler(
+            IUserAuthenticator userAuthenticator,
+            AppWindow appWindow,
+            LoginWindow loginWindow,
             DeveloperToolsPopupViewModel developerToolsPopupViewModel)
         {
-            _userAuth = userAuth;
+            _userAuthenticator = userAuthenticator;
             _appWindow = appWindow;
             _loginWindow = loginWindow;
             _developerToolsPopupViewModel = developerToolsPopupViewModel;
@@ -56,7 +59,7 @@ namespace ProtonVPN.Notifications
 
         private void OpenMainWindow()
         {
-            if (_userAuth.LoggedIn)
+            if (_userAuthenticator.IsLoggedIn)
             {
                 OpenWindow(_appWindow);
             }

@@ -17,9 +17,24 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.ConnectionInfo
+using System.Collections.Generic;
+using ProtonVPN.Partners;
+using ProtonVPN.Translations;
+
+namespace ProtonVPN.Servers
 {
-    public class AutoAssignedIp
+    public class PartnerFeature : IServerFeature
     {
+        public PartnerFeature(string name, string iconUrl, List<PartnerType> partnerTypes)
+        {
+            Name = name;
+            IconUrl = iconUrl;
+            InfoPopupViewModel = new InfoPopupViewModel(new FreeServersInfoPopupViewModel(partnerTypes),
+                Translation.Format("Sidebar_Countries_Information"));
+        }
+
+        public string Name { get; }
+        public string IconUrl { get; }
+        public InfoPopupViewModel InfoPopupViewModel { get; }
     }
 }

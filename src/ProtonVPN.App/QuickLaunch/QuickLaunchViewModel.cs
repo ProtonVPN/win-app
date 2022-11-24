@@ -24,6 +24,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
+using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Events;
 using ProtonVPN.Core.MVVM;
@@ -42,7 +43,8 @@ namespace ProtonVPN.QuickLaunch
     internal class QuickLaunchViewModel :
         LanguageAwareViewModel,
         IVpnStateAware,
-        IUserLocationAware
+        IUserLocationAware,
+        IConnectionDetailsAware
     {
         private readonly ProfileManager _profileManager;
         private readonly ProfileViewModelFactory _profileHelper;
@@ -179,6 +181,14 @@ namespace ProtonVPN.QuickLaunch
             }
 
             return Task.CompletedTask;
+        }
+
+        public async Task OnConnectionDetailsChanged(ConnectionDetails connectionDetails)
+        {
+            if (!connectionDetails.ServerIpAddress.IsNullOrEmpty())
+            {
+                SetIp(connectionDetails.ServerIpAddress);
+            }
         }
 
         private void SetUserIp()

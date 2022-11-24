@@ -28,6 +28,7 @@ using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Servers.Specs;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
+using ProtonVPN.Partners;
 using ProtonVPN.Streaming;
 using ProtonVPN.Translations;
 
@@ -38,6 +39,7 @@ namespace ProtonVPN.Servers
         private readonly ServerManager _serverManager;
         private readonly IUserStorage _userStorage;
         private readonly IStreamingServices _streamingServices;
+        private readonly IPartnersService _partnersService;
         private readonly IActiveUrls _urls;
         private VpnState _vpnState = new(VpnStatus.Disconnected);
 
@@ -45,11 +47,13 @@ namespace ProtonVPN.Servers
             ServerManager serverManager,
             IUserStorage userStorage,
             IStreamingServices streamingServices,
+            IPartnersService partnerService,
             IActiveUrls urls)
         {
             _serverManager = serverManager;
             _userStorage = userStorage;
             _streamingServices = streamingServices;
+            _partnersService = partnerService;
             _urls = urls;
         }
 
@@ -135,7 +139,7 @@ namespace ProtonVPN.Servers
                 if (string.IsNullOrEmpty(searchQuery) || Countries.MatchesSearch(countryCode, searchQuery))
                 {
                     ServersByExitNodeViewModel row =
-                        new ServersByExitNodeViewModel(countryCode, user.MaxTier, _serverManager);
+                        new ServersByExitNodeViewModel(countryCode, user.MaxTier, _serverManager, _partnersService);
                     row.LoadServers();
                     serverListItems.Add(row);
                 }
@@ -175,7 +179,7 @@ namespace ProtonVPN.Servers
             foreach (string countryCode in countries)
             {
                 ServersByCountryViewModel countryViewModel = new(countryCode, _userStorage.GetUser().MaxTier,
-                    _serverManager, _vpnState, _streamingServices);
+                    _serverManager, _vpnState, _streamingServices, _partnersService);
                 if (string.IsNullOrEmpty(searchQuery) || Countries.MatchesSearch(countryCode, searchQuery))
                 {
                     countryViewModel.LoadServers(orderBy: orderBy);

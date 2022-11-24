@@ -97,6 +97,19 @@ namespace ProtonVPN.Core.Service.Vpn
         public void RegisterPortForwardingStateCallback(Action<PortForwardingState> callback)
             => _vpnService.PortForwardingStateChanged += (s, e) => callback(Map(e));
 
+        public void RegisterConnectionDetailsChangeCallback(Action<ConnectionDetails> callback)
+            => _vpnService.ConnectionDetailsChanged += (s, e) => callback(Map(e));
+
+        private static ConnectionDetails Map(ConnectionDetailsContract contract)
+        {
+            return new ConnectionDetails
+            {
+                ClientIpAddress = contract.ClientIpAddress,
+                ClientCountryIsoCode = contract.ClientCountryIsoCode,
+                ServerIpAddress = contract.ServerIpAddress,
+            };
+        }
+
         private static PortForwardingState Map(PortForwardingStateContract contract)
         {
             return new()

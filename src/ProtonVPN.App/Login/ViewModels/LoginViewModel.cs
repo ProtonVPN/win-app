@@ -51,7 +51,7 @@ namespace ProtonVPN.Login.ViewModels
         private readonly IAppSettings _appSettings;
         private readonly LoginWindowViewModel _loginWindowViewModel;
         private readonly IActiveUrls _urls;
-        private readonly UserAuth _userAuth;
+        private readonly IUserAuthenticator _userAuthenticator;
         private readonly IModals _modals;
         private readonly GuestHoleConnector _guestHoleConnector;
         private readonly GuestHoleState _guestHoleState;
@@ -96,7 +96,7 @@ namespace ProtonVPN.Login.ViewModels
             IActiveUrls urls,
             IAppSettings appSettings,
             LoginErrorViewModel loginErrorViewModel,
-            UserAuth userAuth,
+            IUserAuthenticator userAuthenticator,
             IModals modals,
             GuestHoleConnector guestHoleConnector,
             GuestHoleState guestHoleState,
@@ -104,7 +104,7 @@ namespace ProtonVPN.Login.ViewModels
         {
             _logger = logger;
             _appConfig = appConfig;
-            _userAuth = userAuth;
+            _userAuthenticator = userAuthenticator;
             _appSettings = appSettings;
             _urls = urls;
             _modals = modals;
@@ -318,7 +318,7 @@ namespace ProtonVPN.Login.ViewModels
 
                 LoginErrorViewModel.ClearError();
 
-                AuthResult loginResult = await _userAuth.LoginUserAsync(username, Password);
+                AuthResult loginResult = await _userAuthenticator.LoginUserAsync(username, Password);
                 await HandleLoginResultAsync(loginResult);
             }
             catch
@@ -383,7 +383,7 @@ namespace ProtonVPN.Login.ViewModels
         {
             try
             {
-                return await _userAuth.SendTwoFactorCodeAsync(TwoFactorAuthCode);
+                return await _userAuthenticator.SendTwoFactorCodeAsync(TwoFactorAuthCode);
             }
             catch (Exception ex)
             {

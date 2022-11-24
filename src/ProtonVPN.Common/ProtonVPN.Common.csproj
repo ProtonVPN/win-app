@@ -318,6 +318,7 @@
     <Compile Include="Threading\TaskCompletionSourceExtensions.cs" />
     <Compile Include="Threading\TaskQueueing\CoalescingTaskQueueData.cs" />
     <Compile Include="Threading\TaskQueueing\QueuedTask.cs" />
+    <Compile Include="Vpn\ConnectionDetails.cs" />
     <Compile Include="Vpn\VpnFeatures.cs" />
     <Compile Include="Vpn\InOutBytes.cs" />
     <Compile Include="Vpn\VpnConfig.cs" />

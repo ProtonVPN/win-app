@@ -44,7 +44,7 @@ namespace ProtonVPN.Vpn.Connection
     {
         private static readonly TimeSpan WaitForConnectionTaskToFinishAfterClose = TimeSpan.FromSeconds(3);
         private static readonly TimeSpan WaitForConnectionTaskToFinishAfterCancellation = TimeSpan.FromSeconds(3);
-        private const int ManagementPasswordLength = 16;
+        private const int MANAGEMENT_PASSWORD_LENGTH = 16;
 
         private readonly ILogger _logger;
         private readonly IConfiguration _config;
@@ -87,6 +87,7 @@ namespace ProtonVPN.Vpn.Connection
         }
 
         public event EventHandler<EventArgs<VpnState>> StateChanged;
+        public event EventHandler<ConnectionDetails> ConnectionDetailsChanged;
 
         public InOutBytes Total { get; private set; } = InOutBytes.Zero;
 
@@ -182,7 +183,7 @@ namespace ProtonVPN.Vpn.Connection
 
         private string ManagementPassword()
         {
-            return _randomStrings.RandomString(ManagementPasswordLength);
+            return _randomStrings.RandomString(MANAGEMENT_PASSWORD_LENGTH);
         }
 
         private async Task DisconnectAction()
@@ -367,9 +368,9 @@ namespace ProtonVPN.Vpn.Connection
             }
         }
 
-        private static bool IsImplementationException(Exception ex) =>
-            ex is SocketException ||
-            ex is Win32Exception ||
-            ex is IOException;
+        private static bool IsImplementationException(Exception ex)
+        {
+            return ex is SocketException or Win32Exception or IOException;
+        }
     }
 }

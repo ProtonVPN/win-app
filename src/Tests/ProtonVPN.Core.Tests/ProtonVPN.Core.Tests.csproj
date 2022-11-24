@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="Auth\AuthCertificateManagerTest.cs" />
     <Compile Include="Auth\MockOfAuthKeyManager.cs" />
+    <Compile Include="Auth\UserAuthenticatorTest.cs" />
     <Compile Include="OS\Net\Dns\DnsClientExtensionsTest.cs" />
     <Compile Include="OS\Net\Dns\SafeDnsClientTest.cs" />
     <Compile Include="Models\UserTest.cs" />

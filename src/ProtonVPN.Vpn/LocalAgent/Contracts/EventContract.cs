@@ -30,5 +30,7 @@ namespace ProtonVPN.Vpn.LocalAgent.Contracts
         public int Code { get;set; }
 
         public string Desc { get; set; }
+
+        public ConnectionDetailsContract ConnectionDetails { get; set; }
     }
 }

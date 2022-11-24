@@ -39,5 +39,6 @@ namespace ProtonVPN.Core.Vpn
         void RegisterVpnStateCallback(Action<VpnStateChangedEventArgs> onVpnStateChanged);
         void RegisterServiceSettingsStateCallback(Action<ServiceSettingsStateChangedEventArgs> onServiceSettingsStateChanged);
         void RegisterPortForwardingStateCallback(Action<PortForwardingState> callback);
+        void RegisterConnectionDetailsChangeCallback(Action<ConnectionDetails> callback);
     }
 }

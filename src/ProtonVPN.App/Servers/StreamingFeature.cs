@@ -18,7 +18,6 @@
  */
 
 using ProtonVPN.Core.MVVM;
-using ProtonVPN.Streaming;
 
 namespace ProtonVPN.Servers
 {
@@ -26,9 +25,9 @@ namespace ProtonVPN.Servers
     {
         private bool _showPopup;
 
-        public StreamingFeature(StreamingInfoPopupViewModel streamingInfoPopupViewModel)
+        public StreamingFeature(InfoPopupViewModel infoPopupViewModel)
         {
-            StreamingInfoPopupViewModel = streamingInfoPopupViewModel;
+            InfoPopupViewModel = infoPopupViewModel;
         }
 
         public bool ShowPopup
@@ -37,6 +36,6 @@ namespace ProtonVPN.Servers
             set => Set(ref _showPopup, value);
         }
 
-        public StreamingInfoPopupViewModel StreamingInfoPopupViewModel { get; }
+        public InfoPopupViewModel InfoPopupViewModel { get; }
     }
 }

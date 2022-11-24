@@ -25,7 +25,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:servers="clr-namespace:ProtonVPN.Servers"
              x:ClassModifier="internal"
              xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
-             xmlns:streaming="clr-namespace:ProtonVPN.Streaming"
              xmlns:icons="clr-namespace:ProtonVPN.Resource.Graphics.Icons;assembly=ProtonVPN.Resource"
              mc:Ignorable="d">
 
@@ -71,14 +70,30 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                   DockPanel.Dock="Right"
                                   Width="14"
                                   Style="{StaticResource EmptyToggleButton}"
-                                  IsChecked="{Binding ShowPopup, Mode=TwoWay}"
                                   Background="Transparent"
                                   BorderBrush="Transparent">
                         <icons:Play Style="{StaticResource Icon}" Width="20" Height="20" />
                     </ToggleButton>
-                    <streaming:StreamingInfoPopup DataContext="{Binding StreamingInfoPopupViewModel}"
-                                                  PlacementTarget="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Grid, AncestorLevel=2}}"
-                                                  ShowPopup="{Binding Path=IsChecked, ElementName=InfoToggleButton, Mode=TwoWay}" />
+                    <servers:InfoPopup DataContext="{Binding InfoPopupViewModel}"
+                                       Title="{Binding Title}"
+                                       PlacementTarget="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Grid, AncestorLevel=2}}"
+                                       ShowPopup="{Binding Path=IsChecked, ElementName=InfoToggleButton, Mode=TwoWay}" />
+                </Grid>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type servers:PartnerFeature}">
+                <Grid>
+                    <ToggleButton x:Name="InfoToggleButton"
+                                  ToolTip="{Binding Name}"
+                                  DockPanel.Dock="Right"
+                                  Style="{StaticResource EmptyToggleButton}"
+                                  Background="Transparent"
+                                  BorderBrush="Transparent">
+                        <Image Source="{Binding IconUrl}" Height="20" />
+                    </ToggleButton>
+                    <servers:InfoPopup DataContext="{Binding InfoPopupViewModel}"
+                                       Title="{Binding Title}"
+                                       PlacementTarget="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Grid, AncestorLevel=2}}"
+                                       ShowPopup="{Binding Path=IsChecked, ElementName=InfoToggleButton, Mode=TwoWay}" />
                 </Grid>
             </DataTemplate>
         </ItemsControl.Resources>

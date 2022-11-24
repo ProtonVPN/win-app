@@ -33,7 +33,7 @@ namespace ProtonVPN.Vpn.Common
         public string Label { get; }
         public bool PortForwarding { get; }
 
-        public VpnState(VpnStatus status, VpnProtocol vpnProtocol) 
+        public VpnState(VpnStatus status, VpnProtocol vpnProtocol)
             : this(status, VpnError.None, string.Empty, string.Empty, vpnProtocol)
         {
         }

@@ -34,6 +34,7 @@ namespace ProtonVPN.Core.Service.Vpn
         public event EventHandler<VpnStateContract> VpnStateChanged;
         public event EventHandler<ServiceSettingsStateContract> ServiceSettingsStateChanged;
         public event EventHandler<PortForwardingStateContract> PortForwardingStateChanged;
+        public event EventHandler<ConnectionDetailsContract> ConnectionDetailsChanged;
 
         public void OnStateChanged(VpnStateContract e)
         {
@@ -50,6 +51,12 @@ namespace ProtonVPN.Core.Service.Vpn
         public void OnPortForwardingStateChanged(PortForwardingStateContract e)
         {
             Action action = () => PortForwardingStateChanged?.Invoke(this, e);
+            Application.Current?.Dispatcher?.BeginInvoke(action, null);
+        }
+
+        public void OnConnectionDetailsChanged(ConnectionDetailsContract e)
+        {
+            Action action = () => ConnectionDetailsChanged?.Invoke(this, e);
             Application.Current?.Dispatcher?.BeginInvoke(action, null);
         }
     }

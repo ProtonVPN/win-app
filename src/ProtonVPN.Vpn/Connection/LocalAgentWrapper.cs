@@ -91,6 +91,11 @@ namespace ProtonVPN.Vpn.Connection
         }
 
         public event EventHandler<EventArgs<VpnState>> StateChanged;
+        public event EventHandler<ConnectionDetails> ConnectionDetailsChanged
+        {
+            add => _eventReceiver.ConnectionDetailsChanged += value;
+            remove => _eventReceiver.ConnectionDetailsChanged -= value;
+        }
 
         public InOutBytes Total => _origin.Total;
 
@@ -201,7 +206,7 @@ namespace ProtonVPN.Vpn.Connection
         {
             if (_tlsConnected)
             {
-                InvokeStateChange();
+                InvokeStateChange(_currentStatus);
             }
             else
             {
@@ -382,11 +387,6 @@ namespace ProtonVPN.Vpn.Connection
             return result.Contains("private key does not match public key")
                 ? VpnError.ClientKeyMismatch
                 : VpnError.Unknown;
-        }
-
-        private void InvokeStateChange()
-        {
-            InvokeStateChange(_currentStatus);
         }
 
         private void InvokeStateChange(VpnStatus status, VpnError? error = null)

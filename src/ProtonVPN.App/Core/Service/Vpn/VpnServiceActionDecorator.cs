@@ -108,6 +108,11 @@ namespace ProtonVPN.Core.Service.Vpn
             _decorated.RegisterPortForwardingStateCallback(onPortForwardingStateChanged);
         }
 
+        public void RegisterConnectionDetailsChangeCallback(Action<ConnectionDetails> callback)
+        {
+            _decorated.RegisterConnectionDetailsChangeCallback(callback);
+        }
+
         private async Task InvokeAction(Func<Task<Result>> action)
         {
             if (!_baseFilteringEngineService.Running())

@@ -34,5 +34,8 @@ namespace ProtonVPN.Service.Contract.Vpn
 
         [OperationContract(IsOneWay = true)]
         void OnPortForwardingStateChanged(PortForwardingStateContract state);
+
+        [OperationContract(IsOneWay = true)]
+        void OnConnectionDetailsChanged(ConnectionDetailsContract connectionDetailsContract);
     }
 }

@@ -28,6 +28,7 @@ using ProtonVPN.Config.Url;
 using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Settings;
+using ProtonVPN.Partners;
 using ProtonVPN.Servers;
 using ProtonVPN.Streaming;
 
@@ -37,6 +38,7 @@ namespace ProtonVPN.App.Tests.Servers
     public class ServerListFactoryTest
     {
         private IStreamingServices _streamingServices;
+        private IPartnersService _partnersService;
         private IUserStorage _userStorage;
         private IAppSettings _appSettings;
         private ILogger _logger;
@@ -80,9 +82,11 @@ namespace ProtonVPN.App.Tests.Servers
             _serverManager = Substitute.For<ServerManager>(_userStorage, _appSettings, _logger);
             _serverManager.Load(servers);
             _urls = Substitute.For<IActiveUrls>();
+            _partnersService = Substitute.For<IPartnersService>();
+            _partnersService.GetPartnerTypes().Returns(new List<PartnerType>());
 
             InitializeSortedCountries();
-            _serverListFactory = new ServerListFactory(_serverManager, _userStorage, _streamingServices, _urls);
+            _serverListFactory = new ServerListFactory(_serverManager, _userStorage, _streamingServices, _partnersService, _urls);
         }
 
         private void InitializeUserStorage()
@@ -127,6 +131,7 @@ namespace ProtonVPN.App.Tests.Servers
         public void TestCleanup()
         {
             _streamingServices = null;
+            _partnersService = null;
             _userStorage = null;
             _appSettings = null;
             _logger = null;

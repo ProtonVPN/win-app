@@ -65,6 +65,12 @@ namespace ProtonVPN.Vpn.Connection
 
         public event EventHandler<EventArgs<VpnState>> StateChanged;
 
+        public event EventHandler<ConnectionDetails> ConnectionDetailsChanged
+        {
+            add => _origin.ConnectionDetailsChanged += value;
+            remove => _origin.ConnectionDetailsChanged -= value;
+        }
+
         public InOutBytes Total => _origin.Total;
 
         public void Connect(IReadOnlyList<VpnHost> servers, VpnConfig config, VpnCredentials credentials)
@@ -206,7 +212,7 @@ namespace ProtonVPN.Vpn.Connection
 
         private async Task<bool> IsEndpointRespondingAsync(VpnEndpoint endpoint, CancellationToken cancellationToken)
         {
-            OnStateChanged(new VpnState(VpnStatus.Pinging, VpnError.None, string.Empty, endpoint.Server.Ip, 
+            OnStateChanged(new VpnState(VpnStatus.Pinging, VpnError.None, string.Empty, endpoint.Server.Ip,
                 _config.VpnProtocol, openVpnAdapter: _config.OpenVpnAdapter, label: endpoint.Server.Label));
 
             VpnEndpoint bestEndpoint = await _endpointScanner.ScanForBestEndpointAsync(

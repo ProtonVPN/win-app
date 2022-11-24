@@ -110,6 +110,7 @@ namespace ProtonVPN.Core.Servers
                 .Where(spec.IsSatisfiedBy)
                 .Select(Map)
                 .OrderBy(s => s.Name.ContainsIgnoringCase("free") ? 0 : 1)
+                .ThenBy(s => ServerFeatures.IsPartner(s.Features) ? 1 : 0)
                 .ThenBy(s => userTier < s.Tier)
                 .ThenByDescending(s => s.IsFeatureSupported(orderBy))
                 .ThenBy(s => s.Name, _serverNameComparer)

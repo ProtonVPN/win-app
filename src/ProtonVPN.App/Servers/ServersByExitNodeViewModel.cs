@@ -24,6 +24,7 @@ using ProtonVPN.Core.Servers.Models;
 using ProtonVPN.Core.Servers.Specs;
 using ProtonVPN.Core.Vpn;
 using System.Collections.ObjectModel;
+using ProtonVPN.Partners;
 
 namespace ProtonVPN.Servers
 {
@@ -31,12 +32,14 @@ namespace ProtonVPN.Servers
     {
         private readonly sbyte _userTier;
         private readonly ServerManager _serverManager;
+        private readonly IPartnersService _partnersService;
 
-        public ServersByExitNodeViewModel(string countryCode, sbyte userTier, ServerManager serverManager)
+        public ServersByExitNodeViewModel(string countryCode, sbyte userTier, ServerManager serverManager, IPartnersService partnersService)
         {
             CountryCode = countryCode;
             _userTier = userTier;
             _serverManager = serverManager;
+            _partnersService = partnersService;
         }
 
         public override void LoadServers(string searchQuery = "", Features orderBy = Features.None)

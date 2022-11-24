@@ -19,7 +19,7 @@
 
 namespace ProtonVPN.Vpn.LocalAgent
 {
-    internal enum LocalAgentState
+    public enum LocalAgentState
     {
         Connecting,
         Connected,

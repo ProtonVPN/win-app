@@ -19,20 +19,12 @@
 
 using ProtonVPN.Core.MVVM;
 using ProtonVPN.Core.Vpn;
-using ProtonVPN.Streaming;
 
 namespace ProtonVPN.Servers
 {
-    internal class ServerTierSeparatorViewModel : ViewModel, IServerListItem
+    public class ServerTierSeparatorViewModel : ViewModel, IServerListItem
     {
-        public ServerTierSeparatorViewModel(StreamingInfoPopupViewModel streamingInfoPopupViewModel)
-        {
-            StreamingInfoPopupViewModel = streamingInfoPopupViewModel;
-        }
-
-        public StreamingInfoPopupViewModel StreamingInfoPopupViewModel { get; }
-
-        public bool ShowStreamingIcon => StreamingInfoPopupViewModel.StreamingServices.Count > 0;
+        public InfoPopupViewModel InfoPopupViewModel { get; }
 
         public string Name { get; set; }
 
@@ -44,9 +36,16 @@ namespace ProtonVPN.Servers
             set => Set(ref _showPopup, value);
         }
 
-        public bool Maintenance { get; }
-        public bool Connected { get; }
+        public bool IsToShowInfoIcon => InfoPopupViewModel != null;
+
+        public bool Maintenance => false;
+        public bool Connected => false;
         public sbyte Tier { get; set; }
+
+        public ServerTierSeparatorViewModel(InfoPopupViewModel infoPopupViewModel)
+        {
+            InfoPopupViewModel = infoPopupViewModel;
+        }
 
         public void OnVpnStateChanged(VpnState state)
         {
