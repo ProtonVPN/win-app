@@ -64,6 +64,12 @@ namespace ProtonVPN.Core.Service.Vpn
             remove => _vpnEvents.PortForwardingStateChanged -= value;
         }
 
+        public event EventHandler<ConnectionDetailsContract> ConnectionDetailsChanged
+        {
+            add => _vpnEvents.ConnectionDetailsChanged += value;
+            remove => _vpnEvents.ConnectionDetailsChanged -= value;
+        }
+
         public Task Connect(VpnConnectionRequestContract vpnConnectionRequest) =>
             Invoke(p => p.Connect(vpnConnectionRequest).Wrap());
 

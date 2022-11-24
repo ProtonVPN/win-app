@@ -28,19 +28,19 @@ namespace ProtonVPN.Notifications
     public class UpdateNotification : IUpdateStateAware
     {
         private readonly TimeSpan _remindInterval;
-        private readonly UserAuth _userAuth;
+        private readonly IUserAuthenticator _userAuthenticator;
         private readonly IEventAggregator _eventAggregator;
         private readonly UpdateFlashNotificationViewModel _notificationViewModel;
         private DateTime _lastNotified = DateTime.MinValue;
 
         public UpdateNotification(
             TimeSpan remindInterval,
-            UserAuth userAuth,
+            IUserAuthenticator userAuthenticator,
             IEventAggregator eventAggregator,
             UpdateFlashNotificationViewModel notificationViewModel)
         {
             _remindInterval = remindInterval;
-            _userAuth = userAuth;
+            _userAuthenticator = userAuthenticator;
             _eventAggregator = eventAggregator;
             _notificationViewModel = notificationViewModel;
         }
@@ -49,7 +49,7 @@ namespace ProtonVPN.Notifications
         {
             if (e.Ready)
             {
-                if (RemindRequired(e) && _userAuth.LoggedIn)
+                if (RemindRequired(e) && _userAuthenticator.IsLoggedIn)
                 {
                     Show();
                 }

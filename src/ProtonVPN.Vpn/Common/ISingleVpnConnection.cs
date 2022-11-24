@@ -26,6 +26,7 @@ namespace ProtonVPN.Vpn.Common
     public interface ISingleVpnConnection
     {
         event EventHandler<EventArgs<VpnState>> StateChanged;
+        event EventHandler<ConnectionDetails> ConnectionDetailsChanged;
 
         InOutBytes Total { get; }
 

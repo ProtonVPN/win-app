@@ -81,6 +81,8 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 StreamingServicesFilePath = Path.Combine(localAppDataFolder, "StreamingServices.json"),
 
+                PartnersFilePath = Path.Combine(localAppDataFolder, "Partners.json"),
+
                 ServiceLogFolder = serviceLogFolder,
 
                 ServiceLogDefaultFullFilePath = Path.Combine(serviceLogFolder, "service-logs.txt"),
@@ -130,6 +132,8 @@ namespace ProtonVPN.Common.Configuration.Source
                 ServerUpdateInterval = TimeSpan.FromHours(3),
 
                 StreamingServicesUpdateInterval = TimeSpan.FromHours(3),
+
+                PartnersUpdateInterval = TimeSpan.FromHours(3),
 
                 AnnouncementUpdateInterval = TimeSpan.FromMinutes(150),
 

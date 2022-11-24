@@ -80,6 +80,7 @@ using ProtonVPN.Modals.Welcome;
 using ProtonVPN.Notifications;
 using ProtonVPN.Onboarding;
 using ProtonVPN.P2PDetection;
+using ProtonVPN.Partners;
 using ProtonVPN.PlanDowngrading;
 using ProtonVPN.QuickLaunch;
 using ProtonVPN.Settings;
@@ -168,7 +169,7 @@ namespace ProtonVPN.Core
                 return;
             }
 
-            await Resolve<UserAuth>().InvokeAutoLoginEventAsync();
+            await Resolve<IUserAuthenticator>().InvokeAutoLoginEventAsync();
         }
 
         public void OnExit()
@@ -187,7 +188,7 @@ namespace ProtonVPN.Core
 
             try
             {
-                ApiResponseResult<VpnInfoWrapperResponse> result = await Resolve<UserAuth>().RefreshVpnInfoAsync();
+                ApiResponseResult<VpnInfoWrapperResponse> result = await Resolve<IUserAuthenticator>().RefreshVpnInfoAsync();
                 return result.Failure;
             }
             catch
@@ -258,7 +259,7 @@ namespace ProtonVPN.Core
         private void RegisterEvents()
         {
             IVpnServiceManager vpnServiceManager = Resolve<IVpnServiceManager>();
-            UserAuth userAuth = Resolve<UserAuth>();
+            IUserAuthenticator userAuthenticator = Resolve<IUserAuthenticator>();
             AppWindow appWindow = Resolve<AppWindow>();
             IAppSettings appSettings = Resolve<IAppSettings>();
             _notificationUserActionHandler = Resolve<INotificationUserActionHandler>();
@@ -291,14 +292,15 @@ namespace ProtonVPN.Core
                 }
             };
 
-            userAuth.UserLoggingIn += (sender, e) => OnUserLoggingIn();
+            userAuthenticator.UserLoggingIn += (sender, e) => OnUserLoggingIn();
 
-            userAuth.UserLoggedIn += async (sender, e) =>
+            userAuthenticator.UserLoggedIn += async (sender, e) =>
             {
                 await Resolve<IUserLocationService>().Update();
                 await Resolve<IServerUpdater>().Update();
                 await Resolve<IClientConfig>().Update();
                 await Resolve<StreamingServicesUpdater>().Update();
+                await Resolve<IPartnersUpdater>().Update();
 
                 GuestHoleState guestHoleState = Resolve<GuestHoleState>();
                 if (guestHoleState.Active)
@@ -316,7 +318,7 @@ namespace ProtonVPN.Core
                 await SwitchToAppWindow(e.IsAutoLogin);
             };
 
-            userAuth.UserLoggedOut += (sender, e) =>
+            userAuthenticator.UserLoggedOut += (sender, e) =>
             {
                 Resolve<IModals>().CloseAll();
 
@@ -390,6 +392,15 @@ namespace ProtonVPN.Core
                 foreach (IPortForwardingStateAware instance in instances)
                 {
                     instance.OnPortForwardingStateChanged(state);
+                }
+            });
+
+            vpnServiceManager.RegisterConnectionDetailsChangeCallback(ipAddressInfo =>
+            {
+                IEnumerable<IConnectionDetailsAware> instances = Resolve<IEnumerable<IConnectionDetailsAware>>();
+                foreach (IConnectionDetailsAware instance in instances)
+                {
+                    instance.OnConnectionDetailsChanged(ipAddressInfo);
                 }
             });
 
@@ -505,7 +516,7 @@ namespace ProtonVPN.Core
 
         private async Task SwitchToAppWindow(bool autoLogin)
         {
-            if (!Resolve<UserAuth>().LoggedIn)
+            if (!Resolve<IUserAuthenticator>().IsLoggedIn)
             {
                 return;
             }

@@ -3243,4 +3243,16 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="Servers_msg_CantConnect_RpcServerUnavailable" xml:space="preserve">
     <value>Proton VPN can't connect because the RPC server is unavailable on your system. &lt;Hyperlink Command="{Binding OpenRpcServerUrlCommand}"&gt;View possible solutions&lt;/Hyperlink&gt;</value>
   </data>
+  <data name="Sidebar_Countries_Information" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="Sidebar_Countries_FreeServersInfo" xml:space="preserve">
+    <value>Free servers have no data limit nor network throttling. The speed might be limited only due to the high number of users connected.</value>
+  </data>
+  <data name="Sidebar_Countries_OurPartners" xml:space="preserve">
+    <value>Our partners</value>
+  </data>
+  <data name="Sidebar_Countries_FreeServers" xml:space="preserve">
+    <value>Free servers</value>
+  </data>
 </root>

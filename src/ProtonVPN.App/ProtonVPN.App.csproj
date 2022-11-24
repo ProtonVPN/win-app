@@ -241,10 +241,27 @@
     <Compile Include="Modals\AssignVpnConnectionsModalViewModel.cs" />
     <Compile Include="P2PDetection\IP2PDetectionTimeout.cs" />
     <Compile Include="P2PDetection\IP2PDetector.cs" />
+    <Compile Include="Partners\IPartnersFileStorage.cs" />
+    <Compile Include="Partners\IPartnersService.cs" />
+    <Compile Include="Partners\IPartnersUpdater.cs" />
+    <Compile Include="Partners\Partner.cs" />
+    <Compile Include="Partners\PartnersFileStorage.cs" />
+    <Compile Include="Partners\PartnersService.cs" />
+    <Compile Include="Partners\PartnersUpdater.cs" />
+    <Compile Include="Partners\PartnerType.cs" />
+    <Compile Include="Servers\FreeServersInfoPopupView.xaml.cs">
+      <DependentUpon>FreeServersInfoPopupView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Servers\FreeServersInfoPopupViewModel.cs" />
+    <Compile Include="Servers\InfoPopupViewModel.cs" />
+    <Compile Include="Servers\PartnerFeature.cs" />
     <Compile Include="Settings\Migrations\v2_0_2\UserSettingsMigration.cs" />
     <Compile Include="Settings\Migrations\v2_0_6\AppSettingsMigration.cs" />
     <Compile Include="Streaming\IStreamingServicesFileStorage.cs" />
     <Compile Include="Streaming\StreamingServicesFileStorage.cs" />
+    <Compile Include="Servers\InfoPopup.xaml.cs">
+      <DependentUpon>InfoPopup.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\Popups\Rebranding\RebrandingPopupView.xaml.cs">
       <DependentUpon>RebrandingPopupView.xaml</DependentUpon>
     </Compile>
@@ -365,8 +382,8 @@
     </Compile>
     <Compile Include="Sidebar\CountryFeatures\CountryFeaturesPopupViewModel.cs" />
     <Compile Include="Streaming\IStreamingServices.cs" />
-    <Compile Include="Streaming\StreamingInfoPopup.xaml.cs">
-      <DependentUpon>StreamingInfoPopup.xaml</DependentUpon>
+    <Compile Include="Streaming\StreamingInfoPopupView.xaml.cs">
+      <DependentUpon>StreamingInfoPopupView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Streaming\StreamingInfoPopupViewModel.cs" />
     <Compile Include="Streaming\StreamingService.cs" />
@@ -380,7 +397,6 @@
     <Compile Include="Windows\Popups\BaseUpgradePlanPopupViewModel.cs" />
     <Compile Include="Windows\Popups\IReconnectionDataPopupViewModel.cs" />
     <Compile Include="Windows\Popups\PopupWindows.cs" />
-    <Compile Include="Servers\ISortedCountries.cs" />
     <Compile Include="Settings\Migrations\v1_17_0\AppSettingsMigration.cs" />
     <Compile Include="Core\Service\Vpn\IVpnManager.cs" />
     <Compile Include="FlashNotifications\FlashNotifications.xaml.cs">
@@ -437,9 +453,7 @@
     </Compile>
     <Compile Include="BugReporting\Screens\SentViewModel.cs" />
     <Compile Include="ConnectionInfo\ConnectionErrorResolver.cs" />
-    <Compile Include="ConnectionInfo\AutoAssignedIp.cs" />
     <Compile Include="ConnectionInfo\DefaultInfo.cs" />
-    <Compile Include="ConnectionInfo\Ip.cs" />
     <Compile Include="ConnectionInfo\SecureCoreInfo.cs" />
     <Compile Include="Config\ConfigDirectories.cs" />
     <Compile Include="Config\Url\ActiveUrl.cs" />
@@ -677,7 +691,6 @@
     <Compile Include="Core\Wpf\AlignableWrapPanel.cs" />
     <Compile Include="Core\Wpf\Behavior\AnimateBehaviour.cs" />
     <Compile Include="Core\Wpf\Behavior\TextStyleBehavior.cs" />
-    <Compile Include="Core\Wpf\ClippingBorder.cs" />
     <Compile Include="Core\Wpf\ComboBox.cs" />
     <Compile Include="Core\Wpf\PlaceholderTextBox.cs" />
     <Compile Include="Core\Wpf\Scrollviewer.cs" />
@@ -878,6 +891,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Servers\FreeServersInfoPopupView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Servers\InfoPopup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Windows\Popups\Rebranding\RebrandingPopupView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -1014,7 +1035,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Streaming\StreamingInfoPopup.xaml">
+    <Page Include="Streaming\StreamingInfoPopupView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

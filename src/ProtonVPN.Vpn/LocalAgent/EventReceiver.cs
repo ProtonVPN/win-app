@@ -44,6 +44,7 @@ namespace ProtonVPN.Vpn.LocalAgent
 
         public event EventHandler<EventArgs<LocalAgentState>> StateChanged;
         public event EventHandler<LocalAgentErrorArgs> ErrorOccurred;
+        public event EventHandler<ConnectionDetails> ConnectionDetailsChanged;
 
         public void Start()
         {
@@ -67,7 +68,7 @@ namespace ProtonVPN.Vpn.LocalAgent
 
         public void Stop()
         {
-            if (_loggerTask is {IsCompleted: false})
+            if (_loggerTask is { IsCompleted: false })
             {
                 _cancellationTokenSource.Cancel();
             }
@@ -95,10 +96,24 @@ namespace ProtonVPN.Vpn.LocalAgent
                 case "state":
                     HandleStateMessage(e.State);
                     break;
+                case "status":
+                    HandleStatusMessage(e);
+                    break;
                 case "error":
                     HandleError(e);
                     break;
             }
+        }
+
+        private void HandleStatusMessage(EventContract e)
+        {
+            ConnectionDetailsChanged?.Invoke(this,
+                new ConnectionDetails
+                {
+                    ClientIpAddress = e.ConnectionDetails?.DeviceIp,
+                    ClientCountryIsoCode = e.ConnectionDetails?.DeviceCountry,
+                    ServerIpAddress = e.ConnectionDetails?.ServerIpv4,
+                });
         }
 
         private void HandleError(EventContract e)

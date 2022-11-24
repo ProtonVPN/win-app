@@ -62,6 +62,7 @@
     <Compile Include="Settings\SplitTunnelSettingsContract.cs" />
     <Compile Include="Settings\ISettingsContract.cs" />
     <Compile Include="Settings\ServiceSettingsStateContract.cs" />
+    <Compile Include="Vpn\ConnectionDetailsContract.cs" />
     <Compile Include="Vpn\OpenVpnProtocolContract.cs" />
     <Compile Include="Vpn\PhysicalServer.cs" />
     <Compile Include="Vpn\ServerValidationObject.cs" />

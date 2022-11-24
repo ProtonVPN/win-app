@@ -73,10 +73,12 @@
     <Compile Include="Connection\HandlingRequestsWrapper.cs" />
     <Compile Include="Connection\VpnEndpointCandidates.cs" />
     <Compile Include="Connection\VpnProtocolWrapper.cs" />
+    <Compile Include="LocalAgent\Contracts\ConnectionDetailsContract.cs" />
     <Compile Include="LocalAgent\Contracts\EventContract.cs" />
     <Compile Include="LocalAgent\Contracts\FeaturesContract.cs" />
     <Compile Include="LocalAgent\EventReceiver.cs" />
     <Compile Include="LocalAgent\LocalAgentErrorArgs.cs" />
+    <Compile Include="LocalAgent\LocalAgentStatus.cs" />
     <Compile Include="LocalAgent\LocalAgentState.cs" />
     <Compile Include="LocalAgent\PInvoke.cs" />
     <Compile Include="LocalAgent\UdpPingClient.cs" />

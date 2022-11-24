@@ -18,7 +18,6 @@
  */
 
 using System;
-using System.Net.Http;
 using System.Security;
 using System.Threading.Tasks;
 using ProtonVPN.Api.Contracts;
@@ -32,7 +31,7 @@ using ProtonVPN.Core.Srp;
 
 namespace ProtonVPN.Core.Auth
 {
-    public class UserAuth
+    public class UserAuthenticator : IUserAuthenticator
     {
         private readonly IApiClient _apiClient;
         private readonly ILogger _logger;
@@ -43,7 +42,7 @@ namespace ProtonVPN.Core.Auth
         private string _username;
         private AuthResponse _authResponse;
 
-        public UserAuth(IApiClient apiClient,
+        public UserAuthenticator(IApiClient apiClient,
             ILogger logger,
             IUserStorage userStorage,
             IAppSettings appSettings,
@@ -56,7 +55,7 @@ namespace ProtonVPN.Core.Auth
             _userStorage = userStorage;
         }
 
-        public bool LoggedIn { get; private set; }
+        public bool IsLoggedIn { get; private set; }
 
         public event EventHandler<EventArgs> UserLoggedOut;
         public event EventHandler<UserLoggedInEventArgs> UserLoggedIn;
@@ -207,7 +206,7 @@ namespace ProtonVPN.Core.Auth
         private async Task InvokeUserLoggedInAsync(bool isAutoLogin)
         {
             await RequestNewKeysAndCertificateOnLoginAsync(isAutoLogin);
-            LoggedIn = true;
+            IsLoggedIn = true;
             UserLoggedIn?.Invoke(this, new UserLoggedInEventArgs(isAutoLogin));
         }
 
@@ -225,9 +224,9 @@ namespace ProtonVPN.Core.Auth
 
         public async Task LogoutAsync()
         {
-            if (LoggedIn)
+            if (IsLoggedIn)
             {
-                LoggedIn = false;
+                IsLoggedIn = false;
                 UserLoggedOut?.Invoke(this, EventArgs.Empty);
 
                 await SendLogoutRequestAsync();

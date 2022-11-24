@@ -113,7 +113,7 @@ namespace ProtonVPN.IntegrationTests
         {
             SrpPInvoke.SetUnitTest();
             SecureString securePassword = new NetworkCredential("", password).SecurePassword;
-            return await Resolve<UserAuth>().LoginUserAsync("username", securePassword);
+            return await Resolve<IUserAuthenticator>().LoginUserAsync("username", securePassword);
         }
     }
 }
