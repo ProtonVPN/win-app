@@ -4801,7 +4801,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CONNECTED to {0}{1}New public IP: {2}.
+        ///   Looks up a localized string similar to CONNECTED to {0}.
         /// </summary>
         public static string Notifications_VpnState_msg_Connected {
             get {
