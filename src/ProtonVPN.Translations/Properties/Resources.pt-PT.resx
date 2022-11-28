@@ -2002,11 +2002,11 @@ Siga as instruções de &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;
     <comment>The text of hyperlink in Need Help popup of Login window (opens report an issue modal window)</comment>
   </data>
   <data name="Login_lnk_ReportIssue">
-    <value>Report an issue</value>
+    <value>Reportar um problema</value>
     <comment>The text of hyperlink in Need Help popup of Login window (opens a modal to report a potential bug)</comment>
   </data>
   <data name="Login_lnk_ResetPassword">
-    <value>Reset password</value>
+    <value>Repor senha</value>
     <comment>The text of hyperlink in Need Help popup of Login window (opens web page for resetting user password)</comment>
   </data>
   <data name="Login_msg_IncorrectTwoFactorCode">
@@ -2098,7 +2098,7 @@ Siga as instruções de &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;
     <comment>The description of the Delinquency notification when the user is reconnected</comment>
   </data>
   <data name="Notifications_Delinquency_Title">
-    <value>Your VPN account has pending invoices</value>
+    <value>A sua conta VPN tem facturas pendentes</value>
     <comment>The title of the Delinquency notification</comment>
   </data>
   <data name="Notifications_EnableSmartProtocol_msg">
@@ -2138,7 +2138,7 @@ Siga as instruções de &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;
     <comment>The description of the Subscription Expired notification when the user is reconnected</comment>
   </data>
   <data name="Notifications_SubscriptionExpired_Title">
-    <value>Your VPN subscription plan has expired</value>
+    <value>O seu plano de subscrição VPN expirou.</value>
     <comment>The title of the Subscription Expired notification</comment>
   </data>
   <data name="Notifications_Update_lnk_WhatsNew">
@@ -2150,7 +2150,7 @@ Siga as instruções de &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;
     <comment>The message displayed in the Update notification when new app version is ready to install</comment>
   </data>
   <data name="Notifications_VpnState_msg_Connected">
-    <value>LIGADO a {0}{1}Novo IP público: {2}</value>
+    <value>CONNECTED to {0}</value>
     <comment>The message displayed in VPN state system notification when app connects to VPN. The {0} is a placeholder for server name, {1} - move to new line, {2} - public IP address.</comment>
   </data>
   <data name="Notifications_VpnState_msg_Disconnected">
@@ -2382,7 +2382,7 @@ Siga as instruções de &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;
     <comment>The title of profile name column in Profiles window</comment>
   </data>
   <data name="Profiles_col_Protocol">
-    <value>Protocol</value>
+    <value>Protocolo</value>
     <comment>The title of VPN protocol column in Profiles window</comment>
   </data>
   <data name="Profiles_col_Status">
@@ -2410,7 +2410,7 @@ Siga as instruções de &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;
     <comment>The title of Profiles window</comment>
   </data>
   <data name="PromoCode_btn_Apply">
-    <value>Apply</value>
+    <value>Aplicar</value>
   </data>
   <data name="PromoCode_lbl_CouponCode">
     <value>Código do cupão</value>
@@ -3226,5 +3226,8 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   <data name="WireGuard_lbl">
     <value>WireGuard</value>
     <comment>WireGuard client name (do not translate)</comment>
+  </data>
+  <data name="Connecting_lbl_ConnectingTo_2">
+    <value></value>
   </data>
 </root>
