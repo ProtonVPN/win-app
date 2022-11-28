@@ -2174,7 +2174,7 @@
     <comment>The message displayed in the Update notification when new app version is ready to install</comment>
   </data>
   <data name="Notifications_VpnState_msg_Connected">
-    <value>ПОДКЛЮЧЕНО к {0}{1}Новый публичный IP: {2}</value>
+    <value>CONNECTED to {0}</value>
     <comment>The message displayed in VPN state system notification when app connects to VPN. The {0} is a placeholder for server name, {1} - move to new line, {2} - public IP address.</comment>
   </data>
   <data name="Notifications_VpnState_msg_Disconnected">
@@ -3107,7 +3107,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The text button of the Auto Reconnection tooltip that opens the Notification Settings</comment>
   </data>
   <data name="Upsell_Countries_BlockAds">
-    <value>Блокировка рекламы и вредоносного ПО с помощь NetShield</value>
+    <value>Блокировка рекламы и вредоносных программ с помощью NetShield</value>
   </data>
   <data name="Upsell_Countries_BrowseFast">
     <value>Просматривайте сайты на самых высоких скоростях (Гбит/с)</value>
@@ -3274,5 +3274,8 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   <data name="WireGuard_lbl">
     <value>WireGuard</value>
     <comment>WireGuard client name (do not translate)</comment>
+  </data>
+  <data name="Connecting_lbl_ConnectingTo_2">
+    <value></value>
   </data>
 </root>
