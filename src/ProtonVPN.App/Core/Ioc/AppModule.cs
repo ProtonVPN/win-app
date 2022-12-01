@@ -296,7 +296,7 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<AppExitInvoker>().As<IAppExitInvoker>().SingleInstance();
             builder.RegisterType<PortForwardingManager>().As<IPortForwardingManager>().SingleInstance();
             builder.RegisterType<PortForwardingNotifier>().AsImplementedInterfaces().SingleInstance();
-            builder.RegisterType<SignUpAvailabilityProvider>().As<ISignUpAvailabilityProvider>().SingleInstance();
+            builder.RegisterType<ApiAvailabilityVerifier>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<PromoCodeManager>().As<IPromoCodeManager>().SingleInstance();
             builder.RegisterType<DeviceInfoProvider>().As<IDeviceInfoProvider>().SingleInstance();
             builder.RegisterType<ApplicationResourcesLoader>().AsImplementedInterfaces().SingleInstance();

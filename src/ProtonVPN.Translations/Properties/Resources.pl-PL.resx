@@ -1567,7 +1567,7 @@
     <value>Przypisz połączenia VPN do swojego konta Proton VPN.</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Info2">
-    <value>Ten krok zajmie tylko kilka minut. Po tym kroku, będziesz mógł zalogować się i chronić wszystkie swoje urządzenia.</value>
+    <value>Ten krok zajmie tylko kilka minut. Po tym kroku będziesz mógł zalogować się i chronić wszystkie swoje urządzenia.</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Thanks">
     <value>Dziękujemy za ulepszenie planu do wersji Professional/Visionary</value>
@@ -1705,7 +1705,7 @@ Postępuj zgodnie z &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;
     <value>Ustawienia czasu na Twoim urządzaniu nie są zsynchronizowane, uniemożliwiając połączenie. Aby uzyskać więcej informacji, kliknij &lt;Hyperlink Command="{Binding OpenKbArticleCommand}"&gt;tutaj&lt;/Hyperlink&gt;.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_msg">
-    <value>Stały Kill Switch blokuje dostęp do Internetu, jeśli nie jesteś połączony z siecią VPN.</value>
+    <value>With Permanent Kill Switch, if the VPN is not connected for any reason, you won't be able to access the internet.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_ttl">
     <value>Włączyć stały Kill Switch?</value>
@@ -1980,7 +1980,7 @@ Postępuj zgodnie z &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;
     <comment>The label for Password text box in Login window</comment>
   </data>
   <data name="Login_lbl_SecureInternetAnywhere">
-    <value>Bezpieczny Internet w każdym miejscu</value>
+    <value>Secure internet anywhere</value>
     <comment>The text displayed on the bottom of Login window while logging in</comment>
   </data>
   <data name="Login_lbl_StartAndConnectOnBoot">
@@ -2508,16 +2508,16 @@ Postępuj zgodnie z &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;
     <value>ULEPSZ</value>
   </data>
   <data name="QuickSettings_lbl_KillSwitchInfo">
-    <value>Blokuje połączenie z Internetem, aby zapobiec wyciekowi adresu IP, gdy połączenie VPN zostanie rozłączone.</value>
+    <value>Disables internet if the VPN connection drops to prevent accidental IP leak.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldInfo">
-    <value>Przeglądaj Internet bez reklam i złośliwego oprogramowania.</value>
+    <value>Browse the internet without ads and malware.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldWarning">
     <value>Jeśli strony internetowe się nie ładują, spróbuj wyłączyć funkcję NetShield</value>
   </data>
   <data name="QuickSettings_lbl_PortForwardingInfo">
-    <value>Przyśpiesz torrenty i gry online poprzez umożliwienie dostępu z Internetu do wspieranych aplikacji lokalnych.</value>
+    <value>Speed up your torrenting and online gaming by allowing supported local apps to be reachable from the internet.</value>
   </data>
   <data name="QuickSettings_lbl_SecureCoreInfo">
     <value>Przekieruj swoje najbardziej poufne dane przez nasze najbezpieczniejsze serwery ulokowane w krajach szanujących prywatność.</value>
@@ -3005,7 +3005,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Tor</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Tor_Desc">
-    <value>Przekieruj swój ruch internetowy przez wolniejszą, ale bardziej prywatną sieć Tor.</value>
+    <value>Route your internet traffic through the Tor network. Slower, but more private.</value>
   </data>
   <data name="Sidebar_Profiles_btn_Create">
     <value>Utwórz profil</value>

@@ -55,7 +55,7 @@ namespace ProtonVPN.Login.ViewModels
         private readonly IModals _modals;
         private readonly GuestHoleConnector _guestHoleConnector;
         private readonly GuestHoleState _guestHoleState;
-        private readonly ISignUpAvailabilityProvider _signUpAvailabilityProvider;
+        private readonly IApiAvailabilityVerifier _apiAvailabilityVerifier;
 
         public LoginErrorViewModel LoginErrorViewModel { get; }
 
@@ -100,7 +100,7 @@ namespace ProtonVPN.Login.ViewModels
             IModals modals,
             GuestHoleConnector guestHoleConnector,
             GuestHoleState guestHoleState,
-            ISignUpAvailabilityProvider signUpAvailabilityProvider)
+            IApiAvailabilityVerifier apiAvailabilityVerifier)
         {
             _logger = logger;
             _appConfig = appConfig;
@@ -111,7 +111,7 @@ namespace ProtonVPN.Login.ViewModels
             _loginWindowViewModel = loginWindowViewModel;
             _guestHoleConnector = guestHoleConnector;
             _guestHoleState = guestHoleState;
-            _signUpAvailabilityProvider = signUpAvailabilityProvider;
+            _apiAvailabilityVerifier = apiAvailabilityVerifier;
 
             LoginErrorViewModel = loginErrorViewModel;
             LoginErrorViewModel.ClearError();
@@ -276,7 +276,7 @@ namespace ProtonVPN.Login.ViewModels
         private async void RegisterAction()
         {
             IsToShowSignUpSpinner = true;
-            bool isSignUpPageAccessible = await _signUpAvailabilityProvider.IsSignUpPageAccessibleAsync();
+            bool isSignUpPageAccessible = await _apiAvailabilityVerifier.IsSignUpPageAccessibleAsync();
             if (isSignUpPageAccessible)
             {
                 IsToShowSignUpSpinner = false;
@@ -424,7 +424,7 @@ namespace ProtonVPN.Login.ViewModels
                 case AuthError.MissingGoSrpDll:
                     _logger.Fatal<AppCrashLog>("The app is missing GoSrp.dll");
                     FatalErrorHandler fatalErrorHandler = new();
-                    fatalErrorHandler.Exit();
+                    fatalErrorHandler.Exit("The file \"GoSrp.dll\" is missing.");
                     break;
             }
         }

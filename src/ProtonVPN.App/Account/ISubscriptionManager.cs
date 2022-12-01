@@ -24,5 +24,6 @@ namespace ProtonVPN.Account
     public interface ISubscriptionManager
     {
         Task UpgradeAccountAsync();
+        Task ManageSubscriptionAsync();
     }
 }

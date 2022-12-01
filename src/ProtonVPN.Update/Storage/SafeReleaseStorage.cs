@@ -21,7 +21,6 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using ProtonVPN.Update.Helpers;
 using ProtonVPN.Update.Releases;
 
 namespace ProtonVPN.Update.Storage
@@ -48,7 +47,7 @@ namespace ProtonVPN.Update.Storage
             {
                 throw new AppUpdateException("Release history has unsupported format", e);
             }
-            catch (Exception e) when (e.IsCommunicationException())
+            catch (Exception e)
             {
                 throw new AppUpdateException("Failed to download release history", e);
             }

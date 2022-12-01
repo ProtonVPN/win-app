@@ -412,7 +412,7 @@
     <value>Diese Version von Proton VPN könnte dein Problem bereits gelöst haben!</value>
   </data>
   <data name="BugReport_lbl_QuickSolutions">
-    <value>Schnelle Lösungen</value>
+    <value>Lösungsvorschläge</value>
   </data>
   <data name="BugReport_lbl_QuickSolutionsInfo">
     <value>Diese Tipps können helfen, dein Problem schneller zu lösen.</value>
@@ -436,7 +436,7 @@
     <comment>The label in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_WillGetBack">
-    <value>Wir melden uns bei dir so schnell wie möglich.</value>
+    <value>Wir melden uns so schnell wie möglich bei dir.</value>
   </data>
   <data name="BugReport_lbl_of">
     <value>von</value>
@@ -446,7 +446,7 @@
     <value>Ungültige E-Mail-Adresse</value>
   </data>
   <data name="BugReport_msg_Sending">
-    <value>Bericht wird gesendet …</value>
+    <value>Bericht wird gesendet…</value>
     <comment>The message displayed in Issue Report window while sending the report</comment>
   </data>
   <data name="BugReport_msg_SendingFailed">
@@ -454,7 +454,7 @@
     <comment>The message displayed in Issue Report window when sending Issue report fails</comment>
   </data>
   <data name="BugReport_msg_SendingInfo">
-    <value>Bitte warte, bis das Senden abgeschlossen ist.</value>
+    <value>Bitte warte, bis der Sendeprozess abgeschlossen ist.</value>
     <comment>The message displayed in Issue Report window while sending the report</comment>
   </data>
   <data name="BugReport_msg_SendingSucceeded">
@@ -462,7 +462,7 @@
     <comment>The message displayed in Issue Report window when sending completes</comment>
   </data>
   <data name="BugReport_ttl">
-    <value>Problem melden</value>
+    <value>Ein Problem melden</value>
     <comment>The title of Issue Report window</comment>
   </data>
   <data name="Connecting_VpnStatus_val_AssigningIp">
@@ -1574,11 +1574,11 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The text on invoices button in the Delinquency window (opens web page for invoice payment)</comment>
   </data>
   <data name="Dialogs_Delinquency_msg">
-    <value>Das Konto wurde aufgrund unbezahlter Rechnungen als „Säumig“ gekennzeichnet. Du kannst Proton VPN weiterhin nutzen, aber alle kostenpflichtigen Funktionen sind nun deaktiviert.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadAboutDelinquencyCommand}"&gt; Erfahre mehr über Zahlungsrückstände.&lt;/Hyperlink&gt;</value>
+    <value>Das Konto wurde aufgrund unbezahlter Rechnungen als „Überfällig“ gekennzeichnet. Du kannst Proton VPN weiterhin nutzen, aber alle kostenpflichtigen Funktionen sind nun deaktiviert.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadAboutDelinquencyCommand}"&gt; Erfahre mehr über Zahlungsrückstände.&lt;/Hyperlink&gt;</value>
     <comment>The message displayed in the Delinquency window. The codes between &lt; and &gt; should be kept as is (Do not forget to translate the inner "Read more about delinquency.").</comment>
   </data>
   <data name="Dialogs_Delinquency_ttl">
-    <value>Ausstehende Rechnung</value>
+    <value>Überfälliges Konto</value>
     <comment>The title of the Delinquency window</comment>
   </data>
   <data name="Dialogs_DisabledService_btn_Enable">
@@ -1681,10 +1681,10 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <value>Deine Systemuhr (Datum/Uhrzeit) scheint nicht mehr synchron zu sein, was eine erfolgreiche Verbindung mit dem VPN verhindern könnte. Bitte lies &lt;Hyperlink Command="{Binding OpenKbArticleCommand}"&gt;hier&lt;/Hyperlink&gt; für weitere Informationen.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_msg">
-    <value>Mit dauerhaftem Kill Switch kannst du nicht auf das Internet zugreifen, wenn zum VPN aus irgendeinem Grund keine Verbindung besteht.</value>
+    <value>With Permanent Kill Switch, if the VPN is not connected for any reason, you won't be able to access the internet.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_ttl">
-    <value>„Permanenten Kill Switch“ aktivieren?</value>
+    <value>„Permanent Kill Switch“ aktivieren?</value>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Disconnect_Ok">
     <value>Verstanden</value>
@@ -1703,7 +1703,7 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The upgrade button text in the Maximum Device Limit window when the user can upgrade the subscription plan</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Upgrade_Subtitle">
-    <value>Bitte trenne ein anderes Gerät, um dieses zu verbinden, oder aktualisiere auf Plus, um bis zu 10 Geräte gleichzeitig nutzen zu können.</value>
+    <value>Bitte trenne ein anderes Gerät, um dieses zu verbinden, oder upgrade auf Plus, um bis zu 10 Geräte gleichzeitig nutzen zu können.</value>
     <comment>The subtitle of the Maximum Device Limit window when the user can upgrade the subscription plan</comment>
   </data>
   <data name="Dialogs_OutdatedApp_btn_Quit">
@@ -1731,11 +1731,11 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The error message displayed on the outdated app window when the app version is outdated</comment>
   </data>
   <data name="Dialogs_OutdatedApp_msg_KillSwitchActive">
-    <value>Beachte, dass Kill Switch (Not-Trennung) aktiviert ist. Durch das Aktualisieren oder Beenden der Anwendung wird dieser deaktiviert.</value>
+    <value>Beachte, dass Kill Switch aktiviert ist. Durch das Aktualisieren oder Beenden der Anwendung wird dieser deaktiviert.</value>
     <comment>The error message displayed on the outdated app window when the app version is outdated and Kill Switch is enabled</comment>
   </data>
   <data name="Dialogs_P2PBlocked_msg_Blocked">
-    <value>Deine Verbindung wurde deaktiviert, weil du einen Server verwendest, der keinen Peer-to-Peer-Datenaustausch (P2P) unterstützt. P2P wird auf kostenlosen Servern nicht unterstützt. Bitte verwenden einen anderen Server für P2P.</value>
+    <value>Deine Verbindung wurde deaktiviert, weil du einen Server verwendest, der keinen Peer-to-Peer-Datenaustausch (P2P) unterstützt. P2P wird auf kostenlosen Servern nicht unterstützt. Bitte verwende einen anderen Server für P2P.</value>
     <comment>The warning message displayed when P2P traffic is detected on servers not allowing it.</comment>
   </data>
   <data name="Dialogs_PortForwardingConfirmation_msg">
@@ -1919,7 +1919,7 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <value>Beheben</value>
   </data>
   <data name="ErrorWindow_lbl_RepairInfo">
-    <value>Bitte repariere die fehlerhafte Installation.</value>
+    <value>Bitte repariere deine Installation.</value>
   </data>
   <data name="KillSwitch">
     <value>Kill Switch (Not-Trennung)</value>
@@ -1933,7 +1933,7 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The message displayed in Login window when expired session is detected</comment>
   </data>
   <data name="Login_Error_msg_Unauthorized">
-    <value>Ungültiger Aktualisierungs‐Token. Bitte melde dich erneut an.</value>
+    <value>Ungültiges Aktualisierungs‐Token. Bitte melde dich erneut an.</value>
     <comment>The text displayed after failed login attempt</comment>
   </data>
   <data name="Login_Error_msg_Unknown">
@@ -1956,7 +1956,7 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The label for Password text box in Login window</comment>
   </data>
   <data name="Login_lbl_SecureInternetAnywhere">
-    <value>Sicheres Internet überall</value>
+    <value>Secure internet anywhere</value>
     <comment>The text displayed on the bottom of Login window while logging in</comment>
   </data>
   <data name="Login_lbl_StartAndConnectOnBoot">
@@ -2084,7 +2084,7 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <value>Secure Core bietet ein Höchstmaß an Sicherheit und Datenschutz, kann aber deine Internetgeschwindigkeit verringern. Wenn du mehr Leistung benötigst, kannst du Secure Core deaktivieren.</value>
   </data>
   <data name="Modal_DiscourageSecureCore_Title">
-    <value>Ein Hinweis betr. Geschwindigkeit ...</value>
+    <value>Ein Hinweis zur Geschwindigkeit...</value>
   </data>
   <data name="NetShield">
     <value>NetShield</value>
@@ -2138,7 +2138,7 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The description of the Subscription Expired notification when the user is reconnected</comment>
   </data>
   <data name="Notifications_SubscriptionExpired_Title">
-    <value>Dein VPN-Abonnement ist ausgelaufen</value>
+    <value>Dein VPN-Abonnement ist abgelaufen</value>
     <comment>The title of the Subscription Expired notification</comment>
   </data>
   <data name="Notifications_Update_lnk_WhatsNew">
@@ -2457,7 +2457,7 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <value>Nur Schadsoftware sperren</value>
   </data>
   <data name="QuickSettings_btn_NetshieldOnSecond">
-    <value>Schadsoftware, Werbung &amp; Tracker sperren</value>
+    <value>Schadsoftware, Werbung &amp; Tracker blockieren</value>
   </data>
   <data name="QuickSettings_btn_PermanentKillSwitch">
     <value>Permanenter Kill Switch</value>
@@ -2478,16 +2478,16 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <value>Upgraden</value>
   </data>
   <data name="QuickSettings_lbl_KillSwitchInfo">
-    <value>Trennt die Verbindung zum Internet, wenn die VPN-Verbindung abbricht, um ein versehentliches IP-Leck zu verhindern.</value>
+    <value>Disables internet if the VPN connection drops to prevent accidental IP leak.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldInfo">
-    <value>Surfe im Internet ohne Werbung und Malware.</value>
+    <value>Browse the internet without ads and malware.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldWarning">
     <value>Wenn Websites nicht geladen werden, versuche NetShield zu deaktivieren</value>
   </data>
   <data name="QuickSettings_lbl_PortForwardingInfo">
-    <value>Beschleunige das Torrenting und Online-Gaming, indem du unterstützte lokale Anwendungen über das Internet erreichbar machst.</value>
+    <value>Speed up your torrenting and online gaming by allowing supported local apps to be reachable from the internet.</value>
   </data>
   <data name="QuickSettings_lbl_SecureCoreInfo">
     <value>Leite deine sensibelsten Daten über unsere sichersten Server in datenschutzfreundlichen Ländern weiter.</value>
@@ -2627,7 +2627,7 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The error message displayed in a tooltip of IP text box in SplitTunneling section of Advanced tab of Settings window when IP address is not valid</comment>
   </data>
   <data name="Settings_Advanced_lbl_DnsLeakProtection">
-    <value>Schutz vor Offenlegung deiner DNS-Anfragen</value>
+    <value>DNS-Leakschutz</value>
     <comment>The label for DNS Leak Protection toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_DnsLeakProtection_Info">
@@ -2647,7 +2647,7 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The label for Hardware Acceleration toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_HardwareAcceleration_Info">
-    <value>Verbessert die Systemleistung und sorgt für ein flüssigeres Nutzererlebnis, indem die GPU (Grafikprozessor) für die Grafikwiedergabe verwendet wird. Deaktiviere diese bei Bildschirmproblemen.</value>
+    <value>Verbessert die Systemleistung und sorgt für ein flüssigeres Nutzererlebnis, indem die GPU (Grafikprozessor) für die Grafikwiedergabe verwendet wird. Deaktivieren, wenn Bildschirmprobleme auftreten.</value>
     <comment>The description of Hardware Acceleration setting displayed in the tooltip of the ( i ) image next to the label for Hardware Acceleration toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_Ipv6Protection">
@@ -2655,7 +2655,7 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The label for IPv6 Leak Protection toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_Ipv6Protection_Info">
-    <value>Verhindere, dass deine IPv6‐Adresse offengelegt wird.</value>
+    <value>Verhindere, dass deine IPv6‐Adresse geleakt wird.</value>
     <comment>The description of IPv6 Leak Protection setting displayed in the tooltip of the ( i ) image next to the label for IPv6 Leak Protection toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_NetworkDriver">
@@ -2688,7 +2688,7 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <value>Greife auf die Einstellungen für die Port-Weiterleitung über die Schnelleinstellungen zu</value>
   </data>
   <data name="Settings_Advanced_lbl_PortForwardingNotifications">
-    <value>Port-Weiterleitung Mitteilungen</value>
+    <value>Port-Weiterleitung Benachrichtigungen</value>
   </data>
   <data name="Settings_Advanced_lbl_PortForwardingNotifications_Info">
     <value>Erhalte Benachrichtigungen, wenn sich die Portweiterleitungsnummer ändert</value>
@@ -2741,7 +2741,7 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The label for Custom DNS Servers combo box in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_CustomDnsServer_Info">
-    <value>Geben Sie einen privaten DNS‐Server (z. B. AdGuard DNS) ein, um Ihre DNS‐Anfragen zu bearbeiten. Die Verwendung eines benutzerdefinierten DNS‐Servers deaktiviert NetShield. DNS‐Server sind dafür verantwortlich, Sie zur richtigen Website zu leiten. Verwenden Sie daher nur Server, denen Sie vertrauen.</value>
+    <value>Gib einen privaten DNS‐Server (z. B. AdGuard DNS) ein, um deine DNS‐Anfragen zu bearbeiten. Die Verwendung eines benutzerdefinierten DNS‐Servers deaktiviert NetShield. DNS‐Server sind dafür verantwortlich, dich zur richtigen Website zu leiten. Verwende daher nur Server, denen du vertraust.</value>
     <comment>The description of Custom DNS Servers setting displayed in the tooltip of the ( i ) image next to the label for Custom DNS Server toggle switch in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_DefaultProtocol">
@@ -2763,7 +2763,7 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The label for Quick Connect combo box in General tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_QuickConnect_Info">
-    <value>Die Schaltfläche „Schnellverbinden“ verbindet Sie mit dem ausgewählten Profil.</value>
+    <value>Die Schaltfläche „Schnellverbinden“ verbindet dich mit dem ausgewählten Profil.</value>
     <comment>The description of Quick Connect settings displayed in the tooltip of ( i ) image next to the label for Quick Connect combo box in General tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_SmartReconnect">
@@ -2799,7 +2799,7 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The label for Connect on boot combo box in General tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_ConnectOnAppStart_Info">
-    <value>Beim Start von Proton VPN automatisch mit dem Quick Connect Profil verbinden.</value>
+    <value>Beim Start von Proton VPN automatisch mit dem Schnellverbinden-Profil verbinden.</value>
     <comment>The description of Connect on boot setting displayed in the tooltip of ( i ) image next to the label for Connect on boot combo box in General tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_EarlyAccess">
@@ -2975,7 +2975,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Tor</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Tor_Desc">
-    <value>Leite deinen Internetverkehr durch das Tor-Netzwerk. Langsamer, aber besser geschützt.</value>
+    <value>Route your internet traffic through the Tor network. Slower, but more private.</value>
   </data>
   <data name="Sidebar_Profiles_btn_Create">
     <value>Profil erstellen</value>
@@ -3025,7 +3025,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The name of start minimized mode displayed in Start Minimized combo box in General tab of Settings window</comment>
   </data>
   <data name="TextBoxPlaceholder">
-    <value>Beginne mit der Eingabe …</value>
+    <value>Gib etwas ein...</value>
     <comment>The text displayed as a placeholder on any text box all over the application</comment>
   </data>
   <data name="TimeUnit_val_Day_One">
@@ -3062,7 +3062,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Blockiere Werbung und Malware mit NetShield</value>
   </data>
   <data name="Upsell_Countries_BrowseFast">
-    <value>Surfe mit höchster Geschwindigkeit (10 Gbps)</value>
+    <value>Surfe mit höchster Geschwindigkeit (10 Gbit/s)</value>
   </data>
   <data name="Upsell_Countries_GlobalStreamingServices">
     <value>Greife auf globale Streaming-Dienste zu</value>
@@ -3106,7 +3106,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Wenn du auf Plus umsteigst</value>
   </data>
   <data name="Upsell_Netshield_Title">
-    <value>Genieße werbefreies surfen mit NetShield</value>
+    <value>Genieße werbefreies Surfen mit NetShield</value>
   </data>
   <data name="Upsell_NonStandardPorts_btn_LearnMore">
     <value>Mehr erfahren</value>
@@ -3121,14 +3121,14 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The text in "allow non-standard ports" modal</comment>
   </data>
   <data name="Upsell_NonStandardPorts_ttl">
-    <value>Datenverkehr zu nicht Standardisierten Ports zulassen</value>
+    <value>Datenverkehr zu nicht standardisierten Ports zulassen</value>
     <comment>The title in "allow non-standard ports" modal</comment>
   </data>
   <data name="Upsell_PortForwarding_About">
     <value>Was ist Port-Weiterleitung?</value>
   </data>
   <data name="Upsell_PortForwarding_Subtitle">
-    <value>Erhalte schnellere P2P-Downloads und verbessere dein Online-Gaming-Erlebnis mit Port Forwarding. &lt;LineBreak/&gt;&lt;LineBreak/&gt;Schalte diese Funktion und viele weitere mit VPN Plus frei.</value>
+    <value>Erhalte schnellere P2P-Downloads und verbessere dein Online-Gaming-Erlebnis mit Port-Weiterleitung. &lt;LineBreak/&gt;&lt;LineBreak/&gt;Schalte diese Funktion und viele weitere mit VPN Plus frei.</value>
   </data>
   <data name="Upsell_PortForwarding_Title">
     <value>Port-Weiterleitung aktivieren</value>
@@ -3161,7 +3161,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The name of VPN subscription plan</comment>
   </data>
   <data name="VpnPlan_val_Vpnbasic">
-    <value>Proton VPN-Basic</value>
+    <value>Proton VPN Basic</value>
     <comment>The name of VPN subscription plan</comment>
   </data>
   <data name="VpnPlan_val_Vpnplus">

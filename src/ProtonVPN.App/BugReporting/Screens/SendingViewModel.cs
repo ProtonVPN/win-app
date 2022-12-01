@@ -23,5 +23,11 @@ namespace ProtonVPN.BugReporting.Screens
 {
     public class SendingViewModel : Screen
     {
+        private bool _hasFailedFirstAttempt;
+        public bool HasFailedFirstAttempt
+        {
+            get => _hasFailedFirstAttempt;
+            set => Set(ref _hasFailedFirstAttempt, value);
+        }
     }
 }

@@ -370,6 +370,7 @@ namespace ProtonVPN.Core
             {
                 Resolve<IVpnManager>().OnVpnStateChanged(e);
                 await Resolve<LoginViewModel>().OnVpnStateChanged(e);
+                await Resolve<ReportBugModalViewModel>().OnVpnStateChanged(e);
                 await Resolve<GuestHoleConnector>().OnVpnStateChanged(e);
                 await Resolve<AlternativeHostHandler>().OnVpnStateChanged(e);
             });
@@ -572,7 +573,7 @@ namespace ProtonVPN.Core
             {
                 Resolve<ILogger>().Error<AppServiceStartFailedLog>($"Failed to start {service.Name} service.", result.Exception);
                 FatalErrorHandler fatalErrorHandler = new();
-                fatalErrorHandler.Exit();
+                fatalErrorHandler.Exit("Failed to start ProtonVPN Service.");
             }
         }
 

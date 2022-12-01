@@ -235,11 +235,11 @@
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_NetShield">
-    <value>Adblocker (NetShield)</value>
+    <value>Bloqueador de anúncios (NetShield)</value>
     <comment>The text displayed in Account window for NetShield</comment>
   </data>
   <data name="Account_lbl_NoLogs">
-    <value>Strict no-logs policy</value>
+    <value>Política estrita sem diários</value>
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_P2P">
@@ -265,7 +265,7 @@
     <value>&lt;Bold&gt;{0}&lt;/Bold&gt; servidores</value>
   </data>
   <data name="Account_lbl_Streaming">
-    <value>Streaming service support</value>
+    <value>Suporte a transmissão</value>
     <comment>The text displayed in Account window for Streaming service support</comment>
   </data>
   <data name="Account_lbl_TorOverVpn">
@@ -328,7 +328,7 @@
     <comment>The question displayed when trying to logout while connected to VPN</comment>
   </data>
   <data name="App_msg_UpdateConnectedConfirm">
-    <value>To complete the update process, Proton VPN will temporarily disconnect and deactivate Permanent Kill Switch if any of these are active. Do you want to continue?</value>
+    <value>Para concluir o processo de actualização, o Proton VPN vai desligar e desactivar temporariamente o Kill Switch permanente, se estiver activo. Deseja continuar?</value>
     <comment>The question displayed when trying to update the app while connected to VPN</comment>
   </data>
   <data name="App_ttl">
@@ -351,20 +351,20 @@
     <value>Contacte-nos</value>
   </data>
   <data name="BugReport_btn_GetUpdates">
-    <value>Update</value>
+    <value>Actualizar</value>
   </data>
   <data name="BugReport_btn_GotIt">
-    <value>Done</value>
+    <value>Feito</value>
   </data>
   <data name="BugReport_btn_LearnMore">
-    <value>Learn More</value>
+    <value>Saiba mais</value>
   </data>
   <data name="BugReport_btn_Retry">
     <value>Repetir</value>
     <comment>The text on Retry button in Issue Report window (retries sending after failure)</comment>
   </data>
   <data name="BugReport_btn_Send">
-    <value>Send report</value>
+    <value>Enviar relatório</value>
     <comment>The text on Send button in Issue Report window (sends the Issue report)</comment>
   </data>
   <data name="BugReport_btn_Troubleshoot">
@@ -391,12 +391,12 @@
     <comment>The label in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_IncludeLogsInfo">
-    <value>Providing the following details, our team can identify your problem and a possible solution with higher chances and shorter time:
-• Drivers installation log
-• List of installed applications
-• Proton VPN app and Proton VPN service logs
-• List of network adapters
-• Routing table information</value>
+    <value>Ao fornecer os seguintes detalhes, temos mais hipóteses de identificar o seu problema e arranjar uma possível solução mais rapidamente:
+- registo de instalação dos controladores;
+- lista de aplicações instaladas;
+- diários de serviço da aplicação Proton VPN;
+- lista de adaptadores de rede;
+- informações da tabela de encaminhamento</value>
     <comment>The text inside info tooltip in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_LogsDescription">
@@ -406,10 +406,10 @@
     <value>Um diário é um tipo de ficheiro que lista todas as acções que levaram a um erro. Estes ficheiros serão apenas consultados pelos nossos engenheiros para corrigir erros.</value>
   </data>
   <data name="BugReport_lbl_NewVersionAvailable">
-    <value>Update Proton VPN</value>
+    <value>Actualizar o Proton VPN</value>
   </data>
   <data name="BugReport_lbl_NewVersionInfo">
-    <value>This version of Proton VPN might have already solved your issue!</value>
+    <value>Esta versão do Proton VPN poderá já ter resolvido o seu problema!</value>
   </data>
   <data name="BugReport_lbl_QuickSolutions">
     <value>Correcções rápidas</value>
@@ -421,7 +421,7 @@
     <value>Passo</value>
   </data>
   <data name="BugReport_lbl_Username">
-    <value>Username</value>
+    <value>Nome de utilizador</value>
     <comment>The label for the username in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_UsernamePlaceholder">
@@ -1534,10 +1534,10 @@
     <comment>The name of ZZ (unknown or not specified) country</comment>
   </data>
   <data name="Dialogs_AssignVpnConnections_btn_Assign">
-    <value>Assign VPN connections</value>
+    <value>Atribuir ligações VPN</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_btn_LoginAgain">
-    <value>Login again</value>
+    <value>Iniciar sessão novamente</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Info1">
     <value>To start your journey in Proton VPN please assign VPN connections to your account or any other sub-account.</value>
@@ -1549,8 +1549,8 @@
     <value>Thanks for upgrading to Professional/Visionary</value>
   </data>
   <data name="Dialogs_Bfe_msg_info">
-    <value>One of the services required by Proton VPN (Base Filtering Engine) is not running.&lt;LineBreak/&gt;
-Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these"/&gt;&lt;/Hyperlink&gt; instructions to enable it again and retry.</value>
+    <value>Um dos serviços necessários pelo Proton VPN (Base Filtering Engine) não está em execução.&lt;LineBreak/&gt;
+Siga as instruções de &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these"/&gt;&lt;/Hyperlink&gt; para o activar e tente novamente.</value>
     <comment>The text on Base Filtering Engine dialog window</comment>
   </data>
   <data name="Dialogs_Delinquency_GoToBilling">
@@ -1574,7 +1574,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <comment>The text on invoices button in the Delinquency window (opens web page for invoice payment)</comment>
   </data>
   <data name="Dialogs_Delinquency_msg">
-    <value>The account is flagged as delinquent due to unpaid invoices. You can continue to use Proton VPN, but any paid features are now disabled.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadAboutDelinquencyCommand}"&gt;Read more about delinquency.&lt;/Hyperlink&gt;</value>
+    <value>A conta está sinalizada como delinquente devido a facturas por pagar. Pode continuar a usar o Proton VPN, mas as funcionalidades pagas estão desactivadas.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadAboutDelinquencyCommand}"&gt;Saiba mais sobre delinquência.&lt;/Hyperlink&gt;</value>
     <comment>The message displayed in the Delinquency window. The codes between &lt; and &gt; should be kept as is (Do not forget to translate the inner "Read more about delinquency.").</comment>
   </data>
   <data name="Dialogs_Delinquency_ttl">
@@ -1648,7 +1648,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <comment>The text on "Keep disabled" button in the Enable Smart Protocol window</comment>
   </data>
   <data name="Dialogs_EnableSmartProtocol_msg">
-    <value>Proton VPN detected that your current network is preventing a connection to the VPN. Enabling Smart Protocol might bypass these limitations.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadAboutSmartProtocolCommand}"&gt;Read more about Smart Protocol.&lt;/Hyperlink&gt;</value>
+    <value>O Proton VPN detectou que a sua rede actual está a impedir uma ligação à VPN. Activar o Smart Protocol pode ultrapassar esta limitação.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadAboutSmartProtocolCommand}"&gt;Saiba mais sobre o Smart Protocol.&lt;/Hyperlink&gt;</value>
     <comment>The message displayed in the Enable Smart Protocol window. The codes between &lt; and &gt; should be kept as is (Do not forget to translate the inner "Read more about Smart Protocol.").</comment>
   </data>
   <data name="Dialogs_EnableSmartProtocol_ttl">
@@ -1672,16 +1672,16 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>O Kill Switch está a bloquear todas as ligações para evitar perda de dados. Sair da aplicação desactivará o Kill Switch.</value>
   </data>
   <data name="Dialogs_Exit_msg_PermanentKillSwitch">
-    <value>Permanent Kill Switch is enabled. Exiting the application will block all the outgoing connections until Proton VPN is connected again.</value>
+    <value>O Kill Switch está activado. Sair da aplicação bloqueará todas as ligações activas até que o Proton VPN seja novamente iniciado.</value>
   </data>
   <data name="Dialogs_HumanVerification_ttl">
-    <value>Human verification</value>
+    <value>Verificação humana</value>
   </data>
   <data name="Dialogs_IncorrectSystemTime_msg">
     <value>Your system clock seems to be out of sync, which could prevent the VPN from connecting successfully. Please see &lt;Hyperlink Command="{Binding OpenKbArticleCommand}"&gt;here&lt;/Hyperlink&gt; for more information.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_msg">
-    <value>Com o Kill Switch, se a VPN não estiver ligada por qualquer motivo, não poderá aceder à Internet.</value>
+    <value>With Permanent Kill Switch, if the VPN is not connected for any reason, you won't be able to access the internet.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_ttl">
     <value>Activar o Kill Switch?</value>
@@ -1691,7 +1691,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <comment>The ok button text in the Maximum Device Limit window when the user already has the highest subscription plan</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Disconnect_Subtitle">
-    <value>Please disconnect another device to connect this one.</value>
+    <value>Por favor, desligue outro dispositivo para ligar este.</value>
     <comment>The subtitle of the Maximum Device Limit window when the user already has the highest subscription plan</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Title">
@@ -1699,7 +1699,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <comment>The title of the Maximum Device Limit window</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Upgrade">
-    <value>Upgrade</value>
+    <value>Actualizar</value>
     <comment>The upgrade button text in the Maximum Device Limit window when the user can upgrade the subscription plan</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Upgrade_Subtitle">
@@ -1745,7 +1745,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Activar Port Forwarding?</value>
   </data>
   <data name="Dialogs_Proxy_msg_ProxyDetected">
-    <value>Proton VPN has detected a proxy server configured on your local network. The Proton VPN app cannot protect the traffic that passes through this proxy. This means your connection will not be completely protected as expected.</value>
+    <value>O Proton VPN detectou um servidor proxy configurado na sua rede local. O Proton VPN não pode proteger o tráfego que passa por este proxy. Isto significa que a sua ligação não estará completamente protegida, como esperado.</value>
     <comment>The text displayed in modal window when the app detects system proxy is turned on</comment>
   </data>
   <data name="Dialogs_Reboot_btn_Reboot">
@@ -1755,16 +1755,16 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Continuar sem</value>
   </data>
   <data name="Dialogs_Reboot_msg">
-    <value>To avoid any Proton VPN errors, we strongly recommend restarting your computer to update other applications first. Proton VPN will automatically resume installation afterward. Restart now?</value>
+    <value>Para evitar erros do Proton VPN, recomendamos vivamente reiniciar o seu computador para atualizar outras aplicações primeiro. O Proton VPN retomará automaticamente a instalação depois. Reiniciar agora?</value>
   </data>
   <data name="Dialogs_Reboot_ttl">
     <value>O seu computador precisa de ser reiniciado</value>
   </data>
   <data name="Dialogs_Rebranding_Subtitle_new_plans">
-    <value>Introducing Proton’s refreshed look. Many services, one mission. Welcome to an internet where privacy is the default.  &lt;Hyperlink Command="{Binding LearnMoreCommand}"&gt;Learn more&lt;/Hyperlink&gt;</value>
+    <value>Apresentando o visual atualizado do Proton. Muitos serviços, uma missão. Bem-vindo a uma internet onde a privacidade é o padrão. &lt;Hyperlink Command="{Binding LearnMoreCommand}"&gt;Saber mais&lt;/Hyperlink&gt;</value>
   </data>
   <data name="Dialogs_Rebranding_Title_new_plans">
-    <value>Updated Proton, unified protection</value>
+    <value>Proton atualizado, proteção unificada</value>
   </data>
   <data name="Dialogs_Rebranding_btn_GotIt_new_plans">
     <value>Got it</value>
@@ -1781,11 +1781,11 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <comment>An option of the subscriber benefits list in the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListOption3">
-    <value>Advanced features: NetShield, Secure Core, Tor, P2P</value>
+    <value>Funcionalidades avançadas: NetShield, Secure Core, Tor, P2P</value>
     <comment>An option of the subscriber benefits list in the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListTitle">
-    <value>Upgrade again to enjoy all the features:</value>
+    <value>Actualize novamente para aproveitar todas as funcionalidades:</value>
     <comment>The text right before the subscriber benefits list in the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_Reconnected_Subtitle">
@@ -1860,7 +1860,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Mudar para TAP</value>
   </data>
   <data name="Dialogs_TunInUse_msg">
-    <value>Proton VPN could not connect because the TUN network adapter is already in use. Please disconnect any active VPNs and retry. Alternatively, switch to the TAP adapter (you can change back to TUN in the Advanced Settings).</value>
+    <value>O Proton VPN não conseguiu ligação por o adaptador já estar em uso. Por favor, desligue quaisquer VPNs activas e volte a tentar. Em alternativa, mude para o adaptador TAP (pode voltar ao TUN nas definições avançadas).</value>
   </data>
   <data name="Dialogs_btn_Cancel">
     <value>Cancelar</value>
@@ -1941,7 +1941,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <comment>The description of error displayed in Login window</comment>
   </data>
   <data name="Login_btn_Authenticate">
-    <value>Authenticate</value>
+    <value>Autenticar</value>
   </data>
   <data name="Login_btn_Login">
     <value>Iniciar sessão</value>
@@ -1956,7 +1956,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <comment>The label for Password text box in Login window</comment>
   </data>
   <data name="Login_lbl_SecureInternetAnywhere">
-    <value>Internet segura em qualquer sítio</value>
+    <value>Secure internet anywhere</value>
     <comment>The text displayed on the bottom of Login window while logging in</comment>
   </data>
   <data name="Login_lbl_StartAndConnectOnBoot">
@@ -1967,18 +1967,18 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <comment>The label for Start with Windows toggle switch in Login window</comment>
   </data>
   <data name="Login_lbl_TakingLongerThanExpected">
-    <value>Connection to Proton VPN in progress...</value>
+    <value>Ligação ao Proton VPN em curso...</value>
     <comment>The text displayed in login window when login takes longer than expected</comment>
   </data>
   <data name="Login_lbl_TwoFactorAuthCode">
-    <value>Two-factor authentication code</value>
+    <value>Código de autenticação em dois passos</value>
   </data>
   <data name="Login_lbl_Username">
     <value>Utilizador</value>
     <comment>The label for Username text box in Login window</comment>
   </data>
   <data name="Login_lnk_CommonSignInIssues">
-    <value>Common sign in issues</value>
+    <value>Problemas de ligação comuns</value>
     <comment>The text of hyperlink in Need Help popup of Login window (opens web page with information regarding login issues)</comment>
   </data>
   <data name="Login_lnk_CreateAccount">
@@ -1998,7 +1998,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <comment>The text of Need Help hyperlink of Login window (opens popup with more options)</comment>
   </data>
   <data name="Login_lnk_ReportAnIssue">
-    <value>Report an issue</value>
+    <value>Reportar um problema</value>
     <comment>The text of hyperlink in Need Help popup of Login window (opens report an issue modal window)</comment>
   </data>
   <data name="Login_lnk_ReportIssue">
@@ -2478,16 +2478,16 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>ACTUALIZAR</value>
   </data>
   <data name="QuickSettings_lbl_KillSwitchInfo">
-    <value>Disables Internet if the VPN connection drops to prevent accidental IP leak.</value>
+    <value>Disables internet if the VPN connection drops to prevent accidental IP leak.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldInfo">
-    <value>Browse the Internet without ads and malware.</value>
+    <value>Browse the internet without ads and malware.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldWarning">
     <value>Se as páginas não carregarem, tente desactivar o NetShield</value>
   </data>
   <data name="QuickSettings_lbl_PortForwardingInfo">
-    <value>Permita que aplicações locais suportadas sejam alcançáveis a partir da Internet, acelerando torrents e jogos online.</value>
+    <value>Speed up your torrenting and online gaming by allowing supported local apps to be reachable from the internet.</value>
   </data>
   <data name="QuickSettings_lbl_SecureCoreInfo">
     <value>Route your most sensitive data through our safest servers in privacy-friendly countries.</value>
@@ -2679,7 +2679,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Adaptador TUN</value>
   </data>
   <data name="Settings_Advanced_lbl_PortForwarding">
-    <value>Port Forwarding</value>
+    <value>Encaminhamento de porta</value>
   </data>
   <data name="Settings_Advanced_lbl_PortForwardingInQuickSettings">
     <value>Atalho do Port Forwarding</value>
@@ -2844,11 +2844,11 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The title of Settings window</comment>
   </data>
   <data name="SidebarProfiles_lbl_MyProfiles">
-    <value>My Profiles</value>
+    <value>Os meus perfis</value>
     <comment>The text of "My Profiles" category text in the Profile sidebar, that has the custom created profiles below</comment>
   </data>
   <data name="SidebarProfiles_lbl_Recommended">
-    <value>Recommended</value>
+    <value>Recomendado</value>
     <comment>The text of "Recommended" category text in the Profile sidebar, that has the predefined profiles below</comment>
   </data>
   <data name="Sidebar_Connection_btn_Connect">
@@ -2945,13 +2945,13 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>BASIC &amp; PLUS</value>
   </data>
   <data name="Sidebar_FeaturesPopup_LearnMore">
-    <value>Learn more</value>
+    <value>Saiba mais</value>
   </data>
   <data name="Sidebar_FeaturesPopup_P2P">
     <value>P2P/BitTorrent</value>
   </data>
   <data name="Sidebar_FeaturesPopup_P2P_Desc">
-    <value>These servers give the best performance for BitTorrent and file sharing.</value>
+    <value>Estes servidores permitem o melhor desempenho para BitTorrent e partilha de ficheiros.</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Plus">
     <value>PLUS</value>
@@ -2963,26 +2963,26 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Esta tecnologia permite que o Proton VPN ofereça maior velocidade e segurança em países difíceis de servir.</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Streaming">
-    <value>Streaming</value>
+    <value>Transmissão</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Streaming_Desc">
     <value>Servidores PLUS suportam streaming (Netflix, Disney+, etc) de qualquer lugar do mundo.</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Title">
-    <value>Features</value>
+    <value>Funcionalidades</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Tor">
     <value>Tor</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Tor_Desc">
-    <value>Route your Internet traffic through the Tor network. Slower, but more private.</value>
+    <value>Route your internet traffic through the Tor network. Slower, but more private.</value>
   </data>
   <data name="Sidebar_Profiles_btn_Create">
     <value>Criar perfil</value>
     <comment>The text of button for creating new profile on Profiles tab of Sidebar section of main app window (opens new profile window)</comment>
   </data>
   <data name="Sidebar_Profiles_lnk_Manage">
-    <value>Manage</value>
+    <value>Gerir</value>
     <comment>The text of hyperlink on Profiles tab of Sidebar section of main app window (opens Profiles window)</comment>
   </data>
   <data name="Sidebar_Profiles_ttl">
@@ -3001,7 +3001,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Transmissão - {0}</value>
   </data>
   <data name="Sidebar_Streaming_Features">
-    <value>Features</value>
+    <value>Funcionalidades</value>
   </data>
   <data name="Sidebar_Streaming_Info">
     <value>Ligue a um servidor PLUS neste país para iniciar a transmissão.</value>
@@ -3047,7 +3047,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>minutos</value>
   </data>
   <data name="Tooltips_SmartReconnection_Description">
-    <value>You have been switched to a faster server that is similar to the one you selected.</value>
+    <value>Mudou para um servidor mais rápido e semelhante ao que tinha seleccionado.</value>
     <comment>The description of the Auto Reconnection tooltip</comment>
   </data>
   <data name="Tooltips_SmartReconnection_Title">
@@ -3109,11 +3109,11 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Desfrute de uma navegação sem publicidades com o NetShield</value>
   </data>
   <data name="Upsell_NonStandardPorts_btn_LearnMore">
-    <value>Learn More</value>
+    <value>Saiba mais</value>
     <comment>The button label in "allow non-standard ports" modal</comment>
   </data>
   <data name="Upsell_NonStandardPorts_btn_Upgrade">
-    <value>Upgrade</value>
+    <value>Actualizar</value>
     <comment>The button label in "allow non-standard ports" modal</comment>
   </data>
   <data name="Upsell_NonStandardPorts_msg">
@@ -3149,7 +3149,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Duplique a encriptação com o Secure Core</value>
   </data>
   <data name="Upsell_btn_Upgrade">
-    <value>Upgrade</value>
+    <value>Actualizar</value>
     <comment>The text on Upgrade button in Upgrade Required Upsell window (opens web page for subscription plan upgrade)</comment>
   </data>
   <data name="VpnPlan_val_Free">
@@ -3208,7 +3208,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The text on Cancel button in data entry windows</comment>
   </data>
   <data name="Window_btn_Disable">
-    <value>Disable</value>
+    <value>Desativar</value>
     <comment>The button displayed when Kill Switch is enabled and in the login window or in the connection status in the sidebar when disconnected</comment>
   </data>
   <data name="Window_btn_Save">

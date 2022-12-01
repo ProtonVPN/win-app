@@ -32,41 +32,18 @@ namespace ProtonVPN.Update.Tests.Helpers
     public class ExceptionExtensionsTest
     {
         [TestMethod]
-        public void IsCommunicationException_ShouldBe_When_Exception()
-        {
-            TestData[] testData =
-            {
-                new TestData(true, new HttpRequestException()),
-                new TestData(true, new OperationCanceledException()),
-                new TestData(true, new SocketException()),
-                new TestData(false, new IOException()),
-                new TestData(false, new UnauthorizedAccessException()),
-                new TestData(false, new Win32Exception()),
-                new TestData(false, new AppUpdateException("")),
-                new TestData(false, new Exception()),
-            };
-
-            foreach (TestData data in testData)
-            {
-                bool result = data.Exception.IsCommunicationException();
-
-                result.Should().Be(data.Expected, $"{data.Exception.GetType()} is not communication exception");
-            }
-        }
-
-        [TestMethod]
         public void IsProcessException_ShouldBe_When_Exception()
         {
             TestData[] testData =
             {
-                new TestData(false, new HttpRequestException()),
-                new TestData(false, new OperationCanceledException()),
-                new TestData(true, new SocketException()),  // SocketException is Win32Exception
-                new TestData(false, new IOException()),
-                new TestData(false, new UnauthorizedAccessException()),
-                new TestData(true, new Win32Exception()),
-                new TestData(false, new AppUpdateException("")),
-                new TestData(false, new Exception()),
+                new(false, new HttpRequestException()),
+                new(false, new OperationCanceledException()),
+                new(true, new SocketException()),  // SocketException is Win32Exception
+                new(false, new IOException()),
+                new(false, new UnauthorizedAccessException()),
+                new(true, new Win32Exception()),
+                new(false, new AppUpdateException("")),
+                new(false, new Exception()),
             };
 
             foreach (TestData data in testData)

@@ -109,7 +109,7 @@ namespace ProtonVPN
             _failedToLoadAssembly = true;
 
             FatalErrorHandler fatalErrorHandler = new();
-            fatalErrorHandler.Exit();
+            fatalErrorHandler.Exit($"The assembly file \"{name}\" is missing.");
 
             return null;
         }

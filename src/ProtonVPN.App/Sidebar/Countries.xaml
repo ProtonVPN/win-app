@@ -605,10 +605,26 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                            Text="{Binding Name}"
                                            Style="{StaticResource SecureCoreExitCountry}"
                                            TextTrimming="CharacterEllipsis" />
-                                <icons:Globe Grid.Column="1"
-                                             Style="{StaticResource CountryFeatureIcon}"
-                                             Visibility="{Binding IsVirtual, Converter={StaticResource BoolToVis}}" />
-                                <Button Grid.Column="1"
+                                <StackPanel Orientation="Horizontal" Grid.Column="1" Margin="0,0,5,0">
+                                    <StackPanel.Resources>
+                                        <Style TargetType="StackPanel">
+                                            <Setter Property="Visibility" Value="Visible" />
+                                            <Style.Triggers>
+                                                <DataTrigger
+                                                    Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListViewItem}}, Path=IsMouseOver}"
+                                                    Value="True">
+                                                    <Setter Property="Visibility" Value="Collapsed" />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Dimmed}" Value="True">
+                                                    <Setter Property="Visibility" Value="Visible" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </StackPanel.Resources>
+                                    <icons:Globe Style="{StaticResource CountryFeatureIcon}"
+                                                 Visibility="{Binding IsVirtual, Converter={StaticResource BoolToVis}}" />
+                                </StackPanel>
+                                <Button Grid.Column="2"
                                         Style="{StaticResource SidebarCountryConnectButton}"
                                         Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}, Path=DataContext.ConnectCountry}"
                                         CommandParameter="{Binding}" />
