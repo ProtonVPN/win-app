@@ -18,37 +18,79 @@
  */
 
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
+using ProtonVPN.Common.Extensions;
 
 namespace ProtonVPN.Core.Servers
 {
-    internal class ServerNameComparer : IComparer<string>
+    public class ServerNameComparer : IComparer<string>
     {
         public int Compare(string x, string y)
         {
-            if (x.IndexOf('#') == -1 || y.IndexOf('#') == -1)
+            if (x.IsNullOrEmpty() && y.IsNullOrEmpty())
             {
-                return x.CompareTo(y);
+                return 0;
             }
 
-            var name1 = x.Substring(0, x.IndexOf('#'));
-            var name2 = y.Substring(0, y.IndexOf('#'));
+            if (x.IsNullOrEmpty())
+            {
+                return -1;
+            }
 
-            var number1 = x.Substring(x.IndexOf('#') + 1);
-            number1 = Regex.Match(number1, @"\d+").Value;
-            var key1 = int.Parse(number1);
+            if (y.IsNullOrEmpty())
+            {
+                return 1;
+            }
 
-            var number2 = y.Substring(y.IndexOf('#') + 1);
-            number2 = Regex.Match(number2, @"\d+").Value;
-            var key2 = int.Parse(number2);
+            if (x.IndexOf('#') == -1 || y.IndexOf('#') == -1)
+            {
+                return CompareNames(x, y);
+            }
 
-            var nameCompare = name1.CompareTo(name2);
-            if (nameCompare != 0 && key1 < 100 && key2 < 100 || key1 > 100 && key2 > 100)
+            return CompareNameWithHashSymbol(x, y);
+        }
+
+        private int CompareNames(string x, string y)
+        {
+            return x.CompareTo(y);
+        }
+
+        private int CompareNameWithHashSymbol(string x, string y)
+        {
+            int? number1 = GetNumber(x);
+            int? number2 = GetNumber(y);
+            if (!number1.HasValue || !number2.HasValue)
+            {
+                return CompareNames(x, y);
+            }
+
+            string name1 = GetName(x);
+            string name2 = GetName(y);
+
+            int nameCompare = name1.CompareTo(name2);
+            if (nameCompare != 0)
             {
                 return nameCompare;
             }
 
-            return key1.CompareTo(key2);
+            return number1.Value.CompareTo(number2.Value);
+        }
+
+        private string GetName(string value)
+        {
+            return value.Substring(0, value.IndexOf('#'));
+        }
+
+        private int? GetNumber(string value)
+        {
+            string stringAfterHash = value.Substring(value.IndexOf('#') + 1);
+            int indexOfDash = stringAfterHash.IndexOf('-');
+            string substring = indexOfDash > -1 ? stringAfterHash.Substring(0, indexOfDash) : stringAfterHash;
+            return ParseNumber(substring);
+        }
+
+        private int? ParseNumber(string value)
+        {
+            return int.TryParse(value, out int number) ? number : null;
         }
     }
 }

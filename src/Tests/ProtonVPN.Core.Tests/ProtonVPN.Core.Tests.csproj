@@ -66,6 +66,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Servers\ServerLoadUpdaterTest.cs" />
     <Compile Include="Servers\ServerManagerTest.cs" />
+    <Compile Include="Servers\ServerNameComparerTest.cs" />
     <Compile Include="Servers\ServerSpecsTest.cs" />
     <Compile Include="Servers\ServerTest.cs" />
     <Compile Include="Users\TruncatedLocationTest.cs" />
