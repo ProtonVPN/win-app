@@ -239,7 +239,7 @@
     <comment>The text displayed in Account window for NetShield</comment>
   </data>
   <data name="Account_lbl_NoLogs">
-    <value>Politique stricte de non-journalisation (no-logs)</value>
+    <value>Politique stricte de non-journalisation (no-log)</value>
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_P2P">
@@ -400,7 +400,7 @@
     <comment>The text inside info tooltip in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_LogsDescription">
-    <value>Les journaux d'erreurs nous aident à aller au fond de votre problème. Si vous ne les incluez pas, il se peut que nous ne soyons pas en mesure de mener une enquête approfondie.</value>
+    <value>Les journaux d'erreurs nous aident à analyser en profondeur votre problème. Si vous ne les incluez pas, il se peut que nous ne soyons pas en mesure de mener une enquête approfondie.</value>
   </data>
   <data name="BugReport_lbl_LogsTooltip">
     <value>Un journal est un type de fichier qui nous montre les actions que vous avez effectuées et qui ont conduit à une erreur. Nous ne les utiliserons que pour aider nos ingénieurs à corriger des bugs.</value>
@@ -1549,8 +1549,8 @@
     <value>Merci d'être passé à l’offre Professional/Visionary</value>
   </data>
   <data name="Dialogs_Bfe_msg_info">
-    <value>Un des services requis par Proton VPN (Base Filtering Engine) n'est pas en cours d'exécution.&lt;LineBreak/&gt;
-Veuillez suivre &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="ces instructions"/&gt;&lt;/Hyperlink&gt; pour l'activer à nouveau et réessayer.</value>
+    <value>L'un des services nécessaires à Proton VPN (Base Filtering Engine) ne fonctionne pas.&lt;LineBreak/&gt;&lt;LineBreak/&gt;
+Nous vous invitons à suivre &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="ces"/&gt;&lt;/Hyperlink&gt; instructions pour le réactiver et réessayer.</value>
     <comment>The text on Base Filtering Engine dialog window</comment>
   </data>
   <data name="Dialogs_Delinquency_GoToBilling">
@@ -1558,11 +1558,11 @@ Veuillez suivre &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run 
     <comment>The "go to billing website" button text in the Delinquency window</comment>
   </data>
   <data name="Dialogs_Delinquency_Reconnected_Subtitle">
-    <value>Vous pourrez à nouveau accéder aux fonctionnalités premium une fois que celles-ci auront été payées. Pour l'instant, nous vous reconnectons au serveur de l'offre FREE le plus rapide disponible.</value>
+    <value>Vous pourrez à nouveau accéder aux fonctionnalités premium après les avoir payées. Dans cette attente, nous vous reconnectons au serveur d'abonnement FREE le plus rapide.</value>
     <comment>The subtitle of the Delinquency window when the user is reconnected</comment>
   </data>
   <data name="Dialogs_Delinquency_Subtitle">
-    <value>Vous pourrez à nouveau accéder aux fonctionnalités premium une fois que celles-ci auront été payées.</value>
+    <value>Vous pourrez à nouveau accéder aux fonctionnalités premium après les avoir payées.</value>
     <comment>The subtitle of the Delinquency window</comment>
   </data>
   <data name="Dialogs_Delinquency_Title">
@@ -1594,7 +1594,7 @@ Veuillez suivre &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run 
     <value>Certaines applications comme les antivirus ou les optimiseurs de PC peuvent interférer avec les services système dont Proton VPN a besoin pour sécuriser votre connexion. En cliquant sur « Activer », vous autorisez Windows à réactiver les services de Proton VPN.&lt;LineBreak/&gt;Si le problème persiste, essayez de redémarrer votre PC ou de réinstaller Proton VPN.</value>
   </data>
   <data name="Dialogs_DisabledService_msg_Info">
-    <value>Certains composants de Proton VPN peuvent être bloqués ou désactivés, vous empêchant de vous connecter. Cliquez sur « Activer » pour le corriger.&lt;LineBreak/&gt;Notez que cette opération nécessite des privilèges d'administrateur.</value>
+    <value>Certains composants de Proton VPN peuvent être bloqués ou désactivés, vous empêchant de vous connecter. Cliquez sur Activer pour le corriger.&lt;LineBreak/&gt;Notez que cette opération nécessite des privilèges d'administrateur.</value>
   </data>
   <data name="Dialogs_DisconnectError_btn_DisableKillSwitch">
     <value>Désactiver Arrêt d'urgence (kill switch)</value>
@@ -2150,7 +2150,7 @@ Veuillez suivre &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run 
     <comment>The message displayed in the Update notification when new app version is ready to install</comment>
   </data>
   <data name="Notifications_VpnState_msg_Connected">
-    <value>CONNECTED to {0}</value>
+    <value>CONNECTÉ à {0}</value>
     <comment>The message displayed in VPN state system notification when app connects to VPN. The {0} is a placeholder for server name, {1} - move to new line, {2} - public IP address.</comment>
   </data>
   <data name="Notifications_VpnState_msg_Disconnected">
