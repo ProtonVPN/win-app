@@ -70,6 +70,12 @@ namespace ProtonVPN.Service.Vpn
 
         public event EventHandler<EventArgs<VpnState>> StateChanged;
 
+        public event EventHandler<ConnectionDetails> ConnectionDetailsChanged
+        {
+            add => _origin.ConnectionDetailsChanged += value;
+            remove => _origin.ConnectionDetailsChanged -= value;
+        }
+
         public InOutBytes Total => _origin.Total;
 
         public void Connect(IReadOnlyList<VpnHost> servers, VpnConfig config, VpnCredentials credentials)

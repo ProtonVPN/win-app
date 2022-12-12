@@ -71,7 +71,7 @@ namespace ProtonVPN.UI.Tests
 
         protected static void Cleanup()
         {
-            TestRailClient.MarkTestsByStatus();
+            ReportTestResults();
             VPNServiceHelper serviceHelper = new VPNServiceHelper();
             serviceHelper.Disconnect().GetAwaiter().GetResult();
             App.Close();
@@ -145,6 +145,11 @@ namespace ProtonVPN.UI.Tests
                 process.StartInfo.UseShellExecute = true;
                 process.Start();
             }
+        }
+
+        protected static void ReportTestResults()
+        {
+            TestRailClient?.MarkTestsByStatus();
         }
     }
 }

@@ -90,6 +90,7 @@ namespace ProtonVPN.Vpn.WireGuard
         }
 
         public event EventHandler<EventArgs<VpnState>> StateChanged;
+        public event EventHandler<ConnectionDetails> ConnectionDetailsChanged;
         public InOutBytes Total { get; private set; } = InOutBytes.Zero;
 
         public void Connect(VpnEndpoint endpoint, VpnCredentials credentials, VpnConfig config)

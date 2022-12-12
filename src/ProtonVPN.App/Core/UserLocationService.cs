@@ -18,11 +18,11 @@
  */
 
 using System;
-using System.Net.Http;
 using System.Threading.Tasks;
 using ProtonVPN.Api;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Geographical;
+using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.OS.Net.NetworkInterface;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
@@ -33,35 +33,32 @@ using ProtonVPN.Core.Vpn;
 
 namespace ProtonVPN.Core
 {
-    internal class UserLocationService : IVpnStateAware, IUserLocationService
+    internal class UserLocationService : IVpnStateAware, IUserLocationService, IConnectionDetailsAware
     {
         private static readonly TimeSpan UpdateLocationDelay = TimeSpan.FromSeconds(6);
 
         private readonly IApiClient _api;
         private readonly IUserStorage _userStorage;
         private readonly SingleAction _updateAction;
-        private readonly SingleAction _delayedUpdateAction;
         private readonly GuestHoleState _guestHoleState;
 
+        private bool _isUpdateWithDelayInProgress;
         private bool _disconnected = true;
-        private bool _connected;
-        private bool _networkAddressChanged;
-        private readonly UserAuth _userAuth;
+        private readonly IUserAuthenticator _userAuthenticator;
 
         public UserLocationService(
             IApiClient api,
             IUserStorage userStorage,
             INetworkInterfaces networkInterfaces,
-            UserAuth userAuth,
+            IUserAuthenticator userAuthenticator,
             GuestHoleState guestHoleState)
         {
-            _userAuth = userAuth;
+            _userAuthenticator = userAuthenticator;
             _guestHoleState = guestHoleState;
             _api = api;
             _userStorage = userStorage;
 
             _updateAction = new SingleAction(UpdateAction);
-            _delayedUpdateAction = new SingleAction(DelayedUpdateAction);
 
             networkInterfaces.NetworkAddressChanged += NetworkInterfaces_NetworkAddressChanged;
         }
@@ -73,22 +70,15 @@ namespace ProtonVPN.Core
             return _updateAction.Run();
         }
 
-        public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
+        public async Task OnVpnStateChanged(VpnStateChangedEventArgs e)
         {
             VpnStatus status = e.State.Status;
             _disconnected = status == VpnStatus.Disconnected;
-            _connected = status == VpnStatus.Connected;
 
-            if ((status == VpnStatus.Pinging ||
-                 status == VpnStatus.Connecting ||
-                 status == VpnStatus.Reconnecting ||
-                 status == VpnStatus.Disconnected) &&
-                _networkAddressChanged)
+            if (status == VpnStatus.Disconnected)
             {
-                _updateAction.Run();
+                await UpdateWithDelay();
             }
-
-            return Task.CompletedTask;
         }
 
         public async Task<ApiResponseResult<UserLocationResponse>> LocationAsync()
@@ -105,7 +95,7 @@ namespace ProtonVPN.Core
 
         private async Task UpdateAction()
         {
-            if (_connected || !_userAuth.LoggedIn)
+            if (!_disconnected || !_userAuthenticator.IsLoggedIn)
             {
                 return;
             }
@@ -113,24 +103,14 @@ namespace ProtonVPN.Core
             ApiResponseResult<UserLocationResponse> response = await LocationAsync();
 
             // Extra check in case location request took longer
-            if (_connected)
+            if (!_disconnected)
             {
                 return;
             }
 
             if (response.Success)
             {
-                _networkAddressChanged = false;
-
-                if (response.Value.Ip == _userStorage.GetLocation().Ip)
-                {
-                    return;
-                }
-
-                UserLocation location = Map(response.Value);
-                _userStorage.SaveLocation(location);
-
-                UserLocationChanged?.Invoke(this, new UserLocationEventArgs(UserLocationState.Success, location));
+                TriggerLocationUpdate(Map(response.Value));
             }
             else
             {
@@ -139,29 +119,37 @@ namespace ProtonVPN.Core
             }
         }
 
-        private async Task DelayedUpdateAction()
+        private void TriggerLocationUpdate(UserLocation newLocation)
         {
-            await Task.Delay(UpdateLocationDelay);
-
-            if (_networkAddressChanged && _disconnected)
+            UserLocation userLocation = _userStorage.GetLocation();
+            if (newLocation.Ip != userLocation.Ip || newLocation.Isp != userLocation.Isp)
             {
-                _ = _updateAction.Run();
+                _userStorage.SaveLocation(newLocation);
+                UserLocationChanged?.Invoke(this, new UserLocationEventArgs(UserLocationState.Success, newLocation));
             }
         }
 
-        private void NetworkInterfaces_NetworkAddressChanged(object sender, EventArgs e)
+        private async Task UpdateWithDelay()
         {
-            if (_guestHoleState.Active)
+            if (_isUpdateWithDelayInProgress)
             {
                 return;
             }
 
-            _networkAddressChanged = true;
+            _isUpdateWithDelayInProgress = true;
+            await Task.Delay(UpdateLocationDelay);
+            await _updateAction.Run();
+            _isUpdateWithDelayInProgress = false;
+        }
 
-            if (_disconnected)
+        private async void NetworkInterfaces_NetworkAddressChanged(object sender, EventArgs e)
+        {
+            if (_guestHoleState.Active || !_disconnected)
             {
-                _delayedUpdateAction.Run();
+                return;
             }
+
+            await UpdateWithDelay();
         }
 
         private UserLocation Map(UserLocationResponse contract)
@@ -170,6 +158,17 @@ namespace ProtonVPN.Core
                 contract.Ip,
                 contract.Isp,
                 contract.Country);
+        }
+
+        public async Task OnConnectionDetailsChanged(ConnectionDetails connectionDetails)
+        {
+            if (!connectionDetails.ClientIpAddress.IsNullOrEmpty())
+            {
+                UserLocation currentLocation = _userStorage.GetLocation();
+                string isp = currentLocation.Ip != connectionDetails.ClientIpAddress ? string.Empty : currentLocation.Isp;
+                UserLocation location = new(connectionDetails.ClientIpAddress, isp, connectionDetails.ClientCountryIsoCode);
+                TriggerLocationUpdate(location);
+            }
         }
     }
 }

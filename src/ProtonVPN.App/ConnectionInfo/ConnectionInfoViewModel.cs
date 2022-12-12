@@ -47,18 +47,10 @@ namespace ProtonVPN.ConnectionInfo
 
 
         public bool Maintenance { get; }
-        public object Ip { get; }
         public bool SecureCore { get; }
         public bool PlusServer { get; }
         public bool P2PServer { get; }
         public bool TorServer { get; }
-
-        private bool _showTooltip;
-        public bool ShowTooltip
-        {
-            get => _showTooltip;
-            set => Set(ref _showTooltip, value);
-        }
 
         public ConnectionInfoViewModel(Server server)
         {
@@ -67,7 +59,6 @@ namespace ProtonVPN.ConnectionInfo
             LoadNumber = server.Load;
             Load = $"{server.Load}%";
             Maintenance = server.Status == 0;
-            Ip = new Ip {Address = server.ExitIp};
             PlusServer = server.Tier.Equals(ServerTiers.Plus);
             P2PServer = server.SupportsP2P();
             TorServer = server.SupportsTor();
@@ -86,11 +77,6 @@ namespace ProtonVPN.ConnectionInfo
                     EntryCountry = Countries.GetName(server.EntryCountry),
                     ExitCountry = Countries.GetName(server.ExitCountry)
                 };
-            }
-
-            if (server.IsSecureCore() || server.IsFree())
-            {
-                Ip = new AutoAssignedIp();
             }
         }
     }

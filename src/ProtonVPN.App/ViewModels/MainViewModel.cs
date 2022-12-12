@@ -47,7 +47,7 @@ namespace ProtonVPN.ViewModels
 {
     internal class MainViewModel : LanguageAwareViewModel, IVpnStateAware, IOnboardingStepAware
     {
-        private readonly UserAuth _userAuth;
+        private readonly IUserAuthenticator _userAuthenticator;
         private readonly IVpnManager _vpnManager;
         private readonly IActiveUrls _urls;
         private readonly IEventAggregator _eventAggregator;
@@ -59,7 +59,7 @@ namespace ProtonVPN.ViewModels
         private bool _connecting;
 
         public MainViewModel(
-            UserAuth userAuth,
+            IUserAuthenticator userAuthenticator,
             IVpnManager vpnManager,
             IActiveUrls urls,
             IEventAggregator eventAggregator,
@@ -76,7 +76,7 @@ namespace ProtonVPN.ViewModels
             _eventAggregator = eventAggregator;
             _vpnManager = vpnManager;
             _urls = urls;
-            _userAuth = userAuth;
+            _userAuthenticator = userAuthenticator;
             _appExitHandler = appExitHandler;
             _modals = modals;
             _dialogs = dialogs;
@@ -264,7 +264,7 @@ namespace ProtonVPN.ViewModels
             }
 
             await _vpnManager.DisconnectAsync();
-            await _userAuth.LogoutAsync();
+            await _userAuthenticator.LogoutAsync();
         }
 
         private void ExitAction()

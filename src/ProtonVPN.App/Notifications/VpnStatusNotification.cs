@@ -17,7 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Servers.Models;
@@ -36,14 +35,13 @@ namespace ProtonVPN.Notifications
             _notificationSender = notificationSender;
         }
 
-        public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
+        public async Task OnVpnStateChanged(VpnStateChangedEventArgs e)
         {
             Server server = e.State.Server;
             switch (e.State.Status)
             {
                 case VpnStatus.Connected when server is not null && !server.IsEmpty():
-                    _notificationSender.Send(Translation.Format("Notifications_VpnState_msg_Connected",
-                        server.Name, Environment.NewLine, server.ExitIp));
+                    _notificationSender.Send(Translation.Format("Notifications_VpnState_msg_Connected", server.Name));
                     break;
                 case VpnStatus.Disconnecting when _lastVpnStatus == VpnStatus.Connected:
                 case VpnStatus.Disconnected when _lastVpnStatus == VpnStatus.Connected:
@@ -52,8 +50,6 @@ namespace ProtonVPN.Notifications
             }
 
             _lastVpnStatus = e.State.Status;
-
-            return Task.CompletedTask;
         }
     }
 }

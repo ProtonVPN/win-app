@@ -30,7 +30,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
              xmlns:wpf="clr-namespace:ProtonVPN.Core.Wpf"
              xmlns:quickSettings="clr-namespace:ProtonVPN.Sidebar.QuickSettings"
-             xmlns:streaming="clr-namespace:ProtonVPN.Streaming"
              xmlns:countryFeatures="clr-namespace:ProtonVPN.Sidebar.CountryFeatures"
              xmlns:icons="clr-namespace:ProtonVPN.Resource.Graphics.Icons;assembly=ProtonVPN.Resource"
              mc:Ignorable="d"
@@ -485,17 +484,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                        TextTrimming="CharacterEllipsis" />
                             <ToggleButton x:Name="InfoToggleButton"
                                           DockPanel.Dock="Right"
-                                          Visibility="{Binding ShowStreamingIcon, Converter={StaticResource BoolToVis}}"
+                                          Visibility="{Binding IsToShowInfoIcon, Converter={StaticResource BoolToVis}}"
                                           Style="{StaticResource EmptyToggleButton}"
                                           IsChecked="{Binding ShowPopup, Mode=TwoWay}"
                                           Background="Transparent"
                                           BorderBrush="Transparent">
                                 <icons:InfoCircleFilled Style="{StaticResource GrayInfoIcon}" />
                             </ToggleButton>
-                            <streaming:StreamingInfoPopup DataContext="{Binding StreamingInfoPopupViewModel}"
-                                                          PlacementTarget="{Binding ElementName=PopupPanel}"
-                                                          PlacementRectangle="145,0,0,0"
-                                                          ShowPopup="{Binding Path=IsChecked, ElementName=InfoToggleButton, Mode=TwoWay}" />
+                            <servers:InfoPopup DataContext="{Binding InfoPopupViewModel}"
+                                               Title="{Binding Title}"
+                                               PlacementTarget="{Binding ElementName=PopupPanel}"
+                                               ShowPopup="{Binding Path=IsChecked, ElementName=InfoToggleButton, Mode=TwoWay}" />
                         </DockPanel>
                     </Border>
                 </DataTemplate>
@@ -641,21 +640,22 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                  DataContext="{Binding ConnectionInfoViewModel}"
                                                  Style="{StaticResource LoadBubbleLeft}" />
                             <StackPanel Style="{StaticResource ServerRowStackPanel}">
-                                <controls:ServerName ConnectionName="{Binding ConnectionName}" Margin="0,-3,0,0"
+                                <controls:ServerName ConnectionName="{Binding ConnectionName}"
+                                                     Margin="0,-3,0,0"
                                                      FontSize="16" />
                                 <sidebar:ServerFeatures Features="{Binding Features}"
                                                         Style="{StaticResource ServerFeatures}" />
                             </StackPanel>
                             <Label Style="{StaticResource City}" 
-                                   FontSize="14" 
+                                   FontSize="14"
                                    FontWeight="Normal"
                                    Content="{Binding Server.City}" />
                             <Label Style="{StaticResource UpgradeRequiredLabel}"
                                    Content="{translations:Loc Servers_lbl_Upgrade}" />
                             <Button Margin="38,0,0,0"
-                                Style="{StaticResource SidebarServerConnectButton}"
-                                Command="{Binding DataContext.Connect, RelativeSource={RelativeSource AncestorType=ListView}}"
-                                CommandParameter="{Binding}" />
+                                    Style="{StaticResource SidebarServerConnectButton}"
+                                    Command="{Binding DataContext.Connect, RelativeSource={RelativeSource AncestorType=ListView}}"
+                                    CommandParameter="{Binding}" />
                             <icons:Wrench Style="{StaticResource MaintenanceIcon}" />
                         </Grid>
                     </Grid>

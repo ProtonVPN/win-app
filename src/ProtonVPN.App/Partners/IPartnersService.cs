@@ -19,10 +19,10 @@
 
 using System.Collections.Generic;
 
-namespace ProtonVPN.Servers
+namespace ProtonVPN.Partners
 {
-    public interface ISortedCountries
+    public interface IPartnersService
     {
-        List<string> List(sbyte tier);
+        List<PartnerType> GetPartnerTypes();
     }
 }

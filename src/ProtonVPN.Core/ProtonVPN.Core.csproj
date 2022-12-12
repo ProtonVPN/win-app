@@ -83,7 +83,8 @@
     <Compile Include="Auth\IAuthCredentialManager.cs" />
     <Compile Include="Auth\ILoggedInAware.cs" />
     <Compile Include="Auth\ILogoutAware.cs" />
-    <Compile Include="Auth\UserAuth.cs" />
+    <Compile Include="Auth\IUserAuthenticator.cs" />
+    <Compile Include="Auth\UserAuthenticator.cs" />
     <Compile Include="Auth\UserLoggedInEventArgs.cs" />
     <Compile Include="Auth\UserValidator.cs" />
     <Compile Include="Events\EventClient.cs" />
@@ -120,6 +121,7 @@
     <Compile Include="Update\FeedUrlProvider.cs" />
     <Compile Include="Users\VpnPlanChangedEventArgs.cs" />
     <Compile Include="Vpn\AuthCertificateUpdater.cs" />
+    <Compile Include="Vpn\IConnectionDetailsAware.cs" />
     <Compile Include="Vpn\IVpnServiceManager.cs" />
     <Compile Include="Vpn\VpnConnectionRequest.cs" />
     <Compile Include="Windows\Popups\IPopupWindow.cs" />

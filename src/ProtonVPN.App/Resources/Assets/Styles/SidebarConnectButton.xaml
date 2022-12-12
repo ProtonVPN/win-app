@@ -25,9 +25,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     mc:Ignorable="d">
 
     <Style x:Key="ConnectButton" TargetType="Button" BasedOn="{StaticResource ClearStyleButton}">
+        <Setter Property="Border.CornerRadius" Value="10"/>
         <Setter Property="FontSize" Value="12"/>
         <Setter Property="FontWeight" Value="Normal"/>
-        <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}"/>
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
@@ -40,10 +40,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="BorderThickness" Value="2"/>
     </Style>
 
-    <ControlTemplate x:Key="ServerConnectButtonControlTemplate" TargetType="Button">
+    <ControlTemplate x:Key="ConnectButtonControlTemplate" TargetType="Button">
         <Border x:Name="ConnectButtonBorder" Style="{StaticResource ConnectButtonBorder}">
             <Button Name="Button"
                     Style="{StaticResource ConnectButton}"
+                    Background="{TemplateBinding Background}"
                     Padding="{TemplateBinding Padding}"
                     Command="{TemplateBinding Command}"
                     Height="{TemplateBinding Height}"
@@ -72,6 +73,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <Setter TargetName="ConnectButtonBorder" Property="Padding" Value="2,0"/>
                 <Setter TargetName="ConnectButtonBorder" Property="Background" Value="{StaticResource InteractionNormHoverBrushColor}"/>
                 <Setter TargetName="Button" Property="Foreground" Value="{StaticResource TextNormBrushColor}"/>
+                <Setter TargetName="Button" Property="Background" Value="{StaticResource InteractionNormHoverBrushColor}"/>
             </MultiDataTrigger>
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
@@ -82,6 +84,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <Setter TargetName="ConnectButtonBorder" Property="Padding" Value="2,0"/>
                 <Setter TargetName="ConnectButtonBorder" Property="Background" Value="{StaticResource SignalDangerBrushColor}"/>
                 <Setter TargetName="Button" Property="Foreground" Value="{StaticResource TextNormBrushColor}"/>
+                <Setter TargetName="Button" Property="Background" Value="{StaticResource SignalDangerBrushColor}"/>
             </MultiDataTrigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
@@ -91,9 +94,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="Visibility" Value="Collapsed"/>
         <Setter Property="Padding" Value="10,0,10,1"/>
         <Setter Property="Height" Value="28"/>
-        <Setter Property="Template" Value="{StaticResource ServerConnectButtonControlTemplate}"/>
+        <Setter Property="Template" Value="{StaticResource ConnectButtonControlTemplate}"/>
     </Style>
     <Style x:Key="SidebarServerConnectButton" TargetType="Button" BasedOn="{StaticResource SidebarConnectButton}">
+        <Setter Property="Background" Value="{StaticResource BackgroundNormBrushColor}"/>
         <Style.Triggers>
             <DataTrigger Binding="{Binding Server.Status}" Value="0">
                 <Setter Property="Visibility" Value="Collapsed"/>
@@ -101,6 +105,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Style.Triggers>
     </Style>
     <Style x:Key="SidebarCountryConnectButton" BasedOn="{StaticResource SidebarConnectButton}" TargetType="Button">
+        <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Margin" Value="0,0,10,0"/>
         <Style.Triggers>
             <MultiDataTrigger>

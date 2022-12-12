@@ -25,7 +25,7 @@ using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Servers.Models;
 using ProtonVPN.Core.Servers.Name;
 using ProtonVPN.Core.Vpn;
-using ProtonVPN.Streaming;
+using ProtonVPN.Partners;
 
 namespace ProtonVPN.Servers
 {
@@ -34,27 +34,24 @@ namespace ProtonVPN.Servers
         private bool _connecting;
         private bool _connected;
         private bool _showIp = true;
-        private string _ip;
 
-        private readonly StreamingInfoPopupViewModel _streamingInfoPopupViewModel;
+        private readonly List<PartnerType> _partnerTypes;
         private readonly sbyte _userTier;
+        private readonly InfoPopupViewModel _streamingInfoPopupViewModel;
 
-        public ServerItemViewModel(Server server, sbyte userTier, StreamingInfoPopupViewModel streamingInfoPopupViewModel = null)
+        public ServerItemViewModel(Server server, List<PartnerType> partnerTypes, sbyte userTier,
+            InfoPopupViewModel streamingInfoPopupViewModel = null)
         {
-            _streamingInfoPopupViewModel = streamingInfoPopupViewModel;
+            _partnerTypes = partnerTypes;
             _userTier = userTier;
+            _streamingInfoPopupViewModel = streamingInfoPopupViewModel;
+
             AssignServer(server);
             SetServerFeatures(server);
             ConnectionInfoViewModel = new ConnectionInfoViewModel(server);
         }
 
         public ConnectionInfoViewModel ConnectionInfoViewModel { get; }
-
-        public string Ip
-        {
-            get => _ip;
-            set => Set(ref _ip, value);
-        }
 
         public bool Connecting
         {
@@ -81,6 +78,7 @@ namespace ProtonVPN.Servers
         public IName ConnectionName { get; set; }
 
         private bool _upgradeRequired;
+
         public bool UpgradeRequired
         {
             get => _upgradeRequired;
@@ -93,20 +91,34 @@ namespace ProtonVPN.Servers
 
         public void SetServerFeatures(Server server)
         {
-            var list = new List<IServerFeature>();
-            if (ServerFeatures.SupportsP2P(server.Features))
+            List<IServerFeature> list = new();
+            if (server.SupportsP2P())
             {
                 list.Add(new P2PFeature());
             }
 
-            if (ServerFeatures.SupportsTor(server.Features))
+            if (server.SupportsTor())
             {
                 list.Add(new TorFeature());
             }
 
-            if (ServerFeatures.SupportsStreaming(server.Features))
+            if (server.SupportsStreaming())
             {
                 list.Add(new StreamingFeature(_streamingInfoPopupViewModel));
+            }
+
+            if (server.IsPartner())
+            {
+                foreach (PartnerType partnerType in _partnerTypes)
+                {
+                    foreach (Partner partner in partnerType.Partners)
+                    {
+                        if (partner.LogicalIDs.Contains(server.Id))
+                        {
+                            list.Add(new PartnerFeature(partner.Name, partner.IconUrl, _partnerTypes));
+                        }
+                    }
+                }
             }
 
             Features = list;
@@ -139,7 +151,6 @@ namespace ProtonVPN.Servers
         private void AssignServer(Server server)
         {
             Server = server;
-            Ip = server.ExitIp;
 
             ConnectionName = Server.GetServerName();
             SetIpVisibility(server);

@@ -23,7 +23,6 @@ using Caliburn.Micro;
 using ProtonVPN.About;
 using ProtonVPN.Account;
 using ProtonVPN.Api;
-using ProtonVPN.Api.Contracts.Servers;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Events;
 using ProtonVPN.Common.Logging;
@@ -38,7 +37,6 @@ using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Profiles.Cached;
 using ProtonVPN.Core.Servers;
-using ProtonVPN.Core.Servers.Contracts;
 using ProtonVPN.Core.Servers.FileStoraging;
 using ProtonVPN.Core.Service;
 using ProtonVPN.Core.Service.Settings;
@@ -61,6 +59,7 @@ using ProtonVPN.Modals;
 using ProtonVPN.Modals.Dialogs;
 using ProtonVPN.Modals.Welcome;
 using ProtonVPN.Notifications;
+using ProtonVPN.Partners;
 using ProtonVPN.PlanDowngrading;
 using ProtonVPN.PortForwarding;
 using ProtonVPN.Resource.Colors;
@@ -253,7 +252,7 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<BaseFilteringEngineService>().SingleInstance();
             builder.Register(c => new UpdateNotification(
                     c.Resolve<IConfiguration>().UpdateRemindInterval, // REMOVE THIS CUSTOM REGISTRATION
-                    c.Resolve<UserAuth>(),
+                    c.Resolve<IUserAuthenticator>(),
                     c.Resolve<IEventAggregator>(),
                     c.Resolve<UpdateFlashNotificationViewModel>()))
                 .AsImplementedInterfaces()
@@ -282,6 +281,9 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<StreamingServicesUpdater>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterType<StreamingServices>().As<IStreamingServices>().SingleInstance();
             builder.RegisterType<StreamingServicesFileStorage>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<PartnersService>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<PartnersUpdater>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<PartnersFileStorage>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<NotificationSender>().As<INotificationSender>().SingleInstance();
             builder.RegisterType<NotificationUserActionHandler>().As<INotificationUserActionHandler>().SingleInstance();
 

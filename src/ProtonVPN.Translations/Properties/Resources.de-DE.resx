@@ -239,7 +239,7 @@
     <comment>The text displayed in Account window for NetShield</comment>
   </data>
   <data name="Account_lbl_NoLogs">
-    <value>Strenge Richtlinie „Keine Protokollierung“</value>
+    <value>Strenge No-Logs-Richtlinie</value>
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_P2P">
@@ -2130,11 +2130,11 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The description of the Maximum Device Limit notification when the user can upgrade the subscription plan</comment>
   </data>
   <data name="Notifications_SubscriptionExpired_Description">
-    <value>Dein Abonnement wurde herabgestuft. Führe erneut ein Upgrade durch, um alle Funktionen nutzen zu können.</value>
+    <value>Dein Abonnement wurde herabgestuft. Upgrade erneut, um alle Funktionen nutzen zu können.</value>
     <comment>The description of the Subscription Expired notification</comment>
   </data>
   <data name="Notifications_SubscriptionExpired_Reconnected_Description">
-    <value>Dein Abonnement wurde herabgestuft, daher stellen wir die Verbindung mit dem schnellsten verfügbaren Server wieder her. Führe erneut ein Upgrade durch, um alle Funktionen nutzen zu können.</value>
+    <value>Dein Abonnement wurde herabgestuft, daher stellen wir die Verbindung mit dem schnellsten verfügbaren Server wieder her. Upgrade erneut, um alle Funktionen nutzen zu können.</value>
     <comment>The description of the Subscription Expired notification when the user is reconnected</comment>
   </data>
   <data name="Notifications_SubscriptionExpired_Title">
@@ -2150,7 +2150,7 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The message displayed in the Update notification when new app version is ready to install</comment>
   </data>
   <data name="Notifications_VpnState_msg_Connected">
-    <value>VERBUNDEN mit {0}{1}Neue öffentliche IP: {2}</value>
+    <value>VERBUNDEN mit {0}</value>
     <comment>The message displayed in VPN state system notification when app connects to VPN. The {0} is a placeholder for server name, {1} - move to new line, {2} - public IP address.</comment>
   </data>
   <data name="Notifications_VpnState_msg_Disconnected">
@@ -2204,7 +2204,7 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <value>Aktiver Port:</value>
   </data>
   <data name="PortForwarding_lbl_CopyValue">
-    <value>Anklicken um diese Port Nummer zu kopieren.</value>
+    <value>Klicken, um diese Portnummer zu kopieren.</value>
   </data>
   <data name="PortForwarding_lbl_Info">
     <value>Trage diese Nummer in deiner BitTorrent-App ein, um bessere Geschwindigkeiten zu erzielen.</value>
@@ -3226,5 +3226,8 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   <data name="WireGuard_lbl">
     <value>WireGuard</value>
     <comment>WireGuard client name (do not translate)</comment>
+  </data>
+  <data name="Connecting_lbl_ConnectingTo_2">
+    <value></value>
   </data>
 </root>

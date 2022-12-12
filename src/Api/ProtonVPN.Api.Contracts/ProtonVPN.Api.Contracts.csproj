@@ -69,6 +69,9 @@
     <Compile Include="ExpandedHttpStatusCodes.cs" />
     <Compile Include="IApiHostProvider.cs" />
     <Compile Include="IFileDownloadHttpClientFactory.cs" />
+    <Compile Include="Partners\PartnerResponse.cs" />
+    <Compile Include="Partners\PartnersResponse.cs" />
+    <Compile Include="Partners\PartnerTypeResponse.cs" />
     <Compile Include="Profiles\BaseProfileResponse.cs" />
     <Compile Include="Common\BaseResponse.cs" />
     <Compile Include="Common\BaseResponseDetail.cs" />

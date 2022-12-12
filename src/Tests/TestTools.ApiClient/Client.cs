@@ -29,6 +29,7 @@ using ProtonVPN.Api.Contracts.Certificates;
 using ProtonVPN.Api.Contracts.Common;
 using ProtonVPN.Api.Contracts.Events;
 using ProtonVPN.Api.Contracts.Geographical;
+using ProtonVPN.Api.Contracts.Partners;
 using ProtonVPN.Api.Contracts.Profiles;
 using ProtonVPN.Api.Contracts.ReportAnIssue;
 using ProtonVPN.Api.Contracts.Servers;
@@ -168,6 +169,7 @@ namespace TestTools.ApiClient
         public Task<ApiResponseResult<AnnouncementsResponse>> GetAnnouncementsAsync() => throw new NotImplementedException();
 
         public Task<ApiResponseResult<StreamingServicesResponse>> GetStreamingServicesAsync() => throw new NotImplementedException();
+        public Task<ApiResponseResult<PartnersResponse>> GetPartnersAsync() => throw new NotImplementedException();
 
         public Task<ApiResponseResult<BaseResponse>> CheckAuthenticationServerStatusAsync() => throw new NotImplementedException();
 

@@ -79,6 +79,9 @@
     <Compile Include="Graphics\Icons\Gift.xaml.cs">
       <DependentUpon>Gift.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Graphics\Icons\Newspaper.xaml.cs">
+      <DependentUpon>Newspaper.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Graphics\Icons\Loader.xaml.cs">
       <DependentUpon>Loader.xaml</DependentUpon>
     </Compile>
@@ -377,6 +380,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Graphics\Icons\Gift.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Graphics\Icons\Newspaper.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

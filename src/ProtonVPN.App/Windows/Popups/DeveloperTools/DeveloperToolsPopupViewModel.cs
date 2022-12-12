@@ -21,7 +21,6 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
@@ -48,7 +47,7 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
     {
         private readonly IConfiguration _config;
         private readonly IConfigWriter _configWriter;
-        private readonly UserAuth _userAuth;
+        private readonly IUserAuthenticator _userAuthenticator;
         private readonly IPopupWindows _popupWindowOpener;
         private readonly IModals _modalOpener;
         private readonly INotificationSender _notificationSender;
@@ -60,7 +59,7 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
         public DeveloperToolsPopupViewModel(AppWindow appWindow,
             IConfiguration config,
             IConfigWriter configWriter,
-            UserAuth userAuth,
+            IUserAuthenticator userAuthenticator,
             IPopupWindows popupWindowOpener,
             IModals modalOpener,
             INotificationSender notificationSender,
@@ -74,7 +73,7 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
         {
             _config = config;
             _configWriter = configWriter;
-            _userAuth = userAuth;
+            _userAuthenticator = userAuthenticator;
             _popupWindowOpener = popupWindowOpener;
             _modalOpener = modalOpener;
             _notificationSender = notificationSender;
@@ -275,7 +274,7 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
         {
             try
             {
-                await _userAuth.RefreshVpnInfoAsync();
+                await _userAuthenticator.RefreshVpnInfoAsync();
             }
             catch (Exception ex)
             {

@@ -443,8 +443,8 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The text on Take a Tour button in Welcome window</comment>
   </data>
   <data name="Notifications_VpnState_msg_Connected" xml:space="preserve">
-    <value>CONNECTED to {0}{1}New public IP: {2}</value>
-    <comment>The message displayed in VPN state system notification when app connects to VPN. The {0} is a placeholder for server name, {1} - move to new line, {2} - public IP address.</comment>
+    <value>CONNECTED to {0}</value>
+    <comment>The message displayed in VPN state system notification when app connects to VPN. The {0} is a placeholder for server name.</comment>
   </data>
   <data name="Notifications_VpnState_msg_Disconnected" xml:space="preserve">
     <value>DISCONNECTED</value>
@@ -3242,5 +3242,17 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   </data>
   <data name="Servers_msg_CantConnect_RpcServerUnavailable" xml:space="preserve">
     <value>Proton VPN can't connect because the RPC server is unavailable on your system. &lt;Hyperlink Command="{Binding OpenRpcServerUrlCommand}"&gt;View possible solutions&lt;/Hyperlink&gt;</value>
+  </data>
+  <data name="Sidebar_Countries_Information" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="Sidebar_Countries_FreeServersInfo" xml:space="preserve">
+    <value>Free servers have no data limit nor network throttling. The speed might be limited only due to the high number of users connected.</value>
+  </data>
+  <data name="Sidebar_Countries_OurPartners" xml:space="preserve">
+    <value>Our partners</value>
+  </data>
+  <data name="Sidebar_Countries_FreeServers" xml:space="preserve">
+    <value>Free servers</value>
   </data>
 </root>
