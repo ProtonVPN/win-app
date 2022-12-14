@@ -230,6 +230,8 @@ extern "C" EXPORT long SetLanguageISOCode(MSIHANDLE hInstall)
         case 1050: language = L"hr-HR"; break;
         case 1057: language = L"id-ID"; break;
         case 1058: language = L"uk-UA"; break;
+        case 1029: language = L"cs-CZ"; break;
+        case 1048: language = L"ro-RO"; break;
     }
     if (!language.empty())
     {
