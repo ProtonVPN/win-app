@@ -1202,7 +1202,7 @@
     <comment>The name of NI country</comment>
   </data>
   <data name="Country_val_NL">
-    <value>Olanda</value>
+    <value>Țările de Jos</value>
     <comment>The name of NL country</comment>
   </data>
   <data name="Country_val_NO">
@@ -1382,7 +1382,7 @@
     <comment>The name of SV country</comment>
   </data>
   <data name="Country_val_SX">
-    <value>Sint Maarten (Olanda)</value>
+    <value>Sint Maarten (partea olandeză)</value>
     <comment>The name of SX country</comment>
   </data>
   <data name="Country_val_SY">
@@ -1613,7 +1613,7 @@ Urmați &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <comment>The text on Disable button in Disconnect modal window</comment>
   </data>
   <data name="Dialogs_DisconnectError_btn_Upgrade">
-    <value>Upgrade</value>
+    <value>Modernizare</value>
     <comment>The text on Upgrade button in Disconnect modal window</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_AllAdaptersInUse">
@@ -1715,7 +1715,7 @@ Urmați &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <comment>The upgrade button text in the Maximum Device Limit window when the user can upgrade the subscription plan</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Upgrade_Subtitle">
-    <value>Deconectați un alt dispozitiv pentru a-l conecta pe acesta sau faceți upgrade la PLUS pentru a conecta 10 dispozitive în același timp.</value>
+    <value>Deconectați un alt dispozitiv pentru a-l conecta pe acesta sau faceți treceți la planul PLUS pentru a conecta 10 dispozitive în același timp.</value>
     <comment>The subtitle of the Maximum Device Limit window when the user can upgrade the subscription plan</comment>
   </data>
   <data name="Dialogs_OutdatedApp_btn_Quit">
@@ -1793,11 +1793,11 @@ Urmați &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <comment>An option of the subscriber benefits list in the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListOption3">
-    <value>Caracteristici avansate: NetShield, Secure Core, Tor, P2P</value>
+    <value>Funcții avansate: NetShield, Secure Core, Tor, P2P</value>
     <comment>An option of the subscriber benefits list in the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListTitle">
-    <value>Reactivați planul superior pentru a vă bucura de toate caracteristicile:</value>
+    <value>Reactivați planul superior pentru a vă bucura de toate funcțiile:</value>
     <comment>The text right before the subscriber benefits list in the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_Reconnected_Subtitle">
@@ -1813,7 +1813,7 @@ Urmați &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <comment>The title of the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_Upgrade">
-    <value>Remigrare plan</value>
+    <value>Remodernizare</value>
     <comment>The upgrade button text in the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_Troubleshoot_ttl">
@@ -2138,15 +2138,15 @@ Urmați &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <comment>The title of the Maximum Device Limit notification</comment>
   </data>
   <data name="Notifications_MaximumDeviceLimit_Upgrade_Description">
-    <value>Deconectați un alt dispozitiv pentru a-l conecta pe acesta sau faceți upgrade la PLUS pentru a conecta 10 dispozitive în același timp.</value>
+    <value>Deconectați un alt dispozitiv pentru a-l conecta pe acesta sau treceți la planul PLUS pentru a conecta 10 dispozitive în același timp.</value>
     <comment>The description of the Maximum Device Limit notification when the user can upgrade the subscription plan</comment>
   </data>
   <data name="Notifications_SubscriptionExpired_Description">
-    <value>Abonamentul a fost retrogradat. Reveniți din nou pentru a beneficia de toate funcțiile.</value>
+    <value>Abonamentul a fost retrogradat. Remodernizați planul pentru a beneficia de toate funcțiile.</value>
     <comment>The description of the Subscription Expired notification</comment>
   </data>
   <data name="Notifications_SubscriptionExpired_Reconnected_Description">
-    <value>Abonamentul a fost retrogradat, deci se va reconecta la cel mai rapid server disponibil. Reveniți din nou pentru a beneficia de toate funcțiile.</value>
+    <value>Abonamentul a fost retrogradat, deci se va reconecta la cel mai rapid server disponibil. Remodernizați planul pentru a beneficia de toate funcțiile.</value>
     <comment>The description of the Subscription Expired notification when the user is reconnected</comment>
   </data>
   <data name="Notifications_SubscriptionExpired_Title">
@@ -2490,7 +2490,7 @@ Urmați &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <value>„Secure Core” pornit</value>
   </data>
   <data name="QuickSettings_btn_Upgrade">
-    <value>UPGRADE</value>
+    <value>MODERNIZARE</value>
   </data>
   <data name="QuickSettings_lbl_KillSwitchInfo">
     <value>Disables internet if the VPN connection drops to prevent accidental IP leak.</value>
@@ -2585,11 +2585,11 @@ Urmați &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <comment>The text on Disconnect button in Server list in Countries tab of Sidebar in main app window (disconnects from the VPN server)</comment>
   </data>
   <data name="Servers_btn_Upgrade">
-    <value>Upgrade</value>
+    <value>Modernizare</value>
     <comment>The text on Upgrade button in Server list in Countries tab of Sidebar in main app window (opens Upgrade Required Upsell window)</comment>
   </data>
   <data name="Servers_lbl_Upgrade">
-    <value>Upgrade</value>
+    <value>Modernizare</value>
     <comment>The label displayed next to server name in Server list in Countries tab of Sidebar in main app window</comment>
   </data>
   <data name="Servers_lbl_ViaCountry">
@@ -2748,7 +2748,7 @@ Urmați &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <comment>The text displayed in Custom DNS Servers warning modal window when use is trying to turn the feature ON when NetShield feature is turned on as well</comment>
   </data>
   <data name="Settings_Connection_btn_Upgrade">
-    <value>Upgrade</value>
+    <value>Modernizare</value>
     <comment>The text on Upgrade button in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_CustomDnsServer">
@@ -3092,7 +3092,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Accesați serviciile globale de transmisii în flux</value>
   </data>
   <data name="Upsell_Countries_MoreFeatures">
-    <value>Și multe alte caracteristici premium</value>
+    <value>Și multe alte funcții speciale</value>
   </data>
   <data name="Upsell_Countries_SimultaneousDevices">
     <value>Conectați până la 10 dispozitive simultan</value>
@@ -3115,7 +3115,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Activare NAT moderat</value>
   </data>
   <data name="Upsell_ModerateNat_Unlock">
-    <value>Treceți la un plan cu plată pentru a-l debloca și multe alte funcții.</value>
+    <value>Treceți la un plan cu plată pentru a debloca NAT moderat și multe alte funcții.</value>
   </data>
   <data name="Upsell_Netshield_BlockAds">
     <value>Blocare reclame și urmăritori</value>
@@ -3137,7 +3137,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The button label in "allow non-standard ports" modal</comment>
   </data>
   <data name="Upsell_NonStandardPorts_btn_Upgrade">
-    <value>Upgrade</value>
+    <value>Modernizare</value>
     <comment>The button label in "allow non-standard ports" modal</comment>
   </data>
   <data name="Upsell_NonStandardPorts_msg">
@@ -3173,7 +3173,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Dublați criptarea cu Secure Core</value>
   </data>
   <data name="Upsell_btn_Upgrade">
-    <value>Upgrade</value>
+    <value>Modernizare</value>
     <comment>The text on Upgrade button in Upgrade Required Upsell window (opens web page for subscription plan upgrade)</comment>
   </data>
   <data name="VpnPlan_val_Free">
