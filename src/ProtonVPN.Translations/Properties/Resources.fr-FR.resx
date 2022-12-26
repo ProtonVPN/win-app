@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="About_UpdateStatus_val_CheckFailed">
-    <value>Échec de la vérification des mises à jour</value>
+    <value>La vérification de la mise à jour n'a pas abouti.</value>
     <comment>The app update status in About window</comment>
   </data>
   <data name="About_UpdateStatus_val_Checking">
@@ -126,7 +126,7 @@
     <comment>The app update status in About window</comment>
   </data>
   <data name="About_UpdateStatus_val_DownloadFailed">
-    <value>Échec du téléchargement de la mise à jour</value>
+    <value>La mise à jour n'a pas pu être téléchargée.</value>
     <comment>The app update status in About window</comment>
   </data>
   <data name="About_UpdateStatus_val_Downloading">
@@ -134,11 +134,11 @@
     <comment>The app update status in About window</comment>
   </data>
   <data name="About_UpdateStatus_val_None">
-    <value>Proton VPN est à jour</value>
+    <value>Proton VPN est à jour.</value>
     <comment>The app update status in About window</comment>
   </data>
   <data name="About_UpdateStatus_val_Ready">
-    <value>Nouvelle version de l'application disponible !</value>
+    <value>Une nouvelle version de l'application est disponible !</value>
     <comment>The app update status in About window</comment>
   </data>
   <data name="About_lbl_ChangelogVersion">
@@ -194,7 +194,7 @@
     <comment>The label for account type in Account window</comment>
   </data>
   <data name="Account_lbl_AllPlusFeatures">
-    <value>Toutes les fonctionnalités de l'offre Plus</value>
+    <value>Toutes les fonctionnalités de l'abonnement Plus</value>
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_Connection_One">
@@ -281,7 +281,7 @@
     <comment>The title of Account window</comment>
   </data>
   <data name="Api_error_Timeout">
-    <value>Votre requête a échoué. Veuillez réessayer.</value>
+    <value>Votre requête a échoué. Nous vous invitons à réessayer.</value>
   </data>
   <data name="App_mnu_About">
     <value>À propos</value>
@@ -316,7 +316,7 @@
     <comment>The header of Profiles menu item in the main app window (opens Profiles window)</comment>
   </data>
   <data name="App_mnu_ReportBug">
-    <value>Signaler un problème</value>
+    <value>Signaler un bug</value>
     <comment>The header of Report an Issue menu item in the main app window (opens Issue Report window)</comment>
   </data>
   <data name="App_mnu_Settings">
@@ -383,7 +383,7 @@
     <comment>The watermark text displayed in empty user e-mail text box in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_HowToReproduce">
-    <value>Quelles sont les étapes exactes que vous avez réalisées ?</value>
+    <value>Pouvez-vous nous décrire précisément les étapes que vous avez suivies ?</value>
     <comment>The label in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_IncludeLogs">
@@ -391,7 +391,7 @@
     <comment>The label in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_IncludeLogsInfo">
-    <value>En fournissant les détails suivants, notre équipe a plus de chances d’identifier rapidement votre problème et une solution possible :
+    <value>En fournissant les détails suivants, notre équipe a plus de chances d’identifier rapidement votre problème et une solution possible :
 • Journal d'installation des pilotes
 • Liste des applications installées
 • Application Proton VPN et journaux de service Proton VPN
@@ -415,7 +415,7 @@
     <value>Solutions rapides</value>
   </data>
   <data name="BugReport_lbl_QuickSolutionsInfo">
-    <value>Ces conseils pourraient vous aider à résoudre votre problème plus rapidement.</value>
+    <value>Ces conseils peuvent vous aider à résoudre votre problème plus rapidement.</value>
   </data>
   <data name="BugReport_lbl_Step">
     <value>Étape</value>
@@ -432,7 +432,7 @@
     <value>Quel est le problème ?</value>
   </data>
   <data name="BugReport_lbl_WhatWentWrong">
-    <value>Qu'est-ce qui n'allait pas ?</value>
+    <value>Qu'est-ce qui s'est mal passé ?</value>
     <comment>The label in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_WillGetBack">
@@ -443,18 +443,18 @@
     <comment>The text displayed in report an issue form. For example: Step 1 of 3.</comment>
   </data>
   <data name="BugReport_msg_EmailNotValid">
-    <value>Adresse électronique non valide</value>
+    <value>L'adresse électronique n'est pas valide.</value>
   </data>
   <data name="BugReport_msg_Sending">
     <value>Envoi du rapport en cours...</value>
     <comment>The message displayed in Issue Report window while sending the report</comment>
   </data>
   <data name="BugReport_msg_SendingFailed">
-    <value>Votre rapport n'a pas été envoyé</value>
+    <value>Votre rapport n'a pas été envoyé.</value>
     <comment>The message displayed in Issue Report window when sending Issue report fails</comment>
   </data>
   <data name="BugReport_msg_SendingInfo">
-    <value>Veuillez patienter jusqu'à ce que le processus d'envoi soit terminé</value>
+    <value>Patientez un instant, le temps que l'envoi soit terminé.</value>
     <comment>The message displayed in Issue Report window while sending the report</comment>
   </data>
   <data name="BugReport_msg_SendingSucceeded">
@@ -462,7 +462,7 @@
     <comment>The message displayed in Issue Report window when sending completes</comment>
   </data>
   <data name="BugReport_ttl">
-    <value>Signaler un problème</value>
+    <value>Signaler un bug</value>
     <comment>The title of Issue Report window</comment>
   </data>
   <data name="Connecting_VpnStatus_val_AssigningIp">
@@ -1110,7 +1110,7 @@
     <comment>The name of ML country</comment>
   </data>
   <data name="Country_val_MM">
-    <value>Myanmar</value>
+    <value>Myanmar/Birmanie</value>
     <comment>The name of MM country</comment>
   </data>
   <data name="Country_val_MN">
@@ -1540,13 +1540,13 @@
     <value>Se reconnecter</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Info1">
-    <value>Pour commencer votre expérience dans Proton VPN, attribuez des connexions VPN à votre compte ou à tout autre sous-compte.</value>
+    <value>Pour commencer avec Proton VPN, attribuez des connexions VPN à votre compte ou à tout autre sous-compte.</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Info2">
     <value>Cette étape ne prendra que quelques minutes. Après cela, vous pourrez vous connecter et protéger tous vos appareils.</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Thanks">
-    <value>Merci d'être passé à l’offre Professional/Visionary</value>
+    <value>Merci d'être passé à l’abonnement Professional/Visionary</value>
   </data>
   <data name="Dialogs_Bfe_msg_info">
     <value>L'un des services nécessaires à Proton VPN (Base Filtering Engine) ne fonctionne pas.&lt;LineBreak/&gt;&lt;LineBreak/&gt;
@@ -1566,7 +1566,7 @@ Nous vous invitons à suivre &lt;Hyperlink Command="{Binding OpenArticleCommand}
     <comment>The subtitle of the Delinquency window</comment>
   </data>
   <data name="Dialogs_Delinquency_Title">
-    <value>Votre compte VPN comporte des factures en attente</value>
+    <value>Vous avez des factures en retard pour votre compte Proton VPN.</value>
     <comment>The title of the Delinquency window</comment>
   </data>
   <data name="Dialogs_Delinquency_btn_Invoices">
@@ -1574,11 +1574,11 @@ Nous vous invitons à suivre &lt;Hyperlink Command="{Binding OpenArticleCommand}
     <comment>The text on invoices button in the Delinquency window (opens web page for invoice payment)</comment>
   </data>
   <data name="Dialogs_Delinquency_msg">
-    <value>Le compte est marqué comme délinquant en raison de factures impayées. Vous pouvez continuer à utiliser Proton VPN, mais toutes les fonctionnalités payantes sont maintenant désactivées.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadAboutDelinquencyCommand}"&gt;En savoir plus sur la déchéance.&lt;/Hyperlink&gt;</value>
+    <value>Le compte est signalé comme étant en défaut de paiement en raison de factures impayées. Vous pouvez continuer à utiliser Proton VPN, mais toutes les fonctionnalités payantes sont maintenant désactivées.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadAboutDelinquencyCommand}"&gt;En savoir plus sur le défaut de paiement.&lt;/Hyperlink&gt;</value>
     <comment>The message displayed in the Delinquency window. The codes between &lt; and &gt; should be kept as is (Do not forget to translate the inner "Read more about delinquency.").</comment>
   </data>
   <data name="Dialogs_Delinquency_ttl">
-    <value>Compte délinquant</value>
+    <value>Compte en défaut de paiement</value>
     <comment>The title of the Delinquency window</comment>
   </data>
   <data name="Dialogs_DisabledService_btn_Enable">
@@ -1591,7 +1591,7 @@ Nous vous invitons à suivre &lt;Hyperlink Command="{Binding OpenArticleCommand}
     <value>Afficher moins</value>
   </data>
   <data name="Dialogs_DisabledService_msg_ExtraInfo">
-    <value>Certaines applications comme les antivirus ou les optimiseurs de PC peuvent interférer avec les services système dont Proton VPN a besoin pour sécuriser votre connexion. En cliquant sur « Activer », vous autorisez Windows à réactiver les services de Proton VPN.&lt;LineBreak/&gt;Si le problème persiste, essayez de redémarrer votre PC ou de réinstaller Proton VPN.</value>
+    <value>Certaines applications comme les antivirus ou les optimiseurs de PC peuvent interférer avec les services système dont Proton VPN a besoin pour sécuriser votre connexion. En cliquant sur Activer, vous autorisez Windows à réactiver les services de Proton VPN.&lt;LineBreak/&gt;Si le problème persiste, essayez de redémarrer votre PC ou de réinstaller Proton VPN.</value>
   </data>
   <data name="Dialogs_DisabledService_msg_Info">
     <value>Certains composants de Proton VPN peuvent être bloqués ou désactivés, vous empêchant de vous connecter. Cliquez sur Activer pour le corriger.&lt;LineBreak/&gt;Notez que cette opération nécessite des privilèges d'administrateur.</value>
@@ -1601,11 +1601,11 @@ Nous vous invitons à suivre &lt;Hyperlink Command="{Binding OpenArticleCommand}
     <comment>The text on Disable button in Disconnect modal window</comment>
   </data>
   <data name="Dialogs_DisconnectError_btn_Upgrade">
-    <value>Changer d'offre</value>
+    <value>Changer d'abonnement</value>
     <comment>The text on Upgrade button in Disconnect modal window</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_AllAdaptersInUse">
-    <value>Votre carte réseau est actuellement en cours d'utilisation.</value>
+    <value>Votre carte réseau est en cours d'utilisation.</value>
     <comment>The error description displayed in Disconnect modal window if all TAP adapters are in use</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_Identifying">
@@ -1617,11 +1617,11 @@ Nous vous invitons à suivre &lt;Hyperlink Command="{Binding OpenArticleCommand}
     <comment>The text displayed in Disconnect modal window ifn disconnect occurred with Kill Switch turned on.</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_NoServers">
-    <value>Il n'y a pas de serveurs disponibles pour votre sélection. Veuillez sélectionner une autre option.</value>
+    <value>Il n'y a actuellement aucun serveur disponible pour votre sélection. Nous vous invitons à choisir une autre option.</value>
     <comment>The error description displayed in Disconnect modal window if disconnected because there are no servers available to connect to</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_NoTap">
-    <value>La carte réseau est manquante.</value>
+    <value>Il manque la carte réseau.</value>
     <comment>The error description displayed in Disconnect modal window if TAP adapter is not installed</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_OldVersion">
@@ -1629,7 +1629,7 @@ Nous vous invitons à suivre &lt;Hyperlink Command="{Binding OpenArticleCommand}
     <comment>The error description displayed in Disconnect modal window if TAP adapter version is too low</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_TapErrorHelp">
-    <value>Veuillez consulter cet &lt;Hyperlink Command="{Binding OpenHelpArticleCommand}"&gt;article&lt;/Hyperlink&gt; pour savoir comment résoudre ce problème.</value>
+    <value>Nous vous invitons à consulter cet &lt;Hyperlink Command="{Binding OpenHelpArticleCommand}"&gt;article&lt;/Hyperlink&gt; d'aide pour savoir comment résoudre ce problème.</value>
     <comment>The text displayed in Disconnect modal window if TAP error is detected</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_TlsCertificateError">
@@ -1652,7 +1652,7 @@ Nous vous invitons à suivre &lt;Hyperlink Command="{Binding OpenArticleCommand}
     <comment>The message displayed in the Enable Smart Protocol window. The codes between &lt; and &gt; should be kept as is (Do not forget to translate the inner "Read more about Smart Protocol.").</comment>
   </data>
   <data name="Dialogs_EnableSmartProtocol_ttl">
-    <value>Smart Protocol est actuellement désactivé</value>
+    <value>Smart Protocol est actuellement désactivé.</value>
     <comment>The title of the Enable Smart Protocol window</comment>
   </data>
   <data name="Dialogs_Exit_btn_Cancel">
@@ -1691,19 +1691,19 @@ Nous vous invitons à suivre &lt;Hyperlink Command="{Binding OpenArticleCommand}
     <comment>The ok button text in the Maximum Device Limit window when the user already has the highest subscription plan</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Disconnect_Subtitle">
-    <value>Veuillez déconnecter un autre appareil pour connecter celui-ci.</value>
+    <value>Vous devez déconnecter un autre appareil pour connecter celui-ci.</value>
     <comment>The subtitle of the Maximum Device Limit window when the user already has the highest subscription plan</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Title">
-    <value>Vous avez atteint votre limite maximale d'appareils</value>
+    <value>Vous avez atteint votre nombre maximum d'appareils.</value>
     <comment>The title of the Maximum Device Limit window</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Upgrade">
-    <value>Changer d'offre</value>
+    <value>Changer d'abonnement</value>
     <comment>The upgrade button text in the Maximum Device Limit window when the user can upgrade the subscription plan</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Upgrade_Subtitle">
-    <value>Veuillez déconnecter un autre appareil pour connecter celui-ci ou passer à l’offre PLUS pour obtenir jusqu'à 10 appareils connectés en même temps.</value>
+    <value>Vous devez déconnecter un autre appareil pour connecter celui-ci ou passer à l’abonnement PLUS pour pouvoir connecter jusqu'à 10 appareils en même temps.</value>
     <comment>The subtitle of the Maximum Device Limit window when the user can upgrade the subscription plan</comment>
   </data>
   <data name="Dialogs_OutdatedApp_btn_Quit">
@@ -1715,7 +1715,7 @@ Nous vous invitons à suivre &lt;Hyperlink Command="{Binding OpenArticleCommand}
     <comment>The text on download button when download is in process in outdated app modal window</comment>
   </data>
   <data name="Dialogs_OutdatedApp_lbl_Error">
-    <value>Un problème est survenu lors du téléchargement d'une version plus récente. Mettez à jour votre application manuellement pour obtenir la dernière version.</value>
+    <value>Un problème est survenu lors du téléchargement d'une version plus récente. Mettez manuellement à jour votre application pour disposer de la dernière version.</value>
     <comment>The text displayed in outdated app window when the app fails to download the latest app version</comment>
   </data>
   <data name="Dialogs_OutdatedApp_lbl_Update">
@@ -1727,7 +1727,7 @@ Nous vous invitons à suivre &lt;Hyperlink Command="{Binding OpenArticleCommand}
     <comment>The text on update button in outdated app modal window</comment>
   </data>
   <data name="Dialogs_OutdatedApp_msg">
-    <value>La version de l'application que vous utilisez n'est plus prise en charge. Veuillez passer à la dernière version dès que celle-ci est disponible.</value>
+    <value>La version de l'application que vous utilisez n'est plus prise en charge. Nous vous invitons à passer à la dernière version dès qu'elle sera disponible.</value>
     <comment>The error message displayed on the outdated app window when the app version is outdated</comment>
   </data>
   <data name="Dialogs_OutdatedApp_msg_KillSwitchActive">
@@ -1735,11 +1735,11 @@ Nous vous invitons à suivre &lt;Hyperlink Command="{Binding OpenArticleCommand}
     <comment>The error message displayed on the outdated app window when the app version is outdated and Kill Switch is enabled</comment>
   </data>
   <data name="Dialogs_P2PBlocked_msg_Blocked">
-    <value>Votre connexion a été désactivée, car vous utilisez un serveur qui ne supporte pas le trafic peer-to-peer (P2P). Le P2P n'est pas supporté sur les serveurs de l’offre FREE. Veuillez utiliser un autre serveur pour le P2P.</value>
+    <value>Votre connexion a été désactivée, car vous utilisez un serveur qui ne prend pas en charge le trafic peer-to-peer (P2P). Le P2P n'est pas pris en charge par les serveurs de l'abonnement FREE. Vous devez utiliser un autre serveur pour le P2P.</value>
     <comment>The warning message displayed when P2P traffic is detected on servers not allowing it.</comment>
   </data>
   <data name="Dialogs_PortForwardingConfirmation_msg">
-    <value>Activez la redirection de port uniquement lorsque vous en avez besoin pour augmenter la confidentialité et la sécurité.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadPortForwardingRisksCommand}"&gt;Ai-je besoin de la redirection de port ?&lt;/Hyperlink&gt;</value>
+    <value>Activez le transfert de port uniquement quand vous devez renforcer la confidentialité et la sécurité.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadPortForwardingRisksCommand}"&gt;Ai-je besoin de la redirection de port ?&lt;/Hyperlink&gt;</value>
   </data>
   <data name="Dialogs_PortForwardingConfirmation_ttl">
     <value>Activer la redirection de port ?</value>
@@ -1758,7 +1758,7 @@ Nous vous invitons à suivre &lt;Hyperlink Command="{Binding OpenArticleCommand}
     <value>Pour éviter toute erreur Proton VPN, nous vous recommandons fortement de redémarrer votre ordinateur pour mettre à jour les autres applications en premier. Proton VPN redémarrera automatiquement l'installation par la suite. Redémarrer maintenant ?</value>
   </data>
   <data name="Dialogs_Reboot_ttl">
-    <value>Votre ordinateur a besoin de redémarrer</value>
+    <value>Il est nécessaire de redémarrer votre ordinateur.</value>
   </data>
   <data name="Dialogs_Rebranding_Subtitle_new_plans">
     <value>Voici le nouveau look de Proton. Plusieurs services, une seule mission. Bienvenue sur un internet où la vie privée est la règle absolue.  &lt;Hyperlink Command="{Binding LearnMoreCommand}"&gt;En savoir plus&lt;/Hyperlink&gt;</value>
@@ -1770,7 +1770,7 @@ Nous vous invitons à suivre &lt;Hyperlink Command="{Binding OpenArticleCommand}
     <value>J'ai compris</value>
   </data>
   <data name="Dialogs_SplitTunnelWarning_msg">
-    <value>Pour que Split Tunneling fonctionne correctement, vous devez désactiver la fonction Arrêt d'urgence (kill switch).</value>
+    <value>Pour que Split tunneling fonctionne correctement, vous devez désactiver la fonction Arrêt d'urgence (kill switch).</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListOption1">
     <value>Des centaines de serveurs dans 55 pays</value>
@@ -1785,11 +1785,11 @@ Nous vous invitons à suivre &lt;Hyperlink Command="{Binding OpenArticleCommand}
     <comment>An option of the subscriber benefits list in the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListTitle">
-    <value>Passez de nouveau à une offre supérieure pour profiter de toutes les fonctionnalités :</value>
+    <value>Passez de nouveau à la version supérieure pour profiter de toutes les fonctionnalités :</value>
     <comment>The text right before the subscriber benefits list in the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_Reconnected_Subtitle">
-    <value>Votre abonnement a été rétrogradé, nous sommes donc en train de vous reconnecter au serveur le plus rapide disponible.</value>
+    <value>Votre abonnement a été rétrogradé, nous vous reconnectons au serveur le plus rapide qui est disponible pour votre abonnement.</value>
     <comment>The subtitle of the Subscription Expired window when the user is reconnected</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_Subtitle">
@@ -1797,11 +1797,11 @@ Nous vous invitons à suivre &lt;Hyperlink Command="{Binding OpenArticleCommand}
     <comment>The subtitle of the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_Title">
-    <value>Votre abonnement VPN a expiré</value>
+    <value>Votre abonnement VPN a expiré.</value>
     <comment>The title of the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_Upgrade">
-    <value>Repasser à une offre supérieure</value>
+    <value>Passer à un abonnement supérieur</value>
     <comment>The upgrade button text in the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_Troubleshoot_ttl">
@@ -1922,7 +1922,7 @@ Nous vous invitons à suivre &lt;Hyperlink Command="{Binding OpenArticleCommand}
     <value>Veuillez réparer votre installation.</value>
   </data>
   <data name="KillSwitch">
-    <value>Arrêt d'urgence (kill switch)</value>
+    <value>Kill Switch</value>
   </data>
   <data name="License_ttl">
     <value>Licence</value>
