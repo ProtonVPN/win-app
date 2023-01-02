@@ -400,10 +400,10 @@ Informações sobre a tabela de roteamento</value>
     <comment>The text inside info tooltip in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_LogsDescription">
-    <value>Os logs de erros nos ajudam a resolver seu problema. Se você não os incluir, talvez não possamos investigar completamente.</value>
+    <value>Os registros de erros nos ajudam a resolver seu problema. Se você não os incluir, talvez não possamos investigar completamente.</value>
   </data>
   <data name="BugReport_lbl_LogsTooltip">
-    <value>Um log é uma categoria de arquivo que nos mostra as ações que você realizou que levaram a um erro. Nós só os usaremos para ajudar nossos engenheiros a corrigir bugs.</value>
+    <value>Um registro é uma categoria de arquivo que nos mostra as ações que você realizou que levaram a um erro. Nós só os usaremos para ajudar nossos engenheiros a corrigir erros.</value>
   </data>
   <data name="BugReport_lbl_NewVersionAvailable">
     <value>Atualizar Proton VPN</value>

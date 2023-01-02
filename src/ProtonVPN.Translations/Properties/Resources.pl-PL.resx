@@ -2692,7 +2692,7 @@ Postępuj zgodnie z &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;
     <value>Sterownik sieciowy OpenVPN</value>
   </data>
   <data name="Settings_Advanced_lbl_NetworkDriver_info">
-    <value>Sterownik sieciowy może mieć wpływ na połączenie i jego prędkość. Nowy adapter TUN zapewnia wyższą prędkość. W przypadku problemów z połączeniem, wróć do adaptera TAP.</value>
+    <value>Sterownik sieciowy może mieć wpływ na połączenie i jego prędkość. Nowy adapter TUN zapewnia wyższą prędkość. W przypadku problemów z połączeniem wróć do adaptera TAP.</value>
   </data>
   <data name="Settings_Advanced_lbl_NonStandardPorts">
     <value>Niestandardowe porty</value>
