@@ -33,20 +33,16 @@ namespace ProtonVPN.UI.Tests.Tests
         private readonly HomeResult _homeResult = new HomeResult();
 
         [Test]
-        public void CheckIfUsernameIsDisplayedInAccountSection()
+        public void UsernameIsDisplayedInAccountSection()
         {
-            TestCaseId = 199;
-
             _loginWindow.SignIn(TestUserData.GetPlusUser());
             _homeWindow.NavigateToAccount();
             _homeResult.VerifyLoggedInAsTextIs(TestUserData.GetPlusUser().Username);
         }
 
         [Test]
-        public void CheckRestrictedAccountConnections()
+        public void RestrictedAccountConnections()
         {
-            TestCaseId = 262;
-
             _loginWindow.SignIn(TestUserData.GetFreeUser());
 
             _homeWindow.MoveMouseOnCountry("Canada");

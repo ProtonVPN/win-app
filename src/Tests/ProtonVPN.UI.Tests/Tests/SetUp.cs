@@ -38,12 +38,6 @@ namespace ProtonVPN.UI.Tests.Tests
             KillProtonVpnProcess();
             string dir = Path.GetDirectoryName(TestConstants.AppFolderPath);
             Directory.SetCurrentDirectory(dir);
-            if (!TestEnvironment.AreTestsRunningLocally() && !TestEnvironment.IsWindows11())
-            {
-                TestRailClient = new TestRailApiClient(_testRailUrl,
-                    TestUserData.GetTestrailUser().Username, TestUserData.GetTestrailUser().Password);
-                CreateTestRailTestRun();
-            }
             TestsRecorder.StartVideoCapture();
         }
 
@@ -51,18 +45,6 @@ namespace ProtonVPN.UI.Tests.Tests
         public void TestFinalTearDown()
         {
             TestsRecorder.StopRecording();
-        }
-
-        private void CreateTestRailTestRun()
-        {
-            string path = Path.Combine(Path.GetDirectoryName(asm.Location), "ProtonVPN.exe");
-            string version = Assembly.LoadFile(path).GetName().Version.ToString();
-            string branchName = Environment.GetEnvironmentVariable("CI_COMMIT_BRANCH");
-            version = version.Substring(0, version.Length - 2);
-            if (!TestRailClient.ShouldUpdateRun())
-            {
-                TestRailClient.CreateTestRun($"{branchName} {version} {DateTime.Now}");
-            }
         }
     }
 }
