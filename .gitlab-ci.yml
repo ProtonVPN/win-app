@@ -1,6 +1,6 @@
 include:
   - project: 'tpe/testmo-reporter'
-    ref: update-readme
+    ref: master
     file: '/scenarios/testmo-multiple.yml'
 
   - project: 'translations/generator'
@@ -183,6 +183,7 @@ testmo-setup:
   variables:
     SOURCE: "Automation"
     NAME: "$CI_JOB_STARTED_AT UTC"
+    TAGS: "$CI_COMMIT_REF_SLUG"
 
 ui-test:
   stage: ui-test
