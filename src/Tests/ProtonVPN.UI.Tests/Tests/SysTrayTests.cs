@@ -35,17 +35,11 @@ namespace ProtonVPN.UI.Tests.Tests
 
         [Test]
         [Category("Smoke")]
-        public void QuickConnectUsingTray()
+        public void QuickConnectAndDisconnectUsingTray()
         {
-            TestCaseId = 243;
-
             _trayWindow.OpenSysTrayWindow()
                 .QuickConnect();
             _trayResult.WaitUntilConnected();
-
-            ReportTestResults();
-            TestCaseId = 245;
-
             _trayWindow.QuickConnect();
             _trayResult.WaitUntilDisconnected();
         }
@@ -53,8 +47,6 @@ namespace ProtonVPN.UI.Tests.Tests
         [Test]
         public void OpenAppViaTray()
         {
-            TestCaseId = 246;
-
             _homeWindow.CloseApp();
             _trayWindow.OpenSysTrayWindow()
                 .OpenProtonVpn();
@@ -64,8 +56,6 @@ namespace ProtonVPN.UI.Tests.Tests
         [Test]
         public void QuitAppViaTray()
         {
-            TestCaseId = 247;
-
             _trayWindow.RightClickTrayIcon()
                .ExitTheAppViaTray();
             _trayResult.CheckIfClientIsClosed();
@@ -74,8 +64,6 @@ namespace ProtonVPN.UI.Tests.Tests
         [Test]
         public void ConnectViaTrayProfile()
         {
-            TestCaseId = 244;
-
             _homeWindow.CloseApp();
             _trayWindow.OpenSysTrayWindow()
                 .ConnectToRandomProfile();

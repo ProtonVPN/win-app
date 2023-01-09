@@ -35,8 +35,6 @@ namespace ProtonVPN.UI.Tests.Tests
         [Category("Smoke")]
         public void SendBugReport()
         {
-            TestCaseId = 21554;
-
             _loginWindow.SignIn(TestUserData.GetFreeUser());
             _mainWindow.NavigateToBugReport();
             _bugReportWindow.FillBugReportForm("Connecting to VPN")
@@ -47,8 +45,6 @@ namespace ProtonVPN.UI.Tests.Tests
         [Category("Smoke")]
         public void SendBugReportViaLoginScreen()
         {
-            TestCaseId = 141591;
-
             _loginWindow.NavigateToBugReport();
             _bugReportWindow.FillBugReportForm("Connecting to VPN")
                 .VerifySendingIsSuccessful();
