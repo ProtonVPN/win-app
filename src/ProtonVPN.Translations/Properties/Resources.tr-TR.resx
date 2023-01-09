@@ -1694,7 +1694,7 @@
     <comment>The subtitle of the Maximum Device Limit window when the user already has the highest subscription plan</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Title">
-    <value>En fazla aygıt sınırınıza ulaştınız</value>
+    <value>Kullanabileceğiniz en fazla aygıt sayısı sınırına ulaştınız</value>
     <comment>The title of the Maximum Device Limit window</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Upgrade">
@@ -1738,7 +1738,7 @@
     <comment>The warning message displayed when P2P traffic is detected on servers not allowing it.</comment>
   </data>
   <data name="Dialogs_PortForwardingConfirmation_msg">
-    <value>En güçlü kişisel gizlilik ve güvenlik korumasını sağlamak için yalnızca gerek duyduğunuzda bağlantı noktası yönlendirmesini etkinleştirin.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadPortForwardingRisksCommand}"&gt;Bağlantı noktası yönlendirmesine gerek duyuyor muyum?&lt;/Hyperlink&gt;</value>
+    <value>En güçlü gizlilik ve güvenlik korumasını sağlamak için yalnızca gerek duyduğunuzda bağlantı noktası yönlendirmesini etkinleştirin.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadPortForwardingRisksCommand}"&gt;Bağlantı noktası yönlendirmesine gerek duyuyor muyum?&lt;/Hyperlink&gt;</value>
   </data>
   <data name="Dialogs_PortForwardingConfirmation_ttl">
     <value>Bağlantı noktası yönlendirmesi etkinleştirilsin mi?</value>
@@ -1760,7 +1760,7 @@
     <value>Bilgisayarınızın yeniden başlatılması gerekiyor</value>
   </data>
   <data name="Dialogs_Rebranding_Subtitle_new_plans">
-    <value>Yenilenmiş Proton böyle görünüyor. Birçok hizmet, tek amaç. Kişisel gizliliğin doğal sayıldığı internet fikrine hoş geldiniz. &lt;Hyperlink Command="{Binding LearnMoreCommand}"&gt;Ayrıntılı bilgi alın&lt;/Hyperlink&gt;</value>
+    <value>Yenilenmiş Proton böyle görünüyor. Birçok hizmet, tek amaç. Gizliliğin doğal sayıldığı internet fikrine hoş geldiniz. &lt;Hyperlink Command="{Binding LearnMoreCommand}"&gt;Ayrıntılı bilgi alın&lt;/Hyperlink&gt;</value>
   </data>
   <data name="Dialogs_Rebranding_Title_new_plans">
     <value>Güncellenmiş Proton, birleşik koruma</value>
@@ -1970,7 +1970,7 @@
     <comment>The text displayed in login window when login takes longer than expected</comment>
   </data>
   <data name="Login_lbl_TwoFactorAuthCode">
-    <value>İki aşamalı kimlik doğrulama kodu</value>
+    <value>İki aşamalı doğrulama kodu</value>
   </data>
   <data name="Login_lbl_Username">
     <value>Kullanıcı adı</value>
@@ -2009,7 +2009,7 @@
     <comment>The text of hyperlink in Need Help popup of Login window (opens web page for resetting user password)</comment>
   </data>
   <data name="Login_msg_IncorrectTwoFactorCode">
-    <value>İki aşamalı kimlik doğrulama kodu geçersiz</value>
+    <value>İki aşamalı doğrulama kodu geçersiz</value>
   </data>
   <data name="Login_msg_TwoFactorAuthFailed">
     <value>Oturum açma bilgileri yanlış. Lütfen yeniden deneyin.</value>
@@ -2080,7 +2080,7 @@
     <value>Learn more</value>
   </data>
   <data name="Modal_DiscourageSecureCore_Subtitle">
-    <value>Secure Core, en yüksek düzeyde güvenlik ve kişisel gizlilik sunar. Ancak internet hızınızı düşürebilir. Başarımı yükseltmeye gerek duyuyorsanız, Secure Core özelliğini devre dışı bırakabilirsiniz.</value>
+    <value>Secure Core, en yüksek düzeyde güvenlik ve gizlilik sunar. Ancak internet hızınızı düşürebilir. Başarımı yükseltmeye gerek duyuyorsanız, Secure Core özelliğini devre dışı bırakabilirsiniz.</value>
   </data>
   <data name="Modal_DiscourageSecureCore_Title">
     <value>Hız hakkında bir not...</value>
@@ -2121,7 +2121,7 @@
     <comment>The description of the Maximum Device Limit notification when the user already has the highest subscription plan</comment>
   </data>
   <data name="Notifications_MaximumDeviceLimit_Title">
-    <value>En fazla aygıt sınırınıza ulaştınız</value>
+    <value>Kullanabileceğiniz en fazla aygıt sayısı sınırına ulaştınız</value>
     <comment>The title of the Maximum Device Limit notification</comment>
   </data>
   <data name="Notifications_MaximumDeviceLimit_Upgrade_Description">
@@ -2177,7 +2177,7 @@
     <comment>The description of onboarding step 3 in Onboarding overlay of main app window</comment>
   </data>
   <data name="Onboarding_msg_Step_4">
-    <value>En uygun hız ve kişisel gizlilik koruması için Proton VPN özellikleriyle VPN bağlantınızı çevrimiçi etkinliğinize göre uyarlayın.</value>
+    <value>En uygun hız ve gizlilik koruması için Proton VPN özellikleriyle VPN bağlantınızı çevrimiçi etkinliğinize göre uyarlayın.</value>
     <comment>The description of onboarding step 4 in Onboarding overlay of main app window</comment>
   </data>
   <data name="Onboarding_ttl_Step_1">
@@ -2489,7 +2489,7 @@
     <value>Speed up your torrenting and online gaming by allowing supported local apps to be reachable from the internet.</value>
   </data>
   <data name="QuickSettings_lbl_SecureCoreInfo">
-    <value>En hassas verilerinizi kişisel gizlilik dostu ülkelerdeki en güvenli sunucularımız üzerinden yöneltin.</value>
+    <value>En hassas verilerinizi gizliliğe saygı gösteren ülkelerdeki en güvenli sunucularımız üzerinden yöneltin.</value>
   </data>
   <data name="QuickSettings_lbl_SecureCoreWarning">
     <value>Secure Core, VPN hızını azaltabilir</value>

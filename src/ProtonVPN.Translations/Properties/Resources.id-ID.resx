@@ -2189,7 +2189,7 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <value>Port Forwarding</value>
   </data>
   <data name="PortForwarding_lbl_ActivePort">
-    <value>Port yang aktif:</value>
+    <value>Port aktif:</value>
   </data>
   <data name="PortForwarding_lbl_CopyValue">
     <value>Klik untuk menyalin nomor port ini.</value>
@@ -2667,7 +2667,7 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <value>Port Forwarding</value>
   </data>
   <data name="Settings_Advanced_lbl_PortForwardingInQuickSettings">
-    <value>Tombol shortcut Port Forwarding</value>
+    <value>Pintasan Port Forwarding</value>
   </data>
   <data name="Settings_Advanced_lbl_PortForwardingInQuickSettings_Info">
     <value>Akses pengaturan Port Forwarding dari menu Quick Settings</value>
