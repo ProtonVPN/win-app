@@ -233,6 +233,14 @@ namespace ProtonVPN.UI.Tests.Tests
                 .WaitUntilConnected();
         }
 
+        [Test]
+        public void LocalNetworkingIsReachable()
+        {
+            _homeWindow.PressQuickConnectButton()
+                .WaitUntilConnected();
+            _homeResult.CheckIfLocalNetworkingWorks(NetworkUtils.GetDefaultGatewayAddress().ToString());
+        }
+
         [SetUp]
         public void TestInitialize()
         {

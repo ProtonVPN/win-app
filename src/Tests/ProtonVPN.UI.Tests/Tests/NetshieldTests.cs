@@ -84,7 +84,7 @@ namespace ProtonVPN.UI.Tests.Tests
                 .CheckIfDnsIsNotResolved(NETSHIELD_LEVEL_ONE)
                 .CheckIfDnsIsResolved(NETSHIELD_LEVEL_TWO);
 
-            DnsUtils.DnsFlushResolverCache();
+            NetworkUtils.DnsFlushResolverCache();
 
             _homeWindow.EnableNetshieldLevelTwo();
             _homeResult.CheckIfDnsIsResolved(NETSHIELD_NO_BLOCK)
