@@ -27,8 +27,8 @@ namespace ProtonVPN.UI.Tests.Results
     {
         private CheckBox ModerateNatCheckBox => ElementByAutomationId("ModerateNatCheckbox").AsCheckBox();
 
-        private string WireguardDnsAdress => DnsUtils.GetDnsAddress("ProtonVPN");
-        private string OpenVpnDnsAdress => DnsUtils.GetDnsAddress("ProtonVPN TUN");
+        private string WireguardDnsAdress => NetworkUtils.GetDnsAddress("ProtonVPN");
+        private string OpenVpnDnsAdress => NetworkUtils.GetDnsAddress("ProtonVPN TUN");
 
         public SettingsResult CheckIfSettingsAreDisplayed()
         {
