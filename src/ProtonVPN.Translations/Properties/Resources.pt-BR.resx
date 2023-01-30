@@ -1546,7 +1546,7 @@ Informações sobre a tabela de roteamento</value>
     <value>Esta etapa levará apenas alguns minutos. Depois disso, você poderá fazer login e proteger todos os seus dispositivos.</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Thanks">
-    <value>Obrigado por fazer upgrade para Profissional/Visionário</value>
+    <value>Obrigado por fazer upgrade para Professional/Visionary</value>
   </data>
   <data name="Dialogs_Bfe_msg_info">
     <value>Um dos serviços exigidos pelo Proton VPN (Motor base de filtragem) não está a executando.&lt;LineBreak/&gt;
@@ -3196,7 +3196,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The text displayed in Welcome window</comment>
   </data>
   <data name="Welcome_lbl_Welcome">
-    <value>BEM-VINDO(A) A BORDO!</value>
+    <value>BOAS-VINDAS A BORDO</value>
     <comment>The text displayed in Welcome window</comment>
   </data>
   <data name="Welcome_ttl">
