@@ -1769,7 +1769,7 @@
     <value>Anladım</value>
   </data>
   <data name="Dialogs_SplitTunnelWarning_msg">
-    <value>Bölünmüş tünellemenin düzgün çalışması için Bağlantı kesiciyi devre dışı bırakmalısınız.</value>
+    <value>Ayrılmış tünellemenin düzgün çalışması için Bağlantı kesiciyi devre dışı bırakmalısınız.</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListOption1">
     <value>55 ülkede yüzlerce sunucu</value>
@@ -2697,11 +2697,11 @@
     <comment>Do not translate whatever is between &lt; and &gt;. Do not forget to translate the "Learn more".</comment>
   </data>
   <data name="Settings_Advanced_lbl_SplitTunnel">
-    <value>Bölünmüş tünelleme</value>
+    <value>Ayrılmış tünelleme</value>
     <comment>The label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_SplitTunnel_Info">
-    <value>Bir uygulamayı veya IP adresini VPN trafiğine katmayın ya da yalnızca belirli uygulamaları katın. Bağlantı kesici ile aynı anda kullanılamaz.</value>
+    <value>Bir uygulama veya IP adresinin VPN trafiğine katılmamasını ya da yalnızca belirli uygulamaların katılmasını sağlar. Bağlantı kesici ile aynı anda kullanılamaz.</value>
     <comment>The description of Split Tunneling setting displayed in the tooltip of ( i ) image next to the label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_btn_LearnMore">
