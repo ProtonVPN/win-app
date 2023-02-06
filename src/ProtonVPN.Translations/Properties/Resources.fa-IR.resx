@@ -1932,7 +1932,7 @@
     <comment>The message displayed in Login window when expired session is detected</comment>
   </data>
   <data name="Login_Error_msg_Unauthorized">
-    <value>نشانه ورود نا معتبر، لطفا دوباره وارد شوید.</value>
+    <value>نمودافزار ورود نامعتبر، لطفاً دوباره وارد شوید.</value>
     <comment>The text displayed after failed login attempt</comment>
   </data>
   <data name="Login_Error_msg_Unknown">

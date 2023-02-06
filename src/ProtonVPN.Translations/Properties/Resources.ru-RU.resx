@@ -2724,7 +2724,7 @@
     <value>Получать уведомления об изменении номера Переадресации портов</value>
   </data>
   <data name="Settings_Advanced_lbl_PortForwarding_Info">
-    <value>Ускоряет работу торрентов и сетевых игр, позволяя поддерживаемым локальным приложениям быть доступными из Интернета. &lt;Hyperlink Command="{Binding LearnMoreAboutPortForwardingCommand}"&gt;Подробнее&lt;/Hyperlink&gt;</value>
+    <value>Ускоряет скачивание торрентов и сетевые игры, позволяя поддерживаемым локальным приложениям быть доступными из Интернета. &lt;Hyperlink Command="{Binding LearnMoreAboutPortForwardingCommand}"&gt;Подробнее&lt;/Hyperlink&gt;</value>
     <comment>Do not translate whatever is between &lt; and &gt;. Do not forget to translate the "Learn more".</comment>
   </data>
   <data name="Settings_Advanced_lbl_SplitTunnel">
@@ -2996,7 +2996,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Трансляция</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Streaming_Desc">
-    <value>Серверы PLUS поддерживают стриминг (Netflix, Disney+, и т. д.) из любой точки мира.</value>
+    <value>Серверы PLUS поддерживают просмотр Netflix, Disney+ и подобных служб из любой точки мира.</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Title">
     <value>Функции</value>
