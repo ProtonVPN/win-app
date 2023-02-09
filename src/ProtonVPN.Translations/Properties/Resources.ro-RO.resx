@@ -1,0 +1,3257 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="About_UpdateStatus_val_CheckFailed">
+    <value>Eșuare verificare actualizare</value>
+    <comment>The app update status in About window</comment>
+  </data>
+  <data name="About_UpdateStatus_val_Checking">
+    <value>Verificare actualizare</value>
+    <comment>The app update status in About window</comment>
+  </data>
+  <data name="About_UpdateStatus_val_DownloadFailed">
+    <value>Eșuare descărcare actualizare</value>
+    <comment>The app update status in About window</comment>
+  </data>
+  <data name="About_UpdateStatus_val_Downloading">
+    <value>Se descarcă actualizarea</value>
+    <comment>The app update status in About window</comment>
+  </data>
+  <data name="About_UpdateStatus_val_None">
+    <value>Proton VPN este la zi</value>
+    <comment>The app update status in About window</comment>
+  </data>
+  <data name="About_UpdateStatus_val_Ready">
+    <value>Versiune nouă disponibilă!</value>
+    <comment>The app update status in About window</comment>
+  </data>
+  <data name="About_lbl_ChangelogVersion">
+    <value>Jurnal modificări v.{0}</value>
+    <comment>The title of app version in change log in About window. The {0} is a placeholder for app version number.</comment>
+  </data>
+  <data name="About_lbl_ChangelogVersion_New">
+    <value>Nouă</value>
+    <comment>The text displayed next to app version in change log in About window. Indicates this app version is newer than current version.</comment>
+  </data>
+  <data name="About_lbl_CurrentVersion">
+    <value>Versiune curentă:</value>
+    <comment>The label for current app version number in About window</comment>
+  </data>
+  <data name="About_lbl_CurrentVersion_EarlyAccess">
+    <value>Acces timpuriu</value>
+    <comment>The label displayed next to current app version in About window. Displayed for early access app version.</comment>
+  </data>
+  <data name="About_lbl_LastUpdate">
+    <value>Ultima actualizare:</value>
+    <comment>The label for last update date in About window</comment>
+  </data>
+  <data name="About_lbl_LicensingInformation">
+    <value>Informații licențiere:</value>
+    <comment>The label for licensing information in About window</comment>
+  </data>
+  <data name="About_lnk_ReadLicense">
+    <value>Detalii aici</value>
+    <comment>The text of "Read here" hyperlink in About window to read the licensing information</comment>
+  </data>
+  <data name="About_lnk_Update">
+    <value>Actualizare</value>
+    <comment>The text of Update hyperlink in About window and Update flash notification (starts app update)</comment>
+  </data>
+  <data name="About_ttl">
+    <value>Despre</value>
+    <comment>The title of About window</comment>
+  </data>
+  <data name="Account_btn_ManageSubscription">
+    <value>Gestionare abonament</value>
+    <comment>The text on Manage subscription button in Account window (opens account management web page)</comment>
+  </data>
+  <data name="Account_lbl_AccessContent">
+    <value>Accesare conținut blocat</value>
+    <comment>The text displayed in Account window</comment>
+  </data>
+  <data name="Account_lbl_AccountPlan">
+    <value>Plan cont:</value>
+    <comment>The label for account plan name in Account window</comment>
+  </data>
+  <data name="Account_lbl_AccountType">
+    <value>Tip cont:</value>
+    <comment>The label for account type in Account window</comment>
+  </data>
+  <data name="Account_lbl_AllPlusFeatures">
+    <value>Toate funcțiile de la Plus</value>
+    <comment>The text displayed in Account window</comment>
+  </data>
+  <data name="Account_lbl_Connection_One">
+    <value>&lt;Bold&gt;O&lt;/Bold&gt; conexiune VPN</value>
+  </data>
+  <data name="Account_lbl_Connection_Few">
+    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; conexiuni VPN</value>
+  </data>
+  <data name="Account_lbl_Connection_Other">
+    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; de conexiuni VPN</value>
+  </data>
+  <data name="Account_lbl_Countries_Other">
+    <value>în &lt;Bold&gt;{0}&lt;/Bold&gt; de țări</value>
+  </data>
+  <data name="Account_lbl_Countries_One">
+    <value>într-o țară</value>
+  </data>
+  <data name="Account_lbl_Countries_Few">
+    <value>în &lt;Bold&gt;{0}&lt;/Bold&gt; țări</value>
+  </data>
+  <data name="Account_lbl_CurrentPlan">
+    <value>Plan actual</value>
+  </data>
+  <data name="Account_lbl_Device_One">
+    <value>dispozitiv</value>
+  </data>
+  <data name="Account_lbl_Device_Few">
+    <value>dispozitive</value>
+  </data>
+  <data name="Account_lbl_Device_Other">
+    <value>de dispozitive</value>
+  </data>
+  <data name="Account_lbl_Free">
+    <value>Proton VPN Free</value>
+    <comment>The name of VPN subscription plan</comment>
+  </data>
+  <data name="Account_lbl_HighSpeed">
+    <value>Viteză &lt;Bold&gt;mare&lt;/Bold&gt;</value>
+    <comment>The text displayed in Account window</comment>
+  </data>
+  <data name="Account_lbl_HighestSpeed">
+    <value>Viteză &lt;Bold&gt;maximă&lt;/Bold&gt; (până la 10 Gbps)</value>
+    <comment>The text displayed in Account window</comment>
+  </data>
+  <data name="Account_lbl_MediumSpeed">
+    <value>Viteză &lt;Bold&gt;medie&lt;/Bold&gt;</value>
+    <comment>The text displayed in Account window</comment>
+  </data>
+  <data name="Account_lbl_NetShield">
+    <value>Blocare reclame (NetShield)</value>
+    <comment>The text displayed in Account window for NetShield</comment>
+  </data>
+  <data name="Account_lbl_NoLogs">
+    <value>Politică strictă fără înregistrări</value>
+    <comment>The text displayed in Account window</comment>
+  </data>
+  <data name="Account_lbl_P2P">
+    <value>Suport P2P / BitTorrent</value>
+    <comment>The text displayed in Account window</comment>
+  </data>
+  <data name="Account_lbl_P2P_Info">
+    <value>Suport pentru protocoalele de partajare a fișierelor, cum ar fi BitTorrent.</value>
+    <comment>Tooltip message shown in account window when hovered on P2P exclamation mark icon</comment>
+  </data>
+  <data name="Account_lbl_Plus">
+    <value>Proton VPN Plus</value>
+    <comment>The name of VPN subscription plan</comment>
+  </data>
+  <data name="Account_lbl_SecureCoreVpn">
+    <value>VPN Secure Core</value>
+    <comment>The text displayed in Account window</comment>
+  </data>
+  <data name="Account_lbl_Servers_One">
+    <value>un server</value>
+  </data>
+  <data name="Account_lbl_Servers_Few">
+    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; servere</value>
+  </data>
+  <data name="Account_lbl_Servers_Other">
+    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; de servere</value>
+  </data>
+  <data name="Account_lbl_Streaming">
+    <value>Suport servicii de transmisie în flux</value>
+    <comment>The text displayed in Account window for Streaming service support</comment>
+  </data>
+  <data name="Account_lbl_TorOverVpn">
+    <value>Tor peste VPN</value>
+    <comment>The text displayed in Account window</comment>
+  </data>
+  <data name="Account_lbl_Username">
+    <value>Utilizator:</value>
+    <comment>The label for user login name in Account window</comment>
+  </data>
+  <data name="Account_ttl">
+    <value>Cont</value>
+    <comment>The title of Account window</comment>
+  </data>
+  <data name="Api_error_Timeout">
+    <value>Solicitarea a eșuat. Mai reîncercați.</value>
+  </data>
+  <data name="App_mnu_About">
+    <value>Despre</value>
+    <comment>The header of About menu item in the main app window (opens About window)</comment>
+  </data>
+  <data name="App_mnu_Account">
+    <value>Cont</value>
+    <comment>The header of Account menu item in the main app window (opens Account window)</comment>
+  </data>
+  <data name="App_mnu_Connect">
+    <value>Conectare</value>
+    <comment>The header of Connect menu item in the Taskbar Notification Icon (Systray) context menu (connects to VPN using Quick Connect profile)</comment>
+  </data>
+  <data name="App_mnu_Disconnect">
+    <value>Deconectare</value>
+    <comment>The header of Disconnect menu item in the Taskbar Notification Icon (Systray) context menu (disconnects from VPN profile)</comment>
+  </data>
+  <data name="App_mnu_Exit">
+    <value>Ieșire</value>
+    <comment>The header of Exit menu item in the main app window (exits the app)</comment>
+  </data>
+  <data name="App_mnu_Help">
+    <value>Ajutor</value>
+    <comment>The header of Help menu item in the main app window (opens help web page)</comment>
+  </data>
+  <data name="App_mnu_Logout">
+    <value>Deconectare</value>
+    <comment>The header of Logout menu item in the main app window (logs out current user)</comment>
+  </data>
+  <data name="App_mnu_Profiles">
+    <value>Profile</value>
+    <comment>The header of Profiles menu item in the main app window (opens Profiles window)</comment>
+  </data>
+  <data name="App_mnu_ReportBug">
+    <value>Raportare o problemă</value>
+    <comment>The header of Report an Issue menu item in the main app window (opens Issue Report window)</comment>
+  </data>
+  <data name="App_mnu_Settings">
+    <value>Setări</value>
+    <comment>The header of Settings menu item in the main app window (opens Settings window)</comment>
+  </data>
+  <data name="App_msg_LogoutConnectedConfirm">
+    <value>Deconectântu-vă din aplicație veți deconecta conexiunea VPN activă. Doriți să continuați?</value>
+    <comment>The question displayed when trying to logout while connected to VPN</comment>
+  </data>
+  <data name="App_msg_UpdateConnectedConfirm">
+    <value>Pentru a finaliza procesul de actualizare, Proton VPN va întrerupe temporar conexiunea și dezactiva blocarea permanentă a conexiunii dacă una din acestea este activă. Continuați?</value>
+    <comment>The question displayed when trying to update the app while connected to VPN</comment>
+  </data>
+  <data name="App_ttl">
+    <value>Proton VPN</value>
+    <comment>The title of main app window. Should not be converted.</comment>
+  </data>
+  <data name="BugReport_btn_Back">
+    <value>Înapoi</value>
+    <comment>The text on Back button in Issue Report window</comment>
+  </data>
+  <data name="BugReport_btn_Cancel">
+    <value>Anulare</value>
+    <comment>The text on Cancel button in Issue Report window (clears data and closes the window)</comment>
+  </data>
+  <data name="BugReport_btn_Close">
+    <value>Închidere</value>
+    <comment>The text on Close button in Issue Report window (closes the window)</comment>
+  </data>
+  <data name="BugReport_btn_FillOutTheForm">
+    <value>Contactați-ne</value>
+  </data>
+  <data name="BugReport_btn_GetUpdates">
+    <value>Actualizare</value>
+  </data>
+  <data name="BugReport_btn_GotIt">
+    <value>Gata</value>
+  </data>
+  <data name="BugReport_btn_LearnMore">
+    <value>Detalii</value>
+  </data>
+  <data name="BugReport_btn_Retry">
+    <value>Reîncercare</value>
+    <comment>The text on Retry button in Issue Report window (retries sending after failure)</comment>
+  </data>
+  <data name="BugReport_btn_Send">
+    <value>Trimitere raport</value>
+    <comment>The text on Send button in Issue Report window (sends the Issue report)</comment>
+  </data>
+  <data name="BugReport_btn_Troubleshoot">
+    <value>Depanare</value>
+    <comment>The text on Troubleshoot button in Issue Report window (opens troubleshooting window)</comment>
+  </data>
+  <data name="BugReport_lbl_DidNotHelp">
+    <value>Nu a funcționat?</value>
+  </data>
+  <data name="BugReport_lbl_Email">
+    <value>E-mail</value>
+    <comment>The label for user e-mail address in Issue Report window</comment>
+  </data>
+  <data name="BugReport_lbl_EmailPlaceholder">
+    <value>Această adresă de e-mail va fi folosită pentru a vă contacta în legătură cu problema.</value>
+    <comment>The watermark text displayed in empty user e-mail text box in Issue Report window</comment>
+  </data>
+  <data name="BugReport_lbl_HowToReproduce">
+    <value>Care sunt exact pașii executați?</value>
+    <comment>The label in Issue Report window</comment>
+  </data>
+  <data name="BugReport_lbl_IncludeLogs">
+    <value>Trimitere jurnale erori</value>
+    <comment>The label in Issue Report window</comment>
+  </data>
+  <data name="BugReport_lbl_IncludeLogsInfo">
+    <value>Oferind următoarele detalii, echipa noastră vă poate identifica problema și o posibilă soluție cu șanse mai mari și timp mai scurt:
+• Jurnal de instalare a driverelor
+• Lista aplicațiilor instalate
+• Jurnalele pentru aplicația Proton VPN și serviciile Proton VPN
+• Lista adaptoarelor de rețea
+• Informații din tabelul de trasmitere</value>
+    <comment>The text inside info tooltip in Issue Report window</comment>
+  </data>
+  <data name="BugReport_lbl_LogsDescription">
+    <value>Jurnalele de erori ne ajută să ajungem la baza problemei. Dacă nu le includeți, s-ar putea să nu putem investiga pe deplin problema.</value>
+  </data>
+  <data name="BugReport_lbl_LogsTooltip">
+    <value>Un jurnal este un tip de fișier care ne arată acțiunile pe care le-ați întreprins care au dus la o eroare. Le vom folosi doar pentru a ajuta inginerii noștri să remedieze erorile.</value>
+  </data>
+  <data name="BugReport_lbl_NewVersionAvailable">
+    <value>Actualizare Proton VPN</value>
+  </data>
+  <data name="BugReport_lbl_NewVersionInfo">
+    <value>Această versiune a Proton VPN s-ar putea să vă fi rezolvat deja problema!</value>
+  </data>
+  <data name="BugReport_lbl_QuickSolutions">
+    <value>Rezolvări rapide</value>
+  </data>
+  <data name="BugReport_lbl_QuickSolutionsInfo">
+    <value>Aceste sfaturi ar putea ajuta la rezolvarea mai rapidă a problemei.</value>
+  </data>
+  <data name="BugReport_lbl_Step">
+    <value>Pasul</value>
+  </data>
+  <data name="BugReport_lbl_Username">
+    <value>Utilizator</value>
+    <comment>The label for the username in Issue Report window</comment>
+  </data>
+  <data name="BugReport_lbl_UsernamePlaceholder">
+    <value>Numele de utilizator Proton, dacă aveți deja un cont.</value>
+    <comment>The watermark text displayed in empty username text box in Issue Report window</comment>
+  </data>
+  <data name="BugReport_lbl_WhatIsTheIssue">
+    <value>Care este problema?</value>
+  </data>
+  <data name="BugReport_lbl_WhatWentWrong">
+    <value>Ce nu a funcționat bine?</value>
+    <comment>The label in Issue Report window</comment>
+  </data>
+  <data name="BugReport_lbl_WillGetBack">
+    <value>Vă vom contacta cât de curând posibil.</value>
+  </data>
+  <data name="BugReport_lbl_of">
+    <value>din</value>
+    <comment>The text displayed in report an issue form. For example: Step 1 of 3.</comment>
+  </data>
+  <data name="BugReport_msg_EmailNotValid">
+    <value>E-mailul nu este valid.</value>
+  </data>
+  <data name="BugReport_msg_Sending">
+    <value>Se trimite raportul...</value>
+    <comment>The message displayed in Issue Report window while sending the report</comment>
+  </data>
+  <data name="BugReport_msg_SendingFailed">
+    <value>Raportul nu a fost trimis.</value>
+    <comment>The message displayed in Issue Report window when sending Issue report fails</comment>
+  </data>
+  <data name="BugReport_msg_SendingInfo">
+    <value>Așteptați până procesul de trimitere s-a finalizat.</value>
+    <comment>The message displayed in Issue Report window while sending the report</comment>
+  </data>
+  <data name="BugReport_msg_SendingSucceeded">
+    <value>Vă mulţumim pentru feedback.</value>
+    <comment>The message displayed in Issue Report window when sending completes</comment>
+  </data>
+  <data name="BugReport_ttl">
+    <value>Raportare o problemă</value>
+    <comment>The title of Issue Report window</comment>
+  </data>
+  <data name="Connecting_VpnStatus_val_AssigningIp">
+    <value>Se atribuie IP</value>
+    <comment>The VPN status displayed in Connecting overlay of main app window</comment>
+  </data>
+  <data name="Connecting_VpnStatus_val_Authenticating">
+    <value>Se autentifică utilizatorul</value>
+    <comment>The VPN status displayed in Connecting overlay of main app window</comment>
+  </data>
+  <data name="Connecting_VpnStatus_val_Connecting">
+    <value>Se inițializează conexiunea</value>
+    <comment>The VPN status displayed in Connecting overlay of main app window</comment>
+  </data>
+  <data name="Connecting_VpnStatus_val_Pinging">
+    <value>Se așteaptă o rețea utilizabilă...</value>
+    <comment>The VPN status displayed in Pinging overlay of main app window</comment>
+  </data>
+  <data name="Connecting_VpnStatus_val_RetrievingConfiguration">
+    <value>Se stabilește tunelul VPN</value>
+    <comment>The VPN status displayed in Connecting overlay of main app window</comment>
+  </data>
+  <data name="Connecting_VpnStatus_val_Waiting">
+    <value>Se inițializează conexiunea</value>
+    <comment>The VPN status displayed in Connecting overlay of main app window</comment>
+  </data>
+  <data name="Connecting_btn_Cancel">
+    <value>Anulare</value>
+    <comment>The text on cancel button in Connecting overlay of main app window (cancels connection attempt)</comment>
+  </data>
+  <data name="Connecting_btn_TryAgain">
+    <value>Reîncercare</value>
+    <comment>The text on retry button in Connecting overlay of main app window (retries connection to VPN)</comment>
+  </data>
+  <data name="Connecting_lbl_ConnectingTo_1">
+    <value>Se conectează la</value>
+    <comment>The beginning of text for VPN server being connected to in Connecting overlay of main app window. It shall be translated as a text before imaginary placeholder {0} in the text string "Connecting to {0}". If translated text suppose to not include any text before the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
+  </data>
+  <data name="Connecting_lbl_ConnectingTo_1_SecureCore">
+    <value>Se crează</value>
+    <comment>The beginning of text for Secure Core VPN server being connected to in Connecting overlay of main app window. It shall be translated as a text before imaginary placeholder {0} in the text string "Creating {0} connection". If translated text suppose to not include any text before the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
+  </data>
+  <data name="Connecting_lbl_ConnectingTo_2">
+    <value></value>
+    <comment>The end of text for VPN server being connected to in Connecting overlay of main app window. It shall be translated as the text after imaginary placeholder {0} in the text string "Connecting to {0}". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
+  </data>
+  <data name="Connecting_lbl_ConnectingTo_2_SecureCore">
+    <value>conexiune</value>
+    <comment>The end of text for Secure Core VPN server being connected to in Connecting overlay of main app window. It shall be translated as a text after imaginary placeholder {0} in the text string "Creating {0} connection". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
+  </data>
+  <data name="Connecting_lbl_FailedConnection_1">
+    <value>Conexiunea la</value>
+    <comment>The beginning of text for VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text before imaginary placeholder {0} in the text string "Connection to {0} has failed". If translated text suppose to not include any text before the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
+  </data>
+  <data name="Connecting_lbl_FailedConnection_1_SecureCore">
+    <value>Conexiunea</value>
+    <comment>The beginning of text for Secure Core VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text before imaginary placeholder {0} in the text string "The {0} connection has failed". If translated text suppose to not include any text before the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
+  </data>
+  <data name="Connecting_lbl_FailedConnection_2">
+    <value>a eșuat</value>
+    <comment>The end of text for VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text after imaginary placeholder {0} in the text string "Connection to {0} has failed". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
+  </data>
+  <data name="Connecting_lbl_FailedConnection_2_SecureCore">
+    <value>a eșuat</value>
+    <comment>The end of text for Secure Core VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text after imaginary placeholder {0} in the text string "The {0} connection has failed". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
+  </data>
+  <data name="Country_val_AD">
+    <value>Andorra</value>
+    <comment>The name of AD country</comment>
+  </data>
+  <data name="Country_val_AE">
+    <value>Emiratele Arabe Unite</value>
+    <comment>The name of AE country</comment>
+  </data>
+  <data name="Country_val_AF">
+    <value>Afganistan</value>
+    <comment>The name of AF country</comment>
+  </data>
+  <data name="Country_val_AG">
+    <value>Antigua și Barbuda</value>
+    <comment>The name of AG country</comment>
+  </data>
+  <data name="Country_val_AI">
+    <value>Anguilla</value>
+    <comment>The name of AI country</comment>
+  </data>
+  <data name="Country_val_AL">
+    <value>Albania</value>
+    <comment>The name of AL country</comment>
+  </data>
+  <data name="Country_val_AM">
+    <value>Armenia</value>
+    <comment>The name of AM country</comment>
+  </data>
+  <data name="Country_val_AO">
+    <value>Angola</value>
+    <comment>The name of AO country</comment>
+  </data>
+  <data name="Country_val_AQ">
+    <value>Antarctica</value>
+    <comment>The name of AQ country</comment>
+  </data>
+  <data name="Country_val_AR">
+    <value>Argentina</value>
+    <comment>The name of AR country</comment>
+  </data>
+  <data name="Country_val_AS">
+    <value>Samoa Americană</value>
+    <comment>The name of AS country</comment>
+  </data>
+  <data name="Country_val_AT">
+    <value>Austria</value>
+    <comment>The name of AT country</comment>
+  </data>
+  <data name="Country_val_AU">
+    <value>Australia</value>
+    <comment>The name of AU country</comment>
+  </data>
+  <data name="Country_val_AW">
+    <value>Aruba</value>
+    <comment>The name of AW country</comment>
+  </data>
+  <data name="Country_val_AX">
+    <value>Insulele Aland</value>
+    <comment>The name of AX country</comment>
+  </data>
+  <data name="Country_val_AZ">
+    <value>Azerbaijan</value>
+    <comment>The name of AZ country</comment>
+  </data>
+  <data name="Country_val_BA">
+    <value>Bosnia și Herțegovina</value>
+    <comment>The name of BA country</comment>
+  </data>
+  <data name="Country_val_BB">
+    <value>Barbados</value>
+    <comment>The name of BB country</comment>
+  </data>
+  <data name="Country_val_BD">
+    <value>Bangladeș</value>
+    <comment>The name of BD country</comment>
+  </data>
+  <data name="Country_val_BE">
+    <value>Belgia</value>
+    <comment>The name of BE country</comment>
+  </data>
+  <data name="Country_val_BF">
+    <value>Burkina Faso</value>
+    <comment>The name of BF country</comment>
+  </data>
+  <data name="Country_val_BG">
+    <value>Bulgaria</value>
+    <comment>The name of BG country</comment>
+  </data>
+  <data name="Country_val_BH">
+    <value>Bahrain</value>
+    <comment>The name of BH country</comment>
+  </data>
+  <data name="Country_val_BI">
+    <value>Burundi</value>
+    <comment>The name of BI country</comment>
+  </data>
+  <data name="Country_val_BJ">
+    <value>Benin</value>
+    <comment>The name of BJ country</comment>
+  </data>
+  <data name="Country_val_BL">
+    <value>Saint Barthélemy</value>
+    <comment>The name of BL country</comment>
+  </data>
+  <data name="Country_val_BM">
+    <value>Bermuda</value>
+    <comment>The name of BM country</comment>
+  </data>
+  <data name="Country_val_BN">
+    <value>Brunei Darussalam</value>
+    <comment>The name of BN country</comment>
+  </data>
+  <data name="Country_val_BO">
+    <value>Bolivia</value>
+    <comment>The name of BO country</comment>
+  </data>
+  <data name="Country_val_BQ">
+    <value>Bonaire, Sint Eustatius și Saba</value>
+    <comment>The name of BQ country</comment>
+  </data>
+  <data name="Country_val_BR">
+    <value>Brazilia</value>
+    <comment>The name of BR country</comment>
+  </data>
+  <data name="Country_val_BS">
+    <value>Bahamas</value>
+    <comment>The name of BS country</comment>
+  </data>
+  <data name="Country_val_BT">
+    <value>Butan</value>
+    <comment>The name of BT country</comment>
+  </data>
+  <data name="Country_val_BV">
+    <value>Insula Bouvet</value>
+    <comment>The name of BV country</comment>
+  </data>
+  <data name="Country_val_BW">
+    <value>Botswana</value>
+    <comment>The name of BW country</comment>
+  </data>
+  <data name="Country_val_BY">
+    <value>Belarus</value>
+    <comment>The name of BY country</comment>
+  </data>
+  <data name="Country_val_BZ">
+    <value>Belize</value>
+    <comment>The name of BZ country</comment>
+  </data>
+  <data name="Country_val_CA">
+    <value>Canada</value>
+    <comment>The name of CA country</comment>
+  </data>
+  <data name="Country_val_CC">
+    <value>Insulele Cocos (Keeling)</value>
+    <comment>The name of CC country</comment>
+  </data>
+  <data name="Country_val_CD">
+    <value>Congo (Republica Democrată)</value>
+    <comment>The name of CD country</comment>
+  </data>
+  <data name="Country_val_CF">
+    <value>Republica Central Africană</value>
+    <comment>The name of CF country</comment>
+  </data>
+  <data name="Country_val_CG">
+    <value>Congo</value>
+    <comment>The name of CG country</comment>
+  </data>
+  <data name="Country_val_CH">
+    <value>Elveția</value>
+    <comment>The name of CH country</comment>
+  </data>
+  <data name="Country_val_CI">
+    <value>Costa de Fildeș</value>
+    <comment>The name of CI country</comment>
+  </data>
+  <data name="Country_val_CK">
+    <value>Insulele Cook</value>
+    <comment>The name of CK country</comment>
+  </data>
+  <data name="Country_val_CL">
+    <value>Cile</value>
+    <comment>The name of CL country</comment>
+  </data>
+  <data name="Country_val_CM">
+    <value>Camerun</value>
+    <comment>The name of CM country</comment>
+  </data>
+  <data name="Country_val_CN">
+    <value>China</value>
+    <comment>The name of CN country</comment>
+  </data>
+  <data name="Country_val_CO">
+    <value>Columbia</value>
+    <comment>The name of CO country</comment>
+  </data>
+  <data name="Country_val_CR">
+    <value>Costa Rica</value>
+    <comment>The name of CR country</comment>
+  </data>
+  <data name="Country_val_CU">
+    <value>Cuba</value>
+    <comment>The name of CU country</comment>
+  </data>
+  <data name="Country_val_CV">
+    <value>Capul Verde</value>
+    <comment>The name of CV country</comment>
+  </data>
+  <data name="Country_val_CW">
+    <value>Curaçao</value>
+    <comment>The name of CW country</comment>
+  </data>
+  <data name="Country_val_CX">
+    <value>Insula Crăciunului</value>
+    <comment>The name of CX country</comment>
+  </data>
+  <data name="Country_val_CY">
+    <value>Cipru</value>
+    <comment>The name of CY country</comment>
+  </data>
+  <data name="Country_val_CZ">
+    <value>Cehia</value>
+    <comment>The name of CZ country</comment>
+  </data>
+  <data name="Country_val_DE">
+    <value>Germania</value>
+    <comment>The name of DE country</comment>
+  </data>
+  <data name="Country_val_DJ">
+    <value>Djibouti</value>
+    <comment>The name of DJ country</comment>
+  </data>
+  <data name="Country_val_DK">
+    <value>Danemarca</value>
+    <comment>The name of DK country</comment>
+  </data>
+  <data name="Country_val_DM">
+    <value>Dominica</value>
+    <comment>The name of DM country</comment>
+  </data>
+  <data name="Country_val_DO">
+    <value>Republica Dominicană</value>
+    <comment>The name of DO country</comment>
+  </data>
+  <data name="Country_val_DZ">
+    <value>Algeria</value>
+    <comment>The name of DZ country</comment>
+  </data>
+  <data name="Country_val_EC">
+    <value>Ecuador</value>
+    <comment>The name of EC country</comment>
+  </data>
+  <data name="Country_val_EE">
+    <value>Estonia</value>
+    <comment>The name of EE country</comment>
+  </data>
+  <data name="Country_val_EG">
+    <value>Egipt</value>
+    <comment>The name of EG country</comment>
+  </data>
+  <data name="Country_val_EH">
+    <value>Sahara de Vest</value>
+    <comment>The name of EH country</comment>
+  </data>
+  <data name="Country_val_ER">
+    <value>Eritrea</value>
+    <comment>The name of ER country</comment>
+  </data>
+  <data name="Country_val_ES">
+    <value>Spania</value>
+    <comment>The name of ES country</comment>
+  </data>
+  <data name="Country_val_ET">
+    <value>Etiopia</value>
+    <comment>The name of ET country</comment>
+  </data>
+  <data name="Country_val_FI">
+    <value>Finlanda</value>
+    <comment>The name of FI country</comment>
+  </data>
+  <data name="Country_val_FJ">
+    <value>Fiji</value>
+    <comment>The name of FJ country</comment>
+  </data>
+  <data name="Country_val_FK">
+    <value>Insulele Falkland (Malvine)</value>
+    <comment>The name of FK country</comment>
+  </data>
+  <data name="Country_val_FM">
+    <value>Micronesia</value>
+    <comment>The name of FM country</comment>
+  </data>
+  <data name="Country_val_FO">
+    <value>Insulele Feroe</value>
+    <comment>The name of FO country</comment>
+  </data>
+  <data name="Country_val_FR">
+    <value>Franța</value>
+    <comment>The name of FR country</comment>
+  </data>
+  <data name="Country_val_GA">
+    <value>Gabon</value>
+    <comment>The name of GA country</comment>
+  </data>
+  <data name="Country_val_GB">
+    <value>Regatul Unit</value>
+    <comment>The name of GB country</comment>
+  </data>
+  <data name="Country_val_GD">
+    <value>Grenada</value>
+    <comment>The name of GD country</comment>
+  </data>
+  <data name="Country_val_GE">
+    <value>Georgia</value>
+    <comment>The name of GE country</comment>
+  </data>
+  <data name="Country_val_GF">
+    <value>Guiana Franceză</value>
+    <comment>The name of GF country</comment>
+  </data>
+  <data name="Country_val_GG">
+    <value>Guernsey</value>
+    <comment>The name of GG country</comment>
+  </data>
+  <data name="Country_val_GH">
+    <value>Gana</value>
+    <comment>The name of GH country</comment>
+  </data>
+  <data name="Country_val_GI">
+    <value>Gibraltar</value>
+    <comment>The name of GI country</comment>
+  </data>
+  <data name="Country_val_GL">
+    <value>Groenlanda</value>
+    <comment>The name of GL country</comment>
+  </data>
+  <data name="Country_val_GM">
+    <value>Gambia</value>
+    <comment>The name of GM country</comment>
+  </data>
+  <data name="Country_val_GN">
+    <value>Guinea</value>
+    <comment>The name of GN country</comment>
+  </data>
+  <data name="Country_val_GP">
+    <value>Guadalupe</value>
+    <comment>The name of GP country</comment>
+  </data>
+  <data name="Country_val_GQ">
+    <value>Guineea Ecuatorială</value>
+    <comment>The name of GQ country</comment>
+  </data>
+  <data name="Country_val_GR">
+    <value>Grecia</value>
+    <comment>The name of GR country</comment>
+  </data>
+  <data name="Country_val_GS">
+    <value>Georgia de Sud și Insulele Sandwich de Sud</value>
+    <comment>The name of GS country</comment>
+  </data>
+  <data name="Country_val_GT">
+    <value>Guatemala</value>
+    <comment>The name of GT country</comment>
+  </data>
+  <data name="Country_val_GU">
+    <value>Guam</value>
+    <comment>The name of GU country</comment>
+  </data>
+  <data name="Country_val_GW">
+    <value>Guinea-Bissau</value>
+    <comment>The name of GW country</comment>
+  </data>
+  <data name="Country_val_GY">
+    <value>Guiana</value>
+    <comment>The name of GY country</comment>
+  </data>
+  <data name="Country_val_HK">
+    <value>Hong Kong</value>
+    <comment>The name of HK country</comment>
+  </data>
+  <data name="Country_val_HM">
+    <value>Insula Heard și Insulele McDonald</value>
+    <comment>The name of HM country</comment>
+  </data>
+  <data name="Country_val_HN">
+    <value>Honduras</value>
+    <comment>The name of HN country</comment>
+  </data>
+  <data name="Country_val_HR">
+    <value>Croația</value>
+    <comment>The name of HR country</comment>
+  </data>
+  <data name="Country_val_HT">
+    <value>Haiti</value>
+    <comment>The name of HT country</comment>
+  </data>
+  <data name="Country_val_HU">
+    <value>Ungaria</value>
+    <comment>The name of HU country</comment>
+  </data>
+  <data name="Country_val_ID">
+    <value>Indonezia</value>
+    <comment>The name of ID country</comment>
+  </data>
+  <data name="Country_val_IE">
+    <value>Irlanda</value>
+    <comment>The name of IE country</comment>
+  </data>
+  <data name="Country_val_IL">
+    <value>Israel</value>
+    <comment>The name of IL country</comment>
+  </data>
+  <data name="Country_val_IM">
+    <value>Insula Man</value>
+    <comment>The name of IM country</comment>
+  </data>
+  <data name="Country_val_IN">
+    <value>India</value>
+    <comment>The name of IN country</comment>
+  </data>
+  <data name="Country_val_IO">
+    <value>Teritoriul Britanic al Oceanului Indian</value>
+    <comment>The name of IO country</comment>
+  </data>
+  <data name="Country_val_IQ">
+    <value>Irak</value>
+    <comment>The name of IQ country</comment>
+  </data>
+  <data name="Country_val_IR">
+    <value>Iran</value>
+    <comment>The name of IR country</comment>
+  </data>
+  <data name="Country_val_IS">
+    <value>Islanda</value>
+    <comment>The name of IS country</comment>
+  </data>
+  <data name="Country_val_IT">
+    <value>Italia</value>
+    <comment>The name of IT country</comment>
+  </data>
+  <data name="Country_val_JE">
+    <value>Jersey</value>
+    <comment>The name of JE country</comment>
+  </data>
+  <data name="Country_val_JM">
+    <value>Jamaica</value>
+    <comment>The name of JM country</comment>
+  </data>
+  <data name="Country_val_JO">
+    <value>Iordan</value>
+    <comment>The name of JO country</comment>
+  </data>
+  <data name="Country_val_JP">
+    <value>Japonia</value>
+    <comment>The name of JP country</comment>
+  </data>
+  <data name="Country_val_KE">
+    <value>Kenya</value>
+    <comment>The name of KE country</comment>
+  </data>
+  <data name="Country_val_KG">
+    <value>Kyrgyzstan</value>
+    <comment>The name of KG country</comment>
+  </data>
+  <data name="Country_val_KH">
+    <value>Cambogia</value>
+    <comment>The name of KH country</comment>
+  </data>
+  <data name="Country_val_KI">
+    <value>Kiribati</value>
+    <comment>The name of KI country</comment>
+  </data>
+  <data name="Country_val_KM">
+    <value>Comoros</value>
+    <comment>The name of KM country</comment>
+  </data>
+  <data name="Country_val_KN">
+    <value>Sfântul Cristofor și Nevis</value>
+    <comment>The name of KN country</comment>
+  </data>
+  <data name="Country_val_KP">
+    <value>Coreea de Nord</value>
+    <comment>The name of KP country</comment>
+  </data>
+  <data name="Country_val_KR">
+    <value>Coreea de Sud</value>
+    <comment>The name of KR country</comment>
+  </data>
+  <data name="Country_val_KW">
+    <value>Kuweit</value>
+    <comment>The name of KW country</comment>
+  </data>
+  <data name="Country_val_KY">
+    <value>Insulele Caiman</value>
+    <comment>The name of KY country</comment>
+  </data>
+  <data name="Country_val_KZ">
+    <value>Kazahstan</value>
+    <comment>The name of KZ country</comment>
+  </data>
+  <data name="Country_val_LA">
+    <value>Laos</value>
+    <comment>The name of LA country</comment>
+  </data>
+  <data name="Country_val_LB">
+    <value>Liban</value>
+    <comment>The name of LB country</comment>
+  </data>
+  <data name="Country_val_LC">
+    <value>Saint Lucia</value>
+    <comment>The name of LC country</comment>
+  </data>
+  <data name="Country_val_LI">
+    <value>Liechtenstein</value>
+    <comment>The name of LI country</comment>
+  </data>
+  <data name="Country_val_LK">
+    <value>Sri Lanka</value>
+    <comment>The name of LK country</comment>
+  </data>
+  <data name="Country_val_LR">
+    <value>Liberia</value>
+    <comment>The name of LR country</comment>
+  </data>
+  <data name="Country_val_LS">
+    <value>Lesotho</value>
+    <comment>The name of LS country</comment>
+  </data>
+  <data name="Country_val_LT">
+    <value>Lituania</value>
+    <comment>The name of LT country</comment>
+  </data>
+  <data name="Country_val_LU">
+    <value>Luxemburg</value>
+    <comment>The name of LU country</comment>
+  </data>
+  <data name="Country_val_LV">
+    <value>Letonia</value>
+    <comment>The name of LV country</comment>
+  </data>
+  <data name="Country_val_LY">
+    <value>Libia</value>
+    <comment>The name of LY country</comment>
+  </data>
+  <data name="Country_val_MA">
+    <value>Maroc</value>
+    <comment>The name of MA country</comment>
+  </data>
+  <data name="Country_val_MC">
+    <value>Monaco</value>
+    <comment>The name of MC country</comment>
+  </data>
+  <data name="Country_val_MD">
+    <value>Moldova</value>
+    <comment>The name of MD country</comment>
+  </data>
+  <data name="Country_val_ME">
+    <value>Muntenegru</value>
+    <comment>The name of ME country</comment>
+  </data>
+  <data name="Country_val_MF">
+    <value>Saint Martin (Franța)</value>
+    <comment>The name of MF country</comment>
+  </data>
+  <data name="Country_val_MG">
+    <value>Madagascar</value>
+    <comment>The name of MG country</comment>
+  </data>
+  <data name="Country_val_MH">
+    <value>Insulele Marshall</value>
+    <comment>The name of MH country</comment>
+  </data>
+  <data name="Country_val_MK">
+    <value>Macedonia de Nord</value>
+    <comment>The name of MK country</comment>
+  </data>
+  <data name="Country_val_ML">
+    <value>Mali</value>
+    <comment>The name of ML country</comment>
+  </data>
+  <data name="Country_val_MM">
+    <value>Myanmar</value>
+    <comment>The name of MM country</comment>
+  </data>
+  <data name="Country_val_MN">
+    <value>Mongolia</value>
+    <comment>The name of MN country</comment>
+  </data>
+  <data name="Country_val_MO">
+    <value>Macao</value>
+    <comment>The name of MO country</comment>
+  </data>
+  <data name="Country_val_MP">
+    <value>Insulele Mariane de Nord</value>
+    <comment>The name of MP country</comment>
+  </data>
+  <data name="Country_val_MQ">
+    <value>Martinica</value>
+    <comment>The name of MQ country</comment>
+  </data>
+  <data name="Country_val_MR">
+    <value>Mauritania</value>
+    <comment>The name of MR country</comment>
+  </data>
+  <data name="Country_val_MS">
+    <value>Montserrat</value>
+    <comment>The name of MS country</comment>
+  </data>
+  <data name="Country_val_MT">
+    <value>Malta</value>
+    <comment>The name of MT country</comment>
+  </data>
+  <data name="Country_val_MU">
+    <value>Mauritius</value>
+    <comment>The name of MU country</comment>
+  </data>
+  <data name="Country_val_MV">
+    <value>Maldive</value>
+    <comment>The name of MV country</comment>
+  </data>
+  <data name="Country_val_MW">
+    <value>Malawi</value>
+    <comment>The name of MW country</comment>
+  </data>
+  <data name="Country_val_MX">
+    <value>Mexic</value>
+    <comment>The name of MX country</comment>
+  </data>
+  <data name="Country_val_MY">
+    <value>Malaezia</value>
+    <comment>The name of MY country</comment>
+  </data>
+  <data name="Country_val_MZ">
+    <value>Mozambic</value>
+    <comment>The name of MZ country</comment>
+  </data>
+  <data name="Country_val_NA">
+    <value>Namibia</value>
+    <comment>The name of NA country</comment>
+  </data>
+  <data name="Country_val_NC">
+    <value>Noua Caledonie</value>
+    <comment>The name of NC country</comment>
+  </data>
+  <data name="Country_val_NE">
+    <value>Nigeria</value>
+    <comment>The name of NE country</comment>
+  </data>
+  <data name="Country_val_NF">
+    <value>Insula Norfolk</value>
+    <comment>The name of NF country</comment>
+  </data>
+  <data name="Country_val_NG">
+    <value>Nigeria</value>
+    <comment>The name of NG country</comment>
+  </data>
+  <data name="Country_val_NI">
+    <value>Nicaragua</value>
+    <comment>The name of NI country</comment>
+  </data>
+  <data name="Country_val_NL">
+    <value>Olanda</value>
+    <comment>The name of NL country</comment>
+  </data>
+  <data name="Country_val_NO">
+    <value>Norvegia</value>
+    <comment>The name of NO country</comment>
+  </data>
+  <data name="Country_val_NP">
+    <value>Nepal</value>
+    <comment>The name of NP country</comment>
+  </data>
+  <data name="Country_val_NR">
+    <value>Nauru</value>
+    <comment>The name of NR country</comment>
+  </data>
+  <data name="Country_val_NU">
+    <value>Niue</value>
+    <comment>The name of NU country</comment>
+  </data>
+  <data name="Country_val_NZ">
+    <value>Noua Zeelandă</value>
+    <comment>The name of NZ country</comment>
+  </data>
+  <data name="Country_val_OM">
+    <value>Oman</value>
+    <comment>The name of OM country</comment>
+  </data>
+  <data name="Country_val_PA">
+    <value>Panama</value>
+    <comment>The name of PA country</comment>
+  </data>
+  <data name="Country_val_PE">
+    <value>Peru</value>
+    <comment>The name of PE country</comment>
+  </data>
+  <data name="Country_val_PF">
+    <value>Polinezia Franceză</value>
+    <comment>The name of PF country</comment>
+  </data>
+  <data name="Country_val_PG">
+    <value>Papua Noua Guinee</value>
+    <comment>The name of PG country</comment>
+  </data>
+  <data name="Country_val_PH">
+    <value>Filipine</value>
+    <comment>The name of PH country</comment>
+  </data>
+  <data name="Country_val_PK">
+    <value>Pakistan</value>
+    <comment>The name of PK country</comment>
+  </data>
+  <data name="Country_val_PL">
+    <value>Poland</value>
+    <comment>The name of PL country</comment>
+  </data>
+  <data name="Country_val_PM">
+    <value>Saint Pierre și Miquelon</value>
+    <comment>The name of PM country</comment>
+  </data>
+  <data name="Country_val_PN">
+    <value>Pitcairn</value>
+    <comment>The name of PN country</comment>
+  </data>
+  <data name="Country_val_PR">
+    <value>Porto Rico</value>
+    <comment>The name of PR country</comment>
+  </data>
+  <data name="Country_val_PS">
+    <value>Palestine</value>
+    <comment>The name of PS country</comment>
+  </data>
+  <data name="Country_val_PT">
+    <value>Portugalia</value>
+    <comment>The name of PT country</comment>
+  </data>
+  <data name="Country_val_PW">
+    <value>Palau</value>
+    <comment>The name of PW country</comment>
+  </data>
+  <data name="Country_val_PY">
+    <value>Paraguay</value>
+    <comment>The name of PY country</comment>
+  </data>
+  <data name="Country_val_QA">
+    <value>Qatar</value>
+    <comment>The name of QA country</comment>
+  </data>
+  <data name="Country_val_RE">
+    <value>Réunion</value>
+    <comment>The name of RE country</comment>
+  </data>
+  <data name="Country_val_RO">
+    <value>România</value>
+    <comment>The name of RO country</comment>
+  </data>
+  <data name="Country_val_RS">
+    <value>Serbia</value>
+    <comment>The name of RS country</comment>
+  </data>
+  <data name="Country_val_RU">
+    <value>Rusia</value>
+    <comment>The name of RU country</comment>
+  </data>
+  <data name="Country_val_RW">
+    <value>Ruanda</value>
+    <comment>The name of RW country</comment>
+  </data>
+  <data name="Country_val_SA">
+    <value>Arabia Saudită</value>
+    <comment>The name of SA country</comment>
+  </data>
+  <data name="Country_val_SB">
+    <value>Insula Solomon</value>
+    <comment>The name of SB country</comment>
+  </data>
+  <data name="Country_val_SC">
+    <value>Seychelles</value>
+    <comment>The name of SC country</comment>
+  </data>
+  <data name="Country_val_SD">
+    <value>Sudan</value>
+    <comment>The name of SD country</comment>
+  </data>
+  <data name="Country_val_SE">
+    <value>Suedia</value>
+    <comment>The name of SE country</comment>
+  </data>
+  <data name="Country_val_SG">
+    <value>Singapore</value>
+    <comment>The name of SG country</comment>
+  </data>
+  <data name="Country_val_SH">
+    <value>Sfânta Elena, Ascension și Tristan da Cunha</value>
+    <comment>The name of SH country</comment>
+  </data>
+  <data name="Country_val_SI">
+    <value>Slovenia</value>
+    <comment>The name of SI country</comment>
+  </data>
+  <data name="Country_val_SJ">
+    <value>Svalbard și Jan Mayen</value>
+    <comment>The name of SJ country</comment>
+  </data>
+  <data name="Country_val_SK">
+    <value>Slovacia</value>
+    <comment>The name of SK country</comment>
+  </data>
+  <data name="Country_val_SL">
+    <value>Sierra Leone</value>
+    <comment>The name of SL country</comment>
+  </data>
+  <data name="Country_val_SM">
+    <value>San Marino</value>
+    <comment>The name of SM country</comment>
+  </data>
+  <data name="Country_val_SN">
+    <value>Senegal</value>
+    <comment>The name of SN country</comment>
+  </data>
+  <data name="Country_val_SO">
+    <value>Somalia</value>
+    <comment>The name of SO country</comment>
+  </data>
+  <data name="Country_val_SR">
+    <value>Surinam</value>
+    <comment>The name of SR country</comment>
+  </data>
+  <data name="Country_val_SS">
+    <value>Sudanul de Sud</value>
+    <comment>The name of SS country</comment>
+  </data>
+  <data name="Country_val_ST">
+    <value>Sao Tome și Principe</value>
+    <comment>The name of ST country</comment>
+  </data>
+  <data name="Country_val_SV">
+    <value>El Salvador</value>
+    <comment>The name of SV country</comment>
+  </data>
+  <data name="Country_val_SX">
+    <value>Sint Maarten (Olanda)</value>
+    <comment>The name of SX country</comment>
+  </data>
+  <data name="Country_val_SY">
+    <value>Republica Arabă Siriană</value>
+    <comment>The name of SY country</comment>
+  </data>
+  <data name="Country_val_SZ">
+    <value>Eswatini</value>
+    <comment>The name of SZ country</comment>
+  </data>
+  <data name="Country_val_TC">
+    <value>Insulele Turks și Caicos</value>
+    <comment>The name of TC country</comment>
+  </data>
+  <data name="Country_val_TD">
+    <value>Chad</value>
+    <comment>The name of TD country</comment>
+  </data>
+  <data name="Country_val_TF">
+    <value>Teritoriile Franceze de Sud</value>
+    <comment>The name of TF country</comment>
+  </data>
+  <data name="Country_val_TG">
+    <value>Togo</value>
+    <comment>The name of TG country</comment>
+  </data>
+  <data name="Country_val_TH">
+    <value>Tailanda</value>
+    <comment>The name of TH country</comment>
+  </data>
+  <data name="Country_val_TJ">
+    <value>Tajikistan</value>
+    <comment>The name of TJ country</comment>
+  </data>
+  <data name="Country_val_TK">
+    <value>Tokelau</value>
+    <comment>The name of TK country</comment>
+  </data>
+  <data name="Country_val_TL">
+    <value>Timor-Leste</value>
+    <comment>The name of TL country</comment>
+  </data>
+  <data name="Country_val_TM">
+    <value>Turkmenistan</value>
+    <comment>The name of TM country</comment>
+  </data>
+  <data name="Country_val_TN">
+    <value>Tunisia</value>
+    <comment>The name of TN country</comment>
+  </data>
+  <data name="Country_val_TO">
+    <value>Tonga</value>
+    <comment>The name of TO country</comment>
+  </data>
+  <data name="Country_val_TR">
+    <value>Turcia</value>
+    <comment>The name of TR country</comment>
+  </data>
+  <data name="Country_val_TT">
+    <value>Trinidad și Tobago</value>
+    <comment>The name of TT country</comment>
+  </data>
+  <data name="Country_val_TV">
+    <value>Tuvalu</value>
+    <comment>The name of TV country</comment>
+  </data>
+  <data name="Country_val_TW">
+    <value>Taiwan</value>
+    <comment>The name of TW country</comment>
+  </data>
+  <data name="Country_val_TZ">
+    <value>Tanzania</value>
+    <comment>The name of TZ country</comment>
+  </data>
+  <data name="Country_val_UA">
+    <value>Ucraina</value>
+    <comment>The name of UA country</comment>
+  </data>
+  <data name="Country_val_UG">
+    <value>Uganda</value>
+    <comment>The name of UG country</comment>
+  </data>
+  <data name="Country_val_UK">
+    <value>Regatul Unit</value>
+    <comment>The name of UK country</comment>
+  </data>
+  <data name="Country_val_UM">
+    <value>Insulele Minore Îndepărtate ale Statelor Unite</value>
+    <comment>The name of UM country</comment>
+  </data>
+  <data name="Country_val_US">
+    <value>Statele Unite</value>
+    <comment>The name of US country</comment>
+  </data>
+  <data name="Country_val_UY">
+    <value>Uruguai</value>
+    <comment>The name of UY country</comment>
+  </data>
+  <data name="Country_val_UZ">
+    <value>Uzbekistan</value>
+    <comment>The name of UZ country</comment>
+  </data>
+  <data name="Country_val_VA">
+    <value>Orașul Vatican</value>
+    <comment>The name of VA country</comment>
+  </data>
+  <data name="Country_val_VC">
+    <value>Sfântul Vincențiu și Grenadinele</value>
+    <comment>The name of VC country</comment>
+  </data>
+  <data name="Country_val_VE">
+    <value>Venezuela</value>
+    <comment>The name of VE country</comment>
+  </data>
+  <data name="Country_val_VG">
+    <value>Insulele Virgine, Britania</value>
+    <comment>The name of VG country</comment>
+  </data>
+  <data name="Country_val_VI">
+    <value>Insulele Virgine, S.U.A.</value>
+    <comment>The name of VI country</comment>
+  </data>
+  <data name="Country_val_VN">
+    <value>Vietnam</value>
+    <comment>The name of VN country</comment>
+  </data>
+  <data name="Country_val_VU">
+    <value>Vanuatu</value>
+    <comment>The name of VU country</comment>
+  </data>
+  <data name="Country_val_WF">
+    <value>Wallis și Futuna</value>
+    <comment>The name of WF country</comment>
+  </data>
+  <data name="Country_val_WS">
+    <value>Samoa</value>
+    <comment>The name of WS country</comment>
+  </data>
+  <data name="Country_val_YE">
+    <value>Yemen</value>
+    <comment>The name of YE country</comment>
+  </data>
+  <data name="Country_val_YT">
+    <value>Mayotte</value>
+    <comment>The name of YT country</comment>
+  </data>
+  <data name="Country_val_ZA">
+    <value>Africa de Sud</value>
+    <comment>The name of ZA country</comment>
+  </data>
+  <data name="Country_val_ZM">
+    <value>Zambia</value>
+    <comment>The name of ZM country</comment>
+  </data>
+  <data name="Country_val_ZW">
+    <value>Zimbabwe</value>
+    <comment>The name of ZW country</comment>
+  </data>
+  <data name="Country_val_ZZ">
+    <value>Necunoscută</value>
+    <comment>The name of ZZ (unknown or not specified) country</comment>
+  </data>
+  <data name="Dialogs_AssignVpnConnections_btn_Assign">
+    <value>Atribuire conexiuni VPN</value>
+  </data>
+  <data name="Dialogs_AssignVpnConnections_btn_LoginAgain">
+    <value>Reconectați-vă</value>
+  </data>
+  <data name="Dialogs_AssignVpnConnections_ttl_Info1">
+    <value>Pentru a începe utilizarea Proton VPN atribuiți conexiuni VPN contului sau oricărui cont secundar.</value>
+  </data>
+  <data name="Dialogs_AssignVpnConnections_ttl_Info2">
+    <value>Acest pas va dura doar câteva minute. După aceasta veți putea să vă conectați și să vă protejați toate dispozitivele.</value>
+  </data>
+  <data name="Dialogs_AssignVpnConnections_ttl_Thanks">
+    <value>Vă mulțumim pentru trecerea la planul Professional/Visionary</value>
+  </data>
+  <data name="Dialogs_Bfe_msg_info">
+    <value>Unul din serviciile solicitate de Proton VPN (Motorul de filtrare de bază) nu rulează..&lt;LineBreak/&gt;
+Urmați &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these"/&gt;&lt;/Hyperlink&gt; instrucținile pentru a-l reactiva și reîncercați.</value>
+    <comment>The text on Base Filtering Engine dialog window</comment>
+  </data>
+  <data name="Dialogs_Delinquency_GoToBilling">
+    <value>Actualizare facturare</value>
+    <comment>The "go to billing website" button text in the Delinquency window</comment>
+  </data>
+  <data name="Dialogs_Delinquency_Reconnected_Subtitle">
+    <value>Veți putea accesa din nou opțiunile premium după ce acestea sunt plătite. Momentan, se reconectează la cel mai rapid server disponibil din planul GRATUIT.</value>
+    <comment>The subtitle of the Delinquency window when the user is reconnected</comment>
+  </data>
+  <data name="Dialogs_Delinquency_Subtitle">
+    <value>Veți putea accesa din nou opțiunile premium după ce acestea au fost plătite.</value>
+    <comment>The subtitle of the Delinquency window</comment>
+  </data>
+  <data name="Dialogs_Delinquency_Title">
+    <value>Acest cont VPN are facturi în așteptare</value>
+    <comment>The title of the Delinquency window</comment>
+  </data>
+  <data name="Dialogs_Delinquency_btn_Invoices">
+    <value>Verificare facturi</value>
+    <comment>The text on invoices button in the Delinquency window (opens web page for invoice payment)</comment>
+  </data>
+  <data name="Dialogs_Delinquency_msg">
+    <value>Contul este marcat ca delincvent din cauza facturilor neplătite. Puteți continua să utilizați Proton VPN, dar toate funcțiile plătite sunt acum dezactivate. &lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadAboutDelinquencyCommand}"&gt; Citiți mai mult despre delicvență.&lt;/Hyperlink&gt;</value>
+    <comment>The message displayed in the Delinquency window. The codes between &lt; and &gt; should be kept as is (Do not forget to translate the inner "Read more about delinquency.").</comment>
+  </data>
+  <data name="Dialogs_Delinquency_ttl">
+    <value>Cont delicvent</value>
+    <comment>The title of the Delinquency window</comment>
+  </data>
+  <data name="Dialogs_DisabledService_btn_Enable">
+    <value>Activare</value>
+  </data>
+  <data name="Dialogs_DisabledService_btn_LearnMore">
+    <value>Aflați mai multe</value>
+  </data>
+  <data name="Dialogs_DisabledService_btn_ShowLess">
+    <value>Afișare mai puțin</value>
+  </data>
+  <data name="Dialogs_DisabledService_msg_ExtraInfo">
+    <value>Unele aplicații, cum ar fi antivirușii sau optimizatoarele pentru computer, pot interfera cu serviciile de sistem de care are nevoie Proton VPN pentru a vă securiza conexiunea. Făcând clic pe «Activare», permiteți ca Windows să reactiveze serviciile Proton VPN.&lt;LineBreak/&gt;Dacă problema persistă, încercați să reporniți computerul sau să reinstalați Proton VPN.</value>
+  </data>
+  <data name="Dialogs_DisabledService_msg_Info">
+    <value>Unele componente ale Proton VPN ar putea fi blocate sau dezactivate, împiedicându-vă să vă conectați. Faceți clic pe «Activare» pentru a remedia problema.&lt;LineBreak/&gt;Rețineți că această operațiune necesită privilegii de administrator.</value>
+  </data>
+  <data name="Dialogs_DisconnectError_btn_DisableKillSwitch">
+    <value>Dezactivare blocare conexiune</value>
+    <comment>The text on Disable button in Disconnect modal window</comment>
+  </data>
+  <data name="Dialogs_DisconnectError_btn_Upgrade">
+    <value>Upgrade</value>
+    <comment>The text on Upgrade button in Disconnect modal window</comment>
+  </data>
+  <data name="Dialogs_DisconnectError_msg_AllAdaptersInUse">
+    <value>Adaptorul de rețea este momentan în uz.</value>
+    <comment>The error description displayed in Disconnect modal window if all TAP adapters are in use</comment>
+  </data>
+  <data name="Dialogs_DisconnectError_msg_Identifying">
+    <value>Se identifică problema...</value>
+    <comment>The message displayed in Disconnect modal window while trying to identify connection problem</comment>
+  </data>
+  <data name="Dialogs_DisconnectError_msg_KillSwitch">
+    <value>Blocarea conexiunii vă protejează adresa IP blocând toate conexiunile. În caz de probleme puteți dezactiva blocarea conexiunilor.</value>
+    <comment>The text displayed in Disconnect modal window ifn disconnect occurred with Kill Switch turned on.</comment>
+  </data>
+  <data name="Dialogs_DisconnectError_msg_NoServers">
+    <value>Nu sunt servere disponibile acum pentru selecția curentă. Selectați o opțiune diferită.</value>
+    <comment>The error description displayed in Disconnect modal window if disconnected because there are no servers available to connect to</comment>
+  </data>
+  <data name="Dialogs_DisconnectError_msg_NoTap">
+    <value>Adaptorul de rețea lipsește.</value>
+    <comment>The error description displayed in Disconnect modal window if TAP adapter is not installed</comment>
+  </data>
+  <data name="Dialogs_DisconnectError_msg_OldVersion">
+    <value>Versiunea adaptorului de rețea este depășită.</value>
+    <comment>The error description displayed in Disconnect modal window if TAP adapter version is too low</comment>
+  </data>
+  <data name="Dialogs_DisconnectError_msg_TapErrorHelp">
+    <value>Studiați acest &lt;Hyperlink Command="{Binding OpenHelpArticleCommand}"&gt;articol&lt;/Hyperlink&gt; despre cum să o rezolvați.</value>
+    <comment>The text displayed in Disconnect modal window if TAP error is detected</comment>
+  </data>
+  <data name="Dialogs_DisconnectError_msg_TlsCertificateError">
+    <value>Există o problemă la validarea certificatului de server VPN, care ar putea indica că conexiunea la rețea este modificată sau serverul la care încercați să vă conectați are o problemă de configurare. Obțineți ajutor de la asistența noastră pentru clienți trimițând un &lt;Hyperlink Command="{Binding ReportBugCommand}"&gt;&lt;Run Text="Raportare eroare"/&gt;&lt;/Hyperlink&gt;.</value>
+    <comment>The error description displayed in Disconnect modal window if VPN server certificate validation error has occurred</comment>
+  </data>
+  <data name="Dialogs_DoNotShowThisMessageAgain">
+    <value>Nu mai arăta acest mesaj</value>
+  </data>
+  <data name="Dialogs_EnableSmartProtocol_btn_Enable">
+    <value>Activare</value>
+    <comment>The text on Enable button in the Enable Smart Protocol window</comment>
+  </data>
+  <data name="Dialogs_EnableSmartProtocol_btn_KeepDisabled">
+    <value>Păstrare dezactivat</value>
+    <comment>The text on "Keep disabled" button in the Enable Smart Protocol window</comment>
+  </data>
+  <data name="Dialogs_EnableSmartProtocol_msg">
+    <value>Proton VPN a detectat că rețeaua actuală împiedică o conexiune la VPN. Activarea funcției Smart Protocol poate ocoli aceste limitări.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadAboutSmartProtocolCommand}"&gt;Citiți mai mult despre Smart Protocol.&lt;/Hyperlink&gt;</value>
+    <comment>The message displayed in the Enable Smart Protocol window. The codes between &lt; and &gt; should be kept as is (Do not forget to translate the inner "Read more about Smart Protocol.").</comment>
+  </data>
+  <data name="Dialogs_EnableSmartProtocol_ttl">
+    <value>Smart Protocol este acum dezactivat</value>
+    <comment>The title of the Enable Smart Protocol window</comment>
+  </data>
+  <data name="Dialogs_Exit_btn_Cancel">
+    <value>Anulare</value>
+  </data>
+  <data name="Dialogs_Exit_btn_Exit">
+    <value>Ieșire</value>
+  </data>
+  <data name="Dialogs_Exit_msg_Confirm">
+    <value>Doriți să continuați?</value>
+    <comment>The text displayed in the login window modal when the user tries to close the app while Kill Switch is active or VPN is on.</comment>
+  </data>
+  <data name="Dialogs_Exit_msg_Connected">
+    <value>Închizând aplicația se va deconecta de la VPN.</value>
+  </data>
+  <data name="Dialogs_Exit_msg_KillSwitchOn">
+    <value>Blocarea conexiunii blochează toate conexiunile pentru a evita divulgarea datelor. Ieșirea din aplicație va dezactiva blocarea conexiunii.</value>
+  </data>
+  <data name="Dialogs_Exit_msg_PermanentKillSwitch">
+    <value>Blocarea conexiunii este activată. Închizând aplicația veți bloca toate conexiunile până când vă veți reconecta în Proton VPN.</value>
+  </data>
+  <data name="Dialogs_HumanVerification_ttl">
+    <value>Verificare persoană</value>
+  </data>
+  <data name="Dialogs_IncorrectSystemTime_msg">
+    <value>Ceasul sistemului pare să nu fie sincronizat, ceea ce ar putea împiedica conectarea cu succes a VPN-ului. Vedeți &lt;Hyperlink Command="{Binding OpenKbArticleCommand}"&gt;aici&lt;/Hyperlink&gt; pentru mai multe informații.</value>
+  </data>
+  <data name="Dialogs_KillSwitchConfirmation_msg">
+    <value>With Permanent Kill Switch, if the VPN is not connected for any reason, you won't be able to access the internet.</value>
+  </data>
+  <data name="Dialogs_KillSwitchConfirmation_ttl">
+    <value>Activare blocare permanentă conexiune?</value>
+  </data>
+  <data name="Dialogs_MaximumDeviceLimit_Disconnect_Ok">
+    <value>Am înțeles</value>
+    <comment>The ok button text in the Maximum Device Limit window when the user already has the highest subscription plan</comment>
+  </data>
+  <data name="Dialogs_MaximumDeviceLimit_Disconnect_Subtitle">
+    <value>Deconectați un alt dispozitiv pentru a-l conecta pe acesta.</value>
+    <comment>The subtitle of the Maximum Device Limit window when the user already has the highest subscription plan</comment>
+  </data>
+  <data name="Dialogs_MaximumDeviceLimit_Title">
+    <value>Ați atins limita maximă de dispozitive folosite</value>
+    <comment>The title of the Maximum Device Limit window</comment>
+  </data>
+  <data name="Dialogs_MaximumDeviceLimit_Upgrade">
+    <value>Upgrade</value>
+    <comment>The upgrade button text in the Maximum Device Limit window when the user can upgrade the subscription plan</comment>
+  </data>
+  <data name="Dialogs_MaximumDeviceLimit_Upgrade_Subtitle">
+    <value>Deconectați un alt dispozitiv pentru a-l conecta pe acesta sau faceți upgrade la PLUS pentru a conecta 10 dispozitive în același timp.</value>
+    <comment>The subtitle of the Maximum Device Limit window when the user can upgrade the subscription plan</comment>
+  </data>
+  <data name="Dialogs_OutdatedApp_btn_Quit">
+    <value>Ieșire</value>
+    <comment>The text on quit button in outdated app modal window</comment>
+  </data>
+  <data name="Dialogs_OutdatedApp_lbl_Downloading">
+    <value>Se descarcă</value>
+    <comment>The text on download button when download is in process in outdated app modal window</comment>
+  </data>
+  <data name="Dialogs_OutdatedApp_lbl_Error">
+    <value>A apărut o problemă la descărcarea noii versiuni. Actualizați manual pentru a avea ultima versiune.</value>
+    <comment>The text displayed in outdated app window when the app fails to download the latest app version</comment>
+  </data>
+  <data name="Dialogs_OutdatedApp_lbl_Update">
+    <value>Actualizare</value>
+    <comment>The text on update button in outdated app modal window</comment>
+  </data>
+  <data name="Dialogs_OutdatedApp_lbl_UpdateManually">
+    <value>Actualizare manuală</value>
+    <comment>The text on update button in outdated app modal window</comment>
+  </data>
+  <data name="Dialogs_OutdatedApp_msg">
+    <value>Versiunea aplicației folosite nu mai este suportată. Actualizați la ultima versiune imediat ce actualizarea este disponibilă.</value>
+    <comment>The error message displayed on the outdated app window when the app version is outdated</comment>
+  </data>
+  <data name="Dialogs_OutdatedApp_msg_KillSwitchActive">
+    <value>Blocarea conexiunii este activată. Actualizarea sau închiderea aplicației o va dezactiva.</value>
+    <comment>The error message displayed on the outdated app window when the app version is outdated and Kill Switch is enabled</comment>
+  </data>
+  <data name="Dialogs_P2PBlocked_msg_Blocked">
+    <value>Conexiunea a fost dezactivată deoarece folosiți un server care nu suportă traficul de la persoană-la-persoană (P2P). P2P nu este suportat pe serverele gratuite. Folosiți un server P2P diferit.</value>
+    <comment>The warning message displayed when P2P traffic is detected on servers not allowing it.</comment>
+  </data>
+  <data name="Dialogs_PortForwardingConfirmation_msg">
+    <value>Activați redirecționarea portului doar dacă doriți să asigurați cea mai puternică intimitate și securitate.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadPortForwardingRisksCommand}"&gt;Am nevoie de redirecționarea portului?&lt;/Hyperlink&gt;</value>
+  </data>
+  <data name="Dialogs_PortForwardingConfirmation_ttl">
+    <value>Activare redirecționare port?</value>
+  </data>
+  <data name="Dialogs_Proxy_msg_ProxyDetected">
+    <value>Proton VPN a detectat un server proxy configurat în rețeaua locală. Aplicația Proton VPN nu poate proteja traficul care trece prin acest proxy. Prin urmare conexiunea nu va fi protejată complet așa cum e de așteptat.</value>
+    <comment>The text displayed in modal window when the app detects system proxy is turned on</comment>
+  </data>
+  <data name="Dialogs_Reboot_btn_Reboot">
+    <value>Restart</value>
+  </data>
+  <data name="Dialogs_Reboot_btn_SkipReboot">
+    <value>Continuare fără</value>
+  </data>
+  <data name="Dialogs_Reboot_msg">
+    <value>Pentru a evita orice eroare Proton VPN, vă recomandăm insistent să reporniți computerul pentru a actualiza mai întâi alte aplicații. Proton VPN va relua automat instalarea ulterior. Reporniți acum?</value>
+  </data>
+  <data name="Dialogs_Reboot_ttl">
+    <value>Calculatorul trebuie repornit</value>
+  </data>
+  <data name="Dialogs_Rebranding_Subtitle_new_plans">
+    <value>Vă prezentăm noua față împrospătată a lui Proton. Multe servicii, o singură misiune. Bun venit la un internet unde intimitatea este implicită. &lt;Hyperlink Command="{Binding LearnMoreCommand}"&gt;Detalii&lt;/Hyperlink&gt;</value>
+  </data>
+  <data name="Dialogs_Rebranding_Title_new_plans">
+    <value>Proton actualizat, protecție unificată</value>
+  </data>
+  <data name="Dialogs_Rebranding_btn_GotIt_new_plans">
+    <value>Am înțeles</value>
+  </data>
+  <data name="Dialogs_SplitTunnelWarning_msg">
+    <value>Pentru ca divizarea traficului să funcționeze, trebuie să dezactivați blocarea conexiunii.</value>
+  </data>
+  <data name="Dialogs_SubscriptionExpired_ListOption1">
+    <value>Sute de servere în 55 de țări</value>
+    <comment>An option of the subscriber benefits list in the Subscription Expired window</comment>
+  </data>
+  <data name="Dialogs_SubscriptionExpired_ListOption2">
+    <value>Conectați până la 10 dispozitive simultan</value>
+    <comment>An option of the subscriber benefits list in the Subscription Expired window</comment>
+  </data>
+  <data name="Dialogs_SubscriptionExpired_ListOption3">
+    <value>Caracteristici avansate: NetShield, Secure Core, Tor, P2P</value>
+    <comment>An option of the subscriber benefits list in the Subscription Expired window</comment>
+  </data>
+  <data name="Dialogs_SubscriptionExpired_ListTitle">
+    <value>Reactivați planul superior pentru a vă bucura de toate caracteristicile:</value>
+    <comment>The text right before the subscriber benefits list in the Subscription Expired window</comment>
+  </data>
+  <data name="Dialogs_SubscriptionExpired_Reconnected_Subtitle">
+    <value>Abonamentul a fost retrogradat, deci se va reconecta la cel mai rapid server disponibil.</value>
+    <comment>The subtitle of the Subscription Expired window when the user is reconnected</comment>
+  </data>
+  <data name="Dialogs_SubscriptionExpired_Subtitle">
+    <value>Abonamentul a fost retrogradat.</value>
+    <comment>The subtitle of the Subscription Expired window</comment>
+  </data>
+  <data name="Dialogs_SubscriptionExpired_Title">
+    <value>Abonamentul planului VPN a expirat</value>
+    <comment>The title of the Subscription Expired window</comment>
+  </data>
+  <data name="Dialogs_SubscriptionExpired_Upgrade">
+    <value>Remigrare plan</value>
+    <comment>The upgrade button text in the Subscription Expired window</comment>
+  </data>
+  <data name="Dialogs_Troubleshoot_ttl">
+    <value>Depanare Proton VPN</value>
+    <comment>The text displayed in Troubleshoot modal window title</comment>
+  </data>
+  <data name="Dialogs_Troubleshooting_btn_Close">
+    <value>Închidere</value>
+    <comment>The button displayed in Troubleshoot modal window</comment>
+  </data>
+  <data name="Dialogs_Troubleshooting_btn_LearnMore">
+    <value>Detalii</value>
+    <comment>The button displayed in Troubleshooting modal window</comment>
+  </data>
+  <data name="Dialogs_Troubleshooting_msg_AlternativeRouting">
+    <value>&lt;Bold&gt;Direcționare alternativă&lt;/Bold&gt; - În cazul în care site-urile Proton sunt blocate, această setare permite aplicației să încerce o rută alternativă pentru a ajunge la Proton, care poate fi utilă pentru ocolirea paravalor de protecție sau a problemelor de rețea. Vă recomandăm să păstrați această setare activată pentru o mai mare fiabilitate. &lt;Hyperlink Command="{Binding AlternativeRoutingCommand}"&gt;&gt;Detalii&lt;/Hyperlink&gt;</value>
+    <comment>The text displayed in troubleshooting modal window</comment>
+  </data>
+  <data name="Dialogs_Troubleshooting_msg_Antivirus">
+    <value>&lt;Bold&gt;Interferența antivirusului&lt;/Bold&gt; - Dezactivați temporar sau eliminați programul antivirus.</value>
+    <comment>The text displayed in troubleshooting modal window</comment>
+  </data>
+  <data name="Dialogs_Troubleshooting_msg_Firewall">
+    <value>&lt;Bold&gt;Interferență proxy/paravan de protecție&lt;/Bold&gt; - Dezactivați orice proxy sau paravan de protecție sau contactați administratorul.</value>
+    <comment>The text displayed in troubleshooting modal window</comment>
+  </data>
+  <data name="Dialogs_Troubleshooting_msg_GovBlock">
+    <value>&lt;Bold&gt;Blocare guvernamentală&lt;/Bold&gt; - Țara dvs. s-ar putea să vă blocheze accesul la Proton. Încercați să utilizați &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor&lt;/Hyperlink&gt; pentru a accesa Proton.</value>
+    <comment>The text displayed in troubleshooting modal window</comment>
+  </data>
+  <data name="Dialogs_Troubleshooting_msg_GovBlockDoH">
+    <value>&lt;Bold&gt;Blocare guvernamentală&lt;/Bold&gt; - Țara dvs. s-ar putea să vă blocheze accesul la Proton. Încercați să utilizați &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor&lt;/Hyperlink&gt; pentru a accesa Proton.</value>
+    <comment>The text displayed in troubleshooting modal window</comment>
+  </data>
+  <data name="Dialogs_Troubleshooting_msg_IspProblem">
+    <value>&lt;Bold&gt;Problemă cu Furnizorul de Servicii Internet (ISP)&lt;/Bold&gt; - Încercați să vă conectați la Proton de la o rețea diferită (sau utilizați &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor&lt;/Hyperlink&gt;).</value>
+    <comment>The text displayed in troubleshooting modal window</comment>
+  </data>
+  <data name="Dialogs_Troubleshooting_msg_NoInternet">
+    <value>&lt;Bold&gt;Nu există conexiune&lt;/Bold&gt; - Asigurați-vă că funcționează conexiunea la internet.</value>
+    <comment>The text displayed in troubleshooting modal window</comment>
+  </data>
+  <data name="Dialogs_Troubleshooting_msg_ProtonDown">
+    <value>&lt;Bold&gt;Proton este căzut&lt;/Bold&gt; - Verificați &lt;Hyperlink Command="{Binding ProtonStatusCommand}"&gt;starea Proton&lt;/Hyperlink&gt; pentru starea sistemului.</value>
+    <comment>The text displayed in troubleshooting modal window</comment>
+  </data>
+  <data name="Dialogs_Troubleshooting_msg_Title">
+    <value>Probleme potențiale care ar putea cauza expirărarea conexiunii și soluția acestora</value>
+    <comment>The text displayed in troubleshooting modal window</comment>
+  </data>
+  <data name="Dialogs_Troubleshooting_msg_Unknown">
+    <value>&lt;Bold&gt;Încă nu puteți găsi o soluție?&lt;/Bold&gt; - Contactați-ne direct prin &lt;Hyperlink Command="{Binding SupportFormCommand}"&gt;formularul de asistență&lt;/Hyperlink&gt;, e-mail (support@protonvpn.com) sau &lt;Hyperlink Command="{Binding ProtonTwitterCommand}"&gt;Twitter&lt;/Hyperlink&gt;.</value>
+    <comment>The text displayed in troubleshooting modal window</comment>
+  </data>
+  <data name="Dialogs_TunInUse_btn_SwitchToTap">
+    <value>Comutare la TAP</value>
+  </data>
+  <data name="Dialogs_TunInUse_msg">
+    <value>Proton VPN nu s-a putut conecta deoarece adaptorul de rețea TUN este deja în uz. Deconectați toate VPN-urile active și încercați din nou. Alternativ, comutați la adaptorul TAP (puteți reveni la TUN în Setări avansate).</value>
+  </data>
+  <data name="Dialogs_btn_Cancel">
+    <value>Anulare</value>
+    <comment>The text on Cancel button in dialog windows</comment>
+  </data>
+  <data name="Dialogs_btn_Close">
+    <value>Închidere</value>
+    <comment>The text on Close button in dialog windows</comment>
+  </data>
+  <data name="Dialogs_btn_Continue">
+    <value>Continuare</value>
+    <comment>The text on Continue button in dialog windows</comment>
+  </data>
+  <data name="Dialogs_btn_Enable">
+    <value>Activare</value>
+  </data>
+  <data name="Dialogs_btn_NoThanks">
+    <value>Nu, mulțumesc</value>
+    <comment>The text on NoThanks button in dialog windows</comment>
+  </data>
+  <data name="Dialogs_btn_Ok">
+    <value>Ok</value>
+  </data>
+  <data name="Dialogs_reconnection_FromServer">
+    <value>De la serverul:</value>
+    <comment>The label for the previous server in dialog windows</comment>
+  </data>
+  <data name="Dialogs_reconnection_ToServer">
+    <value>La serverul:</value>
+    <comment>The label for the new server in dialog windows</comment>
+  </data>
+  <data name="Dialogs_ttl_Question">
+    <value>Atenție</value>
+    <comment>The title of question message window</comment>
+  </data>
+  <data name="Dialogs_ttl_Warning">
+    <value>Atenție</value>
+    <comment>The title of warning message window</comment>
+  </data>
+  <data name="ErrorWindow_lbl_Close">
+    <value>Închidere</value>
+  </data>
+  <data name="ErrorWindow_lbl_Download">
+    <value>Descărcare</value>
+  </data>
+  <data name="ErrorWindow_lbl_DownloadInfo">
+    <value>Descărcați și instalați ultima versiune pentru a rezolva problema.</value>
+  </data>
+  <data name="ErrorWindow_lbl_MissingHeading">
+    <value>Aplicației îi lipsește un fișier</value>
+  </data>
+  <data name="ErrorWindow_lbl_MissingInfo">
+    <value>Unele aplicații din sistem ar putea să aibă câteva fișiere șterse sau să fi fost împiedicate să se instaleze corect.</value>
+  </data>
+  <data name="ErrorWindow_lbl_Repair">
+    <value>Reparare</value>
+  </data>
+  <data name="ErrorWindow_lbl_RepairInfo">
+    <value>Reparați instalarea.</value>
+  </data>
+  <data name="KillSwitch">
+    <value>Kill Switch</value>
+  </data>
+  <data name="License_ttl">
+    <value>Licența</value>
+    <comment>The title of License window</comment>
+  </data>
+  <data name="Login_Error_msg_SessionExpired">
+    <value>Sesiunea a expirat. Reutentificați-vă.</value>
+    <comment>The message displayed in Login window when expired session is detected</comment>
+  </data>
+  <data name="Login_Error_msg_Unauthorized">
+    <value>Token împrospătare nevalid, reautentificați-vă.</value>
+    <comment>The text displayed after failed login attempt</comment>
+  </data>
+  <data name="Login_Error_msg_Unknown">
+    <value>Eroare necunoscută</value>
+    <comment>The description of error displayed in Login window</comment>
+  </data>
+  <data name="Login_btn_Authenticate">
+    <value>Autentificare</value>
+  </data>
+  <data name="Login_btn_Login">
+    <value>Conectare</value>
+    <comment>The text on Login button in Login window (logs in the user)</comment>
+  </data>
+  <data name="Login_lbl_KillSwitch">
+    <value>Blocarea coenxiunii este activă</value>
+    <comment>The text displayed on the login window when user was force logged out while Kill Switch is active</comment>
+  </data>
+  <data name="Login_lbl_Password">
+    <value>Parola</value>
+    <comment>The label for Password text box in Login window</comment>
+  </data>
+  <data name="Login_lbl_SecureInternetAnywhere">
+    <value>Secure internet anywhere</value>
+    <comment>The text displayed on the bottom of Login window while logging in</comment>
+  </data>
+  <data name="Login_lbl_StartAndConnectOnBoot">
+    <value>Autopornire și conectare la inițializare</value>
+  </data>
+  <data name="Login_lbl_StartWithWindows">
+    <value>Pornire cu Windows</value>
+    <comment>The label for Start with Windows toggle switch in Login window</comment>
+  </data>
+  <data name="Login_lbl_TakingLongerThanExpected">
+    <value>Conexiunea la Proton VPN este în derulare...</value>
+    <comment>The text displayed in login window when login takes longer than expected</comment>
+  </data>
+  <data name="Login_lbl_TwoFactorAuthCode">
+    <value>Cod autentificare cu doi factori</value>
+  </data>
+  <data name="Login_lbl_Username">
+    <value>Utilizator</value>
+    <comment>The label for Username text box in Login window</comment>
+  </data>
+  <data name="Login_lnk_CommonSignInIssues">
+    <value>Probleme comune de conectare</value>
+    <comment>The text of hyperlink in Need Help popup of Login window (opens web page with information regarding login issues)</comment>
+  </data>
+  <data name="Login_lnk_CreateAccount">
+    <value>Creare cont</value>
+    <comment>The text of hyperlink for creating account in Login window</comment>
+  </data>
+  <data name="Login_lnk_ForgotUsername">
+    <value>Am uitat numele de utilizator</value>
+    <comment>The text of hyperlink in Need Help popup of Login window (opens web page for users that forgot username)</comment>
+  </data>
+  <data name="Login_lnk_LoginProblems">
+    <value>Probleme comune de conectare</value>
+    <comment>The text of hyperlink in Need Help popup of Login window (opens web page with potential solutions for common login problems)</comment>
+  </data>
+  <data name="Login_lnk_NeedHelp">
+    <value>Doriți ajutor?</value>
+    <comment>The text of Need Help hyperlink of Login window (opens popup with more options)</comment>
+  </data>
+  <data name="Login_lnk_ReportAnIssue">
+    <value>Raportare o problemă</value>
+    <comment>The text of hyperlink in Need Help popup of Login window (opens report an issue modal window)</comment>
+  </data>
+  <data name="Login_lnk_ReportIssue">
+    <value>Raportare o problemă</value>
+    <comment>The text of hyperlink in Need Help popup of Login window (opens a modal to report a potential bug)</comment>
+  </data>
+  <data name="Login_lnk_ResetPassword">
+    <value>Resetare parolă</value>
+    <comment>The text of hyperlink in Need Help popup of Login window (opens web page for resetting user password)</comment>
+  </data>
+  <data name="Login_msg_IncorrectTwoFactorCode">
+    <value>Cod de autentificare cu doi factori incorect</value>
+  </data>
+  <data name="Login_msg_TwoFactorAuthFailed">
+    <value>Date de conectare incorecte. Reîncercați.</value>
+  </data>
+  <data name="Login_ttl">
+    <value>Proton VPN</value>
+    <comment>The title of Login window. Should not be converted.</comment>
+  </data>
+  <data name="Map_SpeedGraph_lbl_DownSpeed">
+    <value>Viteză descărcare:</value>
+    <comment>The label for download speed in Speed Graph on Map in main app window</comment>
+  </data>
+  <data name="Map_SpeedGraph_lbl_DownVolume">
+    <value>Volum descărcare:</value>
+    <comment>The label for downloaded data amount in Speed Graph on Map in main app window</comment>
+  </data>
+  <data name="Map_SpeedGraph_lbl_Session">
+    <value>Sesiune:</value>
+    <comment>The label for VPN connection duration in Speed Graph on Map in main app window</comment>
+  </data>
+  <data name="Map_SpeedGraph_lbl_Speed">
+    <value>Viteza</value>
+    <comment>The label for overall data transfer speed in Speed Graph on Map in main app window</comment>
+  </data>
+  <data name="Map_SpeedGraph_lbl_TimeUnits">
+    <value>60 de secunde</value>
+    <comment>The time units of Speed graph in Map of main app window</comment>
+  </data>
+  <data name="Map_SpeedGraph_lbl_Traffic">
+    <value>Trafic sesiune</value>
+    <comment>The label for traffic data in Speed Graph on Map in main app window</comment>
+  </data>
+  <data name="Map_SpeedGraph_lbl_UpSpeed">
+    <value>Viteză încărcare:</value>
+    <comment>The label for upload speed in Speed Graph on Map in main app window</comment>
+  </data>
+  <data name="Map_SpeedGraph_lbl_UpVolume">
+    <value>Volum încărcare:</value>
+    <comment>The label for uploaded data amount in Speed Graph on Map in main app window</comment>
+  </data>
+  <data name="Map_VpnStatus_val_Connected">
+    <value>CONECTAT</value>
+    <comment>The connection status displayed in the Home section of the Map in main app window when not connected to VPN</comment>
+  </data>
+  <data name="Map_VpnStatus_val_Disconnected">
+    <value>DECONECTAT</value>
+    <comment>The connection status displayed in the Home section of the Map in main app window when connected to VPN</comment>
+  </data>
+  <data name="Map_btn_Connect">
+    <value>Conectare</value>
+    <comment>The text of Connect command in a balloon above Pin in Map (connects to the VPN)</comment>
+  </data>
+  <data name="Map_btn_Disconnect">
+    <value>Deconectare</value>
+    <comment>The text of Disconnect command in a balloon above Pin in Map (disconnects from the VPN)</comment>
+  </data>
+  <data name="Map_lbl_SecureCore">
+    <value>Nucleu securizat</value>
+    <comment>The part of text displayed in a balloon above Secure Core Pin in Map. The full text is "(Secure Core) country name".</comment>
+  </data>
+  <data name="Modal_DiscourageSecureCore_ActivateSecureCore">
+    <value>Activare Secure Core</value>
+  </data>
+  <data name="Modal_DiscourageSecureCore_DoNotShowItAgain">
+    <value>Nu mai arăta asta</value>
+  </data>
+  <data name="Modal_DiscourageSecureCore_LearnMore">
+    <value>Learn more</value>
+  </data>
+  <data name="Modal_DiscourageSecureCore_Subtitle">
+    <value>Secure Core oferă cel mai înalt nivel de securitate și confidențialitate, dar vă poate reduce viteza pe internet. Dacă aveți nevoie de mai multe performanțe, puteți dezactiva Secure Core.</value>
+  </data>
+  <data name="Modal_DiscourageSecureCore_Title">
+    <value>Observație privind viteza…</value>
+  </data>
+  <data name="NetShield">
+    <value>NetShield</value>
+  </data>
+  <data name="Notifications_Delinquency_Description">
+    <value>Veți putea accesa din nou opțiunile premium după ce acestea au fost plătite.</value>
+    <comment>The description of the Delinquency notification</comment>
+  </data>
+  <data name="Notifications_Delinquency_Reconnected_Description">
+    <value>Veți putea accesa din nou opțiunile premium după ce acestea sunt plătite. Momentan, se reconectează la cel mai rapid server disponibil din planul GRATUIT.</value>
+    <comment>The description of the Delinquency notification when the user is reconnected</comment>
+  </data>
+  <data name="Notifications_Delinquency_Title">
+    <value>Acest cont VPN are facturi în așteptare</value>
+    <comment>The title of the Delinquency notification</comment>
+  </data>
+  <data name="Notifications_EnableSmartProtocol_msg">
+    <value>Proton VPN a detectat că rețeaua curentă împiedică o conexiune la VPN. Activarea funcției Smart Protocol ar putea ocoli aceste limitări.</value>
+    <comment>The message displayed in the Enable Smart Protocol notification.</comment>
+  </data>
+  <data name="Notifications_EnableSmartProtocol_ttl">
+    <value>Smart Protocol este acum dezactivat</value>
+    <comment>The title of the Enable Smart Protocol notification</comment>
+  </data>
+  <data name="Notifications_InsecureWiFi_LearnMore">
+    <value>Detalii</value>
+    <comment>Button displayed in the Insecure Wi-Fi notification when connected to insecure Wi-Fi network.</comment>
+  </data>
+  <data name="Notifications_InsecureWiFi_msg_Detected">
+    <value>S-a detectat o conexiune Wi-Fi: {0}</value>
+    <comment>The message displayed in the Insecure Wi-Fi notification when connected to insecure Wi-Fi network. The {0} is a placeholder for Wi-Fi network name.</comment>
+  </data>
+  <data name="Notifications_MaximumDeviceLimit_Disconnect_Description">
+    <value>Deconectați un alt dispozitiv pentru a-l conecta pe acesta.</value>
+    <comment>The description of the Maximum Device Limit notification when the user already has the highest subscription plan</comment>
+  </data>
+  <data name="Notifications_MaximumDeviceLimit_Title">
+    <value>Ați atins limita maximă de dispozitive folosite</value>
+    <comment>The title of the Maximum Device Limit notification</comment>
+  </data>
+  <data name="Notifications_MaximumDeviceLimit_Upgrade_Description">
+    <value>Deconectați un alt dispozitiv pentru a-l conecta pe acesta sau faceți upgrade la PLUS pentru a conecta 10 dispozitive în același timp.</value>
+    <comment>The description of the Maximum Device Limit notification when the user can upgrade the subscription plan</comment>
+  </data>
+  <data name="Notifications_SubscriptionExpired_Description">
+    <value>Abonamentul a fost retrogradat. Reveniți din nou pentru a beneficia de toate funcțiile.</value>
+    <comment>The description of the Subscription Expired notification</comment>
+  </data>
+  <data name="Notifications_SubscriptionExpired_Reconnected_Description">
+    <value>Abonamentul a fost retrogradat, deci se va reconecta la cel mai rapid server disponibil. Reveniți din nou pentru a beneficia de toate funcțiile.</value>
+    <comment>The description of the Subscription Expired notification when the user is reconnected</comment>
+  </data>
+  <data name="Notifications_SubscriptionExpired_Title">
+    <value>Abonamentul planului VPN a expirat</value>
+    <comment>The title of the Subscription Expired notification</comment>
+  </data>
+  <data name="Notifications_Update_lnk_WhatsNew">
+    <value>Ce este nou</value>
+    <comment>The text of What's new hyperlink in Update flash notification (opens About window)</comment>
+  </data>
+  <data name="Notifications_Update_msg_NewAppVersion">
+    <value>Versiune nouă disponibilă!</value>
+    <comment>The message displayed in the Update notification when new app version is ready to install</comment>
+  </data>
+  <data name="Notifications_VpnState_msg_Connected">
+    <value>CONECTAT LA {0}</value>
+    <comment>The message displayed in VPN state system notification when app connects to VPN. The {0} is a placeholder for server name, {1} - move to new line, {2} - public IP address.</comment>
+  </data>
+  <data name="Notifications_VpnState_msg_Disconnected">
+    <value>DECONECTAT</value>
+    <comment>The message displayed in VPN state system notification when app disconnects from VPN</comment>
+  </data>
+  <data name="Onboarding_btn_EndTour">
+    <value>Terminare tur</value>
+    <comment>The text on End Tour button in Onboarding overlay of main app window</comment>
+  </data>
+  <data name="Onboarding_btn_NextStep">
+    <value>Înainte</value>
+    <comment>The text of Next Tip button on Onboarding overlay of main app window</comment>
+  </data>
+  <data name="Onboarding_msg_Step_1">
+    <value>Conectare automată la servereul care va furniza cea mai rapidă conexiune.</value>
+    <comment>The description of onboarding step 1 in Onboarding overlay of main app window</comment>
+  </data>
+  <data name="Onboarding_msg_Step_2">
+    <value>Salvați setările preferate și serverele pentru o utilizare ulterioară.</value>
+    <comment>The description of onboarding step 2 in Onboarding overlay of main app window</comment>
+  </data>
+  <data name="Onboarding_msg_Step_3">
+    <value>Alegeți țara și serverul pe care doriți să le utilizați ca adresă IP vizibilă.</value>
+    <comment>The description of onboarding step 3 in Onboarding overlay of main app window</comment>
+  </data>
+  <data name="Onboarding_msg_Step_4">
+    <value>Adaptați-vă conexiunea VPN la activitatea online cu funcțiile speciale ale Proton VPN pentru viteza optimă și protecția intimității.</value>
+    <comment>The description of onboarding step 4 in Onboarding overlay of main app window</comment>
+  </data>
+  <data name="Onboarding_ttl_Step_1">
+    <value>Conectare rapidă</value>
+    <comment>The title of onboarding step 1 in Onboarding overlay of main app window</comment>
+  </data>
+  <data name="Onboarding_ttl_Step_2">
+    <value>Profile</value>
+    <comment>The title of onboarding step 2 in Onboarding overlay of main app window</comment>
+  </data>
+  <data name="Onboarding_ttl_Step_3">
+    <value>Țări</value>
+    <comment>The title of onboarding step 3 in Onboarding overlay of main app window</comment>
+  </data>
+  <data name="Onboarding_ttl_Step_4">
+    <value>Setări rapide</value>
+    <comment>The title of onboarding step 4 in Onboarding overlay of main app window</comment>
+  </data>
+  <data name="PortForwarding">
+    <value>Redirecționare port</value>
+  </data>
+  <data name="PortForwarding_lbl_ActivePort">
+    <value>Port activ:</value>
+  </data>
+  <data name="PortForwarding_lbl_CopyValue">
+    <value>Faceți clic pentru a copia acest port.</value>
+  </data>
+  <data name="PortForwarding_lbl_Info">
+    <value>Setați acet număr în aplicația BitTorrent pentru o viteză sporită.</value>
+  </data>
+  <data name="PortForwarding_lbl_ServerWarning">
+    <value>Pentru a folosi redirecționarea porturilor, &lt;Hyperlink Command="{Binding ConnectToBestP2PServerCommand}"&gt;conectați-vă&lt;/Hyperlink&gt; la un server care suportă P2P.</value>
+  </data>
+  <data name="ProfileConnector_msg_MissingAuthCert">
+    <value>Proton VPN a eșuat să preia certificatul de autentificare datorită problemelor de rețea.</value>
+  </data>
+  <data name="ProfileSyncStatus_val_Failed">
+    <value>Eșuată</value>
+    <comment>The profile synchronization status displayed in the Profiles window</comment>
+  </data>
+  <data name="ProfileSyncStatus_val_Failed_Info">
+    <value>Sincronizarea profilului a eșuat</value>
+    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
+  </data>
+  <data name="ProfileSyncStatus_val_InProgress">
+    <value>Se sincronizează</value>
+    <comment>The profile synchronization status displayed in the Profiles window</comment>
+  </data>
+  <data name="ProfileSyncStatus_val_InProgress_Info">
+    <value>Se sincronizează profilurile</value>
+    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
+  </data>
+  <data name="ProfileSyncStatus_val_Overridden">
+    <value>Suprascris</value>
+    <comment>The profile synchronization status displayed in the Profiles window</comment>
+  </data>
+  <data name="ProfileSyncStatus_val_Succeeded">
+    <value>Sincronizat</value>
+    <comment>The profile synchronization status displayed in the Profiles window</comment>
+  </data>
+  <data name="ProfileSyncStatus_val_Succeeded_Info">
+    <value>Modificările profilului s-au sincronizat acum {0} {1}.</value>
+    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window. The {0} is a placeholder for number of time units, {1} - time units.</comment>
+  </data>
+  <data name="ProfileSyncStatus_val_Succeeded_Info_NoData">
+    <value>Nu sunt modificări ale profilului de sincronizat.</value>
+    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
+  </data>
+  <data name="Profiles_Profile_Description_val_Fastest">
+    <value>Cel mai rapid server disponibil</value>
+    <comment>The description of Fastest default profile displayed in Profiles window</comment>
+  </data>
+  <data name="Profiles_Profile_Description_val_Random">
+    <value>Server diferit de fiecare dată</value>
+    <comment>The description of Random default profile displayed in Profiles window</comment>
+  </data>
+  <data name="Profiles_Profile_Error_lbl_NotValid">
+    <value>Profilul nu poate fi salvat:</value>
+    <comment>The heading for list of validation errors in Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_Error_msg_ColorEmpty">
+    <value>Selectați o culoare</value>
+    <comment>The error message displayed in Profile window when color is not selected</comment>
+  </data>
+  <data name="Profiles_Profile_Error_msg_CountryEmpty">
+    <value>Selectați o țară</value>
+    <comment>The error message displayed in Profile window when country is not selected</comment>
+  </data>
+  <data name="Profiles_Profile_Error_msg_NameEmpty">
+    <value>Selectați un nume de profil</value>
+    <comment>The error message displayed in Profile window when profile name is empty</comment>
+  </data>
+  <data name="Profiles_Profile_Error_msg_NameExists">
+    <value>Deja există un profil cu același nume.</value>
+    <comment>The error message displayed in Profile window when profile name is already used by another profile</comment>
+  </data>
+  <data name="Profiles_Profile_Error_msg_NameTooLong_One">
+    <value>Lungimea maximă a numelui profilului este de un simbol. Alegeți altul mai scurt.</value>
+  </data>
+  <data name="Profiles_Profile_Error_msg_NameTooLong_Few">
+    <value>Lungimea maximă a numelui profilului este de {0} simboluri. Alegeți altul mai scurt.</value>
+  </data>
+  <data name="Profiles_Profile_Error_msg_NameTooLong_Other">
+    <value>Lungimea maximă a numelui profilului este de {0} de simboluri. Alegeți altul mai scurt.</value>
+  </data>
+  <data name="Profiles_Profile_Error_msg_ServerEmpty">
+    <value>Selectați un server</value>
+    <comment>The error message displayed in Profile window when server is not selected</comment>
+  </data>
+  <data name="Profiles_Profile_ExitCountry_Watermark">
+    <value>Selectați țara de ieșire</value>
+    <comment>The watermark text displayed in empty Exit Country combo box in Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_Name_Watermark">
+    <value>Introducere nume profil</value>
+    <comment>Thw watermark text displayed in empty Name text box of Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_Name_val_Fastest">
+    <value>Cel mai rapid</value>
+    <comment>The name of Fastest profile</comment>
+  </data>
+  <data name="Profiles_Profile_Name_val_Random">
+    <value>Aleator</value>
+    <comment>The name of Random profile</comment>
+  </data>
+  <data name="Profiles_Profile_btn_Discard">
+    <value>Renunțare</value>
+    <comment>The text on Discard button of discard changes Question dialog opened from Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_btn_KeepEditing">
+    <value>Continuare editare</value>
+    <comment>The text on Keep Editing button of discard changes Question dialog opened from Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_lbl_Color">
+    <value>Culoare:</value>
+    <comment>The label for Color selection in Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_lbl_Country">
+    <value>Țara:</value>
+    <comment>The label for Country combo box in Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_lbl_Country_Watermark">
+    <value>Selectare țară</value>
+    <comment>The watermark text displayed in empty Country combo box in Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_lbl_ExitCountry">
+    <value>Țara de ieșire:</value>
+    <comment>The label for Exit Country combo box in Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_lbl_Name">
+    <value>Nume:</value>
+    <comment>The label for Name text box in Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_lbl_Protocol">
+    <value>Protocol:</value>
+    <comment>The label for Protocol combo box in Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_lbl_Server">
+    <value>Server:</value>
+    <comment>The label for Server combo box in Profiles window</comment>
+  </data>
+  <data name="Profiles_Profile_lbl_Server_Watermark">
+    <value>Selectare server</value>
+    <comment>The watermark text displayed in empty Server combo box in Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_msg_DiscardChangesConfirm">
+    <value>Există modificări ale profilului nesalvate.&lt;LineBreak/&gt;&lt;LineBreak/&gt;Sigur doriți să le anulați?</value>
+    <comment>The message displayed in Question dialog when cancelling changes in Profile window.</comment>
+  </data>
+  <data name="Profiles_Profile_ttl_Create">
+    <value>Creare profil</value>
+    <comment>The title of Profile window when creating new profile</comment>
+  </data>
+  <data name="Profiles_Profile_ttl_Edit">
+    <value>Editare profil</value>
+    <comment>The title of Profile window when editing profile</comment>
+  </data>
+  <data name="Profiles_btn_Close">
+    <value>Închidere</value>
+    <comment>The text on Close button in Profiles window</comment>
+  </data>
+  <data name="Profiles_btn_Create">
+    <value>Creare profil</value>
+    <comment>The text on create profile button on Profile window (opens new profile window)</comment>
+  </data>
+  <data name="Profiles_btn_Sync">
+    <value>Sincronizare</value>
+    <comment>The text on Sync button in Profiles window (synchronizes profiles with the cloud)</comment>
+  </data>
+  <data name="Profiles_btn_Troubleshoot">
+    <value>Depanare</value>
+    <comment>The text on Troubleshoot button in Profiles window (opens troubleshooting window)</comment>
+  </data>
+  <data name="Profiles_col_Action">
+    <value>Acțiune</value>
+    <comment>The title of actions column in Profiles window</comment>
+  </data>
+  <data name="Profiles_col_Connection">
+    <value>Conexiune</value>
+    <comment>The title of VPN connection description column in Profiles window</comment>
+  </data>
+  <data name="Profiles_col_Profile">
+    <value>Profil</value>
+    <comment>The title of profile name column in Profiles window</comment>
+  </data>
+  <data name="Profiles_col_Protocol">
+    <value>Protocol</value>
+    <comment>The title of VPN protocol column in Profiles window</comment>
+  </data>
+  <data name="Profiles_col_Status">
+    <value>Stare</value>
+    <comment>The title of profile synchronization status column in Profiles window</comment>
+  </data>
+  <data name="Profiles_msg_AllServersOffline">
+    <value>Serverele sunt în mentenanță.</value>
+    <comment>The warning message displayed when trying to connect to profile with all servers offline</comment>
+  </data>
+  <data name="Profiles_msg_CountryOffline">
+    <value>Serverele din această țară sunt în mentenanță. Selectați o țară diferită.</value>
+    <comment>The message displayed when trying to connect to country with no servers available</comment>
+  </data>
+  <data name="Profiles_msg_DeleteConfirm">
+    <value>Acest profil va fi șters. Doriți să continuați?</value>
+    <comment>The confirmation message displayed when deleting profile in Profiles window</comment>
+  </data>
+  <data name="Profiles_msg_NoServersAvailable">
+    <value>Nu sunt servere disponibile acum pentru selecția curentă. Selectați o opțiune diferită.</value>
+    <comment>The message displayed when trying to connect to a country or profile with no servers available</comment>
+  </data>
+  <data name="Profiles_ttl">
+    <value>Profile</value>
+    <comment>The title of Profiles window</comment>
+  </data>
+  <data name="PromoCode_btn_Apply">
+    <value>Aplicare</value>
+  </data>
+  <data name="PromoCode_lbl_CouponCode">
+    <value>Cod cupon</value>
+  </data>
+  <data name="PromoCode_lbl_Success">
+    <value>Cuponul a fost aplicat cu succes.</value>
+  </data>
+  <data name="PromoCode_lbl_UseCoupon">
+    <value>Folosire cupon</value>
+  </data>
+  <data name="QuickLaunch_btn_Connect">
+    <value>Conectare rapidă</value>
+    <comment>The text on Connect button in Quick Launch window (connects to the VPN using Quick Connect profile)</comment>
+  </data>
+  <data name="QuickLaunch_btn_Disconnect">
+    <value>Deconectare</value>
+    <comment>The text on Disconnect button in Quick Launch window (disconnects from VPN)</comment>
+  </data>
+  <data name="QuickLaunch_btn_OpenApp">
+    <value>Deschidere Proton VPN</value>
+    <comment>The text on button in Quick Launch window (opens app)</comment>
+  </data>
+  <data name="QuickLaunch_lbl_Connecting">
+    <value>Se conectează la</value>
+    <comment>The label for VPN server name in Quick Launch window. Part of the sentence "Connecting to {server name}".</comment>
+  </data>
+  <data name="QuickLaunch_lbl_Profiles">
+    <value>Profile</value>
+    <comment>The label for Profiles list in combo box in Quick Launch window</comment>
+  </data>
+  <data name="QuickSettings_btn_KillSwitchOff">
+    <value>Blocare conexiune oprită</value>
+  </data>
+  <data name="QuickSettings_btn_KillSwitchOn">
+    <value>Blocare conexiune pornită</value>
+  </data>
+  <data name="QuickSettings_btn_LearnMore">
+    <value>Aflați mai multe</value>
+  </data>
+  <data name="QuickSettings_btn_NetshieldOff">
+    <value>Fără blocare</value>
+  </data>
+  <data name="QuickSettings_btn_NetshieldOnFirst">
+    <value>Blocare doar malware</value>
+  </data>
+  <data name="QuickSettings_btn_NetshieldOnSecond">
+    <value>Blocare malware, reclame și urmăritori</value>
+  </data>
+  <data name="QuickSettings_btn_PermanentKillSwitch">
+    <value>Blocare permanentă conexiune</value>
+  </data>
+  <data name="QuickSettings_btn_PortForwardingOff">
+    <value>Redirecționare port oprită</value>
+  </data>
+  <data name="QuickSettings_btn_PortForwardingOn">
+    <value>Redirecționare port pornită</value>
+  </data>
+  <data name="QuickSettings_btn_SecureCoreOff">
+    <value>„Secure Core” oprit</value>
+  </data>
+  <data name="QuickSettings_btn_SecureCoreOn">
+    <value>„Secure Core” pornit</value>
+  </data>
+  <data name="QuickSettings_btn_Upgrade">
+    <value>UPGRADE</value>
+  </data>
+  <data name="QuickSettings_lbl_KillSwitchInfo">
+    <value>Disables internet if the VPN connection drops to prevent accidental IP leak.</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldInfo">
+    <value>Browse the internet without ads and malware.</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldWarning">
+    <value>Dacă paginile web nu se încarcă, încercați cu NetShield dezactivat.</value>
+  </data>
+  <data name="QuickSettings_lbl_PortForwardingInfo">
+    <value>Speed up your torrenting and online gaming by allowing supported local apps to be reachable from the internet.</value>
+  </data>
+  <data name="QuickSettings_lbl_SecureCoreInfo">
+    <value>Direcționați-vă cele mai importante date prin serverele noastre sigure din țările care respectă intimitatea.</value>
+  </data>
+  <data name="QuickSettings_lbl_SecureCoreWarning">
+    <value>„Secure Core” are putea reduce viteza prin VPN</value>
+  </data>
+  <data name="SecureCore">
+    <value>Secure Core</value>
+  </data>
+  <data name="ServerType_val_None">
+    <value>Standard</value>
+    <comment>The server type in Profile window</comment>
+  </data>
+  <data name="ServerType_val_P2P">
+    <value>P2P</value>
+    <comment>The server type in Profile window</comment>
+  </data>
+  <data name="ServerType_val_SecureCore">
+    <value>Secure Core</value>
+    <comment>The server type in Profile window</comment>
+  </data>
+  <data name="ServerType_val_Tor">
+    <value>Tor</value>
+    <comment>The server type in Profile window</comment>
+  </data>
+  <data name="Servers_Feature_val_P2P">
+    <value>Server P2P</value>
+    <comment>The name of P2P server feature</comment>
+  </data>
+  <data name="Servers_Feature_val_Plus">
+    <value>Plus server</value>
+    <comment>The name of Plus server feature</comment>
+  </data>
+  <data name="Servers_Feature_val_SecureCore">
+    <value>Secure Core</value>
+    <comment>The name of Secure Core server feature</comment>
+  </data>
+  <data name="Servers_Feature_val_Streaming">
+    <value>Transmisie în flux</value>
+  </data>
+  <data name="Servers_Feature_val_Tor">
+    <value>Server Tor</value>
+    <comment>The name of Tor server feature</comment>
+  </data>
+  <data name="Servers_Load_lbl_IP">
+    <value>Server IP:</value>
+    <comment>The label for server IP address in Server Load popup. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
+  </data>
+  <data name="Servers_Load_lbl_IPAutoAssigned">
+    <value>Atribuit automat</value>
+    <comment>The text displayed instead of server IP address in Server Load popup. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
+  </data>
+  <data name="Servers_Load_lbl_Load">
+    <value>Solicitare server:</value>
+    <comment>The label for server load in Server Load popup. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
+  </data>
+  <data name="Servers_Load_lbl_LoadInfo">
+    <value>{0}% solicitare</value>
+    <comment>The tooltip text of server load image in Countries tab of Sidebar section of main app window, the server load in Connection section of Sidebar of main app window. The {0} is a placeholder for load percentage value.</comment>
+  </data>
+  <data name="Servers_Load_lbl_LoadInfo_NoData">
+    <value>Nu sunt date</value>
+    <comment>The tooltip text of server load image in Countries tab of Sidebar section of main app window</comment>
+  </data>
+  <data name="Servers_Load_lbl_Status">
+    <value>Stare server:</value>
+    <comment>The label for server status in Server Load popup. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
+  </data>
+  <data name="Servers_Load_lbl_ViaCountry">
+    <value>Prin {0} la {1}</value>
+    <comment>The heading of Secure Core server info displayed in Server Load popup. The {0} is a placeholder for entry country, {1} - exit country. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
+  </data>
+  <data name="Servers_btn_Connect">
+    <value>Conectare</value>
+    <comment>The text on Connect button in Server list in Countries tab of Sidebar in main app window (connects to the VPN server)</comment>
+  </data>
+  <data name="Servers_btn_Disconnect">
+    <value>Deconectare</value>
+    <comment>The text on Disconnect button in Server list in Countries tab of Sidebar in main app window (disconnects from the VPN server)</comment>
+  </data>
+  <data name="Servers_btn_Upgrade">
+    <value>Upgrade</value>
+    <comment>The text on Upgrade button in Server list in Countries tab of Sidebar in main app window (opens Upgrade Required Upsell window)</comment>
+  </data>
+  <data name="Servers_lbl_Upgrade">
+    <value>Upgrade</value>
+    <comment>The label displayed next to server name in Server list in Countries tab of Sidebar in main app window</comment>
+  </data>
+  <data name="Servers_lbl_ViaCountry">
+    <value>prin</value>
+    <comment>The label displayed before entry country name in Server list of Countries tab of Sidebar section of main app window when Secure Core mode is enabled</comment>
+  </data>
+  <data name="Servers_msg_CantConnect_CertificateExpired">
+    <value>Proton VPN nu a putut împrospăta certificatul de autentificare.</value>
+  </data>
+  <data name="Servers_msg_CantConnect_Maintenance">
+    <value>Serverul la care încercați să vă conectați este în mentenanță. Selectați alt server sau profil.</value>
+    <comment>The message displayed when connecting to server which is on maintenance</comment>
+  </data>
+  <data name="Servers_msg_CantConnect_Missing">
+    <value>Serverul la care încercați să vă conectați a fost eliminat. Selectați alt server sau profil.</value>
+    <comment>The message displayed when connecting to server which was removed and doesn't exist anymore</comment>
+  </data>
+  <data name="Servers_msg_CantConnect_RpcServerUnavailable">
+    <value>Proton VPN nu se poate conecta deoarece serverul RPC nu este disponibil în sistemul dvs. &lt;Hyperlink Command="{Binding OpenRpcServerUrlCommand}"&gt;Vedeți posibile soluțiil&lt;/Hyperlink&gt;</value>
+  </data>
+  <data name="Servers_msg_MissingServerPublicKey">
+    <value>Unfortunately, this server does not support WireGuard.</value>
+  </data>
+  <data name="Settings_Advanced_SplitTunnel_btn_AddApp">
+    <value>Adăugare aplicație</value>
+    <comment>The text on Add App button in Settings window Advanced tab Split Tunneling section (opens a window for selecting custom app to add)</comment>
+  </data>
+  <data name="Settings_Advanced_SplitTunnel_lbl_Apps">
+    <value>APLICAȚIE:</value>
+    <comment>The label for application list in Settings window Advanced tab Split Tunneling section</comment>
+  </data>
+  <data name="Settings_Advanced_SplitTunnel_lbl_Exclude">
+    <value>Excludere aplicații/IP-uri de a utiliza VPN-ul</value>
+    <comment>The label of Split Tunnel mode in Split Tunneling section of Advanced tab of Settings window</comment>
+  </data>
+  <data name="Settings_Advanced_SplitTunnel_lbl_Include">
+    <value>Doar aplicațiile incluse/IP-urile vor trece prin tunelul VPN</value>
+    <comment>The label of Split Tunnel mode in Split Tunneling section of Advanced tab of Settings window</comment>
+  </data>
+  <data name="Settings_Advanced_SplitTunnel_lbl_Ip">
+    <value>IP:</value>
+    <comment>The label for IP address list in Settings window Advanced tab Split Tunneling section</comment>
+  </data>
+  <data name="Settings_Advanced_SplitTunnel_lbl_Ip_Watermark">
+    <value>Adăugare adrese IPv4</value>
+    <comment>The watermark text of empty text box for entering IPv4 address in Split Tunneling section of Advanced tab in Settings window</comment>
+  </data>
+  <data name="Settings_Advanced_SplitTunnel_msg_IpInvalid">
+    <value>IP nu este valid</value>
+    <comment>The error message displayed in a tooltip of IP text box in SplitTunneling section of Advanced tab of Settings window when IP address is not valid</comment>
+  </data>
+  <data name="Settings_Advanced_lbl_DnsLeakProtection">
+    <value>Protecție divulgări DNS</value>
+    <comment>The label for DNS Leak Protection toggle switch in Advanced tab of Settings window</comment>
+  </data>
+  <data name="Settings_Advanced_lbl_DnsLeakProtection_Info">
+    <value>Previne divulgarea detaliilor interogărilor DNS către terțe părți. Întotdeauna activată.</value>
+    <comment>The description of DNS Leak Protection setting displayed in the tooltip of the ( i ) image next to the label for DNS Leak Protection toggle switch in Advanced tab of Settings window</comment>
+  </data>
+  <data name="Settings_Advanced_lbl_DoH">
+    <value>Permitere rută alternativă</value>
+    <comment>The label for Alternative Routing toggle switch in Advanced tab of Settings window</comment>
+  </data>
+  <data name="Settings_Advanced_lbl_DoH_Info">
+    <value>În cazul în care serverele Proton sunt blocate, această setare permite aplicației să încerce accesarea printr-o rețea alternativă pentru a ajunge la Proton, ceea ce poate fi util pentru ocolirea paravanelor de protecție sau a problemelor de rețea. Se recomandă păstrarea acestei setări pentru o fiabilitate mai mare.</value>
+    <comment>The description of Allow Alternative Routing setting displayed in the tooltip of ( i ) image next to the label for Allow Alternative Routing toggle switch in Advanced tab of Settings window</comment>
+  </data>
+  <data name="Settings_Advanced_lbl_HardwareAcceleration">
+    <value>Accelerare hardware</value>
+    <comment>The label for Hardware Acceleration toggle switch in Advanced tab of Settings window</comment>
+  </data>
+  <data name="Settings_Advanced_lbl_HardwareAcceleration_Info">
+    <value>Oferă performanță îmbunătățită a sistemului și o experiență mai fluidă prin utilizarea GPU-ului pentru redarea grafică. Opriți în caz de erori de ecran.</value>
+    <comment>The description of Hardware Acceleration setting displayed in the tooltip of the ( i ) image next to the label for Hardware Acceleration toggle switch in Advanced tab of Settings window</comment>
+  </data>
+  <data name="Settings_Advanced_lbl_Ipv6Protection">
+    <value>Protecție divulgări IPv6</value>
+    <comment>The label for IPv6 Leak Protection toggle switch in Advanced tab of Settings window</comment>
+  </data>
+  <data name="Settings_Advanced_lbl_Ipv6Protection_Info">
+    <value>Prevenire divulgare adresă IPv6.</value>
+    <comment>The description of IPv6 Leak Protection setting displayed in the tooltip of the ( i ) image next to the label for IPv6 Leak Protection toggle switch in Advanced tab of Settings window</comment>
+  </data>
+  <data name="Settings_Advanced_lbl_NetworkDriver">
+    <value>Driver rețea OpenVPN</value>
+  </data>
+  <data name="Settings_Advanced_lbl_NetworkDriver_info">
+    <value>Driverele de rețea vă pot afecta conexiunea și viteza. Noul adaptor TUN oferă viteză mai mare, alternativă la adaptorul TAP dacă întâmpinați orice problemă de conectivitate.</value>
+  </data>
+  <data name="Settings_Advanced_lbl_NonStandardPorts">
+    <value>Porturi nonstandard</value>
+    <comment>The label for toggle switch in Advanced tab of Settings window</comment>
+  </data>
+  <data name="Settings_Advanced_lbl_NonStandardPorts_Info">
+    <value>Utilizați Proton VPN pentru orice nevoie specială permițând traficul către porturile nonstandard prin VPN.</value>
+    <comment>The description of Non-standard ports setting displayed in the tooltip of ( i ) image next to the label for Allow non-standard ports toggle switch in Advanced tab of Settings window</comment>
+  </data>
+  <data name="Settings_Advanced_lbl_OpenVpnTap">
+    <value>Adaptor TAP</value>
+  </data>
+  <data name="Settings_Advanced_lbl_OpenVpnTun">
+    <value>Adaptor TUN</value>
+  </data>
+  <data name="Settings_Advanced_lbl_PortForwarding">
+    <value>Redirecționare port</value>
+  </data>
+  <data name="Settings_Advanced_lbl_PortForwardingInQuickSettings">
+    <value>Scurtătură redirecționare porturi</value>
+  </data>
+  <data name="Settings_Advanced_lbl_PortForwardingInQuickSettings_Info">
+    <value>Accesare setări redirecționare porturi din setările rapide</value>
+  </data>
+  <data name="Settings_Advanced_lbl_PortForwardingNotifications">
+    <value>Notificări redirecționare porturi</value>
+  </data>
+  <data name="Settings_Advanced_lbl_PortForwardingNotifications_Info">
+    <value>Primiți notificări când numărul porturilor redirecționate se modifică</value>
+  </data>
+  <data name="Settings_Advanced_lbl_PortForwarding_Info">
+    <value>Măriți viteza pe torente și jocurile online permițând ca aplicațiile locale să fie accesibile de pe internet. &lt;Hyperlink Command="{Binding LearnMoreAboutPortForwardingCommand}"&gt;Detalii&lt;/Hyperlink&gt;</value>
+    <comment>Do not translate whatever is between &lt; and &gt;. Do not forget to translate the "Learn more".</comment>
+  </data>
+  <data name="Settings_Advanced_lbl_SplitTunnel">
+    <value>Divizare trafic</value>
+    <comment>The label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
+  </data>
+  <data name="Settings_Advanced_lbl_SplitTunnel_Info">
+    <value>Excludeți o aplicație sau o adresă IP din traficul VPN sau includeți numai anumite aplicații. Nu poate fi pornit împreună cu blocarea conexiunii.</value>
+    <comment>The description of Split Tunneling setting displayed in the tooltip of ( i ) image next to the label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
+  </data>
+  <data name="Settings_Advanced_lbl_btn_LearnMore">
+    <value>Aflați mai multe</value>
+  </data>
+  <data name="Settings_Advanced_ttl">
+    <value>Avansat</value>
+    <comment>The header of Advanced tab in Settings window</comment>
+  </data>
+  <data name="Settings_Connection_DefaultProtocol_val_Smart">
+    <value>Smart (sugerat)</value>
+    <comment>The suggested Smart protocol selection displayed in Protocol combo box in Connection tab of Settings window.</comment>
+  </data>
+  <data name="Settings_Connection_DefaultProtocol_val_Tcp">
+    <value>OpenVPN - TCP</value>
+    <comment>The OpenVPN TCP protocol name displayed in Protocol combo box in Connection tab of Settings window. Do not translate.</comment>
+  </data>
+  <data name="Settings_Connection_DefaultProtocol_val_Udp">
+    <value>OpenVPN - UDP</value>
+    <comment>The OpenVPN UDP protocol name displayed in Protocol combo box in Connection tab of Settings window. Do not translate.</comment>
+  </data>
+  <data name="Settings_Connection_DefaultProtocol_val_WireGuard">
+    <value>WireGuard</value>
+    <comment>The WireGuard protocol name displayed in the Protocol combo box in Connection tab of Settings window. Do not translate.</comment>
+  </data>
+  <data name="Settings_Connection_Warning_CustomDnsServer">
+    <value>Utilizarea serverelor DNS personalizate va dezactiva NetShield. Serverele DNS sunt responsabile pentru direcționarea către site-urile web corecte. &lt;LineBreak/&gt;&lt;LineBreak/&gt;Folosiți numai servere DNS în care aveți încredere. Doriți să activați serverele DNS personalizate?</value>
+    <comment>The text displayed in Custom DNS Servers warning modal window when use is trying to turn the feature ON when NetShield feature is turned on as well</comment>
+  </data>
+  <data name="Settings_Connection_btn_Upgrade">
+    <value>Upgrade</value>
+    <comment>The text on Upgrade button in Connection tab of Settings window</comment>
+  </data>
+  <data name="Settings_Connection_lbl_CustomDnsServer">
+    <value>Servere DNS personalizate</value>
+    <comment>The label for Custom DNS Servers combo box in Connection tab of Settings window</comment>
+  </data>
+  <data name="Settings_Connection_lbl_CustomDnsServer_Info">
+    <value>Introduceți un server DNS privat (cum ar fi AdGuard DNS) pentru a vă procesa solicitările DNS. Utilizarea unui server DNS personalizat va dezactiva NetShield. Serverele DNS sunt responsabile pentru a vă direcționa către site-ul corect, așa că utilizați numai serverele în care aveți încredere.</value>
+    <comment>The description of Custom DNS Servers setting displayed in the tooltip of the ( i ) image next to the label for Custom DNS Server toggle switch in Connection tab of Settings window</comment>
+  </data>
+  <data name="Settings_Connection_lbl_DefaultProtocol">
+    <value>Protocol</value>
+    <comment>The label for Protocol combo box in Connection tab of Settings window</comment>
+  </data>
+  <data name="Settings_Connection_lbl_DefaultProtocol_Info">
+    <value>Activați Smart Protocol pentru a utiliza cel mai bun protocol și port care oferă cea mai bună conectivitate.</value>
+    <comment>The description of Default Protocol settings displayed in the tooltip of ( i ) image next to the label for Default Protocol combo box in Connection tab of Settings window</comment>
+  </data>
+  <data name="Settings_Connection_lbl_ModerateNat">
+    <value>NAT moderat</value>
+  </data>
+  <data name="Settings_Connection_lbl_ModerateNat_Info">
+    <value>NAT moderat dezactivează alocarea aleatoare a adreselor locale, ceea ce poate reduce ușor securitatea, dar permite folosirea unor tehnici cum ar fi conexiunea directă pentru aplicații precum jocurile online.</value>
+  </data>
+  <data name="Settings_Connection_lbl_QuickConnect">
+    <value>Conectare rapidă</value>
+    <comment>The label for Quick Connect combo box in General tab of Settings window</comment>
+  </data>
+  <data name="Settings_Connection_lbl_QuickConnect_Info">
+    <value>Butonul de conectare rapidă vă conectează cu profilul selectat.</value>
+    <comment>The description of Quick Connect settings displayed in the tooltip of ( i ) image next to the label for Quick Connect combo box in General tab of Settings window</comment>
+  </data>
+  <data name="Settings_Connection_lbl_SmartReconnect">
+    <value>Autoreconectare</value>
+    <comment>The label for Auto Reconnect toggle switch in Settings window</comment>
+  </data>
+  <data name="Settings_Connection_lbl_SmartReconnectNotifications">
+    <value>Notificări reconectări</value>
+    <comment>The label for Smart Reconnect notifications toggle switch in the General tab of Settings window</comment>
+  </data>
+  <data name="Settings_Connection_lbl_SmartReconnectNotifications_Info">
+    <value>Activați asta pentru a primi notificări când VPN Accelerator vă conectează la un server mai rapid.</value>
+    <comment>The description of the Smart Reconnect notifications setting displayed in the tooltip of the ( i ) image next to the label</comment>
+  </data>
+  <data name="Settings_Connection_lbl_SmartReconnect_Info">
+    <value>Comutați automat la un server mai rapid similar cu cel pe care l-ați selectat.</value>
+    <comment>The description of Auto Reconnect setting displayed in the tooltip of the ( i ) image next to the label in Settings window</comment>
+  </data>
+  <data name="Settings_Connection_lbl_VpnAccelerator">
+    <value>VPN Accelerator</value>
+    <comment>The label for VPN Accelerator toggle switch in Settings window</comment>
+  </data>
+  <data name="Settings_Connection_lbl_VpnAccelerator_Info">
+    <value>VPN Accelerator activează un set de tehnologii unice de îmbunătățire a performanței, care pot crește viteza VPN cu până la 400%.</value>
+    <comment>The description of VPN Accelerator setting displayed in the tooltip of the ( i ) image next to the label in Settings window</comment>
+  </data>
+  <data name="Settings_Connection_ttl">
+    <value>Conexiune</value>
+    <comment>The title of Connection tab of Settings window</comment>
+  </data>
+  <data name="Settings_General_lbl_ConnectOnAppStart">
+    <value>Conectare la pornirea aplicației</value>
+    <comment>The label for Connect on boot combo box in General tab of Settings window</comment>
+  </data>
+  <data name="Settings_General_lbl_ConnectOnAppStart_Info">
+    <value>Conectare automată cu profilul de conectare rapidă când Proton VPN pornește.</value>
+    <comment>The description of Connect on boot setting displayed in the tooltip of ( i ) image next to the label for Connect on boot combo box in General tab of Settings window</comment>
+  </data>
+  <data name="Settings_General_lbl_EarlyAccess">
+    <value>Acces timpuriu</value>
+    <comment>The label for Early Access toggle switch in General tab of Settings window</comment>
+  </data>
+  <data name="Settings_General_lbl_EarlyAccess_Info">
+    <value>Fiți primul care obține ultimele actualizări. Rețineți că versiunile timpurii pot fi mai puțin stabile.</value>
+    <comment>The description of Early Access setting displayed in the tooltip of ( i ) image next to the label for Early Access toggle switch in General tab of Settings window</comment>
+  </data>
+  <data name="Settings_General_lbl_Language">
+    <value>Limba</value>
+    <comment>The label for Language combo box in General tab of Settings window</comment>
+  </data>
+  <data name="Settings_General_lbl_ShowNotifications">
+    <value>Afișare notificări</value>
+    <comment>The label for Show Notifications toggle switch in General tab of Settings window</comment>
+  </data>
+  <data name="Settings_General_lbl_StartMinimized">
+    <value>Pornire micșorat</value>
+    <comment>The label for Start Minimized combo box in General tab of Settings window</comment>
+  </data>
+  <data name="Settings_General_lbl_StartOnBoot">
+    <value>Pornire automată</value>
+    <comment>The label for Start on boot toggle switch in General tab of Settings window.
+This setting instructs the Proton VPN to start automatically when the user logs in to the computer.</comment>
+  </data>
+  <data name="Settings_General_ttl">
+    <value>General</value>
+    <comment>The title of General tab in Settings window</comment>
+  </data>
+  <data name="Settings_lnk_Reconnect">
+    <value>Reconectare</value>
+    <comment>The text of Reconnect hyperlink next to Reconnect Required message in Settings window (reconnects to same VPN server)</comment>
+  </data>
+  <data name="Settings_msg_ReconnectRequired">
+    <value>Unele modificări necesită reconectarea pentru a avea efect.</value>
+    <comment>The message displayed on the bottom of Settings window if any of settings changes requires VPN to be reconnected to take effect</comment>
+  </data>
+  <data name="Settings_ttl">
+    <value>Setări</value>
+    <comment>The title of Settings window</comment>
+  </data>
+  <data name="SidebarProfiles_lbl_MyProfiles">
+    <value>Profilurile mele</value>
+    <comment>The text of "My Profiles" category text in the Profile sidebar, that has the custom created profiles below</comment>
+  </data>
+  <data name="SidebarProfiles_lbl_Recommended">
+    <value>Recomandat</value>
+    <comment>The text of "Recommended" category text in the Profile sidebar, that has the predefined profiles below</comment>
+  </data>
+  <data name="Sidebar_Connection_btn_Connect">
+    <value>Conectare rapidă</value>
+    <comment>The text on Quick Connect button in Connection section of Sidebar section of main app window (connects to VPN using Quick Connect profile)</comment>
+  </data>
+  <data name="Sidebar_Connection_btn_Disconnect">
+    <value>Deconectare</value>
+    <comment>The text on Disconnect button in Connection section of Sidebar section of main app window (disconnect from VPN)</comment>
+  </data>
+  <data name="Sidebar_Connection_lbl_Disconnected">
+    <value>Nu există protecție!</value>
+    <comment>The text displayed on Connection section of Sidebar section of main app window</comment>
+  </data>
+  <data name="Sidebar_Connection_lbl_Disconnected_Info">
+    <value>Conectați-vă la un server VPN pentru a avea o conexiune sigură.</value>
+    <comment>The text displayed in a tooltip of Connection section of Sidebar section of main app window</comment>
+  </data>
+  <data name="Sidebar_Connection_lbl_IP_Unknown">
+    <value>Necunoscută</value>
+    <comment>The text displayed on Connection section of Sidebar section of main app window</comment>
+  </data>
+  <data name="Sidebar_Connection_lbl_IP_Unknown_Info">
+    <value>Imposibil de obținut adresa IP datorită problemelor de rețea sau a restricțiilor de la ISP.</value>
+    <comment>The text displayed in a tooltip of Connection section of Sidebar section of main app window</comment>
+  </data>
+  <data name="Sidebar_Connection_lbl_KillSwitch">
+    <value>Blocare conexiune activată!</value>
+    <comment>The text displayed in the sidebar when connection dropped and Kill Switch is turned on</comment>
+  </data>
+  <data name="Sidebar_Connection_lbl_KillSwitch_Info">
+    <value>Blocarea conexiunii blochează toate conexiunile pentru e preveni divulgarea datelor.</value>
+    <comment>Tooltip message shown in sidebar connection status box when hovered on exclamation mark icon</comment>
+  </data>
+  <data name="Sidebar_Countries_AllLocationCount">
+    <value>Locuri ({0})</value>
+  </data>
+  <data name="Sidebar_Countries_BasicAndPlusLocationCount">
+    <value>Locuri BASIC și PLUS ({0})</value>
+  </data>
+  <data name="Sidebar_Countries_BasicLocationCount">
+    <value>Locuri BASIC ({0})</value>
+  </data>
+  <data name="Sidebar_Countries_FreeLocationCount">
+    <value>Locuri GRATUITE ({0})</value>
+  </data>
+  <data name="Sidebar_Countries_PlusLocationCount">
+    <value>Locuri PLUS ({0})</value>
+  </data>
+  <data name="Sidebar_Countries_ServerCountByTier0">
+    <value>Servere GRATUITE ({0})</value>
+  </data>
+  <data name="Sidebar_Countries_ServerCountByTier1">
+    <value>Servere BASIC ({0})</value>
+  </data>
+  <data name="Sidebar_Countries_ServerCountByTier2">
+    <value>Plus servers ({0})</value>
+  </data>
+  <data name="Sidebar_Countries_ServerCountByTier3">
+    <value>Servere INTERNE</value>
+  </data>
+  <data name="Sidebar_Countries_info_SmartRouting">
+    <value>Smart Routing</value>
+  </data>
+  <data name="Sidebar_Countries_lbl_Maintenance">
+    <value>În întreținere</value>
+    <comment>The text displayed next to the country in Countries tab of Sidebar section of main app window when all servers in the country are under maintenance.</comment>
+  </data>
+  <data name="Sidebar_Countries_lbl_Search_Watermark">
+    <value>Căutare</value>
+    <comment>The watermark text displayed in Search text box in Countries tab of Sidebar section of main app window</comment>
+  </data>
+  <data name="Sidebar_Countries_lbl_SecureCore">
+    <value>Secure Core</value>
+    <comment>The label of Secure Core toggle switch on Countries tab of Sidebar section of main app window</comment>
+  </data>
+  <data name="Sidebar_Countries_lbl_SecureCore_Info">
+    <value>Furnizează o protecție adițională împotriva compromiterii serverului VPN direcționând traficul prin rețeaua noastră sigură.</value>
+    <comment>The description of Secure Core feature displayed in a tooltip of ( i ) image next to Secure Core toggle switch label on Countries tab in Sidebar section of main app window</comment>
+  </data>
+  <data name="Sidebar_Countries_msg_SecureCoreDisableConfirm">
+    <value>Dezactivând Secure Core se va deconecta conexiunea VPN activă. Doriți să continuați?</value>
+    <comment>The confirmation message displayed when switching off Secure Core toggle switch in Countries tab of Sidebar section of main app window while connected to VPN</comment>
+  </data>
+  <data name="Sidebar_Countries_msg_SecureCoreEnableConfirm">
+    <value>Comutând la Secure Core se va deconecta conexiunea VPN activă. Doriți să continuați?</value>
+    <comment>The confirmation message displayed when switching on Secure Core toggle switch in Countries tab of Sidebar section of main app window while connected to VPN</comment>
+  </data>
+  <data name="Sidebar_Countries_ttl">
+    <value>Țări</value>
+    <comment>The title of Countries tab in Sidebar section of main app window</comment>
+  </data>
+  <data name="Sidebar_FeaturesPopup_BasicAndPlus">
+    <value>PLUS</value>
+  </data>
+  <data name="Sidebar_FeaturesPopup_LearnMore">
+    <value>Detalii</value>
+  </data>
+  <data name="Sidebar_FeaturesPopup_P2P">
+    <value>P2P/BitTorrent</value>
+  </data>
+  <data name="Sidebar_FeaturesPopup_P2P_Desc">
+    <value>Aceste servere oferă cea mai bună performanță pentru BitTorrent și partajarea de fișiere.</value>
+  </data>
+  <data name="Sidebar_FeaturesPopup_Plus">
+    <value>Plus</value>
+  </data>
+  <data name="Sidebar_FeaturesPopup_SmartRouting">
+    <value>Smart Routing</value>
+  </data>
+  <data name="Sidebar_FeaturesPopup_SmartRouting_Desc">
+    <value>Această tehnologie permite ca Proton VPN să ofere viteză și securitate mai mare în țările dificil de accesat.</value>
+  </data>
+  <data name="Sidebar_FeaturesPopup_Streaming">
+    <value>Transmisie în flux</value>
+  </data>
+  <data name="Sidebar_FeaturesPopup_Streaming_Desc">
+    <value>Serverele PLUS suportă trasmisii în flux (Netflix, Disney+ etc.) de oriunde din lume.</value>
+  </data>
+  <data name="Sidebar_FeaturesPopup_Title">
+    <value>Funcții</value>
+  </data>
+  <data name="Sidebar_FeaturesPopup_Tor">
+    <value>Tor</value>
+  </data>
+  <data name="Sidebar_FeaturesPopup_Tor_Desc">
+    <value>Route your internet traffic through the Tor network. Slower, but more private.</value>
+  </data>
+  <data name="Sidebar_Profiles_btn_Create">
+    <value>Creare profil</value>
+    <comment>The text of button for creating new profile on Profiles tab of Sidebar section of main app window (opens new profile window)</comment>
+  </data>
+  <data name="Sidebar_Profiles_lnk_Manage">
+    <value>Gestionare</value>
+    <comment>The text of hyperlink on Profiles tab of Sidebar section of main app window (opens Profiles window)</comment>
+  </data>
+  <data name="Sidebar_Profiles_ttl">
+    <value>Profile</value>
+    <comment>The title of Profiles tab in the Sidebar of main app window</comment>
+  </data>
+  <data name="Sidebar_Separator_Others">
+    <value>ALTELE</value>
+    <comment>When Port Forwarding is enabled, we show the P2P servers first and only then the OTHERS.</comment>
+  </data>
+  <data name="Sidebar_Servers_info_plus">
+    <value>Server Plus</value>
+    <comment>The description displayed in a tooltip of P icon on a sidebar server item</comment>
+  </data>
+  <data name="Sidebar_Streaming_Country">
+    <value>Trasmisii în flux - {0}</value>
+  </data>
+  <data name="Sidebar_Streaming_Features">
+    <value>Funcții</value>
+  </data>
+  <data name="Sidebar_Streaming_Info">
+    <value>Conectați-vă la un server Plus din această țară pentru a reda transmisii în flux.</value>
+  </data>
+  <data name="Sidebar_Streaming_InfoNote">
+    <value>Notă: Folosiți un alt navigator și/sau goliți bufferul pentru a vă asigura că apare conținut nou.</value>
+  </data>
+  <data name="Sidebar_Streaming_More">
+    <value>și mai multe</value>
+  </data>
+  <data name="StartMinimizedMode_val_Disabled">
+    <value>Dezactivat</value>
+    <comment>The name of start minimized mode displayed in Start Minimized combo box in General tab of Settings window</comment>
+  </data>
+  <data name="StartMinimizedMode_val_ToSystray">
+    <value>în Zona de notificare</value>
+    <comment>The name of start minimized mode displayed in Start Minimized combo box in General tab of Settings window</comment>
+  </data>
+  <data name="StartMinimizedMode_val_ToTaskbar">
+    <value>în Bara de sarcini</value>
+    <comment>The name of start minimized mode displayed in Start Minimized combo box in General tab of Settings window</comment>
+  </data>
+  <data name="TextBoxPlaceholder">
+    <value>Începeți să scrieți...</value>
+    <comment>The text displayed as a placeholder on any text box all over the application</comment>
+  </data>
+  <data name="TimeUnit_val_Day_One">
+    <value>zi</value>
+  </data>
+  <data name="TimeUnit_val_Day_Few">
+    <value>zile</value>
+  </data>
+  <data name="TimeUnit_val_Day_Other">
+    <value>de zile</value>
+  </data>
+  <data name="TimeUnit_val_Hour_One">
+    <value>oră</value>
+  </data>
+  <data name="TimeUnit_val_Hour_Few">
+    <value>ore</value>
+  </data>
+  <data name="TimeUnit_val_Hour_Other">
+    <value>de ore</value>
+  </data>
+  <data name="TimeUnit_val_Minute_One">
+    <value>minut</value>
+  </data>
+  <data name="TimeUnit_val_Minute_Few">
+    <value>minute</value>
+  </data>
+  <data name="TimeUnit_val_Minute_Other">
+    <value>de minute</value>
+  </data>
+  <data name="Tooltips_SmartReconnection_Description">
+    <value>S-a comutat la un server mai rapid, similar cu cel pe care l-ați selectat.</value>
+    <comment>The description of the Auto Reconnection tooltip</comment>
+  </data>
+  <data name="Tooltips_SmartReconnection_Title">
+    <value>VPN Accelerator</value>
+    <comment>The title of the Auto Reconnection tooltip</comment>
+  </data>
+  <data name="Tooltips_SmartReconnection_btn_NotificationSettings">
+    <value>Setări notificări</value>
+    <comment>The text button of the Auto Reconnection tooltip that opens the Notification Settings</comment>
+  </data>
+  <data name="Upsell_Countries_BlockAds">
+    <value>Blocați reclame și malware cu NetShield</value>
+  </data>
+  <data name="Upsell_Countries_BrowseFast">
+    <value>Navigați cu viteză maximă (10 Gbps)</value>
+  </data>
+  <data name="Upsell_Countries_GlobalStreamingServices">
+    <value>Accesați serviciile globale de transmisii în flux</value>
+  </data>
+  <data name="Upsell_Countries_MoreFeatures">
+    <value>Și multe alte caracteristici premium</value>
+  </data>
+  <data name="Upsell_Countries_SimultaneousDevices">
+    <value>Conectați până la 10 dispozitive simultan</value>
+  </data>
+  <data name="Upsell_Countries_Subtitle">
+    <value>Când treceți la Plus</value>
+    <comment>The message disaplyed in plus upgrade modal window</comment>
+  </data>
+  <data name="Upsell_Countries_Title">
+    <value>Accesați peste 1700 de servere sigure în peste 60 de țări.</value>
+    <comment>The message disaplyed in plus upgrade modal window</comment>
+  </data>
+  <data name="Upsell_ModerateNat_About">
+    <value>Ce este NAT moderat?</value>
+  </data>
+  <data name="Upsell_ModerateNat_Subtitle">
+    <value>NAT moderat, cunoscut și ca NAT tip 2, vă poate îmbunătăți experiența online pentru diferite aplicații și jocuri video online.</value>
+  </data>
+  <data name="Upsell_ModerateNat_Title">
+    <value>Activare NAT moderat</value>
+  </data>
+  <data name="Upsell_ModerateNat_Unlock">
+    <value>Treceți la un plan cu plată pentru a-l debloca și multe alte funcții.</value>
+  </data>
+  <data name="Upsell_Netshield_BlockAds">
+    <value>Blocare reclame și urmăritori</value>
+  </data>
+  <data name="Upsell_Netshield_BrowseFast">
+    <value>Navigați cu viteză maximă</value>
+  </data>
+  <data name="Upsell_Netshield_ProtectFromMalware">
+    <value>Protejați dispozitivul de programele malițioase</value>
+  </data>
+  <data name="Upsell_Netshield_Subtitle">
+    <value>Când treceți la Plus</value>
+  </data>
+  <data name="Upsell_Netshield_Title">
+    <value>Bucurați-vă de navigarea fără reclame cu NetShield</value>
+  </data>
+  <data name="Upsell_NonStandardPorts_btn_LearnMore">
+    <value>Detalii</value>
+    <comment>The button label in "allow non-standard ports" modal</comment>
+  </data>
+  <data name="Upsell_NonStandardPorts_btn_Upgrade">
+    <value>Upgrade</value>
+    <comment>The button label in "allow non-standard ports" modal</comment>
+  </data>
+  <data name="Upsell_NonStandardPorts_msg">
+    <value>Aveți nevoi avansate sau profesionale de calcul care necesită porturi non-standard? Treceți la VPN Plus pentru a activa aceasta și alte funcții premium.</value>
+    <comment>The text in "allow non-standard ports" modal</comment>
+  </data>
+  <data name="Upsell_NonStandardPorts_ttl">
+    <value>Permitere trafic la porturile nonstandard</value>
+    <comment>The title in "allow non-standard ports" modal</comment>
+  </data>
+  <data name="Upsell_PortForwarding_About">
+    <value>Ce este redirecționarea porturilor?</value>
+  </data>
+  <data name="Upsell_PortForwarding_Subtitle">
+    <value>Obțineți descărcări P2P mai rapide și îmbunătățiți-vă experiența în jocurile online cu redirecționarea porturilor.&lt;LineBreak/&gt;&lt;LineBreak/&gt;Deblocați această caracteristică și multe altele cu VPN Plus.</value>
+  </data>
+  <data name="Upsell_PortForwarding_Title">
+    <value>Activare redirecționare porturi</value>
+  </data>
+  <data name="Upsell_SecureCore_ExtraEncryption">
+    <value>Adăugați încă un nivel de criptare a conexiunii VPN</value>
+  </data>
+  <data name="Upsell_SecureCore_NetworkAttacks">
+    <value>Protejați-vă de atacurile din rețea</value>
+  </data>
+  <data name="Upsell_SecureCore_RouteThrough">
+    <value>Direcționați traficul prin serverele ultrasigure din Elveția, Suedia si Islanda</value>
+  </data>
+  <data name="Upsell_SecureCore_Subtitle">
+    <value>Când treceți la Plus</value>
+  </data>
+  <data name="Upsell_SecureCore_Title">
+    <value>Dublați criptarea cu Secure Core</value>
+  </data>
+  <data name="Upsell_btn_Upgrade">
+    <value>Upgrade</value>
+    <comment>The text on Upgrade button in Upgrade Required Upsell window (opens web page for subscription plan upgrade)</comment>
+  </data>
+  <data name="VpnPlan_val_Free">
+    <value>Proton VPN Free</value>
+    <comment>The name of VPN subscription plan</comment>
+  </data>
+  <data name="VpnPlan_val_Visionary">
+    <value>Proton Visionary</value>
+    <comment>The name of VPN subscription plan</comment>
+  </data>
+  <data name="VpnPlan_val_Vpnbasic">
+    <value>Proton VPN Basic</value>
+    <comment>The name of VPN subscription plan</comment>
+  </data>
+  <data name="VpnPlan_val_Vpnplus">
+    <value>Proton VPN Plus</value>
+    <comment>The name of VPN subscription plan</comment>
+  </data>
+  <data name="VpnProtocol_val_OpenVpnTcp">
+    <value>OpenVPN - (TCP)</value>
+    <comment>Protocol name displayed all over the app (do not translate)</comment>
+  </data>
+  <data name="VpnProtocol_val_OpenVpnUdp">
+    <value>OpenVPN - (UDP)</value>
+    <comment>Protocol name displayed all over the app (do not translate)</comment>
+  </data>
+  <data name="VpnProtocol_val_Smart">
+    <value>Smart</value>
+    <comment>The name of the VPN protocol. Means that the protocol will be automatically selected when connecting.</comment>
+  </data>
+  <data name="VpnProtocol_val_WireGuard">
+    <value>WireGuard</value>
+  </data>
+  <data name="Welcome_btn_Skip">
+    <value>Omitere</value>
+    <comment>The text on Skip button in Welcome window</comment>
+  </data>
+  <data name="Welcome_btn_TakeATour">
+    <value>Faceți un tur</value>
+    <comment>The text on Take a Tour button in Welcome window</comment>
+  </data>
+  <data name="Welcome_lbl_Thanks">
+    <value>Vă mulțumim că utilizați Proton VPN. Examinați funcțiile de bază ale aplicației.</value>
+    <comment>The text displayed in Welcome window</comment>
+  </data>
+  <data name="Welcome_lbl_Welcome">
+    <value>BINE AȚI VENIT!</value>
+    <comment>The text displayed in Welcome window</comment>
+  </data>
+  <data name="Welcome_ttl">
+    <value>Proton VPN</value>
+    <comment>The title of Welcome window</comment>
+  </data>
+  <data name="Window_btn_Cancel">
+    <value>Anulare</value>
+    <comment>The text on Cancel button in data entry windows</comment>
+  </data>
+  <data name="Window_btn_Disable">
+    <value>Dezactivare</value>
+    <comment>The button displayed when Kill Switch is enabled and in the login window or in the connection status in the sidebar when disconnected</comment>
+  </data>
+  <data name="Window_btn_Save">
+    <value>Salvare</value>
+    <comment>The text on Save button in data entry windows</comment>
+  </data>
+  <data name="Window_lbl_Error">
+    <value>Eroare:</value>
+    <comment>The label for list of errors on Error Panel of data entry Window</comment>
+  </data>
+  <data name="Window_lbl_Loading">
+    <value>Se încarcă</value>
+    <comment>The text displayed while content is loading</comment>
+  </data>
+  <data name="WireGuard_lbl">
+    <value>WireGuard</value>
+    <comment>WireGuard client name (do not translate)</comment>
+  </data>
+  <data name="Connecting_lbl_ConnectingTo_2">
+    <value></value>
+  </data>
+</root>

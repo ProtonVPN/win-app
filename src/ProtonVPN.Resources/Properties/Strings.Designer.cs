@@ -79,6 +79,15 @@ namespace ProtonVPN.Resource.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Čeština.
+        /// </summary>
+        internal static string Language_cs_CZ {
+            get {
+                return ResourceManager.GetString("Language_cs-CZ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Deutsch.
         /// </summary>
         internal static string Language_de_DE {
@@ -228,6 +237,15 @@ namespace ProtonVPN.Resource.Properties {
         internal static string Language_pt_PT {
             get {
                 return ResourceManager.GetString("Language_pt-PT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Română.
+        /// </summary>
+        internal static string Language_ro_RO {
+            get {
+                return ResourceManager.GetString("Language_ro-RO", resourceCulture);
             }
         }
         
