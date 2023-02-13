@@ -324,11 +324,11 @@
     <comment>The header of Settings menu item in the main app window (opens Settings window)</comment>
   </data>
   <data name="App_msg_LogoutConnectedConfirm">
-    <value>Uygulama oturumunu kapatmak, etkin VPN bağlantısını kesecek. Devam etmek istiyor musunuz?</value>
+    <value>Uygulama oturumunu kapatmak, etkin VPN bağlantısını kesecek. İlerlemek istiyor musunuz?</value>
     <comment>The question displayed when trying to logout while connected to VPN</comment>
   </data>
   <data name="App_msg_UpdateConnectedConfirm">
-    <value>Proton VPN, güncelleme işlemini tamamlamak için etkinse bağlantıyı geçici olarak kesecek ve Bağlantı kesiciyi devre dışı bırakacak. Devam etmek istiyor musunuz?</value>
+    <value>Proton VPN, güncelleme işlemini tamamlamak için etkinse bağlantıyı geçici olarak kesecek ve Bağlantı kesiciyi devre dışı bırakacak. İlerlemek istiyor musunuz?</value>
     <comment>The question displayed when trying to update the app while connected to VPN</comment>
   </data>
   <data name="App_ttl">
@@ -1661,7 +1661,7 @@
     <value>Çıkış</value>
   </data>
   <data name="Dialogs_Exit_msg_Confirm">
-    <value>Devam etmek istiyor musunuz?</value>
+    <value>İlerlemek istiyor musunuz?</value>
     <comment>The text displayed in the login window modal when the user tries to close the app while Kill Switch is active or VPN is on.</comment>
   </data>
   <data name="Dialogs_Exit_msg_Connected">
@@ -1751,10 +1751,10 @@
     <value>Yeniden başlat</value>
   </data>
   <data name="Dialogs_Reboot_btn_SkipReboot">
-    <value>Şu olmadan devam et</value>
+    <value>Şu olmadan ilerle</value>
   </data>
   <data name="Dialogs_Reboot_msg">
-    <value>Proton VPN ile ilgili bir sorun çıkmaması için öncelikle bilgisayarınızı yeniden başlatarak diğer uygulamaların güncellemelerini tamamlamanızı öneririz. Ardından Proton VPN otomatik olarak kuruluma devam eder. Şimdi yeniden başlatmak ister misiniz?</value>
+    <value>Proton VPN ile ilgili bir sorun çıkmaması için öncelikle bilgisayarınızı yeniden başlatarak diğer uygulamaların güncellemelerini tamamlamanızı öneririz. Ardından Proton VPN kurulumu otomatik olarak sürdürülür. Şimdi yeniden başlatmak ister misiniz?</value>
   </data>
   <data name="Dialogs_Reboot_ttl">
     <value>Bilgisayarınızın yeniden başlatılması gerekiyor</value>
@@ -1870,7 +1870,7 @@
     <comment>The text on Close button in dialog windows</comment>
   </data>
   <data name="Dialogs_btn_Continue">
-    <value>Devam et</value>
+    <value>İlerle</value>
     <comment>The text on Continue button in dialog windows</comment>
   </data>
   <data name="Dialogs_btn_Enable">
@@ -2397,7 +2397,7 @@
     <comment>The message displayed when trying to connect to country with no servers available</comment>
   </data>
   <data name="Profiles_msg_DeleteConfirm">
-    <value>Bu profil silinecek. Devam etmek istiyor musunuz?</value>
+    <value>Bu profil silinecek. İlerlemek istiyor musunuz?</value>
     <comment>The confirmation message displayed when deleting profile in Profiles window</comment>
   </data>
   <data name="Profiles_msg_NoServersAvailable">
@@ -2630,7 +2630,7 @@
     <comment>The label for DNS Leak Protection toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_DnsLeakProtection_Info">
-    <value>DNS sorgularının üçüncü taraflara sızdırılmasını önleyin. Her zaman açık.</value>
+    <value>DNS sorgularının üçüncü taraflara sızdırılmasını önleyin. Hep açık.</value>
     <comment>The description of DNS Leak Protection setting displayed in the tooltip of the ( i ) image next to the label for DNS Leak Protection toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_DoH">
@@ -2929,11 +2929,11 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The description of Secure Core feature displayed in a tooltip of ( i ) image next to Secure Core toggle switch label on Countries tab in Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_Countries_msg_SecureCoreDisableConfirm">
-    <value>Secure Core özelliğini devre dışı bırakmak, etkin VPN bağlantısını kesecek. Devam etmek istiyor musunuz?</value>
+    <value>Secure Core özelliğini devre dışı bırakmak, etkin VPN bağlantısını kesecek. İlerlemek istiyor musunuz?</value>
     <comment>The confirmation message displayed when switching off Secure Core toggle switch in Countries tab of Sidebar section of main app window while connected to VPN</comment>
   </data>
   <data name="Sidebar_Countries_msg_SecureCoreEnableConfirm">
-    <value>Secure Core kipine geçmek, etkin VPN bağlantısını kesecek. Devam etmek istiyor musunuz?</value>
+    <value>Secure Core kipine geçmek, etkin VPN bağlantısını kesecek. İlerlemek istiyor musunuz?</value>
     <comment>The confirmation message displayed when switching on Secure Core toggle switch in Countries tab of Sidebar section of main app window while connected to VPN</comment>
   </data>
   <data name="Sidebar_Countries_ttl">
@@ -3087,7 +3087,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Ilımlı NAT, 2. tür Nat olarak da bilinir ve çeşitli uygulamalar ve çevrimiçi video oyunlarıyla ilgili çevrimiçi deneyiminizi iyileştirebilir.</value>
   </data>
   <data name="Upsell_ModerateNat_Title">
-    <value>Ilımlı NAT özelliğini etkinleştirebilirsiniz</value>
+    <value>Ilımlı NAT kullanılsın</value>
   </data>
   <data name="Upsell_ModerateNat_Unlock">
     <value>Ücretli bir tarife ile bu ve başka pek çok özelliği kullanabilirsiniz.</value>
@@ -3130,7 +3130,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Bağlantı noktası yönlendirme ile daha hızlı P2P indirmeleri ve daha iyi çevrimiçi oyun deneyimi elde edin. &lt;LineBreak/&gt;&lt;LineBreak/&gt;VPN Plus tarifesine geçerek bu ve pek çok diğer özelliği edinebilirsiniz.</value>
   </data>
   <data name="Upsell_PortForwarding_Title">
-    <value>Bağlantı noktası yönlendirmesini etkinleştir</value>
+    <value>Bağlantı noktası yönlendirmesi kullanılsın</value>
   </data>
   <data name="Upsell_SecureCore_ExtraEncryption">
     <value>VPN bağlantınıze ek bir şifreleme düzeyi ekleyebilirsiniz</value>

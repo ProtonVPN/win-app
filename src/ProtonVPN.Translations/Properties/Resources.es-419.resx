@@ -2998,7 +2998,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The description displayed in a tooltip of P icon on a sidebar server item</comment>
   </data>
   <data name="Sidebar_Streaming_Country">
-    <value>Transmitiendo - {0}</value>
+    <value>Streaming - {0}</value>
   </data>
   <data name="Sidebar_Streaming_Features">
     <value>Funcionalidades</value>
