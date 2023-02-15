@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2022 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
@@ -18,6 +18,7 @@
  */
 
 using System;
+using System.Security.Cryptography;
 
 namespace ProtonVPN.Common.Helpers
 {
@@ -26,7 +27,7 @@ namespace ProtonVPN.Common.Helpers
     /// </summary>
     public class RandomStrings
     {
-        private readonly Random _random = new Random();
+        private readonly RNGCryptoServiceProvider _random = new RNGCryptoServiceProvider();
 
         public string RandomString(int length)
         {
@@ -37,10 +38,52 @@ namespace ProtonVPN.Common.Helpers
 
             for (var i = 0; i < randomChars.Length; i++)
             {
-                randomChars[i] = chars[_random.Next(chars.Length)];
+                randomChars[i] = chars[Next(chars.Length)];
             }
 
             return new string(randomChars);
+        }
+
+        /// <summary>
+        /// Returns a random number within a specified range.
+        /// </summary>
+        private int Next(int maxValue)
+        {
+            if (maxValue < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(maxValue));
+            }
+
+            if (maxValue == 0)
+            {
+                return 0;
+            }
+
+            while (true)
+            {
+                uint rand = GetRandomUInt32();
+
+                long max = 1 + (long)uint.MaxValue;
+
+                if (rand < max)
+                {
+                    return (int)(rand % maxValue);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets one random unsigned 32bit integer in a thread safe manner.
+        /// </summary>
+        private uint GetRandomUInt32()
+        {
+            lock (this)
+            {
+                var buffer = new byte[sizeof(uint)];
+                _random.GetBytes(buffer, 0, buffer.Length);
+                uint rand = BitConverter.ToUInt32(buffer, 0);
+                return rand;
+            }
         }
     }
 }
