@@ -56,7 +56,9 @@ namespace ProtonVPN.Update.Updates
             if (_checkForUpdate.Running)
             {
                 if (_requestedEarlyAccess == earlyAccess)
+                {
                     return;
+                }
 
                 _checkForUpdate.Cancel();
             }

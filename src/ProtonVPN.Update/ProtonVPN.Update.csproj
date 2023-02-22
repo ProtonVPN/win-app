@@ -82,12 +82,12 @@
     <Compile Include="Files\UpdatesDirectory\UpdatesDirectory.cs" />
     <Compile Include="Storage\IReleaseStorage.cs" />
     <Compile Include="Files\Validatable\FileCheckSum.cs" />
-    <Compile Include="Contracts\CategoriesContract.cs" />
+    <Compile Include="Responses\CategoriesResponse.cs" />
     <Compile Include="Releases\Release.cs" />
     <Compile Include="IRelease.cs" />
-    <Compile Include="Contracts\CategoryContract.cs" />
-    <Compile Include="Contracts\FileContract.cs" />
-    <Compile Include="Contracts\ReleaseContract.cs" />
+    <Compile Include="Responses\CategoryResponse.cs" />
+    <Compile Include="Responses\FileResponse.cs" />
+    <Compile Include="Responses\ReleaseResponse.cs" />
     <Compile Include="Releases\Releases.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AppUpdateException.cs" />
