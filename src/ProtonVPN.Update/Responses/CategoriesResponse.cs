@@ -19,12 +19,10 @@
 
 using System.Collections.Generic;
 
-namespace ProtonVPN.Update.Contracts
+namespace ProtonVPN.Update.Responses
 {
-    public class CategoryContract
+    public class CategoriesResponse
     {
-        public string Name;
-
-        public IReadOnlyList<ReleaseContract> Releases;
+        public IReadOnlyList<CategoryResponse> Categories;
     }
 }

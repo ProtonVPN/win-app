@@ -52,7 +52,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\FileContractTest.cs" />
+    <Compile Include="Responses\FileResponseTest.cs" />
     <Compile Include="Files\Downloadable\DownloadableFileTest.cs" />
     <Compile Include="Files\Downloadable\SafeDownloadableFileTest.cs" />
     <Compile Include="Files\FileLocationTest.cs" />
@@ -76,6 +76,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="TestData\win-update.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\windows-releases.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

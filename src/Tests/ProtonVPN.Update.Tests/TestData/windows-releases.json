@@ -1,0 +1,28 @@
+{
+    "Categories": [
+        {
+            "Name": "EarlyAccess",
+            "Releases": []
+        },
+        {
+            "Name": "Stable",
+            "Releases": [
+                {
+                    "Version": "2.3.2",
+                    "File": {
+                        "Url": "https://download.protonvpn.net/download/ProtonVPN_win_v2.3.2.exe",
+                        "SHA1CheckSum": "63b679452fffd92aa778caafaa0fb99c45ab9a2b",
+                        "SHA256CheckSum": "3fd2a8f09887fef57cd6c99e31ad71804281142c4f731f0685dfea8c362411b6",
+                        "SHA512CheckSum": "41a867409f020a2c72a4284e21b99db43ad8860f385e3411f902d403c28eda0e11a5118dbd977be81dde9711428e65307b8dd5128a872838e410ce328f28a496",
+                        "Arguments": "/qb"
+                    },
+                    "ChangeLog": [
+                        "Added feature."
+                    ],
+                    "ReleaseDate": "2023-01-03T11:42:24Z",
+                    "MinimumOsVersion": "6.1.7600"
+                }
+            ]
+        }
+    ]
+}
