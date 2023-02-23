@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2022 Proton
+ * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
  *

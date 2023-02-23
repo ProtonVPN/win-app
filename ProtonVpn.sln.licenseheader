@@ -1,6 +1,6 @@
 extensions: .cs
 /*
- * Copyright (c) 2020 Proton Technologies AG
+ * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -20,7 +20,7 @@ extensions: .cs
 
 extensions: .xaml
 <!--
-Copyright (c) 2020 Proton Technologies AG
+Copyright (c) 2023 Proton AG
 
 This file is part of ProtonVPN.
 
