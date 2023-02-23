@@ -6,7 +6,7 @@ namespace ProtonVPN.About
     {
         public string License { get; } = @"## Copying
 
-Copyright(c) 2022 Proton Technologies AG
+Copyright(c) 2023 Proton AG
 
 Proton VPN is free software: you can redistribute it and / or modify
 it under the terms of the GNU General Public License as published by
@@ -26,7 +26,7 @@ along with Proton VPN. If not, see [https://www.gnu.org/licenses](https://www.gn
 
 Proton VPN Windows app includes the following libraries:
 
-* [ProtonMail SRP library](https://github.com/ProtonMail/go-srp) by Proton Technologies AG
+* [ProtonMail SRP library](https://github.com/ProtonMail/go-srp) by Proton AG
   | [The MIT License](https://github.com/ProtonMail/go-srp/blob/master/LICENSE.txt).
 
 Proton VPN Windows app includes the following 3rd party software:

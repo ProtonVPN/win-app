@@ -1,6 +1,6 @@
 ﻿/* The MIT License (MIT)
 
-Copyright (c) 2022 Proton Technologies AG
+Copyright (c) 2023 Proton AG
 Copyright (c) .NET Foundation and Contributors
 
 All rights reserved.

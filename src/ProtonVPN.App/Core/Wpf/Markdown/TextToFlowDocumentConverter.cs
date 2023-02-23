@@ -1,7 +1,7 @@
 ﻿/*
 MIT License
 
-Copyright (c) 2022 Proton Technologies AG
+Copyright (c) 2023 Proton AG
 Copyright (c) 2010 Bevan Arps
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
